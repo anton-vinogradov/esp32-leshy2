@@ -110,6 +110,10 @@ def abstract_canonical(endpoint: str) -> str | None:
         return "3V3_MAIN"
     if endpoint.startswith("abstract:power-ground"):
         return "POWER_GROUND"
+    if endpoint == "abstract:safety-ground":
+        return "SAFETY_GROUND"
+    if endpoint == "abstract:AON_SAFE_3V3":
+        return "AON_SAFE_3V3"
     if endpoint == "abstract:SYS_INT_N_WIRED_LOW":
         return "SYS_INT_N"
     return None

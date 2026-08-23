@@ -27,7 +27,7 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 - the internal microphone body remains on the RF/power board; its quiet bias/filter network and the headset bias remain UI-local, so the single biased MIC_RAW conductor crosses M1 once beside AUDIO_GROUND to the internal/headset selector, after which one MIC_SELECTED_RAW source feeds both capture and transmit selectors
 - S3/C5/IR detector analog outputs and the IR carrier remain on the UI board; nRF/CC/voice detector analog outputs remain on the RF board
 - RUN/KILL conditioning, the independent watchdog, safety controller and FAULT_KILL latch remain on the RF/power board; only digital RUN_PERMIT, split reset gates, UI temperature and read-only status cross M1
-- six RF-board TX-evidence lines cross M1 to the front indicators; the UI-local BAT54ALT1G aggregate adds them to the three UI-local paths without consuming another contact or depending on firmware
+- six RF-board TX-evidence lines cross M1 to their individual front indicators; the UI-local S3, C5 and IR paths also drive their own LEDs, while the one system ANY_TX_AON_N aggregate remains on the RF/power safety plane
 - only encoder push and phases cross M1; F1 through F8 are UI-local and PTT is local to the RP/voice domain
 
 ## Contact budget

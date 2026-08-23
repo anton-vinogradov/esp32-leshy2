@@ -15,11 +15,12 @@ has an MPN, physical contacts, footprint, nets and explicit no-connects.
 | [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | exact ECAD | 9 child sheets, 91 cross-sheet nets and 218 explicit pins/labels |
 | [`UI_10_S3_CORE_MEMORY_BOOT`](../hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch) | exact ECAD | 32 components, 41 S3 carrier pads, boot/recovery/USB/RF and 39 interfaces |
 | [`UI_11_DISPLAY_TOUCH_STORAGE`](../hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch) | exact ECAD | 49 instances, all 40 display contacts, all 11 microSD contacts, backlight/touch/isolation and 17 interfaces |
-| `UI_12_CONTROLS_INDICATORS` | being populated | controls and indicators |
+| [`UI_12_CONTROLS_INDICATORS`](../hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch) | exact ECAD | 71 components, 15 serial switches, 9 actual-TX LEDs, hardware FAULT LED, thermal/ESD and 45 interfaces |
 
 Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
-[display/touch/storage](../hardware/ecad/generated/H2-UI11-display-touch-storage.json).
+[display/touch/storage](../hardware/ecad/generated/H2-UI11-display-touch-storage.json) and
+[controls/indicators](../hardware/ecad/generated/H2-UI12-controls-indicators.json).
 These sheets do not yet authorize PCB placement, routing or fabrication.
 
 Read the architecture from its three compute owners, not from the USB port.
@@ -320,12 +321,6 @@ EVIDENCE_OR_1["BAT54ALT1G<br/>nRF24 #1 and #2 evidence diode combiner"]
 EVIDENCE_OR_2["BAT54ALT1G<br/>nRF24 #3 and sub-GHz evidence diode combiner"]
 EVIDENCE_OR_3["BAT54ALT1G<br/>voice and IR evidence diode combiner"]
 EVIDENCE_OR_4["BAT54ALT1G<br/>LoRa/EXT evidence diode combiner"]
-UI_EVIDENCE_OR_0["BAT54ALT1G<br/>front-local S3 and C5 evidence diode combiner"]
-UI_EVIDENCE_OR_1["BAT54ALT1G<br/>front-local nRF24 #1 and #2 evidence diode combiner"]
-UI_EVIDENCE_OR_2["BAT54ALT1G<br/>front-local nRF24 #3 and sub-GHz evidence diode combiner"]
-UI_EVIDENCE_OR_3["BAT54ALT1G<br/>front-local voice and IR evidence diode combiner"]
-UI_EVIDENCE_OR_4["BAT54ALT1G<br/>front-local LoRa/EXT evidence diode combiner"]
-UI_ANY_TX_PULLUP["Yageo RC0402FR-0710KL<br/>front-local aggregate-TX indicator pull-up"]
 EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>digital TX-evidence isolation into the main domain"]
   SAFE_SUPERVISOR -->|"power-on reset"| SAFE_LATCH
   POWER_COMMAND_SWITCH -->|"KILL / physical RUN edge"| SAFE_CONDITIONER
@@ -352,15 +347,4 @@ EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>digital TX-evidence isolation into t
   EVIDENCE_OR_2 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_3 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_4 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
-  EVIDENCE_CMP_A -->|"front sources 0 / 1 / 7"| UI_EVIDENCE_OR_0
-  EVIDENCE_CMP_A -->|"front source 7"| UI_EVIDENCE_OR_3
-  EVIDENCE_CMP_B -->|"front sources 2 / 3"| UI_EVIDENCE_OR_1
-  EVIDENCE_CMP_B -->|"front sources 4 / 5"| UI_EVIDENCE_OR_2
-  EVIDENCE_CMP_VOICE -->|"front source 6"| UI_EVIDENCE_OR_3
-  EXT_EVIDENCE_BUFFER -->|"front source 8"| UI_EVIDENCE_OR_4
-  UI_EVIDENCE_OR_0 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_1 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_2 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_3 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_4 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
 ```

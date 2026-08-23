@@ -60,10 +60,10 @@ def sheet_for(instance: str, frame: str) -> str:
         return "UI_50_TX_SAFETY_EVIDENCE"
     if instance in {
         "s3_tx_led", "c5_tx_led", "nrf0_tx_led", "nrf1_tx_led", "nrf2_tx_led",
-        "cc_tx_led", "voice_tx_led", "ir_tx_led", "ext_tx_led", "any_tx_led",
+        "cc_tx_led", "voice_tx_led", "ir_tx_led", "ext_tx_led",
         "fault_led",
     } or instance.endswith("_tx_led_series") or instance in {
-        "any_tx_led_series", "fault_led_series",
+        "fault_led_series",
     }:
         return "UI_12_CONTROLS_INDICATORS"
     if instance.startswith(("slow_io_", "front_function_")):

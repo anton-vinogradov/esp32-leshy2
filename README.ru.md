@@ -30,14 +30,14 @@ target-прогонов в эмуляторах ещё нет, ни один з�
 
 ### Текущая фаза H2 — детальная позиция
 
-<!-- current-substep: H2.2.4 -->
+<!-- current-substep: H2.2.5 -->
 
-**Точный маркер: `H2.2.4`** — реализовать и проверить точные цепи органов
-управления и индикаторов на `UI_12_CONTROLS_INDICATORS`.
+**Точный маркер: `H2.2.5`** — реализовать и проверить точные цепи codec и
+CTIA headset audio на `UI_13_AUDIO_CODEC_HEADSET`.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - `H2.0` — зафиксировать авторитетные входы схемы и структуру проектов.
-  - ✅ `H2.0.1` — проверен полный реестр из 1005 строк: 977 экземпляров
+  - ✅ `H2.0.1` — проверен полный реестр из 997 строк: 969 экземпляров
     основного устройства, 26 общих и 2 альтернативных экземпляра LoRa Cap.
   - ✅ `H2.0.2` — проверены четыре проекта, границы плат и имена цепей.
   - ✅ `H2.0.3` — проверены HW↔FW/BSP-контракт на 123 контакта и drift checks двух репозиториев.
@@ -51,8 +51,11 @@ target-прогонов в эмуляторах ещё нет, ни один з�
   - ✅ `H2.2.3` — проверены 49 точных экземпляров display/touch/storage:
     40-контактная панель, 11 контактов microSD, защищённая подсветка,
     изоляция данных и все 17 hierarchy-интерфейсов.
-  - ▶️ **`H2.2.4` — сейчас:** органы управления и индикаторы.
-  - ⏳ `H2.2.5–H2.2.10` — audio; C5/IR;
+  - ✅ `H2.2.4` — проверен 71 точный компонент controls/indicators: 15 серийных
+    кнопок, slow/matrix I/O, thermal/ESD, девять actual-TX LED, аппаратный
+    FAULT LED, 45 hierarchy-интерфейсов и три объяснённых NC-контакта.
+  - ▶️ **`H2.2.5` — сейчас:** codec и CTIA headset audio.
+  - ⏳ `H2.2.6–H2.2.10` — C5/IR;
     receiver; M1; TX safety; manufacturing/test points — по порядку.
 - ⏳ `H2.3` — реализовать и проверить листы RF/power PCB.
 - ⏳ `H2.4` — реализовать и проверить схемы display-adapter и LoRa Cap.
@@ -456,12 +459,6 @@ EVIDENCE_OR_1["BAT54ALT1G<br/>диодное объединение evidence nRF
 EVIDENCE_OR_2["BAT54ALT1G<br/>диодное объединение evidence nRF24 №3 и Sub-GHz"]
 EVIDENCE_OR_3["BAT54ALT1G<br/>диодное объединение evidence voice и IR"]
 EVIDENCE_OR_4["BAT54ALT1G<br/>диодное объединение evidence LoRa/EXT"]
-UI_EVIDENCE_OR_0["BAT54ALT1G<br/>лицевое диодное объединение evidence S3 и C5"]
-UI_EVIDENCE_OR_1["BAT54ALT1G<br/>лицевое диодное объединение evidence nRF24 №1 и №2"]
-UI_EVIDENCE_OR_2["BAT54ALT1G<br/>лицевое диодное объединение evidence nRF24 №3 и Sub-GHz"]
-UI_EVIDENCE_OR_3["BAT54ALT1G<br/>лицевое диодное объединение evidence voice и IR"]
-UI_EVIDENCE_OR_4["BAT54ALT1G<br/>лицевое диодное объединение evidence LoRa/EXT"]
-UI_ANY_TX_PULLUP["Yageo RC0402FR-0710KL<br/>локальная лицевая подтяжка общего индикатора передачи"]
 EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX-свидетельств в main domain"]
   SAFE_SUPERVISOR -->|"power-on reset"| SAFE_LATCH
   POWER_COMMAND_SWITCH -->|"KILL / physical RUN edge"| SAFE_CONDITIONER
@@ -488,17 +485,6 @@ EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX
   EVIDENCE_OR_2 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_3 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_4 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
-  EVIDENCE_CMP_A -->|"front sources 0 / 1 / 7"| UI_EVIDENCE_OR_0
-  EVIDENCE_CMP_A -->|"front source 7"| UI_EVIDENCE_OR_3
-  EVIDENCE_CMP_B -->|"front sources 2 / 3"| UI_EVIDENCE_OR_1
-  EVIDENCE_CMP_B -->|"front sources 4 / 5"| UI_EVIDENCE_OR_2
-  EVIDENCE_CMP_VOICE -->|"front source 6"| UI_EVIDENCE_OR_3
-  EXT_EVIDENCE_BUFFER -->|"front source 8"| UI_EVIDENCE_OR_4
-  UI_EVIDENCE_OR_0 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_1 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_2 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_3 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_4 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
 ```
 
 Точные контакты показаны в [распиновке](docs/pinout.ru.md), а прохождение сигналов между платами — в [карте M1](docs/interconnect.ru.md).

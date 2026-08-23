@@ -30,14 +30,14 @@ PCB layout or target-emulator run, and no order is authorized.
 
 ### Current phase H2 — detailed position
 
-<!-- current-substep: H2.2.4 -->
+<!-- current-substep: H2.2.5 -->
 
-**Exact marker: `H2.2.4`** — implement and review the exact user-control and
-indicator circuitry on `UI_12_CONTROLS_INDICATORS`.
+**Exact marker: `H2.2.5`** — implement and review the exact codec and CTIA
+headset-audio circuitry on `UI_13_AUDIO_CODEC_HEADSET`.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - `H2.0` — freeze authoritative schematic inputs and project structure.
-  - ✅ `H2.0.1` — complete 1005-row circuit inventory reviewed: 977 main-device
+  - ✅ `H2.0.1` — complete 997-row circuit inventory reviewed: 969 main-device
     instances plus 26 common and 2 alternative LoRa-Cap instances.
   - ✅ `H2.0.2` — four-project sheet graph, board boundaries and net naming reviewed.
   - ✅ `H2.0.3` — generated 123-contact HW↔FW/BSP contract and cross-repository drift checks reviewed.
@@ -51,8 +51,11 @@ indicator circuitry on `UI_12_CONTROLS_INDICATORS`.
   - ✅ `H2.2.3` — reviewed 49 exact display/touch/storage instances: the
     40-contact panel, all 11 microSD contacts, protected backlight, data
     isolation and all 17 hierarchy interfaces.
-  - ▶️ **`H2.2.4` — current:** user controls and indicators.
-  - ⏳ `H2.2.5–H2.2.10` — audio; C5/IR;
+  - ✅ `H2.2.4` — reviewed 71 exact control/indicator components: 15 serial
+    switches, slow/matrix I/O, thermal/ESD paths, nine actual-TX LEDs, the
+    hardware FAULT LED, 45 hierarchy interfaces and three explained NC pins.
+  - ▶️ **`H2.2.5` — current:** codec and CTIA headset audio.
+  - ⏳ `H2.2.6–H2.2.10` — C5/IR;
     receiver; M1; TX safety; manufacturing/test points, in that order.
 - ⏳ `H2.3` — implement and review RF/power PCB sheets.
 - ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.
@@ -458,12 +461,6 @@ EVIDENCE_OR_1["BAT54ALT1G<br/>nRF24 #1 and #2 evidence diode combiner"]
 EVIDENCE_OR_2["BAT54ALT1G<br/>nRF24 #3 and sub-GHz evidence diode combiner"]
 EVIDENCE_OR_3["BAT54ALT1G<br/>voice and IR evidence diode combiner"]
 EVIDENCE_OR_4["BAT54ALT1G<br/>LoRa/EXT evidence diode combiner"]
-UI_EVIDENCE_OR_0["BAT54ALT1G<br/>front-local S3 and C5 evidence diode combiner"]
-UI_EVIDENCE_OR_1["BAT54ALT1G<br/>front-local nRF24 #1 and #2 evidence diode combiner"]
-UI_EVIDENCE_OR_2["BAT54ALT1G<br/>front-local nRF24 #3 and sub-GHz evidence diode combiner"]
-UI_EVIDENCE_OR_3["BAT54ALT1G<br/>front-local voice and IR evidence diode combiner"]
-UI_EVIDENCE_OR_4["BAT54ALT1G<br/>front-local LoRa/EXT evidence diode combiner"]
-UI_ANY_TX_PULLUP["Yageo RC0402FR-0710KL<br/>front-local aggregate-TX indicator pull-up"]
 EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>digital TX-evidence isolation into the main domain"]
   SAFE_SUPERVISOR -->|"power-on reset"| SAFE_LATCH
   POWER_COMMAND_SWITCH -->|"KILL / physical RUN edge"| SAFE_CONDITIONER
@@ -490,17 +487,6 @@ EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>digital TX-evidence isolation into t
   EVIDENCE_OR_2 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_3 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_4 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
-  EVIDENCE_CMP_A -->|"front sources 0 / 1 / 7"| UI_EVIDENCE_OR_0
-  EVIDENCE_CMP_A -->|"front source 7"| UI_EVIDENCE_OR_3
-  EVIDENCE_CMP_B -->|"front sources 2 / 3"| UI_EVIDENCE_OR_1
-  EVIDENCE_CMP_B -->|"front sources 4 / 5"| UI_EVIDENCE_OR_2
-  EVIDENCE_CMP_VOICE -->|"front source 6"| UI_EVIDENCE_OR_3
-  EXT_EVIDENCE_BUFFER -->|"front source 8"| UI_EVIDENCE_OR_4
-  UI_EVIDENCE_OR_0 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_1 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_2 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_3 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_4 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
 ```
 
 Exact contacts are in the [pin assignment](docs/pinout.md), while signals crossing the two boards are in the [M1 map](docs/interconnect.md).

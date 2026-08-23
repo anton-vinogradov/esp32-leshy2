@@ -2116,12 +2116,6 @@ def render_target_principled_section(
             "evidence_or_2": "диодное объединение evidence nRF24 №3 и Sub-GHz",
             "evidence_or_3": "диодное объединение evidence voice и IR",
             "evidence_or_4": "диодное объединение evidence LoRa/EXT",
-            "ui_evidence_or_0": "лицевое диодное объединение evidence S3 и C5",
-            "ui_evidence_or_1": "лицевое диодное объединение evidence nRF24 №1 и №2",
-            "ui_evidence_or_2": "лицевое диодное объединение evidence nRF24 №3 и Sub-GHz",
-            "ui_evidence_or_3": "лицевое диодное объединение evidence voice и IR",
-            "ui_evidence_or_4": "лицевое диодное объединение evidence LoRa/EXT",
-            "ui_any_tx_pullup": "локальная лицевая подтяжка общего индикатора передачи",
             "evidence_main_isolator": "развязка цифровых TX-свидетельств в main domain",
         }
         atlas_text = (
@@ -2258,12 +2252,6 @@ def render_target_principled_section(
             "evidence_or_2": "nRF24 #3 and sub-GHz evidence diode combiner",
             "evidence_or_3": "voice and IR evidence diode combiner",
             "evidence_or_4": "LoRa/EXT evidence diode combiner",
-            "ui_evidence_or_0": "front-local S3 and C5 evidence diode combiner",
-            "ui_evidence_or_1": "front-local nRF24 #1 and #2 evidence diode combiner",
-            "ui_evidence_or_2": "front-local nRF24 #3 and sub-GHz evidence diode combiner",
-            "ui_evidence_or_3": "front-local voice and IR evidence diode combiner",
-            "ui_evidence_or_4": "front-local LoRa/EXT evidence diode combiner",
-            "ui_any_tx_pullup": "front-local aggregate-TX indicator pull-up",
             "evidence_main_isolator": "digital TX-evidence isolation into the main domain",
         }
         atlas_text = (
@@ -2493,9 +2481,6 @@ def render_target_principled_section(
                 node("evidence_or_0"), node("evidence_or_1"),
                 node("evidence_or_2"), node("evidence_or_3"),
                 node("evidence_or_4"),
-                node("ui_evidence_or_0"), node("ui_evidence_or_1"),
-                node("ui_evidence_or_2"), node("ui_evidence_or_3"),
-                node("ui_evidence_or_4"), node("ui_any_tx_pullup"),
                 node("evidence_main_isolator"),
             ],
             [
@@ -2524,17 +2509,6 @@ def render_target_principled_section(
                 '  EVIDENCE_OR_2 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR',
                 '  EVIDENCE_OR_3 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR',
                 '  EVIDENCE_OR_4 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR',
-                '  EVIDENCE_CMP_A -->|"front sources 0 / 1 / 7"| UI_EVIDENCE_OR_0',
-                '  EVIDENCE_CMP_A -->|"front source 7"| UI_EVIDENCE_OR_3',
-                '  EVIDENCE_CMP_B -->|"front sources 2 / 3"| UI_EVIDENCE_OR_1',
-                '  EVIDENCE_CMP_B -->|"front sources 4 / 5"| UI_EVIDENCE_OR_2',
-                '  EVIDENCE_CMP_VOICE -->|"front source 6"| UI_EVIDENCE_OR_3',
-                '  EXT_EVIDENCE_BUFFER -->|"front source 8"| UI_EVIDENCE_OR_4',
-                '  UI_EVIDENCE_OR_0 -->|"front-local aggregate"| UI_ANY_TX_PULLUP',
-                '  UI_EVIDENCE_OR_1 -->|"front-local aggregate"| UI_ANY_TX_PULLUP',
-                '  UI_EVIDENCE_OR_2 -->|"front-local aggregate"| UI_ANY_TX_PULLUP',
-                '  UI_EVIDENCE_OR_3 -->|"front-local aggregate"| UI_ANY_TX_PULLUP',
-                '  UI_EVIDENCE_OR_4 -->|"front-local aggregate"| UI_ANY_TX_PULLUP',
             ],
         ),
     ]
@@ -2599,11 +2573,12 @@ def render_public_schematics(
 | [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | точный ECAD | 9 дочерних листов, 91 межлистовая цепь, 218 явных pins/labels |
 | [`UI_10_S3_CORE_MEMORY_BOOT`](../hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch) | точный ECAD | 32 компонента, 41 carrier-pad S3, boot/recovery/USB/RF и 39 интерфейсов |
 | [`UI_11_DISPLAY_TOUCH_STORAGE`](../hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch) | точный ECAD | 49 экземпляров, все 40 контактов display, все 11 контактов microSD, backlight/touch/isolation и 17 интерфейсов |
-| `UI_12_CONTROLS_INDICATORS` | заполняется | органы управления и индикаторы |
+| [`UI_12_CONTROLS_INDICATORS`](../hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch) | точный ECAD | 71 компонент, 15 серийных кнопок, 9 фактических TX LED, аппаратный FAULT LED, thermal/ESD и 45 интерфейсов |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
-[display/touch/storage](../hardware/ecad/generated/H2-UI11-display-touch-storage.json).
+[display/touch/storage](../hardware/ecad/generated/H2-UI11-display-touch-storage.json) и
+[controls/indicators](../hardware/ecad/generated/H2-UI12-controls-indicators.json).
 PCB placement, routing и производство этими листами ещё не разрешены."""
     else:
         navigation = "[Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)"
@@ -2626,11 +2601,12 @@ has an MPN, physical contacts, footprint, nets and explicit no-connects.
 | [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | exact ECAD | 9 child sheets, 91 cross-sheet nets and 218 explicit pins/labels |
 | [`UI_10_S3_CORE_MEMORY_BOOT`](../hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch) | exact ECAD | 32 components, 41 S3 carrier pads, boot/recovery/USB/RF and 39 interfaces |
 | [`UI_11_DISPLAY_TOUCH_STORAGE`](../hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch) | exact ECAD | 49 instances, all 40 display contacts, all 11 microSD contacts, backlight/touch/isolation and 17 interfaces |
-| `UI_12_CONTROLS_INDICATORS` | being populated | controls and indicators |
+| [`UI_12_CONTROLS_INDICATORS`](../hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch) | exact ECAD | 71 components, 15 serial switches, 9 actual-TX LEDs, hardware FAULT LED, thermal/ESD and 45 interfaces |
 
 Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
-[display/touch/storage](../hardware/ecad/generated/H2-UI11-display-touch-storage.json).
+[display/touch/storage](../hardware/ecad/generated/H2-UI11-display-touch-storage.json) and
+[controls/indicators](../hardware/ecad/generated/H2-UI12-controls-indicators.json).
 These sheets do not yet authorize PCB placement, routing or fabrication."""
     heading, remainder = section.split("\n", 1)
     return f"{heading}\n\n{navigation}\n\n{detail}\n\n{ecad}\n{remainder}"
@@ -3224,9 +3200,7 @@ def _render_principled_pinout_bundle(
         "evidence_mask_p15_pulldown", "evidence_mask_p16_pulldown",
         "evidence_mask_p17_pulldown",
         "evidence_or_0", "evidence_or_1", "evidence_or_2", "evidence_or_3", "evidence_or_4",
-        "ui_evidence_or_0", "ui_evidence_or_1", "ui_evidence_or_2",
-        "ui_evidence_or_3", "ui_evidence_or_4", "ui_any_tx_pullup",
-        "any_tx_aon_pullup", "any_tx_led_series", "any_tx_led",
+        "any_tx_aon_pullup",
         "ext_tx_led_series", "ext_tx_led",
         "evidence_main_isolator", "evidence_main_isolator_bypass",
         "c5_evidence_main_pullup", "ir_evidence_main_pullup",
@@ -3262,15 +3236,7 @@ def _render_principled_pinout_bundle(
             "evidence_or_2": "evidence diode-OR pair 4/5",
             "evidence_or_3": "evidence diode-OR pair 6/7",
             "evidence_or_4": "evidence diode-OR source 8 with one unused diode",
-            "ui_evidence_or_0": "front-local evidence diode-OR pair 0/1",
-            "ui_evidence_or_1": "front-local evidence diode-OR pair 2/3",
-            "ui_evidence_or_2": "front-local evidence diode-OR pair 4/5",
-            "ui_evidence_or_3": "front-local evidence diode-OR pair 6/7",
-            "ui_evidence_or_4": "front-local evidence diode-OR source 8 with one unused diode",
-            "ui_any_tx_pullup": "10-kOhm front-local ANY-TX logic pull-up resistor",
             "any_tx_aon_pullup": "10-kOhm AON ANY-TX logic pull-up resistor",
-            "any_tx_led_series": "2.2-kOhm physical ANY-TX indicator current limit",
-            "any_tx_led": "red physical ANY-TX indicator",
             "ext_tx_led_series": "2.2-kOhm LoRa/EXT physical-TX indicator current limit",
             "ext_tx_led": "red physical LoRa/EXT actual-TX indicator",
             "evidence_main_isolator": "triple AON-to-main open-drain evidence isolator",
@@ -4479,18 +4445,6 @@ def _render_principled_pinout_bundle(
         "  EVIDENCE_OR_2 --> ANY_TX_AON_PULLUP",
         "  EVIDENCE_OR_3 --> ANY_TX_AON_PULLUP",
         "  EVIDENCE_OR_4 --> ANY_TX_AON_PULLUP",
-        "  EVIDENCE_CMP_A --> UI_EVIDENCE_OR_0",
-        "  EVIDENCE_CMP_A --> UI_EVIDENCE_OR_3",
-        "  EVIDENCE_CMP_B --> UI_EVIDENCE_OR_1",
-        "  EVIDENCE_CMP_B --> UI_EVIDENCE_OR_2",
-        "  EVIDENCE_CMP_VOICE --> UI_EVIDENCE_OR_3",
-        "  EXT_EVIDENCE_BUFFER --> UI_EVIDENCE_OR_4",
-        "  UI_EVIDENCE_OR_0 --> UI_ANY_TX_PULLUP",
-        "  UI_EVIDENCE_OR_1 --> UI_ANY_TX_PULLUP",
-        "  UI_EVIDENCE_OR_2 --> UI_ANY_TX_PULLUP",
-        "  UI_EVIDENCE_OR_3 --> UI_ANY_TX_PULLUP",
-        "  UI_EVIDENCE_OR_4 --> UI_ANY_TX_PULLUP",
-        "  ANY_TX_LED_SERIES --> ANY_TX_LED --> UI_ANY_TX_PULLUP",
         "  EXT_TX_LED_SERIES --> EXT_TX_LED --> EXT_EVIDENCE_BUFFER",
         "  EVIDENCE_MASK <-->|\"private bit-banged I²C source mask\"| SAFETY_CONTROLLER",
         "  EVIDENCE_CMP_A -->|\"C5 RF evidence\"| EVIDENCE_MAIN_ISOLATOR",

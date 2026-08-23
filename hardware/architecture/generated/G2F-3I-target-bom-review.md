@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **977** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **976** supplied/costed placements collapse to **201** used exact-device/MPN lines.
+- **969** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **968** supplied/costed placements collapse to **201** used exact-device/MPN lines.
 - Current orderability evidence exists for **200/201** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **190/201** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **959/976** supplied placements; their partial subtotals are `base_product` — USD 220.5416. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **951/968** supplied placements; their partial subtotals are `base_product` — USD 220.1662. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **201/201** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 973 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 965 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -674,7 +674,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>LTST-C190KRKT</code> — 10 × USD 0.0675 = USD 0.6750</summary>
+<details><summary><code>LTST-C190KRKT</code> — 9 × USD 0.0675 = USD 0.6075</summary>
 
 - Device id: `liteon_ltst_c190krkt`.
 - Scope: `base_product`.
@@ -1052,7 +1052,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>BAT54ALT1G</code> — 10 × USD 0.0577 = USD 0.5770</summary>
+<details><summary><code>BAT54ALT1G</code> — 5 × USD 0.0577 = USD 0.2885</summary>
 
 - Device id: `onsemi_bat54alt1g`.
 - Scope: `base_product`.
@@ -1718,7 +1718,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-0710KL</code> — 191 × USD 0.0097 = USD 1.8527</summary>
+<details><summary><code>Yageo RC0402FR-0710KL</code> — 190 × USD 0.0097 = USD 1.8430</summary>
 
 - Device id: `yageo_rc0402fr_0710kl`.
 - Scope: `base_product`.
@@ -1844,7 +1844,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-072K2L</code> — 24 × USD 0.0097 = USD 0.2328</summary>
+<details><summary><code>Yageo RC0402FR-072K2L</code> — 23 × USD 0.0097 = USD 0.2231</summary>
 
 - Device id: `yageo_rc0402fr_072k2l`.
 - Scope: `base_product`.

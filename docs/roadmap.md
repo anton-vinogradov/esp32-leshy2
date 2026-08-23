@@ -26,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Current production ECAD schematic | ▶️ H2.2.4: user controls and indicators; S3 core H2.2.2 and display/touch/storage H2.2.3 are reviewed |
+| Current production ECAD schematic | ▶️ H2.2.5: codec and CTIA headset audio; UI root and H2.2.2–H2.2.4 are reviewed |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ▶️ H2: authorized |
@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.2.4 -->
+<!-- current-substep: H2.2.5 -->
 
-**Exact marker: `H2.2.4`** — implement and review exact user-control and
-indicator circuitry on `UI_12_CONTROLS_INDICATORS`.
+**Exact marker: `H2.2.5`** — implement and review exact codec and CTIA
+headset-audio circuitry on `UI_13_AUDIO_CODEC_HEADSET`.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -115,11 +115,11 @@ indicator circuitry on `UI_12_CONTROLS_INDICATORS`.
 Current H2 execution:
 
 - `H2.0` — freeze authoritative schematic inputs and project structure.
-  - ✅ `H2.0.1` — complete 1005-row inventory reviewed: all 977 main-device
+  - ✅ `H2.0.1` — complete 997-row inventory reviewed: all 969 main-device
     circuit instances, 26 common LoRa-Cap parts and 2 alternative radio modules;
-    178 H1 bodies and all 799 schematic-only main-device parts are reconciled.
+    181 H1 bodies and all 788 schematic-only main-device parts are reconciled.
   - ✅ `H2.0.2` — four-project hierarchy, board boundaries, rails and net naming
-    rechecked against all 1005 inventory rows; four intentionally component-empty
+    rechecked against all 997 inventory rows; four intentionally component-empty
     root/test sheets are explicitly classified.
   - ✅ `H2.0.3` — generated 123-contact HW↔FW/BSP export and cross-repository drift checks reviewed.
 - ✅ `H2.1` — four independent KiCad projects, 28 native schematic files and
@@ -128,8 +128,8 @@ Current H2 execution:
 - `H2.2` — implement and review UI/control PCB sheets.
   - ✅ `H2.2.1` — `UI_00_ROOT`: nine child sheets, 91 exact cross-sheet nets
     and 218 explicit pins/labels; one direct root rail per net, no hidden global
-    labels, native KiCad parse passed. With UI10 and UI11 populated, 101 exact
-    empty-child stub findings and 82 generated-symbol copy warnings are
+    labels, native KiCad parse passed. With UI10–UI12 populated, 36 exact
+    empty-child stub findings and 153 generated-symbol copy warnings are
     machine-accounted.
   - ✅ `H2.2.2` — `UI_10_S3_CORE_MEMORY_BOOT`: 32 exact ledger components plus
     one module U.FL assembly-boundary symbol, all 41 S3 carrier pads, 39 hierarchy
@@ -137,8 +137,11 @@ Current H2 execution:
   - ✅ `H2.2.3` — `UI_11_DISPLAY_TOUCH_STORAGE`: 49 instances, 40 panel
     contacts, 11 microSD contacts, 17 hierarchy interfaces and 33 explained
     no-connects; native KiCad review passed.
-  - ▶️ **`H2.2.4` — current:** `UI_12_CONTROLS_INDICATORS`.
-  - ⏳ `H2.2.5` — `UI_13_AUDIO_CODEC_HEADSET`.
+  - ✅ `H2.2.4` — `UI_12_CONTROLS_INDICATORS`: 71 exact components, 15 serial
+    B3S-1100P switches, 45 hierarchy interfaces, nine actual-TX LEDs, one
+    hardware FAULT LED, three custom footprints and three explained no-connects;
+    native KiCad review passed.
+  - ▶️ **`H2.2.5` — current:** `UI_13_AUDIO_CODEC_HEADSET`.
   - ⏳ `H2.2.6` — `UI_20_C5_RADIO_IR_SERVICE`.
   - ⏳ `H2.2.7` — `UI_21_FM_AM_RECEIVER`.
   - ⏳ `H2.2.8` — `UI_40_INTERBOARD_M1`.

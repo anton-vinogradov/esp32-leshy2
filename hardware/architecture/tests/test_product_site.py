@@ -59,12 +59,12 @@ class ProductSiteTests(unittest.TestCase):
             "docs/roadmap.md": (
                 "Current hardware stage: H2", "H1 accepted",
                 "F3 target boot/emulation is not closed",
-                "H2.2.4",
+                "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
                 "Текущий аппаратный этап: H2", "H1 принят",
-                "F3 не закрыт", "H2.2.4",
+                "F3 не закрыт", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
             ),
@@ -138,7 +138,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H2.2.4"}, set(markers.values()))
+        self.assertEqual({"H2.2.5"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
@@ -165,7 +165,7 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.2.4", plan["current_substep"])
+        self.assertEqual("H2.2.5", plan["current_substep"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -190,16 +190,17 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["substeps"][2]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][2]["children"][1]["status"])
         self.assertEqual("reviewed", plan["substeps"][2]["children"][2]["status"])
-        self.assertEqual("current", plan["substeps"][2]["children"][3]["status"])
+        self.assertEqual("reviewed", plan["substeps"][2]["children"][3]["status"])
+        self.assertEqual("current", plan["substeps"][2]["children"][4]["status"])
         sheet_contract = json.loads(
             self.read("hardware/ecad/H2-sheet-contract.json")
         )
         binding = sheet_contract["inventory_binding"]
         self.assertEqual("reviewed_against_complete_h2_0_1_inventory", binding["status"])
-        self.assertEqual(1005, binding["registered_inventory_rows"])
+        self.assertEqual(997, binding["registered_inventory_rows"])
         self.assertEqual(
             {
-                "LESHY2-UI": 382,
+                "LESHY2-UI": 374,
                 "LESHY2-RF": 593,
                 "L2-DISP-ADP-001-A": 2,
                 "LESHY2-LORA-CAP-01": 28,
@@ -208,7 +209,7 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(4, len(binding["intentionally_component_empty_sheets"]))
         self.assertEqual(24, len(binding["sheet_row_counts"]))
-        self.assertEqual(1005, sum(binding["sheet_row_counts"].values()))
+        self.assertEqual(997, sum(binding["sheet_row_counts"].values()))
 
     def test_h2_1_kicad_scaffold_is_complete_and_contains_no_pcb(self):
         import json
@@ -256,10 +257,10 @@ class ProductSiteTests(unittest.TestCase):
                 "cross_sheet_net_count": 91,
                 "root_hierarchical_pin_count": 218,
                 "child_hierarchical_label_count": 218,
-                "known_child_stub_erc_violations": 101,
-                "implemented_child_sheet_count": 2,
-                "circuit_symbols_placed": 82,
-                "known_generated_library_copy_warnings": 82,
+                "known_child_stub_erc_violations": 36,
+                "implemented_child_sheet_count": 3,
+                "circuit_symbols_placed": 153,
+                "known_generated_library_copy_warnings": 153,
                 "pcb_files_created": 0,
             },
             manifest["summary"],
@@ -297,13 +298,13 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(2, ledger["schema_version"])
         self.assertEqual("reviewed_complete_circuit_inventory", ledger["status"])
         summary = ledger["summary"]
-        self.assertEqual(1005, summary["registered_inventory_rows"])
-        self.assertEqual(977, summary["main_candidate_instances"])
+        self.assertEqual(997, summary["registered_inventory_rows"])
+        self.assertEqual(969, summary["main_candidate_instances"])
         self.assertEqual(26, summary["lora_cap_common_instances"])
         self.assertEqual(2, summary["lora_cap_alternative_module_instances"])
-        self.assertEqual(178, summary["h1_dimensioned_instances"])
-        self.assertEqual(799, summary["schematic_only_main_instances"])
-        self.assertEqual(966, summary["main_board_fitted_components"])
+        self.assertEqual(181, summary["h1_dimensioned_instances"])
+        self.assertEqual(788, summary["schematic_only_main_instances"])
+        self.assertEqual(958, summary["main_board_fitted_components"])
         self.assertEqual(5, summary["main_fitted_interconnect_assemblies"])
         self.assertEqual(6, summary["main_external_mating_products"])
         self.assertEqual(28, summary["lora_cap_rows"])
@@ -331,7 +332,7 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(
             {
-                "LESHY2-UI": 382,
+                "LESHY2-UI": 374,
                 "LESHY2-RF": 593,
                 "L2-DISP-ADP-001-A": 2,
                 "LESHY2-LORA-CAP-01": 28,
@@ -443,6 +444,59 @@ class ProductSiteTests(unittest.TestCase):
         sd = next(row for row in manifest["instances"] if row["instance"] == "sd")
         self.assertIn("DM3AT-SF-PEJM5", sd["footprint"])
         self.assertEqual(49, len({row["symbol_uuid"] for row in manifest["instances"]}))
+
+    def test_h2_2_4_exact_controls_indicators_sheet_is_reviewed_and_current(self):
+        import json
+
+        script = REPO_ROOT / "hardware/ecad/h2_ui_controls_indicators.py"
+        result = subprocess.run(
+            [sys.executable, str(script), "--check"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        manifest = json.loads(
+            self.read("hardware/ecad/generated/H2-UI12-controls-indicators.json")
+        )
+        self.assertEqual("H2.2.4", manifest["stage"])
+        self.assertEqual("reviewed_exact_controls_indicators_sheet", manifest["status"])
+        self.assertEqual(
+            {
+                "ledger_instances": 71,
+                "schematic_symbols": 71,
+                "board_fitted_symbols": 71,
+                "hierarchical_interfaces": 45,
+                "slow_io_contacts": 33,
+                "matrix_io_contacts": 24,
+                "serial_tactile_switches": 15,
+                "actual_tx_indicators": 9,
+                "fault_indicators": 1,
+                "custom_footprints": 3,
+                "intentional_no_connect_pins": 3,
+                "pcb_files_created": 0,
+            },
+            manifest["summary"],
+        )
+        self.assertEqual(
+            "SAFETY_GROUND",
+            manifest["physical_net_aliases_collapsed"]["FAULT_LED_K"],
+        )
+        self.assertEqual(
+            [
+                "front_function_esd.IO8",
+                "slow_io_fault_sense_iso.NC",
+                "slow_io_s3_evidence_iso.NC",
+            ],
+            manifest["intentional_no_connect_endpoints"],
+        )
+        self.assertEqual(71, len({row["symbol_uuid"] for row in manifest["instances"]}))
+        instances = {row["instance"] for row in manifest["instances"]}
+        self.assertIn("fault_led", instances)
+        self.assertNotIn("any_tx_led", instances)
+        b3s = self.read("hardware/ecad/libraries/Leshy2.pretty/B3S-1100P.kicad_mod")
+        self.assertTrue(all(f'(pad "{number}"' in b3s for number in range(1, 6)))
 
     def test_h2_hwfw_export_has_all_target_pins_and_service_boundaries(self):
         import json
@@ -564,7 +618,7 @@ class ProductSiteTests(unittest.TestCase):
             "nRF24-1",
             "SUB-GHz",
             "VHF/UHF",
-            "TX ACTIVE",
+            "FAULT",
             "HEADSET",
             "CTIA",
             "C5 SERVICE USB",
@@ -707,10 +761,17 @@ class ProductSiteTests(unittest.TestCase):
             )
         )
         indicators = package["front"]["tx_indicators"]
-        self.assertEqual(10, len(indicators))
+        status_indicators = package["front"]["status_indicators"]
+        self.assertEqual(9, len(indicators))
+        self.assertEqual(1, len(status_indicators))
+        self.assertEqual("fault_led", status_indicators[0]["instance"])
+        self.assertEqual("FAULT_KILL hardware latch", status_indicators[0]["source"])
         self.assertEqual(
             {(row, column) for row in (1, 2) for column in range(1, 6)},
-            {(item["row"], item["column"]) for item in indicators},
+            {
+                (item["row"], item["column"])
+                for item in indicators + status_indicators
+            },
         )
         self.assertTrue(all(package["machine_checks"].values()))
         self.assertEqual(4, len(package["front"]["service_side_controls"]))

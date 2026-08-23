@@ -35,7 +35,7 @@ This page is generated from the same device and net map used by the electrical c
 | `GPIO20` | `S3_USB_DP_LOCAL` | `io` | `USB_SERIAL_JTAG` | product_usb_dp_series.END_2 |
 | `GPIO21` | `S3_RP_IPC_MOSI` | `o` | `SPI3` | rp.GPIO24 |
 | `GPIO38` | `LCD_CS_N` | `o` | `SPI2` | display_connector.PIN_9<br>lcd_host_cs_pullup.END_1 |
-| `GPIO39` | `ENCODER_A` | `i` | `PCNT0` | encoder.A<br>encoder_a_pullup.END_1 |
+| `GPIO39` | `ENCODER_A` | `i` | `PCNT0` | encoder.A<br>encoder_a_pullup.END_2 |
 | `GPIO40` | `LCD_BL_PWM` | `o` | `LEDC` | backlight_gate_series.END_1 |
 | `GPIO41` | `LCD_QSPI_D2` | `o` | `SPI2` | display_connector.PIN_17 |
 | `GPIO42` | `LCD_QSPI_D3` | `o` | `SPI2` | display_connector.PIN_18 |
@@ -43,7 +43,7 @@ This page is generated from the same device and net map used by the electrical c
 | `GPIO44` | `S3_UART_SERVICE_RX` | `i` | `UART0` | s3_dbg1_series.END_2 |
 | `GPIO45` | `SYS_INT_N` | `i` | `GPIO_IRQ` | slow_io.INT<br>ui_matrix_io.INT_N<br>headset_control_io.INT_N<br>pd_controller.I2Ct_IRQ<br>touch_irq_buffer.Y<br>pack_status_buffer.D2 |
 | `GPIO46` | `DISPLAY_SD_SPI_D0` | `o` | `SPI2` | sd_host_buffer.2A<br>sd_host_d0_pulldown.END_1<br>display_connector.PIN_13 |
-| `GPIO47` | `ENCODER_B` | `i` | `PCNT0` | encoder.B<br>encoder_b_pullup.END_1 |
+| `GPIO47` | `ENCODER_B` | `i` | `PCNT0` | encoder.B<br>encoder_b_pullup.END_2 |
 | `GPIO48` | `S3_RP_IPC_SCK` | `o` | `SPI3` | rp.GPIO26 |
 
 ## C5 — native 2.4/5-GHz radio, IEEE 802.15.4 and IR

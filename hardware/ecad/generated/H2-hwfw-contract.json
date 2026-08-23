@@ -11,9 +11,9 @@
   ],
   "source_sha256": {
     "hardware/architecture/devices.json": "0a0be015c67d7fb49f09cc3e9a61c486cb20216bbd16072f851a67478588ae90",
-    "hardware/architecture/candidates/G2F-3I.json": "57f4e9e6b38a7f8c05df20e1cdfe39d972be9425e51eedd553a8442b12515213",
+    "hardware/architecture/candidates/G2F-3I.json": "4addbed71c9df95ba401465434f1cbeb3e9c4c5479bda2fc74f30cc72e9cbb94",
     "hardware/architecture/target-integration-contract.json": "321b697f58fac56a65110462f419fe594c789d4113f54617b3ff36dd17072d36",
-    "hardware/ecad/H2-sheet-contract.json": "a4465effc17f388b83029bbfccd205bfae5f0c62032d4bc6ba27645811005952"
+    "hardware/ecad/H2-sheet-contract.json": "6eecefd76af9892562045463a1ca96c2647b7b759af4470f45b121a2fa365f8b"
   },
   "integration_contract": {
     "schema": 2,
@@ -735,7 +735,7 @@
             "controller": "PCNT0",
             "peers": [
               "encoder.A",
-              "encoder_a_pullup.END_1"
+              "encoder_a_pullup.END_2"
             ],
             "sharing_proof": "dedicated hardware quadrature phase; external pull-up and valid Gray-state/full-detent firmware semantics remain effective during display, storage and radio load"
           },
@@ -798,7 +798,7 @@
             "controller": "PCNT0",
             "peers": [
               "encoder.B",
-              "encoder_b_pullup.END_1"
+              "encoder_b_pullup.END_2"
             ],
             "sharing_proof": "dedicated hardware quadrature phase; external pull-up and PCNT capture prevent I2C UI scanning from consuming encoder edges"
           },

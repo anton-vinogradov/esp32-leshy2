@@ -144,7 +144,7 @@ TX_LED_INSTANCES = {
     "VOICE-V/U": "voice_tx_led",
     "N24-2": "nrf2_tx_led",
 }
-FRONT_TX_INDICATORS = (
+FRONT_FACE_INDICATORS = (
     ("s3_tx_led", "WI-FI/BLE", 5.1, 104.5),
     ("c5_tx_led", "WI-FI/15.4", 20.9, 104.5),
     ("nrf0_tx_led", "nRF24-1", 36.7, 104.5),
@@ -154,7 +154,7 @@ FRONT_TX_INDICATORS = (
     ("voice_tx_led", "VHF/UHF", 20.9, 111.0),
     ("ir_tx_led", "IR", 36.7, 111.0),
     ("ext_tx_led", "LORA/EXT", 52.5, 111.0),
-    ("any_tx_led", "TX ACTIVE", 68.3, 111.0),
+    ("fault_led", "FAULT", 68.3, 111.0),
 )
 OUTER_FACE_PRODUCT_MARKS = (
     ("front", "Леший", 37.5, 99.5, 8.5),
@@ -632,7 +632,7 @@ MECHANICAL_ASSEMBLY_EMBEDDED_INSTANCES = {
 MECHANICAL_EXTERIOR_INSTANCES = {
     "display", "u214", "pack_holder", "pack_cell0", "pack_cell1",
     *RF_INSTANCE_BY_PATH.values(),
-    *TX_LED_INSTANCES.values(),
+    *(instance for instance, _, _, _ in FRONT_FACE_INDICATORS),
     *(route.instance for route in UI_RF_CABLES),
     *(reserve.instance for reserve in RF_NRF_CABLE_RESERVES),
 }
@@ -740,7 +740,7 @@ EXTERIOR_BODY_CONTRACTS = (
     ),
     *(
         BodyProjectionContract(instance, "front-outer", 0, "front-normal optical emission")
-        for instance in TX_LED_INSTANCES.values()
+        for instance, _, _, _ in FRONT_FACE_INDICATORS
     ),
     *(
         BodyProjectionContract(route.instance, "ui-inner-route", 0, "module-to-board RF cable path")
@@ -1157,7 +1157,7 @@ def validate_external_silkscreen(svg: str, devices: dict, instances: dict) -> li
                 if item.instance in DIRECT_PRESS_FRONT_CONTROLS
             ),
             *((reserve.name, (reserve.x, reserve.y, reserve.w, reserve.h)) for reserve in FRONT_CAP_RESERVES),
-            *((label + " LED", (x, y, TX_LED_W, TX_LED_H)) for _, label, x, y in FRONT_TX_INDICATORS),
+            *((label + " LED", (x, y, TX_LED_W, TX_LED_H)) for _, label, x, y in FRONT_FACE_INDICATORS),
         ],
         "rear": [
             ("U214", (U214_X, U214_Y, U214_W, U214_H)),
@@ -1558,7 +1558,7 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
         errors.append("mechanical-gates: research-first evidence policy must remain explicit")
     if constraint.get("order_authorized") is not False:
         errors.append("mechanical-gates: H1 evidence ordering must remain unauthorized")
-    if constraint.get("current_step") != "H2.2.4":
+    if constraint.get("current_step") != "H2.2.5":
         errors.append("mechanical-gates: exact evidence-research substep drifted")
 
     gates = data.get("gates", [])
@@ -1621,7 +1621,7 @@ def validate_source_research() -> list[str]:
     errors: list[str] = []
     if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3.3":
         errors.append("source-research: schema/stage mismatch")
-    if data.get("status") != "reviewed" or data.get("current_substep") != "H2.2.4":
+    if data.get("status") != "reviewed" or data.get("current_substep") != "H2.2.5":
         errors.append("source-research: exact current substep drifted")
     policy = data.get("policy", {})
     if policy.get("order_authorized") is not False:
@@ -2408,13 +2408,14 @@ def validate() -> list[str]:
                 if abs(centre - other) < RF_BODY_W + 0.7:
                     errors.append(f"{bank_name}: RF connector bodies overlap at {centre}/{other}")
     indicator_boxes = []
-    for instance, label, x, y in FRONT_TX_INDICATORS:
+    for instance, label, x, y in FRONT_FACE_INDICATORS:
         led_box = (x, y, TX_LED_W, TX_LED_H)
         indicator_boxes.append((label, led_box))
         led_mpn = devices[instances[instance]]["mpn"]
         led_dims = devices[instances[instance]]["dimensions_mm"][:2]
-        if led_mpn != "LTST-C190KRKT" or led_dims != [TX_LED_W, TX_LED_H]:
-            errors.append(f"{label}: TX indicator must retain exact LTST-C190KRKT geometry")
+        expected_mpn = "LTST-C190KFKT" if instance == "fault_led" else "LTST-C190KRKT"
+        if led_mpn != expected_mpn or led_dims != [TX_LED_W, TX_LED_H]:
+            errors.append(f"{label}: indicator must retain exact {expected_mpn} geometry")
         if overlaps(led_box, display_box, 0.7):
             errors.append(f"front: {label} TX indicator lacks 0.7-mm display clearance")
         if any(hits_hole(led_box, hole, 0.7) for hole in HOLES):
@@ -2424,15 +2425,15 @@ def validate() -> list[str]:
             if overlaps(led_box, other_box, 0.7):
                 errors.append(f"front: {label}/{other_label} TX indicators overlap")
     indicator_rows = {}
-    for _, _, x, y in FRONT_TX_INDICATORS:
+    for _, _, x, y in FRONT_FACE_INDICATORS:
         indicator_rows.setdefault(y, []).append(x)
     if len(indicator_rows) != 2 or sorted(map(len, indicator_rows.values())) != [5, 5]:
-        errors.append("front: all ten TX indicators must remain in two rows of five")
+        errors.append("front: all ten front indicators must remain in two rows of five")
     if len({tuple(sorted(xs)) for xs in indicator_rows.values()}) != 1:
         errors.append("front: both five-indicator rows must retain aligned columns")
-    expected_tx_labels = {RF_USER_LABEL_LINES[path][0] for path in TX_RF_PATHS} | {"IR", "LORA/EXT", "TX ACTIVE"}
-    if {label for _, label, _, _ in FRONT_TX_INDICATORS} != expected_tx_labels:
-        errors.append("front: TX labels must match user-facing antenna names plus IR and TX ACTIVE")
+    expected_labels = {RF_USER_LABEL_LINES[path][0] for path in TX_RF_PATHS} | {"IR", "LORA/EXT", "FAULT"}
+    if {label for _, label, _, _ in FRONT_FACE_INDICATORS} != expected_labels:
+        errors.append("front: indicator labels must match nine physical TX paths plus FAULT")
     edge_instances = {item.instance for item in UI_INNER + RF_INNER}
     edge_placements = {item.instance: item for item in UI_INNER + RF_INNER}
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
@@ -2532,11 +2533,20 @@ def validate() -> list[str]:
         for element in external_root.iter("{http://www.w3.org/2000/svg}rect")
         if element.attrib.get("data-role") == "actual-tx-indicator"
     ]
-    if len(tx_nodes) != 10 or {element.attrib.get("data-instance") for element in tx_nodes} != {
-        instance for instance, _, _, _ in FRONT_TX_INDICATORS
+    if len(tx_nodes) != 9 or {element.attrib.get("data-instance") for element in tx_nodes} != {
+        instance for instance, _, _, _ in FRONT_FACE_INDICATORS
+        if instance != "fault_led"
     }:
-        errors.append("external layout must render all ten exact actual-TX indicators")
-    if sorted((element.attrib.get("data-row"), element.attrib.get("data-column")) for element in tx_nodes) != [
+        errors.append("external layout must render all nine exact actual-TX indicators")
+    fault_nodes = [
+        element
+        for element in external_root.iter("{http://www.w3.org/2000/svg}rect")
+        if element.attrib.get("data-role") == "fault-indicator"
+    ]
+    if len(fault_nodes) != 1 or fault_nodes[0].attrib.get("data-instance") != "fault_led":
+        errors.append("external layout must render the independent FAULT indicator")
+    indicator_nodes = tx_nodes + fault_nodes
+    if sorted((element.attrib.get("data-row"), element.attrib.get("data-column")) for element in indicator_nodes) != [
         (str(row), str(column)) for row in (1, 2) for column in range(1, 6)
     ]:
         errors.append("external layout must identify the two aligned five-indicator rows")
@@ -2796,15 +2806,25 @@ def render_external(devices, instances):
     out += rf_bank(front, FRONT_RF, scale, sx, sy, silk_text, rect, True, True, compact_label_y=7.8)
     out.append('</g>')
 
-    for index, (instance, label, x, y) in enumerate(FRONT_TX_INDICATORS):
+    for index, (instance, label, x, y) in enumerate(FRONT_FACE_INDICATORS):
+        role = "fault-indicator" if instance == "fault_led" else "actual-tx-indicator"
         out.append(
-            rect(front, x, y, TX_LED_W, TX_LED_H, "#ef4444", "#991b1b", rx=1).replace(
+            rect(
+                front, x, y, TX_LED_W, TX_LED_H,
+                "#f59e0b" if instance == "fault_led" else "#ef4444",
+                "#b45309" if instance == "fault_led" else "#991b1b", rx=1,
+            ).replace(
                 "/>",
-                f' data-instance="{instance}" data-role="actual-tx-indicator" '
+                f' data-instance="{instance}" data-role="{role}" '
                 f'data-row="{index // 5 + 1}" data-column="{index % 5 + 1}"/>',
             )
         )
-        out.append(silk_text(sx(front,x + TX_LED_W/2), sy(front,y + 2.6), label, 4.2, "bold", "middle", "#991b1b"))
+        out.append(
+            silk_text(
+                sx(front,x + TX_LED_W/2), sy(front,y + 2.6), label, 4.2, "bold", "middle",
+                "#b45309" if instance == "fault_led" else "#991b1b",
+            )
+        )
 
     for control in FRONT_CONTROLS:
         if control.instance not in DIRECT_PRESS_FRONT_CONTROLS:
@@ -2995,7 +3015,7 @@ def render_external(devices, instances):
         text(note_x,347,"TX indication",15,"bold"),
         '<circle cx="858" cy="370" r="5" fill="#ef4444" stroke="#991b1b"/>',
         text(875,374,"physical actual-TX evidence for each built-in transmitting path",11),
-        text(note_x,396,"Nine path indicators plus TX ACTIVE form two aligned rows of five.",11),
+        text(note_x,396,"Nine physical-TX indicators plus FAULT form two aligned rows of five.",11),
         text(note_x,419,"Labels match use: WI-FI/BLE, WI-FI/15.4, nRF24-1..3, SUB-GHz, VHF/UHF, IR and LORA/EXT.",11),
         text(note_x,450,"Geometry status",15,"bold"),
         '<rect x="850" y="467" width="28" height="15" rx="3" fill="#eef2f6" stroke="#667085"/>',
@@ -5054,7 +5074,21 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
                     "row": index // 5 + 1,
                     "column": index % 5 + 1,
                 }
-                for index, (instance, label, x, y) in enumerate(FRONT_TX_INDICATORS)
+                for index, (instance, label, x, y) in enumerate(FRONT_FACE_INDICATORS)
+                if instance != "fault_led"
+            ],
+            "status_indicators": [
+                {
+                    "instance": instance,
+                    "mpn": devices[instances[instance]]["mpn"],
+                    "silkscreen": label,
+                    "position_mm": [x, y],
+                    "row": index // 5 + 1,
+                    "column": index % 5 + 1,
+                    "source": "FAULT_KILL hardware latch",
+                }
+                for index, (instance, label, x, y) in enumerate(FRONT_FACE_INDICATORS)
+                if instance == "fault_led"
             ],
             "controls": controls(FRONT_CONTROLS),
             "service_side_controls": controls(

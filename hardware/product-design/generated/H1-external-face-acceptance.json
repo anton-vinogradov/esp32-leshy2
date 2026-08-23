@@ -219,17 +219,20 @@
         ],
         "row": 2,
         "column": 4
-      },
+      }
+    ],
+    "status_indicators": [
       {
-        "instance": "any_tx_led",
-        "mpn": "LTST-C190KRKT",
-        "silkscreen": "TX ACTIVE",
+        "instance": "fault_led",
+        "mpn": "LTST-C190KFKT",
+        "silkscreen": "FAULT",
         "position_mm": [
           68.3,
           111.0
         ],
         "row": 2,
-        "column": 5
+        "column": 5,
+        "source": "FAULT_KILL hardware latch"
       }
     ],
     "controls": [

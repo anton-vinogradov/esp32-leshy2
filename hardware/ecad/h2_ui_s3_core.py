@@ -309,12 +309,16 @@ def pin_net(instance: str, pin: Pin, endpoints: dict[tuple[str, str], str]) -> s
 
 def custom_footprint(
     name: str,
-    pads: list[tuple[str, float, float, float, float, tuple[str, str, str]]],
+    pads: list[tuple],
     body_width: float,
     body_height: float,
     courtyard_width: float,
     courtyard_height: float,
     source: str,
+    body_x: float = 0.0,
+    body_y: float = 0.0,
+    courtyard_x: float = 0.0,
+    courtyard_y: float = 0.0,
 ) -> str:
     lines = [
         f'(footprint "{name}"',
@@ -326,14 +330,17 @@ def custom_footprint(
         '\t(property "Reference" "REF**" (at 0 -4 0) (layer "F.SilkS") (effects (font (size 1 1) (thickness 0.15))))',
         f'\t(property "Value" "{name}" (at 0 4 0) (layer "F.Fab") (effects (font (size 1 1) (thickness 0.15))))',
         "\t(attr smd)",
-        f'\t(fp_rect (start {-body_width/2:.3f} {-body_height/2:.3f}) (end {body_width/2:.3f} {body_height/2:.3f}) (stroke (width 0.10) (type default)) (fill none) (layer "F.Fab"))',
-        f'\t(fp_rect (start {-courtyard_width/2:.3f} {-courtyard_height/2:.3f}) (end {courtyard_width/2:.3f} {courtyard_height/2:.3f}) (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))',
+        f'\t(fp_rect (start {body_x-body_width/2:.3f} {body_y-body_height/2:.3f}) (end {body_x+body_width/2:.3f} {body_y+body_height/2:.3f}) (stroke (width 0.10) (type default)) (fill none) (layer "F.Fab"))',
+        f'\t(fp_rect (start {courtyard_x-courtyard_width/2:.3f} {courtyard_y-courtyard_height/2:.3f}) (end {courtyard_x+courtyard_width/2:.3f} {courtyard_y+courtyard_height/2:.3f}) (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))',
     ]
-    for number, x, y, sx, sy, layers in pads:
+    for pad in pads:
+        number, x, y, sx, sy, layers, *shape_row = pad
+        shape = shape_row[0] if shape_row else "roundrect"
         layer_text = " ".join(f'"{layer}"' for layer in layers)
+        suffix = " (roundrect_rratio 0.20)" if shape == "roundrect" else ""
         lines.append(
-            f'\t(pad "{number}" smd roundrect (at {x:.3f} {y:.3f}) (size {sx:.3f} {sy:.3f}) '
-            f'(layers {layer_text}) (roundrect_rratio 0.20))'
+            f'\t(pad "{number}" smd {shape} (at {x:.3f} {y:.3f}) (size {sx:.3f} {sy:.3f}) '
+            f'(layers {layer_text}){suffix})'
         )
     lines += [")", ""]
     return "\n".join(lines)

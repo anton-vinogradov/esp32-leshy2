@@ -561,7 +561,7 @@ Decision `DEC-0046`; default `QUIET`.
 | `GPIO20` | 14 | `S3_USB_DP_LOCAL` | `io` | `USB_SERIAL_JTAG` | `product_usb_dp_series.END_2` | — |
 | `GPIO21` | 23 | `S3_RP_IPC_MOSI` | `o` | `SPI3` | `rp.GPIO24` | — |
 | `GPIO38` | 31 | `LCD_CS_N` | `o` | `SPI2` | `display_connector.PIN_9`, `lcd_host_cs_pullup.END_1` | — |
-| `GPIO39` | 32 | `ENCODER_A` | `i` | `PCNT0` | `encoder.A`, `encoder_a_pullup.END_1` | — |
+| `GPIO39` | 32 | `ENCODER_A` | `i` | `PCNT0` | `encoder.A`, `encoder_a_pullup.END_2` | — |
 | `GPIO40` | 33 | `LCD_BL_PWM` | `o` | `LEDC` | `backlight_gate_series.END_1` | — |
 | `GPIO41` | 34 | `LCD_QSPI_D2` | `o` | `SPI2` | `display_connector.PIN_17` | — |
 | `GPIO42` | 35 | `LCD_QSPI_D3` | `o` | `SPI2` | `display_connector.PIN_18` | — |
@@ -569,7 +569,7 @@ Decision `DEC-0046`; default `QUIET`.
 | `GPIO44` | 36 | `S3_UART_SERVICE_RX` | `i` | `UART0` | `s3_dbg1_series.END_2` | — |
 | `GPIO45` | 26 | `SYS_INT_N` | `i` | `GPIO_IRQ` | `slow_io.INT`, `ui_matrix_io.INT_N`, `headset_control_io.INT_N`, `pd_controller.I2Ct_IRQ`, `touch_irq_buffer.Y`, `pack_status_buffer.D2` | the exact N16R8 module fixes 3.3-V VDD_SPI by eFuse, so the external interrupt pull-up cannot alter memory voltage during strap sampling |
 | `GPIO46` | 16 | `DISPLAY_SD_SPI_D0` | `o` | `SPI2` | `sd_host_buffer.2A`, `sd_host_d0_pulldown.END_1`, `display_connector.PIN_13` | one physical 10-kOhm pull-down holds GPIO46 low through ROM sampling, including joint-download entry, then becomes only a weak defined idle load on the push-pull QSPI D0 output |
-| `GPIO47` | 24 | `ENCODER_B` | `i` | `PCNT0` | `encoder.B`, `encoder_b_pullup.END_1` | — |
+| `GPIO47` | 24 | `ENCODER_B` | `i` | `PCNT0` | `encoder.B`, `encoder_b_pullup.END_2` | — |
 | `GPIO48` | 25 | `S3_RP_IPC_SCK` | `o` | `SPI3` | `rp.GPIO26` | — |
 
 Budget: **33 used + 0 reserved + 0 free = 33 exposed GPIO**.
@@ -2227,6 +2227,11 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `REAR_CONTROL_ESD_NC7` | `rear_control_esd.NC_7` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `REAR_CONTROL_ESD_NC9` | `rear_control_esd.NC_9` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `REAR_CONTROL_ESD_NC10` | `rear_control_esd.NC_10` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `POWER_GROUND` | `ui_dpad_up.GROUND` | `abstract:power-ground` | UP switch ground pin bonds the exposed metal shell |
+| `POWER_GROUND` | `ui_dpad_down.GROUND` | `abstract:power-ground` | DOWN switch ground pin bonds the exposed metal shell |
+| `POWER_GROUND` | `ui_dpad_left.GROUND` | `abstract:power-ground` | LEFT switch ground pin bonds the exposed metal shell |
+| `POWER_GROUND` | `ui_dpad_right.GROUND` | `abstract:power-ground` | RIGHT switch ground pin bonds the exposed metal shell |
+| `POWER_GROUND` | `ui_dpad_ok.GROUND` | `abstract:power-ground` | OK switch ground pin bonds the exposed metal shell |
 | `POWER_GROUND` | `ui_switch_back.GROUND` | `abstract:power-ground` | switch ground pin bonds the exposed metal shell |
 | `POWER_GROUND` | `ui_switch_opt.GROUND` | `abstract:power-ground` | switch ground pin bonds the exposed metal shell |
 | `POWER_GROUND` | `ui_switch_f1.GROUND` | `abstract:power-ground` | switch ground pin bonds the exposed metal shell |
@@ -3377,9 +3382,6 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `any_tx_aon_pullup.END_1` | exact logic pull-up keeps the aggregate deasserted independently of LED leakage |
 | `ANY_TX_AON_N` | `any_tx_aon_pullup.END_2` | `evidence_or_4.A_COMMON` | 10-kOhm AON aggregate pull-up |
 | `ANY_TX_AON_N` | `evidence_or_4.A_COMMON` | `safety_controller.PA22` | the safety controller samples the physical aggregate directly and compares it with the active group lease |
-| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `any_tx_led_series.END_1` | exact 2.2-kOhm indicator-current source |
-| `ANY_TX_LED_A` | `any_tx_led_series.END_2` | `any_tx_led.A` | red physical indicator current limit |
-| `UI_ANY_TX_AON_N` | `any_tx_led.K` | `ui_evidence_or_4.A_COMMON` | the front-local passive aggregate lights without firmware and does not consume another M1 contact |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `s3_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
 | `S3_TX_LED_A` | `s3_tx_led_series.END_2` | `s3_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
 | `EV_N0_S3` | `s3_tx_led.K` | `evidence_cmp_a.OUT1` | S3 antenna-local LED follows physical active-low TX evidence |
@@ -3407,22 +3409,6 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ext_tx_led_series.END_1` | external-path actual-TX indicator remains firmware-independent |
 | `EXT_TX_LED_A` | `ext_tx_led_series.END_2` | `ext_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
 | `EV_N8_LORA_EXT` | `ext_tx_led.K` | `ext_evidence_buffer.Y` | front LORA/EXT LED follows only the isolated physical Cap evidence output |
-| `EV_N0_S3` | `evidence_cmp_a.OUT1` | `ui_evidence_or_0.K1` | UI-local S3 evidence joins the independent front aggregate |
-| `EV_N1_C5` | `evidence_cmp_a.OUT2` | `ui_evidence_or_0.K2` | UI-local C5 evidence joins the independent front aggregate |
-| `EV_N2_NRF0` | `evidence_cmp_b.OUT1` | `ui_evidence_or_1.K1` | M1 contact 29 delivers only the active-low digital nRF0 evidence |
-| `EV_N3_NRF1` | `evidence_cmp_b.OUT2` | `ui_evidence_or_1.K2` | M1 contact 30 delivers only the active-low digital nRF1 evidence |
-| `EV_N4_NRF2` | `evidence_cmp_b.OUT3` | `ui_evidence_or_2.K1` | M1 contact 33 delivers only the active-low digital nRF2 evidence |
-| `EV_N5_CC` | `evidence_cmp_b.OUT4` | `ui_evidence_or_2.K2` | M1 contact 58 delivers only the active-low digital CC evidence |
-| `EV_N6_VOICE` | `evidence_cmp_voice.OUT` | `ui_evidence_or_3.K1` | M1 contact 79 delivers only the active-low digital voice evidence |
-| `EV_N7_IR` | `evidence_cmp_a.OUT3` | `ui_evidence_or_3.K2` | UI-local optical evidence joins the independent front aggregate |
-| `EV_N8_LORA_EXT` | `ext_evidence_buffer.Y` | `ui_evidence_or_4.K1` | M1 contact 80 delivers only the active-low isolated accessory evidence |
-| `UI_EVIDENCE_OR_4_UNUSED_DIODE_NC` | `ui_evidence_or_4.K2` | `abstract:no-connect` | unused second cathode remains open |
-| `UI_ANY_TX_AON_N` | `ui_evidence_or_0.A_COMMON` | `ui_evidence_or_1.A_COMMON` | front common anodes form a passive active-low aggregate |
-| `UI_ANY_TX_AON_N` | `ui_evidence_or_1.A_COMMON` | `ui_evidence_or_2.A_COMMON` | front aggregate keeps every source diode-isolated |
-| `UI_ANY_TX_AON_N` | `ui_evidence_or_2.A_COMMON` | `ui_evidence_or_3.A_COMMON` | front aggregate does not feed back into any evidence source |
-| `UI_ANY_TX_AON_N` | `ui_evidence_or_3.A_COMMON` | `ui_evidence_or_4.A_COMMON` | fifth package extends the front aggregate to all nine paths |
-| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ui_any_tx_pullup.END_1` | exact UI-local logic pull-up keeps the front aggregate deasserted |
-| `UI_ANY_TX_AON_N` | `ui_any_tx_pullup.END_2` | `ui_evidence_or_4.A_COMMON` | 10-kOhm front aggregate pull-up is independent of LED leakage |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_main_isolator.VCC` | domain isolator remains alive with the evidence plane |
 | `SAFETY_GROUND` | `evidence_main_isolator.GND` | `abstract:safety-ground` | domain-isolator return stays local |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_main_isolator_bypass.END_1` | exact 100-nF local triple-buffer bypass |

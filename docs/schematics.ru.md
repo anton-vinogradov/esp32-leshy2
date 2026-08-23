@@ -15,11 +15,12 @@
 | [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | точный ECAD | 9 дочерних листов, 91 межлистовая цепь, 218 явных pins/labels |
 | [`UI_10_S3_CORE_MEMORY_BOOT`](../hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch) | точный ECAD | 32 компонента, 41 carrier-pad S3, boot/recovery/USB/RF и 39 интерфейсов |
 | [`UI_11_DISPLAY_TOUCH_STORAGE`](../hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch) | точный ECAD | 49 экземпляров, все 40 контактов display, все 11 контактов microSD, backlight/touch/isolation и 17 интерфейсов |
-| `UI_12_CONTROLS_INDICATORS` | заполняется | органы управления и индикаторы |
+| [`UI_12_CONTROLS_INDICATORS`](../hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch) | точный ECAD | 71 компонент, 15 серийных кнопок, 9 фактических TX LED, аппаратный FAULT LED, thermal/ESD и 45 интерфейсов |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
-[display/touch/storage](../hardware/ecad/generated/H2-UI11-display-touch-storage.json).
+[display/touch/storage](../hardware/ecad/generated/H2-UI11-display-touch-storage.json) и
+[controls/indicators](../hardware/ecad/generated/H2-UI12-controls-indicators.json).
 PCB placement, routing и производство этими листами ещё не разрешены.
 
 Архитектура читается от трёх вычислительных владельцев, а не от USB-порта.
@@ -320,12 +321,6 @@ EVIDENCE_OR_1["BAT54ALT1G<br/>диодное объединение evidence nRF
 EVIDENCE_OR_2["BAT54ALT1G<br/>диодное объединение evidence nRF24 №3 и Sub-GHz"]
 EVIDENCE_OR_3["BAT54ALT1G<br/>диодное объединение evidence voice и IR"]
 EVIDENCE_OR_4["BAT54ALT1G<br/>диодное объединение evidence LoRa/EXT"]
-UI_EVIDENCE_OR_0["BAT54ALT1G<br/>лицевое диодное объединение evidence S3 и C5"]
-UI_EVIDENCE_OR_1["BAT54ALT1G<br/>лицевое диодное объединение evidence nRF24 №1 и №2"]
-UI_EVIDENCE_OR_2["BAT54ALT1G<br/>лицевое диодное объединение evidence nRF24 №3 и Sub-GHz"]
-UI_EVIDENCE_OR_3["BAT54ALT1G<br/>лицевое диодное объединение evidence voice и IR"]
-UI_EVIDENCE_OR_4["BAT54ALT1G<br/>лицевое диодное объединение evidence LoRa/EXT"]
-UI_ANY_TX_PULLUP["Yageo RC0402FR-0710KL<br/>локальная лицевая подтяжка общего индикатора передачи"]
 EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX-свидетельств в main domain"]
   SAFE_SUPERVISOR -->|"power-on reset"| SAFE_LATCH
   POWER_COMMAND_SWITCH -->|"KILL / physical RUN edge"| SAFE_CONDITIONER
@@ -352,15 +347,4 @@ EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX
   EVIDENCE_OR_2 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_3 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_4 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
-  EVIDENCE_CMP_A -->|"front sources 0 / 1 / 7"| UI_EVIDENCE_OR_0
-  EVIDENCE_CMP_A -->|"front source 7"| UI_EVIDENCE_OR_3
-  EVIDENCE_CMP_B -->|"front sources 2 / 3"| UI_EVIDENCE_OR_1
-  EVIDENCE_CMP_B -->|"front sources 4 / 5"| UI_EVIDENCE_OR_2
-  EVIDENCE_CMP_VOICE -->|"front source 6"| UI_EVIDENCE_OR_3
-  EXT_EVIDENCE_BUFFER -->|"front source 8"| UI_EVIDENCE_OR_4
-  UI_EVIDENCE_OR_0 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_1 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_2 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_3 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
-  UI_EVIDENCE_OR_4 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
 ```

@@ -1,0 +1,734 @@
+{
+  "schema_version": 1,
+  "stage": "H2.2.4",
+  "status": "reviewed_exact_controls_indicators_sheet",
+  "project": "LESHY2-UI",
+  "sheet": "UI_12_CONTROLS_INDICATORS",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "4addbed71c9df95ba401465434f1cbeb3e9c4c5479bda2fc74f30cc72e9cbb94",
+    "hardware/architecture/devices.json": "0a0be015c67d7fb49f09cc3e9a61c486cb20216bbd16072f851a67478588ae90",
+    "hardware/ecad/generated/H2-instance-ledger.json": "1b01d1ecef8d44e02d39ece052014a14dcc5d92d21c2427afe1b29b4b377f81b",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "cf92f117f8cbd2b2303b1e0ef4077b7d9c75733130a44c80771a7746203164bd"
+  },
+  "summary": {
+    "ledger_instances": 71,
+    "schematic_symbols": 71,
+    "board_fitted_symbols": 71,
+    "hierarchical_interfaces": 45,
+    "slow_io_contacts": 33,
+    "matrix_io_contacts": 24,
+    "serial_tactile_switches": 15,
+    "actual_tx_indicators": 9,
+    "fault_indicators": 1,
+    "custom_footprints": 3,
+    "intentional_no_connect_pins": 3,
+    "pcb_files_created": 0
+  },
+  "instances": [
+    {
+      "instance": "slow_io",
+      "symbol_uuid": "2ab2aab4-9256-51a5-9d1d-4f6c080181d1",
+      "reference": "U1",
+      "mpn": "TCA6424ARGJR",
+      "footprint": "Leshy2:TCA6424ARGJR",
+      "pin_count": 33,
+      "board_fitted": true
+    },
+    {
+      "instance": "slow_io_vcci_bypass",
+      "symbol_uuid": "0e32742b-619c-5894-b1f3-ed8c6c98d39a",
+      "reference": "C1",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "slow_io_vccp_bypass",
+      "symbol_uuid": "07679ab8-48ac-59d1-9f4b-6b9c53d7155e",
+      "reference": "C2",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "slow_io_bulk_cap",
+      "symbol_uuid": "d0908ef7-1e66-5031-a440-7dbb8aaf560c",
+      "reference": "C3",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "slow_io_reset_pullup",
+      "symbol_uuid": "ef0f9803-f429-587f-87dd-379461577c08",
+      "reference": "R1",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "slow_io_fault_sense_iso",
+      "symbol_uuid": "780795e6-9ac0-5ee0-a60f-c70a8e992a23",
+      "reference": "U2",
+      "mpn": "SN74LVC1G07DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "slow_io_fault_sense_iso_bypass",
+      "symbol_uuid": "55b33f27-1f98-548a-8cde-5844171f581e",
+      "reference": "C4",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "slow_io_fault_sense_pullup",
+      "symbol_uuid": "30393664-3c4e-5ae5-b469-6106f73dcd99",
+      "reference": "R2",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "slow_io_s3_evidence_iso",
+      "symbol_uuid": "58a0d2e1-9a2e-56df-a987-222baccc5179",
+      "reference": "U3",
+      "mpn": "SN74LVC1G07DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "slow_io_s3_evidence_iso_bypass",
+      "symbol_uuid": "cb3b6b7f-f497-56ff-a985-59a5d734d4f0",
+      "reference": "C5",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "slow_io_s3_evidence_pullup",
+      "symbol_uuid": "a97ec5b9-34ad-5f19-bc83-0cda74c39bf2",
+      "reference": "R3",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_matrix_io",
+      "symbol_uuid": "f033596f-6506-5f83-940f-156d61a8317b",
+      "reference": "U4",
+      "mpn": "TCA9539PWR",
+      "footprint": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm",
+      "pin_count": 24,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_dpad_up",
+      "symbol_uuid": "54fae4f3-43ec-5a3f-9b6c-aa077622240c",
+      "reference": "SW1",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_dpad_down",
+      "symbol_uuid": "d9c61264-c728-5726-875c-b74e9db0ea8a",
+      "reference": "SW2",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_dpad_left",
+      "symbol_uuid": "dfd02e89-c2e6-5228-a765-4ca23099c282",
+      "reference": "SW3",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_dpad_right",
+      "symbol_uuid": "9df933bd-2bd0-58bd-b2ae-d0ff2f70a92c",
+      "reference": "SW4",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_dpad_ok",
+      "symbol_uuid": "31f059d5-3f85-55a1-abeb-6da3857b474b",
+      "reference": "SW5",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_switch_back",
+      "symbol_uuid": "2e1b437a-ce74-556e-ab06-2122e2c2f78f",
+      "reference": "SW6",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_switch_opt",
+      "symbol_uuid": "2c39ae7e-40d6-5732-8ed3-8d8f482fef5f",
+      "reference": "SW7",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_switch_f1",
+      "symbol_uuid": "7f5782db-a2cd-5373-b739-bc26bb7cfc78",
+      "reference": "SW8",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_switch_f2",
+      "symbol_uuid": "99cf7ba3-b8cf-57f3-8798-cdda9a77389c",
+      "reference": "SW9",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_switch_f3",
+      "symbol_uuid": "b7c28a5d-3d30-56f4-84e0-119935de7b2a",
+      "reference": "SW10",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_switch_f4",
+      "symbol_uuid": "ac3dc33c-7901-542c-94a8-e869cc90e08e",
+      "reference": "SW11",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_switch_f5",
+      "symbol_uuid": "77684687-c327-54a8-b3b6-b9ffa04e8328",
+      "reference": "SW12",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_switch_f6",
+      "symbol_uuid": "d61de883-643a-5d25-98b8-3292ccf80c0b",
+      "reference": "SW13",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_switch_f7",
+      "symbol_uuid": "c30001d1-a5f2-50a1-b602-f5402eb213a2",
+      "reference": "SW14",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_switch_f8",
+      "symbol_uuid": "170893d6-f6bf-53d1-8267-bbbe39a5ef19",
+      "reference": "SW15",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_matrix_esd",
+      "symbol_uuid": "621f1822-b70d-5000-b021-83f50d4e97fc",
+      "reference": "D1",
+      "mpn": "Texas Instruments TPD8E003DQDR",
+      "footprint": "Leshy2:TPD8E003DQDR",
+      "pin_count": 9,
+      "board_fitted": true
+    },
+    {
+      "instance": "front_function_esd",
+      "symbol_uuid": "262cdac1-e864-5cd8-ad11-2ab5520ded07",
+      "reference": "D2",
+      "mpn": "Texas Instruments TPD8E003DQDR",
+      "footprint": "Leshy2:TPD8E003DQDR",
+      "pin_count": 9,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_matrix_io_bypass",
+      "symbol_uuid": "f287da37-b412-5b66-9910-7090bf8de213",
+      "reference": "C6",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_up_pullup",
+      "symbol_uuid": "f3929bfc-f9cf-5a74-b2db-d1f9f857676b",
+      "reference": "R4",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_down_pullup",
+      "symbol_uuid": "ff15ae55-6a3d-59ea-9d98-cf507e7e9429",
+      "reference": "R5",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_left_pullup",
+      "symbol_uuid": "b147ca8f-e707-5bb8-a430-12865ba4d4f4",
+      "reference": "R6",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_right_pullup",
+      "symbol_uuid": "9d1e76ab-1295-53ce-b4ab-a3ef8ae2e20f",
+      "reference": "R7",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_ok_pullup",
+      "symbol_uuid": "8e698602-a7ef-5a07-b3a5-41f6fa84e39a",
+      "reference": "R8",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_back_pullup",
+      "symbol_uuid": "03a1bd46-f58e-550c-9d4e-e85f6723ea02",
+      "reference": "R9",
+      "mpn": "Yageo RC0402FR-073K32L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_opt_pullup",
+      "symbol_uuid": "abdd79ea-a870-545b-b782-20f4dae44e81",
+      "reference": "R10",
+      "mpn": "Yageo RC0402FR-073K32L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_f1_pullup",
+      "symbol_uuid": "a589c7ef-5a3d-5d39-a2b0-5317aab85d9f",
+      "reference": "R11",
+      "mpn": "Yageo RC0402FR-073K32L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_f2_pullup",
+      "symbol_uuid": "2e058a98-5dff-535a-b4c1-4e0498116088",
+      "reference": "R12",
+      "mpn": "Yageo RC0402FR-073K32L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_f3_pullup",
+      "symbol_uuid": "08a5f273-1da5-58ed-a27f-df60eda10d07",
+      "reference": "R13",
+      "mpn": "Yageo RC0402FR-073K32L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_f4_pullup",
+      "symbol_uuid": "f3222573-c9a1-5ab4-b102-1bac0077ac4a",
+      "reference": "R14",
+      "mpn": "Yageo RC0402FR-073K32L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_f5_pullup",
+      "symbol_uuid": "e3e6c2c8-af01-5678-a044-7e83093b21e0",
+      "reference": "R15",
+      "mpn": "Yageo RC0402FR-073K32L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_f6_pullup",
+      "symbol_uuid": "0a89202c-b769-54d6-96d4-894afc4de614",
+      "reference": "R16",
+      "mpn": "Yageo RC0402FR-073K32L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_f7_pullup",
+      "symbol_uuid": "b8241ef7-d9ba-5aca-a5d5-88739062c6db",
+      "reference": "R17",
+      "mpn": "Yageo RC0402FR-073K32L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_f8_pullup",
+      "symbol_uuid": "cafa5b37-a1ab-5aa2-a26b-708897dea0b2",
+      "reference": "R18",
+      "mpn": "Yageo RC0402FR-073K32L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_input_encoder_pullup",
+      "symbol_uuid": "9dfeebdd-a91a-5e02-ac45-729321a6de2f",
+      "reference": "R19",
+      "mpn": "Yageo RC0402FR-073K32L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "encoder_a_pullup",
+      "symbol_uuid": "0c67157a-03b4-5270-a5c2-f85bb1274bf0",
+      "reference": "R20",
+      "mpn": "Yageo RC0402FR-073K32L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "encoder_b_pullup",
+      "symbol_uuid": "93820351-f3f0-52e4-9d12-e3fe5d70ed56",
+      "reference": "R21",
+      "mpn": "Yageo RC0402FR-073K32L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_zone_ntc",
+      "symbol_uuid": "91ac3e89-f520-5b72-82b8-09acfac2ed89",
+      "reference": "RT1",
+      "mpn": "TDK B57332V5103F360",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_zone_temp_pullup",
+      "symbol_uuid": "697222c3-e426-5a1b-921b-52801e10a400",
+      "reference": "R22",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ui_zone_temp_filter",
+      "symbol_uuid": "441320ac-e774-56df-ae9e-10d351313b07",
+      "reference": "C7",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "s3_tx_led",
+      "symbol_uuid": "f1b46e40-1b07-5997-9ecd-c3a840bd4c1d",
+      "reference": "D3",
+      "mpn": "LTST-C190KRKT",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "s3_tx_led_series",
+      "symbol_uuid": "5a36c965-0c58-5215-8de7-a0daa5ce8784",
+      "reference": "R23",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "c5_tx_led",
+      "symbol_uuid": "bf72b3bf-e817-58db-9c52-6a1a0245916b",
+      "reference": "D4",
+      "mpn": "LTST-C190KRKT",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "c5_tx_led_series",
+      "symbol_uuid": "587c759e-4bf4-5513-bc0c-2414e037a5c6",
+      "reference": "R24",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "nrf0_tx_led",
+      "symbol_uuid": "62064cbf-cd28-5b5b-90c6-5167e7c4ac33",
+      "reference": "D5",
+      "mpn": "LTST-C190KRKT",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "nrf0_tx_led_series",
+      "symbol_uuid": "57576fc8-de92-5e99-a117-c1eace907998",
+      "reference": "R25",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "nrf1_tx_led",
+      "symbol_uuid": "836ebee5-8be3-5d50-9093-56de78da0a5f",
+      "reference": "D6",
+      "mpn": "LTST-C190KRKT",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "nrf1_tx_led_series",
+      "symbol_uuid": "3d50532a-2f19-5406-80ab-d87f06b35b27",
+      "reference": "R26",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "nrf2_tx_led",
+      "symbol_uuid": "5d6f5f03-81f0-58c9-9c47-ca3a0d2e21b3",
+      "reference": "D7",
+      "mpn": "LTST-C190KRKT",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "nrf2_tx_led_series",
+      "symbol_uuid": "700be645-36bb-5c9e-ae41-0c6f8ae77247",
+      "reference": "R27",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "cc_tx_led",
+      "symbol_uuid": "75f60c75-e095-5b47-b5e9-6c1f7006cf46",
+      "reference": "D8",
+      "mpn": "LTST-C190KRKT",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "cc_tx_led_series",
+      "symbol_uuid": "d7f09f40-43b1-5d4f-ad54-12d56571d4bc",
+      "reference": "R28",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_tx_led",
+      "symbol_uuid": "ce222f34-f394-51f1-9102-b42913f2089b",
+      "reference": "D9",
+      "mpn": "LTST-C190KRKT",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_tx_led_series",
+      "symbol_uuid": "ce55157a-45d6-5883-afbc-1a4c615833d6",
+      "reference": "R29",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ir_tx_led",
+      "symbol_uuid": "7dc5094d-5cc6-512d-83ee-ac7390438396",
+      "reference": "D10",
+      "mpn": "LTST-C190KRKT",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ir_tx_led_series",
+      "symbol_uuid": "24856e89-e35e-594d-9ed6-4c05f3471fcb",
+      "reference": "R30",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_tx_led",
+      "symbol_uuid": "247233fd-a1b1-58f6-88c2-258592b65b6b",
+      "reference": "D11",
+      "mpn": "LTST-C190KRKT",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_tx_led_series",
+      "symbol_uuid": "e58a2f4d-7a01-5cb8-8112-c4611d657e67",
+      "reference": "R31",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "fault_led",
+      "symbol_uuid": "98814794-71d8-5102-a18c-5a3674fc9c82",
+      "reference": "D12",
+      "mpn": "LTST-C190KFKT",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "fault_led_series",
+      "symbol_uuid": "62711036-5af8-5114-9257-29bb7a1000af",
+      "reference": "R32",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    }
+  ],
+  "physical_net_aliases_collapsed": {
+    "FAULT_LED_K": "SAFETY_GROUND",
+    "FRONT_FUNCTION_ESD_GROUND": "POWER_GROUND",
+    "SLOW_IO_ADDR_LOW": "POWER_GROUND",
+    "UI_INPUT_ADDR_A0_LOW": "POWER_GROUND",
+    "UI_INPUT_ADDR_A1_LOW": "POWER_GROUND",
+    "UI_INPUT_ESD_GROUND": "POWER_GROUND"
+  },
+  "intentional_no_connect_endpoints": [
+    "front_function_esd.IO8",
+    "slow_io_fault_sense_iso.NC",
+    "slow_io_s3_evidence_iso.NC"
+  ],
+  "footprint_evidence": [
+    {
+      "mpn": "TCA6424ARGJR",
+      "footprint": "Leshy2:TCA6424ARGJR",
+      "source": {
+        "document": "TCA6424A Low-Voltage 24-Bit I2C/SMBus I/O Expander datasheet",
+        "version": "SCPS193D",
+        "url": "https://www.ti.com/lit/ds/symlink/tca6424a.pdf",
+        "checked": "2026-08-17"
+      }
+    },
+    {
+      "mpn": "Texas Instruments TPD8E003DQDR",
+      "footprint": "Leshy2:TPD8E003DQDR",
+      "source": {
+        "document": "TPD8E003 8-Channel ESD Protection Diode for Keypad and GPIO datasheet",
+        "version": "SLLSE38B",
+        "url": "https://www.ti.com/lit/ds/symlink/tpd8e003.pdf",
+        "checked": "2026-08-18"
+      }
+    },
+    {
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      }
+    }
+  ],
+  "corrections_closed": [
+    "all ten front indicators are exact circuit bodies: nine red physical-TX paths and one amber hardware FAULT latch",
+    "the redundant front-only ANY_TX diode aggregate and TX ACTIVE LED are absent while the RF/power ANY_TX_AON_N safety aggregate remains",
+    "encoder phase pull-ups terminate on END_2; END_1 remains exclusively 3V3_MAIN",
+    "all fifteen direct-press controls use one serial OMRON B3S-1100P footprint with five separately mapped lands",
+    "TCA6424 RGJ and TPD8E003 DQD exposed pads are explicit physical contacts tied to their reviewed ground domains"
+  ],
+  "review_boundary": {
+    "complete": [
+      "every UI12 ledger instance is placed once with exact MPN, contact map and footprint",
+      "every hierarchy interface terminates on a real circuit pin",
+      "all user switches, encoder phases, temperature sensing, slow controls, ESD and indicator paths are explicit",
+      "native KiCad parses the populated UI hierarchy with only exact machine-accounted findings"
+    ],
+    "deferred": [
+      "switch/encoder debounce and human-interface HIL",
+      "LED current/brightness and FAULT visibility HIL",
+      "thermal trip calibration and fault-injection HIL",
+      "PCB placement, return geometry and DRC in H6"
+    ]
+  }
+}

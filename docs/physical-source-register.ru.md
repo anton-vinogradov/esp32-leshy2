@@ -10,8 +10,8 @@
 
 | Покрытие | Результат |
 |---|---:|
-| Отрисованных физических экземпляров | 178 |
-| Экземпляров с точным MPN | 178 |
+| Отрисованных физических экземпляров | 181 |
+| Экземпляров с точным MPN | 181 |
 | Экземпляров с явным MPN TBD | 0 |
 | Blocker геометрии H1 | 0 |
 | Received-sample gate H5 | 14 |
@@ -22,7 +22,7 @@
 |---|---|---:|
 | `display-adapter` | L2-DISP-ADP-001-A top-left, viewed from its panel-facing side | 2 |
 | `display-assembly` | HMX035CTFT-001 screen-body top-left, front view | 1 |
-| `front-outer` | UI PCB top-left, viewed from the front/exterior | 27 |
+| `front-outer` | UI PCB top-left, viewed from the front/exterior | 30 |
 | `rear-outer` | RF/power PCB top-left, viewed from the rear/exterior | 13 |
 | `rf-inner` | RF/power PCB top-left, viewed from the rear/exterior | 99 |
 | `rf-inner-route` | RF/power PCB top-left, viewed from the rear/exterior | 3 |

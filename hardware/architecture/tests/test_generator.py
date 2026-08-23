@@ -260,7 +260,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(976, sum(line["quantity"] for line in lines))
+        self.assertEqual(968, sum(line["quantity"] for line in lines))
         self.assertEqual(201, len(lines))
         self.assertEqual(
             1,
@@ -275,7 +275,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            959,
+            951,
             sum(
                 line["quantity"]
                 for line in lines
@@ -351,13 +351,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**977** architecture instances", rendered)
-        self.assertIn("**976** supplied/costed placements", rendered)
+        self.assertIn("**969** architecture instances", rendered)
+        self.assertIn("**968** supplied/costed placements", rendered)
         self.assertIn("**200/201** used lines", rendered)
         self.assertIn("**201/201** lines", rendered)
         self.assertIn("**190/201** lines", rendered)
-        self.assertIn("**959/976** supplied placements", rendered)
-        self.assertIn("USD 220.5416", rendered)
+        self.assertIn("**951/968** supplied placements", rendered)
+        self.assertIn("USD 220.1662", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -403,7 +403,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(40, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1142, policy["expected_occurrence_count"])
+        self.assertEqual(1144, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(
@@ -474,7 +474,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "M2.5 hole/head keep-outs",
             "SUB-GHz",
             "VHF/UHF",
-            "TX ACTIVE",
+            "FAULT",
             "HEADSET",
             "CTIA",
             "SPEAKER",
@@ -3963,6 +3963,22 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("fault_led_series.END_2", "fault_led.A", "FAULT_LED_A"),
         ):
             self.assertIn(route, routes)
+        encoder_allocations = {
+            row["net"]: set(row["peers"])
+            for row in candidate["allocations"]
+            if row["net"] in {"ENCODER_A", "ENCODER_B"}
+        }
+        self.assertIn("encoder_a_pullup.END_2", encoder_allocations["ENCODER_A"])
+        self.assertIn("encoder_b_pullup.END_2", encoder_allocations["ENCODER_B"])
+        self.assertNotIn("encoder_a_pullup.END_1", encoder_allocations["ENCODER_A"])
+        self.assertNotIn("encoder_b_pullup.END_1", encoder_allocations["ENCODER_B"])
+        for instance in (
+            "ui_dpad_up", "ui_dpad_down", "ui_dpad_left", "ui_dpad_right", "ui_dpad_ok"
+        ):
+            self.assertIn(
+                (f"{instance}.GROUND", "abstract:power-ground", "POWER_GROUND"),
+                routes,
+            )
         self.assertNotIn(("safe_latch.Q", "slow_io.P22", "FAULT_LATCH_SENSE"), routes)
         self.assertNotIn(("evidence_cmp_a.OUT1", "slow_io.P23", "S3_RF_TX_EVIDENCE_N"), routes)
 
