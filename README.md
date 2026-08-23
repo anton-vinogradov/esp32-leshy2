@@ -120,10 +120,10 @@ and the full target/emulator gate are not closed, and no order is authorized.
 <details open>
 <summary><strong>⭐ Current H2 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H2.3.9 -->
+<!-- current-substep: H2.3.10 -->
 
-**Exact marker: `H2.3.9`** — implement and review the rear controls and encoder
-on `RF_35_REAR_CONTROLS`.
+**Exact marker: `H2.3.10`** — implement and review the speaker, downward-facing
+microphone and voice-audio amplifier on `RF_36_AUDIO_IO_AMP`.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,021-row circuit inventory reviewed.
@@ -143,8 +143,9 @@ on `RF_35_REAR_CONTROLS`.
   - ✅ `H2.3.8` — `RF_34_U214_M5_EXT`: 53 symbols, 52 board-fitted
     components, 228 contacts and two independently protected expansion paths;
     reviewed.
-  - ▶️ **`H2.3.9` — current:** `RF_35_REAR_CONTROLS`.
-  - ⏳ `H2.3.10` — `RF_36_AUDIO_IO_AMP`.
+  - ✅ `H2.3.9` — `RF_35_REAR_CONTROLS`: seven fitted components, 36
+    contacts and four independent direct controls; reviewed.
+  - ▶️ **`H2.3.10` — current:** `RF_36_AUDIO_IO_AMP`.
   - ⏳ `H2.3.11` — `RF_40_INTERBOARD_M1`.
   - ⏳ `H2.3.12` — `RF_50_TX_SAFETY_EVIDENCE`.
   - ⏳ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`.

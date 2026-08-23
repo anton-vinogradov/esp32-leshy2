@@ -2589,6 +2589,7 @@ def render_public_schematics(
 | [`RF_31_NRF24_X3`](../hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch) | точный ECAD | 105 компонентов ledger плюс 3 границы заводских IPEX, 311 физических контактов, 3 независимых PIO SPI/RF-тракта, 33 интерфейса и 2 объяснённых NC |
 | [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch) | точный electrical ECAD | 116 компонентов, 363 физических контакта, независимые CC1101 data и SA518 voice power/control/RF-тракты, 30 интерфейсов и 11 объяснённых NC; land-fit SA518 остаётся gate H5 |
 | [`RF_34_U214_M5_EXT`](../hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch) | точный ECAD | 53 символа, 52 устанавливаемых компонента, 228 контактов, 27 интерфейсов, отдельные защищённые ветви U214 и нативного M5 Unit; сам U214 остаётся внешним изделием |
+| [`RF_35_REAR_CONTROLS`](../hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch) | точный ECAD | 7 устанавливаемых компонентов и 36 контактов: отдельные encoder A/B/push и PTT, локальная ESD-защита; серийная ручка остаётся внешней механической деталью |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
@@ -2607,7 +2608,8 @@ def render_public_schematics(
 [ядро/service RP2354](../hardware/ecad/generated/H2-RF30-rp2354-core-service.json) и
 [три nRF24-тракта](../hardware/ecad/generated/H2-RF31-nrf24-x3.json) и
 [Sub-GHz/voice](../hardware/ecad/generated/H2-RF32-subghz-voice.json) и
-[U214/M5 expansion](../hardware/ecad/generated/H2-RF34-u214-m5-ext.json).
+[U214/M5 expansion](../hardware/ecad/generated/H2-RF34-u214-m5-ext.json) и
+[rear controls](../hardware/ecad/generated/H2-RF35-rear-controls.json).
 PCB placement, routing и производство этими листами ещё не разрешены."""
     else:
         navigation = "[Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)"
@@ -2646,6 +2648,7 @@ no-connects; fabricated test pads are explicitly excluded from the BOM.
 | [`RF_31_NRF24_X3`](../hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch) | exact ECAD | 105 ledger components plus 3 factory-IPEX boundaries, 311 physical contacts, 3 independent PIO SPI/RF paths, 33 interfaces and 2 explained NCs |
 | [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch) | exact electrical ECAD | 116 components, 363 physical contacts, independent CC1101 data and SA518 voice power/control/RF paths, 30 interfaces and 11 explained NCs; SA518 land fit remains an H5 gate |
 | [`RF_34_U214_M5_EXT`](../hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch) | exact ECAD | 53 symbols, 52 board-fitted components, 228 contacts, 27 interfaces and separate protected U214/native M5 Unit branches; U214 itself remains an external product |
+| [`RF_35_REAR_CONTROLS`](../hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch) | exact ECAD | 7 fitted components and 36 contacts: independent encoder A/B/push and PTT with local ESD; the serial knob remains an external mechanical item |
 
 Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
@@ -2664,7 +2667,8 @@ Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json)
 [RP2354 core/service](../hardware/ecad/generated/H2-RF30-rp2354-core-service.json), and
 [three nRF24 paths](../hardware/ecad/generated/H2-RF31-nrf24-x3.json), and
 [Sub-GHz/voice](../hardware/ecad/generated/H2-RF32-subghz-voice.json), and
-[U214/M5 expansion](../hardware/ecad/generated/H2-RF34-u214-m5-ext.json).
+[U214/M5 expansion](../hardware/ecad/generated/H2-RF34-u214-m5-ext.json), and
+[rear controls](../hardware/ecad/generated/H2-RF35-rear-controls.json).
 These sheets do not yet authorize PCB placement, routing or fabrication."""
     heading, remainder = section.split("\n", 1)
     return f"{heading}\n\n{navigation}\n\n{detail}\n\n{ecad}\n{remainder}"

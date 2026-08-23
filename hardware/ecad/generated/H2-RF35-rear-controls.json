@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "stage": "H2.3.9",
+  "status": "reviewed_exact_rear_controls_sheet",
+  "project": "LESHY2-RF",
+  "sheet": "RF_35_REAR_CONTROLS",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "6ae79ff167e17a197258191c7ba5f6d309f1d021c600b9dbe209360dd495dab6",
+    "hardware/architecture/devices.json": "618c400159127254d0fce2ecee04f97abf6d16fe7313352a665708540739c534",
+    "hardware/ecad/generated/H2-instance-ledger.json": "1e7fab8e0fbb29ddeffa02d74d26e421dfeeacf1f95a9e875f4befd39521d5f5",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "cea898e7d98e2a54ddee9c0d693d7a98fbbe693d1b1b1314d4c5d996618849e3"
+  },
+  "summary": {
+    "ledger_instances": 8,
+    "schematic_symbols": 7,
+    "board_fitted_symbols": 7,
+    "external_mechanical_mating_items": 1,
+    "hierarchical_interfaces": 6,
+    "board_physical_contacts": 36,
+    "independent_direct_control_paths": 4,
+    "intentional_no_connect_pins": 12,
+    "custom_footprints_added": 0,
+    "pcb_files_created": 0
+  },
+  "instances": [
+    {
+      "instance": "ptt_switch",
+      "symbol_uuid": "98ce3324-0202-512f-8337-cf4f7d64a2b5",
+      "reference": "SW1",
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "rear_control_esd",
+      "symbol_uuid": "988c3ef2-3d2e-58ff-a683-84a91585dafa",
+      "reference": "D1",
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "encoder_ptt_esd",
+      "symbol_uuid": "03295d55-81a0-5bca-8a6d-e770a50d7041",
+      "reference": "D2",
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "ptt_pullup",
+      "symbol_uuid": "ed6b9fac-494b-5993-92c8-cb995e585cd2",
+      "reference": "R1",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ptt_series",
+      "symbol_uuid": "291efce9-93dd-5aed-93a0-7008b00da05b",
+      "reference": "R2",
+      "mpn": "Yageo RC0603FR-071KL",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ptt_filter_cap",
+      "symbol_uuid": "2a1b4ff9-dbec-589c-91ee-8b76383df0b3",
+      "reference": "C1",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "encoder",
+      "symbol_uuid": "ffb03927-4dad-5151-803b-bd44e3523e07",
+      "reference": "ENC1",
+      "mpn": "Alps Alpine EC11E18244AU",
+      "footprint": "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles",
+      "pin_count": 5,
+      "board_fitted": true
+    }
+  ],
+  "external_mechanical_mating_items": [
+    {
+      "instance": "encoder_knob",
+      "mpn": "Davies Molding 1227-J",
+      "role": "exact soft-touch knob over rear encoder",
+      "schematic_symbol": false,
+      "board_footprint": false
+    }
+  ],
+  "physical_net_aliases_collapsed": {
+    "ENCODER_PTT_ESD_GROUND": "POWER_GROUND",
+    "REAR_CONTROL_ESD_GROUND": "POWER_GROUND"
+  },
+  "intentional_no_connect_endpoints": [
+    "encoder_ptt_esd.D2_MINUS",
+    "encoder_ptt_esd.NC_10",
+    "encoder_ptt_esd.NC_6",
+    "encoder_ptt_esd.NC_7",
+    "encoder_ptt_esd.NC_9",
+    "rear_control_esd.D1_MINUS",
+    "rear_control_esd.D2_MINUS",
+    "rear_control_esd.D2_PLUS",
+    "rear_control_esd.NC_10",
+    "rear_control_esd.NC_6",
+    "rear_control_esd.NC_7",
+    "rear_control_esd.NC_9"
+  ],
+  "known_deferred_fixture_labels": [],
+  "footprint_evidence": [
+    {
+      "mpn": "OMRON B3S-1100P",
+      "footprint": "Leshy2:B3S-1100P",
+      "status": "exact manufacturer land pattern already controlled by UI12"
+    },
+    {
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "status": "exact TI DQA package"
+    },
+    {
+      "mpn": "Alps Alpine EC11E18244AU",
+      "footprint": "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles",
+      "status": "KiCad 10 EC11E switch footprint matches official Drawing No.2 signal, switch and mounting-hole axes"
+    }
+  ],
+  "corrections_closed": [
+    "the Davies knob remains an external mechanical mating item and cannot become a fictitious electrical symbol or board footprint",
+    "encoder A, B and push are three independent M1 paths; PTT remains a fourth direct path local to RP instead of an I2C-scanned key",
+    "the RF sheet owns the exposed encoder and PTT contacts while the three encoder pull-ups remain correctly owned by UI12",
+    "the selected encoder footprint includes the exact switch terminals and both manufacturer mounting-hole types",
+    "STOP and RE-ARM controls are absent; unattended shutdown is owned by the independent watchdog and FAULT_KILL architecture"
+  ],
+  "review_boundary": {
+    "complete": [
+      "all seven fitted electrical components, 36 contacts, six hierarchy interfaces and twelve intentional NC contacts are explicit",
+      "encoder phase, encoder push and PTT remain independent direct inputs with local exposed-contact ESD protection",
+      "all fitted devices use exact serial MPNs and exact package/land patterns",
+      "native KiCad parses RF35 in the live RF/power hierarchy with every remaining finding machine-accounted"
+    ],
+    "deferred": [
+      "received encoder detent, bounce, shaft/knob interference fit and enclosure actuation close in H5/H8",
+      "PTT and encoder ESD, long-hold, chatter and accidental-actuation fault injection close in H3/H8",
+      "mounting-hole tolerances, keepouts, return geometry and complete DRC close in H6",
+      "PCNT full-detent semantics and input debounce close in firmware F3/F4 and H8"
+    ]
+  }
+}

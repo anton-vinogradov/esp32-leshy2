@@ -26,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Current production ECAD schematic | ▶️ H2.3.9: rear controls and encoder; H2.3.8 independent protected U214/M5 Unit expansion is reviewed |
+| Current production ECAD schematic | ▶️ H2.3.10: speaker, microphone and voice-audio amplifier; H2.3.9 rear controls are reviewed |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ▶️ H2: authorized |
@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.3.9 -->
+<!-- current-substep: H2.3.10 -->
 
-**Exact marker: `H2.3.9`** — implement and review the rear controls and encoder
-on `RF_35_REAR_CONTROLS`.
+**Exact marker: `H2.3.10`** — implement and review the speaker, downward-facing
+microphone and voice-audio amplifier on `RF_36_AUDIO_IO_AMP`.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -185,8 +185,10 @@ Current H2 execution:
   - ✅ `H2.3.8` — `RF_34_U214_M5_EXT`: 53 symbols, 52 board-fitted
     components, 228 contacts, 27 interfaces and separate protected U214/native
     Unit branches; native KiCad review passed.
-  - ▶️ **`H2.3.9` — current:** `RF_35_REAR_CONTROLS`.
-  - ⏳ `H2.3.10` — `RF_36_AUDIO_IO_AMP`.
+  - ✅ `H2.3.9` — `RF_35_REAR_CONTROLS`: seven fitted components, 36
+    contacts, six interfaces and four independent direct controls; native
+    KiCad review passed.
+  - ▶️ **`H2.3.10` — current:** `RF_36_AUDIO_IO_AMP`.
   - ⏳ `H2.3.11` — `RF_40_INTERBOARD_M1`.
   - ⏳ `H2.3.12` — `RF_50_TX_SAFETY_EVIDENCE`.
   - ⏳ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`.

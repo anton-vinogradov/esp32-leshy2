@@ -35,7 +35,7 @@ are satisfied.
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD schematic
 
-**Status:** ▶️ current, exact marker `H2.3.9`.
+**Status:** ▶️ current, exact marker `H2.3.10`.
 
 - [Public schematics](schematics.md) — principle diagrams and current native
   KiCad sheet links.
@@ -64,7 +64,12 @@ are satisfied.
   interfaces. Its [machine review](../hardware/ecad/generated/H2-RF34-u214-m5-ext.json)
   confirms separate protected U214 and native M5 Unit paths; U214 itself is an
   external mating product, not a fictitious board component.
-- Rear controls and encoder are now active work.
+- [`RF_35_REAR_CONTROLS`](../hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch)
+  contains seven fitted components and 36 contacts. Its
+  [machine review](../hardware/ecad/generated/H2-RF35-rear-controls.json)
+  closes independent encoder A/B/push and PTT paths with local ESD; the knob
+  remains an external mechanical mating item.
+- Speaker, microphone and voice-audio amplification are now active work.
 
 <a id="h3"></a>
 ## H3 · Virtual electrical verification

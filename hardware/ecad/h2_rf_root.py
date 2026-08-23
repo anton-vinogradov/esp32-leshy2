@@ -34,6 +34,7 @@ IMPLEMENTED_CHILD_MANIFESTS = {
     "RF_31_NRF24_X3": ECAD / "generated/H2-RF31-nrf24-x3.json",
     "RF_32_SUBGHZ_VOICE": ECAD / "generated/H2-RF32-subghz-voice.json",
     "RF_34_U214_M5_EXT": ECAD / "generated/H2-RF34-u214-m5-ext.json",
+    "RF_35_REAR_CONTROLS": ECAD / "generated/H2-RF35-rear-controls.json",
 }
 IMPLEMENTED_CHILD_STATUSES = {
     "RF_01_USB_PD_CHARGE": "reviewed_exact_usb_pd_charge_sheet",
@@ -43,6 +44,7 @@ IMPLEMENTED_CHILD_STATUSES = {
     "RF_31_NRF24_X3": "reviewed_exact_three_nrf24_sheet",
     "RF_32_SUBGHZ_VOICE": "reviewed_exact_electrical_subghz_voice_sheet",
     "RF_34_U214_M5_EXT": "reviewed_exact_u214_m5_expansion_sheet",
+    "RF_35_REAR_CONTROLS": "reviewed_exact_rear_controls_sheet",
 }
 
 
@@ -384,9 +386,9 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "child_sheet_count": 12, "cross_sheet_net_count": 133,
         "root_hierarchical_pin_count": 305,
         "child_hierarchical_label_count": 305,
-        "known_child_stub_erc_violations": 46,
-        "implemented_child_sheet_count": 7, "circuit_symbols_placed": 507,
-        "known_generated_library_copy_warnings": 507,
+        "known_child_stub_erc_violations": 40,
+        "implemented_child_sheet_count": 8, "circuit_symbols_placed": 514,
+        "known_generated_library_copy_warnings": 514,
         "known_deferred_fixture_erc_violations": 8, "pcb_files_created": 0,
     }
     if summary != expected:
