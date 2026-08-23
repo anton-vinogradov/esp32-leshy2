@@ -98,15 +98,15 @@ RF_INSTANCE_BY_PATH = {
     "N24-2": "nrf2_external_sma",
 }
 RF_USER_LABEL_LINES = {
-    "S3-2G4": ("WI-FI/BLE", "2.4 GHz RP-SMA"),
-    "C5-2G4/5": ("WI-FI/15.4", "2.4/5 GHz RP-SMA"),
-    "RX-FM/SW": ("FM/SW RX", "SMA"),
-    "RX-AM/LW": ("AM/LW LOOP", "SMA"),
-    "N24-0": ("nRF24-1", "2.4 GHz SMA"),
-    "CC-SUB": ("SUB-GHz", "SMA"),
-    "N24-1": ("nRF24-2", "2.4 GHz SMA"),
-    "VOICE-V/U": ("VHF/UHF", "SMA"),
-    "N24-2": ("nRF24-3", "2.4 GHz SMA"),
+    "S3-2G4": ("WI-FI/BLE", "2.4 GHz"),
+    "C5-2G4/5": ("WI-FI/15.4", "2.4/5 GHz"),
+    "RX-FM/SW": ("FM/SW RX",),
+    "RX-AM/LW": ("AM/LW LOOP",),
+    "N24-0": ("nRF24-1", "2.4 GHz"),
+    "CC-SUB": ("SUB-GHz",),
+    "N24-1": ("nRF24-2", "2.4 GHz"),
+    "VOICE-V/U": ("VHF/UHF",),
+    "N24-2": ("nRF24-3", "2.4 GHz"),
 }
 TX_RF_PATHS = {
     "S3-2G4", "C5-2G4/5", "N24-0", "CC-SUB", "N24-1", "VOICE-V/U", "N24-2"
@@ -1772,10 +1772,10 @@ def validate() -> list[str]:
         errors.append("the 11-mm interboard channel must remain free of antenna bodies")
     if rear_rf_centre_z - front_rf_centre_z < 20.5:
         errors.append("opposed outer-face antenna banks lost their maximum depth separation")
-    for _, path, polarity in FRONT_RF + REAR_RF:
+    for _, path, _ in FRONT_RF + REAR_RF:
         lines = RF_USER_LABEL_LINES.get(path, ())
-        if len(lines) != 2 or polarity not in lines[1]:
-            errors.append(f"{path}: user label must state function plus {polarity} connector type")
+        if not lines or any("SMA" in line for line in lines):
+            errors.append(f"{path}: antenna silkscreen must identify the function without connector-family text")
     if len(TX_RF_PATHS) != 7 or not TX_RF_PATHS <= drawn_paths:
         errors.append("seven transmitting RF paths must retain individual TX indicators")
     display_box = (display.x, display.y, *placement_size(display, devices, instances))

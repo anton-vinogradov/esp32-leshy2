@@ -441,9 +441,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "M5Stack U214",
             "Keystone 1048P",
             "WI-FI/BLE",
-            "2.4 GHz RP-SMA",
+            "2.4 GHz",
             "WI-FI/15.4",
-            "2.4/5 GHz RP-SMA",
+            "2.4/5 GHz",
             "nRF24-1",
             "nRF24-2",
             "nRF24-3",
@@ -472,6 +472,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "POWER",
         ):
             self.assertIn(token, rendered)
+        for connector_silkscreen in ("2.4 GHz RP-SMA", "2.4/5 GHz RP-SMA", "2.4 GHz SMA"):
+            self.assertNotIn(connector_silkscreen, rendered)
         navigation = (
             GENERATOR.REPO_ROOT
             / "docs/images/navigation-cluster.svg"

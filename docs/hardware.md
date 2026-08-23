@@ -170,8 +170,9 @@ passives, unshown copper and manufacturing tolerances remain for ECAD closure.
 
 In two aligned rows of five below the display, user-facing actual-transmit labels cover
 `WI-FI/BLE`, `WI-FI/15.4`, `nRF24-1`, `nRF24-2`, `nRF24-3`, `SUB-GHz`,
-`VHF/UHF`, `IR`, `LORA/EXT` and the aggregate `TX ACTIVE`. Antenna silkscreen uses the
-same names and also states the required frequency and `SMA`/`RP-SMA` type.
+`VHF/UHF`, `IR`, `LORA/EXT` and the aggregate `TX ACTIVE`. Antenna silkscreen
+uses the same functional names and adds a frequency only where it helps identify
+the radio; connector-family text is omitted from the board face.
 The two Si4732 antenna inputs are receive-only. Both exact GCT end-launch
 connector banks are mirrored onto the outward PCB faces: the faces are
 14.2 mm apart, their antenna centre planes are 20.55 mm apart, and no

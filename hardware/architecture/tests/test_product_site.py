@@ -212,11 +212,10 @@ class ProductSiteTests(unittest.TestCase):
             "GCT RFPC-SMA31-FN-175-A",
             "GCT RFPC-SMA32-FN-175-A",
             "WI-FI/BLE",
-            "2.4 GHz RP-SMA",
+            "2.4 GHz",
             "WI-FI/15.4",
-            "2.4/5 GHz RP-SMA",
+            "2.4/5 GHz",
             "nRF24-1",
-            "2.4 GHz SMA",
             "SUB-GHz",
             "VHF/UHF",
             "TX ACTIVE",
@@ -235,6 +234,8 @@ class ProductSiteTests(unittest.TestCase):
             "M5 UNIT",
         ):
             self.assertIn(token, layout)
+        for connector_silkscreen in ("2.4 GHz RP-SMA", "2.4/5 GHz RP-SMA", "2.4 GHz SMA"):
+            self.assertNotIn(connector_silkscreen, layout)
         for process_token in ("G3-0001", "not G7", "not KiCad", "Working projection"):
             self.assertNotIn(process_token, layout)
         self.assertIn(

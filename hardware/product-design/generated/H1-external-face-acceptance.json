@@ -48,7 +48,7 @@
         "path": "S3-2G4",
         "user_label": [
           "WI-FI/BLE",
-          "2.4 GHz RP-SMA"
+          "2.4 GHz"
         ],
         "connector_type": "RP-SMA",
         "connector_mpn": "GCT RFPC-SMA32-FN-175-A",
@@ -57,8 +57,7 @@
       {
         "path": "RX-FM/SW",
         "user_label": [
-          "FM/SW RX",
-          "SMA"
+          "FM/SW RX"
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
@@ -67,8 +66,7 @@
       {
         "path": "RX-AM/LW",
         "user_label": [
-          "AM/LW LOOP",
-          "SMA"
+          "AM/LW LOOP"
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
@@ -78,7 +76,7 @@
         "path": "C5-2G4/5",
         "user_label": [
           "WI-FI/15.4",
-          "2.4/5 GHz RP-SMA"
+          "2.4/5 GHz"
         ],
         "connector_type": "RP-SMA",
         "connector_mpn": "GCT RFPC-SMA32-FN-175-A",
@@ -344,7 +342,7 @@
         "path": "N24-0",
         "user_label": [
           "nRF24-1",
-          "2.4 GHz SMA"
+          "2.4 GHz"
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
@@ -353,8 +351,7 @@
       {
         "path": "CC-SUB",
         "user_label": [
-          "SUB-GHz",
-          "SMA"
+          "SUB-GHz"
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
@@ -364,7 +361,7 @@
         "path": "N24-1",
         "user_label": [
           "nRF24-2",
-          "2.4 GHz SMA"
+          "2.4 GHz"
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
@@ -373,8 +370,7 @@
       {
         "path": "VOICE-V/U",
         "user_label": [
-          "VHF/UHF",
-          "SMA"
+          "VHF/UHF"
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
@@ -384,7 +380,7 @@
         "path": "N24-2",
         "user_label": [
           "nRF24-3",
-          "2.4 GHz SMA"
+          "2.4 GHz"
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
