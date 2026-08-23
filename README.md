@@ -152,8 +152,11 @@ DRC gate.
 On the UI board, a solid green line is only the removable 30-mm cable from a
 module's built-in U.FL to the board U.FL receptacle; its dashed blue continuation
 shows the future 50-ohm PCB mainline through the TX coupler to the outward RP-SMA.
+On the RF board, the same physical nRF24 cable sections are cyan.
+Matching blue topology guides connect all nine labelled antenna ports to S3,
+the two Si4732 inputs, C5, all three nRF24 modules, CC1101 and SA518.
 
-![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=14)
+![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=15)
 
 ### Top view from the antenna edge
 

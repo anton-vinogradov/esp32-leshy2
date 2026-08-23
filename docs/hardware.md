@@ -196,6 +196,15 @@ forward sample for the TX detector, and then reaches the outward
 `GCT RFPC-SMA32-FN-175-A` RP-SMA. Dashed blue lines show only that topology;
 their final geometry is created and verified in KiCad.
 
+Both inner projections now carry nine dashed-blue source-to-port guides:
+`S3→S3 RP-SMA`, `Si4732 FMI→FM/SW SMA`, `Si4732 AMI→AM/LW SMA`,
+`C5→C5 RP-SMA`, three independent `E01-ML01IPX→nRF24 SMA` paths,
+`CC1101→SUB-GHz SMA` and `SA518 ANT7→VHF/UHF SMA`. On each nRF24 path the
+cyan portion is the physical microcoax to the board U.FL; the blue PCB guide
+begins there. Every blue endpoint coincides with the red datum of its matching
+outward antenna connector. This is a complete connectivity map, not accepted
+trace geometry.
+
 The externally mounted `Alps Alpine EC11E18244AU` is treated as a through-board
 part, not just an outer 11-mm class body. Its two mounting tabs and five signal
 terminals project 3.5 mm into the channel. Their exact seven keep-outs forced a
@@ -232,7 +241,7 @@ connector body enters the exact 11-mm interboard channel.
 
 ![Dimensioned replaceable display adapter](images/display-adapter.svg?layout=1)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=14)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=15)
 
 ![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=4)
 

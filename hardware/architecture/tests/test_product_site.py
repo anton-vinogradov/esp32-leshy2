@@ -470,7 +470,7 @@ class ProductSiteTests(unittest.TestCase):
             'data-intentional-mates="1"',
             'data-min-z-clearance-mm="3.31"',
             'data-rf-cable-routes="2"',
-            'data-rf-pcb-topology-guides="2"',
+            'data-rf-pcb-topology-guides="9"',
             'data-route-state="pre-ecad-topology-only"',
             'data-nrf-cable-reserves="3"',
             'data-opposing-cable-pairs="3"',
@@ -479,8 +479,17 @@ class ProductSiteTests(unittest.TestCase):
             'data-cable-od-max-mm="1.13"',
             'data-functional-zones="1"',
             'data-voice-rf-endpoint-distance-mm="32.92"',
-            'data-route-state="pre-ecad-endpoints-only"',
-            "What the green lines mean",
+            'data-path="S3-2G4"',
+            'data-path="RX-FM/SW"',
+            'data-path="RX-AM/LW"',
+            'data-path="C5-2G4/5"',
+            'data-path="N24-0"',
+            'data-path="CC-SUB"',
+            'data-path="N24-1"',
+            'data-path="VOICE-V/U"',
+            'data-path="N24-2"',
+            "Antenna-to-radio map · all nine paths",
+            "cyan = nRF24 cable",
             "PCB receptacle · the green cable ends here",
             "outward RP-SMA · antenna screws on here",
             "all 129 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm",
@@ -503,9 +512,9 @@ class ProductSiteTests(unittest.TestCase):
             "S3/C5 recovery controls and DBG10",
             "RP recovery controls and DBG10",
             "WI-FI/BLE",
-            "nRF24-1",
         ):
             self.assertNotIn(forbidden_inner_silk, layout)
+        self.assertIn('id="outer-antenna-datum-annotations" data-layer="drawing-annotation"', layout)
         bounds = re.search(
             r'id="validated-clearances" data-legend-bottom="([0-9.]+)" data-top="([0-9.]+)"',
             layout,
@@ -518,7 +527,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(path)
             self.assertIn("current-clamshell.svg?layout=15", page)
             self.assertIn("navigation-cluster.svg?layout=1", page)
-            self.assertIn("internal-board-layout.svg?layout=14", page)
+            self.assertIn("internal-board-layout.svg?layout=15", page)
             self.assertIn("sandwich-section.svg?layout=10", page)
             self.assertIn("top-edge-view.svg?layout=4", page)
             self.assertLess(
@@ -583,6 +592,19 @@ class ProductSiteTests(unittest.TestCase):
                 and row["user_antenna_connector_mpn"] == "GCT RFPC-SMA32-FN-175-A"
                 for row in native_chains
             )
+        )
+        antenna_topology = interconnect["antenna_source_to_port_topology"]
+        self.assertEqual(
+            "all_nine_onboard_paths_accounted_topology_only",
+            antenna_topology["result"],
+        )
+        self.assertEqual(9, antenna_topology["guide_count"])
+        self.assertEqual(
+            {
+                "S3-2G4", "RX-FM/SW", "RX-AM/LW", "C5-2G4/5",
+                "N24-0", "CC-SUB", "N24-1", "VOICE-V/U", "N24-2",
+            },
+            {row["path"] for row in antenna_topology["guides"]},
         )
         through = interconnect["outer_face_through_board_features"]
         self.assertEqual(7, through["encoder_feature_count"])

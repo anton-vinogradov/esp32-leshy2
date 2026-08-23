@@ -37,14 +37,53 @@
 <path d="M559.4 148.0 V134.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M515.0 148.0 V134.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 </g>
-<g id="native-rf-pcb-topology-guides" data-route-state="pre-ecad-topology-only" data-medium="controlled-50-ohm-pcb">
-<polyline points="298.3,189.0 298.3,174.5 298.3,150.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="s3_native_rf_pcb_guide" data-role="S3 board U.FL through forward coupler to outward S3 RP-SMA"/>
-<polyline points="139.2,189.0 139.2,174.5 139.2,150.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="c5_native_rf_pcb_guide" data-role="C5 board U.FL through forward coupler to outward C5 RP-SMA"/>
+<g id="all-antenna-pcb-topology-guides" data-route-state="pre-ecad-topology-only" data-medium="controlled-50-ohm-pcb">
+<polyline points="298.3,189.0 298.3,174.5 298.3,150.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="s3_native_rf_pcb_guide" data-path="S3-2G4" data-source="s3_rf_board_connector" data-external="s3_external_rp_sma" data-role="S3 board U.FL through forward coupler to outward S3 RP-SMA"/>
+<circle cx="298.3" cy="189.0" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<circle cx="298.3" cy="150.0" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<polyline points="139.2,189.0 139.2,174.5 139.2,150.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="c5_native_rf_pcb_guide" data-path="C5-2G4/5" data-source="c5_rf_board_connector" data-external="c5_external_rp_sma" data-role="C5 board U.FL through forward coupler to outward C5 RP-SMA"/>
+<circle cx="139.2" cy="189.0" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<circle cx="139.2" cy="150.0" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<polyline points="168.8,352.8 246.5,331.3 246.5,150.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="receiver_fmsw_pcb_guide" data-path="RX-FM/SW" data-source="receiver" data-external="receiver_fmsw_external_sma" data-role="Si4732 FMI matching and protection to outward FM/SW SMA"/>
+<circle cx="168.8" cy="352.8" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<circle cx="246.5" cy="150.0" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<polyline points="168.8,357.9 191.0,342.4 191.0,150.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="receiver_amlw_pcb_guide" data-path="RX-AM/LW" data-source="receiver" data-external="receiver_amlw_external_sma" data-role="Si4732 AMI coupling and protection to outward AM/LW SMA"/>
+<circle cx="168.8" cy="357.9" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<circle cx="191.0" cy="150.0" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<polyline points="651.9,259.3 707.4,259.3 707.4,168.5 692.5,168.5 692.5,150.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="nrf0_pcb_guide" data-path="N24-0" data-source="nrf0_rf_board_connector" data-external="nrf0_external_sma" data-role="nRF24 #0 board U.FL through forward coupler to outward SMA"/>
+<circle cx="651.9" cy="259.3" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<circle cx="692.5" cy="150.0" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<polyline points="552.0,259.3 551.0,249.9 551.0,168.5 603.8,168.5 603.8,150.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="nrf1_pcb_guide" data-path="N24-1" data-source="nrf1_rf_board_connector" data-external="nrf1_external_sma" data-role="nRF24 #1 board U.FL through forward coupler to outward SMA"/>
+<circle cx="552.0" cy="259.3" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<circle cx="603.8" cy="150.0" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<polyline points="477.9,237.1 501.3,251.8 501.3,168.5 515.0,168.5 515.0,150.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="nrf2_pcb_guide" data-path="N24-2" data-source="nrf2_rf_board_connector" data-external="nrf2_external_sma" data-role="nRF24 #2 board U.FL through forward coupler to outward SMA"/>
+<circle cx="477.9" cy="237.1" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<circle cx="515.0" cy="150.0" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<polyline points="648.1,188.1 648.1,150.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="cc_sub_pcb_guide" data-path="CC-SUB" data-source="cc" data-external="cc_external_sma" data-role="CC1101 selected matching branch to outward Sub-GHz SMA"/>
+<circle cx="648.1" cy="188.1" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<circle cx="648.1" cy="150.0" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<polyline points="545.3,271.0 499.0,267.7 499.0,174.1 559.4,174.1 559.4,150.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="voice_pcb_guide" data-path="VOICE-V/U" data-source="voice" data-external="voice_external_sma" data-role="SA518 contact 7 to outward VHF/UHF SMA"/>
+<circle cx="545.3" cy="271.0" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<circle cx="559.4" cy="150.0" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
 </g>
-<text x="820.0" y="102.0" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="start" fill="#172033">What the green lines mean</text>
+<g id="outer-antenna-datum-annotations" data-layer="drawing-annotation">
+<text x="298.3" y="124.0" font-family="sans-serif" font-size="7.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">S3</text>
+<text x="246.5" y="124.0" font-family="sans-serif" font-size="7.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">FM/SW</text>
+<text x="191.0" y="124.0" font-family="sans-serif" font-size="7.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">AM/LW</text>
+<text x="139.2" y="124.0" font-family="sans-serif" font-size="7.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5</text>
+<text x="692.5" y="124.0" font-family="sans-serif" font-size="7.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-1</text>
+<text x="648.1" y="124.0" font-family="sans-serif" font-size="7.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">SUB</text>
+<text x="603.8" y="124.0" font-family="sans-serif" font-size="7.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-2</text>
+<text x="559.4" y="124.0" font-family="sans-serif" font-size="7.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">V/U</text>
+<text x="515.0" y="124.0" font-family="sans-serif" font-size="7.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-3</text>
+</g>
+<text x="820.0" y="102.0" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="start" fill="#172033">Antenna-to-radio map · all nine paths</text>
 <text x="820.0" y="122.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#526076">Drawing explanation — not PCB silkscreen.</text>
-<text x="820.0" y="562.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#344054">solid green = physical 30-mm cable · dashed blue = future 50 Ω PCB mainline</text>
+<text x="820.0" y="562.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#344054">green = S3/C5 cable · cyan = nRF24 cable · dashed blue = future 50 Ω PCB mainline</text>
 <text x="820.0" y="581.0" font-family="sans-serif" font-size="9.2" font-weight="normal" text-anchor="start" fill="#526076">The coupler also sends a small forward-power sample to the TX detector; the antenna path remains independent.</text>
+<text x="820.0" y="608.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#1d4ed8">UI board: S3 · FM/SW · AM/LW · C5</text>
+<text x="820.0" y="628.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#1d4ed8">RF board: nRF24-1 · SUB-GHz · nRF24-2 · VHF/UHF · nRF24-3</text>
+<text x="820.0" y="648.0" font-family="sans-serif" font-size="9.2" font-weight="normal" text-anchor="start" fill="#526076">Every blue guide ends at its matching red outer-face antenna datum; none represents finished KiCad copper.</text>
 <g data-rf-feed-path="s3" data-duplicate-hardware="false">
 <text x="820.0" y="142.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#172033">S3 native antenna path</text>
 <rect x="820.0" y="166.0" width="300.0" height="46.0" rx="5" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.4"/>
@@ -91,10 +130,6 @@
 </g>
 <rect x="628.5" y="177.8" width="29.2" height="64.8" rx="3" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="5 3" data-zone-kind="selected_support_placement_zone" data-zone="cc-reference-rf-network"/>
 <text x="643.2" y="212.1" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#9a3412">CC RF REF</text>
-<g id="voice-rf-endpoints" data-route="SA518.7-to-VOICE-V/U" data-route-state="pre-ecad-endpoints-only" data-straight-line-distance-mm="32.92">
-<circle cx="559.4" cy="150.0" r="3.5" fill="none" stroke="#0f766e" stroke-width="1.3" stroke-dasharray="2 2"/>
-<circle cx="545.3" cy="271.0" r="3.5" fill="none" stroke="#0f766e" stroke-width="1.3" stroke-dasharray="2 2"/>
-</g>
 <g id="exact-native-rf-jumpers" data-route-units="mm" data-bend-state="coupon-open">
 <polyline points="279.8,240.5 261.3,240.5 261.3,201.8 300.3,201.8 300.3,189.0 298.3,189.0" fill="none" stroke="#0f766e" stroke-width="4.18" stroke-linecap="round" stroke-linejoin="round" data-instance="s3_rf_jumper" data-centreline-mm="30.01"/>
 <circle cx="279.8" cy="240.5" r="5.0" fill="none" stroke="#0f766e" stroke-width="1.2"/>
@@ -667,7 +702,7 @@
 <text x="1166.0" y="1455.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">30-mm nRF24 #1 module-face reserve and board-receptacle escape</text>
 <text x="1140.0" y="1467.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">134  TE Connectivity 2118651-2</text>
 <text x="1166.0" y="1476.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">30-mm nRF24 #2 module-face reserve and board-receptacle escape</text>
-<g id="validated-clearances" data-legend-bottom="1518" data-top="1553" data-inner-body-count="129" data-max-inner-height-mm="8.95" data-min-single-body-clearance-mm="2.05" data-display-adapter-opposing-pairs="5" data-min-display-adapter-clearance-mm="6.00" data-opposing-pairs="43" data-intentional-mates="1" data-min-z-clearance-mm="3.31" data-rf-cable-routes="2" data-rf-pcb-topology-guides="2" data-nrf-cable-reserves="3" data-opposing-cable-pairs="3" data-cable-od-max-mm="1.13" data-nrf-reserve-opposing-pairs="5" data-encoder-through-features="7" data-functional-zones="1" data-voice-rf-endpoint-distance-mm="32.92">
+<g id="validated-clearances" data-legend-bottom="1518" data-top="1553" data-inner-body-count="129" data-max-inner-height-mm="8.95" data-min-single-body-clearance-mm="2.05" data-display-adapter-opposing-pairs="5" data-min-display-adapter-clearance-mm="6.00" data-opposing-pairs="43" data-intentional-mates="1" data-min-z-clearance-mm="3.31" data-rf-cable-routes="2" data-rf-pcb-topology-guides="9" data-nrf-cable-reserves="3" data-opposing-cable-pairs="3" data-cable-od-max-mm="1.13" data-nrf-reserve-opposing-pairs="5" data-encoder-through-features="7" data-functional-zones="1" data-voice-rf-endpoint-distance-mm="32.92">
 <text x="30.0" y="1553.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#172033">Validated clearances</text>
 <text x="30.0" y="1577.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• same-face device-to-device clearance: ≥0.7 mm</text>
 <text x="30.0" y="1598.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• all 129 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm</text>
@@ -681,7 +716,7 @@
 <text x="30.0" y="1766.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• both inner views are horizontally mirrored from their external faces</text>
 <text x="30.0" y="1787.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• nRF reserve crossings: 5; minimum Z gap 5.20 mm; exact module axes close in H5</text>
 <text x="30.0" y="1808.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• EC11E through-board features: 7 checked; 2 opposing crossings; minimum Z gap 4.20 mm</text>
-<text x="30.0" y="1829.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• S3/C5 green cables end at board U.FL; 2 dashed blue topology guides continue through couplers to outward RP-SMA</text>
+<text x="30.0" y="1829.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• all 9 onboard antenna paths have a source-to-port topology guide; final copper remains KiCad work</text>
 <text x="30.0" y="1850.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• orange dashed boundary is a placement zone, not one combined device</text>
 <text x="30.0" y="1871.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">SMA · GCT RFPC-SMA31-FN-175-A</text>
 <text x="30.0" y="1891.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">RP-SMA · GCT RFPC-SMA32-FN-175-A</text>

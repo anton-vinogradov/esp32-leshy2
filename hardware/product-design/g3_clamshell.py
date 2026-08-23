@@ -97,6 +97,17 @@ RF_INSTANCE_BY_PATH = {
     "VOICE-V/U": "voice_external_sma",
     "N24-2": "nrf2_external_sma",
 }
+RF_SOURCE_INSTANCE_BY_PATH = {
+    "S3-2G4": "s3",
+    "C5-2G4/5": "c5",
+    "RX-FM/SW": "receiver",
+    "RX-AM/LW": "receiver",
+    "N24-0": "nrf0",
+    "CC-SUB": "cc",
+    "N24-1": "nrf1",
+    "VOICE-V/U": "voice",
+    "N24-2": "nrf2",
+}
 RF_USER_LABEL_LINES = {
     "S3-2G4": ("WI-FI/BLE", "2.4 GHz"),
     "C5-2G4/5": ("WI-FI/15.4", "2.4/5 GHz"),
@@ -212,6 +223,19 @@ class ThroughBoardFeature:
 
 
 @dataclass(frozen=True)
+class AntennaTopologyGuide:
+    """One visible source-to-antenna relation; never a claim of routed copper."""
+
+    instance: str
+    path: str
+    frame: str
+    source_instance: str
+    external_instance: str
+    points: tuple[tuple[float, float], ...]
+    role: str
+
+
+@dataclass(frozen=True)
 class BodyProjectionContract:
     """Mechanical meaning of one rendered body outside the placement maps."""
 
@@ -281,20 +305,91 @@ UI_RF_CABLES = (
     ),
 )
 
-# These are topology guides, not routed copper.  They continue the two visible
-# microcoax cables from the board-mounted U.FL receptacle, through the
-# forward-power coupler, to the matching outward RP-SMA datum.  KiCad owns the
-# final controlled-impedance geometry and may change layers or add bends.
-UI_NATIVE_RF_PCB_GUIDES = (
-    (
+# These are topology guides, not routed copper. They connect all nine radio
+# sources to the matching outward antenna datum. S3/C5 and nRF guides continue
+# after the visible microcoax at the board-mounted U.FL; the four direct paths
+# begin at the receiver, CC1101 or SA518 source. KiCad owns final geometry.
+ANTENNA_TOPOLOGY_GUIDES = (
+    AntennaTopologyGuide(
         "s3_native_rf_pcb_guide",
+        "S3-2G4",
+        "ui-inner",
+        "s3_rf_board_connector",
+        "s3_external_rp_sma",
         ((16.0, 10.55), (16.0, 6.62), (16.0, 0.0)),
         "S3 board U.FL through forward coupler to outward S3 RP-SMA",
     ),
-    (
+    AntennaTopologyGuide(
         "c5_native_rf_pcb_guide",
+        "C5-2G4/5",
+        "ui-inner",
+        "c5_rf_board_connector",
+        "c5_external_rp_sma",
         ((59.0, 10.55), (59.0, 6.62), (59.0, 0.0)),
         "C5 board U.FL through forward coupler to outward C5 RP-SMA",
+    ),
+    AntennaTopologyGuide(
+        "receiver_fmsw_pcb_guide",
+        "RX-FM/SW",
+        "ui-inner",
+        "receiver",
+        "receiver_fmsw_external_sma",
+        ((51.0, 54.8), (30.0, 49.0), (30.0, 0.0)),
+        "Si4732 FMI matching and protection to outward FM/SW SMA",
+    ),
+    AntennaTopologyGuide(
+        "receiver_amlw_pcb_guide",
+        "RX-AM/LW",
+        "ui-inner",
+        "receiver",
+        "receiver_amlw_external_sma",
+        ((51.0, 56.2), (45.0, 52.0), (45.0, 0.0)),
+        "Si4732 AMI coupling and protection to outward AM/LW SMA",
+    ),
+    AntennaTopologyGuide(
+        "nrf0_pcb_guide",
+        "N24-0",
+        "rf-inner",
+        "nrf0_rf_board_connector",
+        "nrf0_external_sma",
+        ((24.5, 29.55), (9.5, 29.55), (9.5, 5.0), (13.5, 5.0), (13.5, 0.0)),
+        "nRF24 #0 board U.FL through forward coupler to outward SMA",
+    ),
+    AntennaTopologyGuide(
+        "nrf1_pcb_guide",
+        "N24-1",
+        "rf-inner",
+        "nrf1_rf_board_connector",
+        "nrf1_external_sma",
+        ((51.5, 29.55), (51.75, 27.0), (51.75, 5.0), (37.5, 5.0), (37.5, 0.0)),
+        "nRF24 #1 board U.FL through forward coupler to outward SMA",
+    ),
+    AntennaTopologyGuide(
+        "nrf2_pcb_guide",
+        "N24-2",
+        "rf-inner",
+        "nrf2_rf_board_connector",
+        "nrf2_external_sma",
+        ((71.5, 23.55), (65.2, 27.5), (65.2, 5.0), (61.5, 5.0), (61.5, 0.0)),
+        "nRF24 #2 board U.FL through forward coupler to outward SMA",
+    ),
+    AntennaTopologyGuide(
+        "cc_sub_pcb_guide",
+        "CC-SUB",
+        "rf-inner",
+        "cc",
+        "cc_external_sma",
+        ((25.5, 10.3), (25.5, 0.0)),
+        "CC1101 selected matching branch to outward Sub-GHz SMA",
+    ),
+    AntennaTopologyGuide(
+        "voice_pcb_guide",
+        "VOICE-V/U",
+        "rf-inner",
+        "voice",
+        "voice_external_sma",
+        ((53.3, 32.7), (65.8, 31.8), (65.8, 6.5), (49.5, 6.5), (49.5, 0.0)),
+        "SA518 contact 7 to outward VHF/UHF SMA",
     ),
 )
 
@@ -2123,6 +2218,37 @@ def validate() -> list[str]:
     drawn_paths = {path for _, path, _ in FRONT_RF + REAR_RF}
     if machine_paths != drawn_paths or len(drawn_paths) != 9:
         errors.append("mechanical projection must retain all nine unique onboard RF paths")
+    topology_paths = {guide.path for guide in ANTENNA_TOPOLOGY_GUIDES}
+    if topology_paths != drawn_paths or len(ANTENNA_TOPOLOGY_GUIDES) != 9:
+        errors.append("every onboard antenna path must have exactly one topology guide")
+    if set(RF_SOURCE_INSTANCE_BY_PATH) != drawn_paths:
+        errors.append("every onboard antenna path must name one radio source instance")
+    if len({guide.instance for guide in ANTENNA_TOPOLOGY_GUIDES}) != 9:
+        errors.append("antenna topology guide instance names must be unique")
+    ui_inner_instances = {item.instance for item in UI_INNER}
+    rf_inner_instances = {item.instance for item in RF_INNER}
+    port_centres = {path: centre for centre, path, _ in FRONT_RF + REAR_RF}
+    for guide in ANTENNA_TOPOLOGY_GUIDES:
+        expected_sources = (
+            ui_inner_instances if guide.frame == "ui-inner" else rf_inner_instances
+        )
+        if guide.source_instance not in expected_sources:
+            errors.append(
+                f"antenna topology {guide.path}: source {guide.source_instance} is absent from {guide.frame}"
+            )
+        if RF_INSTANCE_BY_PATH.get(guide.path) != guide.external_instance:
+            errors.append(f"antenna topology {guide.path}: wrong external connector instance")
+        if guide.points[-1] != (port_centres[guide.path], 0.0):
+            errors.append(f"antenna topology {guide.path}: guide misses antenna datum")
+        for point in guide.points:
+            if not (0.0 <= point[0] <= BOARD_W and 0.0 <= point[1] <= BOARD_H):
+                errors.append(f"antenna topology {guide.path}: point {point} leaves PCB plan")
+        for segment in zip(guide.points, guide.points[1:]):
+            for hole in HOLES:
+                if point_segment_distance(hole, *segment) < MOUNT_KEEPOUT_R:
+                    errors.append(
+                        f"antenna topology {guide.path}: guide enters the M2.5 keep-out at {hole}"
+                    )
     if set(RF_USER_LABEL_LINES) != drawn_paths:
         errors.append("every antenna path must have one user-facing silkscreen label")
     antenna_planes = candidate["interboard_contract"].get("antenna_connector_planes", {})
@@ -2746,19 +2872,55 @@ def render_internal(devices, instances, display_adapter_design):
     out.append('</g>')
 
     out.append(
-        '<g id="native-rf-pcb-topology-guides" '
+        '<g id="all-antenna-pcb-topology-guides" '
         'data-route-state="pre-ecad-topology-only" data-medium="controlled-50-ohm-pcb">'
     )
-    for guide_instance, guide_points, guide_role in UI_NATIVE_RF_PCB_GUIDES:
+    for guide in ANTENNA_TOPOLOGY_GUIDES:
+        origin = ui if guide.frame == "ui-inner" else rf
         points = " ".join(
-            f"{sx(ui,mirrored_x(x)):.1f},{sy(ui,y):.1f}"
-            for x, y in guide_points
+            f"{sx(origin,mirrored_x(x)):.1f},{sy(origin,y):.1f}"
+            for x, y in guide.points
         )
         out.append(
             f'<polyline points="{points}" fill="none" stroke="#2563eb" '
             f'stroke-width="1.6" stroke-dasharray="4 3" '
-            f'data-instance="{guide_instance}" data-role="{html.escape(guide_role)}"/>'
+            f'data-instance="{guide.instance}" data-path="{guide.path}" '
+            f'data-source="{guide.source_instance}" data-external="{guide.external_instance}" '
+            f'data-role="{html.escape(guide.role)}"/>'
         )
+        for endpoint_x, endpoint_y in (guide.points[0], guide.points[-1]):
+            out.append(
+                f'<circle cx="{sx(origin,mirrored_x(endpoint_x)):.1f}" '
+                f'cy="{sy(origin,endpoint_y):.1f}" r="3.2" fill="#ffffff" '
+                f'stroke="#2563eb" stroke-width="1.2"/>'
+            )
+    out.append('</g>')
+
+    path_annotation = {
+        "S3-2G4": "S3",
+        "RX-FM/SW": "FM/SW",
+        "RX-AM/LW": "AM/LW",
+        "C5-2G4/5": "C5",
+        "N24-0": "N24-1",
+        "CC-SUB": "SUB",
+        "N24-1": "N24-2",
+        "VOICE-V/U": "V/U",
+        "N24-2": "N24-3",
+    }
+    out.append('<g id="outer-antenna-datum-annotations" data-layer="drawing-annotation">')
+    for origin, bank in ((ui, FRONT_RF), (rf, REAR_RF)):
+        for centre, path, _kind in bank:
+            out.append(
+                text(
+                    sx(origin, mirrored_x(centre)),
+                    124,
+                    path_annotation[path],
+                    7.2,
+                    "bold",
+                    "middle",
+                    "#1d4ed8",
+                )
+            )
     out.append('</g>')
 
     def rf_feed_path_callout(
@@ -2805,10 +2967,13 @@ def render_internal(devices, instances, display_adapter_design):
         return rendered
 
     out += [
-        text(820, 102, "What the green lines mean", 17, "bold"),
+        text(820, 102, "Antenna-to-radio map · all nine paths", 17, "bold"),
         text(820, 122, "Drawing explanation — not PCB silkscreen.", 9.5, colour="#526076"),
-        text(820, 562, "solid green = physical 30-mm cable · dashed blue = future 50 Ω PCB mainline", 10, "bold", colour="#344054"),
+        text(820, 562, "green = S3/C5 cable · cyan = nRF24 cable · dashed blue = future 50 Ω PCB mainline", 10, "bold", colour="#344054"),
         text(820, 581, "The coupler also sends a small forward-power sample to the TX detector; the antenna path remains independent.", 9.2, colour="#526076"),
+        text(820, 608, "UI board: S3 · FM/SW · AM/LW · C5", 10, "bold", colour="#1d4ed8"),
+        text(820, 628, "RF board: nRF24-1 · SUB-GHz · nRF24-2 · VHF/UHF · nRF24-3", 10, "bold", colour="#1d4ed8"),
+        text(820, 648, "Every blue guide ends at its matching red outer-face antenna datum; none represents finished KiCad copper.", 9.2, colour="#526076"),
     ]
     out += rf_feed_path_callout(
         820.0,
@@ -2840,21 +3005,6 @@ def render_internal(devices, instances, display_adapter_design):
             )
         )
         out.append(text(sx(rf,view_x+zone.w/2), sy(rf,zone.y+zone.h/2)+2, "CC RF REF", 5.2, "bold", "middle", "#9a3412"))
-
-    # Only the two physical endpoints are known before ECAD. A connecting
-    # polyline would look like proven copper and can visually cross component
-    # bodies even though the final trace may change layer or route around them.
-    out.append(
-        f'<g id="voice-rf-endpoints" data-route="SA518.7-to-VOICE-V/U" '
-        f'data-route-state="pre-ecad-endpoints-only" '
-        f'data-straight-line-distance-mm="{polyline_length(VOICE_RF_CORRIDOR):.2f}">'
-    )
-    for x, y in VOICE_RF_CORRIDOR:
-        out.append(
-            f'<circle cx="{sx(rf,mirrored_x(x)):.1f}" cy="{sy(rf,y):.1f}" r="3.5" '
-            f'fill="none" stroke="#0f766e" stroke-width="1.3" stroke-dasharray="2 2"/>'
-        )
-    out.append('</g>')
 
     out.append('<g id="exact-native-rf-jumpers" data-route-units="mm" data-bend-state="coupon-open">')
     for route in UI_RF_CABLES:
@@ -3013,7 +3163,7 @@ def render_internal(devices, instances, display_adapter_design):
         f'data-min-display-adapter-clearance-mm="{minimum_adapter_clearance:.2f}" '
         f'data-opposing-pairs="{len(clearance_pairs)}" data-intentional-mates="{len(INTENTIONAL_INTERBOARD_MATES)}" '
         f'data-min-z-clearance-mm="{minimum_clearance:.2f}" data-rf-cable-routes="{len(UI_RF_CABLES)}" '
-        f'data-rf-pcb-topology-guides="{len(UI_NATIVE_RF_PCB_GUIDES)}" '
+        f'data-rf-pcb-topology-guides="{len(ANTENNA_TOPOLOGY_GUIDES)}" '
         f'data-nrf-cable-reserves="{len(RF_NRF_CABLE_RESERVES)}" '
         f'data-opposing-cable-pairs="{len(cable_clearance_pairs)}" data-cable-od-max-mm="{maximum_cable_od:.2f}" '
         f'data-nrf-reserve-opposing-pairs="{len(nrf_reserve_clearance_pairs)}" '
@@ -3032,7 +3182,7 @@ def render_internal(devices, instances, display_adapter_design):
         text(note_x,notes_top+213,"• both inner views are horizontally mirrored from their external faces",10),
         text(note_x,notes_top+234,f"• nRF reserve crossings: {len(nrf_reserve_clearance_pairs)}; minimum Z gap {minimum_nrf_reserve_clearance:.2f} mm; exact module axes close in H5",10),
         text(note_x,notes_top+255,f"• EC11E through-board features: 7 checked; {len(through_board_clearance_pairs)} opposing crossings; minimum Z gap {minimum_through_board_clearance:.2f} mm",10),
-        text(note_x,notes_top+276,f"• S3/C5 green cables end at board U.FL; {len(UI_NATIVE_RF_PCB_GUIDES)} dashed blue topology guides continue through couplers to outward RP-SMA",10),
+        text(note_x,notes_top+276,f"• all {len(ANTENNA_TOPOLOGY_GUIDES)} onboard antenna paths have a source-to-port topology guide; final copper remains KiCad work",10),
         text(note_x,notes_top+297,"• orange dashed boundary is a placement zone, not one combined device",10),
         text(note_x,notes_top+318,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
         text(note_x,notes_top+338,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
@@ -4180,6 +4330,29 @@ def build_unified_coordinate_table(
                     for owner in ("s3", "c5")
                 ],
             },
+            "antenna_source_to_port_topology": {
+                "result": "all_nine_onboard_paths_accounted_topology_only",
+                "guide_count": len(ANTENNA_TOPOLOGY_GUIDES),
+                "final_copper_status": "open_until_kicad_drc",
+                "guides": [
+                    {
+                        "path": guide.path,
+                        "frame": guide.frame,
+                        "radio_source_instance": RF_SOURCE_INSTANCE_BY_PATH[guide.path],
+                        "radio_source_mpn": devices[
+                            instances[RF_SOURCE_INSTANCE_BY_PATH[guide.path]]
+                        ]["mpn"],
+                        "guide_start_instance": guide.source_instance,
+                        "external_connector_instance": guide.external_instance,
+                        "external_connector_mpn": devices[
+                            instances[guide.external_instance]
+                        ]["mpn"],
+                        "points_mm": [list(point) for point in guide.points],
+                        "meaning": guide.role,
+                    }
+                    for guide in ANTENNA_TOPOLOGY_GUIDES
+                ],
+            },
             "display_bus": {
                 "main_board_and_adapter_stack_result": "paper_geometry_passed",
                 "complete_adapter_height_mm": float(
@@ -4223,7 +4396,7 @@ def build_unified_coordinate_table(
                 "voice_rf_endpoint_distance_mm": round(
                     polyline_length(VOICE_RF_CORRIDOR), 6
                 ),
-                "voice_rf_route_rendering": "endpoints_only_no_claimed_copper_path",
+                "voice_rf_route_rendering": "source_to_port_topology_guide_no_claimed_copper_path",
                 "closure": "route both boards in KiCad, then pass schematic/ERC, layout DRC, differential/controlled-impedance review and independent manufacturing-rule review",
             },
             "remaining_gates": [
