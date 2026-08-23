@@ -30,6 +30,7 @@ SOURCE_TABLE_OUTPUT = REPO / "hardware/product-design/generated/H1-physical-sour
 SOURCE_REGISTER_OUTPUT = REPO / "docs/physical-source-register.md"
 UNIFIED_COORDINATE_TABLE_OUTPUT = REPO / "hardware/product-design/generated/H1-unified-coordinate-table.json"
 EXTERNAL_ACCEPTANCE_OUTPUT = REPO / "hardware/product-design/generated/H1-external-face-acceptance.json"
+CROSS_VIEW_ACCEPTANCE_OUTPUT = REPO / "hardware/product-design/generated/H1-cross-view-acceptance.json"
 
 BOARD_W = 75.0
 BOARD_H = 150.0
@@ -1531,7 +1532,7 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
         errors.append("mechanical-gates: research-first evidence policy must remain explicit")
     if constraint.get("order_authorized") is not False:
         errors.append("mechanical-gates: H1 evidence ordering must remain unauthorized")
-    if constraint.get("current_step") != "H1.3.1":
+    if constraint.get("current_step") != "H1.8":
         errors.append("mechanical-gates: exact evidence-research substep drifted")
 
     gates = data.get("gates", [])
@@ -1594,7 +1595,7 @@ def validate_source_research() -> list[str]:
     errors: list[str] = []
     if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3.3":
         errors.append("source-research: schema/stage mismatch")
-    if data.get("status") != "reviewed" or data.get("current_substep") != "H1.3.1":
+    if data.get("status") != "reviewed" or data.get("current_substep") != "H1.8":
         errors.append("source-research: exact current substep drifted")
     policy = data.get("policy", {})
     if policy.get("order_authorized") is not False:
@@ -2456,9 +2457,9 @@ def validate() -> list[str]:
         errors.append("external layout must identify the unified coordinate model")
     if (
         external_root.attrib.get("data-review-gate") != "H1.3.1"
-        or external_root.attrib.get("data-review-status") != "awaiting-user"
+        or external_root.attrib.get("data-review-status") != "reviewed"
     ):
-        errors.append("external layout must identify the pending H1.3.1 user gate")
+        errors.append("external layout must retain the reviewed H1.3.1 gate")
     face_nodes = {
         element.attrib.get("data-face"): element
         for element in external_root.iter("{http://www.w3.org/2000/svg}rect")
@@ -2599,7 +2600,7 @@ def render_external(devices, instances):
 
     front, rear = (80.0, 150.0), (465.0, 150.0)
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1.3.1" data-review-status="awaiting-user">',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1.3.1" data-review-status="reviewed">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         text(30, 32, "Leshy2 — dimensioned external layout", 22, "bold"),
@@ -3738,8 +3739,21 @@ def render_sandwich(devices, instances):
             f'stroke="{colour}" stroke-width="{width}"{dotted}/>'
         )
 
-    x_scale = 6.5
-    z_scale = 9.0
+    def service_motion(x, front_y, rear_y, label):
+        """Draw explicit rear-service insertion and removal trajectories."""
+        return [
+            f'<line x1="{x-5:.1f}" y1="{rear_y:.1f}" x2="{x-5:.1f}" y2="{front_y:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>',
+            f'<line x1="{x+5:.1f}" y1="{front_y:.1f}" x2="{x+5:.1f}" y2="{rear_y:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>',
+            t(x-12, (front_y+rear_y)/2, f"{label} · INSERT ↑ / REMOVE ↓", 7.8, "bold", "middle", "#b42318").replace(
+                '<text ', f'<text transform="rotate(-90 {x-12:.1f} {((front_y+rear_y)/2):.1f})" ', 1
+            ),
+        ]
+
+    # Both axes use the same millimetre scale: these are physical sections,
+    # not an illustrative stack diagram.  Keeping X and Z equal also makes a
+    # cylindrical 18650 appear circular in the antenna-edge view.
+    x_scale = 7.5
+    z_scale = 7.5
     drawing_top = 155.0
     pcb_front_z = depth("display")
     ui_rear_z = pcb_front_z + 1.6
@@ -3750,7 +3764,7 @@ def render_sandwich(devices, instances):
     cap_rear_z = base_rear_z + depth("u214")
 
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="820" viewBox="0 0 1500 820" data-view="true-sections">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="820" viewBox="0 0 1500 820" data-view="true-sections" data-x-scale-px-per-mm="{x_scale:.1f}" data-z-scale-px-per-mm="{z_scale:.1f}">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         t(30, 36, "Leshy2 — two physical cross-sections", 23, "bold"),
@@ -3773,7 +3787,7 @@ def render_sandwich(devices, instances):
             t(px(-4.5) - 24, pz(0) + 5, "FRONT", 9, "bold", "end", "#1d4ed8"),
             t(px(-4.5) - 24, pz(base_rear_z) + 5, "REAR", 9, "bold", "end", "#166534"),
             r(px(10.25), pz(0), 54.5*x_scale, depth("display")*z_scale, "#dbeafe", "#2563eb", rx=4, extra=' data-instance="display"'),
-            t(px(37.5), pz(5.2), "HMX035CTFT-001", 8.8, "bold", "middle", "#1d4ed8"),
+            t(px(37.5), pz(2.15), "HMX035CTFT-001", 8.0, "bold", "middle", "#1d4ed8"),
             r(px(0), pz(pcb_front_z), BOARD_W*x_scale, 1.6*z_scale, "#dcfce7", "#16a34a", rx=1, extra=' data-instance="ui-pcb"'),
             r(px(0), pz(ui_rear_z), BOARD_W*x_scale, 11.0*z_scale, "#f8fafc", "#94a3b8", "5 4", 1, ' data-board-gap-mm="11"'),
             r(px(0), pz(rf_front_z), BOARD_W*x_scale, 1.6*z_scale, "#ffedd5", "#ea580c", rx=1, extra=' data-instance="rf-pcb"'),
@@ -3790,6 +3804,7 @@ def render_sandwich(devices, instances):
                 t(px(37.5), pz(base_rear_z+4.7), "Samtec HLE-107-02-G-DV-PE-LC · pass-through host socket", 7.2, "bold", "middle", "#075985"),
                 t(px(37.5), pz(base_rear_z+12.4), "M5Stack U214 worst-case · 84 × 24 × 15.287 mm", 9.2, "bold", "middle", "#9a3412"),
                 t(px(37.5), pz(cap_rear_z)+24, "No battery appears: its Y=42…128-mm zone does not cross A–A.", 9.3, "bold", "middle", "#166534"),
+                *service_motion(px(72.0), pz(base_rear_z)+8, pz(cap_rear_z)-8, "CAP"),
                 '</g>',
             ]
             rear_z = cap_rear_z
@@ -3804,6 +3819,7 @@ def render_sandwich(devices, instances):
                 r(px(37.7), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-right"'),
                 t(px(37.5), pz(base_rear_z+10.8), "Keystone Electronics 1048P + 2× 18650", 9.2, "bold", "middle", "#166534"),
                 t(px(37.5), pz(battery_rear_z)+24, "No installed Cap appears: its Y=17…41-mm zone does not cross B–B.", 9.3, "bold", "middle", "#9a3412"),
+                *service_motion(px(10.0), pz(base_rear_z)+8, pz(battery_rear_z)-8, "CELLS"),
                 '</g>',
             ]
             rear_z = battery_rear_z
@@ -3832,13 +3848,13 @@ def render_sandwich(devices, instances):
         return parts
 
     out += panel(60, "A–A · Cap-Bus dock · stock U214 worst-case", 29.0, "u214")
-    out += panel(780, "B–B · battery/control zone", 82.0, "battery")
+    out += panel(800, "B–B · battery/control zone", 82.0, "battery")
     out += [
-        line(745, 105, 745, 750, "#d0d5dd", "6 5"),
+        line(780, 105, 780, 750, "#d0d5dd", "6 5"),
         t(60, 750, f"Display: {mpn('display')} · {depth('display'):.1f}-mm LCD/CTP body", 10.5, "bold"),
         t(60, 774, f"Complete opposing-body Z clearance—including {mpn('speaker')}—is audited in the inner-face view.", 10.5, colour="#526076"),
-        t(780, 750, "The sections exclude enclosure walls, solder and manufacturing tolerances.", 10.5, "bold", colour="#b42318"),
-        t(780, 774, "Dimensioned architecture projection — not a production enclosure drawing.", 10.5, colour="#526076"),
+        t(800, 750, "The sections exclude enclosure walls, solder and manufacturing tolerances.", 10.5, "bold", colour="#b42318"),
+        t(800, 774, "Dimensioned architecture projection — not a production enclosure drawing.", 10.5, colour="#526076"),
         '</svg>',
     ]
     return "\n".join(out) + "\n"
@@ -3868,8 +3884,9 @@ def render_top_edge(devices, instances):
             f'rx="{rx}" fill="{fill}" stroke="{stroke}" stroke-width="1.5"{dotted}{extra}/>'
         )
 
+    # A true orthographic view must preserve physical proportions.
     scale_x = 8.0
-    scale_z = 9.0
+    scale_z = 8.0
     ox, oz = 120.0, 145.0
 
     def x(mm):
@@ -3889,7 +3906,7 @@ def render_top_edge(devices, instances):
     holder_depth = float(devices[instances["pack_holder"]]["installed_envelope_mm"][2])
     max_rear_z = base_rear_z + holder_depth
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" data-view="top-edge" data-look-direction="antenna-edge-to-bottom" data-rf-mounting="opposed-outer-faces">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" data-view="top-edge" data-look-direction="antenna-edge-to-bottom" data-rf-mounting="opposed-outer-faces" data-x-scale-px-per-mm="{scale_x:.1f}" data-z-scale-px-per-mm="{scale_z:.1f}">',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         t(30, 36, "Leshy2 — true top view from the antenna edge", 23, "bold"),
         t(30, 62, "Looking along board +Y. Horizontal is board X; vertical is front-to-rear depth Z.", 11, "bold", colour="#b42318"),
@@ -3897,17 +3914,14 @@ def render_top_edge(devices, instances):
         t(x(-4.5)-24, z(0)+5, "FRONT", 9, "bold", "end", "#1d4ed8"),
         t(x(-4.5)-24, z(base_rear_z)+5, "REAR", 9, "bold", "end", "#166534"),
         r(x(10.25), z(0), 54.5*scale_x, depth("display")*scale_z, "#dbeafe", "#2563eb", rx=4, extra=' data-instance="display"'),
-        t(x(37.5), z(0)-9, "HMX035CTFT-001 · display", 9.5, "bold", "middle", "#1d4ed8"),
         r(x(0), z(ui_outer_z), BOARD_W*scale_x, 1.6*scale_z, "#dcfce7", "#16a34a", rx=1, extra=' data-instance="ui-pcb"'),
         r(x(0), z(ui_inner_z), BOARD_W*scale_x, 11.0*scale_z, "#f8fafc", "#94a3b8", "5 4", 1, ' data-board-gap-mm="11" data-antenna-bodies="none"'),
         r(x(0), z(rf_inner_z), BOARD_W*scale_x, 1.6*scale_z, "#ffedd5", "#ea580c", rx=1, extra=' data-instance="rf-pcb"'),
-        t(x(37.5), z(17.7), "FX8C M1 · 11-mm board gap", 8.5, "bold", "middle", "#9d174d"),
+        t(x(37.5), z(ui_inner_z + 5.5), "FX8C M1 · 11-mm board gap", 8.5, "bold", "middle", "#9d174d"),
         '<g id="top-edge-rear-envelopes" data-y-collapsed="true">',
         r(x(U214_X), z(base_rear_z), U214_W*scale_x, depth("u214")*scale_z, "#ffedd5", "#ea580c", "7 4", 5, ' fill-opacity="0.45" data-instance="u214"'),
         r(x(17.6), z(base_rear_z), 39.8*scale_x, holder_depth*scale_z, "#dcfce7", "#16a34a", "4 3", 12, ' fill-opacity="0.45" data-instance="pack-holder"'),
         '</g>',
-        t(x(37.5), z(base_rear_z+6.0), "stock U214 worst-case · 84 mm wide · Y=17…41", 8.7, "bold", "middle", "#9a3412"),
-        t(x(37.5), z(base_rear_z+17.9), "1048P + cells · 39.8 mm wide · Y=42…128", 9, "bold", "middle", "#166534"),
         '<g id="front-antenna-bank" data-count="4" data-mount-face="ui-pcb-outer">',
     ]
     for centre, path, _ in FRONT_RF:
@@ -3917,8 +3931,10 @@ def render_top_edge(devices, instances):
         out.append(f'<ellipse cx="{x(centre):.1f}" cy="{z(rear_rf_centre_z):.1f}" rx="{RF_BARREL_D*scale_x/2:.1f}" ry="{RF_BARREL_D*scale_z/2:.1f}" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="{path}"/>')
     out += [
         '</g>',
-        t(885, z(front_rf_centre_z)+4, "4 front ports · UI outer face", 10, "bold", "end", "#1d4ed8"),
-        t(885, z(rear_rf_centre_z)+4, "5 rear ports · RF/power outer face", 10, "bold", "end", "#9a3412"),
+        t(790, z(front_rf_centre_z)-2, "4 front ports", 9, "bold", "start", "#1d4ed8"),
+        t(790, z(front_rf_centre_z)+11, "UI outer face", 8.5, "normal", "start", "#1d4ed8"),
+        t(790, z(rear_rf_centre_z)-2, "5 rear ports", 9, "bold", "start", "#9a3412"),
+        t(790, z(rear_rf_centre_z)+11, "RF/power outer face", 8.5, "normal", "start", "#9a3412"),
         f'<line x1="{x(0):.1f}" y1="{z(max_rear_z)+58:.1f}" x2="{x(75):.1f}" y2="{z(max_rear_z)+58:.1f}" stroke="#344054"/>',
         f'<line x1="{x(0):.1f}" y1="{z(max_rear_z)+52:.1f}" x2="{x(0):.1f}" y2="{z(max_rear_z)+64:.1f}" stroke="#344054"/>',
         f'<line x1="{x(75):.1f}" y1="{z(max_rear_z)+52:.1f}" x2="{x(75):.1f}" y2="{z(max_rear_z)+64:.1f}" stroke="#344054"/>',
@@ -3935,12 +3951,15 @@ def render_top_edge(devices, instances):
         t(920, 316, "Projection limits", 16, "bold"),
         t(920, 350, "Display/front-bank and installed-Cap/battery overlaps are Y-collapse artifacts.", 11),
         t(920, 378, "Use the adjacent external views for their real longitudinal positions.", 11),
-        t(920, 426, "Selected depth references", 16, "bold"),
-        t(920, 460, f"{mpn('u214')} · {depth('u214'):.3f} mm", 10.5),
-        t(920, 488, f"{mpn('pack_holder')} · {holder_depth:.1f}-mm installed envelope", 10.5),
-        t(920, 516, f"{mpn('display')} · {depth('display'):.1f} mm", 10.5),
-        t(920, 564, f"Nominal maximum selected-part depth: {max_rear_z:.1f} mm", 11, "bold", colour="#b42318"),
-        t(920, 590, "Excludes enclosure walls, solder and manufacturing tolerances.", 10.5, colour="#526076"),
+        t(920, 420, "Y-collapsed rear envelopes", 15, "bold"),
+        t(920, 450, "orange dashed — U214 · 84 mm · Y=17…41", 10, colour="#9a3412"),
+        t(920, 476, "green dashed — 1048P + cells · 39.8 mm · Y=42…128", 10, colour="#166534"),
+        t(920, 516, "Selected Z envelopes", 15, "bold"),
+        t(920, 546, f"{mpn('u214')} · {depth('u214'):.3f} mm", 10),
+        t(920, 570, f"{mpn('pack_holder')} · {holder_depth:.1f} mm installed", 10),
+        t(920, 594, f"{mpn('display')} · {depth('display'):.1f} mm", 10),
+        t(920, 630, f"Nominal maximum selected-part depth: {max_rear_z:.1f} mm", 10.5, "bold", colour="#b42318"),
+        t(920, 654, "Excludes enclosure walls, solder and manufacturing tolerances.", 10, colour="#526076"),
         t(30, 690, "Dimensioned architecture projection — not a production enclosure drawing.", 10.5, "bold", colour="#b42318"),
         '</svg>',
     ]
@@ -4673,7 +4692,7 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
     return {
         "schema_version": 1,
         "stage": "H1.3.0",
-        "status": "awaiting_user_review",
+        "status": "reviewed",
         "review_gate": "H1.3.1",
         "artifact": str(EXTERNAL_OUTPUT.relative_to(REPO)),
         "coordinate_model": model["model_id"],
@@ -4757,6 +4776,124 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
             "edge_interfaces": rear_edges,
             "external_component_labels": rear_component_labels,
         },
+    }
+
+
+def build_cross_view_acceptance(
+    candidate: dict,
+    devices: dict,
+    source_table: dict,
+    coordinate_table: dict,
+    external_acceptance: dict,
+) -> dict:
+    """Build one H1.7 package that reconciles every physical view and pin budget."""
+    allocation_counts: dict[str, int] = {}
+    for allocation in candidate["allocations"]:
+        owner = allocation["instance"]
+        allocation_counts[owner] = allocation_counts.get(owner, 0) + 1
+
+    contact_accounting = candidate["contact_accounting"]
+    slow = contact_accounting["slow_io"]
+    ui = contact_accounting["ui_matrix_io"]
+    m1 = candidate["interboard_contract"]["accounting"]
+    fit = coordinate_table["interboard_fit_audit"]
+    passage = coordinate_table["physical_interconnect_clearance_audit"]
+    headset_ports = devices[candidate["instances"]["headset_control_io"]][
+        "allocatable_contacts"
+    ]
+
+    return {
+        "schema_version": 1,
+        "stage": "H1.7.0",
+        "status": "reviewed",
+        "review_gate": "H1.7.1",
+        "coordinate_model": coordinate_table["model_id"],
+        "artifacts": {
+            "external_faces": {
+                "path": "docs/images/current-clamshell.svg",
+                "review_gate": external_acceptance["review_gate"],
+                "status": external_acceptance["status"],
+            },
+            "inner_faces": {
+                "path": "docs/images/internal-board-layout.svg",
+                "status": "reviewed",
+                "mirrored_x": True,
+                "inner_silkscreen": "none",
+            },
+            "antenna_edge": {
+                "path": "docs/images/top-edge-view.svg",
+                "status": "reviewed",
+                "equal_x_z_scale": True,
+            },
+            "physical_sections": {
+                "path": "docs/images/sandwich-section.svg",
+                "status": "reviewed",
+                "equal_x_z_scale": True,
+                "separate_cut_planes": ["U214", "battery/control"],
+                "service_trajectories": ["CAP insert/remove", "cells insert/remove"],
+            },
+            "principle_schematics": "docs/schematics.md",
+            "pinout": "docs/pinout.md",
+            "interconnect": "docs/interconnect.md",
+        },
+        "physical_fit": {
+            "result": fit["result"],
+            "source_registered_instances": source_table["summary"][
+                "rendered_physical_instances"
+            ],
+            "inner_body_count": fit["inner_body_count"],
+            "total_inner_component_count_including_adapter": fit[
+                "total_inner_component_count_including_adapter"
+            ],
+            "minimum_required_clearance_mm": fit["minimum_required_clearance_mm"],
+            "minimum_opposing_pair": fit["minimum_opposing_pair"],
+            "display_adapter_minimum_clearance_mm": fit["display_adapter_assembly"][
+                "minimum_opposing_z_clearance_mm"
+            ],
+            "all_external_machine_checks": all(
+                external_acceptance["machine_checks"].values()
+            ),
+            "physical_interconnect_result": passage["result"],
+            "five_rf_microcoaxes_accounted": passage["rf_microcoax"][
+                "all_five_feed_assemblies_accounted"
+            ],
+            "nine_outward_rf_ports": passage["outer_face_through_board_features"][
+                "outward_rf_connector_count"
+            ],
+        },
+        "pin_resource_fit": {
+            "result": "paper_pin_and_contact_fit_passed",
+            "direct_allocation_counts": allocation_counts,
+            "free_gpio": candidate["free_gpio"],
+            "main_slow_io": {
+                "used": len(slow["used"]),
+                "reserved": len(slow["reserved"]),
+                "free": len(slow["free"]),
+            },
+            "ui_input_expander": {
+                "used": len(ui["used"]),
+                "reserved": len(ui["reserved"]),
+                "free": len(ui["free"]),
+            },
+            "headset_control_expander": {
+                "used": [headset_ports[0]],
+                "pulled_local_reserves": headset_ports[1:],
+                "i2c_address_7bit": "0x39",
+            },
+            "m1": {
+                "positions": m1["positions"],
+                "assigned": m1["positions"] - m1["reserved"],
+                "reserved_no_connect": m1["reserved"],
+            },
+            "summary": candidate["ui_control_contract"]["pin_budget_result"],
+        },
+        "not_claimed": {
+            "production_schematic": False,
+            "pcb_copper_and_vias": passage["pcb_copper_and_vias"]["result"],
+            "kicad_authorized": False,
+            "purchase_authorized": False,
+        },
+        "remaining_gates": passage["remaining_gates"],
     }
 
 
@@ -4857,7 +4994,7 @@ def main() -> int:
             print(f"error: {error}")
         return 1
     (
-        devices, _, instances, navigation_cluster,
+        devices, candidate, instances, navigation_cluster,
         display_adapter_design, assembly_coordinate_model,
     ) = load()
     source_table = build_physical_source_table(devices, instances)
@@ -4867,6 +5004,10 @@ def main() -> int:
     )
     external_face_acceptance = build_external_face_acceptance(
         devices, instances, assembly_coordinate_model
+    )
+    cross_view_acceptance = build_cross_view_acceptance(
+        candidate, devices, source_table, unified_coordinate_table,
+        external_face_acceptance,
     )
     outputs = {
         EXTERNAL_OUTPUT: render_external(devices, instances),
@@ -4881,6 +5022,9 @@ def main() -> int:
         ) + "\n",
         EXTERNAL_ACCEPTANCE_OUTPUT: json.dumps(
             external_face_acceptance, ensure_ascii=False, indent=2
+        ) + "\n",
+        CROSS_VIEW_ACCEPTANCE_OUTPUT: json.dumps(
+            cross_view_acceptance, ensure_ascii=False, indent=2
         ) + "\n",
         SOURCE_REGISTER_OUTPUT: render_physical_source_register(source_table),
         REPO / "docs/physical-source-register.ru.md": render_physical_source_register_ru(source_table),

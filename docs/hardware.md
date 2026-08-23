@@ -269,6 +269,22 @@ connector banks are mirrored onto the outward PCB faces: the faces are
 14.2 mm apart, their antenna centre planes are 20.55 mm apart, and no
 connector body enters the exact 11-mm interboard channel.
 
+### Consolidated layout result
+
+| Check | Result |
+|---|---|
+| External faces | Passed: controls, interface directions and unobscured user silkscreen |
+| Internal bodies | 130 bodies; 132 including the display-adapter assembly |
+| Opposing inner faces | 36 non-mating pairs; minimum Z clearance 3.31 mm against the 0.7-mm requirement |
+| Interconnect passage | Exact 80-contact M1 mate, five RF microcoaxes, nine outward antenna tails and seven encoder through-features accounted |
+| Pin/resources | S3 33 used / 0 free; C5 `GPIO5` free; RP 48 used / 0 free; slow I/O 24/24; UI inputs 16/16; headset expander keeps seven local reserves |
+| M1 contacts | 76 assigned and four intentional reserved no-connects |
+| Still open | Production schematic, footprint escape/routing, PCB copper, ERC/DRC, H5 received-part fit and assembled HIL |
+
+The machine-readable source for this table is
+[`H1-cross-view-acceptance.json`](../hardware/product-design/generated/H1-cross-view-acceptance.json).
+It explicitly does not authorize KiCad or purchasing.
+
 ![Dimensioned external layout](images/current-clamshell.svg?layout=16)
 
 ![Dimensioned series navigation cluster](images/navigation-cluster.svg?layout=1)
@@ -277,9 +293,9 @@ connector body enters the exact 11-mm interboard channel.
 
 ![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=18)
 
-![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=4)
+![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=5)
 
-![Dimensioned sections through the LoRa Cap and battery zones](images/sandwich-section.svg?layout=10)
+![Dimensioned sections through the LoRa Cap and battery zones](images/sandwich-section.svg?layout=11)
 
 ![Dimensioned custom LoRa Cap component zones](images/lora-cap-layout.svg?layout=1)
 

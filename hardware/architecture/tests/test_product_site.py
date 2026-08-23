@@ -135,7 +135,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H1.3.1"}, set(markers.values()))
+        self.assertEqual({"H1.8"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.0", "H1.1.1", "H1.1.2", "H1.1.3", "H1.8"):
@@ -202,7 +202,7 @@ class ProductSiteTests(unittest.TestCase):
             "Leshy2 — dimensioned external layout",
             "Text on a PCB face but outside component outlines is intended silkscreen",
             'data-coordinate-model="L2-ASM-COORD-001-A"',
-            'data-review-gate="H1.3.1" data-review-status="awaiting-user"',
+            'data-review-gate="H1.3.1" data-review-status="reviewed"',
             'data-face="front-outer" data-board-mm="75x150"',
             'data-face="rear-outer" data-board-mm="75x150"',
             'data-layer="pcb-silkscreen"',
@@ -282,7 +282,7 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual("H1.3.0", package["stage"])
         self.assertEqual("H1.3.1", package["review_gate"])
-        self.assertEqual("awaiting_user_review", package["status"])
+        self.assertEqual("reviewed", package["status"])
         self.assertEqual("L2-ASM-COORD-001-A", package["coordinate_model"])
         self.assertEqual([75.0, 150.0], package["front"]["board_outline_mm"])
         self.assertEqual([75.0, 150.0], package["rear"]["board_outline_mm"])
@@ -329,6 +329,40 @@ class ProductSiteTests(unittest.TestCase):
             {(item["row"], item["column"]) for item in indicators},
         )
         self.assertTrue(all(package["machine_checks"].values()))
+
+    def test_cross_view_acceptance_reconciles_physical_and_pin_fit(self):
+        import json
+
+        package = json.loads(
+            self.read("hardware/product-design/generated/H1-cross-view-acceptance.json")
+        )
+        self.assertEqual("H1.7.0", package["stage"])
+        self.assertEqual("reviewed", package["status"])
+        self.assertEqual("H1.7.1", package["review_gate"])
+        physical = package["physical_fit"]
+        self.assertEqual("paper_geometry_passed", physical["result"])
+        self.assertEqual(130, physical["inner_body_count"])
+        self.assertEqual(132, physical["total_inner_component_count_including_adapter"])
+        self.assertEqual(3.31, physical["minimum_opposing_pair"]["remaining_z_clearance_mm"])
+        self.assertTrue(physical["five_rf_microcoaxes_accounted"])
+        self.assertEqual(9, physical["nine_outward_rf_ports"])
+        pins = package["pin_resource_fit"]
+        self.assertEqual("paper_pin_and_contact_fit_passed", pins["result"])
+        self.assertEqual(33, pins["direct_allocation_counts"]["s3"])
+        self.assertEqual([], pins["free_gpio"]["s3"])
+        self.assertEqual(["GPIO5"], pins["free_gpio"]["c5"])
+        self.assertEqual(24, pins["main_slow_io"]["used"])
+        self.assertEqual(16, pins["ui_input_expander"]["used"])
+        self.assertEqual(7, len(pins["headset_control_expander"]["pulled_local_reserves"]))
+        self.assertEqual({"positions": 80, "assigned": 76, "reserved_no_connect": 4}, pins["m1"])
+        self.assertFalse(package["not_claimed"]["kicad_authorized"])
+        self.assertFalse(package["not_claimed"]["purchase_authorized"])
+        for name in ("docs/hardware.md", "docs/hardware.ru.md"):
+            page = self.read(name).replace(",", ".")
+            for token in (
+                "H1-cross-view-acceptance.json", "3.31", "0.7", "76", "GPIO5",
+            ):
+                self.assertIn(token, page, f"{name}: {token}")
 
     def test_antenna_kit_is_product_facing_and_machine_accounted(self):
         import json
@@ -536,8 +570,8 @@ class ProductSiteTests(unittest.TestCase):
             self.assertIn("current-clamshell.svg?layout=16", page)
             self.assertIn("navigation-cluster.svg?layout=1", page)
             self.assertIn("internal-board-layout.svg?layout=18", page)
-            self.assertIn("sandwich-section.svg?layout=10", page)
-            self.assertIn("top-edge-view.svg?layout=4", page)
+            self.assertIn("sandwich-section.svg?layout=11", page)
+            self.assertIn("top-edge-view.svg?layout=5", page)
             self.assertLess(
                 page.index("current-clamshell.svg"),
                 page.index("internal-board-layout.svg"),
@@ -646,6 +680,8 @@ class ProductSiteTests(unittest.TestCase):
         layout = self.read("docs/images/sandwich-section.svg")
         for token in (
             'data-view="true-sections"',
+            'data-x-scale-px-per-mm="7.5"',
+            'data-z-scale-px-per-mm="7.5"',
             "Leshy2 — two physical cross-sections",
             "Each panel is one physical cut plane; zones are never combined.",
             "HMX035CTFT-001",
@@ -657,8 +693,10 @@ class ProductSiteTests(unittest.TestCase):
             'id="section-u214" data-cut-y-mm="29" data-contains="u214-no-battery"',
             'id="section-battery" data-cut-y-mm="82" data-contains="battery-no-u214"',
             "No battery appears",
+            "CAP · INSERT ↑ / REMOVE ↓",
             "No installed Cap appears",
             "Keystone Electronics 1048P + 2× 18650",
+            "CELLS · INSERT ↑ / REMOVE ↓",
             "Complete opposing-body Z clearance",
             "Dimensioned architecture projection",
         ):
@@ -667,7 +705,7 @@ class ProductSiteTests(unittest.TestCase):
     def test_top_edge_view_has_true_axes_and_both_antenna_banks(self):
         layout = self.read("docs/images/top-edge-view.svg")
         for token in (
-            'data-view="top-edge" data-look-direction="antenna-edge-to-bottom" data-rf-mounting="opposed-outer-faces"',
+            'data-view="top-edge" data-look-direction="antenna-edge-to-bottom" data-rf-mounting="opposed-outer-faces" data-x-scale-px-per-mm="8.0" data-z-scale-px-per-mm="8.0"',
             "true top view from the antenna edge",
             "Looking along board +Y",
             'id="front-antenna-bank" data-count="4"',

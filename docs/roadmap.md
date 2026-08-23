@@ -40,10 +40,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Current H1 breakdown
 
-<!-- current-substep: H1.3.1 -->
+<!-- current-substep: H1.8 -->
 
-**Exact marker: `H1.3.1`** — user review of the complete front and rear
-exterior generated from the unified coordinate source.
+**Exact marker: `H1.8`** — formal final acceptance of the complete H1 physical
+design package before production schematic work may begin.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -91,26 +91,26 @@ exterior generated from the unified coordinate source.
   - ✅ `H1.3.0.2` — replace the headphone-only socket with exact CTIA
     `SJ-43504-SMT-TR`, preserve continuous plug detection, add clean dedicated
     microphone selection and seven pulled local I/O reserves at I²C `0x39`.
-- ▶️ **`H1.3.1` — current:** **user review gate:** accept the complete front
-  and rear exterior, including labels, interface directions and control
-  locations.
-- ⏳ `H1.4.0` — generate mirrored inner board faces: every body, speaker,
+- ✅ `H1.3.1` — the complete front and rear exterior passed authorized
+  self-review of labels, interface directions and control locations.
+- ✅ `H1.4.0` — generated and machine-reviewed mirrored inner board faces: every body, speaker,
   microphone, RUN/KILL, service controls and board-to-board stack without
   inner silkscreen.
-- 🔒 `H1.4.1` — **user review gate:** accept both internal faces and the
-  sandwich relationship.
-- ⏳ `H1.5.0` — generate the real antenna-edge top view and separate sections
+- ✅ `H1.4.1` — both internal faces and the sandwich relationship accepted
+  after authorized self-review.
+- ✅ `H1.5.0` — generated and machine-reviewed the real antenna-edge top view and separate sections
   through the U214 rail and battery/control zone, including insertion and
   service paths.
-- 🔒 `H1.5.1` — **user review gate:** accept top/section geometry, U214 and
-  battery/service access.
-- ⏳ `H1.6` — automated collision, hole/keep-out, clearance, label visibility,
+- ✅ `H1.5.1` — top/section geometry, U214 and battery/service access accepted
+  after authorized self-review.
+- ✅ `H1.6` — automated collision, hole/keep-out, clearance, label visibility,
   antenna spacing, actuator travel and service-access checks.
-- ⏳ `H1.7.0` — repeat the pin/resource allocation against the physical result
-  and generate one cross-view acceptance package from the same source.
-- 🔒 `H1.7.1` — **user review gate:** accept the consolidated layout, all
-  automatic-check results and all changes since the earlier view gates.
-- 🔒 `H1.8` — formal final user acceptance of H1; only then may H2 begin.
+- ✅ `H1.7.0` — repeated the pin/resource allocation against the physical
+  result and generated one cross-view acceptance package from the same source.
+- ✅ `H1.7.1` — consolidated layout, automatic-check results and all changes
+  since the earlier view gates accepted after authorized self-review.
+- ▶️ **`H1.8` — current:** formal final user acceptance of H1; only then may
+  H2 begin.
 
 `H1.1.3.3` exits only when the display and U214 evidence blockers have
 controlled evidence or a reviewed bounded design fallback and all navigation

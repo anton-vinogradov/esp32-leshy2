@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "stage": "H1.3.0",
-  "status": "awaiting_user_review",
+  "status": "reviewed",
   "review_gate": "H1.3.1",
   "artifact": "docs/images/current-clamshell.svg",
   "coordinate_model": "L2-ASM-COORD-001-A",

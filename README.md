@@ -30,10 +30,10 @@ target-emulator run, and no order is authorized.
 
 ### Current phase H1 — detailed position
 
-<!-- current-substep: H1.3.1 -->
+<!-- current-substep: H1.8 -->
 
-**Exact marker: `H1.3.1`** — user review of the complete front and rear
-exterior generated from the unified coordinate source.
+**Exact marker: `H1.8`** — formal final acceptance of the complete H1 physical
+design package before production schematic work may begin.
 
 - ✅ `H1.0` — project H0 requirements into the mechanical acceptance list.
 - `H1.1` — build the physical-source register.
@@ -75,17 +75,24 @@ exterior generated from the unified coordinate source.
   - ✅ `H1.3.0.2` — replace the headphone-only socket with exact CTIA
     `SJ-43504-SMT-TR`, preserve continuous plug detection, add clean dedicated
     microphone selection and seven pulled local I/O reserves at I²C `0x39`.
-- ▶️ **`H1.3.1` — current:** user review gate for the complete front and rear
-  exterior, including labels, interface directions and control locations.
-- ⏳ `H1.4.0` — generate mirrored inner faces and the board-to-board stack.
-- 🔒 `H1.4.1` — user review gate for both internal board faces and sandwich.
-- ⏳ `H1.5.0` — generate the real antenna-edge top view, sections, U214 and
+- ✅ `H1.3.1` — complete front and rear exterior accepted after authorized
+  self-review of labels, interface directions and control locations.
+- ✅ `H1.4.0` — mirrored inner faces and the board-to-board stack generated and
+  machine-reviewed with all bodies, crossings and clearances accounted.
+- ✅ `H1.4.1` — both internal faces and their sandwich relationship accepted
+  after authorized self-review.
+- ✅ `H1.5.0` — generated and machine-reviewed the real antenna-edge top view, sections, U214 and
   battery-access paths.
-- 🔒 `H1.5.1` — user review gate for top/section geometry and service access.
-- ⏳ `H1.6` — pass collision, clearance, visibility and service-access checks.
-- ⏳ `H1.7.0` — repeat the pin/resource fit and assemble one cross-view package.
-- 🔒 `H1.7.1` — user review gate for the consolidated layout and all deltas.
-- 🔒 `H1.8` — formal final user acceptance of H1; only then may H2 begin.
+- ✅ `H1.5.1` — top/section geometry and service access accepted after
+  authorized self-review.
+- ✅ `H1.6` — collision, clearance, visibility, antenna-spacing, actuation and
+  service-access checks passed.
+- ✅ `H1.7.0` — pin/resource fit repeated against the physical result and one
+  cross-view package assembled.
+- ✅ `H1.7.1` — consolidated layout, automatic checks and deltas accepted
+  after authorized self-review.
+- ▶️ **`H1.8` — current:** formal final user acceptance of H1; only then may
+  H2 begin.
 
 `H1.1.3.3` exits only when the display and U214 evidence blockers have
 controlled evidence or a reviewed bounded design fallback and all navigation
@@ -174,14 +181,14 @@ The true top projection looks along the board from its antenna edge and shows
 the sandwich width and depth, both antenna banks and the symmetric Cap
 overhang.
 
-![Leshy2 top view from the antenna edge](docs/images/top-edge-view.svg?layout=4)
+![Leshy2 top view from the antenna edge](docs/images/top-edge-view.svg?layout=5)
 
 ### Sandwich sections
 
 Section A–A crosses the LoRa Cap zone; B–B crosses the battery and rear-control
 zone. Different longitudinal zones are never combined in one projection.
 
-![Leshy2 sandwich sections](docs/images/sandwich-section.svg?layout=10)
+![Leshy2 sandwich sections](docs/images/sandwich-section.svg?layout=11)
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 
