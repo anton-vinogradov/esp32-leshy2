@@ -2570,14 +2570,15 @@ def render_public_schematics(
 
 | Лист | Состояние | Замкнутая электрическая часть |
 |---|---|---|
-| [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | точный ECAD | 9 дочерних листов, 91 межлистовая цепь, 218 явных pins/labels |
+| [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | точный ECAD | 9 дочерних листов, 90 межлистовых цепей, 216 явных pins/labels |
 | [`UI_10_S3_CORE_MEMORY_BOOT`](../hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch) | точный ECAD | 32 компонента, 41 carrier-pad S3, boot/recovery/USB/RF и 39 интерфейсов |
 | [`UI_11_DISPLAY_TOUCH_STORAGE`](../hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch) | точный ECAD | 49 экземпляров, все 40 контактов display, все 11 контактов microSD, backlight/touch/isolation и 17 интерфейсов |
-| [`UI_12_CONTROLS_INDICATORS`](../hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch) | точный ECAD | 71 компонент, 15 серийных кнопок, 9 фактических TX LED, аппаратный FAULT LED, thermal/ESD и 45 интерфейсов |
+| [`UI_12_CONTROLS_INDICATORS`](../hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch) | точный ECAD | 71 компонент, 15 серийных кнопок, 9 фактических TX LED, аппаратный FAULT LED, thermal/ESD и 44 интерфейса |
 | [`UI_13_AUDIO_CODEC_HEADSET`](../hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch) | точный ECAD | 102 компонента, 21 контакт codec, 6 контактов CTIA jack, 5 аналоговых селекторов, power/interface isolation и 24 интерфейса |
 | [`UI_20_C5_RADIO_IR_SERVICE`](../hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch) | точный ECAD | 59 BOM-компонентов плюс заводской ANT1, 32 carrier-pad C5, два IR RX, fail-closed IR TX, data-only USB/recovery и 15 интерфейсов |
 | [`UI_21_FM_AM_RECEIVER`](../hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch) | точный ECAD | 32 компонента, отдельные FM/SW и AM/LW порты, полные цепи Si4732 power/control/clock/audio и 8 интерфейсов |
 | [`UI_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch) | точный ECAD | один FX8C plug, 80 отдельных физических контактов, 51 интерфейс, 20 `POWER_GROUND`, 7 `3V3_MAIN`, без резервов и NC |
+| [`UI_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch) | точный ECAD | 28 компонентов, два RF detector, физический optical IR sensor, четыре comparator-канала, два reset-sink, 18 интерфейсов и один NC |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
@@ -2586,7 +2587,8 @@ def render_public_schematics(
 [codec/headset audio](../hardware/ecad/generated/H2-UI13-audio-codec-headset.json) и
 [C5 radio/IR/service](../hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json) и
 [FM/AM/SW/LW receiver](../hardware/ecad/generated/H2-UI21-fm-am-receiver.json) и
-[UI-side M1](../hardware/ecad/generated/H2-UI40-interboard-m1.json).
+[UI-side M1](../hardware/ecad/generated/H2-UI40-interboard-m1.json) и
+[UI-side TX safety/evidence](../hardware/ecad/generated/H2-UI50-tx-safety-evidence.json).
 PCB placement, routing и производство этими листами ещё не разрешены."""
     else:
         navigation = "[Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)"
@@ -2606,14 +2608,15 @@ has an MPN, physical contacts, footprint, nets and explicit no-connects.
 
 | Sheet | State | Closed electrical content |
 |---|---|---|
-| [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | exact ECAD | 9 child sheets, 91 cross-sheet nets and 218 explicit pins/labels |
+| [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | exact ECAD | 9 child sheets, 90 cross-sheet nets and 216 explicit pins/labels |
 | [`UI_10_S3_CORE_MEMORY_BOOT`](../hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch) | exact ECAD | 32 components, 41 S3 carrier pads, boot/recovery/USB/RF and 39 interfaces |
 | [`UI_11_DISPLAY_TOUCH_STORAGE`](../hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch) | exact ECAD | 49 instances, all 40 display contacts, all 11 microSD contacts, backlight/touch/isolation and 17 interfaces |
-| [`UI_12_CONTROLS_INDICATORS`](../hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch) | exact ECAD | 71 components, 15 serial switches, 9 actual-TX LEDs, hardware FAULT LED, thermal/ESD and 45 interfaces |
+| [`UI_12_CONTROLS_INDICATORS`](../hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch) | exact ECAD | 71 components, 15 serial switches, 9 actual-TX LEDs, hardware FAULT LED, thermal/ESD and 44 interfaces |
 | [`UI_13_AUDIO_CODEC_HEADSET`](../hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch) | exact ECAD | 102 components, 21 codec contacts, 6 CTIA-jack contacts, 5 analog selectors, power/interface isolation and 24 interfaces |
 | [`UI_20_C5_RADIO_IR_SERVICE`](../hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch) | exact ECAD | 59 BOM components plus factory ANT1, 32 C5 carrier pads, dual IR RX, fail-closed IR TX, data-only USB/recovery and 15 interfaces |
 | [`UI_21_FM_AM_RECEIVER`](../hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch) | exact ECAD | 32 components, separate FM/SW and AM/LW ports, complete Si4732 power/control/clock/audio paths and 8 interfaces |
 | [`UI_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch) | exact ECAD | one FX8C plug, 80 separate physical contacts, 51 interfaces, 20 `POWER_GROUND`, 7 `3V3_MAIN`, no reserves or NCs |
+| [`UI_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch) | exact ECAD | 28 components, two RF detectors, a physical optical IR sensor, four comparator channels, two reset sinks, 18 interfaces and one NC |
 
 Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
@@ -2622,7 +2625,8 @@ Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json)
 [codec/headset audio](../hardware/ecad/generated/H2-UI13-audio-codec-headset.json) and
 [C5 radio/IR/service](../hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json) and
 [FM/AM/SW/LW receiver](../hardware/ecad/generated/H2-UI21-fm-am-receiver.json), and
-[UI-side M1](../hardware/ecad/generated/H2-UI40-interboard-m1.json).
+[UI-side M1](../hardware/ecad/generated/H2-UI40-interboard-m1.json), and
+[UI-side TX safety/evidence](../hardware/ecad/generated/H2-UI50-tx-safety-evidence.json).
 These sheets do not yet authorize PCB placement, routing or fabrication."""
     heading, remainder = section.split("\n", 1)
     return f"{heading}\n\n{navigation}\n\n{detail}\n\n{ecad}\n{remainder}"

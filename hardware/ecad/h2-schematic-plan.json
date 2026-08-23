@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "H2",
   "status": "in_progress",
-  "current_substep": "H2.2.9",
+  "current_substep": "H2.2.10",
   "accepted_input": {
     "physical_design_gate": "H1.8",
     "status": "accepted",
@@ -80,8 +80,8 @@
         {"id": "H2.2.6", "title": "Implement C5 radio, IR and service paths", "sheet": "UI_20_C5_RADIO_IR_SERVICE", "status": "reviewed"},
         {"id": "H2.2.7", "title": "Implement FM/AM/SW/LW receiver", "sheet": "UI_21_FM_AM_RECEIVER", "status": "reviewed"},
         {"id": "H2.2.8", "title": "Implement the UI side of the 80-contact M1 contract", "sheet": "UI_40_INTERBOARD_M1", "status": "reviewed"},
-        {"id": "H2.2.9", "title": "Implement UI-side TX safety and evidence", "sheet": "UI_50_TX_SAFETY_EVIDENCE", "status": "current"},
-        {"id": "H2.2.10", "title": "Implement UI manufacturing and diagnostic test points", "sheet": "UI_60_TESTPOINTS_MANUFACTURING", "status": "waiting"}
+        {"id": "H2.2.9", "title": "Implement UI-side TX safety and evidence", "sheet": "UI_50_TX_SAFETY_EVIDENCE", "status": "reviewed"},
+        {"id": "H2.2.10", "title": "Implement UI manufacturing and diagnostic test points", "sheet": "UI_60_TESTPOINTS_MANUFACTURING", "status": "current"}
       ]
     },
     {

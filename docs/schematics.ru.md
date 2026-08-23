@@ -12,14 +12,15 @@
 
 | Лист | Состояние | Замкнутая электрическая часть |
 |---|---|---|
-| [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | точный ECAD | 9 дочерних листов, 91 межлистовая цепь, 218 явных pins/labels |
+| [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | точный ECAD | 9 дочерних листов, 90 межлистовых цепей, 216 явных pins/labels |
 | [`UI_10_S3_CORE_MEMORY_BOOT`](../hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch) | точный ECAD | 32 компонента, 41 carrier-pad S3, boot/recovery/USB/RF и 39 интерфейсов |
 | [`UI_11_DISPLAY_TOUCH_STORAGE`](../hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch) | точный ECAD | 49 экземпляров, все 40 контактов display, все 11 контактов microSD, backlight/touch/isolation и 17 интерфейсов |
-| [`UI_12_CONTROLS_INDICATORS`](../hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch) | точный ECAD | 71 компонент, 15 серийных кнопок, 9 фактических TX LED, аппаратный FAULT LED, thermal/ESD и 45 интерфейсов |
+| [`UI_12_CONTROLS_INDICATORS`](../hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch) | точный ECAD | 71 компонент, 15 серийных кнопок, 9 фактических TX LED, аппаратный FAULT LED, thermal/ESD и 44 интерфейса |
 | [`UI_13_AUDIO_CODEC_HEADSET`](../hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch) | точный ECAD | 102 компонента, 21 контакт codec, 6 контактов CTIA jack, 5 аналоговых селекторов, power/interface isolation и 24 интерфейса |
 | [`UI_20_C5_RADIO_IR_SERVICE`](../hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch) | точный ECAD | 59 BOM-компонентов плюс заводской ANT1, 32 carrier-pad C5, два IR RX, fail-closed IR TX, data-only USB/recovery и 15 интерфейсов |
 | [`UI_21_FM_AM_RECEIVER`](../hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch) | точный ECAD | 32 компонента, отдельные FM/SW и AM/LW порты, полные цепи Si4732 power/control/clock/audio и 8 интерфейсов |
 | [`UI_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch) | точный ECAD | один FX8C plug, 80 отдельных физических контактов, 51 интерфейс, 20 `POWER_GROUND`, 7 `3V3_MAIN`, без резервов и NC |
+| [`UI_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch) | точный ECAD | 28 компонентов, два RF detector, физический optical IR sensor, четыре comparator-канала, два reset-sink, 18 интерфейсов и один NC |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
@@ -28,7 +29,8 @@
 [codec/headset audio](../hardware/ecad/generated/H2-UI13-audio-codec-headset.json) и
 [C5 radio/IR/service](../hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json) и
 [FM/AM/SW/LW receiver](../hardware/ecad/generated/H2-UI21-fm-am-receiver.json) и
-[UI-side M1](../hardware/ecad/generated/H2-UI40-interboard-m1.json).
+[UI-side M1](../hardware/ecad/generated/H2-UI40-interboard-m1.json) и
+[UI-side TX safety/evidence](../hardware/ecad/generated/H2-UI50-tx-safety-evidence.json).
 PCB placement, routing и производство этими листами ещё не разрешены.
 
 Архитектура читается от трёх вычислительных владельцев, а не от USB-порта.
@@ -170,7 +172,7 @@ HEADSET_CONTROL_IO["TCA9534APWR<br/>выделенное управление г
 HEADSET_MIC_SELECTOR["Texas Instruments TS5A63157DCKR<br/>выбор встроенного/гарнитурного микрофона"]
 AUDIO_RX_MUX["Texas Instruments SN74LVC1G3157DBVR<br/>выбор источника принимаемого звука"]
 AUDIO_CAPTURE_SELECTOR["Texas Instruments TS5A63157DCKR<br/>выбор microphone/RX для записи"]
-AUDIO_CAPTURE_BUFFER["Texas Instruments TLV9061IDBVR<br/>буфер АЦП кодека"]
+AUDIO_CAPTURE_BUFFER["TLV9061IDBVR<br/>буфер АЦП кодека"]
 CODEC["Everest Semiconductor ES8311<br/>кодек записи и воспроизведения"]
 CODEC_SUPERVISOR["Texas Instruments TPS3839K33DBZR<br/>контроль готовности питания кодека"]
 CODEC_I2S_DIN_BOOT_GATE["SN74LVC1G08DCKR<br/>аппаратный gate CODEC_READY AND AUDIO_ARM"]

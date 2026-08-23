@@ -197,6 +197,14 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertIn("hirose.com", device["source"]["url"])
             self.assertEqual(100, device["cost"]["target_quantity"])
 
+        s3_evidence_routes = [
+            route for route in candidate["fixed_routes"]
+            if route["from"] == "evidence_cmp_a.OUT1"
+            or route["to"] == "evidence_cmp_a.OUT1"
+        ]
+        self.assertTrue(s3_evidence_routes)
+        self.assertEqual({"EV_N0_S3"}, {route["net"] for route in s3_evidence_routes})
+
         for language in (False, True):
             rendered = GENERATOR.render_public_interconnect(
                 self.database, self.candidates, russian=language
@@ -912,7 +920,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Sitronix ST77922<br/>integrated display plus capacitive-touch TDDI COG",
             "Hirose DM3AT-SF-PEJM5<br/>push-push microSD card connector",
             "Everest Semiconductor ES8311<br/>mono ADC/DAC audio codec",
-            "Texas Instruments TLV9061IDBVR<br/>active high-impedance capture buffer",
+            "TLV9061IDBVR<br/>active high-impedance capture buffer",
             "Texas Instruments TMUX1136DGSR<br/>dual differential RX-bypass/codec speaker selector",
             "Texas Instruments TS5A63157DCKR<br/>electret/codec transmit-audio selector",
             "Texas Instruments SN74LVC2G08DCUR<br/>direct-AUDIO_ARM dual selector-request gate",
@@ -1040,7 +1048,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Vishay TSOP95238TT<br/>38-kHz AGC2 demodulating IR receiver",
             "Vishay TSMP95000TT<br/>30-to-60-kHz carrier-learning IR receiver",
             "Vishay VSMY14940<br/>side-view 940-nm consumer IR transmit emitter",
-            "Texas Instruments TLV9061IDBVR<br/>AON physical-optical transimpedance amplifier",
+            "TLV9061IDBVR<br/>AON physical-optical transimpedance amplifier",
         )
         for label in required_labels:
             self.assertIn(label, rendered)
@@ -3177,7 +3185,7 @@ class ArchitectureValidationTests(unittest.TestCase):
                 {"NO": "1", "GND": "2", "NC": "3", "COM": "4", "VCC": "5", "IN": "6"},
             ),
             "ti_tlv9061_idbvr": (
-                "Texas Instruments TLV9061IDBVR",
+                "TLV9061IDBVR",
                 {"OUT": "1", "V_MINUS": "2", "IN_PLUS": "3", "IN_MINUS": "4", "V_PLUS": "5"},
             ),
             "ti_sn74lvc2g08_dcur": (
@@ -3968,7 +3976,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("slow_io.INT", "s3.GPIO45", "SYS_INT_N"),
             ("safe_latch.Q", "slow_io_fault_sense_iso.A", "FAULT_LATCH_SENSE_AON"),
             ("slow_io_fault_sense_iso.Y", "slow_io.P22", "FAULT_LATCH_SENSE"),
-            ("evidence_cmp_a.OUT1", "slow_io_s3_evidence_iso.A", "S3_RF_TX_EVIDENCE_AON_N"),
+            ("evidence_cmp_a.OUT1", "slow_io_s3_evidence_iso.A", "EV_N0_S3"),
             ("slow_io_s3_evidence_iso.Y", "slow_io.P23", "S3_RF_TX_EVIDENCE_N"),
             ("sd_miso_series.END_2", "s3.GPIO4", "DISPLAY_SD_SPI_D1"),
             ("product_usb_connector.SHIELD", "abstract:power-ground", "USB_C_SHIELD"),

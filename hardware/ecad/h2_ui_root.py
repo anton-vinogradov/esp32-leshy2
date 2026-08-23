@@ -40,6 +40,7 @@ IMPLEMENTED_CHILD_MANIFESTS = {
     "UI_20_C5_RADIO_IR_SERVICE": ECAD / "generated/H2-UI20-c5-radio-ir-service.json",
     "UI_21_FM_AM_RECEIVER": ECAD / "generated/H2-UI21-fm-am-receiver.json",
     "UI_40_INTERBOARD_M1": ECAD / "generated/H2-UI40-interboard-m1.json",
+    "UI_50_TX_SAFETY_EVIDENCE": ECAD / "generated/H2-UI50-tx-safety-evidence.json",
 }
 IMPLEMENTED_CHILD_STATUSES = {
     "UI_10_S3_CORE_MEMORY_BOOT": "reviewed_exact_s3_core_sheet",
@@ -49,6 +50,7 @@ IMPLEMENTED_CHILD_STATUSES = {
     "UI_20_C5_RADIO_IR_SERVICE": "reviewed_exact_c5_radio_ir_service_sheet",
     "UI_21_FM_AM_RECEIVER": "reviewed_exact_fm_am_receiver_sheet",
     "UI_40_INTERBOARD_M1": "reviewed_exact_ui_interboard_m1_sheet",
+    "UI_50_TX_SAFETY_EVIDENCE": "reviewed_exact_ui_tx_safety_evidence_sheet",
 }
 NAMESPACE = uuid.UUID("4ed50bf6-dbd9-44f6-a71f-9f07341b4db6")
 
@@ -363,7 +365,7 @@ def outputs() -> tuple[dict[Path, str], dict]:
         "review_boundary": {
             "complete": [
                 "all nine UI child sheets instantiated by the KiCad root",
-                "all 91 derived cross-sheet nets represented by explicit named pins and child labels",
+                "all 90 derived cross-sheet nets represented by 216 explicit named pins and child labels",
                 "one direct root rail joins only sheet pins carrying the same reviewed net name",
                 "native KiCad parser accepts the complete UI hierarchy; exact remaining child stubs and generated-library copy warnings are machine-accounted",
             ],
@@ -499,13 +501,13 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         raise ValueError("UI child hierarchical-label count mismatch")
     if summary != {
         "child_sheet_count": 9,
-        "cross_sheet_net_count": 91,
-        "root_hierarchical_pin_count": 218,
-        "child_hierarchical_label_count": 218,
+        "cross_sheet_net_count": 90,
+        "root_hierarchical_pin_count": 216,
+        "child_hierarchical_label_count": 216,
         "known_child_stub_erc_violations": 0,
-        "implemented_child_sheet_count": 7,
-        "circuit_symbols_placed": 348,
-        "known_generated_library_copy_warnings": 348,
+        "implemented_child_sheet_count": 8,
+        "circuit_symbols_placed": 376,
+        "known_generated_library_copy_warnings": 376,
         "pcb_files_created": 0,
     }:
         raise ValueError(f"reviewed H2.2.1 interface accounting drifted: {summary}")

@@ -30,10 +30,10 @@ target-прогонов в эмуляторах ещё нет, ни один з�
 
 ### Текущая фаза H2 — детальная позиция
 
-<!-- current-substep: H2.2.9 -->
+<!-- current-substep: H2.2.10 -->
 
-**Точный маркер: `H2.2.9`** — реализовать и проверить UI-сторону аппаратной
-безопасности передачи и независимой индикации на `UI_50_TX_SAFETY_EVIDENCE`.
+**Точный маркер: `H2.2.10`** — реализовать и проверить производственные и
+диагностические test points UI-платы на `UI_60_TESTPOINTS_MANUFACTURING`.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - `H2.0` — зафиксировать авторитетные входы схемы и структуру проектов.
@@ -44,8 +44,8 @@ target-прогонов в эмуляторах ещё нет, ни один з�
 - ✅ `H2.1` — созданы четыре независимых KiCad-проекта, 28 native-листов и
   репозиторные таблицы библиотек; пройдены parser/empty ERC в KiCad 10.
 - `H2.2` — реализовать и проверить листы UI/control PCB.
-  - ✅ `H2.2.1` — проверен корень UI: девять дочерних листов, 91 точная
-    межлистовая цепь и 218 именованных pins/child labels; прямые rails приняты KiCad.
+  - ✅ `H2.2.1` — проверен корень UI: девять дочерних листов, 90 точных
+    межлистовых цепей и 216 именованных pins/child labels; прямые rails приняты KiCad.
   - ✅ `H2.2.2` — проверен S3 core: 32 точных компонента реестра плюс граница
     встроенного U.FL модуля, все 41 контакт carrier и 39 hierarchy-интерфейсов.
   - ✅ `H2.2.3` — проверены 49 точных экземпляров display/touch/storage:
@@ -53,7 +53,7 @@ target-прогонов в эмуляторах ещё нет, ни один з�
     изоляция данных и все 17 hierarchy-интерфейсов.
   - ✅ `H2.2.4` — проверен 71 точный компонент controls/indicators: 15 серийных
     кнопок, slow/matrix I/O, thermal/ESD, девять actual-TX LED, аппаратный
-    FAULT LED, 45 hierarchy-интерфейсов и три объяснённых NC-контакта.
+    FAULT LED, 44 hierarchy-интерфейса и три объяснённых NC-контакта.
   - ✅ `H2.2.5` — проверены 102 точных компонента codec/headset: все 21 контакт
     ES8311, шесть контактов CTIA jack, пять аналоговых селекторов,
     power/interface isolation, 24 hierarchy-интерфейса и восемь объяснённых NC.
@@ -65,8 +65,10 @@ target-прогонов в эмуляторах ещё нет, ни один з�
     восемь hierarchy-интерфейсов и четыре объяснённых NC.
   - ✅ `H2.2.8` — проверен точный UI-разъём M1: все 80 физических контактов,
     51 hierarchy-интерфейс, 20 фактических силовых возвратов, без резервов и NC.
-  - ▶️ **`H2.2.9` — сейчас:** UI-side TX safety/evidence.
-  - ⏳ `H2.2.10` — manufacturing/test points.
+  - ✅ `H2.2.9` — проверены 28 точных компонентов TX safety/evidence: два
+    RF detector, физический optical IR sensor, четыре comparator-канала,
+    два reset-sink и 18 hierarchy-интерфейсов; один NC объяснён.
+  - ▶️ **`H2.2.10` — сейчас:** manufacturing/test points.
 - ⏳ `H2.3` — реализовать и проверить листы RF/power PCB.
 - ⏳ `H2.4` — реализовать и проверить схемы display-adapter и LoRa Cap.
 - ⏳ `H2.5` — независимо проверить питание, boot, recovery, quiet-state и
@@ -310,7 +312,7 @@ HEADSET_CONTROL_IO["TCA9534APWR<br/>выделенное управление г
 HEADSET_MIC_SELECTOR["Texas Instruments TS5A63157DCKR<br/>выбор встроенного/гарнитурного микрофона"]
 AUDIO_RX_MUX["Texas Instruments SN74LVC1G3157DBVR<br/>выбор источника принимаемого звука"]
 AUDIO_CAPTURE_SELECTOR["Texas Instruments TS5A63157DCKR<br/>выбор microphone/RX для записи"]
-AUDIO_CAPTURE_BUFFER["Texas Instruments TLV9061IDBVR<br/>буфер АЦП кодека"]
+AUDIO_CAPTURE_BUFFER["TLV9061IDBVR<br/>буфер АЦП кодека"]
 CODEC["Everest Semiconductor ES8311<br/>кодек записи и воспроизведения"]
 CODEC_SUPERVISOR["Texas Instruments TPS3839K33DBZR<br/>контроль готовности питания кодека"]
 CODEC_I2S_DIN_BOOT_GATE["SN74LVC1G08DCKR<br/>аппаратный gate CODEC_READY AND AUDIO_ARM"]

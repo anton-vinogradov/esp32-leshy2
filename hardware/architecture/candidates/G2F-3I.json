@@ -4580,7 +4580,7 @@
     {"from":"slow_io_s3_evidence_iso.GND","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"second AON buffer return stays local"},
     {"from":"abstract:AON_SAFE_3V3","to":"slow_io_s3_evidence_iso_bypass.END_1","net":"AON_SAFE_3V3","safety":"exact 100-nF local bypass supports the second open-drain isolator"},
     {"from":"slow_io_s3_evidence_iso_bypass.END_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"second isolator bypass returns locally"},
-    {"from":"evidence_cmp_a.OUT1","to":"slow_io_s3_evidence_iso.A","net":"S3_RF_TX_EVIDENCE_AON_N","safety":"read-only active-low physical evidence remains independent of firmware"},
+    {"from":"evidence_cmp_a.OUT1","to":"slow_io_s3_evidence_iso.A","net":"EV_N0_S3","safety":"read-only active-low physical evidence remains independent of firmware; one physical comparator output retains one canonical net name across UI sheets and M1"},
     {"from":"slow_io_s3_evidence_iso.Y","to":"slow_io.P23","net":"S3_RF_TX_EVIDENCE_N","safety":"non-inverting open-drain transfer preserves active-low evidence without positive AON injection into unpowered VCCP"},
     {"from":"abstract:3V3_MAIN","to":"slow_io_s3_evidence_pullup.END_1","net":"3V3_MAIN","safety":"main-domain 10-kOhm pull-up exists only with the receiving expander"},
     {"from":"slow_io_s3_evidence_pullup.END_2","to":"slow_io.P23","net":"S3_RF_TX_EVIDENCE_N","safety":"active-low evidence semantics are unchanged across the isolation boundary"},

@@ -26,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Current production ECAD schematic | ▶️ H2.2.9: UI-side TX safety/evidence; UI root and H2.2.2–H2.2.8 are reviewed |
+| Current production ECAD schematic | ▶️ H2.2.10: UI manufacturing/test points; UI root and H2.2.2–H2.2.9 are reviewed |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ▶️ H2: authorized |
@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.2.9 -->
+<!-- current-substep: H2.2.10 -->
 
-**Exact marker: `H2.2.9`** — implement and review UI-side hardware TX safety
-and independent evidence on `UI_50_TX_SAFETY_EVIDENCE`.
+**Exact marker: `H2.2.10`** — implement and review UI-board manufacturing and
+diagnostic test points on `UI_60_TESTPOINTS_MANUFACTURING`.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -126,11 +126,10 @@ Current H2 execution:
   repository-controlled library tables created; every sheet passed the KiCad
   10 parser and empty-sheet ERC. No PCB file exists.
 - `H2.2` — implement and review UI/control PCB sheets.
-  - ✅ `H2.2.1` — `UI_00_ROOT`: nine child sheets, 91 exact cross-sheet nets
-    and 218 explicit pins/labels; one direct root rail per net, no hidden global
-    labels, native KiCad parse passed. With UI10–UI13 populated, 20 exact
-    empty-child stub findings and 255 generated-symbol copy warnings are
-    machine-accounted.
+  - ✅ `H2.2.1` — `UI_00_ROOT`: nine child sheets, 90 exact cross-sheet nets
+    and 216 explicit pins/labels; one direct root rail per net, no hidden global
+    labels, native KiCad parse passed. With UI10–UI40 populated, no empty-child
+    stub finding remains; 376 generated-symbol copy warnings are machine-accounted.
   - ✅ `H2.2.2` — `UI_10_S3_CORE_MEMORY_BOOT`: 32 exact ledger components plus
     one module U.FL assembly-boundary symbol, all 41 S3 carrier pads, 39 hierarchy
     interfaces, seven intentional no-connects and three checked custom footprints.
@@ -138,7 +137,7 @@ Current H2 execution:
     contacts, 11 microSD contacts, 17 hierarchy interfaces and 33 explained
     no-connects; native KiCad review passed.
   - ✅ `H2.2.4` — `UI_12_CONTROLS_INDICATORS`: 71 exact components, 15 serial
-    B3S-1100P switches, 45 hierarchy interfaces, nine actual-TX LEDs, one
+    B3S-1100P switches, 44 hierarchy interfaces, nine actual-TX LEDs, one
     hardware FAULT LED, three custom footprints and three explained no-connects;
     native KiCad review passed.
   - ✅ `H2.2.5` — `UI_13_AUDIO_CODEC_HEADSET`: 102 exact components, all 21
@@ -154,8 +153,10 @@ Current H2 execution:
   - ✅ `H2.2.8` — `UI_40_INTERBOARD_M1`: one exact FX8C plug, all 80
     physical contacts and 51 interfaces; 20 `POWER_GROUND` contacts, seven
     `3V3_MAIN`, no reserve or NC; native KiCad review passed.
-  - ▶️ **`H2.2.9` — current:** `UI_50_TX_SAFETY_EVIDENCE`.
-  - ⏳ `H2.2.10` — `UI_60_TESTPOINTS_MANUFACTURING`.
+  - ✅ `H2.2.9` — `UI_50_TX_SAFETY_EVIDENCE`: 28 exact components, two RF
+    detectors, a physical optical IR sensor, four comparator channels, two
+    reset sinks, 18 interfaces and one explained NC; native KiCad review passed.
+  - ▶️ **`H2.2.10` — current:** `UI_60_TESTPOINTS_MANUFACTURING`.
 - ⏳ `H2.3` — implement and review RF/power PCB sheets.
 - ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.
 - ⏳ `H2.5` — independently review power, reset, boot, recovery,

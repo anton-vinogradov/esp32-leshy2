@@ -8512,7 +8512,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Texas Instruments TLV9061IDBVR"
+		(property "Value" "TLV9061IDBVR"
 			(at 294.64 127.00 0)
 			(show_name no)
 			(do_not_autoplace no)

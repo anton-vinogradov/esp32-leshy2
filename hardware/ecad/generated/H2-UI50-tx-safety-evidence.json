@@ -1,0 +1,359 @@
+{
+  "schema_version": 1,
+  "stage": "H2.2.9",
+  "status": "reviewed_exact_ui_tx_safety_evidence_sheet",
+  "project": "LESHY2-UI",
+  "sheet": "UI_50_TX_SAFETY_EVIDENCE",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "e1ca648053a5f54c1face3b71ada224864508d0f280144f3f3b87a6bf9153bcf",
+    "hardware/architecture/devices.json": "d1accd905abcb7e7767c724dc39db0bbaaecbfe436f099e2109fb409bcfeccc8",
+    "hardware/ecad/generated/H2-instance-ledger.json": "e281b908195dfac7cf47782c638379638a99bc58b06057770f5cf076e865b6b7",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "00be4dffcc2cbd0e5143f51454b1b2ccae99f4bfc494af11e5c95b34e4886f85"
+  },
+  "summary": {
+    "ledger_instances": 28,
+    "schematic_symbols": 28,
+    "board_fitted_symbols": 28,
+    "hierarchical_interfaces": 18,
+    "physical_contacts": 83,
+    "rf_detector_channels": 2,
+    "optical_detector_channels": 1,
+    "comparator_channels": 4,
+    "reset_sink_channels": 2,
+    "custom_footprints": 1,
+    "intentional_no_connect_pins": 1,
+    "pcb_files_created": 0
+  },
+  "instances": [
+    {
+      "instance": "ir_evidence_amp",
+      "symbol_uuid": "f5a5e468-3358-52da-a146-4385c8137d6f",
+      "reference": "U1",
+      "mpn": "TLV9061IDBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ir_evidence_amp_bypass",
+      "symbol_uuid": "55c24fe6-d213-5231-93e0-1cf82435158a",
+      "reference": "C1",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ir_evidence_vref_top",
+      "symbol_uuid": "9ce8e243-4141-5805-a19f-725df6fdf5c4",
+      "reference": "R1",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ir_evidence_vref_bottom",
+      "symbol_uuid": "3f391456-6cdd-56c9-8e1c-5ce6047c9820",
+      "reference": "R2",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ir_evidence_vref_cap",
+      "symbol_uuid": "84591618-52fb-53c1-b2f0-3097116a9d57",
+      "reference": "C2",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ir_evidence_feedback",
+      "symbol_uuid": "50bea9c7-f0d0-5a79-9719-00f20af2d9c5",
+      "reference": "R3",
+      "mpn": "Yageo RC0402FR-0747KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ir_evidence_feedback_cap",
+      "symbol_uuid": "1c073506-054b-5eb7-95c1-92ac3fd76587",
+      "reference": "C3",
+      "mpn": "KEMET C0402C102K5RACTU",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "s3_reset_gate_pullup",
+      "symbol_uuid": "fe05c1fb-b421-5144-8b45-b27c97976aaf",
+      "reference": "R4",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "safe_reset_sink_a",
+      "symbol_uuid": "8afc8a32-fe09-501f-bfd2-3a2d9de90b15",
+      "reference": "Q1",
+      "mpn": "Diodes Incorporated 2N7002DW-7-F",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "pin_count": 6,
+      "board_fitted": true
+    },
+    {
+      "instance": "det_s3",
+      "symbol_uuid": "70221c23-9c26-544b-9168-a3575fc3585e",
+      "reference": "U2",
+      "mpn": "LTC5532ES6#TRMPBF",
+      "footprint": "Package_TO_SOT_SMD:TSOT-23-6",
+      "pin_count": 6,
+      "board_fitted": true
+    },
+    {
+      "instance": "det_c5",
+      "symbol_uuid": "f607e501-84ab-5208-b473-d6513fa875b2",
+      "reference": "U3",
+      "mpn": "LTC5532ES6#TRMPBF",
+      "footprint": "Package_TO_SOT_SMD:TSOT-23-6",
+      "pin_count": 6,
+      "board_fitted": true
+    },
+    {
+      "instance": "det_ir",
+      "symbol_uuid": "eaa023a3-4a0e-5e74-996f-fa4d3d894133",
+      "reference": "D1",
+      "mpn": "VEMD1060X01",
+      "footprint": "Leshy2:VEMD1060X01",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "evidence_cmp_a",
+      "symbol_uuid": "4f8178b4-36eb-5aa4-90dd-18149b3e8887",
+      "reference": "U4",
+      "mpn": "TLV1824PWR",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "pin_count": 14,
+      "board_fitted": true
+    },
+    {
+      "instance": "evidence_cmp_a_bypass",
+      "symbol_uuid": "b360cefe-d06c-5823-8eb0-31d2951dc68f",
+      "reference": "C4",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "s3_evidence_threshold_top",
+      "symbol_uuid": "d6b7f98f-73b5-5b10-a208-a5c9436117b3",
+      "reference": "R5",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "s3_evidence_threshold_bottom",
+      "symbol_uuid": "eb31af2b-35fd-591e-b791-f847d974e2dc",
+      "reference": "R6",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "s3_evidence_hysteresis",
+      "symbol_uuid": "bf51c072-2bd5-5247-8ef9-ab5a53296b6b",
+      "reference": "R7",
+      "mpn": "Yageo RC0402FR-071ML",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "s3_evidence_output_pullup",
+      "symbol_uuid": "891a566d-2367-5978-9faf-c47743cda285",
+      "reference": "R8",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "c5_evidence_threshold_top",
+      "symbol_uuid": "4bf99f73-7051-57e9-860f-ec331ade94be",
+      "reference": "R9",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "c5_evidence_threshold_bottom",
+      "symbol_uuid": "1fd4e56b-70ce-5729-8af1-3795f6df34d6",
+      "reference": "R10",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "c5_evidence_hysteresis",
+      "symbol_uuid": "b408e22d-b40b-5fc8-b38f-1d832798d37a",
+      "reference": "R11",
+      "mpn": "Yageo RC0402FR-071ML",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "c5_evidence_output_pullup",
+      "symbol_uuid": "fb1a8dd5-2402-55f2-acfc-971fd678266d",
+      "reference": "R12",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ir_evidence_threshold_top",
+      "symbol_uuid": "d730ebbe-47ae-5abf-a6d5-6dd2c22a76d6",
+      "reference": "R13",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ir_evidence_threshold_bottom",
+      "symbol_uuid": "be72831e-4c83-579b-a127-17ca8fca6584",
+      "reference": "R14",
+      "mpn": "Yageo RC0402FR-0712KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ir_evidence_hysteresis",
+      "symbol_uuid": "06ccab66-ffaf-541d-9dbe-d6d7b9e5c7ad",
+      "reference": "R15",
+      "mpn": "Yageo RC0402FR-071ML",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ir_evidence_output_pullup",
+      "symbol_uuid": "0bd78cbd-32cc-5144-a2ff-5bba3315f8ae",
+      "reference": "R16",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "c5_evidence_main_pullup",
+      "symbol_uuid": "916d4bdb-64b5-588b-9642-2e8ce79b71b6",
+      "reference": "R17",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ir_evidence_main_pullup",
+      "symbol_uuid": "c7f48761-9de8-5a56-b348-e991b2698b09",
+      "reference": "R18",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    }
+  ],
+  "physical_net_aliases_collapsed": {},
+  "intentional_no_connect_endpoints": [
+    "evidence_cmp_a.OUT4"
+  ],
+  "footprint_evidence": [
+    {
+      "mpn": "LTC5532ES6#TRMPBF",
+      "footprint": "Package_TO_SOT_SMD:TSOT-23-6",
+      "source": {
+        "document": "LTC5532 Precision 300MHz to 7GHz RF Detector datasheet",
+        "version": "5532f",
+        "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/5532f.pdf",
+        "checked": "2026-08-17"
+      }
+    },
+    {
+      "mpn": "TLV1824PWR",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "source": {
+        "document": "TLV181x and TLV182x 40V Rail-to-Rail Comparator datasheet",
+        "version": "Rev. E",
+        "url": "https://www.ti.com/lit/ds/symlink/tlv1824.pdf",
+        "checked": "2026-08-17"
+      }
+    },
+    {
+      "mpn": "TLV9061IDBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "source": {
+        "document": "TLV906x 10-MHz rail-to-rail input/output operational amplifiers datasheet",
+        "version": "SBOS839N, March 2017, revised July 2026",
+        "url": "https://www.ti.com/lit/ds/symlink/tlv9061.pdf",
+        "checked": "2026-08-17"
+      }
+    },
+    {
+      "mpn": "VEMD1060X01",
+      "footprint": "Leshy2:VEMD1060X01",
+      "source": {
+        "document": "VEMD1060X01 Silicon PIN Photodiode datasheet",
+        "version": "Rev. 1.1",
+        "url": "https://www.vishay.com/docs/84295/vemd1060x01.pdf",
+        "checked": "2026-08-17"
+      }
+    },
+    {
+      "mpn": "Diodes Incorporated 2N7002DW-7-F",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "source": {
+        "document": "2N7002DW dual N-channel MOSFET datasheet",
+        "version": "DS30120 Rev. 22-2, October 2021",
+        "url": "https://www.diodes.com/datasheet/download/2N7002DW.pdf",
+        "checked": "2026-08-18"
+      }
+    }
+  ],
+  "corrections_closed": [
+    "the one physical S3 comparator output now has one canonical EV_N0_S3 name across UI controls, safety evidence and M1",
+    "the IR evidence sensor observes emitted light through a physical photodiode path rather than inferring TX from the drive command",
+    "S3 and C5 RF detector analog outputs remain UI-local; only active-low digital evidence crosses M1",
+    "the unused fourth TLV1824 channel is tied to safety ground at both inputs and its open-drain output is explicitly NC",
+    "independent passive-drain reset sinks hold S3 and C5 reset paths fail-closed under their separate kill gates"
+  ],
+  "review_boundary": {
+    "complete": [
+      "all 28 UI50 ledger instances have exact MPN, contacts, footprint and circuit nets",
+      "all 18 hierarchy interfaces terminate on real component contacts",
+      "S3 RF, C5 RF and IR optical evidence paths plus reset-kill sinks are explicit",
+      "all threshold, hysteresis, output pull-up, bypass and analog-return networks are instantiated",
+      "native KiCad parses the live hierarchy and controlled photodiode footprint"
+    ],
+    "deferred": [
+      "detector threshold/calibration, forward-sample loss and comparator hysteresis HIL",
+      "light-tight tunnel, false-positive/false-negative, optical response and ambient-crosstalk HIL",
+      "reset assertion/release, brownout and unpowered-domain fault-injection HIL",
+      "PCB placement, RF/analog return geometry, thermal coupling and DRC in H6"
+    ]
+  }
+}

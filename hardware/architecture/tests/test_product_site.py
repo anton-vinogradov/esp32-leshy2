@@ -138,7 +138,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H2.2.9"}, set(markers.values()))
+        self.assertEqual({"H2.2.10"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
@@ -165,7 +165,7 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.2.9", plan["current_substep"])
+        self.assertEqual("H2.2.10", plan["current_substep"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -195,7 +195,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["substeps"][2]["children"][5]["status"])
         self.assertEqual("reviewed", plan["substeps"][2]["children"][6]["status"])
         self.assertEqual("reviewed", plan["substeps"][2]["children"][7]["status"])
-        self.assertEqual("current", plan["substeps"][2]["children"][8]["status"])
+        self.assertEqual("reviewed", plan["substeps"][2]["children"][8]["status"])
+        self.assertEqual("current", plan["substeps"][2]["children"][9]["status"])
         sheet_contract = json.loads(
             self.read("hardware/ecad/H2-sheet-contract.json")
         )
@@ -258,22 +259,22 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(
             {
                 "child_sheet_count": 9,
-                "cross_sheet_net_count": 91,
-                "root_hierarchical_pin_count": 218,
-                "child_hierarchical_label_count": 218,
+                "cross_sheet_net_count": 90,
+                "root_hierarchical_pin_count": 216,
+                "child_hierarchical_label_count": 216,
                 "known_child_stub_erc_violations": 0,
-                "implemented_child_sheet_count": 7,
-                "circuit_symbols_placed": 348,
-                "known_generated_library_copy_warnings": 348,
+                "implemented_child_sheet_count": 8,
+                "circuit_symbols_placed": 376,
+                "known_generated_library_copy_warnings": 376,
                 "pcb_files_created": 0,
             },
             manifest["summary"],
         )
         root = self.read("hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch")
         self.assertEqual(9, root.count("\n\t(sheet\n"))
-        self.assertEqual(218, root.count("\n\t\t(pin \""))
-        self.assertEqual(309, root.count("\n\t(wire\n"))
-        self.assertEqual(218, root.count("\n\t(junction "))
+        self.assertEqual(216, root.count("\n\t\t(pin \""))
+        self.assertEqual(306, root.count("\n\t(wire\n"))
+        self.assertEqual(216, root.count("\n\t(junction "))
         self.assertNotIn("\n\t(label \"", root)
         self.assertNotIn("\n\t(global_label \"", root)
         for row in manifest["sheets"]:
@@ -471,7 +472,7 @@ class ProductSiteTests(unittest.TestCase):
                 "ledger_instances": 71,
                 "schematic_symbols": 71,
                 "board_fitted_symbols": 71,
-                "hierarchical_interfaces": 45,
+                "hierarchical_interfaces": 44,
                 "slow_io_contacts": 33,
                 "matrix_io_contacts": 24,
                 "serial_tactile_switches": 15,
@@ -690,6 +691,55 @@ class ProductSiteTests(unittest.TestCase):
             "Connector_Hirose_FX8:Hirose_FX8-80P-SV_2x40_P0.6mm",
             manifest["instances"][0]["footprint"],
         )
+
+    def test_h2_2_9_exact_ui_tx_safety_evidence_sheet_is_reviewed_and_current(self):
+        import json
+
+        script = REPO_ROOT / "hardware/ecad/h2_ui_tx_safety_evidence.py"
+        result = subprocess.run(
+            [sys.executable, str(script), "--check"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        manifest = json.loads(
+            self.read("hardware/ecad/generated/H2-UI50-tx-safety-evidence.json")
+        )
+        self.assertEqual("H2.2.9", manifest["stage"])
+        self.assertEqual(
+            "reviewed_exact_ui_tx_safety_evidence_sheet", manifest["status"]
+        )
+        self.assertEqual(
+            {
+                "ledger_instances": 28,
+                "schematic_symbols": 28,
+                "board_fitted_symbols": 28,
+                "hierarchical_interfaces": 18,
+                "physical_contacts": 83,
+                "rf_detector_channels": 2,
+                "optical_detector_channels": 1,
+                "comparator_channels": 4,
+                "reset_sink_channels": 2,
+                "custom_footprints": 1,
+                "intentional_no_connect_pins": 1,
+                "pcb_files_created": 0,
+            },
+            manifest["summary"],
+        )
+        self.assertEqual(
+            ["evidence_cmp_a.OUT4"], manifest["intentional_no_connect_endpoints"]
+        )
+        schematic = self.read(
+            "hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch"
+        )
+        self.assertNotIn("S3_RF_TX_EVIDENCE_AON_N", schematic)
+        footprint = self.read(
+            "hardware/ecad/libraries/Leshy2.pretty/VEMD1060X01.kicad_mod"
+        )
+        self.assertIn('(pad "1" smd roundrect (at -0.800 0.000)', footprint)
+        self.assertIn('(pad "2" smd roundrect (at 0.800 0.000)', footprint)
 
     def test_h2_hwfw_export_has_all_target_pins_and_service_boundaries(self):
         import json

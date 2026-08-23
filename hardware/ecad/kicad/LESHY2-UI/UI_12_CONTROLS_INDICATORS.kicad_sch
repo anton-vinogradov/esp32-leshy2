@@ -9945,6 +9945,11 @@
 	)
 	(hierarchical_label "EV_N0_S3"
 		(shape bidirectional)
+		(at 276.86 71.12 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "9aa6fd6b-2228-5229-abb4-ae399647906d")
+	)
+	(label "EV_N0_S3"
 		(at 33.02 271.78 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "e91aa4e5-bcc3-5e7a-a1e3-bfce4d4065a6")
@@ -10419,12 +10424,6 @@
 		(at 114.30 99.06 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "9403f683-fa74-5f07-99d8-19fc363e2b31")
-	)
-	(hierarchical_label "S3_RF_TX_EVIDENCE_AON_N"
-		(shape bidirectional)
-		(at 276.86 71.12 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "7c95ba92-f273-561f-a627-b827c77fd6f2")
 	)
 	(label "S3_RF_TX_EVIDENCE_N"
 		(at 68.58 48.26 180)

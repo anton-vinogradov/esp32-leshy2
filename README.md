@@ -30,10 +30,10 @@ PCB layout or target-emulator run, and no order is authorized.
 
 ### Current phase H2 — detailed position
 
-<!-- current-substep: H2.2.9 -->
+<!-- current-substep: H2.2.10 -->
 
-**Exact marker: `H2.2.9`** — implement and review UI-side hardware TX safety
-and independent evidence on `UI_50_TX_SAFETY_EVIDENCE`.
+**Exact marker: `H2.2.10`** — implement and review UI-board manufacturing and
+diagnostic test points on `UI_60_TESTPOINTS_MANUFACTURING`.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - `H2.0` — freeze authoritative schematic inputs and project structure.
@@ -44,8 +44,8 @@ and independent evidence on `UI_50_TX_SAFETY_EVIDENCE`.
 - ✅ `H2.1` — four independent KiCad projects, 28 native sheet files and
   repository-controlled library tables created; KiCad 10 parser/empty ERC passed.
 - `H2.2` — implement and review UI/control PCB sheets.
-  - ✅ `H2.2.1` — UI root reviewed: nine child sheets, 91 exact cross-sheet
-    nets and 218 named pins/child labels; direct root rails parse in KiCad.
+  - ✅ `H2.2.1` — UI root reviewed: nine child sheets, 90 exact cross-sheet
+    nets and 216 named pins/child labels; direct root rails parse in KiCad.
   - ✅ `H2.2.2` — S3 core reviewed: 32 exact ledger components plus the module
     U.FL assembly boundary, all 41 carrier pads and 39 hierarchy interfaces.
   - ✅ `H2.2.3` — reviewed 49 exact display/touch/storage instances: the
@@ -53,7 +53,7 @@ and independent evidence on `UI_50_TX_SAFETY_EVIDENCE`.
     isolation and all 17 hierarchy interfaces.
   - ✅ `H2.2.4` — reviewed 71 exact control/indicator components: 15 serial
     switches, slow/matrix I/O, thermal/ESD paths, nine actual-TX LEDs, the
-    hardware FAULT LED, 45 hierarchy interfaces and three explained NC pins.
+    hardware FAULT LED, 44 hierarchy interfaces and three explained NC pins.
   - ✅ `H2.2.5` — reviewed 102 exact codec/headset components: all 21 ES8311
     contacts, the six-contact CTIA jack, five analog selectors, power/interface
     isolation, 24 hierarchy interfaces and eight explained NC pins.
@@ -65,8 +65,10 @@ and independent evidence on `UI_50_TX_SAFETY_EVIDENCE`.
     eight hierarchy interfaces and four explained NC pins.
   - ✅ `H2.2.8` — exact UI-side M1 reviewed: all 80 physical contacts,
     51 hierarchy interfaces, 20 actual power returns, no reserves or NCs.
-  - ▶️ **`H2.2.9` — current:** UI-side TX safety/evidence.
-  - ⏳ `H2.2.10` — manufacturing/test points.
+  - ✅ `H2.2.9` — reviewed 28 exact TX safety/evidence components: two RF
+    detectors, a physical optical IR sensor, four comparator channels, two
+    reset sinks and 18 hierarchy interfaces; one NC is explained.
+  - ▶️ **`H2.2.10` — current:** manufacturing/test points.
 - ⏳ `H2.3` — implement and review RF/power PCB sheets.
 - ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.
 - ⏳ `H2.5` — independently review power, boot, recovery, quiet-state and
@@ -312,7 +314,7 @@ HEADSET_CONTROL_IO["TCA9534APWR<br/>dedicated headset control and 7 reserve I/O 
 HEADSET_MIC_SELECTOR["Texas Instruments TS5A63157DCKR<br/>internal/headset microphone selector"]
 AUDIO_RX_MUX["Texas Instruments SN74LVC1G3157DBVR<br/>received-audio source selector"]
 AUDIO_CAPTURE_SELECTOR["Texas Instruments TS5A63157DCKR<br/>microphone/RX capture selector"]
-AUDIO_CAPTURE_BUFFER["Texas Instruments TLV9061IDBVR<br/>codec ADC buffer"]
+AUDIO_CAPTURE_BUFFER["TLV9061IDBVR<br/>codec ADC buffer"]
 CODEC["Everest Semiconductor ES8311<br/>audio capture and playback codec"]
 CODEC_SUPERVISOR["Texas Instruments TPS3839K33DBZR<br/>codec-power readiness supervisor"]
 CODEC_I2S_DIN_BOOT_GATE["SN74LVC1G08DCKR<br/>hardware CODEC_READY AND AUDIO_ARM gate"]

@@ -328,7 +328,7 @@ flowchart TD
   AUDIO_CAPTURE_LOCAL_BIAS_TOP["Yageo RC0402FR-07100KL<br/>audio capture local bias top physical component"]
   AUDIO_CAPTURE_LOCAL_BIAS_BOTTOM["Yageo RC0402FR-07100KL<br/>audio capture local bias bottom physical component"]
   AUDIO_CAPTURE_LOCAL_BIAS_CAP["TDK C1608X7R1C105K080AC<br/>audio capture local bias cap physical component"]
-  AUDIO_CAPTURE_BUFFER["Texas Instruments TLV9061IDBVR<br/>active high-impedance capture buffer"]
+  AUDIO_CAPTURE_BUFFER["TLV9061IDBVR<br/>active high-impedance capture buffer"]
   AUDIO_CAPTURE_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>audio capture buffer bypass physical component"]
   CODEC_ADC_P_COUPLING["TDK C1608X7R1C105K080AC<br/>codec adc p coupling physical component"]
   CODEC_ADC_P_SERIES["Yageo RC0402FR-0733KL<br/>codec adc p series physical component"]
@@ -1155,7 +1155,7 @@ flowchart TD
   IR_TX_MOSFET["Diodes Incorporated DMN2056U-7<br/>FAULT_KILL-qualified low-side IR emitter switch"]
   IR_TX_GATE_SERIES["Yageo RC0402FR-07100RL<br/>100-Ohm IR-switch gate resistor"]
   IR_TX_GATE_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm IR-switch fail-low resistor"]
-  IR_EVIDENCE_AMP["Texas Instruments TLV9061IDBVR<br/>AON physical-optical transimpedance amplifier"]
+  IR_EVIDENCE_AMP["TLV9061IDBVR<br/>AON physical-optical transimpedance amplifier"]
   IR_EVIDENCE_AMP_BYPASS["TDK C1005X7R1H104K050BB<br/>optical-evidence amplifier bypass capacitor"]
   IR_EVIDENCE_VREF_TOP["Yageo RC0402FR-07100KL<br/>optical-evidence 100-kOhm reference upper leg"]
   IR_EVIDENCE_VREF_BOTTOM["Yageo RC0402FR-0710KL<br/>optical-evidence 10-kOhm reference lower leg"]
@@ -4287,7 +4287,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `SAFETY_GROUND` | `slow_io_s3_evidence_iso.GND` | `abstract:safety-ground` | second AON buffer return stays local |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `slow_io_s3_evidence_iso_bypass.END_1` | exact 100-nF local bypass supports the second open-drain isolator |
 | `SAFETY_GROUND` | `slow_io_s3_evidence_iso_bypass.END_2` | `abstract:safety-ground` | second isolator bypass returns locally |
-| `S3_RF_TX_EVIDENCE_AON_N` | `evidence_cmp_a.OUT1` | `slow_io_s3_evidence_iso.A` | read-only active-low physical evidence remains independent of firmware |
+| `EV_N0_S3` | `evidence_cmp_a.OUT1` | `slow_io_s3_evidence_iso.A` | read-only active-low physical evidence remains independent of firmware; one physical comparator output retains one canonical net name across UI sheets and M1 |
 | `S3_RF_TX_EVIDENCE_N` | `slow_io_s3_evidence_iso.Y` | `slow_io.P23` | non-inverting open-drain transfer preserves active-low evidence without positive AON injection into unpowered VCCP |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io_s3_evidence_pullup.END_1` | main-domain 10-kOhm pull-up exists only with the receiving expander |
 | `S3_RF_TX_EVIDENCE_N` | `slow_io_s3_evidence_pullup.END_2` | `slow_io.P23` | active-low evidence semantics are unchanged across the isolation boundary |
@@ -5208,7 +5208,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `audio_capture_mic_coupling` lifecycle: `active_production`.
 - `audio_capture_input_coupling` lifecycle: `active_production`.
 - `audio_capture_local_bias_cap` lifecycle: `active_production`.
-- `audio_capture_buffer` uses `Texas Instruments TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
+- `audio_capture_buffer` uses `TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
 - `codec_adc_p_coupling` lifecycle: `active_production`.
 - `codec_adc_n_coupling` lifecycle: `active_production`.
 - `audio_speaker_selector` uses `Texas Instruments TMUX1136DGSR` as `reference_only`, not an accepted production choice.
@@ -5268,7 +5268,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `ir_emitter` lifecycle: `active_stocked_orderable`.
 - `ir_emitter_limit` uses `Yageo RC1206FR-0733RL` as `verified_exact_ir_emitter_current_limit_resistor`, not an accepted production choice.
 - `ir_emitter_limit` lifecycle: `active_stocked_orderable`.
-- `ir_evidence_amp` uses `Texas Instruments TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
+- `ir_evidence_amp` uses `TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
 - `voice_io_power_input_cap` lifecycle: `active_production`.
 - `voice_io_power_output_cap` lifecycle: `active_production`.
 - `voice_hl_driver` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.

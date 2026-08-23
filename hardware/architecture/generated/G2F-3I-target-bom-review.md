@@ -235,7 +235,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `ti_tca9539_pwr` — `TCA9539PWR`.
   - `ti_tlv1821_dckr` — `TLV1821DCKR`.
   - `ti_tlv1824_pwr` — `TLV1824PWR`.
-  - `ti_tlv9061_idbvr` — `Texas Instruments TLV9061IDBVR`.
+  - `ti_tlv9061_idbvr` — `TLV9061IDBVR`.
   - `ti_tmux1136_dgsr` — `Texas Instruments TMUX1136DGSR`.
   - `ti_ts5a63157_dckr` — `Texas Instruments TS5A63157DCKR`.
   - `ti_txs0102_dcur` — `Texas Instruments TXS0102DCUR`.
@@ -1466,7 +1466,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Texas Instruments TLV9061IDBVR</code> — 2 × USD 0.3940 = USD 0.7880</summary>
+<details><summary><code>TLV9061IDBVR</code> — 2 × USD 0.3940 = USD 0.7880</summary>
 
 - Device id: `ti_tlv9061_idbvr`.
 - Scope: `base_product`.

@@ -5,19 +5,19 @@
   "project": "LESHY2-UI",
   "root_sheet": "UI_00_ROOT",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "d208a39c383d0f35a4ece75b087bcc6f518ad900c2dd74c444a60fedbaddb528",
-    "hardware/ecad/generated/H2-instance-ledger.json": "1b01d1ecef8d44e02d39ece052014a14dcc5d92d21c2427afe1b29b4b377f81b",
+    "hardware/architecture/candidates/G2F-3I.json": "e1ca648053a5f54c1face3b71ada224864508d0f280144f3f3b87a6bf9153bcf",
+    "hardware/ecad/generated/H2-instance-ledger.json": "e281b908195dfac7cf47782c638379638a99bc58b06057770f5cf076e865b6b7",
     "hardware/ecad/H2-sheet-contract.json": "6eecefd76af9892562045463a1ca96c2647b7b759af4470f45b121a2fa365f8b"
   },
   "summary": {
     "child_sheet_count": 9,
-    "cross_sheet_net_count": 91,
-    "root_hierarchical_pin_count": 218,
-    "child_hierarchical_label_count": 218,
+    "cross_sheet_net_count": 90,
+    "root_hierarchical_pin_count": 216,
+    "child_hierarchical_label_count": 216,
     "known_child_stub_erc_violations": 0,
-    "implemented_child_sheet_count": 7,
-    "circuit_symbols_placed": 348,
-    "known_generated_library_copy_warnings": 348,
+    "implemented_child_sheet_count": 8,
+    "circuit_symbols_placed": 376,
+    "known_generated_library_copy_warnings": 376,
     "pcb_files_created": 0
   },
   "sheets": [
@@ -91,7 +91,7 @@
     },
     {
       "id": "UI_12_CONTROLS_INDICATORS",
-      "interface_count": 45,
+      "interface_count": 44,
       "interfaces": [
         "3V3_MAIN",
         "AON_SAFE_3V3",
@@ -121,7 +121,6 @@
         "RX_DOMAIN_EN",
         "RX_STATUS_N",
         "S3_RESET_N",
-        "S3_RF_TX_EVIDENCE_AON_N",
         "SAFETY_GROUND",
         "SD_CARD_DETECT_N",
         "SD_PWR_EN",
@@ -264,7 +263,7 @@
     },
     {
       "id": "UI_50_TX_SAFETY_EVIDENCE",
-      "interface_count": 19,
+      "interface_count": 18,
       "interfaces": [
         "3V3_MAIN",
         "AON_SAFE_3V3",
@@ -283,7 +282,6 @@
         "S3_FORWARD_RF_SAMPLE",
         "S3_RESET_KILL_GATE",
         "S3_RESET_N",
-        "S3_RF_TX_EVIDENCE_AON_N",
         "SAFETY_GROUND"
       ]
     },
@@ -751,13 +749,6 @@
       ]
     },
     {
-      "name": "S3_RF_TX_EVIDENCE_AON_N",
-      "sheets": [
-        "UI_12_CONTROLS_INDICATORS",
-        "UI_50_TX_SAFETY_EVIDENCE"
-      ]
-    },
-    {
       "name": "S3_RP_IPC_CS_N",
       "sheets": [
         "UI_10_S3_CORE_MEMORY_BOOT",
@@ -981,14 +972,15 @@
       "UI_13_AUDIO_CODEC_HEADSET",
       "UI_20_C5_RADIO_IR_SERVICE",
       "UI_21_FM_AM_RECEIVER",
-      "UI_40_INTERBOARD_M1"
+      "UI_40_INTERBOARD_M1",
+      "UI_50_TX_SAFETY_EVIDENCE"
     ],
     "generated_library_copy_warning_proof": "the controlled and embedded symbol definitions are generated from one object; validation requires one lib_symbol_mismatch per generated symbol and rejects every other mismatch/finding"
   },
   "review_boundary": {
     "complete": [
       "all nine UI child sheets instantiated by the KiCad root",
-      "all 91 derived cross-sheet nets represented by explicit named pins and child labels",
+      "all 90 derived cross-sheet nets represented by 216 explicit named pins and child labels",
       "one direct root rail joins only sheet pins carrying the same reviewed net name",
       "native KiCad parser accepts the complete UI hierarchy; exact remaining child stubs and generated-library copy warnings are machine-accounted"
     ],

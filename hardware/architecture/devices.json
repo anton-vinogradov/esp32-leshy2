@@ -2139,7 +2139,7 @@
       }
     },
     "ti_tlv9061_idbvr": {
-      "mpn": "Texas Instruments TLV9061IDBVR",
+    "mpn": "TLV9061IDBVR",
       "kind": "single_operational_amplifier",
       "qualification": "verified_reference",
       "lifecycle": "active",

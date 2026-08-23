@@ -156,7 +156,7 @@
 | `ti_tca9539_pwr` | `TCA9539PWR` | `verified_exact_direct_control_input_expander` | `active_orderable` | [TCA9539 Low Voltage 16-Bit I2C and SMBus Low-Power I/O Expander datasheet Rev. C](https://www.ti.com/lit/ds/symlink/tca9539.pdf) | same primary source |
 | `ti_tlv1821_dckr` | `TLV1821DCKR` | `verified_exact_local_voice_evidence_comparator` | `active_orderable` | [TLV181x and TLV182x 40V Rail-to-Rail Comparator datasheet Rev. E](https://www.ti.com/lit/ds/symlink/tlv1821.pdf) | same primary source |
 | `ti_tlv1824_pwr` | `TLV1824PWR` | `verified_candidate` | `active` | [TLV181x and TLV182x 40V Rail-to-Rail Comparator datasheet Rev. E](https://www.ti.com/lit/ds/symlink/tlv1824.pdf) | same primary source |
-| `ti_tlv9061_idbvr` | `Texas Instruments TLV9061IDBVR` | `verified_reference` | `active` | [TLV906x 10-MHz rail-to-rail input/output operational amplifiers datasheet SBOS839N, March 2017, revised July 2026](https://www.ti.com/lit/ds/symlink/tlv9061.pdf) | same primary source |
+| `ti_tlv9061_idbvr` | `TLV9061IDBVR` | `verified_reference` | `active` | [TLV906x 10-MHz rail-to-rail input/output operational amplifiers datasheet SBOS839N, March 2017, revised July 2026](https://www.ti.com/lit/ds/symlink/tlv9061.pdf) | same primary source |
 | `ti_tmux1136_dgsr` | `Texas Instruments TMUX1136DGSR` | `reference_only` | `active` | [TMUX1136 5-V, low-leakage-current, 2:1, 2-channel precision switch datasheet SCDS402B, June 2019, revised February 2024](https://www.ti.com/lit/ds/symlink/tmux1136.pdf) | same primary source |
 | `ti_tpd2eusb30a_drtr` | `Texas Instruments TPD2EUSB30ADRTR` | `verified_exact_service_usb_esd` | `active_orderable` | [TPD2EUSB30A two-channel ESD protection datasheet SLLSE78E, revised July 2025](https://www.ti.com/lit/ds/symlink/tpd2eusb30a.pdf) | same primary source |
 | `ti_tpd4e05u06_dqar` | `Texas Instruments TPD4E05U06DQAR` | `verified_candidate` | `active` | [TPDxE05U06 1/4/6-channel ESD protection datasheet SLVSBO7O, revised 2024-08; exact order code checked 2026-08-18](https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf) | same primary source |
@@ -2811,7 +2811,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `SAFETY_GROUND` | `slow_io_s3_evidence_iso.GND` | `abstract:safety-ground` | second AON buffer return stays local |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `slow_io_s3_evidence_iso_bypass.END_1` | exact 100-nF local bypass supports the second open-drain isolator |
 | `SAFETY_GROUND` | `slow_io_s3_evidence_iso_bypass.END_2` | `abstract:safety-ground` | second isolator bypass returns locally |
-| `S3_RF_TX_EVIDENCE_AON_N` | `evidence_cmp_a.OUT1` | `slow_io_s3_evidence_iso.A` | read-only active-low physical evidence remains independent of firmware |
+| `EV_N0_S3` | `evidence_cmp_a.OUT1` | `slow_io_s3_evidence_iso.A` | read-only active-low physical evidence remains independent of firmware; one physical comparator output retains one canonical net name across UI sheets and M1 |
 | `S3_RF_TX_EVIDENCE_N` | `slow_io_s3_evidence_iso.Y` | `slow_io.P23` | non-inverting open-drain transfer preserves active-low evidence without positive AON injection into unpowered VCCP |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io_s3_evidence_pullup.END_1` | main-domain 10-kOhm pull-up exists only with the receiving expander |
 | `S3_RF_TX_EVIDENCE_N` | `slow_io_s3_evidence_pullup.END_2` | `slow_io.P23` | active-low evidence semantics are unchanged across the isolation boundary |
@@ -3732,7 +3732,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `audio_capture_mic_coupling` lifecycle: `active_production`.
 - `audio_capture_input_coupling` lifecycle: `active_production`.
 - `audio_capture_local_bias_cap` lifecycle: `active_production`.
-- `audio_capture_buffer` uses `Texas Instruments TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
+- `audio_capture_buffer` uses `TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
 - `codec_adc_p_coupling` lifecycle: `active_production`.
 - `codec_adc_n_coupling` lifecycle: `active_production`.
 - `audio_speaker_selector` uses `Texas Instruments TMUX1136DGSR` as `reference_only`, not an accepted production choice.
@@ -3792,7 +3792,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `ir_emitter` lifecycle: `active_stocked_orderable`.
 - `ir_emitter_limit` uses `Yageo RC1206FR-0733RL` as `verified_exact_ir_emitter_current_limit_resistor`, not an accepted production choice.
 - `ir_emitter_limit` lifecycle: `active_stocked_orderable`.
-- `ir_evidence_amp` uses `Texas Instruments TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
+- `ir_evidence_amp` uses `TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
 - `voice_io_power_input_cap` lifecycle: `active_production`.
 - `voice_io_power_output_cap` lifecycle: `active_production`.
 - `voice_hl_driver` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.

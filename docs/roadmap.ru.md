@@ -25,7 +25,7 @@
 | Требования продукта и функциональная архитектура | ✅ H0: проведено ревью границ возможностей, доменов, владельцев, классов интерфейсов и safety rules |
 | Физический дизайн устройства | ✅ H1 принят: внешние/внутренние виды, разрезы, service paths и pin/resource fit пройдены |
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
-| Актуальная production ECAD-схема | ▶️ H2.2.9: UI-side TX safety/evidence; UI root и H2.2.2–H2.2.8 проверены |
+| Актуальная production ECAD-схема | ▶️ H2.2.10: UI manufacturing/test points; UI root и H2.2.2–H2.2.9 проверены |
 | Электрические и переходные evidence | ⏳ H3: не получены |
 | Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
 | Работа над KiCad-схемой | ▶️ H2: разрешена |
@@ -41,10 +41,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённая H1 и детальный состав текущей H2
 
-<!-- current-substep: H2.2.9 -->
+<!-- current-substep: H2.2.10 -->
 
-**Точный маркер: `H2.2.9`** — реализовать и проверить UI-сторону аппаратной
-безопасности передачи и независимой индикации на `UI_50_TX_SAFETY_EVIDENCE`.
+**Точный маркер: `H2.2.10`** — реализовать и проверить производственные и
+диагностические test points UI-платы на `UI_60_TESTPOINTS_MANUFACTURING`.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -128,11 +128,11 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
   и репозиторные таблицы библиотек; каждый лист прошёл parser и empty-sheet ERC
   в KiCad 10. PCB-файлов нет.
 - `H2.2` — реализовать и проверить листы UI/control PCB.
-  - ✅ `H2.2.1` — `UI_00_ROOT`: девять дочерних листов, 91 точная межлистовая
-    цепь и 218 явных pins/labels; одна прямая root-rail на цепь, без скрытых
-    global labels, native parse KiCad пройден. После заполнения UI10–UI13
-    машинно учтены 20 finding пустых child-stubs и 255 предупреждений о копиях
-    сгенерированных символов.
+  - ✅ `H2.2.1` — `UI_00_ROOT`: девять дочерних листов, 90 точных межлистовых
+    цепей и 216 явных pins/labels; одна прямая root-rail на цепь, без скрытых
+    global labels, native parse KiCad пройден. После заполнения UI10–UI40
+    пустых child-stubs не осталось; 376 предупреждений о копиях сгенерированных
+    символов машинно учтены.
   - ✅ `H2.2.2` — `UI_10_S3_CORE_MEMORY_BOOT`: 32 точных компонента реестра плюс
     символ границы встроенного U.FL модуля, все 41 carrier-контакт S3, 39 hierarchy-
     интерфейсов, семь намеренных no-connect и три проверенных custom-footprint.
@@ -140,7 +140,7 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
     панели, 11 контактов microSD, 17 hierarchy-интерфейсов и 33 объяснённых
     no-connect; native KiCad review пройден.
   - ✅ `H2.2.4` — `UI_12_CONTROLS_INDICATORS`: 71 точный компонент, 15 серийных
-    кнопок B3S-1100P, 45 hierarchy-интерфейсов, девять actual-TX LED, один
+    кнопок B3S-1100P, 44 hierarchy-интерфейса, девять actual-TX LED, один
     аппаратный FAULT LED, три custom-footprint и три объяснённых no-connect;
     native KiCad review пройден.
   - ✅ `H2.2.5` — `UI_13_AUDIO_CODEC_HEADSET`: 102 точных компонента, все 21
@@ -156,8 +156,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
   - ✅ `H2.2.8` — `UI_40_INTERBOARD_M1`: один точный FX8C plug, все 80
     физических контактов и 51 интерфейс; 20 контактов `POWER_GROUND`, семь
     `3V3_MAIN`, ни одного резерва или NC; native KiCad review пройден.
-  - ▶️ **`H2.2.9` — сейчас:** `UI_50_TX_SAFETY_EVIDENCE`.
-  - ⏳ `H2.2.10` — `UI_60_TESTPOINTS_MANUFACTURING`.
+  - ✅ `H2.2.9` — `UI_50_TX_SAFETY_EVIDENCE`: 28 точных компонентов, два
+    RF detector, физический optical IR sensor, четыре comparator-канала, два
+    reset-sink, 18 интерфейсов и один объяснённый NC; native KiCad review пройден.
+  - ▶️ **`H2.2.10` — сейчас:** `UI_60_TESTPOINTS_MANUFACTURING`.
 - ⏳ `H2.3` — реализовать и проверить листы RF/power PCB.
 - ⏳ `H2.4` — реализовать и проверить схемы display-adapter и LoRa Cap.
 - ⏳ `H2.5` — независимо проверить питание, reset, boot, recovery,
