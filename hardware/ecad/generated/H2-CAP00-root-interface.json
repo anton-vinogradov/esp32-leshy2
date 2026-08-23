@@ -5,7 +5,7 @@
   "project": "LESHY2-LORA-CAP-01",
   "root_sheet": "CAP_00_ROOT",
   "source_hashes": {
-    "hardware/accessories/leshy2-lora-cap-01.json": "5c14b5934c5c3659944f44fb2ad76e2ff85817bf1e0e468b4a36c159af8abbf8",
+    "hardware/accessories/leshy2-lora-cap-01.json": "aea57801c58d9f255774bc58ecf51aff7238d9e8557d0ae25da6f81145ff5301",
     "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
     "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
     "hardware/ecad/H2-sheet-contract.json": "6adabe1a49ae9bcc7171a46e1de11cf68e240dd4e13226f0896998c6ae8fc60a"
@@ -20,9 +20,9 @@
     "host_physical_contacts": 14,
     "host_connected_contacts": 12,
     "host_reserved_no_connects": 2,
-    "implemented_child_sheet_count": 0,
-    "known_child_stub_erc_violations": 5,
-    "known_generated_library_copy_warnings": 1,
+    "implemented_child_sheet_count": 1,
+    "known_child_stub_erc_violations": 0,
+    "known_generated_library_copy_warnings": 8,
     "pcb_files_created": 0
   },
   "host_connector": {
@@ -298,7 +298,9 @@
     "host_contract_source": "hardware/accessories/leshy2-lora-cap-01.json#/pin_contract",
     "no_hidden_cross_sheet_globals": true,
     "root_owns_only_physical_host_connector": true,
-    "implemented_children_are_preserved": [],
+    "implemented_children_are_preserved": [
+      "CAP_10_RADIO_CONTROL"
+    ],
     "selected_header_footprint_matches": "2x7 rows, 2.54-mm pitch and 0.635-mm square through-hole posts"
   },
   "root_geometry_accounting": {

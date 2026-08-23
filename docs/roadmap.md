@@ -41,9 +41,9 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.4.3 -->
+<!-- current-substep: H2.4.4 -->
 
-**Exact marker: `H2.4.3`** — implement the LoRa radio, control and RF path.
+**Exact marker: `H2.4.4`** — implement protected LoRa Cap power and identity bus.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -204,8 +204,10 @@ Current H2 execution:
     manufacturer-derived footprint; native KiCad review passed.
   - ✅ `H2.4.2` — `CAP_00_ROOT`: exact 14-contact host boundary, three child
     sheets, 19 explicit interfaces and visible root wiring; native KiCad review passed.
-  - ▶️ **`H2.4.3` — current:** `CAP_10_RADIO_CONTROL`.
-  - ⏳ `H2.4.4` — `CAP_20_POWER_BUS`.
+  - ✅ `H2.4.3` — `CAP_10_RADIO_CONTROL`: seven fitted symbols per regional
+    variant, 42 contacts, direct 50-Ohm final feed and full detector circuit;
+    native KiCad review passed.
+  - ▶️ **`H2.4.4` — current:** `CAP_20_POWER_BUS`.
   - ⏳ `H2.4.5` — `CAP_30_TX_EVIDENCE`.
 - ⏳ `H2.5` — independently review power, reset, boot, recovery,
   no-back-power, quiet-state and `FAULT_KILL` paths.

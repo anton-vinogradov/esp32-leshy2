@@ -35,7 +35,7 @@ are satisfied.
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD schematic
 
-**Status:** ▶️ current, exact marker `H2.4.3`.
+**Status:** ▶️ current, exact marker `H2.4.4`.
 
 - [Public schematics](schematics.md) — principle diagrams and current native
   KiCad sheet links.
@@ -44,8 +44,8 @@ are satisfied.
 - [Complete instance ledger](../hardware/ecad/generated/H2-instance-ledger.json).
 - [HW↔FW export](../hardware/ecad/generated/H2-hwfw-contract.json).
 - The complete UI/control PCB, all twelve RF/power child sheets and the passive
-  display adapter and the LoRa-Cap root are reviewed; the Cap radio/control
-  sheet is current.
+  display adapter, LoRa-Cap root and Cap radio/control sheet are reviewed; the
+  Cap power/identity sheet is current.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   contains 48 exact components, all 81 SC1512-A4 package contacts, the official
   core-regulator and 12-MHz clock circuits, native USB/recovery and 13 explicit

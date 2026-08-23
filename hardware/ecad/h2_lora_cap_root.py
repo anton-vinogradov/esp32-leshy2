@@ -338,7 +338,7 @@ def outputs() -> tuple[dict[Path, str], dict]:
 
 
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
-    expected = {
+    fixed = {
         "root_ledger_instances": 1,
         "root_schematic_symbols": 1,
         "child_sheet_count": 3,
@@ -348,13 +348,30 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "host_physical_contacts": 14,
         "host_connected_contacts": 12,
         "host_reserved_no_connects": 2,
-        "implemented_child_sheet_count": 0,
-        "known_child_stub_erc_violations": 5,
-        "known_generated_library_copy_warnings": 1,
         "pcb_files_created": 0,
     }
-    if manifest["summary"] != expected:
-        raise ValueError(f"H2.4.2 accounting drifted: {manifest['summary']}")
+    if any(manifest["summary"].get(key) != value for key, value in fixed.items()):
+        raise ValueError(f"H2.4.2 fixed accounting drifted: {manifest['summary']}")
+    implemented = set(manifest["rules"]["implemented_children_are_preserved"])
+    if manifest["summary"]["implemented_child_sheet_count"] != len(implemented):
+        raise ValueError("LoRa Cap implemented-child accounting drifted")
+    expected_warnings = 1 + sum(
+        json.loads(IMPLEMENTED_CHILD_MANIFESTS[sheet].read_text(encoding="utf-8"))["summary"]["schematic_symbols"]
+        for sheet in implemented
+    )
+    if manifest["summary"]["known_generated_library_copy_warnings"] != expected_warnings:
+        raise ValueError("LoRa Cap generated-symbol warning accounting drifted")
+    host_nets = {
+        row["root_net"] for row in manifest["host_connector"]["pin_map"]
+        if row["root_net"] != "NC"
+    }
+    implemented_nets = {net for sheet in implemented for net in INTERFACES[sheet]}
+    expected_stubs = sum(
+        1 for sheet, nets in INTERFACES.items() if sheet not in implemented
+        for net in nets if net not in host_nets and net not in implemented_nets
+    )
+    if manifest["summary"]["known_child_stub_erc_violations"] != expected_stubs:
+        raise ValueError("LoRa Cap child-stub warning accounting drifted")
     root = generated[ROOT_PATH]
     if root.count("\n\t(sheet\n") != 3 or root.count("\n\t(symbol\n") != 1:
         raise ValueError("LoRa Cap root sheet/symbol accounting mismatch")

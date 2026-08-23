@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "stage": "H2.4.3",
+  "status": "reviewed_exact_lora_radio_control_sheet",
+  "project": "LESHY2-LORA-CAP-01",
+  "sheet": "CAP_10_RADIO_CONTROL",
+  "source_hashes": {
+    "hardware/accessories/leshy2-lora-cap-01.json": "aea57801c58d9f255774bc58ecf51aff7238d9e8557d0ae25da6f81145ff5301",
+    "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
+    "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "0d93871323d8610fd4ec3724d3aab362e690f03c577b3826e8effe880fac2cc8"
+  },
+  "summary": {
+    "ledger_rows": 8,
+    "schematic_symbols": 7,
+    "board_fitted_symbols_per_variant": 7,
+    "alternative_module_mpn_count": 2,
+    "fitted_variant_modules_per_assembly": 1,
+    "physical_package_contacts": 42,
+    "hierarchical_interfaces": 10,
+    "intentional_no_connect_pins": 6,
+    "custom_footprints": 2,
+    "independent_final_rf_paths": 1,
+    "pcb_files_created": 0
+  },
+  "instances": [
+    {
+      "instance": "rf_sma",
+      "symbol_uuid": "dd92e84a-afc9-5ec6-bf36-30c73df3d1a9",
+      "reference": "J1",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "footprint": "Leshy2:RFPC-SMA31-FN-175-A",
+      "pin_count": 5,
+      "board_fitted": true,
+      "ledger_rows_represented": 1
+    },
+    {
+      "instance": "rf_coupler",
+      "symbol_uuid": "08d16d89-0e61-5da4-9688-fef1c182b845",
+      "reference": "U1",
+      "mpn": "TTM Technologies DC0710J5020AHF",
+      "footprint": "Leshy2:DC0710J5020AHF",
+      "pin_count": 6,
+      "board_fitted": true,
+      "ledger_rows_represented": 1
+    },
+    {
+      "instance": "rf_isolated_termination",
+      "symbol_uuid": "55c3aeae-1e13-5303-bc32-45507df89fb1",
+      "reference": "R1",
+      "mpn": "Yageo RC0402FR-0749R9L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true,
+      "ledger_rows_represented": 1
+    },
+    {
+      "instance": "rf_detector",
+      "symbol_uuid": "7af23e5b-888d-5fa0-88af-3cd9740962a5",
+      "reference": "U2",
+      "mpn": "Analog Devices AD8314ACPZ-RL7",
+      "footprint": "Package_CSP:LFCSP-8-1EP_3x2mm_P0.5mm_EP1.6x1.65mm",
+      "pin_count": 9,
+      "board_fitted": true,
+      "ledger_rows_represented": 1
+    },
+    {
+      "instance": "rf_detector_match",
+      "symbol_uuid": "ddf6654a-42c0-5323-908c-437f24a57092",
+      "reference": "R2",
+      "mpn": "Yageo RC0402FR-0752R3L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true,
+      "ledger_rows_represented": 1
+    },
+    {
+      "instance": "rf_detector_bypass",
+      "symbol_uuid": "57a363b1-03b5-5db7-9c0a-20fdc1586af2",
+      "reference": "C1",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true,
+      "ledger_rows_represented": 1
+    },
+    {
+      "instance": "variant_module",
+      "symbol_uuid": "4e4df4ba-5451-5726-aa4f-5b6f269ea9d1",
+      "reference": "U3",
+      "mpn": "NiceRF LoRa1262-868 / LoRa1262-915 (one assembly variant)",
+      "footprint": "Leshy2:NiceRF-LoRa126X",
+      "pin_count": 16,
+      "board_fitted": true,
+      "ledger_rows_represented": 2
+    }
+  ],
+  "assembly_variants": [
+    {
+      "assembly": "LESHY2-LORA-CAP-01-EU868",
+      "device_key": "nicerf_lora1262_868",
+      "mpn": "NiceRF LoRa1262-868",
+      "band_label": "EU868 · 848–888 MHz",
+      "shared_reference": "U3",
+      "fitted_quantity": 1
+    },
+    {
+      "assembly": "LESHY2-LORA-CAP-01-US915",
+      "device_key": "nicerf_lora1262_915",
+      "mpn": "NiceRF LoRa1262-915",
+      "band_label": "US915 · 900–940 MHz",
+      "shared_reference": "U3",
+      "fitted_quantity": 1
+    }
+  ],
+  "intentional_no_connect_endpoints": [
+    "rf_detector.FLTR",
+    "rf_detector.V_DN",
+    "variant_module.DIO3_TCXO",
+    "variant_module.NC_12",
+    "variant_module.NC_14",
+    "variant_module.NC_7"
+  ],
+  "footprint_evidence": [
+    {
+      "mpn": "NiceRF LoRa1262-868 / LoRa1262-915",
+      "footprint": "Leshy2:NiceRF-LoRa126X",
+      "source": {
+        "document": "NiceRF LoRa126X product specification",
+        "version": "Rev 2.3, 2025-02",
+        "url": "https://www.nicerf.com/upload/20250221/de9b54f154b08f9d0b56e798e5ec622e.pdf",
+        "checked": "2026-08-22"
+      }
+    },
+    {
+      "mpn": "TTM Technologies DC0710J5020AHF",
+      "footprint": "Leshy2:DC0710J5020AHF",
+      "source": {
+        "document": "DC0710J5020AHF Ultra Low Profile 0805 20 dB Directional Coupler",
+        "version": "Rev J",
+        "url": "https://cdn.ttm.com/repository/products/wireless-xinger/10-20-30-dB-directional-couplers/DC0710J5020AHF/DC0710J5020AHF.pdf",
+        "checked": "2026-08-22"
+      }
+    },
+    {
+      "mpn": "Analog Devices AD8314ACPZ-RL7",
+      "footprint": "Package_CSP:LFCSP-8-1EP_3x2mm_P0.5mm_EP1.6x1.65mm",
+      "source": {
+        "document": "AD8314 100 MHz to 2.7 GHz RF detector/controller datasheet",
+        "version": "Rev. C",
+        "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf",
+        "checked": "2026-08-18"
+      }
+    },
+    {
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "footprint": "Leshy2:RFPC-SMA31-FN-175-A",
+      "source": {
+        "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+        "version": "drawing dated 2025-04-07",
+        "url": "https://gct.co/connector/rfpc-sma31-fn",
+        "checked": "2026-08-19"
+      }
+    }
+  ],
+  "corrections_closed": [
+    "AD8314 V_UP, VSET and comparator input now share the one physical RF_FORWARD_LEVEL conductor instead of two aliases on V_UP",
+    "the two regional modules are one assembly-option reference and can never be interpreted as two simultaneously fitted radios",
+    "DIO3 on the selected TCXO module and all three manufacturer NC pads remain explicit no-connects",
+    "the final SMA feed, forward sample, isolated termination, detector measurement mode, supplies and grounds are all explicit"
+  ],
+  "review_boundary": {
+    "complete": [
+      "EU868 and US915 are exact one-of-two assembly variants using the same reviewed 16-contact footprint",
+      "all host SPI/control contacts terminate on the module and every module contact is connected or explicit no-connect",
+      "the independent 50-Ohm final feed passes module, directional coupler and standard-polarity SMA without a switch",
+      "AD8314 supply, enable, ground, exposed pad, measurement-mode tie and forward-level output are explicit",
+      "native KiCad parses CAP10 and the complete live LoRa Cap hierarchy with exact findings only"
+    ],
+    "deferred": [
+      "regional finished-product radio authorization and user-selected band enforcement",
+      "50-Ohm placement/routing, coupler orientation and detector-input geometry in H6",
+      "conducted RF, harmonic, output-power and detector-threshold HIL in H8"
+    ]
+  }
+}

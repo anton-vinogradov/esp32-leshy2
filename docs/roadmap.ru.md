@@ -41,9 +41,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённая H1 и детальный состав текущей H2
 
-<!-- current-substep: H2.4.3 -->
+<!-- current-substep: H2.4.4 -->
 
-**Точный маркер: `H2.4.3`** — реализовать LoRa-радио, управление и RF-тракт.
+**Точный маркер: `H2.4.4`** — реализовать защищённое питание LoRa Cap и
+шину идентификации.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -207,8 +208,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
     по заводскому чертежу; native KiCad review пройдено.
   - ✅ `H2.4.2` — `CAP_00_ROOT`: точная 14-контактная host-граница, три
     дочерних листа, 19 явных интерфейсов и видимая разводка корня; native KiCad review пройдено.
-  - ▶️ **`H2.4.3` — сейчас:** `CAP_10_RADIO_CONTROL`.
-  - ⏳ `H2.4.4` — `CAP_20_POWER_BUS`.
+  - ✅ `H2.4.3` — `CAP_10_RADIO_CONTROL`: семь fitted-символов на региональный
+    вариант, 42 контакта, прямой конечный тракт 50 Ом и полная схема detector;
+    native KiCad review пройдено.
+  - ▶️ **`H2.4.4` — сейчас:** `CAP_20_POWER_BUS`.
   - ⏳ `H2.4.5` — `CAP_30_TX_EVIDENCE`.
 - ⏳ `H2.5` — независимо проверить питание, reset, boot, recovery,
   no-back-power, quiet-state и `FAULT_KILL`.

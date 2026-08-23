@@ -48,6 +48,7 @@ IMPLEMENTED_CHILD_GENERATORS = (
     "hardware/ecad/h2_rf_tx_safety_evidence.py",
     "hardware/ecad/h2_rf_testpoints_manufacturing.py",
     "hardware/ecad/h2_display_adapter.py",
+    "hardware/ecad/h2_lora_cap_radio_control.py",
 )
 
 

@@ -87,7 +87,7 @@
     {"from": "rf_detector_match.END_2", "to": "abstract:ground", "net": "GND"},
     {"from": "rf_coupler.ISOLATED", "to": "rf_isolated_termination.END_1", "net": "LORA_RF_ISOLATED"},
     {"from": "rf_isolated_termination.END_2", "to": "abstract:ground", "net": "GND"},
-    {"from": "rf_detector.V_UP", "to": "rf_detector.VSET", "net": "RF_DETECTOR_MEASURE_MODE"},
+    {"from": "rf_detector.V_UP", "to": "rf_detector.VSET", "net": "RF_FORWARD_LEVEL"},
     {"from": "rf_detector.V_UP", "to": "evidence_comparator.IN_P", "net": "RF_FORWARD_LEVEL"},
     {"from": "local_regulator.OUT", "to": "evidence_threshold_top.END_1", "net": "CAP_3V3"},
     {"from": "evidence_threshold_top.END_2", "to": "evidence_comparator.IN_N", "net": "RF_EVIDENCE_THRESHOLD"},
