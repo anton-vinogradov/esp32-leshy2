@@ -2781,13 +2781,15 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `NVDC_SYS` | `nvdc_charger.SYS` | `aon_input_cap.END_1` | one exact 4.7-uF 25-V X7R input capacitor is the TPS629203 nominal local input target |
 | `POWER_GROUND` | `aon_input_cap.END_2` | `abstract:power-ground` | the AON input-capacitor loop must be placed directly at VIN and GND |
 | `NVDC_SYS` | `nvdc_charger.SYS` | `aon_buck.EN` | direct hardware strap is manufacturer-valid, has no uncertain divider against the internal fail-low pull-down and enables AON without application firmware; EN and SYS are one physical copper net, not a separately named control |
+| `POWER_GROUND` | `aon_buck.GND` | `abstract:power-ground` | exact converter ground contact closes the always-on switching loop at the local input and output capacitors |
 | `AON_BUCK_SW` | `aon_buck.SW` | `aon_inductor.END_1` | 2.2-uH shielded inductor is the manufacturer-nominal 2.5-MHz first target |
 | `AON_RAW_3V3` | `aon_inductor.END_2` | `abstract:AON_RAW_3V3` | regulated converter output is deliberately separated from the safety rail by an independent overvoltage/current boundary |
 | `AON_RAW_3V3` | `aon_inductor.END_2` | `aon_output_cap.END_1` | one exact 22-uF 10-V X7R capacitor provides the recommended nominal converter output capacitance before the protection boundary |
 | `POWER_GROUND` | `aon_output_cap.END_2` | `abstract:power-ground` | VOS senses the capacitor positive terminal and its return remains local to the converter |
 | `AON_RAW_3V3` | `aon_inductor.END_2` | `aon_efuse.IN` | TPS25961 is an independent series cutoff for a shorted converter high-side switch, overload, short and thermal fault |
 | `AON_EFUSE_EN` | `aon_inductor.END_2` | `aon_efuse.EN_UVLO` | direct raw-rail tie is manufacturer-valid below 5 V and gives firmware no bypass path |
-| `POWER_GROUND` | `aon_efuse.GND` | `abstract:power-ground` | exposed pad and ground contact share the short local power return |
+| `POWER_GROUND` | `aon_efuse.GND` | `abstract:power-ground` | ground contact uses the short local power return |
+| `POWER_GROUND` | `aon_efuse.EP_GND` | `aon_efuse.GND` | mandatory DRV exposed pad 7 is soldered directly to the same local ground plane as pin 4 |
 | `AON_RAW_3V3` | `aon_inductor.END_2` | `aon_efuse_input_cap.END_1` | 100-nF 50-V X7R sits directly at the eFuse input in addition to the converter output bank |
 | `POWER_GROUND` | `aon_efuse_input_cap.END_2` | `abstract:power-ground` | local high-frequency eFuse input return |
 | `AON_EFUSE_ILIM` | `aon_efuse.ILIM` | `aon_efuse_rilim.END_1` | 240-kOhm sets about 0.208-A nominal limit, above protected AON startup and load demand but below converter capability |
@@ -2811,6 +2813,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `POWER_GROUND` | `main_input_cap.END_2` | `abstract:power-ground` | main bulk input return stays inside the high-current switching loop |
 | `NVDC_SYS` | `nvdc_charger.SYS` | `main_hf_input_cap.END_1` | 100-nF 50-V X7R directly shunts high-frequency VIN current |
 | `POWER_GROUND` | `main_hf_input_cap.END_2` | `abstract:power-ground` | main high-frequency input return is placed directly at converter ground |
+| `POWER_GROUND` | `main_buck.GND` | `abstract:power-ground` | exact converter ground contact closes the independent main switching loop |
 | `POR_N` | `safe_supervisor.RESET_N` | `main_buck.EN` | the exact open-drain AON supervisor releases the main converter only after AON PG, the 3.07-V SENSE threshold and the CT delay all pass |
 | `POR_N` | `main_buck.EN` | `main_en_pulldown.END_1` | external 100-kOhm reset-low default with the exact 10-kOhm POR pull-up releases to about 3.0V, above the converter's 1.25-V maximum rising threshold |
 | `POWER_GROUND` | `main_en_pulldown.END_2` | `abstract:power-ground` | main converter stays disabled if the AON POR pull-up or AON source is absent |
@@ -2847,7 +2850,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `MAIN_EFUSE_PGTH` | `main_efuse_pg_top.END_2` | `main_efuse.PGTH` | 45.3/30-kOhm divider asserts only after the protected rail crosses approximately 3.0 V |
 | `MAIN_EFUSE_PGTH` | `main_efuse.PGTH` | `main_efuse_pg_bottom.END_1` | PGTH directly measures protected output, not raw converter output |
 | `POWER_GROUND` | `main_efuse_pg_bottom.END_2` | `abstract:power-ground` | 30-kOhm 1% completes the PG divider |
-| `MAIN_3V3_PG_N` | `main_efuse.PG` | `abstract:power-current-thermal-fault` | protected-rail PG replaces raw converter PG as the diagnostic aggregate source |
+| `POWER_FAULT_N` | `main_efuse.PG` | `abstract:power-current-thermal-fault` | protected-rail PG is an open-drain source on the shared diagnostic aggregate |
 | `3V3_MAIN` | `main_efuse.OUT` | `power_fault_pullup.END_1` | one exact pull-up serves the entire wired-low fault aggregate only while its protected diagnostic domain is powered |
 | `POWER_FAULT_N` | `power_fault_pullup.END_2` | `abstract:power-current-thermal-fault` | 10-kOhm limits any asserting PG, FLT or qualifier sink to about 0.33 mA |
 | `NVDC_SYS` | `nvdc_charger.SYS` | `voice_buck.VIN` | voice has a physically independent fixed-voltage converter rather than a shared 4/5-V selector |
@@ -2893,12 +2896,13 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `3V3_MAIN` | `main_efuse.OUT` | `voice_pg_pullup.END_1` | voice protected-PG is referenced only to the powered diagnostic domain |
 | `VOICE_4V_PG_N` | `voice_pg_pullup.END_2` | `voice_efuse.PG` | 10-kOhm draws at most about 0.33 mA when the open-drain protected PG is low |
 | `VOICE_4V_PG_N` | `voice_efuse.PG` | `voice_pg_qualifier.E` | the protected-rail PG input is qualified by the same RUN_PERMIT-qualified enable request |
-| `VOICE_4V_FAULT_QUAL_N` | `voice_pg_qualifier.C` | `abstract:power-current-thermal-fault` | open collector sinks only for EN=1 and PG=0; a normally disabled voice rail releases POWER_FAULT_N |
+| `POWER_FAULT_N` | `voice_pg_qualifier.C` | `abstract:power-current-thermal-fault` | open collector sinks the shared aggregate only for EN=1 and PG=0; a normally disabled voice rail releases POWER_FAULT_N |
 | `NVDC_SYS` | `nvdc_charger.SYS` | `ext_buck.VIN` | external 5 V has a dedicated converter and cannot disturb fixed voice voltage |
 | `NVDC_SYS` | `nvdc_charger.SYS` | `ext_buck_input_cap.END_1` | 22-uF 25-V X7R local bulk input capacitor keeps accessory load steps out of the other converter loops |
 | `POWER_GROUND` | `ext_buck_input_cap.END_2` | `abstract:power-ground` | accessory-buck bulk input return stays inside its own switching loop |
 | `NVDC_SYS` | `nvdc_charger.SYS` | `ext_buck_hf_input_cap.END_1` | 100-nF 50-V X7R directly shunts high-frequency accessory-converter VIN current |
 | `POWER_GROUND` | `ext_buck_hf_input_cap.END_2` | `abstract:power-ground` | accessory-buck high-frequency input return is placed directly at converter ground |
+| `POWER_GROUND` | `ext_buck.GND` | `abstract:power-ground` | exact converter ground contact closes the independent accessory switching loop |
 | `EXT_BUCK_SW` | `ext_buck.SW` | `ext_inductor.END_1` | 4.7-uH exact first target limits ripple while preserving the 2-A transient envelope |
 | `5V_EXT_PREPROTECT` | `ext_inductor.END_2` | `ext_efuse.IN` | the eFuse is the final series element before the externally accessible connector |
 | `5V_EXT_PREPROTECT` | `ext_inductor.END_2` | `ext_buck_fb_top.END_1` | 220-kOhm 1% top resistor starts the physically fixed accessory feedback divider |
@@ -2914,7 +2918,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `3V3_MAIN` | `main_efuse.OUT` | `ext_pg_pullup.END_1` | accessory PG is referenced only to the protected powered diagnostic domain |
 | `EXT_5V_PG_N` | `ext_pg_pullup.END_2` | `ext_buck.PG` | 10-kOhm draws at most about 0.33 mA when the open-drain PG is low, far below its 4-mA rating |
 | `EXT_5V_PG_N` | `ext_buck.PG` | `ext_pg_qualifier.E` | the open-drain PG emitter input is qualified by the same RUN_PERMIT-qualified enable request; PG is pulled up only inside the powered 3V3_MAIN diagnostic domain |
-| `EXT_5V_FAULT_QUAL_N` | `ext_pg_qualifier.C` | `abstract:power-current-thermal-fault` | open collector sinks only for EN=1 and PG=0; a normally disabled accessory converter releases POWER_FAULT_N |
+| `POWER_FAULT_N` | `ext_pg_qualifier.C` | `abstract:power-current-thermal-fault` | open collector sinks the shared aggregate only for EN=1 and PG=0; a normally disabled accessory converter releases POWER_FAULT_N |
 | `5V_U214_PROTECTED` | `ext_efuse.OUT` | `u214_connector.PIN_7` | a U214-only true-reverse-blocking branch reaches exact Cap-Bus host contact 7 with bounded inrush and active current limit |
 | `5V_U214_PROTECTED` | `u214_connector.PIN_7` | `u214.5V_IN` | SSW mating cavity 7 maps one-to-one to exact U214 5V_IN contact 7 |
 | `U214_PIN5_PROFILE` | `u214.5V_OUT` | `u214_connector.PIN_5` | stock U214 presents 5V_OUT high; an evidence-aware Cap instead presents only open-drain active-low EXT_TX_EVIDENCE_N on the same contact |
@@ -2929,8 +2933,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `SAFETY_GROUND` | `ext_evidence_buffer_bypass.END_2` | `abstract:safety-ground` | local bypass return |
 | `EXT_EVIDENCE_BUFFER_NC` | `ext_evidence_buffer.NC` | `abstract:no-connect` | datasheet no-connect remains open |
 | `POWER_GROUND` | `ext_efuse.GND` | `abstract:power-ground` | U214 eFuse ground and exposed-pad return are local to the branch |
-| `U214_EFUSE_AUXOFF_LOW` | `ext_efuse.AUXOFF` | `abstract:power-ground` | unused active-high fast-off input is fixed low and cannot float |
-| `U214_EFUSE_FAULT_N` | `ext_efuse.FLT` | `abstract:power-current-thermal-fault` | active-low open-drain current/thermal/voltage fault joins POWER_FAULT_N |
+| `U214_EFUSE_AUXOFF_NC` | `ext_efuse.AUXOFF` | `abstract:no-connect` | unused TPS259470 open-drain auxiliary-output contact is left open; it must never be shorted to ground |
+| `POWER_FAULT_N` | `ext_efuse.FLT` | `abstract:power-current-thermal-fault` | active-low open-drain current/thermal/voltage fault joins the shared POWER_FAULT_N net |
 | `U214_5V_CURRENT_MONITOR` | `ext_efuse.ILM` | `abstract:TP_U214_5V_ILM` | analog current evidence is accessible at a protected test point without consuming another MCU GPIO |
 | `EXT_EFUSE_ILM_SET` | `ext_efuse.ILM` | `ext_rilm.END_1` | 2.21-kOhm 1% resistor sets a nominal 1.509-A current limit that is active during startup and steady operation |
 | `POWER_GROUND` | `ext_rilm.END_2` | `abstract:power-ground` | short quiet return preserves the current-limit accuracy |
@@ -2951,9 +2955,9 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `5V_EXT_PREPROTECT` | `ext_inductor.END_2` | `unit_efuse.IN` | the native Unit branch is parallel only on the internal raw 5-V source and remains isolated from U214 after its own eFuse |
 | `UNIT_5V_EN_SAFE` | `ext_branch_gate.2Y` | `unit_efuse.EN_UVLO` | only the native Unit request plus RUN_PERMIT-qualified common source can enable this branch |
 | `POWER_GROUND` | `unit_efuse.GND` | `abstract:power-ground` | native Unit eFuse return is local to the connector branch |
-| `UNIT_EFUSE_AUXOFF_LOW` | `unit_efuse.AUXOFF` | `abstract:power-ground` | unused active-high fast-off input is fixed low |
+| `UNIT_EFUSE_AUXOFF_NC` | `unit_efuse.AUXOFF` | `abstract:no-connect` | unused TPS259470 open-drain auxiliary-output contact is left open; it must never be shorted to ground |
 | `5V_UNIT_PROTECTED` | `unit_efuse.OUT` | `unit_connector.5V` | only reverse-blocked, current-limited, slew-controlled 5 V reaches exact 1125R-SMT-4P contact 5V |
-| `UNIT_EFUSE_FAULT_N` | `unit_efuse.FLT` | `abstract:power-current-thermal-fault` | native Unit overcurrent/thermal/voltage fault joins POWER_FAULT_N |
+| `POWER_FAULT_N` | `unit_efuse.FLT` | `abstract:power-current-thermal-fault` | native Unit overcurrent/thermal/voltage fault joins the shared POWER_FAULT_N net |
 | `UNIT_5V_CURRENT_MONITOR` | `unit_efuse.ILM` | `abstract:TP_UNIT_5V_ILM` | branch current evidence remains fixture-visible without another MCU input |
 | `UNIT_EFUSE_ILM_SET` | `unit_efuse.ILM` | `unit_rilm.END_1` | exact 2.21-kOhm 1% resistor sets nominal 1.509-A immediate current limit |
 | `POWER_GROUND` | `unit_rilm.END_2` | `abstract:power-ground` | short quiet ILM return |

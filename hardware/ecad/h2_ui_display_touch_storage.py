@@ -118,8 +118,16 @@ def abstract_canonical(endpoint: str) -> str | None:
         return "SAFETY_GROUND"
     if endpoint == "abstract:AON_SAFE_3V3":
         return "AON_SAFE_3V3"
+    if endpoint == "abstract:AON_RAW_3V3":
+        return "AON_RAW_3V3"
     if endpoint == "abstract:SYS_INT_N_WIRED_LOW":
         return "SYS_INT_N"
+    if endpoint == "abstract:power-current-thermal-fault":
+        return "POWER_FAULT_N"
+    if endpoint == "abstract:qualified-2s-positive":
+        return "BATTERY_STACK_POSITIVE"
+    if endpoint == "abstract:protected-2s-midpoint":
+        return "PACK_2S_MIDPOINT"
     return None
 
 

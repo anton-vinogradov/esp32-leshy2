@@ -174,7 +174,7 @@ def endpoint_nets(
         net = canonical or route["net"]
         if canonical:
             aliases[route["net"]] = canonical
-        if "abstract:no-connect" in (route["from"], route["to"]):
+        if any(endpoint.startswith("abstract:no-connect") for endpoint in (route["from"], route["to"])):
             no_connect_nets.add(net)
         add(route["from"], net)
         add(route["to"], net)

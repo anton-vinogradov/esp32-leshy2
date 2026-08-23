@@ -23,9 +23,10 @@ no-connects; fabricated test pads are explicitly excluded from the BOM.
 | [`UI_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch) | exact ECAD | one FX8C plug, 80 separate physical contacts, 51 interfaces, 20 `POWER_GROUND`, 7 `3V3_MAIN`, no reserves or NCs |
 | [`UI_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch) | exact ECAD | 28 components, two RF detectors, a physical optical IR sensor, four comparator channels, two reset sinks, 18 interfaces and one NC |
 | [`UI_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-UI/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch) | exact ECAD | 11 physical 1.0-mm test pads on exact nets; fabricated PCB copper with no purchased MPN/BOM |
-| [`RF_00_ROOT`](../hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch) | exact ECAD | 12 child sheets, 133 cross-sheet nets and 302 explicit pins/labels; functional child sheets are populated sequentially |
+| [`RF_00_ROOT`](../hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch) | exact ECAD | 12 child sheets, 133 cross-sheet nets and 305 explicit pins/labels; functional child sheets are populated sequentially |
 | [`RF_01_USB_PD_CHARGE`](../hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch) | exact ECAD | 52 components, 208 physical package pads, protected sink-only USB-PD, 2S/750-kHz NVDC charging, 9 interfaces and 10 explained NCs |
 | [`RF_02_PACK_SAFETY_AON`](../hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch) | exact ECAD | 61 symbols, 198 physical package/interface contacts, fail-closed 2S pack admission, 8 interfaces and 6 explained NCs |
+| [`RF_03_MAIN_RAILS_DOMAIN_GATES`](../hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch) | exact ECAD | 69 components, 186 physical contacts, independent AON/main/accessory rails, eFuses and domain gates, 20 interfaces and 3 explained NCs |
 
 Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
@@ -39,7 +40,8 @@ Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json)
 [UI manufacturing/test points](../hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json), and
 [RF/power root](../hardware/ecad/generated/H2-RF-root-interface.json), and
 [RF USB-PD/charging](../hardware/ecad/generated/H2-RF01-usb-pd-charge.json), and
-[RF pack safety/admission](../hardware/ecad/generated/H2-RF02-pack-safety-aon.json).
+[RF pack safety/admission](../hardware/ecad/generated/H2-RF02-pack-safety-aon.json), and
+[RF main rails/domain gates](../hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json).
 These sheets do not yet authorize PCB placement, routing or fabrication.
 
 Read the architecture from its three compute owners, not from the USB port.

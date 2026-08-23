@@ -30,10 +30,10 @@ PCB layout or target-emulator run, and no order is authorized.
 
 ### Current phase H2 — detailed position
 
-<!-- current-substep: H2.3.4 -->
+<!-- current-substep: H2.3.5 -->
 
-**Exact marker: `H2.3.4`** — implement and review main rails and independently
-quietable domain gates on `RF_03_MAIN_RAILS_DOMAIN_GATES`.
+**Exact marker: `H2.3.5`** — implement and review the RP2354 core, flash,
+native USB, recovery and service access on `RF_30_RP2354_CORE_SERVICE`.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - `H2.0` — freeze authoritative schematic inputs and project structure.
@@ -72,7 +72,7 @@ quietable domain gates on `RF_03_MAIN_RAILS_DOMAIN_GATES`.
     each has one real net, stable fixture identity and no false BOM/MPN entry.
 - ▶️ `H2.3` — implement and review RF/power PCB sheets.
   - ✅ `H2.3.1` — `RF_00_ROOT` reviewed: 12 child sheets, 133 exact
-    cross-sheet nets and 302 explicit pins/labels; the current ERC findings
+    cross-sheet nets and 305 explicit pins/labels; the current ERC findings
     are exactly accounted component-empty child stubs.
   - ✅ `H2.3.2` — `RF_01_USB_PD_CHARGE` reviewed: 52 exact components,
     208 physical package pads, protected sink-only USB-PD, 2S/750-kHz NVDC
@@ -80,8 +80,10 @@ quietable domain gates on `RF_03_MAIN_RAILS_DOMAIN_GATES`.
   - ✅ `H2.3.3` — `RF_02_PACK_SAFETY_AON` reviewed: 61 exact symbols,
     198 physical package/interface contacts, complete fail-closed 2S pack
     admission, eight hierarchy interfaces and six explained NC contacts.
-  - ▶️ **`H2.3.4` — current:** main rails and quietable domain gates.
-  - ⏳ `H2.3.5` — RP2354 core, flash and service access.
+  - ✅ `H2.3.4` — reviewed 69 exact main-rail/domain-gate components,
+    186 physical contacts, independent protected AON/main/accessory rails,
+    20 hierarchy interfaces and three explained NC contacts.
+  - ▶️ **`H2.3.5` — current:** RP2354 core, flash and service access.
   - ⏳ `H2.3.6` — three independent full-function nRF24 paths.
   - ⏳ `H2.3.7` — Sub-GHz and VHF/UHF voice paths.
   - ⏳ `H2.3.8` — U214 and protected M5 Unit expansion.

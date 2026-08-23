@@ -5,10 +5,10 @@
   "project": "LESHY2-RF",
   "sheet": "RF_02_PACK_SAFETY_AON",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c6c5e8d7cb83adcd787ba38884b2d694a852c10fbb9503c9f60af24c243d103d",
-    "hardware/architecture/devices.json": "9a4b558e3cf5c27b31e973381d2abfcc523c23a8b3538a146073033c15602201",
-    "hardware/ecad/generated/H2-instance-ledger.json": "e0d3cb5d6a2100844905ed66c14ccf2e4f34a203651675bbaa33b490d00353cb",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "647047a838b727445cf9207b1ca823f46fd1d32686273587cba558d9f4124a5c"
+    "hardware/architecture/candidates/G2F-3I.json": "9b23f8c04f2a5c722df553da7c7c6486805c2ed15e9510ac5a8e62ca55956067",
+    "hardware/architecture/devices.json": "06bfc3f5f01466d74cbe0a76bb2a20dcde4acfcc7dd8d3e871bea3fc101da962",
+    "hardware/ecad/generated/H2-instance-ledger.json": "05bea67522c939db60d0ea30d5944811c22524cd6a7f68c80e21c2c7d888c7f8",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "1f1515d7544fc053389591d802c9bf36c854f894d649fb6f91e977d016b28e52"
   },
   "summary": {
     "ledger_instances": 61,

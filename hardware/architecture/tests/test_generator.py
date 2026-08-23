@@ -424,7 +424,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(45, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1152, policy["expected_occurrence_count"])
+        self.assertEqual(1155, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(
@@ -1946,7 +1946,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             routes,
         )
         self.assertIn(
-            ("voice_pg_qualifier.C", "abstract:power-current-thermal-fault", "VOICE_4V_FAULT_QUAL_N"),
+            ("voice_pg_qualifier.C", "abstract:power-current-thermal-fault", "POWER_FAULT_N"),
             routes,
         )
         self.assertIn(
@@ -1962,7 +1962,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             routes,
         )
         self.assertIn(
-            ("ext_pg_qualifier.C", "abstract:power-current-thermal-fault", "EXT_5V_FAULT_QUAL_N"),
+            ("ext_pg_qualifier.C", "abstract:power-current-thermal-fault", "POWER_FAULT_N"),
             routes,
         )
         self.assertNotIn(

@@ -25,7 +25,7 @@
 | Требования продукта и функциональная архитектура | ✅ H0: проведено ревью границ возможностей, доменов, владельцев, классов интерфейсов и safety rules |
 | Физический дизайн устройства | ✅ H1 принят: внешние/внутренние виды, разрезы, service paths и pin/resource fit пройдены |
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
-| Актуальная production ECAD-схема | ▶️ H2.3.4: основные rails и отключаемые домены; H2.3.3 допуск pack проверен |
+| Актуальная production ECAD-схема | ▶️ H2.3.5: RP2354 core, flash и service access; H2.3.4 независимые rails/domain gates проверен |
 | Электрические и переходные evidence | ⏳ H3: не получены |
 | Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
 | Работа над KiCad-схемой | ▶️ H2: разрешена |
@@ -41,10 +41,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённая H1 и детальный состав текущей H2
 
-<!-- current-substep: H2.3.4 -->
+<!-- current-substep: H2.3.5 -->
 
-**Точный маркер: `H2.3.4`** — реализовать и проверить основные rails и
-независимо отключаемые домены на `RF_03_MAIN_RAILS_DOMAIN_GATES`.
+**Точный маркер: `H2.3.5`** — реализовать и проверить RP2354 core, flash,
+native USB, recovery и service access на `RF_30_RP2354_CORE_SERVICE`.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -164,7 +164,7 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
     полная UI-иерархия прошла native KiCad review.
 - ▶️ `H2.3` — реализовать и проверить листы RF/power PCB.
   - ✅ `H2.3.1` — `RF_00_ROOT`: 12 дочерних листов, 133 точные межлистовые
-    цепи и 302 явных pin/label; native KiCad принял иерархию, а текущие
+    цепи и 305 явных pin/label; native KiCad принял иерархию, а текущие
     ERC-находки — точный набор пустых функциональных child-stubs.
   - ✅ `H2.3.2` — `RF_01_USB_PD_CHARGE`: 52 точных компонента, 208 физических
     контактов корпусов, защищённый sink-only USB-PD, 2S/750-кГц NVDC-зарядка,
@@ -172,8 +172,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
   - ✅ `H2.3.3` — `RF_02_PACK_SAFETY_AON`: 61 точный symbol, 198 физических
     контактов корпусов/интерфейсов, полный fail-closed допуск 2S pack, восемь
     hierarchy-интерфейсов и шесть объяснённых NC; native KiCad пройден.
-  - ▶️ **`H2.3.4` — сейчас:** `RF_03_MAIN_RAILS_DOMAIN_GATES`.
-  - ⏳ `H2.3.5` — `RF_30_RP2354_CORE_SERVICE`.
+  - ✅ `H2.3.4` — `RF_03_MAIN_RAILS_DOMAIN_GATES`: 69 точных компонентов,
+    186 физических контактов, независимые защищённые AON/main/accessory rails,
+    20 hierarchy-интерфейсов и три объяснённых NC; native KiCad пройден.
+  - ▶️ **`H2.3.5` — сейчас:** `RF_30_RP2354_CORE_SERVICE`.
   - ⏳ `H2.3.6` — `RF_31_NRF24_X3`.
   - ⏳ `H2.3.7` — `RF_32_SUBGHZ_VOICE`.
   - ⏳ `H2.3.8` — `RF_34_U214_M5_EXT`.

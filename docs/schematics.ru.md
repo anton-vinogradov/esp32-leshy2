@@ -23,9 +23,10 @@
 | [`UI_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch) | точный ECAD | один FX8C plug, 80 отдельных физических контактов, 51 интерфейс, 20 `POWER_GROUND`, 7 `3V3_MAIN`, без резервов и NC |
 | [`UI_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch) | точный ECAD | 28 компонентов, два RF detector, физический optical IR sensor, четыре comparator-канала, два reset-sink, 18 интерфейсов и один NC |
 | [`UI_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-UI/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch) | точный ECAD | 11 физических test-площадок 1,0 мм на точных цепях; PCB copper без покупного MPN/BOM |
-| [`RF_00_ROOT`](../hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch) | точный ECAD | 12 дочерних листов, 133 межлистовые цепи и 302 явных pin/label; функциональные child-листы заполняются последовательно |
+| [`RF_00_ROOT`](../hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch) | точный ECAD | 12 дочерних листов, 133 межлистовые цепи и 305 явных pin/label; функциональные child-листы заполняются последовательно |
 | [`RF_01_USB_PD_CHARGE`](../hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch) | точный ECAD | 52 компонента, 208 физических контактов корпусов, защищённый sink-only USB-PD, 2S/750-кГц NVDC-зарядка, 9 интерфейсов и 10 объяснённых NC |
 | [`RF_02_PACK_SAFETY_AON`](../hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch) | точный ECAD | 61 symbol, 198 физических контактов корпусов/интерфейсов, fail-closed допуск 2S pack, 8 интерфейсов и 6 объяснённых NC |
+| [`RF_03_MAIN_RAILS_DOMAIN_GATES`](../hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch) | точный ECAD | 69 компонентов, 186 физических контактов, независимые AON/main/accessory rails, eFuse и domain gates, 20 интерфейсов и 3 объяснённых NC |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
@@ -39,7 +40,8 @@
 [UI manufacturing/test points](../hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json) и
 [RF/power root](../hardware/ecad/generated/H2-RF-root-interface.json) и
 [RF USB-PD/charging](../hardware/ecad/generated/H2-RF01-usb-pd-charge.json) и
-[RF pack safety/admission](../hardware/ecad/generated/H2-RF02-pack-safety-aon.json).
+[RF pack safety/admission](../hardware/ecad/generated/H2-RF02-pack-safety-aon.json) и
+[RF main rails/domain gates](../hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json).
 PCB placement, routing и производство этими листами ещё не разрешены.
 
 Архитектура читается от трёх вычислительных владельцев, а не от USB-порта.

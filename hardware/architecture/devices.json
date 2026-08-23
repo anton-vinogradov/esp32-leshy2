@@ -6115,7 +6115,8 @@
         "OUT": {"physical": "1", "role": "power"},
         "OVLO": {"physical": "2", "role": "analog"},
         "ILIM": {"physical": "3", "role": "analog"},
-        "GND": {"physical": "4 and exposed thermal pad", "role": "power"},
+        "GND": {"physical": "4", "role": "power"},
+        "EP_GND": {"physical": "7 (exposed thermal pad)", "role": "power"},
         "EN_UVLO": {"physical": "5", "role": "analog"},
         "IN": {"physical": "6", "role": "power"}
       }

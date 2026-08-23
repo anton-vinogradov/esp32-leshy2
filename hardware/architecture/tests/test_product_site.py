@@ -138,7 +138,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H2.3.4"}, set(markers.values()))
+        self.assertEqual({"H2.3.5"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
@@ -165,7 +165,7 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.3.4", plan["current_substep"])
+        self.assertEqual("H2.3.5", plan["current_substep"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -206,11 +206,12 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["substeps"][3]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][3]["children"][1]["status"])
         self.assertEqual("reviewed", plan["substeps"][3]["children"][2]["status"])
-        self.assertEqual("current", plan["substeps"][3]["children"][3]["status"])
+        self.assertEqual("reviewed", plan["substeps"][3]["children"][3]["status"])
+        self.assertEqual("current", plan["substeps"][3]["children"][4]["status"])
         self.assertTrue(
             all(
                 item["status"] == "waiting"
-                for item in plan["substeps"][3]["children"][4:]
+                for item in plan["substeps"][3]["children"][5:]
             )
         )
         sheet_contract = json.loads(
@@ -400,22 +401,22 @@ class ProductSiteTests(unittest.TestCase):
             {
                 "child_sheet_count": 12,
                 "cross_sheet_net_count": 133,
-                "root_hierarchical_pin_count": 302,
-                "child_hierarchical_label_count": 302,
-                "known_child_stub_erc_violations": 250,
-                "implemented_child_sheet_count": 2,
-                "circuit_symbols_placed": 113,
-                "known_generated_library_copy_warnings": 113,
-                "known_deferred_fixture_erc_violations": 5,
+                "root_hierarchical_pin_count": 305,
+                "child_hierarchical_label_count": 305,
+                "known_child_stub_erc_violations": 211,
+                "implemented_child_sheet_count": 3,
+                "circuit_symbols_placed": 182,
+                "known_generated_library_copy_warnings": 182,
+                "known_deferred_fixture_erc_violations": 6,
                 "pcb_files_created": 0,
             },
             manifest["summary"],
         )
         root = self.read("hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch")
         self.assertEqual(12, root.count("\n\t(sheet\n"))
-        self.assertEqual(302, root.count("\n\t\t(pin \""))
-        self.assertEqual(435, root.count("\n\t(wire\n"))
-        self.assertEqual(302, root.count("\n\t(junction "))
+        self.assertEqual(305, root.count("\n\t\t(pin \""))
+        self.assertEqual(438, root.count("\n\t(wire\n"))
+        self.assertEqual(305, root.count("\n\t(junction "))
         self.assertIn('\t(paper "A0" portrait)', root)
         for row in manifest["sheets"]:
             child = self.read(
@@ -559,6 +560,59 @@ class ProductSiteTests(unittest.TestCase):
             "Package_SO:Texas_DGS0020A_TSSOP-20_3x5.1mm_P0.5mm",
             admission["footprint"],
         )
+
+    def test_h2_3_4_exact_main_rails_domain_gates_sheet_is_reviewed_and_current(self):
+        import json
+
+        script = REPO_ROOT / "hardware/ecad/h2_rf_main_rails_domain_gates.py"
+        result = subprocess.run(
+            [sys.executable, str(script), "--check", "--kicad-check"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        manifest = json.loads(
+            self.read("hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json")
+        )
+        self.assertEqual("H2.3.4", manifest["stage"])
+        self.assertEqual(
+            "reviewed_exact_main_rails_domain_gates_sheet", manifest["status"]
+        )
+        self.assertEqual(
+            {
+                "ledger_instances": 69,
+                "schematic_symbols": 69,
+                "board_fitted_symbols": 69,
+                "hierarchical_interfaces": 20,
+                "physical_package_contacts": 186,
+                "aon_buck_package_pins": 8,
+                "aon_efuse_package_pads": 7,
+                "main_efuse_package_pads": 10,
+                "external_efuse_package_pads": 10,
+                "independent_switchmode_domains": 3,
+                "intentional_no_connect_pins": 3,
+                "custom_package_contact_footprints": 2,
+                "pcb_files_created": 0,
+            },
+            manifest["summary"],
+        )
+        self.assertEqual(
+            {"aon_buck.FB_VSET", "ext_efuse.AUXOFF", "ext_evidence_buffer.NC"},
+            set(manifest["intentional_no_connect_endpoints"]),
+        )
+        self.assertEqual(
+            {"main_buck.PG"},
+            {row["endpoint"] for row in manifest["known_deferred_fixture_labels"]},
+        )
+        sheet = self.read(
+            "hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch"
+        )
+        self.assertEqual(69, sheet.count("\n\t(symbol\n"))
+        self.assertEqual(20, sheet.count("\n\t(hierarchical_label \""))
+        self.assertEqual(3, sheet.count("\n\t(no_connect "))
+        self.assertTrue(all(row["footprint"] for row in manifest["instances"]))
 
     def test_h2_2_2_exact_s3_core_sheet_is_reviewed_and_current(self):
         import json

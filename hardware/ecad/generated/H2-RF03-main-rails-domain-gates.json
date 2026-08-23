@@ -1,0 +1,685 @@
+{
+  "schema_version": 1,
+  "stage": "H2.3.4",
+  "status": "reviewed_exact_main_rails_domain_gates_sheet",
+  "project": "LESHY2-RF",
+  "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "9b23f8c04f2a5c722df553da7c7c6486805c2ed15e9510ac5a8e62ca55956067",
+    "hardware/architecture/devices.json": "06bfc3f5f01466d74cbe0a76bb2a20dcde4acfcc7dd8d3e871bea3fc101da962",
+    "hardware/ecad/generated/H2-instance-ledger.json": "05bea67522c939db60d0ea30d5944811c22524cd6a7f68c80e21c2c7d888c7f8",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "1f1515d7544fc053389591d802c9bf36c854f894d649fb6f91e977d016b28e52"
+  },
+  "summary": {
+    "ledger_instances": 69,
+    "schematic_symbols": 69,
+    "board_fitted_symbols": 69,
+    "hierarchical_interfaces": 20,
+    "physical_package_contacts": 186,
+    "aon_buck_package_pins": 8,
+    "aon_efuse_package_pads": 7,
+    "main_efuse_package_pads": 10,
+    "external_efuse_package_pads": 10,
+    "independent_switchmode_domains": 3,
+    "intentional_no_connect_pins": 3,
+    "custom_package_contact_footprints": 2,
+    "pcb_files_created": 0
+  },
+  "instances": [
+    {
+      "instance": "ext_request_or",
+      "symbol_uuid": "70399ac4-bd61-5994-aa4e-c45c28417a31",
+      "reference": "U1",
+      "mpn": "74LVC1G32GV,125",
+      "footprint": "Package_TO_SOT_SMD:SC-74A-5_1.55x2.9mm_P0.95mm",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_request_or_bypass",
+      "symbol_uuid": "991cb611-19bf-5acf-8198-3e5bdbfb4a32",
+      "reference": "C1",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_any_req_pulldown",
+      "symbol_uuid": "04a08c85-9172-52ad-b242-f3126d3c9add",
+      "reference": "R1",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_branch_gate",
+      "symbol_uuid": "3b885657-ace6-5e75-b94e-0dff1c2ea02e",
+      "reference": "U2",
+      "mpn": "Texas Instruments SN74LVC2G08DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+      "pin_count": 8,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_branch_gate_bypass",
+      "symbol_uuid": "b53c6af9-6ebb-5ca6-b0e8-48a4b5f7f5fe",
+      "reference": "C2",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "aon_buck",
+      "symbol_uuid": "2e701c02-8063-5aeb-973d-db400b2fe3dc",
+      "reference": "U3",
+      "mpn": "Texas Instruments TPS629203DRLR",
+      "footprint": "Leshy2:TI-DRL0008A-SOT-5X3-8",
+      "pin_count": 8,
+      "board_fitted": true
+    },
+    {
+      "instance": "aon_inductor",
+      "symbol_uuid": "d1213b34-519f-5159-83ad-df7d73682589",
+      "reference": "L1",
+      "mpn": "Sunlord WPN201612H2R2MT",
+      "footprint": "Inductor_SMD:L_Murata_LQH2MCNxxxx02_2.0x1.6mm",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "aon_mode_res",
+      "symbol_uuid": "0a591750-4533-5baa-943f-8ec8b314884c",
+      "reference": "R2",
+      "mpn": "Yageo RC0402FR-0742K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "aon_input_cap",
+      "symbol_uuid": "bf308b4d-6790-5442-b205-6ec8bfb40707",
+      "reference": "C3",
+      "mpn": "TDK CGA5L1X7R1E475K160AC",
+      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "aon_output_cap",
+      "symbol_uuid": "b5eb7d24-60b6-57b3-bf3e-44ec2f0fb680",
+      "reference": "C4",
+      "mpn": "Murata GRM31CR71A226KE15L",
+      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "aon_efuse",
+      "symbol_uuid": "471863d7-872e-5020-b74e-9bde6248d55f",
+      "reference": "U4",
+      "mpn": "Texas Instruments TPS25961DRVR",
+      "footprint": "Package_SON:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm",
+      "pin_count": 7,
+      "board_fitted": true
+    },
+    {
+      "instance": "aon_efuse_rilim",
+      "symbol_uuid": "1443319b-0027-5161-9c05-e740dbfa072b",
+      "reference": "R3",
+      "mpn": "Yageo RC0402FR-07240KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "aon_efuse_ovlo_top",
+      "symbol_uuid": "78907e41-798c-5d9e-a642-edc3761b41ef",
+      "reference": "R4",
+      "mpn": "Yageo RC0402FR-07196KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "aon_efuse_ovlo_bottom",
+      "symbol_uuid": "3aa16b7b-bf92-58ff-a249-3fd6db43d3cb",
+      "reference": "R5",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "aon_efuse_input_cap",
+      "symbol_uuid": "3307df00-f597-50b7-8986-74abc7ae3bea",
+      "reference": "C5",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "aon_efuse_output_cap",
+      "symbol_uuid": "67484b4b-21ef-5d15-a3e1-18b3a26a2764",
+      "reference": "C6",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "aon_pg_pullup",
+      "symbol_uuid": "2c2d81e1-773f-51da-9b91-cfe4c18586b7",
+      "reference": "R6",
+      "mpn": "Yageo RC0402FR-0747KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_buck",
+      "symbol_uuid": "14113179-ec88-5d7c-8e28-710e18faba0d",
+      "reference": "U5",
+      "mpn": "Texas Instruments TPS564252DRLR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-N6_DRL-6",
+      "pin_count": 6,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_inductor",
+      "symbol_uuid": "affd31a2-6f5e-56b3-973b-1ab7097a281c",
+      "reference": "L2",
+      "mpn": "Sunlord MWSA0503S-3R3MT",
+      "footprint": "Inductor_SMD:L_Sunlord_MWSA0503S",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_input_cap",
+      "symbol_uuid": "4fa23b46-5e22-5705-ade8-a8a3ba6ba4c3",
+      "reference": "C7",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_hf_input_cap",
+      "symbol_uuid": "8a8cf703-35dc-54b1-abf6-968de7bd4b18",
+      "reference": "C8",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_fb_top",
+      "symbol_uuid": "3f1838b4-7676-5707-8e61-383fc5ab2245",
+      "reference": "R7",
+      "mpn": "Yageo RC0402FR-0745K3L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_fb_bottom",
+      "symbol_uuid": "0fd12bc1-568a-514e-8327-e810b1f6c500",
+      "reference": "R8",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_ff_cap",
+      "symbol_uuid": "4ed45de2-760a-5847-9342-7c07e76dc0c7",
+      "reference": "C9",
+      "mpn": "KEMET C0402C330J5GACTU",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_output_cap0",
+      "symbol_uuid": "def6ced0-76b1-5328-be09-7404ce8ad346",
+      "reference": "C10",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_output_cap1",
+      "symbol_uuid": "b8302726-5cc9-5395-9d0f-649f7ec3448e",
+      "reference": "C11",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_efuse",
+      "symbol_uuid": "d989162a-ff0d-5f3f-b848-e802f33cdced",
+      "reference": "U6",
+      "mpn": "Texas Instruments TPS25974LRPWR",
+      "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_efuse_rilm",
+      "symbol_uuid": "1c01c70f-e5c6-5c22-bf05-88f8d0120b00",
+      "reference": "R9",
+      "mpn": "Yageo RC0402FR-071K65L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_efuse_dvdt_cap",
+      "symbol_uuid": "891a0433-8e56-5982-8618-b3c83f321ca3",
+      "reference": "C12",
+      "mpn": "Murata GRM155R71H472KA01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_efuse_itimer_cap",
+      "symbol_uuid": "707df883-c1eb-5a0e-8ee1-540c94e7ef1a",
+      "reference": "C13",
+      "mpn": "Murata GRM1555C1H121JA01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_efuse_ovlo_top",
+      "symbol_uuid": "9bebb952-3f20-5b77-90e5-6c0317c8a958",
+      "reference": "R10",
+      "mpn": "Yageo RT0402BRD07191KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_efuse_ovlo_bottom",
+      "symbol_uuid": "f3ebb17e-0b80-5e18-81b1-4ac65c86f435",
+      "reference": "R11",
+      "mpn": "Yageo RT0402BRD07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_efuse_pg_top",
+      "symbol_uuid": "ded9c657-b2b6-5344-9453-17a40edc8668",
+      "reference": "R12",
+      "mpn": "Yageo RC0402FR-0745K3L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_efuse_pg_bottom",
+      "symbol_uuid": "17db3a7a-70b4-5632-a830-cab5d07b3ab6",
+      "reference": "R13",
+      "mpn": "Yageo RC0402FR-0730KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_efuse_output_cap",
+      "symbol_uuid": "62cc6c53-55ca-5562-96d5-845135996148",
+      "reference": "C14",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "main_en_pulldown",
+      "symbol_uuid": "1a21c7c9-1a5e-5d95-a81e-67bd2fbe6a0b",
+      "reference": "R14",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_buck",
+      "symbol_uuid": "d5de279d-0d1f-5623-b007-8d94866306fb",
+      "reference": "U7",
+      "mpn": "Texas Instruments TPS564252DRLR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-N6_DRL-6",
+      "pin_count": 6,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_inductor",
+      "symbol_uuid": "d6de0d22-9e04-584e-ab08-e65800caba7e",
+      "reference": "L3",
+      "mpn": "Sunlord MWSA0503S-4R7MT",
+      "footprint": "Inductor_SMD:L_Sunlord_MWSA0503S",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_buck_input_cap",
+      "symbol_uuid": "4bc5cdd1-ae51-5542-ad14-f6e5856cafc4",
+      "reference": "C15",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_buck_hf_input_cap",
+      "symbol_uuid": "09809f44-9655-521e-b2ea-b7feb7a11eb9",
+      "reference": "C16",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_buck_fb_top",
+      "symbol_uuid": "e7ff2690-9078-5a95-844e-86f7e903bdfd",
+      "reference": "R15",
+      "mpn": "Yageo RC0402FR-07220KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_buck_fb_bottom",
+      "symbol_uuid": "206a08f5-4238-52b2-b821-6c4cdfe2c347",
+      "reference": "R16",
+      "mpn": "Yageo RC0402FR-0730KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_buck_ff_cap",
+      "symbol_uuid": "3855c449-ea33-570a-b0c2-a4f508da2693",
+      "reference": "C17",
+      "mpn": "KEMET C0402C330J5GACTU",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_buck_output_cap0",
+      "symbol_uuid": "80e7ffb2-1922-5cdb-bcb0-71e0127d7cb2",
+      "reference": "C18",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_buck_output_cap1",
+      "symbol_uuid": "0e903f7c-c7b6-5736-8a78-8ab9bc276af6",
+      "reference": "C19",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_en_pulldown",
+      "symbol_uuid": "0724b7fa-1da4-5255-9d44-39694e9df683",
+      "reference": "R17",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_pg_pullup",
+      "symbol_uuid": "7f9393d6-4264-5d6a-92dd-5e95e21b3329",
+      "reference": "R18",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_pg_base_res",
+      "symbol_uuid": "991a4da3-a5d6-5aa6-bff3-b0dcb1c53b66",
+      "reference": "R19",
+      "mpn": "Yageo RC0402FR-0768KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_pg_qualifier",
+      "symbol_uuid": "2afae715-6834-5a51-b6f1-898802afd696",
+      "reference": "Q1",
+      "mpn": "Diodes Incorporated MMBT3904-7-F",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "pin_count": 3,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_efuse",
+      "symbol_uuid": "cecbdaf7-3521-5327-a48e-d4ce2b4282dc",
+      "reference": "U8",
+      "mpn": "Texas Instruments TPS259470LRPWR",
+      "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_rilm",
+      "symbol_uuid": "4217e024-4e50-51de-8b6e-4a2c8288278c",
+      "reference": "R20",
+      "mpn": "Yageo RC0402FR-072K21L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_dvdt_cap",
+      "symbol_uuid": "ff7e50b9-5d0e-5c68-a7a2-45748fdc24c7",
+      "reference": "C20",
+      "mpn": "Murata GRM155R71H472KA01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_itimer_cap",
+      "symbol_uuid": "4f62318a-2a68-5c5d-a3c6-a22c0b9b68a5",
+      "reference": "C21",
+      "mpn": "Murata GRM188R71E224KA88D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_ovlo_top",
+      "symbol_uuid": "6da14c99-cf90-5412-8fbd-35ea4b9c3fbf",
+      "reference": "R21",
+      "mpn": "Yageo RC0402FR-07169KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_ovlo_bottom",
+      "symbol_uuid": "37a0f47f-f996-5322-a0fe-a1b441f6220d",
+      "reference": "R22",
+      "mpn": "Yageo RC0402FR-0747KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_input_cap",
+      "symbol_uuid": "7988fe7f-7da9-54f6-bf15-44d7ba205ed6",
+      "reference": "C22",
+      "mpn": "Murata GRM21BR71E225KE11L",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_output_cap",
+      "symbol_uuid": "f767b267-f4ce-5c0f-812a-60b19620489a",
+      "reference": "C23",
+      "mpn": "Murata GRM21BR71E225KE11L",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_bleeder",
+      "symbol_uuid": "8e90e567-ff5f-518b-95d4-ff51ae15b29e",
+      "reference": "R23",
+      "mpn": "Yageo RC0603FR-071KL",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "power_zone_ntc",
+      "symbol_uuid": "c91e4ab6-59e6-5478-b2ce-bf450c4d9f6a",
+      "reference": "RT1",
+      "mpn": "TDK B57332V5103F360",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "power_zone_temp_pullup",
+      "symbol_uuid": "acad24cc-273f-5454-9302-e8585dca8652",
+      "reference": "R24",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "power_zone_temp_filter",
+      "symbol_uuid": "b9c0b4bd-9a3e-5080-87d0-44d459600ef8",
+      "reference": "C24",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rf_zone_ntc",
+      "symbol_uuid": "34d20217-6f44-534e-9da8-079176fcebce",
+      "reference": "RT2",
+      "mpn": "TDK B57332V5103F360",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rf_zone_temp_pullup",
+      "symbol_uuid": "70cb700e-6073-5efe-a002-64fcf640f170",
+      "reference": "R25",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rf_zone_temp_filter",
+      "symbol_uuid": "4a218eea-d895-5b97-9380-a3c02707b3c6",
+      "reference": "C25",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_evidence_input_series",
+      "symbol_uuid": "ee60c337-3fe0-5ba0-ab2c-85cf8d282304",
+      "reference": "R26",
+      "mpn": "Yageo RC0402FR-071KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_evidence_input_pullup",
+      "symbol_uuid": "61efd4a9-6af0-5f33-9b07-c441b0eba36f",
+      "reference": "R27",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_evidence_buffer",
+      "symbol_uuid": "04875cf8-e185-5ddb-b0be-fe20a92266f0",
+      "reference": "U9",
+      "mpn": "SN74LVC1G07DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_evidence_buffer_bypass",
+      "symbol_uuid": "78eaa9fe-3cdb-5f00-ae51-1a6817085f98",
+      "reference": "C26",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "ext_evidence_output_pullup",
+      "symbol_uuid": "78e92379-5fa7-54af-8da2-10d4eef0a194",
+      "reference": "R28",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    }
+  ],
+  "physical_net_aliases_collapsed": {
+    "AON_EFUSE_EN": "AON_RAW_3V3",
+    "AON_RAW_3V3_SENSE": "AON_RAW_3V3",
+    "EXT_EFUSE_ILM_SET": "U214_5V_CURRENT_MONITOR",
+    "MAIN_EFUSE_EN": "MAIN_RAW_3V3"
+  },
+  "intentional_no_connect_endpoints": [
+    "aon_buck.FB_VSET",
+    "ext_efuse.AUXOFF",
+    "ext_evidence_buffer.NC"
+  ],
+  "known_deferred_fixture_labels": [
+    {
+      "endpoint": "main_buck.PG",
+      "net": "MAIN_RAW_3V3_PG_N",
+      "label_uuid": "9fcc9ba4-31fb-5336-86ef-7c5d6a7e79cf"
+    }
+  ],
+  "review_boundary": {
+    "complete": [
+      "all 69 RF03 ledger instances and all 186 physical package contacts are explicit",
+      "AON, main and accessory converters have independent inductors, feedback, bypass and post-protection",
+      "AON eFuse exposed pad is explicit and both HotRod eFuses expose all ten real package contacts",
+      "TPS259470 AUXOFF is correctly treated as an unused open-drain output rather than a fast-off input",
+      "main PG and all qualified accessory current, thermal and voltage faults share one POWER_FAULT_N aggregate",
+      "all twenty hierarchy interfaces and three intentional no-connect contacts are explicit"
+    ],
+    "deferred": [
+      "the single raw main-converter PG diagnostic pad is instantiated by RF60",
+      "final DRL/RPW copper density, shaped HotRod lands, paste segmentation and DRC close in H6",
+      "rail efficiency, transient response, current-limit tolerance, thermal trip and source handover close in H3/H8",
+      "exact converter startup order and fault messages close in firmware/virtual/HIL phases"
+    ]
+  }
+}

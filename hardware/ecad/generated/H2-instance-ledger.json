@@ -15406,7 +15406,7 @@
       "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "electrical_disposition": "board_fitted_component",
       "physical_registration": "schematic_only_body",
-      "contact_count": 6,
+      "contact_count": 7,
       "contact_evidence_status": "registered_exact_contact_map",
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
