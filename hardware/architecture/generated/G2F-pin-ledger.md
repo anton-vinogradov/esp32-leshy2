@@ -183,6 +183,7 @@
 | `ti_txs0102_dcur` | `Texas Instruments TXS0102DCUR` | `verified_exact_native_m5_unit_signal_isolator` | `active_production_orderable` | [TXS0102 2-bit bidirectional voltage-level translator datasheet SCES640L, revised January 2026](https://www.ti.com/lit/ds/symlink/txs0102.pdf) | same primary source |
 | `ttm_b0310j50100ahf` | `TTM Technologies B0310J50100AHF` | `verified_exact_cc_first_pass_balun` | `active_orderable` | [B0310J50100AHF balun datasheet current manufacturer document checked 2026-08-18](https://cdn.ttm.com/repository/products/wireless-xinger/balun-transformers/B0310J50100AHF/B0310J50100AHF.pdf) | same primary source |
 | `ttm_dc2337j5010ahf` | `TTM Technologies DC2337J5010AHF` | `verified_exact_nrf_forward_power_coupler` | `active_orderable` | [DC2337J5010AHF 10-dB directional coupler datasheet Rev. H](https://cdn.ttm.com/repository/products/wireless-xinger/10-20-30-dB-directional-couplers/DC2337J5010AHF/DC2337J5010AHF.pdf) | same primary source |
+| `vishay_crcw0402160kfked` | `Vishay CRCW0402160KFKED` | `verified_candidate` | `active_orderable` | [Vishay D/CRCW e3 thick-film chip resistor datasheet and exact quality listing active exact order code checked 2026-08-24](https://www.vishay.com/docs/20035/dcrcwe3.pdf) | same primary source |
 | `vishay_tnpw040210k0beed` | `Vishay TNPW040210K0BEED` | `verified_exact_precision_main_feedback_resistor` | `active_orderable` | [Vishay TNPW e3 high-stability thin-film resistor datasheet Document 28758, revision 10-Apr-2026](https://www.vishay.com/docs/28758/tnpw_e3.pdf) | same primary source |
 | `vishay_tnpw040243k7beed` | `Vishay TNPW040243K7BEED` | `verified_exact_precision_main_feedback_resistor` | `active_orderable` | [Vishay TNPW e3 high-stability thin-film resistor datasheet Document 28758, revision 10-Apr-2026](https://www.vishay.com/docs/28758/tnpw_e3.pdf) | same primary source |
 | `vishay_tsmp95000tt` | `Vishay TSMP95000TT` | `verified_exact_carrier_learning_ir_receiver` | `active_stocked_orderable` | [TSMP95000 IR sensor module datasheet Rev. 1.0, 20-Oct-2022](https://www.vishay.com/docs/82907/tsmp95000.pdf) | same primary source |
@@ -2614,8 +2615,11 @@ Reserved: `PA1_NRST`. Free: none.
 | `MIC_BIAS_FILTERED` | `microphone_bias_filter_res.END_2` | `microphone_bias_res.END_1` | exact 2.2-kOhm load targets the microphone's 2-V operating point |
 | `MIC_RAW` | `microphone_bias_res.END_2` | `microphone.OUT_PLUS` | one exact Same Sky electret is the shared acoustic source |
 | `AUDIO_GROUND` | `microphone.GND_MINUS` | `abstract:audio-ground` | electret shell/input return is local and short |
-| `MIC_BIAS_FILTERED` | `microphone_bias_filter_res.END_2` | `headset_mic_bias_res.END_1` | the CTIA sleeve receives the same quiet microphone supply through its own exact bias resistor |
-| `HEADSET_MIC_RAW` | `headset_mic_bias_res.END_2` | `headphone_jack.SLEEVE` | exact 2.2-kOhm bias supports an ordinary CTIA electret capsule and bounds a shorted TRS sleeve |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `headset_microphone_bias_filter_res.END_1` | the exposed CTIA microphone gets an independent exact 220-Ohm filter so an ordinary TRS ground cannot disturb the internal capsule |
+| `HEADSET_MIC_BIAS_FILTERED` | `headset_microphone_bias_filter_res.END_2` | `headset_microphone_bias_filter_cap.END_1` | exact 10-uF local bulk keeps the headset bias quiet and independent |
+| `AUDIO_GROUND` | `headset_microphone_bias_filter_cap.END_2` | `abstract:audio-ground` | headset-bias filter return remains at the protected jack-entry audio region |
+| `HEADSET_MIC_BIAS_FILTERED` | `headset_microphone_bias_filter_res.END_2` | `headset_mic_bias_res.END_1` | the CTIA sleeve receives its independent quiet microphone supply through an exact 2.2-kOhm resistor |
+| `HEADSET_MIC_RAW` | `headset_mic_bias_res.END_2` | `headphone_jack.SLEEVE` | exact 2.2-kOhm bias supports an ordinary CTIA electret capsule and bounds a shorted TRS sleeve without pulling down the internal microphone |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `headset_mic_selector.VCC` | microphone source selection remains available independently of codec and voice-domain power |
 | `AUDIO_GROUND` | `headset_mic_selector.GND` | `abstract:audio-ground` | headset selector quiet return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `headset_mic_selector_bypass.END_1` | exact 100-nF headset-selector bypass |
@@ -2678,10 +2682,10 @@ Reserved: `PA1_NRST`. Free: none.
 | `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `audio_capture_buffer_bypass.END_1` | exact 100-nF TLV9061 bypass |
 | `AUDIO_GROUND` | `audio_capture_buffer_bypass.END_2` | `abstract:audio-ground` | buffer bypass return |
 | `CODEC_CAPTURE_BUFFER_OUT` | `audio_capture_buffer.OUT` | `codec_adc_p_coupling.END_1` | buffered source is AC-coupled into microphone-range input |
-| `CODEC_ADC_P_AC` | `codec_adc_p_coupling.END_2` | `codec_adc_p_series.END_1` | 33-kOhm series element attenuates against the ES8311 input impedance |
-| `CODEC_ADC_IN_P` | `codec_adc_p_series.END_2` | `codec.MIC1P` | about -16-dB paper target remains a measured level/deviation HIL gate |
+| `CODEC_ADC_P_AC` | `codec_adc_p_coupling.END_2` | `codec_adc_p_series.END_1` | zero-Ohm configuration link follows the ES8311 reference direct-coupled microphone input and preserves an optional rework footprint |
+| `CODEC_ADC_IN_P` | `codec_adc_p_series.END_2` | `codec.MIC1P` | the buffered selected source reaches MIC1P without the former unsupported 33-kOhm SNR loss |
 | `AUDIO_GROUND` | `abstract:audio-ground` | `codec_adc_n_coupling.END_1` | matched AC reference forms the negative single-ended-to-differential leg |
-| `CODEC_ADC_N_AC` | `codec_adc_n_coupling.END_2` | `codec_adc_n_series.END_1` | matching 33-kOhm source impedance preserves common-mode behavior |
+| `CODEC_ADC_N_AC` | `codec_adc_n_coupling.END_2` | `codec_adc_n_series.END_1` | matching zero-Ohm configuration link preserves the reference differential input symmetry |
 | `CODEC_ADC_IN_N` | `codec_adc_n_series.END_2` | `codec.MIC1N` | negative codec microphone input is not silently grounded |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_speaker_selector.VDD` | speaker selector remains alive for receive bypass while codec is off |
 | `AUDIO_GROUND` | `audio_speaker_selector.GND` | `abstract:audio-ground` | speaker selector quiet return |
@@ -2750,8 +2754,8 @@ Reserved: `PA1_NRST`. Free: none.
 | `VOICE_ELECTRET_DEFAULT` | `mic_tx_coupling.END_2` | `mic_tx_bias.END_1` | 100-kOhm midpoint bias defines the selector input |
 | `AUDIO_VMID_MAIN` | `mic_tx_bias.END_2` | `audio_vmid_top.END_2` | ordinary TX audio uses main midpoint |
 | `CODEC_TX_DAC_TAP` | `codec.OUTP` | `codec_tx_coupling.END_1` | codec injection is separately AC-coupled and cannot assert PTT |
-| `CODEC_TX_AC` | `codec_tx_coupling.END_2` | `codec_tx_atten_top.END_1` | exact 220-kOhm upper attenuation leg minimally loads the codec output |
-| `VOICE_CODEC_INJECT` | `codec_tx_atten_top.END_2` | `audio_tx_selector.NO` | about -40-dB first target matches the SA518 microphone-input scale |
+| `CODEC_TX_AC` | `codec_tx_coupling.END_2` | `codec_tx_atten_top.END_1` | exact 160-kOhm upper attenuation leg ensures the full-scale codec can exceed the SA518 10-mVrms modulation target at every calculated tolerance corner |
+| `VOICE_CODEC_INJECT` | `codec_tx_atten_top.END_2` | `audio_tx_selector.NO` | about -38.5-dB passive target leaves bounded downward DAC-volume calibration instead of an unreachable under-drive corner |
 | `VOICE_CODEC_INJECT` | `codec_tx_atten_top.END_2` | `codec_tx_atten_bottom.END_1` | exact 2.2-kOhm lower leg fixes passive attenuation |
 | `AUDIO_VMID_MAIN` | `codec_tx_atten_bottom.END_2` | `audio_vmid_top.END_2` | attenuator is centered on the main analog midpoint |
 | `VOICE_CODEC_INJECT` | `codec_tx_atten_top.END_2` | `codec_tx_filter.END_1` | exact 10-nF shunt limits out-of-band codec energy |
@@ -3886,13 +3890,16 @@ Reserved: `PA1_NRST`. Free: none.
 - `audio_capture_local_bias_cap` lifecycle: `active_production`.
 - `audio_capture_buffer` uses `TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
 - `codec_adc_p_coupling` lifecycle: `active_production`.
+- `codec_adc_p_series` lifecycle: `active_orderable`.
 - `codec_adc_n_coupling` lifecycle: `active_production`.
+- `codec_adc_n_series` lifecycle: `active_orderable`.
 - `audio_speaker_selector` uses `Texas Instruments TMUX1136DGSR` as `reference_only`, not an accepted production choice.
 - `speaker_input_p_coupling` lifecycle: `active_production`.
 - `speaker_input_n_coupling` lifecycle: `active_production`.
 - `audio_tx_selector` uses `Texas Instruments TS5A63157DCKR` as `reference_only`, not an accepted production choice.
 - `mic_tx_coupling` lifecycle: `active_production`.
 - `codec_tx_coupling` lifecycle: `active_production`.
+- `codec_tx_atten_top` lifecycle: `active_orderable`.
 - `voice_mic_coupling` lifecycle: `active_production`.
 - `audio_safe_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
 - `speaker_amp_input_cap` lifecycle: `active_production`.
@@ -3903,6 +3910,7 @@ Reserved: `PA1_NRST`. Free: none.
 - `microphone_bias_filter_res` lifecycle: `active_orderable`.
 - `headphone_jack` lifecycle: `active_orderable`.
 - `headset_mic_selector` uses `Texas Instruments TS5A63157DCKR` as `reference_only`, not an accepted production choice.
+- `headset_microphone_bias_filter_res` lifecycle: `active_orderable`.
 - `codec_power_input_cap` lifecycle: `active_production`.
 - `codec_i2s_din_boot_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.
 - `codec_i2s_din_boot_gate` lifecycle: `active_orderable`.

@@ -61,9 +61,9 @@ PROVENANCE = [
     },
     {
         "id": "SRC-DISPLAY-BOUND",
-        "value": "294 mA",
-        "use": "display/touch logic plus maximum protected backlight branch",
-        "basis": "60-mA logic admission plus the existing 234-mA maximum backlight eFuse corner",
+        "value": "200 mA",
+        "use": "display/touch logic plus maximum admitted normal backlight branch",
+        "basis": "80-mA display/touch admission plus the donor 120-mA normal backlight reference; the 174-to-234-mA TPS2553 threshold is a latched fault bound, not an operating load",
         "url": "https://www.ti.com/lit/ds/symlink/tps2553.pdf",
     },
     {
@@ -75,9 +75,9 @@ PROVENANCE = [
     },
     {
         "id": "SRC-AUDIO-BOUND",
-        "value": "500 mA",
+        "value": "625 mA",
         "use": "codec, selectors and maximum admitted speaker playback",
-        "basis": "accepted product branch ceiling; it exceeds the PAM8302A 8-ohm 3.6-V curve",
+        "basis": "actual AS02404PO 4-ohm +/-15% corner: ideal BTL sine power at the 3.285658-V rail is at most 1.588 W into 3.4 ohm; PAM8302A 85% minimum peak efficiency plus 8-mA maximum quiescent current bounds the amplifier near 577 mA and leaves more than 48 mA for codec/selectors",
         "url": "https://www.diodes.com/datasheet/download/PAM8302A.pdf",
     },
     {
@@ -186,9 +186,9 @@ MAIN_SUPPORT_MA = {
         "s3_compute_memory_and_rf_peak_reservation": d("340"),
         "c5_compute_memory_and_5ghz_peak_reservation": d("408"),
         "rp2354_pio_dma_io_and_stacked_flash": d("250"),
-        "display_touch_and_max_protected_backlight": d("294"),
+        "display_touch_and_max_normal_backlight": d("200"),
         "qualified_micro_sd_at_socket_limit": d("500"),
-        "codec_selectors_and_max_speaker_playback": d("500"),
+        "codec_selectors_and_max_speaker_playback": d("625"),
         "remaining_named_main_logic_controls_pullups_and_isolators": d("100"),
     },
 }
@@ -285,7 +285,7 @@ def build() -> tuple[dict[Path, str], dict]:
     manifest = {
         "schema_version": 1,
         "stage": "H3.1.2",
-        "status": "reviewed_all_rail_loads_and_protection_margins_pass_after_ext_5v_rilm_correction",
+        "status": "reviewed_all_rail_loads_and_protection_margins_pass_after_ext_5v_and_audio_source_corrections",
         "method": "dc_network plus Decimal interval corners; PF-02 >=25% steady hardware reserve",
         "source_hashes": {
             str(path.relative_to(REPO)): sha256(path)
@@ -317,6 +317,13 @@ def build() -> tuple[dict[Path, str], dict]:
                 "correction": "both U214 and native-Unit eFuses now use active/orderable Yageo RC0402FR-071K82L; guaranteed low corner is 1.632 A and high corner is 2.035 A",
                 "functional_effect": "restores >=30.6% steady reserve and preserves the bounded 2-A post-start transient without changing the connector contract",
                 "cost_effect_usd_at_100": "0.0000 versus the replaced resistor at the same published $0.0097 tier",
+            },
+            {
+                "id": "H3.1.2-F02",
+                "finding": "the audio allowance cited an 8-ohm PAM8302A curve although the exact AS02404PO is 4 ohm +/-15%; the display allowance simultaneously treated the TPS2553 fault threshold as a continuous normal load",
+                "correction": "reserve 625 mA for amplifier, codec and selectors using the actual 3.4-ohm low corner, and 200 mA for 80-mA display/touch plus the 120-mA normal donor backlight reference",
+                "functional_effect": "the recalculated 3V3_MAIN worst case is 2493 mA with 28.36% guaranteed hardware reserve; the 174-to-234-mA backlight threshold remains an independent latched fault bound",
+                "cost_effect_usd_at_100": "0.0000; this corrects operating admission rather than hardware",
             }
         ],
         "summary": {
@@ -324,7 +331,7 @@ def build() -> tuple[dict[Path, str], dict]:
             "rail_profiles_evaluated": len(profiles) * len(RAILS),
             "failed_profiles": len(failures),
             "unresolved_numeric_inputs": 0,
-            "corrected_findings": 1,
+            "corrected_findings": 2,
             "minimum_hardware_reserve_percent": min(
                 d(row["hardware_reserve_percent"])
                 for profile in profiles
@@ -367,7 +374,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         finding = "Оба внешних eFuse получили серийный `Yageo RC0402FR-071K82L` 1,82 кΩ вместо 2,21 кΩ. Гарантированный минимум порога вырос с 1,358 до 1,632 А: запас над портом 1,25 А теперь 30,6%, короткий 2-А импульс сохранён. Цена на проверенном тираже 100 не изменилась."
         boundary_h = "## Что результат означает"
         boundary = "Все четыре DC-шины проходят правило 25% по минимальному hardware threshold. Самый тесный рабочий envelope — `3V3_MAIN`: консервативные 2,462 А оставляют 38 мА до принятого требования 2,5 А, но 30,0% до гарантированного 3,2-А порога защиты. Поэтому H3.2 обязан проверить ступень нагрузки, а H8 — измерить реальную сумму."
-        marker = "**Статус:** `H3.1.2` завершено и проверено; текущий точный маркер — `H3.3.2`."
+        marker = "**Статус:** `H3.1.2` завершено и проверено; текущий точный маркер — `H3.3.3`."
         evidence = "[Полный машинный расчёт](../hardware/verification/generated/H3-VRF12-dc-budget.json)."
     else:
         title = "# Steady DC power budget"
@@ -378,7 +385,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         finding = "Both exposed-port eFuses now use the active `Yageo RC0402FR-071K82L` 1.82-kohm resistor instead of 2.21 kohm. The guaranteed-low threshold rises from 1.358 to 1.632 A: steady reserve above the 1.25-A port is 30.6%, while the bounded 2-A pulse remains available. The checked quantity-100 price is unchanged."
         boundary_h = "## What this proves"
         boundary = "All four DC rails pass the 25% rule against the minimum hardware threshold. `3V3_MAIN` has the tightest accepted operating envelope: the conservative 2.462-A load leaves 38 mA to the accepted 2.5-A requirement but 30.0% to the guaranteed 3.2-A protection threshold. H3.2 must therefore prove the load step and H8 must measure the real sum."
-        marker = "**Status:** `H3.1.2` is complete and reviewed; the exact current marker is `H3.3.2`."
+        marker = "**Status:** `H3.1.2` is complete and reviewed; the exact current marker is `H3.3.3`."
         evidence = "[Complete machine calculation](../hardware/verification/generated/H3-VRF12-dc-budget.json)."
     return "\n\n".join((title, nav, intro, headers + "\n" + table, finding_h, finding, boundary_h, boundary, marker, evidence)) + "\n"
 

@@ -5,15 +5,15 @@
   "project": "LESHY2-UI",
   "sheet": "UI_13_AUDIO_CODEC_HEADSET",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "62f4943b66967489be0205e7f7baaee6249c51d991ff566cde5a71a58a2ff4ee",
-    "hardware/architecture/devices.json": "12789cb3f71941d46bf84343149c2765d6da9a185f8da9bd7a5b06bd58be0917",
-    "hardware/ecad/generated/H2-instance-ledger.json": "8b079cab5d662289dc1188395e0ab68ddbfb3fa1e31836c8d597fad84024d296",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "b813aa62c77640ce34befc4dd95f7779f694ca4f1e863e4cade3c96c6ecadf22"
+    "hardware/architecture/candidates/G2F-3I.json": "c2a489f8f3ed57cac2066ff591bd3a0cc909d40545c0aec4e09dcc8955ef2950",
+    "hardware/architecture/devices.json": "433ff1f1783a57289d39f9af29deb943da96987e49590d47959038d8c7a32b54",
+    "hardware/ecad/generated/H2-instance-ledger.json": "47281c317c4324dcf3b7af4a84768ba2d08fa8fc46c0fd3ee30ecf440cffc913",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "a024d7ba47c06097483e07e3cc86ee4bf37ece2a057429b81a1cf7ffaf6868c9"
   },
   "summary": {
-    "ledger_instances": 102,
-    "schematic_symbols": 102,
-    "board_fitted_symbols": 102,
+    "ledger_instances": 104,
+    "schematic_symbols": 104,
+    "board_fitted_symbols": 104,
     "hierarchical_interfaces": 24,
     "codec_contacts": 21,
     "headset_contacts": 6,
@@ -253,7 +253,7 @@
       "instance": "codec_adc_p_series",
       "symbol_uuid": "f43f3395-15a0-50a3-bd4f-1688c056b0b9",
       "reference": "R13012",
-      "mpn": "Yageo RC0402FR-0733KL",
+      "mpn": "Yageo RC0402JR-070RL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -271,7 +271,7 @@
       "instance": "codec_adc_n_series",
       "symbol_uuid": "cd4e6e5c-2c4b-512e-a29d-978575017c70",
       "reference": "R13013",
-      "mpn": "Yageo RC0402FR-0733KL",
+      "mpn": "Yageo RC0402JR-070RL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -343,7 +343,7 @@
       "instance": "codec_tx_atten_top",
       "symbol_uuid": "07fc56c0-97c4-59a4-aa27-fbd6d30d35a6",
       "reference": "R13015",
-      "mpn": "Yageo RC0402FR-07220KL",
+      "mpn": "Vishay CRCW0402160KFKED",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -484,9 +484,27 @@
       "board_fitted": true
     },
     {
+      "instance": "headset_microphone_bias_filter_res",
+      "symbol_uuid": "b319a3a8-c49c-55f6-94af-a34974275cc9",
+      "reference": "R13024",
+      "mpn": "Yageo RC0402FR-07220RL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "headset_microphone_bias_filter_cap",
+      "symbol_uuid": "d2228e85-514c-5918-a5c1-24e3427360d4",
+      "reference": "C13020",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
       "instance": "headset_mic_bias_res",
       "symbol_uuid": "ae214547-7024-5f02-864d-07b51eefdb3e",
-      "reference": "R13024",
+      "reference": "R13025",
       "mpn": "Yageo RC0402FR-072K2L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -504,7 +522,7 @@
     {
       "instance": "headset_control_io_bypass",
       "symbol_uuid": "ed8246a1-baac-557f-b22e-38728bb6c7aa",
-      "reference": "C13020",
+      "reference": "C13021",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -513,7 +531,7 @@
     {
       "instance": "headset_mic_select_pullup",
       "symbol_uuid": "341dcb1a-0c41-5973-952f-108cb013aafd",
-      "reference": "R13025",
+      "reference": "R13026",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -522,7 +540,7 @@
     {
       "instance": "headset_control_p1_pulldown",
       "symbol_uuid": "1766d4fb-aa52-5ee7-806f-2998be453e83",
-      "reference": "R13026",
+      "reference": "R13027",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -531,7 +549,7 @@
     {
       "instance": "headset_control_p2_pulldown",
       "symbol_uuid": "0dd533a9-d9e0-5943-8188-45418cf00d97",
-      "reference": "R13027",
+      "reference": "R13028",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -540,7 +558,7 @@
     {
       "instance": "headset_control_p3_pulldown",
       "symbol_uuid": "20b47f87-7ec5-507e-846f-bb8c84085497",
-      "reference": "R13028",
+      "reference": "R13029",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -549,7 +567,7 @@
     {
       "instance": "headset_control_p4_pulldown",
       "symbol_uuid": "be718e01-4023-5ae0-b119-ee726c58afc9",
-      "reference": "R13029",
+      "reference": "R13030",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -558,7 +576,7 @@
     {
       "instance": "headset_control_p5_pulldown",
       "symbol_uuid": "0a01d584-9709-5f45-b92b-b34b3c653002",
-      "reference": "R13030",
+      "reference": "R13031",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -567,7 +585,7 @@
     {
       "instance": "headset_control_p6_pulldown",
       "symbol_uuid": "05b2af01-3af8-51a4-9701-7ed9a51029ce",
-      "reference": "R13031",
+      "reference": "R13032",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -576,7 +594,7 @@
     {
       "instance": "headset_control_p7_pulldown",
       "symbol_uuid": "a3af603a-2447-5cad-9f13-5335be308feb",
-      "reference": "R13032",
+      "reference": "R13033",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -594,7 +612,7 @@
     {
       "instance": "headphone_l_coupling0",
       "symbol_uuid": "66cd08e4-17f2-56f4-8211-659a8a37d601",
-      "reference": "C13021",
+      "reference": "C13022",
       "mpn": "Murata GRM21BR60J226ME39L",
       "footprint": "Capacitor_SMD:C_0805_2012Metric",
       "pin_count": 2,
@@ -603,7 +621,7 @@
     {
       "instance": "headphone_l_coupling1",
       "symbol_uuid": "828a2e93-48a5-5f59-aca5-571bbf5ec22f",
-      "reference": "C13022",
+      "reference": "C13023",
       "mpn": "Murata GRM21BR60J226ME39L",
       "footprint": "Capacitor_SMD:C_0805_2012Metric",
       "pin_count": 2,
@@ -612,7 +630,7 @@
     {
       "instance": "headphone_r_coupling0",
       "symbol_uuid": "da6bdc52-322d-5aad-ab21-160902e798a8",
-      "reference": "C13023",
+      "reference": "C13024",
       "mpn": "Murata GRM21BR60J226ME39L",
       "footprint": "Capacitor_SMD:C_0805_2012Metric",
       "pin_count": 2,
@@ -621,7 +639,7 @@
     {
       "instance": "headphone_r_coupling1",
       "symbol_uuid": "41f75135-e57a-5a4c-8def-ee978425347c",
-      "reference": "C13024",
+      "reference": "C13025",
       "mpn": "Murata GRM21BR60J226ME39L",
       "footprint": "Capacitor_SMD:C_0805_2012Metric",
       "pin_count": 2,
@@ -630,7 +648,7 @@
     {
       "instance": "headphone_l_series",
       "symbol_uuid": "0434e335-530d-5ce9-b2e7-7c494e4962bf",
-      "reference": "R13033",
+      "reference": "R13034",
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -639,7 +657,7 @@
     {
       "instance": "headphone_r_series",
       "symbol_uuid": "a6eedc4a-1312-539e-a2e3-2872ee239cf6",
-      "reference": "R13034",
+      "reference": "R13035",
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -648,7 +666,7 @@
     {
       "instance": "headphone_tip_detect_pullup",
       "symbol_uuid": "8809ca55-af3c-553b-83ae-043b39280c55",
-      "reference": "R13035",
+      "reference": "R13036",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -657,7 +675,7 @@
     {
       "instance": "headset_detect_series",
       "symbol_uuid": "f9e25e85-271e-5a4c-a851-82a3373692fe",
-      "reference": "R13036",
+      "reference": "R13037",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -666,7 +684,7 @@
     {
       "instance": "headset_absent_pulldown",
       "symbol_uuid": "3d1e93de-70ef-56a7-bdc4-0df642a0ce15",
-      "reference": "R13037",
+      "reference": "R13038",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -675,7 +693,7 @@
     {
       "instance": "codec_power_input_cap",
       "symbol_uuid": "5449b331-0fe2-5aa0-805a-8fefd267f53c",
-      "reference": "C13025",
+      "reference": "C13026",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -684,7 +702,7 @@
     {
       "instance": "codec_power_output_cap",
       "symbol_uuid": "5ffa409e-9b4f-577d-aed8-98499fcf611a",
-      "reference": "C13026",
+      "reference": "C13027",
       "mpn": "Murata GRM188R60J106ME47D",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -693,7 +711,7 @@
     {
       "instance": "codec_power_on_pulldown",
       "symbol_uuid": "344b1211-79af-5f3c-8999-53ea9191020f",
-      "reference": "R13038",
+      "reference": "R13039",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -711,7 +729,7 @@
     {
       "instance": "codec_supervisor_bypass",
       "symbol_uuid": "f30f6b5f-99e0-5c07-bb20-de770f25a3cb",
-      "reference": "C13027",
+      "reference": "C13028",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -720,7 +738,7 @@
     {
       "instance": "codec_ready_pulldown",
       "symbol_uuid": "34056609-438d-52d5-98e6-55d5352c6456",
-      "reference": "R13039",
+      "reference": "R13040",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -738,7 +756,7 @@
     {
       "instance": "codec_i2c_iso_bypass",
       "symbol_uuid": "3ff01367-559e-5c90-bfda-6cd26387e23e",
-      "reference": "C13028",
+      "reference": "C13029",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -747,7 +765,7 @@
     {
       "instance": "codec_i2c_scl_pullup",
       "symbol_uuid": "229bb17f-1ee3-56b5-bf16-70fdf1240c36",
-      "reference": "R13040",
+      "reference": "R13041",
       "mpn": "Yageo RC0402FR-072K2L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -756,7 +774,7 @@
     {
       "instance": "codec_i2c_sda_pullup",
       "symbol_uuid": "5c21c1b2-276c-5322-9664-6c3582b286c6",
-      "reference": "R13041",
+      "reference": "R13042",
       "mpn": "Yageo RC0402FR-072K2L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -810,7 +828,7 @@
     {
       "instance": "codec_i2s_bclk_iso_bypass",
       "symbol_uuid": "690446b7-fa33-52af-ab66-18747eee3912",
-      "reference": "C13029",
+      "reference": "C13030",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -819,7 +837,7 @@
     {
       "instance": "codec_i2s_ws_iso_bypass",
       "symbol_uuid": "663b1d86-1d85-515f-9b0f-c1cf9bf54067",
-      "reference": "C13030",
+      "reference": "C13031",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -828,7 +846,7 @@
     {
       "instance": "codec_i2s_dout_iso_bypass",
       "symbol_uuid": "4743f5fc-17af-50c3-96b4-97bc305f6cb6",
-      "reference": "C13031",
+      "reference": "C13032",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -837,7 +855,7 @@
     {
       "instance": "codec_i2s_din_iso_bypass",
       "symbol_uuid": "b0322ac1-47f6-5280-90f4-19c043e6e15f",
-      "reference": "C13032",
+      "reference": "C13033",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -846,7 +864,7 @@
     {
       "instance": "codec_i2s_din_boot_gate_bypass",
       "symbol_uuid": "3527d20f-de21-5f2b-9a68-93ef62ae96f2",
-      "reference": "C13033",
+      "reference": "C13034",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -855,7 +873,7 @@
     {
       "instance": "codec_pvdd_bypass",
       "symbol_uuid": "59b814d0-0339-500c-bac4-efcff5720500",
-      "reference": "C13034",
+      "reference": "C13035",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -873,7 +891,7 @@
     {
       "instance": "codec_dvdd_bypass",
       "symbol_uuid": "efb6891e-d06b-5d39-af77-b0e957de81b4",
-      "reference": "C13035",
+      "reference": "C13036",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -891,7 +909,7 @@
     {
       "instance": "codec_avdd_bypass",
       "symbol_uuid": "39e06a0c-488f-525e-8b4f-fab3ec07e82b",
-      "reference": "C13036",
+      "reference": "C13037",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -900,7 +918,7 @@
     {
       "instance": "codec_dacvref_cap",
       "symbol_uuid": "6c106d0a-69ee-53fa-aa17-9d45edfeb1f6",
-      "reference": "C13037",
+      "reference": "C13038",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -909,7 +927,7 @@
     {
       "instance": "codec_adcvref_cap",
       "symbol_uuid": "dd63b855-a3d1-5c82-9297-01ef3e11bb6d",
-      "reference": "C13038",
+      "reference": "C13039",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -918,7 +936,7 @@
     {
       "instance": "codec_vmid_cap",
       "symbol_uuid": "028b8b69-1276-5c2e-a8d7-9bd01f2a6ff1",
-      "reference": "C13039",
+      "reference": "C13040",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -927,7 +945,7 @@
     {
       "instance": "codec_ce_pullup",
       "symbol_uuid": "6d8682a6-edc6-5136-b3eb-4df2c1d845a8",
-      "reference": "R13042",
+      "reference": "R13043",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,

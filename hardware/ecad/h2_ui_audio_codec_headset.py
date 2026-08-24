@@ -94,7 +94,7 @@ def footprint_for(instance: str, device_key: str) -> str:
         return "Capacitor_SMD:C_0603_1608Metric"
     if device_key.startswith(("tdk_c", "murata_grm")):
         return "Capacitor_SMD:C_0402_1005Metric"
-    if device_key.startswith(("yageo_rc", "panasonic_erj_2r")):
+    if device_key.startswith(("yageo_rc", "panasonic_erj_2r", "vishay_crcw")):
         return "Resistor_SMD:R_0402_1005Metric"
     raise ValueError(f"no exact footprint mapping for {instance}/{device_key}")
 
@@ -108,7 +108,7 @@ def reference_prefix(instance: str, device_key: str) -> str:
         return "FB"
     if device_key.startswith(("tdk_c", "murata_grm")):
         return "C"
-    if device_key.startswith(("yageo_rc", "panasonic_erj_2r")):
+    if device_key.startswith(("yageo_rc", "panasonic_erj_2r", "vishay_crcw")):
         return "R"
     return "U"
 
@@ -243,8 +243,8 @@ def build() -> tuple[dict[Path, str], dict]:
         row for row in ledger["rows"]
         if row["project"] == PROJECT_ID and row["sheet"] == SHEET_ID
     ]
-    if len(rows) != 102:
-        raise ValueError(f"{SHEET_ID} must own exactly 102 ledger rows, got {len(rows)}")
+    if len(rows) != 104:
+        raise ValueError(f"{SHEET_ID} must own exactly 104 ledger rows, got {len(rows)}")
     interface_row = next(row for row in root_manifest["sheets"] if row["id"] == SHEET_ID)
     interface_order = list(interface_row["interfaces"])
     interfaces = set(interface_order)
@@ -446,7 +446,7 @@ def build() -> tuple[dict[Path, str], dict]:
 
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     summary = manifest["summary"]
-    if summary["ledger_instances"] != 102 or summary["schematic_symbols"] != 102:
+    if summary["ledger_instances"] != 104 or summary["schematic_symbols"] != 104:
         raise ValueError(f"reviewed H2.2.5 instance accounting drifted: {summary}")
     if summary["hierarchical_interfaces"] != 24 or summary["codec_contacts"] != 21:
         raise ValueError(f"reviewed H2.2.5 interface/contact accounting drifted: {summary}")
@@ -455,7 +455,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     if summary["io_isolators_and_boot_gate"] != 6 or summary["custom_footprints"] != 1:
         raise ValueError(f"reviewed H2.2.5 isolation/footprint accounting drifted: {summary}")
     schematic = generated[OUTPUT_SCH]
-    if schematic.count("\n\t(symbol\n") != 102:
+    if schematic.count("\n\t(symbol\n") != 104:
         raise ValueError("UI13 schematic symbol instance count mismatch")
     if schematic.count("\n\t(hierarchical_label \"") != 24:
         raise ValueError("UI13 hierarchy-interface count mismatch")

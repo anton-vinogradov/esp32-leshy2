@@ -1822,7 +1822,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "33kohm_1pct_0402_voice_efuse_power_good_bottom_resistor"
+			(property "Description" "0ohm_0402_jumper_resistor"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1950,7 +1950,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "33kohm_1pct_0402_voice_efuse_power_good_bottom_resistor"
+			(property "Description" "0ohm_0402_jumper_resistor"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2534,7 +2534,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "220kohm_1pct_0402_accessory_feedback_top_resistor"
+			(property "Description" "160kohm_1pct_0402_audio_attenuator_resistor"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3594,6 +3594,134 @@
 				)
 			)
 			(symbol "UI13_HEADSET_MIC_SELECTOR_BYPASS_1_1"
+				(pin passive line
+					(at -17.78 1.27 0)
+					(length 5.08)
+					(name "END_1" (effects (font (size 1.27 1.27))))
+					(number "1" (effects (font (size 1.27 1.27))))
+				)
+				(pin passive line
+					(at 17.78 1.27 180)
+					(length 5.08)
+					(name "END_2" (effects (font (size 1.27 1.27))))
+					(number "2" (effects (font (size 1.27 1.27))))
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Leshy2:UI13_HEADSET_MICROPHONE_BIAS_FILTER_RES"
+			(pin_names (offset 1.016))
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+			(at 0.00 5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Value" "UI13_HEADSET_MICROPHONE_BIAS_FILTER_RES"
+			(at 0.00 -5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Datasheet" "~"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Description" "220ohm_1pct_0402_resistor"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(symbol "UI13_HEADSET_MICROPHONE_BIAS_FILTER_RES_0_1"
+				(rectangle
+					(start -12.70 2.54)
+					(end 12.70 -2.54)
+					(stroke (width 0.254) (type default))
+					(fill (type background))
+				)
+			)
+			(symbol "UI13_HEADSET_MICROPHONE_BIAS_FILTER_RES_1_1"
+				(pin passive line
+					(at -17.78 1.27 0)
+					(length 5.08)
+					(name "END_1" (effects (font (size 1.27 1.27))))
+					(number "1" (effects (font (size 1.27 1.27))))
+				)
+				(pin passive line
+					(at 17.78 1.27 180)
+					(length 5.08)
+					(name "END_2" (effects (font (size 1.27 1.27))))
+					(number "2" (effects (font (size 1.27 1.27))))
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Leshy2:UI13_HEADSET_MICROPHONE_BIAS_FILTER_CAP"
+			(pin_names (offset 1.016))
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+			(at 0.00 5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Value" "UI13_HEADSET_MICROPHONE_BIAS_FILTER_CAP"
+			(at 0.00 -5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Datasheet" "~"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Description" "10uf_20pct_6_3v_x5r_0603_pd_ldo_capacitor"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(symbol "UI13_HEADSET_MICROPHONE_BIAS_FILTER_CAP_0_1"
+				(rectangle
+					(start -12.70 2.54)
+					(end 12.70 -2.54)
+					(stroke (width 0.254) (type default))
+					(fill (type background))
+				)
+			)
+			(symbol "UI13_HEADSET_MICROPHONE_BIAS_FILTER_CAP_1_1"
 				(pin passive line
 					(at -17.78 1.27 0)
 					(length 5.08)
@@ -8692,7 +8820,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-0733KL"
+		(property "Value" "Yageo RC0402JR-070RL"
 			(at 132.08 128.27 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8712,7 +8840,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "33kohm_1pct_0402_voice_efuse_power_good_bottom_resistor"
+		(property "Description" "0ohm_0402_jumper_resistor"
 			(at 132.08 123.19 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8806,7 +8934,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-0733KL"
+		(property "Value" "Yageo RC0402JR-070RL"
 			(at 50.80 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8826,7 +8954,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "33kohm_1pct_0402_voice_efuse_power_good_bottom_resistor"
+		(property "Description" "0ohm_0402_jumper_resistor"
 			(at 50.80 146.05 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9298,7 +9426,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-07220KL"
+		(property "Value" "Vishay CRCW0402160KFKED"
 			(at 375.92 176.53 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9318,7 +9446,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "220kohm_1pct_0402_accessory_feedback_top_resistor"
+		(property "Description" "160kohm_1pct_0402_audio_attenuator_resistor"
 			(at 375.92 171.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10238,21 +10366,21 @@
 		)
 	)
 	(symbol
-		(lib_id "Leshy2:UI13_HEADSET_MIC_BIAS_RES")
+		(lib_id "Leshy2:UI13_HEADSET_MICROPHONE_BIAS_FILTER_RES")
 		(at 457.20 224.79 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "ae214547-7024-5f02-864d-07b51eefdb3e")
+		(uuid "b319a3a8-c49c-55f6-94af-a34974275cc9")
 		(property "Reference" "R13024"
 			(at 457.20 219.71 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-072K2L"
+		(property "Value" "Yageo RC0402FR-07220RL"
 			(at 457.20 229.87 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10272,8 +10400,122 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "2_2kohm_1pct_0402_i2c_pullup_resistor"
+		(property "Description" "220ohm_1pct_0402_resistor"
 			(at 457.20 224.79 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "28ddcf83-b1f0-5b35-9fa0-acf3bb91edd5")
+		)
+		(pin "2"
+			(uuid "8c85267d-f9f7-545e-a598-a6b1c7e43ea4")
+		)
+		(instances
+			(project "LESHY2-UI"
+				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
+					(reference "R13024")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Leshy2:UI13_HEADSET_MICROPHONE_BIAS_FILTER_CAP")
+		(at 538.48 224.79 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d2228e85-514c-5918-a5c1-24e3427360d4")
+		(property "Reference" "C13020"
+			(at 538.48 219.71 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "Murata GRM188R60J106ME47D"
+			(at 538.48 229.87 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 538.48 224.79 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 538.48 224.79 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "10uf_20pct_6_3v_x5r_0603_pd_ldo_capacitor"
+			(at 538.48 224.79 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "fb28b25b-b220-5fe4-b5c8-ae911c710194")
+		)
+		(pin "2"
+			(uuid "5f8466b2-a34e-5170-b00b-f04ca6d922cb")
+		)
+		(instances
+			(project "LESHY2-UI"
+				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
+					(reference "C13020")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Leshy2:UI13_HEADSET_MIC_BIAS_RES")
+		(at 213.36 229.87 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ae214547-7024-5f02-864d-07b51eefdb3e")
+		(property "Reference" "R13025"
+			(at 213.36 224.79 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "Yageo RC0402FR-072K2L"
+			(at 213.36 234.95 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 213.36 229.87 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 213.36 229.87 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "2_2kohm_1pct_0402_i2c_pullup_resistor"
+			(at 213.36 229.87 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -10288,7 +10530,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13024")
+					(reference "R13025")
 					(unit 1)
 				)
 			)
@@ -10296,7 +10538,7 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_HEADSET_CONTROL_IO")
-		(at 538.48 232.41 0)
+		(at 294.64 237.49 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -10304,33 +10546,33 @@
 		(dnp no)
 		(uuid "55c2826c-0102-5e27-ab03-6295c1c7e428")
 		(property "Reference" "U13009"
-			(at 538.48 221.21 0)
+			(at 294.64 226.29 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "TCA9534APWR"
-			(at 538.48 243.61 0)
+			(at 294.64 248.69 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Package_SO:TSSOP-16_4.4x5mm_P0.65mm"
-			(at 538.48 232.41 0)
+			(at 294.64 237.49 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 538.48 232.41 0)
+			(at 294.64 237.49 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "dedicated 0x39 headset source controller and seven reserve I/O lines"
-			(at 538.48 232.41 0)
+			(at 294.64 237.49 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -10395,41 +10637,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_HEADSET_CONTROL_IO_BYPASS")
-		(at 213.36 229.87 0)
+		(at 50.80 250.19 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "ed8246a1-baac-557f-b22e-38728bb6c7aa")
-		(property "Reference" "C13020"
-			(at 213.36 224.79 0)
+		(property "Reference" "C13021"
+			(at 50.80 245.11 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "TDK C1005X7R1H104K050BB"
-			(at 213.36 234.95 0)
+			(at 50.80 255.27 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 213.36 229.87 0)
+			(at 50.80 250.19 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 213.36 229.87 0)
+			(at 50.80 250.19 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
-			(at 213.36 229.87 0)
+			(at 50.80 250.19 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -10444,7 +10686,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13020")
+					(reference "C13021")
 					(unit 1)
 				)
 			)
@@ -10452,128 +10694,14 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_HEADSET_MIC_SELECT_PULLUP")
-		(at 294.64 229.87 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "341dcb1a-0c41-5973-952f-108cb013aafd")
-		(property "Reference" "R13025"
-			(at 294.64 224.79 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "Yageo RC0402FR-07100KL"
-			(at 294.64 234.95 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 294.64 229.87 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "~"
-			(at 294.64 229.87 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "100kohm_1pct_0402_charger_ilim_bottom_resistor"
-			(at 294.64 229.87 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(pin "1"
-			(uuid "d6cd53d2-cac9-549e-9d90-9a2dc1f0a413")
-		)
-		(pin "2"
-			(uuid "836309d7-5d8b-51e9-bbc8-a502de600ac1")
-		)
-		(instances
-			(project "LESHY2-UI"
-				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13025")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Leshy2:UI13_HEADSET_CONTROL_P1_PULLDOWN")
-		(at 50.80 250.19 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "1766d4fb-aa52-5ee7-806f-2998be453e83")
-		(property "Reference" "R13026"
-			(at 50.80 245.11 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "Yageo RC0402FR-07100KL"
-			(at 50.80 255.27 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 50.80 250.19 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "~"
-			(at 50.80 250.19 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "100kohm_1pct_0402_charger_ilim_bottom_resistor"
-			(at 50.80 250.19 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(pin "1"
-			(uuid "d6139956-9e52-54d9-9f25-d4d0b88d64fa")
-		)
-		(pin "2"
-			(uuid "e08ff9f2-9fec-5853-b00f-62f315989377")
-		)
-		(instances
-			(project "LESHY2-UI"
-				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13026")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Leshy2:UI13_HEADSET_CONTROL_P2_PULLDOWN")
 		(at 375.92 250.19 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "0dd533a9-d9e0-5943-8188-45418cf00d97")
-		(property "Reference" "R13027"
+		(uuid "341dcb1a-0c41-5973-952f-108cb013aafd")
+		(property "Reference" "R13026"
 			(at 375.92 245.11 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10607,30 +10735,30 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "e2b62703-5338-5b08-b691-ede155597394")
+			(uuid "d6cd53d2-cac9-549e-9d90-9a2dc1f0a413")
 		)
 		(pin "2"
-			(uuid "e70cd5c1-9312-5b91-af43-54106f861c90")
+			(uuid "836309d7-5d8b-51e9-bbc8-a502de600ac1")
 		)
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13027")
+					(reference "R13026")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Leshy2:UI13_HEADSET_CONTROL_P3_PULLDOWN")
+		(lib_id "Leshy2:UI13_HEADSET_CONTROL_P1_PULLDOWN")
 		(at 132.08 250.19 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "20b47f87-7ec5-507e-846f-bb8c84085497")
-		(property "Reference" "R13028"
+		(uuid "1766d4fb-aa52-5ee7-806f-2998be453e83")
+		(property "Reference" "R13027"
 			(at 132.08 245.11 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10664,30 +10792,30 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "6db1c571-dcf1-5aed-bafa-59b81236cc97")
+			(uuid "d6139956-9e52-54d9-9f25-d4d0b88d64fa")
 		)
 		(pin "2"
-			(uuid "38227519-fa27-5707-87f7-b4b5e45ab71d")
+			(uuid "e08ff9f2-9fec-5853-b00f-62f315989377")
 		)
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13028")
+					(reference "R13027")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Leshy2:UI13_HEADSET_CONTROL_P4_PULLDOWN")
+		(lib_id "Leshy2:UI13_HEADSET_CONTROL_P2_PULLDOWN")
 		(at 457.20 250.19 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "be718e01-4023-5ae0-b119-ee726c58afc9")
-		(property "Reference" "R13029"
+		(uuid "0dd533a9-d9e0-5943-8188-45418cf00d97")
+		(property "Reference" "R13028"
 			(at 457.20 245.11 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10721,10 +10849,67 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "1dc76aa2-7e7a-5b7e-9980-6deb86db399b")
+			(uuid "e2b62703-5338-5b08-b691-ede155597394")
 		)
 		(pin "2"
-			(uuid "eeb0cab7-5d63-5a88-9254-313d9797a04d")
+			(uuid "e70cd5c1-9312-5b91-af43-54106f861c90")
+		)
+		(instances
+			(project "LESHY2-UI"
+				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
+					(reference "R13028")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Leshy2:UI13_HEADSET_CONTROL_P3_PULLDOWN")
+		(at 538.48 250.19 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "20b47f87-7ec5-507e-846f-bb8c84085497")
+		(property "Reference" "R13029"
+			(at 538.48 245.11 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "Yageo RC0402FR-07100KL"
+			(at 538.48 255.27 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 538.48 250.19 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 538.48 250.19 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "100kohm_1pct_0402_charger_ilim_bottom_resistor"
+			(at 538.48 250.19 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "6db1c571-dcf1-5aed-bafa-59b81236cc97")
+		)
+		(pin "2"
+			(uuid "38227519-fa27-5707-87f7-b4b5e45ab71d")
 		)
 		(instances
 			(project "LESHY2-UI"
@@ -10736,14 +10921,14 @@
 		)
 	)
 	(symbol
-		(lib_id "Leshy2:UI13_HEADSET_CONTROL_P5_PULLDOWN")
+		(lib_id "Leshy2:UI13_HEADSET_CONTROL_P4_PULLDOWN")
 		(at 213.36 255.27 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "0a01d584-9709-5f45-b92b-b34b3c653002")
+		(uuid "be718e01-4023-5ae0-b119-ee726c58afc9")
 		(property "Reference" "R13030"
 			(at 213.36 250.19 0)
 			(show_name no)
@@ -10778,10 +10963,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "fe78ec73-a9c6-5253-b2c5-37d6916eec53")
+			(uuid "1dc76aa2-7e7a-5b7e-9980-6deb86db399b")
 		)
 		(pin "2"
-			(uuid "2dde6fa4-3533-5a01-8797-2a37160db576")
+			(uuid "eeb0cab7-5d63-5a88-9254-313d9797a04d")
 		)
 		(instances
 			(project "LESHY2-UI"
@@ -10793,42 +10978,99 @@
 		)
 	)
 	(symbol
-		(lib_id "Leshy2:UI13_HEADSET_CONTROL_P6_PULLDOWN")
-		(at 294.64 255.27 0)
+		(lib_id "Leshy2:UI13_HEADSET_CONTROL_P5_PULLDOWN")
+		(at 294.64 270.51 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "05b2af01-3af8-51a4-9701-7ed9a51029ce")
+		(uuid "0a01d584-9709-5f45-b92b-b34b3c653002")
 		(property "Reference" "R13031"
-			(at 294.64 250.19 0)
+			(at 294.64 265.43 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Yageo RC0402FR-07100KL"
-			(at 294.64 260.35 0)
+			(at 294.64 275.59 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 294.64 255.27 0)
+			(at 294.64 270.51 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 294.64 255.27 0)
+			(at 294.64 270.51 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "100kohm_1pct_0402_charger_ilim_bottom_resistor"
-			(at 294.64 255.27 0)
+			(at 294.64 270.51 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "fe78ec73-a9c6-5253-b2c5-37d6916eec53")
+		)
+		(pin "2"
+			(uuid "2dde6fa4-3533-5a01-8797-2a37160db576")
+		)
+		(instances
+			(project "LESHY2-UI"
+				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
+					(reference "R13031")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Leshy2:UI13_HEADSET_CONTROL_P6_PULLDOWN")
+		(at 50.80 275.59 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "05b2af01-3af8-51a4-9701-7ed9a51029ce")
+		(property "Reference" "R13032"
+			(at 50.80 270.51 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "Yageo RC0402FR-07100KL"
+			(at 50.80 280.67 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 50.80 275.59 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 50.80 275.59 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "100kohm_1pct_0402_charger_ilim_bottom_resistor"
+			(at 50.80 275.59 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -10843,7 +11085,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13031")
+					(reference "R13032")
 					(unit 1)
 				)
 			)
@@ -10851,41 +11093,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_HEADSET_CONTROL_P7_PULLDOWN")
-		(at 538.48 265.43 0)
+		(at 132.08 275.59 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "a3af603a-2447-5cad-9f13-5335be308feb")
-		(property "Reference" "R13032"
-			(at 538.48 260.35 0)
+		(property "Reference" "R13033"
+			(at 132.08 270.51 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Yageo RC0402FR-07100KL"
-			(at 538.48 270.51 0)
+			(at 132.08 280.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 538.48 265.43 0)
+			(at 132.08 275.59 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 538.48 265.43 0)
+			(at 132.08 275.59 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "100kohm_1pct_0402_charger_ilim_bottom_resistor"
-			(at 538.48 265.43 0)
+			(at 132.08 275.59 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -10900,7 +11142,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13032")
+					(reference "R13033")
 					(unit 1)
 				)
 			)
@@ -10908,7 +11150,7 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_HEADPHONE_ESD")
-		(at 50.80 279.40 0)
+		(at 375.92 279.40 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -10916,33 +11158,33 @@
 		(dnp no)
 		(uuid "e134185f-3bc4-532c-aa5b-458ea9f4d1d3")
 		(property "Reference" "D13001"
-			(at 50.80 272.40 0)
+			(at 375.92 272.40 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Texas Instruments TPD4E05U06DQAR"
-			(at 50.80 286.40 0)
+			(at 375.92 286.40 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Package_SON:USON-10_2.5x1.0mm_P0.5mm"
-			(at 50.80 279.40 0)
+			(at 375.92 279.40 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 50.80 279.40 0)
+			(at 375.92 279.40 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "four_channel_0_5pf_iec_esd_array"
-			(at 50.80 279.40 0)
+			(at 375.92 279.40 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -10989,128 +11231,14 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_HEADPHONE_L_COUPLING0")
-		(at 132.08 275.59 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "66cd08e4-17f2-56f4-8211-659a8a37d601")
-		(property "Reference" "C13021"
-			(at 132.08 270.51 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "Murata GRM21BR60J226ME39L"
-			(at 132.08 280.67 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 132.08 275.59 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "~"
-			(at 132.08 275.59 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "22uf_20pct_6v3_x5r_0805_storage_bulk_capacitor"
-			(at 132.08 275.59 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(pin "1"
-			(uuid "66b12095-18ee-5bd1-9d82-5d735dc2b31e")
-		)
-		(pin "2"
-			(uuid "b7934e97-8aca-549a-96d6-4bca7a593394")
-		)
-		(instances
-			(project "LESHY2-UI"
-				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13021")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Leshy2:UI13_HEADPHONE_L_COUPLING1")
-		(at 375.92 275.59 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "828a2e93-48a5-5f59-aca5-571bbf5ec22f")
-		(property "Reference" "C13022"
-			(at 375.92 270.51 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "Murata GRM21BR60J226ME39L"
-			(at 375.92 280.67 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 375.92 275.59 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "~"
-			(at 375.92 275.59 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "22uf_20pct_6v3_x5r_0805_storage_bulk_capacitor"
-			(at 375.92 275.59 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(pin "1"
-			(uuid "3b433869-d0a1-50ed-a731-3faad22a6eb4")
-		)
-		(pin "2"
-			(uuid "6179a99c-e644-5217-95c0-6761fd719f5e")
-		)
-		(instances
-			(project "LESHY2-UI"
-				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13022")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Leshy2:UI13_HEADPHONE_R_COUPLING0")
 		(at 457.20 275.59 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "da6bdc52-322d-5aad-ab21-160902e798a8")
-		(property "Reference" "C13023"
+		(uuid "66cd08e4-17f2-56f4-8211-659a8a37d601")
+		(property "Reference" "C13022"
 			(at 457.20 270.51 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11144,10 +11272,67 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "17df59f6-de6f-5558-a146-6b83140f82ec")
+			(uuid "66b12095-18ee-5bd1-9d82-5d735dc2b31e")
 		)
 		(pin "2"
-			(uuid "c05a5695-00b8-53b1-ab99-961b520fd22d")
+			(uuid "b7934e97-8aca-549a-96d6-4bca7a593394")
+		)
+		(instances
+			(project "LESHY2-UI"
+				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
+					(reference "C13022")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Leshy2:UI13_HEADPHONE_L_COUPLING1")
+		(at 538.48 275.59 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "828a2e93-48a5-5f59-aca5-571bbf5ec22f")
+		(property "Reference" "C13023"
+			(at 538.48 270.51 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "Murata GRM21BR60J226ME39L"
+			(at 538.48 280.67 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 538.48 275.59 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 538.48 275.59 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "22uf_20pct_6v3_x5r_0805_storage_bulk_capacitor"
+			(at 538.48 275.59 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "3b433869-d0a1-50ed-a731-3faad22a6eb4")
+		)
+		(pin "2"
+			(uuid "6179a99c-e644-5217-95c0-6761fd719f5e")
 		)
 		(instances
 			(project "LESHY2-UI"
@@ -11159,14 +11344,14 @@
 		)
 	)
 	(symbol
-		(lib_id "Leshy2:UI13_HEADPHONE_R_COUPLING1")
+		(lib_id "Leshy2:UI13_HEADPHONE_R_COUPLING0")
 		(at 213.36 280.67 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "41f75135-e57a-5a4c-8def-ee978425347c")
+		(uuid "da6bdc52-322d-5aad-ab21-160902e798a8")
 		(property "Reference" "C13024"
 			(at 213.36 275.59 0)
 			(show_name no)
@@ -11201,10 +11386,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "fb93cd5a-726c-5515-a65e-e679d106d86f")
+			(uuid "17df59f6-de6f-5558-a146-6b83140f82ec")
 		)
 		(pin "2"
-			(uuid "f1c57901-96df-5b3b-aba4-4dc0a6563360")
+			(uuid "c05a5695-00b8-53b1-ab99-961b520fd22d")
 		)
 		(instances
 			(project "LESHY2-UI"
@@ -11216,42 +11401,99 @@
 		)
 	)
 	(symbol
-		(lib_id "Leshy2:UI13_HEADPHONE_L_SERIES")
-		(at 294.64 280.67 0)
+		(lib_id "Leshy2:UI13_HEADPHONE_R_COUPLING1")
+		(at 294.64 295.91 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "0434e335-530d-5ce9-b2e7-7c494e4962bf")
-		(property "Reference" "R13033"
-			(at 294.64 275.59 0)
+		(uuid "41f75135-e57a-5a4c-8def-ee978425347c")
+		(property "Reference" "C13025"
+			(at 294.64 290.83 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Panasonic ERJ-2RKF22R0X"
-			(at 294.64 285.75 0)
+		(property "Value" "Murata GRM21BR60J226ME39L"
+			(at 294.64 300.99 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 294.64 280.67 0)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 294.64 295.91 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 294.64 280.67 0)
+			(at 294.64 295.91 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "22uf_20pct_6v3_x5r_0805_storage_bulk_capacitor"
+			(at 294.64 295.91 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "fb93cd5a-726c-5515-a65e-e679d106d86f")
+		)
+		(pin "2"
+			(uuid "f1c57901-96df-5b3b-aba4-4dc0a6563360")
+		)
+		(instances
+			(project "LESHY2-UI"
+				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
+					(reference "C13025")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Leshy2:UI13_HEADPHONE_L_SERIES")
+		(at 50.80 300.99 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0434e335-530d-5ce9-b2e7-7c494e4962bf")
+		(property "Reference" "R13034"
+			(at 50.80 295.91 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "Panasonic ERJ-2RKF22R0X"
+			(at 50.80 306.07 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 50.80 300.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 50.80 300.99 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "22ohm_1pct_0402_usb_series_resistor"
-			(at 294.64 280.67 0)
+			(at 50.80 300.99 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -11266,63 +11508,6 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13033")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Leshy2:UI13_HEADPHONE_R_SERIES")
-		(at 538.48 290.83 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a6eedc4a-1312-539e-a2e3-2872ee239cf6")
-		(property "Reference" "R13034"
-			(at 538.48 285.75 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "Panasonic ERJ-2RKF22R0X"
-			(at 538.48 295.91 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 538.48 290.83 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "~"
-			(at 538.48 290.83 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "22ohm_1pct_0402_usb_series_resistor"
-			(at 538.48 290.83 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(pin "1"
-			(uuid "6c84e544-d24b-5c0c-9e09-833c42cde893")
-		)
-		(pin "2"
-			(uuid "cf322f62-0bf6-59bc-89de-34af3aa55a56")
-		)
-		(instances
-			(project "LESHY2-UI"
-				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
 					(reference "R13034")
 					(unit 1)
 				)
@@ -11330,21 +11515,21 @@
 		)
 	)
 	(symbol
-		(lib_id "Leshy2:UI13_HEADPHONE_TIP_DETECT_PULLUP")
+		(lib_id "Leshy2:UI13_HEADPHONE_R_SERIES")
 		(at 132.08 300.99 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "8809ca55-af3c-553b-83ae-043b39280c55")
+		(uuid "a6eedc4a-1312-539e-a2e3-2872ee239cf6")
 		(property "Reference" "R13035"
 			(at 132.08 295.91 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-0710KL"
+		(property "Value" "Panasonic ERJ-2RKF22R0X"
 			(at 132.08 306.07 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11364,7 +11549,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+		(property "Description" "22ohm_1pct_0402_usb_series_resistor"
 			(at 132.08 300.99 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11372,10 +11557,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "e766a209-fe93-5df5-898a-1fb350f8fd8e")
+			(uuid "6c84e544-d24b-5c0c-9e09-833c42cde893")
 		)
 		(pin "2"
-			(uuid "ceebbbc4-2f21-51ed-bcb5-375f89375fdd")
+			(uuid "cf322f62-0bf6-59bc-89de-34af3aa55a56")
 		)
 		(instances
 			(project "LESHY2-UI"
@@ -11387,78 +11572,21 @@
 		)
 	)
 	(symbol
-		(lib_id "Leshy2:UI13_HEADSET_DETECT_SERIES")
-		(at 375.92 300.99 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "f9e25e85-271e-5a4c-a851-82a3373692fe")
-		(property "Reference" "R13036"
-			(at 375.92 295.91 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "Yageo RC0402FR-0710KL"
-			(at 375.92 306.07 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 375.92 300.99 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "~"
-			(at 375.92 300.99 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
-			(at 375.92 300.99 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(pin "1"
-			(uuid "201ac874-53c6-5739-9c3a-4cdad4a99850")
-		)
-		(pin "2"
-			(uuid "5aaab8dd-727b-5db2-b732-c6492d11510d")
-		)
-		(instances
-			(project "LESHY2-UI"
-				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13036")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Leshy2:UI13_HEADSET_ABSENT_PULLDOWN")
+		(lib_id "Leshy2:UI13_HEADPHONE_TIP_DETECT_PULLUP")
 		(at 457.20 300.99 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "3d1e93de-70ef-56a7-bdc4-0df642a0ce15")
-		(property "Reference" "R13037"
+		(uuid "8809ca55-af3c-553b-83ae-043b39280c55")
+		(property "Reference" "R13036"
 			(at 457.20 295.91 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-07100KL"
+		(property "Value" "Yageo RC0402FR-0710KL"
 			(at 457.20 306.07 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11478,8 +11606,122 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "100kohm_1pct_0402_charger_ilim_bottom_resistor"
+		(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
 			(at 457.20 300.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "e766a209-fe93-5df5-898a-1fb350f8fd8e")
+		)
+		(pin "2"
+			(uuid "ceebbbc4-2f21-51ed-bcb5-375f89375fdd")
+		)
+		(instances
+			(project "LESHY2-UI"
+				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
+					(reference "R13036")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Leshy2:UI13_HEADSET_DETECT_SERIES")
+		(at 538.48 300.99 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f9e25e85-271e-5a4c-a851-82a3373692fe")
+		(property "Reference" "R13037"
+			(at 538.48 295.91 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "Yageo RC0402FR-0710KL"
+			(at 538.48 306.07 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 538.48 300.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 538.48 300.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+			(at 538.48 300.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "201ac874-53c6-5739-9c3a-4cdad4a99850")
+		)
+		(pin "2"
+			(uuid "5aaab8dd-727b-5db2-b732-c6492d11510d")
+		)
+		(instances
+			(project "LESHY2-UI"
+				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
+					(reference "R13037")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Leshy2:UI13_HEADSET_ABSENT_PULLDOWN")
+		(at 213.36 306.07 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3d1e93de-70ef-56a7-bdc4-0df642a0ce15")
+		(property "Reference" "R13038"
+			(at 213.36 300.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "Yageo RC0402FR-07100KL"
+			(at 213.36 311.15 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 213.36 306.07 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 213.36 306.07 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "100kohm_1pct_0402_charger_ilim_bottom_resistor"
+			(at 213.36 306.07 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -11494,7 +11736,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13037")
+					(reference "R13038")
 					(unit 1)
 				)
 			)
@@ -11502,41 +11744,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_POWER_INPUT_CAP")
-		(at 213.36 306.07 0)
+		(at 375.92 308.61 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "5449b331-0fe2-5aa0-805a-8fefd267f53c")
-		(property "Reference" "C13025"
-			(at 213.36 300.99 0)
+		(property "Reference" "C13026"
+			(at 375.92 303.53 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "TDK C1608X7R1C105K080AC"
-			(at 213.36 311.15 0)
+			(at 375.92 313.69 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 213.36 306.07 0)
+			(at 375.92 308.61 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 213.36 306.07 0)
+			(at 375.92 308.61 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "1uf_10pct_16v_x7r_0603_diagnostic_lockout_timing_capacitor"
-			(at 213.36 306.07 0)
+			(at 375.92 308.61 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -11551,7 +11793,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13025")
+					(reference "C13026")
 					(unit 1)
 				)
 			)
@@ -11559,41 +11801,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_POWER_OUTPUT_CAP")
-		(at 294.64 306.07 0)
+		(at 294.64 321.31 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "5ffa409e-9b4f-577d-aed8-98499fcf611a")
-		(property "Reference" "C13026"
-			(at 294.64 300.99 0)
+		(property "Reference" "C13027"
+			(at 294.64 316.23 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Murata GRM188R60J106ME47D"
-			(at 294.64 311.15 0)
+			(at 294.64 326.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 294.64 306.07 0)
+			(at 294.64 321.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 294.64 306.07 0)
+			(at 294.64 321.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "10uf_20pct_6_3v_x5r_0603_pd_ldo_capacitor"
-			(at 294.64 306.07 0)
+			(at 294.64 321.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -11608,7 +11850,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13026")
+					(reference "C13027")
 					(unit 1)
 				)
 			)
@@ -11616,41 +11858,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_POWER_ON_PULLDOWN")
-		(at 50.80 308.61 0)
+		(at 50.80 326.39 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "344b1211-79af-5f3c-8999-53ea9191020f")
-		(property "Reference" "R13038"
-			(at 50.80 303.53 0)
+		(property "Reference" "R13039"
+			(at 50.80 321.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Yageo RC0402FR-0710KL"
-			(at 50.80 313.69 0)
+			(at 50.80 331.47 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 50.80 308.61 0)
+			(at 50.80 326.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 50.80 308.61 0)
+			(at 50.80 326.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
-			(at 50.80 308.61 0)
+			(at 50.80 326.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -11665,7 +11907,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13038")
+					(reference "R13039")
 					(unit 1)
 				)
 			)
@@ -11673,7 +11915,7 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_SUPERVISOR")
-		(at 538.48 316.23 0)
+		(at 132.08 326.39 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11681,33 +11923,33 @@
 		(dnp no)
 		(uuid "73b4fb70-1d85-501d-97fa-289f1651da02")
 		(property "Reference" "U13010"
-			(at 538.48 311.15 0)
+			(at 132.08 321.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Texas Instruments TPS3839K33DBZR"
-			(at 538.48 321.31 0)
+			(at 132.08 331.47 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 538.48 316.23 0)
+			(at 132.08 326.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 538.48 316.23 0)
+			(at 132.08 326.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "3v08_push_pull_supply_supervisor"
-			(at 538.48 316.23 0)
+			(at 132.08 326.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -11733,41 +11975,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_SUPERVISOR_BYPASS")
-		(at 132.08 326.39 0)
+		(at 457.20 326.39 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "f30f6b5f-99e0-5c07-bb20-de770f25a3cb")
-		(property "Reference" "C13027"
-			(at 132.08 321.31 0)
+		(property "Reference" "C13028"
+			(at 457.20 321.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "TDK C1005X7R1H104K050BB"
-			(at 132.08 331.47 0)
+			(at 457.20 331.47 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 132.08 326.39 0)
+			(at 457.20 326.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 132.08 326.39 0)
+			(at 457.20 326.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
-			(at 132.08 326.39 0)
+			(at 457.20 326.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -11782,7 +12024,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13027")
+					(reference "C13028")
 					(unit 1)
 				)
 			)
@@ -11790,41 +12032,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_READY_PULLDOWN")
-		(at 375.92 326.39 0)
+		(at 538.48 326.39 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "34056609-438d-52d5-98e6-55d5352c6456")
-		(property "Reference" "R13039"
-			(at 375.92 321.31 0)
+		(property "Reference" "R13040"
+			(at 538.48 321.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Yageo RC0402FR-07100KL"
-			(at 375.92 331.47 0)
+			(at 538.48 331.47 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 375.92 326.39 0)
+			(at 538.48 326.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 375.92 326.39 0)
+			(at 538.48 326.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "100kohm_1pct_0402_charger_ilim_bottom_resistor"
-			(at 375.92 326.39 0)
+			(at 538.48 326.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -11839,7 +12081,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13039")
+					(reference "R13040")
 					(unit 1)
 				)
 			)
@@ -11847,7 +12089,7 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_I2C_ISO")
-		(at 457.20 328.93 0)
+		(at 213.36 334.01 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11855,33 +12097,33 @@
 		(dnp no)
 		(uuid "15552dfd-8a68-563b-bc2e-29d7d0a2c073")
 		(property "Reference" "U13011"
-			(at 457.20 323.33 0)
+			(at 213.36 328.41 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Texas Instruments SN74LVC2G66DCUR"
-			(at 457.20 334.53 0)
+			(at 213.36 339.61 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
-			(at 457.20 328.93 0)
+			(at 213.36 334.01 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 457.20 328.93 0)
+			(at 213.36 334.01 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "dual_bilateral_spst_analog_switch"
-			(at 457.20 328.93 0)
+			(at 213.36 334.01 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -11922,41 +12164,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_I2C_ISO_BYPASS")
-		(at 213.36 331.47 0)
+		(at 375.92 334.01 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "3ff01367-559e-5c90-bfda-6cd26387e23e")
-		(property "Reference" "C13028"
-			(at 213.36 326.39 0)
+		(property "Reference" "C13029"
+			(at 375.92 328.93 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "TDK C1005X7R1H104K050BB"
-			(at 213.36 336.55 0)
+			(at 375.92 339.09 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 213.36 331.47 0)
+			(at 375.92 334.01 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 213.36 331.47 0)
+			(at 375.92 334.01 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
-			(at 213.36 331.47 0)
+			(at 375.92 334.01 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -11971,7 +12213,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13028")
+					(reference "C13029")
 					(unit 1)
 				)
 			)
@@ -11979,41 +12221,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_I2C_SCL_PULLUP")
-		(at 294.64 331.47 0)
+		(at 294.64 346.71 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "229bb17f-1ee3-56b5-bf16-70fdf1240c36")
-		(property "Reference" "R13040"
-			(at 294.64 326.39 0)
+		(property "Reference" "R13041"
+			(at 294.64 341.63 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Yageo RC0402FR-072K2L"
-			(at 294.64 336.55 0)
+			(at 294.64 351.79 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 294.64 331.47 0)
+			(at 294.64 346.71 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 294.64 331.47 0)
+			(at 294.64 346.71 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "2_2kohm_1pct_0402_i2c_pullup_resistor"
-			(at 294.64 331.47 0)
+			(at 294.64 346.71 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -12028,7 +12270,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13040")
+					(reference "R13041")
 					(unit 1)
 				)
 			)
@@ -12036,41 +12278,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_I2C_SDA_PULLUP")
-		(at 50.80 334.01 0)
+		(at 50.80 351.79 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "5c21c1b2-276c-5322-9664-6c3582b286c6")
-		(property "Reference" "R13041"
-			(at 50.80 328.93 0)
+		(property "Reference" "R13042"
+			(at 50.80 346.71 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Yageo RC0402FR-072K2L"
-			(at 50.80 339.09 0)
+			(at 50.80 356.87 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 50.80 334.01 0)
+			(at 50.80 351.79 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 50.80 334.01 0)
+			(at 50.80 351.79 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "2_2kohm_1pct_0402_i2c_pullup_resistor"
-			(at 50.80 334.01 0)
+			(at 50.80 351.79 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -12085,7 +12327,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13041")
+					(reference "R13042")
 					(unit 1)
 				)
 			)
@@ -12093,7 +12335,7 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_I2S_BCLK_ISO")
-		(at 538.48 342.90 0)
+		(at 132.08 353.06 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12101,72 +12343,6 @@
 		(dnp no)
 		(uuid "f925b705-3130-5f1b-ab3b-58b52e9e899f")
 		(property "Reference" "U13012"
-			(at 538.48 337.82 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "Texas Instruments SN74LVC1G126DCKR"
-			(at 538.48 347.98 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5"
-			(at 538.48 342.90 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "~"
-			(at 538.48 342.90 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "single_ioff_active_high_tristate_buffer"
-			(at 538.48 342.90 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(pin "1"
-			(uuid "532e4c19-4d2e-5247-a803-2976f4c04d1b")
-		)
-		(pin "2"
-			(uuid "e17cd88e-e1d9-53a8-9634-fc87179f120f")
-		)
-		(pin "3"
-			(uuid "94cb93fe-8bc4-566c-968f-07feba66b10c")
-		)
-		(pin "4"
-			(uuid "746b5f1f-17f1-584a-9b9e-1bf0b55efc54")
-		)
-		(pin "5"
-			(uuid "1a6c9e73-a436-5fd3-87de-abf0b0c1561d")
-		)
-		(instances
-			(project "LESHY2-UI"
-				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "U13012")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Leshy2:UI13_CODEC_I2S_WS_ISO")
-		(at 132.08 353.06 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "58f66f00-9838-52c1-bd2a-9f4bd8b9a049")
-		(property "Reference" "U13013"
 			(at 132.08 347.98 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12200,6 +12376,72 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
+			(uuid "532e4c19-4d2e-5247-a803-2976f4c04d1b")
+		)
+		(pin "2"
+			(uuid "e17cd88e-e1d9-53a8-9634-fc87179f120f")
+		)
+		(pin "3"
+			(uuid "94cb93fe-8bc4-566c-968f-07feba66b10c")
+		)
+		(pin "4"
+			(uuid "746b5f1f-17f1-584a-9b9e-1bf0b55efc54")
+		)
+		(pin "5"
+			(uuid "1a6c9e73-a436-5fd3-87de-abf0b0c1561d")
+		)
+		(instances
+			(project "LESHY2-UI"
+				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
+					(reference "U13012")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Leshy2:UI13_CODEC_I2S_WS_ISO")
+		(at 457.20 353.06 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "58f66f00-9838-52c1-bd2a-9f4bd8b9a049")
+		(property "Reference" "U13013"
+			(at 457.20 347.98 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "Texas Instruments SN74LVC1G126DCKR"
+			(at 457.20 358.14 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5"
+			(at 457.20 353.06 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 457.20 353.06 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "single_ioff_active_high_tristate_buffer"
+			(at 457.20 353.06 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
 			(uuid "87566785-cf51-5ceb-99b6-7f0526dc9035")
 		)
 		(pin "2"
@@ -12225,7 +12467,7 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_I2S_DOUT_ISO")
-		(at 375.92 353.06 0)
+		(at 538.48 353.06 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12233,33 +12475,33 @@
 		(dnp no)
 		(uuid "0a823ff5-67da-5448-8293-9e763a5d6204")
 		(property "Reference" "U13014"
-			(at 375.92 347.98 0)
+			(at 538.48 347.98 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Texas Instruments SN74LVC1G126DCKR"
-			(at 375.92 358.14 0)
+			(at 538.48 358.14 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5"
-			(at 375.92 353.06 0)
+			(at 538.48 353.06 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 375.92 353.06 0)
+			(at 538.48 353.06 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "single_ioff_active_high_tristate_buffer"
-			(at 375.92 353.06 0)
+			(at 538.48 353.06 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -12291,7 +12533,7 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_I2S_DIN_ISO")
-		(at 213.36 358.14 0)
+		(at 375.92 360.68 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12299,33 +12541,33 @@
 		(dnp no)
 		(uuid "fe0da9ce-3185-502f-881f-dc8fd3a676d8")
 		(property "Reference" "U13015"
-			(at 213.36 353.06 0)
+			(at 375.92 355.60 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Texas Instruments SN74LVC1G126DCKR"
-			(at 213.36 363.22 0)
+			(at 375.92 365.76 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5"
-			(at 213.36 358.14 0)
+			(at 375.92 360.68 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 213.36 358.14 0)
+			(at 375.92 360.68 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "single_ioff_active_high_tristate_buffer"
-			(at 213.36 358.14 0)
+			(at 375.92 360.68 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -12357,7 +12599,7 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_I2S_DIN_BOOT_GATE")
-		(at 294.64 358.14 0)
+		(at 213.36 363.22 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12365,33 +12607,33 @@
 		(dnp no)
 		(uuid "d6938f01-8694-5282-9d3d-e1544d3e3b0b")
 		(property "Reference" "U13016"
-			(at 294.64 353.06 0)
+			(at 213.36 358.14 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "SN74LVC1G08DCKR"
-			(at 294.64 363.22 0)
+			(at 213.36 368.30 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5"
-			(at 294.64 358.14 0)
+			(at 213.36 363.22 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 294.64 358.14 0)
+			(at 213.36 363.22 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "CODEC_READY and AUDIO_ARM gate protecting S3 boot GPIO0"
-			(at 294.64 358.14 0)
+			(at 213.36 363.22 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -12423,41 +12665,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_I2S_BCLK_ISO_BYPASS")
-		(at 457.20 356.87 0)
+		(at 294.64 372.11 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "690446b7-fa33-52af-ab66-18747eee3912")
-		(property "Reference" "C13029"
-			(at 457.20 351.79 0)
+		(property "Reference" "C13030"
+			(at 294.64 367.03 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "TDK C1005X7R1H104K050BB"
-			(at 457.20 361.95 0)
+			(at 294.64 377.19 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 457.20 356.87 0)
+			(at 294.64 372.11 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 457.20 356.87 0)
+			(at 294.64 372.11 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
-			(at 457.20 356.87 0)
+			(at 294.64 372.11 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -12472,7 +12714,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13029")
+					(reference "C13030")
 					(unit 1)
 				)
 			)
@@ -12480,41 +12722,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_I2S_WS_ISO_BYPASS")
-		(at 50.80 359.41 0)
+		(at 50.80 377.19 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "663b1d86-1d85-515f-9b0f-c1cf9bf54067")
-		(property "Reference" "C13030"
-			(at 50.80 354.33 0)
+		(property "Reference" "C13031"
+			(at 50.80 372.11 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "TDK C1005X7R1H104K050BB"
-			(at 50.80 364.49 0)
+			(at 50.80 382.27 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 50.80 359.41 0)
+			(at 50.80 377.19 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 50.80 359.41 0)
+			(at 50.80 377.19 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
-			(at 50.80 359.41 0)
+			(at 50.80 377.19 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -12529,63 +12771,6 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13030")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Leshy2:UI13_CODEC_I2S_DOUT_ISO_BYPASS")
-		(at 538.48 369.57 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "4743f5fc-17af-50c3-96b4-97bc305f6cb6")
-		(property "Reference" "C13031"
-			(at 538.48 364.49 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
-			(at 538.48 374.65 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 538.48 369.57 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "~"
-			(at 538.48 369.57 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
-			(at 538.48 369.57 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(pin "1"
-			(uuid "abbde93c-8158-5bf5-af4b-28803c97df37")
-		)
-		(pin "2"
-			(uuid "c0eccc5a-1961-53bb-8102-336eab098b0c")
-		)
-		(instances
-			(project "LESHY2-UI"
-				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
 					(reference "C13031")
 					(unit 1)
 				)
@@ -12593,14 +12778,14 @@
 		)
 	)
 	(symbol
-		(lib_id "Leshy2:UI13_CODEC_I2S_DIN_ISO_BYPASS")
+		(lib_id "Leshy2:UI13_CODEC_I2S_DOUT_ISO_BYPASS")
 		(at 132.08 379.73 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "b0322ac1-47f6-5280-90f4-19c043e6e15f")
+		(uuid "4743f5fc-17af-50c3-96b4-97bc305f6cb6")
 		(property "Reference" "C13032"
 			(at 132.08 374.65 0)
 			(show_name no)
@@ -12635,10 +12820,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "9b7b7a40-ec26-5431-b09e-e1f731d253c5")
+			(uuid "abbde93c-8158-5bf5-af4b-28803c97df37")
 		)
 		(pin "2"
-			(uuid "8c6fe1d5-dce5-5f22-bb5b-6bd322b713ce")
+			(uuid "c0eccc5a-1961-53bb-8102-336eab098b0c")
 		)
 		(instances
 			(project "LESHY2-UI"
@@ -12650,42 +12835,99 @@
 		)
 	)
 	(symbol
-		(lib_id "Leshy2:UI13_CODEC_I2S_DIN_BOOT_GATE_BYPASS")
-		(at 375.92 379.73 0)
+		(lib_id "Leshy2:UI13_CODEC_I2S_DIN_ISO_BYPASS")
+		(at 457.20 379.73 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "3527d20f-de21-5f2b-9a68-93ef62ae96f2")
+		(uuid "b0322ac1-47f6-5280-90f4-19c043e6e15f")
 		(property "Reference" "C13033"
-			(at 375.92 374.65 0)
+			(at 457.20 374.65 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "TDK C1005X7R1H104K050BB"
-			(at 375.92 384.81 0)
+			(at 457.20 384.81 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 375.92 379.73 0)
+			(at 457.20 379.73 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 375.92 379.73 0)
+			(at 457.20 379.73 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
-			(at 375.92 379.73 0)
+			(at 457.20 379.73 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "9b7b7a40-ec26-5431-b09e-e1f731d253c5")
+		)
+		(pin "2"
+			(uuid "8c6fe1d5-dce5-5f22-bb5b-6bd322b713ce")
+		)
+		(instances
+			(project "LESHY2-UI"
+				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
+					(reference "C13033")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Leshy2:UI13_CODEC_I2S_DIN_BOOT_GATE_BYPASS")
+		(at 538.48 379.73 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3527d20f-de21-5f2b-9a68-93ef62ae96f2")
+		(property "Reference" "C13034"
+			(at 538.48 374.65 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "TDK C1005X7R1H104K050BB"
+			(at 538.48 384.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 538.48 379.73 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 538.48 379.73 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+			(at 538.48 379.73 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -12700,7 +12942,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13033")
+					(reference "C13034")
 					(unit 1)
 				)
 			)
@@ -12708,41 +12950,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_PVDD_BYPASS")
-		(at 457.20 382.27 0)
+		(at 375.92 387.35 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "59b814d0-0339-500c-bac4-efcff5720500")
-		(property "Reference" "C13034"
-			(at 457.20 377.19 0)
+		(property "Reference" "C13035"
+			(at 375.92 382.27 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "TDK C1005X7R1H104K050BB"
-			(at 457.20 387.35 0)
+			(at 375.92 392.43 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 457.20 382.27 0)
+			(at 375.92 387.35 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 457.20 382.27 0)
+			(at 375.92 387.35 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
-			(at 457.20 382.27 0)
+			(at 375.92 387.35 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -12757,7 +12999,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13034")
+					(reference "C13035")
 					(unit 1)
 				)
 			)
@@ -12765,7 +13007,7 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_DVDD_BEAD")
-		(at 50.80 384.81 0)
+		(at 213.36 389.89 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12773,33 +13015,33 @@
 		(dnp no)
 		(uuid "f32d9bcf-c141-593b-a7af-9aa0daffc044")
 		(property "Reference" "FB13001"
-			(at 50.80 379.73 0)
+			(at 213.36 384.81 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Murata BLM18PG181SN1D"
-			(at 50.80 389.89 0)
+			(at 213.36 394.97 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Inductor_SMD:L_0603_1608Metric"
-			(at 50.80 384.81 0)
+			(at 213.36 389.89 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 50.80 384.81 0)
+			(at 213.36 389.89 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "180ohm_1_5a_0603_power_ferrite_bead"
-			(at 50.80 384.81 0)
+			(at 213.36 389.89 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -12822,41 +13064,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_DVDD_BYPASS")
-		(at 213.36 384.81 0)
+		(at 294.64 397.51 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "efb6891e-d06b-5d39-af77-b0e957de81b4")
-		(property "Reference" "C13035"
-			(at 213.36 379.73 0)
+		(property "Reference" "C13036"
+			(at 294.64 392.43 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "TDK C1005X7R1H104K050BB"
-			(at 213.36 389.89 0)
+			(at 294.64 402.59 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 213.36 384.81 0)
+			(at 294.64 397.51 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 213.36 384.81 0)
+			(at 294.64 397.51 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
-			(at 213.36 384.81 0)
+			(at 294.64 397.51 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -12871,7 +13113,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13035")
+					(reference "C13036")
 					(unit 1)
 				)
 			)
@@ -12879,7 +13121,7 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_AVDD_BEAD")
-		(at 294.64 384.81 0)
+		(at 50.80 402.59 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12887,33 +13129,33 @@
 		(dnp no)
 		(uuid "2328c7cb-357b-5d1a-b0bd-03a56942fb1b")
 		(property "Reference" "FB13002"
-			(at 294.64 379.73 0)
+			(at 50.80 397.51 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Murata BLM18PG181SN1D"
-			(at 294.64 389.89 0)
+			(at 50.80 407.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Inductor_SMD:L_0603_1608Metric"
-			(at 294.64 384.81 0)
+			(at 50.80 402.59 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 294.64 384.81 0)
+			(at 50.80 402.59 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "180ohm_1_5a_0603_power_ferrite_bead"
-			(at 294.64 384.81 0)
+			(at 50.80 402.59 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -12936,41 +13178,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_AVDD_BYPASS")
-		(at 538.48 394.97 0)
+		(at 132.08 405.13 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "39e06a0c-488f-525e-8b4f-fab3ec07e82b")
-		(property "Reference" "C13036"
-			(at 538.48 389.89 0)
+		(property "Reference" "C13037"
+			(at 132.08 400.05 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "TDK C1005X7R1H104K050BB"
-			(at 538.48 400.05 0)
+			(at 132.08 410.21 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 538.48 394.97 0)
+			(at 132.08 405.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 538.48 394.97 0)
+			(at 132.08 405.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
-			(at 538.48 394.97 0)
+			(at 132.08 405.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -12985,7 +13227,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13036")
+					(reference "C13037")
 					(unit 1)
 				)
 			)
@@ -12993,41 +13235,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_DACVREF_CAP")
-		(at 132.08 405.13 0)
+		(at 457.20 405.13 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "6c106d0a-69ee-53fa-aa17-9d45edfeb1f6")
-		(property "Reference" "C13037"
-			(at 132.08 400.05 0)
+		(property "Reference" "C13038"
+			(at 457.20 400.05 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "TDK C1608X7R1C105K080AC"
-			(at 132.08 410.21 0)
+			(at 457.20 410.21 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 132.08 405.13 0)
+			(at 457.20 405.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 132.08 405.13 0)
+			(at 457.20 405.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "1uf_10pct_16v_x7r_0603_diagnostic_lockout_timing_capacitor"
-			(at 132.08 405.13 0)
+			(at 457.20 405.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -13042,7 +13284,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13037")
+					(reference "C13038")
 					(unit 1)
 				)
 			)
@@ -13050,41 +13292,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_ADCVREF_CAP")
-		(at 375.92 405.13 0)
+		(at 538.48 405.13 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "dd63b855-a3d1-5c82-9297-01ef3e11bb6d")
-		(property "Reference" "C13038"
-			(at 375.92 400.05 0)
+		(property "Reference" "C13039"
+			(at 538.48 400.05 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "TDK C1608X7R1C105K080AC"
-			(at 375.92 410.21 0)
+			(at 538.48 410.21 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 375.92 405.13 0)
+			(at 538.48 405.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 375.92 405.13 0)
+			(at 538.48 405.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "1uf_10pct_16v_x7r_0603_diagnostic_lockout_timing_capacitor"
-			(at 375.92 405.13 0)
+			(at 538.48 405.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -13099,7 +13341,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13038")
+					(reference "C13039")
 					(unit 1)
 				)
 			)
@@ -13107,41 +13349,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_VMID_CAP")
-		(at 457.20 407.67 0)
+		(at 375.92 412.75 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "028b8b69-1276-5c2e-a8d7-9bd01f2a6ff1")
-		(property "Reference" "C13039"
-			(at 457.20 402.59 0)
+		(property "Reference" "C13040"
+			(at 375.92 407.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "TDK C1608X7R1C105K080AC"
-			(at 457.20 412.75 0)
+			(at 375.92 417.83 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 457.20 407.67 0)
+			(at 375.92 412.75 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 457.20 407.67 0)
+			(at 375.92 412.75 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "1uf_10pct_16v_x7r_0603_diagnostic_lockout_timing_capacitor"
-			(at 457.20 407.67 0)
+			(at 375.92 412.75 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -13156,7 +13398,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "C13039")
+					(reference "C13040")
 					(unit 1)
 				)
 			)
@@ -13164,41 +13406,41 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_CE_PULLUP")
-		(at 50.80 410.21 0)
+		(at 213.36 415.29 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "6d8682a6-edc6-5136-b3eb-4df2c1d845a8")
-		(property "Reference" "R13042"
-			(at 50.80 405.13 0)
+		(property "Reference" "R13043"
+			(at 213.36 410.21 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Yageo RC0402FR-0710KL"
-			(at 50.80 415.29 0)
+			(at 213.36 420.37 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 50.80 410.21 0)
+			(at 213.36 415.29 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 50.80 410.21 0)
+			(at 213.36 415.29 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
-			(at 50.80 410.21 0)
+			(at 213.36 415.29 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -13213,7 +13455,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/42f2deb4-2c84-5544-80e1-9ba4bc04875e"
-					(reference "R13042")
+					(reference "R13043")
 					(unit 1)
 				)
 			)
@@ -13221,7 +13463,7 @@
 	)
 	(symbol
 		(lib_id "Leshy2:UI13_CODEC_POWER_SWITCH")
-		(at 213.36 411.48 0)
+		(at 294.64 424.18 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13229,33 +13471,33 @@
 		(dnp no)
 		(uuid "5f5bd510-a8ca-57b7-aebc-f5a810e775d1")
 		(property "Reference" "U13017"
-			(at 213.36 406.40 0)
+			(at 294.64 419.10 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Value" "Texas Instruments TPS22919DCKR"
-			(at 213.36 416.56 0)
+			(at 294.64 429.26 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-363_SC-70-6"
-			(at 213.36 411.48 0)
+			(at 294.64 424.18 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Datasheet" "~"
-			(at 213.36 411.48 0)
+			(at 294.64 424.18 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
 		(property "Description" "1_5a_self_protected_load_switch_with_qod"
-			(at 213.36 411.48 0)
+			(at 294.64 424.18 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -13309,57 +13551,57 @@
 		(uuid "5c170473-2a34-5bf6-8c02-e64e5e8e7603")
 	)
 	(label "3V3_CODEC_SWITCHED"
-		(at 276.86 304.80 0)
+		(at 276.86 320.04 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "cc2d9812-0857-51f0-bd64-706a82187ec2")
 	)
 	(label "3V3_CODEC_SWITCHED"
-		(at 556.26 314.96 180)
+		(at 149.86 325.12 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "42d9b895-f379-5fc1-8f52-ff07ff5bd342")
 	)
 	(label "3V3_CODEC_SWITCHED"
-		(at 114.30 325.12 0)
+		(at 439.42 325.12 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "a17fc160-b113-5fd1-9b63-b16f2b6029b5")
 	)
 	(label "3V3_CODEC_SWITCHED"
-		(at 276.86 330.20 0)
+		(at 276.86 345.44 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "d3568785-404f-5abb-b3a4-7a3e5fef6b22")
 	)
 	(label "3V3_CODEC_SWITCHED"
-		(at 33.02 332.74 0)
+		(at 33.02 350.52 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "d1a30d63-7b7d-5b9c-82ca-aa4cd709c63b")
 	)
 	(label "3V3_CODEC_SWITCHED"
-		(at 439.42 381.00 0)
+		(at 358.14 386.08 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "bfcfb375-5e2c-51f0-8148-5865642890ec")
 	)
 	(label "3V3_CODEC_SWITCHED"
-		(at 33.02 383.54 0)
+		(at 195.58 388.62 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "7d9bb866-6663-51cc-8c1d-334ea660c21a")
 	)
 	(label "3V3_CODEC_SWITCHED"
-		(at 276.86 383.54 0)
+		(at 33.02 401.32 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "ad7fd22f-af8d-5ece-99be-39b5c3e01ad6")
 	)
 	(label "3V3_CODEC_SWITCHED"
-		(at 33.02 408.94 0)
+		(at 195.58 414.02 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "45347054-261b-5eb5-9b02-2415e8be567a")
 	)
 	(label "3V3_CODEC_SWITCHED"
-		(at 231.14 411.48 180)
+		(at 312.42 424.18 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "f20e8da6-7239-56e4-a1d5-b4f28227f132")
 	)
 	(label "3V3_CODEC_SWITCHED"
-		(at 231.14 414.02 180)
+		(at 312.42 426.72 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "49eae2fd-bfb8-50d4-a365-e7c3d0c8606a")
 	)
@@ -13435,97 +13677,102 @@
 		(uuid "065e9386-a5a0-52a5-a7a4-bdc41711fb5f")
 	)
 	(label "3V3_MAIN"
-		(at 520.70 223.52 0)
+		(at 439.42 223.52 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "5452f051-098e-53c1-a0df-5c0c3ff527b8")
-	)
-	(label "3V3_MAIN"
-		(at 556.26 241.30 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "a6a8c7c7-f7bf-58fc-a442-dd7856d6a92f")
-	)
-	(label "3V3_MAIN"
-		(at 195.58 228.60 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "1c90ec7c-d770-54d6-854a-1b4db2c6bebd")
+		(uuid "04a504bb-b8e3-538e-a95f-962d709aade7")
 	)
 	(label "3V3_MAIN"
 		(at 276.86 228.60 0)
 		(effects (font (size 1.27 1.27)))
+		(uuid "5452f051-098e-53c1-a0df-5c0c3ff527b8")
+	)
+	(label "3V3_MAIN"
+		(at 312.42 246.38 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "a6a8c7c7-f7bf-58fc-a442-dd7856d6a92f")
+	)
+	(label "3V3_MAIN"
+		(at 33.02 248.92 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "1c90ec7c-d770-54d6-854a-1b4db2c6bebd")
+	)
+	(label "3V3_MAIN"
+		(at 358.14 248.92 0)
+		(effects (font (size 1.27 1.27)))
 		(uuid "f2d5339d-f536-56ab-8501-2055e2847beb")
 	)
 	(label "3V3_MAIN"
-		(at 114.30 299.72 0)
+		(at 439.42 299.72 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "2317d62a-5cf7-592e-9ee3-c100be7187b8")
 	)
 	(label "3V3_MAIN"
-		(at 195.58 304.80 0)
+		(at 358.14 307.34 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "14b289bd-79be-5393-9902-015ae543a805")
 	)
 	(label "3V3_MAIN"
-		(at 474.98 332.74 180)
+		(at 231.14 337.82 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "160c2174-a789-5a06-8343-42c5bf50f731")
 	)
 	(label "3V3_MAIN"
-		(at 195.58 330.20 0)
+		(at 358.14 332.74 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "f476530b-4e5d-5ac1-a911-83f2ce54fb07")
 	)
 	(label "3V3_MAIN"
-		(at 556.26 342.90 180)
+		(at 149.86 353.06 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "b3ef3297-ac65-57cb-8783-572e8606345a")
 	)
 	(label "3V3_MAIN"
-		(at 149.86 353.06 180)
+		(at 474.98 353.06 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "de44dbcf-c9a1-5d23-8b0b-712697307fce")
 	)
 	(label "3V3_MAIN"
-		(at 393.70 353.06 180)
+		(at 556.26 353.06 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "1618110e-1333-5bb0-8f86-3be38c50a7ba")
 	)
 	(label "3V3_MAIN"
-		(at 231.14 358.14 180)
+		(at 393.70 360.68 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "e4f9bc96-a271-5212-beff-a6d93dfeba70")
 	)
 	(label "3V3_MAIN"
-		(at 312.42 358.14 180)
+		(at 231.14 363.22 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "018e7d92-b489-5de6-8830-ac8a4641260b")
 	)
 	(label "3V3_MAIN"
-		(at 439.42 355.60 0)
+		(at 276.86 370.84 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "ae8904a0-eea6-5d54-ae25-9a03828addad")
 	)
 	(label "3V3_MAIN"
-		(at 33.02 358.14 0)
+		(at 33.02 375.92 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "5c12a9b7-f77d-5f9b-8496-408b52bda919")
 	)
 	(label "3V3_MAIN"
-		(at 520.70 368.30 0)
+		(at 114.30 378.46 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "3cb1860c-dc29-5006-a148-87874a31c7ac")
 	)
 	(label "3V3_MAIN"
-		(at 114.30 378.46 0)
+		(at 439.42 378.46 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "d92d65de-6568-5dfc-a55e-03ee44cdfba6")
 	)
 	(label "3V3_MAIN"
-		(at 358.14 378.46 0)
+		(at 520.70 378.46 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "4405693e-549f-5ade-bd7c-8671c82128df")
 	)
 	(label "3V3_MAIN"
-		(at 195.58 408.94 0)
+		(at 276.86 421.64 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "0d98565c-bece-5cf7-829c-bd9efb65abd6")
 	)
@@ -13546,7 +13793,7 @@
 		(uuid "db746de8-5bad-51ed-91e7-6bcbf907c2dc")
 	)
 	(label "AUDIO_ARM"
-		(at 276.86 358.14 0)
+		(at 195.58 363.22 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "622dcf4b-a076-5820-b477-378294adb3ae")
 	)
@@ -13728,112 +13975,117 @@
 		(uuid "56b5dad7-df75-54df-a6ff-8fd03fde1aa1")
 	)
 	(label "AUDIO_GROUND"
-		(at 520.70 226.06 0)
+		(at 556.26 223.52 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "d3e57193-2f45-5539-b520-7a5b11900f85")
+	)
+	(label "AUDIO_GROUND"
+		(at 276.86 231.14 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "b374065e-1447-5910-bb2a-965d853fdfc5")
 	)
 	(label "AUDIO_GROUND"
-		(at 520.70 228.60 0)
+		(at 276.86 233.68 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "150bdfa5-e44e-58b6-b853-10e07b07f5db")
 	)
 	(label "AUDIO_GROUND"
-		(at 520.70 241.30 0)
+		(at 276.86 246.38 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "064d197f-983a-52a4-9bdc-0c5c5715d144")
 	)
 	(label "AUDIO_GROUND"
-		(at 231.14 228.60 180)
+		(at 68.58 248.92 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "9c046021-2e50-5e16-b22c-bb7ae1eed1f3")
 	)
 	(label "AUDIO_GROUND"
-		(at 68.58 248.92 180)
+		(at 149.86 248.92 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "dfc71416-2d52-5745-a724-ea0e25b4ed00")
 	)
 	(label "AUDIO_GROUND"
-		(at 393.70 248.92 180)
+		(at 474.98 248.92 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "8a5cecdf-3579-5312-96b5-4478757d8dcf")
 	)
 	(label "AUDIO_GROUND"
-		(at 149.86 248.92 180)
+		(at 556.26 248.92 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "cc1bdcdd-5a8b-539e-a98b-2f30e236654f")
 	)
 	(label "AUDIO_GROUND"
-		(at 474.98 248.92 180)
+		(at 231.14 254.00 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "9dee1ae8-5ea3-5d41-aacc-fd250919f9d8")
 	)
 	(label "AUDIO_GROUND"
-		(at 231.14 254.00 180)
+		(at 312.42 269.24 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "66fee6c2-c3fc-544b-a6b2-169960e51434")
 	)
 	(label "AUDIO_GROUND"
-		(at 312.42 254.00 180)
+		(at 68.58 274.32 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "0fe1f7a8-75ea-5818-a8da-63a286cbe8c2")
 	)
 	(label "AUDIO_GROUND"
-		(at 556.26 264.16 180)
+		(at 149.86 274.32 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "49eb3d09-7bf0-594a-b6a7-4d45f487c976")
 	)
 	(label "AUDIO_GROUND"
-		(at 474.98 299.72 180)
+		(at 231.14 304.80 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "bdc02e4f-eec5-5de6-a0e8-7ca35838c6b1")
 	)
 	(label "AUDIO_GROUND"
-		(at 312.42 304.80 180)
+		(at 312.42 320.04 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "1ae0ebac-3ff3-5748-9afc-f9972dff144c")
 	)
 	(label "AUDIO_GROUND"
-		(at 520.70 317.50 0)
+		(at 114.30 327.66 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "154868e7-1bc9-5d4a-a7b3-7cff1101182a")
 	)
 	(label "AUDIO_GROUND"
-		(at 149.86 325.12 180)
+		(at 474.98 325.12 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "22fa20a4-948a-5693-a3de-064a505ac2f8")
 	)
 	(label "AUDIO_GROUND"
-		(at 393.70 325.12 180)
+		(at 556.26 325.12 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "2d7640fa-fc27-561a-b17d-4625d7937b83")
 	)
 	(label "AUDIO_GROUND"
-		(at 474.98 381.00 180)
+		(at 393.70 386.08 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "098d7e06-120d-5780-bb9a-97418c2cade4")
 	)
 	(label "AUDIO_GROUND"
-		(at 231.14 383.54 180)
+		(at 312.42 396.24 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "11ba11e1-ec98-5c5f-83cc-6d57396475f8")
 	)
 	(label "AUDIO_GROUND"
-		(at 556.26 393.70 180)
+		(at 149.86 403.86 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "66bc3574-3433-5c5d-8a40-81abb1f51e5b")
 	)
 	(label "AUDIO_GROUND"
-		(at 149.86 403.86 180)
+		(at 474.98 403.86 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "724c8605-6122-58ec-adda-b4599fa8b3f7")
 	)
 	(label "AUDIO_GROUND"
-		(at 393.70 403.86 180)
+		(at 556.26 403.86 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "79c8bbc5-8946-531b-89a3-34c8f4c3ec79")
 	)
 	(label "AUDIO_GROUND"
-		(at 474.98 406.40 180)
+		(at 393.70 411.48 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "e0d9f612-45ef-5563-a445-7b12f49e0751")
 	)
@@ -13986,7 +14238,7 @@
 		(uuid "9b72d7b5-8836-5add-94d5-3d42e0cd4354")
 	)
 	(label "CODEC_ADCVREF"
-		(at 358.14 403.86 0)
+		(at 520.70 403.86 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "1128c9d3-3707-5873-9489-280c77ffbc63")
 	)
@@ -14036,12 +14288,12 @@
 		(uuid "a4d58324-03cc-58b7-9002-dec8509d0053")
 	)
 	(label "CODEC_AVDD"
-		(at 312.42 383.54 180)
+		(at 68.58 401.32 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c5e7f3a9-f61d-58d8-990e-db824bca0650")
 	)
 	(label "CODEC_AVDD"
-		(at 520.70 393.70 0)
+		(at 114.30 403.86 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "96c473b1-4525-5534-b3e1-f52b35b48d7a")
 	)
@@ -14091,7 +14343,7 @@
 		(uuid "35d00dc9-558b-5ebb-a3bc-5f004ae3b00b")
 	)
 	(label "CODEC_DACVREF"
-		(at 114.30 403.86 0)
+		(at 439.42 403.86 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "fa0072ea-63e7-5a30-a35a-df1b874cf55a")
 	)
@@ -14106,12 +14358,12 @@
 		(uuid "9df62bfe-29f1-53eb-9f80-eb52406e85c5")
 	)
 	(label "CODEC_DAC_OUT_N"
-		(at 439.42 274.32 0)
+		(at 195.58 279.40 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "f9ddf577-813c-54fd-91cb-50dfbe952262")
 	)
 	(label "CODEC_DAC_OUT_N"
-		(at 195.58 279.40 0)
+		(at 276.86 294.64 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "0a35ff04-3927-5de5-9241-4a4e1e8a1382")
 	)
@@ -14131,22 +14383,22 @@
 		(uuid "d7a704fe-009f-565f-af61-acd306ab01b9")
 	)
 	(label "CODEC_DAC_OUT_P"
-		(at 114.30 274.32 0)
+		(at 439.42 274.32 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "b16e31fb-81ff-5c13-957d-c7cb3ea6a4c4")
 	)
 	(label "CODEC_DAC_OUT_P"
-		(at 358.14 274.32 0)
+		(at 520.70 274.32 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "98be054f-581d-5151-a39c-bbce107bd480")
 	)
 	(label "CODEC_DIN_READY"
-		(at 195.58 355.60 0)
+		(at 358.14 358.14 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "d1384599-6f78-545f-af84-1913d5420bb8")
 	)
 	(label "CODEC_DIN_READY"
-		(at 312.42 355.60 180)
+		(at 231.14 360.68 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "1424d9cf-f37e-5e78-abb2-e170fd19c6fb")
 	)
@@ -14156,12 +14408,12 @@
 		(uuid "ec168c91-e4b6-5c0b-a3c2-2a607efbefcd")
 	)
 	(label "CODEC_DVDD"
-		(at 68.58 383.54 180)
+		(at 231.14 388.62 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "68f16aa5-000a-53dc-b74b-90af8fcf8059")
 	)
 	(label "CODEC_DVDD"
-		(at 195.58 383.54 0)
+		(at 276.86 396.24 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "7eaee6fc-e628-5851-a6d1-c2295041f895")
 	)
@@ -14171,7 +14423,7 @@
 		(uuid "3675b94e-d9ef-57a9-8ecc-0088b2318d0b")
 	)
 	(label "CODEC_I2C_ADDR_0X19"
-		(at 68.58 408.94 180)
+		(at 231.14 414.02 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c8280243-d591-5986-b4b2-c2d269bf6940")
 	)
@@ -14181,12 +14433,12 @@
 		(uuid "eb7a5aea-9a04-55bd-8b7e-c564e2895ce4")
 	)
 	(label "CODEC_I2C_SCL"
-		(at 474.98 327.66 180)
+		(at 231.14 332.74 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "ffa9d8ee-6e0a-57ea-99f1-2e705493e983")
 	)
 	(label "CODEC_I2C_SCL"
-		(at 312.42 330.20 180)
+		(at 312.42 345.44 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "6b0dd61d-6635-5c57-b218-1858b03953d6")
 	)
@@ -14196,12 +14448,12 @@
 		(uuid "557ee189-282d-560b-b949-5be58359a703")
 	)
 	(label "CODEC_I2C_SDA"
-		(at 439.42 327.66 0)
+		(at 195.58 332.74 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "da1670fa-a720-5422-b5f4-da14ce3ca111")
 	)
 	(label "CODEC_I2C_SDA"
-		(at 68.58 332.74 180)
+		(at 68.58 350.52 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "8a98f055-df75-54df-a787-aa2e9c6c8c0a")
 	)
@@ -14211,7 +14463,7 @@
 		(uuid "20db203d-26e6-5ea0-a03d-373f67e49ceb")
 	)
 	(label "CODEC_I2S_BCLK"
-		(at 556.26 340.36 180)
+		(at 149.86 350.52 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "40e8d39c-690e-59d9-8e5a-0e6e7368526d")
 	)
@@ -14221,7 +14473,7 @@
 		(uuid "3fa6808b-03b7-55eb-a2ae-5db8367a8a1f")
 	)
 	(label "CODEC_I2S_DIN_LOCAL"
-		(at 195.58 358.14 0)
+		(at 358.14 360.68 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "f6187120-4498-5018-9609-73a42144c711")
 	)
@@ -14231,7 +14483,7 @@
 		(uuid "e74777fa-dc62-58e6-98b4-fb49ccd84e4c")
 	)
 	(label "CODEC_I2S_DOUT"
-		(at 393.70 350.52 180)
+		(at 556.26 350.52 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "83e25067-49c5-51be-ad80-4b2fce2a3c40")
 	)
@@ -14241,58 +14493,58 @@
 		(uuid "ed902079-c95c-5102-8e8e-50945db72a4c")
 	)
 	(label "CODEC_I2S_WS"
-		(at 149.86 350.52 180)
+		(at 474.98 350.52 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "21f40a8b-b772-585d-9127-42b005122643")
 	)
 	(hierarchical_label "CODEC_PWR_EN"
 		(shape bidirectional)
-		(at 33.02 307.34 0)
+		(at 33.02 325.12 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "1dd2a2c1-b903-5d06-bf41-680019a9bf65")
 	)
 	(label "CODEC_PWR_EN"
-		(at 195.58 414.02 0)
+		(at 276.86 426.72 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "793d5063-3d6e-5c78-99a7-2083e9a0f995")
 	)
 	(label "CODEC_READY"
-		(at 520.70 314.96 0)
+		(at 114.30 325.12 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "cd1226ca-38fc-51a2-8866-22f54054133b")
 	)
 	(label "CODEC_READY"
-		(at 358.14 325.12 0)
+		(at 520.70 325.12 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "9a1cf6d6-ec16-532f-a3b7-ccdbc4b9fd8b")
 	)
 	(label "CODEC_READY"
-		(at 439.42 330.20 0)
+		(at 195.58 335.28 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "1a087880-3092-5609-8c76-a0a5511e0fa3")
 	)
 	(label "CODEC_READY"
-		(at 474.98 330.20 180)
+		(at 231.14 335.28 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "ffb0ec56-58cd-5667-8af5-b23b2b5cab4c")
 	)
 	(label "CODEC_READY"
-		(at 520.70 340.36 0)
+		(at 114.30 350.52 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "12fceb48-2881-5b92-aca5-613aebc02d1c")
 	)
 	(label "CODEC_READY"
-		(at 114.30 350.52 0)
+		(at 439.42 350.52 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "b1781aba-7981-5d18-93ba-3fe4029ca60d")
 	)
 	(label "CODEC_READY"
-		(at 358.14 350.52 0)
+		(at 520.70 350.52 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "650f8eca-b514-5001-bc29-bd643bb770d2")
 	)
 	(label "CODEC_READY"
-		(at 276.86 355.60 0)
+		(at 195.58 360.68 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "036deda3-c66d-56a6-858e-89ca98641316")
 	)
@@ -14312,7 +14564,7 @@
 		(uuid "ef114c4a-1a54-5d69-9f55-2aca77cd3e9e")
 	)
 	(label "CODEC_VMID"
-		(at 439.42 406.40 0)
+		(at 358.14 411.48 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "3660b8e3-0cd3-53fb-8b9d-485a0becf1ec")
 	)
@@ -14322,32 +14574,32 @@
 		(uuid "6fb3337f-9c4d-5a4f-b07f-2127ab5ddde5")
 	)
 	(label "HEADPHONE_LEFT_TIP"
-		(at 33.02 274.32 0)
+		(at 358.14 274.32 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "cb6463e8-61cc-5f9a-8c11-ec052deba561")
 	)
 	(label "HEADPHONE_LEFT_TIP"
-		(at 312.42 279.40 180)
+		(at 68.58 299.72 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "0a34e1d6-2e60-537a-abc2-88dd058dc224")
 	)
 	(label "HEADPHONE_LEFT_TIP"
-		(at 149.86 299.72 180)
+		(at 474.98 299.72 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "e68ea8bd-9478-5db0-98f6-48d684ce8c1a")
 	)
 	(label "HEADPHONE_L_AC"
-		(at 149.86 274.32 180)
+		(at 474.98 274.32 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "feb6c04c-403d-5bde-a41f-c3566cdb3622")
 	)
 	(label "HEADPHONE_L_AC"
-		(at 393.70 274.32 180)
+		(at 556.26 274.32 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "d307a35a-569c-5444-b122-4853bae47e36")
 	)
 	(label "HEADPHONE_L_AC"
-		(at 276.86 279.40 0)
+		(at 33.02 299.72 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "b0cf9b9c-4322-5818-8a90-76f9ce6c35af")
 	)
@@ -14357,38 +14609,38 @@
 		(uuid "1e820658-6f89-52e2-a10c-cc9245176e27")
 	)
 	(label "HEADPHONE_RIGHT_RING1"
-		(at 33.02 276.86 0)
+		(at 358.14 276.86 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "e4cfbd63-948c-5b9c-8e74-c2af06610103")
 	)
 	(label "HEADPHONE_RIGHT_RING1"
-		(at 556.26 289.56 180)
+		(at 149.86 299.72 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "da0a26e5-6357-55d3-ad55-9220385aa5e3")
 	)
 	(label "HEADPHONE_R_AC"
-		(at 474.98 274.32 180)
+		(at 231.14 279.40 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "de78f69d-24d3-5418-80d0-78631b64ebc1")
 	)
 	(label "HEADPHONE_R_AC"
-		(at 231.14 279.40 180)
+		(at 312.42 294.64 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "d123ee4d-bfd4-59c5-b178-3a29c932d558")
 	)
 	(label "HEADPHONE_R_AC"
-		(at 520.70 289.56 0)
+		(at 114.30 299.72 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "3b3e7827-872c-5e77-8592-644a2e68ce48")
 	)
 	(hierarchical_label "HEADSET_ABSENT"
 		(shape bidirectional)
-		(at 393.70 299.72 180)
+		(at 556.26 299.72 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "d75f85fa-1967-5c53-baf9-fb4cded47446")
 	)
 	(label "HEADSET_ABSENT"
-		(at 439.42 299.72 0)
+		(at 195.58 304.80 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "fe337b51-6d3e-5fdb-9ca4-e300dd3683a7")
 	)
@@ -14398,84 +14650,99 @@
 		(uuid "78301c6c-edbe-50d0-a8ea-265e1b3139ab")
 	)
 	(label "HEADSET_INTERNAL_MIC_SEL"
-		(at 520.70 231.14 0)
+		(at 276.86 236.22 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "6a21b792-65ce-5a51-85ca-755a624cd462")
 	)
 	(label "HEADSET_INTERNAL_MIC_SEL"
-		(at 312.42 228.60 180)
+		(at 393.70 248.92 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "8a393993-e1ed-5abb-9ce6-5454a8cadc2d")
 	)
 	(label "HEADSET_IO_SPARE_P1"
-		(at 520.70 233.68 0)
+		(at 276.86 238.76 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "924e4ca3-8ecf-599d-99fd-df15a7cd5d5d")
 	)
 	(label "HEADSET_IO_SPARE_P1"
-		(at 33.02 248.92 0)
+		(at 114.30 248.92 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "cf8af433-ebc3-5e31-bec0-0f116332795c")
 	)
 	(label "HEADSET_IO_SPARE_P2"
-		(at 520.70 236.22 0)
+		(at 276.86 241.30 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "cfcc35ae-1d67-5d37-a59f-4dc3c495c430")
 	)
 	(label "HEADSET_IO_SPARE_P2"
-		(at 358.14 248.92 0)
+		(at 439.42 248.92 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "25627872-aba4-523f-aed2-30f63ad75a7e")
 	)
 	(label "HEADSET_IO_SPARE_P3"
-		(at 520.70 238.76 0)
+		(at 276.86 243.84 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "75be8ca2-a0c6-5b91-a39e-9489c35e6ec7")
 	)
 	(label "HEADSET_IO_SPARE_P3"
-		(at 114.30 248.92 0)
+		(at 520.70 248.92 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "eb5068c9-8d3d-518a-841c-f0e98829f431")
 	)
 	(label "HEADSET_IO_SPARE_P4"
-		(at 556.26 223.52 180)
+		(at 312.42 228.60 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "54ad2509-4343-57bc-ad44-299182e66243")
 	)
 	(label "HEADSET_IO_SPARE_P4"
-		(at 439.42 248.92 0)
+		(at 195.58 254.00 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "1c18a079-b68d-54c9-adf7-8a2491f08524")
 	)
 	(label "HEADSET_IO_SPARE_P5"
-		(at 556.26 226.06 180)
+		(at 312.42 231.14 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "befa502a-9964-5579-88a2-ebbeebf49fc5")
 	)
 	(label "HEADSET_IO_SPARE_P5"
-		(at 195.58 254.00 0)
+		(at 276.86 269.24 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "74e3978f-2bec-50c2-a99c-b439f5e9ad3f")
 	)
 	(label "HEADSET_IO_SPARE_P6"
-		(at 556.26 228.60 180)
+		(at 312.42 233.68 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "173fa5f8-cfc3-5726-932f-a8a1c823e5f4")
 	)
 	(label "HEADSET_IO_SPARE_P6"
-		(at 276.86 254.00 0)
+		(at 33.02 274.32 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "4add57ec-8277-5242-9071-81f12c97ba70")
 	)
 	(label "HEADSET_IO_SPARE_P7"
-		(at 556.26 231.14 180)
+		(at 312.42 236.22 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "a93f78c5-2402-5bca-8289-f094b4585a56")
 	)
 	(label "HEADSET_IO_SPARE_P7"
-		(at 520.70 264.16 0)
+		(at 114.30 274.32 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "ece48900-735d-531b-8291-57c5330bed98")
+	)
+	(label "HEADSET_MIC_BIAS_FILTERED"
+		(at 474.98 223.52 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "1bc308c8-a1ea-595a-8d2a-10edfa039dc6")
+	)
+	(label "HEADSET_MIC_BIAS_FILTERED"
+		(at 520.70 223.52 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "9e4e172e-de67-5164-9127-ea478096fd6c")
+	)
+	(label "HEADSET_MIC_BIAS_FILTERED"
+		(at 195.58 228.60 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "1c6c2071-28b6-5d24-9d25-96f2ce1115fa")
 	)
 	(label "HEADSET_MIC_RAW"
 		(at 33.02 220.98 0)
@@ -14488,12 +14755,12 @@
 		(uuid "08767a24-bbf8-59ef-b7a5-45c8abfd5458")
 	)
 	(label "HEADSET_MIC_RAW"
-		(at 474.98 223.52 180)
+		(at 231.14 228.60 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "bbfe03f8-8789-5113-8d8a-65d45b7f00ad")
 	)
 	(label "HEADSET_MIC_RAW"
-		(at 33.02 281.94 0)
+		(at 358.14 281.94 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "0d4f85a1-46ff-5544-9116-5653740c6727")
 	)
@@ -14503,31 +14770,31 @@
 		(uuid "e155450d-dcdc-59e4-aa77-a8748e48f9e7")
 	)
 	(label "HEADSET_SWITCH_STATE"
-		(at 358.14 299.72 0)
+		(at 520.70 299.72 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "8744d4a8-c029-5f78-ae1e-ac5f73fdbd1d")
 	)
 	(hierarchical_label "I2S_BCLK"
 		(shape bidirectional)
-		(at 520.70 342.90 0)
+		(at 114.30 353.06 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "b574d633-dd49-5176-a41d-f2c644fec3e9")
 	)
 	(hierarchical_label "I2S_DIN"
 		(shape bidirectional)
-		(at 231.14 355.60 180)
+		(at 393.70 358.14 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "5d0d5823-04d6-54e6-b7b6-2f899c5485ab")
 	)
 	(hierarchical_label "I2S_DOUT"
 		(shape bidirectional)
-		(at 358.14 353.06 0)
+		(at 520.70 353.06 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "6ef80925-6689-577f-b340-06e60aaf8c9f")
 	)
 	(hierarchical_label "I2S_WS"
 		(shape bidirectional)
-		(at 114.30 353.06 0)
+		(at 439.42 353.06 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "601df53d-51df-5d2c-9ce5-47a70a834004")
 	)
@@ -14545,11 +14812,6 @@
 		(at 195.58 203.20 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "ad79fab9-820f-5fb3-8c55-38ea2f00f54d")
-	)
-	(label "MIC_BIAS_FILTERED"
-		(at 439.42 223.52 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "b5c9ac0e-39de-5c85-9c3e-899328ee08a0")
 	)
 	(hierarchical_label "MIC_RAW"
 		(shape bidirectional)
@@ -14583,22 +14845,22 @@
 	(no_connect (at 68.58 226.06)
 		(uuid "c33f502b-cca2-5bf3-907f-364371f31737")
 	)
-	(no_connect (at 33.02 284.48)
+	(no_connect (at 358.14 284.48)
 		(uuid "2f6bfd8d-94ae-592b-adb2-e758d065aca3")
 	)
-	(no_connect (at 68.58 274.32)
+	(no_connect (at 393.70 274.32)
 		(uuid "46c50bb6-ecbb-5f08-a0ac-3571e9caaf56")
 	)
-	(no_connect (at 68.58 276.86)
+	(no_connect (at 393.70 276.86)
 		(uuid "acd60a6c-de4f-50cd-8a16-c250e86a7de9")
 	)
-	(no_connect (at 68.58 281.94)
+	(no_connect (at 393.70 281.94)
 		(uuid "a055a398-0916-5ba2-8a2f-8451bac74256")
 	)
-	(no_connect (at 68.58 284.48)
+	(no_connect (at 393.70 284.48)
 		(uuid "97b3e063-5731-5f21-ad7b-6d9d76a4ed37")
 	)
-	(no_connect (at 231.14 408.94)
+	(no_connect (at 312.42 421.64)
 		(uuid "90298f9a-976a-51e7-b1c8-34a09b37032b")
 	)
 	(hierarchical_label "POWER_GROUND"
@@ -14608,87 +14870,87 @@
 		(uuid "db7a6ff9-dfe9-500d-9557-5b7291e6b53f")
 	)
 	(label "POWER_GROUND"
-		(at 33.02 279.40 0)
+		(at 358.14 279.40 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "20052c7e-43f4-50e4-9c25-279b490677ba")
 	)
 	(label "POWER_GROUND"
-		(at 68.58 279.40 180)
+		(at 393.70 279.40 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "00085922-fa6e-5051-9afb-01fab9f4e156")
 	)
 	(label "POWER_GROUND"
-		(at 231.14 304.80 180)
+		(at 393.70 307.34 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "9a983b0b-7ee8-5d45-b06c-d8dfc8a60fd6")
 	)
 	(label "POWER_GROUND"
-		(at 68.58 307.34 180)
+		(at 68.58 325.12 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "a3050358-ed99-563f-a869-fd13b4809e03")
 	)
 	(label "POWER_GROUND"
-		(at 439.42 332.74 0)
+		(at 195.58 337.82 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "906ce880-640f-5e5a-95c2-77dcbf80ac53")
 	)
 	(label "POWER_GROUND"
-		(at 231.14 330.20 180)
+		(at 393.70 332.74 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "11bc881f-5473-53bb-b0e3-7337faf73d0c")
 	)
 	(label "POWER_GROUND"
-		(at 520.70 345.44 0)
+		(at 114.30 355.60 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "9b6e83a9-bf05-592d-9566-4a9bce9f5c36")
 	)
 	(label "POWER_GROUND"
-		(at 114.30 355.60 0)
+		(at 439.42 355.60 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "071c75fc-cb5e-58bf-8554-d3baf0070f4d")
 	)
 	(label "POWER_GROUND"
-		(at 358.14 355.60 0)
+		(at 520.70 355.60 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "1a39ebfb-db2a-5b9b-b351-96a972b04b43")
 	)
 	(label "POWER_GROUND"
-		(at 195.58 360.68 0)
+		(at 358.14 363.22 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "90659075-1b05-5842-afaf-a4dedbf847b1")
 	)
 	(label "POWER_GROUND"
-		(at 276.86 360.68 0)
+		(at 195.58 365.76 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "589dd9f5-1fd7-5093-969b-43f06ae4d995")
 	)
 	(label "POWER_GROUND"
-		(at 474.98 355.60 180)
+		(at 312.42 370.84 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "017ed92a-fa18-59cb-a6dd-4199316b2ad1")
 	)
 	(label "POWER_GROUND"
-		(at 68.58 358.14 180)
+		(at 68.58 375.92 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "2b26c9b5-b51c-50e6-a44b-1a3c5402caf8")
 	)
 	(label "POWER_GROUND"
-		(at 556.26 368.30 180)
+		(at 149.86 378.46 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "501444b8-c80f-5e1b-9cb3-b975d93f7b76")
 	)
 	(label "POWER_GROUND"
-		(at 149.86 378.46 180)
+		(at 474.98 378.46 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "655c6512-e0bf-525b-919b-0425ee0f3b5f")
 	)
 	(label "POWER_GROUND"
-		(at 393.70 378.46 180)
+		(at 556.26 378.46 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "44b0a5d5-92ff-56b4-aed1-30233e9bc615")
 	)
 	(label "POWER_GROUND"
-		(at 195.58 411.48 0)
+		(at 276.86 424.18 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "2abe6d60-f216-51f5-ad0c-072903fc46a3")
 	)
@@ -14769,29 +15031,29 @@
 	)
 	(hierarchical_label "SYS_I2C_SCL"
 		(shape bidirectional)
-		(at 556.26 236.22 180)
+		(at 312.42 241.30 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "56d968a2-c119-5441-bbc1-6799b527fb92")
 	)
 	(label "SYS_I2C_SCL"
-		(at 474.98 325.12 180)
+		(at 231.14 330.20 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "e89b4a61-e9f5-568c-99ad-19896844f496")
 	)
 	(hierarchical_label "SYS_I2C_SDA"
 		(shape bidirectional)
-		(at 556.26 238.76 180)
+		(at 312.42 243.84 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "04aed9f6-d5be-51ad-a083-75d72cef19ba")
 	)
 	(label "SYS_I2C_SDA"
-		(at 439.42 325.12 0)
+		(at 195.58 330.20 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "0c19fb35-4abe-58b4-93bf-b2f1845f9b43")
 	)
 	(hierarchical_label "SYS_INT_N"
 		(shape bidirectional)
-		(at 556.26 233.68 180)
+		(at 312.42 238.76 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "d79d21ba-6de8-5c6e-8bd6-9d8035427a65")
 	)

@@ -7,10 +7,10 @@
     "interval_corner"
   ],
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "62f4943b66967489be0205e7f7baaee6249c51d991ff566cde5a71a58a2ff4ee",
-    "hardware/architecture/devices.json": "12789cb3f71941d46bf84343149c2765d6da9a185f8da9bd7a5b06bd58be0917",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "1142a60db3358c7011632651483dafab3026ff5eaeb49cb25f9ac378723e9595",
-    "hardware/verification/generated/H3-VRF22-handover-brownout.json": "f80c837611cabc0e41d41c9b2a5140fd75b056ce1d42dfe81c5b02c033c886e7"
+    "hardware/architecture/candidates/G2F-3I.json": "c2a489f8f3ed57cac2066ff591bd3a0cc909d40545c0aec4e09dcc8955ef2950",
+    "hardware/architecture/devices.json": "433ff1f1783a57289d39f9af29deb943da96987e49590d47959038d8c7a32b54",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "c9095652d0cc2032a8e38f87b7c0cf06e07119425d71d523ab91fac274ca2c05",
+    "hardware/verification/generated/H3-VRF22-handover-brownout.json": "9ef900ed2c1950d47300830cf2d59695213381adb2baaedfc971b14e7bed866a"
   },
   "provenance": {
     "aon_efuse": "https://www.ti.com/lit/ds/symlink/tps25961.pdf",
@@ -539,9 +539,9 @@
       "cap_max_uf": 71.64,
       "slew_v_per_ms": 0.702,
       "capacitive_inrush_ma": 50.291,
-      "worst_active_load_ma": 2462.0,
+      "worst_active_load_ma": 2493.0,
       "protection_min_ma": 3200.0,
-      "combined_margin_ma": 687.709,
+      "combined_margin_ma": 656.709,
       "result": "pass"
     },
     {
@@ -582,7 +582,7 @@
     }
   ],
   "load_step_boundary": {
-    "largest_3v3_main_step_ma": 2462.0,
+    "largest_3v3_main_step_ma": 2493.0,
     "3v3_protection_min_ma": 3200.0,
     "steady_overcurrent_result": "pass",
     "dynamic_result": "converter and eFuse current limits are not crossed by the accepted steady endpoint; absolute droop and loop settling require SPICE/vendor-model or H8 waveform evidence and are not inferred from the current margin"

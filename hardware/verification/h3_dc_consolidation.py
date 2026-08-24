@@ -35,7 +35,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "source_and_pack_safety_pass": sources["summary"]["failed_states"] == 0,
         "no_unresolved_numeric_input": rails["summary"]["unresolved_numeric_inputs"] == 0 and sources["summary"]["unresolved_numeric_inputs"] == 0,
         "pf02_margin_rule_present": any(row["id"] == "PF-02" for row in methods["pass_fail_rules"]),
-        "calculation_findings_corrected": rails["summary"]["corrected_findings"] == len(rails["corrections"]) == 1,
+        "calculation_findings_corrected": rails["summary"]["corrected_findings"] == len(rails["corrections"]) == 2,
         "source_limits_are_explicit": sources["summary"]["source_limited_profiles_explicitly_refused"] > 0,
     }
     failed_checks = [name for name, passed in checks.items() if not passed]
@@ -94,7 +94,7 @@ def build() -> tuple[dict[Path, str], dict]:
 
 def render_doc(manifest: dict, russian: bool) -> str:
     r = manifest["accepted_results"]
-    correction = manifest["corrections"][0]
+    corrections = manifest["corrections"]
     if russian:
         title = "# Результат проверки постоянного питания"
         nav = "[English](dc-verification-result.md) · [На главную](../README.ru.md) · [DC-шины](dc-power-budget.ru.md) · [Источники](source-charge-budget.ru.md)"
@@ -107,10 +107,13 @@ def render_doc(manifest: dict, russian: bool) -> str:
             f"- 5 В × 3 А без pack явно отказывает `{r['usb_5v3a_profiles_explicitly_refused_without_pack']}` тяжёлым профилям; это admission control, а не скрытая просадка."
         )
         correction_h = "## Исправлено во время ревью"
-        correction_text = "При старом RILM 2,21 кОм гарантированный минимум внешнего eFuse составлял лишь 1,358 А — меньше требуемых PF-02 1,5625 А для порта 1,25 А. Оба eFuse U214/Unit получили серийный Yageo RC0402FR-071K82L 1,82 кОм: теперь диапазон 1,632–2,035 А, постоянный запас не менее 30,6%, а ограниченный 2-А пусковой импульс и контракт разъёма сохранены."
+        correction_text = "\n".join((
+            "- При старом RILM 2,21 кОм гарантированный минимум внешнего eFuse составлял лишь 1,358 А — меньше требуемых PF-02 1,5625 А для порта 1,25 А. Оба eFuse U214/Unit получили серийный Yageo RC0402FR-071K82L 1,82 кОм: теперь диапазон 1,632–2,035 А, постоянный запас не менее 30,6%, а ограниченный 2-А пусковой импульс и контракт разъёма сохранены.",
+            "- Бюджет audio ошибочно опирался на 8-омную кривую PAM8302A при выбранном динамике 4 Ом ±15%, а backlight одновременно считался по fault threshold вместо normal reference. Исправленные допуски 625 мА audio и 200 мА display/backlight дают worst case 3V3_MAIN 2 493 мА и 28,36% аппаратного запаса.",
+        ))
         next_h = "## Что ещё не доказано"
         next_text = "Постоянные пределы не заменяют динамику и температуру. H3.2 проверяет startup/shutdown, USB↔pack handover, brownout, DPM, inrush и FAULT_KILL; H3.6 получает 2,550 Вт converter-loss и 0,386 Вт eFuse-loss для thermal model; H8 оставляет реальные измерения."
-        marker = "**Статус:** `H3.1` завершено и проверено. Текущий точный маркер — `H3.3.2`, codec/microphone/headset/speaker corners."
+        marker = "**Статус:** `H3.1` завершено и проверено. Текущий точный маркер — `H3.3.3`, IR drive/receive/thermal corners."
         evidence = "[Машинный пакет закрытия H3.1](../hardware/verification/generated/H3-VRF14-dc-consolidation.json)."
     else:
         title = "# Steady-power verification result"
@@ -124,10 +127,13 @@ def render_doc(manifest: dict, russian: bool) -> str:
             f"- 5 V × 3 A without a pack explicitly refuses `{r['usb_5v3a_profiles_explicitly_refused_without_pack']}` heavy profiles; this is admission control, not a hidden brownout."
         )
         correction_h = "## Corrected during review"
-        correction_text = f"{correction['finding']}. Correction: {correction['correction']}. Functional effect: {correction['functional_effect']}."
+        correction_text = "\n".join(
+            f"- {correction['finding']}. Correction: {correction['correction']}. Functional effect: {correction['functional_effect']}."
+            for correction in corrections
+        )
         next_h = "## What remains unproven"
         next_text = "Steady limits do not replace dynamics or temperature. H3.2 checks startup/shutdown, USB↔pack handover, brownout, DPM, inrush and FAULT_KILL; H3.6 consumes the 2.550-W converter loss and 0.386-W eFuse loss in its thermal model; H8 retains physical measurements."
-        marker = "**Status:** `H3.1` is reviewed. The exact current marker is `H3.3.2`, codec/microphone/headset/speaker corners."
+        marker = "**Status:** `H3.1` is reviewed. The exact current marker is `H3.3.3`, IR drive/receive/thermal corners."
         evidence = "[Machine H3.1 closure package](../hardware/verification/generated/H3-VRF14-dc-consolidation.json)."
     return "\n\n".join((title, nav, intro, result_h, result, correction_h, correction_text, next_h, next_text, marker, evidence)) + "\n"
 

@@ -500,8 +500,8 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "child_hierarchical_label_count": 232,
         "known_child_stub_erc_violations": 0,
         "implemented_child_sheet_count": 9,
-        "circuit_symbols_placed": 387,
-        "suppressed_generated_library_copy_checks": 387,
+        "circuit_symbols_placed": 389,
+        "suppressed_generated_library_copy_checks": 389,
         "pcb_files_created": 0,
     }:
         raise ValueError(f"reviewed H2.2.1 interface accounting drifted: {summary}")

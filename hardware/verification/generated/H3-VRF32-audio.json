@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "stage": "H3.3.2",
+  "status": "reviewed_audio_analog_corners_after_four_source_corrections",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "c2a489f8f3ed57cac2066ff591bd3a0cc909d40545c0aec4e09dcc8955ef2950",
+    "hardware/architecture/devices.json": "433ff1f1783a57289d39f9af29deb943da96987e49590d47959038d8c7a32b54",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "759ba5f642623964bc97f04277cdee23354acc1fe772ce4b313673f6c5a9a1d6",
+    "hardware/verification/generated/H3-VRF31-display.json": "cc3352bc05feda7f46460f710113042b7c7b2283fc17b8276bf9a6a0014c1dd5",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "c9095652d0cc2032a8e38f87b7c0cf06e07119425d71d523ab91fac274ca2c05"
+  },
+  "provenance": {
+    "codec_product_brief": "https://www.everest-semi.com/pdf/ES8311%20PB.pdf",
+    "codec_application_guide": "https://files.waveshare.com/wiki/common/ES8311.user.Guide.pdf",
+    "speaker_amplifier": "https://www.diodes.com/datasheet/download/PAM8302A.pdf",
+    "speaker": "https://puiaudio.com/product/speakers-and-receivers/as02404po",
+    "microphone": "https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf",
+    "headset_jack": "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf",
+    "voice_module": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
+    "microphone_selectors": "https://www.ti.com/lit/ds/symlink/ts5a63157.pdf",
+    "speaker_selector": "https://www.ti.com/lit/ds/symlink/tmux1136.pdf",
+    "passive_family": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
+    "selected_tx_resistor": "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+  },
+  "method": "interval_corner plus bounded analytical power/thermal envelopes",
+  "exact_part_checks": {
+    "codec": true,
+    "audio_capture_buffer": true,
+    "audio_capture_selector": true,
+    "headset_mic_selector": true,
+    "audio_speaker_selector": true,
+    "audio_tx_selector": true,
+    "speaker_amp": true,
+    "speaker": true,
+    "microphone": true,
+    "headphone_jack": true,
+    "codec_adc_p_series": true,
+    "codec_adc_n_series": true,
+    "codec_tx_atten_top": true,
+    "headset_microphone_bias_filter_res": true,
+    "headset_microphone_bias_filter_cap": true
+  },
+  "topology_checks": {
+    "independent_internal_bias_filter": true,
+    "independent_headset_bias_filter": true,
+    "direct_reference_mic1p": true,
+    "direct_reference_mic1n": true,
+    "buffer_unity_feedback": true,
+    "speaker_fail_low": true,
+    "speaker_btl_positive": true,
+    "speaker_btl_negative": true,
+    "ctia_ground": true,
+    "headset_detect_only": true,
+    "codec_tx_reaches_voice": true
+  },
+  "microphone_and_adc": {
+    "independent_bias_supply_v": {
+      "min": "1.886410",
+      "max": "2.087758"
+    },
+    "capsule_allowed_supply_v": {
+      "min": "1.000",
+      "max": "10.000"
+    },
+    "headset_ground_short_current_ma_max": "1.371",
+    "headset_short_resistor_loss_mw": {
+      "filter": "0.410",
+      "bias": "4.096"
+    },
+    "sensitivity_at_94dbspl_mvrms": {
+      "min": "5.623",
+      "typ": "7.943",
+      "max": "11.220"
+    },
+    "microphone_aop_db_spl": 115,
+    "aop_max_mvrms": "125.893",
+    "codec_input_impedance_kohm_typ": "6.000",
+    "codec_full_scale_input_vrms_typ_at_min_rail": "1.884",
+    "pga_range_db": {
+      "min": "0",
+      "max": "30"
+    },
+    "normal_94dbspl_after_30db_pga_mvrms": {
+      "min": "177.828",
+      "max": "354.813"
+    },
+    "maximum_pga_at_115dbspl_db_typical_full_scale": "23.501",
+    "firmware_admission": "start at 0 dB; allow up to 30 dB for normal speech, but cap loud-input gain at 21 dB until specimen clipping/ALC qualification",
+    "removed_33kohm_loss_db": "-16.258",
+    "noise_boundary": "the microphone specifies 60 dBA S/N, ES8311 specifies 100 dB ADC SNR and PAM8302A specifies 300 uV maximum unweighted output noise; board/enclosure/RF-coupled noise cannot be closed without routed hardware and remains an H8 measurement"
+  },
+  "headset": {
+    "standard": "CTIA/AHJ mono dual-ear playback plus microphone; OUTP/OUTN feed opposite-phase left/right legs, so this is not a stereo codec",
+    "conservative_effective_coupling_uf_per_ear": "17.600",
+    "high_pass_hz": {
+      "16_ohm": "239.357",
+      "32_ohm": "168.146"
+    },
+    "no_plug_detect_high_fraction_min": "0.830537",
+    "no_plug_detect_high_v_min": "2.582",
+    "plugged_tip_bias_current_ma_max": "0.331",
+    "plugged_tip_dc_mv_max_into_16ohm": "5.302",
+    "interpretation": "the conservative capacitor corner preserves voice-band playback; low-bass response, headset sensitivity, crosstalk and insertion pop remain measured accessory/HIL properties"
+  },
+  "speaker": {
+    "part": "PUI Audio AS02404PO",
+    "nominal_impedance_ohm": "4.000",
+    "minimum_impedance_corner_ohm": "3.400",
+    "rated_power_w": "2.000",
+    "theoretical_btl_sine_power_w_max": "1.587581",
+    "power_margin_to_speaker_rating_w": "0.412",
+    "pam8302a_supply_current_ma_max": "576.453",
+    "audio_branch_admission_ma": "625.000",
+    "remaining_codec_selector_margin_ma": "48.547",
+    "amplifier_loss_w_max": "0.306",
+    "amplifier_junction_c_at_85c_ambient": "99.679",
+    "amplifier_margin_to_125c_c": "25.321",
+    "speaker_operating_environment_c_max": "50.000",
+    "operating_rule": "speaker playback is muted above the speaker's 50 C local environment limit; the rest of the product may remain active subject to the later H3.6 system thermal envelope",
+    "startup_rule": "hold PAM8302A SD low through reset/power transition and for at least 10 ms after the main rail is valid; mute codec/selectors before shutdown"
+  },
+  "voice_tx_injection": {
+    "sa518_modulation_target_mvrms": "10.000",
+    "frequency_hz": 1500,
+    "selected_top_resistor": "Vishay CRCW0402160KFKED",
+    "top_resistor_ohm": 160000,
+    "bottom_resistor_ohm": 2200,
+    "shunt_cap_nf": "10.000",
+    "full_scale_injection_mvrms": {
+      "min": "10.454",
+      "max": "12.797"
+    },
+    "required_codec_full_scale_fraction": {
+      "min": "0.781441",
+      "max": "0.956562"
+    },
+    "rule": "calibrate only downward against measured RF deviation; audio selection never asserts PTT or bypasses RUN/KILL and FAULT_KILL"
+  },
+  "main_rail_crosscheck": {
+    "worst_profile_load_ma": "2493.000",
+    "accepted_2500ma_margin_ma": "7.000",
+    "hardware_reserve_percent": "28.359",
+    "normal_display_branch_ma": 200,
+    "audio_branch_ma": 625,
+    "correction": "normal backlight load is no longer confused with the TPS2553 fault threshold; the actual 4-ohm speaker replaces the former 8-ohm audio basis"
+  },
+  "checks": {
+    "exact_codec": true,
+    "exact_audio_capture_buffer": true,
+    "exact_audio_capture_selector": true,
+    "exact_headset_mic_selector": true,
+    "exact_audio_speaker_selector": true,
+    "exact_audio_tx_selector": true,
+    "exact_speaker_amp": true,
+    "exact_speaker": true,
+    "exact_microphone": true,
+    "exact_headphone_jack": true,
+    "exact_codec_adc_p_series": true,
+    "exact_codec_adc_n_series": true,
+    "exact_codec_tx_atten_top": true,
+    "exact_headset_microphone_bias_filter_res": true,
+    "exact_headset_microphone_bias_filter_cap": true,
+    "independent_internal_bias_filter": true,
+    "independent_headset_bias_filter": true,
+    "direct_reference_mic1p": true,
+    "direct_reference_mic1n": true,
+    "buffer_unity_feedback": true,
+    "speaker_fail_low": true,
+    "speaker_btl_positive": true,
+    "speaker_btl_negative": true,
+    "ctia_ground": true,
+    "headset_detect_only": true,
+    "codec_tx_reaches_voice": true,
+    "microphone_supply_above_min": true,
+    "microphone_supply_below_max": true,
+    "headset_short_filter_resistor_power": true,
+    "headset_short_bias_resistor_power": true,
+    "normal_speech_at_30db_below_adc_typical_full_scale": true,
+    "initial_zero_db_handles_microphone_aop": true,
+    "headphone_16ohm_voice_corner_below_300hz": true,
+    "headphone_32ohm_voice_corner_below_200hz": true,
+    "headset_detect_high_meets_ratio": true,
+    "speaker_theoretical_power_below_rating": true,
+    "speaker_amplifier_inside_625ma_branch": true,
+    "amplifier_junction_20c_margin": true,
+    "codec_tx_full_scale_can_reach_sa518_target": true,
+    "codec_tx_target_is_downward_calibratable": true,
+    "revised_main_rail_inside_2500ma_admission": true,
+    "revised_main_rail_has_25pct_hardware_reserve": true,
+    "method_has_missing_limit_rule": true
+  },
+  "corrections": [
+    {
+      "id": "H3.3.2-F01",
+      "finding": "matched 33-kOhm MIC1P/MIC1N series parts formed an unnecessary -16.26-dB divider with the ES8311 6-kOhm input and consumed microphone SNR",
+      "correction": "fit exact zero-ohm serial configuration links and retain the two footprints for controlled rework",
+      "functional_effect": "restores the reference direct-coupled input while the ES8311 PGA/ALC retains 0-to-30-dB gain control"
+    },
+    {
+      "id": "H3.3.2-F02",
+      "finding": "the shared microphone-bias filter let a grounded ordinary-TRS sleeve reduce the internal-microphone supply",
+      "correction": "add an independent exact 220-ohm/10-uF headset-bias filter before its existing 2.2-kOhm resistor",
+      "functional_effect": "TRS headphones may keep the internal microphone selected without analog supply interaction"
+    },
+    {
+      "id": "H3.3.2-F03",
+      "finding": "the 220-kOhm codec-to-SA518 attenuator could not reach the published 10-mV modulation target at low full-scale corners",
+      "correction": "use active/in-stock exact Vishay CRCW0402160KFKED; full-scale injection is 10.454-to-12.797 mVrms and is calibrated only downward",
+      "functional_effect": "digital/recorded audio can reach nominal deviation without adding an active analog stage"
+    },
+    {
+      "id": "H3.3.2-F04",
+      "finding": "the H3.1 audio load cited an 8-ohm curve although the exact speaker is 4 ohm +/-15%, while the display load counted a fault threshold as continuous operation",
+      "correction": "reserve 625 mA for audio and 200 mA for normal display/backlight operation; retain the TPS2553 threshold only as a latched fault bound",
+      "functional_effect": "the worst 3V3_MAIN profile is 2493 mA with 28.36% guaranteed hardware reserve and no function removed"
+    }
+  ],
+  "cost_delta_usd_at_100": {
+    "replaced_instances_old": "0.0291",
+    "replaced_instances_new": "0.0253",
+    "added_headset_filter": "0.0474",
+    "total_delta_per_board": "0.0436",
+    "scope": "two ADC configuration links, one codec-TX attenuation resistor and the independent headset 220-ohm/10-uF filter; assembly and tax excluded"
+  },
+  "residual_physical_only": [
+    "measure microphone/headset sensitivity, codec clipping/ALC/noise, channel phase perception, crosstalk, insertion pop and RF immunity on routed hardware",
+    "measure PAM8302A current, output EMI, speaker temperature/excursion and enclosure response; enforce the 50 C speaker-local mute rule",
+    "calibrate SA518 deviation downward from the bounded full-scale codec injection and repeat across module lots, rail and temperature",
+    "prove reset/brownout/off ordering, >=10-ms amplifier-enable delay and absence of back-power with codec, voice and main domains independently off"
+  ],
+  "review_summary": {
+    "checks": 43,
+    "failed_checks": 0,
+    "corrected_findings": 4,
+    "unresolved_findings": 0,
+    "status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.3.3",
+    "action": "verify IR drive, receive thresholds and thermal duty limits"
+  },
+  "open_findings": []
+}

@@ -119,14 +119,14 @@ remain unauthorized.
 <details open>
 <summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.3.2 -->
+<!-- current-substep: H3.3.3 -->
 
-**Exact marker: `H3.3.2`** — [display supply, backlight and direct QSPI](docs/display-electrical-verification.md)
+**Exact marker: `H3.3.3`** — [audio path](docs/audio-electrical-verification.md)
 are reviewed with no unresolved analytical finding; codec, microphone, headset
 and speaker gain/noise/power corners are being verified.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
-- ✅ `H2.0.1` — complete 1,032-row circuit inventory reviewed.
+- ✅ `H2.0.1` — complete 1,034-row circuit inventory reviewed.
 - ✅ `H2.0.2` — four projects, PCB boundaries and net names reviewed.
 - ✅ `H2.0.3` — HW↔FW/BSP contract and cross-repository drift checks reviewed.
 - ✅ `H2.1` — four independent KiCad projects and 28 native sheets created.
@@ -208,8 +208,9 @@ and speaker gain/noise/power corners are being verified.
   - ✅ `H3.2.5` — [H3.2 consolidation](docs/power-transition-result.md); two source errors corrected.
 - ▶️ **`H3.3` — current:** analog peripheral corners.
   - ✅ `H3.3.1` — [display supply, backlight and direct-QSPI reviewed](docs/display-electrical-verification.md); two source errors corrected.
-  - ▶️ **`H3.3.2` — current:** codec, microphone, headset and speaker gain/noise/power corners.
-  - ⏳ `H3.3.3–H3.3.5` — IR, battery analog and consolidation.
+  - ✅ `H3.3.2` — [codec, microphone, headset, speaker and voice TX reviewed](docs/audio-electrical-verification.md); four source errors corrected.
+  - ▶️ **`H3.3.3` — current:** IR drive, receive thresholds and thermal duty limits.
+  - ⏳ `H3.3.4–H3.3.5` — battery analog and consolidation.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The current machine-readable plan is

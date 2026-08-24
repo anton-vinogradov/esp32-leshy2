@@ -18,13 +18,13 @@
     "purchasing": false
   },
   "summary": {
-    "registered_inventory_rows": 1032,
-    "main_candidate_instances": 1004,
+    "registered_inventory_rows": 1034,
+    "main_candidate_instances": 1006,
     "lora_cap_common_instances": 26,
     "lora_cap_alternative_module_instances": 2,
     "h1_dimensioned_instances": 182,
-    "schematic_only_main_instances": 822,
-    "main_board_fitted_components": 992,
+    "schematic_only_main_instances": 824,
+    "main_board_fitted_components": 994,
     "main_fitted_interconnect_assemblies": 6,
     "main_external_mating_products": 6,
     "lora_cap_rows": 28,
@@ -10313,9 +10313,9 @@
       "instance_uid": "LESHY2-UI:codec_adc_p_series",
       "instance": "codec_adc_p_series",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_0733kl",
-      "mpn": "Yageo RC0402FR-0733KL",
-      "role": "33kohm_1pct_0402_voice_efuse_power_good_bottom_resistor",
+      "device_key": "yageo_rc0402jr_070rl",
+      "mpn": "Yageo RC0402JR-070RL",
+      "role": "0ohm_0402_jumper_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "electrical_disposition": "board_fitted_component",
@@ -10327,9 +10327,9 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402FR-0733KL product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0733KL",
+        "document": "Yageo RC general-purpose chip resistor specification",
+        "version": "current exact order code checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
         "checked": "2026-08-18"
       }
     },
@@ -10361,9 +10361,9 @@
       "instance_uid": "LESHY2-UI:codec_adc_n_series",
       "instance": "codec_adc_n_series",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_0733kl",
-      "mpn": "Yageo RC0402FR-0733KL",
-      "role": "33kohm_1pct_0402_voice_efuse_power_good_bottom_resistor",
+      "device_key": "yageo_rc0402jr_070rl",
+      "mpn": "Yageo RC0402JR-070RL",
+      "role": "0ohm_0402_jumper_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "electrical_disposition": "board_fitted_component",
@@ -10375,9 +10375,9 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402FR-0733KL product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0733KL",
+        "document": "Yageo RC general-purpose chip resistor specification",
+        "version": "current exact order code checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
         "checked": "2026-08-18"
       }
     },
@@ -10649,9 +10649,9 @@
       "instance_uid": "LESHY2-UI:codec_tx_atten_top",
       "instance": "codec_tx_atten_top",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_07220kl",
-      "mpn": "Yageo RC0402FR-07220KL",
-      "role": "220kohm_1pct_0402_accessory_feedback_top_resistor",
+      "device_key": "vishay_crcw0402160kfked",
+      "mpn": "Vishay CRCW0402160KFKED",
+      "role": "160kohm_1pct_0402_audio_attenuator_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "electrical_disposition": "board_fitted_component",
@@ -10663,10 +10663,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402FR-07220KL product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07220KL",
-        "checked": "2026-08-18"
+        "document": "Vishay D/CRCW e3 thick-film chip resistor datasheet and exact quality listing",
+        "version": "active exact order code checked 2026-08-24",
+        "url": "https://www.vishay.com/docs/20035/dcrcwe3.pdf",
+        "checked": "2026-08-24"
       }
     },
     {
@@ -11290,6 +11290,54 @@
         "document": "TDK C1005X7R1H104K050BB product data and characteristic models",
         "version": "production status checked 2026-08-18",
         "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB",
+        "checked": "2026-08-18"
+      }
+    },
+    {
+      "instance_uid": "LESHY2-UI:headset_microphone_bias_filter_res",
+      "instance": "headset_microphone_bias_filter_res",
+      "project": "LESHY2-UI",
+      "device_key": "yageo_rc0402fr_07220rl",
+      "mpn": "Yageo RC0402FR-07220RL",
+      "role": "220ohm_1pct_0402_resistor",
+      "board": "ui-control-pcb",
+      "sheet": "UI_13_AUDIO_CODEC_HEADSET",
+      "electrical_disposition": "board_fitted_component",
+      "physical_registration": "schematic_only_body",
+      "contact_count": 2,
+      "logical_contact_count": 2,
+      "physical_pcb_contact_count": 2,
+      "contact_evidence_status": "registered_exact_contact_map",
+      "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
+      "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
+      "manufacturer_evidence": {
+        "document": "Yageo RC general-purpose chip resistor specification",
+        "version": "current exact order code checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
+        "checked": "2026-08-18"
+      }
+    },
+    {
+      "instance_uid": "LESHY2-UI:headset_microphone_bias_filter_cap",
+      "instance": "headset_microphone_bias_filter_cap",
+      "project": "LESHY2-UI",
+      "device_key": "murata_grm188r60j106me47d",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "role": "10uf_20pct_6_3v_x5r_0603_pd_ldo_capacitor",
+      "board": "ui-control-pcb",
+      "sheet": "UI_13_AUDIO_CODEC_HEADSET",
+      "electrical_disposition": "board_fitted_component",
+      "physical_registration": "schematic_only_body",
+      "contact_count": 2,
+      "logical_contact_count": 2,
+      "physical_pcb_contact_count": 2,
+      "contact_evidence_status": "registered_exact_contact_map",
+      "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
+      "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
+      "manufacturer_evidence": {
+        "document": "Murata GRM188R60J106ME47 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM188R60J106ME47D",
         "checked": "2026-08-18"
       }
     },

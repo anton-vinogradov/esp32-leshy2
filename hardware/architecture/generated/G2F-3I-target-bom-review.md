@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **1004** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **1003** supplied/costed placements collapse to **208** used exact-device/MPN lines.
-- Current orderability evidence exists for **207/208** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **197/208** lines.
+- **1006** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **1005** supplied/costed placements collapse to **209** used exact-device/MPN lines.
+- Current orderability evidence exists for **208/209** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **198/209** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **986/1003** supplied placements; their partial subtotals are `base_product` — USD 222.3870. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **208/208** lines.
+- Those priced lines cover **988/1005** supplied placements; their partial subtotals are `base_product` — USD 222.4306. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **209/209** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 1000 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 1002 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -102,7 +102,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-CTRL-PASSIVE</code> — Control, timing, precision, protection-current and sensing passives — 59 line(s)</summary>
+<details><summary><code>SUB-CTRL-PASSIVE</code> — Control, timing, precision, protection-current and sensing passives — 60 line(s)</summary>
 
 - Disposition: controlled parametric substitution; no value-family or tolerance relaxation without owning-subblock review.
 - Equivalence envelope:
@@ -132,6 +132,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `panasonic_erj_p08f49r9v` — `Panasonic ERJ-P08F49R9V`.
   - `tdk_b57332v5103f360` — `TDK B57332V5103F360`.
   - `tdk_c1608x7r1c105k080ac` — `TDK C1608X7R1C105K080AC`.
+  - `vishay_crcw0402160kfked` — `Vishay CRCW0402160KFKED`.
   - `vishay_tnpw040210k0beed` — `Vishay TNPW040210K0BEED`.
   - `vishay_tnpw040243k7beed` — `Vishay TNPW040243K7BEED`.
   - `vishay_wsl25125l000fea` — `Vishay WSL25125L000FEA`.
@@ -879,7 +880,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Murata GRM188R60J106ME47D</code> — 18 × USD 0.0377 = USD 0.6786</summary>
+<details><summary><code>Murata GRM188R60J106ME47D</code> — 19 × USD 0.0377 = USD 0.7163</summary>
 
 - Device id: `murata_grm188r60j106me47d`.
 - Scope: `base_product`.
@@ -1707,6 +1708,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Vishay CRCW0402160KFKED</code> — 1 × USD 0.0157 = USD 0.0157</summary>
+
+- Device id: `vishay_crcw0402160kfked`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-24`; [published source](https://www.digikey.com/en/products/detail/vishay-dale/CRCW0402160KFKED/1178256).
+
+</details>
+
 <details><summary><code>Vishay TNPW040210K0BEED</code> — 1 × USD 0.1812 = USD 0.1812</summary>
 
 - Device id: `vishay_tnpw040210k0beed`.
@@ -1869,7 +1879,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-07220KL</code> — 12 × USD 0.0097 = USD 0.1164</summary>
+<details><summary><code>Yageo RC0402FR-07220KL</code> — 11 × USD 0.0097 = USD 0.1067</summary>
 
 - Device id: `yageo_rc0402fr_07220kl`.
 - Scope: `base_product`.
@@ -1878,7 +1888,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-07220RL</code> — 1 × USD 0.0097 = USD 0.0097</summary>
+<details><summary><code>Yageo RC0402FR-07220RL</code> — 2 × USD 0.0097 = USD 0.0194</summary>
 
 - Device id: `yageo_rc0402fr_07220rl`.
 - Scope: `base_product`.
@@ -1932,7 +1942,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-0733KL</code> — 3 × USD 0.0097 = USD 0.0291</summary>
+<details><summary><code>Yageo RC0402FR-0733KL</code> — 1 × USD 0.0097 = USD 0.0097</summary>
 
 - Device id: `yageo_rc0402fr_0733kl`.
 - Scope: `base_product`.
@@ -2085,7 +2095,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402JR-070RL</code> — 2 × USD 0.0048 = USD 0.0096</summary>
+<details><summary><code>Yageo RC0402JR-070RL</code> — 4 × USD 0.0048 = USD 0.0192</summary>
 
 - Device id: `yageo_rc0402jr_070rl`.
 - Scope: `base_product`.

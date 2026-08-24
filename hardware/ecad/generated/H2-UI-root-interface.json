@@ -5,9 +5,9 @@
   "project": "LESHY2-UI",
   "root_sheet": "UI_00_ROOT",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "62f4943b66967489be0205e7f7baaee6249c51d991ff566cde5a71a58a2ff4ee",
-    "hardware/ecad/generated/H2-instance-ledger.json": "8b079cab5d662289dc1188395e0ab68ddbfb3fa1e31836c8d597fad84024d296",
-    "hardware/ecad/H2-sheet-contract.json": "2e7646b761d069785c5c37ca8fb686fd33d46ac7391c6d78f924b015d633f889"
+    "hardware/architecture/candidates/G2F-3I.json": "c2a489f8f3ed57cac2066ff591bd3a0cc909d40545c0aec4e09dcc8955ef2950",
+    "hardware/ecad/generated/H2-instance-ledger.json": "47281c317c4324dcf3b7af4a84768ba2d08fa8fc46c0fd3ee30ecf440cffc913",
+    "hardware/ecad/H2-sheet-contract.json": "3ca02a1212e1869fb47dbeb62e7a23ace4586159391cebb38078dc9aa22a1df7"
   },
   "summary": {
     "child_sheet_count": 9,
@@ -16,8 +16,8 @@
     "child_hierarchical_label_count": 232,
     "known_child_stub_erc_violations": 0,
     "implemented_child_sheet_count": 9,
-    "circuit_symbols_placed": 387,
-    "suppressed_generated_library_copy_checks": 387,
+    "circuit_symbols_placed": 389,
+    "suppressed_generated_library_copy_checks": 389,
     "pcb_files_created": 0
   },
   "sheets": [

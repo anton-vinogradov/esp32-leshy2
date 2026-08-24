@@ -4,12 +4,12 @@
   "status": "reviewed_named_nets_and_m1",
   "method": "fresh native KiCad XML netlists compared with all root hierarchy names and both physical M1 connector pin maps",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "62f4943b66967489be0205e7f7baaee6249c51d991ff566cde5a71a58a2ff4ee",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "b813aa62c77640ce34befc4dd95f7779f694ca4f1e863e4cade3c96c6ecadf22",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "4f708bd7c2dee596bcc383d83bf5619240800a77e0b7a5162ad579e5fe6f1f62",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "7780cfd679150547e92859bb9a66df23a2078423a1736a442871bac92b1906d5",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "88d810ddeaa9a675bb1bd14e3c3f1624cff5657633fb39fa340aaabb9418261f",
-    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "c9aae94b2d80a4e2c8a456da6f91f30c8a89e627fb6094df0266df8a5074123c",
+    "hardware/architecture/candidates/G2F-3I.json": "c2a489f8f3ed57cac2066ff591bd3a0cc909d40545c0aec4e09dcc8955ef2950",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "a024d7ba47c06097483e07e3cc86ee4bf37ece2a057429b81a1cf7ffaf6868c9",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "34d2c537c0da158e42e6404de16c301d8c28514928db75aa90b17ad1539ad041",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "c63b77bd910dccc091fa77b20b97000fa39d3ff2bf41f8dea16dc9f18dee5569",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "d15df717221ae3e3b0ff0500095c03814353cafbc1d186321a39af37188b935a",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "942daea8a60780f57c98292b4e103af9fc79eb53a5960ab032898fb9900526b9",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01",
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c"
@@ -27,7 +27,7 @@
     {
       "project": "LESHY2-UI",
       "root_named_nets": 95,
-      "native_netlist_nets": 338,
+      "native_netlist_nets": 339,
       "missing_root_nets": 0
     },
     {

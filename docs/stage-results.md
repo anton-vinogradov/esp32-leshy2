@@ -118,13 +118,13 @@ are satisfied.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current, exact marker `H3.3.2`.
+**Status:** ▶️ current, exact marker `H3.3.3`.
 
 - [Current virtual-verification page](virtual-verification.md).
 - [Machine execution plan](../hardware/verification/h3-verification-plan.json).
 - [Accepted-input freeze and 16-domain matrix](../hardware/verification/generated/H3-VRF01-input-freeze.json).
-- [Parameter and model register](parameter-model-register.md) — 1,032
-  instances, 216 used device types and their primary sources.
+- [Parameter and model register](parameter-model-register.md) — 1,034
+  instances, 217 used device types and their primary sources.
 - [H3.0.2 machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).
 - [Verification methods](verification-methods.md) and
   [H3.0.3 machine contract](../hardware/verification/generated/H3-VRF03-method-contract.json).
@@ -137,13 +137,16 @@ are satisfied.
   and the [reviewed H3.2 result](power-transition-result.md).
 - [Display supply, backlight and direct-QSPI result](display-electrical-verification.md)
   and [machine H3.3.1 evidence](../hardware/verification/generated/H3-VRF31-display.json).
+- [Audio-path verification result](audio-electrical-verification.md)
+  and [machine H3.3.2 evidence](../hardware/verification/generated/H3-VRF32-audio.json).
 
 `H3.0.1–H3.0.3` are reviewed: inputs, parameters and ten common pass/fail
 rules are frozen. `H3.1` is reviewed: 2,032 complete states and 200 rail
 profiles pass with no unresolved finding after one eFuse threshold correction.
 `H3.2` is reviewed: power transitions and the safety loop pass, with two source
 errors corrected. `H3.3.1` is reviewed after correcting two more source errors;
-`H3.3.2` is verifying codec, microphone, headset and speaker corners.
+`H3.3.2` is reviewed after four audio-path corrections. `H3.3.3` is verifying
+IR drive, receive thresholds and thermal duty limits.
 
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate

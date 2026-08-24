@@ -80,6 +80,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/power-transition-result.ru.md",
         "docs/display-electrical-verification.md",
         "docs/display-electrical-verification.ru.md",
+        "docs/audio-electrical-verification.md",
+        "docs/audio-electrical-verification.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -340,10 +342,10 @@ class ProductSiteTests(unittest.TestCase):
         )
         binding = sheet_contract["inventory_binding"]
         self.assertEqual("reviewed_against_complete_h2_0_1_inventory", binding["status"])
-        self.assertEqual(1032, binding["registered_inventory_rows"])
+        self.assertEqual(1034, binding["registered_inventory_rows"])
         self.assertEqual(
             {
-                "LESHY2-UI": 374,
+                "LESHY2-UI": 376,
                 "LESHY2-RF": 628,
                 "L2-DISP-ADP-001-A": 2,
                 "LESHY2-LORA-CAP-01": 28,
@@ -352,7 +354,7 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(4, len(binding["intentionally_component_empty_sheets"]))
         self.assertEqual(24, len(binding["sheet_row_counts"]))
-        self.assertEqual(1032, sum(binding["sheet_row_counts"].values()))
+        self.assertEqual(1034, sum(binding["sheet_row_counts"].values()))
 
     def test_h3_plan_and_accepted_input_freeze_are_current(self):
         import hashlib
@@ -385,8 +387,11 @@ class ProductSiteTests(unittest.TestCase):
         dc_result = json.loads(
             self.read("hardware/verification/generated/H3-VRF14-dc-consolidation.json")
         )
+        audio = json.loads(
+            self.read("hardware/verification/generated/H3-VRF32-audio.json")
+        )
         self.assertEqual("H3", plan["stage"])
-        self.assertEqual("H3.3.2", plan["current_substep"])
+        self.assertEqual("H3.3.3", plan["current_substep"])
         self.assertEqual(plan["current_substep"], state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
@@ -399,14 +404,15 @@ class ProductSiteTests(unittest.TestCase):
         self.assertTrue(all(row["status"] == "reviewed" for row in plan["substeps"][2]["children"]))
         self.assertEqual("current", plan["substeps"][3]["status"])
         self.assertEqual("reviewed", plan["substeps"][3]["children"][0]["status"])
-        self.assertEqual("current", plan["substeps"][3]["children"][1]["status"])
+        self.assertEqual("reviewed", plan["substeps"][3]["children"][1]["status"])
+        self.assertEqual("current", plan["substeps"][3]["children"][2]["status"])
         self.assertEqual(16, freeze["summary"]["verification_domains"])
         self.assertEqual(0, freeze["summary"]["unassigned_virtual_checks"])
         self.assertEqual(0, freeze["summary"]["unassigned_physical_checks"])
-        self.assertEqual(1032, inventory["summary"]["registered_instances"])
-        self.assertEqual(216, inventory["summary"]["used_device_types"])
+        self.assertEqual(1034, inventory["summary"]["registered_instances"])
+        self.assertEqual(217, inventory["summary"]["used_device_types"])
         self.assertEqual(0, inventory["summary"]["source_missing"])
-        self.assertEqual(67, inventory["summary"]["used_types_with_structured_electrical_contract"])
+        self.assertEqual(68, inventory["summary"]["used_types_with_structured_electrical_contract"])
         self.assertEqual(149, inventory["summary"]["used_types_requiring_parameter_extraction"])
         self.assertEqual(2, inventory["summary"]["official_h3_source_overrides"])
         self.assertEqual(1, inventory["summary"]["lifecycle_decisions"])
@@ -427,16 +433,19 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(0, power_states["summary"]["invariant_violations"])
         self.assertEqual(200, dc_budget["summary"]["rail_profiles_evaluated"])
         self.assertEqual(0, dc_budget["summary"]["failed_profiles"])
-        self.assertEqual(1, dc_budget["summary"]["corrected_findings"])
+        self.assertEqual(2, dc_budget["summary"]["corrected_findings"])
         self.assertEqual(2032, source_budget["summary"]["states_evaluated"])
         self.assertEqual(0, source_budget["summary"]["failed_states"])
         self.assertEqual(14, source_budget["summary"]["source_limited_profiles_explicitly_refused"])
         self.assertEqual("reviewed", dc_result["review_summary"]["phase_status"])
         self.assertEqual(0, dc_result["review_summary"]["unresolved_findings"])
+        self.assertEqual(43, audio["review_summary"]["checks"])
+        self.assertEqual(4, audio["review_summary"]["corrected_findings"])
+        self.assertEqual(0, audio["review_summary"]["unresolved_findings"])
         for relative, expected in freeze["source_hashes"].items():
             actual = hashlib.sha256((REPO_ROOT / relative).read_bytes()).hexdigest()
             self.assertEqual(expected, actual, relative)
-        for artifact in (inventory, methods, power_states, dc_budget, source_budget, dc_result):
+        for artifact in (inventory, methods, power_states, dc_budget, source_budget, dc_result, audio):
             for relative, expected in artifact["source_hashes"].items():
                 actual = hashlib.sha256((REPO_ROOT / relative).read_bytes()).hexdigest()
                 self.assertEqual(expected, actual, relative)
@@ -491,8 +500,8 @@ class ProductSiteTests(unittest.TestCase):
                 "child_hierarchical_label_count": 232,
                 "known_child_stub_erc_violations": 0,
                 "implemented_child_sheet_count": 9,
-                "circuit_symbols_placed": 387,
-                "suppressed_generated_library_copy_checks": 387,
+                "circuit_symbols_placed": 389,
+                "suppressed_generated_library_copy_checks": 389,
                 "pcb_files_created": 0,
             },
             manifest["summary"],
@@ -530,13 +539,13 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(2, ledger["schema_version"])
         self.assertEqual("reviewed_complete_circuit_inventory", ledger["status"])
         summary = ledger["summary"]
-        self.assertEqual(1032, summary["registered_inventory_rows"])
-        self.assertEqual(1004, summary["main_candidate_instances"])
+        self.assertEqual(1034, summary["registered_inventory_rows"])
+        self.assertEqual(1006, summary["main_candidate_instances"])
         self.assertEqual(26, summary["lora_cap_common_instances"])
         self.assertEqual(2, summary["lora_cap_alternative_module_instances"])
         self.assertEqual(182, summary["h1_dimensioned_instances"])
-        self.assertEqual(822, summary["schematic_only_main_instances"])
-        self.assertEqual(992, summary["main_board_fitted_components"])
+        self.assertEqual(824, summary["schematic_only_main_instances"])
+        self.assertEqual(994, summary["main_board_fitted_components"])
         self.assertEqual(6, summary["main_fitted_interconnect_assemblies"])
         self.assertEqual(6, summary["main_external_mating_products"])
         self.assertEqual(28, summary["lora_cap_rows"])
@@ -564,7 +573,7 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(
             {
-                "LESHY2-UI": 374,
+                "LESHY2-UI": 376,
                 "LESHY2-RF": 628,
                 "L2-DISP-ADP-001-A": 2,
                 "LESHY2-LORA-CAP-01": 28,
@@ -1511,9 +1520,9 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(
             {
-                "ledger_instances": 102,
-                "schematic_symbols": 102,
-                "board_fitted_symbols": 102,
+                "ledger_instances": 104,
+                "schematic_symbols": 104,
+                "board_fitted_symbols": 104,
                 "hierarchical_interfaces": 24,
                 "codec_contacts": 21,
                 "headset_contacts": 6,
@@ -1542,7 +1551,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("CODEC_DAC_OUT_P", aliases["CODEC_HP_L_RAW"])
         self.assertEqual("3V3_CODEC_SWITCHED", aliases["CODEC_QOD"])
         self.assertEqual("AUDIO_GROUND", aliases["HEADSET_RING2_GROUND"])
-        self.assertEqual(102, len({row["symbol_uuid"] for row in manifest["instances"]}))
+        self.assertEqual(104, len({row["symbol_uuid"] for row in manifest["instances"]}))
         jack = self.read(
             "hardware/ecad/libraries/Leshy2.pretty/SJ-43504-SMT-TR.kicad_mod"
         )

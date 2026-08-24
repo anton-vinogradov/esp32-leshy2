@@ -29,6 +29,6 @@ H2 was accepted on 24 August 2026 at hardware commit `25d9ee2` and firmware comm
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | 24-to-48-hour operating envelope | H8 endurance run |
 
-**Current marker:** `H3.3.2` — [display, backlight and direct QSPI](display-electrical-verification.md) are reviewed; codec, microphone, headset and speaker corners are being verified.
+**Current marker:** `H3.3.3` — the [audio path](audio-electrical-verification.md) is reviewed; IR drive, receive thresholds and thermal duty limits are being verified.
 
 [Machine freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

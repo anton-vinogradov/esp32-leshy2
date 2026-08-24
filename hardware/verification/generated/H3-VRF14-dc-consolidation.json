@@ -3,10 +3,10 @@
   "stage": "H3.1.4",
   "status": "reviewed_h3_1_steady_dc_phase_complete",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF11-power-state-register.json": "3ea50d53820610b61c26ad756f16a8328753d3193addbf9884a0053535bd2a8c",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "1142a60db3358c7011632651483dafab3026ff5eaeb49cb25f9ac378723e9595",
-    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "6ef5f3090527ef4ea606e75d6e8deb2b19437a3fd7b856bb245a5c25641639bb",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "e999a7b7c1296758fc8881e007a3d4d51b6b6da164da816686132e9193f43df9"
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "fbb71f20fb570cb20348118bcfa07e04cb0da9cbadb388e7523806adb5d98163",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "c9095652d0cc2032a8e38f87b7c0cf06e07119425d71d523ab91fac274ca2c05",
+    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "8a8a324abdd0a883a3980ac8cf8f78cc10a09347d27e40cef271b29efc7da04b",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "759ba5f642623964bc97f04277cdee23354acc1fe772ce4b313673f6c5a9a1d6"
   },
   "checks": {
     "all_states_enumerated": true,
@@ -23,12 +23,12 @@
     "complete_power_states": 2032,
     "load_profiles": 50,
     "rail_profiles": 200,
-    "minimum_rail_hardware_reserve_percent": "29.976",
-    "maximum_sys_demand_w": "16.777",
-    "maximum_pack_discharge_a": "2.796",
-    "pack_hardware_reserve_percent_at_worst": "257.654",
-    "maximum_rail_conversion_loss_w": "2.517",
-    "maximum_efuse_conduction_loss_w": "0.386",
+    "minimum_rail_hardware_reserve_percent": "28.359",
+    "maximum_sys_demand_w": "16.894",
+    "maximum_pack_discharge_a": "2.816",
+    "pack_hardware_reserve_percent_at_worst": "255.114",
+    "maximum_rail_conversion_loss_w": "2.534",
+    "maximum_efuse_conduction_loss_w": "0.393",
     "usb_5v3a_profiles_explicitly_refused_without_pack": 14,
     "charge_states_derated_by_dpm": 258,
     "failed_checks": 0
@@ -40,6 +40,13 @@
       "correction": "both U214 and native-Unit eFuses now use active/orderable Yageo RC0402FR-071K82L; guaranteed low corner is 1.632 A and high corner is 2.035 A",
       "functional_effect": "restores >=30.6% steady reserve and preserves the bounded 2-A post-start transient without changing the connector contract",
       "cost_effect_usd_at_100": "0.0000 versus the replaced resistor at the same published $0.0097 tier"
+    },
+    {
+      "id": "H3.1.2-F02",
+      "finding": "the audio allowance cited an 8-ohm PAM8302A curve although the exact AS02404PO is 4 ohm +/-15%; the display allowance simultaneously treated the TPS2553 fault threshold as a continuous normal load",
+      "correction": "reserve 625 mA for amplifier, codec and selectors using the actual 3.4-ohm low corner, and 200 mA for 80-mA display/touch plus the 120-mA normal donor backlight reference",
+      "functional_effect": "the recalculated 3V3_MAIN worst case is 2493 mA with 28.36% guaranteed hardware reserve; the 174-to-234-mA backlight threshold remains an independent latched fault bound",
+      "cost_effect_usd_at_100": "0.0000; this corrects operating admission rather than hardware"
     }
   ],
   "conditional_admissions": [
@@ -64,7 +71,7 @@
   ],
   "review_summary": {
     "unresolved_findings": 0,
-    "corrected_findings": 1,
+    "corrected_findings": 2,
     "phase_status": "reviewed"
   },
   "next": {

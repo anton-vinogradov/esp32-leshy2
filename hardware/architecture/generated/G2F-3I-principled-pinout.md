@@ -331,7 +331,7 @@ flowchart TD
   AUDIO_CAPTURE_BUFFER["TLV9061IDBVR<br/>active high-impedance capture buffer"]
   AUDIO_CAPTURE_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>audio capture buffer bypass physical component"]
   CODEC_ADC_P_COUPLING["TDK C1608X7R1C105K080AC<br/>codec adc p coupling physical component"]
-  CODEC_ADC_P_SERIES["Yageo RC0402FR-0733KL<br/>codec adc p series physical component"]
+  CODEC_ADC_P_SERIES["Yageo RC0402JR-070RL<br/>codec adc p series physical component"]
   end
   S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ RECEIVER_FMSW_EXTERNAL_SMA ~~~ RECEIVER_AMLW_EXTERNAL_SMA ~~~ VOICE_EXTERNAL_SMA ~~~ VOICE ~~~ VOICE_RF_ESD ~~~ VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH
   VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN ~~~ RECEIVER ~~~ CODEC ~~~ AUDIO_RX_MUX ~~~ AUDIO_RX_MUX_BYPASS ~~~ AUDIO_RX_SEL_PULLDOWN ~~~ AUDIO_VMID_TOP ~~~ AUDIO_VMID_BOTTOM
@@ -360,7 +360,7 @@ flowchart TD
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
   VOICE_EFUSE["Texas Instruments TPS25974LRPWR<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG"]
   CODEC_ADC_N_COUPLING["TDK C1608X7R1C105K080AC<br/>codec adc n coupling physical component"]
-  CODEC_ADC_N_SERIES["Yageo RC0402FR-0733KL<br/>codec adc n series physical component"]
+  CODEC_ADC_N_SERIES["Yageo RC0402JR-070RL<br/>codec adc n series physical component"]
   AUDIO_SPEAKER_SELECTOR["Texas Instruments TMUX1136DGSR<br/>dual differential RX-bypass/codec speaker selector"]
   AUDIO_SPEAKER_SELECTOR_BYPASS["TDK C1005X7R1H104K050BB<br/>audio speaker selector bypass physical component"]
   SPEAKER_INPUT_P_COUPLING["TDK C1608X7R1C105K080AC<br/>speaker input p coupling physical component"]
@@ -372,7 +372,7 @@ flowchart TD
   MIC_TX_COUPLING["TDK C1608X7R1C105K080AC<br/>mic tx coupling physical component"]
   MIC_TX_BIAS["Yageo RC0402FR-07100KL<br/>mic tx bias physical component"]
   CODEC_TX_COUPLING["TDK C1608X7R1C105K080AC<br/>codec tx coupling physical component"]
-  CODEC_TX_ATTEN_TOP["Yageo RC0402FR-07220KL<br/>codec tx atten top physical component"]
+  CODEC_TX_ATTEN_TOP["Vishay CRCW0402160KFKED<br/>codec tx atten top physical component"]
   CODEC_TX_ATTEN_BOTTOM["Yageo RC0402FR-072K2L<br/>codec tx atten bottom physical component"]
   CODEC_TX_FILTER["Murata GRM155R71H103KA88D<br/>codec tx filter physical component"]
   VOICE_MIC_COUPLING["TDK C1608X7R1C105K080AC<br/>voice mic coupling physical component"]
@@ -399,17 +399,15 @@ flowchart TD
   HEADPHONE_JACK["Same Sky SJ-43504-SMT-TR<br/>shielded 3.5-mm CTIA TRRS headset jack with insertion switches"]
   HEADSET_MIC_SELECTOR["Texas Instruments TS5A63157DCKR<br/>controlled internal/CTIA-headset microphone selector"]
   HEADSET_MIC_SELECTOR_BYPASS["TDK C1005X7R1H104K050BB<br/>headset-microphone selector bypass capacitor"]
-  HEADSET_MIC_BIAS_RES["Yageo RC0402FR-072K2L<br/>separate 2.2-kOhm CTIA microphone-bias resistor"]
-  HEADSET_CONTROL_IO["TCA9534APWR<br/>0x39 microphone-source controller with seven pulled reserve I/O lines"]
-  HEADSET_CONTROL_IO_BYPASS["TDK C1005X7R1H104K050BB<br/>headset-controller bypass capacitor"]
+  HEADSET_MICROPHONE_BIAS_FILTER_RES["Yageo RC0402FR-07220RL<br/>headset microphone bias filter res physical component"]
+  HEADSET_MICROPHONE_BIAS_FILTER_CAP["Murata GRM188R60J106ME47D<br/>headset microphone bias filter cap physical component"]
   end
   S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ CODEC_ADC_N_COUPLING ~~~ CODEC_ADC_N_SERIES ~~~ AUDIO_SPEAKER_SELECTOR ~~~ AUDIO_SPEAKER_SELECTOR_BYPASS ~~~ SPEAKER_INPUT_P_COUPLING ~~~ SPEAKER_INPUT_N_COUPLING ~~~ SPEAKER_INPUT_P_GAIN
   SPEAKER_INPUT_N_GAIN ~~~ AUDIO_TX_SELECTOR ~~~ AUDIO_TX_SELECTOR_BYPASS ~~~ MIC_TX_COUPLING ~~~ MIC_TX_BIAS ~~~ CODEC_TX_COUPLING ~~~ CODEC_TX_ATTEN_TOP ~~~ CODEC_TX_ATTEN_BOTTOM ~~~ CODEC_TX_FILTER ~~~ VOICE_MIC_COUPLING ~~~ AUDIO_SAFE_GATE ~~~ AUDIO_SAFE_GATE_BYPASS
   AUDIO_SPEAKER_REQ_PULLDOWN ~~~ AUDIO_TX_REQ_PULLDOWN ~~~ AUDIO_ARM_PULLDOWN ~~~ AUDIO_SPEAKER_SAFE_PULLDOWN ~~~ AUDIO_TX_SAFE_PULLDOWN ~~~ SPEAKER_AMP ~~~ SPEAKER_AMP_INPUT_CAP ~~~ SPEAKER_AMP_BULK_CAP ~~~ SPEAKER_AMP_ENABLE_PULLDOWN ~~~ SPEAKER_OUTPUT_BEAD_P ~~~ SPEAKER_OUTPUT_BEAD_N ~~~ SPEAKER_OUTPUT_CAP_P
-  SPEAKER_OUTPUT_CAP_N ~~~ SPEAKER ~~~ MICROPHONE ~~~ MICROPHONE_BIAS_FILTER_RES ~~~ MICROPHONE_BIAS_FILTER_CAP ~~~ MICROPHONE_BIAS_RES ~~~ HEADPHONE_JACK ~~~ HEADSET_MIC_SELECTOR ~~~ HEADSET_MIC_SELECTOR_BYPASS ~~~ HEADSET_MIC_BIAS_RES ~~~ HEADSET_CONTROL_IO ~~~ HEADSET_CONTROL_IO_BYPASS
+  SPEAKER_OUTPUT_CAP_N ~~~ SPEAKER ~~~ MICROPHONE ~~~ MICROPHONE_BIAS_FILTER_RES ~~~ MICROPHONE_BIAS_FILTER_CAP ~~~ MICROPHONE_BIAS_RES ~~~ HEADPHONE_JACK ~~~ HEADSET_MIC_SELECTOR ~~~ HEADSET_MIC_SELECTOR_BYPASS ~~~ HEADSET_MICROPHONE_BIAS_FILTER_RES ~~~ HEADSET_MICROPHONE_BIAS_FILTER_CAP
   MICROPHONE --> HEADSET_MIC_SELECTOR
   HEADPHONE_JACK -->|"CTIA sleeve microphone"| HEADSET_MIC_SELECTOR
-  HEADSET_MIC_BIAS_RES --> HEADPHONE_JACK
   SLOW_IO -->|"P02 plug state / inserted-only override"| HEADSET_MIC_SELECTOR
   AUDIO_SPEAKER_SELECTOR --> SPEAKER_INPUT_P_COUPLING --> SPEAKER_AMP
   AUDIO_SPEAKER_SELECTOR --> SPEAKER_INPUT_N_COUPLING --> SPEAKER_AMP
@@ -434,6 +432,9 @@ flowchart TD
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
   VOICE_EFUSE["Texas Instruments TPS25974LRPWR<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG"]
+  HEADSET_MIC_BIAS_RES["Yageo RC0402FR-072K2L<br/>separate 2.2-kOhm CTIA microphone-bias resistor"]
+  HEADSET_CONTROL_IO["TCA9534APWR<br/>0x39 microphone-source controller with seven pulled reserve I/O lines"]
+  HEADSET_CONTROL_IO_BYPASS["TDK C1005X7R1H104K050BB<br/>headset-controller bypass capacitor"]
   HEADSET_MIC_SELECT_PULLUP["Yageo RC0402FR-07100KL<br/>internal-microphone reset-default pull-up"]
   HEADSET_CONTROL_P1_PULLDOWN["Yageo RC0402FR-07100KL<br/>headset control p1 pulldown physical component"]
   HEADSET_CONTROL_P2_PULLDOWN["Yageo RC0402FR-07100KL<br/>headset control p2 pulldown physical component"]
@@ -472,15 +473,11 @@ flowchart TD
   CODEC_I2S_DOUT_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>codec i2s dout iso bypass physical component"]
   CODEC_I2S_DIN_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>codec i2s din iso bypass physical component"]
   CODEC_I2S_DIN_BOOT_GATE_BYPASS["TDK C1005X7R1H104K050BB<br/>codec i2s din boot gate bypass physical component"]
-  CODEC_PVDD_BYPASS["TDK C1005X7R1H104K050BB<br/>codec pvdd bypass physical component"]
-  CODEC_DVDD_BEAD["Murata BLM18PG181SN1D<br/>codec dvdd bead physical component"]
-  CODEC_DVDD_BYPASS["TDK C1005X7R1H104K050BB<br/>codec dvdd bypass physical component"]
-  CODEC_AVDD_BEAD["Murata BLM18PG181SN1D<br/>codec avdd bead physical component"]
   end
-  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ HEADSET_MIC_SELECT_PULLUP ~~~ HEADSET_CONTROL_P1_PULLDOWN ~~~ HEADSET_CONTROL_P2_PULLDOWN ~~~ HEADSET_CONTROL_P3_PULLDOWN ~~~ HEADSET_CONTROL_P4_PULLDOWN ~~~ HEADSET_CONTROL_P5_PULLDOWN ~~~ HEADSET_CONTROL_P6_PULLDOWN
-  HEADSET_CONTROL_P7_PULLDOWN ~~~ HEADPHONE_ESD ~~~ HEADPHONE_L_COUPLING0 ~~~ HEADPHONE_L_COUPLING1 ~~~ HEADPHONE_R_COUPLING0 ~~~ HEADPHONE_R_COUPLING1 ~~~ HEADPHONE_L_SERIES ~~~ HEADPHONE_R_SERIES ~~~ HEADPHONE_TIP_DETECT_PULLUP ~~~ HEADSET_DETECT_SERIES ~~~ HEADSET_ABSENT_PULLDOWN ~~~ CODEC_POWER_INPUT_CAP
-  CODEC_POWER_OUTPUT_CAP ~~~ CODEC_POWER_ON_PULLDOWN ~~~ CODEC_SUPERVISOR ~~~ CODEC_SUPERVISOR_BYPASS ~~~ CODEC_READY_PULLDOWN ~~~ CODEC_I2C_ISO ~~~ CODEC_I2C_ISO_BYPASS ~~~ CODEC_I2C_SCL_PULLUP ~~~ CODEC_I2C_SDA_PULLUP ~~~ CODEC_I2S_BCLK_ISO ~~~ CODEC_I2S_WS_ISO ~~~ CODEC_I2S_DOUT_ISO
-  CODEC_I2S_DIN_ISO ~~~ CODEC_I2S_DIN_BOOT_GATE ~~~ CODEC_I2S_BCLK_ISO_BYPASS ~~~ CODEC_I2S_WS_ISO_BYPASS ~~~ CODEC_I2S_DOUT_ISO_BYPASS ~~~ CODEC_I2S_DIN_ISO_BYPASS ~~~ CODEC_I2S_DIN_BOOT_GATE_BYPASS ~~~ CODEC_PVDD_BYPASS ~~~ CODEC_DVDD_BEAD ~~~ CODEC_DVDD_BYPASS ~~~ CODEC_AVDD_BEAD
+  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ HEADSET_MIC_BIAS_RES ~~~ HEADSET_CONTROL_IO ~~~ HEADSET_CONTROL_IO_BYPASS ~~~ HEADSET_MIC_SELECT_PULLUP ~~~ HEADSET_CONTROL_P1_PULLDOWN ~~~ HEADSET_CONTROL_P2_PULLDOWN ~~~ HEADSET_CONTROL_P3_PULLDOWN
+  HEADSET_CONTROL_P4_PULLDOWN ~~~ HEADSET_CONTROL_P5_PULLDOWN ~~~ HEADSET_CONTROL_P6_PULLDOWN ~~~ HEADSET_CONTROL_P7_PULLDOWN ~~~ HEADPHONE_ESD ~~~ HEADPHONE_L_COUPLING0 ~~~ HEADPHONE_L_COUPLING1 ~~~ HEADPHONE_R_COUPLING0 ~~~ HEADPHONE_R_COUPLING1 ~~~ HEADPHONE_L_SERIES ~~~ HEADPHONE_R_SERIES ~~~ HEADPHONE_TIP_DETECT_PULLUP
+  HEADSET_DETECT_SERIES ~~~ HEADSET_ABSENT_PULLDOWN ~~~ CODEC_POWER_INPUT_CAP ~~~ CODEC_POWER_OUTPUT_CAP ~~~ CODEC_POWER_ON_PULLDOWN ~~~ CODEC_SUPERVISOR ~~~ CODEC_SUPERVISOR_BYPASS ~~~ CODEC_READY_PULLDOWN ~~~ CODEC_I2C_ISO ~~~ CODEC_I2C_ISO_BYPASS ~~~ CODEC_I2C_SCL_PULLUP ~~~ CODEC_I2C_SDA_PULLUP
+  CODEC_I2S_BCLK_ISO ~~~ CODEC_I2S_WS_ISO ~~~ CODEC_I2S_DOUT_ISO ~~~ CODEC_I2S_DIN_ISO ~~~ CODEC_I2S_DIN_BOOT_GATE ~~~ CODEC_I2S_BCLK_ISO_BYPASS ~~~ CODEC_I2S_WS_ISO_BYPASS ~~~ CODEC_I2S_DOUT_ISO_BYPASS ~~~ CODEC_I2S_DIN_ISO_BYPASS ~~~ CODEC_I2S_DIN_BOOT_GATE_BYPASS
   S3 <-->|"I²C0 host side: GPIO1,GPIO2"| CODEC_I2C_ISO
   S3 -->|"I²S0 outputs: GPIO15,GPIO16,GPIO17"| CODEC_I2S_BCLK_ISO
   CODEC_SUPERVISOR -->|"CODEC_READY"| CODEC_I2S_DIN_BOOT_GATE
@@ -499,6 +496,10 @@ flowchart TD
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
   VOICE_EFUSE["Texas Instruments TPS25974LRPWR<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG"]
+  CODEC_PVDD_BYPASS["TDK C1005X7R1H104K050BB<br/>codec pvdd bypass physical component"]
+  CODEC_DVDD_BEAD["Murata BLM18PG181SN1D<br/>codec dvdd bead physical component"]
+  CODEC_DVDD_BYPASS["TDK C1005X7R1H104K050BB<br/>codec dvdd bypass physical component"]
+  CODEC_AVDD_BEAD["Murata BLM18PG181SN1D<br/>codec avdd bead physical component"]
   CODEC_AVDD_BYPASS["TDK C1005X7R1H104K050BB<br/>codec avdd bypass physical component"]
   CODEC_DACVREF_CAP["TDK C1608X7R1C105K080AC<br/>codec dacvref cap physical component"]
   CODEC_ADCVREF_CAP["TDK C1608X7R1C105K080AC<br/>codec adcvref cap physical component"]
@@ -538,19 +539,14 @@ flowchart TD
   VOICE_IO_POWER_OUTPUT_CAP["TDK C1608X7R1C105K080AC<br/>voice io power output cap physical component"]
   VOICE_PTT_ISO["Texas Instruments SN74LVC1G126DCKR<br/>physical module-PTT tri-state isolation buffer"]
   VOICE_PTT_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>voice ptt iso bypass physical component"]
-  VOICE_PTT_PULLUP["Yageo RC0402FR-0710KL<br/>voice ptt pullup physical component"]
-  VOICE_UART_TX_ISO["Texas Instruments SN74LVC1G126DCKR<br/>physical host-to-module UART isolation buffer"]
-  VOICE_UART_TX_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>voice uart tx iso bypass physical component"]
-  VOICE_UART_RX_PULLDOWN["Yageo RC0402FR-07100KL<br/>voice uart rx pulldown physical component"]
   end
-  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ CODEC_AVDD_BYPASS ~~~ CODEC_DACVREF_CAP ~~~ CODEC_ADCVREF_CAP ~~~ CODEC_VMID_CAP ~~~ CODEC_CE_PULLUP ~~~ RECEIVER_POWER_INPUT_CAP ~~~ RECEIVER_POWER_OUTPUT_CAP
-  RECEIVER_POWER_ON_PULLDOWN ~~~ RECEIVER_SUPERVISOR ~~~ RECEIVER_SUPERVISOR_BYPASS ~~~ RECEIVER_READY_PULLDOWN ~~~ RECEIVER_I2C_ISO ~~~ RECEIVER_I2C_ISO_BYPASS ~~~ RECEIVER_I2C_SCL_PULLUP ~~~ RECEIVER_I2C_SDA_PULLUP ~~~ RECEIVER_IRQ_ISO ~~~ RECEIVER_IRQ_ISO_BYPASS ~~~ RECEIVER_IRQ_PULLUP ~~~ RECEIVER_VDD_BYPASS
-  RECEIVER_CLOCK ~~~ RECEIVER_CLOCK_CAP_RCLK ~~~ RECEIVER_CLOCK_CAP_GPO3 ~~~ RECEIVER_SENB_PULLDOWN ~~~ RECEIVER_FMI_ESD ~~~ RECEIVER_FMI_MATCH_INDUCTOR ~~~ RECEIVER_FMI_COUPLING_CAP ~~~ RECEIVER_AMI_ESD ~~~ RECEIVER_AMI_COUPLING_CAP ~~~ VOICE_SUPERVISOR ~~~ VOICE_SUPERVISOR_BYPASS ~~~ VOICE_SUPERVISOR_SENSE_TOP
-  VOICE_SUPERVISOR_SENSE_BOTTOM ~~~ VOICE_SUPERVISOR_CT ~~~ VOICE_SUPERVISOR_PULLUP ~~~ VOICE_IO_POWER_SWITCH ~~~ VOICE_IO_POWER_INPUT_CAP ~~~ VOICE_IO_POWER_OUTPUT_CAP ~~~ VOICE_PTT_ISO ~~~ VOICE_PTT_ISO_BYPASS ~~~ VOICE_PTT_PULLUP ~~~ VOICE_UART_TX_ISO ~~~ VOICE_UART_TX_ISO_BYPASS ~~~ VOICE_UART_RX_PULLDOWN
+  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ CODEC_PVDD_BYPASS ~~~ CODEC_DVDD_BEAD ~~~ CODEC_DVDD_BYPASS ~~~ CODEC_AVDD_BEAD ~~~ CODEC_AVDD_BYPASS ~~~ CODEC_DACVREF_CAP ~~~ CODEC_ADCVREF_CAP
+  CODEC_VMID_CAP ~~~ CODEC_CE_PULLUP ~~~ RECEIVER_POWER_INPUT_CAP ~~~ RECEIVER_POWER_OUTPUT_CAP ~~~ RECEIVER_POWER_ON_PULLDOWN ~~~ RECEIVER_SUPERVISOR ~~~ RECEIVER_SUPERVISOR_BYPASS ~~~ RECEIVER_READY_PULLDOWN ~~~ RECEIVER_I2C_ISO ~~~ RECEIVER_I2C_ISO_BYPASS ~~~ RECEIVER_I2C_SCL_PULLUP ~~~ RECEIVER_I2C_SDA_PULLUP
+  RECEIVER_IRQ_ISO ~~~ RECEIVER_IRQ_ISO_BYPASS ~~~ RECEIVER_IRQ_PULLUP ~~~ RECEIVER_VDD_BYPASS ~~~ RECEIVER_CLOCK ~~~ RECEIVER_CLOCK_CAP_RCLK ~~~ RECEIVER_CLOCK_CAP_GPO3 ~~~ RECEIVER_SENB_PULLDOWN ~~~ RECEIVER_FMI_ESD ~~~ RECEIVER_FMI_MATCH_INDUCTOR ~~~ RECEIVER_FMI_COUPLING_CAP ~~~ RECEIVER_AMI_ESD
+  RECEIVER_AMI_COUPLING_CAP ~~~ VOICE_SUPERVISOR ~~~ VOICE_SUPERVISOR_BYPASS ~~~ VOICE_SUPERVISOR_SENSE_TOP ~~~ VOICE_SUPERVISOR_SENSE_BOTTOM ~~~ VOICE_SUPERVISOR_CT ~~~ VOICE_SUPERVISOR_PULLUP ~~~ VOICE_IO_POWER_SWITCH ~~~ VOICE_IO_POWER_INPUT_CAP ~~~ VOICE_IO_POWER_OUTPUT_CAP ~~~ VOICE_PTT_ISO ~~~ VOICE_PTT_ISO_BYPASS
   S3 <-->|"I²C0 host side"| RECEIVER_I2C_ISO
   RECEIVER_SUPERVISOR -->|"reset + 200-ms isolation release"| RECEIVER_I2C_ISO
   VOICE_SUPERVISOR --> VOICE_IO_POWER_SWITCH --> VOICE_PTT_ISO
-  VOICE_IO_POWER_SWITCH --> VOICE_UART_TX_ISO
 ```
 
 ### 9. Приём, запись, воспроизведение и voice audio — узлы 5/5
@@ -563,6 +559,10 @@ flowchart TD
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
   VOICE_EFUSE["Texas Instruments TPS25974LRPWR<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG"]
+  VOICE_PTT_PULLUP["Yageo RC0402FR-0710KL<br/>voice ptt pullup physical component"]
+  VOICE_UART_TX_ISO["Texas Instruments SN74LVC1G126DCKR<br/>physical host-to-module UART isolation buffer"]
+  VOICE_UART_TX_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>voice uart tx iso bypass physical component"]
+  VOICE_UART_RX_PULLDOWN["Yageo RC0402FR-07100KL<br/>voice uart rx pulldown physical component"]
   VOICE_UART_TX_PULLDOWN["Yageo RC0402FR-07100KL<br/>voice uart tx pulldown physical component"]
   VOICE_HL_DRIVER["SN74LVC1G07DCKR<br/>low-or-open SA518 H/L driver"]
   VOICE_HL_DRIVER_BYPASS["TDK C1005X7R1H104K050BB<br/>voice hl driver bypass physical component"]
@@ -577,8 +577,8 @@ flowchart TD
   VOICE_TX_LED["LTST-C190KRKT<br/>voice antenna-local actual-TX indicator"]
   VOICE_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>voice actual-TX indicator 2.2-kOhm current limit"]
   end
-  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ VOICE_UART_TX_PULLDOWN ~~~ VOICE_HL_DRIVER ~~~ VOICE_HL_DRIVER_BYPASS ~~~ VOICE_HL_REQ_PULLDOWN ~~~ VOICE_AUDIO_ISO ~~~ VOICE_AUDIO_ISO_BYPASS ~~~ VOICE_AUDIO_ON_PULLDOWN
-  VOICE_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP ~~~ VOICE_TX_LED ~~~ VOICE_TX_LED_SERIES
+  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ VOICE_PTT_PULLUP ~~~ VOICE_UART_TX_ISO ~~~ VOICE_UART_TX_ISO_BYPASS ~~~ VOICE_UART_RX_PULLDOWN ~~~ VOICE_UART_TX_PULLDOWN ~~~ VOICE_HL_DRIVER ~~~ VOICE_HL_DRIVER_BYPASS
+  VOICE_HL_REQ_PULLDOWN ~~~ VOICE_AUDIO_ISO ~~~ VOICE_AUDIO_ISO_BYPASS ~~~ VOICE_AUDIO_ON_PULLDOWN ~~~ VOICE_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP ~~~ VOICE_TX_LED ~~~ VOICE_TX_LED_SERIES
 ```
 
 ### 10. Радиотракты и внешние расширения — узлы 1/7
@@ -4127,8 +4127,11 @@ Reserved: `PA1_NRST`. Free: none.
 | `MIC_BIAS_FILTERED` | `microphone_bias_filter_res.END_2` | `microphone_bias_res.END_1` | exact 2.2-kOhm load targets the microphone's 2-V operating point |
 | `MIC_RAW` | `microphone_bias_res.END_2` | `microphone.OUT_PLUS` | one exact Same Sky electret is the shared acoustic source |
 | `AUDIO_GROUND` | `microphone.GND_MINUS` | `abstract:audio-ground` | electret shell/input return is local and short |
-| `MIC_BIAS_FILTERED` | `microphone_bias_filter_res.END_2` | `headset_mic_bias_res.END_1` | the CTIA sleeve receives the same quiet microphone supply through its own exact bias resistor |
-| `HEADSET_MIC_RAW` | `headset_mic_bias_res.END_2` | `headphone_jack.SLEEVE` | exact 2.2-kOhm bias supports an ordinary CTIA electret capsule and bounds a shorted TRS sleeve |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `headset_microphone_bias_filter_res.END_1` | the exposed CTIA microphone gets an independent exact 220-Ohm filter so an ordinary TRS ground cannot disturb the internal capsule |
+| `HEADSET_MIC_BIAS_FILTERED` | `headset_microphone_bias_filter_res.END_2` | `headset_microphone_bias_filter_cap.END_1` | exact 10-uF local bulk keeps the headset bias quiet and independent |
+| `AUDIO_GROUND` | `headset_microphone_bias_filter_cap.END_2` | `abstract:audio-ground` | headset-bias filter return remains at the protected jack-entry audio region |
+| `HEADSET_MIC_BIAS_FILTERED` | `headset_microphone_bias_filter_res.END_2` | `headset_mic_bias_res.END_1` | the CTIA sleeve receives its independent quiet microphone supply through an exact 2.2-kOhm resistor |
+| `HEADSET_MIC_RAW` | `headset_mic_bias_res.END_2` | `headphone_jack.SLEEVE` | exact 2.2-kOhm bias supports an ordinary CTIA electret capsule and bounds a shorted TRS sleeve without pulling down the internal microphone |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `headset_mic_selector.VCC` | microphone source selection remains available independently of codec and voice-domain power |
 | `AUDIO_GROUND` | `headset_mic_selector.GND` | `abstract:audio-ground` | headset selector quiet return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `headset_mic_selector_bypass.END_1` | exact 100-nF headset-selector bypass |
@@ -4191,10 +4194,10 @@ Reserved: `PA1_NRST`. Free: none.
 | `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `audio_capture_buffer_bypass.END_1` | exact 100-nF TLV9061 bypass |
 | `AUDIO_GROUND` | `audio_capture_buffer_bypass.END_2` | `abstract:audio-ground` | buffer bypass return |
 | `CODEC_CAPTURE_BUFFER_OUT` | `audio_capture_buffer.OUT` | `codec_adc_p_coupling.END_1` | buffered source is AC-coupled into microphone-range input |
-| `CODEC_ADC_P_AC` | `codec_adc_p_coupling.END_2` | `codec_adc_p_series.END_1` | 33-kOhm series element attenuates against the ES8311 input impedance |
-| `CODEC_ADC_IN_P` | `codec_adc_p_series.END_2` | `codec.MIC1P` | about -16-dB paper target remains a measured level/deviation HIL gate |
+| `CODEC_ADC_P_AC` | `codec_adc_p_coupling.END_2` | `codec_adc_p_series.END_1` | zero-Ohm configuration link follows the ES8311 reference direct-coupled microphone input and preserves an optional rework footprint |
+| `CODEC_ADC_IN_P` | `codec_adc_p_series.END_2` | `codec.MIC1P` | the buffered selected source reaches MIC1P without the former unsupported 33-kOhm SNR loss |
 | `AUDIO_GROUND` | `abstract:audio-ground` | `codec_adc_n_coupling.END_1` | matched AC reference forms the negative single-ended-to-differential leg |
-| `CODEC_ADC_N_AC` | `codec_adc_n_coupling.END_2` | `codec_adc_n_series.END_1` | matching 33-kOhm source impedance preserves common-mode behavior |
+| `CODEC_ADC_N_AC` | `codec_adc_n_coupling.END_2` | `codec_adc_n_series.END_1` | matching zero-Ohm configuration link preserves the reference differential input symmetry |
 | `CODEC_ADC_IN_N` | `codec_adc_n_series.END_2` | `codec.MIC1N` | negative codec microphone input is not silently grounded |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_speaker_selector.VDD` | speaker selector remains alive for receive bypass while codec is off |
 | `AUDIO_GROUND` | `audio_speaker_selector.GND` | `abstract:audio-ground` | speaker selector quiet return |
@@ -4263,8 +4266,8 @@ Reserved: `PA1_NRST`. Free: none.
 | `VOICE_ELECTRET_DEFAULT` | `mic_tx_coupling.END_2` | `mic_tx_bias.END_1` | 100-kOhm midpoint bias defines the selector input |
 | `AUDIO_VMID_MAIN` | `mic_tx_bias.END_2` | `audio_vmid_top.END_2` | ordinary TX audio uses main midpoint |
 | `CODEC_TX_DAC_TAP` | `codec.OUTP` | `codec_tx_coupling.END_1` | codec injection is separately AC-coupled and cannot assert PTT |
-| `CODEC_TX_AC` | `codec_tx_coupling.END_2` | `codec_tx_atten_top.END_1` | exact 220-kOhm upper attenuation leg minimally loads the codec output |
-| `VOICE_CODEC_INJECT` | `codec_tx_atten_top.END_2` | `audio_tx_selector.NO` | about -40-dB first target matches the SA518 microphone-input scale |
+| `CODEC_TX_AC` | `codec_tx_coupling.END_2` | `codec_tx_atten_top.END_1` | exact 160-kOhm upper attenuation leg ensures the full-scale codec can exceed the SA518 10-mVrms modulation target at every calculated tolerance corner |
+| `VOICE_CODEC_INJECT` | `codec_tx_atten_top.END_2` | `audio_tx_selector.NO` | about -38.5-dB passive target leaves bounded downward DAC-volume calibration instead of an unreachable under-drive corner |
 | `VOICE_CODEC_INJECT` | `codec_tx_atten_top.END_2` | `codec_tx_atten_bottom.END_1` | exact 2.2-kOhm lower leg fixes passive attenuation |
 | `AUDIO_VMID_MAIN` | `codec_tx_atten_bottom.END_2` | `audio_vmid_top.END_2` | attenuator is centered on the main analog midpoint |
 | `VOICE_CODEC_INJECT` | `codec_tx_atten_top.END_2` | `codec_tx_filter.END_1` | exact 10-nF shunt limits out-of-band codec energy |
@@ -5399,13 +5402,16 @@ Reserved: `PA1_NRST`. Free: none.
 - `audio_capture_local_bias_cap` lifecycle: `active_production`.
 - `audio_capture_buffer` uses `TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
 - `codec_adc_p_coupling` lifecycle: `active_production`.
+- `codec_adc_p_series` lifecycle: `active_orderable`.
 - `codec_adc_n_coupling` lifecycle: `active_production`.
+- `codec_adc_n_series` lifecycle: `active_orderable`.
 - `audio_speaker_selector` uses `Texas Instruments TMUX1136DGSR` as `reference_only`, not an accepted production choice.
 - `speaker_input_p_coupling` lifecycle: `active_production`.
 - `speaker_input_n_coupling` lifecycle: `active_production`.
 - `audio_tx_selector` uses `Texas Instruments TS5A63157DCKR` as `reference_only`, not an accepted production choice.
 - `mic_tx_coupling` lifecycle: `active_production`.
 - `codec_tx_coupling` lifecycle: `active_production`.
+- `codec_tx_atten_top` lifecycle: `active_orderable`.
 - `voice_mic_coupling` lifecycle: `active_production`.
 - `audio_safe_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
 - `speaker_amp_input_cap` lifecycle: `active_production`.
@@ -5416,6 +5422,7 @@ Reserved: `PA1_NRST`. Free: none.
 - `microphone_bias_filter_res` lifecycle: `active_orderable`.
 - `headphone_jack` lifecycle: `active_orderable`.
 - `headset_mic_selector` uses `Texas Instruments TS5A63157DCKR` as `reference_only`, not an accepted production choice.
+- `headset_microphone_bias_filter_res` lifecycle: `active_orderable`.
 - `codec_power_input_cap` lifecycle: `active_production`.
 - `codec_i2s_din_boot_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.
 - `codec_i2s_din_boot_gate` lifecycle: `active_orderable`.

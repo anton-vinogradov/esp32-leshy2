@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "H3",
   "status": "in_progress",
-  "current_substep": "H3.3.2",
+  "current_substep": "H3.3.3",
   "accepted_input": {
     "stage": "H2.8.2",
     "status": "accepted_by_user",
@@ -58,8 +58,8 @@
       "status": "current",
       "children": [
         {"id": "H3.3.1", "title": "Verify display supply, backlight and direct-QSPI electrical corners", "status": "reviewed", "evidence": "generated/H3-VRF31-display.json"},
-        {"id": "H3.3.2", "title": "Verify codec, microphone, headset and speaker gain/noise/power corners", "status": "current"},
-        {"id": "H3.3.3", "title": "Verify IR drive, receive thresholds and thermal duty limits", "status": "waiting"},
+        {"id": "H3.3.2", "title": "Verify codec, microphone, headset and speaker gain/noise/power corners", "status": "reviewed", "evidence": "generated/H3-VRF32-audio.json"},
+        {"id": "H3.3.3", "title": "Verify IR drive, receive thresholds and thermal duty limits", "status": "current"},
         {"id": "H3.3.4", "title": "Verify battery sensing, thermistors and analog fault thresholds", "status": "waiting"},
         {"id": "H3.3.5", "title": "Consolidate analog-corner evidence", "status": "waiting"}
       ]

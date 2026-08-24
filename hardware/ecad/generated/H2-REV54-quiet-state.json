@@ -4,7 +4,7 @@
   "status": "reviewed_reset_safe_quiet_state_and_isolation",
   "method": "complete KiCad netlist control-membership checks plus exact instantiated isolation evidence for every required quiet contract",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "62f4943b66967489be0205e7f7baaee6249c51d991ff566cde5a71a58a2ff4ee",
+    "hardware/architecture/candidates/G2F-3I.json": "c2a489f8f3ed57cac2066ff591bd3a0cc909d40545c0aec4e09dcc8955ef2950",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01"
   },
@@ -17,10 +17,10 @@
       "annotation_warnings": 0
     },
     "LESHY2-UI": {
-      "component_count": 387,
-      "unique_reference_count": 387,
+      "component_count": 389,
+      "unique_reference_count": 389,
       "duplicate_references": [],
-      "net_count": 338,
+      "net_count": 339,
       "annotation_warnings": 0
     }
   },
@@ -471,7 +471,7 @@
         },
         {
           "instance": "codec_power_on_pulldown",
-          "reference": "R13038",
+          "reference": "R13039",
           "mpn": "Yageo RC0402FR-0710KL"
         },
         {

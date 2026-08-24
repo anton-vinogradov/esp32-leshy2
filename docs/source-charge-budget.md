@@ -6,9 +6,9 @@ H3.1.3 applies the rail budget to all `2032` states. At least 85% efficiency is 
 
 ## Result
 
-- Maximum SYS demand: `16.777 W`.
-- Maximum series-pack current at 6.0 V: `2.796 A`; reserve to the 10-A cell contract is `257.654%`.
-- Maximum steady rail-conversion loss: `2.517 W`; eFuse loss: `0.386 W`.
+- Maximum SYS demand: `16.894 W`.
+- Maximum series-pack current at 6.0 V: `2.816 A`; reserve to the 10-A cell contract is `255.114%`.
+- Maximum steady rail-conversion loss: `2.534 W`; eFuse loss: `0.393 W`.
 - Failed states: `0`; unresolved numeric inputs: `0`.
 
 ## Available-power control
@@ -19,6 +19,6 @@ H3.1.3 applies the rail budget to all `2032` states. At least 85% efficiency is 
 
 This closes the steady energy envelope. Recorded losses feed H3.6; transients, inrush, DPM and USB↔pack handover remain H3.2, while measured efficiency and current remain H8.
 
-**Status:** `H3.1.3` is complete and reviewed; the exact current marker is `H3.3.2`.
+**Status:** `H3.1.3` is complete and reviewed; the exact current marker is `H3.3.3`.
 
 [Complete machine calculation](../hardware/verification/generated/H3-VRF13-source-charge-budget.json).

@@ -5,10 +5,10 @@
   "project": "LESHY2-RF",
   "sheet": "RF_32_SUBGHZ_VOICE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "62f4943b66967489be0205e7f7baaee6249c51d991ff566cde5a71a58a2ff4ee",
-    "hardware/architecture/devices.json": "12789cb3f71941d46bf84343149c2765d6da9a185f8da9bd7a5b06bd58be0917",
-    "hardware/ecad/generated/H2-instance-ledger.json": "8b079cab5d662289dc1188395e0ab68ddbfb3fa1e31836c8d597fad84024d296",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "4f708bd7c2dee596bcc383d83bf5619240800a77e0b7a5162ad579e5fe6f1f62"
+    "hardware/architecture/candidates/G2F-3I.json": "c2a489f8f3ed57cac2066ff591bd3a0cc909d40545c0aec4e09dcc8955ef2950",
+    "hardware/architecture/devices.json": "433ff1f1783a57289d39f9af29deb943da96987e49590d47959038d8c7a32b54",
+    "hardware/ecad/generated/H2-instance-ledger.json": "47281c317c4324dcf3b7af4a84768ba2d08fa8fc46c0fd3ee30ecf440cffc913",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "34d2c537c0da158e42e6404de16c301d8c28514928db75aa90b17ad1539ad041"
   },
   "summary": {
     "ledger_instances": 116,

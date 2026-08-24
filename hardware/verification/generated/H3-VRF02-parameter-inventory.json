@@ -3,9 +3,9 @@
   "stage": "H3.0.2",
   "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
-    "hardware/architecture/devices.json": "12789cb3f71941d46bf84343149c2765d6da9a185f8da9bd7a5b06bd58be0917",
-    "hardware/ecad/generated/H2-instance-ledger.json": "8b079cab5d662289dc1188395e0ab68ddbfb3fa1e31836c8d597fad84024d296",
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "9816e84e4ff7b6e44ba154442285fcd79669de40cc548fdbc1803fbb7f107206"
+    "hardware/architecture/devices.json": "433ff1f1783a57289d39f9af29deb943da96987e49590d47959038d8c7a32b54",
+    "hardware/ecad/generated/H2-instance-ledger.json": "47281c317c4324dcf3b7af4a84768ba2d08fa8fc46c0fd3ee30ecf440cffc913",
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "f55f2be08b13c9b9e0e83ccb054ebbe64922d3fe8034257e95cd30f9d6a81b3a"
   },
   "policy": {
     "accepted_h2_baseline_is_immutable": true,
@@ -2896,7 +2896,7 @@
       "device_key": "murata_grm188r60j106me47d",
       "mpn": "Murata GRM188R60J106ME47D",
       "kind": "10uf_20pct_6_3v_x5r_0603_pd_ldo_capacitor",
-      "instance_count": 19,
+      "instance_count": 20,
       "projects": [
         "LESHY2-LORA-CAP-01",
         "LESHY2-RF",
@@ -7886,6 +7886,56 @@
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
+      "device_key": "vishay_crcw0402160kfked",
+      "mpn": "Vishay CRCW0402160KFKED",
+      "kind": "160kohm_1pct_0402_audio_attenuator_resistor",
+      "instance_count": 1,
+      "projects": [
+        "LESHY2-UI"
+      ],
+      "sheets": [
+        "UI_13_AUDIO_CODEC_HEADSET"
+      ],
+      "roles": [
+        "160kohm_1pct_0402_audio_attenuator_resistor"
+      ],
+      "lifecycle": "active_orderable",
+      "source": {
+        "document": "Vishay D/CRCW e3 thick-film chip resistor datasheet and exact quality listing",
+        "version": "active exact order code checked 2026-08-24",
+        "url": "https://www.vishay.com/docs/20035/dcrcwe3.pdf",
+        "checked": "2026-08-24"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.vishay.com",
+      "accepted_h2_source_preserved": {
+        "document": "Vishay D/CRCW e3 thick-film chip resistor datasheet and exact quality listing",
+        "version": "active exact order code checked 2026-08-24",
+        "url": "https://www.vishay.com/docs/20035/dcrcwe3.pdf",
+        "checked": "2026-08-24"
+      },
+      "structured_parameter_count": 4,
+      "structured_parameters": {
+        "resistance_ohm": 160000,
+        "tolerance_pct": 1.0,
+        "rated_power_w": 0.063,
+        "operating_temperature_c": [
+          -55,
+          155
+        ]
+      },
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "voltage/current derating",
+        "temperature coefficient",
+        "frequency/bias dependence"
+      ],
+      "h3_model_method": "analytic_or_vendor_curve",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
       "device_key": "vishay_tnpw040210k0beed",
       "mpn": "Vishay TNPW040210K0BEED",
       "kind": "10kohm_0_1pct_25ppm_0402_main_feedback_bottom_resistor",
@@ -8824,19 +8874,17 @@
       "device_key": "yageo_rc0402fr_07220kl",
       "mpn": "Yageo RC0402FR-07220KL",
       "kind": "220kohm_1pct_0402_accessory_feedback_top_resistor",
-      "instance_count": 13,
+      "instance_count": 12,
       "projects": [
         "LESHY2-LORA-CAP-01",
-        "LESHY2-RF",
-        "LESHY2-UI"
+        "LESHY2-RF"
       ],
       "sheets": [
         "CAP_30_TX_EVIDENCE",
         "RF_02_PACK_SAFETY_AON",
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
         "RF_32_SUBGHZ_VOICE",
-        "RF_34_U214_M5_EXT",
-        "UI_13_AUDIO_CODEC_HEADSET"
+        "RF_34_U214_M5_EXT"
       ],
       "roles": [
         "220kohm_1pct_0402_accessory_feedback_top_resistor"
@@ -8873,7 +8921,7 @@
       "device_key": "yageo_rc0402fr_07220rl",
       "mpn": "Yageo RC0402FR-07220RL",
       "kind": "220ohm_1pct_0402_resistor",
-      "instance_count": 1,
+      "instance_count": 2,
       "projects": [
         "LESHY2-UI"
       ],
@@ -9133,14 +9181,12 @@
       "device_key": "yageo_rc0402fr_0733kl",
       "mpn": "Yageo RC0402FR-0733KL",
       "kind": "33kohm_1pct_0402_voice_efuse_power_good_bottom_resistor",
-      "instance_count": 3,
+      "instance_count": 1,
       "projects": [
-        "LESHY2-RF",
-        "LESHY2-UI"
+        "LESHY2-RF"
       ],
       "sheets": [
-        "RF_32_SUBGHZ_VOICE",
-        "UI_13_AUDIO_CODEC_HEADSET"
+        "RF_32_SUBGHZ_VOICE"
       ],
       "roles": [
         "33kohm_1pct_0402_voice_efuse_power_good_bottom_resistor"
@@ -9878,7 +9924,7 @@
       "device_key": "yageo_rc0402jr_070rl",
       "mpn": "Yageo RC0402JR-070RL",
       "kind": "0ohm_0402_jumper_resistor",
-      "instance_count": 2,
+      "instance_count": 4,
       "projects": [
         "LESHY2-UI"
       ],
@@ -10092,12 +10138,12 @@
   ],
   "local_model_files": [],
   "summary": {
-    "registered_instances": 1032,
-    "used_device_types": 216,
-    "used_types_with_source": 216,
+    "registered_instances": 1034,
+    "used_device_types": 217,
+    "used_types_with_source": 217,
     "source_missing": 0,
     "official_h3_source_overrides": 2,
-    "used_types_with_structured_electrical_contract": 67,
+    "used_types_with_structured_electrical_contract": 68,
     "used_types_requiring_parameter_extraction": 149,
     "local_vendor_model_files": 0,
     "parameter_classes": {
@@ -10106,7 +10152,7 @@
       "digital_interface": 32,
       "electromechanical_or_load": 7,
       "general_component": 35,
-      "passive_corner": 95,
+      "passive_corner": 96,
       "power_safety_active": 11,
       "programmable_controller": 2,
       "radio_rf": 12
