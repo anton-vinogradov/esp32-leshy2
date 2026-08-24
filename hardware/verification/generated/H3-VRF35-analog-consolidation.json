@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "stage": "H3.3.5",
+  "status": "reviewed_analog_corner_consolidation",
+  "input_hashes": {
+    "hardware/verification/generated/H3-VRF31-display.json": "d4410410e106a85173699ceb09646fbfab77e6533334f2d4067c2a17cfaf8c14",
+    "hardware/verification/generated/H3-VRF32-audio.json": "ca492e074d6a5254a1ec9648d20452b7e93560736e6a74ddcdea72a875900782",
+    "hardware/verification/generated/H3-VRF33-ir.json": "18d07f8d051d4d27fe22b04fcbd13afb94ea47d2efbe78b58a6bebc4aa9e62dd",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "21c5d638ec2d1b04f98d6ae473800ec489e6d6f3025cd3f6c263590f57257754"
+  },
+  "leaf_summary": {
+    "display": {
+      "stage": "H3.3.1",
+      "status": "reviewed_display_supply_backlight_and_direct_qspi",
+      "checks": 26,
+      "corrections": 2
+    },
+    "audio": {
+      "stage": "H3.3.2",
+      "status": "reviewed_audio_analog_corners_after_four_source_corrections",
+      "checks": 43,
+      "corrections": 4
+    },
+    "ir": {
+      "stage": "H3.3.3",
+      "status": "reviewed_ir_corners_after_four_source_corrections",
+      "checks": 46,
+      "corrections": 4
+    },
+    "battery": {
+      "stage": "H3.3.4",
+      "status": "reviewed_battery_sensing_thermistors_and_analog_fault_thresholds",
+      "checks": 38,
+      "corrections": 4
+    }
+  },
+  "consolidated": {
+    "leaf_checks": 153,
+    "consolidation_checks": 22,
+    "failed_checks": 0,
+    "source_corrections": 14,
+    "unresolved_analytical_findings": 0,
+    "bom_delta_usd_at_quantity_100": "0.4908",
+    "physical_hil_residuals": 17
+  },
+  "shared_rail_contract": {
+    "display_and_ir_minimum_v": "3.108510",
+    "analytical_main_load_ma": "2493.000",
+    "main_budget_ma": "2500.000",
+    "hardware_reserve_percent": "28.359",
+    "rule": "the 7-mA analytical allocation margin is not a production tolerance claim; H3.6 thermal and H8 measured current must remain <=2.5 A, otherwise current allowances or functionality are reopened before layout/order"
+  },
+  "temperature_precedence_c": {
+    "charge_request_zero_c": "35",
+    "bq_warm_backup_full_corner_max_c": "41.03",
+    "speaker_mute_c": "50.000",
+    "cell_discharge_block_c": "60",
+    "board_warning_guaranteed_c": "65",
+    "ir_local_tx_limit_c": "75",
+    "board_fault_kill_guaranteed_c": "75"
+  },
+  "timing_precedence": {
+    "display_nonpreemptible_ms_max": "1.000",
+    "ir_single_mark_ms_max": 20,
+    "ir_continuous_evidence_trip_ms": 20,
+    "rule": "display work is sliced to <=1 ms and cannot defer the independent IR evidence trip; active-radio buses remain independent"
+  },
+  "physical_hil_residuals": {
+    "display": [
+      "measure protected-rail ripple and connector voltage at every accepted load and temperature corner",
+      "confirm HMX035CTFT-001 tail, ST77922 identity, VDD/VDDI ramp equality and reset/readback on received specimens",
+      "measure QSPI edges, CS-high high-Z/contention and shared-microSD throughput before raising the 40-MHz initial cap",
+      "measure actual panel backlight current, brightness, PWM EMI, temperature and TPS2553 latch recovery"
+    ],
+    "audio": [
+      "measure microphone/headset sensitivity, codec clipping/ALC/noise, channel phase perception, crosstalk, insertion pop and RF immunity on routed hardware",
+      "measure PAM8302A current, output EMI, speaker temperature/excursion and enclosure response; enforce the 50 C speaker-local mute rule",
+      "calibrate SA518 deviation downward from the bounded full-scale codec injection and repeat across module lots, rail and temperature",
+      "prove reset/brownout/off ordering, >=10-ms amplifier-enable delay and absence of back-power with codec, voice and main domains independently off"
+    ],
+    "ir": [
+      "verify received TSOP95238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
+      "replay a representative 30-to-60-kHz protocol corpus and measure carrier/count accuracy, robust AGC behavior, range and field of view",
+      "measure VSMY14940 current, optical range/alignment, local temperature and IEC 62471 classification through the final enclosure/window",
+      "calibrate the VEMD1060 tunnel against the <=2.271-uA paper target and inject missing emitter, ambient leakage, RX crosstalk, stuck carrier, brownout and FAULT_KILL"
+    ],
+    "battery": [
+      "program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens",
+      "calibrate the two divider channels on the assembled admission domain and inject open, short, swapped, reversed, missing and imbalanced cells",
+      "thermally ramp every cell and board NTC, measure bond response time and prove open/short/lift detection plus the 35/40/60/65/75-C policy",
+      "verify BQ CE-default-off, TS open/short, exact warm/cold suspend and all source/load/charge-current transitions with the exact cell lot",
+      "measure long-idle divider imbalance, MAX balancing heat and both 49.9-ohm balance-resistor temperatures"
+    ]
+  },
+  "checks": {
+    "all_leaf_checks_pass": true,
+    "all_leaf_stages_are_exact": true,
+    "all_leaf_review_statuses_are_closed": true,
+    "display_has_no_open_findings": true,
+    "audio_has_no_open_findings": true,
+    "ir_has_no_open_findings": true,
+    "battery_reports_zero_failed_checks": true,
+    "leaf_check_count_is_153": true,
+    "correction_ids_are_unique": true,
+    "fourteen_corrections_are_preserved": true,
+    "cost_delta_remains_below_half_dollar": true,
+    "display_and_ir_use_same_main_rail_minimum": true,
+    "main_rail_analytical_load_remains_at_or_below_budget": true,
+    "display_quantum_is_at_most_one_ms": true,
+    "ir_optical_trip_is_not_slower_than_mark_limit": true,
+    "pack_midpoint_window_contains_full_corner_valid_cells": true,
+    "pack_stack_window_contains_full_corner_valid_pair": true,
+    "pack_upper_window_contains_subtraction_corner": true,
+    "temperature_ladder_is_monotonic": true,
+    "ir_limit_does_not_exceed_board_kill": true,
+    "all_seventeen_physical_residuals_are_preserved": true,
+    "no_physical_residual_is_empty": true
+  },
+  "correction_ids": [
+    "H3.3.1-F01",
+    "H3.3.1-F02",
+    "H3.3.2-F01",
+    "H3.3.2-F02",
+    "H3.3.2-F03",
+    "H3.3.2-F04",
+    "H3.3.3-F01",
+    "H3.3.3-F02",
+    "H3.3.3-F03",
+    "H3.3.3-F04",
+    "H3.3.4-F01",
+    "H3.3.4-F02",
+    "H3.3.4-F03",
+    "H3.3.4-F04"
+  ],
+  "review_summary": {
+    "checks": 22,
+    "failed": 0,
+    "unresolved": 0,
+    "status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.4.1",
+    "action": "verify voltage levels, pull states, reset defaults and no-back-power across every digital interface"
+  }
+}

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "H3",
   "status": "in_progress",
-  "current_substep": "H3.3.5",
+  "current_substep": "H3.4.1",
   "accepted_input": {
     "stage": "H2.8.2",
     "status": "accepted_by_user",
@@ -55,21 +55,21 @@
     {
       "id": "H3.3",
       "title": "Analog peripheral corner verification",
-      "status": "current",
+      "status": "reviewed",
       "children": [
         {"id": "H3.3.1", "title": "Verify display supply, backlight and direct-QSPI electrical corners", "status": "reviewed", "evidence": "generated/H3-VRF31-display.json"},
         {"id": "H3.3.2", "title": "Verify codec, microphone, headset and speaker gain/noise/power corners", "status": "reviewed", "evidence": "generated/H3-VRF32-audio.json"},
         {"id": "H3.3.3", "title": "Verify IR drive, receive thresholds and thermal duty limits", "status": "reviewed", "evidence": "generated/H3-VRF33-ir.json"},
         {"id": "H3.3.4", "title": "Verify battery sensing, thermistors and analog fault thresholds", "status": "reviewed", "evidence": "generated/H3-VRF34-battery-analog.json"},
-        {"id": "H3.3.5", "title": "Consolidate analog-corner evidence", "status": "current"}
+        {"id": "H3.3.5", "title": "Consolidate analog-corner evidence", "status": "reviewed", "evidence": "generated/H3-VRF35-analog-consolidation.json"}
       ]
     },
     {
       "id": "H3.4",
       "title": "Digital interface, timing and level verification",
-      "status": "waiting",
+      "status": "current",
       "children": [
-        {"id": "H3.4.1", "title": "Check voltage levels, pulls, reset defaults and no-back-power at every interface", "status": "waiting"},
+        {"id": "H3.4.1", "title": "Check voltage levels, pulls, reset defaults and no-back-power at every interface", "status": "current"},
         {"id": "H3.4.2", "title": "Check bandwidth, latency and timing for display, storage, audio and radio buses", "status": "waiting"},
         {"id": "H3.4.3", "title": "Check M1, U214, M5 Unit and service-boundary loading", "status": "waiting"},
         {"id": "H3.4.4", "title": "Consolidate digital timing and level evidence", "status": "waiting"}

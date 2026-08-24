@@ -27,7 +27,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
 | Production ECAD schematic | ✅ H2 accepted at hardware `25d9ee2`; firmware F2 synchronized at `900bb2b` |
-| Electrical and transient evidence | ▶️ H3.3.5: DC, transitions and all analog paths reviewed; consolidation in progress |
+| Electrical and transient evidence | ▶️ H3.4.1: DC, transitions and analog corners reviewed; digital levels/defaults in progress |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
@@ -41,11 +41,11 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1/H2 and current H3 breakdown
 
-<!-- current-substep: H3.3.5 -->
+<!-- current-substep: H3.4.1 -->
 
-**Exact marker: `H3.3.5`** — [battery sensing and thermal analog thresholds](battery-analog-verification.md)
-are reviewed with no unresolved analytical finding; the complete analog-corner
-evidence is being consolidated.
+**Exact marker: `H3.4.1`** — the [complete analog-corner package](analog-corner-result.md)
+is reviewed with no unresolved analytical finding; voltage levels, pulls,
+reset defaults and no-back-power are being verified for every digital interface.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -250,13 +250,17 @@ Current H2 execution:
   - ✅ `H3.2.3` — [eFuse, inrush and load steps](inrush-load-step.md).
   - ✅ `H3.2.4` — [watchdog, retained fault record and fault-only UI](watchdog-fault-display.md).
   - ✅ `H3.2.5` — consolidated review, 0 analytical failures; two source errors corrected.
-- ▶️ `H3.3` — display/backlight, audio, IR and battery-analog corners.
+- ✅ `H3.3` — display/backlight, audio, IR and battery-analog corners.
   - ✅ `H3.3.1` — [display supply, backlight and direct-QSPI reviewed](display-electrical-verification.md); two source errors corrected.
   - ✅ `H3.3.2` — [codec, microphone, headset, speaker and voice TX reviewed](audio-electrical-verification.md); four source errors corrected.
   - ✅ `H3.3.3` — [IR receive, transmit, optical evidence and thermal limits reviewed](ir-electrical-verification.md); four source errors corrected.
   - ✅ `H3.3.4` — [battery sensing, thermistors and analog fault thresholds reviewed](battery-analog-verification.md); four source errors corrected.
-  - ▶️ **`H3.3.5` — current:** analog-corner consolidation.
-- ⏳ `H3.4` — digital levels, reset defaults, bandwidth, timing and expansion loading.
+  - ✅ `H3.3.5` — [153 leaf and 22 consolidation checks reviewed](analog-corner-result.md); 14 source corrections closed.
+- ▶️ `H3.4` — digital levels, reset defaults, bandwidth, timing and expansion loading.
+  - ▶️ **`H3.4.1` — current:** voltage levels, pulls, reset defaults and no-back-power.
+  - ⏳ `H3.4.2` — bandwidth, latency and timing.
+  - ⏳ `H3.4.3` — M1, U214, M5 Unit and service-boundary loading.
+  - ⏳ `H3.4.4` — digital consolidation.
 - ⏳ `H3.5` — RF feed, return-path, corridor and coexistence constraints.
 - ⏳ `H3.6` — thermal model, single-fault tree and 24–48-hour unattended envelope.
 - ⏳ `H3.7` — cross-check, physical-only residuals and formal H3 acceptance.
@@ -317,7 +321,7 @@ A production order is possible only after H9.
 | **H0. Product requirements and functional architecture** | ✅ Reviewed | Complete capability scope, five compute domains, radio/interface owners, interface classes, one active signal group, full-function 3×nRF24 and safety boundaries | Requirements and architecture checks pass; every required function has an owner and a defined hardware boundary |
 | **H1. Physical product design** | ✅ Reviewed | Accepted exterior, both outer and inner faces, true antenna-edge view, sections, assembly sequence, selected-part envelopes and feasible pin/resource allocation | Dimensions come from selected MPNs; no component, fastener, silkscreen, antenna or accessory collision; controls, battery, U214, ports, microphone and speaker are accessible; allocation still fits; the user accepted the mockup |
 | **H2. Production ECAD schematic** | ✅ Reviewed and accepted | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 consumes the contract without invented pins |
-| **H3. Virtual electrical verification** | ▶️ Current · `H3.3.5` | Calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
+| **H3. Virtual electrical verification** | ▶️ Current · `H3.4.1` | Calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
 | **H4. Joined pre-layout gate** | 🔒 Waiting for H1–H3 and firmware F3 | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
 | **H5. Component evidence samples** | 🔒 Waiting for H4 and separate cost approval | Minimum evidence purchase, not a production basket | Received display, U214, connectors and radios are identified and measured; connector mating and critical stack-up fit are proven; raw records are retained; mismatch reopens its source stage |
 | **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |

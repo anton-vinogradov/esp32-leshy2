@@ -120,11 +120,11 @@ safety-автоматику.
 <details open>
 <summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.3.5 -->
+<!-- current-substep: H3.4.1 -->
 
-**Точный маркер: `H3.3.5`** — [battery sensing и thermal analog thresholds](docs/battery-analog-verification.ru.md)
-проверены без незакрытых аналитических findings; выполняется сводная проверка
-всех analog corners.
+**Точный маркер: `H3.4.1`** — [полный пакет analog corners](docs/analog-corner-result.ru.md)
+проверен без незакрытых аналитических findings; для каждого digital interface
+проверяются уровни, pulls, reset defaults и no-back-power.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 035 схемных строк.
@@ -208,12 +208,17 @@ safety-автоматику.
   - ✅ `H3.2.3` — [eFuse, inrush и load steps](docs/inrush-load-step.ru.md).
   - ✅ `H3.2.4` — [watchdog, retained fault record и fault-only UI](docs/watchdog-fault-display.ru.md).
   - ✅ `H3.2.5` — [сводное ревью H3.2](docs/power-transition-result.ru.md); исправлены две source-ошибки.
-- ▶️ **`H3.3` — сейчас:** analog peripheral corners.
+- ✅ **`H3.3` — проверено:** analog peripheral corners.
   - ✅ `H3.3.1` — [display supply, backlight и direct-QSPI проведены ревью](docs/display-electrical-verification.ru.md); исправлены две source-ошибки.
   - ✅ `H3.3.2` — [codec, microphone, headset, speaker и voice-TX проведены ревью](docs/audio-electrical-verification.ru.md); исправлены четыре source-ошибки.
   - ✅ `H3.3.3` — [IR RX/TX, optical evidence и thermal limits проверены](docs/ir-electrical-verification.ru.md); исправлены четыре source-ошибки.
   - ✅ `H3.3.4` — [battery sensing, thermistors и analog fault thresholds проведены ревью](docs/battery-analog-verification.ru.md); исправлены четыре source-ошибки.
-  - ▶️ **`H3.3.5` — сейчас:** сводная проверка analog corners.
+  - ✅ `H3.3.5` — [проверены 153 leaf и 22 сводных checks](docs/analog-corner-result.ru.md); закрыты 14 source-исправлений.
+- ▶️ **`H3.4` — сейчас:** digital levels, timing и loading.
+  - ▶️ **`H3.4.1` — сейчас:** voltage levels, pulls, reset defaults и no-back-power.
+  - ⏳ `H3.4.2` — bandwidth, latency и timing.
+  - ⏳ `H3.4.3` — loading M1, U214, M5 Unit и service boundaries.
+  - ⏳ `H3.4.4` — digital consolidation.
 
 Проверенный план H2 —
 [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Текущий

@@ -23,6 +23,7 @@ SCRIPTS = (
     ROOT / "hardware/verification/h3_audio_corners.py",
     ROOT / "hardware/verification/h3_ir_corners.py",
     ROOT / "hardware/verification/h3_battery_analog.py",
+    ROOT / "hardware/verification/h3_analog_consolidation.py",
 )
 
 

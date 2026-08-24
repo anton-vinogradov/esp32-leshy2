@@ -119,7 +119,7 @@
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ▶️ сейчас, точный маркер `H3.3.5`.
+**Статус:** ▶️ сейчас, точный маркер `H3.4.1`.
 
 - [Текущая страница виртуальной проверки](virtual-verification.ru.md).
 - [Машиночитаемый план](../hardware/verification/h3-verification-plan.json).
@@ -144,6 +144,8 @@
   и [машинное evidence H3.3.3](../hardware/verification/generated/H3-VRF33-ir.json).
 - [Результат battery sensing и thermal analog](battery-analog-verification.ru.md)
   и [машинное evidence H3.3.4](../hardware/verification/generated/H3-VRF34-battery-analog.json).
+- [Сводный результат analog corners](analog-corner-result.ru.md)
+  и [машинное evidence H3.3.5](../hardware/verification/generated/H3-VRF35-analog-consolidation.json).
 
 `H3.0.1–H3.0.3` проведены ревью: входы, параметры и десять единых
 pass/fail-правил заморожены. `H3.1` проведено ревью: 2 032 полных состояния и
@@ -152,7 +154,8 @@ pass/fail-правил заморожены. `H3.1` проведено ревь�
 две source-ошибки исправлены. `H3.3.1` проведено ревью после исправления ещё
 двух source-ошибок; `H3.3.2` — после четырёх исправлений аудиотракта.
 `H3.3.3` проверено после четырёх исправлений IR-источников, `H3.3.4` — после
-четырёх battery-analog исправлений. В `H3.3.5` сводятся все analog corners.
+четырёх battery-analog исправлений. `H3.3.5` закрывает 153 leaf и 22 сводных
+checks. В `H3.4.1` проверяются digital levels, pulls, reset defaults и no-back-power.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate
