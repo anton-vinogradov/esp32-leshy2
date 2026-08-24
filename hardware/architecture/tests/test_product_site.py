@@ -100,6 +100,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/rf-feed-constraints.ru.md",
         "docs/rf-layout-constraints.md",
         "docs/rf-layout-constraints.ru.md",
+        "docs/rf-coexistence.md",
+        "docs/rf-coexistence.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -412,7 +414,7 @@ class ProductSiteTests(unittest.TestCase):
             self.read("hardware/verification/generated/H3-VRF33-ir.json")
         )
         self.assertEqual("H3", plan["stage"])
-        self.assertEqual("H3.5.3", plan["current_substep"])
+        self.assertEqual("H3.5.4", plan["current_substep"])
         self.assertEqual(plan["current_substep"], state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
@@ -437,7 +439,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("current", plan["substeps"][5]["status"])
         self.assertEqual("reviewed", plan["substeps"][5]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][5]["children"][1]["status"])
-        self.assertEqual("current", plan["substeps"][5]["children"][2]["status"])
+        self.assertEqual("reviewed", plan["substeps"][5]["children"][2]["status"])
+        self.assertEqual("current", plan["substeps"][5]["children"][3]["status"])
         self.assertEqual(16, freeze["summary"]["verification_domains"])
         self.assertEqual(0, freeze["summary"]["unassigned_virtual_checks"])
         self.assertEqual(0, freeze["summary"]["unassigned_physical_checks"])

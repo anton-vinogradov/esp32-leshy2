@@ -120,11 +120,11 @@ safety-автоматику.
 <details open>
 <summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.5.3 -->
+<!-- current-substep: H3.5.4 -->
 
-**Точный маркер: `H3.5.3`** — [RF corridors, keepouts и return contracts](docs/rf-layout-constraints.ru.md)
-всех девяти трактов проверены 23 машинными checks; теперь проверяются isolation,
-quiet-state и полная одновременная работа 3×nRF24.
+**Точный маркер: `H3.5.4`** — [one-group isolation, quiet-state и полные 3×nRF24](docs/rf-coexistence.ru.md)
+проверены 30 машинными checks; теперь сводятся RF pre-layout rules и остаточные
+физические измерения.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 035 схемных строк.
@@ -222,8 +222,8 @@ quiet-state и полная одновременная работа 3×nRF24.
 - ▶️ **`H3.5` — сейчас:** RF feeds, return paths, corridors и coexistence.
   - ✅ `H3.5.1` — [проверены feed/connector/matching/loss ограничения](docs/rf-feed-constraints.ru.md) всех девяти антенных трактов.
   - ✅ `H3.5.2` — [проверены RF corridors, keepouts, reference planes и returns](docs/rf-layout-constraints.ru.md).
-  - ▶️ **`H3.5.3` — сейчас:** isolation, quiet-state и одновременные 3× nRF24.
-  - ⏳ `H3.5.4` — RF consolidation.
+  - ✅ `H3.5.3` — [проверены isolation, quiet-state и одновременные 3×nRF24](docs/rf-coexistence.ru.md).
+  - ▶️ **`H3.5.4` — сейчас:** RF consolidation.
 
 Проверенный план H2 —
 [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Текущий

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "H3",
   "status": "in_progress",
-  "current_substep": "H3.5.3",
+  "current_substep": "H3.5.4",
   "accepted_input": {
     "stage": "H2.8.2",
     "status": "accepted_by_user",
@@ -82,8 +82,8 @@
       "children": [
         {"id": "H3.5.1", "title": "Derive 50-ohm feed, connector, matching and loss constraints for every antenna path", "status": "reviewed", "evidence": "generated/H3-VRF51-rf-feed-constraints.json"},
         {"id": "H3.5.2", "title": "Derive RF corridors, keepouts, reference-plane and return-current constraints", "status": "reviewed", "evidence": "generated/H3-VRF52-rf-layout-constraints.json"},
-        {"id": "H3.5.3", "title": "Verify one-active-group isolation, quiet-state and full 3x nRF24 concurrency assumptions", "status": "current"},
-        {"id": "H3.5.4", "title": "Consolidate RF pre-layout rules and physical-only measurements", "status": "waiting"}
+        {"id": "H3.5.3", "title": "Verify one-active-group isolation, quiet-state and full 3x nRF24 concurrency assumptions", "status": "reviewed", "evidence": "generated/H3-VRF53-rf-coexistence.json"},
+        {"id": "H3.5.4", "title": "Consolidate RF pre-layout rules and physical-only measurements", "status": "current"}
       ]
     },
     {

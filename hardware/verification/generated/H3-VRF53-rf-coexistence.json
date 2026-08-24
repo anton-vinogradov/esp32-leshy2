@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "stage": "H3.5.3",
+  "status": "reviewed_one_group_quiet_and_three_nrf_concurrency_model",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "bb7cd466a2aac72ab37da628cb2aba2eda4396a91ddcc3729116f50bfb0a3831",
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "e4916ee474797db5c598979240dc6ff8125ba8165c762715d1c6e749692e29e6",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "0c2c8bd53d8a21a9fbd4d6289e19a8b6f6b2b8832f2fed8f15dbfb3c66f9e2d5",
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "731f806a3e6f2edd214123d83bd672fe4f759803b2a219675a6cebfef37de9d7",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "ab71fe818580560b5dc58e09d506df0e40a0061db671326aa8b8d7b3369acbf3",
+    "hardware/verification/generated/H3-VRF52-rf-layout-constraints.json": "7a49970f80279795da586843f6e1b4e6d39ea102609dc58022904f292cd39b9e"
+  },
+  "summary": {
+    "signal_groups": 9,
+    "quiet_contracts": 13,
+    "nrf_role_modes": 4,
+    "nrf_identity_permutations": 8,
+    "checks": 30
+  },
+  "group_quiet_matrix": [
+    {
+      "signal_group": "SG-N24",
+      "operating_group": "NRF24",
+      "active_members": [
+        "nrf0",
+        "nrf1",
+        "nrf2"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "CC_QUIET",
+        "IR_QUIET",
+        "RECEIVER_QUIET",
+        "S3_RF_QUIET",
+        "U214_CAP_QUIET",
+        "UNIT_PORT_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ],
+      "support_contract": "UI/safety/thermal remain available; audio/storage/service run only when profile-declared and otherwise use their quiet contracts"
+    },
+    {
+      "signal_group": "SG-S3-24",
+      "operating_group": "S3_RF",
+      "active_members": [
+        "s3 Wi-Fi",
+        "s3 BLE",
+        "ESP-NOW"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "CC_QUIET",
+        "IR_QUIET",
+        "N24_QUIET",
+        "RECEIVER_QUIET",
+        "U214_CAP_QUIET",
+        "UNIT_PORT_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ],
+      "support_contract": "UI/safety/thermal remain available; audio/storage/service run only when profile-declared and otherwise use their quiet contracts"
+    },
+    {
+      "signal_group": "SG-C5-NATIVE",
+      "operating_group": "C5_RF",
+      "active_members": [
+        "c5 Wi-Fi 2.4/5",
+        "c5 IEEE 802.15.4"
+      ],
+      "required_foreign_quiet_contracts": [
+        "CC_QUIET",
+        "IR_QUIET",
+        "N24_QUIET",
+        "RECEIVER_QUIET",
+        "S3_RF_QUIET",
+        "U214_CAP_QUIET",
+        "UNIT_PORT_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ],
+      "support_contract": "UI/safety/thermal remain available; audio/storage/service run only when profile-declared and otherwise use their quiet contracts"
+    },
+    {
+      "signal_group": "SG-CC",
+      "operating_group": "CC1101",
+      "active_members": [
+        "cc"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "IR_QUIET",
+        "N24_QUIET",
+        "RECEIVER_QUIET",
+        "S3_RF_QUIET",
+        "U214_CAP_QUIET",
+        "UNIT_PORT_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ],
+      "support_contract": "UI/safety/thermal remain available; audio/storage/service run only when profile-declared and otherwise use their quiet contracts"
+    },
+    {
+      "signal_group": "SG-VOICE",
+      "operating_group": "VOICE",
+      "active_members": [
+        "voice"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "CC_QUIET",
+        "IR_QUIET",
+        "N24_QUIET",
+        "RECEIVER_QUIET",
+        "S3_RF_QUIET",
+        "U214_CAP_QUIET",
+        "UNIT_PORT_QUIET"
+      ],
+      "support_contract": "UI/safety/thermal remain available; audio/storage/service run only when profile-declared and otherwise use their quiet contracts"
+    },
+    {
+      "signal_group": "SG-BROADCAST",
+      "operating_group": "BROADCAST_RX",
+      "active_members": [
+        "receiver",
+        "audio support"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "CC_QUIET",
+        "IR_QUIET",
+        "N24_QUIET",
+        "S3_RF_QUIET",
+        "U214_CAP_QUIET",
+        "UNIT_PORT_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ],
+      "support_contract": "UI/safety/thermal remain available; audio/storage/service run only when profile-declared and otherwise use their quiet contracts"
+    },
+    {
+      "signal_group": "SG-U214",
+      "operating_group": "LORA_CAP",
+      "active_members": [
+        "stock U214 receive and GNSS",
+        "evidence-aware LoRa Cap RX/TX"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "CC_QUIET",
+        "IR_QUIET",
+        "N24_QUIET",
+        "RECEIVER_QUIET",
+        "S3_RF_QUIET",
+        "UNIT_PORT_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ],
+      "support_contract": "UI/safety/thermal remain available; audio/storage/service run only when profile-declared and otherwise use their quiet contracts"
+    },
+    {
+      "signal_group": "SG-IR",
+      "operating_group": "IR",
+      "active_members": [
+        "c5 IR"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "CC_QUIET",
+        "N24_QUIET",
+        "RECEIVER_QUIET",
+        "S3_RF_QUIET",
+        "U214_CAP_QUIET",
+        "UNIT_PORT_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ],
+      "support_contract": "UI/safety/thermal remain available; audio/storage/service run only when profile-declared and otherwise use their quiet contracts"
+    },
+    {
+      "signal_group": "SG-EXT-*",
+      "operating_group": "M5_UNIT",
+      "active_members": [
+        "one exact accessory profile"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "CC_QUIET",
+        "IR_QUIET",
+        "N24_QUIET",
+        "RECEIVER_QUIET",
+        "S3_RF_QUIET",
+        "U214_CAP_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ],
+      "support_contract": "UI/safety/thermal remain available; audio/storage/service run only when profile-declared and otherwise use their quiet contracts"
+    }
+  ],
+  "support_quiet_contracts": [
+    "CODEC_AUDIO_QUIET",
+    "STORAGE_QUIET",
+    "SERVICE_IPC_QUIET"
+  ],
+  "transition_order": [
+    "revoke the current group lease and close every software TX request",
+    "wait for every current-group physical actual-TX evidence source to become inactive; inbound-energy false positives may delay but never bypass this gate",
+    "stop protocol engines, scans, polling, PIO/DMA and periodic logs; park active controls in their stated safe levels",
+    "disable digital OEs/isolation, then remove the old switched rail and prove its discharge/quiet contract",
+    "if any state, identity, timeout or evidence result is unknown: enter NONE, keep every TX disarmed and require a fresh physical KILL-to-RUN re-arm",
+    "admit only the selected new group's exact manifest, power it, honor POR/supervisor timing and complete identity/self-test",
+    "load region, antenna/feed-loss, power and duty profile; arm TX only after all preceding gates pass"
+  ],
+  "acceptance": {
+    "top_level_runtime": "exactly zero or one signal group; cross-group simultaneous operation is prohibited",
+    "quiet": "all non-members show no intentional carrier, packet, optical output, scan, advertising, polling clock or back-power; strong inbound energy may delay quiet confirmation but never authorize TX",
+    "no_stall": "all candidate resource-contract deadlines pass from raw timestamp traces, including nRF FIFO service, CC GDO/FIFO independence, U214 IRQ/UART, S3-RP and S3-C5 payload/control bounds, continuous audio, UI <=100 ms and encoder correctness",
+    "nrf_full_mix": "T1 target plus independent observer must prove each identity permutation at 3PRX, 1PTX+2PRX, 2PTX+1PRX and 3PTX with no hidden standby or RX gap; every peer receiver must stay within the profile's 3-dB degradation limit",
+    "lab_injection": "cross-group interference injection is allowed only as contained Laboratory characterization/fault evidence and never becomes runtime permission",
+    "fault": "KILL/reset/watchdog/brownout/unknown status/missing fixture identity leaves NONE, TX disarmed and no unbounded RF or optical pulse"
+  },
+  "checks": {
+    "h352_is_reviewed": true,
+    "one_top_level_group_is_hard_limit": true,
+    "cross_group_runtime_is_prohibited": true,
+    "unknown_fails_to_none_and_tx_disarmed": true,
+    "default_group_is_none": true,
+    "all_nine_signal_groups_covered": true,
+    "all_operating_groups_mapped": true,
+    "all_13_quiet_contracts_present": true,
+    "all_radio_quiet_contracts_mapped": true,
+    "every_group_has_all_foreign_quiet_contracts": true,
+    "digital_quiet_review_is_closed": true,
+    "digital_no_back_power_is_closed": true,
+    "nrf_has_three_members": true,
+    "nrf_full_mix_is_required": true,
+    "nrf_peer_standby_is_forbidden": true,
+    "nrf_all_four_modes_are_power_profiles": true,
+    "nrf_both_support_profiles_are_covered": true,
+    "nrf_eight_identity_permutations": true,
+    "nrf_power_profiles_cover_16_identity_mode_support_cases": true,
+    "nrf_dc_covers_all_modes_and_support_profiles": true,
+    "nrf_all_dc_profiles_pass": true,
+    "nrf_three_independent_spi_resources": true,
+    "nrf_timing_has_bounded_three_drains": true,
+    "nrf_three_isolated_digital_paths": true,
+    "nrf_three_independent_rf_corridors": true,
+    "nrf_production_requires_target_observer_hil": true,
+    "paper_does_not_overclaim_same_channel_isolation": true,
+    "lab_injection_does_not_expand_runtime": true,
+    "transition_starts_with_tx_revoke_and_ends_with_explicit_arm": true,
+    "no_stall_contract_names_ui_and_nrf": true
+  },
+  "corrections": [],
+  "open_findings": [],
+  "residual_physical_only": [
+    "run the signed-configuration L1 isolated baseline and L2 foreign-interface quiet/desense matrix for every signal group",
+    "run FX-I6-N24-T1 with target plus independent observer for all eight radio-identity permutations at both support loads, all admitted channels/rates/powers and antenna poses",
+    "prove inactive rails discharge, I/O remains high-Z, native S3/C5 radios emit no background packet/scan/advertising and service clocks have no periodic activity",
+    "capture raw IRQ/FIFO/PIO/DMA/IPC/UI/storage/audio timing while each active group faces maximum valid support-plane aggression",
+    "inject cross-group blocking, evidence false-positive, reset/brownout/stuck-line and KILL/FAULT_KILL faults only inside the contained Laboratory fixture"
+  ],
+  "review_summary": {
+    "checks": 30,
+    "failed": 0,
+    "unresolved": 0,
+    "status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.5.4",
+    "action": "consolidate RF pre-layout rules and all residual physical measurements"
+  }
+}

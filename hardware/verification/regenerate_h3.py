@@ -30,6 +30,7 @@ SCRIPTS = (
     ROOT / "hardware/verification/h3_digital_consolidation.py",
     ROOT / "hardware/verification/h3_rf_feed_constraints.py",
     ROOT / "hardware/verification/h3_rf_layout_constraints.py",
+    ROOT / "hardware/verification/h3_rf_coexistence.py",
 )
 
 
