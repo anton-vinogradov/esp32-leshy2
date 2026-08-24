@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "stage": "H3.4.2",
+  "status": "reviewed_digital_bandwidth_latency_and_timing",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "bb7cd466a2aac72ab37da628cb2aba2eda4396a91ddcc3729116f50bfb0a3831",
+    "hardware/architecture/devices.json": "be2c824fb67f7da62891d54c6fc99e41b345d637239da10b3fff3c609b935054",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "d2622360c7b5de6ff82e1378fbb6a5fea1186401466f74a85999b30e13f7688d",
+    "hardware/verification/generated/H3-VRF31-display.json": "d4410410e106a85173699ceb09646fbfab77e6533334f2d4067c2a17cfaf8c14",
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "86848ff457636dcfb98ee394b6f47ce7f085109adb786e642f2be32ad7f47256"
+  },
+  "provenance": {
+    "nrf24l01_product_specification": "https://devzone.nordicsemi.com/cfs-file/__key/support-attachments/beef5d1b77644c448dabff31668f3a47-aad1a46f307945a7b0204fd969e86bdf/content.pdf",
+    "cc1101_datasheet": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+    "sd_physical_layer_simplified_specification": "https://www.sdcard.org/cms/wp-content/themes/sdcard-org/dl.php?f=Part1_Physical_Layer_Simplified_Specification_Ver7.10.pdf",
+    "st77922_datasheet": "https://dl.espressif.com/AE/esp-iot-solution/ST77922_SPEC_V0.1.pdf",
+    "es8311_product_brief": "https://www.everest-semi.com/pdf/ES8311%20PB.pdf",
+    "esp32_s3_technical_reference": "https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf",
+    "esp32_c5_technical_reference": "https://www.espressif.com/sites/default/files/documentation/esp32-c5_technical_reference_manual_en.pdf",
+    "rp2350_datasheet": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf"
+  },
+  "display_storage": {
+    "display_qspi_hz": 40000000,
+    "display_raw_bytes_s": 20000000,
+    "display_quantum_ms": "1.000",
+    "display_quantum_bytes": 20000,
+    "full_frame_bytes_rgb565": 307200,
+    "full_frame_payload_ms": "15.360",
+    "admitted_display_budget_bytes_s": 1000000,
+    "full_frames_s_equivalent_at_budget": "3.255",
+    "sd_clock_profile_hz": {
+      "initial_max": 400000,
+      "default": 25000000,
+      "qualified_high_speed": 50000000
+    },
+    "sd_raw_bytes_s_at_high_speed": 6250000,
+    "protocol_card_reserve_bytes_s": 1250000,
+    "remaining_storage_payload_bytes_s": 4000000,
+    "single_512byte_block_wire_us": "81.920",
+    "record_bytes_s": 1500000,
+    "stall_ms": 250,
+    "minimum_stall_buffer_bytes": 375000,
+    "selected_stall_buffer_bytes": 524288,
+    "selected_stall_coverage_ms": "349.525",
+    "rules": [
+      "50 MHz is entered only after card identity and CMD6 high-speed admission; otherwise the card remains at 25 MHz and cannot claim the 4-MB/s qualified profile",
+      "card busy polling releases CS between bounded polls so it cannot hold the display off for the card-internal stall",
+      "display and SD transfers are each <=1 ms; critical UI has priority, and the display average payload budget is <=1 MB/s while the qualified 4-MB/s storage profile is active"
+    ]
+  },
+  "audio": {
+    "sample_hz": 48000,
+    "channels": 2,
+    "sample_bits": 24,
+    "slot_bits": 32,
+    "bclk_hz": 3072000,
+    "payload_bytes_s_per_direction": 288000,
+    "slot_bytes_s_per_direction": 384000,
+    "dma_buffers": 4,
+    "frames_per_buffer": 256,
+    "buffer_ms": "5.333",
+    "ring_ms": "21.333",
+    "service_quantum_ms_max": 1
+  },
+  "radio_service": {
+    "nrf24": {
+      "radios": 3,
+      "spi_hz_each": 10000000,
+      "maximum_air_bps_each": 2000000,
+      "payload_bytes": 32,
+      "single_spi_drain_us": "26.400",
+      "all_three_serial_upper_bound_us": "79.200",
+      "three_level_fifo_guard_us": "457.500",
+      "irq_to_service_budget_us": 200
+    },
+    "cc1101": {
+      "maximum_air_bps": 600000,
+      "fifo_bytes": 64,
+      "watermark_bytes": 32,
+      "watermark_guard_us": "426.667",
+      "spi_hz": 10000000,
+      "watermark_spi_drain_us": "26.400",
+      "irq_to_service_budget_us": 200
+    },
+    "rule": "all four compatibility-radio buses are independent PIO state machines with persistent DMA; display, storage, audio, C5 and U214 cannot own or block them"
+  },
+  "ipc": {
+    "s3_rp": {
+      "raw_bytes_s": 2500000,
+      "qualified_payload_floor_bytes_s": 1500000,
+      "three_nrf_plus_cc_max_payload_bytes_s": 825000,
+      "payload_margin_bytes_s": 675000,
+      "alert_to_read_us_max": 250
+    },
+    "s3_c5": {
+      "raw_bytes_s": 2500000,
+      "occupancy_max_percent": "70.000",
+      "occupied_bytes_s": 1750000,
+      "qualified_payload_floor_bytes_s": 1500000,
+      "framing_budget_bytes_s": 250000,
+      "control_rtt_ms_max": 2,
+      "scope": "admitted waterfall/metadata/event payload, not an impossible promise to forward every raw Wi-Fi frame or RF sample"
+    }
+  },
+  "control_i2c": {
+    "clock_hz": 400000,
+    "reviewed_clients": 11,
+    "bounded_payload_bytes": 32,
+    "single_transaction_ms": "0.812",
+    "full_sweep_ms": "8.938",
+    "ordinary_ui_deadline_ms": 100
+  },
+  "resource_rows": [
+    {
+      "id": "DISPLAY_SD_SPI",
+      "owner": "s3",
+      "independence": "scheduled only between display and storage; no radio/IPC/audio endpoint uses SPI2",
+      "deadline": "critical/menu first visible response <=100 ms and qualified storage >=4.0 MB/s while all radios capture; no radio FIFO or IPC deadline is placed here"
+    },
+    {
+      "id": "S3_I2S",
+      "owner": "s3",
+      "independence": "dedicated I2S0 plus one independent GDMA TX/RX pair",
+      "deadline": "continuous DMA audio without storage/display service gaps"
+    },
+    {
+      "id": "NRF0_SPI",
+      "owner": "rp",
+      "independence": "PIO0 SM0 plus two persistent DMA channels",
+      "deadline": "IRQ serviced before nRF FIFO/transaction deadline under simultaneous peers"
+    },
+    {
+      "id": "NRF1_SPI",
+      "owner": "rp",
+      "independence": "PIO0 SM1 plus two persistent DMA channels",
+      "deadline": "IRQ serviced before nRF FIFO/transaction deadline under simultaneous peers"
+    },
+    {
+      "id": "NRF2_SPI",
+      "owner": "rp",
+      "independence": "PIO0 SM2 plus two persistent DMA channels",
+      "deadline": "IRQ serviced before nRF FIFO/transaction deadline under simultaneous peers"
+    },
+    {
+      "id": "CC_SPI",
+      "owner": "rp",
+      "independence": "PIO0 SM3 plus two persistent DMA channels",
+      "deadline": "GDO/FIFO service completes without waiting for any nRF or U214 transfer"
+    },
+    {
+      "id": "S3_RP_IPC",
+      "owner": "s3",
+      "independence": "dedicated S3 SPI3 and RP SPI1 plus their own DMA",
+      "deadline": "20 MHz SPI raw 2.5 MB/s and qualified framed payload >=1.5 MB/s; no display/storage or C5 controller ownership"
+    },
+    {
+      "id": "S3_C5_IPC",
+      "owner": "s3",
+      "independence": "dedicated one-bit SDMMC/SDIO host path",
+      "deadline": "1-bit SDIO at 20 MHz raw 2.5 MB/s with qualified framed payload >=1.5 MB/s, admitted occupancy <=70% and control RTT <=2 ms; no microSD, RP or display controller ownership"
+    },
+    {
+      "id": "S3_INTERNAL_I2C",
+      "owner": "s3",
+      "independence": "scheduled control/status only; never transports a radio FIFO, encoder phase or PTT edge",
+      "deadline": "ordinary UI/control first visible response <=100 ms; PD/pack/fault status is read after shared IRQ, and no radio FIFO, encoder-edge or PTT deadline is placed here"
+    }
+  ],
+  "checks": {
+    "h341_levels_are_reviewed": true,
+    "all_16_required_resource_contracts_present": true,
+    "all_12_exclusive_resources_are_dedicated": true,
+    "rp_pio_state_machines_accounting": true,
+    "rp_dma_channels_accounting": true,
+    "s3_gdma_tx_channels_accounting": true,
+    "s3_gdma_rx_channels_accounting": true,
+    "display_clock_is_40mhz": true,
+    "display_quantum_is_20kbytes": true,
+    "display_full_frame_below_100ms": true,
+    "display_budget_supports_three_full_frames_per_second": true,
+    "display_budget_is_at_most_50_quanta_per_second": true,
+    "sd_initial_clock_is_within_400khz": true,
+    "sd_default_clock_is_25mhz": true,
+    "sd_high_speed_clock_is_50mhz": true,
+    "sd_payload_after_protocol_and_display_is_4mbps": true,
+    "sd_single_block_wire_time_below_100us": true,
+    "record_stall_buffer_is_at_least_512kib": true,
+    "record_stall_buffer_exceeds_250ms": true,
+    "audio_bclk_is_3_072mhz": true,
+    "audio_full_duplex_payload_per_direction_is_288kbytes_s": true,
+    "audio_ring_exceeds_20ms": true,
+    "audio_service_quantum_has_5x_buffer_margin": true,
+    "nrf_spi_is_10mbps": true,
+    "nrf_single_payload_drain_below_27us": true,
+    "nrf_three_serial_drains_below_80us": true,
+    "nrf_fifo_guard_exceeds_450us": true,
+    "nrf_service_budget_below_fifo_guard": true,
+    "cc_watermark_guard_exceeds_426us": true,
+    "cc_spi_drain_below_27us": true,
+    "cc_service_budget_below_watermark_guard": true,
+    "rp_ipc_raw_is_2_5mbytes_s": true,
+    "rp_ipc_carries_three_nrf_plus_cc_max_payload": true,
+    "rp_ipc_payload_margin_is_at_least_40pct": true,
+    "c5_ipc_raw_is_2_5mbytes_s": true,
+    "c5_ipc_payload_fits_70pct_occupancy": true,
+    "i2c_full_32byte_11client_sweep_below_10ms": true,
+    "ui_deadline_is_100ms": true,
+    "method_has_timing_rule": true,
+    "all_reviewed_resources_have_deadline_and_gate": true
+  },
+  "corrections": [],
+  "open_findings": [],
+  "residual_physical_only": [
+    "qualify SD card identity/CMD6 high-speed mode, >=4.0-MB/s storage, 1.5-MB/s record, 250-ms stalls and 512-KiB buffering",
+    "scope shared SPI2 edges, CS-high high-Z/contention and <=1-ms display/SD arbitration under insert/remove",
+    "capture all three nRF24 IRQ-to-drain paths and every 3PRX/PTX role mix at 10-Mbit/s SPI",
+    "capture CC1101 GDO/FIFO service at 600-kbit/s air rate and 10-Mbit/s SPI",
+    "run full-duplex 48-kHz audio without DMA underrun/overrun during display, storage and radio-event stress",
+    "prove S3-RP >=1.5 MB/s with <=250-us alert-to-read and S3-C5 >=1.5 MB/s with <=2-ms control RTT",
+    "measure 400-kHz SYS_I2C transaction/recovery/IRQ latency with every assembled address and simultaneous UI activity"
+  ],
+  "review_summary": {
+    "checks": 40,
+    "failed": 0,
+    "unresolved": 0,
+    "status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.4.3",
+    "action": "verify M1, U214, M5 Unit and service-boundary loading"
+  }
+}

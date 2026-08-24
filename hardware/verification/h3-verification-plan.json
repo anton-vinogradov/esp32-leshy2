@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "H3",
   "status": "in_progress",
-  "current_substep": "H3.4.2",
+  "current_substep": "H3.4.3",
   "accepted_input": {
     "stage": "H2.8.2",
     "status": "accepted_by_user",
@@ -70,8 +70,8 @@
       "status": "current",
       "children": [
         {"id": "H3.4.1", "title": "Check voltage levels, pulls, reset defaults and no-back-power at every interface", "status": "reviewed", "evidence": "generated/H3-VRF41-digital-levels.json"},
-        {"id": "H3.4.2", "title": "Check bandwidth, latency and timing for display, storage, audio and radio buses", "status": "current"},
-        {"id": "H3.4.3", "title": "Check M1, U214, M5 Unit and service-boundary loading", "status": "waiting"},
+        {"id": "H3.4.2", "title": "Check bandwidth, latency and timing for display, storage, audio and radio buses", "status": "reviewed", "evidence": "generated/H3-VRF42-digital-timing.json"},
+        {"id": "H3.4.3", "title": "Check M1, U214, M5 Unit and service-boundary loading", "status": "current"},
         {"id": "H3.4.4", "title": "Consolidate digital timing and level evidence", "status": "waiting"}
       ]
     },

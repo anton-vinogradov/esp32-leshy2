@@ -261,8 +261,8 @@ def build() -> tuple[dict[Path, str], dict]:
             "signals": 4,
             "boundary": "usb2_differential_data_only",
             "level_proof": "USB analog levels are not reduced to CMOS thresholds; exact FSUSB42MUX supports 480 Mbps and 720-MHz bandwidth",
-            "minimum_high_margin_v": "deferred to H3.4.2 signal-integrity bound and H8 eye measurement",
-            "minimum_low_margin_v": "deferred to H3.4.2 signal-integrity bound and H8 eye measurement",
+            "minimum_high_margin_v": "deferred to H3.4.3 signal-integrity bound and H8 eye measurement",
+            "minimum_low_margin_v": "deferred to H3.4.3 signal-integrity bound and H8 eye measurement",
             "reset_or_off_state": "OE/SEL hard-low select the board-side path; service VBUS is sense-only",
             "no_back_power": "FSUSB42MUX power-off I/O range is 0..4.3 V with <=2-uA leakage; VBUS ends only at 1-MOhm bleeder/test pad",
         },
@@ -340,7 +340,7 @@ def build() -> tuple[dict[Path, str], dict]:
                 "guaranteed_high_margin_v": q(lvc_high_margin),
                 "guaranteed_low_margin_v": q(lvc_low_margin),
                 "actual_10k_pull_load_ma_max": q(pull_10k_current_max_ma),
-                "interpretation": "the 24-mA output test point is deliberately more severe than the <=0.329-mA static pull load; trace/edge timing is checked separately in H3.4.2",
+                "interpretation": "the 24-mA output test point is deliberately more severe than the <=0.329-mA static pull load; trace/edge timing is checked separately in H3.4.3",
             },
             "sys_i2c": {
                 "pullup_ohm": int(i2c_pull_ohm),
@@ -368,12 +368,12 @@ def build() -> tuple[dict[Path, str], dict]:
         "open_findings": [],
         "residual_physical_only": residual_hil,
         "review_summary": {"checks": len(checks), "failed": 0, "unresolved": 0, "status": "reviewed"},
-        "next": {"stage": "H3.4.2", "action": "verify bandwidth, latency and timing for display, storage, audio and radio buses"},
+        "next": {"stage": "H3.4.3", "action": "verify bandwidth, latency and timing for display, storage, audio and radio buses"},
     }
 
     en = f"""# Digital levels, defaults and no-back-power
 
-`H3.4.1` is reviewed: `{len(checks)}` machine checks cover all `{len(allocations)}` controller allocations, `{len(interface_groups)}` digital interface groups, `{len(quiet_ids)}` quiet-state contracts and all six no-back-power invariants. No analytical finding or component change remains open. The exact current marker is `H3.4.2`.
+`H3.4.1` is reviewed: `{len(checks)}` machine checks cover all `{len(allocations)}` controller allocations, `{len(interface_groups)}` digital interface groups, `{len(quiet_ids)}` quiet-state contracts and all six no-back-power invariants. No analytical finding or component change remains open. The exact current marker is `H3.4.3`.
 
 ## Guaranteed static margins
 
@@ -382,7 +382,7 @@ def build() -> tuple[dict[Path, str], dict]:
 | LVC buffered 3.3-V paths | `VOH-VIH >= {q(lvc_high_margin)} V`; `VIL-VOL >= {q(lvc_low_margin)} V` at the much harsher 24-mA data-sheet point; actual 10-kOhm pull load is <=`{q(pull_10k_current_max_ma)} mA` |
 | Direct common-rail CMOS | same instantaneous rail; conservative high margin `{q(direct_high_margin)} V`, low margin `{q(direct_low_margin)} V` at the minimum reviewed rail |
 | SYS_I2C open drain | 2.2-kOhm pull-up sinks <=`{q(i2c_sink_current_max_ma)} mA`; guaranteed low margin `{q(i2c_low_margin)} V`; no push-pull high crosses the AON/main boundary |
-| Service USB | exact FSUSB42MUX power-off isolation and sense-only VBUS pass; USB differential SI is intentionally checked in H3.4.2/H8, not disguised as a CMOS margin |
+| Service USB | exact FSUSB42MUX power-off isolation and sense-only VBUS pass; USB differential SI is intentionally checked in H3.4.3/H8, not disguised as a CMOS margin |
 
 Every switched domain has an off-safe enable, a local line default and either exact `Ioff`, a powered-main open switch, powered-off-high-Z I2C isolation or a same-rail/no-partial-power proof. The three nRF24 paths remain fully independent and all six signals per module are isolated in both directions.
 
@@ -394,7 +394,7 @@ Machine evidence: [`H3-VRF41-digital-levels.json`](../hardware/verification/gene
 """
     ru = f"""# Digital levels, defaults и no-back-power
 
-`H3.4.1` проверено: `{len(checks)}` машинных checks охватывают все `{len(allocations)}` controller allocations, `{len(interface_groups)}` групп digital interfaces, `{len(quiet_ids)}` quiet-state contracts и все шесть no-back-power invariants. Незакрытых аналитических findings и замен компонентов нет. Точный текущий маркер — `H3.4.2`.
+`H3.4.1` проверено: `{len(checks)}` машинных checks охватывают все `{len(allocations)}` controller allocations, `{len(interface_groups)}` групп digital interfaces, `{len(quiet_ids)}` quiet-state contracts и все шесть no-back-power invariants. Незакрытых аналитических findings и замен компонентов нет. Точный текущий маркер — `H3.4.3`.
 
 ## Гарантированные статические запасы
 
@@ -403,7 +403,7 @@ Machine evidence: [`H3-VRF41-digital-levels.json`](../hardware/verification/gene
 | Буферизованные LVC-тракты 3,3 В | `VOH-VIH >= {q(lvc_high_margin)} В`; `VIL-VOL >= {q(lvc_low_margin)} В` в гораздо более тяжёлом datasheet point 24 мА; фактическая нагрузка pull 10 кОм <=`{q(pull_10k_current_max_ma)} мА` |
 | Прямой common-rail CMOS | одна мгновенная шина; conservative high margin `{q(direct_high_margin)} В`, low margin `{q(direct_low_margin)} В` при минимальном проверенном rail |
 | Open-drain SYS_I2C | pull-up 2,2 кОм требует <=`{q(i2c_sink_current_max_ma)} мА`; гарантированный low margin `{q(i2c_low_margin)} В`; push-pull high не пересекает AON/main boundary |
-| Service USB | проходят exact FSUSB42MUX power-off isolation и sense-only VBUS; USB differential SI намеренно проверяется в H3.4.2/H8, а не маскируется CMOS-расчётом |
+| Service USB | проходят exact FSUSB42MUX power-off isolation и sense-only VBUS; USB differential SI намеренно проверяется в H3.4.3/H8, а не маскируется CMOS-расчётом |
 
 У каждого switched domain есть off-safe enable, локальное состояние каждой линии и одно из точных доказательств: `Ioff`, разомкнутый powered-main switch, powered-off-high-Z I2C isolation либо same-rail/no-partial-power. Три nRF24 остаются независимыми, у каждого изолированы все шесть сигналов в обоих направлениях.
 
@@ -430,7 +430,7 @@ def main() -> int:
         stale = [str(path.relative_to(REPO)) for path, content in outputs.items() if not path.exists() or path.read_text(encoding="utf-8") != content]
         if stale:
             raise SystemExit("stale H3.4.1 artifacts: " + ", ".join(stale))
-    print(f"ok: H3.4.1 reviewed; {len(manifest['checks'])} checks, next H3.4.2")
+    print(f"ok: H3.4.1 reviewed; {len(manifest['checks'])} checks, next H3.4.3")
     return 0
 
 
