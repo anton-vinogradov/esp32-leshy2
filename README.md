@@ -119,11 +119,11 @@ remain unauthorized.
 <details open>
 <summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.4.3 -->
+<!-- current-substep: H3.4.4 -->
 
-**Exact marker: `H3.4.3`** — [digital bandwidth, latency and timing](docs/digital-timing-verification.md)
-are reviewed with no unresolved analytical finding; M1, U214, M5 Unit and service-boundary
-loading are now being verified.
+**Exact marker: `H3.4.4`** — [M1, U214, M5 Unit and service-boundary loading](docs/boundary-loading-verification.md)
+is reviewed with 49 checks and no unresolved analytical finding; digital evidence
+is now being consolidated.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,035-row circuit inventory reviewed.
@@ -215,8 +215,8 @@ loading are now being verified.
 - ▶️ **`H3.4` — current:** digital levels, timing and loading.
   - ✅ `H3.4.1` — [voltage levels, pulls, reset defaults and no-back-power reviewed](docs/digital-levels-verification.md).
   - ✅ `H3.4.2` — [bandwidth, latency and timing reviewed](docs/digital-timing-verification.md).
-  - ▶️ **`H3.4.3` — current:** M1, U214, M5 Unit and service-boundary loading.
-  - ⏳ `H3.4.4` — digital consolidation.
+  - ✅ `H3.4.3` — [M1, U214, M5 Unit and service-boundary loading reviewed](docs/boundary-loading-verification.md).
+  - ▶️ **`H3.4.4` — current:** digital consolidation.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The current machine-readable plan is

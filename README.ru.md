@@ -120,11 +120,11 @@ safety-автоматику.
 <details open>
 <summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.4.3 -->
+<!-- current-substep: H3.4.4 -->
 
-**Точный маркер: `H3.4.3`** — [digital bandwidth, latency и timing](docs/digital-timing-verification.ru.md)
-проверены без незакрытых аналитических findings; теперь проверяется loading
-M1, U214, M5 Unit и service boundaries.
+**Точный маркер: `H3.4.4`** — [loading M1, U214, M5 Unit и service boundaries](docs/boundary-loading-verification.ru.md)
+проверен 49 checks без незакрытых аналитических findings; теперь сводится
+единый digital evidence package.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 035 схемных строк.
@@ -217,8 +217,8 @@ M1, U214, M5 Unit и service boundaries.
 - ▶️ **`H3.4` — сейчас:** digital levels, timing и loading.
   - ✅ `H3.4.1` — [voltage levels, pulls, reset defaults и no-back-power проведены ревью](docs/digital-levels-verification.ru.md).
   - ✅ `H3.4.2` — [bandwidth, latency и timing проведены ревью](docs/digital-timing-verification.ru.md).
-  - ▶️ **`H3.4.3` — сейчас:** loading M1, U214, M5 Unit и service boundaries.
-  - ⏳ `H3.4.4` — digital consolidation.
+  - ✅ `H3.4.3` — [loading M1, U214, M5 Unit и service boundaries проведён ревью](docs/boundary-loading-verification.ru.md).
+  - ▶️ **`H3.4.4` — сейчас:** digital consolidation.
 
 Проверенный план H2 —
 [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Текущий

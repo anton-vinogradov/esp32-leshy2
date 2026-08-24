@@ -410,7 +410,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
 
 Исправленный worst case — `{rail['worst_profile_load_ma']} мА` из 2500 мА принятого режима и `{rail['hardware_reserve_percent']}%` до гарантированного hardware limit. Normal display/backlight теперь `{rail['normal_display_branch_ma']} мА`, audio — `{rail['audio_branch_ma']} мА`; fault-порог подсветки больше не считается рабочей нагрузкой.
 
-Итоговая аналоговая конфигурация добавляет `{cost['total_delta_per_board']} USD` на устройство при количестве 100. **H3.3.2 проверено; текущий точный маркер — `H3.4.3`.**
+Итоговая аналоговая конфигурация добавляет `{cost['total_delta_per_board']} USD` на устройство при количестве 100. **H3.3.2 проверено; текущий точный маркер — `H3.4.4`.**
 
 [Машинный пакет H3-VRF32](../hardware/verification/generated/H3-VRF32-audio.json)."""
     else:
@@ -439,7 +439,7 @@ At the real `4 ohm −15% = {speaker['minimum_impedance_corner_ohm']} ohm` corne
 
 The corrected worst case is `{rail['worst_profile_load_ma']} mA` inside the 2500-mA admission and retains `{rail['hardware_reserve_percent']}%` to the guaranteed hardware limit. Normal display/backlight is now `{rail['normal_display_branch_ma']} mA`, audio is `{rail['audio_branch_ma']} mA`; a backlight fault threshold is no longer counted as an operating load.
 
-The final analog configuration adds `{cost['total_delta_per_board']} USD` per unit at quantity 100. **H3.3.2 is verified; the exact current marker is `H3.4.3`.**
+The final analog configuration adds `{cost['total_delta_per_board']} USD` per unit at quantity 100. **H3.3.2 is verified; the exact current marker is `H3.4.4`.**
 
 [Machine H3-VRF32 package](../hardware/verification/generated/H3-VRF32-audio.json)."""
     return "\n\n".join((title, nav, intro, sections)) + "\n"

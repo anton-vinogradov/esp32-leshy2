@@ -295,7 +295,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
                 "- измерить реальный ток/яркость подсветки, PWM EMI, температуру и восстановление защёлки TPS2553",
             )
         )
-        marker = f"Три замены добавляют `{cost['delta_per_board']} USD` на устройство при количестве 100. **H3.3.1 проверено; текущий точный маркер — `H3.4.3`.**"
+        marker = f"Три замены добавляют `{cost['delta_per_board']} USD` на устройство при количестве 100. **H3.3.1 проверено; текущий точный маркер — `H3.4.4`.**"
         evidence = "[Машинный пакет H3-VRF31](../hardware/verification/generated/H3-VRF31-display.json)."
     else:
         title = "# Display electrical verification"
@@ -321,7 +321,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         corrected = "1. Removed the possible ST77922 excursion above 3.3 V.\n2. Removed the mistaken 10-ohm power resistor that would have taken about 1.2 V from the backlight."
         remaining_h = "## What remains physical"
         remaining = "\n".join(f"- {row}" for row in manifest["residual_physical_only"])
-        marker = f"The three replacements add `{cost['delta_per_board']} USD` per unit at quantity 100. **H3.3.1 is reviewed; the exact current marker is `H3.4.3`.**"
+        marker = f"The three replacements add `{cost['delta_per_board']} USD` per unit at quantity 100. **H3.3.1 is reviewed; the exact current marker is `H3.4.4`.**"
         evidence = "[Machine H3-VRF31 package](../hardware/verification/generated/H3-VRF31-display.json)."
     return "\n\n".join((title, nav, intro, supply_h, supply, backlight_h, backlight, qspi_h, qspi_text, corrected_h, corrected, remaining_h, remaining, marker, evidence)) + "\n"
 

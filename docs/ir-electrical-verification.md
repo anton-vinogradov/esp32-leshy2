@@ -16,6 +16,6 @@ H3.3.3 checks the complete C5 IR chain: robust demodulated receive, raw carrier 
 
 VEMD1060X01 views the emitter inside a light-tight tunnel. Full resistor/offset corners retain `60.984` mV minimum dark false-assert margin and `29.224` mV guaranteed-clear margin. HIL must achieve the bounded `2.271`-uA TIA assertion target; this remains measured because the photodiode irradiance table is specified at 5-V reverse bias while this circuit operates near 0.3 V. Evidence confirms physical light and never authorizes TX.
 
-The corrections add only `0.0020 USD` per unit at quantity 100. **H3.3.3 is reviewed; the exact current marker is `H3.4.3`.**
+The corrections add only `0.0020 USD` per unit at quantity 100. **H3.3.3 is reviewed; the exact current marker is `H3.4.4`.**
 
 [Machine H3-VRF33 package](../hardware/verification/generated/H3-VRF33-ir.json).

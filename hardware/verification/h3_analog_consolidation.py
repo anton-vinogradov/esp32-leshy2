@@ -136,12 +136,12 @@ def build() -> tuple[dict[Path, str], dict]:
         "checks": checks,
         "correction_ids": correction_ids,
         "review_summary": {"checks": len(checks), "failed": 0, "unresolved": 0, "status": "reviewed"},
-        "next": {"stage": "H3.4.3", "action": "verify voltage levels, pull states, reset defaults and no-back-power across every digital interface"},
+        "next": {"stage": "H3.4.4", "action": "verify voltage levels, pull states, reset defaults and no-back-power across every digital interface"},
     }
 
     en = f"""# Consolidated analog-corner result
 
-H3.3 is reviewed: all four leaf packages and `{total_checks}` leaf checks pass, followed by `{len(checks)}` consolidation checks. Fourteen source corrections are closed, no analytical finding remains open and the total quantity-100 BOM delta is only `{q(total_cost)} USD`. The exact current marker is `H3.4.3`.
+H3.3 is reviewed: all four leaf packages and `{total_checks}` leaf checks pass, followed by `{len(checks)}` consolidation checks. Fourteen source corrections are closed, no analytical finding remains open and the total quantity-100 BOM delta is only `{q(total_cost)} USD`. The exact current marker is `H3.4.4`.
 
 ## Closed analytical envelope
 
@@ -166,7 +166,7 @@ Machine evidence: [`H3-VRF35-analog-consolidation.json`](../hardware/verificatio
 """
     ru = f"""# Сводный результат analog corners
 
-`H3.3` проверено: проходят все четыре leaf-пакета, `{total_checks}` их checks и `{len(checks)}` сводных checks. Закрыты четырнадцать source-исправлений, незакрытых аналитических findings нет, суммарная дельта BOM на количестве 100 — лишь `{q(total_cost)} USD`. Точный текущий маркер — `H3.4.3`.
+`H3.3` проверено: проходят все четыре leaf-пакета, `{total_checks}` их checks и `{len(checks)}` сводных checks. Закрыты четырнадцать source-исправлений, незакрытых аналитических findings нет, суммарная дельта BOM на количестве 100 — лишь `{q(total_cost)} USD`. Точный текущий маркер — `H3.4.4`.
 
 ## Закрытый аналитический envelope
 
@@ -206,7 +206,7 @@ def main() -> int:
         stale = [str(path.relative_to(REPO)) for path, content in outputs.items() if not path.exists() or path.read_text(encoding="utf-8") != content]
         if stale:
             raise SystemExit("stale H3.3.5 artifacts: " + ", ".join(stale))
-    print(f"ok: H3.3 reviewed; {manifest['consolidated']['leaf_checks']} leaf + {manifest['consolidated']['consolidation_checks']} consolidation checks, next H3.4.3")
+    print(f"ok: H3.3 reviewed; {manifest['consolidated']['leaf_checks']} leaf + {manifest['consolidated']['consolidation_checks']} consolidation checks, next H3.4.4")
     return 0
 
 

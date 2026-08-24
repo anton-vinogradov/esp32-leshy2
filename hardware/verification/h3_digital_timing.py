@@ -247,12 +247,12 @@ def build() -> tuple[dict[Path, str], dict]:
         "open_findings": [],
         "residual_physical_only": residual_hil,
         "review_summary": {"checks": len(checks), "failed": 0, "unresolved": 0, "status": "reviewed"},
-        "next": {"stage": "H3.4.3", "action": "verify M1, U214, M5 Unit and service-boundary loading"},
+        "next": {"stage": "H3.4.4", "action": "consolidate digital level, timing and boundary-loading evidence"},
     }
 
     en = f"""# Digital bandwidth, latency and timing
 
-`H3.4.2` is reviewed with `{len(checks)}` machine checks and no open analytical finding. The exact current marker is `H3.4.3`.
+`H3.4.2` is reviewed with `{len(checks)}` machine checks and no open analytical finding. The exact current marker is `H3.4.4`.
 
 ## Closed paper budgets
 
@@ -274,7 +274,7 @@ Machine evidence: [`H3-VRF42-digital-timing.json`](../hardware/verification/gene
 """
     ru = f"""# Digital bandwidth, latency и timing
 
-`H3.4.2` проверено: `{len(checks)}` машинных checks, незакрытых аналитических findings нет. Точный текущий маркер — `H3.4.3`.
+`H3.4.2` проверено: `{len(checks)}` машинных checks, незакрытых аналитических findings нет. Точный текущий маркер — `H3.4.4`.
 
 ## Закрытые бумажные бюджеты
 
@@ -311,7 +311,7 @@ def main() -> int:
         stale = [str(path.relative_to(REPO)) for path, content in outputs.items() if not path.exists() or path.read_text(encoding="utf-8") != content]
         if stale:
             raise SystemExit("stale H3.4.2 artifacts: " + ", ".join(stale))
-    print(f"ok: H3.4.2 reviewed; {len(manifest['checks'])} checks, next H3.4.3")
+    print(f"ok: H3.4.2 reviewed; {len(manifest['checks'])} checks, next H3.4.4")
     return 0
 
 

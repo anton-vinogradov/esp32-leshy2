@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "stage": "H3.4.3",
+  "status": "reviewed_m1_expansion_and_service_boundary_loading",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "bb7cd466a2aac72ab37da628cb2aba2eda4396a91ddcc3729116f50bfb0a3831",
+    "hardware/architecture/devices.json": "be2c824fb67f7da62891d54c6fc99e41b345d637239da10b3fff3c609b935054",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "0c2c8bd53d8a21a9fbd4d6289e19a8b6f6b2b8832f2fed8f15dbfb3c66f9e2d5",
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "17214ccbea65813d438de1463353b99e330096421eaeede03c0018b5214a1b7f",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "8ff39ad519c19c9c3833e973ba8656d9f13ec3924bb09890c9f80b4d543a1449",
+    "hardware/ecad/generated/H2-REV53-no-back-power.json": "4279bde1d29e5ab8878ed7ca7962148792eb729f5b79397b3c470e36fc6177de",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "b890bd3e5072b1003b711da1a02e637e1d81598087983756fe760f747f0c7a07",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "39567dca03632c9d79c06b0af4e44e0b2df30433709b9be9f8bc811957cd7d8a"
+  },
+  "provenance": {
+    "m1_plug": "https://www.hirose.com/product/p/CL0578-0523-1-92",
+    "m1_receptacle": "https://www.hirose.com/en/product/p/CL0578-0823-5-92",
+    "u214_host_receptacle": "https://suddendocs.samtec.com/catalog_english/hle.pdf",
+    "u214": "https://docs.m5stack.com/en/cap/Cap_LoRa-1262",
+    "m5_unit_receptacle": "https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf",
+    "expansion_efuse": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
+    "u214_i2c_isolator": "https://www.ti.com/lit/ds/symlink/tca4307.pdf",
+    "unit_translator": "https://www.ti.com/lit/ds/symlink/txs0102.pdf",
+    "connector_esd": "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf",
+    "service_usb_switch": "https://www.onsemi.com/download/data-sheet/pdf/fsusb42-d.pdf"
+  },
+  "m1": {
+    "contacts": 80,
+    "unique_nets": 51,
+    "class_counts": {
+      "analog": 1,
+      "audio": 5,
+      "control": 16,
+      "ipc_high_speed": 5,
+      "power": 9,
+      "return": 25,
+      "safety": 4,
+      "tx_evidence": 11,
+      "unit_configurable": 2,
+      "usb2_high_speed": 2
+    },
+    "rating": {
+      "current_a_per_contact": "0.4",
+      "contact_resistance_ohm_max": "0.080",
+      "transmission_rate_gbps": 8
+    },
+    "main": {
+      "accepted_current_a": "2.500",
+      "contacts": 7,
+      "current_a_per_contact": "0.357",
+      "rating_margin_a_per_contact": "0.043",
+      "drop_v_max": "0.028571",
+      "connector_loss_w_max": "0.071429"
+    },
+    "aon": {
+      "accepted_current_a": "0.165",
+      "contacts": 2,
+      "current_a_per_contact": "0.082",
+      "rating_margin_a_per_contact": "0.318",
+      "drop_v_max": "0.006600",
+      "connector_loss_w_max": "0.001089"
+    },
+    "return_and_locality": {
+      "power_ground_contacts": 20,
+      "main_return_a_per_contact_conservative": "0.125",
+      "ipc_ground_distance_contacts_max": 1,
+      "usb_ground_distance_contacts_max": 1,
+      "audio_ground_distance_contacts_max": 2
+    },
+    "rate_margin_over_usb2_hs": "16.667"
+  },
+  "expansion_power": {
+    "operational_rule": "one active signal group means U214 and native Unit are not admitted together",
+    "branch_accepted_a": "1.250",
+    "branch_efuse_floor_a": "1.632",
+    "branch_margin_a": "0.382",
+    "branch_margin_percent": "23.407",
+    "path_resistance_envelope_ohm": "0.060",
+    "drop_v_at_limit": "0.075",
+    "loss_w_at_limit": "0.094",
+    "common_converter_floor_a": "4.000",
+    "two_branch_accepted_a": "2.500",
+    "two_branch_trip_floor_a": "3.264",
+    "converter_margin_at_two_trip_floors_a": "0.736",
+    "u214_host_receptacle_controlled_hle_tsm_rating_a_per_pin": "4.1",
+    "u214_rating_margin_percent": "69.512",
+    "u214_mate_caveat": "stock U214 male-post material/plating/current remains received-sample evidence; the HLE/TSM controlled-pair rating is not silently transferred to an undocumented mate",
+    "native_unit_connector_rating_a": "2.0",
+    "native_unit_margin_a": "0.750"
+  },
+  "u214_signal_loading": {
+    "paths": {
+      "buffered_spi_uart_control": 9,
+      "isolated_i2c": 2
+    },
+    "spi_hz": 10000000,
+    "lvc_delay_ns_max": "4.7",
+    "source_series_ohm": 22,
+    "admission_load_pf": 30,
+    "rc_10_90_ns": "1.452",
+    "half_period_ns": "50.000",
+    "timing_margin_ns": "43.848",
+    "uart_bps_max": 1000000,
+    "i2c": {
+      "pull_ohm": 2200,
+      "rise_ns_max": 300,
+      "calculated_capacitance_pf_max": "160.939",
+      "admission_capacitance_pf": 150,
+      "rise_at_admission_ns": "279.609"
+    }
+  },
+  "native_unit_loading": {
+    "signals": 2,
+    "i2c_hz_max": 400000,
+    "uart_bps_max": 1000000,
+    "txs_open_drain_rate_margin": "5.000",
+    "txs_push_pull_rate_margin": "24.000",
+    "one_wire": "HIL-only profile; not a paper consequence of generic GPIO support"
+  },
+  "service_boundaries": {
+    "c5_service_series_plus_switch_ron_ohm_max": "28.500",
+    "rp_service_series_plus_switch_ron_ohm_max": "33.500",
+    "switch_bandwidth_mhz": 720,
+    "switch_usb_speed_mbps": 480,
+    "two_ports_four_lines_poweroff_leakage_ua_max": "8.000",
+    "two_vbus_bleeders_ua_at_5v": "10.000",
+    "product_power_from_service_vbus": false
+  },
+  "exact_instance_checks": {
+    "exact_m1_ui_plug": true,
+    "exact_m1_rf_receptacle": true,
+    "exact_u214_connector": true,
+    "exact_u214_i2c_iso": true,
+    "exact_u214_host_buffer_a": true,
+    "exact_u214_host_buffer_b": true,
+    "exact_u214_return_buffer": true,
+    "exact_unit_connector": true,
+    "exact_unit_signal_iso": true,
+    "exact_ext_efuse": true,
+    "exact_unit_efuse": true,
+    "exact_c5_service_usb_switch": true,
+    "exact_rp_service_usb_switch": true
+  },
+  "checks": {
+    "exact_m1_ui_plug": true,
+    "exact_m1_rf_receptacle": true,
+    "exact_u214_connector": true,
+    "exact_u214_i2c_iso": true,
+    "exact_u214_host_buffer_a": true,
+    "exact_u214_host_buffer_b": true,
+    "exact_u214_return_buffer": true,
+    "exact_unit_connector": true,
+    "exact_unit_signal_iso": true,
+    "exact_ext_efuse": true,
+    "exact_unit_efuse": true,
+    "exact_c5_service_usb_switch": true,
+    "exact_rp_service_usb_switch": true,
+    "h341_levels_reviewed": true,
+    "h342_timing_reviewed": true,
+    "m1_has_exactly_80_contacts": true,
+    "m1_maps_are_identical": true,
+    "m1_ui_and_rf_each_have_51_unique_nets": true,
+    "m1_class_count_is_complete": true,
+    "m1_has_seven_main_contacts": true,
+    "m1_has_two_aon_contacts": true,
+    "m1_main_per_contact_below_rating": true,
+    "m1_aon_per_contact_below_rating": true,
+    "m1_main_drop_below_30mv": true,
+    "m1_aon_drop_below_7mv": true,
+    "m1_main_connector_loss_below_75mw": true,
+    "m1_power_return_per_contact_below_rating": true,
+    "m1_ipc_each_has_adjacent_power_ground": true,
+    "m1_usb_pair_is_bracketed_by_power_ground": true,
+    "m1_audio_each_is_within_two_contacts_of_audio_ground": true,
+    "m1_8gbps_rating_exceeds_usb_hs_by_16x": true,
+    "branch_accepted_current_below_efuse_floor": true,
+    "branch_efuse_margin_above_20pct": true,
+    "branch_drop_below_75mv_or_equal": true,
+    "branch_path_loss_below_100mw": true,
+    "accidental_two_branch_accepted_load_below_converter": true,
+    "accidental_two_branch_trip_floors_below_converter": true,
+    "u214_hle_controlled_pair_rating_above_branch_limit": true,
+    "unit_connector_rating_above_branch_limit": true,
+    "u214_spi_margin_above_40ns": true,
+    "u214_uart_below_1mbps": true,
+    "u214_i2c_150pf_rise_below_300ns": true,
+    "unit_i2c_has_5x_translator_rate_margin": true,
+    "unit_uart_has_24x_translator_rate_margin": true,
+    "service_switch_supports_usb2_hs": true,
+    "service_switch_poweroff_leakage_bounded": true,
+    "service_vbus_only_draws_10ua_total": true,
+    "service_vbus_is_not_product_power": true,
+    "all_six_no_back_power_invariants_remain": true
+  },
+  "corrections": [
+    "self-review corrected the U214 I2C pF-to-ns conversion before accepting H3.4.3; the corrected 150-pF rise is 279.609 ns and still passes the 300-ns limit"
+  ],
+  "open_findings": [],
+  "residual_physical_only": [
+    "measure M1 far-end rail drop, return offset, crosstalk and USB/SPI eye/edge quality after PCB placement",
+    "verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair",
+    "measure U214 SPI load/edges at 10 MHz and external I2C total capacitance/rise time <=150 pF/300 ns",
+    "qualify each native Unit profile, cable length and pull network through TXS0102; 1-Wire remains specimen-only",
+    "inject dual-branch request, overload, reverse source, wrong accessory, hot plug and brownout while proving independent latch-off",
+    "measure C5/RP service USB edges/eye and powered-off leakage with one and three hosts",
+    "measure product USB Full-Speed through M1 plus all DBG10 UART/SWD recovery paths in the assembled sandwich"
+  ],
+  "review_summary": {
+    "checks": 49,
+    "failed": 0,
+    "unresolved": 0,
+    "status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.4.4",
+    "action": "consolidate digital timing, level and boundary-loading evidence"
+  }
+}

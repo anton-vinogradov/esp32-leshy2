@@ -1,6 +1,6 @@
 # Digital bandwidth, latency and timing
 
-`H3.4.2` is reviewed with `40` machine checks and no open analytical finding. The exact current marker is `H3.4.3`.
+`H3.4.2` is reviewed with `40` machine checks and no open analytical finding. The exact current marker is `H3.4.4`.
 
 ## Closed paper budgets
 

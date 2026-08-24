@@ -250,8 +250,8 @@
       "signals": 4,
       "boundary": "usb2_differential_data_only",
       "level_proof": "USB analog levels are not reduced to CMOS thresholds; exact FSUSB42MUX supports 480 Mbps and 720-MHz bandwidth",
-      "minimum_high_margin_v": "deferred to H3.4.3 signal-integrity bound and H8 eye measurement",
-      "minimum_low_margin_v": "deferred to H3.4.3 signal-integrity bound and H8 eye measurement",
+      "minimum_high_margin_v": "bounded in H3.4.3 and deferred to H8 eye measurement",
+      "minimum_low_margin_v": "bounded in H3.4.3 and deferred to H8 eye measurement",
       "reset_or_off_state": "OE/SEL hard-low select the board-side path; service VBUS is sense-only",
       "no_back_power": "FSUSB42MUX power-off I/O range is 0..4.3 V with <=2-uA leakage; VBUS ends only at 1-MOhm bleeder/test pad"
     }
@@ -347,7 +347,7 @@
     "status": "reviewed"
   },
   "next": {
-    "stage": "H3.4.3",
-    "action": "verify bandwidth, latency and timing for display, storage, audio and radio buses"
+    "stage": "H3.4.4",
+    "action": "consolidate digital level, timing and boundary-loading evidence"
   }
 }
