@@ -195,9 +195,9 @@ accepted baseline and preserves every physical residual.
 **Status:** ▶️ current prerequisite boundary `H4.0.1`; waiting for firmware F3.
 
 One joined review of mechanics, production ECAD, virtual electrical evidence
-and target-visible firmware contracts. F3 requires builds for all five domains,
-size/rollback gates, S3 QEMU and portable/host models for targets without an
-exact emulator.
+and target-visible firmware contracts. F2 already supplies reproducible builds
+and size gates for all five domains. F3 must add boot/rollback evidence, S3
+QEMU and portable/host models for targets without an exact emulator.
 
 The machine plan is
 [`h4-prelayout-plan.json`](../hardware/verification/h4-prelayout-plan.json).

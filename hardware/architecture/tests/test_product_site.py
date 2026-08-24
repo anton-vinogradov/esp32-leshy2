@@ -144,13 +144,13 @@ class ProductSiteTests(unittest.TestCase):
         pages = {
             "docs/roadmap.md": (
                 "Current hardware boundary: H4.0.1", "H1 accepted",
-                "F3 target boot/emulation is not closed",
+                "F3 boot/emulation is not closed",
                 "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
                 "Текущая аппаратная граница: H4.0.1", "H1 принят",
-                "F3 не закрыт", "H2.2.5",
+                "boot/emulation этапа F3 не закрыты", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
             ),

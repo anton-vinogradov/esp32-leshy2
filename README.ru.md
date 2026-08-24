@@ -126,11 +126,10 @@ evidence firmware F3. PCB layout и любые заказы остаются н�
 
 <!-- current-substep: H4.0.1 -->
 
-**Точный маркер: `H4.0.1`** — [H3 принят](docs/h3-acceptance.ru.md).
-Объединённый pre-layout gate ожидает target builds, image-size/rollback gates
-и максимально доступное emulator/portable evidence firmware F3. Уже закрытый
-[итог F1 прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f1-portable-cores-report.ru.md)
-доказывает переносимые ядра, но не заменяет target evidence F3.
+**Точный маркер: `H4.0.1`** — [H3 принят](docs/h3-acceptance.ru.md). Firmware
+[F2 прошла ревью](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f2-target-build-system-report.ru.md): пять targets воспроизводимо собираются
+и проходят image-size gates. Объединённый pre-layout gate всё ещё ожидает boot,
+rollback и максимально доступное emulator/portable evidence этапа F3.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 048 схемных строк.

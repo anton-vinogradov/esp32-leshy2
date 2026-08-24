@@ -57,7 +57,7 @@ baseline. Она **не** разрешает закупку, PCB placement/routi
 называет пройденной ни одну из `85` физических проверок. Полученные детали,
 реальную геометрию, трассировку и прототип закрывают H5, H6 и H8.
 
-H4 остаётся заблокирован до target builds и emulator/portable evidence firmware F3. Точный текущий аппаратный маркер — `H4.0.1`.
+H4 остаётся заблокирован до boot, rollback и emulator/portable evidence firmware F3; воспроизводимые target builds уже прошли F2. Точный текущий аппаратный маркер — `H4.0.1`.
 
 ## Evidence
 

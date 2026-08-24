@@ -6,7 +6,7 @@
 > **▶️ Текущая аппаратная граница: H4.0.1 — пререквизит firmware F3.**
 > H0–H3 прошли ревью и приняты. PCB layout и разрешённого заказа пока нет.
 
-Последняя сверка статуса: **24 августа 2026 года**. Это собственный
+Последняя сверка статуса: **25 августа 2026 года**. Это собственный
 последовательный роадмап hardware-репозитория. У прошивки есть отдельные этапы
 `F0–F11`; здесь они появляются только как пререквизиты аппаратных gates.
 
@@ -27,7 +27,7 @@
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
 | Production ECAD-схема | ✅ H2 принят на hardware `25d9ee2`; firmware F2 синхронизирован на `900bb2b` |
 | Электрические и переходные evidence | ✅ H3 принят; 85 physical-only строк остаются назначены H5/H6/H8 |
-| Пересечение с прошивкой | [Итог firmware F1](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f1-portable-cores-report.ru.md) существует, но target boot/emulation этапа F3 не закрыт |
+| Пересечение с прошивкой | [F2 прошла ревью](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f2-target-build-system-report.ru.md): пять воспроизводимых target builds и size gates проходят; boot/emulation этапа F3 не закрыты |
 | Работа над KiCad-схемой | ✅ H2 проведено ревью; позднее несоответствие повторно откроет затронутые листы |
 | KiCad placement и PCB routing | 🔒 H6: не начаты и не разрешены |
 | Физические образцы и HIL | 🔒 Не заказывались и не проводились |
@@ -43,9 +43,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 <!-- current-substep: H4.0.1 -->
 
-**Точный маркер: `H4.0.1`** — [итоговый отчёт H3 принят](h3-acceptance.ru.md). H4 ожидает
-target builds, image-size/rollback gates и максимально доступное emulator/
-portable evidence firmware F3. Закупка, layout и печать не разрешаются.
+**Точный маркер: `H4.0.1`** — [итоговый отчёт H3 принят](h3-acceptance.ru.md),
+а воспроизводимые builds firmware F2 теперь проходят. H4 ожидает boot, rollback
+и максимально доступное emulator/portable evidence этапа F3. Закупка, layout
+и печать не разрешаются.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -366,6 +367,7 @@ size/rollback gates, доступный S3 QEMU и portable/host-модели д
 
 ## Что происходит следующим
 
-Текущая граница — `H4.0.1`: дождаться target builds и максимально доступного
-emulator/portable evidence firmware F3, затем провести единый pre-layout gate.
-PCB placement/routing и закупка остаются заблокированы.
+Текущая граница — `H4.0.1`: target builds firmware F2 уже проходят; дождаться
+boot/rollback и максимально доступного emulator/portable evidence F3, затем
+провести единый pre-layout gate. PCB placement/routing и закупка остаются
+заблокированы.

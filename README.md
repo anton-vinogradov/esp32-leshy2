@@ -125,11 +125,10 @@ target/emulator evidence. PCB layout and every order remain unauthorized.
 
 <!-- current-substep: H4.0.1 -->
 
-**Exact marker: `H4.0.1`** — [H3 is accepted](docs/h3-acceptance.md). The joined
-pre-layout gate waits for firmware F3 target builds, image-size/rollback gates
-and maximum available emulator/portable evidence. The completed firmware
-[F1 result](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f1-portable-cores-report.md)
-proves the portable cores but does not replace F3 target evidence.
+**Exact marker: `H4.0.1`** — [H3 is accepted](docs/h3-acceptance.md). Firmware
+[F2 is reviewed](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f2-target-build-system-report.md): five targets build reproducibly and
+pass image-size gates. The joined pre-layout gate still waits for F3 boot,
+rollback and maximum available emulator/portable evidence.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,048-row circuit inventory reviewed.

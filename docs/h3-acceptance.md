@@ -56,7 +56,7 @@ artifacts the baseline. It does **not** authorize purchase, PCB placement or
 routing, fabrication, or call any of the `85` physical checks passed. Received
 parts, real geometry, routing and prototype evidence remain in H5, H6 and H8.
 
-H4 remains blocked until firmware F3 target builds and emulator/portable evidence are complete. The exact current hardware marker is `H4.0.1`.
+H4 remains blocked until firmware F3 boot, rollback and emulator/portable evidence are complete; reproducible target builds already passed F2. The exact current hardware marker is `H4.0.1`.
 
 ## Evidence
 

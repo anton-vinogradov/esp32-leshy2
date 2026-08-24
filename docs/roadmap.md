@@ -6,7 +6,7 @@
 > **▶️ Current hardware boundary: H4.0.1 — firmware F3 prerequisite.** H0–H3
 > are reviewed and accepted. There is no PCB layout or authorized order.
 
-Status last reconciled: **24 August 2026**. This is the hardware repository's
+Status last reconciled: **25 August 2026**. This is the hardware repository's
 own, sequential roadmap. Firmware work has its own `F0–F11` stages. Firmware
 results appear here only where they are prerequisites of a hardware gate.
 
@@ -27,7 +27,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
 | Production ECAD schematic | ✅ H2 accepted at hardware `25d9ee2`; firmware F2 synchronized at `900bb2b` |
 | Electrical and transient evidence | ✅ H3 accepted; 85 physical-only rows remain assigned to H5/H6/H8 |
-| Firmware interlock | The firmware [F1 result](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f1-portable-cores-report.md) exists, but F3 target boot/emulation is not closed |
+| Firmware interlock | [F2 is reviewed](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f2-target-build-system-report.md): five reproducible target builds and size gates pass; F3 boot/emulation is not closed |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
 | Physical samples and HIL | 🔒 Not ordered or run |
@@ -42,9 +42,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 <!-- current-substep: H4.0.1 -->
 
-**Exact marker: `H4.0.1`** — the [H3 result report is accepted](h3-acceptance.md). H4 waits for
-firmware F3 target builds, image-size/rollback gates and maximum available
-emulator/portable evidence. No purchase, layout or fabrication is authorized.
+**Exact marker: `H4.0.1`** — the [H3 result report is accepted](h3-acceptance.md)
+and firmware F2 reproducible builds now pass. H4 waits for F3 boot, rollback
+and maximum available emulator/portable evidence. No purchase, layout or
+fabrication is authorized.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -361,6 +362,7 @@ A production order is possible only after H9.
 
 ## Next action
 
-The current boundary is `H4.0.1`: wait for firmware F3 target builds and the
-maximum available emulator/portable evidence, then run the joined pre-layout
-gate. PCB placement/routing and purchasing remain blocked.
+The current boundary is `H4.0.1`: firmware F2 target builds already pass; wait
+for F3 boot/rollback and the maximum available emulator/portable evidence,
+then run the joined pre-layout gate. PCB placement/routing and purchasing
+remain blocked.
