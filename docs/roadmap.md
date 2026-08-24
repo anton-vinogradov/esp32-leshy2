@@ -27,7 +27,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
 | Production ECAD schematic | ✅ H2 accepted at hardware `25d9ee2`; firmware F2 synchronized at `900bb2b` |
-| Electrical and transient evidence | ▶️ H3.6.2: thermal model reviewed; single-fault tree in progress |
+| Electrical and transient evidence | ▶️ H3.6.3: thermal and 30-case single-fault reviews complete; unattended envelope in progress |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
@@ -41,11 +41,11 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1/H2 and current H3 breakdown
 
-<!-- current-substep: H3.6.2 -->
+<!-- current-substep: H3.6.3 -->
 
-**Exact marker: `H3.6.2`** — the [parameterized thermal model](thermal-model.md)
-is reviewed with 21 machine checks; electrical maximum is separated from
-continuous operation and single faults are now traced to independent shutdown.
+**Exact marker: `H3.6.3`** — the [thermal model](thermal-model.md) and
+[30-case single-fault review](single-fault-review.md) are complete. The current substep bounds ambient,
+profile duty, logging, restart and the uninterrupted 24–48-hour operating interval.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -268,8 +268,8 @@ Current H2 execution:
   - ✅ `H3.5.4` — [RF evidence consolidated](rf-verification-result.md): 125 leaf and 22 cross-domain checks.
 - ▶️ `H3.6` — thermal model, single-fault tree and 24–48-hour unattended envelope.
   - ✅ `H3.6.1` — [board, battery and enclosure thermal model reviewed](thermal-model.md); charger TREG/TSHUT corrected.
-  - ▶️ **`H3.6.2` — current:** single faults through independent shutdown and recovery.
-  - ⏳ `H3.6.3` — bounded 24–48-hour unattended operating envelope.
+  - ✅ `H3.6.2` — [30 single faults traced through independent shutdown and recovery](single-fault-review.md).
+  - ▶️ **`H3.6.3` — current:** bounded 24–48-hour unattended operating envelope.
   - ⏳ `H3.6.4` — thermal and fault consolidation.
 - ⏳ `H3.7` — cross-check, physical-only residuals and formal H3 acceptance.
 
@@ -329,7 +329,7 @@ A production order is possible only after H9.
 | **H0. Product requirements and functional architecture** | ✅ Reviewed | Complete capability scope, five compute domains, radio/interface owners, interface classes, one active signal group, full-function 3×nRF24 and safety boundaries | Requirements and architecture checks pass; every required function has an owner and a defined hardware boundary |
 | **H1. Physical product design** | ✅ Reviewed | Accepted exterior, both outer and inner faces, true antenna-edge view, sections, assembly sequence, selected-part envelopes and feasible pin/resource allocation | Dimensions come from selected MPNs; no component, fastener, silkscreen, antenna or accessory collision; controls, battery, U214, ports, microphone and speaker are accessible; allocation still fits; the user accepted the mockup |
 | **H2. Production ECAD schematic** | ✅ Reviewed and accepted | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 consumes the contract without invented pins |
-| **H3. Virtual electrical verification** | ▶️ Current · `H3.6.2` | Calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
+| **H3. Virtual electrical verification** | ▶️ Current · `H3.6.3` | Calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
 | **H4. Joined pre-layout gate** | 🔒 Waiting for H1–H3 and firmware F3 | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
 | **H5. Component evidence samples** | 🔒 Waiting for H4 and separate cost approval | Minimum evidence purchase, not a production basket | Received display, U214, connectors and radios are identified and measured; connector mating and critical stack-up fit are proven; raw records are retained; mismatch reopens its source stage |
 | **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |

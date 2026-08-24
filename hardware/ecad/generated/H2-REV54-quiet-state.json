@@ -4,23 +4,23 @@
   "status": "reviewed_reset_safe_quiet_state_and_isolation",
   "method": "complete KiCad netlist control-membership checks plus exact instantiated isolation evidence for every required quiet contract",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
-    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
-    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01"
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "95c3549487207b2c805663bd6e9be7ff251a116a64f9820d32e60f714e2232fc",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "7079f94dceeef0ed9a569fc2a13f53af125e26c57f6b455bfe2d3b6e5edaca51"
   },
   "hierarchy_exports": {
     "LESHY2-RF": {
-      "component_count": 682,
-      "unique_reference_count": 682,
+      "component_count": 690,
+      "unique_reference_count": 690,
       "duplicate_references": [],
-      "net_count": 541,
+      "net_count": 544,
       "annotation_warnings": 0
     },
     "LESHY2-UI": {
-      "component_count": 390,
-      "unique_reference_count": 390,
+      "component_count": 395,
+      "unique_reference_count": 395,
       "duplicate_references": [],
-      "net_count": 339,
+      "net_count": 342,
       "annotation_warnings": 0
     }
   },
@@ -49,7 +49,7 @@
       "project": "LESHY2-RF",
       "isolation_class": "rail_off_plus_bidirectional_signal_isolation",
       "inactive_state": "pre-off CE low and CSN deasserted; then common rail off, all signal paths isolated/high-Z and PIO/DMA stopped",
-      "control": "RP.GPIO15 NRF_GROUP_PWR_EN with off-safe pull plus exact switched-domain I/O isolation",
+      "control": "RP.GPIO15 NRF_GROUP_PWR_EN through independent RUN_PERMIT and FAULT_ASSERT_N gates, endpoint off-safe pull and exact switched-domain I/O isolation",
       "checked_nets": [
         {
           "net": "NRF_GROUP_PWR_EN",
@@ -59,11 +59,25 @@
           ]
         },
         {
+          "net": "NRF_GROUP_PWR_EN_PRIMARY",
+          "required_members": [
+            "nrf_backup_gate",
+            "safe_gate_a"
+          ]
+        },
+        {
           "net": "NRF_GROUP_PWR_EN_SAFE",
           "required_members": [
+            "nrf_backup_gate",
             "nrf_power_on_pulldown",
-            "nrf_power_switch",
-            "safe_gate_a"
+            "nrf_power_switch"
+          ]
+        },
+        {
+          "net": "FAULT_ASSERT_N",
+          "required_members": [
+            "m1_rf_receptacle",
+            "nrf_backup_gate"
           ]
         }
       ],
@@ -80,8 +94,13 @@
         },
         {
           "instance": "safe_gate_a",
-          "reference": "U50011",
+          "reference": "U50012",
           "mpn": "SN74LVC08APWR"
+        },
+        {
+          "instance": "nrf_backup_gate",
+          "reference": "U31014",
+          "mpn": "SN74LVC1G08DCKR"
         },
         {
           "instance": "nrf0_host_buffer",
@@ -121,7 +140,7 @@
       "project": "LESHY2-RF",
       "isolation_class": "rail_off_plus_bidirectional_signal_isolation",
       "inactive_state": "pre-off IDLE/power-down and CSN deasserted; then rail off, SPI/GDO isolated/high-Z and PIO/DMA stopped",
-      "control": "RP.GPIO23 CC_PWR_EN with off-safe pull plus exact switched-domain I/O isolation",
+      "control": "RP.GPIO23 CC_PWR_EN through independent RUN_PERMIT and FAULT_ASSERT_N gates, endpoint off-safe pull and exact switched-domain I/O isolation",
       "checked_nets": [
         {
           "net": "CC_PWR_EN",
@@ -131,11 +150,25 @@
           ]
         },
         {
+          "net": "CC_PWR_EN_PRIMARY",
+          "required_members": [
+            "cc_backup_gate",
+            "safe_gate_b"
+          ]
+        },
+        {
           "net": "CC_PWR_EN_SAFE",
           "required_members": [
+            "cc_backup_gate",
             "cc_power_on_pulldown",
-            "cc_power_switch",
-            "safe_gate_b"
+            "cc_power_switch"
+          ]
+        },
+        {
+          "net": "FAULT_ASSERT_N",
+          "required_members": [
+            "cc_backup_gate",
+            "m1_rf_receptacle"
           ]
         }
       ],
@@ -152,8 +185,13 @@
         },
         {
           "instance": "safe_gate_b",
-          "reference": "U50012",
+          "reference": "U50013",
           "mpn": "SN74LVC08APWR"
+        },
+        {
+          "instance": "cc_backup_gate",
+          "reference": "U32018",
+          "mpn": "SN74LVC1G08DCKR"
         },
         {
           "instance": "cc_host_buffer",
@@ -199,6 +237,13 @@
             "u214_i2c_iso",
             "u214_return_buffer",
             "u214_supervisor"
+          ]
+        },
+        {
+          "net": "FAULT_ASSERT_N",
+          "required_members": [
+            "ext_branch_gate",
+            "m1_rf_receptacle"
           ]
         }
       ],
@@ -276,6 +321,13 @@
             "unit_signal_iso_oe_pulldown",
             "unit_supervisor"
           ]
+        },
+        {
+          "net": "FAULT_ASSERT_N",
+          "required_members": [
+            "ext_branch_gate",
+            "m1_rf_receptacle"
+          ]
         }
       ],
       "critical_parts": [
@@ -336,6 +388,21 @@
           ]
         },
         {
+          "net": "VOICE_EFUSE_BACKUP_EN_N",
+          "required_members": [
+            "safe_fault_reset_buffer",
+            "voice_efuse",
+            "voice_efuse_en_pullup"
+          ]
+        },
+        {
+          "net": "FAULT_ASSERT_N",
+          "required_members": [
+            "m1_rf_receptacle",
+            "safe_fault_reset_buffer"
+          ]
+        },
+        {
           "net": "VOICE_PTT_REQ_N",
           "required_members": [
             "rp",
@@ -376,12 +443,22 @@
         },
         {
           "instance": "safe_gate_b",
-          "reference": "U50012",
+          "reference": "U50013",
           "mpn": "SN74LVC08APWR"
         },
         {
+          "instance": "voice_efuse_en_pullup",
+          "reference": "R32043",
+          "mpn": "Yageo RC0402FR-0710KL"
+        },
+        {
+          "instance": "safe_fault_reset_buffer",
+          "reference": "U50011",
+          "mpn": "SN74LVC3G07DCUR"
+        },
+        {
           "instance": "safe_ptt_or",
-          "reference": "U50013",
+          "reference": "U50014",
           "mpn": "74LVC1G32GV,125"
         },
         {
@@ -572,8 +649,8 @@
       "status": "reviewed",
       "project": "LESHY2-UI",
       "isolation_class": "receiver_rail_off_plus_fault_dominant_emitter_gate",
-      "inactive_state": "TPS22919 receive rail discharged through QOD; Ioff return buffer high-Z with C5 inputs idle-high; RMT stopped and pins parked; VSMY14940 gate pulled low behind FAULT_KILL",
-      "control": "C5.GPIO4 IR_FRONTEND_PWR_EN plus UI-local SN74LVC1G08DCKR RUN_PERMIT gate, independent 10-kOhm carrier-input pull-down, 100-Ohm gate resistor and 10-kOhm DMN2056U-7 gate pull-down",
+      "inactive_state": "TPS22919 shared optical rail discharged through QOD; Ioff return buffer high-Z with C5 inputs idle-high; RMT stopped and pins parked; VSMY14940 loses supply and its gate is pulled low behind FAULT_KILL",
+      "control": "C5.GPIO4 IR_FRONTEND_PWR_EN plus direct FAULT_ASSERT_N C5 reset, UI-local SN74LVC1G08DCKR RUN_PERMIT carrier gate, independent 10-kOhm carrier-input pull-down, 100-Ohm gate resistor and 10-kOhm DMN2056U-7 gate pull-down",
       "checked_nets": [
         {
           "net": "IR_FRONTEND_PWR_EN",
@@ -581,6 +658,13 @@
             "c5",
             "ir_power_on_pulldown",
             "ir_power_switch"
+          ]
+        },
+        {
+          "net": "FAULT_ASSERT_N",
+          "required_members": [
+            "m1_ui_plug",
+            "safe_c5_fault_reset_buffer"
           ]
         }
       ],
@@ -599,6 +683,11 @@
           "instance": "ir_return_buffer",
           "reference": "U20006",
           "mpn": "Nexperia 74LVC2G126DC,125"
+        },
+        {
+          "instance": "safe_c5_fault_reset_buffer",
+          "reference": "U50003",
+          "mpn": "SN74LVC1G07DCKR"
         },
         {
           "instance": "ir_safe_gate",
@@ -633,7 +722,7 @@
         },
         {
           "instance": "s3_evidence_output_pullup",
-          "reference": "R50008",
+          "reference": "R50009",
           "mpn": "Yageo RC0402FR-0710KL"
         }
       ]
@@ -654,7 +743,7 @@
         },
         {
           "instance": "c5_evidence_output_pullup",
-          "reference": "R50012",
+          "reference": "R50013",
           "mpn": "Yageo RC0402FR-0710KL"
         }
       ]

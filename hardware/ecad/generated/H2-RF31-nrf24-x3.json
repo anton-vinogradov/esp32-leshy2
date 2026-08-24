@@ -5,17 +5,17 @@
   "project": "LESHY2-RF",
   "sheet": "RF_31_NRF24_X3",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
     "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
-    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "bf695b5bc50c665d73918ad89ef92910441294c5ff92ecf122746f7f37e3e943"
+    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "000f3c8878d4c687e9fb81edd54cc171ff51e367cf81625a686f12e017b360c0"
   },
   "summary": {
-    "ledger_instances": 105,
-    "schematic_symbols": 108,
-    "board_fitted_symbols": 102,
-    "hierarchical_interfaces": 33,
-    "physical_package_contacts": 311,
+    "ledger_instances": 107,
+    "schematic_symbols": 110,
+    "board_fitted_symbols": 104,
+    "hierarchical_interfaces": 35,
+    "physical_package_contacts": 318,
     "nrf_carrier_pads": 24,
     "factory_rf_assembly_boundaries": 3,
     "independent_spi_paths": 3,
@@ -1076,6 +1076,26 @@
       "ledger_component": true
     },
     {
+      "instance": "nrf_backup_gate",
+      "symbol_uuid": "e13a982c-5ea9-5f26-998a-6308ecb83c75",
+      "reference": "U31014",
+      "mpn": "SN74LVC1G08DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
+      "pin_count": 5,
+      "board_fitted": true,
+      "ledger_component": true
+    },
+    {
+      "instance": "nrf_backup_gate_bypass",
+      "symbol_uuid": "fa9c017e-96e9-52f0-a7af-c07922dd3d45",
+      "reference": "C31021",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true,
+      "ledger_component": true
+    },
+    {
       "instance": "nrf0_factory_ipex",
       "symbol_uuid": "893da0b7-a9f0-5bc4-a6f5-e6f23b121520",
       "reference": "X31001",
@@ -1201,7 +1221,7 @@
   ],
   "review_boundary": {
     "complete": [
-      "all 105 RF31 ledger instances, 311 physical contacts and 33 hierarchy interfaces are explicit",
+      "all 107 RF31 ledger instances, 318 physical contacts and 35 hierarchy interfaces are explicit",
       "the three independent command, return, power-decoupling, RF and evidence paths are electrically complete",
       "primary Ebyte, Nexperia, TTM, GCT, Hirose and TI references determine every selected package",
       "native KiCad parses RF31 in the live RF/power hierarchy with every remaining finding machine-accounted"

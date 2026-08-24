@@ -112,6 +112,7 @@ def footprint_for(instance: str, device_key: str) -> str:
         "voice_efuse": "Leshy2:TI-RPW0010A-VQFN-HR-10",
         "voice_pg_qualifier": "Package_TO_SOT_SMD:SOT-23",
         "cc_power_switch": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+        "cc_backup_gate": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
     }
     if instance in exact:
         return exact[instance]
@@ -231,8 +232,8 @@ def build() -> tuple[dict[Path, str], dict]:
         row for row in ledger["rows"]
         if row["project"] == PROJECT_ID and row["sheet"] == SHEET_ID
     ]
-    if len(rows) != 116:
-        raise ValueError(f"{SHEET_ID} must own exactly 116 rows, got {len(rows)}")
+    if len(rows) != 119:
+        raise ValueError(f"{SHEET_ID} must own exactly 119 rows, got {len(rows)}")
     interface_order = list(next(
         row["interfaces"] for row in root["sheets"] if row["id"] == SHEET_ID
     ))
@@ -419,7 +420,7 @@ def build() -> tuple[dict[Path, str], dict]:
         ],
         "review_boundary": {
             "complete": [
-                "all 116 RF32 ledger instances, 363 physical contacts, 32 hierarchy interfaces and eleven intentional NC contacts are explicit",
+                "all 119 RF32 ledger instances, 372 physical contacts, 35 hierarchy interfaces and eleven intentional NC contacts are explicit",
                 "CC1101 and SA518 have independent command, power, RF, ESD and actual-transmit sample paths",
                 "primary TI, NiceRF, TTM, Infineon, Nexperia and GCT sources determine the selected bodies and physical contacts",
                 "native KiCad parses RF32 in the live RF/power hierarchy with every remaining finding machine-accounted",
@@ -439,11 +440,11 @@ def build() -> tuple[dict[Path, str], dict]:
 
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     expected = {
-        "ledger_instances": 116,
-        "schematic_symbols": 116,
-        "board_fitted_symbols": 116,
-        "hierarchical_interfaces": 32,
-        "physical_package_contacts": 363,
+        "ledger_instances": 119,
+        "schematic_symbols": 119,
+        "board_fitted_symbols": 119,
+        "hierarchical_interfaces": 35,
+        "physical_package_contacts": 372,
         "cc1101_package_contacts": 21,
         "sa518_module_contacts": 20,
         "independent_rf_paths": 2,
@@ -455,9 +456,9 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     if manifest["summary"] != expected:
         raise ValueError(f"H2.3.7 accounting drifted: {manifest['summary']}")
     schematic = generated[OUTPUT_SCH]
-    if schematic.count("\n\t(symbol\n") != 116:
+    if schematic.count("\n\t(symbol\n") != 119:
         raise ValueError("RF32 symbol accounting mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 32:
+    if schematic.count("\n\t(hierarchical_label \"") != 35:
         raise ValueError("RF32 hierarchy accounting mismatch")
     expected_nc = {
         "cc_balun.DNC_5", "cc_balun.DNC_6", "cc_host_buffer.4Y",

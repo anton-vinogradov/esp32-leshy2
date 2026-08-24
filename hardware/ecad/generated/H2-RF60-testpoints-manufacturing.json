@@ -5,9 +5,9 @@
   "project": "LESHY2-RF",
   "sheet": "RF_60_TESTPOINTS_MANUFACTURING",
   "source_hashes": {
-    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/ecad/H2-sheet-contract.json": "56fda7262e6b9adb97956b0c94ec49490e86672a5e6cdc24f80f50919231f81b",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "bf695b5bc50c665d73918ad89ef92910441294c5ff92ecf122746f7f37e3e943"
+    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
+    "hardware/ecad/H2-sheet-contract.json": "a37128516052981f243fdca14134bbb5e68def8af75aea709c504eeb52f18ec3",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "000f3c8878d4c687e9fb81edd54cc171ff51e367cf81625a686f12e017b360c0"
   },
   "summary": {
     "ledger_instances": 0,
@@ -628,8 +628,8 @@
       "manufacturing_identity": "etched PCB copper feature — no purchased part",
       "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
       "net": "NRF_GROUP_PWR_EN_SAFE",
-      "owner_sheet": "RF_50_TX_SAFETY_EVIDENCE",
-      "purpose": "nRF24 group hardware-gated rail-enable observation",
+      "owner_sheet": "RF_31_NRF24_X3",
+      "purpose": "post-primary-and-backup nRF24 group rail-enable observation",
       "board_fitted": true,
       "in_bom": false
     },
@@ -641,8 +641,8 @@
       "manufacturing_identity": "etched PCB copper feature — no purchased part",
       "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
       "net": "CC_PWR_EN_SAFE",
-      "owner_sheet": "RF_50_TX_SAFETY_EVIDENCE",
-      "purpose": "CC1101 hardware-gated rail-enable observation",
+      "owner_sheet": "RF_32_SUBGHZ_VOICE",
+      "purpose": "post-primary-and-backup CC1101 rail-enable observation",
       "board_fitted": true,
       "in_bom": false
     },

@@ -4,38 +4,38 @@
   "status": "reviewed_all_physical_contacts",
   "method": "normalized ledger identity and exact MPN/physical-pin-count comparison against every populated leaf/root symbol manifest",
   "source_hashes": {
-    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/ecad/generated/H2-ADP00-display-adapter.json": "0aeecfee9d33f0c10c2d1e3ae77865716b9124f3197ade52e695060a16a7b42b",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "8e84a7728ee499a3f7f805c7ce3e284870dd99df9d1fadeb30211ace52ede611",
-    "hardware/ecad/generated/H2-CAP10-radio-control.json": "7f4f793a4d53bfb13ff4332241ed5290120632258934b214c6e64300ce50e972",
-    "hardware/ecad/generated/H2-CAP20-power-bus.json": "8b22269967d12317fdcad65bca2d3aae227e2f9e352636f9b2fd0b54f4839556",
-    "hardware/ecad/generated/H2-CAP30-tx-evidence.json": "ead949516921cca4b4824c2f973a7b835863b453f168ee2242f87972943a13e1",
-    "hardware/ecad/generated/H2-RF01-usb-pd-charge.json": "5c27a5c5b55d5601a033e8b8be335dbe52587de83924adebde5b8b9ff1713fe4",
-    "hardware/ecad/generated/H2-RF02-pack-safety-aon.json": "1f2e08d7f7561d8b70e5ceb69f3dc09639717c46a9b8cfed313402622694a1e8",
-    "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json": "5936581e059edb7c12865a00a7f4641800aa9fb54e288e6b40bb0eaec92288cf",
-    "hardware/ecad/generated/H2-RF30-rp2354-core-service.json": "aa0a955bc7782874e66a85545a052bc51c786ef4f51f9dccda5aefd7ae1a09ec",
-    "hardware/ecad/generated/H2-RF31-nrf24-x3.json": "0f8cf05d16a06777cf01d6b57a1a8b1e90a9c111f02ba6222f72eb72a82f9ab8",
-    "hardware/ecad/generated/H2-RF32-subghz-voice.json": "e4759b74cebf6cf20b41e3c28d551ad28d06c6b78c1d410666236edb4a1f95a5",
-    "hardware/ecad/generated/H2-RF34-u214-m5-ext.json": "6d7213473aad9c477a1548ae449c46e976e158dfa94b2708a5c8091c530550a0",
-    "hardware/ecad/generated/H2-RF35-rear-controls.json": "0e12ff502c142a760929bd78f4345b21f3769c66076d46758e1c450c3f8128a8",
-    "hardware/ecad/generated/H2-RF36-audio-io-amp.json": "79df89b135da3d9fd0fa9cd05a6f748ac6804e5e566c15c663af66809294dc85",
-    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "0592a733a82cd9423d8d4776c601dfaeee8fe6fb94e24d325869c79c5589ece4",
-    "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json": "8c93318b06fa0eb472ee9c8ba3f0c26a377397feb5c44c2cf87af533579a4b74",
-    "hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json": "12dac1b795da574a27f5da2a701ac84a838498a3b0e73ab757200f902ea30ebb",
-    "hardware/ecad/generated/H2-UI10-S3-core.json": "dbd91933737a28977a5f32f0e4dc50853d54cb8708d16ef37a3fc75815a3b0d2",
-    "hardware/ecad/generated/H2-UI11-display-touch-storage.json": "93a415b969f64601821233fbc8d021df17cc909696103e95b8b4de6dffe4778d",
-    "hardware/ecad/generated/H2-UI12-controls-indicators.json": "47e9349b4ead044cd3273415f4fc9cda3725bf957256646a8d5ed23f773cd3f8",
-    "hardware/ecad/generated/H2-UI13-audio-codec-headset.json": "cb4e56a20e646122a7d56cc82c4e4ea2b1211e6f812d4960fd6907ceacea056a",
-    "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json": "5de2f62392296f159914d9beca3d7abd38bad5cf4734bc21dc47ca0ca3090715",
-    "hardware/ecad/generated/H2-UI21-fm-am-receiver.json": "2302c4a55f4ad8dbcc5e7b0586ba234e4579623e06cd43705afeae9b86cb7ce7",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "8c87a5fd2a284b00a1d2ac158a00c380488a17c0125b703ee18eb10581eb01bf",
-    "hardware/ecad/generated/H2-UI50-tx-safety-evidence.json": "f12ed8da2d7a599882e7080fdfd2c6c641b3dda54aeaee6fedcdab6806fc38ef",
-    "hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json": "e6ec85a792ae8d7f905ba8e96bd30ea18bfc8a913ea751e5449412e709cbdeb9"
+    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
+    "hardware/ecad/generated/H2-ADP00-display-adapter.json": "1d051686acdbaff731e2b7b429c42ac2b870ba375c059552f02d48b0aa7452e2",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "573a9f75706cf453130cd0f78a0c050caa40e2d3e1df293bb63be3dcdd39051e",
+    "hardware/ecad/generated/H2-CAP10-radio-control.json": "ba8a53b435f79422338e0f76f6bc6ba151194baacd00037fa83a7a9fa23b9dc7",
+    "hardware/ecad/generated/H2-CAP20-power-bus.json": "1d08a8c6d02db9513283e974a13e77eb16077a535cdcdbd10f611810e6a7142b",
+    "hardware/ecad/generated/H2-CAP30-tx-evidence.json": "cff08a2015397263c49931b2c22fe6347c220b54755568265fcd710930dbb922",
+    "hardware/ecad/generated/H2-RF01-usb-pd-charge.json": "99248a7aa7bd59bf7ed05cb43f703ca5a745168e62b60b019549e3afcb4337c9",
+    "hardware/ecad/generated/H2-RF02-pack-safety-aon.json": "62f62cf3956939727c88a44be2d43705af9dff7ddc77d7bf14cb759565b7e210",
+    "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json": "20b1691ec408778b86f75af0f00caded1dfaf08974f5c8425e01df62850f48ce",
+    "hardware/ecad/generated/H2-RF30-rp2354-core-service.json": "f5e92fa1ee3c47b7fe057032f887f7d374e60b2744caea3391cfa43060c3fd19",
+    "hardware/ecad/generated/H2-RF31-nrf24-x3.json": "b87a3ac64ccf4722c20c7a1aba0d82d68fc734c7869e727e768f9c956fe7bee7",
+    "hardware/ecad/generated/H2-RF32-subghz-voice.json": "e28f8eaf4de2b83bc715bfb4e61d04b28c9fab1523bb7c55e9dc4cb4b8b2f30c",
+    "hardware/ecad/generated/H2-RF34-u214-m5-ext.json": "267e685a2c7bfaedf1526c5a344ab09fa96ad57983ed4e5a21beb37381f21019",
+    "hardware/ecad/generated/H2-RF35-rear-controls.json": "e33da52c71ad43ecfa67cd9386370ef7cc9705bad193c55a28f247b53a202674",
+    "hardware/ecad/generated/H2-RF36-audio-io-amp.json": "c51bbbf2221cc67b0bc430b06591276a4b7d63ec7b7da1e80d84957391d501b9",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "7600c7695086ecada512b1261d8b9e62e40fe890200c6789d4ac4ad1b00e95db",
+    "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json": "47ae64569a3143edb10beba85ec77903909979c9fde9e5935f897abb84ebb336",
+    "hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json": "477a0fe74fb18481897813329be00ea67d6bf6dd5a7f352ad637ff372cab65fe",
+    "hardware/ecad/generated/H2-UI10-S3-core.json": "2d9b7f2906bd46b3edda7d356d72170953a218526e54faf05fe64a0ff08dd428",
+    "hardware/ecad/generated/H2-UI11-display-touch-storage.json": "e76b8fb7b331dcc4c6473691456eb198b465613072943cd8b039a1cbb7660980",
+    "hardware/ecad/generated/H2-UI12-controls-indicators.json": "43e31c0705f4ed2dcc920c6682da0db47a1bf0b41de320e337b97e0ae41fc8c0",
+    "hardware/ecad/generated/H2-UI13-audio-codec-headset.json": "77efda6371e22c9e0c46675cdcba24cb9559da66d57b235ad550d6ac3b227670",
+    "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json": "668f936fb29638e832be98e7831010de9c35c6bf0985eeac8813b56397eb1399",
+    "hardware/ecad/generated/H2-UI21-fm-am-receiver.json": "6b4bed6b78e538d2b3e54cd34b755e5cbb0a1d0c11c7c73ed96fd2f8ed3f59b7",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "2192e3481f33c13a5d73b9880d03e06f3a222399e0b834ad6abbd3fbddec0646",
+    "hardware/ecad/generated/H2-UI50-tx-safety-evidence.json": "3c64ed5e234aed6d02f157306b8437ca809440b394d1a65466233f2ff12f1236",
+    "hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json": "d8ae831291e7b56104bff8979e2100f572c4c31b351eb4f2eca52e4f583115df"
   },
   "summary": {
-    "ledger_rows": 1035,
-    "normalized_electrical_identities": 1034,
-    "reconciled_electrical_identities": 1033,
+    "ledger_rows": 1048,
+    "normalized_electrical_identities": 1047,
+    "reconciled_electrical_identities": 1046,
     "mechanical_only_h1_items": 1,
     "bom_free_or_interface_only_symbols": 68,
     "physical_contact_mismatches": 0,
@@ -702,6 +702,20 @@
     },
     {
       "instance": "LESHY2-RF:cc_avdd9_bypass",
+      "ledger_rows": 1,
+      "physical_contacts": 2,
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "disposition": "one ledger row to one populated symbol"
+    },
+    {
+      "instance": "LESHY2-RF:cc_backup_gate",
+      "ledger_rows": 1,
+      "physical_contacts": 5,
+      "mpn": "SN74LVC1G08DCKR",
+      "disposition": "one ledger row to one populated symbol"
+    },
+    {
+      "instance": "LESHY2-RF:cc_backup_gate_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
       "mpn": "TDK C1005X7R1H104K050BB",
@@ -1422,13 +1436,6 @@
       "disposition": "one ledger row to one populated symbol"
     },
     {
-      "instance": "LESHY2-RF:evidence_mask_p11_pulldown",
-      "ledger_rows": 1,
-      "physical_contacts": 2,
-      "mpn": "Yageo RC0402FR-0710KL",
-      "disposition": "one ledger row to one populated symbol"
-    },
-    {
       "instance": "LESHY2-RF:evidence_mask_p12_pulldown",
       "ledger_rows": 1,
       "physical_contacts": 2,
@@ -1744,10 +1751,24 @@
       "disposition": "one ledger row to one populated symbol"
     },
     {
+      "instance": "LESHY2-RF:fault_assert_backup_pulldown",
+      "ledger_rows": 1,
+      "physical_contacts": 2,
+      "mpn": "Yageo RC0402FR-071ML",
+      "disposition": "one ledger row to one populated symbol"
+    },
+    {
       "instance": "LESHY2-RF:fault_assert_pullup",
       "ledger_rows": 1,
       "physical_contacts": 2,
       "mpn": "Yageo RC0402FR-0710KL",
+      "disposition": "one ledger row to one populated symbol"
+    },
+    {
+      "instance": "LESHY2-RF:fault_assert_sense_series",
+      "ledger_rows": 1,
+      "physical_contacts": 2,
+      "mpn": "Yageo RC0402FR-07100KL",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2672,6 +2693,20 @@
       "ledger_rows": 1,
       "physical_contacts": 2,
       "mpn": "Panasonic ERJ-2RKF22R0X",
+      "disposition": "one ledger row to one populated symbol"
+    },
+    {
+      "instance": "LESHY2-RF:nrf_backup_gate",
+      "ledger_rows": 1,
+      "physical_contacts": 5,
+      "mpn": "SN74LVC1G08DCKR",
+      "disposition": "one ledger row to one populated symbol"
+    },
+    {
+      "instance": "LESHY2-RF:nrf_backup_gate_bypass",
+      "ledger_rows": 1,
+      "physical_contacts": 2,
+      "mpn": "TDK C1005X7R1H104K050BB",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3774,6 +3809,20 @@
       "disposition": "one ledger row to one populated symbol"
     },
     {
+      "instance": "LESHY2-RF:safe_fault_reset_buffer",
+      "ledger_rows": 1,
+      "physical_contacts": 8,
+      "mpn": "SN74LVC3G07DCUR",
+      "disposition": "one ledger row to one populated symbol"
+    },
+    {
+      "instance": "LESHY2-RF:safe_fault_reset_buffer_bypass",
+      "ledger_rows": 1,
+      "physical_contacts": 2,
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "disposition": "one ledger row to one populated symbol"
+    },
+    {
       "instance": "LESHY2-RF:safe_gate_a",
       "ledger_rows": 1,
       "physical_contacts": 14,
@@ -4576,6 +4625,13 @@
       "ledger_rows": 1,
       "physical_contacts": 2,
       "mpn": "Murata GRM155R71H472KA01D",
+      "disposition": "one ledger row to one populated symbol"
+    },
+    {
+      "instance": "LESHY2-RF:voice_efuse_en_pullup",
+      "ledger_rows": 1,
+      "physical_contacts": 2,
+      "mpn": "Yageo RC0402FR-0710KL",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -6893,6 +6949,41 @@
       "ledger_rows": 1,
       "physical_contacts": 2,
       "mpn": "Yageo RC0402FR-072K2L",
+      "disposition": "one ledger row to one populated symbol"
+    },
+    {
+      "instance": "LESHY2-UI:safe_c5_fault_reset_buffer",
+      "ledger_rows": 1,
+      "physical_contacts": 5,
+      "mpn": "SN74LVC1G07DCKR",
+      "disposition": "one ledger row to one populated symbol"
+    },
+    {
+      "instance": "LESHY2-UI:safe_c5_fault_reset_buffer_bypass",
+      "ledger_rows": 1,
+      "physical_contacts": 2,
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "disposition": "one ledger row to one populated symbol"
+    },
+    {
+      "instance": "LESHY2-UI:safe_c5_reset_buffer",
+      "ledger_rows": 1,
+      "physical_contacts": 5,
+      "mpn": "Texas Instruments SN74LVC1G06DCKR",
+      "disposition": "one ledger row to one populated symbol"
+    },
+    {
+      "instance": "LESHY2-UI:safe_c5_reset_buffer_bypass",
+      "ledger_rows": 1,
+      "physical_contacts": 2,
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "disposition": "one ledger row to one populated symbol"
+    },
+    {
+      "instance": "LESHY2-UI:safe_c5_reset_gate_pullup",
+      "ledger_rows": 1,
+      "physical_contacts": 2,
+      "mpn": "Yageo RC0402FR-0710KL",
       "disposition": "one ledger row to one populated symbol"
     },
     {

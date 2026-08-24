@@ -152,7 +152,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         mapped = {row["net"] for row in pin_map}
         self.assertTrue(
             {
-                "S3_USB_DM", "S3_USB_DP", "RUN_PERMIT", "RF_RESET_KILL_GATE",
+                "S3_USB_DM", "S3_USB_DP", "RUN_PERMIT", "FAULT_ASSERT_N",
                 "UI_ENCODER_PUSH_N",
                 "ENCODER_A", "ENCODER_B", "S3_RESET_KILL_GATE",
                 "UI_ZONE_TEMP_ADC", "FAULT_LATCH_SENSE_AON",
@@ -281,7 +281,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(1006, sum(line["quantity"] for line in lines))
+        self.assertEqual(1019, sum(line["quantity"] for line in lines))
         self.assertEqual(209, len(lines))
         self.assertEqual(
             1,
@@ -296,7 +296,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            989,
+            1002,
             sum(
                 line["quantity"]
                 for line in lines
@@ -372,13 +372,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**1007** architecture instances", rendered)
-        self.assertIn("**1006** supplied/costed placements", rendered)
+        self.assertIn("**1020** architecture instances", rendered)
+        self.assertIn("**1019** supplied/costed placements", rendered)
         self.assertIn("**208/209** used lines", rendered)
         self.assertIn("**209/209** lines", rendered)
         self.assertIn("**198/209** lines", rendered)
-        self.assertIn("**989/1006** supplied placements", rendered)
-        self.assertIn("USD 222.4326", rendered)
+        self.assertIn("**1002/1019** supplied placements", rendered)
+        self.assertIn("USD 223.2232", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -424,7 +424,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(45, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1231, policy["expected_occurrence_count"])
+        self.assertEqual(1253, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(
@@ -549,7 +549,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Sunlord MWSA0503S-2R2MT",
             "Murata GRM31CR71E106MA12L",
             'data-zone="cc-reference-rf-network"',
-            'data-opposing-pairs="35"',
+            'data-opposing-pairs="37"',
             'data-min-z-clearance-mm="3.31"',
             'data-opposing-cable-pairs="2"',
             'data-rf-pcb-topology-guides="9"',
@@ -2109,11 +2109,16 @@ class ArchitectureValidationTests(unittest.TestCase):
             "safe_rearm_buffer": "ti_sn74lvc1g17_dckr",
             "safe_latch": "ti_sn74lvc1g74_dcur",
             "safe_reset_buffer": "ti_sn74lvc1g06_dckr",
+            "safe_c5_reset_buffer": "ti_sn74lvc1g06_dckr",
+            "safe_c5_fault_reset_buffer": "ti_sn74lvc1g07_dckr",
+            "safe_fault_reset_buffer": "ti_sn74lvc3g07_dcur",
             "safe_reset_sink_a": "diodes_2n7002dw_7_f",
             "safe_reset_sink_b": "diodes_2n7002dw_7_f",
             "safe_gate_a": "ti_sn74lvc08a_pwr",
             "safe_gate_b": "ti_sn74lvc08a_pwr",
             "ir_safe_gate": "ti_sn74lvc1g08_dckr",
+            "nrf_backup_gate": "ti_sn74lvc1g08_dckr",
+            "cc_backup_gate": "ti_sn74lvc1g08_dckr",
             "safe_ptt_or": "nexperia_74lvc1g32gv_125",
             "det_s3": "adi_ltc5532_es6_trmpbf",
             "det_c5": "adi_ltc5532_es6_trmpbf",
@@ -2135,6 +2140,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "ext_evidence_buffer": "ti_sn74lvc1g07_dckr",
             "evidence_mask": "ti_tca9535_pwr",
             "evidence_main_isolator": "ti_sn74lvc3g07_dcur",
+            "fault_assert_backup_pulldown": "yageo_rc0402fr_071ml",
+            "fault_assert_sense_series": "yageo_rc0402fr_07100kl",
             "power_zone_ntc": "tdk_b57332v5103f360",
             "rf_zone_ntc": "tdk_b57332v5103f360",
             "ui_zone_ntc": "tdk_b57332v5103f360",
@@ -2159,7 +2166,32 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("evidence_or_4.A_COMMON", "safety_controller.PA22", "ANY_TX_AON_N"),
         ):
             self.assertIn(route, routes)
-        for port in range(11, 18):
+        self.assertNotIn("evidence_mask_p11_pulldown", candidate["instances"])
+        self.assertIn(
+            ("fault_assert_pullup.END_2", "fault_assert_sense_series.END_1", "FAULT_ASSERT_N"),
+            routes,
+        )
+        self.assertIn(
+            ("fault_assert_sense_series.END_2", "evidence_mask.P11", "FAULT_ASSERT_SENSE"),
+            routes,
+        )
+        self.assertIn(
+            ("power_command_pullup.END_2", "safe_fault_reset_buffer.3A", "POWER_COMMAND_OFF_N"),
+            routes,
+        )
+        self.assertIn(
+            ("safe_fault_reset_buffer.3Y", "fault_assert_pullup.END_2", "FAULT_ASSERT_N"),
+            routes,
+        )
+        self.assertIn(
+            ("safe_c5_fault_reset_buffer.Y", "c5.EN", "C5_RESET_N"),
+            routes,
+        )
+        self.assertIn(
+            ("safe_fault_reset_buffer.1Y", "rp.RUN", "RP_RESET_N"),
+            routes,
+        )
+        for port in range(12, 18):
             self.assertEqual(
                 "yageo_rc0402fr_0710kl",
                 candidate["instances"][f"evidence_mask_p{port}_pulldown"],

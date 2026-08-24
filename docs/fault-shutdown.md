@@ -15,6 +15,6 @@ Emergency shutdown does not depend on S3, the menu or the main application and n
 
 ## H2.5.5 result
 
-✅ **Reviewed:** 56 safety nets match complete KiCad netlists; all 33 required diagnostic points now exist as copper.
+✅ **Reviewed:** 62 safety nets match complete KiCad netlists; all 33 required diagnostic points now exist as copper.
 
 [Machine evidence](../hardware/ecad/generated/H2-REV55-fault-kill.json).

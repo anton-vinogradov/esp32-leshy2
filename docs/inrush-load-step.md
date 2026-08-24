@@ -2,11 +2,11 @@
 
 [Русский](inrush-load-step.ru.md) · [Home](../README.md) · [H3.2 result](power-transition-result.md)
 
-Capacitance is no longer copied by hand: the generator collects every actual capacitor instance attached to each rail from the single component/net map. It currently accounts for `93` fitted capacitors.
+Capacitance is no longer copied by hand: the generator collects every actual capacitor instance attached to each rail from the single component/net map. It currently accounts for `98` fitted capacitors.
 
 | Rail | Nominal C, µF | Worst active load, mA | Result |
 |---|---:|---:|---|
-| `AON_SAFE_3V3` | 23.5 | 89.5 | pass_current_limited_start |
+| `AON_SAFE_3V3` | 24.0 | 89.5 | pass_current_limited_start |
 | `3V3_MAIN` | 59.7 | 2493.0 | pass |
 | `VVOICE_4V` | 10.0 | 900.0 | pass |
 | `5V_U214_PROTECTED` | 2.2 | 1250.0 | pass |

@@ -4,25 +4,25 @@
   "status": "reviewed_watchdog_thermal_fault_and_hardware_shutdown",
   "method": "exact complete-KiCad-netlist membership review from physical RUN/KILL and watchdog through latch, reset/gate fan-out, thermal/evidence sensing and diagnostic pads",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
-    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/ecad/H2-sheet-contract.json": "56fda7262e6b9adb97956b0c94ec49490e86672a5e6cdc24f80f50919231f81b",
-    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
-    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01"
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
+    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
+    "hardware/ecad/H2-sheet-contract.json": "a37128516052981f243fdca14134bbb5e68def8af75aea709c504eeb52f18ec3",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "95c3549487207b2c805663bd6e9be7ff251a116a64f9820d32e60f714e2232fc",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "7079f94dceeef0ed9a569fc2a13f53af125e26c57f6b455bfe2d3b6e5edaca51"
   },
   "hierarchy_exports": {
     "LESHY2-RF": {
-      "component_count": 682,
-      "unique_reference_count": 682,
+      "component_count": 690,
+      "unique_reference_count": 690,
       "duplicate_references": [],
-      "net_count": 541,
+      "net_count": 544,
       "annotation_warnings": 0
     },
     "LESHY2-UI": {
-      "component_count": 390,
-      "unique_reference_count": 390,
+      "component_count": 395,
+      "unique_reference_count": 395,
       "duplicate_references": [],
-      "net_count": 339,
+      "net_count": 342,
       "annotation_warnings": 0
     }
   },
@@ -33,9 +33,16 @@
       "finding": "the safety contract promised watchdog, latch and safe-gate observation points but 15 distinct electrical nodes had no physical copper pad",
       "correction": "RF60 now contains 52 BOM-free pads; WDO_N uses the shared FAULT_ASSERT_N pad, FAULT_KILL uses its implemented FAULT_LATCH_SENSE_AON name and RP reset uses TP_RP_RESET_N",
       "evidence": "every normalized safety_contract.test_points identifier is instantiated on UI60 or RF60 and every selected safety net matches the complete KiCad hierarchy"
+    },
+    {
+      "id": "H3.6.2-F01",
+      "severity": "single_fault_containment",
+      "finding": "the former fan-out reused RUN_PERMIT-derived qualification for every hazardous endpoint, so one stuck-permissive latch or primary gate was not independently contained",
+      "correction": "M1 contact 34 now carries direct FAULT_ASSERT_N; separate C5/RP reset sinks, nRF/CC backup gates, the voice eFuse clamp and independent expansion-branch inputs bypass the primary latch path",
+      "evidence": "the primary enable nets, final safe enables and direct fault plane all have distinct exact component membership in the complete UI and RF KiCad hierarchies"
     }
   ],
-  "reviewed_net_count": 56,
+  "reviewed_net_count": 62,
   "reviewed_nets": [
     {
       "project": "LESHY2-RF",
@@ -46,6 +53,8 @@
         "aon_efuse",
         "aon_efuse_output_cap",
         "aon_pg_pullup",
+        "cc_backup_gate",
+        "cc_backup_gate_bypass",
         "cc_detector_bypass",
         "cc_evidence_output_pullup",
         "cc_evidence_threshold_top",
@@ -83,6 +92,8 @@
         "nrf2_detector_bypass",
         "nrf2_evidence_output_pullup",
         "nrf2_evidence_threshold_top",
+        "nrf_backup_gate",
+        "nrf_backup_gate_bypass",
         "pd_controller",
         "pd_vin_cap",
         "power_zone_temp_pullup",
@@ -90,6 +101,8 @@
         "run_loop_pullup",
         "safe_conditioner",
         "safe_conditioner_bypass",
+        "safe_fault_reset_buffer",
+        "safe_fault_reset_buffer_bypass",
         "safe_gate_a",
         "safe_gate_a_bypass",
         "safe_gate_b",
@@ -177,8 +190,15 @@
       "net": "FAULT_ASSERT_N",
       "instances": [
         "TP_FAULT_ASSERT_N",
+        "cc_backup_gate",
+        "ext_branch_gate",
+        "fault_assert_backup_pulldown",
         "fault_assert_pullup",
+        "fault_assert_sense_series",
+        "m1_rf_receptacle",
+        "nrf_backup_gate",
         "safe_conditioner",
+        "safe_fault_reset_buffer",
         "safe_gate_b",
         "safe_run_fault_iso",
         "safety_fault_request_iso",
@@ -193,6 +213,14 @@
       "instances": [
         "safe_gate_b",
         "safe_latch"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "FAULT_ASSERT_SENSE",
+      "instances": [
+        "evidence_mask",
+        "fault_assert_sense_series"
       ]
     },
     {
@@ -243,7 +271,6 @@
       "project": "LESHY2-RF",
       "net": "RF_RESET_KILL_GATE",
       "instances": [
-        "m1_rf_receptacle",
         "safe_reset_buffer",
         "safe_reset_gate_pullup",
         "safe_reset_sink_b"
@@ -272,6 +299,17 @@
         "safety_controller",
         "safety_fault_request_iso",
         "safety_fault_request_pulldown"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "POWER_COMMAND_OFF_N",
+      "instances": [
+        "pack_admission",
+        "power_command_filter",
+        "power_command_pullup",
+        "power_command_switch",
+        "safe_fault_reset_buffer"
       ]
     },
     {
@@ -376,13 +414,29 @@
     },
     {
       "project": "LESHY2-RF",
+      "net": "NRF_GROUP_PWR_EN_PRIMARY",
+      "instances": [
+        "nrf_backup_gate",
+        "safe_gate_a"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
       "net": "NRF_GROUP_PWR_EN_SAFE",
       "instances": [
         "TP_NRF_RAIL_EN_SAFE",
+        "nrf_backup_gate",
         "nrf_evidence_hold_diode",
         "nrf_power_on_pulldown",
-        "nrf_power_switch",
-        "safe_gate_a"
+        "nrf_power_switch"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "CC_PWR_EN_PRIMARY",
+      "instances": [
+        "cc_backup_gate",
+        "safe_gate_b"
       ]
     },
     {
@@ -390,10 +444,10 @@
       "net": "CC_PWR_EN_SAFE",
       "instances": [
         "TP_CC_RAIL_EN_SAFE",
+        "cc_backup_gate",
         "cc_evidence_hold_diode",
         "cc_power_on_pulldown",
-        "cc_power_switch",
-        "safe_gate_b"
+        "cc_power_switch"
       ]
     },
     {
@@ -411,6 +465,15 @@
     },
     {
       "project": "LESHY2-RF",
+      "net": "VOICE_EFUSE_BACKUP_EN_N",
+      "instances": [
+        "safe_fault_reset_buffer",
+        "voice_efuse",
+        "voice_efuse_en_pullup"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
       "net": "VOICE_PTT_SAFE_N",
       "instances": [
         "TP_VOICE_PTT_SAFE_N",
@@ -423,7 +486,6 @@
       "net": "EXT_ANY_5V_EN_SAFE",
       "instances": [
         "TP_EXT_5V_EN_SAFE",
-        "ext_branch_gate",
         "ext_buck",
         "ext_en_pulldown",
         "ext_pg_base_res",
@@ -559,14 +621,24 @@
       "net": "RUN_PERMIT",
       "instances": [
         "ir_safe_gate",
-        "m1_ui_plug"
+        "m1_ui_plug",
+        "safe_c5_reset_buffer"
       ]
     },
     {
       "project": "LESHY2-UI",
-      "net": "RF_RESET_KILL_GATE",
+      "net": "FAULT_ASSERT_N",
       "instances": [
         "m1_ui_plug",
+        "safe_c5_fault_reset_buffer"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "C5_RESET_KILL_GATE",
+      "instances": [
+        "safe_c5_reset_buffer",
+        "safe_c5_reset_gate_pullup",
         "safe_reset_sink_a"
       ]
     },
@@ -600,6 +672,7 @@
         "c5",
         "c5_dbg_reset_series",
         "c5_reset_pullup",
+        "safe_c5_fault_reset_buffer",
         "safe_reset_sink_a"
       ]
     },
@@ -771,22 +844,70 @@
       "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6"
     },
     {
-      "instance": "safe_gate_a",
-      "reference": "U50011",
-      "mpn": "SN74LVC08APWR",
-      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
+      "instance": "safe_c5_reset_buffer",
+      "reference": "U50002",
+      "mpn": "Texas Instruments SN74LVC1G06DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5"
     },
     {
-      "instance": "safe_gate_b",
+      "instance": "safe_c5_fault_reset_buffer",
+      "reference": "U50003",
+      "mpn": "SN74LVC1G07DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5"
+    },
+    {
+      "instance": "safe_fault_reset_buffer",
+      "reference": "U50011",
+      "mpn": "SN74LVC3G07DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+    },
+    {
+      "instance": "safe_gate_a",
       "reference": "U50012",
       "mpn": "SN74LVC08APWR",
       "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
     },
     {
-      "instance": "safe_ptt_or",
+      "instance": "safe_gate_b",
       "reference": "U50013",
+      "mpn": "SN74LVC08APWR",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
+    },
+    {
+      "instance": "nrf_backup_gate",
+      "reference": "U31014",
+      "mpn": "SN74LVC1G08DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5"
+    },
+    {
+      "instance": "cc_backup_gate",
+      "reference": "U32018",
+      "mpn": "SN74LVC1G08DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5"
+    },
+    {
+      "instance": "fault_assert_backup_pulldown",
+      "reference": "R50013",
+      "mpn": "Yageo RC0402FR-071ML",
+      "footprint": "Resistor_SMD:R_0402_1005Metric"
+    },
+    {
+      "instance": "voice_efuse_en_pullup",
+      "reference": "R32043",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric"
+    },
+    {
+      "instance": "safe_ptt_or",
+      "reference": "U50014",
       "mpn": "74LVC1G32GV,125",
       "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5"
+    },
+    {
+      "instance": "fault_assert_sense_series",
+      "reference": "R50019",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric"
     },
     {
       "instance": "safety_fault_request_iso",
@@ -820,13 +941,13 @@
     },
     {
       "instance": "evidence_mask",
-      "reference": "U50021",
+      "reference": "U50022",
       "mpn": "TCA9535PWR",
       "footprint": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm"
     },
     {
       "instance": "evidence_main_isolator",
-      "reference": "U50022",
+      "reference": "U50023",
       "mpn": "SN74LVC3G07DCUR",
       "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
     },
@@ -873,7 +994,11 @@
     },
     {
       "fault": "RUN_LOOP_RAW shorted to its asserted level",
-      "paper_result": "known masking fault; mandatory harness/switch fault-injection case, not claimed dual-fault tolerance"
+      "paper_result": "the independent POWER_COMMAND_OFF_N switch throw pulls FAULT_ASSERT_N low through safe_fault_reset_buffer channel 3 and also requests pack shutdown"
+    },
+    {
+      "fault": "FAULT_ASSERT_N shorted to its permissive level",
+      "paper_result": "series-isolated P11 readback fails the mandatory startup proof while SAFETY_FAULT_REQUEST is low; no transmitter lease is admitted and physical service is required"
     },
     {
       "fault": "external accessory provides no qualified evidence",
@@ -881,16 +1006,16 @@
     }
   ],
   "shutdown_chain": [
-    "maintained RUN/KILL, open run loop, TPS3435 WDO_N or isolated safety-controller request asserts FAULT_ASSERT_N",
-    "SN74LVC1G74 asynchronously latches the fault; software cannot clear or re-arm it",
-    "RUN_PERMIT falls and hardware gates disable nRF24 CE/rail, CC rail, voice rail/PTT, IR TX and both expansion branches",
-    "C5 and RP reset sinks assert; S3 receives a bounded fault-reset request and may only run the signed fault-only renderer while UI temperature is safe",
+    "maintained RUN/KILL, open run loop, TPS3435 WDO_N or isolated safety-controller request pulls FAULT_ASSERT_N low",
+    "FAULT_ASSERT_N asynchronously clears the SN74LVC1G74 RUN_PERMIT latch; software cannot set or re-arm it",
+    "the primary RUN_PERMIT path and electrically separate FAULT_ASSERT_N path both disable nRF24 and CC rails, voice power/PTT and both expansion branches",
+    "independent C5 and RP fault-reset sinks assert; the shared IR rail falls with C5 reset, while S3 receives a bounded fault-reset request and may only run the signed fault-only renderer while UI temperature is safe",
     "three NTC zones, aggregate power fault and nine physical-TX evidence channels remain visible to the independent AON safety controller",
     "restart requires all release conditions safe plus a physical KILL-to-RUN cycle"
   ],
   "review_boundary": {
     "complete": [
-      "the independent MSPM0 safety controller, TPS3435 watchdog, AON supervisor and asynchronous latch are exact fitted parts",
+      "the independent MSPM0 safety controller, TPS3435 watchdog, AON supervisor, asynchronous latch and backup endpoint gates are exact fitted parts",
       "all selected fault, temperature, evidence, reset and safe-gate nets match actual complete KiCad netlists",
       "all contractually required safety measurements now terminate on physical copper"
     ],

@@ -4,25 +4,25 @@
   "status": "reviewed_power_sources_admission_charge_and_rails",
   "method": "fresh KiCad XML netlist export of every complete hierarchy plus exact RF power-net membership comparison",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
-    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
-    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01",
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
+    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "95c3549487207b2c805663bd6e9be7ff251a116a64f9820d32e60f714e2232fc",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "7079f94dceeef0ed9a569fc2a13f53af125e26c57f6b455bfe2d3b6e5edaca51",
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c"
   },
   "hierarchy_exports": {
     "LESHY2-UI": {
-      "component_count": 390,
-      "unique_reference_count": 390,
+      "component_count": 395,
+      "unique_reference_count": 395,
       "duplicate_references": [],
-      "net_count": 339,
+      "net_count": 342,
       "annotation_warnings": 0
     },
     "LESHY2-RF": {
-      "component_count": 682,
-      "unique_reference_count": 682,
+      "component_count": 690,
+      "unique_reference_count": 690,
       "duplicate_references": [],
-      "net_count": 541,
+      "net_count": 544,
       "annotation_warnings": 0
     },
     "LESHY2-LORA-CAP-01": {
@@ -172,13 +172,15 @@
     {
       "net": "AON_SAFE_3V3",
       "status": "reviewed",
-      "component_count": 89,
+      "component_count": 95,
       "instances": [
         "TP_AON_SAFE_3V3",
         "any_tx_aon_pullup",
         "aon_efuse",
         "aon_efuse_output_cap",
         "aon_pg_pullup",
+        "cc_backup_gate",
+        "cc_backup_gate_bypass",
         "cc_detector_bypass",
         "cc_evidence_output_pullup",
         "cc_evidence_threshold_top",
@@ -216,6 +218,8 @@
         "nrf2_detector_bypass",
         "nrf2_evidence_output_pullup",
         "nrf2_evidence_threshold_top",
+        "nrf_backup_gate",
+        "nrf_backup_gate_bypass",
         "pd_controller",
         "pd_vin_cap",
         "power_zone_temp_pullup",
@@ -223,6 +227,8 @@
         "run_loop_pullup",
         "safe_conditioner",
         "safe_conditioner_bypass",
+        "safe_fault_reset_buffer",
+        "safe_fault_reset_buffer_bypass",
         "safe_gate_a",
         "safe_gate_a_bypass",
         "safe_gate_b",
@@ -354,9 +360,10 @@
     {
       "net": "VVOICE_RAW_4V",
       "status": "reviewed",
-      "component_count": 7,
+      "component_count": 8,
       "instances": [
         "voice_efuse",
+        "voice_efuse_en_pullup",
         "voice_efuse_ovlo_top",
         "voice_fb_top",
         "voice_ff_cap",

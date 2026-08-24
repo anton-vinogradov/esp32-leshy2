@@ -4,26 +4,26 @@
   "status": "reviewed_no_back_power_boundaries",
   "method": "fresh complete KiCad netlists plus exact USB, M1 and expansion-boundary membership checks",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
     "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "8c87a5fd2a284b00a1d2ac158a00c380488a17c0125b703ee18eb10581eb01bf",
-    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "0592a733a82cd9423d8d4776c601dfaeee8fe6fb94e24d325869c79c5589ece4",
-    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
-    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01"
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "2192e3481f33c13a5d73b9880d03e06f3a222399e0b834ad6abbd3fbddec0646",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "7600c7695086ecada512b1261d8b9e62e40fe890200c6789d4ac4ad1b00e95db",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "95c3549487207b2c805663bd6e9be7ff251a116a64f9820d32e60f714e2232fc",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "7079f94dceeef0ed9a569fc2a13f53af125e26c57f6b455bfe2d3b6e5edaca51"
   },
   "hierarchy_exports": {
     "LESHY2-UI": {
-      "component_count": 390,
-      "unique_reference_count": 390,
+      "component_count": 395,
+      "unique_reference_count": 395,
       "duplicate_references": [],
-      "net_count": 339,
+      "net_count": 342,
       "annotation_warnings": 0
     },
     "LESHY2-RF": {
-      "component_count": 682,
-      "unique_reference_count": 682,
+      "component_count": 690,
+      "unique_reference_count": 690,
       "duplicate_references": [],
-      "net_count": 541,
+      "net_count": 544,
       "annotation_warnings": 0
     }
   },

@@ -7,10 +7,10 @@
     "state_fault_exploration"
   ],
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
     "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
-    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "1cf679c6861759b1175805d794b8e092317a8335bca11ec550a541220cab68e1",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "7644796f7d13cb4a115db74ddbf5c06873579888cbf0bf72d056d1326f214926"
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "43d73a8263a545e20b29bf5d22f70b97032e9655c6869cdd6a45fc1482ecf910",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "2bf1f0419b319d53bf6ef4e7a19398693d2b96bd6037e764442b7d1d09118670"
   },
   "provenance": {
     "supervisor": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",

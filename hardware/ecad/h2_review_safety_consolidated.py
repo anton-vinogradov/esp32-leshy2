@@ -46,8 +46,10 @@ def build() -> tuple[dict[Path, str], dict]:
     ids = [row["id"] for row in findings]
     if len(ids) != len(set(ids)):
         raise ValueError("corrected finding ids are not unique")
-    if len(findings) != 5:
-        raise ValueError(f"expected one corrected finding per reviewed substage, got {len(findings)}")
+    if len(findings) < len(INPUTS):
+        raise ValueError(
+            f"expected at least one corrected finding per reviewed substage, got {len(findings)}"
+        )
 
     manifest = {
         "schema_version": 1,

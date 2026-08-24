@@ -5,19 +5,19 @@
   "project": "LESHY2-RF",
   "root_sheet": "RF_00_ROOT",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
-    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/ecad/H2-sheet-contract.json": "56fda7262e6b9adb97956b0c94ec49490e86672a5e6cdc24f80f50919231f81b"
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
+    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
+    "hardware/ecad/H2-sheet-contract.json": "a37128516052981f243fdca14134bbb5e68def8af75aea709c504eeb52f18ec3"
   },
   "summary": {
     "child_sheet_count": 12,
-    "cross_sheet_net_count": 157,
-    "root_hierarchical_pin_count": 381,
-    "child_hierarchical_label_count": 381,
+    "cross_sheet_net_count": 159,
+    "root_hierarchical_pin_count": 388,
+    "child_hierarchical_label_count": 388,
     "known_child_stub_erc_violations": 0,
     "implemented_child_sheet_count": 12,
-    "circuit_symbols_placed": 682,
-    "suppressed_generated_library_copy_checks": 682,
+    "circuit_symbols_placed": 690,
+    "suppressed_generated_library_copy_checks": 690,
     "known_deferred_fixture_erc_violations": 0,
     "pcb_files_created": 0
   },
@@ -62,7 +62,7 @@
     },
     {
       "id": "RF_03_MAIN_RAILS_DOMAIN_GATES",
-      "interface_count": 21,
+      "interface_count": 22,
       "interfaces": [
         "3V3_MAIN",
         "5V_EXT_PREPROTECT",
@@ -72,6 +72,7 @@
         "EV_N8_LORA_EXT",
         "EXT_ANY_5V_EN_SAFE",
         "EXT_ANY_5V_REQ",
+        "FAULT_ASSERT_N",
         "MAIN_RAW_3V3_PG_N",
         "NVDC_SYS",
         "POR_N",
@@ -147,10 +148,11 @@
     },
     {
       "id": "RF_31_NRF24_X3",
-      "interface_count": 33,
+      "interface_count": 35,
       "interfaces": [
         "3V3_MAIN",
         "AON_SAFE_3V3",
+        "FAULT_ASSERT_N",
         "NRF0_CE_SAFE",
         "NRF0_CSN_N",
         "NRF0_DETECT_FILTER",
@@ -179,6 +181,7 @@
         "NRF2_MOSI",
         "NRF2_SCK",
         "NRF_EVIDENCE_HOLD",
+        "NRF_GROUP_PWR_EN_PRIMARY",
         "NRF_GROUP_PWR_EN_SAFE",
         "POWER_GROUND",
         "SAFETY_GROUND"
@@ -186,7 +189,7 @@
     },
     {
       "id": "RF_32_SUBGHZ_VOICE",
-      "interface_count": 32,
+      "interface_count": 35,
       "interfaces": [
         "3V3_MAIN",
         "AON_SAFE_3V3",
@@ -200,9 +203,11 @@
         "CC_GDO2",
         "CC_MISO",
         "CC_MOSI",
+        "CC_PWR_EN_PRIMARY",
         "CC_PWR_EN_SAFE",
         "CC_RF_SAMPLE",
         "CC_SCK",
+        "FAULT_ASSERT_N",
         "NVDC_SYS",
         "POWER_FAULT_N",
         "POWER_GROUND",
@@ -212,6 +217,7 @@
         "VOICE_DETECT_FILTER",
         "VOICE_DETECT_V",
         "VOICE_DOMAIN_EN_SAFE",
+        "VOICE_EFUSE_BACKUP_EN_N",
         "VOICE_HL_RELEASE_REQ",
         "VOICE_MIC_SELECTED_MAIN",
         "VOICE_PTT_SAFE_N",
@@ -301,12 +307,12 @@
         "EV_N6_VOICE",
         "EV_N7_IR",
         "EV_N8_LORA_EXT",
+        "FAULT_ASSERT_N",
         "FAULT_LATCH_SENSE_AON",
         "IR_TX_EVIDENCE_N",
         "MIC_RAW",
         "POWER_FAULT_N",
         "POWER_GROUND",
-        "RF_RESET_KILL_GATE",
         "RP_ALERT_N",
         "RUN_PERMIT",
         "RX_SA518_AFOUT_ISOLATED",
@@ -339,7 +345,7 @@
     },
     {
       "id": "RF_50_TX_SAFETY_EVIDENCE",
-      "interface_count": 74,
+      "interface_count": 75,
       "interfaces": [
         "3V3_MAIN",
         "ANY_TX_AON_N",
@@ -349,6 +355,7 @@
         "CC_DETECT_FILTER",
         "CC_DETECT_V",
         "CC_PWR_EN",
+        "CC_PWR_EN_PRIMARY",
         "CC_PWR_EN_SAFE",
         "CC_RF_SAMPLE",
         "EVIDENCE_MASK_INT_N_TP",
@@ -383,14 +390,13 @@
         "NRF2_FORWARD_RF_SAMPLE",
         "NRF_EVIDENCE_HOLD",
         "NRF_GROUP_PWR_EN",
-        "NRF_GROUP_PWR_EN_SAFE",
+        "NRF_GROUP_PWR_EN_PRIMARY",
         "PACK_ADMISSION_VDD",
         "POR_N",
         "POWER_COMMAND_OFF_N",
         "POWER_FAULT_N",
         "POWER_GROUND",
         "POWER_ZONE_TEMP_ADC",
-        "RF_RESET_KILL_GATE",
         "RF_ZONE_TEMP_ADC",
         "RP_ANY_TX_N",
         "RP_RESET_N",
@@ -412,6 +418,7 @@
         "VOICE_DETECT_V",
         "VOICE_DOMAIN_EN_SAFE",
         "VOICE_DOMAIN_REQ",
+        "VOICE_EFUSE_BACKUP_EN_N",
         "VOICE_PTT_REQ_N",
         "VOICE_PTT_SAFE_N",
         "VOICE_RF_SAMPLE"
@@ -620,6 +627,13 @@
       ]
     },
     {
+      "name": "CC_PWR_EN_PRIMARY",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
       "name": "CC_PWR_EN_SAFE",
       "sheets": [
         "RF_32_SUBGHZ_VOICE",
@@ -750,6 +764,10 @@
     {
       "name": "FAULT_ASSERT_N",
       "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_31_NRF24_X3",
+        "RF_32_SUBGHZ_VOICE",
+        "RF_40_INTERBOARD_M1",
         "RF_50_TX_SAFETY_EVIDENCE",
         "RF_60_TESTPOINTS_MANUFACTURING"
       ]
@@ -1011,10 +1029,16 @@
       ]
     },
     {
+      "name": "NRF_GROUP_PWR_EN_PRIMARY",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
       "name": "NRF_GROUP_PWR_EN_SAFE",
       "sheets": [
         "RF_31_NRF24_X3",
-        "RF_50_TX_SAFETY_EVIDENCE",
         "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
@@ -1159,13 +1183,6 @@
       "sheets": [
         "RF_30_RP2354_CORE_SERVICE",
         "RF_35_REAR_CONTROLS"
-      ]
-    },
-    {
-      "name": "RF_RESET_KILL_GATE",
-      "sheets": [
-        "RF_40_INTERBOARD_M1",
-        "RF_50_TX_SAFETY_EVIDENCE"
       ]
     },
     {
@@ -1580,6 +1597,13 @@
       ]
     },
     {
+      "name": "VOICE_EFUSE_BACKUP_EN_N",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
       "name": "VOICE_HL_RELEASE_REQ",
       "sheets": [
         "RF_32_SUBGHZ_VOICE",
@@ -1669,7 +1693,7 @@
   "review_boundary": {
     "complete": [
       "all twelve RF/power child sheets are instantiated by the KiCad root",
-      "all 157 derived cross-sheet nets are represented by 381 explicit named pins and child labels",
+      "all 159 derived cross-sheet nets are represented by 388 explicit named pins and child labels",
       "one direct root rail joins only sheet pins carrying the same reviewed net name",
       "the 51-net RF/power side of M1 is represented without reserves or implicit globals",
       "native KiCad accepts the complete hierarchy with no child stubs or deferred fixture labels"

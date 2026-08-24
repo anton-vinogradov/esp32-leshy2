@@ -4,26 +4,26 @@
   "status": "reviewed_reset_boot_service_and_recovery_paths",
   "method": "fresh complete KiCad netlists compared with collapsed architecture endpoints and explicit fixture pads",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
-    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "86a4b336574b115ae315991ef56c095f83c3c54ee8d4032dde50df6e7ddcf544",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "bf695b5bc50c665d73918ad89ef92910441294c5ff92ecf122746f7f37e3e943",
-    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
-    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01"
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
+    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "abfc63fc93b4cc9c151ae5836bfaacb564b629367189a0c74698156ad08d2349",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "000f3c8878d4c687e9fb81edd54cc171ff51e367cf81625a686f12e017b360c0",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "95c3549487207b2c805663bd6e9be7ff251a116a64f9820d32e60f714e2232fc",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "7079f94dceeef0ed9a569fc2a13f53af125e26c57f6b455bfe2d3b6e5edaca51"
   },
   "hierarchy_exports": {
     "LESHY2-UI": {
-      "component_count": 390,
-      "unique_reference_count": 390,
+      "component_count": 395,
+      "unique_reference_count": 395,
       "duplicate_references": [],
-      "net_count": 339,
+      "net_count": 342,
       "annotation_warnings": 0
     },
     "LESHY2-RF": {
-      "component_count": 682,
-      "unique_reference_count": 682,
+      "component_count": 690,
+      "unique_reference_count": 690,
       "duplicate_references": [],
-      "net_count": 541,
+      "net_count": 544,
       "annotation_warnings": 0
     }
   },
@@ -201,6 +201,7 @@
         "c5",
         "c5_dbg_reset_series",
         "c5_reset_pullup",
+        "safe_c5_fault_reset_buffer",
         "safe_reset_sink_a"
       ]
     },
@@ -347,6 +348,7 @@
         "rp",
         "rp_dbg_reset_series",
         "rp_reset_pullup",
+        "safe_fault_reset_buffer",
         "safe_reset_sink_b"
       ]
     },

@@ -107,6 +107,7 @@ def footprint_for(instance: str, device_key: str) -> str:
         return ""
     exact = {
         "nrf_power_switch": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+        "nrf_backup_gate": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
         "nrf_evidence_hold_diode": "Package_TO_SOT_SMD:SOT-23",
     }
     if instance in exact:
@@ -188,8 +189,8 @@ def build() -> tuple[dict[Path, str], dict]:
         row for row in ledger["rows"]
         if row["project"] == PROJECT_ID and row["sheet"] == SHEET_ID
     ]
-    if len(rows) != 105:
-        raise ValueError(f"{SHEET_ID} must own exactly 105 rows, got {len(rows)}")
+    if len(rows) != 107:
+        raise ValueError(f"{SHEET_ID} must own exactly 107 rows, got {len(rows)}")
     interface_order = list(next(
         row["interfaces"] for row in root["sheets"] if row["id"] == SHEET_ID
     ))
@@ -370,7 +371,7 @@ def build() -> tuple[dict[Path, str], dict]:
         ],
         "review_boundary": {
             "complete": [
-                "all 105 RF31 ledger instances, 311 physical contacts and 33 hierarchy interfaces are explicit",
+                "all 107 RF31 ledger instances, 318 physical contacts and 35 hierarchy interfaces are explicit",
                 "the three independent command, return, power-decoupling, RF and evidence paths are electrically complete",
                 "primary Ebyte, Nexperia, TTM, GCT, Hirose and TI references determine every selected package",
                 "native KiCad parses RF31 in the live RF/power hierarchy with every remaining finding machine-accounted",
@@ -389,11 +390,11 @@ def build() -> tuple[dict[Path, str], dict]:
 
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     expected = {
-        "ledger_instances": 105,
-        "schematic_symbols": 108,
-        "board_fitted_symbols": 102,
-        "hierarchical_interfaces": 33,
-        "physical_package_contacts": 311,
+        "ledger_instances": 107,
+        "schematic_symbols": 110,
+        "board_fitted_symbols": 104,
+        "hierarchical_interfaces": 35,
+        "physical_package_contacts": 318,
         "nrf_carrier_pads": 24,
         "factory_rf_assembly_boundaries": 3,
         "independent_spi_paths": 3,
@@ -405,9 +406,9 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     if manifest["summary"] != expected:
         raise ValueError(f"H2.3.6 accounting drifted: {manifest['summary']}")
     schematic = generated[OUTPUT_SCH]
-    if schematic.count("\n\t(symbol\n") != 108:
+    if schematic.count("\n\t(symbol\n") != 110:
         raise ValueError("RF31 symbol accounting mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 33:
+    if schematic.count("\n\t(hierarchical_label \"") != 35:
         raise ValueError("RF31 hierarchy accounting mismatch")
     expected_nc = {"nrf_evidence_hold_diode.NC", "nrf_power_switch.NC"}
     if set(manifest["intentional_no_connect_endpoints"]) != expected_nc:

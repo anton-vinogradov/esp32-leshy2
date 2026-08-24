@@ -4,11 +4,11 @@
   "status": "reviewed_h2_5_independent_safety_paths_closed",
   "method": "consolidation of five independently regenerated, machine-checkable complete-hierarchy review artifacts",
   "source_hashes": {
-    "hardware/ecad/generated/H2-REV51-power-paths.json": "c83bb052ca36b66fb36977ff4af202740f419323ac32ff85b385750d7dd438ea",
-    "hardware/ecad/generated/H2-REV52-recovery-paths.json": "809dadfd1cd3f456f0e3a11b63c854f281523433a857534693c33dc04b78bdeb",
-    "hardware/ecad/generated/H2-REV53-no-back-power.json": "dc38f1a53fd7eed9ef224d3083d517073d97a2132c3993f66a3cfd12a70376a5",
-    "hardware/ecad/generated/H2-REV54-quiet-state.json": "677e77f42fd2ec174863268ad2d70ce550ef56839e7c21a0b8d5eb258d2842f2",
-    "hardware/ecad/generated/H2-REV55-fault-kill.json": "9969fab036d3ac0889a668a6f5e4dd6e802ced1a17d0bac1cb53b05ecb4d2993"
+    "hardware/ecad/generated/H2-REV51-power-paths.json": "76614ba1f6928f8fe69241d6daa68f53b1f85afbef015d92d8749f6c0f56819a",
+    "hardware/ecad/generated/H2-REV52-recovery-paths.json": "53e56bc94f599cbbbab3e965deedbd47ac2d99ce2acde33cd7ab4f77e756cb3b",
+    "hardware/ecad/generated/H2-REV53-no-back-power.json": "5adbc4ca56d4887123d102064504a2817a2fe2d0eb07eb39e9590778a3be2bd4",
+    "hardware/ecad/generated/H2-REV54-quiet-state.json": "0836f3353a0b6085191029a47e7ce9e6ccdfa779f64a1cc9e9bd96e33084d981",
+    "hardware/ecad/generated/H2-REV55-fault-kill.json": "f096c5aeef359e0d9ae2ebdcc5059604d3ddb252f70e09e2ada0eace8d2cdb7b"
   },
   "subreviews": [
     {
@@ -44,7 +44,7 @@
       "scope": "watchdog, thermal faults and hardware shutdown",
       "artifact": "hardware/ecad/generated/H2-REV55-fault-kill.json",
       "status": "reviewed",
-      "corrected_finding_count": 1
+      "corrected_finding_count": 2
     }
   ],
   "corrected_findings": [
@@ -87,6 +87,14 @@
       "finding": "the safety contract promised watchdog, latch and safe-gate observation points but 15 distinct electrical nodes had no physical copper pad",
       "correction": "RF60 now contains 52 BOM-free pads; WDO_N uses the shared FAULT_ASSERT_N pad, FAULT_KILL uses its implemented FAULT_LATCH_SENSE_AON name and RP reset uses TP_RP_RESET_N",
       "evidence": "every normalized safety_contract.test_points identifier is instantiated on UI60 or RF60 and every selected safety net matches the complete KiCad hierarchy"
+    },
+    {
+      "stage": "H2.5.5",
+      "id": "H3.6.2-F01",
+      "severity": "single_fault_containment",
+      "finding": "the former fan-out reused RUN_PERMIT-derived qualification for every hazardous endpoint, so one stuck-permissive latch or primary gate was not independently contained",
+      "correction": "M1 contact 34 now carries direct FAULT_ASSERT_N; separate C5/RP reset sinks, nRF/CC backup gates, the voice eFuse clamp and independent expansion-branch inputs bypass the primary latch path",
+      "evidence": "the primary enable nets, final safe enables and direct fault plane all have distinct exact component membership in the complete UI and RF KiCad hierarchies"
     }
   ],
   "open_paper_or_ecad_findings": [],

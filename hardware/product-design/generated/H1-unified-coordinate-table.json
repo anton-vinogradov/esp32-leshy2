@@ -120,8 +120,8 @@
     "result": "paper_geometry_passed",
     "interboard_gap_mm": 11.0,
     "minimum_required_clearance_mm": 0.7,
-    "inner_body_count": 131,
-    "total_inner_component_count_including_adapter": 133,
+    "inner_body_count": 136,
+    "total_inner_component_count_including_adapter": 138,
     "all_inner_bodies_have_sourced_positive_height": true,
     "no_inner_body_exceeds_gap": true,
     "no_inner_body_violates_minimum_clearance": true,
@@ -713,6 +713,13 @@
         "remaining_to_opposite_pcb_plane_mm": 9.9
       },
       {
+        "instance": "cc_backup_gate",
+        "frame": "rf-inner",
+        "mpn": "SN74LVC1G08DCKR",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
         "instance": "cc_host_buffer",
         "frame": "rf-inner",
         "mpn": "Nexperia 74LVC126APW,118",
@@ -769,9 +776,30 @@
         "remaining_to_opposite_pcb_plane_mm": 9.9
       },
       {
+        "instance": "nrf_backup_gate",
+        "frame": "rf-inner",
+        "mpn": "SN74LVC1G08DCKR",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
         "instance": "pack_admission",
         "frame": "rf-inner",
         "mpn": "Texas Instruments MSPM0C1106SDGS20R",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "safe_c5_fault_reset_buffer",
+        "frame": "ui-inner",
+        "mpn": "SN74LVC1G07DCKR",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "safe_c5_reset_buffer",
+        "frame": "ui-inner",
+        "mpn": "Texas Instruments SN74LVC1G06DCKR",
         "height_mm": 1.1,
         "remaining_to_opposite_pcb_plane_mm": 9.9
       },
@@ -951,6 +979,13 @@
         "remaining_to_opposite_pcb_plane_mm": 10.1
       },
       {
+        "instance": "safe_fault_reset_buffer",
+        "frame": "rf-inner",
+        "mpn": "SN74LVC3G07DCUR",
+        "height_mm": 0.9,
+        "remaining_to_opposite_pcb_plane_mm": 10.1
+      },
+      {
         "instance": "ui_zone_ntc",
         "frame": "ui-inner",
         "mpn": "TDK B57332V5103F360",
@@ -1056,7 +1091,7 @@
         "remaining_to_opposite_pcb_plane_mm": 10.4
       }
     ],
-    "opposing_non_mating_pair_count": 35,
+    "opposing_non_mating_pair_count": 37,
     "minimum_opposing_pair": {
       "ui_instance": "headphone_jack",
       "rf_instance": "pack_fuse0",
@@ -1279,6 +1314,20 @@
         "ui_height_mm": 1.68,
         "rf_height_mm": 1.75,
         "remaining_z_clearance_mm": 7.57
+      },
+      {
+        "ui_instance": "safe_c5_fault_reset_buffer",
+        "rf_instance": "safe_supervisor",
+        "ui_height_mm": 1.1,
+        "rf_height_mm": 1.45,
+        "remaining_z_clearance_mm": 8.45
+      },
+      {
+        "ui_instance": "safe_c5_reset_buffer",
+        "rf_instance": "safe_supervisor",
+        "ui_height_mm": 1.1,
+        "rf_height_mm": 1.45,
+        "remaining_z_clearance_mm": 8.45
       },
       {
         "ui_instance": "sd",
@@ -1851,7 +1900,7 @@
       "assembled tolerance stack and HIL"
     ]
   },
-  "resolved_body_count": 150,
+  "resolved_body_count": 155,
   "rows": [
     {
       "instance": "aon_buck",
@@ -2095,6 +2144,25 @@
         ],
         "z": [
           14.8,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "cc_backup_gate",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          16.0,
+          18.0
+        ],
+        "y": [
+          100.0,
+          101.25
+        ],
+        "z": [
+          14.7,
           15.8
         ]
       },
@@ -3184,6 +3252,25 @@
       "direction": "normal to the RF-inner face toward the Gen1 cable plug"
     },
     {
+      "instance": "nrf_backup_gate",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          19.0,
+          21.0
+        ],
+        "y": [
+          100.0,
+          101.25
+        ],
+        "z": [
+          14.7,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
       "instance": "nvdc_charger",
       "source_frame": "rf-inner",
       "world_bbox_mm": {
@@ -3849,6 +3936,44 @@
       "direction": "not applicable"
     },
     {
+      "instance": "safe_c5_fault_reset_buffer",
+      "source_frame": "ui-inner",
+      "world_bbox_mm": {
+        "x": [
+          25.0,
+          27.0
+        ],
+        "y": [
+          82.0,
+          83.25
+        ],
+        "z": [
+          4.8,
+          5.9
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "safe_c5_reset_buffer",
+      "source_frame": "ui-inner",
+      "world_bbox_mm": {
+        "x": [
+          22.0,
+          24.0
+        ],
+        "y": [
+          82.0,
+          83.25
+        ],
+        "z": [
+          4.8,
+          5.9
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
       "instance": "safe_conditioner",
       "source_frame": "rf-inner",
       "world_bbox_mm": {
@@ -3862,6 +3987,25 @@
         ],
         "z": [
           14.7,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "safe_fault_reset_buffer",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          27.4,
+          30.5
+        ],
+        "y": [
+          85.0,
+          87.0
+        ],
+        "z": [
+          14.9,
           15.8
         ]
       },

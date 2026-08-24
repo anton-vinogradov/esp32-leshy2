@@ -7,10 +7,10 @@
     "interval_corner"
   ],
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
     "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "00687233932467ada2faeae0b2bd94c6c926092269e32c21157a2327043716a9",
-    "hardware/verification/generated/H3-VRF22-handover-brownout.json": "d3afc3d3fdafa57dabb6135072556c8d5fc2c0fb407c78a383d3e87489771dbc"
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "2974bd365c960d731a6d281bf9fdee0b945d57d221d03e29ff9dcfbc54865410",
+    "hardware/verification/generated/H3-VRF22-handover-brownout.json": "4af7960c4bb45f3a95a900c96c80a84492e2ab3542d2f491b301972eb447b320"
   },
   "provenance": {
     "aon_efuse": "https://www.ti.com/lit/ds/symlink/tps25961.pdf",
@@ -21,8 +21,8 @@
   "automatic_capacitance_inventory": {
     "AON_SAFE_3V3": {
       "net": "AON_SAFE_3V3",
-      "capacitors": 37,
-      "nominal_uf": 23.5,
+      "capacitors": 42,
+      "nominal_uf": 24.0,
       "parts": [
         {
           "instance": "aon_efuse_output_cap",
@@ -31,6 +31,11 @@
         },
         {
           "instance": "c5_detector_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "cc_backup_gate_bypass",
           "mpn": "TDK C1005X7R1H104K050BB",
           "nominal_uf": 0.1
         },
@@ -105,12 +110,32 @@
           "nominal_uf": 0.1
         },
         {
+          "instance": "nrf_backup_gate_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
           "instance": "s3_detector_bypass",
           "mpn": "TDK C1005X7R1H104K050BB",
           "nominal_uf": 0.1
         },
         {
+          "instance": "safe_c5_fault_reset_buffer_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safe_c5_reset_buffer_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
           "instance": "safe_conditioner_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safe_fault_reset_buffer_bypass",
           "mpn": "TDK C1005X7R1H104K050BB",
           "nominal_uf": 0.1
         },
@@ -524,11 +549,11 @@
     {
       "rail": "AON_SAFE_3V3",
       "strategy": "TPS25961 fixed slew may enter configured current limit",
-      "cap_nominal_uf": 23.5,
-      "cap_max_uf": 28.2,
+      "cap_nominal_uf": 24.0,
+      "cap_max_uf": 28.8,
       "active_load_ma": 89.5,
       "protection_min_ma": 165.0,
-      "bounded_current_limited_charge_ms": 1.233,
+      "bounded_current_limited_charge_ms": 1.259,
       "margin_ma_while_charging": 75.5,
       "result": "pass_current_limited_start"
     },
@@ -591,7 +616,7 @@
     "rails": 5,
     "failed_startup_envelopes": 0,
     "unresolved_analytical_findings": 0,
-    "automated_capacitor_instances": 93
+    "automated_capacitor_instances": 98
   },
   "residual_physical_only": [
     "measure effective MLCC capacitance under DC bias and temperature",

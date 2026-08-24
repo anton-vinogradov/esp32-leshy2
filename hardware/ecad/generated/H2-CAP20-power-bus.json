@@ -7,8 +7,8 @@
   "source_hashes": {
     "hardware/accessories/leshy2-lora-cap-01.json": "aea57801c58d9f255774bc58ecf51aff7238d9e8557d0ae25da6f81145ff5301",
     "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
-    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "8e84a7728ee499a3f7f805c7ce3e284870dd99df9d1fadeb30211ace52ede611"
+    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "573a9f75706cf453130cd0f78a0c050caa40e2d3e1df293bb63be3dcdd39051e"
   },
   "summary": {
     "ledger_instances": 8,

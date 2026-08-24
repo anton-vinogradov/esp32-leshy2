@@ -3,12 +3,12 @@
   "stage": "H3.1.1",
   "status": "reviewed_all_legal_source_charge_and_operating_states_enumerated",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
     "hardware/architecture/target-integration-contract.json": "321b697f58fac56a65110462f419fe594c789d4113f54617b3ff36dd17072d36",
-    "hardware/ecad/generated/H2-REV51-power-paths.json": "c83bb052ca36b66fb36977ff4af202740f419323ac32ff85b385750d7dd438ea",
-    "hardware/ecad/generated/H2-REV54-quiet-state.json": "677e77f42fd2ec174863268ad2d70ce550ef56839e7c21a0b8d5eb258d2842f2",
-    "hardware/ecad/generated/H2-RF01-usb-pd-charge.json": "5c27a5c5b55d5601a033e8b8be335dbe52587de83924adebde5b8b9ff1713fe4",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "7644796f7d13cb4a115db74ddbf5c06873579888cbf0bf72d056d1326f214926"
+    "hardware/ecad/generated/H2-REV51-power-paths.json": "76614ba1f6928f8fe69241d6daa68f53b1f85afbef015d92d8749f6c0f56819a",
+    "hardware/ecad/generated/H2-REV54-quiet-state.json": "0836f3353a0b6085191029a47e7ce9e6ccdfa779f64a1cc9e9bd96e33084d981",
+    "hardware/ecad/generated/H2-RF01-usb-pd-charge.json": "99248a7aa7bd59bf7ed05cb43f703ca5a745168e62b60b019549e3afcb4337c9",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "2bf1f0419b319d53bf6ef4e7a19398693d2b96bd6037e764442b7d1d09118670"
   },
   "source_contract": {
     "external_source": "sole sink-only S3 USB-C; C5 and RP service USB VBUS are sense-only and never power the product",

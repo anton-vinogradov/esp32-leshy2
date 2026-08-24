@@ -5,17 +5,17 @@
   "project": "LESHY2-RF",
   "sheet": "RF_50_TX_SAFETY_EVIDENCE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
     "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
-    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "bf695b5bc50c665d73918ad89ef92910441294c5ff92ecf122746f7f37e3e943"
+    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "000f3c8878d4c687e9fb81edd54cc171ff51e367cf81625a686f12e017b360c0"
   },
   "summary": {
-    "ledger_instances": 101,
-    "schematic_symbols": 101,
-    "board_fitted_symbols": 101,
-    "hierarchical_interfaces": 74,
-    "physical_contacts": 380,
+    "ledger_instances": 104,
+    "schematic_symbols": 104,
+    "board_fitted_symbols": 104,
+    "hierarchical_interfaces": 75,
+    "physical_contacts": 392,
     "rf_detector_channels": 5,
     "comparator_channels": 5,
     "independent_watchdogs": 2,
@@ -306,6 +306,15 @@
       "board_fitted": true
     },
     {
+      "instance": "fault_assert_backup_pulldown",
+      "symbol_uuid": "b258eb87-15ad-5684-a44b-6c75363bd031",
+      "reference": "R50013",
+      "mpn": "Yageo RC0402FR-071ML",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
       "instance": "safe_run_fault_iso",
       "symbol_uuid": "77866eaa-7b6d-5708-bcfb-2a50a0b7055c",
       "reference": "U50006",
@@ -353,7 +362,7 @@
     {
       "instance": "safe_rearm_delay_res",
       "symbol_uuid": "a520fdae-5ba1-51ac-961c-33df9f8724e4",
-      "reference": "R50013",
+      "reference": "R50014",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -407,7 +416,7 @@
     {
       "instance": "safe_latch_d_pullup",
       "symbol_uuid": "c236086c-9980-5958-bfd5-5e4298f00d4e",
-      "reference": "R50014",
+      "reference": "R50015",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -432,9 +441,27 @@
       "board_fitted": true
     },
     {
+      "instance": "safe_fault_reset_buffer",
+      "symbol_uuid": "229fce3d-8f7e-5a75-8a5d-e4c3f0c71709",
+      "reference": "U50011",
+      "mpn": "SN74LVC3G07DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+      "pin_count": 8,
+      "board_fitted": true
+    },
+    {
+      "instance": "safe_fault_reset_buffer_bypass",
+      "symbol_uuid": "f95f96e4-cda5-5be2-9c7c-b2e879cdfbca",
+      "reference": "C50018",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
       "instance": "safe_reset_gate_pullup",
       "symbol_uuid": "56a160c6-cde0-5dea-85a4-7ab8183a5a26",
-      "reference": "R50015",
+      "reference": "R50016",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -452,7 +479,7 @@
     {
       "instance": "safe_gate_a",
       "symbol_uuid": "23b5fdb9-3347-5d19-9fe9-692e5b5fbc45",
-      "reference": "U50011",
+      "reference": "U50012",
       "mpn": "SN74LVC08APWR",
       "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
       "pin_count": 14,
@@ -461,7 +488,7 @@
     {
       "instance": "safe_gate_a_bypass",
       "symbol_uuid": "418ff30f-079b-565f-ae98-d568dc397309",
-      "reference": "C50018",
+      "reference": "C50019",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -470,7 +497,7 @@
     {
       "instance": "safe_gate_b",
       "symbol_uuid": "5aa2e300-0d12-55b8-8fb1-c98acd51c420",
-      "reference": "U50012",
+      "reference": "U50013",
       "mpn": "SN74LVC08APWR",
       "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
       "pin_count": 14,
@@ -479,7 +506,7 @@
     {
       "instance": "safe_gate_b_bypass",
       "symbol_uuid": "4419da25-6ff1-55b1-813a-aa6619853b34",
-      "reference": "C50019",
+      "reference": "C50020",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -488,7 +515,7 @@
     {
       "instance": "safe_ptt_or",
       "symbol_uuid": "bcaaec00-a10b-5263-87cd-0735ee313596",
-      "reference": "U50013",
+      "reference": "U50014",
       "mpn": "74LVC1G32GV,125",
       "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
       "pin_count": 5,
@@ -497,7 +524,7 @@
     {
       "instance": "safe_ptt_or_bypass",
       "symbol_uuid": "e4281de2-0e99-53fe-93a9-89b65fb9551e",
-      "reference": "C50020",
+      "reference": "C50021",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -506,7 +533,7 @@
     {
       "instance": "det_nrf0",
       "symbol_uuid": "9dcd85b4-652f-51c7-aad2-4804cec1117e",
-      "reference": "U50014",
+      "reference": "U50015",
       "mpn": "Analog Devices AD8314ACPZ-RL7",
       "footprint": "Package_CSP:LFCSP-8-1EP_3x2mm_P0.5mm_EP1.6x1.65mm",
       "pin_count": 9,
@@ -515,7 +542,7 @@
     {
       "instance": "det_nrf1",
       "symbol_uuid": "c8376c62-525c-5dc9-a55a-61f84dec5116",
-      "reference": "U50015",
+      "reference": "U50016",
       "mpn": "Analog Devices AD8314ACPZ-RL7",
       "footprint": "Package_CSP:LFCSP-8-1EP_3x2mm_P0.5mm_EP1.6x1.65mm",
       "pin_count": 9,
@@ -524,7 +551,7 @@
     {
       "instance": "det_nrf2",
       "symbol_uuid": "1fb9feeb-a46b-52c8-ab90-8a87c2f2fb03",
-      "reference": "U50016",
+      "reference": "U50017",
       "mpn": "Analog Devices AD8314ACPZ-RL7",
       "footprint": "Package_CSP:LFCSP-8-1EP_3x2mm_P0.5mm_EP1.6x1.65mm",
       "pin_count": 9,
@@ -533,7 +560,7 @@
     {
       "instance": "det_cc",
       "symbol_uuid": "6774b9fe-a98e-5d7a-be24-0e27b75ef4b8",
-      "reference": "U50017",
+      "reference": "U50018",
       "mpn": "Analog Devices AD8314ACPZ-RL7",
       "footprint": "Package_CSP:LFCSP-8-1EP_3x2mm_P0.5mm_EP1.6x1.65mm",
       "pin_count": 9,
@@ -542,7 +569,7 @@
     {
       "instance": "det_voice",
       "symbol_uuid": "8e65fcb4-f4a1-512e-b1ba-2efd4b2edca7",
-      "reference": "U50018",
+      "reference": "U50019",
       "mpn": "Analog Devices AD8314ACPZ-RL7",
       "footprint": "Package_CSP:LFCSP-8-1EP_3x2mm_P0.5mm_EP1.6x1.65mm",
       "pin_count": 9,
@@ -551,7 +578,7 @@
     {
       "instance": "evidence_cmp_b",
       "symbol_uuid": "67e2ffcb-9ea8-5a8d-b15b-ae530731e553",
-      "reference": "U50019",
+      "reference": "U50020",
       "mpn": "TLV1824PWR",
       "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
       "pin_count": 14,
@@ -560,7 +587,7 @@
     {
       "instance": "evidence_cmp_voice",
       "symbol_uuid": "8c03e4e8-3320-582e-a0b3-ccf32964d3da",
-      "reference": "U50020",
+      "reference": "U50021",
       "mpn": "TLV1821DCKR",
       "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
       "pin_count": 5,
@@ -569,7 +596,7 @@
     {
       "instance": "evidence_cmp_b_bypass",
       "symbol_uuid": "e6cc2f1f-754b-5269-bace-0343a212381f",
-      "reference": "C50021",
+      "reference": "C50022",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -578,7 +605,7 @@
     {
       "instance": "evidence_cmp_voice_bypass",
       "symbol_uuid": "01b75776-0dfe-5093-bf32-eb37fe932943",
-      "reference": "C50022",
+      "reference": "C50023",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -587,7 +614,7 @@
     {
       "instance": "evidence_mask",
       "symbol_uuid": "379514eb-0094-59ba-b95f-0ed804d0bd93",
-      "reference": "U50021",
+      "reference": "U50022",
       "mpn": "TCA9535PWR",
       "footprint": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm",
       "pin_count": 24,
@@ -596,7 +623,7 @@
     {
       "instance": "evidence_mask_bypass",
       "symbol_uuid": "663367e4-8210-5bde-a031-304dd0284c11",
-      "reference": "C50023",
+      "reference": "C50024",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -605,7 +632,7 @@
     {
       "instance": "evidence_mask_scl_pullup",
       "symbol_uuid": "12ade485-f485-51cf-b1a3-f7ae5e1adbe4",
-      "reference": "R50016",
+      "reference": "R50017",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -614,15 +641,6 @@
     {
       "instance": "evidence_mask_sda_pullup",
       "symbol_uuid": "06f51d3b-ea68-5217-8d48-66d92b027f88",
-      "reference": "R50017",
-      "mpn": "Yageo RC0402FR-0710KL",
-      "footprint": "Resistor_SMD:R_0402_1005Metric",
-      "pin_count": 2,
-      "board_fitted": true
-    },
-    {
-      "instance": "evidence_mask_p11_pulldown",
-      "symbol_uuid": "e8603ca1-53fb-5558-9259-d653f417a0e5",
       "reference": "R50018",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
@@ -630,9 +648,18 @@
       "board_fitted": true
     },
     {
+      "instance": "fault_assert_sense_series",
+      "symbol_uuid": "578187cc-8361-5564-93b2-7d6e8ff6584a",
+      "reference": "R50019",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
       "instance": "evidence_mask_p12_pulldown",
       "symbol_uuid": "c96a6606-fa00-5de1-8120-2035665f2a55",
-      "reference": "R50019",
+      "reference": "R50020",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -641,7 +668,7 @@
     {
       "instance": "evidence_mask_p13_pulldown",
       "symbol_uuid": "651e64cb-165b-5487-817b-552b1aa74c03",
-      "reference": "R50020",
+      "reference": "R50021",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -650,7 +677,7 @@
     {
       "instance": "evidence_mask_p14_pulldown",
       "symbol_uuid": "366bd84a-542a-551e-908a-56790dc05760",
-      "reference": "R50021",
+      "reference": "R50022",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -659,7 +686,7 @@
     {
       "instance": "evidence_mask_p15_pulldown",
       "symbol_uuid": "a9d65e0a-ea83-5388-9cd8-36d2af9487b6",
-      "reference": "R50022",
+      "reference": "R50023",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -668,7 +695,7 @@
     {
       "instance": "evidence_mask_p16_pulldown",
       "symbol_uuid": "97007b90-9e1b-5381-baf9-8bc6a49e8e3c",
-      "reference": "R50023",
+      "reference": "R50024",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -677,7 +704,7 @@
     {
       "instance": "evidence_mask_p17_pulldown",
       "symbol_uuid": "11472c9d-1cf8-51b9-a9d5-07f570594b7f",
-      "reference": "R50024",
+      "reference": "R50025",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -686,7 +713,7 @@
     {
       "instance": "evidence_main_isolator",
       "symbol_uuid": "2597452c-cd89-5a04-af16-4b8e4326f735",
-      "reference": "U50022",
+      "reference": "U50023",
       "mpn": "SN74LVC3G07DCUR",
       "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
       "pin_count": 8,
@@ -695,7 +722,7 @@
     {
       "instance": "evidence_main_isolator_bypass",
       "symbol_uuid": "989237a1-f53a-5702-9b29-ef0cb72c1aba",
-      "reference": "C50024",
+      "reference": "C50025",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -704,7 +731,7 @@
     {
       "instance": "nrf0_evidence_threshold_top",
       "symbol_uuid": "5a03e5d4-b219-5502-84d5-b1706f56652e",
-      "reference": "R50025",
+      "reference": "R50026",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -713,7 +740,7 @@
     {
       "instance": "nrf0_evidence_threshold_bottom",
       "symbol_uuid": "a1cceae1-5653-5e5d-9476-84857014e270",
-      "reference": "R50026",
+      "reference": "R50027",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -722,7 +749,7 @@
     {
       "instance": "nrf0_evidence_hysteresis",
       "symbol_uuid": "59cbc255-44a4-5c71-b4c5-da850c04ba72",
-      "reference": "R50027",
+      "reference": "R50028",
       "mpn": "Yageo RC0402FR-071ML",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -731,7 +758,7 @@
     {
       "instance": "nrf0_evidence_output_pullup",
       "symbol_uuid": "a42232e8-8258-56ea-8a76-08349a8b17f4",
-      "reference": "R50028",
+      "reference": "R50029",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -740,7 +767,7 @@
     {
       "instance": "nrf1_evidence_threshold_top",
       "symbol_uuid": "0d255822-514d-50b1-8697-6bb34d8862f6",
-      "reference": "R50029",
+      "reference": "R50030",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -749,7 +776,7 @@
     {
       "instance": "nrf1_evidence_threshold_bottom",
       "symbol_uuid": "5fdf88b2-ef7d-5756-810c-cc71f1cb8608",
-      "reference": "R50030",
+      "reference": "R50031",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -758,7 +785,7 @@
     {
       "instance": "nrf1_evidence_hysteresis",
       "symbol_uuid": "1c8bb0f3-6c45-5e32-9b30-f2bd2d570b38",
-      "reference": "R50031",
+      "reference": "R50032",
       "mpn": "Yageo RC0402FR-071ML",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -767,7 +794,7 @@
     {
       "instance": "nrf1_evidence_output_pullup",
       "symbol_uuid": "54cd958e-a4c1-5ab2-8e05-13383ec033f3",
-      "reference": "R50032",
+      "reference": "R50033",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -776,7 +803,7 @@
     {
       "instance": "nrf2_evidence_threshold_top",
       "symbol_uuid": "737ba26b-e5b7-5ce7-88b1-96efd66c440e",
-      "reference": "R50033",
+      "reference": "R50034",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -785,7 +812,7 @@
     {
       "instance": "nrf2_evidence_threshold_bottom",
       "symbol_uuid": "d089402e-3008-5d1f-830c-38d96f318e92",
-      "reference": "R50034",
+      "reference": "R50035",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -794,7 +821,7 @@
     {
       "instance": "nrf2_evidence_hysteresis",
       "symbol_uuid": "21bbbf15-224d-57b0-978b-93bddd9c2ef1",
-      "reference": "R50035",
+      "reference": "R50036",
       "mpn": "Yageo RC0402FR-071ML",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -803,7 +830,7 @@
     {
       "instance": "nrf2_evidence_output_pullup",
       "symbol_uuid": "b3f15d12-f5d0-5d35-b6d8-e6db812833cd",
-      "reference": "R50036",
+      "reference": "R50037",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -812,7 +839,7 @@
     {
       "instance": "cc_evidence_threshold_top",
       "symbol_uuid": "f30c8ee1-93fe-5085-b3ee-2a685afacab7",
-      "reference": "R50037",
+      "reference": "R50038",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -821,7 +848,7 @@
     {
       "instance": "cc_evidence_threshold_bottom",
       "symbol_uuid": "c066cda0-db6a-5a6a-b951-92013b7df692",
-      "reference": "R50038",
+      "reference": "R50039",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -830,7 +857,7 @@
     {
       "instance": "cc_evidence_hysteresis",
       "symbol_uuid": "f1ca8f69-48ca-5359-8335-11c18e12d37a",
-      "reference": "R50039",
+      "reference": "R50040",
       "mpn": "Yageo RC0402FR-071ML",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -839,7 +866,7 @@
     {
       "instance": "cc_evidence_output_pullup",
       "symbol_uuid": "923e9b96-d974-5e3c-9d3a-e82a6850b43b",
-      "reference": "R50040",
+      "reference": "R50041",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -848,7 +875,7 @@
     {
       "instance": "voice_evidence_threshold_top",
       "symbol_uuid": "1b4e1c2e-1088-5df4-a336-60c2999a9781",
-      "reference": "R50041",
+      "reference": "R50042",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -857,7 +884,7 @@
     {
       "instance": "voice_evidence_threshold_bottom",
       "symbol_uuid": "faea01f1-b0e6-59e3-9aca-78b312da77c6",
-      "reference": "R50042",
+      "reference": "R50043",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -866,7 +893,7 @@
     {
       "instance": "voice_evidence_hysteresis",
       "symbol_uuid": "a61a5de8-3920-5775-afab-59bff89deeb5",
-      "reference": "R50043",
+      "reference": "R50044",
       "mpn": "Yageo RC0402FR-071ML",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -875,7 +902,7 @@
     {
       "instance": "voice_evidence_output_pullup",
       "symbol_uuid": "d4dcb14f-774c-5f60-a9c1-58328980576f",
-      "reference": "R50044",
+      "reference": "R50045",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -884,7 +911,7 @@
     {
       "instance": "any_tx_aon_pullup",
       "symbol_uuid": "d67b5649-2491-530b-8e13-2f0a32821218",
-      "reference": "R50045",
+      "reference": "R50046",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -1049,7 +1076,7 @@
   ],
   "review_boundary": {
     "complete": [
-      "all 101 RF50 ledger instances have exact MPN, contacts, footprint and circuit nets",
+      "all 104 RF50 ledger instances have exact MPN, contacts, footprint and circuit nets",
       "all RF50 hierarchy interfaces terminate on physical component contacts",
       "RUN/KILL, POR, watchdog, fault latch, reset sinks and TX request gates are explicit",
       "five RF detector channels, five comparator channels, evidence mask and any-TX diode OR are explicit",

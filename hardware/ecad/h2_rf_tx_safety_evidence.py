@@ -80,6 +80,7 @@ def footprint_for(instance: str, device_key: str) -> str:
         "safe_rearm_buffer": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
         "safe_latch": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
         "safe_reset_buffer": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
+        "safe_fault_reset_buffer": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
         "safe_reset_sink_b": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
         "safe_gate_a": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
         "safe_gate_b": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
@@ -149,8 +150,8 @@ def build() -> tuple[dict[Path, str], dict]:
         row for row in ledger["rows"]
         if row["project"] == PROJECT_ID and row["sheet"] == SHEET_ID
     ]
-    if len(rows) != 101:
-        raise ValueError(f"{SHEET_ID} must own exactly 101 rows, got {len(rows)}")
+    if len(rows) != 104:
+        raise ValueError(f"{SHEET_ID} must own exactly 104 rows, got {len(rows)}")
     interface_order = list(next(
         row["interfaces"] for row in root_manifest["sheets"] if row["id"] == SHEET_ID
     ))
@@ -312,7 +313,7 @@ def build() -> tuple[dict[Path, str], dict]:
         ],
         "review_boundary": {
             "complete": [
-                "all 101 RF50 ledger instances have exact MPN, contacts, footprint and circuit nets",
+                "all 104 RF50 ledger instances have exact MPN, contacts, footprint and circuit nets",
                 "all RF50 hierarchy interfaces terminate on physical component contacts",
                 "RUN/KILL, POR, watchdog, fault latch, reset sinks and TX request gates are explicit",
                 "five RF detector channels, five comparator channels, evidence mask and any-TX diode OR are explicit",
@@ -333,9 +334,9 @@ def build() -> tuple[dict[Path, str], dict]:
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     summary = manifest["summary"]
     expected = {
-        "ledger_instances": 101, "schematic_symbols": 101,
-        "board_fitted_symbols": 101, "hierarchical_interfaces": 74,
-        "physical_contacts": 380, "rf_detector_channels": 5,
+        "ledger_instances": 104, "schematic_symbols": 104,
+        "board_fitted_symbols": 104, "hierarchical_interfaces": 75,
+        "physical_contacts": 392, "rf_detector_channels": 5,
         "comparator_channels": 5, "independent_watchdogs": 2,
         "tx_gate_packages": 3, "evidence_mask_inputs": 9,
         "custom_footprints": 1, "intentional_no_connect_pins": 22,
@@ -344,9 +345,9 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     if summary != expected:
         raise ValueError(f"H2.3.12 accounting drifted: {summary}")
     schematic = generated[OUTPUT_SCH]
-    if schematic.count("\n\t(symbol\n") != 101:
+    if schematic.count("\n\t(symbol\n") != 104:
         raise ValueError("RF50 symbol accounting mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 74:
+    if schematic.count("\n\t(hierarchical_label \"") != 75:
         raise ValueError("RF50 hierarchy interface accounting mismatch")
     for row in manifest["instances"]:
         if not row["footprint"]:
@@ -355,7 +356,8 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "cc_evidence_hold_diode.NC", "voice_evidence_hold_diode.NC",
         "det_nrf0.V_DN", "det_nrf1.V_DN", "det_nrf2.V_DN",
         "det_cc.V_DN", "det_voice.V_DN", "evidence_or_4.K2",
-        "safe_rearm_buffer.NC", "safe_reset_buffer.NC", "safe_reset_sink_b.D2",
+        "safe_rearm_buffer.NC",
+        "safe_reset_buffer.NC", "safe_reset_sink_b.D2",
         "safe_run_fault_iso.NC", "safe_supervisor.CT",
         "safety_fault_request_iso.NC", "safety_s3_reset_iso.NC",
         "safety_control_esd.D1_MINUS", "safety_control_esd.D2_PLUS",

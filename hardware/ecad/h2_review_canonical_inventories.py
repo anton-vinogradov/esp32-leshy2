@@ -40,8 +40,8 @@ def build() -> tuple[str, dict]:
     fw = data["firmware_f2_import"]
     if h1.get("status") != "reviewed" or h1.get("final_acceptance", {}).get("status") != "accepted":
         raise ValueError("H1 physical acceptance is not reviewed")
-    if ledger.get("status") != "reviewed_complete_circuit_inventory" or len(ledger["rows"]) != 1035:
-        raise ValueError("H2 instance ledger is not the reviewed 1,035-row inventory")
+    if ledger.get("status") != "reviewed_complete_circuit_inventory" or len(ledger["rows"]) != 1048:
+        raise ValueError("H2 instance ledger is not the reviewed 1,048-row inventory")
     pin_counts = dict(Counter(row["instance"] for row in candidate["allocations"]))
     if pin_counts != {"s3": 33, "c5": 14, "rp": 48, "pd_controller": 5, "pack_admission": 13, "safety_controller": 17}:
         raise ValueError(f"programmable pin inventory drifted: {pin_counts}")

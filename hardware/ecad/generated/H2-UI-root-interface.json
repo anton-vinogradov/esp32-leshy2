@@ -5,19 +5,19 @@
   "project": "LESHY2-UI",
   "root_sheet": "UI_00_ROOT",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
-    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/ecad/H2-sheet-contract.json": "56fda7262e6b9adb97956b0c94ec49490e86672a5e6cdc24f80f50919231f81b"
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
+    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
+    "hardware/ecad/H2-sheet-contract.json": "a37128516052981f243fdca14134bbb5e68def8af75aea709c504eeb52f18ec3"
   },
   "summary": {
     "child_sheet_count": 9,
     "cross_sheet_net_count": 95,
-    "root_hierarchical_pin_count": 232,
-    "child_hierarchical_label_count": 232,
+    "root_hierarchical_pin_count": 233,
+    "child_hierarchical_label_count": 233,
     "known_child_stub_erc_violations": 0,
     "implemented_child_sheet_count": 9,
-    "circuit_symbols_placed": 390,
-    "suppressed_generated_library_copy_checks": 390,
+    "circuit_symbols_placed": 395,
+    "suppressed_generated_library_copy_checks": 395,
     "pcb_files_created": 0
   },
   "sheets": [
@@ -230,12 +230,12 @@
         "EV_N6_VOICE",
         "EV_N7_IR",
         "EV_N8_LORA_EXT",
+        "FAULT_ASSERT_N",
         "FAULT_LATCH_SENSE_AON",
         "IR_TX_EVIDENCE_N",
         "MIC_RAW",
         "POWER_FAULT_N",
         "POWER_GROUND",
-        "RF_RESET_KILL_GATE",
         "RP_ALERT_N",
         "RUN_PERMIT",
         "RX_SA518_AFOUT_ISOLATED",
@@ -268,7 +268,7 @@
     },
     {
       "id": "UI_50_TX_SAFETY_EVIDENCE",
-      "interface_count": 18,
+      "interface_count": 19,
       "interfaces": [
         "3V3_MAIN",
         "AON_SAFE_3V3",
@@ -280,8 +280,9 @@
         "EV_N0_S3",
         "EV_N1_C5",
         "EV_N7_IR",
+        "FAULT_ASSERT_N",
         "IR_TX_EVIDENCE_N",
-        "RF_RESET_KILL_GATE",
+        "RUN_PERMIT",
         "S3_DETECT_V",
         "S3_DETECT_VM",
         "S3_FORWARD_RF_SAMPLE",
@@ -553,6 +554,13 @@
       ]
     },
     {
+      "name": "FAULT_ASSERT_N",
+      "sheets": [
+        "UI_40_INTERBOARD_M1",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
       "name": "FAULT_LATCH_SENSE_AON",
       "sheets": [
         "UI_12_CONTROLS_INDICATORS",
@@ -678,13 +686,6 @@
       ]
     },
     {
-      "name": "RF_RESET_KILL_GATE",
-      "sheets": [
-        "UI_40_INTERBOARD_M1",
-        "UI_50_TX_SAFETY_EVIDENCE"
-      ]
-    },
-    {
       "name": "RP_ALERT_N",
       "sheets": [
         "UI_10_S3_CORE_MEMORY_BOOT",
@@ -695,7 +696,8 @@
       "name": "RUN_PERMIT",
       "sheets": [
         "UI_20_C5_RADIO_IR_SERVICE",
-        "UI_40_INTERBOARD_M1"
+        "UI_40_INTERBOARD_M1",
+        "UI_50_TX_SAFETY_EVIDENCE"
       ]
     },
     {
@@ -1039,7 +1041,7 @@
   "review_boundary": {
     "complete": [
       "all nine UI child sheets instantiated by the KiCad root",
-      "all 95 derived cross-sheet nets represented by 232 explicit named pins and child labels",
+      "all 95 derived cross-sheet nets represented by 233 explicit named pins and child labels",
       "one direct root rail joins only sheet pins carrying the same reviewed net name",
       "native KiCad ERC is empty; the disabled generated-library comparison is replaced by an exact independent shared-versus-embedded symbol check"
     ],

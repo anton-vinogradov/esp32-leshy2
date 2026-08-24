@@ -373,7 +373,7 @@ def outputs() -> tuple[dict[Path, str], dict]:
         "review_boundary": {
             "complete": [
                 "all nine UI child sheets instantiated by the KiCad root",
-                "all 95 derived cross-sheet nets represented by 232 explicit named pins and child labels",
+                "all 95 derived cross-sheet nets represented by 233 explicit named pins and child labels",
                 "one direct root rail joins only sheet pins carrying the same reviewed net name",
                 "native KiCad ERC is empty; the disabled generated-library comparison is replaced by an exact independent shared-versus-embedded symbol check",
             ],
@@ -496,12 +496,12 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     if summary != {
         "child_sheet_count": 9,
         "cross_sheet_net_count": 95,
-        "root_hierarchical_pin_count": 232,
-        "child_hierarchical_label_count": 232,
+        "root_hierarchical_pin_count": 233,
+        "child_hierarchical_label_count": 233,
         "known_child_stub_erc_violations": 0,
         "implemented_child_sheet_count": 9,
-        "circuit_symbols_placed": 390,
-        "suppressed_generated_library_copy_checks": 390,
+        "circuit_symbols_placed": 395,
+        "suppressed_generated_library_copy_checks": 395,
         "pcb_files_created": 0,
     }:
         raise ValueError(f"reviewed H2.2.1 interface accounting drifted: {summary}")

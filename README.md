@@ -119,14 +119,14 @@ remain unauthorized.
 <details open>
 <summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.6.2 -->
+<!-- current-substep: H3.6.3 -->
 
-**Exact marker: `H3.6.2`** — the [parameterized thermal model](docs/thermal-model.md)
-is reviewed with 21 machine checks; electrical maximum is separated from
-continuous operation and single faults are now traced to independent shutdown.
+**Exact marker: `H3.6.3`** — the [parameterized thermal model](docs/thermal-model.md)
+and [30-case single-fault review](docs/single-fault-review.md) are complete.
+The current work bounds ambient, duty, logging and uninterrupted 24–48-hour operation.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
-- ✅ `H2.0.1` — complete 1,035-row circuit inventory reviewed.
+- ✅ `H2.0.1` — complete 1,048-row circuit inventory reviewed.
 - ✅ `H2.0.2` — four projects, PCB boundaries and net names reviewed.
 - ✅ `H2.0.3` — HW↔FW/BSP contract and cross-repository drift checks reviewed.
 - ✅ `H2.1` — four independent KiCad projects and 28 native sheets created.
@@ -224,8 +224,8 @@ continuous operation and single faults are now traced to independent shutdown.
   - ✅ `H3.5.4` — [125 leaf and 22 cross-domain RF checks consolidated](docs/rf-verification-result.md).
 - ▶️ **`H3.6` — current:** thermal, fault-tree and unattended-operation verification.
   - ✅ `H3.6.1` — [board, battery and enclosure thermal model reviewed](docs/thermal-model.md); charger TREG/TSHUT corrected.
-  - ▶️ **`H3.6.2` — current:** single faults through independent shutdown and recovery.
-  - ⏳ `H3.6.3` — bounded 24–48-hour unattended operating envelope.
+  - ✅ `H3.6.2` — [30 single faults traced through independent shutdown and recovery](docs/single-fault-review.md).
+  - ▶️ **`H3.6.3` — current:** bounded 24–48-hour unattended operating envelope.
   - ⏳ `H3.6.4` — thermal and fault consolidation.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).

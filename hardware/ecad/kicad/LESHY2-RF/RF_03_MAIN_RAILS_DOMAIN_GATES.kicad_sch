@@ -9074,16 +9074,6 @@
 	)
 	(hierarchical_label "EXT_ANY_5V_EN_SAFE"
 		(shape bidirectional)
-		(at 276.86 45.72 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "5fdb493e-7fb6-5960-96c1-c4d695c11993")
-	)
-	(label "EXT_ANY_5V_EN_SAFE"
-		(at 312.42 45.72 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "d2364827-9b21-5f73-81cc-42c45708faf6")
-	)
-	(label "EXT_ANY_5V_EN_SAFE"
 		(at 231.14 172.72 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "8102b403-62db-5014-bb3b-5be7478f6e31")
@@ -9163,6 +9153,17 @@
 		(at 439.42 208.28 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "bb0d24f7-1c53-5dee-a56e-89971e406e69")
+	)
+	(hierarchical_label "FAULT_ASSERT_N"
+		(shape bidirectional)
+		(at 276.86 45.72 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "3cba973d-c9c6-5043-9b24-c5aaf853b88c")
+	)
+	(label "FAULT_ASSERT_N"
+		(at 312.42 45.72 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "ba6b49f0-6b3b-5469-b18f-15efcc671225")
 	)
 	(label "MAIN_3V3_FB"
 		(at 68.58 101.60 180)

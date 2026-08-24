@@ -6,8 +6,8 @@ H2.7 binds physical H1, production ECAD and the firmware F2 input into one verif
 
 | Boundary | Reviewed | Result |
 |---|---:|---|
-| H1 ↔ instance ledger ↔ symbols | 1035 rows / 1033 identities | 0 MPN/contact mismatches |
-| root hierarchy nets | 266 | all present in native netlists |
+| H1 ↔ instance ledger ↔ symbols | 1048 rows / 1046 identities | 0 MPN/contact mismatches |
+| root hierarchy nets | 268 | all present in native netlists |
 | M1 UI ↔ RF | 80 contacts / 51 nets | row-for-row identical |
 | architecture ↔ KiCad | 130 allocations | 0 pin/net mismatches |
 | H2 export ↔ firmware F2 | 125 MCU contacts | byte-identical, temporary pins forbidden |

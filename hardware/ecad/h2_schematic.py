@@ -70,6 +70,8 @@ def sheet_for(instance: str, frame: str) -> str:
         return "UI_13_AUDIO_CODEC_HEADSET"
     if instance == "s3_reset_gate_pullup":
         return "UI_50_TX_SAFETY_EVIDENCE"
+    if instance.startswith("safe_c5_"):
+        return "UI_50_TX_SAFETY_EVIDENCE"
     if instance in {
         "s3_tx_led", "c5_tx_led", "nrf0_tx_led", "nrf1_tx_led", "nrf2_tx_led",
         "cc_tx_led", "voice_tx_led", "ir_tx_led", "ext_tx_led",
@@ -111,7 +113,7 @@ def sheet_for(instance: str, frame: str) -> str:
         return "RF_32_SUBGHZ_VOICE"
     if instance.startswith(("sys_i2c_", "sys_int_")):
         return "UI_10_S3_CORE_MEMORY_BOOT"
-    if instance.startswith(("power_command_", "run_loop_", "power_fault_")):
+    if instance.startswith(("power_command_", "run_loop_", "power_fault_", "fault_assert_")):
         return "RF_50_TX_SAFETY_EVIDENCE"
     if instance.startswith(("power_zone_temp_", "rf_zone_temp_")):
         return "RF_03_MAIN_RAILS_DOMAIN_GATES"

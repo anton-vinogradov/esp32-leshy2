@@ -5,17 +5,17 @@
   "project": "LESHY2-RF",
   "sheet": "RF_32_SUBGHZ_VOICE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
     "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
-    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "bf695b5bc50c665d73918ad89ef92910441294c5ff92ecf122746f7f37e3e943"
+    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "000f3c8878d4c687e9fb81edd54cc171ff51e367cf81625a686f12e017b360c0"
   },
   "summary": {
-    "ledger_instances": 116,
-    "schematic_symbols": 116,
-    "board_fitted_symbols": 116,
-    "hierarchical_interfaces": 32,
-    "physical_package_contacts": 363,
+    "ledger_instances": 119,
+    "schematic_symbols": 119,
+    "board_fitted_symbols": 119,
+    "hierarchical_interfaces": 35,
+    "physical_package_contacts": 372,
     "cc1101_package_contacts": 21,
     "sa518_module_contacts": 20,
     "independent_rf_paths": 2,
@@ -1184,6 +1184,36 @@
       "footprint_status": "manufacturer_or_kicad_exact_package",
       "pin_count": 6,
       "board_fitted": true
+    },
+    {
+      "instance": "cc_backup_gate",
+      "symbol_uuid": "84850e83-7dab-5965-a1bf-9d9bb99d343d",
+      "reference": "U32018",
+      "mpn": "SN74LVC1G08DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "cc_backup_gate_bypass",
+      "symbol_uuid": "a20f5cf0-0ad8-5b1f-b230-8258fa4b85bb",
+      "reference": "C32043",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_efuse_en_pullup",
+      "symbol_uuid": "2d194742-96ae-5718-b6fd-5d8764abd478",
+      "reference": "R32043",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
     }
   ],
   "physical_net_aliases_collapsed": {
@@ -1195,7 +1225,6 @@
     "CC_RF_ESD_RETURN": "POWER_GROUND",
     "CC_RF_GROUND": "POWER_GROUND",
     "CC_SMA_RF_GROUND": "POWER_GROUND",
-    "VOICE_EFUSE_EN": "VVOICE_RAW_4V",
     "VOICE_IO_QOD": "VVOICE_IO_3V3",
     "VOICE_PD": "VOICE_READY",
     "VOICE_RF_ESD_RETURN": "POWER_GROUND",
@@ -1283,7 +1312,7 @@
   ],
   "review_boundary": {
     "complete": [
-      "all 116 RF32 ledger instances, 363 physical contacts, 32 hierarchy interfaces and eleven intentional NC contacts are explicit",
+      "all 119 RF32 ledger instances, 372 physical contacts, 35 hierarchy interfaces and eleven intentional NC contacts are explicit",
       "CC1101 and SA518 have independent command, power, RF, ESD and actual-transmit sample paths",
       "primary TI, NiceRF, TTM, Infineon, Nexperia and GCT sources determine the selected bodies and physical contacts",
       "native KiCad parses RF32 in the live RF/power hierarchy with every remaining finding machine-accounted"

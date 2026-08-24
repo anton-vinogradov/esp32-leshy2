@@ -5,16 +5,16 @@
   "project": "LESHY2-RF",
   "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
     "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
-    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "bf695b5bc50c665d73918ad89ef92910441294c5ff92ecf122746f7f37e3e943"
+    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "000f3c8878d4c687e9fb81edd54cc171ff51e367cf81625a686f12e017b360c0"
   },
   "summary": {
     "ledger_instances": 69,
     "schematic_symbols": 69,
     "board_fitted_symbols": 69,
-    "hierarchical_interfaces": 21,
+    "hierarchical_interfaces": 22,
     "physical_package_contacts": 186,
     "aon_buck_package_pins": 8,
     "aon_efuse_package_pads": 7,
@@ -667,7 +667,7 @@
       "AON eFuse exposed pad is explicit and both HotRod eFuses expose all ten real package contacts",
       "TPS259470 AUXOFF is correctly treated as an unused open-drain output rather than a fast-off input",
       "main PG and all qualified accessory current, thermal and voltage faults share one POWER_FAULT_N aggregate",
-      "all twenty-one hierarchy interfaces and three intentional no-connect contacts are explicit"
+      "all twenty-two hierarchy interfaces and three intentional no-connect contacts are explicit"
     ],
     "deferred": [
       "the single raw main-converter PG diagnostic pad is instantiated by RF60",

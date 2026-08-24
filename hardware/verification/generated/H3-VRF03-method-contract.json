@@ -3,8 +3,8 @@
   "stage": "H3.0.3",
   "status": "reviewed_reproducible_methods_and_pass_fail_frozen",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "c1654e345e87e79a8694afdf00487f7b7e1666ebd97ceb2b535320a909a27d55",
-    "hardware/verification/generated/H3-VRF02-parameter-inventory.json": "30ae9418566286b0b34d61b1f7a7feb0f81a9a2708172b4fdc6f64295b99cde7"
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "8640d211a0e1394bab10d056f05f0816753f04593ddae76c85f51899530a59c6",
+    "hardware/verification/generated/H3-VRF02-parameter-inventory.json": "61289c1a55de36c0168e4454d078352e1f0fa8ae8406601a0182d5eb6bc5c3c7"
   },
   "toolchain": {
     "required_python": ">=3.12,<3.15",

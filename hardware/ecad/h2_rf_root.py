@@ -276,7 +276,7 @@ def outputs() -> tuple[dict[Path, str], dict]:
         "review_boundary": {
             "complete": [
                 "all twelve RF/power child sheets are instantiated by the KiCad root",
-                "all 157 derived cross-sheet nets are represented by 381 explicit named pins and child labels",
+                "all 159 derived cross-sheet nets are represented by 388 explicit named pins and child labels",
                 "one direct root rail joins only sheet pins carrying the same reviewed net name",
                 "the 51-net RF/power side of M1 is represented without reserves or implicit globals",
                 "native KiCad accepts the complete hierarchy with no child stubs or deferred fixture labels",
@@ -375,9 +375,9 @@ def parse_check(generated: dict[Path, str], manifest: dict) -> None:
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     summary = manifest["summary"]
     expected = {
-        "child_sheet_count": 12, "cross_sheet_net_count": 157,
-        "root_hierarchical_pin_count": 381,
-        "child_hierarchical_label_count": 381,
+        "child_sheet_count": 12, "cross_sheet_net_count": 159,
+        "root_hierarchical_pin_count": 388,
+        "child_hierarchical_label_count": 388,
         "known_child_stub_erc_violations": 0,
         "implemented_child_sheet_count": 12,
         "circuit_symbols_placed": summary["circuit_symbols_placed"],
@@ -389,9 +389,9 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     root = generated[ROOT_PATH]
     if root.count("\n\t(sheet\n") != 12:
         raise ValueError("RF/power root child-sheet count mismatch")
-    if root.count("\n\t\t(pin \"") != 381:
+    if root.count("\n\t\t(pin \"") != 388:
         raise ValueError("RF/power root hierarchical-pin count mismatch")
-    if root.count("\n\t(wire\n") != 538 or root.count("\n\t(junction ") != 381:
+    if root.count("\n\t(wire\n") != 547 or root.count("\n\t(junction ") != 388:
         raise ValueError("RF/power root rail accounting mismatch")
     labels = sum(
         content.count("\n\t(hierarchical_label \"")
@@ -400,16 +400,16 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     )
     # The first root pass in regenerate_h2 intentionally precedes child
     # regeneration so changed interfaces can be published to those children.
-    # During that bootstrap pass RF60 may still carry the previous 362 labels;
-    # the second root pass and repository tests require the final 381.
-    if not 362 <= labels <= 381:
+    # During that bootstrap pass changed children may still carry the previous
+    # interface set; the second root pass and repository tests require 388.
+    if not 362 <= labels <= 388:
         raise ValueError("RF/power child-label count mismatch")
     if "\n\t(label \"" in root or "\n\t(global_label \"" in root:
         raise ValueError("RF/power root may not hide interfaces behind labels")
     required = {
         "POWER_GROUND", "SAFETY_GROUND", "PROTECTED_PACK_POSITIVE",
         "AON_SAFE_3V3", "3V3_MAIN", "RUN_PERMIT", "POWER_FAULT_N",
-        "RF_RESET_KILL_GATE", "S3_USB_DP", "S3_USB_DM", "S3_RP_IPC_SCK",
+        "FAULT_ASSERT_N", "S3_USB_DP", "S3_USB_DM", "S3_RP_IPC_SCK",
         "SYS_I2C_SDA", "SYS_I2C_SCL",
         "EV_N2_NRF0", "EV_N3_NRF1", "EV_N4_NRF2", "EV_N5_CC",
         "EV_N6_VOICE", "EV_N8_LORA_EXT", "FAULT_LATCH_SENSE_AON",

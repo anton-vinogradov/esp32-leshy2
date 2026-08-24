@@ -319,7 +319,7 @@ def build() -> tuple[dict[Path, str], dict]:
                 "AON eFuse exposed pad is explicit and both HotRod eFuses expose all ten real package contacts",
                 "TPS259470 AUXOFF is correctly treated as an unused open-drain output rather than a fast-off input",
                 "main PG and all qualified accessory current, thermal and voltage faults share one POWER_FAULT_N aggregate",
-                "all twenty-one hierarchy interfaces and three intentional no-connect contacts are explicit",
+                "all twenty-two hierarchy interfaces and three intentional no-connect contacts are explicit",
             ],
             "deferred": [
                 "the single raw main-converter PG diagnostic pad is instantiated by RF60",
@@ -336,7 +336,7 @@ def build() -> tuple[dict[Path, str], dict]:
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     expected = {
         "ledger_instances": 69, "schematic_symbols": 69,
-        "board_fitted_symbols": 69, "hierarchical_interfaces": 21,
+        "board_fitted_symbols": 69, "hierarchical_interfaces": 22,
         "physical_package_contacts": 186, "aon_buck_package_pins": 8,
         "aon_efuse_package_pads": 7, "main_efuse_package_pads": 10,
         "external_efuse_package_pads": 10, "independent_switchmode_domains": 3,
@@ -348,7 +348,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     schematic = generated[OUTPUT_SCH]
     if schematic.count("\n\t(symbol\n") != 69:
         raise ValueError("RF03 symbol accounting mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 21:
+    if schematic.count("\n\t(hierarchical_label \"") != 22:
         raise ValueError("RF03 hierarchy accounting mismatch")
     expected_nc = {"aon_buck.FB_VSET", "ext_efuse.AUXOFF", "ext_evidence_buffer.NC"}
     if set(manifest["intentional_no_connect_endpoints"]) != expected_nc:

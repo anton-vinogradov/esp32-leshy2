@@ -65,6 +65,8 @@ def footprint_for(instance: str, device_key: str) -> str:
     exact = {
         "ir_evidence_amp": "Package_TO_SOT_SMD:SOT-23-5",
         "safe_reset_sink_a": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+        "safe_c5_reset_buffer": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
+        "safe_c5_fault_reset_buffer": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
         "det_s3": "Package_TO_SOT_SMD:TSOT-23-6",
         "det_c5": "Package_TO_SOT_SMD:TSOT-23-6",
         "det_ir": "Leshy2:VEMD1060X01",
@@ -114,8 +116,8 @@ def build() -> tuple[dict[Path, str], dict]:
         row for row in ledger["rows"]
         if row["project"] == PROJECT_ID and row["sheet"] == SHEET_ID
     ]
-    if len(rows) != 28:
-        raise ValueError(f"{SHEET_ID} must own exactly 28 rows, got {len(rows)}")
+    if len(rows) != 33:
+        raise ValueError(f"{SHEET_ID} must own exactly 33 rows, got {len(rows)}")
     interface_order = list(next(
         row["interfaces"] for row in root_manifest["sheets"] if row["id"] == SHEET_ID
     ))
@@ -262,7 +264,7 @@ def build() -> tuple[dict[Path, str], dict]:
         ],
         "review_boundary": {
             "complete": [
-                "all 28 UI50 ledger instances have exact MPN, contacts, footprint and circuit nets",
+                "all 33 UI50 ledger instances have exact MPN, contacts, footprint and circuit nets",
                 "all 18 hierarchy interfaces terminate on real component contacts",
                 "S3 RF, C5 RF and IR optical evidence paths plus reset-kill sinks are explicit",
                 "all threshold, hysteresis, output pull-up, bypass and analog-return networks are instantiated",
@@ -283,20 +285,23 @@ def build() -> tuple[dict[Path, str], dict]:
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     summary = manifest["summary"]
     if summary != {
-        "ledger_instances": 28, "schematic_symbols": 28,
-        "board_fitted_symbols": 28, "hierarchical_interfaces": 18,
-        "physical_contacts": 83, "rf_detector_channels": 2,
+        "ledger_instances": 33, "schematic_symbols": 33,
+        "board_fitted_symbols": 33, "hierarchical_interfaces": 19,
+        "physical_contacts": 99, "rf_detector_channels": 2,
         "optical_detector_channels": 1, "comparator_channels": 4,
         "reset_sink_channels": 2, "custom_footprints": 1,
-        "intentional_no_connect_pins": 1, "pcb_files_created": 0,
+        "intentional_no_connect_pins": 3, "pcb_files_created": 0,
     }:
         raise ValueError(f"H2.2.9 accounting drifted: {summary}")
     schematic = generated[OUTPUT_SCH]
-    if schematic.count("\n\t(symbol\n") != 28:
+    if schematic.count("\n\t(symbol\n") != 33:
         raise ValueError("UI50 symbol accounting mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 18:
+    if schematic.count("\n\t(hierarchical_label \"") != 19:
         raise ValueError("UI50 hierarchy interface accounting mismatch")
-    if manifest["intentional_no_connect_endpoints"] != ["evidence_cmp_a.OUT4"]:
+    if manifest["intentional_no_connect_endpoints"] != [
+        "evidence_cmp_a.OUT4", "safe_c5_fault_reset_buffer.NC",
+        "safe_c5_reset_buffer.NC",
+    ]:
         raise ValueError("UI50 no-connect accounting drifted")
     for row in manifest["instances"]:
         if not row["footprint"]:

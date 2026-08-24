@@ -32,18 +32,21 @@ REVIEWED_NETS = {
     "LESHY2-RF": (
         "AON_SAFE_3V3", "RUN_LOOP_RAW", "RUN_EDGE", "SAFE_REARM_DELAY",
         "SAFE_REARM_CLK", "FAULT_ASSERT_N", "SAFE_CLEAR_N",
+        "FAULT_ASSERT_SENSE",
         "SAFETY_WATCHDOG_WDI", "POR_N", "FAULT_LATCH_SENSE_AON", "RUN_PERMIT",
         "RF_RESET_KILL_GATE", "S3_RESET_KILL_GATE", "S3_FAULT_RESET_REQUEST",
-        "SAFETY_FAULT_REQUEST", "POWER_ZONE_TEMP_ADC", "RF_ZONE_TEMP_ADC",
+        "SAFETY_FAULT_REQUEST", "POWER_COMMAND_OFF_N", "POWER_ZONE_TEMP_ADC", "RF_ZONE_TEMP_ADC",
         "UI_ZONE_TEMP_ADC", "POWER_FAULT_N", "ANY_TX_AON_N", "RP_ANY_TX_N",
-        "NRF0_CE_SAFE", "NRF1_CE_SAFE", "NRF2_CE_SAFE", "NRF_GROUP_PWR_EN_SAFE",
-        "CC_PWR_EN_SAFE", "VOICE_DOMAIN_EN_SAFE", "VOICE_PTT_SAFE_N",
+        "NRF0_CE_SAFE", "NRF1_CE_SAFE", "NRF2_CE_SAFE",
+        "NRF_GROUP_PWR_EN_PRIMARY", "NRF_GROUP_PWR_EN_SAFE",
+        "CC_PWR_EN_PRIMARY", "CC_PWR_EN_SAFE", "VOICE_DOMAIN_EN_SAFE",
+        "VOICE_EFUSE_BACKUP_EN_N", "VOICE_PTT_SAFE_N",
         "EXT_ANY_5V_EN_SAFE", "U214_5V_EN_SAFE", "UNIT_5V_EN_SAFE",
         "EV_N0_S3", "EV_N1_C5", "EV_N2_NRF0", "EV_N3_NRF1", "EV_N4_NRF2",
         "EV_N5_CC", "EV_N6_VOICE", "EV_N7_IR", "EV_N8_LORA_EXT",
     ),
     "LESHY2-UI": (
-        "RUN_PERMIT", "RF_RESET_KILL_GATE", "S3_RESET_KILL_GATE",
+        "RUN_PERMIT", "FAULT_ASSERT_N", "C5_RESET_KILL_GATE", "S3_RESET_KILL_GATE",
         "S3_RESET_N", "C5_RESET_N", "IR_TX_CARRIER_SAFE", "UI_ZONE_TEMP_ADC",
         "EV_N0_S3", "EV_N1_C5", "EV_N2_NRF0", "EV_N3_NRF1", "EV_N4_NRF2",
         "EV_N5_CC", "EV_N6_VOICE", "EV_N7_IR", "EV_N8_LORA_EXT",
@@ -53,7 +56,10 @@ REVIEWED_NETS = {
 CRITICAL_INSTANCES = (
     "power_command_switch", "safe_supervisor", "safety_controller", "safety_watchdog",
     "safe_conditioner", "safe_rearm_buffer", "safe_latch", "safe_reset_buffer", "safe_reset_sink_a",
-    "safe_reset_sink_b", "safe_gate_a", "safe_gate_b", "safe_ptt_or",
+    "safe_reset_sink_b", "safe_c5_reset_buffer", "safe_c5_fault_reset_buffer",
+    "safe_fault_reset_buffer", "safe_gate_a", "safe_gate_b", "nrf_backup_gate",
+    "cc_backup_gate", "fault_assert_backup_pulldown", "voice_efuse_en_pullup", "safe_ptt_or",
+    "fault_assert_sense_series",
     "safety_fault_request_iso", "safety_s3_reset_iso", "power_zone_ntc",
     "rf_zone_ntc", "ui_zone_ntc", "evidence_mask", "evidence_main_isolator",
     "fault_led",
@@ -89,8 +95,8 @@ def build() -> tuple[dict[Path, str], dict]:
         raise ValueError("physical-only re-arm contract drifted")
     if len(safety["tx_gate_map"]) != 9 or len(safety["evidence"]["channels"]) != 9:
         raise ValueError("nine TX gate/evidence channels must remain explicit")
-    if len(safety["fault_matrix"]) != 10:
-        raise ValueError("fault matrix must retain ten reviewed source classes")
+    if len(safety["fault_matrix"]) != 11:
+        raise ValueError("fault matrix must retain eleven reviewed source classes")
 
     reference_maps, details = instance_reference_maps()
     actual_nets = {}
@@ -151,29 +157,38 @@ def build() -> tuple[dict[Path, str], dict]:
                          PROJECTS["LESHY2-UI"], PROJECTS["LESHY2-RF"])
         },
         "hierarchy_exports": stats,
-        "corrected_findings": [{
-            "id": "H2.5.5-F01",
-            "severity": "hil_blocking",
-            "finding": "the safety contract promised watchdog, latch and safe-gate observation points but 15 distinct electrical nodes had no physical copper pad",
-            "correction": "RF60 now contains 52 BOM-free pads; WDO_N uses the shared FAULT_ASSERT_N pad, FAULT_KILL uses its implemented FAULT_LATCH_SENSE_AON name and RP reset uses TP_RP_RESET_N",
-            "evidence": "every normalized safety_contract.test_points identifier is instantiated on UI60 or RF60 and every selected safety net matches the complete KiCad hierarchy",
-        }],
+        "corrected_findings": [
+            {
+                "id": "H2.5.5-F01",
+                "severity": "hil_blocking",
+                "finding": "the safety contract promised watchdog, latch and safe-gate observation points but 15 distinct electrical nodes had no physical copper pad",
+                "correction": "RF60 now contains 52 BOM-free pads; WDO_N uses the shared FAULT_ASSERT_N pad, FAULT_KILL uses its implemented FAULT_LATCH_SENSE_AON name and RP reset uses TP_RP_RESET_N",
+                "evidence": "every normalized safety_contract.test_points identifier is instantiated on UI60 or RF60 and every selected safety net matches the complete KiCad hierarchy",
+            },
+            {
+                "id": "H3.6.2-F01",
+                "severity": "single_fault_containment",
+                "finding": "the former fan-out reused RUN_PERMIT-derived qualification for every hazardous endpoint, so one stuck-permissive latch or primary gate was not independently contained",
+                "correction": "M1 contact 34 now carries direct FAULT_ASSERT_N; separate C5/RP reset sinks, nRF/CC backup gates, the voice eFuse clamp and independent expansion-branch inputs bypass the primary latch path",
+                "evidence": "the primary enable nets, final safe enables and direct fault plane all have distinct exact component membership in the complete UI and RF KiCad hierarchies",
+            },
+        ],
         "reviewed_net_count": len(reviewed),
         "reviewed_nets": reviewed,
         "critical_components": parts,
         "physical_safety_test_point_count": len(required_pads),
         "fault_matrix": safety["fault_matrix"],
         "shutdown_chain": [
-            "maintained RUN/KILL, open run loop, TPS3435 WDO_N or isolated safety-controller request asserts FAULT_ASSERT_N",
-            "SN74LVC1G74 asynchronously latches the fault; software cannot clear or re-arm it",
-            "RUN_PERMIT falls and hardware gates disable nRF24 CE/rail, CC rail, voice rail/PTT, IR TX and both expansion branches",
-            "C5 and RP reset sinks assert; S3 receives a bounded fault-reset request and may only run the signed fault-only renderer while UI temperature is safe",
+            "maintained RUN/KILL, open run loop, TPS3435 WDO_N or isolated safety-controller request pulls FAULT_ASSERT_N low",
+            "FAULT_ASSERT_N asynchronously clears the SN74LVC1G74 RUN_PERMIT latch; software cannot set or re-arm it",
+            "the primary RUN_PERMIT path and electrically separate FAULT_ASSERT_N path both disable nRF24 and CC rails, voice power/PTT and both expansion branches",
+            "independent C5 and RP fault-reset sinks assert; the shared IR rail falls with C5 reset, while S3 receives a bounded fault-reset request and may only run the signed fault-only renderer while UI temperature is safe",
             "three NTC zones, aggregate power fault and nine physical-TX evidence channels remain visible to the independent AON safety controller",
             "restart requires all release conditions safe plus a physical KILL-to-RUN cycle",
         ],
         "review_boundary": {
             "complete": [
-                "the independent MSPM0 safety controller, TPS3435 watchdog, AON supervisor and asynchronous latch are exact fitted parts",
+                "the independent MSPM0 safety controller, TPS3435 watchdog, AON supervisor, asynchronous latch and backup endpoint gates are exact fitted parts",
                 "all selected fault, temperature, evidence, reset and safe-gate nets match actual complete KiCad netlists",
                 "all contractually required safety measurements now terminate on physical copper",
             ],

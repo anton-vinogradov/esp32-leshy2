@@ -11,8 +11,8 @@
   ],
   "policy": "Every mechanically rendered body has one exact instance, MPN or explicit TBD, sourced envelope, datum, orientation and interface direction.",
   "summary": {
-    "rendered_physical_instances": 182,
-    "exact_mpn_instances": 182,
+    "rendered_physical_instances": 187,
+    "exact_mpn_instances": 187,
     "explicit_mpn_tbd_instances": 0,
     "h1_blockers": 0,
     "h5_received_sample_gates": 14
@@ -456,6 +456,33 @@
       "position_mm": [
         24.0,
         8.3
+      ]
+    },
+    {
+      "instance": "cc_backup_gate",
+      "device_key": "ti_sn74lvc1g08_dckr",
+      "mpn": "SN74LVC1G08DCKR",
+      "role": "independent FAULT_ASSERT_N CC1101 rail qualifier",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        1.25,
+        1.1
+      ],
+      "qualification": "verified_exact_partial_power_down_and_gate",
+      "source": {
+        "document": "SN74LVC1G08 Single 2-Input Positive-AND Gate datasheet",
+        "version": "Rev. AA",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g08.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        57.0,
+        100.0
       ]
     },
     {
@@ -2663,6 +2690,33 @@
       "evidence_gates": []
     },
     {
+      "instance": "nrf_backup_gate",
+      "device_key": "ti_sn74lvc1g08_dckr",
+      "mpn": "SN74LVC1G08DCKR",
+      "role": "independent FAULT_ASSERT_N nRF rail qualifier",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        1.25,
+        1.1
+      ],
+      "qualification": "verified_exact_partial_power_down_and_gate",
+      "source": {
+        "document": "SN74LVC1G08 Single 2-Input Positive-AND Gate datasheet",
+        "version": "Rev. AA",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g08.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        54.0,
+        100.0
+      ]
+    },
+    {
       "instance": "nvdc_charger",
       "device_key": "ti_bq25798_rqmr",
       "mpn": "Texas Instruments BQ25798RQMR",
@@ -3837,6 +3891,60 @@
       "evidence_gates": []
     },
     {
+      "instance": "safe_c5_fault_reset_buffer",
+      "device_key": "ti_sn74lvc1g07_dckr",
+      "mpn": "SN74LVC1G07DCKR",
+      "role": "UI-local direct FAULT_ASSERT_N C5 reset sink",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        1.25,
+        1.1
+      ],
+      "qualification": "verified_exact_open_drain_partial_power_buffer",
+      "source": {
+        "document": "SN74LVC1G07 Single Buffer/Driver With Open-Drain Output datasheet",
+        "version": "Rev. V",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g07.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        25.0,
+        82.0
+      ]
+    },
+    {
+      "instance": "safe_c5_reset_buffer",
+      "device_key": "ti_sn74lvc1g06_dckr",
+      "mpn": "Texas Instruments SN74LVC1G06DCKR",
+      "role": "UI-local RUN_PERMIT C5 reset inverter",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        1.25,
+        1.1
+      ],
+      "qualification": "verified_exact_fail_low_reset_gate_driver",
+      "source": {
+        "document": "SN74LVC1G06 single inverter with open-drain output datasheet",
+        "version": "Rev. AB",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g06.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        22.0,
+        82.0
+      ]
+    },
+    {
       "instance": "safe_conditioner",
       "device_key": "nexperia_74lvc2g14gw_125",
       "mpn": "74LVC2G14GW,125",
@@ -3861,6 +3969,33 @@
       "position_mm": [
         42.0,
         94.0
+      ]
+    },
+    {
+      "instance": "safe_fault_reset_buffer",
+      "device_key": "ti_sn74lvc3g07_dcur",
+      "mpn": "SN74LVC3G07DCUR",
+      "role": "direct FAULT_ASSERT_N C5/RP reset and voice eFuse clamp",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.1,
+        2.0,
+        0.9
+      ],
+      "qualification": "verified_exact_aon_to_main_open_drain_isolator",
+      "source": {
+        "document": "SN74LVC3G07 Triple Buffer/Driver With Open-Drain Outputs datasheet",
+        "version": "Rev. R",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc3g07.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        44.5,
+        85.0
       ]
     },
     {

@@ -23,8 +23,8 @@ PROJECTS = {
     "L2-DISP-ADP-001-A": ECAD / "kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch",
 }
 SUPPRESSED_COUNTS = {
-    "LESHY2-UI": 390,
-    "LESHY2-RF": 682,
+    "LESHY2-UI": 395,
+    "LESHY2-RF": 690,
     "LESHY2-LORA-CAP-01": 27,
     "L2-DISP-ADP-001-A": 2,
 }

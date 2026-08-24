@@ -259,7 +259,7 @@
 				(pin passive line
 					(at -17.78 -34.29 0)
 					(length 5.08)
-					(name "RF_RESET_KILL_GATE" (effects (font (size 1.27 1.27))))
+					(name "FAULT_ASSERT_N" (effects (font (size 1.27 1.27))))
 					(number "34" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
@@ -1022,11 +1022,11 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "7faecdb3-7700-5f86-95f7-160b899f1218")
 	)
-	(hierarchical_label "RF_RESET_KILL_GATE"
+	(hierarchical_label "FAULT_ASSERT_N"
 		(shape bidirectional)
 		(at 147.32 166.37 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "040ecc5a-a2e0-5a52-9398-a4a06bea5823")
+		(uuid "623c8c48-070d-51cf-a137-748c189ccc5b")
 	)
 	(label "POWER_GROUND"
 		(at 147.32 168.91 0)

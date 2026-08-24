@@ -4,8 +4,8 @@
   "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
     "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
-    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "c1654e345e87e79a8694afdf00487f7b7e1666ebd97ceb2b535320a909a27d55"
+    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "8640d211a0e1394bab10d056f05f0816753f04593ddae76c85f51899530a59c6"
   },
   "policy": {
     "accepted_h2_baseline_is_immutable": true,
@@ -5397,7 +5397,7 @@
       "device_key": "tdk_c1005x7r1h104k050bb",
       "mpn": "TDK C1005X7R1H104K050BB",
       "kind": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
-      "instance_count": 143,
+      "instance_count": 148,
       "projects": [
         "LESHY2-LORA-CAP-01",
         "LESHY2-RF",
@@ -5829,17 +5829,20 @@
       "device_key": "ti_sn74lvc1g06_dckr",
       "mpn": "Texas Instruments SN74LVC1G06DCKR",
       "kind": "sc70_5_open_drain_inverting_buffer",
-      "instance_count": 2,
+      "instance_count": 3,
       "projects": [
         "LESHY2-LORA-CAP-01",
-        "LESHY2-RF"
+        "LESHY2-RF",
+        "LESHY2-UI"
       ],
       "sheets": [
         "CAP_30_TX_EVIDENCE",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "UI_50_TX_SAFETY_EVIDENCE"
       ],
       "roles": [
         "C5/RP fault-reset buffer",
+        "UI-local RUN_PERMIT C5 reset inverter",
         "sc70_5_open_drain_inverting_buffer"
       ],
       "lifecycle": "active_orderable",
@@ -5882,7 +5885,7 @@
       "device_key": "ti_sn74lvc1g07_dckr",
       "mpn": "SN74LVC1G07DCKR",
       "kind": "sc70_5_open_drain_noninverting_buffer",
-      "instance_count": 9,
+      "instance_count": 10,
       "projects": [
         "LESHY2-RF",
         "LESHY2-UI"
@@ -5893,9 +5896,11 @@
         "RF_50_TX_SAFETY_EVIDENCE",
         "UI_11_DISPLAY_TOUCH_STORAGE",
         "UI_12_CONTROLS_INDICATORS",
-        "UI_21_FM_AM_RECEIVER"
+        "UI_21_FM_AM_RECEIVER",
+        "UI_50_TX_SAFETY_EVIDENCE"
       ],
       "roles": [
+        "UI-local direct FAULT_ASSERT_N C5 reset sink",
         "sc70_5_open_drain_noninverting_buffer"
       ],
       "lifecycle": "active",
@@ -5938,17 +5943,22 @@
       "device_key": "ti_sn74lvc1g08_dckr",
       "mpn": "SN74LVC1G08DCKR",
       "kind": "sc70_5_single_and_gate_partial_power_down",
-      "instance_count": 2,
+      "instance_count": 4,
       "projects": [
+        "LESHY2-RF",
         "LESHY2-UI"
       ],
       "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_32_SUBGHZ_VOICE",
         "UI_13_AUDIO_CODEC_HEADSET",
         "UI_20_C5_RADIO_IR_SERVICE"
       ],
       "roles": [
         "CODEC_READY and AUDIO_ARM gate protecting S3 boot GPIO0",
-        "UI-local FAULT_KILL-qualified IR carrier gate"
+        "UI-local FAULT_KILL-qualified IR carrier gate",
+        "independent FAULT_ASSERT_N CC1101 rail qualifier",
+        "independent FAULT_ASSERT_N nRF rail qualifier"
       ],
       "lifecycle": "active_orderable",
       "source": {
@@ -6368,7 +6378,7 @@
       "device_key": "ti_sn74lvc3g07_dcur",
       "mpn": "SN74LVC3G07DCUR",
       "kind": "vssop8_triple_open_drain_noninverting_buffer",
-      "instance_count": 1,
+      "instance_count": 2,
       "projects": [
         "LESHY2-RF"
       ],
@@ -6376,6 +6386,7 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "roles": [
+        "direct FAULT_ASSERT_N C5/RP reset and voice eFuse clamp",
         "vssop8_triple_open_drain_noninverting_buffer"
       ],
       "lifecycle": "active_orderable",
@@ -8373,7 +8384,7 @@
       "device_key": "yageo_rc0402fr_07100kl",
       "mpn": "Yageo RC0402FR-07100KL",
       "kind": "100kohm_1pct_0402_charger_ilim_bottom_resistor",
-      "instance_count": 37,
+      "instance_count": 38,
       "projects": [
         "LESHY2-RF",
         "LESHY2-UI"
@@ -8467,7 +8478,7 @@
       "device_key": "yageo_rc0402fr_0710kl",
       "mpn": "Yageo RC0402FR-0710KL",
       "kind": "10kohm_1pct_0402_main_feedback_bottom_resistor",
-      "instance_count": 193,
+      "instance_count": 194,
       "projects": [
         "LESHY2-LORA-CAP-01",
         "LESHY2-RF",
@@ -8876,7 +8887,7 @@
       "device_key": "yageo_rc0402fr_071ml",
       "mpn": "Yageo RC0402FR-071ML",
       "kind": "1megohm_1pct_0402_service_vbus_bleeder",
-      "instance_count": 10,
+      "instance_count": 11,
       "projects": [
         "LESHY2-RF",
         "LESHY2-UI"
@@ -10194,7 +10205,7 @@
   ],
   "local_model_files": [],
   "summary": {
-    "registered_instances": 1035,
+    "registered_instances": 1048,
     "used_device_types": 217,
     "used_types_with_source": 217,
     "source_missing": 0,

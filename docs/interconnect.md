@@ -80,7 +80,7 @@ This closes physical bodies and the inter-board air channel, not PCB routing. Fa
 | `31` | `POWER_GROUND` | return | `return` |
 | `32` | `RUN_PERMIT` | RF→UI | `safety` |
 | `33` | `EV_N4_NRF2` | RF→UI | `tx_evidence` |
-| `34` | `RF_RESET_KILL_GATE` | RF→UI | `safety` |
+| `34` | `FAULT_ASSERT_N` | RF→UI | `safety` |
 | `35` | `POWER_GROUND` | return | `return` |
 | `36` | `EV_N0_S3` | UI→RF | `tx_evidence` |
 | `37` | `EV_N1_C5` | UI→RF | `tx_evidence` |

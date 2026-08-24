@@ -8264,11 +8264,6 @@
 		(uuid "bf008cef-10e1-595a-a6a6-4bf0b94843a8")
 	)
 	(label "3V3_MAIN"
-		(at 27.94 129.54 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "fcac159b-9aa5-5258-b9b9-122a02b80154")
-	)
-	(label "3V3_MAIN"
 		(at 170.18 149.86 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "4203585a-4441-5ec2-a2bc-819f8807aa42")
@@ -8900,6 +8895,11 @@
 		(at 241.30 119.38 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "d51126bb-eebc-52e1-ab61-f9da43941d1f")
+	)
+	(label "IR_RX_QOD"
+		(at 27.94 129.54 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "ac9bcbf8-d9df-5ad2-b6fc-c31b7c510f70")
 	)
 	(label "IR_TX_CARRIER"
 		(at 27.94 60.96 0)

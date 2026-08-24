@@ -19,6 +19,7 @@ H2.5 is closed: the selected safety-critical paths agree with the complete nativ
 - `H2.5.3-F01` — C5 service VBUS had a physical sense pad while the equivalent RP VBUS observation existed only in the abstract service contract → one BOM-free TP_RP_SERVICE_VBUS_SENSE copper pad now completes the symmetric data-only USB boundary
 - `H2.5.4-F01` — VOICE_QUIET and VOICE_INTERFACE_QUIET retained obsolete abstract VOICE_PTT_N and VOICE_DOMAIN_EN names → the contracts now name the implemented request, safety-gated and module-side PTT nets plus request and safe domain-enable nets
 - `H2.5.5-F01` — the safety contract promised watchdog, latch and safe-gate observation points but 15 distinct electrical nodes had no physical copper pad → RF60 now contains 52 BOM-free pads; WDO_N uses the shared FAULT_ASSERT_N pad, FAULT_KILL uses its implemented FAULT_LATCH_SENSE_AON name and RP reset uses TP_RP_RESET_N
+- `H3.6.2-F01` — the former fan-out reused RUN_PERMIT-derived qualification for every hazardous endpoint, so one stuck-permissive latch or primary gate was not independently contained → M1 contact 34 now carries direct FAULT_ASSERT_N; separate C5/RP reset sinks, nRF/CC backup gates, the voice eFuse clamp and independent expansion-branch inputs bypass the primary latch path
 
 ## H2.5.6 result
 

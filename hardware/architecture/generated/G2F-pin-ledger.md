@@ -528,15 +528,15 @@ Decision `DEC-0046`; default `QUIET`.
 
 | Contract | Interfaces | Inactive state | Control | Proof gate |
 |---|---|---|---|---|
-| `N24_QUIET` | `nrf0`, `nrf1`, `nrf2` | pre-off CE low and CSN deasserted; then common rail off, all signal paths isolated/high-Z and PIO/DMA stopped | RP.GPIO15 NRF_GROUP_PWR_EN with off-safe pull plus exact switched-domain I/O isolation | rail discharge/current, no I/O back-power, no carrier and active-receiver desense HIL |
-| `CC_QUIET` | `cc` | pre-off IDLE/power-down and CSN deasserted; then rail off, SPI/GDO isolated/high-Z and PIO/DMA stopped | RP.GPIO23 CC_PWR_EN with off-safe pull plus exact switched-domain I/O isolation | rail discharge/current, no SPI/GDO back-power and active-receiver desense HIL |
+| `N24_QUIET` | `nrf0`, `nrf1`, `nrf2` | pre-off CE low and CSN deasserted; then common rail off, all signal paths isolated/high-Z and PIO/DMA stopped | RP.GPIO15 NRF_GROUP_PWR_EN through independent RUN_PERMIT and FAULT_ASSERT_N gates, endpoint off-safe pull and exact switched-domain I/O isolation | rail discharge/current, no I/O back-power, no carrier and active-receiver desense HIL |
+| `CC_QUIET` | `cc` | pre-off IDLE/power-down and CSN deasserted; then rail off, SPI/GDO isolated/high-Z and PIO/DMA stopped | RP.GPIO23 CC_PWR_EN through independent RUN_PERMIT and FAULT_ASSERT_N gates, endpoint off-safe pull and exact switched-domain I/O isolation | rail discharge/current, no SPI/GDO back-power and active-receiver desense HIL |
 | `U214_CAP_QUIET` | `M5Stack U214 Cap LoRa-1262`, `U214 downstream Port A` | U214 branch eFuse off and discharged; all nine SPI/UART/control paths and both I2C paths isolated/high-Z; RP PIO/UART/I2C activity stopped | slow_io.P17 U214_5V_REQ through FAULT_KILL-dominant shared-buck and branch gates, TPS259470LRPWR, TPS3808G33DBVR, three 74LVC126APW,118 and TCA4307DGKR | rail discharge, U214 5V_OUT separation, all eleven signals no-back-power, hot-plug/stuck-bus, exact identity and active-group desense HIL |
 | `UNIT_PORT_QUIET` | `native protected HY2.0-4P M5 Unit port` | native Unit branch eFuse off and discharged; both configurable signals isolated/high-Z and no profile polling | slow_io.P05 UNIT_5V_REQ through FAULT_KILL-dominant shared-buck and branch gates, separate TPS259470LRPWR, TPS3808G33DBVR and TXS0102DCUR OE | rail discharge, reverse-source/backfeed, I2C/UART/GPIO/1-Wire profile, wrong/unknown accessory and hot-plug fault-injection HIL |
 | `VOICE_QUIET` | `voice` | PTT hardware-off; module power-down; qualified 4 V rail off | VOICE_PTT_REQ_N -> VOICE_PTT_SAFE_N -> isolated VOICE_PTT_MODULE_N; VOICE_DOMAIN_REQ -> VOICE_DOMAIN_EN_SAFE; both paths are KILL/FAULT_KILL-dominant | actual-TX-off, rail/current and stuck-control fault-injection HIL |
 | `RECEIVER_QUIET` | `Si4732 receiver` | receiver rail discharged, reset asserted, I2C isolated and both audio outputs passive while the protected receive-only antenna inputs remain harmless | slow_io.P15 RX_DOMAIN_EN plus exact TPS22919DCKR, supervisor and I2C isolation | rail discharge/current, I2C no-back-power, no unintended tune/scan activity and active-group desense HIL |
 | `CODEC_AUDIO_QUIET` | `codec`, `I2S`, `speaker amplifier` | AUDIO_ARM low, capture/playback selectors at reset defaults, PAM8302A off, codec rail discharged with I2C/I2S isolated and I2S clock/DMA stopped | direct S3.GPIO6 AUDIO_ARM with pull-down plus slow_io P01/P10 and exact supervisors/isolators | stale-selector reset/watchdog/brownout override, no-back-power, pop/click, clock spectrum, current and active-group desense HIL |
 | `VOICE_INTERFACE_QUIET` | `voice UART`, `voice PTT`, `voice AFOUT`, `voice MIC_IN`, `voice H/L` | PTT remains hardware-off, UART and analog paths isolated, MIC_IN injection disconnected and H/L at its safe low-or-open default | VOICE_PTT_REQ_N -> VOICE_PTT_SAFE_N -> isolated VOICE_PTT_MODULE_N; slow_io P13/P14/P27 and exact switched-domain digital/analog isolation | no-back-power, no unintended TX/audio injection, stuck-line fault injection and active-group desense HIL |
-| `IR_QUIET` | `IR RX`, `IR TX` | TPS22919 receive rail discharged through QOD; Ioff return buffer high-Z with C5 inputs idle-high; RMT stopped and pins parked; VSMY14940 gate pulled low behind FAULT_KILL | C5.GPIO4 IR_FRONTEND_PWR_EN plus UI-local SN74LVC1G08DCKR RUN_PERMIT gate, independent 10-kOhm carrier-input pull-down, 100-Ohm gate resistor and 10-kOhm DMN2056U-7 gate pull-down | rail discharge/no-back-power, dark/current/no-optical-output, FAULT_KILL fault injection and active-radio desense HIL |
+| `IR_QUIET` | `IR RX`, `IR TX` | TPS22919 shared optical rail discharged through QOD; Ioff return buffer high-Z with C5 inputs idle-high; RMT stopped and pins parked; VSMY14940 loses supply and its gate is pulled low behind FAULT_KILL | C5.GPIO4 IR_FRONTEND_PWR_EN plus direct FAULT_ASSERT_N C5 reset, UI-local SN74LVC1G08DCKR RUN_PERMIT carrier gate, independent 10-kOhm carrier-input pull-down, 100-Ohm gate resistor and 10-kOhm DMN2056U-7 gate pull-down | rail discharge/no-back-power, dark/current/no-optical-output, FAULT_KILL fault injection and active-radio desense HIL |
 | `S3_RF_QUIET` | `S3 Wi-Fi`, `S3 BLE`, `ESP-NOW` | protocols/scans/advertising stopped and native RF block off while S3 CPU/UI remains alive | native RF power state plus S3_RF_TX_EVIDENCE | no background frame/carrier and active-receiver desense HIL |
 | `C5_RF_QUIET` | `C5 Wi-Fi`, `C5 IEEE 802.15.4` | protocols stopped and native RF block off while C5 may remain alive for IR/recovery | native RF power state plus C5_RF_TX_EVIDENCE | no background frame/carrier and active-receiver desense HIL |
 | `STORAGE_QUIET` | `microSD` | bounded flush then controller static and rail off when no storage session | slow_io.P20 SD_PWR_EN | no corruption/back-power and active-receiver desense HIL |
@@ -1473,7 +1473,8 @@ Reserved: `PA1_NRST`. Free: none.
 | `POWER_GROUND` | `voice_output_cap1.END_2` | `abstract:power-ground` | second voice output capacitor closes its local power loop |
 | `VOICE_RAW_4V_PG_N` | `voice_buck.PG` | `abstract:voice-raw-converter-pg-test` | raw converter PG is fixture-only and cannot certify the protected module supply |
 | `VVOICE_RAW_4V` | `voice_inductor.END_2` | `voice_efuse.IN` | independent latch-off circuit breaker interrupts converter high-side short overvoltage and downstream overload faults |
-| `VOICE_EFUSE_EN` | `voice_inductor.END_2` | `voice_efuse.EN_UVLO` | direct sub-5-V raw-rail tie is manufacturer-valid and cannot be bypassed by firmware |
+| `VVOICE_RAW_4V` | `voice_inductor.END_2` | `voice_efuse_en_pullup.END_1` | exact 10-kOhm raw-rail pull-up preserves the manufacturer-valid sub-5-V eFuse enable while allowing an independent open-drain fault clamp |
+| `VOICE_EFUSE_BACKUP_EN_N` | `voice_efuse_en_pullup.END_2` | `voice_efuse.EN_UVLO` | healthy FAULT_ASSERT_N leaves the eFuse enabled from its own raw rail; the independent backup buffer clamps this node low on a fault |
 | `POWER_GROUND` | `voice_efuse.GND` | `abstract:power-ground` | short low-inductance protection return |
 | `VOICE_EFUSE_ILM` | `voice_efuse.ILM` | `voice_efuse_rilm.END_1` | 3.32-kOhm sets a guaranteed 1.55-to-1.905-A circuit-breaker threshold above the accepted 1.5-A transient |
 | `POWER_GROUND` | `voice_efuse_rilm.END_2` | `abstract:power-ground` | ILM open or short are both detected fail-safe single-point states by TPS25974 |
@@ -1628,7 +1629,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `POWER_GROUND` | `cc_power_switch.GND` | `abstract:power-ground` | the physical TPS22919 ground contact closes the independent CC1101 load-switch control and discharge path |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `cc_power_input_cap.END_1` | exact 1-uF switch-input bypass is local to the CC branch |
 | `POWER_GROUND` | `cc_power_input_cap.END_2` | `abstract:power-ground` | CC branch input bypass has a short local return |
-| `CC_PWR_EN_SAFE` | `safe_gate_b.1Y` | `cc_power_on_pulldown.END_1` | exact 10-kOhm reset-off pull shares the KILL/FAULT_KILL-dominant enable |
+| `CC_PWR_EN_SAFE` | `cc_backup_gate.Y` | `cc_power_on_pulldown.END_1` | exact 10-kOhm reset-off pull sits after both RUN_PERMIT and FAULT_ASSERT_N qualifications |
 | `POWER_GROUND` | `cc_power_on_pulldown.END_2` | `abstract:power-ground` | CC rail cannot enable from a floating request |
 | `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc.DVDD` | exact switched rail powers CC1101 digital supply |
 | `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc.AVDD_9` | exact switched rail powers CC1101 AVDD pin 9 |
@@ -1786,7 +1787,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `CC_DETECT_FILTER` | `det_cc.FLTR` | `cc_detector_filter.END_1` | exact 120-pF response capacitor |
 | `CC_DETECT_V` | `cc_detector_filter.END_2` | `det_cc.V_UP` | filter capacitor is placed between FLTR and V_UP |
 | `CC_DETECT_VDN_NC` | `det_cc.V_DN` | `abstract:no-connect` | unused controller output remains unconnected |
-| `CC_PWR_EN_SAFE` | `safe_gate_b.1Y` | `cc_evidence_hold_diode.A` | KILL/FAULT_KILL-dominant enable pre-arms actual-TX evidence before the radio rail rises |
+| `CC_PWR_EN_SAFE` | `cc_backup_gate.Y` | `cc_evidence_hold_diode.A` | the post-primary-and-backup enable pre-arms actual-TX evidence before the radio rail rises |
 | `CC_EVIDENCE_HOLD` | `cc_evidence_hold_diode.K` | `cc_evidence_hold_cap.END_1` | Schottky isolation retains detector enable through QOD fall |
 | `CC_EVIDENCE_HOLD` | `cc_evidence_hold_diode.K` | `cc_evidence_hold_pulldown.END_1` | 10-kOhm and 1-uF create an approximately 10-ms nominal discharge constant |
 | `CC_EVIDENCE_HOLD` | `cc_evidence_hold_diode.K` | `det_cc.ENBL` | AD8314 remains active through commanded rail fall before low-current shutdown |
@@ -1995,7 +1996,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `POWER_GROUND` | `receiver_clock_cap_gpo3.END_2` | `abstract:power-ground` | second crystal capacitor returns locally |
 | `RX_SENB_LOW` | `receiver.SENB` | `receiver_senb_pulldown.END_1` | 10-kOhm first population target selects the two-wire boot state |
 | `POWER_GROUND` | `receiver_senb_pulldown.END_2` | `abstract:power-ground` | firmware still probes both documented/publicly conflicting 0x11 and 0x63 identities; specimen HIL freezes the address |
-| `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_power_switch.IN` | the two receive paths use one independent reset-off protected branch; the emitter is not powered by this rail |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_power_switch.IN` | one reset-off protected branch supplies both receive paths and the emitter so direct C5 reset is an independent optical-energy cutoff |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_power_input_cap.END_1` | exact 1-uF load-switch input capacitor |
 | `POWER_GROUND` | `ir_power_input_cap.END_2` | `abstract:power-ground` | IR receive-switch input bypass return |
 | `POWER_GROUND` | `ir_power_switch.GND` | `abstract:power-ground` | IR receive-switch ground |
@@ -2003,17 +2004,17 @@ Reserved: `PA1_NRST`. Free: none.
 | `IR_FRONTEND_PWR_EN` | `ir_power_switch.ON` | `ir_power_on_pulldown.END_1` | exact 10-kOhm external fail-low default |
 | `POWER_GROUND` | `ir_power_on_pulldown.END_2` | `abstract:power-ground` | receive frontend remains off through C5 reset or absence |
 | `IR_RX_QOD` | `ir_power_switch.QOD` | `ir_power_switch.VOUT` | off receive rail is actively discharged |
-| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_power_output_cap.END_1` | exact 10-uF switched-rail energy |
+| `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_power_output_cap.END_1` | exact 10-uF switched-rail energy |
 | `POWER_GROUND` | `ir_power_output_cap.END_2` | `abstract:power-ground` | switched-rail bulk return |
-| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_power_output_bypass.END_1` | exact 100-nF high-frequency switched-rail bypass |
+| `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_power_output_bypass.END_1` | exact 100-nF high-frequency switched-rail bypass |
 | `POWER_GROUND` | `ir_power_output_bypass.END_2` | `abstract:power-ground` | IR receive bypass return |
-| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_demod_supply_res.END_1` | separate exact 100-Ohm supply filter prevents one optical receiver from modulating the other |
+| `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_demod_supply_res.END_1` | separate exact 100-Ohm supply filter prevents one optical receiver from modulating the other |
 | `IR_DEMOD_VS` | `ir_demod_supply_res.END_2` | `ir_demod.VS` | TSOP95238TT physical contact 2 receives the filtered 2.0-to-3.6-V supply |
 | `IR_DEMOD_VS` | `ir_demod.VS` | `ir_demod_supply_cap.END_1` | exact 4.7-uF local receiver filter capacitor |
 | `POWER_GROUND` | `ir_demod_supply_cap.END_2` | `abstract:power-ground` | demodulator filter return stays beside both ground contacts |
 | `POWER_GROUND` | `ir_demod.GND_1` | `abstract:power-ground` | TSOP95238TT physical contact 1 is grounded |
 | `POWER_GROUND` | `ir_demod.GND_4` | `abstract:power-ground` | TSOP95238TT physical contact 4 is independently accounted |
-| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_carrier_supply_res.END_1` | separate exact 100-Ohm supply filter follows the TSMP application circuit |
+| `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_carrier_supply_res.END_1` | separate exact 100-Ohm supply filter follows the TSMP application circuit |
 | `IR_CARRIER_VS` | `ir_carrier_supply_res.END_2` | `ir_carrier.VS` | TSMP95000TT physical contact 2 receives the filtered 2.0-to-5.5-V supply |
 | `IR_CARRIER_VS` | `ir_carrier.VS` | `ir_carrier_supply_cap.END_1` | exact 4.7-uF local filter follows the manufacturer recommendation |
 | `POWER_GROUND` | `ir_carrier_supply_cap.END_2` | `abstract:power-ground` | carrier receiver filter return stays beside both ground contacts |
@@ -2021,11 +2022,11 @@ Reserved: `PA1_NRST`. Free: none.
 | `POWER_GROUND` | `ir_carrier.GND_4` | `abstract:power-ground` | TSMP95000TT physical contact 4 is independently accounted |
 | `IR_CARRIER_VS` | `ir_carrier.VS` | `ir_carrier_pullup.END_2` | exact 4.7-kOhm output pull-up follows the TSMP95000 application circuit |
 | `IR_CARRIER_LOCAL_N` | `ir_carrier_pullup.END_1` | `ir_carrier.CARRIER_OUT` | pull-up sharpens active-low carrier cycles without relying on a C5 internal pull |
-| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_return_buffer.VCC` | Ioff buffer loses power with both optical receivers |
+| `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_return_buffer.VCC` | Ioff buffer loses power with both optical receivers |
 | `POWER_GROUND` | `ir_return_buffer.GND` | `abstract:power-ground` | IR return-buffer ground |
-| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_return_buffer.1OE` | demodulated return is enabled only while the switched rail exists |
-| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_return_buffer.2OE` | carrier return is enabled only while the switched rail exists |
-| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_return_buffer_bypass.END_1` | exact 100-nF return-buffer bypass |
+| `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_return_buffer.1OE` | demodulated return is enabled only while the switched rail exists |
+| `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_return_buffer.2OE` | carrier return is enabled only while the switched rail exists |
+| `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_return_buffer_bypass.END_1` | exact 100-nF return-buffer bypass |
 | `POWER_GROUND` | `ir_return_buffer_bypass.END_2` | `abstract:power-ground` | return-buffer bypass return |
 | `IR_DEMOD_LOCAL_N` | `ir_demod.OUT` | `ir_return_buffer.1A` | active-low demodulated envelope enters its own physical buffer channel |
 | `IR_DEMOD_BUFFERED_N` | `ir_return_buffer.1Y` | `ir_demod_series.END_1` | Ioff output becomes high impedance when the receive rail is off |
@@ -2037,7 +2038,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `IR_RX_CARRIER` | `ir_carrier_series.END_2` | `c5.GPIO1` | exact 100-Ohm source resistor bounds the direct RMT_RX1 edge |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_carrier_host_pullup.END_2` | host-side 10-kOhm pull-up keeps RMT_RX1 idle-high while isolated |
 | `IR_RX_CARRIER` | `ir_carrier_host_pullup.END_1` | `c5.GPIO1` | powered-off learning receiver cannot back-power the C5 input |
-| `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_emitter_limit.END_1` | emitter current comes from the protected main rail, independently of the receive frontend rail |
+| `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_emitter_limit.END_1` | the emitter shares the reset-off protected rail, adding direct C5-reset containment without changing optical current |
 | `IR_LED_ANODE_LIMITED` | `ir_emitter_limit.END_2` | `ir_emitter.ANODE` | exact 47-Ohm 1206 resistor guarantees the characterized 20-mA optical point and bounds the conservative 85-C instantaneous corner to 50.6 mA rather than operating at the 70-mA absolute maximum |
 | `IR_LED_CATHODE` | `ir_emitter.CATHODE` | `ir_tx_mosfet.D` | physical VSMY14940 cathode reaches only the low-side switch |
 | `POWER_GROUND` | `ir_tx_mosfet.S` | `abstract:power-ground` | low-side source uses a short local return away from optical-receiver filters |
@@ -2887,9 +2888,9 @@ Reserved: `PA1_NRST`. Free: none.
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ext_branch_gate_bypass.END_1` | exact 100-nF local branch-gate bypass |
 | `SAFETY_GROUND` | `ext_branch_gate_bypass.END_2` | `abstract:safety-ground` | branch-gate bypass returns locally |
 | `U214_5V_REQ` | `slow_io.P17` | `ext_branch_gate.1A` | branch identity is retained after common-source aggregation |
-| `EXT_ANY_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_branch_gate.1B` | KILL/FAULT_KILL and AON loss dominate U214 branch admission |
+| `FAULT_ASSERT_N` | `fault_assert_pullup.END_2` | `ext_branch_gate.1B` | the U214 branch eFuse has a second fault qualification independent of the RUN_PERMIT latch and common converter gate |
 | `UNIT_5V_REQ` | `slow_io.P05` | `ext_branch_gate.2A` | native Unit has an independent branch request |
-| `EXT_ANY_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_branch_gate.2B` | KILL/FAULT_KILL and AON loss dominate native Unit branch admission |
+| `FAULT_ASSERT_N` | `fault_assert_pullup.END_2` | `ext_branch_gate.2B` | the native Unit branch eFuse has a second fault qualification independent of the RUN_PERMIT latch and common converter gate |
 | `SD_PWR_EN` | `slow_io.P20` | `sd_power_switch.ON` | ordinary session request only; exact external fail-low and switch protection remain effective across firmware reset |
 | `SD_PWR_EN` | `sd_power_switch.ON` | `sd_on_pulldown.END_1` | separate exact 10-kOhm reset-off default supplements the switch smart pull-down |
 | `POWER_GROUND` | `sd_on_pulldown.END_2` | `abstract:power-ground` | card, buffers and pull-ups remain off until an explicit storage session |
@@ -2956,6 +2957,8 @@ Reserved: `PA1_NRST`. Free: none.
 | `RUN_EDGE` | `safe_conditioner.1Y` | `safe_run_fault_iso.A` | low during KILL/open wiring pulls the wired fault plane low; high in RUN releases it |
 | `FAULT_ASSERT_N` | `safe_run_fault_iso.Y` | `fault_assert_pullup.END_2` | physical KILL is an asynchronous hardware fault source |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `fault_assert_pullup.END_1` | one AON pull-up serves the wired open-drain fault plane |
+| `FAULT_ASSERT_N` | `fault_assert_pullup.END_2` | `fault_assert_backup_pulldown.END_1` | exact 1-MOhm fail-low bias makes an open or missing 10-kOhm fault-plane pull-up non-permissive while retaining 3.267-V nominal healthy level |
+| `SAFETY_GROUND` | `fault_assert_backup_pulldown.END_2` | `abstract:safety-ground` | backup fault bias returns in the AON safety domain |
 | `FAULT_ASSERT_N` | `fault_assert_pullup.END_2` | `safe_gate_b.3B` | any low fault source forces SAFE_CLEAR_N low independently of clocks and firmware |
 | `SAFE_CLEAR_N` | `safe_gate_b.3Y` | `safe_latch.CLR_N` | POR_N AND FAULT_ASSERT_N is high only while both AON power and every asynchronous fault source are healthy; any low clears RUN_PERMIT |
 | `FAULT_ASSERT_N` | `safety_watchdog.WDO_N` | `fault_assert_pullup.END_2` | expired or malformed watchdog service directly presets FAULT_KILL |
@@ -3039,10 +3042,35 @@ Reserved: `PA1_NRST`. Free: none.
 | `NO_CONNECT` | `safe_reset_buffer.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_reset_buffer_bypass.END_1` | exact 100-nF local bypass |
 | `SAFETY_GROUND` | `safe_reset_buffer_bypass.END_2` | `abstract:safety-ground` | local bypass return |
-| `RUN_PERMIT` | `safe_latch.Q` | `safe_reset_buffer.A` | one non-programmable permit controls the C5/RP passive-drain reset sinks |
-| `RF_RESET_KILL_GATE` | `safe_reset_buffer.Y` | `safe_reset_gate_pullup.END_2` | open-drain inverter actively holds C5/RP reset gates low only while RUN_PERMIT and AON are valid |
+| `RUN_PERMIT` | `safe_latch.Q` | `safe_reset_buffer.A` | one non-programmable permit controls the RF-board RP passive-drain reset sink |
+| `RF_RESET_KILL_GATE` | `safe_reset_buffer.Y` | `safe_reset_gate_pullup.END_2` | open-drain inverter actively holds the RP reset gate low only while RUN_PERMIT and AON are valid |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_c5_reset_buffer.VCC` | UI-local primary C5 reset inverter is powered from the two-contact AON safety rail |
+| `SAFETY_GROUND` | `safe_c5_reset_buffer.GND` | `abstract:safety-ground` | UI-local primary reset return stays in the safety domain |
+| `NO_CONNECT` | `safe_c5_reset_buffer.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_c5_reset_buffer_bypass.END_1` | exact 100-nF UI-local primary reset-buffer bypass |
+| `SAFETY_GROUND` | `safe_c5_reset_buffer_bypass.END_2` | `abstract:safety-ground` | primary C5 reset-buffer bypass returns locally |
+| `RUN_PERMIT` | `safe_latch.Q` | `safe_c5_reset_buffer.A` | M1 contact 32 carries only the primary latched permit to the UI safety island |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `safe_c5_reset_gate_pullup.END_1` | UI-local pull-up asserts the existing C5 reset NMOS if its AON driver disappears |
+| `C5_RESET_KILL_GATE` | `safe_c5_reset_buffer.Y` | `safe_c5_reset_gate_pullup.END_2` | open-drain inverter holds the primary C5 reset-NMOS gate low only while RUN_PERMIT is valid |
+| `C5_RESET_KILL_GATE` | `safe_c5_reset_gate_pullup.END_2` | `safe_reset_sink_a.G2` | the existing UI-side passive-drain C5 reset sink remains the primary latched path |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_c5_fault_reset_buffer.VCC` | UI-local direct fault buffer remains alive with the wired fault plane |
+| `SAFETY_GROUND` | `safe_c5_fault_reset_buffer.GND` | `abstract:safety-ground` | direct C5 fault-reset return stays in the UI safety island |
+| `NO_CONNECT` | `safe_c5_fault_reset_buffer.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_c5_fault_reset_buffer_bypass.END_1` | exact 100-nF UI-local direct fault-buffer bypass |
+| `SAFETY_GROUND` | `safe_c5_fault_reset_buffer_bypass.END_2` | `abstract:safety-ground` | direct C5 fault-buffer bypass returns locally |
+| `FAULT_ASSERT_N` | `fault_assert_pullup.END_2` | `safe_c5_fault_reset_buffer.A` | M1 contact 34 carries the direct wired fault plane, not a signal derived from RUN_PERMIT |
+| `C5_RESET_N` | `safe_c5_fault_reset_buffer.Y` | `c5.EN` | open-drain direct fault reset acts on C5 without the latch, primary inverter or reset NMOS |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_fault_reset_buffer.VCC` | the independent fault reset/clamp buffer remains alive with the wired fault plane |
+| `SAFETY_GROUND` | `safe_fault_reset_buffer.GND` | `abstract:safety-ground` | backup reset/clamp return stays local to the safety domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_fault_reset_buffer_bypass.END_1` | exact 100-nF local backup-buffer bypass |
+| `SAFETY_GROUND` | `safe_fault_reset_buffer_bypass.END_2` | `abstract:safety-ground` | backup-buffer bypass returns locally |
+| `FAULT_ASSERT_N` | `fault_assert_pullup.END_2` | `safe_fault_reset_buffer.1A` | fault low directly commands the independent RF-board RP reset sink |
+| `FAULT_ASSERT_N` | `fault_assert_pullup.END_2` | `safe_fault_reset_buffer.2A` | fault low directly commands the independent voice eFuse clamp |
+| `POWER_COMMAND_OFF_N` | `power_command_pullup.END_2` | `safe_fault_reset_buffer.3A` | the second physical switch throw independently asserts the fault plane even if RUN_LOOP_RAW is shorted in its permissive state |
+| `RP_RESET_N` | `safe_fault_reset_buffer.1Y` | `rp.RUN` | open-drain backup reset acts on the target pin without the RUN_PERMIT latch or reset-gate transistor |
+| `VOICE_EFUSE_BACKUP_EN_N` | `safe_fault_reset_buffer.2Y` | `voice_efuse.EN_UVLO` | fault-low open-drain clamp independently removes protected voice power even if its primary converter gate is stuck permissive |
+| `FAULT_ASSERT_N` | `safe_fault_reset_buffer.3Y` | `fault_assert_pullup.END_2` | grounded KILL command pulls the wired fault plane low through a channel independent of the RUN-loop buffer |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `safe_reset_gate_pullup.END_1` | main-domain pull-up asserts reset if the AON driver disappears while compute power remains |
-| `RF_RESET_KILL_GATE` | `safe_reset_gate_pullup.END_2` | `safe_reset_sink_a.G2` | C5 independent reset sink gate |
 | `RF_RESET_KILL_GATE` | `safe_reset_gate_pullup.END_2` | `safe_reset_sink_b.G1` | RP independent reset sink gate |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `s3_reset_gate_pullup.END_1` | S3 reset remains asserted on missing AON drive while main power exists |
 | `S3_RESET_KILL_GATE` | `safe_conditioner.2Y` | `s3_reset_gate_pullup.END_2` | conditioned watchdog/controller request drives only the S3 reset sink |
@@ -3207,8 +3235,14 @@ Reserved: `PA1_NRST`. Free: none.
 | `NRF2_MISO_MODULE` | `nrf2.MISO` | `nrf2_module_miso_pulldown.END_1` | return-buffer input cannot float during module startup |
 | `NRF2_RF_GROUND` | `nrf2_module_miso_pulldown.END_2` | `abstract:rf-ground` | MISO default return stays local |
 | `NRF2_IRQ_MODULE_N` | `nrf2.IRQ` | `nrf2_module_irq_pullup.END_1` | return-buffer IRQ input defaults inactive |
-| `NRF_GROUP_PWR_EN_SAFE` | `safe_gate_a.4Y` | `nrf_power_switch.ON` | 10-kOhm pull-down; KILL/FAULT_KILL and AON loss disable the exact protected load switch |
-| `NRF_GROUP_PWR_EN_SAFE` | `safe_gate_a.4Y` | `nrf_evidence_hold_diode.A` | the same KILL/FAULT_KILL-dominant enable pre-arms actual-TX evidence before the radio rail rises |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf_backup_gate.VCC` | independent nRF fault qualification remains powered with the wired fault plane |
+| `SAFETY_GROUND` | `nrf_backup_gate.GND` | `abstract:safety-ground` | nRF backup gate return stays in the AON safety domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf_backup_gate_bypass.END_1` | exact 100-nF nRF backup-gate bypass |
+| `SAFETY_GROUND` | `nrf_backup_gate_bypass.END_2` | `abstract:safety-ground` | nRF backup-gate bypass returns locally |
+| `NRF_GROUP_PWR_EN_PRIMARY` | `safe_gate_a.4Y` | `nrf_backup_gate.A` | the original RUN_PERMIT-qualified nRF request remains the primary gate |
+| `FAULT_ASSERT_N` | `fault_assert_pullup.END_2` | `nrf_backup_gate.B` | the wired fault plane independently dominates the nRF rail enable |
+| `NRF_GROUP_PWR_EN_SAFE` | `nrf_backup_gate.Y` | `nrf_power_switch.ON` | 10-kOhm endpoint pull-down; both independent hardware qualifications must be healthy |
+| `NRF_GROUP_PWR_EN_SAFE` | `nrf_backup_gate.Y` | `nrf_evidence_hold_diode.A` | the post-primary-and-backup enable pre-arms actual-TX evidence before the radio rail rises |
 | `NRF_EVIDENCE_HOLD` | `nrf_evidence_hold_diode.K` | `nrf_evidence_hold_cap.END_1` | Schottky isolation retains detector enable through the QOD rail fall |
 | `NRF_EVIDENCE_HOLD` | `nrf_evidence_hold_diode.K` | `nrf_evidence_hold_pulldown.END_1` | 10-kOhm and 1-uF create an approximately 10-ms nominal discharge constant |
 | `NRF_EVIDENCE_HOLD` | `nrf_evidence_hold_diode.K` | `det_nrf0.ENBL` | nRF0 detector survives commanded rail fall before entering low-current shutdown |
@@ -3217,7 +3251,13 @@ Reserved: `PA1_NRST`. Free: none.
 | `SAFETY_GROUND` | `nrf_evidence_hold_cap.END_2` | `abstract:safety-ground` | hold capacitor returns in the AON evidence domain |
 | `SAFETY_GROUND` | `nrf_evidence_hold_pulldown.END_2` | `abstract:safety-ground` | detectors cannot remain enabled indefinitely after group shutdown |
 | `NRF_EVIDENCE_DIODE_NC` | `nrf_evidence_hold_diode.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
-| `CC_PWR_EN_SAFE` | `safe_gate_b.1Y` | `cc_power_switch.ON` | 10-kOhm pull-down; KILL/FAULT_KILL and AON loss disable the exact protected load switch |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `cc_backup_gate.VCC` | independent CC1101 fault qualification remains powered with the wired fault plane |
+| `SAFETY_GROUND` | `cc_backup_gate.GND` | `abstract:safety-ground` | CC1101 backup gate return stays in the AON safety domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `cc_backup_gate_bypass.END_1` | exact 100-nF CC1101 backup-gate bypass |
+| `SAFETY_GROUND` | `cc_backup_gate_bypass.END_2` | `abstract:safety-ground` | CC1101 backup-gate bypass returns locally |
+| `CC_PWR_EN_PRIMARY` | `safe_gate_b.1Y` | `cc_backup_gate.A` | the original RUN_PERMIT-qualified CC1101 request remains the primary gate |
+| `FAULT_ASSERT_N` | `fault_assert_pullup.END_2` | `cc_backup_gate.B` | the wired fault plane independently dominates the CC1101 rail enable |
+| `CC_PWR_EN_SAFE` | `cc_backup_gate.Y` | `cc_power_switch.ON` | 10-kOhm endpoint pull-down; both independent hardware qualifications must be healthy |
 | `VOICE_DOMAIN_EN_SAFE` | `safe_gate_b.2Y` | `voice_buck.EN` | KILL/FAULT_KILL and AON loss disable the independent fixed 4-V converter |
 | `VOICE_DOMAIN_EN_SAFE` | `voice_buck.EN` | `voice_en_pulldown.END_1` | one exact 10-kOhm pull-down defines voice off even if the safety-gate output is high-impedance |
 | `POWER_GROUND` | `voice_en_pulldown.END_2` | `abstract:power-ground` | external fail-low default is independent of converter internal bias |
@@ -3486,14 +3526,14 @@ Reserved: `PA1_NRST`. Free: none.
 | `EV_N8_LORA_EXT` | `ext_evidence_buffer.Y` | `ext_evidence_output_pullup.END_2` | open-drain output contains the stock 5-V level on the connector side |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ext_evidence_output_pullup.END_1` | exact 10-kOhm AON pull-up defines the ninth evidence bit |
 | `EV_N8_LORA_EXT` | `ext_evidence_buffer.Y` | `evidence_mask.P10` | ninth active-low evidence bit is independently readable |
-| `EVIDENCE_MASK_UNUSED_P11` | `evidence_mask.P11` | `evidence_mask_p11_pulldown.END_1` | unused power-on input cannot float |
+| `FAULT_ASSERT_N` | `fault_assert_pullup.END_2` | `fault_assert_sense_series.END_1` | 100-kOhm series isolation lets the AON evidence mask observe the wired fault plane without allowing a failed expander input to dominate it |
+| `FAULT_ASSERT_SENSE` | `fault_assert_sense_series.END_2` | `evidence_mask.P11` | mandatory startup proof must read low while SAFETY_FAULT_REQUEST is held low; high or unreadable blocks re-arm and every TX lease |
 | `EVIDENCE_MASK_UNUSED_P12` | `evidence_mask.P12` | `evidence_mask_p12_pulldown.END_1` | unused power-on input cannot float |
 | `EVIDENCE_MASK_UNUSED_P13` | `evidence_mask.P13` | `evidence_mask_p13_pulldown.END_1` | unused power-on input cannot float |
 | `EVIDENCE_MASK_UNUSED_P14` | `evidence_mask.P14` | `evidence_mask_p14_pulldown.END_1` | unused power-on input cannot float |
 | `EVIDENCE_MASK_UNUSED_P15` | `evidence_mask.P15` | `evidence_mask_p15_pulldown.END_1` | unused power-on input cannot float |
 | `EVIDENCE_MASK_UNUSED_P16` | `evidence_mask.P16` | `evidence_mask_p16_pulldown.END_1` | unused power-on input cannot float |
 | `EVIDENCE_MASK_UNUSED_P17` | `evidence_mask.P17` | `evidence_mask_p17_pulldown.END_1` | unused power-on input cannot float |
-| `SAFETY_GROUND` | `evidence_mask_p11_pulldown.END_2` | `abstract:safety-ground` | exact 10-kOhm unused-input return |
 | `SAFETY_GROUND` | `evidence_mask_p12_pulldown.END_2` | `abstract:safety-ground` | exact 10-kOhm unused-input return |
 | `SAFETY_GROUND` | `evidence_mask_p13_pulldown.END_2` | `abstract:safety-ground` | exact 10-kOhm unused-input return |
 | `SAFETY_GROUND` | `evidence_mask_p14_pulldown.END_2` | `abstract:safety-ground` | exact 10-kOhm unused-input return |
@@ -4073,12 +4113,23 @@ Reserved: `PA1_NRST`. Free: none.
 - `safety_s3_reset_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `safety_watchdog` uses `Texas Instruments TPS3435CAKAGDDFR` as `verified_exact_independent_aon_watchdog`, not an accepted production choice.
 - `safety_watchdog` lifecycle: `active_orderable`.
+- `fault_assert_backup_pulldown` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
+- `fault_assert_backup_pulldown` lifecycle: `active_orderable`.
 - `safe_run_fault_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `safe_conditioner` lifecycle: `production`.
 - `safe_rearm_buffer` uses `SN74LVC1G17DCKR` as `verified_exact_schmitt_buffer`, not an accepted production choice.
 - `safe_rearm_buffer` lifecycle: `active_orderable`.
 - `safe_reset_buffer` uses `Texas Instruments SN74LVC1G06DCKR` as `verified_exact_fail_low_reset_gate_driver`, not an accepted production choice.
 - `safe_reset_buffer` lifecycle: `active_orderable`.
+- `safe_c5_reset_buffer` uses `Texas Instruments SN74LVC1G06DCKR` as `verified_exact_fail_low_reset_gate_driver`, not an accepted production choice.
+- `safe_c5_reset_buffer` lifecycle: `active_orderable`.
+- `safe_c5_fault_reset_buffer` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `safe_fault_reset_buffer` uses `SN74LVC3G07DCUR` as `verified_exact_aon_to_main_open_drain_isolator`, not an accepted production choice.
+- `safe_fault_reset_buffer` lifecycle: `active_orderable`.
+- `nrf_backup_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.
+- `nrf_backup_gate` lifecycle: `active_orderable`.
+- `cc_backup_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.
+- `cc_backup_gate` lifecycle: `active_orderable`.
 - `ir_safe_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.
 - `ir_safe_gate` lifecycle: `active_orderable`.
 - `safe_ptt_or` lifecycle: `production`.

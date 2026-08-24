@@ -4,19 +4,19 @@
   "status": "reviewed_named_nets_and_m1",
   "method": "fresh native KiCad XML netlists compared with all root hierarchy names and both physical M1 connector pin maps",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "86a4b336574b115ae315991ef56c095f83c3c54ee8d4032dde50df6e7ddcf544",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "bf695b5bc50c665d73918ad89ef92910441294c5ff92ecf122746f7f37e3e943",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "8e84a7728ee499a3f7f805c7ce3e284870dd99df9d1fadeb30211ace52ede611",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "8c87a5fd2a284b00a1d2ac158a00c380488a17c0125b703ee18eb10581eb01bf",
-    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "0592a733a82cd9423d8d4776c601dfaeee8fe6fb94e24d325869c79c5589ece4",
-    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
-    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01",
+    "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "abfc63fc93b4cc9c151ae5836bfaacb564b629367189a0c74698156ad08d2349",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "000f3c8878d4c687e9fb81edd54cc171ff51e367cf81625a686f12e017b360c0",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "573a9f75706cf453130cd0f78a0c050caa40e2d3e1df293bb63be3dcdd39051e",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "2192e3481f33c13a5d73b9880d03e06f3a222399e0b834ad6abbd3fbddec0646",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "7600c7695086ecada512b1261d8b9e62e40fe890200c6789d4ac4ad1b00e95db",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "95c3549487207b2c805663bd6e9be7ff251a116a64f9820d32e60f714e2232fc",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "7079f94dceeef0ed9a569fc2a13f53af125e26c57f6b455bfe2d3b6e5edaca51",
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c"
   },
   "summary": {
     "projects_exported": 3,
-    "root_named_nets": 266,
+    "root_named_nets": 268,
     "missing_root_nets": 0,
     "m1_physical_contacts": 80,
     "m1_unique_nets": 51,
@@ -27,13 +27,13 @@
     {
       "project": "LESHY2-UI",
       "root_named_nets": 95,
-      "native_netlist_nets": 339,
+      "native_netlist_nets": 342,
       "missing_root_nets": 0
     },
     {
       "project": "LESHY2-RF",
-      "root_named_nets": 157,
-      "native_netlist_nets": 541,
+      "root_named_nets": 159,
+      "native_netlist_nets": 544,
       "missing_root_nets": 0
     },
     {
@@ -310,11 +310,11 @@
     },
     {
       "contact": 34,
-      "net": "RF_RESET_KILL_GATE",
+      "net": "FAULT_ASSERT_N",
       "direction": "RF→UI",
       "signal_class": "safety",
-      "ui": "RF_RESET_KILL_GATE",
-      "rf": "RF_RESET_KILL_GATE"
+      "ui": "FAULT_ASSERT_N",
+      "rf": "FAULT_ASSERT_N"
     },
     {
       "contact": 35,

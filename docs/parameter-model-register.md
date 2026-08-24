@@ -6,7 +6,7 @@ This is the H3 calculation input register: for every actually fitted device type
 
 ## Coverage
 
-- `1035` instances and `217` used device types.
+- `1048` instances and `217` used device types.
 - A primary source exists for `217` of `217` types; missing: `0`.
 - `71` types already have structured parameters; `146` are extracted by class during H3.1–H3.6.
 - There are `0` local vendor models; an admissible analytic, behavioral or circuit method is frozen in `H3.0.3`, never invented silently.

@@ -195,7 +195,9 @@ This is the complete H2.6.2 physical NC register. Every row is checked against i
 | `UI_21_FM_AM_RECEIVER` | `receiver_irq_iso.NC` | `1` | SC70 no-connect remains open |
 | `UI_21_FM_AM_RECEIVER` | `receiver_power_switch.NC` | `4` | SC70 pin 4 is left floating as required |
 | `UI_50_TX_SAFETY_EVIDENCE` | `evidence_cmp_a.OUT4` | `13` | unused UI comparator open-drain output remains unconnected |
+| `UI_50_TX_SAFETY_EVIDENCE` | `safe_c5_fault_reset_buffer.NC` | `1` | manufacturer no-connect remains open |
+| `UI_50_TX_SAFETY_EVIDENCE` | `safe_c5_reset_buffer.NC` | `1` | manufacturer no-connect remains open |
 
-✅ **Reviewed:** 189 NC / 22 sheets; no contact, marker or rationale is missing.
+✅ **Reviewed:** 191 NC / 22 sheets; no contact, marker or rationale is missing.
 
 [Machine evidence](../hardware/ecad/generated/H2-REV62-no-connects.json).

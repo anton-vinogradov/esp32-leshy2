@@ -33,6 +33,7 @@ SCRIPTS = (
     ROOT / "hardware/verification/h3_rf_coexistence.py",
     ROOT / "hardware/verification/h3_rf_consolidation.py",
     ROOT / "hardware/verification/h3_thermal_model.py",
+    ROOT / "hardware/verification/h3_fault_tree.py",
 )
 
 

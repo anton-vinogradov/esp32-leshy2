@@ -97,9 +97,9 @@ def build() -> tuple[dict[Path, str], dict]:
     topology = {
         "receive_enable_fail_low": require_route(routes, "ir_power_switch.ON", "ir_power_on_pulldown.END_1", "IR_FRONTEND_PWR_EN"),
         "receive_qod": require_route(routes, "ir_power_switch.QOD", "ir_power_switch.VOUT", "IR_RX_QOD"),
-        "demod_filter": require_route(routes, "ir_power_switch.VOUT", "ir_demod_supply_res.END_1", "3V3_IR_RX_SWITCHED")
+        "demod_filter": require_route(routes, "ir_power_switch.VOUT", "ir_demod_supply_res.END_1", "3V3_IR_SWITCHED")
         and require_route(routes, "ir_demod_supply_res.END_2", "ir_demod.VS", "IR_DEMOD_VS"),
-        "carrier_filter": require_route(routes, "ir_power_switch.VOUT", "ir_carrier_supply_res.END_1", "3V3_IR_RX_SWITCHED")
+        "carrier_filter": require_route(routes, "ir_power_switch.VOUT", "ir_carrier_supply_res.END_1", "3V3_IR_SWITCHED")
         and require_route(routes, "ir_carrier_supply_res.END_2", "ir_carrier.VS", "IR_CARRIER_VS"),
         "recommended_carrier_pullup": require_route(routes, "ir_carrier_pullup.END_1", "ir_carrier.CARRIER_OUT", "IR_CARRIER_LOCAL_N"),
         "independent_return_channels": require_route(routes, "ir_demod.OUT", "ir_return_buffer.1A", "IR_DEMOD_LOCAL_N")
@@ -107,6 +107,9 @@ def build() -> tuple[dict[Path, str], dict]:
         "host_idle_pullups": require_route(routes, "ir_demod_host_pullup.END_1", "c5.GPIO0", "IR_RX_DEMOD")
         and require_route(routes, "ir_carrier_host_pullup.END_1", "c5.GPIO1", "IR_RX_CARRIER"),
         "direct_rmt_tx": require_route(routes, "c5.GPIO6", "ir_safe_gate.A", "IR_TX_CARRIER"),
+        "emitter_shared_reset_off_rail": require_route(
+            routes, "ir_power_switch.VOUT", "ir_emitter_limit.END_1", "3V3_IR_SWITCHED"
+        ),
         "carrier_input_fail_low": require_route(routes, "ir_safe_gate.A", "ir_tx_carrier_pulldown.END_1", "IR_TX_CARRIER")
         and require_route(routes, "ir_tx_carrier_pulldown.END_2", "abstract:safety-ground", "SAFETY_GROUND"),
         "run_permit_gate": require_route(routes, "safe_latch.Q", "ir_safe_gate.B", "RUN_PERMIT"),

@@ -8219,6 +8219,216 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Leshy2:RF32_CC_BACKUP_GATE"
+			(pin_names (offset 1.016))
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+			(at 0.00 6.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Value" "RF32_CC_BACKUP_GATE"
+			(at 0.00 -6.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-353_SC-70-5"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Datasheet" "~"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Description" "independent FAULT_ASSERT_N CC1101 rail qualifier"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(symbol "RF32_CC_BACKUP_GATE_0_1"
+				(rectangle
+					(start -12.70 3.81)
+					(end 12.70 -3.81)
+					(stroke (width 0.254) (type default))
+					(fill (type background))
+				)
+			)
+			(symbol "RF32_CC_BACKUP_GATE_1_1"
+				(pin passive line
+					(at -17.78 2.54 0)
+					(length 5.08)
+					(name "A" (effects (font (size 1.27 1.27))))
+					(number "1" (effects (font (size 1.27 1.27))))
+				)
+				(pin passive line
+					(at -17.78 0.00 0)
+					(length 5.08)
+					(name "B" (effects (font (size 1.27 1.27))))
+					(number "2" (effects (font (size 1.27 1.27))))
+				)
+				(pin passive line
+					(at -17.78 -2.54 0)
+					(length 5.08)
+					(name "GND" (effects (font (size 1.27 1.27))))
+					(number "3" (effects (font (size 1.27 1.27))))
+				)
+				(pin passive line
+					(at 17.78 2.54 180)
+					(length 5.08)
+					(name "Y" (effects (font (size 1.27 1.27))))
+					(number "4" (effects (font (size 1.27 1.27))))
+				)
+				(pin passive line
+					(at 17.78 0.00 180)
+					(length 5.08)
+					(name "VCC" (effects (font (size 1.27 1.27))))
+					(number "5" (effects (font (size 1.27 1.27))))
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Leshy2:RF32_CC_BACKUP_GATE_BYPASS"
+			(pin_names (offset 1.016))
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+			(at 0.00 5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Value" "RF32_CC_BACKUP_GATE_BYPASS"
+			(at 0.00 -5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Datasheet" "~"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(symbol "RF32_CC_BACKUP_GATE_BYPASS_0_1"
+				(rectangle
+					(start -12.70 2.54)
+					(end 12.70 -2.54)
+					(stroke (width 0.254) (type default))
+					(fill (type background))
+				)
+			)
+			(symbol "RF32_CC_BACKUP_GATE_BYPASS_1_1"
+				(pin passive line
+					(at -17.78 1.27 0)
+					(length 5.08)
+					(name "END_1" (effects (font (size 1.27 1.27))))
+					(number "1" (effects (font (size 1.27 1.27))))
+				)
+				(pin passive line
+					(at 17.78 1.27 180)
+					(length 5.08)
+					(name "END_2" (effects (font (size 1.27 1.27))))
+					(number "2" (effects (font (size 1.27 1.27))))
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Leshy2:RF32_VOICE_EFUSE_EN_PULLUP"
+			(pin_names (offset 1.016))
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+			(at 0.00 5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Value" "RF32_VOICE_EFUSE_EN_PULLUP"
+			(at 0.00 -5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Datasheet" "~"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+			(symbol "RF32_VOICE_EFUSE_EN_PULLUP_0_1"
+				(rectangle
+					(start -12.70 2.54)
+					(end 12.70 -2.54)
+					(stroke (width 0.254) (type default))
+					(fill (type background))
+				)
+			)
+			(symbol "RF32_VOICE_EFUSE_EN_PULLUP_1_1"
+				(pin passive line
+					(at -17.78 1.27 0)
+					(length 5.08)
+					(name "END_1" (effects (font (size 1.27 1.27))))
+					(number "1" (effects (font (size 1.27 1.27))))
+				)
+				(pin passive line
+					(at 17.78 1.27 180)
+					(length 5.08)
+					(name "END_2" (effects (font (size 1.27 1.27))))
+					(number "2" (effects (font (size 1.27 1.27))))
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(symbol
 		(lib_id "Leshy2:RF32_CC_EXTERNAL_SMA")
@@ -15225,6 +15435,186 @@
 			)
 		)
 	)
+	(symbol
+		(lib_id "Leshy2:RF32_CC_BACKUP_GATE")
+		(at 320.04 279.40 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "84850e83-7dab-5965-a1bf-9d9bb99d343d")
+		(property "Reference" "U32018"
+			(at 320.04 274.32 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "SN74LVC1G08DCKR"
+			(at 320.04 284.48 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-353_SC-70-5"
+			(at 320.04 279.40 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 320.04 279.40 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "independent FAULT_ASSERT_N CC1101 rail qualifier"
+			(at 320.04 279.40 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "6d35277f-4e28-5ddf-8103-e49c922a59ea")
+		)
+		(pin "2"
+			(uuid "24cb9b58-4452-59df-a68e-c7a34587dc8c")
+		)
+		(pin "3"
+			(uuid "9b47be68-a650-5936-83f6-bf9fa0764424")
+		)
+		(pin "4"
+			(uuid "b3fb664d-5559-5bdb-a9cd-82c044c9ed91")
+		)
+		(pin "5"
+			(uuid "3472d56d-c092-5de9-b934-a1f9d2a2bfb0")
+		)
+		(instances
+			(project "LESHY2-RF"
+				(path "/58797fc0-4d05-5b8c-a153-b01d4ba46651"
+					(reference "U32018")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Leshy2:RF32_CC_BACKUP_GATE_BYPASS")
+		(at 208.28 280.67 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a20f5cf0-0ad8-5b1f-b230-8258fa4b85bb")
+		(property "Reference" "C32043"
+			(at 208.28 275.59 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "TDK C1005X7R1H104K050BB"
+			(at 208.28 285.75 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 208.28 280.67 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 208.28 280.67 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+			(at 208.28 280.67 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "e233ad68-ac6b-5192-a40b-d2cf3e901539")
+		)
+		(pin "2"
+			(uuid "e92b1cfd-ee8a-569f-86ab-d5f0c694a666")
+		)
+		(instances
+			(project "LESHY2-RF"
+				(path "/58797fc0-4d05-5b8c-a153-b01d4ba46651"
+					(reference "C32043")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Leshy2:RF32_VOICE_EFUSE_EN_PULLUP")
+		(at 40.64 283.21 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2d194742-96ae-5718-b6fd-5d8764abd478")
+		(property "Reference" "R32043"
+			(at 40.64 278.13 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "Yageo RC0402FR-0710KL"
+			(at 40.64 288.29 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 40.64 283.21 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 40.64 283.21 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+			(at 40.64 283.21 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "d7c5ca28-8032-50f2-b8cf-825ff19481dd")
+		)
+		(pin "2"
+			(uuid "666e074c-a4cd-55f6-8cfb-056a0f6625ef")
+		)
+		(instances
+			(project "LESHY2-RF"
+				(path "/58797fc0-4d05-5b8c-a153-b01d4ba46651"
+					(reference "R32043")
+					(unit 1)
+				)
+			)
+		)
+	)
 	(label "3V3_CC_SWITCHED"
 		(at 134.62 48.26 0)
 		(effects (font (size 1.27 1.27)))
@@ -15436,6 +15826,16 @@
 		(at 414.02 198.12 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "3dded43d-29c3-5c8f-aea7-8288bd24e856")
+	)
+	(label "AON_SAFE_3V3"
+		(at 337.82 279.40 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "976760f2-e2f3-5b63-8ef4-6066b6ddb4d4")
+	)
+	(label "AON_SAFE_3V3"
+		(at 190.50 279.40 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "c7a16791-cb43-5c55-be29-fdb721d40212")
 	)
 	(hierarchical_label "AUDIO_GROUND"
 		(shape bidirectional)
@@ -15727,6 +16127,12 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "89ba9d53-b1fd-5004-ac56-578941beab56")
 	)
+	(hierarchical_label "CC_PWR_EN_PRIMARY"
+		(shape bidirectional)
+		(at 302.26 276.86 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "6832cb6b-5ce2-5cf9-899b-fdb07c50b34a")
+	)
 	(hierarchical_label "CC_PWR_EN_SAFE"
 		(shape bidirectional)
 		(at 358.14 60.96 0)
@@ -15737,6 +16143,11 @@
 		(at 246.38 281.94 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "59bbfe31-83ed-5ac1-824d-e2fc0e7f0f20")
+	)
+	(label "CC_PWR_EN_SAFE"
+		(at 337.82 276.86 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "aa0991df-4b13-5afa-b28f-5ece30c3b078")
 	)
 	(label "CC_RBIAS"
 		(at 170.18 53.34 180)
@@ -16044,6 +16455,12 @@
 		(at 358.14 83.82 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "100434e9-9c8a-5666-9f22-8b06ed69e853")
+	)
+	(hierarchical_label "FAULT_ASSERT_N"
+		(shape bidirectional)
+		(at 302.26 279.40 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "dd43b92b-271e-5ede-a112-44d6cfd03e15")
 	)
 	(no_connect (at 226.06 45.72)
 		(uuid "31ccbb1b-d735-51a3-90a6-3b9acdab6f17")
@@ -16568,6 +16985,16 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "f407419e-14aa-52e0-91ae-47f6d63a46d1")
 	)
+	(label "SAFETY_GROUND"
+		(at 302.26 281.94 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "56ee8ccd-1923-5c96-ad5f-539f1a59fe77")
+	)
+	(label "SAFETY_GROUND"
+		(at 226.06 279.40 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "760291d9-59a9-5baf-bfb1-f5fc284467ef")
+	)
 	(label "VOICE_4V_FB"
 		(at 337.82 233.68 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
@@ -16671,6 +17098,17 @@
 		(at 78.74 274.32 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "7e2ea4cb-a589-57b9-a14c-8c57a074a663")
+	)
+	(hierarchical_label "VOICE_EFUSE_BACKUP_EN_N"
+		(shape bidirectional)
+		(at 22.86 251.46 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "02ca31ad-9302-58ba-b7f0-38b990bb4748")
+	)
+	(label "VOICE_EFUSE_BACKUP_EN_N"
+		(at 58.42 281.94 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "18612f23-7ef3-5a41-a76f-60e39cda3666")
 	)
 	(label "VOICE_EFUSE_DVDT"
 		(at 58.42 254.00 180)
@@ -17036,11 +17474,6 @@
 		(uuid "a6bab807-b94b-58ea-84e7-2598dc0a85ae")
 	)
 	(label "VVOICE_RAW_4V"
-		(at 22.86 251.46 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "8b6fe3c8-c217-5677-ab76-e03af9d6e638")
-	)
-	(label "VVOICE_RAW_4V"
 		(at 22.86 261.62 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "af639d88-fcf7-575a-836e-e78fee4b6994")
@@ -17049,6 +17482,11 @@
 		(at 246.38 254.00 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "ee4e0512-1907-5fc3-a16a-58b162d68843")
+	)
+	(label "VVOICE_RAW_4V"
+		(at 22.86 281.94 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "be1b968e-daf3-5628-8302-a3b681892611")
 	)
 	(sheet_instances
 		(path "/"

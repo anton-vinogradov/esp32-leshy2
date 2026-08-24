@@ -53,9 +53,9 @@
   },
   "physical_fit": {
     "result": "paper_geometry_passed",
-    "source_registered_instances": 182,
-    "inner_body_count": 131,
-    "total_inner_component_count_including_adapter": 133,
+    "source_registered_instances": 187,
+    "inner_body_count": 136,
+    "total_inner_component_count_including_adapter": 138,
     "minimum_required_clearance_mm": 0.7,
     "minimum_opposing_pair": {
       "ui_instance": "headphone_jack",

@@ -118,7 +118,7 @@ are satisfied.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current, exact marker `H3.6.2`.
+**Status:** ▶️ current, exact marker `H3.6.3`.
 
 - [Current virtual-verification page](virtual-verification.md).
 - [Machine execution plan](../hardware/verification/h3-verification-plan.json).
@@ -178,8 +178,8 @@ closes 72 feed/connector/matching/loss checks for all nine ports. `H3.5.2`
 closes 23 corridor, keepout, plane and return checks. `H3.5.3` closes 30
 one-group, quiet-state and full 3×nRF24 checks. `H3.5.4` closes the phase with
 22 cross-domain checks over all 125 leaf checks. The H3.6.1
-[thermal model](thermal-model.md) is reviewed with 21 checks; H3.6.2 is building
-the single-fault tree.
+[thermal model](thermal-model.md) is reviewed with 21 checks and the
+[single-fault review](single-fault-review.md) closes 30 cases with 25 checks; H3.6.3 is building the unattended envelope.
 
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate
