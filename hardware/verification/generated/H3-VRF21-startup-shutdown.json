@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "stage": "H3.2.1",
+  "status": "reviewed_startup_shutdown_and_fault_kill",
+  "method": [
+    "bounded_transient",
+    "state_fault_exploration"
+  ],
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "5175bf8df45ba18bfa1d698922fd0d520783328868a23f3f41314be0526950b3",
+    "hardware/architecture/devices.json": "f8ed5a402e82f1b95f8b11e818adf0c13efca37523c9ecc11088736687fde01d",
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "20fd7f0aaef8fdc74ca68ce03dac8f8333f75bcc317ecc5d62699df8892a6e65",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "4307cb4001ae3ccc122d0dcc13a24fd12e3c016693049caf041303214697fb3a"
+  },
+  "provenance": {
+    "supervisor": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+    "rearm_buffer": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
+    "latch": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
+    "watchdog": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",
+    "charger": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
+    "aon_efuse": "https://www.ti.com/lit/ds/symlink/tps25961.pdf",
+    "main_efuse": "https://www.ti.com/lit/ds/symlink/tps2597.pdf",
+    "external_efuse": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
+    "buck": "https://www.ti.com/lit/ds/symlink/tps564252.pdf",
+    "safety_controller": "https://www.ti.com/lit/ds/symlink/mspm0c1106.pdf"
+  },
+  "source_corrections": [
+    {
+      "id": "H3.2.1-F01",
+      "finding": "the prior latch used Q as FAULT_KILL and CLR_N as POR, so brownout selected the permissive output and PRE_N/CLR_N could enter the prohibited both-low state",
+      "correction": "Q is RUN_PERMIT, Q_N is FAULT_KILL, PRE_N is tied high and CLR_N is POR_N AND FAULT_ASSERT_N",
+      "functional_effect": "brownout and every fault now force the non-permissive state without an illegal asynchronous-input combination"
+    },
+    {
+      "id": "H3.2.1-F02",
+      "finding": "the text claimed about 57.6 ms although the physical TPS3808 CT contact was open",
+      "correction": "the contract now uses the exact 12-to-28-ms CT-open interval and a separate RC/Schmitt re-arm edge",
+      "functional_effect": "the documented timing now matches the real populated contacts"
+    }
+  ],
+  "topology_checks": {
+    "por_and_fault_clear": true,
+    "preset_fixed_high": true,
+    "d_fixed_high": true,
+    "physical_edge_only": true,
+    "permit_polarity": true,
+    "kill_polarity": true,
+    "watchdog_is_async_fault": true
+  },
+  "rearm_calculation": {
+    "resistor_nom_ohm": 100000.0,
+    "resistor_tolerance_percent": 1,
+    "capacitor_nom_uf": 2.2,
+    "capacitor_tolerance_percent": 10,
+    "analytical_effective_capacitance_floor_percent": 50,
+    "por_delay_ms": {
+      "min": 12,
+      "typ": 20,
+      "max": 28.0
+    },
+    "schmitt_threshold_v_at_3v": {
+      "positive_min": 1.48,
+      "positive_max": 1.92,
+      "negative_min": 0.89,
+      "negative_max": 1.2
+    },
+    "schmitt_input_leakage_max_ua": 5,
+    "rearm_rise_ms": {
+      "earliest": 48.444,
+      "nominal": 162.029,
+      "latest": 337.413
+    },
+    "kill_discharge_to_negative_threshold_worst_ms": 340.153,
+    "recommended_kill_dwell_ms": 500,
+    "earliest_rearm_margin_after_max_por_ms": 20.444,
+    "critical_effective_capacitance_uf_for_28ms": 0.572,
+    "failure_direction": "if effective capacitance falls below the analytical floor, the safe failure is missed startup/re-arm while clear is active; it cannot assert RUN_PERMIT through CLR_N"
+  },
+  "sequences": [
+    {
+      "id": "T21-01",
+      "initial": "AON absent; switch RUN",
+      "event": "power appears",
+      "result": "clear remains asserted during POR; an early clock is ignored; no automatic restart; operator cycles KILL→RUN",
+      "safe": true
+    },
+    {
+      "id": "T21-02",
+      "initial": "AON valid; switch KILL; every fault healthy",
+      "event": "physical KILL→RUN",
+      "result": "delayed Schmitt edge clocks D=1 after POR; RUN_PERMIT rises",
+      "safe": true
+    },
+    {
+      "id": "T21-03",
+      "initial": "RUN_PERMIT=1",
+      "event": "switch KILL or RUN conductor opens",
+      "result": "FAULT_ASSERT_N low asynchronously clears RUN_PERMIT; TX gates fall safe; C5/RP reset; pack shutdown requested",
+      "safe": true
+    },
+    {
+      "id": "T21-04",
+      "initial": "RUN_PERMIT=1",
+      "event": "watchdog, thermal, evidence or controller fault",
+      "result": "asynchronous clear latches FAULT_KILL; recovering fault cannot restart while switch remains RUN",
+      "safe": true
+    },
+    {
+      "id": "T21-05",
+      "initial": "latched FAULT_KILL; switch RUN",
+      "event": "software reset, USB attach or fault source recovers",
+      "result": "no clock edge; permit remains low",
+      "safe": true
+    },
+    {
+      "id": "T21-06",
+      "initial": "latched FAULT_KILL",
+      "event": "operator holds KILL at least 0.5 s, then selects RUN after cause is safe",
+      "result": "RC is discharged below the worst negative threshold, then one clean delayed re-arm edge is possible",
+      "safe": true
+    },
+    {
+      "id": "T21-07",
+      "initial": "warning, no critical fault",
+      "event": "orderly shutdown requested",
+      "result": "application gets a bounded 3-s storage/UI grace; RF lease is revoked first; deadline expiry becomes hard FAULT_KILL",
+      "safe": true
+    }
+  ],
+  "firmware_contract": {
+    "startup": "the safety controller must complete immutable self-test and release SAFETY_FAULT_REQUEST before the operator KILL-to-RUN edge; if not, startup fails closed and the operator cycles the switch after diagnostics",
+    "orderly_warning_grace_ms": 3000,
+    "warning_order": [
+      "revoke active signal-group lease",
+      "flush the current storage transaction",
+      "write retained cause",
+      "render the bounded message if UI power is safe",
+      "request pack release"
+    ],
+    "hard_fault": "no firmware grace; asynchronous hardware kill wins immediately"
+  },
+  "summary": {
+    "sequences": 7,
+    "failed_sequences": 0,
+    "corrected_findings": 2,
+    "unresolved_findings": 0
+  },
+  "residual_physical_only": [
+    "measure switch bounce and break-before-make interval",
+    "measure actual RC capacitance under DC bias and temperature",
+    "fault-inject every clear source and measure TX-off/reset/rail-discharge ordering"
+  ],
+  "next": {
+    "stage": "H3.2.2",
+    "action": "model USB-to-pack handover, charger interaction and brownout"
+  },
+  "open_findings": []
+}

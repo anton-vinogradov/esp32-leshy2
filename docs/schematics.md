@@ -162,7 +162,8 @@ POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>single maintained low-current RUN/KIL
 SAFETY_CONTROLLER["Texas Instruments MSPM0C1106SDGS20R<br/>independent AON watchdog, thermal and TX-lease controller"]
 SAFETY_WATCHDOG["Texas Instruments TPS3435CAKAGDDFR<br/>independent 1.6-s timeout watchdog"]
 SAFE_CONDITIONER["74LVC2G14GW,125<br/>physical RUN and S3 fault-reset conditioner"]
-SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous FAULT_KILL latch"]
+SAFE_REARM_BUFFER["SN74LVC1G17DCKR<br/>delayed physical re-arm Schmitt buffer"]
+SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous RUN_PERMIT / FAULT_KILL latch"]
   UI_DPAD_UP -->|"direct P00"| UI_MATRIX_IO
   UI_DPAD_DOWN -->|"direct P01"| UI_MATRIX_IO
   UI_DPAD_LEFT -->|"direct P02"| UI_MATRIX_IO
@@ -345,7 +346,8 @@ SAFE_SUPERVISOR["TPS3808G33DBVR<br/>always-on safety-rail supervisor"]
 SAFETY_CONTROLLER["Texas Instruments MSPM0C1106SDGS20R<br/>independent AON watchdog, thermal and TX-lease controller"]
 SAFETY_WATCHDOG["Texas Instruments TPS3435CAKAGDDFR<br/>independent 1.6-s timeout watchdog"]
 SAFE_CONDITIONER["74LVC2G14GW,125<br/>physical RUN and S3 fault-reset conditioner"]
-SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous FAULT_KILL latch"]
+SAFE_REARM_BUFFER["SN74LVC1G17DCKR<br/>delayed physical re-arm Schmitt buffer"]
+SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous RUN_PERMIT / FAULT_KILL latch"]
 SAFE_GATE_A["SN74LVC08APWR<br/>hardware permits for three nRF24 radios and their rail"]
 SAFE_GATE_B["SN74LVC08APWR<br/>hardware permits for CC, voice and expansion"]
 IR_SAFE_GATE["SN74LVC1G08DCKR<br/>local hardware permit for the IR carrier"]
@@ -361,11 +363,12 @@ EVIDENCE_OR_2["BAT54ALT1G<br/>nRF24 #3 and sub-GHz evidence diode combiner"]
 EVIDENCE_OR_3["BAT54ALT1G<br/>voice and IR evidence diode combiner"]
 EVIDENCE_OR_4["BAT54ALT1G<br/>LoRa/EXT evidence diode combiner"]
 EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>digital TX-evidence isolation into the main domain"]
-  SAFE_SUPERVISOR -->|"power-on reset"| SAFE_LATCH
+  SAFE_SUPERVISOR -->|"POR_N"| SAFE_GATE_B
   POWER_COMMAND_SWITCH -->|"KILL / physical RUN edge"| SAFE_CONDITIONER
   SAFETY_CONTROLLER -->|"deadline service"| SAFETY_WATCHDOG
-  SAFETY_WATCHDOG -->|"WDO_N"| SAFE_LATCH
-  SAFE_CONDITIONER -->|"KILL / physical re-arm clock"| SAFE_LATCH
+  SAFETY_WATCHDOG -->|"FAULT_ASSERT_N"| SAFE_GATE_B
+  SAFE_GATE_B -->|"SAFE_CLEAR_N"| SAFE_LATCH
+  SAFE_CONDITIONER -->|"physical RUN edge"| SAFE_REARM_BUFFER -->|"delayed clock"| SAFE_LATCH
   SAFE_LATCH -->|"RUN_PERMIT"| SAFE_GATE_A
   SAFE_LATCH -->|"RUN_PERMIT"| SAFE_GATE_B
   SAFE_LATCH -->|"one digital permit across M1"| IR_SAFE_GATE

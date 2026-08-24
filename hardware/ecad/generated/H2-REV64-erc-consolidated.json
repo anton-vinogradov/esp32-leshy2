@@ -3,9 +3,9 @@
   "stage": "H2.6.4",
   "status": "reviewed_h2_6_erc_and_no_connect_closure",
   "source_hashes": {
-    "hardware/ecad/generated/H2-REV61-native-erc.json": "d3c986f2ac833ac9922856386182bcc88a6797b789490227c11ecf74c42254bf",
-    "hardware/ecad/generated/H2-REV62-no-connects.json": "6fc1d738497c5ee7b86364e233fc2f67fdfe012575c96aa80678002ea6159fb9",
-    "hardware/ecad/generated/H2-REV63-erc-clean.json": "62aa96cd31c3f4cff77646833aaa59f962adbc285e8083ed55605a002408d559"
+    "hardware/ecad/generated/H2-REV61-native-erc.json": "e5f7d27750feb5e4d1da5e3990996291f36ea8e245055f4d14d6ad4591eeafd5",
+    "hardware/ecad/generated/H2-REV62-no-connects.json": "75edfebe4a1cf423813ff275ef2bde2b6e1c54df67e80c855d81e3782c884d97",
+    "hardware/ecad/generated/H2-REV63-erc-clean.json": "65d4feef316882c9f84d9506db6d747c15bc0823ec09a95baa048f7b13619f73"
   },
   "subreviews": [
     {
@@ -48,7 +48,7 @@
     "projects": 4,
     "native_errors_or_warnings": 0,
     "intentional_no_connects": 189,
-    "generated_symbol_definitions": 1094,
+    "generated_symbol_definitions": 1098,
     "missing_contacts_markers_or_rationales": 0,
     "unexplained_findings": 0,
     "next_substep": "H2.7 — reconcile schematic contacts/nets with H1, pin ledger, M1 and firmware F2"

@@ -148,6 +148,7 @@
 | `ti_sn74lvc1g08_dckr` | `SN74LVC1G08DCKR` | `verified_exact_partial_power_down_and_gate` | `active_orderable` | [SN74LVC1G08 Single 2-Input Positive-AND Gate datasheet Rev. AA](https://www.ti.com/lit/ds/symlink/sn74lvc1g08.pdf) | same primary source |
 | `ti_sn74lvc1g125_dckr` | `Texas Instruments SN74LVC1G125DCKR` | `verified_candidate` | `active` | [SN74LVC1G125 single-bus buffer with 3-state output datasheet SCES223T and current exact-part page checked 2026-08-18](https://www.ti.com/lit/ds/symlink/sn74lvc1g125.pdf) | same primary source |
 | `ti_sn74lvc1g126_dckr` | `Texas Instruments SN74LVC1G126DCKR` | `verified_candidate` | `active` | [SN74LVC1G126 Single Bus Buffer Gate With 3-State Output datasheet SCES225 and current exact-part page checked 2026-08-18](https://www.ti.com/lit/ds/symlink/sn74lvc1g126.pdf) | same primary source |
+| `ti_sn74lvc1g17_dckr` | `SN74LVC1G17DCKR` | `verified_exact_schmitt_buffer` | `active_orderable` | [SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet Rev. Y](https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf) | same primary source |
 | `ti_sn74lvc1g3157_dbvr` | `Texas Instruments SN74LVC1G3157DBVR` | `verified_reference` | `active` | [SN74LVC1G3157 single-pole, double-throw analog switch datasheet SCES424O, January 2003, revised June 2025](https://www.ti.com/lit/ds/symlink/sn74lvc1g3157.pdf) | same primary source |
 | `ti_sn74lvc1g74_dcur` | `SN74LVC1G74DCUR` | `verified_candidate` | `active` | [SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet Rev. G](https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf) | same primary source |
 | `ti_sn74lvc2g08_dcur` | `Texas Instruments SN74LVC2G08DCUR` | `reference_only` | `active` | [SN74LVC2G08 dual 2-input positive-AND gate datasheet SCES198N, April 1999, revised December 2015](https://www.ti.com/lit/ds/symlink/sn74lvc2g08.pdf) | same primary source |
@@ -705,7 +706,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: `PA27`, `PA30`.
 | `PA18` | 14 | `SAFETY_SERVICE_UART_RX` | `i` | `UART1` | `abstract:safety service fixture` | — |
 | `PA22` | 17 | `ANY_TX_AON_N` | `i` | `GPIO_IRQ` | `any_tx_aon_pullup.END_2`, `evidence_or_4.A_COMMON` | — |
 | `PA23` | 18 | `S3_FAULT_RESET_REQUEST` | `o` | `GPIO` | `safety_s3_reset_iso.A` | — |
-| `PA24` | 19 | `RUN_EDGE` | `i` | `GPIO_IRQ` | `safe_conditioner.1Y`, `safe_latch.CLK` | — |
+| `PA24` | 19 | `RUN_EDGE` | `i` | `GPIO_IRQ` | `safe_conditioner.1Y`, `safe_rearm_delay_res.END_1`, `safe_run_fault_iso.A` | — |
 | `PA25` | 20 | `SAFETY_FAULT_REQUEST` | `o` | `GPIO` | `safety_fault_request_iso.A`, `safety_fault_request_pulldown.END_1` | — |
 | `PA26` | 1 | `POWER_ZONE_TEMP_ADC` | `i` | `ADC` | `power_zone_ntc.END_1`, `power_zone_temp_pullup.END_2`, `power_zone_temp_filter.END_1` | — |
 | `PA27` | 2 | `RF_ZONE_TEMP_ADC` | `i` | `ADC` | `rf_zone_ntc.END_1`, `rf_zone_temp_pullup.END_2`, `rf_zone_temp_filter.END_1` | — |
@@ -2898,7 +2899,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `SAFETY_GROUND` | `slow_io_fault_sense_iso.GND` | `abstract:safety-ground` | AON buffer return stays in the safety domain |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `slow_io_fault_sense_iso_bypass.END_1` | exact 100-nF local bypass supports the open-drain fault isolator |
 | `SAFETY_GROUND` | `slow_io_fault_sense_iso_bypass.END_2` | `abstract:safety-ground` | fault isolator bypass returns locally |
-| `FAULT_LATCH_SENSE_AON` | `safe_latch.Q` | `slow_io_fault_sense_iso.A` | read-only mirror cannot influence the non-programmable FAULT_KILL latch |
+| `FAULT_LATCH_SENSE_AON` | `safe_latch.Q_N` | `slow_io_fault_sense_iso.A` | read-only mirror cannot influence the non-programmable FAULT_KILL latch |
 | `FAULT_LATCH_SENSE` | `slow_io_fault_sense_iso.Y` | `slow_io.P22` | non-inverting open-drain transfer preserves Q polarity without positive AON injection into an unpowered VCCP domain |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io_fault_sense_pullup.END_1` | main-domain 10-kOhm pull-up exists only while TCA6424A VCCP is powered |
 | `FAULT_LATCH_SENSE` | `slow_io_fault_sense_pullup.END_2` | `slow_io.P22` | low means RUN and high means latched FAULT exactly as before isolation |
@@ -2920,7 +2921,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `SAFETY_GROUND` | `safe_supervisor_bypass.END_2` | `abstract:safety-ground` | supervisor bypass returns directly to the safety domain |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_por_pullup.END_1` | one exact 10-kOhm resistor is the sole external pull-up on the supervisor's open-drain POR output |
 | `POR_N` | `safe_por_pullup.END_2` | `safe_supervisor.RESET_N` | POR_N is pulled only to AON_SAFE_3V3; a missing AON rail cannot produce a main-enable high |
-| `POR_N` | `safe_supervisor.RESET_N` | `safe_latch.CLR_N` | only genuine AON power-on reset clears the latch asynchronously; ordinary firmware cannot drive CLR_N |
+| `POR_N` | `safe_supervisor.RESET_N` | `safe_gate_b.3A` | the brownout supervisor is one non-programmable input of the asynchronous safe-clear function |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_conditioner.VCC` | the RUN and fault-reset Schmitt conditioner remains powered for the full AON lifetime |
 | `SAFETY_GROUND` | `safe_conditioner.GND` | `abstract:safety-ground` | conditioner return is explicit and local to the safety domain |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_conditioner_bypass.END_1` | exact 100-nF local conditioner bypass |
@@ -2929,7 +2930,17 @@ Reserved: `PA1_NRST`. Free: none.
 | `SAFETY_GROUND` | `safe_latch.GND` | `abstract:safety-ground` | kill-latch return is explicit and local |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_latch_bypass.END_1` | exact 100-nF local kill-latch bypass |
 | `SAFETY_GROUND` | `safe_latch_bypass.END_2` | `abstract:safety-ground` | kill-latch bypass returns locally |
-| `RUN_EDGE` | `safe_conditioner.1Y` | `safe_latch.CLK` | only a physical KILL-to-RUN transition supplies the positive edge that clocks fixed D low |
+| `SAFE_PRESET_RELEASED` | `abstract:AON_SAFE_3V3` | `safe_latch.PRE_N` | unused asynchronous preset is fixed high so POR and fault can never create the prohibited PRE_N=CLR_N=0 state |
+| `RUN_EDGE` | `safe_conditioner.1Y` | `safe_rearm_delay_res.END_1` | only the physical KILL-to-RUN transition starts the passive re-arm delay |
+| `SAFE_REARM_DELAY` | `safe_rearm_delay_res.END_2` | `safe_rearm_delay_cap.END_1` | 100-kOhm and 2.2-uF create a bounded slow edge after the physical transition |
+| `SAFETY_GROUND` | `safe_rearm_delay_cap.END_2` | `abstract:safety-ground` | re-arm timing returns only to the AON safety domain |
+| `SAFE_REARM_DELAY` | `safe_rearm_delay_res.END_2` | `safe_rearm_buffer.A` | the exact Schmitt input tolerates the RC edge; worst-case threshold and leakage are modelled in H3.2 |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_rearm_buffer.VCC` | the re-arm edge cleaner shares only the protected hardware-safety rail |
+| `SAFETY_GROUND` | `safe_rearm_buffer.GND` | `abstract:safety-ground` | re-arm buffer return is local to the safety domain |
+| `NO_CONNECT` | `safe_rearm_buffer.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_rearm_buffer_bypass.END_1` | exact 100-nF local Schmitt-buffer bypass |
+| `SAFETY_GROUND` | `safe_rearm_buffer_bypass.END_2` | `abstract:safety-ground` | re-arm-buffer bypass returns locally |
+| `SAFE_REARM_CLK` | `safe_rearm_buffer.Y` | `safe_latch.CLK` | one delayed and hysteretic physical rising edge clocks fixed D high only after the maximum POR window |
 | `RUN_EDGE` | `safe_conditioner.1Y` | `safety_controller.PA24` | the safety controller may refuse a restart but cannot synthesize the physical edge |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_run_fault_iso.VCC` | the RUN fault buffer remains valid for the full AON lifetime |
 | `SAFETY_GROUND` | `safe_run_fault_iso.GND` | `abstract:safety-ground` | RUN fault buffer returns locally |
@@ -2939,7 +2950,8 @@ Reserved: `PA1_NRST`. Free: none.
 | `RUN_EDGE` | `safe_conditioner.1Y` | `safe_run_fault_iso.A` | low during KILL/open wiring pulls the wired fault plane low; high in RUN releases it |
 | `FAULT_ASSERT_N` | `safe_run_fault_iso.Y` | `fault_assert_pullup.END_2` | physical KILL is an asynchronous hardware fault source |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `fault_assert_pullup.END_1` | one AON pull-up serves the wired open-drain fault plane |
-| `FAULT_ASSERT_N` | `fault_assert_pullup.END_2` | `safe_latch.PRE_N` | any low fault source presets FAULT_KILL independent of clocks and firmware |
+| `FAULT_ASSERT_N` | `fault_assert_pullup.END_2` | `safe_gate_b.3B` | any low fault source forces SAFE_CLEAR_N low independently of clocks and firmware |
+| `SAFE_CLEAR_N` | `safe_gate_b.3Y` | `safe_latch.CLR_N` | POR_N AND FAULT_ASSERT_N is high only while both AON power and every asynchronous fault source are healthy; any low clears RUN_PERMIT |
 | `FAULT_ASSERT_N` | `safety_watchdog.WDO_N` | `fault_assert_pullup.END_2` | expired or malformed watchdog service directly presets FAULT_KILL |
 | `FAULT_ASSERT_N` | `safety_fault_request_iso.Y` | `fault_assert_pullup.END_2` | the safety controller may assert but can never electrically force release of the fault plane |
 | `SAFETY_ESD_SPARE_RUN_1` | `safety_control_esd.D1_MINUS` | `abstract:no-connect` | unused safety-domain ESD channel remains unconnected |
@@ -2951,8 +2963,8 @@ Reserved: `PA1_NRST`. Free: none.
 | `SAFETY_ESD_NC7` | `safety_control_esd.NC_7` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `SAFETY_ESD_NC9` | `safety_control_esd.NC_9` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `SAFETY_ESD_NC10` | `safety_control_esd.NC_10` | `abstract:no-connect` | manufacturer no-connect remains open |
-| `SAFE_D_LOW` | `safe_latch_d_pulldown.END_1` | `safe_latch.D` | exact physical 10-kOhm pull-down fixes D low; no MCU, expander or connector can release the latch |
-| `SAFETY_GROUND` | `safe_latch_d_pulldown.END_2` | `abstract:safety-ground` | the fixed-D resistor returns directly to the safety domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_latch_d_pullup.END_1` | the fixed-D source exists only with the protected safety rail |
+| `SAFE_D_HIGH` | `safe_latch_d_pullup.END_2` | `safe_latch.D` | exact physical 10-kOhm pull-up fixes D high; no MCU, expander or connector can synthesize a permit edge |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_controller.VDD` | the safety controller remains alive on battery or product USB whenever the independently protected AON rail exists |
 | `SAFETY_GROUND` | `safety_controller.VSS` | `abstract:safety-ground` | dedicated controller return stays inside the AON safety domain |
 | `SAFETY_SWDIO` | `safety_controller.PA19_SWDIO` | `abstract:safety SWD fixture` | permanent SWD data access reaches the real DGS20 pin 15 for blank-device programming and recovery |
@@ -3021,7 +3033,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `NO_CONNECT` | `safe_reset_buffer.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_reset_buffer_bypass.END_1` | exact 100-nF local bypass |
 | `SAFETY_GROUND` | `safe_reset_buffer_bypass.END_2` | `abstract:safety-ground` | local bypass return |
-| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_reset_buffer.A` | one non-programmable permit controls the C5/RP passive-drain reset sinks |
+| `RUN_PERMIT` | `safe_latch.Q` | `safe_reset_buffer.A` | one non-programmable permit controls the C5/RP passive-drain reset sinks |
 | `RF_RESET_KILL_GATE` | `safe_reset_buffer.Y` | `safe_reset_gate_pullup.END_2` | open-drain inverter actively holds C5/RP reset gates low only while RUN_PERMIT and AON are valid |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `safe_reset_gate_pullup.END_1` | main-domain pull-up asserts reset if the AON driver disappears while compute power remains |
 | `RF_RESET_KILL_GATE` | `safe_reset_gate_pullup.END_2` | `safe_reset_sink_a.G2` | C5 independent reset sink gate |
@@ -3052,15 +3064,15 @@ Reserved: `PA1_NRST`. Free: none.
 | `SAFETY_GROUND` | `safe_gate_b.GND` | `abstract:safety-ground` | rear-domain safety-gate return is explicit and local |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_gate_b_bypass.END_1` | exact 100-nF local rear-domain safety-gate bypass |
 | `SAFETY_GROUND` | `safe_gate_b_bypass.END_2` | `abstract:safety-ground` | rear-domain safety-gate bypass returns locally |
-| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.1B` | KILL/FAULT_KILL-dominant active-high gate permit |
-| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.2B` | KILL/FAULT_KILL-dominant active-high gate permit |
-| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.3B` | KILL/FAULT_KILL-dominant active-high gate permit |
-| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.4B` | KILL/FAULT_KILL-dominant active-high gate permit |
-| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_b.1B` | KILL/FAULT_KILL-dominant active-high gate permit |
-| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_b.2B` | KILL/FAULT_KILL-dominant active-high gate permit |
+| `RUN_PERMIT` | `safe_latch.Q` | `safe_gate_a.1B` | KILL/FAULT_KILL-dominant active-high gate permit |
+| `RUN_PERMIT` | `safe_latch.Q` | `safe_gate_a.2B` | KILL/FAULT_KILL-dominant active-high gate permit |
+| `RUN_PERMIT` | `safe_latch.Q` | `safe_gate_a.3B` | KILL/FAULT_KILL-dominant active-high gate permit |
+| `RUN_PERMIT` | `safe_latch.Q` | `safe_gate_a.4B` | KILL/FAULT_KILL-dominant active-high gate permit |
+| `RUN_PERMIT` | `safe_latch.Q` | `safe_gate_b.1B` | KILL/FAULT_KILL-dominant active-high gate permit |
+| `RUN_PERMIT` | `safe_latch.Q` | `safe_gate_b.2B` | KILL/FAULT_KILL-dominant active-high gate permit |
 | `IR_TX_CARRIER` | `c5.GPIO6` | `ir_safe_gate.A` | C5 RMT carrier stays on the UI board and enters the local hardware safety gate directly |
-| `RUN_PERMIT` | `safe_latch.Q_N` | `ir_safe_gate.B` | one digital permit crosses to the UI board; the IR carrier itself remains local to C5 |
-| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_b.4B` | KILL/FAULT_KILL-dominant active-high gate permit |
+| `RUN_PERMIT` | `safe_latch.Q` | `ir_safe_gate.B` | one digital permit crosses to the UI board; the IR carrier itself remains local to C5 |
+| `RUN_PERMIT` | `safe_latch.Q` | `safe_gate_b.4B` | KILL/FAULT_KILL-dominant active-high gate permit |
 | `NRF0_CE_SAFE` | `safe_gate_a.1Y` | `nrf0_host_buffer.1A` | KILL/FAULT_KILL-dominant CE enters the switched-domain Ioff buffer rather than the module directly |
 | `NRF0_CE_BUFFERED` | `nrf0_host_buffer.1Y` | `nrf0_ce_series.END_1` | exact switched-domain buffer isolates CE while off |
 | `NRF0_CE_MODULE` | `nrf0_ce_series.END_2` | `nrf0.CE` | exact 22-Ohm source resistor bounds CE edges at the module |
@@ -3208,17 +3220,14 @@ Reserved: `PA1_NRST`. Free: none.
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_safe_gate_bypass.END_1` | exact 100-nF local bypass at SN74LVC1G08DCKR |
 | `SAFETY_GROUND` | `ir_safe_gate_bypass.END_2` | `abstract:safety-ground` | IR gate bypass returns locally |
 | `IR_TX_CARRIER_SAFE` | `ir_safe_gate.Y` | `ir_tx_gate_series.END_1` | KILL/FAULT_KILL-dominant carrier reaches the exact emitter gate network without a rear-board round trip |
-| `SAFETY_GROUND` | `safe_gate_b.3A` | `abstract:safety-ground` | unused rear quad-gate channel input A is fixed low |
-| `SAFETY_GROUND` | `safe_gate_b.3B` | `abstract:safety-ground` | unused rear quad-gate channel input B is fixed low |
-| `NO_CONNECT` | `safe_gate_b.3Y` | `abstract:no-connect` | unused rear quad-gate output remains unconnected |
 | `EXT_ANY_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_buck.EN` | KILL/FAULT_KILL and AON loss disable the shared fixed-5-V converter; either admitted branch may request it |
 | `EXT_ANY_5V_EN_SAFE` | `ext_buck.EN` | `ext_en_pulldown.END_1` | one exact 10-kOhm pull-down defines the common converter off if the safety-gate output is high-impedance |
 | `POWER_GROUND` | `ext_en_pulldown.END_2` | `abstract:power-ground` | external fail-low default is independent of the converter's internal 2-MOhm pull-down |
 | `EXT_ANY_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_pg_base_res.END_1` | the qualifier consumes the same KILL/FAULT_KILL-dominant common-source enable evidence |
 | `EXT_PG_QUAL_BASE` | `ext_pg_base_res.END_2` | `ext_pg_qualifier.B` | exact 68-kOhm 1% base resistor limits drive while preserving the reviewed forced-beta margin |
 | `U214_5V_EN_SAFE` | `ext_branch_gate.1Y` | `ext_efuse.EN_UVLO` | U214 eFuse is independent of the native Unit branch and remains KILL/FAULT_KILL-dominant |
-| `FAULT_KILL` | `safe_latch.Q` | `safe_ptt_or.1B` | active-high kill forces active-low PTT high/RX |
-| `FAULT_LATCH_SENSE_AON` | `safe_latch.Q` | `fault_led_series.END_1` | the same raw AON latch output crosses M1 once for the non-programmable front indicator and the isolated read-only diagnostic tap |
+| `FAULT_KILL` | `safe_latch.Q_N` | `safe_ptt_or.1B` | active-high kill forces active-low PTT high/RX |
+| `FAULT_LATCH_SENSE_AON` | `safe_latch.Q_N` | `fault_led_series.END_1` | the same raw AON latch output crosses M1 once for the non-programmable front indicator and the isolated read-only diagnostic tap |
 | `FAULT_LED_A` | `fault_led_series.END_2` | `fault_led.A` | exact 2.2-kOhm current limit |
 | `FAULT_LED_K` | `fault_led.K` | `abstract:safety-ground` | indicator stays outside UI and firmware and remains available when UI thermal protection turns the display off |
 | `S3_MODULE_RF_50R` | `s3.ANT` | `s3_rf_jumper.END_A` | datasheet-dimensioned module receptacle mates the exact 30-mm UMCC Gen1 jumper |
@@ -4049,6 +4058,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `safety_watchdog` lifecycle: `active_orderable`.
 - `safe_run_fault_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `safe_conditioner` lifecycle: `production`.
+- `safe_rearm_buffer` uses `SN74LVC1G17DCKR` as `verified_exact_schmitt_buffer`, not an accepted production choice.
+- `safe_rearm_buffer` lifecycle: `active_orderable`.
 - `safe_reset_buffer` uses `Texas Instruments SN74LVC1G06DCKR` as `verified_exact_fail_low_reset_gate_driver`, not an accepted production choice.
 - `safe_reset_buffer` lifecycle: `active_orderable`.
 - `ir_safe_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.

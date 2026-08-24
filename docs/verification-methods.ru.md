@@ -34,6 +34,6 @@ H3 использует воспроизводимые worst-case расчёты
 
 Расчётное ядро использует только Python standard library, `Decimal` с фиксированной точностью и JSON/CSV/SVG. Сеть и случайность не участвуют в acceptance; каждый генератор обязан иметь режимы `--write` и `--check`, входные SHA-256 и тесты.
 
-**Статус:** `H3.0.3` завершено и проверено. Текущий точный маркер — `H3.2.1`, startup, orderly shutdown и hard `FAULT_KILL`.
+**Статус:** `H3.0.3` завершено и проверено. Текущий точный маркер — `H3.3.1`, display supply, backlight и direct-QSPI corners.
 
 [Машинный контракт методов](../hardware/verification/generated/H3-VRF03-method-contract.json).

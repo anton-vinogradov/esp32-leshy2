@@ -11,8 +11,8 @@
   ],
   "policy": "Every mechanically rendered body has one exact instance, MPN or explicit TBD, sourced envelope, datum, orientation and interface direction.",
   "summary": {
-    "rendered_physical_instances": 181,
-    "exact_mpn_instances": 181,
+    "rendered_physical_instances": 182,
+    "exact_mpn_instances": 182,
     "explicit_mpn_tbd_instances": 0,
     "h1_blockers": 0,
     "h5_received_sample_gates": 14
@@ -3921,7 +3921,7 @@
       "instance": "safe_latch",
       "device_key": "ti_sn74lvc1g74_dcur",
       "mpn": "SN74LVC1G74DCUR",
-      "role": "asynchronous FAULT_KILL latch",
+      "role": "asynchronous RUN_PERMIT / FAULT_KILL latch",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
@@ -3968,6 +3968,33 @@
       "evidence_gates": [],
       "position_mm": [
         59.0,
+        82.0
+      ]
+    },
+    {
+      "instance": "safe_rearm_buffer",
+      "device_key": "ti_sn74lvc1g17_dckr",
+      "mpn": "SN74LVC1G17DCKR",
+      "role": "delayed physical re-arm Schmitt buffer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        1.25,
+        1.1
+      ],
+      "qualification": "verified_exact_schmitt_buffer",
+      "source": {
+        "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
+        "version": "Rev. Y",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
+        "checked": "2026-08-24"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        44.0,
         82.0
       ]
     },

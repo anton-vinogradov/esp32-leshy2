@@ -1,0 +1,606 @@
+{
+  "schema_version": 1,
+  "stage": "H3.2.3",
+  "status": "reviewed_inrush_and_load_step_envelopes",
+  "method": [
+    "bounded_transient",
+    "interval_corner"
+  ],
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "5175bf8df45ba18bfa1d698922fd0d520783328868a23f3f41314be0526950b3",
+    "hardware/architecture/devices.json": "f8ed5a402e82f1b95f8b11e818adf0c13efca37523c9ecc11088736687fde01d",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "df0d25e48cb2c4bf012b83b68e45ad08a7d64cf641eb2a10460a69b1a42fdf71",
+    "hardware/verification/generated/H3-VRF22-handover-brownout.json": "815169d44b724472d0db28703128faeeccb95f5de659abd297fd31347050e63d"
+  },
+  "provenance": {
+    "aon_efuse": "https://www.ti.com/lit/ds/symlink/tps25961.pdf",
+    "main_efuse": "https://www.ti.com/lit/ds/symlink/tps2597.pdf",
+    "external_efuse": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
+    "buck": "https://www.ti.com/lit/ds/symlink/tps564252.pdf"
+  },
+  "automatic_capacitance_inventory": {
+    "AON_SAFE_3V3": {
+      "net": "AON_SAFE_3V3",
+      "capacitors": 37,
+      "nominal_uf": 23.5,
+      "parts": [
+        {
+          "instance": "aon_efuse_output_cap",
+          "mpn": "Murata GRM188R60J106ME47D",
+          "nominal_uf": 10.0
+        },
+        {
+          "instance": "c5_detector_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "cc_detector_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "evidence_cmp_a_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "evidence_cmp_b_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "evidence_cmp_voice_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "evidence_main_isolator_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "evidence_mask_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "ext_branch_gate_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "ext_evidence_buffer_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "ext_request_or_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "ir_evidence_amp_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "ir_safe_gate_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "nrf0_detector_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "nrf1_detector_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "nrf2_detector_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "s3_detector_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safe_conditioner_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safe_gate_a_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safe_gate_b_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safe_latch_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safe_ptt_or_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safe_rearm_buffer_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safe_reset_buffer_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safe_run_fault_iso_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safe_supervisor_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safety_controller_bulk",
+          "mpn": "Murata GRM188R60J106ME47D",
+          "nominal_uf": 10.0
+        },
+        {
+          "instance": "safety_controller_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safety_fault_request_iso_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safety_s3_reset_iso_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "safety_watchdog_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "slow_io_fault_sense_iso_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "slow_io_s3_evidence_iso_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "u214_supervisor_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "unit_supervisor_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "voice_detector_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "voice_supervisor_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        }
+      ]
+    },
+    "3V3_MAIN": {
+      "net": "3V3_MAIN",
+      "capacitors": 53,
+      "nominal_uf": 59.7,
+      "parts": [
+        {
+          "instance": "audio_capture_selector_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "audio_rx_mux_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "audio_safe_gate_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "audio_speaker_selector_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "audio_tx_selector_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "backlight_efuse_input_cap",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "c5_service_usb_switch_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "cc_power_input_cap",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": 1.0
+        },
+        {
+          "instance": "codec_i2c_iso_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "codec_i2s_bclk_iso_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "codec_i2s_din_boot_gate_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "codec_i2s_din_iso_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "codec_i2s_dout_iso_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "codec_i2s_ws_iso_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "codec_power_input_cap",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": 1.0
+        },
+        {
+          "instance": "headset_control_io_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "headset_mic_selector_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "ir_power_input_cap",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": 1.0
+        },
+        {
+          "instance": "main_efuse_output_cap",
+          "mpn": "Murata GRM188R60J106ME47D",
+          "nominal_uf": 10.0
+        },
+        {
+          "instance": "nrf_power_input_cap",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": 1.0
+        },
+        {
+          "instance": "receiver_i2c_iso_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "receiver_power_input_cap",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": 1.0
+        },
+        {
+          "instance": "rp_adc_avdd_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "rp_iovdd15_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "rp_iovdd24_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "rp_iovdd29_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "rp_iovdd41_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "rp_iovdd50_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "rp_iovdd5_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "rp_iovdd60_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "rp_iovdd76_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "rp_qspi_iovdd_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "rp_service_usb_switch_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "rp_usb_otp_vdd_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "rp_vreg_vin_bulk",
+          "mpn": "TDK C1005X5R0J475K050BC",
+          "nominal_uf": 4.7
+        },
+        {
+          "instance": "s3_supply_bulk",
+          "mpn": "Murata GRM21BR60J226ME39L",
+          "nominal_uf": 22.0
+        },
+        {
+          "instance": "s3_supply_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "sd_power_input_cap",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": 1.0
+        },
+        {
+          "instance": "slow_io_bulk_cap",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": 1.0
+        },
+        {
+          "instance": "slow_io_vcci_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "slow_io_vccp_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "speaker_amp_bulk_cap",
+          "mpn": "Murata GRM188R60J106ME47D",
+          "nominal_uf": 10.0
+        },
+        {
+          "instance": "speaker_amp_input_cap",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": 1.0
+        },
+        {
+          "instance": "touch_irq_buffer_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "u214_host_buffer_a_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "u214_host_buffer_b_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "u214_i2c_iso_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "u214_return_buffer_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "ui_matrix_io_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "unit_signal_iso_vcca_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "unit_signal_iso_vccb_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "voice_hl_driver_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "voice_io_power_input_cap",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": 1.0
+        }
+      ]
+    },
+    "VVOICE_4V": {
+      "net": "VVOICE_4V",
+      "capacitors": 1,
+      "nominal_uf": 10.0,
+      "parts": [
+        {
+          "instance": "voice_efuse_output_cap",
+          "mpn": "Murata GRM188R60J106ME47D",
+          "nominal_uf": 10.0
+        }
+      ]
+    },
+    "5V_U214_PROTECTED": {
+      "net": "5V_U214_PROTECTED",
+      "capacitors": 1,
+      "nominal_uf": 2.2,
+      "parts": [
+        {
+          "instance": "ext_output_cap",
+          "mpn": "Murata GRM21BR71E225KE11L",
+          "nominal_uf": 2.2
+        }
+      ]
+    },
+    "5V_UNIT_PROTECTED": {
+      "net": "5V_UNIT_PROTECTED",
+      "capacitors": 1,
+      "nominal_uf": 2.2,
+      "parts": [
+        {
+          "instance": "unit_output_cap",
+          "mpn": "Murata GRM21BR71E225KE11L",
+          "nominal_uf": 2.2
+        }
+      ]
+    }
+  },
+  "startup_envelopes": [
+    {
+      "rail": "AON_SAFE_3V3",
+      "strategy": "TPS25961 fixed slew may enter configured current limit",
+      "cap_nominal_uf": 23.5,
+      "cap_max_uf": 28.2,
+      "active_load_ma": 89.5,
+      "protection_min_ma": 165.0,
+      "bounded_current_limited_charge_ms": 1.233,
+      "margin_ma_while_charging": 75.5,
+      "result": "pass_current_limited_start"
+    },
+    {
+      "rail": "3V3_MAIN",
+      "strategy": "TPS25974 with 4.7-nF dV/dt capacitor; CdVdt=3300/SR",
+      "cap_nominal_uf": 59.7,
+      "cap_max_uf": 71.64,
+      "slew_v_per_ms": 0.702,
+      "capacitive_inrush_ma": 50.291,
+      "worst_active_load_ma": 2462.0,
+      "protection_min_ma": 3200.0,
+      "combined_margin_ma": 687.709,
+      "result": "pass"
+    },
+    {
+      "rail": "VVOICE_4V",
+      "strategy": "TPS25974 with 4.7-nF dV/dt capacitor; CdVdt=3300/SR",
+      "cap_nominal_uf": 10.0,
+      "cap_max_uf": 12.0,
+      "slew_v_per_ms": 0.702,
+      "capacitive_inrush_ma": 8.424,
+      "worst_active_load_ma": 900.0,
+      "protection_min_ma": 1550.0,
+      "combined_margin_ma": 641.576,
+      "result": "pass"
+    },
+    {
+      "rail": "5V_U214_PROTECTED",
+      "strategy": "TPS259470 with 4.7-nF dV/dt capacitor; CdVdt=2000/SR",
+      "cap_nominal_uf": 2.2,
+      "cap_max_uf": 2.64,
+      "slew_v_per_ms": 0.4255,
+      "capacitive_inrush_ma": 1.123,
+      "worst_active_load_ma": 1250.0,
+      "protection_min_ma": 1632.0,
+      "combined_margin_ma": 380.877,
+      "result": "pass"
+    },
+    {
+      "rail": "5V_UNIT_PROTECTED",
+      "strategy": "TPS259470 with 4.7-nF dV/dt capacitor; CdVdt=2000/SR",
+      "cap_nominal_uf": 2.2,
+      "cap_max_uf": 2.64,
+      "slew_v_per_ms": 0.4255,
+      "capacitive_inrush_ma": 1.123,
+      "worst_active_load_ma": 1250.0,
+      "protection_min_ma": 1632.0,
+      "combined_margin_ma": 380.877,
+      "result": "pass"
+    }
+  ],
+  "load_step_boundary": {
+    "largest_3v3_main_step_ma": 2462.0,
+    "3v3_protection_min_ma": 3200.0,
+    "steady_overcurrent_result": "pass",
+    "dynamic_result": "converter and eFuse current limits are not crossed by the accepted steady endpoint; absolute droop and loop settling require SPICE/vendor-model or H8 waveform evidence and are not inferred from the current margin"
+  },
+  "summary": {
+    "rails": 5,
+    "failed_startup_envelopes": 0,
+    "unresolved_analytical_findings": 0,
+    "automated_capacitor_instances": 93
+  },
+  "residual_physical_only": [
+    "measure effective MLCC capacitance under DC bias and temperature",
+    "measure every protected-rail ramp and discharge",
+    "apply named worst load steps while capturing buck/eFuse current and rail minimum"
+  ],
+  "next": {
+    "stage": "H3.2.4",
+    "action": "verify watchdog, latch and retained fault-display timing"
+  },
+  "open_findings": []
+}

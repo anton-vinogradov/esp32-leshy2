@@ -4,26 +4,26 @@
   "status": "reviewed_canonical_inventory_snapshot",
   "method": "assign one canonical owner to physical fit, part inventory, pin assignment, interboard crossing and firmware-visible state",
   "source_hashes": {
-    "h1_physical_acceptance": "f6023427d09e897ab84ab5bad0d2cd4faa4f2079c6353224dc11af6095eee7ff",
-    "h2_instance_ledger": "fb8346a414a93d139013031468d00b9fd9bec29debf1875a3c6a72dd073646e5",
-    "architecture_pin_source": "f081f88f5cc68884445d575c5e574947d396d9bea59c7e12f45c0eaf54a259ff",
-    "ui_m1": "2c698db155cb12260b6e5db983d31061101d61a916fbae5a8416b62254f714d5",
-    "rf_m1": "0a3427c0404e69e947170a7cd88e17ac02017173b1727e7773a8b3545196165f",
-    "h2_hwfw_export": "0e70e66d45389b7b6204962fbe3954fee5bb211cba5d3c04d82cf2468874c0e0",
-    "firmware_f2_import": "0e70e66d45389b7b6204962fbe3954fee5bb211cba5d3c04d82cf2468874c0e0"
+    "h1_physical_acceptance": "197fef6b5eb92a1853ec25ccfc671abd8deafb3d2799f30d3b82c67b9b433ea1",
+    "h2_instance_ledger": "c5ed44d1be459410c52b1ca4dbb80663eeab493b308b6ad0b91c5dc2eed38d6e",
+    "architecture_pin_source": "5175bf8df45ba18bfa1d698922fd0d520783328868a23f3f41314be0526950b3",
+    "ui_m1": "c8e7102bbad5b3c7b3593d25121d4422043eb8785c6401f6d2b137fbb2f9890c",
+    "rf_m1": "22cc438018361cadc179782e9ec43cc84881f5e8b6ca1cda7b95fd20f79e5b93",
+    "h2_hwfw_export": "eab65f6c393373c5ba0ea6895209c7e714af5bb5f6dda5afddba54154e9f7914",
+    "firmware_f2_import": "eab65f6c393373c5ba0ea6895209c7e714af5bb5f6dda5afddba54154e9f7914"
   },
   "inventories": [
     {
       "owner": "H1",
       "role": "physical bodies, coordinates and accepted mechanical fit",
       "artifact": "hardware/product-design/generated/H1-cross-view-acceptance.json",
-      "count": 181
+      "count": 182
     },
     {
       "owner": "H2 instance ledger",
       "role": "MPN, owning sheet and logical/physical contact counts",
       "artifact": "hardware/ecad/generated/H2-instance-ledger.json",
-      "count": 1028
+      "count": 1032
     },
     {
       "owner": "architecture pin source",
@@ -46,7 +46,7 @@
   ],
   "summary": {
     "canonical_inventories": 5,
-    "h2_instance_rows": 1028,
+    "h2_instance_rows": 1032,
     "allocated_controller_contacts": 130,
     "firmware_bsp_contacts": 125,
     "pd_hardware_configuration_contacts": 5,

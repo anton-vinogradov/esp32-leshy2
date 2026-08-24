@@ -10,8 +10,8 @@
 
 | Покрытие | Результат |
 |---|---:|
-| Отрисованных физических экземпляров | 181 |
-| Экземпляров с точным MPN | 181 |
+| Отрисованных физических экземпляров | 182 |
+| Экземпляров с точным MPN | 182 |
 | Экземпляров с явным MPN TBD | 0 |
 | Blocker геометрии H1 | 0 |
 | Received-sample gate H5 | 14 |
@@ -24,7 +24,7 @@
 | `display-assembly` | HMX035CTFT-001 screen-body top-left, front view | 1 |
 | `front-outer` | UI PCB top-left, viewed from the front/exterior | 30 |
 | `rear-outer` | RF/power PCB top-left, viewed from the rear/exterior | 13 |
-| `rf-inner` | RF/power PCB top-left, viewed from the rear/exterior | 99 |
+| `rf-inner` | RF/power PCB top-left, viewed from the rear/exterior | 100 |
 | `rf-inner-route` | RF/power PCB top-left, viewed from the rear/exterior | 3 |
 | `ui-inner` | UI PCB top-left, viewed from the front/exterior | 31 |
 | `ui-inner-route` | UI PCB top-left, viewed from the front/exterior | 2 |

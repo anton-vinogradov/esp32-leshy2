@@ -27,7 +27,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
 | Production ECAD schematic | ✅ H2 accepted at hardware `25d9ee2`; firmware F2 synchronized at `900bb2b` |
-| Electrical and transient evidence | ▶️ H3.2.1: steady DC reviewed; startup/shutdown/FAULT_KILL dynamics in progress |
+| Electrical and transient evidence | ▶️ H3.3.1: DC and power-transition/safety-loop reviewed; display/backlight/QSPI corners in progress |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
@@ -41,11 +41,11 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1/H2 and current H3 breakdown
 
-<!-- current-substep: H3.2.1 -->
+<!-- current-substep: H3.3.1 -->
 
-**Exact marker: `H3.2.1`** — the [complete steady-power chain](dc-verification-result.md)
-is reviewed with no unresolved finding; startup, orderly shutdown and hard
-`FAULT_KILL` are being modelled.
+**Exact marker: `H3.3.1`** — [power transitions and the safety loop](power-transition-result.md)
+are reviewed with no unresolved analytical finding; display supply, backlight
+and direct-QSPI electrical corners are being verified.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -116,11 +116,11 @@ is reviewed with no unresolved finding; startup, orderly shutdown and hard
 Current H2 execution:
 
 - `H2.0` — freeze authoritative schematic inputs and project structure.
-  - ✅ `H2.0.1` — complete 1,028-row inventory reviewed: all 1,000 main-device
+  - ✅ `H2.0.1` — complete 1,032-row inventory reviewed: all 1,004 main-device
     circuit instances, 26 common LoRa-Cap parts and 2 alternative radio modules;
-    181 H1 bodies and all 819 schematic-only main-device parts are reconciled.
+    182 H1 bodies and all 822 schematic-only main-device parts are reconciled.
   - ✅ `H2.0.2` — four-project hierarchy, board boundaries, rails and net naming
-    rechecked against all 1,028 inventory rows; four intentionally component-empty
+    rechecked against all 1,032 inventory rows; four intentionally component-empty
     root/test sheets are explicitly classified.
   - ✅ `H2.0.3` — generated 125-contact HW↔FW/BSP export and cross-repository drift checks reviewed.
 - ✅ `H2.1` — four independent KiCad projects, 28 native schematic files and
@@ -236,7 +236,7 @@ Current H2 execution:
     `25d9ee2` / firmware `900bb2b`.
 - ✅ **`H3.0` — reviewed:** virtual-verification inputs, methods and reproducibility.
   - ✅ `H3.0.1` — [accepted H2 input and the complete 16-domain matrix frozen](virtual-verification.md).
-  - ✅ `H3.0.2` — [213-type register complete](parameter-model-register.md),
+  - ✅ `H3.0.2` — [214-type register complete](parameter-model-register.md),
     no source is missing and `3× E01-ML01IPX` remain.
   - ✅ `H3.0.3` — [methods and pass/fail rules frozen](verification-methods.md).
 - ✅ **`H3.1` — reviewed:** worst-case steady-state sources, rails, charging and thermal inputs.
@@ -244,10 +244,15 @@ Current H2 execution:
   - ✅ `H3.1.2` — [200 rail profiles pass](dc-power-budget.md); the external eFuse threshold mismatch is corrected.
   - ✅ `H3.1.3` — [2,032 source/charge/discharge states pass](source-charge-budget.md).
   - ✅ `H3.1.4` — [steady DC evidence consolidated](dc-verification-result.md), zero unresolved findings.
-- ▶️ `H3.2` — startup/shutdown, handover, brownout, inrush, watchdog and `FAULT_KILL` dynamics.
-  - ▶️ **`H3.2.1` — current:** startup, orderly shutdown and hard `FAULT_KILL`.
-  - ⏳ `H3.2.2–H3.2.5` — handover/brownout, eFuse/load steps, retained fault UI and consolidation.
-- ⏳ `H3.3` — display/backlight, audio, IR and battery-analog corners.
+- ✅ `H3.2` — [startup/shutdown, handover, brownout, inrush, watchdog and `FAULT_KILL`](power-transition-result.md) reviewed.
+  - ✅ `H3.2.1` — [startup, orderly shutdown and hard `FAULT_KILL`](power-transition-startup.md).
+  - ✅ `H3.2.2` — [handover, DPM and brownout](power-handover.md).
+  - ✅ `H3.2.3` — [eFuse, inrush and load steps](inrush-load-step.md).
+  - ✅ `H3.2.4` — [watchdog, retained fault record and fault-only UI](watchdog-fault-display.md).
+  - ✅ `H3.2.5` — consolidated review, 0 analytical failures; two source errors corrected.
+- ▶️ `H3.3` — display/backlight, audio, IR and battery-analog corners.
+  - ▶️ **`H3.3.1` — current:** display supply, backlight and direct-QSPI corners.
+  - ⏳ `H3.3.2–H3.3.5` — audio, IR, battery analog and consolidation.
 - ⏳ `H3.4` — digital levels, reset defaults, bandwidth, timing and expansion loading.
 - ⏳ `H3.5` — RF feed, return-path, corridor and coexistence constraints.
 - ⏳ `H3.6` — thermal model, single-fault tree and 24–48-hour unattended envelope.
@@ -309,7 +314,7 @@ A production order is possible only after H9.
 | **H0. Product requirements and functional architecture** | ✅ Reviewed | Complete capability scope, five compute domains, radio/interface owners, interface classes, one active signal group, full-function 3×nRF24 and safety boundaries | Requirements and architecture checks pass; every required function has an owner and a defined hardware boundary |
 | **H1. Physical product design** | ✅ Reviewed | Accepted exterior, both outer and inner faces, true antenna-edge view, sections, assembly sequence, selected-part envelopes and feasible pin/resource allocation | Dimensions come from selected MPNs; no component, fastener, silkscreen, antenna or accessory collision; controls, battery, U214, ports, microphone and speaker are accessible; allocation still fits; the user accepted the mockup |
 | **H2. Production ECAD schematic** | ✅ Reviewed and accepted | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 consumes the contract without invented pins |
-| **H3. Virtual electrical verification** | ▶️ Current · `H3.2.1` | Calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; display/backlight, audio and IR corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
+| **H3. Virtual electrical verification** | ▶️ Current · `H3.3.1` | Calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; display/backlight, audio and IR corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
 | **H4. Joined pre-layout gate** | 🔒 Waiting for H1–H3 and firmware F3 | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
 | **H5. Component evidence samples** | 🔒 Waiting for H4 and separate cost approval | Minimum evidence purchase, not a production basket | Received display, U214, connectors and radios are identified and measured; connector mating and critical stack-up fit are proven; raw records are retained; mismatch reopens its source stage |
 | **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |

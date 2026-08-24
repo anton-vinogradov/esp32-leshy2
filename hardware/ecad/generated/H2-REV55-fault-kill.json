@@ -4,18 +4,18 @@
   "status": "reviewed_watchdog_thermal_fault_and_hardware_shutdown",
   "method": "exact complete-KiCad-netlist membership review from physical RUN/KILL and watchdog through latch, reset/gate fan-out, thermal/evidence sensing and diagnostic pads",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "f081f88f5cc68884445d575c5e574947d396d9bea59c7e12f45c0eaf54a259ff",
-    "hardware/ecad/generated/H2-instance-ledger.json": "fb8346a414a93d139013031468d00b9fd9bec29debf1875a3c6a72dd073646e5",
-    "hardware/ecad/H2-sheet-contract.json": "3253e27a7303ee58625ba87b0f2d84627c169535d2589dc530ea5197ccc2d9ad",
+    "hardware/architecture/candidates/G2F-3I.json": "5175bf8df45ba18bfa1d698922fd0d520783328868a23f3f41314be0526950b3",
+    "hardware/ecad/generated/H2-instance-ledger.json": "c5ed44d1be459410c52b1ca4dbb80663eeab493b308b6ad0b91c5dc2eed38d6e",
+    "hardware/ecad/H2-sheet-contract.json": "2e7646b761d069785c5c37ca8fb686fd33d46ac7391c6d78f924b015d633f889",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01"
   },
   "hierarchy_exports": {
     "LESHY2-RF": {
-      "component_count": 678,
-      "unique_reference_count": 678,
+      "component_count": 682,
+      "unique_reference_count": 682,
       "duplicate_references": [],
-      "net_count": 538,
+      "net_count": 541,
       "annotation_warnings": 0
     },
     "LESHY2-UI": {
@@ -35,7 +35,7 @@
       "evidence": "every normalized safety_contract.test_points identifier is instantiated on UI60 or RF60 and every selected safety net matches the complete KiCad hierarchy"
     }
   ],
-  "reviewed_net_count": 53,
+  "reviewed_net_count": 56,
   "reviewed_nets": [
     {
       "project": "LESHY2-RF",
@@ -96,9 +96,12 @@
         "safe_gate_b_bypass",
         "safe_latch",
         "safe_latch_bypass",
+        "safe_latch_d_pullup",
         "safe_por_pullup",
         "safe_ptt_or",
         "safe_ptt_or_bypass",
+        "safe_rearm_buffer",
+        "safe_rearm_buffer_bypass",
         "safe_reset_buffer",
         "safe_reset_buffer_bypass",
         "safe_run_fault_iso",
@@ -147,9 +150,26 @@
       "instances": [
         "TP_RUN_EDGE",
         "safe_conditioner",
-        "safe_latch",
+        "safe_rearm_delay_res",
         "safe_run_fault_iso",
         "safety_controller"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "SAFE_REARM_DELAY",
+      "instances": [
+        "safe_rearm_buffer",
+        "safe_rearm_delay_cap",
+        "safe_rearm_delay_res"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "SAFE_REARM_CLK",
+      "instances": [
+        "safe_latch",
+        "safe_rearm_buffer"
       ]
     },
     {
@@ -159,12 +179,20 @@
         "TP_FAULT_ASSERT_N",
         "fault_assert_pullup",
         "safe_conditioner",
-        "safe_latch",
+        "safe_gate_b",
         "safe_run_fault_iso",
         "safety_fault_request_iso",
         "safety_s3_reset_iso",
         "safety_watchdog",
         "safety_watchdog_wdo_pullup"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "SAFE_CLEAR_N",
+      "instances": [
+        "safe_gate_b",
+        "safe_latch"
       ]
     },
     {
@@ -184,7 +212,7 @@
         "TP_POR_N",
         "main_buck",
         "main_en_pulldown",
-        "safe_latch",
+        "safe_gate_b",
         "safe_por_pullup",
         "safe_supervisor"
       ]
@@ -713,14 +741,20 @@
       "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6"
     },
     {
-      "instance": "safe_latch",
+      "instance": "safe_rearm_buffer",
       "reference": "U50008",
+      "mpn": "SN74LVC1G17DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5"
+    },
+    {
+      "instance": "safe_latch",
+      "reference": "U50009",
       "mpn": "SN74LVC1G74DCUR",
       "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
     },
     {
       "instance": "safe_reset_buffer",
-      "reference": "U50009",
+      "reference": "U50010",
       "mpn": "Texas Instruments SN74LVC1G06DCKR",
       "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5"
     },
@@ -738,19 +772,19 @@
     },
     {
       "instance": "safe_gate_a",
-      "reference": "U50010",
-      "mpn": "SN74LVC08APWR",
-      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
-    },
-    {
-      "instance": "safe_gate_b",
       "reference": "U50011",
       "mpn": "SN74LVC08APWR",
       "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
     },
     {
-      "instance": "safe_ptt_or",
+      "instance": "safe_gate_b",
       "reference": "U50012",
+      "mpn": "SN74LVC08APWR",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
+    },
+    {
+      "instance": "safe_ptt_or",
+      "reference": "U50013",
       "mpn": "74LVC1G32GV,125",
       "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5"
     },
@@ -786,13 +820,13 @@
     },
     {
       "instance": "evidence_mask",
-      "reference": "U50020",
+      "reference": "U50021",
       "mpn": "TCA9535PWR",
       "footprint": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm"
     },
     {
       "instance": "evidence_main_isolator",
-      "reference": "U50021",
+      "reference": "U50022",
       "mpn": "SN74LVC3G07DCUR",
       "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
     },

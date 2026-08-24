@@ -330,7 +330,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         boundary_h = "## Граница доказательства"
         boundary = "Это закрывает постоянный энергетический envelope. Числа потерь становятся входом H3.6; переходы, пусковые токи, DPM и USB↔pack handover проверяются в H3.2, а реальные КПД и токи — на H8."
-        marker = "**Статус:** `H3.1.3` завершено и проверено; текущий точный маркер — `H3.2.1`."
+        marker = "**Статус:** `H3.1.3` завершено и проверено; текущий точный маркер — `H3.3.1`."
         evidence = "[Полный машинный расчёт](../hardware/verification/generated/H3-VRF13-source-charge-budget.json)."
     else:
         title = "# Source, charge, discharge and steady losses"
@@ -350,7 +350,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         boundary_h = "## Proof boundary"
         boundary = "This closes the steady energy envelope. Recorded losses feed H3.6; transients, inrush, DPM and USB↔pack handover remain H3.2, while measured efficiency and current remain H8."
-        marker = "**Status:** `H3.1.3` is complete and reviewed; the exact current marker is `H3.2.1`."
+        marker = "**Status:** `H3.1.3` is complete and reviewed; the exact current marker is `H3.3.1`."
         evidence = "[Complete machine calculation](../hardware/verification/generated/H3-VRF13-source-charge-budget.json)."
     return "\n\n".join((title, nav, intro, results_h, results, admission_h, admission, boundary_h, boundary, marker, evidence)) + "\n"
 

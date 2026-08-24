@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "stage": "H3.2.5",
+  "status": "reviewed_h3_2_power_transitions_complete",
+  "source_hashes": {
+    "hardware/verification/generated/H3-VRF21-startup-shutdown.json": "865a30e4926ffd621b2fe40233dbd6b9318b68e6d19796c6a1ab8be938888b57",
+    "hardware/verification/generated/H3-VRF22-handover-brownout.json": "815169d44b724472d0db28703128faeeccb95f5de659abd297fd31347050e63d",
+    "hardware/verification/generated/H3-VRF23-inrush-load-step.json": "d422d6fe3b99b099e213644b3f5c599759e5794d4de6ef311fae4f3cf879edcd",
+    "hardware/verification/generated/H3-VRF24-watchdog-fault-display.json": "6d4c4e9c88a716d398b349f1b8f4f8f4fe460ec1894a31d23f54091781cf0815"
+  },
+  "checks": {
+    "startup_sequences_pass": true,
+    "latch_topology_matches_fail_closed_contract": true,
+    "rearm_edge_follows_max_por": true,
+    "handover_states_pass": true,
+    "inrush_envelopes_pass": true,
+    "watchdog_fault_scenarios_pass": true,
+    "every_residual_is_assigned_to_h8": true
+  },
+  "accepted_results": {
+    "startup_shutdown_sequences": 7,
+    "handover_brownout_transitions": 7,
+    "protected_rail_startup_envelopes": 5,
+    "watchdog_fault_scenarios": 6,
+    "earliest_rearm_ms": 48.444,
+    "rearm_margin_after_max_por_ms": 20.444,
+    "maximum_watchdog_detection_ms": 1760,
+    "analytical_failures": 0
+  },
+  "corrected_findings": [
+    {
+      "id": "H3.2.1-F01",
+      "finding": "the prior latch used Q as FAULT_KILL and CLR_N as POR, so brownout selected the permissive output and PRE_N/CLR_N could enter the prohibited both-low state",
+      "correction": "Q is RUN_PERMIT, Q_N is FAULT_KILL, PRE_N is tied high and CLR_N is POR_N AND FAULT_ASSERT_N",
+      "functional_effect": "brownout and every fault now force the non-permissive state without an illegal asynchronous-input combination"
+    },
+    {
+      "id": "H3.2.1-F02",
+      "finding": "the text claimed about 57.6 ms although the physical TPS3808 CT contact was open",
+      "correction": "the contract now uses the exact 12-to-28-ms CT-open interval and a separate RC/Schmitt re-arm edge",
+      "functional_effect": "the documented timing now matches the real populated contacts"
+    }
+  ],
+  "operational_contract": [
+    "cold power with the maintained switch already at RUN stays safely off until the operator performs KILL-to-RUN after self-test",
+    "hold KILL for at least 0.5 s before re-arm",
+    "hard fault revokes transmit immediately; only a warning receives the bounded 3-s orderly grace",
+    "USB/pack handover may preserve SYS but can never synthesize RUN_PERMIT",
+    "a complete AON loss reports a truthful generic power-loss reason when a final exact record could not be committed"
+  ],
+  "residual_physical_only": [
+    "apply named worst load steps while capturing buck/eFuse current and rail minimum",
+    "fault-inject every clear source and measure TX-off/reset/rail-discharge ordering",
+    "inject weak/current-limited USB sources with healthy, absent and rejected packs",
+    "measure SYS and AON droop during USB attach/detach and DPM",
+    "measure actual RC capacitance under DC bias and temperature",
+    "measure charger/BATFET behavior at temperature and cell-voltage corners",
+    "measure effective MLCC capacitance under DC bias and temperature",
+    "measure every protected-rail ramp and discharge",
+    "measure exact watchdog window and WDO pulse on populated hardware",
+    "measure switch bounce and break-before-make interval",
+    "power-cut fault-inject every flash-journal write boundary",
+    "prove the signed fault-only UI cannot enable a transmitter or external rail"
+  ],
+  "review_summary": {
+    "phase_status": "reviewed",
+    "corrected_findings": 2,
+    "unresolved_findings": 0
+  },
+  "next": {
+    "stage": "H3.3.1",
+    "action": "verify display supply, backlight and direct-QSPI electrical corners"
+  },
+  "open_findings": []
+}

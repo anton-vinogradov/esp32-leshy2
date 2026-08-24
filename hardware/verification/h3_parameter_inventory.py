@@ -274,7 +274,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
             f"`{decision['id']}` закрыт вариантом A: остаются три `E01-ML01IPX`, потому что они дают требуемое полное аппаратное поведение nRF24. "
             "Семейство nRF24 не рекомендуется для новых разработок, поэтому H5 проверит поставщика, маркировку silicon и резервную доступность. Современный nRF52 работает только в 2,4 ГГц, поддерживает совместимый эфирный ESB, но не является SPI/register drop-in заменой."
         )
-        marker = "**Статус:** `H3.0.2` завершено и проверено; текущий маркер — `H3.2.1`."
+        marker = "**Статус:** `H3.0.2` завершено и проверено; текущий маркер — `H3.3.1`."
         evidence = "[Машинный реестр из 213 строк](../hardware/verification/generated/H3-VRF02-parameter-inventory.json)."
     else:
         title = "# H3 parameters and models"
@@ -295,7 +295,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
             f"`{decision['id']}` is closed with option A: three `E01-ML01IPX` modules remain because they provide the required full nRF24 hardware behavior. "
             "The nRF24 family is not recommended for new designs, so H5 must verify supplier, silicon marking and reserve availability. A modern nRF52 is 2.4-GHz-only and supports over-air ESB compatibility, but is not an SPI/register drop-in replacement."
         )
-        marker = "**Status:** `H3.0.2` is reviewed; current marker is `H3.2.1`."
+        marker = "**Status:** `H3.0.2` is reviewed; current marker is `H3.3.1`."
         evidence = "[213-row machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json)."
     return "\n\n".join((title, nav, intro, counts_h, counts, residual_h, residual, decision_h, decision_text, marker, evidence)) + "\n"
 

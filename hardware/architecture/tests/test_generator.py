@@ -281,8 +281,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(999, sum(line["quantity"] for line in lines))
-        self.assertEqual(205, len(lines))
+        self.assertEqual(1003, sum(line["quantity"] for line in lines))
+        self.assertEqual(206, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -292,11 +292,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            194,
+            195,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            982,
+            986,
             sum(
                 line["quantity"]
                 for line in lines
@@ -372,13 +372,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**1000** architecture instances", rendered)
-        self.assertIn("**999** supplied/costed placements", rendered)
-        self.assertIn("**204/205** used lines", rendered)
-        self.assertIn("**205/205** lines", rendered)
-        self.assertIn("**194/205** lines", rendered)
-        self.assertIn("**982/999** supplied placements", rendered)
-        self.assertIn("USD 221.7017", rendered)
+        self.assertIn("**1004** architecture instances", rendered)
+        self.assertIn("**1003** supplied/costed placements", rendered)
+        self.assertIn("**205/206** used lines", rendered)
+        self.assertIn("**206/206** lines", rendered)
+        self.assertIn("**195/206** lines", rendered)
+        self.assertIn("**986/1003** supplied placements", rendered)
+        self.assertIn("USD 221.9418", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -424,7 +424,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(45, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1224, policy["expected_occurrence_count"])
+        self.assertEqual(1228, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(
@@ -2101,6 +2101,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "safety_controller": "ti_mspm0c1106_sdgs20r",
             "safety_watchdog": "ti_tps3435cakagddfr",
             "safe_conditioner": "nexperia_74lvc2g14gw_125",
+            "safe_rearm_buffer": "ti_sn74lvc1g17_dckr",
             "safe_latch": "ti_sn74lvc1g74_dcur",
             "safe_reset_buffer": "ti_sn74lvc1g06_dckr",
             "safe_reset_sink_a": "diodes_2n7002dw_7_f",
@@ -2186,7 +2187,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "TPS3808G33DBVR<br/>AON rail supervisor and power-on reset",
             "MSPM0C1106SDGS20R<br/>independent MSPM0 watchdog, thermal and TX-lease controller",
             "TPS3435CAKAGDDFR<br/>independent 1.6-s timeout watchdog",
-            "SN74LVC1G74DCUR<br/>asynchronous latched FAULT_KILL",
+            "SN74LVC1G17DCKR<br/>SN74LVC1G17 physical re-arm Schmitt buffer",
+            "SN74LVC1G74DCUR<br/>asynchronous RUN_PERMIT / FAULT_KILL latch",
             "LTC5532ES6#TRMPBF<br/>S3 2.4-GHz RF power detector",
             "SN74LVC1G07DCKR<br/>5-V-tolerant non-inverting open-drain LoRa Cap evidence boundary",
             "TCA9535PWR<br/>AON 16-bit evidence source mask on the private safety I2C bus",
@@ -2639,7 +2641,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("ir_carrier.CARRIER_OUT", "ir_return_buffer.2A", "IR_CARRIER_LOCAL_N"),
             ("ir_emitter_limit.END_2", "ir_emitter.ANODE", "IR_LED_ANODE_LIMITED"),
             ("c5.GPIO6", "ir_safe_gate.A", "IR_TX_CARRIER"),
-            ("safe_latch.Q_N", "ir_safe_gate.B", "RUN_PERMIT"),
+            ("safe_latch.Q", "ir_safe_gate.B", "RUN_PERMIT"),
             ("ir_safe_gate.Y", "ir_tx_gate_series.END_1", "IR_TX_CARRIER_SAFE"),
             ("det_ir.CATHODE", "ir_evidence_amp.IN_MINUS", "IR_OPTICAL_SUM"),
             ("ir_evidence_amp.OUT", "evidence_cmp_a.IN3_N", "IR_DETECT_V"),
@@ -3797,7 +3799,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("power_command_pullup.END_2", "power_command_switch.THROW_B", "POWER_COMMAND_OFF_N"), routes)
         self.assertIn(("power_command_switch.COMMON", "abstract:power-ground", "POWER_GROUND"), routes)
         self.assertIn(("run_loop_pullup.END_2", "safety_control_esd.D1_PLUS", "RUN_LOOP_RAW"), routes)
-        self.assertIn(("safe_conditioner.1Y", "safe_latch.CLK", "RUN_EDGE"), routes)
+        self.assertIn(("safe_conditioner.1Y", "safe_rearm_delay_res.END_1", "RUN_EDGE"), routes)
+        self.assertIn(("safe_rearm_buffer.Y", "safe_latch.CLK", "SAFE_REARM_CLK"), routes)
         self.assertIn(("display.TP_INT", "display_touch_controller.TP_INT", "LCD_TOUCH_INT_RAW_N"), routes)
         self.assertIn(("touch_irq_pullup.END_2", "display_connector.PIN_3", "LCD_TOUCH_INT_RAW_N"), routes)
         self.assertIn(("display_connector.PIN_3", "touch_irq_buffer.A", "LCD_TOUCH_INT_RAW_N"), routes)
@@ -3920,7 +3923,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("s3_dbg_reset_series.END_2", "s3.EN", "S3_RESET_N"),
             ("c5_dbg_boot_series.END_2", "c5.GPIO28", "C5_BOOT_N"),
             ("rp_dbg_boot_series.END_2", "rp.QSPI_SS_USB_BOOT", "RP_USB_BOOT_N"),
-            ("safe_latch.Q_N", "safe_reset_buffer.A", "RUN_PERMIT"),
+            ("safe_latch.Q", "safe_reset_buffer.A", "RUN_PERMIT"),
             ("safe_reset_sink_a.D1", "s3.EN", "S3_RESET_N"),
             ("safe_reset_sink_a.D2", "c5.EN", "C5_RESET_N"),
             ("safe_reset_sink_b.D1", "rp.RUN", "RP_RESET_N"),
@@ -3994,13 +3997,13 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("slow_io.SCL", "s3.GPIO2", "SYS_I2C_SCL"),
             ("slow_io.SDA", "s3.GPIO1", "SYS_I2C_SDA"),
             ("slow_io.INT", "s3.GPIO45", "SYS_INT_N"),
-            ("safe_latch.Q", "slow_io_fault_sense_iso.A", "FAULT_LATCH_SENSE_AON"),
+            ("safe_latch.Q_N", "slow_io_fault_sense_iso.A", "FAULT_LATCH_SENSE_AON"),
             ("slow_io_fault_sense_iso.Y", "slow_io.P22", "FAULT_LATCH_SENSE"),
             ("evidence_cmp_a.OUT1", "slow_io_s3_evidence_iso.A", "EV_N0_S3"),
             ("slow_io_s3_evidence_iso.Y", "slow_io.P23", "S3_RF_TX_EVIDENCE_N"),
             ("sd_miso_series.END_2", "s3.GPIO4", "DISPLAY_SD_SPI_D1"),
             ("product_usb_connector.SHIELD", "abstract:power-ground", "USB_C_SHIELD"),
-            ("safe_latch.Q", "fault_led_series.END_1", "FAULT_LATCH_SENSE_AON"),
+            ("safe_latch.Q_N", "fault_led_series.END_1", "FAULT_LATCH_SENSE_AON"),
             ("fault_led_series.END_2", "fault_led.A", "FAULT_LED_A"),
         ):
             self.assertIn(route, routes)

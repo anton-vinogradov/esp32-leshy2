@@ -29,6 +29,6 @@ H2 принят 24 августа 2026 года на hardware commit `25d9ee2` �
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | 24-to-48-hour operating envelope | H8 endurance run |
 
-**Текущий маркер:** `H3.2.1` — [постоянный бюджет питания](dc-verification-result.ru.md) проведён ревью; моделируются startup, orderly shutdown и hard `FAULT_KILL`.
+**Текущий маркер:** `H3.3.1` — [переходы питания и safety-loop](power-transition-result.ru.md) проведены ревью; проверяются display supply, backlight и direct-QSPI electrical corners.
 
 [Машинный freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

@@ -24,7 +24,7 @@ PROJECTS = {
 }
 SUPPRESSED_COUNTS = {
     "LESHY2-UI": 387,
-    "LESHY2-RF": 678,
+    "LESHY2-RF": 682,
     "LESHY2-LORA-CAP-01": 27,
     "L2-DISP-ADP-001-A": 2,
 }

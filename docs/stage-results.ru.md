@@ -119,13 +119,13 @@
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ▶️ сейчас, точный маркер `H3.2.1`.
+**Статус:** ▶️ сейчас, точный маркер `H3.3.1`.
 
 - [Текущая страница виртуальной проверки](virtual-verification.ru.md).
 - [Машиночитаемый план](../hardware/verification/h3-verification-plan.json).
 - [Freeze принятого H2 и матрица из 16 областей](../hardware/verification/generated/H3-VRF01-input-freeze.json).
-- [Реестр параметров и моделей](parameter-model-register.ru.md) — 1 028
-  экземпляров, 213 используемых типов и их первичные источники.
+- [Реестр параметров и моделей](parameter-model-register.ru.md) — 1 032
+  экземпляра, 214 используемых типов и их первичные источники.
 - [Машинный реестр H3.0.2](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).
 - [Методы проверки](verification-methods.ru.md) и
   [машинный контракт H3.0.3](../hardware/verification/generated/H3-VRF03-method-contract.json).
@@ -133,11 +133,16 @@
   [машинный реестр H3.1.1](../hardware/verification/generated/H3-VRF11-power-state-register.json).
 - [Бюджет шин](dc-power-budget.ru.md), [источники и заряд](source-charge-budget.ru.md)
   и [проверенный результат H3.1](dc-verification-result.ru.md).
+- [Startup/KILL](power-transition-startup.ru.md), [handover](power-handover.ru.md),
+  [inrush/load-step](inrush-load-step.ru.md), [watchdog/fault UI](watchdog-fault-display.ru.md)
+  и [проверенный результат H3.2](power-transition-result.ru.md).
 
 `H3.0.1–H3.0.3` проведены ревью: входы, параметры и десять единых
 pass/fail-правил заморожены. `H3.1` проведено ревью: 2 032 полных состояния и
 200 rail-профилей проходят без незакрытых findings после исправления одного
-порога eFuse. В `H3.2.1` моделируются startup, orderly shutdown и hard `FAULT_KILL`.
+порога eFuse. `H3.2` проведено ревью: power transitions и safety-loop проходят,
+две source-ошибки исправлены. В `H3.3.1` проверяются display supply, backlight
+и direct-QSPI electrical corners.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate

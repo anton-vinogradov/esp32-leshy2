@@ -4600,6 +4600,45 @@
         "VCC": {"physical": "5", "role": "power"}
       }
     },
+    "ti_sn74lvc1g17_dckr": {
+      "mpn": "SN74LVC1G17DCKR",
+      "kind": "sc70_5_single_noninverting_schmitt_buffer_partial_power_down",
+      "qualification": "verified_exact_schmitt_buffer",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [2.0, 1.25, 1.1],
+      "source": {
+        "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
+        "version": "Rev. Y",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
+        "checked": "2026-08-24"
+      },
+      "orderable_source": {
+        "document": "SN74LVC1G17DCKR ACTIVE exact TI order page",
+        "url": "https://www.ti.com/product/SN74LVC1G17/part-details/SN74LVC1G17DCKR",
+        "checked": "2026-08-24"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.1434,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published USD price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G17DCKR/389053", "checked": "2026-08-24"}
+      },
+      "electrical_contract": {
+        "function": "single non-inverting Schmitt-trigger buffer, Y=A",
+        "supply_range_v": [1.65, 5.5],
+        "threshold_v_at_3v": {"positive_min": 1.48, "positive_max": 1.92, "negative_min": 0.89, "negative_max": 1.2},
+        "input_leakage_max_ua": 5,
+        "partial_power_down": "Ioff keeps the output high impedance and prevents back-drive while AON_SAFE_3V3 is absent",
+        "usage": "cleans the slow physical RUN RC edge and prevents a latch clock until after the fixed 12-to-28-ms AON POR window"
+      },
+      "programmable": false,
+      "contacts": {
+        "A": {"physical": "1", "role": "signal"},
+        "GND": {"physical": "3", "role": "power"},
+        "Y": {"physical": "4", "role": "signal"},
+        "VCC": {"physical": "5", "role": "power"},
+        "NC": {"physical": "2", "role": "nc"}
+      }
+    },
     "ti_sn74lvc3g34_dcur": {
       "mpn": "SN74LVC3G34DCUR",
       "kind": "vssop8_triple_buffer_partial_power_down",

@@ -36,7 +36,7 @@ PROJECTS = {
 }
 EXPECTED_COMPONENT_COUNTS = {
     "LESHY2-UI": 387,
-    "LESHY2-RF": 678,
+    "LESHY2-RF": 682,
     "LESHY2-LORA-CAP-01": 27,
 }
 
@@ -310,7 +310,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         review_text = (
             f"✅ **Проведено ревью:** {len(manifest['reviewed_nets'])} критичных силовых "
             "цепей прослежены в реальной KiCad-netlist. UI, RF и LoRa Cap содержат "
-            "соответственно 387, 678 и 27 уникально обозначенных компонентов; коллизий "
+            "соответственно 387, 682 и 27 уникально обозначенных компонентов; коллизий "
             "references нет.\n\n"
             "Исправлен fabrication-blocker: локальные `R1/C1/U1` разных дочерних листов "
             "заменены детерминированными диапазонами по номеру листа."
@@ -344,7 +344,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         review = "## H2.5.1 result"
         review_text = (
             f"✅ **Reviewed:** {len(manifest['reviewed_nets'])} critical power nets are "
-            "traced in the actual KiCad netlist. UI, RF and LoRa Cap contain 387, 678 "
+            "traced in the actual KiCad netlist. UI, RF and LoRa Cap contain 387, 682 "
             "and 27 uniquely annotated components; there are no reference collisions.\n\n"
             "A fabrication blocker was corrected: child-sheet-local `R1/C1/U1` references "
             "now use deterministic sheet-number ranges."

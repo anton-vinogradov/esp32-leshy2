@@ -119,14 +119,14 @@ remain unauthorized.
 <details open>
 <summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.2.1 -->
+<!-- current-substep: H3.3.1 -->
 
-**Exact marker: `H3.2.1`** — the [complete steady-power chain](docs/dc-verification-result.md)
-is reviewed with no unresolved finding; startup, orderly shutdown and hard
-`FAULT_KILL` are now being modelled.
+**Exact marker: `H3.3.1`** — [power transitions and the safety loop](docs/power-transition-result.md)
+are reviewed with no unresolved analytical finding; display supply, backlight
+and direct-QSPI electrical corners are being verified.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
-- ✅ `H2.0.1` — complete 1,028-row circuit inventory reviewed.
+- ✅ `H2.0.1` — complete 1,032-row circuit inventory reviewed.
 - ✅ `H2.0.2` — four projects, PCB boundaries and net names reviewed.
 - ✅ `H2.0.3` — HW↔FW/BSP contract and cross-repository drift checks reviewed.
 - ✅ `H2.1` — four independent KiCad projects and 28 native sheets created.
@@ -200,9 +200,15 @@ is reviewed with no unresolved finding; startup, orderly shutdown and hard
   - ✅ `H3.1.2` — [all 200 rail profiles pass](docs/dc-power-budget.md); one eFuse threshold mismatch was corrected.
   - ✅ `H3.1.3` — [all 2,032 source/charge/discharge states pass](docs/source-charge-budget.md).
   - ✅ `H3.1.4` — [DC evidence consolidated and reviewed](docs/dc-verification-result.md).
-- ▶️ **`H3.2` — current:** power transitions and safety-loop dynamics.
-  - ▶️ **`H3.2.1` — current:** startup, orderly shutdown and hard `FAULT_KILL`.
-  - ⏳ `H3.2.2–H3.2.5` — handover/brownout, inrush/load steps, retained fault UI and consolidation.
+- ✅ **`H3.2` — reviewed:** power transitions and safety-loop dynamics.
+  - ✅ `H3.2.1` — [startup, orderly shutdown and hard `FAULT_KILL`](docs/power-transition-startup.md).
+  - ✅ `H3.2.2` — [USB↔pack handover, DPM and brownout](docs/power-handover.md).
+  - ✅ `H3.2.3` — [eFuse, inrush and load steps](docs/inrush-load-step.md).
+  - ✅ `H3.2.4` — [watchdog, retained fault record and fault-only UI](docs/watchdog-fault-display.md).
+  - ✅ `H3.2.5` — [H3.2 consolidation](docs/power-transition-result.md); two source errors corrected.
+- ▶️ **`H3.3` — current:** analog peripheral corners.
+  - ▶️ **`H3.3.1` — current:** display supply, backlight and direct-QSPI electrical corners.
+  - ⏳ `H3.3.2–H3.3.5` — audio, IR, battery analog and consolidation.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The current machine-readable plan is

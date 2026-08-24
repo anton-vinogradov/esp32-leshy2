@@ -106,7 +106,7 @@ This is the complete H2.6.2 physical NC register. Every row is checked against i
 | `RF_50_TX_SAFETY_EVIDENCE` | `det_nrf2.V_DN` | `7` | controller-mode falling output is intentionally unused |
 | `RF_50_TX_SAFETY_EVIDENCE` | `det_voice.V_DN` | `7` | unused controller output remains unconnected |
 | `RF_50_TX_SAFETY_EVIDENCE` | `evidence_or_4.K2` | `2` | unused second cathode remains open and cannot create a false source |
-| `RF_50_TX_SAFETY_EVIDENCE` | `safe_gate_b.3Y` | `8` | unused rear quad-gate output remains unconnected |
+| `RF_50_TX_SAFETY_EVIDENCE` | `safe_rearm_buffer.NC` | `2` | manufacturer no-connect remains open |
 | `RF_50_TX_SAFETY_EVIDENCE` | `safe_reset_buffer.NC` | `1` | manufacturer no-connect remains open |
 | `RF_50_TX_SAFETY_EVIDENCE` | `safe_reset_sink_b.D2` | `1` | unused fourth FET drain remains open |
 | `RF_50_TX_SAFETY_EVIDENCE` | `safe_run_fault_iso.NC` | `1` | manufacturer no-connect remains open |

@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **1000** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **999** supplied/costed placements collapse to **205** used exact-device/MPN lines.
-- Current orderability evidence exists for **204/205** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **194/205** lines.
+- **1004** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **1003** supplied/costed placements collapse to **206** used exact-device/MPN lines.
+- Current orderability evidence exists for **205/206** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **195/206** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **982/999** supplied placements; their partial subtotals are `base_product` — USD 221.7017. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **205/205** lines.
+- Those priced lines cover **986/1003** supplied placements; their partial subtotals are `base_product` — USD 221.9418. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **206/206** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 996 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 1000 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -201,7 +201,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-LOGIC-ANALOG</code> — Logic, interface, audio and analog signal ICs — 30 line(s)</summary>
+<details><summary><code>SUB-LOGIC-ANALOG</code> — Logic, interface, audio and analog signal ICs — 31 line(s)</summary>
 
 - Disposition: no drop-in by family name; exact pin/function/electrical equivalent requires owning-interface requalification.
 - Equivalence envelope:
@@ -228,6 +228,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `ti_sn74lvc1g08_dckr` — `SN74LVC1G08DCKR`.
   - `ti_sn74lvc1g125_dckr` — `Texas Instruments SN74LVC1G125DCKR`.
   - `ti_sn74lvc1g126_dckr` — `Texas Instruments SN74LVC1G126DCKR`.
+  - `ti_sn74lvc1g17_dckr` — `SN74LVC1G17DCKR`.
   - `ti_sn74lvc1g3157_dbvr` — `Texas Instruments SN74LVC1G3157DBVR`.
   - `ti_sn74lvc1g74_dcur` — `SN74LVC1G74DCUR`.
   - `ti_sn74lvc2g08_dcur` — `Texas Instruments SN74LVC2G08DCUR`.
@@ -921,7 +922,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Murata GRM21BR71E225KE11L</code> — 4 × USD 0.0612 = USD 0.2448</summary>
+<details><summary><code>Murata GRM21BR71E225KE11L</code> — 5 × USD 0.0612 = USD 0.3060</summary>
 
 - Device id: `murata_grm21br71e225ke11l`.
 - Scope: `base_product`.
@@ -1272,7 +1273,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TDK C1005X7R1H104K050BB</code> — 136 × USD 0.0258 = USD 3.5088</summary>
+<details><summary><code>TDK C1005X7R1H104K050BB</code> — 137 × USD 0.0258 = USD 3.5346</summary>
 
 - Device id: `tdk_c1005x7r1h104k050bb`.
 - Scope: `base_product`.
@@ -1395,6 +1396,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G126DCKR/385723).
+
+</details>
+
+<details><summary><code>SN74LVC1G17DCKR</code> — 1 × USD 0.1434 = USD 0.1434</summary>
+
+- Device id: `ti_sn74lvc1g17_dckr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-24`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G17DCKR/389053).
 
 </details>
 
@@ -1731,7 +1741,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-07100KL</code> — 36 × USD 0.0097 = USD 0.3492</summary>
+<details><summary><code>Yageo RC0402FR-07100KL</code> — 37 × USD 0.0097 = USD 0.3589</summary>
 
 - Device id: `yageo_rc0402fr_07100kl`.
 - Scope: `base_product`.

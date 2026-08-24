@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "stage": "H3.2.4",
+  "status": "reviewed_watchdog_latch_and_fault_display_contract",
+  "method": [
+    "state_fault_exploration",
+    "bounded_transient"
+  ],
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "5175bf8df45ba18bfa1d698922fd0d520783328868a23f3f41314be0526950b3",
+    "hardware/architecture/devices.json": "f8ed5a402e82f1b95f8b11e818adf0c13efca37523c9ecc11088736687fde01d",
+    "hardware/verification/generated/H3-VRF23-inrush-load-step.json": "d422d6fe3b99b099e213644b3f5c599759e5794d4de6ef311fae4f3cf879edcd"
+  },
+  "provenance": {
+    "watchdog": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",
+    "latch": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
+    "safety_controller": "https://www.ti.com/lit/ds/symlink/mspm0c1106.pdf"
+  },
+  "watchdog": {
+    "exact_mpn": "Texas Instruments TPS3435CAKAGDDFR",
+    "timeout_s": {
+      "min": 1.44,
+      "nominal": 1.6,
+      "max": 1.76
+    },
+    "startup_delay": "zero-delay C variant",
+    "wdo": "active-low open-drain WDO, 200-ms nominal fault pulse",
+    "firmware_service_contract": "500-ms nominal WDI cadence; each edge must arrive inside the exact TPS3435 window; malformed, early/late or missing service is a fault",
+    "latch_behavior": "WDO recovery cannot re-arm because Q remains cleared until a physical KILL-to-RUN clock"
+  },
+  "fault_record": {
+    "storage": "two-slot CRC-protected journal in the safety controller's 64-KB internal flash",
+    "fields": [
+      "schema",
+      "event counter",
+      "primary cause",
+      "zone or signal group",
+      "measured value",
+      "limit",
+      "evidence mask",
+      "rail/source state",
+      "action taken",
+      "CRC",
+      "commit marker"
+    ],
+    "commit_order": "write inactive slot body, verify, write commit marker, then expose to S3 read-only fault UI",
+    "application_reset": "survives",
+    "physical_recovery": "acknowledged by valid KILL-to-RUN cycle; historical counter remains monotonic",
+    "complete_aon_loss": "a last-moment write is not guaranteed; next boot renders the explicit fallback 'power disappeared before diagnostics could be committed'"
+  },
+  "fault_ui": {
+    "allowed": "one signed local fault-only screen plus read-only USB/service export",
+    "must_show": [
+      "plain-language reason",
+      "affected zone/group",
+      "measured value and limit when known",
+      "what the device already disabled",
+      "event identifier",
+      "move RUN to KILL before restart"
+    ],
+    "must_not_enable": [
+      "C5",
+      "RP2354B",
+      "RF or IR gate",
+      "voice PTT",
+      "external 5 V",
+      "latch clear"
+    ],
+    "priority_exception": "UI/display overtemperature or unsafe main rail keeps the screen dark and uses the independent amber FAULT LED plus later service readout"
+  },
+  "scenarios": [
+    {
+      "id": "T24-01",
+      "fault": "S3 heartbeat stops",
+      "hardware_deadline_ms": 1760,
+      "result": "TPS3435 pulls WDO_N low; latch clears permit independently of application firmware"
+    },
+    {
+      "id": "T24-02",
+      "fault": "safety-controller firmware stops servicing WDI",
+      "hardware_deadline_ms": 1760,
+      "result": "same independent watchdog path; controller cannot mask its own failure"
+    },
+    {
+      "id": "T24-03",
+      "fault": "TX evidence appears without a valid lease",
+      "hardware_deadline_ms": 100,
+      "result": "controller asserts fault request; hardware latch prevents automatic restart"
+    },
+    {
+      "id": "T24-04",
+      "fault": "POWER or RF/VOICE critical temperature",
+      "hardware_deadline_ms": 100,
+      "result": "hard kill first; exact record and cool UI fault-only screen follow"
+    },
+    {
+      "id": "T24-05",
+      "fault": "UI/DISPLAY critical temperature",
+      "hardware_deadline_ms": 100,
+      "result": "UI rail is not preserved; amber FAULT LED plus later service record replace the screen"
+    },
+    {
+      "id": "T24-06",
+      "fault": "complete AON loss",
+      "hardware_deadline_ms": 0,
+      "result": "pulls and loss behavior force safe state; next boot shows explicit power-loss-before-commit fallback"
+    }
+  ],
+  "summary": {
+    "fault_scenarios": 6,
+    "failed_scenarios": 0,
+    "unresolved_analytical_findings": 0
+  },
+  "residual_physical_only": [
+    "measure exact watchdog window and WDO pulse on populated hardware",
+    "power-cut fault-inject every flash-journal write boundary",
+    "prove the signed fault-only UI cannot enable a transmitter or external rail"
+  ],
+  "next": {
+    "stage": "H3.2.5",
+    "action": "consolidate transient and shutdown evidence"
+  },
+  "open_findings": []
+}

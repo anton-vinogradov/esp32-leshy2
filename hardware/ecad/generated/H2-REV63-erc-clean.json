@@ -31,7 +31,7 @@
     "hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch": "e4141665bd8e84ca2fabfcda26580b94c8633ce8bb87f547c88860363da896a9",
     "hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch": "db5b66ff82b001fdb529a529c914190d2034834d9094781e0ec00aabae314615",
     "hardware/ecad/kicad/LESHY2-RF/RF_40_INTERBOARD_M1.kicad_sch": "70b83ba7ada784e2d569be24b49835a8a03b7cc1fba0704abd925b0c07268e5b",
-    "hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch": "dd724245804b9573cb672a1a94255dfa61910e9bb916ee4d7402c2e0ddc5639a",
+    "hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch": "9a831914d64ad5617fce3bcc02a410f438858cb1c33c50aa7e55c12b4150cafa",
     "hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch": "e699a1589ea81f6e0c44989ddad9fd8d97b48d31a83c2dd07b73ca15bfe9b585",
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_pro": "4d391970b8b6b6bf1e14c0d7826284a6160577a62a2dad55c8e3817019169291",
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_10_RADIO_CONTROL.kicad_sch": "ea71ce96852afce595971244cf7ebda11afe2ec482d483f490bce03a6cead6b4",
@@ -40,8 +40,8 @@
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_pro": "a38d2ae6ec8a9459cc66d6ca17792208314efced730a29847c7e2011131a486a",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch": "9dc3755f2e8b625b4bd68d28cbd153f50ebf12e567d8270598277a041d8187a3",
-    "hardware/ecad/libraries/leshy2.kicad_sym": "edc06fa745cfc2edce5f566c464bb02c28c183c551d4078f243d8dbb3c121d28",
-    "hardware/ecad/generated/H2-REV62-no-connects.json": "6fc1d738497c5ee7b86364e233fc2f67fdfe012575c96aa80678002ea6159fb9"
+    "hardware/ecad/libraries/leshy2.kicad_sym": "9519b55e3ab2355a3893b3367b564abae9170c7236a27dd18814e9957b29661a",
+    "hardware/ecad/generated/H2-REV62-no-connects.json": "75edfebe4a1cf423813ff275ef2bde2b6e1c54df67e80c855d81e3782c884d97"
   },
   "projects": [
     {
@@ -63,7 +63,7 @@
       "scoped_suppression": {
         "rule": "lib_symbol_mismatch",
         "reason": "all symbols are repository-generated and the shared library is independently checked against the exact union of embedded definitions",
-        "covered_local_symbols": 678
+        "covered_local_symbols": 682
       }
     },
     {

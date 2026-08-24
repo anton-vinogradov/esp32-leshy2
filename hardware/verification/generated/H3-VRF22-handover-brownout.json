@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "stage": "H3.2.2",
+  "status": "reviewed_handover_charger_and_brownout",
+  "method": [
+    "bounded_transient",
+    "state_fault_exploration"
+  ],
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "5175bf8df45ba18bfa1d698922fd0d520783328868a23f3f41314be0526950b3",
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "20fd7f0aaef8fdc74ca68ce03dac8f8333f75bcc317ecc5d62699df8892a6e65",
+    "hardware/verification/generated/H3-VRF21-startup-shutdown.json": "865a30e4926ffd621b2fe40233dbd6b9318b68e6d19796c6a1ab8be938888b57"
+  },
+  "provenance": {
+    "charger": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
+    "external_efuse": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
+    "supervisor": "https://www.ti.com/lit/ds/symlink/tps3808.pdf"
+  },
+  "charger_behavior_used": {
+    "topology": "BQ25798 NVDC automatic source selection",
+    "dpm_order": "reduce charge current first; use pack supplement when system demand exceeds admitted input",
+    "backup_or_otg": "disabled and not required for ordinary SYS handover",
+    "worst_h3_1_pack_discharge_a": "2.833"
+  },
+  "transitions": [
+    {
+      "id": "T22-01",
+      "from": "healthy pack only",
+      "event": "valid USB attaches",
+      "charger": "NVDC admits VBUS and may charge only from remaining input headroom",
+      "system": "SYS remains powered",
+      "result": "pass"
+    },
+    {
+      "id": "T22-02",
+      "from": "USB plus healthy pack",
+      "event": "USB detaches",
+      "charger": "input current and charging collapse to zero",
+      "system": "BATFET ideal-diode path supplies SYS automatically",
+      "result": "pass"
+    },
+    {
+      "id": "T22-03",
+      "from": "USB plus healthy pack",
+      "event": "USB enters DPM",
+      "charger": "charge current is reduced before system power; pack supplement is allowed when SYS droops toward battery",
+      "system": "declared load admission remains bounded by H3.1 pack current",
+      "result": "pass"
+    },
+    {
+      "id": "T22-04",
+      "from": "USB only; no admitted pack",
+      "event": "USB disappears",
+      "charger": "no backup source exists",
+      "system": "controlled loss is expected; AON supervisor clears RUN_PERMIT before any restart",
+      "result": "pass_expected_shutdown"
+    },
+    {
+      "id": "T22-05",
+      "from": "pack plus USB",
+      "event": "KILL",
+      "charger": "pack-admission controller releases protected pack after the bounded grace",
+      "system": "USB charging/service may remain, but RF permit remains latched off",
+      "result": "pass"
+    },
+    {
+      "id": "T22-06",
+      "from": "any active source",
+      "event": "AON rail crosses supervisor threshold",
+      "charger": "source may continue or disappear independently",
+      "system": "POR_N clears permit; no source transition can synthesize a re-arm clock",
+      "result": "pass"
+    },
+    {
+      "id": "T22-07",
+      "from": "accessory branch externally driven",
+      "event": "device branch is disabled",
+      "charger": "not involved",
+      "system": "TPS259470 true reverse blocking prevents branch-to-SYS backfeed",
+      "result": "pass"
+    }
+  ],
+  "analytical_boundary": {
+    "proved": "state ordering, absence of a software-only safety dependency, no automatic re-arm and conservative source/load admission",
+    "not_claimed": "absolute SYS droop or interruption time inside the charger's proprietary control loop",
+    "h8_acceptance": "scope every attach/detach and DPM transition at the named H3.1 worst loads; SYS, AON and downstream rails must remain inside load UVLO/reset limits or fall monotonically into the safe reset state"
+  },
+  "summary": {
+    "transitions": 7,
+    "failed_transitions": 0,
+    "unresolved_analytical_findings": 0
+  },
+  "residual_physical_only": [
+    "measure SYS and AON droop during USB attach/detach and DPM",
+    "inject weak/current-limited USB sources with healthy, absent and rejected packs",
+    "measure charger/BATFET behavior at temperature and cell-voltage corners"
+  ],
+  "next": {
+    "stage": "H3.2.3",
+    "action": "model eFuse/load-switch inrush and worst load steps"
+  },
+  "open_findings": []
+}

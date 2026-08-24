@@ -10,10 +10,10 @@
     "hardware/ecad/H2-sheet-contract.json"
   ],
   "source_sha256": {
-    "hardware/architecture/devices.json": "83827fd286071f5a67943966a74e1dc0ad9e24bfd1062966312db45914d79bab",
-    "hardware/architecture/candidates/G2F-3I.json": "f081f88f5cc68884445d575c5e574947d396d9bea59c7e12f45c0eaf54a259ff",
+    "hardware/architecture/devices.json": "f8ed5a402e82f1b95f8b11e818adf0c13efca37523c9ecc11088736687fde01d",
+    "hardware/architecture/candidates/G2F-3I.json": "5175bf8df45ba18bfa1d698922fd0d520783328868a23f3f41314be0526950b3",
     "hardware/architecture/target-integration-contract.json": "321b697f58fac56a65110462f419fe594c789d4113f54617b3ff36dd17072d36",
-    "hardware/ecad/H2-sheet-contract.json": "3253e27a7303ee58625ba87b0f2d84627c169535d2589dc530ea5197ccc2d9ad"
+    "hardware/ecad/H2-sheet-contract.json": "2e7646b761d069785c5c37ca8fb686fd33d46ac7391c6d78f924b015d633f889"
   },
   "integration_contract": {
     "schema": 2,
@@ -1782,7 +1782,8 @@
             "controller": "GPIO_IRQ",
             "peers": [
               "safe_conditioner.1Y",
-              "safe_latch.CLK"
+              "safe_rearm_delay_res.END_1",
+              "safe_run_fault_iso.A"
             ]
           },
           {

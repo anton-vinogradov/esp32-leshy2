@@ -3,9 +3,9 @@
   "stage": "H3.0.2",
   "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
-    "hardware/architecture/devices.json": "83827fd286071f5a67943966a74e1dc0ad9e24bfd1062966312db45914d79bab",
-    "hardware/ecad/generated/H2-instance-ledger.json": "fb8346a414a93d139013031468d00b9fd9bec29debf1875a3c6a72dd073646e5",
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "1f9525badcee6f9ed15749d8f14c7ae4483fe56f503eaf05ab8199ac0fc86011"
+    "hardware/architecture/devices.json": "f8ed5a402e82f1b95f8b11e818adf0c13efca37523c9ecc11088736687fde01d",
+    "hardware/ecad/generated/H2-instance-ledger.json": "c5ed44d1be459410c52b1ca4dbb80663eeab493b308b6ad0b91c5dc2eed38d6e",
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "37e9bace2b11d1e55056240ba56da2c58d5afdd4b3bc0d67f131719acf824acf"
   },
   "policy": {
     "accepted_h2_baseline_is_immutable": true,
@@ -3128,13 +3128,14 @@
       "device_key": "murata_grm21br71e225ke11l",
       "mpn": "Murata GRM21BR71E225KE11L",
       "kind": "2_2uf_10pct_25v_x7r_0805_efuse_local_capacitor",
-      "instance_count": 4,
+      "instance_count": 5,
       "projects": [
         "LESHY2-RF"
       ],
       "sheets": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
-        "RF_34_U214_M5_EXT"
+        "RF_34_U214_M5_EXT",
+        "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "roles": [
         "2_2uf_10pct_25v_x7r_0805_efuse_local_capacitor"
@@ -5388,7 +5389,7 @@
       "device_key": "tdk_c1005x7r1h104k050bb",
       "mpn": "TDK C1005X7R1H104K050BB",
       "kind": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
-      "instance_count": 142,
+      "instance_count": 143,
       "projects": [
         "LESHY2-LORA-CAP-01",
         "LESHY2-RF",
@@ -6118,6 +6119,63 @@
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
+      "device_key": "ti_sn74lvc1g17_dckr",
+      "mpn": "SN74LVC1G17DCKR",
+      "kind": "sc70_5_single_noninverting_schmitt_buffer_partial_power_down",
+      "instance_count": 1,
+      "projects": [
+        "LESHY2-RF"
+      ],
+      "sheets": [
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ],
+      "roles": [
+        "delayed physical re-arm Schmitt buffer"
+      ],
+      "lifecycle": "active_orderable",
+      "source": {
+        "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
+        "version": "Rev. Y",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
+        "checked": "2026-08-24"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.ti.com",
+      "accepted_h2_source_preserved": {
+        "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
+        "version": "Rev. Y",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
+        "checked": "2026-08-24"
+      },
+      "structured_parameter_count": 6,
+      "structured_parameters": {
+        "function": "single non-inverting Schmitt-trigger buffer, Y=A",
+        "supply_range_v": [
+          1.65,
+          5.5
+        ],
+        "threshold_v_at_3v": {
+          "positive_min": 1.48,
+          "positive_max": 1.92,
+          "negative_min": 0.89,
+          "negative_max": 1.2
+        },
+        "input_leakage_max_ua": 5,
+        "partial_power_down": "Ioff keeps the output high impedance and prevents back-drive while AON_SAFE_3V3 is absent",
+        "usage": "cleans the slow physical RUN RC edge and prevents a latch clock until after the fixed 12-to-28-ms AON POR window"
+      },
+      "parameter_class": "digital_interface",
+      "required_parameter_groups": [
+        "supply/current",
+        "logic thresholds",
+        "leakage/back-power",
+        "reset/default state",
+        "propagation and loading"
+      ],
+      "h3_model_method": "datasheet_static_and_timing_model",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
       "device_key": "ti_sn74lvc1g3157_dbvr",
       "mpn": "Texas Instruments SN74LVC1G3157DBVR",
       "kind": "single_spdt_analog_switch",
@@ -6171,7 +6229,7 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "roles": [
-        "asynchronous FAULT_KILL latch"
+        "asynchronous RUN_PERMIT / FAULT_KILL latch"
       ],
       "lifecycle": "active",
       "source": {
@@ -8123,7 +8181,7 @@
       "device_key": "yageo_rc0402fr_07100kl",
       "mpn": "Yageo RC0402FR-07100KL",
       "kind": "100kohm_1pct_0402_charger_ilim_bottom_resistor",
-      "instance_count": 36,
+      "instance_count": 37,
       "projects": [
         "LESHY2-RF",
         "LESHY2-UI"
@@ -9939,18 +9997,18 @@
   ],
   "local_model_files": [],
   "summary": {
-    "registered_instances": 1028,
-    "used_device_types": 213,
-    "used_types_with_source": 213,
+    "registered_instances": 1032,
+    "used_device_types": 214,
+    "used_types_with_source": 214,
     "source_missing": 0,
     "official_h3_source_overrides": 2,
-    "used_types_with_structured_electrical_contract": 64,
+    "used_types_with_structured_electrical_contract": 65,
     "used_types_requiring_parameter_extraction": 149,
     "local_vendor_model_files": 0,
     "parameter_classes": {
       "analog_peripheral": 7,
       "connector_interconnect": 15,
-      "digital_interface": 31,
+      "digital_interface": 32,
       "electromechanical_or_load": 7,
       "general_component": 35,
       "passive_corner": 93,

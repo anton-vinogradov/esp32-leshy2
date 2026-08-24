@@ -118,13 +118,13 @@ are satisfied.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current, exact marker `H3.2.1`.
+**Status:** ▶️ current, exact marker `H3.3.1`.
 
 - [Current virtual-verification page](virtual-verification.md).
 - [Machine execution plan](../hardware/verification/h3-verification-plan.json).
 - [Accepted-input freeze and 16-domain matrix](../hardware/verification/generated/H3-VRF01-input-freeze.json).
-- [Parameter and model register](parameter-model-register.md) — 1,028
-  instances, 213 used device types and their primary sources.
+- [Parameter and model register](parameter-model-register.md) — 1,032
+  instances, 214 used device types and their primary sources.
 - [H3.0.2 machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).
 - [Verification methods](verification-methods.md) and
   [H3.0.3 machine contract](../hardware/verification/generated/H3-VRF03-method-contract.json).
@@ -132,11 +132,16 @@ are satisfied.
   [H3.1.1 machine register](../hardware/verification/generated/H3-VRF11-power-state-register.json).
 - [Steady rail budget](dc-power-budget.md), [source/charge budget](source-charge-budget.md)
   and [reviewed H3.1 result](dc-verification-result.md).
+- [Startup/KILL](power-transition-startup.md), [handover](power-handover.md),
+  [inrush/load step](inrush-load-step.md), [watchdog/fault UI](watchdog-fault-display.md),
+  and the [reviewed H3.2 result](power-transition-result.md).
 
 `H3.0.1–H3.0.3` are reviewed: inputs, parameters and ten common pass/fail
 rules are frozen. `H3.1` is reviewed: 2,032 complete states and 200 rail
 profiles pass with no unresolved finding after one eFuse threshold correction.
-`H3.2.1` is modelling startup, orderly shutdown and hard `FAULT_KILL`.
+`H3.2` is reviewed: power transitions and the safety loop pass, with two source
+errors corrected. `H3.3.1` is verifying display supply, backlight and direct-QSPI
+electrical corners.
 
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate

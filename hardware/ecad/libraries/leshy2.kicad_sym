@@ -47163,7 +47163,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Description" "asynchronous FAULT_KILL latch"
+				(property "Description" "asynchronous RUN_PERMIT / FAULT_KILL latch"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -47294,7 +47294,7 @@
 				)
 				(embedded_fonts no)
 			)
-	(symbol "RF50_SAFE_LATCH_D_PULLDOWN"
+	(symbol "RF50_SAFE_LATCH_D_PULLUP"
 				(pin_names (offset 1.016))
 				(exclude_from_sim no)
 				(in_bom yes)
@@ -47307,7 +47307,7 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Value" "RF50_SAFE_LATCH_D_PULLDOWN"
+				(property "Value" "RF50_SAFE_LATCH_D_PULLUP"
 				(at 0.00 -5.08 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -47334,7 +47334,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(symbol "RF50_SAFE_LATCH_D_PULLDOWN_0_1"
+				(symbol "RF50_SAFE_LATCH_D_PULLUP_0_1"
 					(rectangle
 						(start -12.70 2.54)
 						(end 12.70 -2.54)
@@ -47342,7 +47342,7 @@
 						(fill (type background))
 					)
 				)
-				(symbol "RF50_SAFE_LATCH_D_PULLDOWN_1_1"
+				(symbol "RF50_SAFE_LATCH_D_PULLUP_1_1"
 					(pin passive line
 						(at -17.78 1.27 0)
 						(length 5.08)
@@ -47553,6 +47553,280 @@
 					)
 				)
 				(symbol "RF50_SAFE_PTT_OR_BYPASS_1_1"
+					(pin passive line
+						(at -17.78 1.27 0)
+						(length 5.08)
+						(name "END_1" (effects (font (size 1.27 1.27))))
+						(number "1" (effects (font (size 1.27 1.27))))
+					)
+					(pin passive line
+						(at 17.78 1.27 180)
+						(length 5.08)
+						(name "END_2" (effects (font (size 1.27 1.27))))
+						(number "2" (effects (font (size 1.27 1.27))))
+					)
+				)
+				(embedded_fonts no)
+			)
+	(symbol "RF50_SAFE_REARM_BUFFER"
+				(pin_names (offset 1.016))
+				(exclude_from_sim no)
+				(in_bom yes)
+				(on_board yes)
+				(in_pos_files yes)
+				(duplicate_pin_numbers_are_jumpers no)
+				(property "Reference" "U"
+				(at 0.00 6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Value" "RF50_SAFE_REARM_BUFFER"
+				(at 0.00 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Footprint" "Package_TO_SOT_SMD:SOT-353_SC-70-5"
+				(at 0.00 0.00 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Datasheet" "~"
+				(at 0.00 0.00 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Description" "delayed physical re-arm Schmitt buffer"
+				(at 0.00 0.00 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects (font (size 1.27 1.27)))
+			)
+				(symbol "RF50_SAFE_REARM_BUFFER_0_1"
+					(rectangle
+						(start -12.70 3.81)
+						(end 12.70 -3.81)
+						(stroke (width 0.254) (type default))
+						(fill (type background))
+					)
+				)
+				(symbol "RF50_SAFE_REARM_BUFFER_1_1"
+					(pin passive line
+						(at -17.78 2.54 0)
+						(length 5.08)
+						(name "A" (effects (font (size 1.27 1.27))))
+						(number "1" (effects (font (size 1.27 1.27))))
+					)
+					(pin passive line
+						(at -17.78 0.00 0)
+						(length 5.08)
+						(name "GND" (effects (font (size 1.27 1.27))))
+						(number "3" (effects (font (size 1.27 1.27))))
+					)
+					(pin passive line
+						(at -17.78 -2.54 0)
+						(length 5.08)
+						(name "Y" (effects (font (size 1.27 1.27))))
+						(number "4" (effects (font (size 1.27 1.27))))
+					)
+					(pin passive line
+						(at 17.78 2.54 180)
+						(length 5.08)
+						(name "VCC" (effects (font (size 1.27 1.27))))
+						(number "5" (effects (font (size 1.27 1.27))))
+					)
+					(pin passive line
+						(at 17.78 0.00 180)
+						(length 5.08)
+						(name "NC" (effects (font (size 1.27 1.27))))
+						(number "2" (effects (font (size 1.27 1.27))))
+					)
+				)
+				(embedded_fonts no)
+			)
+	(symbol "RF50_SAFE_REARM_BUFFER_BYPASS"
+				(pin_names (offset 1.016))
+				(exclude_from_sim no)
+				(in_bom yes)
+				(on_board yes)
+				(in_pos_files yes)
+				(duplicate_pin_numbers_are_jumpers no)
+				(property "Reference" "C"
+				(at 0.00 5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Value" "RF50_SAFE_REARM_BUFFER_BYPASS"
+				(at 0.00 -5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+				(at 0.00 0.00 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Datasheet" "~"
+				(at 0.00 0.00 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+				(at 0.00 0.00 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects (font (size 1.27 1.27)))
+			)
+				(symbol "RF50_SAFE_REARM_BUFFER_BYPASS_0_1"
+					(rectangle
+						(start -12.70 2.54)
+						(end 12.70 -2.54)
+						(stroke (width 0.254) (type default))
+						(fill (type background))
+					)
+				)
+				(symbol "RF50_SAFE_REARM_BUFFER_BYPASS_1_1"
+					(pin passive line
+						(at -17.78 1.27 0)
+						(length 5.08)
+						(name "END_1" (effects (font (size 1.27 1.27))))
+						(number "1" (effects (font (size 1.27 1.27))))
+					)
+					(pin passive line
+						(at 17.78 1.27 180)
+						(length 5.08)
+						(name "END_2" (effects (font (size 1.27 1.27))))
+						(number "2" (effects (font (size 1.27 1.27))))
+					)
+				)
+				(embedded_fonts no)
+			)
+	(symbol "RF50_SAFE_REARM_DELAY_CAP"
+				(pin_names (offset 1.016))
+				(exclude_from_sim no)
+				(in_bom yes)
+				(on_board yes)
+				(in_pos_files yes)
+				(duplicate_pin_numbers_are_jumpers no)
+				(property "Reference" "C"
+				(at 0.00 5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Value" "RF50_SAFE_REARM_DELAY_CAP"
+				(at 0.00 -5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+				(at 0.00 0.00 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Datasheet" "~"
+				(at 0.00 0.00 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Description" "2_2uf_10pct_25v_x7r_0805_efuse_local_capacitor"
+				(at 0.00 0.00 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects (font (size 1.27 1.27)))
+			)
+				(symbol "RF50_SAFE_REARM_DELAY_CAP_0_1"
+					(rectangle
+						(start -12.70 2.54)
+						(end 12.70 -2.54)
+						(stroke (width 0.254) (type default))
+						(fill (type background))
+					)
+				)
+				(symbol "RF50_SAFE_REARM_DELAY_CAP_1_1"
+					(pin passive line
+						(at -17.78 1.27 0)
+						(length 5.08)
+						(name "END_1" (effects (font (size 1.27 1.27))))
+						(number "1" (effects (font (size 1.27 1.27))))
+					)
+					(pin passive line
+						(at 17.78 1.27 180)
+						(length 5.08)
+						(name "END_2" (effects (font (size 1.27 1.27))))
+						(number "2" (effects (font (size 1.27 1.27))))
+					)
+				)
+				(embedded_fonts no)
+			)
+	(symbol "RF50_SAFE_REARM_DELAY_RES"
+				(pin_names (offset 1.016))
+				(exclude_from_sim no)
+				(in_bom yes)
+				(on_board yes)
+				(in_pos_files yes)
+				(duplicate_pin_numbers_are_jumpers no)
+				(property "Reference" "R"
+				(at 0.00 5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Value" "RF50_SAFE_REARM_DELAY_RES"
+				(at 0.00 -5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+				(at 0.00 0.00 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Datasheet" "~"
+				(at 0.00 0.00 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects (font (size 1.27 1.27)))
+			)
+				(property "Description" "100kohm_1pct_0402_charger_ilim_bottom_resistor"
+				(at 0.00 0.00 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects (font (size 1.27 1.27)))
+			)
+				(symbol "RF50_SAFE_REARM_DELAY_RES_0_1"
+					(rectangle
+						(start -12.70 2.54)
+						(end 12.70 -2.54)
+						(stroke (width 0.254) (type default))
+						(fill (type background))
+					)
+				)
+				(symbol "RF50_SAFE_REARM_DELAY_RES_1_1"
 					(pin passive line
 						(at -17.78 1.27 0)
 						(length 5.08)

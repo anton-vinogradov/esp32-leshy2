@@ -120,14 +120,14 @@ safety-автоматику.
 <details open>
 <summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.2.1 -->
+<!-- current-substep: H3.3.1 -->
 
-**Точный маркер: `H3.2.1`** — [полная цепочка проверки постоянного
-питания](docs/dc-verification-result.ru.md) проведена ревью без незакрытых
-findings; моделируются startup, orderly shutdown и hard `FAULT_KILL`.
+**Точный маркер: `H3.3.1`** — [переходы питания и safety-loop](docs/power-transition-result.ru.md)
+проведены ревью без незакрытых аналитических findings; проверяются display
+supply, backlight и direct-QSPI electrical corners.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
-- ✅ `H2.0.1` — проверен полный реестр из 1 028 схемных строк.
+- ✅ `H2.0.1` — проверен полный реестр из 1 032 схемных строк.
 - ✅ `H2.0.2` — проверены четыре проекта, границы плат и имена цепей.
 - ✅ `H2.0.3` — проверены HW↔FW/BSP-контракт и drift checks двух репозиториев.
 - ✅ `H2.1` — созданы четыре независимых KiCad-проекта и 28 native-листов.
@@ -202,9 +202,15 @@ findings; моделируются startup, orderly shutdown и hard `FAULT_KILL
   - ✅ `H3.1.2` — [все 200 rail-профилей проходят](docs/dc-power-budget.ru.md); исправлен один порог eFuse.
   - ✅ `H3.1.3` — [все 2 032 состояния источников, заряда и разряда проходят](docs/source-charge-budget.ru.md).
   - ✅ `H3.1.4` — [DC evidence сведены и проведены ревью](docs/dc-verification-result.ru.md).
-- ▶️ **`H3.2` — сейчас:** переходы питания и динамика safety-loop.
-  - ▶️ **`H3.2.1` — сейчас:** startup, orderly shutdown и hard `FAULT_KILL`.
-  - ⏳ `H3.2.2–H3.2.5` — handover/brownout, inrush/load steps, сохранённый fault UI и сводное ревью.
+- ✅ **`H3.2` — проведено ревью:** переходы питания и динамика safety-loop.
+  - ✅ `H3.2.1` — [startup, orderly shutdown и hard `FAULT_KILL`](docs/power-transition-startup.ru.md).
+  - ✅ `H3.2.2` — [USB↔pack handover, DPM и brownout](docs/power-handover.ru.md).
+  - ✅ `H3.2.3` — [eFuse, inrush и load steps](docs/inrush-load-step.ru.md).
+  - ✅ `H3.2.4` — [watchdog, retained fault record и fault-only UI](docs/watchdog-fault-display.ru.md).
+  - ✅ `H3.2.5` — [сводное ревью H3.2](docs/power-transition-result.ru.md); исправлены две source-ошибки.
+- ▶️ **`H3.3` — сейчас:** analog peripheral corners.
+  - ▶️ **`H3.3.1` — сейчас:** display supply, backlight и direct-QSPI electrical corners.
+  - ⏳ `H3.3.2–H3.3.5` — audio, IR, battery analog и сводное ревью.
 
 Проверенный план H2 —
 [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Текущий

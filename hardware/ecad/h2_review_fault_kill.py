@@ -30,7 +30,8 @@ OUTPUT_DOC_RU = REPO / "docs/fault-shutdown.ru.md"
 
 REVIEWED_NETS = {
     "LESHY2-RF": (
-        "AON_SAFE_3V3", "RUN_LOOP_RAW", "RUN_EDGE", "FAULT_ASSERT_N",
+        "AON_SAFE_3V3", "RUN_LOOP_RAW", "RUN_EDGE", "SAFE_REARM_DELAY",
+        "SAFE_REARM_CLK", "FAULT_ASSERT_N", "SAFE_CLEAR_N",
         "SAFETY_WATCHDOG_WDI", "POR_N", "FAULT_LATCH_SENSE_AON", "RUN_PERMIT",
         "RF_RESET_KILL_GATE", "S3_RESET_KILL_GATE", "S3_FAULT_RESET_REQUEST",
         "SAFETY_FAULT_REQUEST", "POWER_ZONE_TEMP_ADC", "RF_ZONE_TEMP_ADC",
@@ -51,7 +52,7 @@ REVIEWED_NETS = {
 
 CRITICAL_INSTANCES = (
     "power_command_switch", "safe_supervisor", "safety_controller", "safety_watchdog",
-    "safe_conditioner", "safe_latch", "safe_reset_buffer", "safe_reset_sink_a",
+    "safe_conditioner", "safe_rearm_buffer", "safe_latch", "safe_reset_buffer", "safe_reset_sink_a",
     "safe_reset_sink_b", "safe_gate_a", "safe_gate_b", "safe_ptt_or",
     "safety_fault_request_iso", "safety_s3_reset_iso", "power_zone_ntc",
     "rf_zone_ntc", "ui_zone_ntc", "evidence_mask", "evidence_main_isolator",
@@ -83,7 +84,7 @@ def build() -> tuple[dict[Path, str], dict]:
     sheet_contract = json.loads(SHEET_CONTRACT_PATH.read_text(encoding="utf-8"))
     safety = candidate["safety_contract"]
     if safety["latch_logic"]["rearm"] != (
-        "the only re-arm action is physical KILL-to-RUN. Firmware can refuse the edge but can never synthesize or bypass it; automatic restart is forbidden"
+        "the only re-arm action is a physical KILL-to-RUN edge clocking fixed D=1. A 100-kOhm/2.2-uF RC and SN74LVC1G17 Schmitt buffer delay and clean that edge beyond the TPS3808 28-ms maximum POR window; a held RUN state cannot re-arm after a fault, and automatic restart is forbidden"
     ):
         raise ValueError("physical-only re-arm contract drifted")
     if len(safety["tx_gate_map"]) != 9 or len(safety["evidence"]["channels"]) != 9:

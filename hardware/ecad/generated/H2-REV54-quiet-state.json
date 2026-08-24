@@ -4,16 +4,16 @@
   "status": "reviewed_reset_safe_quiet_state_and_isolation",
   "method": "complete KiCad netlist control-membership checks plus exact instantiated isolation evidence for every required quiet contract",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "f081f88f5cc68884445d575c5e574947d396d9bea59c7e12f45c0eaf54a259ff",
+    "hardware/architecture/candidates/G2F-3I.json": "5175bf8df45ba18bfa1d698922fd0d520783328868a23f3f41314be0526950b3",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01"
   },
   "hierarchy_exports": {
     "LESHY2-RF": {
-      "component_count": 678,
-      "unique_reference_count": 678,
+      "component_count": 682,
+      "unique_reference_count": 682,
       "duplicate_references": [],
-      "net_count": 538,
+      "net_count": 541,
       "annotation_warnings": 0
     },
     "LESHY2-UI": {
@@ -80,7 +80,7 @@
         },
         {
           "instance": "safe_gate_a",
-          "reference": "U50010",
+          "reference": "U50011",
           "mpn": "SN74LVC08APWR"
         },
         {
@@ -152,7 +152,7 @@
         },
         {
           "instance": "safe_gate_b",
-          "reference": "U50011",
+          "reference": "U50012",
           "mpn": "SN74LVC08APWR"
         },
         {
@@ -376,12 +376,12 @@
         },
         {
           "instance": "safe_gate_b",
-          "reference": "U50011",
+          "reference": "U50012",
           "mpn": "SN74LVC08APWR"
         },
         {
           "instance": "safe_ptt_or",
-          "reference": "U50012",
+          "reference": "U50013",
           "mpn": "74LVC1G32GV,125"
         },
         {
