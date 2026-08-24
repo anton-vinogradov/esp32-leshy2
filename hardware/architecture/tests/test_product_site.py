@@ -78,6 +78,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/watchdog-fault-display.ru.md",
         "docs/power-transition-result.md",
         "docs/power-transition-result.ru.md",
+        "docs/display-electrical-verification.md",
+        "docs/display-electrical-verification.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -384,7 +386,7 @@ class ProductSiteTests(unittest.TestCase):
             self.read("hardware/verification/generated/H3-VRF14-dc-consolidation.json")
         )
         self.assertEqual("H3", plan["stage"])
-        self.assertEqual("H3.3.1", plan["current_substep"])
+        self.assertEqual("H3.3.2", plan["current_substep"])
         self.assertEqual(plan["current_substep"], state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
@@ -396,14 +398,15 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["substeps"][2]["status"])
         self.assertTrue(all(row["status"] == "reviewed" for row in plan["substeps"][2]["children"]))
         self.assertEqual("current", plan["substeps"][3]["status"])
-        self.assertEqual("current", plan["substeps"][3]["children"][0]["status"])
+        self.assertEqual("reviewed", plan["substeps"][3]["children"][0]["status"])
+        self.assertEqual("current", plan["substeps"][3]["children"][1]["status"])
         self.assertEqual(16, freeze["summary"]["verification_domains"])
         self.assertEqual(0, freeze["summary"]["unassigned_virtual_checks"])
         self.assertEqual(0, freeze["summary"]["unassigned_physical_checks"])
         self.assertEqual(1032, inventory["summary"]["registered_instances"])
-        self.assertEqual(214, inventory["summary"]["used_device_types"])
+        self.assertEqual(216, inventory["summary"]["used_device_types"])
         self.assertEqual(0, inventory["summary"]["source_missing"])
-        self.assertEqual(65, inventory["summary"]["used_types_with_structured_electrical_contract"])
+        self.assertEqual(67, inventory["summary"]["used_types_with_structured_electrical_contract"])
         self.assertEqual(149, inventory["summary"]["used_types_requiring_parameter_extraction"])
         self.assertEqual(2, inventory["summary"]["official_h3_source_overrides"])
         self.assertEqual(1, inventory["summary"]["lifecycle_decisions"])

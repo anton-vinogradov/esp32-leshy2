@@ -110,7 +110,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         correction_text = "При старом RILM 2,21 кОм гарантированный минимум внешнего eFuse составлял лишь 1,358 А — меньше требуемых PF-02 1,5625 А для порта 1,25 А. Оба eFuse U214/Unit получили серийный Yageo RC0402FR-071K82L 1,82 кОм: теперь диапазон 1,632–2,035 А, постоянный запас не менее 30,6%, а ограниченный 2-А пусковой импульс и контракт разъёма сохранены."
         next_h = "## Что ещё не доказано"
         next_text = "Постоянные пределы не заменяют динамику и температуру. H3.2 проверяет startup/shutdown, USB↔pack handover, brownout, DPM, inrush и FAULT_KILL; H3.6 получает 2,550 Вт converter-loss и 0,386 Вт eFuse-loss для thermal model; H8 оставляет реальные измерения."
-        marker = "**Статус:** `H3.1` завершено и проверено. Текущий точный маркер — `H3.3.1`, display supply, backlight и direct-QSPI corners."
+        marker = "**Статус:** `H3.1` завершено и проверено. Текущий точный маркер — `H3.3.2`, codec/microphone/headset/speaker corners."
         evidence = "[Машинный пакет закрытия H3.1](../hardware/verification/generated/H3-VRF14-dc-consolidation.json)."
     else:
         title = "# Steady-power verification result"
@@ -127,7 +127,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         correction_text = f"{correction['finding']}. Correction: {correction['correction']}. Functional effect: {correction['functional_effect']}."
         next_h = "## What remains unproven"
         next_text = "Steady limits do not replace dynamics or temperature. H3.2 checks startup/shutdown, USB↔pack handover, brownout, DPM, inrush and FAULT_KILL; H3.6 consumes the 2.550-W converter loss and 0.386-W eFuse loss in its thermal model; H8 retains physical measurements."
-        marker = "**Status:** `H3.1` is reviewed. The exact current marker is `H3.3.1`, display supply, backlight and direct-QSPI corners."
+        marker = "**Status:** `H3.1` is reviewed. The exact current marker is `H3.3.2`, codec/microphone/headset/speaker corners."
         evidence = "[Machine H3.1 closure package](../hardware/verification/generated/H3-VRF14-dc-consolidation.json)."
     return "\n\n".join((title, nav, intro, result_h, result, correction_h, correction_text, next_h, next_text, marker, evidence)) + "\n"
 

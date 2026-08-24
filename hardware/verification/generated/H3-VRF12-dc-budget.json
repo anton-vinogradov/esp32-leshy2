@@ -4,11 +4,11 @@
   "status": "reviewed_all_rail_loads_and_protection_margins_pass_after_ext_5v_rilm_correction",
   "method": "dc_network plus Decimal interval corners; PF-02 >=25% steady hardware reserve",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF11-power-state-register.json": "1beccde515936c074bb2eca63c41bc282db4d2090bb70f75d65eb69ec4eca64a",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "4307cb4001ae3ccc122d0dcc13a24fd12e3c016693049caf041303214697fb3a",
-    "hardware/architecture/candidates/G2F-3I.json": "5175bf8df45ba18bfa1d698922fd0d520783328868a23f3f41314be0526950b3",
-    "hardware/architecture/devices.json": "f8ed5a402e82f1b95f8b11e818adf0c13efca37523c9ecc11088736687fde01d",
-    "hardware/ecad/generated/H2-REV51-power-paths.json": "4568f874cf84fa0858a356a644f913174b1717a390a17f4e5636f36a5876d8e6"
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "3ea50d53820610b61c26ad756f16a8328753d3193addbf9884a0053535bd2a8c",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "e999a7b7c1296758fc8881e007a3d4d51b6b6da164da816686132e9193f43df9",
+    "hardware/architecture/candidates/G2F-3I.json": "62f4943b66967489be0205e7f7baaee6249c51d991ff566cde5a71a58a2ff4ee",
+    "hardware/architecture/devices.json": "12789cb3f71941d46bf84343149c2765d6da9a185f8da9bd7a5b06bd58be0917",
+    "hardware/ecad/generated/H2-REV51-power-paths.json": "834d3108ac60d4cd0b6a333d17b7c6980020d71035f316777794b94bf20a7682"
   },
   "provenance": [
     {
@@ -98,7 +98,7 @@
       "protection": "TPS25961DRVR, 240-kohm RILIM, conservative -20% full-PVT corner"
     },
     "3V3_MAIN": {
-      "voltage_v": "3.300",
+      "voltage_v": "3.222",
       "converter_min_a": "4.000",
       "protection_min_a": "3.200",
       "accepted_continuous_a": "2.500",
@@ -212,7 +212,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
-          "output_power_w": "1.304",
+          "output_power_w": "1.273",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -278,7 +278,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2392.000",
-          "output_power_w": "7.894",
+          "output_power_w": "7.707",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -344,7 +344,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
-          "output_power_w": "1.304",
+          "output_power_w": "1.273",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -410,7 +410,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2392.000",
-          "output_power_w": "7.894",
+          "output_power_w": "7.707",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -476,7 +476,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
-          "output_power_w": "1.304",
+          "output_power_w": "1.273",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -542,7 +542,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2392.000",
-          "output_power_w": "7.894",
+          "output_power_w": "7.707",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -608,7 +608,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
-          "output_power_w": "1.304",
+          "output_power_w": "1.273",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -674,7 +674,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2392.000",
-          "output_power_w": "7.894",
+          "output_power_w": "7.707",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -740,7 +740,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
-          "output_power_w": "1.304",
+          "output_power_w": "1.273",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -806,7 +806,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2392.000",
-          "output_power_w": "7.894",
+          "output_power_w": "7.707",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -872,7 +872,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
-          "output_power_w": "1.304",
+          "output_power_w": "1.273",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -938,7 +938,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2392.000",
-          "output_power_w": "7.894",
+          "output_power_w": "7.707",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1004,7 +1004,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
-          "output_power_w": "1.304",
+          "output_power_w": "1.273",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1070,7 +1070,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2392.000",
-          "output_power_w": "7.894",
+          "output_power_w": "7.707",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1136,7 +1136,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
-          "output_power_w": "1.304",
+          "output_power_w": "1.273",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1202,7 +1202,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2392.000",
-          "output_power_w": "7.894",
+          "output_power_w": "7.707",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1268,7 +1268,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
-          "output_power_w": "1.304",
+          "output_power_w": "1.273",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1334,7 +1334,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2392.000",
-          "output_power_w": "7.894",
+          "output_power_w": "7.707",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1402,7 +1402,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "437.000",
-          "output_power_w": "1.442",
+          "output_power_w": "1.408",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1470,7 +1470,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2434.000",
-          "output_power_w": "8.032",
+          "output_power_w": "7.842",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1538,7 +1538,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "437.000",
-          "output_power_w": "1.442",
+          "output_power_w": "1.408",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1606,7 +1606,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2434.000",
-          "output_power_w": "8.032",
+          "output_power_w": "7.842",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1674,7 +1674,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "437.000",
-          "output_power_w": "1.442",
+          "output_power_w": "1.408",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1742,7 +1742,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2434.000",
-          "output_power_w": "8.032",
+          "output_power_w": "7.842",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1810,7 +1810,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "437.000",
-          "output_power_w": "1.442",
+          "output_power_w": "1.408",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1878,7 +1878,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2434.000",
-          "output_power_w": "8.032",
+          "output_power_w": "7.842",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -1946,7 +1946,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "430.000",
-          "output_power_w": "1.419",
+          "output_power_w": "1.385",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2014,7 +2014,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2427.000",
-          "output_power_w": "8.009",
+          "output_power_w": "7.820",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2082,7 +2082,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "430.000",
-          "output_power_w": "1.419",
+          "output_power_w": "1.385",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2150,7 +2150,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2427.000",
-          "output_power_w": "8.009",
+          "output_power_w": "7.820",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2218,7 +2218,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "415.000",
-          "output_power_w": "1.370",
+          "output_power_w": "1.337",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2286,7 +2286,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2412.000",
-          "output_power_w": "7.960",
+          "output_power_w": "7.771",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2354,7 +2354,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "415.000",
-          "output_power_w": "1.370",
+          "output_power_w": "1.337",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2422,7 +2422,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2412.000",
-          "output_power_w": "7.960",
+          "output_power_w": "7.771",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2490,7 +2490,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "465.000",
-          "output_power_w": "1.534",
+          "output_power_w": "1.498",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2558,7 +2558,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2462.000",
-          "output_power_w": "8.125",
+          "output_power_w": "7.933",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2626,7 +2626,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "465.000",
-          "output_power_w": "1.534",
+          "output_power_w": "1.498",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2694,7 +2694,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2462.000",
-          "output_power_w": "8.125",
+          "output_power_w": "7.933",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2762,7 +2762,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "415.000",
-          "output_power_w": "1.370",
+          "output_power_w": "1.337",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2830,7 +2830,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2412.000",
-          "output_power_w": "7.960",
+          "output_power_w": "7.771",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2898,7 +2898,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "415.000",
-          "output_power_w": "1.370",
+          "output_power_w": "1.337",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -2966,7 +2966,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2412.000",
-          "output_power_w": "7.960",
+          "output_power_w": "7.771",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -3034,7 +3034,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "415.000",
-          "output_power_w": "1.370",
+          "output_power_w": "1.337",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -3102,7 +3102,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2412.000",
-          "output_power_w": "7.960",
+          "output_power_w": "7.771",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -3170,7 +3170,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "415.000",
-          "output_power_w": "1.370",
+          "output_power_w": "1.337",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -3238,7 +3238,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2412.000",
-          "output_power_w": "7.960",
+          "output_power_w": "7.771",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -3306,7 +3306,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "415.000",
-          "output_power_w": "1.370",
+          "output_power_w": "1.337",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -3374,7 +3374,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2412.000",
-          "output_power_w": "7.960",
+          "output_power_w": "7.771",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -3443,7 +3443,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "425.000",
-          "output_power_w": "1.402",
+          "output_power_w": "1.369",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -3512,7 +3512,7 @@
         {
           "rail": "3V3_MAIN",
           "load_ma": "2422.000",
-          "output_power_w": "7.993",
+          "output_power_w": "7.804",
           "converter_min_a": "4.000",
           "protection_min_a": "3.200",
           "effective_hardware_min_a": "3.200",
@@ -3567,7 +3567,7 @@
       "profile": "IR/LEARN_OR_RAW_RX/SUPPORT_WORST",
       "rail": "3V3_MAIN",
       "load_ma": "2462.000",
-      "output_power_w": "8.125",
+      "output_power_w": "7.933",
       "converter_min_a": "4.000",
       "protection_min_a": "3.200",
       "effective_hardware_min_a": "3.200",

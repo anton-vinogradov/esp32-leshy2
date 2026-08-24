@@ -3,9 +3,9 @@
   "stage": "H3.0.2",
   "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
-    "hardware/architecture/devices.json": "f8ed5a402e82f1b95f8b11e818adf0c13efca37523c9ecc11088736687fde01d",
-    "hardware/ecad/generated/H2-instance-ledger.json": "c5ed44d1be459410c52b1ca4dbb80663eeab493b308b6ad0b91c5dc2eed38d6e",
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "37e9bace2b11d1e55056240ba56da2c58d5afdd4b3bc0d67f131719acf824acf"
+    "hardware/architecture/devices.json": "12789cb3f71941d46bf84343149c2765d6da9a185f8da9bd7a5b06bd58be0917",
+    "hardware/ecad/generated/H2-instance-ledger.json": "8b079cab5d662289dc1188395e0ab68ddbfb3fa1e31836c8d597fad84024d296",
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "9816e84e4ff7b6e44ba154442285fcd79669de40cc548fdbc1803fbb7f107206"
   },
   "policy": {
     "accepted_h2_baseline_is_immutable": true,
@@ -4420,14 +4420,12 @@
       "device_key": "panasonic_erj_p08f10r0v",
       "mpn": "Panasonic ERJ-P08F10R0V",
       "kind": "10ohm_1pct_1206_0_66w_anti_surge_power_resistor",
-      "instance_count": 2,
+      "instance_count": 1,
       "projects": [
-        "LESHY2-RF",
-        "LESHY2-UI"
+        "LESHY2-RF"
       ],
       "sheets": [
-        "RF_02_PACK_SAFETY_AON",
-        "UI_11_DISPLAY_TOUCH_STORAGE"
+        "RF_02_PACK_SAFETY_AON"
       ],
       "roles": [
         "10ohm_1pct_1206_0_66w_anti_surge_power_resistor"
@@ -7888,6 +7886,102 @@
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
+      "device_key": "vishay_tnpw040210k0beed",
+      "mpn": "Vishay TNPW040210K0BEED",
+      "kind": "10kohm_0_1pct_25ppm_0402_main_feedback_bottom_resistor",
+      "instance_count": 1,
+      "projects": [
+        "LESHY2-RF"
+      ],
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ],
+      "roles": [
+        "10kohm_0_1pct_25ppm_0402_main_feedback_bottom_resistor"
+      ],
+      "lifecycle": "active_orderable",
+      "source": {
+        "document": "Vishay TNPW e3 high-stability thin-film resistor datasheet",
+        "version": "Document 28758, revision 10-Apr-2026",
+        "url": "https://www.vishay.com/docs/28758/tnpw_e3.pdf",
+        "checked": "2026-08-24"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.vishay.com",
+      "accepted_h2_source_preserved": {
+        "document": "Vishay TNPW e3 high-stability thin-film resistor datasheet",
+        "version": "Document 28758, revision 10-Apr-2026",
+        "url": "https://www.vishay.com/docs/28758/tnpw_e3.pdf",
+        "checked": "2026-08-24"
+      },
+      "structured_parameter_count": 5,
+      "structured_parameters": {
+        "resistance_ohm": 10000,
+        "tolerance_pct": 0.1,
+        "temperature_coefficient_ppm_per_c": 25,
+        "rated_power_w": 0.13,
+        "rated_voltage_v": 50
+      },
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "voltage/current derating",
+        "temperature coefficient",
+        "frequency/bias dependence"
+      ],
+      "h3_model_method": "analytic_or_vendor_curve",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
+      "device_key": "vishay_tnpw040243k7beed",
+      "mpn": "Vishay TNPW040243K7BEED",
+      "kind": "43_7kohm_0_1pct_25ppm_0402_main_feedback_top_resistor",
+      "instance_count": 1,
+      "projects": [
+        "LESHY2-RF"
+      ],
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ],
+      "roles": [
+        "43_7kohm_0_1pct_25ppm_0402_main_feedback_top_resistor"
+      ],
+      "lifecycle": "active_orderable",
+      "source": {
+        "document": "Vishay TNPW e3 high-stability thin-film resistor datasheet",
+        "version": "Document 28758, revision 10-Apr-2026",
+        "url": "https://www.vishay.com/docs/28758/tnpw_e3.pdf",
+        "checked": "2026-08-24"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.vishay.com",
+      "accepted_h2_source_preserved": {
+        "document": "Vishay TNPW e3 high-stability thin-film resistor datasheet",
+        "version": "Document 28758, revision 10-Apr-2026",
+        "url": "https://www.vishay.com/docs/28758/tnpw_e3.pdf",
+        "checked": "2026-08-24"
+      },
+      "structured_parameter_count": 5,
+      "structured_parameters": {
+        "resistance_ohm": 43700,
+        "tolerance_pct": 0.1,
+        "temperature_coefficient_ppm_per_c": 25,
+        "rated_power_w": 0.13,
+        "rated_voltage_v": 50
+      },
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "voltage/current derating",
+        "temperature coefficient",
+        "frequency/bias dependence"
+      ],
+      "h3_model_method": "analytic_or_vendor_curve",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
       "device_key": "vishay_tsmp95000tt",
       "mpn": "Vishay TSMP95000TT",
       "kind": "heimdall_smd_30_60khz_carrier_output_ir_learning_receiver",
@@ -8275,7 +8369,7 @@
       "device_key": "yageo_rc0402fr_0710kl",
       "mpn": "Yageo RC0402FR-0710KL",
       "kind": "10kohm_1pct_0402_main_feedback_bottom_resistor",
-      "instance_count": 193,
+      "instance_count": 192,
       "projects": [
         "LESHY2-LORA-CAP-01",
         "LESHY2-RF",
@@ -9258,7 +9352,7 @@
       "device_key": "yageo_rc0402fr_0745k3l",
       "mpn": "Yageo RC0402FR-0745K3L",
       "kind": "45_3kohm_1pct_0402_main_feedback_top_resistor",
-      "instance_count": 2,
+      "instance_count": 1,
       "projects": [
         "LESHY2-RF"
       ],
@@ -9784,11 +9878,12 @@
       "device_key": "yageo_rc0402jr_070rl",
       "mpn": "Yageo RC0402JR-070RL",
       "kind": "0ohm_0402_jumper_resistor",
-      "instance_count": 1,
+      "instance_count": 2,
       "projects": [
         "LESHY2-UI"
       ],
       "sheets": [
+        "UI_11_DISPLAY_TOUCH_STORAGE",
         "UI_13_AUDIO_CODEC_HEADSET"
       ],
       "roles": [
@@ -9998,11 +10093,11 @@
   "local_model_files": [],
   "summary": {
     "registered_instances": 1032,
-    "used_device_types": 214,
-    "used_types_with_source": 214,
+    "used_device_types": 216,
+    "used_types_with_source": 216,
     "source_missing": 0,
     "official_h3_source_overrides": 2,
-    "used_types_with_structured_electrical_contract": 65,
+    "used_types_with_structured_electrical_contract": 67,
     "used_types_requiring_parameter_extraction": 149,
     "local_vendor_model_files": 0,
     "parameter_classes": {
@@ -10011,7 +10106,7 @@
       "digital_interface": 32,
       "electromechanical_or_load": 7,
       "general_component": 35,
-      "passive_corner": 93,
+      "passive_corner": 95,
       "power_safety_active": 11,
       "programmable_controller": 2,
       "radio_rf": 12

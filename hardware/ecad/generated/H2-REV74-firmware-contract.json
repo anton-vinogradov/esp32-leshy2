@@ -4,17 +4,17 @@
   "status": "reviewed_zero_hwfw_contract_drift",
   "method": "fresh native KiCad pin-to-net lookup for every allocation plus byte-identical hardware export and firmware import",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "5175bf8df45ba18bfa1d698922fd0d520783328868a23f3f41314be0526950b3",
-    "hardware/ecad/generated/H2-hwfw-contract.json": "eab65f6c393373c5ba0ea6895209c7e714af5bb5f6dda5afddba54154e9f7914",
-    "firmware/config/hardware_bsp_contract.json": "eab65f6c393373c5ba0ea6895209c7e714af5bb5f6dda5afddba54154e9f7914",
+    "hardware/architecture/candidates/G2F-3I.json": "62f4943b66967489be0205e7f7baaee6249c51d991ff566cde5a71a58a2ff4ee",
+    "hardware/ecad/generated/H2-hwfw-contract.json": "47bcd910bc86006100234982b68f028d03301be10bd53aa1ef2684ae06301261",
+    "firmware/config/hardware_bsp_contract.json": "47bcd910bc86006100234982b68f028d03301be10bd53aa1ef2684ae06301261",
     "firmware/config/hardware_integration_contract.json": "4f0c9be2cf020dfc21bb90c2d5be0efc8e52815340f681d5481e197dd627760f",
     "firmware/tools/import_hardware_contract.py": "aaa38e7f16db7d8b2032322a66ef4ccda871bbf8a3bf5b403a91a44c329d1602",
-    "hardware/ecad/generated/H2-RF01-usb-pd-charge.json": "8ab81e7e838b649b84ee70deb5b15724fa2b1eb7732cf749054933b9fa67103b",
-    "hardware/ecad/generated/H2-RF02-pack-safety-aon.json": "2f1703168953567bc35a85706af629408f2711bffde5a772b04a32c8ea856ac8",
-    "hardware/ecad/generated/H2-RF30-rp2354-core-service.json": "2d7840f160f315af32a76c8980894f7f8c5bc3a11c4fc7c1467f1427f430602d",
-    "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json": "07ed7641a8a24ee0aed9f1bf3775f76b2fd40b83483f95af0d24893f1134b5a2",
-    "hardware/ecad/generated/H2-UI10-S3-core.json": "3277abcf514e9af6252ac2a72ba41b1b133b4b140cbdaeaa872235db3afee888",
-    "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json": "bf4dbe425b641b4af26c7ff4117a7de38510edffc3f5a6e8ed79223672198aa5"
+    "hardware/ecad/generated/H2-RF01-usb-pd-charge.json": "7bb5d7a6b787240492eb7e3c92849422c13662891934ac90307e9404e414a5ac",
+    "hardware/ecad/generated/H2-RF02-pack-safety-aon.json": "c92719db3b292288eb9c8981328c8d38812bbe0cef5f161437f757c551a44cea",
+    "hardware/ecad/generated/H2-RF30-rp2354-core-service.json": "bc31f97a173e2839739717e61732f9ca166c5e5e2c9c6769ec9b63d61d3c777e",
+    "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json": "8a614723e9acad438a717c494d8100541dcb611492dcb550c385c0d7fadc23b2",
+    "hardware/ecad/generated/H2-UI10-S3-core.json": "501e4cb94a2d9f6ae6a68cce30e0b3af2aaed283d54090207759c96b0dc0a115",
+    "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json": "fbdda33bf91d69fb6f8b73dc2f0ae1394d3106b0fccaf00d3755157b16e904ce"
   },
   "summary": {
     "architecture_allocations": 130,

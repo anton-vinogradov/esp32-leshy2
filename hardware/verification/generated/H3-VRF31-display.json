@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "stage": "H3.3.1",
+  "status": "reviewed_display_supply_backlight_and_direct_qspi",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "62f4943b66967489be0205e7f7baaee6249c51d991ff566cde5a71a58a2ff4ee",
+    "hardware/architecture/devices.json": "12789cb3f71941d46bf84343149c2765d6da9a185f8da9bd7a5b06bd58be0917",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "e999a7b7c1296758fc8881e007a3d4d51b6b6da164da816686132e9193f43df9"
+  },
+  "provenance": {
+    "display_controller": "https://dl.espressif.com/AE/esp-iot-solution/ST77922_SPEC_V0.1.pdf",
+    "donor_schematic": "https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf",
+    "donor_specification": "https://www.lcdwiki.com/res/ES3C35P/3.5inch_IPS_ESP32-S3_Specification_V1.0.pdf",
+    "main_converter": "https://www.ti.com/lit/ds/symlink/tps564252.pdf",
+    "main_efuse": "https://www.ti.com/lit/ds/symlink/tps2597.pdf",
+    "backlight_switch": "https://www.ti.com/lit/ds/symlink/tps2553.pdf",
+    "precision_resistors": "https://www.vishay.com/docs/28758/tnpw_e3.pdf"
+  },
+  "exact_part_checks": {
+    "display": true,
+    "display_panel_connector": true,
+    "main_fb_top": true,
+    "main_fb_bottom": true,
+    "backlight_efuse": true,
+    "backlight_efuse_ilim": true,
+    "backlight_series_resistor": true,
+    "backlight_mosfet": true,
+    "backlight_gate_series": true
+  },
+  "topology_checks": {
+    "common_vddi_source": true,
+    "common_vdd_source": true,
+    "fixed_im1_high": true,
+    "backlight_anode_protected": true,
+    "joined_cathode_link": true,
+    "cathode_pwm_sink": true,
+    "reset_fail_low": true,
+    "touch_reset_fail_low": true,
+    "direct_qspi_d2": true,
+    "direct_qspi_d3": true
+  },
+  "supply_corner": {
+    "feedback_vref_v": "0.600",
+    "feedback_vref_tolerance_percent": "1.5",
+    "feedback_top": {
+      "mpn": "Vishay TNPW040243K7BEED",
+      "ohm": "43700",
+      "tolerance_percent": "0.1"
+    },
+    "feedback_bottom": {
+      "mpn": "Vishay TNPW040210K0BEED",
+      "ohm": "10000",
+      "tolerance_percent": "0.1"
+    },
+    "nominal_v": "3.222000",
+    "raw_average_v": {
+      "min": "3.168510",
+      "max": "3.275658"
+    },
+    "mandatory_ripple_vpp_max": "0.020",
+    "raw_endpoint_v": {
+      "min": "3.158510",
+      "max": "3.285658"
+    },
+    "protected_path_and_distribution_drop_budget_v": "0.050",
+    "display_connector_v": {
+      "min": "3.108510",
+      "max": "3.285658"
+    },
+    "st77922_recommended_vddi_v": {
+      "min": "1.650",
+      "max": "3.300"
+    },
+    "st77922_recommended_vdd_v": {
+      "min": "2.650",
+      "max": "3.300"
+    },
+    "upper_margin_mv": "14.342",
+    "lower_vdd_margin_mv": "458.510",
+    "vddi_not_above_vdd_rule": "both contacts are the same protected source and must remain a short matched branch with shared local decoupling"
+  },
+  "backlight_corner": {
+    "donor_reference_current_ma": "120.000",
+    "power_path_reference_correction": "QDtech R31 is 0R in the joined LEDK path; R33=10R is the donor Q4 gate resistor",
+    "selected_ledk_link": "Yageo RC0402JR-070RL",
+    "selected_gate_resistor_ohm": 100,
+    "tps2553_latched_current_limit_ma": {
+      "min": "174.000",
+      "max": "234.000"
+    },
+    "minimum_fault_threshold_headroom_ma": "54.000",
+    "minimum_fault_threshold_headroom_percent": "45.000",
+    "switch_drop_at_120ma_mv_25c_max_ron": "10.200",
+    "switch_loss_at_120ma_mw_25c_max_ron": "1.224",
+    "interpretation": "TPS2553 bounds and latches a fault; it is not an LED-current regulator. Actual panel current/brightness remains a specimen HIL measurement."
+  },
+  "qspi_corner": {
+    "selected_initial_write_clock_hz": 40000000,
+    "datasheet_theoretical_write_clock_hz_max": 62500000,
+    "period_ns": "25.000",
+    "period_margin_over_16ns_min_ns": "9.000",
+    "high_low_ns": "12.500",
+    "high_low_margin_over_7ns_min_ns": "5.500",
+    "required_cs_setup_and_hold_ns": "25.000",
+    "cs_margin_over_19ns_min_ns": "6.000",
+    "maximum_nonpreemptible_quantum_ms": "1.000",
+    "payload_per_quantum_bytes": 20000,
+    "rgb565_pixels_per_quantum": 10000,
+    "full_frame_payload_only_ms": "15.360",
+    "touch_i2c_hz_max": 400000,
+    "reset_pulse_us_min": 10,
+    "display_reset_cancel_ms": 120,
+    "touch_reset_cancel_ms": 100,
+    "rise_fall_time_ns_max": 15,
+    "rule": "start at 40 MHz, enforce at least 25 ns CS setup/hold and <=1-ms dirty/tile bursts; any faster clock remains HIL-qualified only"
+  },
+  "checks": {
+    "exact_display": true,
+    "exact_display_panel_connector": true,
+    "exact_main_fb_top": true,
+    "exact_main_fb_bottom": true,
+    "exact_backlight_efuse": true,
+    "exact_backlight_efuse_ilim": true,
+    "exact_backlight_series_resistor": true,
+    "exact_backlight_mosfet": true,
+    "exact_backlight_gate_series": true,
+    "common_vddi_source": true,
+    "common_vdd_source": true,
+    "fixed_im1_high": true,
+    "backlight_anode_protected": true,
+    "joined_cathode_link": true,
+    "cathode_pwm_sink": true,
+    "reset_fail_low": true,
+    "touch_reset_fail_low": true,
+    "direct_qspi_d2": true,
+    "direct_qspi_d3": true,
+    "raw_rail_below_display_max": true,
+    "protected_connector_above_display_min": true,
+    "qspi_write_cycle_margin": true,
+    "qspi_high_low_margin": true,
+    "qspi_cs_margin": true,
+    "backlight_fault_threshold_above_reference": true,
+    "method_has_worst_case_rule": true
+  },
+  "corrections": [
+    {
+      "id": "H3.3.1-F01",
+      "finding": "the former 3.318-V nominal divider could reach about 3.424 V before ripple and exceeded the ST77922 3.3-V recommended maximum",
+      "correction": "replace it with exact 43.7-kOhm/10-kOhm 0.1% feedback and require no more than 20 mVpp ripple",
+      "functional_effect": "the display connector envelope is 3.109-to-3.286 V after the explicit protected-path drop budget"
+    },
+    {
+      "id": "H3.3.1-F02",
+      "finding": "the donor 10-Ohm gate resistor was previously misread as a 10-Ohm series LEDK power resistor, which would drop about 1.2 V at 120 mA",
+      "correction": "use the donor-equivalent 0-Ohm R31 LEDK link and retain the Leshy2 100-Ohm MOSFET gate-damping resistor",
+      "functional_effect": "the artificial backlight voltage loss is removed while the independent latch-off fault bound remains"
+    }
+  ],
+  "cost_delta_usd_at_100": {
+    "old_three_instances": "0.0883",
+    "new_three_instances": "0.5335",
+    "delta_per_board": "0.4452",
+    "scope": "two precision main-feedback resistors plus the corrected LEDK link; distribution, tax and assembly excluded"
+  },
+  "residual_physical_only": [
+    "measure protected-rail ripple and connector voltage at every accepted load and temperature corner",
+    "confirm HMX035CTFT-001 tail, ST77922 identity, VDD/VDDI ramp equality and reset/readback on received specimens",
+    "measure QSPI edges, CS-high high-Z/contention and shared-microSD throughput before raising the 40-MHz initial cap",
+    "measure actual panel backlight current, brightness, PWM EMI, temperature and TPS2553 latch recovery"
+  ],
+  "review_summary": {
+    "checks": 26,
+    "failed_checks": 0,
+    "corrected_findings": 2,
+    "unresolved_findings": 0,
+    "status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.3.2",
+    "action": "verify codec, microphone, headset and speaker gain/noise/power corners"
+  },
+  "open_findings": []
+}

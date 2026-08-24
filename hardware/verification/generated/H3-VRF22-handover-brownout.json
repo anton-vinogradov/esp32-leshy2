@@ -7,9 +7,9 @@
     "state_fault_exploration"
   ],
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "5175bf8df45ba18bfa1d698922fd0d520783328868a23f3f41314be0526950b3",
-    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "20fd7f0aaef8fdc74ca68ce03dac8f8333f75bcc317ecc5d62699df8892a6e65",
-    "hardware/verification/generated/H3-VRF21-startup-shutdown.json": "865a30e4926ffd621b2fe40233dbd6b9318b68e6d19796c6a1ab8be938888b57"
+    "hardware/architecture/candidates/G2F-3I.json": "62f4943b66967489be0205e7f7baaee6249c51d991ff566cde5a71a58a2ff4ee",
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "a10de9945cb647ae959a48a6a03d3720d85a293803b3198aa1d003bcf38bff98",
+    "hardware/verification/generated/H3-VRF21-startup-shutdown.json": "66bea98a2b8195cf3194b2c600f6679ab09c01da96798015f9c312f4311365b5"
   },
   "provenance": {
     "charger": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
@@ -20,7 +20,7 @@
     "topology": "BQ25798 NVDC automatic source selection",
     "dpm_order": "reduce charge current first; use pack supplement when system demand exceeds admitted input",
     "backup_or_otg": "disabled and not required for ordinary SYS handover",
-    "worst_h3_1_pack_discharge_a": "2.833"
+    "worst_h3_1_pack_discharge_a": "2.796"
   },
   "transitions": [
     {

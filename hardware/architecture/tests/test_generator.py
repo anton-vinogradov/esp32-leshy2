@@ -282,7 +282,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
         self.assertEqual(1003, sum(line["quantity"] for line in lines))
-        self.assertEqual(206, len(lines))
+        self.assertEqual(208, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -292,7 +292,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            195,
+            197,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
@@ -374,11 +374,11 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
         self.assertIn("**1004** architecture instances", rendered)
         self.assertIn("**1003** supplied/costed placements", rendered)
-        self.assertIn("**205/206** used lines", rendered)
-        self.assertIn("**206/206** lines", rendered)
-        self.assertIn("**195/206** lines", rendered)
+        self.assertIn("**207/208** used lines", rendered)
+        self.assertIn("**208/208** lines", rendered)
+        self.assertIn("**197/208** lines", rendered)
         self.assertIn("**986/1003** supplied placements", rendered)
-        self.assertIn("USD 221.9418", rendered)
+        self.assertIn("USD 222.3870", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -980,12 +980,12 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Murata GRM188R60J106ME47D<br/>10-uF 6.3-V X5R protected-AON output capacitor",
             "Yageo RC0402FR-0747KL<br/>47-kOhm 1% AON power-good pull-up resistor",
             "Yageo RC0402FR-0710KL<br/>10-kOhm 1% AON POR pull-up resistor",
-            "Texas Instruments TPS564252DRLR<br/>fixed 3.3-V 4-A main converter",
+            "Texas Instruments TPS564252DRLR<br/>feedback-set 3.222-V 4-A main converter",
             "Sunlord MWSA0503S-3R3MT<br/>3.3-uH main-rail power inductor",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main-converter bulk input capacitor",
             "TDK C1005X7R1H104K050BB<br/>100-nF 50-V X7R main-converter HF input capacitor",
-            "Yageo RC0402FR-0745K3L<br/>45.3-kOhm 1% main feedback top resistor",
-            "Yageo RC0402FR-0710KL<br/>10-kOhm 1% main feedback bottom resistor",
+            "Vishay TNPW040243K7BEED<br/>43.7-kOhm 0.1% main feedback top resistor",
+            "Vishay TNPW040210K0BEED<br/>10-kOhm 0.1% main feedback bottom resistor",
             "KEMET C0402C330J5GACTU<br/>33-pF 50-V C0G main feed-forward capacitor",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main raw-output capacitor #0",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main raw-output capacitor #1",
@@ -1783,7 +1783,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("TPS629203DRLR", contract["aon_rail"])
         self.assertIn("three independent TPS564252DRLR", contract["application_rails"])
         self.assertEqual("DEC-0072", contract["converter_passive_decision"])
-        self.assertIn("45.3k/10k", contract["converter_passive_profile"])
+        self.assertIn("TNPW040243K7BEED/TNPW040210K0BEED", contract["converter_passive_profile"])
         self.assertIn("68k/12k", contract["converter_passive_profile"])
         self.assertIn("220k/30k", contract["converter_passive_profile"])
         self.assertEqual("DEC-0073", contract["converter_control_passive_decision"])
@@ -1811,8 +1811,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "main_inductor": "sunlord_mwsa0503s_3r3mt",
             "main_input_cap": "murata_grm32er71e226ke15l",
             "main_hf_input_cap": "tdk_c1005x7r1h104k050bb",
-            "main_fb_top": "yageo_rc0402fr_0745k3l",
-            "main_fb_bottom": "yageo_rc0402fr_0710kl",
+            "main_fb_top": "vishay_tnpw040243k7beed",
+            "main_fb_bottom": "vishay_tnpw040210k0beed",
             "main_ff_cap": "kemet_c0402c330j5gactu",
             "main_output_cap0": "murata_grm32er71e226ke15l",
             "main_output_cap1": "murata_grm32er71e226ke15l",
@@ -2884,7 +2884,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         self.assertEqual("ti_tps2553drvr_1", candidate["instances"]["backlight_efuse"])
         self.assertEqual(
-            "panasonic_erj_p08f10r0v",
+            "yageo_rc0402jr_070rl",
             candidate["instances"]["backlight_series_resistor"],
         )
 

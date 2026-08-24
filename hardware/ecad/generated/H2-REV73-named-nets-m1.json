@@ -4,12 +4,12 @@
   "status": "reviewed_named_nets_and_m1",
   "method": "fresh native KiCad XML netlists compared with all root hierarchy names and both physical M1 connector pin maps",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "5175bf8df45ba18bfa1d698922fd0d520783328868a23f3f41314be0526950b3",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "f5bc33a7d9fe355b59298c6c110d6d9d1f1e9f273e86406597e7e8cd3d7107e9",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "5ffe4d44e6bc091fcda59e89b5ec8ab10f53bf576c3d8eb6a0212a533d3084d8",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "a2c673dcdf64adcf7245ed35852c6f66af592af587d156fcabb01b9f01fb4d3f",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "c8e7102bbad5b3c7b3593d25121d4422043eb8785c6401f6d2b137fbb2f9890c",
-    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "22cc438018361cadc179782e9ec43cc84881f5e8b6ca1cda7b95fd20f79e5b93",
+    "hardware/architecture/candidates/G2F-3I.json": "62f4943b66967489be0205e7f7baaee6249c51d991ff566cde5a71a58a2ff4ee",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "b813aa62c77640ce34befc4dd95f7779f694ca4f1e863e4cade3c96c6ecadf22",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "4f708bd7c2dee596bcc383d83bf5619240800a77e0b7a5162ad579e5fe6f1f62",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "7780cfd679150547e92859bb9a66df23a2078423a1736a442871bac92b1906d5",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "88d810ddeaa9a675bb1bd14e3c3f1624cff5657633fb39fa340aaabb9418261f",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "c9aae94b2d80a4e2c8a456da6f91f30c8a89e627fb6094df0266df8a5074123c",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01",
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c"

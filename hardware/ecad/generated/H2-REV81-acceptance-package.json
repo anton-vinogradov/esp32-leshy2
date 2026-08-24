@@ -3,9 +3,9 @@
   "stage": "H2.8.1",
   "status": "reviewed_h2_user_accepted",
   "source_hashes": {
-    "hardware/ecad/generated/H2-REV56-safety-consolidated.json": "41d8e84ab5627242660c9433e26bfc87705789e6bb65f443e06948aa46ab681d",
-    "hardware/ecad/generated/H2-REV64-erc-consolidated.json": "2874589465be9702fb7033c891ea441b2712d958165a7acdde4617511a0598b2",
-    "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json": "d2e0b5bce1d7bb5aa0db4a47c5c2c60fee2eea9441507a069e6edab9f551dcfe",
+    "hardware/ecad/generated/H2-REV56-safety-consolidated.json": "075c8469058ce4c82f1e4615f6def8580ea4a660b27ae478e55d7a2749b70cb4",
+    "hardware/ecad/generated/H2-REV64-erc-consolidated.json": "b203f3cc873ea79dea565d4ef75e4f0f5a6272436ea114cb40363ea2e3395151",
+    "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json": "7fbed9abcd3960bcd00569ff6e2a5060dad001ffc4465eb27e3d0c6379084127",
     "hardware/ecad/h2-schematic-plan.json": "145e2c9a027c94279ee1878fcdfdb49394853a609edb073f37782a4d571adf8a"
   },
   "reviewed_prerequisites": [

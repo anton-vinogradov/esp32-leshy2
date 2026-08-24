@@ -5,10 +5,10 @@
   "project": "LESHY2-RF",
   "sheet": "RF_01_USB_PD_CHARGE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "5175bf8df45ba18bfa1d698922fd0d520783328868a23f3f41314be0526950b3",
-    "hardware/architecture/devices.json": "f8ed5a402e82f1b95f8b11e818adf0c13efca37523c9ecc11088736687fde01d",
-    "hardware/ecad/generated/H2-instance-ledger.json": "c5ed44d1be459410c52b1ca4dbb80663eeab493b308b6ad0b91c5dc2eed38d6e",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "5ffe4d44e6bc091fcda59e89b5ec8ab10f53bf576c3d8eb6a0212a533d3084d8"
+    "hardware/architecture/candidates/G2F-3I.json": "62f4943b66967489be0205e7f7baaee6249c51d991ff566cde5a71a58a2ff4ee",
+    "hardware/architecture/devices.json": "12789cb3f71941d46bf84343149c2765d6da9a185f8da9bd7a5b06bd58be0917",
+    "hardware/ecad/generated/H2-instance-ledger.json": "8b079cab5d662289dc1188395e0ab68ddbfb3fa1e31836c8d597fad84024d296",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "4f708bd7c2dee596bcc383d83bf5619240800a77e0b7a5162ad579e5fe6f1f62"
   },
   "summary": {
     "ledger_instances": 52,

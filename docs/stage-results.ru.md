@@ -119,13 +119,13 @@
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ▶️ сейчас, точный маркер `H3.3.1`.
+**Статус:** ▶️ сейчас, точный маркер `H3.3.2`.
 
 - [Текущая страница виртуальной проверки](virtual-verification.ru.md).
 - [Машиночитаемый план](../hardware/verification/h3-verification-plan.json).
 - [Freeze принятого H2 и матрица из 16 областей](../hardware/verification/generated/H3-VRF01-input-freeze.json).
 - [Реестр параметров и моделей](parameter-model-register.ru.md) — 1 032
-  экземпляра, 214 используемых типов и их первичные источники.
+  экземпляра, 216 используемых типов и их первичные источники.
 - [Машинный реестр H3.0.2](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).
 - [Методы проверки](verification-methods.ru.md) и
   [машинный контракт H3.0.3](../hardware/verification/generated/H3-VRF03-method-contract.json).
@@ -136,13 +136,15 @@
 - [Startup/KILL](power-transition-startup.ru.md), [handover](power-handover.ru.md),
   [inrush/load-step](inrush-load-step.ru.md), [watchdog/fault UI](watchdog-fault-display.ru.md)
   и [проверенный результат H3.2](power-transition-result.ru.md).
+- [Результат проверки питания дисплея, подсветки и direct-QSPI](display-electrical-verification.ru.md)
+  и [машинное evidence H3.3.1](../hardware/verification/generated/H3-VRF31-display.json).
 
 `H3.0.1–H3.0.3` проведены ревью: входы, параметры и десять единых
 pass/fail-правил заморожены. `H3.1` проведено ревью: 2 032 полных состояния и
 200 rail-профилей проходят без незакрытых findings после исправления одного
 порога eFuse. `H3.2` проведено ревью: power transitions и safety-loop проходят,
-две source-ошибки исправлены. В `H3.3.1` проверяются display supply, backlight
-и direct-QSPI electrical corners.
+две source-ошибки исправлены. `H3.3.1` проведено ревью после исправления ещё
+двух source-ошибок; в `H3.3.2` проверяются codec, microphone, headset и speaker corners.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate

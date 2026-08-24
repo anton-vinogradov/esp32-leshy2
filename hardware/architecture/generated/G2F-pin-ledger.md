@@ -183,6 +183,8 @@
 | `ti_txs0102_dcur` | `Texas Instruments TXS0102DCUR` | `verified_exact_native_m5_unit_signal_isolator` | `active_production_orderable` | [TXS0102 2-bit bidirectional voltage-level translator datasheet SCES640L, revised January 2026](https://www.ti.com/lit/ds/symlink/txs0102.pdf) | same primary source |
 | `ttm_b0310j50100ahf` | `TTM Technologies B0310J50100AHF` | `verified_exact_cc_first_pass_balun` | `active_orderable` | [B0310J50100AHF balun datasheet current manufacturer document checked 2026-08-18](https://cdn.ttm.com/repository/products/wireless-xinger/balun-transformers/B0310J50100AHF/B0310J50100AHF.pdf) | same primary source |
 | `ttm_dc2337j5010ahf` | `TTM Technologies DC2337J5010AHF` | `verified_exact_nrf_forward_power_coupler` | `active_orderable` | [DC2337J5010AHF 10-dB directional coupler datasheet Rev. H](https://cdn.ttm.com/repository/products/wireless-xinger/10-20-30-dB-directional-couplers/DC2337J5010AHF/DC2337J5010AHF.pdf) | same primary source |
+| `vishay_tnpw040210k0beed` | `Vishay TNPW040210K0BEED` | `verified_exact_precision_main_feedback_resistor` | `active_orderable` | [Vishay TNPW e3 high-stability thin-film resistor datasheet Document 28758, revision 10-Apr-2026](https://www.vishay.com/docs/28758/tnpw_e3.pdf) | same primary source |
+| `vishay_tnpw040243k7beed` | `Vishay TNPW040243K7BEED` | `verified_exact_precision_main_feedback_resistor` | `active_orderable` | [Vishay TNPW e3 high-stability thin-film resistor datasheet Document 28758, revision 10-Apr-2026](https://www.vishay.com/docs/28758/tnpw_e3.pdf) | same primary source |
 | `vishay_tsmp95000tt` | `Vishay TSMP95000TT` | `verified_exact_carrier_learning_ir_receiver` | `active_stocked_orderable` | [TSMP95000 IR sensor module datasheet Rev. 1.0, 20-Oct-2022](https://www.vishay.com/docs/82907/tsmp95000.pdf) | same primary source |
 | `vishay_tsop95238tt` | `Vishay TSOP95238TT` | `verified_exact_robust_ir_receiver` | `active_orderable_factory_lead_time` | [TSOP952/TSOP954 IR receiver modules datasheet Rev. 1.2, 13-Apr-2022](https://www.vishay.com/docs/82837/tsop952.pdf) | same primary source |
 | `vishay_vemd1060x01` | `VEMD1060X01` | `verified_exact_ir_actual_optical_evidence_sensor` | `active` | [VEMD1060X01 Silicon PIN Photodiode datasheet Rev. 1.1](https://www.vishay.com/docs/84295/vemd1060x01.pdf) | same primary source |
@@ -1416,9 +1418,9 @@ Reserved: `PA1_NRST`. Free: none.
 | `POWER_GROUND` | `main_en_pulldown.END_2` | `abstract:power-ground` | main converter stays disabled if the AON POR pull-up or AON source is absent |
 | `MAIN_BUCK_SW` | `main_buck.SW` | `main_inductor.END_1` | 3.3-uH exact first target keeps the 3-A load-step peak below its minimum saturation current |
 | `MAIN_RAW_3V3` | `main_inductor.END_2` | `abstract:MAIN_RAW_3V3` | regulated output is a raw converter rail until the independent latch-off protection accepts it |
-| `MAIN_RAW_3V3` | `main_inductor.END_2` | `main_fb_top.END_1` | active 45.3-kOhm replacement for the obsolete 45.0-kOhm table value starts the fixed main feedback divider |
-| `MAIN_3V3_FB` | `main_fb_top.END_2` | `main_buck.FB` | 45.3-kOhm over 10-kOhm sets nominal 3.318 V without a selector or firmware control |
-| `MAIN_3V3_FB` | `main_buck.FB` | `main_fb_bottom.END_1` | 1% bottom resistor completes the fixed main feedback divider |
+| `MAIN_RAW_3V3` | `main_inductor.END_2` | `main_fb_top.END_1` | exact 43.7-kOhm 0.1% top resistor starts the fixed main feedback divider |
+| `MAIN_3V3_FB` | `main_fb_top.END_2` | `main_buck.FB` | 43.7-kOhm over 10-kOhm sets nominal 3.222 V without a selector or firmware control |
+| `MAIN_3V3_FB` | `main_buck.FB` | `main_fb_bottom.END_1` | exact 10-kOhm 0.1% bottom resistor completes the fixed main feedback divider |
 | `POWER_GROUND` | `main_fb_bottom.END_2` | `abstract:power-ground` | quiet Kelvin feedback return must not share the switching-current return |
 | `MAIN_RAW_3V3` | `main_inductor.END_2` | `main_ff_cap.END_1` | 33-pF C0G feed-forward capacitor stays inside the datasheet 10-to-100-pF high-output range |
 | `MAIN_3V3_FB` | `main_ff_cap.END_2` | `main_buck.FB` | feed-forward element is physically across the top divider resistor |
@@ -2462,10 +2464,10 @@ Reserved: `PA1_NRST`. Free: none.
 | `POWER_GROUND` | `display.GND_5` | `display_touch_controller.GND` | first assembly return reaches the documented ST77922 ground-pad group |
 | `POWER_GROUND` | `display_connector.PIN_5` | `abstract:power-ground` | short local return at the connector |
 | `LCD_VDDI_3V3` | `abstract:3V3_MAIN` | `display_connector.PIN_6` | protected common main rail avoids back-power through live QSPI/I2C when a separate display switch would trip |
-| `LCD_VDDI_3V3` | `display_panel_connector.PIN_6` | `display.VDDI` | ST77922 VDDI accepts the protected 3.3-V rail |
+| `LCD_VDDI_3V3` | `display_panel_connector.PIN_6` | `display.VDDI` | verified connector 3.109-to-3.286-V corner remains inside the ST77922 recommended 1.65-to-3.3-V VDDI range |
 | `LCD_VDDI_3V3` | `display.VDDI` | `display_touch_controller.VDDI` | assembly VDDI reaches the exact documented ST77922 VDDI die-pad group |
 | `LCD_VDD_3V3` | `abstract:3V3_MAIN` | `display_connector.PIN_7` | VDD and VDDI may be applied in either order; both are one protected source here |
-| `LCD_VDD_3V3` | `display_panel_connector.PIN_7` | `display.VDD` | ST77922 VDD accepts the protected 3.3-V rail |
+| `LCD_VDD_3V3` | `display_panel_connector.PIN_7` | `display.VDD` | verified connector 3.109-to-3.286-V corner remains inside the ST77922 recommended 2.65-to-3.3-V VDD range |
 | `LCD_VDD_3V3` | `display.VDD` | `display_touch_controller.VDD` | assembly VDD reaches the exact documented ST77922 VDD die-pad group |
 | `LCD_LOGIC_3V3` | `abstract:3V3_MAIN` | `display_logic_bulk_cap.END_1` | exact 10-uF local bulk target at the connector |
 | `POWER_GROUND` | `display_logic_bulk_cap.END_2` | `abstract:power-ground` | display logic bulk return stays local |
@@ -2546,10 +2548,10 @@ Reserved: `PA1_NRST`. Free: none.
 | `LCD_LEDK` | `display_panel_connector.PIN_34` | `display.LEDK_1` | first cathode contact shares the qualified low-side sink |
 | `LCD_LEDK` | `display_panel_connector.PIN_35` | `display.LEDK_2` | second cathode contact shares the qualified low-side sink |
 | `LCD_LEDK` | `display_panel_connector.PIN_36` | `display.LEDK_3` | third cathode contact shares the qualified low-side sink |
-| `LCD_LEDK` | `display_connector.PIN_34` | `backlight_series_resistor.END_1` | all three cathodes join before the exact reference-equivalent 10-Ohm pulse-rated resistor |
-| `LCD_LEDK` | `display_connector.PIN_35` | `backlight_series_resistor.END_1` | all three cathodes join before the exact reference-equivalent 10-Ohm pulse-rated resistor |
-| `LCD_LEDK` | `display_connector.PIN_36` | `backlight_series_resistor.END_1` | all three cathodes join before the exact reference-equivalent 10-Ohm pulse-rated resistor |
-| `LCD_LEDK_LIMITED` | `backlight_series_resistor.END_2` | `backlight_mosfet.D` | 0.66-W anti-surge resistor has wide margin over the approximately 0.144-W 120-mA reference load |
+| `LCD_LEDK` | `display_connector.PIN_34` | `backlight_series_resistor.END_1` | all three cathodes join before the exact donor-equivalent R31 0-Ohm link |
+| `LCD_LEDK` | `display_connector.PIN_35` | `backlight_series_resistor.END_1` | all three cathodes join before the exact donor-equivalent R31 0-Ohm link |
+| `LCD_LEDK` | `display_connector.PIN_36` | `backlight_series_resistor.END_1` | all three cathodes join before the exact donor-equivalent R31 0-Ohm link |
+| `LCD_LEDK_LIMITED` | `backlight_series_resistor.END_2` | `backlight_mosfet.D` | 0-Ohm link preserves the donor LEDK current path; current and fault bounds come from the upstream latch-off TPS2553 rather than series loss |
 | `POWER_GROUND` | `backlight_mosfet.S` | `abstract:power-ground` | short low-side PWM return |
 | `LCD_BACKLIGHT_GATE` | `backlight_gate_series.END_2` | `backlight_mosfet.G` | exact 100-Ohm gate resistor limits edge current and ringing |
 | `LCD_BACKLIGHT_GATE` | `backlight_mosfet.G` | `backlight_gate_pulldown.END_1` | gate is forced low before S3 configures GPIO40 |
@@ -3868,6 +3870,7 @@ Reserved: `PA1_NRST`. Free: none.
 - `display_adapter_plug` lifecycle: `active and authorized-distributor-stocked`.
 - `display_panel_connector` uses `Hirose FH34SRJ-40S-0.5SH(99)` as `verified_dual_contact_adapter_panel_connector_received_tail_thickness_h5_open`, not an accepted production choice.
 - `display_panel_connector` lifecycle: `active and authorized-distributor-stocked; exact HMX035CTFT-001 tail thickness and insertion fit remain H5`.
+- `backlight_series_resistor` lifecycle: `active_orderable`.
 - `sd_power_input_cap` lifecycle: `active_production`.
 - `codec` lifecycle: `current manufacturer product brief revision 17.0 dated 2026-02; production sourcing and lot qualification remain open`.
 - `audio_rx_mux` uses `Texas Instruments SN74LVC1G3157DBVR` as `verified_reference`, not an accepted production choice.
@@ -3971,6 +3974,10 @@ Reserved: `PA1_NRST`. Free: none.
 - `pack_batts_rbal` lifecycle: `active_orderable`.
 - `pack_diag_timer` lifecycle: `active_production`.
 - `pack_diag_lockout_cap` lifecycle: `active_production`.
+- `main_fb_top` uses `Vishay TNPW040243K7BEED` as `verified_exact_precision_main_feedback_resistor`, not an accepted production choice.
+- `main_fb_top` lifecycle: `active_orderable`.
+- `main_fb_bottom` uses `Vishay TNPW040210K0BEED` as `verified_exact_precision_main_feedback_resistor`, not an accepted production choice.
+- `main_fb_bottom` lifecycle: `active_orderable`.
 - `ext_rilm` uses `Yageo RC0402FR-071K82L` as `verified_h3_dc_margin_correction`, not an accepted production choice.
 - `ext_rilm` lifecycle: `active_orderable`.
 - `c5_service_usb_connector` uses `GCT USB4105-GF-A` as `verified_exact_service_usb_receptacle`, not an accepted production choice.

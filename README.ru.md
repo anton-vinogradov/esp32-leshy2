@@ -120,11 +120,11 @@ safety-автоматику.
 <details open>
 <summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.3.1 -->
+<!-- current-substep: H3.3.2 -->
 
-**Точный маркер: `H3.3.1`** — [переходы питания и safety-loop](docs/power-transition-result.ru.md)
-проведены ревью без незакрытых аналитических findings; проверяются display
-supply, backlight и direct-QSPI electrical corners.
+**Точный маркер: `H3.3.2`** — [питание дисплея, подсветка и direct-QSPI](docs/display-electrical-verification.ru.md)
+проведены ревью без незакрытых аналитических findings; проверяются codec,
+microphone, headset и speaker gain/noise/power corners.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 032 схемных строк.
@@ -209,8 +209,9 @@ supply, backlight и direct-QSPI electrical corners.
   - ✅ `H3.2.4` — [watchdog, retained fault record и fault-only UI](docs/watchdog-fault-display.ru.md).
   - ✅ `H3.2.5` — [сводное ревью H3.2](docs/power-transition-result.ru.md); исправлены две source-ошибки.
 - ▶️ **`H3.3` — сейчас:** analog peripheral corners.
-  - ▶️ **`H3.3.1` — сейчас:** display supply, backlight и direct-QSPI electrical corners.
-  - ⏳ `H3.3.2–H3.3.5` — audio, IR, battery analog и сводное ревью.
+  - ✅ `H3.3.1` — [display supply, backlight и direct-QSPI проведены ревью](docs/display-electrical-verification.ru.md); исправлены две source-ошибки.
+  - ▶️ **`H3.3.2` — сейчас:** codec, microphone, headset и speaker gain/noise/power corners.
+  - ⏳ `H3.3.3–H3.3.5` — IR, battery analog и сводное ревью.
 
 Проверенный план H2 —
 [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Текущий

@@ -119,11 +119,11 @@ remain unauthorized.
 <details open>
 <summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.3.1 -->
+<!-- current-substep: H3.3.2 -->
 
-**Exact marker: `H3.3.1`** — [power transitions and the safety loop](docs/power-transition-result.md)
-are reviewed with no unresolved analytical finding; display supply, backlight
-and direct-QSPI electrical corners are being verified.
+**Exact marker: `H3.3.2`** — [display supply, backlight and direct QSPI](docs/display-electrical-verification.md)
+are reviewed with no unresolved analytical finding; codec, microphone, headset
+and speaker gain/noise/power corners are being verified.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,032-row circuit inventory reviewed.
@@ -207,8 +207,9 @@ and direct-QSPI electrical corners are being verified.
   - ✅ `H3.2.4` — [watchdog, retained fault record and fault-only UI](docs/watchdog-fault-display.md).
   - ✅ `H3.2.5` — [H3.2 consolidation](docs/power-transition-result.md); two source errors corrected.
 - ▶️ **`H3.3` — current:** analog peripheral corners.
-  - ▶️ **`H3.3.1` — current:** display supply, backlight and direct-QSPI electrical corners.
-  - ⏳ `H3.3.2–H3.3.5` — audio, IR, battery analog and consolidation.
+  - ✅ `H3.3.1` — [display supply, backlight and direct-QSPI reviewed](docs/display-electrical-verification.md); two source errors corrected.
+  - ▶️ **`H3.3.2` — current:** codec, microphone, headset and speaker gain/noise/power corners.
+  - ⏳ `H3.3.3–H3.3.5` — IR, battery analog and consolidation.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The current machine-readable plan is

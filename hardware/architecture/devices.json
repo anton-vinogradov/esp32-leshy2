@@ -1904,7 +1904,7 @@
           "keep one donor intact as the electrical and visual reference",
           "photograph assembly, flex and lot markings before disassembly",
           "measure flex outline, pitch, thickness, exposed-contact side, stiffener and bend keepout on at least three specimens",
-          "prove insertion, retention and contact orientation with FH12-40S-0.5SH(55)",
+          "prove insertion, retention and contact orientation with the adapter's FH34SRJ-40S-0.5SH(99)",
           "run QSPI, touch 0x38, reset, IRQ, backlight-current and temperature HIL"
         ],
         "does_not_close": [
@@ -7918,6 +7918,88 @@
       "contacts": {
         "END_1": {"physical": "1", "role": "rf"},
         "END_2": {"physical": "2", "role": "rf"}
+      }
+    },
+    "vishay_tnpw040243k7beed": {
+      "mpn": "Vishay TNPW040243K7BEED",
+      "kind": "43_7kohm_0_1pct_25ppm_0402_main_feedback_top_resistor",
+      "qualification": "verified_exact_precision_main_feedback_resistor",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Vishay TNPW e3 high-stability thin-film resistor datasheet",
+        "version": "Document 28758, revision 10-Apr-2026",
+        "url": "https://www.vishay.com/docs/28758/tnpw_e3.pdf",
+        "checked": "2026-08-24"
+      },
+      "orderable_source": {
+        "document": "TNPW040243K7BEED active authorized-distributor exact-part page; 7,665 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/vishay-dale/TNPW040243K7BEED/9448503",
+        "checked": "2026-08-24"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.3475,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/vishay-dale/TNPW040243K7BEED/9448503",
+          "checked": "2026-08-24"
+        }
+      },
+      "electrical_contract": {
+        "resistance_ohm": 43700,
+        "tolerance_pct": 0.1,
+        "temperature_coefficient_ppm_per_c": 25,
+        "rated_power_w": 0.13,
+        "rated_voltage_v": 50
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "analog"}
+      }
+    },
+    "vishay_tnpw040210k0beed": {
+      "mpn": "Vishay TNPW040210K0BEED",
+      "kind": "10kohm_0_1pct_25ppm_0402_main_feedback_bottom_resistor",
+      "qualification": "verified_exact_precision_main_feedback_resistor",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Vishay TNPW e3 high-stability thin-film resistor datasheet",
+        "version": "Document 28758, revision 10-Apr-2026",
+        "url": "https://www.vishay.com/docs/28758/tnpw_e3.pdf",
+        "checked": "2026-08-24"
+      },
+      "orderable_source": {
+        "document": "TNPW040210K0BEED active authorized-distributor exact-part page; 271,514 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/vishay-dale/TNPW040210K0BEED/1857039",
+        "checked": "2026-08-24"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.1812,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/vishay-dale/TNPW040210K0BEED/1857039",
+          "checked": "2026-08-24"
+        }
+      },
+      "electrical_contract": {
+        "resistance_ohm": 10000,
+        "tolerance_pct": 0.1,
+        "temperature_coefficient_ppm_per_c": 25,
+        "rated_power_w": 0.13,
+        "rated_voltage_v": 50
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
       }
     },
     "yageo_rc0402fr_0742k2l": {

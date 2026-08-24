@@ -14827,7 +14827,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+				(property "Description" "10kohm_0_1pct_25ppm_0402_main_feedback_bottom_resistor"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -14891,7 +14891,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Description" "45_3kohm_1pct_0402_main_feedback_top_resistor"
+				(property "Description" "43_7kohm_0_1pct_25ppm_0402_main_feedback_top_resistor"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -55017,7 +55017,7 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
+				(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -55031,7 +55031,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Description" "10ohm_1pct_1206_0_66w_anti_surge_power_resistor"
+				(property "Description" "0ohm_0402_jumper_resistor"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)

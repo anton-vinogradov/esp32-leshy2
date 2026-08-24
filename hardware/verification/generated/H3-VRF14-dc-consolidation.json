@@ -3,10 +3,10 @@
   "stage": "H3.1.4",
   "status": "reviewed_h3_1_steady_dc_phase_complete",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF11-power-state-register.json": "1beccde515936c074bb2eca63c41bc282db4d2090bb70f75d65eb69ec4eca64a",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "df0d25e48cb2c4bf012b83b68e45ad08a7d64cf641eb2a10460a69b1a42fdf71",
-    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "5ed5eec28f16308bfd31780968784f59b6cbc588702b9dcbbcaf09fa36316e35",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "4307cb4001ae3ccc122d0dcc13a24fd12e3c016693049caf041303214697fb3a"
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "3ea50d53820610b61c26ad756f16a8328753d3193addbf9884a0053535bd2a8c",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "1142a60db3358c7011632651483dafab3026ff5eaeb49cb25f9ac378723e9595",
+    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "6ef5f3090527ef4ea606e75d6e8deb2b19437a3fd7b856bb245a5c25641639bb",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "e999a7b7c1296758fc8881e007a3d4d51b6b6da164da816686132e9193f43df9"
   },
   "checks": {
     "all_states_enumerated": true,
@@ -24,13 +24,13 @@
     "load_profiles": 50,
     "rail_profiles": 200,
     "minimum_rail_hardware_reserve_percent": "29.976",
-    "maximum_sys_demand_w": "16.998",
-    "maximum_pack_discharge_a": "2.833",
-    "pack_hardware_reserve_percent_at_worst": "252.983",
-    "maximum_rail_conversion_loss_w": "2.550",
+    "maximum_sys_demand_w": "16.777",
+    "maximum_pack_discharge_a": "2.796",
+    "pack_hardware_reserve_percent_at_worst": "257.654",
+    "maximum_rail_conversion_loss_w": "2.517",
     "maximum_efuse_conduction_loss_w": "0.386",
     "usb_5v3a_profiles_explicitly_refused_without_pack": 14,
-    "charge_states_derated_by_dpm": 263,
+    "charge_states_derated_by_dpm": 258,
     "failed_checks": 0
   },
   "corrections": [

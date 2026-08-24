@@ -19,6 +19,7 @@ SCRIPTS = (
     ROOT / "hardware/verification/h3_source_charge_budget.py",
     ROOT / "hardware/verification/h3_dc_consolidation.py",
     ROOT / "hardware/verification/h3_power_transitions.py",
+    ROOT / "hardware/verification/h3_display_corners.py",
 )
 
 

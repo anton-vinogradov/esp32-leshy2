@@ -70,7 +70,7 @@ flowchart TD
   BACKLIGHT_EFUSE_OUTPUT_BULK["Murata GRM188R60J106ME47D<br/>10-uF protected-LEDA output bulk capacitor"]
   BACKLIGHT_EFUSE_OUTPUT_HF["TDK C1005X7R1H104K050BB<br/>100-nF protected-LEDA output bypass capacitor"]
   BACKLIGHT_FAULT_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm open-drain backlight-fault pull-up"]
-  BACKLIGHT_SERIES_RESISTOR["Panasonic ERJ-P08F10R0V<br/>10-Ohm 0.66-W anti-surge LED cathode resistor"]
+  BACKLIGHT_SERIES_RESISTOR["Yageo RC0402JR-070RL<br/>0-Ohm donor-equivalent LED cathode link"]
   BACKLIGHT_MOSFET["Diodes Incorporated DMN2056U-7<br/>low-gate-drive LED cathode PWM MOSFET"]
   BACKLIGHT_GATE_SERIES["Yageo RC0402FR-07100RL<br/>100-Ohm PWM gate series resistor"]
   BACKLIGHT_GATE_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm PWM gate reset-off pull-down"]
@@ -1601,12 +1601,12 @@ flowchart TD
   AON_EFUSE_INPUT_CAP["TDK C1005X7R1H104K050BB<br/>100-nF 50-V X7R AON eFuse input capacitor"]
   AON_EFUSE_OUTPUT_CAP["Murata GRM188R60J106ME47D<br/>10-uF 6.3-V X5R protected-AON output capacitor"]
   AON_PG_PULLUP["Yageo RC0402FR-0747KL<br/>47-kOhm 1% AON power-good pull-up resistor"]
-  MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>fixed 3.3-V 4-A main converter"]
+  MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>feedback-set 3.222-V 4-A main converter"]
   MAIN_INDUCTOR["Sunlord MWSA0503S-3R3MT<br/>3.3-uH main-rail power inductor"]
   MAIN_INPUT_CAP["Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main-converter bulk input capacitor"]
   MAIN_HF_INPUT_CAP["TDK C1005X7R1H104K050BB<br/>100-nF 50-V X7R main-converter HF input capacitor"]
-  MAIN_FB_TOP["Yageo RC0402FR-0745K3L<br/>45.3-kOhm 1% main feedback top resistor"]
-  MAIN_FB_BOTTOM["Yageo RC0402FR-0710KL<br/>10-kOhm 1% main feedback bottom resistor"]
+  MAIN_FB_TOP["Vishay TNPW040243K7BEED<br/>43.7-kOhm 0.1% main feedback top resistor"]
+  MAIN_FB_BOTTOM["Vishay TNPW040210K0BEED<br/>10-kOhm 0.1% main feedback bottom resistor"]
   MAIN_FF_CAP["KEMET C0402C330J5GACTU<br/>33-pF 50-V C0G main feed-forward capacitor"]
   MAIN_OUTPUT_CAP0["Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main raw-output capacitor #0"]
   MAIN_OUTPUT_CAP1["Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main raw-output capacitor #1"]
@@ -1756,7 +1756,7 @@ flowchart TD
 flowchart TD
   subgraph POWER_INPUT_1["Sink-only USB-PD and replaceable-cell power path"]
   AON_BUCK["Texas Instruments TPS629203DRLR<br/>low-IQ always-on 3.3-V safety converter"]
-  MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>fixed 3.3-V 4-A main converter"]
+  MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>feedback-set 3.222-V 4-A main converter"]
   VOICE_BUCK["Texas Instruments TPS564252DRLR<br/>fixed 4.0-V 4-A voice converter"]
   EXT_BUCK["Texas Instruments TPS564252DRLR<br/>fixed 5.0-V 4-A accessory converter"]
   PRODUCT_USB_CONNECTOR["JAE DX07S016JA1R1500<br/>product USB-C receptacle: protected S3 USB2 data and sink-only power"]
@@ -1828,7 +1828,7 @@ flowchart TD
 flowchart TD
   subgraph POWER_INPUT_2["Sink-only USB-PD and replaceable-cell power path"]
   AON_BUCK["Texas Instruments TPS629203DRLR<br/>low-IQ always-on 3.3-V safety converter"]
-  MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>fixed 3.3-V 4-A main converter"]
+  MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>feedback-set 3.222-V 4-A main converter"]
   VOICE_BUCK["Texas Instruments TPS564252DRLR<br/>fixed 4.0-V 4-A voice converter"]
   EXT_BUCK["Texas Instruments TPS564252DRLR<br/>fixed 5.0-V 4-A accessory converter"]
   CHARGER_BTST2_CAP["Murata GRM155R71E473KA88D<br/>47-nF 25-V charger bootstrap capacitor #2"]
@@ -1921,7 +1921,7 @@ flowchart TD
 flowchart TD
   subgraph POWER_INPUT_3["Sink-only USB-PD and replaceable-cell power path"]
   AON_BUCK["Texas Instruments TPS629203DRLR<br/>low-IQ always-on 3.3-V safety converter"]
-  MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>fixed 3.3-V 4-A main converter"]
+  MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>feedback-set 3.222-V 4-A main converter"]
   VOICE_BUCK["Texas Instruments TPS564252DRLR<br/>fixed 4.0-V 4-A voice converter"]
   EXT_BUCK["Texas Instruments TPS564252DRLR<br/>fixed 5.0-V 4-A accessory converter"]
   PACK_SYSTEM_DIODE["Diodes Incorporated BAT54-7-F<br/>admitted-system source isolation and priority"]
@@ -2931,9 +2931,9 @@ Reserved: `PA1_NRST`. Free: none.
 | `POWER_GROUND` | `main_en_pulldown.END_2` | `abstract:power-ground` | main converter stays disabled if the AON POR pull-up or AON source is absent |
 | `MAIN_BUCK_SW` | `main_buck.SW` | `main_inductor.END_1` | 3.3-uH exact first target keeps the 3-A load-step peak below its minimum saturation current |
 | `MAIN_RAW_3V3` | `main_inductor.END_2` | `abstract:MAIN_RAW_3V3` | regulated output is a raw converter rail until the independent latch-off protection accepts it |
-| `MAIN_RAW_3V3` | `main_inductor.END_2` | `main_fb_top.END_1` | active 45.3-kOhm replacement for the obsolete 45.0-kOhm table value starts the fixed main feedback divider |
-| `MAIN_3V3_FB` | `main_fb_top.END_2` | `main_buck.FB` | 45.3-kOhm over 10-kOhm sets nominal 3.318 V without a selector or firmware control |
-| `MAIN_3V3_FB` | `main_buck.FB` | `main_fb_bottom.END_1` | 1% bottom resistor completes the fixed main feedback divider |
+| `MAIN_RAW_3V3` | `main_inductor.END_2` | `main_fb_top.END_1` | exact 43.7-kOhm 0.1% top resistor starts the fixed main feedback divider |
+| `MAIN_3V3_FB` | `main_fb_top.END_2` | `main_buck.FB` | 43.7-kOhm over 10-kOhm sets nominal 3.222 V without a selector or firmware control |
+| `MAIN_3V3_FB` | `main_buck.FB` | `main_fb_bottom.END_1` | exact 10-kOhm 0.1% bottom resistor completes the fixed main feedback divider |
 | `POWER_GROUND` | `main_fb_bottom.END_2` | `abstract:power-ground` | quiet Kelvin feedback return must not share the switching-current return |
 | `MAIN_RAW_3V3` | `main_inductor.END_2` | `main_ff_cap.END_1` | 33-pF C0G feed-forward capacitor stays inside the datasheet 10-to-100-pF high-output range |
 | `MAIN_3V3_FB` | `main_ff_cap.END_2` | `main_buck.FB` | feed-forward element is physically across the top divider resistor |
@@ -3977,10 +3977,10 @@ Reserved: `PA1_NRST`. Free: none.
 | `POWER_GROUND` | `display.GND_5` | `display_touch_controller.GND` | first assembly return reaches the documented ST77922 ground-pad group |
 | `POWER_GROUND` | `display_connector.PIN_5` | `abstract:power-ground` | short local return at the connector |
 | `LCD_VDDI_3V3` | `abstract:3V3_MAIN` | `display_connector.PIN_6` | protected common main rail avoids back-power through live QSPI/I2C when a separate display switch would trip |
-| `LCD_VDDI_3V3` | `display_panel_connector.PIN_6` | `display.VDDI` | ST77922 VDDI accepts the protected 3.3-V rail |
+| `LCD_VDDI_3V3` | `display_panel_connector.PIN_6` | `display.VDDI` | verified connector 3.109-to-3.286-V corner remains inside the ST77922 recommended 1.65-to-3.3-V VDDI range |
 | `LCD_VDDI_3V3` | `display.VDDI` | `display_touch_controller.VDDI` | assembly VDDI reaches the exact documented ST77922 VDDI die-pad group |
 | `LCD_VDD_3V3` | `abstract:3V3_MAIN` | `display_connector.PIN_7` | VDD and VDDI may be applied in either order; both are one protected source here |
-| `LCD_VDD_3V3` | `display_panel_connector.PIN_7` | `display.VDD` | ST77922 VDD accepts the protected 3.3-V rail |
+| `LCD_VDD_3V3` | `display_panel_connector.PIN_7` | `display.VDD` | verified connector 3.109-to-3.286-V corner remains inside the ST77922 recommended 2.65-to-3.3-V VDD range |
 | `LCD_VDD_3V3` | `display.VDD` | `display_touch_controller.VDD` | assembly VDD reaches the exact documented ST77922 VDD die-pad group |
 | `LCD_LOGIC_3V3` | `abstract:3V3_MAIN` | `display_logic_bulk_cap.END_1` | exact 10-uF local bulk target at the connector |
 | `POWER_GROUND` | `display_logic_bulk_cap.END_2` | `abstract:power-ground` | display logic bulk return stays local |
@@ -4061,10 +4061,10 @@ Reserved: `PA1_NRST`. Free: none.
 | `LCD_LEDK` | `display_panel_connector.PIN_34` | `display.LEDK_1` | first cathode contact shares the qualified low-side sink |
 | `LCD_LEDK` | `display_panel_connector.PIN_35` | `display.LEDK_2` | second cathode contact shares the qualified low-side sink |
 | `LCD_LEDK` | `display_panel_connector.PIN_36` | `display.LEDK_3` | third cathode contact shares the qualified low-side sink |
-| `LCD_LEDK` | `display_connector.PIN_34` | `backlight_series_resistor.END_1` | all three cathodes join before the exact reference-equivalent 10-Ohm pulse-rated resistor |
-| `LCD_LEDK` | `display_connector.PIN_35` | `backlight_series_resistor.END_1` | all three cathodes join before the exact reference-equivalent 10-Ohm pulse-rated resistor |
-| `LCD_LEDK` | `display_connector.PIN_36` | `backlight_series_resistor.END_1` | all three cathodes join before the exact reference-equivalent 10-Ohm pulse-rated resistor |
-| `LCD_LEDK_LIMITED` | `backlight_series_resistor.END_2` | `backlight_mosfet.D` | 0.66-W anti-surge resistor has wide margin over the approximately 0.144-W 120-mA reference load |
+| `LCD_LEDK` | `display_connector.PIN_34` | `backlight_series_resistor.END_1` | all three cathodes join before the exact donor-equivalent R31 0-Ohm link |
+| `LCD_LEDK` | `display_connector.PIN_35` | `backlight_series_resistor.END_1` | all three cathodes join before the exact donor-equivalent R31 0-Ohm link |
+| `LCD_LEDK` | `display_connector.PIN_36` | `backlight_series_resistor.END_1` | all three cathodes join before the exact donor-equivalent R31 0-Ohm link |
+| `LCD_LEDK_LIMITED` | `backlight_series_resistor.END_2` | `backlight_mosfet.D` | 0-Ohm link preserves the donor LEDK current path; current and fault bounds come from the upstream latch-off TPS2553 rather than series loss |
 | `POWER_GROUND` | `backlight_mosfet.S` | `abstract:power-ground` | short low-side PWM return |
 | `LCD_BACKLIGHT_GATE` | `backlight_gate_series.END_2` | `backlight_mosfet.G` | exact 100-Ohm gate resistor limits edge current and ringing |
 | `LCD_BACKLIGHT_GATE` | `backlight_mosfet.G` | `backlight_gate_pulldown.END_1` | gate is forced low before S3 configures GPIO40 |
@@ -5383,6 +5383,7 @@ Reserved: `PA1_NRST`. Free: none.
 - `display_adapter_plug` lifecycle: `active and authorized-distributor-stocked`.
 - `display_panel_connector` uses `Hirose FH34SRJ-40S-0.5SH(99)` as `verified_dual_contact_adapter_panel_connector_received_tail_thickness_h5_open`, not an accepted production choice.
 - `display_panel_connector` lifecycle: `active and authorized-distributor-stocked; exact HMX035CTFT-001 tail thickness and insertion fit remain H5`.
+- `backlight_series_resistor` lifecycle: `active_orderable`.
 - `sd_power_input_cap` lifecycle: `active_production`.
 - `codec` lifecycle: `current manufacturer product brief revision 17.0 dated 2026-02; production sourcing and lot qualification remain open`.
 - `audio_rx_mux` uses `Texas Instruments SN74LVC1G3157DBVR` as `verified_reference`, not an accepted production choice.
@@ -5486,6 +5487,10 @@ Reserved: `PA1_NRST`. Free: none.
 - `pack_batts_rbal` lifecycle: `active_orderable`.
 - `pack_diag_timer` lifecycle: `active_production`.
 - `pack_diag_lockout_cap` lifecycle: `active_production`.
+- `main_fb_top` uses `Vishay TNPW040243K7BEED` as `verified_exact_precision_main_feedback_resistor`, not an accepted production choice.
+- `main_fb_top` lifecycle: `active_orderable`.
+- `main_fb_bottom` uses `Vishay TNPW040210K0BEED` as `verified_exact_precision_main_feedback_resistor`, not an accepted production choice.
+- `main_fb_bottom` lifecycle: `active_orderable`.
 - `ext_rilm` uses `Yageo RC0402FR-071K82L` as `verified_h3_dc_margin_correction`, not an accepted production choice.
 - `ext_rilm` lifecycle: `active_orderable`.
 - `c5_service_usb_connector` uses `GCT USB4105-GF-A` as `verified_exact_service_usb_receptacle`, not an accepted production choice.

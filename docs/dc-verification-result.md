@@ -8,7 +8,7 @@ H3.1 closes as one chain: state register → rail loads → source/charge/discha
 
 - `43` source/charge states, `2032` complete states and `200` rail profiles pass with no unresolved violation.
 - Minimum rail protection reserve: `29.976%`.
-- Worst SYS case: `16.998 W`; pack: `2.833 A`, with `252.983%` reserve to the 10-A contract.
+- Worst SYS case: `16.777 W`; pack: `2.796 A`, with `257.654%` reserve to the 10-A contract.
 - 5 V × 3 A without a pack explicitly refuses `14` heavy profiles; this is admission control, not a hidden brownout.
 
 ## Corrected during review
@@ -19,6 +19,6 @@ H3.1 closes as one chain: state register → rail loads → source/charge/discha
 
 Steady limits do not replace dynamics or temperature. H3.2 checks startup/shutdown, USB↔pack handover, brownout, DPM, inrush and FAULT_KILL; H3.6 consumes the 2.550-W converter loss and 0.386-W eFuse loss in its thermal model; H8 retains physical measurements.
 
-**Status:** `H3.1` is reviewed. The exact current marker is `H3.3.1`, display supply, backlight and direct-QSPI corners.
+**Status:** `H3.1` is reviewed. The exact current marker is `H3.3.2`, codec/microphone/headset/speaker corners.
 
 [Machine H3.1 closure package](../hardware/verification/generated/H3-VRF14-dc-consolidation.json).

@@ -8849,9 +8849,9 @@
       "instance_uid": "LESHY2-UI:backlight_series_resistor",
       "instance": "backlight_series_resistor",
       "project": "LESHY2-UI",
-      "device_key": "panasonic_erj_p08f10r0v",
-      "mpn": "Panasonic ERJ-P08F10R0V",
-      "role": "10ohm_1pct_1206_0_66w_anti_surge_power_resistor",
+      "device_key": "yageo_rc0402jr_070rl",
+      "mpn": "Yageo RC0402JR-070RL",
+      "role": "0ohm_0402_jumper_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
       "electrical_disposition": "board_fitted_component",
@@ -8863,9 +8863,9 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Panasonic ERJ-P08F10R0V high-power anti-surge resistor product page",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://na.industrial.panasonic.com/products/resistors/smd-chip-resistors/high-power-anti-surge-high-voltage/series/36033/model/39214",
+        "document": "Yageo RC general-purpose chip resistor specification",
+        "version": "current exact order code checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
         "checked": "2026-08-18"
       }
     },
@@ -17633,9 +17633,9 @@
       "instance_uid": "LESHY2-RF:main_fb_top",
       "instance": "main_fb_top",
       "project": "LESHY2-RF",
-      "device_key": "yageo_rc0402fr_0745k3l",
-      "mpn": "Yageo RC0402FR-0745K3L",
-      "role": "45_3kohm_1pct_0402_main_feedback_top_resistor",
+      "device_key": "vishay_tnpw040243k7beed",
+      "mpn": "Vishay TNPW040243K7BEED",
+      "role": "43_7kohm_0_1pct_25ppm_0402_main_feedback_top_resistor",
       "board": "rf-power-pcb",
       "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "electrical_disposition": "board_fitted_component",
@@ -17647,19 +17647,19 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402FR-0745K3L product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0745K3L",
-        "checked": "2026-08-18"
+        "document": "Vishay TNPW e3 high-stability thin-film resistor datasheet",
+        "version": "Document 28758, revision 10-Apr-2026",
+        "url": "https://www.vishay.com/docs/28758/tnpw_e3.pdf",
+        "checked": "2026-08-24"
       }
     },
     {
       "instance_uid": "LESHY2-RF:main_fb_bottom",
       "instance": "main_fb_bottom",
       "project": "LESHY2-RF",
-      "device_key": "yageo_rc0402fr_0710kl",
-      "mpn": "Yageo RC0402FR-0710KL",
-      "role": "10kohm_1pct_0402_main_feedback_bottom_resistor",
+      "device_key": "vishay_tnpw040210k0beed",
+      "mpn": "Vishay TNPW040210K0BEED",
+      "role": "10kohm_0_1pct_25ppm_0402_main_feedback_bottom_resistor",
       "board": "rf-power-pcb",
       "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "electrical_disposition": "board_fitted_component",
@@ -17671,10 +17671,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402FR-0710KL product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
-        "checked": "2026-08-18"
+        "document": "Vishay TNPW e3 high-stability thin-film resistor datasheet",
+        "version": "Document 28758, revision 10-Apr-2026",
+        "url": "https://www.vishay.com/docs/28758/tnpw_e3.pdf",
+        "checked": "2026-08-24"
       }
     },
     {
