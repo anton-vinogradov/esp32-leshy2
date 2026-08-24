@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "stage": "H3.7.3",
-  "status": "prepared_awaiting_explicit_user_acceptance",
+  "status": "reviewed_h3_user_accepted",
   "source_hashes": {
-    "hardware/verification/h3-verification-plan.json": "a5630e0f7af67e215d083a4acefb69e9be53a532602f3adcd014a175bb3f2be7",
+    "hardware/verification/h3-verification-plan.json": "0ccad6965e3b9b4e86e75ad3e0bfa46f3165cb09473cced07baf1c7f59da2346",
     "hardware/ecad/generated/H2-REV81-acceptance-package.json": "5ed09d5e4b7fd8681a8b41f8d421c586f339049aea9c9ae6558d51ac3ce5f368",
     "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "b25b733ed2ca03794ccf9e6c3eff3f381ec757cd1393bae555dd363bc7b38b5b",
     "hardware/verification/generated/H3-VRF25-transition-consolidation.json": "ffec8e9595d815d5384c1e7e6ea8c86152dc75a17b2787e7b85a7f938ee37568",
@@ -11,8 +11,8 @@
     "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "a429fe29bb1a1c4dcc5aa2e160521c02f7cf7691c0cbc66b0adeaeb58be1e5fc",
     "hardware/verification/generated/H3-VRF54-rf-consolidation.json": "10b2463af6d244c27755483021fe92275e2653b771dc66f891ece078da4ce7de",
     "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json": "a7123a15a29f337fdfdfacbf7b6931394b2ca245e42800fc71a54112200baabd",
-    "hardware/verification/generated/H3-VRF71-crosscheck.json": "515483ab7f7241390f1c5c656b88f577cc25d61ea2563956cccdcdd054d9d359",
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "561db6106f7205e3fba99509b59a3f73fa275fc1771cf0e51d9dd946443ee314"
+    "hardware/verification/generated/H3-VRF71-crosscheck.json": "4d1dbe0be9bbe2fdd550708b21d5ccd008fcd117f45948cc511f3a3e77e109b1",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "1258f7573220d73f15b9e29aa3f219c91dd69629bccac143b3876bd74313d0cc"
   },
   "acceptance_meaning": [
     "all checks possible without fabricated hardware have reproducible reviewed evidence",
@@ -120,12 +120,16 @@
     "unassigned": 0,
     "analytically_closed_by_h3": 0
   },
-  "remaining_gate": {
+  "acceptance_gate": {
     "id": "H3.7.4",
-    "state": "explicit_user_acceptance_required",
-    "effect_if_accepted": "H3 becomes reviewed; H4 still waits for firmware F3 and does not authorize purchase, layout or fabrication"
+    "state": "accepted_by_user",
+    "effect": "H3 is reviewed; H4 still waits for firmware F3 and does not authorize purchase, layout or fabrication"
   },
-  "user_acceptance": null,
+  "user_acceptance": {
+    "accepted": true,
+    "date": "2026-08-24",
+    "basis": "user instructed automatic acceptance for clean reviews without questions or proposals while H3.7.4 was the explicit pending gate"
+  },
   "checks": {
     "accepted_h2_is_the_input_boundary": true,
     "all_six_h3_phase_results_are_reviewed": true,
@@ -136,24 +140,22 @@
     "no_physical_residual_is_claimed_closed": true,
     "all_25_corrections_are_accounted": true,
     "known_bom_delta_is_bounded": true,
-    "h3_acceptance_has_not_been_pre_recorded": true,
+    "h3_acceptance_is_recorded": true,
     "h4_remains_blocked_by_firmware_f3": true,
     "acceptance_does_not_authorize_layout": true,
     "acceptance_does_not_authorize_fabrication": true,
     "acceptance_does_not_authorize_purchase": true
   },
   "open_analytical_findings": [],
-  "pending_decisions": [
-    "H3.7.4 explicit user acceptance"
-  ],
+  "pending_decisions": [],
   "review_summary": {
     "checks": 14,
     "failed": 0,
     "unresolved_analytical_findings": 0,
-    "status": "prepared"
+    "status": "reviewed"
   },
   "next": {
-    "stage": "H3.7.4",
-    "action": "request and record explicit user acceptance before H4"
+    "stage": "H4.0.1",
+    "action": "wait for and consume firmware F3 target boot/emulation evidence in the joined pre-layout gate"
   }
 }

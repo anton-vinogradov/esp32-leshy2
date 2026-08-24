@@ -118,12 +118,12 @@ are satisfied.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current, exact marker `H3.6.3`.
+**Status:** ✅ reviewed and accepted on 24 August 2026.
 
 - [Current virtual-verification page](virtual-verification.md).
 - [Machine execution plan](../hardware/verification/h3-verification-plan.json).
 - [Accepted-input freeze and 16-domain matrix](../hardware/verification/generated/H3-VRF01-input-freeze.json).
-- [Parameter and model register](parameter-model-register.md) — 1,035
+- [Parameter and model register](parameter-model-register.md) — 1,048
   instances, 217 used device types and their primary sources.
 - [H3.0.2 machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).
 - [Verification methods](verification-methods.md) and
@@ -184,18 +184,21 @@ one-group, quiet-state and full 3×nRF24 checks. `H3.5.4` closes the phase with
 [H3.6 consolidation](thermal-fault-result.md) closes 70 leaf and 24 cross-domain
 checks. [H3.7.1](h3-crosscheck.md) joins every requirement, artifact, H2 instance
 and root net. [H3.7.2](physical-evidence-register.md) assigns all 85 physical
-rows to H5/H6/H8. The [H3.7.3 acceptance package](h3-acceptance.md) is prepared;
-H3.7.4 awaits explicit user acceptance.
+rows to H5/H6/H8. The [H3 acceptance package](h3-acceptance.md) records the
+accepted baseline and preserves every physical residual.
 
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate
 
-**Status:** 🔒 waiting for H1–H3 and firmware F3.
+**Status:** ▶️ current prerequisite boundary `H4.0.1`; waiting for firmware F3.
 
 One joined review of mechanics, production ECAD, virtual electrical evidence
 and target-visible firmware contracts. F3 requires builds for all five domains,
 size/rollback gates, S3 QEMU and portable/host models for targets without an
 exact emulator.
+
+The machine plan is
+[`h4-prelayout-plan.json`](../hardware/verification/h4-prelayout-plan.json).
 
 <a id="h5"></a>
 ## H5 · Component evidence samples

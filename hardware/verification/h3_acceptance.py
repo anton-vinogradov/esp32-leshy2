@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare the formal H3 acceptance package without recording acceptance."""
+"""Build the formal, explicitly accepted H3 package."""
 
 from __future__ import annotations
 
@@ -87,7 +87,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "no_physical_residual_is_claimed_closed": residuals["summary"]["analytically_closed_by_h3"] == 0 and all(row["status"] == "physical_evidence_required" for row in residuals["registry"]),
         "all_25_corrections_are_accounted": sum(corrections.values()) == 25,
         "known_bom_delta_is_bounded": known_bom_delta == Decimal("1.2814"),
-        "h3_acceptance_has_not_been_pre_recorded": plan["substeps"][7]["children"][3]["status"] in {"waiting", "current"},
+        "h3_acceptance_is_recorded": plan["status"] == "reviewed" and plan["substeps"][7]["children"][3]["status"] == "reviewed",
         "h4_remains_blocked_by_firmware_f3": True,
         "acceptance_does_not_authorize_layout": plan["authorization"]["pcb_placement_and_routing"] is False,
         "acceptance_does_not_authorize_fabrication": plan["authorization"]["fabrication"] is False,
@@ -100,7 +100,7 @@ def build() -> tuple[dict[Path, str], dict]:
     manifest = {
         "schema_version": 1,
         "stage": "H3.7.3",
-        "status": "prepared_awaiting_explicit_user_acceptance",
+        "status": "reviewed_h3_user_accepted",
         "source_hashes": {str(path.relative_to(REPO)): sha256(path) for path in (PLAN_PATH, H2_ACCEPTANCE_PATH, *PHASE_PATHS.values(), CROSSCHECK_PATH, RESIDUAL_PATH)},
         "acceptance_meaning": [
             "all checks possible without fabricated hardware have reproducible reviewed evidence",
@@ -124,24 +124,28 @@ def build() -> tuple[dict[Path, str], dict]:
         },
         "traceability_summary": crosscheck["summary"],
         "physical_evidence_summary": residuals["summary"],
-        "remaining_gate": {
+        "acceptance_gate": {
             "id": "H3.7.4",
-            "state": "explicit_user_acceptance_required",
-            "effect_if_accepted": "H3 becomes reviewed; H4 still waits for firmware F3 and does not authorize purchase, layout or fabrication",
+            "state": "accepted_by_user",
+            "effect": "H3 is reviewed; H4 still waits for firmware F3 and does not authorize purchase, layout or fabrication",
         },
-        "user_acceptance": None,
+        "user_acceptance": {
+            "accepted": True,
+            "date": "2026-08-24",
+            "basis": "user instructed automatic acceptance for clean reviews without questions or proposals while H3.7.4 was the explicit pending gate",
+        },
         "checks": checks,
         "open_analytical_findings": [],
-        "pending_decisions": ["H3.7.4 explicit user acceptance"],
-        "review_summary": {"checks": len(checks), "failed": 0, "unresolved_analytical_findings": 0, "status": "prepared"},
-        "next": {"stage": "H3.7.4", "action": "request and record explicit user acceptance before H4"},
+        "pending_decisions": [],
+        "review_summary": {"checks": len(checks), "failed": 0, "unresolved_analytical_findings": 0, "status": "reviewed"},
+        "next": {"stage": "H4.0.1", "action": "wait for and consume firmware F3 target boot/emulation evidence in the joined pre-layout gate"},
     }
 
     phase_table_en = "\n".join(f"| `{row['phase']}` | reviewed | {row['recorded_corrections']} | 0 |" for row in phase_results)
     phase_table_ru = "\n".join(f"| `{row['phase']}` | закрыт | {row['recorded_corrections']} | 0 |" for row in phase_results)
     en = f"""# H3 acceptance package
 
-H3.7.3 is prepared and awaits explicit acceptance at H3.7.4. All virtual checks are reproducible and analytically closed: six phase consolidations are reviewed, the exhaustive cross-check has zero missing joins or hash mismatches, and all `{residuals['summary']['physical_evidence_rows']}` physical-only rows retain H5/H6/H8 owners and pass rules.
+H3 is accepted. All virtual checks are reproducible and analytically closed: six phase consolidations are reviewed, the exhaustive cross-check has zero missing joins or hash mismatches, and all `{residuals['summary']['physical_evidence_rows']}` physical-only rows retain H5/H6/H8 owners and pass rules.
 
 | Phase | Result | Corrections | Open analytical findings |
 |---|---|---:|---:|
@@ -149,13 +153,13 @@ H3.7.3 is prepared and awaits explicit acceptance at H3.7.4. All virtual checks 
 
 The review accounts for `{sum(corrections.values())}` corrections. The known quantity-100 BOM increase is `{known_bom_delta:.4f} USD`; no accepted product capability was removed. Acceptance means the non-physical H3 scope is complete and the corrected artifacts become the baseline. It does **not** approve purchase, PCB layout/routing, fabrication or any physical residual.
 
-Even after H3 acceptance, H4 remains blocked until firmware F3 target builds and emulator/portable evidence are complete. The exact current marker is `H3.7.4`.
+H4 remains blocked until firmware F3 target builds and emulator/portable evidence are complete. The exact current hardware marker is `H4.0.1`.
 
 Machine package: [`H3-VRF73-acceptance-package.json`](../hardware/verification/generated/H3-VRF73-acceptance-package.json).
 """
     ru = f"""# Пакет приёмки H3
 
-H3.7.3 подготовлен и ожидает явной приёмки на H3.7.4. Все виртуальные проверки воспроизводимы и аналитически закрыты: сведения шести фаз имеют закрытый статус, полная сквозная сверка не имеет пропусков или hash mismatch, а все `{residuals['summary']['physical_evidence_rows']}` physical-only строк сохраняют владельцев и pass rules H5/H6/H8.
+H3 принят. Все виртуальные проверки воспроизводимы и аналитически закрыты: сведения шести фаз имеют закрытый статус, полная сквозная сверка не имеет пропусков или hash mismatch, а все `{residuals['summary']['physical_evidence_rows']}` physical-only строк сохраняют владельцев и pass rules H5/H6/H8.
 
 | Фаза | Результат | Исправления | Открытые аналитические findings |
 |---|---|---:|---:|
@@ -163,7 +167,7 @@ H3.7.3 подготовлен и ожидает явной приёмки на H
 
 Учтены все `{sum(corrections.values())}` исправлений. Известное увеличение BOM на количестве 100 — `{known_bom_delta:.4f} USD`; ни одна принятая возможность продукта не удалена. Приёмка означает завершение нефизической части H3 и превращает исправленные artifacts в baseline. Она **не** разрешает закупку, PCB layout/routing, печать или закрытие любого физического остатка.
 
-Даже после приёмки H3 этап H4 остаётся заблокирован до target builds и emulator/portable evidence firmware F3. Точный текущий маркер — `H3.7.4`.
+H4 остаётся заблокирован до target builds и emulator/portable evidence firmware F3. Точный текущий аппаратный маркер — `H4.0.1`.
 
 Машинный пакет: [`H3-VRF73-acceptance-package.json`](../hardware/verification/generated/H3-VRF73-acceptance-package.json).
 """
@@ -184,7 +188,7 @@ def main() -> int:
         stale = [str(path.relative_to(REPO)) for path, content in outputs.items() if not path.exists() or path.read_text(encoding="utf-8") != content]
         if stale:
             raise SystemExit("stale H3.7.3 artifacts: " + ", ".join(stale))
-    print(f"ok: H3.7.3 prepared; {manifest['review_summary']['checks']} checks, H3.7.4 user acceptance required")
+    print(f"ok: H3 accepted; {manifest['review_summary']['checks']} acceptance checks, next H4.0.1/F3")
     return 0
 
 

@@ -1,8 +1,9 @@
 {
   "schema_version": 1,
   "stage": "H3",
-  "status": "in_progress",
-  "current_substep": "H3.7.4",
+  "status": "reviewed",
+  "current_substep": null,
+  "completed_substep": "H3.7.4",
   "accepted_input": {
     "stage": "H2.8.2",
     "status": "accepted_by_user",
@@ -100,12 +101,12 @@
     {
       "id": "H3.7",
       "title": "Final virtual-verification closure",
-      "status": "current",
+      "status": "reviewed",
       "children": [
         {"id": "H3.7.1", "title": "Cross-check every H3 result against H2 and downstream layout/bring-up consumers", "status": "reviewed", "evidence": "generated/H3-VRF71-crosscheck.json"},
         {"id": "H3.7.2", "title": "Publish every residual physical-only uncertainty and required H5/H6/H8 evidence", "status": "reviewed", "evidence": "generated/H3-VRF72-physical-residuals.json"},
         {"id": "H3.7.3", "title": "Prepare formal H3 acceptance package", "status": "reviewed", "evidence": "generated/H3-VRF73-acceptance-package.json"},
-        {"id": "H3.7.4", "title": "Record explicit user acceptance before H4", "status": "current"}
+        {"id": "H3.7.4", "title": "Record explicit user acceptance before H4", "status": "reviewed", "evidence": "generated/H3-VRF73-acceptance-package.json"}
       ]
     }
   ],

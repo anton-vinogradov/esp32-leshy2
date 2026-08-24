@@ -10,7 +10,7 @@
     "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "a429fe29bb1a1c4dcc5aa2e160521c02f7cf7691c0cbc66b0adeaeb58be1e5fc",
     "hardware/verification/generated/H3-VRF54-rf-consolidation.json": "10b2463af6d244c27755483021fe92275e2653b771dc66f891ece078da4ce7de",
     "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json": "a7123a15a29f337fdfdfacbf7b6931394b2ca245e42800fc71a54112200baabd",
-    "hardware/verification/generated/H3-VRF71-crosscheck.json": "515483ab7f7241390f1c5c656b88f577cc25d61ea2563956cccdcdd054d9d359"
+    "hardware/verification/generated/H3-VRF71-crosscheck.json": "4d1dbe0be9bbe2fdd550708b21d5ccd008fcd117f45948cc511f3a3e77e109b1"
   },
   "summary": {
     "raw_consolidated_rows": 88,

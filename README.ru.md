@@ -105,26 +105,26 @@ safety-автоматику.
 | H0 · Требования и функциональная архитектура | ✅ Проведено ревью | [Открыть H0](docs/stage-results.ru.md#h0) |
 | H1 · Физический дизайн устройства | ✅ Проведено ревью | [Открыть H1](docs/stage-results.ru.md#h1) |
 | H2 · Production ECAD-схема | ✅ Проведено ревью и принято | [Результаты H2](docs/stage-results.ru.md#h2) |
-| **H3 · Виртуальная электрическая проверка** | **▶️ Сейчас** | [Текущие результаты H3](docs/stage-results.ru.md#h3) |
-| H4 · Объединённый pre-layout gate | 🔒 Ожидает H1–H3 и firmware F3 | [План H4](docs/stage-results.ru.md#h4) |
+| H3 · Виртуальная электрическая проверка | ✅ Проведено ревью и принято | [Результаты H3](docs/stage-results.ru.md#h3) |
+| **H4 · Объединённый pre-layout gate** | **▶️ Текущая граница пререквизитов; ожидает firmware F3** | [План H4](docs/stage-results.ru.md#h4) |
 | H5 · Образцы компонентов | 🔒 Ожидает H4 и одобрение стоимости | [План H5](docs/stage-results.ru.md#h5) |
 | H6 · PCB placement и routing | 🔒 Ожидает H5 | [План H6](docs/stage-results.ru.md#h6) |
 | H7 · Печать прототипа и bring-up | 🔒 Ожидает H6, firmware F3 и одобрение заказа | [План H7](docs/stage-results.ru.md#h7) |
 | H8 · Физическая квалификация | 🔒 Ожидает H7 | [План H8](docs/stage-results.ru.md#h8) |
 | H9 · Производственный release | 🔒 Ожидает H8 и firmware F11 | [План H9](docs/stage-results.ru.md#h9) |
 
-**Железо находится на H3.** Принятая production-схема проходит виртуальную
-электрическую проверку; PCB layout, target/emulator gate и любые заказы
-остаются не разрешены.
+**Железо находится на границе пререквизитов H4.** Виртуальная электрическая
+проверка H3 принята; объединённый pre-layout review ожидает target/emulator
+evidence firmware F3. PCB layout и любые заказы остаются не разрешены.
 
 <details open>
-<summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
+<summary><strong>Текущий пререквизит H4 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.7.4 -->
+<!-- current-substep: H4.0.1 -->
 
-**Точный маркер: `H3.7.4`** — [пакет приёмки H3](docs/h3-acceptance.ru.md)
-подготовлен. Для закрытия H3 нужно явное подтверждение пользователя; H4 всё
-равно ждёт firmware F3, а закупка, layout и печать не разрешаются.
+**Точный маркер: `H4.0.1`** — [H3 принят](docs/h3-acceptance.ru.md).
+Объединённый pre-layout gate ожидает target builds, image-size/rollback gates
+и максимально доступное emulator/portable evidence firmware F3.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 048 схемных строк.
@@ -229,16 +229,16 @@ safety-автоматику.
   - ✅ `H3.6.2` — [30 единичных отказов проведены через независимое shutdown и recovery](docs/single-fault-review.ru.md).
   - ✅ `H3.6.3` — [приняты `0…35 °C` как инженерная цель, USB для долгой работы и настраиваемый self-test](docs/unattended-operation.ru.md); обещаний времени работы нет.
   - ✅ `H3.6.4` — [проверены 70 leaf и 24 thermal/fault/endurance consolidation checks](docs/thermal-fault-result.ru.md).
-- ▶️ **`H3.7` — сейчас:** финальное закрытие virtual verification.
+- ✅ **`H3.7` — проведено ревью:** финальное закрытие virtual verification.
   - ✅ `H3.7.1` — [все требования H3, artifacts, H2 instances и root nets сверены](docs/h3-crosscheck.ru.md).
   - ✅ `H3.7.2` — [все 85 physical-only residual-строк опубликованы с владельцами evidence](docs/physical-evidence-register.ru.md).
   - ✅ `H3.7.3` — [формальный пакет приёмки H3 подготовлен](docs/h3-acceptance.ru.md).
-  - ▶️ **`H3.7.4` — сейчас:** записать явное подтверждение пользователя перед H4.
+  - ✅ `H3.7.4` — явное подтверждение пользователя записано.
+- ▶️ **`H4.0.1` — текущий пререквизит:** получить прошедшее ревью evidence firmware F3 до объединённой pre-layout проверки.
 
-Проверенный план H2 —
-[`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Текущий
-машиночитаемый план —
-[`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json).
+Проверенный план H2 — [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json),
+завершённый H3 — [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json),
+текущий — [`h4-prelayout-plan.json`](hardware/verification/h4-prelayout-plan.json).
 Закрытие каждой подзадачи меняет этот маркер и обе страницы roadmap в том же commit.
 
 </details>

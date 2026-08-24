@@ -143,13 +143,13 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware stage: H3", "H1 accepted",
+                "Current hardware boundary: H4.0.1", "H1 accepted",
                 "F3 target boot/emulation is not closed",
                 "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущий аппаратный этап: H3", "H1 принят",
+                "Текущая аппаратная граница: H4.0.1", "H1 принят",
                 "F3 не закрыт", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
@@ -165,8 +165,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Hardware is at H3", "printing/fabrication"),
-            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H3", "печать/на фабрику"),
+            "README.md": ("Roadmap and current position", "Hardware is at the H4 prerequisite boundary", "printing/fabrication"),
+            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на границе пререквизитов H4", "печать/на фабрику"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -450,9 +450,15 @@ class ProductSiteTests(unittest.TestCase):
         acceptance = json.loads(
             self.read("hardware/verification/generated/H3-VRF73-acceptance-package.json")
         )
+        h4_plan = json.loads(
+            self.read("hardware/verification/h4-prelayout-plan.json")
+        )
         self.assertEqual("H3", plan["stage"])
-        self.assertEqual("H3.7.4", plan["current_substep"])
-        self.assertEqual(plan["current_substep"], state["current_substep"])
+        self.assertEqual("reviewed", plan["status"])
+        self.assertIsNone(plan["current_substep"])
+        self.assertEqual("H3.7.4", plan["completed_substep"])
+        self.assertEqual("H4", state["current_stage"])
+        self.assertEqual("H4.0.1", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -483,11 +489,11 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["substeps"][6]["children"][1]["status"])
         self.assertEqual("reviewed", plan["substeps"][6]["children"][2]["status"])
         self.assertEqual("reviewed", plan["substeps"][6]["children"][3]["status"])
-        self.assertEqual("current", plan["substeps"][7]["status"])
+        self.assertEqual("reviewed", plan["substeps"][7]["status"])
         self.assertEqual("reviewed", plan["substeps"][7]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][7]["children"][1]["status"])
         self.assertEqual("reviewed", plan["substeps"][7]["children"][2]["status"])
-        self.assertEqual("current", plan["substeps"][7]["children"][3]["status"])
+        self.assertEqual("reviewed", plan["substeps"][7]["children"][3]["status"])
         self.assertEqual(16, freeze["summary"]["verification_domains"])
         self.assertEqual(0, freeze["summary"]["unassigned_virtual_checks"])
         self.assertEqual(0, freeze["summary"]["unassigned_physical_checks"])
@@ -546,10 +552,17 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(3, residuals["summary"]["resolved_h3_internal_rows"])
         self.assertEqual(85, residuals["summary"]["physical_evidence_rows"])
         self.assertEqual(0, residuals["summary"]["unassigned"])
-        self.assertEqual("prepared_awaiting_explicit_user_acceptance", acceptance["status"])
+        self.assertEqual("reviewed_h3_user_accepted", acceptance["status"])
         self.assertEqual(25, acceptance["correction_summary"]["total"])
         self.assertEqual("1.2814", acceptance["correction_summary"]["known_incremental_bom_usd_at_quantity_100"])
-        self.assertIsNone(acceptance["user_acceptance"])
+        self.assertTrue(acceptance["user_acceptance"]["accepted"])
+        self.assertEqual("H4", h4_plan["stage"])
+        self.assertEqual("current_blocked_by_firmware_f3", h4_plan["status"])
+        self.assertEqual("H4.0.1", h4_plan["current_substep"])
+        self.assertTrue(h4_plan["authorization"]["joined_read_only_review"])
+        self.assertFalse(h4_plan["authorization"]["component_purchase"])
+        self.assertFalse(h4_plan["authorization"]["pcb_placement_and_routing"])
+        self.assertFalse(h4_plan["authorization"]["fabrication"])
         for relative, expected in freeze["source_hashes"].items():
             actual = hashlib.sha256((REPO_ROOT / relative).read_bytes()).hexdigest()
             self.assertEqual(expected, actual, relative)

@@ -104,26 +104,26 @@ drawings, schematics, contracts and checks.
 | H0 · Product requirements and functional architecture | ✅ Reviewed | [Open H0](docs/stage-results.md#h0) |
 | H1 · Physical product design | ✅ Reviewed | [Open H1](docs/stage-results.md#h1) |
 | H2 · Production ECAD schematic | ✅ Reviewed and accepted | [H2 results](docs/stage-results.md#h2) |
-| **H3 · Virtual electrical verification** | **▶️ Current** | [Current H3 results](docs/stage-results.md#h3) |
-| H4 · Joined pre-layout gate | 🔒 Waiting for H1–H3 and firmware F3 | [H4 plan](docs/stage-results.md#h4) |
+| H3 · Virtual electrical verification | ✅ Reviewed and accepted | [H3 results](docs/stage-results.md#h3) |
+| **H4 · Joined pre-layout gate** | **▶️ Current prerequisite boundary; waiting for firmware F3** | [H4 plan](docs/stage-results.md#h4) |
 | H5 · Component evidence samples | 🔒 Waiting for H4 and cost approval | [H5 plan](docs/stage-results.md#h5) |
 | H6 · PCB placement and routing | 🔒 Waiting for H5 | [H6 plan](docs/stage-results.md#h6) |
 | H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6, firmware F3 and order approval | [H7 plan](docs/stage-results.md#h7) |
 | H8 · Physical qualification | 🔒 Waiting for H7 | [H8 plan](docs/stage-results.md#h8) |
 | H9 · Manufacturing release | 🔒 Waiting for H8 and firmware F11 | [H9 plan](docs/stage-results.md#h9) |
 
-**Hardware is at H3.** The accepted production schematic is undergoing virtual
-electrical verification; PCB layout, target/emulator gate and every order
-remain unauthorized.
+**Hardware is at the H4 prerequisite boundary.** H3 virtual electrical
+verification is accepted; the joined pre-layout review waits for firmware F3
+target/emulator evidence. PCB layout and every order remain unauthorized.
 
 <details open>
-<summary><strong>Current H3 phase — exact detailed position</strong></summary>
+<summary><strong>Current H4 prerequisite — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.7.4 -->
+<!-- current-substep: H4.0.1 -->
 
-**Exact marker: `H3.7.4`** — the [H3 acceptance package](docs/h3-acceptance.md)
-is prepared. Explicit user acceptance is required to close H3; H4 will still
-wait for firmware F3 and no purchase, layout or fabrication becomes authorized.
+**Exact marker: `H4.0.1`** — [H3 is accepted](docs/h3-acceptance.md). The joined
+pre-layout gate waits for firmware F3 target builds, image-size/rollback gates
+and maximum available emulator/portable evidence.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,048-row circuit inventory reviewed.
@@ -227,15 +227,16 @@ wait for firmware F3 and no purchase, layout or fabrication becomes authorized.
   - ✅ `H3.6.2` — [30 single faults traced through independent shutdown and recovery](docs/single-fault-review.md).
   - ✅ `H3.6.3` — [`0 to 35 °C` engineering target, USB guidance and configurable full self-test reviewed](docs/unattended-operation.md); no operating-time promise is made.
   - ✅ `H3.6.4` — [70 leaf and 24 thermal/fault/endurance consolidation checks reviewed](docs/thermal-fault-result.md).
-- ▶️ **`H3.7` — current:** final virtual-verification closure.
+- ✅ **`H3.7` — reviewed:** final virtual-verification closure.
   - ✅ `H3.7.1` — [all H3 requirements, artifacts, H2 instances and root nets cross-checked](docs/h3-crosscheck.md).
   - ✅ `H3.7.2` — [all 85 physical-only residual rows published with evidence owners](docs/physical-evidence-register.md).
   - ✅ `H3.7.3` — [formal H3 acceptance package prepared](docs/h3-acceptance.md).
-  - ▶️ **`H3.7.4` — current:** record explicit user acceptance before H4.
+  - ✅ `H3.7.4` — explicit user acceptance recorded.
+- ▶️ **`H4.0.1` — current prerequisite:** obtain reviewed firmware F3 evidence before the joined pre-layout review.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
-The current machine-readable plan is
-[`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json).
+The completed H3 plan is [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json);
+the current plan is [`h4-prelayout-plan.json`](hardware/verification/h4-prelayout-plan.json).
 Closing each subtask changes this marker and both roadmap pages in the same commit.
 
 </details>

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "current_stage": "H3",
-  "current_substep": "H3.7.4",
+  "current_stage": "H4",
+  "current_substep": "H4.0.1",
   "stages": [
     {"id": "H0", "status": "reviewed"},
     {"id": "H1", "status": "reviewed"},
     {"id": "H2", "status": "reviewed", "accepted_by_user": "2026-08-24"},
-    {"id": "H3", "status": "current"},
-    {"id": "H4", "status": "waiting"},
+    {"id": "H3", "status": "reviewed", "accepted_by_user": "2026-08-24"},
+    {"id": "H4", "status": "current_blocked_by_firmware_f3"},
     {"id": "H5", "status": "waiting"},
     {"id": "H6", "status": "waiting"},
     {"id": "H7", "status": "waiting"},

@@ -119,12 +119,12 @@
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ▶️ сейчас, точный маркер `H3.6.3`.
+**Статус:** ✅ проведено ревью и принято 24 августа 2026 года.
 
 - [Текущая страница виртуальной проверки](virtual-verification.ru.md).
 - [Машиночитаемый план](../hardware/verification/h3-verification-plan.json).
 - [Freeze принятого H2 и матрица из 16 областей](../hardware/verification/generated/H3-VRF01-input-freeze.json).
-- [Реестр параметров и моделей](parameter-model-register.ru.md) — 1 035
+- [Реестр параметров и моделей](parameter-model-register.ru.md) — 1 048
   экземпляра, 217 используемых типов и их первичные источники.
 - [Машинный реестр H3.0.2](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).
 - [Методы проверки](verification-methods.ru.md) и
@@ -184,18 +184,21 @@ quiet-state и полных 3×nRF24. `H3.5.4` закрывает фазу 22 с
 [Сведение H3.6](thermal-fault-result.ru.md) закрывает 70 leaf и 24 сквозных
 checks. [H3.7.1](h3-crosscheck.ru.md) соединяет каждое требование, artifact,
 H2 instance и root net. [H3.7.2](physical-evidence-register.ru.md) назначает
-все 85 физических строк H5/H6/H8. [Пакет приёмки H3.7.3](h3-acceptance.ru.md)
-подготовлен; H3.7.4 ожидает явного подтверждения пользователя.
+все 85 физических строк H5/H6/H8. [Пакет приёмки H3](h3-acceptance.ru.md)
+фиксирует принятый baseline и сохраняет каждый физический остаток.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate
 
-**Статус:** 🔒 ожидает H1–H3 и firmware F3.
+**Статус:** ▶️ текущая граница пререквизитов `H4.0.1`; ожидает firmware F3.
 
 Единое ревью механики, production ECAD, виртуальных electrical evidence и
 target-visible firmware contracts. F3 требует сборки образов всех пяти доменов,
 size/rollback gates, S3 QEMU и portable/host-моделей для targets без точного
 эмулятора.
+
+Машиночитаемый план —
+[`h4-prelayout-plan.json`](../hardware/verification/h4-prelayout-plan.json).
 
 <a id="h5"></a>
 ## H5 · Образцы компонентов

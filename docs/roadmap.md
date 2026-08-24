@@ -3,9 +3,8 @@
 [Русский](roadmap.ru.md) · [Home](../README.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶️ Current hardware stage: H3 — virtual electrical verification.** H0–H2
-> are reviewed and H2 is explicitly accepted. There is no PCB layout or
-> authorized order.
+> **▶️ Current hardware boundary: H4.0.1 — firmware F3 prerequisite.** H0–H3
+> are reviewed and accepted. There is no PCB layout or authorized order.
 
 Status last reconciled: **24 August 2026**. This is the hardware repository's
 own, sequential roadmap. Firmware work has its own `F0–F11` stages. Firmware
@@ -27,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
 | Production ECAD schematic | ✅ H2 accepted at hardware `25d9ee2`; firmware F2 synchronized at `900bb2b` |
-| Electrical and transient evidence | ▶️ H3.7.4: formal package prepared; explicit user acceptance required |
+| Electrical and transient evidence | ✅ H3 accepted; 85 physical-only rows remain assigned to H5/H6/H8 |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
@@ -39,13 +38,13 @@ Principle diagrams explain **what connects to what**. Production ECAD must add
 exact symbols, contacts, values, rails, protection, footprints and ERC
 evidence. PCB placement and routing begin only after the earlier gates close.
 
-## Completed H1/H2 and current H3 breakdown
+## Completed H1–H3 and current H4 prerequisite
 
-<!-- current-substep: H3.7.4 -->
+<!-- current-substep: H4.0.1 -->
 
-**Exact marker: `H3.7.4`** — the [H3 acceptance package](h3-acceptance.md) is
-prepared. Explicit user acceptance is required to close H3; H4 still waits for
-firmware F3 and no purchase, layout or fabrication becomes authorized.
+**Exact marker: `H4.0.1`** — [H3 is accepted](h3-acceptance.md). H4 waits for
+firmware F3 target builds, image-size/rollback gates and maximum available
+emulator/portable evidence. No purchase, layout or fabrication is authorized.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -271,15 +270,16 @@ Current H2 execution:
   - ✅ `H3.6.2` — [30 single faults traced through independent shutdown and recovery](single-fault-review.md).
   - ✅ `H3.6.3` — [extended operation, the `0 to 35 °C` engineering target and configurable self-test reviewed](unattended-operation.md); 24/48 hours are H8 intervals only.
   - ✅ `H3.6.4` — [70 leaf and 24 thermal/fault/endurance consolidation checks reviewed](thermal-fault-result.md).
-- ▶️ `H3.7` — cross-check, physical-only residuals and formal H3 acceptance.
+- ✅ `H3.7` — cross-check, physical-only residuals and formal H3 acceptance.
   - ✅ `H3.7.1` — [all H3 requirements, artifacts, H2 instances and root nets cross-checked](h3-crosscheck.md).
   - ✅ `H3.7.2` — [all 85 physical-only residual rows published with evidence owners](physical-evidence-register.md).
   - ✅ `H3.7.3` — [formal H3 acceptance package prepared](h3-acceptance.md).
-  - ▶️ **`H3.7.4` — current:** record explicit user acceptance before H4.
+  - ✅ `H3.7.4` — explicit user acceptance recorded.
+- ▶️ **`H4.0.1` — current prerequisite:** obtain reviewed firmware F3 evidence.
 
-The reviewed H2 plan is
-[`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json). The active
-plan is [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json).
+The reviewed H2 plan is [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json),
+the completed H3 plan is [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json)
+and the active plan is [`h4-prelayout-plan.json`](../hardware/verification/h4-prelayout-plan.json).
 Closing any subtask changes the exact landing-page and roadmap marker in the
 same commit. A later change reopens affected gates and dependencies.
 
@@ -333,8 +333,8 @@ A production order is possible only after H9.
 | **H0. Product requirements and functional architecture** | ✅ Reviewed | Complete capability scope, five compute domains, radio/interface owners, interface classes, one active signal group, full-function 3×nRF24 and safety boundaries | Requirements and architecture checks pass; every required function has an owner and a defined hardware boundary |
 | **H1. Physical product design** | ✅ Reviewed | Accepted exterior, both outer and inner faces, true antenna-edge view, sections, assembly sequence, selected-part envelopes and feasible pin/resource allocation | Dimensions come from selected MPNs; no component, fastener, silkscreen, antenna or accessory collision; controls, battery, U214, ports, microphone and speaker are accessible; allocation still fits; the user accepted the mockup |
 | **H2. Production ECAD schematic** | ✅ Reviewed and accepted | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 consumes the contract without invented pins |
-| **H3. Virtual electrical verification** | ▶️ Current · `H3.6.3` | Calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
-| **H4. Joined pre-layout gate** | 🔒 Waiting for H1–H3 and firmware F3 | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
+| **H3. Virtual electrical verification** | ✅ Reviewed and accepted | Calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
+| **H4. Joined pre-layout gate** | ▶️ Current prerequisite boundary; waiting for firmware F3 | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
 | **H5. Component evidence samples** | 🔒 Waiting for H4 and separate cost approval | Minimum evidence purchase, not a production basket | Received display, U214, connectors and radios are identified and measured; connector mating and critical stack-up fit are proven; raw records are retained; mismatch reopens its source stage |
 | **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |
 | **H7. Prototype fabrication and bring-up** | 🔒 Waiting for H6, inherited firmware F3 and order approval | Small prototype PCB lot and retained bring-up log | Rails sequence correctly; all five controllers program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |

@@ -4,7 +4,7 @@
   "status": "reviewed_h3_to_h2_and_downstream_crosscheck",
   "method": "exhaustive machine join of the H3 verification matrix, plan evidence, source-hash edges, every H2 instance identity and every cross-sheet root-net identity",
   "source_hashes": {
-    "hardware/verification/h3-verification-plan.json": "a5630e0f7af67e215d083a4acefb69e9be53a532602f3adcd014a175bb3f2be7",
+    "hardware/verification/h3-verification-plan.json": "0ccad6965e3b9b4e86e75ad3e0bfa46f3165cb09473cced07baf1c7f59da2346",
     "hardware/verification/generated/H3-VRF01-input-freeze.json": "9e5e15e6f9b8408ea0d08d0202a51aaebb85d19b1bb690ef3bf3071d907d336a",
     "hardware/verification/generated/H3-VRF02-parameter-inventory.json": "3eec71313209a322a0098a5baa488683ea9f80401cf05df0290516fac99e5dd0",
     "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
