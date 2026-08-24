@@ -119,11 +119,11 @@ remain unauthorized.
 <details open>
 <summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.5.1 -->
+<!-- current-substep: H3.5.2 -->
 
-**Exact marker: `H3.5.1`** — [digital level, timing and boundary evidence](docs/digital-verification-result.md)
-is consolidated with 162 leaf plus 27 cross-domain checks and no unresolved
-analytical finding; 50-ohm antenna-feed constraints are now being derived.
+**Exact marker: `H3.5.2`** — [all nine antenna-feed contracts](docs/rf-feed-constraints.md)
+are reviewed with 72 machine checks and no unresolved analytical finding;
+RF corridors, keepouts, reference planes and return currents are now being derived.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,035-row circuit inventory reviewed.
@@ -218,8 +218,8 @@ analytical finding; 50-ohm antenna-feed constraints are now being derived.
   - ✅ `H3.4.3` — [M1, U214, M5 Unit and service-boundary loading reviewed](docs/boundary-loading-verification.md).
   - ✅ `H3.4.4` — [162 leaf and 27 cross-domain digital checks reviewed](docs/digital-verification-result.md).
 - ▶️ **`H3.5` — current:** RF feeds, return paths, corridors and coexistence.
-  - ▶️ **`H3.5.1` — current:** 50-ohm feed, connector, matching and loss constraints for every antenna path.
-  - ⏳ `H3.5.2` — RF corridors, keepouts, reference planes and return currents.
+  - ✅ `H3.5.1` — [feed, connector, matching and loss constraints reviewed](docs/rf-feed-constraints.md) for all nine antenna paths.
+  - ▶️ **`H3.5.2` — current:** RF corridors, keepouts, reference planes and return currents.
   - ⏳ `H3.5.3` — isolation, quiet-state and concurrent 3× nRF24 model.
   - ⏳ `H3.5.4` — RF consolidation.
 

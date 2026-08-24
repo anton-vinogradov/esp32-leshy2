@@ -119,7 +119,7 @@
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ▶️ сейчас, точный маркер `H3.5.1`.
+**Статус:** ▶️ сейчас, точный маркер `H3.5.2`.
 
 - [Текущая страница виртуальной проверки](virtual-verification.ru.md).
 - [Машиночитаемый план](../hardware/verification/h3-verification-plan.json).
@@ -154,6 +154,8 @@
   и [машинное evidence H3.4.3](../hardware/verification/generated/H3-VRF43-boundary-loading.json).
 - [Сводный результат digital interfaces](digital-verification-result.ru.md)
   и [машинное evidence H3.4.4](../hardware/verification/generated/H3-VRF44-digital-consolidation.json).
+- [Контракты всех девяти RF-трактов](rf-feed-constraints.ru.md) и
+  [машинное evidence H3.5.1](../hardware/verification/generated/H3-VRF51-rf-feed-constraints.json).
 
 `H3.0.1–H3.0.3` проведены ревью: входы, параметры и десять единых
 pass/fail-правил заморожены. `H3.1` проведено ревью: 2 032 полных состояния и
@@ -166,8 +168,9 @@ pass/fail-правил заморожены. `H3.1` проведено ревь�
 checks. `H3.4.1` закрывает digital levels/defaults 73 машинными checks,
 `H3.4.2` закрывает bandwidth/latency/timing 40 checks, `H3.4.3` закрывает
 loading M1, expansions и service boundaries 49 checks. `H3.4.4` закрывает фазу
-27 сквозными checks поверх всех 162 leaf checks. В `H3.5.1` выводятся 50-омные
-ограничения feed, connectors, matching и потерь.
+27 сквозными checks поверх всех 162 leaf checks. `H3.5.1` закрывает 72 checks
+feed/connectors/matching/loss всех девяти портов; в `H3.5.2` выводятся RF
+corridors, keepouts, reference planes и return currents.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate

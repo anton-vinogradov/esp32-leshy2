@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "stage": "H3.5.1",
+  "status": "reviewed_rf_feed_connector_matching_and_loss_constraints",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "bb7cd466a2aac72ab37da628cb2aba2eda4396a91ddcc3729116f50bfb0a3831",
+    "hardware/architecture/devices.json": "be2c824fb67f7da62891d54c6fc99e41b345d637239da10b3fff3c609b935054",
+    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "0c46083ab0d761bec5ae118206dcbc711656e8b542eba2c29f82f58af449dc6e"
+  },
+  "provenance": {
+    "s3_module": "https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+    "c5_module": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+    "jumper": "https://www.te.com/en/product-2118651-2.html",
+    "ufl": "https://www.hirose.com/product/series/U.FL",
+    "sma": "https://gct.co/connector/rfpc-sma31-fn",
+    "rp_sma": "https://gct.co/connector/rfpc-sma32-fn",
+    "native_coupler": "https://datasheets.kyocera-avx.com/cp0302.pdf",
+    "nrf_coupler": "https://cdn.ttm.com/repository/products/wireless-xinger/10-20-30-dB-directional-couplers/DC2337J5010AHF/DC2337J5010AHF.pdf",
+    "cc1101": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+    "cc_balun": "https://cdn.ttm.com/repository/products/wireless-xinger/balun-transformers/B0310J50100AHF/B0310J50100AHF.pdf",
+    "cc_switch": "https://www.infineon.com/assets/row/public/documents/24/49/infineon-bgs13sn8-datasheet-en.pdf",
+    "voice": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
+    "receiver": "https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf",
+    "receiver_guidance": "https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/application-notes/AN383.pdf"
+  },
+  "summary": {
+    "external_ports": 9,
+    "tx_capable_paths": 7,
+    "receive_only_paths": 2,
+    "generic_50_ohm_paths": 7,
+    "matched_or_special_receive_paths": 2
+  },
+  "path_constraints": [
+    {
+      "id": "S3-2G4",
+      "mode": "50_ohm_tx_rx",
+      "band_mhz": [
+        2400,
+        2484
+      ],
+      "connector": "RFPC-SMA32-FN-175-A RP-SMA",
+      "known_mainline_loss_db_max": "0.200",
+      "complete_feed_loss_target_db_max": "1.500",
+      "return_loss_target_db_min": "10.000"
+    },
+    {
+      "id": "C5-2G4/5",
+      "mode": "50_ohm_tx_rx",
+      "band_mhz": [
+        2400,
+        5885
+      ],
+      "connector": "RFPC-SMA32-FN-175-A RP-SMA",
+      "known_mainline_loss_db_max": {
+        "2g4": "0.200",
+        "5g": "0.400"
+      },
+      "complete_feed_loss_target_db_max": {
+        "2g4": "1.500",
+        "5g": "2.000"
+      },
+      "return_loss_target_db_min": "10.000"
+    },
+    {
+      "id": "N24-0",
+      "mode": "50_ohm_tx_rx",
+      "band_mhz": [
+        2400,
+        2525
+      ],
+      "connector": "RFPC-SMA31-FN-175-A SMA",
+      "known_mainline_loss_db_max": {
+        "2400_2500": "0.220",
+        "2500_2525": "0.250"
+      },
+      "complete_feed_loss_target_db_max": "1.500",
+      "return_loss_target_db_min": "10.000"
+    },
+    {
+      "id": "N24-1",
+      "mode": "50_ohm_tx_rx",
+      "band_mhz": [
+        2400,
+        2525
+      ],
+      "connector": "RFPC-SMA31-FN-175-A SMA",
+      "known_mainline_loss_db_max": {
+        "2400_2500": "0.220",
+        "2500_2525": "0.250"
+      },
+      "complete_feed_loss_target_db_max": "1.500",
+      "return_loss_target_db_min": "10.000"
+    },
+    {
+      "id": "N24-2",
+      "mode": "50_ohm_tx_rx",
+      "band_mhz": [
+        2400,
+        2525
+      ],
+      "connector": "RFPC-SMA31-FN-175-A SMA",
+      "known_mainline_loss_db_max": {
+        "2400_2500": "0.220",
+        "2500_2525": "0.250"
+      },
+      "complete_feed_loss_target_db_max": "1.500",
+      "return_loss_target_db_min": "10.000"
+    },
+    {
+      "id": "CC-SUB",
+      "mode": "matched_to_50_ohm_tx_rx",
+      "band_mhz": [
+        300,
+        928
+      ],
+      "profiles_mhz": [
+        315,
+        433,
+        868,
+        915
+      ],
+      "connector": "RFPC-SMA31-FN-175-A SMA",
+      "known_loss_db_max_868_915_before_passives_trace_connector": "1.840",
+      "complete_tuned_feed_loss_target_db_max": "3.000",
+      "return_loss_target_db_min": "10.000",
+      "rule": "315/433 switch loss and all branch matching remain VNA/conducted gates; first-pass values are not accepted as a paper match"
+    },
+    {
+      "id": "VOICE-V/U",
+      "mode": "50_ohm_tx_rx",
+      "band_mhz": [
+        136,
+        470
+      ],
+      "connector": "RFPC-SMA31-FN-175-A SMA",
+      "ideal_0p17pf_esd_loss_db_at_470mhz": "0.000684",
+      "complete_feed_loss_target_db_max": "0.750",
+      "return_loss_target_db_min": "10.000"
+    },
+    {
+      "id": "RX-FM/SW",
+      "mode": "50_ohm_connector_corridor_to_non50_receiver_match",
+      "band_mhz": [
+        2.3,
+        108
+      ],
+      "connector": "RFPC-SMA31-FN-175-A SMA",
+      "sensitivity_degradation_target_db_max": "1.500",
+      "rule": "hold 50 ohms only from SMA to the first 56-nH matching body; place 1-nF coupling at FMI and qualify FM and SW separately"
+    },
+    {
+      "id": "RX-AM/LW",
+      "mode": "non50_high_impedance_loop_pod",
+      "band_mhz": [
+        0.153,
+        1.71
+      ],
+      "connector": "RFPC-SMA31-FN-175-A SMA used mechanically",
+      "pod_inductance_uh": "300 +/-5%",
+      "total_capacitance_pf_max_at_1710khz_worst_l": "27.500",
+      "si4732_input_capacitance_pf": "8.000",
+      "external_total_capacitance_pf_max": "19.500",
+      "remaining_after_esd_pf_max": "19.250",
+      "rule": "never route or document this as a generic 50-ohm coax feed; use a short direct loop/pod and minimize all pad/trace/connector capacitance"
+    }
+  ],
+  "shared_constraints": {
+    "controlled_impedance_ohm": "50 +/-10% until stackup coupon correlation; tighten if field solver/fabricator supports it",
+    "complete_feed_return_loss_db_min": "10.000 for every generic 50-ohm TX/RX path at every admitted band edge",
+    "measurement_rule": "loss, return loss and regional EIRP use the complete assembled feed; component maxima are bounds, not substitutes for VNA/HIL",
+    "connector_rule": "S3/C5 use RP-SMA; nRF/CC/voice/receiver use standard SMA; permanent band labels remain mandatory",
+    "matching_rule": "reserve tuneable 0402 positions where a discrete match exists; do not add an unproven match to module-native 50-ohm S3/C5/nRF/SA518 paths"
+  },
+  "derived": {
+    "c5_connector_frequency_margin_ghz": "0.115",
+    "cc_known_868_915_loss_db_before_passives_trace_connector": "1.840",
+    "voice_ideal_esd_loss_db_at_470mhz": "0.000684",
+    "amlw_total_capacitance_pf_max_at_1710khz_315uh": "27.500",
+    "amlw_external_capacitance_pf_max_after_8pf_input": "19.500",
+    "amlw_remaining_pf_after_0p25pf_esd": "19.250"
+  },
+  "checks": {
+    "exact_s3": true,
+    "exact_c5": true,
+    "exact_s3_external_rp_sma": true,
+    "exact_c5_external_rp_sma": true,
+    "exact_receiver_fmsw_external_sma": true,
+    "exact_receiver_amlw_external_sma": true,
+    "exact_nrf0_external_sma": true,
+    "exact_nrf1_external_sma": true,
+    "exact_nrf2_external_sma": true,
+    "exact_cc_external_sma": true,
+    "exact_voice_external_sma": true,
+    "exact_s3_rf_jumper": true,
+    "exact_c5_rf_jumper": true,
+    "exact_nrf0_rf_jumper": true,
+    "exact_nrf1_rf_jumper": true,
+    "exact_nrf2_rf_jumper": true,
+    "exact_s3_rf_board_connector": true,
+    "exact_c5_rf_board_connector": true,
+    "exact_nrf0_rf_board_connector": true,
+    "exact_nrf1_rf_board_connector": true,
+    "exact_nrf2_rf_board_connector": true,
+    "exact_s3_rf_coupler": true,
+    "exact_c5_rf_coupler": true,
+    "exact_nrf0_coupler": true,
+    "exact_nrf1_coupler": true,
+    "exact_nrf2_coupler": true,
+    "exact_cc": true,
+    "exact_cc_balun": true,
+    "exact_cc_switch_a": true,
+    "exact_cc_switch_b": true,
+    "exact_voice": true,
+    "exact_receiver": true,
+    "route_s3_module_to_jumper": true,
+    "route_s3_jumper_to_board": true,
+    "route_s3_coupler_to_sma": true,
+    "route_c5_module_to_jumper": true,
+    "route_c5_jumper_to_board": true,
+    "route_c5_coupler_to_sma": true,
+    "route_cc_to_balun_p": true,
+    "route_cc_to_balun_n": true,
+    "route_cc_selected_to_sma": true,
+    "route_voice_direct_to_sma": true,
+    "route_fmsw_to_match": true,
+    "route_amlw_to_coupling": true,
+    "route_nrf0_module_to_jumper": true,
+    "route_nrf0_jumper_to_board": true,
+    "route_nrf0_coupler_to_sma": true,
+    "route_nrf1_module_to_jumper": true,
+    "route_nrf1_jumper_to_board": true,
+    "route_nrf1_coupler_to_sma": true,
+    "route_nrf2_module_to_jumper": true,
+    "route_nrf2_jumper_to_board": true,
+    "route_nrf2_coupler_to_sma": true,
+    "h34_digital_phase_is_reviewed": true,
+    "antenna_policy_has_exactly_nine_onboard_ports": true,
+    "all_nine_paths_are_instantiated_once": true,
+    "seven_tx_capable_and_two_receive_only_paths": true,
+    "every_external_connector_is_50_ohm_and_6ghz": true,
+    "c5_top_band_fits_connector_with_115mhz_margin": true,
+    "jumper_and_board_receptacle_cover_c5_top_band": true,
+    "native_coupler_covers_s3_and_c5_bands": true,
+    "nrf_coupler_covers_all_channels": true,
+    "nrf_coupler_loss_is_below_quarter_db": true,
+    "cc_balun_covers_all_profiles": true,
+    "cc_switch_covers_all_profiles": true,
+    "cc_known_868_915_loss_is_1p84db": true,
+    "voice_esd_is_negligible_in_ideal_shunt_model": true,
+    "am_total_cap_is_worst_case_315uh": true,
+    "am_external_cap_budget_is_below_19p6pf": true,
+    "am_esd_leaves_more_than_19pf": true,
+    "amlw_is_explicitly_not_50_ohm": true,
+    "all_50ohm_paths_have_measured_loss_or_sensitivity_gate": true
+  },
+  "corrections": [],
+  "open_findings": [],
+  "residual_physical_only": [
+    "measure S3/C5 complete-feed insertion and return loss at every channel edge, including both microcoax transitions and the selected stackup launch",
+    "measure all three E01 module-to-SMA feeds and received-lot Gen1 mating/retention independently",
+    "VNA-tune CC1101 differential-to-single-ended match and every 315/433/868/915 branch; prove output, sensitivity, harmonics and switch loss",
+    "measure SA518 VHF/UHF feed insertion/return loss, output power and harmonics at both power settings",
+    "qualify Si4732 FMI FM and SW sensitivity/overload with the complete external whip and first-pass 56-nH/1-nF network",
+    "measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod",
+    "derate every allowed TX power/EIRP table by measured complete-feed loss and selected antenna gain before regional profile release",
+    "use impedance coupons and de-embedded SMA/U.FL fixtures for H6/H8 acceptance; nominal field-solver values alone cannot close a feed"
+  ],
+  "review_summary": {
+    "checks": 72,
+    "failed": 0,
+    "unresolved": 0,
+    "status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.5.2",
+    "action": "derive RF corridors, keepouts, reference-plane and return-current constraints"
+  }
+}
