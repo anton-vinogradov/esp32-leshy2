@@ -26,7 +26,7 @@
 | Физический дизайн устройства | ✅ H1 принят: внешние/внутренние виды, разрезы, service paths и pin/resource fit пройдены |
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
 | Production ECAD-схема | ✅ H2 принят на hardware `25d9ee2`; firmware F2 синхронизирован на `900bb2b` |
-| Электрические и переходные evidence | ▶️ H3.7.1: H3.6 закрыт 70 leaf и 24 consolidation checks; выполняется полная сверка H3↔H2/downstream |
+| Электрические и переходные evidence | ▶️ H3.7.4: формальный пакет подготовлен; требуется явная приёмка пользователя |
 | Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
 | Работа над KiCad-схемой | ✅ H2 проведено ревью; позднее несоответствие повторно откроет затронутые листы |
 | KiCad placement и PCB routing | 🔒 H6: не начаты и не разрешены |
@@ -41,11 +41,11 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённые H1/H2 и детальный состав текущей H3
 
-<!-- current-substep: H3.7.1 -->
+<!-- current-substep: H3.7.4 -->
 
-**Точный маркер: `H3.7.1`** — [сводный thermal/fault/extended-operation результат](thermal-fault-result.ru.md)
-закрывает H3.6 70 leaf- и 24 consolidation-checks. Каждый результат H3 сейчас
-сверяется с H2 и своим потребителем H4/H5/H6/H8.
+**Точный маркер: `H3.7.4`** — [пакет приёмки H3](h3-acceptance.ru.md)
+подготовлен. Для закрытия H3 требуется явное подтверждение пользователя; H4
+всё равно ждёт firmware F3, а закупка, layout и печать не разрешаются.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -275,10 +275,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
   - ✅ `H3.6.3` — [длительная работа, инженерная цель `0…35 °C` и настраиваемый self-test проведены ревью](unattended-operation.ru.md); 24/48 часов — только интервалы H8.
   - ✅ `H3.6.4` — [проверены 70 leaf и 24 thermal/fault/endurance consolidation checks](thermal-fault-result.ru.md).
 - ▶️ `H3.7` — сквозная сверка, physical-only остатки и формальная приёмка H3.
-  - ▶️ **`H3.7.1` — сейчас:** сверить каждый результат H3 с H2 и последующими потребителями.
-  - ⏳ `H3.7.2` — опубликовать physical-only остатки и требуемые evidence H5/H6/H8.
-  - ⏳ `H3.7.3` — подготовить формальный пакет приёмки H3.
-  - ⏳ `H3.7.4` — записать явное подтверждение пользователя перед H4.
+  - ✅ `H3.7.1` — [все требования H3, artifacts, H2 instances и root nets сверены](h3-crosscheck.ru.md).
+  - ✅ `H3.7.2` — [все 85 physical-only residual-строк опубликованы с владельцами evidence](physical-evidence-register.ru.md).
+  - ✅ `H3.7.3` — [формальный пакет приёмки H3 подготовлен](h3-acceptance.ru.md).
+  - ▶️ **`H3.7.4` — сейчас:** записать явное подтверждение пользователя перед H4.
 
 Проверенный план H2 —
 [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json). Активный

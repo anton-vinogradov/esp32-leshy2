@@ -182,7 +182,10 @@ quiet-state и полных 3×nRF24. `H3.5.4` закрывает фазу 22 с
 ревью 21 check; [проверка единичных отказов](single-fault-review.ru.md) закрывает 30 сценариев и 25 checks;
 [длительная работа и self-test](unattended-operation.ru.md) закрыты 24 checks без обещаний времени работы.
 [Сведение H3.6](thermal-fault-result.ru.md) закрывает 70 leaf и 24 сквозных
-checks; H3.7.1 сверяет каждый результат H3 с H2 и последующими потребителями.
+checks. [H3.7.1](h3-crosscheck.ru.md) соединяет каждое требование, artifact,
+H2 instance и root net. [H3.7.2](physical-evidence-register.ru.md) назначает
+все 85 физических строк H5/H6/H8. [Пакет приёмки H3.7.3](h3-acceptance.ru.md)
+подготовлен; H3.7.4 ожидает явного подтверждения пользователя.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate

@@ -27,8 +27,8 @@ H2 принят 24 августа 2026 года на hardware commit `25d9ee2` �
 | `H3.5` | `rf_coexistence` | state_space_and_isolation_budget | one-active-group and 3x-nRF24 concurrency constraints | H8 coexistence and spectrum tests |
 | `H3.6` | `thermal` | lumped_worst_case_thermal_model | board/battery/enclosure temperature bounds | H8 thermocouple/thermal-camera validation |
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
-| `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | 24-to-48-hour operating envelope | H8 endurance run |
+| `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | extended-operation and configurable self-test policy without a runtime claim | H8 24/48-hour qualified-USB endurance and battery-to-protected-cutoff measurements |
 
-**Текущий маркер:** `H3.7.1` — [thermal/fault/extended-operation результат](thermal-fault-result.ru.md) закрывает H3.6; выполняется сквозная машинная сверка всех результатов H3 с H2 и последующими потребителями.
+**Текущий маркер:** `H3.7.4` — [пакет приёмки H3](h3-acceptance.ru.md) подготовлен; требуется явное подтверждение пользователя перед закрытием H3.
 
 [Машинный freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

@@ -8,7 +8,7 @@
     "hardware/ecad/generated/H2-REV51-power-paths.json": "76614ba1f6928f8fe69241d6daa68f53b1f85afbef015d92d8749f6c0f56819a",
     "hardware/ecad/generated/H2-REV54-quiet-state.json": "0836f3353a0b6085191029a47e7ce9e6ccdfa779f64a1cc9e9bd96e33084d981",
     "hardware/ecad/generated/H2-RF01-usb-pd-charge.json": "99248a7aa7bd59bf7ed05cb43f703ca5a745168e62b60b019549e3afcb4337c9",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "2bf1f0419b319d53bf6ef4e7a19398693d2b96bd6037e764442b7d1d09118670"
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "4af94a0148d57277d6c55f1de423a6546e6caf9e5fc52868c997b24aee4919dd"
   },
   "source_contract": {
     "external_source": "sole sink-only S3 USB-C; C5 and RP service USB VBUS are sense-only and never power the product",

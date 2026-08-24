@@ -120,11 +120,11 @@ safety-автоматику.
 <details open>
 <summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.7.1 -->
+<!-- current-substep: H3.7.4 -->
 
-**Точный маркер: `H3.7.1`** — [сводный thermal/fault/extended-operation результат](docs/thermal-fault-result.ru.md)
-закрывает H3.6 70 leaf- и 24 consolidation-checks. Сейчас каждый результат H3
-сверяется с H2 и своим потребителем H4/H5/H6/H8.
+**Точный маркер: `H3.7.4`** — [пакет приёмки H3](docs/h3-acceptance.ru.md)
+подготовлен. Для закрытия H3 нужно явное подтверждение пользователя; H4 всё
+равно ждёт firmware F3, а закупка, layout и печать не разрешаются.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 048 схемных строк.
@@ -230,10 +230,10 @@ safety-автоматику.
   - ✅ `H3.6.3` — [приняты `0…35 °C` как инженерная цель, USB для долгой работы и настраиваемый self-test](docs/unattended-operation.ru.md); обещаний времени работы нет.
   - ✅ `H3.6.4` — [проверены 70 leaf и 24 thermal/fault/endurance consolidation checks](docs/thermal-fault-result.ru.md).
 - ▶️ **`H3.7` — сейчас:** финальное закрытие virtual verification.
-  - ▶️ **`H3.7.1` — сейчас:** сверить каждый результат H3 с H2 и последующими потребителями.
-  - ⏳ `H3.7.2` — опубликовать physical-only остатки и требуемые evidence H5/H6/H8.
-  - ⏳ `H3.7.3` — подготовить формальный пакет приёмки H3.
-  - ⏳ `H3.7.4` — записать явное подтверждение пользователя перед H4.
+  - ✅ `H3.7.1` — [все требования H3, artifacts, H2 instances и root nets сверены](docs/h3-crosscheck.ru.md).
+  - ✅ `H3.7.2` — [все 85 physical-only residual-строк опубликованы с владельцами evidence](docs/physical-evidence-register.ru.md).
+  - ✅ `H3.7.3` — [формальный пакет приёмки H3 подготовлен](docs/h3-acceptance.ru.md).
+  - ▶️ **`H3.7.4` — сейчас:** записать явное подтверждение пользователя перед H4.
 
 Проверенный план H2 —
 [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Текущий

@@ -27,7 +27,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
 | Production ECAD schematic | ✅ H2 accepted at hardware `25d9ee2`; firmware F2 synchronized at `900bb2b` |
-| Electrical and transient evidence | ▶️ H3.7.1: H3.6 closed with 70 leaf and 24 consolidation checks; full H3↔H2/downstream cross-check in progress |
+| Electrical and transient evidence | ▶️ H3.7.4: formal package prepared; explicit user acceptance required |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
@@ -41,11 +41,11 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1/H2 and current H3 breakdown
 
-<!-- current-substep: H3.7.1 -->
+<!-- current-substep: H3.7.4 -->
 
-**Exact marker: `H3.7.1`** — the [thermal/fault/extended-operation result](thermal-fault-result.md)
-closes H3.6 with 70 leaf and 24 consolidation checks. Every H3 result is now
-being cross-checked against H2 and its H4/H5/H6/H8 consumer.
+**Exact marker: `H3.7.4`** — the [H3 acceptance package](h3-acceptance.md) is
+prepared. Explicit user acceptance is required to close H3; H4 still waits for
+firmware F3 and no purchase, layout or fabrication becomes authorized.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -272,10 +272,10 @@ Current H2 execution:
   - ✅ `H3.6.3` — [extended operation, the `0 to 35 °C` engineering target and configurable self-test reviewed](unattended-operation.md); 24/48 hours are H8 intervals only.
   - ✅ `H3.6.4` — [70 leaf and 24 thermal/fault/endurance consolidation checks reviewed](thermal-fault-result.md).
 - ▶️ `H3.7` — cross-check, physical-only residuals and formal H3 acceptance.
-  - ▶️ **`H3.7.1` — current:** cross-check every H3 result against H2 and downstream consumers.
-  - ⏳ `H3.7.2` — publish physical-only residuals and required H5/H6/H8 evidence.
-  - ⏳ `H3.7.3` — prepare the formal H3 acceptance package.
-  - ⏳ `H3.7.4` — record explicit user acceptance before H4.
+  - ✅ `H3.7.1` — [all H3 requirements, artifacts, H2 instances and root nets cross-checked](h3-crosscheck.md).
+  - ✅ `H3.7.2` — [all 85 physical-only residual rows published with evidence owners](physical-evidence-register.md).
+  - ✅ `H3.7.3` — [formal H3 acceptance package prepared](h3-acceptance.md).
+  - ▶️ **`H3.7.4` — current:** record explicit user acceptance before H4.
 
 The reviewed H2 plan is
 [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json). The active

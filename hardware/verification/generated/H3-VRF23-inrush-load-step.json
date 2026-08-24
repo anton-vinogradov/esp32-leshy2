@@ -9,8 +9,8 @@
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
     "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "2974bd365c960d731a6d281bf9fdee0b945d57d221d03e29ff9dcfbc54865410",
-    "hardware/verification/generated/H3-VRF22-handover-brownout.json": "4af7960c4bb45f3a95a900c96c80a84492e2ab3542d2f491b301972eb447b320"
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "8693470fa1f1a121a5b3211d1cf1ecd0898bfae1d0e62b9f57b51817beab78f7",
+    "hardware/verification/generated/H3-VRF22-handover-brownout.json": "b11101d019a142f8c0571399a6c777c4da855675d960ecd37cd349bfc7bb60f6"
   },
   "provenance": {
     "aon_efuse": "https://www.ti.com/lit/ds/symlink/tps25961.pdf",

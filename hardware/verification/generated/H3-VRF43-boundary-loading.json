@@ -5,9 +5,9 @@
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
     "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "2974bd365c960d731a6d281bf9fdee0b945d57d221d03e29ff9dcfbc54865410",
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "93e6610fa4b17c51de6d2ecce5fea799d98597de2e476166172cee0a2e0aad4b",
-    "hardware/verification/generated/H3-VRF42-digital-timing.json": "8e7abc028cd564fcd60c355481f3a207a59faba23bd41da7146da1c252c6bc78",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "8693470fa1f1a121a5b3211d1cf1ecd0898bfae1d0e62b9f57b51817beab78f7",
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "0002e346d72a89b49392632529dbedeeeaa458831b3585e7e017f69803cf96ee",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "36fb72f3c2142dea3109019689f16781b8406dc46b94900af94c78b3088962ed",
     "hardware/ecad/generated/H2-REV53-no-back-power.json": "5adbc4ca56d4887123d102064504a2817a2fe2d0eb07eb39e9590778a3be2bd4",
     "hardware/ecad/generated/H2-UI40-interboard-m1.json": "2192e3481f33c13a5d73b9880d03e06f3a222399e0b834ad6abbd3fbddec0646",
     "hardware/ecad/generated/H2-RF40-interboard-m1.json": "7600c7695086ecada512b1261d8b9e62e40fe890200c6789d4ac4ad1b00e95db"

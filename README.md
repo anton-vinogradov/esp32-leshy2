@@ -119,11 +119,11 @@ remain unauthorized.
 <details open>
 <summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.7.1 -->
+<!-- current-substep: H3.7.4 -->
 
-**Exact marker: `H3.7.1`** — the [thermal/fault/extended-operation result](docs/thermal-fault-result.md)
-closes H3.6 with 70 leaf and 24 consolidation checks. The current work
-cross-checks every H3 result against H2 and its H4/H5/H6/H8 consumer.
+**Exact marker: `H3.7.4`** — the [H3 acceptance package](docs/h3-acceptance.md)
+is prepared. Explicit user acceptance is required to close H3; H4 will still
+wait for firmware F3 and no purchase, layout or fabrication becomes authorized.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,048-row circuit inventory reviewed.
@@ -228,10 +228,10 @@ cross-checks every H3 result against H2 and its H4/H5/H6/H8 consumer.
   - ✅ `H3.6.3` — [`0 to 35 °C` engineering target, USB guidance and configurable full self-test reviewed](docs/unattended-operation.md); no operating-time promise is made.
   - ✅ `H3.6.4` — [70 leaf and 24 thermal/fault/endurance consolidation checks reviewed](docs/thermal-fault-result.md).
 - ▶️ **`H3.7` — current:** final virtual-verification closure.
-  - ▶️ **`H3.7.1` — current:** cross-check every H3 result against H2 and downstream consumers.
-  - ⏳ `H3.7.2` — publish physical-only residuals and required H5/H6/H8 evidence.
-  - ⏳ `H3.7.3` — prepare the formal H3 acceptance package.
-  - ⏳ `H3.7.4` — record explicit user acceptance before H4.
+  - ✅ `H3.7.1` — [all H3 requirements, artifacts, H2 instances and root nets cross-checked](docs/h3-crosscheck.md).
+  - ✅ `H3.7.2` — [all 85 physical-only residual rows published with evidence owners](docs/physical-evidence-register.md).
+  - ✅ `H3.7.3` — [formal H3 acceptance package prepared](docs/h3-acceptance.md).
+  - ▶️ **`H3.7.4` — current:** record explicit user acceptance before H4.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The current machine-readable plan is

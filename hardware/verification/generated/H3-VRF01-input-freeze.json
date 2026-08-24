@@ -162,8 +162,8 @@
       "stage": "H3.6",
       "area": "unattended_operation",
       "method": "bounded_energy_and_state_analysis",
-      "h3_output": "24-to-48-hour operating envelope",
-      "physical_evidence": "H8 endurance run"
+      "h3_output": "extended-operation and configurable self-test policy without a runtime claim",
+      "physical_evidence": "H8 24/48-hour qualified-USB endurance and battery-to-protected-cutoff measurements"
     }
   ],
   "summary": {

@@ -5,9 +5,9 @@
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "4c037db43671d4865d4a08c3abc61c773b3f7cb33f7d0a576314092a26a6277c",
     "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "2bf1f0419b319d53bf6ef4e7a19398693d2b96bd6037e764442b7d1d09118670",
-    "hardware/verification/generated/H3-VRF31-display.json": "b7d26e1a59f0a2502293b30def2bcf4416f5b717d4b13572efadb7d0ddc9a2df",
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "93e6610fa4b17c51de6d2ecce5fea799d98597de2e476166172cee0a2e0aad4b"
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "4af94a0148d57277d6c55f1de423a6546e6caf9e5fc52868c997b24aee4919dd",
+    "hardware/verification/generated/H3-VRF31-display.json": "7908b5b1d9710790bf16e3f0e6589484bc9702f8611b63be9ffcc7224552df0c",
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "0002e346d72a89b49392632529dbedeeeaa458831b3585e7e017f69803cf96ee"
   },
   "provenance": {
     "nrf24l01_product_specification": "https://devzone.nordicsemi.com/cfs-file/__key/support-attachments/beef5d1b77644c448dabff31668f3a47-aad1a46f307945a7b0204fd969e86bdf/content.pdf",

@@ -1,0 +1,1677 @@
+{
+  "schema_version": 1,
+  "stage": "H3.7.2",
+  "status": "reviewed_complete_physical_only_residual_register",
+  "method": "flatten the physical-only output of every H3 phase consolidation, remove only H3-internal dependencies already closed, preserve exact provenance and assign an evidence owner plus pass rule",
+  "source_hashes": {
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "b25b733ed2ca03794ccf9e6c3eff3f381ec757cd1393bae555dd363bc7b38b5b",
+    "hardware/verification/generated/H3-VRF25-transition-consolidation.json": "ffec8e9595d815d5384c1e7e6ea8c86152dc75a17b2787e7b85a7f938ee37568",
+    "hardware/verification/generated/H3-VRF35-analog-consolidation.json": "430f4f32a7b6cf02c69c2322da353022716a196acfde3c5fea3d0e2e93e6e2f2",
+    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "a429fe29bb1a1c4dcc5aa2e160521c02f7cf7691c0cbc66b0adeaeb58be1e5fc",
+    "hardware/verification/generated/H3-VRF54-rf-consolidation.json": "10b2463af6d244c27755483021fe92275e2653b771dc66f891ece078da4ce7de",
+    "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json": "a7123a15a29f337fdfdfacbf7b6931394b2ca245e42800fc71a54112200baabd",
+    "hardware/verification/generated/H3-VRF71-crosscheck.json": "515483ab7f7241390f1c5c656b88f577cc25d61ea2563956cccdcdd054d9d359"
+  },
+  "summary": {
+    "raw_consolidated_rows": 88,
+    "resolved_h3_internal_rows": 3,
+    "physical_evidence_rows": 85,
+    "by_closure_stage": {
+      "H5": 9,
+      "H6": 9,
+      "H8": 78
+    },
+    "by_source_phase": {
+      "H3.1": 3,
+      "H3.2": 12,
+      "H3.3": 17,
+      "H3.4": 19,
+      "H3.5": 18,
+      "H3.6": 16
+    },
+    "unassigned": 0,
+    "analytically_closed_by_h3": 0
+  },
+  "resolved_h3_internal": [
+    {
+      "source_phase": "H3.1",
+      "text": "H3.2 dynamic source/rail load-step, inrush, DPM and handover simulations",
+      "resolved_by": "H3.2"
+    },
+    {
+      "source_phase": "H3.1",
+      "text": "H3.2 load-step, inrush and protection timing",
+      "resolved_by": "H3.2"
+    },
+    {
+      "source_phase": "H3.1",
+      "text": "H3.6 component/junction and enclosure thermal model using the recorded steady losses",
+      "resolved_by": "H3.6"
+    }
+  ],
+  "registry": [
+    {
+      "id": "H3-PHY-001",
+      "source_phase": "H3.1",
+      "source_artifact": "hardware/verification/generated/H3-VRF14-dc-consolidation.json",
+      "source_group": "phase",
+      "residual": "H6 copper, placement and converter-loop thermal layout",
+      "closure_stages": [
+        "H6"
+      ],
+      "evidence_contracts": {
+        "H6": {
+          "owner": "H6 PCB placement/routing review",
+          "required_artifact": "final stack-up plus placement/routing export, solver/DRC output and reviewer sign-off tied to the production PCB revision",
+          "pass_rule": "the final routed design demonstrates this item with no waived contradiction: H6 copper, placement and converter-loop thermal layout; otherwise the upstream design reopens before fabrication"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-002",
+      "source_phase": "H3.1",
+      "source_artifact": "hardware/verification/generated/H3-VRF14-dc-consolidation.json",
+      "source_group": "phase",
+      "residual": "H8 measured converter efficiency, pack current, DPM charge derating and source handover",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8 measured converter efficiency, pack current, DPM charge derating and source handover; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-003",
+      "source_phase": "H3.1",
+      "source_artifact": "hardware/verification/generated/H3-VRF14-dc-consolidation.json",
+      "source_group": "phase",
+      "residual": "H8 measured rail currents with display, selected microSD, speaker, every RF group and both exposed-port profiles",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8 measured rail currents with display, selected microSD, speaker, every RF group and both exposed-port profiles; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-004",
+      "source_phase": "H3.2",
+      "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
+      "source_group": "phase",
+      "residual": "apply named worst load steps while capturing buck/eFuse current and rail minimum",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: apply named worst load steps while capturing buck/eFuse current and rail minimum; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-005",
+      "source_phase": "H3.2",
+      "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
+      "source_group": "phase",
+      "residual": "fault-inject every clear source and measure TX-off/reset/rail-discharge ordering",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: fault-inject every clear source and measure TX-off/reset/rail-discharge ordering; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-006",
+      "source_phase": "H3.2",
+      "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
+      "source_group": "phase",
+      "residual": "inject weak/current-limited USB sources with healthy, absent and rejected packs",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: inject weak/current-limited USB sources with healthy, absent and rejected packs; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-007",
+      "source_phase": "H3.2",
+      "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
+      "source_group": "phase",
+      "residual": "measure SYS and AON droop during USB attach/detach and DPM",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure SYS and AON droop during USB attach/detach and DPM; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-008",
+      "source_phase": "H3.2",
+      "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
+      "source_group": "phase",
+      "residual": "measure actual RC capacitance under DC bias and temperature",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure actual RC capacitance under DC bias and temperature; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-009",
+      "source_phase": "H3.2",
+      "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
+      "source_group": "phase",
+      "residual": "measure charger/BATFET behavior at temperature and cell-voltage corners",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure charger/BATFET behavior at temperature and cell-voltage corners; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-010",
+      "source_phase": "H3.2",
+      "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
+      "source_group": "phase",
+      "residual": "measure effective MLCC capacitance under DC bias and temperature",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure effective MLCC capacitance under DC bias and temperature; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-011",
+      "source_phase": "H3.2",
+      "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
+      "source_group": "phase",
+      "residual": "measure every protected-rail ramp and discharge",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure every protected-rail ramp and discharge; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-012",
+      "source_phase": "H3.2",
+      "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
+      "source_group": "phase",
+      "residual": "measure exact watchdog window and WDO pulse on populated hardware",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure exact watchdog window and WDO pulse on populated hardware; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-013",
+      "source_phase": "H3.2",
+      "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
+      "source_group": "phase",
+      "residual": "measure switch bounce and break-before-make interval",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure switch bounce and break-before-make interval; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-014",
+      "source_phase": "H3.2",
+      "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
+      "source_group": "phase",
+      "residual": "power-cut fault-inject every flash-journal write boundary",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: power-cut fault-inject every flash-journal write boundary; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-015",
+      "source_phase": "H3.2",
+      "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
+      "source_group": "phase",
+      "residual": "prove the signed fault-only UI cannot enable a transmitter or external rail",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: prove the signed fault-only UI cannot enable a transmitter or external rail; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-016",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "display",
+      "residual": "measure protected-rail ripple and connector voltage at every accepted load and temperature corner",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure protected-rail ripple and connector voltage at every accepted load and temperature corner; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-017",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "display",
+      "residual": "confirm HMX035CTFT-001 tail, ST77922 identity, VDD/VDDI ramp equality and reset/readback on received specimens",
+      "closure_stages": [
+        "H5",
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H5": {
+          "owner": "H5 received-component evidence",
+          "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+          "pass_rule": "the received specimen directly demonstrates this item: confirm HMX035CTFT-001 tail, ST77922 identity, VDD/VDDI ramp equality and reset/readback on received specimens; a mismatch reopens the owning H1/H2/H3 result"
+        },
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: confirm HMX035CTFT-001 tail, ST77922 identity, VDD/VDDI ramp equality and reset/readback on received specimens; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-018",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "display",
+      "residual": "measure QSPI edges, CS-high high-Z/contention and shared-microSD throughput before raising the 40-MHz initial cap",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure QSPI edges, CS-high high-Z/contention and shared-microSD throughput before raising the 40-MHz initial cap; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-019",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "display",
+      "residual": "measure actual panel backlight current, brightness, PWM EMI, temperature and TPS2553 latch recovery",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure actual panel backlight current, brightness, PWM EMI, temperature and TPS2553 latch recovery; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-020",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "audio",
+      "residual": "measure microphone/headset sensitivity, codec clipping/ALC/noise, channel phase perception, crosstalk, insertion pop and RF immunity on routed hardware",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure microphone/headset sensitivity, codec clipping/ALC/noise, channel phase perception, crosstalk, insertion pop and RF immunity on routed hardware; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-021",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "audio",
+      "residual": "measure PAM8302A current, output EMI, speaker temperature/excursion and enclosure response; enforce the 50 C speaker-local mute rule",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure PAM8302A current, output EMI, speaker temperature/excursion and enclosure response; enforce the 50 C speaker-local mute rule; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-022",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "audio",
+      "residual": "calibrate SA518 deviation downward from the bounded full-scale codec injection and repeat across module lots, rail and temperature",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: calibrate SA518 deviation downward from the bounded full-scale codec injection and repeat across module lots, rail and temperature; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-023",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "audio",
+      "residual": "prove reset/brownout/off ordering, >=10-ms amplifier-enable delay and absence of back-power with codec, voice and main domains independently off",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: prove reset/brownout/off ordering, >=10-ms amplifier-enable delay and absence of back-power with codec, voice and main domains independently off; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-024",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "ir",
+      "residual": "verify received TSOP95238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
+      "closure_stages": [
+        "H5",
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H5": {
+          "owner": "H5 received-component evidence",
+          "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+          "pass_rule": "the received specimen directly demonstrates this item: verify received TSOP95238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; a mismatch reopens the owning H1/H2/H3 result"
+        },
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: verify received TSOP95238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-025",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "ir",
+      "residual": "replay a representative 30-to-60-kHz protocol corpus and measure carrier/count accuracy, robust AGC behavior, range and field of view",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: replay a representative 30-to-60-kHz protocol corpus and measure carrier/count accuracy, robust AGC behavior, range and field of view; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-026",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "ir",
+      "residual": "measure VSMY14940 current, optical range/alignment, local temperature and IEC 62471 classification through the final enclosure/window",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure VSMY14940 current, optical range/alignment, local temperature and IEC 62471 classification through the final enclosure/window; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-027",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "ir",
+      "residual": "calibrate the VEMD1060 tunnel against the <=2.271-uA paper target and inject missing emitter, ambient leakage, RX crosstalk, stuck carrier, brownout and FAULT_KILL",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: calibrate the VEMD1060 tunnel against the <=2.271-uA paper target and inject missing emitter, ambient leakage, RX crosstalk, stuck carrier, brownout and FAULT_KILL; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-028",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "battery",
+      "residual": "program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens",
+      "closure_stages": [
+        "H5",
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H5": {
+          "owner": "H5 received-component evidence",
+          "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+          "pass_rule": "the received specimen directly demonstrates this item: program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens; a mismatch reopens the owning H1/H2/H3 result"
+        },
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-029",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "battery",
+      "residual": "calibrate the two divider channels on the assembled admission domain and inject open, short, swapped, reversed, missing and imbalanced cells",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: calibrate the two divider channels on the assembled admission domain and inject open, short, swapped, reversed, missing and imbalanced cells; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-030",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "battery",
+      "residual": "thermally ramp every cell and board NTC, measure bond response time and prove open/short/lift detection plus the 35/40/60/65/75-C policy",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: thermally ramp every cell and board NTC, measure bond response time and prove open/short/lift detection plus the 35/40/60/65/75-C policy; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-031",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "battery",
+      "residual": "verify BQ CE-default-off, TS open/short, exact warm/cold suspend and all source/load/charge-current transitions with the exact cell lot",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: verify BQ CE-default-off, TS open/short, exact warm/cold suspend and all source/load/charge-current transitions with the exact cell lot; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-032",
+      "source_phase": "H3.3",
+      "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
+      "source_group": "battery",
+      "residual": "measure long-idle divider imbalance, MAX balancing heat and both 49.9-ohm balance-resistor temperatures",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure long-idle divider imbalance, MAX balancing heat and both 49.9-ohm balance-resistor temperatures; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-033",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "levels",
+      "residual": "measure powered-off leakage at every switched-domain signal while the host remains powered",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure powered-off leakage at every switched-domain signal while the host remains powered; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-034",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "levels",
+      "residual": "capture reset and brownout pin states for S3, C5, RP2354B, both MSPM0 controllers and TCA6424A",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: capture reset and brownout pin states for S3, C5, RP2354B, both MSPM0 controllers and TCA6424A; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-035",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "levels",
+      "residual": "inject one and three simultaneous service USB hosts and verify no product rail is sourced",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: inject one and three simultaneous service USB hosts and verify no product rail is sourced; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-036",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "levels",
+      "residual": "exercise U214 and Unit wrong-accessory/external-source cases and measure reverse current",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: exercise U214 and Unit wrong-accessory/external-source cases and measure reverse current; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-037",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "levels",
+      "residual": "measure VIH/VIL/VOH/VOL at the far end of M1 under simultaneous worst allowed branch load",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure VIH/VIL/VOH/VOL at the far end of M1 under simultaneous worst allowed branch load; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-038",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "timing",
+      "residual": "qualify SD card identity/CMD6 high-speed mode, >=4.0-MB/s storage, 1.5-MB/s record, 250-ms stalls and 512-KiB buffering",
+      "closure_stages": [
+        "H5",
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H5": {
+          "owner": "H5 received-component evidence",
+          "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+          "pass_rule": "the received specimen directly demonstrates this item: qualify SD card identity/CMD6 high-speed mode, >=4.0-MB/s storage, 1.5-MB/s record, 250-ms stalls and 512-KiB buffering; a mismatch reopens the owning H1/H2/H3 result"
+        },
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: qualify SD card identity/CMD6 high-speed mode, >=4.0-MB/s storage, 1.5-MB/s record, 250-ms stalls and 512-KiB buffering; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-039",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "timing",
+      "residual": "scope shared SPI2 edges, CS-high high-Z/contention and <=1-ms display/SD arbitration under insert/remove",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: scope shared SPI2 edges, CS-high high-Z/contention and <=1-ms display/SD arbitration under insert/remove; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-040",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "timing",
+      "residual": "capture all three nRF24 IRQ-to-drain paths and every 3PRX/PTX role mix at 10-Mbit/s SPI",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: capture all three nRF24 IRQ-to-drain paths and every 3PRX/PTX role mix at 10-Mbit/s SPI; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-041",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "timing",
+      "residual": "capture CC1101 GDO/FIFO service at 600-kbit/s air rate and 10-Mbit/s SPI",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: capture CC1101 GDO/FIFO service at 600-kbit/s air rate and 10-Mbit/s SPI; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-042",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "timing",
+      "residual": "run full-duplex 48-kHz audio without DMA underrun/overrun during display, storage and radio-event stress",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: run full-duplex 48-kHz audio without DMA underrun/overrun during display, storage and radio-event stress; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-043",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "timing",
+      "residual": "prove S3-RP >=1.5 MB/s with <=250-us alert-to-read and S3-C5 >=1.5 MB/s with <=2-ms control RTT",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: prove S3-RP >=1.5 MB/s with <=250-us alert-to-read and S3-C5 >=1.5 MB/s with <=2-ms control RTT; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-044",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "timing",
+      "residual": "measure 400-kHz SYS_I2C transaction/recovery/IRQ latency with every assembled address and simultaneous UI activity",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure 400-kHz SYS_I2C transaction/recovery/IRQ latency with every assembled address and simultaneous UI activity; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-045",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "boundaries",
+      "residual": "measure M1 far-end rail drop, return offset, crosstalk and USB/SPI eye/edge quality after PCB placement",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure M1 far-end rail drop, return offset, crosstalk and USB/SPI eye/edge quality after PCB placement; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-046",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "boundaries",
+      "residual": "verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair",
+      "closure_stages": [
+        "H5",
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H5": {
+          "owner": "H5 received-component evidence",
+          "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+          "pass_rule": "the received specimen directly demonstrates this item: verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair; a mismatch reopens the owning H1/H2/H3 result"
+        },
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-047",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "boundaries",
+      "residual": "measure U214 SPI load/edges at 10 MHz and external I2C total capacitance/rise time <=150 pF/300 ns",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure U214 SPI load/edges at 10 MHz and external I2C total capacitance/rise time <=150 pF/300 ns; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-048",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "boundaries",
+      "residual": "qualify each native Unit profile, cable length and pull network through TXS0102; 1-Wire remains specimen-only",
+      "closure_stages": [
+        "H5",
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H5": {
+          "owner": "H5 received-component evidence",
+          "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+          "pass_rule": "the received specimen directly demonstrates this item: qualify each native Unit profile, cable length and pull network through TXS0102; 1-Wire remains specimen-only; a mismatch reopens the owning H1/H2/H3 result"
+        },
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: qualify each native Unit profile, cable length and pull network through TXS0102; 1-Wire remains specimen-only; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-049",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "boundaries",
+      "residual": "inject dual-branch request, overload, reverse source, wrong accessory, hot plug and brownout while proving independent latch-off",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: inject dual-branch request, overload, reverse source, wrong accessory, hot plug and brownout while proving independent latch-off; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-050",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "boundaries",
+      "residual": "measure C5/RP service USB edges/eye and powered-off leakage with one and three hosts",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure C5/RP service USB edges/eye and powered-off leakage with one and three hosts; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-051",
+      "source_phase": "H3.4",
+      "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
+      "source_group": "boundaries",
+      "residual": "measure product USB Full-Speed through M1 plus all DBG10 UART/SWD recovery paths in the assembled sandwich",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure product USB Full-Speed through M1 plus all DBG10 UART/SWD recovery paths in the assembled sandwich; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-052",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "measure S3/C5 complete-feed insertion and return loss at every channel edge, including both microcoax transitions and the selected stackup launch",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure S3/C5 complete-feed insertion and return loss at every channel edge, including both microcoax transitions and the selected stackup launch; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-053",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "measure all three E01 module-to-SMA feeds and received-lot Gen1 mating/retention independently",
+      "closure_stages": [
+        "H5",
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H5": {
+          "owner": "H5 received-component evidence",
+          "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+          "pass_rule": "the received specimen directly demonstrates this item: measure all three E01 module-to-SMA feeds and received-lot Gen1 mating/retention independently; a mismatch reopens the owning H1/H2/H3 result"
+        },
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure all three E01 module-to-SMA feeds and received-lot Gen1 mating/retention independently; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-054",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "VNA-tune CC1101 differential-to-single-ended match and every 315/433/868/915 branch; prove output, sensitivity, harmonics and switch loss",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: VNA-tune CC1101 differential-to-single-ended match and every 315/433/868/915 branch; prove output, sensitivity, harmonics and switch loss; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-055",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "measure SA518 VHF/UHF feed insertion/return loss, output power and harmonics at both power settings",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure SA518 VHF/UHF feed insertion/return loss, output power and harmonics at both power settings; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-056",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "qualify Si4732 FMI FM and SW sensitivity/overload with the complete external whip and first-pass 56-nH/1-nF network",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: qualify Si4732 FMI FM and SW sensitivity/overload with the complete external whip and first-pass 56-nH/1-nF network; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-057",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod",
+      "closure_stages": [
+        "H5",
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H5": {
+          "owner": "H5 received-component evidence",
+          "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+          "pass_rule": "the received specimen directly demonstrates this item: measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod; a mismatch reopens the owning H1/H2/H3 result"
+        },
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-058",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "derate every allowed TX power/EIRP table by measured complete-feed loss and selected antenna gain before regional profile release",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: derate every allowed TX power/EIRP table by measured complete-feed loss and selected antenna gain before regional profile release; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-059",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "use impedance coupons and de-embedded SMA/U.FL fixtures for H6/H8 acceptance; nominal field-solver values alone cannot close a feed",
+      "closure_stages": [
+        "H6",
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H6": {
+          "owner": "H6 PCB placement/routing review",
+          "required_artifact": "final stack-up plus placement/routing export, solver/DRC output and reviewer sign-off tied to the production PCB revision",
+          "pass_rule": "the final routed design demonstrates this item with no waived contradiction: use impedance coupons and de-embedded SMA/U.FL fixtures for H6/H8 acceptance; nominal field-solver values alone cannot close a feed; otherwise the upstream design reopens before fabrication"
+        },
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: use impedance coupons and de-embedded SMA/U.FL fixtures for H6/H8 acceptance; nominal field-solver values alone cannot close a feed; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-060",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "release the fabricator stack-up, field-solve every launch and 50-ohm geometry, and correlate with coupons in H6",
+      "closure_stages": [
+        "H6"
+      ],
+      "evidence_contracts": {
+        "H6": {
+          "owner": "H6 PCB placement/routing review",
+          "required_artifact": "final stack-up plus placement/routing export, solver/DRC output and reviewer sign-off tied to the production PCB revision",
+          "pass_rule": "the final routed design demonstrates this item with no waived contradiction: release the fabricator stack-up, field-solve every launch and 50-ohm geometry, and correlate with coupons in H6; otherwise the upstream design reopens before fabrication"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-061",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "prove each routed path stays inside the accepted mechanical envelope and has no DRC, return-path or plane-slot violation",
+      "closure_stages": [
+        "H6"
+      ],
+      "evidence_contracts": {
+        "H6": {
+          "owner": "H6 PCB placement/routing review",
+          "required_artifact": "final stack-up plus placement/routing export, solver/DRC output and reviewer sign-off tied to the production PCB revision",
+          "pass_rule": "the final routed design demonstrates this item with no waived contradiction: prove each routed path stays inside the accepted mechanical envelope and has no DRC, return-path or plane-slot violation; otherwise the upstream design reopens before fabrication"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-062",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "measure received 2118651-2 bend/retention/strain behavior and E01 connector axes before freezing the five microcoax paths",
+      "closure_stages": [
+        "H5",
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H5": {
+          "owner": "H5 received-component evidence",
+          "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+          "pass_rule": "the received specimen directly demonstrates this item: measure received 2118651-2 bend/retention/strain behavior and E01 connector axes before freezing the five microcoax paths; a mismatch reopens the owning H1/H2/H3 result"
+        },
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure received 2118651-2 bend/retention/strain behavior and E01 connector axes before freezing the five microcoax paths; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-063",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "extract AM/LW connector, pad and high-Z trace capacitance and prove the complete external budget remains <=19.500 pF",
+      "closure_stages": [
+        "H6",
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H6": {
+          "owner": "H6 PCB placement/routing review",
+          "required_artifact": "final stack-up plus placement/routing export, solver/DRC output and reviewer sign-off tied to the production PCB revision",
+          "pass_rule": "the final routed design demonstrates this item with no waived contradiction: extract AM/LW connector, pad and high-Z trace capacitance and prove the complete external budget remains <=19.500 pF; otherwise the upstream design reopens before fabrication"
+        },
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: extract AM/LW connector, pad and high-Z trace capacitance and prove the complete external budget remains <=19.500 pF; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-064",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "inspect every RF via fence, connector ground, ESD return and coupled-sampler branch on the fabricated board before H8 VNA/spectrum work",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: inspect every RF via fence, connector ground, ESD return and coupled-sampler branch on the fabricated board before H8 VNA/spectrum work; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-065",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "run the signed-configuration L1 isolated baseline and L2 foreign-interface quiet/desense matrix for every signal group",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: run the signed-configuration L1 isolated baseline and L2 foreign-interface quiet/desense matrix for every signal group; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-066",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "run FX-I6-N24-T1 with target plus independent observer for all eight radio-identity permutations at both support loads, all admitted channels/rates/powers and antenna poses",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: run FX-I6-N24-T1 with target plus independent observer for all eight radio-identity permutations at both support loads, all admitted channels/rates/powers and antenna poses; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-067",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "prove inactive rails discharge, I/O remains high-Z, native S3/C5 radios emit no background packet/scan/advertising and service clocks have no periodic activity",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: prove inactive rails discharge, I/O remains high-Z, native S3/C5 radios emit no background packet/scan/advertising and service clocks have no periodic activity; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-068",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "capture raw IRQ/FIFO/PIO/DMA/IPC/UI/storage/audio timing while each active group faces maximum valid support-plane aggression",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: capture raw IRQ/FIFO/PIO/DMA/IPC/UI/storage/audio timing while each active group faces maximum valid support-plane aggression; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-069",
+      "source_phase": "H3.5",
+      "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
+      "source_group": "phase",
+      "residual": "inject cross-group blocking, evidence false-positive, reset/brownout/stuck-line and KILL/FAULT_KILL faults only inside the contained Laboratory fixture",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: inject cross-group blocking, evidence false-positive, reset/brownout/stuck-line and KILL/FAULT_KILL faults only inside the contained Laboratory fixture; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-070",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H6: solve the real board/enclosure thermal network after placement, copper, vias, wall material, vents and accessory geometry are fixed",
+      "closure_stages": [
+        "H6"
+      ],
+      "evidence_contracts": {
+        "H6": {
+          "owner": "H6 PCB placement/routing review",
+          "required_artifact": "final stack-up plus placement/routing export, solver/DRC output and reviewer sign-off tied to the production PCB revision",
+          "pass_rule": "the final routed design demonstrates this item with no waived contradiction: H6: solve the real board/enclosure thermal network after placement, copper, vias, wall material, vents and accessory geometry are fixed; otherwise the upstream design reopens before fabrication"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-071",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H6: meet or beat the applicable allowable base-to-ambient resistance from the parameter sweep; SUPPORT_WORST remains non-continuous",
+      "closure_stages": [
+        "H6"
+      ],
+      "evidence_contracts": {
+        "H6": {
+          "owner": "H6 PCB placement/routing review",
+          "required_artifact": "final stack-up plus placement/routing export, solver/DRC output and reviewer sign-off tied to the production PCB revision",
+          "pass_rule": "the final routed design demonstrates this item with no waived contradiction: H6: meet or beat the applicable allowable base-to-ambient resistance from the parameter sweep; SUPPORT_WORST remains non-continuous; otherwise the upstream design reopens before fabrication"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-072",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H8: measure all three NTCs, converter/eFuse/charger junction proxies, both cells and external surfaces at every admitted sustained profile",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8: measure all three NTCs, converter/eFuse/charger junction proxies, both cells and external surfaces at every admitted sustained profile; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-073",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H8: correlate thermal time constants and set per-profile maximum session/duty limits before any unattended claim",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8: correlate thermal time constants and set per-profile maximum session/duty limits before any unattended claim; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-074",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H8: verify cell-to-NTC contact, replacement spread, charger TREG/TSHUT, warning, FAULT_KILL and physical rearm in a chamber",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8: verify cell-to-NTC contact, replacement spread, charger TREG/TSHUT, warning, FAULT_KILL and physical rearm in a chamber; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-075",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H6: physically separate RUN_PERMIT and FAULT_ASSERT_N routing, their local buffers and endpoint gate returns; verify no single via/pad short joins both paths",
+      "closure_stages": [
+        "H6"
+      ],
+      "evidence_contracts": {
+        "H6": {
+          "owner": "H6 PCB placement/routing review",
+          "required_artifact": "final stack-up plus placement/routing export, solver/DRC output and reviewer sign-off tied to the production PCB revision",
+          "pass_rule": "the final routed design demonstrates this item with no waived contradiction: H6: physically separate RUN_PERMIT and FAULT_ASSERT_N routing, their local buffers and endpoint gate returns; verify no single via/pad short joins both paths; otherwise the upstream design reopens before fabrication"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-076",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H8: inject every SF-01..SF-30 case at accessible pads and verify rail fall, no RF/optical output, retained reason and physical-only re-arm",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8: inject every SF-01..SF-30 case at accessible pads and verify rail fall, no RF/optical output, retained reason and physical-only re-arm; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-077",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H8: calibrate evidence thresholds and prove stuck-active, stuck-inactive and unreadable evidence behavior for all nine channels",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8: calibrate evidence thresholds and prove stuck-active, stuck-inactive and unreadable evidence behavior for all nine channels; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-078",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H8: measure watchdog, reset, eFuse, QOD and transmitter-energy deadlines; analytical 0/100/1760-ms classes are upper-level contracts, not measured closure",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8: measure watchdog, reset, eFuse, QOD and transmitter-energy deadlines; analytical 0/100/1760-ms classes are upper-level contracts, not measured closure; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-079",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H8: interrupt every two-slot flash-journal write boundary and verify last-valid-slot or explicit AON-loss fallback",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8: interrupt every two-slot flash-journal write boundary and verify last-valid-slot or explicit AON-loss fallback; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-080",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H6: meet the profile-specific 35-C base-to-ambient resistance target with final copper, vias, enclosure and installed accessory geometry",
+      "closure_stages": [
+        "H6"
+      ],
+      "evidence_contracts": {
+        "H6": {
+          "owner": "H6 PCB placement/routing review",
+          "required_artifact": "final stack-up plus placement/routing export, solver/DRC output and reviewer sign-off tied to the production PCB revision",
+          "pass_rule": "the final routed design demonstrates this item with no waived contradiction: H6: meet the profile-specific 35-C base-to-ambient resistance target with final copper, vias, enclosure and installed accessory geometry; otherwise the upstream design reopens before fabrication"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-081",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H8: run 24-hour and 48-hour USB-powered endurance cases as validation tests, including the configured proof-due stop and retained display reason",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8: run 24-hour and 48-hour USB-powered endurance cases as validation tests, including the configured proof-due stop and retained display reason; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-082",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H8: run each battery profile to its real protected cutoff and publish measurements only as test results, not guaranteed autonomy",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8: run each battery profile to its real protected cutoff and publish measurements only as test results, not guaranteed autonomy; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-083",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H8: chamber-test admitted sustained profiles at 0, 25 and 35 C plus boundary/fault behavior outside the design target",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8: chamber-test admitted sustained profiles at 0, 25 and 35 C plus boundary/fault behavior outside the design target; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-084",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H8: verify all three self-test settings, staged activation, local-only authority, warning sequence, S3-loss behavior and physical KILL-to-RUN recovery",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8: verify all three self-test settings, staged activation, local-only authority, warning sequence, S3-loss behavior and physical KILL-to-RUN recovery; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    },
+    {
+      "id": "H3-PHY-085",
+      "source_phase": "H3.6",
+      "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
+      "source_group": "phase",
+      "residual": "H8: correlate final thermal time constants and set per-profile TX duty/session limits before release",
+      "closure_stages": [
+        "H8"
+      ],
+      "evidence_contracts": {
+        "H8": {
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8: correlate final thermal time constants and set per-profile TX duty/session limits before release; any failure reopens the owning result and blocks release"
+        }
+      },
+      "status": "physical_evidence_required"
+    }
+  ],
+  "checks": {
+    "all_six_phase_consolidations_are_reviewed": true,
+    "h3_7_1_crosscheck_is_clean": true,
+    "raw_consolidated_residual_count_is_88": true,
+    "three_internal_h3_dependencies_are_already_resolved": true,
+    "all_85_remaining_physical_residuals_are_published": true,
+    "residual_ids_are_unique": true,
+    "residual_texts_are_unique": true,
+    "every_residual_has_exact_source": true,
+    "every_residual_is_assigned_to_h5_h6_or_h8": true,
+    "every_residual_has_owner_artifact_and_pass_rule": true,
+    "every_phase_retains_at_least_one_physical_residual": true,
+    "no_internal_h3_dependency_remains_open": true,
+    "registry_does_not_claim_physical_completion": true
+  },
+  "open_findings": [],
+  "pending_decisions": [],
+  "review_summary": {
+    "checks": 13,
+    "failed": 0,
+    "unresolved": 0,
+    "status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.7.3",
+    "action": "prepare the formal H3 acceptance package without claiming physical qualification"
+  }
+}

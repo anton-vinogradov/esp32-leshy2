@@ -182,7 +182,10 @@ one-group, quiet-state and full 3×nRF24 checks. `H3.5.4` closes the phase with
 [single-fault review](single-fault-review.md) closes 30 cases with 25 checks;
 [extended operation and self-test](unattended-operation.md) close with 24 checks and no operating-time promise.
 [H3.6 consolidation](thermal-fault-result.md) closes 70 leaf and 24 cross-domain
-checks; H3.7.1 is cross-checking every H3 result against H2 and downstream consumers.
+checks. [H3.7.1](h3-crosscheck.md) joins every requirement, artifact, H2 instance
+and root net. [H3.7.2](physical-evidence-register.md) assigns all 85 physical
+rows to H5/H6/H8. The [H3.7.3 acceptance package](h3-acceptance.md) is prepared;
+H3.7.4 awaits explicit user acceptance.
 
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate
