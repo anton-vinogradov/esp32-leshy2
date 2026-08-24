@@ -119,11 +119,11 @@ remain unauthorized.
 <details open>
 <summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.5.2 -->
+<!-- current-substep: H3.5.3 -->
 
-**Exact marker: `H3.5.2`** — [all nine antenna-feed contracts](docs/rf-feed-constraints.md)
-are reviewed with 72 machine checks and no unresolved analytical finding;
-RF corridors, keepouts, reference planes and return currents are now being derived.
+**Exact marker: `H3.5.3`** — [RF corridors, keepouts and return contracts](docs/rf-layout-constraints.md)
+are reviewed for all nine paths with 23 machine checks; isolation, quiet-state
+and full 3×nRF24 concurrency assumptions are now being verified.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,035-row circuit inventory reviewed.
@@ -219,8 +219,8 @@ RF corridors, keepouts, reference planes and return currents are now being deriv
   - ✅ `H3.4.4` — [162 leaf and 27 cross-domain digital checks reviewed](docs/digital-verification-result.md).
 - ▶️ **`H3.5` — current:** RF feeds, return paths, corridors and coexistence.
   - ✅ `H3.5.1` — [feed, connector, matching and loss constraints reviewed](docs/rf-feed-constraints.md) for all nine antenna paths.
-  - ▶️ **`H3.5.2` — current:** RF corridors, keepouts, reference planes and return currents.
-  - ⏳ `H3.5.3` — isolation, quiet-state and concurrent 3× nRF24 model.
+  - ✅ `H3.5.2` — [RF corridors, keepouts, reference planes and returns reviewed](docs/rf-layout-constraints.md).
+  - ▶️ **`H3.5.3` — current:** isolation, quiet-state and concurrent 3× nRF24 model.
   - ⏳ `H3.5.4` — RF consolidation.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).

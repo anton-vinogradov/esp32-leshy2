@@ -1,0 +1,362 @@
+{
+  "schema_version": 1,
+  "stage": "H3.5.2",
+  "status": "reviewed_rf_corridor_plane_and_return_constraints",
+  "source_hashes": {
+    "hardware/product-design/generated/H1-unified-coordinate-table.json": "485562f892402b53c1f10211c72082bbcb233c9e5f01f778f1430b6d99510ee6",
+    "hardware/verification/generated/H3-VRF51-rf-feed-constraints.json": "c26b1e47fbd902d01dc3456021f20c13cacd62b8fc34c0efd758a372422649dd",
+    "hardware/architecture/candidates/G2F-3I.json": "bb7cd466a2aac72ab37da628cb2aba2eda4396a91ddcc3729116f50bfb0a3831"
+  },
+  "summary": {
+    "paths": 9,
+    "ui_inner_paths": 4,
+    "rf_inner_paths": 5,
+    "microcoaxes": 5,
+    "checks": 23
+  },
+  "derived": {
+    "c5_lambda_g_over_20_mm_at_5p885ghz_eps_eff_3p5": 1.361,
+    "selected_high_band_fence_pitch_mm_max": 1.25
+  },
+  "path_corridors": [
+    {
+      "id": "S3-2G4",
+      "frame": "ui-inner",
+      "source_instance": "s3",
+      "external_connector_instance": "s3_external_rp_sma",
+      "h1_topology_guide_mm": [
+        [
+          16.0,
+          10.55
+        ],
+        [
+          16.0,
+          6.62
+        ],
+        [
+          16.0,
+          0.0
+        ]
+      ],
+      "h1_topology_guide_length_mm": 10.55,
+      "guide_status": "topology-and-paper-corridor only; not production copper",
+      "mode": "50_ohm_tx_rx",
+      "maximum_signal_layer_transitions": 1,
+      "via_fence_pitch_mm_max": 1.25,
+      "aggressor_clearance": "max(5 x solved trace width, 1.50 mm)",
+      "return_contract": "one uninterrupted reference plane follows the entire PCB mainline; every allowed layer transition gets an adjacent symmetric ground-via pair"
+    },
+    {
+      "id": "C5-2G4/5",
+      "frame": "ui-inner",
+      "source_instance": "c5",
+      "external_connector_instance": "c5_external_rp_sma",
+      "h1_topology_guide_mm": [
+        [
+          59.0,
+          10.55
+        ],
+        [
+          59.0,
+          6.62
+        ],
+        [
+          59.0,
+          0.0
+        ]
+      ],
+      "h1_topology_guide_length_mm": 10.55,
+      "guide_status": "topology-and-paper-corridor only; not production copper",
+      "mode": "50_ohm_tx_rx",
+      "maximum_signal_layer_transitions": 1,
+      "via_fence_pitch_mm_max": 1.25,
+      "aggressor_clearance": "max(5 x solved trace width, 1.50 mm)",
+      "return_contract": "one uninterrupted reference plane follows the entire PCB mainline; every allowed layer transition gets an adjacent symmetric ground-via pair"
+    },
+    {
+      "id": "N24-0",
+      "frame": "rf-inner",
+      "source_instance": "nrf0",
+      "external_connector_instance": "nrf0_external_sma",
+      "h1_topology_guide_mm": [
+        [
+          24.5,
+          29.55
+        ],
+        [
+          9.5,
+          29.55
+        ],
+        [
+          9.5,
+          5.0
+        ],
+        [
+          13.5,
+          5.0
+        ],
+        [
+          13.5,
+          0.0
+        ]
+      ],
+      "h1_topology_guide_length_mm": 48.55,
+      "guide_status": "topology-and-paper-corridor only; not production copper",
+      "mode": "50_ohm_tx_rx",
+      "maximum_signal_layer_transitions": 1,
+      "via_fence_pitch_mm_max": 1.25,
+      "aggressor_clearance": "max(5 x solved trace width, 1.50 mm)",
+      "return_contract": "one uninterrupted reference plane follows the entire PCB mainline; every allowed layer transition gets an adjacent symmetric ground-via pair"
+    },
+    {
+      "id": "N24-1",
+      "frame": "rf-inner",
+      "source_instance": "nrf1",
+      "external_connector_instance": "nrf1_external_sma",
+      "h1_topology_guide_mm": [
+        [
+          51.5,
+          29.55
+        ],
+        [
+          51.75,
+          27.0
+        ],
+        [
+          51.75,
+          5.0
+        ],
+        [
+          37.5,
+          5.0
+        ],
+        [
+          37.5,
+          0.0
+        ]
+      ],
+      "h1_topology_guide_length_mm": 43.812,
+      "guide_status": "topology-and-paper-corridor only; not production copper",
+      "mode": "50_ohm_tx_rx",
+      "maximum_signal_layer_transitions": 1,
+      "via_fence_pitch_mm_max": 1.25,
+      "aggressor_clearance": "max(5 x solved trace width, 1.50 mm)",
+      "return_contract": "one uninterrupted reference plane follows the entire PCB mainline; every allowed layer transition gets an adjacent symmetric ground-via pair"
+    },
+    {
+      "id": "N24-2",
+      "frame": "rf-inner",
+      "source_instance": "nrf2",
+      "external_connector_instance": "nrf2_external_sma",
+      "h1_topology_guide_mm": [
+        [
+          71.5,
+          23.55
+        ],
+        [
+          65.2,
+          27.5
+        ],
+        [
+          65.2,
+          5.0
+        ],
+        [
+          61.5,
+          5.0
+        ],
+        [
+          61.5,
+          0.0
+        ]
+      ],
+      "h1_topology_guide_length_mm": 38.636,
+      "guide_status": "topology-and-paper-corridor only; not production copper",
+      "mode": "50_ohm_tx_rx",
+      "maximum_signal_layer_transitions": 1,
+      "via_fence_pitch_mm_max": 1.25,
+      "aggressor_clearance": "max(5 x solved trace width, 1.50 mm)",
+      "return_contract": "one uninterrupted reference plane follows the entire PCB mainline; every allowed layer transition gets an adjacent symmetric ground-via pair"
+    },
+    {
+      "id": "CC-SUB",
+      "frame": "rf-inner",
+      "source_instance": "cc",
+      "external_connector_instance": "cc_external_sma",
+      "h1_topology_guide_mm": [
+        [
+          25.5,
+          10.3
+        ],
+        [
+          25.5,
+          0.0
+        ]
+      ],
+      "h1_topology_guide_length_mm": 10.3,
+      "guide_status": "topology-and-paper-corridor only; not production copper",
+      "mode": "matched_to_50_ohm_tx_rx",
+      "maximum_signal_layer_transitions": 1,
+      "via_fence_pitch_mm_max": 2.5,
+      "aggressor_clearance": "max(3 x solved trace width, 1.00 mm)",
+      "return_contract": "one uninterrupted reference plane follows the entire PCB mainline; every allowed layer transition gets an adjacent symmetric ground-via pair"
+    },
+    {
+      "id": "VOICE-V/U",
+      "frame": "rf-inner",
+      "source_instance": "voice",
+      "external_connector_instance": "voice_external_sma",
+      "h1_topology_guide_mm": [
+        [
+          53.3,
+          32.7
+        ],
+        [
+          65.8,
+          31.8
+        ],
+        [
+          65.8,
+          6.5
+        ],
+        [
+          49.5,
+          6.5
+        ],
+        [
+          49.5,
+          0.0
+        ]
+      ],
+      "h1_topology_guide_length_mm": 60.632,
+      "guide_status": "topology-and-paper-corridor only; not production copper",
+      "mode": "50_ohm_tx_rx",
+      "maximum_signal_layer_transitions": 1,
+      "via_fence_pitch_mm_max": 2.5,
+      "aggressor_clearance": "max(3 x solved trace width, 1.00 mm)",
+      "return_contract": "one uninterrupted reference plane follows the entire PCB mainline; every allowed layer transition gets an adjacent symmetric ground-via pair"
+    },
+    {
+      "id": "RX-FM/SW",
+      "frame": "ui-inner",
+      "source_instance": "receiver",
+      "external_connector_instance": "receiver_fmsw_external_sma",
+      "h1_topology_guide_mm": [
+        [
+          51.0,
+          54.8
+        ],
+        [
+          30.0,
+          49.0
+        ],
+        [
+          30.0,
+          0.0
+        ]
+      ],
+      "h1_topology_guide_length_mm": 70.786,
+      "guide_status": "topology-and-paper-corridor only; not production copper",
+      "mode": "50_ohm_connector_corridor_to_non50_receiver_match",
+      "maximum_signal_layer_transitions": 1,
+      "via_fence_pitch_mm_max": 2.5,
+      "aggressor_clearance": "max(3 x solved trace width, 1.00 mm)",
+      "return_contract": "one uninterrupted reference plane follows the entire PCB mainline; every allowed layer transition gets an adjacent symmetric ground-via pair"
+    },
+    {
+      "id": "RX-AM/LW",
+      "frame": "ui-inner",
+      "source_instance": "receiver",
+      "external_connector_instance": "receiver_amlw_external_sma",
+      "h1_topology_guide_mm": [
+        [
+          51.0,
+          56.2
+        ],
+        [
+          45.0,
+          52.0
+        ],
+        [
+          45.0,
+          0.0
+        ]
+      ],
+      "h1_topology_guide_length_mm": 59.324,
+      "guide_status": "topology-and-paper-corridor only; not production copper",
+      "mode": "non50_high_impedance_loop_pod",
+      "maximum_signal_layer_transitions": 1,
+      "via_fence_pitch_mm_max": null,
+      "aggressor_clearance": "capacitance-extracted keepout; no plane or aggressor beneath the high-Z segment",
+      "return_contract": "local SMA shell ground remains solid, but the external high-impedance AMI segment has no plane beneath it; extracted connector+PCB+ESD+pod capacitance must remain within H3-VRF51"
+    }
+  ],
+  "common_rules": {
+    "stackup_and_width": "H6 must solve 50-ohm width/spacing against the released fabricator stack-up and correlate it with an impedance coupon; no generic width is frozen in H3",
+    "reference_plane": "no 50-ohm mainline may cross a plane split, void, antipad field, connector-tail keepout or narrowed return neck",
+    "layer_changes": "prefer zero signal-layer changes; at most one transition is allowed per antenna path, adjacent to its outer connector, and it must be field-solved with symmetric return vias",
+    "connector_return": "SMA/RP-SMA shells, U.FL ground lands, coupler grounds, RF switches, balun and every shunt ESD/matching body receive immediate local ground vias; target pad-edge-to-via-edge <=0.75 mm where the footprint permits",
+    "corners": "use arcs or two 45-degree bends; no acute corner and no decorative meander or phase-equalization length",
+    "stubs": "no tee or test-pad stub on a mainline; directional samplers remain inline and detector branches depart only from their coupled ports",
+    "esd_order": "place the RF ESD shunt at the external connector boundary before any long internal trace, with the shortest possible return",
+    "microcoax": "all five removable 30-mm assemblies keep independent service slack and strain relief, do not become board restraints, and may not be compressed by the mated 11-mm sandwich",
+    "crossing": "RF mainlines do not cross each other; unavoidable digital crossings occur once, orthogonally, on another layer over an unbroken plane",
+    "quiet_aggressors": "no display/SD/USB clock, DC/DC switch node, crystal clock, class-D output or high-current LED/IR edge is routed parallel inside an RF clearance corridor",
+    "coupled_evidence": "LTC5532 detector and hold circuitry live outside the mainline corridor; the coupled branch is shortest-first and never returns through receiver or oscillator ground",
+    "tuning": "CC1101 branches and receiver matching retain accessible 0402 tuning lands inside their RF zones without lengthening unrelated paths",
+    "documentation": "H6 exports routed length, layer, solved impedance, reference plane, transitions, fence pitch and nearest aggressor for each of the nine path IDs"
+  },
+  "special_rules": {
+    "native_and_nrf": "module U.FL/IPEX-to-board U.FL remains physical microcoax; only the board-receptacle-to-coupler-to-SMA section is PCB mainline",
+    "cc_sub": "keep RF_P/RF_N length mismatch <=0.50 mm through the balun; place both BGS13SN8 switches and four branch networks as one compact, symmetric, via-fenced island; isolate every unselected branch without shared narrow ground",
+    "voice": "place SA518 contact 7, protection and SMA in the shortest practical corridor; keep class-D speaker current and codec input ground outside it",
+    "fm_sw": "hold 50 ohms only from SMA to the first 56-nH body; the receiver-side match is not forced into a 50-ohm geometry",
+    "am_lw": "do not apply the 50-ohm plane/fence template to the high-Z AMI segment; minimize surface area and extracted capacitance, forbid long coax, and keep all copper/aggressors away beneath it"
+  },
+  "checks": {
+    "h351_is_reviewed": true,
+    "h1_clearance_audit_passed": true,
+    "h1_topology_is_explicitly_not_final_copper": true,
+    "exactly_nine_guides": true,
+    "guide_paths_equal_feed_paths": true,
+    "guide_paths_equal_antenna_policy": true,
+    "four_ui_and_five_rf_paths": true,
+    "only_two_board_frames": true,
+    "every_guide_reaches_antenna_edge": true,
+    "all_guide_lengths_positive": true,
+    "all_nrf_guides_are_independent": true,
+    "five_microcoaxes_accounted": true,
+    "microcoax_same_face_keepouts_pass": true,
+    "microcoax_has_positive_3d_slack": true,
+    "common_high_band_pitch_is_conservative": true,
+    "generic_paths_have_reference_fence": true,
+    "amlw_has_no_generic_fence": true,
+    "amlw_rule_preserves_capacitance_contract": true,
+    "cc_differential_balance_is_bounded": true,
+    "all_paths_limit_layer_transitions": true,
+    "no_stub_rule_is_explicit": true,
+    "aggressor_rule_names_all_major_classes": true,
+    "h6_export_contract_names_nine_ids": true
+  },
+  "corrections": [
+    "RX-AM/LW is excluded from the generic 50-ohm plane/via-fence template; its controlling layout quantity is extracted capacitance"
+  ],
+  "open_findings": [],
+  "residual_physical_only": [
+    "release the fabricator stack-up, field-solve every launch and 50-ohm geometry, and correlate with coupons in H6",
+    "prove each routed path stays inside the accepted mechanical envelope and has no DRC, return-path or plane-slot violation",
+    "measure received 2118651-2 bend/retention/strain behavior and E01 connector axes before freezing the five microcoax paths",
+    "extract AM/LW connector, pad and high-Z trace capacitance and prove the complete external budget remains <=19.500 pF",
+    "inspect every RF via fence, connector ground, ESD return and coupled-sampler branch on the fabricated board before H8 VNA/spectrum work"
+  ],
+  "review_summary": {
+    "checks": 23,
+    "failed": 0,
+    "unresolved": 0,
+    "status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.5.3",
+    "action": "verify isolation, quiet-state and full three-nRF concurrency assumptions"
+  }
+}

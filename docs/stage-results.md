@@ -118,7 +118,7 @@ are satisfied.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current, exact marker `H3.5.2`.
+**Status:** ▶️ current, exact marker `H3.5.3`.
 
 - [Current virtual-verification page](virtual-verification.md).
 - [Machine execution plan](../hardware/verification/h3-verification-plan.json).
@@ -155,6 +155,8 @@ are satisfied.
   and [machine H3.4.4 evidence](../hardware/verification/generated/H3-VRF44-digital-consolidation.json).
 - [All nine RF feed contracts](rf-feed-constraints.md) and
   [machine H3.5.1 evidence](../hardware/verification/generated/H3-VRF51-rf-feed-constraints.json).
+- [RF corridor, plane and return contracts](rf-layout-constraints.md) and
+  [machine H3.5.2 evidence](../hardware/verification/generated/H3-VRF52-rf-layout-constraints.json).
 
 `H3.0.1–H3.0.3` are reviewed: inputs, parameters and ten common pass/fail
 rules are frozen. `H3.1` is reviewed: 2,032 complete states and 200 rail
@@ -168,8 +170,9 @@ checks. `H3.4.1` closes digital levels/defaults with 73 machine checks,
 `H3.4.2` closes bandwidth/latency/timing with 40 checks and `H3.4.3` closes
 M1, expansion and service-boundary loading with 49 checks. `H3.4.4` closes
 the phase with 27 cross-domain checks over all 162 leaf checks. `H3.5.1`
-closes 72 feed/connector/matching/loss checks for all nine ports; `H3.5.2` is
-deriving RF corridors, keepouts, reference planes and return currents.
+closes 72 feed/connector/matching/loss checks for all nine ports. `H3.5.2`
+closes 23 corridor, keepout, plane and return checks; `H3.5.3` is verifying
+isolation, quiet state and full 3×nRF24 concurrency.
 
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate

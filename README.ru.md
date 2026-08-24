@@ -120,11 +120,11 @@ safety-автоматику.
 <details open>
 <summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.5.2 -->
+<!-- current-substep: H3.5.3 -->
 
-**Точный маркер: `H3.5.2`** — [контракты всех девяти антенных трактов](docs/rf-feed-constraints.ru.md)
-проверены 72 машинными checks без незакрытых аналитических findings; теперь
-выводятся RF corridors, keepouts, reference planes и return currents.
+**Точный маркер: `H3.5.3`** — [RF corridors, keepouts и return contracts](docs/rf-layout-constraints.ru.md)
+всех девяти трактов проверены 23 машинными checks; теперь проверяются isolation,
+quiet-state и полная одновременная работа 3×nRF24.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 035 схемных строк.
@@ -221,8 +221,8 @@ safety-автоматику.
   - ✅ `H3.4.4` — [проверены 162 leaf и 27 сквозных digital checks](docs/digital-verification-result.ru.md).
 - ▶️ **`H3.5` — сейчас:** RF feeds, return paths, corridors и coexistence.
   - ✅ `H3.5.1` — [проверены feed/connector/matching/loss ограничения](docs/rf-feed-constraints.ru.md) всех девяти антенных трактов.
-  - ▶️ **`H3.5.2` — сейчас:** RF corridors, keepouts, reference planes и return currents.
-  - ⏳ `H3.5.3` — isolation, quiet-state и одновременные 3× nRF24.
+  - ✅ `H3.5.2` — [проверены RF corridors, keepouts, reference planes и returns](docs/rf-layout-constraints.ru.md).
+  - ▶️ **`H3.5.3` — сейчас:** isolation, quiet-state и одновременные 3× nRF24.
   - ⏳ `H3.5.4` — RF consolidation.
 
 Проверенный план H2 —
