@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify H3.4.1 digital levels, pulls, reset defaults and no-back-power."""
+"""Verify H3.4.1 worst-case board, battery and enclosure thermal model."""
 
 from __future__ import annotations
 
@@ -368,12 +368,12 @@ def build() -> tuple[dict[Path, str], dict]:
         "open_findings": [],
         "residual_physical_only": residual_hil,
         "review_summary": {"checks": len(checks), "failed": 0, "unresolved": 0, "status": "reviewed"},
-        "next": {"stage": "H3.5.1", "action": "derive 50-ohm feed, connector, matching and loss constraints for every antenna path"},
+        "next": {"stage": "H3.6.1", "action": "build the worst-case board, battery and enclosure thermal model"},
     }
 
     en = f"""# Digital levels, defaults and no-back-power
 
-`H3.4.1` is reviewed: `{len(checks)}` machine checks cover all `{len(allocations)}` controller allocations, `{len(interface_groups)}` digital interface groups, `{len(quiet_ids)}` quiet-state contracts and all six no-back-power invariants. No analytical finding or component change remains open. The exact current marker is `H3.5.1`.
+`H3.4.1` is reviewed: `{len(checks)}` machine checks cover all `{len(allocations)}` controller allocations, `{len(interface_groups)}` digital interface groups, `{len(quiet_ids)}` quiet-state contracts and all six no-back-power invariants. No analytical finding or component change remains open. The exact current marker is `H3.6.1`.
 
 ## Guaranteed static margins
 
@@ -394,7 +394,7 @@ Machine evidence: [`H3-VRF41-digital-levels.json`](../hardware/verification/gene
 """
     ru = f"""# Digital levels, defaults и no-back-power
 
-`H3.4.1` проверено: `{len(checks)}` машинных checks охватывают все `{len(allocations)}` controller allocations, `{len(interface_groups)}` групп digital interfaces, `{len(quiet_ids)}` quiet-state contracts и все шесть no-back-power invariants. Незакрытых аналитических findings и замен компонентов нет. Точный текущий маркер — `H3.5.1`.
+`H3.4.1` проверено: `{len(checks)}` машинных checks охватывают все `{len(allocations)}` controller allocations, `{len(interface_groups)}` групп digital interfaces, `{len(quiet_ids)}` quiet-state contracts и все шесть no-back-power invariants. Незакрытых аналитических findings и замен компонентов нет. Точный текущий маркер — `H3.6.1`.
 
 ## Гарантированные статические запасы
 
@@ -430,7 +430,7 @@ def main() -> int:
         stale = [str(path.relative_to(REPO)) for path, content in outputs.items() if not path.exists() or path.read_text(encoding="utf-8") != content]
         if stale:
             raise SystemExit("stale H3.4.1 artifacts: " + ", ".join(stale))
-    print(f"ok: H3.4.1 reviewed; {len(manifest['checks'])} checks, next H3.5.1")
+    print(f"ok: H3.4.1 reviewed; {len(manifest['checks'])} checks, next H3.6.1")
     return 0
 
 

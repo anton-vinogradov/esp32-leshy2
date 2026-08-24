@@ -3,9 +3,9 @@
   "stage": "H3.4.4",
   "status": "reviewed_digital_interface_timing_level_and_loading_consolidation",
   "input_hashes": {
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "731f806a3e6f2edd214123d83bd672fe4f759803b2a219675a6cebfef37de9d7",
-    "hardware/verification/generated/H3-VRF42-digital-timing.json": "ab71fe818580560b5dc58e09d506df0e40a0061db671326aa8b8d7b3369acbf3",
-    "hardware/verification/generated/H3-VRF43-boundary-loading.json": "15d064fef4123affc026237c007784bff28a8b2fb591919af3aa4d912ddebe80"
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "e3b28c923704acf301d733a0450a8c0ff15373e97bc69a180c696b86583c0e5a",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "a81dbe05fcd67c52b4e09538b6c40b81ec6deb483966ac881ab39dd233557a98",
+    "hardware/verification/generated/H3-VRF43-boundary-loading.json": "e61e10907b22eecbc4fbb56c8bbec88df2930c1850a314485d4f70e7f7192baf"
   },
   "leaf_summary": {
     "levels": {
@@ -115,7 +115,7 @@
     "status": "reviewed"
   },
   "next": {
-    "stage": "H3.5.1",
-    "action": "derive 50-ohm feed, connector, matching and loss constraints for every antenna path"
+    "stage": "H3.6.1",
+    "action": "build the worst-case board, battery and enclosure thermal model"
   }
 }

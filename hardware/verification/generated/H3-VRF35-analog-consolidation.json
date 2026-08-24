@@ -139,7 +139,7 @@
     "status": "reviewed"
   },
   "next": {
-    "stage": "H3.5.1",
-    "action": "derive 50-ohm feed, connector, matching and loss constraints for every antenna path"
+    "stage": "H3.6.1",
+    "action": "build the worst-case board, battery and enclosure thermal model"
   }
 }

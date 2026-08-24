@@ -120,11 +120,11 @@ safety-автоматику.
 <details open>
 <summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.5.4 -->
+<!-- current-substep: H3.6.1 -->
 
-**Точный маркер: `H3.5.4`** — [one-group isolation, quiet-state и полные 3×nRF24](docs/rf-coexistence.ru.md)
-проверены 30 машинными checks; теперь сводятся RF pre-layout rules и остаточные
-физические измерения.
+**Точный маркер: `H3.6.1`** — [RF-проверка сведена](docs/rf-verification-result.ru.md)
+125 leaf и 22 сквозными checks без незакрытых аналитических findings; теперь
+строится worst-case thermal model плат, аккумуляторов и корпуса.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 035 схемных строк.
@@ -219,11 +219,16 @@ safety-автоматику.
   - ✅ `H3.4.2` — [bandwidth, latency и timing проведены ревью](docs/digital-timing-verification.ru.md).
   - ✅ `H3.4.3` — [loading M1, U214, M5 Unit и service boundaries проведён ревью](docs/boundary-loading-verification.ru.md).
   - ✅ `H3.4.4` — [проверены 162 leaf и 27 сквозных digital checks](docs/digital-verification-result.ru.md).
-- ▶️ **`H3.5` — сейчас:** RF feeds, return paths, corridors и coexistence.
+- ✅ **`H3.5` — проведено ревью:** RF feeds, return paths, corridors и coexistence.
   - ✅ `H3.5.1` — [проверены feed/connector/matching/loss ограничения](docs/rf-feed-constraints.ru.md) всех девяти антенных трактов.
   - ✅ `H3.5.2` — [проверены RF corridors, keepouts, reference planes и returns](docs/rf-layout-constraints.ru.md).
   - ✅ `H3.5.3` — [проверены isolation, quiet-state и одновременные 3×nRF24](docs/rf-coexistence.ru.md).
-  - ▶️ **`H3.5.4` — сейчас:** RF consolidation.
+  - ✅ `H3.5.4` — [сведены 125 leaf и 22 сквозных RF checks](docs/rf-verification-result.ru.md).
+- ▶️ **`H3.6` — сейчас:** thermal, fault-tree и unattended-operation verification.
+  - ▶️ **`H3.6.1` — сейчас:** worst-case thermal model плат, аккумуляторов и корпуса.
+  - ⏳ `H3.6.2` — single faults через независимое shutdown и recovery.
+  - ⏳ `H3.6.3` — ограниченный 24–48-часовой unattended-operation envelope.
+  - ⏳ `H3.6.4` — thermal/fault consolidation.
 
 Проверенный план H2 —
 [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Текущий

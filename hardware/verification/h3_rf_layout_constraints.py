@@ -164,7 +164,7 @@ def build() -> tuple[dict[Path, str], dict]:
     rows_ru = rows_en
     en = f"""# RF layout constraints
 
-`H3.5.2` is reviewed with `{len(checks)}` machine checks and no open analytical finding. The exact current marker is `H3.5.3`.
+`H3.5.2` is reviewed with `{len(checks)}` machine checks and no open analytical finding. The exact current marker is `H3.6.1`.
 
 The H1 lines remain topology/corridor guides, not alleged KiCad copper. Their projected lengths are carried forward only so H6 cannot silently lose or swap a path.
 
@@ -180,7 +180,7 @@ Machine evidence: [`H3-VRF52-rf-layout-constraints.json`](../hardware/verificati
 """
     ru = f"""# Ограничения RF layout
 
-`H3.5.2` проведён ревью: `{len(checks)}` машинных checks, незакрытых аналитических findings нет. Точный текущий маркер — `H3.5.3`.
+`H3.5.2` проведён ревью: `{len(checks)}` машинных checks, незакрытых аналитических findings нет. Точный текущий маркер — `H3.6.1`.
 
 Линии H1 остаются topology/corridor guides, а не якобы готовой медью KiCad. Их проекционные длины перенесены только для того, чтобы H6 не мог молча потерять или перепутать тракт.
 

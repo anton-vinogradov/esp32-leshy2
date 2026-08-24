@@ -322,7 +322,7 @@ def build() -> tuple[dict[Path, str], dict]:
 
     en = f"""# Battery sensing and thermal analog verification
 
-H3.3.4 is reviewed with `{len(checks)}` machine checks and four source corrections. No component or BOM-cost change is required. The exact current marker is `H3.5.1`: digital levels/defaults and no-back-power.
+H3.3.4 is reviewed with `{len(checks)}` machine checks and four source corrections. No component or BOM-cost change is required. The exact current marker is `H3.6.1`: worst-case board, battery and enclosure thermal model.
 
 ## What is now fixed
 
@@ -354,7 +354,7 @@ Sensor bonding and response, ADC calibration, received-cell identity, actual cha
 """
     ru = f"""# Проверка battery sensing и температурных analog-порогов
 
-`H3.3.4` проверено: `{len(checks)}` машинных проверок и четыре исправления по первичным источникам. Компоненты и стоимость BOM не изменились. Точный текущий маркер — `H3.5.1`, digital levels/defaults и no-back-power.
+`H3.3.4` проверено: `{len(checks)}` машинных проверок и четыре исправления по первичным источникам. Компоненты и стоимость BOM не изменились. Точный текущий маркер — `H3.6.1`, worst-case thermal model плат, аккумуляторов и корпуса.
 
 ## Что теперь зафиксировано
 

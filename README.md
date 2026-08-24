@@ -119,11 +119,11 @@ remain unauthorized.
 <details open>
 <summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.5.4 -->
+<!-- current-substep: H3.6.1 -->
 
-**Exact marker: `H3.5.4`** — [one-group isolation, quiet-state and full 3×nRF24](docs/rf-coexistence.md)
-are reviewed with 30 machine checks; RF pre-layout rules and residual physical
-measurements are now being consolidated.
+**Exact marker: `H3.6.1`** — [RF verification is consolidated](docs/rf-verification-result.md)
+with 125 leaf plus 22 cross-domain checks and no unresolved analytical finding;
+the worst-case board, battery and enclosure thermal model is now being built.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,035-row circuit inventory reviewed.
@@ -217,11 +217,16 @@ measurements are now being consolidated.
   - ✅ `H3.4.2` — [bandwidth, latency and timing reviewed](docs/digital-timing-verification.md).
   - ✅ `H3.4.3` — [M1, U214, M5 Unit and service-boundary loading reviewed](docs/boundary-loading-verification.md).
   - ✅ `H3.4.4` — [162 leaf and 27 cross-domain digital checks reviewed](docs/digital-verification-result.md).
-- ▶️ **`H3.5` — current:** RF feeds, return paths, corridors and coexistence.
+- ✅ **`H3.5` — reviewed:** RF feeds, return paths, corridors and coexistence.
   - ✅ `H3.5.1` — [feed, connector, matching and loss constraints reviewed](docs/rf-feed-constraints.md) for all nine antenna paths.
   - ✅ `H3.5.2` — [RF corridors, keepouts, reference planes and returns reviewed](docs/rf-layout-constraints.md).
   - ✅ `H3.5.3` — [isolation, quiet-state and concurrent 3×nRF24 reviewed](docs/rf-coexistence.md).
-  - ▶️ **`H3.5.4` — current:** RF consolidation.
+  - ✅ `H3.5.4` — [125 leaf and 22 cross-domain RF checks consolidated](docs/rf-verification-result.md).
+- ▶️ **`H3.6` — current:** thermal, fault-tree and unattended-operation verification.
+  - ▶️ **`H3.6.1` — current:** worst-case board, battery and enclosure thermal model.
+  - ⏳ `H3.6.2` — single faults through independent shutdown and recovery.
+  - ⏳ `H3.6.3` — bounded 24–48-hour unattended operating envelope.
+  - ⏳ `H3.6.4` — thermal and fault consolidation.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The current machine-readable plan is

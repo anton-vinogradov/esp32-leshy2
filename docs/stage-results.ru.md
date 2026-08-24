@@ -119,7 +119,7 @@
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ▶️ сейчас, точный маркер `H3.5.4`.
+**Статус:** ▶️ сейчас, точный маркер `H3.6.1`.
 
 - [Текущая страница виртуальной проверки](virtual-verification.ru.md).
 - [Машиночитаемый план](../hardware/verification/h3-verification-plan.json).
@@ -160,6 +160,8 @@
   [машинное evidence H3.5.2](../hardware/verification/generated/H3-VRF52-rf-layout-constraints.json).
 - [One-group isolation, quiet state и полные 3×nRF24](rf-coexistence.ru.md) и
   [машинное evidence H3.5.3](../hardware/verification/generated/H3-VRF53-rf-coexistence.json).
+- [Сводный результат RF-проверки](rf-verification-result.ru.md) и
+  [машинное evidence H3.5.4](../hardware/verification/generated/H3-VRF54-rf-consolidation.json).
 
 `H3.0.1–H3.0.3` проведены ревью: входы, параметры и десять единых
 pass/fail-правил заморожены. `H3.1` проведено ревью: 2 032 полных состояния и
@@ -175,7 +177,9 @@ loading M1, expansions и service boundaries 49 checks. `H3.4.4` закрыва�
 27 сквозными checks поверх всех 162 leaf checks. `H3.5.1` закрывает 72 checks
 feed/connectors/matching/loss всех девяти портов. `H3.5.2` закрывает 23 checks
 corridors, keepouts, planes и returns. `H3.5.3` закрывает 30 checks one-group,
-quiet-state и полных 3×nRF24; в `H3.5.4` RF evidence сводятся.
+quiet-state и полных 3×nRF24. `H3.5.4` закрывает фазу 22 сквозными checks поверх
+125 leaf checks. В `H3.6.1` строится worst-case thermal model плат,
+аккумуляторов и корпуса.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate

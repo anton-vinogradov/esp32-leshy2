@@ -6,9 +6,9 @@
     "hardware/architecture/candidates/G2F-3I.json": "bb7cd466a2aac72ab37da628cb2aba2eda4396a91ddcc3729116f50bfb0a3831",
     "hardware/verification/generated/H3-VRF11-power-state-register.json": "e4916ee474797db5c598979240dc6ff8125ba8165c762715d1c6e749692e29e6",
     "hardware/verification/generated/H3-VRF12-dc-budget.json": "0c2c8bd53d8a21a9fbd4d6289e19a8b6f6b2b8832f2fed8f15dbfb3c66f9e2d5",
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "731f806a3e6f2edd214123d83bd672fe4f759803b2a219675a6cebfef37de9d7",
-    "hardware/verification/generated/H3-VRF42-digital-timing.json": "ab71fe818580560b5dc58e09d506df0e40a0061db671326aa8b8d7b3369acbf3",
-    "hardware/verification/generated/H3-VRF52-rf-layout-constraints.json": "7a49970f80279795da586843f6e1b4e6d39ea102609dc58022904f292cd39b9e"
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "e3b28c923704acf301d733a0450a8c0ff15373e97bc69a180c696b86583c0e5a",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "a81dbe05fcd67c52b4e09538b6c40b81ec6deb483966ac881ab39dd233557a98",
+    "hardware/verification/generated/H3-VRF52-rf-layout-constraints.json": "e71a7092835a032b7489231136486f6d5e95de077cb15f02b3b6c0d34518478c"
   },
   "summary": {
     "signal_groups": 9,

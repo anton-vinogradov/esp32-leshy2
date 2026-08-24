@@ -168,7 +168,7 @@ def build() -> tuple[dict[Path, str], dict]:
     group_rows = "\n".join(f"| {row['signal_group']} | {', '.join(row['active_members'])} | {len(row['required_foreign_quiet_contracts'])} |" for row in matrix)
     en = f"""# RF coexistence model
 
-`H3.5.3` is reviewed with `{len(checks)}` machine checks and no open analytical finding. The exact current marker is `H3.5.4`.
+`H3.5.3` is reviewed with `{len(checks)}` machine checks and no open analytical finding. The exact current marker is `H3.6.1`.
 
 | Active group | Active members | Foreign RF/IR quiet contracts |
 |---|---|---:|
@@ -182,7 +182,7 @@ Machine evidence: [`H3-VRF53-rf-coexistence.json`](../hardware/verification/gene
 """
     ru = f"""# Модель RF coexistence
 
-`H3.5.3` проведён ревью: `{len(checks)}` машинных checks, незакрытых аналитических findings нет. Точный текущий маркер — `H3.5.4`.
+`H3.5.3` проведён ревью: `{len(checks)}` машинных checks, незакрытых аналитических findings нет. Точный текущий маркер — `H3.6.1`.
 
 | Активная группа | Активные участники | Quiet contracts чужих RF/IR |
 |---|---|---:|

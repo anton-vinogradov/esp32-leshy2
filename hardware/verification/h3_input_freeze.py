@@ -73,7 +73,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         freeze = f"H2 принят 24 августа 2026 года на hardware commit `25d9ee2` и firmware commit `900bb2b`. Заморожено {manifest['summary']['frozen_files']} файла с SHA-256; изменение любого из них повторно открывает затронутые проверки."
         matrix_h = "## Матрица проверки"
         headers = "| Этап | Область | Метод до изготовления | Артефакт H3 | Остаточная физическая проверка |\n|---|---|---|---|---|"
-        current = "**Текущий маркер:** `H3.5.1` — [analog corners](analog-corner-result.ru.md) проверены; проверяются digital levels, pulls, reset defaults и no-back-power."
+        current = "**Текущий маркер:** `H3.6.1` — [RF-проверка](rf-verification-result.ru.md) сведена; строится worst-case thermal model плат, аккумуляторов и корпуса."
     else:
         title = "# Leshy2 virtual electrical verification"
         nav = "[Русский](virtual-verification.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Accepted H2](h2-acceptance.md)"
@@ -82,7 +82,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         freeze = f"H2 was accepted on 24 August 2026 at hardware commit `25d9ee2` and firmware commit `900bb2b`. {manifest['summary']['frozen_files']} files are frozen by SHA-256; changing any one reopens the affected verification."
         matrix_h = "## Verification matrix"
         headers = "| Stage | Area | Pre-fabrication method | H3 artifact | Residual physical check |\n|---|---|---|---|---|"
-        current = "**Current marker:** `H3.5.1` — [analog corners](analog-corner-result.md) are reviewed; digital levels, pulls, reset defaults and no-back-power are being verified."
+        current = "**Current marker:** `H3.6.1` — [RF verification](rf-verification-result.md) is consolidated; the worst-case board, battery and enclosure thermal model is being built."
     rows = "\n".join(
         f"| `{row['stage']}` | `{row['area']}` | {row['method']} | {row['h3_output']} | {row['physical_evidence']} |"
         for row in manifest["verification_matrix"]

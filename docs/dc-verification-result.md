@@ -20,6 +20,6 @@ H3.1 closes as one chain: state register → rail loads → source/charge/discha
 
 Steady limits do not replace dynamics or temperature. H3.2 checks startup/shutdown, USB↔pack handover, brownout, DPM, inrush and FAULT_KILL; H3.6 consumes the 2.550-W converter loss and 0.386-W eFuse loss in its thermal model; H8 retains physical measurements.
 
-**Status:** `H3.1` is reviewed. The exact current marker is `H3.5.1`, digital levels/defaults and no-back-power.
+**Status:** `H3.1` is reviewed. The exact current marker is `H3.6.1`, worst-case board, battery and enclosure thermal model.
 
 [Machine H3.1 closure package](../hardware/verification/generated/H3-VRF14-dc-consolidation.json).

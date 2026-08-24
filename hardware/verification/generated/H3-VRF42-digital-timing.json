@@ -7,7 +7,7 @@
     "hardware/architecture/devices.json": "be2c824fb67f7da62891d54c6fc99e41b345d637239da10b3fff3c609b935054",
     "hardware/verification/generated/H3-VRF03-method-contract.json": "d2622360c7b5de6ff82e1378fbb6a5fea1186401466f74a85999b30e13f7688d",
     "hardware/verification/generated/H3-VRF31-display.json": "d4410410e106a85173699ceb09646fbfab77e6533334f2d4067c2a17cfaf8c14",
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "731f806a3e6f2edd214123d83bd672fe4f759803b2a219675a6cebfef37de9d7"
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "e3b28c923704acf301d733a0450a8c0ff15373e97bc69a180c696b86583c0e5a"
   },
   "provenance": {
     "nrf24l01_product_specification": "https://devzone.nordicsemi.com/cfs-file/__key/support-attachments/beef5d1b77644c448dabff31668f3a47-aad1a46f307945a7b0204fd969e86bdf/content.pdf",
@@ -226,7 +226,7 @@
     "status": "reviewed"
   },
   "next": {
-    "stage": "H3.5.1",
-    "action": "derive 50-ohm feed, connector, matching and loss constraints for every antenna path"
+    "stage": "H3.6.1",
+    "action": "build the worst-case board, battery and enclosure thermal model"
   }
 }

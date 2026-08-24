@@ -6,8 +6,8 @@
     "hardware/architecture/candidates/G2F-3I.json": "bb7cd466a2aac72ab37da628cb2aba2eda4396a91ddcc3729116f50bfb0a3831",
     "hardware/architecture/devices.json": "be2c824fb67f7da62891d54c6fc99e41b345d637239da10b3fff3c609b935054",
     "hardware/verification/generated/H3-VRF12-dc-budget.json": "0c2c8bd53d8a21a9fbd4d6289e19a8b6f6b2b8832f2fed8f15dbfb3c66f9e2d5",
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "731f806a3e6f2edd214123d83bd672fe4f759803b2a219675a6cebfef37de9d7",
-    "hardware/verification/generated/H3-VRF42-digital-timing.json": "ab71fe818580560b5dc58e09d506df0e40a0061db671326aa8b8d7b3369acbf3",
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "e3b28c923704acf301d733a0450a8c0ff15373e97bc69a180c696b86583c0e5a",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "a81dbe05fcd67c52b4e09538b6c40b81ec6deb483966ac881ab39dd233557a98",
     "hardware/ecad/generated/H2-REV53-no-back-power.json": "4279bde1d29e5ab8878ed7ca7962148792eb729f5b79397b3c470e36fc6177de",
     "hardware/ecad/generated/H2-UI40-interboard-m1.json": "b890bd3e5072b1003b711da1a02e637e1d81598087983756fe760f747f0c7a07",
     "hardware/ecad/generated/H2-RF40-interboard-m1.json": "39567dca03632c9d79c06b0af4e44e0b2df30433709b9be9f8bc811957cd7d8a"
@@ -212,7 +212,7 @@
     "status": "reviewed"
   },
   "next": {
-    "stage": "H3.5.1",
-    "action": "derive 50-ohm feed, connector, matching and loss constraints for every antenna path"
+    "stage": "H3.6.1",
+    "action": "build the worst-case board, battery and enclosure thermal model"
   }
 }

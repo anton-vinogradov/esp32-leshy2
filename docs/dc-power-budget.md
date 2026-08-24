@@ -19,6 +19,6 @@ Both exposed-port eFuses now use the active `Yageo RC0402FR-071K82L` 1.82-kohm r
 
 All four DC rails pass the 25% rule against the minimum hardware threshold. `3V3_MAIN` has the tightest accepted operating envelope: the conservative 2.462-A load leaves 38 mA to the accepted 2.5-A requirement but 30.0% to the guaranteed 3.2-A protection threshold. H3.2 must therefore prove the load step and H8 must measure the real sum.
 
-**Status:** `H3.1.2` is complete and reviewed; the exact current marker is `H3.5.1`.
+**Status:** `H3.1.2` is complete and reviewed; the exact current marker is `H3.6.1`.
 
 [Complete machine calculation](../hardware/verification/generated/H3-VRF12-dc-budget.json).

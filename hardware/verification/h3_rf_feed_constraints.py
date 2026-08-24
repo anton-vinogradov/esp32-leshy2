@@ -229,7 +229,7 @@ def build() -> tuple[dict[Path, str], dict]:
 
     en = f"""# RF feed constraints
 
-`H3.5.1` is reviewed: `{len(checks)}` machine checks cover all nine external antenna ports and leave no analytical finding open. The exact current marker is `H3.5.2`.
+`H3.5.1` is reviewed: `{len(checks)}` machine checks cover all nine external antenna ports and leave no analytical finding open. The exact current marker is `H3.6.1`.
 
 ## Per-path contract
 
@@ -251,7 +251,7 @@ Machine evidence: [`H3-VRF51-rf-feed-constraints.json`](../hardware/verification
 """
     ru = f"""# Ограничения антенных трактов
 
-`H3.5.1` проведён ревью: `{len(checks)}` машинных checks охватывают все девять внешних антенных портов, незакрытых аналитических findings нет. Точный текущий маркер — `H3.5.2`.
+`H3.5.1` проведён ревью: `{len(checks)}` машинных checks охватывают все девять внешних антенных портов, незакрытых аналитических findings нет. Точный текущий маркер — `H3.6.1`.
 
 ## Контракт каждого тракта
 

@@ -20,6 +20,6 @@ The exact `HMX035CTFT-001` tail/connector, optics and backlight plus the `ES8311
 
 `H3-NRF24-LIFECYCLE` is closed with option A: three `E01-ML01IPX` modules remain because they provide the required full nRF24 hardware behavior. The nRF24 family is not recommended for new designs, so H5 must verify supplier, silicon marking and reserve availability. A modern nRF52 is 2.4-GHz-only and supports over-air ESB compatibility, but is not an SPI/register drop-in replacement.
 
-**Status:** `H3.0.2` is reviewed; current marker is `H3.5.1`.
+**Status:** `H3.0.2` is reviewed; current marker is `H3.6.1`.
 
 [213-row machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).

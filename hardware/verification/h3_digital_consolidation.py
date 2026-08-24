@@ -115,12 +115,12 @@ def build() -> tuple[dict[Path, str], dict]:
         "physical_hil_residuals": physical,
         "checks": checks,
         "review_summary": {"checks": len(checks), "failed": 0, "unresolved": 0, "status": "reviewed"},
-        "next": {"stage": "H3.5.1", "action": "derive 50-ohm feed, connector, matching and loss constraints for every antenna path"},
+        "next": {"stage": "H3.6.1", "action": "build the worst-case board, battery and enclosure thermal model"},
     }
 
     en = f"""# Consolidated digital-interface result
 
-`H3.4` is reviewed: all three leaf packages and `{leaf_checks}` leaf checks pass, followed by `{len(checks)}` cross-domain consolidation checks. No analytical finding remains open. The exact current marker is `H3.5.1`.
+`H3.4` is reviewed: all three leaf packages and `{leaf_checks}` leaf checks pass, followed by `{len(checks)}` cross-domain consolidation checks. No analytical finding remains open. The exact current marker is `H3.6.1`.
 
 ## Closed analytical envelope
 
@@ -145,7 +145,7 @@ Machine evidence: [`H3-VRF44-digital-consolidation.json`](../hardware/verificati
 """
     ru = f"""# Сводный результат digital interfaces
 
-`H3.4` проведён ревью: проходят все три leaf-пакета, `{leaf_checks}` их checks и `{len(checks)}` сквозных сводных checks. Незакрытых аналитических findings нет. Точный текущий маркер — `H3.5.1`.
+`H3.4` проведён ревью: проходят все три leaf-пакета, `{leaf_checks}` их checks и `{len(checks)}` сквозных сводных checks. Незакрытых аналитических findings нет. Точный текущий маркер — `H3.6.1`.
 
 ## Закрытый аналитический envelope
 
@@ -185,7 +185,7 @@ def main() -> int:
         stale = [str(path.relative_to(REPO)) for path, content in outputs.items() if not path.exists() or path.read_text(encoding="utf-8") != content]
         if stale:
             raise SystemExit("stale H3.4.4 artifacts: " + ", ".join(stale))
-    print(f"ok: H3.4 reviewed; {manifest['consolidated']['leaf_checks']} leaf + {manifest['consolidated']['consolidation_checks']} consolidation checks, next H3.5.1")
+    print(f"ok: H3.4 reviewed; {manifest['consolidated']['leaf_checks']} leaf + {manifest['consolidated']['consolidation_checks']} consolidation checks, next H3.6.1")
     return 0
 
 
