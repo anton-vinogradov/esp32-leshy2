@@ -118,7 +118,7 @@ are satisfied.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current, exact marker `H3.3.4`.
+**Status:** ▶️ current, exact marker `H3.3.5`.
 
 - [Current virtual-verification page](virtual-verification.md).
 - [Machine execution plan](../hardware/verification/h3-verification-plan.json).
@@ -141,6 +141,8 @@ are satisfied.
   and [machine H3.3.2 evidence](../hardware/verification/generated/H3-VRF32-audio.json).
 - [IR electrical verification result](ir-electrical-verification.md)
   and [machine H3.3.3 evidence](../hardware/verification/generated/H3-VRF33-ir.json).
+- [Battery sensing and thermal analog result](battery-analog-verification.md)
+  and [machine H3.3.4 evidence](../hardware/verification/generated/H3-VRF34-battery-analog.json).
 
 `H3.0.1–H3.0.3` are reviewed: inputs, parameters and ten common pass/fail
 rules are frozen. `H3.1` is reviewed: 2,032 complete states and 200 rail
@@ -148,8 +150,8 @@ profiles pass with no unresolved finding after one eFuse threshold correction.
 `H3.2` is reviewed: power transitions and the safety loop pass, with two source
 errors corrected. `H3.3.1` is reviewed after correcting two more source errors;
 `H3.3.2` is reviewed after four audio-path corrections. `H3.3.3` is reviewed
-after four IR source corrections. `H3.3.4` is verifying battery sensing,
-thermistors and analog fault thresholds.
+after four IR source corrections. `H3.3.4` is reviewed after four battery-
+analog source corrections. `H3.3.5` is consolidating all analog corners.
 
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate

@@ -4534,19 +4534,19 @@ Reserved: `PA1_NRST`. Free: none.
 | `SAFETY_GROUND` | `power_zone_ntc.END_2` | `abstract:safety-ground` | POWER sensor return |
 | `POWER_ZONE_TEMP_ADC` | `power_zone_temp_pullup.END_2` | `power_zone_temp_filter.END_1` | exact 100-nF local ADC filter |
 | `SAFETY_GROUND` | `power_zone_temp_filter.END_2` | `abstract:safety-ground` | POWER filter return |
-| `POWER_ZONE_TEMP_ADC` | `power_zone_temp_pullup.END_2` | `safety_controller.PA26` | dedicated PA26/ADC0_1 channel detects temperature and open/short faults |
+| `POWER_ZONE_TEMP_ADC` | `power_zone_temp_pullup.END_2` | `safety_controller.PA26` | dedicated physical pin 1 PA26/ADC0_1 uses VDD-reference ratiometric conversion; internal 1.4 V is forbidden because room/cold readings would saturate |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `rf_zone_temp_pullup.END_1` | RF/VOICE hotspot divider uses the independent safety reference |
 | `RF_ZONE_TEMP_ADC` | `rf_zone_temp_pullup.END_2` | `rf_zone_ntc.END_1` | exact 10-kOhm divider midpoint |
 | `SAFETY_GROUND` | `rf_zone_ntc.END_2` | `abstract:safety-ground` | RF/VOICE sensor return |
 | `RF_ZONE_TEMP_ADC` | `rf_zone_temp_pullup.END_2` | `rf_zone_temp_filter.END_1` | exact 100-nF local ADC filter |
 | `SAFETY_GROUND` | `rf_zone_temp_filter.END_2` | `abstract:safety-ground` | RF/VOICE filter return |
-| `RF_ZONE_TEMP_ADC` | `rf_zone_temp_pullup.END_2` | `safety_controller.PA27` | dedicated PA27/ADC0_0 channel detects temperature and open/short faults |
+| `RF_ZONE_TEMP_ADC` | `rf_zone_temp_pullup.END_2` | `safety_controller.PA27` | dedicated physical pin 2 PA27/ADC0_0 uses VDD-reference ratiometric conversion and detects temperature plus open/short faults |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ui_zone_temp_pullup.END_1` | UI hotspot divider remains observable before main-domain shutdown |
 | `UI_ZONE_TEMP_ADC` | `ui_zone_temp_pullup.END_2` | `ui_zone_ntc.END_1` | exact 10-kOhm divider midpoint crosses one reviewed M1 analog contact |
 | `SAFETY_GROUND` | `ui_zone_ntc.END_2` | `abstract:safety-ground` | UI sensor return uses the adjacent safety plane |
 | `UI_ZONE_TEMP_ADC` | `ui_zone_temp_pullup.END_2` | `ui_zone_temp_filter.END_1` | exact 100-nF local ADC filter |
 | `SAFETY_GROUND` | `ui_zone_temp_filter.END_2` | `abstract:safety-ground` | UI filter return |
-| `UI_ZONE_TEMP_ADC` | `ui_zone_temp_pullup.END_2` | `safety_controller.PA16` | dedicated PA16/ADC0_14 channel detects UI temperature and open/short faults |
+| `UI_ZONE_TEMP_ADC` | `ui_zone_temp_pullup.END_2` | `safety_controller.PA16` | dedicated physical pin 12 PA16/ADC0_14 uses VDD-reference ratiometric conversion and detects UI temperature plus open/short faults |
 | `POWER_FAULT_N` | `abstract:power-current-thermal-fault` | `safety_controller.PA30` | the safety controller receives the independent aggregate in parallel with the UI diagnostic expander |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_reset_buffer.VCC` | open-drain reset control remains powered with the non-programmable latch |
 | `SAFETY_GROUND` | `safe_reset_buffer.GND` | `abstract:safety-ground` | local AON logic return |

@@ -6,7 +6,7 @@
   "root_sheet": "CAP_00_ROOT",
   "source_hashes": {
     "hardware/accessories/leshy2-lora-cap-01.json": "aea57801c58d9f255774bc58ecf51aff7238d9e8557d0ae25da6f81145ff5301",
-    "hardware/architecture/devices.json": "962d80d6b0eaabc485f471cc173b6ddea52f8968c05374cad89ae1babd205c41",
+    "hardware/architecture/devices.json": "be2c824fb67f7da62891d54c6fc99e41b345d637239da10b3fff3c609b935054",
     "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
     "hardware/ecad/H2-sheet-contract.json": "56fda7262e6b9adb97956b0c94ec49490e86672a5e6cdc24f80f50919231f81b"
   },

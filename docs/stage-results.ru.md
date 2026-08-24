@@ -119,7 +119,7 @@
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ▶️ сейчас, точный маркер `H3.3.4`.
+**Статус:** ▶️ сейчас, точный маркер `H3.3.5`.
 
 - [Текущая страница виртуальной проверки](virtual-verification.ru.md).
 - [Машиночитаемый план](../hardware/verification/h3-verification-plan.json).
@@ -142,15 +142,17 @@
   и [машинное evidence H3.3.2](../hardware/verification/generated/H3-VRF32-audio.json).
 - [Результат электрической проверки IR](ir-electrical-verification.ru.md)
   и [машинное evidence H3.3.3](../hardware/verification/generated/H3-VRF33-ir.json).
+- [Результат battery sensing и thermal analog](battery-analog-verification.ru.md)
+  и [машинное evidence H3.3.4](../hardware/verification/generated/H3-VRF34-battery-analog.json).
 
 `H3.0.1–H3.0.3` проведены ревью: входы, параметры и десять единых
 pass/fail-правил заморожены. `H3.1` проведено ревью: 2 032 полных состояния и
 200 rail-профилей проходят без незакрытых findings после исправления одного
 порога eFuse. `H3.2` проведено ревью: power transitions и safety-loop проходят,
 две source-ошибки исправлены. `H3.3.1` проведено ревью после исправления ещё
-двух source-ошибок; `H3.3.2` — после четырёх исправлений аудиотракта. В
-`H3.3.3` проверено после четырёх исправлений IR-источников. В `H3.3.4`
-проверяются battery sensing, thermistors и analog fault thresholds.
+двух source-ошибок; `H3.3.2` — после четырёх исправлений аудиотракта.
+`H3.3.3` проверено после четырёх исправлений IR-источников, `H3.3.4` — после
+четырёх battery-analog исправлений. В `H3.3.5` сводятся все analog corners.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate

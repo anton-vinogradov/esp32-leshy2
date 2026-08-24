@@ -29,6 +29,6 @@ H2 принят 24 августа 2026 года на hardware commit `25d9ee2` �
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | 24-to-48-hour operating envelope | H8 endurance run |
 
-**Текущий маркер:** `H3.3.4` — [IR-тракт](ir-electrical-verification.ru.md) проверен; проверяются battery sensing, thermistors и analog fault thresholds.
+**Текущий маркер:** `H3.3.5` — [battery analog](battery-analog-verification.ru.md) проверен; выполняется сводная проверка analog corners.
 
 [Машинный freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

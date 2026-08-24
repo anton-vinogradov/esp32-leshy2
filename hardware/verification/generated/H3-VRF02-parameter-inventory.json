@@ -3,9 +3,9 @@
   "stage": "H3.0.2",
   "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
-    "hardware/architecture/devices.json": "962d80d6b0eaabc485f471cc173b6ddea52f8968c05374cad89ae1babd205c41",
+    "hardware/architecture/devices.json": "be2c824fb67f7da62891d54c6fc99e41b345d637239da10b3fff3c609b935054",
     "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "65701d88fa3160c78977522676c54d706ecd66de5ac3eec6dc3b601780fd2283"
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "c24ddea70c0d22328b77305fa08a7e8886eeba4d54b361c3e3399f2bbb8b4f68"
   },
   "policy": {
     "accepted_h2_baseline_is_immutable": true,
@@ -5322,8 +5322,18 @@
         "url": "https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=B57332V5103F360",
         "checked": "2026-08-18"
       },
-      "structured_parameter_count": 0,
-      "structured_parameters": {},
+      "structured_parameter_count": 9,
+      "structured_parameters": {
+        "r25_ohm": 10000,
+        "r25_tolerance_pct": 1,
+        "b25_50_k": 3380,
+        "b25_85_k": 3435,
+        "b25_100_k": 3455,
+        "b_tolerance_pct": 1,
+        "maximum_power_mw_at_25c": 180,
+        "maximum_permissive_current_ua_at_25c": 550,
+        "dissipation_factor_mw_per_k": 3
+      },
       "parameter_class": "general_component",
       "required_parameter_groups": [
         "operating limits",
@@ -8324,8 +8334,30 @@
         "url": "https://www.xtar.cc/download/18650-4000mah-data-sheet",
         "checked": "2026-08-18"
       },
-      "structured_parameter_count": 0,
-      "structured_parameters": {},
+      "structured_parameter_count": 12,
+      "structured_parameters": {
+        "nominal_voltage_v": 3.6,
+        "typical_capacity_mah": 4000,
+        "minimum_capacity_mah": 3800,
+        "charge_voltage_v": {
+          "nominal": 4.2,
+          "tolerance": 0.03
+        },
+        "standard_charge_current_a": 2.0,
+        "maximum_charge_current_a": 4.0,
+        "discharge_cutoff_v": 2.5,
+        "maximum_continuous_discharge_a": 10.0,
+        "protection_overcurrent_a": {
+          "minimum": 11,
+          "maximum": 14
+        },
+        "initial_internal_resistance_milliohm_max": 40,
+        "manufacturer_operating_temperature_c": {
+          "minimum": -20,
+          "maximum": 60
+        },
+        "product_charge_temperature_rule": "the product uses the narrower independently enforced BQ25798/MAX17320 window; the manufacturer row is not interpreted as permission to charge below 0 C"
+      },
       "parameter_class": "general_component",
       "required_parameter_groups": [
         "operating limits",
@@ -10167,8 +10199,8 @@
     "used_types_with_source": 217,
     "source_missing": 0,
     "official_h3_source_overrides": 2,
-    "used_types_with_structured_electrical_contract": 69,
-    "used_types_requiring_parameter_extraction": 148,
+    "used_types_with_structured_electrical_contract": 71,
+    "used_types_requiring_parameter_extraction": 146,
     "local_vendor_model_files": 0,
     "parameter_classes": {
       "analog_peripheral": 7,

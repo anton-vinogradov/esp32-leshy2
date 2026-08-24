@@ -120,11 +120,11 @@ safety-автоматику.
 <details open>
 <summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.3.4 -->
+<!-- current-substep: H3.3.5 -->
 
-**Точный маркер: `H3.3.4`** — [IR-тракт](docs/ir-electrical-verification.ru.md)
-проверен без незакрытых аналитических findings; проверяются battery sensing,
-thermistors и analog fault thresholds.
+**Точный маркер: `H3.3.5`** — [battery sensing и thermal analog thresholds](docs/battery-analog-verification.ru.md)
+проверены без незакрытых аналитических findings; выполняется сводная проверка
+всех analog corners.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 035 схемных строк.
@@ -212,8 +212,8 @@ thermistors и analog fault thresholds.
   - ✅ `H3.3.1` — [display supply, backlight и direct-QSPI проведены ревью](docs/display-electrical-verification.ru.md); исправлены две source-ошибки.
   - ✅ `H3.3.2` — [codec, microphone, headset, speaker и voice-TX проведены ревью](docs/audio-electrical-verification.ru.md); исправлены четыре source-ошибки.
   - ✅ `H3.3.3` — [IR RX/TX, optical evidence и thermal limits проверены](docs/ir-electrical-verification.ru.md); исправлены четыре source-ошибки.
-  - ▶️ **`H3.3.4` — сейчас:** battery sensing, thermistors и analog fault thresholds.
-  - ⏳ `H3.3.5` — сводная проверка analog corners.
+  - ✅ `H3.3.4` — [battery sensing, thermistors и analog fault thresholds проведены ревью](docs/battery-analog-verification.ru.md); исправлены четыре source-ошибки.
+  - ▶️ **`H3.3.5` — сейчас:** сводная проверка analog corners.
 
 Проверенный план H2 —
 [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Текущий

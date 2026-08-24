@@ -119,11 +119,11 @@ remain unauthorized.
 <details open>
 <summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.3.4 -->
+<!-- current-substep: H3.3.5 -->
 
-**Exact marker: `H3.3.4`** — the [IR path](docs/ir-electrical-verification.md)
-is reviewed with no unresolved analytical finding; battery sensing,
-thermistors and analog fault thresholds are being verified.
+**Exact marker: `H3.3.5`** — [battery sensing and thermal analog thresholds](docs/battery-analog-verification.md)
+are reviewed with no unresolved analytical finding; the complete analog-corner
+evidence is being consolidated.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,035-row circuit inventory reviewed.
@@ -210,8 +210,8 @@ thermistors and analog fault thresholds are being verified.
   - ✅ `H3.3.1` — [display supply, backlight and direct-QSPI reviewed](docs/display-electrical-verification.md); two source errors corrected.
   - ✅ `H3.3.2` — [codec, microphone, headset, speaker and voice TX reviewed](docs/audio-electrical-verification.md); four source errors corrected.
   - ✅ `H3.3.3` — [IR receive, transmit, optical evidence and thermal limits reviewed](docs/ir-electrical-verification.md); four source errors corrected.
-  - ▶️ **`H3.3.4` — current:** battery sensing, thermistors and analog fault thresholds.
-  - ⏳ `H3.3.5` — analog-corner consolidation.
+  - ✅ `H3.3.4` — [battery sensing, thermistors and analog fault thresholds reviewed](docs/battery-analog-verification.md); four source errors corrected.
+  - ▶️ **`H3.3.5` — current:** analog-corner consolidation.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The current machine-readable plan is

@@ -5586,6 +5586,15 @@
         }
       },
       "programmable": false,
+      "configuration_contract": {
+        "cell_count": 2,
+        "charge_current_a_max": 2.0,
+        "ts_ignore": false,
+        "ts_cool_code": 1,
+        "ts_warm_code": 0,
+        "jeita_warm_charge_current": "suspend",
+        "reset_default": "CE is pulled high; charging remains disabled until the protected TPS image has written and read back the bounded charger policy"
+      },
       "contacts": {
         "STAT": {"physical": "1", "role": "signal"},
         "VBUS": {"physical": "2/3", "role": "power"},
@@ -6961,6 +6970,14 @@
         }
       },
       "programmable": false,
+      "configuration_contract": {
+        "cell_count": 2,
+        "enabled_thermistors": ["TH1", "TH2"],
+        "thermistor_type": "10-kohm NTC, B25/85 3435 K",
+        "nthermcfg": "0x71B1",
+        "balance_threshold_mv": 10,
+        "protected_image_rule": "generate and review one golden image, program once, then verify both address spaces, protection checksum and readback; do not spend the seven-write NVM endurance on iterative tuning"
+      },
       "service_required": ["ALRT", "SCL_OD", "SDA_DQ", "PFAIL"],
       "contacts": {
         "IN": {"physical": "1", "role": "power"},
@@ -7020,6 +7037,18 @@
         "production_update": "two target-bound application slots, signed owner/release manifest verification, pending health confirmation and automatic rollback are mandatory",
         "irreversible_lock_policy": "disabled by default; permanent NRST, SWDIO and SWCLK keep owner recovery available",
         "closure_gate": "boot-manager code size, signature verification, power-loss interruption, corrupt-slot rollback and fault-default behavior require measured build and HIL evidence before release"
+      },
+      "adc_contract": {
+        "resolution_bits": 12,
+        "internal_reference_v": {"nominal": 1.4, "minimum": 1.38, "maximum": 1.42},
+        "package_channels": {
+          "PA25": "physical pin 20 / ADC0_2",
+          "PA26": "physical pin 1 / ADC0_1",
+          "PA27": "physical pin 2 / ADC0_0",
+          "PA16": "physical pin 12 / ADC0_14"
+        },
+        "pack_rule": "use the internal 1.4-V reference after at least 20 ms divider settling and discard two conversions",
+        "board_thermistor_rule": "use VDD as the ADC reference so each 10-kohm/10-kohm divider is ratiometric; the internal 1.4-V reference would saturate at room and cold temperatures"
       },
       "programmable": true,
       "controller_capabilities": ["I2C_TARGET", "BITBANG_I2C", "UART1", "ADC", "GPIO", "GPIO_IRQ", "SWD", "HYBRID_BSL", "IWDT"],
@@ -7306,6 +7335,17 @@
         "checked": "2026-08-19"
       },
       "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.1157, "price_break": "DigiKey cut-tape quantity-100 tier", "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/epcos-tdk-electronics/B57332V5103F360/4945421", "checked": "2026-08-19"}},
+      "electrical_contract": {
+        "r25_ohm": 10000,
+        "r25_tolerance_pct": 1,
+        "b25_50_k": 3380,
+        "b25_85_k": 3435,
+        "b25_100_k": 3455,
+        "b_tolerance_pct": 1,
+        "maximum_power_mw_at_25c": 180,
+        "maximum_permissive_current_ua_at_25c": 550,
+        "dissipation_factor_mw_per_k": 3
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "termination 1", "role": "analog"},
@@ -7344,6 +7384,20 @@
           "url": "https://xtardirect.com/products/xtar-high-capacity-36v-18650-4000mah-10a-protected-lithium-ion-battery",
           "checked": "2026-08-19"
         }
+      },
+      "electrical_contract": {
+        "nominal_voltage_v": 3.6,
+        "typical_capacity_mah": 4000,
+        "minimum_capacity_mah": 3800,
+        "charge_voltage_v": {"nominal": 4.2, "tolerance": 0.03},
+        "standard_charge_current_a": 2.0,
+        "maximum_charge_current_a": 4.0,
+        "discharge_cutoff_v": 2.5,
+        "maximum_continuous_discharge_a": 10.0,
+        "protection_overcurrent_a": {"minimum": 11, "maximum": 14},
+        "initial_internal_resistance_milliohm_max": 40,
+        "manufacturer_operating_temperature_c": {"minimum": -20, "maximum": 60},
+        "product_charge_temperature_rule": "the product uses the narrower independently enforced BQ25798/MAX17320 window; the manufacturer row is not interpreted as permission to charge below 0 C"
       },
       "programmable": false,
       "contacts": {

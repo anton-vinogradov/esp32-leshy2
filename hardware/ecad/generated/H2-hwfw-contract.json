@@ -10,8 +10,8 @@
     "hardware/ecad/H2-sheet-contract.json"
   ],
   "source_sha256": {
-    "hardware/architecture/devices.json": "962d80d6b0eaabc485f471cc173b6ddea52f8968c05374cad89ae1babd205c41",
-    "hardware/architecture/candidates/G2F-3I.json": "a2c6c6e23a34b22aea8dc81c6e216a1c4a63440381a14f55eafda47e5c494872",
+    "hardware/architecture/devices.json": "be2c824fb67f7da62891d54c6fc99e41b345d637239da10b3fff3c609b935054",
+    "hardware/architecture/candidates/G2F-3I.json": "bb7cd466a2aac72ab37da628cb2aba2eda4396a91ddcc3729116f50bfb0a3831",
     "hardware/architecture/target-integration-contract.json": "321b697f58fac56a65110462f419fe594c789d4113f54617b3ff36dd17072d36",
     "hardware/ecad/H2-sheet-contract.json": "56fda7262e6b9adb97956b0c94ec49490e86672a5e6cdc24f80f50919231f81b"
   },
@@ -1808,7 +1808,8 @@
               "power_zone_ntc.END_1",
               "power_zone_temp_pullup.END_2",
               "power_zone_temp_filter.END_1"
-            ]
+            ],
+            "reset_proof": "actual DGS20 pin 1 exposes ADC0_1; VDD-reference ratiometric conversion preserves room/cold range and open detection"
           },
           {
             "instance": "safety_controller",
@@ -1820,7 +1821,8 @@
               "rf_zone_ntc.END_1",
               "rf_zone_temp_pullup.END_2",
               "rf_zone_temp_filter.END_1"
-            ]
+            ],
+            "reset_proof": "actual DGS20 pin 2 exposes ADC0_0; VDD-reference ratiometric conversion preserves room/cold range and open detection"
           },
           {
             "instance": "safety_controller",
@@ -1832,7 +1834,8 @@
               "ui_zone_ntc.END_1",
               "ui_zone_temp_pullup.END_2",
               "ui_zone_temp_filter.END_1"
-            ]
+            ],
+            "reset_proof": "actual DGS20 pin 12 exposes ADC0_14; VDD-reference ratiometric conversion preserves room/cold range and open detection"
           }
         ]
       }

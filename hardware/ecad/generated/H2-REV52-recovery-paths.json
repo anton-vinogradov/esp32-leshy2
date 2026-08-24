@@ -4,10 +4,10 @@
   "status": "reviewed_reset_boot_service_and_recovery_paths",
   "method": "fresh complete KiCad netlists compared with collapsed architecture endpoints and explicit fixture pads",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "a2c6c6e23a34b22aea8dc81c6e216a1c4a63440381a14f55eafda47e5c494872",
+    "hardware/architecture/candidates/G2F-3I.json": "bb7cd466a2aac72ab37da628cb2aba2eda4396a91ddcc3729116f50bfb0a3831",
     "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "a4a143eb78de40e3b6289bb89a1bc86564322880f49b03055b71dcd9cce2e28c",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "fabf7574b8ad4b6134a1fafcb65c90317cda8c82ef44e43a9aeb52c1bd289f61",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "3fee1f1c2045cd1e0da31b006f96e238e2c4ee6aa85fe83330b541a949bec54e",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "36b05d0bfbdeb335f3d88b49c3fa9eef5c6eaca08301326ae9ff8c83ebabcf4f",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01"
   },
