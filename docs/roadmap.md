@@ -27,7 +27,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
 | Production ECAD schematic | ✅ H2 accepted at hardware `25d9ee2`; firmware F2 synchronized at `900bb2b` |
 | Electrical and transient evidence | ✅ H3 accepted; 85 physical-only rows remain assigned to H5/H6/H8 |
-| Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
+| Firmware interlock | The firmware [F1 result](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f1-portable-cores-report.md) exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
 | Physical samples and HIL | 🔒 Not ordered or run |
@@ -42,7 +42,7 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 <!-- current-substep: H4.0.1 -->
 
-**Exact marker: `H4.0.1`** — [H3 is accepted](h3-acceptance.md). H4 waits for
+**Exact marker: `H4.0.1`** — the [H3 result report is accepted](h3-acceptance.md). H4 waits for
 firmware F3 target builds, image-size/rollback gates and maximum available
 emulator/portable evidence. No purchase, layout or fabrication is authorized.
 
@@ -333,7 +333,7 @@ A production order is possible only after H9.
 | **H0. Product requirements and functional architecture** | ✅ Reviewed | Complete capability scope, five compute domains, radio/interface owners, interface classes, one active signal group, full-function 3×nRF24 and safety boundaries | Requirements and architecture checks pass; every required function has an owner and a defined hardware boundary |
 | **H1. Physical product design** | ✅ Reviewed | Accepted exterior, both outer and inner faces, true antenna-edge view, sections, assembly sequence, selected-part envelopes and feasible pin/resource allocation | Dimensions come from selected MPNs; no component, fastener, silkscreen, antenna or accessory collision; controls, battery, U214, ports, microphone and speaker are accessible; allocation still fits; the user accepted the mockup |
 | **H2. Production ECAD schematic** | ✅ Reviewed and accepted | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 consumes the contract without invented pins |
-| **H3. Virtual electrical verification** | ✅ Reviewed and accepted | Calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
+| **H3. Virtual electrical verification** | ✅ Reviewed and accepted | [H3 result report](h3-acceptance.md): calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
 | **H4. Joined pre-layout gate** | ▶️ Current prerequisite boundary; waiting for firmware F3 | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
 | **H5. Component evidence samples** | 🔒 Waiting for H4 and separate cost approval | Minimum evidence purchase, not a production basket | Received display, U214, connectors and radios are identified and measured; connector mating and critical stack-up fit are proven; raw records are retained; mismatch reopens its source stage |
 | **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |
@@ -355,8 +355,12 @@ A production order is possible only after H9.
    automatically. Functional or material-cost changes require a decision.
 6. RF transmission and dangerous fault tests run only on owned loads, with
    target-owner authorization or in an isolated laboratory.
+7. Closing each top-level `H*` phase publishes a bilingual result report and a
+   link from the roadmap tables and landing page. An internal substep updates
+   the exact current marker but does not receive a separate global report.
 
 ## Next action
 
-Current work is H3: exhaust analytical and simulated electrical evidence from
-accepted H2. PCB placement/routing and purchasing remain blocked.
+The current boundary is `H4.0.1`: wait for firmware F3 target builds and the
+maximum available emulator/portable evidence, then run the joined pre-layout
+gate. PCB placement/routing and purchasing remain blocked.

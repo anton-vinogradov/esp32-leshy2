@@ -12,7 +12,7 @@
 
 </div>
 
-> **Now: H3 · virtual electrical verification.** Production ECAD H2 is
+> **Now: H4 · the joined pre-layout gate waits for firmware F3.** H3 is
 > accepted; PCB routing, purchasing and fabrication remain blocked.
 
 <div align="center">
@@ -104,13 +104,17 @@ drawings, schematics, contracts and checks.
 | H0 · Product requirements and functional architecture | ✅ Reviewed | [Open H0](docs/stage-results.md#h0) |
 | H1 · Physical product design | ✅ Reviewed | [Open H1](docs/stage-results.md#h1) |
 | H2 · Production ECAD schematic | ✅ Reviewed and accepted | [H2 results](docs/stage-results.md#h2) |
-| H3 · Virtual electrical verification | ✅ Reviewed and accepted | [H3 results](docs/stage-results.md#h3) |
+| H3 · Virtual electrical verification | ✅ Reviewed and accepted | [H3 result report](docs/h3-acceptance.md) |
 | **H4 · Joined pre-layout gate** | **▶️ Current prerequisite boundary; waiting for firmware F3** | [H4 plan](docs/stage-results.md#h4) |
 | H5 · Component evidence samples | 🔒 Waiting for H4 and cost approval | [H5 plan](docs/stage-results.md#h5) |
 | H6 · PCB placement and routing | 🔒 Waiting for H5 | [H6 plan](docs/stage-results.md#h6) |
 | H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6, firmware F3 and order approval | [H7 plan](docs/stage-results.md#h7) |
 | H8 · Physical qualification | 🔒 Waiting for H7 | [H8 plan](docs/stage-results.md#h8) |
 | H9 · Manufacturing release | 🔒 Waiting for H8 and firmware F11 | [H9 plan](docs/stage-results.md#h9) |
+
+Every completed top-level `H*` phase receives a separate readable result report
+linked from this table. Internal substeps update the exact marker but do not
+create separate global reports.
 
 **Hardware is at the H4 prerequisite boundary.** H3 virtual electrical
 verification is accepted; the joined pre-layout review waits for firmware F3
@@ -123,7 +127,9 @@ target/emulator evidence. PCB layout and every order remain unauthorized.
 
 **Exact marker: `H4.0.1`** — [H3 is accepted](docs/h3-acceptance.md). The joined
 pre-layout gate waits for firmware F3 target builds, image-size/rollback gates
-and maximum available emulator/portable evidence.
+and maximum available emulator/portable evidence. The completed firmware
+[F1 result](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f1-portable-cores-report.md)
+proves the portable cores but does not replace F3 target evidence.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,048-row circuit inventory reviewed.

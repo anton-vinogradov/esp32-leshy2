@@ -12,7 +12,7 @@
 
 </div>
 
-> **Сейчас: H3 · виртуальная электрическая проверка.** Production ECAD H2
+> **Сейчас: H4 · объединённый pre-layout gate ожидает firmware F3.** H3
 > принято; PCB routing, закупка и печать пока заблокированы.
 
 <div align="center">
@@ -105,13 +105,17 @@ safety-автоматику.
 | H0 · Требования и функциональная архитектура | ✅ Проведено ревью | [Открыть H0](docs/stage-results.ru.md#h0) |
 | H1 · Физический дизайн устройства | ✅ Проведено ревью | [Открыть H1](docs/stage-results.ru.md#h1) |
 | H2 · Production ECAD-схема | ✅ Проведено ревью и принято | [Результаты H2](docs/stage-results.ru.md#h2) |
-| H3 · Виртуальная электрическая проверка | ✅ Проведено ревью и принято | [Результаты H3](docs/stage-results.ru.md#h3) |
+| H3 · Виртуальная электрическая проверка | ✅ Проведено ревью и принято | [Итоговый отчёт H3](docs/h3-acceptance.ru.md) |
 | **H4 · Объединённый pre-layout gate** | **▶️ Текущая граница пререквизитов; ожидает firmware F3** | [План H4](docs/stage-results.ru.md#h4) |
 | H5 · Образцы компонентов | 🔒 Ожидает H4 и одобрение стоимости | [План H5](docs/stage-results.ru.md#h5) |
 | H6 · PCB placement и routing | 🔒 Ожидает H5 | [План H6](docs/stage-results.ru.md#h6) |
 | H7 · Печать прототипа и bring-up | 🔒 Ожидает H6, firmware F3 и одобрение заказа | [План H7](docs/stage-results.ru.md#h7) |
 | H8 · Физическая квалификация | 🔒 Ожидает H7 | [План H8](docs/stage-results.ru.md#h8) |
 | H9 · Производственный release | 🔒 Ожидает H8 и firmware F11 | [План H9](docs/stage-results.ru.md#h9) |
+
+Каждая завершённая глобальная фаза `H*` получает отдельный понятный итоговый
+отчёт, связанный с этой таблицей. Внутренние подэтапы обновляют точный маркер,
+но не создают отдельные глобальные отчёты.
 
 **Железо находится на границе пререквизитов H4.** Виртуальная электрическая
 проверка H3 принята; объединённый pre-layout review ожидает target/emulator
@@ -124,7 +128,9 @@ evidence firmware F3. PCB layout и любые заказы остаются н�
 
 **Точный маркер: `H4.0.1`** — [H3 принят](docs/h3-acceptance.ru.md).
 Объединённый pre-layout gate ожидает target builds, image-size/rollback gates
-и максимально доступное emulator/portable evidence firmware F3.
+и максимально доступное emulator/portable evidence firmware F3. Уже закрытый
+[итог F1 прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f1-portable-cores-report.ru.md)
+доказывает переносимые ядра, но не заменяет target evidence F3.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 048 схемных строк.

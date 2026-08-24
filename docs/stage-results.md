@@ -120,6 +120,8 @@ are satisfied.
 
 **Status:** ✅ reviewed and accepted on 24 August 2026.
 
+- [H3 result report](h3-acceptance.md) — concise outcome, diagram, corrections,
+  evidence boundary and transition to H4.
 - [Current virtual-verification page](virtual-verification.md).
 - [Machine execution plan](../hardware/verification/h3-verification-plan.json).
 - [Accepted-input freeze and 16-domain matrix](../hardware/verification/generated/H3-VRF01-input-freeze.json).

@@ -121,6 +121,8 @@
 
 **Статус:** ✅ проведено ревью и принято 24 августа 2026 года.
 
+- [Итоговый отчёт H3](h3-acceptance.ru.md) — краткий результат, схема,
+  исправления, границы доказанного и переход к H4.
 - [Текущая страница виртуальной проверки](virtual-verification.ru.md).
 - [Машиночитаемый план](../hardware/verification/h3-verification-plan.json).
 - [Freeze принятого H2 и матрица из 16 областей](../hardware/verification/generated/H3-VRF01-input-freeze.json).

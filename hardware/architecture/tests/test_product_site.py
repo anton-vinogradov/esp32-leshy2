@@ -137,7 +137,7 @@ class ProductSiteTests(unittest.TestCase):
                 "docs/status", "docs/stages",
             ):
                 self.assertNotIn(forbidden, page, f"{name}: {forbidden}")
-            if not any(token in name for token in ("roadmap", "stage-results")) and not name.startswith("README"):
+            if not any(token in name for token in ("roadmap", "stage-results", "acceptance")) and not name.startswith("README"):
                 self.assertNotIn("проведено ревью", page, name)
 
     def test_roadmap_reports_current_truth_and_complete_route(self):
@@ -174,6 +174,39 @@ class ProductSiteTests(unittest.TestCase):
                 self.assertIn(token, page, f"{name}: {token}")
             for stage in range(10):
                 self.assertIn(f"H{stage} ·", page, f"{name}: missing H{stage}")
+
+    def test_completed_global_h3_has_bilingual_result_report(self):
+        reports = {
+            "docs/h3-acceptance.md": (
+                "H3 result · Virtual electrical verification",
+                "25",
+                "0 open analytical findings",
+                "85 physical checks",
+                "1.2814 USD",
+                "does **not** authorize purchase",
+            ),
+            "docs/h3-acceptance.ru.md": (
+                "Итог H3 · Виртуальная электрическая проверка",
+                "25",
+                "0 открытых analytical findings",
+                "85 физических проверок",
+                "1.2814 USD",
+                "**не** разрешает закупку",
+            ),
+        }
+        for name, tokens in reports.items():
+            page = self.read(name)
+            self.assertEqual(1, page.count("```mermaid"), name)
+            for token in tokens:
+                self.assertIn(token, page, f"{name}: {token}")
+
+        for name, report in (
+            ("README.md", "docs/h3-acceptance.md"),
+            ("README.ru.md", "docs/h3-acceptance.ru.md"),
+            ("docs/roadmap.md", "h3-acceptance.md"),
+            ("docs/roadmap.ru.md", "h3-acceptance.ru.md"),
+        ):
+            self.assertIn(report, self.read(name), name)
 
     def test_landing_page_is_a_product_front_door(self):
         expectations = {

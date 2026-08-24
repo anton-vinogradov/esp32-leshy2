@@ -27,7 +27,7 @@
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
 | Production ECAD-схема | ✅ H2 принят на hardware `25d9ee2`; firmware F2 синхронизирован на `900bb2b` |
 | Электрические и переходные evidence | ✅ H3 принят; 85 physical-only строк остаются назначены H5/H6/H8 |
-| Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
+| Пересечение с прошивкой | [Итог firmware F1](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f1-portable-cores-report.ru.md) существует, но target boot/emulation этапа F3 не закрыт |
 | Работа над KiCad-схемой | ✅ H2 проведено ревью; позднее несоответствие повторно откроет затронутые листы |
 | KiCad placement и PCB routing | 🔒 H6: не начаты и не разрешены |
 | Физические образцы и HIL | 🔒 Не заказывались и не проводились |
@@ -43,7 +43,7 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 <!-- current-substep: H4.0.1 -->
 
-**Точный маркер: `H4.0.1`** — [H3 принят](h3-acceptance.ru.md). H4 ожидает
+**Точный маркер: `H4.0.1`** — [итоговый отчёт H3 принят](h3-acceptance.ru.md). H4 ожидает
 target builds, image-size/rollback gates и максимально доступное emulator/
 portable evidence firmware F3. Закупка, layout и печать не разрешаются.
 
@@ -337,7 +337,7 @@ size/rollback gates, доступный S3 QEMU и portable/host-модели д
 | **H0. Требования продукта и функциональная архитектура** | ✅ Проведено ревью | Полные границы возможностей, пять вычислительных доменов, владельцы радио/интерфейсов, классы интерфейсов, одна активная signal group, полноценные 3×nRF24 и safety boundaries | Проверки требований и архитектуры проходят; у каждой обязательной функции есть владелец и определённая аппаратная граница |
 | **H1. Физический дизайн устройства** | ✅ Проведено ревью | Согласованные внешние и внутренние стороны, настоящий вид от антенного торца, разрезы, порядок сборки, envelopes выбранных деталей и сходящаяся pin/resource раскладка | Размеры основаны на выбранных MPN; нет коллизий деталей, крепежа, шелкографии, антенн и аксессуаров; доступны органы управления, батарея, U214, порты, микрофон и динамик; resource budget сходится; пользователь принял мокап |
 | **H2. Production ECAD-схема** | ✅ Проведено ревью и принято | Новая актуальная схема на читаемых листах и machine-readable HW↔FW contract | Точные symbol/footprint/pin/net/value; объяснены NC; ERC без необъяснённых ошибок; отдельно проверены reset, boot, recovery, no-back-power, quiet state и `FAULT_KILL`; firmware F2 использует контракт без выдуманных pins |
-| **H3. Виртуальная электрическая проверка** | ✅ Проведено ревью и принято | Расчёты и симуляции до дорогой физики | Проходят worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse и load-step; thermal/fault tree; все analog corners; timing/levels; RF corridors, returns и pre-layout constraints |
+| **H3. Виртуальная электрическая проверка** | ✅ Проведено ревью и принято | [Итоговый отчёт H3](h3-acceptance.ru.md): расчёты и симуляции до дорогой физики | Проходят worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse и load-step; thermal/fault tree; все analog corners; timing/levels; RF corridors, returns и pre-layout constraints |
 | **H4. Объединённый pre-layout gate** | ▶️ Текущая граница пререквизитов; ожидает firmware F3 | Единое ревью механики, production ECAD, электрических evidence и видимых target-прошивке контрактов | Нет открытого виртуально проверяемого blocker; target skeletons используют реальный контракт; у каждой остаточной физической неопределённости есть измерение и bring-up test |
 | **H5. Образцы компонентов** | 🔒 Ожидает H4 и отдельное одобрение стоимости | Минимальная доказательная закупка, а не production basket | Полученные display, U214, connectors и radios идентифицированы и измерены; доказаны mating и критический stack-up; raw records сохранены; расхождение повторно открывает исходный этап |
 | **H6. PCB placement и routing** | 🔒 Ожидает H5 | Две реальные платы, реализующие принятую схему и механику | Пройдены placement review обеих сторон, DRC, impedance и return-current review, RF isolation, antenna feeds, thermal copper, creepage, test points, assembly и manufacturability; fab package принят отдельно |
@@ -360,8 +360,12 @@ size/rollback gates, доступный S3 QEMU и portable/host-модели д
    отдельного решения.
 6. RF-передача и опасные fault-тесты выполняются только на своей нагрузке, с
    разрешения владельца цели или в изолированной лаборатории.
+7. Закрытие каждой глобальной фазы `H*` публикует двуязычный итоговый отчёт и
+   ссылку из таблиц roadmap и стартовой страницы. Внутренний подэтап обновляет
+   точный текущий маркер, но отдельным глобальным отчётом не считается.
 
 ## Что происходит следующим
 
-Текущая работа — H3: исчерпать расчётные и симуляционные electrical evidence
-из принятого H2. PCB placement/routing и закупка остаются заблокированы.
+Текущая граница — `H4.0.1`: дождаться target builds и максимально доступного
+emulator/portable evidence firmware F3, затем провести единый pre-layout gate.
+PCB placement/routing и закупка остаются заблокированы.
