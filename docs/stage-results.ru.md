@@ -119,7 +119,7 @@
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ▶️ сейчас, точный маркер `H3.6.1`.
+**Статус:** ▶️ сейчас, точный маркер `H3.6.2`.
 
 - [Текущая страница виртуальной проверки](virtual-verification.ru.md).
 - [Машиночитаемый план](../hardware/verification/h3-verification-plan.json).
@@ -178,8 +178,8 @@ loading M1, expansions и service boundaries 49 checks. `H3.4.4` закрыва�
 feed/connectors/matching/loss всех девяти портов. `H3.5.2` закрывает 23 checks
 corridors, keepouts, planes и returns. `H3.5.3` закрывает 30 checks one-group,
 quiet-state и полных 3×nRF24. `H3.5.4` закрывает фазу 22 сквозными checks поверх
-125 leaf checks. В `H3.6.1` строится worst-case thermal model плат,
-аккумуляторов и корпуса.
+125 leaf checks. В `H3.6.1` [тепловая модель](thermal-model.ru.md) проведена
+ревью 21 check; в `H3.6.2` строится single-fault tree.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate

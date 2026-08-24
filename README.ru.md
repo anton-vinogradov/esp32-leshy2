@@ -120,11 +120,11 @@ safety-автоматику.
 <details open>
 <summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.6.1 -->
+<!-- current-substep: H3.6.2 -->
 
-**Точный маркер: `H3.6.1`** — [RF-проверка сведена](docs/rf-verification-result.ru.md)
-125 leaf и 22 сквозными checks без незакрытых аналитических findings; теперь
-строится worst-case thermal model плат, аккумуляторов и корпуса.
+**Точный маркер: `H3.6.2`** — [параметрическая тепловая модель](docs/thermal-model.ru.md)
+проведена ревью 21 машинным check; электрический максимум отделён от
+непрерывного режима, теперь трассируются single faults и независимое shutdown.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 035 схемных строк.
@@ -225,8 +225,8 @@ safety-автоматику.
   - ✅ `H3.5.3` — [проверены isolation, quiet-state и одновременные 3×nRF24](docs/rf-coexistence.ru.md).
   - ✅ `H3.5.4` — [сведены 125 leaf и 22 сквозных RF checks](docs/rf-verification-result.ru.md).
 - ▶️ **`H3.6` — сейчас:** thermal, fault-tree и unattended-operation verification.
-  - ▶️ **`H3.6.1` — сейчас:** worst-case thermal model плат, аккумуляторов и корпуса.
-  - ⏳ `H3.6.2` — single faults через независимое shutdown и recovery.
+  - ✅ `H3.6.1` — [тепловая модель плат, аккумуляторов и корпуса проведена ревью](docs/thermal-model.ru.md); исправлены charger TREG/TSHUT.
+  - ▶️ **`H3.6.2` — сейчас:** single faults через независимое shutdown и recovery.
   - ⏳ `H3.6.3` — ограниченный 24–48-часовой unattended-operation envelope.
   - ⏳ `H3.6.4` — thermal/fault consolidation.
 

@@ -26,7 +26,7 @@
 | Физический дизайн устройства | ✅ H1 принят: внешние/внутренние виды, разрезы, service paths и pin/resource fit пройдены |
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
 | Production ECAD-схема | ✅ H2 принят на hardware `25d9ee2`; firmware F2 синхронизирован на `900bb2b` |
-| Электрические и переходные evidence | ▶️ H3.6.1: RF проверено; строится worst-case thermal model |
+| Электрические и переходные evidence | ▶️ H3.6.2: thermal model проверен; строится single-fault tree |
 | Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
 | Работа над KiCad-схемой | ✅ H2 проведено ревью; позднее несоответствие повторно откроет затронутые листы |
 | KiCad placement и PCB routing | 🔒 H6: не начаты и не разрешены |
@@ -41,11 +41,11 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённые H1/H2 и детальный состав текущей H3
 
-<!-- current-substep: H3.6.1 -->
+<!-- current-substep: H3.6.2 -->
 
-**Точный маркер: `H3.6.1`** — [RF-проверка сведена](rf-verification-result.ru.md)
-125 leaf и 22 сквозными checks без незакрытых аналитических findings; теперь
-строится worst-case thermal model плат, аккумуляторов и корпуса.
+**Точный маркер: `H3.6.2`** — [параметрическая тепловая модель](thermal-model.ru.md)
+проведена ревью 21 машинным check; электрический максимум отделён от
+непрерывного режима, теперь трассируются single faults и независимое shutdown.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -270,8 +270,8 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
   - ✅ `H3.5.3` — [проверены one-active-group isolation, quiet state и одновременные 3×nRF24](rf-coexistence.ru.md).
   - ✅ `H3.5.4` — [RF evidence сведены](rf-verification-result.ru.md): 125 leaf и 22 сквозных checks.
 - ▶️ `H3.6` — thermal model, single-fault tree и unattended 24–48 часов.
-  - ▶️ **`H3.6.1` — сейчас:** worst-case thermal model плат, аккумуляторов и корпуса.
-  - ⏳ `H3.6.2` — single faults через независимое shutdown и recovery.
+  - ✅ `H3.6.1` — [тепловая модель плат, аккумуляторов и корпуса проведена ревью](thermal-model.ru.md); исправлены charger TREG/TSHUT.
+  - ▶️ **`H3.6.2` — сейчас:** single faults через независимое shutdown и recovery.
   - ⏳ `H3.6.3` — ограниченный 24–48-часовой unattended-operation envelope.
   - ⏳ `H3.6.4` — thermal/fault consolidation.
 - ⏳ `H3.7` — сквозная сверка, physical-only остатки и формальная приёмка H3.
@@ -332,7 +332,7 @@ size/rollback gates, доступный S3 QEMU и portable/host-модели д
 | **H0. Требования продукта и функциональная архитектура** | ✅ Проведено ревью | Полные границы возможностей, пять вычислительных доменов, владельцы радио/интерфейсов, классы интерфейсов, одна активная signal group, полноценные 3×nRF24 и safety boundaries | Проверки требований и архитектуры проходят; у каждой обязательной функции есть владелец и определённая аппаратная граница |
 | **H1. Физический дизайн устройства** | ✅ Проведено ревью | Согласованные внешние и внутренние стороны, настоящий вид от антенного торца, разрезы, порядок сборки, envelopes выбранных деталей и сходящаяся pin/resource раскладка | Размеры основаны на выбранных MPN; нет коллизий деталей, крепежа, шелкографии, антенн и аксессуаров; доступны органы управления, батарея, U214, порты, микрофон и динамик; resource budget сходится; пользователь принял мокап |
 | **H2. Production ECAD-схема** | ✅ Проведено ревью и принято | Новая актуальная схема на читаемых листах и machine-readable HW↔FW contract | Точные symbol/footprint/pin/net/value; объяснены NC; ERC без необъяснённых ошибок; отдельно проверены reset, boot, recovery, no-back-power, quiet state и `FAULT_KILL`; firmware F2 использует контракт без выдуманных pins |
-| **H3. Виртуальная электрическая проверка** | ▶️ Сейчас · `H3.6.1` | Расчёты и симуляции до дорогой физики | Проходят worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse и load-step; thermal/fault tree; все analog corners; timing/levels; RF corridors, returns и pre-layout constraints |
+| **H3. Виртуальная электрическая проверка** | ▶️ Сейчас · `H3.6.2` | Расчёты и симуляции до дорогой физики | Проходят worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse и load-step; thermal/fault tree; все analog corners; timing/levels; RF corridors, returns и pre-layout constraints |
 | **H4. Объединённый pre-layout gate** | 🔒 Ожидает H1–H3 и firmware F3 | Единое ревью механики, production ECAD, электрических evidence и видимых target-прошивке контрактов | Нет открытого виртуально проверяемого blocker; target skeletons используют реальный контракт; у каждой остаточной физической неопределённости есть измерение и bring-up test |
 | **H5. Образцы компонентов** | 🔒 Ожидает H4 и отдельное одобрение стоимости | Минимальная доказательная закупка, а не production basket | Полученные display, U214, connectors и radios идентифицированы и измерены; доказаны mating и критический stack-up; raw records сохранены; расхождение повторно открывает исходный этап |
 | **H6. PCB placement и routing** | 🔒 Ожидает H5 | Две реальные платы, реализующие принятую схему и механику | Пройдены placement review обеих сторон, DRC, impedance и return-current review, RF isolation, antenna feeds, thermal copper, creepage, test points, assembly и manufacturability; fab package принят отдельно |

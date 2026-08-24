@@ -118,7 +118,7 @@ are satisfied.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current, exact marker `H3.6.1`.
+**Status:** ▶️ current, exact marker `H3.6.2`.
 
 - [Current virtual-verification page](virtual-verification.md).
 - [Machine execution plan](../hardware/verification/h3-verification-plan.json).
@@ -177,8 +177,9 @@ the phase with 27 cross-domain checks over all 162 leaf checks. `H3.5.1`
 closes 72 feed/connector/matching/loss checks for all nine ports. `H3.5.2`
 closes 23 corridor, keepout, plane and return checks. `H3.5.3` closes 30
 one-group, quiet-state and full 3×nRF24 checks. `H3.5.4` closes the phase with
-22 cross-domain checks over all 125 leaf checks. `H3.6.1` is building the
-worst-case board, battery and enclosure thermal model.
+22 cross-domain checks over all 125 leaf checks. The H3.6.1
+[thermal model](thermal-model.md) is reviewed with 21 checks; H3.6.2 is building
+the single-fault tree.
 
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate

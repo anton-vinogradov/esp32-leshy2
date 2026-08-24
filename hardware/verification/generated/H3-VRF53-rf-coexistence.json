@@ -3,12 +3,12 @@
   "stage": "H3.5.3",
   "status": "reviewed_one_group_quiet_and_three_nrf_concurrency_model",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "bb7cd466a2aac72ab37da628cb2aba2eda4396a91ddcc3729116f50bfb0a3831",
-    "hardware/verification/generated/H3-VRF11-power-state-register.json": "e4916ee474797db5c598979240dc6ff8125ba8165c762715d1c6e749692e29e6",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "0c2c8bd53d8a21a9fbd4d6289e19a8b6f6b2b8832f2fed8f15dbfb3c66f9e2d5",
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "e3b28c923704acf301d733a0450a8c0ff15373e97bc69a180c696b86583c0e5a",
-    "hardware/verification/generated/H3-VRF42-digital-timing.json": "a81dbe05fcd67c52b4e09538b6c40b81ec6deb483966ac881ab39dd233557a98",
-    "hardware/verification/generated/H3-VRF52-rf-layout-constraints.json": "e71a7092835a032b7489231136486f6d5e95de077cb15f02b3b6c0d34518478c"
+    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "328a160bfe7607f26183706e3f9bdc0e8f76c7fa0744b0385e1705e11fa8830a",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "00687233932467ada2faeae0b2bd94c6c926092269e32c21157a2327043716a9",
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "007cfdd608dcc92f382636a46b9a125e7291088bc17a0606be2a5d52b9a3c3a0",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "2bb54dc3738e20e266a4aea72e66f2f81c28c0e0a364cf957f41047b8c816845",
+    "hardware/verification/generated/H3-VRF52-rf-layout-constraints.json": "9ffa5a7ed566a1cf0e041e47e9febc0f3431eb27e05ad504d6cde14eee1beb10"
   },
   "summary": {
     "signal_groups": 9,

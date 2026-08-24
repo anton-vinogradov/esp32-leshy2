@@ -5,10 +5,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_50_TX_SAFETY_EVIDENCE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "bb7cd466a2aac72ab37da628cb2aba2eda4396a91ddcc3729116f50bfb0a3831",
-    "hardware/architecture/devices.json": "be2c824fb67f7da62891d54c6fc99e41b345d637239da10b3fff3c609b935054",
+    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
+    "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
     "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "3fee1f1c2045cd1e0da31b006f96e238e2c4ee6aa85fe83330b541a949bec54e"
+    "hardware/ecad/generated/H2-UI-root-interface.json": "86a4b336574b115ae315991ef56c095f83c3c54ee8d4032dde50df6e7ddcf544"
   },
   "summary": {
     "ledger_instances": 28,

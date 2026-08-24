@@ -119,11 +119,11 @@ remain unauthorized.
 <details open>
 <summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.6.1 -->
+<!-- current-substep: H3.6.2 -->
 
-**Exact marker: `H3.6.1`** — [RF verification is consolidated](docs/rf-verification-result.md)
-with 125 leaf plus 22 cross-domain checks and no unresolved analytical finding;
-the worst-case board, battery and enclosure thermal model is now being built.
+**Exact marker: `H3.6.2`** — the [parameterized thermal model](docs/thermal-model.md)
+is reviewed with 21 machine checks; electrical maximum is separated from
+continuous operation and single faults are now traced to independent shutdown.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,035-row circuit inventory reviewed.
@@ -223,8 +223,8 @@ the worst-case board, battery and enclosure thermal model is now being built.
   - ✅ `H3.5.3` — [isolation, quiet-state and concurrent 3×nRF24 reviewed](docs/rf-coexistence.md).
   - ✅ `H3.5.4` — [125 leaf and 22 cross-domain RF checks consolidated](docs/rf-verification-result.md).
 - ▶️ **`H3.6` — current:** thermal, fault-tree and unattended-operation verification.
-  - ▶️ **`H3.6.1` — current:** worst-case board, battery and enclosure thermal model.
-  - ⏳ `H3.6.2` — single faults through independent shutdown and recovery.
+  - ✅ `H3.6.1` — [board, battery and enclosure thermal model reviewed](docs/thermal-model.md); charger TREG/TSHUT corrected.
+  - ▶️ **`H3.6.2` — current:** single faults through independent shutdown and recovery.
   - ⏳ `H3.6.3` — bounded 24–48-hour unattended operating envelope.
   - ⏳ `H3.6.4` — thermal and fault consolidation.
 

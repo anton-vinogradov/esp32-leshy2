@@ -1577,6 +1577,11 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("direct non-ignored charger TS", contract["charger_passive_profile"])
         self.assertNotIn("exact product USB-C receptacle", contract["remaining_i3"])
         self.assertNotIn("exact product USB-C receptacle", contract["deferred_i4"])
+        charger = self.database["devices"]["ti_bq25798_rqmr"]["configuration_contract"]
+        self.assertEqual(60, charger["thermal_regulation_c"])
+        self.assertEqual(85, charger["thermal_shutdown_c"])
+        self.assertIn("masked readback", charger["temperature_control_register"])
+        self.assertIn("TREG=60 C", contract["thermal_fault_policy"])
 
         expected_instances = {
             "charger_inductor": "sunlord_mwsa0503s_2r2mt",

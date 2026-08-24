@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "H3",
   "status": "in_progress",
-  "current_substep": "H3.6.1",
+  "current_substep": "H3.6.2",
   "accepted_input": {
     "stage": "H2.8.2",
     "status": "accepted_by_user",
@@ -91,8 +91,8 @@
       "title": "Thermal, fault-tree and unattended-operation verification",
       "status": "current",
       "children": [
-        {"id": "H3.6.1", "title": "Build worst-case board, battery and enclosure thermal model", "status": "current"},
-        {"id": "H3.6.2", "title": "Trace single faults through independent hardware shutdown and recovery", "status": "waiting"},
+        {"id": "H3.6.1", "title": "Build worst-case board, battery and enclosure thermal model", "status": "reviewed", "evidence": "generated/H3-VRF61-thermal-model.json"},
+        {"id": "H3.6.2", "title": "Trace single faults through independent hardware shutdown and recovery", "status": "current"},
         {"id": "H3.6.3", "title": "Verify the bounded 24-to-48-hour unattended operating envelope", "status": "waiting"},
         {"id": "H3.6.4", "title": "Consolidate thermal and fault evidence", "status": "waiting"}
       ]

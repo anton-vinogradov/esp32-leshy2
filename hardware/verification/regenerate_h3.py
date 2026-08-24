@@ -32,6 +32,7 @@ SCRIPTS = (
     ROOT / "hardware/verification/h3_rf_layout_constraints.py",
     ROOT / "hardware/verification/h3_rf_coexistence.py",
     ROOT / "hardware/verification/h3_rf_consolidation.py",
+    ROOT / "hardware/verification/h3_thermal_model.py",
 )
 
 

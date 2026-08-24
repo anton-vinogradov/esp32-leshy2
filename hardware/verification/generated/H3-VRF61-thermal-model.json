@@ -1,0 +1,322 @@
+{
+  "schema_version": 1,
+  "stage": "H3.6.1",
+  "status": "reviewed_parameterized_board_cell_and_enclosure_thermal_model",
+  "method": "full admitted H3.1 state enumeration plus conservative internal heat partition and parameterized base-to-ambient resistance limits",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "ffbf4937845399d066c7febbd0ed36a7196059c1bd79c1f8d613dbda55a7cca5",
+    "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "00687233932467ada2faeae0b2bd94c6c926092269e32c21157a2327043716a9",
+    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "81a20f04593d6ac7201b47bd3eff19c7902cf649849bf4bcc695c0d697aea49a",
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "1cf679c6861759b1175805d794b8e092317a8335bca11ec550a541220cab68e1",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "dbe39a715b68ad956460026ad750d7fdcef6cc7a0ea7b969babb6f497cacb476"
+  },
+  "thermal_parts": {
+    "main_voice_ext_buck": {
+      "mpn": "Texas Instruments TPS564252DRLR",
+      "junction_operating_c": [
+        -40,
+        125
+      ],
+      "junction_absolute_c_max": 150,
+      "rtheta_ja_jedec_k_per_w": "137.4",
+      "rtheta_ja_evm_k_per_w": "74.0",
+      "rtheta_evm_basis": "two-layer 2-oz TPS564252EVM at 12-to-5 V and 4 A; layout requirement, not a product temperature prediction",
+      "source": {
+        "document": "TPS56425x 3-V to 17-V input, 4-A synchronous buck converter datasheet",
+        "version": "SLUSEQ6A, December 2022, revised May 2023",
+        "url": "https://www.ti.com/lit/ds/symlink/tps564252.pdf",
+        "checked": "2026-08-18"
+      }
+    },
+    "aon_buck": {
+      "mpn": "Texas Instruments TPS629203DRLR",
+      "junction_operating_c": [
+        -40,
+        125
+      ],
+      "rtheta_ja_jedec_k_per_w": "120.0",
+      "rtheta_ja_evm_k_per_w": "60.0",
+      "source": {
+        "document": "TPS629203 300-mA, 3-V to 17-V low-IQ buck converter datasheet",
+        "version": "SLVSGE2, March 2022",
+        "url": "https://www.ti.com/lit/ds/symlink/tps629203.pdf",
+        "checked": "2026-08-18"
+      }
+    },
+    "main_voice_efuse": {
+      "mpn": "Texas Instruments TPS25974LRPWR",
+      "junction_operating_c": [
+        -40,
+        125
+      ],
+      "rtheta_ja_8via_board_k_per_w": "49.7",
+      "rtheta_ja_no_thermal_vias_k_per_w": "71.8",
+      "source": {
+        "document": "TPS2597xx 2.7-V to 23-V, 7-A, 9.8-mOhm eFuse datasheet",
+        "version": "SLVSGG5D, November 2021, revised May 2025",
+        "url": "https://www.ti.com/lit/ds/symlink/tps2597.pdf",
+        "checked": "2026-08-18"
+      }
+    },
+    "external_efuse": {
+      "mpn": "Texas Instruments TPS259470LRPWR",
+      "junction_operating_c": [
+        -40,
+        125
+      ],
+      "rtheta_ja_8via_board_k_per_w": "41.7",
+      "rtheta_ja_no_thermal_vias_k_per_w": "74.5",
+      "source": {
+        "document": "TPS25947xx true-reverse-current-blocking eFuse datasheet",
+        "version": "SLVSFC9C, October 2020, revised May 2026",
+        "url": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
+        "checked": "2026-08-18"
+      }
+    },
+    "aon_efuse": {
+      "mpn": "Texas Instruments TPS25961DRVR",
+      "junction_operating_c": [
+        -40,
+        125
+      ],
+      "rtheta_ja_custom_4layer_k_per_w": "74.1",
+      "source": {
+        "document": "TPS25961 2.7-V to 19-V, 106-mOhm eFuse datasheet",
+        "version": "SLVSGT8, December 2022",
+        "url": "https://www.ti.com/lit/ds/symlink/tps25961.pdf",
+        "checked": "2026-08-18"
+      }
+    },
+    "charger": {
+      "mpn": "Texas Instruments BQ25798RQMR",
+      "ambient_operating_c": [
+        -40,
+        85
+      ],
+      "rtheta_ja_k_per_w": "44.2",
+      "protected_treg_c": 60,
+      "protected_tshut_c": 85,
+      "source": {
+        "document": "BQ25798 1-to-4-cell 5-A buck-boost charger datasheet",
+        "version": "SLUSDV2C, May 2020, revised June 2026",
+        "url": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
+        "checked": "2026-08-18"
+      }
+    }
+  },
+  "cell_heat": {
+    "two_cell_series_resistance_ohm_max_initial": "0.080",
+    "maximum_pack_discharge_a": "2.816",
+    "maximum_discharge_i2r_heat_w": "0.634",
+    "maximum_product_charge_a": "2.000",
+    "maximum_charge_i2r_heat_w": "0.320",
+    "manufacturer_operating_temperature_c": {
+      "minimum": -20,
+      "maximum": 60
+    }
+  },
+  "zone_policy": {
+    "sensors": {
+      "POWER": "PA26 / pin 1 / ADC0_1",
+      "RF_VOICE": "PA27 / pin 2 / ADC0_0",
+      "UI": "PA16 / pin 12 / ADC0_14"
+    },
+    "thresholds": {
+      "sensor_open_code_at_or_above": 4000,
+      "sensor_short_code_at_or_below": 64,
+      "warning_code_at_or_below": 880,
+      "fault_kill_code_at_or_below": 740,
+      "fault_rearm_code_at_or_above": 1000,
+      "interpretation": "open/short is a fault; warning is guaranteed by 65 C without a 60 C false warning; FAULT_KILL is guaranteed by 75 C without a 65 C false kill; rearm cannot occur at 60 C and is guaranteed by 55 C"
+    },
+    "critical_behavior": "POWER or RF/VOICE critical temperature immediately latches FAULT_KILL while preserving a cool UI fault screen; UI/DISPLAY critical temperature wins over diagnostics and removes the UI rail, leaving the independent amber FAULT LED as the visible indication"
+  },
+  "scenarios": {
+    "electrical_absolute_corner": {
+      "state_id": "PWR-0035",
+      "signal_group": "VOICE",
+      "group_mode": "RX",
+      "support_profile": "SUPPORT_WORST",
+      "sys_demand_w": "13.799",
+      "internal_rail_output_w": "11.729",
+      "external_accessory_output_excluded_w": "0.000",
+      "rail_conversion_loss_w": "2.070",
+      "efuse_conduction_loss_w": "0.340",
+      "cell_i2r_heat_w": "0.423",
+      "conservative_base_heat_w": "14.562",
+      "admission": "transient_or_bounded_session_only; SUPPORT_WORST is an electrical anti-hidden-load envelope and is not admitted as a 24-to-48-hour thermal profile"
+    },
+    "support_idle_worst_group": {
+      "state_id": "PWR-0034",
+      "signal_group": "VOICE",
+      "group_mode": "RX",
+      "support_profile": "SUPPORT_IDLE",
+      "sys_demand_w": "6.112",
+      "internal_rail_output_w": "5.195",
+      "external_accessory_output_excluded_w": "0.000",
+      "rail_conversion_loss_w": "0.917",
+      "efuse_conduction_loss_w": "0.051",
+      "cell_i2r_heat_w": "0.083",
+      "conservative_base_heat_w": "6.246",
+      "admission": "candidate sustained group ceiling pending H6 enclosure resistance and H8 temperature map"
+    },
+    "external_accessory_worst": {
+      "state_id": "PWR-0043",
+      "signal_group": "LORA_CAP",
+      "group_mode": "STOCK_U214_RX_GNSS_ONLY",
+      "support_profile": "SUPPORT_WORST",
+      "sys_demand_w": "16.894",
+      "internal_rail_output_w": "8.110",
+      "external_accessory_output_excluded_w": "6.250",
+      "rail_conversion_loss_w": "2.534",
+      "efuse_conduction_loss_w": "0.393",
+      "cell_i2r_heat_w": "0.634",
+      "conservative_base_heat_w": "11.671",
+      "admission": "accessory output heat is outside the base; base converter, eFuse, support and cell heat remain included"
+    },
+    "quiet_idle": {
+      "state_id": "PWR-0004",
+      "signal_group": "NONE",
+      "group_mode": "QUIET",
+      "support_profile": "SUPPORT_IDLE",
+      "sys_demand_w": "1.778",
+      "internal_rail_output_w": "1.512",
+      "external_accessory_output_excluded_w": "0.000",
+      "rail_conversion_loss_w": "0.267",
+      "efuse_conduction_loss_w": "0.009",
+      "cell_i2r_heat_w": "0.007",
+      "conservative_base_heat_w": "1.795",
+      "admission": "baseline unattended candidate; H3.6.3 adds duty, logging and runtime bounds"
+    }
+  },
+  "ambient_parameter_sweep": {
+    "electrical_absolute_corner": [
+      {
+        "ambient_c": 25,
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "2.747",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "3.434"
+      },
+      {
+        "ambient_c": 35,
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "2.060",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "2.747"
+      },
+      {
+        "ambient_c": 40,
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "1.717",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "2.404"
+      }
+    ],
+    "support_idle_worst_group": [
+      {
+        "ambient_c": 25,
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "6.404",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "8.005"
+      },
+      {
+        "ambient_c": 35,
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "4.803",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "6.404"
+      },
+      {
+        "ambient_c": 40,
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "4.003",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "5.604"
+      }
+    ],
+    "external_accessory_worst": [
+      {
+        "ambient_c": 25,
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "3.427",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "4.284"
+      },
+      {
+        "ambient_c": 35,
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "2.570",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "3.427"
+      },
+      {
+        "ambient_c": 40,
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "2.142",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "2.999"
+      }
+    ],
+    "quiet_idle": [
+      {
+        "ambient_c": 25,
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "22.284",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "27.855"
+      },
+      {
+        "ambient_c": 35,
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "16.713",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "22.284"
+      },
+      {
+        "ambient_c": 40,
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "13.928",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "19.499"
+      }
+    ]
+  },
+  "product_ambient_envelope": {
+    "status": "not_yet_selected",
+    "owner": "H3.6.3",
+    "reason": "the architecture contains no accepted external ambient range; H3.6.1 therefore publishes the exact resistance required at 25, 35 and 40 C without inventing a product claim"
+  },
+  "corrections": [
+    {
+      "id": "H3.6.1-F01",
+      "finding": "BQ25798 reset defaults permit 120-C junction regulation and 150-C thermal shutdown, much hotter than the independent product board limits",
+      "correction": "protect and read back REG16 TREG=60 C and TSHUT=85 C before CE may be pulled low",
+      "functional_effect": "charge/charger conversion derates before the 65-C board warning and the charger self-shuts before its default 150-C threshold; no product capability or BOM item is removed",
+      "cost_effect_usd": "0.0000"
+    }
+  ],
+  "checks": {
+    "all_50_dc_profiles_are_available": true,
+    "all_2032_source_states_are_available": true,
+    "maximum_conversion_loss_matches_h3_1": true,
+    "maximum_efuse_loss_matches_h3_1": true,
+    "maximum_pack_current_matches_h3_1": true,
+    "pair_resistance_uses_two_40mohm_cells": true,
+    "maximum_pack_i2r_is_bounded": true,
+    "two_amp_charge_i2r_is_bounded": true,
+    "external_accessory_output_is_not_misattributed_to_base": true,
+    "absolute_corner_is_voice_support_worst": true,
+    "support_worst_is_not_continuous_claim": true,
+    "warning_threshold_is_65c_class": true,
+    "kill_threshold_is_75c_class": true,
+    "rearm_is_below_60c": true,
+    "three_independent_board_zones_exist": true,
+    "charger_treg_is_now_60c": true,
+    "charger_tshut_is_now_85c": true,
+    "datasheet_rtheta_is_not_used_as_enclosure_prediction": true,
+    "ambient_selection_is_deferred_only_to_h3_6_3": true,
+    "physical_residuals_are_assigned": true,
+    "dc_consolidation_has_no_unresolved_findings": true
+  },
+  "open_findings": [],
+  "pending_decisions": [
+    "H3.6.3 external ambient and unattended sustained-profile envelope"
+  ],
+  "residual_physical_only": [
+    "H6: solve the real board/enclosure thermal network after placement, copper, vias, wall material, vents and accessory geometry are fixed",
+    "H6: meet or beat the applicable allowable base-to-ambient resistance from the parameter sweep; SUPPORT_WORST remains non-continuous",
+    "H8: measure all three NTCs, converter/eFuse/charger junction proxies, both cells and external surfaces at every admitted sustained profile",
+    "H8: correlate thermal time constants and set per-profile maximum session/duty limits before any unattended claim",
+    "H8: verify cell-to-NTC contact, replacement spread, charger TREG/TSHUT, warning, FAULT_KILL and physical rearm in a chamber"
+  ],
+  "review_summary": {
+    "checks": 21,
+    "failed": 0,
+    "corrected_findings": 1,
+    "unresolved_analytical_findings": 0,
+    "status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.6.2",
+    "action": "trace single faults through independent hardware shutdown and recovery"
+  }
+}

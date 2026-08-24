@@ -5593,6 +5593,9 @@
         "ts_cool_code": 1,
         "ts_warm_code": 0,
         "jeita_warm_charge_current": "suspend",
+        "thermal_regulation_c": 60,
+        "thermal_shutdown_c": 85,
+        "temperature_control_register": "REG16 TREG[1:0]=00 (60 C) and TSHUT[1:0]=11 (85 C); write and masked readback are mandatory before CE may be pulled low",
         "reset_default": "CE is pulled high; charging remains disabled until the protected TPS image has written and read back the bounded charger policy"
       },
       "contacts": {
