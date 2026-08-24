@@ -29,6 +29,6 @@ H2 was accepted on 24 August 2026 at hardware commit `25d9ee2` and firmware comm
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | 24-to-48-hour operating envelope | H8 endurance run |
 
-**Current marker:** `H3.4.1` — [analog corners](analog-corner-result.md) are reviewed; digital levels, pulls, reset defaults and no-back-power are being verified.
+**Current marker:** `H3.4.2` — [analog corners](analog-corner-result.md) are reviewed; digital levels, pulls, reset defaults and no-back-power are being verified.
 
 [Machine freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

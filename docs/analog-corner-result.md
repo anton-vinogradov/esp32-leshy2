@@ -1,6 +1,6 @@
 # Consolidated analog-corner result
 
-H3.3 is reviewed: all four leaf packages and `153` leaf checks pass, followed by `22` consolidation checks. Fourteen source corrections are closed, no analytical finding remains open and the total quantity-100 BOM delta is only `0.4908 USD`. The exact current marker is `H3.4.1`.
+H3.3 is reviewed: all four leaf packages and `153` leaf checks pass, followed by `22` consolidation checks. Fourteen source corrections are closed, no analytical finding remains open and the total quantity-100 BOM delta is only `0.4908 USD`. The exact current marker is `H3.4.2`.
 
 ## Closed analytical envelope
 

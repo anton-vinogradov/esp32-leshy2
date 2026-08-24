@@ -1,6 +1,6 @@
 # Battery sensing and thermal analog verification
 
-H3.3.4 is reviewed with `38` machine checks and four source corrections. No component or BOM-cost change is required. The exact current marker is `H3.4.1`: digital levels/defaults and no-back-power.
+H3.3.4 is reviewed with `38` machine checks and four source corrections. No component or BOM-cost change is required. The exact current marker is `H3.4.2`: digital levels/defaults and no-back-power.
 
 ## What is now fixed
 

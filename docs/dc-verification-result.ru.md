@@ -20,6 +20,6 @@ H3.1 завершена как единая проверка: реестр со�
 
 Постоянные пределы не заменяют динамику и температуру. H3.2 проверяет startup/shutdown, USB↔pack handover, brownout, DPM, inrush и FAULT_KILL; H3.6 получает 2,550 Вт converter-loss и 0,386 Вт eFuse-loss для thermal model; H8 оставляет реальные измерения.
 
-**Статус:** `H3.1` завершено и проверено. Текущий точный маркер — `H3.4.1`, digital levels/defaults и no-back-power.
+**Статус:** `H3.1` завершено и проверено. Текущий точный маркер — `H3.4.2`, digital levels/defaults и no-back-power.
 
 [Машинный пакет закрытия H3.1](../hardware/verification/generated/H3-VRF14-dc-consolidation.json).

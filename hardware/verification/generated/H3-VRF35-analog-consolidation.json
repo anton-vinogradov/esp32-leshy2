@@ -139,7 +139,7 @@
     "status": "reviewed"
   },
   "next": {
-    "stage": "H3.4.1",
+    "stage": "H3.4.2",
     "action": "verify voltage levels, pull states, reset defaults and no-back-power across every digital interface"
   }
 }

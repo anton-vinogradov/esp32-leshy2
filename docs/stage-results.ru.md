@@ -119,7 +119,7 @@
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ▶️ сейчас, точный маркер `H3.4.1`.
+**Статус:** ▶️ сейчас, точный маркер `H3.4.2`.
 
 - [Текущая страница виртуальной проверки](virtual-verification.ru.md).
 - [Машиночитаемый план](../hardware/verification/h3-verification-plan.json).
@@ -146,6 +146,8 @@
   и [машинное evidence H3.3.4](../hardware/verification/generated/H3-VRF34-battery-analog.json).
 - [Сводный результат analog corners](analog-corner-result.ru.md)
   и [машинное evidence H3.3.5](../hardware/verification/generated/H3-VRF35-analog-consolidation.json).
+- [Digital levels, reset defaults и no-back-power](digital-levels-verification.ru.md)
+  и [машинное evidence H3.4.1](../hardware/verification/generated/H3-VRF41-digital-levels.json).
 
 `H3.0.1–H3.0.3` проведены ревью: входы, параметры и десять единых
 pass/fail-правил заморожены. `H3.1` проведено ревью: 2 032 полных состояния и
@@ -155,7 +157,8 @@ pass/fail-правил заморожены. `H3.1` проведено ревь�
 двух source-ошибок; `H3.3.2` — после четырёх исправлений аудиотракта.
 `H3.3.3` проверено после четырёх исправлений IR-источников, `H3.3.4` — после
 четырёх battery-analog исправлений. `H3.3.5` закрывает 153 leaf и 22 сводных
-checks. В `H3.4.1` проверяются digital levels, pulls, reset defaults и no-back-power.
+checks. `H3.4.1` закрывает digital levels/defaults 73 машинными checks; в
+`H3.4.2` проверяются bandwidth, latency и timing.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate

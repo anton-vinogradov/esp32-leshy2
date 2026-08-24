@@ -278,7 +278,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         nrf_h = "## Одновременная работа"
         nrf = "Одновременно активна только одна верхнеуровневая группа. Исключение находится внутри `SG-N24`: все три nRF24 остаются активными в `3PRX`, `1PTX+2PRX`, `2PTX+1PRX` и `3PTX`. Экран, waterfall, storage и разрешённый audio считаются параллельной поддерживающей нагрузкой и не исчезают из worst case."
-        marker = "**Статус:** `H3.1.1` завершено и проверено. Текущий маркер — `H3.4.1`, digital levels, pulls, reset defaults и no-back-power."
+        marker = "**Статус:** `H3.1.1` завершено и проверено. Текущий маркер — `H3.4.2`, digital levels, pulls, reset defaults и no-back-power."
         evidence = "[Полный машинный реестр состояний](../hardware/verification/generated/H3-VRF11-power-state-register.json)."
     else:
         title = "# Leshy2 power states"
@@ -295,7 +295,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         nrf_h = "## Concurrent operation"
         nrf = "Only one top-level signal group is active at a time. The exception is internal to `SG-N24`: all three nRF24 radios remain active in `3PRX`, `1PTX+2PRX`, `2PTX+1PRX` and `3PTX`. Display, waterfall, storage and group-legal audio remain concurrent support loads in the worst case."
-        marker = "**Status:** `H3.1.1` is complete and checked. Current marker is `H3.4.1`, digital levels, pulls, reset defaults and no-back-power."
+        marker = "**Status:** `H3.1.1` is complete and checked. Current marker is `H3.4.2`, digital levels, pulls, reset defaults and no-back-power."
         evidence = "[Complete machine state register](../hardware/verification/generated/H3-VRF11-power-state-register.json)."
     return "\n\n".join((title, nav, intro, source_h, source, coverage_h, coverage, nrf_h, nrf, marker, evidence)) + "\n"
 
