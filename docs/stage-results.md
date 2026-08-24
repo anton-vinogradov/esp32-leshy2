@@ -169,7 +169,7 @@ profiles pass with no unresolved finding after one eFuse threshold correction.
 errors corrected. `H3.3.1` is reviewed after correcting two more source errors;
 `H3.3.2` is reviewed after four audio-path corrections. `H3.3.3` is reviewed
 after four IR source corrections. `H3.3.4` is reviewed after four battery-
-analog source corrections. `H3.3.5` closes 153 leaf and 22 consolidation
+analog source corrections. `H3.3.5` closes 154 leaf and 22 consolidation
 checks. `H3.4.1` closes digital levels/defaults with 73 machine checks,
 `H3.4.2` closes bandwidth/latency/timing with 40 checks and `H3.4.3` closes
 M1, expansion and service-boundary loading with 49 checks. `H3.4.4` closes
@@ -179,7 +179,10 @@ closes 23 corridor, keepout, plane and return checks. `H3.5.3` closes 30
 one-group, quiet-state and full 3×nRF24 checks. `H3.5.4` closes the phase with
 22 cross-domain checks over all 125 leaf checks. The H3.6.1
 [thermal model](thermal-model.md) is reviewed with 21 checks and the
-[single-fault review](single-fault-review.md) closes 30 cases with 25 checks; H3.6.3 is building the unattended envelope.
+[single-fault review](single-fault-review.md) closes 30 cases with 25 checks;
+[extended operation and self-test](unattended-operation.md) close with 24 checks and no operating-time promise.
+[H3.6 consolidation](thermal-fault-result.md) closes 70 leaf and 24 cross-domain
+checks; H3.7.1 is cross-checking every H3 result against H2 and downstream consumers.
 
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate

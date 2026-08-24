@@ -108,6 +108,10 @@ class ProductSiteTests(unittest.TestCase):
         "docs/thermal-model.ru.md",
         "docs/single-fault-review.md",
         "docs/single-fault-review.ru.md",
+        "docs/unattended-operation.md",
+        "docs/unattended-operation.ru.md",
+        "docs/thermal-fault-result.md",
+        "docs/thermal-fault-result.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -419,8 +423,20 @@ class ProductSiteTests(unittest.TestCase):
         ir = json.loads(
             self.read("hardware/verification/generated/H3-VRF33-ir.json")
         )
+        thermal = json.loads(
+            self.read("hardware/verification/generated/H3-VRF61-thermal-model.json")
+        )
+        fault = json.loads(
+            self.read("hardware/verification/generated/H3-VRF62-fault-tree.json")
+        )
+        unattended = json.loads(
+            self.read("hardware/verification/generated/H3-VRF63-unattended-envelope.json")
+        )
+        thermal_fault = json.loads(
+            self.read("hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json")
+        )
         self.assertEqual("H3", plan["stage"])
-        self.assertEqual("H3.6.3", plan["current_substep"])
+        self.assertEqual("H3.7.1", plan["current_substep"])
         self.assertEqual(plan["current_substep"], state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
@@ -447,10 +463,14 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["substeps"][5]["children"][1]["status"])
         self.assertEqual("reviewed", plan["substeps"][5]["children"][2]["status"])
         self.assertEqual("reviewed", plan["substeps"][5]["children"][3]["status"])
-        self.assertEqual("current", plan["substeps"][6]["status"])
+        self.assertEqual("reviewed", plan["substeps"][6]["status"])
         self.assertEqual("reviewed", plan["substeps"][6]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][6]["children"][1]["status"])
-        self.assertEqual("current", plan["substeps"][6]["children"][2]["status"])
+        self.assertEqual("reviewed", plan["substeps"][6]["children"][2]["status"])
+        self.assertEqual("reviewed", plan["substeps"][6]["children"][3]["status"])
+        self.assertEqual("current", plan["substeps"][7]["status"])
+        self.assertEqual("current", plan["substeps"][7]["children"][0]["status"])
+        self.assertTrue(all(row["status"] == "waiting" for row in plan["substeps"][7]["children"][1:]))
         self.assertEqual(16, freeze["summary"]["verification_domains"])
         self.assertEqual(0, freeze["summary"]["unassigned_virtual_checks"])
         self.assertEqual(0, freeze["summary"]["unassigned_physical_checks"])
@@ -490,10 +510,19 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(47, ir["review_summary"]["checks"])
         self.assertEqual(4, ir["review_summary"]["corrected_findings"])
         self.assertEqual(0, ir["review_summary"]["unresolved_findings"])
+        self.assertEqual({"minimum": 0, "maximum": 35}, unattended["ambient_design_target"]["design_target_c"])
+        self.assertEqual("EVERY_48_H", unattended["fault_plane_self_test_setting"]["default"])
+        self.assertEqual("none; no battery or USB operating duration is promised", unattended["accepted_product_policy"]["runtime_claim"])
+        self.assertEqual(24, unattended["review_summary"]["checks"])
+        self.assertEqual(0, unattended["review_summary"]["unresolved_analytical_findings"])
+        self.assertEqual(70, thermal_fault["consolidated"]["leaf_checks"])
+        self.assertEqual(24, thermal_fault["consolidated"]["consolidation_checks"])
+        self.assertEqual(30, thermal_fault["consolidated"]["single_fault_cases"])
+        self.assertEqual(0, thermal_fault["consolidated"]["unresolved_analytical_findings"])
         for relative, expected in freeze["source_hashes"].items():
             actual = hashlib.sha256((REPO_ROOT / relative).read_bytes()).hexdigest()
             self.assertEqual(expected, actual, relative)
-        for artifact in (inventory, methods, power_states, dc_budget, source_budget, dc_result, audio, ir):
+        for artifact in (inventory, methods, power_states, dc_budget, source_budget, dc_result, audio, ir, thermal, fault, unattended, thermal_fault):
             for relative, expected in artifact["source_hashes"].items():
                 actual = hashlib.sha256((REPO_ROOT / relative).read_bytes()).hexdigest()
                 self.assertEqual(expected, actual, relative)

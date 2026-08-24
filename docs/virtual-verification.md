@@ -29,6 +29,6 @@ H2 was accepted on 24 August 2026 at hardware commit `25d9ee2` and firmware comm
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | 24-to-48-hour operating envelope | H8 endurance run |
 
-**Current marker:** `H3.6.3` — the [thermal model](thermal-model.md) and [single-fault review](single-fault-review.md) are consolidated; the bounded 24-to-48-hour unattended envelope is being built.
+**Current marker:** `H3.7.1` — the [thermal/fault/extended-operation result](thermal-fault-result.md) closes H3.6; the machine cross-check of every H3 result against H2 and downstream consumers is in progress.
 
 [Machine freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

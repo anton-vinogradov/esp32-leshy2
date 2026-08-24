@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "stage": "H3.6.4",
+  "status": "reviewed_thermal_fault_and_unattended_consolidation",
+  "source_hashes": {
+    "hardware/verification/generated/H3-VRF61-thermal-model.json": "170d19c13917926b0645792cf3c842f5fa7d3d18fb074e4e904b89c2cf8caaf7",
+    "hardware/verification/generated/H3-VRF62-fault-tree.json": "077ec4e2410eefef9711e15b81557c52764d057aae281bb316bf805b57ce4a2c",
+    "hardware/verification/generated/H3-VRF63-unattended-envelope.json": "a11d7bb2ad16c5fabd145a48e6f2204d0da77da177380224a9d3092dccb5cbb8"
+  },
+  "consolidated": {
+    "leaf_packages": 3,
+    "leaf_checks": 70,
+    "consolidation_checks": 24,
+    "single_fault_cases": 30,
+    "source_corrections": 4,
+    "incremental_bom_usd_at_quantity_100": "0.7906",
+    "unresolved_analytical_findings": 0,
+    "physical_residuals": 16
+  },
+  "closed_contract": {
+    "ambient_engineering_target_c": {
+      "minimum": 0,
+      "maximum": 35
+    },
+    "ambient_is_product_guarantee": false,
+    "sustained_candidate": "SUPPORT_IDLE plus one active top-level signal group, subject to H6/H8 qualification",
+    "excluded_from_sustained": [
+      "SUPPORT_WORST as a sustained state",
+      "continuous or unleased TX",
+      "an unknown or unqualified external accessory",
+      "operation after any required thermal/evidence/power sensor becomes unreadable"
+    ],
+    "long_operation_source": "connect a qualified USB-PD source for long operation",
+    "runtime_claim": "none; no battery or USB operating duration is promised",
+    "self_test_default": "EVERY_48_H",
+    "self_test_values": [
+      {
+        "id": "EVERY_24_H",
+        "active_session_seconds": 86400,
+        "bounded_periodic_proof": true
+      },
+      {
+        "id": "EVERY_48_H",
+        "active_session_seconds": 172800,
+        "bounded_periodic_proof": true
+      },
+      {
+        "id": "STARTUP_ONLY",
+        "active_session_seconds": null,
+        "bounded_periodic_proof": false,
+        "warning": "periodic destructive fault-plane proof is disabled; proof still runs at every physical KILL-to-RUN boundary"
+      }
+    ],
+    "fault_recovery": "retained first cause plus physical KILL-to-RUN; no software or automatic re-arm"
+  },
+  "downstream_evidence": {
+    "H4": [
+      "join H3.6 safety-policy evidence to firmware F3 target/emulator behavior without treating host logic as peripheral or board proof",
+      "verify the firmware consumes the exact ambient, self-test enum, fault cause and physical-rearm contract before the joined pre-layout gate closes"
+    ],
+    "H5": [
+      "inspect received thermistor, cell-holder, connector and enclosure-contact geometry where documentary evidence cannot prove physical contact or fit"
+    ],
+    "H6": [
+      "physically separate RUN_PERMIT and FAULT_ASSERT_N routes, buffers, returns and vulnerable pads/vias",
+      "solve the final copper/enclosure thermal network and meet the profile-specific 35-C base-to-ambient resistance ceilings"
+    ],
+    "H8": [
+      "inject all SF-01 through SF-30 cases and measure shutdown, retained cause, no-output and physical-rearm behavior",
+      "run chamber, 24/48-hour qualified-USB and battery-to-protected-cutoff tests without converting results into uptime promises",
+      "qualify three-zone sensing, all self-test settings, evidence channels, journals and final per-profile duty/session limits"
+    ]
+  },
+  "checks": {
+    "all_three_leaf_reviews_are_closed": true,
+    "all_leaf_fail_counts_are_zero": true,
+    "all_leaf_analytical_findings_are_closed": true,
+    "all_leaf_open_findings_are_empty": true,
+    "all_leaf_decisions_are_closed": true,
+    "leaf_check_total_is_70": true,
+    "four_source_corrections_are_preserved": true,
+    "all_30_single_fault_cases_are_preserved": true,
+    "fault_cases_end_contained_or_no_admission": true,
+    "maximum_analytical_shutdown_class_is_1760ms": true,
+    "three_independent_thermal_zones_are_preserved": true,
+    "ambient_target_matches_leaf_models": true,
+    "ambient_target_is_not_published_guarantee": true,
+    "support_worst_is_not_sustained": true,
+    "voice_35c_thermal_ceiling_matches_leaf": true,
+    "fault_plane_proof_is_physical_rearm_bound": true,
+    "self_test_default_is_48h": true,
+    "self_test_24h_and_startup_only_are_explicit": true,
+    "self_test_cannot_extend_after_s3_loss": true,
+    "proof_deadline_revokes_tx_before_fault": true,
+    "usb_never_relaxes_safety": true,
+    "no_runtime_or_autonomy_claim_is_made": true,
+    "all_residuals_are_physical_and_assigned": true,
+    "downstream_consumers_cover_h4_h5_h6_h8": true
+  },
+  "open_findings": [],
+  "pending_decisions": [],
+  "residual_physical_only": [
+    "H6: solve the real board/enclosure thermal network after placement, copper, vias, wall material, vents and accessory geometry are fixed",
+    "H6: meet or beat the applicable allowable base-to-ambient resistance from the parameter sweep; SUPPORT_WORST remains non-continuous",
+    "H8: measure all three NTCs, converter/eFuse/charger junction proxies, both cells and external surfaces at every admitted sustained profile",
+    "H8: correlate thermal time constants and set per-profile maximum session/duty limits before any unattended claim",
+    "H8: verify cell-to-NTC contact, replacement spread, charger TREG/TSHUT, warning, FAULT_KILL and physical rearm in a chamber",
+    "H6: physically separate RUN_PERMIT and FAULT_ASSERT_N routing, their local buffers and endpoint gate returns; verify no single via/pad short joins both paths",
+    "H8: inject every SF-01..SF-30 case at accessible pads and verify rail fall, no RF/optical output, retained reason and physical-only re-arm",
+    "H8: calibrate evidence thresholds and prove stuck-active, stuck-inactive and unreadable evidence behavior for all nine channels",
+    "H8: measure watchdog, reset, eFuse, QOD and transmitter-energy deadlines; analytical 0/100/1760-ms classes are upper-level contracts, not measured closure",
+    "H8: interrupt every two-slot flash-journal write boundary and verify last-valid-slot or explicit AON-loss fallback",
+    "H6: meet the profile-specific 35-C base-to-ambient resistance target with final copper, vias, enclosure and installed accessory geometry",
+    "H8: run 24-hour and 48-hour USB-powered endurance cases as validation tests, including the configured proof-due stop and retained display reason",
+    "H8: run each battery profile to its real protected cutoff and publish measurements only as test results, not guaranteed autonomy",
+    "H8: chamber-test admitted sustained profiles at 0, 25 and 35 C plus boundary/fault behavior outside the design target",
+    "H8: verify all three self-test settings, staged activation, local-only authority, warning sequence, S3-loss behavior and physical KILL-to-RUN recovery",
+    "H8: correlate final thermal time constants and set per-profile TX duty/session limits before release"
+  ],
+  "review_summary": {
+    "checks": 24,
+    "failed": 0,
+    "unresolved": 0,
+    "status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.7.1",
+    "action": "cross-check every H3 result against H2 and downstream consumers"
+  }
+}

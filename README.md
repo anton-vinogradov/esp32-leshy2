@@ -119,11 +119,11 @@ remain unauthorized.
 <details open>
 <summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.6.3 -->
+<!-- current-substep: H3.7.1 -->
 
-**Exact marker: `H3.6.3`** — the [parameterized thermal model](docs/thermal-model.md)
-and [30-case single-fault review](docs/single-fault-review.md) are complete.
-The current work bounds ambient, duty, logging and uninterrupted 24–48-hour operation.
+**Exact marker: `H3.7.1`** — the [thermal/fault/extended-operation result](docs/thermal-fault-result.md)
+closes H3.6 with 70 leaf and 24 consolidation checks. The current work
+cross-checks every H3 result against H2 and its H4/H5/H6/H8 consumer.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,048-row circuit inventory reviewed.
@@ -211,7 +211,7 @@ The current work bounds ambient, duty, logging and uninterrupted 24–48-hour op
   - ✅ `H3.3.2` — [codec, microphone, headset, speaker and voice TX reviewed](docs/audio-electrical-verification.md); four source errors corrected.
   - ✅ `H3.3.3` — [IR receive, transmit, optical evidence and thermal limits reviewed](docs/ir-electrical-verification.md); four source errors corrected.
   - ✅ `H3.3.4` — [battery sensing, thermistors and analog fault thresholds reviewed](docs/battery-analog-verification.md); four source errors corrected.
-  - ✅ `H3.3.5` — [all 153 leaf and 22 consolidation checks reviewed](docs/analog-corner-result.md); 14 source corrections closed.
+  - ✅ `H3.3.5` — [all 154 leaf and 22 consolidation checks reviewed](docs/analog-corner-result.md); 14 source corrections closed.
 - ✅ **`H3.4` — reviewed:** digital levels, timing and loading.
   - ✅ `H3.4.1` — [voltage levels, pulls, reset defaults and no-back-power reviewed](docs/digital-levels-verification.md).
   - ✅ `H3.4.2` — [bandwidth, latency and timing reviewed](docs/digital-timing-verification.md).
@@ -222,11 +222,16 @@ The current work bounds ambient, duty, logging and uninterrupted 24–48-hour op
   - ✅ `H3.5.2` — [RF corridors, keepouts, reference planes and returns reviewed](docs/rf-layout-constraints.md).
   - ✅ `H3.5.3` — [isolation, quiet-state and concurrent 3×nRF24 reviewed](docs/rf-coexistence.md).
   - ✅ `H3.5.4` — [125 leaf and 22 cross-domain RF checks consolidated](docs/rf-verification-result.md).
-- ▶️ **`H3.6` — current:** thermal, fault-tree and unattended-operation verification.
+- ✅ **`H3.6` — reviewed:** thermal, fault-tree and unattended-operation verification.
   - ✅ `H3.6.1` — [board, battery and enclosure thermal model reviewed](docs/thermal-model.md); charger TREG/TSHUT corrected.
   - ✅ `H3.6.2` — [30 single faults traced through independent shutdown and recovery](docs/single-fault-review.md).
-  - ▶️ **`H3.6.3` — current:** bounded 24–48-hour unattended operating envelope.
-  - ⏳ `H3.6.4` — thermal and fault consolidation.
+  - ✅ `H3.6.3` — [`0 to 35 °C` engineering target, USB guidance and configurable full self-test reviewed](docs/unattended-operation.md); no operating-time promise is made.
+  - ✅ `H3.6.4` — [70 leaf and 24 thermal/fault/endurance consolidation checks reviewed](docs/thermal-fault-result.md).
+- ▶️ **`H3.7` — current:** final virtual-verification closure.
+  - ▶️ **`H3.7.1` — current:** cross-check every H3 result against H2 and downstream consumers.
+  - ⏳ `H3.7.2` — publish physical-only residuals and required H5/H6/H8 evidence.
+  - ⏳ `H3.7.3` — prepare the formal H3 acceptance package.
+  - ⏳ `H3.7.4` — record explicit user acceptance before H4.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The current machine-readable plan is

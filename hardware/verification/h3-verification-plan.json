@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "H3",
   "status": "in_progress",
-  "current_substep": "H3.6.3",
+  "current_substep": "H3.7.1",
   "accepted_input": {
     "stage": "H2.8.2",
     "status": "accepted_by_user",
@@ -89,20 +89,20 @@
     {
       "id": "H3.6",
       "title": "Thermal, fault-tree and unattended-operation verification",
-      "status": "current",
+      "status": "reviewed",
       "children": [
         {"id": "H3.6.1", "title": "Build worst-case board, battery and enclosure thermal model", "status": "reviewed", "evidence": "generated/H3-VRF61-thermal-model.json"},
         {"id": "H3.6.2", "title": "Trace single faults through independent hardware shutdown and recovery", "status": "reviewed", "evidence": "generated/H3-VRF62-fault-tree.json"},
-        {"id": "H3.6.3", "title": "Verify the bounded 24-to-48-hour unattended operating envelope", "status": "current"},
-        {"id": "H3.6.4", "title": "Consolidate thermal and fault evidence", "status": "waiting"}
+        {"id": "H3.6.3", "title": "Define unattended safety, endurance-test and configurable proof envelope", "status": "reviewed", "evidence": "generated/H3-VRF63-unattended-envelope.json"},
+        {"id": "H3.6.4", "title": "Consolidate thermal and fault evidence", "status": "reviewed", "evidence": "generated/H3-VRF64-thermal-fault-consolidation.json"}
       ]
     },
     {
       "id": "H3.7",
       "title": "Final virtual-verification closure",
-      "status": "waiting",
+      "status": "current",
       "children": [
-        {"id": "H3.7.1", "title": "Cross-check every H3 result against H2 and downstream layout/bring-up consumers", "status": "waiting"},
+        {"id": "H3.7.1", "title": "Cross-check every H3 result against H2 and downstream layout/bring-up consumers", "status": "current"},
         {"id": "H3.7.2", "title": "Publish every residual physical-only uncertainty and required H5/H6/H8 evidence", "status": "waiting"},
         {"id": "H3.7.3", "title": "Prepare formal H3 acceptance package", "status": "waiting"},
         {"id": "H3.7.4", "title": "Record explicit user acceptance before H4", "status": "waiting"}

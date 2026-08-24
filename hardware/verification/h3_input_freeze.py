@@ -73,7 +73,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         freeze = f"H2 принят 24 августа 2026 года на hardware commit `25d9ee2` и firmware commit `900bb2b`. Заморожено {manifest['summary']['frozen_files']} файла с SHA-256; изменение любого из них повторно открывает затронутые проверки."
         matrix_h = "## Матрица проверки"
         headers = "| Этап | Область | Метод до изготовления | Артефакт H3 | Остаточная физическая проверка |\n|---|---|---|---|---|"
-        current = "**Текущий маркер:** `H3.6.3` — [тепловая модель](thermal-model.ru.md) и [проверка единичных отказов](single-fault-review.ru.md) сведены; строится ограниченный 24–48-часовой unattended envelope."
+        current = "**Текущий маркер:** `H3.7.1` — [thermal/fault/extended-operation результат](thermal-fault-result.ru.md) закрывает H3.6; выполняется сквозная машинная сверка всех результатов H3 с H2 и последующими потребителями."
     else:
         title = "# Leshy2 virtual electrical verification"
         nav = "[Русский](virtual-verification.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Accepted H2](h2-acceptance.md)"
@@ -82,7 +82,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         freeze = f"H2 was accepted on 24 August 2026 at hardware commit `25d9ee2` and firmware commit `900bb2b`. {manifest['summary']['frozen_files']} files are frozen by SHA-256; changing any one reopens the affected verification."
         matrix_h = "## Verification matrix"
         headers = "| Stage | Area | Pre-fabrication method | H3 artifact | Residual physical check |\n|---|---|---|---|---|"
-        current = "**Current marker:** `H3.6.3` — the [thermal model](thermal-model.md) and [single-fault review](single-fault-review.md) are consolidated; the bounded 24-to-48-hour unattended envelope is being built."
+        current = "**Current marker:** `H3.7.1` — the [thermal/fault/extended-operation result](thermal-fault-result.md) closes H3.6; the machine cross-check of every H3 result against H2 and downstream consumers is in progress."
     rows = "\n".join(
         f"| `{row['stage']}` | `{row['area']}` | {row['method']} | {row['h3_output']} | {row['physical_evidence']} |"
         for row in manifest["verification_matrix"]

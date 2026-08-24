@@ -170,7 +170,7 @@ pass/fail-правил заморожены. `H3.1` проведено ревь�
 две source-ошибки исправлены. `H3.3.1` проведено ревью после исправления ещё
 двух source-ошибок; `H3.3.2` — после четырёх исправлений аудиотракта.
 `H3.3.3` проверено после четырёх исправлений IR-источников, `H3.3.4` — после
-четырёх battery-analog исправлений. `H3.3.5` закрывает 153 leaf и 22 сводных
+четырёх battery-analog исправлений. `H3.3.5` закрывает 154 leaf и 22 сводных
 checks. `H3.4.1` закрывает digital levels/defaults 73 машинными checks,
 `H3.4.2` закрывает bandwidth/latency/timing 40 checks, `H3.4.3` закрывает
 loading M1, expansions и service boundaries 49 checks. `H3.4.4` закрывает фазу
@@ -180,7 +180,9 @@ corridors, keepouts, planes и returns. `H3.5.3` закрывает 30 checks on
 quiet-state и полных 3×nRF24. `H3.5.4` закрывает фазу 22 сквозными checks поверх
 125 leaf checks. В `H3.6.1` [тепловая модель](thermal-model.ru.md) проведена
 ревью 21 check; [проверка единичных отказов](single-fault-review.ru.md) закрывает 30 сценариев и 25 checks;
-в `H3.6.3` строится unattended envelope.
+[длительная работа и self-test](unattended-operation.ru.md) закрыты 24 checks без обещаний времени работы.
+[Сведение H3.6](thermal-fault-result.ru.md) закрывает 70 leaf и 24 сквозных
+checks; H3.7.1 сверяет каждый результат H3 с H2 и последующими потребителями.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate

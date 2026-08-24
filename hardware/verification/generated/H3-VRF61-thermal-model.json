@@ -261,9 +261,11 @@
     ]
   },
   "product_ambient_envelope": {
-    "status": "not_yet_selected",
-    "owner": "H3.6.3",
-    "reason": "the architecture contains no accepted external ambient range; H3.6.1 therefore publishes the exact resistance required at 25, 35 and 40 C without inventing a product claim"
+    "status": "accepted_engineering_target_pending_h6_h8_not_a_product_guarantee",
+    "minimum_c": 0,
+    "maximum_c": 35,
+    "decision": "H3.6.3 option A accepted by the user on 2026-08-24",
+    "rule": "H6 designs to this target; only H8 measurements may establish the final published operating range"
   },
   "corrections": [
     {
@@ -293,14 +295,12 @@
     "charger_treg_is_now_60c": true,
     "charger_tshut_is_now_85c": true,
     "datasheet_rtheta_is_not_used_as_enclosure_prediction": true,
-    "ambient_selection_is_deferred_only_to_h3_6_3": true,
+    "ambient_design_target_is_accepted_for_h3_6_3": true,
     "physical_residuals_are_assigned": true,
     "dc_consolidation_has_no_unresolved_findings": true
   },
   "open_findings": [],
-  "pending_decisions": [
-    "H3.6.3 external ambient and unattended sustained-profile envelope"
-  ],
+  "pending_decisions": [],
   "residual_physical_only": [
     "H6: solve the real board/enclosure thermal network after placement, copper, vias, wall material, vents and accessory geometry are fixed",
     "H6: meet or beat the applicable allowable base-to-ambient resistance from the parameter sweep; SUPPORT_WORST remains non-continuous",

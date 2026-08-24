@@ -27,7 +27,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
 | Production ECAD schematic | ✅ H2 accepted at hardware `25d9ee2`; firmware F2 synchronized at `900bb2b` |
-| Electrical and transient evidence | ▶️ H3.6.3: thermal and 30-case single-fault reviews complete; unattended envelope in progress |
+| Electrical and transient evidence | ▶️ H3.7.1: H3.6 closed with 70 leaf and 24 consolidation checks; full H3↔H2/downstream cross-check in progress |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
@@ -41,11 +41,11 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1/H2 and current H3 breakdown
 
-<!-- current-substep: H3.6.3 -->
+<!-- current-substep: H3.7.1 -->
 
-**Exact marker: `H3.6.3`** — the [thermal model](thermal-model.md) and
-[30-case single-fault review](single-fault-review.md) are complete. The current substep bounds ambient,
-profile duty, logging, restart and the uninterrupted 24–48-hour operating interval.
+**Exact marker: `H3.7.1`** — the [thermal/fault/extended-operation result](thermal-fault-result.md)
+closes H3.6 with 70 leaf and 24 consolidation checks. Every H3 result is now
+being cross-checked against H2 and its H4/H5/H6/H8 consumer.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -255,7 +255,7 @@ Current H2 execution:
   - ✅ `H3.3.2` — [codec, microphone, headset, speaker and voice TX reviewed](audio-electrical-verification.md); four source errors corrected.
   - ✅ `H3.3.3` — [IR receive, transmit, optical evidence and thermal limits reviewed](ir-electrical-verification.md); four source errors corrected.
   - ✅ `H3.3.4` — [battery sensing, thermistors and analog fault thresholds reviewed](battery-analog-verification.md); four source errors corrected.
-  - ✅ `H3.3.5` — [153 leaf and 22 consolidation checks reviewed](analog-corner-result.md); 14 source corrections closed.
+  - ✅ `H3.3.5` — [154 leaf and 22 consolidation checks reviewed](analog-corner-result.md); 14 source corrections closed.
 - ✅ `H3.4` — digital levels, reset defaults, bandwidth, timing and expansion loading.
   - ✅ `H3.4.1` — [voltage levels, pulls, reset defaults and no-back-power reviewed](digital-levels-verification.md).
   - ✅ `H3.4.2` — [bandwidth, latency and timing reviewed](digital-timing-verification.md).
@@ -266,12 +266,16 @@ Current H2 execution:
   - ✅ `H3.5.2` — [RF corridors, keepouts, reference planes and returns reviewed](rf-layout-constraints.md).
   - ✅ `H3.5.3` — [one-active-group isolation, quiet state and concurrent 3×nRF24 reviewed](rf-coexistence.md).
   - ✅ `H3.5.4` — [RF evidence consolidated](rf-verification-result.md): 125 leaf and 22 cross-domain checks.
-- ▶️ `H3.6` — thermal model, single-fault tree and 24–48-hour unattended envelope.
+- ✅ `H3.6` — thermal model, single-fault tree and extended-operation safety.
   - ✅ `H3.6.1` — [board, battery and enclosure thermal model reviewed](thermal-model.md); charger TREG/TSHUT corrected.
   - ✅ `H3.6.2` — [30 single faults traced through independent shutdown and recovery](single-fault-review.md).
-  - ▶️ **`H3.6.3` — current:** bounded 24–48-hour unattended operating envelope.
-  - ⏳ `H3.6.4` — thermal and fault consolidation.
-- ⏳ `H3.7` — cross-check, physical-only residuals and formal H3 acceptance.
+  - ✅ `H3.6.3` — [extended operation, the `0 to 35 °C` engineering target and configurable self-test reviewed](unattended-operation.md); 24/48 hours are H8 intervals only.
+  - ✅ `H3.6.4` — [70 leaf and 24 thermal/fault/endurance consolidation checks reviewed](thermal-fault-result.md).
+- ▶️ `H3.7` — cross-check, physical-only residuals and formal H3 acceptance.
+  - ▶️ **`H3.7.1` — current:** cross-check every H3 result against H2 and downstream consumers.
+  - ⏳ `H3.7.2` — publish physical-only residuals and required H5/H6/H8 evidence.
+  - ⏳ `H3.7.3` — prepare the formal H3 acceptance package.
+  - ⏳ `H3.7.4` — record explicit user acceptance before H4.
 
 The reviewed H2 plan is
 [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json). The active

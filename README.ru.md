@@ -120,11 +120,11 @@ safety-автоматику.
 <details open>
 <summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.6.3 -->
+<!-- current-substep: H3.7.1 -->
 
-**Точный маркер: `H3.6.3`** — [параметрическая тепловая модель](docs/thermal-model.ru.md)
-и [проверка 30 единичных отказов](docs/single-fault-review.ru.md) завершены.
-Сейчас ограничиваются ambient, duty, журналирование и непрерывный 24–48-часовой режим.
+**Точный маркер: `H3.7.1`** — [сводный thermal/fault/extended-operation результат](docs/thermal-fault-result.ru.md)
+закрывает H3.6 70 leaf- и 24 consolidation-checks. Сейчас каждый результат H3
+сверяется с H2 и своим потребителем H4/H5/H6/H8.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 048 схемных строк.
@@ -213,7 +213,7 @@ safety-автоматику.
   - ✅ `H3.3.2` — [codec, microphone, headset, speaker и voice-TX проведены ревью](docs/audio-electrical-verification.ru.md); исправлены четыре source-ошибки.
   - ✅ `H3.3.3` — [IR RX/TX, optical evidence и thermal limits проверены](docs/ir-electrical-verification.ru.md); исправлены четыре source-ошибки.
   - ✅ `H3.3.4` — [battery sensing, thermistors и analog fault thresholds проведены ревью](docs/battery-analog-verification.ru.md); исправлены четыре source-ошибки.
-  - ✅ `H3.3.5` — [проверены 153 leaf и 22 сводных checks](docs/analog-corner-result.ru.md); закрыты 14 source-исправлений.
+  - ✅ `H3.3.5` — [проверены 154 leaf и 22 сводных checks](docs/analog-corner-result.ru.md); закрыты 14 source-исправлений.
 - ✅ **`H3.4` — проверено:** digital levels, timing и loading.
   - ✅ `H3.4.1` — [voltage levels, pulls, reset defaults и no-back-power проведены ревью](docs/digital-levels-verification.ru.md).
   - ✅ `H3.4.2` — [bandwidth, latency и timing проведены ревью](docs/digital-timing-verification.ru.md).
@@ -224,11 +224,16 @@ safety-автоматику.
   - ✅ `H3.5.2` — [проверены RF corridors, keepouts, reference planes и returns](docs/rf-layout-constraints.ru.md).
   - ✅ `H3.5.3` — [проверены isolation, quiet-state и одновременные 3×nRF24](docs/rf-coexistence.ru.md).
   - ✅ `H3.5.4` — [сведены 125 leaf и 22 сквозных RF checks](docs/rf-verification-result.ru.md).
-- ▶️ **`H3.6` — сейчас:** thermal, fault-tree и unattended-operation verification.
+- ✅ **`H3.6` — проведено ревью:** thermal, fault-tree и unattended-operation verification.
   - ✅ `H3.6.1` — [тепловая модель плат, аккумуляторов и корпуса проведена ревью](docs/thermal-model.ru.md); исправлены charger TREG/TSHUT.
   - ✅ `H3.6.2` — [30 единичных отказов проведены через независимое shutdown и recovery](docs/single-fault-review.ru.md).
-  - ▶️ **`H3.6.3` — сейчас:** ограниченный 24–48-часовой unattended-operation envelope.
-  - ⏳ `H3.6.4` — thermal/fault consolidation.
+  - ✅ `H3.6.3` — [приняты `0…35 °C` как инженерная цель, USB для долгой работы и настраиваемый self-test](docs/unattended-operation.ru.md); обещаний времени работы нет.
+  - ✅ `H3.6.4` — [проверены 70 leaf и 24 thermal/fault/endurance consolidation checks](docs/thermal-fault-result.ru.md).
+- ▶️ **`H3.7` — сейчас:** финальное закрытие virtual verification.
+  - ▶️ **`H3.7.1` — сейчас:** сверить каждый результат H3 с H2 и последующими потребителями.
+  - ⏳ `H3.7.2` — опубликовать physical-only остатки и требуемые evidence H5/H6/H8.
+  - ⏳ `H3.7.3` — подготовить формальный пакет приёмки H3.
+  - ⏳ `H3.7.4` — записать явное подтверждение пользователя перед H4.
 
 Проверенный план H2 —
 [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Текущий

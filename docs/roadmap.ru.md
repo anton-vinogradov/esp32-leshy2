@@ -26,7 +26,7 @@
 | Физический дизайн устройства | ✅ H1 принят: внешние/внутренние виды, разрезы, service paths и pin/resource fit пройдены |
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
 | Production ECAD-схема | ✅ H2 принят на hardware `25d9ee2`; firmware F2 синхронизирован на `900bb2b` |
-| Электрические и переходные evidence | ▶️ H3.6.3: thermal и 30-case single-fault review готовы; строится unattended envelope |
+| Электрические и переходные evidence | ▶️ H3.7.1: H3.6 закрыт 70 leaf и 24 consolidation checks; выполняется полная сверка H3↔H2/downstream |
 | Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
 | Работа над KiCad-схемой | ✅ H2 проведено ревью; позднее несоответствие повторно откроет затронутые листы |
 | KiCad placement и PCB routing | 🔒 H6: не начаты и не разрешены |
@@ -41,11 +41,11 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённые H1/H2 и детальный состав текущей H3
 
-<!-- current-substep: H3.6.3 -->
+<!-- current-substep: H3.7.1 -->
 
-**Точный маркер: `H3.6.3`** — [тепловая модель](thermal-model.ru.md) и
-[проверка 30 единичных отказов](single-fault-review.ru.md) завершены. Сейчас ограничиваются ambient,
-duty профилей, журналирование, restart и непрерывный 24–48-часовой интервал.
+**Точный маркер: `H3.7.1`** — [сводный thermal/fault/extended-operation результат](thermal-fault-result.ru.md)
+закрывает H3.6 70 leaf- и 24 consolidation-checks. Каждый результат H3 сейчас
+сверяется с H2 и своим потребителем H4/H5/H6/H8.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -258,7 +258,7 @@ duty профилей, журналирование, restart и непрерыв
   - ✅ `H3.3.2` — [codec, microphone, headset, speaker и voice-TX проведены ревью](audio-electrical-verification.ru.md); исправлены четыре source-ошибки.
   - ✅ `H3.3.3` — [IR RX/TX, optical evidence и thermal limits проверены](ir-electrical-verification.ru.md); исправлены четыре source-ошибки.
   - ✅ `H3.3.4` — [battery sensing, thermistors и analog fault thresholds проведены ревью](battery-analog-verification.ru.md); исправлены четыре source-ошибки.
-  - ✅ `H3.3.5` — [проверены 153 leaf и 22 сводных checks](analog-corner-result.ru.md); закрыты 14 source-исправлений.
+  - ✅ `H3.3.5` — [проверены 154 leaf и 22 сводных checks](analog-corner-result.ru.md); закрыты 14 source-исправлений.
 - ✅ `H3.4` — digital levels/defaults, bandwidth, timing и expansion loading.
   - ✅ `H3.4.1` — [voltage levels, pulls, reset defaults и no-back-power проведены ревью](digital-levels-verification.ru.md).
   - ✅ `H3.4.2` — [bandwidth, latency и timing проведены ревью](digital-timing-verification.ru.md).
@@ -269,12 +269,16 @@ duty профилей, журналирование, restart и непрерыв
   - ✅ `H3.5.2` — [проверены RF corridors, keepouts, reference planes и returns](rf-layout-constraints.ru.md).
   - ✅ `H3.5.3` — [проверены one-active-group isolation, quiet state и одновременные 3×nRF24](rf-coexistence.ru.md).
   - ✅ `H3.5.4` — [RF evidence сведены](rf-verification-result.ru.md): 125 leaf и 22 сквозных checks.
-- ▶️ `H3.6` — thermal model, single-fault tree и unattended 24–48 часов.
+- ✅ `H3.6` — thermal model, single-fault tree и extended-operation safety.
   - ✅ `H3.6.1` — [тепловая модель плат, аккумуляторов и корпуса проведена ревью](thermal-model.ru.md); исправлены charger TREG/TSHUT.
   - ✅ `H3.6.2` — [30 единичных отказов проведены через независимое shutdown и recovery](single-fault-review.ru.md).
-  - ▶️ **`H3.6.3` — сейчас:** ограниченный 24–48-часовой unattended-operation envelope.
-  - ⏳ `H3.6.4` — thermal/fault consolidation.
-- ⏳ `H3.7` — сквозная сверка, physical-only остатки и формальная приёмка H3.
+  - ✅ `H3.6.3` — [длительная работа, инженерная цель `0…35 °C` и настраиваемый self-test проведены ревью](unattended-operation.ru.md); 24/48 часов — только интервалы H8.
+  - ✅ `H3.6.4` — [проверены 70 leaf и 24 thermal/fault/endurance consolidation checks](thermal-fault-result.ru.md).
+- ▶️ `H3.7` — сквозная сверка, physical-only остатки и формальная приёмка H3.
+  - ▶️ **`H3.7.1` — сейчас:** сверить каждый результат H3 с H2 и последующими потребителями.
+  - ⏳ `H3.7.2` — опубликовать physical-only остатки и требуемые evidence H5/H6/H8.
+  - ⏳ `H3.7.3` — подготовить формальный пакет приёмки H3.
+  - ⏳ `H3.7.4` — записать явное подтверждение пользователя перед H4.
 
 Проверенный план H2 —
 [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json). Активный

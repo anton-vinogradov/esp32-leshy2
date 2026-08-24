@@ -4,7 +4,7 @@
 
 The model enumerates every H3.1 power state and separates electrical capacity from thermal permission. The electrical anti-hidden-load corner is `VOICE/RX/SUPPORT_WORST` at `14.562 W` of conservative base heat; it is **not** a continuous operating claim. The hottest `SUPPORT_IDLE` group is `VOICE` at `6.246 W`; quiet idle is `1.795 W`. External accessory output is excluded only after its converter/eFuse and base support heat have been retained.
 
-The product ambient range has not been invented. Machine evidence publishes required base-to-ambient resistance at 25, 35 and 40 C against the existing 65-C warning and 75-C hard-kill classes. H6 must solve the actual copper/enclosure network and H8 must correlate temperatures and time constants before any continuous or unattended claim.
+The accepted engineering target is `0 to 35 C`, not a published product guarantee. Machine evidence also retains required base-to-ambient resistance at 25, 35 and 40 C against the existing 65-C warning and 75-C hard-kill classes. H6 must solve the actual copper/enclosure network and H8 must correlate temperatures and time constants before establishing the final range or admitting a sustained profile.
 
 BQ25798 is corrected from hot reset defaults to protected/read-back `TREG=60 C`, `TSHUT=85 C`; this changes no BOM and removes no function.
 

@@ -207,7 +207,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "charger_treg_is_now_60c": thermal_parts["charger"]["protected_treg_c"] == 60,
         "charger_tshut_is_now_85c": thermal_parts["charger"]["protected_tshut_c"] == 85,
         "datasheet_rtheta_is_not_used_as_enclosure_prediction": all("rtheta_base_to_ambient" in key for key in ambient_sweep["quiet_idle"][0] if key.startswith("rtheta")),
-        "ambient_selection_is_deferred_only_to_h3_6_3": True,
+        "ambient_design_target_is_accepted_for_h3_6_3": True,
         "physical_residuals_are_assigned": len(residual) == 5 and all(row.startswith(("H6:", "H8:")) for row in residual),
         "dc_consolidation_has_no_unresolved_findings": dc_result["review_summary"]["unresolved_findings"] == 0,
     }
@@ -238,14 +238,16 @@ def build() -> tuple[dict[Path, str], dict]:
         "scenarios": scenarios,
         "ambient_parameter_sweep": ambient_sweep,
         "product_ambient_envelope": {
-            "status": "not_yet_selected",
-            "owner": "H3.6.3",
-            "reason": "the architecture contains no accepted external ambient range; H3.6.1 therefore publishes the exact resistance required at 25, 35 and 40 C without inventing a product claim",
+            "status": "accepted_engineering_target_pending_h6_h8_not_a_product_guarantee",
+            "minimum_c": 0,
+            "maximum_c": 35,
+            "decision": "H3.6.3 option A accepted by the user on 2026-08-24",
+            "rule": "H6 designs to this target; only H8 measurements may establish the final published operating range",
         },
         "corrections": corrections,
         "checks": checks,
         "open_findings": [],
-        "pending_decisions": ["H3.6.3 external ambient and unattended sustained-profile envelope"],
+        "pending_decisions": [],
         "residual_physical_only": residual,
         "review_summary": {"checks": len(checks), "failed": 0, "corrected_findings": 1, "unresolved_analytical_findings": 0, "status": "reviewed"},
         "next": {"stage": "H3.6.2", "action": "trace single faults through independent hardware shutdown and recovery"},
@@ -260,7 +262,7 @@ def build() -> tuple[dict[Path, str], dict]:
 
 The model enumerates every H3.1 power state and separates electrical capacity from thermal permission. The electrical anti-hidden-load corner is `{peak['signal_group']}/{peak['group_mode']}/{peak['support_profile']}` at `{peak['conservative_base_heat_w']} W` of conservative base heat; it is **not** a continuous operating claim. The hottest `SUPPORT_IDLE` group is `{sustained['signal_group']}` at `{sustained['conservative_base_heat_w']} W`; quiet idle is `{quiet['conservative_base_heat_w']} W`. External accessory output is excluded only after its converter/eFuse and base support heat have been retained.
 
-The product ambient range has not been invented. Machine evidence publishes required base-to-ambient resistance at 25, 35 and 40 C against the existing 65-C warning and 75-C hard-kill classes. H6 must solve the actual copper/enclosure network and H8 must correlate temperatures and time constants before any continuous or unattended claim.
+The accepted engineering target is `0 to 35 C`, not a published product guarantee. Machine evidence also retains required base-to-ambient resistance at 25, 35 and 40 C against the existing 65-C warning and 75-C hard-kill classes. H6 must solve the actual copper/enclosure network and H8 must correlate temperatures and time constants before establishing the final range or admitting a sustained profile.
 
 BQ25798 is corrected from hot reset defaults to protected/read-back `TREG=60 C`, `TSHUT=85 C`; this changes no BOM and removes no function.
 
@@ -272,7 +274,7 @@ Machine evidence: [`H3-VRF61-thermal-model.json`](../hardware/verification/gener
 
 Модель перебирает все состояния питания H3.1 и разделяет электрическую допустимость и тепловое разрешение. Электрический anti-hidden-load угол — `{peak['signal_group']}/{peak['group_mode']}/{peak['support_profile']}` с консервативными `{peak['conservative_base_heat_w']} Вт внутри базы; это **не** разрешение непрерывной работы. Самая горячая группа с `SUPPORT_IDLE` — `{sustained['signal_group']}`, `{sustained['conservative_base_heat_w']} Вт; quiet idle — `{quiet['conservative_base_heat_w']} Вт. Мощность внешнего аксессуара исключается из базы только после учёта его преобразователя/eFuse и внутренних support-нагрузок.
 
-Внешний температурный диапазон продукта не придуман. Машинное evidence задаёт требуемое тепловое сопротивление база→среда при 25, 35 и 40 °C относительно уже принятых классов warning 65 °C и hard kill 75 °C. H6 обязан решить реальную сеть copper/case, а H8 — измерить температуры и постоянные времени до любого continuous или unattended заявления.
+Принятая инженерная цель — `0…35 °C`, а не паспортная гарантия. Машинное evidence также сохраняет требуемое тепловое сопротивление база→среда при 25, 35 и 40 °C относительно классов warning 65 °C и hard kill 75 °C. H6 обязан решить реальную сеть copper/case, а H8 — измерить температуры и постоянные времени до фиксации итогового диапазона или допуска длительного профиля.
 
 BQ25798 исправлен с горячих reset-default на защищённые и проверяемые чтением `TREG=60 °C`, `TSHUT=85 °C`; BOM и функции не меняются.
 

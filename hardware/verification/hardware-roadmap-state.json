@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "current_stage": "H3",
-  "current_substep": "H3.6.3",
+  "current_substep": "H3.7.1",
   "stages": [
     {"id": "H0", "status": "reviewed"},
     {"id": "H1", "status": "reviewed"},

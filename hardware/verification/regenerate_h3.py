@@ -34,6 +34,8 @@ SCRIPTS = (
     ROOT / "hardware/verification/h3_rf_consolidation.py",
     ROOT / "hardware/verification/h3_thermal_model.py",
     ROOT / "hardware/verification/h3_fault_tree.py",
+    ROOT / "hardware/verification/h3_unattended_envelope.py",
+    ROOT / "hardware/verification/h3_thermal_fault_consolidation.py",
 )
 
 

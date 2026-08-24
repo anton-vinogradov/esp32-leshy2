@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "stage": "H3.6.3",
+  "status": "reviewed_unattended_safety_and_endurance_test_envelope",
+  "method": "conservative source-energy bounds plus accepted ambient target, configurable destructive-proof interval and explicit H6/H8 admission gates",
+  "source_hashes": {
+    "hardware/verification/generated/H3-VRF61-thermal-model.json": "170d19c13917926b0645792cf3c842f5fa7d3d18fb074e4e904b89c2cf8caaf7",
+    "hardware/verification/generated/H3-VRF62-fault-tree.json": "077ec4e2410eefef9711e15b81557c52764d057aae281bb316bf805b57ce4a2c",
+    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "47fd28d52af105f85070cc35837057317970b9c7e113002f8fda708aa648447d",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "3ba9d8809374f820311f9cb754e0545aebaaf1e370f961308ef79165c6563855"
+  },
+  "accepted_product_policy": {
+    "runtime_claim": "none; no battery or USB operating duration is promised",
+    "extended_operation_guidance": "connect a qualified USB-PD source for long operation",
+    "battery_table_role": "pre-HIL energy planning only; real usable energy, cutoff, ageing and profile duration are measured in H8",
+    "usb_rule": "USB removes the finite-pack-energy premise but never relaxes thermal, watchdog, fault, quiet-state or lease rules",
+    "endurance_interpretation": "24-hour and 48-hour intervals are H8 validation durations and selectable self-test intervals, not product uptime or autonomy specifications"
+  },
+  "ambient_design_target": {
+    "design_target_c": {
+      "minimum": 0,
+      "maximum": 35
+    },
+    "status": "accepted engineering target pending H6/H8; not a published operating guarantee",
+    "charge_behavior": "normal charge request is zero above 35 C; charge is blocked at the independent hot/cold limits and on any cell-sensor fault",
+    "h6_base_to_ambient_rtheta_k_per_w_max_at_35c": {
+      "quiet_support_idle": "16.713",
+      "voice_support_idle_worst_group": "4.803",
+      "qualified_external_support_idle": "9.234"
+    },
+    "rule": "H6 must meet the applicable resistance and H8 must measure it before any sustained profile is admitted"
+  },
+  "fault_plane_self_test_setting": {
+    "ui_path": "Settings > Safety > Full self-test",
+    "owner": "independent safety MSPM0 monotonic active-session timer",
+    "default": "EVERY_48_H",
+    "values": [
+      {
+        "id": "EVERY_24_H",
+        "active_session_seconds": 86400,
+        "bounded_periodic_proof": true
+      },
+      {
+        "id": "EVERY_48_H",
+        "active_session_seconds": 172800,
+        "bounded_periodic_proof": true
+      },
+      {
+        "id": "STARTUP_ONLY",
+        "active_session_seconds": null,
+        "bounded_periodic_proof": false,
+        "warning": "periodic destructive fault-plane proof is disabled; proof still runs at every physical KILL-to-RUN boundary"
+      }
+    ],
+    "change_authority": "local physical UI only; no radio, network or remote-management command",
+    "activation": "a changed value is staged and becomes active only after the next physical KILL-to-RUN proof",
+    "warnings_before_due_seconds": [
+      1800,
+      300,
+      60
+    ],
+    "check_now": "immediately performs the same orderly stop and requests physical KILL-to-RUN",
+    "deadline_sequence": [
+      "revoke every TX lease and reject renewal",
+      "request every signal group quiet and record acknowledgements when available",
+      "flush the bounded operation log when S3 remains healthy",
+      "retain first cause FAULT_PLANE_PROOF_DUE in the safety controller",
+      "hold SAFETY_FAULT_REQUEST low and require physical KILL-to-RUN"
+    ],
+    "invariants": [
+      "the setting never changes watchdog service, temperature FAULT_KILL, power-fault handling or TX-lease limits",
+      "loss of S3, its settings storage or the settings mailbox cannot extend the already active safety-controller deadline",
+      "power loss cannot bypass proof because the next RUN admission repeats the destructive startup proof"
+    ]
+  },
+  "sustained_operation_policy": {
+    "candidate_profiles": "SUPPORT_IDLE only, one active top-level signal group; all final permissions remain profile-specific",
+    "excluded": [
+      "SUPPORT_WORST as a sustained state",
+      "continuous or unleased TX",
+      "an unknown or unqualified external accessory",
+      "operation after any required thermal/evidence/power sensor becomes unreadable"
+    ],
+    "tx": "TX remains a short bounded lease inside an otherwise admitted profile; H8 sets final duty and session limits",
+    "logging": [
+      "active profile and source state",
+      "all three board-zone temperatures and both cell temperatures",
+      "rail/power-fault flags, active lease and actual-TX evidence mask",
+      "self-test setting, elapsed active-session time, warnings and retained first cause"
+    ]
+  },
+  "pack_energy": {
+    "topology": "2S; voltage and energy add, ampere-hours do not",
+    "typical_nominal_wh": "28.80",
+    "minimum_nominal_wh": "27.36",
+    "planning_rows": [
+      {
+        "signal_group": "BROADCAST_RX",
+        "group_mode": "FM_AM_SW_LW_RX",
+        "conservative_system_demand_w": "1.892",
+        "minimum_nominal_energy_ideal_ceiling_h": "14.46",
+        "disposition": "planning ceiling only; not runtime, autonomy or availability promise"
+      },
+      {
+        "signal_group": "C5_RF",
+        "group_mode": "2G4_RX",
+        "conservative_system_demand_w": "1.778",
+        "minimum_nominal_energy_ideal_ceiling_h": "15.39",
+        "disposition": "planning ceiling only; not runtime, autonomy or availability promise"
+      },
+      {
+        "signal_group": "CC1101",
+        "group_mode": "RX",
+        "conservative_system_demand_w": "1.933",
+        "minimum_nominal_energy_ideal_ceiling_h": "14.15",
+        "disposition": "planning ceiling only; not runtime, autonomy or availability promise"
+      },
+      {
+        "signal_group": "IR",
+        "group_mode": "LEARN_OR_RAW_RX",
+        "conservative_system_demand_w": "2.044",
+        "minimum_nominal_energy_ideal_ceiling_h": "13.39",
+        "disposition": "planning ceiling only; not runtime, autonomy or availability promise"
+      },
+      {
+        "signal_group": "LORA_CAP",
+        "group_mode": "STOCK_U214_RX_GNSS_ONLY",
+        "conservative_system_demand_w": "9.207",
+        "minimum_nominal_energy_ideal_ceiling_h": "2.97",
+        "disposition": "planning ceiling only; not runtime, autonomy or availability promise"
+      },
+      {
+        "signal_group": "M5_UNIT",
+        "group_mode": "QUALIFIED_PROFILE_RX_OR_PASSIVE",
+        "conservative_system_demand_w": "9.207",
+        "minimum_nominal_energy_ideal_ceiling_h": "2.97",
+        "disposition": "planning ceiling only; not runtime, autonomy or availability promise"
+      },
+      {
+        "signal_group": "NONE",
+        "group_mode": "QUIET",
+        "conservative_system_demand_w": "1.778",
+        "minimum_nominal_energy_ideal_ceiling_h": "15.39",
+        "disposition": "planning ceiling only; not runtime, autonomy or availability promise"
+      },
+      {
+        "signal_group": "NRF24",
+        "group_mode": "3PRX",
+        "conservative_system_demand_w": "2.004",
+        "minimum_nominal_energy_ideal_ceiling_h": "13.65",
+        "disposition": "planning ceiling only; not runtime, autonomy or availability promise"
+      },
+      {
+        "signal_group": "S3_RF",
+        "group_mode": "2G4_RX_OR_SCAN",
+        "conservative_system_demand_w": "1.778",
+        "minimum_nominal_energy_ideal_ceiling_h": "15.39",
+        "disposition": "planning ceiling only; not runtime, autonomy or availability promise"
+      },
+      {
+        "signal_group": "VOICE",
+        "group_mode": "RX",
+        "conservative_system_demand_w": "6.112",
+        "minimum_nominal_energy_ideal_ceiling_h": "4.48",
+        "disposition": "planning ceiling only; not runtime, autonomy or availability promise"
+      }
+    ]
+  },
+  "h6_h8_required_evidence": [
+    "H6: meet the profile-specific 35-C base-to-ambient resistance target with final copper, vias, enclosure and installed accessory geometry",
+    "H8: run 24-hour and 48-hour USB-powered endurance cases as validation tests, including the configured proof-due stop and retained display reason",
+    "H8: run each battery profile to its real protected cutoff and publish measurements only as test results, not guaranteed autonomy",
+    "H8: chamber-test admitted sustained profiles at 0, 25 and 35 C plus boundary/fault behavior outside the design target",
+    "H8: verify all three self-test settings, staged activation, local-only authority, warning sequence, S3-loss behavior and physical KILL-to-RUN recovery",
+    "H8: correlate final thermal time constants and set per-profile TX duty/session limits before release"
+  ],
+  "checks": {
+    "typical_pack_energy_is_28_8wh": true,
+    "minimum_nominal_pack_energy_is_27_36wh": true,
+    "all_ten_signal_groups_have_planning_rows": true,
+    "quiet_ideal_ceiling_is_below_24h": true,
+    "no_runtime_claim_is_made": true,
+    "long_operation_uses_usb_guidance": true,
+    "endurance_intervals_are_tests_not_promises": true,
+    "self_test_default_is_48h": true,
+    "self_test_24h_is_available": true,
+    "startup_only_is_explicit_unbounded_override": true,
+    "self_test_changes_require_physical_rearm": true,
+    "self_test_setting_is_local_only": true,
+    "deadline_revokes_tx_before_fault_request": true,
+    "watchdog_and_thermal_limits_are_not_configurable_here": true,
+    "fault_plane_requires_physical_rearm_proof": true,
+    "ambient_target_is_0_to_35c": true,
+    "ambient_target_is_not_a_guarantee": true,
+    "quiet_35c_rtheta_matches_h3_6_1": true,
+    "voice_35c_rtheta_matches_h3_6_1": true,
+    "support_worst_is_not_sustained": true,
+    "tx_remains_bounded": true,
+    "physical_residuals_are_assigned": true,
+    "upstream_thermal_review_is_clean": true,
+    "upstream_fault_review_is_clean": true
+  },
+  "open_findings": [],
+  "pending_decisions": [],
+  "non_claims": [
+    "guaranteed battery runtime, USB uptime or availability",
+    "a final product operating-temperature range before H8",
+    "continuous SUPPORT_WORST, continuous TX or operation with an unqualified accessory",
+    "thermal closure before H6 or endurance/fault closure before H8"
+  ],
+  "review_summary": {
+    "checks": 24,
+    "failed": 0,
+    "unresolved_analytical_findings": 0,
+    "status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.6.4",
+    "action": "consolidate thermal, fault and unattended-operation evidence"
+  }
+}
