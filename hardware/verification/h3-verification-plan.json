@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "H3",
   "status": "in_progress",
-  "current_substep": "H3.4.4",
+  "current_substep": "H3.5.1",
   "accepted_input": {
     "stage": "H2.8.2",
     "status": "accepted_by_user",
@@ -67,20 +67,20 @@
     {
       "id": "H3.4",
       "title": "Digital interface, timing and level verification",
-      "status": "current",
+      "status": "reviewed",
       "children": [
         {"id": "H3.4.1", "title": "Check voltage levels, pulls, reset defaults and no-back-power at every interface", "status": "reviewed", "evidence": "generated/H3-VRF41-digital-levels.json"},
         {"id": "H3.4.2", "title": "Check bandwidth, latency and timing for display, storage, audio and radio buses", "status": "reviewed", "evidence": "generated/H3-VRF42-digital-timing.json"},
         {"id": "H3.4.3", "title": "Check M1, U214, M5 Unit and service-boundary loading", "status": "reviewed", "evidence": "generated/H3-VRF43-boundary-loading.json"},
-        {"id": "H3.4.4", "title": "Consolidate digital timing and level evidence", "status": "current"}
+        {"id": "H3.4.4", "title": "Consolidate digital timing and level evidence", "status": "reviewed", "evidence": "generated/H3-VRF44-digital-consolidation.json"}
       ]
     },
     {
       "id": "H3.5",
       "title": "RF pre-layout constraints and coexistence model",
-      "status": "waiting",
+      "status": "current",
       "children": [
-        {"id": "H3.5.1", "title": "Derive 50-ohm feed, connector, matching and loss constraints for every antenna path", "status": "waiting"},
+        {"id": "H3.5.1", "title": "Derive 50-ohm feed, connector, matching and loss constraints for every antenna path", "status": "current"},
         {"id": "H3.5.2", "title": "Derive RF corridors, keepouts, reference-plane and return-current constraints", "status": "waiting"},
         {"id": "H3.5.3", "title": "Verify one-active-group isolation, quiet-state and full 3x nRF24 concurrency assumptions", "status": "waiting"},
         {"id": "H3.5.4", "title": "Consolidate RF pre-layout rules and physical-only measurements", "status": "waiting"}

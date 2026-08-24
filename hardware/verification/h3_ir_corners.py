@@ -346,7 +346,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
 
 VEMD1060X01 смотрит на emitter внутри светонепроницаемого тоннеля. Полный resistor/offset corner оставляет минимум `{optical['false_assert_margin_mv_min_including_offsets']}` мВ до ложного срабатывания в темноте и `{optical['clear_margin_mv_min_including_offsets']}` мВ до гарантированного отпускания. Для assert HIL должен обеспечить не более `{optical['required_photocurrent_ua_max_for_hil']}` мкА на TIA; это намеренно измеряемый порог, потому что даташит фотодиода нормирует irradiance при 5 В, а наша рабочая обратная поляризация около 0,3 В. Evidence подтверждает физический свет, но никогда не разрешает TX.
 
-Исправления добавляют всего `{cost['total_delta_per_board']} USD` на устройство при количестве 100. **H3.3.3 проверено; текущий точный маркер — `H3.4.4`.**
+Исправления добавляют всего `{cost['total_delta_per_board']} USD` на устройство при количестве 100. **H3.3.3 проверено; текущий точный маркер — `H3.5.1`.**
 
 [Машинный пакет H3-VRF33](../hardware/verification/generated/H3-VRF33-ir.json)."""
     else:
@@ -365,7 +365,7 @@ VEMD1060X01 смотрит на emitter внутри светонепрониц�
 
 VEMD1060X01 views the emitter inside a light-tight tunnel. Full resistor/offset corners retain `{optical['false_assert_margin_mv_min_including_offsets']}` mV minimum dark false-assert margin and `{optical['clear_margin_mv_min_including_offsets']}` mV guaranteed-clear margin. HIL must achieve the bounded `{optical['required_photocurrent_ua_max_for_hil']}`-uA TIA assertion target; this remains measured because the photodiode irradiance table is specified at 5-V reverse bias while this circuit operates near 0.3 V. Evidence confirms physical light and never authorizes TX.
 
-The corrections add only `{cost['total_delta_per_board']} USD` per unit at quantity 100. **H3.3.3 is reviewed; the exact current marker is `H3.4.4`.**
+The corrections add only `{cost['total_delta_per_board']} USD` per unit at quantity 100. **H3.3.3 is reviewed; the exact current marker is `H3.5.1`.**
 
 [Machine H3-VRF33 package](../hardware/verification/generated/H3-VRF33-ir.json)."""
     return "\n\n".join((title, nav, intro, body)) + "\n"

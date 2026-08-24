@@ -27,6 +27,7 @@ SCRIPTS = (
     ROOT / "hardware/verification/h3_digital_levels.py",
     ROOT / "hardware/verification/h3_digital_timing.py",
     ROOT / "hardware/verification/h3_boundary_loading.py",
+    ROOT / "hardware/verification/h3_digital_consolidation.py",
 )
 
 

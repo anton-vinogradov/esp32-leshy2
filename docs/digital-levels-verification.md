@@ -1,6 +1,6 @@
 # Digital levels, defaults and no-back-power
 
-`H3.4.1` is reviewed: `73` machine checks cover all `130` controller allocations, `13` digital interface groups, `13` quiet-state contracts and all six no-back-power invariants. No analytical finding or component change remains open. The exact current marker is `H3.4.4`.
+`H3.4.1` is reviewed: `73` machine checks cover all `130` controller allocations, `13` digital interface groups, `13` quiet-state contracts and all six no-back-power invariants. No analytical finding or component change remains open. The exact current marker is `H3.5.1`.
 
 ## Guaranteed static margins
 

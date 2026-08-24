@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "stage": "H3.4.4",
+  "status": "reviewed_digital_interface_timing_level_and_loading_consolidation",
+  "input_hashes": {
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "731f806a3e6f2edd214123d83bd672fe4f759803b2a219675a6cebfef37de9d7",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "ab71fe818580560b5dc58e09d506df0e40a0061db671326aa8b8d7b3369acbf3",
+    "hardware/verification/generated/H3-VRF43-boundary-loading.json": "15d064fef4123affc026237c007784bff28a8b2fb591919af3aa4d912ddebe80"
+  },
+  "leaf_summary": {
+    "levels": {
+      "stage": "H3.4.1",
+      "status": "reviewed_digital_levels_pulls_reset_defaults_and_no_back_power",
+      "checks": 73,
+      "corrections": 0,
+      "physical_residuals": 5
+    },
+    "timing": {
+      "stage": "H3.4.2",
+      "status": "reviewed_digital_bandwidth_latency_and_timing",
+      "checks": 40,
+      "corrections": 0,
+      "physical_residuals": 7
+    },
+    "boundaries": {
+      "stage": "H3.4.3",
+      "status": "reviewed_m1_expansion_and_service_boundary_loading",
+      "checks": 49,
+      "corrections": 1,
+      "physical_residuals": 7
+    }
+  },
+  "consolidated": {
+    "leaf_checks": 162,
+    "consolidation_checks": 27,
+    "failed_checks": 0,
+    "source_or_self_review_corrections": 1,
+    "unresolved_analytical_findings": 0,
+    "physical_only_residuals": 19,
+    "controller_allocations": 130,
+    "interface_groups": 13,
+    "independent_resource_rows": 9
+  },
+  "closed_cross_domain_contracts": {
+    "display_storage": "40-MHz direct QSPI with <=1-ms quanta; qualified SD profile retains >=4 MB/s and 512-KiB stall buffering",
+    "audio": "48-kHz full-duplex DMA has 21.333-ms ring and a dedicated controller",
+    "compatibility_radios": "three independent nRF24 SPI engines plus independent CC1101 SPI service fit their FIFO guards",
+    "ipc": "both S3-RP and S3-C5 links admit >=1.5 MB/s without sharing display, storage, audio or radio controllers",
+    "quiet_state": "all 13 interface groups have reset/off and no-back-power contracts; inactive interfaces are hardware-quiet",
+    "m1_expansion_service": "M1 current/drop/rate, protected extension branches, U214 load and data-only service USB limits pass"
+  },
+  "corrections": [
+    "self-review corrected the U214 I2C pF-to-ns conversion before accepting H3.4.3; the corrected 150-pF rise is 279.609 ns and still passes the 300-ns limit"
+  ],
+  "physical_hil_residuals": {
+    "levels": [
+      "measure powered-off leakage at every switched-domain signal while the host remains powered",
+      "capture reset and brownout pin states for S3, C5, RP2354B, both MSPM0 controllers and TCA6424A",
+      "inject one and three simultaneous service USB hosts and verify no product rail is sourced",
+      "exercise U214 and Unit wrong-accessory/external-source cases and measure reverse current",
+      "measure VIH/VIL/VOH/VOL at the far end of M1 under simultaneous worst allowed branch load"
+    ],
+    "timing": [
+      "qualify SD card identity/CMD6 high-speed mode, >=4.0-MB/s storage, 1.5-MB/s record, 250-ms stalls and 512-KiB buffering",
+      "scope shared SPI2 edges, CS-high high-Z/contention and <=1-ms display/SD arbitration under insert/remove",
+      "capture all three nRF24 IRQ-to-drain paths and every 3PRX/PTX role mix at 10-Mbit/s SPI",
+      "capture CC1101 GDO/FIFO service at 600-kbit/s air rate and 10-Mbit/s SPI",
+      "run full-duplex 48-kHz audio without DMA underrun/overrun during display, storage and radio-event stress",
+      "prove S3-RP >=1.5 MB/s with <=250-us alert-to-read and S3-C5 >=1.5 MB/s with <=2-ms control RTT",
+      "measure 400-kHz SYS_I2C transaction/recovery/IRQ latency with every assembled address and simultaneous UI activity"
+    ],
+    "boundaries": [
+      "measure M1 far-end rail drop, return offset, crosstalk and USB/SPI eye/edge quality after PCB placement",
+      "verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair",
+      "measure U214 SPI load/edges at 10 MHz and external I2C total capacitance/rise time <=150 pF/300 ns",
+      "qualify each native Unit profile, cable length and pull network through TXS0102; 1-Wire remains specimen-only",
+      "inject dual-branch request, overload, reverse source, wrong accessory, hot plug and brownout while proving independent latch-off",
+      "measure C5/RP service USB edges/eye and powered-off leakage with one and three hosts",
+      "measure product USB Full-Speed through M1 plus all DBG10 UART/SWD recovery paths in the assembled sandwich"
+    ]
+  },
+  "checks": {
+    "all_leaf_checks_pass": true,
+    "leaf_stages_are_exact": true,
+    "all_leaf_statuses_are_reviewed": true,
+    "all_leaf_open_findings_are_empty": true,
+    "leaf_check_count_is_162": true,
+    "single_self_review_correction_is_preserved": true,
+    "all_19_physical_residuals_are_preserved": true,
+    "physical_residuals_are_nonempty_and_unique": true,
+    "all_controller_allocations_are_covered": true,
+    "all_interface_and_quiet_groups_are_covered": true,
+    "all_no_back_power_invariants_are_covered": true,
+    "every_direct_route_and_off_pull_check_passes": true,
+    "every_interface_has_reset_and_no_back_power_contract": true,
+    "worst_lvc_level_margins_are_positive": true,
+    "display_quantum_and_sd_stall_are_bounded": true,
+    "qualified_storage_payload_is_4mbps": true,
+    "audio_ring_exceeds_twenty_service_quanta": true,
+    "three_nrf_serial_drain_fits_fifo_guard": true,
+    "cc_drain_fits_fifo_guard": true,
+    "s3_rp_ipc_covers_all_compatibility_radio_payload": true,
+    "both_ipc_links_have_1_5mbps_floor": true,
+    "m1_contact_current_drop_and_rate_pass": true,
+    "m1_maps_and_local_returns_are_complete": true,
+    "expansion_branches_fit_converter_and_efuses": true,
+    "u214_spi_and_i2c_loading_pass": true,
+    "service_vbus_cannot_power_product": true,
+    "resource_ownership_rows_are_unique": true
+  },
+  "review_summary": {
+    "checks": 27,
+    "failed": 0,
+    "unresolved": 0,
+    "status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.5.1",
+    "action": "derive 50-ohm feed, connector, matching and loss constraints for every antenna path"
+  }
+}

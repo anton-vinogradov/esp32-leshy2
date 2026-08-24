@@ -119,11 +119,11 @@ remain unauthorized.
 <details open>
 <summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.4.4 -->
+<!-- current-substep: H3.5.1 -->
 
-**Exact marker: `H3.4.4`** — [M1, U214, M5 Unit and service-boundary loading](docs/boundary-loading-verification.md)
-is reviewed with 49 checks and no unresolved analytical finding; digital evidence
-is now being consolidated.
+**Exact marker: `H3.5.1`** — [digital level, timing and boundary evidence](docs/digital-verification-result.md)
+is consolidated with 162 leaf plus 27 cross-domain checks and no unresolved
+analytical finding; 50-ohm antenna-feed constraints are now being derived.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,035-row circuit inventory reviewed.
@@ -212,11 +212,16 @@ is now being consolidated.
   - ✅ `H3.3.3` — [IR receive, transmit, optical evidence and thermal limits reviewed](docs/ir-electrical-verification.md); four source errors corrected.
   - ✅ `H3.3.4` — [battery sensing, thermistors and analog fault thresholds reviewed](docs/battery-analog-verification.md); four source errors corrected.
   - ✅ `H3.3.5` — [all 153 leaf and 22 consolidation checks reviewed](docs/analog-corner-result.md); 14 source corrections closed.
-- ▶️ **`H3.4` — current:** digital levels, timing and loading.
+- ✅ **`H3.4` — reviewed:** digital levels, timing and loading.
   - ✅ `H3.4.1` — [voltage levels, pulls, reset defaults and no-back-power reviewed](docs/digital-levels-verification.md).
   - ✅ `H3.4.2` — [bandwidth, latency and timing reviewed](docs/digital-timing-verification.md).
   - ✅ `H3.4.3` — [M1, U214, M5 Unit and service-boundary loading reviewed](docs/boundary-loading-verification.md).
-  - ▶️ **`H3.4.4` — current:** digital consolidation.
+  - ✅ `H3.4.4` — [162 leaf and 27 cross-domain digital checks reviewed](docs/digital-verification-result.md).
+- ▶️ **`H3.5` — current:** RF feeds, return paths, corridors and coexistence.
+  - ▶️ **`H3.5.1` — current:** 50-ohm feed, connector, matching and loss constraints for every antenna path.
+  - ⏳ `H3.5.2` — RF corridors, keepouts, reference planes and return currents.
+  - ⏳ `H3.5.3` — isolation, quiet-state and concurrent 3× nRF24 model.
+  - ⏳ `H3.5.4` — RF consolidation.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The current machine-readable plan is

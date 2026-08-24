@@ -113,7 +113,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         ))
         next_h = "## Что ещё не доказано"
         next_text = "Постоянные пределы не заменяют динамику и температуру. H3.2 проверяет startup/shutdown, USB↔pack handover, brownout, DPM, inrush и FAULT_KILL; H3.6 получает 2,550 Вт converter-loss и 0,386 Вт eFuse-loss для thermal model; H8 оставляет реальные измерения."
-        marker = "**Статус:** `H3.1` завершено и проверено. Текущий точный маркер — `H3.4.4`, digital levels/defaults и no-back-power."
+        marker = "**Статус:** `H3.1` завершено и проверено. Текущий точный маркер — `H3.5.1`, digital levels/defaults и no-back-power."
         evidence = "[Машинный пакет закрытия H3.1](../hardware/verification/generated/H3-VRF14-dc-consolidation.json)."
     else:
         title = "# Steady-power verification result"
@@ -133,7 +133,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         next_h = "## What remains unproven"
         next_text = "Steady limits do not replace dynamics or temperature. H3.2 checks startup/shutdown, USB↔pack handover, brownout, DPM, inrush and FAULT_KILL; H3.6 consumes the 2.550-W converter loss and 0.386-W eFuse loss in its thermal model; H8 retains physical measurements."
-        marker = "**Status:** `H3.1` is reviewed. The exact current marker is `H3.4.4`, digital levels/defaults and no-back-power."
+        marker = "**Status:** `H3.1` is reviewed. The exact current marker is `H3.5.1`, digital levels/defaults and no-back-power."
         evidence = "[Machine H3.1 closure package](../hardware/verification/generated/H3-VRF14-dc-consolidation.json)."
     return "\n\n".join((title, nav, intro, result_h, result, correction_h, correction_text, next_h, next_text, marker, evidence)) + "\n"
 

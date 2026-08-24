@@ -1,6 +1,6 @@
 # M1, expansion and service-boundary loading
 
-`H3.4.3` is reviewed with `49` machine checks and no open analytical finding. The exact current marker is `H3.4.4`.
+`H3.4.3` is reviewed with `49` machine checks and no open analytical finding. The exact current marker is `H3.5.1`.
 
 ## M1 worst-case bounds
 

@@ -120,11 +120,11 @@ safety-автоматику.
 <details open>
 <summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.4.4 -->
+<!-- current-substep: H3.5.1 -->
 
-**Точный маркер: `H3.4.4`** — [loading M1, U214, M5 Unit и service boundaries](docs/boundary-loading-verification.ru.md)
-проверен 49 checks без незакрытых аналитических findings; теперь сводится
-единый digital evidence package.
+**Точный маркер: `H3.5.1`** — [digital levels, timing и boundary evidence](docs/digital-verification-result.ru.md)
+сведены 162 leaf и 27 сквозными checks без незакрытых аналитических findings;
+теперь выводятся 50-омные ограничения каждого антенного тракта.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 035 схемных строк.
@@ -214,11 +214,16 @@ safety-автоматику.
   - ✅ `H3.3.3` — [IR RX/TX, optical evidence и thermal limits проверены](docs/ir-electrical-verification.ru.md); исправлены четыре source-ошибки.
   - ✅ `H3.3.4` — [battery sensing, thermistors и analog fault thresholds проведены ревью](docs/battery-analog-verification.ru.md); исправлены четыре source-ошибки.
   - ✅ `H3.3.5` — [проверены 153 leaf и 22 сводных checks](docs/analog-corner-result.ru.md); закрыты 14 source-исправлений.
-- ▶️ **`H3.4` — сейчас:** digital levels, timing и loading.
+- ✅ **`H3.4` — проверено:** digital levels, timing и loading.
   - ✅ `H3.4.1` — [voltage levels, pulls, reset defaults и no-back-power проведены ревью](docs/digital-levels-verification.ru.md).
   - ✅ `H3.4.2` — [bandwidth, latency и timing проведены ревью](docs/digital-timing-verification.ru.md).
   - ✅ `H3.4.3` — [loading M1, U214, M5 Unit и service boundaries проведён ревью](docs/boundary-loading-verification.ru.md).
-  - ▶️ **`H3.4.4` — сейчас:** digital consolidation.
+  - ✅ `H3.4.4` — [проверены 162 leaf и 27 сквозных digital checks](docs/digital-verification-result.ru.md).
+- ▶️ **`H3.5` — сейчас:** RF feeds, return paths, corridors и coexistence.
+  - ▶️ **`H3.5.1` — сейчас:** 50-омные feed/connector/matching/loss ограничения каждого антенного тракта.
+  - ⏳ `H3.5.2` — RF corridors, keepouts, reference planes и return currents.
+  - ⏳ `H3.5.3` — isolation, quiet-state и одновременные 3× nRF24.
+  - ⏳ `H3.5.4` — RF consolidation.
 
 Проверенный план H2 —
 [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Текущий

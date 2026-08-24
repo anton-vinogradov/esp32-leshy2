@@ -263,12 +263,12 @@ def build() -> tuple[dict[Path, str], dict]:
         "open_findings": [],
         "residual_physical_only": residual_hil,
         "review_summary": {"checks": len(checks), "failed": 0, "unresolved": 0, "status": "reviewed"},
-        "next": {"stage": "H3.4.4", "action": "consolidate digital timing, level and boundary-loading evidence"},
+        "next": {"stage": "H3.5.1", "action": "derive 50-ohm feed, connector, matching and loss constraints for every antenna path"},
     }
 
     en = f"""# M1, expansion and service-boundary loading
 
-`H3.4.3` is reviewed with `{len(checks)}` machine checks and no open analytical finding. The exact current marker is `H3.4.4`.
+`H3.4.3` is reviewed with `{len(checks)}` machine checks and no open analytical finding. The exact current marker is `H3.5.1`.
 
 ## M1 worst-case bounds
 
@@ -288,7 +288,7 @@ Machine evidence: [`H3-VRF43-boundary-loading.json`](../hardware/verification/ge
 """
     ru = f"""# Loading M1, expansions и service boundaries
 
-`H3.4.3` проверено: `{len(checks)}` машинных checks, незакрытых аналитических findings нет. Точный текущий маркер — `H3.4.4`.
+`H3.4.3` проверено: `{len(checks)}` машинных checks, незакрытых аналитических findings нет. Точный текущий маркер — `H3.5.1`.
 
 ## Worst-case границы M1
 
@@ -323,7 +323,7 @@ def main() -> int:
         stale = [str(path.relative_to(REPO)) for path, content in outputs.items() if not path.exists() or path.read_text(encoding="utf-8") != content]
         if stale:
             raise SystemExit("stale H3.4.3 artifacts: " + ", ".join(stale))
-    print(f"ok: H3.4.3 reviewed; {len(manifest['checks'])} checks, next H3.4.4")
+    print(f"ok: H3.4.3 reviewed; {len(manifest['checks'])} checks, next H3.5.1")
     return 0
 
 

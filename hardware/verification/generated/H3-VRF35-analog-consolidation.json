@@ -139,7 +139,7 @@
     "status": "reviewed"
   },
   "next": {
-    "stage": "H3.4.4",
-    "action": "verify voltage levels, pull states, reset defaults and no-back-power across every digital interface"
+    "stage": "H3.5.1",
+    "action": "derive 50-ohm feed, connector, matching and loss constraints for every antenna path"
   }
 }

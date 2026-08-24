@@ -118,7 +118,7 @@ are satisfied.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current, exact marker `H3.4.4`.
+**Status:** ▶️ current, exact marker `H3.5.1`.
 
 - [Current virtual-verification page](virtual-verification.md).
 - [Machine execution plan](../hardware/verification/h3-verification-plan.json).
@@ -151,6 +151,8 @@ are satisfied.
   and [machine H3.4.2 evidence](../hardware/verification/generated/H3-VRF42-digital-timing.json).
 - [M1, expansion and service-boundary loading](boundary-loading-verification.md)
   and [machine H3.4.3 evidence](../hardware/verification/generated/H3-VRF43-boundary-loading.json).
+- [Consolidated digital-interface result](digital-verification-result.md)
+  and [machine H3.4.4 evidence](../hardware/verification/generated/H3-VRF44-digital-consolidation.json).
 
 `H3.0.1–H3.0.3` are reviewed: inputs, parameters and ten common pass/fail
 rules are frozen. `H3.1` is reviewed: 2,032 complete states and 200 rail
@@ -162,8 +164,9 @@ after four IR source corrections. `H3.3.4` is reviewed after four battery-
 analog source corrections. `H3.3.5` closes 153 leaf and 22 consolidation
 checks. `H3.4.1` closes digital levels/defaults with 73 machine checks,
 `H3.4.2` closes bandwidth/latency/timing with 40 checks and `H3.4.3` closes
-M1, expansion and service-boundary loading with 49 checks. `H3.4.4` is
-consolidating digital evidence.
+M1, expansion and service-boundary loading with 49 checks. `H3.4.4` closes
+the phase with 27 cross-domain checks over all 162 leaf checks. `H3.5.1` is
+deriving the 50-ohm feed, connector, matching and loss constraints.
 
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate

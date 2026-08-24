@@ -26,7 +26,7 @@
 | Физический дизайн устройства | ✅ H1 принят: внешние/внутренние виды, разрезы, service paths и pin/resource fit пройдены |
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
 | Production ECAD-схема | ✅ H2 принят на hardware `25d9ee2`; firmware F2 синхронизирован на `900bb2b` |
-| Электрические и переходные evidence | ▶️ H3.4.4: loading M1/expansion/service проверен; идёт digital consolidation |
+| Электрические и переходные evidence | ▶️ H3.5.1: digital evidence проверен; выводятся 50-омные ограничения антенных трактов |
 | Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
 | Работа над KiCad-схемой | ✅ H2 проведено ревью; позднее несоответствие повторно откроет затронутые листы |
 | KiCad placement и PCB routing | 🔒 H6: не начаты и не разрешены |
@@ -41,11 +41,11 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённые H1/H2 и детальный состав текущей H3
 
-<!-- current-substep: H3.4.4 -->
+<!-- current-substep: H3.5.1 -->
 
-**Точный маркер: `H3.4.4`** — [loading M1, U214, M5 Unit и service boundaries](boundary-loading-verification.ru.md)
-проверен 49 checks без незакрытых аналитических findings; теперь сводится
-единый digital evidence package.
+**Точный маркер: `H3.5.1`** — [digital levels, timing и boundary evidence](digital-verification-result.ru.md)
+сведены 162 leaf и 27 сквозными checks без незакрытых аналитических findings;
+теперь выводятся 50-омные ограничения каждого антенного тракта.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -259,12 +259,16 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
   - ✅ `H3.3.3` — [IR RX/TX, optical evidence и thermal limits проверены](ir-electrical-verification.ru.md); исправлены четыре source-ошибки.
   - ✅ `H3.3.4` — [battery sensing, thermistors и analog fault thresholds проведены ревью](battery-analog-verification.ru.md); исправлены четыре source-ошибки.
   - ✅ `H3.3.5` — [проверены 153 leaf и 22 сводных checks](analog-corner-result.ru.md); закрыты 14 source-исправлений.
-- ▶️ `H3.4` — digital levels/defaults, bandwidth, timing и expansion loading.
+- ✅ `H3.4` — digital levels/defaults, bandwidth, timing и expansion loading.
   - ✅ `H3.4.1` — [voltage levels, pulls, reset defaults и no-back-power проведены ревью](digital-levels-verification.ru.md).
   - ✅ `H3.4.2` — [bandwidth, latency и timing проведены ревью](digital-timing-verification.ru.md).
   - ✅ `H3.4.3` — [loading M1, U214, M5 Unit и service boundaries проведён ревью](boundary-loading-verification.ru.md).
-  - ▶️ **`H3.4.4` — сейчас:** digital consolidation.
-- ⏳ `H3.5` — RF feed, return-path, corridors и coexistence.
+  - ✅ `H3.4.4` — [digital evidence сведён](digital-verification-result.ru.md): 162 leaf и 27 сквозных checks.
+- ▶️ `H3.5` — RF feed, return-path, corridors и coexistence.
+  - ▶️ **`H3.5.1` — сейчас:** 50-омные feed/connector/matching/loss ограничения каждого антенного тракта.
+  - ⏳ `H3.5.2` — RF corridors, keepouts, reference planes и return currents.
+  - ⏳ `H3.5.3` — one-active-group isolation, quiet state и одновременные 3× nRF24.
+  - ⏳ `H3.5.4` — RF consolidation.
 - ⏳ `H3.6` — thermal model, single-fault tree и unattended 24–48 часов.
 - ⏳ `H3.7` — сквозная сверка, physical-only остатки и формальная приёмка H3.
 
@@ -324,7 +328,7 @@ size/rollback gates, доступный S3 QEMU и portable/host-модели д
 | **H0. Требования продукта и функциональная архитектура** | ✅ Проведено ревью | Полные границы возможностей, пять вычислительных доменов, владельцы радио/интерфейсов, классы интерфейсов, одна активная signal group, полноценные 3×nRF24 и safety boundaries | Проверки требований и архитектуры проходят; у каждой обязательной функции есть владелец и определённая аппаратная граница |
 | **H1. Физический дизайн устройства** | ✅ Проведено ревью | Согласованные внешние и внутренние стороны, настоящий вид от антенного торца, разрезы, порядок сборки, envelopes выбранных деталей и сходящаяся pin/resource раскладка | Размеры основаны на выбранных MPN; нет коллизий деталей, крепежа, шелкографии, антенн и аксессуаров; доступны органы управления, батарея, U214, порты, микрофон и динамик; resource budget сходится; пользователь принял мокап |
 | **H2. Production ECAD-схема** | ✅ Проведено ревью и принято | Новая актуальная схема на читаемых листах и machine-readable HW↔FW contract | Точные symbol/footprint/pin/net/value; объяснены NC; ERC без необъяснённых ошибок; отдельно проверены reset, boot, recovery, no-back-power, quiet state и `FAULT_KILL`; firmware F2 использует контракт без выдуманных pins |
-| **H3. Виртуальная электрическая проверка** | ▶️ Сейчас · `H3.4.4` | Расчёты и симуляции до дорогой физики | Проходят worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse и load-step; thermal/fault tree; все analog corners; timing/levels; RF corridors, returns и pre-layout constraints |
+| **H3. Виртуальная электрическая проверка** | ▶️ Сейчас · `H3.5.1` | Расчёты и симуляции до дорогой физики | Проходят worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse и load-step; thermal/fault tree; все analog corners; timing/levels; RF corridors, returns и pre-layout constraints |
 | **H4. Объединённый pre-layout gate** | 🔒 Ожидает H1–H3 и firmware F3 | Единое ревью механики, production ECAD, электрических evidence и видимых target-прошивке контрактов | Нет открытого виртуально проверяемого blocker; target skeletons используют реальный контракт; у каждой остаточной физической неопределённости есть измерение и bring-up test |
 | **H5. Образцы компонентов** | 🔒 Ожидает H4 и отдельное одобрение стоимости | Минимальная доказательная закупка, а не production basket | Полученные display, U214, connectors и radios идентифицированы и измерены; доказаны mating и критический stack-up; raw records сохранены; расхождение повторно открывает исходный этап |
 | **H6. PCB placement и routing** | 🔒 Ожидает H5 | Две реальные платы, реализующие принятую схему и механику | Пройдены placement review обеих сторон, DRC, impedance и return-current review, RF isolation, antenna feeds, thermal copper, creepage, test points, assembly и manufacturability; fab package принят отдельно |
