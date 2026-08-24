@@ -14,7 +14,7 @@
     "hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch": "6b728d4f603405b51cf67ac6f5019ef2a48ae7e3e2c98b0f9fa918e33394273e",
     "hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch": "eb43e17113fda9f8daebe0a7c7edcb6d38576a19c6ab01a5e00f18d82db1ca15",
     "hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch": "3a035139b5999406a01f4d31b3bd0ecc40ec6379fca167dd20da28100788d7e6",
-    "hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch": "71623157620e9856b4fa7b09bb3e1ebde4a5f3b83f1e6e1204157f3c6cab2b17",
+    "hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch": "f073db3dc47d363598a5986103e1b9bd8e9a97cffe82e0e5495253e3a7a57e3d",
     "hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch": "8d3a9c3cb2e54d240715f33a1921274cb63309ef6f7bc069fd8b1c8c51d97031",
     "hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch": "ae7ce70fbdbf27b374154315dfe094ee35b5727cfd58ce490dc14e9dce32db3e",
     "hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch": "262795238b9be8df92ecf92dd92c439ed60007b0d0e8948edc0fa25b6b0a23b1",
@@ -40,7 +40,7 @@
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_pro": "a38d2ae6ec8a9459cc66d6ca17792208314efced730a29847c7e2011131a486a",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch": "9dc3755f2e8b625b4bd68d28cbd153f50ebf12e567d8270598277a041d8187a3",
-    "hardware/ecad/libraries/leshy2.kicad_sym": "25917c1deb14c8c79364de9777c803312f7c86a6c57e7897842d68bf3479cc12"
+    "hardware/ecad/libraries/leshy2.kicad_sym": "98300c8d8affb70df4ed811ffad5535ba613d82bc27688dbffb31205f08ccb18"
   },
   "projects": [
     {
@@ -51,7 +51,7 @@
       "scoped_suppression": {
         "rule": "lib_symbol_mismatch",
         "reason": "all symbols are repository-generated and the shared library is independently checked against the exact union of embedded definitions",
-        "covered_local_symbols": 389
+        "covered_local_symbols": 390
       }
     },
     {
@@ -91,7 +91,7 @@
   "summary": {
     "project_count": 4,
     "native_error_or_warning_count": 0,
-    "suppressed_generated_library_comparisons": 1100,
+    "suppressed_generated_library_comparisons": 1101,
     "other_suppressed_rules": 0
   },
   "corrected_findings": [

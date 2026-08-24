@@ -126,7 +126,7 @@ def footprint_for(instance: str, device_key: str) -> str:
         if device_key in {"tdk_c1608x7r1c105k080ac", "murata_grm188r60j106me47d", "murata_grm188z71a475me15d"}:
             return "Capacitor_SMD:C_0603_1608Metric"
         return "Capacitor_SMD:C_0402_1005Metric"
-    if device_key == "yageo_rc1206fr_0733rl":
+    if device_key.startswith("yageo_rc1206fr_"):
         return "Resistor_SMD:R_1206_3216Metric"
     if device_key.startswith(("yageo_rc", "panasonic_erj_2r")):
         return "Resistor_SMD:R_0402_1005Metric"
@@ -202,8 +202,8 @@ def build() -> tuple[dict[Path, str], dict]:
         row for row in ledger["rows"]
         if row["project"] == PROJECT_ID and row["sheet"] == SHEET_ID
     ]
-    if len(rows) != 59:
-        raise ValueError(f"{SHEET_ID} must own exactly 59 ledger rows, got {len(rows)}")
+    if len(rows) != 60:
+        raise ValueError(f"{SHEET_ID} must own exactly 60 ledger rows, got {len(rows)}")
     interface_row = next(row for row in root_manifest["sheets"] if row["id"] == SHEET_ID)
     interface_order = list(interface_row["interfaces"])
     interfaces = set(interface_order)
@@ -396,12 +396,12 @@ def build() -> tuple[dict[Path, str], dict]:
 
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     summary = manifest["summary"]
-    if summary["ledger_instances"] != 59 or summary["schematic_symbols"] != 60:
+    if summary["ledger_instances"] != 60 or summary["schematic_symbols"] != 61:
         raise ValueError(f"H2.2.6 instance accounting drifted: {summary}")
     if summary["hierarchical_interfaces"] != 18 or summary["c5_carrier_pads"] != 32:
         raise ValueError(f"H2.2.6 interface/C5-pad accounting drifted: {summary}")
     schematic = generated[OUTPUT_SCH]
-    if schematic.count("\n\t(symbol\n") != 60:
+    if schematic.count("\n\t(symbol\n") != 61:
         raise ValueError("UI20 schematic symbol count mismatch")
     if schematic.count("\n\t(hierarchical_label \"") != 18:
         raise ValueError("UI20 hierarchy-interface count mismatch")

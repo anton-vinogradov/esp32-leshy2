@@ -5,10 +5,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_13_AUDIO_CODEC_HEADSET",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c2a489f8f3ed57cac2066ff591bd3a0cc909d40545c0aec4e09dcc8955ef2950",
-    "hardware/architecture/devices.json": "433ff1f1783a57289d39f9af29deb943da96987e49590d47959038d8c7a32b54",
-    "hardware/ecad/generated/H2-instance-ledger.json": "47281c317c4324dcf3b7af4a84768ba2d08fa8fc46c0fd3ee30ecf440cffc913",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "a024d7ba47c06097483e07e3cc86ee4bf37ece2a057429b81a1cf7ffaf6868c9"
+    "hardware/architecture/candidates/G2F-3I.json": "a2c6c6e23a34b22aea8dc81c6e216a1c4a63440381a14f55eafda47e5c494872",
+    "hardware/architecture/devices.json": "962d80d6b0eaabc485f471cc173b6ddea52f8968c05374cad89ae1babd205c41",
+    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "a4a143eb78de40e3b6289bb89a1bc86564322880f49b03055b71dcd9cce2e28c"
   },
   "summary": {
     "ledger_instances": 104,

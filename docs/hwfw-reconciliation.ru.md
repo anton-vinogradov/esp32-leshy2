@@ -6,7 +6,7 @@ H2.7 связывает физический H1, production ECAD и вход fir
 
 | Граница | Проверено | Результат |
 |---|---:|---|
-| H1 ↔ instance ledger ↔ symbols | 1034 строк / 1032 identities | 0 MPN/contact mismatches |
+| H1 ↔ instance ledger ↔ symbols | 1035 строк / 1033 identities | 0 MPN/contact mismatches |
 | root hierarchy nets | 266 | все присутствуют в native netlists |
 | M1 UI ↔ RF | 80 контактов / 51 nets | построчно идентичны |
 | architecture ↔ KiCad | 130 allocations | 0 pin/net mismatches |

@@ -19,6 +19,6 @@
 
 Одновременно активна только одна верхнеуровневая группа. Исключение находится внутри `SG-N24`: все три nRF24 остаются активными в `3PRX`, `1PTX+2PRX`, `2PTX+1PRX` и `3PTX`. Экран, waterfall, storage и разрешённый audio считаются параллельной поддерживающей нагрузкой и не исчезают из worst case.
 
-**Статус:** `H3.1.1` завершено и проверено. Текущий маркер — `H3.3.3`, IR drive/receive/thermal corners.
+**Статус:** `H3.1.1` завершено и проверено. Текущий маркер — `H3.3.4`, battery sensing, thermistors и analog fault thresholds.
 
 [Полный машинный реестр состояний](../hardware/verification/generated/H3-VRF11-power-state-register.json).

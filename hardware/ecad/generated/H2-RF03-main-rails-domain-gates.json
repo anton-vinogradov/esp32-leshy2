@@ -5,10 +5,10 @@
   "project": "LESHY2-RF",
   "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c2a489f8f3ed57cac2066ff591bd3a0cc909d40545c0aec4e09dcc8955ef2950",
-    "hardware/architecture/devices.json": "433ff1f1783a57289d39f9af29deb943da96987e49590d47959038d8c7a32b54",
-    "hardware/ecad/generated/H2-instance-ledger.json": "47281c317c4324dcf3b7af4a84768ba2d08fa8fc46c0fd3ee30ecf440cffc913",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "34d2c537c0da158e42e6404de16c301d8c28514928db75aa90b17ad1539ad041"
+    "hardware/architecture/candidates/G2F-3I.json": "a2c6c6e23a34b22aea8dc81c6e216a1c4a63440381a14f55eafda47e5c494872",
+    "hardware/architecture/devices.json": "962d80d6b0eaabc485f471cc173b6ddea52f8968c05374cad89ae1babd205c41",
+    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "fabf7574b8ad4b6134a1fafcb65c90317cda8c82ef44e43a9aeb52c1bd289f61"
   },
   "summary": {
     "ledger_instances": 69,

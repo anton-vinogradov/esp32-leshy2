@@ -19,6 +19,6 @@ H3.1.3 applies the rail budget to all `2032` states. At least 85% efficiency is 
 
 This closes the steady energy envelope. Recorded losses feed H3.6; transients, inrush, DPM and USB↔pack handover remain H3.2, while measured efficiency and current remain H8.
 
-**Status:** `H3.1.3` is complete and reviewed; the exact current marker is `H3.3.3`.
+**Status:** `H3.1.3` is complete and reviewed; the exact current marker is `H3.3.4`.
 
 [Complete machine calculation](../hardware/verification/generated/H3-VRF13-source-charge-budget.json).

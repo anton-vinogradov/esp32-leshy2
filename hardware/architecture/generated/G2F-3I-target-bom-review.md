@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **1006** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **1005** supplied/costed placements collapse to **209** used exact-device/MPN lines.
+- **1007** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **1006** supplied/costed placements collapse to **209** used exact-device/MPN lines.
 - Current orderability evidence exists for **208/209** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **198/209** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **988/1005** supplied placements; their partial subtotals are `base_product` — USD 222.4306. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **989/1006** supplied placements; their partial subtotals are `base_product` — USD 222.4326. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **209/209** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 1002 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 1003 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -171,7 +171,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `yageo_rc0402fr_078k2l` — `Yageo RC0402FR-078K2L`.
   - `yageo_rc0402jr_070rl` — `Yageo RC0402JR-070RL`.
   - `yageo_rc0603fr_071kl` — `Yageo RC0603FR-071KL`.
-  - `yageo_rc1206fr_0733rl` — `Yageo RC1206FR-0733RL`.
+  - `yageo_rc1206fr_0747rl` — `Yageo RC1206FR-0747RL`.
   - `yageo_rt0402brd07100kl` — `Yageo RT0402BRD07100KL`.
   - `yageo_rt0402brd07191kl` — `Yageo RT0402BRD07191KL`.
 
@@ -1789,7 +1789,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-0710KL</code> — 190 × USD 0.0097 = USD 1.8430</summary>
+<details><summary><code>Yageo RC0402FR-0710KL</code> — 191 × USD 0.0097 = USD 1.8527</summary>
 
 - Device id: `yageo_rc0402fr_0710kl`.
 - Scope: `base_product`.
@@ -2113,12 +2113,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC1206FR-0733RL</code> — 1 × USD 0.0247 = USD 0.0247</summary>
+<details><summary><code>Yageo RC1206FR-0747RL</code> — 1 × USD 0.0170 = USD 0.0170</summary>
 
-- Device id: `yageo_rc1206fr_0733rl`.
+- Device id: `yageo_rc1206fr_0747rl`.
 - Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC1206FR-0733RL/728818).
+- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-24`; [published source](https://www.mouser.com/ProductDetail/YAGEO/RC1206FR-0747RL).
 
 </details>
 

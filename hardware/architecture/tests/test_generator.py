@@ -281,7 +281,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(1005, sum(line["quantity"] for line in lines))
+        self.assertEqual(1006, sum(line["quantity"] for line in lines))
         self.assertEqual(209, len(lines))
         self.assertEqual(
             1,
@@ -296,7 +296,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            988,
+            989,
             sum(
                 line["quantity"]
                 for line in lines
@@ -372,13 +372,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**1006** architecture instances", rendered)
-        self.assertIn("**1005** supplied/costed placements", rendered)
+        self.assertIn("**1007** architecture instances", rendered)
+        self.assertIn("**1006** supplied/costed placements", rendered)
         self.assertIn("**208/209** used lines", rendered)
         self.assertIn("**209/209** lines", rendered)
         self.assertIn("**198/209** lines", rendered)
-        self.assertIn("**988/1005** supplied placements", rendered)
-        self.assertIn("USD 222.4306", rendered)
+        self.assertIn("**989/1006** supplied placements", rendered)
+        self.assertIn("USD 222.4326", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -424,7 +424,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(45, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1230, policy["expected_occurrence_count"])
+        self.assertEqual(1231, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(
@@ -2613,8 +2613,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "ir_carrier": "vishay_tsmp95000tt",
             "ir_return_buffer": "nexperia_74lvc2g126dc_125",
             "ir_emitter": "vishay_vsmy14940",
-            "ir_emitter_limit": "yageo_rc1206fr_0733rl",
+            "ir_emitter_limit": "yageo_rc1206fr_0747rl",
             "ir_tx_mosfet": "diodes_dmn2056u_7",
+            "ir_tx_carrier_pulldown": "yageo_rc0402fr_0710kl",
             "det_ir": "vishay_vemd1060x01",
             "ir_evidence_amp": "ti_tlv9061_idbvr",
         }
@@ -2641,6 +2642,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("ir_carrier.CARRIER_OUT", "ir_return_buffer.2A", "IR_CARRIER_LOCAL_N"),
             ("ir_emitter_limit.END_2", "ir_emitter.ANODE", "IR_LED_ANODE_LIMITED"),
             ("c5.GPIO6", "ir_safe_gate.A", "IR_TX_CARRIER"),
+            ("ir_safe_gate.A", "ir_tx_carrier_pulldown.END_1", "IR_TX_CARRIER"),
             ("safe_latch.Q", "ir_safe_gate.B", "RUN_PERMIT"),
             ("ir_safe_gate.Y", "ir_tx_gate_series.END_1", "IR_TX_CARRIER_SAFE"),
             ("det_ir.CATHODE", "ir_evidence_amp.IN_MINUS", "IR_OPTICAL_SUM"),

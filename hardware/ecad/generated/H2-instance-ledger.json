@@ -18,13 +18,13 @@
     "purchasing": false
   },
   "summary": {
-    "registered_inventory_rows": 1034,
-    "main_candidate_instances": 1006,
+    "registered_inventory_rows": 1035,
+    "main_candidate_instances": 1007,
     "lora_cap_common_instances": 26,
     "lora_cap_alternative_module_instances": 2,
     "h1_dimensioned_instances": 182,
-    "schematic_only_main_instances": 824,
-    "main_board_fitted_components": 994,
+    "schematic_only_main_instances": 825,
+    "main_board_fitted_components": 995,
     "main_fitted_interconnect_assemblies": 6,
     "main_external_mating_products": 6,
     "lora_cap_rows": 28,
@@ -13553,9 +13553,9 @@
       "instance_uid": "LESHY2-UI:ir_emitter_limit",
       "instance": "ir_emitter_limit",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc1206fr_0733rl",
-      "mpn": "Yageo RC1206FR-0733RL",
-      "role": "33ohm_1pct_1206_0_25w_ir_emitter_current_limit_resistor",
+      "device_key": "yageo_rc1206fr_0747rl",
+      "mpn": "Yageo RC1206FR-0747RL",
+      "role": "47ohm_1pct_1206_0_25w_ir_emitter_current_limit_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_20_C5_RADIO_IR_SERVICE",
       "electrical_disposition": "board_fitted_component",
@@ -13567,10 +13567,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "RC1206FR-0733RL product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC1206FR-0733RL",
-        "checked": "2026-08-18"
+        "document": "RC1206FR-0747RL product specification",
+        "version": "current product data checked 2026-08-24",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC1206FR-0747RL",
+        "checked": "2026-08-24"
       }
     },
     {
@@ -13594,6 +13594,30 @@
         "document": "DMN2056U 20-V N-channel enhancement-mode MOSFET datasheet",
         "version": "DS38480 Rev. 2-2, July 2021; product status checked 2026-08-18",
         "url": "https://www.diodes.com/datasheet/download/DMN2056U.pdf",
+        "checked": "2026-08-18"
+      }
+    },
+    {
+      "instance_uid": "LESHY2-UI:ir_tx_carrier_pulldown",
+      "instance": "ir_tx_carrier_pulldown",
+      "project": "LESHY2-UI",
+      "device_key": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "role": "10kohm_1pct_0402_main_feedback_bottom_resistor",
+      "board": "ui-control-pcb",
+      "sheet": "UI_20_C5_RADIO_IR_SERVICE",
+      "electrical_disposition": "board_fitted_component",
+      "physical_registration": "schematic_only_body",
+      "contact_count": 2,
+      "logical_contact_count": 2,
+      "physical_pcb_contact_count": 2,
+      "contact_evidence_status": "registered_exact_contact_map",
+      "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
+      "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
+      "manufacturer_evidence": {
+        "document": "Yageo RC0402FR-0710KL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
         "checked": "2026-08-18"
       }
     },

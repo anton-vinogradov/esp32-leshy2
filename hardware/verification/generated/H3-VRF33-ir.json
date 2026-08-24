@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "stage": "H3.3.3",
+  "status": "reviewed_ir_corners_after_four_source_corrections",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "a2c6c6e23a34b22aea8dc81c6e216a1c4a63440381a14f55eafda47e5c494872",
+    "hardware/architecture/devices.json": "962d80d6b0eaabc485f471cc173b6ddea52f8968c05374cad89ae1babd205c41",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "d1406bc987298d21d970e7a397d10232b2173623fff7b1cdd229badcb416c886",
+    "hardware/verification/generated/H3-VRF31-display.json": "13606eebccf6946df40af57779977372956c798520bb93044a8ea94c7e12f5ec",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "fb0a8b2a723581197dd1b9151c0573a336890d3893f11a4050f0cda537723882"
+  },
+  "provenance": {
+    "c5_module": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.html",
+    "emitter": "https://www.vishay.com/docs/84209/vsmy14940.pdf",
+    "demodulating_receiver": "https://www.vishay.com/docs/82837/tsop952.pdf",
+    "carrier_receiver": "https://www.vishay.com/docs/82907/tsmp95000.pdf",
+    "photodiode": "https://www.vishay.com/docs/84295/vemd1060x01.pdf",
+    "receive_switch": "https://www.ti.com/lit/ds/symlink/tps22919.pdf",
+    "return_buffer": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
+    "safety_gate": "https://www.ti.com/lit/ds/symlink/sn74lvc1g08.pdf",
+    "emitter_mosfet": "https://www.diodes.com/datasheet/download/DMN2056U.pdf",
+    "optical_tia": "https://www.ti.com/lit/ds/symlink/tlv9061.pdf",
+    "evidence_comparator": "https://www.ti.com/lit/ds/symlink/tlv1824.pdf",
+    "selected_tx_resistor": "https://yageogroup.com/component-documentation/download/specsheet/RC1206FR-0747RL"
+  },
+  "exact_part_checks": {
+    "c5": true,
+    "ir_power_switch": true,
+    "ir_demod": true,
+    "ir_carrier": true,
+    "ir_return_buffer": true,
+    "ir_emitter": true,
+    "ir_emitter_limit": true,
+    "ir_tx_mosfet": true,
+    "ir_tx_carrier_pulldown": true,
+    "ir_safe_gate": true,
+    "det_ir": true,
+    "ir_evidence_amp": true,
+    "evidence_cmp_a": true
+  },
+  "topology_checks": {
+    "receive_enable_fail_low": true,
+    "receive_qod": true,
+    "demod_filter": true,
+    "carrier_filter": true,
+    "recommended_carrier_pullup": true,
+    "independent_return_channels": true,
+    "host_idle_pullups": true,
+    "direct_rmt_tx": true,
+    "carrier_input_fail_low": true,
+    "run_permit_gate": true,
+    "mosfet_gate_fail_low": true,
+    "physical_photodiode": true,
+    "tia_feedback": true,
+    "optical_not_drive_evidence": true
+  },
+  "receive": {
+    "robust_path": {
+      "part": "Vishay TSOP95238TT",
+      "carrier_khz": 38,
+      "agc": "AGC2",
+      "minimum_burst_cycles": 16,
+      "minimum_gap_cycles": "16 to 70 depending on burst length",
+      "sensitivity_max_mw_per_m2": "0.25"
+    },
+    "learning_path": {
+      "part": "Vishay TSMP95000TT",
+      "carrier_khz": [
+        30,
+        60
+      ],
+      "minimum_irradiance_max_mw_per_m2": "25",
+      "carrier_count_error_cycles": [
+        -1,
+        1
+      ]
+    },
+    "supply_v": {
+      "demod_min": "3.051550",
+      "demod_max": "3.285658",
+      "carrier_min": "2.991340",
+      "carrier_max": "3.285658"
+    },
+    "power_on_guard_ms": 20,
+    "power_off_quiet_guard_ms": 5,
+    "qod_90_to_10_nominal_at_cap_max_ms": "1.235520",
+    "rule": "enable both receivers together, discard both inputs for 20 ms, capture both independently; disable and wait 5 ms before declaring IR_QUIET. Exact startup/discharge limits remain HIL-qualified because the switch publishes typical rather than maximum timing."
+  },
+  "transmit": {
+    "emitter": "Vishay VSMY14940",
+    "selected_resistor": "Yageo RC1206FR-0747RL",
+    "resistor_ohm": 47,
+    "main_rail_v": {
+      "minimum": "3.108510",
+      "conservative_maximum": "3.400000"
+    },
+    "guaranteed_characterized_current_ma_min": 20,
+    "conservative_instantaneous_current_ma_max": "50.513",
+    "guaranteed_radiant_intensity_mw_per_sr_at_20ma_min": 15,
+    "resistor_loss_mw_max": "118.724",
+    "local_tx_temperature_limit_c": 75,
+    "carrier_duty_fraction_max": "0.333333",
+    "single_mark_ms_max": 20,
+    "rolling_emitter_on_fraction_max_100ms_and_1s": "0.25",
+    "junction_c_at_75c_and_one_third_typical_vf": "84.850",
+    "stuck_evidence_rule": "the independent safety controller requests FAULT_KILL when continuous IR optical evidence exceeds 20 ms; this is separate from the C5 RMT policy and is fault-injected in H8",
+    "optical_safety_boundary": "IEC 62471 classification, enclosure/window geometry, range and final temperature remain physical admission tests; no paper calculation labels them compliant"
+  },
+  "optical_evidence": {
+    "sensor": "VEMD1060X01",
+    "dark_idle_v": {
+      "minimum": "0.272058",
+      "maximum": "0.316994"
+    },
+    "assert_threshold_v": {
+      "minimum": "0.351429",
+      "maximum": "0.403205"
+    },
+    "clear_threshold_v": {
+      "minimum": "0.319668",
+      "maximum": "0.367977"
+    },
+    "false_assert_margin_mv_min_including_offsets": "60.984",
+    "clear_margin_mv_min_including_offsets": "29.224",
+    "required_photocurrent_ua_max_for_hil": "2.271",
+    "tia_time_constant_us": {
+      "minimum": "41.877",
+      "maximum": "52.217"
+    },
+    "rule": "the paper circuit proves a dark-state margin and exposes a bounded photocurrent target; the VEMD1060 response at only about 0.3-V reverse bias and the tunnel coupling are not guaranteed by its 5-V irradiance table and therefore remain exact HIL thresholds"
+  },
+  "checks": {
+    "exact_c5": true,
+    "exact_ir_power_switch": true,
+    "exact_ir_demod": true,
+    "exact_ir_carrier": true,
+    "exact_ir_return_buffer": true,
+    "exact_ir_emitter": true,
+    "exact_ir_emitter_limit": true,
+    "exact_ir_tx_mosfet": true,
+    "exact_ir_tx_carrier_pulldown": true,
+    "exact_ir_safe_gate": true,
+    "exact_det_ir": true,
+    "exact_ir_evidence_amp": true,
+    "exact_evidence_cmp_a": true,
+    "receive_enable_fail_low": true,
+    "receive_qod": true,
+    "demod_filter": true,
+    "carrier_filter": true,
+    "recommended_carrier_pullup": true,
+    "independent_return_channels": true,
+    "host_idle_pullups": true,
+    "direct_rmt_tx": true,
+    "carrier_input_fail_low": true,
+    "run_permit_gate": true,
+    "mosfet_gate_fail_low": true,
+    "physical_photodiode": true,
+    "tia_feedback": true,
+    "optical_not_drive_evidence": true,
+    "demod_supply_inside_2v0_to_3v6": true,
+    "carrier_supply_inside_2v0_to_5v5": true,
+    "receiver_on_guard_exceeds_switch_typical_start": true,
+    "receiver_off_guard_exceeds_nominal_qod_fall": true,
+    "emitter_guarantees_20ma_characterized_point": true,
+    "emitter_instantaneous_current_below_55ma": true,
+    "emitter_instantaneous_current_below_absolute_max": true,
+    "emitter_resistor_power_below_85c_derated_rating": true,
+    "emitter_carrier_junction_has_10c_margin": true,
+    "single_mark_not_longer_than_datasheet_characterization": true,
+    "rolling_on_fraction_no_more_than_25pct": true,
+    "floating_lvc_input_is_eliminated": true,
+    "dark_idle_has_30mv_false_assert_margin": true,
+    "dark_idle_has_20mv_clear_margin": true,
+    "optical_assert_current_is_bounded_for_hil": true,
+    "tia_time_constant_is_40_to_60us": true,
+    "safety_continuous_evidence_trip_matches_mark_limit": true,
+    "main_rail_remains_inside_admission": true,
+    "method_has_missing_limit_rule": true
+  },
+  "corrections": [
+    {
+      "id": "H3.3.3-F01",
+      "finding": "33 ohm targeted the emitter's 70-mA absolute maximum as though it were an operating rating and used a 20-mA forward-voltage limit outside its stated condition",
+      "correction": "fit active/stocked exact RC1206FR-0747RL",
+      "functional_effect": "the circuit still guarantees at least the characterized 20-mA/15-mW-per-sr point and bounds the conservative hot instantaneous corner to 50.6 mA"
+    },
+    {
+      "id": "H3.3.3-F02",
+      "finding": "C5 GPIO6 could be high impedance while the AON SN74LVC1G08 remained powered, leaving a standard CMOS input floating",
+      "correction": "add an exact 10-kohm pull-down directly at the carrier-gate input",
+      "functional_effect": "reset, missing C5 and disconnect states are deterministically dark before the downstream MOSFET pull-down"
+    },
+    {
+      "id": "H3.3.3-F03",
+      "finding": "the device registry claimed a 50-mW-per-sr guaranteed minimum at 70 mA, but the manufacturer gives 90 typical there and guarantees 15 minimum only at 20 mA",
+      "correction": "replace the false limit with the exact guaranteed and typical rows",
+      "functional_effect": "range claims now begin from a real guaranteed optical point; final range remains HIL"
+    },
+    {
+      "id": "H3.3.3-F04",
+      "finding": "the IR prose named ESP32-C5-MINI-1U although the selected, pin-reviewed and rendered module is ESP32-C5-WROOM-1U-N8R8",
+      "correction": "use the exact WROOM-1U identity and current v1.2 module source everywhere in the IR contract",
+      "functional_effect": "no pin changes; the documentation now describes the component that will actually be assembled"
+    }
+  ],
+  "cost_delta_usd_at_100": {
+    "old_resistor": "0.0247",
+    "new_resistor": "0.0170",
+    "added_input_pulldown": "0.0097",
+    "total_delta_per_board": "0.0020"
+  },
+  "residual_physical_only": [
+    "verify received TSOP95238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
+    "replay a representative 30-to-60-kHz protocol corpus and measure carrier/count accuracy, robust AGC behavior, range and field of view",
+    "measure VSMY14940 current, optical range/alignment, local temperature and IEC 62471 classification through the final enclosure/window",
+    "calibrate the VEMD1060 tunnel against the <=2.271-uA paper target and inject missing emitter, ambient leakage, RX crosstalk, stuck carrier, brownout and FAULT_KILL"
+  ],
+  "review_summary": {
+    "checks": 46,
+    "failed_checks": 0,
+    "corrected_findings": 4,
+    "unresolved_findings": 0,
+    "status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.3.4",
+    "action": "verify battery sensing, thermistors and analog fault thresholds"
+  },
+  "open_findings": []
+}

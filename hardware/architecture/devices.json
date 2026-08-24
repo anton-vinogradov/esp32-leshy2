@@ -1715,6 +1715,40 @@
         "END_2": {"physical": "2", "role": "power"}
       }
     },
+    "yageo_rc1206fr_0747rl": {
+      "mpn": "Yageo RC1206FR-0747RL",
+      "kind": "47ohm_1pct_1206_0_25w_ir_emitter_current_limit_resistor",
+      "qualification": "verified_exact_ir_emitter_current_limit_resistor",
+      "lifecycle": "active_stocked_orderable",
+      "dimensions_mm": [3.2, 1.6, 0.65],
+      "source": {
+        "document": "RC1206FR-0747RL product specification",
+        "version": "current product data checked 2026-08-24",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC1206FR-0747RL",
+        "checked": "2026-08-24"
+      },
+      "orderable_source": {
+        "document": "RC1206FR-0747RL active authorized-distributor stock page",
+        "url": "https://www.mouser.com/ProductDetail/YAGEO/RC1206FR-0747RL",
+        "checked": "2026-08-24"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.017,
+        "price_break": "Mouser cut-tape quantity-100 tier",
+        "source": {"document": "Mouser exact-MPN published price table", "url": "https://www.mouser.com/ProductDetail/YAGEO/RC1206FR-0747RL", "checked": "2026-08-24"}
+      },
+      "electrical_contract": {
+        "resistance_ohm": 47,
+        "tolerance_pct": 1,
+        "rated_power_w_at_70c": 0.25,
+        "operating_temperature_c": [-55, 155]
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
     "panasonic_erj_p08f10r0v": {
       "mpn": "Panasonic ERJ-P08F10R0V",
       "kind": "10ohm_1pct_1206_0_66w_anti_surge_power_resistor",
@@ -5237,9 +5271,18 @@
       },
       "electrical_contract": {
         "peak_wavelength_nm": 940,
-        "maximum_continuous_forward_current_ma_at_25c": 70,
+        "absolute_maximum_forward_current_ma_at_25c": 70,
+        "absolute_maximum_power_dissipation_mw_at_25c": 119,
+        "maximum_junction_temperature_c": 100,
+        "operating_temperature_c": [-40, 85],
+        "thermal_resistance_junction_to_ambient_k_per_w": 390,
+        "forward_voltage_v_at_20ma": {"min": 1.1, "typ": 1.3, "max": 1.5},
+        "forward_voltage_temperature_coefficient_mv_per_k_at_20ma": -0.9,
         "typical_forward_voltage_v_at_70ma": 1.5,
-        "minimum_radiant_intensity_mw_per_sr_at_70ma": 50,
+        "minimum_radiant_intensity_mw_per_sr_at_20ma": 15,
+        "typical_radiant_intensity_mw_per_sr_at_20ma": 25,
+        "typical_radiant_intensity_mw_per_sr_at_70ma": 90,
+        "typical_radiant_power_mw_at_70ma": 40,
         "half_intensity_angle_deg": 9,
         "orientation": "side-view surface mount"
       },

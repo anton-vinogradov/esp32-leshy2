@@ -10,10 +10,10 @@
     "hardware/ecad/H2-sheet-contract.json"
   ],
   "source_sha256": {
-    "hardware/architecture/devices.json": "433ff1f1783a57289d39f9af29deb943da96987e49590d47959038d8c7a32b54",
-    "hardware/architecture/candidates/G2F-3I.json": "c2a489f8f3ed57cac2066ff591bd3a0cc909d40545c0aec4e09dcc8955ef2950",
+    "hardware/architecture/devices.json": "962d80d6b0eaabc485f471cc173b6ddea52f8968c05374cad89ae1babd205c41",
+    "hardware/architecture/candidates/G2F-3I.json": "a2c6c6e23a34b22aea8dc81c6e216a1c4a63440381a14f55eafda47e5c494872",
     "hardware/architecture/target-integration-contract.json": "321b697f58fac56a65110462f419fe594c789d4113f54617b3ff36dd17072d36",
-    "hardware/ecad/H2-sheet-contract.json": "3ca02a1212e1869fb47dbeb62e7a23ace4586159391cebb38078dc9aa22a1df7"
+    "hardware/ecad/H2-sheet-contract.json": "56fda7262e6b9adb97956b0c94ec49490e86672a5e6cdc24f80f50919231f81b"
   },
   "integration_contract": {
     "schema": 2,

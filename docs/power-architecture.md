@@ -27,7 +27,7 @@ This is the final product power architecture. It is checked against the complete
 
 ## H2.5.1 result
 
-✅ **Reviewed:** 17 critical power nets are traced in the actual KiCad netlist. UI, RF and LoRa Cap contain 389, 682 and 27 uniquely annotated components; there are no reference collisions.
+✅ **Reviewed:** 17 critical power nets are traced in the actual KiCad netlist. UI, RF and LoRa Cap contain 390, 682 and 27 uniquely annotated components; there are no reference collisions.
 
 A fabrication blocker was corrected: child-sheet-local `R1/C1/U1` references now use deterministic sheet-number ranges.
 

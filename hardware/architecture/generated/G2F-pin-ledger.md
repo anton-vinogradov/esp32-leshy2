@@ -230,7 +230,7 @@
 | `yageo_rc0402fr_078k2l` | `Yageo RC0402FR-078K2L` | `verified_candidate` | `active` | [Yageo RC0402FR-078K2L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-078K2L) | same primary source |
 | `yageo_rc0402jr_070rl` | `Yageo RC0402JR-070RL` | `verified_candidate` | `active_orderable` | [Yageo RC general-purpose chip resistor specification current exact order code checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf) | same primary source |
 | `yageo_rc0603fr_071kl` | `Yageo RC0603FR-071KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
-| `yageo_rc1206fr_0733rl` | `Yageo RC1206FR-0733RL` | `verified_exact_ir_emitter_current_limit_resistor` | `active_stocked_orderable` | [RC1206FR-0733RL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC1206FR-0733RL) | same primary source |
+| `yageo_rc1206fr_0747rl` | `Yageo RC1206FR-0747RL` | `verified_exact_ir_emitter_current_limit_resistor` | `active_stocked_orderable` | [RC1206FR-0747RL product specification current product data checked 2026-08-24](https://yageogroup.com/component-documentation/download/specsheet/RC1206FR-0747RL) | same primary source |
 | `yageo_rt0402brd07100kl` | `Yageo RT0402BRD07100KL` | `verified_candidate` | `active` | [Yageo RT0402BRD07100KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RT0402BRD07100KL) | same primary source |
 | `yageo_rt0402brd07191kl` | `Yageo RT0402BRD07191KL` | `verified_candidate` | `active` | [Yageo RT high-precision thin-film resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RT_1-to-0_01.pdf) | same primary source |
 
@@ -536,7 +536,7 @@ Decision `DEC-0046`; default `QUIET`.
 | `RECEIVER_QUIET` | `Si4732 receiver` | receiver rail discharged, reset asserted, I2C isolated and both audio outputs passive while the protected receive-only antenna inputs remain harmless | slow_io.P15 RX_DOMAIN_EN plus exact TPS22919DCKR, supervisor and I2C isolation | rail discharge/current, I2C no-back-power, no unintended tune/scan activity and active-group desense HIL |
 | `CODEC_AUDIO_QUIET` | `codec`, `I2S`, `speaker amplifier` | AUDIO_ARM low, capture/playback selectors at reset defaults, PAM8302A off, codec rail discharged with I2C/I2S isolated and I2S clock/DMA stopped | direct S3.GPIO6 AUDIO_ARM with pull-down plus slow_io P01/P10 and exact supervisors/isolators | stale-selector reset/watchdog/brownout override, no-back-power, pop/click, clock spectrum, current and active-group desense HIL |
 | `VOICE_INTERFACE_QUIET` | `voice UART`, `voice PTT`, `voice AFOUT`, `voice MIC_IN`, `voice H/L` | PTT remains hardware-off, UART and analog paths isolated, MIC_IN injection disconnected and H/L at its safe low-or-open default | VOICE_PTT_REQ_N -> VOICE_PTT_SAFE_N -> isolated VOICE_PTT_MODULE_N; slow_io P13/P14/P27 and exact switched-domain digital/analog isolation | no-back-power, no unintended TX/audio injection, stuck-line fault injection and active-group desense HIL |
-| `IR_QUIET` | `IR RX`, `IR TX` | TPS22919 receive rail discharged through QOD; Ioff return buffer high-Z with C5 inputs idle-high; RMT stopped and pins parked; VSMY14940 gate pulled low behind FAULT_KILL | C5.GPIO4 IR_FRONTEND_PWR_EN plus UI-local SN74LVC1G08DCKR RUN_PERMIT gate, 100-Ohm gate resistor and 10-kOhm DMN2056U-7 gate pull-down | rail discharge/no-back-power, dark/current/no-optical-output, FAULT_KILL fault injection and active-radio desense HIL |
+| `IR_QUIET` | `IR RX`, `IR TX` | TPS22919 receive rail discharged through QOD; Ioff return buffer high-Z with C5 inputs idle-high; RMT stopped and pins parked; VSMY14940 gate pulled low behind FAULT_KILL | C5.GPIO4 IR_FRONTEND_PWR_EN plus UI-local SN74LVC1G08DCKR RUN_PERMIT gate, independent 10-kOhm carrier-input pull-down, 100-Ohm gate resistor and 10-kOhm DMN2056U-7 gate pull-down | rail discharge/no-back-power, dark/current/no-optical-output, FAULT_KILL fault injection and active-radio desense HIL |
 | `S3_RF_QUIET` | `S3 Wi-Fi`, `S3 BLE`, `ESP-NOW` | protocols/scans/advertising stopped and native RF block off while S3 CPU/UI remains alive | native RF power state plus S3_RF_TX_EVIDENCE | no background frame/carrier and active-receiver desense HIL |
 | `C5_RF_QUIET` | `C5 Wi-Fi`, `C5 IEEE 802.15.4` | protocols stopped and native RF block off while C5 may remain alive for IR/recovery | native RF power state plus C5_RF_TX_EVIDENCE | no background frame/carrier and active-receiver desense HIL |
 | `STORAGE_QUIET` | `microSD` | bounded flush then controller static and rail off when no storage session | slow_io.P20 SD_PWR_EN | no corruption/back-power and active-receiver desense HIL |
@@ -2038,7 +2038,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_carrier_host_pullup.END_2` | host-side 10-kOhm pull-up keeps RMT_RX1 idle-high while isolated |
 | `IR_RX_CARRIER` | `ir_carrier_host_pullup.END_1` | `c5.GPIO1` | powered-off learning receiver cannot back-power the C5 input |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_emitter_limit.END_1` | emitter current comes from the protected main rail, independently of the receive frontend rail |
-| `IR_LED_ANODE_LIMITED` | `ir_emitter_limit.END_2` | `ir_emitter.ANODE` | exact 33-Ohm 1206 resistor bounds first-order current below 70 mA at the conservative paper voltage/forward-voltage corner |
+| `IR_LED_ANODE_LIMITED` | `ir_emitter_limit.END_2` | `ir_emitter.ANODE` | exact 47-Ohm 1206 resistor guarantees the characterized 20-mA optical point and bounds the conservative 85-C instantaneous corner to 50.6 mA rather than operating at the 70-mA absolute maximum |
 | `IR_LED_CATHODE` | `ir_emitter.CATHODE` | `ir_tx_mosfet.D` | physical VSMY14940 cathode reaches only the low-side switch |
 | `POWER_GROUND` | `ir_tx_mosfet.S` | `abstract:power-ground` | low-side source uses a short local return away from optical-receiver filters |
 | `IR_TX_GATE` | `ir_tx_gate_series.END_2` | `ir_tx_mosfet.G` | exact 100-Ohm gate resistor limits edge current and ringing |
@@ -3077,6 +3077,8 @@ Reserved: `PA1_NRST`. Free: none.
 | `RUN_PERMIT` | `safe_latch.Q` | `safe_gate_b.1B` | KILL/FAULT_KILL-dominant active-high gate permit |
 | `RUN_PERMIT` | `safe_latch.Q` | `safe_gate_b.2B` | KILL/FAULT_KILL-dominant active-high gate permit |
 | `IR_TX_CARRIER` | `c5.GPIO6` | `ir_safe_gate.A` | C5 RMT carrier stays on the UI board and enters the local hardware safety gate directly |
+| `IR_TX_CARRIER` | `ir_safe_gate.A` | `ir_tx_carrier_pulldown.END_1` | exact 10-kOhm pull-down follows the LVC requirement that an input which is not always driven must never float |
+| `SAFETY_GROUND` | `ir_tx_carrier_pulldown.END_2` | `abstract:safety-ground` | C5 reset, absence or high impedance therefore cannot make the AON safety-gate input high |
 | `RUN_PERMIT` | `safe_latch.Q` | `ir_safe_gate.B` | one digital permit crosses to the UI board; the IR carrier itself remains local to C5 |
 | `RUN_PERMIT` | `safe_latch.Q` | `safe_gate_b.4B` | KILL/FAULT_KILL-dominant active-high gate permit |
 | `NRF0_CE_SAFE` | `safe_gate_a.1Y` | `nrf0_host_buffer.1A` | KILL/FAULT_KILL-dominant CE enters the switched-domain Ioff buffer rather than the module directly |
@@ -3949,7 +3951,7 @@ Reserved: `PA1_NRST`. Free: none.
 - `ir_return_buffer` lifecycle: `production_active_orderable`.
 - `ir_emitter` uses `Vishay VSMY14940` as `verified_exact_consumer_ir_transmit_emitter`, not an accepted production choice.
 - `ir_emitter` lifecycle: `active_stocked_orderable`.
-- `ir_emitter_limit` uses `Yageo RC1206FR-0733RL` as `verified_exact_ir_emitter_current_limit_resistor`, not an accepted production choice.
+- `ir_emitter_limit` uses `Yageo RC1206FR-0747RL` as `verified_exact_ir_emitter_current_limit_resistor`, not an accepted production choice.
 - `ir_emitter_limit` lifecycle: `active_stocked_orderable`.
 - `ir_evidence_amp` uses `TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
 - `voice_io_power_input_cap` lifecycle: `active_production`.

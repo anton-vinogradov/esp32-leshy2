@@ -5,15 +5,15 @@
   "project": "LESHY2-UI",
   "sheet": "UI_20_C5_RADIO_IR_SERVICE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c2a489f8f3ed57cac2066ff591bd3a0cc909d40545c0aec4e09dcc8955ef2950",
-    "hardware/architecture/devices.json": "433ff1f1783a57289d39f9af29deb943da96987e49590d47959038d8c7a32b54",
-    "hardware/ecad/generated/H2-instance-ledger.json": "47281c317c4324dcf3b7af4a84768ba2d08fa8fc46c0fd3ee30ecf440cffc913",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "a024d7ba47c06097483e07e3cc86ee4bf37ece2a057429b81a1cf7ffaf6868c9"
+    "hardware/architecture/candidates/G2F-3I.json": "a2c6c6e23a34b22aea8dc81c6e216a1c4a63440381a14f55eafda47e5c494872",
+    "hardware/architecture/devices.json": "962d80d6b0eaabc485f471cc173b6ddea52f8968c05374cad89ae1babd205c41",
+    "hardware/ecad/generated/H2-instance-ledger.json": "e68dc751910e90e8f68fcc059dd351249c3ac3913fbc52187db7d5d76083c705",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "a4a143eb78de40e3b6289bb89a1bc86564322880f49b03055b71dcd9cce2e28c"
   },
   "summary": {
-    "ledger_instances": 59,
-    "schematic_symbols": 60,
-    "board_fitted_symbols": 58,
+    "ledger_instances": 60,
+    "schematic_symbols": 61,
+    "board_fitted_symbols": 59,
     "hierarchical_interfaces": 18,
     "c5_carrier_pads": 32,
     "factory_rf_assembly_boundaries": 1,
@@ -327,7 +327,7 @@
       "instance": "ir_emitter_limit",
       "symbol_uuid": "a839bec7-cdbf-5fad-ad26-a1a62f03c5dd",
       "reference": "R20012",
-      "mpn": "Yageo RC1206FR-0733RL",
+      "mpn": "Yageo RC1206FR-0747RL",
       "footprint": "Resistor_SMD:R_1206_3216Metric",
       "pin_count": 2,
       "board_fitted": true,
@@ -344,9 +344,19 @@
       "ledger_component": true
     },
     {
+      "instance": "ir_tx_carrier_pulldown",
+      "symbol_uuid": "fae00d60-b584-5d6e-9603-018662d5da99",
+      "reference": "R20013",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true,
+      "ledger_component": true
+    },
+    {
       "instance": "ir_tx_gate_series",
       "symbol_uuid": "f4a3463b-c9cb-5106-8c27-168961d57394",
-      "reference": "R20013",
+      "reference": "R20014",
       "mpn": "Yageo RC0402FR-07100RL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -356,7 +366,7 @@
     {
       "instance": "ir_tx_gate_pulldown",
       "symbol_uuid": "5808cb55-4745-52b2-ab55-73b6cbfb9dc8",
-      "reference": "R20014",
+      "reference": "R20015",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -406,7 +416,7 @@
     {
       "instance": "c5_service_usb_cc1_rd",
       "symbol_uuid": "6d70b6a7-06e2-56d6-96a9-983e7076c820",
-      "reference": "R20015",
+      "reference": "R20016",
       "mpn": "Yageo RC0402FR-075K1L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -416,7 +426,7 @@
     {
       "instance": "c5_service_usb_cc2_rd",
       "symbol_uuid": "1b62cab0-6046-5966-8b23-3919c30f25b5",
-      "reference": "R20016",
+      "reference": "R20017",
       "mpn": "Yageo RC0402FR-075K1L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -426,7 +436,7 @@
     {
       "instance": "c5_service_usb_vbus_bleeder",
       "symbol_uuid": "37335fa0-e49f-5ef9-ba4d-26f10b0f27f4",
-      "reference": "R20017",
+      "reference": "R20018",
       "mpn": "Yageo RC0402FR-071ML",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -436,7 +446,7 @@
     {
       "instance": "c5_service_usb_dm_series",
       "symbol_uuid": "f21adedd-9cc8-5834-9160-0cfb164d107d",
-      "reference": "R20018",
+      "reference": "R20019",
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -446,7 +456,7 @@
     {
       "instance": "c5_service_usb_dp_series",
       "symbol_uuid": "fc25910d-3042-5483-8693-e632f1e778f8",
-      "reference": "R20019",
+      "reference": "R20020",
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -496,7 +506,7 @@
     {
       "instance": "c5_dbg_vtref_series",
       "symbol_uuid": "79881f9c-69b9-58ee-9959-2c8b0bc9a8f3",
-      "reference": "R20020",
+      "reference": "R20021",
       "mpn": "Yageo RC0402FR-071KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -506,7 +516,7 @@
     {
       "instance": "c5_dbg_reset_series",
       "symbol_uuid": "34cdefcd-dbcb-5098-a6f4-4828c229bc83",
-      "reference": "R20021",
+      "reference": "R20022",
       "mpn": "Yageo RC0402FR-071KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -516,7 +526,7 @@
     {
       "instance": "c5_dbg_boot_series",
       "symbol_uuid": "9b954b62-e80b-57f6-937e-4443f6313c14",
-      "reference": "R20022",
+      "reference": "R20023",
       "mpn": "Yageo RC0402FR-071KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -526,7 +536,7 @@
     {
       "instance": "c5_dbg0_series",
       "symbol_uuid": "2a6d92cc-c4a0-56d0-a461-7285abc2a6ac",
-      "reference": "R20023",
+      "reference": "R20024",
       "mpn": "Yageo RC0402FR-07470RL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -536,7 +546,7 @@
     {
       "instance": "c5_dbg1_series",
       "symbol_uuid": "eb5222ef-761b-5f58-8727-a38ffaeb5606",
-      "reference": "R20024",
+      "reference": "R20025",
       "mpn": "Yageo RC0402FR-07470RL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -546,7 +556,7 @@
     {
       "instance": "c5_dbg_id0_strap",
       "symbol_uuid": "02e181a9-a048-5302-92fc-6f7ec377ae9c",
-      "reference": "R20025",
+      "reference": "R20026",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -556,7 +566,7 @@
     {
       "instance": "c5_dbg_id1_strap",
       "symbol_uuid": "a019c68b-a136-5b79-bc58-87d8051754b4",
-      "reference": "R20026",
+      "reference": "R20027",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -566,7 +576,7 @@
     {
       "instance": "c5_boot_pullup",
       "symbol_uuid": "4c9f4b5d-d69d-556c-95fb-99c3ae1875ba",
-      "reference": "R20027",
+      "reference": "R20028",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -576,7 +586,7 @@
     {
       "instance": "c5_gpio27_pullup",
       "symbol_uuid": "7437a346-9eb6-527a-a837-6b3de06100ad",
-      "reference": "R20028",
+      "reference": "R20029",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -586,7 +596,7 @@
     {
       "instance": "c5_reset_pullup",
       "symbol_uuid": "53cecb55-fe53-57a8-bf08-f168de7d0625",
-      "reference": "R20029",
+      "reference": "R20030",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,

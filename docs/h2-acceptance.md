@@ -9,7 +9,7 @@ H2 was accepted by the user as the immutable H3 input. Acceptance means agreemen
 - four complete native KiCad hierarchies: UI, RF/power, display adapter and LoRa Cap
 - independent power/recovery/isolation/quiet-state/fault-shutdown review
 - zero native ERC findings and 189 physically reconciled intentional NCs
-- 1,028 ledger rows, 1,026 electrical identities, 266 root nets and 80 M1 contacts reconciled
+- 1,035 ledger rows, 1,033 electrical identities, 266 root nets and 80 M1 contacts reconciled
 - 130 controller allocations agree with KiCad; 125 MCU contacts are byte-identical in firmware F2
 
 ## Deliberately outside H2

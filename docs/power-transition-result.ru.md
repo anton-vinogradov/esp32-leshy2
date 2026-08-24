@@ -10,6 +10,6 @@ H3.2 сведена в одну проверенную цепочку: startup/K
 - Исправлены две реальные source-ошибки: полярность/async inputs защёлки и неверная POR timing claim.
 - Физические waveform, switch bounce, MLCC DC-bias, charger-loop droop и fault-injection не объявлены доказанными: они явно переданы H8.
 
-**Статус:** `H3.2` проверено. Точный текущий маркер — `H3.3.3`: IR drive/receive/thermal corners.
+**Статус:** `H3.2` проверено. Точный текущий маркер — `H3.3.4`: battery sensing, thermistors и analog fault thresholds.
 
 [Machine closure package](../hardware/verification/generated/H3-VRF25-transition-consolidation.json).

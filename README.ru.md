@@ -120,14 +120,14 @@ safety-автоматику.
 <details open>
 <summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.3.3 -->
+<!-- current-substep: H3.3.4 -->
 
-**Точный маркер: `H3.3.3`** — [аудиотракт](docs/audio-electrical-verification.ru.md)
-проведены ревью без незакрытых аналитических findings; проверяются codec,
-microphone, headset и speaker gain/noise/power corners.
+**Точный маркер: `H3.3.4`** — [IR-тракт](docs/ir-electrical-verification.ru.md)
+проверен без незакрытых аналитических findings; проверяются battery sensing,
+thermistors и analog fault thresholds.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
-- ✅ `H2.0.1` — проверен полный реестр из 1 034 схемных строк.
+- ✅ `H2.0.1` — проверен полный реестр из 1 035 схемных строк.
 - ✅ `H2.0.2` — проверены четыре проекта, границы плат и имена цепей.
 - ✅ `H2.0.3` — проверены HW↔FW/BSP-контракт и drift checks двух репозиториев.
 - ✅ `H2.1` — созданы четыре независимых KiCad-проекта и 28 native-листов.
@@ -211,8 +211,9 @@ microphone, headset и speaker gain/noise/power corners.
 - ▶️ **`H3.3` — сейчас:** analog peripheral corners.
   - ✅ `H3.3.1` — [display supply, backlight и direct-QSPI проведены ревью](docs/display-electrical-verification.ru.md); исправлены две source-ошибки.
   - ✅ `H3.3.2` — [codec, microphone, headset, speaker и voice-TX проведены ревью](docs/audio-electrical-verification.ru.md); исправлены четыре source-ошибки.
-  - ▶️ **`H3.3.3` — сейчас:** IR drive, receive thresholds и thermal duty limits.
-  - ⏳ `H3.3.4–H3.3.5` — battery analog и сводное ревью.
+  - ✅ `H3.3.3` — [IR RX/TX, optical evidence и thermal limits проверены](docs/ir-electrical-verification.ru.md); исправлены четыре source-ошибки.
+  - ▶️ **`H3.3.4` — сейчас:** battery sensing, thermistors и analog fault thresholds.
+  - ⏳ `H3.3.5` — сводная проверка analog corners.
 
 Проверенный план H2 —
 [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Текущий

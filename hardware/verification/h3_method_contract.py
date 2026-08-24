@@ -184,7 +184,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         rules = "\n".join(f"- `{r['id']}` — {r['rule']}" for r in manifest["pass_fail_rules"])
         tool_h = "## Воспроизводимость"
         tool = "Расчётное ядро использует только Python standard library, `Decimal` с фиксированной точностью и JSON/CSV/SVG. Сеть и случайность не участвуют в acceptance; каждый генератор обязан иметь режимы `--write` и `--check`, входные SHA-256 и тесты."
-        marker = "**Статус:** `H3.0.3` завершено и проверено. Текущий точный маркер — `H3.3.3`, IR drive/receive/thermal corners."
+        marker = "**Статус:** `H3.0.3` завершено и проверено. Текущий точный маркер — `H3.3.4`, battery sensing, thermistors и analog fault thresholds."
         evidence = "[Машинный контракт методов](../hardware/verification/generated/H3-VRF03-method-contract.json)."
     else:
         title = "# How hardware is verified before fabrication"
@@ -196,7 +196,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         rules = "\n".join(f"- `{r['id']}` — {r['rule']}" for r in manifest["pass_fail_rules"])
         tool_h = "## Reproducibility"
         tool = "The calculation core uses only the Python standard library, fixed-precision `Decimal`, and JSON/CSV/SVG. Network access and randomness do not participate in acceptance; every generator must provide `--write` and `--check`, input SHA-256 and tests."
-        marker = "**Status:** `H3.0.3` is reviewed. The current exact marker is `H3.3.3`, IR drive/receive/thermal corners."
+        marker = "**Status:** `H3.0.3` is reviewed. The current exact marker is `H3.3.4`, battery sensing, thermistors and analog fault thresholds."
         evidence = "[Machine method contract](../hardware/verification/generated/H3-VRF03-method-contract.json)."
     rows = "\n".join(
         f"| {', '.join(method['applies_to'])} | {method['method']} | {method['anti_shortcut']} |"

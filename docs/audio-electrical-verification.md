@@ -26,6 +26,6 @@ At the real `4 ohm −15% = 3.400 ohm` corner, the theoretical BTL ceiling is `1
 
 The corrected worst case is `2493.000 mA` inside the 2500-mA admission and retains `28.359%` to the guaranteed hardware limit. Normal display/backlight is now `200 mA`, audio is `625 mA`; a backlight fault threshold is no longer counted as an operating load.
 
-The final analog configuration adds `0.0436 USD` per unit at quantity 100. **H3.3.2 is verified; the exact current marker is `H3.3.3`.**
+The final analog configuration adds `0.0436 USD` per unit at quantity 100. **H3.3.2 is verified; the exact current marker is `H3.3.4`.**
 
 [Machine H3-VRF32 package](../hardware/verification/generated/H3-VRF32-audio.json).

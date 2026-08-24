@@ -1151,8 +1151,9 @@ flowchart TD
   IR_DEMOD_HOST_PULLUP["Yageo RC0402FR-0710KL<br/>host-side demodulated-input idle pull-up"]
   IR_CARRIER_HOST_PULLUP["Yageo RC0402FR-0710KL<br/>host-side carrier-input idle pull-up"]
   IR_EMITTER["Vishay VSMY14940<br/>side-view 940-nm consumer IR transmit emitter"]
-  IR_EMITTER_LIMIT["Yageo RC1206FR-0733RL<br/>33-Ohm 1206 emitter current-limit resistor"]
+  IR_EMITTER_LIMIT["Yageo RC1206FR-0747RL<br/>47-Ohm 1206 derated emitter current-limit resistor"]
   IR_TX_MOSFET["Diodes Incorporated DMN2056U-7<br/>FAULT_KILL-qualified low-side IR emitter switch"]
+  IR_TX_CARRIER_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm IR-carrier input fail-low resistor"]
   IR_TX_GATE_SERIES["Yageo RC0402FR-07100RL<br/>100-Ohm IR-switch gate resistor"]
   IR_TX_GATE_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm IR-switch fail-low resistor"]
   IR_EVIDENCE_AMP["TLV9061IDBVR<br/>AON physical-optical transimpedance amplifier"]
@@ -1169,7 +1170,8 @@ flowchart TD
   end
   C5 ~~~ SAFE_GATE_B ~~~ DET_IR ~~~ IR_POWER_SWITCH ~~~ IR_POWER_INPUT_CAP ~~~ IR_POWER_OUTPUT_CAP ~~~ IR_POWER_OUTPUT_BYPASS ~~~ IR_POWER_ON_PULLDOWN ~~~ IR_DEMOD ~~~ IR_DEMOD_SUPPLY_RES ~~~ IR_DEMOD_SUPPLY_CAP ~~~ IR_CARRIER
   IR_CARRIER_SUPPLY_RES ~~~ IR_CARRIER_SUPPLY_CAP ~~~ IR_CARRIER_PULLUP ~~~ IR_RETURN_BUFFER ~~~ IR_RETURN_BUFFER_BYPASS ~~~ IR_DEMOD_SERIES ~~~ IR_CARRIER_SERIES ~~~ IR_DEMOD_HOST_PULLUP ~~~ IR_CARRIER_HOST_PULLUP ~~~ IR_EMITTER ~~~ IR_EMITTER_LIMIT ~~~ IR_TX_MOSFET
-  IR_TX_GATE_SERIES ~~~ IR_TX_GATE_PULLDOWN ~~~ IR_EVIDENCE_AMP ~~~ IR_EVIDENCE_AMP_BYPASS ~~~ IR_EVIDENCE_VREF_TOP ~~~ IR_EVIDENCE_VREF_BOTTOM ~~~ IR_EVIDENCE_VREF_CAP ~~~ IR_EVIDENCE_FEEDBACK ~~~ IR_EVIDENCE_FEEDBACK_CAP ~~~ IR_SAFE_GATE ~~~ IR_SAFE_GATE_BYPASS ~~~ IR_TX_LED
+  IR_TX_CARRIER_PULLDOWN ~~~ IR_TX_GATE_SERIES ~~~ IR_TX_GATE_PULLDOWN ~~~ IR_EVIDENCE_AMP ~~~ IR_EVIDENCE_AMP_BYPASS ~~~ IR_EVIDENCE_VREF_TOP ~~~ IR_EVIDENCE_VREF_BOTTOM ~~~ IR_EVIDENCE_VREF_CAP ~~~ IR_EVIDENCE_FEEDBACK ~~~ IR_EVIDENCE_FEEDBACK_CAP ~~~ IR_SAFE_GATE ~~~ IR_SAFE_GATE_BYPASS
+  IR_TX_LED ~~~ IR_TX_LED_SERIES
   C5 <-->|"RMT RX0/power: GPIO0,GPIO1,GPIO4,GPIO6,GPIO24"| IR_DEMOD
   C5 <-->|"RMT RX1/power"| IR_CARRIER
   SAFE_GATE_B --> IR_EMITTER
@@ -3550,7 +3552,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_carrier_host_pullup.END_2` | host-side 10-kOhm pull-up keeps RMT_RX1 idle-high while isolated |
 | `IR_RX_CARRIER` | `ir_carrier_host_pullup.END_1` | `c5.GPIO1` | powered-off learning receiver cannot back-power the C5 input |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_emitter_limit.END_1` | emitter current comes from the protected main rail, independently of the receive frontend rail |
-| `IR_LED_ANODE_LIMITED` | `ir_emitter_limit.END_2` | `ir_emitter.ANODE` | exact 33-Ohm 1206 resistor bounds first-order current below 70 mA at the conservative paper voltage/forward-voltage corner |
+| `IR_LED_ANODE_LIMITED` | `ir_emitter_limit.END_2` | `ir_emitter.ANODE` | exact 47-Ohm 1206 resistor guarantees the characterized 20-mA optical point and bounds the conservative 85-C instantaneous corner to 50.6 mA rather than operating at the 70-mA absolute maximum |
 | `IR_LED_CATHODE` | `ir_emitter.CATHODE` | `ir_tx_mosfet.D` | physical VSMY14940 cathode reaches only the low-side switch |
 | `POWER_GROUND` | `ir_tx_mosfet.S` | `abstract:power-ground` | low-side source uses a short local return away from optical-receiver filters |
 | `IR_TX_GATE` | `ir_tx_gate_series.END_2` | `ir_tx_mosfet.G` | exact 100-Ohm gate resistor limits edge current and ringing |
@@ -4589,6 +4591,8 @@ Reserved: `PA1_NRST`. Free: none.
 | `RUN_PERMIT` | `safe_latch.Q` | `safe_gate_b.1B` | KILL/FAULT_KILL-dominant active-high gate permit |
 | `RUN_PERMIT` | `safe_latch.Q` | `safe_gate_b.2B` | KILL/FAULT_KILL-dominant active-high gate permit |
 | `IR_TX_CARRIER` | `c5.GPIO6` | `ir_safe_gate.A` | C5 RMT carrier stays on the UI board and enters the local hardware safety gate directly |
+| `IR_TX_CARRIER` | `ir_safe_gate.A` | `ir_tx_carrier_pulldown.END_1` | exact 10-kOhm pull-down follows the LVC requirement that an input which is not always driven must never float |
+| `SAFETY_GROUND` | `ir_tx_carrier_pulldown.END_2` | `abstract:safety-ground` | C5 reset, absence or high impedance therefore cannot make the AON safety-gate input high |
 | `RUN_PERMIT` | `safe_latch.Q` | `ir_safe_gate.B` | one digital permit crosses to the UI board; the IR carrier itself remains local to C5 |
 | `RUN_PERMIT` | `safe_latch.Q` | `safe_gate_b.4B` | KILL/FAULT_KILL-dominant active-high gate permit |
 | `NRF0_CE_SAFE` | `safe_gate_a.1Y` | `nrf0_host_buffer.1A` | KILL/FAULT_KILL-dominant CE enters the switched-domain Ioff buffer rather than the module directly |
@@ -5461,7 +5465,7 @@ Reserved: `PA1_NRST`. Free: none.
 - `ir_return_buffer` lifecycle: `production_active_orderable`.
 - `ir_emitter` uses `Vishay VSMY14940` as `verified_exact_consumer_ir_transmit_emitter`, not an accepted production choice.
 - `ir_emitter` lifecycle: `active_stocked_orderable`.
-- `ir_emitter_limit` uses `Yageo RC1206FR-0733RL` as `verified_exact_ir_emitter_current_limit_resistor`, not an accepted production choice.
+- `ir_emitter_limit` uses `Yageo RC1206FR-0747RL` as `verified_exact_ir_emitter_current_limit_resistor`, not an accepted production choice.
 - `ir_emitter_limit` lifecycle: `active_stocked_orderable`.
 - `ir_evidence_amp` uses `TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
 - `voice_io_power_input_cap` lifecycle: `active_production`.

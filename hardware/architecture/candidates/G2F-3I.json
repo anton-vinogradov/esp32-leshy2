@@ -87,7 +87,7 @@
             "yageo_rc0402fr_0730k1l", "yageo_rc0402fr_0730kl", "yageo_rc0402fr_0733kl", "yageo_rc0402fr_0733rl", "yageo_rc0402fr_073k32l",
             "yageo_rc0402fr_0742k2l", "yageo_rc0402fr_0744k2l", "yageo_rc0402fr_0745k3l", "yageo_rc0402fr_07470rl", "yageo_rc0402fr_0747kl", "yageo_rc0402fr_074k7l",
             "yageo_rc0402fr_075k1l", "yageo_rc0402fr_075k23l", "yageo_rc0402fr_07620kl", "yageo_rc0402fr_0768kl", "yageo_rc0402fr_078k2l",
-            "yageo_rc0402jr_070rl", "yageo_rc0603fr_071kl", "yageo_rc1206fr_0733rl", "yageo_rt0402brd07100kl", "yageo_rt0402brd07191kl"
+            "yageo_rc0402jr_070rl", "yageo_rc0603fr_071kl", "yageo_rc1206fr_0747rl", "yageo_rt0402brd07100kl", "yageo_rt0402brd07191kl"
           ]
         },
         {
@@ -176,7 +176,7 @@
     "status": "paper_reviewed_joint_target_projection",
     "fixed_route_abstract_policy": {
       "expected_unique_endpoint_count": 45,
-      "expected_occurrence_count": 1230,
+      "expected_occurrence_count": 1231,
       "classes": [
         {
           "id": "electrical_plane_rail_or_wired_logic",
@@ -328,12 +328,12 @@
   "ir_endpoint_contract": {
     "decision": "DEC-0095",
     "status": "paper_reviewed_exact_dual_receiver_tx_and_actual_optical_evidence_endpoint_hil_open",
-    "owner_and_pins": "ESP32-C5-MINI-1U-N8R8 rev >=v1.2 retains direct RMT RX on GPIO0/GPIO1, frontend power on GPIO4, FAULT_KILL-qualified RMT TX on GPIO6 and active-low optical evidence on GPIO24; no new GPIO or slow-I/O contact is consumed",
+    "owner_and_pins": "ESP32-C5-WROOM-1U-N8R8 rev >=v1.2 retains direct RMT RX on GPIO0/GPIO1, frontend power on GPIO4, FAULT_KILL-qualified RMT TX on GPIO6 and active-low optical evidence on GPIO24; no new GPIO or slow-I/O contact is consumed",
     "robust_receive": "exact TSOP95238TT on a separately filtered switched rail provides only the active-low 38-kHz AGC2 demodulated envelope; it never creates measured carrier provenance",
     "carrier_learning": "exact TSMP95000TT on a separately filtered switched rail provides active-low carrier cycles only in its documented 30-60-kHz range; its output has the recommended 4.7-kOhm pull-up and is the only onboard source allowed to label carrier provenance measured",
     "power_and_isolation": "TPS22919DCKR with input/output energy, QOD and 10-kOhm ON pull-down powers only the two receive paths and one 74LVC2G126DC,125 Ioff buffer; two 100-Ohm/4.7-uF local filters suppress supply disturbance, while host-side 10-kOhm pull-ups hold both C5 inputs idle-high without back-power when the rail is off",
-    "transmit": "one side-view VSMY14940 is driven from protected 3V3_MAIN by DMN2056U-7 through exact 33-Ohm 1206 current limit; a 100-Ohm gate resistor, 10-kOhm gate pull-down and UI-board-local AON SN74LVC1G08DCKR qualified by RUN_PERMIT make reset/FAULT_KILL/off states dark without routing the carrier through the rear board",
-    "current_bound": "at a conservative 3.4-V rail and the emitter datasheet 1.1-V minimum measured at 20 mA, 33 Ohm bounds the first-order current to 69.7 mA before MOSFET drop, below the 70-mA 25-C continuous absolute rating; protocol duty, enclosure temperature and IEC 62471 remain measured admission limits rather than inferred safety",
+    "transmit": "one side-view VSMY14940 is driven from protected 3V3_MAIN by DMN2056U-7 through exact 47-Ohm 1206 current limit; a 100-Ohm gate resistor, independent 10-kOhm carrier-input pull-down, 10-kOhm MOSFET-gate pull-down and UI-board-local AON SN74LVC1G08DCKR qualified by RUN_PERMIT make reset/FAULT_KILL/off states dark without routing the carrier through the rear board",
+    "current_bound": "the H3.3.3 corrected 47-Ohm population guarantees at least the VSMY14940 20-mA characterized optical point while bounding the conservative 3.4-V/85-C instantaneous corner to 50.6 mA including resistor tolerance and hot MOSFET resistance; 70 mA remains an absolute maximum, never an operating target. Production permits carrier duty no higher than one third, no mark longer than 20 ms, no more than 25% emitter-on time in rolling 100-ms and 1-s windows, and no IR TX at a local UI temperature of 75 C or above; IEC 62471 and enclosure optical geometry remain measured admission limits",
     "actual_optical_evidence": "VEMD1060X01 in a light-tight internal tunnel views the physical emitter, not drive current; AON TLV9061IDBVR uses 0.30-V nominal reference, 47-kOhm/1-nF transimpedance response and feeds comparator channel IR_OPTICAL; evidence never authorizes TX, missing light revokes TX, and ambient or optical crosstalk can only delay quiet",
     "phase_exclusion": "receive/learn and transmit are separate SG-IR phases; the receive rail stays off during transmit, the emitter stays dark during receive/learn, and the C5 native radio block remains independently quiet",
     "remaining_hil": ["TSOP95238TT and TSMP95000TT specimen identity, contact orientation, rail discharge, no-back-power and simultaneous two-RX capture", "carrier-frequency accuracy, mark/space reconstruction and corpus compatibility across 30-60 kHz", "VSMY14940 current, range, optical alignment, duty, temperature derating and IEC 62471", "VEMD1060X01 tunnel coupling, comparator threshold, assert/decay, missing-emitter and ambient false-positive behavior", "KILL/FAULT_KILL, reset, brownout and stuck-carrier fault injection", "SG-IR active with every foreign signal group proven quiet, maximum allowed system-plane aggression, emissions and no-interface-stall proof; cross-group optical/RF injection is Laboratory characterization only"]
@@ -426,7 +426,7 @@
       {"id":"RECEIVER_QUIET","interfaces":["Si4732 receiver"],"inactive_state":"receiver rail discharged, reset asserted, I2C isolated and both audio outputs passive while the protected receive-only antenna inputs remain harmless","control":"slow_io.P15 RX_DOMAIN_EN plus exact TPS22919DCKR, supervisor and I2C isolation","proof_gate":"rail discharge/current, I2C no-back-power, no unintended tune/scan activity and active-group desense HIL"},
       {"id":"CODEC_AUDIO_QUIET","interfaces":["codec","I2S","speaker amplifier"],"inactive_state":"AUDIO_ARM low, capture/playback selectors at reset defaults, PAM8302A off, codec rail discharged with I2C/I2S isolated and I2S clock/DMA stopped","control":"direct S3.GPIO6 AUDIO_ARM with pull-down plus slow_io P01/P10 and exact supervisors/isolators","proof_gate":"stale-selector reset/watchdog/brownout override, no-back-power, pop/click, clock spectrum, current and active-group desense HIL"},
       {"id":"VOICE_INTERFACE_QUIET","interfaces":["voice UART","voice PTT","voice AFOUT","voice MIC_IN","voice H/L"],"inactive_state":"PTT remains hardware-off, UART and analog paths isolated, MIC_IN injection disconnected and H/L at its safe low-or-open default","control":"VOICE_PTT_REQ_N -> VOICE_PTT_SAFE_N -> isolated VOICE_PTT_MODULE_N; slow_io P13/P14/P27 and exact switched-domain digital/analog isolation","proof_gate":"no-back-power, no unintended TX/audio injection, stuck-line fault injection and active-group desense HIL"},
-      {"id":"IR_QUIET","interfaces":["IR RX","IR TX"],"inactive_state":"TPS22919 receive rail discharged through QOD; Ioff return buffer high-Z with C5 inputs idle-high; RMT stopped and pins parked; VSMY14940 gate pulled low behind FAULT_KILL","control":"C5.GPIO4 IR_FRONTEND_PWR_EN plus UI-local SN74LVC1G08DCKR RUN_PERMIT gate, 100-Ohm gate resistor and 10-kOhm DMN2056U-7 gate pull-down","proof_gate":"rail discharge/no-back-power, dark/current/no-optical-output, FAULT_KILL fault injection and active-radio desense HIL"},
+      {"id":"IR_QUIET","interfaces":["IR RX","IR TX"],"inactive_state":"TPS22919 receive rail discharged through QOD; Ioff return buffer high-Z with C5 inputs idle-high; RMT stopped and pins parked; VSMY14940 gate pulled low behind FAULT_KILL","control":"C5.GPIO4 IR_FRONTEND_PWR_EN plus UI-local SN74LVC1G08DCKR RUN_PERMIT gate, independent 10-kOhm carrier-input pull-down, 100-Ohm gate resistor and 10-kOhm DMN2056U-7 gate pull-down","proof_gate":"rail discharge/no-back-power, dark/current/no-optical-output, FAULT_KILL fault injection and active-radio desense HIL"},
       {"id":"S3_RF_QUIET","interfaces":["S3 Wi-Fi","S3 BLE","ESP-NOW"],"inactive_state":"protocols/scans/advertising stopped and native RF block off while S3 CPU/UI remains alive","control":"native RF power state plus S3_RF_TX_EVIDENCE","proof_gate":"no background frame/carrier and active-receiver desense HIL"},
       {"id":"C5_RF_QUIET","interfaces":["C5 Wi-Fi","C5 IEEE 802.15.4"],"inactive_state":"protocols stopped and native RF block off while C5 may remain alive for IR/recovery","control":"native RF power state plus C5_RF_TX_EVIDENCE","proof_gate":"no background frame/carrier and active-receiver desense HIL"},
       {"id":"STORAGE_QUIET","interfaces":["microSD"],"inactive_state":"bounded flush then controller static and rail off when no storage session","control":"slow_io.P20 SD_PWR_EN","proof_gate":"no corruption/back-power and active-receiver desense HIL"},
@@ -1880,8 +1880,9 @@
     "ir_demod_host_pullup": "yageo_rc0402fr_0710kl",
     "ir_carrier_host_pullup": "yageo_rc0402fr_0710kl",
     "ir_emitter": "vishay_vsmy14940",
-    "ir_emitter_limit": "yageo_rc1206fr_0733rl",
+    "ir_emitter_limit": "yageo_rc1206fr_0747rl",
     "ir_tx_mosfet": "diodes_dmn2056u_7",
+    "ir_tx_carrier_pulldown": "yageo_rc0402fr_0710kl",
     "ir_tx_gate_series": "yageo_rc0402fr_07100rl",
     "ir_tx_gate_pulldown": "yageo_rc0402fr_0710kl",
     "ir_evidence_amp": "ti_tlv9061_idbvr",
@@ -3832,7 +3833,7 @@
     {"from":"abstract:3V3_MAIN","to":"ir_carrier_host_pullup.END_2","net":"3V3_MAIN","safety":"host-side 10-kOhm pull-up keeps RMT_RX1 idle-high while isolated"},
     {"from":"ir_carrier_host_pullup.END_1","to":"c5.GPIO1","net":"IR_RX_CARRIER","safety":"powered-off learning receiver cannot back-power the C5 input"},
     {"from":"abstract:3V3_MAIN","to":"ir_emitter_limit.END_1","net":"3V3_MAIN","safety":"emitter current comes from the protected main rail, independently of the receive frontend rail"},
-    {"from":"ir_emitter_limit.END_2","to":"ir_emitter.ANODE","net":"IR_LED_ANODE_LIMITED","safety":"exact 33-Ohm 1206 resistor bounds first-order current below 70 mA at the conservative paper voltage/forward-voltage corner"},
+    {"from":"ir_emitter_limit.END_2","to":"ir_emitter.ANODE","net":"IR_LED_ANODE_LIMITED","safety":"exact 47-Ohm 1206 resistor guarantees the characterized 20-mA optical point and bounds the conservative 85-C instantaneous corner to 50.6 mA rather than operating at the 70-mA absolute maximum"},
     {"from":"ir_emitter.CATHODE","to":"ir_tx_mosfet.D","net":"IR_LED_CATHODE","safety":"physical VSMY14940 cathode reaches only the low-side switch"},
     {"from":"ir_tx_mosfet.S","to":"abstract:power-ground","net":"POWER_GROUND","safety":"low-side source uses a short local return away from optical-receiver filters"},
     {"from":"ir_tx_gate_series.END_2","to":"ir_tx_mosfet.G","net":"IR_TX_GATE","safety":"exact 100-Ohm gate resistor limits edge current and ringing"},
@@ -4879,6 +4880,8 @@
     {"from":"safe_latch.Q","to":"safe_gate_b.1B","net":"RUN_PERMIT","safety":"KILL/FAULT_KILL-dominant active-high gate permit"},
     {"from":"safe_latch.Q","to":"safe_gate_b.2B","net":"RUN_PERMIT","safety":"KILL/FAULT_KILL-dominant active-high gate permit"},
     {"from":"c5.GPIO6","to":"ir_safe_gate.A","net":"IR_TX_CARRIER","safety":"C5 RMT carrier stays on the UI board and enters the local hardware safety gate directly"},
+    {"from":"ir_safe_gate.A","to":"ir_tx_carrier_pulldown.END_1","net":"IR_TX_CARRIER","safety":"exact 10-kOhm pull-down follows the LVC requirement that an input which is not always driven must never float"},
+    {"from":"ir_tx_carrier_pulldown.END_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"C5 reset, absence or high impedance therefore cannot make the AON safety-gate input high"},
     {"from":"safe_latch.Q","to":"ir_safe_gate.B","net":"RUN_PERMIT","safety":"one digital permit crosses to the UI board; the IR carrier itself remains local to C5"},
     {"from":"safe_latch.Q","to":"safe_gate_b.4B","net":"RUN_PERMIT","safety":"KILL/FAULT_KILL-dominant active-high gate permit"},
     {"from":"safe_gate_a.1Y","to":"nrf0_host_buffer.1A","net":"NRF0_CE_SAFE","safety":"KILL/FAULT_KILL-dominant CE enters the switched-domain Ioff buffer rather than the module directly"},

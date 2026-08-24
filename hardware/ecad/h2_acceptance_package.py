@@ -41,7 +41,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
             "четыре полные native KiCad-иерархии: UI, RF/power, display-adapter и LoRa Cap",
             "независимое power/recovery/isolation/quiet-state/fault-shutdown ревью",
             "нулевой native ERC и 189 физически сопоставленных намеренных NC",
-            "1 028 ledger-строк, 1 026 электрических identities, 266 root nets и 80 M1 contacts сверены",
+            "1 035 ledger-строк, 1 033 электрических identities, 266 root nets и 80 M1 contacts сверены",
             "130 controller allocations совпадают с KiCad; 125 MCU-контактов byte-identical в firmware F2",
         ]
         defer_h = "## Что сознательно остаётся за границей H2"
@@ -56,7 +56,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
             "four complete native KiCad hierarchies: UI, RF/power, display adapter and LoRa Cap",
             "independent power/recovery/isolation/quiet-state/fault-shutdown review",
             "zero native ERC findings and 189 physically reconciled intentional NCs",
-            "1,028 ledger rows, 1,026 electrical identities, 266 root nets and 80 M1 contacts reconciled",
+            "1,035 ledger rows, 1,033 electrical identities, 266 root nets and 80 M1 contacts reconciled",
             "130 controller allocations agree with KiCad; 125 MCU contacts are byte-identical in firmware F2",
         ]
         defer_h = "## Deliberately outside H2"

@@ -10,6 +10,6 @@ H3.2 closes as one reviewed chain: startup/KILL → USB↔pack/brownout → eFus
 - Two real source errors were corrected: latch polarity/asynchronous inputs and the wrong POR timing claim.
 - Physical waveforms, switch bounce, MLCC DC bias, charger-loop droop and fault injection are not claimed complete; they are explicitly assigned to H8.
 
-**Status:** `H3.2` reviewed. Exact current marker: `H3.3.3`, IR drive/receive/thermal corners.
+**Status:** `H3.2` reviewed. Exact current marker: `H3.3.4`, battery sensing, thermistors and analog fault thresholds.
 
 [Machine closure package](../hardware/verification/generated/H3-VRF25-transition-consolidation.json).

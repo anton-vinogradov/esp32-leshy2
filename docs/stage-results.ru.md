@@ -119,12 +119,12 @@
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ▶️ сейчас, точный маркер `H3.3.3`.
+**Статус:** ▶️ сейчас, точный маркер `H3.3.4`.
 
 - [Текущая страница виртуальной проверки](virtual-verification.ru.md).
 - [Машиночитаемый план](../hardware/verification/h3-verification-plan.json).
 - [Freeze принятого H2 и матрица из 16 областей](../hardware/verification/generated/H3-VRF01-input-freeze.json).
-- [Реестр параметров и моделей](parameter-model-register.ru.md) — 1 034
+- [Реестр параметров и моделей](parameter-model-register.ru.md) — 1 035
   экземпляра, 217 используемых типов и их первичные источники.
 - [Машинный реестр H3.0.2](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).
 - [Методы проверки](verification-methods.ru.md) и
@@ -140,6 +140,8 @@
   и [машинное evidence H3.3.1](../hardware/verification/generated/H3-VRF31-display.json).
 - [Результат проверки аудиотракта](audio-electrical-verification.ru.md)
   и [машинное evidence H3.3.2](../hardware/verification/generated/H3-VRF32-audio.json).
+- [Результат электрической проверки IR](ir-electrical-verification.ru.md)
+  и [машинное evidence H3.3.3](../hardware/verification/generated/H3-VRF33-ir.json).
 
 `H3.0.1–H3.0.3` проведены ревью: входы, параметры и десять единых
 pass/fail-правил заморожены. `H3.1` проведено ревью: 2 032 полных состояния и
@@ -147,7 +149,8 @@ pass/fail-правил заморожены. `H3.1` проведено ревь�
 порога eFuse. `H3.2` проведено ревью: power transitions и safety-loop проходят,
 две source-ошибки исправлены. `H3.3.1` проведено ревью после исправления ещё
 двух source-ошибок; `H3.3.2` — после четырёх исправлений аудиотракта. В
-`H3.3.3` проверяются IR drive, receive thresholds и thermal duty limits.
+`H3.3.3` проверено после четырёх исправлений IR-источников. В `H3.3.4`
+проверяются battery sensing, thermistors и analog fault thresholds.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate
