@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "stage": "H3.0.2",
-  "status": "inventory_complete_user_decision_required",
+  "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
-    "hardware/architecture/devices.json": "ea502da54810fa8ad6135216f6c9aae45b3bb21eda7fbde6a9f27ab5c05a2e20",
-    "hardware/ecad/generated/H2-instance-ledger.json": "ef6c2c7b5f732435a39976a09b897fc9b3b1ca689523c885de334b135857d30f",
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "2dae2002f42014e5f446f77064688fa819812d31562e165dbaab65c5cbad15de"
+    "hardware/architecture/devices.json": "83827fd286071f5a67943966a74e1dc0ad9e24bfd1062966312db45914d79bab",
+    "hardware/ecad/generated/H2-instance-ledger.json": "fb8346a414a93d139013031468d00b9fd9bec29debf1875a3c6a72dd073646e5",
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "1f9525badcee6f9ed15749d8f14c7ae4483fe56f503eaf05ab8199ac0fc86011"
   },
   "policy": {
     "accepted_h2_baseline_is_immutable": true,
@@ -8533,6 +8533,49 @@
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
+      "device_key": "yageo_rc0402fr_071k82l",
+      "mpn": "Yageo RC0402FR-071K82L",
+      "kind": "1_82kohm_1pct_0402_efuse_current_limit_resistor",
+      "instance_count": 2,
+      "projects": [
+        "LESHY2-RF"
+      ],
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_34_U214_M5_EXT"
+      ],
+      "roles": [
+        "1_82kohm_1pct_0402_efuse_current_limit_resistor"
+      ],
+      "lifecycle": "active_orderable",
+      "source": {
+        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
+        "version": "current product data checked 2026-08-24",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
+        "checked": "2026-08-24"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.yageo.com",
+      "accepted_h2_source_preserved": {
+        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
+        "version": "current product data checked 2026-08-24",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
+        "checked": "2026-08-24"
+      },
+      "structured_parameter_count": 0,
+      "structured_parameters": {},
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "voltage/current derating",
+        "temperature coefficient",
+        "frequency/bias dependence"
+      ],
+      "h3_model_method": "analytic_or_vendor_curve",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
       "device_key": "yageo_rc0402fr_071kl",
       "mpn": "Yageo RC0402FR-071KL",
       "kind": "1kohm_1pct_0402_service_current_limit_resistor",
@@ -8771,49 +8814,6 @@
       ],
       "roles": [
         "270kohm_1pct_0402_voice_efuse_ovlo_top_resistor"
-      ],
-      "lifecycle": "active",
-      "source": {
-        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
-        "checked": "2026-08-18"
-      },
-      "source_status": "accepted_h2_authoritative_source",
-      "source_host": "www.yageo.com",
-      "accepted_h2_source_preserved": {
-        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
-        "checked": "2026-08-18"
-      },
-      "structured_parameter_count": 0,
-      "structured_parameters": {},
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "voltage/current derating",
-        "temperature coefficient",
-        "frequency/bias dependence"
-      ],
-      "h3_model_method": "analytic_or_vendor_curve",
-      "model_status": "method_to_be_frozen_in_H3.0.3"
-    },
-    {
-      "device_key": "yageo_rc0402fr_072k21l",
-      "mpn": "Yageo RC0402FR-072K21L",
-      "kind": "2_21kohm_1pct_0402_efuse_current_limit_resistor",
-      "instance_count": 2,
-      "projects": [
-        "LESHY2-RF"
-      ],
-      "sheets": [
-        "RF_03_MAIN_RAILS_DOMAIN_GATES",
-        "RF_34_U214_M5_EXT"
-      ],
-      "roles": [
-        "2_21kohm_1pct_0402_efuse_current_limit_resistor"
       ],
       "lifecycle": "active",
       "source": {
@@ -9958,7 +9958,8 @@
       "programmable_controller": 2,
       "radio_rf": 12
     },
-    "lifecycle_decisions": 1
+    "lifecycle_decisions": 1,
+    "open_decisions": 0
   },
   "physical_only_residuals": [
     {
@@ -9972,10 +9973,12 @@
       "evidence": "authorized production source and lot identity; electrical corners remain H3"
     }
   ],
-  "open_decisions": [
+  "resolved_choices": [
     {
       "id": "H3-NRF24-LIFECYCLE",
-      "status": "user_decision_required",
+      "status": "confirmed_A_under_delegated_user_authority",
+      "confirmed_on": "2026-08-24",
+      "selected_option": "A",
       "subject": "three full-function nRF24 paths versus new-design lifecycle",
       "affected_device": "ebyte_e01_ml01ipx",
       "affected_instances": 3,
@@ -10018,5 +10021,6 @@
       "recommendation_reason": "full-function nRF24 is an explicit product requirement; option B is a different radio-compute architecture rather than a drop-in component improvement"
     }
   ],
+  "open_decisions": [],
   "open_findings": []
 }

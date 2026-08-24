@@ -120,11 +120,11 @@ safety-автоматику.
 <details open>
 <summary><strong>Текущая фаза H3 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H3.0.2 -->
+<!-- current-substep: H3.2.1 -->
 
-**Точный маркер: `H3.0.2`** — [реестр из 213 используемых типов
-компонентов](docs/parameter-model-register.ru.md) собран без пропущенных
-источников; ожидается выбор `H3-NRF24-LIFECYCLE` по жизненному циклу nRF24.
+**Точный маркер: `H3.2.1`** — [полная цепочка проверки постоянного
+питания](docs/dc-verification-result.ru.md) проведена ревью без незакрытых
+findings; моделируются startup, orderly shutdown и hard `FAULT_KILL`.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 028 схемных строк.
@@ -192,12 +192,19 @@ safety-автоматику.
   - ✅ `H2.8.1` — [пакет приёмки и deferred gates подготовлены](docs/h2-acceptance.ru.md).
   - ✅ `H2.8.2` — принято пользователем 24 августа 2026 года на hardware
     `25d9ee2` / firmware `900bb2b`.
-- ▶️ **`H3.0` — сейчас:** зафиксировать воспроизводимые входы и методы виртуальной проверки.
+- ✅ **`H3.0` — проведено ревью:** воспроизводимые входы и методы виртуальной проверки.
   - ✅ `H3.0.1` — [принятый H2 и все 16 областей проверки заморожены](docs/virtual-verification.ru.md).
-  - ▶️ **`H3.0.2` — сейчас:** [реестр параметров и моделей
-    собран](docs/parameter-model-register.ru.md); ожидается решение
-    `H3-NRF24-LIFECYCLE`.
-  - ⏳ `H3.0.3` — зафиксировать инструменты и pass/fail после H3.0.2.
+  - ✅ `H3.0.2` — [реестр параметров и моделей собран](docs/parameter-model-register.ru.md);
+    оставлены три полнофункциональных nRF24-модуля.
+  - ✅ `H3.0.3` — [методы и десять pass/fail-правил зафиксированы](docs/verification-methods.ru.md).
+- ✅ **`H3.1` — проведено ревью:** worst-case DC budget.
+  - ✅ `H3.1.1` — [перечислены 43 source/charge и 2 032 полных состояния](docs/power-state-register.ru.md).
+  - ✅ `H3.1.2` — [все 200 rail-профилей проходят](docs/dc-power-budget.ru.md); исправлен один порог eFuse.
+  - ✅ `H3.1.3` — [все 2 032 состояния источников, заряда и разряда проходят](docs/source-charge-budget.ru.md).
+  - ✅ `H3.1.4` — [DC evidence сведены и проведены ревью](docs/dc-verification-result.ru.md).
+- ▶️ **`H3.2` — сейчас:** переходы питания и динамика safety-loop.
+  - ▶️ **`H3.2.1` — сейчас:** startup, orderly shutdown и hard `FAULT_KILL`.
+  - ⏳ `H3.2.2–H3.2.5` — handover/brownout, inrush/load steps, сохранённый fault UI и сводное ревью.
 
 Проверенный план H2 —
 [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Текущий

@@ -2766,7 +2766,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "2_21kohm_1pct_0402_efuse_current_limit_resistor"
+			(property "Description" "1_82kohm_1pct_0402_efuse_current_limit_resistor"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6336,7 +6336,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-072K21L"
+		(property "Value" "Yageo RC0402FR-071K82L"
 			(at 320.04 135.89 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6356,7 +6356,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "2_21kohm_1pct_0402_efuse_current_limit_resistor"
+		(property "Description" "1_82kohm_1pct_0402_efuse_current_limit_resistor"
 			(at 320.04 130.81 0)
 			(show_name no)
 			(do_not_autoplace no)

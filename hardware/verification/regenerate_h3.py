@@ -13,6 +13,11 @@ ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS = (
     ROOT / "hardware/verification/h3_input_freeze.py",
     ROOT / "hardware/verification/h3_parameter_inventory.py",
+    ROOT / "hardware/verification/h3_method_contract.py",
+    ROOT / "hardware/verification/h3_power_states.py",
+    ROOT / "hardware/verification/h3_dc_budget.py",
+    ROOT / "hardware/verification/h3_source_charge_budget.py",
+    ROOT / "hardware/verification/h3_dc_consolidation.py",
 )
 
 

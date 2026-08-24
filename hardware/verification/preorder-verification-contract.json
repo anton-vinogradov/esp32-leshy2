@@ -44,7 +44,7 @@
     },
     {
       "id": "P3_VIRTUAL_ELECTRICAL",
-      "status": "in_progress_h3_0_2",
+      "status": "in_progress_h3_2_1",
       "required_evidence": [
         "worst-case DC rail and source-transition budget",
         "startup, shutdown, brownout, watchdog, e-fuse and load-switch transient simulation",

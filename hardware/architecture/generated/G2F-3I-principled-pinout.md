@@ -1063,7 +1063,7 @@ flowchart TD
   U214_SUPERVISOR_CT["Murata GRM155R71H103KA88D<br/>10-nF U214-ready delay capacitor"]
   U214_SUPERVISOR_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm U214-ready main-domain pull-up"]
   UNIT_EFUSE["Texas Instruments TPS259470LRPWR<br/>native-Unit true-reverse-blocking latch-off eFuse"]
-  UNIT_RILM["Yageo RC0402FR-072K21L<br/>2.21-kOhm native-Unit eFuse current-limit resistor"]
+  UNIT_RILM["Yageo RC0402FR-071K82L<br/>1.82-kOhm native-Unit eFuse current-limit resistor"]
   UNIT_DVDT_CAP["Murata GRM155R71H472KA01D<br/>4.7-nF native-Unit eFuse slew capacitor"]
   UNIT_ITIMER_CAP["Murata GRM188R71E224KA88D<br/>220-nF native-Unit post-start transient timer"]
   UNIT_OVLO_TOP["Yageo RC0402FR-07169KL<br/>169-kOhm native-Unit OVLO top resistor"]
@@ -1712,7 +1712,7 @@ flowchart TD
   EXT_PG_BASE_RES["Yageo RC0402FR-0768KL<br/>68-kOhm 1% accessory PG-qualifier base resistor"]
   EXT_PG_QUALIFIER["Diodes Incorporated MMBT3904-7-F<br/>accessory-rail enable-qualified PG fault transistor"]
   EXT_EFUSE["Texas Instruments TPS259470LRPWR<br/>true-reverse-blocking latch-off accessory eFuse and current monitor"]
-  EXT_RILM["Yageo RC0402FR-072K21L<br/>2.21-kOhm 1% eFuse current-limit resistor"]
+  EXT_RILM["Yageo RC0402FR-071K82L<br/>1.82-kOhm 1% eFuse current-limit resistor"]
   EXT_DVDT_CAP["Murata GRM155R71H472KA01D<br/>4.7-nF 50-V X7R eFuse startup-slew capacitor"]
   EXT_ITIMER_CAP["Murata GRM188R71E224KA88D<br/>220-nF 25-V X7R post-start transient-timer capacitor"]
   EXT_OVLO_TOP["Yageo RC0402FR-07169KL<br/>169-kOhm 1% eFuse OVLO top resistor"]
@@ -3047,7 +3047,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `U214_EFUSE_AUXOFF_NC` | `ext_efuse.AUXOFF` | `abstract:no-connect` | unused TPS259470 open-drain auxiliary-output contact is left open; it must never be shorted to ground |
 | `POWER_FAULT_N` | `ext_efuse.FLT` | `abstract:power-current-thermal-fault` | active-low open-drain current/thermal/voltage fault joins the shared POWER_FAULT_N net |
 | `U214_5V_CURRENT_MONITOR` | `ext_efuse.ILM` | `abstract:TP_U214_5V_ILM` | analog current evidence is accessible at a protected test point without consuming another MCU GPIO |
-| `EXT_EFUSE_ILM_SET` | `ext_efuse.ILM` | `ext_rilm.END_1` | 2.21-kOhm 1% resistor sets a nominal 1.509-A current limit that is active during startup and steady operation |
+| `EXT_EFUSE_ILM_SET` | `ext_efuse.ILM` | `ext_rilm.END_1` | 1.82-kOhm 1% resistor sets 1.832-A nominal and 1.632-A guaranteed-minimum current limit, preserving 30.6% steady reserve above 1.25 A |
 | `POWER_GROUND` | `ext_rilm.END_2` | `abstract:power-ground` | short quiet return preserves the current-limit accuracy |
 | `EXT_EFUSE_DVDT` | `ext_efuse.DVDT` | `ext_dvdt_cap.END_1` | 4.7-nF 10% capacitor controls the startup slew instead of relying on ITIMER |
 | `POWER_GROUND` | `ext_dvdt_cap.END_2` | `abstract:power-ground` | local return completes the controlled-slew network |
@@ -3070,7 +3070,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `5V_UNIT_PROTECTED` | `unit_efuse.OUT` | `unit_connector.5V` | only reverse-blocked, current-limited, slew-controlled 5 V reaches exact 1125R-SMT-4P contact 5V |
 | `POWER_FAULT_N` | `unit_efuse.FLT` | `abstract:power-current-thermal-fault` | native Unit overcurrent/thermal/voltage fault joins the shared POWER_FAULT_N net |
 | `UNIT_5V_CURRENT_MONITOR` | `unit_efuse.ILM` | `abstract:TP_UNIT_5V_ILM` | branch current evidence remains fixture-visible without another MCU input |
-| `UNIT_EFUSE_ILM_SET` | `unit_efuse.ILM` | `unit_rilm.END_1` | exact 2.21-kOhm 1% resistor sets nominal 1.509-A immediate current limit |
+| `UNIT_EFUSE_ILM_SET` | `unit_efuse.ILM` | `unit_rilm.END_1` | exact 1.82-kOhm 1% resistor sets 1.832-A nominal and 1.632-A guaranteed-minimum immediate current limit |
 | `POWER_GROUND` | `unit_rilm.END_2` | `abstract:power-ground` | short quiet ILM return |
 | `UNIT_EFUSE_DVDT` | `unit_efuse.DVDT` | `unit_dvdt_cap.END_1` | exact 4.7-nF capacitor controls connector rise |
 | `POWER_GROUND` | `unit_dvdt_cap.END_2` | `abstract:power-ground` | local slew return |
@@ -5179,6 +5179,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `ext_request_or` lifecycle: `production`.
 - `ext_branch_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
 - `u214_supervisor_sense_top` lifecycle: `active_orderable`.
+- `unit_rilm` uses `Yageo RC0402FR-071K82L` as `verified_h3_dc_margin_correction`, not an accepted production choice.
+- `unit_rilm` lifecycle: `active_orderable`.
 - `unit_supervisor_sense_top` lifecycle: `active_orderable`.
 - `unit_signal_iso` uses `Texas Instruments TXS0102DCUR` as `verified_exact_native_m5_unit_signal_isolator`, not an accepted production choice.
 - `unit_signal_iso` lifecycle: `active_production_orderable`.
@@ -5475,6 +5477,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `pack_batts_rbal` lifecycle: `active_orderable`.
 - `pack_diag_timer` lifecycle: `active_production`.
 - `pack_diag_lockout_cap` lifecycle: `active_production`.
+- `ext_rilm` uses `Yageo RC0402FR-071K82L` as `verified_h3_dc_margin_correction`, not an accepted production choice.
+- `ext_rilm` lifecycle: `active_orderable`.
 - `c5_service_usb_connector` uses `GCT USB4105-GF-A` as `verified_exact_service_usb_receptacle`, not an accepted production choice.
 - `c5_service_usb_connector` lifecycle: `active_orderable`.
 - `c5_service_usb_esd` uses `Texas Instruments TPD2EUSB30ADRTR` as `verified_exact_service_usb_esd`, not an accepted production choice.

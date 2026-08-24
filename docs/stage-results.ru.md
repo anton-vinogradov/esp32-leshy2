@@ -119,7 +119,7 @@
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ▶️ сейчас, точный маркер `H3.0.2`.
+**Статус:** ▶️ сейчас, точный маркер `H3.2.1`.
 
 - [Текущая страница виртуальной проверки](virtual-verification.ru.md).
 - [Машиночитаемый план](../hardware/verification/h3-verification-plan.json).
@@ -127,10 +127,17 @@
 - [Реестр параметров и моделей](parameter-model-register.ru.md) — 1 028
   экземпляров, 213 используемых типов и их первичные источники.
 - [Машинный реестр H3.0.2](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).
+- [Методы проверки](verification-methods.ru.md) и
+  [машинный контракт H3.0.3](../hardware/verification/generated/H3-VRF03-method-contract.json).
+- [Состояния питания](power-state-register.ru.md) и
+  [машинный реестр H3.1.1](../hardware/verification/generated/H3-VRF11-power-state-register.json).
+- [Бюджет шин](dc-power-budget.ru.md), [источники и заряд](source-charge-budget.ru.md)
+  и [проверенный результат H3.1](dc-verification-result.ru.md).
 
-`H3.0.1` проведено ревью. Реестр `H3.0.2` собран без пропущенных источников;
-его закрытие ожидает выбор `H3-NRF24-LIFECYCLE` по жизненному циклу nRF24.
-Пока существует blocker, переход к layout запрещён.
+`H3.0.1–H3.0.3` проведены ревью: входы, параметры и десять единых
+pass/fail-правил заморожены. `H3.1` проведено ревью: 2 032 полных состояния и
+200 rail-профилей проходят без незакрытых findings после исправления одного
+порога eFuse. В `H3.2.1` моделируются startup, orderly shutdown и hard `FAULT_KILL`.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate

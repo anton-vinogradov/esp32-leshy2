@@ -16,10 +16,10 @@ This is the H3 calculation input register: for every actually fitted device type
 
 The exact `HMX035CTFT-001` tail/connector, optics and backlight plus the `ES8311` supplier and lot remain H5 incoming inspection. Their published-data electrical analysis still runs in H3.
 
-## Open architecture question
+## Closed architecture gate
 
-`H3-NRF24-LIFECYCLE`: the three selected `E01-ML01IPX` modules provide the required full nRF24 hardware behavior, but the nRF24 family is not recommended for new designs. A modern nRF52 supports over-air ESB compatibility but is a programmable SoC, not an SPI/register drop-in replacement. An automatic substitution would therefore reopen requirements, recovery, firmware, pinout and H2.
+`H3-NRF24-LIFECYCLE` is closed with option A: three `E01-ML01IPX` modules remain because they provide the required full nRF24 hardware behavior. The nRF24 family is not recommended for new designs, so H5 must verify supplier, silicon marking and reserve availability. A modern nRF52 is 2.4-GHz-only and supports over-air ESB compatibility, but is not an SPI/register drop-in replacement.
 
-**Current marker:** `H3.0.2` — inventory complete; gate `H3-NRF24-LIFECYCLE` is pending.
+**Status:** `H3.0.2` is reviewed; current marker is `H3.2.1`.
 
 [213-row machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).

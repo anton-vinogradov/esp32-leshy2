@@ -165,7 +165,9 @@ def build() -> tuple[dict[Path, str], dict]:
 
     decision = {
         "id": "H3-NRF24-LIFECYCLE",
-        "status": "user_decision_required",
+        "status": "confirmed_A_under_delegated_user_authority",
+        "confirmed_on": "2026-08-24",
+        "selected_option": "A",
         "subject": "three full-function nRF24 paths versus new-design lifecycle",
         "affected_device": "ebyte_e01_ml01ipx",
         "affected_instances": len(instances["ebyte_e01_ml01ipx"]),
@@ -199,7 +201,7 @@ def build() -> tuple[dict[Path, str], dict]:
     manifest = {
         "schema_version": 1,
         "stage": "H3.0.2",
-        "status": "inventory_complete_user_decision_required",
+        "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
         "source_hashes": {
             str(DEVICES_PATH.relative_to(REPO)): sha256(DEVICES_PATH),
             str(LEDGER_PATH.relative_to(REPO)): sha256(LEDGER_PATH),
@@ -225,6 +227,7 @@ def build() -> tuple[dict[Path, str], dict]:
             "local_vendor_model_files": len(models),
             "parameter_classes": dict(sorted(parameter_classes.items())),
             "lifecycle_decisions": 1,
+            "open_decisions": 0,
         },
         "physical_only_residuals": [
             {
@@ -238,7 +241,8 @@ def build() -> tuple[dict[Path, str], dict]:
                 "evidence": "authorized production source and lot identity; electrical corners remain H3",
             },
         ],
-        "open_decisions": [decision],
+        "resolved_choices": [decision],
+        "open_decisions": [],
         "open_findings": [],
     }
     return {
@@ -250,7 +254,7 @@ def build() -> tuple[dict[Path, str], dict]:
 
 def render_doc(manifest: dict, russian: bool) -> str:
     s = manifest["summary"]
-    decision = manifest["open_decisions"][0]
+    decision = manifest["resolved_choices"][0]
     if russian:
         title = "# Параметры и модели H3"
         nav = "[English](parameter-model-register.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Виртуальная проверка](virtual-verification.ru.md)"
@@ -265,12 +269,12 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         residual_h = "## Что нельзя честно закрыть до образца"
         residual = "Хвост/разъём, оптика и подсветка точной сборки `HMX035CTFT-001`, а также поставщик и партия `ES8311` остаются входным контролем H5. Их электрические расчёты по опубликованным данным выполняются в H3."
-        decision_h = "## Открытый архитектурный вопрос"
+        decision_h = "## Закрытый архитектурный gate"
         decision_text = (
-            f"`{decision['id']}`: выбранные три `E01-ML01IPX` дают требуемое полное аппаратное поведение nRF24, но семейство nRF24 имеет статус «не рекомендуется для новых разработок». "
-            "Современный nRF52 поддерживает совместимый эфирный ESB, однако является программируемым SoC и не является SPI/register drop-in заменой. Поэтому автоматическая замена переоткроет требования, восстановление, прошивку, распиновку и H2."
+            f"`{decision['id']}` закрыт вариантом A: остаются три `E01-ML01IPX`, потому что они дают требуемое полное аппаратное поведение nRF24. "
+            "Семейство nRF24 не рекомендуется для новых разработок, поэтому H5 проверит поставщика, маркировку silicon и резервную доступность. Современный nRF52 работает только в 2,4 ГГц, поддерживает совместимый эфирный ESB, но не является SPI/register drop-in заменой."
         )
-        marker = "**Текущий маркер:** `H3.0.2` — реестр собран; ожидается выбор по gate `H3-NRF24-LIFECYCLE`."
+        marker = "**Статус:** `H3.0.2` завершено и проверено; текущий маркер — `H3.2.1`."
         evidence = "[Машинный реестр из 213 строк](../hardware/verification/generated/H3-VRF02-parameter-inventory.json)."
     else:
         title = "# H3 parameters and models"
@@ -286,12 +290,12 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         residual_h = "## What cannot honestly close before receiving a sample"
         residual = "The exact `HMX035CTFT-001` tail/connector, optics and backlight plus the `ES8311` supplier and lot remain H5 incoming inspection. Their published-data electrical analysis still runs in H3."
-        decision_h = "## Open architecture question"
+        decision_h = "## Closed architecture gate"
         decision_text = (
-            f"`{decision['id']}`: the three selected `E01-ML01IPX` modules provide the required full nRF24 hardware behavior, but the nRF24 family is not recommended for new designs. "
-            "A modern nRF52 supports over-air ESB compatibility but is a programmable SoC, not an SPI/register drop-in replacement. An automatic substitution would therefore reopen requirements, recovery, firmware, pinout and H2."
+            f"`{decision['id']}` is closed with option A: three `E01-ML01IPX` modules remain because they provide the required full nRF24 hardware behavior. "
+            "The nRF24 family is not recommended for new designs, so H5 must verify supplier, silicon marking and reserve availability. A modern nRF52 is 2.4-GHz-only and supports over-air ESB compatibility, but is not an SPI/register drop-in replacement."
         )
-        marker = "**Current marker:** `H3.0.2` — inventory complete; gate `H3-NRF24-LIFECYCLE` is pending."
+        marker = "**Status:** `H3.0.2` is reviewed; current marker is `H3.2.1`."
         evidence = "[213-row machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json)."
     return "\n\n".join((title, nav, intro, counts_h, counts, residual_h, residual, decision_h, decision_text, marker, evidence)) + "\n"
 
@@ -315,7 +319,7 @@ def main() -> int:
                 print(f"stale: {path.relative_to(REPO)}")
             return 1
         s = manifest["summary"]
-        print(f"ok: H3.0.2 inventory current; {s['used_device_types']} types, {s['source_missing']} missing sources, 1 decision")
+        print(f"ok: H3.0.2 inventory reviewed; {s['used_device_types']} types, {s['source_missing']} missing sources, 0 open decisions")
     return 0
 
 

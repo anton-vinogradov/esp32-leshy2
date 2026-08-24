@@ -119,11 +119,11 @@ remain unauthorized.
 <details open>
 <summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H3.0.2 -->
+<!-- current-substep: H3.2.1 -->
 
-**Exact marker: `H3.0.2`** — the [213-type parameter and model
-register](docs/parameter-model-register.md) is complete with no missing
-sources; nRF24 lifecycle gate `H3-NRF24-LIFECYCLE` is pending.
+**Exact marker: `H3.2.1`** — the [complete steady-power chain](docs/dc-verification-result.md)
+is reviewed with no unresolved finding; startup, orderly shutdown and hard
+`FAULT_KILL` are now being modelled.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,028-row circuit inventory reviewed.
@@ -190,12 +190,19 @@ sources; nRF24 lifecycle gate `H3-NRF24-LIFECYCLE` is pending.
   - ✅ `H2.8.1` — [acceptance package and deferred gates prepared](docs/h2-acceptance.md).
   - ✅ `H2.8.2` — accepted by the user on 24 August 2026 at hardware
     `25d9ee2` / firmware `900bb2b`.
-- ▶️ **`H3.0` — current:** freeze reproducible virtual-verification inputs and methods.
+- ✅ **`H3.0` — reviewed:** reproducible virtual-verification inputs and methods.
   - ✅ `H3.0.1` — [accepted H2 input and all 16 verification domains frozen](docs/virtual-verification.md).
-  - ▶️ **`H3.0.2` — current:** the [parameter and model register is
-    complete](docs/parameter-model-register.md); nRF24 decision
-    `H3-NRF24-LIFECYCLE` is pending.
-  - ⏳ `H3.0.3` — freeze tools and pass/fail rules after H3.0.2.
+  - ✅ `H3.0.2` — [parameter and model register complete](docs/parameter-model-register.md);
+    three full-function nRF24 modules remain.
+  - ✅ `H3.0.3` — [methods and ten pass/fail rules frozen](docs/verification-methods.md).
+- ✅ **`H3.1` — reviewed:** worst-case DC budget.
+  - ✅ `H3.1.1` — [43 source/charge and 2,032 complete states enumerated](docs/power-state-register.md).
+  - ✅ `H3.1.2` — [all 200 rail profiles pass](docs/dc-power-budget.md); one eFuse threshold mismatch was corrected.
+  - ✅ `H3.1.3` — [all 2,032 source/charge/discharge states pass](docs/source-charge-budget.md).
+  - ✅ `H3.1.4` — [DC evidence consolidated and reviewed](docs/dc-verification-result.md).
+- ▶️ **`H3.2` — current:** power transitions and safety-loop dynamics.
+  - ▶️ **`H3.2.1` — current:** startup, orderly shutdown and hard `FAULT_KILL`.
+  - ⏳ `H3.2.2–H3.2.5` — handover/brownout, inrush/load steps, retained fault UI and consolidation.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The current machine-readable plan is

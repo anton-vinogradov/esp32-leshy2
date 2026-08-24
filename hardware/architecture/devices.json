@@ -6516,22 +6516,22 @@
         "END_2": {"physical": "2", "role": "power"}
       }
     },
-    "yageo_rc0402fr_072k21l": {
-      "mpn": "Yageo RC0402FR-072K21L",
-      "kind": "2_21kohm_1pct_0402_efuse_current_limit_resistor",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
-      "dimensions_mm": [1.0, 0.5, null],
+    "yageo_rc0402fr_071k82l": {
+      "mpn": "Yageo RC0402FR-071K82L",
+      "kind": "1_82kohm_1pct_0402_efuse_current_limit_resistor",
+      "qualification": "verified_h3_dc_margin_correction",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.4],
       "source": {
         "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
+        "version": "current product data checked 2026-08-24",
         "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-08-24"
       },
       "orderable_source": {
-        "document": "RC0402FR-072K21L LCSC C138019 stocked exact order code",
-        "url": "https://www.lcsc.com/product-detail/C138019.html",
-        "checked": "2026-08-18"
+        "document": "DigiKey exact-MPN active cut-tape line; 289,555 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-071K82L/729468",
+        "checked": "2026-08-24"
       },
       "cost": {
         "currency": "USD",
@@ -6540,8 +6540,8 @@
         "price_break": "DigiKey cut-tape quantity-100 tier",
         "source": {
           "document": "DigiKey exact-MPN published price table",
-          "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K21L/726554",
-          "checked": "2026-08-19"
+          "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-071K82L/729468",
+          "checked": "2026-08-24"
         }
       },
       "programmable": false,

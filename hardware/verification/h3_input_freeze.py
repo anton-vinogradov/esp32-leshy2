@@ -73,7 +73,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         freeze = f"H2 принят 24 августа 2026 года на hardware commit `25d9ee2` и firmware commit `900bb2b`. Заморожено {manifest['summary']['frozen_files']} файла с SHA-256; изменение любого из них повторно открывает затронутые проверки."
         matrix_h = "## Матрица проверки"
         headers = "| Этап | Область | Метод до изготовления | Артефакт H3 | Остаточная физическая проверка |\n|---|---|---|---|---|"
-        current = "**Текущий маркер:** `H3.0.2` — [реестр параметров и моделей](parameter-model-register.ru.md) собран; ожидается одно архитектурное решение по жизненному циклу nRF24."
+        current = "**Текущий маркер:** `H3.2.1` — [постоянный бюджет питания](dc-verification-result.ru.md) проведён ревью; моделируются startup, orderly shutdown и hard `FAULT_KILL`."
     else:
         title = "# Leshy2 virtual electrical verification"
         nav = "[Русский](virtual-verification.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Accepted H2](h2-acceptance.md)"
@@ -82,7 +82,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         freeze = f"H2 was accepted on 24 August 2026 at hardware commit `25d9ee2` and firmware commit `900bb2b`. {manifest['summary']['frozen_files']} files are frozen by SHA-256; changing any one reopens the affected verification."
         matrix_h = "## Verification matrix"
         headers = "| Stage | Area | Pre-fabrication method | H3 artifact | Residual physical check |\n|---|---|---|---|---|"
-        current = "**Current marker:** `H3.0.2` — the [parameter and model register](parameter-model-register.md) is complete; one nRF24 lifecycle architecture decision is pending."
+        current = "**Current marker:** `H3.2.1` — the [steady-power budget](dc-verification-result.md) is reviewed; startup, orderly shutdown and hard `FAULT_KILL` are being modelled."
     rows = "\n".join(
         f"| `{row['stage']}` | `{row['area']}` | {row['method']} | {row['h3_output']} | {row['physical_evidence']} |"
         for row in manifest["verification_matrix"]

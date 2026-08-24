@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "H3",
   "status": "in_progress",
-  "current_substep": "H3.0.2",
+  "current_substep": "H3.2.1",
   "accepted_input": {
     "stage": "H2.8.2",
     "status": "accepted_by_user",
@@ -22,30 +22,30 @@
     {
       "id": "H3.0",
       "title": "Freeze inputs, methods and reproducibility contract",
-      "status": "current",
+      "status": "reviewed",
       "children": [
         {"id": "H3.0.1", "title": "Freeze accepted H2 artifacts and the complete H3 verification matrix", "status": "reviewed", "evidence": "generated/H3-VRF01-input-freeze.json"},
-        {"id": "H3.0.2", "title": "Inventory authoritative electrical parameters, models, provenance and missing evidence", "status": "current", "evidence": "generated/H3-VRF02-parameter-inventory.json", "blocker": "H3-NRF24-LIFECYCLE user choice"},
-        {"id": "H3.0.3", "title": "Freeze reproducible calculation/simulation toolchain, tolerances and pass/fail rules", "status": "waiting"}
+        {"id": "H3.0.2", "title": "Inventory authoritative electrical parameters, models, provenance and missing evidence", "status": "reviewed", "evidence": "generated/H3-VRF02-parameter-inventory.json", "resolved_gate": "H3-NRF24-LIFECYCLE option A"},
+        {"id": "H3.0.3", "title": "Freeze reproducible calculation/simulation toolchain, tolerances and pass/fail rules", "status": "reviewed", "evidence": "generated/H3-VRF03-method-contract.json"}
       ]
     },
     {
       "id": "H3.1",
       "title": "Worst-case steady-state power and source budget",
-      "status": "waiting",
+      "status": "reviewed",
       "children": [
-        {"id": "H3.1.1", "title": "Enumerate legal USB, battery, charge and operating states", "status": "waiting"},
-        {"id": "H3.1.2", "title": "Calculate worst-case load and margin for every rail and domain", "status": "waiting"},
-        {"id": "H3.1.3", "title": "Check charge, discharge and steady thermal operating envelopes", "status": "waiting"},
-        {"id": "H3.1.4", "title": "Consolidate the DC budget and correct every failed margin", "status": "waiting"}
+        {"id": "H3.1.1", "title": "Enumerate legal USB, battery, charge and operating states", "status": "reviewed", "evidence": "generated/H3-VRF11-power-state-register.json"},
+        {"id": "H3.1.2", "title": "Calculate worst-case load and margin for every rail and domain", "status": "reviewed", "evidence": "generated/H3-VRF12-dc-budget.json"},
+        {"id": "H3.1.3", "title": "Check charge, discharge and steady thermal operating envelopes", "status": "reviewed", "evidence": "generated/H3-VRF13-source-charge-budget.json"},
+        {"id": "H3.1.4", "title": "Consolidate the DC budget and correct every failed margin", "status": "reviewed", "evidence": "generated/H3-VRF14-dc-consolidation.json"}
       ]
     },
     {
       "id": "H3.2",
       "title": "Power transitions and safety-loop dynamics",
-      "status": "waiting",
+      "status": "current",
       "children": [
-        {"id": "H3.2.1", "title": "Model startup, orderly shutdown and hard FAULT_KILL shutdown", "status": "waiting"},
+        {"id": "H3.2.1", "title": "Model startup, orderly shutdown and hard FAULT_KILL shutdown", "status": "current"},
         {"id": "H3.2.2", "title": "Model USB-to-battery handover, charger interaction and brownout", "status": "waiting"},
         {"id": "H3.2.3", "title": "Model eFuse, load-switch, inrush and worst-case load steps", "status": "waiting"},
         {"id": "H3.2.4", "title": "Verify watchdog, latch and retained fault-display timing", "status": "waiting"},

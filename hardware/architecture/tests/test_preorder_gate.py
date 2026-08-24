@@ -26,7 +26,7 @@ class PreorderGateTests(unittest.TestCase):
         self.assertEqual("reviewed", gates["P0_REQUIREMENTS_ARCHITECTURE"]["status"])
         self.assertEqual("reviewed", gates["P1_MECHANICAL_DESIGN"]["status"])
         self.assertEqual("reviewed", gates["P2_CURRENT_SCHEMATIC"]["status"])
-        self.assertEqual("in_progress_h3_0_2", gates["P3_VIRTUAL_ELECTRICAL"]["status"])
+        self.assertEqual("in_progress_h3_2_1", gates["P3_VIRTUAL_ELECTRICAL"]["status"])
         self.assertNotEqual("reviewed", gates["P5_TARGET_BUILDS_EMULATION"]["status"])
         self.assertEqual("reviewed", gates["P4_EXECUTABLE_FIRMWARE_MODEL"]["status"])
         self.assertEqual("not_authorized", gates["P7_ENGINEERING_SAMPLE_ORDER"]["status"])

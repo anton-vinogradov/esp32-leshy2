@@ -1889,9 +1889,9 @@
       "instance_uid": "LESHY2-RF:unit_rilm",
       "instance": "unit_rilm",
       "project": "LESHY2-RF",
-      "device_key": "yageo_rc0402fr_072k21l",
-      "mpn": "Yageo RC0402FR-072K21L",
-      "role": "2_21kohm_1pct_0402_efuse_current_limit_resistor",
+      "device_key": "yageo_rc0402fr_071k82l",
+      "mpn": "Yageo RC0402FR-071K82L",
+      "role": "1_82kohm_1pct_0402_efuse_current_limit_resistor",
       "board": "rf-power-pcb",
       "sheet": "RF_34_U214_M5_EXT",
       "electrical_disposition": "board_fitted_component",
@@ -1904,9 +1904,9 @@
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
         "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
+        "version": "current product data checked 2026-08-24",
         "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-08-24"
       }
     },
     {
@@ -18881,9 +18881,9 @@
       "instance_uid": "LESHY2-RF:ext_rilm",
       "instance": "ext_rilm",
       "project": "LESHY2-RF",
-      "device_key": "yageo_rc0402fr_072k21l",
-      "mpn": "Yageo RC0402FR-072K21L",
-      "role": "2_21kohm_1pct_0402_efuse_current_limit_resistor",
+      "device_key": "yageo_rc0402fr_071k82l",
+      "mpn": "Yageo RC0402FR-071K82L",
+      "role": "1_82kohm_1pct_0402_efuse_current_limit_resistor",
       "board": "rf-power-pcb",
       "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "electrical_disposition": "board_fitted_component",
@@ -18896,9 +18896,9 @@
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
         "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
+        "version": "current product data checked 2026-08-24",
         "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-08-24"
       }
     },
     {

@@ -197,13 +197,13 @@
 | `yageo_rc0402fr_07169kl` | `Yageo RC0402FR-07169KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
 | `yageo_rc0402fr_07196kl` | `Yageo RC0402FR-07196KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
 | `yageo_rc0402fr_071k65l` | `Yageo RC0402FR-071K65L` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
+| `yageo_rc0402fr_071k82l` | `Yageo RC0402FR-071K82L` | `verified_h3_dc_margin_correction` | `active_orderable` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-24](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
 | `yageo_rc0402fr_071kl` | `Yageo RC0402FR-071KL` | `verified_exact_dbg10_and_boot_series_resistor` | `active_orderable` | [RC0402FR-071KL exact product specification generated 2026-01-15](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-071KL) | same primary source |
 | `yageo_rc0402fr_071ml` | `Yageo RC0402FR-071ML` | `verified_exact_data_only_service_vbus_bleeder` | `active_orderable` | [RC0402FR-071ML exact product specification current exact order code checked 2026-08-19](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-071ML) | same primary source |
 | `yageo_rc0402fr_07220kl` | `Yageo RC0402FR-07220KL` | `verified_candidate` | `active` | [Yageo RC0402FR-07220KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07220KL) | same primary source |
 | `yageo_rc0402fr_07220rl` | `Yageo RC0402FR-07220RL` | `verified_candidate` | `active_orderable` | [Yageo RC general-purpose chip resistor specification current exact order code checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf) | same primary source |
 | `yageo_rc0402fr_07240kl` | `Yageo RC0402FR-07240KL` | `verified_candidate` | `active` | [Yageo RC0402FR-07240KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07240KL) | same primary source |
 | `yageo_rc0402fr_07270kl` | `Yageo RC0402FR-07270KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
-| `yageo_rc0402fr_072k21l` | `Yageo RC0402FR-072K21L` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
 | `yageo_rc0402fr_072k2l` | `Yageo RC0402FR-072K2L` | `verified_candidate` | `active` | [Yageo RC0402 thick-film resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf) | same primary source |
 | `yageo_rc0402fr_0730k1l` | `Yageo RC0402FR-0730K1L` | `verified_candidate` | `active` | [Yageo RC0402FR-0730K1L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0730K1L) | same primary source |
 | `yageo_rc0402fr_0730kl` | `Yageo RC0402FR-0730KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0730KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0730KL) | same primary source |
@@ -1532,7 +1532,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `U214_EFUSE_AUXOFF_NC` | `ext_efuse.AUXOFF` | `abstract:no-connect` | unused TPS259470 open-drain auxiliary-output contact is left open; it must never be shorted to ground |
 | `POWER_FAULT_N` | `ext_efuse.FLT` | `abstract:power-current-thermal-fault` | active-low open-drain current/thermal/voltage fault joins the shared POWER_FAULT_N net |
 | `U214_5V_CURRENT_MONITOR` | `ext_efuse.ILM` | `abstract:TP_U214_5V_ILM` | analog current evidence is accessible at a protected test point without consuming another MCU GPIO |
-| `EXT_EFUSE_ILM_SET` | `ext_efuse.ILM` | `ext_rilm.END_1` | 2.21-kOhm 1% resistor sets a nominal 1.509-A current limit that is active during startup and steady operation |
+| `EXT_EFUSE_ILM_SET` | `ext_efuse.ILM` | `ext_rilm.END_1` | 1.82-kOhm 1% resistor sets 1.832-A nominal and 1.632-A guaranteed-minimum current limit, preserving 30.6% steady reserve above 1.25 A |
 | `POWER_GROUND` | `ext_rilm.END_2` | `abstract:power-ground` | short quiet return preserves the current-limit accuracy |
 | `EXT_EFUSE_DVDT` | `ext_efuse.DVDT` | `ext_dvdt_cap.END_1` | 4.7-nF 10% capacitor controls the startup slew instead of relying on ITIMER |
 | `POWER_GROUND` | `ext_dvdt_cap.END_2` | `abstract:power-ground` | local return completes the controlled-slew network |
@@ -1555,7 +1555,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `5V_UNIT_PROTECTED` | `unit_efuse.OUT` | `unit_connector.5V` | only reverse-blocked, current-limited, slew-controlled 5 V reaches exact 1125R-SMT-4P contact 5V |
 | `POWER_FAULT_N` | `unit_efuse.FLT` | `abstract:power-current-thermal-fault` | native Unit overcurrent/thermal/voltage fault joins the shared POWER_FAULT_N net |
 | `UNIT_5V_CURRENT_MONITOR` | `unit_efuse.ILM` | `abstract:TP_UNIT_5V_ILM` | branch current evidence remains fixture-visible without another MCU input |
-| `UNIT_EFUSE_ILM_SET` | `unit_efuse.ILM` | `unit_rilm.END_1` | exact 2.21-kOhm 1% resistor sets nominal 1.509-A immediate current limit |
+| `UNIT_EFUSE_ILM_SET` | `unit_efuse.ILM` | `unit_rilm.END_1` | exact 1.82-kOhm 1% resistor sets 1.832-A nominal and 1.632-A guaranteed-minimum immediate current limit |
 | `POWER_GROUND` | `unit_rilm.END_2` | `abstract:power-ground` | short quiet ILM return |
 | `UNIT_EFUSE_DVDT` | `unit_efuse.DVDT` | `unit_dvdt_cap.END_1` | exact 4.7-nF capacitor controls connector rise |
 | `POWER_GROUND` | `unit_dvdt_cap.END_2` | `abstract:power-ground` | local slew return |
@@ -3664,6 +3664,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `ext_request_or` lifecycle: `production`.
 - `ext_branch_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
 - `u214_supervisor_sense_top` lifecycle: `active_orderable`.
+- `unit_rilm` uses `Yageo RC0402FR-071K82L` as `verified_h3_dc_margin_correction`, not an accepted production choice.
+- `unit_rilm` lifecycle: `active_orderable`.
 - `unit_supervisor_sense_top` lifecycle: `active_orderable`.
 - `unit_signal_iso` uses `Texas Instruments TXS0102DCUR` as `verified_exact_native_m5_unit_signal_isolator`, not an accepted production choice.
 - `unit_signal_iso` lifecycle: `active_production_orderable`.
@@ -3960,6 +3962,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `pack_batts_rbal` lifecycle: `active_orderable`.
 - `pack_diag_timer` lifecycle: `active_production`.
 - `pack_diag_lockout_cap` lifecycle: `active_production`.
+- `ext_rilm` uses `Yageo RC0402FR-071K82L` as `verified_h3_dc_margin_correction`, not an accepted production choice.
+- `ext_rilm` lifecycle: `active_orderable`.
 - `c5_service_usb_connector` uses `GCT USB4105-GF-A` as `verified_exact_service_usb_receptacle`, not an accepted production choice.
 - `c5_service_usb_connector` lifecycle: `active_orderable`.
 - `c5_service_usb_esd` uses `Texas Instruments TPD2EUSB30ADRTR` as `verified_exact_service_usb_esd`, not an accepted production choice.

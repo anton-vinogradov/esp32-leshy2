@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "stage": "H3.1.4",
+  "status": "reviewed_h3_1_steady_dc_phase_complete",
+  "source_hashes": {
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "d2c25519a9bf543007c880ad7bbf1ebfbaffd8b80ed7c435cb36e5e5a74225ff",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "e147063594a3ae348a1f7020af6370af62f6bcfc8f565b9fc4b105718b0a084a",
+    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "a59e849ff43e22314f2f50fb3e4189910fcdcaefb0b431a99b446cb05235f5bb",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "c38109a8e72882be58ab913644b37e4e0183753d32f56c962f4f8b30efef31ab"
+  },
+  "checks": {
+    "all_states_enumerated": true,
+    "all_rail_profiles_pass": true,
+    "every_state_has_source_result": true,
+    "source_and_pack_safety_pass": true,
+    "no_unresolved_numeric_input": true,
+    "pf02_margin_rule_present": true,
+    "calculation_findings_corrected": true,
+    "source_limits_are_explicit": true
+  },
+  "accepted_results": {
+    "source_charge_states": 43,
+    "complete_power_states": 2032,
+    "load_profiles": 50,
+    "rail_profiles": 200,
+    "minimum_rail_hardware_reserve_percent": "29.976",
+    "maximum_sys_demand_w": "16.998",
+    "maximum_pack_discharge_a": "2.833",
+    "pack_hardware_reserve_percent_at_worst": "252.983",
+    "maximum_rail_conversion_loss_w": "2.550",
+    "maximum_efuse_conduction_loss_w": "0.386",
+    "usb_5v3a_profiles_explicitly_refused_without_pack": 14,
+    "charge_states_derated_by_dpm": 263,
+    "failed_checks": 0
+  },
+  "corrections": [
+    {
+      "id": "H3.1.2-F01",
+      "finding": "2.21-kohm external-branch RILM produced only 1.358 A at the guaranteed low corner, below the 1.5625-A PF-02 requirement for a 1.25-A port",
+      "correction": "both U214 and native-Unit eFuses now use active/orderable Yageo RC0402FR-071K82L; guaranteed low corner is 1.632 A and high corner is 2.035 A",
+      "functional_effect": "restores >=30.6% steady reserve and preserves the bounded 2-A post-start transient without changing the connector contract",
+      "cost_effect_usd_at_100": "0.0000 versus the replaced resistor at the same published $0.0097 tier"
+    }
+  ],
+  "conditional_admissions": [
+    "5-V fallback without a healthy pack is AON diagnostics only until source-advertised current and DPM headroom are measured",
+    "5-V/3-A USB-only refuses the 14 declared heavy profiles that exceed the conservative cascaded-efficiency budget",
+    "a healthy pack may supplement an insufficient USB source within the proven 2.833-A worst-case discharge envelope",
+    "charge current is a request, not an entitlement: DPM reduces it to zero or available headroom before system load"
+  ],
+  "downstream_inputs": {
+    "H3.2": "model dynamic startup/shutdown, handover, DPM, eFuse and load-step behavior against the accepted steady endpoints",
+    "H3.6": "use 2.550-W maximum rail conversion loss and 0.386-W maximum eFuse conduction loss as conservative thermal sources",
+    "H6": "preserve the converter, eFuse, current-sense and high-current return placement/routing constraints",
+    "H8": "measure all four rail currents, conversion efficiency, pack current and DPM behavior at named worst profiles"
+  },
+  "residual_physical_only": [
+    "H3.2 dynamic source/rail load-step, inrush, DPM and handover simulations",
+    "H3.2 load-step, inrush and protection timing",
+    "H3.6 component/junction and enclosure thermal model using the recorded steady losses",
+    "H6 copper, placement and converter-loop thermal layout",
+    "H8 measured converter efficiency, pack current, DPM charge derating and source handover",
+    "H8 measured rail currents with display, selected microSD, speaker, every RF group and both exposed-port profiles"
+  ],
+  "review_summary": {
+    "unresolved_findings": 0,
+    "corrected_findings": 1,
+    "phase_status": "reviewed"
+  },
+  "next": {
+    "stage": "H3.2.1",
+    "action": "model startup, orderly shutdown and hard FAULT_KILL shutdown"
+  },
+  "open_findings": []
+}

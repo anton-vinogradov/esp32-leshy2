@@ -58,6 +58,16 @@ class ProductSiteTests(unittest.TestCase):
         "docs/virtual-verification.ru.md",
         "docs/parameter-model-register.md",
         "docs/parameter-model-register.ru.md",
+        "docs/verification-methods.md",
+        "docs/verification-methods.ru.md",
+        "docs/power-state-register.md",
+        "docs/power-state-register.ru.md",
+        "docs/dc-power-budget.md",
+        "docs/dc-power-budget.ru.md",
+        "docs/source-charge-budget.md",
+        "docs/source-charge-budget.ru.md",
+        "docs/dc-verification-result.md",
+        "docs/dc-verification-result.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -348,11 +358,33 @@ class ProductSiteTests(unittest.TestCase):
         inventory = json.loads(
             self.read("hardware/verification/generated/H3-VRF02-parameter-inventory.json")
         )
+        methods = json.loads(
+            self.read("hardware/verification/generated/H3-VRF03-method-contract.json")
+        )
+        power_states = json.loads(
+            self.read("hardware/verification/generated/H3-VRF11-power-state-register.json")
+        )
+        dc_budget = json.loads(
+            self.read("hardware/verification/generated/H3-VRF12-dc-budget.json")
+        )
+        source_budget = json.loads(
+            self.read("hardware/verification/generated/H3-VRF13-source-charge-budget.json")
+        )
+        dc_result = json.loads(
+            self.read("hardware/verification/generated/H3-VRF14-dc-consolidation.json")
+        )
         self.assertEqual("H3", plan["stage"])
-        self.assertEqual("H3.0.2", plan["current_substep"])
+        self.assertEqual("H3.2.1", plan["current_substep"])
         self.assertEqual(plan["current_substep"], state["current_substep"])
+        self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
-        self.assertEqual("current", plan["substeps"][0]["children"][1]["status"])
+        self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
+        self.assertEqual("reviewed", plan["substeps"][0]["children"][2]["status"])
+        self.assertEqual("reviewed", plan["substeps"][1]["status"])
+        self.assertEqual("reviewed", plan["substeps"][1]["children"][0]["status"])
+        self.assertTrue(all(row["status"] == "reviewed" for row in plan["substeps"][1]["children"]))
+        self.assertEqual("current", plan["substeps"][2]["status"])
+        self.assertEqual("current", plan["substeps"][2]["children"][0]["status"])
         self.assertEqual(16, freeze["summary"]["verification_domains"])
         self.assertEqual(0, freeze["summary"]["unassigned_virtual_checks"])
         self.assertEqual(0, freeze["summary"]["unassigned_physical_checks"])
@@ -363,11 +395,36 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(149, inventory["summary"]["used_types_requiring_parameter_extraction"])
         self.assertEqual(2, inventory["summary"]["official_h3_source_overrides"])
         self.assertEqual(1, inventory["summary"]["lifecycle_decisions"])
-        self.assertEqual("H3-NRF24-LIFECYCLE", inventory["open_decisions"][0]["id"])
-        self.assertEqual("user_decision_required", inventory["open_decisions"][0]["status"])
+        self.assertEqual(0, inventory["summary"]["open_decisions"])
+        self.assertEqual([], inventory["open_decisions"])
+        self.assertEqual("H3-NRF24-LIFECYCLE", inventory["resolved_choices"][0]["id"])
+        self.assertEqual("A", inventory["resolved_choices"][0]["selected_option"])
+        self.assertEqual(8, methods["summary"]["methods"])
+        self.assertEqual(10, methods["summary"]["pass_fail_rules"])
+        self.assertEqual(0, methods["summary"]["third_party_runtime_dependencies"])
+        self.assertEqual(0, methods["summary"]["open_method_questions"])
+        self.assertEqual(43, power_states["summary"]["source_charge_states"])
+        self.assertEqual(10, power_states["summary"]["signal_groups"])
+        self.assertEqual(25, power_states["summary"]["group_modes"])
+        self.assertEqual(50, power_states["summary"]["operating_profiles"])
+        self.assertEqual(2032, power_states["summary"]["legal_states"])
+        self.assertEqual(6, power_states["summary"]["rejected_pack_conditions"])
+        self.assertEqual(0, power_states["summary"]["invariant_violations"])
+        self.assertEqual(200, dc_budget["summary"]["rail_profiles_evaluated"])
+        self.assertEqual(0, dc_budget["summary"]["failed_profiles"])
+        self.assertEqual(1, dc_budget["summary"]["corrected_findings"])
+        self.assertEqual(2032, source_budget["summary"]["states_evaluated"])
+        self.assertEqual(0, source_budget["summary"]["failed_states"])
+        self.assertEqual(14, source_budget["summary"]["source_limited_profiles_explicitly_refused"])
+        self.assertEqual("reviewed", dc_result["review_summary"]["phase_status"])
+        self.assertEqual(0, dc_result["review_summary"]["unresolved_findings"])
         for relative, expected in freeze["source_hashes"].items():
             actual = hashlib.sha256((REPO_ROOT / relative).read_bytes()).hexdigest()
             self.assertEqual(expected, actual, relative)
+        for artifact in (inventory, methods, power_states, dc_budget, source_budget, dc_result):
+            for relative, expected in artifact["source_hashes"].items():
+                actual = hashlib.sha256((REPO_ROOT / relative).read_bytes()).hexdigest()
+                self.assertEqual(expected, actual, relative)
         self.assertFalse(plan["authorization"]["pcb_placement_and_routing"])
         self.assertFalse(plan["authorization"]["fabrication"])
         self.assertFalse(plan["authorization"]["purchasing"])

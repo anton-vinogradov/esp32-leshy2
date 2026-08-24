@@ -142,13 +142,13 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `yageo_rc0402fr_07169kl` — `Yageo RC0402FR-07169KL`.
   - `yageo_rc0402fr_07196kl` — `Yageo RC0402FR-07196KL`.
   - `yageo_rc0402fr_071k65l` — `Yageo RC0402FR-071K65L`.
+  - `yageo_rc0402fr_071k82l` — `Yageo RC0402FR-071K82L`.
   - `yageo_rc0402fr_071kl` — `Yageo RC0402FR-071KL`.
   - `yageo_rc0402fr_071ml` — `Yageo RC0402FR-071ML`.
   - `yageo_rc0402fr_07220kl` — `Yageo RC0402FR-07220KL`.
   - `yageo_rc0402fr_07220rl` — `Yageo RC0402FR-07220RL`.
   - `yageo_rc0402fr_07240kl` — `Yageo RC0402FR-07240KL`.
   - `yageo_rc0402fr_07270kl` — `Yageo RC0402FR-07270KL`.
-  - `yageo_rc0402fr_072k21l` — `Yageo RC0402FR-072K21L`.
   - `yageo_rc0402fr_072k2l` — `Yageo RC0402FR-072K2L`.
   - `yageo_rc0402fr_0730k1l` — `Yageo RC0402FR-0730K1L`.
   - `yageo_rc0402fr_0730kl` — `Yageo RC0402FR-0730KL`.
@@ -1812,6 +1812,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Yageo RC0402FR-071K82L</code> — 2 × USD 0.0097 = USD 0.0194</summary>
+
+- Device id: `yageo_rc0402fr_071k82l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-24`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-071K82L/729468).
+
+</details>
+
 <details><summary><code>Yageo RC0402FR-071KL</code> — 12 × USD 0.0097 = USD 0.1164</summary>
 
 - Device id: `yageo_rc0402fr_071kl`.
@@ -1863,15 +1872,6 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-07270KL/729522).
-
-</details>
-
-<details><summary><code>Yageo RC0402FR-072K21L</code> — 2 × USD 0.0097 = USD 0.0194</summary>
-
-- Device id: `yageo_rc0402fr_072k21l`.
-- Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K21L/726554).
 
 </details>
 
