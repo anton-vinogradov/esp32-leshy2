@@ -26,24 +26,32 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual([], self.errors_for())
 
     def test_pre_kicad_sample_plan_preserves_minimum_evidence_lot_and_gate(self):
+        basket = json.loads(
+            (
+                GENERATOR.REPO_ROOT
+                / "hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json"
+            ).read_text(encoding="utf-8")
+        )
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        for token in (
-            "HMX035CTFT-001",
-            "M5Stack `U214` | 1",
-            "Samtec `HLE-107-02-G-DV-PE-LC` | 5",
-            "Hirose `FH34SRJ-40S-0.5SH(99)` | 5",
-            "Hirose `DF40C(2.0)-40DS-0.4V(58)` | 5",
-            "Hirose `DF40C-40DP-0.4V(51)` | 5",
-            "Ebyte `E01-ML01IPX` | 4",
-            "NiceRF `SA518` | 2",
-            "PCB placement/routing, fabrication and purchasing remain unauthorized",
-        ):
-            self.assertIn(token, plan)
-        self.assertIn("$164.54", plan)
-        self.assertIn("not a finished-product page", plan)
-        self.assertIn("Purchasing is the\nlast resort", plan)
+        self.assertEqual("draft_supplier_quote_open", basket["status"])
+        self.assertEqual(32, basket["summary"]["article_lines"])
+        self.assertEqual(11, basket["summary"]["measurement_contracts"])
+        self.assertEqual(23, basket["summary"]["covered_residuals_and_gates"])
+        self.assertEqual("266.63", basket["summary"]["known_engineering_material_budget_usd"])
+        self.assertEqual(1, basket["summary"]["unpriced_manufacturer_lines"])
+        self.assertTrue(all(basket["checks"].values()))
+        articles = {row["id"]: row for row in basket["articles"]}
+        self.assertEqual(2, articles["display-donor"]["order_quantity"])
+        self.assertEqual(3, articles["nrf-modules"]["order_quantity"])
+        self.assertEqual(5, articles["rf-jumpers"]["order_quantity"])
+        self.assertEqual(16, articles["navigation-and-direct-switches"]["order_quantity"])
+        self.assertEqual(2, articles["pack-gauges"]["order_quantity"])
+        self.assertEqual("manufacturer_rfq", articles["voice-module"]["pricing"]["kind"])
+        self.assertIn("superseded", plan)
+        self.assertIn("Purchasing is the last resort", plan)
+        self.assertIn("remain unauthorized", plan)
 
         procurement = GENERATOR.REPO_ROOT / "hardware/procurement"
         index = (procurement / "README.md").read_text(encoding="utf-8")

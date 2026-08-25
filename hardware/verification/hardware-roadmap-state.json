@@ -2,6 +2,7 @@
   "schema_version": 1,
   "current_stage": "H5",
   "current_substep": "H5.0.3",
+  "current_detail": "irreducible basket published at USD 266.63 known material plus one SA518 manufacturer RFQ; purchasing remains unauthorized",
   "stages": [
     {"id": "H0", "status": "reviewed"},
     {"id": "H1", "status": "reviewed"},

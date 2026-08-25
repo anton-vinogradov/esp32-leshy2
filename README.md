@@ -12,8 +12,9 @@
 
 </div>
 
-> **Now: H5.0.3 · irreducible sample basket and cost.** [H5.0.2 research](docs/component-source-research.md)
-> is reviewed; purchasing, PCB routing and fabrication remain blocked.
+> **Now: H5.0.3 · [basket published](docs/component-sample-basket.md).** Known
+> material is `$266.63`; one `SA518` manufacturer RFQ remains. Purchasing, PCB
+> routing and fabrication remain blocked.
 
 <div align="center">
 
@@ -116,19 +117,20 @@ Every completed top-level `H*` phase receives a separate readable result report
 linked from this table. Internal substeps update the exact marker but do not
 create separate global reports.
 
-**Hardware is at H5.0.3.** The [H5.0.2 source review](docs/component-source-research.md)
-has exhausted documentary and serial-alternative research for all nine residuals and
-14 mechanical gates. Four exact test SKUs close two selection gaps; physical evidence,
-PCB layout and every order remain unauthorized.
+**Hardware is at H5.0.3.** The [single sample basket](docs/component-sample-basket.md)
+covers all nine residuals and 14 mechanical gates with 32 exact article lines
+and 11 measurement contracts. Known material is `$266.63`; one `SA518`
+manufacturer quote/variant confirmation remains. Physical evidence, PCB layout
+and every order remain unauthorized.
 
 <details open>
 <summary><strong>Current H5 evidence reduction — exact detailed position</strong></summary>
 
 <!-- current-substep: H5.0.3 -->
 
-**Exact marker: `H5.0.3`** — deduplicate only the received samples that documents
-and serial alternatives cannot replace, bind each to an exact measurement, and
-publish current cost for explicit approval. No purchase is authorized yet.
+**Exact marker: `H5.0.3`** — the basket and measurements are published; obtain
+one `SA518` manufacturer quote/variant confirmation, then publish the exact
+whole-basket cost for a separate order decision. No purchase is authorized.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,048-row circuit inventory reviewed.
@@ -243,7 +245,7 @@ publish current cost for explicit approval. No purchase is authorized yet.
 - ✅ `H4.3` — [joined pre-layout gate reviewed](docs/h4-prelayout-gate-report.md).
 - ✅ `H5.0.1` — [nine residuals and 14 mechanical gates mapped](docs/component-evidence-map.md) to exact selected identities, missing data and pass rules.
 - ✅ `H5.0.2` — [primary-source and serial-alternative research reviewed](docs/component-source-research.md); two test-article categories now have four exact serial SKUs.
-- ▶️ **`H5.0.3` — current:** publish one deduplicated irreducible sample basket, measurements and current cost for explicit approval.
+- ▶️ **`H5.0.3` — current:** [basket published](docs/component-sample-basket.md); one `SA518` manufacturer response remains before the separate order decision.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The completed H3/H4 plans are [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json)

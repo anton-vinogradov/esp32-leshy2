@@ -211,12 +211,12 @@ finding и все 85 физических residuals с владельцами H5
 **Статус:** ▶️ сейчас `H5.0.3`; формирование набора разрешено, закупка — нет.
 
 Текущий [машинный план](../hardware/verification/h5-component-evidence-plan.json)
-фиксирует [проведённую карту H5.0.1](component-evidence-map.ru.md) и
-[проведённый поиск H5.0.2](component-source-research.ru.md): все девять
-residuals H5 и 14 mechanical gates получили явные research dispositions, а два
-открытых класса тестовых изделий — четыре точных серийных SKU. H5.0.3
-дедуплицирует только неустранимые образцы, измерения и текущую стоимость.
-Любая закупка всё ещё требует отдельного явного согласия; это не production basket.
+фиксирует проведённые карту H5.0.1 и поиск источников/замен H5.0.2.
+[Корзина H5.0.3](component-sample-basket.ru.md) покрывает все девять residuals
+и 14 mechanical gates: 32 точные article line и 11 измерительных контрактов.
+Известный консервативный material budget — `$266.63`; открыт один manufacturer
+quote/variant confirmation для `SA518`, поэтому H5.0.3 ещё не проведён ревью.
+Любая закупка требует отдельного явного согласия; это не production basket.
 
 <a id="h6"></a>
 ## H6 · PCB placement и routing

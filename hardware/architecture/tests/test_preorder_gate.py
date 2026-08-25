@@ -49,16 +49,16 @@ class PreorderGateTests(unittest.TestCase):
         for token in ('4.0" ST7796', "SW_STOP", "ANT_LoRa", "80mm top"):
             self.assertIn(token, legacy)
 
-    def test_procurement_is_parked_behind_virtual_and_design_work(self):
+    def test_procurement_remains_unauthorized_during_h5_evidence_planning(self):
         index = (REPO_ROOT / "hardware/procurement/README.md").read_text(encoding="utf-8")
         plan = (
             REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertIn("not the next project step", index)
-        self.assertIn("P1–P6", index)
-        self.assertIn("not the next project step", plan)
-        self.assertIn("Sample ordering remains unauthorized", plan)
-        self.assertIn("Purchasing is the\nlast resort", plan)
+        self.assertIn("H1 through H4", index)
+        self.assertIn("H5.0.3 is current", index)
+        self.assertIn("superseded", plan)
+        self.assertIn("remain unauthorized", plan)
+        self.assertIn("Purchasing is the last resort", plan)
 
 
 if __name__ == "__main__":

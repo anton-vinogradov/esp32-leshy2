@@ -120,6 +120,24 @@ SOURCES = {
         "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864",
         "supports": "current exact-MPN cut-tape stock and quantity-one price evidence at review time",
     },
+    "nicerf_sa518": {
+        "owner": "NiceRF",
+        "title": "SA518 current manufacturer specification",
+        "url": "https://www.nicerf.com/upload/20260430/391f11abcc1d835ac5ed151613fdae68.pdf",
+        "supports": "current SA518 U/V simultaneous dual-band identity, 39.5 x 24.0 x 3.15 mm body, contact map, 3.3-to-5.0-V supply and 0.5/1-W modes",
+    },
+    "nicerf_sa818pro": {
+        "owner": "NiceRF",
+        "title": "SA818Pro ordering-model and interface description",
+        "url": "https://www.nicerf.com/news/sa818pro-analog-walkie-talkie-module-voice-fsk-data.html",
+        "supports": "compact 35.6 x 19.0 mm interface and explicit separate -U/-V order variants rather than one simultaneous U/V module",
+    },
+    "nicerf_sa528": {
+        "owner": "NiceRF",
+        "title": "SA528 U/V dual-band module product page",
+        "url": "https://www.nicerf.com/walkie-talkie-module/sa528-uv-dual-band-wireless-data-voice-walkie-talkie-module.html",
+        "supports": "simultaneous U/V function but a 54.03 x 38.30 x 7.70 mm integrated body and materially different 23-contact/audio interface",
+    },
 }
 
 
@@ -204,7 +222,7 @@ GATE_DISPOSITIONS = {
     "H5-MECH-NRF-GEN1-FEEDS": ("primary_sources_exhausted_sample_open", ["ebyte_e01", "ebyte_e01_datasheet", "te_2118651"]),
     "H5-MECH-U214-MATING-STACK": ("manufacturer_subpart_hidden_sample_open", ["m5_u214", "m5_u214_schematic", "m5_u214_structure"]),
     "H5-MECH-NAVIGATION-CONTROLS": ("assembled_ergonomics_sample_open", []),
-    "H5-MECH-SA518-LAND-FIT": ("received_module_and_coupon_open", []),
+    "H5-MECH-SA518-LAND-FIT": ("primary_source_and_alternatives_exhausted_supplier_sample_open", ["nicerf_sa518", "nicerf_sa818pro", "nicerf_sa528"]),
     "H5-MECH-ENCODER-KNOB": ("assembled_ergonomics_sample_open", []),
     "H5-MECH-DIRECT-PRESS-CONTROLS": ("assembled_ergonomics_sample_open", []),
     "H5-MECH-RUN-KILL": ("assembled_ergonomics_sample_open", []),
@@ -254,6 +272,20 @@ ALTERNATIVES = [
         "sources": ["lcdwiki_es3c35p", "lcdwiki_es3c35p_spec"],
         "decision": "rejected_as_drop_in",
         "reason": "no alternative found with a fully documented identical controller, flex contacts, outline, touch stack and connector; substitution would reopen architecture and placement",
+    },
+    {
+        "target": "SA518 simultaneous U/V voice module",
+        "candidate": "SA818Pro-U plus SA818Pro-V",
+        "sources": ["nicerf_sa818pro"],
+        "decision": "rejected_as_function_preserving_replacement",
+        "reason": "SA818Pro is ordered as one band or the other; preserving onboard VHF and UHF would require two modules, two RF paths and a reopened power, GPIO, audio and placement architecture",
+    },
+    {
+        "target": "SA518 simultaneous U/V voice module",
+        "candidate": "SA528",
+        "sources": ["nicerf_sa528"],
+        "decision": "rejected_as_form_fit_replacement",
+        "reason": "SA528 preserves simultaneous U/V but its 54.03 x 38.30 x 7.70 mm body and 23-contact integrated-audio interface do not fit the accepted 39.5 x 24.0 x 3.15 mm SA518 reserve or circuit",
     },
 ]
 
@@ -388,6 +420,7 @@ flowchart LR
 - Для дисплея найден серийный донор `ES3C35P`; raw-панель всё ещё нельзя честно квалифицировать без образца.
 - `TE 2118651-2` подтверждён как active и документированный; менять его нет оснований.
 - Для stock `U214` и `E01-ML01IPX` производители действительно не раскрывают MPN установленных connector subparts.
+- Для `SA518` проверены обе серийные ветви производителя: компактный `SA818Pro` требует отдельного U- или V-варианта, а dual-band `SA528` существенно больше и имеет другой 23-контактный/audio interface. Обе замены ухудшают принятую архитектуру.
 
 ## Результат по девяти residuals
 
@@ -401,6 +434,8 @@ flowchart LR
 
 - `XC-IPX-SMA-15`: серийный, но его 150-мм прямой тракт не заменяет выбранный 30-мм внутренний jumper + PCB + герметичный краевой SMA.
 - Другие 3.5-дюймовые QSPI-панели: не найдена drop-in модель с одновременно теми же controller, flex contacts, outline, touch stack и connector.
+- `SA818Pro-U` + `SA818Pro-V`: потребовались бы два модуля и полная переделка RF/power/audio/placement.
+- `SA528`: сохраняет U/V, но корпус 54,03 x 38,30 x 7,70 мм и 23-контактный interface не помещаются в принятую границу `SA518`.
 
 ## Честная граница
 
@@ -434,6 +469,7 @@ flowchart LR
 - A serial `ES3C35P` display donor route is identified; the raw panel still cannot be honestly qualified without a received sample.
 - `TE 2118651-2` is confirmed active and documented; replacement has no demonstrated benefit.
 - The makers of stock `U214` and `E01-ML01IPX` genuinely do not disclose the fitted connector-subpart MPNs.
+- Both current NiceRF branches were evaluated for `SA518`: compact `SA818Pro` is ordered as a separate U or V variant, while dual-band `SA528` is materially larger with a different 23-contact/audio interface. Neither preserves the accepted architecture.
 
 ## Result for the nine residuals
 
@@ -447,6 +483,8 @@ flowchart LR
 
 - `XC-IPX-SMA-15`: serial, but its 150 mm direct path does not replace the selected 30 mm internal jumper + PCB + sealed edge SMA.
 - Other 3.5-inch QSPI panels: no drop-in model was found with the same controller, flex contacts, outline, touch stack and connector together.
+- `SA818Pro-U` + `SA818Pro-V`: would require two modules and a complete RF/power/audio/placement redesign.
+- `SA528`: preserves U/V but its 54.03 x 38.30 x 7.70 mm body and 23-contact interface do not fit the accepted `SA518` boundary.
 
 ## Honest boundary
 

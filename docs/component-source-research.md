@@ -20,6 +20,7 @@ flowchart LR
 - A serial `ES3C35P` display donor route is identified; the raw panel still cannot be honestly qualified without a received sample.
 - `TE 2118651-2` is confirmed active and documented; replacement has no demonstrated benefit.
 - The makers of stock `U214` and `E01-ML01IPX` genuinely do not disclose the fitted connector-subpart MPNs.
+- Both current NiceRF branches were evaluated for `SA518`: compact `SA818Pro` is ordered as a separate U or V variant, while dual-band `SA528` is materially larger with a different 23-contact/audio interface. Neither preserves the accepted architecture.
 
 ## Result for the nine residuals
 
@@ -85,6 +86,8 @@ flowchart LR
 
 - `XC-IPX-SMA-15`: serial, but its 150 mm direct path does not replace the selected 30 mm internal jumper + PCB + sealed edge SMA.
 - Other 3.5-inch QSPI panels: no drop-in model was found with the same controller, flex contacts, outline, touch stack and connector together.
+- `SA818Pro-U` + `SA818Pro-V`: would require two modules and a complete RF/power/audio/placement redesign.
+- `SA528`: preserves U/V but its 54.03 x 38.30 x 7.70 mm body and 23-contact interface do not fit the accepted `SA518` boundary.
 
 ## Honest boundary
 

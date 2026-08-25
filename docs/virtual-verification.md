@@ -29,6 +29,6 @@ H2 was accepted on 24 August 2026 at hardware commit `25d9ee2` and firmware comm
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | extended-operation and configurable self-test policy without a runtime claim | H8 24/48-hour qualified-USB endurance and battery-to-protected-cutoff measurements |
 
-**Current hardware marker:** `H5.0.3` — H3 and the [joined H4 gate](h4-prelayout-gate-report.md) are reviewed; [H5.0.2 research](component-source-research.md) is complete without a purchase, and the minimum irreducible sample basket plus cost is being assembled.
+**Current hardware marker:** `H5.0.3` — the [single basket](component-sample-basket.md) covers all nine H5 residuals and 14 mechanical gates: a known conservative `$266.63` material budget plus one `SA518` manufacturer RFQ. H5.0.3 is not yet reviewed and purchasing is not authorized.
 
 [Machine freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

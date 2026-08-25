@@ -1,0 +1,1120 @@
+{
+  "schema_version": 1,
+  "stage": "H5.0.3",
+  "status": "draft_supplier_quote_open",
+  "checked_on": "2026-08-25",
+  "purpose": "one deduplicated engineering-sample basket after documentary and serial-replacement research; no purchase authorization",
+  "inputs": {
+    "residual_map": {
+      "path": "hardware/verification/generated/H5-EVR01-residual-map.json",
+      "sha256": "87a6ef8e09662376aba45ee393a06d8e8ee37851dd77861166103724e88df5ed"
+    },
+    "source_research": {
+      "path": "hardware/verification/generated/H5-EVR02-source-research.json",
+      "sha256": "faf1114a1be48e6639867a4a414d3d1d2722cddc0d54fbb17f49b7040a96c3c2"
+    }
+  },
+  "summary": {
+    "article_lines": 32,
+    "measurement_contracts": 11,
+    "covered_residuals_and_gates": 23,
+    "published_price_subtotal_usd": "262.63",
+    "conservative_budget_caps_usd": "4.00",
+    "known_engineering_material_budget_usd": "266.63",
+    "unpriced_manufacturer_lines": 1,
+    "excluded_from_budget": [
+      "SA518 manufacturer sample quote",
+      "freight",
+      "tax",
+      "customs",
+      "H5.2 coupon PCB fabrication/assembly",
+      "general laboratory instruments and ordinary passives"
+    ],
+    "former_parked_plan_usd": "164.54 for only a partial eight-line lot",
+    "comparison_note": "The new total is larger because it covers all 9 H5 residuals and 14 mechanical gates, but quantities within each line are reduced to evidence minima."
+  },
+  "group_budget_usd": {
+    "amlw-pod": "19.79",
+    "audio": "5.90",
+    "controls": "21.99",
+    "display": "47.57",
+    "expansion": "31.68",
+    "ir": "5.46",
+    "power": "52.57",
+    "rf": "41.62",
+    "storage": "40.05"
+  },
+  "articles": [
+    {
+      "id": "display-donor",
+      "group": "display",
+      "mpn": "Elecrow DLE06235B / QDtech ES3C35P donor containing HMX035CTFT-001",
+      "order_quantity": 2,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "20.90",
+        "subtotal_usd": "41.800",
+        "source_price": null
+      },
+      "source": {
+        "label": "Elecrow current complete-board page",
+        "url": "https://www.elecrow.com/3-5-esp32-s3-display-320x480-capacitive-ips-touchscreen-with-speaker-mic-bat-interface-supports-ai-voice-chat.html",
+        "checked_on": "2026-08-25",
+        "availability": "listed in stock"
+      },
+      "coverage": [
+        "H3-PHY-017",
+        "H5-MECH-DISPLAY-TAIL",
+        "H5-MECH-DISPLAY-PERFORMANCE"
+      ],
+      "minimum_quantity_basis": "one retained intact electrical/visual reference and one sacrificial tail/adapter specimen; the former five-donor plan added three unneeded spares",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "display-zif",
+      "group": "display",
+      "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "3.40",
+        "subtotal_usd": "3.400",
+        "source_price": null
+      },
+      "source": {
+        "label": "Mouser exact-MPN listing",
+        "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/FH34SRJ-40S-0.5SH99",
+        "checked_on": "2026-08-25",
+        "availability": "orderable exact MPN"
+      },
+      "coverage": [
+        "H3-PHY-017",
+        "H5-MECH-DISPLAY-TAIL",
+        "H5-MECH-DISPLAY-PERFORMANCE"
+      ],
+      "minimum_quantity_basis": "one repeated-mating adapter coupon uses one panel ZIF; failure means the test fails rather than consuming a hidden spare",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "display-df40-receptacle",
+      "group": "display",
+      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "1.36",
+        "subtotal_usd": "1.360",
+        "source_price": null
+      },
+      "source": {
+        "label": "Mouser exact-MPN listing",
+        "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C2.0-40DS-0.4V58",
+        "checked_on": "2026-08-25",
+        "availability": "orderable exact MPN"
+      },
+      "coverage": [
+        "H3-PHY-017",
+        "H5-MECH-DISPLAY-TAIL"
+      ],
+      "minimum_quantity_basis": "one fixed receptacle is sufficient for the single display-adapter coupon",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "display-df40-plug",
+      "group": "display",
+      "mpn": "Hirose DF40C-40DP-0.4V(51)",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "1.01",
+        "subtotal_usd": "1.010",
+        "source_price": null
+      },
+      "source": {
+        "label": "Mouser exact-MPN listing",
+        "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C-40DP-0.4V51",
+        "checked_on": "2026-08-25",
+        "availability": "orderable exact MPN"
+      },
+      "coverage": [
+        "H3-PHY-017",
+        "H5-MECH-DISPLAY-TAIL"
+      ],
+      "minimum_quantity_basis": "one plug is sufficient for the single display-adapter coupon",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "u214",
+      "group": "expansion",
+      "mpn": "M5Stack U214 Cap LoRa-1262",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "14.50",
+        "subtotal_usd": "14.500",
+        "source_price": null
+      },
+      "source": {
+        "label": "M5Stack official store",
+        "url": "https://shop.m5stack.com/products/cap-lora-1262",
+        "checked_on": "2026-08-25",
+        "availability": "listed in stock"
+      },
+      "coverage": [
+        "H3-PHY-046",
+        "H5-MECH-U214-MATING-STACK"
+      ],
+      "minimum_quantity_basis": "the same non-destructive unit closes identity, dimensions, mating and functional checks",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "u214-host-socket",
+      "group": "expansion",
+      "mpn": "Samtec HLE-107-02-G-DV-PE-LC",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "3.338",
+        "subtotal_usd": "3.338",
+        "source_price": null
+      },
+      "source": {
+        "label": "Samtec exact product page",
+        "url": "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc",
+        "checked_on": "2026-08-25",
+        "availability": "manufacturer orderable"
+      },
+      "coverage": [
+        "H3-PHY-046",
+        "H5-MECH-U214-MATING-STACK"
+      ],
+      "minimum_quantity_basis": "one production host socket is the actual mixed-pair mate; the former quantity five was spare stock, not evidence",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "m5-host-header-pack",
+      "group": "expansion",
+      "mpn": "Seeed 114020164 / 1125R-SMT-4P",
+      "order_quantity": 1,
+      "order_unit": "20-piece pack",
+      "contained_pieces_per_order_unit": 20,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "2.80",
+        "subtotal_usd": "2.800",
+        "source_price": null
+      },
+      "source": {
+        "label": "Seeed official store",
+        "url": "https://www.seeedstudio.com/Grove-Female-Header-SMD-4P-2.0mm-90D-20Pcs-p-4590.html",
+        "checked_on": "2026-08-25",
+        "availability": "listed in stock"
+      },
+      "coverage": [
+        "H3-PHY-048",
+        "H5-MECH-M5-UNIT-MATE"
+      ],
+      "minimum_quantity_basis": "one is needed, but the exact serial connector is sold as a smallest 20-piece pack",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "m5-short-cable",
+      "group": "expansion",
+      "mpn": "M5Stack A034-G",
+      "order_quantity": 1,
+      "order_unit": "pack",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "3.95",
+        "subtotal_usd": "3.950",
+        "source_price": null
+      },
+      "source": {
+        "label": "M5Stack official store",
+        "url": "https://shop.m5stack.com/products/4pin-buckled-grove-cable",
+        "checked_on": "2026-08-25",
+        "availability": "orderable"
+      },
+      "coverage": [
+        "H3-PHY-048",
+        "H5-MECH-M5-UNIT-MATE"
+      ],
+      "minimum_quantity_basis": "one smallest pack supplies the short-profile test article",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "m5-boundary-cable",
+      "group": "expansion",
+      "mpn": "M5Stack A034-B",
+      "order_quantity": 1,
+      "order_unit": "pack",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "2.59",
+        "subtotal_usd": "2.590",
+        "source_price": null
+      },
+      "source": {
+        "label": "authorized-distributor exact SKU listing",
+        "url": "https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/A034-B/13974037",
+        "checked_on": "2026-08-25",
+        "availability": "orderable"
+      },
+      "coverage": [
+        "H3-PHY-048",
+        "H5-MECH-M5-UNIT-MATE"
+      ],
+      "minimum_quantity_basis": "one smallest pack supplies the boundary-length test article",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "m5-instrument-cable",
+      "group": "expansion",
+      "mpn": "M5Stack A096",
+      "order_quantity": 1,
+      "order_unit": "pack",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "4.50",
+        "subtotal_usd": "4.500",
+        "source_price": null
+      },
+      "source": {
+        "label": "DigiKey exact-SKU listing",
+        "url": "https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/A096/18084377",
+        "checked_on": "2026-08-25",
+        "availability": "authorized stock"
+      },
+      "coverage": [
+        "H3-PHY-048",
+        "H5-MECH-M5-UNIT-MATE"
+      ],
+      "minimum_quantity_basis": "one smallest pack exposes the admitted profiles to instruments",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "nrf-modules",
+      "group": "rf",
+      "mpn": "Ebyte E01-ML01IPX",
+      "order_quantity": 3,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "2.37",
+        "subtotal_usd": "7.110",
+        "source_price": null
+      },
+      "source": {
+        "label": "RobotShop, sold and fulfilled by Ebyte",
+        "url": "https://www.robotshop.com/products/ebyte-e01-ml01ipx-frequency-hopping-nrf24l01p-high-speed-24g-rf-wireless-100mw-24ghz-nrf24l01-tx-rx-module",
+        "checked_on": "2026-08-25",
+        "availability": "98 shown in stock"
+      },
+      "coverage": [
+        "H3-PHY-053",
+        "H3-PHY-062",
+        "H5-MECH-NRF-GEN1-FEEDS"
+      ],
+      "minimum_quantity_basis": "exactly three modules are required to prove simultaneous full RX, TX and mixed operation; no untouched spare",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "rf-jumpers",
+      "group": "rf",
+      "mpn": "TE Connectivity 2118651-2",
+      "order_quantity": 5,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "2.52",
+        "subtotal_usd": "12.600",
+        "source_price": null
+      },
+      "source": {
+        "label": "DigiKey exact-MPN listing",
+        "url": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824",
+        "checked_on": "2026-08-25",
+        "availability": "3,082 shown in stock"
+      },
+      "coverage": [
+        "H3-PHY-053",
+        "H3-PHY-062",
+        "H5-MECH-NRF-GEN1-FEEDS",
+        "H5-MECH-NATIVE-RF-JUMPERS"
+      ],
+      "minimum_quantity_basis": "five real paths exist: S3, C5 and three nRF24; every installed bend/retention path must be represented",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "rf-board-receptacles",
+      "group": "rf",
+      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "order_quantity": 5,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "1.67",
+        "subtotal_usd": "8.350",
+        "source_price": null
+      },
+      "source": {
+        "label": "DigiKey exact-MPN listing",
+        "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/U-FL-R-SMT-1-10/2391570",
+        "checked_on": "2026-08-25",
+        "availability": "319,443 shown in stock"
+      },
+      "coverage": [
+        "H3-PHY-053",
+        "H3-PHY-062",
+        "H5-MECH-NRF-GEN1-FEEDS",
+        "H5-MECH-NATIVE-RF-JUMPERS"
+      ],
+      "minimum_quantity_basis": "one board mate per selected 30-mm jumper path",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "edge-sma",
+      "group": "rf",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "order_quantity": 4,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "3.39",
+        "subtotal_usd": "13.560",
+        "source_price": null
+      },
+      "source": {
+        "label": "DigiKey exact-MPN listing",
+        "url": "https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/25576371",
+        "checked_on": "2026-08-25",
+        "availability": "638 shown in stock"
+      },
+      "coverage": [
+        "H3-PHY-053",
+        "H3-PHY-057",
+        "H5-MECH-NRF-GEN1-FEEDS"
+      ],
+      "minimum_quantity_basis": "three nRF24 boundaries plus one AM/LW receive boundary; the S3/C5 module cables use their separately selected SMA32 path",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "voice-module",
+      "group": "rf",
+      "mpn": "NiceRF SA518",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "manufacturer_rfq",
+        "unit_usd": null,
+        "subtotal_usd": null,
+        "source_price": null
+      },
+      "source": {
+        "label": "NiceRF manufacturer product/RFQ page",
+        "url": "https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html",
+        "checked_on": "2026-08-25",
+        "availability": "current product; public manufacturer price absent"
+      },
+      "coverage": [
+        "H5-MECH-SA518-LAND-FIT"
+      ],
+      "minimum_quantity_basis": "one module is enough for land-fit, thermal, conducted RF, audio and fault testing; a spare does not add a distinct claim",
+      "risk": "Manufacturer quote and exact production-variant confirmation remain open. Third-party marketplace stock is not accepted as identity-controlled supply.",
+      "purchase_authorized": false
+    },
+    {
+      "id": "navigation-and-direct-switches",
+      "group": "controls",
+      "mpn": "Omron B3S-1100P",
+      "order_quantity": 16,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "0.90",
+        "subtotal_usd": "14.400",
+        "source_price": null
+      },
+      "source": {
+        "label": "DigiKey exact-MPN listing",
+        "url": "https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3S-1100P/368393",
+        "checked_on": "2026-08-25",
+        "availability": "33,862 shown in stock"
+      },
+      "coverage": [
+        "H5-MECH-NAVIGATION-CONTROLS",
+        "H5-MECH-DIRECT-PRESS-CONTROLS"
+      ],
+      "minimum_quantity_basis": "five navigation positions plus BACK, OPT, F1-F8 and PTT must all be populated simultaneously to test spacing and enclosure actuation",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "encoder",
+      "group": "controls",
+      "mpn": "Alps Alpine EC11E18244AU",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "4.90",
+        "subtotal_usd": "4.900",
+        "source_price": null
+      },
+      "source": {
+        "label": "Mouser exact-MPN listing",
+        "url": "https://www.mouser.com/en/ProductDetail/Alps-Alpine/EC11E18244AU",
+        "checked_on": "2026-08-25",
+        "availability": "966 shown in stock"
+      },
+      "coverage": [
+        "H5-MECH-ENCODER-KNOB"
+      ],
+      "minimum_quantity_basis": "one assembled encoder/knob path closes the only encoder gate",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "encoder-knob",
+      "group": "controls",
+      "mpn": "Davies Molding 1227-J",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "1.58",
+        "subtotal_usd": "1.580",
+        "source_price": null
+      },
+      "source": {
+        "label": "Mouser exact-MPN listing",
+        "url": "https://www.mouser.com/en/ProductDetail/Davies-Molding/1227-J",
+        "checked_on": "2026-08-25",
+        "availability": "524 shown in stock"
+      },
+      "coverage": [
+        "H5-MECH-ENCODER-KNOB"
+      ],
+      "minimum_quantity_basis": "one exact production knob mates to the one encoder specimen",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "run-kill-switch",
+      "group": "controls",
+      "mpn": "C&K JS102011SCQN",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "1.11",
+        "subtotal_usd": "1.110",
+        "source_price": null
+      },
+      "source": {
+        "label": "DigiKey exact-MPN listing",
+        "url": "https://www.digikey.com/en/products/detail/c-k/JS102011SCQN/7355835",
+        "checked_on": "2026-08-25",
+        "availability": "535 shown in stock"
+      },
+      "coverage": [
+        "H5-MECH-RUN-KILL"
+      ],
+      "minimum_quantity_basis": "one switch/aperture path closes force, detent and endurance evidence",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "cell-holder",
+      "group": "power",
+      "mpn": "Keystone 1048P",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "11.19",
+        "subtotal_usd": "11.190",
+        "source_price": null
+      },
+      "source": {
+        "label": "Mouser exact-MPN listing",
+        "url": "https://www.mouser.com/ProductDetail/Keystone-Electronics/1048P",
+        "checked_on": "2026-08-25",
+        "availability": "145 shown in stock"
+      },
+      "coverage": [
+        "H5-MECH-CELL-HOLDER-FIT"
+      ],
+      "minimum_quantity_basis": "one holder is the actual two-cell mechanism",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "protected-cells",
+      "group": "power",
+      "mpn": "XTAR protected 18650 4000 mAh 10 A",
+      "order_quantity": 2,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "14.50",
+        "subtotal_usd": "29.000",
+        "source_price": null
+      },
+      "source": {
+        "label": "XTAR official store",
+        "url": "https://xtardirect.com/products/xtar-high-capacity-36v-18650-4000mah-10a-protected-lithium-ion-battery",
+        "checked_on": "2026-08-25",
+        "availability": "98 shown in stock"
+      },
+      "coverage": [
+        "H5-MECH-CELL-HOLDER-FIT"
+      ],
+      "minimum_quantity_basis": "one matched same-lot pair is the only admitted operating pack; mixed MPN, lot, age or state of charge remains forbidden",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "pack-gauges",
+      "group": "power",
+      "mpn": "Analog Devices MAX17320G20+T",
+      "order_quantity": 2,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "6.19",
+        "subtotal_usd": "12.380",
+        "source_price": null
+      },
+      "source": {
+        "label": "Mouser exact-MPN listing",
+        "url": "https://www.mouser.com/en/ProductDetail/Analog-Devices-Maxim-Integrated/MAX17320G20%2BT",
+        "checked_on": "2026-08-25",
+        "availability": "7,638 shown in stock"
+      },
+      "coverage": [
+        "H3-PHY-028"
+      ],
+      "minimum_quantity_basis": "one retained golden device and one sacrificial device sequenced through blank, corrupt and exhausted-write states; four dedicated chips are unnecessary",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "speaker",
+      "group": "audio",
+      "mpn": "PUI Audio AS02404PO",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "3.97",
+        "subtotal_usd": "3.970",
+        "source_price": null
+      },
+      "source": {
+        "label": "DigiKey exact-MPN listing",
+        "url": "https://www.digikey.com/en/product-highlight/p/pui-audio/as-series-high-quality-speakers",
+        "checked_on": "2026-08-25",
+        "availability": "421 immediate units shown"
+      },
+      "coverage": [
+        "H5-MECH-ACOUSTIC-PATHS"
+      ],
+      "minimum_quantity_basis": "one final-cavity specimen closes the speaker path",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "microphone",
+      "group": "audio",
+      "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "0.64",
+        "subtotal_usd": "0.640",
+        "source_price": null
+      },
+      "source": {
+        "label": "DigiKey exact-MPN listing",
+        "url": "https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/CMEJ-0413-42-SMT-TR/10253447",
+        "checked_on": "2026-08-25",
+        "availability": "12,929 shown in stock"
+      },
+      "coverage": [
+        "H5-MECH-ACOUSTIC-PATHS"
+      ],
+      "minimum_quantity_basis": "one downward microphone path closes response, sealing and feedback checks",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "headset-jack",
+      "group": "audio",
+      "mpn": "Same Sky SJ-43504-SMT-TR",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "1.29",
+        "subtotal_usd": "1.290",
+        "source_price": null
+      },
+      "source": {
+        "label": "Mouser exact-MPN listing",
+        "url": "https://www.mouser.com/ProductDetail/Same-Sky/SJ-43504-SMT-TR",
+        "checked_on": "2026-08-25",
+        "availability": "5,344 shown in stock"
+      },
+      "coverage": [
+        "H5-MECH-HEADSET-JACK"
+      ],
+      "minimum_quantity_basis": "one repeated CTIA/TRS mating specimen closes the only jack gate",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "ir-demod",
+      "group": "ir",
+      "mpn": "Vishay TSOP75238TT",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "1.46",
+        "subtotal_usd": "1.460",
+        "source_price": null
+      },
+      "source": {
+        "label": "DigiKey exact-MPN cut-tape listing",
+        "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864",
+        "checked_on": "2026-08-25",
+        "availability": "13 shown in cut-tape stock"
+      },
+      "coverage": [
+        "H3-PHY-024"
+      ],
+      "minimum_quantity_basis": "one received robust-demodulator channel; the full-reel-only TSOP95238TT is no longer selected",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "ir-carrier",
+      "group": "ir",
+      "mpn": "Vishay TSMP95000TT",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "conservative_budget_cap_usd",
+        "unit_usd": "2.00",
+        "subtotal_usd": "2.000",
+        "source_price": {
+          "currency": "AUD",
+          "unit": "2.86",
+          "note": "USD 2.00 is a conservative engineering budget cap, not a claimed converted distributor price"
+        }
+      },
+      "source": {
+        "label": "Mouser exact-MPN listing",
+        "url": "https://www.mouser.com/ProductDetail/Vishay-Semiconductors/TSMP95000TT",
+        "checked_on": "2026-08-25",
+        "availability": "4,182 shown in cut-tape stock"
+      },
+      "coverage": [
+        "H3-PHY-024"
+      ],
+      "minimum_quantity_basis": "one independent carrier-learning channel",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "ir-emitter",
+      "group": "ir",
+      "mpn": "Vishay VSMY14940",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "conservative_budget_cap_usd",
+        "unit_usd": "2.00",
+        "subtotal_usd": "2.000",
+        "source_price": {
+          "currency": "INR",
+          "unit": "92.62",
+          "note": "USD 2.00 is a conservative engineering budget cap, not a claimed converted distributor price"
+        }
+      },
+      "source": {
+        "label": "DigiKey exact-MPN listing",
+        "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VSMY14940/4071416",
+        "checked_on": "2026-08-25",
+        "availability": "4,872 shown in cut-tape stock"
+      },
+      "coverage": [
+        "H3-PHY-024"
+      ],
+      "minimum_quantity_basis": "one actual emitter is sufficient for optical, current and temperature evidence",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "reference-microsd",
+      "group": "storage",
+      "mpn": "SanDisk SDSQQNR-032G-GN6IA",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "40.05",
+        "subtotal_usd": "40.050",
+        "source_price": null
+      },
+      "source": {
+        "label": "TME exact-MPN listing",
+        "url": "https://www.tme.com/in/en/details/sdsqqnr-032g-gn6ia/memory-cards/sandisk/",
+        "checked_on": "2026-08-25",
+        "availability": "200 shown in stock"
+      },
+      "coverage": [
+        "H3-PHY-038"
+      ],
+      "minimum_quantity_basis": "one identity-controlled reference medium is sufficient for CMD6, throughput, stalls and buffer traces",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "amlw-core",
+      "group": "amlw-pod",
+      "mpn": "Fair-Rite 3061990901",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "2.70",
+        "subtotal_usd": "2.700",
+        "source_price": null
+      },
+      "source": {
+        "label": "Mouser exact-MPN listing",
+        "url": "https://www.mouser.com/ProductDetail/Fair-Rite/3061990901",
+        "checked_on": "2026-08-25",
+        "availability": "1,792 shown in stock"
+      },
+      "coverage": [
+        "H3-PHY-057"
+      ],
+      "minimum_quantity_basis": "one controlled first-pod core is measured and wound",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "amlw-plug",
+      "group": "amlw-pod",
+      "mpn": "Adam Tech RF2-154-T-17-50-G",
+      "order_quantity": 1,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "3.76",
+        "subtotal_usd": "3.760",
+        "source_price": null
+      },
+      "source": {
+        "label": "DigiKey exact-MPN listing",
+        "url": "https://www.digikey.com/en/products/detail/adam-tech/RF2-154-T-17-50-G/9831243",
+        "checked_on": "2026-08-25",
+        "availability": "839 shown in stock"
+      },
+      "coverage": [
+        "H3-PHY-057"
+      ],
+      "minimum_quantity_basis": "one male plug mates to the one AM/LW device boundary",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "amlw-wire",
+      "group": "amlw-pod",
+      "mpn": "Remington 38SNSP.125",
+      "order_quantity": 1,
+      "order_unit": "spool",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "13.33",
+        "subtotal_usd": "13.330",
+        "source_price": null
+      },
+      "source": {
+        "label": "Remington Industries official store",
+        "url": "https://www.remingtonindustries.com/magnet-wire/magnet-wire-38-awg-enameled-copper-6-spool-sizes/",
+        "checked_on": "2026-08-25",
+        "availability": "smallest exact-wire spool orderable"
+      },
+      "coverage": [
+        "H3-PHY-057"
+      ],
+      "minimum_quantity_basis": "one smallest spool supplies the controlled winding and measurement retries",
+      "risk": null,
+      "purchase_authorized": false
+    }
+  ],
+  "measurements": [
+    {
+      "id": "H5-MSR-DISPLAY",
+      "articles": [
+        "display-donor",
+        "display-zif",
+        "display-df40-receptacle",
+        "display-df40-plug"
+      ],
+      "evidence": [
+        "H3-PHY-017",
+        "H5-MECH-DISPLAY-TAIL",
+        "H5-MECH-DISPLAY-PERFORMANCE"
+      ],
+      "method": "retain one donor intact; photograph both lots; disassemble the second; measure flex outline, pitch, thickness, contact side, stiffener and bend keepout; cycle the exact adapter; then record QSPI/touch identity, VDD/VDDI ramps, reset/IRQ, backlight current, temperature and optical response",
+      "pass_rule": "the current HMX035CTFT-001 tail fits and retains in a replaceable adapter without changing the UI PCB/enclosure datum, and the complete measured display path meets every inherited H3 timing/power rule",
+      "artifacts": "dimensioned photos, raw measurements, continuity matrix, logic/power traces and signed record"
+    },
+    {
+      "id": "H5-MSR-U214",
+      "articles": [
+        "u214",
+        "u214-host-socket"
+      ],
+      "evidence": [
+        "H3-PHY-046",
+        "H5-MECH-U214-MATING-STACK"
+      ],
+      "method": "measure the fitted U214 posts and exact HLE; record all 14 continuities, bottoming, insertion/withdrawal force, repeated cycles, rail preload and screw retention",
+      "pass_rule": "the mixed U214/HLE pair mates without yield or bottoming, retains every contact and preserves the protected hot-plug sequence",
+      "artifacts": "metrology, force/cycle CSV, continuity log and installed photos"
+    },
+    {
+      "id": "H5-MSR-M5",
+      "articles": [
+        "m5-host-header-pack",
+        "m5-short-cable",
+        "m5-boundary-cable",
+        "m5-instrument-cable"
+      ],
+      "evidence": [
+        "H3-PHY-048",
+        "H5-MECH-M5-UNIT-MATE"
+      ],
+      "method": "measure connector/cable geometry and run I2C, UART, GPIO and 1-Wire profiles through TXS0102 at short and boundary lengths with the breakout attached",
+      "pass_rule": "insertion, retention, strain relief, pull networks and waveforms satisfy each admitted profile; unsupported motor/actuator loads remain excluded",
+      "artifacts": "cable photos/lengths, force/cycle records and oscilloscope captures"
+    },
+    {
+      "id": "H5-MSR-RF5",
+      "articles": [
+        "nrf-modules",
+        "rf-jumpers",
+        "rf-board-receptacles",
+        "edge-sma"
+      ],
+      "evidence": [
+        "H3-PHY-053",
+        "H3-PHY-062",
+        "H5-MECH-NRF-GEN1-FEEDS",
+        "H5-MECH-NATIVE-RF-JUMPERS"
+      ],
+      "method": "inspect all E01 factory receptacles; assemble five straight U.FL-to-U.FL cable paths and four edge SMA boundaries; measure bend, retention and S-parameters; run all three nRF24 simultaneously in full RX, TX and mixed modes with every inactive interface hardware-quiet",
+      "pass_rule": "all five paths meet inherited loss/match and retention limits, all three nRF24 meet concurrent deadlines without neighbouring-interface stalls or desense",
+      "artifacts": "microscope photos, force/cycle CSV, five VNA touchstone sets and 3R/1T2R/2T1R/3T traffic traces"
+    },
+    {
+      "id": "H5-MSR-SA518",
+      "articles": [
+        "voice-module"
+      ],
+      "evidence": [
+        "H5-MECH-SA518-LAND-FIT"
+      ],
+      "method": "confirm received revision/variant and contact map; measure castellations; populate one shortest contact-7 coupon; record solder heat, VNA, supply/current/temperature, both bands, both power settings, audio, UART/PTT/PD/H-L and FAULT_KILL",
+      "pass_rule": "the exact manufacturer-controlled sample fits the accepted reserve and meets the complete inherited RF/audio/safety contract without undocumented drive of UPDATE or VOXEN",
+      "artifacts": "supplier response, incoming record, land-fit X-ray/photos, VNA/RF/audio/power/thermal/fault traces"
+    },
+    {
+      "id": "H5-MSR-CONTROLS",
+      "articles": [
+        "navigation-and-direct-switches",
+        "encoder",
+        "encoder-knob",
+        "run-kill-switch"
+      ],
+      "evidence": [
+        "H5-MECH-NAVIGATION-CONTROLS",
+        "H5-MECH-DIRECT-PRESS-CONTROLS",
+        "H5-MECH-ENCODER-KNOB",
+        "H5-MECH-RUN-KILL"
+      ],
+      "method": "populate the full 16-switch interface plus encoder/knob and side RUN/KILL aperture; measure access, actuation, accidental-press protection, depth, detents and repeated cycles",
+      "pass_rule": "every serial control is independently reachable in the accepted external layout, remains recessed where required and passes the declared force/endurance limits",
+      "artifacts": "dimensioned assembled photos, force curves, cycle log and signed ergonomic checklist"
+    },
+    {
+      "id": "H5-MSR-PACK",
+      "articles": [
+        "cell-holder",
+        "protected-cells",
+        "pack-gauges"
+      ],
+      "evidence": [
+        "H3-PHY-028",
+        "H5-MECH-CELL-HOLDER-FIT"
+      ],
+      "method": "test one matched same-lot protected-cell pair in the exact holder across insertion, compression, polarity, vibration and thermal cycles; retain one MAX17320 golden device and sequence the second through blank, corrupt and exhausted-write conditions",
+      "pass_rule": "the matched pair remains mechanically/electrically retained at all admitted corners and every gauge fault state deterministically blocks or recovers exactly as specified",
+      "artifacts": "cell lot record, dimensional/force/thermal/vibration traces, gauge images/readbacks and fault logs"
+    },
+    {
+      "id": "H5-MSR-AUDIO",
+      "articles": [
+        "speaker",
+        "microphone",
+        "headset-jack"
+      ],
+      "evidence": [
+        "H5-MECH-ACOUSTIC-PATHS",
+        "H5-MECH-HEADSET-JACK"
+      ],
+      "method": "mount the exact speaker and downward microphone in the representative cavity; sweep response/noise/feedback/vibration; cycle the jack with CTIA and ordinary TRS while recording detect, source selection, bias, transient and unplug pop",
+      "pass_rule": "the enclosure path meets the inherited gain/noise/thermal limits and the jack preserves CTIA/TRS behavior without blocking the internal microphone",
+      "artifacts": "audio sweeps, noise/feedback captures, insertion-force/cycle data and transient traces"
+    },
+    {
+      "id": "H5-MSR-IR",
+      "articles": [
+        "ir-demod",
+        "ir-carrier",
+        "ir-emitter"
+      ],
+      "evidence": [
+        "H3-PHY-024"
+      ],
+      "method": "verify markings/orientation; run simultaneous robust-envelope and 30-to-60-kHz carrier capture; measure startup/QOD/no-back-power; replay the protocol corpus and measure emitter current, range, alignment, temperature and optical safety",
+      "pass_rule": "both receive channels and fail-closed transmit satisfy the inherited timing/electrical/optical bounds with no back-power or false provenance",
+      "artifacts": "incoming photos, logic/power traces, protocol corpus results and optical/thermal measurements"
+    },
+    {
+      "id": "H5-MSR-STORAGE",
+      "articles": [
+        "reference-microsd"
+      ],
+      "evidence": [
+        "H3-PHY-038"
+      ],
+      "method": "record CID/CSD/CMD6 identity and run the admitted record/display contention profile through temperature and induced stalls",
+      "pass_rule": "the exact reference card sustains >=1.5 MB/s logging, qualified >=4.0 MB/s transfers and the 512-KiB buffer contract without a radio deadline miss",
+      "artifacts": "identity dump, raw throughput/stall CSV and buffer/radio timing trace"
+    },
+    {
+      "id": "H5-MSR-AMLW",
+      "articles": [
+        "edge-sma",
+        "amlw-core",
+        "amlw-plug",
+        "amlw-wire"
+      ],
+      "evidence": [
+        "H3-PHY-057"
+      ],
+      "method": "verify exact identities and physical envelopes; wind and trim the first pod to 300 uH +/-5%; document mating and constituent geometry",
+      "pass_rule": "the received SMA and every controlled pod constituent match the selected identities/envelopes and the completed pod meets inductance; routed parasitic budget remains H6 and total populated capacitance remains H8",
+      "artifacts": "incoming photos, dimensions, winding record, L/Q sweep and mating record"
+    }
+  ],
+  "supplier_blocker": {
+    "article": "voice-module",
+    "reason": "NiceRF publishes current SA518 technical evidence but no controlled sample price, production-variant confirmation or authorized-stock channel. Marketplace listings provide a cost ceiling only and do not prove identity-controlled supply.",
+    "marketplace_reference": {
+      "currency": "GBP",
+      "item": "20.72",
+      "delivery": "3.52",
+      "total": "24.24",
+      "source": "https://www.onbuy.com/gb/p/1pc-sa518-1w-uv-dual-frequency-walkie-talkie-module-support-wireless-data-and-voice~p259569520/",
+      "accepted_as_qualified_source": false
+    },
+    "replacements_rejected": [
+      "SA818Pro is ordered as separate UHF or VHF variants; preserving both bands requires two modules and a full redesign",
+      "SA528 is simultaneous U/V but 54.03 x 38.30 x 7.70 mm with a different 23-contact/audio interface"
+    ],
+    "prepared_request": "hardware/procurement/SA518-sample-rfq.md",
+    "next_authority_needed": "permission to send the manufacturer RFQ/data request; this is not permission to purchase"
+  },
+  "sequencing": {
+    "now": "send/receive the SA518 quote only after explicit permission; keep H5.0.3 current",
+    "after_quote": "publish exact whole-basket cost and request a separate sample-order decision",
+    "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",
+    "forbidden": [
+      "component purchase without a separate decision",
+      "PCB placement/routing",
+      "prototype fabrication"
+    ]
+  },
+  "checks": {
+    "h5_0_2_is_reviewed_and_current": true,
+    "every_required_residual_and_gate_has_an_article": true,
+    "every_required_residual_and_gate_has_a_measurement_contract": true,
+    "article_ids_are_unique": true,
+    "every_article_is_used_by_a_measurement": true,
+    "every_identity_is_exact_and_non_tbd": true,
+    "every_quantity_has_an_explicit_minimum_basis": true,
+    "all_non_rfq_lines_have_a_current_cost": true,
+    "exactly_one_supplier_price_and_variant_remain_open": true,
+    "purchase_layout_fabrication_not_authorized": true
+  }
+}

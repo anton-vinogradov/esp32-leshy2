@@ -73,7 +73,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         freeze = f"H2 принят 24 августа 2026 года на hardware commit `25d9ee2` и firmware commit `900bb2b`. Заморожено {manifest['summary']['frozen_files']} файла с SHA-256; изменение любого из них повторно открывает затронутые проверки."
         matrix_h = "## Матрица проверки"
         headers = "| Этап | Область | Метод до изготовления | Артефакт H3 | Остаточная физическая проверка |\n|---|---|---|---|---|"
-        current = "**Текущий аппаратный маркер:** `H5.0.3` — H3 и [объединённый gate H4](h4-prelayout-gate-report.ru.md) проведены; [поиск H5.0.2](component-source-research.ru.md) завершён без закупки, формируется минимальный набор только неустранимых образцов и его стоимость."
+        current = "**Текущий аппаратный маркер:** `H5.0.3` — [единая корзина](component-sample-basket.ru.md) покрывает все девять H5 residuals и 14 mechanical gates: известный консервативный material budget `$266.63` плюс один manufacturer RFQ для `SA518`. H5.0.3 ещё не проведён ревью; закупка не разрешена."
     else:
         title = "# Leshy2 virtual electrical verification"
         nav = "[Русский](virtual-verification.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Accepted H2](h2-acceptance.md)"
@@ -82,7 +82,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         freeze = f"H2 was accepted on 24 August 2026 at hardware commit `25d9ee2` and firmware commit `900bb2b`. {manifest['summary']['frozen_files']} files are frozen by SHA-256; changing any one reopens the affected verification."
         matrix_h = "## Verification matrix"
         headers = "| Stage | Area | Pre-fabrication method | H3 artifact | Residual physical check |\n|---|---|---|---|---|"
-        current = "**Current hardware marker:** `H5.0.3` — H3 and the [joined H4 gate](h4-prelayout-gate-report.md) are reviewed; [H5.0.2 research](component-source-research.md) is complete without a purchase, and the minimum irreducible sample basket plus cost is being assembled."
+        current = "**Current hardware marker:** `H5.0.3` — the [single basket](component-sample-basket.md) covers all nine H5 residuals and 14 mechanical gates: a known conservative `$266.63` material budget plus one `SA518` manufacturer RFQ. H5.0.3 is not yet reviewed and purchasing is not authorized."
     rows = "\n".join(
         f"| `{row['stage']}` | `{row['area']}` | {row['method']} | {row['h3_output']} | {row['physical_evidence']} |"
         for row in manifest["verification_matrix"]

@@ -211,12 +211,12 @@ all 85 physical residuals still owned by H5/H6/H8.
 **Status:** ▶️ current `H5.0.3`; basket definition is authorized, purchasing is not.
 
 The current [machine plan](../hardware/verification/h5-component-evidence-plan.json)
-records the [reviewed H5.0.1 map](component-evidence-map.md) and
-[reviewed H5.0.2 source research](component-source-research.md): all nine H5
-residuals and 14 mechanical gates have explicit research dispositions, while
-two open test-article categories now have four exact serial SKUs. H5.0.3
-deduplicates only the irreducible samples, measurements and current cost.
-Any purchase still requires separate explicit approval; this is not a production basket.
+records the reviewed H5.0.1 map and H5.0.2 source/replacement research. The
+[H5.0.3 basket](component-sample-basket.md) now covers all nine residuals and 14
+mechanical gates with 32 exact article lines and 11 measurement contracts.
+Known conservative material is `$266.63`; one `SA518` manufacturer quote and
+variant confirmation remains, so H5.0.3 is not yet reviewed. Any purchase still
+requires separate explicit approval; this is not a production basket.
 
 <a id="h6"></a>
 ## H6 · PCB placement and routing

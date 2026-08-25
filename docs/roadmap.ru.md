@@ -31,7 +31,7 @@
 | Объединённый pre-layout gate | ✅ [H4 проведён](h4-prelayout-gate-report.ru.md): 0 открытых виртуальных противоречий; у 85 физических residuals сохранены владельцы H5/H6/H8 |
 | Работа над KiCad-схемой | ✅ H2 проведено ревью; позднее несоответствие повторно откроет затронутые листы |
 | KiCad placement и PCB routing | 🔒 H6: не начаты и не разрешены |
-| Evidence компонентов | ▶️ H5.0.3 дедуплицирует неустранимые образцы, измерения и текущую стоимость; образцы не заказаны, тесты не проводились |
+| Evidence компонентов | ▶️ [Корзина H5.0.3 опубликована](component-sample-basket.ru.md): `$266.63` известного material budget + один manufacturer RFQ для SA518; образцы не заказаны, тесты не проводились |
 | Заказ прототипных PCB | 🔒 Запрещён до H7 |
 | Production-заказ | 🔒 Запрещён до H9 |
 
@@ -44,10 +44,11 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 <!-- current-substep: H5.0.3 -->
 
-**Точный маркер: `H5.0.3`** — [поиск источников H5.0.2](component-source-research.ru.md)
-исчерпал первичные документы и серийные альтернативы для всех девяти residuals
-H5 и 14 mechanical gates. Теперь формируются единый недублирующийся набор
-неустранимых образцов, точные измерения и текущая стоимость; закупка не разрешена.
+**Точный маркер: `H5.0.3`** — [единая корзина](component-sample-basket.ru.md)
+покрывает все девять residuals H5 и 14 mechanical gates: 32 точные article line
+и 11 измерительных контрактов. Известный консервативный material budget —
+`$266.63`; открыт один manufacturer quote/variant confirmation для `SA518`.
+H5.0.3 ещё не проведён ревью, закупка не разрешена.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -287,7 +288,7 @@ H5 и 14 mechanical gates. Теперь формируются единый не
 - ✅ `H4.3` — [объединённый gate H4 проведён](h4-prelayout-gate-report.ru.md).
 - ✅ `H5.0.1` — [все девять residuals и 14 механических gate’ов связаны](component-evidence-map.ru.md).
 - ✅ `H5.0.2` — [первичные evidence и серийные альтернативы проведены](component-source-research.ru.md); четыре точных тестовых SKU закрыли два selection gap без закупки.
-- ▶️ **`H5.0.3` — сейчас:** опубликовать единый недублирующийся набор неустранимых образцов, точные измерения и текущую стоимость для явного согласования.
+- ▶️ **`H5.0.3` — сейчас:** [корзина опубликована](component-sample-basket.ru.md); получить один manufacturer quote/variant confirmation для `SA518`, затем вынести точную полную стоимость на отдельное решение о заказе.
 
 Проверенный план H2 — [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json),
 завершённые планы H3/H4 — [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json)
@@ -349,7 +350,7 @@ gates, точный S3 QEMU и portable/host-модели для targets без 
 | **H2. Production ECAD-схема** | ✅ Проведено ревью и принято | Новая актуальная схема на читаемых листах и machine-readable HW↔FW contract | Точные symbol/footprint/pin/net/value; объяснены NC; ERC без необъяснённых ошибок; отдельно проверены reset, boot, recovery, no-back-power, quiet state и `FAULT_KILL`; firmware F2 использует контракт без выдуманных pins |
 | **H3. Виртуальная электрическая проверка** | ✅ Проведено ревью и принято | [Итоговый отчёт H3](h3-acceptance.ru.md): расчёты и симуляции до дорогой физики | Проходят worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse и load-step; thermal/fault tree; все analog corners; timing/levels; RF corridors, returns и pre-layout constraints |
 | **H4. Объединённый pre-layout gate** | ✅ [Проведено ревью](h4-prelayout-gate-report.ru.md) | Единое ревью механики, production ECAD, электрических evidence и видимых target-прошивке контрактов | Нет открытого виртуально проверяемого blocker; target skeletons используют реальный контракт; у каждой остаточной физической неопределённости есть измерение и bring-up test |
-| **H5. Evidence компонентов** | ▶️ Сейчас `H5.0.3`; закупка заблокирована | [Поиск источников завершён](component-source-research.ru.md); формируются единый набор неустранимых образцов и текущая стоимость | Полные карта MPN/evidence/pass-rule и research dispositions; одобренные полученные образцы доказывают identity, mating, stack-up и критические размеры |
+| **H5. Evidence компонентов** | ▶️ Сейчас `H5.0.3`; закупка заблокирована | [Корзина опубликована](component-sample-basket.ru.md): `$266.63` известного material budget + один manufacturer RFQ для `SA518` | Полные карта MPN/evidence/pass-rule и research dispositions; точная полная стоимость публикуется после ответа поставщика; одобренные полученные образцы доказывают identity, mating, stack-up и критические размеры |
 | **H6. PCB placement и routing** | 🔒 Ожидает H5 | Две реальные платы, реализующие принятую схему и механику | Пройдены placement review обеих сторон, DRC, impedance и return-current review, RF isolation, antenna feeds, thermal copper, creepage, test points, assembly и manufacturability; fab package принят отдельно |
 | **H7. Печать прототипа и bring-up** | 🔒 Ожидает H6, унаследованный firmware F3 и одобрение заказа | Небольшая партия прототипных PCB и сохранённый bring-up log | Rails запускаются по контракту; все пять контроллеров прошиваются и восстанавливаются; интерфейсы, display, storage, audio, radio и expansion проходят smoke tests; каждый rework отражён в исходниках |
 | **H8. Физическая квалификация** | 🔒 Ожидает H7 | HIL, RF, thermal, power, safety и endurance evidence | 3×nRF24 проходят `3R/1T2R/2T1R/3T`; активные сигналы не тормозятся соседями; выключенные интерфейсы физически тихие; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog и single-fault tests пройдены |
@@ -376,7 +377,8 @@ gates, точный S3 QEMU и portable/host-модели для targets без 
 
 ## Что происходит следующим
 
-Текущая граница — `H5.0.3`: все физические residuals H5 связаны, а поиск
-первичных источников и серийных альтернатив проведён. Теперь дедуплицируются и
-оцениваются только неустранимые получаемые образцы. PCB placement/routing и
-закупка остаются заблокированы.
+Текущая граница — `H5.0.3`: все физические residuals H5 связаны, поиск
+источников и замен проведён, а [единая корзина](component-sample-basket.ru.md)
+опубликована как `$266.63` известного material budget плюс один manufacturer
+RFQ для `SA518`. Отправка запроса требует разрешения и не является покупкой;
+PCB placement/routing и любой заказ остаются заблокированы.

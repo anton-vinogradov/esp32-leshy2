@@ -13,7 +13,7 @@
     "mechanical_gates_dispositioned": 14,
     "test_article_categories_selected": 2,
     "exact_test_article_skus_selected": 4,
-    "alternatives_explicitly_evaluated": 3,
+    "alternatives_explicitly_evaluated": 5,
     "physical_claims_closed": 0,
     "orders_authorized": 0
   },
@@ -95,6 +95,24 @@
       "title": "U214 structure files",
       "url": "https://github.com/m5stack/M5_Hardware/tree/master/Products/U214_Cap_LoRa-1262/Structures",
       "supports": "official STL structure evidence without a fitted-header BOM identity"
+    },
+    "nicerf_sa518": {
+      "owner": "NiceRF",
+      "title": "SA518 current manufacturer specification",
+      "url": "https://www.nicerf.com/upload/20260430/391f11abcc1d835ac5ed151613fdae68.pdf",
+      "supports": "current SA518 U/V simultaneous dual-band identity, 39.5 x 24.0 x 3.15 mm body, contact map, 3.3-to-5.0-V supply and 0.5/1-W modes"
+    },
+    "nicerf_sa528": {
+      "owner": "NiceRF",
+      "title": "SA528 U/V dual-band module product page",
+      "url": "https://www.nicerf.com/walkie-talkie-module/sa528-uv-dual-band-wireless-data-voice-walkie-talkie-module.html",
+      "supports": "simultaneous U/V function but a 54.03 x 38.30 x 7.70 mm integrated body and materially different 23-contact/audio interface"
+    },
+    "nicerf_sa818pro": {
+      "owner": "NiceRF",
+      "title": "SA818Pro ordering-model and interface description",
+      "url": "https://www.nicerf.com/news/sa818pro-analog-walkie-talkie-module-voice-fsk-data.html",
+      "supports": "compact 35.6 x 19.0 mm interface and explicit separate -U/-V order variants rather than one simultaneous U/V module"
     },
     "sandisk_endurance": {
       "owner": "SanDisk",
@@ -295,8 +313,12 @@
     },
     {
       "id": "H5-MECH-SA518-LAND-FIT",
-      "disposition": "received_module_and_coupon_open",
-      "sources": [],
+      "disposition": "primary_source_and_alternatives_exhausted_supplier_sample_open",
+      "sources": [
+        "nicerf_sa518",
+        "nicerf_sa818pro",
+        "nicerf_sa528"
+      ],
       "physical_claim_closed": false
     },
     {
@@ -419,6 +441,24 @@
       ],
       "decision": "rejected_as_drop_in",
       "reason": "no alternative found with a fully documented identical controller, flex contacts, outline, touch stack and connector; substitution would reopen architecture and placement"
+    },
+    {
+      "target": "SA518 simultaneous U/V voice module",
+      "candidate": "SA818Pro-U plus SA818Pro-V",
+      "sources": [
+        "nicerf_sa818pro"
+      ],
+      "decision": "rejected_as_function_preserving_replacement",
+      "reason": "SA818Pro is ordered as one band or the other; preserving onboard VHF and UHF would require two modules, two RF paths and a reopened power, GPIO, audio and placement architecture"
+    },
+    {
+      "target": "SA518 simultaneous U/V voice module",
+      "candidate": "SA528",
+      "sources": [
+        "nicerf_sa528"
+      ],
+      "decision": "rejected_as_form_fit_replacement",
+      "reason": "SA528 preserves simultaneous U/V but its 54.03 x 38.30 x 7.70 mm body and 23-contact integrated-audio interface do not fit the accepted 39.5 x 24.0 x 3.15 mm SA518 reserve or circuit"
     }
   ],
   "checks": {

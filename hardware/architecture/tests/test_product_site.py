@@ -125,6 +125,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/component-evidence-map.ru.md",
         "docs/component-source-research.md",
         "docs/component-source-research.ru.md",
+        "docs/component-sample-basket.md",
+        "docs/component-sample-basket.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -315,6 +317,35 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count("```mermaid"), name)
             self.assertIn("H5.0.3", page, name)
             self.assertIn("H5-EVR02", page, name)
+
+    def test_h5_0_3_sample_basket_is_complete_and_honest(self):
+        subprocess.run(
+            [sys.executable, "hardware/verification/h5_sample_basket.py", "--check"],
+            cwd=REPO_ROOT,
+            check=True,
+        )
+        evidence = json.loads(
+            self.read("hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json")
+        )
+        self.assertEqual("H5.0.3", evidence["stage"])
+        self.assertEqual("draft_supplier_quote_open", evidence["status"])
+        self.assertEqual(32, evidence["summary"]["article_lines"])
+        self.assertEqual(11, evidence["summary"]["measurement_contracts"])
+        self.assertEqual(23, evidence["summary"]["covered_residuals_and_gates"])
+        self.assertEqual("266.63", evidence["summary"]["known_engineering_material_budget_usd"])
+        self.assertEqual(1, evidence["summary"]["unpriced_manufacturer_lines"])
+        self.assertTrue(all(evidence["checks"].values()))
+        self.assertEqual("voice-module", evidence["supplier_blocker"]["article"])
+        self.assertFalse(
+            evidence["supplier_blocker"]["marketplace_reference"]["accepted_as_qualified_source"]
+        )
+        self.assertTrue(all(not row["purchase_authorized"] for row in evidence["articles"]))
+        for name in ("docs/component-sample-basket.md", "docs/component-sample-basket.ru.md"):
+            page = self.read(name)
+            self.assertEqual(1, page.count("```mermaid"), name)
+            self.assertIn("H5-EVR03", page, name)
+            self.assertIn("266.63", page, name)
+            self.assertIn("SA518", page, name)
 
     def test_hardware_stages_are_strictly_sequential(self):
         import json
@@ -686,6 +717,11 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][1]["status"])
         self.assertEqual("current", h5_plan["substeps"][0]["children"][2]["status"])
+        self.assertEqual(
+            "draft_supplier_quote_open",
+            h5_plan["current_artifacts"]["H5.0.3"]["status"],
+        )
+        self.assertEqual("H5-BLK-SA518-QUOTE", h5_plan["blocker"]["id"])
         self.assertFalse(h5_plan["authorization"]["sample_or_component_purchase"])
         self.assertEqual(
             "9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5",
