@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "stage": "H5",
+  "status": "in_progress",
+  "current_substep": "H5.0.1",
+  "purpose": "close received-part uncertainties with the least expensive reliable evidence, using documents or serial replacements before buying samples",
+  "accepted_inputs": [
+    "H4 joined pre-layout gate reviewed",
+    "nine H3 physical residuals explicitly assigned to H5",
+    "fourteen H1 received-part evidence gates",
+    "user rule: purchasing is the last step after deeper research or a documented serial replacement search"
+  ],
+  "authorization": {
+    "manufacturer_and_distributor_research": true,
+    "read_only_supplier_contact_preparation": true,
+    "supplier_contact_send": false,
+    "sample_or_component_purchase": false,
+    "pcb_placement_and_routing": false,
+    "fabrication": false
+  },
+  "substeps": [
+    {
+      "id": "H5.0",
+      "title": "Reduce the physical evidence set before spending",
+      "status": "current",
+      "children": [
+        {
+          "id": "H5.0.1",
+          "title": "Join every H5 residual to its exact MPN, missing datum, existing source and accepted pass rule",
+          "status": "current"
+        },
+        {
+          "id": "H5.0.2",
+          "title": "Search manufacturer and distributor evidence more deeply and evaluate fully documented serial replacements",
+          "status": "waiting"
+        },
+        {
+          "id": "H5.0.3",
+          "title": "Publish only the irreducible received-sample set, exact measurements and cost for explicit approval",
+          "status": "waiting"
+        }
+      ]
+    },
+    {
+      "id": "H5.1",
+      "title": "Identify and measure only approved received samples",
+      "status": "waiting_for_h5_0_and_cost_approval"
+    },
+    {
+      "id": "H5.2",
+      "title": "Run mating, land-fit, cable, actuator and assembly coupons",
+      "status": "waiting"
+    },
+    {
+      "id": "H5.3",
+      "title": "Reconcile evidence, correct mismatches at source and accept the H5 gate before H6",
+      "status": "waiting"
+    }
+  ],
+  "blocker": null,
+  "next_active_repository": "esp32-leshy2",
+  "next_active_substep": "H5.0.1"
+}

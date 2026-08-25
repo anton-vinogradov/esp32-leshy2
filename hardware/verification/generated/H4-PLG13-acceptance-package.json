@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "stage": "H4.3",
+  "status": "reviewed_h4_complete",
+  "source_hashes": {
+    "hardware/verification/generated/H4-PLG11-joined-review.json": "300295f74aa9e6cb6e643ddfa193f9e06a771269c9ce6d8d5a44e564916de010",
+    "hardware/verification/generated/H4-PLG12-correction-closure.json": "897c9021c0e7472046be380db1aedb4de9768920dcacaf46562275bc8b95d1df"
+  },
+  "acceptance_meaning": [
+    "all currently possible H1/H2/H3/F3 cross-domain checks are joined and reproducible",
+    "no virtually testable blocker or contract mismatch remains before H5",
+    "all physical-only uncertainties retain exact H5/H6/H8 evidence owners"
+  ],
+  "acceptance_does_not_authorize": [
+    "component or sample purchase",
+    "PCB placement or routing",
+    "prototype or production fabrication",
+    "calling physical-only behavior proven"
+  ],
+  "physical_residual_summary": {
+    "total": 85,
+    "by_stage": {
+      "H6": 9,
+      "H8": 78,
+      "H5": 9
+    },
+    "closed_by_h4": 0
+  },
+  "correction_summary": {
+    "detected": 3,
+    "corrected_at_source": 3,
+    "regenerated": 3,
+    "open": 0,
+    "functional_changes": 0,
+    "bom_delta_usd": "0.0000"
+  },
+  "open_findings": [],
+  "pending_decisions": [],
+  "review_summary": {
+    "checks": 34,
+    "failed": 0,
+    "unresolved": 0,
+    "status": "reviewed"
+  },
+  "acceptance_basis": "automatic acceptance authorized by the project owner for clean reviews without a functional, material-cost or safety decision",
+  "next": {
+    "stage": "H5.0.1",
+    "action": "exhaust documentary and serial-replacement evidence before proposing any physical sample purchase"
+  }
+}

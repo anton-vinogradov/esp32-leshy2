@@ -3,10 +3,10 @@
   "stage": "H3.3.5",
   "status": "reviewed_analog_corner_consolidation",
   "input_hashes": {
-    "hardware/verification/generated/H3-VRF31-display.json": "7908b5b1d9710790bf16e3f0e6589484bc9702f8611b63be9ffcc7224552df0c",
-    "hardware/verification/generated/H3-VRF32-audio.json": "6ce7b8687cb38f0e63dd675973b91c2e7e7ae02dd6e558aae3e89693cfffaea2",
-    "hardware/verification/generated/H3-VRF33-ir.json": "d7723d7f1f8c909f48684eb0af77cc08ce24422b17573ac4168cb21c96f7ad36",
-    "hardware/verification/generated/H3-VRF34-battery-analog.json": "c8d9ce24076c4d83ce5cd82be8650a7c395c0c085ccbee57f05254f04bfd99a2"
+    "hardware/verification/generated/H3-VRF31-display.json": "35b176744e3e14cdbd35af7e9ea64e5faf17da9fde5b6cad1c8a6d129b12ad79",
+    "hardware/verification/generated/H3-VRF32-audio.json": "029876a507c4ec9cb6fa4126923092dd637b49ca15ad128c4d8dc41aa55e7dd0",
+    "hardware/verification/generated/H3-VRF33-ir.json": "12fd7e3fd4dbd042c3ebbc737dcbdf2db499f8cb3a7e30dd47d8652e3253b5a7",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "e5b785ddc58f114079fbac2e32ea90be798fa1402bbff10d8a4637b4c30a5980"
   },
   "leaf_summary": {
     "display": {

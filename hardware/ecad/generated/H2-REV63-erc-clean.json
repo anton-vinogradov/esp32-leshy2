@@ -41,7 +41,7 @@
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_pro": "a38d2ae6ec8a9459cc66d6ca17792208314efced730a29847c7e2011131a486a",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch": "9dc3755f2e8b625b4bd68d28cbd153f50ebf12e567d8270598277a041d8187a3",
     "hardware/ecad/libraries/leshy2.kicad_sym": "69a7d384ac20a5f2efe27125faf36ba170ed3c57736f246ac9d3f56b74113846",
-    "hardware/ecad/generated/H2-REV62-no-connects.json": "0c4c122ff7e6018c7637076325d06c8eaa698701edb456bef2309dc4fa452218"
+    "hardware/ecad/generated/H2-REV62-no-connects.json": "51cdae413ffe4a94d35862f34e66f9756e7463bfd65c88896b62c5bb47773aa7"
   },
   "projects": [
     {

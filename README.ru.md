@@ -12,8 +12,8 @@
 
 </div>
 
-> **Сейчас: H4.1 · объединённое read-only pre-layout review.** H3 и firmware
-> F3 прошли ревью; PCB routing, закупка и печать пока заблокированы.
+> **Сейчас: H5.0.1 · сокращение физического evidence до затрат.** H4
+> [проведён](docs/h4-prelayout-gate-report.ru.md); закупка, PCB routing и печать остаются заблокированы.
 
 <div align="center">
 
@@ -106,8 +106,8 @@ safety-автоматику.
 | H1 · Физический дизайн устройства | ✅ Проведено ревью | [Открыть H1](docs/stage-results.ru.md#h1) |
 | H2 · Production ECAD-схема | ✅ Проведено ревью и принято | [Результаты H2](docs/stage-results.ru.md#h2) |
 | H3 · Виртуальная электрическая проверка | ✅ Проведено ревью и принято | [Итоговый отчёт H3](docs/h3-acceptance.ru.md) |
-| **H4 · Объединённый pre-layout gate** | **▶️ Сейчас: объединённое ревью** | [План H4](docs/stage-results.ru.md#h4) |
-| H5 · Образцы компонентов | 🔒 Ожидает H4 и одобрение стоимости | [План H5](docs/stage-results.ru.md#h5) |
+| H4 · Объединённый pre-layout gate | ✅ [Проведено ревью](docs/h4-prelayout-gate-report.ru.md) | механика, ECAD, H3 и firmware F3 согласованы |
+| **H5 · Evidence компонентов** | **▶️ Сейчас: поиск до закупки** | [Состав H5](docs/stage-results.ru.md#h5) |
 | H6 · PCB placement и routing | 🔒 Ожидает H5 | [План H6](docs/stage-results.ru.md#h6) |
 | H7 · Печать прототипа и bring-up | 🔒 Ожидает H6 и одобрение заказа | [План H7](docs/stage-results.ru.md#h7) |
 | H8 · Физическая квалификация | 🔒 Ожидает H7 | [План H8](docs/stage-results.ru.md#h8) |
@@ -117,20 +117,19 @@ safety-автоматику.
 отчёт, связанный с этой таблицей. Внутренние подэтапы обновляют точный маркер,
 но не создают отдельные глобальные отчёты.
 
-**Железо находится на H4.1.** Виртуальная электрическая проверка H3 и
-[итог firmware F3](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f3-boot-memory-emulation-report.ru.md)
-прошли ревью и стали входами объединённого read-only pre-layout review. PCB
-layout и любые заказы остаются не разрешены.
+**Железо находится на H5.0.1.** [Итог H4](docs/h4-prelayout-gate-report.ru.md)
+объединяет механику H1, production ECAD H2, electrical evidence H3 и проверенный
+итог firmware F3 без открытых виртуальных противоречий. H5 сначала исчерпывает
+документы и серийные замены; PCB layout и любые заказы остаются не разрешены.
 
 <details open>
-<summary><strong>Текущее объединённое ревью H4 — точная детальная позиция</strong></summary>
+<summary><strong>Текущее сокращение evidence H5 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H4.1 -->
+<!-- current-substep: H5.0.1 -->
 
-**Точный маркер: `H4.1`** — объединить принятую механику H1, production ECAD
-H2, electrical evidence H3 и итог firmware F3, затем выявить все сквозные
-противоречия. Это read-only gate: каждое finding исправляется в source, а
-затронутое evidence перегенерируется в том же commit.
+**Точный маркер: `H5.0.1`** — связать каждый физический residual H5 с точным
+MPN, отсутствующим параметром, существующим источником и pass rule. До любого
+предложения о закупке исчерпываются данные производителя и серийные замены.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 048 схемных строк.
@@ -188,11 +187,11 @@ H2, electrical evidence H3 и итог firmware F3, затем выявить в
   - ✅ `H2.5.5` — watchdog, thermal/fault supervision и `FAULT_KILL`:
     [проведено ревью](docs/fault-shutdown.ru.md).
   - ✅ `H2.5.6` — [сводка findings и закрытие ревью](docs/safety-review.ru.md).
-- ✅ `H2.6` — [native ERC и все 189 намеренных NC проведены ревью](docs/erc-review.ru.md):
+- ✅ `H2.6` — [native ERC и все 191 намеренных NC проведены ревью](docs/erc-review.ru.md):
   четыре проекта дают ноль native errors/warnings, у каждого NC есть физический
   pin, точный marker и письменное обоснование.
 - ✅ `H2.7` — [H1, физические контакты, nets, M1 и firmware F2 сверены](docs/hwfw-reconciliation.ru.md):
-  1 026 электрических identities, 266 root nets, 80 контактов M1 и 130
+  1 046 электрических identities, 268 root nets, 80 контактов M1 и 130
   controller allocations не имеют оставшихся несоответствий.
 - ✅ **`H2.8` — проведено ревью:** формальная финальная пользовательская приёмка перед H3.
   - ✅ `H2.8.1` — [пакет приёмки и deferred gates подготовлены](docs/h2-acceptance.ru.md).
@@ -241,12 +240,15 @@ H2, electrical evidence H3 и итог firmware F3, затем выявить в
   - ✅ `H3.7.3` — [формальный пакет приёмки H3 подготовлен](docs/h3-acceptance.ru.md).
   - ✅ `H3.7.4` — явное подтверждение пользователя записано.
 - ✅ `H4.0.1` — evidence firmware F3 прошло ревью и связано с gate.
-- ▶️ **`H4.1` — сейчас:** объединить механику H1, ECAD H2, evidence H3 и
-  firmware F3, затем перечислить противоречия и residual physical-only gates.
+- ✅ `H4.1` — объединены механика H1, ECAD H2, evidence H3 и firmware F3.
+- ✅ `H4.2` — два документальных несоответствия исправлены в источниках и перегенерированы.
+- ✅ `H4.3` — [объединённый pre-layout gate проведён](docs/h4-prelayout-gate-report.ru.md).
+- ▶️ **`H5.0.1` — сейчас:** связать все residuals H5 с MPN, недостающим evidence и pass rules.
 
 Проверенный план H2 — [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json),
-завершённый H3 — [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json),
-текущий — [`h4-prelayout-plan.json`](hardware/verification/h4-prelayout-plan.json).
+завершённые H3/H4 — [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json)
+и [`h4-prelayout-plan.json`](hardware/verification/h4-prelayout-plan.json),
+текущий — [`h5-component-evidence-plan.json`](hardware/verification/h5-component-evidence-plan.json).
 Закрытие каждой подзадачи меняет этот маркер и обе страницы roadmap в том же commit.
 
 </details>

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "stage": "H4.2",
+  "status": "reviewed",
+  "source_hashes": {
+    "hardware/verification/generated/H4-PLG11-joined-review.json": "300295f74aa9e6cb6e643ddfa193f9e06a771269c9ce6d8d5a44e564916de010"
+  },
+  "corrections": [
+    {
+      "id": "H4-JOIN-001",
+      "finding": "H1 machine counts said 80 assigned M1 contacts while its inherited narrative still claimed four reserved/no-connect contacts",
+      "source_correction": "hardware/architecture/candidates/G2F-3I.json now states 80 assigned / 0 reserved / 0 no-connect and all H1/H2/H3 derivatives were regenerated",
+      "functional_effect": "none; the accepted 80-contact electrical mapping did not change",
+      "cost_effect_usd": "0.0000"
+    },
+    {
+      "id": "H4-JOIN-002",
+      "finding": "the product-facing H2 summaries retained superseded inventory, identity and root-net totals",
+      "source_correction": "H2 acceptance now derives final counts from H2-REV71/72/73 and every public summary uses 1048 / 1046 / 268",
+      "functional_effect": "none; documentation and traceability now match current generated ECAD evidence",
+      "cost_effect_usd": "0.0000"
+    },
+    {
+      "id": "H4-JOIN-003",
+      "finding": "the product-facing H2 summaries retained the superseded count of 189 intentional no-connect contacts while the current native register contains 191",
+      "source_correction": "H2 acceptance now derives the NC count from H2-REV62 and all public summaries use 191",
+      "functional_effect": "none; the KiCad no-connect markers and rationales were already present and reviewed",
+      "cost_effect_usd": "0.0000"
+    }
+  ],
+  "summary": {
+    "detected": 3,
+    "corrected_at_source": 3,
+    "regenerated": 3,
+    "open": 0,
+    "functional_changes": 0,
+    "bom_delta_usd": "0.0000"
+  },
+  "checks": {
+    "all_findings_have_source_corrections": true,
+    "all_findings_are_nonfunctional": true,
+    "joined_review_is_clean_after_regeneration": true
+  },
+  "open_findings": [],
+  "pending_decisions": [],
+  "next": {
+    "stage": "H4.3",
+    "action": "accept the joined boundary while preserving all physical-only gates and prohibitions"
+  }
+}

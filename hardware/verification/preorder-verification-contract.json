@@ -8,6 +8,7 @@
     "current_ecad": "H2 production schematics accepted by the user at hardware commit 25d9ee2; four complete native KiCad projects pass zero-warning/error ERC and the firmware F2 contract is synchronized at 900bb2b",
     "executable_firmware": "F3 reviewed; five production-SDK targets pass debug/release builds, 52/52 artifacts reproduce byte-for-byte, ten image/RAM gates pass and 24 portable scenarios pass address/undefined-behavior sanitizers",
     "instruction_emulation": "ESP32-S3 exact debug/release images boot and execute reviewed PSRAM and isolated fault paths in Espressif QEMU; C5, RP2354B and MSPM0C1106 boot/peripheral/rollback execution remains explicitly assigned to dev-board and HIL gates",
+    "joined_pre_layout": "H4 reviewed; H1 mechanics, H2 ECAD, H3 evidence and firmware F3 agree after two documentation-only source corrections; all 85 physical residuals retain H5/H6/H8 owners",
     "physical_hil": "not run"
   },
   "gates": [
@@ -81,7 +82,8 @@
     },
     {
       "id": "P6_PRE_LAYOUT_REVIEW",
-      "status": "current_joined_review",
+      "status": "reviewed",
+      "review_evidence": "hardware/verification/generated/H4-PLG13-acceptance-package.json; bilingual report docs/h4-prelayout-gate-report.md",
       "required_evidence": [
         "joined mechanical/electrical/firmware review",
         "closed blocker list and explicit residual physical-only uncertainties",

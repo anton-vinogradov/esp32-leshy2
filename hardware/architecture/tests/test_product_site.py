@@ -1,3 +1,4 @@
+import json
 import re
 import subprocess
 import sys
@@ -118,6 +119,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/physical-evidence-register.ru.md",
         "docs/h3-acceptance.md",
         "docs/h3-acceptance.ru.md",
+        "docs/h4-prelayout-gate-report.md",
+        "docs/h4-prelayout-gate-report.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -143,13 +146,13 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: H4.1", "H1 accepted",
+                "Current hardware boundary: H5.0.1", "H1 accepted",
                 "F3 reviewed",
                 "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: H4.1", "H1 принят",
+                "Текущая аппаратная граница: H5.0.1", "H1 принят",
                 "F3 проведено ревью", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
@@ -165,8 +168,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Hardware is at H4.1", "printing/fabrication"),
-            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H4.1", "печать/на фабрику"),
+            "README.md": ("Roadmap and current position", "Hardware is at H5.0.1", "printing/fabrication"),
+            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H5.0.1", "печать/на фабрику"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -205,6 +208,43 @@ class ProductSiteTests(unittest.TestCase):
             ("README.ru.md", "docs/h3-acceptance.ru.md"),
             ("docs/roadmap.md", "h3-acceptance.md"),
             ("docs/roadmap.ru.md", "h3-acceptance.ru.md"),
+        ):
+            self.assertIn(report, self.read(name), name)
+
+    def test_completed_global_h4_has_bilingual_result_report(self):
+        reports = {
+            "docs/h4-prelayout-gate-report.md": (
+                "H4 result · joined pre-layout gate",
+                "Three documentation-only contradictions",
+                "85",
+                "H5.0.1",
+                "remain unauthorized",
+            ),
+            "docs/h4-prelayout-gate-report.ru.md": (
+                "Итог H4 · объединённый pre-layout gate",
+                "трёх документальных несоответствий",
+                "85",
+                "H5.0.1",
+                "Не разрешает закупку",
+            ),
+        }
+        for name, tokens in reports.items():
+            page = self.read(name)
+            self.assertEqual(1, page.count("```mermaid"), name)
+            for token in tokens:
+                self.assertIn(token, page, f"{name}: {token}")
+
+        acceptance = json.loads(
+            self.read("hardware/verification/generated/H4-PLG13-acceptance-package.json")
+        )
+        self.assertEqual("reviewed_h4_complete", acceptance["status"])
+        self.assertEqual(0, acceptance["review_summary"]["unresolved"])
+        self.assertEqual(3, acceptance["correction_summary"]["detected"])
+        for name, report in (
+            ("README.md", "docs/h4-prelayout-gate-report.md"),
+            ("README.ru.md", "docs/h4-prelayout-gate-report.ru.md"),
+            ("docs/roadmap.md", "h4-prelayout-gate-report.md"),
+            ("docs/roadmap.ru.md", "h4-prelayout-gate-report.ru.md"),
         ):
             self.assertIn(report, self.read(name), name)
 
@@ -486,12 +526,15 @@ class ProductSiteTests(unittest.TestCase):
         h4_plan = json.loads(
             self.read("hardware/verification/h4-prelayout-plan.json")
         )
+        h5_plan = json.loads(
+            self.read("hardware/verification/h5-component-evidence-plan.json")
+        )
         self.assertEqual("H3", plan["stage"])
         self.assertEqual("reviewed", plan["status"])
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
-        self.assertEqual("H4", state["current_stage"])
-        self.assertEqual("H4.1", state["current_substep"])
+        self.assertEqual("H5", state["current_stage"])
+        self.assertEqual("H5.0.1", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -590,11 +633,16 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("1.2814", acceptance["correction_summary"]["known_incremental_bom_usd_at_quantity_100"])
         self.assertTrue(acceptance["user_acceptance"]["accepted"])
         self.assertEqual("H4", h4_plan["stage"])
-        self.assertEqual("in_progress", h4_plan["status"])
-        self.assertEqual("H4.1", h4_plan["current_substep"])
+        self.assertEqual("reviewed", h4_plan["status"])
+        self.assertIsNone(h4_plan["current_substep"])
         self.assertEqual("reviewed", h4_plan["substeps"][0]["status"])
         self.assertEqual("reviewed", h4_plan["substeps"][0]["children"][0]["status"])
-        self.assertEqual("current", h4_plan["substeps"][1]["status"])
+        self.assertTrue(all(row["status"] == "reviewed" for row in h4_plan["substeps"]))
+        self.assertEqual("H5", h5_plan["stage"])
+        self.assertEqual("in_progress", h5_plan["status"])
+        self.assertEqual("H5.0.1", h5_plan["current_substep"])
+        self.assertEqual("current", h5_plan["substeps"][0]["children"][0]["status"])
+        self.assertFalse(h5_plan["authorization"]["sample_or_component_purchase"])
         self.assertEqual(
             "9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5",
             h4_plan["firmware_f3_evidence"]["commit"],

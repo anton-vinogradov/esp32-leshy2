@@ -19,6 +19,10 @@ INPUTS = (
     GENERATED / "H2-REV64-erc-consolidated.json",
     GENERATED / "H2-REV75-hwfw-consolidated.json",
 )
+INVENTORY_PATH = GENERATED / "H2-REV71-canonical-inventories.json"
+CONTACTS_PATH = GENERATED / "H2-REV72-physical-contacts.json"
+NETS_PATH = GENERATED / "H2-REV73-named-nets-m1.json"
+NO_CONNECTS_PATH = GENERATED / "H2-REV62-no-connects.json"
 PLAN = ECAD / "h2-schematic-plan.json"
 
 
@@ -31,7 +35,7 @@ DEFERRED = [
 ]
 
 
-def render_doc(manifest: dict, russian: bool) -> str:
+def render_doc(manifest: dict, final_counts: dict, russian: bool) -> str:
     if russian:
         title = "# Пакет приёмки production ECAD H2"
         nav = "[English](h2-acceptance.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Схемы](schematics.ru.md)"
@@ -40,8 +44,8 @@ def render_doc(manifest: dict, russian: bool) -> str:
         done = [
             "четыре полные native KiCad-иерархии: UI, RF/power, display-adapter и LoRa Cap",
             "независимое power/recovery/isolation/quiet-state/fault-shutdown ревью",
-            "нулевой native ERC и 189 физически сопоставленных намеренных NC",
-            "1 035 ledger-строк, 1 033 электрических identities, 266 root nets и 80 M1 contacts сверены",
+            f"нулевой native ERC и {final_counts['intentional_no_connects']} физически сопоставленных намеренных NC",
+            f"{final_counts['ledger_rows']:,} ledger-строк, {final_counts['reconciled_electrical_identities']:,} сопоставленных электрических identities, {final_counts['root_named_nets']} root nets и {final_counts['m1_physical_contacts']} M1 contacts сверены".replace(",", " "),
             "130 controller allocations совпадают с KiCad; 125 MCU-контактов byte-identical в firmware F2",
         ]
         defer_h = "## Что сознательно остаётся за границей H2"
@@ -55,8 +59,8 @@ def render_doc(manifest: dict, russian: bool) -> str:
         done = [
             "four complete native KiCad hierarchies: UI, RF/power, display adapter and LoRa Cap",
             "independent power/recovery/isolation/quiet-state/fault-shutdown review",
-            "zero native ERC findings and 189 physically reconciled intentional NCs",
-            "1,035 ledger rows, 1,033 electrical identities, 266 root nets and 80 M1 contacts reconciled",
+            f"zero native ERC findings and {final_counts['intentional_no_connects']} physically reconciled intentional NCs",
+            f"{final_counts['ledger_rows']:,} ledger rows, {final_counts['reconciled_electrical_identities']:,} reconciled electrical identities, {final_counts['root_named_nets']} root nets and {final_counts['m1_physical_contacts']} M1 contacts reconciled",
             "130 controller allocations agree with KiCad; 125 MCU contacts are byte-identical in firmware F2",
         ]
         defer_h = "## Deliberately outside H2"
@@ -77,6 +81,17 @@ def build() -> tuple[dict[Path, str], dict]:
     acceptance = plan.get("acceptance", {})
     if acceptance.get("status") != "accepted_by_user":
         raise ValueError("H2 plan acceptance record is absent")
+    inventory = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
+    contacts = json.loads(CONTACTS_PATH.read_text(encoding="utf-8"))
+    nets = json.loads(NETS_PATH.read_text(encoding="utf-8"))
+    no_connects = json.loads(NO_CONNECTS_PATH.read_text(encoding="utf-8"))
+    final_counts = {
+        "ledger_rows": inventory["summary"]["h2_instance_rows"],
+        "reconciled_electrical_identities": contacts["summary"]["reconciled_electrical_identities"],
+        "root_named_nets": nets["summary"]["root_named_nets"],
+        "m1_physical_contacts": nets["summary"]["m1_physical_contacts"],
+        "intentional_no_connects": no_connects["summary"]["intentional_no_connects"],
+    }
     reviews = []
     for path in INPUTS:
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -89,8 +104,10 @@ def build() -> tuple[dict[Path, str], dict]:
         "status": "reviewed_h2_user_accepted",
         "source_hashes": {
             **{str(path.relative_to(REPO)): sha256(path) for path in INPUTS},
+            **{str(path.relative_to(REPO)): sha256(path) for path in (INVENTORY_PATH, CONTACTS_PATH, NETS_PATH, NO_CONNECTS_PATH)},
             str(PLAN.relative_to(REPO)): sha256(PLAN),
         },
+        "final_counts": final_counts,
         "reviewed_prerequisites": reviews,
         "acceptance_meaning": "accept the complete H2 production schematic as the immutable starting input for H3; later findings reopen affected gates",
         "acceptance_does_not_authorize": ["PCB placement/routing", "purchasing", "fabrication", "claim of physical prototype validation"],
@@ -106,8 +123,8 @@ def build() -> tuple[dict[Path, str], dict]:
     }
     return {
         OUTPUT: json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
-        DOC_EN: render_doc(manifest, False),
-        DOC_RU: render_doc(manifest, True),
+        DOC_EN: render_doc(manifest, final_counts, False),
+        DOC_RU: render_doc(manifest, final_counts, True),
     }, manifest
 
 

@@ -8,8 +8,8 @@ H2 принят пользователем как неизменяемый ис�
 
 - четыре полные native KiCad-иерархии: UI, RF/power, display-adapter и LoRa Cap
 - независимое power/recovery/isolation/quiet-state/fault-shutdown ревью
-- нулевой native ERC и 189 физически сопоставленных намеренных NC
-- 1 035 ledger-строк, 1 033 электрических identities, 266 root nets и 80 M1 contacts сверены
+- нулевой native ERC и 191 физически сопоставленных намеренных NC
+- 1 048 ledger-строк  1 046 сопоставленных электрических identities  268 root nets и 80 M1 contacts сверены
 - 130 controller allocations совпадают с KiCad; 125 MCU-контактов byte-identical в firmware F2
 
 ## Что сознательно остаётся за границей H2

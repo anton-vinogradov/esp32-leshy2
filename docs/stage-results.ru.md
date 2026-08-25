@@ -57,11 +57,11 @@
 - [Итог safety-ревью](safety-review.ru.md) — H2.5 закрыт, пять findings
   исправлены, открытых paper/ECAD findings нет.
 - [ERC и NC-ревью](erc-review.ru.md) — все четыре проекта дают ноль native
-  errors/warnings, все 189 физических NC обоснованы.
+  errors/warnings, все 191 физический NC обоснованы.
 - [Полный реестр NC](no-connects.ru.md) — точный symbol, pin и причина для
   каждого намеренно открытого контакта.
-- [Сквозная HW/FW-сверка](hwfw-reconciliation.ru.md) — H1, 1 026
-  электрических identities, 266 root nets, все контакты M1 и firmware F2 совпадают.
+- [Сквозная HW/FW-сверка](hwfw-reconciliation.ru.md) — H1, 1 046
+  электрических identities, 268 root nets, все контакты M1 и firmware F2 совпадают.
 - [Пакет приёмки H2](h2-acceptance.ru.md) — завершённая область, принятые
   baseline commits и все deferred H3/F3/H5/H6/H8 gates.
 - Проведено ревью всей UI/control PCB, всех двенадцати RF/power child-листов,
@@ -192,7 +192,7 @@ H2 instance и root net. [H3.7.2](physical-evidence-register.ru.md) назнач
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate
 
-**Статус:** ▶️ текущее объединённое read-only review `H4.1`.
+**Статус:** ✅ проведено ревью и закрыто.
 
 Единое ревью механики, production ECAD, виртуальных electrical evidence и
 target-visible firmware contracts. Проверенный
@@ -200,17 +200,21 @@ target-visible firmware contracts. Проверенный
 даёт точное S3 QEMU execution, воспроизводимые artifacts пяти targets и
 названные физические gates для targets без точного эмулятора.
 
-Машиночитаемый план —
-[`h4-prelayout-plan.json`](../hardware/verification/h4-prelayout-plan.json).
+[Понятный итог H4](h4-prelayout-gate-report.ru.md) и
+[`H4-PLG13`](../hardware/verification/generated/H4-PLG13-acceptance-package.json)
+фиксируют 0 открытых виртуальных противоречий, два исправленных документальных
+finding и все 85 физических residuals с владельцами H5/H6/H8.
 
 <a id="h5"></a>
 ## H5 · Образцы компонентов
 
-**Статус:** 🔒 ожидает H4 и отдельного одобрения стоимости.
+**Статус:** ▶️ сейчас `H5.0.1`; поиск разрешён, закупка — нет.
 
-Минимальная закупка закрывает только физически неразрешимые по документам
-неопределённости: received-part identity, mating, stack-up и реальные размеры.
-Это не production basket.
+Текущий [машинный план](../hardware/verification/h5-component-evidence-plan.json)
+сначала связывает девять residuals H5 с точными MPN, отсутствующими данными и
+pass rules, затем исчерпывает документы производителя и полностью описанные
+серийные замены. Только неустранимый набор образцов позже может стать отдельно
+одобренной по стоимости закупкой; это не production basket.
 
 <a id="h6"></a>
 ## H6 · PCB placement и routing

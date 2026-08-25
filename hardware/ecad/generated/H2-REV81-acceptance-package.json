@@ -3,10 +3,21 @@
   "stage": "H2.8.1",
   "status": "reviewed_h2_user_accepted",
   "source_hashes": {
-    "hardware/ecad/generated/H2-REV56-safety-consolidated.json": "5d65324bdf21b7c89f2c2cd885e0789b7973a4ca563d416bfddb379bce0b5a00",
-    "hardware/ecad/generated/H2-REV64-erc-consolidated.json": "62b1e8666a48fff1b20004fe5f6b621f3d7060548417f548a716c0386f4386a0",
-    "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json": "560bf1c7f702fd6adfd5999dd891290d7bbe58eb423958db10558b36540a0321",
+    "hardware/ecad/generated/H2-REV56-safety-consolidated.json": "140c2295b09ffb934a48bff19574ebd643b3c744d567385617a736e652c0f26f",
+    "hardware/ecad/generated/H2-REV64-erc-consolidated.json": "a0599732306cd9dab9a83f9354c98a1ea697fe3380d498143169ea5c47b042d6",
+    "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json": "b11aae49849030292ec33e2cc20de68bdfe7d0613320b498e72c6aa4ac9a44a0",
+    "hardware/ecad/generated/H2-REV71-canonical-inventories.json": "8d8137027f47c5fe4b53b3271dd09b04fb8aba6c713998bd513f42dee6d51a40",
+    "hardware/ecad/generated/H2-REV72-physical-contacts.json": "73bb0bad2e153850b526a5f0b02a643f691f039d6b9edf7cfff0c226e0d1a6b1",
+    "hardware/ecad/generated/H2-REV73-named-nets-m1.json": "26c8897b385b27bdd42f9f36103717e2af863a9d8a21c74eaa4ee3f5d807c4b3",
+    "hardware/ecad/generated/H2-REV62-no-connects.json": "51cdae413ffe4a94d35862f34e66f9756e7463bfd65c88896b62c5bb47773aa7",
     "hardware/ecad/h2-schematic-plan.json": "145e2c9a027c94279ee1878fcdfdb49394853a609edb073f37782a4d571adf8a"
+  },
+  "final_counts": {
+    "ledger_rows": 1048,
+    "reconciled_electrical_identities": 1046,
+    "root_named_nets": 268,
+    "m1_physical_contacts": 80,
+    "intentional_no_connects": 191
   },
   "reviewed_prerequisites": [
     {

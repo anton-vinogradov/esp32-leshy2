@@ -56,11 +56,11 @@ are satisfied.
 - [Consolidated safety review](safety-review.md) — H2.5 is closed, five
   findings are corrected and no paper/ECAD finding remains open.
 - [ERC and NC review](erc-review.md) — all four projects have zero native
-  errors/warnings and all 189 physical NC contacts are justified.
+  errors/warnings and all 191 physical NC contacts are justified.
 - [Complete NC register](no-connects.md) — exact symbol, pin and rationale for
   every deliberately open contact.
-- [End-to-end HW/FW reconciliation](hwfw-reconciliation.md) — H1, 1,026
-  electrical identities, 266 root nets, all M1 contacts and firmware F2 agree.
+- [End-to-end HW/FW reconciliation](hwfw-reconciliation.md) — H1, 1,046
+  electrical identities, 268 root nets, all M1 contacts and firmware F2 agree.
 - [H2 acceptance package](h2-acceptance.md) — completed scope, accepted
   baseline commits and every deferred H3/F3/H5/H6/H8 verification gate.
 - The complete UI/control PCB, all twelve RF/power child sheets, the passive
@@ -192,7 +192,7 @@ accepted baseline and preserves every physical residual.
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate
 
-**Status:** ▶️ current joined read-only review `H4.1`.
+**Status:** ✅ reviewed and closed.
 
 One joined review of mechanics, production ECAD, virtual electrical evidence
 and target-visible firmware contracts. The reviewed firmware
@@ -200,17 +200,21 @@ and target-visible firmware contracts. The reviewed firmware
 supplies exact S3 QEMU execution, reproducible five-target artifacts and named
 physical gates for targets without an exact emulator.
 
-The machine plan is
-[`h4-prelayout-plan.json`](../hardware/verification/h4-prelayout-plan.json).
+The [readable H4 report](h4-prelayout-gate-report.md) and
+[`H4-PLG13`](../hardware/verification/generated/H4-PLG13-acceptance-package.json)
+record 0 open virtual contradictions, two corrected documentation findings and
+all 85 physical residuals still owned by H5/H6/H8.
 
 <a id="h5"></a>
 ## H5 · Component evidence samples
 
-**Status:** 🔒 waiting for H4 and separate cost approval.
+**Status:** ▶️ current `H5.0.1`; research is authorized, purchasing is not.
 
-A minimal purchase closes only uncertainties that documents cannot resolve:
-received-part identity, mating, stack-up and physical dimensions. It is not a
-production basket.
+The current [machine plan](../hardware/verification/h5-component-evidence-plan.json)
+first joins the nine H5 residuals to exact MPNs, missing data and pass rules,
+then exhausts manufacturer evidence and fully documented serial replacements.
+Only the irreducible sample set may later become a separately cost-approved
+purchase; it is not a production basket.
 
 <a id="h6"></a>
 ## H6 · PCB placement and routing

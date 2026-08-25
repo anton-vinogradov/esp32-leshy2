@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "current_stage": "H4",
-  "current_substep": "H4.1",
+  "current_stage": "H5",
+  "current_substep": "H5.0.1",
   "stages": [
     {"id": "H0", "status": "reviewed"},
     {"id": "H1", "status": "reviewed"},
     {"id": "H2", "status": "reviewed", "accepted_by_user": "2026-08-24"},
     {"id": "H3", "status": "reviewed", "accepted_by_user": "2026-08-24"},
-    {"id": "H4", "status": "current"},
-    {"id": "H5", "status": "waiting"},
+    {"id": "H4", "status": "reviewed", "accepted_by_automatic_clean_review": "2026-08-25"},
+    {"id": "H5", "status": "current"},
     {"id": "H6", "status": "waiting"},
     {"id": "H7", "status": "waiting"},
     {"id": "H8", "status": "waiting"},

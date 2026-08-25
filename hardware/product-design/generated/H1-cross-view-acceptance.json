@@ -121,7 +121,7 @@
       "assigned": 80,
       "reserved_no_connect": 0
     },
-    "summary": "ESP32-S3-WROOM-1U-N16R8 is 33 used / 0 reserved / 0 free: GPIO35/36/37 belong to octal PSRAM, while GPIO0/45/46 are safely reclaimed with explicit boot-strap circuitry and HIL gates; main slow_io is 24 used / 0 reserved / 0 free; the dedicated UI input expander is 16 used / 0 reserved / 0 free; the exact 0x39 headset-control expander uses P0 and keeps P1-P7 as seven pulled, interrupt-capable local reserves; moving F1/F2 to the UI face leaves four M1 contacts reserved and no-connect; PTT, RUN/KILL, full D-pad and F1 through F8 all have complete assigned paths"
+    "summary": "ESP32-S3-WROOM-1U-N16R8 is 33 used / 0 reserved / 0 free: GPIO35/36/37 belong to octal PSRAM, while GPIO0/45/46 are safely reclaimed with explicit boot-strap circuitry and HIL gates; main slow_io is 24 used / 0 reserved / 0 free; the dedicated UI input expander is 16 used / 0 reserved / 0 free; the exact 0x39 headset-control expander uses P0 and keeps P1-P7 as seven pulled, interrupt-capable local reserves; M1 is 80 assigned / 0 reserved / 0 no-connect under the accepted interboard contract; PTT, RUN/KILL, full D-pad and F1 through F8 all have complete assigned paths"
   },
   "not_claimed": {
     "production_schematic_complete": false,

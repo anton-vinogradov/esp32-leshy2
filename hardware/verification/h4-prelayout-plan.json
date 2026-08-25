@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "stage": "H4",
-  "status": "in_progress",
-  "current_substep": "H4.1",
+  "status": "reviewed",
+  "current_substep": null,
   "accepted_inputs": [
     "H1 accepted physical product design",
     "H2 accepted production ECAD schematic",
@@ -44,20 +44,20 @@
     {
       "id": "H4.1",
       "title": "Join H1 mechanics, H2 ECAD, H3 evidence and firmware F3",
-      "status": "current"
+      "status": "reviewed"
     },
     {
       "id": "H4.2",
       "title": "Correct every cross-domain contradiction and regenerate affected evidence",
-      "status": "waiting"
+      "status": "reviewed"
     },
     {
       "id": "H4.3",
       "title": "Prepare and accept the joined pre-layout gate before H5",
-      "status": "waiting"
+      "status": "reviewed"
     }
   ],
   "blocker": null,
   "next_active_repository": "esp32-leshy2",
-  "next_active_substep": "H4.1"
+  "next_active_substep": "H5.0.1"
 }

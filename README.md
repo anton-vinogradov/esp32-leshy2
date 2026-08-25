@@ -12,8 +12,8 @@
 
 </div>
 
-> **Now: H4.1 · joined read-only pre-layout review.** H3 and firmware F3 are
-> reviewed; PCB routing, purchasing and fabrication remain blocked.
+> **Now: H5.0.1 · reduce physical evidence before spending.** H4 is
+> [reviewed](docs/h4-prelayout-gate-report.md); purchasing, PCB routing and fabrication remain blocked.
 
 <div align="center">
 
@@ -105,8 +105,8 @@ drawings, schematics, contracts and checks.
 | H1 · Physical product design | ✅ Reviewed | [Open H1](docs/stage-results.md#h1) |
 | H2 · Production ECAD schematic | ✅ Reviewed and accepted | [H2 results](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ✅ Reviewed and accepted | [H3 result report](docs/h3-acceptance.md) |
-| **H4 · Joined pre-layout gate** | **▶️ Current joined review** | [H4 plan](docs/stage-results.md#h4) |
-| H5 · Component evidence samples | 🔒 Waiting for H4 and cost approval | [H5 plan](docs/stage-results.md#h5) |
+| H4 · Joined pre-layout gate | ✅ [Reviewed](docs/h4-prelayout-gate-report.md) | mechanics, ECAD, H3 and firmware F3 agree |
+| **H5 · Component evidence** | **▶️ Current: research before purchase** | [H5 detail](docs/stage-results.md#h5) |
 | H6 · PCB placement and routing | 🔒 Waiting for H5 | [H6 plan](docs/stage-results.md#h6) |
 | H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6 and order approval | [H7 plan](docs/stage-results.md#h7) |
 | H8 · Physical qualification | 🔒 Waiting for H7 | [H8 plan](docs/stage-results.md#h8) |
@@ -116,20 +116,19 @@ Every completed top-level `H*` phase receives a separate readable result report
 linked from this table. Internal substeps update the exact marker but do not
 create separate global reports.
 
-**Hardware is at H4.1.** H3 virtual electrical verification and the firmware
-[F3 result](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f3-boot-memory-emulation-report.md)
-are reviewed inputs to the joined read-only pre-layout review. PCB layout and
-every order remain unauthorized.
+**Hardware is at H5.0.1.** The [H4 result](docs/h4-prelayout-gate-report.md)
+joins H1 mechanics, H2 production ECAD, H3 electrical evidence and the reviewed
+firmware F3 result with zero open virtual contradiction. H5 begins by exhausting
+documents and serial replacements; PCB layout and every order remain unauthorized.
 
 <details open>
-<summary><strong>Current H4 joined review — exact detailed position</strong></summary>
+<summary><strong>Current H5 evidence reduction — exact detailed position</strong></summary>
 
-<!-- current-substep: H4.1 -->
+<!-- current-substep: H5.0.1 -->
 
-**Exact marker: `H4.1`** — join the accepted H1 mechanics, H2 production ECAD,
-H3 electrical evidence and firmware F3 result, then identify every
-cross-domain contradiction. This is a read-only gate; any finding is corrected
-in source and its affected evidence is regenerated in the same commit.
+**Exact marker: `H5.0.1`** — map every H5 physical residual to its exact MPN,
+missing datum, existing source and pass rule. Manufacturer evidence and fully
+documented serial replacements are exhausted before any sample basket is proposed.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,048-row circuit inventory reviewed.
@@ -186,11 +185,11 @@ in source and its affected evidence is regenerated in the same commit.
   - ✅ `H2.5.5` — watchdog, thermal/fault supervision and `FAULT_KILL`:
     [reviewed](docs/fault-shutdown.md).
   - ✅ `H2.5.6` — [consolidated findings and closed review](docs/safety-review.md).
-- ✅ `H2.6` — [native ERC and all 189 intentional NCs reviewed](docs/erc-review.md):
+- ✅ `H2.6` — [native ERC and all 191 intentional NCs reviewed](docs/erc-review.md):
   four projects report zero native errors/warnings and every NC has a physical
   pin, exact marker and written rationale.
 - ✅ `H2.7` — [H1, physical contacts, nets, M1 and firmware F2 reconciled](docs/hwfw-reconciliation.md):
-  1,026 electrical identities, 266 root nets, 80 M1 contacts and 130
+  1,046 electrical identities, 268 root nets, 80 M1 contacts and 130
   controller allocations have zero remaining mismatch.
 - ✅ **`H2.8` — reviewed:** formal final user acceptance before H3.
   - ✅ `H2.8.1` — [acceptance package and deferred gates prepared](docs/h2-acceptance.md).
@@ -239,12 +238,15 @@ in source and its affected evidence is regenerated in the same commit.
   - ✅ `H3.7.3` — [formal H3 acceptance package prepared](docs/h3-acceptance.md).
   - ✅ `H3.7.4` — explicit user acceptance recorded.
 - ✅ `H4.0.1` — firmware F3 evidence is reviewed and linked into the gate.
-- ▶️ **`H4.1` — current:** join H1 mechanics, H2 ECAD, H3 evidence and
-  firmware F3, then enumerate contradictions and residual physical-only gates.
+- ✅ `H4.1` — H1 mechanics, H2 ECAD, H3 evidence and firmware F3 joined.
+- ✅ `H4.2` — two documentation-only contradictions corrected at source and regenerated.
+- ✅ `H4.3` — [joined pre-layout gate reviewed](docs/h4-prelayout-gate-report.md).
+- ▶️ **`H5.0.1` — current:** map all H5 residuals to MPNs, missing evidence and pass rules.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
-The completed H3 plan is [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json);
-the current plan is [`h4-prelayout-plan.json`](hardware/verification/h4-prelayout-plan.json).
+The completed H3/H4 plans are [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json)
+and [`h4-prelayout-plan.json`](hardware/verification/h4-prelayout-plan.json);
+the current plan is [`h5-component-evidence-plan.json`](hardware/verification/h5-component-evidence-plan.json).
 Closing each subtask changes this marker and both roadmap pages in the same commit.
 
 </details>

@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "stage": "H4.1",
+  "status": "reviewed",
+  "method": "machine join of accepted mechanics, production ECAD, virtual electrical evidence, target-visible BSP consumption and firmware F3 execution boundaries",
+  "source_hashes": {
+    "hardware/verification/h4-prelayout-plan.json": "653aed9964ada7d0880929aa4450ee7d89982ae376a989f879e6f4e0ae2236c0",
+    "hardware/verification/preorder-verification-contract.json": "79637665bab58234b02e7b8b10a2cdec4efb9182ad0a26c994ebe2fb8d9c2387",
+    "hardware/product-design/generated/H1-cross-view-acceptance.json": "bbb7623c11806b3d976d7d84dec617457eecba2b48711ce01c188c0d9709360b",
+    "hardware/ecad/generated/H2-REV81-acceptance-package.json": "6ca852255c0d4e8c70fe52a2a83f7be1f704331786f47c5bfb2383384222c270",
+    "hardware/ecad/generated/H2-REV71-canonical-inventories.json": "8d8137027f47c5fe4b53b3271dd09b04fb8aba6c713998bd513f42dee6d51a40",
+    "hardware/ecad/generated/H2-REV72-physical-contacts.json": "73bb0bad2e153850b526a5f0b02a643f691f039d6b9edf7cfff0c226e0d1a6b1",
+    "hardware/ecad/generated/H2-REV73-named-nets-m1.json": "26c8897b385b27bdd42f9f36103717e2af863a9d8a21c74eaa4ee3f5d807c4b3",
+    "hardware/ecad/generated/H2-hwfw-contract.json": "e0325084d46c7495bf6f852856983c034aaf75ba9c5b1fc1f0479b4bc376844a",
+    "hardware/verification/generated/H3-VRF73-acceptance-package.json": "265ba28b96377f27b61679ddbca393b637fc77649d29077f9e119d24ace4c0f8",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "a3b999ad37b0a16588c86e3dd0e8e7ca6045e7b66e2a3782a221b8fb1a6448fa",
+    "../esp32-leshy2-firmware/config/hardware_bsp_contract.json": "e0325084d46c7495bf6f852856983c034aaf75ba9c5b1fc1f0479b4bc376844a",
+    "../esp32-leshy2-firmware/config/hardware_integration_contract.json": "4f0c9be2cf020dfc21bb90c2d5be0efc8e52815340f681d5481e197dd627760f",
+    "../esp32-leshy2-firmware/config/bsp_generation_input.json": "a8c35ba7028cfdb0fddb982ae9fa4ba25818814be71287aef09cc56f517d5077",
+    "../esp32-leshy2-firmware/config/bsp_target_consumption.json": "dc4c61d5b4f58486c9819294d310b44a0f9bd2ddbd8b4d0b7364d055385fae0c",
+    "../esp32-leshy2-firmware/generated/source_manifest.json": "6bad348eb214933276c9aa763bb77a77c5bb848d3f5eb25aa03af3a475875844",
+    "../esp32-leshy2-firmware/config/f3_4_review.json": "9cca6bfa765d9dc7f0be3f5b1b82ba7d5ce62f3e9ea3b16e7cdf8a7c2222817b",
+    "../esp32-leshy2-firmware/config/preorder_verification_contract.json": "79637665bab58234b02e7b8b10a2cdec4efb9182ad0a26c994ebe2fb8d9c2387"
+  },
+  "counts": {
+    "h1_dimensioned_instances": 187,
+    "h2_ledger_rows": 1048,
+    "h2_reconciled_electrical_identities": 1046,
+    "h2_root_nets": 268,
+    "m1_contacts": 80,
+    "firmware_bsp_contacts": 125
+  },
+  "firmware_f3_commit": "9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5",
+  "firmware_f3_result": {
+    "official_exact_target_emulator": "ESP32-S3 QEMU",
+    "s3_debug_release_boot_runs": 2,
+    "latest_s3_debug_release_scenario_runs": 2,
+    "portable_sanitized_scenarios": 24,
+    "byte_reproducible_artifacts": 52,
+    "image_and_linked_memory_gates": 10,
+    "static_rollback_topologies": 5,
+    "physical_runs": 0
+  },
+  "physical_residuals": {
+    "total": 85,
+    "by_stage": {
+      "H6": 9,
+      "H8": 78,
+      "H5": 9
+    },
+    "closed_by_h4": 0
+  },
+  "checks": {
+    "h1_is_accepted": true,
+    "h1_machine_geometry_passed": true,
+    "h1_m1_is_fully_assigned": true,
+    "h1_m1_narrative_matches_machine_count": true,
+    "h1_service_access_is_complete": true,
+    "h2_is_accepted_and_closed": true,
+    "h2_final_counts_match_current_artifacts": true,
+    "h1_h2_firmware_domain_counts_match": true,
+    "h2_bsp_contains_no_temporary_pins": true,
+    "h2_bsp_total_is_125": true,
+    "hardware_and_firmware_contracts_are_byte_identical": true,
+    "integration_views_are_identical": true,
+    "firmware_generation_hashes_current": true,
+    "firmware_generation_counts_match_contract": true,
+    "generated_bsp_manifest_is_current": true,
+    "all_five_targets_consume_generated_bsp_without_invented_pins": true,
+    "h3_is_accepted_and_analytically_closed": true,
+    "h3_acceptance_hashes_are_current": true,
+    "all_85_physical_residuals_remain_open_and_owned": true,
+    "physical_residual_stage_counts_match": true,
+    "firmware_f3_is_reviewed": true,
+    "firmware_f3_input_hashes_are_current": true,
+    "firmware_f3_exact_claim_boundary_is_honest": true,
+    "firmware_f3_counts_match_review": true,
+    "firmware_f3_has_all_five_physical_gates": true,
+    "pinned_f3_commit_is_in_current_firmware_history": true,
+    "preorder_contract_is_identical_across_repositories": true,
+    "preorder_virtual_gates_are_reviewed": true,
+    "orders_layout_and_fabrication_remain_blocked": true,
+    "h4_plan_records_all_substeps_reviewed": true,
+    "public_h2_totals_are_current": true
+  },
+  "corrections": [
+    {
+      "id": "H4-JOIN-001",
+      "finding": "H1 machine counts said 80 assigned M1 contacts while its inherited narrative still claimed four reserved/no-connect contacts",
+      "source_correction": "hardware/architecture/candidates/G2F-3I.json now states 80 assigned / 0 reserved / 0 no-connect and all H1/H2/H3 derivatives were regenerated",
+      "functional_effect": "none; the accepted 80-contact electrical mapping did not change",
+      "cost_effect_usd": "0.0000"
+    },
+    {
+      "id": "H4-JOIN-002",
+      "finding": "the product-facing H2 summaries retained superseded inventory, identity and root-net totals",
+      "source_correction": "H2 acceptance now derives final counts from H2-REV71/72/73 and every public summary uses 1048 / 1046 / 268",
+      "functional_effect": "none; documentation and traceability now match current generated ECAD evidence",
+      "cost_effect_usd": "0.0000"
+    },
+    {
+      "id": "H4-JOIN-003",
+      "finding": "the product-facing H2 summaries retained the superseded count of 189 intentional no-connect contacts while the current native register contains 191",
+      "source_correction": "H2 acceptance now derives the NC count from H2-REV62 and all public summaries use 191",
+      "functional_effect": "none; the KiCad no-connect markers and rationales were already present and reviewed",
+      "cost_effect_usd": "0.0000"
+    }
+  ],
+  "open_findings": [],
+  "pending_decisions": [],
+  "review_summary": {
+    "checks": 31,
+    "failed": 0,
+    "corrected_findings": 3,
+    "unresolved": 0,
+    "status": "reviewed"
+  },
+  "authorization": {
+    "component_purchase": false,
+    "pcb_placement_and_routing": false,
+    "fabrication": false
+  },
+  "next": {
+    "stage": "H4.2",
+    "action": "prove that every joined-review contradiction is corrected at source and all affected evidence is regenerated"
+  }
+}

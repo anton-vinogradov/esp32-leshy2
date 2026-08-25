@@ -23,7 +23,8 @@ flowchart TB
   H2 --> DC & TR & AN & DI & RF & SF
   DC & TR & AN & DI & RF & SF --> X --> OK
   X --> PH
-  OK --> H4["▶️ H4.1 joined review"]
+  OK --> H4["✅ H4 joined review"]
+  H4 --> H5["▶️ H5.0.1 evidence reduction"]
 ```
 
 ## Verified result
@@ -56,7 +57,7 @@ artifacts the baseline. It does **not** authorize purchase, PCB placement or
 routing, fabrication, or call any of the `85` physical checks passed. Received
 parts, real geometry, routing and prototype evidence remain in H5, H6 and H8.
 
-Firmware F3 has since passed review without promoting non-S3 or physical claims. Its exact S3 QEMU and five-target boundary evidence are now joined with H1–H3 at the current hardware marker `H4.1`.
+Firmware F3 subsequently passed review without promoting non-S3 or physical claims. Its exact S3 QEMU and five-target boundary evidence were joined with H1–H3 in the [reviewed H4 result](h4-prelayout-gate-report.md). The current hardware marker is `H5.0.1`.
 
 ## Evidence
 
