@@ -2,7 +2,7 @@
   "schema_version": 1,
   "current_stage": "H5",
   "current_substep": "H5.0.3",
-  "current_detail": "JLCPCB Standard PCBA selected as non-exclusive reference; 10 critical of 209 BOM lines mapped to J0-J4; full platform audit current and purchasing remains unauthorized",
+  "current_detail": "JLCPCB Standard PCBA selected as non-exclusive reference; minimum 209-line MPN-and-quantity upload authorized and prepared but waiting for user sign-in; 10 critical lines mapped and purchasing remains unauthorized",
   "stages": [
     {"id": "H0", "status": "reviewed"},
     {"id": "H1", "status": "reviewed"},

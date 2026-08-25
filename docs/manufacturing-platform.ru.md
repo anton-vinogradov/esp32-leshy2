@@ -53,6 +53,6 @@ JLCPCB собирает обе платы и принятые SMT/THT-компо
 - JLCPCB Standard PCBA принят как рабочий reference без lock-in.
 - Полный mapping ещё открыт: `199` строк.
 - Прямой RFQ NiceRF отложен: сначала проверяется JLC global sourcing/new-part route.
-- BOM upload, API application, покупка, замены, KiCad layout и fabrication не разрешены.
+- Минимальный BOM upload (только MPN и количество) разрешён, файл подготовлен, но ещё не передан: требуется пользовательский вход в JLCPCB. API application, sourcing request, покупка, замены, KiCad layout и fabrication не разрешены.
 
 Машинный результат: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json).

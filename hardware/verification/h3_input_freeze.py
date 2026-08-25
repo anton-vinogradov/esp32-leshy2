@@ -73,7 +73,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         freeze = f"H2 принят 24 августа 2026 года на hardware commit `25d9ee2` и firmware commit `900bb2b`. Заморожено {manifest['summary']['frozen_files']} файла с SHA-256; изменение любого из них повторно открывает затронутые проверки."
         matrix_h = "## Матрица проверки"
         headers = "| Этап | Область | Метод до изготовления | Артефакт H3 | Остаточная физическая проверка |\n|---|---|---|---|---|"
-        current = "**Текущий аппаратный маркер:** `H5.0.3` — [единая корзина](component-sample-basket.ru.md) покрывает все девять H5 residuals и 14 mechanical gates, а [JLCPCB Standard PCBA](manufacturing-platform.ru.md) принят рабочим производственным reference. Сейчас выполняется полный J0–J4 mapping 209 BOM lines; закупка, BOM upload, layout и fabrication не разрешены."
+        current = "**Текущий аппаратный маркер:** `H5.0.3` — [единая корзина](component-sample-basket.ru.md) покрывает все девять H5 residuals и 14 mechanical gates, а [JLCPCB Standard PCBA](manufacturing-platform.ru.md) принят рабочим производственным reference. Минимальный BOM upload из MPN и количества разрешён и подготовлен, но ожидает пользовательского входа; закупка, замены, layout и fabrication не разрешены."
     else:
         title = "# Leshy2 virtual electrical verification"
         nav = "[Русский](virtual-verification.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Accepted H2](h2-acceptance.md)"
@@ -82,7 +82,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         freeze = f"H2 was accepted on 24 August 2026 at hardware commit `25d9ee2` and firmware commit `900bb2b`. {manifest['summary']['frozen_files']} files are frozen by SHA-256; changing any one reopens the affected verification."
         matrix_h = "## Verification matrix"
         headers = "| Stage | Area | Pre-fabrication method | H3 artifact | Residual physical check |\n|---|---|---|---|---|"
-        current = "**Current hardware marker:** `H5.0.3` — the [single basket](component-sample-basket.md) covers all nine H5 residuals and 14 mechanical gates, while [JLCPCB Standard PCBA](manufacturing-platform.md) is the working manufacturing reference. Full J0–J4 mapping of 209 BOM lines is current; purchase, BOM upload, layout and fabrication are not authorized."
+        current = "**Current hardware marker:** `H5.0.3` — the [single basket](component-sample-basket.md) covers all nine H5 residuals and 14 mechanical gates, while [JLCPCB Standard PCBA](manufacturing-platform.md) is the working manufacturing reference. The minimum MPN-and-quantity BOM upload is authorized and prepared but awaits user sign-in; purchase, replacements, layout and fabrication are not authorized."
     rows = "\n".join(
         f"| `{row['stage']}` | `{row['area']}` | {row['method']} | {row['h3_output']} | {row['physical_evidence']} |"
         for row in manifest["verification_matrix"]

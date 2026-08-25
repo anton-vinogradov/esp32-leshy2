@@ -1,3 +1,4 @@
+import csv
 import json
 import re
 import subprocess
@@ -371,9 +372,26 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(1, evidence["summary"]["post_pcba_final_assembly"])
         self.assertEqual(199, evidence["summary"]["full_bom_lines_pending_mapping"])
         self.assertTrue(all(evidence["checks"].values()))
-        self.assertIn("BOM upload", evidence["next"]["forbidden"])
         self.assertIn("component replacement", evidence["next"]["forbidden"])
         self.assertIn("purchase", evidence["next"]["forbidden"])
+        self.assertTrue(evidence["checks"]["minimum_bom_upload_authorized_by_user"])
+        self.assertTrue(evidence["checks"]["minimum_bom_not_yet_transmitted"])
+        self.assertFalse(evidence["bom_tool_upload"]["transmitted"])
+        self.assertEqual(
+            ["Manufacturer Part Number", "Quantity"],
+            evidence["bom_tool_upload"]["columns"],
+        )
+        with (REPO_ROOT / "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv").open(
+            newline="", encoding="utf-8"
+        ) as handle:
+            upload_rows = list(csv.DictReader(handle))
+        self.assertEqual(
+            ["Manufacturer Part Number", "Quantity"],
+            list(upload_rows[0]),
+        )
+        self.assertEqual(209, len(upload_rows))
+        self.assertTrue(all(row["Manufacturer Part Number"] for row in upload_rows))
+        self.assertTrue(all(int(row["Quantity"]) > 0 for row in upload_rows))
         for name in ("docs/manufacturing-platform.md", "docs/manufacturing-platform.ru.md"):
             page = self.read(name)
             self.assertEqual(1, page.count("```mermaid"), name)
@@ -755,7 +773,7 @@ class ProductSiteTests(unittest.TestCase):
             "draft_full_platform_bom_mapping_open",
             h5_plan["current_artifacts"]["H5.0.3"]["status"],
         )
-        self.assertEqual("H5-BLK-JLC-FULL-BOM-MAPPING", h5_plan["blocker"]["id"])
+        self.assertEqual("H5-BLK-JLC-BOM-IMPORT", h5_plan["blocker"]["id"])
         self.assertFalse(h5_plan["authorization"]["sample_or_component_purchase"])
         self.assertEqual(
             "9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5",

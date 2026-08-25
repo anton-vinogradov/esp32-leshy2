@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import io
 import json
 from pathlib import Path
 
@@ -13,9 +14,11 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 BOM = REPO / "hardware/architecture/generated/G2F-3I-target-bom.csv"
 OUTPUT = REPO / "hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json"
+UPLOAD = REPO / "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv"
 DOC_EN = REPO / "docs/manufacturing-platform.md"
 DOC_RU = REPO / "docs/manufacturing-platform.ru.md"
 CHECKED_ON = "2026-08-25"
+UPLOAD_AUTHORIZED_ON = "2026-08-25"
 
 
 SOURCES = {
@@ -98,7 +101,9 @@ def build() -> dict:
         "every_spot_check_has_a_source_and_tier": all(row["source"] and row["tier"] in {tier["id"] for tier in TIERS} for row in SPOT_CHECKS),
         "no_stock_snapshot_claims_permanent_availability": True,
         "no_component_replacement_is_authorized": True,
-        "no_bom_upload_order_or_layout_is_authorized": True,
+        "minimum_bom_upload_authorized_by_user": True,
+        "minimum_bom_not_yet_transmitted": True,
+        "no_order_or_layout_is_authorized": True,
     }
     if not all(checks.values()):
         raise ValueError({"failed": [key for key, value in checks.items() if not value], "missing": missing})
@@ -122,6 +127,16 @@ def build() -> dict:
             "inside_pcba": ["both Leshy2 rigid boards", "all ordinary SMT/THT parts accepted by Standard PCBA", "board connectors and soldered RF boundaries when their exact assembly rule is accepted"],
             "after_pcba": ["display/flex final mating", "removable U214 Cap and M5 Units", "cells", "external antennas", "knob and any enclosure-only hardware not accepted in the assembly quote", "final sandwich/box integration"],
         },
+        "bom_tool_upload": {
+            "path": str(UPLOAD.relative_to(REPO)),
+            "sha256": hashlib.sha256(render_upload().encode("utf-8")).hexdigest(),
+            "columns": ["Manufacturer Part Number", "Quantity"],
+            "exact_lines": len(rows),
+            "contains_only_authorized_fields": True,
+            "authorized_on": UPLOAD_AUTHORIZED_ON,
+            "transmitted": False,
+            "blocker": "user sign-in to the JLCPCB account; credentials and CAPTCHA remain user-only",
+        },
         "critical_spot_checks": SPOT_CHECKS,
         "summary": {
             "target_bom_lines": len(rows),
@@ -140,8 +155,8 @@ def build() -> dict:
         },
         "next": {
             "local": "map all 209 BOM lines to J0-J4 and identify function-neutral JLC-stock substitutions",
-            "external_authority_later": "uploading the full BOM to JLCPCB BOM Tool or applying for Parts API access discloses the BOM and requires a separate explicit approval",
-            "forbidden": ["purchase", "BOM upload", "component replacement", "KiCad placement/routing", "fabrication"],
+            "external_authority_later": "the minimum MPN-and-quantity upload is authorized; Parts API application, sourcing request and purchase still require separate explicit authority",
+            "forbidden": ["purchase", "component replacement", "Parts API application", "sourcing request", "KiCad placement/routing", "fabrication"],
         },
         "sources": SOURCES,
         "checks": checks,
@@ -203,7 +218,7 @@ JLCPCB собирает обе платы и принятые SMT/THT-компо
 - JLCPCB Standard PCBA принят как рабочий reference без lock-in.
 - Полный mapping ещё открыт: `{summary['full_bom_lines_pending_mapping']}` строк.
 - Прямой RFQ NiceRF отложен: сначала проверяется JLC global sourcing/new-part route.
-- BOM upload, API application, покупка, замены, KiCad layout и fabrication не разрешены.
+- Минимальный BOM upload (только MPN и количество) разрешён, файл подготовлен, но ещё не передан: требуется пользовательский вход в JLCPCB. API application, sourcing request, покупка, замены, KiCad layout и fabrication не разрешены.
 
 Машинный результат: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json).
 """
@@ -251,16 +266,38 @@ JLCPCB assembles both boards and accepted SMT/THT parts. Display flex mating, U2
 - JLCPCB Standard PCBA is the working reference without lock-in.
 - Full mapping remains open for `{summary['full_bom_lines_pending_mapping']}` lines.
 - Direct NiceRF contact is deferred while the JLC global-sourcing/new-part route is checked first.
-- BOM upload, API application, purchase, replacements, KiCad layout and fabrication are not authorized.
+- The minimum BOM upload (MPN and quantity only) is authorized and prepared but not yet transmitted because user sign-in is required. API application, sourcing request, purchase, replacements, KiCad layout and fabrication are not authorized.
 
 Machine result: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json).
 """
+
+
+def render_upload() -> str:
+    """Return the minimum disclosure accepted for the JLCPCB BOM Tool."""
+    with BOM.open(newline="", encoding="utf-8") as handle:
+        rows = list(csv.DictReader(handle))
+    stream = io.StringIO(newline="")
+    writer = csv.DictWriter(
+        stream,
+        fieldnames=["Manufacturer Part Number", "Quantity"],
+        lineterminator="\n",
+    )
+    writer.writeheader()
+    for row in rows:
+        writer.writerow(
+            {
+                "Manufacturer Part Number": row["mpn"],
+                "Quantity": row["quantity"],
+            }
+        )
+    return stream.getvalue()
 
 
 def outputs() -> dict[Path, str]:
     data = build()
     return {
         OUTPUT: json.dumps(data, ensure_ascii=False, indent=2) + "\n",
+        UPLOAD: render_upload(),
         DOC_EN: render(data, False),
         DOC_RU: render(data, True),
     }

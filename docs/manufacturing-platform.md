@@ -53,6 +53,6 @@ JLCPCB assembles both boards and accepted SMT/THT parts. Display flex mating, U2
 - JLCPCB Standard PCBA is the working reference without lock-in.
 - Full mapping remains open for `199` lines.
 - Direct NiceRF contact is deferred while the JLC global-sourcing/new-part route is checked first.
-- BOM upload, API application, purchase, replacements, KiCad layout and fabrication are not authorized.
+- The minimum BOM upload (MPN and quantity only) is authorized and prepared but not yet transmitted because user sign-in is required. API application, sourcing request, purchase, replacements, KiCad layout and fabrication are not authorized.
 
 Machine result: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json).

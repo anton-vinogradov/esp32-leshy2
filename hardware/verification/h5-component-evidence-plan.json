@@ -13,6 +13,9 @@
   "authorization": {
     "manufacturer_and_distributor_research": true,
     "read_only_supplier_contact_preparation": true,
+    "minimum_mpn_quantity_bom_upload_to_jlcpcb": true,
+    "parts_api_application": false,
+    "supplier_sourcing_request": false,
     "supplier_contact_send": false,
     "sample_or_component_purchase": false,
     "pcb_placement_and_routing": false,
@@ -80,15 +83,15 @@
       "platform_result_en": "docs/manufacturing-platform.md",
       "platform_result_ru": "docs/manufacturing-platform.ru.md",
       "status": "draft_full_platform_bom_mapping_open",
-      "result": "the 32-line evidence basket covers all nine H5 residuals and fourteen mechanical gates; JLCPCB Standard PCBA is the non-exclusive manufacturing reference; 10 critical of 209 production-BOM lines are mapped to J0-J4; zero uploads, replacements or orders authorized"
+      "result": "the 32-line evidence basket covers all nine H5 residuals and fourteen mechanical gates; JLCPCB Standard PCBA is the non-exclusive manufacturing reference; 10 critical of 209 production-BOM lines are mapped to J0-J4; the minimum MPN-and-quantity upload is authorized and prepared but not transmitted pending user sign-in; zero replacements or orders authorized"
     }
   },
   "blocker": {
-    "id": "H5-BLK-JLC-FULL-BOM-MAPPING",
+    "id": "H5-BLK-JLC-BOM-IMPORT",
     "scope": "H5.0.3 production assembly availability and exact basket cost",
-    "reason": "the reference platform is selected, but 199 of 209 exact production-BOM lines still need J0-J4 mapping; SA518, E01 and display are already known non-public-stock outliers",
-    "prepared_action": "hardware/verification/h5_pcba_platform.py",
-    "authority_required": "none for local/manual mapping; a later BOM upload, Parts API application, sourcing request or purchase requires separate explicit authority"
+    "reason": "the reference platform is selected and the minimum upload file is prepared, but JLCPCB requires user account sign-in before the 199 remaining production-BOM lines can be bulk matched; SA518, E01 and display are already known non-public-stock outliers",
+    "prepared_action": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
+    "authority_required": "the minimum MPN-and-quantity upload is authorized; user must complete account sign-in and any CAPTCHA; Parts API application, sourcing request and purchase still require separate explicit authority"
   },
   "next_active_repository": "esp32-leshy2",
   "next_active_substep": "H5.0.3"

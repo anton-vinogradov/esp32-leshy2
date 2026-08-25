@@ -14,8 +14,9 @@
 
 > **Now: H5.0.3 · [PCBA platform audit](docs/manufacturing-platform.md).**
 > JLCPCB Standard PCBA is the non-exclusive reference; 10 critical lines of the
-> 209-line production BOM are mapped to exact sourcing routes. BOM upload,
-> purchasing, component replacement, PCB routing and fabrication remain blocked.
+> 209-line production BOM are mapped to exact sourcing routes. The minimum
+> MPN-and-quantity upload is prepared and awaits user sign-in; purchasing,
+> component replacement, PCB routing and fabrication remain blocked.
 
 <div align="center">
 
@@ -123,8 +124,9 @@ covers all nine residuals and 14 mechanical gates with 32 exact article lines
 and 11 measurement contracts. JLCPCB Standard PCBA is now the
 [non-exclusive manufacturing reference](docs/manufacturing-platform.md): 10
 critical lines of the 209-line production BOM are mapped to `J0`–`J4`, and the
-remaining 199-line audit is current. Physical evidence, BOM upload, PCB layout,
-component replacement and every order remain unauthorized.
+remaining 199-line audit is current. The minimum upload is authorized and
+prepared but awaits user sign-in. Physical evidence, PCB layout, component
+replacement and every order remain unauthorized.
 
 <details open>
 <summary><strong>Current H5 evidence reduction — exact detailed position</strong></summary>
@@ -133,8 +135,8 @@ component replacement and every order remain unauthorized.
 
 **Exact marker: `H5.0.3`** — the basket and measurements are published; complete
 the [209-line JLCPCB sourcing map](docs/manufacturing-platform.md), then route
-outliers through exact-part pre-order, global sourcing or final assembly. No
-BOM upload, replacement or purchase is authorized.
+outliers through exact-part pre-order, global sourcing or final assembly. The
+minimum upload awaits user sign-in; replacement and purchase are not authorized.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,048-row circuit inventory reviewed.

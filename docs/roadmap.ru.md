@@ -48,8 +48,9 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 покрывает все девять residuals H5 и 14 mechanical gates.
 [Производственный baseline](manufacturing-platform.ru.md) выбирает JLCPCB
 Standard PCBA без lock-in и связывает 10 критических строк production BOM из
-209. Аудит оставшихся 199 строк по `J0`–`J4` — текущая работа; H5.0.3 ещё не
-проведён ревью, BOM upload, замены и закупка не разрешены.
+209. Аудит оставшихся 199 строк по `J0`–`J4` — текущая работа. Минимальный
+upload из MPN и количества разрешён и подготовлен, но ожидает пользовательского
+входа; H5.0.3 ещё не проведён ревью, замены и закупка не разрешены.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -351,7 +352,7 @@ gates, точный S3 QEMU и portable/host-модели для targets без 
 | **H2. Production ECAD-схема** | ✅ Проведено ревью и принято | Новая актуальная схема на читаемых листах и machine-readable HW↔FW contract | Точные symbol/footprint/pin/net/value; объяснены NC; ERC без необъяснённых ошибок; отдельно проверены reset, boot, recovery, no-back-power, quiet state и `FAULT_KILL`; firmware F2 использует контракт без выдуманных pins |
 | **H3. Виртуальная электрическая проверка** | ✅ Проведено ревью и принято | [Итоговый отчёт H3](h3-acceptance.ru.md): расчёты и симуляции до дорогой физики | Проходят worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse и load-step; thermal/fault tree; все analog corners; timing/levels; RF corridors, returns и pre-layout constraints |
 | **H4. Объединённый pre-layout gate** | ✅ [Проведено ревью](h4-prelayout-gate-report.ru.md) | Единое ревью механики, production ECAD, электрических evidence и видимых target-прошивке контрактов | Нет открытого виртуально проверяемого blocker; target skeletons используют реальный контракт; у каждой остаточной физической неопределённости есть измерение и bring-up test |
-| **H5. Evidence компонентов** | ▶️ Сейчас `H5.0.3`; BOM upload и закупка заблокированы | [Baseline PCBA-площадки](manufacturing-platform.ru.md): JLCPCB Standard — неэксклюзивный ориентир, сопоставлены 10/209 critical/BOM-строк, корзина образцов сохранена | У каждой production-BOM-строки есть точный маршрут `J0`–`J4`, молчаливых замен нет; опубликована точная полная стоимость; одобренные полученные образцы доказывают identity, mating, stack-up и критические размеры |
+| **H5. Evidence компонентов** | ▶️ Сейчас `H5.0.3`; минимальный upload ожидает пользовательского входа, закупка заблокирована | [Baseline PCBA-площадки](manufacturing-platform.ru.md): JLCPCB Standard — неэксклюзивный ориентир, сопоставлены 10/209 critical/BOM-строк, корзина образцов сохранена | У каждой production-BOM-строки есть точный маршрут `J0`–`J4`, молчаливых замен нет; опубликована точная полная стоимость; одобренные полученные образцы доказывают identity, mating, stack-up и критические размеры |
 | **H6. PCB placement и routing** | 🔒 Ожидает H5 | Две реальные платы, реализующие принятую схему и механику | Пройдены placement review обеих сторон, DRC, impedance и return-current review, RF isolation, antenna feeds, thermal copper, creepage, test points, assembly и manufacturability; fab package принят отдельно |
 | **H7. Печать прототипа и bring-up** | 🔒 Ожидает H6, унаследованный firmware F3 и одобрение заказа | Небольшая партия прототипных PCB и сохранённый bring-up log | Rails запускаются по контракту; все пять контроллеров прошиваются и восстанавливаются; интерфейсы, display, storage, audio, radio и expansion проходят smoke tests; каждый rework отражён в исходниках |
 | **H8. Физическая квалификация** | 🔒 Ожидает H7 | HIL, RF, thermal, power, safety и endurance evidence | 3×nRF24 проходят `3R/1T2R/2T1R/3T`; активные сигналы не тормозятся соседями; выключенные интерфейсы физически тихие; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog и single-fault tests пройдены |
@@ -382,5 +383,6 @@ gates, точный S3 QEMU и portable/host-модели для targets без 
 источников и замен проведён, а [единая корзина](component-sample-basket.ru.md)
 сохранена. [JLCPCB Standard PCBA](manufacturing-platform.ru.md) выбран
 неэксклюзивным ориентиром; сопоставлены 10/209 critical/BOM-строк, аудит
-оставшихся 199 строк — текущая работа. BOM upload, PCB placement/routing,
-замены компонентов и любой заказ остаются заблокированы.
+оставшихся 199 строк — текущая работа. Подготовленный минимальный upload ожидает
+пользовательского входа; PCB placement/routing, замены компонентов и любой заказ
+остаются заблокированы.
