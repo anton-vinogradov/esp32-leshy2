@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "H5",
   "status": "in_progress",
-  "current_substep": "H5.0.2",
+  "current_substep": "H5.0.3",
   "purpose": "close received-part uncertainties with the least expensive reliable evidence, using documents or serial replacements before buying samples",
   "accepted_inputs": [
     "H4 joined pre-layout gate reviewed",
@@ -32,12 +32,12 @@
         {
           "id": "H5.0.2",
           "title": "Search manufacturer and distributor evidence more deeply and evaluate fully documented serial replacements",
-          "status": "current"
+          "status": "reviewed"
         },
         {
           "id": "H5.0.3",
           "title": "Publish only the irreducible received-sample set, exact measurements and cost for explicit approval",
-          "status": "waiting"
+          "status": "current"
         }
       ]
     },
@@ -63,9 +63,15 @@
       "readable_result_en": "docs/component-evidence-map.md",
       "readable_result_ru": "docs/component-evidence-map.ru.md",
       "result": "nine H5 residuals and fourteen mechanical gates mapped; zero physical claims closed; zero orders authorized"
+    },
+    "H5.0.2": {
+      "machine_result": "hardware/verification/generated/H5-EVR02-source-research.json",
+      "readable_result_en": "docs/component-source-research.md",
+      "readable_result_ru": "docs/component-source-research.ru.md",
+      "result": "nine H5 residuals and fourteen mechanical gates researched; two test-article categories and four exact SKUs selected; zero physical claims closed; zero orders authorized"
     }
   },
   "blocker": null,
   "next_active_repository": "esp32-leshy2",
-  "next_active_substep": "H5.0.2"
+  "next_active_substep": "H5.0.3"
 }

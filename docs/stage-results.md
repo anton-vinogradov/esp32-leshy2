@@ -208,15 +208,15 @@ all 85 physical residuals still owned by H5/H6/H8.
 <a id="h5"></a>
 ## H5 · Component evidence samples
 
-**Status:** ▶️ current `H5.0.2`; research is authorized, purchasing is not.
+**Status:** ▶️ current `H5.0.3`; basket definition is authorized, purchasing is not.
 
 The current [machine plan](../hardware/verification/h5-component-evidence-plan.json)
-records the [reviewed H5.0.1 map](component-evidence-map.md): nine H5 residuals
-and 14 mechanical gates are joined to exact selected identities, sources,
-missing data and pass rules. H5.0.2 now exhausts manufacturer evidence and
-fully documented serial replacements.
-Only the irreducible sample set may later become a separately cost-approved
-purchase; it is not a production basket.
+records the [reviewed H5.0.1 map](component-evidence-map.md) and
+[reviewed H5.0.2 source research](component-source-research.md): all nine H5
+residuals and 14 mechanical gates have explicit research dispositions, while
+two open test-article categories now have four exact serial SKUs. H5.0.3
+deduplicates only the irreducible samples, measurements and current cost.
+Any purchase still requires separate explicit approval; this is not a production basket.
 
 <a id="h6"></a>
 ## H6 · PCB placement and routing

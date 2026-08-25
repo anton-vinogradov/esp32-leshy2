@@ -1,0 +1,418 @@
+{
+  "schema_version": 1,
+  "stage": "H5.0.2",
+  "status": "reviewed_research_only",
+  "checked_on": "2026-08-25",
+  "purpose": "exhaust primary documentary evidence and fully documented serial alternatives before proposing any received sample",
+  "input": {
+    "path": "hardware/verification/generated/H5-EVR01-residual-map.json",
+    "sha256": "e36e01e5d2ed0980be85ab904765962172bf92a43e3fdb9d8fc85746c17f8ea6"
+  },
+  "summary": {
+    "h5_residuals_researched": 9,
+    "mechanical_gates_dispositioned": 14,
+    "test_article_categories_selected": 2,
+    "exact_test_article_skus_selected": 4,
+    "alternatives_explicitly_evaluated": 2,
+    "physical_claims_closed": 0,
+    "orders_authorized": 0
+  },
+  "sources": {
+    "digikey_2118651": {
+      "owner": "DigiKey",
+      "title": "2118651-2 authorized-distributor listing",
+      "url": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824",
+      "supports": "current authorized-distributor lifecycle, stock and price evidence at review time"
+    },
+    "ebyte_cable": {
+      "owner": "Chengdu Ebyte",
+      "title": "XC-IPX-SMA-15 product page",
+      "url": "https://www.ebyte.com/product/2040.html",
+      "supports": "serial IPEX-1 to SMA-K, 150 mm RF1.13 cable identity"
+    },
+    "ebyte_e01": {
+      "owner": "Chengdu Ebyte",
+      "title": "E01-ML01IPX product page",
+      "url": "https://www.ebyte.com/product/47.html",
+      "supports": "exact module identity, nRF24L01P, external IPEX interface, 12 x 19 mm body and SPI role"
+    },
+    "ebyte_e01_datasheet": {
+      "owner": "Chengdu Ebyte",
+      "title": "E01 series user manual",
+      "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+      "supports": "current manufacturer electrical and module-outline evidence"
+    },
+    "lcdwiki_es3c35p": {
+      "owner": "LCDWiki",
+      "title": "3.5-inch ESP32-S3 display ES3C35P",
+      "url": "https://www.lcdwiki.com/3.5inch_ESP32-S3_Display",
+      "supports": "orderable complete donor SKU ES3C35P/ES3C35P-NS and 3.5-inch 320 x 480 ST77922 QSPI capacitive-touch class"
+    },
+    "lcdwiki_es3c35p_spec": {
+      "owner": "LCDWiki",
+      "title": "ES3C35P specification V1.0",
+      "url": "https://www.lcdwiki.com/res/ES3C35P/3.5inch_IPS_ESP32-S3_Specification_V1.0.pdf",
+      "supports": "official complete-board dimensions, display timing/interface and connector evidence"
+    },
+    "m5_a096": {
+      "owner": "M5Stack",
+      "title": "Grove to Dupont conversion cable",
+      "url": "https://docs.m5stack.com/en/accessory/cable/grove2dupont",
+      "supports": "exact A096 20 cm instrument-breakout cable identity"
+    },
+    "m5_cables": {
+      "owner": "M5Stack",
+      "title": "4-pin buckled Grove cable",
+      "url": "https://shop.m5stack.com/products/4pin-buckled-grove-cable",
+      "supports": "serial A034-G 5 cm and A034-B 20 cm cable SKUs"
+    },
+    "m5_grove": {
+      "owner": "M5Stack",
+      "title": "M5Stack Grove interface definition",
+      "url": "https://docs.m5stack.com/en/learn/interface/grove",
+      "supports": "HY2.0-4P mechanical family and official I2C, UART and GPIO signal profiles"
+    },
+    "m5_u214": {
+      "owner": "M5Stack",
+      "title": "Cap LoRa-1262 (U214) documentation",
+      "url": "https://docs.m5stack.com/en/cap/Cap_LoRa-1262",
+      "supports": "exact U214 SKU, 84 x 24 x 15.2 mm envelope, pin map and official schematic/model links"
+    },
+    "m5_u214_schematic": {
+      "owner": "M5Stack",
+      "title": "U214 schematic V1.1",
+      "url": "https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/1208/U214-sche-Cap-LoRa1262_SCH_V1.1_20251029_2025_11_07_22_53_19.pdf",
+      "supports": "P1 is specified only as generic HDR-SMD_14P-P2.54; no fitted-header manufacturer MPN or metallurgy is disclosed"
+    },
+    "m5_u214_structure": {
+      "owner": "M5Stack",
+      "title": "U214 structure files",
+      "url": "https://github.com/m5stack/M5_Hardware/tree/master/Products/U214_Cap_LoRa-1262/Structures",
+      "supports": "official STL structure evidence without a fitted-header BOM identity"
+    },
+    "sandisk_endurance": {
+      "owner": "SanDisk",
+      "title": "High Endurance microSD product page",
+      "url": "https://shop.sandisk.com/it-it/products/memory-cards/microsd-cards/sandisk-high-endurance-uhs-i-microsd?sku=SDSQQNR-032G-GN6IA",
+      "supports": "exact 32 GB SDSQQNR-032G-GN6IA serial reference, temperature range and rated sequential performance"
+    },
+    "te_2118651": {
+      "owner": "TE Connectivity",
+      "title": "2118651-2 product page",
+      "url": "https://www.te.com/en/product-2118651-2.html",
+      "supports": "active 30 mm UMCC Gen 1 plug-to-plug, 1.13 mm, 50 ohm, 9 GHz cable identity and drawings"
+    },
+    "tme_sandisk": {
+      "owner": "TME",
+      "title": "SDSQQNR-032G-GN6IA distributor page",
+      "url": "https://www.tme.com/in/en/details/sdsqqnr-032g-gn6ia/memory-cards/sandisk/",
+      "supports": "independent distributor identity for the exact selected reference medium"
+    }
+  },
+  "residuals": [
+    {
+      "id": "H3-PHY-017",
+      "source_group": "display",
+      "disposition": "irreducible_received_sample",
+      "sources": [
+        "lcdwiki_es3c35p",
+        "lcdwiki_es3c35p_spec"
+      ],
+      "finding": "ES3C35P is an exact serial donor route for the HMX035CTFT-001-marked display assembly; no standalone raw-panel order identity, current-lot FPC drawing or fully documented drop-in raw replacement was found.",
+      "finding_ru": "ES3C35P — точный серийный донор для сборки с маркировкой HMX035CTFT-001; самостоятельный order identity панели, чертёж FPC текущей партии и полностью документированная drop-in замена не найдены.",
+      "remaining": "receive one donor/assembly and measure controller identity, rails, tail and optical/electrical behaviour",
+      "remaining_ru": "получить одну donor-сборку и измерить identity контроллера, питания, шлейф, оптику и электрическое поведение",
+      "physical_claim_closed": false,
+      "purchase_authorized": false
+    },
+    {
+      "id": "H3-PHY-024",
+      "source_group": "ir",
+      "disposition": "irreducible_received_sample",
+      "sources": [],
+      "finding": "The exact selected IR parts already have primary datasheets; orientation of the received lot and dynamic startup/capture/no-back-power behaviour are assembled-sample properties, not documentary omissions.",
+      "finding_ru": "Для выбранных IR-деталей уже есть первичные datasheet; ориентация полученной партии и динамические startup/capture/no-back-power — свойства собранного образца, а не пробел документации.",
+      "remaining": "run the inherited two-channel dynamic fixture on received parts",
+      "remaining_ru": "прогнать принятую двухканальную динамическую fixture на полученных деталях",
+      "physical_claim_closed": false,
+      "purchase_authorized": false
+    },
+    {
+      "id": "H3-PHY-028",
+      "source_group": "battery",
+      "disposition": "irreducible_received_sample",
+      "sources": [],
+      "finding": "MAX17320 documentation defines the interfaces and limits, but golden-image programming and blank/corrupt/exhausted-write reactions are deliberately injected state tests on received silicon.",
+      "finding_ru": "Документация MAX17320 задаёт интерфейсы и пределы, но programming golden image и реакции на blank/corrupt/exhausted-write — намеренно вводимые состояния реального экземпляра.",
+      "remaining": "program and fault-inject the received gauge specimen set",
+      "remaining_ru": "запрограммировать полученные gauge-образцы и провести fault injection",
+      "physical_claim_closed": false,
+      "purchase_authorized": false
+    },
+    {
+      "id": "H3-PHY-038",
+      "source_group": "timing",
+      "disposition": "serial_reference_selected_physical_test_open",
+      "sources": [
+        "sandisk_endurance",
+        "tme_sandisk"
+      ],
+      "finding": "SDSQQNR-032G-GN6IA is selected as the exact reference microSD; its rated performance clears the required rates on paper, while CMD6 identity, stalls and the 512 KiB buffer trace remain HIL evidence.",
+      "finding_ru": "Точная эталонная microSD выбрана: SDSQQNR-032G-GN6IA. Паспортные скорости выше требований, но CMD6 identity, задержки и трасса 512-КиБ буфера остаются HIL evidence.",
+      "remaining": "receive the exact card and run the existing throughput/stall/buffer contract",
+      "remaining_ru": "получить точную карту и прогнать принятый throughput/stall/buffer contract",
+      "physical_claim_closed": false,
+      "purchase_authorized": false
+    },
+    {
+      "id": "H3-PHY-046",
+      "source_group": "boundaries",
+      "disposition": "irreducible_received_sample",
+      "sources": [
+        "m5_u214",
+        "m5_u214_schematic",
+        "m5_u214_structure"
+      ],
+      "finding": "The official schematic names P1 only as HDR-SMD_14P-P2.54 and the official structure repository adds no BOM. Manufacturer MPN, section tolerance, material and plating of the fitted post remain undisclosed.",
+      "finding_ru": "Официальная схема называет P1 только HDR-SMD_14P-P2.54, а structure repository не содержит BOM. MPN, допуск сечения, материал и покрытие установленного штыря не опубликованы.",
+      "remaining": "identify and measure a received U214, then cycle the mixed U214/HLE stack",
+      "remaining_ru": "идентифицировать и измерить полученный U214, затем циклировать смешанный stack U214/HLE",
+      "physical_claim_closed": false,
+      "purchase_authorized": false
+    },
+    {
+      "id": "H3-PHY-048",
+      "source_group": "boundaries",
+      "disposition": "serial_reference_selected_physical_test_open",
+      "sources": [
+        "m5_grove",
+        "m5_cables",
+        "m5_a096"
+      ],
+      "finding": "A034-G, A034-B and A096 form the exact short, boundary-length and instrument-breakout test set for the admitted M5 profiles; pull networks and waveforms through TXS0102 remain physical.",
+      "finding_ru": "A034-G, A034-B и A096 образуют точный короткий, граничный и измерительный набор для разрешённых M5-профилей; pull-сети и формы сигналов через TXS0102 остаются физической проверкой.",
+      "remaining": "receive the three exact cable SKUs and run I2C, UART, GPIO and 1-Wire profiles",
+      "remaining_ru": "получить три точных cable SKU и прогнать профили I2C, UART, GPIO и 1-Wire",
+      "physical_claim_closed": false,
+      "purchase_authorized": false
+    },
+    {
+      "id": "H3-PHY-053",
+      "source_group": "phase",
+      "disposition": "irreducible_received_sample",
+      "sources": [
+        "ebyte_e01",
+        "ebyte_e01_datasheet",
+        "ebyte_cable"
+      ],
+      "finding": "Ebyte confirms an external IPEX interface but does not disclose the fitted receptacle MPN or lot axis. XC-IPX-SMA-15 was rejected because its 150 mm cable and direct SMA end are not a drop-in replacement for the selected 30 mm jumper, board receptacle and sealed edge SMA path.",
+      "finding_ru": "Ebyte подтверждает внешний IPEX, но не публикует MPN и ось установленного receptacle. XC-IPX-SMA-15 отклонён: кабель 150 мм и прямой SMA не являются drop-in заменой выбранным 30-мм jumper, board receptacle и герметичному краевому SMA-тракту.",
+      "remaining": "inspect the fitted receptacles and measure all three assembled RF feeds",
+      "remaining_ru": "осмотреть установленные receptacle и измерить все три собранных RF-тракта",
+      "physical_claim_closed": false,
+      "purchase_authorized": false
+    },
+    {
+      "id": "H3-PHY-057",
+      "source_group": "phase",
+      "disposition": "irreducible_received_sample",
+      "sources": [],
+      "finding": "Total AMI capacitance includes the received edge SMA, routed PCB and completed controlled pod; no component substitution can prove the capacitance of that assembled path.",
+      "finding_ru": "Полная AMI-ёмкость включает полученный краевой SMA, разведённую PCB и собранный controlled pod; замена отдельной детали не доказывает ёмкость всего тракта.",
+      "remaining": "measure the completed exact path and reconcile it to the tuning contract",
+      "remaining_ru": "измерить завершённый точный тракт и сверить его с tuning contract",
+      "physical_claim_closed": false,
+      "purchase_authorized": false
+    },
+    {
+      "id": "H3-PHY-062",
+      "source_group": "phase",
+      "disposition": "selected_part_confirmed_physical_test_open",
+      "sources": [
+        "te_2118651",
+        "digikey_2118651",
+        "ebyte_e01",
+        "ebyte_e01_datasheet"
+      ],
+      "finding": "TE 2118651-2 remains active, fully documented and stocked by an authorized distributor. No evaluated 30 mm alternative improved its 9 GHz performance and price without changing the selected path; installed bend, strain and retention remain physical.",
+      "finding_ru": "TE 2118651-2 остаётся active, полностью документирован и доступен у авторизованного дистрибьютора. Рассмотренные 30-мм альтернативы не улучшили 9-ГГц характеристики и цену без изменения тракта; изгиб, strain и retention после установки остаются физическими.",
+      "remaining": "install five exact jumpers and measure bend, strain, retention and RF loss",
+      "remaining_ru": "установить пять точных jumper и измерить изгиб, strain, retention и RF-потери",
+      "physical_claim_closed": false,
+      "purchase_authorized": false
+    }
+  ],
+  "mechanical_gates": [
+    {
+      "id": "H5-MECH-DISPLAY-TAIL",
+      "disposition": "donor_route_found_sample_open",
+      "sources": [
+        "lcdwiki_es3c35p",
+        "lcdwiki_es3c35p_spec"
+      ],
+      "physical_claim_closed": false
+    },
+    {
+      "id": "H5-MECH-NRF-GEN1-FEEDS",
+      "disposition": "primary_sources_exhausted_sample_open",
+      "sources": [
+        "ebyte_e01",
+        "ebyte_e01_datasheet",
+        "te_2118651"
+      ],
+      "physical_claim_closed": false
+    },
+    {
+      "id": "H5-MECH-U214-MATING-STACK",
+      "disposition": "manufacturer_subpart_hidden_sample_open",
+      "sources": [
+        "m5_u214",
+        "m5_u214_schematic",
+        "m5_u214_structure"
+      ],
+      "physical_claim_closed": false
+    },
+    {
+      "id": "H5-MECH-NAVIGATION-CONTROLS",
+      "disposition": "assembled_ergonomics_sample_open",
+      "sources": [],
+      "physical_claim_closed": false
+    },
+    {
+      "id": "H5-MECH-SA518-LAND-FIT",
+      "disposition": "received_module_and_coupon_open",
+      "sources": [],
+      "physical_claim_closed": false
+    },
+    {
+      "id": "H5-MECH-ENCODER-KNOB",
+      "disposition": "assembled_ergonomics_sample_open",
+      "sources": [],
+      "physical_claim_closed": false
+    },
+    {
+      "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
+      "disposition": "assembled_ergonomics_sample_open",
+      "sources": [],
+      "physical_claim_closed": false
+    },
+    {
+      "id": "H5-MECH-RUN-KILL",
+      "disposition": "assembled_ergonomics_sample_open",
+      "sources": [],
+      "physical_claim_closed": false
+    },
+    {
+      "id": "H5-MECH-M5-UNIT-MATE",
+      "disposition": "serial_test_set_selected_sample_open",
+      "sources": [
+        "m5_grove",
+        "m5_cables",
+        "m5_a096"
+      ],
+      "physical_claim_closed": false
+    },
+    {
+      "id": "H5-MECH-CELL-HOLDER-FIT",
+      "disposition": "assembled_retention_sample_open",
+      "sources": [],
+      "physical_claim_closed": false
+    },
+    {
+      "id": "H5-MECH-NATIVE-RF-JUMPERS",
+      "disposition": "selected_part_confirmed_sample_open",
+      "sources": [
+        "te_2118651",
+        "digikey_2118651"
+      ],
+      "physical_claim_closed": false
+    },
+    {
+      "id": "H5-MECH-DISPLAY-PERFORMANCE",
+      "disposition": "donor_route_found_sample_open",
+      "sources": [
+        "lcdwiki_es3c35p",
+        "lcdwiki_es3c35p_spec"
+      ],
+      "physical_claim_closed": false
+    },
+    {
+      "id": "H5-MECH-ACOUSTIC-PATHS",
+      "disposition": "enclosure_dependent_sample_open",
+      "sources": [],
+      "physical_claim_closed": false
+    },
+    {
+      "id": "H5-MECH-HEADSET-JACK",
+      "disposition": "assembled_mating_sample_open",
+      "sources": [],
+      "physical_claim_closed": false
+    }
+  ],
+  "selected_test_articles": [
+    {
+      "category": "reference_microSD",
+      "identities": [
+        "SDSQQNR-032G-GN6IA"
+      ],
+      "sources": [
+        "sandisk_endurance",
+        "tme_sandisk"
+      ],
+      "selection_status": "selected_not_ordered"
+    },
+    {
+      "category": "M5_profile_interconnect_set",
+      "identities": [
+        "A034-G",
+        "A034-B",
+        "A096"
+      ],
+      "sources": [
+        "m5_cables",
+        "m5_a096"
+      ],
+      "selection_status": "selected_not_ordered"
+    }
+  ],
+  "evaluated_alternatives": [
+    {
+      "target": "E01-ML01IPX RF feed",
+      "candidate": "XC-IPX-SMA-15",
+      "sources": [
+        "ebyte_cable"
+      ],
+      "decision": "rejected",
+      "reason": "150 mm direct IPEX-to-SMA cable is not a drop-in replacement for the selected 30 mm internal jumper, PCB feed and sealed edge SMA architecture"
+    },
+    {
+      "target": "HMX035CTFT-001 standalone panel",
+      "candidate": "other 3.5-inch QSPI panels",
+      "sources": [
+        "lcdwiki_es3c35p",
+        "lcdwiki_es3c35p_spec"
+      ],
+      "decision": "rejected_as_drop_in",
+      "reason": "no alternative found with a fully documented identical controller, flex contacts, outline, touch stack and connector; substitution would reopen architecture and placement"
+    }
+  ],
+  "checks": {
+    "all_nine_h5_residuals_researched": true,
+    "all_fourteen_mechanical_gates_dispositioned": true,
+    "exactly_two_previously_open_test_article_categories_selected": true,
+    "every_selected_test_article_has_exact_non_tbd_serial_identity": true,
+    "every_selected_test_article_has_a_primary_or_distributor_source": true,
+    "every_referenced_external_source_is_registered": true,
+    "all_evaluated_replacements_have_an_explicit_decision_and_reason": true,
+    "no_received_sample_claim_is_closed_by_document_search": true,
+    "purchase_layout_and_fabrication_are_not_authorized": true
+  },
+  "decision_boundary": {
+    "accepted_now": "the documentary search result, exact microSD and M5 interconnect test identities, and rejected non-drop-in alternatives",
+    "not_accepted": "any received-lot identity, fit, retention, RF, timing, acoustic, thermal, endurance or fault-injection claim",
+    "next": "H5.0.3 deduplicates the irreducible received-sample basket, measurements and current cost for explicit approval",
+    "purchase_authorized": false,
+    "pcb_placement_and_routing_authorized": false,
+    "fabrication_authorized": false
+  }
+}

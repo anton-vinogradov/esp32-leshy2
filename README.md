@@ -12,7 +12,7 @@
 
 </div>
 
-> **Now: H5.0.2 · research before samples.** The [H5 evidence map](docs/component-evidence-map.md)
+> **Now: H5.0.3 · irreducible sample basket and cost.** [H5.0.2 research](docs/component-source-research.md)
 > is reviewed; purchasing, PCB routing and fabrication remain blocked.
 
 <div align="center">
@@ -116,19 +116,19 @@ Every completed top-level `H*` phase receives a separate readable result report
 linked from this table. Internal substeps update the exact marker but do not
 create separate global reports.
 
-**Hardware is at H5.0.2.** The [H5.0.1 evidence map](docs/component-evidence-map.md)
-joins all nine H5 residuals and all 14 mechanical gates to exact selected identities,
-sources, missing data and pass rules. H5 now exhausts documents and serial replacements;
+**Hardware is at H5.0.3.** The [H5.0.2 source review](docs/component-source-research.md)
+has exhausted documentary and serial-alternative research for all nine residuals and
+14 mechanical gates. Four exact test SKUs close two selection gaps; physical evidence,
 PCB layout and every order remain unauthorized.
 
 <details open>
 <summary><strong>Current H5 evidence reduction — exact detailed position</strong></summary>
 
-<!-- current-substep: H5.0.2 -->
+<!-- current-substep: H5.0.3 -->
 
-**Exact marker: `H5.0.2`** — search primary manufacturer/distributor evidence
-and evaluate fully documented serial alternatives for every still-missing datum.
-No sample basket is proposed until this search is exhausted.
+**Exact marker: `H5.0.3`** — deduplicate only the received samples that documents
+and serial alternatives cannot replace, bind each to an exact measurement, and
+publish current cost for explicit approval. No purchase is authorized yet.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,048-row circuit inventory reviewed.
@@ -242,7 +242,8 @@ No sample basket is proposed until this search is exhausted.
 - ✅ `H4.2` — three documentation-only contradictions corrected at source and regenerated.
 - ✅ `H4.3` — [joined pre-layout gate reviewed](docs/h4-prelayout-gate-report.md).
 - ✅ `H5.0.1` — [nine residuals and 14 mechanical gates mapped](docs/component-evidence-map.md) to exact selected identities, missing data and pass rules.
-- ▶️ **`H5.0.2` — current:** exhaust primary documents and fully documented serial alternatives before proposing samples.
+- ✅ `H5.0.2` — [primary-source and serial-alternative research reviewed](docs/component-source-research.md); two test-article categories now have four exact serial SKUs.
+- ▶️ **`H5.0.3` — current:** publish one deduplicated irreducible sample basket, measurements and current cost for explicit approval.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The completed H3/H4 plans are [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json)
