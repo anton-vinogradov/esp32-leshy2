@@ -1,0 +1,1546 @@
+{
+  "schema_version": 1,
+  "stage": "H5.0.1",
+  "status": "reviewed_mapping_only",
+  "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
+  "source_hashes": {
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "a3b999ad37b0a16588c86e3dd0e8e7ca6045e7b66e2a3782a221b8fb1a6448fa",
+    "hardware/product-design/generated/H1-physical-source-table.json": "9e1e94fe6d66efcbfa1b6db422a0e3453d06302b0504e090dd2bbcfceae9500e",
+    "hardware/product-design/mechanical-evidence-gates.json": "77e986ecce93d24396baea8a4f0817efd25d93c78018d87d44cf8d8643f26866",
+    "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
+    "hardware/architecture/am-lw-pod.json": "6571e20c26f2ceaebf9c4bf410d155417a68116b3b5ef2e16d7c77ee06503e08"
+  },
+  "summary": {
+    "h3_residuals": 9,
+    "mechanical_gates": 14,
+    "mapped_selected_part_references": 44,
+    "board_fitted_mechanical_part_references": 53,
+    "physical_claims_closed": 0,
+    "sample_orders_authorized": 0,
+    "explicit_research_targets": 15
+  },
+  "checks": {
+    "exactly_nine_h3_residuals_are_owned_by_h5": true,
+    "every_h5_residual_has_one_explicit_mapping": true,
+    "every_mapped_instance_exists_in_the_h1_physical_register": true,
+    "every_referenced_mechanical_gate_exists": true,
+    "all_fourteen_mechanical_gates_are_joined": true,
+    "all_board_fitted_mechanical_gate_parts_have_exact_non_tbd_mpns": true,
+    "every_residual_has_parts_missing_data_source_and_pass_rule": true,
+    "sample_specific_claims_remain_open": true,
+    "purchase_layout_and_fabrication_are_not_authorized": true
+  },
+  "residuals": [
+    {
+      "id": "H3-PHY-017",
+      "source_phase": "H3.3",
+      "source_group": "display",
+      "requirement": "confirm HMX035CTFT-001 tail, ST77922 identity, VDD/VDDI ramp equality and reset/readback on received specimens",
+      "parts": [
+        {
+          "identity": "display",
+          "kind": "selected_physical_instance",
+          "mpn": "HMX035CTFT-001 (QDtech schematic assembly marking)",
+          "role": "raw_display_touch_assembly_with_integrated_sitronix_st77922_tddi",
+          "source": {
+            "document": "QDtech ES3C35P 3.5-inch IPS ESP32-S3 Display Module Specification",
+            "version": "V1.0; outline drawing dated 2025-07-24",
+            "url": "https://www.lcdwiki.com/res/ES3C35P/3.5inch_IPS_ESP32-S3_Specification_V1.0.pdf",
+            "checked": "2026-08-22"
+          }
+        },
+        {
+          "identity": "display_touch_controller",
+          "kind": "selected_physical_instance",
+          "mpn": "Sitronix ST77922",
+          "role": "single_chip_tft_controller_driver_and_capacitive_touch_tddi_cog",
+          "source": {
+            "document": "ST77922 Single-Chip TFT Controller/Driver/Touch datasheet",
+            "version": "Preliminary 0.1, 2023-06",
+            "url": "https://dl.espressif.com/AE/esp-iot-solution/ST77922_SPEC_V0.1.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "display_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+          "role": "40-contact fixed receptacle for the replaceable display adapter",
+          "source": {
+            "document": "Hirose exact product page, 2D drawing and specification sheet",
+            "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",
+            "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
+            "checked": "2026-08-23"
+          }
+        },
+        {
+          "identity": "display_adapter_plug",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose DF40C-40DP-0.4V(51)",
+          "role": "40_position_0_4mm_vertical_board_to_board_plug",
+          "source": {
+            "document": "Hirose exact product page, 2D drawing and specification sheet",
+            "version": "CL0684-4013-7-51; detailed specifications updated 2026-08-05",
+            "url": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
+            "checked": "2026-08-23"
+          }
+        },
+        {
+          "identity": "display_panel_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
+          "role": "40_position_0_5mm_top_and_bottom_contact_zif_fpc_receptacle",
+          "source": {
+            "document": "Hirose FH34SRJ-40S-0.5SH(99) product page and controlled 2D drawing",
+            "version": "CL0580-1260-6-99; detailed specifications updated 2026-02-07",
+            "url": "https://www.hirose.com/en/product/p/CL0580-1260-6-99",
+            "checked": "2026-08-23"
+          }
+        }
+      ],
+      "mechanical_gates": [
+        "H5-MECH-DISPLAY-TAIL",
+        "H5-MECH-DISPLAY-PERFORMANCE"
+      ],
+      "missing_data": [
+        "standalone order identity and current-lot full FPC outline for the HMX035CTFT-001-marked assembly",
+        "received-controller identity/readback and measured VDD/VDDI ramp equality"
+      ],
+      "sample_specific": true,
+      "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+      "accepted_pass_rule": "the received specimen directly demonstrates this item: confirm HMX035CTFT-001 tail, ST77922 identity, VDD/VDDI ramp equality and reset/readback on received specimens; a mismatch reopens the owning H1/H2/H3 result",
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H3-PHY-024",
+      "source_phase": "H3.3",
+      "source_group": "ir",
+      "requirement": "verify received TSOP95238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
+      "parts": [
+        {
+          "identity": "ir_demod",
+          "kind": "selected_physical_instance",
+          "mpn": "Vishay TSOP95238TT",
+          "role": "38-kHz IR receiver",
+          "source": {
+            "document": "TSOP952/TSOP954 IR receiver modules datasheet",
+            "version": "Rev. 1.2, 13-Apr-2022",
+            "url": "https://www.vishay.com/docs/82837/tsop952.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "ir_carrier",
+          "kind": "selected_physical_instance",
+          "mpn": "Vishay TSMP95000TT",
+          "role": "carrier-learning IR receiver",
+          "source": {
+            "document": "TSMP95000 IR sensor module datasheet",
+            "version": "Rev. 1.0, 20-Oct-2022",
+            "url": "https://www.vishay.com/docs/82907/tsmp95000.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "ir_emitter",
+          "kind": "selected_physical_instance",
+          "mpn": "Vishay VSMY14940",
+          "role": "940-nm IR transmitter",
+          "source": {
+            "document": "VSMY14940 high-speed infrared emitter datasheet",
+            "version": "Rev. 1.6, 22-Sep-2017",
+            "url": "https://www.vishay.com/docs/84209/vsmy14940.pdf",
+            "checked": "2026-08-18"
+          }
+        }
+      ],
+      "mechanical_gates": [],
+      "missing_data": [
+        "received-lot orientation and measured startup, quiet-guard, capture and no-back-power behaviour"
+      ],
+      "sample_specific": true,
+      "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+      "accepted_pass_rule": "the received specimen directly demonstrates this item: verify received TSOP95238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; a mismatch reopens the owning H1/H2/H3 result",
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H3-PHY-028",
+      "source_phase": "H3.3",
+      "source_group": "battery",
+      "requirement": "program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens",
+      "parts": [
+        {
+          "identity": "pack_gauge",
+          "kind": "selected_physical_instance",
+          "mpn": "Analog Devices MAX17320G20+T",
+          "role": "2S protection and fuel gauge",
+          "source": {
+            "document": "MAX17320 2S-4S ModelGauge m5 gauge/protector datasheet",
+            "version": "Rev. 12, July 2025",
+            "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/max17320.pdf",
+            "checked": "2026-08-18"
+          }
+        }
+      ],
+      "mechanical_gates": [
+        "H5-MECH-CELL-HOLDER-FIT"
+      ],
+      "missing_data": [
+        "programmed golden-image readback plus blank, corrupt and exhausted-write fault-injection records"
+      ],
+      "sample_specific": true,
+      "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+      "accepted_pass_rule": "the received specimen directly demonstrates this item: program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens; a mismatch reopens the owning H1/H2/H3 result",
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H3-PHY-038",
+      "source_phase": "H3.4",
+      "source_group": "timing",
+      "requirement": "qualify SD card identity/CMD6 high-speed mode, >=4.0-MB/s storage, 1.5-MB/s record, 250-ms stalls and 512-KiB buffering",
+      "parts": [
+        {
+          "identity": "sd",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose DM3AT-SF-PEJM5",
+          "role": "bottom-access push-push microSD",
+          "source": {
+            "document": "DM3 Series microSD Card Connectors catalog",
+            "version": "2026-05-01 current catalog and exact product page",
+            "url": "https://www.hirose.com/product/p/CL0609-0031-0-00",
+            "checked": "2026-08-18"
+          }
+        }
+      ],
+      "mechanical_gates": [],
+      "missing_data": [
+        "exact serial microSD reference-medium MPN is not selected",
+        "received-card CMD6 identity, throughput, stall distribution and 512-KiB-buffer trace"
+      ],
+      "sample_specific": true,
+      "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+      "accepted_pass_rule": "the received specimen directly demonstrates this item: qualify SD card identity/CMD6 high-speed mode, >=4.0-MB/s storage, 1.5-MB/s record, 250-ms stalls and 512-KiB buffering; a mismatch reopens the owning H1/H2/H3 result",
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H3-PHY-046",
+      "source_phase": "H3.4",
+      "source_group": "boundaries",
+      "requirement": "verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair",
+      "parts": [
+        {
+          "identity": "u214",
+          "kind": "selected_physical_instance",
+          "mpn": "M5Stack U214 Cap LoRa-1262",
+          "role": "external_cap",
+          "source": {
+            "document": "M5Stack Cap LoRa-1262 product documentation and official model-size drawing",
+            "version": "live product page / U214-00 dimension drawing",
+            "url": "https://docs.m5stack.com/en/cap/Cap_LoRa-1262",
+            "checked": "2026-08-17"
+          }
+        },
+        {
+          "identity": "u214_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Samtec HLE-107-02-G-DV-PE-LC",
+          "role": "vertical host socket on the raised rear Cap-Bus rail",
+          "source": {
+            "document": "Samtec exact HLE product page, series print and HLE catalog",
+            "version": "HLE-107-02-G-DV-PE-LC / HLE-1XX-02-XX-DV-XE-XX-MKT",
+            "url": "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc",
+            "checked": "2026-08-23"
+          }
+        }
+      ],
+      "mechanical_gates": [
+        "H5-MECH-U214-MATING-STACK"
+      ],
+      "missing_data": [
+        "the stock U214 fitted male-post manufacturer/MPN, section, material and plating are not published",
+        "measured continuity, insertion/withdrawal force and repeated-cycle retention for the mixed stock-U214/HLE pair"
+      ],
+      "sample_specific": true,
+      "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+      "accepted_pass_rule": "the received specimen directly demonstrates this item: verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair; a mismatch reopens the owning H1/H2/H3 result",
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H3-PHY-048",
+      "source_phase": "H3.4",
+      "source_group": "boundaries",
+      "requirement": "qualify each native Unit profile, cable length and pull network through TXS0102; 1-Wire remains specimen-only",
+      "parts": [
+        {
+          "identity": "unit_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "1125R-SMT-4P",
+          "role": "native M5 Unit HY2.0-4P edge receptacle",
+          "source": {
+            "document": "Seeed 1125R-SMT-4P official manufacturer drawing",
+            "version": "NS-1125-W00010 Rev.A",
+            "url": "https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ti_txs0102_dcur",
+          "kind": "selected_architecture_device",
+          "mpn": "Texas Instruments TXS0102DCUR",
+          "role": "vssop8_dual_auto_bidirectional_open_drain_push_pull_translator",
+          "source": {
+            "document": "TXS0102 2-bit bidirectional voltage-level translator datasheet",
+            "version": "SCES640L, revised January 2026",
+            "url": "https://www.ti.com/lit/ds/symlink/txs0102.pdf",
+            "checked": "2026-08-18"
+          }
+        }
+      ],
+      "mechanical_gates": [
+        "H5-MECH-M5-UNIT-MATE"
+      ],
+      "missing_data": [
+        "exact serial cable/accessory set for the admitted I2C, UART, GPIO and 1-Wire profiles is not selected",
+        "received cable lengths, pull networks and profile waveforms through TXS0102"
+      ],
+      "sample_specific": true,
+      "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+      "accepted_pass_rule": "the received specimen directly demonstrates this item: qualify each native Unit profile, cable length and pull network through TXS0102; 1-Wire remains specimen-only; a mismatch reopens the owning H1/H2/H3 result",
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H3-PHY-053",
+      "source_phase": "H3.5",
+      "source_group": "phase",
+      "requirement": "measure all three E01 module-to-SMA feeds and received-lot Gen1 mating/retention independently",
+      "parts": [
+        {
+          "identity": "nrf0",
+          "kind": "selected_physical_instance",
+          "mpn": "Ebyte E01-ML01IPX",
+          "role": "full-function nRF24 radio #0",
+          "source": {
+            "document": "E01-ML01IPX product specification",
+            "version": "2025-01-16",
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+            "checked": "2026-08-17"
+          }
+        },
+        {
+          "identity": "nrf1",
+          "kind": "selected_physical_instance",
+          "mpn": "Ebyte E01-ML01IPX",
+          "role": "full-function nRF24 radio #1; rotated for U214 tail clearance",
+          "source": {
+            "document": "E01-ML01IPX product specification",
+            "version": "2025-01-16",
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+            "checked": "2026-08-17"
+          }
+        },
+        {
+          "identity": "nrf2",
+          "kind": "selected_physical_instance",
+          "mpn": "Ebyte E01-ML01IPX",
+          "role": "full-function nRF24 radio #2",
+          "source": {
+            "document": "E01-ML01IPX product specification",
+            "version": "2025-01-16",
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+            "checked": "2026-08-17"
+          }
+        },
+        {
+          "identity": "nrf0_rf_jumper",
+          "kind": "selected_physical_instance",
+          "mpn": "TE Connectivity 2118651-2",
+          "role": "direct nRF24 #0 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
+          "source": {
+            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+            "version": "ENG_CD_2118651_C5; live exact-product record",
+            "url": "https://www.te.com/en/product-2118651-2.html",
+            "checked": "2026-08-20"
+          }
+        },
+        {
+          "identity": "nrf1_rf_jumper",
+          "kind": "selected_physical_instance",
+          "mpn": "TE Connectivity 2118651-2",
+          "role": "direct nRF24 #1 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
+          "source": {
+            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+            "version": "ENG_CD_2118651_C5; live exact-product record",
+            "url": "https://www.te.com/en/product-2118651-2.html",
+            "checked": "2026-08-20"
+          }
+        },
+        {
+          "identity": "nrf2_rf_jumper",
+          "kind": "selected_physical_instance",
+          "mpn": "TE Connectivity 2118651-2",
+          "role": "direct nRF24 #2 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
+          "source": {
+            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+            "version": "ENG_CD_2118651_C5; live exact-product record",
+            "url": "https://www.te.com/en/product-2118651-2.html",
+            "checked": "2026-08-20"
+          }
+        },
+        {
+          "identity": "nrf0_rf_board_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "role": "nRF24 #0 Gen1 jumper board receptacle",
+          "source": {
+            "document": "Hirose U.FL Series connector catalog",
+            "version": "current catalog",
+            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "nrf1_rf_board_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "role": "nRF24 #1 Gen1 jumper board receptacle",
+          "source": {
+            "document": "Hirose U.FL Series connector catalog",
+            "version": "current catalog",
+            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "nrf2_rf_board_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "role": "nRF24 #2 Gen1 jumper board receptacle",
+          "source": {
+            "document": "Hirose U.FL Series connector catalog",
+            "version": "current catalog",
+            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "nrf0_external_sma",
+          "kind": "selected_physical_instance",
+          "mpn": "GCT RFPC-SMA31-FN-175-A",
+          "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+          "source": {
+            "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+            "version": "drawing dated 2025-04-07",
+            "url": "https://gct.co/connector/rfpc-sma31-fn",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "nrf1_external_sma",
+          "kind": "selected_physical_instance",
+          "mpn": "GCT RFPC-SMA31-FN-175-A",
+          "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+          "source": {
+            "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+            "version": "drawing dated 2025-04-07",
+            "url": "https://gct.co/connector/rfpc-sma31-fn",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "nrf2_external_sma",
+          "kind": "selected_physical_instance",
+          "mpn": "GCT RFPC-SMA31-FN-175-A",
+          "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+          "source": {
+            "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+            "version": "drawing dated 2025-04-07",
+            "url": "https://gct.co/connector/rfpc-sma31-fn",
+            "checked": "2026-08-19"
+          }
+        }
+      ],
+      "mechanical_gates": [
+        "H5-MECH-NRF-GEN1-FEEDS"
+      ],
+      "missing_data": [
+        "the fitted microcoax receptacle MPN and connector axis on each received E01-ML01IPX lot are not published",
+        "three independent assembled-feed loss/match and mating/retention records"
+      ],
+      "sample_specific": true,
+      "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+      "accepted_pass_rule": "the received specimen directly demonstrates this item: measure all three E01 module-to-SMA feeds and received-lot Gen1 mating/retention independently; a mismatch reopens the owning H1/H2/H3 result",
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H3-PHY-057",
+      "source_phase": "H3.5",
+      "source_group": "phase",
+      "requirement": "measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod",
+      "parts": [
+        {
+          "identity": "receiver",
+          "kind": "selected_physical_instance",
+          "mpn": "Si4732-A10-GSR",
+          "role": "FM/AM/SW/LW receiver",
+          "source": {
+            "document": "Si4732-A10 Broadcast AM/FM/SW/LW/RDS Radio Receiver data short",
+            "version": "2021-09-13",
+            "url": "https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "receiver_amlw_external_sma",
+          "kind": "selected_physical_instance",
+          "mpn": "GCT RFPC-SMA31-FN-175-A",
+          "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+          "source": {
+            "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+            "version": "drawing dated 2025-04-07",
+            "url": "https://gct.co/connector/rfpc-sma31-fn",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "L2-ANT-AM-LW-001",
+          "kind": "controlled_custom_assembly",
+          "mpn": "L2-ANT-AM-LW-001",
+          "role": "passive receive-only direct-plug ferrite pod for the dedicated non-50-Ohm AMI port",
+          "constituent_mpns": [
+            "3061990901",
+            "38SNSP.125",
+            "RF2-154-T-17-50-G",
+            "SESD0402X1UN-0020-090",
+            "GRM155R71A474KE01D"
+          ],
+          "source": {
+            "document": "controlled AM/LW pod definition",
+            "url": "hardware/architecture/am-lw-pod.json"
+          }
+        }
+      ],
+      "mechanical_gates": [],
+      "missing_data": [
+        "measured total external AMI capacitance of the received SMA, routed PCB and completed exact pod"
+      ],
+      "sample_specific": true,
+      "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+      "accepted_pass_rule": "the received specimen directly demonstrates this item: measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod; a mismatch reopens the owning H1/H2/H3 result",
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H3-PHY-062",
+      "source_phase": "H3.5",
+      "source_group": "phase",
+      "requirement": "measure received 2118651-2 bend/retention/strain behavior and E01 connector axes before freezing the five microcoax paths",
+      "parts": [
+        {
+          "identity": "s3",
+          "kind": "selected_physical_instance",
+          "mpn": "ESP32-S3-WROOM-1U-N16R8",
+          "role": "UI, display, storage and audio owner",
+          "source": {
+            "document": "ESP32-S3-WROOM-1/WROOM-1U Datasheet",
+            "version": "v1.8",
+            "url": "https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+            "checked": "2026-08-20"
+          }
+        },
+        {
+          "identity": "c5",
+          "kind": "selected_physical_instance",
+          "mpn": "ESP32-C5-WROOM-1U-N8R8",
+          "role": "native 2.4/5-GHz and IR owner",
+          "source": {
+            "document": "ESP32-C5-WROOM-1/WROOM-1U Datasheet",
+            "version": "v1.2",
+            "url": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+            "checked": "2026-08-17"
+          }
+        },
+        {
+          "identity": "nrf0",
+          "kind": "selected_physical_instance",
+          "mpn": "Ebyte E01-ML01IPX",
+          "role": "full-function nRF24 radio #0",
+          "source": {
+            "document": "E01-ML01IPX product specification",
+            "version": "2025-01-16",
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+            "checked": "2026-08-17"
+          }
+        },
+        {
+          "identity": "nrf1",
+          "kind": "selected_physical_instance",
+          "mpn": "Ebyte E01-ML01IPX",
+          "role": "full-function nRF24 radio #1; rotated for U214 tail clearance",
+          "source": {
+            "document": "E01-ML01IPX product specification",
+            "version": "2025-01-16",
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+            "checked": "2026-08-17"
+          }
+        },
+        {
+          "identity": "nrf2",
+          "kind": "selected_physical_instance",
+          "mpn": "Ebyte E01-ML01IPX",
+          "role": "full-function nRF24 radio #2",
+          "source": {
+            "document": "E01-ML01IPX product specification",
+            "version": "2025-01-16",
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+            "checked": "2026-08-17"
+          }
+        },
+        {
+          "identity": "s3_rf_jumper",
+          "kind": "selected_physical_instance",
+          "mpn": "TE Connectivity 2118651-2",
+          "role": "direct S3 U.FL-to-U.FL plan projection; 30-mm assembly slack closes at H5",
+          "source": {
+            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+            "version": "ENG_CD_2118651_C5; live exact-product record",
+            "url": "https://www.te.com/en/product-2118651-2.html",
+            "checked": "2026-08-20"
+          }
+        },
+        {
+          "identity": "c5_rf_jumper",
+          "kind": "selected_physical_instance",
+          "mpn": "TE Connectivity 2118651-2",
+          "role": "direct C5 U.FL-to-U.FL plan projection; 30-mm assembly slack closes at H5",
+          "source": {
+            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+            "version": "ENG_CD_2118651_C5; live exact-product record",
+            "url": "https://www.te.com/en/product-2118651-2.html",
+            "checked": "2026-08-20"
+          }
+        },
+        {
+          "identity": "nrf0_rf_jumper",
+          "kind": "selected_physical_instance",
+          "mpn": "TE Connectivity 2118651-2",
+          "role": "direct nRF24 #0 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
+          "source": {
+            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+            "version": "ENG_CD_2118651_C5; live exact-product record",
+            "url": "https://www.te.com/en/product-2118651-2.html",
+            "checked": "2026-08-20"
+          }
+        },
+        {
+          "identity": "nrf1_rf_jumper",
+          "kind": "selected_physical_instance",
+          "mpn": "TE Connectivity 2118651-2",
+          "role": "direct nRF24 #1 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
+          "source": {
+            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+            "version": "ENG_CD_2118651_C5; live exact-product record",
+            "url": "https://www.te.com/en/product-2118651-2.html",
+            "checked": "2026-08-20"
+          }
+        },
+        {
+          "identity": "nrf2_rf_jumper",
+          "kind": "selected_physical_instance",
+          "mpn": "TE Connectivity 2118651-2",
+          "role": "direct nRF24 #2 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
+          "source": {
+            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+            "version": "ENG_CD_2118651_C5; live exact-product record",
+            "url": "https://www.te.com/en/product-2118651-2.html",
+            "checked": "2026-08-20"
+          }
+        },
+        {
+          "identity": "s3_rf_board_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "role": "S3 30-mm jumper board receptacle",
+          "source": {
+            "document": "Hirose U.FL Series connector catalog",
+            "version": "current catalog",
+            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "c5_rf_board_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "role": "C5 30-mm jumper board receptacle",
+          "source": {
+            "document": "Hirose U.FL Series connector catalog",
+            "version": "current catalog",
+            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "nrf0_rf_board_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "role": "nRF24 #0 Gen1 jumper board receptacle",
+          "source": {
+            "document": "Hirose U.FL Series connector catalog",
+            "version": "current catalog",
+            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "nrf1_rf_board_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "role": "nRF24 #1 Gen1 jumper board receptacle",
+          "source": {
+            "document": "Hirose U.FL Series connector catalog",
+            "version": "current catalog",
+            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "nrf2_rf_board_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "role": "nRF24 #2 Gen1 jumper board receptacle",
+          "source": {
+            "document": "Hirose U.FL Series connector catalog",
+            "version": "current catalog",
+            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+            "checked": "2026-08-18"
+          }
+        }
+      ],
+      "mechanical_gates": [
+        "H5-MECH-NRF-GEN1-FEEDS",
+        "H5-MECH-NATIVE-RF-JUMPERS"
+      ],
+      "missing_data": [
+        "received 2118651-2 bend, retention and strain behaviour in all five installed paths",
+        "received E01 fitted-connector axes before freezing placement"
+      ],
+      "sample_specific": true,
+      "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
+      "accepted_pass_rule": "the received specimen directly demonstrates this item: measure received 2118651-2 bend/retention/strain behavior and E01 connector axes before freezing the five microcoax paths; a mismatch reopens the owning H1/H2/H3 result",
+      "status": "mapped_evidence_open"
+    }
+  ],
+  "mechanical_gates": [
+    {
+      "id": "H5-MECH-DISPLAY-TAIL",
+      "parts": [
+        {
+          "identity": "display",
+          "kind": "selected_physical_instance",
+          "mpn": "HMX035CTFT-001 (QDtech schematic assembly marking)",
+          "role": "raw_display_touch_assembly_with_integrated_sitronix_st77922_tddi",
+          "source": {
+            "document": "QDtech ES3C35P 3.5-inch IPS ESP32-S3 Display Module Specification",
+            "version": "V1.0; outline drawing dated 2025-07-24",
+            "url": "https://www.lcdwiki.com/res/ES3C35P/3.5inch_IPS_ESP32-S3_Specification_V1.0.pdf",
+            "checked": "2026-08-22"
+          }
+        },
+        {
+          "identity": "display_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+          "role": "40-contact fixed receptacle for the replaceable display adapter",
+          "source": {
+            "document": "Hirose exact product page, 2D drawing and specification sheet",
+            "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",
+            "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
+            "checked": "2026-08-23"
+          }
+        },
+        {
+          "identity": "display_adapter_plug",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose DF40C-40DP-0.4V(51)",
+          "role": "40_position_0_4mm_vertical_board_to_board_plug",
+          "source": {
+            "document": "Hirose exact product page, 2D drawing and specification sheet",
+            "version": "CL0684-4013-7-51; detailed specifications updated 2026-08-05",
+            "url": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
+            "checked": "2026-08-23"
+          }
+        },
+        {
+          "identity": "display_panel_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
+          "role": "40_position_0_5mm_top_and_bottom_contact_zif_fpc_receptacle",
+          "source": {
+            "document": "Hirose FH34SRJ-40S-0.5SH(99) product page and controlled 2D drawing",
+            "version": "CL0580-1260-6-99; detailed specifications updated 2026-02-07",
+            "url": "https://www.hirose.com/en/product/p/CL0580-1260-6-99",
+            "checked": "2026-08-23"
+          }
+        }
+      ],
+      "known_boundary": "Official QDtech sources prove the HMX035CTFT-001 marking, complete-donor 54.5x101.5-mm reserve, 40-contact electrical map and 54.5x83.0x3.2-mm LCD/CTP screen body. L2-DISP-ADP-001-A fixes a 25.5x12.0-mm replaceable adapter, exact 2.0-mm 40-contact DF40 board mate, direct one-to-one copper and an active dual-contact FH34SRJ panel ZIF. The main UI board and enclosure no longer depend on an inferred raw-flex outline or exposed-contact side.",
+      "missing_data": "Standalone order identity, current-lot complete FPC outline, thickness, stiffener, adhesive, bend path and actual insertion/retention in the selected dual-contact ZIF remain received-display properties; a mismatch may revise only the small adapter and its panel-side connector.",
+      "accepted_pass_rule": "Incoming inspection measures the current HMX035CTFT-001 tail and proves insertion, retention, bend clearance and continuity on a replaceable adapter revision before fabrication release.",
+      "blocks": [
+        "H8"
+      ],
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H5-MECH-NRF-GEN1-FEEDS",
+      "parts": [
+        {
+          "identity": "nrf0",
+          "kind": "selected_physical_instance",
+          "mpn": "Ebyte E01-ML01IPX",
+          "role": "full-function nRF24 radio #0",
+          "source": {
+            "document": "E01-ML01IPX product specification",
+            "version": "2025-01-16",
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+            "checked": "2026-08-17"
+          }
+        },
+        {
+          "identity": "nrf1",
+          "kind": "selected_physical_instance",
+          "mpn": "Ebyte E01-ML01IPX",
+          "role": "full-function nRF24 radio #1; rotated for U214 tail clearance",
+          "source": {
+            "document": "E01-ML01IPX product specification",
+            "version": "2025-01-16",
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+            "checked": "2026-08-17"
+          }
+        },
+        {
+          "identity": "nrf2",
+          "kind": "selected_physical_instance",
+          "mpn": "Ebyte E01-ML01IPX",
+          "role": "full-function nRF24 radio #2",
+          "source": {
+            "document": "E01-ML01IPX product specification",
+            "version": "2025-01-16",
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+            "checked": "2026-08-17"
+          }
+        },
+        {
+          "identity": "nrf0_rf_jumper",
+          "kind": "selected_physical_instance",
+          "mpn": "TE Connectivity 2118651-2",
+          "role": "direct nRF24 #0 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
+          "source": {
+            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+            "version": "ENG_CD_2118651_C5; live exact-product record",
+            "url": "https://www.te.com/en/product-2118651-2.html",
+            "checked": "2026-08-20"
+          }
+        },
+        {
+          "identity": "nrf1_rf_jumper",
+          "kind": "selected_physical_instance",
+          "mpn": "TE Connectivity 2118651-2",
+          "role": "direct nRF24 #1 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
+          "source": {
+            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+            "version": "ENG_CD_2118651_C5; live exact-product record",
+            "url": "https://www.te.com/en/product-2118651-2.html",
+            "checked": "2026-08-20"
+          }
+        },
+        {
+          "identity": "nrf2_rf_jumper",
+          "kind": "selected_physical_instance",
+          "mpn": "TE Connectivity 2118651-2",
+          "role": "direct nRF24 #2 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
+          "source": {
+            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+            "version": "ENG_CD_2118651_C5; live exact-product record",
+            "url": "https://www.te.com/en/product-2118651-2.html",
+            "checked": "2026-08-20"
+          }
+        },
+        {
+          "identity": "nrf0_rf_board_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "role": "nRF24 #0 Gen1 jumper board receptacle",
+          "source": {
+            "document": "Hirose U.FL Series connector catalog",
+            "version": "current catalog",
+            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "nrf1_rf_board_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "role": "nRF24 #1 Gen1 jumper board receptacle",
+          "source": {
+            "document": "Hirose U.FL Series connector catalog",
+            "version": "current catalog",
+            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "nrf2_rf_board_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "role": "nRF24 #2 Gen1 jumper board receptacle",
+          "source": {
+            "document": "Hirose U.FL Series connector catalog",
+            "version": "current catalog",
+            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "nrf0_external_sma",
+          "kind": "selected_physical_instance",
+          "mpn": "GCT RFPC-SMA31-FN-175-A",
+          "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+          "source": {
+            "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+            "version": "drawing dated 2025-04-07",
+            "url": "https://gct.co/connector/rfpc-sma31-fn",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "nrf1_external_sma",
+          "kind": "selected_physical_instance",
+          "mpn": "GCT RFPC-SMA31-FN-175-A",
+          "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+          "source": {
+            "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+            "version": "drawing dated 2025-04-07",
+            "url": "https://gct.co/connector/rfpc-sma31-fn",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "nrf2_external_sma",
+          "kind": "selected_physical_instance",
+          "mpn": "GCT RFPC-SMA31-FN-175-A",
+          "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+          "source": {
+            "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+            "version": "drawing dated 2025-04-07",
+            "url": "https://gct.co/connector/rfpc-sma31-fn",
+            "checked": "2026-08-19"
+          }
+        }
+      ],
+      "known_boundary": "Ebyte's current specification and official PcbLib prove the E01-ML01IPX outline and land pattern; Ebyte's current accessory catalog identifies the matching interface as IPX/IPEX Gen1. Exact active TE 2118651-2 30-mm UMCC Gen1 jumpers and Hirose U.FL-R-SMT-1(10) board mates define all three paper feed assemblies. H1 reserves a cable corridor from the complete module-face envelope instead of inventing a connector axis absent from the PcbLib.",
+      "missing_data": "The connector axis and current-lot receptacle manufacturer's exact MPN, actual fit/retention, bend/strain behaviour and end-to-end RF loss remain received-part properties. H1.2/H1.6 must prove the conservative module-face-to-board-receptacle corridor without relying on a nominal axis.",
+      "accepted_pass_rule": "Incoming inspection confirms the fitted receptacle is Gen1, and all three complete feed coupons pass fit, retention, flex/service, insertion-loss and return-loss tests in H5.",
+      "blocks": [
+        "H8"
+      ],
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H5-MECH-U214-MATING-STACK",
+      "parts": [
+        {
+          "identity": "u214",
+          "kind": "selected_physical_instance",
+          "mpn": "M5Stack U214 Cap LoRa-1262",
+          "role": "external_cap",
+          "source": {
+            "document": "M5Stack Cap LoRa-1262 product documentation and official model-size drawing",
+            "version": "live product page / U214-00 dimension drawing",
+            "url": "https://docs.m5stack.com/en/cap/Cap_LoRa-1262",
+            "checked": "2026-08-17"
+          }
+        },
+        {
+          "identity": "u214_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Samtec HLE-107-02-G-DV-PE-LC",
+          "role": "vertical host socket on the raised rear Cap-Bus rail",
+          "source": {
+            "document": "Samtec exact HLE product page, series print and HLE catalog",
+            "version": "HLE-107-02-G-DV-PE-LC / HLE-1XX-02-XX-DV-XE-XX-MKT",
+            "url": "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc",
+            "checked": "2026-08-23"
+          }
+        }
+      ],
+      "known_boundary": "M5Stack proves the 84x24x15.287-mm Cap envelope, 2x7 2.54-mm topology and 56-mm retention pitch. Samtec proves the exact HLE-107-02-G-DV-PE-LC pass-through body, standard 0.635-mm square-post class, 1.78-mm minimum insertion and absence of a closed bottoming limit. H1 fixes the Cap body to the retention datums and lets the undocumented post length pass through the raised rail.",
+      "missing_data": "Current-lot U214 post section, insertion force, contact retention, repeated-cycle fit, retention-screw engagement and final compliant rail preload remain received-part properties; none changes the bounded H1 exterior envelope or main-board placement.",
+      "accepted_pass_rule": "Incoming inspection and an exact HLE coupon verify the current U214 post, insertion/withdrawal force, contact continuity, cycle life and retention engagement before fabrication release.",
+      "blocks": [
+        "H8"
+      ],
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H5-MECH-NAVIGATION-CONTROLS",
+      "parts": [
+        {
+          "identity": "ui_dpad_up",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "direct-press navigation UP",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ui_dpad_down",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "direct-press navigation DOWN",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ui_dpad_left",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "direct-press navigation LEFT",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ui_dpad_right",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "direct-press navigation RIGHT",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ui_dpad_ok",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "direct-press navigation OK",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        }
+      ],
+      "known_boundary": "Five exact, active and orderable OMRON B3S-1100P switches form UP, DOWN, LEFT, RIGHT and OK. Every direction is a separate direct-press serial component; no custom cap, plunger, cross or guide exists. The manufacturer drawing fixes each 6.6x6.0x4.3-mm body, 3.3-mm plunger, force, travel and IEC IP67-equivalent switch boundary.",
+      "missing_data": "Assembled enclosure opening access, accidental-press margin, multi-button feel, sealing boundary and endurance.",
+      "accepted_pass_rule": "The received five-button/front-panel assembly passes access, force, independent and adjacent actuation, contradictory-pair rejection, sealing-boundary and endurance tests in H5.",
+      "blocks": [
+        "H8"
+      ],
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H5-MECH-SA518-LAND-FIT",
+      "parts": [
+        {
+          "identity": "voice",
+          "kind": "selected_physical_instance",
+          "mpn": "NiceRF SA518",
+          "role": "VHF/UHF voice transceiver; contact 7 uses a short controlled jog to its SMA",
+          "source": {
+            "document": "SA518 UV Dual Frequency Walkie-talkie Module Product Specification",
+            "version": "1.1 / 2026-05",
+            "url": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
+            "checked": "2026-08-22"
+          }
+        }
+      ],
+      "known_boundary": "Rev 1.1 dimensionally fixes contact 7 at 2.00+/-0.10 mm from the board end; the corrected mockup aligns that nominal axis to the VHF/UHF SMA.",
+      "missing_data": "Received castellated-pad tolerance, solder fillet, thermal behaviour and conducted RF performance.",
+      "accepted_pass_rule": "Incoming measurement, land-pattern coupon, solder inspection and RF/thermal HIL pass in H5.",
+      "blocks": [
+        "H8"
+      ],
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H5-MECH-ENCODER-KNOB",
+      "parts": [
+        {
+          "identity": "encoder",
+          "kind": "selected_physical_instance",
+          "mpn": "Alps Alpine EC11E18244AU",
+          "role": "rear through-hole encoder",
+          "source": {
+            "document": "EC11E Series Incremental Encoder catalog and product specification",
+            "version": "catalog update 2510",
+            "url": "https://tech.alpsalpine.com/cms.media/product_catalog_ec_01_ec11e_en_611f078659.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "encoder_knob",
+          "kind": "selected_physical_instance",
+          "mpn": "Davies Molding 1227-J",
+          "role": "exact soft-touch knob over rear encoder",
+          "source": {
+            "document": "Davies Molding 1227-J official product page and drawing table",
+            "version": "live product page",
+            "url": "https://daviesmolding.com/catalog/series/knobs/control/1227-j/",
+            "checked": "2026-08-19"
+          }
+        }
+      ],
+      "known_boundary": "Exact shaft, knob and plan envelopes are manufacturer-dimensioned and fit the H1 rear-face reserve.",
+      "missing_data": "Insertion depth, retention, push travel, feel and final rear depth on received parts.",
+      "accepted_pass_rule": "Received fit/travel/endurance coupon passes in H5.",
+      "blocks": [
+        "H8"
+      ],
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
+      "parts": [
+        {
+          "identity": "ui_switch_back",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "direct-press BACK",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ui_switch_opt",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "direct-press OPT",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ui_switch_f1",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "front-left function F1",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ui_switch_f2",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "front-left function F2",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ui_switch_f3",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "front-left function F3",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ui_switch_f4",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "front-left function F4",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ui_switch_f5",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "front-right function F5",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ui_switch_f6",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "front-right function F6",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ui_switch_f7",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "front-right function F7",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ui_switch_f8",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "front-right function F8",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        },
+        {
+          "identity": "ptt_switch",
+          "kind": "selected_physical_instance",
+          "mpn": "OMRON B3S-1100P",
+          "role": "rear independent PTT",
+          "source": {
+            "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+            "version": "A204-E1",
+            "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+            "checked": "2026-08-19"
+          }
+        }
+      ],
+      "known_boundary": "The exact B3S-1100P body, 3.3-mm plunger and height/tolerance are manufacturer-dimensioned; no speculative cap is used.",
+      "missing_data": "PCB/enclosure press feel, accidental-press margin and endurance.",
+      "accepted_pass_rule": "Received control coupon passes travel, force, accessibility and endurance tests in H5.",
+      "blocks": [
+        "H8"
+      ],
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H5-MECH-RUN-KILL",
+      "parts": [
+        {
+          "identity": "power_command_switch",
+          "kind": "selected_physical_instance",
+          "mpn": "C&K JS102011SCQN",
+          "role": "single low-current RUN/KILL; charging remains available in KILL",
+          "source": {
+            "document": "Littelfuse C&K JS Series Sub-Miniature Slide Switches datasheet",
+            "version": "VL 01/14/26",
+            "url": "https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
+            "checked": "2026-08-19"
+          }
+        }
+      ],
+      "known_boundary": "The exact C&K body and side-actuator envelope are manufacturer-dimensioned and the opening direction is explicit.",
+      "missing_data": "Received side access, detent force, accidental motion and endurance.",
+      "accepted_pass_rule": "Received switch/aperture coupon passes access, force and endurance tests in H5.",
+      "blocks": [
+        "H8"
+      ],
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H5-MECH-M5-UNIT-MATE",
+      "parts": [
+        {
+          "identity": "unit_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "1125R-SMT-4P",
+          "role": "native M5 Unit HY2.0-4P edge receptacle",
+          "source": {
+            "document": "Seeed 1125R-SMT-4P official manufacturer drawing",
+            "version": "NS-1125-W00010 Rev.A",
+            "url": "https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf",
+            "checked": "2026-08-19"
+          }
+        }
+      ],
+      "known_boundary": "The exact Seeed 1125R-SMT-4P body, land pattern and outward cable direction are controlled.",
+      "missing_data": "Received Grove cable insertion, retention, strain relief and repeated mating.",
+      "accepted_pass_rule": "Exact connector and ecosystem cable pass received fit/endurance checks in H5.",
+      "blocks": [
+        "H8"
+      ],
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H5-MECH-CELL-HOLDER-FIT",
+      "parts": [
+        {
+          "identity": "pack_holder",
+          "kind": "selected_physical_instance",
+          "mpn": "Keystone Electronics 1048P",
+          "role": "dual_18650_smt_polarized_open_holder",
+          "source": {
+            "document": "Keystone 1048P exact product page and 18650 holder drawing",
+            "version": "current product page and catalog M65 p27 checked 2026-08-18",
+            "url": "https://www.keyelco.com/product.cfm/product_id/13959",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "pack_cell0",
+          "kind": "selected_physical_instance",
+          "mpn": "XTAR 18650 4000mAh",
+          "role": "protected_button_top_18650_liion_4000mah_10a_cell",
+          "source": {
+            "document": "XTAR 18650 4000mAh official two-page battery datasheet",
+            "version": "official download page last updated 2026-07-06; exact PDF content rechecked 2026-08-18",
+            "url": "https://www.xtar.cc/download/18650-4000mah-data-sheet",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "pack_cell1",
+          "kind": "selected_physical_instance",
+          "mpn": "XTAR 18650 4000mAh",
+          "role": "protected_button_top_18650_liion_4000mah_10a_cell",
+          "source": {
+            "document": "XTAR 18650 4000mAh official two-page battery datasheet",
+            "version": "official download page last updated 2026-07-06; exact PDF content rechecked 2026-08-18",
+            "url": "https://www.xtar.cc/download/18650-4000mah-data-sheet",
+            "checked": "2026-08-18"
+          }
+        }
+      ],
+      "known_boundary": "The corrected mockup uses the exact 69.7x18.7-mm protected-cell envelopes inside the manufacturer-dimensioned rotated Keystone 1048P holder.",
+      "missing_data": "Received insertion force, contact compression, polarity protection, vibration and thermal cycling.",
+      "accepted_pass_rule": "Two accepted cell lots and holder samples pass dimensional, insertion, retention, vibration and thermal tests in H5.",
+      "blocks": [
+        "H8"
+      ],
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H5-MECH-NATIVE-RF-JUMPERS",
+      "parts": [
+        {
+          "identity": "s3_rf_jumper",
+          "kind": "selected_physical_instance",
+          "mpn": "TE Connectivity 2118651-2",
+          "role": "direct S3 U.FL-to-U.FL plan projection; 30-mm assembly slack closes at H5",
+          "source": {
+            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+            "version": "ENG_CD_2118651_C5; live exact-product record",
+            "url": "https://www.te.com/en/product-2118651-2.html",
+            "checked": "2026-08-20"
+          }
+        },
+        {
+          "identity": "c5_rf_jumper",
+          "kind": "selected_physical_instance",
+          "mpn": "TE Connectivity 2118651-2",
+          "role": "direct C5 U.FL-to-U.FL plan projection; 30-mm assembly slack closes at H5",
+          "source": {
+            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+            "version": "ENG_CD_2118651_C5; live exact-product record",
+            "url": "https://www.te.com/en/product-2118651-2.html",
+            "checked": "2026-08-20"
+          }
+        },
+        {
+          "identity": "s3_rf_board_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "role": "S3 30-mm jumper board receptacle",
+          "source": {
+            "document": "Hirose U.FL Series connector catalog",
+            "version": "current catalog",
+            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "c5_rf_board_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "role": "C5 30-mm jumper board receptacle",
+          "source": {
+            "document": "Hirose U.FL Series connector catalog",
+            "version": "current catalog",
+            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+            "checked": "2026-08-18"
+          }
+        }
+      ],
+      "known_boundary": "Exact 30-mm cable assemblies, module RF axes, U.FL board mates and conservative routed corridors are in the H1 collision model.",
+      "missing_data": "Actual bend radius, strain relief, insertion force, retention and RF loss after assembly.",
+      "accepted_pass_rule": "Received cables and connector coupons pass fit, bend, retention and conducted-RF tests in H5.",
+      "blocks": [
+        "H8"
+      ],
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H5-MECH-DISPLAY-PERFORMANCE",
+      "parts": [
+        {
+          "identity": "display",
+          "kind": "selected_physical_instance",
+          "mpn": "HMX035CTFT-001 (QDtech schematic assembly marking)",
+          "role": "raw_display_touch_assembly_with_integrated_sitronix_st77922_tddi",
+          "source": {
+            "document": "QDtech ES3C35P 3.5-inch IPS ESP32-S3 Display Module Specification",
+            "version": "V1.0; outline drawing dated 2025-07-24",
+            "url": "https://www.lcdwiki.com/res/ES3C35P/3.5inch_IPS_ESP32-S3_Specification_V1.0.pdf",
+            "checked": "2026-08-22"
+          }
+        },
+        {
+          "identity": "display_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+          "role": "40-contact fixed receptacle for the replaceable display adapter",
+          "source": {
+            "document": "Hirose exact product page, 2D drawing and specification sheet",
+            "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",
+            "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
+            "checked": "2026-08-23"
+          }
+        },
+        {
+          "identity": "display_adapter_plug",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose DF40C-40DP-0.4V(51)",
+          "role": "40_position_0_4mm_vertical_board_to_board_plug",
+          "source": {
+            "document": "Hirose exact product page, 2D drawing and specification sheet",
+            "version": "CL0684-4013-7-51; detailed specifications updated 2026-08-05",
+            "url": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
+            "checked": "2026-08-23"
+          }
+        },
+        {
+          "identity": "display_panel_connector",
+          "kind": "selected_physical_instance",
+          "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
+          "role": "40_position_0_5mm_top_and_bottom_contact_zif_fpc_receptacle",
+          "source": {
+            "document": "Hirose FH34SRJ-40S-0.5SH(99) product page and controlled 2D drawing",
+            "version": "CL0580-1260-6-99; detailed specifications updated 2026-02-07",
+            "url": "https://www.hirose.com/en/product/p/CL0580-1260-6-99",
+            "checked": "2026-08-23"
+          }
+        }
+      ],
+      "known_boundary": "H1 fixes the controlled screen body, replaceable adapter bay, exact DF40 stack and dual-contact panel connector; electrical and optical behavior remain qualification evidence.",
+      "missing_data": "QSPI/touch operation, optical quality, backlight current/thermal, flex endurance and lot repeatability.",
+      "accepted_pass_rule": "Received display lot passes electrical, optical, thermal and flex-endurance qualification in H5.",
+      "blocks": [
+        "H8"
+      ],
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H5-MECH-ACOUSTIC-PATHS",
+      "parts": [
+        {
+          "identity": "speaker",
+          "kind": "selected_physical_instance",
+          "mpn": "PUI Audio AS02404PO",
+          "role": "internal 4-Ohm differential speaker",
+          "source": {
+            "document": "AS02404PO Speaker datasheet",
+            "version": "2024 current datasheet checked 2026-08-18",
+            "url": "https://api.puiaudio.com/filename/AS02404PO.pdf",
+            "checked": "2026-08-18"
+          }
+        },
+        {
+          "identity": "microphone",
+          "kind": "selected_physical_instance",
+          "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+          "role": "rear bottom-facing microphone",
+          "source": {
+            "document": "CMEJ-0413-42-SMT-TR Electret Condenser Microphone datasheet",
+            "version": "Rev. 1.04, September 2024",
+            "url": "https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf",
+            "checked": "2026-08-18"
+          }
+        }
+      ],
+      "known_boundary": "Exact speaker/microphone bodies fit the sourced envelopes; the microphone retains a downward interface direction without inventing aperture geometry on the PCB-face view.",
+      "missing_data": "Enclosure acoustic treatment, cavity resonance, sealing, feedback, microphone response and vibration.",
+      "accepted_pass_rule": "Received acoustic stack passes level, response, feedback, sealing and vibration tests in H5.",
+      "blocks": [
+        "H8"
+      ],
+      "status": "mapped_evidence_open"
+    },
+    {
+      "id": "H5-MECH-HEADSET-JACK",
+      "parts": [
+        {
+          "identity": "headphone_jack",
+          "kind": "selected_physical_instance",
+          "mpn": "Same Sky SJ-43504-SMT-TR",
+          "role": "3.5-mm CTIA headset TRRS mid-mount connector",
+          "source": {
+            "document": "SJ-43504-SMT-TR Audio Jack datasheet",
+            "version": "Rev. 1.06, September 2024",
+            "url": "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf",
+            "checked": "2026-08-23"
+          }
+        }
+      ],
+      "known_boundary": "The active and orderable Same Sky SJ-43504-SMT-TR manufacturer drawing fixes the shielded 14.6x7.5x5.0-mm mid-mount body, four CTIA-wired conductors, two internal switches and required PCB cutout. H1 places its opening on the right UI-board edge without increasing the interboard height or colliding with another body.",
+      "missing_data": "Received cutout tolerance, shield and solder-tab fit, enclosure opening, plug insertion/withdrawal force, CTIA and three-pole TRS behavior, retention and unplug transient remain assembled-product properties.",
+      "accepted_pass_rule": "The exact connector, board-cutout coupon and final enclosure opening pass dimensional, CTIA/TRS electrical, insertion, retention, detect, microphone-selection and endurance checks in H5.",
+      "blocks": [
+        "H8"
+      ],
+      "status": "mapped_evidence_open"
+    }
+  ],
+  "decision_boundary": {
+    "accepted_now": "the evidence map, exact selected identities and existing source join",
+    "not_accepted": "received-part fit, lot identity, electrical performance or any production qualification",
+    "next": "H5.0.2 searches primary manufacturer/distributor evidence and fully documented serial alternatives before any sample proposal",
+    "purchase_authorized": false,
+    "pcb_placement_and_routing_authorized": false,
+    "fabrication_authorized": false
+  }
+}

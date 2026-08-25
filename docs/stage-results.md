@@ -202,17 +202,19 @@ physical gates for targets without an exact emulator.
 
 The [readable H4 report](h4-prelayout-gate-report.md) and
 [`H4-PLG13`](../hardware/verification/generated/H4-PLG13-acceptance-package.json)
-record 0 open virtual contradictions, two corrected documentation findings and
+record 0 open virtual contradictions, three corrected documentation findings and
 all 85 physical residuals still owned by H5/H6/H8.
 
 <a id="h5"></a>
 ## H5 · Component evidence samples
 
-**Status:** ▶️ current `H5.0.1`; research is authorized, purchasing is not.
+**Status:** ▶️ current `H5.0.2`; research is authorized, purchasing is not.
 
 The current [machine plan](../hardware/verification/h5-component-evidence-plan.json)
-first joins the nine H5 residuals to exact MPNs, missing data and pass rules,
-then exhausts manufacturer evidence and fully documented serial replacements.
+records the [reviewed H5.0.1 map](component-evidence-map.md): nine H5 residuals
+and 14 mechanical gates are joined to exact selected identities, sources,
+missing data and pass rules. H5.0.2 now exhausts manufacturer evidence and
+fully documented serial replacements.
 Only the irreducible sample set may later become a separately cost-approved
 purchase; it is not a production basket.
 

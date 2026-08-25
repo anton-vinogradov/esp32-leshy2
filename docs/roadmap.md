@@ -3,7 +3,7 @@
 [Русский](roadmap.ru.md) · [Home](../README.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶️ Current hardware boundary: H5.0.1 — reduce evidence before spending.**
+> **▶️ Current hardware boundary: H5.0.2 — research before samples.**
 > H0–H4 are reviewed. There is no PCB layout or authorized order.
 
 Status last reconciled: **25 August 2026**. This is the hardware repository's
@@ -31,7 +31,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Joined pre-layout gate | ✅ [H4 reviewed](h4-prelayout-gate-report.md): 0 open virtual contradictions; 85 physical residuals keep H5/H6/H8 owners |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
-| Component evidence | ▶️ H5.0.1 document/serial-alternative reduction; no sample ordered or test run |
+| Component evidence | ▶️ H5.0.2 primary-source and serial-alternative research; no sample ordered or test run |
 | Prototype PCB order | 🔒 Forbidden before H7 |
 | Production order | 🔒 Forbidden before H9 |
 
@@ -41,12 +41,12 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1–H4 and current H5 evidence reduction
 
-<!-- current-substep: H5.0.1 -->
+<!-- current-substep: H5.0.2 -->
 
-**Exact marker: `H5.0.1`** — join every H5 physical residual to its exact MPN,
-missing datum, existing source and pass rule. Manufacturer documents and fully
-documented serial alternatives are exhausted before a sample basket is proposed;
-no purchase, layout or fabrication is authorized.
+**Exact marker: `H5.0.2`** — the [H5.0.1 evidence map](component-evidence-map.md)
+has joined all nine H5 residuals and 14 mechanical gates to selected identities,
+sources, missing data and pass rules. Primary documents and fully documented serial
+alternatives are now being exhausted; no purchase, layout or fabrication is authorized.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -279,9 +279,10 @@ Current H2 execution:
   - ✅ `H3.7.4` — explicit user acceptance recorded.
 - ✅ `H4.0.1` — reviewed firmware F3 evidence is linked into the gate.
 - ✅ `H4.1` — H1 mechanics, H2 ECAD, H3 evidence and firmware F3 joined.
-- ✅ `H4.2` — two documentation-only contradictions corrected at source and regenerated.
+- ✅ `H4.2` — three documentation-only contradictions corrected at source and regenerated.
 - ✅ `H4.3` — [joined H4 gate reviewed](h4-prelayout-gate-report.md).
-- ▶️ **`H5.0.1` — current:** map all H5 residuals to exact parts, missing evidence and pass rules.
+- ✅ `H5.0.1` — [all nine residuals and 14 mechanical gates mapped](component-evidence-map.md).
+- ▶️ **`H5.0.2` — current:** exhaust primary evidence and fully documented serial alternatives.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json),
 the completed H3/H4 plans are [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json)
@@ -343,7 +344,7 @@ A production order is possible only after H9.
 | **H2. Production ECAD schematic** | ✅ Reviewed and accepted | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 consumes the contract without invented pins |
 | **H3. Virtual electrical verification** | ✅ Reviewed and accepted | [H3 result report](h3-acceptance.md): calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
 | **H4. Joined pre-layout gate** | ✅ [Reviewed](h4-prelayout-gate-report.md) | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
-| **H5. Component evidence** | ▶️ Current `H5.0.1`; purchase blocked | Documents and serial alternatives first; only irreducible uncertainty enters a cost-approved sample set | Exact MPN/evidence/pass-rule mapping is complete; received samples, if still necessary, prove identity, mating, stack-up and critical dimensions |
+| **H5. Component evidence** | ▶️ Current `H5.0.2`; purchase blocked | [Exact mapping complete](component-evidence-map.md); documents and serial alternatives first; only irreducible uncertainty enters a cost-approved sample set | Exact MPN/evidence/pass-rule mapping is complete; received samples, if still necessary, prove identity, mating, stack-up and critical dimensions |
 | **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |
 | **H7. Prototype fabrication and bring-up** | 🔒 Waiting for H6, inherited firmware F3 and order approval | Small prototype PCB lot and retained bring-up log | Rails sequence correctly; all five controllers program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |
 | **H8. Physical qualification** | 🔒 Waiting for H7 | HIL, RF, thermal, power, safety and endurance evidence | 3×nRF24 pass `3R/1T2R/2T1R/3T`; active signals are not stalled by neighbors; inactive interfaces are physically quiet; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog and single-fault tests pass |
@@ -369,6 +370,6 @@ A production order is possible only after H9.
 
 ## Next action
 
-The current boundary is `H5.0.1`: every H5 physical residual is being mapped to
-its exact MPN, missing datum, existing evidence and pass rule before deeper
-source research. PCB placement/routing and purchasing remain blocked.
+The current boundary is `H5.0.2`: all H5 physical residuals are mapped, and
+primary sources plus fully documented serial alternatives are being exhausted
+before a sample proposal. PCB placement/routing and purchasing remain blocked.

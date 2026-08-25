@@ -29,6 +29,6 @@ H2 was accepted on 24 August 2026 at hardware commit `25d9ee2` and firmware comm
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | extended-operation and configurable self-test policy without a runtime claim | H8 24/48-hour qualified-USB endurance and battery-to-protected-cutoff measurements |
 
-**Current hardware marker:** `H5.0.1` — H3 and the [joined H4 gate](h4-prelayout-gate-report.md) are reviewed; physical evidence is being reduced with documents and serial alternatives before purchase.
+**Current hardware marker:** `H5.0.2` — H3 and the [joined H4 gate](h4-prelayout-gate-report.md) are reviewed; the [H5.0.1 map](component-evidence-map.md) is complete and primary documents plus serial alternatives are being researched before purchase.
 
 [Machine freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

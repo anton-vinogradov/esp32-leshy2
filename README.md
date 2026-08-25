@@ -12,8 +12,8 @@
 
 </div>
 
-> **Now: H5.0.1 · reduce physical evidence before spending.** H4 is
-> [reviewed](docs/h4-prelayout-gate-report.md); purchasing, PCB routing and fabrication remain blocked.
+> **Now: H5.0.2 · research before samples.** The [H5 evidence map](docs/component-evidence-map.md)
+> is reviewed; purchasing, PCB routing and fabrication remain blocked.
 
 <div align="center">
 
@@ -116,19 +116,19 @@ Every completed top-level `H*` phase receives a separate readable result report
 linked from this table. Internal substeps update the exact marker but do not
 create separate global reports.
 
-**Hardware is at H5.0.1.** The [H4 result](docs/h4-prelayout-gate-report.md)
-joins H1 mechanics, H2 production ECAD, H3 electrical evidence and the reviewed
-firmware F3 result with zero open virtual contradiction. H5 begins by exhausting
-documents and serial replacements; PCB layout and every order remain unauthorized.
+**Hardware is at H5.0.2.** The [H5.0.1 evidence map](docs/component-evidence-map.md)
+joins all nine H5 residuals and all 14 mechanical gates to exact selected identities,
+sources, missing data and pass rules. H5 now exhausts documents and serial replacements;
+PCB layout and every order remain unauthorized.
 
 <details open>
 <summary><strong>Current H5 evidence reduction — exact detailed position</strong></summary>
 
-<!-- current-substep: H5.0.1 -->
+<!-- current-substep: H5.0.2 -->
 
-**Exact marker: `H5.0.1`** — map every H5 physical residual to its exact MPN,
-missing datum, existing source and pass rule. Manufacturer evidence and fully
-documented serial replacements are exhausted before any sample basket is proposed.
+**Exact marker: `H5.0.2`** — search primary manufacturer/distributor evidence
+and evaluate fully documented serial alternatives for every still-missing datum.
+No sample basket is proposed until this search is exhausted.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,048-row circuit inventory reviewed.
@@ -239,9 +239,10 @@ documented serial replacements are exhausted before any sample basket is propose
   - ✅ `H3.7.4` — explicit user acceptance recorded.
 - ✅ `H4.0.1` — firmware F3 evidence is reviewed and linked into the gate.
 - ✅ `H4.1` — H1 mechanics, H2 ECAD, H3 evidence and firmware F3 joined.
-- ✅ `H4.2` — two documentation-only contradictions corrected at source and regenerated.
+- ✅ `H4.2` — three documentation-only contradictions corrected at source and regenerated.
 - ✅ `H4.3` — [joined pre-layout gate reviewed](docs/h4-prelayout-gate-report.md).
-- ▶️ **`H5.0.1` — current:** map all H5 residuals to MPNs, missing evidence and pass rules.
+- ✅ `H5.0.1` — [nine residuals and 14 mechanical gates mapped](docs/component-evidence-map.md) to exact selected identities, missing data and pass rules.
+- ▶️ **`H5.0.2` — current:** exhaust primary documents and fully documented serial alternatives before proposing samples.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The completed H3/H4 plans are [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json)
