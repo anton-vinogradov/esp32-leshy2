@@ -11,5 +11,5 @@ The old quantities and `$164.54` partial subtotal are intentionally not an
 ordering source. Purchasing is the last resort after documentary and
 function-preserving replacement research. Sample ordering, PCB
 placement/routing and fabrication remain unauthorized. The current basket has
-one supplier input open (`SA518`) and requires a separate explicit decision
-after the manufacturer response.
+one supplier-price input open (`SA518`); JLCPCB platform sourcing is checked
+before the prepared direct manufacturer request is considered.

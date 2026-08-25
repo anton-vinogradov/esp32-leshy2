@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "artifact": "H5-EVR04",
+  "stage": "H5.0.3",
+  "status": "reference_selected_full_bom_audit_open",
+  "checked_on": "2026-08-25",
+  "input": {
+    "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
+    "sha256": "e9e1516193a78100d073daeaba9befa08fa365c76beae2219b8fab8af4cd7b49",
+    "exact_lines": 209
+  },
+  "decision": {
+    "reference_platform": "JLCPCB Standard PCBA",
+    "fallback_platform": "PCBWay turnkey/box-build quote",
+    "second_source_quote": "Seeed Fusion",
+    "exclusive_lock_in": false,
+    "reason": "JLCPCB gives the strongest public, repeatable component-selection surface while retaining exact-part pre-order, global sourcing and consignment paths."
+  },
+  "platforms": [
+    {
+      "id": "jlcpcb-standard-pcba",
+      "role": "reference",
+      "reason": "public assembly-parts library with visible MPN, JLC number, stock, assembly class and price; private pre-order, global-sourcing and consignment paths; Standard PCBA covers the accepted board class",
+      "fit": {
+        "double_sided_smt_tht": true,
+        "mixed_technology": true,
+        "fine_pitch_bga_qfn": true,
+        "special_stackup": true,
+        "spi_aoi_xray": true,
+        "public_machine_readable_parts_path": true,
+        "final_box_build_proven": false
+      }
+    },
+    {
+      "id": "pcbway-turnkey",
+      "role": "fallback-quote",
+      "reason": "turnkey, combo and consigned sourcing plus functional test and box-build options, but component availability is approval/quote driven rather than a public stock contract",
+      "fit": {
+        "double_sided_smt_tht": true,
+        "box_build_claimed": true,
+        "public_machine_readable_parts_path": false
+      }
+    },
+    {
+      "id": "seeed-fusion",
+      "role": "second-source-quote",
+      "reason": "turnkey PCBA, public OPL and distributor-linked sourcing, but a smaller public local library and no selected advantage over JLCPCB for this BOM",
+      "fit": {
+        "double_sided_smt_tht": true,
+        "public_local_parts_library": true,
+        "public_machine_readable_parts_path": false
+      }
+    }
+  ],
+  "availability_tiers": [
+    {
+      "id": "J0",
+      "name": "public-stock exact",
+      "rule": "exact accepted MPN and JLC number are publicly in stock for Standard PCBA; stock is rechecked at every freeze and order"
+    },
+    {
+      "id": "J1",
+      "name": "approved in-stock alternate",
+      "rule": "only a prequalified same-function alternate inside the owning substitution class; never a factory-selected silent substitute"
+    },
+    {
+      "id": "J2",
+      "name": "private pre-order stock",
+      "rule": "exact MPN is bought into My Parts Lib before PCBA; public stock may supplement only where JLC rules permit"
+    },
+    {
+      "id": "J3",
+      "name": "global sourcing or consignment",
+      "rule": "exact identity is sourced or supplied into the private library and must be received before assembly"
+    },
+    {
+      "id": "J4",
+      "name": "final/manual assembly",
+      "rule": "removable accessories, cells, antennas and parts outside the PCBA boundary are installed and tested after board assembly"
+    }
+  ],
+  "assembly_boundary": {
+    "inside_pcba": [
+      "both Leshy2 rigid boards",
+      "all ordinary SMT/THT parts accepted by Standard PCBA",
+      "board connectors and soldered RF boundaries when their exact assembly rule is accepted"
+    ],
+    "after_pcba": [
+      "display/flex final mating",
+      "removable U214 Cap and M5 Units",
+      "cells",
+      "external antennas",
+      "knob and any enclosure-only hardware not accepted in the assembly quote",
+      "final sandwich/box integration"
+    ]
+  },
+  "critical_spot_checks": [
+    {
+      "device_id": "esp32_s3_wroom_1u_n16r8",
+      "mpn": "ESP32-S3-WROOM-1U-N16R8",
+      "jlc": "C3013946",
+      "tier": "J0",
+      "stock": 14529,
+      "pcba": "Standard only; X-ray required",
+      "source": "https://jlcpcb.com/partdetail/ESP32-S3-WROOM-1U-N16R8/C3013946",
+      "finding": "exact selected module is directly assembleable"
+    },
+    {
+      "device_id": "esp32_c5_wroom_1u_n8r8",
+      "mpn": "ESP32-C5-WROOM-1U-N8R8-V1.2",
+      "jlc": "C54951858",
+      "tier": "J0",
+      "stock": 547,
+      "pcba": "Extended SMT",
+      "source": "https://jlcpcb.com/partdetail/C54951858",
+      "finding": "current explicit V1.2 stock matches the architecture revision floor; BOM spelling must be normalized before release"
+    },
+    {
+      "device_id": "cc1101rgpr",
+      "mpn": "CC1101RGPR",
+      "jlc": "C29953",
+      "tier": "J0",
+      "stock": 14194,
+      "pcba": "Economic and Standard",
+      "source": "https://jlcpcb.com/partdetail/TexasInstruments-CC1101RGPR/C29953",
+      "finding": "exact selected transceiver is directly assembleable"
+    },
+    {
+      "device_id": "everest_es8311_qfn20",
+      "mpn": "ES8311",
+      "jlc": "C962342",
+      "tier": "J0",
+      "stock": 96905,
+      "pcba": "Economic and Standard; fixture; MSL3",
+      "source": "https://jlcpcb.com/partdetail/1044199-ES8311/C962342",
+      "finding": "exact selected codec is directly assembleable"
+    },
+    {
+      "device_id": "adi_max17320_g20_t",
+      "mpn": "MAX17320G20+ / selected order suffix +T",
+      "jlc": "C7457894",
+      "tier": "J0",
+      "stock": 13,
+      "pcba": "Extended SMT",
+      "source": "https://jlcpcb.com/partdetail/8483980-MAX17320G20/C7457894",
+      "finding": "functional identity is present but packaging/order-suffix equivalence and low stock require confirmation or J2 reservation"
+    },
+    {
+      "device_id": "rp2354b_a4",
+      "mpn": "SC1512-A4",
+      "jlc": "C52763783",
+      "tier": "J2",
+      "stock": 0,
+      "pcba": "SMT; fixture; Economic and Standard",
+      "source": "https://jlcpcb.com/partdetail/RaspberryPi-SC1512A4/C52763783",
+      "finding": "listed and assembleable, but not public-stock; reserve by pre-order or consign exact parts"
+    },
+    {
+      "device_id": "ti_mspm0c1106_sdgs20r",
+      "mpn": "MSPM0C1106SDGS20R",
+      "jlc": "C52995805",
+      "tier": "J2",
+      "stock": 0,
+      "pcba": "Extended SMT",
+      "source": "https://jlcpcb.com/partdetail/55934010-MSPM0C1106SDGS20R/C52995805",
+      "finding": "listed with pre-order MOQ 6; two fitted devices plus attrition are compatible with a small reservation"
+    },
+    {
+      "device_id": "ebyte_e01_ml01ipx",
+      "mpn": "E01-ML01IPX",
+      "jlc": null,
+      "tier": "J3",
+      "stock": 0,
+      "pcba": "not found in public library",
+      "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=E01-ML01IPX",
+      "finding": "retain exact module only through new-part/global-sourcing/consignment until a function-preserving stocked module is qualified"
+    },
+    {
+      "device_id": "nicerf_sa518_v11",
+      "mpn": "NiceRF SA518",
+      "jlc": null,
+      "tier": "J3",
+      "stock": 0,
+      "pcba": "not found in public library",
+      "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=SA518",
+      "finding": "route the exact module and its supplier questions through JLC sourcing first; direct manufacturer contact is no longer the first action"
+    },
+    {
+      "device_id": "qdtech_hmx035ctft_001",
+      "mpn": "HMX035CTFT-001",
+      "jlc": null,
+      "tier": "J4",
+      "stock": 0,
+      "pcba": "display/flex belongs to final assembly",
+      "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001",
+      "finding": "keep replaceable display-adapter architecture; the display is not treated as an ordinary line-loaded SMT part"
+    }
+  ],
+  "summary": {
+    "target_bom_lines": 209,
+    "critical_lines_spot_checked": 10,
+    "public_stock_exact_or_revision_explicit": 5,
+    "preorder_reservation": 2,
+    "global_sourcing_or_consignment": 2,
+    "post_pcba_final_assembly": 1,
+    "full_bom_lines_pending_mapping": 199
+  },
+  "policy": {
+    "selection_time": "prefer J0; use J1 only after owner-level equivalence checks; use J2/J3 for function-critical identities that cannot be replaced without degradation",
+    "freeze_time": "every soldered line must have an exact JLC number or a received private-stock route, assembly type and attrition quantity",
+    "order_time": "recheck stock and price; a shortage reopens sourcing, never authorizes a silent substitute",
+    "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot"
+  },
+  "next": {
+    "local": "map all 209 BOM lines to J0-J4 and identify function-neutral JLC-stock substitutions",
+    "external_authority_later": "uploading the full BOM to JLCPCB BOM Tool or applying for Parts API access discloses the BOM and requires a separate explicit approval",
+    "forbidden": [
+      "purchase",
+      "BOM upload",
+      "component replacement",
+      "KiCad placement/routing",
+      "fabrication"
+    ]
+  },
+  "sources": {
+    "jlc_capabilities": "https://jlcpcb.com/capabilities/pcb-assembly-capabilities",
+    "jlc_sourcing": "https://jlcpcb.com/help/article/pcba-parts-sourcing-instruction",
+    "jlc_private_library": "https://jlcpcb.com/help/article/how-to-build-your-own-parts-library-in-jlcpcb",
+    "jlc_own_parts": "https://jlcpcb.com/help/article/how-to-use-my-own-parts-for-pcb-assembly-order",
+    "jlc_api": "https://jlcpcb.com/help/article/jlcpcb-online-api-available-now",
+    "pcbway_capabilities": "https://www.pcbway.com/assembly-capabilities.html",
+    "seeed_pcba": "https://www.seeedstudio.com/pcb-assembly.html"
+  },
+  "checks": {
+    "reference_is_standard_pcba": true,
+    "target_bom_has_209_exact_lines": true,
+    "every_spot_check_is_in_target_bom": true,
+    "every_spot_check_has_a_source_and_tier": true,
+    "no_stock_snapshot_claims_permanent_availability": true,
+    "no_component_replacement_is_authorized": true,
+    "no_bom_upload_order_or_layout_is_authorized": true
+  }
+}

@@ -127,6 +127,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/component-source-research.ru.md",
         "docs/component-sample-basket.md",
         "docs/component-sample-basket.ru.md",
+        "docs/manufacturing-platform.md",
+        "docs/manufacturing-platform.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -346,6 +348,38 @@ class ProductSiteTests(unittest.TestCase):
             self.assertIn("H5-EVR03", page, name)
             self.assertIn("266.63", page, name)
             self.assertIn("SA518", page, name)
+
+    def test_h5_0_3_pcba_platform_baseline_is_complete_and_honest(self):
+        subprocess.run(
+            [sys.executable, "hardware/verification/h5_pcba_platform.py", "--check"],
+            cwd=REPO_ROOT,
+            check=True,
+        )
+        evidence = json.loads(
+            self.read("hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json")
+        )
+        self.assertEqual("H5-EVR04", evidence["artifact"])
+        self.assertEqual("H5.0.3", evidence["stage"])
+        self.assertEqual("reference_selected_full_bom_audit_open", evidence["status"])
+        self.assertEqual("JLCPCB Standard PCBA", evidence["decision"]["reference_platform"])
+        self.assertFalse(evidence["decision"]["exclusive_lock_in"])
+        self.assertEqual(209, evidence["summary"]["target_bom_lines"])
+        self.assertEqual(10, evidence["summary"]["critical_lines_spot_checked"])
+        self.assertEqual(5, evidence["summary"]["public_stock_exact_or_revision_explicit"])
+        self.assertEqual(2, evidence["summary"]["preorder_reservation"])
+        self.assertEqual(2, evidence["summary"]["global_sourcing_or_consignment"])
+        self.assertEqual(1, evidence["summary"]["post_pcba_final_assembly"])
+        self.assertEqual(199, evidence["summary"]["full_bom_lines_pending_mapping"])
+        self.assertTrue(all(evidence["checks"].values()))
+        self.assertIn("BOM upload", evidence["next"]["forbidden"])
+        self.assertIn("component replacement", evidence["next"]["forbidden"])
+        self.assertIn("purchase", evidence["next"]["forbidden"])
+        for name in ("docs/manufacturing-platform.md", "docs/manufacturing-platform.ru.md"):
+            page = self.read(name)
+            self.assertEqual(1, page.count("```mermaid"), name)
+            self.assertIn("JLCPCB", page, name)
+            self.assertIn("209", page, name)
+            self.assertIn("H5-EVR04", page, name)
 
     def test_hardware_stages_are_strictly_sequential(self):
         import json
@@ -718,10 +752,10 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][1]["status"])
         self.assertEqual("current", h5_plan["substeps"][0]["children"][2]["status"])
         self.assertEqual(
-            "draft_supplier_quote_open",
+            "draft_full_platform_bom_mapping_open",
             h5_plan["current_artifacts"]["H5.0.3"]["status"],
         )
-        self.assertEqual("H5-BLK-SA518-QUOTE", h5_plan["blocker"]["id"])
+        self.assertEqual("H5-BLK-JLC-FULL-BOM-MAPPING", h5_plan["blocker"]["id"])
         self.assertFalse(h5_plan["authorization"]["sample_or_component_purchase"])
         self.assertEqual(
             "9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5",

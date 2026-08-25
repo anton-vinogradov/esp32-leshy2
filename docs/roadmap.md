@@ -3,7 +3,7 @@
 [Русский](roadmap.ru.md) · [Home](../README.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶️ Current hardware boundary: H5.0.3 — irreducible sample basket and cost.**
+> **▶️ Current hardware boundary: H5.0.3 — PCBA platform and BOM availability audit.**
 > H0–H4 are reviewed. There is no PCB layout or authorized order.
 
 Status last reconciled: **25 August 2026**. This is the hardware repository's
@@ -31,7 +31,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Joined pre-layout gate | ✅ [H4 reviewed](h4-prelayout-gate-report.md): 0 open virtual contradictions; 85 physical residuals keep H5/H6/H8 owners |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
-| Component evidence | ▶️ [H5.0.3 basket published](component-sample-basket.md): $266.63 known material + one SA518 manufacturer RFQ; no sample ordered or test run |
+| Component evidence | ▶️ [JLCPCB Standard PCBA selected as the non-exclusive reference](manufacturing-platform.md): 10 critical lines of the 209-line production BOM mapped to `J0`–`J4`; no upload, replacement, sample order or test run |
 | Prototype PCB order | 🔒 Forbidden before H7 |
 | Production order | 🔒 Forbidden before H9 |
 
@@ -44,10 +44,12 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 <!-- current-substep: H5.0.3 -->
 
 **Exact marker: `H5.0.3`** — the [deduplicated basket](component-sample-basket.md)
-now covers all nine H5 residuals and 14 mechanical gates with 32 exact article
-lines and 11 measurement contracts. Known conservative material is `$266.63`;
-one `SA518` manufacturer quote/variant confirmation remains open. H5.0.3 is not
-yet reviewed and no purchase is authorized.
+covers all nine H5 residuals and 14 mechanical gates. The
+[manufacturing-platform baseline](manufacturing-platform.md) selects JLCPCB
+Standard PCBA without lock-in and maps 10 critical lines of the 209-line
+production BOM. The remaining 199 lines are the active `J0`–`J4` audit;
+H5.0.3 is not yet reviewed, and BOM upload, replacement and purchase are not
+authorized.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -284,7 +286,7 @@ Current H2 execution:
 - ✅ `H4.3` — [joined H4 gate reviewed](h4-prelayout-gate-report.md).
 - ✅ `H5.0.1` — [all nine residuals and 14 mechanical gates mapped](component-evidence-map.md).
 - ✅ `H5.0.2` — [primary evidence and serial alternatives reviewed](component-source-research.md); four exact test SKUs close two selection gaps without a purchase.
-- ▶️ **`H5.0.3` — current:** [basket published](component-sample-basket.md); obtain one `SA518` manufacturer quote/variant confirmation, then present the exact whole-basket cost for a separate order decision.
+- ▶️ **`H5.0.3` — current:** [JLCPCB Standard PCBA selected as the non-exclusive reference](manufacturing-platform.md); map the remaining 199 production-BOM lines to `J0`–`J4`, then qualify the outliers without silent substitutions.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json),
 the completed H3/H4 plans are [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json)
@@ -346,7 +348,7 @@ A production order is possible only after H9.
 | **H2. Production ECAD schematic** | ✅ Reviewed and accepted | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 consumes the contract without invented pins |
 | **H3. Virtual electrical verification** | ✅ Reviewed and accepted | [H3 result report](h3-acceptance.md): calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
 | **H4. Joined pre-layout gate** | ✅ [Reviewed](h4-prelayout-gate-report.md) | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
-| **H5. Component evidence** | ▶️ Current `H5.0.3`; purchase blocked | [Basket published](component-sample-basket.md): `$266.63` known material + one `SA518` manufacturer RFQ | Exact MPN/evidence/pass-rule mapping and research dispositions are complete; exact whole-basket cost is published after the supplier response; approved received samples prove identity, mating, stack-up and critical dimensions |
+| **H5. Component evidence** | ▶️ Current `H5.0.3`; BOM upload and purchase blocked | [PCBA platform baseline](manufacturing-platform.md): JLCPCB Standard is the non-exclusive reference, 10/209 critical/BOM lines mapped, sample basket retained | Every production-BOM line has an exact `J0`–`J4` route and no silent substitution; exact whole-basket cost is published; approved received samples prove identity, mating, stack-up and critical dimensions |
 | **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |
 | **H7. Prototype fabrication and bring-up** | 🔒 Waiting for H6, inherited firmware F3 and order approval | Small prototype PCB lot and retained bring-up log | Rails sequence correctly; all five controllers program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |
 | **H8. Physical qualification** | 🔒 Waiting for H7 | HIL, RF, thermal, power, safety and endurance evidence | 3×nRF24 pass `3R/1T2R/2T1R/3T`; active signals are not stalled by neighbors; inactive interfaces are physically quiet; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog and single-fault tests pass |
@@ -374,6 +376,7 @@ A production order is possible only after H9.
 
 The current boundary is `H5.0.3`: all H5 physical residuals are mapped, source
 and replacement research is reviewed, and the [irreducible basket](component-sample-basket.md)
-is published at `$266.63` known material plus one `SA518` manufacturer RFQ.
-Sending that request requires permission and is not a purchase; PCB
-placement/routing and every order remain blocked.
+is retained. [JLCPCB Standard PCBA](manufacturing-platform.md) is the
+non-exclusive reference; 10/209 critical/BOM lines are mapped and the remaining
+199-line audit is current. BOM upload, PCB placement/routing, component
+replacement and every order remain blocked.

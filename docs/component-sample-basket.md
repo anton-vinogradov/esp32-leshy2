@@ -2,12 +2,13 @@
 
 [Русский](component-sample-basket.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Previous research](component-source-research.md)
 
-The basket is published, but **H5.0.3 is not yet reviewed**: one external input remains, the manufacturer quote and production-variant confirmation for `NiceRF SA518`. Purchase, PCB placement/routing and fabrication are not authorized.
+The basket is published, but **H5.0.3 is not yet reviewed**: [JLCPCB Standard PCBA is now the manufacturing reference](manufacturing-platform.md), and the whole production BOM is being mapped to its stock/pre-order/global-sourcing routes. `NiceRF SA518` remains the basket's only unpriced line, but direct manufacturer contact is deferred until the platform sourcing path is checked. Purchase, BOM upload, PCB placement/routing and fabrication are not authorized.
 
 ```mermaid
 flowchart LR
   R["✅ H5.0.2<br/>sources + replacements"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
-  B --> Q["⚠️ permission to send<br/>NiceRF request"]
+  B --> P["JLCPCB Standard<br/>10/209 critical/BOM"]
+  P --> Q["complete J0–J4 mapping<br/>and platform sourcing"]
   Q --> A["separate sample-order<br/>decision"]
   A --> H51["H5.1<br/>incoming inspection"]
   H51 --> H52["H5.2<br/>coupons from real dimensions"]
@@ -221,6 +222,6 @@ All `23` residuals/gates are covered by `11` contracts. A pass/fail summary with
 
 `SA518` remains the best functional fit: `SA818Pro` needs two separate U/V modules and an RF/power/audio redesign, while dual-band `SA528` is `54.03 × 38.30 × 7.70 mm` with a different 23-contact interface. NiceRF publishes current technical sources but no qualified sample price or production-variant confirmation.
 
-The [manufacturer RFQ](../hardware/procurement/SA518-sample-rfq.md) is prepared. Sending it is not a purchase. Its response enables the exact whole-basket cost and a separate order decision.
+The prepared [manufacturer RFQ](../hardware/procurement/SA518-sample-rfq.md) remains a fallback. `SA518` first goes through JLCPCB global sourcing/new-part routing as part of the complete [manufacturing audit](manufacturing-platform.md). A qualified response enables the exact whole-basket cost and a separate order decision.
 
 Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).

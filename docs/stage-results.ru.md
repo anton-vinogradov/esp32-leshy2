@@ -208,15 +208,17 @@ finding и все 85 физических residuals с владельцами H5
 <a id="h5"></a>
 ## H5 · Образцы компонентов
 
-**Статус:** ▶️ сейчас `H5.0.3`; формирование набора разрешено, закупка — нет.
+**Статус:** ▶️ сейчас `H5.0.3`; локальная карта доступности разрешена, BOM
+upload и закупка — нет.
 
 Текущий [машинный план](../hardware/verification/h5-component-evidence-plan.json)
 фиксирует проведённые карту H5.0.1 и поиск источников/замен H5.0.2.
 [Корзина H5.0.3](component-sample-basket.ru.md) покрывает все девять residuals
 и 14 mechanical gates: 32 точные article line и 11 измерительных контрактов.
-Известный консервативный material budget — `$266.63`; открыт один manufacturer
-quote/variant confirmation для `SA518`, поэтому H5.0.3 ещё не проведён ревью.
-Любая закупка требует отдельного явного согласия; это не production basket.
+[Baseline PCBA-площадки](manufacturing-platform.ru.md) выбирает JLCPCB Standard
+неэксклюзивным ориентиром и связывает 10 критических строк production BOM из
+209 с `J0`–`J4`; оставшиеся 199 строк держат H5.0.3 открытым. BOM upload,
+замены и закупка не разрешены; это не production order.
 
 <a id="h6"></a>
 ## H6 · PCB placement и routing

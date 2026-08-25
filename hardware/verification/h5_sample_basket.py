@@ -205,10 +205,12 @@ def build() -> dict:
                 "SA528 is simultaneous U/V but 54.03 x 38.30 x 7.70 mm with a different 23-contact/audio interface",
             ],
             "prepared_request": "hardware/procurement/SA518-sample-rfq.md",
-            "next_authority_needed": "permission to send the manufacturer RFQ/data request; this is not permission to purchase",
+            "direct_request_status": "deferred while JLCPCB global-sourcing/new-part routing is audited",
+            "next_action": "map SA518 and every other outlier into the selected JLCPCB Standard PCBA sourcing model before any direct supplier request",
         },
         "sequencing": {
-            "now": "send/receive the SA518 quote only after explicit permission; keep H5.0.3 current",
+            "now": "complete the JLCPCB Standard PCBA mapping for all 209 production-BOM lines; keep H5.0.3 current",
+            "after_mapping": "route SA518 through JLCPCB global sourcing/new-part request first; use the prepared direct NiceRF request only if the platform route cannot close technical identity",
             "after_quote": "publish exact whole-basket cost and request a separate sample-order decision",
             "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",
             "forbidden": ["component purchase without a separate decision", "PCB placement/routing", "prototype fabrication"],
@@ -278,12 +280,13 @@ def render_doc(data: dict, russian: bool) -> str:
 
 [English](component-sample-basket.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Предыдущий поиск](component-source-research.ru.md)
 
-Корзина опубликована, но **H5.0.3 ещё не закрыт**: остался один внешний вход — manufacturer quote и variant confirmation для `NiceRF SA518`. Закупка, PCB placement/routing и fabrication не разрешены.
+Корзина опубликована, но **H5.0.3 ещё не закрыт**: [JLCPCB Standard PCBA выбран рабочей производственной линией](manufacturing-platform.ru.md), и теперь вся production BOM сопоставляется с её stock/pre-order/global-sourcing маршрутами. `NiceRF SA518` остаётся единственной неизвестной ценой корзины, но прямой запрос производителю отложен до проверки sourcing через площадку. Закупка, BOM upload, PCB placement/routing и fabrication не разрешены.
 
 ```mermaid
 flowchart LR
   R["✅ H5.0.2<br/>источники и замены"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
-  B --> Q["⚠️ разрешение отправить<br/>запрос NiceRF"]
+  B --> P["JLCPCB Standard<br/>10/209 critical/BOM"]
+  P --> Q["полный J0–J4 mapping<br/>и platform sourcing"]
   Q --> A["отдельное решение<br/>о закупке образцов"]
   A --> H51["H5.1<br/>incoming inspection"]
   H51 --> H52["H5.2<br/>coupons по реальным размерам"]
@@ -311,7 +314,7 @@ flowchart LR
 
 `SA518` остаётся функционально лучшим вариантом: `SA818Pro` требует два отдельных U/V-модуля и переделку RF/power/audio, а dual-band `SA528` имеет корпус `54.03 × 38.30 × 7.70 мм` и другой 23-контактный interface. У NiceRF есть текущие datasheet и product page, но нет публичной квалифицированной цены образца и подтверждения production variant.
 
-Подготовлен [manufacturer RFQ](../hardware/procurement/SA518-sample-rfq.md). Его отправка не означает покупку. После ответа появится точная полная стоимость и отдельный вопрос о заказе.
+Подготовленный [manufacturer RFQ](../hardware/procurement/SA518-sample-rfq.md) сохранён как fallback. Сначала `SA518` проходит через JLCPCB global sourcing/new-part route вместе с полным [производственным аудитом](manufacturing-platform.ru.md). После квалифицированного ответа появится точная полная стоимость и отдельный вопрос о заказе.
 
 Машинный результат: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """
@@ -319,12 +322,13 @@ flowchart LR
 
 [Русский](component-sample-basket.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Previous research](component-source-research.md)
 
-The basket is published, but **H5.0.3 is not yet reviewed**: one external input remains, the manufacturer quote and production-variant confirmation for `NiceRF SA518`. Purchase, PCB placement/routing and fabrication are not authorized.
+The basket is published, but **H5.0.3 is not yet reviewed**: [JLCPCB Standard PCBA is now the manufacturing reference](manufacturing-platform.md), and the whole production BOM is being mapped to its stock/pre-order/global-sourcing routes. `NiceRF SA518` remains the basket's only unpriced line, but direct manufacturer contact is deferred until the platform sourcing path is checked. Purchase, BOM upload, PCB placement/routing and fabrication are not authorized.
 
 ```mermaid
 flowchart LR
   R["✅ H5.0.2<br/>sources + replacements"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
-  B --> Q["⚠️ permission to send<br/>NiceRF request"]
+  B --> P["JLCPCB Standard<br/>10/209 critical/BOM"]
+  P --> Q["complete J0–J4 mapping<br/>and platform sourcing"]
   Q --> A["separate sample-order<br/>decision"]
   A --> H51["H5.1<br/>incoming inspection"]
   H51 --> H52["H5.2<br/>coupons from real dimensions"]
@@ -352,7 +356,7 @@ All `{summary['covered_residuals_and_gates']}` residuals/gates are covered by `{
 
 `SA518` remains the best functional fit: `SA818Pro` needs two separate U/V modules and an RF/power/audio redesign, while dual-band `SA528` is `54.03 × 38.30 × 7.70 mm` with a different 23-contact interface. NiceRF publishes current technical sources but no qualified sample price or production-variant confirmation.
 
-The [manufacturer RFQ](../hardware/procurement/SA518-sample-rfq.md) is prepared. Sending it is not a purchase. Its response enables the exact whole-basket cost and a separate order decision.
+The prepared [manufacturer RFQ](../hardware/procurement/SA518-sample-rfq.md) remains a fallback. `SA518` first goes through JLCPCB global sourcing/new-part routing as part of the complete [manufacturing audit](manufacturing-platform.md). A qualified response enables the exact whole-basket cost and a separate order decision.
 
 Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """
@@ -372,8 +376,8 @@ The old quantities and `$164.54` partial subtotal are intentionally not an
 ordering source. Purchasing is the last resort after documentary and
 function-preserving replacement research. Sample ordering, PCB
 placement/routing and fabrication remain unauthorized. The current basket has
-one supplier input open (`SA518`) and requires a separate explicit decision
-after the manufacturer response.
+one supplier-price input open (`SA518`); JLCPCB platform sourcing is checked
+before the prepared direct manufacturer request is considered.
 """
 
 

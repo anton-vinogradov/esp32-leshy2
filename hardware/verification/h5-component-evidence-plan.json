@@ -76,16 +76,19 @@
       "machine_result": "hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json",
       "readable_result_en": "docs/component-sample-basket.md",
       "readable_result_ru": "docs/component-sample-basket.ru.md",
-      "status": "draft_supplier_quote_open",
-      "result": "all nine H5 residuals and fourteen mechanical gates are covered by 32 deduplicated exact article lines and 11 measurement contracts; known conservative material budget is USD 266.63 plus one SA518 manufacturer RFQ; zero orders authorized"
+      "platform_machine_result": "hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json",
+      "platform_result_en": "docs/manufacturing-platform.md",
+      "platform_result_ru": "docs/manufacturing-platform.ru.md",
+      "status": "draft_full_platform_bom_mapping_open",
+      "result": "the 32-line evidence basket covers all nine H5 residuals and fourteen mechanical gates; JLCPCB Standard PCBA is the non-exclusive manufacturing reference; 10 critical of 209 production-BOM lines are mapped to J0-J4; zero uploads, replacements or orders authorized"
     }
   },
   "blocker": {
-    "id": "H5-BLK-SA518-QUOTE",
-    "scope": "H5.0.3 exact whole-basket cost only",
-    "reason": "NiceRF publishes current SA518 technical evidence but no controlled engineering-sample price or exact production-variant confirmation; function-preserving serial alternatives do not fit the accepted architecture",
-    "prepared_action": "hardware/procurement/SA518-sample-rfq.md",
-    "authority_required": "explicit permission to send the manufacturer RFQ/data request; purchase remains a later separate decision"
+    "id": "H5-BLK-JLC-FULL-BOM-MAPPING",
+    "scope": "H5.0.3 production assembly availability and exact basket cost",
+    "reason": "the reference platform is selected, but 199 of 209 exact production-BOM lines still need J0-J4 mapping; SA518, E01 and display are already known non-public-stock outliers",
+    "prepared_action": "hardware/verification/h5_pcba_platform.py",
+    "authority_required": "none for local/manual mapping; a later BOM upload, Parts API application, sourcing request or purchase requires separate explicit authority"
   },
   "next_active_repository": "esp32-leshy2",
   "next_active_substep": "H5.0.3"

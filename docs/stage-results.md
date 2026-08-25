@@ -208,15 +208,17 @@ all 85 physical residuals still owned by H5/H6/H8.
 <a id="h5"></a>
 ## H5 · Component evidence samples
 
-**Status:** ▶️ current `H5.0.3`; basket definition is authorized, purchasing is not.
+**Status:** ▶️ current `H5.0.3`; local availability mapping is authorized,
+BOM upload and purchasing are not.
 
 The current [machine plan](../hardware/verification/h5-component-evidence-plan.json)
 records the reviewed H5.0.1 map and H5.0.2 source/replacement research. The
-[H5.0.3 basket](component-sample-basket.md) now covers all nine residuals and 14
-mechanical gates with 32 exact article lines and 11 measurement contracts.
-Known conservative material is `$266.63`; one `SA518` manufacturer quote and
-variant confirmation remains, so H5.0.3 is not yet reviewed. Any purchase still
-requires separate explicit approval; this is not a production basket.
+[H5.0.3 basket](component-sample-basket.md) covers all nine residuals and 14
+mechanical gates with 32 exact article lines and 11 measurement contracts. The
+[PCBA platform baseline](manufacturing-platform.md) selects JLCPCB Standard as
+the non-exclusive reference and maps 10 critical lines of the 209-line
+production BOM to `J0`–`J4`; the remaining 199 lines keep H5.0.3 open. No BOM
+upload, replacement or purchase is authorized; this is not a production order.
 
 <a id="h6"></a>
 ## H6 · PCB placement and routing

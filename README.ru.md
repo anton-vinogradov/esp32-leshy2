@@ -12,9 +12,10 @@
 
 </div>
 
-> **Сейчас: H5.0.3 · [корзина опубликована](docs/component-sample-basket.ru.md).**
-> Известный material budget — `$266.63`; остался один manufacturer RFQ для
-> `SA518`. Закупка, PCB routing и печать заблокированы.
+> **Сейчас: H5.0.3 · [аудит PCBA-площадки](docs/manufacturing-platform.ru.md).**
+> JLCPCB Standard PCBA выбран неэксклюзивным ориентиром; 10 критических строк
+> production BOM из 209 связаны с точными маршрутами поставки. BOM upload,
+> закупка, замены компонентов, PCB routing и печать заблокированы.
 
 <div align="center">
 
@@ -120,18 +121,21 @@ safety-автоматику.
 
 **Железо находится на H5.0.3.** [Единая корзина](docs/component-sample-basket.ru.md)
 покрывает все девять residuals и 14 mechanical gates: 32 точные article line и
-11 измерительных контрактов. Известный material budget — `$266.63`; остался
-один manufacturer quote/variant confirmation для `SA518`. Физические evidence,
-PCB layout и любые заказы не разрешены.
+11 измерительных контрактов. JLCPCB Standard PCBA теперь
+[неэксклюзивный производственный ориентир](docs/manufacturing-platform.ru.md):
+10 критических строк production BOM из 209 связаны с `J0`–`J4`, а аудит
+оставшихся 199 строк — текущая работа. Физические evidence, BOM upload, PCB
+layout, замены компонентов и любые заказы не разрешены.
 
 <details open>
 <summary><strong>Текущее сокращение evidence H5 — точная детальная позиция</strong></summary>
 
 <!-- current-substep: H5.0.3 -->
 
-**Точный маркер: `H5.0.3`** — корзина и измерения опубликованы; получить один
-manufacturer quote/variant confirmation для `SA518`, затем опубликовать точную
-полную стоимость для отдельного решения о заказе. Закупка не разрешена.
+**Точный маркер: `H5.0.3`** — корзина и измерения опубликованы; завершить
+[карту поставки всех 209 строк через JLCPCB](docs/manufacturing-platform.ru.md),
+затем провести outliers через exact-part pre-order, global sourcing или final
+assembly. BOM upload, замены и закупка не разрешены.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 048 схемных строк.
@@ -247,7 +251,7 @@ manufacturer quote/variant confirmation для `SA518`, затем опубли�
 - ✅ `H4.3` — [объединённый pre-layout gate проведён](docs/h4-prelayout-gate-report.ru.md).
 - ✅ `H5.0.1` — [девять residuals и 14 механических gate’ов связаны](docs/component-evidence-map.ru.md) с точными выбранными identities, недостающими данными и pass rules.
 - ✅ `H5.0.2` — [поиск первичных источников и серийных альтернатив проведён](docs/component-source-research.ru.md); два selection gap теперь имеют четыре точных серийных SKU.
-- ▶️ **`H5.0.3` — сейчас:** [корзина опубликована](docs/component-sample-basket.ru.md); до отдельного решения о заказе нужен один ответ производителя по `SA518`.
+- ▶️ **`H5.0.3` — сейчас:** [JLCPCB Standard PCBA выбран неэксклюзивным ориентиром](docs/manufacturing-platform.ru.md); сопоставлены 10/209 critical/BOM-строк, полный аудит `J0`–`J4` открыт.
 
 Проверенный план H2 — [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json),
 завершённые H3/H4 — [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json)
@@ -281,6 +285,7 @@ gates. Этот проверенный вход наследуется чере�
 | [Память и rollback](docs/memory.ru.md) | Flash/PSRAM, partitions и восстановление |
 | [Безопасность](docs/safety.ru.md) | Три уровня функций, TX leases и FAULT_KILL |
 | [LoRa Cap](docs/lora-cap.ru.md) | Съёмный региональный LoRa-модуль |
+| [Производственная площадка](docs/manufacturing-platform.ru.md) | PCBA-ориентир, уровни доступности и точная граница сборки |
 | [Физические первоисточники](docs/physical-source-register.ru.md) | Габариты и источники каждого корпуса |
 | [Результаты этапов](docs/stage-results.ru.md) | Артефакты и evidence по H0…H9 |
 

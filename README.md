@@ -12,9 +12,10 @@
 
 </div>
 
-> **Now: H5.0.3 · [basket published](docs/component-sample-basket.md).** Known
-> material is `$266.63`; one `SA518` manufacturer RFQ remains. Purchasing, PCB
-> routing and fabrication remain blocked.
+> **Now: H5.0.3 · [PCBA platform audit](docs/manufacturing-platform.md).**
+> JLCPCB Standard PCBA is the non-exclusive reference; 10 critical lines of the
+> 209-line production BOM are mapped to exact sourcing routes. BOM upload,
+> purchasing, component replacement, PCB routing and fabrication remain blocked.
 
 <div align="center">
 
@@ -119,18 +120,21 @@ create separate global reports.
 
 **Hardware is at H5.0.3.** The [single sample basket](docs/component-sample-basket.md)
 covers all nine residuals and 14 mechanical gates with 32 exact article lines
-and 11 measurement contracts. Known material is `$266.63`; one `SA518`
-manufacturer quote/variant confirmation remains. Physical evidence, PCB layout
-and every order remain unauthorized.
+and 11 measurement contracts. JLCPCB Standard PCBA is now the
+[non-exclusive manufacturing reference](docs/manufacturing-platform.md): 10
+critical lines of the 209-line production BOM are mapped to `J0`–`J4`, and the
+remaining 199-line audit is current. Physical evidence, BOM upload, PCB layout,
+component replacement and every order remain unauthorized.
 
 <details open>
 <summary><strong>Current H5 evidence reduction — exact detailed position</strong></summary>
 
 <!-- current-substep: H5.0.3 -->
 
-**Exact marker: `H5.0.3`** — the basket and measurements are published; obtain
-one `SA518` manufacturer quote/variant confirmation, then publish the exact
-whole-basket cost for a separate order decision. No purchase is authorized.
+**Exact marker: `H5.0.3`** — the basket and measurements are published; complete
+the [209-line JLCPCB sourcing map](docs/manufacturing-platform.md), then route
+outliers through exact-part pre-order, global sourcing or final assembly. No
+BOM upload, replacement or purchase is authorized.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,048-row circuit inventory reviewed.
@@ -245,7 +249,7 @@ whole-basket cost for a separate order decision. No purchase is authorized.
 - ✅ `H4.3` — [joined pre-layout gate reviewed](docs/h4-prelayout-gate-report.md).
 - ✅ `H5.0.1` — [nine residuals and 14 mechanical gates mapped](docs/component-evidence-map.md) to exact selected identities, missing data and pass rules.
 - ✅ `H5.0.2` — [primary-source and serial-alternative research reviewed](docs/component-source-research.md); two test-article categories now have four exact serial SKUs.
-- ▶️ **`H5.0.3` — current:** [basket published](docs/component-sample-basket.md); one `SA518` manufacturer response remains before the separate order decision.
+- ▶️ **`H5.0.3` — current:** [JLCPCB Standard PCBA selected as the non-exclusive reference](docs/manufacturing-platform.md); 10/209 critical/BOM lines mapped and the full `J0`–`J4` audit is open.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The completed H3/H4 plans are [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json)
@@ -279,6 +283,7 @@ The device principle diagrams remain part of the site, but the landing page now 
 | [Memory and rollback](docs/memory.md) | Flash/PSRAM, partitions and recovery |
 | [Safety](docs/safety.md) | Three feature levels, TX leases and FAULT_KILL |
 | [LoRa Cap](docs/lora-cap.md) | Removable regional LoRa module |
+| [Manufacturing platform](docs/manufacturing-platform.md) | PCBA reference, availability tiers and exact assembly boundary |
 | [Physical sources](docs/physical-source-register.md) | Envelope source for every body |
 | [Stage results](docs/stage-results.md) | H0…H9 artifacts and evidence |
 

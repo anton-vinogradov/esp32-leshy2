@@ -2,12 +2,13 @@
 
 [English](component-sample-basket.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Предыдущий поиск](component-source-research.ru.md)
 
-Корзина опубликована, но **H5.0.3 ещё не закрыт**: остался один внешний вход — manufacturer quote и variant confirmation для `NiceRF SA518`. Закупка, PCB placement/routing и fabrication не разрешены.
+Корзина опубликована, но **H5.0.3 ещё не закрыт**: [JLCPCB Standard PCBA выбран рабочей производственной линией](manufacturing-platform.ru.md), и теперь вся production BOM сопоставляется с её stock/pre-order/global-sourcing маршрутами. `NiceRF SA518` остаётся единственной неизвестной ценой корзины, но прямой запрос производителю отложен до проверки sourcing через площадку. Закупка, BOM upload, PCB placement/routing и fabrication не разрешены.
 
 ```mermaid
 flowchart LR
   R["✅ H5.0.2<br/>источники и замены"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
-  B --> Q["⚠️ разрешение отправить<br/>запрос NiceRF"]
+  B --> P["JLCPCB Standard<br/>10/209 critical/BOM"]
+  P --> Q["полный J0–J4 mapping<br/>и platform sourcing"]
   Q --> A["отдельное решение<br/>о закупке образцов"]
   A --> H51["H5.1<br/>incoming inspection"]
   H51 --> H52["H5.2<br/>coupons по реальным размерам"]
@@ -221,6 +222,6 @@ flowchart LR
 
 `SA518` остаётся функционально лучшим вариантом: `SA818Pro` требует два отдельных U/V-модуля и переделку RF/power/audio, а dual-band `SA528` имеет корпус `54.03 × 38.30 × 7.70 мм` и другой 23-контактный interface. У NiceRF есть текущие datasheet и product page, но нет публичной квалифицированной цены образца и подтверждения production variant.
 
-Подготовлен [manufacturer RFQ](../hardware/procurement/SA518-sample-rfq.md). Его отправка не означает покупку. После ответа появится точная полная стоимость и отдельный вопрос о заказе.
+Подготовленный [manufacturer RFQ](../hardware/procurement/SA518-sample-rfq.md) сохранён как fallback. Сначала `SA518` проходит через JLCPCB global sourcing/new-part route вместе с полным [производственным аудитом](manufacturing-platform.ru.md). После квалифицированного ответа появится точная полная стоимость и отдельный вопрос о заказе.
 
 Машинный результат: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
