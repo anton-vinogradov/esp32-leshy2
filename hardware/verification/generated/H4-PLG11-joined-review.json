@@ -12,8 +12,8 @@
     "hardware/ecad/generated/H2-REV72-physical-contacts.json": "73bb0bad2e153850b526a5f0b02a643f691f039d6b9edf7cfff0c226e0d1a6b1",
     "hardware/ecad/generated/H2-REV73-named-nets-m1.json": "26c8897b385b27bdd42f9f36103717e2af863a9d8a21c74eaa4ee3f5d807c4b3",
     "hardware/ecad/generated/H2-hwfw-contract.json": "e0325084d46c7495bf6f852856983c034aaf75ba9c5b1fc1f0479b4bc376844a",
-    "hardware/verification/generated/H3-VRF73-acceptance-package.json": "265ba28b96377f27b61679ddbca393b637fc77649d29077f9e119d24ace4c0f8",
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "a3b999ad37b0a16588c86e3dd0e8e7ca6045e7b66e2a3782a221b8fb1a6448fa",
+    "hardware/verification/generated/H3-VRF73-acceptance-package.json": "da40046ee3b0cbc38262d049f1f84971d29a88e5e48d526ad9fe8091904f90b5",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "fc20bbce1b31471b539862193f2014ea01131ddde4b0ae3f288746457b979fd4",
     "../esp32-leshy2-firmware/config/hardware_bsp_contract.json": "e0325084d46c7495bf6f852856983c034aaf75ba9c5b1fc1f0479b4bc376844a",
     "../esp32-leshy2-firmware/config/hardware_integration_contract.json": "4f0c9be2cf020dfc21bb90c2d5be0efc8e52815340f681d5481e197dd627760f",
     "../esp32-leshy2-firmware/config/bsp_generation_input.json": "a8c35ba7028cfdb0fddb982ae9fa4ba25818814be71287aef09cc56f517d5077",
@@ -44,7 +44,7 @@
   "physical_residuals": {
     "total": 85,
     "by_stage": {
-      "H6": 9,
+      "H6": 10,
       "H8": 78,
       "H5": 9
     },

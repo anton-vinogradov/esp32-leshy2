@@ -4,7 +4,7 @@
   "status": "reviewed_mapping_only",
   "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "a3b999ad37b0a16588c86e3dd0e8e7ca6045e7b66e2a3782a221b8fb1a6448fa",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "fc20bbce1b31471b539862193f2014ea01131ddde4b0ae3f288746457b979fd4",
     "hardware/product-design/generated/H1-physical-source-table.json": "9e1e94fe6d66efcbfa1b6db422a0e3453d06302b0504e090dd2bbcfceae9500e",
     "hardware/product-design/mechanical-evidence-gates.json": "77e986ecce93d24396baea8a4f0817efd25d93c78018d87d44cf8d8643f26866",
     "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
@@ -521,11 +521,11 @@
       ],
       "mechanical_gates": [],
       "missing_data": [
-        "measured total external AMI capacitance of the received SMA, routed PCB and completed exact pod"
+        "received edge-SMA and controlled pod constituent identities, physical envelopes and mating records before the H6 routed-capacitance budget and H8 total measurement"
       ],
       "sample_specific": true,
-      "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
-      "accepted_pass_rule": "the received specimen directly demonstrates this item: measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod; a mismatch reopens the owning H1/H2/H3 result",
+      "required_artifact": "lot-identified photographs plus dimensional/mating records for the exact received edge SMA and controlled pod constituents",
+      "accepted_pass_rule": "the received SMA and every controlled pod constituent match their selected identities and physical envelopes; H5 does not claim total assembled-path capacitance",
       "status": "mapped_evidence_open"
     },
     {

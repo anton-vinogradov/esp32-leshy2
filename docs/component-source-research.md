@@ -66,9 +66,9 @@ flowchart LR
 
 ### `H3-PHY-057` · `phase`
 
-- Outcome: Total AMI capacitance includes the received edge SMA, routed PCB and completed controlled pod; no component substitution can prove the capacitance of that assembled path.
+- Outcome: The original H5 contract was cyclic because total AMI capacitance includes the not-yet-routed PCB. It is split correctly: H5 identifies and measures received SMA/pod constituents, H6 closes routed geometry and extracted budget, and H8 measures the populated total path.
 - Sources: existing selected-part primary datasheets in H5-EVR01.
-- Still physical: measure the completed exact path and reconcile it to the tuning contract.
+- Still physical: receive the exact SMA/pod constituent set in H5; retain routed-budget and total-capacitance claims for H6/H8.
 
 ### `H3-PHY-062` · `phase`
 

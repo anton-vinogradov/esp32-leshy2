@@ -225,7 +225,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "h3_is_accepted_and_analytically_closed": h3_acceptance["status"] == "reviewed_h3_user_accepted" and h3_acceptance["review_summary"]["unresolved_analytical_findings"] == 0,
         "h3_acceptance_hashes_are_current": source_hashes_are_current(h3_acceptance["source_hashes"], REPO),
         "all_85_physical_residuals_remain_open_and_owned": len(h3_residuals["registry"]) == 85 and h3_residuals["summary"]["unassigned"] == 0 and all(row["status"] == "physical_evidence_required" and set(row["closure_stages"]) == set(row["evidence_contracts"]) for row in h3_residuals["registry"]),
-        "physical_residual_stage_counts_match": dict(residual_stages) == {"H5": 9, "H6": 9, "H8": 78},
+        "physical_residual_stage_counts_match": dict(residual_stages) == {"H5": 9, "H6": 10, "H8": 78},
         "firmware_f3_is_reviewed": f3["status"] == "reviewed" and f3["claims"]["f3_exit_criteria_pass"] is True,
         "firmware_f3_input_hashes_are_current": all(sha256(FW_REPO / row["path"]) == row["sha256"] for row in f3["inputs"].values()),
         "firmware_f3_exact_claim_boundary_is_honest": f3["claims"]["s3_exact_virtual_execution_proven"] is True and f3["claims"]["non_s3_target_boot_proven"] is False and f3["claims"]["physical_peripherals_proven"] is False and f3["claims"]["physical_flash_or_rollback_proven"] is False,

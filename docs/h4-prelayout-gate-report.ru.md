@@ -19,7 +19,7 @@ flowchart LR
 | H2 electrical identities / root nets | 1 046 / 268 |
 | HW↔FW BSP | 5 доменов, 125 контактов, побайтно одинаковый контракт |
 | Firmware F3 | 52 воспроизводимых artifacts; 10 memory gates; точный QEMU для S3 |
-| H3 physical-only registry | 85 строк; H5=9, H6=9, H8=78 |
+| H3 physical-only registry | 85 строк; H5=9, H6=10, H8=78 |
 
 ## Что исправлено
 

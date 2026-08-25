@@ -1,6 +1,6 @@
 # Реестр физических evidence
 
-H3.7.2 закрыт. В сведениях шести фаз H3 было 88 residual-строк: три являлись внутренними зависимостями H3, уже закрытыми H3.2/H3.6, а все оставшиеся `85` опубликованы ниже. `9` назначены H5 received-part evidence, `9` — H6 final placement/routing evidence, `78` — H8 qualification собранного устройства. Ни одна не названа аналитически закрытой.
+H3.7.2 закрыт. В сведениях шести фаз H3 было 88 residual-строк: три являлись внутренними зависимостями H3, уже закрытыми H3.2/H3.6, а все оставшиеся `85` опубликованы ниже. `9` назначены H5 received-part evidence, `10` — H6 final placement/routing evidence, `78` — H8 qualification собранного устройства. Ни одна не названа аналитически закрытой.
 
 Каждая машинная строка содержит точный исходный artifact, ответственный gate, обязательный artifact и pass rule. Несоответствие повторно открывает исходный результат, а не превращается в waiver разводки или теста. Реестр не разрешает закупку, layout или печать. Точный текущий маркер — `H3.7.3`.
 
@@ -62,7 +62,7 @@ H3.7.2 закрыт. В сведениях шести фаз H3 было 88 resi
 | `H3-PHY-054` | `H8` | `H3.5` | VNA-tune CC1101 differential-to-single-ended match and every 315/433/868/915 branch; prove output, sensitivity, harmonics and switch loss |
 | `H3-PHY-055` | `H8` | `H3.5` | measure SA518 VHF/UHF feed insertion/return loss, output power and harmonics at both power settings |
 | `H3-PHY-056` | `H8` | `H3.5` | qualify Si4732 FMI FM and SW sensitivity/overload with the complete external whip and first-pass 56-nH/1-nF network |
-| `H3-PHY-057` | `H5+H8` | `H3.5` | measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod |
+| `H3-PHY-057` | `H5+H6+H8` | `H3.5` | measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod |
 | `H3-PHY-058` | `H8` | `H3.5` | derate every allowed TX power/EIRP table by measured complete-feed loss and selected antenna gain before regional profile release |
 | `H3-PHY-059` | `H6+H8` | `H3.5` | use impedance coupons and de-embedded SMA/U.FL fixtures for H6/H8 acceptance; nominal field-solver values alone cannot close a feed |
 | `H3-PHY-060` | `H6` | `H3.5` | release the fabricator stack-up, field-solve every launch and 50-ohm geometry, and correlate with coupons in H6 |

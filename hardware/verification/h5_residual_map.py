@@ -88,7 +88,7 @@ RESIDUAL_MAP = {
         "instances": ["receiver", "receiver_amlw_external_sma"],
         "custom_assemblies": ["L2-ANT-AM-LW-001"],
         "mechanical_gates": [],
-        "missing_data": ["measured total external AMI capacitance of the received SMA, routed PCB and completed exact pod"],
+        "missing_data": ["received edge-SMA and controlled pod constituent identities, physical envelopes and mating records before the H6 routed-capacitance budget and H8 total measurement"],
         "sample_specific": True,
     },
     "H3-PHY-062": {
@@ -115,7 +115,7 @@ RESIDUAL_MISSING_RU = {
     "H3-PHY-046": "непубликуемые MPN/материал/покрытие штырей stock U214; непрерывность, усилия и удержание смешанной пары U214/HLE",
     "H3-PHY-048": "выбрать серийный набор кабелей/аксессуаров для I2C, UART, GPIO и 1-Wire; измерить длины, pull-сети и формы сигналов через TXS0102",
     "H3-PHY-053": "непубликуемый MPN и ось встроенного разъёма партии E01-ML01IPX; отдельно измерить три собранных RF-тракта и удержание",
-    "H3-PHY-057": "полную внешнюю ёмкость AMI для полученных SMA, разведённой PCB и собранного точного pod",
+    "H3-PHY-057": "identity, физические envelopes и mating полученного краевого SMA и составляющих pod до H6 routed-budget и итогового измерения H8",
     "H3-PHY-062": "изгиб, удержание и разгрузку пяти полученных 2118651-2; оси встроенных разъёмов партии E01 до фиксации placement",
 }
 

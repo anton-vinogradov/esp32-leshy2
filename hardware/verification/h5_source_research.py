@@ -169,12 +169,12 @@ RESIDUAL_FINDINGS = {
         "remaining_ru": "осмотреть установленные receptacle и измерить все три собранных RF-тракта",
     },
     "H3-PHY-057": {
-        "disposition": "irreducible_received_sample",
+        "disposition": "split_h5_identity_h6_layout_h8_measurement",
         "sources": [],
-        "finding": "Total AMI capacitance includes the received edge SMA, routed PCB and completed controlled pod; no component substitution can prove the capacitance of that assembled path.",
-        "finding_ru": "Полная AMI-ёмкость включает полученный краевой SMA, разведённую PCB и собранный controlled pod; замена отдельной детали не доказывает ёмкость всего тракта.",
-        "remaining": "measure the completed exact path and reconcile it to the tuning contract",
-        "remaining_ru": "измерить завершённый точный тракт и сверить его с tuning contract",
+        "finding": "The original H5 contract was cyclic because total AMI capacitance includes the not-yet-routed PCB. It is split correctly: H5 identifies and measures received SMA/pod constituents, H6 closes routed geometry and extracted budget, and H8 measures the populated total path.",
+        "finding_ru": "Исходный контракт H5 был циклическим: полная AMI-ёмкость включает ещё не разведённую PCB. Контракт разделён корректно: H5 идентифицирует и измеряет полученные SMA/составляющие pod, H6 закрывает геометрию и extracted budget, H8 измеряет полный собранный тракт.",
+        "remaining": "receive the exact SMA/pod constituent set in H5; retain routed-budget and total-capacitance claims for H6/H8",
+        "remaining_ru": "получить точный набор SMA/составляющих pod в H5; оставить routed budget и полную ёмкость этапам H6/H8",
     },
     "H3-PHY-062": {
         "disposition": "selected_part_confirmed_physical_test_open",

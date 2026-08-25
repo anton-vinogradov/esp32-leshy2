@@ -12,7 +12,7 @@
     "hardware/verification/generated/H3-VRF54-rf-consolidation.json": "d1becdc9b2e2a5da6270486cec0c192d6dfad7349475b0d2ff57696e40c53e03",
     "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json": "3b2bec6565617340ea3ab06e9da2e801985bb646c8f728092b5621dc5063873e",
     "hardware/verification/generated/H3-VRF71-crosscheck.json": "36b1b0613e66d1355b63bb159aafd7481e6185883186cc0dadf9d0cfc3696ecb",
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "a3b999ad37b0a16588c86e3dd0e8e7ca6045e7b66e2a3782a221b8fb1a6448fa"
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "fc20bbce1b31471b539862193f2014ea01131ddde4b0ae3f288746457b979fd4"
   },
   "acceptance_meaning": [
     "all checks possible without fabricated hardware have reproducible reviewed evidence",
@@ -106,7 +106,7 @@
     "physical_evidence_rows": 85,
     "by_closure_stage": {
       "H5": 9,
-      "H6": 9,
+      "H6": 10,
       "H8": 78
     },
     "by_source_phase": {

@@ -1,6 +1,6 @@
 # Physical evidence register
 
-H3.7.2 is closed. The six H3 phase consolidations contain 88 residual rows: three were H3-internal dependencies already closed by H3.2/H3.6, and all remaining `85` are published below. `9` belong to H5 received-part evidence, `9` to H6 final placement/routing evidence and `78` to H8 populated-device qualification. None is silently called analytically complete.
+H3.7.2 is closed. The six H3 phase consolidations contain 88 residual rows: three were H3-internal dependencies already closed by H3.2/H3.6, and all remaining `85` are published below. `9` belong to H5 received-part evidence, `10` to H6 final placement/routing evidence and `78` to H8 populated-device qualification. None is silently called analytically complete.
 
 Each machine row also carries its exact source artifact, responsible gate, required artifact and pass rule. A mismatch reopens the owning result rather than becoming a layout or test waiver. This register does not authorize purchase, layout or fabrication. The exact current marker is `H3.7.3`.
 
@@ -62,7 +62,7 @@ Each machine row also carries its exact source artifact, responsible gate, requi
 | `H3-PHY-054` | `H8` | `H3.5` | VNA-tune CC1101 differential-to-single-ended match and every 315/433/868/915 branch; prove output, sensitivity, harmonics and switch loss |
 | `H3-PHY-055` | `H8` | `H3.5` | measure SA518 VHF/UHF feed insertion/return loss, output power and harmonics at both power settings |
 | `H3-PHY-056` | `H8` | `H3.5` | qualify Si4732 FMI FM and SW sensitivity/overload with the complete external whip and first-pass 56-nH/1-nF network |
-| `H3-PHY-057` | `H5+H8` | `H3.5` | measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod |
+| `H3-PHY-057` | `H5+H6+H8` | `H3.5` | measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod |
 | `H3-PHY-058` | `H8` | `H3.5` | derate every allowed TX power/EIRP table by measured complete-feed loss and selected antenna gain before regional profile release |
 | `H3-PHY-059` | `H6+H8` | `H3.5` | use impedance coupons and de-embedded SMA/U.FL fixtures for H6/H8 acceptance; nominal field-solver values alone cannot close a feed |
 | `H3-PHY-060` | `H6` | `H3.5` | release the fabricator stack-up, field-solve every launch and 50-ohm geometry, and correlate with coupons in H6 |

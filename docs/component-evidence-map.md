@@ -59,8 +59,8 @@ flowchart LR
 ### `H3-PHY-057` · `phase`
 
 - Selected: `Si4732-A10-GSR`; `GCT RFPC-SMA31-FN-175-A`; `L2-ANT-AM-LW-001`.
-- Still to prove: measured total external AMI capacitance of the received SMA, routed PCB and completed exact pod.
-- Pass rule: the received specimen directly demonstrates this item: measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod; a mismatch reopens the owning H1/H2/H3 result
+- Still to prove: received edge-SMA and controlled pod constituent identities, physical envelopes and mating records before the H6 routed-capacitance budget and H8 total measurement.
+- Pass rule: the received SMA and every controlled pod constituent match their selected identities and physical envelopes; H5 does not claim total assembled-path capacitance
 
 ### `H3-PHY-062` · `phase`
 

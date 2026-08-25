@@ -23,6 +23,11 @@ OUTPUT = REPO / "hardware/verification/generated/H3-VRF72-physical-residuals.jso
 DOC_EN = REPO / "docs/physical-evidence-register.md"
 DOC_RU = REPO / "docs/physical-evidence-register.ru.md"
 
+AM_LW_CAPACITANCE_RESIDUAL = (
+    "measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 "
+    "input with the received SMA, PCB and exact pod"
+)
+
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -46,6 +51,8 @@ def assigned_stages(text: str) -> list[str]:
         return ["H8"]
     lower = text.lower()
     stages: set[str] = set()
+    if text == AM_LW_CAPACITANCE_RESIDUAL:
+        return ["H5", "H6", "H8"]
     if any(token in lower for token in ("received ", "received-lot", "specimen", "mating/retention", "material/plating", "identity/cmd6")):
         stages.add("H5")
     if any(token in lower for token in ("field-solve", "routed path", "fabricator stack-up", "no drc", "impedance coupon", "copper, placement", "extract am/lw")):
@@ -61,6 +68,18 @@ def assigned_stages(text: str) -> list[str]:
 
 
 def evidence_contract(stage: str, text: str) -> dict:
+    if text == AM_LW_CAPACITANCE_RESIDUAL and stage == "H5":
+        return {
+            "owner": "H5 received-component evidence",
+            "required_artifact": "lot-identified photographs plus dimensional/mating records for the exact received edge SMA and controlled pod constituents",
+            "pass_rule": "the received SMA and every controlled pod constituent match their selected identities and physical envelopes; H5 does not claim total assembled-path capacitance",
+        }
+    if text == AM_LW_CAPACITANCE_RESIDUAL and stage == "H6":
+        return {
+            "owner": "H6 PCB placement/routing review",
+            "required_artifact": "final stack-up, routed AM/LW geometry, extracted parasitic-capacitance budget and reviewer sign-off tied to the production PCB revision",
+            "pass_rule": "the routed geometry preserves a <=19.500 pF external-AMI budget without waiver; the final populated-path measurement remains assigned to H8",
+        }
     if stage == "H5":
         return {
             "owner": "H5 received-component evidence",

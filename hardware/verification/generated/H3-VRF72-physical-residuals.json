@@ -18,7 +18,7 @@
     "physical_evidence_rows": 85,
     "by_closure_stage": {
       "H5": 9,
-      "H6": 9,
+      "H6": 10,
       "H8": 78
     },
     "by_source_phase": {
@@ -1108,13 +1108,19 @@
       "residual": "measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod",
       "closure_stages": [
         "H5",
+        "H6",
         "H8"
       ],
       "evidence_contracts": {
         "H5": {
           "owner": "H5 received-component evidence",
-          "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
-          "pass_rule": "the received specimen directly demonstrates this item: measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod; a mismatch reopens the owning H1/H2/H3 result"
+          "required_artifact": "lot-identified photographs plus dimensional/mating records for the exact received edge SMA and controlled pod constituents",
+          "pass_rule": "the received SMA and every controlled pod constituent match their selected identities and physical envelopes; H5 does not claim total assembled-path capacitance"
+        },
+        "H6": {
+          "owner": "H6 PCB placement/routing review",
+          "required_artifact": "final stack-up, routed AM/LW geometry, extracted parasitic-capacitance budget and reviewer sign-off tied to the production PCB revision",
+          "pass_rule": "the routed geometry preserves a <=19.500 pF external-AMI budget without waiver; the final populated-path measurement remains assigned to H8"
         },
         "H8": {
           "owner": "H8 physical qualification",

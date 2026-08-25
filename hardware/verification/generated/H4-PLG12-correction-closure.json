@@ -3,7 +3,7 @@
   "stage": "H4.2",
   "status": "reviewed",
   "source_hashes": {
-    "hardware/verification/generated/H4-PLG11-joined-review.json": "300295f74aa9e6cb6e643ddfa193f9e06a771269c9ce6d8d5a44e564916de010"
+    "hardware/verification/generated/H4-PLG11-joined-review.json": "0ed9bbefe35809e03f5a3245cea78ff7ef999397909f1aef21758290ea2dfe71"
   },
   "corrections": [
     {
