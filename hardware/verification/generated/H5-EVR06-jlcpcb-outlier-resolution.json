@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "artifact": "H5-EVR06",
   "stage": "H5.0.3",
-  "status": "all_209_availability_routes_mapped_sa518_price_open",
+  "status": "all_209_routes_mapped_sa518_and_factory_gates_open",
   "checked_on": "2026-08-25",
   "input": {
     "bom_tool_result": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
@@ -19,7 +19,8 @@
       "J1": 0,
       "J2": 45,
       "J3": 12,
-      "J4": 5
+      "J4-F": 3,
+      "J4-P": 2
     },
     "component_replacements": 0,
     "unmapped_lines": 0,
@@ -32,11 +33,11 @@
       "device_id": "davies_1227_j",
       "normalized_mpn": "1227-J",
       "quantity": 1,
-      "route": "J4",
+      "route": "J4-F",
       "lcsc": null,
       "manufacturer": null,
       "stock_snapshot": null,
-      "reason": "encoder knob is an enclosure/final-assembly part",
+      "reason": "encoder knob requires factory installation and control test after enclosure integration",
       "target_bom_orderable_evidence": "present",
       "target_bom_source": "https://www.mouser.com/en/ProductDetail/Davies-Molding/1227-J?qs=AaRlLUpeMszUlt7gcGM9fQ%3D%3D",
       "component_replacement": false
@@ -130,11 +131,11 @@
       "device_id": "m5_u214",
       "normalized_mpn": "U214 Cap LoRa-1262",
       "quantity": 1,
-      "route": "J4",
+      "route": "J4-P",
       "lcsc": null,
       "manufacturer": null,
       "stock_snapshot": null,
-      "reason": "removable rear Cap accessory is installed after PCBA",
+      "reason": "removable rear Cap accessory is factory-tested, then packed separately for user installation",
       "target_bom_orderable_evidence": "present",
       "target_bom_source": "",
       "component_replacement": false
@@ -200,11 +201,11 @@
       "device_id": "qdtech_hmx035ctft_001",
       "normalized_mpn": "HMX035CTFT-001",
       "quantity": 1,
-      "route": "J4",
+      "route": "J4-F",
       "lcsc": null,
       "manufacturer": null,
       "stock_snapshot": null,
-      "reason": "display/flex is mated to the replaceable adapter during final assembly",
+      "reason": "display/flex requires factory mating and display/touch functional test during final assembly",
       "target_bom_orderable_evidence": "missing",
       "target_bom_source": "",
       "component_replacement": false
@@ -242,11 +243,11 @@
       "device_id": "te_2118651_2",
       "normalized_mpn": "2118651-2",
       "quantity": 5,
-      "route": "J4",
+      "route": "J4-F",
       "lcsc": null,
       "manufacturer": null,
       "stock_snapshot": null,
-      "reason": "five removable 30-mm microcoax jumpers are installed and strain-routed during final sandwich assembly",
+      "reason": "five removable 30-mm microcoax jumpers require factory installation, strain routing and continuity test during final sandwich assembly",
       "target_bom_orderable_evidence": "present",
       "target_bom_source": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824",
       "component_replacement": false
@@ -424,11 +425,11 @@
       "device_id": "xtar_18650_4000mah_protected",
       "normalized_mpn": "18650 4000mAh",
       "quantity": 2,
-      "route": "J4",
+      "route": "J4-P",
       "lcsc": null,
       "manufacturer": null,
       "stock_snapshot": null,
-      "reason": "protected cells are never placed by PCBA",
+      "reason": "protected cells are packed separately for user installation unless a compliant battery box-build and shipping route is later qualified",
       "target_bom_orderable_evidence": "present",
       "target_bom_source": "",
       "component_replacement": false
@@ -663,14 +664,14 @@
       "normalized_mpn": "1227-J",
       "quantity": 1,
       "designators_complete": true,
-      "route": "J4",
+      "route": "J4-F",
       "tool_status": "not_matched",
       "lcsc": null,
       "matched_mpn": null,
       "semantic_mpn_equal": null,
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "encoder knob is an enclosure/final-assembly part",
+      "outlier_resolution_reason": "encoder knob requires factory installation and control test after enclosure integration",
       "component_replacement": false
     },
     {
@@ -1142,14 +1143,14 @@
       "normalized_mpn": "U214 Cap LoRa-1262",
       "quantity": 1,
       "designators_complete": true,
-      "route": "J4",
+      "route": "J4-P",
       "tool_status": "not_matched",
       "lcsc": null,
       "matched_mpn": null,
       "semantic_mpn_equal": null,
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "removable rear Cap accessory is installed after PCBA",
+      "outlier_resolution_reason": "removable rear Cap accessory is factory-tested, then packed separately for user installation",
       "component_replacement": false
     },
     {
@@ -1932,14 +1933,14 @@
       "normalized_mpn": "HMX035CTFT-001",
       "quantity": 1,
       "designators_complete": true,
-      "route": "J4",
+      "route": "J4-F",
       "tool_status": "not_matched",
       "lcsc": null,
       "matched_mpn": null,
       "semantic_mpn_equal": null,
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "display/flex is mated to the replaceable adapter during final assembly",
+      "outlier_resolution_reason": "display/flex requires factory mating and display/touch functional test during final assembly",
       "component_replacement": false
     },
     {
@@ -2238,14 +2239,14 @@
       "normalized_mpn": "2118651-2",
       "quantity": 5,
       "designators_complete": true,
-      "route": "J4",
+      "route": "J4-F",
       "tool_status": "not_matched",
       "lcsc": null,
       "matched_mpn": null,
       "semantic_mpn_equal": null,
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "five removable 30-mm microcoax jumpers are installed and strain-routed during final sandwich assembly",
+      "outlier_resolution_reason": "five removable 30-mm microcoax jumpers require factory installation, strain routing and continuity test during final sandwich assembly",
       "component_replacement": false
     },
     {
@@ -3059,14 +3060,14 @@
       "normalized_mpn": "18650 4000mAh",
       "quantity": 2,
       "designators_complete": true,
-      "route": "J4",
+      "route": "J4-P",
       "tool_status": "not_matched",
       "lcsc": null,
       "matched_mpn": null,
       "semantic_mpn_equal": null,
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "protected cells are never placed by PCBA",
+      "outlier_resolution_reason": "protected cells are packed separately for user installation unless a compliant battery box-build and shipping route is later qualified",
       "component_replacement": false
     },
     {
@@ -3695,6 +3696,25 @@
   ],
   "boundary": {
     "meaning": "availability and sourcing route only; footprint, placement, assembly-class and current stock are revalidated at BOM freeze",
+    "factory_final_assembly": {
+      "route": "J4-F",
+      "mpns": [
+        "1227-J",
+        "2118651-2",
+        "HMX035CTFT-001"
+      ],
+      "accepted_and_quoted": false,
+      "gate": "H5 and H7 remain open until the selected factory accepts and quotes installation plus functional test"
+    },
+    "factory_packed_removable": {
+      "route": "J4-P",
+      "mpns": [
+        "18650 4000mAh",
+        "U214 Cap LoRa-1262"
+      ],
+      "accepted_and_quoted": false,
+      "gate": "kit inclusion, compatibility test where applicable, packing and battery shipping boundary must be quoted"
+    },
     "not_authorized": [
       "sourcing request",
       "quote",
@@ -3706,7 +3726,7 @@
     ]
   },
   "next": {
-    "decision_needed": "authorize a no-order qualified sourcing inquiry for exact NiceRF SA518 pricing, or keep H5.0.3 open",
+    "decision_needed": "qualify exact NiceRF SA518 pricing and obtain a no-order box-build capability/price response for J4-F/J4-P before closing H5.0.3",
     "purchase_remains_last": true
   },
   "checks": {
@@ -3715,9 +3735,10 @@
     "j0_rows_have_positive_original_maker_stock": true,
     "j2_rows_have_exact_zero_stock_catalogue_identity": true,
     "j3_rows_keep_exact_selected_identity": true,
-    "j4_rows_are_post_pcba_parts": true,
+    "j4f_rows_are_factory_final_assembly_parts": true,
+    "j4p_rows_are_factory_packed_removable_parts": true,
     "generic_placeholders_are_not_accepted_as_identity": true,
-    "all_209_lines_have_j0_to_j4_route": true,
+    "all_209_lines_have_defined_availability_or_final_assembly_route": true,
     "no_component_replacement_is_introduced": true,
     "no_sourcing_quote_reservation_or_order_created": true
   }

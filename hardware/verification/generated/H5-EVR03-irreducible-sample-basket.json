@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "stage": "H5.0.3",
-  "status": "draft_supplier_quote_open",
+  "status": "draft_component_and_factory_quotes_open",
   "checked_on": "2026-08-25",
   "purpose": "one deduplicated engineering-sample basket after documentary and serial-replacement research; no purchase authorization",
   "inputs": {
@@ -24,6 +24,8 @@
     "unpriced_manufacturer_lines": 1,
     "excluded_from_budget": [
       "SA518 manufacturer sample quote",
+      "J4-F box-build",
+      "J4-P kit/packing/battery shipping",
       "freight",
       "tax",
       "customs",
@@ -1104,12 +1106,12 @@
     },
     "prepared_request": "hardware/procurement/SA518-sample-rfq.md",
     "direct_request_status": "ready; no request has been sent because the JLCPCB short form resolves to an unqualified generic placeholder and external contact still needs explicit authority",
-    "next_action": "send one no-order request that explicitly binds NiceRF SA518 to the current manufacturer datasheet and production revision; all 209 BOM lines already have J0-J4 routes without replacement, and JLCAPI Parts permission is still reviewing"
+    "next_action": "qualify exact NiceRF SA518 pricing and the J4-F/J4-P factory final-assembly boundary without ordering; all 209 BOM lines already have defined routes without replacement, and JLCAPI Parts permission is still reviewing"
   },
   "sequencing": {
-    "now": "keep all 209 exact J0-J4 routes stable; do not accept generic JLCPCB Assembly C9900300438 as NiceRF; obtain one qualified exact-SA518 price after separate authorization",
-    "after_mapping": "use approved read-only Parts access for repeatable availability checks; send the prepared exact-identity request through a channel that preserves manufacturer and datasheet identity",
-    "after_quote": "publish exact whole-basket cost and request a separate sample-order decision",
+    "now": "keep all 209 exact sourcing/final-assembly routes stable; do not accept generic JLCPCB Assembly C9900300438 as NiceRF; retain J4-F/J4-P as open factory gates",
+    "after_mapping": "use approved read-only Parts access for repeatable availability checks; qualify exact SA518 identity/price and obtain a no-order J4-F box-build plus J4-P kit/packing/shipping response",
+    "after_quote": "publish exact whole-basket and final-assembly costs, then request a separate sample-order decision",
     "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",
     "forbidden": [
       "component purchase without a separate decision",

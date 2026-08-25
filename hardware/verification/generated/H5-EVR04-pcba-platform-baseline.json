@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "artifact": "H5-EVR04",
   "stage": "H5.0.3",
-  "status": "availability_routes_complete_sa518_price_open",
+  "status": "routes_complete_sa518_and_factory_gates_open",
   "checked_on": "2026-08-25",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
@@ -74,9 +74,14 @@
       "rule": "exact identity is sourced or supplied into the private library and must be received before assembly"
     },
     {
-      "id": "J4",
-      "name": "final/manual assembly",
-      "rule": "removable accessories, cells, antennas and parts outside the PCBA boundary are installed and tested after board assembly"
+      "id": "J4-F",
+      "name": "factory final assembly",
+      "rule": "the final-assembly factory must install and test the part after PCBA; H5 and H7 cannot close until this box-build route is accepted and quoted"
+    },
+    {
+      "id": "J4-P",
+      "name": "factory-packed removable item",
+      "rule": "the factory tests compatibility where applicable and packs the removable accessory, antenna or cell separately for user installation"
     }
   ],
   "assembly_boundary": {
@@ -85,14 +90,24 @@
       "all ordinary SMT/THT parts accepted by Standard PCBA",
       "board connectors and soldered RF boundaries when their exact assembly rule is accepted"
     ],
-    "after_pcba": [
-      "display/flex final mating",
-      "removable U214 Cap and M5 Units",
-      "cells",
-      "external antennas",
-      "knob and any enclosure-only hardware not accepted in the assembly quote",
-      "final sandwich/box integration"
-    ]
+    "J4-F_factory_final_assembly": {
+      "status": "open_until_factory_acceptance_and_quote",
+      "required_operations": [
+        "display/flex mating and display/touch test",
+        "five microcoax installation, strain routing and continuity test",
+        "encoder knob installation and control test",
+        "final sandwich/enclosure integration and whole-device functional test"
+      ],
+      "close_gate": "H5 and H7 cannot close until the selected factory accepts and prices these operations"
+    },
+    "J4-P_factory_packed_removable": {
+      "status": "open_until_kit_and_shipping_quote",
+      "required_operations": [
+        "test U214 compatibility, then pack the removable Cap separately",
+        "pack selected external antennas separately",
+        "pack protected 18650 cells separately for user installation unless compliant integrated battery shipping is qualified"
+      ]
+    }
   },
   "parts_api": {
     "application_status": "approved",
@@ -182,7 +197,7 @@
       "processed": true,
       "result": "176 matched, 33 unmatched, all 1019 target placements parsed"
     },
-    "blocker": "all 33 BOM Tool outliers have J0-J4 routes; bare SA518 resolves to unqualified JLCPCB Assembly placeholder C9900300438, exact NiceRF SA518 qualified price remains open, and no sourcing request, quote, reservation or order has been created"
+    "blocker": "all 33 BOM Tool outliers have defined routes; bare SA518 resolves to unqualified JLCPCB Assembly placeholder C9900300438, exact NiceRF SA518 qualified price and J4-F/J4-P final-assembly acceptance/pricing remain open, and no sourcing request, quote, reservation or order has been created"
   },
   "critical_spot_checks": [
     {
@@ -279,11 +294,11 @@
       "device_id": "qdtech_hmx035ctft_001",
       "mpn": "HMX035CTFT-001",
       "jlc": null,
-      "tier": "J4",
+      "tier": "J4-F",
       "stock": 0,
-      "pcba": "display/flex belongs to final assembly",
+      "pcba": "display/flex belongs to factory final assembly",
       "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001",
-      "finding": "keep replaceable display-adapter architecture; the display is not treated as an ordinary line-loaded SMT part"
+      "finding": "keep replaceable display-adapter architecture; require factory mating plus display/touch test rather than treating the display as an ordinary line-loaded SMT part"
     }
   ],
   "summary": {
@@ -292,7 +307,8 @@
     "public_stock_exact_or_revision_explicit": 5,
     "preorder_reservation": 2,
     "global_sourcing_or_consignment": 2,
-    "post_pcba_final_assembly": 1,
+    "factory_final_assembly": 1,
+    "factory_packed_removable": 0,
     "bom_tool_exact_or_punctuation_equivalent_matches": 176,
     "bom_tool_public_stock_lines": 135,
     "bom_tool_preorder_lines": 41,
@@ -304,7 +320,8 @@
       "J1": 0,
       "J2": 45,
       "J3": 12,
-      "J4": 5
+      "J4-F": 3,
+      "J4-P": 2
     },
     "full_bom_lines_pending_mapping": 0,
     "open_qualified_price_lines": 1
@@ -316,7 +333,7 @@
     "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot"
   },
   "next": {
-    "local": "all 209 lines have J0-J4 routes; preserve the map, wait for Parts permission approval and keep the no-order exact-NiceRF-SA518 inquiry separate from generic C9900300438",
+    "local": "all 209 lines have defined routes; preserve the map, keep J4-F/J4-P as open factory-quote gates, wait for Parts permission approval and keep the no-order exact-NiceRF-SA518 inquiry separate from generic C9900300438",
     "external_authority_later": "sending the SA518 sourcing inquiry, quote creation, private-stock reservation and purchase still require separate explicit authority",
     "forbidden": [
       "purchase",
@@ -352,8 +369,9 @@
     "all_target_placements_were_parsed": true,
     "no_semantic_mpn_substitution_was_observed": true,
     "all_33_unmatched_lines_remain_explicit": true,
-    "all_209_lines_have_j0_to_j4_route": true,
-    "only_sa518_qualified_price_remains_open": true,
+    "all_209_lines_have_defined_availability_or_final_assembly_route": true,
+    "sa518_is_the_only_open_qualified_component_price": true,
+    "factory_final_assembly_gate_is_explicitly_open": true,
     "jlcapi_application_and_app_are_ready": true,
     "parts_api_waits_for_jlc_review": true,
     "sa518_generic_placeholder_is_not_accepted": true,

@@ -331,7 +331,7 @@ class ProductSiteTests(unittest.TestCase):
             self.read("hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json")
         )
         self.assertEqual("H5.0.3", evidence["stage"])
-        self.assertEqual("draft_supplier_quote_open", evidence["status"])
+        self.assertEqual("draft_component_and_factory_quotes_open", evidence["status"])
         self.assertEqual(32, evidence["summary"]["article_lines"])
         self.assertEqual(11, evidence["summary"]["measurement_contracts"])
         self.assertEqual(23, evidence["summary"]["covered_residuals_and_gates"])
@@ -361,7 +361,7 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual("H5-EVR04", evidence["artifact"])
         self.assertEqual("H5.0.3", evidence["stage"])
-        self.assertEqual("availability_routes_complete_sa518_price_open", evidence["status"])
+        self.assertEqual("routes_complete_sa518_and_factory_gates_open", evidence["status"])
         self.assertEqual("JLCPCB Standard PCBA", evidence["decision"]["reference_platform"])
         self.assertFalse(evidence["decision"]["exclusive_lock_in"])
         self.assertEqual(209, evidence["summary"]["target_bom_lines"])
@@ -369,14 +369,23 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(5, evidence["summary"]["public_stock_exact_or_revision_explicit"])
         self.assertEqual(2, evidence["summary"]["preorder_reservation"])
         self.assertEqual(2, evidence["summary"]["global_sourcing_or_consignment"])
-        self.assertEqual(1, evidence["summary"]["post_pcba_final_assembly"])
+        self.assertEqual(1, evidence["summary"]["factory_final_assembly"])
+        self.assertEqual(0, evidence["summary"]["factory_packed_removable"])
+        self.assertEqual(
+            "open_until_factory_acceptance_and_quote",
+            evidence["assembly_boundary"]["J4-F_factory_final_assembly"]["status"],
+        )
+        self.assertEqual(
+            "open_until_kit_and_shipping_quote",
+            evidence["assembly_boundary"]["J4-P_factory_packed_removable"]["status"],
+        )
         self.assertEqual(176, evidence["summary"]["bom_tool_exact_or_punctuation_equivalent_matches"])
         self.assertEqual(135, evidence["summary"]["bom_tool_public_stock_lines"])
         self.assertEqual(41, evidence["summary"]["bom_tool_preorder_lines"])
         self.assertEqual(33, evidence["summary"]["bom_tool_unmatched_lines"])
         self.assertEqual(1019, evidence["summary"]["target_placements_parsed"])
         self.assertEqual(
-            {"J0": 147, "J1": 0, "J2": 45, "J3": 12, "J4": 5},
+            {"J0": 147, "J1": 0, "J2": 45, "J3": 12, "J4-F": 3, "J4-P": 2},
             evidence["summary"]["availability_routes"],
         )
         self.assertEqual(0, evidence["summary"]["full_bom_lines_pending_mapping"])
@@ -447,12 +456,34 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("H5-EVR06", outliers["artifact"])
         self.assertEqual(33, outliers["summary"]["bom_tool_outliers_resolved"])
         self.assertEqual(
-            {"J0": 147, "J1": 0, "J2": 45, "J3": 12, "J4": 5},
+            {"J0": 147, "J1": 0, "J2": 45, "J3": 12, "J4-F": 3, "J4-P": 2},
             outliers["summary"]["availability_routes"],
         )
         self.assertEqual(0, outliers["summary"]["component_replacements"])
         self.assertEqual(0, outliers["summary"]["unmapped_lines"])
         self.assertEqual("SA518", outliers["summary"]["open_qualified_price_mpn"])
+        self.assertFalse(
+            outliers["boundary"]["factory_final_assembly"]["accepted_and_quoted"]
+        )
+        self.assertFalse(
+            outliers["boundary"]["factory_packed_removable"]["accepted_and_quoted"]
+        )
+        self.assertEqual(
+            {"2118651-2", "HMX035CTFT-001", "1227-J"},
+            {
+                row["normalized_mpn"]
+                for row in outliers["outlier_resolutions"]
+                if row["route"] == "J4-F"
+            },
+        )
+        self.assertEqual(
+            {"U214 Cap LoRa-1262", "18650 4000mAh"},
+            {
+                row["normalized_mpn"]
+                for row in outliers["outlier_resolutions"]
+                if row["route"] == "J4-P"
+            },
+        )
         self.assertTrue(all(outliers["checks"].values()))
         for name in ("docs/manufacturing-platform.md", "docs/manufacturing-platform.ru.md"):
             page = self.read(name)
@@ -836,7 +867,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][1]["status"])
         self.assertEqual("current", h5_plan["substeps"][0]["children"][2]["status"])
         self.assertEqual(
-            "draft_availability_routes_complete_sa518_price_open",
+            "draft_routes_complete_sa518_and_factory_gates_open",
             h5_plan["current_artifacts"]["H5.0.3"]["status"],
         )
         self.assertEqual("H5-BLK-SA518-QUALIFIED-PRICE", h5_plan["blocker"]["id"])

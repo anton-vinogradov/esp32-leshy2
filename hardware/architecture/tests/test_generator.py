@@ -35,7 +35,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("draft_supplier_quote_open", basket["status"])
+        self.assertEqual("draft_component_and_factory_quotes_open", basket["status"])
         self.assertEqual(32, basket["summary"]["article_lines"])
         self.assertEqual(11, basket["summary"]["measurement_contracts"])
         self.assertEqual(23, basket["summary"]["covered_residuals_and_gates"])

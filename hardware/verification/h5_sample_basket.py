@@ -165,9 +165,9 @@ def build() -> dict:
     if failed:
         raise ValueError("H5.0.3 basket checks failed: " + ", ".join(failed))
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "stage": "H5.0.3",
-        "status": "draft_supplier_quote_open",
+        "status": "draft_component_and_factory_quotes_open",
         "checked_on": CHECKED_ON,
         "purpose": "one deduplicated engineering-sample basket after documentary and serial-replacement research; no purchase authorization",
         "inputs": {
@@ -182,7 +182,7 @@ def build() -> dict:
             "conservative_budget_caps_usd": f"{budget_total:.2f}",
             "known_engineering_material_budget_usd": f"{total:.2f}",
             "unpriced_manufacturer_lines": len(rfq),
-            "excluded_from_budget": ["SA518 manufacturer sample quote", "freight", "tax", "customs", "H5.2 coupon PCB fabrication/assembly", "general laboratory instruments and ordinary passives"],
+            "excluded_from_budget": ["SA518 manufacturer sample quote", "J4-F box-build", "J4-P kit/packing/battery shipping", "freight", "tax", "customs", "H5.2 coupon PCB fabrication/assembly", "general laboratory instruments and ordinary passives"],
             "former_parked_plan_usd": "164.54 for only a partial eight-line lot",
             "comparison_note": "The new total is larger because it covers all 9 H5 residuals and 14 mechanical gates, but quantities within each line are reduced to evidence minima.",
         },
@@ -216,12 +216,12 @@ def build() -> dict:
             },
             "prepared_request": "hardware/procurement/SA518-sample-rfq.md",
             "direct_request_status": "ready; no request has been sent because the JLCPCB short form resolves to an unqualified generic placeholder and external contact still needs explicit authority",
-            "next_action": "send one no-order request that explicitly binds NiceRF SA518 to the current manufacturer datasheet and production revision; all 209 BOM lines already have J0-J4 routes without replacement, and JLCAPI Parts permission is still reviewing",
+            "next_action": "qualify exact NiceRF SA518 pricing and the J4-F/J4-P factory final-assembly boundary without ordering; all 209 BOM lines already have defined routes without replacement, and JLCAPI Parts permission is still reviewing",
         },
         "sequencing": {
-            "now": "keep all 209 exact J0-J4 routes stable; do not accept generic JLCPCB Assembly C9900300438 as NiceRF; obtain one qualified exact-SA518 price after separate authorization",
-            "after_mapping": "use approved read-only Parts access for repeatable availability checks; send the prepared exact-identity request through a channel that preserves manufacturer and datasheet identity",
-            "after_quote": "publish exact whole-basket cost and request a separate sample-order decision",
+            "now": "keep all 209 exact sourcing/final-assembly routes stable; do not accept generic JLCPCB Assembly C9900300438 as NiceRF; retain J4-F/J4-P as open factory gates",
+            "after_mapping": "use approved read-only Parts access for repeatable availability checks; qualify exact SA518 identity/price and obtain a no-order J4-F box-build plus J4-P kit/packing/shipping response",
+            "after_quote": "publish exact whole-basket and final-assembly costs, then request a separate sample-order decision",
             "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",
             "forbidden": ["component purchase without a separate decision", "PCB placement/routing", "prototype fabrication"],
         },
@@ -290,15 +290,17 @@ def render_doc(data: dict, russian: bool) -> str:
 
 [English](component-sample-basket.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Предыдущий поиск](component-source-research.ru.md)
 
-Корзина опубликована, но **H5.0.3 ещё не закрыт**: [JLCPCB Standard PCBA выбран рабочей производственной линией](manufacturing-platform.ru.md); контрольный BOM Tool прогон сопоставил 176/209 строк и распознал все 1019 установок, а exact-поиск дал всем 209 строкам маршруты `J0`–`J4` без замен. `NiceRF SA518` остаётся единственной неизвестной ценой корзины. Приложение JLCAPI создано, право Parts находится на ревью; закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication не разрешены.
+Корзина опубликована, но **H5.0.3 ещё не закрыт**: [JLCPCB Standard PCBA выбран рабочей производственной линией](manufacturing-platform.ru.md); контрольный BOM Tool прогон сопоставил 176/209 строк и распознал все 1019 установок, а exact-поиск дал всем 209 строкам маршруты `J0`–`J3`, `J4-F` или `J4-P` без замен. `NiceRF SA518` остаётся единственной неизвестной ценой компонента; отдельно открыты фабричные gates `J4-F` box-build и `J4-P` kit/packing/shipping. Приложение JLCAPI создано, право Parts находится на ревью; закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication не разрешены.
 
 ```mermaid
 flowchart TD
   R["✅ H5.0.2<br/>источники и замены"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
   B --> P["JLCPCB Standard<br/>176/209 · 1019/1019"]
-  P --> Q["✅ 209/209 маршрутов<br/>J0–J4 без замен"]
-  Q --> S["квалифицированная цена<br/>exact SA518"]
-  S --> A["отдельное решение<br/>о закупке образцов"]
+  P --> Q["✅ 209/209 маршрутов<br/>J0–J3 · J4-F/P"]
+  Q --> S["цена exact SA518"]
+  Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
+  S --> A["полная цена и отдельное решение<br/>о закупке образцов"]
+  X --> A
   A --> H51["H5.1<br/>incoming inspection"]
   H51 --> H52["H5.2<br/>coupons по реальным размерам"]
 ```
@@ -333,15 +335,17 @@ flowchart TD
 
 [Русский](component-sample-basket.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Previous research](component-source-research.md)
 
-The basket is published, but **H5.0.3 is not yet reviewed**: [JLCPCB Standard PCBA is now the manufacturing reference](manufacturing-platform.md); its controlled BOM Tool run matched 176/209 lines and parsed all 1019 placements, while exact search gave all 209 lines `J0`–`J4` routes without replacement. `NiceRF SA518` remains the basket's only unpriced line. The JLCAPI app exists and Parts permission is under review; purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication are not authorized.
+The basket is published, but **H5.0.3 is not yet reviewed**: [JLCPCB Standard PCBA is now the manufacturing reference](manufacturing-platform.md); its controlled BOM Tool run matched 176/209 lines and parsed all 1019 placements, while exact search gave all 209 lines `J0`–`J3`, `J4-F` or `J4-P` routes without replacement. `NiceRF SA518` remains the basket's only unpriced component; the `J4-F` box-build and `J4-P` kit/packing/shipping factory gates are separately open. The JLCAPI app exists and Parts permission is under review; purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication are not authorized.
 
 ```mermaid
 flowchart TD
   R["✅ H5.0.2<br/>sources + replacements"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
   B --> P["JLCPCB Standard<br/>176/209 · 1019/1019"]
-  P --> Q["✅ 209/209 routes<br/>J0–J4 · no replacement"]
+  P --> Q["✅ 209/209 routes<br/>J0–J3 · J4-F/P"]
   Q --> S["qualified exact-SA518<br/>price"]
-  S --> A["separate sample-order<br/>decision"]
+  Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
+  S --> A["complete price and separate<br/>sample-order decision"]
+  X --> A
   A --> H51["H5.1<br/>incoming inspection"]
   H51 --> H52["H5.2<br/>coupons from real dimensions"]
 ```
@@ -388,9 +392,9 @@ The old quantities and `$164.54` partial subtotal are intentionally not an
 ordering source. Purchasing is the last resort after documentary and
 function-preserving replacement research. Sample ordering, PCB
 placement/routing and fabrication remain unauthorized. The current basket has
-one supplier-price input open (`SA518`); all 209 availability routes are mapped,
-the JLCAPI Parts permission is under review, and the prepared direct manufacturer
-request remains a fallback.
+one component-price input open (`SA518`); all 209 sourcing/final-assembly routes
+are mapped, the J4-F/J4-P factory gates remain open, the JLCAPI Parts permission
+is under review, and the prepared direct manufacturer request remains a fallback.
 """
 
 

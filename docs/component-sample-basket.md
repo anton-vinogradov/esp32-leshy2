@@ -2,15 +2,17 @@
 
 [Русский](component-sample-basket.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Previous research](component-source-research.md)
 
-The basket is published, but **H5.0.3 is not yet reviewed**: [JLCPCB Standard PCBA is now the manufacturing reference](manufacturing-platform.md); its controlled BOM Tool run matched 176/209 lines and parsed all 1019 placements, while exact search gave all 209 lines `J0`–`J4` routes without replacement. `NiceRF SA518` remains the basket's only unpriced line. The JLCAPI app exists and Parts permission is under review; purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication are not authorized.
+The basket is published, but **H5.0.3 is not yet reviewed**: [JLCPCB Standard PCBA is now the manufacturing reference](manufacturing-platform.md); its controlled BOM Tool run matched 176/209 lines and parsed all 1019 placements, while exact search gave all 209 lines `J0`–`J3`, `J4-F` or `J4-P` routes without replacement. `NiceRF SA518` remains the basket's only unpriced component; the `J4-F` box-build and `J4-P` kit/packing/shipping factory gates are separately open. The JLCAPI app exists and Parts permission is under review; purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication are not authorized.
 
 ```mermaid
 flowchart TD
   R["✅ H5.0.2<br/>sources + replacements"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
   B --> P["JLCPCB Standard<br/>176/209 · 1019/1019"]
-  P --> Q["✅ 209/209 routes<br/>J0–J4 · no replacement"]
+  P --> Q["✅ 209/209 routes<br/>J0–J3 · J4-F/P"]
   Q --> S["qualified exact-SA518<br/>price"]
-  S --> A["separate sample-order<br/>decision"]
+  Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
+  S --> A["complete price and separate<br/>sample-order decision"]
+  X --> A
   A --> H51["H5.1<br/>incoming inspection"]
   H51 --> H52["H5.2<br/>coupons from real dimensions"]
 ```

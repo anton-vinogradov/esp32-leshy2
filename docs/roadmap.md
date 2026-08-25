@@ -31,7 +31,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Joined pre-layout gate | ✅ [H4 reviewed](h4-prelayout-gate-report.md): 0 open virtual contradictions; 85 physical residuals keep H5/H6/H8 owners |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
-| Component evidence | ▶️ [JLCPCB Standard PCBA selected as the non-exclusive reference](manufacturing-platform.md): all 209 production-BOM lines have exact `J0`–`J4` routes without replacement; generic `C9900300438` is rejected as NiceRF evidence; JLCAPI app/key ready outside Git, Parts permission reviewing; sample purchase remains blocked |
+| Component evidence | ▶️ [JLCPCB Standard PCBA selected as the non-exclusive reference](manufacturing-platform.md): all 209 production-BOM lines have exact `J0`–`J3`, `J4-F` or `J4-P` routes without replacement; exact SA518 price and factory final-assembly gates remain open; generic `C9900300438` is rejected as NiceRF evidence; JLCAPI app/key ready outside Git, Parts permission reviewing; sample purchase remains blocked |
 | Prototype PCB order | 🔒 Forbidden before H7 |
 | Production order | 🔒 Forbidden before H9 |
 
@@ -48,9 +48,10 @@ covers all nine H5 residuals and 14 mechanical gates. The
 [manufacturing-platform baseline](manufacturing-platform.md) selects JLCPCB
 Standard PCBA without lock-in. The controlled normalized BOM Tool run matched
 176 of 209 lines and parsed all 1019 placements; exact search resolved all 33
-outliers. The resulting map is `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4=5`
-without component replacement. Only a qualified exact-`SA518` price remains
-open. The JLCAPI app/key are ready outside Git while Parts permission remains
+outliers. The resulting map is `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4-F=3`, `J4-P=2`
+without component replacement. A qualified exact-`SA518` price, `J4-F`
+box-build acceptance/pricing and `J4-P` kit/packing/shipping terms remain open.
+The JLCAPI app/key are ready outside Git while Parts permission remains
 under JLCPCB review. The short quote form maps bare `SA518` to generic
 `JLCPCB Assembly C9900300438`; that identity and its `$0.0203` estimate are
 rejected, and no quote was submitted. H5.0.3 is not yet reviewed;
@@ -291,7 +292,7 @@ Current H2 execution:
 - ✅ `H4.3` — [joined H4 gate reviewed](h4-prelayout-gate-report.md).
 - ✅ `H5.0.1` — [all nine residuals and 14 mechanical gates mapped](component-evidence-map.md).
 - ✅ `H5.0.2` — [primary evidence and serial alternatives reviewed](component-source-research.md); four exact test SKUs close two selection gaps without a purchase.
-- ▶️ **`H5.0.3` — current:** [JLCPCB Standard PCBA selected as the non-exclusive reference](manufacturing-platform.md); 176/209 lines and all 1019 placements are parsed, all 33 outliers have exact `J0`–`J4` routes without replacement, and qualified exact-`SA518` pricing remains open.
+- ▶️ **`H5.0.3` — current:** [JLCPCB Standard PCBA selected as the non-exclusive reference](manufacturing-platform.md); 176/209 lines and all 1019 placements are parsed, all 33 outliers have exact `J0`–`J3` plus `J4-F/P` routes without replacement; exact-`SA518` pricing and factory final-assembly gates remain open.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json),
 the completed H3/H4 plans are [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json)
@@ -353,9 +354,9 @@ A production order is possible only after H9.
 | **H2. Production ECAD schematic** | ✅ Reviewed and accepted | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 consumes the contract without invented pins |
 | **H3. Virtual electrical verification** | ✅ Reviewed and accepted | [H3 result report](h3-acceptance.md): calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
 | **H4. Joined pre-layout gate** | ✅ [Reviewed](h4-prelayout-gate-report.md) | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
-| **H5. Component evidence** | ▶️ Current `H5.0.3`; all 209 routes mapped, exact `SA518` price open, purchase blocked | [PCBA platform audit](manufacturing-platform.md): JLCPCB Standard is the non-exclusive reference, 176/209 lines and all 1019 placements parsed, all 33 outliers resolved, zero substitutions, sample basket retained | Every production-BOM line has an exact `J0`–`J4` route and no silent substitution; exact whole-basket cost is published; approved received samples prove identity, mating, stack-up and critical dimensions |
+| **H5. Component evidence** | ▶️ Current `H5.0.3`; all 209 routes mapped, exact `SA518` price and `J4-F/P` factory gates open, purchase blocked | [PCBA platform audit](manufacturing-platform.md): JLCPCB Standard is the non-exclusive reference, 176/209 lines and all 1019 placements parsed, all 33 outliers resolved, zero substitutions, sample basket retained | Every production-BOM line has an exact `J0`–`J3`, `J4-F` or `J4-P` route and no silent substitution; exact whole-basket and final-assembly costs are published; the factory accepts `J4-F` box-build and `J4-P` kit/packing/shipping; approved received samples prove identity, mating, stack-up and critical dimensions |
 | **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |
-| **H7. Prototype fabrication and bring-up** | 🔒 Waiting for H6, inherited firmware F3 and order approval | Small prototype PCB lot and retained bring-up log | Rails sequence correctly; all five controllers program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |
+| **H7. Prototype fabrication and bring-up** | 🔒 Waiting for H6, inherited firmware F3, accepted `J4-F/P` factory boundary and order approval | Small prototype lot, factory-integrated `J4-F`, separately packed `J4-P` and retained bring-up log | Box-build output matches the accepted boundary; rails sequence correctly; all five controllers program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |
 | **H8. Physical qualification** | 🔒 Waiting for H7 | HIL, RF, thermal, power, safety and endurance evidence | 3×nRF24 pass `3R/1T2R/2T1R/3T`; active signals are not stalled by neighbors; inactive interfaces are physically quiet; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog and single-fault tests pass |
 | **H9. Manufacturing release** | 🔒 Waiting for H8 and firmware F11 | Reproducible hardware manufacturing and test package paired with released firmware | Zero blocker; residual risks accepted; BOM, Gerber/ODB++, placement, assembly, fixture, calibration and hardware tests agree; firmware bundle and both compatible release tags are named |
 
@@ -383,7 +384,7 @@ The current boundary is `H5.0.3`: all H5 physical residuals are mapped, source
 and replacement research is reviewed, and the [irreducible basket](component-sample-basket.md)
 is retained. [JLCPCB Standard PCBA](manufacturing-platform.md) is the
 non-exclusive reference; the controlled run matched 176/209 lines and parsed
-all 1019 placements, and exact search resolved all 33 outliers into `J0`–`J4`
+all 1019 placements, and exact search resolved all 33 outliers into `J0`–`J3`, `J4-F` or `J4-P`
 without replacement. A qualified exact-`SA518` price is the remaining H5.0.3
 input. Read-only Parts access is configured but awaits JLCPCB permission review;
 PCB placement/routing, quote/reservation and every order remain blocked.

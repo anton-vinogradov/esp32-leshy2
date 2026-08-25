@@ -11,6 +11,6 @@ The old quantities and `$164.54` partial subtotal are intentionally not an
 ordering source. Purchasing is the last resort after documentary and
 function-preserving replacement research. Sample ordering, PCB
 placement/routing and fabrication remain unauthorized. The current basket has
-one supplier-price input open (`SA518`); all 209 availability routes are mapped,
-the JLCAPI Parts permission is under review, and the prepared direct manufacturer
-request remains a fallback.
+one component-price input open (`SA518`); all 209 sourcing/final-assembly routes
+are mapped, the J4-F/J4-P factory gates remain open, the JLCAPI Parts permission
+is under review, and the prepared direct manufacturer request remains a fallback.

@@ -80,7 +80,9 @@ MPN_VENDOR_PREFIXES = tuple(
 # Every BOM Tool outlier is resolved without changing the selected functional
 # identity.  J0/J2 entries name an original-maker catalogue row observed in the
 # public search capture.  J3 keeps the exact selected MPN for sourcing or
-# consignment.  J4 is intentionally outside automated PCBA placement.
+# consignment.  J4-F/J4-P are intentionally outside automated PCBA placement:
+# J4-F must be accepted by the final-assembly factory, while J4-P is packed as
+# a removable/user-installed item.
 OUTLIER_RESOLUTIONS = {
     "SN74LVC1G07DCKR": {"route": "J0", "lcsc": "C7830", "manufacturer": "Texas Instruments"},
     "MSPM0C1106SDGS20R": {"route": "J0", "lcsc": "C52995805", "manufacturer": "Texas Instruments"},
@@ -110,12 +112,16 @@ OUTLIER_RESOLUTIONS = {
     "GJM1555C1H101JB01D": {"route": "J3", "reason": "retain exact RF capacitor until an RF-equivalent alternate is separately qualified"},
     "PESD24VY1BSF": {"route": "J3", "reason": "retain exact low-capacitance RF ESD identity until an RF-equivalent alternate is separately qualified"},
     "E01-ML01IPX": {"route": "J3", "reason": "three exact full-power nRF24 modules are externally orderable and must be consigned or globally sourced"},
-    "2118651-2": {"route": "J4", "reason": "five removable 30-mm microcoax jumpers are installed and strain-routed during final sandwich assembly"},
-    "U214 Cap LoRa-1262": {"route": "J4", "reason": "removable rear Cap accessory is installed after PCBA"},
-    "HMX035CTFT-001": {"route": "J4", "reason": "display/flex is mated to the replaceable adapter during final assembly"},
-    "1227-J": {"route": "J4", "reason": "encoder knob is an enclosure/final-assembly part"},
-    "18650 4000mAh": {"route": "J4", "reason": "protected cells are never placed by PCBA"},
+    "2118651-2": {"route": "J4-F", "reason": "five removable 30-mm microcoax jumpers require factory installation, strain routing and continuity test during final sandwich assembly"},
+    "U214 Cap LoRa-1262": {"route": "J4-P", "reason": "removable rear Cap accessory is factory-tested, then packed separately for user installation"},
+    "HMX035CTFT-001": {"route": "J4-F", "reason": "display/flex requires factory mating and display/touch functional test during final assembly"},
+    "1227-J": {"route": "J4-F", "reason": "encoder knob requires factory installation and control test after enclosure integration"},
+    "18650 4000mAh": {"route": "J4-P", "reason": "protected cells are packed separately for user installation unless a compliant battery box-build and shipping route is later qualified"},
 }
+
+ROUTE_IDS = ("J0", "J1", "J2", "J3", "J4-F", "J4-P")
+J4_FACTORY_MPNS = {"2118651-2", "HMX035CTFT-001", "1227-J"}
+J4_PACKED_MPNS = {"U214 Cap LoRa-1262", "18650 4000mAh"}
 
 
 def bare_mpn(value: str) -> str:
@@ -209,7 +215,8 @@ TIERS = [
     {"id": "J1", "name": "approved in-stock alternate", "rule": "only a prequalified same-function alternate inside the owning substitution class; never a factory-selected silent substitute"},
     {"id": "J2", "name": "private pre-order stock", "rule": "exact MPN is bought into My Parts Lib before PCBA; public stock may supplement only where JLC rules permit"},
     {"id": "J3", "name": "global sourcing or consignment", "rule": "exact identity is sourced or supplied into the private library and must be received before assembly"},
-    {"id": "J4", "name": "final/manual assembly", "rule": "removable accessories, cells, antennas and parts outside the PCBA boundary are installed and tested after board assembly"},
+    {"id": "J4-F", "name": "factory final assembly", "rule": "the final-assembly factory must install and test the part after PCBA; H5 and H7 cannot close until this box-build route is accepted and quoted"},
+    {"id": "J4-P", "name": "factory-packed removable item", "rule": "the factory tests compatibility where applicable and packs the removable accessory, antenna or cell separately for user installation"},
 ]
 
 
@@ -223,7 +230,7 @@ SPOT_CHECKS = [
     {"device_id": "ti_mspm0c1106_sdgs20r", "mpn": "MSPM0C1106SDGS20R", "jlc": "C52995805", "tier": "J2", "stock": 0, "pcba": "Extended SMT", "source": "https://jlcpcb.com/partdetail/55934010-MSPM0C1106SDGS20R/C52995805", "finding": "listed with pre-order MOQ 6; two fitted devices plus attrition are compatible with a small reservation"},
     {"device_id": "ebyte_e01_ml01ipx", "mpn": "E01-ML01IPX", "jlc": None, "tier": "J3", "stock": 0, "pcba": "not found in public library", "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=E01-ML01IPX", "finding": "retain exact module only through new-part/global-sourcing/consignment until a function-preserving stocked module is qualified"},
     {"device_id": "nicerf_sa518_v11", "mpn": "NiceRF SA518", "jlc": None, "tier": "J3", "stock": 0, "pcba": "not found in public library", "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=SA518", "finding": "route the exact module and its supplier questions through JLC sourcing first; direct manufacturer contact is no longer the first action"},
-    {"device_id": "qdtech_hmx035ctft_001", "mpn": "HMX035CTFT-001", "jlc": None, "tier": "J4", "stock": 0, "pcba": "display/flex belongs to final assembly", "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001", "finding": "keep replaceable display-adapter architecture; the display is not treated as an ordinary line-loaded SMT part"},
+    {"device_id": "qdtech_hmx035ctft_001", "mpn": "HMX035CTFT-001", "jlc": None, "tier": "J4-F", "stock": 0, "pcba": "display/flex belongs to factory final assembly", "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001", "finding": "keep replaceable display-adapter architecture; require factory mating plus display/touch test rather than treating the display as an ordinary line-loaded SMT part"},
 ]
 
 
@@ -413,7 +420,7 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
             )
     counts = {
         tier: sum(route["route"] == tier for route in final_routes)
-        for tier in ("J0", "J1", "J2", "J3", "J4")
+        for tier in ROUTE_IDS
     }
     checks = {
         "capture_covers_all_33_bom_tool_outliers": set(searches) == set(raw_outliers) == set(OUTLIER_RESOLUTIONS),
@@ -433,16 +440,18 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
             for row in resolved
             if row["route"] == "J3"
         ),
-        "j4_rows_are_post_pcba_parts": all(
-            row["normalized_mpn"]
-            in {"2118651-2", "U214 Cap LoRa-1262", "HMX035CTFT-001", "1227-J", "18650 4000mAh"}
-            for row in resolved
-            if row["route"] == "J4"
-        ),
+        "j4f_rows_are_factory_final_assembly_parts": {
+            row["normalized_mpn"] for row in resolved if row["route"] == "J4-F"
+        }
+        == J4_FACTORY_MPNS,
+        "j4p_rows_are_factory_packed_removable_parts": {
+            row["normalized_mpn"] for row in resolved if row["route"] == "J4-P"
+        }
+        == J4_PACKED_MPNS,
         "generic_placeholders_are_not_accepted_as_identity": all(
             row["lcsc"] is None for row in resolved if row["normalized_mpn"] in {"TSMP95000TT", "SA518"}
         ),
-        "all_209_lines_have_j0_to_j4_route": sum(counts.values()) == 209
+        "all_209_lines_have_defined_availability_or_final_assembly_route": sum(counts.values()) == 209
         and all(route["route"] in counts for route in final_routes),
         "no_component_replacement_is_introduced": counts["J1"] == 0
         and all(not row["component_replacement"] for row in resolved),
@@ -451,10 +460,10 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
     if not all(checks.values()):
         raise ValueError({"failed_outlier_checks": [key for key, value in checks.items() if not value]})
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "artifact": "H5-EVR06",
         "stage": "H5.0.3",
-        "status": "all_209_availability_routes_mapped_sa518_price_open",
+        "status": "all_209_routes_mapped_sa518_and_factory_gates_open",
         "checked_on": CHECKED_ON,
         "input": {
             "bom_tool_result": str(MATCH_OUTPUT.relative_to(REPO)),
@@ -478,10 +487,22 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
         "final_routes": final_routes,
         "boundary": {
             "meaning": "availability and sourcing route only; footprint, placement, assembly-class and current stock are revalidated at BOM freeze",
+            "factory_final_assembly": {
+                "route": "J4-F",
+                "mpns": sorted(J4_FACTORY_MPNS),
+                "accepted_and_quoted": False,
+                "gate": "H5 and H7 remain open until the selected factory accepts and quotes installation plus functional test",
+            },
+            "factory_packed_removable": {
+                "route": "J4-P",
+                "mpns": sorted(J4_PACKED_MPNS),
+                "accepted_and_quoted": False,
+                "gate": "kit inclusion, compatibility test where applicable, packing and battery shipping boundary must be quoted",
+            },
             "not_authorized": ["sourcing request", "quote", "reservation", "purchase", "component replacement", "KiCad placement/routing", "fabrication"],
         },
         "next": {
-            "decision_needed": "authorize a no-order qualified sourcing inquiry for exact NiceRF SA518 pricing, or keep H5.0.3 open",
+            "decision_needed": "qualify exact NiceRF SA518 pricing and obtain a no-order box-build capability/price response for J4-F/J4-P before closing H5.0.3",
             "purchase_remains_last": True,
         },
         "checks": checks,
@@ -509,8 +530,9 @@ def build() -> dict:
         "all_target_placements_were_parsed": match_summary["parsed_placements"] == 1019,
         "no_semantic_mpn_substitution_was_observed": match_summary["semantic_mpn_mismatches"] == 0,
         "all_33_unmatched_lines_remain_explicit": match_summary["unmatched_lines"] == 33,
-        "all_209_lines_have_j0_to_j4_route": outlier_result["summary"]["unmapped_lines"] == 0,
-        "only_sa518_qualified_price_remains_open": outlier_result["summary"]["open_qualified_price_mpn"] == "SA518",
+        "all_209_lines_have_defined_availability_or_final_assembly_route": outlier_result["summary"]["unmapped_lines"] == 0,
+        "sa518_is_the_only_open_qualified_component_price": outlier_result["summary"]["open_qualified_price_mpn"] == "SA518",
+        "factory_final_assembly_gate_is_explicitly_open": not PLATFORMS[0]["fit"]["final_box_build_proven"],
         "jlcapi_application_and_app_are_ready": JLCAPI_STATE["application_status"] == "approved"
         and JLCAPI_STATE["app_status"] == "enabled"
         and JLCAPI_STATE["access_key_created"],
@@ -525,10 +547,10 @@ def build() -> dict:
     if not all(checks.values()):
         raise ValueError({"failed": [key for key, value in checks.items() if not value], "missing": missing})
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "artifact": "H5-EVR04",
         "stage": "H5.0.3",
-        "status": "availability_routes_complete_sa518_price_open",
+        "status": "routes_complete_sa518_and_factory_gates_open",
         "checked_on": CHECKED_ON,
         "input": {"path": str(BOM.relative_to(REPO)), "sha256": sha256(BOM), "exact_lines": len(rows)},
         "decision": {
@@ -542,7 +564,15 @@ def build() -> dict:
         "availability_tiers": TIERS,
         "assembly_boundary": {
             "inside_pcba": ["both Leshy2 rigid boards", "all ordinary SMT/THT parts accepted by Standard PCBA", "board connectors and soldered RF boundaries when their exact assembly rule is accepted"],
-            "after_pcba": ["display/flex final mating", "removable U214 Cap and M5 Units", "cells", "external antennas", "knob and any enclosure-only hardware not accepted in the assembly quote", "final sandwich/box integration"],
+            "J4-F_factory_final_assembly": {
+                "status": "open_until_factory_acceptance_and_quote",
+                "required_operations": ["display/flex mating and display/touch test", "five microcoax installation, strain routing and continuity test", "encoder knob installation and control test", "final sandwich/enclosure integration and whole-device functional test"],
+                "close_gate": "H5 and H7 cannot close until the selected factory accepts and prices these operations",
+            },
+            "J4-P_factory_packed_removable": {
+                "status": "open_until_kit_and_shipping_quote",
+                "required_operations": ["test U214 compatibility, then pack the removable Cap separately", "pack selected external antennas separately", "pack protected 18650 cells separately for user installation unless compliant integrated battery shipping is qualified"],
+            },
         },
         "parts_api": JLCAPI_STATE,
         "sa518_quote_probe": SA518_QUOTE_PROBE,
@@ -577,7 +607,7 @@ def build() -> dict:
                 "processed": True,
                 "result": "176 matched, 33 unmatched, all 1019 target placements parsed",
             },
-            "blocker": "all 33 BOM Tool outliers have J0-J4 routes; bare SA518 resolves to unqualified JLCPCB Assembly placeholder C9900300438, exact NiceRF SA518 qualified price remains open, and no sourcing request, quote, reservation or order has been created",
+            "blocker": "all 33 BOM Tool outliers have defined routes; bare SA518 resolves to unqualified JLCPCB Assembly placeholder C9900300438, exact NiceRF SA518 qualified price and J4-F/J4-P final-assembly acceptance/pricing remain open, and no sourcing request, quote, reservation or order has been created",
         },
         "critical_spot_checks": SPOT_CHECKS,
         "summary": {
@@ -586,7 +616,8 @@ def build() -> dict:
             "public_stock_exact_or_revision_explicit": sum(row["tier"] == "J0" for row in SPOT_CHECKS),
             "preorder_reservation": sum(row["tier"] == "J2" for row in SPOT_CHECKS),
             "global_sourcing_or_consignment": sum(row["tier"] == "J3" for row in SPOT_CHECKS),
-            "post_pcba_final_assembly": sum(row["tier"] == "J4" for row in SPOT_CHECKS),
+            "factory_final_assembly": sum(row["tier"] == "J4-F" for row in SPOT_CHECKS),
+            "factory_packed_removable": sum(row["tier"] == "J4-P" for row in SPOT_CHECKS),
             "bom_tool_exact_or_punctuation_equivalent_matches": match_summary["matched_lines"],
             "bom_tool_public_stock_lines": match_summary["in_stock_lines"],
             "bom_tool_preorder_lines": match_summary["pre_order_lines"],
@@ -604,7 +635,7 @@ def build() -> dict:
             "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot",
         },
         "next": {
-            "local": "all 209 lines have J0-J4 routes; preserve the map, wait for Parts permission approval and keep the no-order exact-NiceRF-SA518 inquiry separate from generic C9900300438",
+            "local": "all 209 lines have defined routes; preserve the map, keep J4-F/J4-P as open factory-quote gates, wait for Parts permission approval and keep the no-order exact-NiceRF-SA518 inquiry separate from generic C9900300438",
             "external_authority_later": "sending the SA518 sourcing inquiry, quote creation, private-stock reservation and purchase still require separate explicit authority",
             "forbidden": ["purchase", "component replacement", "sourcing request", "quote creation", "private-stock reservation", "raw API data redistribution", "KiCad placement/routing", "fabrication"],
         },
@@ -655,16 +686,19 @@ PCBWay остаётся fallback для ручного turnkey/box-build quote, 
 
 ```mermaid
 flowchart TD
-  M["Новый MPN"] --> J0["J0 · exact JLC stock"]
+  M["Новый MPN"] --> P{"Устанавливается при PCBA?"}
+  P -->|да| J0["J0 · exact JLC stock"]
   J0 -->|нет| J1["J1 · квалифицированная замена"]
   J1 -->|нет без деградации| J2["J2 · private pre-order"]
   J2 -->|нет| J3["J3 · global/consign"]
-  J3 --> J4["J4 · final/manual assembly"]
+  P -->|нет; ставит фабрика| J4F["J4-F · factory final assembly"]
+  P -->|нет; в комплект отдельно| J4P["J4-P · factory-packed"]
   J0 --> F["BOM freeze"]
   J1 --> F
   J2 --> F
   J3 --> F
-  J4 --> F
+  J4F --> F
+  J4P --> F
   F --> R["повторная stock-проверка перед заказом"]
 ```
 
@@ -676,7 +710,7 @@ flowchart TD
 
 Нормализованный BOM принят и обработан для расчётного тиража 5 плат. JLCPCB сопоставил `{summary['bom_tool_exact_or_punctuation_equivalent_matches']}` из `{summary['target_bom_lines']}` уникальных строк: `{summary['bom_tool_public_stock_lines']}` public-stock и `{summary['bom_tool_preorder_lines']}` pre-order; `{summary['bom_tool_unmatched_lines']}` строк потребовали отдельного exact-поиска. Все `{summary['target_placements_parsed']}` установок распознаны. Два написания Panasonic отличаются только дефисами; семантических подмен MPN — ноль.
 
-Exact-поиск закрыл все 33 outlier без замены компонентов: 12 добавлены в `J0`, 4 — в `J2`, 12 сохраняют точный MPN через `J3`, 5 относятся к final assembly `J4`. Итог всей BOM: `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4=5`; несопоставленных строк — ноль.
+Exact-поиск закрыл все 33 outlier без замены компонентов: 12 добавлены в `J0`, 4 — в `J2`, 12 сохраняют точный MPN через `J3`, 3 требуют фабричной финальной сборки `J4-F`, 2 комплектуются отдельно по `J4-P`. Итог всей BOM: `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4-F=3`, `J4-P=2`; несопоставленных строк — ноль.
 
 Показываемая BOM Tool сумма `$1255.6365` — сумма рекомендованных заказных количеств только для 176 найденных строк, включая справочные pre-order цены. Это **не** полная цена сборки, не quote и не заказ.
 
@@ -695,7 +729,14 @@ Exact-поиск закрыл все 33 outlier без замены компон
 
 ## Граница сборки
 
-JLCPCB собирает обе платы и принятые SMT/THT-компоненты. Дисплейный flex, U214/M5, аккумуляторы, внешние антенны и финальная сборка «бутерброда» остаются post-PCBA operations, пока отдельный box-build quote не докажет обратное.
+JLCPCB Standard PCBA собирает обе платы и принятые SMT/THT-компоненты. Это ещё не подтверждает финальную сборку устройства.
+
+| Маршрут | Обязательная операция | Статус |
+|---|---|---|
+| `J4-F` | Фабрика стыкует и проверяет дисплей/flex, устанавливает и фиксирует пять microcoax, ставит ручку энкодера, собирает корпус/«бутерброд» и выполняет whole-device test | 🔒 Открыто до письменного подтверждения capability и отдельной цены box-build; без этого H5 и H7 не закрываются |
+| `J4-P` | Фабрика проверяет совместимость U214, затем кладёт его отдельно; внешние антенны кладутся комплектом; защищённые 18650 кладутся отдельно для установки пользователем, если не подтверждён безопасный battery box-build и shipping | 🔒 Открыто до kit/packing/shipping quote |
+
+`J4-F` и `J4-P` не означают, что операции уже приняты JLCPCB. Они фиксируют требуемый результат для выбранной фабрики или fallback box-build подрядчика.
 
 ## Gate идентичности SA518
 
@@ -704,8 +745,8 @@ JLCPCB собирает обе платы и принятые SMT/THT-компо
 ## Текущий результат
 
 - JLCPCB Standard PCBA принят как рабочий reference без lock-in.
-- Все `{summary['target_bom_lines']}` строк имеют маршрут `J0`–`J4`; функциональных замен нет.
-- H5.0.3 остаётся открытым только по квалифицированной цене exact `NiceRF SA518` и последующему отдельному решению о закупке образцов.
+- Все `{summary['target_bom_lines']}` строк имеют определённый маршрут `J0`–`J3`, `J4-F` или `J4-P`; функциональных замен нет.
+- H5.0.3 остаётся открытым по квалифицированной цене exact `NiceRF SA518`, подтверждению/цене `J4-F` box-build, условиям `J4-P` kit/packing/shipping и последующему отдельному решению о закупке образцов.
 - Заявка JLCAPI одобрена, приложение `ESP32-Leshy2 BOM Validator` создано, ключ подписи хранится только локально вне Git. Право Parts имеет статус `Reviewing`; до его одобрения API-вызовы невозможны. Автоматически показанные PCB/3D также находятся на ревью, SMT Stencil и JLC Balance выключены; использовать будем только Parts.
 - Минимальный BOM upload передан и обработан; quote, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены. Сырые API-ответы публично не распространяются.
 
@@ -723,16 +764,19 @@ PCBWay remains the manual turnkey/box-build quote fallback; Seeed Fusion remains
 
 ```mermaid
 flowchart TD
-  M["New MPN"] --> J0["J0 · exact JLC stock"]
+  M["New MPN"] --> P{"Placed during PCBA?"}
+  P -->|yes| J0["J0 · exact JLC stock"]
   J0 -->|no| J1["J1 · qualified alternate"]
   J1 -->|no non-degrading alternate| J2["J2 · private pre-order"]
   J2 -->|no| J3["J3 · global/consign"]
-  J3 --> J4["J4 · final/manual assembly"]
+  P -->|no; factory installs| J4F["J4-F · factory final assembly"]
+  P -->|no; packed separately| J4P["J4-P · factory-packed"]
   J0 --> F["BOM freeze"]
   J1 --> F
   J2 --> F
   J3 --> F
-  J4 --> F
+  J4F --> F
+  J4P --> F
   F --> R["stock recheck before every order"]
 ```
 
@@ -744,7 +788,7 @@ No platform guarantees perpetual public stock. Leshy2 therefore selects ordinary
 
 The normalized BOM was accepted and processed for an assessment quantity of five boards. JLCPCB matched `{summary['bom_tool_exact_or_punctuation_equivalent_matches']}` of `{summary['target_bom_lines']}` unique lines: `{summary['bom_tool_public_stock_lines']}` public-stock and `{summary['bom_tool_preorder_lines']}` pre-order; `{summary['bom_tool_unmatched_lines']}` required a separate exact search. All `{summary['target_placements_parsed']}` placements were parsed. Two Panasonic spellings differ only by punctuation; zero semantic MPN substitutions were observed.
 
-Exact search resolved all 33 outliers without component replacement: 12 were added to `J0`, 4 to `J2`, 12 retain the exact MPN through `J3`, and 5 are final-assembly `J4`. Whole-BOM result: `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4=5`; zero lines remain unmapped.
+Exact search resolved all 33 outliers without component replacement: 12 were added to `J0`, 4 to `J2`, 12 retain the exact MPN through `J3`, 3 require factory final assembly `J4-F`, and 2 are packed separately through `J4-P`. Whole-BOM result: `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4-F=3`, `J4-P=2`; zero lines remain unmapped.
 
 The displayed `$1255.6365` is the sum of recommended order quantities for only the 176 matched lines, including reference pre-order prices. It is **not** a complete assembly price, quote or order.
 
@@ -763,7 +807,14 @@ The displayed `$1255.6365` is the sum of recommended order quantities for only t
 
 ## Assembly boundary
 
-JLCPCB assembles both boards and accepted SMT/THT parts. Display flex mating, U214/M5, cells, external antennas and final sandwich integration remain post-PCBA operations until a separate box-build quote proves otherwise.
+JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts. That does not yet prove final device assembly.
+
+| Route | Required operation | Status |
+|---|---|---|
+| `J4-F` | Factory mates and tests display/flex, installs and strain-routes five microcoax jumpers, installs the encoder knob, integrates the enclosure/sandwich and performs whole-device test | 🔒 Open until written capability acceptance and a separate box-build price; H5 and H7 cannot close without it |
+| `J4-P` | Factory compatibility-tests U214 and packs it separately; external antennas are packed as a kit; protected 18650 cells are packed separately for user installation unless compliant battery box-build and shipping are qualified | 🔒 Open until kit/packing/shipping quote |
+
+`J4-F` and `J4-P` do not claim that JLCPCB has already accepted these operations. They define the required result for the selected factory or fallback box-build contractor.
 
 ## SA518 identity gate
 
@@ -772,8 +823,8 @@ The live quote form binds bare `SA518` to `C9900300438`: its manufacturer is `JL
 ## Current result
 
 - JLCPCB Standard PCBA is the working reference without lock-in.
-- All `{summary['target_bom_lines']}` lines have a `J0`–`J4` route; no functional replacement was introduced.
-- H5.0.3 remains open only for a qualified exact-`NiceRF SA518` price and the later separate sample-purchase decision.
+- All `{summary['target_bom_lines']}` lines have a defined `J0`–`J3`, `J4-F` or `J4-P` route; no functional replacement was introduced.
+- H5.0.3 remains open for a qualified exact-`NiceRF SA518` price, `J4-F` box-build acceptance/pricing, `J4-P` kit/packing/shipping terms and the later separate sample-purchase decision.
 - The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git. Parts permission is `Reviewing`, so API calls are not usable yet. PCB/3D were also listed as reviewing by the platform; SMT Stencil and JLC Balance remain inactive, and Leshy2 will use only Parts.
 - The minimum BOM upload was transmitted and processed. No quote, sourcing request, reservation, purchase, replacement, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
 
@@ -857,8 +908,8 @@ def main() -> None:
         f"ok: {data['decision']['reference_platform']}; "
         f"{data['summary']['bom_tool_exact_or_punctuation_equivalent_matches']}/"
         f"{data['summary']['target_bom_lines']} BOM Tool lines matched; "
-        f"all {data['summary']['target_bom_lines']} J0-J4 routes mapped; "
-        "exact SA518 price open; "
+        f"all {data['summary']['target_bom_lines']} sourcing/final-assembly routes mapped; "
+        "exact SA518 price and J4-F/J4-P factory gates open; "
         "no order or replacement authorized"
     )
 

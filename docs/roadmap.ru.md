@@ -31,7 +31,7 @@
 | Объединённый pre-layout gate | ✅ [H4 проведён](h4-prelayout-gate-report.ru.md): 0 открытых виртуальных противоречий; у 85 физических residuals сохранены владельцы H5/H6/H8 |
 | Работа над KiCad-схемой | ✅ H2 проведено ревью; позднее несоответствие повторно откроет затронутые листы |
 | KiCad placement и PCB routing | 🔒 H6: не начаты и не разрешены |
-| Evidence компонентов | ▶️ [JLCPCB Standard PCBA выбран неэксклюзивным ориентиром](manufacturing-platform.ru.md): все 209 строк production BOM имеют точные маршруты `J0`–`J4` без замен; generic `C9900300438` отвергнут как NiceRF evidence; JLCAPI app/key готовы вне Git, право Parts на ревью; закупка образцов заблокирована |
+| Evidence компонентов | ▶️ [JLCPCB Standard PCBA выбран неэксклюзивным ориентиром](manufacturing-platform.ru.md): все 209 строк production BOM имеют точные маршруты `J0`–`J3`, `J4-F` или `J4-P` без замен; цена exact SA518 и фабричные gates финальной сборки открыты; generic `C9900300438` отвергнут как NiceRF evidence; JLCAPI app/key готовы вне Git, право Parts на ревью; закупка образцов заблокирована |
 | Заказ прототипных PCB | 🔒 Запрещён до H7 |
 | Production-заказ | 🔒 Запрещён до H9 |
 
@@ -49,8 +49,9 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 [Производственный baseline](manufacturing-platform.ru.md) выбирает JLCPCB
 Standard PCBA без lock-in. Контрольный прогон нормализованного BOM сопоставил
 176 строк из 209 и распознал все 1019 установок; exact-поиск разрешил все 33
-outlier. Итоговая карта — `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4=5` без
-замены компонентов. Открыта только квалифицированная цена exact `SA518`.
+outlier. Итоговая карта — `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4-F=3`, `J4-P=2` без
+замены компонентов. Открыты квалифицированная цена exact `SA518`, подтверждение/цена
+`J4-F` box-build и условия `J4-P` kit/packing/shipping.
 JLCAPI app/key готовы вне Git, пока право Parts проходит ревью JLCPCB.
 Короткая quote-форма связывает bare `SA518` с generic
 `JLCPCB Assembly C9900300438`; эта identity и ориентир `$0.0203` отвергнуты,
@@ -295,7 +296,7 @@ quote не отправлен. H5.0.3 ещё не проведён ревью; q
 - ✅ `H4.3` — [объединённый gate H4 проведён](h4-prelayout-gate-report.ru.md).
 - ✅ `H5.0.1` — [все девять residuals и 14 механических gate’ов связаны](component-evidence-map.ru.md).
 - ✅ `H5.0.2` — [первичные evidence и серийные альтернативы проведены](component-source-research.ru.md); четыре точных тестовых SKU закрыли два selection gap без закупки.
-- ▶️ **`H5.0.3` — сейчас:** [JLCPCB Standard PCBA выбран неэксклюзивным ориентиром](manufacturing-platform.ru.md); 176/209 строк и все 1019 установок распознаны, все 33 outlier получили точные маршруты `J0`–`J4` без замены, открыта квалифицированная цена exact `SA518`.
+- ▶️ **`H5.0.3` — сейчас:** [JLCPCB Standard PCBA выбран неэксклюзивным ориентиром](manufacturing-platform.ru.md); 176/209 строк и все 1019 установок распознаны, все 33 outlier получили точные маршруты `J0`–`J3` плюс `J4-F/P` без замены; открыты цена exact `SA518` и фабричные gates финальной сборки.
 
 Проверенный план H2 — [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json),
 завершённые планы H3/H4 — [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json)
@@ -357,9 +358,9 @@ gates, точный S3 QEMU и portable/host-модели для targets без 
 | **H2. Production ECAD-схема** | ✅ Проведено ревью и принято | Новая актуальная схема на читаемых листах и machine-readable HW↔FW contract | Точные symbol/footprint/pin/net/value; объяснены NC; ERC без необъяснённых ошибок; отдельно проверены reset, boot, recovery, no-back-power, quiet state и `FAULT_KILL`; firmware F2 использует контракт без выдуманных pins |
 | **H3. Виртуальная электрическая проверка** | ✅ Проведено ревью и принято | [Итоговый отчёт H3](h3-acceptance.ru.md): расчёты и симуляции до дорогой физики | Проходят worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse и load-step; thermal/fault tree; все analog corners; timing/levels; RF corridors, returns и pre-layout constraints |
 | **H4. Объединённый pre-layout gate** | ✅ [Проведено ревью](h4-prelayout-gate-report.ru.md) | Единое ревью механики, production ECAD, электрических evidence и видимых target-прошивке контрактов | Нет открытого виртуально проверяемого blocker; target skeletons используют реальный контракт; у каждой остаточной физической неопределённости есть измерение и bring-up test |
-| **H5. Evidence компонентов** | ▶️ Сейчас `H5.0.3`; все 209 маршрутов связаны, открыта цена exact `SA518`, закупка заблокирована | [Аудит PCBA-площадки](manufacturing-platform.ru.md): JLCPCB Standard — неэксклюзивный ориентир, 176/209 строк и все 1019 установок распознаны, все 33 outlier разрешены, замен нет, корзина образцов сохранена | У каждой production-BOM-строки есть точный маршрут `J0`–`J4`, молчаливых замен нет; опубликована точная полная стоимость; одобренные полученные образцы доказывают identity, mating, stack-up и критические размеры |
+| **H5. Evidence компонентов** | ▶️ Сейчас `H5.0.3`; все 209 маршрутов связаны, открыты цена exact `SA518` и фабричные gates `J4-F/P`, закупка заблокирована | [Аудит PCBA-площадки](manufacturing-platform.ru.md): JLCPCB Standard — неэксклюзивный ориентир, 176/209 строк и все 1019 установок распознаны, все 33 outlier разрешены, замен нет, корзина образцов сохранена | У каждой production-BOM-строки есть точный маршрут `J0`–`J3`, `J4-F` или `J4-P`, молчаливых замен нет; опубликованы точная стоимость корзины и финальной сборки; фабрика приняла `J4-F` box-build и `J4-P` kit/packing/shipping; одобренные полученные образцы доказывают identity, mating, stack-up и критические размеры |
 | **H6. PCB placement и routing** | 🔒 Ожидает H5 | Две реальные платы, реализующие принятую схему и механику | Пройдены placement review обеих сторон, DRC, impedance и return-current review, RF isolation, antenna feeds, thermal copper, creepage, test points, assembly и manufacturability; fab package принят отдельно |
-| **H7. Печать прототипа и bring-up** | 🔒 Ожидает H6, унаследованный firmware F3 и одобрение заказа | Небольшая партия прототипных PCB и сохранённый bring-up log | Rails запускаются по контракту; все пять контроллеров прошиваются и восстанавливаются; интерфейсы, display, storage, audio, radio и expansion проходят smoke tests; каждый rework отражён в исходниках |
+| **H7. Печать прототипа и bring-up** | 🔒 Ожидает H6, унаследованный firmware F3, принятую фабричную границу `J4-F/P` и одобрение заказа | Небольшая партия прототипов, фабрично собранные `J4-F`, отдельно упакованные `J4-P` и сохранённый bring-up log | Результат box-build соответствует принятой границе; rails запускаются по контракту; все пять контроллеров прошиваются и восстанавливаются; интерфейсы, display, storage, audio, radio и expansion проходят smoke tests; каждый rework отражён в исходниках |
 | **H8. Физическая квалификация** | 🔒 Ожидает H7 | HIL, RF, thermal, power, safety и endurance evidence | 3×nRF24 проходят `3R/1T2R/2T1R/3T`; активные сигналы не тормозятся соседями; выключенные интерфейсы физически тихие; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog и single-fault tests пройдены |
 | **H9. Производственный release** | 🔒 Ожидает H8 и firmware F11 | Воспроизводимый аппаратный manufacturing/test package, связанный с выпущенной прошивкой | Ноль blocker; residual risks приняты; BOM, Gerber/ODB++, placement, assembly, fixture, calibration и hardware tests согласованы; названы firmware bundle и оба совместимых release tags |
 
@@ -388,7 +389,7 @@ gates, точный S3 QEMU и portable/host-модели для targets без 
 источников и замен проведён, а [единая корзина](component-sample-basket.ru.md)
 сохранена. [JLCPCB Standard PCBA](manufacturing-platform.ru.md) выбран
 неэксклюзивным ориентиром; контрольный прогон сопоставил 176/209 строк и
-распознал все 1019 установок, а exact-поиск разрешил все 33 outlier в `J0`–`J4`
+распознал все 1019 установок, а exact-поиск разрешил все 33 outlier в `J0`–`J3`, `J4-F` или `J4-P`
 без замены. Квалифицированная цена exact `SA518` — оставшийся input H5.0.3;
 read-only доступ Parts настроен, но ожидает ревью права JLCPCB; PCB
 placement/routing, quote/reservation и любой заказ остаются заблокированы.
