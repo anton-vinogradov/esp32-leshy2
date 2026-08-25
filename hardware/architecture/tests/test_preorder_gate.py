@@ -18,17 +18,19 @@ class PreorderGateTests(unittest.TestCase):
         truth = self.contract["current_truth"]
         self.assertIn("H1 accepted", truth["mechanical_projection"])
         self.assertIn("H2 production schematics accepted", truth["current_ecad"])
-        self.assertIn("reviewed portable C safety, L2IP, update", truth["executable_firmware"])
-        self.assertIn("all five target images remain open", truth["executable_firmware"])
+        self.assertIn("F3 reviewed", truth["executable_firmware"])
+        self.assertIn("52/52 artifacts reproduce byte-for-byte", truth["executable_firmware"])
+        self.assertIn("ESP32-S3 exact debug/release images boot", truth["instruction_emulation"])
         self.assertEqual("not run", truth["physical_hil"])
 
         gates = {gate["id"]: gate for gate in self.contract["gates"]}
         self.assertEqual("reviewed", gates["P0_REQUIREMENTS_ARCHITECTURE"]["status"])
         self.assertEqual("reviewed", gates["P1_MECHANICAL_DESIGN"]["status"])
         self.assertEqual("reviewed", gates["P2_CURRENT_SCHEMATIC"]["status"])
-        self.assertEqual("in_progress_h3_2_1", gates["P3_VIRTUAL_ELECTRICAL"]["status"])
-        self.assertNotEqual("reviewed", gates["P5_TARGET_BUILDS_EMULATION"]["status"])
+        self.assertEqual("reviewed", gates["P3_VIRTUAL_ELECTRICAL"]["status"])
+        self.assertEqual("reviewed", gates["P5_TARGET_BUILDS_EMULATION"]["status"])
         self.assertEqual("reviewed", gates["P4_EXECUTABLE_FIRMWARE_MODEL"]["status"])
+        self.assertEqual("current_joined_review", gates["P6_PRE_LAYOUT_REVIEW"]["status"])
         self.assertEqual("not_authorized", gates["P7_ENGINEERING_SAMPLE_ORDER"]["status"])
         self.assertEqual("not_authorized", gates["P8_KICAD_LAYOUT_AND_PROTOTYPE_PCB"]["status"])
 

@@ -171,7 +171,10 @@ H4 остаётся заблокирован до target builds и emulator/port
 
 Машинный пакет: [`H3-VRF73-acceptance-package.json`](../hardware/verification/generated/H3-VRF73-acceptance-package.json).
 """
-    return {OUTPUT: json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", DOC_EN: en, DOC_RU: ru}, manifest
+    # The bilingual public report is curated as a richer product-facing page.
+    # This generator owns the machine package only, so a later evidence refresh
+    # cannot replace the reviewed report with the compact bootstrap text above.
+    return {OUTPUT: json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"}, manifest
 
 
 def main() -> int:
@@ -188,7 +191,7 @@ def main() -> int:
         stale = [str(path.relative_to(REPO)) for path, content in outputs.items() if not path.exists() or path.read_text(encoding="utf-8") != content]
         if stale:
             raise SystemExit("stale H3.7.3 artifacts: " + ", ".join(stale))
-    print(f"ok: H3 accepted; {manifest['review_summary']['checks']} acceptance checks, next H4.0.1/F3")
+    print(f"ok: H3 accepted snapshot; {manifest['review_summary']['checks']} acceptance checks, next was H4.0.1/F3")
     return 0
 
 

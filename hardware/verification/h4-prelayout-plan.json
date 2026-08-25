@@ -1,13 +1,27 @@
 {
   "schema_version": 1,
   "stage": "H4",
-  "status": "current_blocked_by_firmware_f3",
-  "current_substep": "H4.0.1",
+  "status": "in_progress",
+  "current_substep": "H4.1",
   "accepted_inputs": [
     "H1 accepted physical product design",
     "H2 accepted production ECAD schematic",
-    "H3 accepted virtual electrical verification"
+    "H3 accepted virtual electrical verification",
+    "firmware F3 reviewed boot, memory and emulation result"
   ],
+  "firmware_f3_evidence": {
+    "repository": "anton-vinogradov/esp32-leshy2-firmware",
+    "commit": "9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5",
+    "report": "https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5/docs/f3-boot-memory-emulation-report.md",
+    "machine_closure": "https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5/config/f3_4_review.json",
+    "result": {
+      "exact_s3_qemu": true,
+      "byte_reproducible_artifacts": 52,
+      "image_and_linked_memory_gates": 10,
+      "static_rollback_topologies": 5,
+      "physical_runs": 0
+    }
+  },
   "authorization": {
     "joined_read_only_review": true,
     "component_purchase": false,
@@ -18,19 +32,19 @@
     {
       "id": "H4.0",
       "title": "Close joined-review prerequisites",
-      "status": "current",
+      "status": "reviewed",
       "children": [
         {
           "id": "H4.0.1",
           "title": "Obtain firmware F3 target builds, image-size/rollback gates and maximum available emulator/portable evidence",
-          "status": "current_blocked_external_firmware_prerequisite"
+          "status": "reviewed"
         }
       ]
     },
     {
       "id": "H4.1",
       "title": "Join H1 mechanics, H2 ECAD, H3 evidence and firmware F3",
-      "status": "waiting"
+      "status": "current"
     },
     {
       "id": "H4.2",
@@ -43,7 +57,7 @@
       "status": "waiting"
     }
   ],
-  "blocker": "firmware is at F2.0.1; H4 cannot close until firmware F3 is reviewed",
-  "next_active_repository": "esp32-leshy2-firmware",
-  "next_active_substep": "F2.0.1"
+  "blocker": null,
+  "next_active_repository": "esp32-leshy2",
+  "next_active_substep": "H4.1"
 }

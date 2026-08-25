@@ -143,14 +143,14 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: H4.0.1", "H1 accepted",
-                "F3 boot/emulation is not closed",
+                "Current hardware boundary: H4.1", "H1 accepted",
+                "F3 reviewed",
                 "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: H4.0.1", "H1 принят",
-                "boot/emulation этапа F3 не закрыты", "H2.2.5",
+                "Текущая аппаратная граница: H4.1", "H1 принят",
+                "F3 проведено ревью", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
             ),
@@ -165,8 +165,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Hardware is at the H4 prerequisite boundary", "printing/fabrication"),
-            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на границе пререквизитов H4", "печать/на фабрику"),
+            "README.md": ("Roadmap and current position", "Hardware is at H4.1", "printing/fabrication"),
+            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H4.1", "печать/на фабрику"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -491,7 +491,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H4", state["current_stage"])
-        self.assertEqual("H4.0.1", state["current_substep"])
+        self.assertEqual("H4.1", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -590,8 +590,17 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("1.2814", acceptance["correction_summary"]["known_incremental_bom_usd_at_quantity_100"])
         self.assertTrue(acceptance["user_acceptance"]["accepted"])
         self.assertEqual("H4", h4_plan["stage"])
-        self.assertEqual("current_blocked_by_firmware_f3", h4_plan["status"])
-        self.assertEqual("H4.0.1", h4_plan["current_substep"])
+        self.assertEqual("in_progress", h4_plan["status"])
+        self.assertEqual("H4.1", h4_plan["current_substep"])
+        self.assertEqual("reviewed", h4_plan["substeps"][0]["status"])
+        self.assertEqual("reviewed", h4_plan["substeps"][0]["children"][0]["status"])
+        self.assertEqual("current", h4_plan["substeps"][1]["status"])
+        self.assertEqual(
+            "9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5",
+            h4_plan["firmware_f3_evidence"]["commit"],
+        )
+        self.assertTrue(h4_plan["firmware_f3_evidence"]["result"]["exact_s3_qemu"])
+        self.assertEqual(0, h4_plan["firmware_f3_evidence"]["result"]["physical_runs"])
         self.assertTrue(h4_plan["authorization"]["joined_read_only_review"])
         self.assertFalse(h4_plan["authorization"]["component_purchase"])
         self.assertFalse(h4_plan["authorization"]["pcb_placement_and_routing"])

@@ -192,12 +192,13 @@ accepted baseline and preserves every physical residual.
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate
 
-**Status:** ▶️ current prerequisite boundary `H4.0.1`; waiting for firmware F3.
+**Status:** ▶️ current joined read-only review `H4.1`.
 
 One joined review of mechanics, production ECAD, virtual electrical evidence
-and target-visible firmware contracts. F2 already supplies reproducible builds
-and size gates for all five domains. F3 must add boot/rollback evidence, S3
-QEMU and portable/host models for targets without an exact emulator.
+and target-visible firmware contracts. The reviewed firmware
+[F3 result](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f3-boot-memory-emulation-report.md)
+supplies exact S3 QEMU execution, reproducible five-target artifacts and named
+physical gates for targets without an exact emulator.
 
 The machine plan is
 [`h4-prelayout-plan.json`](../hardware/verification/h4-prelayout-plan.json).

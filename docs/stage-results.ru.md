@@ -192,12 +192,13 @@ H2 instance и root net. [H3.7.2](physical-evidence-register.ru.md) назнач
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate
 
-**Статус:** ▶️ текущая граница пререквизитов `H4.0.1`; ожидает firmware F3.
+**Статус:** ▶️ текущее объединённое read-only review `H4.1`.
 
 Единое ревью механики, production ECAD, виртуальных electrical evidence и
-target-visible firmware contracts. F2 уже даёт воспроизводимые builds и size
-gates всех пяти доменов. F3 должна добавить boot/rollback evidence, S3 QEMU и
-portable/host-модели для targets без точного эмулятора.
+target-visible firmware contracts. Проверенный
+[итог firmware F3](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f3-boot-memory-emulation-report.ru.md)
+даёт точное S3 QEMU execution, воспроизводимые artifacts пяти targets и
+названные физические gates для targets без точного эмулятора.
 
 Машиночитаемый план —
 [`h4-prelayout-plan.json`](../hardware/verification/h4-prelayout-plan.json).

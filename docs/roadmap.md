@@ -3,8 +3,8 @@
 [Русский](roadmap.ru.md) · [Home](../README.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶️ Current hardware boundary: H4.0.1 — firmware F3 prerequisite.** H0–H3
-> are reviewed and accepted. There is no PCB layout or authorized order.
+> **▶️ Current hardware boundary: H4.1 — joined read-only review.** H0–H3 and
+> firmware F3 are reviewed. There is no PCB layout or authorized order.
 
 Status last reconciled: **25 August 2026**. This is the hardware repository's
 own, sequential roadmap. Firmware work has its own `F0–F11` stages. Firmware
@@ -27,7 +27,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
 | Production ECAD schematic | ✅ H2 accepted at hardware `25d9ee2`; firmware F2 synchronized at `900bb2b` |
 | Electrical and transient evidence | ✅ H3 accepted; 85 physical-only rows remain assigned to H5/H6/H8 |
-| Firmware interlock | [F2 is reviewed](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f2-target-build-system-report.md): five reproducible target builds and size gates pass; F3 boot/emulation is not closed |
+| Firmware interlock | ✅ [F3 reviewed](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f3-boot-memory-emulation-report.md): exact S3 QEMU execution, 52 reproducible artifacts and explicit physical gates |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
 | Physical samples and HIL | 🔒 Not ordered or run |
@@ -38,14 +38,14 @@ Principle diagrams explain **what connects to what**. Production ECAD must add
 exact symbols, contacts, values, rails, protection, footprints and ERC
 evidence. PCB placement and routing begin only after the earlier gates close.
 
-## Completed H1–H3 and current H4 prerequisite
+## Completed H1–H3 and current H4 joined review
 
-<!-- current-substep: H4.0.1 -->
+<!-- current-substep: H4.1 -->
 
-**Exact marker: `H4.0.1`** — the [H3 result report is accepted](h3-acceptance.md)
-and firmware F2 reproducible builds now pass. H4 waits for F3 boot, rollback
-and maximum available emulator/portable evidence. No purchase, layout or
-fabrication is authorized.
+**Exact marker: `H4.1`** — join the accepted H1 mechanics, H2 production ECAD,
+H3 electrical evidence and firmware F3 result, then identify every
+cross-domain contradiction and residual physical-only gate. No purchase,
+layout or fabrication is authorized.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -276,7 +276,9 @@ Current H2 execution:
   - ✅ `H3.7.2` — [all 85 physical-only residual rows published with evidence owners](physical-evidence-register.md).
   - ✅ `H3.7.3` — [formal H3 acceptance package prepared](h3-acceptance.md).
   - ✅ `H3.7.4` — explicit user acceptance recorded.
-- ▶️ **`H4.0.1` — current prerequisite:** obtain reviewed firmware F3 evidence.
+- ✅ `H4.0.1` — reviewed firmware F3 evidence is linked into the gate.
+- ▶️ **`H4.1` — current:** join H1 mechanics, H2 ECAD, H3 evidence and
+  firmware F3, then enumerate contradictions and residual physical-only gates.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json),
 the completed H3 plan is [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json)
@@ -292,8 +294,8 @@ flowchart TD
     H0["✅ H0<br/>requirements and functional architecture"]
     H1["✅ H1<br/>physical product design"]
     H2["✅ H2<br/>production ECAD schematic"]
-    H3["▶️ H3<br/>virtual electrical verification"]
-    H4["H4<br/>joined pre-layout gate"]
+    H3["✅ H3<br/>virtual electrical verification"]
+    H4["▶️ H4<br/>joined pre-layout gate"]
     H5["H5<br/>component evidence samples"]
     H6["H6<br/>PCB placement and routing"]
     H7["H7<br/>prototype and bring-up"]
@@ -319,9 +321,9 @@ flowchart TD
 ```
 
 Evidence-component ordering is allowed at H5 after its separate cost approval.
-Firmware F3 is a mandatory H4 input: target skeletons for all five domains,
-image-size/rollback gates, available S3 QEMU and portable/host models for
-targets without exact emulators must run before layout and fabrication.
+Firmware F3 is now a reviewed H4 input: target skeletons for all five domains,
+image-size/rollback gates, exact S3 QEMU and portable/host models for targets
+without exact emulators ran before layout and fabrication.
 Prototype PCB submission is allowed at H7 only after H6 acceptance, inherited
 F3 closure through H4 and explicit order approval. Emulation does not replace
 physical bring-up, but fabrication cannot be the first execution of the code.
@@ -335,7 +337,7 @@ A production order is possible only after H9.
 | **H1. Physical product design** | ✅ Reviewed | Accepted exterior, both outer and inner faces, true antenna-edge view, sections, assembly sequence, selected-part envelopes and feasible pin/resource allocation | Dimensions come from selected MPNs; no component, fastener, silkscreen, antenna or accessory collision; controls, battery, U214, ports, microphone and speaker are accessible; allocation still fits; the user accepted the mockup |
 | **H2. Production ECAD schematic** | ✅ Reviewed and accepted | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 consumes the contract without invented pins |
 | **H3. Virtual electrical verification** | ✅ Reviewed and accepted | [H3 result report](h3-acceptance.md): calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
-| **H4. Joined pre-layout gate** | ▶️ Current prerequisite boundary; waiting for firmware F3 | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
+| **H4. Joined pre-layout gate** | ▶️ Current joined read-only review | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
 | **H5. Component evidence samples** | 🔒 Waiting for H4 and separate cost approval | Minimum evidence purchase, not a production basket | Received display, U214, connectors and radios are identified and measured; connector mating and critical stack-up fit are proven; raw records are retained; mismatch reopens its source stage |
 | **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |
 | **H7. Prototype fabrication and bring-up** | 🔒 Waiting for H6, inherited firmware F3 and order approval | Small prototype PCB lot and retained bring-up log | Rails sequence correctly; all five controllers program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |
@@ -362,7 +364,6 @@ A production order is possible only after H9.
 
 ## Next action
 
-The current boundary is `H4.0.1`: firmware F2 target builds already pass; wait
-for F3 boot/rollback and the maximum available emulator/portable evidence,
-then run the joined pre-layout gate. PCB placement/routing and purchasing
-remain blocked.
+The current boundary is `H4.1`: H1 mechanics, H2 ECAD, H3 evidence and the
+reviewed firmware F3 result are being joined into one contradiction and
+residual-gate review. PCB placement/routing and purchasing remain blocked.

@@ -23,7 +23,7 @@ flowchart TB
   H2 --> DC & TR & AN & DI & RF & SF
   DC & TR & AN & DI & RF & SF --> X --> OK
   X --> PH
-  OK --> H4["H4 после firmware F3"]
+  OK --> H4["▶️ H4.1 объединённое ревью"]
 ```
 
 ## Проверенный результат
@@ -57,7 +57,7 @@ baseline. Она **не** разрешает закупку, PCB placement/routi
 называет пройденной ни одну из `85` физических проверок. Полученные детали,
 реальную геометрию, трассировку и прототип закрывают H5, H6 и H8.
 
-H4 остаётся заблокирован до boot, rollback и emulator/portable evidence firmware F3; воспроизводимые target builds уже прошли F2. Точный текущий аппаратный маркер — `H4.0.1`.
+Firmware F3 с тех пор прошла ревью без повышения non-S3 или физических claims. Её точное S3 QEMU и five-target boundary evidence теперь объединяются с H1–H3 на текущем аппаратном маркере `H4.1`.
 
 ## Evidence
 

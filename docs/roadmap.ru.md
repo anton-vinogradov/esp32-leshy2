@@ -3,8 +3,8 @@
 [English](roadmap.md) · [На главную](../README.ru.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶️ Текущая аппаратная граница: H4.0.1 — пререквизит firmware F3.**
-> H0–H3 прошли ревью и приняты. PCB layout и разрешённого заказа пока нет.
+> **▶️ Текущая аппаратная граница: H4.1 — объединённое read-only review.**
+> H0–H3 и firmware F3 прошли ревью. PCB layout и разрешённого заказа пока нет.
 
 Последняя сверка статуса: **25 августа 2026 года**. Это собственный
 последовательный роадмап hardware-репозитория. У прошивки есть отдельные этапы
@@ -27,7 +27,7 @@
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
 | Production ECAD-схема | ✅ H2 принят на hardware `25d9ee2`; firmware F2 синхронизирован на `900bb2b` |
 | Электрические и переходные evidence | ✅ H3 принят; 85 physical-only строк остаются назначены H5/H6/H8 |
-| Пересечение с прошивкой | [F2 прошла ревью](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f2-target-build-system-report.ru.md): пять воспроизводимых target builds и size gates проходят; boot/emulation этапа F3 не закрыты |
+| Пересечение с прошивкой | ✅ [F3 проведено ревью](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f3-boot-memory-emulation-report.ru.md): точное S3 QEMU execution, 52 воспроизводимых artifacts и явные физические gates |
 | Работа над KiCad-схемой | ✅ H2 проведено ревью; позднее несоответствие повторно откроет затронутые листы |
 | KiCad placement и PCB routing | 🔒 H6: не начаты и не разрешены |
 | Физические образцы и HIL | 🔒 Не заказывались и не проводились |
@@ -39,14 +39,14 @@
 footprints и ERC evidence. PCB placement и routing начинаются лишь после
 закрытия предшествующих gates.
 
-## Завершённые H1–H3 и текущий пререквизит H4
+## Завершённые H1–H3 и текущее объединённое ревью H4
 
-<!-- current-substep: H4.0.1 -->
+<!-- current-substep: H4.1 -->
 
-**Точный маркер: `H4.0.1`** — [итоговый отчёт H3 принят](h3-acceptance.ru.md),
-а воспроизводимые builds firmware F2 теперь проходят. H4 ожидает boot, rollback
-и максимально доступное emulator/portable evidence этапа F3. Закупка, layout
-и печать не разрешаются.
+**Точный маркер: `H4.1`** — объединить принятую механику H1, production ECAD
+H2, electrical evidence H3 и итог firmware F3, затем выявить все сквозные
+противоречия и residual physical-only gates. Закупка, layout и печать не
+разрешаются.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -280,7 +280,9 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
   - ✅ `H3.7.2` — [все 85 physical-only residual-строк опубликованы с владельцами evidence](physical-evidence-register.ru.md).
   - ✅ `H3.7.3` — [формальный пакет приёмки H3 подготовлен](h3-acceptance.ru.md).
   - ✅ `H3.7.4` — явное подтверждение пользователя записано.
-- ▶️ **`H4.0.1` — текущий пререквизит:** получить прошедшее ревью evidence firmware F3.
+- ✅ `H4.0.1` — прошедшее ревью evidence firmware F3 связано с gate.
+- ▶️ **`H4.1` — сейчас:** объединить механику H1, ECAD H2, evidence H3 и
+  firmware F3, затем перечислить противоречия и residual physical-only gates.
 
 Проверенный план H2 — [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json),
 завершённый план H3 — [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json),
@@ -296,8 +298,8 @@ flowchart TD
     H0["✅ H0<br/>требования и функциональная архитектура"]
     H1["✅ H1<br/>физический дизайн устройства"]
     H2["✅ H2<br/>production ECAD-схема"]
-    H3["▶️ H3<br/>виртуальная электрическая проверка"]
-    H4["H4<br/>объединённый pre-layout gate"]
+    H3["✅ H3<br/>виртуальная электрическая проверка"]
+    H4["▶️ H4<br/>объединённый pre-layout gate"]
     H5["H5<br/>образцы компонентов"]
     H6["H6<br/>PCB placement и routing"]
     H7["H7<br/>прототип и bring-up"]
@@ -323,10 +325,10 @@ flowchart TD
 ```
 
 Заказ проверочных компонентов разрешается на H5 после отдельного одобрения
-стоимости. Firmware F3 является обязательным входом H4: до layout и печати
-уже должны собираться target-skeleton образы пяти доменов, пройти
-size/rollback gates, доступный S3 QEMU и portable/host-модели для targets без
-точного эмулятора. Подача прототипных PCB в печать разрешается на H7 только
+стоимости. Firmware F3 теперь является проверенным входом H4: до layout и
+печати собрались target-skeleton образы пяти доменов, прошли size/rollback
+gates, точный S3 QEMU и portable/host-модели для targets без точного эмулятора.
+Подача прототипных PCB в печать разрешается на H7 только
 после принятия H6, унаследованного закрытия F3 через H4 и явного одобрения
 заказа. Эмуляция не заменяет физический bring-up, но печать не может быть
 первым запуском кода. Production-заказ возможен только после H9.
@@ -339,7 +341,7 @@ size/rollback gates, доступный S3 QEMU и portable/host-модели д
 | **H1. Физический дизайн устройства** | ✅ Проведено ревью | Согласованные внешние и внутренние стороны, настоящий вид от антенного торца, разрезы, порядок сборки, envelopes выбранных деталей и сходящаяся pin/resource раскладка | Размеры основаны на выбранных MPN; нет коллизий деталей, крепежа, шелкографии, антенн и аксессуаров; доступны органы управления, батарея, U214, порты, микрофон и динамик; resource budget сходится; пользователь принял мокап |
 | **H2. Production ECAD-схема** | ✅ Проведено ревью и принято | Новая актуальная схема на читаемых листах и machine-readable HW↔FW contract | Точные symbol/footprint/pin/net/value; объяснены NC; ERC без необъяснённых ошибок; отдельно проверены reset, boot, recovery, no-back-power, quiet state и `FAULT_KILL`; firmware F2 использует контракт без выдуманных pins |
 | **H3. Виртуальная электрическая проверка** | ✅ Проведено ревью и принято | [Итоговый отчёт H3](h3-acceptance.ru.md): расчёты и симуляции до дорогой физики | Проходят worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse и load-step; thermal/fault tree; все analog corners; timing/levels; RF corridors, returns и pre-layout constraints |
-| **H4. Объединённый pre-layout gate** | ▶️ Текущая граница пререквизитов; ожидает firmware F3 | Единое ревью механики, production ECAD, электрических evidence и видимых target-прошивке контрактов | Нет открытого виртуально проверяемого blocker; target skeletons используют реальный контракт; у каждой остаточной физической неопределённости есть измерение и bring-up test |
+| **H4. Объединённый pre-layout gate** | ▶️ Текущее объединённое read-only review | Единое ревью механики, production ECAD, электрических evidence и видимых target-прошивке контрактов | Нет открытого виртуально проверяемого blocker; target skeletons используют реальный контракт; у каждой остаточной физической неопределённости есть измерение и bring-up test |
 | **H5. Образцы компонентов** | 🔒 Ожидает H4 и отдельное одобрение стоимости | Минимальная доказательная закупка, а не production basket | Полученные display, U214, connectors и radios идентифицированы и измерены; доказаны mating и критический stack-up; raw records сохранены; расхождение повторно открывает исходный этап |
 | **H6. PCB placement и routing** | 🔒 Ожидает H5 | Две реальные платы, реализующие принятую схему и механику | Пройдены placement review обеих сторон, DRC, impedance и return-current review, RF isolation, antenna feeds, thermal copper, creepage, test points, assembly и manufacturability; fab package принят отдельно |
 | **H7. Печать прототипа и bring-up** | 🔒 Ожидает H6, унаследованный firmware F3 и одобрение заказа | Небольшая партия прототипных PCB и сохранённый bring-up log | Rails запускаются по контракту; все пять контроллеров прошиваются и восстанавливаются; интерфейсы, display, storage, audio, radio и expansion проходят smoke tests; каждый rework отражён в исходниках |
@@ -367,7 +369,6 @@ size/rollback gates, доступный S3 QEMU и portable/host-модели д
 
 ## Что происходит следующим
 
-Текущая граница — `H4.0.1`: target builds firmware F2 уже проходят; дождаться
-boot/rollback и максимально доступного emulator/portable evidence F3, затем
-провести единый pre-layout gate. PCB placement/routing и закупка остаются
-заблокированы.
+Текущая граница — `H4.1`: механика H1, ECAD H2, evidence H3 и проверенный
+итог firmware F3 объединяются в одно ревью противоречий и residual gates. PCB
+placement/routing и закупка остаются заблокированы.

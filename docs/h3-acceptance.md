@@ -23,7 +23,7 @@ flowchart TB
   H2 --> DC & TR & AN & DI & RF & SF
   DC & TR & AN & DI & RF & SF --> X --> OK
   X --> PH
-  OK --> H4["H4 after firmware F3"]
+  OK --> H4["▶️ H4.1 joined review"]
 ```
 
 ## Verified result
@@ -56,7 +56,7 @@ artifacts the baseline. It does **not** authorize purchase, PCB placement or
 routing, fabrication, or call any of the `85` physical checks passed. Received
 parts, real geometry, routing and prototype evidence remain in H5, H6 and H8.
 
-H4 remains blocked until firmware F3 boot, rollback and emulator/portable evidence are complete; reproducible target builds already passed F2. The exact current hardware marker is `H4.0.1`.
+Firmware F3 has since passed review without promoting non-S3 or physical claims. Its exact S3 QEMU and five-target boundary evidence are now joined with H1–H3 at the current hardware marker `H4.1`.
 
 ## Evidence
 

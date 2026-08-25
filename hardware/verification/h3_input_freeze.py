@@ -73,7 +73,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         freeze = f"H2 принят 24 августа 2026 года на hardware commit `25d9ee2` и firmware commit `900bb2b`. Заморожено {manifest['summary']['frozen_files']} файла с SHA-256; изменение любого из них повторно открывает затронутые проверки."
         matrix_h = "## Матрица проверки"
         headers = "| Этап | Область | Метод до изготовления | Артефакт H3 | Остаточная физическая проверка |\n|---|---|---|---|---|"
-        current = "**Текущий аппаратный маркер:** `H4.0.1` — [H3 принят](h3-acceptance.ru.md); объединённый pre-layout gate ожидает target/emulator evidence firmware F3."
+        current = "**Текущий аппаратный маркер:** `H4.1` — [H3 принят](h3-acceptance.ru.md), firmware F3 прошло ревью; идёт объединённое read-only pre-layout review."
     else:
         title = "# Leshy2 virtual electrical verification"
         nav = "[Русский](virtual-verification.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Accepted H2](h2-acceptance.md)"
@@ -82,7 +82,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         freeze = f"H2 was accepted on 24 August 2026 at hardware commit `25d9ee2` and firmware commit `900bb2b`. {manifest['summary']['frozen_files']} files are frozen by SHA-256; changing any one reopens the affected verification."
         matrix_h = "## Verification matrix"
         headers = "| Stage | Area | Pre-fabrication method | H3 artifact | Residual physical check |\n|---|---|---|---|---|"
-        current = "**Current hardware marker:** `H4.0.1` — [H3 is accepted](h3-acceptance.md); the joined pre-layout gate waits for firmware F3 target/emulator evidence."
+        current = "**Current hardware marker:** `H4.1` — [H3 is accepted](h3-acceptance.md), firmware F3 is reviewed, and the joined read-only pre-layout review is active."
     rows = "\n".join(
         f"| `{row['stage']}` | `{row['area']}` | {row['method']} | {row['h3_output']} | {row['physical_evidence']} |"
         for row in manifest["verification_matrix"]
