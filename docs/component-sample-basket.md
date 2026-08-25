@@ -223,6 +223,6 @@ All `23` residuals/gates are covered by `11` contracts. A pass/fail summary with
 
 `SA518` remains the best functional fit: `SA818Pro` needs two separate U/V modules and an RF/power/audio redesign, while dual-band `SA528` is `54.03 × 38.30 × 7.70 mm` with a different 23-contact interface. NiceRF publishes current technical sources but no qualified sample price or production-variant confirmation.
 
-The prepared [manufacturer RFQ](../hardware/procurement/SA518-sample-rfq.md) remains a fallback. `SA518` first goes through JLCPCB global sourcing/new-part routing as part of the complete [manufacturing audit](manufacturing-platform.md). A qualified response enables the exact whole-basket cost and a separate order decision.
+The live short JLCPCB quote form substitutes generic `JLCPCB Assembly C9900300438`, with stock `0`, MOQ `442` and a `$0.0203` estimate; NiceRF manufacturer/datasheet/revision identity is not proven, so no quote was submitted and that price is rejected. The prepared [exact-identity RFQ](../hardware/procurement/SA518-sample-rfq.md) may be sent only through a channel that preserves `NiceRF`, the current production revision and its datasheet. A qualified response enables the exact whole-basket cost and a separate order decision.
 
 Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).

@@ -105,7 +105,7 @@ OUTLIER_RESOLUTIONS = {
     "AS02404PO": {"route": "J3", "reason": "exact board speaker is orderable outside the public JLC library and needs manual/THT assembly acceptance"},
     "FX8C-80S-SV5(92)": {"route": "J3", "reason": "exact inter-board receptacle is orderable outside the public JLC library"},
     "TPUL2G223BQBR": {"route": "J3", "reason": "exact safety timer must be sourced; no silent timing-function alternate"},
-    "SA518": {"route": "J3", "reason": "generic zero-stock placeholder is not NiceRF identity evidence; exact module requires qualified sourcing"},
+    "SA518": {"route": "J3", "reason": "JLCPCB Assembly C9900300438 is a generic zero-stock placeholder, not NiceRF identity evidence; exact module requires qualified sourcing"},
     "TLV1821DCKR": {"route": "J3", "reason": "exact voice-evidence comparator must be sourced; no silent threshold/path alternate"},
     "GJM1555C1H101JB01D": {"route": "J3", "reason": "retain exact RF capacitor until an RF-equivalent alternate is separately qualified"},
     "PESD24VY1BSF": {"route": "J3", "reason": "retain exact low-capacitance RF ESD identity until an RF-equivalent alternate is separately qualified"},
@@ -154,6 +154,22 @@ JLCAPI_STATE = {
     "credential_storage": "local macOS Keychain; no credential is stored in this repository",
     "raw_api_data_publication": False,
     "usable_now": False,
+    "checked_on": CHECKED_ON,
+}
+
+
+SA518_QUOTE_PROBE = {
+    "requested_identity": "NiceRF SA518",
+    "jlcpcb_autocomplete_part": "C9900300438",
+    "jlcpcb_catalog_manufacturer": "JLCPCB Assembly",
+    "catalog_stock": 0,
+    "catalog_minimum_quantity": 442,
+    "catalog_full_reel": 500,
+    "catalog_estimated_unit_price_usd": "0.0203",
+    "source": "https://jlcpcb.com/partdetail/59277957-JIALICHUANG_SMTSA518/C9900300438",
+    "identity_qualified": False,
+    "quote_submitted": False,
+    "finding": "the short quote form silently binds bare SA518 to an unqualified JLCPCB Assembly placeholder; it must not be treated as the selected NiceRF module or submitted without an exact manufacturer/datasheet identity channel",
     "checked_on": CHECKED_ON,
 }
 
@@ -500,6 +516,8 @@ def build() -> dict:
         and JLCAPI_STATE["access_key_created"],
         "parts_api_waits_for_jlc_review": JLCAPI_STATE["parts_permission_status"] == "reviewing"
         and not JLCAPI_STATE["usable_now"],
+        "sa518_generic_placeholder_is_not_accepted": not SA518_QUOTE_PROBE["identity_qualified"]
+        and not SA518_QUOTE_PROBE["quote_submitted"],
         "api_credentials_are_not_repository_data": "no credential" in JLCAPI_STATE["credential_storage"]
         and not JLCAPI_STATE["tokenization_key_created"],
         "no_order_or_layout_is_authorized": True,
@@ -527,6 +545,7 @@ def build() -> dict:
             "after_pcba": ["display/flex final mating", "removable U214 Cap and M5 Units", "cells", "external antennas", "knob and any enclosure-only hardware not accepted in the assembly quote", "final sandwich/box integration"],
         },
         "parts_api": JLCAPI_STATE,
+        "sa518_quote_probe": SA518_QUOTE_PROBE,
         "bom_tool_upload": {
             "path": str(UPLOAD.relative_to(REPO)),
             "sha256": hashlib.sha256(render_upload().encode("utf-8")).hexdigest(),
@@ -558,7 +577,7 @@ def build() -> dict:
                 "processed": True,
                 "result": "176 matched, 33 unmatched, all 1019 target placements parsed",
             },
-            "blocker": "all 33 BOM Tool outliers have J0-J4 routes; exact NiceRF SA518 qualified price remains open and no sourcing request, quote, reservation or order has been created",
+            "blocker": "all 33 BOM Tool outliers have J0-J4 routes; bare SA518 resolves to unqualified JLCPCB Assembly placeholder C9900300438, exact NiceRF SA518 qualified price remains open, and no sourcing request, quote, reservation or order has been created",
         },
         "critical_spot_checks": SPOT_CHECKS,
         "summary": {
@@ -585,7 +604,7 @@ def build() -> dict:
             "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot",
         },
         "next": {
-            "local": "all 209 lines have J0-J4 routes; preserve the map, wait for Parts permission approval and prepare a no-order exact-SA518 pricing inquiry",
+            "local": "all 209 lines have J0-J4 routes; preserve the map, wait for Parts permission approval and keep the no-order exact-NiceRF-SA518 inquiry separate from generic C9900300438",
             "external_authority_later": "sending the SA518 sourcing inquiry, quote creation, private-stock reservation and purchase still require separate explicit authority",
             "forbidden": ["purchase", "component replacement", "sourcing request", "quote creation", "private-stock reservation", "raw API data redistribution", "KiCad placement/routing", "fabrication"],
         },
@@ -678,6 +697,10 @@ Exact-поиск закрыл все 33 outlier без замены компон
 
 JLCPCB собирает обе платы и принятые SMT/THT-компоненты. Дисплейный flex, U214/M5, аккумуляторы, внешние антенны и финальная сборка «бутерброда» остаются post-PCBA operations, пока отдельный box-build quote не докажет обратное.
 
+## Gate идентичности SA518
+
+Живая quote-форма связывает bare `SA518` с `C9900300438`: manufacturer указан как `JLCPCB Assembly`, stock `0`, MOQ `442`, full reel `500`, а справочный unit price — `$0.0203`. Эта строка не содержит NiceRF identity, controlled datasheet или production revision, поэтому не принимается как цена/источник выбранного модуля. Quote не отправлен; квалифицированный запрос должен явно фиксировать `NiceRF`, актуальную ревизию и datasheet.
+
 ## Текущий результат
 
 - JLCPCB Standard PCBA принят как рабочий reference без lock-in.
@@ -741,6 +764,10 @@ The displayed `$1255.6365` is the sum of recommended order quantities for only t
 ## Assembly boundary
 
 JLCPCB assembles both boards and accepted SMT/THT parts. Display flex mating, U214/M5, cells, external antennas and final sandwich integration remain post-PCBA operations until a separate box-build quote proves otherwise.
+
+## SA518 identity gate
+
+The live quote form binds bare `SA518` to `C9900300438`: its manufacturer is `JLCPCB Assembly`, stock is `0`, MOQ is `442`, full reel is `500`, and the displayed estimated unit price is `$0.0203`. That row carries no NiceRF identity, controlled datasheet or production revision, so it is not accepted as pricing or supply evidence for the selected module. No quote was submitted; a qualified request must explicitly bind `NiceRF`, the current production revision and its datasheet.
 
 ## Current result
 

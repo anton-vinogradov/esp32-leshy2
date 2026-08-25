@@ -4,6 +4,15 @@ Recipient: `sales@nicerf.com`
 Requested quantity: 1 engineering sample, followed by 100 and 500 units
 Target product: Leshy2 handheld radio instrument
 
+## Channel safety gate
+
+The JLCPCB short quote form currently maps bare `SA518` to generic
+`JLCPCB Assembly C9900300438` (stock 0, MOQ 442, estimated `$0.0203` each).
+That row does not prove NiceRF manufacturer identity, the current datasheet or
+the production revision. Do not submit or accept it as the selected module.
+This request may be sent directly to NiceRF or through a JLCPCB support/new-part
+channel only when the channel preserves every identity field below.
+
 ## Message
 
 Subject: SA518 sample, controlled land pattern and production quote

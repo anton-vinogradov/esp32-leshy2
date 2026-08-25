@@ -1092,13 +1092,23 @@
       "SA818Pro is ordered as separate UHF or VHF variants; preserving both bands requires two modules and a full redesign",
       "SA528 is simultaneous U/V but 54.03 x 38.30 x 7.70 mm with a different 23-contact/audio interface"
     ],
+    "jlcpcb_placeholder": {
+      "part": "C9900300438",
+      "catalog_manufacturer": "JLCPCB Assembly",
+      "stock": 0,
+      "minimum_quantity": 442,
+      "estimated_unit_price_usd": "0.0203",
+      "accepted_as_exact_nicerf_identity": false,
+      "quote_submitted": false,
+      "reason": "the short quote form binds bare SA518 to a generic placeholder without NiceRF manufacturer, controlled datasheet or production revision"
+    },
     "prepared_request": "hardware/procurement/SA518-sample-rfq.md",
-    "direct_request_status": "deferred while a qualified exact-SA518 price is pursued through the selected JLCPCB route",
-    "next_action": "obtain one qualified exact-SA518 price; all 209 BOM lines already have J0-J4 routes without replacement, and the JLCAPI Parts permission is reviewing"
+    "direct_request_status": "ready; no request has been sent because the JLCPCB short form resolves to an unqualified generic placeholder and external contact still needs explicit authority",
+    "next_action": "send one no-order request that explicitly binds NiceRF SA518 to the current manufacturer datasheet and production revision; all 209 BOM lines already have J0-J4 routes without replacement, and JLCAPI Parts permission is still reviewing"
   },
   "sequencing": {
-    "now": "keep all 209 exact J0-J4 routes stable and obtain one qualified exact-SA518 price; the JLCAPI app exists and Parts permission is reviewing",
-    "after_mapping": "use approved read-only Parts access for repeatable availability checks; route SA518 through JLCPCB global sourcing/new-part request only after separate authorization, with the prepared NiceRF request as fallback",
+    "now": "keep all 209 exact J0-J4 routes stable; do not accept generic JLCPCB Assembly C9900300438 as NiceRF; obtain one qualified exact-SA518 price after separate authorization",
+    "after_mapping": "use approved read-only Parts access for repeatable availability checks; send the prepared exact-identity request through a channel that preserves manufacturer and datasheet identity",
     "after_quote": "publish exact whole-basket cost and request a separate sample-order decision",
     "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",
     "forbidden": [

@@ -223,6 +223,6 @@ flowchart TD
 
 `SA518` остаётся функционально лучшим вариантом: `SA818Pro` требует два отдельных U/V-модуля и переделку RF/power/audio, а dual-band `SA528` имеет корпус `54.03 × 38.30 × 7.70 мм` и другой 23-контактный interface. У NiceRF есть текущие datasheet и product page, но нет публичной квалифицированной цены образца и подтверждения production variant.
 
-Подготовленный [manufacturer RFQ](../hardware/procurement/SA518-sample-rfq.md) сохранён как fallback. Сначала `SA518` проходит через JLCPCB global sourcing/new-part route вместе с полным [производственным аудитом](manufacturing-platform.ru.md). После квалифицированного ответа появится точная полная стоимость и отдельный вопрос о заказе.
+Живая короткая quote-форма JLCPCB подставляет generic `JLCPCB Assembly C9900300438` со stock `0`, MOQ `442` и ориентиром `$0.0203`; manufacturer/datasheet/revision NiceRF там не доказаны, поэтому quote не отправлен и эта цена отвергнута. Подготовленный [exact-identity RFQ](../hardware/procurement/SA518-sample-rfq.md) должен уходить только через канал, сохраняющий `NiceRF`, актуальную production revision и datasheet. После квалифицированного ответа появится точная полная стоимость и отдельный вопрос о заказе.
 
 Машинный результат: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).

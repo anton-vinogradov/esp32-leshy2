@@ -204,13 +204,23 @@ def build() -> dict:
                 "SA818Pro is ordered as separate UHF or VHF variants; preserving both bands requires two modules and a full redesign",
                 "SA528 is simultaneous U/V but 54.03 x 38.30 x 7.70 mm with a different 23-contact/audio interface",
             ],
+            "jlcpcb_placeholder": {
+                "part": "C9900300438",
+                "catalog_manufacturer": "JLCPCB Assembly",
+                "stock": 0,
+                "minimum_quantity": 442,
+                "estimated_unit_price_usd": "0.0203",
+                "accepted_as_exact_nicerf_identity": False,
+                "quote_submitted": False,
+                "reason": "the short quote form binds bare SA518 to a generic placeholder without NiceRF manufacturer, controlled datasheet or production revision",
+            },
             "prepared_request": "hardware/procurement/SA518-sample-rfq.md",
-            "direct_request_status": "deferred while a qualified exact-SA518 price is pursued through the selected JLCPCB route",
-            "next_action": "obtain one qualified exact-SA518 price; all 209 BOM lines already have J0-J4 routes without replacement, and the JLCAPI Parts permission is reviewing",
+            "direct_request_status": "ready; no request has been sent because the JLCPCB short form resolves to an unqualified generic placeholder and external contact still needs explicit authority",
+            "next_action": "send one no-order request that explicitly binds NiceRF SA518 to the current manufacturer datasheet and production revision; all 209 BOM lines already have J0-J4 routes without replacement, and JLCAPI Parts permission is still reviewing",
         },
         "sequencing": {
-            "now": "keep all 209 exact J0-J4 routes stable and obtain one qualified exact-SA518 price; the JLCAPI app exists and Parts permission is reviewing",
-            "after_mapping": "use approved read-only Parts access for repeatable availability checks; route SA518 through JLCPCB global sourcing/new-part request only after separate authorization, with the prepared NiceRF request as fallback",
+            "now": "keep all 209 exact J0-J4 routes stable; do not accept generic JLCPCB Assembly C9900300438 as NiceRF; obtain one qualified exact-SA518 price after separate authorization",
+            "after_mapping": "use approved read-only Parts access for repeatable availability checks; send the prepared exact-identity request through a channel that preserves manufacturer and datasheet identity",
             "after_quote": "publish exact whole-basket cost and request a separate sample-order decision",
             "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",
             "forbidden": ["component purchase without a separate decision", "PCB placement/routing", "prototype fabrication"],
@@ -315,7 +325,7 @@ flowchart TD
 
 `SA518` остаётся функционально лучшим вариантом: `SA818Pro` требует два отдельных U/V-модуля и переделку RF/power/audio, а dual-band `SA528` имеет корпус `54.03 × 38.30 × 7.70 мм` и другой 23-контактный interface. У NiceRF есть текущие datasheet и product page, но нет публичной квалифицированной цены образца и подтверждения production variant.
 
-Подготовленный [manufacturer RFQ](../hardware/procurement/SA518-sample-rfq.md) сохранён как fallback. Сначала `SA518` проходит через JLCPCB global sourcing/new-part route вместе с полным [производственным аудитом](manufacturing-platform.ru.md). После квалифицированного ответа появится точная полная стоимость и отдельный вопрос о заказе.
+Живая короткая quote-форма JLCPCB подставляет generic `JLCPCB Assembly C9900300438` со stock `0`, MOQ `442` и ориентиром `$0.0203`; manufacturer/datasheet/revision NiceRF там не доказаны, поэтому quote не отправлен и эта цена отвергнута. Подготовленный [exact-identity RFQ](../hardware/procurement/SA518-sample-rfq.md) должен уходить только через канал, сохраняющий `NiceRF`, актуальную production revision и datasheet. После квалифицированного ответа появится точная полная стоимость и отдельный вопрос о заказе.
 
 Машинный результат: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """
@@ -358,7 +368,7 @@ All `{summary['covered_residuals_and_gates']}` residuals/gates are covered by `{
 
 `SA518` remains the best functional fit: `SA818Pro` needs two separate U/V modules and an RF/power/audio redesign, while dual-band `SA528` is `54.03 × 38.30 × 7.70 mm` with a different 23-contact interface. NiceRF publishes current technical sources but no qualified sample price or production-variant confirmation.
 
-The prepared [manufacturer RFQ](../hardware/procurement/SA518-sample-rfq.md) remains a fallback. `SA518` first goes through JLCPCB global sourcing/new-part routing as part of the complete [manufacturing audit](manufacturing-platform.md). A qualified response enables the exact whole-basket cost and a separate order decision.
+The live short JLCPCB quote form substitutes generic `JLCPCB Assembly C9900300438`, with stock `0`, MOQ `442` and a `$0.0203` estimate; NiceRF manufacturer/datasheet/revision identity is not proven, so no quote was submitted and that price is rejected. The prepared [exact-identity RFQ](../hardware/procurement/SA518-sample-rfq.md) may be sent only through a channel that preserves `NiceRF`, the current production revision and its datasheet. A qualified response enables the exact whole-basket cost and a separate order decision.
 
 Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """

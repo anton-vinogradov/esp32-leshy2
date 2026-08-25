@@ -91,15 +91,15 @@
       "platform_result_en": "docs/manufacturing-platform.md",
       "platform_result_ru": "docs/manufacturing-platform.ru.md",
       "status": "draft_availability_routes_complete_sa518_price_open",
-      "result": "the 32-line evidence basket covers all nine H5 residuals and fourteen mechanical gates; JLCPCB Standard PCBA is the non-exclusive manufacturing reference; the normalized compact BOM was processed for five boards, 176 of 209 lines matched and all 1019 placements parsed; exact search resolves all 33 outliers, giving J0=147, J1=0, J2=45, J3=12 and J4=5 with zero replacements; the JLCAPI app and external credential storage are ready while Parts permission is reviewing; only a qualified exact-SA518 price remains open"
+      "result": "the 32-line evidence basket covers all nine H5 residuals and fourteen mechanical gates; JLCPCB Standard PCBA is the non-exclusive manufacturing reference; the normalized compact BOM was processed for five boards, 176 of 209 lines matched and all 1019 placements parsed; exact search resolves all 33 outliers, giving J0=147, J1=0, J2=45, J3=12 and J4=5 with zero replacements; the JLCAPI app and external credential storage are ready while Parts permission is reviewing; the short quote form maps SA518 to unqualified JLCPCB Assembly C9900300438 and no quote was submitted; only a qualified exact-NiceRF-SA518 price remains open"
     }
   },
   "blocker": {
     "id": "H5-BLK-SA518-QUALIFIED-PRICE",
     "scope": "H5.0.3 production assembly availability and exact basket cost",
-    "reason": "all 209 production-BOM lines now have exact J0-J4 availability routes without component replacement, but the exact NiceRF SA518 remains the basket's only line without a qualified price",
+    "reason": "all 209 production-BOM lines now have exact J0-J4 availability routes without component replacement, but the short quote form maps SA518 to generic JLCPCB Assembly C9900300438 without NiceRF identity and the exact NiceRF SA518 remains the basket's only line without a qualified price",
     "prepared_action": "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json",
-    "authority_required": "JLCPCB must approve the pending Parts permission; sending a no-order exact-SA518 sourcing inquiry, quote creation, private-stock reservation and purchase still require separate explicit authority"
+    "authority_required": "JLCPCB must approve the pending Parts permission; sending a no-order exact-NiceRF-SA518 sourcing inquiry, quote creation, private-stock reservation and purchase still require separate explicit authority"
   },
   "next_active_repository": "esp32-leshy2",
   "next_active_substep": "H5.0.3"

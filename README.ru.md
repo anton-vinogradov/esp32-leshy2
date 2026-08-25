@@ -18,7 +18,9 @@
 > разрешил все 33 outlier. Теперь у каждой строки есть маршрут `J0`–`J4` без
 > замены; открыта только квалифицированная цена exact `SA518`. Закупка, PCB
 > routing и печать заблокированы. Приложение JLCAPI и ключ подписи готовы вне
-> Git; право Parts пока имеет статус `Reviewing` у JLCPCB.
+> Git; право Parts пока имеет статус `Reviewing` у JLCPCB. Generic-совпадение
+> quote-формы `JLCPCB Assembly C9900300438` отвергнуто как не доказывающее
+> NiceRF identity; quote не отправлен.
 
 <div align="center">
 
@@ -131,7 +133,9 @@ safety-автоматику.
 `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4=5`; семантических подмен MPN и замен
 компонентов нет. Открыта только квалифицированная цена exact `SA518`.
 Приложение JLCAPI включено, credential хранится вне репозитория, а право Parts
-ещё проходит ревью JLCPCB. Физические evidence, PCB layout, quote/reservation и
+ещё проходит ревью JLCPCB. Generic-результат короткой quote-формы
+`C9900300438` отвергнут: он не связывает manufacturer, datasheet и production
+revision NiceRF; quote не отправлен. Физические evidence, PCB layout, quote/reservation и
 любые заказы не разрешены.
 
 <details open>
@@ -142,7 +146,8 @@ safety-автоматику.
 **Точный маркер: `H5.0.3`** — корзина, измерения и все 209
 [маршрутов доступности JLCPCB](docs/manufacturing-platform.ru.md) опубликованы.
 Read-only интеграция Parts подготовлена, но ожидает ревью права со стороны
-JLCPCB. Получить одну квалифицированную цену exact `NiceRF SA518` без заказа,
+JLCPCB. Generic autocomplete `JLCPCB Assembly C9900300438` явно не принимается
+как выбранный модуль. Получить одну квалифицированную цену exact `NiceRF SA518` без заказа,
 затем опубликовать точную стоимость корзины для отдельного решения о закупке
 образцов. Quote/reservation и закупка не разрешены.
 

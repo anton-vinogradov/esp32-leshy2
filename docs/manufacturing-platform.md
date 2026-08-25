@@ -50,7 +50,7 @@ The displayed `$1255.6365` is the sum of recommended order quantities for only t
 | `U214 Cap LoRa-1262` | 1 | `J4` | removable rear Cap accessory is installed after PCBA |
 | `GJM1555C1H101JB01D` | 2 | `J3` | retain exact RF capacitor until an RF-equivalent alternate is separately qualified |
 | `PESD24VY1BSF` | 1 | `J3` | retain exact low-capacitance RF ESD identity until an RF-equivalent alternate is separately qualified |
-| `SA518` | 1 | `J3` | generic zero-stock placeholder is not NiceRF identity evidence; exact module requires qualified sourcing |
+| `SA518` | 1 | `J3` | JLCPCB Assembly C9900300438 is a generic zero-stock placeholder, not NiceRF identity evidence; exact module requires qualified sourcing |
 | `AS02404PO` | 1 | `J3` | exact board speaker is orderable outside the public JLC library and needs manual/THT assembly acceptance |
 | `HMX035CTFT-001` | 1 | `J4` | display/flex is mated to the replaceable adapter during final assembly |
 | `SC1512-A4` | 1 | `J2` | `C52763783` · stock 0 |
@@ -96,6 +96,10 @@ The displayed `$1255.6365` is the sum of recommended order quantities for only t
 ## Assembly boundary
 
 JLCPCB assembles both boards and accepted SMT/THT parts. Display flex mating, U214/M5, cells, external antennas and final sandwich integration remain post-PCBA operations until a separate box-build quote proves otherwise.
+
+## SA518 identity gate
+
+The live quote form binds bare `SA518` to `C9900300438`: its manufacturer is `JLCPCB Assembly`, stock is `0`, MOQ is `442`, full reel is `500`, and the displayed estimated unit price is `$0.0203`. That row carries no NiceRF identity, controlled datasheet or production revision, so it is not accepted as pricing or supply evidence for the selected module. No quote was submitted; a qualified request must explicitly bind `NiceRF`, the current production revision and its datasheet.
 
 ## Current result
 

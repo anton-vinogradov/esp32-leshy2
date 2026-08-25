@@ -50,7 +50,7 @@ Exact-поиск закрыл все 33 outlier без замены компон
 | `U214 Cap LoRa-1262` | 1 | `J4` | removable rear Cap accessory is installed after PCBA |
 | `GJM1555C1H101JB01D` | 2 | `J3` | retain exact RF capacitor until an RF-equivalent alternate is separately qualified |
 | `PESD24VY1BSF` | 1 | `J3` | retain exact low-capacitance RF ESD identity until an RF-equivalent alternate is separately qualified |
-| `SA518` | 1 | `J3` | generic zero-stock placeholder is not NiceRF identity evidence; exact module requires qualified sourcing |
+| `SA518` | 1 | `J3` | JLCPCB Assembly C9900300438 is a generic zero-stock placeholder, not NiceRF identity evidence; exact module requires qualified sourcing |
 | `AS02404PO` | 1 | `J3` | exact board speaker is orderable outside the public JLC library and needs manual/THT assembly acceptance |
 | `HMX035CTFT-001` | 1 | `J4` | display/flex is mated to the replaceable adapter during final assembly |
 | `SC1512-A4` | 1 | `J2` | `C52763783` · stock 0 |
@@ -96,6 +96,10 @@ Exact-поиск закрыл все 33 outlier без замены компон
 ## Граница сборки
 
 JLCPCB собирает обе платы и принятые SMT/THT-компоненты. Дисплейный flex, U214/M5, аккумуляторы, внешние антенны и финальная сборка «бутерброда» остаются post-PCBA operations, пока отдельный box-build quote не докажет обратное.
+
+## Gate идентичности SA518
+
+Живая quote-форма связывает bare `SA518` с `C9900300438`: manufacturer указан как `JLCPCB Assembly`, stock `0`, MOQ `442`, full reel `500`, а справочный unit price — `$0.0203`. Эта строка не содержит NiceRF identity, controlled datasheet или production revision, поэтому не принимается как цена/источник выбранного модуля. Quote не отправлен; квалифицированный запрос должен явно фиксировать `NiceRF`, актуальную ревизию и datasheet.
 
 ## Текущий результат
 

@@ -31,7 +31,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Joined pre-layout gate | ✅ [H4 reviewed](h4-prelayout-gate-report.md): 0 open virtual contradictions; 85 physical residuals keep H5/H6/H8 owners |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
-| Component evidence | ▶️ [JLCPCB Standard PCBA selected as the non-exclusive reference](manufacturing-platform.md): all 209 production-BOM lines have exact `J0`–`J4` routes without replacement; JLCAPI app/key ready outside Git, Parts permission reviewing; sample purchase remains blocked |
+| Component evidence | ▶️ [JLCPCB Standard PCBA selected as the non-exclusive reference](manufacturing-platform.md): all 209 production-BOM lines have exact `J0`–`J4` routes without replacement; generic `C9900300438` is rejected as NiceRF evidence; JLCAPI app/key ready outside Git, Parts permission reviewing; sample purchase remains blocked |
 | Prototype PCB order | 🔒 Forbidden before H7 |
 | Production order | 🔒 Forbidden before H9 |
 
@@ -51,8 +51,10 @@ Standard PCBA without lock-in. The controlled normalized BOM Tool run matched
 outliers. The resulting map is `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4=5`
 without component replacement. Only a qualified exact-`SA518` price remains
 open. The JLCAPI app/key are ready outside Git while Parts permission remains
-under JLCPCB review. H5.0.3 is not yet reviewed; quote/reservation and purchase
-are not authorized.
+under JLCPCB review. The short quote form maps bare `SA518` to generic
+`JLCPCB Assembly C9900300438`; that identity and its `$0.0203` estimate are
+rejected, and no quote was submitted. H5.0.3 is not yet reviewed;
+quote/reservation and purchase are not authorized.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.

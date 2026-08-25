@@ -18,7 +18,9 @@
 > all 33 outliers. Every line now has a `J0`–`J4` route without replacement;
 > only qualified exact-`SA518` pricing remains open. Purchasing, PCB routing and
 > fabrication remain blocked. The JLCAPI app and signing key are ready outside
-> Git; Parts permission is still `Reviewing` at JLCPCB.
+> Git; Parts permission is still `Reviewing` at JLCPCB. The live quote form's
+> generic `JLCPCB Assembly C9900300438` match was rejected as non-NiceRF
+> identity evidence; no quote was submitted.
 
 <div align="center">
 
@@ -130,7 +132,9 @@ parsed, and exact search resolved all 33 outliers. The final availability map is
 `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4=5`; zero semantic MPN substitutions or
 component replacements were introduced. Only a qualified exact-`SA518` price
 remains open. The JLCAPI app is enabled and its credential is stored outside
-the repository; Parts permission is still under JLCPCB review. Physical
+the repository; Parts permission is still under JLCPCB review. The short quote
+form's generic `C9900300438` result was rejected because it does not bind the
+NiceRF manufacturer, datasheet or production revision; no quote was submitted. Physical
 evidence, PCB layout, quote/reservation and every order remain unauthorized.
 
 <details open>
@@ -141,7 +145,8 @@ evidence, PCB layout, quote/reservation and every order remain unauthorized.
 **Exact marker: `H5.0.3`** — the basket, measurements and all 209
 [JLCPCB availability routes](docs/manufacturing-platform.md) are published.
 The read-only Parts integration is prepared but waits for JLCPCB permission
-review. Obtain one qualified no-order price for exact `NiceRF SA518`, then
+review. The generic `JLCPCB Assembly C9900300438` autocomplete is explicitly
+not accepted as the module. Obtain one qualified no-order price for exact `NiceRF SA518`, then
 publish the exact basket cost for a separate sample-purchase decision.
 Quote/reservation and purchase are not authorized.
 

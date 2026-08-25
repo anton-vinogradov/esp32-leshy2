@@ -176,7 +176,7 @@
       "lcsc": null,
       "manufacturer": null,
       "stock_snapshot": null,
-      "reason": "generic zero-stock placeholder is not NiceRF identity evidence; exact module requires qualified sourcing",
+      "reason": "JLCPCB Assembly C9900300438 is a generic zero-stock placeholder, not NiceRF identity evidence; exact module requires qualified sourcing",
       "target_bom_orderable_evidence": "present",
       "target_bom_source": "",
       "component_replacement": false
@@ -1770,7 +1770,7 @@
       "semantic_mpn_equal": null,
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "generic zero-stock placeholder is not NiceRF identity evidence; exact module requires qualified sourcing",
+      "outlier_resolution_reason": "JLCPCB Assembly C9900300438 is a generic zero-stock placeholder, not NiceRF identity evidence; exact module requires qualified sourcing",
       "component_replacement": false
     },
     {

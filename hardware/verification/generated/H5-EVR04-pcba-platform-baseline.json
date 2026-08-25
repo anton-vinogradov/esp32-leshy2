@@ -114,6 +114,20 @@
     "usable_now": false,
     "checked_on": "2026-08-25"
   },
+  "sa518_quote_probe": {
+    "requested_identity": "NiceRF SA518",
+    "jlcpcb_autocomplete_part": "C9900300438",
+    "jlcpcb_catalog_manufacturer": "JLCPCB Assembly",
+    "catalog_stock": 0,
+    "catalog_minimum_quantity": 442,
+    "catalog_full_reel": 500,
+    "catalog_estimated_unit_price_usd": "0.0203",
+    "source": "https://jlcpcb.com/partdetail/59277957-JIALICHUANG_SMTSA518/C9900300438",
+    "identity_qualified": false,
+    "quote_submitted": false,
+    "finding": "the short quote form silently binds bare SA518 to an unqualified JLCPCB Assembly placeholder; it must not be treated as the selected NiceRF module or submitted without an exact manufacturer/datasheet identity channel",
+    "checked_on": "2026-08-25"
+  },
   "bom_tool_upload": {
     "path": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
     "sha256": "132580d69856b903998d3556ec6487d37052621e488bb69234fda00b035f6120",
@@ -168,7 +182,7 @@
       "processed": true,
       "result": "176 matched, 33 unmatched, all 1019 target placements parsed"
     },
-    "blocker": "all 33 BOM Tool outliers have J0-J4 routes; exact NiceRF SA518 qualified price remains open and no sourcing request, quote, reservation or order has been created"
+    "blocker": "all 33 BOM Tool outliers have J0-J4 routes; bare SA518 resolves to unqualified JLCPCB Assembly placeholder C9900300438, exact NiceRF SA518 qualified price remains open, and no sourcing request, quote, reservation or order has been created"
   },
   "critical_spot_checks": [
     {
@@ -302,7 +316,7 @@
     "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot"
   },
   "next": {
-    "local": "all 209 lines have J0-J4 routes; preserve the map, wait for Parts permission approval and prepare a no-order exact-SA518 pricing inquiry",
+    "local": "all 209 lines have J0-J4 routes; preserve the map, wait for Parts permission approval and keep the no-order exact-NiceRF-SA518 inquiry separate from generic C9900300438",
     "external_authority_later": "sending the SA518 sourcing inquiry, quote creation, private-stock reservation and purchase still require separate explicit authority",
     "forbidden": [
       "purchase",
@@ -342,6 +356,7 @@
     "only_sa518_qualified_price_remains_open": true,
     "jlcapi_application_and_app_are_ready": true,
     "parts_api_waits_for_jlc_review": true,
+    "sa518_generic_placeholder_is_not_accepted": true,
     "api_credentials_are_not_repository_data": true,
     "no_order_or_layout_is_authorized": true
   }
