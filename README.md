@@ -13,10 +13,10 @@
 </div>
 
 > **Now: H5.0.3 · [PCBA platform audit](docs/manufacturing-platform.md).**
-> JLCPCB Standard PCBA is the non-exclusive reference; 10 critical lines of the
-> 209-line production BOM are mapped to exact sourcing routes. The minimum
-> MPN-and-quantity upload is prepared and awaits user sign-in; purchasing,
-> component replacement, PCB routing and fabrication remain blocked.
+> JLCPCB Standard PCBA is the non-exclusive reference. Its controlled BOM Tool
+> run matched 176/209 lines, parsed all 1019 placements and left 33 explicit
+> outliers. Purchasing, component replacement, PCB routing and fabrication
+> remain blocked.
 
 <div align="center">
 
@@ -122,21 +122,21 @@ create separate global reports.
 **Hardware is at H5.0.3.** The [single sample basket](docs/component-sample-basket.md)
 covers all nine residuals and 14 mechanical gates with 32 exact article lines
 and 11 measurement contracts. JLCPCB Standard PCBA is now the
-[non-exclusive manufacturing reference](docs/manufacturing-platform.md): 10
-critical lines of the 209-line production BOM are mapped to `J0`–`J4`, and the
-remaining 199-line audit is current. The minimum upload is authorized and
-prepared but awaits user sign-in. Physical evidence, PCB layout, component
-replacement and every order remain unauthorized.
+[non-exclusive manufacturing reference](docs/manufacturing-platform.md): the
+normalized compact BOM matched 176 of 209 lines, all 1019 placements were
+parsed, and 33 outliers remain under local qualification. Zero semantic MPN
+substitutions were observed. Physical evidence, PCB layout, component
+replacement, quote/reservation and every order remain unauthorized.
 
 <details open>
 <summary><strong>Current H5 evidence reduction — exact detailed position</strong></summary>
 
 <!-- current-substep: H5.0.3 -->
 
-**Exact marker: `H5.0.3`** — the basket and measurements are published; complete
-the [209-line JLCPCB sourcing map](docs/manufacturing-platform.md), then route
-outliers through exact-part pre-order, global sourcing or final assembly. The
-minimum upload awaits user sign-in; replacement and purchase are not authorized.
+**Exact marker: `H5.0.3`** — the basket and measurements are published; qualify
+the [33 JLCPCB outliers](docs/manufacturing-platform.md) by exact public search,
+non-degrading serial alternate, exact-part pre-order/global sourcing or final
+assembly. Replacement, quote/reservation and purchase are not authorized.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,048-row circuit inventory reviewed.
@@ -251,7 +251,7 @@ minimum upload awaits user sign-in; replacement and purchase are not authorized.
 - ✅ `H4.3` — [joined pre-layout gate reviewed](docs/h4-prelayout-gate-report.md).
 - ✅ `H5.0.1` — [nine residuals and 14 mechanical gates mapped](docs/component-evidence-map.md) to exact selected identities, missing data and pass rules.
 - ✅ `H5.0.2` — [primary-source and serial-alternative research reviewed](docs/component-source-research.md); two test-article categories now have four exact serial SKUs.
-- ▶️ **`H5.0.3` — current:** [JLCPCB Standard PCBA selected as the non-exclusive reference](docs/manufacturing-platform.md); 10/209 critical/BOM lines mapped and the full `J0`–`J4` audit is open.
+- ▶️ **`H5.0.3` — current:** [JLCPCB Standard PCBA selected as the non-exclusive reference](docs/manufacturing-platform.md); 176/209 lines and all 1019 placements parsed, with 33 explicit outliers open.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The completed H3/H4 plans are [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json)

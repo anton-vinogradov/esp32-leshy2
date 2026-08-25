@@ -27,9 +27,56 @@ flowchart TD
 
 No platform guarantees perpetual public stock. Leshy2 therefore selects ordinary parts from JLC stock or with prequalified alternates; unique functional identities are reserved in the [private parts library](https://jlcpcb.com/help/article/how-to-build-your-own-parts-library-in-jlcpcb) or received through global sourcing/consignment. A shortage never permits a silent factory substitution.
 
-## First critical-part check
+## Controlled BOM Tool run
 
-`10` of `209` exact BOM lines are spot-checked. This starts the full audit; it is not a complete assembly quote.
+The normalized BOM was accepted and processed for an assessment quantity of five boards. JLCPCB matched `176` of `209` unique lines: `135` public-stock and `41` pre-order; `33` remain explicit outliers. All `1019` placements were parsed. Two Panasonic spellings differ only by punctuation; zero semantic MPN substitutions were observed.
+
+The displayed `$1255.6365` is the sum of recommended order quantities for only the 176 matched lines, including reference pre-order prices. It is **not** a complete assembly price, quote or order.
+
+<details>
+<summary>33 lines requiring local qualification</summary>
+
+| Normalized MPN | Qty | Next evidence |
+|---|---:|---|
+| `1227-J` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `E01-ML01IPX` | 3 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `ESP32-C5-WROOM-1U-N8R8` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `RFPC-SMA31-FN-175-A` | 7 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `RFPC-SMA32-FN-175-A` | 2 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `FX8C-80S-SV5(92)` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `BGS13SN8E6327XTSA1` | 2 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `U214 Cap LoRa-1262` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `GJM1555C1H101JB01D` | 2 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `PESD24VY1BSF` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `SA518` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `AS02404PO` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `HMX035CTFT-001` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `SC1512-A4` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `1125R-SMT-4P` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `2118651-2` | 5 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `MSPM0C1106SDGS20R` | 2 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `SN74LVC1G07DCKR` | 10 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `SN74LVC1G08DCKR` | 4 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `SN74LVC1G17DCKR` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `TCA9539PWR` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `TLV1821DCKR` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `TLV1824PWR` | 2 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `TPD2EUSB30ADRTR` | 2 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `TPD4E05U06DQAR` | 13 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `TPUL2G223BQBR` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `B0310J50100AHF` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `TSMP95000TT` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `18650 4000mAh` | 2 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `RC0402FR-07100RL` | 7 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `RC0402FR-071KL` | 12 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `RC0402FR-0733RL` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+| `RC0402FR-074K7L` | 1 | exact search → non-degrading serial alternate → J2/J3/J4 |
+
+</details>
+
+## Independent critical-part check
+
+`10` critical identities were checked independently before the bulk run. Their stock snapshots neither override the current BOM Tool result nor promise permanent availability.
 
 | MPN | JLC | Current evidence | Route |
 |---|---:|---|---|
@@ -51,8 +98,8 @@ JLCPCB assembles both boards and accepted SMT/THT parts. Display flex mating, U2
 ## Current result
 
 - JLCPCB Standard PCBA is the working reference without lock-in.
-- Full mapping remains open for `199` lines.
+- Bulk mapping is complete for `176` lines; local qualification remains open for `33` outliers.
 - Direct NiceRF contact is deferred while the JLC global-sourcing/new-part route is checked first.
-- The minimum BOM upload (MPN and quantity only) is authorized and prepared but not yet transmitted because user sign-in is required. API application, sourcing request, purchase, replacements, KiCad layout and fabrication are not authorized.
+- The minimum BOM upload was transmitted and processed. No quote, Parts API application, sourcing request, reservation, purchase, replacement, KiCad layout or fabrication was performed or authorized.
 
-Machine result: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json).
+Machine results: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json) and [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json). [JLCPCB BOM requirements](https://jlcpcb.com/help/article/bill-of-materials-for-pcb-assembly).

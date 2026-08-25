@@ -80,18 +80,19 @@
       "readable_result_en": "docs/component-sample-basket.md",
       "readable_result_ru": "docs/component-sample-basket.ru.md",
       "platform_machine_result": "hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json",
+      "platform_match_result": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
       "platform_result_en": "docs/manufacturing-platform.md",
       "platform_result_ru": "docs/manufacturing-platform.ru.md",
-      "status": "draft_full_platform_bom_mapping_open",
-      "result": "the 32-line evidence basket covers all nine H5 residuals and fourteen mechanical gates; JLCPCB Standard PCBA is the non-exclusive manufacturing reference; 10 critical of 209 production-BOM lines are mapped to J0-J4; the minimum MPN-and-quantity upload is authorized and prepared but not transmitted pending user sign-in; zero replacements or orders authorized"
+      "status": "draft_33_platform_outliers_open",
+      "result": "the 32-line evidence basket covers all nine H5 residuals and fourteen mechanical gates; JLCPCB Standard PCBA is the non-exclusive manufacturing reference; the normalized compact BOM was processed for five boards, 176 of 209 lines matched, all 1019 placements parsed and 33 outliers remain; zero semantic MPN substitutions, replacements, quotes, reservations or orders"
     }
   },
   "blocker": {
-    "id": "H5-BLK-JLC-BOM-IMPORT",
+    "id": "H5-BLK-JLC-33-OUTLIERS",
     "scope": "H5.0.3 production assembly availability and exact basket cost",
-    "reason": "the reference platform is selected and the minimum upload file is prepared, but JLCPCB requires user account sign-in before the 199 remaining production-BOM lines can be bulk matched; SA518, E01 and display are already known non-public-stock outliers",
-    "prepared_action": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
-    "authority_required": "the minimum MPN-and-quantity upload is authorized; user must complete account sign-in and any CAPTCHA; Parts API application, sourcing request and purchase still require separate explicit authority"
+    "reason": "the controlled BOM Tool run matched 176 of 209 lines and parsed all 1019 placements; 33 explicit outliers now require exact public-library research, non-degrading serial-alternate qualification, exact J2/J3 sourcing classification or J4 final-assembly classification",
+    "prepared_action": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
+    "authority_required": "local research is authorized; Parts API application, sourcing request, quote creation, private-stock reservation and purchase still require separate explicit authority"
   },
   "next_active_repository": "esp32-leshy2",
   "next_active_substep": "H5.0.3"

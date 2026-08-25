@@ -1,0 +1,1924 @@
+{
+  "schema_version": 1,
+  "captured_on": "2026-08-25",
+  "platform": "JLCPCB",
+  "tool": "PCBA Viewer / BOM Tool",
+  "input": {
+    "path": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
+    "sha256": "132580d69856b903998d3556ec6487d37052621e488bb69234fda00b035f6120",
+    "unique_bom_lines": 209,
+    "target_placements": 1019,
+    "assembly_quantity": 5,
+    "designator_scheme": "Xlllppp compact synthetic parser identity"
+  },
+  "result": {
+    "matched_lines": 176,
+    "in_stock_lines": 135,
+    "pre_order_lines": 41,
+    "unmatched_lines": 33,
+    "matched_placements": 926,
+    "unmatched_placements": 93,
+    "parsed_placements": 1019,
+    "strict_text_variants": 2,
+    "semantic_mpn_mismatches": 0,
+    "displayed_matched_line_cost_usd": 1255.6365,
+    "note": "Displayed line costs use JLCPCB recommended order quantities and reference pre-order pricing; this is not a complete quote, reservation or order."
+  },
+  "matched": [
+    {
+      "status": "in_stock",
+      "comment": "SN74LVC1G3157DBVR",
+      "footprint": "TBD",
+      "designator": "X126001",
+      "lcsc": "C10426",
+      "matched_mpn": "SN74LVC1G3157DBVR",
+      "stock": 34629,
+      "cost": "$1.2555"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-075K1L",
+      "footprint": "TBD",
+      "designator": "X200001,X200002,X200003,X200004,X200005",
+      "lcsc": "C105872",
+      "matched_mpn": "RC0402FR-075K1L",
+      "stock": 2355303,
+      "cost": "$0.1400"
+    },
+    {
+      "status": "in_stock",
+      "comment": "BAT54-7-F",
+      "footprint": "TBD",
+      "designator": "X014001,X014002,X014003,X014004",
+      "lcsc": "C106920",
+      "matched_mpn": "BAT54-7-F",
+      "stock": 98335,
+      "cost": "$0.8875"
+    },
+    {
+      "status": "in_stock",
+      "comment": "SKRTLAE010",
+      "footprint": "TBD",
+      "designator": "X008001,X008002,X008003,X008004,X008005,X008006",
+      "lcsc": "C110293",
+      "matched_mpn": "SKRTLAE010",
+      "stock": 49545,
+      "cost": "$4.6176"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-07220RL",
+      "footprint": "TBD",
+      "designator": "X182001,X182002",
+      "lcsc": "C112291",
+      "matched_mpn": "RC0402FR-07220RL",
+      "stock": 1630345,
+      "cost": "$0.0800"
+    },
+    {
+      "status": "in_stock",
+      "comment": "FSUSB42MUX",
+      "footprint": "TBD",
+      "designator": "X089001,X089002",
+      "lcsc": "C11355",
+      "matched_mpn": "FSUSB42MUX",
+      "stock": 47864,
+      "cost": "$3.1770"
+    },
+    {
+      "status": "in_stock",
+      "comment": "DM3AT-SF-PEJM5",
+      "footprint": "TBD",
+      "designator": "X028001",
+      "lcsc": "C114218",
+      "matched_mpn": "DM3AT-SF-PEJM5",
+      "stock": 18676,
+      "cost": "$6.9510"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-0756KL",
+      "footprint": "TBD",
+      "designator": "X199001",
+      "lcsc": "C114756",
+      "matched_mpn": "RC0402FR-0756KL",
+      "stock": 1727116,
+      "cost": "$0.0720"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-0712KL",
+      "footprint": "TBD",
+      "designator": "X173001,X173002",
+      "lcsc": "C114760",
+      "matched_mpn": "RC0402FR-0712KL",
+      "stock": 1168649,
+      "cost": "$0.0740"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-07470RL",
+      "footprint": "TBD",
+      "designator": "X194001,X194002,X194003,X194004,X194005,X194006",
+      "lcsc": "C114877",
+      "matched_mpn": "RC0402FR-07470RL",
+      "stock": 118616,
+      "cost": "$0.1640"
+    },
+    {
+      "status": "in_stock",
+      "comment": "74LVC1G32GV,125",
+      "footprint": "TBD",
+      "designator": "X080001,X080002",
+      "lcsc": "C12517",
+      "matched_mpn": "74LVC1G32GV,125",
+      "stock": 700,
+      "cost": "$1.8466"
+    },
+    {
+      "status": "in_stock",
+      "comment": "SN74LVC3G34DCUR",
+      "footprint": "TBD",
+      "designator": "X131001",
+      "lcsc": "C130024",
+      "matched_mpn": "SN74LVC3G34DCUR",
+      "stock": 765,
+      "cost": "$2.6310"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TCA9535PWR",
+      "footprint": "TBD",
+      "designator": "X133001",
+      "lcsc": "C130204",
+      "matched_mpn": "TCA9535PWR",
+      "stock": 5432,
+      "cost": "$8.5340"
+    },
+    {
+      "status": "in_stock",
+      "comment": "SN74LVC3G07DCUR",
+      "footprint": "TBD",
+      "designator": "X130001,X130002",
+      "lcsc": "C131955",
+      "matched_mpn": "SN74LVC3G07DCUR",
+      "stock": 3478,
+      "cost": "$4.4500"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TS5A63157DCKR",
+      "footprint": "TBD",
+      "designator": "X155001,X155002,X155003",
+      "lcsc": "C133575",
+      "matched_mpn": "TS5A63157DCKR",
+      "stock": 449,
+      "cost": "$4.3605"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-0768KL",
+      "footprint": "TBD",
+      "designator": "X203001,X203002,X203003,X203004",
+      "lcsc": "C137947",
+      "matched_mpn": "RC0402FR-0768KL",
+      "stock": 813191,
+      "cost": "$0.1140"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-07620KL",
+      "footprint": "TBD",
+      "designator": "X202001",
+      "lcsc": "C137952",
+      "matched_mpn": "RC0402FR-07620KL",
+      "stock": 329297,
+      "cost": "$0.0800"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-0745K3L",
+      "footprint": "TBD",
+      "designator": "X193001",
+      "lcsc": "C137977",
+      "matched_mpn": "RC0402FR-0745K3L",
+      "stock": 66911,
+      "cost": "$0.0780"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-073K32L",
+      "footprint": "TBD",
+      "designator": "X190001,X190002,X190003,X190004,X190005,X190006,X190007,X190008,X190009,X190010,X190011,X190012,X190013,X190014",
+      "lcsc": "C137993",
+      "matched_mpn": "RC0402FR-073K32L",
+      "stock": 9848,
+      "cost": "$0.3280"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-0733KL",
+      "footprint": "TBD",
+      "designator": "X188001",
+      "lcsc": "C138003",
+      "matched_mpn": "RC0402FR-0733KL",
+      "stock": 977231,
+      "cost": "$0.0800"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-0730KL",
+      "footprint": "TBD",
+      "designator": "X187001,X187002",
+      "lcsc": "C138008",
+      "matched_mpn": "RC0402FR-0730KL",
+      "stock": 847906,
+      "cost": "$0.0820"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-0730K1L",
+      "footprint": "TBD",
+      "designator": "X186001",
+      "lcsc": "C138009",
+      "matched_mpn": "RC0402FR-0730K1L",
+      "stock": 10012,
+      "cost": "$0.0640"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-07240KL",
+      "footprint": "TBD",
+      "designator": "X183001",
+      "lcsc": "C138029",
+      "matched_mpn": "RC0402FR-07240KL",
+      "stock": 263033,
+      "cost": "$0.0540"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-07220KL",
+      "footprint": "TBD",
+      "designator": "X181001,X181002,X181003,X181004,X181005,X181006,X181007,X181008,X181009,X181010,X181011",
+      "lcsc": "C138030",
+      "matched_mpn": "RC0402FR-07220KL",
+      "stock": 616422,
+      "cost": "$0.2600"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-071ML",
+      "footprint": "TBD",
+      "designator": "X180001,X180002,X180003,X180004,X180005,X180006,X180007,X180008,X180009,X180010,X180011",
+      "lcsc": "C138033",
+      "matched_mpn": "RC0402FR-071ML",
+      "stock": 1865287,
+      "cost": "$0.2665"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-07110KL",
+      "footprint": "TBD",
+      "designator": "X172001,X172002",
+      "lcsc": "C138065",
+      "matched_mpn": "RC0402FR-07110KL",
+      "stock": 786101,
+      "cost": "$0.0760"
+    },
+    {
+      "status": "in_stock",
+      "comment": "VEMD1060X01",
+      "footprint": "TBD",
+      "designator": "X165001",
+      "lcsc": "C144925",
+      "matched_mpn": "VEMD1060X01",
+      "stock": 2116,
+      "cost": "$4.8070"
+    },
+    {
+      "status": "in_stock",
+      "comment": "LTST-C190KFKT",
+      "footprint": "TBD",
+      "designator": "X039001",
+      "lcsc": "C157740",
+      "matched_mpn": "LTST-C190KFKT",
+      "stock": 68140,
+      "cost": "$0.4760"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GJM1555C1H6R2DB01D",
+      "footprint": "TBD",
+      "designator": "X049001",
+      "lcsc": "C161332",
+      "matched_mpn": "GJM1555C1H6R2DB01D",
+      "stock": 99,
+      "cost": "$0.2780"
+    },
+    {
+      "status": "in_stock",
+      "comment": "SN74LVC2G66DCUR",
+      "footprint": "TBD",
+      "designator": "X129001,X129002,X129003",
+      "lcsc": "C181970",
+      "matched_mpn": "SN74LVC2G66DCUR",
+      "stock": 6030,
+      "cost": "$6.8700"
+    },
+    {
+      "status": "in_stock",
+      "comment": "CRM2512-FX-20R0ELF",
+      "footprint": "TBD",
+      "designator": "X009001,X009002",
+      "lcsc": "C1848837",
+      "matched_mpn": "CRM2512-FX-20R0ELF",
+      "stock": 82,
+      "cost": "$3.5080"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-071K82L",
+      "footprint": "TBD",
+      "designator": "X178001,X178002",
+      "lcsc": "C185449",
+      "matched_mpn": "RC0402FR-071K82L",
+      "stock": 26897,
+      "cost": "$0.0480"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TPS564252DRLR",
+      "footprint": "TBD",
+      "designator": "X152001,X152002,X152003",
+      "lcsc": "C19191267",
+      "matched_mpn": "TPS564252DRLR",
+      "stock": 3379,
+      "cost": "$5.9445"
+    },
+    {
+      "status": "in_stock",
+      "comment": "LQG15HS3N6S02D",
+      "footprint": "TBD",
+      "designator": "X076001",
+      "lcsc": "C19216",
+      "matched_mpn": "LQG15HS3N6S02D",
+      "stock": 59220,
+      "cost": "$0.6140"
+    },
+    {
+      "status": "in_stock",
+      "comment": "SESD0402X1UN-0020-090",
+      "footprint": "TBD",
+      "designator": "X042001,X042002,X042003",
+      "lcsc": "C1973340",
+      "matched_mpn": "SESD0402X1UN-0020-090",
+      "stock": 9413,
+      "cost": "$2.9850"
+    },
+    {
+      "status": "in_stock",
+      "comment": "ABM8-26.000MHZ-10-D-1-G-T",
+      "footprint": "TBD",
+      "designator": "X001001",
+      "lcsc": "C1985475",
+      "matched_mpn": "ABM8-26.000MHZ-10-D-1-G-T",
+      "stock": 45,
+      "cost": "$2.4930"
+    },
+    {
+      "status": "in_stock",
+      "comment": "SJ-43504-SMT-TR",
+      "footprint": "TBD",
+      "designator": "X098001",
+      "lcsc": "C20182908",
+      "matched_mpn": "SJ-43504-SMT-TR",
+      "stock": 248,
+      "cost": "$11.2055"
+    },
+    {
+      "status": "in_stock",
+      "comment": "EC11E18244AU",
+      "footprint": "TBD",
+      "designator": "X007001",
+      "lcsc": "C202365",
+      "matched_mpn": "EC11E18244AU",
+      "stock": 1416,
+      "cost": "$11.1895"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TCA9534APWR",
+      "footprint": "TBD",
+      "designator": "X132001",
+      "lcsc": "C206010",
+      "matched_mpn": "TCA9534APWR",
+      "stock": 8087,
+      "cost": "$7.6570"
+    },
+    {
+      "status": "in_stock",
+      "comment": "ABM8-272-T3",
+      "footprint": "TBD",
+      "designator": "X002001",
+      "lcsc": "C20625731",
+      "matched_mpn": "ABM8-272-T3",
+      "stock": 8325,
+      "cost": "$1.8045"
+    },
+    {
+      "status": "in_stock",
+      "comment": "B57332V5103F360",
+      "footprint": "TBD",
+      "designator": "X109001,X109002,X109003,X109004,X109005,X109006",
+      "lcsc": "C209893",
+      "matched_mpn": "B57332V5103F360",
+      "stock": 17299,
+      "cost": "$3.1008"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM32ER71E226KE15L",
+      "footprint": "TBD",
+      "designator": "X071001,X071002,X071003,X071004,X071005,X071006,X071007,X071008,X071009,X071010,X071011,X071012,X071013",
+      "lcsc": "C21397",
+      "matched_mpn": "GRM32ER71E226KE15L",
+      "stock": 109800,
+      "cost": "$31.6680"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TPS22919DCKR",
+      "footprint": "TBD",
+      "designator": "X143001,X143002,X143003,X143004,X143005,X143006,X143007",
+      "lcsc": "C2149796",
+      "matched_mpn": "TPS22919DCKR",
+      "stock": 22948,
+      "cost": "$4.2070"
+    },
+    {
+      "status": "in_stock",
+      "comment": "Si4732-A10-GSR",
+      "footprint": "TBD",
+      "designator": "X102001",
+      "lcsc": "C2155558",
+      "matched_mpn": "SI4732-A10-GSR",
+      "stock": 547,
+      "cost": "$14.3075"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GJM1555C1H8R0DB01D",
+      "footprint": "TBD",
+      "designator": "X050001",
+      "lcsc": "C2191663",
+      "matched_mpn": "GJM1555C1H8R0DB01D",
+      "stock": 29738,
+      "cost": "$0.4140"
+    },
+    {
+      "status": "in_stock",
+      "comment": "JS102011SCQN",
+      "footprint": "TBD",
+      "designator": "X011001",
+      "lcsc": "C221661",
+      "matched_mpn": "JS102011SCQN",
+      "stock": 1511,
+      "cost": "$9.1510"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0603FR-071KL",
+      "footprint": "TBD",
+      "designator": "X206001,X206002,X206003,X206004",
+      "lcsc": "C22548",
+      "matched_mpn": "RC0603FR-071KL",
+      "stock": 8521958,
+      "cost": "$0.1560"
+    },
+    {
+      "status": "in_stock",
+      "comment": "C0402C102K5RACTU",
+      "footprint": "TBD",
+      "designator": "X035001,X035002",
+      "lcsc": "C2649506",
+      "matched_mpn": "C0402C102K5RACTU",
+      "stock": 19846,
+      "cost": "$0.1820"
+    },
+    {
+      "status": "in_stock",
+      "comment": "C0402C330J5GACTU",
+      "footprint": "TBD",
+      "designator": "X036001,X036002,X036003,X036004,X036005",
+      "lcsc": "C2649530",
+      "matched_mpn": "C0402C330J5GACTU",
+      "stock": 970,
+      "cost": "$1.3825"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TMUX1136DGSR",
+      "footprint": "TBD",
+      "designator": "X138001",
+      "lcsc": "C2673301",
+      "matched_mpn": "TMUX1136DGSR",
+      "stock": 909,
+      "cost": "$12.7890"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-0752R3L",
+      "footprint": "TBD",
+      "designator": "X198001,X198002,X198003,X198004",
+      "lcsc": "C273696",
+      "matched_mpn": "RC0402FR-0752R3L",
+      "stock": 7746,
+      "cost": "$0.0510"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-0742K2L",
+      "footprint": "TBD",
+      "designator": "X191001",
+      "lcsc": "C276270",
+      "matched_mpn": "RC0402FR-0742K2L",
+      "stock": 43974,
+      "cost": "$0.0780"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TPD8E003DQDR",
+      "footprint": "TBD",
+      "designator": "X142001,X142002",
+      "lcsc": "C2867469",
+      "matched_mpn": "TPD8E003DQDR",
+      "stock": 125,
+      "cost": "$9.2730"
+    },
+    {
+      "status": "in_stock",
+      "comment": "BQ25798RQMR",
+      "footprint": "TBD",
+      "designator": "X116001",
+      "lcsc": "C2876593",
+      "matched_mpn": "BQ25798RQMR",
+      "stock": 659,
+      "cost": "$14.6320"
+    },
+    {
+      "status": "in_stock",
+      "comment": "FTSH-105-01-L-DV-K-P-TR",
+      "footprint": "TBD",
+      "designator": "X099001,X099002,X099003",
+      "lcsc": "C2932107",
+      "matched_mpn": "FTSH-105-01-L-DV-K-P-TR",
+      "stock": 11453,
+      "cost": "$16.3455"
+    },
+    {
+      "status": "in_stock",
+      "comment": "CC1101RGPR",
+      "footprint": "TBD",
+      "designator": "X010001",
+      "lcsc": "C29953",
+      "matched_mpn": "CC1101RGPR",
+      "stock": 586,
+      "cost": "$8.4205"
+    },
+    {
+      "status": "in_stock",
+      "comment": "ESP32-S3-WROOM-1U-N16R8",
+      "footprint": "TBD",
+      "designator": "X021001",
+      "lcsc": "C3013946",
+      "matched_mpn": "ESP32-S3-WROOM-1U-N16R8",
+      "stock": 14048,
+      "cost": "$25.2365"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TPS25751DREFR",
+      "footprint": "TBD",
+      "designator": "X145001",
+      "lcsc": "C30169739",
+      "matched_mpn": "TPS25751DREFR",
+      "stock": 925,
+      "cost": "$12.6670"
+    },
+    {
+      "status": "in_stock",
+      "comment": "USB4105-GF-A",
+      "footprint": "TBD",
+      "designator": "X025001,X025002",
+      "lcsc": "C3020560",
+      "matched_mpn": "USB4105-GF-A",
+      "stock": 4159,
+      "cost": "$8.6070"
+    },
+    {
+      "status": "in_stock",
+      "comment": "DX07S016JA1R1500",
+      "footprint": "TBD",
+      "designator": "X034001",
+      "lcsc": "C3197885",
+      "matched_mpn": "DX07S016JA1R1500",
+      "stock": 5362,
+      "cost": "$3.4510"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-07169KL",
+      "footprint": "TBD",
+      "designator": "X175001,X175002,X175003,X175004,X175005",
+      "lcsc": "C327367",
+      "matched_mpn": "RC0402FR-07169KL",
+      "stock": 14001,
+      "cost": "$0.0770"
+    },
+    {
+      "status": "in_stock",
+      "comment": "DMN2056U-7",
+      "footprint": "TBD",
+      "designator": "X015001,X015002,X015003",
+      "lcsc": "C332302",
+      "matched_mpn": "DMN2056U-7",
+      "stock": 20576,
+      "cost": "$1.3224"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-0744K2L",
+      "footprint": "TBD",
+      "designator": "X192001",
+      "lcsc": "C354260",
+      "matched_mpn": "RC0402FR-0744K2L",
+      "stock": 36367,
+      "cost": "$0.0820"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TPS259470LRPWR",
+      "footprint": "TBD",
+      "designator": "X146001,X146002",
+      "lcsc": "C3662793",
+      "matched_mpn": "TPS259470LRPWR",
+      "stock": 2603,
+      "cost": "$9.1270"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TPS25974LRPWR",
+      "footprint": "TBD",
+      "designator": "X148001,X148002",
+      "lcsc": "C3662931",
+      "matched_mpn": "TPS25974LRPWR",
+      "stock": 2918,
+      "cost": "$8.6560"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM188Z71A475ME15D",
+      "footprint": "TBD",
+      "designator": "X065001,X065002",
+      "lcsc": "C3835885",
+      "matched_mpn": "GRM188Z71A475ME15D",
+      "stock": 37884,
+      "cost": "$1.0272"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TLV9061IDBVR",
+      "footprint": "TBD",
+      "designator": "X137001,X137002",
+      "lcsc": "C398358",
+      "matched_mpn": "TLV9061IDBVR",
+      "stock": 341352,
+      "cost": "$1.2264"
+    },
+    {
+      "status": "in_stock",
+      "comment": "ERJ-P08F10R0V",
+      "footprint": "TBD",
+      "designator": "X092001",
+      "lcsc": "C4064522",
+      "matched_mpn": "ERJ-P08F10R0V",
+      "stock": 5949,
+      "cost": "$0.4905"
+    },
+    {
+      "status": "in_stock",
+      "comment": "MWSA0503S-2R2MT",
+      "footprint": "TBD",
+      "designator": "X103001",
+      "lcsc": "C408408",
+      "matched_mpn": "MWSA0503S-2R2MT",
+      "stock": 13711,
+      "cost": "$1.1767"
+    },
+    {
+      "status": "in_stock",
+      "comment": "MWSA0503S-4R7MT",
+      "footprint": "TBD",
+      "designator": "X105001",
+      "lcsc": "C408410",
+      "matched_mpn": "MWSA0503S-4R7MT",
+      "stock": 33100,
+      "cost": "$1.2677"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TPS2553DRVR-1",
+      "footprint": "TBD",
+      "designator": "X144001",
+      "lcsc": "C411878",
+      "matched_mpn": "TPS2553DRVR-1",
+      "stock": 320,
+      "cost": "$1.6650"
+    },
+    {
+      "status": "in_stock",
+      "comment": "ERJ-2RKF22R0X",
+      "footprint": "TBD",
+      "designator": "X090001,X090002,X090003,X090004,X090005,X090006,X090007,X090008,X090009,X090010,X090011,X090012,X090013,X090014,X090015,X090016,X090017,X090018,X090019,X090020,X090021,X090022,X090023,X090024,X090025,X090026,X090027,X090028,X090029,X090030,X090031,X090032,X090033,X090034,X090035,X090036,X090037,X090038,X090039,X090040,X090041,X090042,X090043,X090044,X090045",
+      "lcsc": "C413049",
+      "matched_mpn": "ERJ2RKF22R0X",
+      "stock": 6768,
+      "cost": "$2.5145"
+    },
+    {
+      "status": "in_stock",
+      "comment": "ERJ-2RKF27R0X",
+      "footprint": "TBD",
+      "designator": "X091001,X091002",
+      "lcsc": "C413051",
+      "matched_mpn": "ERJ2RKF27R0X",
+      "stock": 13211,
+      "cost": "$0.0920"
+    },
+    {
+      "status": "in_stock",
+      "comment": "AOTA-B201610S3R3-101-T",
+      "footprint": "TBD",
+      "designator": "X003001",
+      "lcsc": "C42411119",
+      "matched_mpn": "AOTA-B201610S3R3-101-T",
+      "stock": 4703,
+      "cost": "$1.4270"
+    },
+    {
+      "status": "in_stock",
+      "comment": "DF40C-40DP-0.4V(51)",
+      "footprint": "TBD",
+      "designator": "X027001",
+      "lcsc": "C424643",
+      "matched_mpn": "DF40C-40DP-0.4V(51)",
+      "stock": 13348,
+      "cost": "$2.3065"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TPS3808G33DBVR",
+      "footprint": "TBD",
+      "designator": "X150001,X150002,X150003,X150004",
+      "lcsc": "C43698",
+      "matched_mpn": "TPS3808G33DBVR",
+      "stock": 8990,
+      "cost": "$8.8620"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM31C5C1H224JE02L",
+      "footprint": "TBD",
+      "designator": "X068001",
+      "lcsc": "C464977",
+      "matched_mpn": "GRM31C5C1H224JE02L",
+      "stock": 89432,
+      "cost": "$1.8095"
+    },
+    {
+      "status": "in_stock",
+      "comment": "SN74LVC08APWR",
+      "footprint": "TBD",
+      "designator": "X119001,X119002",
+      "lcsc": "C465737",
+      "matched_mpn": "SN74LVC08APWR",
+      "stock": 1914,
+      "cost": "$4.1107"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-07196KL",
+      "footprint": "TBD",
+      "designator": "X176001",
+      "lcsc": "C477631",
+      "matched_mpn": "RC0402FR-07196KL",
+      "stock": 147,
+      "cost": "$0.0260"
+    },
+    {
+      "status": "in_stock",
+      "comment": "0451005.MRL",
+      "footprint": "TBD",
+      "designator": "X041001,X041002",
+      "lcsc": "C48467",
+      "matched_mpn": "0451005.MRL",
+      "stock": 31311,
+      "cost": "$3.0468"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TPD4S201RUKR",
+      "footprint": "TBD",
+      "designator": "X141001",
+      "lcsc": "C49438759",
+      "matched_mpn": "TPD4S201RUKR",
+      "stock": 11,
+      "cost": "$10.4260"
+    },
+    {
+      "status": "in_stock",
+      "comment": "VSMY14940",
+      "footprint": "TBD",
+      "designator": "X166001",
+      "lcsc": "C511069",
+      "matched_mpn": "VSMY14940",
+      "stock": 300,
+      "cost": "$3.8895"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TPS629203DRLR",
+      "footprint": "TBD",
+      "designator": "X153001",
+      "lcsc": "C5219295",
+      "matched_mpn": "TPS629203DRLR",
+      "stock": 3042,
+      "cost": "$3.8655"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TVS2200DRVR",
+      "footprint": "TBD",
+      "designator": "X156001",
+      "lcsc": "C523793",
+      "matched_mpn": "TVS2200DRVR",
+      "stock": 5826,
+      "cost": "$2.3150"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TXS0102DCUR",
+      "footprint": "TBD",
+      "designator": "X157001",
+      "lcsc": "C53434",
+      "matched_mpn": "TXS0102DCUR",
+      "stock": 48863,
+      "cost": "$1.1370"
+    },
+    {
+      "status": "in_stock",
+      "comment": "FH34SRJ-40S-0.5SH(99)",
+      "footprint": "TBD",
+      "designator": "X029001",
+      "lcsc": "C598032",
+      "matched_mpn": "FH34SRJ-40S-0.5SH(99)",
+      "stock": 10,
+      "cost": "$17.8880"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402JR-070RL",
+      "footprint": "TBD",
+      "designator": "X205001,X205002,X205003,X205004",
+      "lcsc": "C60485",
+      "matched_mpn": "RC0402JR-070RL",
+      "stock": 4565479,
+      "cost": "$0.1020"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-0710KL",
+      "footprint": "TBD",
+      "designator": "X171001,X171002,X171003,X171004,X171005,X171006,X171007,X171008,X171009,X171010,X171011,X171012,X171013,X171014,X171015,X171016,X171017,X171018,X171019,X171020,X171021,X171022,X171023,X171024,X171025,X171026,X171027,X171028,X171029,X171030,X171031,X171032,X171033,X171034,X171035,X171036,X171037,X171038,X171039,X171040,X171041,X171042,X171043,X171044,X171045,X171046,X171047,X171048,X171049,X171050,X171051,X171052,X171053,X171054,X171055,X171056,X171057,X171058,X171059,X171060,X171061,X171062,X171063,X171064,X171065,X171066,X171067,X171068,X171069,X171070,X171071,X171072,X171073,X171074,X171075,X171076,X171077,X171078,X171079,X171080,X171081,X171082,X171083,X171084,X171085,X171086,X171087,X171088,X171089,X171090,X171091,X171092,X171093,X171094,X171095,X171096,X171097,X171098,X171099,X171100,X171101,X171102,X171103,X171104,X171105,X171106,X171107,X171108,X171109,X171110,X171111,X171112,X171113,X171114,X171115,X171116,X171117,X171118,X171119,X171120,X171121,X171122,X171123,X171124,X171125,X171126,X171127,X171128,X171129,X171130,X171131,X171132,X171133,X171134,X171135,X171136,X171137,X171138,X171139,X171140,X171141,X171142,X171143,X171144,X171145,X171146,X171147,X171148,X171149,X171150,X171151,X171152,X171153,X171154,X171155,X171156,X171157,X171158,X171159,X171160,X171161,X171162,X171163,X171164,X171165,X171166,X171167,X171168,X171169,X171170,X171171,X171172,X171173,X171174,X171175,X171176,X171177,X171178,X171179,X171180,X171181,X171182,X171183,X171184,X171185,X171186,X171187,X171188,X171189,X171190,X171191,X171192",
+      "lcsc": "C60490",
+      "matched_mpn": "RC0402FR-0710KL",
+      "stock": 10236128,
+      "cost": "$3.5890"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-07100KL",
+      "footprint": "TBD",
+      "designator": "X169001,X169002,X169003,X169004,X169005,X169006,X169007,X169008,X169009,X169010,X169011,X169012,X169013,X169014,X169015,X169016,X169017,X169018,X169019,X169020,X169021,X169022,X169023,X169024,X169025,X169026,X169027,X169028,X169029,X169030,X169031,X169032,X169033,X169034,X169035,X169036,X169037,X169038",
+      "lcsc": "C60491",
+      "matched_mpn": "RC0402FR-07100KL",
+      "stock": 6366582,
+      "cost": "$0.8800"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TPS3435CAKAGDDFR",
+      "footprint": "TBD",
+      "designator": "X149001",
+      "lcsc": "C6339182",
+      "matched_mpn": "TPS3435CAKAGDDFR",
+      "stock": 14,
+      "cost": "$13.3575"
+    },
+    {
+      "status": "in_stock",
+      "comment": "SN74LVC1G74DCUR",
+      "footprint": "TBD",
+      "designator": "X127001",
+      "lcsc": "C70285",
+      "matched_mpn": "SN74LVC1G74DCUR",
+      "stock": 4889,
+      "cost": "$1.1945"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM1555C1H221JA01D",
+      "footprint": "TBD",
+      "designator": "X056001,X056002,X056003,X056004",
+      "lcsc": "C71693",
+      "matched_mpn": "GRM1555C1H221JA01D",
+      "stock": 1238334,
+      "cost": "$0.1470"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GJM1555C1H1R2BB01D",
+      "footprint": "TBD",
+      "designator": "X048001",
+      "lcsc": "C72135",
+      "matched_mpn": "GJM1555C1H1R2BB01D",
+      "stock": 44423,
+      "cost": "$0.5860"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GJM1555C1HR60BB01D",
+      "footprint": "TBD",
+      "designator": "X052001",
+      "lcsc": "C76913",
+      "matched_mpn": "GJM1555C1HR60BB01D",
+      "stock": 9836,
+      "cost": "$0.3720"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM1555C1H102JA01D",
+      "footprint": "TBD",
+      "designator": "X053001",
+      "lcsc": "C76947",
+      "matched_mpn": "GRM1555C1H102JA01D",
+      "stock": 1231000,
+      "cost": "$0.2080"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM1555C1H220JA01D",
+      "footprint": "TBD",
+      "designator": "X055001,X055002",
+      "lcsc": "C76960",
+      "matched_mpn": "GRM1555C1H220JA01D",
+      "stock": 230679,
+      "cost": "$0.4400"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM155R71E473KA88D",
+      "footprint": "TBD",
+      "designator": "X059001,X059002",
+      "lcsc": "C77017",
+      "matched_mpn": "GRM155R71E473KA88D",
+      "stock": 11581,
+      "cost": "$0.1480"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM155R71H103KA88D",
+      "footprint": "TBD",
+      "designator": "X060001,X060002,X060003,X060004,X060005,X060006,X060007,X060008",
+      "lcsc": "C77019",
+      "matched_mpn": "GRM155R71H103KA88D",
+      "stock": 694206,
+      "cost": "$0.5044"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM155R71H472KA01D",
+      "footprint": "TBD",
+      "designator": "X061001,X061002,X061003,X061004",
+      "lcsc": "C77024",
+      "matched_mpn": "GRM155R71H472KA01D",
+      "stock": 18972,
+      "cost": "$0.3390"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM188R60J106ME47D",
+      "footprint": "TBD",
+      "designator": "X062001,X062002,X062003,X062004,X062005,X062006,X062007,X062008,X062009,X062010,X062011,X062012,X062013,X062014,X062015,X062016,X062017,X062018,X062019",
+      "lcsc": "C77041",
+      "matched_mpn": "GRM188R60J106ME47D",
+      "stock": 223656,
+      "cost": "$7.1715"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM188R71E224KA88D",
+      "footprint": "TBD",
+      "designator": "X063001,X063002",
+      "lcsc": "C77051",
+      "matched_mpn": "GRM188R71E224KA88D",
+      "stock": 10501,
+      "cost": "$0.5020"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM188R71E474KA12D",
+      "footprint": "TBD",
+      "designator": "X064001,X064002,X064003,X064004",
+      "lcsc": "C77052",
+      "matched_mpn": "GRM188R71E474KA12D",
+      "stock": 30121,
+      "cost": "$1.1256"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM21BR60J226ME39L",
+      "footprint": "TBD",
+      "designator": "X066001,X066002,X066003,X066004,X066005,X066006",
+      "lcsc": "C77071",
+      "matched_mpn": "GRM21BR60J226ME39L",
+      "stock": 56402,
+      "cost": "$3.5264"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM21BR71E225KE11L",
+      "footprint": "TBD",
+      "designator": "X067001,X067002,X067003,X067004,X067005",
+      "lcsc": "C77081",
+      "matched_mpn": "GRM21BR71E225KE11L",
+      "stock": 97818,
+      "cost": "$1.7688"
+    },
+    {
+      "status": "in_stock",
+      "comment": "LQG15HS10NJ02D",
+      "footprint": "TBD",
+      "designator": "X072001,X072002,X072003",
+      "lcsc": "C77103",
+      "matched_mpn": "LQG15HS10NJ02D",
+      "stock": 200743,
+      "cost": "$0.4600"
+    },
+    {
+      "status": "in_stock",
+      "comment": "LQG15HS6N8J02D",
+      "footprint": "TBD",
+      "designator": "X077001",
+      "lcsc": "C77110",
+      "matched_mpn": "LQG15HS6N8J02D",
+      "stock": 448327,
+      "cost": "$0.3560"
+    },
+    {
+      "status": "in_stock",
+      "comment": "SN74LVC1G06DCKR",
+      "footprint": "TBD",
+      "designator": "X120001,X120002",
+      "lcsc": "C7828",
+      "matched_mpn": "SN74LVC1G06DCKR",
+      "stock": 4591,
+      "cost": "$2.0088"
+    },
+    {
+      "status": "in_stock",
+      "comment": "SN74LVC1G125DCKR",
+      "footprint": "TBD",
+      "designator": "X123001",
+      "lcsc": "C7833",
+      "matched_mpn": "SN74LVC1G125DCKR",
+      "stock": 13494,
+      "cost": "$1.0791"
+    },
+    {
+      "status": "in_stock",
+      "comment": "CAT24C512WI-GT3",
+      "footprint": "TBD",
+      "designator": "X088001",
+      "lcsc": "C79986",
+      "matched_mpn": "CAT24C512WI-GT3",
+      "stock": 14122,
+      "cost": "$3.2075"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TCA6424ARGJR",
+      "footprint": "TBD",
+      "designator": "X108001",
+      "lcsc": "C80692",
+      "matched_mpn": "TCA6424ARGJR",
+      "stock": 6807,
+      "cost": "$6.0900"
+    },
+    {
+      "status": "in_stock",
+      "comment": "BAV70LT1G",
+      "footprint": "TBD",
+      "designator": "X087001",
+      "lcsc": "C82479",
+      "matched_mpn": "BAV70LT1G",
+      "stock": 589716,
+      "cost": "$0.1340"
+    },
+    {
+      "status": "in_stock",
+      "comment": "BLM18PG181SN1D",
+      "footprint": "TBD",
+      "designator": "X044001,X044002,X044003,X044004",
+      "lcsc": "C82850",
+      "matched_mpn": "BLM18PG181SN1D",
+      "stock": 495983,
+      "cost": "$0.4530"
+    },
+    {
+      "status": "in_stock",
+      "comment": "Q13FC13500005",
+      "footprint": "TBD",
+      "designator": "X019001",
+      "lcsc": "C841881",
+      "matched_mpn": "Q13FC13500005",
+      "stock": 18193,
+      "cost": "$1.3205"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TNPW040210K0BEED",
+      "footprint": "TBD",
+      "designator": "X161001",
+      "lcsc": "C844452",
+      "matched_mpn": "TNPW040210K0BEED",
+      "stock": 76472,
+      "cost": "$0.5894"
+    },
+    {
+      "status": "in_stock",
+      "comment": "WSL25125L000FEA",
+      "footprint": "TBD",
+      "designator": "X167001",
+      "lcsc": "C844900",
+      "matched_mpn": "WSL25125L000FEA",
+      "stock": 2566,
+      "cost": "$2.2080"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RT0402BRD07100KL",
+      "footprint": "TBD",
+      "designator": "X208001",
+      "lcsc": "C852472",
+      "matched_mpn": "RT0402BRD07100KL",
+      "stock": 888572,
+      "cost": "$0.5300"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GJM1555C1H100JB01D",
+      "footprint": "TBD",
+      "designator": "X045001",
+      "lcsc": "C85874",
+      "matched_mpn": "GJM1555C1H100JB01D",
+      "stock": 14643,
+      "cost": "$0.2800"
+    },
+    {
+      "status": "in_stock",
+      "comment": "LQG15HS15NJ02D",
+      "footprint": "TBD",
+      "designator": "X073001",
+      "lcsc": "C86059",
+      "matched_mpn": "LQG15HS15NJ02D",
+      "stock": 272021,
+      "cost": "$0.4060"
+    },
+    {
+      "status": "in_stock",
+      "comment": "LQG15HS2N2S02D",
+      "footprint": "TBD",
+      "designator": "X074001",
+      "lcsc": "C86061",
+      "matched_mpn": "LQG15HS2N2S02D",
+      "stock": 46484,
+      "cost": "$0.3640"
+    },
+    {
+      "status": "in_stock",
+      "comment": "LQG15HS3N3S02D",
+      "footprint": "TBD",
+      "designator": "X075001",
+      "lcsc": "C86064",
+      "matched_mpn": "LQG15HS3N3S02D",
+      "stock": 78263,
+      "cost": "$0.3900"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-0749R9L",
+      "footprint": "TBD",
+      "designator": "X196001,X196002,X196003,X196004,X196005",
+      "lcsc": "C87044",
+      "matched_mpn": "RC0402FR-0749R9L",
+      "stock": 845289,
+      "cost": "$0.1435"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TCA4307DGKR",
+      "footprint": "TBD",
+      "designator": "X107001",
+      "lcsc": "C880333",
+      "matched_mpn": "TCA4307DGKR",
+      "stock": 4181,
+      "cost": "$12.5045"
+    },
+    {
+      "status": "in_stock",
+      "comment": "SN74LVC1G126DCKR",
+      "footprint": "TBD",
+      "designator": "X124001,X124002,X124003,X124004,X124005,X124006",
+      "lcsc": "C88039",
+      "matched_mpn": "SN74LVC1G126DCKR",
+      "stock": 5751,
+      "cost": "$2.4548"
+    },
+    {
+      "status": "in_stock",
+      "comment": "U.FL-R-SMT-1(10)",
+      "footprint": "TBD",
+      "designator": "X032001,X032002,X032003,X032004,X032005",
+      "lcsc": "C88373",
+      "matched_mpn": "U.FL-R-SMT-1(10)",
+      "stock": 16892,
+      "cost": "$5.6575"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GJM1555C1H150JB01D",
+      "footprint": "TBD",
+      "designator": "X047001,X047002,X047003,X047004",
+      "lcsc": "C88877",
+      "matched_mpn": "GJM1555C1H150JB01D",
+      "stock": 26174,
+      "cost": "$0.8484"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM155R71A474KE01D",
+      "footprint": "TBD",
+      "designator": "X058001",
+      "lcsc": "C88946",
+      "matched_mpn": "GRM155R71A474KE01D",
+      "stock": 761223,
+      "cost": "$0.1765"
+    },
+    {
+      "status": "in_stock",
+      "comment": "GRM31CR71A226KE15L",
+      "footprint": "TBD",
+      "designator": "X069001",
+      "lcsc": "C91604",
+      "matched_mpn": "GRM31CR71A226KE15L",
+      "stock": 28428,
+      "cost": "$1.6485"
+    },
+    {
+      "status": "in_stock",
+      "comment": "SN74LVC2G08DCUR",
+      "footprint": "TBD",
+      "designator": "X128001,X128002",
+      "lcsc": "C91875",
+      "matched_mpn": "SN74LVC2G08DCUR",
+      "stock": 1985,
+      "cost": "$4.2150"
+    },
+    {
+      "status": "in_stock",
+      "comment": "BAT54ALT1G",
+      "footprint": "TBD",
+      "designator": "X086001,X086002,X086003,X086004,X086005",
+      "lcsc": "C92068",
+      "matched_mpn": "BAT54ALT1G",
+      "stock": 29330,
+      "cost": "$0.9338"
+    },
+    {
+      "status": "in_stock",
+      "comment": "RC0402FR-0747KL",
+      "footprint": "TBD",
+      "designator": "X195001,X195002,X195003,X195004,X195005,X195006,X195007,X195008,X195009,X195010",
+      "lcsc": "C93943",
+      "matched_mpn": "RC0402FR-0747KL",
+      "stock": 3485186,
+      "cost": "$0.2542"
+    },
+    {
+      "status": "in_stock",
+      "comment": "MMBT3904-7-F",
+      "footprint": "TBD",
+      "designator": "X016001,X016002",
+      "lcsc": "C94514",
+      "matched_mpn": "MMBT3904-7-F",
+      "stock": 2884,
+      "cost": "$0.9555"
+    },
+    {
+      "status": "in_stock",
+      "comment": "LTST-C190KRKT",
+      "footprint": "TBD",
+      "designator": "X040001,X040002,X040003,X040004,X040005,X040006,X040007,X040008,X040009",
+      "lcsc": "C94869",
+      "matched_mpn": "LTST-C190KRKT",
+      "stock": 506644,
+      "cost": "$1.2375"
+    },
+    {
+      "status": "in_stock",
+      "comment": "ES8311",
+      "footprint": "TBD",
+      "designator": "X022001",
+      "lcsc": "C962342",
+      "matched_mpn": "ES8311",
+      "stock": 64396,
+      "cost": "$2.7610"
+    },
+    {
+      "status": "in_stock",
+      "comment": "TPS3839K33DBZR",
+      "footprint": "TBD",
+      "designator": "X151001,X151002",
+      "lcsc": "C96333",
+      "matched_mpn": "TPS3839K33DBZR",
+      "stock": 399,
+      "cost": "$6.3990"
+    },
+    {
+      "status": "in_stock",
+      "comment": "WPN201612H2R2MT",
+      "footprint": "TBD",
+      "designator": "X106001",
+      "lcsc": "C97025",
+      "matched_mpn": "WPN201612H2R2MT",
+      "stock": 2134,
+      "cost": "$0.4653"
+    },
+    {
+      "status": "pre_order",
+      "comment": "RC0402FR-072K2L",
+      "footprint": "TBD",
+      "designator": "X185001,X185002,X185003,X185004,X185005,X185006,X185007,X185008,X185009,X185010,X185011,X185012,X185013,X185014,X185015,X185016,X185017,X185018,X185019,X185020,X185021,X185022,X185023",
+      "lcsc": "C114762",
+      "matched_mpn": "RC0402FR-072K2L",
+      "stock": 6,
+      "cost": "$8.9558"
+    },
+    {
+      "status": "pre_order",
+      "comment": "RC1206FR-0747RL",
+      "footprint": "TBD",
+      "designator": "X207001",
+      "lcsc": "C137268",
+      "matched_mpn": "RC1206FR-0747RL",
+      "stock": 4,
+      "cost": "$8.9566"
+    },
+    {
+      "status": "pre_order",
+      "comment": "RC0402FR-078K2L",
+      "footprint": "TBD",
+      "designator": "X204001",
+      "lcsc": "C137929",
+      "matched_mpn": "RC0402FR-078K2L",
+      "stock": 14,
+      "cost": "$8.9558"
+    },
+    {
+      "status": "pre_order",
+      "comment": "RC0402FR-07270KL",
+      "footprint": "TBD",
+      "designator": "X184001",
+      "lcsc": "C163475",
+      "matched_mpn": "RC0402FR-07270KL",
+      "stock": 0,
+      "cost": "$8.9558"
+    },
+    {
+      "status": "pre_order",
+      "comment": "LQW15AN56NJ00D",
+      "footprint": "TBD",
+      "designator": "X078001",
+      "lcsc": "C167484",
+      "matched_mpn": "LQW15AN56NJ00D",
+      "stock": 155,
+      "cost": "$8.9572"
+    },
+    {
+      "status": "pre_order",
+      "comment": "RC0402FR-071K65L",
+      "footprint": "TBD",
+      "designator": "X177001",
+      "lcsc": "C185453",
+      "matched_mpn": "RC0402FR-071K65L",
+      "stock": 4,
+      "cost": "$8.9557"
+    },
+    {
+      "status": "pre_order",
+      "comment": "C1608X7S2A104K080AB",
+      "footprint": "TBD",
+      "designator": "X113001",
+      "lcsc": "C2167247",
+      "matched_mpn": "C1608X7S2A104K080AB",
+      "stock": 0,
+      "cost": "$9.0752"
+    },
+    {
+      "status": "pre_order",
+      "comment": "C1608X7R1C105K080AC",
+      "footprint": "TBD",
+      "designator": "X112001,X112002,X112003,X112004,X112005,X112006,X112007,X112008,X112009,X112010,X112011,X112012,X112013,X112014,X112015,X112016,X112017,X112018,X112019,X112020,X112021,X112022,X112023,X112024,X112025,X112026,X112027,X112028,X112029,X112030,X112031,X112032,X112033,X112034,X112035",
+      "lcsc": "C2167399",
+      "matched_mpn": "C1608X7R1C105K080AC",
+      "stock": 2,
+      "cost": "$9.8766"
+    },
+    {
+      "status": "pre_order",
+      "comment": "C1005X5R0J475K050BC",
+      "footprint": "TBD",
+      "designator": "X110001,X110002,X110003,X110004",
+      "lcsc": "C2167436",
+      "matched_mpn": "C1005X5R0J475K050BC",
+      "stock": 0,
+      "cost": "$8.9815"
+    },
+    {
+      "status": "pre_order",
+      "comment": "GJM1555C1HR47BB01D",
+      "footprint": "TBD",
+      "designator": "X051001",
+      "lcsc": "C2168943",
+      "matched_mpn": "GJM1555C1HR47BB01D",
+      "stock": 0,
+      "cost": "$8.9569"
+    },
+    {
+      "status": "pre_order",
+      "comment": "CGA5L1X7R1E475K160AC",
+      "footprint": "TBD",
+      "designator": "X114001,X114002,X114003",
+      "lcsc": "C2170392",
+      "matched_mpn": "CGA5L1X7R1E475K160AC",
+      "stock": 0,
+      "cost": "$8.9787"
+    },
+    {
+      "status": "pre_order",
+      "comment": "C1005X7R1H104K050BB",
+      "footprint": "TBD",
+      "designator": "X111001,X111002,X111003,X111004,X111005,X111006,X111007,X111008,X111009,X111010,X111011,X111012,X111013,X111014,X111015,X111016,X111017,X111018,X111019,X111020,X111021,X111022,X111023,X111024,X111025,X111026,X111027,X111028,X111029,X111030,X111031,X111032,X111033,X111034,X111035,X111036,X111037,X111038,X111039,X111040,X111041,X111042,X111043,X111044,X111045,X111046,X111047,X111048,X111049,X111050,X111051,X111052,X111053,X111054,X111055,X111056,X111057,X111058,X111059,X111060,X111061,X111062,X111063,X111064,X111065,X111066,X111067,X111068,X111069,X111070,X111071,X111072,X111073,X111074,X111075,X111076,X111077,X111078,X111079,X111080,X111081,X111082,X111083,X111084,X111085,X111086,X111087,X111088,X111089,X111090,X111091,X111092,X111093,X111094,X111095,X111096,X111097,X111098,X111099,X111100,X111101,X111102,X111103,X111104,X111105,X111106,X111107,X111108,X111109,X111110,X111111,X111112,X111113,X111114,X111115,X111116,X111117,X111118,X111119,X111120,X111121,X111122,X111123,X111124,X111125,X111126,X111127,X111128,X111129,X111130,X111131,X111132,X111133,X111134,X111135,X111136,X111137,X111138,X111139,X111140,X111141,X111142",
+      "lcsc": "C2181015",
+      "matched_mpn": "C1005X7R1H104K050BB",
+      "stock": 0,
+      "cost": "$22.5624"
+    },
+    {
+      "status": "pre_order",
+      "comment": "74LVC126APW,118",
+      "footprint": "TBD",
+      "designator": "X079001,X079002,X079003,X079004,X079005,X079006,X079007,X079008",
+      "lcsc": "C2442297",
+      "matched_mpn": "74LVC126APW,118",
+      "stock": 0,
+      "cost": "$13.9680"
+    },
+    {
+      "status": "pre_order",
+      "comment": "CP0603Q5425ENTR",
+      "footprint": "TBD",
+      "designator": "X038001,X038002",
+      "lcsc": "C2654257",
+      "matched_mpn": "CP0603Q5425ENTR",
+      "stock": 0,
+      "cost": "$9.0520"
+    },
+    {
+      "status": "pre_order",
+      "comment": "B3S-1100P",
+      "footprint": "TBD",
+      "designator": "X085001,X085002,X085003,X085004,X085005,X085006,X085007,X085008,X085009,X085010,X085011,X085012,X085013,X085014,X085015,X085016",
+      "lcsc": "C2733652",
+      "matched_mpn": "B3S-1100P",
+      "stock": 0,
+      "cost": "$74.5760"
+    },
+    {
+      "status": "pre_order",
+      "comment": "CSD87313DMST",
+      "footprint": "TBD",
+      "designator": "X117001",
+      "lcsc": "C2876129",
+      "matched_mpn": "CSD87313DMST",
+      "stock": 0,
+      "cost": "$11.6925"
+    },
+    {
+      "status": "pre_order",
+      "comment": "CMEJ-0413-42-SMT-TR",
+      "footprint": "TBD",
+      "designator": "X097001",
+      "lcsc": "C3273679",
+      "matched_mpn": "CMEJ-0413-42-SMT-TR",
+      "stock": 0,
+      "cost": "$9.3156"
+    },
+    {
+      "status": "pre_order",
+      "comment": "RC0402FR-07133KL",
+      "footprint": "TBD",
+      "designator": "X174001",
+      "lcsc": "C327374",
+      "matched_mpn": "RC0402FR-07133KL",
+      "stock": 2,
+      "cost": "$8.9558"
+    },
+    {
+      "status": "pre_order",
+      "comment": "TNPW040243K7BEED",
+      "footprint": "TBD",
+      "designator": "X162001",
+      "lcsc": "C4056533",
+      "matched_mpn": "TNPW040243K7BEED",
+      "stock": 0,
+      "cost": "$8.9568"
+    },
+    {
+      "status": "pre_order",
+      "comment": "MWSA0503S-3R3MT",
+      "footprint": "TBD",
+      "designator": "X104001,X104002",
+      "lcsc": "C408409",
+      "matched_mpn": "MWSA0503S-3R3MT",
+      "stock": 24,
+      "cost": "$9.0024"
+    },
+    {
+      "status": "pre_order",
+      "comment": "ERJ-P08F49R9V",
+      "footprint": "TBD",
+      "designator": "X093001,X093002",
+      "lcsc": "C4308208",
+      "matched_mpn": "ERJ-P08F49R9V",
+      "stock": 0,
+      "cost": "$8.9680"
+    },
+    {
+      "status": "pre_order",
+      "comment": "GRM31CR71E106MA12L",
+      "footprint": "TBD",
+      "designator": "X070001,X070002,X070003,X070004,X070005,X070006,X070007,X070008,X070009,X070010,X070011,X070012",
+      "lcsc": "C440205",
+      "matched_mpn": "GRM31CR71E106MA12L",
+      "stock": 1,
+      "cost": "$12.3194"
+    },
+    {
+      "status": "pre_order",
+      "comment": "RC0402FR-075K23L",
+      "footprint": "TBD",
+      "designator": "X201001",
+      "lcsc": "C477746",
+      "matched_mpn": "RC0402FR-075K23L",
+      "stock": 249,
+      "cost": "$8.9558"
+    },
+    {
+      "status": "pre_order",
+      "comment": "CRCW0402160KFKED",
+      "footprint": "TBD",
+      "designator": "X160001",
+      "lcsc": "C481956",
+      "matched_mpn": "CRCW0402160KFKED",
+      "stock": 0,
+      "cost": "$8.9565"
+    },
+    {
+      "status": "pre_order",
+      "comment": "PAM8302AAYCR",
+      "footprint": "TBD",
+      "designator": "X017001",
+      "lcsc": "C4990730",
+      "matched_mpn": "PAM8302AAYCR",
+      "stock": 0,
+      "cost": "$9.5301"
+    },
+    {
+      "status": "pre_order",
+      "comment": "DC2337J5010AHF",
+      "footprint": "TBD",
+      "designator": "X159001,X159002,X159003",
+      "lcsc": "C509396",
+      "matched_mpn": "DC2337J5010AHF",
+      "stock": 1,
+      "cost": "$20.4135"
+    },
+    {
+      "status": "pre_order",
+      "comment": "TSOP75238TT",
+      "footprint": "TBD",
+      "designator": "X164001",
+      "lcsc": "C5248434",
+      "matched_mpn": "TSOP75238TT",
+      "stock": 0,
+      "cost": "$11.8390"
+    },
+    {
+      "status": "pre_order",
+      "comment": "74LVC2G126DC,125",
+      "footprint": "TBD",
+      "designator": "X081001,X081002,X081003,X081004,X081005",
+      "lcsc": "C548589",
+      "matched_mpn": "74LVC2G126DC,125",
+      "stock": 0,
+      "cost": "$40.6000"
+    },
+    {
+      "status": "pre_order",
+      "comment": "TPS25961DRVR",
+      "footprint": "TBD",
+      "designator": "X147001",
+      "lcsc": "C5571272",
+      "matched_mpn": "TPS25961DRVR",
+      "stock": 0,
+      "cost": "$9.0040"
+    },
+    {
+      "status": "pre_order",
+      "comment": "HLE-107-02-G-DV-PE-LC",
+      "footprint": "TBD",
+      "designator": "X100001",
+      "lcsc": "C5649644",
+      "matched_mpn": "HLE-107-02-G-DV-PE-LC",
+      "stock": 0,
+      "cost": "$35.8330"
+    },
+    {
+      "status": "pre_order",
+      "comment": "DF40C(2.0)-40DS-0.4V(58)",
+      "footprint": "TBD",
+      "designator": "X026001",
+      "lcsc": "C5668532",
+      "matched_mpn": "DF40C(2.0)-40DS-0.4V(58)",
+      "stock": 0,
+      "cost": "$9.4860"
+    },
+    {
+      "status": "pre_order",
+      "comment": "AD8314ACPZ-RL7",
+      "footprint": "TBD",
+      "designator": "X004001,X004002,X004003,X004004,X004005",
+      "lcsc": "C578691",
+      "matched_mpn": "AD8314ACPZ-RL7",
+      "stock": 0,
+      "cost": "$114.4500"
+    },
+    {
+      "status": "pre_order",
+      "comment": "LTC5532ES6#TRMPBF",
+      "footprint": "TBD",
+      "designator": "X005001,X005002",
+      "lcsc": "C580926",
+      "matched_mpn": "LTC5532ES6#TRMPBF",
+      "stock": 6,
+      "cost": "$101.4170"
+    },
+    {
+      "status": "pre_order",
+      "comment": "1048P",
+      "footprint": "TBD",
+      "designator": "X037001",
+      "lcsc": "C6038062",
+      "matched_mpn": "1048P",
+      "stock": 0,
+      "cost": "$33.6650"
+    },
+    {
+      "status": "pre_order",
+      "comment": "74LVC2G14GW,125",
+      "footprint": "TBD",
+      "designator": "X082001",
+      "lcsc": "C6085",
+      "matched_mpn": "74LVC2G14GW,125",
+      "stock": 4,
+      "cost": "$9.0376"
+    },
+    {
+      "status": "pre_order",
+      "comment": "FX8C-80P-SV1(92)",
+      "footprint": "TBD",
+      "designator": "X030001",
+      "lcsc": "C7197102",
+      "matched_mpn": "FX8C-80P-SV1(92)",
+      "stock": 0,
+      "cost": "$23.4745"
+    },
+    {
+      "status": "pre_order",
+      "comment": "MAX17320G20+T",
+      "footprint": "TBD",
+      "designator": "X006001",
+      "lcsc": "C7457895",
+      "matched_mpn": "MAX17320G20+T",
+      "stock": 0,
+      "cost": "$31.0585"
+    },
+    {
+      "status": "pre_order",
+      "comment": "GRM1555C1H121JA01D",
+      "footprint": "TBD",
+      "designator": "X054001,X054002,X054003,X054004,X054005,X054006,X054007",
+      "lcsc": "C76949",
+      "matched_mpn": "GRM1555C1H121JA01D",
+      "stock": 0,
+      "cost": "$8.9565"
+    },
+    {
+      "status": "pre_order",
+      "comment": "GRM1555C1H390JA01D",
+      "footprint": "TBD",
+      "designator": "X057001,X057002",
+      "lcsc": "C76966",
+      "matched_mpn": "GRM1555C1H390JA01D",
+      "stock": 0,
+      "cost": "$8.9582"
+    },
+    {
+      "status": "pre_order",
+      "comment": "2N7002DW-7-F",
+      "footprint": "TBD",
+      "designator": "X013001,X013002,X013003,X013004",
+      "lcsc": "C83571",
+      "matched_mpn": "2N7002DW-7-F",
+      "stock": 633,
+      "cost": "$9.0012"
+    },
+    {
+      "status": "pre_order",
+      "comment": "RT0402BRD07191KL",
+      "footprint": "TBD",
+      "designator": "X209001",
+      "lcsc": "C852583",
+      "matched_mpn": "RT0402BRD07191KL",
+      "stock": 15,
+      "cost": "$8.9760"
+    }
+  ],
+  "unmatched": [
+    {
+      "comment": "RC0402FR-071KL",
+      "designator": "X179001,X179002,X179003,X179004,X179005,X179006,X179007,X179008,X179009,X179010,X179011,X179012"
+    },
+    {
+      "comment": "E01-ML01IPX",
+      "designator": "X018001,X018002,X018003"
+    },
+    {
+      "comment": "SN74LVC1G17DCKR",
+      "designator": "X125001"
+    },
+    {
+      "comment": "HMX035CTFT-001",
+      "designator": "X095001"
+    },
+    {
+      "comment": "TPD2EUSB30ADRTR",
+      "designator": "X139001,X139002"
+    },
+    {
+      "comment": "PESD24VY1BSF",
+      "designator": "X083001"
+    },
+    {
+      "comment": "RFPC-SMA31-FN-175-A",
+      "designator": "X023001,X023002,X023003,X023004,X023005,X023006,X023007"
+    },
+    {
+      "comment": "TSMP95000TT",
+      "designator": "X163001"
+    },
+    {
+      "comment": "18650 4000mAh",
+      "designator": "X168001,X168002"
+    },
+    {
+      "comment": "ESP32-C5-WROOM-1U-N8R8",
+      "designator": "X020001"
+    },
+    {
+      "comment": "RC0402FR-0733RL",
+      "designator": "X189001"
+    },
+    {
+      "comment": "TPUL2G223BQBR",
+      "designator": "X154001"
+    },
+    {
+      "comment": "TCA9539PWR",
+      "designator": "X134001"
+    },
+    {
+      "comment": "TPD4E05U06DQAR",
+      "designator": "X140001,X140002,X140003,X140004,X140005,X140006,X140007,X140008,X140009,X140010,X140011,X140012,X140013"
+    },
+    {
+      "comment": "BGS13SN8E6327XTSA1",
+      "designator": "X033001,X033002"
+    },
+    {
+      "comment": "RC0402FR-074K7L",
+      "designator": "X197001"
+    },
+    {
+      "comment": "FX8C-80S-SV5(92)",
+      "designator": "X031001"
+    },
+    {
+      "comment": "AS02404PO",
+      "designator": "X094001"
+    },
+    {
+      "comment": "SN74LVC1G08DCKR",
+      "designator": "X122001,X122002,X122003,X122004"
+    },
+    {
+      "comment": "SA518",
+      "designator": "X084001"
+    },
+    {
+      "comment": "TLV1824PWR",
+      "designator": "X136001,X136002"
+    },
+    {
+      "comment": "1227-J",
+      "designator": "X012001"
+    },
+    {
+      "comment": "RC0402FR-07100RL",
+      "designator": "X170001,X170002,X170003,X170004,X170005,X170006,X170007"
+    },
+    {
+      "comment": "1125R-SMT-4P",
+      "designator": "X101001"
+    },
+    {
+      "comment": "SC1512-A4",
+      "designator": "X096001"
+    },
+    {
+      "comment": "GJM1555C1H101JB01D",
+      "designator": "X046001,X046002"
+    },
+    {
+      "comment": "RFPC-SMA32-FN-175-A",
+      "designator": "X024001,X024002"
+    },
+    {
+      "comment": "B0310J50100AHF",
+      "designator": "X158001"
+    },
+    {
+      "comment": "TLV1821DCKR",
+      "designator": "X135001"
+    },
+    {
+      "comment": "MSPM0C1106SDGS20R",
+      "designator": "X118001,X118002"
+    },
+    {
+      "comment": "U214 Cap LoRa-1262",
+      "designator": "X043001"
+    },
+    {
+      "comment": "SN74LVC1G07DCKR",
+      "designator": "X121001,X121002,X121003,X121004,X121005,X121006,X121007,X121008,X121009,X121010"
+    },
+    {
+      "comment": "2118651-2",
+      "designator": "X115001,X115002,X115003,X115004,X115005"
+    }
+  ]
+}
+

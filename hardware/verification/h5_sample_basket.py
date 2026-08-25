@@ -206,10 +206,10 @@ def build() -> dict:
             ],
             "prepared_request": "hardware/procurement/SA518-sample-rfq.md",
             "direct_request_status": "deferred while JLCPCB global-sourcing/new-part routing is audited",
-            "next_action": "map SA518 and every other outlier into the selected JLCPCB Standard PCBA sourcing model before any direct supplier request",
+            "next_action": "qualify SA518 and the other 32 BOM Tool outliers into the selected JLCPCB Standard PCBA sourcing model before any direct supplier request",
         },
         "sequencing": {
-            "now": "complete the JLCPCB Standard PCBA mapping for all 209 production-BOM lines; keep H5.0.3 current",
+            "now": "qualify the 33 explicit JLCPCB BOM Tool outliers after 176/209 lines and all 1019 placements parsed; keep H5.0.3 current",
             "after_mapping": "route SA518 through JLCPCB global sourcing/new-part request first; use the prepared direct NiceRF request only if the platform route cannot close technical identity",
             "after_quote": "publish exact whole-basket cost and request a separate sample-order decision",
             "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",
@@ -280,13 +280,13 @@ def render_doc(data: dict, russian: bool) -> str:
 
 [English](component-sample-basket.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Предыдущий поиск](component-source-research.ru.md)
 
-Корзина опубликована, но **H5.0.3 ещё не закрыт**: [JLCPCB Standard PCBA выбран рабочей производственной линией](manufacturing-platform.ru.md), и теперь вся production BOM сопоставляется с её stock/pre-order/global-sourcing маршрутами. `NiceRF SA518` остаётся единственной неизвестной ценой корзины, но прямой запрос производителю отложен до проверки sourcing через площадку. Закупка, BOM upload, PCB placement/routing и fabrication не разрешены.
+Корзина опубликована, но **H5.0.3 ещё не закрыт**: [JLCPCB Standard PCBA выбран рабочей производственной линией](manufacturing-platform.ru.md); контрольный BOM Tool прогон сопоставил 176/209 строк, распознал все 1019 установок и оставил 33 явных outlier. `NiceRF SA518` остаётся единственной неизвестной ценой корзины, но прямой запрос производителю отложен до проверки sourcing через площадку. Минимальный BOM upload завершён; закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication не разрешены.
 
 ```mermaid
 flowchart LR
   R["✅ H5.0.2<br/>источники и замены"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
-  B --> P["JLCPCB Standard<br/>10/209 critical/BOM"]
-  P --> Q["полный J0–J4 mapping<br/>и platform sourcing"]
+  B --> P["JLCPCB Standard<br/>176/209 · 1019/1019"]
+  P --> Q["квалифицировать 33 outlier<br/>в J0–J4"]
   Q --> A["отдельное решение<br/>о закупке образцов"]
   A --> H51["H5.1<br/>incoming inspection"]
   H51 --> H52["H5.2<br/>coupons по реальным размерам"]
@@ -322,13 +322,13 @@ flowchart LR
 
 [Русский](component-sample-basket.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Previous research](component-source-research.md)
 
-The basket is published, but **H5.0.3 is not yet reviewed**: [JLCPCB Standard PCBA is now the manufacturing reference](manufacturing-platform.md), and the whole production BOM is being mapped to its stock/pre-order/global-sourcing routes. `NiceRF SA518` remains the basket's only unpriced line, but direct manufacturer contact is deferred until the platform sourcing path is checked. Purchase, BOM upload, PCB placement/routing and fabrication are not authorized.
+The basket is published, but **H5.0.3 is not yet reviewed**: [JLCPCB Standard PCBA is now the manufacturing reference](manufacturing-platform.md); its controlled BOM Tool run matched 176/209 lines, parsed all 1019 placements and left 33 explicit outliers. `NiceRF SA518` remains the basket's only unpriced line, but direct manufacturer contact is deferred until the platform sourcing path is checked. The minimum BOM upload is complete; purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication are not authorized.
 
 ```mermaid
 flowchart LR
   R["✅ H5.0.2<br/>sources + replacements"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
-  B --> P["JLCPCB Standard<br/>10/209 critical/BOM"]
-  P --> Q["complete J0–J4 mapping<br/>and platform sourcing"]
+  B --> P["JLCPCB Standard<br/>176/209 · 1019/1019"]
+  P --> Q["qualify 33 outliers<br/>into J0–J4"]
   Q --> A["separate sample-order<br/>decision"]
   A --> H51["H5.1<br/>incoming inspection"]
   H51 --> H52["H5.2<br/>coupons from real dimensions"]

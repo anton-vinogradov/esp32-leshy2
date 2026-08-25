@@ -27,9 +27,56 @@ flowchart TD
 
 Ни одна площадка не гарантирует вечный публичный остаток. Для Leshy2 это означает: обычные детали выбираются из JLC stock или имеют заранее квалифицированные замены; уникальные функциональные MPN резервируются в private library через [pre-order](https://jlcpcb.com/help/article/how-to-build-your-own-parts-library-in-jlcpcb) или поступают через global sourcing/consignment. Недостаток stock никогда не разрешает фабрике молчаливую замену.
 
-## Первая проверка критических деталей
+## Контрольный BOM Tool прогон
 
-Проверено `10` из `209` exact BOM lines; это старт полного аудита, а не полный assembly quote.
+Нормализованный BOM принят и обработан для расчётного тиража 5 плат. JLCPCB сопоставил `176` из `209` уникальных строк: `135` public-stock и `41` pre-order; `33` строк остались явными outliers. Все `1019` установок распознаны. Два написания Panasonic отличаются только дефисами; семантических подмен MPN — ноль.
+
+Показываемая BOM Tool сумма `$1255.6365` — сумма рекомендованных заказных количеств только для 176 найденных строк, включая справочные pre-order цены. Это **не** полная цена сборки, не quote и не заказ.
+
+<details>
+<summary>33 строки, требующие локальной квалификации</summary>
+
+| Нормализованный MPN | Кол-во | Следующее доказательство |
+|---|---:|---|
+| `1227-J` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `E01-ML01IPX` | 3 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `ESP32-C5-WROOM-1U-N8R8` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `RFPC-SMA31-FN-175-A` | 7 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `RFPC-SMA32-FN-175-A` | 2 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `FX8C-80S-SV5(92)` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `BGS13SN8E6327XTSA1` | 2 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `U214 Cap LoRa-1262` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `GJM1555C1H101JB01D` | 2 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `PESD24VY1BSF` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `SA518` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `AS02404PO` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `HMX035CTFT-001` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `SC1512-A4` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `1125R-SMT-4P` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `2118651-2` | 5 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `MSPM0C1106SDGS20R` | 2 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `SN74LVC1G07DCKR` | 10 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `SN74LVC1G08DCKR` | 4 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `SN74LVC1G17DCKR` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `TCA9539PWR` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `TLV1821DCKR` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `TLV1824PWR` | 2 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `TPD2EUSB30ADRTR` | 2 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `TPD4E05U06DQAR` | 13 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `TPUL2G223BQBR` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `B0310J50100AHF` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `TSMP95000TT` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `18650 4000mAh` | 2 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `RC0402FR-07100RL` | 7 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `RC0402FR-071KL` | 12 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `RC0402FR-0733RL` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+| `RC0402FR-074K7L` | 1 | exact search → недеградирующая серийная замена → J2/J3/J4 |
+
+</details>
+
+## Независимая проверка критических деталей
+
+До bulk-прогона отдельно проверены `10` критических идентичностей. Их stock-снимки не заменяют текущий BOM Tool результат и не обещают постоянную доступность.
 
 | MPN | JLC | Сейчас | Маршрут |
 |---|---:|---|---|
@@ -51,8 +98,8 @@ JLCPCB собирает обе платы и принятые SMT/THT-компо
 ## Текущий результат
 
 - JLCPCB Standard PCBA принят как рабочий reference без lock-in.
-- Полный mapping ещё открыт: `199` строк.
+- Bulk mapping закрыт для `176` строк; локальная квалификация открыта для `33` outliers.
 - Прямой RFQ NiceRF отложен: сначала проверяется JLC global sourcing/new-part route.
-- Минимальный BOM upload (только MPN и количество) разрешён, файл подготовлен, но ещё не передан: требуется пользовательский вход в JLCPCB. API application, sourcing request, покупка, замены, KiCad layout и fabrication не разрешены.
+- Минимальный BOM upload передан и обработан; quote, Parts API application, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены.
 
-Машинный результат: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json).
+Машинные результаты: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json) и [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json). [Требования JLCPCB к BOM](https://jlcpcb.com/help/article/bill-of-materials-for-pcb-assembly).

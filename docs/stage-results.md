@@ -208,18 +208,18 @@ all 85 physical residuals still owned by H5/H6/H8.
 <a id="h5"></a>
 ## H5 · Component evidence samples
 
-**Status:** ▶️ current `H5.0.3`; the minimum BOM upload is authorized and
-prepared but awaits user sign-in; purchasing is not authorized.
+**Status:** ▶️ current `H5.0.3`; the controlled BOM Tool run is complete and 33
+explicit outliers remain under local qualification; purchasing is not authorized.
 
 The current [machine plan](../hardware/verification/h5-component-evidence-plan.json)
 records the reviewed H5.0.1 map and H5.0.2 source/replacement research. The
 [H5.0.3 basket](component-sample-basket.md) covers all nine residuals and 14
 mechanical gates with 32 exact article lines and 11 measurement contracts. The
 [PCBA platform baseline](manufacturing-platform.md) selects JLCPCB Standard as
-the non-exclusive reference and maps 10 critical lines of the 209-line
-production BOM to `J0`–`J4`; the remaining 199 lines keep H5.0.3 open. The
-minimum upload has not yet been transmitted; replacement and purchase are not
-authorized. This is not a production order.
+the non-exclusive reference. The normalized compact upload matched 176 of 209
+lines and parsed all 1019 placements; 33 explicit outliers keep H5.0.3 open.
+No semantic MPN substitution was observed. Replacement, quote/reservation and
+purchase are not authorized. This is not a production order.
 
 <a id="h6"></a>
 ## H6 · PCB placement and routing

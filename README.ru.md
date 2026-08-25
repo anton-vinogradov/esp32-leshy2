@@ -13,10 +13,9 @@
 </div>
 
 > **Сейчас: H5.0.3 · [аудит PCBA-площадки](docs/manufacturing-platform.ru.md).**
-> JLCPCB Standard PCBA выбран неэксклюзивным ориентиром; 10 критических строк
-> production BOM из 209 связаны с точными маршрутами поставки. Минимальный
-> upload из MPN и количества подготовлен и ожидает пользовательского входа;
-> закупка, замены компонентов, PCB routing и печать заблокированы.
+> JLCPCB Standard PCBA выбран неэксклюзивным ориентиром. Контрольный BOM Tool
+> прогон сопоставил 176/209 строк, распознал все 1019 установок и оставил 33
+> явных outlier. Закупка, замены компонентов, PCB routing и печать заблокированы.
 
 <div align="center">
 
@@ -124,21 +123,20 @@ safety-автоматику.
 покрывает все девять residuals и 14 mechanical gates: 32 точные article line и
 11 измерительных контрактов. JLCPCB Standard PCBA теперь
 [неэксклюзивный производственный ориентир](docs/manufacturing-platform.ru.md):
-10 критических строк production BOM из 209 связаны с `J0`–`J4`, а аудит
-оставшихся 199 строк — текущая работа. Минимальный upload разрешён и подготовлен,
-но ожидает пользовательского входа. Физические evidence, PCB layout, замены
-компонентов и любые заказы не разрешены.
+нормализованный compact BOM сопоставил 176 строк из 209, все 1019 установок
+распознаны, а 33 outlier проходят локальную квалификацию. Семантических подмен
+MPN не обнаружено. Физические evidence, PCB layout, замены компонентов,
+quote/reservation и любые заказы не разрешены.
 
 <details open>
 <summary><strong>Текущее сокращение evidence H5 — точная детальная позиция</strong></summary>
 
 <!-- current-substep: H5.0.3 -->
 
-**Точный маркер: `H5.0.3`** — корзина и измерения опубликованы; завершить
-[карту поставки всех 209 строк через JLCPCB](docs/manufacturing-platform.ru.md),
-затем провести outliers через exact-part pre-order, global sourcing или final
-assembly. Минимальный upload ожидает пользовательского входа; замены и закупка
-не разрешены.
+**Точный маркер: `H5.0.3`** — корзина и измерения опубликованы; квалифицировать
+[33 JLCPCB-outlier](docs/manufacturing-platform.ru.md) через exact public search,
+недеградирующую серийную замену, exact-part pre-order/global sourcing или final
+assembly. Замены, quote/reservation и закупка не разрешены.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 048 схемных строк.
@@ -254,7 +252,7 @@ assembly. Минимальный upload ожидает пользователь�
 - ✅ `H4.3` — [объединённый pre-layout gate проведён](docs/h4-prelayout-gate-report.ru.md).
 - ✅ `H5.0.1` — [девять residuals и 14 механических gate’ов связаны](docs/component-evidence-map.ru.md) с точными выбранными identities, недостающими данными и pass rules.
 - ✅ `H5.0.2` — [поиск первичных источников и серийных альтернатив проведён](docs/component-source-research.ru.md); два selection gap теперь имеют четыре точных серийных SKU.
-- ▶️ **`H5.0.3` — сейчас:** [JLCPCB Standard PCBA выбран неэксклюзивным ориентиром](docs/manufacturing-platform.ru.md); сопоставлены 10/209 critical/BOM-строк, полный аудит `J0`–`J4` открыт.
+- ▶️ **`H5.0.3` — сейчас:** [JLCPCB Standard PCBA выбран неэксклюзивным ориентиром](docs/manufacturing-platform.ru.md); 176/209 строк и все 1019 установок распознаны, открыты 33 явных outlier.
 
 Проверенный план H2 — [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json),
 завершённые H3/H4 — [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json)

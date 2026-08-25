@@ -1094,10 +1094,10 @@
     ],
     "prepared_request": "hardware/procurement/SA518-sample-rfq.md",
     "direct_request_status": "deferred while JLCPCB global-sourcing/new-part routing is audited",
-    "next_action": "map SA518 and every other outlier into the selected JLCPCB Standard PCBA sourcing model before any direct supplier request"
+    "next_action": "qualify SA518 and the other 32 BOM Tool outliers into the selected JLCPCB Standard PCBA sourcing model before any direct supplier request"
   },
   "sequencing": {
-    "now": "complete the JLCPCB Standard PCBA mapping for all 209 production-BOM lines; keep H5.0.3 current",
+    "now": "qualify the 33 explicit JLCPCB BOM Tool outliers after 176/209 lines and all 1019 placements parsed; keep H5.0.3 current",
     "after_mapping": "route SA518 through JLCPCB global sourcing/new-part request first; use the prepared direct NiceRF request only if the platform route cannot close technical identity",
     "after_quote": "publish exact whole-basket cost and request a separate sample-order decision",
     "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",

@@ -361,7 +361,7 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual("H5-EVR04", evidence["artifact"])
         self.assertEqual("H5.0.3", evidence["stage"])
-        self.assertEqual("reference_selected_full_bom_audit_open", evidence["status"])
+        self.assertEqual("reference_selected_33_platform_outliers_open", evidence["status"])
         self.assertEqual("JLCPCB Standard PCBA", evidence["decision"]["reference_platform"])
         self.assertFalse(evidence["decision"]["exclusive_lock_in"])
         self.assertEqual(209, evidence["summary"]["target_bom_lines"])
@@ -370,15 +370,31 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(2, evidence["summary"]["preorder_reservation"])
         self.assertEqual(2, evidence["summary"]["global_sourcing_or_consignment"])
         self.assertEqual(1, evidence["summary"]["post_pcba_final_assembly"])
-        self.assertEqual(199, evidence["summary"]["full_bom_lines_pending_mapping"])
+        self.assertEqual(176, evidence["summary"]["bom_tool_exact_or_punctuation_equivalent_matches"])
+        self.assertEqual(135, evidence["summary"]["bom_tool_public_stock_lines"])
+        self.assertEqual(41, evidence["summary"]["bom_tool_preorder_lines"])
+        self.assertEqual(33, evidence["summary"]["bom_tool_unmatched_lines"])
+        self.assertEqual(1019, evidence["summary"]["target_placements_parsed"])
+        self.assertEqual(33, evidence["summary"]["full_bom_lines_pending_mapping"])
         self.assertTrue(all(evidence["checks"].values()))
         self.assertIn("component replacement", evidence["next"]["forbidden"])
         self.assertIn("purchase", evidence["next"]["forbidden"])
         self.assertTrue(evidence["checks"]["minimum_bom_upload_authorized_by_user"])
-        self.assertTrue(evidence["checks"]["minimum_bom_not_yet_transmitted"])
-        self.assertFalse(evidence["bom_tool_upload"]["transmitted"])
+        self.assertTrue(
+            evidence["checks"]["first_minimum_bom_upload_was_transmitted_and_parse_failed"]
+        )
+        self.assertTrue(evidence["checks"]["normalized_compact_bom_was_transmitted_and_processed"])
+        self.assertTrue(evidence["bom_tool_upload"]["transmitted"])
+        self.assertTrue(evidence["bom_tool_upload"]["processed"])
         self.assertEqual(
-            ["Manufacturer Part Number", "Quantity"],
+            [
+                "Comment",
+                "Designator",
+                "Footprint",
+                "Quantity",
+                "Manufacturer Part Number",
+                "LCSC Part #",
+            ],
             evidence["bom_tool_upload"]["columns"],
         )
         with (REPO_ROOT / "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv").open(
@@ -386,18 +402,43 @@ class ProductSiteTests(unittest.TestCase):
         ) as handle:
             upload_rows = list(csv.DictReader(handle))
         self.assertEqual(
-            ["Manufacturer Part Number", "Quantity"],
+            [
+                "Comment",
+                "Designator",
+                "Footprint",
+                "Quantity",
+                "Manufacturer Part Number",
+                "LCSC Part #",
+            ],
             list(upload_rows[0]),
         )
         self.assertEqual(209, len(upload_rows))
         self.assertTrue(all(row["Manufacturer Part Number"] for row in upload_rows))
         self.assertTrue(all(int(row["Quantity"]) > 0 for row in upload_rows))
+        self.assertTrue(all(row["Footprint"] == "TBD" for row in upload_rows))
+        self.assertTrue(all(row["Designator"].startswith("X") for row in upload_rows))
+        self.assertTrue(all(len(row["Designator"]) < 2000 for row in upload_rows))
+        match = json.loads(
+            self.read("hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json")
+        )
+        self.assertEqual("H5-EVR05", match["artifact"])
+        self.assertEqual(176, match["summary"]["matched_lines"])
+        self.assertEqual(33, match["summary"]["unmatched_lines"])
+        self.assertEqual(1019, match["summary"]["parsed_placements"])
+        self.assertEqual(2, match["summary"]["strict_text_variants"])
+        self.assertEqual(0, match["summary"]["semantic_mpn_mismatches"])
+        self.assertEqual(209, len(match["routes"]))
+        self.assertTrue(all(route["designators_complete"] for route in match["routes"]))
+        self.assertTrue(all(match["checks"].values()))
         for name in ("docs/manufacturing-platform.md", "docs/manufacturing-platform.ru.md"):
             page = self.read(name)
             self.assertEqual(1, page.count("```mermaid"), name)
             self.assertIn("JLCPCB", page, name)
             self.assertIn("209", page, name)
             self.assertIn("H5-EVR04", page, name)
+            self.assertIn("H5-EVR05", page, name)
+            self.assertIn("176", page, name)
+            self.assertIn("33", page, name)
 
     def test_hardware_stages_are_strictly_sequential(self):
         import json
@@ -770,10 +811,10 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][1]["status"])
         self.assertEqual("current", h5_plan["substeps"][0]["children"][2]["status"])
         self.assertEqual(
-            "draft_full_platform_bom_mapping_open",
+            "draft_33_platform_outliers_open",
             h5_plan["current_artifacts"]["H5.0.3"]["status"],
         )
-        self.assertEqual("H5-BLK-JLC-BOM-IMPORT", h5_plan["blocker"]["id"])
+        self.assertEqual("H5-BLK-JLC-33-OUTLIERS", h5_plan["blocker"]["id"])
         self.assertFalse(h5_plan["authorization"]["sample_or_component_purchase"])
         self.assertEqual(
             "9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5",
