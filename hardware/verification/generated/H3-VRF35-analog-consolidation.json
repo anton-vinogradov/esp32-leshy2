@@ -3,10 +3,10 @@
   "stage": "H3.3.5",
   "status": "reviewed_analog_corner_consolidation",
   "input_hashes": {
-    "hardware/verification/generated/H3-VRF31-display.json": "35b176744e3e14cdbd35af7e9ea64e5faf17da9fde5b6cad1c8a6d129b12ad79",
-    "hardware/verification/generated/H3-VRF32-audio.json": "029876a507c4ec9cb6fa4126923092dd637b49ca15ad128c4d8dc41aa55e7dd0",
-    "hardware/verification/generated/H3-VRF33-ir.json": "12fd7e3fd4dbd042c3ebbc737dcbdf2db499f8cb3a7e30dd47d8652e3253b5a7",
-    "hardware/verification/generated/H3-VRF34-battery-analog.json": "e5b785ddc58f114079fbac2e32ea90be798fa1402bbff10d8a4637b4c30a5980"
+    "hardware/verification/generated/H3-VRF31-display.json": "263cd6e9384d2a367d7d8d42575a5cfe0d5f1c1564d1a671d701ce42e48c067b",
+    "hardware/verification/generated/H3-VRF32-audio.json": "29ca2cc75831d31ba3f1459def84fa81137271c6c25ea89531be90f28d50e16e",
+    "hardware/verification/generated/H3-VRF33-ir.json": "593f3dc502c247fef8a98acf34ee4eb35f479cac0cc8e3df36ab3504ca3a28f3",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "837abbf32c9b7e8ff16039fb8afe6f5afc59814e5c648304e11711ba6acf8bfb"
   },
   "leaf_summary": {
     "display": {
@@ -79,7 +79,7 @@
       "prove reset/brownout/off ordering, >=10-ms amplifier-enable delay and absence of back-power with codec, voice and main domains independently off"
     ],
     "ir": [
-      "verify received TSOP95238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
+      "verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
       "replay a representative 30-to-60-kHz protocol corpus and measure carrier/count accuracy, robust AGC behavior, range and field of view",
       "measure VSMY14940 current, optical range/alignment, local temperature and IEC 62471 classification through the final enclosure/window",
       "calibrate the VEMD1060 tunnel against the <=2.271-uA paper target and inject missing emitter, ambient leakage, RX crosstalk, stuck carrier, brownout and FAULT_KILL"

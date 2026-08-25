@@ -16,6 +16,7 @@ flowchart LR
 
 - Reference microSD: `SDSQQNR-032G-GN6IA`.
 - M5 interconnect set: `A034-G`, `A034-B`, `A096`.
+- Full-reel-only `TSOP95238TT` is replaced by stocked cut-tape `TSOP75238TT` without a footprint, contact, GPIO or firmware-interface change.
 - A serial `ES3C35P` display donor route is identified; the raw panel still cannot be honestly qualified without a received sample.
 - `TE 2118651-2` is confirmed active and documented; replacement has no demonstrated benefit.
 - The makers of stock `U214` and `E01-ML01IPX` genuinely do not disclose the fitted connector-subpart MPNs.
@@ -30,8 +31,8 @@ flowchart LR
 
 ### `H3-PHY-024` · `ir`
 
-- Outcome: The exact selected IR parts already have primary datasheets; orientation of the received lot and dynamic startup/capture/no-back-power behaviour are assembled-sample properties, not documentary omissions.
-- Sources: existing selected-part primary datasheets in H5-EVR01.
+- Outcome: The full-reel-only TSOP95238TT was replaced by stocked cut-tape TSOP75238TT. It keeps the same 6.8 x 3.0 x 3.2 mm top-view envelope, contact order, 38-kHz AGC2 role and 3.3-V compatibility while widening the supply range and improving nominal range; received orientation and dynamic behaviour remain physical.
+- Sources: [Vishay](https://www.vishay.com/docs/82494/tsop752.pdf), [DigiKey](https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864).
 - Still physical: run the inherited two-channel dynamic fixture on received parts.
 
 ### `H3-PHY-028` · `battery`
@@ -75,6 +76,10 @@ flowchart LR
 - Outcome: TE 2118651-2 remains active, fully documented and stocked by an authorized distributor. No evaluated 30 mm alternative improved its 9 GHz performance and price without changing the selected path; installed bend, strain and retention remain physical.
 - Sources: [TE Connectivity](https://www.te.com/en/product-2118651-2.html), [DigiKey](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824), [Chengdu Ebyte](https://www.ebyte.com/product/47.html), [Chengdu Ebyte](https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf).
 - Still physical: install five exact jumpers and measure bend, strain, retention and RF loss.
+
+## Accepted replacement
+
+- `TSOP75238TT`: accepted as a form/fit/function replacement for `TSOP95238TT`; it retains the top-view envelope, contacts, 38-kHz AGC2 role and 3.3-V operation while being orderable individually.
 
 ## Evaluated and rejected alternatives
 

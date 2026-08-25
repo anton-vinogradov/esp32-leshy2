@@ -81,7 +81,7 @@ def build() -> tuple[dict[Path, str], dict]:
     exact_parts = {
         "c5": "esp32_c5_wroom_1u_n8r8",
         "ir_power_switch": "ti_tps22919_dckr",
-        "ir_demod": "vishay_tsop95238tt",
+        "ir_demod": "vishay_tsop75238tt",
         "ir_carrier": "vishay_tsmp95000tt",
         "ir_return_buffer": "nexperia_74lvc2g126dc_125",
         "ir_emitter": "vishay_vsmy14940",
@@ -319,7 +319,7 @@ def build() -> tuple[dict[Path, str], dict]:
         ],
         "cost_delta_usd_at_100": {"old_resistor": q(old_cost, "0.0000"), "new_resistor": q(new_cost, "0.0000"), "added_input_pulldown": q(pulldown_cost, "0.0000"), "total_delta_per_board": q(new_cost + pulldown_cost - old_cost, "0.0000")},
         "residual_physical_only": [
-            "verify received TSOP95238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
+            "verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
             "replay a representative 30-to-60-kHz protocol corpus and measure carrier/count accuracy, robust AGC behavior, range and field of view",
             "measure VSMY14940 current, optical range/alignment, local temperature and IEC 62471 classification through the final enclosure/window",
             f"calibrate the VEMD1060 tunnel against the <={q(required_photocurrent * d(1000000), '0.001')}-uA paper target and inject missing emitter, ambient leakage, RX crosstalk, stuck carrier, brownout and FAULT_KILL",

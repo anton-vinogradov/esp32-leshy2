@@ -6,14 +6,14 @@
   "purpose": "exhaust primary documentary evidence and fully documented serial alternatives before proposing any received sample",
   "input": {
     "path": "hardware/verification/generated/H5-EVR01-residual-map.json",
-    "sha256": "0cca11df518d41ff90d040bfe3bfcb8daa2edf5bd35013a29048b26c575160ff"
+    "sha256": "87a6ef8e09662376aba45ee393a06d8e8ee37851dd77861166103724e88df5ed"
   },
   "summary": {
     "h5_residuals_researched": 9,
     "mechanical_gates_dispositioned": 14,
     "test_article_categories_selected": 2,
     "exact_test_article_skus_selected": 4,
-    "alternatives_explicitly_evaluated": 2,
+    "alternatives_explicitly_evaluated": 3,
     "physical_claims_closed": 0,
     "orders_authorized": 0
   },
@@ -23,6 +23,12 @@
       "title": "2118651-2 authorized-distributor listing",
       "url": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824",
       "supports": "current authorized-distributor lifecycle, stock and price evidence at review time"
+    },
+    "digikey_tsop75238tt": {
+      "owner": "DigiKey",
+      "title": "TSOP75238TT authorized-distributor listing",
+      "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864",
+      "supports": "current exact-MPN cut-tape stock and quantity-one price evidence at review time"
     },
     "ebyte_cable": {
       "owner": "Chengdu Ebyte",
@@ -107,6 +113,12 @@
       "title": "SDSQQNR-032G-GN6IA distributor page",
       "url": "https://www.tme.com/in/en/details/sdsqqnr-032g-gn6ia/memory-cards/sandisk/",
       "supports": "independent distributor identity for the exact selected reference medium"
+    },
+    "vishay_tsop752": {
+      "owner": "Vishay",
+      "title": "TSOP752 IR receiver modules datasheet",
+      "url": "https://www.vishay.com/docs/82494/tsop752.pdf",
+      "supports": "exact TSOP75238TT electrical limits, 6.8 x 3.0 x 3.2 mm Heimdall top-view envelope, contact order, AGC2 and 38-kHz identity"
     }
   },
   "residuals": [
@@ -129,9 +141,12 @@
       "id": "H3-PHY-024",
       "source_group": "ir",
       "disposition": "irreducible_received_sample",
-      "sources": [],
-      "finding": "The exact selected IR parts already have primary datasheets; orientation of the received lot and dynamic startup/capture/no-back-power behaviour are assembled-sample properties, not documentary omissions.",
-      "finding_ru": "Для выбранных IR-деталей уже есть первичные datasheet; ориентация полученной партии и динамические startup/capture/no-back-power — свойства собранного образца, а не пробел документации.",
+      "sources": [
+        "vishay_tsop752",
+        "digikey_tsop75238tt"
+      ],
+      "finding": "The full-reel-only TSOP95238TT was replaced by stocked cut-tape TSOP75238TT. It keeps the same 6.8 x 3.0 x 3.2 mm top-view envelope, contact order, 38-kHz AGC2 role and 3.3-V compatibility while widening the supply range and improving nominal range; received orientation and dynamic behaviour remain physical.",
+      "finding_ru": "Доступный только полной катушкой TSOP95238TT заменён на складской cut-tape TSOP75238TT. Сохраняются тот же top-view envelope 6,8 x 3,0 x 3,2 мм, порядок контактов, роль 38-кГц AGC2 и совместимость с 3,3 В; диапазон питания расширен, номинальная дальность улучшена. Ориентация партии и динамика остаются физической проверкой.",
       "remaining": "run the inherited two-channel dynamic fixture on received parts",
       "remaining_ru": "прогнать принятую двухканальную динамическую fixture на полученных деталях",
       "physical_claim_closed": false,
@@ -376,6 +391,16 @@
     }
   ],
   "evaluated_alternatives": [
+    {
+      "target": "TSOP95238TT robust 38-kHz IR receiver",
+      "candidate": "TSOP75238TT",
+      "sources": [
+        "vishay_tsop752",
+        "digikey_tsop75238tt"
+      ],
+      "decision": "accepted_form_fit_function_replacement",
+      "reason": "same top-view Heimdall envelope and contacts, same 38-kHz AGC2 function and 3.3-V compatibility, but stocked cut tape instead of a full-reel-only procurement path; no PCB, GPIO or firmware-interface change"
+    },
     {
       "target": "E01-ML01IPX RF feed",
       "candidate": "XC-IPX-SMA-15",

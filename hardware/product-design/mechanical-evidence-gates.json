@@ -101,7 +101,7 @@
       "affected_instances": ["pack_holder", "pack_cell0", "pack_cell1"],
       "evidence_boundary": "The corrected mockup uses the exact 69.7x18.7-mm protected-cell envelopes inside the manufacturer-dimensioned rotated Keystone 1048P holder.",
       "unknown": "Received insertion force, contact compression, polarity protection, vibration and thermal cycling.",
-      "closure": "Two accepted cell lots and holder samples pass dimensional, insertion, retention, vibration and thermal tests in H5.",
+      "closure": "One exact holder and one matched same-lot pair of accepted protected cells pass dimensional, insertion, retention, vibration and thermal tests in H5; mixed MPN, lot, age or state of charge remains forbidden.",
       "blocks": ["H8"]
     },
     {

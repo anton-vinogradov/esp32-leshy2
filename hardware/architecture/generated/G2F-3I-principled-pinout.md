@@ -1140,7 +1140,7 @@ flowchart TD
   IR_POWER_OUTPUT_CAP["Murata GRM188R60J106ME47D<br/>IR switched-rail bulk capacitor"]
   IR_POWER_OUTPUT_BYPASS["TDK C1005X7R1H104K050BB<br/>IR switched-rail high-frequency bypass capacitor"]
   IR_POWER_ON_PULLDOWN["Yageo RC0402FR-0710KL<br/>IR receive-rail reset-off resistor"]
-  IR_DEMOD["Vishay TSOP95238TT<br/>38-kHz AGC2 demodulating IR receiver"]
+  IR_DEMOD["Vishay TSOP75238TT<br/>38-kHz AGC2 demodulating IR receiver"]
   IR_DEMOD_SUPPLY_RES["Yageo RC0402FR-07100RL<br/>demodulator 100-Ohm supply-filter resistor"]
   IR_DEMOD_SUPPLY_CAP["Murata GRM188Z71A475ME15D<br/>demodulator 4.7-uF supply-filter capacitor"]
   IR_CARRIER["Vishay TSMP95000TT<br/>30-to-60-kHz carrier-learning IR receiver"]
@@ -3537,11 +3537,11 @@ Reserved: `PA1_NRST`. Free: none.
 | `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_power_output_bypass.END_1` | exact 100-nF high-frequency switched-rail bypass |
 | `POWER_GROUND` | `ir_power_output_bypass.END_2` | `abstract:power-ground` | IR receive bypass return |
 | `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_demod_supply_res.END_1` | separate exact 100-Ohm supply filter prevents one optical receiver from modulating the other |
-| `IR_DEMOD_VS` | `ir_demod_supply_res.END_2` | `ir_demod.VS` | TSOP95238TT physical contact 2 receives the filtered 2.0-to-3.6-V supply |
+| `IR_DEMOD_VS` | `ir_demod_supply_res.END_2` | `ir_demod.VS` | TSOP75238TT physical contact 2 receives the filtered 2.5-to-5.5-V supply |
 | `IR_DEMOD_VS` | `ir_demod.VS` | `ir_demod_supply_cap.END_1` | exact 4.7-uF local receiver filter capacitor |
 | `POWER_GROUND` | `ir_demod_supply_cap.END_2` | `abstract:power-ground` | demodulator filter return stays beside both ground contacts |
-| `POWER_GROUND` | `ir_demod.GND_1` | `abstract:power-ground` | TSOP95238TT physical contact 1 is grounded |
-| `POWER_GROUND` | `ir_demod.GND_4` | `abstract:power-ground` | TSOP95238TT physical contact 4 is independently accounted |
+| `POWER_GROUND` | `ir_demod.GND_1` | `abstract:power-ground` | TSOP75238TT physical contact 1 is grounded |
+| `POWER_GROUND` | `ir_demod.GND_4` | `abstract:power-ground` | TSOP75238TT physical contact 4 is independently accounted |
 | `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_carrier_supply_res.END_1` | separate exact 100-Ohm supply filter follows the TSMP application circuit |
 | `IR_CARRIER_VS` | `ir_carrier_supply_res.END_2` | `ir_carrier.VS` | TSMP95000TT physical contact 2 receives the filtered 2.0-to-5.5-V supply |
 | `IR_CARRIER_VS` | `ir_carrier.VS` | `ir_carrier_supply_cap.END_1` | exact 4.7-uF local filter follows the manufacturer recommendation |
@@ -5505,8 +5505,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `receiver_ami_coupling_cap` uses `Murata GRM155R71A474KE01D` as `verified_exact_si4732_ami_first_target`, not an accepted production choice.
 - `receiver_ami_coupling_cap` lifecycle: `active_orderable`.
 - `ir_power_input_cap` lifecycle: `active_production`.
-- `ir_demod` uses `Vishay TSOP95238TT` as `verified_exact_robust_ir_receiver`, not an accepted production choice.
-- `ir_demod` lifecycle: `active_orderable_factory_lead_time`.
+- `ir_demod` uses `Vishay TSOP75238TT` as `verified_exact_stocked_robust_ir_receiver`, not an accepted production choice.
+- `ir_demod` lifecycle: `active_stocked_orderable`.
 - `ir_demod_supply_cap` uses `Murata GRM188Z71A475ME15D` as `verified_exact_ir_receiver_filter_capacitor`, not an accepted production choice.
 - `ir_demod_supply_cap` lifecycle: `active_stocked_orderable`.
 - `ir_carrier` uses `Vishay TSMP95000TT` as `verified_exact_carrier_learning_ir_receiver`, not an accepted production choice.

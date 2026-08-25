@@ -5171,35 +5171,36 @@
         "CATHODE": {"physical": "datasheet cathode land", "role": "analog"}
       }
     },
-    "vishay_tsop95238tt": {
-      "mpn": "Vishay TSOP95238TT",
+    "vishay_tsop75238tt": {
+      "mpn": "Vishay TSOP75238TT",
       "kind": "heimdall_smd_38khz_agc2_demodulating_ir_receiver",
-      "qualification": "verified_exact_robust_ir_receiver",
-      "lifecycle": "active_orderable_factory_lead_time",
+      "qualification": "verified_exact_stocked_robust_ir_receiver",
+      "lifecycle": "active_stocked_orderable",
       "dimensions_mm": [6.8, 3.0, 3.2],
       "source": {
-        "document": "TSOP952/TSOP954 IR receiver modules datasheet",
-        "version": "Rev. 1.2, 13-Apr-2022",
-        "url": "https://www.vishay.com/docs/82837/tsop952.pdf",
-        "checked": "2026-08-18"
+        "document": "TSOP752 IR receiver modules datasheet",
+        "version": "Rev. 1.6, 06-May-2025",
+        "url": "https://www.vishay.com/docs/82494/tsop752.pdf",
+        "checked": "2026-08-25"
       },
       "orderable_source": {
-        "document": "TSOP95238TT active exact order code; authorized distributor available-to-order with 23-week manufacturer lead time",
-        "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP95238TT/10658191",
-        "checked": "2026-08-18"
+        "document": "TSOP75238TT active exact order code; authorized-distributor cut-tape stock",
+        "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864",
+        "checked": "2026-08-25"
       },
       "cost_gate": {
         "status": "quantity_100_rfq_required",
-        "reason": "The current exact authorized-distributor line publishes only 2200-piece full-reel pricing and no comparable quantity-100 USD tier",
-        "source": {"document": "DigiKey exact-MPN full-reel-only price table", "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP95238TT/10658191", "checked": "2026-08-19"}
+        "reason": "Authorized-distributor cut-tape stock and a USD 1.46 quantity-one engineering-sample price are confirmed; the project quantity-100 comparison remains a later BOM quote gate",
+        "source": {"document": "DigiKey exact-MPN cut-tape listing", "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864", "checked": "2026-08-25"}
       },
       "electrical_contract": {
-        "supply_v": [2.0, 3.6],
+        "supply_v": [2.5, 5.5],
         "carrier_khz": 38,
         "agc": "AGC2",
-        "typical_transmission_distance_m": 25,
+        "typical_transmission_distance_m": 45,
         "output": "active-low demodulated envelope; never carrier-frequency evidence",
-        "taping": "TT top-view tape, 2200 pieces per reel"
+        "taping": "TT top-view tape; cut-tape ordering supported",
+        "replacement_basis": "same 6.8 x 3.0 x 3.2 mm Heimdall top-view envelope and identical contacts as TSOP95238TT; wider supply range, lower typical current and longer typical range at 3.3 V"
       },
       "programmable": false,
       "contacts": {

@@ -3,8 +3,8 @@
   "stage": "H4.3",
   "status": "reviewed_h4_complete",
   "source_hashes": {
-    "hardware/verification/generated/H4-PLG11-joined-review.json": "0ed9bbefe35809e03f5a3245cea78ff7ef999397909f1aef21758290ea2dfe71",
-    "hardware/verification/generated/H4-PLG12-correction-closure.json": "133698956cea8741909806cb7737ccf39b4b1bd0d4fec9c5fe5d8b82aa04813c"
+    "hardware/verification/generated/H4-PLG11-joined-review.json": "b6653556a2421bf59bcdf5a60aadb337bb96a542b68c488d621ffa5436bd8b79",
+    "hardware/verification/generated/H4-PLG12-correction-closure.json": "5f6ac52a80752293df7552f8262f3f4913c0adfff1292e0293f9474a1fdc64b9"
   },
   "acceptance_meaning": [
     "all currently possible H1/H2/H3/F3 cross-domain checks are joined and reproducible",

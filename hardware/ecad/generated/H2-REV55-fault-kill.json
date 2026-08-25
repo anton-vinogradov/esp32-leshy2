@@ -4,8 +4,8 @@
   "status": "reviewed_watchdog_thermal_fault_and_hardware_shutdown",
   "method": "exact complete-KiCad-netlist membership review from physical RUN/KILL and watchdog through latch, reset/gate fan-out, thermal/evidence sensing and diagnostic pads",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "5a3a7bf0f92ce4a23ea932591460a1ae4621bbfa39cef6ed6d49f124b3da8f7a",
-    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
+    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
+    "hardware/ecad/generated/H2-instance-ledger.json": "1c06ac58503e62b22c6fea1b084d297b85e1190547e305187969a414418223c2",
     "hardware/ecad/H2-sheet-contract.json": "a37128516052981f243fdca14134bbb5e68def8af75aea709c504eeb52f18ec3",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "95c3549487207b2c805663bd6e9be7ff251a116a64f9820d32e60f714e2232fc",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "7079f94dceeef0ed9a569fc2a13f53af125e26c57f6b455bfe2d3b6e5edaca51"

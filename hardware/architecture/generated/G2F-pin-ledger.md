@@ -187,7 +187,7 @@
 | `vishay_tnpw040210k0beed` | `Vishay TNPW040210K0BEED` | `verified_exact_precision_main_feedback_resistor` | `active_orderable` | [Vishay TNPW e3 high-stability thin-film resistor datasheet Document 28758, revision 10-Apr-2026](https://www.vishay.com/docs/28758/tnpw_e3.pdf) | same primary source |
 | `vishay_tnpw040243k7beed` | `Vishay TNPW040243K7BEED` | `verified_exact_precision_main_feedback_resistor` | `active_orderable` | [Vishay TNPW e3 high-stability thin-film resistor datasheet Document 28758, revision 10-Apr-2026](https://www.vishay.com/docs/28758/tnpw_e3.pdf) | same primary source |
 | `vishay_tsmp95000tt` | `Vishay TSMP95000TT` | `verified_exact_carrier_learning_ir_receiver` | `active_stocked_orderable` | [TSMP95000 IR sensor module datasheet Rev. 1.0, 20-Oct-2022](https://www.vishay.com/docs/82907/tsmp95000.pdf) | same primary source |
-| `vishay_tsop95238tt` | `Vishay TSOP95238TT` | `verified_exact_robust_ir_receiver` | `active_orderable_factory_lead_time` | [TSOP952/TSOP954 IR receiver modules datasheet Rev. 1.2, 13-Apr-2022](https://www.vishay.com/docs/82837/tsop952.pdf) | same primary source |
+| `vishay_tsop75238tt` | `Vishay TSOP75238TT` | `verified_exact_stocked_robust_ir_receiver` | `active_stocked_orderable` | [TSOP752 IR receiver modules datasheet Rev. 1.6, 06-May-2025](https://www.vishay.com/docs/82494/tsop752.pdf) | same primary source |
 | `vishay_vemd1060x01` | `VEMD1060X01` | `verified_exact_ir_actual_optical_evidence_sensor` | `active` | [VEMD1060X01 Silicon PIN Photodiode datasheet Rev. 1.1](https://www.vishay.com/docs/84295/vemd1060x01.pdf) | same primary source |
 | `vishay_vsmy14940` | `Vishay VSMY14940` | `verified_exact_consumer_ir_transmit_emitter` | `active_stocked_orderable` | [VSMY14940 high-speed infrared emitter datasheet Rev. 1.6, 22-Sep-2017](https://www.vishay.com/docs/84209/vsmy14940.pdf) | same primary source |
 | `vishay_wsl25125l000fea` | `Vishay WSL25125L000FEA` | `verified_candidate` | `active` | [WSL power metal strip resistor datasheet current product data checked 2026-08-18](https://www.vishay.com/docs/30108/wsl.pdf) | same primary source |
@@ -2009,11 +2009,11 @@ Reserved: `PA1_NRST`. Free: none.
 | `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_power_output_bypass.END_1` | exact 100-nF high-frequency switched-rail bypass |
 | `POWER_GROUND` | `ir_power_output_bypass.END_2` | `abstract:power-ground` | IR receive bypass return |
 | `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_demod_supply_res.END_1` | separate exact 100-Ohm supply filter prevents one optical receiver from modulating the other |
-| `IR_DEMOD_VS` | `ir_demod_supply_res.END_2` | `ir_demod.VS` | TSOP95238TT physical contact 2 receives the filtered 2.0-to-3.6-V supply |
+| `IR_DEMOD_VS` | `ir_demod_supply_res.END_2` | `ir_demod.VS` | TSOP75238TT physical contact 2 receives the filtered 2.5-to-5.5-V supply |
 | `IR_DEMOD_VS` | `ir_demod.VS` | `ir_demod_supply_cap.END_1` | exact 4.7-uF local receiver filter capacitor |
 | `POWER_GROUND` | `ir_demod_supply_cap.END_2` | `abstract:power-ground` | demodulator filter return stays beside both ground contacts |
-| `POWER_GROUND` | `ir_demod.GND_1` | `abstract:power-ground` | TSOP95238TT physical contact 1 is grounded |
-| `POWER_GROUND` | `ir_demod.GND_4` | `abstract:power-ground` | TSOP95238TT physical contact 4 is independently accounted |
+| `POWER_GROUND` | `ir_demod.GND_1` | `abstract:power-ground` | TSOP75238TT physical contact 1 is grounded |
+| `POWER_GROUND` | `ir_demod.GND_4` | `abstract:power-ground` | TSOP75238TT physical contact 4 is independently accounted |
 | `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_carrier_supply_res.END_1` | separate exact 100-Ohm supply filter follows the TSMP application circuit |
 | `IR_CARRIER_VS` | `ir_carrier_supply_res.END_2` | `ir_carrier.VS` | TSMP95000TT physical contact 2 receives the filtered 2.0-to-5.5-V supply |
 | `IR_CARRIER_VS` | `ir_carrier.VS` | `ir_carrier_supply_cap.END_1` | exact 4.7-uF local filter follows the manufacturer recommendation |
@@ -3977,8 +3977,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `receiver_ami_coupling_cap` uses `Murata GRM155R71A474KE01D` as `verified_exact_si4732_ami_first_target`, not an accepted production choice.
 - `receiver_ami_coupling_cap` lifecycle: `active_orderable`.
 - `ir_power_input_cap` lifecycle: `active_production`.
-- `ir_demod` uses `Vishay TSOP95238TT` as `verified_exact_robust_ir_receiver`, not an accepted production choice.
-- `ir_demod` lifecycle: `active_orderable_factory_lead_time`.
+- `ir_demod` uses `Vishay TSOP75238TT` as `verified_exact_stocked_robust_ir_receiver`, not an accepted production choice.
+- `ir_demod` lifecycle: `active_stocked_orderable`.
 - `ir_demod_supply_cap` uses `Murata GRM188Z71A475ME15D` as `verified_exact_ir_receiver_filter_capacitor`, not an accepted production choice.
 - `ir_demod_supply_cap` lifecycle: `active_stocked_orderable`.
 - `ir_carrier` uses `Vishay TSMP95000TT` as `verified_exact_carrier_learning_ir_receiver`, not an accepted production choice.

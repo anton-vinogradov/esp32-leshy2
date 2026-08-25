@@ -361,7 +361,7 @@ def build() -> tuple[dict[Path, str], dict]:
             {"mpn": devices[key]["mpn"], "footprint": footprint, "source": devices[key]["source"]}
             for key, footprint in (
                 ("esp32_c5_wroom_1u_n8r8", "Leshy2:ESP32-C5-WROOM-1U"),
-                ("vishay_tsop95238tt", "Leshy2:Vishay-Heimdall-SMD-TT"),
+                ("vishay_tsop75238tt", "Leshy2:Vishay-Heimdall-SMD-TT"),
                 ("vishay_tsmp95000tt", "Leshy2:Vishay-Heimdall-SMD-TT"),
                 ("vishay_vsmy14940", "Leshy2:VSMY14940"),
                 ("gct_usb4105_gf_a", "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal"),

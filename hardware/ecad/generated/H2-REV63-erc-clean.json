@@ -14,7 +14,7 @@
     "hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch": "6b728d4f603405b51cf67ac6f5019ef2a48ae7e3e2c98b0f9fa918e33394273e",
     "hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch": "eb43e17113fda9f8daebe0a7c7edcb6d38576a19c6ab01a5e00f18d82db1ca15",
     "hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch": "3a035139b5999406a01f4d31b3bd0ecc40ec6379fca167dd20da28100788d7e6",
-    "hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch": "393dcf46bb148d06e225b5e49480f106bb76291b1ca61c2f650ceb893e72e407",
+    "hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch": "4b7aa988588d098cb70346c6329782ac21c3e0eac220e30acad7ad0988d5f7ae",
     "hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch": "8d3a9c3cb2e54d240715f33a1921274cb63309ef6f7bc069fd8b1c8c51d97031",
     "hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch": "a93043339592d7508e4e2092d9e22c2fdefa5e0a1e96e1e0be7b36113336bf01",
     "hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch": "ed9629baea11d2ea2086afb23136df9d7439f7a8daebc35e992805ab750cfa40",
@@ -41,7 +41,7 @@
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_pro": "a38d2ae6ec8a9459cc66d6ca17792208314efced730a29847c7e2011131a486a",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch": "9dc3755f2e8b625b4bd68d28cbd153f50ebf12e567d8270598277a041d8187a3",
     "hardware/ecad/libraries/leshy2.kicad_sym": "69a7d384ac20a5f2efe27125faf36ba170ed3c57736f246ac9d3f56b74113846",
-    "hardware/ecad/generated/H2-REV62-no-connects.json": "51cdae413ffe4a94d35862f34e66f9756e7463bfd65c88896b62c5bb47773aa7"
+    "hardware/ecad/generated/H2-REV62-no-connects.json": "1a28466f24e5a6b5e94d947caf371cc8556c000362f27bca6330fb21fc020912"
   },
   "projects": [
     {

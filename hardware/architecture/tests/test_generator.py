@@ -1046,7 +1046,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Panasonic ERJ-2RKF22R0X<br/>22-Ohm card-MISO buffer source-series resistor",
             "Yageo RC0603FR-071KL<br/>1-kOhm card-detect input series resistor",
             "TDK C1005X7R1H104K050BB<br/>100-nF card-detect hardware filter capacitor",
-            "Vishay TSOP95238TT<br/>38-kHz AGC2 demodulating IR receiver",
+            "Vishay TSOP75238TT<br/>38-kHz AGC2 demodulating IR receiver",
             "Vishay TSMP95000TT<br/>30-to-60-kHz carrier-learning IR receiver",
             "Vishay VSMY14940<br/>side-view 940-nm consumer IR transmit emitter",
             "TLV9061IDBVR<br/>AON physical-optical transimpedance amplifier",
@@ -2646,7 +2646,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("never authorizes TX", contract["actual_optical_evidence"])
 
         required = {
-            "ir_demod": "vishay_tsop95238tt",
+            "ir_demod": "vishay_tsop75238tt",
             "ir_carrier": "vishay_tsmp95000tt",
             "ir_return_buffer": "nexperia_74lvc2g126dc_125",
             "ir_emitter": "vishay_vsmy14940",
@@ -2701,7 +2701,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("P05", candidate["contact_accounting"]["slow_io"]["used"])
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for token in (
-            "TSOP95238TT<br/>38-kHz AGC2 demodulating IR receiver",
+            "TSOP75238TT<br/>38-kHz AGC2 demodulating IR receiver",
             "TSMP95000TT<br/>30-to-60-kHz carrier-learning IR receiver",
             "VSMY14940<br/>side-view 940-nm consumer IR transmit emitter",
             "TLV9061IDBVR<br/>AON physical-optical transimpedance amplifier",

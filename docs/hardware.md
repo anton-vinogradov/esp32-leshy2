@@ -45,7 +45,7 @@ later because Espressif does not support SDIO on revision v0.1.
 | Sub-GHz | `CC1101RGPR` | RP2354B | 315, 433, 868 and 915 MHz |
 | Broadcast RX | `Si4732-A10-GSR` | S3 | FM/SW plus a separate AM/LW input |
 | Voice | `NiceRF SA518` | RP2354B | Analog VHF/UHF communications |
-| IR RX | `TSOP95238TT` + `TSMP95000TT` | C5 | 38-kHz demodulation and 30–60-kHz learning |
+| IR RX | `TSOP75238TT` + `TSMP95000TT` | C5 | 38-kHz demodulation and 30–60-kHz learning |
 | IR TX | `VSMY14940` | C5 | Controlled 940-nm transmit with optical evidence |
 | LoRa/GNSS Cap | `M5Stack U214 Cap LoRa-1262` or `LESHY2-LORA-CAP-01-EU868/US915` | RP2354B | Stock Cap: RX/GNSS; exact Leshy Cap: qualified regional RX/TX |
 | External antenna jacks | `7× GCT RFPC-SMA31-FN-175-A` + `2× GCT RFPC-SMA32-FN-175-A` | Dedicated per path | 6-GHz, 50-ohm board-edge SMA/RP-SMA on the two outward PCB faces; no RF sharing or connector bodies in the interboard channel |

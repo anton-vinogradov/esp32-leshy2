@@ -130,7 +130,7 @@
           "equivalence_envelope": ["same exposed real-device contacts, package/mechanics, memory/resources and independent programming/recovery", "all accepted bands, modes, full nRF concurrency, timing, sensitivity, power, evidence and quiet-state controls preserved", "regulatory/profile and toolchain support no worse"],
           "requalification": ["zero-based pin/resource/owner and firmware contract review", "programming/recovery/diagnostic and inter-domain IPC HIL", "conducted/OTA/optical/audio/coexistence/no-stall qualification for every affected group"],
           "device_ids": [
-            "adi_ad8314acpz_rl7", "adi_ltc5532_es6_trmpbf", "cc1101rgpr", "ebyte_e01_ml01ipx", "esp32_c5_wroom_1u_n8r8", "esp32_s3_wroom_1u_n16r8", "infineon_bgs13sn8e6327xtsa1", "m5_u214", "nicerf_sa518_v11", "rp2354b_a4", "skyworks_si4732_a10_gsr", "vishay_tsmp95000tt", "vishay_tsop95238tt", "vishay_vemd1060x01", "vishay_vsmy14940"
+            "adi_ad8314acpz_rl7", "adi_ltc5532_es6_trmpbf", "cc1101rgpr", "ebyte_e01_ml01ipx", "esp32_c5_wroom_1u_n8r8", "esp32_s3_wroom_1u_n16r8", "infineon_bgs13sn8e6327xtsa1", "m5_u214", "nicerf_sa518_v11", "rp2354b_a4", "skyworks_si4732_a10_gsr", "vishay_tsmp95000tt", "vishay_tsop75238tt", "vishay_vemd1060x01", "vishay_vsmy14940"
           ]
         },
         {
@@ -329,14 +329,14 @@
     "decision": "DEC-0095",
     "status": "paper_reviewed_exact_dual_receiver_tx_and_actual_optical_evidence_endpoint_hil_open",
     "owner_and_pins": "ESP32-C5-WROOM-1U-N8R8 rev >=v1.2 retains direct RMT RX on GPIO0/GPIO1, frontend power on GPIO4, FAULT_KILL-qualified RMT TX on GPIO6 and active-low optical evidence on GPIO24; no new GPIO or slow-I/O contact is consumed",
-    "robust_receive": "exact TSOP95238TT on a separately filtered switched rail provides only the active-low 38-kHz AGC2 demodulated envelope; it never creates measured carrier provenance",
+    "robust_receive": "exact TSOP75238TT on a separately filtered switched rail provides only the active-low 38-kHz AGC2 demodulated envelope; it never creates measured carrier provenance",
     "carrier_learning": "exact TSMP95000TT on a separately filtered switched rail provides active-low carrier cycles only in its documented 30-60-kHz range; its output has the recommended 4.7-kOhm pull-up and is the only onboard source allowed to label carrier provenance measured",
     "power_and_isolation": "TPS22919DCKR with input/output energy, QOD and 10-kOhm ON pull-down powers only the two receive paths and one 74LVC2G126DC,125 Ioff buffer; two 100-Ohm/4.7-uF local filters suppress supply disturbance, while host-side 10-kOhm pull-ups hold both C5 inputs idle-high without back-power when the rail is off",
     "transmit": "one side-view VSMY14940 is driven from protected 3V3_MAIN by DMN2056U-7 through exact 47-Ohm 1206 current limit; a 100-Ohm gate resistor, independent 10-kOhm carrier-input pull-down, 10-kOhm MOSFET-gate pull-down and UI-board-local AON SN74LVC1G08DCKR qualified by RUN_PERMIT make reset/FAULT_KILL/off states dark without routing the carrier through the rear board",
     "current_bound": "the H3.3.3 corrected 47-Ohm population guarantees at least the VSMY14940 20-mA characterized optical point while bounding the conservative 3.4-V/85-C instantaneous corner to 50.6 mA including resistor tolerance and hot MOSFET resistance; 70 mA remains an absolute maximum, never an operating target. Production permits carrier duty no higher than one third, no mark longer than 20 ms, no more than 25% emitter-on time in rolling 100-ms and 1-s windows, and no IR TX at a local UI temperature of 75 C or above; IEC 62471 and enclosure optical geometry remain measured admission limits",
     "actual_optical_evidence": "VEMD1060X01 in a light-tight internal tunnel views the physical emitter, not drive current; AON TLV9061IDBVR uses 0.30-V nominal reference, 47-kOhm/1-nF transimpedance response and feeds comparator channel IR_OPTICAL; evidence never authorizes TX, missing light revokes TX, and ambient or optical crosstalk can only delay quiet",
     "phase_exclusion": "receive/learn and transmit are separate SG-IR phases; the receive rail stays off during transmit, the emitter stays dark during receive/learn, and the C5 native radio block remains independently quiet",
-    "remaining_hil": ["TSOP95238TT and TSMP95000TT specimen identity, contact orientation, rail discharge, no-back-power and simultaneous two-RX capture", "carrier-frequency accuracy, mark/space reconstruction and corpus compatibility across 30-60 kHz", "VSMY14940 current, range, optical alignment, duty, temperature derating and IEC 62471", "VEMD1060X01 tunnel coupling, comparator threshold, assert/decay, missing-emitter and ambient false-positive behavior", "KILL/FAULT_KILL, reset, brownout and stuck-carrier fault injection", "SG-IR active with every foreign signal group proven quiet, maximum allowed system-plane aggression, emissions and no-interface-stall proof; cross-group optical/RF injection is Laboratory characterization only"]
+    "remaining_hil": ["TSOP75238TT and TSMP95000TT specimen identity, contact orientation, rail discharge, no-back-power and simultaneous two-RX capture", "carrier-frequency accuracy, mark/space reconstruction and corpus compatibility across 30-60 kHz", "VSMY14940 current, range, optical alignment, duty, temperature derating and IEC 62471", "VEMD1060X01 tunnel coupling, comparator threshold, assert/decay, missing-emitter and ambient false-positive behavior", "KILL/FAULT_KILL, reset, brownout and stuck-carrier fault injection", "SG-IR active with every foreign signal group proven quiet, maximum allowed system-plane aggression, emissions and no-interface-stall proof; cross-group optical/RF injection is Laboratory characterization only"]
   },
   "receiver_rf_electrical_contract": {
     "decision": "DEC-0096",
@@ -1882,7 +1882,7 @@
     "ir_power_output_cap": "murata_grm188r60j106me47d",
     "ir_power_output_bypass": "tdk_c1005x7r1h104k050bb",
     "ir_power_on_pulldown": "yageo_rc0402fr_0710kl",
-    "ir_demod": "vishay_tsop95238tt",
+    "ir_demod": "vishay_tsop75238tt",
     "ir_demod_supply_res": "yageo_rc0402fr_07100rl",
     "ir_demod_supply_cap": "murata_grm188z71a475me15d",
     "ir_carrier": "vishay_tsmp95000tt",
@@ -3833,11 +3833,11 @@
     {"from":"ir_power_switch.VOUT","to":"ir_power_output_bypass.END_1","net":"3V3_IR_SWITCHED","safety":"exact 100-nF high-frequency switched-rail bypass"},
     {"from":"ir_power_output_bypass.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"IR receive bypass return"},
     {"from":"ir_power_switch.VOUT","to":"ir_demod_supply_res.END_1","net":"3V3_IR_SWITCHED","safety":"separate exact 100-Ohm supply filter prevents one optical receiver from modulating the other"},
-    {"from":"ir_demod_supply_res.END_2","to":"ir_demod.VS","net":"IR_DEMOD_VS","safety":"TSOP95238TT physical contact 2 receives the filtered 2.0-to-3.6-V supply"},
+    {"from":"ir_demod_supply_res.END_2","to":"ir_demod.VS","net":"IR_DEMOD_VS","safety":"TSOP75238TT physical contact 2 receives the filtered 2.5-to-5.5-V supply"},
     {"from":"ir_demod.VS","to":"ir_demod_supply_cap.END_1","net":"IR_DEMOD_VS","safety":"exact 4.7-uF local receiver filter capacitor"},
     {"from":"ir_demod_supply_cap.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"demodulator filter return stays beside both ground contacts"},
-    {"from":"ir_demod.GND_1","to":"abstract:power-ground","net":"POWER_GROUND","safety":"TSOP95238TT physical contact 1 is grounded"},
-    {"from":"ir_demod.GND_4","to":"abstract:power-ground","net":"POWER_GROUND","safety":"TSOP95238TT physical contact 4 is independently accounted"},
+    {"from":"ir_demod.GND_1","to":"abstract:power-ground","net":"POWER_GROUND","safety":"TSOP75238TT physical contact 1 is grounded"},
+    {"from":"ir_demod.GND_4","to":"abstract:power-ground","net":"POWER_GROUND","safety":"TSOP75238TT physical contact 4 is independently accounted"},
     {"from":"ir_power_switch.VOUT","to":"ir_carrier_supply_res.END_1","net":"3V3_IR_SWITCHED","safety":"separate exact 100-Ohm supply filter follows the TSMP application circuit"},
     {"from":"ir_carrier_supply_res.END_2","to":"ir_carrier.VS","net":"IR_CARRIER_VS","safety":"TSMP95000TT physical contact 2 receives the filtered 2.0-to-5.5-V supply"},
     {"from":"ir_carrier.VS","to":"ir_carrier_supply_cap.END_1","net":"IR_CARRIER_VS","safety":"exact 4.7-uF local filter follows the manufacturer recommendation"},

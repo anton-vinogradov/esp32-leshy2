@@ -4,11 +4,11 @@
   "status": "reviewed_h2_5_independent_safety_paths_closed",
   "method": "consolidation of five independently regenerated, machine-checkable complete-hierarchy review artifacts",
   "source_hashes": {
-    "hardware/ecad/generated/H2-REV51-power-paths.json": "0c3f1262e92fe982aa5bde8101558515fdaebe85e66c3d81d7a4f5083d33ed07",
-    "hardware/ecad/generated/H2-REV52-recovery-paths.json": "a53678ceba6a34cbad17b30d760476433eae6450c1c9c2bc8748d362a68ac0fd",
-    "hardware/ecad/generated/H2-REV53-no-back-power.json": "fed26d09e08defa91d6958bc5edd04eb4078eb91f4c1a3327f313c271b33803d",
-    "hardware/ecad/generated/H2-REV54-quiet-state.json": "3a08790da9af7ac2c98ae8f513f92e2d5c62a2db57517feca3714c0fe5df5644",
-    "hardware/ecad/generated/H2-REV55-fault-kill.json": "2326df15a5013d6cf7af398156cc57a77fc7bf62bc195b89cd1d876b3c3efb1b"
+    "hardware/ecad/generated/H2-REV51-power-paths.json": "ebeebe0ffa9a13aa9558f9cafa999af4761032b7d85c3ff7b9391ac913178398",
+    "hardware/ecad/generated/H2-REV52-recovery-paths.json": "6aad113586865deb07cbd6efb2bfbea1df3c572e2a6b50883f00b119ea2bf4f9",
+    "hardware/ecad/generated/H2-REV53-no-back-power.json": "0d3f19b3d26c9b73c0fc3f529a068d3d04ca3dd3f27e176d807b80ca140bb87a",
+    "hardware/ecad/generated/H2-REV54-quiet-state.json": "14c24a6f777edbdbb24c6106e07a6abbaeb7a7f1ef0d81c9dbbc3942dd9591e2",
+    "hardware/ecad/generated/H2-REV55-fault-kill.json": "7b3bcb5685886882f7742ccda5f770e86974af0c3d3cd04645029667d26cc46f"
   },
   "subreviews": [
     {

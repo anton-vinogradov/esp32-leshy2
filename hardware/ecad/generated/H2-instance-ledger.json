@@ -13217,8 +13217,8 @@
       "instance_uid": "LESHY2-UI:ir_demod",
       "instance": "ir_demod",
       "project": "LESHY2-UI",
-      "device_key": "vishay_tsop95238tt",
-      "mpn": "Vishay TSOP95238TT",
+      "device_key": "vishay_tsop75238tt",
+      "mpn": "Vishay TSOP75238TT",
       "role": "38-kHz IR receiver",
       "board": "ui-control-pcb",
       "sheet": "UI_20_C5_RADIO_IR_SERVICE",
@@ -13231,10 +13231,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "TSOP952/TSOP954 IR receiver modules datasheet",
-        "version": "Rev. 1.2, 13-Apr-2022",
-        "url": "https://www.vishay.com/docs/82837/tsop952.pdf",
-        "checked": "2026-08-18"
+        "document": "TSOP752 IR receiver modules datasheet",
+        "version": "Rev. 1.6, 06-May-2025",
+        "url": "https://www.vishay.com/docs/82494/tsop752.pdf",
+        "checked": "2026-08-25"
       }
     },
     {

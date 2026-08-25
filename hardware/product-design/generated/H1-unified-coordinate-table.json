@@ -281,7 +281,7 @@
       {
         "instance": "ir_demod",
         "frame": "ui-inner",
-        "mpn": "Vishay TSOP95238TT",
+        "mpn": "Vishay TSOP75238TT",
         "height_mm": 3.2,
         "remaining_to_opposite_pcb_plane_mm": 7.8
       },

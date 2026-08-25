@@ -7,10 +7,10 @@
     "interval_corner"
   ],
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "5a3a7bf0f92ce4a23ea932591460a1ae4621bbfa39cef6ed6d49f124b3da8f7a",
-    "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "072e84528e919b1e1f77ab9ee9f45ab7bdc4bdcde7ffb7137c48d2bb48593bff",
-    "hardware/verification/generated/H3-VRF22-handover-brownout.json": "48a79c16120554d5d25c062de0dab6e4269dd6f1fb7a506d1e0e05aa0760e4a2"
+    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
+    "hardware/architecture/devices.json": "b7c9e0a591613e05e2b39fd315e301f6e628464b8cc1e46d983fc67b05204424",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "6dc167646883c397c92f91a051ee1565285fd81c0f540c49c16044b0e42d5f70",
+    "hardware/verification/generated/H3-VRF22-handover-brownout.json": "0e8aa4afa0375d7a184f374b9d38573bef9d3b279deb2bc0539aecee0d048497"
   },
   "provenance": {
     "aon_efuse": "https://www.ti.com/lit/ds/symlink/tps25961.pdf",

@@ -5,10 +5,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_20_C5_RADIO_IR_SERVICE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "5a3a7bf0f92ce4a23ea932591460a1ae4621bbfa39cef6ed6d49f124b3da8f7a",
-    "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
-    "hardware/ecad/generated/H2-instance-ledger.json": "b610b2456683cef7180ce65a7e5a5fb96f13cab47d04d723a53aa091280feaa9",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "d290361ee1e5fe4209607d95a4790ab521cf71b4a451f220b91585769a0ef707"
+    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
+    "hardware/architecture/devices.json": "b7c9e0a591613e05e2b39fd315e301f6e628464b8cc1e46d983fc67b05204424",
+    "hardware/ecad/generated/H2-instance-ledger.json": "1c06ac58503e62b22c6fea1b084d297b85e1190547e305187969a414418223c2",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "806ef66b475439aa6f20ad740a98ea1513f0d2dd10163f884807713ea4781e94"
   },
   "summary": {
     "ledger_instances": 60,
@@ -187,7 +187,7 @@
       "instance": "ir_demod",
       "symbol_uuid": "9888bfcb-3d75-5756-9485-8ca93ae3fd83",
       "reference": "U20004",
-      "mpn": "Vishay TSOP95238TT",
+      "mpn": "Vishay TSOP75238TT",
       "footprint": "Leshy2:Vishay-Heimdall-SMD-TT",
       "pin_count": 4,
       "board_fitted": true,
@@ -677,13 +677,13 @@
       }
     },
     {
-      "mpn": "Vishay TSOP95238TT",
+      "mpn": "Vishay TSOP75238TT",
       "footprint": "Leshy2:Vishay-Heimdall-SMD-TT",
       "source": {
-        "document": "TSOP952/TSOP954 IR receiver modules datasheet",
-        "version": "Rev. 1.2, 13-Apr-2022",
-        "url": "https://www.vishay.com/docs/82837/tsop952.pdf",
-        "checked": "2026-08-18"
+        "document": "TSOP752 IR receiver modules datasheet",
+        "version": "Rev. 1.6, 06-May-2025",
+        "url": "https://www.vishay.com/docs/82494/tsop752.pdf",
+        "checked": "2026-08-25"
       }
     },
     {

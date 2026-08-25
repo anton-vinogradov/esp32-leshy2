@@ -4,10 +4,10 @@
   "status": "reviewed_mapping_only",
   "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "fc20bbce1b31471b539862193f2014ea01131ddde4b0ae3f288746457b979fd4",
-    "hardware/product-design/generated/H1-physical-source-table.json": "9e1e94fe6d66efcbfa1b6db422a0e3453d06302b0504e090dd2bbcfceae9500e",
-    "hardware/product-design/mechanical-evidence-gates.json": "77e986ecce93d24396baea8a4f0817efd25d93c78018d87d44cf8d8643f26866",
-    "hardware/architecture/devices.json": "7b9c70a52cf8935b4a32dffc4860a9b3e828602c885b569674c760516c39e07e",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "750d2b1bb3f421fe62122269fbce07a0b00328e143151264affde6d536d524e5",
+    "hardware/product-design/generated/H1-physical-source-table.json": "e6e9894c7be59227fe4b7f3f6ad8e4b92588179b8a179c7bc9ad0224342af563",
+    "hardware/product-design/mechanical-evidence-gates.json": "18ffa4bd890c45bd21a87fa10d0fc3e70edfc2336291757624bb31c756a82ef6",
+    "hardware/architecture/devices.json": "b7c9e0a591613e05e2b39fd315e301f6e628464b8cc1e46d983fc67b05204424",
     "hardware/architecture/am-lw-pod.json": "6571e20c26f2ceaebf9c4bf410d155417a68116b3b5ef2e16d7c77ee06503e08"
   },
   "summary": {
@@ -115,18 +115,18 @@
       "id": "H3-PHY-024",
       "source_phase": "H3.3",
       "source_group": "ir",
-      "requirement": "verify received TSOP95238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
+      "requirement": "verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
       "parts": [
         {
           "identity": "ir_demod",
           "kind": "selected_physical_instance",
-          "mpn": "Vishay TSOP95238TT",
+          "mpn": "Vishay TSOP75238TT",
           "role": "38-kHz IR receiver",
           "source": {
-            "document": "TSOP952/TSOP954 IR receiver modules datasheet",
-            "version": "Rev. 1.2, 13-Apr-2022",
-            "url": "https://www.vishay.com/docs/82837/tsop952.pdf",
-            "checked": "2026-08-18"
+            "document": "TSOP752 IR receiver modules datasheet",
+            "version": "Rev. 1.6, 06-May-2025",
+            "url": "https://www.vishay.com/docs/82494/tsop752.pdf",
+            "checked": "2026-08-25"
           }
         },
         {
@@ -160,7 +160,7 @@
       ],
       "sample_specific": true,
       "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
-      "accepted_pass_rule": "the received specimen directly demonstrates this item: verify received TSOP95238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; a mismatch reopens the owning H1/H2/H3 result",
+      "accepted_pass_rule": "the received specimen directly demonstrates this item: verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; a mismatch reopens the owning H1/H2/H3 result",
       "status": "mapped_evidence_open"
     },
     {
@@ -1348,7 +1348,7 @@
       ],
       "known_boundary": "The corrected mockup uses the exact 69.7x18.7-mm protected-cell envelopes inside the manufacturer-dimensioned rotated Keystone 1048P holder.",
       "missing_data": "Received insertion force, contact compression, polarity protection, vibration and thermal cycling.",
-      "accepted_pass_rule": "Two accepted cell lots and holder samples pass dimensional, insertion, retention, vibration and thermal tests in H5.",
+      "accepted_pass_rule": "One exact holder and one matched same-lot pair of accepted protected cells pass dimensional, insertion, retention, vibration and thermal tests in H5; mixed MPN, lot, age or state of charge remains forbidden.",
       "blocks": [
         "H8"
       ],

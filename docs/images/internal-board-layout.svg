@@ -526,7 +526,7 @@
 <text x="56.0" y="1014.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">active differential speaker-path selector</text>
 <text x="30.0" y="1026.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">12  Si4732-A10-GSR</text>
 <text x="56.0" y="1035.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">FM/AM/SW/LW receiver</text>
-<text x="30.0" y="1047.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">13  Vishay TSOP95238TT</text>
+<text x="30.0" y="1047.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">13  Vishay TSOP75238TT</text>
 <text x="56.0" y="1056.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">38-kHz IR receiver</text>
 <text x="30.0" y="1068.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">14  Vishay TSMP95000TT</text>
 <text x="56.0" y="1077.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">carrier-learning IR receiver</text>

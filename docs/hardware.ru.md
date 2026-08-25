@@ -46,7 +46,7 @@ flowchart TB
 | Sub‑GHz | `CC1101RGPR` | RP2354B | 315, 433, 868 и 915 МГц |
 | Broadcast RX | `Si4732-A10-GSR` | S3 | FM/SW и отдельный AM/LW вход |
 | Voice | `NiceRF SA518` | RP2354B | Аналоговая VHF/UHF связь |
-| IR RX | `TSOP95238TT` + `TSMP95000TT` | C5 | 38-кГц демодуляция и обучение 30–60 кГц |
+| IR RX | `TSOP75238TT` + `TSMP95000TT` | C5 | 38-кГц демодуляция и обучение 30–60 кГц |
 | IR TX | `VSMY14940` | C5 | Управляемая передача 940 нм с оптическим подтверждением |
 | LoRa/GNSS Cap | `M5Stack U214 Cap LoRa-1262` или `LESHY2-LORA-CAP-01-EU868/US915` | RP2354B | Штатный Cap: RX/GNSS; точный Leshy Cap: квалифицированные региональные RX/TX |
 | Внешние антенные разъёмы | `7× GCT RFPC-SMA31-FN-175-A` + `2× GCT RFPC-SMA32-FN-175-A` | Отдельный на каждый тракт | 6 ГГц, 50 Ом, board-edge SMA/RP-SMA на двух наружных поверхностях плат; без RF-sharing и корпусов разъёмов в межплатном канале |

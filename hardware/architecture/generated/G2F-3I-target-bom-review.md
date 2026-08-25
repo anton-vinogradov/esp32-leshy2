@@ -307,7 +307,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `rp2354b_a4` — `SC1512-A4`.
   - `skyworks_si4732_a10_gsr` — `Si4732-A10-GSR`.
   - `vishay_tsmp95000tt` — `Vishay TSMP95000TT`.
-  - `vishay_tsop95238tt` — `Vishay TSOP95238TT`.
+  - `vishay_tsop75238tt` — `Vishay TSOP75238TT`.
   - `vishay_vemd1060x01` — `VEMD1060X01`.
   - `vishay_vsmy14940` — `Vishay VSMY14940`.
 
@@ -2225,12 +2225,12 @@ These entries are intentionally excluded from the partial subtotal until a compa
 
 </details>
 
-<details><summary><code>Vishay TSOP95238TT</code> — <code>quantity_100_rfq_required</code></summary>
+<details><summary><code>Vishay TSOP75238TT</code> — <code>quantity_100_rfq_required</code></summary>
 
-- Device id: `vishay_tsop95238tt`.
+- Device id: `vishay_tsop75238tt`.
 - Scope: `base_product`; quantity `1`.
-- Reason: The current exact authorized-distributor line publishes only 2200-piece full-reel pricing and no comparable quantity-100 USD tier.
-- Checked: `2026-08-19`; [gate source](https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP95238TT/10658191).
+- Reason: Authorized-distributor cut-tape stock and a USD 1.46 quantity-one engineering-sample price are confirmed; the project quantity-100 comparison remains a later BOM quote gate.
+- Checked: `2026-08-25`; [gate source](https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864).
 
 </details>
 

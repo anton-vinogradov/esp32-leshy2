@@ -105,7 +105,7 @@ UNIT_CONNECTOR["1125R-SMT-4P<br/>защищённый разъём M5 Unit HY2.0
 ```mermaid
 flowchart TD
 C5["ESP32-C5-WROOM-1U-N8R8<br/>native 2,4/5 ГГц, IEEE 802.15.4 и IR"]
-IR_DEMOD["Vishay TSOP95238TT<br/>демодулирующий IR-приёмник 38 кГц"]
+IR_DEMOD["Vishay TSOP75238TT<br/>демодулирующий IR-приёмник 38 кГц"]
 IR_CARRIER["Vishay TSMP95000TT<br/>IR-приёмник обучения несущей"]
 IR_EMITTER["Vishay VSMY14940<br/>IR-передатчик 940 нм"]
   C5 <-->|"RMT RX0"| IR_DEMOD
