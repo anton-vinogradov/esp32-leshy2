@@ -18,6 +18,8 @@ OUTPUT = REPO / "hardware/verification/generated/H5-EVR04-pcba-platform-baseline
 UPLOAD = REPO / "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv"
 CAPTURE = REPO / "hardware/verification/jlcpcb-bom-tool-capture-2026-08-25-compact.json"
 MATCH_OUTPUT = REPO / "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json"
+OUTLIER_CAPTURE = REPO / "hardware/verification/jlcpcb-outlier-search-capture-2026-08-25.json"
+OUTLIER_OUTPUT = REPO / "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json"
 DOC_EN = REPO / "docs/manufacturing-platform.md"
 DOC_RU = REPO / "docs/manufacturing-platform.ru.md"
 CHECKED_ON = "2026-08-25"
@@ -75,6 +77,47 @@ MPN_VENDOR_PREFIXES = tuple(
 )
 
 
+# Every BOM Tool outlier is resolved without changing the selected functional
+# identity.  J0/J2 entries name an original-maker catalogue row observed in the
+# public search capture.  J3 keeps the exact selected MPN for sourcing or
+# consignment.  J4 is intentionally outside automated PCBA placement.
+OUTLIER_RESOLUTIONS = {
+    "SN74LVC1G07DCKR": {"route": "J0", "lcsc": "C7830", "manufacturer": "Texas Instruments"},
+    "MSPM0C1106SDGS20R": {"route": "J0", "lcsc": "C52995805", "manufacturer": "Texas Instruments"},
+    "SN74LVC1G17DCKR": {"route": "J0", "lcsc": "C10425", "manufacturer": "Texas Instruments"},
+    "SN74LVC1G08DCKR": {"route": "J0", "lcsc": "C7832", "manufacturer": "Texas Instruments"},
+    "TCA9539PWR": {"route": "J0", "lcsc": "C131972", "manufacturer": "Texas Instruments"},
+    "RC0402FR-07100RL": {"route": "J0", "lcsc": "C106232", "manufacturer": "YAGEO"},
+    "RC0402FR-074K7L": {"route": "J0", "lcsc": "C105871", "manufacturer": "YAGEO"},
+    "RC0402FR-0733RL": {"route": "J0", "lcsc": "C138002", "manufacturer": "YAGEO"},
+    "TPD4E05U06DQAR": {"route": "J0", "lcsc": "C138714", "manufacturer": "Texas Instruments"},
+    "TLV1824PWR": {"route": "J0", "lcsc": "C35149428", "manufacturer": "Texas Instruments"},
+    "RC0402FR-071KL": {"route": "J0", "lcsc": "C106235", "manufacturer": "YAGEO"},
+    "TPD2EUSB30ADRTR": {"route": "J0", "lcsc": "C94934", "manufacturer": "Texas Instruments"},
+    "SC1512-A4": {"route": "J2", "lcsc": "C52763783", "manufacturer": "Raspberry Pi"},
+    "BGS13SN8E6327XTSA1": {"route": "J2", "lcsc": "C55118249", "manufacturer": "Infineon Technologies"},
+    "ESP32-C5-WROOM-1U-N8R8": {"route": "J2", "lcsc": "C51950748", "manufacturer": "Espressif Systems"},
+    "B0310J50100AHF": {"route": "J2", "lcsc": "C5160223", "manufacturer": "TTM Technologies, Inc."},
+    "RFPC-SMA31-FN-175-A": {"route": "J3", "reason": "exact board SMA is orderable outside the public JLC library"},
+    "TSMP95000TT": {"route": "J3", "reason": "only a zero-stock generic JLC Assembly placeholder exists; exact Vishay identity must be sourced"},
+    "RFPC-SMA32-FN-175-A": {"route": "J3", "reason": "exact board RP-SMA is orderable outside the public JLC library"},
+    "1125R-SMT-4P": {"route": "J3", "reason": "exact Seeed SMT Unit connector is orderable outside the public JLC library"},
+    "AS02404PO": {"route": "J3", "reason": "exact board speaker is orderable outside the public JLC library and needs manual/THT assembly acceptance"},
+    "FX8C-80S-SV5(92)": {"route": "J3", "reason": "exact inter-board receptacle is orderable outside the public JLC library"},
+    "TPUL2G223BQBR": {"route": "J3", "reason": "exact safety timer must be sourced; no silent timing-function alternate"},
+    "SA518": {"route": "J3", "reason": "generic zero-stock placeholder is not NiceRF identity evidence; exact module requires qualified sourcing"},
+    "TLV1821DCKR": {"route": "J3", "reason": "exact voice-evidence comparator must be sourced; no silent threshold/path alternate"},
+    "GJM1555C1H101JB01D": {"route": "J3", "reason": "retain exact RF capacitor until an RF-equivalent alternate is separately qualified"},
+    "PESD24VY1BSF": {"route": "J3", "reason": "retain exact low-capacitance RF ESD identity until an RF-equivalent alternate is separately qualified"},
+    "E01-ML01IPX": {"route": "J3", "reason": "three exact full-power nRF24 modules are externally orderable and must be consigned or globally sourced"},
+    "2118651-2": {"route": "J4", "reason": "five removable 30-mm microcoax jumpers are installed and strain-routed during final sandwich assembly"},
+    "U214 Cap LoRa-1262": {"route": "J4", "reason": "removable rear Cap accessory is installed after PCBA"},
+    "HMX035CTFT-001": {"route": "J4", "reason": "display/flex is mated to the replaceable adapter during final assembly"},
+    "1227-J": {"route": "J4", "reason": "encoder knob is an enclosure/final-assembly part"},
+    "18650 4000mAh": {"route": "J4", "reason": "protected cells are never placed by PCBA"},
+}
+
+
 def bare_mpn(value: str) -> str:
     """Return the orderable identity without the register's maker annotation."""
     normalized = value.strip()
@@ -96,6 +139,22 @@ SOURCES = {
     "jlc_bom_format": "https://jlcpcb.com/help/article/bill-of-materials-for-pcb-assembly",
     "pcbway_capabilities": "https://www.pcbway.com/assembly-capabilities.html",
     "seeed_pcba": "https://www.seeedstudio.com/pcb-assembly.html",
+}
+
+
+JLCAPI_STATE = {
+    "application_status": "approved",
+    "app_name": "ESP32-Leshy2 BOM Validator",
+    "app_status": "enabled",
+    "parts_permission_status": "reviewing",
+    "automatically_listed_permissions": {"PCB": "reviewing", "3D": "reviewing"},
+    "inactive_permissions": ["SMT Stencil", "JLC Balance"],
+    "access_key_created": True,
+    "tokenization_key_created": False,
+    "credential_storage": "local macOS Keychain; no credential is stored in this repository",
+    "raw_api_data_publication": False,
+    "usable_now": False,
+    "checked_on": CHECKED_ON,
 }
 
 
@@ -274,10 +333,150 @@ def build_match_result(rows: list[dict[str, str]]) -> dict:
     }
 
 
+def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> dict:
+    capture = json.loads(OUTLIER_CAPTURE.read_text(encoding="utf-8"))
+    searches = {row["query"]: row for row in capture["searches"]}
+    raw_outliers = {
+        route["normalized_mpn"]: route
+        for route in match_result["routes"]
+        if route["tool_status"] == "not_matched"
+    }
+    source_by_mpn = {bare_mpn(row["mpn"]): row for row in rows}
+    resolved = []
+    for mpn in sorted(raw_outliers, key=lambda value: raw_outliers[value]["bom_index"]):
+        resolution = OUTLIER_RESOLUTIONS[mpn]
+        search = searches[mpn]
+        selected_catalogue_row = None
+        if resolution["route"] in {"J0", "J2"}:
+            selected = [
+                row
+                for row in search["exact"]
+                if row["lcsc"] == resolution["lcsc"]
+                and row["manufacturer"] == resolution["manufacturer"]
+                and semantic_mpn(row["mpn"]) == semantic_mpn(mpn)
+            ]
+            if len(selected) != 1:
+                raise ValueError({"missing_selected_catalogue_row": mpn, "selected": selected})
+            selected_catalogue_row = selected[0]
+        source = source_by_mpn[mpn]
+        resolved.append(
+            {
+                "bom_index": raw_outliers[mpn]["bom_index"],
+                "device_id": raw_outliers[mpn]["device_id"],
+                "normalized_mpn": mpn,
+                "quantity": raw_outliers[mpn]["quantity"],
+                "route": resolution["route"],
+                "lcsc": resolution.get("lcsc"),
+                "manufacturer": resolution.get("manufacturer"),
+                "stock_snapshot": selected_catalogue_row["stock"] if selected_catalogue_row else None,
+                "reason": resolution.get(
+                    "reason",
+                    "exact original-maker public catalogue row is in stock"
+                    if resolution["route"] == "J0"
+                    else "exact original-maker public catalogue row exists but has no public stock",
+                ),
+                "target_bom_orderable_evidence": source["orderable_evidence"],
+                "target_bom_source": source["cost_source"],
+                "component_replacement": False,
+            }
+        )
+
+    final_routes = [dict(route) for route in match_result["routes"]]
+    resolution_by_index = {row["bom_index"]: row for row in resolved}
+    for route in final_routes:
+        if route["bom_index"] in resolution_by_index:
+            replacement = resolution_by_index[route["bom_index"]]
+            route.update(
+                {
+                    "route": replacement["route"],
+                    "lcsc": replacement["lcsc"],
+                    "stock_snapshot": replacement["stock_snapshot"],
+                    "outlier_resolution_reason": replacement["reason"],
+                    "component_replacement": False,
+                }
+            )
+    counts = {
+        tier: sum(route["route"] == tier for route in final_routes)
+        for tier in ("J0", "J1", "J2", "J3", "J4")
+    }
+    checks = {
+        "capture_covers_all_33_bom_tool_outliers": set(searches) == set(raw_outliers) == set(OUTLIER_RESOLUTIONS),
+        "every_outlier_has_one_route": len(resolved) == len({row["bom_index"] for row in resolved}) == 33,
+        "j0_rows_have_positive_original_maker_stock": all(
+            row["stock_snapshot"] is not None and row["stock_snapshot"] > 0
+            for row in resolved
+            if row["route"] == "J0"
+        ),
+        "j2_rows_have_exact_zero_stock_catalogue_identity": all(
+            row["stock_snapshot"] == 0 and row["lcsc"]
+            for row in resolved
+            if row["route"] == "J2"
+        ),
+        "j3_rows_keep_exact_selected_identity": all(
+            row["target_bom_orderable_evidence"] == "present" and not row["component_replacement"]
+            for row in resolved
+            if row["route"] == "J3"
+        ),
+        "j4_rows_are_post_pcba_parts": all(
+            row["normalized_mpn"]
+            in {"2118651-2", "U214 Cap LoRa-1262", "HMX035CTFT-001", "1227-J", "18650 4000mAh"}
+            for row in resolved
+            if row["route"] == "J4"
+        ),
+        "generic_placeholders_are_not_accepted_as_identity": all(
+            row["lcsc"] is None for row in resolved if row["normalized_mpn"] in {"TSMP95000TT", "SA518"}
+        ),
+        "all_209_lines_have_j0_to_j4_route": sum(counts.values()) == 209
+        and all(route["route"] in counts for route in final_routes),
+        "no_component_replacement_is_introduced": counts["J1"] == 0
+        and all(not row["component_replacement"] for row in resolved),
+        "no_sourcing_quote_reservation_or_order_created": True,
+    }
+    if not all(checks.values()):
+        raise ValueError({"failed_outlier_checks": [key for key, value in checks.items() if not value]})
+    return {
+        "schema_version": 1,
+        "artifact": "H5-EVR06",
+        "stage": "H5.0.3",
+        "status": "all_209_availability_routes_mapped_sa518_price_open",
+        "checked_on": CHECKED_ON,
+        "input": {
+            "bom_tool_result": str(MATCH_OUTPUT.relative_to(REPO)),
+            "bom_tool_result_sha256": hashlib.sha256(
+                (json.dumps(match_result, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+            ).hexdigest(),
+            "search_capture": str(OUTLIER_CAPTURE.relative_to(REPO)),
+            "search_capture_sha256": sha256(OUTLIER_CAPTURE),
+        },
+        "summary": {
+            "target_bom_lines": len(final_routes),
+            "bom_tool_matched_lines": match_result["summary"]["matched_lines"],
+            "bom_tool_outliers_resolved": len(resolved),
+            "availability_routes": counts,
+            "component_replacements": 0,
+            "unmapped_lines": 0,
+            "open_qualified_price_lines": 1,
+            "open_qualified_price_mpn": "SA518",
+        },
+        "outlier_resolutions": resolved,
+        "final_routes": final_routes,
+        "boundary": {
+            "meaning": "availability and sourcing route only; footprint, placement, assembly-class and current stock are revalidated at BOM freeze",
+            "not_authorized": ["sourcing request", "quote", "reservation", "purchase", "component replacement", "KiCad placement/routing", "fabrication"],
+        },
+        "next": {
+            "decision_needed": "authorize a no-order qualified sourcing inquiry for exact NiceRF SA518 pricing, or keep H5.0.3 open",
+            "purchase_remains_last": True,
+        },
+        "checks": checks,
+    }
+
+
 def build() -> dict:
     with BOM.open(newline="", encoding="utf-8") as handle:
         rows = list(csv.DictReader(handle))
     match_result = build_match_result(rows)
+    outlier_result = build_outlier_resolution(rows, match_result)
     match_summary = match_result["summary"]
     by_id = {row["device_id"]: row for row in rows}
     missing = [row["device_id"] for row in SPOT_CHECKS if row["device_id"] not in by_id]
@@ -294,6 +493,15 @@ def build() -> dict:
         "all_target_placements_were_parsed": match_summary["parsed_placements"] == 1019,
         "no_semantic_mpn_substitution_was_observed": match_summary["semantic_mpn_mismatches"] == 0,
         "all_33_unmatched_lines_remain_explicit": match_summary["unmatched_lines"] == 33,
+        "all_209_lines_have_j0_to_j4_route": outlier_result["summary"]["unmapped_lines"] == 0,
+        "only_sa518_qualified_price_remains_open": outlier_result["summary"]["open_qualified_price_mpn"] == "SA518",
+        "jlcapi_application_and_app_are_ready": JLCAPI_STATE["application_status"] == "approved"
+        and JLCAPI_STATE["app_status"] == "enabled"
+        and JLCAPI_STATE["access_key_created"],
+        "parts_api_waits_for_jlc_review": JLCAPI_STATE["parts_permission_status"] == "reviewing"
+        and not JLCAPI_STATE["usable_now"],
+        "api_credentials_are_not_repository_data": "no credential" in JLCAPI_STATE["credential_storage"]
+        and not JLCAPI_STATE["tokenization_key_created"],
         "no_order_or_layout_is_authorized": True,
     }
     if not all(checks.values()):
@@ -302,7 +510,7 @@ def build() -> dict:
         "schema_version": 1,
         "artifact": "H5-EVR04",
         "stage": "H5.0.3",
-        "status": "reference_selected_33_platform_outliers_open",
+        "status": "availability_routes_complete_sa518_price_open",
         "checked_on": CHECKED_ON,
         "input": {"path": str(BOM.relative_to(REPO)), "sha256": sha256(BOM), "exact_lines": len(rows)},
         "decision": {
@@ -318,6 +526,7 @@ def build() -> dict:
             "inside_pcba": ["both Leshy2 rigid boards", "all ordinary SMT/THT parts accepted by Standard PCBA", "board connectors and soldered RF boundaries when their exact assembly rule is accepted"],
             "after_pcba": ["display/flex final mating", "removable U214 Cap and M5 Units", "cells", "external antennas", "knob and any enclosure-only hardware not accepted in the assembly quote", "final sandwich/box integration"],
         },
+        "parts_api": JLCAPI_STATE,
         "bom_tool_upload": {
             "path": str(UPLOAD.relative_to(REPO)),
             "sha256": hashlib.sha256(render_upload().encode("utf-8")).hexdigest(),
@@ -331,6 +540,7 @@ def build() -> dict:
             "processed": True,
             "assembly_quantity": 5,
             "result_artifact": str(MATCH_OUTPUT.relative_to(REPO)),
+            "outlier_result_artifact": str(OUTLIER_OUTPUT.relative_to(REPO)),
             "first_attempt": {
                 "sha256": "6f3d832ff4751d2dad37c1fe5d944f6a4ff50869f819ba49a5fb7f2423c57db4",
                 "columns": ["Manufacturer Part Number", "Quantity"],
@@ -348,7 +558,7 @@ def build() -> dict:
                 "processed": True,
                 "result": "176 matched, 33 unmatched, all 1019 target placements parsed",
             },
-            "blocker": "33 unmatched lines require local qualification; no sourcing request, quote, reservation or order has been created",
+            "blocker": "all 33 BOM Tool outliers have J0-J4 routes; exact NiceRF SA518 qualified price remains open and no sourcing request, quote, reservation or order has been created",
         },
         "critical_spot_checks": SPOT_CHECKS,
         "summary": {
@@ -363,7 +573,10 @@ def build() -> dict:
             "bom_tool_preorder_lines": match_summary["pre_order_lines"],
             "bom_tool_unmatched_lines": match_summary["unmatched_lines"],
             "target_placements_parsed": match_summary["parsed_placements"],
-            "full_bom_lines_pending_mapping": match_summary["unmatched_lines"],
+            "outliers_resolved_after_exact_search": outlier_result["summary"]["bom_tool_outliers_resolved"],
+            "availability_routes": outlier_result["summary"]["availability_routes"],
+            "full_bom_lines_pending_mapping": outlier_result["summary"]["unmapped_lines"],
+            "open_qualified_price_lines": outlier_result["summary"]["open_qualified_price_lines"],
         },
         "policy": {
             "selection_time": "prefer J0; use J1 only after owner-level equivalence checks; use J2/J3 for function-critical identities that cannot be replaced without degradation",
@@ -372,9 +585,9 @@ def build() -> dict:
             "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot",
         },
         "next": {
-            "local": "qualify the 33 BOM Tool outliers by exact search, non-degrading alternate, J2/J3 exact sourcing, or J4 final assembly",
-            "external_authority_later": "Parts API application, sourcing request, quote creation, private-stock reservation and purchase still require separate explicit authority",
-            "forbidden": ["purchase", "component replacement", "Parts API application", "sourcing request", "quote creation", "private-stock reservation", "KiCad placement/routing", "fabrication"],
+            "local": "all 209 lines have J0-J4 routes; preserve the map, wait for Parts permission approval and prepare a no-order exact-SA518 pricing inquiry",
+            "external_authority_later": "sending the SA518 sourcing inquiry, quote creation, private-stock reservation and purchase still require separate explicit authority",
+            "forbidden": ["purchase", "component replacement", "sourcing request", "quote creation", "private-stock reservation", "raw API data redistribution", "KiCad placement/routing", "fabrication"],
         },
         "sources": SOURCES,
         "checks": checks,
@@ -389,25 +602,26 @@ def table(data: dict, russian: bool) -> str:
     return "\n".join(lines)
 
 
-def outlier_table(match_result: dict, russian: bool) -> str:
+def outlier_table(outlier_result: dict, russian: bool) -> str:
     lines = [
-        "| Нормализованный MPN | Кол-во | Следующее доказательство |"
+        "| Нормализованный MPN | Кол-во | Маршрут | Доказательство |"
         if russian
-        else "| Normalized MPN | Qty | Next evidence |",
-        "|---|---:|---|",
+        else "| Normalized MPN | Qty | Route | Evidence |",
+        "|---|---:|---:|---|",
     ]
-    next_text = (
-        "exact search → недеградирующая серийная замена → J2/J3/J4"
-        if russian
-        else "exact search → non-degrading serial alternate → J2/J3/J4"
-    )
-    for route in match_result["routes"]:
-        if route["tool_status"] == "not_matched":
-            lines.append(f"| `{route['normalized_mpn']}` | {route['quantity']} | {next_text} |")
+    for row in outlier_result["outlier_resolutions"]:
+        evidence = (
+            f"`{row['lcsc']}` · stock {row['stock_snapshot']}"
+            if row["lcsc"]
+            else row["reason"]
+        )
+        lines.append(
+            f"| `{row['normalized_mpn']}` | {row['quantity']} | `{row['route']}` | {evidence} |"
+        )
     return "\n".join(lines)
 
 
-def render(data: dict, match_result: dict, russian: bool) -> str:
+def render(data: dict, match_result: dict, outlier_result: dict, russian: bool) -> str:
     summary = data["summary"]
     if russian:
         return f"""# Производственная платформа Leshy2
@@ -441,14 +655,16 @@ flowchart TD
 
 ## Контрольный BOM Tool прогон
 
-Нормализованный BOM принят и обработан для расчётного тиража 5 плат. JLCPCB сопоставил `{summary['bom_tool_exact_or_punctuation_equivalent_matches']}` из `{summary['target_bom_lines']}` уникальных строк: `{summary['bom_tool_public_stock_lines']}` public-stock и `{summary['bom_tool_preorder_lines']}` pre-order; `{summary['bom_tool_unmatched_lines']}` строк остались явными outliers. Все `{summary['target_placements_parsed']}` установок распознаны. Два написания Panasonic отличаются только дефисами; семантических подмен MPN — ноль.
+Нормализованный BOM принят и обработан для расчётного тиража 5 плат. JLCPCB сопоставил `{summary['bom_tool_exact_or_punctuation_equivalent_matches']}` из `{summary['target_bom_lines']}` уникальных строк: `{summary['bom_tool_public_stock_lines']}` public-stock и `{summary['bom_tool_preorder_lines']}` pre-order; `{summary['bom_tool_unmatched_lines']}` строк потребовали отдельного exact-поиска. Все `{summary['target_placements_parsed']}` установок распознаны. Два написания Panasonic отличаются только дефисами; семантических подмен MPN — ноль.
+
+Exact-поиск закрыл все 33 outlier без замены компонентов: 12 добавлены в `J0`, 4 — в `J2`, 12 сохраняют точный MPN через `J3`, 5 относятся к final assembly `J4`. Итог всей BOM: `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4=5`; несопоставленных строк — ноль.
 
 Показываемая BOM Tool сумма `$1255.6365` — сумма рекомендованных заказных количеств только для 176 найденных строк, включая справочные pre-order цены. Это **не** полная цена сборки, не quote и не заказ.
 
 <details>
-<summary>33 строки, требующие локальной квалификации</summary>
+<summary>Как разрешены 33 исходных outlier</summary>
 
-{outlier_table(match_result, True)}
+{outlier_table(outlier_result, True)}
 
 </details>
 
@@ -465,11 +681,12 @@ JLCPCB собирает обе платы и принятые SMT/THT-компо
 ## Текущий результат
 
 - JLCPCB Standard PCBA принят как рабочий reference без lock-in.
-- Bulk mapping закрыт для `{summary['bom_tool_exact_or_punctuation_equivalent_matches']}` строк; локальная квалификация открыта для `{summary['full_bom_lines_pending_mapping']}` outliers.
-- Прямой RFQ NiceRF отложен: сначала проверяется JLC global sourcing/new-part route.
-- Минимальный BOM upload передан и обработан; quote, Parts API application, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены.
+- Все `{summary['target_bom_lines']}` строк имеют маршрут `J0`–`J4`; функциональных замен нет.
+- H5.0.3 остаётся открытым только по квалифицированной цене exact `NiceRF SA518` и последующему отдельному решению о закупке образцов.
+- Заявка JLCAPI одобрена, приложение `ESP32-Leshy2 BOM Validator` создано, ключ подписи хранится только локально вне Git. Право Parts имеет статус `Reviewing`; до его одобрения API-вызовы невозможны. Автоматически показанные PCB/3D также находятся на ревью, SMT Stencil и JLC Balance выключены; использовать будем только Parts.
+- Минимальный BOM upload передан и обработан; quote, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены. Сырые API-ответы публично не распространяются.
 
-Машинные результаты: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json) и [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json). [Требования JLCPCB к BOM]({SOURCES['jlc_bom_format']}).
+Машинные результаты: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json), [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json) и [`H5-EVR06`](../hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json). [Требования JLCPCB к BOM]({SOURCES['jlc_bom_format']}).
 """
     return f"""# Leshy2 manufacturing platform
 
@@ -502,14 +719,16 @@ No platform guarantees perpetual public stock. Leshy2 therefore selects ordinary
 
 ## Controlled BOM Tool run
 
-The normalized BOM was accepted and processed for an assessment quantity of five boards. JLCPCB matched `{summary['bom_tool_exact_or_punctuation_equivalent_matches']}` of `{summary['target_bom_lines']}` unique lines: `{summary['bom_tool_public_stock_lines']}` public-stock and `{summary['bom_tool_preorder_lines']}` pre-order; `{summary['bom_tool_unmatched_lines']}` remain explicit outliers. All `{summary['target_placements_parsed']}` placements were parsed. Two Panasonic spellings differ only by punctuation; zero semantic MPN substitutions were observed.
+The normalized BOM was accepted and processed for an assessment quantity of five boards. JLCPCB matched `{summary['bom_tool_exact_or_punctuation_equivalent_matches']}` of `{summary['target_bom_lines']}` unique lines: `{summary['bom_tool_public_stock_lines']}` public-stock and `{summary['bom_tool_preorder_lines']}` pre-order; `{summary['bom_tool_unmatched_lines']}` required a separate exact search. All `{summary['target_placements_parsed']}` placements were parsed. Two Panasonic spellings differ only by punctuation; zero semantic MPN substitutions were observed.
+
+Exact search resolved all 33 outliers without component replacement: 12 were added to `J0`, 4 to `J2`, 12 retain the exact MPN through `J3`, and 5 are final-assembly `J4`. Whole-BOM result: `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4=5`; zero lines remain unmapped.
 
 The displayed `$1255.6365` is the sum of recommended order quantities for only the 176 matched lines, including reference pre-order prices. It is **not** a complete assembly price, quote or order.
 
 <details>
-<summary>33 lines requiring local qualification</summary>
+<summary>How the original 33 outliers were resolved</summary>
 
-{outlier_table(match_result, False)}
+{outlier_table(outlier_result, False)}
 
 </details>
 
@@ -526,11 +745,12 @@ JLCPCB assembles both boards and accepted SMT/THT parts. Display flex mating, U2
 ## Current result
 
 - JLCPCB Standard PCBA is the working reference without lock-in.
-- Bulk mapping is complete for `{summary['bom_tool_exact_or_punctuation_equivalent_matches']}` lines; local qualification remains open for `{summary['full_bom_lines_pending_mapping']}` outliers.
-- Direct NiceRF contact is deferred while the JLC global-sourcing/new-part route is checked first.
-- The minimum BOM upload was transmitted and processed. No quote, Parts API application, sourcing request, reservation, purchase, replacement, KiCad layout or fabrication was performed or authorized.
+- All `{summary['target_bom_lines']}` lines have a `J0`–`J4` route; no functional replacement was introduced.
+- H5.0.3 remains open only for a qualified exact-`NiceRF SA518` price and the later separate sample-purchase decision.
+- The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git. Parts permission is `Reviewing`, so API calls are not usable yet. PCB/3D were also listed as reviewing by the platform; SMT Stencil and JLC Balance remain inactive, and Leshy2 will use only Parts.
+- The minimum BOM upload was transmitted and processed. No quote, sourcing request, reservation, purchase, replacement, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
 
-Machine results: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json) and [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json). [JLCPCB BOM requirements]({SOURCES['jlc_bom_format']}).
+Machine results: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json), [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json) and [`H5-EVR06`](../hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json). [JLCPCB BOM requirements]({SOURCES['jlc_bom_format']}).
 """
 
 
@@ -577,12 +797,15 @@ def outputs() -> dict[Path, str]:
     data = build()
     with BOM.open(newline="", encoding="utf-8") as handle:
         match_result = build_match_result(list(csv.DictReader(handle)))
+    with BOM.open(newline="", encoding="utf-8") as handle:
+        outlier_result = build_outlier_resolution(list(csv.DictReader(handle)), match_result)
     return {
         OUTPUT: json.dumps(data, ensure_ascii=False, indent=2) + "\n",
         MATCH_OUTPUT: json.dumps(match_result, ensure_ascii=False, indent=2) + "\n",
+        OUTLIER_OUTPUT: json.dumps(outlier_result, ensure_ascii=False, indent=2) + "\n",
         UPLOAD: render_upload(),
-        DOC_EN: render(data, match_result, False),
-        DOC_RU: render(data, match_result, True),
+        DOC_EN: render(data, match_result, outlier_result, False),
+        DOC_RU: render(data, match_result, outlier_result, True),
     }
 
 
@@ -607,7 +830,8 @@ def main() -> None:
         f"ok: {data['decision']['reference_platform']}; "
         f"{data['summary']['bom_tool_exact_or_punctuation_equivalent_matches']}/"
         f"{data['summary']['target_bom_lines']} BOM Tool lines matched; "
-        f"{data['summary']['bom_tool_unmatched_lines']} outliers open; "
+        f"all {data['summary']['target_bom_lines']} J0-J4 routes mapped; "
+        "exact SA518 price open; "
         "no order or replacement authorized"
     )
 

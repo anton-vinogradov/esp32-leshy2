@@ -2,7 +2,7 @@
   "schema_version": 1,
   "artifact": "H5-EVR04",
   "stage": "H5.0.3",
-  "status": "reference_selected_33_platform_outliers_open",
+  "status": "availability_routes_complete_sa518_price_open",
   "checked_on": "2026-08-25",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
@@ -94,6 +94,26 @@
       "final sandwich/box integration"
     ]
   },
+  "parts_api": {
+    "application_status": "approved",
+    "app_name": "ESP32-Leshy2 BOM Validator",
+    "app_status": "enabled",
+    "parts_permission_status": "reviewing",
+    "automatically_listed_permissions": {
+      "PCB": "reviewing",
+      "3D": "reviewing"
+    },
+    "inactive_permissions": [
+      "SMT Stencil",
+      "JLC Balance"
+    ],
+    "access_key_created": true,
+    "tokenization_key_created": false,
+    "credential_storage": "local macOS Keychain; no credential is stored in this repository",
+    "raw_api_data_publication": false,
+    "usable_now": false,
+    "checked_on": "2026-08-25"
+  },
   "bom_tool_upload": {
     "path": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
     "sha256": "132580d69856b903998d3556ec6487d37052621e488bb69234fda00b035f6120",
@@ -120,6 +140,7 @@
     "processed": true,
     "assembly_quantity": 5,
     "result_artifact": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
+    "outlier_result_artifact": "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json",
     "first_attempt": {
       "sha256": "6f3d832ff4751d2dad37c1fe5d944f6a4ff50869f819ba49a5fb7f2423c57db4",
       "columns": [
@@ -147,7 +168,7 @@
       "processed": true,
       "result": "176 matched, 33 unmatched, all 1019 target placements parsed"
     },
-    "blocker": "33 unmatched lines require local qualification; no sourcing request, quote, reservation or order has been created"
+    "blocker": "all 33 BOM Tool outliers have J0-J4 routes; exact NiceRF SA518 qualified price remains open and no sourcing request, quote, reservation or order has been created"
   },
   "critical_spot_checks": [
     {
@@ -263,7 +284,16 @@
     "bom_tool_preorder_lines": 41,
     "bom_tool_unmatched_lines": 33,
     "target_placements_parsed": 1019,
-    "full_bom_lines_pending_mapping": 33
+    "outliers_resolved_after_exact_search": 33,
+    "availability_routes": {
+      "J0": 147,
+      "J1": 0,
+      "J2": 45,
+      "J3": 12,
+      "J4": 5
+    },
+    "full_bom_lines_pending_mapping": 0,
+    "open_qualified_price_lines": 1
   },
   "policy": {
     "selection_time": "prefer J0; use J1 only after owner-level equivalence checks; use J2/J3 for function-critical identities that cannot be replaced without degradation",
@@ -272,15 +302,15 @@
     "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot"
   },
   "next": {
-    "local": "qualify the 33 BOM Tool outliers by exact search, non-degrading alternate, J2/J3 exact sourcing, or J4 final assembly",
-    "external_authority_later": "Parts API application, sourcing request, quote creation, private-stock reservation and purchase still require separate explicit authority",
+    "local": "all 209 lines have J0-J4 routes; preserve the map, wait for Parts permission approval and prepare a no-order exact-SA518 pricing inquiry",
+    "external_authority_later": "sending the SA518 sourcing inquiry, quote creation, private-stock reservation and purchase still require separate explicit authority",
     "forbidden": [
       "purchase",
       "component replacement",
-      "Parts API application",
       "sourcing request",
       "quote creation",
       "private-stock reservation",
+      "raw API data redistribution",
       "KiCad placement/routing",
       "fabrication"
     ]
@@ -308,6 +338,11 @@
     "all_target_placements_were_parsed": true,
     "no_semantic_mpn_substitution_was_observed": true,
     "all_33_unmatched_lines_remain_explicit": true,
+    "all_209_lines_have_j0_to_j4_route": true,
+    "only_sa518_qualified_price_remains_open": true,
+    "jlcapi_application_and_app_are_ready": true,
+    "parts_api_waits_for_jlc_review": true,
+    "api_credentials_are_not_repository_data": true,
     "no_order_or_layout_is_authorized": true
   }
 }

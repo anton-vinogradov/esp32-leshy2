@@ -14,9 +14,11 @@
 
 > **Now: H5.0.3 · [PCBA platform audit](docs/manufacturing-platform.md).**
 > JLCPCB Standard PCBA is the non-exclusive reference. Its controlled BOM Tool
-> run matched 176/209 lines, parsed all 1019 placements and left 33 explicit
-> outliers. Purchasing, component replacement, PCB routing and fabrication
-> remain blocked.
+> run matched 176/209 lines and parsed all 1019 placements; exact search resolved
+> all 33 outliers. Every line now has a `J0`–`J4` route without replacement;
+> only qualified exact-`SA518` pricing remains open. Purchasing, PCB routing and
+> fabrication remain blocked. The JLCAPI app and signing key are ready outside
+> Git; Parts permission is still `Reviewing` at JLCPCB.
 
 <div align="center">
 
@@ -124,19 +126,24 @@ covers all nine residuals and 14 mechanical gates with 32 exact article lines
 and 11 measurement contracts. JLCPCB Standard PCBA is now the
 [non-exclusive manufacturing reference](docs/manufacturing-platform.md): the
 normalized compact BOM matched 176 of 209 lines, all 1019 placements were
-parsed, and 33 outliers remain under local qualification. Zero semantic MPN
-substitutions were observed. Physical evidence, PCB layout, component
-replacement, quote/reservation and every order remain unauthorized.
+parsed, and exact search resolved all 33 outliers. The final availability map is
+`J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4=5`; zero semantic MPN substitutions or
+component replacements were introduced. Only a qualified exact-`SA518` price
+remains open. The JLCAPI app is enabled and its credential is stored outside
+the repository; Parts permission is still under JLCPCB review. Physical
+evidence, PCB layout, quote/reservation and every order remain unauthorized.
 
 <details open>
 <summary><strong>Current H5 evidence reduction — exact detailed position</strong></summary>
 
 <!-- current-substep: H5.0.3 -->
 
-**Exact marker: `H5.0.3`** — the basket and measurements are published; qualify
-the [33 JLCPCB outliers](docs/manufacturing-platform.md) by exact public search,
-non-degrading serial alternate, exact-part pre-order/global sourcing or final
-assembly. Replacement, quote/reservation and purchase are not authorized.
+**Exact marker: `H5.0.3`** — the basket, measurements and all 209
+[JLCPCB availability routes](docs/manufacturing-platform.md) are published.
+The read-only Parts integration is prepared but waits for JLCPCB permission
+review. Obtain one qualified no-order price for exact `NiceRF SA518`, then
+publish the exact basket cost for a separate sample-purchase decision.
+Quote/reservation and purchase are not authorized.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,048-row circuit inventory reviewed.
@@ -251,7 +258,7 @@ assembly. Replacement, quote/reservation and purchase are not authorized.
 - ✅ `H4.3` — [joined pre-layout gate reviewed](docs/h4-prelayout-gate-report.md).
 - ✅ `H5.0.1` — [nine residuals and 14 mechanical gates mapped](docs/component-evidence-map.md) to exact selected identities, missing data and pass rules.
 - ✅ `H5.0.2` — [primary-source and serial-alternative research reviewed](docs/component-source-research.md); two test-article categories now have four exact serial SKUs.
-- ▶️ **`H5.0.3` — current:** [JLCPCB Standard PCBA selected as the non-exclusive reference](docs/manufacturing-platform.md); 176/209 lines and all 1019 placements parsed, with 33 explicit outliers open.
+- ▶️ **`H5.0.3` — current:** [JLCPCB Standard PCBA selected as the non-exclusive reference](docs/manufacturing-platform.md); 176/209 lines and all 1019 placements parsed, all 33 outliers resolved into `J0`–`J4`, exact `SA518` qualified price open.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The completed H3/H4 plans are [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json)

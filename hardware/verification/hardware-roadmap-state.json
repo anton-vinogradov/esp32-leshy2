@@ -2,7 +2,7 @@
   "schema_version": 1,
   "current_stage": "H5",
   "current_substep": "H5.0.3",
-  "current_detail": "JLCPCB Standard PCBA selected as non-exclusive reference; normalized compact BOM processed for five boards; 176/209 lines matched, all 1019 placements parsed and 33 explicit outliers remain; purchasing remains unauthorized",
+  "current_detail": "JLCPCB Standard PCBA selected as non-exclusive reference; 176/209 lines matched, all 1019 placements parsed and all 209 lines now have J0-J4 routes without replacement; JLCAPI app and local credential storage are ready while Parts permission is reviewing; exact SA518 qualified price remains open and purchasing is unauthorized",
   "stages": [
     {"id": "H0", "status": "reviewed"},
     {"id": "H1", "status": "reviewed"},

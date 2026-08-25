@@ -29,6 +29,6 @@ H2 was accepted on 24 August 2026 at hardware commit `25d9ee2` and firmware comm
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | extended-operation and configurable self-test policy without a runtime claim | H8 24/48-hour qualified-USB endurance and battery-to-protected-cutoff measurements |
 
-**Current hardware marker:** `H5.0.3` — the [single basket](component-sample-basket.md) covers all nine H5 residuals and 14 mechanical gates, while [JLCPCB Standard PCBA](manufacturing-platform.md) is the working manufacturing reference. The controlled BOM Tool run matched 176/209 lines and parsed all 1019 placements; 33 explicit outliers remain. Purchase, replacements, layout and fabrication are not authorized.
+**Current hardware marker:** `H5.0.3` — the [single basket](component-sample-basket.md) covers all nine H5 residuals and 14 mechanical gates, while [JLCPCB Standard PCBA](manufacturing-platform.md) is the working manufacturing reference. The controlled BOM Tool run matched 176/209 lines and parsed all 1019 placements; exact search resolved all 33 outliers into `J0`–`J4` without replacement. Only qualified exact-`SA518` pricing remains open. Purchase, layout and fabrication are not authorized.
 
 [Machine freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

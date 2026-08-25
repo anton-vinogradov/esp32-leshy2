@@ -1093,12 +1093,12 @@
       "SA528 is simultaneous U/V but 54.03 x 38.30 x 7.70 mm with a different 23-contact/audio interface"
     ],
     "prepared_request": "hardware/procurement/SA518-sample-rfq.md",
-    "direct_request_status": "deferred while JLCPCB global-sourcing/new-part routing is audited",
-    "next_action": "qualify SA518 and the other 32 BOM Tool outliers into the selected JLCPCB Standard PCBA sourcing model before any direct supplier request"
+    "direct_request_status": "deferred while a qualified exact-SA518 price is pursued through the selected JLCPCB route",
+    "next_action": "obtain one qualified exact-SA518 price; all 209 BOM lines already have J0-J4 routes without replacement, and the JLCAPI Parts permission is reviewing"
   },
   "sequencing": {
-    "now": "qualify the 33 explicit JLCPCB BOM Tool outliers after 176/209 lines and all 1019 placements parsed; keep H5.0.3 current",
-    "after_mapping": "route SA518 through JLCPCB global sourcing/new-part request first; use the prepared direct NiceRF request only if the platform route cannot close technical identity",
+    "now": "keep all 209 exact J0-J4 routes stable and obtain one qualified exact-SA518 price; the JLCAPI app exists and Parts permission is reviewing",
+    "after_mapping": "use approved read-only Parts access for repeatable availability checks; route SA518 through JLCPCB global sourcing/new-part request only after separate authorization, with the prepared NiceRF request as fallback",
     "after_quote": "publish exact whole-basket cost and request a separate sample-order decision",
     "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",
     "forbidden": [

@@ -2,14 +2,15 @@
 
 [English](component-sample-basket.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Предыдущий поиск](component-source-research.ru.md)
 
-Корзина опубликована, но **H5.0.3 ещё не закрыт**: [JLCPCB Standard PCBA выбран рабочей производственной линией](manufacturing-platform.ru.md); контрольный BOM Tool прогон сопоставил 176/209 строк, распознал все 1019 установок и оставил 33 явных outlier. `NiceRF SA518` остаётся единственной неизвестной ценой корзины, но прямой запрос производителю отложен до проверки sourcing через площадку. Минимальный BOM upload завершён; закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication не разрешены.
+Корзина опубликована, но **H5.0.3 ещё не закрыт**: [JLCPCB Standard PCBA выбран рабочей производственной линией](manufacturing-platform.ru.md); контрольный BOM Tool прогон сопоставил 176/209 строк и распознал все 1019 установок, а exact-поиск дал всем 209 строкам маршруты `J0`–`J4` без замен. `NiceRF SA518` остаётся единственной неизвестной ценой корзины. Приложение JLCAPI создано, право Parts находится на ревью; закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication не разрешены.
 
 ```mermaid
-flowchart LR
+flowchart TD
   R["✅ H5.0.2<br/>источники и замены"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
   B --> P["JLCPCB Standard<br/>176/209 · 1019/1019"]
-  P --> Q["квалифицировать 33 outlier<br/>в J0–J4"]
-  Q --> A["отдельное решение<br/>о закупке образцов"]
+  P --> Q["✅ 209/209 маршрутов<br/>J0–J4 без замен"]
+  Q --> S["квалифицированная цена<br/>exact SA518"]
+  S --> A["отдельное решение<br/>о закупке образцов"]
   A --> H51["H5.1<br/>incoming inspection"]
   H51 --> H52["H5.2<br/>coupons по реальным размерам"]
 ```

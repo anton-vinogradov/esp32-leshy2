@@ -1,0 +1,987 @@
+{
+  "schema_version": 1,
+  "captured_on": "2026-08-25",
+  "platform": "JLCPCB Assembly Parts Library",
+  "scope": "exact public search for 33 BOM Tool outliers",
+  "actions_excluded": [
+    "add to parts library",
+    "sourcing request",
+    "quote",
+    "reservation",
+    "purchase"
+  ],
+  "result": {
+    "queries": 33,
+    "queries_with_exact_catalog_rows": 18,
+    "queries_without_exact_catalog_rows": 15
+  },
+  "searches": [
+    {
+      "query": "2118651-2",
+      "summary": "2118651-2 Search results (0 Found)",
+      "exact": []
+    },
+    {
+      "query": "U214 Cap LoRa-1262",
+      "summary": "U214 Cap LoRa-1262 Search results (2819 Found)",
+      "exact": []
+    },
+    {
+      "query": "SN74LVC1G07DCKR",
+      "summary": "SN74LVC1G07DCKR Search results (9 Found)",
+      "exact": [
+        {
+          "mpn": "SN74LVC1G07DCKR",
+          "lcsc": "C7830",
+          "class": "Extended",
+          "description": "-40℃~+125℃ 1 1 1.65V~5.5V 10uA 32mA 4.2ns@3.3V 74LVC Open-drain Unidirectional SC-70-5 Buffers, Drivers, Receivers, Transceivers ROHS",
+          "manufacturer": "Texas Instruments",
+          "stock": 31027,
+          "raw": [
+            "SN74LVC1G07DCKR",
+            "C7830",
+            "Extended",
+            "-40℃~+125℃ 1 1 1.65V~5.5V 10uA 32mA 4.2ns@3.3V 74LVC Open-drain Unidirectional SC-70-5 Buffers, Drivers, Receivers, Transceivers ROHS",
+            "Texas Instruments",
+            "31027",
+            "1+",
+            "$0.1860",
+            "3000+",
+            "$0.1077",
+            "Show More",
+            "Idle parts available"
+          ]
+        },
+        {
+          "mpn": "SN74LVC1G07DCKR",
+          "lcsc": "C19829628",
+          "class": "Extended",
+          "description": "-40℃~+125℃ 1 1 1.65V~5.5V 1.7V、2V 10uA 24mA 700mV、800mV 74LVC 800mV 8ns@3.3V,50pF SOT-353 Logic Gates ROHS",
+          "manufacturer": "TECH PUBLIC",
+          "stock": 4189,
+          "raw": [
+            "SN74LVC1G07DCKR",
+            "C19829628",
+            "Extended",
+            "-40℃~+125℃ 1 1 1.65V~5.5V 1.7V、2V 10uA 24mA 700mV、800mV 74LVC 800mV 8ns@3.3V,50pF SOT-353 Logic Gates ROHS",
+            "TECH PUBLIC",
+            "4189",
+            "1+",
+            "$0.0554",
+            "3000+",
+            "$0.0335",
+            "Show More"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "RFPC-SMA31-FN-175-A",
+      "summary": "RFPC-SMA31-FN-175-A Search results (0 Found)",
+      "exact": []
+    },
+    {
+      "query": "MSPM0C1106SDGS20R",
+      "summary": "MSPM0C1106SDGS20R Search results (1 Found)",
+      "exact": [
+        {
+          "mpn": "MSPM0C1106SDGS20R",
+          "lcsc": "C52995805",
+          "class": "Extended",
+          "description": "VSSOP-20 Microcontrollers (MCU/MPU/SOC) ROHS",
+          "manufacturer": "Texas Instruments",
+          "stock": 34,
+          "raw": [
+            "MSPM0C1106SDGS20R",
+            "C52995805",
+            "Extended",
+            "VSSOP-20 Microcontrollers (MCU/MPU/SOC) ROHS",
+            "Texas Instruments",
+            "34",
+            "1+",
+            "$1.1969",
+            "5000+",
+            "$1.1352",
+            "Show More"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "TSMP95000TT",
+      "summary": "TSMP95000TT Search results (1 Found)",
+      "exact": [
+        {
+          "mpn": "TSMP95000TT",
+          "lcsc": "C9900158697",
+          "class": "Extended",
+          "description": "SMD-4P New Arrivals ROHS",
+          "manufacturer": "JLCPCB Assembly",
+          "stock": 0,
+          "raw": [
+            "TSMP95000TT",
+            "C9900158697",
+            "Extended",
+            "SMD-4P New Arrivals ROHS",
+            "JLCPCB Assembly",
+            "0",
+            "Est. unit price:",
+            "$0.0381"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "RFPC-SMA32-FN-175-A",
+      "summary": "RFPC-SMA32-FN-175-A Search results (0 Found)",
+      "exact": []
+    },
+    {
+      "query": "SN74LVC1G17DCKR",
+      "summary": "SN74LVC1G17DCKR Search results (7 Found)",
+      "exact": [
+        {
+          "mpn": "SN74LVC1G17DCKR",
+          "lcsc": "C10425",
+          "class": "Extended",
+          "description": "-40℃~+85℃ 1 1 1.65V~5.5V 10uA 32mA 32mA 4.6ns@3.3V,50pF 74LVC Schmitt trigger Unidirectional SC-70-5 Buffers, Drivers, Receivers, Transceivers ROHS",
+          "manufacturer": "Texas Instruments",
+          "stock": 59402,
+          "raw": [
+            "SN74LVC1G17DCKR",
+            "C10425",
+            "Extended",
+            "-40℃~+85℃ 1 1 1.65V~5.5V 10uA 32mA 32mA 4.6ns@3.3V,50pF 74LVC Schmitt trigger Unidirectional SC-70-5 Buffers, Drivers, Receivers, Transceivers ROHS",
+            "Texas Instruments",
+            "59402",
+            "1+",
+            "$0.0795",
+            "3000+",
+            "$0.0517",
+            "Show More",
+            "Idle parts available"
+          ]
+        },
+        {
+          "mpn": "SN74LVC1G17DCKR",
+          "lcsc": "C19829631",
+          "class": "Extended",
+          "description": "-40℃~+125℃ 1 1 1.2V、1.9V、2.3V、2.4V 1.65V~5.5V 100mV、300mV、400mV、550mV 10uA 32mA 32mA 74LVC 8.3ns@5V,50pF SOT-353 Logic Gates ROHS",
+          "manufacturer": "TECH PUBLIC",
+          "stock": 23030,
+          "raw": [
+            "SN74LVC1G17DCKR",
+            "C19829631",
+            "Extended",
+            "-40℃~+125℃ 1 1 1.2V、1.9V、2.3V、2.4V 1.65V~5.5V 100mV、300mV、400mV、550mV 10uA 32mA 32mA 74LVC 8.3ns@5V,50pF SOT-353 Logic Gates ROHS",
+            "TECH PUBLIC",
+            "23030",
+            "1+",
+            "$0.0530",
+            "3000+",
+            "$0.0311",
+            "Show More"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "SN74LVC1G08DCKR",
+      "summary": "SN74LVC1G08DCKR Search results (11 Found)",
+      "exact": [
+        {
+          "mpn": "SN74LVC1G08DCKR",
+          "lcsc": "C7832",
+          "class": "Extended",
+          "description": "-40℃~+125℃ 1 1.65V~5.5V 1.7V、2V 10uA 2 2.3V 24mA 3.6ns@3.3V 32mA 550mV 700mV、800mV 74LVC Series AND Gate Overvoltage-tolerant input、Rear drive protection、Local shutdown mode、Live insertion protection SC-70-5 Logic Gates ROHS",
+          "manufacturer": "Texas Instruments",
+          "stock": 179787,
+          "raw": [
+            "SN74LVC1G08DCKR",
+            "C7832",
+            "Extended",
+            "-40℃~+125℃ 1 1.65V~5.5V 1.7V、2V 10uA 2 2.3V 24mA 3.6ns@3.3V 32mA 550mV 700mV、800mV 74LVC Series AND Gate Overvoltage-tolerant input、Rear drive protection、Local shutdown mode、Live insertion protection SC-70-5 Logic Gates ROHS",
+            "Texas Instruments",
+            "179787",
+            "1+",
+            "$0.0579",
+            "3000+",
+            "$0.0351",
+            "Show More",
+            "Idle parts available"
+          ]
+        },
+        {
+          "mpn": "SN74LVC1G08DCKR",
+          "lcsc": "C5279048",
+          "class": "Extended",
+          "description": "-40℃~+85℃ 1.47V、1.64V、2.15V、2.73V、4V 1.65V~5.5V 100nA 10mV、110mV、110mV、200mV、350mV 2 2 3.4ns@5V,15pF 32mA 32mA 74LVC AND Gate SC-70-5 Logic Gates ROHS",
+          "manufacturer": "TWGMC",
+          "stock": 1312,
+          "raw": [
+            "SN74LVC1G08DCKR",
+            "C5279048",
+            "Extended",
+            "-40℃~+85℃ 1.47V、1.64V、2.15V、2.73V、4V 1.65V~5.5V 100nA 10mV、110mV、110mV、200mV、350mV 2 2 3.4ns@5V,15pF 32mA 32mA 74LVC AND Gate SC-70-5 Logic Gates ROHS",
+            "TWGMC",
+            "1312",
+            "1+",
+            "$0.0679",
+            "3000+",
+            "$0.0413",
+            "Show More"
+          ]
+        },
+        {
+          "mpn": "SN74LVC1G08DCKR",
+          "lcsc": "C19829629",
+          "class": "Extended",
+          "description": "-40℃~+125℃ 1 1.2V、1.9V、2.4V、3.8V 1.65V~5.5V 100mV、300mV、400mV、450mV、550mV 10uA 2 24mA 74LVC AND Gate SOT-353 Logic Gates ROHS",
+          "manufacturer": "TECH PUBLIC",
+          "stock": 38490,
+          "raw": [
+            "SN74LVC1G08DCKR",
+            "C19829629",
+            "Extended",
+            "-40℃~+125℃ 1 1.2V、1.9V、2.4V、3.8V 1.65V~5.5V 100mV、300mV、400mV、450mV、550mV 10uA 2 24mA 74LVC AND Gate SOT-353 Logic Gates ROHS",
+            "TECH PUBLIC",
+            "38490",
+            "1+",
+            "$0.0596",
+            "3000+",
+            "$0.0377",
+            "Show More"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "SC1512-A4",
+      "summary": "SC1512-A4 Search results (1 Found)",
+      "exact": [
+        {
+          "mpn": "SC1512-A4",
+          "lcsc": "C52763783",
+          "class": "Extended",
+          "description": "- HWDG ROHS",
+          "manufacturer": "Raspberry Pi",
+          "stock": 0,
+          "raw": [
+            "SC1512-A4",
+            "C52763783",
+            "Extended",
+            "- HWDG ROHS",
+            "Raspberry Pi",
+            "0",
+            "Est. unit price:",
+            "$3.7623"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "1125R-SMT-4P",
+      "summary": "1125R-SMT-4P Search results (0 Found)",
+      "exact": []
+    },
+    {
+      "query": "BGS13SN8E6327XTSA1",
+      "summary": "BGS13SN8E6327XTSA1 Search results (1 Found)",
+      "exact": [
+        {
+          "mpn": "BGS13SN8E6327XTSA1",
+          "lcsc": "C55118249",
+          "class": "Extended",
+          "description": "PG-TSNP-8-1 SMT ROHS",
+          "manufacturer": "Infineon Technologies",
+          "stock": 0,
+          "raw": [
+            "BGS13SN8E6327XTSA1",
+            "C55118249",
+            "Extended",
+            "PG-TSNP-8-1 SMT ROHS",
+            "Infineon Technologies",
+            "0",
+            "Est. unit price:",
+            "$0.5585"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "TCA9539PWR",
+      "summary": "TCA9539PWR Search results (3 Found)",
+      "exact": [
+        {
+          "mpn": "TCA9539PWR",
+          "lcsc": "C131972",
+          "class": "Extended",
+          "description": "-40℃~+85℃ 1.5uA 1.65V~5.5V 10mA 16 25mA 4 4.1V 400kHz 400mV I2C、SMBus Interrupt Output Push-Pull Reset function、Cascading and address extension、Built-in LED driver TSSOP-24 I/O Expanders ROHS",
+          "manufacturer": "Texas Instruments",
+          "stock": 8380,
+          "raw": [
+            "TCA9539PWR",
+            "C131972",
+            "Extended",
+            "-40℃~+85℃ 1.5uA 1.65V~5.5V 10mA 16 25mA 4 4.1V 400kHz 400mV I2C、SMBus Interrupt Output Push-Pull Reset function、Cascading and address extension、Built-in LED driver TSSOP-24 I/O Expanders ROHS",
+            "Texas Instruments",
+            "8380",
+            "1+",
+            "$1.1612",
+            "2000+",
+            "$0.6821",
+            "Show More"
+          ]
+        },
+        {
+          "mpn": "TCA9539PWR",
+          "lcsc": "C22448189",
+          "class": "Extended",
+          "description": "TSSOP-24 I/O Expanders ROHS",
+          "manufacturer": "Texas Instruments",
+          "stock": 0,
+          "raw": [
+            "TCA9539PWR",
+            "C22448189",
+            "Extended",
+            "TSSOP-24 I/O Expanders ROHS",
+            "Texas Instruments",
+            "0",
+            "Est. unit price:",
+            "$0.3724"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "RC0402FR-07100RL",
+      "summary": "RC0402FR-07100RL Search results (2 Found)",
+      "exact": [
+        {
+          "mpn": "RC0402FR-07100RL",
+          "lcsc": "C106232",
+          "class": "Extended",
+          "description": "-55℃~+155℃ 100Ω 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+          "manufacturer": "YAGEO",
+          "stock": 5003833,
+          "raw": [
+            "RC0402FR-07100RL",
+            "C106232",
+            "Extended",
+            "-55℃~+155℃ 100Ω 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+            "YAGEO",
+            "5003833",
+            "1+",
+            "$0.0044",
+            "10000+",
+            "$0.0031",
+            "Show More",
+            "Idle parts available"
+          ]
+        },
+        {
+          "mpn": "RC0402FR-07100RL",
+          "lcsc": "C2935235",
+          "class": "Extended",
+          "description": "-55℃~+155℃ 100Ω 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+          "manufacturer": "YAGEO",
+          "stock": 0,
+          "raw": [
+            "RC0402FR-07100RL",
+            "C2935235",
+            "Extended",
+            "-55℃~+155℃ 100Ω 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+            "YAGEO",
+            "0",
+            "Est. unit price:",
+            "$0.0010",
+            "Idle parts available"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "RC0402FR-074K7L",
+      "summary": "RC0402FR-074K7L Search results (2 Found)",
+      "exact": [
+        {
+          "mpn": "RC0402FR-074K7L",
+          "lcsc": "C105871",
+          "class": "Extended",
+          "description": "-55℃~+155℃ 4.7kΩ 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+          "manufacturer": "YAGEO",
+          "stock": 7353078,
+          "raw": [
+            "RC0402FR-074K7L",
+            "C105871",
+            "Extended",
+            "-55℃~+155℃ 4.7kΩ 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+            "YAGEO",
+            "7353078",
+            "1+",
+            "$0.0043",
+            "10000+",
+            "$0.0030",
+            "Show More",
+            "Idle parts available"
+          ]
+        },
+        {
+          "mpn": "RC0402FR-074K7L",
+          "lcsc": "C2935240",
+          "class": "Extended",
+          "description": "-55℃~+155℃ 4.7kΩ 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+          "manufacturer": "YAGEO",
+          "stock": 0,
+          "raw": [
+            "RC0402FR-074K7L",
+            "C2935240",
+            "Extended",
+            "-55℃~+155℃ 4.7kΩ 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+            "YAGEO",
+            "0",
+            "Est. unit price:",
+            "$0.0005"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "ESP32-C5-WROOM-1U-N8R8",
+      "summary": "ESP32-C5-WROOM-1U-N8R8 Search results (4 Found)",
+      "exact": [
+        {
+          "mpn": "ESP32-C5-WROOM-1U-N8R8",
+          "lcsc": "C51950748",
+          "class": "Extended",
+          "description": "SMD,21.2x18mm WiFi Modules ROHS",
+          "manufacturer": "Espressif Systems",
+          "stock": 0,
+          "raw": [
+            "ESP32-C5-WROOM-1U-N8R8",
+            "C51950748",
+            "Extended",
+            "SMD,21.2x18mm WiFi Modules ROHS",
+            "Espressif Systems",
+            "0",
+            "Est. lead time:13 days",
+            "Est. unit price:",
+            "$5.8117"
+          ]
+        },
+        {
+          "mpn": "ESP32-C5-WROOM-1U-N8R8",
+          "lcsc": "C9900236613",
+          "class": "Extended",
+          "description": "SMD,21.2x18mm SMT ROHS",
+          "manufacturer": "JLCPCB Assembly",
+          "stock": 0,
+          "raw": [
+            "ESP32-C5-WROOM-1U-N8R8",
+            "C9900236613",
+            "Extended",
+            "SMD,21.2x18mm SMT ROHS",
+            "JLCPCB Assembly",
+            "0",
+            "Est. unit price:",
+            "$0.0381"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "AS02404PO",
+      "summary": "AS02404PO Search results (0 Found)",
+      "exact": []
+    },
+    {
+      "query": "RC0402FR-0733RL",
+      "summary": "RC0402FR-0733RL Search results (2 Found)",
+      "exact": [
+        {
+          "mpn": "RC0402FR-0733RL",
+          "lcsc": "C138002",
+          "class": "Extended",
+          "description": "-55℃~+155℃ 33Ω 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+          "manufacturer": "YAGEO",
+          "stock": 5477653,
+          "raw": [
+            "RC0402FR-0733RL",
+            "C138002",
+            "Extended",
+            "-55℃~+155℃ 33Ω 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+            "YAGEO",
+            "5477653",
+            "1+",
+            "$0.0056",
+            "10000+",
+            "$0.0042",
+            "Show More",
+            "Idle parts available"
+          ]
+        },
+        {
+          "mpn": "RC0402FR-0733RL",
+          "lcsc": "C2935238",
+          "class": "Extended",
+          "description": "-55℃~+155℃ 33Ω 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+          "manufacturer": "YAGEO",
+          "stock": 0,
+          "raw": [
+            "RC0402FR-0733RL",
+            "C2935238",
+            "Extended",
+            "-55℃~+155℃ 33Ω 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+            "YAGEO",
+            "0",
+            "Est. unit price:",
+            "$0.0004",
+            "Idle parts available"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "FX8C-80S-SV5(92)",
+      "summary": "FX8C-80S-SV5(92) Search results (0 Found)",
+      "exact": []
+    },
+    {
+      "query": "HMX035CTFT-001",
+      "summary": "HMX035CTFT-001 Search results (0 Found)",
+      "exact": []
+    },
+    {
+      "query": "TPD4E05U06DQAR",
+      "summary": "TPD4E05U06DQAR Search results (16 Found)",
+      "exact": [
+        {
+          "mpn": "TPD4E05U06DQAR",
+          "lcsc": "C138714",
+          "class": "Extended",
+          "description": "-40℃~+125℃ 0.5pF 10nA 14V 2.5A@8/20us 40W@8/20us 5.5V 6.5V ESD Four channels IEC 61000-4-2、IEC 61000-4-5、IEC 61000-4-4 Unidirectional USON-10(1x2.5) ESD and Surge Protection (TVS/ESD) ROHS",
+          "manufacturer": "Texas Instruments",
+          "stock": 61819,
+          "raw": [
+            "TPD4E05U06DQAR",
+            "C138714",
+            "Extended",
+            "-40℃~+125℃ 0.5pF 10nA 14V 2.5A@8/20us 40W@8/20us 5.5V 6.5V ESD Four channels IEC 61000-4-2、IEC 61000-4-5、IEC 61000-4-4 Unidirectional USON-10(1x2.5) ESD and Surge Protection (TVS/ESD) ROHS",
+            "Texas Instruments",
+            "61819",
+            "1+",
+            "$0.0926",
+            "3000+",
+            "$0.0575",
+            "Show More",
+            "Idle parts available"
+          ]
+        },
+        {
+          "mpn": "TPD4E05U06DQAR",
+          "lcsc": "C2827646",
+          "class": "Extended",
+          "description": "-55℃~+125℃ 0.3pF、0.6pF 13V 5.5V 50nA 5A 7.5V 70W@8/20us ESD Four channels IEC 61000-4-2、IEC 61000-4-5、IEC 61000-4-4 Unidirectional USON-10(1x2.5) ESD and Surge Protection (TVS/ESD) ROHS",
+          "manufacturer": "TECH PUBLIC",
+          "stock": 36990,
+          "raw": [
+            "TPD4E05U06DQAR",
+            "C2827646",
+            "Extended",
+            "-55℃~+125℃ 0.3pF、0.6pF 13V 5.5V 50nA 5A 7.5V 70W@8/20us ESD Four channels IEC 61000-4-2、IEC 61000-4-5、IEC 61000-4-4 Unidirectional USON-10(1x2.5) ESD and Surge Protection (TVS/ESD) ROHS",
+            "TECH PUBLIC",
+            "36990",
+            "1+",
+            "$0.0782",
+            "3000+",
+            "$0.0436",
+            "Show More"
+          ]
+        },
+        {
+          "mpn": "TPD4E05U06DQAR",
+          "lcsc": "C2972498",
+          "class": "Extended",
+          "description": "0.3pF、0.8pF 100nA 5A@8/20us 5V 6V 75W@8/20us 9.8V、15V ESD Four channels IEC 61000-4-2、IEC 61000-4-5 DFN2510-10 ESD and Surge Protection (TVS/ESD) ROHS",
+          "manufacturer": "Leiditech",
+          "stock": 4252,
+          "raw": [
+            "TPD4E05U06DQAR",
+            "C2972498",
+            "Extended",
+            "0.3pF、0.8pF 100nA 5A@8/20us 5V 6V 75W@8/20us 9.8V、15V ESD Four channels IEC 61000-4-2、IEC 61000-4-5 DFN2510-10 ESD and Surge Protection (TVS/ESD) ROHS",
+            "Leiditech",
+            "4252",
+            "1+",
+            "$0.0861",
+            "3000+",
+            "$0.0569",
+            "Show More"
+          ]
+        },
+        {
+          "mpn": "TPD4E05U06DQAR",
+          "lcsc": "C5337182",
+          "class": "Extended",
+          "description": "-40℃~+125℃ 0.8pF 150W 15V 1uA 3.3V 5A 6V ESD Four channels IEC 61000-4-2 Unidirectional DFN2510-10L ESD and Surge Protection (TVS/ESD) ROHS",
+          "manufacturer": "HXY MOSFET",
+          "stock": 394,
+          "raw": [
+            "TPD4E05U06DQAR",
+            "C5337182",
+            "Extended",
+            "-40℃~+125℃ 0.8pF 150W 15V 1uA 3.3V 5A 6V ESD Four channels IEC 61000-4-2 Unidirectional DFN2510-10L ESD and Surge Protection (TVS/ESD) ROHS",
+            "HXY MOSFET",
+            "394",
+            "1+",
+            "$0.0993",
+            "3000+",
+            "$0.0527",
+            "Show More"
+          ]
+        },
+        {
+          "mpn": "TPD4E05U06DQAR",
+          "lcsc": "C21713973",
+          "class": "Extended",
+          "description": "-55℃~+125℃ 0.6pF 15V 1uA 4.5A@8/20us 5V 60W@8/20us 6V ESD Four channels IEC 61000-4-2 Unidirectional USON-10(1x2.5) ESD and Surge Protection (TVS/ESD) ROHS",
+          "manufacturer": "GOODWORK",
+          "stock": 1644,
+          "raw": [
+            "TPD4E05U06DQAR",
+            "C21713973",
+            "Extended",
+            "-55℃~+125℃ 0.6pF 15V 1uA 4.5A@8/20us 5V 60W@8/20us 6V ESD Four channels IEC 61000-4-2 Unidirectional USON-10(1x2.5) ESD and Surge Protection (TVS/ESD) ROHS",
+            "GOODWORK",
+            "1644",
+            "1+",
+            "$0.0429",
+            "3000+",
+            "$0.0283",
+            "Show More"
+          ]
+        },
+        {
+          "mpn": "TPD4E05U06DQAR",
+          "lcsc": "C22390021",
+          "class": "Extended",
+          "description": "0.2pF 15V 1uA 5V 60W@8/20us 9V Four channels IEC 61000-4-2、IEC 61000-4-5 TVS Unidirectional DFN2510-10L ESD and Surge Protection (TVS/ESD) ROHS",
+          "manufacturer": "DOWO",
+          "stock": 107289,
+          "raw": [
+            "TPD4E05U06DQAR",
+            "C22390021",
+            "Extended",
+            "0.2pF 15V 1uA 5V 60W@8/20us 9V Four channels IEC 61000-4-2、IEC 61000-4-5 TVS Unidirectional DFN2510-10L ESD and Surge Protection (TVS/ESD) ROHS",
+            "DOWO",
+            "107289",
+            "1+",
+            "$0.0286",
+            "3000+",
+            "$0.0173",
+            "Show More"
+          ]
+        },
+        {
+          "mpn": "TPD4E05U06DQAR",
+          "lcsc": "C53433026",
+          "class": "Extended",
+          "description": "DFN2510-10L ESD and Surge Protection (TVS/ESD) ROHS",
+          "manufacturer": "YTL",
+          "stock": 2941,
+          "raw": [
+            "TPD4E05U06DQAR",
+            "C53433026",
+            "Extended",
+            "DFN2510-10L ESD and Surge Protection (TVS/ESD) ROHS",
+            "YTL",
+            "2941",
+            "1+",
+            "$0.0439",
+            "3000+",
+            "$0.0264",
+            "Show More"
+          ]
+        },
+        {
+          "mpn": "TPD4E05U06DQAR",
+          "lcsc": "C125795",
+          "class": "Extended",
+          "description": "USON-10 ESD Protection Devices ROHS",
+          "manufacturer": "Texas Instruments",
+          "stock": 0,
+          "raw": [
+            "TPD4E05U06DQAR",
+            "C125795",
+            "Extended",
+            "USON-10 ESD Protection Devices ROHS",
+            "Texas Instruments",
+            "0",
+            "Est. unit price:",
+            "$0.5742"
+          ]
+        },
+        {
+          "mpn": "TPD4E05U06DQAR",
+          "lcsc": "C9900010487",
+          "class": "Extended",
+          "description": "USON-10 SMT ROHS",
+          "manufacturer": "JLCPCB Assembly",
+          "stock": 0,
+          "raw": [
+            "TPD4E05U06DQAR",
+            "C9900010487",
+            "Extended",
+            "USON-10 SMT ROHS",
+            "JLCPCB Assembly",
+            "0",
+            "Est. unit price:",
+            "$0.0007"
+          ]
+        },
+        {
+          "mpn": "TPD4E05U06DQAR",
+          "lcsc": "C9900145545",
+          "class": "Extended",
+          "description": "DSON-10_L2.5-W1.0-P0.50-BL New Arrivals ROHS",
+          "manufacturer": "JLCPCB Assembly",
+          "stock": 0,
+          "raw": [
+            "TPD4E05U06DQAR",
+            "C9900145545",
+            "Extended",
+            "DSON-10_L2.5-W1.0-P0.50-BL New Arrivals ROHS",
+            "JLCPCB Assembly",
+            "0",
+            "Est. unit price:",
+            "$0.0381"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "1227-J",
+      "summary": "1227-J Search results (1 Found)",
+      "exact": []
+    },
+    {
+      "query": "TLV1824PWR",
+      "summary": "TLV1824PWR Search results (1 Found)",
+      "exact": [
+        {
+          "mpn": "TLV1824PWR",
+          "lcsc": "C35149428",
+          "class": "Extended",
+          "description": "TSSOP-14 Comparators ROHS",
+          "manufacturer": "Texas Instruments",
+          "stock": 9,
+          "raw": [
+            "TLV1824PWR",
+            "C35149428",
+            "Extended",
+            "TSSOP-14 Comparators ROHS",
+            "Texas Instruments",
+            "9",
+            "1+",
+            "$2.2866",
+            "3000+",
+            "$2.1713",
+            "Show More"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "TPUL2G223BQBR",
+      "summary": "TPUL2G223BQBR Search results (0 Found)",
+      "exact": []
+    },
+    {
+      "query": "SA518",
+      "summary": "SA518 Search results (1 Found)",
+      "exact": [
+        {
+          "mpn": "SA518",
+          "lcsc": "C9900300438",
+          "class": "Extended",
+          "description": "SMD SMT ROHS",
+          "manufacturer": "JLCPCB Assembly",
+          "stock": 0,
+          "raw": [
+            "SA518",
+            "C9900300438",
+            "Extended",
+            "SMD SMT ROHS",
+            "JLCPCB Assembly",
+            "0",
+            "Est. unit price:",
+            "$0.0381"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "TLV1821DCKR",
+      "summary": "TLV1821DCKR Search results (0 Found)",
+      "exact": []
+    },
+    {
+      "query": "GJM1555C1H101JB01D",
+      "summary": "GJM1555C1H101JB01D Search results (0 Found)",
+      "exact": []
+    },
+    {
+      "query": "B0310J50100AHF",
+      "summary": "B0310J50100AHF Search results (2 Found)",
+      "exact": [
+        {
+          "mpn": "B0310J50100AHF",
+          "lcsc": "C502721",
+          "class": "Extended",
+          "description": "-55℃~+105℃ 1dB 2.8dB 300MHz~1GHz 38° 50Ω:100Ω 8.1dB 9dB 0805 Balun ROHS",
+          "manufacturer": "Anaren",
+          "stock": 0,
+          "raw": [
+            "B0310J50100AHF",
+            "C502721",
+            "Extended",
+            "-55℃~+105℃ 1dB 2.8dB 300MHz~1GHz 38° 50Ω:100Ω 8.1dB 9dB 0805 Balun ROHS",
+            "Anaren",
+            "0",
+            "Est. lead time:12 days",
+            "Est. unit price:",
+            "$2.8644"
+          ]
+        },
+        {
+          "mpn": "B0310J50100AHF",
+          "lcsc": "C5160223",
+          "class": "Extended",
+          "description": "-55℃~+140℃ 0.8dB 2.5dB 300MHz~1GHz 38° 50Ω:100Ω 8.1dB 0805 Balun ROHS",
+          "manufacturer": "TTM Technologies, Inc.",
+          "stock": 0,
+          "raw": [
+            "B0310J50100AHF",
+            "C5160223",
+            "Extended",
+            "-55℃~+140℃ 0.8dB 2.5dB 300MHz~1GHz 38° 50Ω:100Ω 8.1dB 0805 Balun ROHS",
+            "TTM Technologies, Inc.",
+            "0",
+            "Est. unit price:",
+            "$1.1295"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "RC0402FR-071KL",
+      "summary": "RC0402FR-071KL Search results (2 Found)",
+      "exact": [
+        {
+          "mpn": "RC0402FR-071KL",
+          "lcsc": "C106235",
+          "class": "Extended",
+          "description": "-55℃~+155℃ 1kΩ 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+          "manufacturer": "YAGEO",
+          "stock": 4396756,
+          "raw": [
+            "RC0402FR-071KL",
+            "C106235",
+            "Extended",
+            "-55℃~+155℃ 1kΩ 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+            "YAGEO",
+            "4396756",
+            "1+",
+            "$0.0041",
+            "10000+",
+            "$0.0031",
+            "Show More",
+            "Idle parts available"
+          ]
+        },
+        {
+          "mpn": "RC0402FR-071KL",
+          "lcsc": "C2935237",
+          "class": "Extended",
+          "description": "-55℃~+155℃ 1kΩ 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+          "manufacturer": "YAGEO",
+          "stock": 0,
+          "raw": [
+            "RC0402FR-071KL",
+            "C2935237",
+            "Extended",
+            "-55℃~+155℃ 1kΩ 50V 62.5mW Thick Film Resistor ±1% ±100ppm/℃ 0402 Chip Resistor - Surface Mount ROHS",
+            "YAGEO",
+            "0",
+            "Est. unit price:",
+            "$0.0009"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "PESD24VY1BSF",
+      "summary": "PESD24VY1BSF Search results (0 Found)",
+      "exact": []
+    },
+    {
+      "query": "TPD2EUSB30ADRTR",
+      "summary": "TPD2EUSB30ADRTR Search results (4 Found)",
+      "exact": [
+        {
+          "mpn": "TPD2EUSB30ADRTR",
+          "lcsc": "C94934",
+          "class": "Extended",
+          "description": "-40℃~+85℃ 0.7pF 2 3.6V 4.5V 45W@8/20us 5A@8/20us 8V ESD IEC 61000-4-2、IEC 61000-4-5 Unidirectional SOT(9x3) ESD and Surge Protection (TVS/ESD) ROHS",
+          "manufacturer": "Texas Instruments",
+          "stock": 5068,
+          "raw": [
+            "TPD2EUSB30ADRTR",
+            "C94934",
+            "Extended",
+            "-40℃~+85℃ 0.7pF 2 3.6V 4.5V 45W@8/20us 5A@8/20us 8V ESD IEC 61000-4-2、IEC 61000-4-5 Unidirectional SOT(9x3) ESD and Surge Protection (TVS/ESD) ROHS",
+            "Texas Instruments",
+            "5068",
+            "1+",
+            "$0.4840",
+            "3000+",
+            "$0.2274",
+            "Show More"
+          ]
+        },
+        {
+          "mpn": "TPD2EUSB30ADRTR",
+          "lcsc": "C3011197",
+          "class": "Extended",
+          "description": "0.45pF 100nA 14V 3.3V 4.5V ESD IEC 61000-4-2、IEC 61000-4-5、IEC 61000-4-4 Unidirectional SOT(9x3) ESD and Surge Protection (TVS/ESD) ROHS",
+          "manufacturer": "TECH PUBLIC",
+          "stock": 3582,
+          "raw": [
+            "TPD2EUSB30ADRTR",
+            "C3011197",
+            "Extended",
+            "0.45pF 100nA 14V 3.3V 4.5V ESD IEC 61000-4-2、IEC 61000-4-5、IEC 61000-4-4 Unidirectional SOT(9x3) ESD and Surge Protection (TVS/ESD) ROHS",
+            "TECH PUBLIC",
+            "3582",
+            "1+",
+            "$0.1886",
+            "8000+",
+            "$0.1012",
+            "Show More"
+          ]
+        }
+      ]
+    },
+    {
+      "query": "18650 4000mAh",
+      "summary": "18650 4000mAh Search results (1 Found)",
+      "exact": []
+    },
+    {
+      "query": "E01-ML01IPX",
+      "summary": "E01-ML01IPX Search results (0 Found)",
+      "exact": []
+    }
+  ]
+}
+

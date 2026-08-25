@@ -205,12 +205,12 @@ def build() -> dict:
                 "SA528 is simultaneous U/V but 54.03 x 38.30 x 7.70 mm with a different 23-contact/audio interface",
             ],
             "prepared_request": "hardware/procurement/SA518-sample-rfq.md",
-            "direct_request_status": "deferred while JLCPCB global-sourcing/new-part routing is audited",
-            "next_action": "qualify SA518 and the other 32 BOM Tool outliers into the selected JLCPCB Standard PCBA sourcing model before any direct supplier request",
+            "direct_request_status": "deferred while a qualified exact-SA518 price is pursued through the selected JLCPCB route",
+            "next_action": "obtain one qualified exact-SA518 price; all 209 BOM lines already have J0-J4 routes without replacement, and the JLCAPI Parts permission is reviewing",
         },
         "sequencing": {
-            "now": "qualify the 33 explicit JLCPCB BOM Tool outliers after 176/209 lines and all 1019 placements parsed; keep H5.0.3 current",
-            "after_mapping": "route SA518 through JLCPCB global sourcing/new-part request first; use the prepared direct NiceRF request only if the platform route cannot close technical identity",
+            "now": "keep all 209 exact J0-J4 routes stable and obtain one qualified exact-SA518 price; the JLCAPI app exists and Parts permission is reviewing",
+            "after_mapping": "use approved read-only Parts access for repeatable availability checks; route SA518 through JLCPCB global sourcing/new-part request only after separate authorization, with the prepared NiceRF request as fallback",
             "after_quote": "publish exact whole-basket cost and request a separate sample-order decision",
             "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",
             "forbidden": ["component purchase without a separate decision", "PCB placement/routing", "prototype fabrication"],
@@ -280,14 +280,15 @@ def render_doc(data: dict, russian: bool) -> str:
 
 [English](component-sample-basket.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Предыдущий поиск](component-source-research.ru.md)
 
-Корзина опубликована, но **H5.0.3 ещё не закрыт**: [JLCPCB Standard PCBA выбран рабочей производственной линией](manufacturing-platform.ru.md); контрольный BOM Tool прогон сопоставил 176/209 строк, распознал все 1019 установок и оставил 33 явных outlier. `NiceRF SA518` остаётся единственной неизвестной ценой корзины, но прямой запрос производителю отложен до проверки sourcing через площадку. Минимальный BOM upload завершён; закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication не разрешены.
+Корзина опубликована, но **H5.0.3 ещё не закрыт**: [JLCPCB Standard PCBA выбран рабочей производственной линией](manufacturing-platform.ru.md); контрольный BOM Tool прогон сопоставил 176/209 строк и распознал все 1019 установок, а exact-поиск дал всем 209 строкам маршруты `J0`–`J4` без замен. `NiceRF SA518` остаётся единственной неизвестной ценой корзины. Приложение JLCAPI создано, право Parts находится на ревью; закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication не разрешены.
 
 ```mermaid
-flowchart LR
+flowchart TD
   R["✅ H5.0.2<br/>источники и замены"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
   B --> P["JLCPCB Standard<br/>176/209 · 1019/1019"]
-  P --> Q["квалифицировать 33 outlier<br/>в J0–J4"]
-  Q --> A["отдельное решение<br/>о закупке образцов"]
+  P --> Q["✅ 209/209 маршрутов<br/>J0–J4 без замен"]
+  Q --> S["квалифицированная цена<br/>exact SA518"]
+  S --> A["отдельное решение<br/>о закупке образцов"]
   A --> H51["H5.1<br/>incoming inspection"]
   H51 --> H52["H5.2<br/>coupons по реальным размерам"]
 ```
@@ -322,14 +323,15 @@ flowchart LR
 
 [Русский](component-sample-basket.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Previous research](component-source-research.md)
 
-The basket is published, but **H5.0.3 is not yet reviewed**: [JLCPCB Standard PCBA is now the manufacturing reference](manufacturing-platform.md); its controlled BOM Tool run matched 176/209 lines, parsed all 1019 placements and left 33 explicit outliers. `NiceRF SA518` remains the basket's only unpriced line, but direct manufacturer contact is deferred until the platform sourcing path is checked. The minimum BOM upload is complete; purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication are not authorized.
+The basket is published, but **H5.0.3 is not yet reviewed**: [JLCPCB Standard PCBA is now the manufacturing reference](manufacturing-platform.md); its controlled BOM Tool run matched 176/209 lines and parsed all 1019 placements, while exact search gave all 209 lines `J0`–`J4` routes without replacement. `NiceRF SA518` remains the basket's only unpriced line. The JLCAPI app exists and Parts permission is under review; purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication are not authorized.
 
 ```mermaid
-flowchart LR
+flowchart TD
   R["✅ H5.0.2<br/>sources + replacements"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
   B --> P["JLCPCB Standard<br/>176/209 · 1019/1019"]
-  P --> Q["qualify 33 outliers<br/>into J0–J4"]
-  Q --> A["separate sample-order<br/>decision"]
+  P --> Q["✅ 209/209 routes<br/>J0–J4 · no replacement"]
+  Q --> S["qualified exact-SA518<br/>price"]
+  S --> A["separate sample-order<br/>decision"]
   A --> H51["H5.1<br/>incoming inspection"]
   H51 --> H52["H5.2<br/>coupons from real dimensions"]
 ```
@@ -376,8 +378,9 @@ The old quantities and `$164.54` partial subtotal are intentionally not an
 ordering source. Purchasing is the last resort after documentary and
 function-preserving replacement research. Sample ordering, PCB
 placement/routing and fabrication remain unauthorized. The current basket has
-one supplier-price input open (`SA518`); JLCPCB platform sourcing is checked
-before the prepared direct manufacturer request is considered.
+one supplier-price input open (`SA518`); all 209 availability routes are mapped,
+the JLCAPI Parts permission is under review, and the prepared direct manufacturer
+request remains a fallback.
 """
 
 

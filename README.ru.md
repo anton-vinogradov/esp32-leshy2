@@ -14,8 +14,11 @@
 
 > **Сейчас: H5.0.3 · [аудит PCBA-площадки](docs/manufacturing-platform.ru.md).**
 > JLCPCB Standard PCBA выбран неэксклюзивным ориентиром. Контрольный BOM Tool
-> прогон сопоставил 176/209 строк, распознал все 1019 установок и оставил 33
-> явных outlier. Закупка, замены компонентов, PCB routing и печать заблокированы.
+> прогон сопоставил 176/209 строк и распознал все 1019 установок; exact-поиск
+> разрешил все 33 outlier. Теперь у каждой строки есть маршрут `J0`–`J4` без
+> замены; открыта только квалифицированная цена exact `SA518`. Закупка, PCB
+> routing и печать заблокированы. Приложение JLCAPI и ключ подписи готовы вне
+> Git; право Parts пока имеет статус `Reviewing` у JLCPCB.
 
 <div align="center">
 
@@ -124,19 +127,24 @@ safety-автоматику.
 11 измерительных контрактов. JLCPCB Standard PCBA теперь
 [неэксклюзивный производственный ориентир](docs/manufacturing-platform.ru.md):
 нормализованный compact BOM сопоставил 176 строк из 209, все 1019 установок
-распознаны, а 33 outlier проходят локальную квалификацию. Семантических подмен
-MPN не обнаружено. Физические evidence, PCB layout, замены компонентов,
-quote/reservation и любые заказы не разрешены.
+распознаны, а exact-поиск разрешил все 33 outlier. Итоговая карта доступности:
+`J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4=5`; семантических подмен MPN и замен
+компонентов нет. Открыта только квалифицированная цена exact `SA518`.
+Приложение JLCAPI включено, credential хранится вне репозитория, а право Parts
+ещё проходит ревью JLCPCB. Физические evidence, PCB layout, quote/reservation и
+любые заказы не разрешены.
 
 <details open>
 <summary><strong>Текущее сокращение evidence H5 — точная детальная позиция</strong></summary>
 
 <!-- current-substep: H5.0.3 -->
 
-**Точный маркер: `H5.0.3`** — корзина и измерения опубликованы; квалифицировать
-[33 JLCPCB-outlier](docs/manufacturing-platform.ru.md) через exact public search,
-недеградирующую серийную замену, exact-part pre-order/global sourcing или final
-assembly. Замены, quote/reservation и закупка не разрешены.
+**Точный маркер: `H5.0.3`** — корзина, измерения и все 209
+[маршрутов доступности JLCPCB](docs/manufacturing-platform.ru.md) опубликованы.
+Read-only интеграция Parts подготовлена, но ожидает ревью права со стороны
+JLCPCB. Получить одну квалифицированную цену exact `NiceRF SA518` без заказа,
+затем опубликовать точную стоимость корзины для отдельного решения о закупке
+образцов. Quote/reservation и закупка не разрешены.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 048 схемных строк.
@@ -252,7 +260,7 @@ assembly. Замены, quote/reservation и закупка не разреше�
 - ✅ `H4.3` — [объединённый pre-layout gate проведён](docs/h4-prelayout-gate-report.ru.md).
 - ✅ `H5.0.1` — [девять residuals и 14 механических gate’ов связаны](docs/component-evidence-map.ru.md) с точными выбранными identities, недостающими данными и pass rules.
 - ✅ `H5.0.2` — [поиск первичных источников и серийных альтернатив проведён](docs/component-source-research.ru.md); два selection gap теперь имеют четыре точных серийных SKU.
-- ▶️ **`H5.0.3` — сейчас:** [JLCPCB Standard PCBA выбран неэксклюзивным ориентиром](docs/manufacturing-platform.ru.md); 176/209 строк и все 1019 установок распознаны, открыты 33 явных outlier.
+- ▶️ **`H5.0.3` — сейчас:** [JLCPCB Standard PCBA выбран неэксклюзивным ориентиром](docs/manufacturing-platform.ru.md); 176/209 строк и все 1019 установок распознаны, все 33 outlier разрешены в `J0`–`J4`, открыта квалифицированная цена exact `SA518`.
 
 Проверенный план H2 — [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json),
 завершённые H3/H4 — [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json)

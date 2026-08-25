@@ -208,8 +208,8 @@ all 85 physical residuals still owned by H5/H6/H8.
 <a id="h5"></a>
 ## H5 · Component evidence samples
 
-**Status:** ▶️ current `H5.0.3`; the controlled BOM Tool run is complete and 33
-explicit outliers remain under local qualification; purchasing is not authorized.
+**Status:** ▶️ current `H5.0.3`; all 209 availability routes are mapped without
+replacement, and only qualified exact-`SA518` pricing remains open; purchasing is not authorized.
 
 The current [machine plan](../hardware/verification/h5-component-evidence-plan.json)
 records the reviewed H5.0.1 map and H5.0.2 source/replacement research. The
@@ -217,9 +217,11 @@ records the reviewed H5.0.1 map and H5.0.2 source/replacement research. The
 mechanical gates with 32 exact article lines and 11 measurement contracts. The
 [PCBA platform baseline](manufacturing-platform.md) selects JLCPCB Standard as
 the non-exclusive reference. The normalized compact upload matched 176 of 209
-lines and parsed all 1019 placements; 33 explicit outliers keep H5.0.3 open.
-No semantic MPN substitution was observed. Replacement, quote/reservation and
-purchase are not authorized. This is not a production order.
+lines and parsed all 1019 placements. Exact public search resolved all 33
+outliers into `J0`–`J4`; no semantic MPN substitution or component replacement
+was introduced. The JLCAPI app/key are ready outside Git while Parts permission
+is reviewing. A qualified exact-`SA518` price remains the sole cost input.
+Quote/reservation and purchase are not authorized. This is not a production order.
 
 <a id="h6"></a>
 ## H6 · PCB placement and routing
