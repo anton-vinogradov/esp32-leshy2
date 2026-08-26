@@ -1,0 +1,290 @@
+#!/usr/bin/env python3
+"""Generate the public H0-R2 architecture report and compact visual evidence."""
+
+from __future__ import annotations
+
+import csv
+import html
+import json
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[2]
+SOURCE = ROOT / "hardware/architecture/h0-r2-rebaseline.json"
+REPORT_EN = ROOT / "docs/h0-r2-functional-architecture.md"
+REPORT_RU = ROOT / "docs/h0-r2-functional-architecture.ru.md"
+SVG = ROOT / "docs/images/h0-r2-functional-architecture.svg"
+BOM = ROOT / "hardware/architecture/generated/H0-R2-airband-bom-delta.csv"
+
+
+def load() -> dict:
+    return json.loads(SOURCE.read_text(encoding="utf-8"))
+
+
+def render_svg(data: dict) -> str:
+    air = data["airband_contract"]
+    hub = data["hub_rp"]["gpio_budget"]
+    blocks = [
+        ("FM / SW / AIR RX", "existing standard-SMA port", "#eff6ff", "#2563eb"),
+        ("118–137 MHz BPF", "serial LC · BPF-A127+ mask", "#ecfdf5", "#059669"),
+        ("PGA-103+", "C3008207 · low-noise gain", "#ecfdf5", "#059669"),
+        ("LT5560EDD#TRPBF", "C462645 · RF − 112 MHz", "#fff7ed", "#ea580c"),
+        ("HMC544AETR", "C579555 · direct / converted", "#f5f3ff", "#7c3aed"),
+        ("SI4732-A10-GSR", "C2155558 · 6–25 MHz FMI", "#eff6ff", "#2563eb"),
+        ("SC1512-A4 · Hub RP", "I²C control · audio · recording", "#f8fafc", "#334155"),
+        ("ESP32-S3-WROOM-1U-N16R8", "UI and direct display stay local", "#eff6ff", "#2563eb"),
+    ]
+    width = 760
+    box_x, box_w, box_h, gap = 145, 470, 58, 25
+    height = 130 + len(blocks) * (box_h + gap) + 115
+    out = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
+        '<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#475569"/></marker></defs>',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        '<text x="380" y="36" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="700" fill="#172033">Leshy2 · H0-R2 functional architecture</text>',
+        '<text x="380" y="62" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#526076">Mandatory receive-only Airband reuses the broadcast path; no UI or display traffic crosses this chain.</text>',
+    ]
+    y = 92
+    for index, (title, role, fill, stroke) in enumerate(blocks):
+        out.append(
+            f'<rect x="{box_x}" y="{y}" width="{box_w}" height="{box_h}" rx="9" fill="{fill}" stroke="{stroke}" stroke-width="2"/>'
+        )
+        out.append(
+            f'<text x="380" y="{y + 24}" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">{html.escape(title)}</text>'
+        )
+        out.append(
+            f'<text x="380" y="{y + 44}" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#526076">{html.escape(role)}</text>'
+        )
+        if index < len(blocks) - 1:
+            out.append(
+                f'<line x1="380" y1="{y + box_h}" x2="380" y2="{y + box_h + gap - 4}" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>'
+            )
+        y += box_h + gap
+
+    lo_y = 92 + 3 * (box_h + gap)
+    out.extend(
+        [
+            f'<rect x="18" y="{lo_y}" width="105" height="58" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>',
+            f'<text x="70" y="{lo_y + 23}" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#172033">SI5351A</text>',
+            f'<text x="70" y="{lo_y + 42}" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#526076">112 MHz LO</text>',
+            f'<line x1="123" y1="{lo_y + 29}" x2="143" y2="{lo_y + 29}" stroke="#ea580c" stroke-width="2" marker-end="url(#a)"/>',
+            f'<text x="380" y="{height - 48}" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#166534">Hub GPIO: {hub["used"]} used · {hub["free"]} free</text>',
+            f'<text x="380" y="{height - 25}" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#b42318">AIR_RX_EN is fail-low · default path remains direct FM/SW · Airband TX does not exist</text>',
+            '</svg>',
+        ]
+    )
+    return "\n".join(out) + "\n"
+
+
+def bom_rows(data: dict) -> list[dict]:
+    return data["airband_factory_bom_delta"]["lines"]
+
+
+def render_report(data: dict, ru: bool) -> str:
+    air = data["airband_contract"]
+    bom = data["airband_factory_bom_delta"]
+    power = data["power_rebaseline"]
+    hub = data["hub_rp"]["gpio_budget"]
+    if ru:
+        title = "H0-R2 · Функциональная архитектура"
+        intro = (
+            "H0-R2 проведён как новый функциональный baseline: UI и дисплей остаются "
+            "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
+            "аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен."
+        )
+        current = "Следующий точный маркер — **H1-R2.0**: физическая компоновка, питание и production-схема пересчитываются под шесть вычислительных доменов. Старые H1–H5 относятся к R1 и не разрешают KiCad routing или заказ R2."
+        sections = {
+            "result": "Что зафиксировано",
+            "air": "Airband RX",
+            "pins": "Ноги и владелец",
+            "pinmap": "Рабочая принципиальная распиновка",
+            "power": "Питание",
+            "bom": "Фабричный BOM-delta",
+            "limits": "Честная граница возможностей",
+            "next": "Что закрывает H1-R2",
+        }
+        role = "Роль"
+        route = "Маршрут"
+        price = "Цена, $"
+        stock = "Остаток"
+        frequency_paragraph = (
+            "Фиксированный low-side LO 112 МГц переносит 118–137 МГц в 6–25 МГц. "
+            "Зеркальный диапазон находится на 87–106 МГц, поэтому входной band-pass "
+            "обязателен для работоспособности, а не является необязательным cleanup-фильтром."
+        )
+        gpio_headers = ("GPIO", "Функция", "Поведение после reset")
+        included_label = "Включено:"
+        excluded_label = "Исключено:"
+        cost_note = "Incremental-стоимость активных компонентов"
+        existing_note = "Существующая строка Si4732 переиспользуется и не входит в эту дельту."
+        s3_headers = ("GPIO S3", "Сеть", "Периферия", "Направление")
+        hub_headers = ("GPIO Hub RP", "Назначение")
+        pinmap_note = (
+            "Это полный рабочий принципиальный бюджет H0-R2, а не разрешение начинать KiCad. "
+            "H1 может изменить конкретный контакт только вместе с этим источником, проверками и публичной таблицей."
+        )
+    else:
+        title = "H0-R2 · Functional architecture"
+        intro = (
+            "H0-R2 is the new functional baseline: UI and display remain local to S3, "
+            "high-throughput peripheral work is offloaded through the Hub RP, analog FPV "
+            "remains receive-only, and 118–137 MHz Airband AM is now mandatory."
+        )
+        current = "The next exact marker is **H1-R2.0**: physical placement, power and production schematics are being recalculated for six compute domains. The old H1–H5 belong to R1 and do not authorize R2 KiCad routing or ordering."
+        sections = {
+            "result": "Accepted result",
+            "air": "Airband RX",
+            "pins": "GPIO and ownership",
+            "pinmap": "Working principle pin design",
+            "power": "Power",
+            "bom": "Factory BOM delta",
+            "limits": "Honest capability boundary",
+            "next": "What H1-R2 must close",
+        }
+        role = "Role"
+        route = "Route"
+        price = "Price, $"
+        stock = "Stock"
+        frequency_paragraph = (
+            "The fixed 112 MHz low-side LO maps 118–137 MHz to 6–25 MHz. "
+            "The image band is 87–106 MHz, so the input band-pass network is a mandatory "
+            "functional safety/performance element rather than an optional cleanup filter."
+        )
+        gpio_headers = ("GPIO", "Function", "Reset behavior")
+        included_label = "Included:"
+        excluded_label = "Excluded:"
+        cost_note = "Incremental active-component cost"
+        existing_note = "The existing Si4732 line is reused and is not counted in that delta."
+        s3_headers = ("S3 GPIO", "Net", "Peripheral", "Direction")
+        hub_headers = ("Hub RP GPIO", "Assignment")
+        pinmap_note = (
+            "This is the complete H0-R2 working principle budget, not authorization to begin KiCad. "
+            "H1 may change a contact only together with this source, its checks and this public table."
+        )
+
+    rows = "\n".join(
+        f'| `{row["mpn"]}` | `{row["jlcpcb"]}` | {row["role"]} | {row["route"]} | {row["live_stock"]} | {row["unit_price"]:.4f} |'
+        for row in bom_rows(data)
+    )
+    chain = " → ".join(f'`{item}`' for item in air["rf_chain"])
+    included = "\n".join(f"- {item}" for item in air["performance_boundary"]["included"])
+    excluded = "\n".join(f"- {item}" for item in air["performance_boundary"]["excluded"])
+    gates = "\n".join(f"- {item}" for item in data["exit_review"]["open_h1_gates"])
+    s3_rows = "\n".join(
+        f'| `{row["gpio"]}` | `{row["net"]}` | `{row["peripheral"]}` | `{row["direction"]}` |'
+        for row in data["s3"]["pin_map"]
+    )
+    hub_rows = "\n".join(
+        f'| `{", ".join(str(gpio) for gpio in row["gpios"])}` | {row["role"]} |'
+        for row in data["hub_rp"]["pin_groups"]
+    )
+    result_lines = (
+        "- Один пользовательский порт `FM / SW / AIR RX`; новый внешний разъём не добавлен.\n"
+        "- Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с FPV или TX-группой.\n"
+        "- S3 не получает новую периферию: интерфейс, кнопки и direct-QSPI display не деградируют.\n"
+        "- Hub RP владеет Si4732, LO, селектором, аудио и записью."
+        if ru
+        else
+        "- One user port is labelled `FM / SW / AIR RX`; no new external connector is added.\n"
+        "- Airband is a `BROADCAST_RX` submode, so its RF domain cannot run together with FPV or a TX group.\n"
+        "- S3 gains no peripheral load: UI, buttons and direct-QSPI display do not degrade.\n"
+        "- Hub RP owns Si4732, LO, selector, audio and recording."
+    )
+    filter_note = (
+        "`BPF-A127+` не найден в каталоге JLCPCB (0 exact matches). Он используется как опубликованный эталон маски; production-вариант — серийная LC-лестница из фабричных passives, а не кастомная деталь. Все её MPN закрываются после H1 RF-синтеза и layout extraction."
+        if ru
+        else
+        "`BPF-A127+` has no exact JLCPCB catalogue match. It is the published response-mask reference; production uses a serial LC ladder made from factory passives, not a custom part. Its exact MPNs close after H1 RF synthesis and layout extraction."
+    )
+    power_note = (
+        f"Старый R1-лимит 2,5 А больше не действителен. Airband резервирует {power['airband_increment']['reserved_current_ma']} мА / {power['airband_increment']['reserved_power_w']:.1f} Вт; новый H1 gate — не менее {power['h1_required_envelope']['continuous_3v3_main_a_min']:.1f} А непрерывно и {power['h1_required_envelope']['step_a_min']:.1f} А step с повторной проверкой buck/eFuse/индуктора/меди/тепла."
+        if ru
+        else
+        f"The old R1 2.5 A limit is no longer current. Airband reserves {power['airband_increment']['reserved_current_ma']} mA / {power['airband_increment']['reserved_power_w']:.1f} W; the new H1 gate is at least {power['h1_required_envelope']['continuous_3v3_main_a_min']:.1f} A continuous and {power['h1_required_envelope']['step_a_min']:.1f} A step, with buck/eFuse/inductor/copper/thermal requalification."
+    )
+    return f"""# {title}
+
+{intro}
+
+> {current}
+
+![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
+
+## {sections['result']}
+
+{result_lines}
+
+## {sections['air']}
+
+{chain}
+
+{frequency_paragraph}
+
+## {sections['pins']}
+
+| {gpio_headers[0]} | {gpio_headers[1]} | {gpio_headers[2]} |
+|---|---|---|
+| Hub GP41 | `AIR_RX_EN` | pulled low; LNA/mixer/LO domain off |
+| Hub GP42 | `AIR_RX_MODE` | direct FM/SW path selected |
+
+Hub budget: **{hub['used']} used / {hub['free']} free**. SI5351 control stays on the Hub-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
+
+## {sections['pinmap']}
+
+{pinmap_note}
+
+| {s3_headers[0]} | {s3_headers[1]} | {s3_headers[2]} | {s3_headers[3]} |
+|---:|---|---|---|
+{s3_rows}
+
+| {hub_headers[0]} | {hub_headers[1]} |
+|---|---|
+{hub_rows}
+
+## {sections['power']}
+
+{power_note}
+
+## {sections['bom']}
+
+| MPN | JLCPCB | {role} | {route} | {stock} | {price} |
+|---|---|---|---|---:|---:|
+{rows}
+
+{cost_note}: **`${bom['active_incremental_unit_cost']:.4f}`** before passives, PCB and assembly. {existing_note}
+
+{filter_note}
+
+## {sections['limits']}
+
+{included_label}
+
+{included}
+
+{excluded_label}
+
+{excluded}
+
+## {sections['next']}
+
+{gates}
+"""
+
+
+def write_all() -> None:
+    data = load()
+    SVG.write_text(render_svg(data), encoding="utf-8")
+    REPORT_EN.write_text(render_report(data, False), encoding="utf-8")
+    REPORT_RU.write_text(render_report(data, True), encoding="utf-8")
+    BOM.parent.mkdir(parents=True, exist_ok=True)
+    with BOM.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=["mpn", "jlcpcb", "qty", "role", "live_stock", "unit_price", "route"],
+        )
+        writer.writeheader()
+        writer.writerows(bom_rows(data))
+
+
+if __name__ == "__main__":
+    write_all()

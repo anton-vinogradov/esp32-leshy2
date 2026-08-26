@@ -4,7 +4,7 @@
 
 ### An open autonomous multi-tool for radio, communications and authorized research
 
-**2.4/5-GHz Wi‑Fi · BLE · 802.15.4 · 3× nRF24 · Sub‑GHz · VHF/UHF · FM/AM/SW/LW · IR · LoRa**
+**2.4/5-GHz Wi‑Fi · BLE · 802.15.4 · 3× nRF24 · Sub‑GHz · VHF/UHF · FM/AM/SW/LW/Airband · analog FPV RX · IR · LoRa**
 
 [Capabilities](docs/hardware.md) · [Mockup](#target-device-mockup) · [Schematics](docs/schematics.md) · [Roadmap](docs/roadmap.md) · [Firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware) · [Русский](README.ru.md)
 
@@ -12,20 +12,19 @@
 
 </div>
 
-> **Now: H5.0.3-R1 · basket and 210 routes complete; supplier-response gate.**
-> H2 and H3 are reviewed for independent `SA818S-V` and `SA818S-U` paths,
-> ten antenna ports and hardware one-hot voice selection. H4 has rejoined that
-> evidence with the reviewed firmware F3 target/QEMU package. Former H5
-> results derived from SA518 are superseded. The remaining inputs are exact
-> The typical SA818S-V pre-order range is known; two-designator and remaining
-> J4-F/J4-P factory clarification is open.
+> **Now: H1-R2.0 · the reviewed functional architecture is being turned into a new physical design.**
+> [H0-R2](docs/h0-r2-functional-architecture.md) adds a second `SC1512-A4`
+> Hub, direct S3 analog-FPV capture and mandatory receive-only Airband AM.
+> GPIO ownership and the factory-first Airband active BOM are closed; the old
+> R1 H1–H5 artifacts are retained only as evidence to reuse. R2 power,
+> placement, schematics and firmware contracts are being regenerated.
 > Purchasing, PCB routing and fabrication remain blocked.
 
 <div align="center">
 
 ![Leshy2 external faces](docs/images/current-clamshell.svg?layout=19)
 
-**Ten independent antenna paths · five compute domains · one autonomous instrument**
+**Direct UI and display · six compute domains · isolated radio groups · one autonomous instrument**
 
 </div>
 
@@ -39,7 +38,7 @@ and transmit safety.
 | Capability | What the user gets |
 |---|---|
 | **Three independent nRF24 radios** | Concurrent `3R`, `1T2R`, `2T1R` and `3T`, with full RX/TX/mix |
-| **Broad radio coverage** | 2.4/5-GHz Wi‑Fi, BLE, ESP‑NOW, 802.15.4, Sub‑GHz, VHF/UHF, broadcast RX and IR |
+| **Broad radio coverage** | 2.4/5-GHz Wi‑Fi, BLE, ESP‑NOW, 802.15.4, Sub‑GHz, VHF/UHF, FM/SW/Airband RX, analog 5.8-GHz FPV RX and IR |
 | **Ten antenna ports** | Separate labelled external connectors; VHF and UHF have independent feeds |
 | **Autonomous interface** | 3.5-inch `320×480` touch IPS, menus, waterfall, microSD and audio |
 | **Modular expansion** | M5Stack U214/Leshy LoRa Cap and a protected M5 Unit port |
@@ -48,13 +47,14 @@ and transmit safety.
 
 ## How it is built
 
-Five isolatable domains split the user interface, native radio/IR,
-deterministic radio paths, battery-pack admission and independent safety
-automation.
+Six isolatable domains split the user interface, native radio/IR,
+deterministic radio paths, high-speed peripheral fan-out, battery-pack
+admission and independent safety automation.
 
-- `ESP32-S3-WROOM-1U-N16R8` — UI, display, storage, audio and Wi‑Fi/BLE.
+- `ESP32-S3-WROOM-1U-N16R8` — UI, direct-QSPI display, analog FPV capture and Wi‑Fi/BLE.
 - `ESP32-C5-WROOM-1U-N8R8` — 2.4/5-GHz Wi‑Fi, IEEE 802.15.4 and IR.
-- `SC1512-A4` / RP2354B — 3× nRF24, Sub‑GHz, voice and Cap Bus.
+- `SC1512-A4` / RF RP2354B — 3× nRF24, Sub‑GHz, voice and Cap Bus.
+- `SC1512-A4` / Hub RP2354B — C5/RF fan-out, storage, audio, FM/SW/Airband and M5 Unit.
 - `MSPM0C1106SDGS20R` #1 — independent battery-pack admission.
 - `MSPM0C1106SDGS20R` #2 — watchdog, thermal supervision and TX leases.
 
@@ -65,6 +65,13 @@ See the [hardware architecture](docs/hardware.md) and
 ---
 
 ## Target device mockup
+
+The compact diagram below is the current R2 architecture. The dimensioned
+physical views that follow are the accepted R1 geometry being regenerated at
+H1-R2.0; the shared receive-port silkscreen is already updated, but new Hub,
+FPV and Airband body placement is not claimed until the collision/power pass.
+
+![Leshy2 H0-R2 functional architecture](docs/images/h0-r2-functional-architecture.svg)
 
 Every view below is generated from the real envelopes of selected MPNs and one
 coordinate model. Text outside component bodies on outer PCB faces is intended
@@ -107,13 +114,13 @@ drawings, schematics, contracts and checks.
 
 | Stage | Status | Result |
 |---|---|---|
-| H0 · Product requirements and functional architecture | ✅ Reviewed | [Open H0](docs/stage-results.md#h0) |
-| H1 · Physical product design | ✅ Reviewed | [Open H1](docs/stage-results.md#h1) |
-| H2 · Production ECAD schematic | ✅ Reviewed and accepted | [H2 results](docs/stage-results.md#h2) |
-| H3 · Virtual electrical verification | ✅ Reviewed and accepted | [H3 result report](docs/h3-acceptance.md) |
-| H4 · Joined pre-layout gate | ✅ Reviewed on the dual-SA818S revision | [H4 report](docs/h4-prelayout-gate-report.md) |
-| **H5 · Component evidence** | **▶️ Current: rebuild exact evidence for the 210-line BOM** | [H5 detail](docs/stage-results.md#h5) |
-| H6 · PCB placement and routing | 🔒 Waiting for H5 | [H6 plan](docs/stage-results.md#h6) |
+| H0 · Product requirements and functional architecture | ✅ R2 Reviewed | [H0-R2 report](docs/h0-r2-functional-architecture.md) |
+| **H1 · Physical product design** | **▶️ Current: H1-R2.0 complete physical re-layout** | [H1 plan](docs/stage-results.md#h1) |
+| H2 · Production ECAD schematic | ⏳ R1 evidence retained; waiting for R2 H1 | [H2 results](docs/stage-results.md#h2) |
+| H3 · Virtual electrical verification | ⏳ rerun after R2 H2 | [R1 report](docs/h3-acceptance.md) |
+| H4 · Joined pre-layout gate | ⏳ rerun after R2 H3 and firmware R2 contract | [R1 report](docs/h4-prelayout-gate-report.md) |
+| H5 · Component evidence | ⏳ R1 routes retained; rebuild after R2 H4 | [R1 detail](docs/stage-results.md#h5) |
+| H6 · PCB placement and routing | 🔒 Waiting for R2 H5 | [H6 plan](docs/stage-results.md#h6) |
 | H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6 and order approval | [H7 plan](docs/stage-results.md#h7) |
 | H8 · Physical qualification | 🔒 Waiting for H7 | [H8 plan](docs/stage-results.md#h8) |
 | H9 · Manufacturing release | 🔒 Waiting for H8 and firmware F11 | [H9 plan](docs/stage-results.md#h9) |
@@ -122,25 +129,23 @@ Every completed top-level `H*` phase receives a separate readable result report
 linked from this table. Internal substeps update the exact marker but do not
 create separate global reports.
 
-**Hardware is at H5.0.3-R1.** The current [H4 report](docs/h4-prelayout-gate-report.md)
-closes the joined review with 33 clean checks. H5 now has a 33-line `$286.43`
-evidence basket and exact routes for all 210 dual-SA818S BOM lines / 1052
-placements with zero replacement. Its old SA518 basket and 209-line platform
-snapshot are historical inputs only. JLCPCB's partial 26 August response
-confirms MOQ 1 and a typical 8–15-working-day pre-order for exact SA818S-V and
-conditional post-order Function Test pricing. Accumulators are now `J5-U`:
-user-supplied and not part of device delivery or supplier gates. Closing
-H5.0.3-R1 still requires confirmation of the actual two-designator U/V job,
-the remaining J4-F/J4-P operations and exact-MPN control.
-The fallback is already preserved: PCBWay is the prepared full-device candidate
-and Seeed is the PCBA second source, with no fallback inquiry sent.
-Physical evidence, PCB layout, quote/reservation and every order remain
-unauthorized.
+**Hardware is at H1-R2.0.** H0-R2 fixes six compute domains, 33/33 used S3
+GPIO, 45/48 used Hub GPIO and the receive-only Airband frequency plan. The
+incremental Airband active BOM is live-checked at JLCPCB and costs `$20.2038`
+before passives/assembly. The R1 2.5-A rail is explicitly invalidated; H1 must
+close a ≥3.5-A continuous / ≥4.0-A step envelope and regenerate every physical
+view before production ECAD resumes. No order is authorized.
 
-<details open>
-<summary><strong>Current component evidence — exact detailed position</strong></summary>
+<!-- current-substep: H1-R2.0 -->
 
-<!-- current-substep: H5.0.3-R1 -->
+**Exact marker: `H1-R2.0`** — complete the R2 physical component map, collision
+checks, rail envelope and all current views. This marker, its machine state and
+both language pages move together in every commit.
+
+<details>
+<summary><strong>R1 evidence retained for reuse — not the current design</strong></summary>
+
+<!-- historical-substep: H5.0.3-R1 -->
 
 **Exact marker: `H5.0.3-R1`** — the refreshed [physical-residual map](docs/component-evidence-map.md)
 and [primary-source research](docs/component-source-research.md) are reviewed.

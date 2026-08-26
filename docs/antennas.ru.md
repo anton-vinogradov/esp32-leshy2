@@ -20,7 +20,7 @@
 | `SUB-GHz` | 868/915 МГц | [Taoglas `TI.08.C.0112`](https://www.taoglas.com/datasheets/TI.08.C.0112.pdf) | 1 сменная | SMA male, угловая |
 | `VHF/UHF` | VHF 136–174 МГц | [Hytera `AN0155H13`](https://www.hytera.com/en/product-new/accessories/radio-antennas/an0155h13.html) | 1 сменная | SMA male |
 | `VHF/UHF` | UHF 400–470 МГц | [TE `ANT-433-CW-QW-SMA`](https://www.te.com/en/product-ANT-433-CW-QW-SMA.html) | 1 сменная | SMA male |
-| `FM/SW RX` | приём 25–1300 МГц | [Comet `SMA-W100RX2`](https://www.comet-ant.co.jp/product/638/) | 1 | SMA male |
+| `FM/SW/AIR RX` | приём FM/SW и Airband AM 118–137 МГц | [Comet `SMA-W100RX2`](https://www.comet-ant.co.jp/product/638/) | 1 | SMA male |
 | `AM/LW LOOP` | LW 153–279 кГц; AM 520–1710 кГц | Leshy2 [`L2-ANT-AM-LW-001`](../hardware/architecture/am-lw-pod.json) | 1 | SMA male |
 
 `ANT-433-CW-QW-SMA` используется в двух отдельных экземплярах. Спецификация
@@ -67,7 +67,7 @@
 - `SUB-GHz` 868/915 МГц — Joymax [`GHX-221ASA3B`](https://www.digikey.com/en/products/detail/joymax-electronics/GHX-221ASA3B/27545760);
 - VHF — Pulse [`SPWB24150`](https://www.pulseelectronics.com/wp-content/uploads/2021/01/PulseLarsen_Portables_Flyer_2017.pdf), текущий склад мал для серии;
 - UHF — Hytera [`AN0435H25`](https://www.hytera.com/br/product-new/accessories/radio-antennas/an0435h25.html);
-- `FM/SW RX` — выносная приёмная Opek [`SCANSMA 25-1300`](https://www.hamradio.com/detail.cfm?pid=H0-016713);
+- `FM/SW/AIR RX` — выносная приёмная Opek [`SCANSMA 25-1300`](https://www.hamradio.com/detail.cfm?pid=H0-016713); общий порт работает только на приём, а режимы FM/SW/AIR взаимоисключающие;
 - `AM/LW LOOP` — контролируемая сборка [`L2-ANT-AM-LW-ALT01`](../hardware/architecture/am-lw-pod.json) на сердечнике `3061990891` и разъёме `CONSMA013.062-G`.
 
 Это резерв для закупки и испытаний, а не разрешение на тихую замену. У более

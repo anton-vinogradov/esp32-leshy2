@@ -2,10 +2,14 @@
 
 [На главную](../README.ru.md) · [English](hardware.md) · [Безопасность](safety.ru.md)
 
+> Текущий baseline: [H0-R2](h0-r2-functional-architecture.ru.md). Ссылки на
+> pin/interconnect/ECAD R1 ниже сохранены как входы и пересобираются на
+> H1-R2.0; они не разрешают routing PCB R2.
+
 ## Принципиальные связи компонентов
 
 [Открыть полный комплект принципиальных схем](schematics.ru.md). Он разбит на
-читаемые диаграммы: вычислители, UI и storage, C5 и IR, радиодомен RP,
+читаемые диаграммы: вычислители, UI и storage, C5 и IR, радиодомен RF RP,
 органы управления, аудиотракт, сервис и восстановление, девять антенных
 трактов, питание и аппаратная безопасность. Каждый узел обозначает одно
 физическое устройство, содержит его MPN и роль; стрелки показывают
@@ -22,11 +26,13 @@
 
 ```mermaid
 flowchart TB
-  S3["ESP32-S3-WROOM-1U-N16R8<br/>UI, display, storage, audio, BLE/Wi-Fi"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>UI, direct-QSPI display, FPV capture, BLE/Wi-Fi"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2,4/5 ГГц, 802.15.4, IR"]
-  RP["SC1512-A4 · RP2354B<br/>nRF24 ×3, Sub-GHz, voice, Cap Bus"]
-  S3 <-->|"1-bit SDIO"| C5
-  S3 <-->|"dedicated SPI3 + alert"| RP
+  HUB["SC1512-A4 · Hub RP2354B<br/>fan-out C5/RF, storage, audio, broadcast/Airband"]
+  RF["SC1512-A4 · RF RP2354B<br/>nRF24 ×3, Sub-GHz, voice, Cap Bus"]
+  S3 <-->|"quad SPI"| HUB
+  HUB <-->|"4-bit SDIO"| C5
+  HUB <-->|"dedicated SPI + alert"| RF
 ```
 
 У каждого владельца собственные шины к чувствительным устройствам. Экран,
@@ -44,19 +50,23 @@ flowchart TB
 | Native C5 | `ESP32-C5-WROOM-1U-N8R8` | C5 | Wi‑Fi 2,4/5 ГГц, IEEE 802.15.4 |
 | nRF24 ×3 | `Ebyte E01-ML01IPX` | RP2354B | Одновременные `3R`, `1T2R`, `2T1R`, `3T` |
 | Sub‑GHz | `CC1101RGPR` | RP2354B | 315, 433, 868 и 915 МГц |
-| Broadcast RX | `Si4732-A10-GSR` | S3 | FM/SW и отдельный AM/LW вход |
+| Broadcast/Airband RX | `Si4732-A10-GSR` + `LT5560EDD#TRPBF` + `PGA-103+` + `SI5351A-B-GTR` + `HMC544AETR` | Hub RP2354B | FM/SW, отдельный AM/LW и обязательный receive-only Airband AM 118–137 МГц через общий порт `FM/SW/AIR RX` |
+| Аналоговый FPV RX | `TVP5150AM1PBS` и сменная boundary точного 5,8-ГГц приёмника | S3 | Receive-only NTSC/PAL capture; точные серийный RF-модуль и MMCX закрываются в H1-R2 |
 | Voice VHF/UHF | `G-NiceRF SA818S-V` + `G-NiceRF SA818S-U` | RP2354B | Независимая аналоговая VHF- и UHF-связь с аппаратным one-hot выбором |
 | IR RX | `TSOP75238TT` + `TSMP95000TT` | C5 | 38-кГц демодуляция и обучение 30–60 кГц |
 | IR TX | `VSMY14940` | C5 | Управляемая передача 940 нм с оптическим подтверждением |
 | LoRa/GNSS Cap | `M5Stack U214 Cap LoRa-1262` или `LESHY2-LORA-CAP-01-EU868/US915` | RP2354B | Штатный Cap: RX/GNSS; точный Leshy Cap: квалифицированные региональные RX/TX |
 | Внешние антенные разъёмы | `8× GCT RFPC-SMA31-FN-175-A` + `2× GCT RFPC-SMA32-FN-175-A` | Отдельный на каждый тракт | Десять 6-ГГц 50-омных board-edge SMA/RP-SMA на двух наружных поверхностях плат; без RF-sharing и корпусов разъёмов в межплатном канале |
 
-Вещательная передача FM/AM/SW/LW не является возможностью устройства:
+Вещательная передача FM/AM/SW/LW/Airband не является возможностью устройства:
 оба порта Si4732 остаются только приёмными. Собственный передатчик или RF Cap
 для них не разрабатывается. Такая функция может появиться только через точный
 заказываемый серийный автономный модуль с документацией производителя,
 встроенной защитой RF-выхода и квалифицированным интерфейсом. Подходящий модуль
-пока не выбран.
+пока не выбран. Airband использует фиксированный low-side LO 112 МГц и
+переносит 118–137 МГц в 6–25 МГц для существующего FMI Si4732. Обязательный
+входной фильтр подавляет зеркальную полосу 87–106 МГц; voice, scan, запись и
+ACARS входят в scope, а VDL2, широкополосный I/Q capture и Airband TX — нет.
 
 У каждого встроенного передающего тракта есть отдельное фактическое подтверждение TX.
 Native S3/C5 используют по одной точной 30-мм сборке `TE Connectivity

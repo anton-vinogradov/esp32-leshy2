@@ -1,0 +1,134 @@
+import json
+import importlib.util
+import unittest
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[3]
+SOURCE = ROOT / "hardware/architecture/h0-r2-rebaseline.json"
+REPORT_SCRIPT = ROOT / "hardware/architecture/h0_r2_report.py"
+
+
+class H0R2ArchitectureTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.data = json.loads(SOURCE.read_text(encoding="utf-8"))
+
+    def test_review_identity_and_next_marker(self):
+        self.assertEqual("H0-R2", self.data["id"])
+        self.assertEqual("reviewed_functional_architecture", self.data["status"])
+        self.assertEqual("H1-R2.0", self.data["next_marker"])
+
+    def test_s3_uses_every_real_n16r8_gpio_once(self):
+        allowed = self.data["s3"]["available_gpio"]
+        assigned = [row["gpio"] for row in self.data["s3"]["pin_map"]]
+        self.assertEqual(33, len(allowed))
+        self.assertEqual(sorted(allowed), sorted(assigned))
+        self.assertEqual(len(assigned), len(set(assigned)))
+        self.assertTrue({35, 36, 37}.isdisjoint(assigned))
+
+    def test_direct_ui_and_encoder_never_cross_ipc(self):
+        ui = self.data["s3"]["ui_contract"]
+        self.assertIn("TCA9539PWR", ui["ordinary_buttons"])
+        self.assertIn("directly to S3", ui["ordinary_buttons"])
+        self.assertIn("PCNT", ui["encoder"])
+        self.assertIn("RF RP", ui["ptt_exception"])
+
+    def test_display_is_dedicated_and_clock_is_legal(self):
+        display = self.data["display_contract"]
+        self.assertEqual(40_000_000, display["selected_clock_hz"])
+        self.assertLessEqual(display["selected_clock_hz"], display["controller_limit_hz"])
+        self.assertEqual(20.0, display["payload_mb_s"])
+        calculated = display["full_frame_bytes"] / (display["payload_mb_s"] * 1_000_000) * 1000
+        self.assertAlmostEqual(display["full_frame_wire_ms"], calculated, places=6)
+        self.assertIn("no shared client", self.data["exit_review"]["display"])
+
+    def test_video_is_direct_and_digital_systems_are_not_claimed(self):
+        accepted = self.data["accepted_scope"]
+        video = self.data["video_contract"]
+        self.assertIn("NTSC/PAL", accepted["fpv"])
+        self.assertIn("outside R2", accepted["fpv"])
+        self.assertIn("S3 LCD_CAM", video["capture"])
+        self.assertIn("not an accepted MPN", video["rf"])
+
+    def test_hub_has_real_reserve_and_no_duplicate_gpio(self):
+        hub = self.data["hub_rp"]
+        groups = hub["pin_groups"]
+        gpios = [gpio for group in groups for gpio in group["gpios"]]
+        reserve = next(group for group in groups if group["role"] == "uncommitted electrical reserve")
+        committed = [gpio for group in groups if group is not reserve for gpio in group["gpios"]]
+        self.assertEqual(hub["gpio_budget"]["used"], len(committed))
+        self.assertEqual(len(gpios), len(set(gpios)))
+        self.assertEqual(48, hub["gpio_budget"]["available"])
+        self.assertEqual(hub["gpio_budget"]["free"], len(reserve["gpios"]))
+        self.assertEqual(3, hub["gpio_budget"]["free"])
+        self.assertEqual(list(range(48)), sorted(gpios))
+
+    def test_airband_is_mandatory_receive_only_and_reuses_the_receiver_port(self):
+        accepted = self.data["accepted_scope"]["airband_acceptance"]
+        air = self.data["airband_contract"]
+        self.assertIn("Mandatory receive-only", accepted)
+        self.assertEqual([118.0, 137.0], air["user_range_mhz"])
+        self.assertEqual([6.0, 25.0], air["frequency_plan"]["if_range_mhz"])
+        self.assertEqual([87.0, 106.0], air["frequency_plan"]["image_range_mhz"])
+        self.assertIn("existing outward", air["antenna_port"])
+        self.assertIn("no eleventh", air["antenna_port"])
+        self.assertIn("transmit", " ".join(air["performance_boundary"]["excluded"]).lower())
+
+    def test_airband_controls_are_fail_low_and_consume_only_two_hub_pins(self):
+        air = self.data["airband_contract"]
+        self.assertIn("pulled low", air["control"]["gp41"])
+        self.assertIn("defaults", air["control"]["gp42"])
+        groups = self.data["hub_rp"]["pin_groups"]
+        roles = {tuple(group["gpios"]): group["role"] for group in groups}
+        self.assertIn("AIR_RX_EN", roles[(41,)])
+        self.assertIn("AIR_RX_MODE", roles[(42,)])
+
+    def test_airband_factory_bom_is_exact_and_costed(self):
+        bom = self.data["airband_factory_bom_delta"]
+        incremental = sum(row["qty"] * row["unit_price"] for row in bom["lines"])
+        self.assertAlmostEqual(bom["active_incremental_unit_cost"], incremental, places=4)
+        exact = {row["mpn"] for row in bom["lines"]}
+        self.assertEqual(
+            {"LT5560EDD#TRPBF", "PGA-103+", "SI5351A-B-GTR", "HMC544AETR", "SI4732-A10-GSR"},
+            exact,
+        )
+        self.assertIn("0 exact matches", bom["filter_route"]["jlcpcb_search_result"])
+        self.assertIn("serial high-Q LC passives", bom["filter_route"]["production_implementation"])
+
+    def test_r2_power_contract_invalidates_the_old_2p5a_envelope(self):
+        power = self.data["power_rebaseline"]
+        self.assertIn("historical only", power["r1_status"])
+        self.assertGreaterEqual(power["h1_required_envelope"]["continuous_3v3_main_a_min"], 3.5)
+        self.assertGreaterEqual(power["h1_required_envelope"]["step_a_min"], 4.0)
+        self.assertGreaterEqual(power["airband_increment"]["reserved_current_ma"], 150)
+
+    def test_every_transport_has_positive_margin_contract(self):
+        for transport in self.data["transport_contracts"]:
+            self.assertGreater(transport["raw_payload_mb_s"], transport["qualified_payload_floor_mb_s"])
+            self.assertGreater(transport["qualified_payload_floor_mb_s"], 0)
+
+    def test_no_accepted_capability_is_dropped(self):
+        self.assertEqual([], self.data["exit_review"]["capability_loss"])
+        ids = {item["id"] for item in self.data["retained_capabilities"]}
+        required = {
+            "UI", "DISPLAY", "FPV", "NATIVE-S3", "NATIVE-C5", "IR",
+            "NRF24-X3", "SUB-GHZ", "VOICE", "LORA-GNSS", "BROADCAST-RX",
+            "AUDIO", "STORAGE", "M5-UNIT", "SAFETY", "SERVICE",
+        }
+        self.assertEqual(required, ids)
+
+    def test_public_report_outputs_are_generated_from_the_contract(self):
+        spec = importlib.util.spec_from_file_location("h0_r2_report", REPORT_SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        assert spec.loader is not None
+        spec.loader.exec_module(module)
+        self.assertEqual(module.render_svg(self.data), module.SVG.read_text(encoding="utf-8"))
+        self.assertEqual(module.render_report(self.data, False), module.REPORT_EN.read_text(encoding="utf-8"))
+        self.assertEqual(module.render_report(self.data, True), module.REPORT_RU.read_text(encoding="utf-8"))
+        self.assertIn("AIR_RX_EN", module.REPORT_EN.read_text(encoding="utf-8"))
+        self.assertIn("Зеркальный диапазон", module.REPORT_RU.read_text(encoding="utf-8"))
+
+
+if __name__ == "__main__":
+    unittest.main()

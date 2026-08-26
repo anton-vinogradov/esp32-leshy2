@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "id": "H0-R2",
+  "status": "reviewed_functional_architecture",
+  "reviewed_on": "2026-08-26",
+  "next_marker": "H1-R2.0",
+  "purpose": "Rebaseline Leshy2 around direct S3 UI, maximum legal display throughput, one additional RP2354B hub, optional analog 5.8-GHz FPV reception and mandatory receive-only 118-137-MHz Airband AM without losing the accepted radio, expansion, safety, service, audio or storage capabilities.",
+  "accepted_scope": {
+    "user_acceptance": "Analog 5.8-GHz FPV is accepted if the remaining architecture stays optimal; display performance is maximized and ordinary UI buttons remain directly owned by S3.",
+    "fpv": "Receive-only analog NTSC/PAL FPV. DJI, Walksnail, HDZero and other proprietary digital video systems are outside R2.",
+    "external_rf_interface": "User-facing MMCX labelled FPV RX 5.8G; U.FL is permitted only as an internal module interconnect.",
+    "production_boundary": "The base PCB contains the video decoder and a replaceable receiver bay. The exact serial 5.8-GHz receiver module and exact MMCX MPN must close in H1 before placement is accepted.",
+    "airband_acceptance": "Mandatory receive-only AM reception from 118 to 137 MHz reuses the existing FM/SW antenna port and Si4732 audio path. Airband transmit, VDL Mode 2 and certified navigation are excluded."
+  },
+  "compute_domains": [
+    {
+      "id": "s3",
+      "mpn": "ESP32-S3-WROOM-1U-N16R8",
+      "role": "application, direct UI, touch, encoder, maximum legal QSPI display path, analog-video capture and native 2.4-GHz Wi-Fi/BLE"
+    },
+    {
+      "id": "c5",
+      "mpn": "ESP32-C5-WROOM-1U-N8R8",
+      "role": "native 2.4/5-GHz Wi-Fi, IEEE 802.15.4 and IR"
+    },
+    {
+      "id": "rf_rp",
+      "mpn": "SC1512-A4",
+      "role": "three fully concurrent nRF24 paths, CC1101, independent VHF/UHF voice radios and U214/LoRa Cap"
+    },
+    {
+      "id": "hub_rp",
+      "mpn": "SC1512-A4",
+      "role": "dedicated high-speed fan-out for C5, RF RP, microSD, audio, FM/AM/SW/LW plus converted Airband receiver and generic M5 Unit port"
+    },
+    {
+      "id": "pack",
+      "mpn": "MSPM0C1106SDGS20R",
+      "role": "cell admission, pack diagnostics and protected shutdown"
+    },
+    {
+      "id": "safety",
+      "mpn": "MSPM0C1106SDGS20R",
+      "role": "independent watchdog, thermal supervision, TX lease/evidence and FAULT_KILL"
+    }
+  ],
+  "retained_capabilities": [
+    {"id": "UI", "owner": "s3", "result": "HMX035CTFT-001, touch, sixteen ordinary UI inputs and encoder remain local to S3; no UI event crosses IPC"},
+    {"id": "DISPLAY", "owner": "s3", "result": "dedicated direct QSPI with GDMA; microSD no longer shares SPI2"},
+    {"id": "FPV", "owner": "s3", "result": "receive-only 5.8-GHz analog video enters S3 directly through an active production video decoder and LCD_CAM camera mode"},
+    {"id": "NATIVE-S3", "owner": "s3", "result": "2.4-GHz Wi-Fi, BLE and ESP-NOW retained"},
+    {"id": "NATIVE-C5", "owner": "c5", "result": "2.4/5-GHz Wi-Fi and IEEE 802.15.4 retained"},
+    {"id": "IR", "owner": "c5", "result": "raw/demodulated receive, learning and transmit retained"},
+    {"id": "NRF24-X3", "owner": "rf_rp", "result": "3R, 1T2R, 2T1R and 3T concurrency retained on independent buses"},
+    {"id": "SUB-GHZ", "owner": "rf_rp", "result": "CC1101 315/433/868/915-MHz receive/transmit retained"},
+    {"id": "VOICE", "owner": "rf_rp", "result": "independent SA818S-V and SA818S-U paths with hardware one-hot selection retained"},
+    {"id": "LORA-GNSS", "owner": "rf_rp", "result": "U214 and qualified regional Leshy LoRa Cap contracts retained"},
+    {"id": "BROADCAST-RX", "owner": "hub_rp", "result": "Si4732 FM/SW plus separate AM/LW input retained; mandatory receive-only 118-137-MHz Airband AM is downconverted to the supported 6-25-MHz FMI range"},
+    {"id": "AUDIO", "owner": "hub_rp", "result": "full-duplex codec, microphone, speaker and CTIA headset retained"},
+    {"id": "STORAGE", "owner": "hub_rp", "result": "dedicated powered and isolated microSD path retained without display contention"},
+    {"id": "M5-UNIT", "owner": "hub_rp", "result": "generic powered I2C/UART/GPIO Unit port retained independently from U214"},
+    {"id": "SAFETY", "owner": "pack+safety", "result": "RUN/KILL, watchdog suicide shutdown, three thermal zones, TX evidence and retained first-fault display contract remain mandatory"},
+    {"id": "SERVICE", "owner": "all", "result": "S3, C5, RF RP and Hub RP each retain independent USB plus physical reset/boot recovery; Pack and Safety retain isolated SWD/UART/NRST fixtures"}
+  ],
+  "s3": {
+    "available_gpio": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48],
+    "pin_map": [
+      {"gpio": 0, "net": "VIDEO_D0", "peripheral": "LCD_CAM", "direction": "in", "gate": "decoder data output must be high-Z through strap sampling"},
+      {"gpio": 1, "net": "SYS_UI_I2C_SDA", "peripheral": "I2C0", "direction": "io"},
+      {"gpio": 2, "net": "SYS_UI_I2C_SCL", "peripheral": "I2C0", "direction": "out"},
+      {"gpio": 3, "net": "HUB_ALERT_N", "peripheral": "GPIO_IRQ", "direction": "in", "gate": "hub held reset/high-Z through strap sampling"},
+      {"gpio": 4, "net": "LCD_QSPI_D1_DC", "peripheral": "SPI2", "direction": "out"},
+      {"gpio": 5, "net": "VIDEO_D1", "peripheral": "LCD_CAM", "direction": "in"},
+      {"gpio": 6, "net": "VIDEO_D2", "peripheral": "LCD_CAM", "direction": "in"},
+      {"gpio": 7, "net": "VIDEO_D3", "peripheral": "LCD_CAM", "direction": "in"},
+      {"gpio": 8, "net": "VIDEO_D4", "peripheral": "LCD_CAM", "direction": "in"},
+      {"gpio": 9, "net": "S3_HUB_CS_N", "peripheral": "SPI3", "direction": "out"},
+      {"gpio": 10, "net": "VIDEO_D5", "peripheral": "LCD_CAM", "direction": "in"},
+      {"gpio": 11, "net": "VIDEO_D6", "peripheral": "LCD_CAM", "direction": "in"},
+      {"gpio": 12, "net": "VIDEO_D7", "peripheral": "LCD_CAM", "direction": "in"},
+      {"gpio": 13, "net": "VIDEO_PCLK", "peripheral": "LCD_CAM", "direction": "in"},
+      {"gpio": 14, "net": "S3_HUB_D1", "peripheral": "SPI3", "direction": "io"},
+      {"gpio": 15, "net": "VIDEO_VSYNC", "peripheral": "LCD_CAM", "direction": "in"},
+      {"gpio": 16, "net": "VIDEO_HREF", "peripheral": "LCD_CAM", "direction": "in"},
+      {"gpio": 17, "net": "LCD_TE", "peripheral": "GPIO_IRQ", "direction": "in"},
+      {"gpio": 18, "net": "LCD_QSPI_SCK", "peripheral": "SPI2", "direction": "out"},
+      {"gpio": 19, "net": "S3_USB_DM", "peripheral": "USB_SERIAL_JTAG", "direction": "io"},
+      {"gpio": 20, "net": "S3_USB_DP", "peripheral": "USB_SERIAL_JTAG", "direction": "io"},
+      {"gpio": 21, "net": "S3_HUB_D0", "peripheral": "SPI3", "direction": "io"},
+      {"gpio": 38, "net": "LCD_CS_N", "peripheral": "SPI2", "direction": "out"},
+      {"gpio": 39, "net": "ENCODER_A", "peripheral": "PCNT0", "direction": "in"},
+      {"gpio": 40, "net": "LCD_BL_PWM", "peripheral": "LEDC", "direction": "out"},
+      {"gpio": 41, "net": "LCD_QSPI_D2", "peripheral": "SPI2", "direction": "out"},
+      {"gpio": 42, "net": "LCD_QSPI_D3", "peripheral": "SPI2", "direction": "out"},
+      {"gpio": 43, "net": "S3_HUB_D2", "peripheral": "SPI3", "direction": "io"},
+      {"gpio": 44, "net": "S3_HUB_D3", "peripheral": "SPI3", "direction": "io"},
+      {"gpio": 45, "net": "UI_FAULT_INT_N", "peripheral": "GPIO_IRQ", "direction": "in", "gate": "only bounded internal UI/power/safety open-drain sources; external Unit and RF control are excluded"},
+      {"gpio": 46, "net": "LCD_QSPI_D0", "peripheral": "SPI2", "direction": "out", "gate": "external pull preserves the accepted strap"},
+      {"gpio": 47, "net": "ENCODER_B", "peripheral": "PCNT0", "direction": "in"},
+      {"gpio": 48, "net": "S3_HUB_SCK", "peripheral": "SPI3", "direction": "out"}
+    ],
+    "ui_contract": {
+      "ordinary_buttons": "All sixteen independent active-low inputs terminate on the local TCA9539PWR. Its 400-kHz I2C and dedicated active-low interrupt connect directly to S3; there is no Hub/RF-RP message hop and no polling-only path.",
+      "encoder": "A/B remain dedicated S3 PCNT inputs; encoder push is one TCA9539 input.",
+      "ptt_exception": "PTT remains direct to RF RP for fail-safe radio control and is mirrored to S3 as state/event data.",
+      "latency_target": "button edge to S3 event <=1 ms and first visible response <=20 ms under qualified concurrent load",
+      "bus_priority": "After UI_FAULT_INT_N, button/touch source identification preempts the next bounded internal I2C transaction. No external hot-plug bus is connected to this branch."
+    }
+  },
+  "hub_rp": {
+    "mpn": "SC1512-A4",
+    "gpio_budget": {"available": 48, "used": 45, "free": 3},
+    "pin_groups": [
+      {"gpios": [0, 1, 2, 3, 4, 5, 6], "role": "S3 quad-SPI D0..D3/SCK/CS plus ALERT"},
+      {"gpios": [7, 8, 9, 10, 11, 12], "role": "C5 native 4-bit SDIO CLK/CMD/D0..D3"},
+      {"gpios": [13, 14, 15, 16, 17], "role": "dedicated SPI plus ALERT to RF RP"},
+      {"gpios": [18, 19, 20, 21, 22], "role": "full-duplex audio BCLK/WS/DOUT/DIN/ARM"},
+      {"gpios": [23, 24], "role": "Hub-local I2C for codec, Si4732, headset, video decoder and slow controls"},
+      {"gpios": [25, 26], "role": "isolated M5 Unit I2C/UART/GPIO"},
+      {"gpios": [27, 28, 29, 30, 31, 32], "role": "dedicated microSD SPI SCK/MOSI/MISO/CS plus power and detect"},
+      {"gpios": [33, 34, 35], "role": "FPV RSSI ADC, receiver power and lock/evidence"},
+      {"gpios": [36, 37, 38], "role": "receiver channel-control reserve for the selected exact serial module"},
+      {"gpios": [39, 40], "role": "Hub diagnostic UART reserve"},
+      {"gpios": [41], "role": "AIR_RX_EN fail-low switched-domain and LT5560 enable control"},
+      {"gpios": [42], "role": "AIR_RX_MODE direct-FM/SW versus converted-Airband RF selector; reset default is direct FM/SW"},
+      {"gpios": [43, 44], "role": "dedicated fail-closed I2C controller bus to Pack and Safety MSPM0 mailboxes"},
+      {"gpios": [45, 46, 47], "role": "uncommitted electrical reserve"}
+    ],
+    "service": "Independent native USB, SWD, RUN and USB_BOOT remain mandatory; the diagnostic UART reserve is not a substitute for USB/SWD recovery."
+  },
+  "transport_contracts": [
+    {
+      "id": "S3_HUB",
+      "transport": "dedicated 4-data-line half-duplex SPI3",
+      "clock_hz": 40000000,
+      "raw_payload_mb_s": 20.0,
+      "qualified_payload_floor_mb_s": 14.0,
+      "reason": "Carries control and selected data only; display and analog video never traverse IPC."
+    },
+    {
+      "id": "HUB_C5",
+      "transport": "native C5 4-bit SDIO",
+      "clock_hz": 20000000,
+      "raw_payload_mb_s": 10.0,
+      "qualified_payload_floor_mb_s": 7.5,
+      "service_mux": "C5 GPIO13/14 are switched between SDIO D3/D2 and the independent service USB connector; service mode stops and resets the runtime link before switching."
+    },
+    {
+      "id": "HUB_RF_RP",
+      "transport": "dedicated full-duplex SPI plus alert",
+      "clock_hz": 20000000,
+      "raw_payload_mb_s": 2.5,
+      "qualified_payload_floor_mb_s": 1.5,
+      "reason": "The worst accepted simultaneous three-nRF/CC payload remains below this floor and never shares its peripheral with storage or C5."
+    },
+    {
+      "id": "HUB_MICROSD",
+      "transport": "dedicated powered and isolated SPI",
+      "clock_hz": 50000000,
+      "raw_payload_mb_s": 6.25,
+      "qualified_payload_floor_mb_s": 4.0,
+      "reason": "The existing accepted recording requirement is met without using the S3 display peripheral or crossing S3_HUB for local captures."
+    },
+    {
+      "id": "HUB_PACK_SAFETY",
+      "transport": "dedicated fail-closed I2C controller bus",
+      "clock_hz": 400000,
+      "raw_payload_mb_s": 0.05,
+      "qualified_payload_floor_mb_s": 0.02,
+      "reason": "Carries Pack read-only state and Safety heartbeat/lease/fault mailboxes; local Safety hardware still owns watchdog service and asynchronous FAULT_KILL."
+    }
+  ],
+  "display_contract": {
+    "panel": "HMX035CTFT-001 with ST77922",
+    "interface": "dedicated direct QSPI on S3 SPI2 with GDMA and TE",
+    "controller_limit_hz": 62500000,
+    "s3_supported_sources": "ESP32-S3 GPSPI uses APB 80 MHz or XTAL 40 MHz in the locked ESP-IDF. The fastest normal divided clock not exceeding 62.5 MHz is therefore 40 MHz; 80 MHz would violate the panel timing.",
+    "selected_clock_hz": 40000000,
+    "payload_mb_s": 20.0,
+    "full_frame_bytes": 307200,
+    "full_frame_wire_ms": 15.36,
+    "video_window": "320x240 RGB565 at 30 fps is 4.608 MB/s and 23.04% of the selected QSPI payload",
+    "maximality_result": "40 MHz is the maximum datasheet-legal clock obtainable from the supported S3 GPSPI sources without panel overclocking. Parallel i8080 is rejected in R2 because it would consume the shared LCD_CAM camera resource needed by direct analog video capture.",
+    "hil": "Route and tune for the 40-MHz guaranteed mode; measure edges, TE scheduling, full-frame and dirty-region latency under simultaneous camera DMA before accepting any non-standard clock experiment."
+  },
+  "video_contract": {
+    "rf": "replaceable exact serial analog 5.8-GHz receiver module; generic RX5808 is evidence input, not an accepted MPN",
+    "external_connector": "MMCX, DC to at least 6 GHz, user-facing and labelled FPV RX 5.8G",
+    "decoder": "Texas Instruments TVP5150AM1PBS or industrial-temperature TVP5150AM1IPBS after factory-route confirmation",
+    "capture": "8-bit BT.601/BT.656-compatible YUV422 plus PCLK/VSYNC/HREF into S3 LCD_CAM and GDMA; hardware YUV422-to-RGB565 conversion is required",
+    "first_acceptance_mode": "NTSC/PAL source to centered 320x240 live view at source frame rate with UI overlay/remaining portrait area; uncompressed full-source recording is not promised",
+    "coexistence": "Entering FPV mode powers the receiver/decoder group, disables C5 5-GHz RF and all unused transmit groups, and preserves the one-active-signal-group rule.",
+    "power_thermal_gate": "Receiver, decoder, regulator and local shielding are added to the unattended thermal and battery budgets before H1 acceptance."
+  },
+  "airband_contract": {
+    "mode": "mandatory receive-only Airband AM",
+    "user_range_mhz": [118.0, 137.0],
+    "antenna_port": "the existing outward standard-SMA port is relabelled FM / SW / AIR RX; no eleventh antenna connector is added",
+    "owner": "hub_rp",
+    "signal_group": "BROADCAST_RX remains the exclusive top-level receive group; FM, SW, AM/LW and AIR are mutually exclusive submodes",
+    "rf_chain": [
+      "shared FM/SW/AIR SMA protection and mode split",
+      "118-137-MHz image-rejection band-pass network",
+      "PGA-103+ low-noise gain stage",
+      "LT5560EDD#TRPBF down-converting mixer",
+      "112-MHz LO from SI5351A-B-GTR",
+      "6-25-MHz IF cleanup network",
+      "HMC544AETR RF/IF selector",
+      "existing Si4732-A10-GSR FMI and audio path"
+    ],
+    "frequency_plan": {
+      "lo_mhz": 112.0,
+      "rf_to_if_formula": "IF = RF - 112 MHz",
+      "if_range_mhz": [6.0, 25.0],
+      "image_range_mhz": [87.0, 106.0],
+      "image_rejection_rule": "The 118-137-MHz input filter is mandatory because the fixed low-side LO maps the 87-106-MHz FM broadcast band onto the same IF range."
+    },
+    "control": {
+      "i2c": "SI5351A-B-GTR joins the isolated Hub-local I2C bus at address 0x60; it does not share S3 UI I2C",
+      "gp41": "AIR_RX_EN is pulled low and removes the Airband RF/LO domain when unused",
+      "gp42": "AIR_RX_MODE defaults to the direct FM/SW path before Hub firmware starts",
+      "quiet_state": "Airband LNA, mixer and LO are electrically off outside AIR mode; inactive RF paths cannot clock or load the selected receiver input"
+    },
+    "performance_boundary": {
+      "included": ["AM voice reception", "25-kHz and 8.33-kHz channel plans", "scan and banks", "recording", "channel-activity history", "ACARS 2400-bps demodulation after the receiver"],
+      "excluded": ["Airband transmit", "simultaneous 19-MHz-wide spectrum capture", "VDL Mode 2", "certified VOR/ILS navigation"],
+      "hil": "H1 simulation and H7 injection tests must prove sensitivity, blocker tolerance, LO leakage, image rejection across 118-137 MHz and direct-FM/SW degradation before the path is accepted."
+    }
+  },
+  "airband_factory_bom_delta": {
+    "checked_on": "2026-08-26",
+    "currency": "USD",
+    "active_incremental_unit_cost": 20.2038,
+    "existing_reused_cost": 2.8621,
+    "lines": [
+      {"mpn": "LT5560EDD#TRPBF", "jlcpcb": "C462645", "qty": 1, "role": "active down-converting mixer", "live_stock": 165, "unit_price": 14.5623, "route": "JLCPCB SMT"},
+      {"mpn": "PGA-103+", "jlcpcb": "C3008207", "qty": 1, "role": "118-137-MHz low-noise gain", "live_stock": 1445, "unit_price": 2.6104, "route": "JLCPCB SMT"},
+      {"mpn": "SI5351A-B-GTR", "jlcpcb": "C504891", "qty": 1, "role": "112-MHz local oscillator", "live_stock": 37669, "unit_price": 1.2199, "route": "JLCPCB SMT"},
+      {"mpn": "HMC544AETR", "jlcpcb": "C579555", "qty": 1, "role": "low-loss direct/converted receiver selector", "live_stock": 304, "unit_price": 1.8112, "route": "JLCPCB SMT"},
+      {"mpn": "SI4732-A10-GSR", "jlcpcb": "C2155558", "qty": 0, "role": "existing FM/AM/SW/LW receiver reused for 6-25-MHz IF", "live_stock": 547, "unit_price": 2.8621, "route": "existing R1 line; no incremental quantity"}
+    ],
+    "filter_route": {
+      "reference_mpn": "BPF-A127+",
+      "reference_role": "published 50-ohm 118-137-MHz S-parameter and footprint witness",
+      "jlcpcb_search_result": "0 exact matches on 2026-08-26",
+      "production_implementation": "serial high-Q LC passives from the current JLCPCB library, selected after H1 synthesis, tolerance/finite-Q simulation and layout extraction",
+      "acceptance_mask": "<=4.5-dB insertion loss from 118 to 137 MHz and blocker/image rejection not worse than the BPF-A127+ reference at the named H1/H7 test points",
+      "order_gate": "every passive MPN, live factory route, stock, MOQ and cost must be rechecked before architecture freeze and again before order"
+    }
+  },
+  "power_rebaseline": {
+    "r1_status": "The reviewed R1 2.493-A worst state and 2.5-A continuous rail are historical only because R2 adds an always-present Hub RP plus FPV and Airband domains.",
+    "airband_increment": {
+      "rail": "switched low-noise 3.0-V RF domain plus Hub-local 3.3-V control",
+      "reserved_current_ma": 150,
+      "reserved_power_w": 0.5,
+      "basis": "PGA-103+ 60 mA at 3 V; LT5560 up to 12 mA at 3 V; SI5351 core plus one output up to 40.6 mA; selector/control/filter margin included"
+    },
+    "coexistence": "FPV and Airband are never powered together; both remain mutually exclusive with unused transmit groups under the one-active-signal-group rule.",
+    "h1_required_envelope": {
+      "continuous_3v3_main_a_min": 3.5,
+      "step_a_min": 4.0,
+      "action": "recalculate the complete six-domain rail/state matrix and requalify the buck, eFuse threshold, inductor, copper and thermal path before retaining or replacing the R1 parts"
+    }
+  },
+  "reopen_effect": {
+    "hardware": "R1 H1 through H5 artifacts remain historical evidence only. Current work resumes at H1-R2.0 after this reviewed H0-R2 contract.",
+    "firmware": "The previous five-image H2/F2 contract is superseded. R2 has six firmware domains and requires a Hub target, new transports and analog-video/display scheduling before F1-R2 can close.",
+    "ordering": "All prior sample baskets and factory-route counts are non-current; no purchase or PCB layout is authorized by H0-R2."
+  },
+  "exit_review": {
+    "capability_loss": [],
+    "controller_count": 6,
+    "s3_gpio": "33 used / 0 free",
+    "hub_gpio": "43 used / 5 free",
+    "display": "maximum legal supported S3 QSPI clock, no shared client",
+    "ui": "local interrupt-driven S3 ownership, no IPC",
+    "video": "direct capture path with exact active decoder and replaceable receiver boundary",
+    "open_h1_gates": [
+      "select an exact current serial 5.8-GHz receiver module with controlled pinout and lifecycle",
+      "select exact edge MMCX MPN and cable/launch geometry",
+      "prove receiver bay, shielding, power and thermal fit in the dimensioned sandwich",
+      "select exact DVP reset/strap isolation and C5 USB/SDIO switching components",
+      "synthesize the factory-stock Airband LC filter, extract its layout and prove the BPF-A127+ acceptance mask including 87-106-MHz image rejection",
+      "recalculate the six-domain 3.3-V state matrix against the new >=3.5-A continuous and >=4.0-A step contract",
+      "regenerate every physical view and inter-board contact budget before H1-R2 acceptance"
+    ]
+  }
+}

@@ -2,9 +2,17 @@
 
 [На главную](../README.ru.md) · [English](pinout.md) · [Аппаратная архитектура](hardware.ru.md)
 
-Страница автоматически строится из той же карты устройств и сетей, что используется для электрических проверок. Здесь показано текущее целевое назначение контактов.
+Текущий рабочий дизайн контактов R2 и полные бюджеты S3/Hub автоматически
+публикуются в [отчёте H0-R2](h0-r2-functional-architecture.ru.md). H1-R2
+сейчас сверяет эту принципиальную карту с физической компоновкой и межплатными
+переходами; изменение контакта допустимо только вместе с machine-контрактом,
+проверками и публичной таблицей.
 
-> Файл сгенерирован из `hardware/architecture/devices.json` и `hardware/architecture/candidates/G2F-3I.json`.
+> Текущий источник: `hardware/architecture/h0-r2-rebaseline.json`. Таблица ниже —
+> сохранённая точная распиновка **R1**, а не разрешение на KiCad для R2.
+
+<details>
+<summary><strong>Сохранённая точная распиновка R1</strong></summary>
 
 ## S3 — приложение, UI, display, storage и audio
 
@@ -155,3 +163,5 @@
 | `PA26` | `PACK_STACK_ADC` | `i` | `ADC` | pack_stack_adc_top4.END_2<br>pack_stack_adc_bottom.END_1<br>pack_stack_adc_filter.END_1 |
 
 `i` — вход, `o` — выход, `io` — двунаправленный контакт. Сервисные, питание и fixed-function контакты учитываются в полной machine-карте, даже если не являются GPIO.
+
+</details>

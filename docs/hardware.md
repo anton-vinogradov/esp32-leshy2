@@ -2,11 +2,15 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Safety](safety.md)
 
+> Current baseline: [H0-R2](h0-r2-functional-architecture.md). The R1 pin,
+> interconnect and ECAD pages linked below are retained inputs and are being
+> regenerated at H1-R2.0; they are not authorization to route the R2 PCB.
+
 ## Principle component interconnections
 
 [Open the complete principle-diagram set](schematics.md). It is split into
-readable maps for compute owners, UI and storage, C5 and IR, the RP radio
-domain, controls, audio, service and recovery, all nine antenna paths, power
+readable maps for compute owners, UI and storage, C5 and IR, the RF RP radio
+domain, controls, audio, service and recovery, antenna paths, power
 and hardware safety. Every node represents one physical device and includes
 its MPN and product role; arrows show link purpose and direction.
 
@@ -21,11 +25,13 @@ safety timings and regional LoRa profiles for both repositories.
 
 ```mermaid
 flowchart TB
-  S3["ESP32-S3-WROOM-1U-N16R8<br/>UI, display, storage, audio, BLE/Wi-Fi"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>UI, direct QSPI display, FPV capture, BLE/Wi-Fi"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, 802.15.4, IR"]
-  RP["SC1512-A4 · RP2354B<br/>nRF24 ×3, Sub-GHz, voice, Cap Bus"]
-  S3 <-->|"1-bit SDIO"| C5
-  S3 <-->|"dedicated SPI3 + alert"| RP
+  HUB["SC1512-A4 · Hub RP2354B<br/>C5/RF fan-out, storage, audio, broadcast/Airband"]
+  RF["SC1512-A4 · RF RP2354B<br/>nRF24 ×3, Sub-GHz, voice, Cap Bus"]
+  S3 <-->|"quad SPI"| HUB
+  HUB <-->|"4-bit SDIO"| C5
+  HUB <-->|"dedicated SPI + alert"| RF
 ```
 
 Each owner has independent buses to latency-sensitive devices. The display,
@@ -43,19 +49,23 @@ later because Espressif does not support SDIO on revision v0.1.
 | Native C5 | `ESP32-C5-WROOM-1U-N8R8` | C5 | 2.4/5-GHz Wi-Fi, IEEE 802.15.4 |
 | nRF24 ×3 | `Ebyte E01-ML01IPX` | RP2354B | Concurrent `3R`, `1T2R`, `2T1R`, `3T` |
 | Sub-GHz | `CC1101RGPR` | RP2354B | 315, 433, 868 and 915 MHz |
-| Broadcast RX | `Si4732-A10-GSR` | S3 | FM/SW plus a separate AM/LW input |
+| Broadcast/Airband RX | `Si4732-A10-GSR` + `LT5560EDD#TRPBF` + `PGA-103+` + `SI5351A-B-GTR` + `HMC544AETR` | Hub RP2354B | FM/SW, separate AM/LW and mandatory receive-only 118–137-MHz Airband AM through the shared `FM/SW/AIR RX` port |
+| Analog FPV RX | `TVP5150AM1PBS` plus replaceable exact 5.8-GHz receiver boundary | S3 | Receive-only NTSC/PAL capture; exact serial RF module and MMCX close in H1-R2 |
 | Voice VHF/UHF | `G-NiceRF SA818S-V` + `G-NiceRF SA818S-U` | RP2354B | Independent analog VHF and UHF communications with hardware one-hot selection |
 | IR RX | `TSOP75238TT` + `TSMP95000TT` | C5 | 38-kHz demodulation and 30–60-kHz learning |
 | IR TX | `VSMY14940` | C5 | Controlled 940-nm transmit with optical evidence |
 | LoRa/GNSS Cap | `M5Stack U214 Cap LoRa-1262` or `LESHY2-LORA-CAP-01-EU868/US915` | RP2354B | Stock Cap: RX/GNSS; exact Leshy Cap: qualified regional RX/TX |
 | External antenna jacks | `8× GCT RFPC-SMA31-FN-175-A` + `2× GCT RFPC-SMA32-FN-175-A` | Dedicated per path | Ten 6-GHz, 50-ohm board-edge SMA/RP-SMA bodies on the two outward PCB faces; no RF sharing or connector bodies in the interboard channel |
 
-FM/AM/SW/LW broadcast transmission is not a device capability: both Si4732
+FM/AM/SW/LW/Airband broadcast transmission is not a device capability: both Si4732
 ports remain receive-only. No custom transmitter or RF Cap is developed for
 them. The function may appear only through an exact orderable off-the-shelf
 self-contained module with manufacturer documentation, integrated RF-output
 protection and a qualified product interface. No suitable module is currently
-selected.
+selected. Airband uses a fixed 112-MHz low-side LO to translate 118–137 MHz
+to 6–25 MHz for the existing Si4732 FMI. The mandatory input filter rejects
+the 87–106-MHz image band; voice, scan, recording and ACARS are in scope,
+while VDL2, wideband I/Q capture and Airband TX are not.
 
 Every built-in transmit path has independent actual-TX evidence. Native S3/C5 each use
 an exact 30-mm `TE Connectivity 2118651-2` UMCC Gen1 jumper, their own

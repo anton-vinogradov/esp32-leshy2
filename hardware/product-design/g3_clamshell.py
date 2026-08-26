@@ -126,7 +126,7 @@ BOARD_RF_CABLE_TO_TRACE_HANDOFFS = frozenset(
 RF_USER_LABEL_LINES = {
     "S3-2G4": ("WI-FI/BLE", "2.4 GHz"),
     "C5-2G4/5": ("WI-FI/15.4", "2.4/5 GHz"),
-    "RX-FM/SW": ("FM/SW RX",),
+    "RX-FM/SW": ("FM/SW/AIR RX",),
     "RX-AM/LW": ("AM/LW LOOP",),
     "N24-0": ("nRF24-1", "2.4 GHz"),
     "CC-SUB": ("SUB-GHz",),
@@ -3352,7 +3352,7 @@ def render_internal(devices, instances, display_adapter_design):
 
     path_annotation = {
         "S3-2G4": "S3",
-        "RX-FM/SW": "FM/SW",
+        "RX-FM/SW": "FM/SW/AIR",
         "RX-AM/LW": "AM/LW",
         "C5-2G4/5": "C5",
         "N24-0": "N24-1",
@@ -3433,7 +3433,7 @@ def render_internal(devices, instances, display_adapter_design):
         text(820, 547, "nRF ring position is schematic; its connector exists, while generation and exact axis close at H5", 9.2, colour="#0e7490"),
         text(820, 570, "solid green/cyan = direct cable projection · dashed blue = future 50 Ω PCB mainline", 10, "bold", colour="#344054"),
         text(820, 589, "The 30-mm cable has 3D slack; the forward TX sample branches only after the board U.FL.", 9.2, colour="#526076"),
-        text(820, 616, "UI board: S3 · FM/SW · AM/LW · C5", 10, "bold", colour="#1d4ed8"),
+        text(820, 616, "UI board: S3 · FM/SW/AIR · AM/LW · C5", 10, "bold", colour="#1d4ed8"),
         text(820, 636, "RF board: nRF24-1 · SUB-GHz · nRF24-2 · VHF/UHF · nRF24-3", 10, "bold", colour="#1d4ed8"),
         text(820, 656, "Every blue guide ends at its matching red outer-face antenna datum; none represents finished KiCad copper.", 9.2, colour="#526076"),
     ]

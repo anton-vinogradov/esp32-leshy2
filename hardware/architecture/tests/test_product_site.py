@@ -130,6 +130,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/component-sample-basket.ru.md",
         "docs/manufacturing-platform.md",
         "docs/manufacturing-platform.ru.md",
+        "docs/h0-r2-functional-architecture.md",
+        "docs/h0-r2-functional-architecture.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -155,14 +157,14 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: H5.0.3-R1", "H1 accepted",
-                "F3 reviewed",
+                "Current hardware boundary: H1-R2.0", "H0-R2 reviewed",
+                "firmware F0-R2.0",
                 "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: H5.0.3-R1", "H1 принят",
-                "F3 проведено ревью", "H2.2.5",
+                "Текущая аппаратная граница: H1-R2.0", "H0-R2 проведено ревью",
+                "firmware F0-R2.0", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
             ),
@@ -177,8 +179,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Hardware is at H5.0.3-R1", "printing/fabrication"),
-            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H5.0.3-R1", "печать/на фабрику"),
+            "README.md": ("Roadmap and current position", "Hardware is at H1-R2.0", "printing/fabrication"),
+            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H1-R2.0", "печать/на фабрику"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -618,7 +620,7 @@ class ProductSiteTests(unittest.TestCase):
         markers = {}
         for name in pages:
             page = self.read(name)
-            found = re.findall(r"<!-- current-substep: (H\d+(?:\.\d+)+(?:-R\d+)?) -->", page)
+            found = re.findall(r"<!-- current-substep: (H\d+(?:-R\d+)?(?:\.\d+)+) -->", page)
             self.assertEqual(1, len(found), name)
             markers[name] = found[0]
             self.assertIn(f"`{found[0]}`", page, name)
@@ -817,8 +819,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["status"])
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
-        self.assertEqual("H5", state["current_stage"])
-        self.assertEqual("H5.0.3-R1", state["current_substep"])
+        self.assertEqual("H1", state["current_stage"])
+        self.assertEqual("H1-R2.0", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -2739,11 +2741,11 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("not a current product capability", candidate_policy)
         self.assertIn("receive-only", candidate_policy)
         self.assertIn(
-            "Вещательная передача FM/AM/SW/LW не является возможностью устройства",
+            "Вещательная передача FM/AM/SW/LW/Airband не является возможностью устройства",
             self.read("docs/hardware.ru.md"),
         )
         self.assertIn(
-            "FM/AM/SW/LW broadcast transmission is not a device capability",
+            "FM/AM/SW/LW/Airband broadcast transmission is not a device capability",
             self.read("docs/hardware.md"),
         )
         for name in ("docs/antennas.md", "docs/antennas.ru.md"):

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="909" viewBox="0 0 760 909">
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#475569"/></marker></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="380" y="36" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="700" fill="#172033">Leshy2 · H0-R2 functional architecture</text>
+<text x="380" y="62" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#526076">Mandatory receive-only Airband reuses the broadcast path; no UI or display traffic crosses this chain.</text>
+<rect x="145" y="92" width="470" height="58" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="380" y="116" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">FM / SW / AIR RX</text>
+<text x="380" y="136" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#526076">existing standard-SMA port</text>
+<line x1="380" y1="150" x2="380" y2="171" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<rect x="145" y="175" width="470" height="58" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+<text x="380" y="199" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">118–137 MHz BPF</text>
+<text x="380" y="219" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#526076">serial LC · BPF-A127+ mask</text>
+<line x1="380" y1="233" x2="380" y2="254" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<rect x="145" y="258" width="470" height="58" rx="9" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+<text x="380" y="282" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">PGA-103+</text>
+<text x="380" y="302" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#526076">C3008207 · low-noise gain</text>
+<line x1="380" y1="316" x2="380" y2="337" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<rect x="145" y="341" width="470" height="58" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+<text x="380" y="365" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">LT5560EDD#TRPBF</text>
+<text x="380" y="385" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#526076">C462645 · RF − 112 MHz</text>
+<line x1="380" y1="399" x2="380" y2="420" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<rect x="145" y="424" width="470" height="58" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="380" y="448" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">HMC544AETR</text>
+<text x="380" y="468" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#526076">C579555 · direct / converted</text>
+<line x1="380" y1="482" x2="380" y2="503" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<rect x="145" y="507" width="470" height="58" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="380" y="531" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">SI4732-A10-GSR</text>
+<text x="380" y="551" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#526076">C2155558 · 6–25 MHz FMI</text>
+<line x1="380" y1="565" x2="380" y2="586" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<rect x="145" y="590" width="470" height="58" rx="9" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="380" y="614" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">SC1512-A4 · Hub RP</text>
+<text x="380" y="634" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#526076">I²C control · audio · recording</text>
+<line x1="380" y1="648" x2="380" y2="669" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<rect x="145" y="673" width="470" height="58" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="380" y="697" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">ESP32-S3-WROOM-1U-N16R8</text>
+<text x="380" y="717" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#526076">UI and direct display stay local</text>
+<rect x="18" y="341" width="105" height="58" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+<text x="70" y="364" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#172033">SI5351A</text>
+<text x="70" y="383" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#526076">112 MHz LO</text>
+<line x1="123" y1="370" x2="143" y2="370" stroke="#ea580c" stroke-width="2" marker-end="url(#a)"/>
+<text x="380" y="861" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#166534">Hub GPIO: 45 used · 3 free</text>
+<text x="380" y="884" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#b42318">AIR_RX_EN is fail-low · default path remains direct FM/SW · Airband TX does not exist</text>
+</svg>

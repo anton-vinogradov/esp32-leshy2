@@ -37,7 +37,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H5.0.3-R1", roadmap["current_substep"])
+        self.assertEqual("H1-R2.0", roadmap["current_substep"])
+        self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
         self.assertIn("H5.0.2-R1", h5["reviewed_artifacts"])
@@ -470,7 +471,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "nRF24-1",
             "nRF24-2",
             "nRF24-3",
-            "FM/SW RX",
+            "FM/SW/AIR RX",
             "AM/LW LOOP",
             'data-instance="ui_dpad_up" data-direct-press="true"',
             'data-instance="ui_dpad_down" data-direct-press="true"',
@@ -1137,8 +1138,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             combined_diagrams = "\n".join(diagrams)
             for token in ("ESP32-S3-WROOM-1U-N16R8", "ESP32-C5-WROOM-1U-N8R8", "SC1512-A4"):
                 self.assertIn(token, combined_diagrams, doc_name)
-            self.assertIn('S3 <-->|"1-bit SDIO"| C5', combined_diagrams, doc_name)
-            self.assertIn('S3 <-->|"dedicated SPI3 + alert"| RP', combined_diagrams, doc_name)
+            self.assertIn('S3 <-->|"quad SPI"| HUB', combined_diagrams, doc_name)
+            self.assertIn('HUB <-->|"4-bit SDIO"| C5', combined_diagrams, doc_name)
+            self.assertIn('HUB <-->|"dedicated SPI + alert"| RF', combined_diagrams, doc_name)
             for mpn_token in current_mpn_tokens:
                 self.assertIn(
                     mpn_token,

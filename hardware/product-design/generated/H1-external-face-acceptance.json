@@ -94,7 +94,7 @@
       {
         "path": "RX-FM/SW",
         "user_label": [
-          "FM/SW RX"
+          "FM/SW/AIR RX"
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",

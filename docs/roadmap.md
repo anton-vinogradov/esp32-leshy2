@@ -3,8 +3,8 @@
 [Русский](roadmap.ru.md) · [Home](../README.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶️ Current hardware boundary: H5.0.3-R1 — basket and 210 routes complete; supplier-response gate.**
-> H0–H4 are reviewed. There is no PCB layout or authorized order.
+> **▶️ Current hardware boundary: H1-R2.0 — complete physical re-layout after the reviewed H0-R2 rebaseline.**
+> R1 H1–H5 remain reusable evidence, not current acceptance. There is no R2 PCB layout or authorized order.
 
 Status last reconciled: **26 August 2026**. This is the hardware repository's
 own, sequential roadmap. Firmware work has its own `F0–F11` stages. Firmware
@@ -22,16 +22,16 @@ results appear here only where they are prerequisites of a hardware gate.
 
 | Area | Actual state |
 |---|---|
-| Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
-| Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
-| Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Production ECAD schematic | ✅ Current dual-SA818S H2 revision accepted; firmware BSP synchronized byte-for-byte |
-| Electrical and transient evidence | ✅ H3 accepted; 85 physical-only rows remain assigned to H5/H6/H8 |
-| Firmware interlock | ✅ [F3 reviewed](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f3-boot-memory-emulation-report.md): exact S3 QEMU execution, 52 reproducible artifacts and explicit physical gates |
-| Joined pre-layout gate | ✅ [H4 reviewed](h4-prelayout-gate-report.md): 0 open virtual contradictions; 85 physical residuals keep H5/H6/H8 owners |
-| KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
+| Product requirements and functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): six domains, direct S3 UI/display/FPV and mandatory receive-only Airband |
+| Physical product design | ▶️ H1-R2.0: new components, inter-board clearances, RF paths and power are being laid out together |
+| Principle diagrams on the site | H0-R2 functional map is current; dimensioned R1 views are explicit inputs being regenerated |
+| Production ECAD schematic | ⏳ R1 sheets retained; R2 work waits for the H1-R2 placement and rail contract |
+| Electrical and transient evidence | ⏳ R1 evidence retained; full R2 H3 rerun follows R2 H2 |
+| Firmware interlock | ▶️ firmware F0-R2.0 must replace the five-image R1 boundary with six domains and the new Hub/Airband contracts |
+| Joined pre-layout gate | ⏳ R1 H4 retained; R2 H4 waits for R2 H3 and firmware R2 evidence |
+| KiCad schematic work | ⏳ no R2 sheet is accepted before H1-R2 closes |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
-| Component evidence | ▶️ H5.0.3-R1 has a 33-line `$286.43` basket and exact routes for all 210 BOM lines / 1052 placements; partial JLCPCB reply confirms SA818S-V MOQ/typical lead; accumulators are user-supplied `J5-U`; two-designator and remaining J4-F/J4-P clarification remains open; purchase blocked |
+| Component evidence | ⏳ R1 routes remain available; the Airband active delta is live-checked and costs `$20.2038`, while the complete R2 BOM is rebuilt only after H4-R2 |
 | Prototype PCB order | 🔒 Forbidden before H7 |
 | Production order | 🔒 Forbidden before H9 |
 
@@ -39,11 +39,16 @@ Principle diagrams explain **what connects to what**. Production ECAD must add
 exact symbols, contacts, values, rails, protection, footprints and ERC
 evidence. PCB placement and routing begin only after the earlier gates close.
 
-## Completed H1–H4 and current H5 evidence rebuild
+## Current H1-R2.0 and retained R1 evidence
 
-<!-- current-substep: H5.0.3-R1 -->
+<!-- current-substep: H1-R2.0 -->
 
-**Exact marker: `H5.0.3-R1`** — the [physical residual map](component-evidence-map.md)
+**Exact marker: `H1-R2.0`** — the [H0-R2 report](h0-r2-functional-architecture.md)
+fixes the new functional input. H1 now regenerates the physical component map,
+all inter-board collision checks, the 3.5-A/4.0-A rail envelope and every
+external/internal view before R2 ECAD is allowed.
+
+The following detailed H1–H5 material is retained R1 evidence. The [physical residual map](component-evidence-map.md)
 and [primary-source research](component-source-research.md) have passed review.
 The [33-line irreducible basket](component-sample-basket.md) is priced at
 `$286.43`, and the [platform map](manufacturing-platform.md) assigns all 210
@@ -57,6 +62,8 @@ actual two-designator U/V job, remaining J4-F/J4-P and
 exact-MPN control need the prepared clarification. PCBWay remains the full-device
 fallback and Seeed as the PCBA second source; neither has been contacted.
 Quote/reservation and purchase are not authorized.
+Historical machine gates `H5-EVR07` and `H5-EVR08` remain linked through the
+retained R1 manufacturing evidence; neither is a current R2 acceptance.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -351,14 +358,14 @@ A production order is possible only after H9.
 
 | Stage | Status | Stage output | Exit criterion |
 |---|---|---|---|
-| **H0. Product requirements and functional architecture** | ✅ Reviewed | Complete capability scope, five compute domains, radio/interface owners, interface classes, one active signal group, full-function 3×nRF24 and safety boundaries | Requirements and architecture checks pass; every required function has an owner and a defined hardware boundary |
-| **H1. Physical product design** | ✅ Reviewed | Accepted exterior, both outer and inner faces, true antenna-edge view, sections, assembly sequence, selected-part envelopes and feasible pin/resource allocation | Dimensions come from selected MPNs; no component, fastener, silkscreen, antenna or accessory collision; controls, battery, U214, ports, microphone and speaker are accessible; allocation still fits; the user accepted the mockup |
-| **H2. Production ECAD schematic** | ✅ Reviewed and accepted | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 consumes the contract without invented pins |
-| **H3. Virtual electrical verification** | ✅ Reviewed and accepted | [H3 result report](h3-acceptance.md): calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
-| **H4. Joined pre-layout gate** | ✅ [Reviewed](h4-prelayout-gate-report.md) | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
-| **H5. Component evidence** | ▶️ Current `H5.0.3-R1`; 9-residual/14-gate map, 33-line `$286.43` basket and all 210 routes complete; partial JLCPCB reply recorded, two-designator/J4-F/J4-P clarification open, accumulators accepted as user-supplied `J5-U`; PCBWay fallback not contacted; purchase blocked | [Current basket](component-sample-basket.md), [210-route platform map](manufacturing-platform.md) and [supplier gate](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json); former SA518 evidence is superseded | Every production-BOM line has an exact route and no silent substitution; exact whole-basket and accepted final-assembly costs are published; selected factory boundary is explicit; approved received samples prove identity, mating, stack-up and critical dimensions |
-| **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |
-| **H7. Prototype fabrication and bring-up** | 🔒 Waiting for H6, inherited firmware F3, accepted `J4-F/P` factory boundary and order approval | Small prototype lot, factory-integrated `J4-F`, separately packed `J4-P` and retained bring-up log | Box-build output matches the accepted boundary; rails sequence correctly; all five controllers program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |
+| **H0. Product requirements and functional architecture** | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Six compute domains, direct S3 UI/display/FPV, independent Hub fan-out and mandatory receive-only Airband | Every function has one owner; S3 and Hub GPIO budgets close; transport, quiet-state and firmware boundaries are explicit |
+| **H1. Physical product design** | ▶️ Current `H1-R2.0` | Regenerated exterior/inner faces, sections, assembly sequence, exact body envelopes, RF paths and ≥3.5-A continuous / ≥4.0-A step power contract | No component, fastener, silkscreen, antenna, accessory or cross-board collision; every R2 body has an exact MPN or explicit qualified replaceable boundary; the user accepts the mockup |
+| **H2. Production ECAD schematic** | ⏳ Waiting for H1-R2 | R2 sheets and machine-readable HW↔FW contract; R1 sheets remain evidence only | Exact symbol/footprint/pin/net/value; quiet/recovery/safety reviewed; firmware consumes the R2 contract without invented pins |
+| **H3. Virtual electrical verification** | ⏳ Waiting for H2-R2 | Complete R2 electrical, RF, power, timing and thermal rerun | All six-domain states and Airband/FPV coexistence pass before fabrication |
+| **H4. Joined pre-layout gate** | ⏳ Waiting for H3-R2 and firmware R2 | One current mechanics/ECAD/electrical/firmware review | No virtual blocker remains and every physical residual owns a measurement |
+| **H5. Component evidence** | ⏳ Waiting for H4-R2 | Complete current R2 factory map; R1 basket and routes remain reusable inputs | Every R2 BOM line has an exact factory route without silent substitution |
+| **H6. PCB placement and routing** | 🔒 Waiting for H5-R2 | Two real boards implementing the accepted R2 schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |
+| **H7. Prototype fabrication and bring-up** | 🔒 Waiting for H6, current firmware emulator/dev-board evidence, accepted factory boundary and order approval | Small prototype lot, factory-integrated parts, separately packed post-assembly parts and retained bring-up log | Box-build output matches the accepted boundary; rails sequence correctly; all six controllers program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |
 | **H8. Physical qualification** | 🔒 Waiting for H7 | HIL, RF, thermal, power, safety and endurance evidence | 3×nRF24 pass `3R/1T2R/2T1R/3T`; active signals are not stalled by neighbors; inactive interfaces are physically quiet; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog and single-fault tests pass |
 | **H9. Manufacturing release** | 🔒 Waiting for H8 and firmware F11 | Reproducible hardware manufacturing and test package paired with released firmware | Zero blocker; residual risks accepted; BOM, Gerber/ODB++, placement, assembly, fixture, calibration and hardware tests agree; firmware bundle and both compatible release tags are named |
 
@@ -382,18 +389,9 @@ A production order is possible only after H9.
 
 ## Next action
 
-The current boundary is `H5.0.3-R1`: all nine H5 physical residuals and 14
-mechanical gates are covered by a 33-line `$286.43` basket, and all 210 BOM
-lines / 1052 placements have exact routes with zero replacement. Read-only
-public evidence can no longer close the remaining gates. JLCPCB's partial
-response confirms SA818S-V MOQ 1, a typical 8–15-working-day pre-order and
-conditional post-order Function Test pricing. Accumulators are user-supplied
-`J5-U` and not a gate; the
-actual two-designator job plus remaining J4-F/J4-P and identity-control lines
-need the prepared clarification. Parts
-API permission is rejected without a stated reason; an information-only support
-request was submitted successfully on 26 August 2026, so the manual evidence path remains active; PCB
-placement/routing, quote/reservation and every order remain blocked. `H5-EVR07`
-records 16 unanswered fields without opening H6.
-[`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json)
-keeps PCBWay as the unsent full-device fallback and Seeed as the PCBA second source.
+The current boundary is `H1-R2.0`. It must place the second Hub RP, FPV decoder
+boundary and exact Airband active parts, then rerun same-face, cross-board,
+antenna, U214, battery, service and thermal clearances. In parallel it replaces
+the historical 2.5-A R1 rail claim with a verified ≥3.5-A continuous / ≥4.0-A
+step contract. R1 factory evidence remains reusable, but PCB routing,
+quote/reservation and every order remain blocked.

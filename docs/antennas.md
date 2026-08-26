@@ -20,7 +20,7 @@ correct `SUB-GHz` and `VHF/UHF` antenna is selected for the active profile.
 | `SUB-GHz` | 868/915 MHz | [Taoglas `TI.08.C.0112`](https://www.taoglas.com/datasheets/TI.08.C.0112.pdf) | 1 interchangeable | right-angle SMA male |
 | `VHF/UHF` | VHF 136–174 MHz | [Hytera `AN0155H13`](https://www.hytera.com/en/product-new/accessories/radio-antennas/an0155h13.html) | 1 interchangeable | SMA male |
 | `VHF/UHF` | UHF 400–470 MHz | [TE `ANT-433-CW-QW-SMA`](https://www.te.com/en/product-ANT-433-CW-QW-SMA.html) | 1 interchangeable | SMA male |
-| `FM/SW RX` | receive 25–1300 MHz | [Comet `SMA-W100RX2`](https://www.comet-ant.co.jp/product/638/) | 1 | SMA male |
+| `FM/SW/AIR RX` | receive FM/SW and 118–137 MHz Airband AM | [Comet `SMA-W100RX2`](https://www.comet-ant.co.jp/product/638/) | 1 | SMA male |
 | `AM/LW LOOP` | LW 153–279 kHz; AM 520–1710 kHz | Leshy2 [`L2-ANT-AM-LW-001`](../hardware/architecture/am-lw-pod.json) | 1 | SMA male |
 
 The kit contains two separate `ANT-433-CW-QW-SMA` units. Its specification
@@ -66,7 +66,7 @@ An orderable backup candidate is named for every one of the 12 items:
 - 868/915-MHz `SUB-GHz` — Joymax [`GHX-221ASA3B`](https://www.digikey.com/en/products/detail/joymax-electronics/GHX-221ASA3B/27545760);
 - VHF — Pulse [`SPWB24150`](https://www.pulseelectronics.com/wp-content/uploads/2021/01/PulseLarsen_Portables_Flyer_2017.pdf), whose current stocked quantity is too low for a production commitment;
 - UHF — Hytera [`AN0435H25`](https://www.hytera.com/br/product-new/accessories/radio-antennas/an0435h25.html);
-- `FM/SW RX` — remote receive-only Opek [`SCANSMA 25-1300`](https://www.hamradio.com/detail.cfm?pid=H0-016713);
+- `FM/SW/AIR RX` — remote receive-only Opek [`SCANSMA 25-1300`](https://www.hamradio.com/detail.cfm?pid=H0-016713); the shared port is receive-only and FM/SW/AIR modes are mutually exclusive;
 - `AM/LW LOOP` — controlled assembly [`L2-ANT-AM-LW-ALT01`](../hardware/architecture/am-lw-pod.json) using core `3061990891` and connector `CONSMA013.062-G`.
 
 These are purchasing and test backups, not permission for silent substitution.
