@@ -913,6 +913,10 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("H5.0.2-R1", h5_plan["reviewed_artifacts"])
         self.assertIn("H5.0.3", h5_plan["superseded_current_artifacts"])
         self.assertIn("H5.0.3-R1", h5_plan["current_artifacts"])
+        self.assertEqual(
+            "hardware/verification/generated/H5-EVR07-supplier-response-gate.json",
+            h5_plan["current_artifacts"]["H5.0.3-R1"]["machine_supplier_response_gate"],
+        )
         self.assertFalse(h5_plan["decision_gate"]["requires_user_authority"])
         self.assertTrue(h5_plan["decision_gate"]["authorized_now"])
         self.assertEqual("submitted_waiting_for_response", h5_plan["decision_gate"]["action_status"])
@@ -926,6 +930,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(h5_plan["authorization"]["parts_api_rejection_reason"])
         self.assertTrue(h5_plan["authorization"]["parts_api_access_key_created"])
         self.assertFalse(h5_plan["authorization"]["parts_api_credentials_in_repository"])
+        self.assertIn("H5-EVR07", self.read("docs/roadmap.md"))
+        self.assertIn("H5-EVR07", self.read("docs/roadmap.ru.md"))
         self.assertEqual(
             "source-hash-bound-precommit-revision",
             h4_plan["firmware_f3_evidence"]["revision"],

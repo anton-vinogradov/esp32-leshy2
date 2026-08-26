@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "gate": "H5.0.3-R1",
+  "status": "waiting_for_supplier_response",
+  "supplier": {
+    "legal_entity": null,
+    "received_on": null,
+    "channel": "JLCPCB Contact Us / PCB Assembly Inquiry",
+    "source_reference": null
+  },
+  "sa818s_v": {
+    "mpn": "SA818S-V",
+    "jlcpcb_part": "C51897911",
+    "standard_pcba_installation": null,
+    "sample_lead_time_days": null,
+    "moq": null,
+    "preorder_or_service_charge_usd": null,
+    "notes": null
+  },
+  "dual_module_job": {
+    "sa818s_u_mpn": "SA818S-U",
+    "sa818s_u_jlcpcb_part": "C3001549",
+    "accepted": null,
+    "common_rev_1_8_land_pattern_confirmed": null,
+    "separate_rf_paths_confirmed": null,
+    "notes": null
+  },
+  "j4_f_operations": [
+    {
+      "id": "display_flex",
+      "description": "mate and test HMX035CTFT-001 display/flex",
+      "accepted": null,
+      "setup_nre_usd": null,
+      "per_unit_usd_q5": null,
+      "per_unit_usd_q10": null,
+      "required_fixtures_or_files": null,
+      "reject_rework_terms": null,
+      "notes": null
+    },
+    {
+      "id": "microcoax_x5",
+      "description": "install, strain-route and continuity-test five TE Connectivity 2118651-2 microcoax jumpers",
+      "accepted": null,
+      "setup_nre_usd": null,
+      "per_unit_usd_q5": null,
+      "per_unit_usd_q10": null,
+      "required_fixtures_or_files": null,
+      "reject_rework_terms": null,
+      "notes": null
+    },
+    {
+      "id": "encoder_knob",
+      "description": "install Davies 1227-J encoder knob",
+      "accepted": null,
+      "setup_nre_usd": null,
+      "per_unit_usd_q5": null,
+      "per_unit_usd_q10": null,
+      "required_fixtures_or_files": null,
+      "reject_rework_terms": null,
+      "notes": null
+    },
+    {
+      "id": "sandwich_enclosure",
+      "description": "assemble the two-board sandwich and enclosure",
+      "accepted": null,
+      "setup_nre_usd": null,
+      "per_unit_usd_q5": null,
+      "per_unit_usd_q10": null,
+      "required_fixtures_or_files": null,
+      "reject_rework_terms": null,
+      "notes": null
+    },
+    {
+      "id": "whole_device_test",
+      "description": "execute the supplied whole-device functional-test procedure",
+      "accepted": null,
+      "setup_nre_usd": null,
+      "per_unit_usd_q5": null,
+      "per_unit_usd_q10": null,
+      "required_fixtures_or_files": null,
+      "reject_rework_terms": null,
+      "notes": null
+    }
+  ],
+  "j4_p_operations": [
+    {
+      "id": "u214_test_and_pack",
+      "description": "compatibility-test and pack M5Stack U214 Cap LoRa-1262 separately",
+      "accepted": null,
+      "setup_nre_usd": null,
+      "per_unit_usd_q5": null,
+      "per_unit_usd_q10": null,
+      "requirements_or_exclusions": null,
+      "notes": null
+    },
+    {
+      "id": "antenna_kit",
+      "description": "pack ten labelled external antennas as a kit",
+      "accepted": null,
+      "setup_nre_usd": null,
+      "per_unit_usd_q5": null,
+      "per_unit_usd_q10": null,
+      "requirements_or_exclusions": null,
+      "notes": null
+    },
+    {
+      "id": "protected_cells",
+      "description": "pack two exact protected XTAR 18650 4000 mAh 10 A cells separately for user installation",
+      "accepted": null,
+      "setup_nre_usd": null,
+      "per_unit_usd_q5": null,
+      "per_unit_usd_q10": null,
+      "requirements_or_exclusions": null,
+      "notes": null
+    }
+  ],
+  "battery_shipping": {
+    "procure_and_ship_same_parcel": null,
+    "destination_restrictions": null,
+    "required_compliance_documents": null,
+    "separate_shipment_required": null,
+    "notes": null
+  },
+  "identity_control": {
+    "exact_external_mpns_controlled_at_incoming_inspection": null,
+    "silent_substitution_prohibited": null,
+    "exceptions": null,
+    "notes": null
+  },
+  "authorization": {
+    "quote_project": false,
+    "reservation": false,
+    "sourcing_request": false,
+    "purchase": false,
+    "component_replacement": false,
+    "pcb_placement_and_routing": false,
+    "fabrication": false
+  }
+}

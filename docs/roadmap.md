@@ -385,4 +385,5 @@ public evidence can no longer close the remaining gates: exact SA818S-V
 pre-order lead time and J4-F/J4-P factory acceptance/pricing now await the
 itemized response to the no-order inquiry submitted on 26 August 2026. Parts
 API permission is rejected without a stated reason, so the manual evidence path remains active; PCB
-placement/routing, quote/reservation and every order remain blocked.
+placement/routing, quote/reservation and every order remain blocked. `H5-EVR07`
+is ready to reject an incomplete or negative supplier response without opening H6.

@@ -1,0 +1,215 @@
+#!/usr/bin/env python3
+"""Validate the fail-closed H5.0.3-R1 supplier-response gate."""
+
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+
+
+REPO = Path(__file__).resolve().parents[2]
+INPUT = REPO / "hardware/procurement/H5.0.3-R1-supplier-response.json"
+OUTPUT = REPO / "hardware/verification/generated/H5-EVR07-supplier-response-gate.json"
+
+J4_F_IDS = {
+    "display_flex",
+    "microcoax_x5",
+    "encoder_knob",
+    "sandwich_enclosure",
+    "whole_device_test",
+}
+J4_P_IDS = {"u214_test_and_pack", "antenna_kit", "protected_cells"}
+FORBIDDEN_AUTHORITY = {
+    "quote_project",
+    "reservation",
+    "sourcing_request",
+    "purchase",
+    "component_replacement",
+    "pcb_placement_and_routing",
+    "fabrication",
+}
+
+
+def present(value: object) -> bool:
+    return value is not None and value != ""
+
+
+def money(value: object) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and value >= 0
+
+
+def operation_completeness(row: dict, *, terms_key: str) -> tuple[list[str], bool]:
+    missing: list[str] = []
+    if not isinstance(row.get("accepted"), bool):
+        missing.append(f"{row.get('id', '<unknown>')}.accepted")
+        return missing, False
+    for field in ("setup_nre_usd", "per_unit_usd_q5", "per_unit_usd_q10"):
+        if not money(row.get(field)):
+            missing.append(f"{row['id']}.{field}")
+    if not present(row.get(terms_key)):
+        missing.append(f"{row['id']}.{terms_key}")
+    return missing, row["accepted"]
+
+
+def build(source: dict | None = None) -> dict:
+    if source is None:
+        source = json.loads(INPUT.read_text(encoding="utf-8"))
+    if source.get("schema_version") != 1 or source.get("gate") != "H5.0.3-R1":
+        raise ValueError("supplier response schema or gate identity drifted")
+    if source.get("status") not in {"waiting_for_supplier_response", "response_recorded"}:
+        raise ValueError("supplier response status drifted")
+
+    j4_f = source.get("j4_f_operations", [])
+    j4_p = source.get("j4_p_operations", [])
+    if {row.get("id") for row in j4_f} != J4_F_IDS or len(j4_f) != len(J4_F_IDS):
+        raise ValueError("J4-F operation set drifted")
+    if {row.get("id") for row in j4_p} != J4_P_IDS or len(j4_p) != len(J4_P_IDS):
+        raise ValueError("J4-P operation set drifted")
+    if set(source.get("authorization", {})) != FORBIDDEN_AUTHORITY:
+        raise ValueError("authorization boundary drifted")
+
+    missing: list[str] = []
+    supplier = source["supplier"]
+    for field in ("legal_entity", "received_on", "source_reference"):
+        if not present(supplier.get(field)):
+            missing.append(f"supplier.{field}")
+
+    voice = source["sa818s_v"]
+    exact_voice_identity = voice.get("mpn") == "SA818S-V" and voice.get("jlcpcb_part") == "C51897911"
+    for field in ("standard_pcba_installation", "sample_lead_time_days", "moq", "preorder_or_service_charge_usd"):
+        if not present(voice.get(field)):
+            missing.append(f"sa818s_v.{field}")
+    voice_values_valid = (
+        isinstance(voice.get("standard_pcba_installation"), bool)
+        and isinstance(voice.get("sample_lead_time_days"), int)
+        and not isinstance(voice.get("sample_lead_time_days"), bool)
+        and voice.get("sample_lead_time_days", 0) > 0
+        and isinstance(voice.get("moq"), int)
+        and not isinstance(voice.get("moq"), bool)
+        and voice.get("moq", 0) >= 1
+        and money(voice.get("preorder_or_service_charge_usd"))
+    )
+
+    dual = source["dual_module_job"]
+    exact_dual_identity = dual.get("sa818s_u_mpn") == "SA818S-U" and dual.get("sa818s_u_jlcpcb_part") == "C3001549"
+    for field in ("accepted", "common_rev_1_8_land_pattern_confirmed", "separate_rf_paths_confirmed"):
+        if not isinstance(dual.get(field), bool):
+            missing.append(f"dual_module_job.{field}")
+
+    j4_f_accepted = True
+    for row in j4_f:
+        row_missing, accepted = operation_completeness(row, terms_key="reject_rework_terms")
+        missing.extend(f"j4_f_operations.{item}" for item in row_missing)
+        if row.get("accepted") is True and not isinstance(row.get("required_fixtures_or_files"), list):
+            missing.append(f"j4_f_operations.{row['id']}.required_fixtures_or_files")
+        j4_f_accepted = j4_f_accepted and accepted
+
+    j4_p_accepted = True
+    for row in j4_p:
+        row_missing, accepted = operation_completeness(row, terms_key="requirements_or_exclusions")
+        missing.extend(f"j4_p_operations.{item}" for item in row_missing)
+        j4_p_accepted = j4_p_accepted and accepted
+
+    battery = source["battery_shipping"]
+    for field in ("procure_and_ship_same_parcel", "destination_restrictions", "required_compliance_documents", "separate_shipment_required"):
+        if not present(battery.get(field)):
+            missing.append(f"battery_shipping.{field}")
+    battery_complete = (
+        isinstance(battery.get("procure_and_ship_same_parcel"), bool)
+        and isinstance(battery.get("destination_restrictions"), list)
+        and isinstance(battery.get("required_compliance_documents"), list)
+        and isinstance(battery.get("separate_shipment_required"), bool)
+    )
+
+    identity = source["identity_control"]
+    for field in ("exact_external_mpns_controlled_at_incoming_inspection", "silent_substitution_prohibited", "exceptions"):
+        if not present(identity.get(field)):
+            missing.append(f"identity_control.{field}")
+    identity_complete = (
+        isinstance(identity.get("exact_external_mpns_controlled_at_incoming_inspection"), bool)
+        and isinstance(identity.get("silent_substitution_prohibited"), bool)
+        and isinstance(identity.get("exceptions"), list)
+    )
+
+    if source["status"] != "response_recorded":
+        missing.append("status=response_recorded")
+    response_complete = not missing and voice_values_valid and battery_complete and identity_complete
+    all_factory_gates_accepted = (
+        voice.get("standard_pcba_installation") is True
+        and dual.get("accepted") is True
+        and dual.get("common_rev_1_8_land_pattern_confirmed") is True
+        and dual.get("separate_rf_paths_confirmed") is True
+        and j4_f_accepted
+        and j4_p_accepted
+        and identity.get("exact_external_mpns_controlled_at_incoming_inspection") is True
+        and identity.get("silent_substitution_prohibited") is True
+        and not identity.get("exceptions")
+    )
+    no_new_authority = all(value is False for value in source["authorization"].values())
+    gate_passed = response_complete and exact_voice_identity and exact_dual_identity and all_factory_gates_accepted and no_new_authority
+
+    blockers: list[str] = []
+    if missing:
+        blockers.append("supplier response is incomplete")
+    if response_complete and not all_factory_gates_accepted:
+        blockers.append("supplier explicitly declines or qualifies at least one required factory gate")
+    if not exact_voice_identity or not exact_dual_identity:
+        blockers.append("exact selected module identity is not preserved")
+    if not no_new_authority:
+        blockers.append("the response record cannot authorize commercial, layout or fabrication actions")
+
+    return {
+        "schema_version": 1,
+        "artifact": "H5-EVR07",
+        "gate": "H5.0.3-R1",
+        "source": str(INPUT.relative_to(REPO)),
+        "source_status": source["status"],
+        "status": "passed_supplier_gate" if gate_passed else ("complete_response_gate_failed" if response_complete else "waiting_for_complete_supplier_response"),
+        "summary": {
+            "response_complete": response_complete,
+            "factory_gate_passed": gate_passed,
+            "missing_field_count": len(missing),
+            "j4_f_operations": len(j4_f),
+            "j4_p_operations": len(j4_p),
+            "orders_authorized": 0,
+        },
+        "checks": {
+            "exact_sa818s_v_identity_preserved": exact_voice_identity,
+            "exact_sa818s_u_identity_preserved": exact_dual_identity,
+            "seven_inquiry_sections_are_machine_represented": len(j4_f) == 5 and len(j4_p) == 3,
+            "commercial_layout_and_fabrication_authority_remains_false": no_new_authority,
+            "response_complete": response_complete,
+            "all_required_factory_gates_accepted": all_factory_gates_accepted,
+        },
+        "missing_fields": sorted(set(missing)),
+        "blockers": blockers,
+        "authorization": source["authorization"],
+        "next": "wait for the supplier response" if not response_complete else ("prepare the separate cost/order decision" if gate_passed else "compare an alternate factory or revise the declined operation boundary"),
+    }
+
+
+def render(data: dict) -> str:
+    return json.dumps(data, indent=2, ensure_ascii=False) + "\n"
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--write", action="store_true")
+    group.add_argument("--check", action="store_true")
+    args = parser.parse_args()
+    expected = render(build())
+    if args.check:
+        if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != expected:
+            raise SystemExit(f"stale generated artifact: {OUTPUT.relative_to(REPO)}")
+        print("ok: H5 supplier response gate is current and fail-closed")
+        return 0
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT.write_text(expected, encoding="utf-8")
+    print(f"wrote {OUTPUT.relative_to(REPO)}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "artifact": "H5-EVR07",
+  "gate": "H5.0.3-R1",
+  "source": "hardware/procurement/H5.0.3-R1-supplier-response.json",
+  "source_status": "waiting_for_supplier_response",
+  "status": "waiting_for_complete_supplier_response",
+  "summary": {
+    "response_complete": false,
+    "factory_gate_passed": false,
+    "missing_field_count": 26,
+    "j4_f_operations": 5,
+    "j4_p_operations": 3,
+    "orders_authorized": 0
+  },
+  "checks": {
+    "exact_sa818s_v_identity_preserved": true,
+    "exact_sa818s_u_identity_preserved": true,
+    "seven_inquiry_sections_are_machine_represented": true,
+    "commercial_layout_and_fabrication_authority_remains_false": true,
+    "response_complete": false,
+    "all_required_factory_gates_accepted": false
+  },
+  "missing_fields": [
+    "battery_shipping.destination_restrictions",
+    "battery_shipping.procure_and_ship_same_parcel",
+    "battery_shipping.required_compliance_documents",
+    "battery_shipping.separate_shipment_required",
+    "dual_module_job.accepted",
+    "dual_module_job.common_rev_1_8_land_pattern_confirmed",
+    "dual_module_job.separate_rf_paths_confirmed",
+    "identity_control.exact_external_mpns_controlled_at_incoming_inspection",
+    "identity_control.exceptions",
+    "identity_control.silent_substitution_prohibited",
+    "j4_f_operations.display_flex.accepted",
+    "j4_f_operations.encoder_knob.accepted",
+    "j4_f_operations.microcoax_x5.accepted",
+    "j4_f_operations.sandwich_enclosure.accepted",
+    "j4_f_operations.whole_device_test.accepted",
+    "j4_p_operations.antenna_kit.accepted",
+    "j4_p_operations.protected_cells.accepted",
+    "j4_p_operations.u214_test_and_pack.accepted",
+    "sa818s_v.moq",
+    "sa818s_v.preorder_or_service_charge_usd",
+    "sa818s_v.sample_lead_time_days",
+    "sa818s_v.standard_pcba_installation",
+    "status=response_recorded",
+    "supplier.legal_entity",
+    "supplier.received_on",
+    "supplier.source_reference"
+  ],
+  "blockers": [
+    "supplier response is incomplete"
+  ],
+  "authorization": {
+    "quote_project": false,
+    "reservation": false,
+    "sourcing_request": false,
+    "purchase": false,
+    "component_replacement": false,
+    "pcb_placement_and_routing": false,
+    "fabrication": false
+  },
+  "next": "wait for the supplier response"
+}
