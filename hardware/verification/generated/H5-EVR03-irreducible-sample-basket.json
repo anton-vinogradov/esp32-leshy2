@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "stage": "H5.0.3-R1",
-  "status": "draft_factory_and_preorder_gates_open",
+  "status": "draft_factory_and_preorder_response_pending",
   "checked_on": "2026-08-26",
   "purpose": "one deduplicated engineering-sample basket after documentary and serial-replacement research; no purchase authorization",
   "inputs": {
@@ -1131,13 +1131,24 @@
       "status": "not_in_minimum_basket",
       "restriction": "may replace only SA818S-U after received-part HIL and a 470-MHz firmware clamp; never replaces SA818S-V and never substitutes silently"
     },
-    "orders_or_requests_submitted": 0,
-    "next_action": "finish the 210-line route rebuild, then resolve SA818S-V pre-order lead time and J4-F/J4-P factory assembly boundaries without ordering"
+    "orders_or_requests_submitted": 1,
+    "supplier_information_inquiries_submitted": 1,
+    "sourcing_requests_submitted": 0,
+    "orders_submitted": 0,
+    "submitted_inquiry": {
+      "supplier": "JLCPCB",
+      "channel": "Contact Us / PCB Assembly Inquiry",
+      "submitted_on": "2026-08-26",
+      "result": "successfully_submitted",
+      "ticket_number": null,
+      "scope": "information only; no order, quote project, sourcing request or reservation"
+    },
+    "next_action": "wait for the itemized SA818S-V pre-order and J4-F/J4-P factory response, then publish the remaining cost and capability evidence"
   },
   "sequencing": {
-    "now": "rebuild all 210 exact sourcing/final-assembly routes around the selected SA818S-U and SA818S-V identities; retain J4-F/J4-P as open factory gates",
-    "after_mapping": "use approved read-only Parts access for repeatable availability checks; obtain SA818S-V pre-order lead time and a no-order J4-F box-build plus J4-P kit/packing/shipping response",
-    "after_quote": "publish exact whole-basket and final-assembly costs, then request a separate sample-order decision",
+    "now": "wait for JLCPCB's itemized response to the no-order inquiry submitted on 2026-08-26; retain SA818S-V and J4-F/J4-P as open factory gates",
+    "after_mapping": "use approved read-only Parts access for repeatable availability checks when permission becomes usable; no additional submission is required for the current gate",
+    "after_quote": "publish exact whole-basket and final-assembly costs from the response, then request a separate sample-order decision",
     "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",
     "forbidden": [
       "component purchase without a separate decision",

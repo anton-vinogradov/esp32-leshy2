@@ -24,6 +24,14 @@ DOC_EN = REPO / "docs/manufacturing-platform.md"
 DOC_RU = REPO / "docs/manufacturing-platform.ru.md"
 CHECKED_ON = "2026-08-26"
 UPLOAD_AUTHORIZED_ON = "2026-08-25"
+SUPPLIER_INQUIRY = {
+    "supplier": "JLCPCB",
+    "channel": "Contact Us / PCB Assembly Inquiry",
+    "submitted_on": "2026-08-26",
+    "result": "successfully_submitted",
+    "ticket_number": None,
+    "scope": "information only; no order, quote project, sourcing request or reservation",
+}
 
 
 # The architecture register intentionally keeps the manufacturer beside the
@@ -552,7 +560,7 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
             "not_authorized": ["sourcing request", "quote", "reservation", "purchase", "component replacement", "KiCad placement/routing", "fabrication"],
         },
         "next": {
-            "decision_needed": "obtain exact SA818S-V pre-order lead time and a no-order box-build capability/price response for J4-F/J4-P before closing H5.0.3-R1",
+            "decision_needed": "wait for the itemized response to the no-order inquiry submitted on 2026-08-26: exact SA818S-V pre-order lead time and J4-F/J4-P capability/pricing remain open before H5.0.3-R1 can close",
             "purchase_remains_last": True,
         },
         "checks": checks,
@@ -627,6 +635,7 @@ def build() -> dict:
             },
         },
         "parts_api": JLCAPI_STATE,
+        "supplier_inquiry": SUPPLIER_INQUIRY,
         "voice_part_routes": VOICE_PART_ROUTES,
         "bom_tool_upload": {
             "path": str(UPLOAD.relative_to(REPO)),
@@ -698,7 +707,7 @@ def build() -> dict:
         },
         "next": {
             "local": "all 210 lines have defined routes; preserve the map, keep SA818S-V lead time and J4-F/J4-P as open factory gates, and wait for Parts permission approval",
-            "external_authority_later": "sending a pre-order or final-assembly inquiry, quote creation, private-stock reservation and purchase still require separate explicit authority",
+            "external_authority_later": "quote creation, sourcing requests, private-stock reservation, purchase and any materially expanded supplier request still require separate explicit authority",
             "forbidden": ["purchase", "component replacement", "sourcing request", "quote creation", "private-stock reservation", "raw API data redistribution", "KiCad placement/routing", "fabrication"],
         },
         "sources": SOURCES,
@@ -808,7 +817,7 @@ JLCPCB Standard PCBA собирает обе платы и принятые SMT/
 
 - JLCPCB Standard PCBA принят как рабочий reference без lock-in.
 - Все `{summary['target_bom_lines']}` строк имеют определённый маршрут `J0`–`J3`, `J4-F` или `J4-P`; функциональных замен нет.
-- Все component prices минимальной evidence-корзины известны. H5.0.3-R1 остаётся открытым по сроку/условиям pre-order exact `SA818S-V`, подтверждению/цене `J4-F` box-build, условиям `J4-P` kit/packing/shipping и последующему отдельному решению о закупке образцов.
+- Все component prices минимальной evidence-корзины известны. Запрос JLCPCB без заказа успешно отправлен 26 августа 2026 года; H5.0.3-R1 теперь ожидает точный срок/условия pre-order `SA818S-V`, подтверждение/цену `J4-F` box-build и условия `J4-P` kit/packing/shipping. Закупка образцов остаётся отдельным последующим решением.
 - Заявка JLCAPI одобрена, приложение `ESP32-Leshy2 BOM Validator` создано, ключ подписи хранится только локально вне Git. Право Parts имеет статус `Reviewing`; до его одобрения API-вызовы невозможны. Автоматически показанные PCB/3D также находятся на ревью, SMT Stencil и JLC Balance выключены; использовать будем только Parts.
 - Прежний 209-строчный BOM upload был передан и обработан; текущий 210-строчный файл сгенерирован локально, но не передавался, потому что 208 identity неизменны, а обе новые exact-страницы проверены отдельно. Quote, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены. Сырые API-ответы публично не распространяются.
 
@@ -886,7 +895,7 @@ JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts. That does
 
 - JLCPCB Standard PCBA is the working reference without lock-in.
 - All `{summary['target_bom_lines']}` lines have a defined `J0`–`J3`, `J4-F` or `J4-P` route; no functional replacement was introduced.
-- Every component price in the minimum evidence basket is known. H5.0.3-R1 remains open for exact `SA818S-V` pre-order lead time/terms, `J4-F` box-build acceptance/pricing, `J4-P` kit/packing/shipping terms and the later separate sample-purchase decision.
+- Every component price in the minimum evidence basket is known. A no-order JLCPCB inquiry was successfully submitted on 26 August 2026; H5.0.3-R1 now waits for exact `SA818S-V` pre-order lead time/terms, `J4-F` box-build acceptance/pricing and `J4-P` kit/packing/shipping terms. Sample purchase remains a later separate decision.
 - The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git. Parts permission is `Reviewing`, so API calls are not usable yet. PCB/3D were also listed as reviewing by the platform; SMT Stencil and JLC Balance remain inactive, and Leshy2 will use only Parts.
 - The former 209-line BOM upload was transmitted and processed; the current 210-line file was generated locally but not transmitted because 208 identities are unchanged and both new exact pages were checked separately. No quote, sourcing request, reservation, purchase, replacement, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
 

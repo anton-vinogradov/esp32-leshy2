@@ -125,8 +125,9 @@ create separate global reports.
 closes the joined review with 33 clean checks. H5 now has a 33-line `$286.43`
 evidence basket and exact routes for all 210 dual-SA818S BOM lines / 1052
 placements with zero replacement. Its old SA518 basket and 209-line platform
-snapshot are historical inputs only. Closing H5.0.3-R1 requires supplier
-responses for SA818S-V pre-order lead time and J4-F/J4-P final assembly.
+snapshot are historical inputs only. A no-order JLCPCB inquiry was successfully
+submitted on 26 August 2026; closing H5.0.3-R1 now requires its responses for
+SA818S-V pre-order lead time and J4-F/J4-P final assembly.
 Physical evidence, PCB layout, quote/reservation and every order remain
 unauthorized.
 
@@ -140,8 +141,9 @@ and [primary-source research](docs/component-source-research.md) are reviewed.
 The [irreducible basket](docs/component-sample-basket.md) now contains 33 priced
 lines for `$286.43`; the [platform map](docs/manufacturing-platform.md) assigns
 all 210 BOM lines and 1052 placements to exact `J0`–`J3`/`J4-F`/`J4-P` routes
-with zero replacement. Public/read-only evidence is exhausted: exact
-SA818S-V lead time and J4-F/J4-P acceptance/pricing require supplier replies.
+with zero replacement. Public/read-only evidence is exhausted. The no-order
+JLCPCB inquiry was submitted on 26 August 2026; SA818S-V lead time
+and J4-F/J4-P acceptance/pricing now await its itemized reply.
 No purchase, placement, routing or fabrication is authorized.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
@@ -257,7 +259,7 @@ No purchase, placement, routing or fabrication is authorized.
 - ✅ `H4.3-R1` — refreshed [joined pre-layout report reviewed](docs/h4-prelayout-gate-report.md).
 - ✅ `H5.0.1-R1` — [nine residuals and 14 mechanical gates remapped](docs/component-evidence-map.md) for both serial SA818S modules.
 - ✅ `H5.0.2-R1` — [primary sources and serial alternatives reviewed](docs/component-source-research.md); exact U/V routes retained and CE recorded as a non-silent qualified-pending UHF alternate.
-- ▶️ `H5.0.3-R1` — basket and 210-route map complete; waiting for authority to request SA818S-V lead time and J4-F/J4-P capability/pricing without ordering.
+- ▶️ `H5.0.3-R1` — basket and 210-route map complete; no-order JLCPCB inquiry submitted on 26 August 2026, waiting for the SA818S-V and J4-F/J4-P response.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The completed H3/H4 plans are [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json)

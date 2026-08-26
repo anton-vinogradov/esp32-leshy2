@@ -22,7 +22,10 @@
     "parts_api_credentials_in_repository": false,
     "parts_api_tokenization_key_created": false,
     "supplier_sourcing_request": false,
-    "supplier_contact_send": false,
+    "supplier_contact_send": true,
+    "supplier_contact_sent_on": "2026-08-26",
+    "supplier_contact_channel": "JLCPCB Contact Us / PCB Assembly Inquiry",
+    "supplier_contact_result": "successfully_submitted",
     "sample_or_component_purchase": false,
     "pcb_placement_and_routing": false,
     "fabrication": false
@@ -46,7 +49,7 @@
         {
           "id": "H5.0.3-R1",
           "title": "Publish only the irreducible received-sample set, exact measurements and cost for explicit approval",
-          "status": "current_waiting_for_external_authority"
+          "status": "current_waiting_for_supplier_response"
         }
       ]
     },
@@ -90,7 +93,7 @@
       "readable_basket_ru": "docs/component-sample-basket.ru.md",
       "readable_platform_en": "docs/manufacturing-platform.md",
       "readable_platform_ru": "docs/manufacturing-platform.ru.md",
-      "result": "33 priced sample lines cover all nine H5 residuals and fourteen mechanical gates for USD 286.43 before freight/tax/coupons; all 210 current BOM lines and 1052 placements have exact J0-J3/J4-F/J4-P routes with zero replacement and zero unmapped lines; SA818S-V pre-order lead time and J4-F/J4-P supplier acceptance/pricing require external inquiry authority"
+      "result": "33 priced sample lines cover all nine H5 residuals and fourteen mechanical gates for USD 286.43 before freight/tax/coupons; all 210 current BOM lines and 1052 placements have exact J0-J3/J4-F/J4-P routes with zero replacement and zero unmapped lines; a no-order JLCPCB inquiry was submitted on 2026-08-26 and H5.0.3-R1 now waits for exact SA818S-V pre-order and J4-F/J4-P responses"
     }
   },
   "superseded_artifacts": {
@@ -122,13 +125,15 @@
     }
   },
   "decision_gate": {
-    "requires_user_authority": true,
-    "authorized_now": false,
+    "requires_user_authority": false,
+    "authorized_now": true,
+    "authorized_on": "2026-08-26",
+    "action_status": "submitted_waiting_for_response",
     "requested_scope": "send no-order supplier inquiries for exact SA818S-V pre-order lead time and J4-F/J4-P final-assembly capability/pricing",
     "prepared_message": "hardware/procurement/H5.0.3-R1-no-order-supplier-inquiry.md",
     "does_not_authorize": ["reservation", "purchase", "component replacement", "PCB placement/routing", "fabrication"]
   },
-  "blocker": "H5.0.3-R1 cannot close from public/read-only evidence alone: exact SA818S-V lead time and J4-F/J4-P factory acceptance/pricing require external supplier responses",
+  "blocker": "H5.0.3-R1 is waiting for JLCPCB's response to the no-order inquiry submitted on 2026-08-26: exact SA818S-V lead time and J4-F/J4-P factory acceptance/pricing remain external supplier inputs",
   "next_active_repository": "esp32-leshy2",
   "next_active_substep": "H5.0.3-R1"
 }

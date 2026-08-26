@@ -129,6 +129,14 @@
     "usable_now": false,
     "checked_on": "2026-08-26"
   },
+  "supplier_inquiry": {
+    "supplier": "JLCPCB",
+    "channel": "Contact Us / PCB Assembly Inquiry",
+    "submitted_on": "2026-08-26",
+    "result": "successfully_submitted",
+    "ticket_number": null,
+    "scope": "information only; no order, quote project, sourcing request or reservation"
+  },
   "voice_part_routes": {
     "SA818S-U": {
       "device_id": "nicerf_sa818s_u_v18",
@@ -364,7 +372,7 @@
   },
   "next": {
     "local": "all 210 lines have defined routes; preserve the map, keep SA818S-V lead time and J4-F/J4-P as open factory gates, and wait for Parts permission approval",
-    "external_authority_later": "sending a pre-order or final-assembly inquiry, quote creation, private-stock reservation and purchase still require separate explicit authority",
+    "external_authority_later": "quote creation, sourcing requests, private-stock reservation, purchase and any materially expanded supplier request still require separate explicit authority",
     "forbidden": [
       "purchase",
       "component replacement",

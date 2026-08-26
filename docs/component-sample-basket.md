@@ -225,6 +225,6 @@ All `23` residuals/gates are covered by `11` contracts. A pass/fail summary with
 
 ## Open supplier inputs
 
-Both selected module prices are known. The remaining inputs are exact `SA818S-V` pre-order lead time and the `J4-F` box-build plus `J4-P` kit/packing/shipping factory gates. `SA818S-CE C19632390` is excluded from the minimum basket: it is only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp; it never replaces the VHF module. No request or order has been submitted.
+Both selected module prices are known. The remaining inputs are exact `SA818S-V` pre-order lead time and the `J4-F` box-build plus `J4-P` kit/packing/shipping factory gates. `SA818S-CE C19632390` is excluded from the minimum basket: it is only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp; it never replaces the VHF module. A no-order JLCPCB inquiry was successfully submitted on 26 August 2026; no quote, reservation or order was created.
 
 Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).

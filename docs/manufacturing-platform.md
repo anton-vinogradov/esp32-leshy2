@@ -115,7 +115,7 @@ JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts. That does
 
 - JLCPCB Standard PCBA is the working reference without lock-in.
 - All `210` lines have a defined `J0`–`J3`, `J4-F` or `J4-P` route; no functional replacement was introduced.
-- Every component price in the minimum evidence basket is known. H5.0.3-R1 remains open for exact `SA818S-V` pre-order lead time/terms, `J4-F` box-build acceptance/pricing, `J4-P` kit/packing/shipping terms and the later separate sample-purchase decision.
+- Every component price in the minimum evidence basket is known. A no-order JLCPCB inquiry was successfully submitted on 26 August 2026; H5.0.3-R1 now waits for exact `SA818S-V` pre-order lead time/terms, `J4-F` box-build acceptance/pricing and `J4-P` kit/packing/shipping terms. Sample purchase remains a later separate decision.
 - The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git. Parts permission is `Reviewing`, so API calls are not usable yet. PCB/3D were also listed as reviewing by the platform; SMT Stencil and JLC Balance remain inactive, and Leshy2 will use only Parts.
 - The former 209-line BOM upload was transmitted and processed; the current 210-line file was generated locally but not transmitted because 208 identities are unchanged and both new exact pages were checked separately. No quote, sourcing request, reservation, purchase, replacement, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
 

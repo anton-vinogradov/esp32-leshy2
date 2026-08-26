@@ -225,6 +225,6 @@ flowchart TD
 
 ## Открытые supplier inputs
 
-Цена каждого выбранного модуля известна. Открыты только срок/условия pre-order для exact `SA818S-V`, а также фабричные gates `J4-F` box-build и `J4-P` kit/packing/shipping. `SA818S-CE C19632390` не входит в минимальную корзину: это только qualified-pending UHF-замена после HIL и firmware-clamp 470 МГц; VHF-модуль она не заменяет. Ни одного запроса или заказа не отправлено.
+Цена каждого выбранного модуля известна. Открыты только срок/условия pre-order для exact `SA818S-V`, а также фабричные gates `J4-F` box-build и `J4-P` kit/packing/shipping. `SA818S-CE C19632390` не входит в минимальную корзину: это только qualified-pending UHF-замена после HIL и firmware-clamp 470 МГц; VHF-модуль она не заменяет. Запрос JLCPCB без заказа успешно отправлен 26 августа 2026 года; quote, reservation и заказ не создавались.
 
 Машинный результат: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).

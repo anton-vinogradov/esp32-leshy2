@@ -173,7 +173,7 @@ def build() -> dict:
     return {
         "schema_version": 2,
         "stage": "H5.0.3-R1",
-        "status": "draft_factory_and_preorder_gates_open",
+        "status": "draft_factory_and_preorder_response_pending",
         "checked_on": CHECKED_ON,
         "purpose": "one deduplicated engineering-sample basket after documentary and serial-replacement research; no purchase authorization",
         "inputs": {
@@ -199,13 +199,24 @@ def build() -> dict:
             "selected_uhf": {"mpn": "G-NiceRF SA818S-U", "jlcpcb_part": "C3001549", "stock": 68, "available_order_quantity": 60, "quantity_one_usd": "9.7347", "status": "priced_in_stock"},
             "selected_vhf": {"mpn": "G-NiceRF SA818S-V", "jlcpcb_part": "C51897911", "stock": 0, "minimum_quantity": 1, "quantity_one_usd": "10.0710", "status": "priced_preorder_lead_time_open"},
             "qualified_pending_uhf_alternate": {"mpn": "G-NiceRF SA818S-CE", "jlcpcb_part": "C19632390", "stock": 8, "quantity_one_usd": "9.3449", "status": "not_in_minimum_basket", "restriction": "may replace only SA818S-U after received-part HIL and a 470-MHz firmware clamp; never replaces SA818S-V and never substitutes silently"},
-            "orders_or_requests_submitted": 0,
-            "next_action": "finish the 210-line route rebuild, then resolve SA818S-V pre-order lead time and J4-F/J4-P factory assembly boundaries without ordering",
+            "orders_or_requests_submitted": 1,
+            "supplier_information_inquiries_submitted": 1,
+            "sourcing_requests_submitted": 0,
+            "orders_submitted": 0,
+            "submitted_inquiry": {
+                "supplier": "JLCPCB",
+                "channel": "Contact Us / PCB Assembly Inquiry",
+                "submitted_on": "2026-08-26",
+                "result": "successfully_submitted",
+                "ticket_number": None,
+                "scope": "information only; no order, quote project, sourcing request or reservation",
+            },
+            "next_action": "wait for the itemized SA818S-V pre-order and J4-F/J4-P factory response, then publish the remaining cost and capability evidence",
         },
         "sequencing": {
-            "now": "rebuild all 210 exact sourcing/final-assembly routes around the selected SA818S-U and SA818S-V identities; retain J4-F/J4-P as open factory gates",
-            "after_mapping": "use approved read-only Parts access for repeatable availability checks; obtain SA818S-V pre-order lead time and a no-order J4-F box-build plus J4-P kit/packing/shipping response",
-            "after_quote": "publish exact whole-basket and final-assembly costs, then request a separate sample-order decision",
+            "now": "wait for JLCPCB's itemized response to the no-order inquiry submitted on 2026-08-26; retain SA818S-V and J4-F/J4-P as open factory gates",
+            "after_mapping": "use approved read-only Parts access for repeatable availability checks when permission becomes usable; no additional submission is required for the current gate",
+            "after_quote": "publish exact whole-basket and final-assembly costs from the response, then request a separate sample-order decision",
             "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",
             "forbidden": ["component purchase without a separate decision", "PCB placement/routing", "prototype fabrication"],
         },
@@ -309,7 +320,7 @@ flowchart TD
 
 ## Открытые supplier inputs
 
-Цена каждого выбранного модуля известна. Открыты только срок/условия pre-order для exact `SA818S-V`, а также фабричные gates `J4-F` box-build и `J4-P` kit/packing/shipping. `SA818S-CE C19632390` не входит в минимальную корзину: это только qualified-pending UHF-замена после HIL и firmware-clamp 470 МГц; VHF-модуль она не заменяет. Ни одного запроса или заказа не отправлено.
+Цена каждого выбранного модуля известна. Открыты только срок/условия pre-order для exact `SA818S-V`, а также фабричные gates `J4-F` box-build и `J4-P` kit/packing/shipping. `SA818S-CE C19632390` не входит в минимальную корзину: это только qualified-pending UHF-замена после HIL и firmware-clamp 470 МГц; VHF-модуль она не заменяет. Запрос JLCPCB без заказа успешно отправлен 26 августа 2026 года; quote, reservation и заказ не создавались.
 
 Машинный результат: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """
@@ -352,7 +363,7 @@ All `{summary['covered_residuals_and_gates']}` residuals/gates are covered by `{
 
 ## Open supplier inputs
 
-Both selected module prices are known. The remaining inputs are exact `SA818S-V` pre-order lead time and the `J4-F` box-build plus `J4-P` kit/packing/shipping factory gates. `SA818S-CE C19632390` is excluded from the minimum basket: it is only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp; it never replaces the VHF module. No request or order has been submitted.
+Both selected module prices are known. The remaining inputs are exact `SA818S-V` pre-order lead time and the `J4-F` box-build plus `J4-P` kit/packing/shipping factory gates. `SA818S-CE C19632390` is excluded from the minimum basket: it is only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp; it never replaces the VHF module. A no-order JLCPCB inquiry was successfully submitted on 26 August 2026; no quote, reservation or order was created.
 
 Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """
