@@ -2,26 +2,29 @@
 
 [На главную](../README.ru.md) · [English](antennas.md) · [Аппаратная архитектура](hardware.ru.md)
 
-На устройстве девять постоянно подписанных антенных разъёмов. Полный полевой
-комплект содержит 12 физических антенн: девять можно подключить одновременно,
-а для `SUB-GHz` и `VHF/UHF` нужная антенна выбирается по рабочему профилю.
+Принятый комплект покрывает десять постоянно подписанных SMA/RP-SMA-разъёмов и
+12 физических антенн. Десять можно подключить одновременно, а для `SUB-GHz`
+нужная антенна выбирается по рабочему профилю. VHF и UHF имеют отдельные
+постоянные порты. R2 добавляет отдельно
+ключованный MMCX-порт `FPV RX 5.8G`; точная устанавливаемая после PCBA антенна
+остаётся воротами выбора H1 и пока не считается выбранным предметом комплекта.
 
 ## Что куда подключать
 
-| Подпись на устройстве | Профиль | Антенна первого выбора | В комплекте | Разъём антенны |
-|---|---|---|---:|---|
-| `WI-FI/BLE` | 2,4 ГГц | [TE `001-0012`](https://www.te.com/en/product-001-0012.html) | 1 | RP-SMA male |
-| `WI-FI/15.4` | 2,4/5 ГГц | [TE `001-0012`](https://www.te.com/en/product-001-0012.html) | 1 | RP-SMA male |
-| `nRF24-1` | 2,4 ГГц | [Ebyte `TX2400-JW-5`](https://www.ebyte.com/product/495.html) | 1 | SMA male |
-| `nRF24-2` | 2,4 ГГц | [Ebyte `TX2400-JW-5`](https://www.ebyte.com/product/495.html) | 1 | SMA male |
-| `nRF24-3` | 2,4 ГГц | [Ebyte `TX2400-JW-5`](https://www.ebyte.com/product/495.html) | 1 | SMA male |
-| `SUB-GHz` | 315 МГц | [TE `ANT-315-CW-HW-SMA`](https://www.te.com/en/product-ANT-315-CW-HW-SMA.html) | 1 сменная | SMA male |
-| `SUB-GHz` | 433 МГц | [TE `ANT-433-CW-QW-SMA`](https://www.te.com/en/product-ANT-433-CW-QW-SMA.html) | 1 сменная | SMA male |
-| `SUB-GHz` | 868/915 МГц | [Taoglas `TI.08.C.0112`](https://www.taoglas.com/datasheets/TI.08.C.0112.pdf) | 1 сменная | SMA male, угловая |
-| `VHF/UHF` | VHF 136–174 МГц | [Hytera `AN0155H13`](https://www.hytera.com/en/product-new/accessories/radio-antennas/an0155h13.html) | 1 сменная | SMA male |
-| `VHF/UHF` | UHF 400–470 МГц | [TE `ANT-433-CW-QW-SMA`](https://www.te.com/en/product-ANT-433-CW-QW-SMA.html) | 1 сменная | SMA male |
-| `FM/SW/AIR RX` | приём FM/SW и Airband AM 118–137 МГц | [Comet `SMA-W100RX2`](https://www.comet-ant.co.jp/product/638/) | 1 | SMA male |
-| `AM/LW LOOP` | LW 153–279 кГц; AM 520–1710 кГц | Leshy2 [`L2-ANT-AM-LW-001`](../hardware/architecture/am-lw-pod.json) | 1 | SMA male |
+| Метка | Подпись на устройстве | Профиль | Антенна первого выбора | В комплекте | Разъём антенны |
+|---|---|---|---|---:|---|
+| `S3` · синяя | `WI-FI/BLE` | 2,4/5 ГГц | [TE `001-0012`](https://www.te.com/en/product-001-0012.html) | 1 | RP-SMA male |
+| `C5` · голубая | `WI-FI/15.4` | 2,4/5 ГГц | [TE `001-0012`](https://www.te.com/en/product-001-0012.html) | 1 | RP-SMA male |
+| `N1` · фиолетовая | `nRF24-1` | 2,4 ГГц | [Ebyte `TX2400-JW-5`](https://www.ebyte.com/product/495.html) | 1 | SMA male |
+| `N2` · фиолетовая | `nRF24-2` | 2,4 ГГц | [Ebyte `TX2400-JW-5`](https://www.ebyte.com/product/495.html) | 1 | SMA male |
+| `N3` · фиолетовая | `nRF24-3` | 2,4 ГГц | [Ebyte `TX2400-JW-5`](https://www.ebyte.com/product/495.html) | 1 | SMA male |
+| `S315` · оранжевая | `SUB-GHz` | 315 МГц | [TE `ANT-315-CW-HW-SMA`](https://www.te.com/en/product-ANT-315-CW-HW-SMA.html) | 1 сменная | SMA male |
+| `S433` · янтарная | `SUB-GHz` | 433 МГц | [TE `ANT-433-CW-QW-SMA`](https://www.te.com/en/product-ANT-433-CW-QW-SMA.html) | 1 сменная | SMA male |
+| `S915` · жёлтая | `SUB-GHz` | 868/915 МГц | [Taoglas `TI.08.C.0112`](https://www.taoglas.com/datasheets/TI.08.C.0112.pdf) | 1 сменная | SMA male, угловая |
+| `VHF` · красная | `VHF VOICE` | VHF 136–174 МГц | [Hytera `AN0155H13`](https://www.hytera.com/en/product-new/accessories/radio-antennas/an0155h13.html) | 1 | SMA male |
+| `UHF` · пурпурная | `UHF VOICE` | UHF 400–470 МГц | [TE `ANT-433-CW-QW-SMA`](https://www.te.com/en/product-ANT-433-CW-QW-SMA.html) | 1 | SMA male |
+| `AIR` · зелёная | `FM/SW/AIR RX` | приём FM/SW и Airband AM 118–137 МГц | [Comet `SMA-W100RX2`](https://www.comet-ant.co.jp/product/638/) | 1 | SMA male |
+| `LOOP` · графитовая | `AM/LW LOOP` | LW 153–279 кГц; AM 520–1710 кГц | Leshy2 [`L2-ANT-AM-LW-001`](../hardware/architecture/am-lw-pod.json) | 1 | SMA male |
 
 `ANT-433-CW-QW-SMA` используется в двух отдельных экземплярах. Спецификация
 покрывает 400–470 МГц и мощность до 10 Вт, поэтому один экземпляр относится к
@@ -32,13 +35,21 @@
 
 - Два native-порта имеют RP-SMA: антенна должна иметь RP-SMA male с гнездовым
   центральным контактом.
-- Остальные семь портов имеют обычный SMA: антенна должна иметь SMA male с
+- Остальные восемь принятых портов имеют обычный SMA: антенна должна иметь SMA male с
   центральным штырём. Внешне похожий RP-SMA сюда не подходит.
+- R2-порт `FPV RX 5.8G` использует MMCX и механически отличается от обоих
+  семейств SMA.
 - Передача после включения всегда выключена. Выбор профиля, диапазона и
   допустимой мощности не восстанавливается после reset или ошибки.
-- Цветная манжета и упаковочная этикетка должны повторять подпись порта и
-  диапазон. Программный профиль не считается доказательством физически
-  установленной антенны.
+- Каждый внешний порт имеет свободную от перекрытий шелкографию: короткий код,
+  роль и диапазон. После PCBA у основания разъёма ставится цветная манжета.
+- На каждой антенне у штекера находится долговечный печатный флажок из
+  термоусадки с тем же кодом, ролью и диапазоном; ячейка упаковки повторяет их.
+  Текст и код главные, цвет — только дублирующая подсказка.
+- `N1`/`N2`/`N3` электрически взаимозаменяемы, но отдельные коды дают сразу
+  увидеть состав установленного комплекта. Замена получает код проверенного
+  профиля только после RF- и механических испытаний.
+- Программный профиль сам по себе не доказывает, что установлена верная антенна.
 
 ## Пассивный AM/LW pod
 

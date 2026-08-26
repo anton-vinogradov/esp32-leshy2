@@ -20,12 +20,14 @@
 <a id="h1"></a>
 ## ⭐ H1 · Физический дизайн устройства
 
-**Статус:** ▶️ сейчас `H1-R2.2`; результат R1 сохранён как evidence, а не как текущая приёмка.
+**Статус:** ▶️ сейчас `H1-R2.3`; результат R1 сохранён как evidence, а не как текущая приёмка.
 
-- [Текущее физическое размещение H1-R2.2](h1-r2-physical-layout.ru.md) — новые
+- [Текущее физическое размещение H1-R2.3](h1-r2-physical-layout.ru.md) — новые
   Hub, Airband и корпуса/резервы аналогового FPV в общей системе координат,
   с генерируемыми проверками коллизий и встречного зазора.
-- [Машинный аудит H1-R2.2](../hardware/product-design/generated/H1-R2-placement-audit.json).
+- [Машинный аудит размещения H1-R2.3](../hardware/product-design/generated/H1-R2-placement-audit.json).
+- [Проверка реализуемости фильтра Airband](h1-airband-filter.ru.md) и её
+  [машинный аудит](../hardware/product-design/generated/H1-Airband-filter-audit.json).
 
 Сохранённые входы R1, которые пересобираются:
 

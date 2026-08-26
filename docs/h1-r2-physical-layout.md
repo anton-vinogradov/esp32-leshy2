@@ -1,17 +1,18 @@
-# H1-R2.2 · physical re-layout
+# H1-R2.3 · physical re-layout
 
 This is the current verified H1 result, not a decision diary and not authorization to start KiCad.
 
-The second Hub RP, Airband active bodies, FPV video decoder and a replaceable bay for its still-unselected 5.8-GHz receiver are placed in the accepted 75 × 150 mm coordinate system.
+The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell for its filter, the FPV video decoder and a replaceable bay for its still-unselected 5.8-GHz receiver are placed in the accepted 75 × 150 mm coordinate system.
 
 ![H1-R2 inner placement](images/h1-r2-inner-placement.svg)
 
 ## Already verified
 
 - Same-face body collisions: `0`.
-- Intentional opposing XY projections: `26`; minimum Z clearance is `2.44 mm` against `0.70 mm` required.
+- Intentional opposing XY projections: `30`; minimum Z clearance is `2.44 mm` against `0.70 mm` required.
 - The large FPV receiver bay fits without changing the PCB outline or battery/U214 exterior zones.
 - Hub remains on the UI board beside storage/audio/broadcast; the FPV RF module and decoder remain together on the RF board.
+- Airband now has a [nominally passing but stress-open synthesis](h1-airband-filter.md); the enlarged cell carries alternate/DNP pads until H3 parasitics are checked.
 
 ## Exact factory parts
 
@@ -26,8 +27,9 @@ The second Hub RP, Airband active bodies, FPV video decoder and a replaceable ba
 
 - select an in-production exact serial 5.8-GHz analog receiver with a live purchase route; generic RX5808 and discontinued MM238R-MCU are not accepted
 - prove manual-assembly accessibility and the enclosure side opening around the exact MMCX body
-- synthesize the Airband input and IF filters from factory-stock serial passives and prove the 87-106-MHz image rejection mask
+- close the H1-R2.3 Airband candidate with extracted PCB parasitics and one fixed factory BOM state; nominal finite-Q compliance is retained only as feasibility evidence
+- select the exact post-installed 5.8-GHz FPV antenna and give it the same code-plus-colour identification used by the other antenna-kit items
 - rebuild the complete six-domain rail and thermal matrix
 - regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving
 
-> Exact current marker: **H1-R2.2**. H1 remains in progress.
+> Exact current marker: **H1-R2.3**. H1 remains in progress.

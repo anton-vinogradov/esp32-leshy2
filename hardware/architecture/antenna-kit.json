@@ -12,9 +12,21 @@
     "rp_sma_ports": "antenna must have an RP-SMA male plug with socket centre contact",
     "sma_ports": "antenna must have a standard SMA male plug with pin centre contact"
   },
+  "identification_contract": {
+    "checked_on": "2026-08-27",
+    "reason": "Retail antennas do not reliably carry a user-readable Leshy2 role, and connector mechanics alone cannot distinguish several safe and unsafe same-family combinations.",
+    "device_side": "Every outward port carries a short kit code plus its role and band in unobscured outer-face silkscreen. A post-PCBA colour collar around the connector base repeats the code colour; coloured PCB silkscreen is not assumed.",
+    "antenna_side": "Every kit antenna receives a durable printed heat-shrink flag at its connector end with the same kit code, role and band. The package slot repeats the same data.",
+    "accessibility": "Text and code are authoritative and remain sufficient for colour-vision deficiency; colour is redundant only.",
+    "nrf24_rule": "N1, N2 and N3 antennas are electrically interchangeable, but individual codes preserve a one-glance installed-kit inventory.",
+    "substitution_rule": "A substitute antenna receives the code of the qualified profile, never a code inferred only from connector type or appearance.",
+    "fpv_r2_gate": "The new FPV RX 5.8G MMCX antenna is added to this contract after its exact post-installed MPN is selected in H1-R2."
+  },
   "items": [
     {
       "id": "native_s3",
+      "kit_code": "S3",
+      "marker_colour": "blue #2563EB",
       "port_label": "WI-FI/BLE",
       "quantity": 1,
       "profile": "2.4/5 GHz native radio",
@@ -51,6 +63,8 @@
     },
     {
       "id": "native_c5",
+      "kit_code": "C5",
+      "marker_colour": "cyan #0891B2",
       "port_label": "WI-FI/15.4",
       "quantity": 1,
       "profile": "2.4/5 GHz native radio",
@@ -87,6 +101,8 @@
     },
     {
       "id": "nrf24_1",
+      "kit_code": "N1",
+      "marker_colour": "violet #7C3AED",
       "port_label": "nRF24-1",
       "quantity": 1,
       "profile": "2.4 GHz nRF24",
@@ -123,6 +139,8 @@
     },
     {
       "id": "nrf24_2",
+      "kit_code": "N2",
+      "marker_colour": "violet #7C3AED",
       "port_label": "nRF24-2",
       "quantity": 1,
       "profile": "2.4 GHz nRF24",
@@ -159,6 +177,8 @@
     },
     {
       "id": "nrf24_3",
+      "kit_code": "N3",
+      "marker_colour": "violet #7C3AED",
       "port_label": "nRF24-3",
       "quantity": 1,
       "profile": "2.4 GHz nRF24",
@@ -195,6 +215,8 @@
     },
     {
       "id": "sub_315",
+      "kit_code": "S315",
+      "marker_colour": "orange #EA580C",
       "port_label": "SUB-GHz",
       "quantity": 1,
       "profile": "315 MHz",
@@ -233,6 +255,8 @@
     },
     {
       "id": "sub_433",
+      "kit_code": "S433",
+      "marker_colour": "amber #D97706",
       "port_label": "SUB-GHz",
       "quantity": 1,
       "profile": "433 MHz",
@@ -271,6 +295,8 @@
     },
     {
       "id": "sub_868_915",
+      "kit_code": "S915",
+      "marker_colour": "yellow #CA8A04",
       "port_label": "SUB-GHz",
       "quantity": 1,
       "profile": "868/915 MHz",
@@ -310,7 +336,9 @@
     },
     {
       "id": "voice_vhf",
-      "port_label": "VHF/UHF",
+      "kit_code": "VHF",
+      "marker_colour": "red #DC2626",
+      "port_label": "VHF VOICE",
       "quantity": 1,
       "profile": "VHF 136-174 MHz",
       "mpn": "AN0155H13",
@@ -345,7 +373,9 @@
     },
     {
       "id": "voice_uhf",
-      "port_label": "VHF/UHF",
+      "kit_code": "UHF",
+      "marker_colour": "magenta #C026D3",
+      "port_label": "UHF VOICE",
       "quantity": 1,
       "profile": "UHF 400-470 MHz",
       "mpn": "ANT-433-CW-QW-SMA",
@@ -382,7 +412,9 @@
     },
     {
       "id": "receiver_fm_sw",
-      "port_label": "FM/SW RX",
+      "kit_code": "AIR",
+      "marker_colour": "green #16A34A",
+      "port_label": "FM/SW/AIR RX",
       "quantity": 1,
       "profile": "receive-only telescopic whip",
       "mpn": "SMA-W100RX2",
@@ -418,6 +450,8 @@
     },
     {
       "id": "receiver_am_lw",
+      "kit_code": "LOOP",
+      "marker_colour": "slate #334155",
       "port_label": "AM/LW LOOP",
       "quantity": 1,
       "profile": "passive receive-only direct-plug ferrite pod",

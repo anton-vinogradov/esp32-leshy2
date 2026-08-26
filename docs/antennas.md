@@ -2,26 +2,29 @@
 
 [Home](../README.md) · [Русский](antennas.ru.md) · [Hardware architecture](hardware.md)
 
-The device has nine permanently labelled antenna ports. The full field kit
-contains 12 physical antennas: nine can remain connected at once, while the
-correct `SUB-GHz` and `VHF/UHF` antenna is selected for the active profile.
+The established kit covers ten permanently labelled SMA/RP-SMA ports and 12
+physical antennas. Ten can remain connected at once, while the correct
+`SUB-GHz` antenna is selected for the active profile. VHF and UHF have separate
+fixed ports. R2 adds a
+separately keyed `FPV RX 5.8G` MMCX port; its exact post-installed antenna
+remains an H1 selection gate and is not counted as a selected kit item yet.
 
 ## What connects where
 
-| Device label | Profile | First-target antenna | Kit quantity | Antenna plug |
-|---|---|---|---:|---|
-| `WI-FI/BLE` | 2.4 GHz | [TE `001-0012`](https://www.te.com/en/product-001-0012.html) | 1 | RP-SMA male |
-| `WI-FI/15.4` | 2.4/5 GHz | [TE `001-0012`](https://www.te.com/en/product-001-0012.html) | 1 | RP-SMA male |
-| `nRF24-1` | 2.4 GHz | [Ebyte `TX2400-JW-5`](https://www.ebyte.com/product/495.html) | 1 | SMA male |
-| `nRF24-2` | 2.4 GHz | [Ebyte `TX2400-JW-5`](https://www.ebyte.com/product/495.html) | 1 | SMA male |
-| `nRF24-3` | 2.4 GHz | [Ebyte `TX2400-JW-5`](https://www.ebyte.com/product/495.html) | 1 | SMA male |
-| `SUB-GHz` | 315 MHz | [TE `ANT-315-CW-HW-SMA`](https://www.te.com/en/product-ANT-315-CW-HW-SMA.html) | 1 interchangeable | SMA male |
-| `SUB-GHz` | 433 MHz | [TE `ANT-433-CW-QW-SMA`](https://www.te.com/en/product-ANT-433-CW-QW-SMA.html) | 1 interchangeable | SMA male |
-| `SUB-GHz` | 868/915 MHz | [Taoglas `TI.08.C.0112`](https://www.taoglas.com/datasheets/TI.08.C.0112.pdf) | 1 interchangeable | right-angle SMA male |
-| `VHF/UHF` | VHF 136–174 MHz | [Hytera `AN0155H13`](https://www.hytera.com/en/product-new/accessories/radio-antennas/an0155h13.html) | 1 interchangeable | SMA male |
-| `VHF/UHF` | UHF 400–470 MHz | [TE `ANT-433-CW-QW-SMA`](https://www.te.com/en/product-ANT-433-CW-QW-SMA.html) | 1 interchangeable | SMA male |
-| `FM/SW/AIR RX` | receive FM/SW and 118–137 MHz Airband AM | [Comet `SMA-W100RX2`](https://www.comet-ant.co.jp/product/638/) | 1 | SMA male |
-| `AM/LW LOOP` | LW 153–279 kHz; AM 520–1710 kHz | Leshy2 [`L2-ANT-AM-LW-001`](../hardware/architecture/am-lw-pod.json) | 1 | SMA male |
+| Kit mark | Device label | Profile | First-target antenna | Kit quantity | Antenna plug |
+|---|---|---|---|---:|---|
+| `S3` · blue | `WI-FI/BLE` | 2.4/5 GHz | [TE `001-0012`](https://www.te.com/en/product-001-0012.html) | 1 | RP-SMA male |
+| `C5` · cyan | `WI-FI/15.4` | 2.4/5 GHz | [TE `001-0012`](https://www.te.com/en/product-001-0012.html) | 1 | RP-SMA male |
+| `N1` · violet | `nRF24-1` | 2.4 GHz | [Ebyte `TX2400-JW-5`](https://www.ebyte.com/product/495.html) | 1 | SMA male |
+| `N2` · violet | `nRF24-2` | 2.4 GHz | [Ebyte `TX2400-JW-5`](https://www.ebyte.com/product/495.html) | 1 | SMA male |
+| `N3` · violet | `nRF24-3` | 2.4 GHz | [Ebyte `TX2400-JW-5`](https://www.ebyte.com/product/495.html) | 1 | SMA male |
+| `S315` · orange | `SUB-GHz` | 315 MHz | [TE `ANT-315-CW-HW-SMA`](https://www.te.com/en/product-ANT-315-CW-HW-SMA.html) | 1 interchangeable | SMA male |
+| `S433` · amber | `SUB-GHz` | 433 MHz | [TE `ANT-433-CW-QW-SMA`](https://www.te.com/en/product-ANT-433-CW-QW-SMA.html) | 1 interchangeable | SMA male |
+| `S915` · yellow | `SUB-GHz` | 868/915 MHz | [Taoglas `TI.08.C.0112`](https://www.taoglas.com/datasheets/TI.08.C.0112.pdf) | 1 interchangeable | right-angle SMA male |
+| `VHF` · red | `VHF VOICE` | VHF 136–174 MHz | [Hytera `AN0155H13`](https://www.hytera.com/en/product-new/accessories/radio-antennas/an0155h13.html) | 1 | SMA male |
+| `UHF` · magenta | `UHF VOICE` | UHF 400–470 MHz | [TE `ANT-433-CW-QW-SMA`](https://www.te.com/en/product-ANT-433-CW-QW-SMA.html) | 1 | SMA male |
+| `AIR` · green | `FM/SW/AIR RX` | receive FM/SW and 118–137 MHz Airband AM | [Comet `SMA-W100RX2`](https://www.comet-ant.co.jp/product/638/) | 1 | SMA male |
+| `LOOP` · slate | `AM/LW LOOP` | LW 153–279 kHz; AM 520–1710 kHz | Leshy2 [`L2-ANT-AM-LW-001`](../hardware/architecture/am-lw-pod.json) | 1 | SMA male |
 
 The kit contains two separate `ANT-433-CW-QW-SMA` units. Its specification
 covers 400–470 MHz and up to 10 W, so one unit serves the 433-MHz profile and
@@ -32,12 +35,20 @@ between two connected paths.
 
 - The two native ports are RP-SMA. The antenna requires an RP-SMA male plug
   with a socket centre contact.
-- The other seven ports are standard SMA. The antenna requires an SMA male
+- The other eight established ports are standard SMA. The antenna requires an SMA male
   plug with a centre pin; a visually similar RP-SMA plug is not compatible.
+- The R2 `FPV RX 5.8G` port is MMCX, mechanically distinct from both SMA families.
 - Transmit always starts disabled. A selected profile, band or power limit is
   never restored after reset or a fault.
-- A colour collar and package label must repeat the port name and band. The
-  software profile alone is not evidence that the correct antenna is fitted.
+- Every outward port has an unobscured short code plus role/band in silkscreen.
+  A post-PCBA colour collar around its base repeats the code colour.
+- Every antenna has a durable printed heat-shrink flag at the connector end
+  with the same code, role and band; its package slot repeats them. Text/code is
+  authoritative and colour is only redundant guidance.
+- `N1`/`N2`/`N3` are electrically interchangeable, but separate codes keep the
+  installed-kit inventory obvious. A substitute inherits the qualified
+  profile code only after its RF and mechanical checks pass.
+- The software profile alone is not evidence that the correct antenna is fitted.
 
 ## Passive AM/LW pod
 

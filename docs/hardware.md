@@ -4,7 +4,7 @@
 
 > Current baseline: [H0-R2](h0-r2-functional-architecture.md). The R1 pin,
 > interconnect and ECAD pages linked below are retained inputs and are being
-> regenerated at H1-R2.2. The [current physical projection](h1-r2-physical-layout.md)
+> regenerated at H1-R2.3. The [current physical projection](h1-r2-physical-layout.md)
 > is collision-tested but incomplete; neither artifact authorizes R2 PCB routing.
 
 ## Principle component interconnections
@@ -316,10 +316,13 @@ remain unauthorized.
 
 ## External antennas
 
-The [complete 12-item antenna kit](antennas.md) maps every user-facing port
-label to an exact first-target MPN, band and SMA/RP-SMA type. Three antennas
-are interchangeable profiles for the single `SUB-GHz` port and two are
-interchangeable VHF/UHF profiles; the other seven have fixed ports.
+The [complete established 12-item antenna kit](antennas.md) maps ten
+user-facing SMA/RP-SMA port labels to an exact first-target MPN and band. Three
+antennas are interchangeable profiles for the single `SUB-GHz` port; the other
+nine have one fixed port each, including independent VHF and UHF feeds. R2 adds
+an eleventh, mechanically distinct MMCX `FPV RX 5.8G` input. Its exact
+post-installed antenna is still an H1 selection gate and is not silently
+counted as a selected kit item.
 
 ## Power and service
 

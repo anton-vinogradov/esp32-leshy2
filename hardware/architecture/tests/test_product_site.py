@@ -134,6 +134,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h0-r2-functional-architecture.ru.md",
         "docs/h1-r2-physical-layout.md",
         "docs/h1-r2-physical-layout.ru.md",
+        "docs/h1-airband-filter.md",
+        "docs/h1-airband-filter.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -159,13 +161,13 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: H1-R2.2", "H0-R2 reviewed",
+                "Current hardware boundary: H1-R2.3", "H0-R2 reviewed",
                 "firmware F0-R2.0",
                 "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: H1-R2.2", "H0-R2 проведено ревью",
+                "Текущая аппаратная граница: H1-R2.3", "H0-R2 проведено ревью",
                 "firmware F0-R2.0", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
@@ -181,8 +183,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Hardware is at H1-R2.2", "printing/fabrication"),
-            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H1-R2.2", "печать/на фабрику"),
+            "README.md": ("Roadmap and current position", "Hardware is at H1-R2.3", "printing/fabrication"),
+            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H1-R2.3", "печать/на фабрику"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -822,7 +824,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H1", state["current_stage"])
-        self.assertEqual("H1-R2.2", state["current_substep"])
+        self.assertEqual("H1-R2.3", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -2726,6 +2728,15 @@ class ProductSiteTests(unittest.TestCase):
             ),
         )
         self.assertEqual(0, sum(item["mpn"] is None for item in manifest["items"]))
+        kit_codes = [item["kit_code"] for item in manifest["items"]]
+        self.assertEqual(len(kit_codes), len(set(kit_codes)))
+        self.assertTrue(all(item["marker_colour"] for item in manifest["items"]))
+        identification = manifest["identification_contract"]
+        for token in ("heat-shrink", "silkscreen", "colour is redundant", "FPV RX 5.8G"):
+            self.assertIn(
+                token,
+                " ".join(str(value) for value in identification.values()),
+            )
         self.assertEqual(
             2,
             sum(item["mpn"] == "ANT-433-CW-QW-SMA" for item in manifest["items"]),
@@ -2736,6 +2747,14 @@ class ProductSiteTests(unittest.TestCase):
                 item["port_label"]
                 for item in manifest["items"]
                 if item["termination"] == "RP-SMA male"
+            },
+        )
+        self.assertEqual(
+            {"VHF VOICE", "UHF VOICE"},
+            {
+                item["port_label"]
+                for item in manifest["items"]
+                if item["id"] in {"voice_vhf", "voice_uhf"}
             },
         )
         candidate_policy = candidate["audio_receiver_contract"]["broadcast_transmit_policy"]

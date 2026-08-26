@@ -243,7 +243,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     if ru:
         title = f'# {model["marker"]} · физическая перекомпоновка'
         intro = "Это текущий проверяемый результат H1, а не журнал решений и не разрешение начинать KiCad."
-        state = "В принятую 75×150-мм систему координат добавлены второй Hub RP, активные корпуса Airband, видеодекодер FPV и сменная зона его ещё не выбранного 5,8-ГГц приёмника."
+        state = "В принятую 75×150-мм систему координат добавлены второй Hub RP, активные корпуса Airband, расширенная 24×11-мм ячейка настройки его фильтра, видеодекодер FPV и сменная зона его ещё не выбранного 5,8-ГГц приёмника."
         audit_heading = "## Что уже проверено"
         open_heading = "## Что ещё блокирует H1"
         factory_heading = "## Точные фабричные позиции"
@@ -252,13 +252,14 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f'- Намеренных встречных XY-проекций: `{result["opposing_overlap_count"]}`; минимальный Z-зазор `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
             '- Большой резерв приёмника FPV помещается без изменения контура платы и внешних зон аккумуляторов/U214.',
             '- Hub остаётся на UI-плате рядом со storage/audio/broadcast; RF-модуль FPV и видеодекодер расположены вместе на RF-плате.',
+            '- Для Airband получен [номинально проходящий, но открытый по stress синтез](h1-airband-filter.ru.md); увеличенная ячейка содержит альтернативные/DNP-площадки до проверки паразитик H3.',
         ]
         table_header = "| Роль | Точный MPN | JLCPCB | Статус выбора | Текущий маршрут |\n|---|---|---|---|---|"
         gates = model["open_gates_ru"]
     else:
         title = f'# {model["marker"]} · physical re-layout'
         intro = "This is the current verified H1 result, not a decision diary and not authorization to start KiCad."
-        state = "The second Hub RP, Airband active bodies, FPV video decoder and a replaceable bay for its still-unselected 5.8-GHz receiver are placed in the accepted 75 × 150 mm coordinate system."
+        state = "The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell for its filter, the FPV video decoder and a replaceable bay for its still-unselected 5.8-GHz receiver are placed in the accepted 75 × 150 mm coordinate system."
         audit_heading = "## Already verified"
         open_heading = "## What still blocks H1"
         factory_heading = "## Exact factory parts"
@@ -267,6 +268,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f'- Intentional opposing XY projections: `{result["opposing_overlap_count"]}`; minimum Z clearance is `{result["minimum_opposing_clearance_mm"]:.2f} mm` against `{result["required_opposing_clearance_mm"]:.2f} mm` required.',
             '- The large FPV receiver bay fits without changing the PCB outline or battery/U214 exterior zones.',
             '- Hub remains on the UI board beside storage/audio/broadcast; the FPV RF module and decoder remain together on the RF board.',
+            '- Airband now has a [nominally passing but stress-open synthesis](h1-airband-filter.md); the enlarged cell carries alternate/DNP pads until H3 parasitics are checked.',
         ]
         table_header = "| Role | Exact MPN | JLCPCB | Selection status | Current route |\n|---|---|---|---|---|"
         gates = model["open_gates"]

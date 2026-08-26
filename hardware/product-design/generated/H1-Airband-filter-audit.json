@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "marker": "H1-R2.3",
+  "status": "nominal_pass_stress_fail",
+  "candidate_is_production_frozen": false,
+  "nominal_passband_maximum_loss_db": 3.0345,
+  "stress_passband_maximum_loss_db": 4.2722,
+  "stress_scenario_count": 16386,
+  "stop_results": [
+    {
+      "frequency_mhz": 95.0,
+      "minimum_loss_db": 40.0,
+      "nominal_loss_db": 45.22,
+      "stress_minimum_loss_db": 41.0113,
+      "nominal_pass": true,
+      "stress_pass": true
+    },
+    {
+      "frequency_mhz": 105.0,
+      "minimum_loss_db": 20.0,
+      "nominal_loss_db": 24.8033,
+      "stress_minimum_loss_db": 21.0357,
+      "nominal_pass": true,
+      "stress_pass": true
+    },
+    {
+      "frequency_mhz": 155.0,
+      "minimum_loss_db": 20.0,
+      "nominal_loss_db": 28.6307,
+      "stress_minimum_loss_db": 21.0592,
+      "nominal_pass": true,
+      "stress_pass": true
+    },
+    {
+      "frequency_mhz": 180.0,
+      "minimum_loss_db": 40.0,
+      "nominal_loss_db": 44.1691,
+      "stress_minimum_loss_db": 34.6212,
+      "nominal_pass": true,
+      "stress_pass": false
+    },
+    {
+      "frequency_mhz": 220.0,
+      "minimum_loss_db": 40.0,
+      "nominal_loss_db": 41.5881,
+      "stress_minimum_loss_db": 40.7289,
+      "nominal_pass": true,
+      "stress_pass": true
+    }
+  ],
+  "nominal_loss_db": {
+    "95": 45.22,
+    "105": 24.8033,
+    "118": 3.0175,
+    "119": 2.8102,
+    "120": 2.7555,
+    "121": 2.7724,
+    "122": 2.8083,
+    "123": 2.8341,
+    "124": 2.8365,
+    "125": 2.8121,
+    "126": 2.7631,
+    "127": 2.6956,
+    "128": 2.6181,
+    "129": 2.5404,
+    "130": 2.4734,
+    "131": 2.4279,
+    "132": 2.4141,
+    "133": 2.4406,
+    "134": 2.5137,
+    "135": 2.6369,
+    "136": 2.8108,
+    "137": 3.0345,
+    "155": 28.6307,
+    "180": 44.1691,
+    "220": 41.5881
+  },
+  "stress_envelope_db": {
+    "95": {
+      "minimum_loss_db": 41.0113,
+      "maximum_loss_db": 49.9421
+    },
+    "105": {
+      "minimum_loss_db": 21.0357,
+      "maximum_loss_db": 28.863
+    },
+    "118": {
+      "minimum_loss_db": 2.6239,
+      "maximum_loss_db": 4.2722
+    },
+    "119": {
+      "minimum_loss_db": 2.5241,
+      "maximum_loss_db": 3.4871
+    },
+    "120": {
+      "minimum_loss_db": 2.4248,
+      "maximum_loss_db": 3.3406
+    },
+    "121": {
+      "minimum_loss_db": 2.3777,
+      "maximum_loss_db": 3.4019
+    },
+    "122": {
+      "minimum_loss_db": 2.3631,
+      "maximum_loss_db": 3.453
+    },
+    "123": {
+      "minimum_loss_db": 2.3556,
+      "maximum_loss_db": 3.523
+    },
+    "124": {
+      "minimum_loss_db": 2.3415,
+      "maximum_loss_db": 3.5669
+    },
+    "125": {
+      "minimum_loss_db": 2.3205,
+      "maximum_loss_db": 3.5649
+    },
+    "126": {
+      "minimum_loss_db": 2.2834,
+      "maximum_loss_db": 3.5262
+    },
+    "127": {
+      "minimum_loss_db": 2.248,
+      "maximum_loss_db": 3.4703
+    },
+    "128": {
+      "minimum_loss_db": 2.2139,
+      "maximum_loss_db": 3.3878
+    },
+    "129": {
+      "minimum_loss_db": 2.1934,
+      "maximum_loss_db": 3.2795
+    },
+    "130": {
+      "minimum_loss_db": 2.1827,
+      "maximum_loss_db": 3.1545
+    },
+    "131": {
+      "minimum_loss_db": 2.1725,
+      "maximum_loss_db": 3.0234
+    },
+    "132": {
+      "minimum_loss_db": 2.1872,
+      "maximum_loss_db": 2.8979
+    },
+    "133": {
+      "minimum_loss_db": 2.2354,
+      "maximum_loss_db": 2.8168
+    },
+    "134": {
+      "minimum_loss_db": 2.275,
+      "maximum_loss_db": 3.0463
+    },
+    "135": {
+      "minimum_loss_db": 2.3329,
+      "maximum_loss_db": 3.3198
+    },
+    "136": {
+      "minimum_loss_db": 2.4075,
+      "maximum_loss_db": 3.6321
+    },
+    "137": {
+      "minimum_loss_db": 2.5014,
+      "maximum_loss_db": 3.9776
+    },
+    "155": {
+      "minimum_loss_db": 21.0592,
+      "maximum_loss_db": 31.9006
+    },
+    "180": {
+      "minimum_loss_db": 34.6212,
+      "maximum_loss_db": 45.5461
+    },
+    "220": {
+      "minimum_loss_db": 40.7289,
+      "maximum_loss_db": 42.4928
+    }
+  },
+  "failures": [
+    "stress rejection misses the mask at 180 MHz"
+  ],
+  "accepted_result": "A fixed-value factory LC implementation remains feasible and materially cheaper/smaller than BPF-A127+, so the replaceable LC reserve is retained.",
+  "next_gate": "H1 must reserve a ground-fenced 24 x 11 mm cell with alternate-value/DNP tuning pads. H3 must add extracted PCB parasitics and find one factory BOM state that passes the full mask across tolerance; otherwise the architecture returns to an exact purchased filter or a different receiver boundary."
+}

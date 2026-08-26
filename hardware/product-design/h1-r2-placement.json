@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.2",
+  "marker": "H1-R2.3",
   "checked_on": "2026-08-27",
   "purpose": "Place the new R2 Hub, Airband and analog-FPV bodies in the accepted 75 x 150 mm two-board coordinate system before any R2 KiCad work.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -18,7 +18,8 @@
     "base_geometry": "R1 bodies are retained only as a collision-tested placement seed and may move during complete R2 optimisation",
     "fixed_body": "one exact serial device per rectangle",
     "reserve": "a dashed physical allocation, never a component or accepted MPN",
-    "silkscreen": "none of the inner-face annotations in the generated engineering drawing are PCB silkscreen"
+    "silkscreen": "none of the inner-face annotations in the generated engineering drawing are PCB silkscreen",
+    "antenna_identification": "Every outward RF port keeps a readable role/band label and gains a compact kit code. A post-assembly colour collar around the connector base and a durable heat-shrink flag on the matching antenna repeat that code; colour is redundant and is never the sole identifier."
   },
   "factory_evidence": [
     {
@@ -146,7 +147,7 @@
       "mpn": null,
       "role": "118-137-MHz image-rejection BPF and 6-25-MHz IF cleanup; individually serial passives close after synthesis",
       "world_xy_mm": [48.5, 67.5],
-      "size_mm": [20.0, 6.5, 1.2]
+      "size_mm": [24.0, 11.0, 1.2]
     },
     {
       "id": "fpv_decoder",
@@ -223,14 +224,16 @@
   "open_gates": [
     "select an in-production exact serial 5.8-GHz analog receiver with a live purchase route; generic RX5808 and discontinued MM238R-MCU are not accepted",
     "prove manual-assembly accessibility and the enclosure side opening around the exact MMCX body",
-    "synthesize the Airband input and IF filters from factory-stock serial passives and prove the 87-106-MHz image rejection mask",
+    "close the H1-R2.3 Airband candidate with extracted PCB parasitics and one fixed factory BOM state; nominal finite-Q compliance is retained only as feasibility evidence",
+    "select the exact post-installed 5.8-GHz FPV antenna and give it the same code-plus-colour identification used by the other antenna-kit items",
     "rebuild the complete six-domain rail and thermal matrix",
     "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
   ],
   "open_gates_ru": [
     "выбрать точный серийный аналоговый 5,8-ГГц приёмник с действующим каналом покупки; generic RX5808 и снятый MM238R-MCU не приняты",
     "доказать доступ для ручной установки и боковой проём корпуса вокруг точного корпуса MMCX",
-    "синтезировать входной и IF-фильтры Airband из доступных фабричных пассивов и доказать подавление зеркальной полосы 87–106 МГц",
+    "закрыть кандидат фильтра Airband H1-R2.3 с учётом извлечённых паразитик PCB и одним фиксированным фабричным BOM-state; nominal finite-Q соответствие остаётся только evidence реализуемости",
+    "выбрать точную устанавливаемую после PCBA антенну FPV 5,8 ГГц и дать ей ту же кодово-цветовую маркировку, что и остальным предметам антенного комплекта",
     "пересобрать полную матрицу шин и тепла для шести доменов",
     "перегенерировать все внешние и внутренние виды и оба разреза после прекращения перемещений корпусов R2"
   ]

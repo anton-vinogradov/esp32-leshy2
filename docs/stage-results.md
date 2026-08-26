@@ -20,12 +20,14 @@ are satisfied.
 <a id="h1"></a>
 ## ⭐ H1 · Physical product design
 
-**Status:** ▶️ current at `H1-R2.2`; R1 result is retained evidence, not current acceptance.
+**Status:** ▶️ current at `H1-R2.3`; R1 result is retained evidence, not current acceptance.
 
-- [Current H1-R2.2 physical placement](h1-r2-physical-layout.md) — new Hub,
+- [Current H1-R2.3 physical placement](h1-r2-physical-layout.md) — new Hub,
   Airband and analog-FPV bodies/reserves in the shared coordinate model, with
   generated collision and opposing-clearance evidence.
-- [Machine H1-R2.2 audit](../hardware/product-design/generated/H1-R2-placement-audit.json).
+- [Machine H1-R2.3 placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json).
+- [Airband filter feasibility](h1-airband-filter.md) and its
+  [machine audit](../hardware/product-design/generated/H1-Airband-filter-audit.json).
 
 Retained R1 inputs being regenerated:
 

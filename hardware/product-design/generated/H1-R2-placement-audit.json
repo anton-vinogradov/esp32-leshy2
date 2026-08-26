@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.2",
+  "marker": "H1-R2.3",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "new_fixed_body_count": 6,
   "new_reserve_count": 3,
   "same_face_collisions": [],
-  "opposing_overlap_count": 26,
+  "opposing_overlap_count": 30,
   "minimum_opposing_clearance_mm": 2.44,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
@@ -82,6 +82,16 @@
     },
     {
       "new": "airband_filter_reserve",
+      "base": "charger_pmid_cap2",
+      "clearance_mm": 8.2
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "charger_regn_cap",
+      "clearance_mm": 8.2
+    },
+    {
+      "new": "airband_filter_reserve",
       "base": "charger_sys_cap0",
       "clearance_mm": 8.2
     },
@@ -97,7 +107,17 @@
     },
     {
       "new": "airband_filter_reserve",
+      "base": "charger_sys_cap3",
+      "clearance_mm": 8.2
+    },
+    {
+      "new": "airband_filter_reserve",
       "base": "charger_sys_cap4",
+      "clearance_mm": 8.2
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "charger_vbus_cap0",
       "clearance_mm": 8.2
     },
     {
@@ -145,7 +165,8 @@
   "open_gates": [
     "select an in-production exact serial 5.8-GHz analog receiver with a live purchase route; generic RX5808 and discontinued MM238R-MCU are not accepted",
     "prove manual-assembly accessibility and the enclosure side opening around the exact MMCX body",
-    "synthesize the Airband input and IF filters from factory-stock serial passives and prove the 87-106-MHz image rejection mask",
+    "close the H1-R2.3 Airband candidate with extracted PCB parasitics and one fixed factory BOM state; nominal finite-Q compliance is retained only as feasibility evidence",
+    "select the exact post-installed 5.8-GHz FPV antenna and give it the same code-plus-colour identification used by the other antenna-kit items",
     "rebuild the complete six-domain rail and thermal matrix",
     "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
   ],
@@ -264,11 +285,11 @@
       "world_bbox_mm": {
         "x": [
           48.5,
-          68.5
+          72.5
         ],
         "y": [
           67.5,
-          74.0
+          78.5
         ],
         "z": [
           4.8,
