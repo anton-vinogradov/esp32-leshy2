@@ -14,7 +14,8 @@ INPUT = REPO / "hardware/verification/generated/H5-EVR01-residual-map.json"
 OUTPUT = REPO / "hardware/verification/generated/H5-EVR02-source-research.json"
 DOC_EN = REPO / "docs/component-source-research.md"
 DOC_RU = REPO / "docs/component-source-research.ru.md"
-CHECKED_ON = "2026-08-25"
+DEVICES = REPO / "hardware/architecture/devices.json"
+CHECKED_ON = "2026-08-26"
 
 
 SOURCES = {
@@ -120,23 +121,35 @@ SOURCES = {
         "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864",
         "supports": "current exact-MPN cut-tape stock and quantity-one price evidence at review time",
     },
-    "nicerf_sa518": {
-        "owner": "NiceRF",
-        "title": "SA518 current manufacturer specification",
-        "url": "https://www.nicerf.com/upload/20260430/391f11abcc1d835ac5ed151613fdae68.pdf",
-        "supports": "current SA518 U/V simultaneous dual-band identity, 39.5 x 24.0 x 3.15 mm body, contact map, 3.3-to-5.0-V supply and 0.5/1-W modes",
+    "nicerf_sa818s_v18": {
+        "owner": "G-NiceRF",
+        "title": "SA818S Product Specification Rev 1.8",
+        "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+        "supports": "one common 18-contact interface and 35.60 x 19.00 x 3.20 mm body; U=400-480 MHz, V=134-174 MHz and CE=400-470 MHz order variants; 3.3-5.5 V and 9600-8N1 ASCII control",
     },
-    "nicerf_sa818pro": {
-        "owner": "NiceRF",
-        "title": "SA818Pro ordering-model and interface description",
-        "url": "https://www.nicerf.com/news/sa818pro-analog-walkie-talkie-module-voice-fsk-data.html",
-        "supports": "compact 35.6 x 19.0 mm interface and explicit separate -U/-V order variants rather than one simultaneous U/V module",
+    "nicerf_sa818s_package": {
+        "owner": "G-NiceRF",
+        "title": "SA818S official package archive",
+        "url": "https://www.nicerf.com/upload/20240508/15920bc3c0d003841f4af8edad4e7b29.zip",
+        "supports": "common official PADS/DXF 18-land host pattern for SA818S-U, SA818S-V and SA818S-CE",
     },
-    "nicerf_sa528": {
-        "owner": "NiceRF",
-        "title": "SA528 U/V dual-band module product page",
-        "url": "https://www.nicerf.com/walkie-talkie-module/sa528-uv-dual-band-wireless-data-voice-walkie-talkie-module.html",
-        "supports": "simultaneous U/V function but a 54.03 x 38.30 x 7.70 mm integrated body and materially different 23-contact/audio interface",
+    "jlc_sa818s_u": {
+        "owner": "JLCPCB",
+        "title": "Exact G-NiceRF SA818S-U catalog line C3001549",
+        "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549",
+        "supports": "exact manufacturer identity; Standard PCBA; 68 in stock, 60 available and USD 9.7347 at quantity one at review time",
+    },
+    "jlc_sa818s_v": {
+        "owner": "JLCPCB",
+        "title": "Exact G-NiceRF SA818S-V catalog line C51897911",
+        "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911",
+        "supports": "exact manufacturer identity; Standard PCBA; zero stock and pre-order at USD 10.0710 at review time",
+    },
+    "jlc_sa818s_ce": {
+        "owner": "JLCPCB",
+        "title": "Exact G-NiceRF SA818S-CE catalog line C19632390",
+        "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SCE/C19632390",
+        "supports": "exact manufacturer identity; Economic/Standard PCBA; 8 in stock and USD 9.3449 at quantity one at review time",
     },
 }
 
@@ -222,7 +235,7 @@ GATE_DISPOSITIONS = {
     "H5-MECH-NRF-GEN1-FEEDS": ("primary_sources_exhausted_sample_open", ["ebyte_e01", "ebyte_e01_datasheet", "te_2118651"]),
     "H5-MECH-U214-MATING-STACK": ("manufacturer_subpart_hidden_sample_open", ["m5_u214", "m5_u214_schematic", "m5_u214_structure"]),
     "H5-MECH-NAVIGATION-CONTROLS": ("assembled_ergonomics_sample_open", []),
-    "H5-MECH-SA518-LAND-FIT": ("primary_source_and_alternatives_exhausted_supplier_sample_open", ["nicerf_sa518", "nicerf_sa818pro", "nicerf_sa528"]),
+    "H5-MECH-SA818S-DUAL-LAND-FIT": ("common_official_land_pattern_and_exact_catalog_routes_reviewed_received_fit_open", ["nicerf_sa818s_v18", "nicerf_sa818s_package", "jlc_sa818s_u", "jlc_sa818s_v", "jlc_sa818s_ce"]),
     "H5-MECH-ENCODER-KNOB": ("assembled_ergonomics_sample_open", []),
     "H5-MECH-DIRECT-PRESS-CONTROLS": ("assembled_ergonomics_sample_open", []),
     "H5-MECH-RUN-KILL": ("assembled_ergonomics_sample_open", []),
@@ -274,18 +287,49 @@ ALTERNATIVES = [
         "reason": "no alternative found with a fully documented identical controller, flex contacts, outline, touch stack and connector; substitution would reopen architecture and placement",
     },
     {
-        "target": "SA518 simultaneous U/V voice module",
-        "candidate": "SA818Pro-U plus SA818Pro-V",
-        "sources": ["nicerf_sa818pro"],
-        "decision": "rejected_as_function_preserving_replacement",
-        "reason": "SA818Pro is ordered as one band or the other; preserving onboard VHF and UHF would require two modules, two RF paths and a reopened power, GPIO, audio and placement architecture",
+        "target": "SA818S-U UHF voice module",
+        "candidate": "SA818S-CE",
+        "sources": ["nicerf_sa818s_v18", "nicerf_sa818s_package", "jlc_sa818s_u", "jlc_sa818s_ce"],
+        "decision": "qualified_pending_pin_package_command_compatible_uhf_alternate",
+        "reason": "the family datasheet applies one 18-contact interface, package and command set to both variants, and both exact G-NiceRF identities are orderable at JLCPCB; CE is only a UHF alternate because its certified range stops at 470 MHz instead of 480 MHz, so a manifest clamp plus received-part HIL is mandatory and silent substitution is forbidden",
+    },
+]
+
+
+VOICE_ROUTES = [
+    {
+        "role": "selected_uhf",
+        "device_id": "nicerf_sa818s_u_v18",
+        "mpn": "G-NiceRF SA818S-U",
+        "jlcpcb_part": "C3001549",
+        "availability": "in_stock",
+        "stock": 68,
+        "available_order_quantity": 60,
+        "quantity_one_usd": "9.7347",
+        "sources": ["nicerf_sa818s_v18", "nicerf_sa818s_package", "jlc_sa818s_u"],
     },
     {
-        "target": "SA518 simultaneous U/V voice module",
-        "candidate": "SA528",
-        "sources": ["nicerf_sa528"],
-        "decision": "rejected_as_form_fit_replacement",
-        "reason": "SA528 preserves simultaneous U/V but its 54.03 x 38.30 x 7.70 mm body and 23-contact integrated-audio interface do not fit the accepted 39.5 x 24.0 x 3.15 mm SA518 reserve or circuit",
+        "role": "selected_vhf",
+        "device_id": "nicerf_sa818s_v_v18",
+        "mpn": "G-NiceRF SA818S-V",
+        "jlcpcb_part": "C51897911",
+        "availability": "preorder_stock_zero",
+        "stock": 0,
+        "minimum": 1,
+        "quantity_one_usd": "10.0710",
+        "sources": ["nicerf_sa818s_v18", "nicerf_sa818s_package", "jlc_sa818s_v"],
+    },
+    {
+        "role": "qualified_pending_uhf_alternate",
+        "device_id": "nicerf_sa818s_ce_v18",
+        "mpn": "G-NiceRF SA818S-CE",
+        "jlcpcb_part": "C19632390",
+        "availability": "in_stock",
+        "stock": 8,
+        "available_order_quantity": 8,
+        "quantity_one_usd": "9.3449",
+        "sources": ["nicerf_sa818s_v18", "nicerf_sa818s_package", "jlc_sa818s_ce"],
+        "restriction": "substitutes only SA818S-U; manifest disables 470-480 MHz; received-part HIL required",
     },
 ]
 
@@ -300,6 +344,7 @@ def sha256(path: Path) -> str:
 
 def build() -> dict:
     evidence = load(INPUT)
+    devices = load(DEVICES)["devices"]
     residual_ids = {row["id"] for row in evidence["residuals"]}
     gate_ids = {row["id"] for row in evidence["mechanical_gates"]}
     residuals = []
@@ -323,7 +368,7 @@ def build() -> dict:
     ]
     referenced_sources = {
         key
-        for row in residuals + gates + TEST_ARTICLES + ALTERNATIVES
+        for row in residuals + gates + TEST_ARTICLES + ALTERNATIVES + VOICE_ROUTES
         for key in row.get("sources", [])
     }
     checks = {
@@ -334,6 +379,10 @@ def build() -> dict:
         "every_selected_test_article_has_a_primary_or_distributor_source": all(row["sources"] for row in TEST_ARTICLES),
         "every_referenced_external_source_is_registered": referenced_sources <= set(SOURCES),
         "all_evaluated_replacements_have_an_explicit_decision_and_reason": all(row["decision"] and row["reason"] for row in ALTERNATIVES),
+        "selected_voice_routes_match_the_current_device_registry": all(
+            devices[row["device_id"]]["mpn"] == row["mpn"] for row in VOICE_ROUTES
+        ),
+        "both_selected_voice_variants_and_one_non_silent_alternate_are_routed": [row["role"] for row in VOICE_ROUTES] == ["selected_uhf", "selected_vhf", "qualified_pending_uhf_alternate"],
         "no_received_sample_claim_is_closed_by_document_search": all(not row["physical_claim_closed"] for row in residuals + gates),
         "purchase_layout_and_fabrication_are_not_authorized": True,
     }
@@ -342,17 +391,22 @@ def build() -> dict:
         raise ValueError("H5.0.2 source-research checks failed: " + ", ".join(failed))
     return {
         "schema_version": 1,
-        "stage": "H5.0.2",
+        "stage": "H5.0.2-R1",
         "status": "reviewed_research_only",
         "checked_on": CHECKED_ON,
         "purpose": "exhaust primary documentary evidence and fully documented serial alternatives before proposing any received sample",
-        "input": {"path": str(INPUT.relative_to(REPO)), "sha256": sha256(INPUT)},
+        "inputs": {
+            str(INPUT.relative_to(REPO)): sha256(INPUT),
+            str(DEVICES.relative_to(REPO)): sha256(DEVICES),
+        },
         "summary": {
             "h5_residuals_researched": len(residuals),
             "mechanical_gates_dispositioned": len(gates),
             "test_article_categories_selected": len(TEST_ARTICLES),
             "exact_test_article_skus_selected": sum(len(row["identities"]) for row in TEST_ARTICLES),
             "alternatives_explicitly_evaluated": len(ALTERNATIVES),
+            "selected_voice_routes": 2,
+            "qualified_pending_voice_alternates": 1,
             "physical_claims_closed": 0,
             "orders_authorized": 0,
         },
@@ -360,12 +414,13 @@ def build() -> dict:
         "residuals": residuals,
         "mechanical_gates": gates,
         "selected_test_articles": TEST_ARTICLES,
+        "voice_module_routes": VOICE_ROUTES,
         "evaluated_alternatives": ALTERNATIVES,
         "checks": checks,
         "decision_boundary": {
             "accepted_now": "the documentary search result, exact microSD and M5 interconnect test identities, and rejected non-drop-in alternatives",
             "not_accepted": "any received-lot identity, fit, retention, RF, timing, acoustic, thermal, endurance or fault-injection claim",
-            "next": "H5.0.3 deduplicates the irreducible received-sample basket, measurements and current cost for explicit approval",
+            "next": "H5.0.3-R1 deduplicates the irreducible received-sample basket, measurements and current cost for explicit approval",
             "purchase_authorized": False,
             "pcb_placement_and_routing_authorized": False,
             "fabrication_authorized": False,
@@ -398,7 +453,7 @@ def residual_sections(data: dict, russian: bool) -> str:
 
 def render_doc(data: dict, russian: bool) -> str:
     if russian:
-        return f"""# H5.0.2 · поиск источников и серийных замен
+        return f"""# H5.0.2-R1 · поиск источников и серийных замен
 
 [English](component-source-research.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md)
 
@@ -406,9 +461,9 @@ def render_doc(data: dict, russian: bool) -> str:
 
 ```mermaid
 flowchart LR
-  M["✅ H5.0.1<br/>9 residuals + 14 gates"] --> R["✅ H5.0.2<br/>поиск исчерпан"]
+  M["✅ H5.0.1-R1<br/>9 residuals + 14 gates"] --> R["✅ H5.0.2-R1<br/>поиск исчерпан"]
   R --> I["2 закрытых selection gaps<br/>4 точных SKU"]
-  R --> S["▶️ H5.0.3<br/>неустранимые образцы + стоимость"]
+  R --> S["▶️ H5.0.3-R1<br/>неустранимые образцы + стоимость"]
   S -. "только после явного согласия" .-> B["закупка"]
 ```
 
@@ -420,7 +475,8 @@ flowchart LR
 - Для дисплея найден серийный донор `ES3C35P`; raw-панель всё ещё нельзя честно квалифицировать без образца.
 - `TE 2118651-2` подтверждён как active и документированный; менять его нет оснований.
 - Для stock `U214` и `E01-ML01IPX` производители действительно не раскрывают MPN установленных connector subparts.
-- Для `SA518` проверены обе серийные ветви производителя: компактный `SA818Pro` требует отдельного U- или V-варианта, а dual-band `SA528` существенно больше и имеет другой 23-контактный/audio interface. Обе замены ухудшают принятую архитектуру.
+- `SA818S-U` и `SA818S-V` подтверждены как два независимых серийных модуля с общим официальным 18-land package. JLCPCB: U — `C3001549`, stock 68/available 60, `$9.7347`; V — `C51897911`, stock 0, `pre-order`, `$10.0710`.
+- `SA818S-CE` (`C19632390`, stock 8, `$9.3449`) имеет те же package, contacts и команды и принят только как qualified-pending замена UHF-модуля. Это не молчаливая замена: manifest обязан запретить `470–480 МГц`, а полученная деталь должна пройти HIL.
 
 ## Результат по девяти residuals
 
@@ -434,8 +490,7 @@ flowchart LR
 
 - `XC-IPX-SMA-15`: серийный, но его 150-мм прямой тракт не заменяет выбранный 30-мм внутренний jumper + PCB + герметичный краевой SMA.
 - Другие 3.5-дюймовые QSPI-панели: не найдена drop-in модель с одновременно теми же controller, flex contacts, outline, touch stack и connector.
-- `SA818Pro-U` + `SA818Pro-V`: потребовались бы два модуля и полная переделка RF/power/audio/placement.
-- `SA528`: сохраняет U/V, но корпус 54,03 x 38,30 x 7,70 мм и 23-контактный interface не помещаются в принятую границу `SA518`.
+- `SA818S-CE` не принимается как безусловная drop-in замена `SA818S-U`: общий interface доказан, но диапазон уже (`400–470` вместо `400–480 МГц`). Допускается только явный CE-manifest с HIL и частотным clamp.
 
 ## Честная граница
 
@@ -443,11 +498,11 @@ flowchart LR
 - Документами не закрыт ни один fit/RF/timing/acoustic/thermal/retention claim.
 - Точные тестовые SKU **выбраны, но не заказаны**.
 - PCB placement/routing и fabrication остаются запрещены.
-- Точный следующий маркер: `H5.0.3` — единый недублирующийся набор только неустранимых образцов, измерения и текущая стоимость для отдельного согласования.
+- Точный следующий маркер: `H5.0.3-R1` — единый недублирующийся набор только неустранимых образцов, измерения и текущая стоимость для отдельного согласования.
 
 Машинный результат: [`H5-EVR02`](../hardware/verification/generated/H5-EVR02-source-research.json).
 """
-    return f"""# H5.0.2 · primary-source and serial-alternative research
+    return f"""# H5.0.2-R1 · primary-source and serial-alternative research
 
 [Русский](component-source-research.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)
 
@@ -455,9 +510,9 @@ Review completed on {CHECKED_ON}: primary documents and serial alternatives were
 
 ```mermaid
 flowchart LR
-  M["✅ H5.0.1<br/>9 residuals + 14 gates"] --> R["✅ H5.0.2<br/>research exhausted"]
+  M["✅ H5.0.1-R1<br/>9 residuals + 14 gates"] --> R["✅ H5.0.2-R1<br/>research exhausted"]
   R --> I["2 selection gaps closed<br/>4 exact SKUs"]
-  R --> S["▶️ H5.0.3<br/>irreducible samples + cost"]
+  R --> S["▶️ H5.0.3-R1<br/>irreducible samples + cost"]
   S -. "explicit approval only" .-> B["purchase"]
 ```
 
@@ -469,7 +524,8 @@ flowchart LR
 - A serial `ES3C35P` display donor route is identified; the raw panel still cannot be honestly qualified without a received sample.
 - `TE 2118651-2` is confirmed active and documented; replacement has no demonstrated benefit.
 - The makers of stock `U214` and `E01-ML01IPX` genuinely do not disclose the fitted connector-subpart MPNs.
-- Both current NiceRF branches were evaluated for `SA518`: compact `SA818Pro` is ordered as a separate U or V variant, while dual-band `SA528` is materially larger with a different 23-contact/audio interface. Neither preserves the accepted architecture.
+- `SA818S-U` and `SA818S-V` are confirmed as two independent serial modules with one official 18-land package. JLCPCB: U is `C3001549`, stock 68/available 60 at `$9.7347`; V is `C51897911`, stock 0 and `pre-order` at `$10.0710`.
+- `SA818S-CE` (`C19632390`, stock 8 at `$9.3449`) uses the same package, contacts and commands and is accepted only as a qualified-pending UHF alternate. It is never a silent substitution: the manifest must disable `470–480 MHz` and the received part must pass HIL.
 
 ## Result for the nine residuals
 
@@ -483,8 +539,7 @@ flowchart LR
 
 - `XC-IPX-SMA-15`: serial, but its 150 mm direct path does not replace the selected 30 mm internal jumper + PCB + sealed edge SMA.
 - Other 3.5-inch QSPI panels: no drop-in model was found with the same controller, flex contacts, outline, touch stack and connector together.
-- `SA818Pro-U` + `SA818Pro-V`: would require two modules and a complete RF/power/audio/placement redesign.
-- `SA528`: preserves U/V but its 54.03 x 38.30 x 7.70 mm body and 23-contact interface do not fit the accepted `SA518` boundary.
+- `SA818S-CE` is not an unconditional drop-in for `SA818S-U`: the common interface is proven, but its range is narrower (`400–470` instead of `400–480 MHz`). It is allowed only with an explicit CE manifest, HIL and frequency clamp.
 
 ## Honest boundary
 
@@ -492,7 +547,7 @@ flowchart LR
 - Documents close no fit/RF/timing/acoustic/thermal/retention claim.
 - Exact test SKUs are **selected, not ordered**.
 - PCB placement/routing and fabrication remain prohibited.
-- Exact next marker: `H5.0.3` — one deduplicated basket of irreducible samples, measurements and current cost for separate approval.
+- Exact next marker: `H5.0.3-R1` — one deduplicated basket of irreducible samples, measurements and current cost for separate approval.
 
 Machine result: [`H5-EVR02`](../hardware/verification/generated/H5-EVR02-source-research.json).
 """
@@ -522,7 +577,7 @@ def main() -> None:
             path.write_text(content, encoding="utf-8")
     data = build()
     print(
-        "ok: H5.0.2 researched "
+        "ok: H5.0.2-R1 researched "
         f"{data['summary']['h5_residuals_researched']} residuals and "
         f"{data['summary']['mechanical_gates_dispositioned']} mechanical gates; "
         f"selected {data['summary']['exact_test_article_skus_selected']} exact test SKUs; "

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "current_stage": "H5",
-  "current_substep": "H5.0.2-R1",
-  "current_detail": "The current 9-residual/14-gate map is reviewed, including the common official SA818S-U/V 18-land boundary; H5 is exhausting primary sources and serial alternatives before rebuilding the sample basket; purchasing, PCB layout and fabrication remain unauthorized",
+  "current_substep": "H5.0.3-R1",
+  "current_detail": "The 9-residual/14-gate map and primary-source research are reviewed; SA818S-U is stocked, SA818S-V is exact but pre-order, and SA818S-CE is a qualified-pending UHF-only alternate; H5 is rebuilding the irreducible basket and current 210-line JLCPCB routes; purchasing, PCB layout and fabrication remain unauthorized",
   "stages": [
     {"id": "H0", "status": "reviewed"},
     {"id": "H1", "status": "reviewed"},

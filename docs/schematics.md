@@ -122,7 +122,7 @@ NRF0["Ebyte E01-ML01IPX<br/>full-function nRF24 radio #0"]
 NRF1["Ebyte E01-ML01IPX<br/>full-function nRF24 radio #1"]
 NRF2["Ebyte E01-ML01IPX<br/>full-function nRF24 radio #2"]
 CC["CC1101RGPR<br/>multi-band sub-GHz transceiver"]
-VOICE["G-NiceRF SA818S-U<br/>analog VHF/UHF voice transceiver"]
+VOICE["G-NiceRF SA818S-U<br/>analog UHF 400–480-MHz voice transceiver"]
 U214_CONNECTOR["Samtec HLE-107-02-G-DV-PE-LC<br/>vertical 14-contact Cap-Bus host on raised rear rail"]
 U214["M5Stack U214 Cap LoRa-1262<br/>removable LoRa/GNSS Cap module"]
   RP <-->|"independent PIO0 SM0"| NRF0
@@ -196,7 +196,7 @@ flowchart TD
 S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
 SLOW_IO["TCA6424ARGJR<br/>24-line slow-control expander"]
 RECEIVER["Si4732-A10-GSR<br/>FM/AM/SW/LW broadcast receiver"]
-VOICE["G-NiceRF SA818S-U<br/>analog VHF/UHF voice transceiver"]
+VOICE["G-NiceRF SA818S-U<br/>analog UHF 400–480-MHz voice transceiver"]
 MICROPHONE["Same Sky CMEJ-0413-42-SMT-TR<br/>internal electret microphone"]
 HEADSET_CONTROL_IO["TCA9534APWR<br/>dedicated headset control and 7 reserve I/O lines"]
 HEADSET_MIC_SELECTOR["Texas Instruments TS5A63157DCKR<br/>internal/headset microphone selector"]
@@ -273,7 +273,7 @@ RP_BOOT_BUTTON["Alps Alpine SKRTLAE010<br/>external side RP USB_BOOT button"]
   RP_BOOT_BUTTON -->|"QSPI_SS / USB_BOOT"| RP
 ```
 
-### Nine independent antenna ports
+### Ten independent antenna ports
 
 ```mermaid
 flowchart TD
@@ -292,8 +292,10 @@ NRF2["Ebyte E01-ML01IPX<br/>full-function nRF24 radio #2"]
 NRF2_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>independent nRF24 #2 SMA port"]
 CC["CC1101RGPR<br/>multi-band sub-GHz transceiver"]
 CC_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>multi-band sub-GHz SMA port"]
-VOICE["G-NiceRF SA818S-U<br/>analog VHF/UHF voice transceiver"]
-VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>VHF/UHF voice SMA port"]
+VOICE["G-NiceRF SA818S-U<br/>analog UHF 400–480-MHz voice transceiver"]
+VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>UHF 400–480-MHz voice SMA port"]
+VOICE_V["G-NiceRF SA818S-V<br/>analog VHF 134–174-MHz voice transceiver"]
+VOICE_V_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>VHF 134–174-MHz voice SMA port"]
   S3 -->|"50 Ω"| S3_EXTERNAL_RP_SMA
   C5 -->|"50 Ω"| C5_EXTERNAL_RP_SMA
   RECEIVER -->|"FM/SW receive"| RECEIVER_FMSW_EXTERNAL_SMA
@@ -302,7 +304,8 @@ VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>VHF/UHF voice SMA port"]
   NRF1 -->|"50 Ω"| NRF1_EXTERNAL_SMA
   NRF2 -->|"50 Ω"| NRF2_EXTERNAL_SMA
   CC -->|"50 Ω"| CC_EXTERNAL_SMA
-  VOICE -->|"50 Ω"| VOICE_EXTERNAL_SMA
+  VOICE -->|"UHF 400–480 MHz; 50 Ω"| VOICE_EXTERNAL_SMA
+  VOICE_V -->|"VHF 134–174 MHz; 50 Ω"| VOICE_V_EXTERNAL_SMA
 ```
 
 ### Power as an independent path

@@ -13,7 +13,7 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 
 ## RF/power board
 
-- Real-time radio domain: `SC1512-A4`, three `Ebyte E01-ML01IPX`, `CC1101RGPR` and `G-NiceRF SA818S-U`.
+- Real-time radio domain: `SC1512-A4`, three `Ebyte E01-ML01IPX`, `CC1101RGPR`, `G-NiceRF SA818S-U` and `G-NiceRF SA818S-V`.
 - External modules: removable `M5Stack U214 Cap LoRa-1262` on exact vertical `Samtec HLE-107-02-G-DV-PE-LC` of the raised rear rail and an independent M5 Unit port on exact `1125R-SMT-4P`.
 - Power and product USB-C: `JAE DX07S016JA1R1500`, `Texas Instruments TPD4S201RUKR` protection, `Texas Instruments TPS25751DREFR` USB-PD, charger, cells and every rail converter.
 - Rear-board audio: `Same Sky CMEJ-0413-42-SMT-TR` microphone with local bias, `Diodes Incorporated PAM8302AAYCR` differential amplifier and `PUI Audio AS02404PO` speaker.

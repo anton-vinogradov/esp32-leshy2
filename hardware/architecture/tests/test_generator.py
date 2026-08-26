@@ -37,9 +37,10 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H5.0.2-R1", roadmap["current_substep"])
-        self.assertEqual("H5.0.2-R1", h5["current_substep"])
+        self.assertEqual("H5.0.3-R1", roadmap["current_substep"])
+        self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
+        self.assertIn("H5.0.2-R1", h5["reviewed_artifacts"])
         self.assertIn("H5.0.3", h5["superseded_current_artifacts"])
         self.assertFalse(h5["authorization"]["sample_or_component_purchase"])
         self.assertIn("superseded", plan)
@@ -500,6 +501,17 @@ class ArchitectureValidationTests(unittest.TestCase):
             "github.com/anton-vinogradov/esp32-leshy2",
         ):
             self.assertIn(token, rendered)
+
+        projection = (
+            GENERATOR.REPO_ROOT
+            / "hardware/architecture/generated/G2F-3I-principled-projection.mmd"
+        ).read_text(encoding="utf-8")
+        for token in (
+            'VOICE_V -->|"short controlled 50-Ohm line"| VOICE_V_EXTERNAL_SMA',
+            "DET_VOICE_V --> EVIDENCE_CMP_VOICE_V",
+            "EVIDENCE_CMP_VOICE_V --> EVIDENCE_MASK",
+        ):
+            self.assertIn(token, projection)
         self.assertNotIn("SPEAKER / GRILLE", rendered)
         self.assertNotIn('data-interface-kind="acoustic-opening"', rendered)
         for connector_silkscreen in ("2.4 GHz RP-SMA", "2.4/5 GHz RP-SMA", "2.4 GHz SMA"):

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "H5",
   "status": "in_progress",
-  "current_substep": "H5.0.2-R1",
+  "current_substep": "H5.0.3-R1",
   "purpose": "close received-part uncertainties with the least expensive reliable evidence, using documents or serial replacements before buying samples",
   "accepted_inputs": [
     "H4 joined pre-layout gate reviewed",
@@ -41,12 +41,12 @@
         {
           "id": "H5.0.2-R1",
           "title": "Search manufacturer and distributor evidence more deeply and evaluate fully documented serial replacements",
-          "status": "current"
+          "status": "reviewed"
         },
         {
           "id": "H5.0.3-R1",
           "title": "Publish only the irreducible received-sample set, exact measurements and cost for explicit approval",
-          "status": "waiting"
+          "status": "current"
         }
       ]
     },
@@ -72,6 +72,12 @@
       "readable_result_en": "docs/component-evidence-map.md",
       "readable_result_ru": "docs/component-evidence-map.ru.md",
       "result": "nine H5 residuals and fourteen current mechanical gates mapped; both SA818S variants share one official 18-land evidence boundary; zero physical claims closed and zero orders authorized"
+    },
+    "H5.0.2-R1": {
+      "machine_result": "hardware/verification/generated/H5-EVR02-source-research.json",
+      "readable_result_en": "docs/component-source-research.md",
+      "readable_result_ru": "docs/component-source-research.ru.md",
+      "result": "all nine H5 residuals and fourteen gates researched; SA818S-U and SA818S-V retain exact manufacturer/JLCPCB routes; stock-zero SA818S-V is pre-order; SA818S-CE is a non-silent qualified-pending UHF-only alternate with a 470-MHz clamp; zero physical claims closed and zero orders authorized"
     }
   },
   "superseded_artifacts": {
@@ -104,5 +110,5 @@
   },
   "blocker": null,
   "next_active_repository": "esp32-leshy2",
-  "next_active_substep": "H5.0.2-R1"
+  "next_active_substep": "H5.0.3-R1"
 }

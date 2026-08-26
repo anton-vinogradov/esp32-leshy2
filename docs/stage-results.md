@@ -208,16 +208,17 @@ residuals remain owned by H5/H6/H8; no purchase, PCB layout or fabrication is au
 <a id="h5"></a>
 ## H5 · Component evidence samples
 
-**Status:** ▶️ current `H5.0.2-R1`. The refreshed [residual map](component-evidence-map.md)
-binds all nine H5 residuals and 14 mechanical gates to the 210-line
-dual-SA818S BOM. Primary sources and serial alternatives are now being
-rechecked; purchasing is not authorized.
+**Status:** ▶️ current `H5.0.3-R1`. The refreshed [residual map](component-evidence-map.md)
+and [source review](component-source-research.md) bind all nine H5 residuals
+and 14 mechanical gates to the 210-line dual-SA818S BOM. Both selected voice
+modules retain exact routes; the irreducible basket and all 210 JLCPCB routes
+are now being rebuilt. Purchasing is not authorized.
 
 The current [machine plan](../hardware/verification/h5-component-evidence-plan.json)
-records `H5.0.1-R1` as reviewed and the former SA518 outputs as superseded. The refreshed evidence must cover both
+records `H5.0.1-R1` and `H5.0.2-R1` as reviewed and the former SA518 outputs as superseded. The refreshed evidence must cover both
 SA818S module identities, their common land pattern, two independent RF paths
 and the qualified-pending SA818S-CE UHF alternate. The former
-[PCBA platform baseline](manufacturing-platform.md) selects JLCPCB Standard as
+[PCBA platform page](manufacturing-platform.md) is currently being rebuilt around JLCPCB Standard as
 the non-exclusive reference. The normalized compact upload matched 176 of 209
 lines and parsed all 1019 placements. Exact public search resolved all 33
 outliers into `J0`–`J3`, `J4-F` or `J4-P`; no semantic MPN substitution or component replacement

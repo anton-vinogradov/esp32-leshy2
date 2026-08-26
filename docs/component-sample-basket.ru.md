@@ -2,6 +2,10 @@
 
 [English](component-sample-basket.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Предыдущий поиск](component-source-research.ru.md)
 
+> **Отменённый рабочий input:** эта страница пока показывает прежнюю
+> single-SA518 корзину и не описывает текущий продукт. `H5.0.3-R1`
+> пересобирает её для выбранной пары `SA818S-U` + `SA818S-V`; закупка не разрешена.
+
 Корзина опубликована, но **H5.0.3 ещё не закрыт**: [JLCPCB Standard PCBA выбран рабочей производственной линией](manufacturing-platform.ru.md); контрольный BOM Tool прогон сопоставил 176/209 строк и распознал все 1019 установок, а exact-поиск дал всем 209 строкам маршруты `J0`–`J3`, `J4-F` или `J4-P` без замен. `NiceRF SA518` остаётся единственной неизвестной ценой компонента; отдельно открыты фабричные gates `J4-F` box-build и `J4-P` kit/packing/shipping. Приложение JLCAPI создано, право Parts находится на ревью; закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication не разрешены.
 
 ```mermaid

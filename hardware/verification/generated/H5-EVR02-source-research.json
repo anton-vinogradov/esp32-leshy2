@@ -1,19 +1,21 @@
 {
   "schema_version": 1,
-  "stage": "H5.0.2",
+  "stage": "H5.0.2-R1",
   "status": "reviewed_research_only",
-  "checked_on": "2026-08-25",
+  "checked_on": "2026-08-26",
   "purpose": "exhaust primary documentary evidence and fully documented serial alternatives before proposing any received sample",
-  "input": {
-    "path": "hardware/verification/generated/H5-EVR01-residual-map.json",
-    "sha256": "87a6ef8e09662376aba45ee393a06d8e8ee37851dd77861166103724e88df5ed"
+  "inputs": {
+    "hardware/verification/generated/H5-EVR01-residual-map.json": "936756bd7bfd7ccdc91fd6a541a86e475ae377fc4a7b78f37801d17730f0a8db",
+    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c"
   },
   "summary": {
     "h5_residuals_researched": 9,
     "mechanical_gates_dispositioned": 14,
     "test_article_categories_selected": 2,
     "exact_test_article_skus_selected": 4,
-    "alternatives_explicitly_evaluated": 5,
+    "alternatives_explicitly_evaluated": 4,
+    "selected_voice_routes": 2,
+    "qualified_pending_voice_alternates": 1,
     "physical_claims_closed": 0,
     "orders_authorized": 0
   },
@@ -47,6 +49,24 @@
       "title": "E01 series user manual",
       "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
       "supports": "current manufacturer electrical and module-outline evidence"
+    },
+    "jlc_sa818s_ce": {
+      "owner": "JLCPCB",
+      "title": "Exact G-NiceRF SA818S-CE catalog line C19632390",
+      "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SCE/C19632390",
+      "supports": "exact manufacturer identity; Economic/Standard PCBA; 8 in stock and USD 9.3449 at quantity one at review time"
+    },
+    "jlc_sa818s_u": {
+      "owner": "JLCPCB",
+      "title": "Exact G-NiceRF SA818S-U catalog line C3001549",
+      "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549",
+      "supports": "exact manufacturer identity; Standard PCBA; 68 in stock, 60 available and USD 9.7347 at quantity one at review time"
+    },
+    "jlc_sa818s_v": {
+      "owner": "JLCPCB",
+      "title": "Exact G-NiceRF SA818S-V catalog line C51897911",
+      "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911",
+      "supports": "exact manufacturer identity; Standard PCBA; zero stock and pre-order at USD 10.0710 at review time"
     },
     "lcdwiki_es3c35p": {
       "owner": "LCDWiki",
@@ -96,23 +116,17 @@
       "url": "https://github.com/m5stack/M5_Hardware/tree/master/Products/U214_Cap_LoRa-1262/Structures",
       "supports": "official STL structure evidence without a fitted-header BOM identity"
     },
-    "nicerf_sa518": {
-      "owner": "NiceRF",
-      "title": "SA518 current manufacturer specification",
-      "url": "https://www.nicerf.com/upload/20260430/391f11abcc1d835ac5ed151613fdae68.pdf",
-      "supports": "current SA518 U/V simultaneous dual-band identity, 39.5 x 24.0 x 3.15 mm body, contact map, 3.3-to-5.0-V supply and 0.5/1-W modes"
+    "nicerf_sa818s_package": {
+      "owner": "G-NiceRF",
+      "title": "SA818S official package archive",
+      "url": "https://www.nicerf.com/upload/20240508/15920bc3c0d003841f4af8edad4e7b29.zip",
+      "supports": "common official PADS/DXF 18-land host pattern for SA818S-U, SA818S-V and SA818S-CE"
     },
-    "nicerf_sa528": {
-      "owner": "NiceRF",
-      "title": "SA528 U/V dual-band module product page",
-      "url": "https://www.nicerf.com/walkie-talkie-module/sa528-uv-dual-band-wireless-data-voice-walkie-talkie-module.html",
-      "supports": "simultaneous U/V function but a 54.03 x 38.30 x 7.70 mm integrated body and materially different 23-contact/audio interface"
-    },
-    "nicerf_sa818pro": {
-      "owner": "NiceRF",
-      "title": "SA818Pro ordering-model and interface description",
-      "url": "https://www.nicerf.com/news/sa818pro-analog-walkie-talkie-module-voice-fsk-data.html",
-      "supports": "compact 35.6 x 19.0 mm interface and explicit separate -U/-V order variants rather than one simultaneous U/V module"
+    "nicerf_sa818s_v18": {
+      "owner": "G-NiceRF",
+      "title": "SA818S Product Specification Rev 1.8",
+      "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+      "supports": "one common 18-contact interface and 35.60 x 19.00 x 3.20 mm body; U=400-480 MHz, V=134-174 MHz and CE=400-470 MHz order variants; 3.3-5.5 V and 9600-8N1 ASCII control"
     },
     "sandisk_endurance": {
       "owner": "SanDisk",
@@ -312,12 +326,14 @@
       "physical_claim_closed": false
     },
     {
-      "id": "H5-MECH-SA518-LAND-FIT",
-      "disposition": "primary_source_and_alternatives_exhausted_supplier_sample_open",
+      "id": "H5-MECH-SA818S-DUAL-LAND-FIT",
+      "disposition": "common_official_land_pattern_and_exact_catalog_routes_reviewed_received_fit_open",
       "sources": [
-        "nicerf_sa518",
-        "nicerf_sa818pro",
-        "nicerf_sa528"
+        "nicerf_sa818s_v18",
+        "nicerf_sa818s_package",
+        "jlc_sa818s_u",
+        "jlc_sa818s_v",
+        "jlc_sa818s_ce"
       ],
       "physical_claim_closed": false
     },
@@ -412,6 +428,54 @@
       "selection_status": "selected_not_ordered"
     }
   ],
+  "voice_module_routes": [
+    {
+      "role": "selected_uhf",
+      "device_id": "nicerf_sa818s_u_v18",
+      "mpn": "G-NiceRF SA818S-U",
+      "jlcpcb_part": "C3001549",
+      "availability": "in_stock",
+      "stock": 68,
+      "available_order_quantity": 60,
+      "quantity_one_usd": "9.7347",
+      "sources": [
+        "nicerf_sa818s_v18",
+        "nicerf_sa818s_package",
+        "jlc_sa818s_u"
+      ]
+    },
+    {
+      "role": "selected_vhf",
+      "device_id": "nicerf_sa818s_v_v18",
+      "mpn": "G-NiceRF SA818S-V",
+      "jlcpcb_part": "C51897911",
+      "availability": "preorder_stock_zero",
+      "stock": 0,
+      "minimum": 1,
+      "quantity_one_usd": "10.0710",
+      "sources": [
+        "nicerf_sa818s_v18",
+        "nicerf_sa818s_package",
+        "jlc_sa818s_v"
+      ]
+    },
+    {
+      "role": "qualified_pending_uhf_alternate",
+      "device_id": "nicerf_sa818s_ce_v18",
+      "mpn": "G-NiceRF SA818S-CE",
+      "jlcpcb_part": "C19632390",
+      "availability": "in_stock",
+      "stock": 8,
+      "available_order_quantity": 8,
+      "quantity_one_usd": "9.3449",
+      "sources": [
+        "nicerf_sa818s_v18",
+        "nicerf_sa818s_package",
+        "jlc_sa818s_ce"
+      ],
+      "restriction": "substitutes only SA818S-U; manifest disables 470-480 MHz; received-part HIL required"
+    }
+  ],
   "evaluated_alternatives": [
     {
       "target": "TSOP95238TT robust 38-kHz IR receiver",
@@ -443,22 +507,16 @@
       "reason": "no alternative found with a fully documented identical controller, flex contacts, outline, touch stack and connector; substitution would reopen architecture and placement"
     },
     {
-      "target": "SA518 simultaneous U/V voice module",
-      "candidate": "SA818Pro-U plus SA818Pro-V",
+      "target": "SA818S-U UHF voice module",
+      "candidate": "SA818S-CE",
       "sources": [
-        "nicerf_sa818pro"
+        "nicerf_sa818s_v18",
+        "nicerf_sa818s_package",
+        "jlc_sa818s_u",
+        "jlc_sa818s_ce"
       ],
-      "decision": "rejected_as_function_preserving_replacement",
-      "reason": "SA818Pro is ordered as one band or the other; preserving onboard VHF and UHF would require two modules, two RF paths and a reopened power, GPIO, audio and placement architecture"
-    },
-    {
-      "target": "SA518 simultaneous U/V voice module",
-      "candidate": "SA528",
-      "sources": [
-        "nicerf_sa528"
-      ],
-      "decision": "rejected_as_form_fit_replacement",
-      "reason": "SA528 preserves simultaneous U/V but its 54.03 x 38.30 x 7.70 mm body and 23-contact integrated-audio interface do not fit the accepted 39.5 x 24.0 x 3.15 mm SA518 reserve or circuit"
+      "decision": "qualified_pending_pin_package_command_compatible_uhf_alternate",
+      "reason": "the family datasheet applies one 18-contact interface, package and command set to both variants, and both exact G-NiceRF identities are orderable at JLCPCB; CE is only a UHF alternate because its certified range stops at 470 MHz instead of 480 MHz, so a manifest clamp plus received-part HIL is mandatory and silent substitution is forbidden"
     }
   ],
   "checks": {
@@ -469,13 +527,15 @@
     "every_selected_test_article_has_a_primary_or_distributor_source": true,
     "every_referenced_external_source_is_registered": true,
     "all_evaluated_replacements_have_an_explicit_decision_and_reason": true,
+    "selected_voice_routes_match_the_current_device_registry": true,
+    "both_selected_voice_variants_and_one_non_silent_alternate_are_routed": true,
     "no_received_sample_claim_is_closed_by_document_search": true,
     "purchase_layout_and_fabrication_are_not_authorized": true
   },
   "decision_boundary": {
     "accepted_now": "the documentary search result, exact microSD and M5 interconnect test identities, and rejected non-drop-in alternatives",
     "not_accepted": "any received-lot identity, fit, retention, RF, timing, acoustic, thermal, endurance or fault-injection claim",
-    "next": "H5.0.3 deduplicates the irreducible received-sample basket, measurements and current cost for explicit approval",
+    "next": "H5.0.3-R1 deduplicates the irreducible received-sample basket, measurements and current cost for explicit approval",
     "purchase_authorized": false,
     "pcb_placement_and_routing_authorized": false,
     "fabrication_authorized": false

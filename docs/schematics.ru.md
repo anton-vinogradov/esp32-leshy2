@@ -122,7 +122,7 @@ NRF0["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-рад�
 NRF1["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-радио №1"]
 NRF2["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-радио №2"]
 CC["CC1101RGPR<br/>многодиапазонный sub-GHz transceiver"]
-VOICE["G-NiceRF SA818S-U<br/>аналоговый VHF/UHF voice transceiver"]
+VOICE["G-NiceRF SA818S-U<br/>аналоговый UHF 400–480 МГц voice transceiver"]
 U214_CONNECTOR["Samtec HLE-107-02-G-DV-PE-LC<br/>вертикальный 14-контактный host Cap-Bus на поднятой планке"]
 U214["M5Stack U214 Cap LoRa-1262<br/>съёмный LoRa/GNSS Cap-модуль"]
   RP <-->|"independent PIO0 SM0"| NRF0
@@ -196,7 +196,7 @@ flowchart TD
 S3["ESP32-S3-WROOM-1U-N16R8<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
 SLOW_IO["TCA6424ARGJR<br/>24-линейный slow-control expander"]
 RECEIVER["Si4732-A10-GSR<br/>приёмник FM/AM/SW/LW"]
-VOICE["G-NiceRF SA818S-U<br/>аналоговый VHF/UHF voice transceiver"]
+VOICE["G-NiceRF SA818S-U<br/>аналоговый UHF 400–480 МГц voice transceiver"]
 MICROPHONE["Same Sky CMEJ-0413-42-SMT-TR<br/>внутренний электретный микрофон"]
 HEADSET_CONTROL_IO["TCA9534APWR<br/>выделенное управление гарнитурой и 7 резервных I/O"]
 HEADSET_MIC_SELECTOR["Texas Instruments TS5A63157DCKR<br/>выбор встроенного/гарнитурного микрофона"]
@@ -292,8 +292,10 @@ NRF2["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-рад�
 NRF2_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>независимый SMA порт nRF24 №2"]
 CC["CC1101RGPR<br/>многодиапазонный sub-GHz transceiver"]
 CC_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>многодиапазонный SMA порт sub-GHz"]
-VOICE["G-NiceRF SA818S-U<br/>аналоговый VHF/UHF voice transceiver"]
-VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>SMA порт VHF/UHF voice"]
+VOICE["G-NiceRF SA818S-U<br/>аналоговый UHF 400–480 МГц voice transceiver"]
+VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>SMA порт UHF 400–480 МГц voice"]
+VOICE_V["G-NiceRF SA818S-V<br/>аналоговый VHF 134–174 МГц voice transceiver"]
+VOICE_V_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>SMA порт VHF 134–174 МГц voice"]
   S3 -->|"50 Ω"| S3_EXTERNAL_RP_SMA
   C5 -->|"50 Ω"| C5_EXTERNAL_RP_SMA
   RECEIVER -->|"FM/SW receive"| RECEIVER_FMSW_EXTERNAL_SMA
@@ -302,7 +304,8 @@ VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>SMA порт VHF/UHF voice"]
   NRF1 -->|"50 Ω"| NRF1_EXTERNAL_SMA
   NRF2 -->|"50 Ω"| NRF2_EXTERNAL_SMA
   CC -->|"50 Ω"| CC_EXTERNAL_SMA
-  VOICE -->|"50 Ω"| VOICE_EXTERNAL_SMA
+  VOICE -->|"UHF 400–480 MHz; 50 Ω"| VOICE_EXTERNAL_SMA
+  VOICE_V -->|"VHF 134–174 MHz; 50 Ω"| VOICE_V_EXTERNAL_SMA
 ```
 
 ### Питание как отдельный тракт

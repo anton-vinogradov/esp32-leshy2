@@ -3,7 +3,7 @@
 [English](roadmap.md) · [На главную](../README.ru.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶️ Текущая аппаратная граница: H5.0.2-R1 — поиск первичных источников и серийных альтернатив.**
+> **▶️ Текущая аппаратная граница: H5.0.3-R1 — неустранимая корзина и пересборка 210 маршрутов JLCPCB.**
 > H0–H4 прошли ревью. PCB layout и разрешённого заказа пока нет.
 
 Последняя сверка статуса: **26 августа 2026 года**. Это собственный
@@ -31,7 +31,7 @@
 | Объединённый pre-layout gate | ✅ [H4 проведён](h4-prelayout-gate-report.ru.md): 0 открытых виртуальных противоречий; у 85 физических residuals сохранены владельцы H5/H6/H8 |
 | Работа над KiCad-схемой | ✅ H2 проведено ревью; позднее несоответствие повторно откроет затронутые листы |
 | KiCad placement и PCB routing | 🔒 H6: не начаты и не разрешены |
-| Evidence компонентов | ▶️ H5.0.2-R1 повторно проверяет первичные источники и документированные серийные альтернативы после ревью dual-SA818S карты из 9 residuals/14 gates; закупка образцов заблокирована |
+| Evidence компонентов | ▶️ H5.0.3-R1 пересобирает неустранимую корзину образцов и все 210 маршрутов JLCPCB после ревью dual-SA818S карты и source research; закупка образцов заблокирована |
 | Заказ прототипных PCB | 🔒 Запрещён до H7 |
 | Production-заказ | 🔒 Запрещён до H9 |
 
@@ -42,13 +42,13 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённые H1–H4 и текущая пересборка evidence H5
 
-<!-- current-substep: H5.0.2-R1 -->
+<!-- current-substep: H5.0.3-R1 -->
 
-**Точный маркер: `H5.0.2-R1`** — [карта физических residuals](component-evidence-map.ru.md)
-прошла ревью по `SA818S-V`, `SA818S-U`, их официальному общему 18-land
-корпусу, двум независимым RF feeds и точному текущему production BOM. Сейчас
-исчерпываются первичные источники и полностью документированные серийные
-альтернативы, затем пересобираются корзина и карта JLCPCB.
+**Точный маркер: `H5.0.3-R1`** — [карта физических residuals](component-evidence-map.ru.md)
+и [поиск первичных источников](component-source-research.ru.md) прошли ревью.
+Текущий шаг дедуплицирует только неустранимые получаемые образцы, точные
+измерения и актуальную стоимость, затем пересобирает каждый маршрут JLCPCB для
+210-строчного dual-SA818S production BOM.
 Старая single-SA518 корзина и platform snapshot из 209 строк не описывают
 текущий продукт. Quote/reservation и закупка не разрешены; точный маркер и
 evidence меняются вместе в одном commit.
@@ -189,9 +189,10 @@ evidence меняются вместе в одном commit.
   - ✅ `H2.3.6` — `RF_31_NRF24_X3`: 105 точных компонентов ledger плюс три
     границы заводских IPEX, 311 физических контактов, три независимых PIO SPI-
     и RF-тракта, 33 интерфейса и два объяснённых NC; native KiCad пройден.
-  - ✅ `H2.3.7` — `RF_32_SUBGHZ_VOICE`: 116 точных компонентов, 363
-    физических контакта, независимые CC1101 data и SA518 voice power/control/RF-
-    тракты, 32 интерфейса и 11 объяснённых NC; native KiCad review пройден.
+  - ✅ `H2.3.7-R1` — `RF_32_SUBGHZ_VOICE`: 143 точных компонента, 473
+    физических контакта, независимые CC1101 data и SA818S-V/SA818S-U
+    power/control/RF-тракты, 40 интерфейсов и 20 объяснённых NC; native KiCad
+    review пройден.
   - ✅ `H2.3.8` — `RF_34_U214_M5_EXT`: 53 символа, 52 устанавливаемых
     компонента, 228 контактов, 27 интерфейсов и отдельные защищённые ветви
     U214/native Unit; native KiCad review пройдено.
@@ -290,8 +291,8 @@ evidence меняются вместе в одном commit.
 - ✅ `H4.2` — три документальных несоответствия исправлены в источниках и перегенерированы.
 - ✅ `H4.3` — [объединённый gate H4 проведён](h4-prelayout-gate-report.ru.md).
 - ✅ `H5.0.1-R1` — [все девять residuals и 14 механических gates связаны](component-evidence-map.ru.md) для текущей dual-SA818S архитектуры.
-- ▶️ `H5.0.2-R1` — пересобрать поиск первичных источников и серийных альтернатив для двух выбранных SA818S и qualified-pending CE-замены.
-- 🔒 `H5.0.3-R1` — пересобрать неустранимую корзину и карту JLCPCB для 210-строчного BOM после прохождения source research.
+- ✅ `H5.0.2-R1` — [первичные источники и серийные альтернативы проведены](component-source-research.ru.md); exact U/V-маршруты сохранены, CE ограничен как немолчаливая qualified-pending UHF-замена.
+- ▶️ `H5.0.3-R1` — пересобрать неустранимую корзину и карту JLCPCB для 210-строчного BOM.
 
 Проверенный план H2 — [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json),
 завершённые планы H3/H4 — [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json)
@@ -353,7 +354,7 @@ gates, точный S3 QEMU и portable/host-модели для targets без 
 | **H2. Production ECAD-схема** | ✅ Проведено ревью и принято | Новая актуальная схема на читаемых листах и machine-readable HW↔FW contract | Точные symbol/footprint/pin/net/value; объяснены NC; ERC без необъяснённых ошибок; отдельно проверены reset, boot, recovery, no-back-power, quiet state и `FAULT_KILL`; firmware F2 использует контракт без выдуманных pins |
 | **H3. Виртуальная электрическая проверка** | ✅ Проведено ревью и принято | [Итоговый отчёт H3](h3-acceptance.ru.md): расчёты и симуляции до дорогой физики | Проходят worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse и load-step; thermal/fault tree; все analog corners; timing/levels; RF corridors, returns и pre-layout constraints |
 | **H4. Объединённый pre-layout gate** | ✅ [Проведено ревью](h4-prelayout-gate-report.ru.md) | Единое ревью механики, production ECAD, электрических evidence и видимых target-прошивке контрактов | Нет открытого виртуально проверяемого blocker; target skeletons используют реальный контракт; у каждой остаточной физической неопределённости есть измерение и bring-up test |
-| **H5. Evidence компонентов** | ▶️ Сейчас `H5.0.2-R1`; актуальная карта 9 residuals/14 gates проведена, source research пересобирается, закупка заблокирована | [Текущая карта residuals](component-evidence-map.ru.md); прежняя SA518-корзина и 209-строчный аудит площадки остаются только отменёнными входами | У каждой production-BOM-строки есть точный маршрут `J0`–`J3`, `J4-F` или `J4-P`, молчаливых замен нет; опубликованы точная стоимость корзины и финальной сборки; фабрика приняла `J4-F` box-build и `J4-P` kit/packing/shipping; одобренные полученные образцы доказывают identity, mating, stack-up и критические размеры |
+| **H5. Evidence компонентов** | ▶️ Сейчас `H5.0.3-R1`; карта 9 residuals/14 gates и source research проведены, 210 маршрутов и неустранимая корзина пересобираются, закупка заблокирована | [Текущая карта residuals](component-evidence-map.ru.md) и [отчёт по источникам](component-source-research.ru.md); прежняя SA518-корзина и 209-строчный аудит площадки остаются только отменёнными входами | У каждой production-BOM-строки есть точный маршрут `J0`–`J3`, `J4-F` или `J4-P`, молчаливых замен нет; опубликованы точная стоимость корзины и финальной сборки; фабрика приняла `J4-F` box-build и `J4-P` kit/packing/shipping; одобренные полученные образцы доказывают identity, mating, stack-up и критические размеры |
 | **H6. PCB placement и routing** | 🔒 Ожидает H5 | Две реальные платы, реализующие принятую схему и механику | Пройдены placement review обеих сторон, DRC, impedance и return-current review, RF isolation, antenna feeds, thermal copper, creepage, test points, assembly и manufacturability; fab package принят отдельно |
 | **H7. Печать прототипа и bring-up** | 🔒 Ожидает H6, унаследованный firmware F3, принятую фабричную границу `J4-F/P` и одобрение заказа | Небольшая партия прототипов, фабрично собранные `J4-F`, отдельно упакованные `J4-P` и сохранённый bring-up log | Результат box-build соответствует принятой границе; rails запускаются по контракту; все пять контроллеров прошиваются и восстанавливаются; интерфейсы, display, storage, audio, radio и expansion проходят smoke tests; каждый rework отражён в исходниках |
 | **H8. Физическая квалификация** | 🔒 Ожидает H7 | HIL, RF, thermal, power, safety и endurance evidence | 3×nRF24 проходят `3R/1T2R/2T1R/3T`; активные сигналы не тормозятся соседями; выключенные интерфейсы физически тихие; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog и single-fault tests пройдены |
@@ -380,10 +381,9 @@ gates, точный S3 QEMU и portable/host-модели для targets без 
 
 ## Что происходит следующим
 
-Текущая граница — `H5.0.2-R1`: все девять физических residuals H5 и 14
-механических gates связаны для dual-SA818S продукта. Сейчас повторно
-проверяются первичные источники, точный package evidence, актуальные catalog
-identity и полностью документированные серийные альтернативы; только затем
-пересобираются неустранимая корзина и 210-строчная карта JLCPCB. Read-only
-доступ Parts настроен, но ожидает ревью права JLCPCB; PCB placement/routing,
-quote/reservation и любой заказ остаются заблокированы.
+Текущая граница — `H5.0.3-R1`: все девять физических residuals H5 и 14
+механических gates связаны, а source research проведён. Сейчас пересобираются
+неустранимая корзина получаемых образцов, точные контракты измерений, актуальная
+стоимость и все 210 маршрутов JLCPCB. Read-only доступ Parts настроен, но
+ожидает ревью права JLCPCB; PCB placement/routing, quote/reservation и любой
+заказ остаются заблокированы.

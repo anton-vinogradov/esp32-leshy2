@@ -44,11 +44,11 @@ later because Espressif does not support SDIO on revision v0.1.
 | nRF24 ×3 | `Ebyte E01-ML01IPX` | RP2354B | Concurrent `3R`, `1T2R`, `2T1R`, `3T` |
 | Sub-GHz | `CC1101RGPR` | RP2354B | 315, 433, 868 and 915 MHz |
 | Broadcast RX | `Si4732-A10-GSR` | S3 | FM/SW plus a separate AM/LW input |
-| Voice | `NiceRF SA518` | RP2354B | Analog VHF/UHF communications |
+| Voice VHF/UHF | `G-NiceRF SA818S-V` + `G-NiceRF SA818S-U` | RP2354B | Independent analog VHF and UHF communications with hardware one-hot selection |
 | IR RX | `TSOP75238TT` + `TSMP95000TT` | C5 | 38-kHz demodulation and 30–60-kHz learning |
 | IR TX | `VSMY14940` | C5 | Controlled 940-nm transmit with optical evidence |
 | LoRa/GNSS Cap | `M5Stack U214 Cap LoRa-1262` or `LESHY2-LORA-CAP-01-EU868/US915` | RP2354B | Stock Cap: RX/GNSS; exact Leshy Cap: qualified regional RX/TX |
-| External antenna jacks | `7× GCT RFPC-SMA31-FN-175-A` + `2× GCT RFPC-SMA32-FN-175-A` | Dedicated per path | 6-GHz, 50-ohm board-edge SMA/RP-SMA on the two outward PCB faces; no RF sharing or connector bodies in the interboard channel |
+| External antenna jacks | `8× GCT RFPC-SMA31-FN-175-A` + `2× GCT RFPC-SMA32-FN-175-A` | Dedicated per path | Ten 6-GHz, 50-ohm board-edge SMA/RP-SMA bodies on the two outward PCB faces; no RF sharing or connector bodies in the interboard channel |
 
 FM/AM/SW/LW broadcast transmission is not a device capability: both Si4732
 ports remain receive-only. No custom transmitter or RF Cap is developed for
@@ -230,10 +230,11 @@ forward sample for the TX detector, and then reaches the outward
 `GCT RFPC-SMA32-FN-175-A` RP-SMA. Dashed blue lines show only that topology;
 their final geometry is created and verified in KiCad.
 
-Both inner projections now carry nine dashed-blue source-to-port guides:
+Both inner projections now carry ten dashed-blue source-to-port guides:
 `S3→S3 RP-SMA`, `Si4732 FMI→FM/SW SMA`, `Si4732 AMI→AM/LW SMA`,
 `C5→C5 RP-SMA`, three independent `E01-ML01IPX→nRF24 SMA` paths,
-`CC1101→SUB-GHz SMA` and `SA518 ANT7→VHF/UHF SMA`. On each nRF24 path the
+`CC1101→SUB-GHz SMA`, `SA818S-V ANT12→VHF SMA` and
+`SA818S-U ANT12→UHF SMA`. On each nRF24 path the
 cyan portion is the physical microcoax to the board U.FL; the blue PCB guide
 begins there. Every blue endpoint coincides with the red datum of its matching
 outward antenna connector. This is a complete connectivity map, not accepted
@@ -242,13 +243,13 @@ trace geometry.
 The externally mounted `Alps Alpine EC11E18244AU` is treated as a through-board
 part, not just an outer 11-mm class body. Its two mounting tabs and five signal
 terminals project 3.5 mm into the channel. Their exact seven keep-outs forced a
-small paper-layout correction: the RP2354 and nRF0 buffers moved upward, while
-the SA518 and the right-hand buffer columns moved right. No component, net or
-function changed. The seven features clear every RF-side body by at least the
-enforced 0.7 mm; their two opposing UI-body crossings retain 4.20 mm of Z
-clearance. Only the real SA518 contact-7 and unchanged VHF/UHF-connector
-endpoints are now shown, 32.92 mm apart: an invented pre-KiCad copper line no
-longer crosses component bodies in the drawing or masquerades as a routed trace.
+small paper-layout correction: the RP2354 and nRF0 buffers moved upward while
+the right-hand buffer columns moved right. No component, net or function
+changed. The seven features clear every RF-side body by at least the enforced
+0.7 mm; their two opposing UI-body crossings retain 4.20 mm of Z clearance.
+The drawing shows only the real contact-12 endpoint of each SA818S and its own
+VHF or UHF connector endpoint; no invented pre-KiCad copper line crosses a
+component body or masquerades as a routed trace.
 
 The exact 80-contact M1 body and the complete 3.8-mm display-adapter stack also
 pass the physical keep-out audit. This result deliberately does not claim that

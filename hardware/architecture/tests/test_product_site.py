@@ -155,13 +155,13 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: H5.0.2-R1", "H1 accepted",
+                "Current hardware boundary: H5.0.3-R1", "H1 accepted",
                 "F3 reviewed",
                 "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: H5.0.2-R1", "H1 принят",
+                "Текущая аппаратная граница: H5.0.3-R1", "H1 принят",
                 "F3 проведено ревью", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
@@ -177,8 +177,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Hardware is at H5.0.2-R1", "printing/fabrication"),
-            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H5.0.2-R1", "печать/на фабрику"),
+            "README.md": ("Roadmap and current position", "Hardware is at H5.0.3-R1", "printing/fabrication"),
+            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H5.0.3-R1", "печать/на фабрику"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -321,11 +321,20 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(14, evidence["summary"]["mechanical_gates_dispositioned"])
         self.assertEqual(2, evidence["summary"]["test_article_categories_selected"])
         self.assertEqual(4, evidence["summary"]["exact_test_article_skus_selected"])
+        self.assertEqual(2, evidence["summary"]["selected_voice_routes"])
+        self.assertEqual(1, evidence["summary"]["qualified_pending_voice_alternates"])
         self.assertEqual(0, evidence["summary"]["physical_claims_closed"])
         self.assertEqual(0, evidence["summary"]["orders_authorized"])
         self.assertTrue(all(evidence["checks"].values()))
         self.assertFalse(evidence["decision_boundary"]["purchase_authorized"])
         self.assertFalse(evidence["decision_boundary"]["pcb_placement_and_routing_authorized"])
+        voice_routes = {row["role"]: row for row in evidence["voice_module_routes"]}
+        self.assertEqual("C3001549", voice_routes["selected_uhf"]["jlcpcb_part"])
+        self.assertEqual("in_stock", voice_routes["selected_uhf"]["availability"])
+        self.assertEqual("C51897911", voice_routes["selected_vhf"]["jlcpcb_part"])
+        self.assertEqual("preorder_stock_zero", voice_routes["selected_vhf"]["availability"])
+        self.assertEqual("C19632390", voice_routes["qualified_pending_uhf_alternate"]["jlcpcb_part"])
+        self.assertIn("470-480 MHz", voice_routes["qualified_pending_uhf_alternate"]["restriction"])
         for name in ("docs/component-source-research.md", "docs/component-source-research.ru.md"):
             page = self.read(name)
             self.assertEqual(1, page.count("```mermaid"), name)
@@ -334,7 +343,7 @@ class ProductSiteTests(unittest.TestCase):
 
     def test_h5_0_3_sample_basket_is_complete_and_honest(self):
         plan = json.loads(self.read("hardware/verification/h5-component-evidence-plan.json"))
-        if plan["current_substep"] in {"H5.0.1-R1", "H5.0.2-R1"}:
+        if plan["current_substep"] in {"H5.0.1-R1", "H5.0.2-R1", "H5.0.3-R1"} and "H5.0.3-R1" not in plan["reviewed_artifacts"]:
             self.assertIn("H5.0.3", plan["superseded_current_artifacts"])
             self.assertFalse(plan["authorization"]["sample_or_component_purchase"])
             return
@@ -368,7 +377,7 @@ class ProductSiteTests(unittest.TestCase):
 
     def test_h5_0_3_pcba_platform_baseline_is_complete_and_honest(self):
         plan = json.loads(self.read("hardware/verification/h5-component-evidence-plan.json"))
-        if plan["current_substep"] in {"H5.0.1-R1", "H5.0.2-R1"}:
+        if plan["current_substep"] in {"H5.0.1-R1", "H5.0.2-R1", "H5.0.3-R1"} and "H5.0.3-R1" not in plan["reviewed_artifacts"]:
             legacy = json.loads(
                 self.read("hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json")
             )
@@ -781,7 +790,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H5", state["current_stage"])
-        self.assertEqual("H5.0.2-R1", state["current_substep"])
+        self.assertEqual("H5.0.3-R1", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -887,11 +896,12 @@ class ProductSiteTests(unittest.TestCase):
         self.assertTrue(all(row["status"] == "reviewed" for row in h4_plan["substeps"]))
         self.assertEqual("H5", h5_plan["stage"])
         self.assertEqual("in_progress", h5_plan["status"])
-        self.assertEqual("H5.0.2-R1", h5_plan["current_substep"])
+        self.assertEqual("H5.0.3-R1", h5_plan["current_substep"])
         self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][0]["status"])
-        self.assertEqual("current", h5_plan["substeps"][0]["children"][1]["status"])
-        self.assertEqual("waiting", h5_plan["substeps"][0]["children"][2]["status"])
+        self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][1]["status"])
+        self.assertEqual("current", h5_plan["substeps"][0]["children"][2]["status"])
         self.assertIn("H5.0.1-R1", h5_plan["reviewed_artifacts"])
+        self.assertIn("H5.0.2-R1", h5_plan["reviewed_artifacts"])
         self.assertIn("H5.0.3", h5_plan["superseded_current_artifacts"])
         self.assertIsNone(h5_plan["blocker"])
         self.assertFalse(h5_plan["authorization"]["sample_or_component_purchase"])

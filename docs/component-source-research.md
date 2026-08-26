@@ -1,14 +1,14 @@
-# H5.0.2 · primary-source and serial-alternative research
+# H5.0.2-R1 · primary-source and serial-alternative research
 
 [Русский](component-source-research.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)
 
-Review completed on 2026-08-25: primary documents and serial alternatives were exhausted before purchase. Exact test identities close two former selection gaps; no physical claim is closed and no order is authorized.
+Review completed on 2026-08-26: primary documents and serial alternatives were exhausted before purchase. Exact test identities close two former selection gaps; no physical claim is closed and no order is authorized.
 
 ```mermaid
 flowchart LR
-  M["✅ H5.0.1<br/>9 residuals + 14 gates"] --> R["✅ H5.0.2<br/>research exhausted"]
+  M["✅ H5.0.1-R1<br/>9 residuals + 14 gates"] --> R["✅ H5.0.2-R1<br/>research exhausted"]
   R --> I["2 selection gaps closed<br/>4 exact SKUs"]
-  R --> S["▶️ H5.0.3<br/>irreducible samples + cost"]
+  R --> S["▶️ H5.0.3-R1<br/>irreducible samples + cost"]
   S -. "explicit approval only" .-> B["purchase"]
 ```
 
@@ -20,7 +20,8 @@ flowchart LR
 - A serial `ES3C35P` display donor route is identified; the raw panel still cannot be honestly qualified without a received sample.
 - `TE 2118651-2` is confirmed active and documented; replacement has no demonstrated benefit.
 - The makers of stock `U214` and `E01-ML01IPX` genuinely do not disclose the fitted connector-subpart MPNs.
-- Both current NiceRF branches were evaluated for `SA518`: compact `SA818Pro` is ordered as a separate U or V variant, while dual-band `SA528` is materially larger with a different 23-contact/audio interface. Neither preserves the accepted architecture.
+- `SA818S-U` and `SA818S-V` are confirmed as two independent serial modules with one official 18-land package. JLCPCB: U is `C3001549`, stock 68/available 60 at `$9.7347`; V is `C51897911`, stock 0 and `pre-order` at `$10.0710`.
+- `SA818S-CE` (`C19632390`, stock 8 at `$9.3449`) uses the same package, contacts and commands and is accepted only as a qualified-pending UHF alternate. It is never a silent substitution: the manifest must disable `470–480 MHz` and the received part must pass HIL.
 
 ## Result for the nine residuals
 
@@ -86,8 +87,7 @@ flowchart LR
 
 - `XC-IPX-SMA-15`: serial, but its 150 mm direct path does not replace the selected 30 mm internal jumper + PCB + sealed edge SMA.
 - Other 3.5-inch QSPI panels: no drop-in model was found with the same controller, flex contacts, outline, touch stack and connector together.
-- `SA818Pro-U` + `SA818Pro-V`: would require two modules and a complete RF/power/audio/placement redesign.
-- `SA528`: preserves U/V but its 54.03 x 38.30 x 7.70 mm body and 23-contact interface do not fit the accepted `SA518` boundary.
+- `SA818S-CE` is not an unconditional drop-in for `SA818S-U`: the common interface is proven, but its range is narrower (`400–470` instead of `400–480 MHz`). It is allowed only with an explicit CE manifest, HIL and frequency clamp.
 
 ## Honest boundary
 
@@ -95,6 +95,6 @@ flowchart LR
 - Documents close no fit/RF/timing/acoustic/thermal/retention claim.
 - Exact test SKUs are **selected, not ordered**.
 - PCB placement/routing and fabrication remain prohibited.
-- Exact next marker: `H5.0.3` — one deduplicated basket of irreducible samples, measurements and current cost for separate approval.
+- Exact next marker: `H5.0.3-R1` — one deduplicated basket of irreducible samples, measurements and current cost for separate approval.
 
 Machine result: [`H5-EVR02`](../hardware/verification/generated/H5-EVR02-source-research.json).

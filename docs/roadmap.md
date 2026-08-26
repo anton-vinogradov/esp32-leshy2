@@ -3,7 +3,7 @@
 [Русский](roadmap.ru.md) · [Home](../README.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶️ Current hardware boundary: H5.0.2-R1 — primary-source and serial-alternative research.**
+> **▶️ Current hardware boundary: H5.0.3-R1 — irreducible basket and 210-line JLCPCB route rebuild.**
 > H0–H4 are reviewed. There is no PCB layout or authorized order.
 
 Status last reconciled: **26 August 2026**. This is the hardware repository's
@@ -31,7 +31,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Joined pre-layout gate | ✅ [H4 reviewed](h4-prelayout-gate-report.md): 0 open virtual contradictions; 85 physical residuals keep H5/H6/H8 owners |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
-| Component evidence | ▶️ H5.0.2-R1 rechecks primary sources and documented serial alternatives after the dual-SA818S 9-residual/14-gate map passed review; sample purchase remains blocked |
+| Component evidence | ▶️ H5.0.3-R1 rebuilds the irreducible sample basket and all 210 JLCPCB routes after the dual-SA818S map and source research passed review; sample purchase remains blocked |
 | Prototype PCB order | 🔒 Forbidden before H7 |
 | Production order | 🔒 Forbidden before H9 |
 
@@ -41,13 +41,13 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1–H4 and current H5 evidence rebuild
 
-<!-- current-substep: H5.0.2-R1 -->
+<!-- current-substep: H5.0.3-R1 -->
 
-**Exact marker: `H5.0.2-R1`** — the [physical residual map](component-evidence-map.md)
-has passed review against `SA818S-V`, `SA818S-U`, their official common
-18-land package, two independent RF feeds and the exact current production
-BOM. Source documents and fully documented serial alternatives are now being
-exhausted before the basket and JLCPCB route map are regenerated. The old single-SA518 basket and 209-line platform snapshot do
+**Exact marker: `H5.0.3-R1`** — the [physical residual map](component-evidence-map.md)
+and [primary-source research](component-source-research.md) have passed review.
+The current step deduplicates only irreducible received samples, exact
+measurements and current cost, then rebuilds every JLCPCB route for the
+210-line dual-SA818S production BOM. The old single-SA518 basket and 209-line platform snapshot do
 not describe the current product. Quote/reservation and purchase are not authorized;
 the exact marker and evidence move together in one commit.
 
@@ -184,9 +184,10 @@ Current H2 execution:
   - ✅ `H2.3.6` — `RF_31_NRF24_X3`: 105 exact ledger components plus three
     factory-IPEX boundaries, 311 physical contacts, three independent PIO SPI
     and RF paths, 33 interfaces and two explained NCs; native KiCad passed.
-  - ✅ `H2.3.7` — `RF_32_SUBGHZ_VOICE`: 116 exact components, 363 physical
-    contacts, independent CC1101 data and SA518 voice power/control/RF paths,
-    32 interfaces and 11 explained NCs; native KiCad review passed.
+  - ✅ `H2.3.7-R1` — `RF_32_SUBGHZ_VOICE`: 143 exact components, 473 physical
+    contacts, independent CC1101 data plus SA818S-V and SA818S-U
+    power/control/RF paths, 40 interfaces and 20 explained NCs; native KiCad
+    review passed.
   - ✅ `H2.3.8` — `RF_34_U214_M5_EXT`: 53 symbols, 52 board-fitted
     components, 228 contacts, 27 interfaces and separate protected U214/native
     Unit branches; native KiCad review passed.
@@ -285,8 +286,8 @@ Current H2 execution:
 - ✅ `H4.2` — three documentation-only contradictions corrected at source and regenerated.
 - ✅ `H4.3` — [joined H4 gate reviewed](h4-prelayout-gate-report.md).
 - ✅ `H5.0.1-R1` — [all nine residuals and 14 mechanical gates mapped](component-evidence-map.md) for the current dual-SA818S design.
-- ▶️ `H5.0.2-R1` — rebuild primary-source and serial-alternative research for both selected SA818S variants and the qualification-pending CE alternate.
-- 🔒 `H5.0.3-R1` — rebuild the irreducible basket and JLCPCB map for the 210-line BOM after source research passes.
+- ✅ `H5.0.2-R1` — [primary sources and serial alternatives reviewed](component-source-research.md); U/V exact routes retained and CE constrained as a non-silent qualified-pending UHF alternate.
+- ▶️ `H5.0.3-R1` — rebuild the irreducible basket and JLCPCB map for the 210-line BOM.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json),
 the completed H3/H4 plans are [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json)
@@ -348,7 +349,7 @@ A production order is possible only after H9.
 | **H2. Production ECAD schematic** | ✅ Reviewed and accepted | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 consumes the contract without invented pins |
 | **H3. Virtual electrical verification** | ✅ Reviewed and accepted | [H3 result report](h3-acceptance.md): calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
 | **H4. Joined pre-layout gate** | ✅ [Reviewed](h4-prelayout-gate-report.md) | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
-| **H5. Component evidence** | ▶️ Current `H5.0.2-R1`; the current 9-residual/14-gate map is reviewed, source research is being rebuilt, purchase blocked | [Current residual map](component-evidence-map.md); former SA518 basket and 209-line platform audit are superseded inputs only | Every production-BOM line has an exact `J0`–`J3`, `J4-F` or `J4-P` route and no silent substitution; exact whole-basket and final-assembly costs are published; the factory accepts `J4-F` box-build and `J4-P` kit/packing/shipping; approved received samples prove identity, mating, stack-up and critical dimensions |
+| **H5. Component evidence** | ▶️ Current `H5.0.3-R1`; 9-residual/14-gate map and source research reviewed, 210-line routes and irreducible basket being rebuilt, purchase blocked | [Current residual map](component-evidence-map.md) and [source report](component-source-research.md); former SA518 basket and 209-line platform audit are superseded inputs only | Every production-BOM line has an exact `J0`–`J3`, `J4-F` or `J4-P` route and no silent substitution; exact whole-basket and final-assembly costs are published; the factory accepts `J4-F` box-build and `J4-P` kit/packing/shipping; approved received samples prove identity, mating, stack-up and critical dimensions |
 | **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |
 | **H7. Prototype fabrication and bring-up** | 🔒 Waiting for H6, inherited firmware F3, accepted `J4-F/P` factory boundary and order approval | Small prototype lot, factory-integrated `J4-F`, separately packed `J4-P` and retained bring-up log | Box-build output matches the accepted boundary; rails sequence correctly; all five controllers program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |
 | **H8. Physical qualification** | 🔒 Waiting for H7 | HIL, RF, thermal, power, safety and endurance evidence | 3×nRF24 pass `3R/1T2R/2T1R/3T`; active signals are not stalled by neighbors; inactive interfaces are physically quiet; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog and single-fault tests pass |
@@ -374,10 +375,9 @@ A production order is possible only after H9.
 
 ## Next action
 
-The current boundary is `H5.0.2-R1`: all nine H5 physical residuals and 14
-mechanical gates are mapped for the dual-SA818S product. Primary sources,
-exact package evidence, current catalog identities and fully documented serial
-alternatives are being rechecked before the irreducible basket and 210-line
-JLCPCB route map are rebuilt. Read-only Parts access is configured but awaits
-JLCPCB permission review; PCB placement/routing, quote/reservation and every
-order remain blocked.
+The current boundary is `H5.0.3-R1`: all nine H5 physical residuals and 14
+mechanical gates are mapped, and primary-source research is reviewed. The
+irreducible received-sample basket, exact measurement contracts, current cost
+and all 210 JLCPCB routes are now being rebuilt. Read-only Parts access is
+configured but awaits JLCPCB permission review; PCB placement/routing,
+quote/reservation and every order remain blocked.

@@ -2,6 +2,10 @@
 
 [Русский](manufacturing-platform.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)
 
+> **Superseded working input:** the 209-line single-SA518 audit below does not
+> describe the current product. `H5.0.3-R1` is rebuilding all 210 dual-SA818S
+> routes. JLCPCB remains the non-exclusive reference; no order is authorized.
+
 ## Reference line
 
 **The working reference is JLCPCB Standard PCBA.** This is neither exclusive lock-in nor order authorization. Standard was selected for its public stock/JLC-number assembly library, double-sided SMT+THT, fine-pitch/BGA/QFN, special stackups and SPI/AOI/X-ray. See the official [assembly capabilities](https://jlcpcb.com/capabilities/pcb-assembly-capabilities) and [parts-sourcing paths](https://jlcpcb.com/help/article/pcba-parts-sourcing-instruction).

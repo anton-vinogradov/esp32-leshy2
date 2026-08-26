@@ -2,6 +2,10 @@
 
 [English](manufacturing-platform.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md)
 
+> **Отменённый рабочий input:** аудит 209 строк для single-SA518 ниже не
+> описывает текущий продукт. `H5.0.3-R1` пересобирает все 210 dual-SA818S
+> маршрутов. JLCPCB остаётся неэксклюзивным ориентиром; заказ не разрешён.
+
 ## Базовая линия
 
 **Рабочий reference — JLCPCB Standard PCBA.** Это не эксклюзивная привязка и не разрешение заказа. Standard выбран из-за публичной assembly-библиотеки со stock/JLC-number, двухстороннего SMT+THT, fine-pitch/BGA/QFN, специального stack-up и SPI/AOI/X-ray. [Официальные capabilities](https://jlcpcb.com/capabilities/pcb-assembly-capabilities) и [варианты sourcing](https://jlcpcb.com/help/article/pcba-parts-sourcing-instruction).
