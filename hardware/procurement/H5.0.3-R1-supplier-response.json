@@ -1,21 +1,25 @@
 {
   "schema_version": 1,
   "gate": "H5.0.3-R1",
-  "status": "waiting_for_supplier_response",
+  "status": "response_recorded",
   "supplier": {
     "legal_entity": null,
-    "received_on": null,
+    "received_on": "2026-08-26",
     "channel": "JLCPCB Contact Us / PCB Assembly Inquiry",
-    "source_reference": null
+    "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md",
+    "signatory": "Jax",
+    "notes": "The response identifies the JLCPCB support channel and signatory but not the exact legal entity."
   },
   "sa818s_v": {
     "mpn": "SA818S-V",
     "jlcpcb_part": "C51897911",
     "standard_pcba_installation": null,
-    "sample_lead_time_days": null,
-    "moq": null,
+    "sample_lead_time_days": 15,
+    "sample_lead_time_working_days_typical": [8, 15],
+    "supplier_confirmation_threshold_working_days": 18,
+    "moq": 1,
     "preorder_or_service_charge_usd": null,
-    "notes": null
+    "notes": "Stock zero. Pre-order is required. Final quotation and exact lead time are confirmed only after pre-order; over 18 working days triggers continue/cancel-and-refund confirmation. The integer lead-time field records the conservative upper end of the stated typical working-day range. Standard-PCBA installation and any extra service charge were not explicitly confirmed."
   },
   "dual_module_job": {
     "sa818s_u_mpn": "SA818S-U",
@@ -23,7 +27,7 @@
     "accepted": null,
     "common_rev_1_8_land_pattern_confirmed": null,
     "separate_rf_paths_confirmed": null,
-    "notes": null
+    "notes": "Supplier asked whether both C-numbers were intended for one reference designator. They are not: Leshy2 uses two separate reference designators and independent RF paths, so an explicit answer for the actual job remains open."
   },
   "j4_f_operations": [
     {
@@ -74,12 +78,15 @@
       "id": "whole_device_test",
       "description": "execute the supplied whole-device functional-test procedure",
       "accepted": null,
-      "setup_nre_usd": null,
+      "setup_nre_usd": 15.7,
       "per_unit_usd_q5": null,
       "per_unit_usd_q10": null,
-      "required_fixtures_or_files": null,
+      "required_fixtures_or_files": [
+        "customer-supplied test procedure uploaded through PCBA Advanced Options"
+      ],
       "reject_rework_terms": null,
-      "notes": null
+      "labor_fee_per_hour_usd": 7.86,
+      "notes": "Function Test is selectable, but JLCPCB engineers review feasibility and final quotation manually only after order placement. This is not pre-order acceptance of the requested whole-device test."
     }
   ],
   "j4_p_operations": [
@@ -106,20 +113,26 @@
     {
       "id": "protected_cells",
       "description": "pack two exact protected XTAR 18650 4000 mAh 10 A cells separately for user installation",
-      "accepted": null,
+      "in_supplier_scope": false,
+      "project_disposition": "user_supplied_not_part_of_device_delivery",
+      "accepted": false,
       "setup_nre_usd": null,
       "per_unit_usd_q5": null,
       "per_unit_usd_q10": null,
-      "requirements_or_exclusions": null,
-      "notes": null
+      "requirements_or_exclusions": "JLCPCB reports no suitable shipping channel for products containing batteries or other powered components and declines PCBA assembly service for the protected cells.",
+      "notes": "Cells remain separately sourced and user-installed; no battery purchase or shipment is authorized."
     }
   ],
   "battery_shipping": {
-    "procure_and_ship_same_parcel": null,
-    "destination_restrictions": null,
-    "required_compliance_documents": null,
-    "separate_shipment_required": null,
-    "notes": null
+    "supply_scope": false,
+    "user_supplied": true,
+    "procure_and_ship_same_parcel": false,
+    "destination_restrictions": [
+      "JLCPCB currently has no suitable shipping channel for products containing batteries or other powered components"
+    ],
+    "required_compliance_documents": [],
+    "separate_shipment_required": true,
+    "notes": "Project owner confirmed that accumulator cells are not part of device delivery. The user supplies and installs compatible protected cells separately; this is no longer a supplier gate."
   },
   "identity_control": {
     "exact_external_mpns_controlled_at_incoming_inspection": null,

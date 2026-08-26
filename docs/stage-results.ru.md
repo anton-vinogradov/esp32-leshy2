@@ -223,12 +223,17 @@ qualified-pending UHF alternate SA818S-CE. Текущая
 как неэксклюзивный ориентир. Прежний capture из 209 строк используется только
 для 208 неизменившихся identity; exact U/V-страницы завершают текущую карту 210
 строк. Все маршруты назначены, семантических подмен MPN и замен компонентов нет.
-Точный срок pre-order SA818S-V и принятие/цена J4-F/J4-P теперь ожидают
-построчного ответа на запрос JLCPCB без заказа, успешно отправленный 26 августа
-2026 года. Fail-closed
+Частичный ответ JLCPCB от 26 августа подтверждает для exact SA818S-V MOQ 1 и
+типичные 8–15 рабочих дней pre-order и условную post-order цену Function Test.
+Аккумуляторы — пользовательский `J5-U`, вне поставки и supplier-gates. Ответ не
+закрывает реальную схему с двумя designator U/V,
+большинству J4-F/J4-P и exact-MPN control. Fail-closed
 [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json)
-проверяет полноту ответа отдельно от прохождения фабричных gates и не может
-разрешить заказ. JLCAPI app/key готовы вне Git, но право Parts отклонено без
+фиксирует 16 полей без ответа и ноль отказов в актуальном supplier-scope, не
+разрешая заказ. Отказ JLCPCB работать с аккумуляторами относится к исключённому
+из поставки пользовательскому `J5-U` и потому не является отказом по устройству.
+[Уточнение](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md)
+подготовлено, но не отправлено. JLCAPI app/key готовы вне Git, но право Parts отклонено без
 указанной причины; [информационный запрос в поддержку](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md)
 успешно отправлен 26 августа 2026 года. Пока действует ручной evidence-путь.
 [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json)

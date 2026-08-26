@@ -476,13 +476,13 @@
         "label": "JLCPCB exact G-NiceRF part C51897911",
         "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911",
         "checked_on": "2026-08-26",
-        "availability": "stock zero; minimum one; pre-order"
+        "availability": "stock zero; MOQ one; pre-order; typical 8-15 working days"
       },
       "coverage": [
         "H5-MECH-SA818S-DUAL-LAND-FIT"
       ],
       "minimum_quantity_basis": "one exact VHF module is required because it is an independent installed product path; common land geometry alone does not prove band-specific RF, audio, UART or thermal behavior",
-      "risk": "The exact part is priced but stock-zero pre-order; lead time remains a sourcing gate. SA818S-CE cannot replace this VHF path.",
+      "risk": "The exact part is priced but stock-zero pre-order. The typical lead range is known; final quote and exact lead remain order-time gates. SA818S-CE cannot replace this VHF path.",
       "purchase_authorized": false
     },
     {

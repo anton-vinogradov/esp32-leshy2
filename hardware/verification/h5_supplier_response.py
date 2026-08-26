@@ -19,7 +19,8 @@ J4_F_IDS = {
     "sandwich_enclosure",
     "whole_device_test",
 }
-J4_P_IDS = {"u214_test_and_pack", "antenna_kit", "protected_cells"}
+J4_P_IDS = {"u214_test_and_pack", "antenna_kit"}
+OUT_OF_SUPPLIER_SCOPE_IDS = {"protected_cells"}
 FORBIDDEN_AUTHORITY = {
     "quote_project",
     "reservation",
@@ -44,11 +45,13 @@ def operation_completeness(row: dict, *, terms_key: str) -> tuple[list[str], boo
     if not isinstance(row.get("accepted"), bool):
         missing.append(f"{row.get('id', '<unknown>')}.accepted")
         return missing, False
+    if not present(row.get(terms_key)):
+        missing.append(f"{row['id']}.{terms_key}")
+    if row["accepted"] is False:
+        return missing, False
     for field in ("setup_nre_usd", "per_unit_usd_q5", "per_unit_usd_q10"):
         if not money(row.get(field)):
             missing.append(f"{row['id']}.{field}")
-    if not present(row.get(terms_key)):
-        missing.append(f"{row['id']}.{terms_key}")
     return missing, row["accepted"]
 
 
@@ -61,11 +64,15 @@ def build(source: dict | None = None) -> dict:
         raise ValueError("supplier response status drifted")
 
     j4_f = source.get("j4_f_operations", [])
-    j4_p = source.get("j4_p_operations", [])
+    j4_p_all = source.get("j4_p_operations", [])
+    j4_p = [row for row in j4_p_all if row.get("in_supplier_scope", True)]
+    out_of_scope = [row for row in j4_p_all if not row.get("in_supplier_scope", True)]
     if {row.get("id") for row in j4_f} != J4_F_IDS or len(j4_f) != len(J4_F_IDS):
         raise ValueError("J4-F operation set drifted")
     if {row.get("id") for row in j4_p} != J4_P_IDS or len(j4_p) != len(J4_P_IDS):
         raise ValueError("J4-P operation set drifted")
+    if {row.get("id") for row in out_of_scope} != OUT_OF_SUPPLIER_SCOPE_IDS:
+        raise ValueError("out-of-supplier-scope operation set drifted")
     if set(source.get("authorization", {})) != FORBIDDEN_AUTHORITY:
         raise ValueError("authorization boundary drifted")
 
@@ -112,10 +119,12 @@ def build(source: dict | None = None) -> dict:
         j4_p_accepted = j4_p_accepted and accepted
 
     battery = source["battery_shipping"]
-    for field in ("procure_and_ship_same_parcel", "destination_restrictions", "required_compliance_documents", "separate_shipment_required"):
-        if not present(battery.get(field)):
-            missing.append(f"battery_shipping.{field}")
-    battery_complete = (
+    battery_out_of_scope = battery.get("supply_scope") is False and battery.get("user_supplied") is True
+    if not battery_out_of_scope:
+        for field in ("procure_and_ship_same_parcel", "destination_restrictions", "required_compliance_documents", "separate_shipment_required"):
+            if not present(battery.get(field)):
+                missing.append(f"battery_shipping.{field}")
+    battery_complete = battery_out_of_scope or (
         isinstance(battery.get("procure_and_ship_same_parcel"), bool)
         and isinstance(battery.get("destination_restrictions"), list)
         and isinstance(battery.get("required_compliance_documents"), list)
@@ -135,6 +144,11 @@ def build(source: dict | None = None) -> dict:
     if source["status"] != "response_recorded":
         missing.append("status=response_recorded")
     response_complete = not missing and voice_values_valid and battery_complete and identity_complete
+    explicit_declines = [
+        f"J4-F:{row['id']}" for row in j4_f if row.get("accepted") is False
+    ] + [
+        f"J4-P:{row['id']}" for row in j4_p if row.get("accepted") is False
+    ]
     all_factory_gates_accepted = (
         voice.get("standard_pcba_installation") is True
         and dual.get("accepted") is True
@@ -152,6 +166,8 @@ def build(source: dict | None = None) -> dict:
     blockers: list[str] = []
     if missing:
         blockers.append("supplier response is incomplete")
+    if explicit_declines:
+        blockers.append("supplier explicitly declines: " + ", ".join(explicit_declines))
     if response_complete and not all_factory_gates_accepted:
         blockers.append("supplier explicitly declines or qualifies at least one required factory gate")
     if not exact_voice_identity or not exact_dual_identity:
@@ -165,11 +181,13 @@ def build(source: dict | None = None) -> dict:
         "gate": "H5.0.3-R1",
         "source": str(INPUT.relative_to(REPO)),
         "source_status": source["status"],
-        "status": "passed_supplier_gate" if gate_passed else ("complete_response_gate_failed" if response_complete else "waiting_for_complete_supplier_response"),
+        "status": "passed_supplier_gate" if gate_passed else ("complete_response_gate_failed" if response_complete else ("partial_response_gate_open" if source["status"] == "response_recorded" else "waiting_for_complete_supplier_response")),
         "summary": {
             "response_complete": response_complete,
             "factory_gate_passed": gate_passed,
             "missing_field_count": len(missing),
+            "explicit_decline_count": len(explicit_declines),
+            "out_of_supplier_scope_operations": len(out_of_scope),
             "j4_f_operations": len(j4_f),
             "j4_p_operations": len(j4_p),
             "orders_authorized": 0,
@@ -177,15 +195,16 @@ def build(source: dict | None = None) -> dict:
         "checks": {
             "exact_sa818s_v_identity_preserved": exact_voice_identity,
             "exact_sa818s_u_identity_preserved": exact_dual_identity,
-            "seven_inquiry_sections_are_machine_represented": len(j4_f) == 5 and len(j4_p) == 3,
+            "seven_inquiry_sections_are_machine_represented": len(j4_f) == 5 and len(j4_p) == 2 and len(out_of_scope) == 1,
             "commercial_layout_and_fabrication_authority_remains_false": no_new_authority,
             "response_complete": response_complete,
             "all_required_factory_gates_accepted": all_factory_gates_accepted,
         },
         "missing_fields": sorted(set(missing)),
+        "explicit_declines": explicit_declines,
         "blockers": blockers,
         "authorization": source["authorization"],
-        "next": "wait for the supplier response" if not response_complete else ("prepare the separate cost/order decision" if gate_passed else "compare an alternate factory or revise the declined operation boundary"),
+        "next": ("request itemized clarification for the unanswered two-designator, J4-F/J4-P and identity-control lines; accumulators are user-supplied and not a supplier gate" if source["status"] == "response_recorded" and not response_complete else ("wait for the supplier response" if not response_complete else ("prepare the separate cost/order decision" if gate_passed else "compare an alternate factory or revise the declined operation boundary"))),
     }
 
 

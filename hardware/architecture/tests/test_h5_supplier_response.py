@@ -51,6 +51,8 @@ class H5SupplierResponseTests(unittest.TestCase):
                 }
             )
         for row in data["j4_p_operations"]:
+            if row.get("in_supplier_scope") is False:
+                continue
             row.update(
                 {
                     "accepted": True,
@@ -60,15 +62,7 @@ class H5SupplierResponseTests(unittest.TestCase):
                     "requirements_or_exclusions": "none",
                 }
             )
-        data["battery_shipping"].update(
-            {
-                "procure_and_ship_same_parcel": True,
-                "destination_restrictions": [],
-                "required_compliance_documents": ["UN38.3"],
-                "separate_shipment_required": False,
-                "notes": "carrier dependent",
-            }
-        )
+        data["battery_shipping"].update({"supply_scope": False, "user_supplied": True})
         data["identity_control"].update(
             {
                 "exact_external_mpns_controlled_at_incoming_inspection": True,
@@ -79,12 +73,14 @@ class H5SupplierResponseTests(unittest.TestCase):
         )
         return data
 
-    def test_current_pending_record_is_fail_closed_and_generated(self):
+    def test_current_partial_record_is_fail_closed_and_generated(self):
         result = h5_supplier_response.build()
-        self.assertEqual("waiting_for_complete_supplier_response", result["status"])
+        self.assertEqual("partial_response_gate_open", result["status"])
         self.assertFalse(result["summary"]["response_complete"])
         self.assertFalse(result["summary"]["factory_gate_passed"])
         self.assertGreater(result["summary"]["missing_field_count"], 0)
+        self.assertEqual([], result["explicit_declines"])
+        self.assertEqual(1, result["summary"]["out_of_supplier_scope_operations"])
         self.assertTrue(result["checks"]["exact_sa818s_v_identity_preserved"])
         self.assertTrue(result["checks"]["commercial_layout_and_fabrication_authority_remains_false"])
         self.assertEqual(0, result["summary"]["orders_authorized"])

@@ -9,7 +9,7 @@ flowchart TD
   R["✅ H5.0.2-R1<br/>sources + replacements"] --> B["▶️ H5.0.3-R1<br/>$286.43 · 33 lines"]
   B --> P["JLCPCB Standard<br/>210 lines · 1052 placements"]
   P --> Q["route rebuild<br/>J0–J3 · J4-F/P"]
-  Q --> S["SA818S-V<br/>pre-order lead time"]
+  Q --> S["SA818S-V<br/>final pre-order quote"]
   Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
   S --> A["complete price and separate<br/>sample-order decision"]
   X --> A
@@ -21,7 +21,7 @@ flowchart TD
 
 - **$286.43** is the known conservative material budget for every priced line.
 - It contains **$282.43** of published USD prices and **$4.00** of conservative caps for two cheap IR parts whose live pages expose AUD/INR prices.
-- The total includes exact `SA818S-U` `C3001549` at `$9.7347` and exact `SA818S-V` `C51897911` at `$10.0710`; the VHF module has zero stock, so lead time remains a separate sourcing gate.
+- The total includes exact `SA818S-U` `C3001549` at `$9.7347` and exact `SA818S-V` `C51897911` at `$10.0710`; the VHF module has zero stock, MOQ 1 and a typical 8–15-working-day lead, while final quote/lead remain an order-time gate.
 - Freight, taxes, customs and H5.2 coupon PCBs are excluded. Some coupon geometry depends on H5.1 incoming measurements; fabricating it now would recreate the cycle this phase removes.
 - The former `$164.54` was not a cheaper complete basket: it covered only eight partial lines and omitted most H5 gates.
 
@@ -65,7 +65,7 @@ flowchart TD
   Minimum basis: three nRF24 boundaries plus one AM/LW receive boundary; the S3/C5 module cables use their separately selected SMA32 path
 - **1 × `G-NiceRF SA818S-U` — $9.74.** [JLCPCB exact G-NiceRF part C3001549](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549); 68 in stock; 60 available to order.
   Minimum basis: one exact UHF module is required because band-specific RF, conducted power, audio, UART and thermal behavior cannot be inferred from the VHF variant
-- **1 × `G-NiceRF SA818S-V` — $10.07.** [JLCPCB exact G-NiceRF part C51897911](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911); stock zero; minimum one; pre-order.
+- **1 × `G-NiceRF SA818S-V` — $10.07.** [JLCPCB exact G-NiceRF part C51897911](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911); stock zero; MOQ one; pre-order; typical 8-15 working days.
   Minimum basis: one exact VHF module is required because it is an independent installed product path; common land geometry alone does not prove band-specific RF, audio, UART or thermal behavior
 
 ### Controls
@@ -225,6 +225,6 @@ All `23` residuals/gates are covered by `11` contracts. A pass/fail summary with
 
 ## Open supplier inputs
 
-Both selected module prices are known. The remaining inputs are exact `SA818S-V` pre-order lead time and the `J4-F` box-build plus `J4-P` kit/packing/shipping factory gates. `SA818S-CE C19632390` is excluded from the minimum basket: it is only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp; it never replaces the VHF module. A no-order JLCPCB inquiry was successfully submitted on 26 August 2026; no quote, reservation or order was created.
+Both selected module prices are known. JLCPCB's partial 26 August response confirms MOQ 1 and a typical 8–15-working-day pre-order for exact `SA818S-V`; final quote/lead exist only after pre-order. The actual two-designator U/V job, remaining `J4-F`/`J4-P` and identity control are open. Accumulators now use `J5-U`: the user buys them separately, they are not part of delivery and are not a supplier gate. `SA818S-CE C19632390` remains only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp. No quote, reservation or order was created.
 
 Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).

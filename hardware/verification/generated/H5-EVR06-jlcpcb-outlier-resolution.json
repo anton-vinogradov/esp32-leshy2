@@ -20,7 +20,8 @@
       "J2": 46,
       "J3": 11,
       "J4-F": 3,
-      "J4-P": 2
+      "J4-P": 1,
+      "J5-U": 1
     },
     "component_replacements": 0,
     "unmapped_lines": 0,
@@ -413,11 +414,11 @@
       "device_id": "xtar_18650_4000mah_protected",
       "normalized_mpn": "18650 4000mAh",
       "quantity": 2,
-      "route": "J4-P",
+      "route": "J5-U",
       "lcsc": null,
       "manufacturer": null,
       "stock_snapshot": null,
-      "reason": "protected cells are packed separately for user installation unless a compliant battery box-build and shipping route is later qualified",
+      "reason": "accumulator cells are not part of device delivery; the user separately supplies and installs compatible protected cells",
       "target_bom_orderable_evidence": "present",
       "target_bom_source": "",
       "component_replacement": false
@@ -3564,14 +3565,14 @@
       "historical_capture_quantity": 2,
       "current_quantity_delta": 0,
       "match_provenance": "unchanged_mpn_from_2026_08_25_bom_tool_capture",
-      "route": "J4-P",
+      "route": "J5-U",
       "tool_status": "not_matched",
       "lcsc": null,
       "matched_mpn": null,
       "semantic_mpn_equal": null,
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "protected cells are packed separately for user installation unless a compliant battery box-build and shipping route is later qualified",
+      "outlier_resolution_reason": "accumulator cells are not part of device delivery; the user separately supplies and installs compatible protected cells",
       "component_replacement": false
     },
     {
@@ -4336,11 +4337,18 @@
     "factory_packed_removable": {
       "route": "J4-P",
       "mpns": [
-        "18650 4000mAh",
         "U214 Cap LoRa-1262"
       ],
       "accepted_and_quoted": false,
-      "gate": "kit inclusion, compatibility test where applicable, packing and battery shipping boundary must be quoted"
+      "gate": "kit inclusion, compatibility test where applicable and packing must be quoted"
+    },
+    "user_supplied_not_delivered": {
+      "route": "J5-U",
+      "mpns": [
+        "18650 4000mAh"
+      ],
+      "accepted_and_quoted": true,
+      "gate": "none; accumulator cells are explicitly outside device delivery and supplier scope"
     },
     "not_authorized": [
       "sourcing request",
@@ -4353,7 +4361,7 @@
     ]
   },
   "next": {
-    "decision_needed": "wait for the itemized response to the no-order inquiry submitted on 2026-08-26: exact SA818S-V pre-order lead time and J4-F/J4-P capability/pricing remain open before H5.0.3-R1 can close",
+    "decision_needed": "request itemized clarification after the partial 2026-08-26 response: SA818S-V MOQ 1 and typical 8-15-working-day pre-order are known; accumulators are user-supplied and not a gate; the actual two-designator job plus remaining J4-F/J4-P capability/pricing remain open before H5.0.3-R1 can close",
     "purchase_remains_last": true
   },
   "checks": {
@@ -4364,6 +4372,7 @@
     "j3_rows_keep_exact_selected_identity": true,
     "j4f_rows_are_factory_final_assembly_parts": true,
     "j4p_rows_are_factory_packed_removable_parts": true,
+    "j5u_rows_are_user_supplied_not_delivered_parts": true,
     "generic_placeholders_are_not_accepted_as_identity": true,
     "all_210_lines_have_defined_availability_or_final_assembly_route": true,
     "no_component_replacement_is_introduced": true,

@@ -3,14 +3,16 @@
   "artifact": "H5-EVR07",
   "gate": "H5.0.3-R1",
   "source": "hardware/procurement/H5.0.3-R1-supplier-response.json",
-  "source_status": "waiting_for_supplier_response",
-  "status": "waiting_for_complete_supplier_response",
+  "source_status": "response_recorded",
+  "status": "partial_response_gate_open",
   "summary": {
     "response_complete": false,
     "factory_gate_passed": false,
-    "missing_field_count": 26,
+    "missing_field_count": 16,
+    "explicit_decline_count": 0,
+    "out_of_supplier_scope_operations": 1,
     "j4_f_operations": 5,
-    "j4_p_operations": 3,
+    "j4_p_operations": 2,
     "orders_authorized": 0
   },
   "checks": {
@@ -22,10 +24,6 @@
     "all_required_factory_gates_accepted": false
   },
   "missing_fields": [
-    "battery_shipping.destination_restrictions",
-    "battery_shipping.procure_and_ship_same_parcel",
-    "battery_shipping.required_compliance_documents",
-    "battery_shipping.separate_shipment_required",
     "dual_module_job.accepted",
     "dual_module_job.common_rev_1_8_land_pattern_confirmed",
     "dual_module_job.separate_rf_paths_confirmed",
@@ -38,17 +36,12 @@
     "j4_f_operations.sandwich_enclosure.accepted",
     "j4_f_operations.whole_device_test.accepted",
     "j4_p_operations.antenna_kit.accepted",
-    "j4_p_operations.protected_cells.accepted",
     "j4_p_operations.u214_test_and_pack.accepted",
-    "sa818s_v.moq",
     "sa818s_v.preorder_or_service_charge_usd",
-    "sa818s_v.sample_lead_time_days",
     "sa818s_v.standard_pcba_installation",
-    "status=response_recorded",
-    "supplier.legal_entity",
-    "supplier.received_on",
-    "supplier.source_reference"
+    "supplier.legal_entity"
   ],
+  "explicit_declines": [],
   "blockers": [
     "supplier response is incomplete"
   ],
@@ -61,5 +54,5 @@
     "pcb_placement_and_routing": false,
     "fabrication": false
   },
-  "next": "wait for the supplier response"
+  "next": "request itemized clarification for the unanswered two-designator, J4-F/J4-P and identity-control lines; accumulators are user-supplied and not a supplier gate"
 }

@@ -84,7 +84,7 @@ ARTICLES = [
     article("rf-board-receptacles", "rf", "Hirose U.FL-R-SMT-1(10)", 5, "1.67", "published_usd", "DigiKey exact-MPN listing", "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/U-FL-R-SMT-1-10/2391570", "319,443 shown in stock", ["H3-PHY-053", "H3-PHY-062", "H5-MECH-NRF-GEN1-FEEDS", "H5-MECH-NATIVE-RF-JUMPERS"], "one board mate per selected 30-mm jumper path"),
     article("edge-sma", "rf", "GCT RFPC-SMA31-FN-175-A", 4, "3.39", "published_usd", "DigiKey exact-MPN listing", "https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/25576371", "638 shown in stock", ["H3-PHY-053", "H3-PHY-057", "H5-MECH-NRF-GEN1-FEEDS"], "three nRF24 boundaries plus one AM/LW receive boundary; the S3/C5 module cables use their separately selected SMA32 path"),
     article("voice-uhf-module", "rf", "G-NiceRF SA818S-U", 1, "9.7347", "published_usd", "JLCPCB exact G-NiceRF part C3001549", "https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549", "68 in stock; 60 available to order", ["H5-MECH-SA818S-DUAL-LAND-FIT"], "one exact UHF module is required because band-specific RF, conducted power, audio, UART and thermal behavior cannot be inferred from the VHF variant"),
-    article("voice-vhf-module", "rf", "G-NiceRF SA818S-V", 1, "10.0710", "published_usd", "JLCPCB exact G-NiceRF part C51897911", "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911", "stock zero; minimum one; pre-order", ["H5-MECH-SA818S-DUAL-LAND-FIT"], "one exact VHF module is required because it is an independent installed product path; common land geometry alone does not prove band-specific RF, audio, UART or thermal behavior", risk="The exact part is priced but stock-zero pre-order; lead time remains a sourcing gate. SA818S-CE cannot replace this VHF path."),
+    article("voice-vhf-module", "rf", "G-NiceRF SA818S-V", 1, "10.0710", "published_usd", "JLCPCB exact G-NiceRF part C51897911", "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911", "stock zero; MOQ one; pre-order; typical 8-15 working days", ["H5-MECH-SA818S-DUAL-LAND-FIT"], "one exact VHF module is required because it is an independent installed product path; common land geometry alone does not prove band-specific RF, audio, UART or thermal behavior", risk="The exact part is priced but stock-zero pre-order. The typical lead range is known; final quote and exact lead remain order-time gates. SA818S-CE cannot replace this VHF path."),
 
     article("navigation-and-direct-switches", "controls", "Omron B3S-1100P", 16, "0.90", "published_usd", "DigiKey exact-MPN listing", "https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3S-1100P/368393", "33,862 shown in stock", ["H5-MECH-NAVIGATION-CONTROLS", "H5-MECH-DIRECT-PRESS-CONTROLS"], "five navigation positions plus BACK, OPT, F1-F8 and PTT must all be populated simultaneously to test spacing and enclosure actuation"),
     article("encoder", "controls", "Alps Alpine EC11E18244AU", 1, "4.90", "published_usd", "Mouser exact-MPN listing", "https://www.mouser.com/en/ProductDetail/Alps-Alpine/EC11E18244AU", "966 shown in stock", ["H5-MECH-ENCODER-KNOB"], "one assembled encoder/knob path closes the only encoder gate"),
@@ -292,7 +292,7 @@ flowchart TD
   R["✅ H5.0.2-R1<br/>источники и замены"] --> B["▶️ H5.0.3-R1<br/>${summary['known_engineering_material_budget_usd']} · 33 строки"]
   B --> P["JLCPCB Standard<br/>210 строк · 1052 установки"]
   P --> Q["пересборка маршрутов<br/>J0–J3 · J4-F/P"]
-  Q --> S["SA818S-V<br/>pre-order lead time"]
+  Q --> S["SA818S-V<br/>final pre-order quote"]
   Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
   S --> A["полная цена и отдельное решение<br/>о закупке образцов"]
   X --> A
@@ -304,7 +304,7 @@ flowchart TD
 
 - **${summary['known_engineering_material_budget_usd']}** — известный консервативный material budget для всех priced lines.
 - Внутри него **${summary['published_price_subtotal_usd']}** — публичные USD-цены и **${summary['conservative_budget_caps_usd']}** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
-- В сумму включены exact `SA818S-U` `C3001549` за `$9.7347` и exact `SA818S-V` `C51897911` за `$10.0710`; у VHF-модуля stock `0`, поэтому lead time остаётся отдельным sourcing gate.
+- В сумму включены exact `SA818S-U` `C3001549` за `$9.7347` и exact `SA818S-V` `C51897911` за `$10.0710`; у VHF-модуля stock `0`, MOQ 1 и типичные 8–15 рабочих дней, а final quote/lead остаются order-time gate.
 - Не включены доставка, налоги, таможня и H5.2 coupon PCB: геометрия части coupons зависит от H5.1 incoming measurements, поэтому преждевременная печать создала бы тот же цикл, который мы устраняем.
 - Старая сумма `$164.54` была не дешёвой полной корзиной, а неполным набором из восьми строк; она не покрывала большинство H5 gates.
 
@@ -320,7 +320,7 @@ flowchart TD
 
 ## Открытые supplier inputs
 
-Цена каждого выбранного модуля известна. Открыты только срок/условия pre-order для exact `SA818S-V`, а также фабричные gates `J4-F` box-build и `J4-P` kit/packing/shipping. `SA818S-CE C19632390` не входит в минимальную корзину: это только qualified-pending UHF-замена после HIL и firmware-clamp 470 МГц; VHF-модуль она не заменяет. Запрос JLCPCB без заказа успешно отправлен 26 августа 2026 года; quote, reservation и заказ не создавались.
+Цена каждого выбранного модуля известна. Частичный ответ JLCPCB от 26 августа подтверждает для exact `SA818S-V` MOQ 1 и типичные 8–15 рабочих дней pre-order; final quote/lead доступны только после pre-order. Открыты реальная two-designator U/V job, остальные `J4-F`/`J4-P` и identity control. Аккумуляторы перенесены в `J5-U`: пользователь покупает их отдельно, они не входят в поставку и не являются supplier-gate. `SA818S-CE C19632390` остаётся только qualified-pending UHF-заменой после HIL и firmware-clamp 470 МГц. Quote, reservation и заказ не создавались.
 
 Машинный результат: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """
@@ -335,7 +335,7 @@ flowchart TD
   R["✅ H5.0.2-R1<br/>sources + replacements"] --> B["▶️ H5.0.3-R1<br/>${summary['known_engineering_material_budget_usd']} · 33 lines"]
   B --> P["JLCPCB Standard<br/>210 lines · 1052 placements"]
   P --> Q["route rebuild<br/>J0–J3 · J4-F/P"]
-  Q --> S["SA818S-V<br/>pre-order lead time"]
+  Q --> S["SA818S-V<br/>final pre-order quote"]
   Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
   S --> A["complete price and separate<br/>sample-order decision"]
   X --> A
@@ -347,7 +347,7 @@ flowchart TD
 
 - **${summary['known_engineering_material_budget_usd']}** is the known conservative material budget for every priced line.
 - It contains **${summary['published_price_subtotal_usd']}** of published USD prices and **${summary['conservative_budget_caps_usd']}** of conservative caps for two cheap IR parts whose live pages expose AUD/INR prices.
-- The total includes exact `SA818S-U` `C3001549` at `$9.7347` and exact `SA818S-V` `C51897911` at `$10.0710`; the VHF module has zero stock, so lead time remains a separate sourcing gate.
+- The total includes exact `SA818S-U` `C3001549` at `$9.7347` and exact `SA818S-V` `C51897911` at `$10.0710`; the VHF module has zero stock, MOQ 1 and a typical 8–15-working-day lead, while final quote/lead remain an order-time gate.
 - Freight, taxes, customs and H5.2 coupon PCBs are excluded. Some coupon geometry depends on H5.1 incoming measurements; fabricating it now would recreate the cycle this phase removes.
 - The former `$164.54` was not a cheaper complete basket: it covered only eight partial lines and omitted most H5 gates.
 
@@ -363,7 +363,7 @@ All `{summary['covered_residuals_and_gates']}` residuals/gates are covered by `{
 
 ## Open supplier inputs
 
-Both selected module prices are known. The remaining inputs are exact `SA818S-V` pre-order lead time and the `J4-F` box-build plus `J4-P` kit/packing/shipping factory gates. `SA818S-CE C19632390` is excluded from the minimum basket: it is only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp; it never replaces the VHF module. A no-order JLCPCB inquiry was successfully submitted on 26 August 2026; no quote, reservation or order was created.
+Both selected module prices are known. JLCPCB's partial 26 August response confirms MOQ 1 and a typical 8–15-working-day pre-order for exact `SA818S-V`; final quote/lead exist only after pre-order. The actual two-designator U/V job, remaining `J4-F`/`J4-P` and identity control are open. Accumulators now use `J5-U`: the user buys them separately, they are not part of delivery and are not a supplier gate. `SA818S-CE C19632390` remains only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp. No quote, reservation or order was created.
 
 Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """
@@ -421,7 +421,7 @@ def main() -> None:
         f"{data['summary']['article_lines']} article lines and "
         f"{data['summary']['measurement_contracts']} measurement contracts; "
         f"known material budget ${data['summary']['known_engineering_material_budget_usd']}; "
-        "all component prices known; SA818S-V lead time and factory gates open"
+        "all component prices known; SA818S-V final quote and remaining factory gates open"
     )
 
 

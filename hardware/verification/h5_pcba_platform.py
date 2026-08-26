@@ -125,12 +125,13 @@ OUTLIER_RESOLUTIONS = {
     "U214 Cap LoRa-1262": {"route": "J4-P", "reason": "removable rear Cap accessory is factory-tested, then packed separately for user installation"},
     "HMX035CTFT-001": {"route": "J4-F", "reason": "display/flex requires factory mating and display/touch functional test during final assembly"},
     "1227-J": {"route": "J4-F", "reason": "encoder knob requires factory installation and control test after enclosure integration"},
-    "18650 4000mAh": {"route": "J4-P", "reason": "protected cells are packed separately for user installation unless a compliant battery box-build and shipping route is later qualified"},
+    "18650 4000mAh": {"route": "J5-U", "reason": "accumulator cells are not part of device delivery; the user separately supplies and installs compatible protected cells"},
 }
 
-ROUTE_IDS = ("J0", "J1", "J2", "J3", "J4-F", "J4-P")
+ROUTE_IDS = ("J0", "J1", "J2", "J3", "J4-F", "J4-P", "J5-U")
 J4_FACTORY_MPNS = {"2118651-2", "HMX035CTFT-001", "1227-J"}
-J4_PACKED_MPNS = {"U214 Cap LoRa-1262", "18650 4000mAh"}
+J4_PACKED_MPNS = {"U214 Cap LoRa-1262"}
+J5_USER_MPNS = {"18650 4000mAh"}
 
 
 def bare_mpn(value: str) -> str:
@@ -251,7 +252,8 @@ TIERS = [
     {"id": "J2", "name": "private pre-order stock", "rule": "exact MPN is bought into My Parts Lib before PCBA; public stock may supplement only where JLC rules permit"},
     {"id": "J3", "name": "global sourcing or consignment", "rule": "exact identity is sourced or supplied into the private library and must be received before assembly"},
     {"id": "J4-F", "name": "factory final assembly", "rule": "the final-assembly factory must install and test the part after PCBA; H5 and H7 cannot close until this box-build route is accepted and quoted"},
-    {"id": "J4-P", "name": "factory-packed removable item", "rule": "the factory tests compatibility where applicable and packs the removable accessory, antenna or cell separately for user installation"},
+    {"id": "J4-P", "name": "factory-packed removable item", "rule": "the factory tests compatibility where applicable and packs the removable accessory or antenna separately for user installation"},
+    {"id": "J5-U", "name": "user-supplied consumable", "rule": "the item is required for operation but is not part of device delivery, factory assembly, packing or shipping"},
 ]
 
 
@@ -521,6 +523,10 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
             row["normalized_mpn"] for row in resolved if row["route"] == "J4-P"
         }
         == J4_PACKED_MPNS,
+        "j5u_rows_are_user_supplied_not_delivered_parts": {
+            row["normalized_mpn"] for row in resolved if row["route"] == "J5-U"
+        }
+        == J5_USER_MPNS,
         "generic_placeholders_are_not_accepted_as_identity": all(
             row["lcsc"] is None for row in resolved if row["normalized_mpn"] == "TSMP95000TT"
         ),
@@ -572,12 +578,18 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
                 "route": "J4-P",
                 "mpns": sorted(J4_PACKED_MPNS),
                 "accepted_and_quoted": False,
-                "gate": "kit inclusion, compatibility test where applicable, packing and battery shipping boundary must be quoted",
+                "gate": "kit inclusion, compatibility test where applicable and packing must be quoted",
+            },
+            "user_supplied_not_delivered": {
+                "route": "J5-U",
+                "mpns": sorted(J5_USER_MPNS),
+                "accepted_and_quoted": True,
+                "gate": "none; accumulator cells are explicitly outside device delivery and supplier scope",
             },
             "not_authorized": ["sourcing request", "quote", "reservation", "purchase", "component replacement", "KiCad placement/routing", "fabrication"],
         },
         "next": {
-            "decision_needed": "wait for the itemized response to the no-order inquiry submitted on 2026-08-26: exact SA818S-V pre-order lead time and J4-F/J4-P capability/pricing remain open before H5.0.3-R1 can close",
+            "decision_needed": "request itemized clarification after the partial 2026-08-26 response: SA818S-V MOQ 1 and typical 8-15-working-day pre-order are known; accumulators are user-supplied and not a gate; the actual two-designator job plus remaining J4-F/J4-P capability/pricing remain open before H5.0.3-R1 can close",
             "purchase_remains_last": True,
         },
         "checks": checks,
@@ -668,8 +680,13 @@ def build() -> dict:
                 "close_gate": "H5 and H7 cannot close until the selected factory accepts and prices these operations",
             },
             "J4-P_factory_packed_removable": {
-                "status": "open_until_kit_and_shipping_quote",
-                "required_operations": ["test U214 compatibility, then pack the removable Cap separately", "pack selected external antennas separately", "pack protected 18650 cells separately for user installation unless compliant integrated battery shipping is qualified"],
+                "status": "open_until_kit_and_packing_quote",
+                "required_operations": ["test U214 compatibility, then pack the removable Cap separately", "pack selected external antennas separately"],
+            },
+            "J5-U_user_supplied_not_delivered": {
+                "status": "accepted_project_boundary",
+                "items": ["compatible protected 18650 cells"],
+                "rule": "not included, assembled, packed, shipped or priced with the device",
             },
         },
         "parts_api": JLCAPI_STATE,
@@ -712,7 +729,7 @@ def build() -> dict:
                 "processed": False,
                 "result": "historical 209-line capture retained for 208 unchanged identities; exact current SA818S-U/V pages joined separately into the 210-line map",
             },
-            "blocker": "all 210 current lines have defined routes and all sample component prices are known; exact SA818S-V pre-order lead time plus J4-F/J4-P final-assembly acceptance/pricing remain open, and no sourcing request, quote, reservation or order has been created",
+            "blocker": "all 210 current lines have defined routes and all sample component prices are known; the actual two-designator U/V job plus J4-F/J4-P final-assembly acceptance/pricing remain open; accumulators are user-supplied and not a delivery gate; no sourcing request, quote, reservation or order has been created",
         },
         "critical_spot_checks": SPOT_CHECKS,
         "summary": {
@@ -723,6 +740,7 @@ def build() -> dict:
             "global_sourcing_or_consignment": sum(row["tier"] == "J3" for row in SPOT_CHECKS),
             "factory_final_assembly": sum(row["tier"] == "J4-F" for row in SPOT_CHECKS),
             "factory_packed_removable": sum(row["tier"] == "J4-P" for row in SPOT_CHECKS),
+            "user_supplied_not_delivered": sum(row["tier"] == "J5-U" for row in SPOT_CHECKS),
             "historical_bom_tool_matched_lines": match_summary["bom_tool_inherited_matched_lines"],
             "historical_bom_tool_public_stock_lines": match_summary["in_stock_lines"] - 1,
             "historical_bom_tool_preorder_lines": match_summary["pre_order_lines"] - 1,
@@ -744,7 +762,7 @@ def build() -> dict:
             "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot",
         },
         "next": {
-            "local": "all 210 lines have defined routes; preserve the map, keep SA818S-V lead time and J4-F/J4-P as open factory gates, keep the optional rejected Parts API path fail-closed, and retain PCBWay as the prepared unsent full-device fallback",
+            "local": "all 210 lines have defined routes; preserve the map, keep the two-designator and J4-F/J4-P clarification open, keep accumulators outside delivery, keep the optional rejected Parts API path fail-closed, and retain PCBWay as the prepared unsent full-device fallback",
             "external_authority_later": "quote creation, sourcing requests, private-stock reservation, purchase and any materially expanded supplier request still require separate explicit authority",
             "forbidden": ["purchase", "component replacement", "sourcing request", "quote creation", "private-stock reservation", "raw API data redistribution", "KiCad placement/routing", "fabrication"],
         },
@@ -802,12 +820,14 @@ flowchart TD
   J2 -->|нет| J3["J3 · global/consign"]
   P -->|нет; ставит фабрика| J4F["J4-F · factory final assembly"]
   P -->|нет; в комплект отдельно| J4P["J4-P · factory-packed"]
+  P -->|не входит в поставку| J5U["J5-U · user-supplied"]
   J0 --> F["BOM freeze"]
   J1 --> F
   J2 --> F
   J3 --> F
   J4F --> F
   J4P --> F
+  J5U --> F
   F --> R["повторная stock-проверка перед заказом"]
 ```
 
@@ -819,7 +839,7 @@ flowchart TD
 
 Контрольный BOM Tool capture относится к прежним 209 строкам: 176 matched, 33 unmatched и 1019 установок. Текущий BOM отличается от него только заменой `SA518` на exact `SA818S-U` + `SA818S-V`: 208 неизменившихся identity присоединены по MPN, а два новых модуля — по точным страницам `C3001549` и `C51897911`. Так получена проверяемая текущая карта `{summary['target_bom_lines']}` строк и `{summary['target_placements_parsed']}` установок без повторной передачи BOM. До применения сохранённых outlier-решений в ней 178 exact catalogue routes и 32 unresolved lines; семантических подмен MPN — ноль.
 
-Сохранённый exact-поиск закрывает все 32 неизменившихся outlier без замены компонентов: 12 добавлены в `J0`, 4 — в `J2`, 11 сохраняют точный MPN через `J3`, 3 требуют фабричной финальной сборки `J4-F`, 2 комплектуются отдельно по `J4-P`. Вместе с новыми voice routes итог всей BOM: `J0=148`, `J1=0`, `J2=46`, `J3=11`, `J4-F=3`, `J4-P=2`; несопоставленных строк — ноль.
+Сохранённый exact-поиск закрывает все 32 неизменившихся outlier без замены компонентов: 12 добавлены в `J0`, 4 — в `J2`, 11 сохраняют точный MPN через `J3`, 3 требуют фабричной финальной сборки `J4-F`, U214 идёт через `J4-P`, а аккумуляторы — через `J5-U` вне поставки. Вместе с новыми voice routes итог всей BOM: `J0=148`, `J1=0`, `J2=46`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; несопоставленных строк — ноль.
 
 Показываемая в историческом BOM Tool capture сумма `$1255.6365` относится только к прежним 176 найденным строкам и **не** является текущей полной ценой сборки, quote или заказом. Актуальная минимальная корзина evidence отдельно посчитана на [странице образцов](component-sample-basket.ru.md).
 
@@ -843,7 +863,8 @@ JLCPCB Standard PCBA собирает обе платы и принятые SMT/
 | Маршрут | Обязательная операция | Статус |
 |---|---|---|
 | `J4-F` | Фабрика стыкует и проверяет дисплей/flex, устанавливает и фиксирует пять microcoax, ставит ручку энкодера, собирает корпус/«бутерброд» и выполняет whole-device test | 🔒 Открыто до письменного подтверждения capability и отдельной цены box-build; без этого H5 и H7 не закрываются |
-| `J4-P` | Фабрика проверяет совместимость U214, затем кладёт его отдельно; внешние антенны кладутся комплектом; защищённые 18650 кладутся отдельно для установки пользователем, если не подтверждён безопасный battery box-build и shipping | 🔒 Открыто до kit/packing/shipping quote |
+| `J4-P` | Фабрика проверяет совместимость U214 и кладёт его отдельно; внешние антенны кладутся комплектом | 🔒 U214 и комплект антенн открыты до kit/packing quote |
+| `J5-U` | Пользователь отдельно приобретает и устанавливает совместимые защищённые 18650 | ✅ Принятая граница продукта: аккумуляторы не входят в поставку устройства |
 
 `J4-F` и `J4-P` не означают, что операции уже приняты JLCPCB. Они фиксируют требуемый результат для выбранной фабрики или fallback box-build подрядчика.
 
@@ -854,8 +875,8 @@ JLCPCB Standard PCBA собирает обе платы и принятые SMT/
 ## Текущий результат
 
 - JLCPCB Standard PCBA принят как рабочий reference без lock-in.
-- Все `{summary['target_bom_lines']}` строк имеют определённый маршрут `J0`–`J3`, `J4-F` или `J4-P`; функциональных замен нет.
-- Все component prices минимальной evidence-корзины известны. Запрос JLCPCB без заказа успешно отправлен 26 августа 2026 года; H5.0.3-R1 теперь ожидает точный срок/условия pre-order `SA818S-V`, подтверждение/цену `J4-F` box-build и условия `J4-P` kit/packing/shipping. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) отдельно проверит полноту ответа и прохождение gates, не разрешая заказ. Закупка образцов остаётся отдельным последующим решением.
+- Все `{summary['target_bom_lines']}` строк имеют определённый маршрут `J0`–`J3`, `J4-F`, `J4-P` или `J5-U`; функциональных замен нет.
+- Частичный [ответ JLCPCB](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) от 26 августа 2026 года подтверждает для exact `SA818S-V C51897911` MOQ 1 и типичные 8–15 рабочих дней pre-order; final quote/lead появляются только после pre-order, а срок свыше 18 рабочих дней требует continue/cancel confirmation. Function Test условно рассматривается после заказа по базе `$15.70 + $7.86/hour`. Аккумуляторы решением владельца перенесены в `J5-U`: пользователь покупает их отдельно, поэтому это не supplier-gate. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) остаётся открыт на actual two-designator U/V job, остальные `J4-F/J4-P` и identity control. [Уточнение](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md) подготовлено; закупка и заказ не разрешены.
 - Заявка JLCAPI одобрена, приложение `ESP32-Leshy2 BOM Validator` создано, ключ подписи хранится только локально вне Git. Портал показывает право Parts как `Rejected`, но причины в журнале нет. Официальная политика говорит, что решения учитывают предыдущие заказы JLCPCB, компанию и характер бизнеса, однако не указывает, какой именно фактор сработал здесь; [информационный запрос в поддержку](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md) отправлен 26 августа 2026 года и ожидает ответа. До фактического одобрения API-вызовы невозможны. PCB/3D также отклонены, SMT Stencil и JLC Balance выключены. Активным остаётся ручной путь через каталог и BOM.
 - [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) фиксирует резерв без возврата к началу H5: PCBWay — первый кандидат на полную сборку, Seeed — второй источник PCBA. [Одинаковый no-order запрос PCBWay](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) подготовлен, но его отправка и любые коммерческие действия не разрешены.
 - Прежний 209-строчный BOM upload был передан и обработан; текущий 210-строчный файл сгенерирован локально, но не передавался, потому что 208 identity неизменны, а обе новые exact-страницы проверены отдельно. Quote, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены. Сырые API-ответы публично не распространяются.
@@ -881,12 +902,14 @@ flowchart TD
   J2 -->|no| J3["J3 · global/consign"]
   P -->|no; factory installs| J4F["J4-F · factory final assembly"]
   P -->|no; packed separately| J4P["J4-P · factory-packed"]
+  P -->|not delivered| J5U["J5-U · user-supplied"]
   J0 --> F["BOM freeze"]
   J1 --> F
   J2 --> F
   J3 --> F
   J4F --> F
   J4P --> F
+  J5U --> F
   F --> R["stock recheck before every order"]
 ```
 
@@ -898,7 +921,7 @@ No platform guarantees perpetual public stock. Leshy2 therefore selects ordinary
 
 The controlled BOM Tool capture belongs to the former 209-line BOM: 176 matched, 33 unmatched and 1019 placements. The current BOM differs only by replacing `SA518` with exact `SA818S-U` + `SA818S-V`: 208 unchanged identities are joined by MPN, and the two new modules by exact `C3001549` and `C51897911` pages. This yields a checkable current map of `{summary['target_bom_lines']}` lines and `{summary['target_placements_parsed']}` placements without retransmitting the BOM. Before applying the retained outlier resolutions it has 178 exact catalogue routes and 32 unresolved lines; zero semantic MPN substitutions were observed.
 
-The retained exact search resolves all 32 unchanged outliers without component replacement: 12 are added to `J0`, 4 to `J2`, 11 retain the exact MPN through `J3`, 3 require factory final assembly `J4-F`, and 2 are packed separately through `J4-P`. With the new voice routes, the whole-BOM result is `J0=148`, `J1=0`, `J2=46`, `J3=11`, `J4-F=3`, `J4-P=2`; zero lines remain unmapped.
+The retained exact search resolves all 32 unchanged outliers without component replacement: 12 are added to `J0`, 4 to `J2`, 11 retain the exact MPN through `J3`, 3 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. With the new voice routes, the whole-BOM result is `J0=148`, `J1=0`, `J2=46`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
 
 The `$1255.6365` displayed in the historical BOM Tool capture covers only its former 176 matched lines and is **not** a current complete assembly price, quote or order. The current minimum evidence basket is calculated separately on the [sample page](component-sample-basket.md).
 
@@ -922,7 +945,8 @@ JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts. That does
 | Route | Required operation | Status |
 |---|---|---|
 | `J4-F` | Factory mates and tests display/flex, installs and strain-routes five microcoax jumpers, installs the encoder knob, integrates the enclosure/sandwich and performs whole-device test | 🔒 Open until written capability acceptance and a separate box-build price; H5 and H7 cannot close without it |
-| `J4-P` | Factory compatibility-tests U214 and packs it separately; external antennas are packed as a kit; protected 18650 cells are packed separately for user installation unless compliant battery box-build and shipping are qualified | 🔒 Open until kit/packing/shipping quote |
+| `J4-P` | Factory compatibility-tests and separately packs U214; external antennas are packed as a kit | 🔒 U214 and antenna kit remain open until a kit/packing quote |
+| `J5-U` | User separately buys and installs compatible protected 18650 cells | ✅ Accepted product boundary: accumulators are not included in device delivery |
 
 `J4-F` and `J4-P` do not claim that JLCPCB has already accepted these operations. They define the required result for the selected factory or fallback box-build contractor.
 
@@ -933,8 +957,8 @@ JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts. That does
 ## Current result
 
 - JLCPCB Standard PCBA is the working reference without lock-in.
-- All `{summary['target_bom_lines']}` lines have a defined `J0`–`J3`, `J4-F` or `J4-P` route; no functional replacement was introduced.
-- Every component price in the minimum evidence basket is known. A no-order JLCPCB inquiry was successfully submitted on 26 August 2026; H5.0.3-R1 now waits for exact `SA818S-V` pre-order lead time/terms, `J4-F` box-build acceptance/pricing and `J4-P` kit/packing/shipping terms. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) will separately check response completeness and gate acceptance without authorizing an order. Sample purchase remains a later separate decision.
+- All `{summary['target_bom_lines']}` lines have a defined `J0`–`J3`, `J4-F`, `J4-P` or `J5-U` route; no functional replacement was introduced.
+- JLCPCB's partial [26 August 2026 response](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) confirms MOQ 1 and a typical 8–15-working-day pre-order for exact `SA818S-V C51897911`; final quote/lead exist only after pre-order, and more than 18 working days triggers continue/cancel confirmation. Function Test is conditionally reviewed after order at a `$15.70 + $7.86/hour` basis. By owner decision, accumulators now use `J5-U`: the user buys them separately, so they are not a supplier gate. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) remains open on the actual two-designator U/V job, remaining `J4-F/J4-P`, and identity control. A [clarification reply](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md) is prepared; purchase and order remain unauthorized.
 - The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git. The portal reports Parts permission as `Rejected`, without a reason in its activity log. Official policy says decisions consider previous JLCPCB orders, company situation and business situation, but does not identify which factor applied here; an [information-only support request](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md) was submitted on 26 August 2026 and awaits a response. API calls remain unusable until actual approval. PCB/3D are also rejected; SMT Stencil and JLC Balance remain inactive. Manual catalogue/BOM evidence remains the active path.
 - [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) preserves a fallback without restarting H5: PCBWay is the first full-device candidate and Seeed is the PCBA second source. The [same no-order PCBWay questionnaire](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) is prepared but sending it and all commercial actions remain unauthorized.
 - The former 209-line BOM upload was transmitted and processed; the current 210-line file was generated locally but not transmitted because 208 identities are unchanged and both new exact pages were checked separately. No quote, sourcing request, reservation, purchase, replacement, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
@@ -1020,7 +1044,7 @@ def main() -> None:
         f"{data['summary']['current_exact_catalogue_routes_before_outlier_resolution']}/"
         f"{data['summary']['target_bom_lines']} exact catalogue routes before retained outlier resolution; "
         f"all {data['summary']['target_bom_lines']} sourcing/final-assembly routes mapped; "
-        "SA818S-V lead time and J4-F/J4-P factory gates open; "
+        "partial supplier response recorded; two-designator and J4-F/J4-P clarification open; "
         "no order or replacement authorized"
     )
 

@@ -223,12 +223,15 @@ and the qualified-pending SA818S-CE UHF alternate. The current
 non-exclusive reference. The former 209-line capture is used only for 208
 unchanged identities; exact U/V pages complete the current 210-line map. All
 routes are assigned, with no semantic MPN substitution or component
-replacement. Exact SA818S-V pre-order lead time and J4-F/J4-P factory
-acceptance/pricing now await the itemized response to the no-order JLCPCB
-inquiry successfully submitted on 26 August 2026. The fail-closed
+replacement. JLCPCB's partial 26 August response confirms exact SA818S-V MOQ 1
+and a typical 8–15-working-day pre-order plus conditional post-order Function
+Test pricing. Accumulators are user-supplied `J5-U`, outside delivery and
+supplier gates. The reply does not answer the actual two-designator
+U/V job, most J4-F/J4-P operations or exact-MPN control. The fail-closed
 [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json)
-checks response completeness separately from factory-gate acceptance and cannot
-grant order authority. The JLCAPI app/key are ready
+records 16 unanswered fields without granting order
+authority. The [clarification reply](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md)
+is prepared but unsent. The JLCAPI app/key are ready
 outside Git, but Parts permission is rejected without a stated reason. An
 [information-only support request](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md)
 was submitted successfully on 26 August 2026; manual catalogue/BOM evidence

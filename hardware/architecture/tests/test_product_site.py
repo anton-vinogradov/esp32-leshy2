@@ -414,7 +414,7 @@ class ProductSiteTests(unittest.TestCase):
             evidence["assembly_boundary"]["J4-F_factory_final_assembly"]["status"],
         )
         self.assertEqual(
-            "open_until_kit_and_shipping_quote",
+            "open_until_kit_and_packing_quote",
             evidence["assembly_boundary"]["J4-P_factory_packed_removable"]["status"],
         )
         self.assertEqual(176, evidence["summary"]["historical_bom_tool_matched_lines"])
@@ -424,7 +424,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(32, evidence["summary"]["current_unmatched_lines_before_outlier_resolution"])
         self.assertEqual(1052, evidence["summary"]["target_placements_parsed"])
         self.assertEqual(
-            {"J0": 148, "J1": 0, "J2": 46, "J3": 11, "J4-F": 3, "J4-P": 2},
+            {"J0": 148, "J1": 0, "J2": 46, "J3": 11, "J4-F": 3, "J4-P": 1, "J5-U": 1},
             evidence["summary"]["availability_routes"],
         )
         self.assertEqual(0, evidence["summary"]["full_bom_lines_pending_mapping"])
@@ -509,7 +509,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("H5-EVR06", outliers["artifact"])
         self.assertEqual(32, outliers["summary"]["bom_tool_outliers_resolved"])
         self.assertEqual(
-            {"J0": 148, "J1": 0, "J2": 46, "J3": 11, "J4-F": 3, "J4-P": 2},
+            {"J0": 148, "J1": 0, "J2": 46, "J3": 11, "J4-F": 3, "J4-P": 1, "J5-U": 1},
             outliers["summary"]["availability_routes"],
         )
         self.assertEqual(0, outliers["summary"]["component_replacements"])
@@ -531,11 +531,19 @@ class ProductSiteTests(unittest.TestCase):
             },
         )
         self.assertEqual(
-            {"U214 Cap LoRa-1262", "18650 4000mAh"},
+            {"U214 Cap LoRa-1262"},
             {
                 row["normalized_mpn"]
                 for row in outliers["outlier_resolutions"]
                 if row["route"] == "J4-P"
+            },
+        )
+        self.assertEqual(
+            {"18650 4000mAh"},
+            {
+                row["normalized_mpn"]
+                for row in outliers["outlier_resolutions"]
+                if row["route"] == "J5-U"
             },
         )
         self.assertTrue(all(outliers["checks"].values()))
@@ -919,7 +927,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("H5.0.3-R1", h5_plan["current_substep"])
         self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][1]["status"])
-        self.assertEqual("current_waiting_for_supplier_response", h5_plan["substeps"][0]["children"][2]["status"])
+        self.assertEqual("current_partial_supplier_response_clarification_open", h5_plan["substeps"][0]["children"][2]["status"])
         self.assertIn("H5.0.1-R1", h5_plan["reviewed_artifacts"])
         self.assertIn("H5.0.2-R1", h5_plan["reviewed_artifacts"])
         self.assertIn("H5.0.3", h5_plan["superseded_current_artifacts"])

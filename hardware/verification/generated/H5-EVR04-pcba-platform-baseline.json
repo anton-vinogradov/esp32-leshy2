@@ -92,7 +92,12 @@
     {
       "id": "J4-P",
       "name": "factory-packed removable item",
-      "rule": "the factory tests compatibility where applicable and packs the removable accessory, antenna or cell separately for user installation"
+      "rule": "the factory tests compatibility where applicable and packs the removable accessory or antenna separately for user installation"
+    },
+    {
+      "id": "J5-U",
+      "name": "user-supplied consumable",
+      "rule": "the item is required for operation but is not part of device delivery, factory assembly, packing or shipping"
     }
   ],
   "assembly_boundary": {
@@ -112,12 +117,18 @@
       "close_gate": "H5 and H7 cannot close until the selected factory accepts and prices these operations"
     },
     "J4-P_factory_packed_removable": {
-      "status": "open_until_kit_and_shipping_quote",
+      "status": "open_until_kit_and_packing_quote",
       "required_operations": [
         "test U214 compatibility, then pack the removable Cap separately",
-        "pack selected external antennas separately",
-        "pack protected 18650 cells separately for user installation unless compliant integrated battery shipping is qualified"
+        "pack selected external antennas separately"
       ]
+    },
+    "J5-U_user_supplied_not_delivered": {
+      "status": "accepted_project_boundary",
+      "items": [
+        "compatible protected 18650 cells"
+      ],
+      "rule": "not included, assembled, packed, shipped or priced with the device"
     }
   },
   "parts_api": {
@@ -247,7 +258,7 @@
       "processed": false,
       "result": "historical 209-line capture retained for 208 unchanged identities; exact current SA818S-U/V pages joined separately into the 210-line map"
     },
-    "blocker": "all 210 current lines have defined routes and all sample component prices are known; exact SA818S-V pre-order lead time plus J4-F/J4-P final-assembly acceptance/pricing remain open, and no sourcing request, quote, reservation or order has been created"
+    "blocker": "all 210 current lines have defined routes and all sample component prices are known; the actual two-designator U/V job plus J4-F/J4-P final-assembly acceptance/pricing remain open; accumulators are user-supplied and not a delivery gate; no sourcing request, quote, reservation or order has been created"
   },
   "critical_spot_checks": [
     {
@@ -369,6 +380,7 @@
     "global_sourcing_or_consignment": 1,
     "factory_final_assembly": 1,
     "factory_packed_removable": 0,
+    "user_supplied_not_delivered": 0,
     "historical_bom_tool_matched_lines": 176,
     "historical_bom_tool_public_stock_lines": 135,
     "historical_bom_tool_preorder_lines": 41,
@@ -385,7 +397,8 @@
       "J2": 46,
       "J3": 11,
       "J4-F": 3,
-      "J4-P": 2
+      "J4-P": 1,
+      "J5-U": 1
     },
     "full_bom_lines_pending_mapping": 0,
     "open_qualified_price_lines": 0
@@ -397,7 +410,7 @@
     "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot"
   },
   "next": {
-    "local": "all 210 lines have defined routes; preserve the map, keep SA818S-V lead time and J4-F/J4-P as open factory gates, keep the optional rejected Parts API path fail-closed, and retain PCBWay as the prepared unsent full-device fallback",
+    "local": "all 210 lines have defined routes; preserve the map, keep the two-designator and J4-F/J4-P clarification open, keep accumulators outside delivery, keep the optional rejected Parts API path fail-closed, and retain PCBWay as the prepared unsent full-device fallback",
     "external_authority_later": "quote creation, sourcing requests, private-stock reservation, purchase and any materially expanded supplier request still require separate explicit authority",
     "forbidden": [
       "purchase",

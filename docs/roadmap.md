@@ -31,7 +31,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Joined pre-layout gate | ✅ [H4 reviewed](h4-prelayout-gate-report.md): 0 open virtual contradictions; 85 physical residuals keep H5/H6/H8 owners |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
-| Component evidence | ▶️ H5.0.3-R1 has a 33-line `$286.43` basket and exact routes for all 210 BOM lines / 1052 placements with zero replacement; SA818S-V lead time and J4-F/J4-P supplier responses remain open; sample purchase remains blocked |
+| Component evidence | ▶️ H5.0.3-R1 has a 33-line `$286.43` basket and exact routes for all 210 BOM lines / 1052 placements; partial JLCPCB reply confirms SA818S-V MOQ/typical lead; accumulators are user-supplied `J5-U`; two-designator and remaining J4-F/J4-P clarification remains open; purchase blocked |
 | Prototype PCB order | 🔒 Forbidden before H7 |
 | Production order | 🔒 Forbidden before H9 |
 
@@ -50,9 +50,11 @@ The [33-line irreducible basket](component-sample-basket.md) is priced at
 BOM lines / 1052 placements to exact `J0`–`J3`/`J4-F`/`J4-P` routes with zero
 replacement. The old single-SA518 basket and 209-line platform snapshot do not
 describe the current product. Public/read-only evidence is exhausted. A
-no-order JLCPCB inquiry was successfully submitted on 26 August 2026;
-SA818S-V lead time and J4-F/J4-P factory acceptance/pricing now await its
-itemized response. PCBWay is already preserved as the prepared full-device
+JLCPCB's partial 26 August response confirms exact SA818S-V MOQ 1 and a typical
+8–15-working-day pre-order and conditional post-order Function Test pricing.
+Accumulators are user-supplied `J5-U`, not a delivery or supplier gate. The
+actual two-designator U/V job, remaining J4-F/J4-P and
+exact-MPN control need the prepared clarification. PCBWay remains the full-device
 fallback and Seeed as the PCBA second source; neither has been contacted.
 Quote/reservation and purchase are not authorized.
 
@@ -292,7 +294,7 @@ Current H2 execution:
 - ✅ `H4.3` — [joined H4 gate reviewed](h4-prelayout-gate-report.md).
 - ✅ `H5.0.1-R1` — [all nine residuals and 14 mechanical gates mapped](component-evidence-map.md) for the current dual-SA818S design.
 - ✅ `H5.0.2-R1` — [primary sources and serial alternatives reviewed](component-source-research.md); U/V exact routes retained and CE constrained as a non-silent qualified-pending UHF alternate.
-- ▶️ `H5.0.3-R1` — basket and 210-route map complete; no-order JLCPCB inquiry submitted on 26 August 2026, waiting for the SA818S-V and J4-F/J4-P response; PCBWay fallback prepared but not contacted.
+- ▶️ `H5.0.3-R1` — basket and 210-route map complete; partial JLCPCB reply confirms SA818S-V MOQ 1 / typical 8–15-working-day pre-order and conditional Function Test; accumulators are user-supplied `J5-U`; two-designator/J4-F/J4-P clarification prepared; PCBWay fallback not contacted.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json),
 the completed H3/H4 plans are [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json)
@@ -354,7 +356,7 @@ A production order is possible only after H9.
 | **H2. Production ECAD schematic** | ✅ Reviewed and accepted | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 consumes the contract without invented pins |
 | **H3. Virtual electrical verification** | ✅ Reviewed and accepted | [H3 result report](h3-acceptance.md): calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
 | **H4. Joined pre-layout gate** | ✅ [Reviewed](h4-prelayout-gate-report.md) | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
-| **H5. Component evidence** | ▶️ Current `H5.0.3-R1`; 9-residual/14-gate map and source research reviewed, 33-line `$286.43` basket and all 210 routes complete with zero replacement; no-order JLCPCB inquiry submitted, supplier response pending; PCBWay full-device fallback prepared but not contacted; purchase blocked | [Current basket](component-sample-basket.md) and [210-route platform map](manufacturing-platform.md); former SA518 basket and 209-line audit are superseded inputs only | Every production-BOM line has an exact `J0`–`J3`, `J4-F` or `J4-P` route and no silent substitution; exact whole-basket and final-assembly costs are published; the factory accepts `J4-F` box-build and `J4-P` kit/packing/shipping; approved received samples prove identity, mating, stack-up and critical dimensions |
+| **H5. Component evidence** | ▶️ Current `H5.0.3-R1`; 9-residual/14-gate map, 33-line `$286.43` basket and all 210 routes complete; partial JLCPCB reply recorded, two-designator/J4-F/J4-P clarification open, accumulators accepted as user-supplied `J5-U`; PCBWay fallback not contacted; purchase blocked | [Current basket](component-sample-basket.md), [210-route platform map](manufacturing-platform.md) and [supplier gate](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json); former SA518 evidence is superseded | Every production-BOM line has an exact route and no silent substitution; exact whole-basket and accepted final-assembly costs are published; selected factory boundary is explicit; approved received samples prove identity, mating, stack-up and critical dimensions |
 | **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |
 | **H7. Prototype fabrication and bring-up** | 🔒 Waiting for H6, inherited firmware F3, accepted `J4-F/P` factory boundary and order approval | Small prototype lot, factory-integrated `J4-F`, separately packed `J4-P` and retained bring-up log | Box-build output matches the accepted boundary; rails sequence correctly; all five controllers program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |
 | **H8. Physical qualification** | 🔒 Waiting for H7 | HIL, RF, thermal, power, safety and endurance evidence | 3×nRF24 pass `3R/1T2R/2T1R/3T`; active signals are not stalled by neighbors; inactive interfaces are physically quiet; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog and single-fault tests pass |
@@ -383,12 +385,15 @@ A production order is possible only after H9.
 The current boundary is `H5.0.3-R1`: all nine H5 physical residuals and 14
 mechanical gates are covered by a 33-line `$286.43` basket, and all 210 BOM
 lines / 1052 placements have exact routes with zero replacement. Read-only
-public evidence can no longer close the remaining gates: exact SA818S-V
-pre-order lead time and J4-F/J4-P factory acceptance/pricing now await the
-itemized response to the no-order inquiry submitted on 26 August 2026. Parts
+public evidence can no longer close the remaining gates. JLCPCB's partial
+response confirms SA818S-V MOQ 1, a typical 8–15-working-day pre-order and
+conditional post-order Function Test pricing. Accumulators are user-supplied
+`J5-U` and not a gate; the
+actual two-designator job plus remaining J4-F/J4-P and identity-control lines
+need the prepared clarification. Parts
 API permission is rejected without a stated reason; an information-only support
 request was submitted successfully on 26 August 2026, so the manual evidence path remains active; PCB
 placement/routing, quote/reservation and every order remain blocked. `H5-EVR07`
-is ready to reject an incomplete or negative supplier response without opening
-H6. [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json)
+records 16 unanswered fields without opening H6.
+[`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json)
 keeps PCBWay as the unsent full-device fallback and Seeed as the PCBA second source.
