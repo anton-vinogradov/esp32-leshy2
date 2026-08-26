@@ -230,8 +230,8 @@ def build() -> tuple[dict[Path, str], dict]:
         else:
             zero_sheets.append(sheet)
     total = sum(row["count"] for row in sheets)
-    if total != 191:
-        raise ValueError(f"reviewed NC total drifted: {total} != 191")
+    if total != 202:
+        raise ValueError(f"reviewed NC total drifted: {total} != 202")
     manifest = {
         "schema_version": 1,
         "stage": "H2.6.2",

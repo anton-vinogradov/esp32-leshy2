@@ -5,11 +5,11 @@
   "current_substep": null,
   "completed_substep": "H3.7.4",
   "accepted_input": {
-    "stage": "H2.8.2",
+    "stage": "H2.8.2-R1",
     "status": "accepted_by_user",
-    "date": "2026-08-24",
-    "hardware_commit": "25d9ee2",
-    "firmware_commit": "900bb2b"
+    "date": "2026-08-26",
+    "binding": "H2-REV81 source hashes",
+    "superseded_architecture": "single SA518 voice path"
   },
   "authorization": {
     "analytical_verification": true,
@@ -25,7 +25,7 @@
       "title": "Freeze inputs, methods and reproducibility contract",
       "status": "reviewed",
       "children": [
-        {"id": "H3.0.1", "title": "Freeze accepted H2 artifacts and the complete H3 verification matrix", "status": "reviewed", "evidence": "generated/H3-VRF01-input-freeze.json"},
+        {"id": "H3.0.1-R1", "title": "Freeze the accepted dual-SA818S H2 revision and the complete H3 verification matrix", "status": "reviewed", "evidence": "generated/H3-VRF01-input-freeze.json"},
         {"id": "H3.0.2", "title": "Inventory authoritative electrical parameters, models, provenance and missing evidence", "status": "reviewed", "evidence": "generated/H3-VRF02-parameter-inventory.json", "resolved_gate": "H3-NRF24-LIFECYCLE option A"},
         {"id": "H3.0.3", "title": "Freeze reproducible calculation/simulation toolchain, tolerances and pass/fail rules", "status": "reviewed", "evidence": "generated/H3-VRF03-method-contract.json"}
       ]

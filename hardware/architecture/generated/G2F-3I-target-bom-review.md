@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **1020** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **1019** supplied/costed placements collapse to **209** used exact-device/MPN lines.
-- Current orderability evidence exists for **208/209** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **198/209** lines.
-- Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **1002/1019** supplied placements; their partial subtotals are `base_product` — USD 223.2232. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **209/209** lines.
+- **1053** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **1052** supplied/costed placements collapse to **210** used exact-device/MPN lines.
+- Current orderability evidence exists for **209/210** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **198/210** lines.
+- Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **1033/1052** supplied placements; their partial subtotals are `base_product` — USD 236.7231. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **210/210** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 1016 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 1049 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -283,7 +283,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-COMPUTE-RF</code> — Compute, radio modules and active RF/IR endpoints — 15 line(s)</summary>
+<details><summary><code>SUB-COMPUTE-RF</code> — Compute, radio modules and active RF/IR endpoints — 16 line(s)</summary>
 
 - Disposition: architecture-locked first target; no drop-in substitution without full owner, pin, firmware, RF and recovery requalification.
 - Equivalence envelope:
@@ -303,7 +303,8 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `esp32_s3_wroom_1u_n16r8` — `ESP32-S3-WROOM-1U-N16R8`.
   - `infineon_bgs13sn8e6327xtsa1` — `Infineon BGS13SN8E6327XTSA1`.
   - `m5_u214` — `M5Stack U214 Cap LoRa-1262`.
-  - `nicerf_sa518_v11` — `NiceRF SA518`.
+  - `nicerf_sa818s_u_v18` — `G-NiceRF SA818S-U`.
+  - `nicerf_sa818s_v_v18` — `G-NiceRF SA818S-V`.
   - `rp2354b_a4` — `SC1512-A4`.
   - `skyworks_si4732_a10_gsr` — `Si4732-A10-GSR`.
   - `vishay_tsmp95000tt` — `Vishay TSMP95000TT`.
@@ -385,7 +386,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Analog Devices AD8314ACPZ-RL7</code> — 5 × USD 2.8570 = USD 14.2850</summary>
+<details><summary><code>Analog Devices AD8314ACPZ-RL7</code> — 6 × USD 2.8570 = USD 17.1420</summary>
 
 - Device id: `adi_ad8314acpz_rl7`.
 - Scope: `base_product`.
@@ -475,7 +476,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Diodes Incorporated BAT54-7-F</code> — 4 × USD 0.0698 = USD 0.2792</summary>
+<details><summary><code>Diodes Incorporated BAT54-7-F</code> — 5 × USD 0.0698 = USD 0.3490</summary>
 
 - Device id: `diodes_bat54_7_f`.
 - Scope: `base_product`.
@@ -547,7 +548,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>GCT RFPC-SMA31-FN-175-A</code> — 7 × USD 2.4646 = USD 17.2519</summary>
+<details><summary><code>GCT RFPC-SMA31-FN-175-A</code> — 8 × USD 2.4646 = USD 19.7165</summary>
 
 - Device id: `gct_rfpc_sma31_fn_175_a`.
 - Scope: `base_product`.
@@ -808,7 +809,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Murata GRM1555C1H121JA01D</code> — 7 × USD 0.0197 = USD 0.1379</summary>
+<details><summary><code>Murata GRM1555C1H121JA01D</code> — 8 × USD 0.0197 = USD 0.1576</summary>
 
 - Device id: `murata_grm1555c1h121ja01d`.
 - Scope: `base_product`.
@@ -1060,7 +1061,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>74LVC2G14GW,125</code> — 1 × USD 0.0587 = USD 0.0587</summary>
+<details><summary><code>74LVC2G14GW,125</code> — 2 × USD 0.0587 = USD 0.1174</summary>
 
 - Device id: `nexperia_74lvc2g14gw_125`.
 - Scope: `base_product`.
@@ -1276,7 +1277,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TDK C1005X7R1H104K050BB</code> — 142 × USD 0.0258 = USD 3.6636</summary>
+<details><summary><code>TDK C1005X7R1H104K050BB</code> — 147 × USD 0.0258 = USD 3.7926</summary>
 
 - Device id: `tdk_c1005x7r1h104k050bb`.
 - Scope: `base_product`.
@@ -1285,7 +1286,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TDK C1608X7R1C105K080AC</code> — 35 × USD 0.0392 = USD 1.3720</summary>
+<details><summary><code>TDK C1608X7R1C105K080AC</code> — 37 × USD 0.0392 = USD 1.4504</summary>
 
 - Device id: `tdk_c1608x7r1c105k080ac`.
 - Scope: `base_product`.
@@ -1393,7 +1394,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Texas Instruments SN74LVC1G126DCKR</code> — 6 × USD 0.0546 = USD 0.3276</summary>
+<details><summary><code>Texas Instruments SN74LVC1G126DCKR</code> — 4 × USD 0.0546 = USD 0.2184</summary>
 
 - Device id: `ti_sn74lvc1g126_dckr`.
 - Scope: `base_product`.
@@ -1429,7 +1430,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Texas Instruments SN74LVC2G08DCUR</code> — 2 × USD 0.2296 = USD 0.4592</summary>
+<details><summary><code>Texas Instruments SN74LVC2G08DCUR</code> — 3 × USD 0.2296 = USD 0.6888</summary>
 
 - Device id: `ti_sn74lvc2g08_dcur`.
 - Scope: `base_product`.
@@ -1438,7 +1439,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Texas Instruments SN74LVC2G66DCUR</code> — 3 × USD 0.3930 = USD 1.1790</summary>
+<details><summary><code>Texas Instruments SN74LVC2G66DCUR</code> — 2 × USD 0.3930 = USD 0.7860</summary>
 
 - Device id: `ti_sn74lvc2g66_dcur`.
 - Scope: `base_product`.
@@ -1465,7 +1466,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TCA9534APWR</code> — 1 × USD 1.0212 = USD 1.0212</summary>
+<details><summary><code>TCA9534APWR</code> — 2 × USD 1.0212 = USD 2.0424</summary>
 
 - Device id: `ti_tca9534a_pwr`.
 - Scope: `base_product`.
@@ -1492,7 +1493,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TLV1821DCKR</code> — 1 × USD 0.7440 = USD 0.7440</summary>
+<details><summary><code>TLV1821DCKR</code> — 2 × USD 0.7440 = USD 1.4880</summary>
 
 - Device id: `ti_tlv1821_dckr`.
 - Scope: `base_product`.
@@ -1519,7 +1520,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Texas Instruments TMUX1136DGSR</code> — 1 × USD 2.0581 = USD 2.0581</summary>
+<details><summary><code>Texas Instruments TMUX1136DGSR</code> — 4 × USD 2.0581 = USD 8.2324</summary>
 
 - Device id: `ti_tmux1136_dgsr`.
 - Scope: `base_product`.
@@ -1771,7 +1772,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-07100KL</code> — 38 × USD 0.0097 = USD 0.3686</summary>
+<details><summary><code>Yageo RC0402FR-07100KL</code> — 40 × USD 0.0097 = USD 0.3880</summary>
 
 - Device id: `yageo_rc0402fr_07100kl`.
 - Scope: `base_product`.
@@ -1789,7 +1790,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-0710KL</code> — 192 × USD 0.0097 = USD 1.8624</summary>
+<details><summary><code>Yageo RC0402FR-0710KL</code> — 203 × USD 0.0097 = USD 1.9691</summary>
 
 - Device id: `yageo_rc0402fr_0710kl`.
 - Scope: `base_product`.
@@ -1870,7 +1871,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-071ML</code> — 11 × USD 0.0097 = USD 0.1067</summary>
+<details><summary><code>Yageo RC0402FR-071ML</code> — 12 × USD 0.0097 = USD 0.1164</summary>
 
 - Device id: `yageo_rc0402fr_071ml`.
 - Scope: `base_product`.
@@ -2032,7 +2033,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-0752R3L</code> — 4 × USD 0.0097 = USD 0.0388</summary>
+<details><summary><code>Yageo RC0402FR-0752R3L</code> — 5 × USD 0.0097 = USD 0.0485</summary>
 
 - Device id: `yageo_rc0402fr_0752r3l`.
 - Scope: `base_product`.
@@ -2050,7 +2051,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-075K1L</code> — 5 × USD 0.0103 = USD 0.0515</summary>
+<details><summary><code>Yageo RC0402FR-075K1L</code> — 6 × USD 0.0103 = USD 0.0618</summary>
 
 - Device id: `yageo_rc0402fr_075k1l`.
 - Scope: `base_product`.
@@ -2174,18 +2175,27 @@ These entries are intentionally excluded from the partial subtotal until a compa
 <details><summary><code>Nexperia PESD24VY1BSF</code> — <code>quantity_100_rfq_required</code></summary>
 
 - Device id: `nexperia_pesd24vy1bsf`.
-- Scope: `base_product`; quantity `1`.
+- Scope: `base_product`; quantity `2`.
 - Reason: No published comparable exact-Nexperia quantity-100 USD tier was found; the same base marking sold by ElecSuper is a different manufacturer and cannot be priced as the accepted Nexperia device.
 - Checked: `2026-08-19`; [gate source](https://www.nexperia.com/product/PESD24VY1BSF).
 
 </details>
 
-<details><summary><code>NiceRF SA518</code> — <code>quantity_100_rfq_required</code></summary>
+<details><summary><code>G-NiceRF SA818S-U</code> — <code>quantity_100_rfq_required</code></summary>
 
-- Device id: `nicerf_sa518_v11`.
+- Device id: `nicerf_sa818s_u_v18`.
 - Scope: `base_product`; quantity `1`.
-- Reason: The exact current SA518 manufacturer page offers contact/RFQ rather than a published quantity-100 USD price.
-- Checked: `2026-08-22`; [gate source](https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html).
+- Reason: JLCPCB exposes the exact G-NiceRF PCBA line, but a durable comparable quantity-100 quote is not yet captured.
+- Checked: `2026-08-26`; [gate source](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549).
+
+</details>
+
+<details><summary><code>G-NiceRF SA818S-V</code> — <code>quantity_100_rfq_required</code></summary>
+
+- Device id: `nicerf_sa818s_v_v18`.
+- Scope: `base_product`; quantity `1`.
+- Reason: The exact G-NiceRF SA818S-V line exists at JLCPCB but is pre-order and lacks a durable comparable quantity-100 quote.
+- Checked: `2026-08-26`; [gate source](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911).
 
 </details>
 
@@ -2252,7 +2262,7 @@ These entries are intentionally excluded from the partial subtotal until a compa
 ### `external_antenna_kit` — 12 item(s)
 
 - Scope: `costed_product_variant`.
-- Role: two native, three nRF, three CC, two voice and two receiver antennas/pods.
+- Role: two native, three nRF, three CC, dedicated VHF and UHF voice, and two receiver antennas/pods.
 - Blocking evidence: exact first targets and paper alternates are selected for all 12 physical items; AM/LW source independence, alternate qualification, assembled-device HIL and package-variant costing remain open.
 - Gate: `profile_variant_bom_and_hil_required`.
 - Owner stage: G3 physical design plus product-variant qualification before antenna-kit freeze.

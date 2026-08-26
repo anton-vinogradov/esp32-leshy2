@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
-"""Generate and verify the H2.3.7 Sub-GHz data and VHF/UHF voice sheet.
+"""Generate and verify the reopened H2.3.7 Sub-GHz and dual-SA818S sheet.
 
-The sheet keeps the CC1101 data path and the SA518 voice path electrically,
-power-domain and RF independent.  Every selected package is bound to a real
-physical contact set.  NiceRF publishes the SA518 body, contact width and
-contact axes but not a production land pattern; its generated footprint is
-therefore an explicitly bounded H5 contact-axis reserve, never fabrication
-evidence.
+The CC1101 data path and both serial G-NiceRF voice modules remain electrically
+and RF independent.  SA818S-U and SA818S-V share only the protected 4-V supply,
+one hardware-selected RP interface and one evidence identity.  Their common
+18-land footprint is reproduced from the official G-NiceRF PADS/DXF package.
 """
 
 from __future__ import annotations
@@ -90,6 +88,7 @@ def footprint_for(instance: str, device_key: str) -> str:
     exact = {
         "cc_external_sma": "Leshy2:RFPC-SMA31-FN-175-A",
         "voice_external_sma": "Leshy2:RFPC-SMA31-FN-175-A",
+        "voice_v_external_sma": "Leshy2:RFPC-SMA31-FN-175-A",
         "cc": "Package_DFN_QFN:Texas_RGP0020D_VQFN-20-1EP_4x4mm_P0.5mm_EP2.7x2.7mm",
         "cc_host_buffer": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
         "cc_return_buffer": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
@@ -99,14 +98,19 @@ def footprint_for(instance: str, device_key: str) -> str:
         "cc_switch_a": "Leshy2:Infineon-PG-TSNP-8-1",
         "cc_switch_b": "Leshy2:Infineon-PG-TSNP-8-1",
         "cc_rf_esd": "Diode_SMD:D_0402_1005Metric",
-        "voice": "Leshy2:NiceRF-SA518-Rev1.1-H5-CONTACT-AXIS-RESERVE",
+        "voice": "Leshy2:G-NiceRF-SA818S-Official-Package",
+        "voice_v": "Leshy2:G-NiceRF-SA818S-Official-Package",
         "voice_rf_esd": "Diode_SMD:Nexperia_DSN0603-2_0.6x0.3mm_P0.4mm",
+        "voice_v_rf_esd": "Diode_SMD:Nexperia_DSN0603-2_0.6x0.3mm_P0.4mm",
         "voice_supervisor": "Package_TO_SOT_SMD:SOT-23-6",
         "voice_io_power_switch": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
-        "voice_ptt_iso": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
-        "voice_uart_tx_iso": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+        "voice_band_io": "Package_SO:TSSOP-16_4.4x5mm_P0.65mm",
+        "voice_band_inverter": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+        "voice_pd_gate": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+        "voice_control_mux_a": "Package_SO:TSSOP-10_3x3mm_P0.5mm",
+        "voice_control_mux_b": "Package_SO:TSSOP-10_3x3mm_P0.5mm",
+        "voice_audio_mux": "Package_SO:TSSOP-10_3x3mm_P0.5mm",
         "voice_hl_driver": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
-        "voice_audio_iso": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
         "voice_buck": "Package_TO_SOT_SMD:Texas_R-PDSO-N6_DRL-6",
         "voice_inductor": "Inductor_SMD:L_Sunlord_MWSA0503S",
         "voice_efuse": "Leshy2:TI-RPW0010A-VQFN-HR-10",
@@ -136,7 +140,7 @@ def reference_prefix(instance: str, device_key: str) -> str:
         return "Y"
     if "inductor" in instance or device_key.startswith("murata_lqg15"):
         return "L"
-    if instance in {"cc_rf_esd", "voice_rf_esd"}:
+    if instance in {"cc_rf_esd", "voice_rf_esd", "voice_v_rf_esd"}:
         return "D"
     if instance == "voice_pg_qualifier":
         return "Q"
@@ -194,32 +198,29 @@ def footprint_outputs() -> dict[Path, str]:
         1.40,
         "Infineon PG-TSNP-8-1 official footprint drawing and BGS13SN8 Rev.2.4: eight 0.25-mm NSMD lands around a 3x3 grid at 0.4-mm pitch, 1.1x1.1-mm body and pin-1 orientation",
     )
-    # NiceRF supplies the 39.50x24.00-mm body, 2.00-mm contact width,
-    # 4.50-mm edge pitch and side-contact axes, but no recommended host lands.
-    # These generous copper rectangles reserve the documented axes only.  H5
-    # must replace/approve them from a received module before H6 can start.
-    sa518_pads = []
-    for number, x in zip(range(1, 8), (13.50, 9.00, 4.50, 0.00, -4.50, -9.00, -13.50)):
-        sa518_pads.append((str(number), x, 12.00, 2.00, 2.20, copper, "rect"))
-    for number, y in zip((8, 9, 10), (7.20, 0.00, -7.20)):
-        sa518_pads.append((str(number), -19.75, y, 2.20, 2.00, copper, "rect"))
-    for number, x in zip(range(11, 19), (-15.75, -11.25, -6.75, -2.25, 2.25, 6.75, 11.25, 15.75)):
-        sa518_pads.append((str(number), x, -12.00, 2.00, 2.20, copper, "rect"))
-    for number, y in ((19, -6.55), (20, 5.90)):
-        sa518_pads.append((str(number), 19.75, y, 2.20, 2.00, copper, "rect"))
-    sa518 = custom_footprint(
-        "NiceRF-SA518-Rev1.1-H5-CONTACT-AXIS-RESERVE",
-        sa518_pads,
-        39.50,
-        24.00,
-        42.20,
-        26.60,
-        "NiceRF SA518 Rev.1.1 page 9 contact-axis reserve: exact 39.50x24.00-mm body and twenty physical castellated contacts; copper depth, solder fillet and received-module fit are intentionally blocked on H5 sample evidence",
+    # Exact common SA818S host pattern reproduced from G-NiceRF's official
+    # sa818s.asc/sa818s.pcb package: 18 rectangular 2.0x3.6-mm lands, 4.45-mm
+    # top/bottom pitch and four 4.6-mm-pitch lands on the right edge.
+    sa818s_pads = []
+    for number, x in zip(range(1, 8), (-13.35, -8.90, -4.45, 0.00, 4.45, 8.90, 13.35)):
+        sa818s_pads.append((str(number), x, -9.50, 2.00, 3.60, copper, "rect"))
+    for number, y in zip((8, 9, 10, 11), (-6.90, -2.30, 2.30, 6.90)):
+        sa818s_pads.append((str(number), 17.80, y, 3.60, 2.00, copper, "rect"))
+    for number, x in zip(range(12, 19), (13.35, 8.90, 4.45, 0.00, -4.45, -8.90, -13.35)):
+        sa818s_pads.append((str(number), x, 9.50, 2.00, 3.60, copper, "rect"))
+    sa818s = custom_footprint(
+        "G-NiceRF-SA818S-Official-Package",
+        sa818s_pads,
+        35.60,
+        19.00,
+        39.20,
+        22.60,
+        "G-NiceRF official SA818S package.zip PADS/DXF host pattern: 35.60x19.00-mm body and eighteen numbered rectangular lands; received solder-fit remains H5 verification rather than an unknown land definition",
     )
     return {
         FOOTPRINT_DIR / "B0310J50100AHF.kicad_mod": balun,
         FOOTPRINT_DIR / "Infineon-PG-TSNP-8-1.kicad_mod": bgs,
-        FOOTPRINT_DIR / "NiceRF-SA518-Rev1.1-H5-CONTACT-AXIS-RESERVE.kicad_mod": sa518,
+        FOOTPRINT_DIR / "G-NiceRF-SA818S-Official-Package.kicad_mod": sa818s,
     }
 
 
@@ -232,8 +233,8 @@ def build() -> tuple[dict[Path, str], dict]:
         row for row in ledger["rows"]
         if row["project"] == PROJECT_ID and row["sheet"] == SHEET_ID
     ]
-    if len(rows) != 119:
-        raise ValueError(f"{SHEET_ID} must own exactly 119 rows, got {len(rows)}")
+    if not rows:
+        raise ValueError(f"{SHEET_ID} owns no ledger rows")
     interface_order = list(next(
         row["interfaces"] for row in root["sheets"] if row["id"] == SHEET_ID
     ))
@@ -257,8 +258,9 @@ def build() -> tuple[dict[Path, str], dict]:
             "reference": f"{prefix}{ref_counts[prefix]}",
             "footprint": footprint_for(row["instance"], row["device_key"]),
             "footprint_status": (
-                "h5_received_module_land_fit_required"
-                if row["instance"] == "voice" else "manufacturer_or_kicad_exact_package"
+                "manufacturer_exact_land_pattern_received_fit_required"
+                if row["instance"] in {"voice", "voice_v"}
+                else "manufacturer_or_kicad_exact_package"
             ),
         })
 
@@ -287,8 +289,8 @@ def build() -> tuple[dict[Path, str], dict]:
         '\t(generator_version "10.0")',
         f'\t(uuid "{stable_uuid(f"sheet:{SHEET_ID}")}")',
         '\t(paper "A0")', "\t(title_block",
-        '\t\t(title "Leshy2 — independent CC1101 Sub-GHz data and SA518 voice")',
-        '\t\t(rev "H2.3.7")', "\t)", "\t(lib_symbols", *library_defs, "\t)",
+        '\t\t(title "Leshy2 — independent CC1101 data plus one-hot SA818S VHF/UHF voice")',
+        '\t\t(rev "H2.3.7-R1")', "\t)", "\t(lib_symbols", *library_defs, "\t)",
     ]
     net_endpoints: dict[str, list[tuple[str, Pin, float, float, str]]] = defaultdict(list)
     for spec in specs:
@@ -329,7 +331,7 @@ def build() -> tuple[dict[Path, str], dict]:
     if hierarchy_used != interfaces:
         raise ValueError(f"RF32 does not terminate interfaces: {sorted(interfaces - hierarchy_used)}")
 
-    deferred_fixture_endpoints = ["voice.UPDATE", "voice_buck.PG"]
+    deferred_fixture_endpoints = ["voice_buck.PG"]
     deferred_fixture_labels = []
     for endpoint in deferred_fixture_endpoints:
         instance, contact = endpoint.split(".", 1)
@@ -355,8 +357,8 @@ def build() -> tuple[dict[Path, str], dict]:
     }
     manifest = {
         "schema_version": 1,
-        "stage": "H2.3.7",
-        "status": "reviewed_exact_electrical_subghz_voice_sheet",
+        "stage": "H2.3.7-R1",
+        "status": "reviewed_exact_electrical_subghz_dual_sa818s_sheet",
         "project": PROJECT_ID,
         "sheet": SHEET_ID,
         "source_hashes": {
@@ -370,8 +372,9 @@ def build() -> tuple[dict[Path, str], dict]:
             "hierarchical_interfaces": len(interfaces),
             "physical_package_contacts": sum(len(spec["pins"]) for spec in specs),
             "cc1101_package_contacts": len(next(spec for spec in specs if spec["instance"] == "cc")["pins"]),
-            "sa518_module_contacts": len(next(spec for spec in specs if spec["instance"] == "voice")["pins"]),
-            "independent_rf_paths": 2,
+            "sa818s_u_module_contacts": len(next(spec for spec in specs if spec["instance"] == "voice")["pins"]),
+            "sa818s_v_module_contacts": len(next(spec for spec in specs if spec["instance"] == "voice_v")["pins"]),
+            "independent_rf_paths": 3,
             "intentional_no_connect_pins": len(no_connect_endpoints),
             "known_deferred_fixture_boundaries": len(deferred_fixture_labels),
             "custom_footprints": len(footprint_outputs()),
@@ -406,7 +409,8 @@ def build() -> tuple[dict[Path, str], dict]:
                 ("cc1101rgpr", "Package_DFN_QFN:Texas_RGP0020D_VQFN-20-1EP_4x4mm_P0.5mm_EP2.7x2.7mm", "exact TI RGP0020D package"),
                 ("ttm_b0310j50100ahf", "Leshy2:B0310J50100AHF", "exact manufacturer contact pattern"),
                 ("infineon_bgs13sn8e6327xtsa1", "Leshy2:Infineon-PG-TSNP-8-1", "exact manufacturer NSMD land and stencil pattern"),
-                ("nicerf_sa518_v11", "Leshy2:NiceRF-SA518-Rev1.1-H5-CONTACT-AXIS-RESERVE", "exact body/contact count; host land fit blocked on H5"),
+                ("nicerf_sa818s_u_v18", "Leshy2:G-NiceRF-SA818S-Official-Package", "official G-NiceRF 18-land PADS/DXF pattern; received fit remains H5"),
+                ("nicerf_sa818s_v_v18", "Leshy2:G-NiceRF-SA818S-Official-Package", "same official G-NiceRF 18-land PADS/DXF pattern; received fit remains H5"),
                 ("gct_rfpc_sma31_fn_175_a", "Leshy2:RFPC-SMA31-FN-175-A", "exact manufacturer land pattern"),
             )
         ],
@@ -414,23 +418,23 @@ def build() -> tuple[dict[Path, str], dict]:
             "the previously omitted cc_power_switch.GND contact now closes to POWER_GROUND; without it the CC1101 domain could not operate",
             "CC1101 RGP exposes twenty perimeter contacts plus its mandatory exposed ground pad",
             "the CC path has one independent SPI, switched supply, wideband balun, dual-ended three-band selector, ESD and detector route",
-            "the SA518 path has a separate fixed 4.0-V buck, eFuse, supervisor, power-gated digital/analog isolation and direct external RF route",
-            "SA518 PTT defaults high/RX, H/L can only be low or open, and PD cannot release before the protected 4-V rail is qualified",
-            "SA518 UPDATE remains fixture-only because the manufacturer Rev.1.1 direction wording is internally contradictory",
+            "SA818S-U and SA818S-V share only the protected fixed 4.0-V rail and one hardware-selected RP interface; each retains a direct independent external RF route",
+            "one select bit drives Schmitt-complemented one-hot PD and all UART, PTT/AUDIO_ON and AFOUT/MIC_IN selectors, so a band mismatch cannot enable a second module",
+            "both PTT contacts default high/RX, both UART inputs default low, H/L can only be low or open and neither PD can release before the protected rail is qualified",
         ],
         "review_boundary": {
             "complete": [
-                "all 119 RF32 ledger instances, 372 physical contacts, 35 hierarchy interfaces and eleven intentional NC contacts are explicit",
-                "CC1101 and SA518 have independent command, power, RF, ESD and actual-transmit sample paths",
+                "every current RF32 ledger instance, physical contact, hierarchy interface and intentional NC contact is explicit",
+                "CC1101, SA818S-U and SA818S-V have independent RF, ESD and actual-transmit sample paths",
                 "primary TI, NiceRF, TTM, Infineon, Nexperia and GCT sources determine the selected bodies and physical contacts",
                 "native KiCad parses RF32 in the live RF/power hierarchy with every remaining finding machine-accounted",
             ],
             "deferred": [
-                "received SA518 host-land solder-fit evidence must replace/approve the bounded contact-axis reserve in H5 before H6",
+                "received SA818S-U/V solder-fit evidence must confirm the official host pattern in H5 before H6",
                 "CC three-band conducted VNA tuning, matching values, sensitivity, output and spurious proof close in H3/H8",
                 "RF placement, return geometry, ESD via fields, isolation, thermal relief and DRC close in H6",
-                "SA518 full-power thermal/current, UART/UPDATE behavior and legal-profile HIL close in H8",
-                "final CC/voice detector thresholds and false-positive/false-negative margins close in H8",
+                "both SA818S full-power thermal/current, one-hot UART/audio/PTT behavior and legal-profile HIL close in H8",
+                "final CC/UHF/VHF detector thresholds and false-positive/false-negative margins close in H8",
             ],
         },
     }
@@ -440,15 +444,16 @@ def build() -> tuple[dict[Path, str], dict]:
 
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     expected = {
-        "ledger_instances": 119,
-        "schematic_symbols": 119,
-        "board_fitted_symbols": 119,
-        "hierarchical_interfaces": 35,
-        "physical_package_contacts": 372,
+        "ledger_instances": 143,
+        "schematic_symbols": 143,
+        "board_fitted_symbols": 143,
+        "hierarchical_interfaces": 40,
+        "physical_package_contacts": 473,
         "cc1101_package_contacts": 21,
-        "sa518_module_contacts": 20,
-        "independent_rf_paths": 2,
-        "intentional_no_connect_pins": 11,
+        "sa818s_u_module_contacts": 18,
+        "sa818s_v_module_contacts": 18,
+        "independent_rf_paths": 3,
+        "intentional_no_connect_pins": 20,
         "known_deferred_fixture_boundaries": 0,
         "custom_footprints": 3,
         "pcb_files_created": 0,
@@ -456,15 +461,17 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     if manifest["summary"] != expected:
         raise ValueError(f"H2.3.7 accounting drifted: {manifest['summary']}")
     schematic = generated[OUTPUT_SCH]
-    if schematic.count("\n\t(symbol\n") != 119:
+    if schematic.count("\n\t(symbol\n") != 143:
         raise ValueError("RF32 symbol accounting mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 35:
+    if schematic.count("\n\t(hierarchical_label \"") != 40:
         raise ValueError("RF32 hierarchy accounting mismatch")
     expected_nc = {
         "cc_balun.DNC_5", "cc_balun.DNC_6", "cc_host_buffer.4Y",
-        "cc_power_switch.NC", "cc_return_buffer.4Y", "voice.NC_15",
-        "voice.NC_5", "voice.NC_6", "voice.VOXEN", "voice_hl_driver.NC",
-        "voice_io_power_switch.NC",
+        "cc_power_switch.NC", "cc_return_buffer.4Y", "voice.NC_2",
+        "voice.NC_4", "voice.NC_11", "voice.NC_13", "voice.NC_14",
+        "voice.NC_15", "voice_v.NC_2", "voice_v.NC_4", "voice_v.NC_11",
+        "voice_v.NC_13", "voice_v.NC_14", "voice_v.NC_15",
+        "voice_band_inverter.2Y", "voice_hl_driver.NC", "voice_io_power_switch.NC",
     }
     if set(manifest["intentional_no_connect_endpoints"]) != expected_nc:
         raise ValueError(f"RF32 no-connect set drifted: {manifest['intentional_no_connect_endpoints']}")
@@ -480,8 +487,8 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         raise ValueError("BGS13 footprint must contain electrical contacts 1..8 exactly once")
     if bgs_footprint.count('\n\t(pad "" smd circle') != 8:
         raise ValueError("BGS13 footprint must contain eight separate round stencil apertures")
-    if generated[FOOTPRINT_DIR / "NiceRF-SA518-Rev1.1-H5-CONTACT-AXIS-RESERVE.kicad_mod"].count('\n\t(pad "') != 20:
-        raise ValueError("SA518 contact-axis reserve must contain exactly twenty contacts")
+    if generated[FOOTPRINT_DIR / "G-NiceRF-SA818S-Official-Package.kicad_mod"].count('\n\t(pad "') != 18:
+        raise ValueError("official SA818S common host pattern must contain exactly eighteen contacts")
 
 
 def find_kicad_cli() -> str:

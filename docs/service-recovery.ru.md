@@ -13,7 +13,7 @@
 | AON safety MSPM0 | внутренние AON-powered UART + SWD + NRST | recovery не отпускает RUN_PERMIT и не очищает аппаратный FAULT_KILL | RF |
 | TPS25751D + EEPROM конфигурации | площадки SYS_I2C и прямые SDA/SCL/WP локальной шины | заранее прошитая EEPROM либо current-limited raw-VBUS fixture | RF |
 | MAX17320 аккумуляторов | защищённая локальная I2C и наблюдение fault/hold | checksum образа и readback override до установки запитанных ячеек | RF |
-| голосовой модуль SA518 | площадка UPDATE, постоянный UART и аппаратный PD | UPDATE запрещён до квалификации timing конкретной ревизии модуля | RF |
+| голосовые модули SA818S-U и SA818S-V | постоянный аппаратно выбранный UART и отдельные UHF/VHF PD | цикл питания, readback выбора и заменяемый серийный модуль; недокументированный UPDATE не требуется | RF |
 
 ## Аппаратные границы
 

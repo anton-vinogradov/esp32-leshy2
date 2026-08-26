@@ -12,22 +12,17 @@
 
 </div>
 
-> **Сейчас: H5.0.3 · [аудит PCBA-площадки](docs/manufacturing-platform.ru.md).**
-> JLCPCB Standard PCBA выбран неэксклюзивным ориентиром. Контрольный BOM Tool
-> прогон сопоставил 176/209 строк и распознал все 1019 установок; exact-поиск
-> разрешил все 33 outlier. Теперь у каждой строки есть маршрут `J0`–`J3`,
-> `J4-F` или `J4-P` без замены. Открыты квалифицированная цена exact `SA518`,
-> подтверждение и цена `J4-F` box-build и условия `J4-P` kit/packing/shipping. Закупка, PCB
-> routing и печать заблокированы. Приложение JLCAPI и ключ подписи готовы вне
-> Git; право Parts пока имеет статус `Reviewing` у JLCPCB. Generic-совпадение
-> quote-формы `JLCPCB Assembly C9900300438` отвергнуто как не доказывающее
-> NiceRF identity; quote не отправлен.
+> **Сейчас: H5.0.1-R1 · пересборка evidence компонентов.**
+> H2 и H3 проведены для независимых `SA818S-V` и `SA818S-U`, десяти антенных
+> портов и аппаратного one-hot выбора voice-тракта. H4 объединил эти evidence
+> с принятой firmware F3 и её target/QEMU-пакетом. Прежние H5 результаты
+> на основе SA518 отменены. Закупка, PCB routing и печать заблокированы.
 
 <div align="center">
 
 ![Внешние стороны Leshy2](docs/images/current-clamshell.svg?layout=19)
 
-**Девять независимых антенных трактов · пять вычислительных доменов · один автономный прибор**
+**Десять независимых антенных трактов · пять вычислительных доменов · один автономный прибор**
 
 </div>
 
@@ -42,7 +37,7 @@ Leshy2 — переносной открытый прибор для наблю�
 |---|---|
 | **Три независимых nRF24** | Одновременные `3R`, `1T2R`, `2T1R` и `3T`, полный RX/TX/mix |
 | **Широкий набор радио** | Wi‑Fi 2,4/5 ГГц, BLE, ESP‑NOW, 802.15.4, Sub‑GHz, VHF/UHF, broadcast RX и IR |
-| **Девять антенных портов** | Отдельные внешние подписанные разъёмы без RF-sharing |
+| **Десять антенных портов** | Отдельные подписанные разъёмы; VHF и UHF имеют независимые тракты |
 | **Автономный интерфейс** | IPS touch 3,5″ `320×480`, меню, водопад, microSD и audio |
 | **Модульные расширения** | M5Stack U214/Leshy LoRa Cap и защищённый M5 Unit port |
 | **Восстановление** | Независимые USB, RST/BOOT и внутренние DBG10 для вычислителей |
@@ -114,8 +109,8 @@ safety-автоматику.
 | H1 · Физический дизайн устройства | ✅ Проведено ревью | [Открыть H1](docs/stage-results.ru.md#h1) |
 | H2 · Production ECAD-схема | ✅ Проведено ревью и принято | [Результаты H2](docs/stage-results.ru.md#h2) |
 | H3 · Виртуальная электрическая проверка | ✅ Проведено ревью и принято | [Итоговый отчёт H3](docs/h3-acceptance.ru.md) |
-| H4 · Объединённый pre-layout gate | ✅ [Проведено ревью](docs/h4-prelayout-gate-report.ru.md) | механика, ECAD, H3 и firmware F3 согласованы |
-| **H5 · Evidence компонентов** | **▶️ Сейчас: поиск до закупки** | [Состав H5](docs/stage-results.ru.md#h5) |
+| H4 · Объединённый pre-layout gate | ✅ Проведено ревью на dual-SA818S ревизии | [Отчёт H4](docs/h4-prelayout-gate-report.ru.md) |
+| **H5 · Evidence компонентов** | **▶️ Сейчас: пересборка точного evidence для BOM из 210 строк** | [Состав H5](docs/stage-results.ru.md#h5) |
 | H6 · PCB placement и routing | 🔒 Ожидает H5 | [План H6](docs/stage-results.ru.md#h6) |
 | H7 · Печать прототипа и bring-up | 🔒 Ожидает H6 и одобрение заказа | [План H7](docs/stage-results.ru.md#h7) |
 | H8 · Физическая квалификация | 🔒 Ожидает H7 | [План H8](docs/stage-results.ru.md#h8) |
@@ -125,36 +120,24 @@ safety-автоматику.
 отчёт, связанный с этой таблицей. Внутренние подэтапы обновляют точный маркер,
 но не создают отдельные глобальные отчёты.
 
-**Железо находится на H5.0.3.** [Единая корзина](docs/component-sample-basket.ru.md)
-покрывает все девять residuals и 14 mechanical gates: 32 точные article line и
-11 измерительных контрактов. JLCPCB Standard PCBA теперь
-[неэксклюзивный производственный ориентир](docs/manufacturing-platform.ru.md):
-нормализованный compact BOM сопоставил 176 строк из 209, все 1019 установок
-распознаны, а exact-поиск разрешил все 33 outlier. Итоговая карта доступности:
-`J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4-F=3`, `J4-P=2`; семантических подмен MPN и замен
-компонентов нет. Открыты квалифицированная цена exact `SA518` и два фабричных gate финальной сборки.
-Приложение JLCAPI включено, credential хранится вне репозитория, а право Parts
-ещё проходит ревью JLCPCB. Generic-результат короткой quote-формы
-`C9900300438` отвергнут: он не связывает manufacturer, datasheet и production
-revision NiceRF; quote не отправлен. Физические evidence, PCB layout, quote/reservation и
-любые заказы не разрешены.
+**Железо находится на H5.0.1-R1.** Текущий [отчёт H4](docs/h4-prelayout-gate-report.ru.md)
+закрывает объединённое ревью 33 чистыми проверками. H5 пересобирает точное
+evidence компонентов для dual-SA818S BOM из 210 строк. Старая SA518-корзина и snapshot из 209 строк остаются
+только историческими входами. Физические evidence, PCB layout,
+quote/reservation и любые заказы не разрешены.
 
 <details open>
-<summary><strong>Текущее сокращение evidence H5 — точная детальная позиция</strong></summary>
+<summary><strong>Текущее evidence компонентов — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H5.0.3 -->
+<!-- current-substep: H5.0.1-R1 -->
 
-**Точный маркер: `H5.0.3`** — корзина, измерения и все 209
-[маршрутов доступности JLCPCB](docs/manufacturing-platform.ru.md) опубликованы.
-Read-only интеграция Parts подготовлена, но ожидает ревью права со стороны
-JLCPCB. Generic autocomplete `JLCPCB Assembly C9900300438` явно не принимается
-как выбранный модуль. Получить одну квалифицированную цену exact `NiceRF SA518` без заказа,
-квалифицировать `J4-F` box-build и `J4-P` kit/packing/shipping, затем
-опубликовать точную полную стоимость для отдельного решения о закупке
-образцов. Quote/reservation и закупка не разрешены.
+**Точный маркер: `H5.0.1-R1`** — пересобрать карту физических residuals по двум
+серийным SA818S и текущему BOM из 210 строк. Документы и серийные замены
+исчерпываются до предложения любого образца. Закупка, placement, routing и
+печать не разрешены; маркер и evidence меняются вместе в одном commit.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
-- ✅ `H2.0.1` — проверен полный реестр из 1 048 схемных строк.
+- ✅ `H2.0.1` — проверен полный реестр из 1 081 схемной строки.
 - ✅ `H2.0.2` — проверены четыре проекта, границы плат и имена цепей.
 - ✅ `H2.0.3` — проверены HW↔FW/BSP-контракт и drift checks двух репозиториев.
 - ✅ `H2.1` — созданы четыре независимых KiCad-проекта и 28 native-листов.
@@ -166,8 +149,8 @@ JLCPCB. Generic autocomplete `JLCPCB Assembly C9900300438` явно не при�
   - ✅ `H2.3.4` — `RF_03_MAIN_RAILS_DOMAIN_GATES`.
   - ✅ `H2.3.5` — `RF_30_RP2354_CORE_SERVICE`.
   - ✅ `H2.3.6` — `RF_31_NRF24_X3`.
-  - ✅ `H2.3.7` — `RF_32_SUBGHZ_VOICE`: 116 компонентов, 363 физических
-    контакта, независимые CC1101/SA518 power, control и RF-тракты; проведено ревью.
+  - ✅ `H2.3.7-R1` — `RF_32_SUBGHZ_VOICE`: 143 компонента, 473 физических
+    контакта, независимые CC1101, SA818S-V и SA818S-U; проведено ревью.
   - ✅ `H2.3.8` — `RF_34_U214_M5_EXT`: 53 символа, 52 устанавливаемых
     компонента, 228 контактов и две независимо защищённые ветви expansion;
     проведено ревью.
@@ -209,16 +192,16 @@ JLCPCB. Generic autocomplete `JLCPCB Assembly C9900300438` явно не при�
   - ✅ `H2.5.5` — watchdog, thermal/fault supervision и `FAULT_KILL`:
     [проведено ревью](docs/fault-shutdown.ru.md).
   - ✅ `H2.5.6` — [сводка findings и закрытие ревью](docs/safety-review.ru.md).
-- ✅ `H2.6` — [native ERC и все 191 намеренных NC проведены ревью](docs/erc-review.ru.md):
+- ✅ `H2.6` — [native ERC и все 202 намеренных NC проведены ревью](docs/erc-review.ru.md):
   четыре проекта дают ноль native errors/warnings, у каждого NC есть физический
   pin, точный marker и письменное обоснование.
 - ✅ `H2.7` — [H1, физические контакты, nets, M1 и firmware F2 сверены](docs/hwfw-reconciliation.ru.md):
-  1 046 электрических identities, 268 root nets, 80 контактов M1 и 130
+  1 079 электрических identities, 270 root nets, 80 контактов M1 и 130
   controller allocations не имеют оставшихся несоответствий.
 - ✅ **`H2.8` — проведено ревью:** формальная финальная пользовательская приёмка перед H3.
   - ✅ `H2.8.1` — [пакет приёмки и deferred gates подготовлены](docs/h2-acceptance.ru.md).
-  - ✅ `H2.8.2` — принято пользователем 24 августа 2026 года на hardware
-    `25d9ee2` / firmware `900bb2b`.
+  - ✅ `H2.8.2-R1` — принято пользователем 26 августа 2026 года; точный
+    baseline по hash исходников записан в пакете приёмки.
 - ✅ **`H3.0` — проведено ревью:** воспроизводимые входы и методы виртуальной проверки.
   - ✅ `H3.0.1` — [принятый H2 и все 16 областей проверки заморожены](docs/virtual-verification.ru.md).
   - ✅ `H3.0.2` — [реестр параметров и моделей собран](docs/parameter-model-register.ru.md);
@@ -245,12 +228,12 @@ JLCPCB. Generic autocomplete `JLCPCB Assembly C9900300438` явно не при�
   - ✅ `H3.4.1` — [voltage levels, pulls, reset defaults и no-back-power проведены ревью](docs/digital-levels-verification.ru.md).
   - ✅ `H3.4.2` — [bandwidth, latency и timing проведены ревью](docs/digital-timing-verification.ru.md).
   - ✅ `H3.4.3` — [loading M1, U214, M5 Unit и service boundaries проведён ревью](docs/boundary-loading-verification.ru.md).
-  - ✅ `H3.4.4` — [проверены 162 leaf и 27 сквозных digital checks](docs/digital-verification-result.ru.md).
+  - ✅ `H3.4.4` — [проверены 171 leaf и 27 сквозных digital checks](docs/digital-verification-result.ru.md).
 - ✅ **`H3.5` — проведено ревью:** RF feeds, return paths, corridors и coexistence.
-  - ✅ `H3.5.1` — [проверены feed/connector/matching/loss ограничения](docs/rf-feed-constraints.ru.md) всех девяти антенных трактов.
+  - ✅ `H3.5.1` — [проверены feed/connector/matching/loss ограничения](docs/rf-feed-constraints.ru.md) всех десяти антенных трактов.
   - ✅ `H3.5.2` — [проверены RF corridors, keepouts, reference planes и returns](docs/rf-layout-constraints.ru.md).
   - ✅ `H3.5.3` — [проверены isolation, quiet-state и одновременные 3×nRF24](docs/rf-coexistence.ru.md).
-  - ✅ `H3.5.4` — [сведены 125 leaf и 22 сквозных RF checks](docs/rf-verification-result.ru.md).
+  - ✅ `H3.5.4` — [сведены 128 leaf и 22 сквозных RF checks](docs/rf-verification-result.ru.md).
 - ✅ **`H3.6` — проведено ревью:** thermal, fault-tree и unattended-operation verification.
   - ✅ `H3.6.1` — [тепловая модель плат, аккумуляторов и корпуса проведена ревью](docs/thermal-model.ru.md); исправлены charger TREG/TSHUT.
   - ✅ `H3.6.2` — [30 единичных отказов проведены через независимое shutdown и recovery](docs/single-fault-review.ru.md).
@@ -261,13 +244,13 @@ JLCPCB. Generic autocomplete `JLCPCB Assembly C9900300438` явно не при�
   - ✅ `H3.7.2` — [все 85 physical-only residual-строк опубликованы с владельцами evidence](docs/physical-evidence-register.ru.md).
   - ✅ `H3.7.3` — [формальный пакет приёмки H3 подготовлен](docs/h3-acceptance.ru.md).
   - ✅ `H3.7.4` — явное подтверждение пользователя записано.
-- ✅ `H4.0.1` — evidence firmware F3 прошло ревью и связано с gate.
-- ✅ `H4.1` — объединены механика H1, ECAD H2, evidence H3 и firmware F3.
-- ✅ `H4.2` — три документальных несоответствия исправлены в источниках и перегенерированы.
-- ✅ `H4.3` — [объединённый pre-layout gate проведён](docs/h4-prelayout-gate-report.ru.md).
-- ✅ `H5.0.1` — [девять residuals и 14 механических gate’ов связаны](docs/component-evidence-map.ru.md) с точными выбранными identities, недостающими данными и pass rules.
+- ✅ `H4.0.1-R1` — текущие hashes H3 связаны с принятым evidence firmware F3.
+- ✅ `H4.1-R1` — объединены механика H1, ECAD H2, evidence H3 и firmware F3.
+- ✅ `H4.2-R1` — повторный join не содержит stale source или открытых виртуальных противоречий.
+- ✅ `H4.3-R1` — [обновлённый объединённый pre-layout gate проведён](docs/h4-prelayout-gate-report.ru.md).
+- ▶️ `H5.0.1-R1` — пересобрать evidence компонентов для обоих серийных SA818S.
 - ✅ `H5.0.2` — [поиск первичных источников и серийных альтернатив проведён](docs/component-source-research.ru.md); два selection gap теперь имеют четыре точных серийных SKU.
-- ▶️ **`H5.0.3` — сейчас:** [JLCPCB Standard PCBA выбран неэксклюзивным ориентиром](docs/manufacturing-platform.ru.md); 176/209 строк и все 1019 установок распознаны, все 33 outlier разрешены в `J0`–`J3` плюс `J4-F/P`; открыты цена exact `SA518` и фабричные gates финальной сборки.
+- 🔒 `H5.0.3-R1` — обновить JLCPCB-карту для 210-строчного dual-SA818S BOM; закупка остаётся отдельным последующим gate.
 
 Проверенный план H2 — [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json),
 завершённые H3/H4 — [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json)

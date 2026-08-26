@@ -4,13 +4,13 @@
   "status": "reviewed_complete_physical_only_residual_register",
   "method": "flatten the physical-only output of every H3 phase consolidation, remove only H3-internal dependencies already closed, preserve exact provenance and assign an evidence owner plus pass rule",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "29c68158c6ef3294f5123d578716edf2049cf53876ef8547c02e48e1b998502d",
-    "hardware/verification/generated/H3-VRF25-transition-consolidation.json": "c941bdd88d547966b3f10736692d9f2017d820fdc76583d51774c83785c0a730",
-    "hardware/verification/generated/H3-VRF35-analog-consolidation.json": "23cbdf97079dd56d4d86124f6507f96789852be0b37b85073624dd8afbc3e052",
-    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "08ad0235e407d6273934cbe38a001fb382d08a328e8ecf8ba3b0906e352e7a0e",
-    "hardware/verification/generated/H3-VRF54-rf-consolidation.json": "9c2b11985beea8f1df2178271187ce704d0bc88981d27b2454ef68ddf1ea8332",
-    "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json": "7bb11583030085481daf32eff75397887b95851c1357027ae1acf88873d93aad",
-    "hardware/verification/generated/H3-VRF71-crosscheck.json": "d3477d8dc15fbf8663d05b0b98ff31f178f71856b9a033f149b05d3185f9e37b"
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "b5b4fd70cd288ff0401231dfa35b427907a4d12cc8a18937d5fa9d36b5fe38e4",
+    "hardware/verification/generated/H3-VRF25-transition-consolidation.json": "6baff44d82528ba8300746153bc230469314615970ecbf28cab6822ade8a784d",
+    "hardware/verification/generated/H3-VRF35-analog-consolidation.json": "94b7766412b0f938ab72c3f89bf55eb0abd8533e82cdc45d158a00cd4cfc5094",
+    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "1e2ee3a577606eeecee19090f57790753a954baaab737cbc5c463cefa147c3e7",
+    "hardware/verification/generated/H3-VRF54-rf-consolidation.json": "4c2fba0e4b35bb16d08bdbc1bd4e839f0b320dec5b0300d261b24c85277059d2",
+    "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json": "22421397bf182b7ff6f4c3f592174287bdf5b5007716cb98fd0efa11379bf75e",
+    "hardware/verification/generated/H3-VRF71-crosscheck.json": "e805f9758e862015cfb8cef99d332a2255f20b958241b19d91e949b79da6f525"
   },
   "summary": {
     "raw_consolidated_rows": 88,
@@ -439,7 +439,7 @@
       "source_phase": "H3.3",
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "audio",
-      "residual": "calibrate SA518 deviation downward from the bounded full-scale codec injection and repeat across module lots, rail and temperature",
+      "residual": "calibrate SA818S-V and SA818S-U deviation downward from the bounded full-scale codec injection and repeat across both module lots, rail and temperature",
       "closure_stages": [
         "H8"
       ],
@@ -447,7 +447,7 @@
         "H8": {
           "owner": "H8 physical qualification",
           "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
-          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: calibrate SA518 deviation downward from the bounded full-scale codec injection and repeat across module lots, rail and temperature; any failure reopens the owning result and blocks release"
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: calibrate SA818S-V and SA818S-U deviation downward from the bounded full-scale codec injection and repeat across both module lots, rail and temperature; any failure reopens the owning result and blocks release"
         }
       },
       "status": "physical_evidence_required"
@@ -1069,7 +1069,7 @@
       "source_phase": "H3.5",
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
-      "residual": "measure SA518 VHF/UHF feed insertion/return loss, output power and harmonics at both power settings",
+      "residual": "measure the independent SA818S-V and SA818S-U feed insertion/return loss, output power and harmonics at both power settings; repeat UHF for SA818S-CE before enabling that alternate",
       "closure_stages": [
         "H8"
       ],
@@ -1077,7 +1077,7 @@
         "H8": {
           "owner": "H8 physical qualification",
           "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
-          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure SA518 VHF/UHF feed insertion/return loss, output power and harmonics at both power settings; any failure reopens the owning result and blocks release"
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: measure the independent SA818S-V and SA818S-U feed insertion/return loss, output power and harmonics at both power settings; repeat UHF for SA818S-CE before enabling that alternate; any failure reopens the owning result and blocks release"
         }
       },
       "status": "physical_evidence_required"

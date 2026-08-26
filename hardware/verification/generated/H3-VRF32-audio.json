@@ -3,11 +3,11 @@
   "stage": "H3.3.2",
   "status": "reviewed_audio_analog_corners_after_four_source_corrections",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
-    "hardware/architecture/devices.json": "b7c9e0a591613e05e2b39fd315e301f6e628464b8cc1e46d983fc67b05204424",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "ee8a370e9cea1ccf51880099e8b0a7265e13c1c8868f6f47179c3174955ef7e9",
-    "hardware/verification/generated/H3-VRF31-display.json": "263cd6e9384d2a367d7d8d42575a5cfe0d5f1c1564d1a671d701ce42e48c067b",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "6dc167646883c397c92f91a051ee1565285fd81c0f540c49c16044b0e42d5f70"
+    "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
+    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "13400b84266596a7bb9c6e0c04f8f4f67957801efe8f9dc9c5a6cb4c6a085126",
+    "hardware/verification/generated/H3-VRF31-display.json": "c15e0b44d41fcddee437f1bb7fd707825e381f0ae0b785e4c6b8514fc71c9d9c",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "268b349628b3bd8da9f99105e07af43a5f955a373fb6b86e8a008161fb8e5f13"
   },
   "provenance": {
     "codec_product_brief": "https://www.everest-semi.com/pdf/ES8311%20PB.pdf",
@@ -16,7 +16,7 @@
     "speaker": "https://puiaudio.com/product/speakers-and-receivers/as02404po",
     "microphone": "https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf",
     "headset_jack": "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf",
-    "voice_module": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
+    "voice_modules": "https://www.nicerf.com/upload/20260430/391f11abcc1d835ac5ed151613fdae68.pdf",
     "microphone_selectors": "https://www.ti.com/lit/ds/symlink/ts5a63157.pdf",
     "speaker_selector": "https://www.ti.com/lit/ds/symlink/tmux1136.pdf",
     "passive_family": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
@@ -51,7 +51,9 @@
     "speaker_btl_negative": true,
     "ctia_ground": true,
     "headset_detect_only": true,
-    "codec_tx_reaches_voice": true
+    "codec_tx_reaches_selected_voice_mux": true,
+    "selected_voice_mux_reaches_uhf": true,
+    "selected_voice_mux_reaches_vhf": true
   },
   "microphone_and_adc": {
     "independent_bias_supply_v": {
@@ -120,7 +122,11 @@
     "startup_rule": "hold PAM8302A SD low through reset/power transition and for at least 10 ms after the main rail is valid; mute codec/selectors before shutdown"
   },
   "voice_tx_injection": {
-    "sa518_modulation_target_mvrms": "10.000",
+    "sa818s_u_v_modulation_target_mvrms": "10.000",
+    "selected_paths": [
+      "SA818S-V MIC_IN",
+      "SA818S-U MIC_IN"
+    ],
     "frequency_hz": 1500,
     "selected_top_resistor": "Vishay CRCW0402160KFKED",
     "top_resistor_ohm": 160000,
@@ -170,7 +176,9 @@
     "speaker_btl_negative": true,
     "ctia_ground": true,
     "headset_detect_only": true,
-    "codec_tx_reaches_voice": true,
+    "codec_tx_reaches_selected_voice_mux": true,
+    "selected_voice_mux_reaches_uhf": true,
+    "selected_voice_mux_reaches_vhf": true,
     "microphone_supply_above_min": true,
     "microphone_supply_below_max": true,
     "headset_short_filter_resistor_power": true,
@@ -183,7 +191,7 @@
     "speaker_theoretical_power_below_rating": true,
     "speaker_amplifier_inside_625ma_branch": true,
     "amplifier_junction_20c_margin": true,
-    "codec_tx_full_scale_can_reach_sa518_target": true,
+    "codec_tx_full_scale_can_reach_both_sa818s_targets": true,
     "codec_tx_target_is_downward_calibratable": true,
     "revised_main_rail_inside_2500ma_admission": true,
     "revised_main_rail_has_25pct_hardware_reserve": true,
@@ -204,7 +212,7 @@
     },
     {
       "id": "H3.3.2-F03",
-      "finding": "the 220-kOhm codec-to-SA518 attenuator could not reach the published 10-mV modulation target at low full-scale corners",
+      "finding": "the 220-kOhm codec-to-voice attenuator could not reach the published 10-mV SA818S modulation target at low full-scale corners",
       "correction": "use active/in-stock exact Vishay CRCW0402160KFKED; full-scale injection is 10.454-to-12.797 mVrms and is calibrated only downward",
       "functional_effect": "digital/recorded audio can reach nominal deviation without adding an active analog stage"
     },
@@ -225,11 +233,11 @@
   "residual_physical_only": [
     "measure microphone/headset sensitivity, codec clipping/ALC/noise, channel phase perception, crosstalk, insertion pop and RF immunity on routed hardware",
     "measure PAM8302A current, output EMI, speaker temperature/excursion and enclosure response; enforce the 50 C speaker-local mute rule",
-    "calibrate SA518 deviation downward from the bounded full-scale codec injection and repeat across module lots, rail and temperature",
+    "calibrate SA818S-V and SA818S-U deviation downward from the bounded full-scale codec injection and repeat across both module lots, rail and temperature",
     "prove reset/brownout/off ordering, >=10-ms amplifier-enable delay and absence of back-power with codec, voice and main domains independently off"
   ],
   "review_summary": {
-    "checks": 43,
+    "checks": 45,
     "failed_checks": 0,
     "corrected_findings": 4,
     "unresolved_findings": 0,

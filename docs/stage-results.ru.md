@@ -35,7 +35,7 @@
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD-схема
 
-**Статус:** ✅ проведено ревью и принято пользователем 24 августа 2026 года.
+**Статус:** ✅ текущая ревизия проведена ревью и принята пользователем 26 августа 2026 года.
 
 - [Публичная страница схем](schematics.ru.md) — принципиальные диаграммы и
   ссылки на текущие native KiCad-листы.
@@ -57,11 +57,11 @@
 - [Итог safety-ревью](safety-review.ru.md) — H2.5 закрыт, пять findings
   исправлены, открытых paper/ECAD findings нет.
 - [ERC и NC-ревью](erc-review.ru.md) — все четыре проекта дают ноль native
-  errors/warnings, все 191 физический NC обоснованы.
+  errors/warnings, все 202 физических NC обоснованы.
 - [Полный реестр NC](no-connects.ru.md) — точный symbol, pin и причина для
   каждого намеренно открытого контакта.
-- [Сквозная HW/FW-сверка](hwfw-reconciliation.ru.md) — H1, 1 046
-  электрических identities, 268 root nets, все контакты M1 и firmware F2 совпадают.
+- [Сквозная HW/FW-сверка](hwfw-reconciliation.ru.md) — H1, 1 079
+  электрических identities, 270 root nets, все контакты M1 и firmware F2 совпадают.
 - [Пакет приёмки H2](h2-acceptance.ru.md) — завершённая область, принятые
   baseline commits и все deferred H3/F3/H5/H6/H8 gates.
 - Проведено ревью всей UI/control PCB, всех двенадцати RF/power child-листов,
@@ -79,10 +79,10 @@
   [машинное ревью](../hardware/ecad/generated/H2-RF31-nrf24-x3.json) проходит
   native KiCad.
 - [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch)
-  содержит 116 компонентов и 363 физических контакта: независимые CC1101 data
-  и SA518 voice power/control/RF-тракты, 32 интерфейса и 11 явных NC;
+  содержит 143 компонента и 473 физических контакта: независимые CC1101,
+  SA818S-V и SA818S-U power/control/RF-тракты, 40 интерфейсов и 20 явных NC;
   [машинное ревью](../hardware/ecad/generated/H2-RF32-subghz-voice.json) проходит
-  native KiCad. Посадка SA518 остаётся честно ограниченным H5 land-fit gate.
+  native KiCad. Оба официальных 18-land корпуса остаются received-part gate H5.
 - [`RF_34_U214_M5_EXT`](../hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch)
   содержит 53 символа, 52 устанавливаемых компонента, 228 контактов и 27
   интерфейсов. [Машинное ревью](../hardware/ecad/generated/H2-RF34-u214-m5-ext.json)
@@ -104,13 +104,13 @@
   доказывает построчное равенство с UI-side M1, включая все повторные rails и
   returns, без reserve и NC.
 - [`RF_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch)
-  содержит 97 компонентов и 369 физических контактов.
+  содержит 113 компонентов и 421 физический контакт.
   [Машинное ревью](../hardware/ecad/generated/H2-RF50-tx-safety-evidence.json)
   закрывает явные AON supply/bypass, единый RUN/KILL, независимые
-  watchdog/latch/reset и пять каналов физического RF evidence; native KiCad
-  проходит с 22 точными намеренными NC.
+  watchdog/latch/reset и шесть каналов физического RF evidence; native KiCad
+  проходит с 24 точными намеренными NC.
 - [`RF_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch)
-  выводит 52 точных медных площадки 1,0 мм без покупного MPN и BOM-
+  выводит 51 точную медную площадку 1,0 мм без покупного MPN и BOM-
   строк. [Машинное ревью](../hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json)
   покрывает 13 recovery-путей, 6 RF-evidence каналов, thermal, RUN/FAULT и
   rail references; native KiCad принимает полную RF-иерархию без child stub и
@@ -119,15 +119,15 @@
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ✅ проведено ревью и принято 24 августа 2026 года.
+**Статус:** ✅ текущая ревизия проведена ревью и автоматически принята 26 августа 2026 года.
 
 - [Итоговый отчёт H3](h3-acceptance.ru.md) — краткий результат, схема,
   исправления, границы доказанного и переход к H4.
 - [Текущая страница виртуальной проверки](virtual-verification.ru.md).
 - [Машиночитаемый план](../hardware/verification/h3-verification-plan.json).
 - [Freeze принятого H2 и матрица из 16 областей](../hardware/verification/generated/H3-VRF01-input-freeze.json).
-- [Реестр параметров и моделей](parameter-model-register.ru.md) — 1 048
-  экземпляра, 217 используемых типов и их первичные источники.
+- [Реестр параметров и моделей](parameter-model-register.ru.md) — 1 081
+  экземпляр, 218 используемых типов и их первичные источники.
 - [Машинный реестр H3.0.2](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).
 - [Методы проверки](verification-methods.ru.md) и
   [машинный контракт H3.0.3](../hardware/verification/generated/H3-VRF03-method-contract.json).
@@ -156,7 +156,7 @@
   и [машинное evidence H3.4.3](../hardware/verification/generated/H3-VRF43-boundary-loading.json).
 - [Сводный результат digital interfaces](digital-verification-result.ru.md)
   и [машинное evidence H3.4.4](../hardware/verification/generated/H3-VRF44-digital-consolidation.json).
-- [Контракты всех девяти RF-трактов](rf-feed-constraints.ru.md) и
+- [Контракты всех десяти RF-трактов](rf-feed-constraints.ru.md) и
   [машинное evidence H3.5.1](../hardware/verification/generated/H3-VRF51-rf-feed-constraints.json).
 - [RF corridor, plane и return contracts](rf-layout-constraints.ru.md) и
   [машинное evidence H3.5.2](../hardware/verification/generated/H3-VRF52-rf-layout-constraints.json).
@@ -172,15 +172,15 @@ pass/fail-правил заморожены. `H3.1` проведено ревь�
 две source-ошибки исправлены. `H3.3.1` проведено ревью после исправления ещё
 двух source-ошибок; `H3.3.2` — после четырёх исправлений аудиотракта.
 `H3.3.3` проверено после четырёх исправлений IR-источников, `H3.3.4` — после
-четырёх battery-analog исправлений. `H3.3.5` закрывает 154 leaf и 22 сводных
-checks. `H3.4.1` закрывает digital levels/defaults 73 машинными checks,
+четырёх battery-analog исправлений. `H3.3.5` закрывает 156 leaf и 22 сводных
+checks. `H3.4.1` закрывает digital levels/defaults 82 машинными checks,
 `H3.4.2` закрывает bandwidth/latency/timing 40 checks, `H3.4.3` закрывает
 loading M1, expansions и service boundaries 49 checks. `H3.4.4` закрывает фазу
-27 сквозными checks поверх всех 162 leaf checks. `H3.5.1` закрывает 72 checks
-feed/connectors/matching/loss всех девяти портов. `H3.5.2` закрывает 23 checks
+27 сквозными checks поверх всех 171 leaf checks. `H3.5.1` закрывает 75 checks
+feed/connectors/matching/loss всех десяти портов. `H3.5.2` закрывает 23 checks
 corridors, keepouts, planes и returns. `H3.5.3` закрывает 30 checks one-group,
 quiet-state и полных 3×nRF24. `H3.5.4` закрывает фазу 22 сквозными checks поверх
-125 leaf checks. В `H3.6.1` [тепловая модель](thermal-model.ru.md) проведена
+128 leaf checks. В `H3.6.1` [тепловая модель](thermal-model.ru.md) проведена
 ревью 21 check; [проверка единичных отказов](single-fault-review.ru.md) закрывает 30 сценариев и 25 checks;
 [длительная работа и self-test](unattended-operation.ru.md) закрыты 24 checks без обещаний времени работы.
 [Сведение H3.6](thermal-fault-result.ru.md) закрывает 70 leaf и 24 сквозных
@@ -192,9 +192,9 @@ H2 instance и root net. [H3.7.2](physical-evidence-register.ru.md) назнач
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate
 
-**Статус:** ✅ проведено ревью и закрыто.
+**Статус:** ✅ текущая dual-SA818S ревизия проведена ревью 26 августа 2026 года.
 
-Единое ревью механики, production ECAD, виртуальных electrical evidence и
+Ревью объединяет механику, production ECAD, пересчитанные electrical evidence и
 target-visible firmware contracts. Проверенный
 [итог firmware F3](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f3-boot-memory-emulation-report.ru.md)
 даёт точное S3 QEMU execution, воспроизводимые artifacts пяти targets и
@@ -202,26 +202,26 @@ target-visible firmware contracts. Проверенный
 
 [Понятный итог H4](h4-prelayout-gate-report.ru.md) и
 [`H4-PLG13`](../hardware/verification/generated/H4-PLG13-acceptance-package.json)
-фиксируют 0 открытых виртуальных противоречий, три исправленных документальных
-finding и все 85 физических residuals с владельцами H5/H6/H8.
+фиксируют 33 чистые объединённые проверки по новым hashes H2/H3. Все 85 физических
+residuals сохраняют владельцев H5/H6/H8; закупка, PCB layout и fabrication не разрешены.
 
 <a id="h5"></a>
 ## H5 · Образцы компонентов
 
-**Статус:** ▶️ сейчас `H5.0.3`; все 209 маршрутов доступности связаны без замены,
-открыты квалифицированная цена exact `SA518` и фабричные gates финальной сборки `J4-F/P`; закупка не разрешена.
+**Статус:** ▶️ сейчас `H5.0.1-R1`. Прежнее SA518-evidence отменено и
+пересобирается для 210-строчного dual-SA818S BOM; закупка не разрешена.
 
 Текущий [машинный план](../hardware/verification/h5-component-evidence-plan.json)
-фиксирует проведённые карту H5.0.1 и поиск источников/замен H5.0.2.
-[Корзина H5.0.3](component-sample-basket.ru.md) покрывает все девять residuals
-и 14 mechanical gates: 32 точные article line и 11 измерительных контрактов.
+содержит только отменённый baseline. Новое evidence должно покрыть обе
+identity SA818S, общий land pattern, два независимых RF-тракта и
+qualified-pending UHF alternate SA818S-CE. Прежний
 [Baseline PCBA-площадки](manufacturing-platform.ru.md) выбирает JLCPCB Standard
 неэксклюзивным ориентиром. Нормализованный compact upload сопоставил 176 строк
 из 209 и распознал все 1019 установок. Exact public search разрешил все 33
 outlier в `J0`–`J3`, `J4-F` или `J4-P`; семантических подмен MPN и замен компонентов нет. JLCAPI
-app/key готовы вне Git, пока право Parts проходит ревью. Единственный открытый
-cost input — квалифицированная цена exact `SA518`. Quote/reservation и закупка
-не разрешены. Это не production order.
+app/key готовы вне Git, пока право Parts проходит ревью, но прежняя карта
+остаётся только историческим input. Quote/reservation и закупка не разрешены.
+Это не production order.
 
 <a id="h6"></a>
 ## H6 · PCB placement и routing

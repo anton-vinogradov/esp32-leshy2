@@ -7,9 +7,9 @@
     "bounded_transient"
   ],
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
-    "hardware/architecture/devices.json": "b7c9e0a591613e05e2b39fd315e301f6e628464b8cc1e46d983fc67b05204424",
-    "hardware/verification/generated/H3-VRF23-inrush-load-step.json": "debd6e4b9650df6e311cc63f4ff6cf3bbbfcca53839911ba40d9fb124e4831d2"
+    "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
+    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+    "hardware/verification/generated/H3-VRF23-inrush-load-step.json": "c4cd10b1d76f744c7facaed8eb5afc50da24999b56971c22e56e0754eef68ee2"
   },
   "provenance": {
     "watchdog": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",

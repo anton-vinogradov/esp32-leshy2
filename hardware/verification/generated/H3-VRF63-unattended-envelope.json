@@ -4,10 +4,10 @@
   "status": "reviewed_unattended_safety_and_endurance_test_envelope",
   "method": "conservative source-energy bounds plus accepted ambient target, configurable destructive-proof interval and explicit H6/H8 admission gates",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF61-thermal-model.json": "3321af0bdd7be223d3d3963e22b583c61913fd0b78b3e004e476aa1e2000a9d3",
-    "hardware/verification/generated/H3-VRF62-fault-tree.json": "6eceab7ce9baf14f1665fd7062e9bc80973c091a26b7794827df6dcdd92a68b1",
-    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "a81dc62adf108d5c447f605f47bad87cabe717cab2e4799d3cdaee1e3ebf64f8",
-    "hardware/verification/generated/H3-VRF34-battery-analog.json": "837abbf32c9b7e8ff16039fb8afe6f5afc59814e5c648304e11711ba6acf8bfb"
+    "hardware/verification/generated/H3-VRF61-thermal-model.json": "c7faafef7cf47944beef7e231cd1c84e44f6e4f01e4928448558035b56d0a075",
+    "hardware/verification/generated/H3-VRF62-fault-tree.json": "52cb6138027f3cbe2eb9ea7287ad85bc5400b9082c890cba3b8b70fb425d70e3",
+    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "085b567258d56f9a6fa379e38e8a13bd2f4573b47557fed6d9a47afc4b615e7e",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "01c25800ee6ec85b255822b30efa61c9b214e255af90664dcbc734989f737f18"
   },
   "accepted_product_policy": {
     "runtime_claim": "none; no battery or USB operating duration is promised",
@@ -25,7 +25,7 @@
     "charge_behavior": "normal charge request is zero above 35 C; charge is blocked at the independent hot/cold limits and on any cell-sensor fault",
     "h6_base_to_ambient_rtheta_k_per_w_max_at_35c": {
       "quiet_support_idle": "16.713",
-      "voice_support_idle_worst_group": "4.803",
+      "voice_support_idle_worst_group": "5.446",
       "qualified_external_support_idle": "9.234"
     },
     "rule": "H6 must meet the applicable resistance and H8 must measure it before any sustained profile is admitted"
@@ -160,8 +160,8 @@
       {
         "signal_group": "VOICE",
         "group_mode": "RX",
-        "conservative_system_demand_w": "6.112",
-        "minimum_nominal_energy_ideal_ceiling_h": "4.48",
+        "conservative_system_demand_w": "5.406",
+        "minimum_nominal_energy_ideal_ceiling_h": "5.06",
         "disposition": "planning ceiling only; not runtime, autonomy or availability promise"
       }
     ]

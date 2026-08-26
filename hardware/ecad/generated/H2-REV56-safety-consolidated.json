@@ -4,11 +4,11 @@
   "status": "reviewed_h2_5_independent_safety_paths_closed",
   "method": "consolidation of five independently regenerated, machine-checkable complete-hierarchy review artifacts",
   "source_hashes": {
-    "hardware/ecad/generated/H2-REV51-power-paths.json": "ebeebe0ffa9a13aa9558f9cafa999af4761032b7d85c3ff7b9391ac913178398",
-    "hardware/ecad/generated/H2-REV52-recovery-paths.json": "6aad113586865deb07cbd6efb2bfbea1df3c572e2a6b50883f00b119ea2bf4f9",
-    "hardware/ecad/generated/H2-REV53-no-back-power.json": "0d3f19b3d26c9b73c0fc3f529a068d3d04ca3dd3f27e176d807b80ca140bb87a",
-    "hardware/ecad/generated/H2-REV54-quiet-state.json": "14c24a6f777edbdbb24c6106e07a6abbaeb7a7f1ef0d81c9dbbc3942dd9591e2",
-    "hardware/ecad/generated/H2-REV55-fault-kill.json": "7b3bcb5685886882f7742ccda5f770e86974af0c3d3cd04645029667d26cc46f"
+    "hardware/ecad/generated/H2-REV51-power-paths.json": "c4299077e86598d247215e12cd4bb23624273e371851e03fed33e402099aea91",
+    "hardware/ecad/generated/H2-REV52-recovery-paths.json": "ce8d5083295f22778c5ada017147f6782b11b8ef1014c60a2385a3bfbcd15019",
+    "hardware/ecad/generated/H2-REV53-no-back-power.json": "07deb3565c18c7faf1842a2d3527f8b04fd5a25ca5646614dabd9227426ebea2",
+    "hardware/ecad/generated/H2-REV54-quiet-state.json": "ac886670401fe400f1e398e2eae9ff79b130d2cdfe5c675a5c0cb4c0f108c59c",
+    "hardware/ecad/generated/H2-REV55-fault-kill.json": "b94e5acf978e7ed997b8dd8e8ee742d9dfed617f50491303681f057dbd131524"
   },
   "subreviews": [
     {
@@ -62,7 +62,7 @@
       "severity": "recovery_blocking",
       "finding": "the reviewed service contract promised PD target-bus and direct EEPROM recovery pads, but RF60 did not instantiate them",
       "correction": "six BOM-free 1.0-mm internal copper pads now expose SYS_I2C_SDA/SCL/SYS_INT_N and PD_LOCAL_I2C_SDA/SCL/PD_EEPROM_WP",
-      "evidence": "the complete RF hierarchy contains 36 physical test pads, including 13 programming/recovery pads"
+      "evidence": "the complete RF hierarchy contains 51 physical test pads, including 13 programming/recovery pads"
     },
     {
       "stage": "H2.5.3",

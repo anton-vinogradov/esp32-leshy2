@@ -8,11 +8,12 @@
 |---|---:|---:|---:|
 | S3-2G4 | ui-inner | 10.550 | 1.25 |
 | C5-2G4/5 | ui-inner | 10.550 | 1.25 |
-| N24-0 | rf-inner | 48.550 | 1.25 |
-| N24-1 | rf-inner | 43.812 | 1.25 |
-| N24-2 | rf-inner | 38.636 | 1.25 |
+| N24-0 | rf-inner | 46.550 | 1.25 |
+| N24-1 | rf-inner | 49.812 | 1.25 |
+| N24-2 | rf-inner | 37.236 | 1.25 |
 | CC-SUB | rf-inner | 10.300 | 2.5 |
-| VOICE-V/U | rf-inner | 60.632 | 2.5 |
+| VOICE-VHF | rf-inner | 39.960 | 2.5 |
+| VOICE-UHF | rf-inner | 40.147 | 2.5 |
 | RX-FM/SW | ui-inner | 70.786 | 2.5 |
 | RX-AM/LW | ui-inner | 59.324 | capacitance-controlled |
 

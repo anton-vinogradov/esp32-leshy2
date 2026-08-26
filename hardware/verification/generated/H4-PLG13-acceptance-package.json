@@ -1,10 +1,11 @@
 {
   "schema_version": 1,
-  "stage": "H4.3",
+  "stage": "H4.3-R1",
   "status": "reviewed_h4_complete",
+  "reviewed_at": "2026-08-26",
   "source_hashes": {
-    "hardware/verification/generated/H4-PLG11-joined-review.json": "b6653556a2421bf59bcdf5a60aadb337bb96a542b68c488d621ffa5436bd8b79",
-    "hardware/verification/generated/H4-PLG12-correction-closure.json": "5f6ac52a80752293df7552f8262f3f4913c0adfff1292e0293f9474a1fdc64b9"
+    "hardware/verification/generated/H4-PLG11-joined-review.json": "ce3fff0a60e37effc9ab93d02056a7fcea342dbd688c0be80b41874bfd8f2baa",
+    "hardware/verification/generated/H4-PLG12-correction-closure.json": "72e0874c3ff55bc8d5bdb6a5179d063b7f97f741f252390ac548b771c29e7715"
   },
   "acceptance_meaning": [
     "all currently possible H1/H2/H3/F3 cross-domain checks are joined and reproducible",
@@ -27,9 +28,9 @@
     "closed_by_h4": 0
   },
   "correction_summary": {
-    "detected": 3,
-    "corrected_at_source": 3,
-    "regenerated": 3,
+    "detected": 0,
+    "corrected_at_source": 0,
+    "regenerated": 0,
     "open": 0,
     "functional_changes": 0,
     "bom_delta_usd": "0.0000"
@@ -37,14 +38,14 @@
   "open_findings": [],
   "pending_decisions": [],
   "review_summary": {
-    "checks": 34,
+    "checks": 33,
     "failed": 0,
     "unresolved": 0,
     "status": "reviewed"
   },
   "acceptance_basis": "automatic acceptance authorized by the project owner for clean reviews without a functional, material-cost or safety decision",
   "next": {
-    "stage": "H5.0.1",
+    "stage": "H5.0.1-R1",
     "action": "exhaust documentary and serial-replacement evidence before proposing any physical sample purchase"
   }
 }

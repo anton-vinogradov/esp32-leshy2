@@ -88,10 +88,10 @@ PROVENANCE = [
         "url": "https://www.ebyte.com/product/47.html",
     },
     {
-        "id": "SRC-SA518-MAX",
-        "value": "900 mA",
-        "use": "SA518 high-power 1-W TX from VVOICE_4V",
-        "basis": "NiceRF published maximum at 4.0 V",
+        "id": "SRC-SA818S-MAX",
+        "value": "750 mA",
+        "use": "selected SA818S-V or SA818S-U high-power TX from VVOICE_4V",
+        "basis": "G-NiceRF Rev 1.8 published maximum at the selected 4.0-V rail; hardware one-hot PD prevents both modules transmitting together",
         "url": "https://www.nicerf.com/upload/20260430/391f11abcc1d835ac5ed151613fdae68.pdf",
     },
     {
@@ -206,7 +206,7 @@ MAIN_GROUP_MA = {
     "BROADCAST_RX": d("30"),
 }
 
-VOICE_GROUP_MA = {"VOICE": d("900")}
+VOICE_GROUP_MA = {"VOICE": d("750")}
 EXT_GROUP_MA = {"LORA_CAP": d("1250"), "M5_UNIT": d("1250")}
 
 

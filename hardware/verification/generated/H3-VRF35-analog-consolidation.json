@@ -3,10 +3,10 @@
   "stage": "H3.3.5",
   "status": "reviewed_analog_corner_consolidation",
   "input_hashes": {
-    "hardware/verification/generated/H3-VRF31-display.json": "263cd6e9384d2a367d7d8d42575a5cfe0d5f1c1564d1a671d701ce42e48c067b",
-    "hardware/verification/generated/H3-VRF32-audio.json": "29ca2cc75831d31ba3f1459def84fa81137271c6c25ea89531be90f28d50e16e",
-    "hardware/verification/generated/H3-VRF33-ir.json": "593f3dc502c247fef8a98acf34ee4eb35f479cac0cc8e3df36ab3504ca3a28f3",
-    "hardware/verification/generated/H3-VRF34-battery-analog.json": "837abbf32c9b7e8ff16039fb8afe6f5afc59814e5c648304e11711ba6acf8bfb"
+    "hardware/verification/generated/H3-VRF31-display.json": "c15e0b44d41fcddee437f1bb7fd707825e381f0ae0b785e4c6b8514fc71c9d9c",
+    "hardware/verification/generated/H3-VRF32-audio.json": "9c183bc8c7fe594f71834c44dbca7f220c0bd3b6622ab7a483d80907d93461c7",
+    "hardware/verification/generated/H3-VRF33-ir.json": "a60cdcabbdedc82e61e8b601f32473b0856dbed135aee1f3efca64555cbb92d0",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "01c25800ee6ec85b255822b30efa61c9b214e255af90664dcbc734989f737f18"
   },
   "leaf_summary": {
     "display": {
@@ -18,7 +18,7 @@
     "audio": {
       "stage": "H3.3.2",
       "status": "reviewed_audio_analog_corners_after_four_source_corrections",
-      "checks": 43,
+      "checks": 45,
       "corrections": 4
     },
     "ir": {
@@ -35,7 +35,7 @@
     }
   },
   "consolidated": {
-    "leaf_checks": 154,
+    "leaf_checks": 156,
     "consolidation_checks": 22,
     "failed_checks": 0,
     "source_corrections": 14,
@@ -75,7 +75,7 @@
     "audio": [
       "measure microphone/headset sensitivity, codec clipping/ALC/noise, channel phase perception, crosstalk, insertion pop and RF immunity on routed hardware",
       "measure PAM8302A current, output EMI, speaker temperature/excursion and enclosure response; enforce the 50 C speaker-local mute rule",
-      "calibrate SA518 deviation downward from the bounded full-scale codec injection and repeat across module lots, rail and temperature",
+      "calibrate SA818S-V and SA818S-U deviation downward from the bounded full-scale codec injection and repeat across both module lots, rail and temperature",
       "prove reset/brownout/off ordering, >=10-ms amplifier-enable delay and absence of back-power with codec, voice and main domains independently off"
     ],
     "ir": [
@@ -100,7 +100,7 @@
     "audio_has_no_open_findings": true,
     "ir_has_no_open_findings": true,
     "battery_reports_zero_failed_checks": true,
-    "leaf_check_count_is_154": true,
+    "leaf_check_count_is_156": true,
     "correction_ids_are_unique": true,
     "fourteen_corrections_are_preserved": true,
     "cost_delta_remains_below_half_dollar": true,

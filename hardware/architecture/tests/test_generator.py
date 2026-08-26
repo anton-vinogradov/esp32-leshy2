@@ -26,48 +26,28 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual([], self.errors_for())
 
     def test_pre_kicad_sample_plan_preserves_minimum_evidence_lot_and_gate(self):
-        basket = json.loads(
-            (
-                GENERATOR.REPO_ROOT
-                / "hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json"
-            ).read_text(encoding="utf-8")
+        roadmap = json.loads(
+            (GENERATOR.REPO_ROOT / "hardware/verification/hardware-roadmap-state.json")
+            .read_text(encoding="utf-8")
+        )
+        h5 = json.loads(
+            (GENERATOR.REPO_ROOT / "hardware/verification/h5-component-evidence-plan.json")
+            .read_text(encoding="utf-8")
         )
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("draft_component_and_factory_quotes_open", basket["status"])
-        self.assertEqual(32, basket["summary"]["article_lines"])
-        self.assertEqual(11, basket["summary"]["measurement_contracts"])
-        self.assertEqual(23, basket["summary"]["covered_residuals_and_gates"])
-        self.assertEqual("266.63", basket["summary"]["known_engineering_material_budget_usd"])
-        self.assertEqual(1, basket["summary"]["unpriced_manufacturer_lines"])
-        self.assertTrue(all(basket["checks"].values()))
-        articles = {row["id"]: row for row in basket["articles"]}
-        self.assertEqual(2, articles["display-donor"]["order_quantity"])
-        self.assertEqual(3, articles["nrf-modules"]["order_quantity"])
-        self.assertEqual(5, articles["rf-jumpers"]["order_quantity"])
-        self.assertEqual(16, articles["navigation-and-direct-switches"]["order_quantity"])
-        self.assertEqual(2, articles["pack-gauges"]["order_quantity"])
-        self.assertEqual("manufacturer_rfq", articles["voice-module"]["pricing"]["kind"])
+        self.assertEqual("H5.0.1-R1", roadmap["current_substep"])
+        self.assertEqual("H5.0.1-R1", h5["current_substep"])
+        self.assertIn("H5.0.3", h5["superseded_current_artifacts"])
+        self.assertFalse(h5["authorization"]["sample_or_component_purchase"])
         self.assertIn("superseded", plan)
         self.assertIn("Purchasing is the last resort", plan)
         self.assertIn("remain unauthorized", plan)
-
-        procurement = GENERATOR.REPO_ROOT / "hardware/procurement"
-        index = (procurement / "README.md").read_text(encoding="utf-8")
-        for artifact, token in (
-            ("HMX035CTFT-001-display-rfq.md", "supplier-controlled approval drawing"),
-            ("E01-ML01IPX-data-request.md", "exact series/MPN"),
-            ("U214-mating-data-request.md", "exact MPN"),
-            ("SA518-sample-rfq.md", "contact-17 contradiction"),
-        ):
-            self.assertIn(artifact, index)
-            self.assertIn(token, (procurement / artifact).read_text(encoding="utf-8"))
-
-        voice = self.database["devices"]["nicerf_sa518_v11"]
-        conflicts = " ".join(voice["documentation_conflicts"])
-        self.assertIn("UPDATE", conflicts)
-        self.assertIn("H/L", conflicts)
+        for device_id in ("nicerf_sa818s_u_v18", "nicerf_sa818s_v_v18"):
+            voice = self.database["devices"][device_id]
+            self.assertEqual([35.6, 19.0, 3.2], voice["maximum_dimensions_mm"])
+            self.assertEqual(18, len(voice["contacts"]))
 
     def test_hwfw_target_integration_contract_matches_architecture(self):
         contract = json.loads(
@@ -221,7 +201,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertIn("FX8C-80S-SV5(92)", rendered)
             self.assertIn("| `80` |", rendered)
 
-    def test_exact_nine_external_sma_bodies_do_not_regress(self):
+    def test_exact_ten_external_sma_bodies_do_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         expected = {
             "s3_external_rp_sma": "gct_rfpc_sma32_fn_175_a",
@@ -233,8 +213,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "nrf2_external_sma": "gct_rfpc_sma31_fn_175_a",
             "cc_external_sma": "gct_rfpc_sma31_fn_175_a",
             "voice_external_sma": "gct_rfpc_sma31_fn_175_a",
+            "voice_v_external_sma": "gct_rfpc_sma31_fn_175_a",
         }
-        self.assertEqual(9, len(expected))
+        self.assertEqual(10, len(expected))
         for instance, device_id in expected.items():
             self.assertEqual(device_id, candidate["instances"][instance])
             device = self.database["devices"][device_id]
@@ -274,7 +255,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual("outward_front", planes["ui_outer_face"]["face"])
         self.assertEqual("outward_rear", planes["rf_power_outer_face"]["face"])
         self.assertEqual(4, len(planes["ui_outer_face"]["ports"]))
-        self.assertEqual(5, len(planes["rf_power_outer_face"]["ports"]))
+        self.assertEqual(6, len(planes["rf_power_outer_face"]["ports"]))
         self.assertEqual(11.0, planes["separation"]["interboard_channel_mm"])
         self.assertEqual(14.2, planes["separation"]["outer_pcb_face_separation_mm"])
         self.assertEqual(20.55, planes["separation"]["antenna_centre_plane_separation_mm"])
@@ -289,14 +270,14 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(1019, sum(line["quantity"] for line in lines))
-        self.assertEqual(209, len(lines))
+        self.assertEqual(1052, sum(line["quantity"] for line in lines))
+        self.assertEqual(210, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            11,
+            12,
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
@@ -304,7 +285,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            1002,
+            1033,
             sum(
                 line["quantity"]
                 for line in lines
@@ -316,7 +297,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["alternate_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            11,
+            12,
             sum(bool(line["cost_gate_status"]) for line in lines),
         )
         self.assertEqual(
@@ -380,14 +361,14 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**1020** architecture instances", rendered)
-        self.assertIn("**1019** supplied/costed placements", rendered)
-        self.assertIn("**208/209** used lines", rendered)
-        self.assertIn("**209/209** lines", rendered)
-        self.assertIn("**198/209** lines", rendered)
-        self.assertIn("**1002/1019** supplied placements", rendered)
-        self.assertIn("USD 223.2232", rendered)
-        self.assertIn("11", rendered)
+        self.assertIn("**1053** architecture instances", rendered)
+        self.assertIn("**1052** supplied/costed placements", rendered)
+        self.assertIn("**209/210** used lines", rendered)
+        self.assertIn("**210/210** lines", rendered)
+        self.assertIn("**198/210** lines", rendered)
+        self.assertIn("**1033/1052** supplied placements", rendered)
+        self.assertIn("USD 236.7231", rendered)
+        self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
         self.assertIn("SUB-RF", rendered)
@@ -431,8 +412,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             for endpoint in (route["from"], route["to"])
             if endpoint.startswith("abstract:")
         ]
-        self.assertEqual(45, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1253, policy["expected_occurrence_count"])
+        self.assertEqual(44, policy["expected_unique_endpoint_count"])
+        self.assertEqual(1307, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(
@@ -557,15 +538,16 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Sunlord MWSA0503S-2R2MT",
             "Murata GRM31CR71E106MA12L",
             'data-zone="cc-reference-rf-network"',
-            'data-opposing-pairs="37"',
+            'data-opposing-pairs="36"',
             'data-min-z-clearance-mm="3.31"',
             'data-opposing-cable-pairs="2"',
-            'data-rf-pcb-topology-guides="9"',
+            'data-rf-pcb-topology-guides="10"',
             'data-route-state="pre-ecad-topology-only"',
             'data-nrf-cable-reserves="3"',
             'data-nrf-reserve-opposing-pairs="5"',
             'data-encoder-through-features="7"',
-            'data-voice-rf-endpoint-distance-mm="32.92"',
+            'data-voice-v-rf-endpoint-distance-mm="39.96"',
+            'data-voice-u-rf-endpoint-distance-mm="40.15"',
             'data-path="S3-2G4"',
             'data-path="RX-FM/SW"',
             'data-path="RX-AM/LW"',
@@ -573,9 +555,10 @@ class ArchitectureValidationTests(unittest.TestCase):
             'data-path="N24-0"',
             'data-path="CC-SUB"',
             'data-path="N24-1"',
-            'data-path="VOICE-V/U"',
+            'data-path="VOICE-VHF"',
+            'data-path="VOICE-UHF"',
             'data-path="N24-2"',
-            "Antenna-to-radio map · all nine paths",
+            "Antenna-to-radio map · all ten paths",
             "solid green/cyan = direct cable projection · dashed blue = future 50 Ω PCB mainline",
             "module · no RF land; output is built-in U.FL",
             "module · ANT1 U.FL active; ANT2 land disabled",
@@ -607,8 +590,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.database["devices"]["ebyte_e01_ml01ipx"]["maximum_dimensions_mm"],
         )
         self.assertEqual(
-            [40.0, 24.5, 3.25],
-            self.database["devices"]["nicerf_sa518_v11"]["maximum_dimensions_mm"],
+            [35.6, 19.0, 3.2],
+            self.database["devices"]["nicerf_sa818s_u_v18"]["maximum_dimensions_mm"],
         )
         self.assertEqual(
             [3.1, 5.05, 1.1],
@@ -2583,17 +2566,18 @@ class ArchitectureValidationTests(unittest.TestCase):
         ):
             self.assertIn(token, rendered)
 
-    def test_i6_sa518_exact_rf_endpoint_does_not_regress(self):
+    def test_i6_dual_sa818s_exact_rf_endpoints_do_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         contract = candidate["voice_rf_electrical_contract"]
         self.assertEqual("DEC-0094", contract["decision"])
-        self.assertIn("paper_reviewed_i6_sa518_rf_subblock", contract["status"])
-        self.assertIn("about 0.04 dB", contract["evidence"])
+        self.assertEqual("paper_reviewed_h2_dual_sa818s_machine_design_hil_open", contract["status"])
+        self.assertIn("independent", contract["evidence"])
         self.assertIn("never authorize", contract["failure_semantics"])
-        self.assertIn("consume no P05", contract["filter_reopen_gate"])
+        self.assertIn("consumes no P05", contract["filter_reopen_gate"])
 
         required = {
-            "voice": "nicerf_sa518_v11",
+            "voice": "nicerf_sa818s_u_v18",
+            "voice_v": "nicerf_sa818s_v_v18",
             "voice_rf_esd": "nexperia_pesd24vy1bsf",
             "voice_detector_series_attenuator": "yageo_rc0402fr_075k1l",
             "voice_detector_match": "yageo_rc0402fr_0752r3l",
@@ -2603,6 +2587,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "voice_evidence_hold_cap": "tdk_c1608x7r1c105k080ac",
             "voice_evidence_hold_pulldown": "yageo_rc0402fr_0710kl",
             "det_voice": "adi_ad8314acpz_rl7",
+            "det_voice_v": "adi_ad8314acpz_rl7",
         }
         for instance, device_id in required.items():
             self.assertEqual(device_id, candidate["instances"][instance])
@@ -2618,13 +2603,17 @@ class ArchitectureValidationTests(unittest.TestCase):
             for route in candidate["fixed_routes"]
         }
         for route in (
-            ("voice.ANT", "voice_external_sma.RF", "VOICE_EXTERNAL_RF_50R"),
-            ("voice.ANT", "voice_rf_esd.K1", "VOICE_EXTERNAL_RF_50R"),
-            ("voice.ANT", "voice_detector_series_attenuator.END_1", "VOICE_EXTERNAL_RF_50R"),
-            ("voice_detector_series_attenuator.END_2", "det_voice.RFIN", "VOICE_RF_SAMPLE"),
-            ("det_voice.RFIN", "voice_detector_match.END_1", "VOICE_RF_SAMPLE"),
+            ("voice.ANT", "voice_external_sma.RF", "VOICE_U_EXTERNAL_RF_50R"),
+            ("voice.ANT", "voice_rf_esd.K1", "VOICE_U_EXTERNAL_RF_50R"),
+            ("voice.ANT", "voice_detector_series_attenuator.END_1", "VOICE_U_EXTERNAL_RF_50R"),
+            ("voice_detector_series_attenuator.END_2", "det_voice.RFIN", "VOICE_U_RF_SAMPLE"),
+            ("det_voice.RFIN", "voice_detector_match.END_1", "VOICE_U_RF_SAMPLE"),
             ("voice_evidence_hold_diode.K", "det_voice.ENBL", "VOICE_EVIDENCE_HOLD"),
             ("det_voice.V_UP", "evidence_cmp_voice.IN_N", "VOICE_DETECT_V"),
+            ("voice_v.ANT", "voice_v_external_sma.RF", "VOICE_V_EXTERNAL_RF_50R"),
+            ("voice_v.ANT", "voice_v_rf_esd.K1", "VOICE_V_EXTERNAL_RF_50R"),
+            ("voice_v_detector_series_attenuator.END_2", "det_voice_v.RFIN", "VOICE_V_RF_SAMPLE"),
+            ("det_voice_v.V_UP", "evidence_cmp_voice_v.IN_N", "VOICE_V_DETECT_V"),
         ):
             self.assertIn(route, routes)
 
@@ -2640,7 +2629,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "PESD24VY1BSF<br/>24-V ultra-low-capacitance external voice RF ESD diode",
             "RC0402FR-075K1L<br/>actual-TX 5.1-kOhm RF series sampler",
             "RC0402FR-0752R3L<br/>AD8314 52.3-Ohm detector input shunt",
-            "AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector",
+            "AD8314ACPZ-RL7<br/>SA818S-U UHF RF power detector",
+            "AD8314ACPZ-RL7<br/>SA818S-V VHF RF power detector",
         ):
             self.assertIn(token, rendered)
 
@@ -3186,7 +3176,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("slow_io.P27", "audio_rx_mux.S", "RX_AUDIO_SOURCE_SEL"), routes)
         self.assertIn(("speaker_input_p_gain.END_2", "speaker_amp.IN_PLUS", "PAM_AUDIO_IN_P"), routes)
         self.assertIn(("speaker_input_n_gain.END_2", "speaker_amp.IN_MINUS", "PAM_AUDIO_IN_N"), routes)
-        self.assertIn(("voice_mic_coupling.END_2", "voice.MIC_IN", "VOICE_MIC_IN"), routes)
+        self.assertIn(("voice_mic_coupling.END_2", "voice.MIC_IN", "VOICE_U_MIC_IN"), routes)
+        self.assertIn(("voice_v_mic_coupling.END_2", "voice_v.MIC_IN", "VOICE_V_MIC_IN"), routes)
         self.assertIn(("audio_safe_gate.1Y", "audio_speaker_selector.SEL1", "AUDIO_SPK_SEL_SAFE"), routes)
         self.assertIn(("audio_safe_gate.1Y", "audio_speaker_selector.SEL2", "AUDIO_SPK_SEL_SAFE"), routes)
         self.assertIn(("audio_safe_gate.2Y", "audio_tx_selector.IN", "AUDIO_TX_SEL_SAFE"), routes)
@@ -3324,11 +3315,14 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("codec_i2s_din_boot_gate.Y", "codec_i2s_din_iso.OE", "CODEC_DIN_READY"),
             ("receiver_supervisor.RESET_N", "receiver.RST", "RX_RST_N"),
             ("receiver_supervisor.RESET_N", "receiver_i2c_iso.1C", "RECEIVER_READY"),
-            ("safe_ptt_or.1Y", "voice_ptt_iso.A", "VOICE_PTT_SAFE_N"),
-            ("voice_ptt_iso.Y", "voice.PTT", "VOICE_PTT_MODULE_N"),
+            ("safe_ptt_or.1Y", "voice_control_mux_b.D1", "VOICE_PTT_SAFE_N"),
+            ("voice_control_mux_b.S1A", "voice.PTT", "VOICE_U_PTT_N"),
+            ("voice_control_mux_b.S1B", "voice_v.PTT", "VOICE_V_PTT_N"),
             ("voice_hl_driver.Y", "voice.HL", "VOICE_HL_OPEN_DRAIN"),
-            ("voice.UPDATE", "abstract:TP_VOICE_UPDATE_WITH_GND", "VOICE_UPDATE_FIXTURE"),
-            ("voice.VOXEN", "abstract:no-connect", "VOICE_VOXEN_NC"),
+            ("voice_hl_driver.Y", "voice_v.HL", "VOICE_HL_OPEN_DRAIN"),
+            ("voice_band_io.P0", "voice_control_mux_a.SEL1", "VOICE_V_SELECT"),
+            ("voice_pd_gate.1Y", "voice.PD", "VOICE_U_PD"),
+            ("voice_pd_gate.2Y", "voice_v.PD", "VOICE_V_PD"),
         ):
             self.assertIn(route, routes)
 
@@ -3398,12 +3392,16 @@ class ArchitectureValidationTests(unittest.TestCase):
             "receiver_irq_iso",
             "receiver_clock",
             "voice",
+            "voice_v",
             "voice_supervisor",
             "voice_io_power_switch",
-            "voice_ptt_iso",
-            "voice_uart_tx_iso",
+            "voice_band_io",
+            "voice_band_inverter",
+            "voice_pd_gate",
+            "voice_control_mux_a",
+            "voice_control_mux_b",
+            "voice_audio_mux",
             "voice_hl_driver",
-            "voice_audio_iso",
             "audio_capture_selector",
             "audio_capture_buffer",
             "audio_speaker_selector",
@@ -3459,7 +3457,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             errors,
         )
 
-    def test_rejects_nine_sma_identity_or_si4732_split_regression(self):
+    def test_rejects_ten_sma_identity_or_si4732_split_regression(self):
         candidates = copy.deepcopy(self.candidates)
         candidate = next(c for c in candidates if c["id"] == "G2F-3I")
         candidate["antenna_policy"]["base_onboard_sma_count"] = 8
@@ -3469,7 +3467,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         candidate["antenna_policy"]["si4732_ami_external_profile"] = "generic_long_coax"
         errors = self.errors_for(candidates)
         self.assertTrue(
-            any("base_onboard_sma_count must be 9" in error for error in errors),
+            any("base_onboard_sma_count must be 10" in error for error in errors),
             errors,
         )
         self.assertTrue(
@@ -3520,11 +3518,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertTrue(any("full_field_kit_physical_items must be 12" in error for error in errors), errors)
         self.assertTrue(any("kit_profiles must be" in error for error in errors), errors)
 
-    def test_exact_sa518_does_not_regress_to_a_fictional_sq_pin(self):
-        voice = self.database["devices"]["nicerf_sa518_v11"]
-        self.assertNotIn("SQ", voice["contacts"])
-        self.assertIn("AUDIO_ON", voice["contacts"])
-        self.assertIn("UPDATE", voice["contacts"])
+    def test_exact_sa818s_modules_do_not_regress_to_fictional_contacts(self):
+        for device_id in ("nicerf_sa818s_u_v18", "nicerf_sa818s_v_v18"):
+            voice = self.database["devices"][device_id]
+            self.assertNotIn("SQ", voice["contacts"])
+            self.assertNotIn("UPDATE", voice["contacts"])
+            self.assertNotIn("VOXEN", voice["contacts"])
+            self.assertIn("AUDIO_ON", voice["contacts"])
         for candidate in self.candidates:
             self.assertFalse(
                 any(row["net"] == "VOICE_SQ" for row in candidate["allocations"]),
@@ -3533,17 +3533,19 @@ class ArchitectureValidationTests(unittest.TestCase):
 
     def test_leading_voice_and_receiver_paths_use_exact_exposed_contacts(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
-        self.assertEqual("nicerf_sa518_v11", candidate["instances"]["voice"])
+        self.assertEqual("nicerf_sa818s_u_v18", candidate["instances"]["voice"])
+        self.assertEqual("nicerf_sa818s_v_v18", candidate["instances"]["voice_v"])
         self.assertEqual("skyworks_si4732_a10_gsr", candidate["instances"]["receiver"])
-        voice_service = next(s for s in candidate["services"] if s["instance"] == "voice")
-        self.assertEqual({"UPDATE", "UART_TX", "UART_RX", "PD"}, set(voice_service["contacts"]))
+        voice_services = {s["instance"]: set(s["contacts"]) for s in candidate["services"] if s["instance"] in {"voice", "voice_v"}}
+        self.assertEqual({"voice", "voice_v"}, set(voice_services))
+        self.assertTrue(all(contacts == {"UART_TX", "UART_RX", "PD"} for contacts in voice_services.values()))
         endpoints = {
             route[endpoint]
             for route in candidate["fixed_routes"]
             for endpoint in ("from", "to")
         }
-        self.assertIn("voice.UPDATE", endpoints)
         self.assertIn("voice.PD", endpoints)
+        self.assertIn("voice_v.PD", endpoints)
         self.assertIn("receiver.FMI", endpoints)
         self.assertIn("receiver.AMI", endpoints)
         self.assertIn("receiver.GPO2_INTB", endpoints)

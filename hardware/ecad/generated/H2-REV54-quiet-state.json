@@ -4,16 +4,16 @@
   "status": "reviewed_reset_safe_quiet_state_and_isolation",
   "method": "complete KiCad netlist control-membership checks plus exact instantiated isolation evidence for every required quiet contract",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
-    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "95c3549487207b2c805663bd6e9be7ff251a116a64f9820d32e60f714e2232fc",
-    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "7079f94dceeef0ed9a569fc2a13f53af125e26c57f6b455bfe2d3b6e5edaca51"
+    "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "ab4e73fe576c5e1557e6695b89fd3ce182c4533a61e984bd755d3c25b287ce97",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "62036d985924f988257859617422a4eedbdab3d0d8f940cb485d32b7b97f23bc"
   },
   "hierarchy_exports": {
     "LESHY2-RF": {
-      "component_count": 690,
-      "unique_reference_count": 690,
+      "component_count": 722,
+      "unique_reference_count": 722,
       "duplicate_references": [],
-      "net_count": 544,
+      "net_count": 580,
       "annotation_warnings": 0
     },
     "LESHY2-UI": {
@@ -175,7 +175,7 @@
       "critical_parts": [
         {
           "instance": "cc_power_switch",
-          "reference": "U32017",
+          "reference": "U32021",
           "mpn": "Texas Instruments TPS22919DCKR"
         },
         {
@@ -190,7 +190,7 @@
         },
         {
           "instance": "cc_backup_gate",
-          "reference": "U32018",
+          "reference": "U32022",
           "mpn": "SN74LVC1G08DCKR"
         },
         {
@@ -368,8 +368,8 @@
       "status": "reviewed",
       "project": "LESHY2-RF",
       "isolation_class": "rail_off_plus_hardware_ptt_off",
-      "inactive_state": "PTT hardware-off; module power-down; qualified 4 V rail off",
-      "control": "VOICE_PTT_REQ_N -> VOICE_PTT_SAFE_N -> isolated VOICE_PTT_MODULE_N; VOICE_DOMAIN_REQ -> VOICE_DOMAIN_EN_SAFE; both paths are KILL/FAULT_KILL-dominant",
+      "inactive_state": "PTT hardware-off; both PD low; all UART/audio/control mux paths discharged; qualified 4 V rail off",
+      "control": "VOICE_PTT_REQ_N -> VOICE_PTT_SAFE_N -> selected TMUX path; VOICE_READY and one physical band bit drive a one-hot PD gate; RUN/KILL and FAULT_KILL dominate both",
       "checked_nets": [
         {
           "net": "VOICE_DOMAIN_REQ",
@@ -413,32 +413,70 @@
           "net": "VOICE_PTT_SAFE_N",
           "required_members": [
             "safe_ptt_or",
-            "voice_ptt_iso"
+            "voice_control_mux_b"
           ]
         },
         {
-          "net": "VOICE_PTT_MODULE_N",
+          "net": "VOICE_U_PTT_N",
           "required_members": [
             "voice",
-            "voice_ptt_iso",
+            "voice_control_mux_b",
             "voice_ptt_pullup"
+          ]
+        },
+        {
+          "net": "VOICE_V_PTT_N",
+          "required_members": [
+            "voice_control_mux_b",
+            "voice_v",
+            "voice_v_ptt_pullup"
+          ]
+        },
+        {
+          "net": "VOICE_READY",
+          "required_members": [
+            "voice_pd_gate",
+            "voice_supervisor"
+          ]
+        },
+        {
+          "net": "VOICE_V_SELECT",
+          "required_members": [
+            "voice_band_inverter",
+            "voice_band_io",
+            "voice_control_mux_b",
+            "voice_pd_gate"
+          ]
+        },
+        {
+          "net": "VOICE_U_PD",
+          "required_members": [
+            "voice",
+            "voice_pd_gate"
+          ]
+        },
+        {
+          "net": "VOICE_V_PD",
+          "required_members": [
+            "voice_pd_gate",
+            "voice_v"
           ]
         }
       ],
       "critical_parts": [
         {
           "instance": "voice_buck",
-          "reference": "U32015",
+          "reference": "U32019",
           "mpn": "Texas Instruments TPS564252DRLR"
         },
         {
           "instance": "voice_en_pulldown",
-          "reference": "R32040",
+          "reference": "R32052",
           "mpn": "Yageo RC0402FR-0710KL"
         },
         {
           "instance": "voice_efuse",
-          "reference": "U32016",
+          "reference": "U32020",
           "mpn": "Texas Instruments TPS25974LRPWR"
         },
         {
@@ -448,7 +486,7 @@
         },
         {
           "instance": "voice_efuse_en_pullup",
-          "reference": "R32043",
+          "reference": "R32055",
           "mpn": "Yageo RC0402FR-0710KL"
         },
         {
@@ -462,19 +500,39 @@
           "mpn": "74LVC1G32GV,125"
         },
         {
-          "instance": "voice_ptt_iso",
-          "reference": "U32011",
-          "mpn": "Texas Instruments SN74LVC1G126DCKR"
+          "instance": "voice_control_mux_b",
+          "reference": "U32016",
+          "mpn": "Texas Instruments TMUX1136DGSR"
         },
         {
           "instance": "voice_ptt_pullup",
-          "reference": "R32028",
+          "reference": "R32038",
+          "mpn": "Yageo RC0402FR-0710KL"
+        },
+        {
+          "instance": "voice_v_ptt_pullup",
+          "reference": "R32039",
           "mpn": "Yageo RC0402FR-0710KL"
         },
         {
           "instance": "voice_supervisor",
-          "reference": "U32009",
+          "reference": "U32010",
           "mpn": "TPS3808G33DBVR"
+        },
+        {
+          "instance": "voice_band_io",
+          "reference": "U32012",
+          "mpn": "TCA9534APWR"
+        },
+        {
+          "instance": "voice_band_inverter",
+          "reference": "U32013",
+          "mpn": "74LVC2G14GW,125"
+        },
+        {
+          "instance": "voice_pd_gate",
+          "reference": "U32014",
+          "mpn": "Texas Instruments SN74LVC2G08DCUR"
         }
       ]
     },
@@ -598,48 +656,104 @@
       "status": "reviewed",
       "project": "LESHY2-RF",
       "isolation_class": "switched_io_rail_plus_digital_and_analog_isolation",
-      "inactive_state": "PTT remains hardware-off, UART and analog paths isolated, MIC_IN injection disconnected and H/L at its safe low-or-open default",
-      "control": "VOICE_PTT_REQ_N -> VOICE_PTT_SAFE_N -> isolated VOICE_PTT_MODULE_N; slow_io P13/P14/P27 and exact switched-domain digital/analog isolation",
+      "inactive_state": "PTT remains hardware-off, all three TMUX1136 selectors are unpowered/high-Z, both PD contacts are low and H/L stays low or open",
+      "control": "one TCA9534A P0 band bit, AON one-hot PD gate, VVOICE_IO_3V3 discharge and shared KILL/FAULT_KILL-safe PTT",
       "checked_nets": [
+        {
+          "net": "VVOICE_IO_3V3",
+          "required_members": [
+            "voice_audio_mux",
+            "voice_control_mux_a",
+            "voice_control_mux_b",
+            "voice_io_power_switch"
+          ]
+        },
+        {
+          "net": "VOICE_V_SELECT",
+          "required_members": [
+            "voice_audio_mux",
+            "voice_band_io",
+            "voice_control_mux_a",
+            "voice_control_mux_b",
+            "voice_pd_gate"
+          ]
+        },
         {
           "net": "VOICE_PTT_SAFE_N",
           "required_members": [
             "safe_ptt_or",
-            "voice_ptt_iso"
+            "voice_control_mux_b"
           ]
         },
         {
-          "net": "VOICE_PTT_MODULE_N",
+          "net": "VOICE_UART_TX",
+          "required_members": [
+            "rp",
+            "voice_control_mux_a"
+          ]
+        },
+        {
+          "net": "VOICE_UART_RX",
+          "required_members": [
+            "rp",
+            "voice_control_mux_a"
+          ]
+        },
+        {
+          "net": "VOICE_AUDIO_ON_N",
+          "required_members": [
+            "rp",
+            "voice_control_mux_b"
+          ]
+        },
+        {
+          "net": "VOICE_HL_OPEN_DRAIN",
           "required_members": [
             "voice",
-            "voice_ptt_iso"
+            "voice_hl_driver",
+            "voice_v"
           ]
         }
       ],
       "critical_parts": [
         {
           "instance": "voice_io_power_switch",
-          "reference": "U32010",
+          "reference": "U32011",
           "mpn": "Texas Instruments TPS22919DCKR"
         },
         {
-          "instance": "voice_uart_tx_iso",
+          "instance": "voice_control_mux_a",
+          "reference": "U32015",
+          "mpn": "Texas Instruments TMUX1136DGSR"
+        },
+        {
+          "instance": "voice_control_mux_b",
+          "reference": "U32016",
+          "mpn": "Texas Instruments TMUX1136DGSR"
+        },
+        {
+          "instance": "voice_audio_mux",
+          "reference": "U32017",
+          "mpn": "Texas Instruments TMUX1136DGSR"
+        },
+        {
+          "instance": "voice_band_io",
           "reference": "U32012",
-          "mpn": "Texas Instruments SN74LVC1G126DCKR"
+          "mpn": "TCA9534APWR"
         },
         {
-          "instance": "voice_audio_iso",
+          "instance": "voice_band_inverter",
+          "reference": "U32013",
+          "mpn": "74LVC2G14GW,125"
+        },
+        {
+          "instance": "voice_pd_gate",
           "reference": "U32014",
-          "mpn": "Texas Instruments SN74LVC2G66DCUR"
-        },
-        {
-          "instance": "voice_ptt_iso",
-          "reference": "U32011",
-          "mpn": "Texas Instruments SN74LVC1G126DCKR"
+          "mpn": "Texas Instruments SN74LVC2G08DCUR"
         },
         {
           "instance": "voice_hl_driver",
-          "reference": "U32013",
+          "reference": "U32018",
           "mpn": "SN74LVC1G07DCKR"
         }
       ]

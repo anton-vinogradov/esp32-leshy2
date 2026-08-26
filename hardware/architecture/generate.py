@@ -279,7 +279,7 @@ def validate_sources(
                 "EV_N2_NRF0", "EV_N3_NRF1", "EV_N4_NRF2", "EV_N5_CC",
                 "EV_N6_VOICE", "EV_N8_LORA_EXT",
                 "EV_N7_IR", "C5_RF_TX_EVIDENCE_N", "IR_TX_EVIDENCE_N",
-                "RX_SA518_AFOUT_ISOLATED", "VOICE_MIC_SELECTED_MAIN", "MIC_RAW",
+                "RX_VOICE_AFOUT_SELECTED", "VOICE_MIC_SELECTED_MAIN", "MIC_RAW",
                 "SPEAKER_SELECTED_P", "SPEAKER_SELECTED_N", "SPEAKER_AMP_EN", "3V3_MAIN",
                 "AON_SAFE_3V3", "POWER_GROUND", "SAFETY_GROUND", "AUDIO_GROUND",
             }
@@ -307,7 +307,7 @@ def validate_sources(
             "kit_profile_decision": "DEC-0055",
             "availability_check_gate": "exact_mpn_selection",
             "full_field_kit_physical_items": 12,
-            "max_simultaneously_connected": 9,
+            "max_simultaneously_connected": 10,
             "kit_profiles": {
                 "native_wifi": {
                     "paths": ["S3-2G4", "C5-2G4/5"],
@@ -325,9 +325,11 @@ def validate_sources(
                     "physical_items": 3,
                 },
                 "voice": {
-                    "path": "VOICE-V/U",
-                    "profiles": ["VHF_136_174", "UHF_400_470"],
+                    "paths": ["VOICE-VHF", "VOICE-UHF"],
+                    "profiles": ["VHF_134_174", "UHF_400_480"],
                     "physical_items": 2,
+                    "simultaneous_tx": False,
+                    "qualified_uhf_alternate": "SA818S-CE 400-470 MHz only",
                 },
                 "receiver": {
                     "paths": ["RX-FM/SW", "RX-AM/LW"],
@@ -337,7 +339,7 @@ def validate_sources(
             },
             "base_extended_packaging_decision": "deferred_to_costed_product_variants",
             "base_onboard_endpoint": "external_sma",
-            "base_onboard_sma_count": 9,
+            "base_onboard_sma_count": 10,
             "base_onboard_sma_paths": [
                 "S3-2G4",
                 "C5-2G4/5",
@@ -345,7 +347,8 @@ def validate_sources(
                 "N24-1",
                 "N24-2",
                 "CC-SUB",
-                "VOICE-V/U",
+                "VOICE-VHF",
+                "VOICE-UHF",
                 "RX-FM/SW",
                 "RX-AM/LW",
             ],
@@ -356,7 +359,8 @@ def validate_sources(
                 "N24-1": "sma_jack_socket_center",
                 "N24-2": "sma_jack_socket_center",
                 "CC-SUB": "sma_jack_socket_center",
-                "VOICE-V/U": "sma_jack_socket_center",
+                "VOICE-VHF": "sma_jack_socket_center",
+                "VOICE-UHF": "sma_jack_socket_center",
                 "RX-FM/SW": "sma_jack_socket_center",
                 "RX-AM/LW": "sma_jack_socket_center",
             },
@@ -367,7 +371,8 @@ def validate_sources(
                 "N24-1": "sma_plug_pin_center",
                 "N24-2": "sma_plug_pin_center",
                 "CC-SUB": "sma_plug_pin_center",
-                "VOICE-V/U": "sma_plug_pin_center",
+                "VOICE-VHF": "sma_plug_pin_center",
+                "VOICE-UHF": "sma_plug_pin_center",
                 "RX-FM/SW": "sma_plug_pin_center",
                 "RX-AM/LW": "sma_plug_pin_center",
             },
@@ -389,6 +394,11 @@ def validate_sources(
             "si4732_ami_external_profile": "direct_plug_in_loop_or_qualified_buffered_pod",
             "external_accessory_antennas": "owned_by_accessory",
         }
+        if candidate_id != "G2F-3I":
+            # Historical comparison candidates preserve the antenna topology that
+            # belonged to their own architecture snapshot.  The current product
+            # invariant below is intentionally applied only to the selected design.
+            expected_antenna_policy = antenna_policy
         for field, expected in expected_antenna_policy.items():
             if antenna_policy.get(field) != expected:
                 errors.append(
@@ -404,6 +414,7 @@ def validate_sources(
             "nrf2_external_sma": "gct_rfpc_sma31_fn_175_a",
             "cc_external_sma": "gct_rfpc_sma31_fn_175_a",
             "voice_external_sma": "gct_rfpc_sma31_fn_175_a",
+            "voice_v_external_sma": "gct_rfpc_sma31_fn_175_a",
         }
         if candidate_id == "G2F-3I":
             instances = candidate.get("instances", {})
@@ -2585,19 +2596,19 @@ def render_public_schematics(
 | [`UI_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch) | точный ECAD | один FX8C plug, 80 отдельных физических контактов, 51 интерфейс, 20 `POWER_GROUND`, 7 `3V3_MAIN`, без резервов и NC |
 | [`UI_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch) | точный ECAD | 28 компонентов, два RF detector, физический optical IR sensor, четыре comparator-канала, два reset-sink, 18 интерфейсов и один NC |
 | [`UI_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-UI/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch) | точный ECAD | 11 физических test-площадок 1,0 мм на точных цепях; PCB copper без покупного MPN/BOM |
-| [`RF_00_ROOT`](../hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch) | точный ECAD | 12 заполненных дочерних листов, 149 межлистовых цепей и 351 явный pin/label; без stub и отложенных fixture labels |
+| [`RF_00_ROOT`](../hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch) | точный ECAD | 12 заполненных дочерних листов, 161 межлистовая цепь и 395 явных pins/labels; без stub и отложенных fixture labels |
 | [`RF_01_USB_PD_CHARGE`](../hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch) | точный ECAD | 52 компонента, 208 физических контактов корпусов, защищённый sink-only USB-PD, 2S/750-кГц NVDC-зарядка, 9 интерфейсов и 10 объяснённых NC |
 | [`RF_02_PACK_SAFETY_AON`](../hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch) | точный ECAD | 61 symbol, 198 физических контактов корпусов/интерфейсов, fail-closed допуск 2S pack, 14 интерфейсов и 6 объяснённых NC |
 | [`RF_03_MAIN_RAILS_DOMAIN_GATES`](../hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch) | точный ECAD | 69 компонентов, 186 физических контактов, независимые AON/main/accessory rails, eFuse и domain gates, 21 интерфей и 3 объяснённых NC |
 | [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch) | точный ECAD | 48 компонентов, все 81 контакта SC1512-A4, референсные regulator/clock, USB/recovery, 52 интерфейса и 13 объяснённых NC |
 | [`RF_31_NRF24_X3`](../hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch) | точный ECAD | 105 компонентов ledger плюс 3 границы заводских IPEX, 311 физических контактов, 3 независимых PIO SPI/RF-тракта, 33 интерфейса и 2 объяснённых NC |
-| [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch) | точный electrical ECAD | 116 компонентов, 363 физических контакта, независимые CC1101 data и SA518 voice power/control/RF-тракты, 32 интерфейса и 11 объяснённых NC; land-fit SA518 остаётся gate H5 |
+| [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch) | точный electrical ECAD | 143 компонента, 473 физических контакта, независимый CC1101 data-тракт и отдельные SA818S-U/V voice power/control/RF-тракты с аппаратным one-hot выбором, 40 интерфейсов и 20 объяснённых NC; solder/RF-fit обоих модулей остаётся gate H5 |
 | [`RF_34_U214_M5_EXT`](../hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch) | точный ECAD | 53 символа, 52 устанавливаемых компонента, 228 контактов, 27 интерфейсов, отдельные защищённые ветви U214 и нативного M5 Unit; сам U214 остаётся внешним изделием |
 | [`RF_35_REAR_CONTROLS`](../hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch) | точный ECAD | 7 устанавливаемых компонентов и 36 контактов: отдельные encoder A/B/push и PTT, локальная ESD-защита; серийная ручка остаётся внешней механической деталью |
 | [`RF_36_AUDIO_IO_AMP`](../hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch) | точный ECAD | 14 символов и 34 контакта: направленный вниз микрофон, reset-safe U-DFN amplifier и два независимых floating-BTL выхода к проводному динамику |
 | [`RF_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-RF/RF_40_INTERBOARD_M1.kicad_sch) | точный ECAD | один FX8C receptacle, 80 отдельных физических контактов, 51 интерфейс и построчное равенство UI-side M1 без резервов/NC |
-| [`RF_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch) | точный ECAD | 97 компонентов и 369 контактов: независимые RUN/KILL, POR, watchdog/latch/reset и TX-gates, пять физических RF detector, пять comparator-каналов, 74 интерфейса и 22 объяснённых NC |
-| [`RF_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch) | точный ECAD | 52 физических test-площадки 1,0 мм: recovery, USB VBUS sense, PD/EEPROM, watchdog/latch, safe gates, power-good, RF evidence, thermal и rail references; PCB copper без покупного MPN/BOM |
+| [`RF_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch) | точный ECAD | 113 компонентов и 421 контакт: независимые RUN/KILL, POR, watchdog/latch/reset и TX-gates, шесть физических RF detector, шесть comparator-каналов, 78 интерфейсов и 24 объяснённых NC |
+| [`RF_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch) | точный ECAD | 51 физическая test-площадка 1,0 мм: recovery, USB VBUS sense, PD/EEPROM, watchdog/latch, safe gates, power-good, RF evidence, thermal и rail references; PCB copper без покупного MPN/BOM |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
@@ -2652,19 +2663,19 @@ no-connects; fabricated test pads are explicitly excluded from the BOM.
 | [`UI_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch) | exact ECAD | one FX8C plug, 80 separate physical contacts, 51 interfaces, 20 `POWER_GROUND`, 7 `3V3_MAIN`, no reserves or NCs |
 | [`UI_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch) | exact ECAD | 28 components, two RF detectors, a physical optical IR sensor, four comparator channels, two reset sinks, 18 interfaces and one NC |
 | [`UI_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-UI/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch) | exact ECAD | 11 physical 1.0-mm test pads on exact nets; fabricated PCB copper with no purchased MPN/BOM |
-| [`RF_00_ROOT`](../hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch) | exact ECAD | 12 populated child sheets, 149 cross-sheet nets and 351 explicit pins/labels; no child stubs or deferred fixture labels |
+| [`RF_00_ROOT`](../hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch) | exact ECAD | 12 populated child sheets, 161 cross-sheet nets and 395 explicit pins/labels; no child stubs or deferred fixture labels |
 | [`RF_01_USB_PD_CHARGE`](../hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch) | exact ECAD | 52 components, 208 physical package pads, protected sink-only USB-PD, 2S/750-kHz NVDC charging, 9 interfaces and 10 explained NCs |
 | [`RF_02_PACK_SAFETY_AON`](../hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch) | exact ECAD | 61 symbols, 198 physical package/interface contacts, fail-closed 2S pack admission, 14 interfaces and 6 explained NCs |
 | [`RF_03_MAIN_RAILS_DOMAIN_GATES`](../hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch) | exact ECAD | 69 components, 186 physical contacts, independent AON/main/accessory rails, eFuses and domain gates, 21 interfaces and 3 explained NCs |
 | [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch) | exact ECAD | 48 components, all 81 SC1512-A4 contacts, official regulator/clock circuits, USB/recovery, 52 interfaces and 13 explained NCs |
 | [`RF_31_NRF24_X3`](../hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch) | exact ECAD | 105 ledger components plus 3 factory-IPEX boundaries, 311 physical contacts, 3 independent PIO SPI/RF paths, 33 interfaces and 2 explained NCs |
-| [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch) | exact electrical ECAD | 116 components, 363 physical contacts, independent CC1101 data and SA518 voice power/control/RF paths, 32 interfaces and 11 explained NCs; SA518 land fit remains an H5 gate |
+| [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch) | exact electrical ECAD | 143 components, 473 physical contacts, an independent CC1101 data path and separate SA818S-U/V voice power/control/RF paths with hardware one-hot selection, 40 interfaces and 20 explained NCs; solder/RF fit of both modules remains an H5 gate |
 | [`RF_34_U214_M5_EXT`](../hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch) | exact ECAD | 53 symbols, 52 board-fitted components, 228 contacts, 27 interfaces and separate protected U214/native M5 Unit branches; U214 itself remains an external product |
 | [`RF_35_REAR_CONTROLS`](../hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch) | exact ECAD | 7 fitted components and 36 contacts: independent encoder A/B/push and PTT with local ESD; the serial knob remains an external mechanical item |
 | [`RF_36_AUDIO_IO_AMP`](../hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch) | exact ECAD | 14 symbols and 34 contacts: downward-facing microphone, reset-safe U-DFN amplifier and two independent floating-BTL outputs to the wired speaker assembly |
 | [`RF_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-RF/RF_40_INTERBOARD_M1.kicad_sch) | exact ECAD | one FX8C receptacle, 80 separate physical contacts, 51 interfaces and row-for-row equality with UI-side M1, with no reserves/NCs |
-| [`RF_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch) | exact ECAD | 97 components and 369 contacts: independent RUN/KILL, POR, watchdog/latch/reset and TX gates, five physical RF detectors, five comparator channels, 74 interfaces and 22 explained NCs |
-| [`RF_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch) | exact ECAD | 52 physical 1.0-mm test pads: recovery, USB VBUS sense, PD/EEPROM, watchdog/latch, safe gates, power-good, RF evidence, thermal and rail references; fabricated PCB copper with no purchased MPN/BOM |
+| [`RF_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch) | exact ECAD | 113 components and 421 contacts: independent RUN/KILL, POR, watchdog/latch/reset and TX gates, six physical RF detectors, six comparator channels, 78 interfaces and 24 explained NCs |
+| [`RF_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch) | exact ECAD | 51 physical 1.0-mm test pads: recovery, USB VBUS sense, PD/EEPROM, watchdog/latch, safe gates, power-good, RF evidence, thermal and rail references; fabricated PCB copper with no purchased MPN/BOM |
 
 Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
@@ -2994,7 +3005,8 @@ def _render_principled_pinout_bundle(
     audio_roles = {
         "receiver": "AM/FM/SW/LW broadcast receiver",
         "codec": "mono ADC/DAC audio codec",
-        "voice": "VHF/UHF analog voice transceiver",
+        "voice": "UHF 400–480-MHz analog voice transceiver",
+        "voice_v": "VHF 134–174-MHz analog voice transceiver",
         "microphone": "top-port analog electret microphone",
         "speaker": "24-by-12-mm 4-Ohm internal loudspeaker",
         "headphone_jack": "shielded 3.5-mm CTIA TRRS headset jack with insertion switches",
@@ -3006,7 +3018,7 @@ def _render_principled_pinout_bundle(
         "headset_control_io_bypass": "headset-controller bypass capacitor",
         "headset_mic_select_pullup": "internal-microphone reset-default pull-up",
         "headset_detect_series": "10-kOhm plug-detect input protection",
-        "audio_rx_mux": "Si4732/SA518 receive-audio source selector",
+        "audio_rx_mux": "Si4732/selected-SA818S receive-audio source selector",
         "audio_capture_selector": "RX/microphone recording-source selector",
         "audio_capture_buffer": "active high-impedance capture buffer",
         "audio_speaker_selector": "dual differential RX-bypass/codec speaker selector",
@@ -3030,10 +3042,13 @@ def _render_principled_pinout_bundle(
         "receiver_ami_coupling_cap": "0.47-uF AMI AC-coupling capacitor",
         "voice_supervisor": "FAULT_KILL-qualified protected-4-V voice supervisor",
         "voice_io_power_switch": "discharged local voice-interface supply switch",
-        "voice_ptt_iso": "physical module-PTT tri-state isolation buffer",
-        "voice_uart_tx_iso": "physical host-to-module UART isolation buffer",
-        "voice_hl_driver": "low-or-open SA518 H/L driver",
-        "voice_audio_iso": "dual AFOUT/MIC_IN power-domain isolation switch",
+        "voice_band_io": "0x3A reset-default-UHF band selector",
+        "voice_band_inverter": "always-on hardware complement for one-hot band selection",
+        "voice_pd_gate": "always-on one-hot SA818S-U/V power-down gate",
+        "voice_control_mux_a": "selected-band UART TX/RX selector",
+        "voice_control_mux_b": "selected-band PTT/AUDIO_ON selector",
+        "voice_audio_mux": "selected-band AFOUT/MIC_IN selector",
+        "voice_hl_driver": "shared low-or-open SA818S H/L driver",
     }
     nrf_support_instance_names = tuple(
         instance
@@ -3162,6 +3177,14 @@ def _render_principled_pinout_bundle(
             "voice_evidence_hold_diode",
             "voice_evidence_hold_cap",
             "voice_evidence_hold_pulldown",
+            "voice_v_rf_esd",
+            "voice_v_detector_series_attenuator",
+            "voice_v_detector_match",
+            "voice_v_detector_filter",
+            "voice_v_detector_bypass",
+            "voice_v_evidence_hold_diode",
+            "voice_v_evidence_hold_cap",
+            "voice_v_evidence_hold_pulldown",
             "voice_tx_led_series",
             "voice_tx_led",
         }
@@ -3175,6 +3198,14 @@ def _render_principled_pinout_bundle(
         "voice_evidence_hold_diode": "actual-TX evidence hold isolation diode",
         "voice_evidence_hold_cap": "actual-TX evidence enable hold capacitor",
         "voice_evidence_hold_pulldown": "actual-TX evidence hold discharge resistor",
+        "voice_v_rf_esd": "24-V ultra-low-capacitance external VHF RF ESD diode",
+        "voice_v_detector_series_attenuator": "VHF actual-TX 5.1-kOhm RF series sampler",
+        "voice_v_detector_match": "VHF AD8314 52.3-Ohm detector input shunt",
+        "voice_v_detector_filter": "VHF AD8314 response filter capacitor",
+        "voice_v_detector_bypass": "VHF AD8314 local bypass capacitor",
+        "voice_v_evidence_hold_diode": "VHF actual-TX evidence hold isolation diode",
+        "voice_v_evidence_hold_cap": "VHF actual-TX evidence enable hold capacitor",
+        "voice_v_evidence_hold_pulldown": "VHF actual-TX evidence hold discharge resistor",
         "voice_tx_led_series": "voice actual-TX indicator 2.2-kOhm current limit",
         "voice_tx_led": "voice antenna-local actual-TX indicator",
     }
@@ -3261,6 +3292,7 @@ def _render_principled_pinout_bundle(
         "evidence_cmp_a", "evidence_cmp_a_bypass",
         "evidence_cmp_b", "evidence_cmp_b_bypass",
         "evidence_cmp_voice", "evidence_cmp_voice_bypass",
+        "evidence_cmp_voice_v", "evidence_cmp_voice_v_bypass",
         "s3_evidence_threshold_top", "s3_evidence_threshold_bottom",
         "s3_evidence_hysteresis", "s3_evidence_output_pullup",
         "c5_evidence_threshold_top", "c5_evidence_threshold_bottom",
@@ -3275,6 +3307,8 @@ def _render_principled_pinout_bundle(
         "cc_evidence_hysteresis", "cc_evidence_output_pullup",
         "voice_evidence_threshold_top", "voice_evidence_threshold_bottom",
         "voice_evidence_hysteresis", "voice_evidence_output_pullup",
+        "voice_v_evidence_threshold_top", "voice_v_evidence_threshold_bottom",
+        "voice_v_evidence_hysteresis",
         "ir_evidence_threshold_top", "ir_evidence_threshold_bottom",
         "ir_evidence_hysteresis", "ir_evidence_output_pullup",
         "ext_evidence_input_series", "ext_evidence_input_pullup",
@@ -3869,7 +3903,8 @@ def _render_principled_pinout_bundle(
         node("cc_external_sma", "CC dedicated 6-GHz IP67 standard-SMA edge-launch jack"),
         "  %% CC layout-only invisible spine: every box above is one physical device.",
         "  " + " ~~~ ".join(instance.upper() for instance in cc_support_instance_names),
-        node("voice", "136-174/400-470-MHz analog voice transceiver"),
+        node("voice", "UHF 400–480-MHz analog voice transceiver"),
+        node("voice_v", "VHF 134–174-MHz analog voice transceiver"),
         *[node(instance, voice_rf_roles[instance]) for instance in voice_rf_support_instance_names],
         node("voice_external_sma", "voice dedicated 6-GHz IP67 standard-SMA edge-launch jack"),
         node("receiver_fmsw_external_sma", "dedicated FM/SW standard-SMA receive jack"),
@@ -4019,7 +4054,8 @@ def _render_principled_pinout_bundle(
         node("det_nrf1", "nRF1 2.4-GHz RF power detector"),
         node("det_nrf2", "nRF2 2.4-GHz RF power detector"),
         node("det_cc", "CC1101 sub-GHz RF power detector"),
-        node("det_voice", "SA518 VHF/UHF RF power detector"),
+        node("det_voice", "SA818S-U UHF RF power detector"),
+        node("det_voice_v", "SA818S-V VHF RF power detector"),
         node("det_ir", "IR optical-evidence photodiode"),
         *[node(instance, evidence_role(instance)) for instance in evidence_support_instance_names],
         "  %% TX-evidence layout-only invisible spine: every box above is one physical device.",
@@ -4438,7 +4474,8 @@ def _render_principled_pinout_bundle(
         "  RECEIVER --> SI_AUDIO_L_COUPLING --> SI_AUDIO_L_SUM --> AUDIO_RX_MUX",
         "  RECEIVER --> SI_AUDIO_R_COUPLING --> SI_AUDIO_R_SUM --> AUDIO_RX_MUX",
         "  RECEIVER_CLOCK --> RECEIVER",
-        "  VOICE -->|\"AFOUT\"| VOICE_AUDIO_ISO --> VOICE_RX_COUPLING --> AUDIO_RX_MUX",
+        "  VOICE -->|\"UHF AFOUT\"| VOICE_AUDIO_MUX",
+        "  VOICE_V -->|\"VHF AFOUT\"| VOICE_AUDIO_MUX --> VOICE_RX_COUPLING --> AUDIO_RX_MUX",
         "  SLOW_IO -->|\"P27 source request\"| AUDIO_RX_MUX",
         "  AUDIO_RX_MUX -->|\"analog bypass\"| AUDIO_SPEAKER_SELECTOR",
         "  AUDIO_RX_MUX --> AUDIO_CAPTURE_RX_COUPLING --> AUDIO_CAPTURE_SELECTOR",
@@ -4461,16 +4498,17 @@ def _render_principled_pinout_bundle(
         "  HEADPHONE_JACK -->|\"P02 insertion state\"| SLOW_IO",
         "  CODEC --> CODEC_TX_COUPLING --> CODEC_TX_ATTEN_TOP --> AUDIO_TX_SELECTOR",
         "  HEADSET_MIC_SELECTOR --> MIC_TX_COUPLING --> AUDIO_TX_SELECTOR",
-        "  AUDIO_TX_SELECTOR --> VOICE_AUDIO_ISO -->|\"MIC_IN\"| VOICE",
+        "  AUDIO_TX_SELECTOR --> VOICE_AUDIO_MUX -->|\"selected MIC_IN\"| VOICE",
+        "  VOICE_AUDIO_MUX -->|\"selected MIC_IN\"| VOICE_V",
         "  SLOW_IO -->|\"P11/P12 requests\"| AUDIO_SAFE_GATE",
         "  S3 -->|\"GPIO6 AUDIO_ARM\"| AUDIO_SAFE_GATE",
         "  AUDIO_SAFE_GATE --> AUDIO_SPEAKER_SELECTOR",
         "  AUDIO_SAFE_GATE --> AUDIO_TX_SELECTOR",
         "  CODEC_POWER_SWITCH --> CODEC_SUPERVISOR --> CODEC_I2C_ISO",
         "  CODEC_SUPERVISOR --> CODEC_I2S_BCLK_ISO",
-        "  VOICE_SUPERVISOR --> VOICE_IO_POWER_SWITCH --> VOICE_PTT_ISO",
-        "  VOICE_IO_POWER_SWITCH --> VOICE_UART_TX_ISO",
-        "  VOICE_IO_POWER_SWITCH --> VOICE_AUDIO_ISO",
+        "  VOICE_SUPERVISOR --> VOICE_IO_POWER_SWITCH --> VOICE_CONTROL_MUX_A",
+        "  VOICE_IO_POWER_SWITCH --> VOICE_CONTROL_MUX_B",
+        "  VOICE_IO_POWER_SWITCH --> VOICE_AUDIO_MUX",
         "  SLOW_IO -->|\"P14 low-or-open power select\"| VOICE_HL_DRIVER --> VOICE",
         "  RECEIVER_FMSW_EXTERNAL_SMA --> RECEIVER_FMI_ESD",
         "  RECEIVER_FMSW_EXTERNAL_SMA --> RECEIVER_FMI_MATCH_INDUCTOR --> RECEIVER_FMI_COUPLING_CAP -->|\"FMI contact 6\"| RECEIVER",
@@ -4508,7 +4546,8 @@ def _render_principled_pinout_bundle(
         "  RP -->|\"CC rail request\"| SAFE_GATE_B",
         "  C5 -->|\"IR carrier request\"| SAFE_GATE_B",
         "  SLOW_IO -->|\"voice/accessory rail requests\"| SAFE_GATE_B",
-        "  RP -->|\"PTT request\"| SAFE_PTT_OR --> VOICE_PTT_ISO --> VOICE",
+        "  RP -->|\"PTT request\"| SAFE_PTT_OR --> VOICE_CONTROL_MUX_B --> VOICE",
+        "  VOICE_CONTROL_MUX_B --> VOICE_V",
         "  SAFE_GATE_A -->|\"CE0\"| NRF0_HOST_BUFFER",
         "  SAFE_GATE_A -->|\"CE1\"| NRF1_HOST_BUFFER",
         "  SAFE_GATE_A -->|\"CE2\"| NRF2_HOST_BUFFER",

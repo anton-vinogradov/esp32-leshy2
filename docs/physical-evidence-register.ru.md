@@ -27,7 +27,7 @@ H3.7.2 закрыт. В сведениях шести фаз H3 было 88 resi
 | `H3-PHY-019` | `H8` | `H3.3` | measure actual panel backlight current, brightness, PWM EMI, temperature and TPS2553 latch recovery |
 | `H3-PHY-020` | `H8` | `H3.3` | measure microphone/headset sensitivity, codec clipping/ALC/noise, channel phase perception, crosstalk, insertion pop and RF immunity on routed hardware |
 | `H3-PHY-021` | `H8` | `H3.3` | measure PAM8302A current, output EMI, speaker temperature/excursion and enclosure response; enforce the 50 C speaker-local mute rule |
-| `H3-PHY-022` | `H8` | `H3.3` | calibrate SA518 deviation downward from the bounded full-scale codec injection and repeat across module lots, rail and temperature |
+| `H3-PHY-022` | `H8` | `H3.3` | calibrate SA818S-V and SA818S-U deviation downward from the bounded full-scale codec injection and repeat across both module lots, rail and temperature |
 | `H3-PHY-023` | `H8` | `H3.3` | prove reset/brownout/off ordering, >=10-ms amplifier-enable delay and absence of back-power with codec, voice and main domains independently off |
 | `H3-PHY-024` | `H5+H8` | `H3.3` | verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power |
 | `H3-PHY-025` | `H8` | `H3.3` | replay a representative 30-to-60-kHz protocol corpus and measure carrier/count accuracy, robust AGC behavior, range and field of view |
@@ -60,7 +60,7 @@ H3.7.2 закрыт. В сведениях шести фаз H3 было 88 resi
 | `H3-PHY-052` | `H8` | `H3.5` | measure S3/C5 complete-feed insertion and return loss at every channel edge, including both microcoax transitions and the selected stackup launch |
 | `H3-PHY-053` | `H5+H8` | `H3.5` | measure all three E01 module-to-SMA feeds and received-lot Gen1 mating/retention independently |
 | `H3-PHY-054` | `H8` | `H3.5` | VNA-tune CC1101 differential-to-single-ended match and every 315/433/868/915 branch; prove output, sensitivity, harmonics and switch loss |
-| `H3-PHY-055` | `H8` | `H3.5` | measure SA518 VHF/UHF feed insertion/return loss, output power and harmonics at both power settings |
+| `H3-PHY-055` | `H8` | `H3.5` | measure the independent SA818S-V and SA818S-U feed insertion/return loss, output power and harmonics at both power settings; repeat UHF for SA818S-CE before enabling that alternate |
 | `H3-PHY-056` | `H8` | `H3.5` | qualify Si4732 FMI FM and SW sensitivity/overload with the complete external whip and first-pass 56-nH/1-nF network |
 | `H3-PHY-057` | `H5+H6+H8` | `H3.5` | measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod |
 | `H3-PHY-058` | `H8` | `H3.5` | derate every allowed TX power/EIRP table by measured complete-feed loss and selected antenna gain before regional profile release |

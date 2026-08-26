@@ -166,7 +166,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "ambient_target_is_0_to_35c": ambient["design_target_c"] == {"minimum": 0, "maximum": 35},
         "ambient_target_is_not_a_guarantee": "not a published" in ambient["status"],
         "quiet_35c_rtheta_matches_h3_6_1": ambient["h6_base_to_ambient_rtheta_k_per_w_max_at_35c"]["quiet_support_idle"] == "16.713",
-        "voice_35c_rtheta_matches_h3_6_1": ambient["h6_base_to_ambient_rtheta_k_per_w_max_at_35c"]["voice_support_idle_worst_group"] == "4.803",
+        "voice_35c_rtheta_matches_h3_6_1": ambient["h6_base_to_ambient_rtheta_k_per_w_max_at_35c"]["voice_support_idle_worst_group"] == "5.446",
         "support_worst_is_not_sustained": any("SUPPORT_WORST" in row for row in sustained_policy["excluded"]),
         "tx_remains_bounded": "bounded lease" in sustained_policy["tx"],
         "physical_residuals_are_assigned": len(hil) == 6 and all(row.startswith(("H6:", "H8:")) for row in hil),
@@ -231,7 +231,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         target = (
             "Цель проектирования до физических измерений — `0…35 °C`, не паспортная гарантия. "
-            "При 35 °C H6 должен получить не хуже `16,713 K/W` для quiet и `4,803 K/W` для тяжёлого voice RX."
+            "При 35 °C H6 должен получить не хуже `16,713 K/W` для quiet и `5,446 K/W` для тяжёлого voice RX."
         )
         setting = (
             "В `Настройки → Безопасность → Полный self-test` доступны `24 часа`, `48 часов` по умолчанию "
@@ -256,7 +256,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         target = (
             "The pre-physical engineering target is `0 to 35 °C`, not a datasheet guarantee. "
-            "At 35 °C H6 must achieve no worse than `16.713 K/W` for quiet and `4.803 K/W` for heavy voice RX."
+            "At 35 °C H6 must achieve no worse than `16.713 K/W` for quiet and `5.446 K/W` for heavy voice RX."
         )
         setting = (
             "`Settings > Safety > Full self-test` offers `24 hours`, default `48 hours`, and `startup only`. "

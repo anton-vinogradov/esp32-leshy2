@@ -32,34 +32,39 @@
 <text x="603.8" y="259.1" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#075985">shared Cap-Bus rail · HLE-107-02-G-DV-PE-LC beneath</text>
 <text x="603.8" y="275.8" font-family="sans-serif" font-size="6.2" font-weight="normal" text-anchor="middle" fill="#dc2626">insert ⊗ · remove ⊙</text>
 <g id="rear-outer-rf-bank" data-mount-face="rf-pcb-outer">
-<rect x="496.1" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="503.2" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="527.8,157.4 515.0,164.8 502.1,157.4 502.1,142.6 515.0,135.2 527.8,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M515.0 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="515.0" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">nRF24-1</text>
-<text data-layer="pcb-silkscreen" x="515.0" y="186.3" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">2.4 GHz</text>
-<rect x="540.5" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="547.6" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="572.2,157.4 559.4,164.8 546.5,157.4 546.5,142.6 559.4,135.2 572.2,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M559.4 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="559.4" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">SUB-GHz</text>
-<rect x="584.9" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="592.0" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="616.6,157.4 603.8,164.8 590.9,157.4 590.9,142.6 603.8,135.2 616.6,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M603.8 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="603.8" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">nRF24-2</text>
-<text data-layer="pcb-silkscreen" x="603.8" y="186.3" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">2.4 GHz</text>
-<rect x="629.3" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="636.4" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="661.0,157.4 648.1,164.8 635.3,157.4 635.3,142.6 648.1,135.2 661.0,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M648.1 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="648.1" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">VHF/UHF</text>
-<rect x="673.7" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="680.8" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="705.4,157.4 692.5,164.8 679.7,157.4 679.7,142.6 692.5,135.2 705.4,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M692.5 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="692.5" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">nRF24-3</text>
-<text data-layer="pcb-silkscreen" x="692.5" y="186.3" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">2.4 GHz</text>
+<rect x="473.9" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
+<rect x="481.0" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<polygon points="505.6,157.4 492.8,164.8 479.9,157.4 479.9,142.6 492.8,135.2 505.6,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
+<path d="M492.8 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="492.8" y="209.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">nRF24-1 · 2.4G</text>
+<rect x="518.3" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
+<rect x="525.4" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<polygon points="550.0,157.4 537.1,164.8 524.3,157.4 524.3,142.6 537.1,135.2 550.0,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
+<path d="M537.1 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="537.1" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">SUB-GHz</text>
+<rect x="562.7" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
+<rect x="569.8" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<polygon points="594.4,157.4 581.5,164.8 568.7,157.4 568.7,142.6 581.5,135.2 594.4,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
+<path d="M581.5 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="581.5" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">nRF24-2</text>
+<text data-layer="pcb-silkscreen" x="581.5" y="186.3" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">2.4 GHz</text>
+<rect x="607.1" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
+<rect x="614.2" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<polygon points="638.8,157.4 626.0,164.8 613.1,157.4 613.1,142.6 626.0,135.2 638.8,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
+<path d="M626.0 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="626.0" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">VHF VOICE</text>
+<text data-layer="pcb-silkscreen" x="626.0" y="186.3" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">134-174 MHz</text>
+<rect x="651.5" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
+<rect x="658.6" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<polygon points="683.2,157.4 670.4,164.8 657.5,157.4 657.5,142.6 670.4,135.2 683.2,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
+<path d="M670.4 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="670.4" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">UHF VOICE</text>
+<text data-layer="pcb-silkscreen" x="670.4" y="186.3" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">400-480 MHz</text>
+<rect x="695.9" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
+<rect x="703.0" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<polygon points="727.6,157.4 714.8,164.8 701.9,157.4 701.9,142.6 714.8,135.2 727.6,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
+<path d="M714.8 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="714.8" y="209.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">nRF24-3 · 2.4G</text>
 </g>
 <rect x="117.9" y="190.7" width="201.7" height="307.1" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
 <rect x="128.2" y="198.7" width="181.2" height="271.7" rx="3" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="1.5"/>
@@ -105,7 +110,7 @@
 <rect x="98.9" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="cc_tx_led" data-role="actual-tx-indicator" data-row="2" data-column="1"/>
 <text data-layer="pcb-silkscreen" x="101.8" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">SUB-GHz</text>
 <rect x="157.3" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="voice_tx_led" data-role="actual-tx-indicator" data-row="2" data-column="2"/>
-<text data-layer="pcb-silkscreen" x="160.3" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">VHF/UHF</text>
+<text data-layer="pcb-silkscreen" x="160.3" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">V/U TX</text>
 <rect x="215.8" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="ir_tx_led" data-role="actual-tx-indicator" data-row="2" data-column="3"/>
 <text data-layer="pcb-silkscreen" x="218.8" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">IR</text>
 <rect x="274.2" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="ext_tx_led" data-role="actual-tx-indicator" data-row="2" data-column="4"/>

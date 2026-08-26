@@ -3,15 +3,15 @@
   "stage": "H3.5.4",
   "status": "reviewed_rf_prelayout_and_coexistence_consolidation",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF51-rf-feed-constraints.json": "34bdc88eae66b5ce2ca283bfd8f641e864ec9a7535d0cf37078d14b8cea8740e",
-    "hardware/verification/generated/H3-VRF52-rf-layout-constraints.json": "c779fa4239ce10e9ceaae1ed3b29d4a32532f6d2156efc1fb35ebadf34a34655",
-    "hardware/verification/generated/H3-VRF53-rf-coexistence.json": "d7bb68491dc5655e8dfa899466f1ad9d402a9afc69e3edc457bb911f396d5616"
+    "hardware/verification/generated/H3-VRF51-rf-feed-constraints.json": "b87b3f03f98421101b6dcaaa355ffa6487bbb14427a2eb2e397654eefea6c968",
+    "hardware/verification/generated/H3-VRF52-rf-layout-constraints.json": "2c81aab8b6ec0716ff3e1c8a846e98ae680b1e1daec8075b3c080db8367761e0",
+    "hardware/verification/generated/H3-VRF53-rf-coexistence.json": "269bb6ea842531f3e9b28f10a22f3b06dfdb6246c28c2981c12b3d0d7776381d"
   },
   "consolidated": {
     "leaf_packages": 3,
-    "leaf_checks": 125,
+    "leaf_checks": 128,
     "consolidation_checks": 22,
-    "paths": 9,
+    "paths": 10,
     "signal_groups": 9,
     "quiet_contracts": 13,
     "physical_residuals": 18
@@ -23,7 +23,8 @@
     "N24-1": "SG-N24",
     "N24-2": "SG-N24",
     "CC-SUB": "SG-CC",
-    "VOICE-V/U": "SG-VOICE",
+    "VOICE-VHF": "SG-VOICE",
+    "VOICE-UHF": "SG-VOICE",
     "RX-FM/SW": "SG-BROADCAST",
     "RX-AM/LW": "SG-BROADCAST"
   },
@@ -41,7 +42,7 @@
     ],
     "H6": [
       "release a fabricator stack-up, field-solve and coupon-correlate every 50-ohm launch/mainline",
-      "export for all nine path IDs: routed length, layer, solved impedance, reference plane, transitions, fence pitch and nearest aggressor",
+      "export for all ten path IDs: routed length, layer, solved impedance, reference plane, transitions, fence pitch and nearest aggressor",
       "run DRC plus explicit return-path/plane-slot/RF-corridor review; extract RX-AM/LW capacitance rather than forcing it to 50 ohms"
     ],
     "H8": [
@@ -55,11 +56,11 @@
     "all_leaf_fail_counts_are_zero": true,
     "all_leaf_unresolved_counts_are_zero": true,
     "all_leaf_open_findings_are_empty": true,
-    "leaf_check_total_is_125": true,
-    "feed_and_layout_cover_same_nine_paths": true,
+    "leaf_check_total_is_128": true,
+    "feed_and_layout_cover_same_ten_paths": true,
     "every_onboard_path_has_runtime_group": true,
     "all_nine_runtime_groups_are_covered": true,
-    "seven_tx_and_two_receive_only_paths_preserved": true,
+    "eight_tx_and_two_receive_only_paths_preserved": true,
     "all_five_microcoaxes_preserved": true,
     "ordinary_paths_have_plane_and_return_contract": true,
     "amlw_is_non50_end_to_end": true,
@@ -79,7 +80,7 @@
     "measure S3/C5 complete-feed insertion and return loss at every channel edge, including both microcoax transitions and the selected stackup launch",
     "measure all three E01 module-to-SMA feeds and received-lot Gen1 mating/retention independently",
     "VNA-tune CC1101 differential-to-single-ended match and every 315/433/868/915 branch; prove output, sensitivity, harmonics and switch loss",
-    "measure SA518 VHF/UHF feed insertion/return loss, output power and harmonics at both power settings",
+    "measure the independent SA818S-V and SA818S-U feed insertion/return loss, output power and harmonics at both power settings; repeat UHF for SA818S-CE before enabling that alternate",
     "qualify Si4732 FMI FM and SW sensitivity/overload with the complete external whip and first-pass 56-nH/1-nF network",
     "measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod",
     "derate every allowed TX power/EIRP table by measured complete-feed loss and selected antenna gain before regional profile release",

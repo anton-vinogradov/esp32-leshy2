@@ -7,10 +7,10 @@
     "interval_corner"
   ],
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
-    "hardware/architecture/devices.json": "b7c9e0a591613e05e2b39fd315e301f6e628464b8cc1e46d983fc67b05204424",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "6dc167646883c397c92f91a051ee1565285fd81c0f540c49c16044b0e42d5f70",
-    "hardware/verification/generated/H3-VRF22-handover-brownout.json": "0e8aa4afa0375d7a184f374b9d38573bef9d3b279deb2bc0539aecee0d048497"
+    "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
+    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "268b349628b3bd8da9f99105e07af43a5f955a373fb6b86e8a008161fb8e5f13",
+    "hardware/verification/generated/H3-VRF22-handover-brownout.json": "dab40e5601f64e8a0ae3398d2830143f60040031556e7c8d0967748b9d967f0c"
   },
   "provenance": {
     "aon_efuse": "https://www.ti.com/lit/ds/symlink/tps25961.pdf",
@@ -21,8 +21,8 @@
   "automatic_capacitance_inventory": {
     "AON_SAFE_3V3": {
       "net": "AON_SAFE_3V3",
-      "capacitors": 42,
-      "nominal_uf": 24.0,
+      "capacitors": 46,
+      "nominal_uf": 24.4,
       "parts": [
         {
           "instance": "aon_efuse_output_cap",
@@ -56,6 +56,11 @@
         },
         {
           "instance": "evidence_cmp_voice_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "evidence_cmp_voice_v_bypass",
           "mpn": "TDK C1005X7R1H104K050BB",
           "nominal_uf": 0.1
         },
@@ -225,7 +230,17 @@
           "nominal_uf": 0.1
         },
         {
+          "instance": "voice_band_inverter_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
           "instance": "voice_detector_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
+          "instance": "voice_pd_gate_bypass",
           "mpn": "TDK C1005X7R1H104K050BB",
           "nominal_uf": 0.1
         },
@@ -233,13 +248,18 @@
           "instance": "voice_supervisor_bypass",
           "mpn": "TDK C1005X7R1H104K050BB",
           "nominal_uf": 0.1
+        },
+        {
+          "instance": "voice_v_detector_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
         }
       ]
     },
     "3V3_MAIN": {
       "net": "3V3_MAIN",
-      "capacitors": 53,
-      "nominal_uf": 59.7,
+      "capacitors": 54,
+      "nominal_uf": 59.8,
       "parts": [
         {
           "instance": "audio_capture_selector_bypass",
@@ -497,6 +517,11 @@
           "nominal_uf": 0.1
         },
         {
+          "instance": "voice_band_io_bypass",
+          "mpn": "TDK C1005X7R1H104K050BB",
+          "nominal_uf": 0.1
+        },
+        {
           "instance": "voice_hl_driver_bypass",
           "mpn": "TDK C1005X7R1H104K050BB",
           "nominal_uf": 0.1
@@ -549,24 +574,24 @@
     {
       "rail": "AON_SAFE_3V3",
       "strategy": "TPS25961 fixed slew may enter configured current limit",
-      "cap_nominal_uf": 24.0,
-      "cap_max_uf": 28.8,
+      "cap_nominal_uf": 24.4,
+      "cap_max_uf": 29.28,
       "active_load_ma": 89.5,
       "protection_min_ma": 165.0,
-      "bounded_current_limited_charge_ms": 1.259,
+      "bounded_current_limited_charge_ms": 1.28,
       "margin_ma_while_charging": 75.5,
       "result": "pass_current_limited_start"
     },
     {
       "rail": "3V3_MAIN",
       "strategy": "TPS25974 with 4.7-nF dV/dt capacitor; CdVdt=3300/SR",
-      "cap_nominal_uf": 59.7,
-      "cap_max_uf": 71.64,
+      "cap_nominal_uf": 59.8,
+      "cap_max_uf": 71.76,
       "slew_v_per_ms": 0.702,
-      "capacitive_inrush_ma": 50.291,
+      "capacitive_inrush_ma": 50.376,
       "worst_active_load_ma": 2493.0,
       "protection_min_ma": 3200.0,
-      "combined_margin_ma": 656.709,
+      "combined_margin_ma": 656.624,
       "result": "pass"
     },
     {
@@ -576,9 +601,9 @@
       "cap_max_uf": 12.0,
       "slew_v_per_ms": 0.702,
       "capacitive_inrush_ma": 8.424,
-      "worst_active_load_ma": 900.0,
+      "worst_active_load_ma": 750.0,
       "protection_min_ma": 1550.0,
-      "combined_margin_ma": 641.576,
+      "combined_margin_ma": 791.576,
       "result": "pass"
     },
     {
@@ -616,7 +641,7 @@
     "rails": 5,
     "failed_startup_envelopes": 0,
     "unresolved_analytical_findings": 0,
-    "automated_capacitor_instances": 98
+    "automated_capacitor_instances": 103
   },
   "residual_physical_only": [
     "measure effective MLCC capacitance under DC bias and temperature",

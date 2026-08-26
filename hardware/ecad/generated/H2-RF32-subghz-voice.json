@@ -1,25 +1,26 @@
 {
   "schema_version": 1,
-  "stage": "H2.3.7",
-  "status": "reviewed_exact_electrical_subghz_voice_sheet",
+  "stage": "H2.3.7-R1",
+  "status": "reviewed_exact_electrical_subghz_dual_sa818s_sheet",
   "project": "LESHY2-RF",
   "sheet": "RF_32_SUBGHZ_VOICE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
-    "hardware/architecture/devices.json": "b7c9e0a591613e05e2b39fd315e301f6e628464b8cc1e46d983fc67b05204424",
-    "hardware/ecad/generated/H2-instance-ledger.json": "1c06ac58503e62b22c6fea1b084d297b85e1190547e305187969a414418223c2",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "1a1160dabec665374d9cae6afab2e86c6b7956bdd60e0000f2f6e66daaac13dd"
+    "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
+    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+    "hardware/ecad/generated/H2-instance-ledger.json": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "0b3052a19a61ca868f2d184697758e890dc1d0cf9dcebdefd4ea01850cb2df59"
   },
   "summary": {
-    "ledger_instances": 119,
-    "schematic_symbols": 119,
-    "board_fitted_symbols": 119,
-    "hierarchical_interfaces": 35,
-    "physical_package_contacts": 372,
+    "ledger_instances": 143,
+    "schematic_symbols": 143,
+    "board_fitted_symbols": 143,
+    "hierarchical_interfaces": 40,
+    "physical_package_contacts": 473,
     "cc1101_package_contacts": 21,
-    "sa518_module_contacts": 20,
-    "independent_rf_paths": 2,
-    "intentional_no_connect_pins": 11,
+    "sa818s_u_module_contacts": 18,
+    "sa818s_v_module_contacts": 18,
+    "independent_rf_paths": 3,
+    "intentional_no_connect_pins": 20,
     "known_deferred_fixture_boundaries": 0,
     "custom_footprints": 3,
     "pcb_files_created": 0
@@ -39,6 +40,16 @@
       "instance": "voice_external_sma",
       "symbol_uuid": "ff8a720f-ed3b-58ed-8359-eb6fb002d0d2",
       "reference": "J32002",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "footprint": "Leshy2:RFPC-SMA31-FN-175-A",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_v_external_sma",
+      "symbol_uuid": "6df0e219-3980-546b-acfd-abc55ecabc2b",
+      "reference": "J32003",
       "mpn": "GCT RFPC-SMA31-FN-175-A",
       "footprint": "Leshy2:RFPC-SMA31-FN-175-A",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -669,10 +680,20 @@
       "instance": "voice",
       "symbol_uuid": "3cdcfd55-f507-5324-85c0-c05eaf238677",
       "reference": "U32008",
-      "mpn": "NiceRF SA518",
-      "footprint": "Leshy2:NiceRF-SA518-Rev1.1-H5-CONTACT-AXIS-RESERVE",
-      "footprint_status": "h5_received_module_land_fit_required",
-      "pin_count": 20,
+      "mpn": "G-NiceRF SA818S-U",
+      "footprint": "Leshy2:G-NiceRF-SA818S-Official-Package",
+      "footprint_status": "manufacturer_exact_land_pattern_received_fit_required",
+      "pin_count": 18,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_v",
+      "symbol_uuid": "01e6b76d-6b21-5e7f-b00c-74533fbb03cd",
+      "reference": "U32009",
+      "mpn": "G-NiceRF SA818S-V",
+      "footprint": "Leshy2:G-NiceRF-SA818S-Official-Package",
+      "footprint_status": "manufacturer_exact_land_pattern_received_fit_required",
+      "pin_count": 18,
       "board_fitted": true
     },
     {
@@ -726,9 +747,69 @@
       "board_fitted": true
     },
     {
+      "instance": "voice_v_rf_esd",
+      "symbol_uuid": "325b073b-ec7a-5d7e-b0b2-245acb3bf67c",
+      "reference": "D32003",
+      "mpn": "Nexperia PESD24VY1BSF",
+      "footprint": "Diode_SMD:Nexperia_DSN0603-2_0.6x0.3mm_P0.4mm",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_v_detector_series_attenuator",
+      "symbol_uuid": "02da7c6e-3ce3-5363-bc76-1257f78d5588",
+      "reference": "R32025",
+      "mpn": "Yageo RC0402FR-075K1L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_v_detector_match",
+      "symbol_uuid": "dc6e0162-3a93-5fe3-93b7-84f6b6e47a21",
+      "reference": "R32026",
+      "mpn": "Yageo RC0402FR-0752R3L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_v_detector_filter",
+      "symbol_uuid": "5d5ac240-b89f-5e74-b772-7fa961f50006",
+      "reference": "C32026",
+      "mpn": "Murata GRM1555C1H121JA01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_v_detector_bypass",
+      "symbol_uuid": "997707c4-b683-5257-b27e-6794d63da131",
+      "reference": "C32027",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
       "instance": "voice_mic_coupling",
       "symbol_uuid": "7d8bafd1-dec0-5367-b419-7d268995c7fa",
-      "reference": "C32026",
+      "reference": "C32028",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_v_mic_coupling",
+      "symbol_uuid": "011bf2b9-450e-5ae0-8419-2ace7ac165a9",
+      "reference": "C32029",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -738,7 +819,7 @@
     {
       "instance": "voice_supervisor",
       "symbol_uuid": "6409b78a-ce4e-507f-9795-65a94fdbbc0a",
-      "reference": "U32009",
+      "reference": "U32010",
       "mpn": "TPS3808G33DBVR",
       "footprint": "Package_TO_SOT_SMD:SOT-23-6",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -748,7 +829,7 @@
     {
       "instance": "voice_supervisor_bypass",
       "symbol_uuid": "826968c2-d3b2-5207-a012-22dfa290a779",
-      "reference": "C32027",
+      "reference": "C32030",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -758,7 +839,7 @@
     {
       "instance": "voice_supervisor_sense_top",
       "symbol_uuid": "f8df6ed3-390b-5e70-98fe-6015da8873a1",
-      "reference": "R32025",
+      "reference": "R32027",
       "mpn": "Yageo RC0402FR-0747KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -768,7 +849,7 @@
     {
       "instance": "voice_supervisor_sense_bottom",
       "symbol_uuid": "12da77c3-e24c-58ff-83f6-1b4efcb831d5",
-      "reference": "R32026",
+      "reference": "R32028",
       "mpn": "Yageo RC0402FR-07220KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -778,7 +859,7 @@
     {
       "instance": "voice_supervisor_ct",
       "symbol_uuid": "0da1d6a2-df08-5d09-b987-5cfb69f5f6ff",
-      "reference": "C32028",
+      "reference": "C32031",
       "mpn": "Murata GRM155R71H103KA88D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -788,7 +869,7 @@
     {
       "instance": "voice_supervisor_pullup",
       "symbol_uuid": "58f95da3-1dd1-5250-beef-5742200ffbcf",
-      "reference": "R32027",
+      "reference": "R32029",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -798,7 +879,7 @@
     {
       "instance": "voice_io_power_switch",
       "symbol_uuid": "3d4ee5af-728f-5e4c-b78d-3a6d734e6766",
-      "reference": "U32010",
+      "reference": "U32011",
       "mpn": "Texas Instruments TPS22919DCKR",
       "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -808,7 +889,7 @@
     {
       "instance": "voice_io_power_input_cap",
       "symbol_uuid": "ce933d0c-d97c-5a74-b1de-378b8c628a09",
-      "reference": "C32029",
+      "reference": "C32032",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -818,7 +899,7 @@
     {
       "instance": "voice_io_power_output_cap",
       "symbol_uuid": "45768636-88f4-50a0-a38d-24e313778889",
-      "reference": "C32030",
+      "reference": "C32033",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -826,19 +907,199 @@
       "board_fitted": true
     },
     {
-      "instance": "voice_ptt_iso",
-      "symbol_uuid": "01d5492f-e260-5fa6-992b-7f0084e3709b",
-      "reference": "U32011",
-      "mpn": "Texas Instruments SN74LVC1G126DCKR",
-      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "instance": "voice_band_io",
+      "symbol_uuid": "57325242-7f75-51e4-afe3-119bb4d6c69a",
+      "reference": "U32012",
+      "mpn": "TCA9534APWR",
+      "footprint": "Package_SO:TSSOP-16_4.4x5mm_P0.65mm",
       "footprint_status": "manufacturer_or_kicad_exact_package",
-      "pin_count": 5,
+      "pin_count": 16,
       "board_fitted": true
     },
     {
-      "instance": "voice_ptt_iso_bypass",
-      "symbol_uuid": "432437eb-7a80-513f-a6ee-f97ef78d0b06",
-      "reference": "C32031",
+      "instance": "voice_band_io_bypass",
+      "symbol_uuid": "52af8657-9410-5b49-98a9-9d88b4a61a0c",
+      "reference": "C32034",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_band_select_pulldown",
+      "symbol_uuid": "7f8cd950-540f-5402-83ac-0aa91d093b5f",
+      "reference": "R32030",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_band_p1_pulldown",
+      "symbol_uuid": "0498a0df-ae60-5a4e-a49d-32e8edf1640d",
+      "reference": "R32031",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_band_p2_pulldown",
+      "symbol_uuid": "741bf743-6f15-53eb-bc32-3d3f1c473e4e",
+      "reference": "R32032",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_band_p3_pulldown",
+      "symbol_uuid": "32fe85b9-d16b-56a5-b9b4-655d35c1722d",
+      "reference": "R32033",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_band_p4_pulldown",
+      "symbol_uuid": "da425cfc-3d6e-536e-8862-986491198d66",
+      "reference": "R32034",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_band_p5_pulldown",
+      "symbol_uuid": "90686791-4a4e-5018-9d84-a8ca28a5e525",
+      "reference": "R32035",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_band_p6_pulldown",
+      "symbol_uuid": "0e616757-fe0f-5ece-ab2a-3d4526680356",
+      "reference": "R32036",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_band_p7_pulldown",
+      "symbol_uuid": "33d0f376-a124-5b67-b595-896c2627dc24",
+      "reference": "R32037",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_band_inverter",
+      "symbol_uuid": "e055a071-5c88-59a9-9002-846bd4d87ea7",
+      "reference": "U32013",
+      "mpn": "74LVC2G14GW,125",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 6,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_band_inverter_bypass",
+      "symbol_uuid": "abe6a6db-d973-5163-b712-8434ff32dba0",
+      "reference": "C32035",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_pd_gate",
+      "symbol_uuid": "d047d908-0df7-565b-9200-a04187b1c4d9",
+      "reference": "U32014",
+      "mpn": "Texas Instruments SN74LVC2G08DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 8,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_pd_gate_bypass",
+      "symbol_uuid": "8a298804-fe89-5b66-929e-79599c5f046b",
+      "reference": "C32036",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_control_mux_a",
+      "symbol_uuid": "984eee14-c61c-5fc8-a2e6-5d35c6c85114",
+      "reference": "U32015",
+      "mpn": "Texas Instruments TMUX1136DGSR",
+      "footprint": "Package_SO:TSSOP-10_3x3mm_P0.5mm",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_control_mux_a_bypass",
+      "symbol_uuid": "6d8de391-32a7-5c6a-804e-d01d83161fe1",
+      "reference": "C32037",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_control_mux_b",
+      "symbol_uuid": "3e715b87-8b55-5e77-9704-91802d9660fb",
+      "reference": "U32016",
+      "mpn": "Texas Instruments TMUX1136DGSR",
+      "footprint": "Package_SO:TSSOP-10_3x3mm_P0.5mm",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_control_mux_b_bypass",
+      "symbol_uuid": "553f91d2-45ad-574f-bc75-2ce83ef6c798",
+      "reference": "C32038",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_audio_mux",
+      "symbol_uuid": "28ba6bf7-6d33-5dc9-87ff-f02a060c429d",
+      "reference": "U32017",
+      "mpn": "Texas Instruments TMUX1136DGSR",
+      "footprint": "Package_SO:TSSOP-10_3x3mm_P0.5mm",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_audio_mux_bypass",
+      "symbol_uuid": "77e3bcde-7e53-5d6c-ba02-5e3c7be0a4ea",
+      "reference": "C32039",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -848,7 +1109,7 @@
     {
       "instance": "voice_ptt_pullup",
       "symbol_uuid": "17253384-c67a-5e63-ad8d-424890a1142a",
-      "reference": "R32028",
+      "reference": "R32038",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -856,21 +1117,11 @@
       "board_fitted": true
     },
     {
-      "instance": "voice_uart_tx_iso",
-      "symbol_uuid": "1c33dd00-9704-5c92-b9d8-b4809c64d1d9",
-      "reference": "U32012",
-      "mpn": "Texas Instruments SN74LVC1G126DCKR",
-      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
-      "footprint_status": "manufacturer_or_kicad_exact_package",
-      "pin_count": 5,
-      "board_fitted": true
-    },
-    {
-      "instance": "voice_uart_tx_iso_bypass",
-      "symbol_uuid": "af9c1044-0dd3-56f9-a37a-b14634b8e0d5",
-      "reference": "C32032",
-      "mpn": "TDK C1005X7R1H104K050BB",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "instance": "voice_v_ptt_pullup",
+      "symbol_uuid": "81cbf24c-b995-5955-9360-a15f74cbde25",
+      "reference": "R32039",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
       "pin_count": 2,
       "board_fitted": true
@@ -878,7 +1129,17 @@
     {
       "instance": "voice_uart_rx_pulldown",
       "symbol_uuid": "22b59879-0499-5559-aa34-f9464dbb14f6",
-      "reference": "R32029",
+      "reference": "R32040",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_status": "manufacturer_or_kicad_exact_package",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "voice_v_uart_rx_pulldown",
+      "symbol_uuid": "cab34d01-b069-5666-b463-f571245cc12e",
+      "reference": "R32041",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -888,7 +1149,7 @@
     {
       "instance": "voice_uart_tx_pulldown",
       "symbol_uuid": "a97f88aa-1b94-5db9-8c71-3e0e6e01a68b",
-      "reference": "R32030",
+      "reference": "R32042",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -898,7 +1159,7 @@
     {
       "instance": "voice_hl_driver",
       "symbol_uuid": "2366df35-d018-5805-9386-2602cab95495",
-      "reference": "U32013",
+      "reference": "U32018",
       "mpn": "SN74LVC1G07DCKR",
       "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -908,7 +1169,7 @@
     {
       "instance": "voice_hl_driver_bypass",
       "symbol_uuid": "b5f3c328-3572-5037-bc67-f5b1c6c44d99",
-      "reference": "C32033",
+      "reference": "C32040",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -918,7 +1179,7 @@
     {
       "instance": "voice_hl_req_pulldown",
       "symbol_uuid": "addf9c61-78cc-578f-9346-598bfe3911a0",
-      "reference": "R32031",
+      "reference": "R32043",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -926,29 +1187,9 @@
       "board_fitted": true
     },
     {
-      "instance": "voice_audio_iso",
-      "symbol_uuid": "ab5cbf65-8c33-5994-9649-6dfde95cb90f",
-      "reference": "U32014",
-      "mpn": "Texas Instruments SN74LVC2G66DCUR",
-      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
-      "footprint_status": "manufacturer_or_kicad_exact_package",
-      "pin_count": 8,
-      "board_fitted": true
-    },
-    {
-      "instance": "voice_audio_iso_bypass",
-      "symbol_uuid": "243dce1f-96c3-5eaa-99d6-ee8e6727e924",
-      "reference": "C32034",
-      "mpn": "TDK C1005X7R1H104K050BB",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "footprint_status": "manufacturer_or_kicad_exact_package",
-      "pin_count": 2,
-      "board_fitted": true
-    },
-    {
       "instance": "voice_audio_on_pulldown",
       "symbol_uuid": "98ab3ec8-548d-5e01-b427-9f2f54d361c1",
-      "reference": "R32032",
+      "reference": "R32044",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -958,7 +1199,7 @@
     {
       "instance": "voice_buck",
       "symbol_uuid": "cea9f790-901c-57a4-a847-36dcff90f222",
-      "reference": "U32015",
+      "reference": "U32019",
       "mpn": "Texas Instruments TPS564252DRLR",
       "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-N6_DRL-6",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -978,7 +1219,7 @@
     {
       "instance": "voice_input_cap",
       "symbol_uuid": "aaefe7eb-6765-5d80-8bdc-89453123ff91",
-      "reference": "C32035",
+      "reference": "C32041",
       "mpn": "Murata GRM32ER71E226KE15L",
       "footprint": "Capacitor_SMD:C_1210_3225Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -988,7 +1229,7 @@
     {
       "instance": "voice_hf_input_cap",
       "symbol_uuid": "634857e6-14e1-5979-b63a-172a6c621e82",
-      "reference": "C32036",
+      "reference": "C32042",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -998,7 +1239,7 @@
     {
       "instance": "voice_fb_top",
       "symbol_uuid": "7cb6e8f8-07eb-50d1-983e-8fd5d4c3dcf4",
-      "reference": "R32033",
+      "reference": "R32045",
       "mpn": "Yageo RC0402FR-0768KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1008,7 +1249,7 @@
     {
       "instance": "voice_fb_bottom",
       "symbol_uuid": "8d7b9521-44b8-510c-aac6-3a27e7e15395",
-      "reference": "R32034",
+      "reference": "R32046",
       "mpn": "Yageo RC0402FR-0712KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1018,7 +1259,7 @@
     {
       "instance": "voice_ff_cap",
       "symbol_uuid": "1d6f2f41-7214-5b90-92a1-baf2117632ca",
-      "reference": "C32037",
+      "reference": "C32043",
       "mpn": "KEMET C0402C330J5GACTU",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1028,7 +1269,7 @@
     {
       "instance": "voice_output_cap0",
       "symbol_uuid": "0c55c7cb-0c6f-5e27-b87e-3add227176c0",
-      "reference": "C32038",
+      "reference": "C32044",
       "mpn": "Murata GRM32ER71E226KE15L",
       "footprint": "Capacitor_SMD:C_1210_3225Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1038,7 +1279,7 @@
     {
       "instance": "voice_output_cap1",
       "symbol_uuid": "02b48549-94b4-5c15-88eb-b3390ae6c372",
-      "reference": "C32039",
+      "reference": "C32045",
       "mpn": "Murata GRM32ER71E226KE15L",
       "footprint": "Capacitor_SMD:C_1210_3225Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1048,7 +1289,7 @@
     {
       "instance": "voice_efuse",
       "symbol_uuid": "3001bf78-02e0-5ce4-ac47-889142e01dcb",
-      "reference": "U32016",
+      "reference": "U32020",
       "mpn": "Texas Instruments TPS25974LRPWR",
       "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1058,7 +1299,7 @@
     {
       "instance": "voice_efuse_rilm",
       "symbol_uuid": "ed7c4635-006f-5f96-ab92-c3b8bd3e1214",
-      "reference": "R32035",
+      "reference": "R32047",
       "mpn": "Yageo RC0402FR-073K32L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1068,7 +1309,7 @@
     {
       "instance": "voice_efuse_dvdt_cap",
       "symbol_uuid": "ce9127d6-b633-5edd-ad17-249fa947657f",
-      "reference": "C32040",
+      "reference": "C32046",
       "mpn": "Murata GRM155R71H472KA01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1078,7 +1319,7 @@
     {
       "instance": "voice_efuse_itimer_cap",
       "symbol_uuid": "b015442a-fbf9-547c-8d56-bbf7b280d97f",
-      "reference": "C32041",
+      "reference": "C32047",
       "mpn": "Murata GRM1555C1H121JA01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1088,7 +1329,7 @@
     {
       "instance": "voice_efuse_ovlo_top",
       "symbol_uuid": "68549235-4d02-53c2-94b0-1a4bb8cc979a",
-      "reference": "R32036",
+      "reference": "R32048",
       "mpn": "Yageo RC0402FR-07270KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1098,7 +1339,7 @@
     {
       "instance": "voice_efuse_ovlo_bottom",
       "symbol_uuid": "a0e4ae80-1aab-5ae6-a81b-e7dea2d3b3ad",
-      "reference": "R32037",
+      "reference": "R32049",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1108,7 +1349,7 @@
     {
       "instance": "voice_efuse_pg_top",
       "symbol_uuid": "7d8f43ef-0d1c-5a13-baab-15a8dfec80e9",
-      "reference": "R32038",
+      "reference": "R32050",
       "mpn": "Yageo RC0402FR-0768KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1118,7 +1359,7 @@
     {
       "instance": "voice_efuse_pg_bottom",
       "symbol_uuid": "0aa37eaa-20df-5266-8f6b-bcb1a58ba884",
-      "reference": "R32039",
+      "reference": "R32051",
       "mpn": "Yageo RC0402FR-0733KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1128,7 +1369,7 @@
     {
       "instance": "voice_efuse_output_cap",
       "symbol_uuid": "2bd0946d-e444-5fe8-adc8-bf256995b6f1",
-      "reference": "C32042",
+      "reference": "C32048",
       "mpn": "Murata GRM188R60J106ME47D",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1138,7 +1379,7 @@
     {
       "instance": "voice_en_pulldown",
       "symbol_uuid": "b701174b-b25a-591a-a1b0-baff188f6c30",
-      "reference": "R32040",
+      "reference": "R32052",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1148,7 +1389,7 @@
     {
       "instance": "voice_pg_pullup",
       "symbol_uuid": "60656ce3-04cf-59d0-b7fe-85184f00ae53",
-      "reference": "R32041",
+      "reference": "R32053",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1158,7 +1399,7 @@
     {
       "instance": "voice_pg_base_res",
       "symbol_uuid": "24139dd0-8132-50ee-875f-68a2ea930d7d",
-      "reference": "R32042",
+      "reference": "R32054",
       "mpn": "Yageo RC0402FR-0768KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1178,7 +1419,7 @@
     {
       "instance": "cc_power_switch",
       "symbol_uuid": "38f6f5dc-43af-573f-b388-3f6525c4d67b",
-      "reference": "U32017",
+      "reference": "U32021",
       "mpn": "Texas Instruments TPS22919DCKR",
       "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1188,7 +1429,7 @@
     {
       "instance": "cc_backup_gate",
       "symbol_uuid": "84850e83-7dab-5965-a1bf-9d9bb99d343d",
-      "reference": "U32018",
+      "reference": "U32022",
       "mpn": "SN74LVC1G08DCKR",
       "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1198,7 +1439,7 @@
     {
       "instance": "cc_backup_gate_bypass",
       "symbol_uuid": "a20f5cf0-0ad8-5b1f-b230-8258fa4b85bb",
-      "reference": "C32043",
+      "reference": "C32049",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1208,7 +1449,7 @@
     {
       "instance": "voice_efuse_en_pullup",
       "symbol_uuid": "2d194742-96ae-5718-b6fd-5d8764abd478",
-      "reference": "R32043",
+      "reference": "R32055",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1225,11 +1466,17 @@
     "CC_RF_ESD_RETURN": "POWER_GROUND",
     "CC_RF_GROUND": "POWER_GROUND",
     "CC_SMA_RF_GROUND": "POWER_GROUND",
+    "VOICE_BAND_A0_LOW": "POWER_GROUND",
+    "VOICE_BAND_A1_HIGH": "3V3_MAIN",
+    "VOICE_BAND_A2_LOW": "POWER_GROUND",
+    "VOICE_BAND_INV_SPARE_LOW": "SAFETY_GROUND",
     "VOICE_IO_QOD": "VVOICE_IO_3V3",
-    "VOICE_PD": "VOICE_READY",
-    "VOICE_RF_ESD_RETURN": "POWER_GROUND",
-    "VOICE_RF_GROUND": "POWER_GROUND",
-    "VOICE_SMA_RF_GROUND": "POWER_GROUND"
+    "VOICE_SMA_RF_GROUND": "POWER_GROUND",
+    "VOICE_U_RF_ESD_RETURN": "POWER_GROUND",
+    "VOICE_U_RF_GROUND": "POWER_GROUND",
+    "VOICE_V_RF_ESD_RETURN": "POWER_GROUND",
+    "VOICE_V_RF_GROUND": "POWER_GROUND",
+    "VOICE_V_SMA_RF_GROUND": "POWER_GROUND"
   },
   "intentional_no_connect_endpoints": [
     "cc_balun.DNC_5",
@@ -1237,12 +1484,21 @@
     "cc_host_buffer.4Y",
     "cc_power_switch.NC",
     "cc_return_buffer.4Y",
+    "voice.NC_11",
+    "voice.NC_13",
+    "voice.NC_14",
     "voice.NC_15",
-    "voice.NC_5",
-    "voice.NC_6",
-    "voice.VOXEN",
+    "voice.NC_2",
+    "voice.NC_4",
+    "voice_band_inverter.2Y",
     "voice_hl_driver.NC",
-    "voice_io_power_switch.NC"
+    "voice_io_power_switch.NC",
+    "voice_v.NC_11",
+    "voice_v.NC_13",
+    "voice_v.NC_14",
+    "voice_v.NC_15",
+    "voice_v.NC_2",
+    "voice_v.NC_4"
   ],
   "known_deferred_fixture_labels": [],
   "footprint_evidence": [
@@ -1280,15 +1536,26 @@
       "status": "exact manufacturer NSMD land and stencil pattern"
     },
     {
-      "mpn": "NiceRF SA518",
-      "footprint": "Leshy2:NiceRF-SA518-Rev1.1-H5-CONTACT-AXIS-RESERVE",
+      "mpn": "G-NiceRF SA818S-U",
+      "footprint": "Leshy2:G-NiceRF-SA818S-Official-Package",
       "source": {
-        "document": "SA518 UV Dual Frequency Walkie-talkie Module Product Specification",
-        "version": "1.1 / 2026-05",
-        "url": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
-        "checked": "2026-08-22"
+        "document": "SA818S 1W Embedded walkie talkie module Product Specification",
+        "version": "Rev 1.8 / 2026-06",
+        "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+        "checked": "2026-08-26"
       },
-      "status": "exact body/contact count; host land fit blocked on H5"
+      "status": "official G-NiceRF 18-land PADS/DXF pattern; received fit remains H5"
+    },
+    {
+      "mpn": "G-NiceRF SA818S-V",
+      "footprint": "Leshy2:G-NiceRF-SA818S-Official-Package",
+      "source": {
+        "document": "SA818S 1W Embedded walkie talkie module Product Specification",
+        "version": "Rev 1.8 / 2026-06",
+        "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+        "checked": "2026-08-26"
+      },
+      "status": "same official G-NiceRF 18-land PADS/DXF pattern; received fit remains H5"
     },
     {
       "mpn": "GCT RFPC-SMA31-FN-175-A",
@@ -1306,23 +1573,23 @@
     "the previously omitted cc_power_switch.GND contact now closes to POWER_GROUND; without it the CC1101 domain could not operate",
     "CC1101 RGP exposes twenty perimeter contacts plus its mandatory exposed ground pad",
     "the CC path has one independent SPI, switched supply, wideband balun, dual-ended three-band selector, ESD and detector route",
-    "the SA518 path has a separate fixed 4.0-V buck, eFuse, supervisor, power-gated digital/analog isolation and direct external RF route",
-    "SA518 PTT defaults high/RX, H/L can only be low or open, and PD cannot release before the protected 4-V rail is qualified",
-    "SA518 UPDATE remains fixture-only because the manufacturer Rev.1.1 direction wording is internally contradictory"
+    "SA818S-U and SA818S-V share only the protected fixed 4.0-V rail and one hardware-selected RP interface; each retains a direct independent external RF route",
+    "one select bit drives Schmitt-complemented one-hot PD and all UART, PTT/AUDIO_ON and AFOUT/MIC_IN selectors, so a band mismatch cannot enable a second module",
+    "both PTT contacts default high/RX, both UART inputs default low, H/L can only be low or open and neither PD can release before the protected rail is qualified"
   ],
   "review_boundary": {
     "complete": [
-      "all 119 RF32 ledger instances, 372 physical contacts, 35 hierarchy interfaces and eleven intentional NC contacts are explicit",
-      "CC1101 and SA518 have independent command, power, RF, ESD and actual-transmit sample paths",
+      "every current RF32 ledger instance, physical contact, hierarchy interface and intentional NC contact is explicit",
+      "CC1101, SA818S-U and SA818S-V have independent RF, ESD and actual-transmit sample paths",
       "primary TI, NiceRF, TTM, Infineon, Nexperia and GCT sources determine the selected bodies and physical contacts",
       "native KiCad parses RF32 in the live RF/power hierarchy with every remaining finding machine-accounted"
     ],
     "deferred": [
-      "received SA518 host-land solder-fit evidence must replace/approve the bounded contact-axis reserve in H5 before H6",
+      "received SA818S-U/V solder-fit evidence must confirm the official host pattern in H5 before H6",
       "CC three-band conducted VNA tuning, matching values, sensitivity, output and spurious proof close in H3/H8",
       "RF placement, return geometry, ESD via fields, isolation, thermal relief and DRC close in H6",
-      "SA518 full-power thermal/current, UART/UPDATE behavior and legal-profile HIL close in H8",
-      "final CC/voice detector thresholds and false-positive/false-negative margins close in H8"
+      "both SA818S full-power thermal/current, one-hot UART/audio/PTT behavior and legal-profile HIL close in H8",
+      "final CC/UHF/VHF detector thresholds and false-positive/false-negative margins close in H8"
     ]
   }
 }

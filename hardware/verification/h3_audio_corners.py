@@ -30,7 +30,7 @@ SOURCES = {
     "speaker": "https://puiaudio.com/product/speakers-and-receivers/as02404po",
     "microphone": "https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf",
     "headset_jack": "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf",
-    "voice_module": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
+    "voice_modules": "https://www.nicerf.com/upload/20260430/391f11abcc1d835ac5ed151613fdae68.pdf",
     "microphone_selectors": "https://www.ti.com/lit/ds/symlink/ts5a63157.pdf",
     "speaker_selector": "https://www.ti.com/lit/ds/symlink/tmux1136.pdf",
     "passive_family": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
@@ -119,8 +119,11 @@ def build() -> tuple[dict[Path, str], dict]:
         "speaker_btl_negative": require_route(routes, "speaker_output_bead_n.END_2", "speaker.MINUS", "SPEAKER_BTL_N"),
         "ctia_ground": require_route(routes, "headphone_jack.RING2", "abstract:audio-ground", "HEADSET_RING2_GROUND"),
         "headset_detect_only": require_route(routes, "headset_detect_series.END_2", "slow_io.P02", "HEADSET_ABSENT"),
-        "codec_tx_reaches_voice": require_route(routes, "voice_audio_iso.2B", "voice_mic_coupling.END_1", "VOICE_MIC_SELECTED_ISOLATED")
-        and require_route(routes, "voice_mic_coupling.END_2", "voice.MIC_IN", "VOICE_MIC_IN"),
+        "codec_tx_reaches_selected_voice_mux": require_route(routes, "audio_tx_selector.COM", "voice_audio_mux.D2", "VOICE_MIC_SELECTED_MAIN"),
+        "selected_voice_mux_reaches_uhf": require_route(routes, "voice_audio_mux.S2A", "voice_mic_coupling.END_1", "VOICE_U_MIC_SELECTED")
+        and require_route(routes, "voice_mic_coupling.END_2", "voice.MIC_IN", "VOICE_U_MIC_IN"),
+        "selected_voice_mux_reaches_vhf": require_route(routes, "voice_audio_mux.S2B", "voice_v_mic_coupling.END_1", "VOICE_V_MIC_SELECTED")
+        and require_route(routes, "voice_v_mic_coupling.END_2", "voice_v.MIC_IN", "VOICE_V_MIC_IN"),
     }
     structural = {**{f"exact_{name}": ok for name, ok in exact_part_checks.items()}, **topology_checks}
     if not all(structural.values()):
@@ -191,7 +194,8 @@ def build() -> tuple[dict[Path, str], dict]:
     amplifier_recommended_junction_max = d(125)
     speaker_environment_max = d(50)
 
-    # Full-scale single-ended codec leg through 160k / (2.2k || 10nF) into SA518.
+    # Full-scale single-ended codec leg through 160k / (2.2k || 10nF) into
+    # the selected SA818S-U or SA818S-V MIC_IN contact.
     tx_frequency = d(1500)
     tx_top_nom = d(160000)
     tx_bottom_nom = d(2200)
@@ -209,9 +213,9 @@ def build() -> tuple[dict[Path, str], dict]:
         tx_values.append(attenuation * codec_single_leg)
     tx_injection_min = min(tx_values)
     tx_injection_max = max(tx_values)
-    sa518_target = d("0.010")
-    required_dac_scale_min = sa518_target / tx_injection_max
-    required_dac_scale_max = sa518_target / tx_injection_min
+    sa818s_target = d("0.010")
+    required_dac_scale_min = sa818s_target / tx_injection_max
+    required_dac_scale_max = sa818s_target / tx_injection_min
 
     dc_worst = d(dc_budget["worst_by_rail"]["3V3_MAIN"]["load_ma"])
     dc_hardware_reserve = d(dc_budget["worst_by_rail"]["3V3_MAIN"]["hardware_reserve_percent"])
@@ -231,7 +235,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "speaker_theoretical_power_below_rating": theoretical_btl_power <= speaker_rated_power,
         "speaker_amplifier_inside_625ma_branch": amplifier_supply_current <= audio_branch_limit,
         "amplifier_junction_20c_margin": amplifier_junction_max <= amplifier_recommended_junction_max - d(20),
-        "codec_tx_full_scale_can_reach_sa518_target": tx_injection_min >= sa518_target,
+        "codec_tx_full_scale_can_reach_both_sa818s_targets": tx_injection_min >= sa818s_target,
         "codec_tx_target_is_downward_calibratable": required_dac_scale_min > d(0) and required_dac_scale_max <= d(1),
         "revised_main_rail_inside_2500ma_admission": dc_worst <= d(2500),
         "revised_main_rail_has_25pct_hardware_reserve": dc_hardware_reserve >= d(25),
@@ -308,7 +312,8 @@ def build() -> tuple[dict[Path, str], dict]:
             "startup_rule": "hold PAM8302A SD low through reset/power transition and for at least 10 ms after the main rail is valid; mute codec/selectors before shutdown",
         },
         "voice_tx_injection": {
-            "sa518_modulation_target_mvrms": q(sa518_target * d(1000)),
+            "sa818s_u_v_modulation_target_mvrms": q(sa818s_target * d(1000)),
+            "selected_paths": ["SA818S-V MIC_IN", "SA818S-U MIC_IN"],
             "frequency_hz": int(tx_frequency),
             "selected_top_resistor": devices[instances["codec_tx_atten_top"]]["mpn"],
             "top_resistor_ohm": int(tx_top_nom),
@@ -342,7 +347,7 @@ def build() -> tuple[dict[Path, str], dict]:
             },
             {
                 "id": "H3.3.2-F03",
-                "finding": "the 220-kOhm codec-to-SA518 attenuator could not reach the published 10-mV modulation target at low full-scale corners",
+                "finding": "the 220-kOhm codec-to-voice attenuator could not reach the published 10-mV SA818S modulation target at low full-scale corners",
                 "correction": "use active/in-stock exact Vishay CRCW0402160KFKED; full-scale injection is 10.454-to-12.797 mVrms and is calibrated only downward",
                 "functional_effect": "digital/recorded audio can reach nominal deviation without adding an active analog stage",
             },
@@ -363,7 +368,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "residual_physical_only": [
             "measure microphone/headset sensitivity, codec clipping/ALC/noise, channel phase perception, crosstalk, insertion pop and RF immunity on routed hardware",
             "measure PAM8302A current, output EMI, speaker temperature/excursion and enclosure response; enforce the 50 C speaker-local mute rule",
-            "calibrate SA518 deviation downward from the bounded full-scale codec injection and repeat across module lots, rail and temperature",
+            "calibrate SA818S-V and SA818S-U deviation downward from the bounded full-scale codec injection and repeat across both module lots, rail and temperature",
             "prove reset/brownout/off ordering, >=10-ms amplifier-enable delay and absence of back-power with codec, voice and main domains independently off",
         ],
         "review_summary": {"checks": len(checks), "failed_checks": len(failed), "corrected_findings": 4, "unresolved_findings": 0, "status": "reviewed"},
@@ -387,7 +392,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
     if russian:
         title = "# Электрическая проверка аудио"
         nav = "[English](audio-electrical-verification.md) · [На главную](../README.ru.md) · [Схемы](schematics.ru.md) · [Виртуальная проверка](virtual-verification.ru.md)"
-        intro = "H3.3.2 проверяет весь аналоговый тракт: внутренний/гарнитурный микрофон и RX → ES8311 → гарнитура/динамик, плюс регулируемую подачу codec audio в SA518. Это расчёт серийных деталей; акустика, шум разведённой платы и RF immunity остаются измерениями H8."
+        intro = "H3.3.2 проверяет весь аналоговый тракт: внутренний/гарнитурный микрофон и RX → ES8311 → гарнитура/динамик, плюс регулируемую подачу codec audio в выбранный SA818S-V или SA818S-U. Это расчёт серийных деталей; акустика, шум разведённой платы и RF immunity остаются измерениями H8."
         sections = f"""## Захват и микрофоны
 
 - Независимые bias-фильтры дают каждой капсуле `{mic['independent_bias_supply_v']['min']}…{mic['independent_bias_supply_v']['max']} В`; замкнутый на землю TRS-контакт больше не просаживает внутренний микрофон.
@@ -402,9 +407,9 @@ def render_doc(manifest: dict, russian: bool) -> str:
 
 В реальном углу `4 Ω −15% = {speaker['minimum_impedance_corner_ohm']} Ω` теоретический BTL-предел равен `{speaker['theoretical_btl_sine_power_w_max']} Вт`, ниже 2-Вт рейтинга динамика. PAM8302A требует до `{speaker['pam8302a_supply_current_ma_max']} мА`; ветка получает `{speaker['audio_branch_admission_ma']} мА`. При 85 °C расчётный junction `{speaker['amplifier_junction_c_at_85c_ambient']} °C`, но сам динамик допускает только 50 °C локально, поэтому выше этого порога playback аппаратно/программно mute, а остальные функции могут продолжаться по будущему H3.6 envelope. SD включается не раньше 10 мс после valid rail.
 
-## Подача audio в SA518
+## Подача audio в SA818S-V/U
 
-`{tx['selected_top_resistor']}` вместе с 2,2 кΩ/10 нФ даёт `{tx['full_scale_injection_mvrms']['min']}…{tx['full_scale_injection_mvrms']['max']} мВ RMS` против опубликованной цели `{tx['sa518_modulation_target_mvrms']} мВ`. Калибровка идёт только вниз codec volume; выбор audio никогда не включает PTT.
+`{tx['selected_top_resistor']}` вместе с 2,2 кΩ/10 нФ даёт `{tx['full_scale_injection_mvrms']['min']}…{tx['full_scale_injection_mvrms']['max']} мВ RMS` против опубликованной цели `{tx['sa818s_u_v_modulation_target_mvrms']} мВ для обоих SA818S. Калибровка идёт только вниз codec volume; выбор audio никогда не включает PTT.
 
 ## Перепроверка 3V3_MAIN
 
@@ -416,7 +421,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
     else:
         title = "# Audio electrical verification"
         nav = "[Русский](audio-electrical-verification.ru.md) · [Home](../README.md) · [Schematics](schematics.md) · [Virtual verification](virtual-verification.md)"
-        intro = "H3.3.2 checks the complete analog chain: internal/headset microphone and RX → ES8311 → headset/speaker, plus calibrated codec-audio injection into SA518. This is a serial-part calculation; routed-board noise, acoustics and RF immunity remain H8 measurements."
+        intro = "H3.3.2 checks the complete analog chain: internal/headset microphone and RX → ES8311 → headset/speaker, plus calibrated codec-audio injection into the selected SA818S-V or SA818S-U. This is a serial-part calculation; routed-board noise, acoustics and RF immunity remain H8 measurements."
         sections = f"""## Capture and microphones
 
 - Independent bias filters give each capsule `{mic['independent_bias_supply_v']['min']}…{mic['independent_bias_supply_v']['max']} V`; a grounded TRS sleeve no longer pulls down the internal microphone.
@@ -431,9 +436,9 @@ The jack is CTIA/AHJ mono dual-ear plus microphone, not a stereo codec. Even wit
 
 At the real `4 ohm −15% = {speaker['minimum_impedance_corner_ohm']} ohm` corner, the theoretical BTL ceiling is `{speaker['theoretical_btl_sine_power_w_max']} W`, below the speaker's 2-W rating. PAM8302A needs at most `{speaker['pam8302a_supply_current_ma_max']} mA`; the branch receives `{speaker['audio_branch_admission_ma']} mA`. Calculated junction at 85 C ambient is `{speaker['amplifier_junction_c_at_85c_ambient']} C`, but the speaker itself is limited to a 50 C local environment, so playback is muted above that threshold while later H3.6 governs the remaining product. SD is not released until at least 10 ms after rail validity.
 
-## Codec audio into SA518
+## Codec audio into SA818S-V/U
 
-`{tx['selected_top_resistor']}` with 2.2 kohm/10 nF produces `{tx['full_scale_injection_mvrms']['min']}…{tx['full_scale_injection_mvrms']['max']} mVrms` against the published `{tx['sa518_modulation_target_mvrms']}-mV target. Calibration only turns codec volume down; selecting audio never asserts PTT.
+`{tx['selected_top_resistor']}` with 2.2 kohm/10 nF produces `{tx['full_scale_injection_mvrms']['min']}…{tx['full_scale_injection_mvrms']['max']} mVrms` against the published `{tx['sa818s_u_v_modulation_target_mvrms']}-mV target for both SA818S variants. Calibration only turns codec volume down; selecting audio never asserts PTT.
 
 ## 3V3_MAIN cross-check
 

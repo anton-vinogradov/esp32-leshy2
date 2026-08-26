@@ -144,7 +144,7 @@
       "stable insertion defaults to headset microphone; an explicit user choice may retain the internal microphone for a TRS plug",
       "removal restores P0 to input/internal default before loudspeaker policy may enable playback",
       "detect, selector and I2C readback disagreement is an audio fault and never enables the loudspeaker",
-      "SA518 PTT remains independent of audio samples and microphone choice"
+      "the selected SA818S-U/V PTT path remains independent of audio samples and microphone choice"
     ],
     "qualification": [
       "CTIA headset and TRS headphone insertion/removal including contact chatter",

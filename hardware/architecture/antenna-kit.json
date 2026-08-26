@@ -7,7 +7,7 @@
   "paper_alternate_item_count": 12,
   "supply_independent_alternate_item_count": 11,
   "hil_qualified_alternate_item_count": 0,
-  "maximum_simultaneously_connected": 9,
+  "maximum_simultaneously_connected": 10,
   "connector_rule": {
     "rp_sma_ports": "antenna must have an RP-SMA male plug with socket centre contact",
     "sma_ports": "antenna must have a standard SMA male plug with pin centre contact"

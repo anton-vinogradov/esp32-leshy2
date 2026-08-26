@@ -35,7 +35,7 @@ are satisfied.
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD schematic
 
-**Status:** ✅ reviewed and accepted by the user on 24 August 2026.
+**Status:** ✅ current revision reviewed and accepted by the user on 26 August 2026.
 
 - [Public schematics](schematics.md) — principle diagrams and current native
   KiCad sheet links.
@@ -56,11 +56,11 @@ are satisfied.
 - [Consolidated safety review](safety-review.md) — H2.5 is closed, five
   findings are corrected and no paper/ECAD finding remains open.
 - [ERC and NC review](erc-review.md) — all four projects have zero native
-  errors/warnings and all 191 physical NC contacts are justified.
+  errors/warnings and all 202 physical NC contacts are justified.
 - [Complete NC register](no-connects.md) — exact symbol, pin and rationale for
   every deliberately open contact.
-- [End-to-end HW/FW reconciliation](hwfw-reconciliation.md) — H1, 1,046
-  electrical identities, 268 root nets, all M1 contacts and firmware F2 agree.
+- [End-to-end HW/FW reconciliation](hwfw-reconciliation.md) — H1, 1,079
+  electrical identities, 270 root nets, all M1 contacts and firmware F2 agree.
 - [H2 acceptance package](h2-acceptance.md) — completed scope, accepted
   baseline commits and every deferred H3/F3/H5/H6/H8 verification gate.
 - The complete UI/control PCB, all twelve RF/power child sheets, the passive
@@ -78,10 +78,10 @@ are satisfied.
   no-connects; its [machine review](../hardware/ecad/generated/H2-RF31-nrf24-x3.json)
   passes native KiCad.
 - [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch)
-  contains 116 components and 363 physical contacts: independent CC1101 data
-  and SA518 voice power/control/RF paths, 32 interfaces and 11 explicit
+  contains 143 components and 473 physical contacts: independent CC1101,
+  SA818S-V and SA818S-U power/control/RF paths, 40 interfaces and 20 explicit
   no-connects; its [machine review](../hardware/ecad/generated/H2-RF32-subghz-voice.json)
-  passes native KiCad. The SA518 footprint remains an honest H5 land-fit gate.
+  passes native KiCad. Both official 18-land packages remain received-part H5 gates.
 - [`RF_34_U214_M5_EXT`](../hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch)
   contains 53 symbols, 52 board-fitted components, 228 contacts and 27
   interfaces. Its [machine review](../hardware/ecad/generated/H2-RF34-u214-m5-ext.json)
@@ -103,13 +103,13 @@ are satisfied.
   proves row-for-row equality with UI-side M1, including all repeated rails
   and returns, with no reserve or NC.
 - [`RF_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch)
-  contains 97 components and 369 physical contacts. Its
+  contains 113 components and 421 physical contacts. Its
   [machine review](../hardware/ecad/generated/H2-RF50-tx-safety-evidence.json)
   closes explicit AON supply/bypass, maintained RUN/KILL, independent
-  watchdog/latch/reset and five physical-RF evidence channels; native KiCad
-  passes with 22 exact intentional NCs.
+  watchdog/latch/reset and six physical-RF evidence channels; native KiCad
+  passes with 24 exact intentional NCs.
 - [`RF_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch)
-  exposes 52 exact 1.0-mm copper pads with no purchased MPN or BOM line. Its
+  exposes 51 exact 1.0-mm copper pads with no purchased MPN or BOM line. Its
   [machine review](../hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json)
   covers 13 recovery paths, 6 RF-evidence channels, thermal, RUN/FAULT and rail
   references; native KiCad passes the complete RF hierarchy with no child
@@ -118,15 +118,15 @@ are satisfied.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ✅ reviewed and accepted on 24 August 2026.
+**Status:** ✅ current revision reviewed and automatically accepted on 26 August 2026.
 
 - [H3 result report](h3-acceptance.md) — concise outcome, diagram, corrections,
   evidence boundary and transition to H4.
 - [Current virtual-verification page](virtual-verification.md).
 - [Machine execution plan](../hardware/verification/h3-verification-plan.json).
 - [Accepted-input freeze and 16-domain matrix](../hardware/verification/generated/H3-VRF01-input-freeze.json).
-- [Parameter and model register](parameter-model-register.md) — 1,048
-  instances, 217 used device types and their primary sources.
+- [Parameter and model register](parameter-model-register.md) — 1,081
+  instances, 218 used device types and their primary sources.
 - [H3.0.2 machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).
 - [Verification methods](verification-methods.md) and
   [H3.0.3 machine contract](../hardware/verification/generated/H3-VRF03-method-contract.json).
@@ -155,7 +155,7 @@ are satisfied.
   and [machine H3.4.3 evidence](../hardware/verification/generated/H3-VRF43-boundary-loading.json).
 - [Consolidated digital-interface result](digital-verification-result.md)
   and [machine H3.4.4 evidence](../hardware/verification/generated/H3-VRF44-digital-consolidation.json).
-- [All nine RF feed contracts](rf-feed-constraints.md) and
+- [All ten RF feed contracts](rf-feed-constraints.md) and
   [machine H3.5.1 evidence](../hardware/verification/generated/H3-VRF51-rf-feed-constraints.json).
 - [RF corridor, plane and return contracts](rf-layout-constraints.md) and
   [machine H3.5.2 evidence](../hardware/verification/generated/H3-VRF52-rf-layout-constraints.json).
@@ -171,15 +171,15 @@ profiles pass with no unresolved finding after one eFuse threshold correction.
 errors corrected. `H3.3.1` is reviewed after correcting two more source errors;
 `H3.3.2` is reviewed after four audio-path corrections. `H3.3.3` is reviewed
 after four IR source corrections. `H3.3.4` is reviewed after four battery-
-analog source corrections. `H3.3.5` closes 154 leaf and 22 consolidation
-checks. `H3.4.1` closes digital levels/defaults with 73 machine checks,
+analog source corrections. `H3.3.5` closes 156 leaf and 22 consolidation
+checks. `H3.4.1` closes digital levels/defaults with 82 machine checks,
 `H3.4.2` closes bandwidth/latency/timing with 40 checks and `H3.4.3` closes
 M1, expansion and service-boundary loading with 49 checks. `H3.4.4` closes
-the phase with 27 cross-domain checks over all 162 leaf checks. `H3.5.1`
-closes 72 feed/connector/matching/loss checks for all nine ports. `H3.5.2`
+the phase with 27 cross-domain checks over all 171 leaf checks. `H3.5.1`
+closes 75 feed/connector/matching/loss checks for all ten ports. `H3.5.2`
 closes 23 corridor, keepout, plane and return checks. `H3.5.3` closes 30
 one-group, quiet-state and full 3×nRF24 checks. `H3.5.4` closes the phase with
-22 cross-domain checks over all 125 leaf checks. The H3.6.1
+22 cross-domain checks over all 128 leaf checks. The H3.6.1
 [thermal model](thermal-model.md) is reviewed with 21 checks and the
 [single-fault review](single-fault-review.md) closes 30 cases with 25 checks;
 [extended operation and self-test](unattended-operation.md) close with 24 checks and no operating-time promise.
@@ -192,36 +192,36 @@ accepted baseline and preserves every physical residual.
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate
 
-**Status:** ✅ reviewed and closed.
+**Status:** ✅ current dual-SA818S revision reviewed on 26 August 2026.
 
-One joined review of mechanics, production ECAD, virtual electrical evidence
-and target-visible firmware contracts. The reviewed firmware
+The joined review combines mechanics, production ECAD, regenerated
+virtual electrical evidence and target-visible firmware contracts. The reviewed firmware
 [F3 result](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f3-boot-memory-emulation-report.md)
 supplies exact S3 QEMU execution, reproducible five-target artifacts and named
 physical gates for targets without an exact emulator.
 
 The [readable H4 report](h4-prelayout-gate-report.md) and
 [`H4-PLG13`](../hardware/verification/generated/H4-PLG13-acceptance-package.json)
-record 0 open virtual contradictions, three corrected documentation findings and
-all 85 physical residuals still owned by H5/H6/H8.
+record 33 clean joined checks against the new H2/H3 hashes. All 85 physical
+residuals remain owned by H5/H6/H8; no purchase, PCB layout or fabrication is authorized.
 
 <a id="h5"></a>
 ## H5 · Component evidence samples
 
-**Status:** ▶️ current `H5.0.3`; all 209 availability routes are mapped without
-replacement. Qualified exact-`SA518` pricing and the `J4-F/P` factory final-assembly gates remain open; purchasing is not authorized.
+**Status:** ▶️ current `H5.0.1-R1`. The former SA518-based H5 evidence is
+superseded and is being regenerated for the 210-line dual-SA818S BOM; purchasing is not authorized.
 
 The current [machine plan](../hardware/verification/h5-component-evidence-plan.json)
-records the reviewed H5.0.1 map and H5.0.2 source/replacement research. The
-[H5.0.3 basket](component-sample-basket.md) covers all nine residuals and 14
-mechanical gates with 32 exact article lines and 11 measurement contracts. The
+contains the superseded baseline only. The refreshed evidence must cover both
+SA818S module identities, their common land pattern, two independent RF paths
+and the qualified-pending SA818S-CE UHF alternate. The former
 [PCBA platform baseline](manufacturing-platform.md) selects JLCPCB Standard as
 the non-exclusive reference. The normalized compact upload matched 176 of 209
 lines and parsed all 1019 placements. Exact public search resolved all 33
 outliers into `J0`–`J3`, `J4-F` or `J4-P`; no semantic MPN substitution or component replacement
 was introduced. The JLCAPI app/key are ready outside Git while Parts permission
-is reviewing. A qualified exact-`SA518` price remains the sole cost input.
-Quote/reservation and purchase are not authorized. This is not a production order.
+is retained only as historical input. Quote/reservation and purchase are not
+authorized. This is not a production order.
 
 <a id="h6"></a>
 ## H6 · PCB placement and routing

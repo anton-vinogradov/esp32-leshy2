@@ -8,7 +8,7 @@
 | SG-S3-24 | s3 Wi-Fi, s3 BLE, ESP-NOW | 9 |
 | SG-C5-NATIVE | c5 Wi-Fi 2.4/5, c5 IEEE 802.15.4 | 9 |
 | SG-CC | cc | 9 |
-| SG-VOICE | voice | 8 |
+| SG-VOICE | voice UHF, voice_v VHF | 8 |
 | SG-BROADCAST | receiver, audio support | 9 |
 | SG-U214 | stock U214 receive and GNSS, evidence-aware LoRa Cap RX/TX | 9 |
 | SG-IR | c5 IR | 9 |

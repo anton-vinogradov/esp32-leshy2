@@ -8,7 +8,7 @@ H3.1.2 привязал численный ток к каждому из 50 пр
 |---|---:|---:|---:|---:|---|
 | `AON_SAFE_3V3` | 89.500 mA | 0.165 A | 84.358% | 75.500 mA | `NRF24/3PRX/SUPPORT_IDLE` |
 | `3V3_MAIN` | 2493.000 mA | 3.200 A | 28.359% | 7.000 mA | `IR/LEARN_OR_RAW_RX/SUPPORT_WORST` |
-| `VVOICE_4V` | 900.000 mA | 1.550 A | 72.222% | 350.000 mA | `VOICE/RX/SUPPORT_IDLE` |
+| `VVOICE_4V` | 750.000 mA | 1.550 A | 106.667% | 500.000 mA | `VOICE/RX/SUPPORT_IDLE` |
 | `5V_EXT_ACTIVE_BRANCH` | 1250.000 mA | 1.632 A | 30.560% | 0.000 mA | `LORA_CAP/STOCK_U214_RX_GNSS_ONLY/SUPPORT_IDLE` |
 
 ## Исправление по результату расчёта

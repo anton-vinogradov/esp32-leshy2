@@ -3,9 +3,9 @@
   "stage": "H3.3.1",
   "status": "reviewed_display_supply_backlight_and_direct_qspi",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
-    "hardware/architecture/devices.json": "b7c9e0a591613e05e2b39fd315e301f6e628464b8cc1e46d983fc67b05204424",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "ee8a370e9cea1ccf51880099e8b0a7265e13c1c8868f6f47179c3174955ef7e9"
+    "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
+    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "13400b84266596a7bb9c6e0c04f8f4f67957801efe8f9dc9c5a6cb4c6a085126"
   },
   "provenance": {
     "display_controller": "https://dl.espressif.com/AE/esp-iot-solution/ST77922_SPEC_V0.1.pdf",

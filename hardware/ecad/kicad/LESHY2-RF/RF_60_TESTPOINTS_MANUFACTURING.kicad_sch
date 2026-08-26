@@ -821,64 +821,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Leshy2:RF60_TP_VOICE_UPDATE"
-			(pin_names (offset 1.016))
-			(exclude_from_sim no)
-			(in_bom no)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "TP"
-			(at 0.00 5.08 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-			(property "Value" "RF60_TP_VOICE_UPDATE"
-			(at 0.00 -5.08 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-			(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-			(property "Datasheet" "~"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-			(property "Description" "voice-module controlled update fixture signal"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-			(symbol "RF60_TP_VOICE_UPDATE_0_1"
-				(rectangle
-					(start -12.70 2.54)
-					(end 12.70 -2.54)
-					(stroke (width 0.254) (type default))
-					(fill (type background))
-				)
-			)
-			(symbol "RF60_TP_VOICE_UPDATE_1_1"
-				(pin passive line
-					(at -17.78 1.27 0)
-					(length 5.08)
-					(name "TEST" (effects (font (size 1.27 1.27))))
-					(number "1" (effects (font (size 1.27 1.27))))
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Leshy2:RF60_TP_VOICE_RAW_PG_N"
 			(pin_names (offset 1.016))
 			(exclude_from_sim no)
@@ -3867,21 +3809,21 @@
 		(uuid "188abb04-4c72-5686-b4b1-66ae8a877794")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_VOICE_UPDATE")
+		(lib_id "Leshy2:RF60_TP_VOICE_RAW_PG_N")
 		(at 350.52 121.92 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "803a5869-6d64-5463-9682-97db509efcff")
+		(uuid "bec8af5b-e6df-50d6-b580-5eabf0641d8d")
 		(property "Reference" "TP60015"
 			(at 350.52 116.84 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_VOICE_UPDATE"
+		(property "Value" "TP_VOICE_RAW_PG_N"
 			(at 350.52 127.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3901,7 +3843,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "voice-module controlled update fixture signal"
+		(property "Description" "raw voice-converter power-good diagnosis"
 			(at 350.52 121.92 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3909,7 +3851,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "dca6f045-ed1a-56dc-ba23-c60b9e7b8c18")
+			(uuid "b6afd45c-cbbc-5cd0-864c-d0e2ff183dd9")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -3920,28 +3862,28 @@
 			)
 		)
 	)
-	(hierarchical_label "VOICE_UPDATE_FIXTURE"
+	(hierarchical_label "VOICE_RAW_4V_PG_N"
 		(shape bidirectional)
 		(at 332.74 120.65 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "7b4f48cc-15b2-54a0-8d87-882211ffe1b2")
+		(uuid "a002df9c-b383-5203-8dc6-f161284904d0")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_VOICE_RAW_PG_N")
+		(lib_id "Leshy2:RF60_TP_EVIDENCE_MASK_INT_N")
 		(at 45.72 162.56 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "bec8af5b-e6df-50d6-b580-5eabf0641d8d")
+		(uuid "91efeadf-bf82-559c-a64f-b901459bddd6")
 		(property "Reference" "TP60016"
 			(at 45.72 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_VOICE_RAW_PG_N"
+		(property "Value" "TP_EVIDENCE_MASK_INT_N"
 			(at 45.72 167.64 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3961,7 +3903,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "raw voice-converter power-good diagnosis"
+		(property "Description" "evidence-mask interrupt observation"
 			(at 45.72 162.56 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3969,7 +3911,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "b6afd45c-cbbc-5cd0-864c-d0e2ff183dd9")
+			(uuid "65eef0b7-1a7b-5517-b9aa-ead872099970")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -3980,28 +3922,28 @@
 			)
 		)
 	)
-	(hierarchical_label "VOICE_RAW_4V_PG_N"
+	(hierarchical_label "EVIDENCE_MASK_INT_N_TP"
 		(shape bidirectional)
 		(at 27.94 161.29 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "a002df9c-b383-5203-8dc6-f161284904d0")
+		(uuid "f1296e2e-0190-547d-87d1-5c01a5bd6b3b")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_EVIDENCE_MASK_INT_N")
+		(lib_id "Leshy2:RF60_TP_SAFETY_UART_TX")
 		(at 121.92 162.56 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "91efeadf-bf82-559c-a64f-b901459bddd6")
+		(uuid "d9563189-a331-5164-9b64-32bc9acc29ea")
 		(property "Reference" "TP60017"
 			(at 121.92 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_EVIDENCE_MASK_INT_N"
+		(property "Value" "TP_SAFETY_UART_TX"
 			(at 121.92 167.64 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4021,7 +3963,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "evidence-mask interrupt observation"
+		(property "Description" "independent safety-controller service UART transmit"
 			(at 121.92 162.56 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4029,7 +3971,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "65eef0b7-1a7b-5517-b9aa-ead872099970")
+			(uuid "4dbb298a-ee8f-52a7-a871-e88a96f13cb5")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4040,28 +3982,28 @@
 			)
 		)
 	)
-	(hierarchical_label "EVIDENCE_MASK_INT_N_TP"
+	(hierarchical_label "SAFETY_SERVICE_UART_TX"
 		(shape bidirectional)
 		(at 104.14 161.29 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "f1296e2e-0190-547d-87d1-5c01a5bd6b3b")
+		(uuid "cdc06953-d7b8-56ce-8283-ede9f22a8b32")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_SAFETY_UART_TX")
+		(lib_id "Leshy2:RF60_TP_SAFETY_UART_RX")
 		(at 198.12 162.56 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "d9563189-a331-5164-9b64-32bc9acc29ea")
+		(uuid "c16e5a33-d623-5bdc-84f7-7b164975f6de")
 		(property "Reference" "TP60018"
 			(at 198.12 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_SAFETY_UART_TX"
+		(property "Value" "TP_SAFETY_UART_RX"
 			(at 198.12 167.64 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4081,7 +4023,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "independent safety-controller service UART transmit"
+		(property "Description" "independent safety-controller service UART receive"
 			(at 198.12 162.56 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4089,7 +4031,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "4dbb298a-ee8f-52a7-a871-e88a96f13cb5")
+			(uuid "4283d111-ba67-5ad2-b2c7-056be7ad0bac")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4100,28 +4042,28 @@
 			)
 		)
 	)
-	(hierarchical_label "SAFETY_SERVICE_UART_TX"
+	(hierarchical_label "SAFETY_SERVICE_UART_RX"
 		(shape bidirectional)
 		(at 180.34 161.29 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "cdc06953-d7b8-56ce-8283-ede9f22a8b32")
+		(uuid "571e5aea-5038-55a6-bca6-42434af14688")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_SAFETY_UART_RX")
+		(lib_id "Leshy2:RF60_TP_SAFETY_SWDIO")
 		(at 274.32 162.56 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "c16e5a33-d623-5bdc-84f7-7b164975f6de")
+		(uuid "ff657a6f-273d-5c2a-971b-b3378809a27c")
 		(property "Reference" "TP60019"
 			(at 274.32 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_SAFETY_UART_RX"
+		(property "Value" "TP_SAFETY_SWDIO"
 			(at 274.32 167.64 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4141,7 +4083,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "independent safety-controller service UART receive"
+		(property "Description" "independent safety-controller SWD data and recovery"
 			(at 274.32 162.56 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4149,7 +4091,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "4283d111-ba67-5ad2-b2c7-056be7ad0bac")
+			(uuid "b2af6f25-50bf-5b81-97b5-9eb1415324d9")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4160,28 +4102,28 @@
 			)
 		)
 	)
-	(hierarchical_label "SAFETY_SERVICE_UART_RX"
+	(hierarchical_label "SAFETY_SWDIO"
 		(shape bidirectional)
 		(at 256.54 161.29 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "571e5aea-5038-55a6-bca6-42434af14688")
+		(uuid "0ade46cb-005f-5ef9-a949-cc1529051570")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_SAFETY_SWDIO")
+		(lib_id "Leshy2:RF60_TP_SAFETY_SWCLK")
 		(at 350.52 162.56 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "ff657a6f-273d-5c2a-971b-b3378809a27c")
+		(uuid "6533fc7d-f3ea-5750-b85d-5198d1ca8076")
 		(property "Reference" "TP60020"
 			(at 350.52 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_SAFETY_SWDIO"
+		(property "Value" "TP_SAFETY_SWCLK"
 			(at 350.52 167.64 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4201,7 +4143,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "independent safety-controller SWD data and recovery"
+		(property "Description" "independent safety-controller SWD clock and recovery"
 			(at 350.52 162.56 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4209,7 +4151,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "b2af6f25-50bf-5b81-97b5-9eb1415324d9")
+			(uuid "0082c385-9c81-5e64-b9d0-008af7447a4b")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4220,28 +4162,28 @@
 			)
 		)
 	)
-	(hierarchical_label "SAFETY_SWDIO"
+	(hierarchical_label "SAFETY_SWCLK"
 		(shape bidirectional)
 		(at 332.74 161.29 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "0ade46cb-005f-5ef9-a949-cc1529051570")
+		(uuid "7fbe8bde-fa37-518e-a214-344df9499b8b")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_SAFETY_SWCLK")
+		(lib_id "Leshy2:RF60_TP_SAFETY_NRST")
 		(at 45.72 203.20 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "6533fc7d-f3ea-5750-b85d-5198d1ca8076")
+		(uuid "666e7df7-e240-5966-9dbb-b7bb318df127")
 		(property "Reference" "TP60021"
 			(at 45.72 198.12 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_SAFETY_SWCLK"
+		(property "Value" "TP_SAFETY_NRST"
 			(at 45.72 208.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4261,7 +4203,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "independent safety-controller SWD clock and recovery"
+		(property "Description" "independent safety-controller reset assertion and recovery"
 			(at 45.72 203.20 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4269,7 +4211,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "0082c385-9c81-5e64-b9d0-008af7447a4b")
+			(uuid "2c8dbb6d-d4ce-56e4-934e-255c164d5aae")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4280,28 +4222,28 @@
 			)
 		)
 	)
-	(hierarchical_label "SAFETY_SWCLK"
+	(hierarchical_label "SAFETY_CONTROLLER_NRST_N"
 		(shape bidirectional)
 		(at 27.94 201.93 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "7fbe8bde-fa37-518e-a214-344df9499b8b")
+		(uuid "ae7b4eeb-cab1-5a58-b933-1455f66e7999")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_SAFETY_NRST")
+		(lib_id "Leshy2:RF60_TP_EV_N2")
 		(at 121.92 203.20 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "666e7df7-e240-5966-9dbb-b7bb318df127")
+		(uuid "3d73d0dd-5bb1-5142-bd1d-7d918868d817")
 		(property "Reference" "TP60022"
 			(at 121.92 198.12 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_SAFETY_NRST"
+		(property "Value" "TP_EV_N2"
 			(at 121.92 208.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4321,7 +4263,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "independent safety-controller reset assertion and recovery"
+		(property "Description" "nRF24-0 physical-TX evidence calibration and fault injection"
 			(at 121.92 203.20 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4329,7 +4271,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "2c8dbb6d-d4ce-56e4-934e-255c164d5aae")
+			(uuid "2759baa7-5b40-560d-90dd-be760b54a63c")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4340,28 +4282,28 @@
 			)
 		)
 	)
-	(hierarchical_label "SAFETY_CONTROLLER_NRST_N"
+	(hierarchical_label "EV_N2_NRF0"
 		(shape bidirectional)
 		(at 104.14 201.93 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "ae7b4eeb-cab1-5a58-b933-1455f66e7999")
+		(uuid "426d0da3-3752-52a5-af08-6d23541fc407")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_EV_N2")
+		(lib_id "Leshy2:RF60_TP_EV_N3")
 		(at 198.12 203.20 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "3d73d0dd-5bb1-5142-bd1d-7d918868d817")
+		(uuid "3d1d7f9c-17fa-5ad4-b86a-687df5ff16e2")
 		(property "Reference" "TP60023"
 			(at 198.12 198.12 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_EV_N2"
+		(property "Value" "TP_EV_N3"
 			(at 198.12 208.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4381,7 +4323,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "nRF24-0 physical-TX evidence calibration and fault injection"
+		(property "Description" "nRF24-1 physical-TX evidence calibration and fault injection"
 			(at 198.12 203.20 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4389,7 +4331,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "2759baa7-5b40-560d-90dd-be760b54a63c")
+			(uuid "d459d906-5cf2-5be3-a867-0579bdd42ce2")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4400,28 +4342,28 @@
 			)
 		)
 	)
-	(hierarchical_label "EV_N2_NRF0"
+	(hierarchical_label "EV_N3_NRF1"
 		(shape bidirectional)
 		(at 180.34 201.93 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "426d0da3-3752-52a5-af08-6d23541fc407")
+		(uuid "b7c4ffba-977f-5846-820d-3f2218157b83")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_EV_N3")
+		(lib_id "Leshy2:RF60_TP_EV_N4")
 		(at 274.32 203.20 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "3d1d7f9c-17fa-5ad4-b86a-687df5ff16e2")
+		(uuid "6aba3097-5115-5141-8bcb-ca0a8bf0677f")
 		(property "Reference" "TP60024"
 			(at 274.32 198.12 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_EV_N3"
+		(property "Value" "TP_EV_N4"
 			(at 274.32 208.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4441,7 +4383,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "nRF24-1 physical-TX evidence calibration and fault injection"
+		(property "Description" "nRF24-2 physical-TX evidence calibration and fault injection"
 			(at 274.32 203.20 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4449,7 +4391,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "d459d906-5cf2-5be3-a867-0579bdd42ce2")
+			(uuid "9a38776a-4c5a-58b5-bffd-2ba34f9e5c34")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4460,28 +4402,28 @@
 			)
 		)
 	)
-	(hierarchical_label "EV_N3_NRF1"
+	(hierarchical_label "EV_N4_NRF2"
 		(shape bidirectional)
 		(at 256.54 201.93 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "b7c4ffba-977f-5846-820d-3f2218157b83")
+		(uuid "853dd618-da3f-5140-becf-b629d89e78fb")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_EV_N4")
+		(lib_id "Leshy2:RF60_TP_EV_N5")
 		(at 350.52 203.20 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "6aba3097-5115-5141-8bcb-ca0a8bf0677f")
+		(uuid "8356a2d6-e9ca-5cc1-9029-b8509ad5714a")
 		(property "Reference" "TP60025"
 			(at 350.52 198.12 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_EV_N4"
+		(property "Value" "TP_EV_N5"
 			(at 350.52 208.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4501,7 +4443,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "nRF24-2 physical-TX evidence calibration and fault injection"
+		(property "Description" "CC1101 physical-TX evidence calibration and fault injection"
 			(at 350.52 203.20 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4509,7 +4451,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "9a38776a-4c5a-58b5-bffd-2ba34f9e5c34")
+			(uuid "479726b8-2ecb-5e8e-9451-4b287b61e987")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4520,28 +4462,28 @@
 			)
 		)
 	)
-	(hierarchical_label "EV_N4_NRF2"
+	(hierarchical_label "EV_N5_CC"
 		(shape bidirectional)
 		(at 332.74 201.93 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "853dd618-da3f-5140-becf-b629d89e78fb")
+		(uuid "33665aa6-ddf2-5ea8-a924-1e01c15a0d3b")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_EV_N5")
+		(lib_id "Leshy2:RF60_TP_EV_N6")
 		(at 45.72 243.84 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "8356a2d6-e9ca-5cc1-9029-b8509ad5714a")
+		(uuid "280a32dd-239c-50ba-8d60-1bbe2c560d0a")
 		(property "Reference" "TP60026"
 			(at 45.72 238.76 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_EV_N5"
+		(property "Value" "TP_EV_N6"
 			(at 45.72 248.92 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4561,7 +4503,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "CC1101 physical-TX evidence calibration and fault injection"
+		(property "Description" "VHF/UHF voice physical-TX evidence calibration and fault injection"
 			(at 45.72 243.84 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4569,7 +4511,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "479726b8-2ecb-5e8e-9451-4b287b61e987")
+			(uuid "78f2a917-87fb-51f2-8f21-90ffd299e061")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4580,28 +4522,28 @@
 			)
 		)
 	)
-	(hierarchical_label "EV_N5_CC"
+	(hierarchical_label "EV_N6_VOICE"
 		(shape bidirectional)
 		(at 27.94 242.57 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "33665aa6-ddf2-5ea8-a924-1e01c15a0d3b")
+		(uuid "0630385b-9aa0-52ca-8941-2799d9c8cfd6")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_EV_N6")
+		(lib_id "Leshy2:RF60_TP_EV_N8")
 		(at 121.92 243.84 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "280a32dd-239c-50ba-8d60-1bbe2c560d0a")
+		(uuid "f456ecb2-d680-5b43-95b0-09562c30d8a1")
 		(property "Reference" "TP60027"
 			(at 121.92 238.76 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_EV_N6"
+		(property "Value" "TP_EV_N8"
 			(at 121.92 248.92 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4621,7 +4563,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "VHF/UHF voice physical-TX evidence calibration and fault injection"
+		(property "Description" "LoRa/extension physical-TX evidence calibration and fault injection"
 			(at 121.92 243.84 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4629,7 +4571,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "78f2a917-87fb-51f2-8f21-90ffd299e061")
+			(uuid "6afdd9dd-e3ce-5a26-85b2-dd5b796ca2ce")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4640,28 +4582,28 @@
 			)
 		)
 	)
-	(hierarchical_label "EV_N6_VOICE"
+	(hierarchical_label "EV_N8_LORA_EXT"
 		(shape bidirectional)
 		(at 104.14 242.57 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "0630385b-9aa0-52ca-8941-2799d9c8cfd6")
+		(uuid "c1932e88-5ff6-5c05-8c12-f6b8b4436dfc")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_EV_N8")
+		(lib_id "Leshy2:RF60_TP_ANY_TX_AON_N")
 		(at 198.12 243.84 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "f456ecb2-d680-5b43-95b0-09562c30d8a1")
+		(uuid "7f79a9a9-d3ed-5f18-8c8d-9369905a6103")
 		(property "Reference" "TP60028"
 			(at 198.12 238.76 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_EV_N8"
+		(property "Value" "TP_ANY_TX_AON_N"
 			(at 198.12 248.92 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4681,7 +4623,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "LoRa/extension physical-TX evidence calibration and fault injection"
+		(property "Description" "always-on aggregate physical-TX evidence observation"
 			(at 198.12 243.84 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4689,7 +4631,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "6afdd9dd-e3ce-5a26-85b2-dd5b796ca2ce")
+			(uuid "f5fc2950-9189-53bc-a7b0-8e4924c81d10")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4700,28 +4642,28 @@
 			)
 		)
 	)
-	(hierarchical_label "EV_N8_LORA_EXT"
+	(hierarchical_label "ANY_TX_AON_N"
 		(shape bidirectional)
 		(at 180.34 242.57 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "c1932e88-5ff6-5c05-8c12-f6b8b4436dfc")
+		(uuid "ca03bd93-ddbb-5d5b-8bca-d89892227977")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_ANY_TX_AON_N")
+		(lib_id "Leshy2:RF60_TP_POWER_TEMP")
 		(at 274.32 243.84 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "7f79a9a9-d3ed-5f18-8c8d-9369905a6103")
+		(uuid "69ea95c7-a370-52dc-9055-c476ad315a5c")
 		(property "Reference" "TP60029"
 			(at 274.32 238.76 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_ANY_TX_AON_N"
+		(property "Value" "TP_POWER_TEMP"
 			(at 274.32 248.92 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4741,7 +4683,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "always-on aggregate physical-TX evidence observation"
+		(property "Description" "power-zone thermal-channel injection and observation"
 			(at 274.32 243.84 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4749,7 +4691,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "f5fc2950-9189-53bc-a7b0-8e4924c81d10")
+			(uuid "4c9002ac-51e8-55fc-8371-4753600e6e68")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4760,28 +4702,28 @@
 			)
 		)
 	)
-	(hierarchical_label "ANY_TX_AON_N"
+	(hierarchical_label "POWER_ZONE_TEMP_ADC"
 		(shape bidirectional)
 		(at 256.54 242.57 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "ca03bd93-ddbb-5d5b-8bca-d89892227977")
+		(uuid "9f93dfce-03cc-58f2-ad51-8b9de6fce65a")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_POWER_TEMP")
+		(lib_id "Leshy2:RF60_TP_RF_TEMP")
 		(at 350.52 243.84 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "69ea95c7-a370-52dc-9055-c476ad315a5c")
+		(uuid "31d4bf68-b2b8-5024-89fb-820e1cf06ffd")
 		(property "Reference" "TP60030"
 			(at 350.52 238.76 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_POWER_TEMP"
+		(property "Value" "TP_RF_TEMP"
 			(at 350.52 248.92 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4801,7 +4743,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "power-zone thermal-channel injection and observation"
+		(property "Description" "RF-zone thermal-channel injection and observation"
 			(at 350.52 243.84 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4809,7 +4751,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "4c9002ac-51e8-55fc-8371-4753600e6e68")
+			(uuid "5ad40424-731e-558e-8701-2359ffe5df6f")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4820,28 +4762,28 @@
 			)
 		)
 	)
-	(hierarchical_label "POWER_ZONE_TEMP_ADC"
+	(hierarchical_label "RF_ZONE_TEMP_ADC"
 		(shape bidirectional)
 		(at 332.74 242.57 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "9f93dfce-03cc-58f2-ad51-8b9de6fce65a")
+		(uuid "388902aa-4a54-5f47-bfcd-6c1c5c672adf")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_RF_TEMP")
+		(lib_id "Leshy2:RF60_TP_RP_RESET_N")
 		(at 45.72 284.48 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "31d4bf68-b2b8-5024-89fb-820e1cf06ffd")
+		(uuid "5260422a-17ef-5238-b6ca-5824f6fecef9")
 		(property "Reference" "TP60031"
 			(at 45.72 279.40 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_RF_TEMP"
+		(property "Value" "TP_RP_RESET_N"
 			(at 45.72 289.56 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4861,7 +4803,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "RF-zone thermal-channel injection and observation"
+		(property "Description" "RP2354 reset/kill-path observation and assertion"
 			(at 45.72 284.48 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4869,7 +4811,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "5ad40424-731e-558e-8701-2359ffe5df6f")
+			(uuid "5b2582fa-8040-551f-8190-a777467d96c1")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4880,28 +4822,28 @@
 			)
 		)
 	)
-	(hierarchical_label "RF_ZONE_TEMP_ADC"
+	(hierarchical_label "RP_RESET_N"
 		(shape bidirectional)
 		(at 27.94 283.21 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "388902aa-4a54-5f47-bfcd-6c1c5c672adf")
+		(uuid "d55e9e6b-f435-56fd-95e2-f312178a8b06")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_RP_RESET_N")
+		(lib_id "Leshy2:RF60_TP_RUN_PERMIT")
 		(at 121.92 284.48 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "5260422a-17ef-5238-b6ca-5824f6fecef9")
+		(uuid "244fdfe2-af4d-5c4c-9962-a208424d2619")
 		(property "Reference" "TP60032"
 			(at 121.92 279.40 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_RP_RESET_N"
+		(property "Value" "TP_RUN_PERMIT"
 			(at 121.92 289.56 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4921,7 +4863,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "RP2354 reset/kill-path observation and assertion"
+		(property "Description" "hardware run-permit latch observation only"
 			(at 121.92 284.48 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4929,7 +4871,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "5b2582fa-8040-551f-8190-a777467d96c1")
+			(uuid "39b40a6f-fa99-562d-9c93-ea607915b219")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -4940,28 +4882,28 @@
 			)
 		)
 	)
-	(hierarchical_label "RP_RESET_N"
+	(hierarchical_label "RUN_PERMIT"
 		(shape bidirectional)
 		(at 104.14 283.21 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "d55e9e6b-f435-56fd-95e2-f312178a8b06")
+		(uuid "29479d65-c228-5275-a1be-bf9e60b2d3a5")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_RUN_PERMIT")
+		(lib_id "Leshy2:RF60_TP_POWER_FAULT_N")
 		(at 198.12 284.48 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "244fdfe2-af4d-5c4c-9962-a208424d2619")
+		(uuid "b8f5d7aa-2b24-536a-8d5e-4bcc0ff0ad88")
 		(property "Reference" "TP60033"
 			(at 198.12 279.40 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_RUN_PERMIT"
+		(property "Value" "TP_POWER_FAULT_N"
 			(at 198.12 289.56 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4981,7 +4923,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "hardware run-permit latch observation only"
+		(property "Description" "qualified aggregate power-fault diagnosis"
 			(at 198.12 284.48 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4989,7 +4931,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "39b40a6f-fa99-562d-9c93-ea607915b219")
+			(uuid "54410a99-7276-5e8e-9004-07fd28978cb8")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5000,28 +4942,28 @@
 			)
 		)
 	)
-	(hierarchical_label "RUN_PERMIT"
+	(hierarchical_label "POWER_FAULT_N"
 		(shape bidirectional)
 		(at 180.34 283.21 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "29479d65-c228-5275-a1be-bf9e60b2d3a5")
+		(uuid "7f0a6b31-5f7c-5976-9ec0-e72f5ce40886")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_POWER_FAULT_N")
+		(lib_id "Leshy2:RF60_TP_POWER_GROUND")
 		(at 274.32 284.48 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "b8f5d7aa-2b24-536a-8d5e-4bcc0ff0ad88")
+		(uuid "1cc76808-4d11-591e-8b9c-f91f89dbf426")
 		(property "Reference" "TP60034"
 			(at 274.32 279.40 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_POWER_FAULT_N"
+		(property "Value" "TP_POWER_GROUND"
 			(at 274.32 289.56 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5041,7 +4983,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "qualified aggregate power-fault diagnosis"
+		(property "Description" "fixture power-ground reference"
 			(at 274.32 284.48 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5049,7 +4991,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "54410a99-7276-5e8e-9004-07fd28978cb8")
+			(uuid "82a496d8-5e1d-599b-8076-8b03479754fb")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5060,28 +5002,28 @@
 			)
 		)
 	)
-	(hierarchical_label "POWER_FAULT_N"
+	(hierarchical_label "POWER_GROUND"
 		(shape bidirectional)
 		(at 256.54 283.21 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "7f0a6b31-5f7c-5976-9ec0-e72f5ce40886")
+		(uuid "5ae192d2-9b0e-5e73-95c6-91d6d6c91eca")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_POWER_GROUND")
+		(lib_id "Leshy2:RF60_TP_AON_SAFE_3V3")
 		(at 350.52 284.48 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "1cc76808-4d11-591e-8b9c-f91f89dbf426")
+		(uuid "ae58455e-7fb9-59bb-ad18-9b0bd56f7a08")
 		(property "Reference" "TP60035"
 			(at 350.52 279.40 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_POWER_GROUND"
+		(property "Value" "TP_AON_SAFE_3V3"
 			(at 350.52 289.56 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5101,7 +5043,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "fixture power-ground reference"
+		(property "Description" "always-on safety-rail voltage diagnosis"
 			(at 350.52 284.48 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5109,7 +5051,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "82a496d8-5e1d-599b-8076-8b03479754fb")
+			(uuid "2546c531-f965-50c7-88b2-ca5401335d9e")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5120,28 +5062,28 @@
 			)
 		)
 	)
-	(hierarchical_label "POWER_GROUND"
+	(hierarchical_label "AON_SAFE_3V3"
 		(shape bidirectional)
 		(at 332.74 283.21 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "5ae192d2-9b0e-5e73-95c6-91d6d6c91eca")
+		(uuid "826d00a9-aabc-554a-9c54-523806cd3cb8")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_AON_SAFE_3V3")
+		(lib_id "Leshy2:RF60_TP_3V3_MAIN")
 		(at 45.72 325.12 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "ae58455e-7fb9-59bb-ad18-9b0bd56f7a08")
+		(uuid "34982c70-4c39-5322-8bd2-dd51e4543cce")
 		(property "Reference" "TP60036"
 			(at 45.72 320.04 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_AON_SAFE_3V3"
+		(property "Value" "TP_3V3_MAIN"
 			(at 45.72 330.20 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5161,7 +5103,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "always-on safety-rail voltage diagnosis"
+		(property "Description" "main 3.3-V rail voltage diagnosis"
 			(at 45.72 325.12 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5169,7 +5111,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "2546c531-f965-50c7-88b2-ca5401335d9e")
+			(uuid "765fe219-083e-5876-8bfc-b4cb0fac35e5")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5180,28 +5122,28 @@
 			)
 		)
 	)
-	(hierarchical_label "AON_SAFE_3V3"
+	(hierarchical_label "3V3_MAIN"
 		(shape bidirectional)
 		(at 27.94 323.85 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "826d00a9-aabc-554a-9c54-523806cd3cb8")
+		(uuid "cd67820f-6f46-5eaf-8283-adab686eb1f8")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_3V3_MAIN")
+		(lib_id "Leshy2:RF60_TP_RUN_LOOP_RAW")
 		(at 121.92 325.12 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "34982c70-4c39-5322-8bd2-dd51e4543cce")
+		(uuid "b6b8c12d-6113-599a-8438-fa07cd665a74")
 		(property "Reference" "TP60037"
 			(at 121.92 320.04 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_3V3_MAIN"
+		(property "Value" "TP_RUN_LOOP_RAW"
 			(at 121.92 330.20 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5221,7 +5163,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "main 3.3-V rail voltage diagnosis"
+		(property "Description" "physical RUN/KILL conductor continuity and fault-injection observation"
 			(at 121.92 325.12 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5229,7 +5171,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "765fe219-083e-5876-8bfc-b4cb0fac35e5")
+			(uuid "87250a10-ac74-553e-9562-42e791f7bfa1")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5240,28 +5182,28 @@
 			)
 		)
 	)
-	(hierarchical_label "3V3_MAIN"
+	(hierarchical_label "RUN_LOOP_RAW"
 		(shape bidirectional)
 		(at 104.14 323.85 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "cd67820f-6f46-5eaf-8283-adab686eb1f8")
+		(uuid "d1a7917c-8096-5468-aaa4-e4baa7d4c18d")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_RUN_LOOP_RAW")
+		(lib_id "Leshy2:RF60_TP_RUN_EDGE")
 		(at 198.12 325.12 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "b6b8c12d-6113-599a-8438-fa07cd665a74")
+		(uuid "f9edca38-b2f2-5ed0-90da-e8b594f1cac0")
 		(property "Reference" "TP60038"
 			(at 198.12 320.04 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_RUN_LOOP_RAW"
+		(property "Value" "TP_RUN_EDGE"
 			(at 198.12 330.20 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5281,7 +5223,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "physical RUN/KILL conductor continuity and fault-injection observation"
+		(property "Description" "conditioned physical KILL-to-RUN edge observation"
 			(at 198.12 325.12 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5289,7 +5231,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "87250a10-ac74-553e-9562-42e791f7bfa1")
+			(uuid "60b18264-1a1f-564d-adfb-9617c5a8622a")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5300,28 +5242,28 @@
 			)
 		)
 	)
-	(hierarchical_label "RUN_LOOP_RAW"
+	(hierarchical_label "RUN_EDGE"
 		(shape bidirectional)
 		(at 180.34 323.85 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "d1a7917c-8096-5468-aaa4-e4baa7d4c18d")
+		(uuid "239b499b-3aef-5234-a67d-c893f5f03d33")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_RUN_EDGE")
+		(lib_id "Leshy2:RF60_TP_FAULT_ASSERT_N")
 		(at 274.32 325.12 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "f9edca38-b2f2-5ed0-90da-e8b594f1cac0")
+		(uuid "62f19c1e-4a7a-5c49-b8ea-514b36cce0d9")
 		(property "Reference" "TP60039"
 			(at 274.32 320.04 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_RUN_EDGE"
+		(property "Value" "TP_FAULT_ASSERT_N"
 			(at 274.32 330.20 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5341,7 +5283,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "conditioned physical KILL-to-RUN edge observation"
+		(property "Description" "wired asynchronous fault plane observation including watchdog WDO_N"
 			(at 274.32 325.12 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5349,7 +5291,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "60b18264-1a1f-564d-adfb-9617c5a8622a")
+			(uuid "d04588a8-dd69-5917-a061-91669ceaa3e7")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5360,28 +5302,28 @@
 			)
 		)
 	)
-	(hierarchical_label "RUN_EDGE"
+	(hierarchical_label "FAULT_ASSERT_N"
 		(shape bidirectional)
 		(at 256.54 323.85 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "239b499b-3aef-5234-a67d-c893f5f03d33")
+		(uuid "0a9968fa-49ed-500f-a24e-8960883cce4d")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_FAULT_ASSERT_N")
+		(lib_id "Leshy2:RF60_TP_WDI")
 		(at 350.52 325.12 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "62f19c1e-4a7a-5c49-b8ea-514b36cce0d9")
+		(uuid "f87344a7-91ff-5153-b378-0050eb517d27")
 		(property "Reference" "TP60040"
 			(at 350.52 320.04 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_FAULT_ASSERT_N"
+		(property "Value" "TP_WDI"
 			(at 350.52 330.20 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5401,7 +5343,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "wired asynchronous fault plane observation including watchdog WDO_N"
+		(property "Description" "independent watchdog heartbeat timing observation and injection"
 			(at 350.52 325.12 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5409,7 +5351,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "d04588a8-dd69-5917-a061-91669ceaa3e7")
+			(uuid "efdce854-58f3-576b-a8c6-2f5fdb49414f")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5420,28 +5362,28 @@
 			)
 		)
 	)
-	(hierarchical_label "FAULT_ASSERT_N"
+	(hierarchical_label "SAFETY_WATCHDOG_WDI"
 		(shape bidirectional)
 		(at 332.74 323.85 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "0a9968fa-49ed-500f-a24e-8960883cce4d")
+		(uuid "09629e4c-311e-5545-b82d-aca500db8b47")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_WDI")
+		(lib_id "Leshy2:RF60_TP_POR_N")
 		(at 45.72 365.76 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "f87344a7-91ff-5153-b378-0050eb517d27")
+		(uuid "8086e281-5317-51f3-9e7e-e1ceae7e0b47")
 		(property "Reference" "TP60041"
 			(at 45.72 360.68 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_WDI"
+		(property "Value" "TP_POR_N"
 			(at 45.72 370.84 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5461,7 +5403,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "independent watchdog heartbeat timing observation and injection"
+		(property "Description" "always-on supervisor reset and genuine-restart observation"
 			(at 45.72 365.76 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5469,7 +5411,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "efdce854-58f3-576b-a8c6-2f5fdb49414f")
+			(uuid "89745624-695b-58ca-99df-186ad5943b2c")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5480,28 +5422,28 @@
 			)
 		)
 	)
-	(hierarchical_label "SAFETY_WATCHDOG_WDI"
+	(hierarchical_label "POR_N"
 		(shape bidirectional)
 		(at 27.94 364.49 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "09629e4c-311e-5545-b82d-aca500db8b47")
+		(uuid "8d658859-fc8c-516f-8157-8c019f700992")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_POR_N")
+		(lib_id "Leshy2:RF60_TP_FAULT_LATCH_SENSE_AON")
 		(at 121.92 365.76 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "8086e281-5317-51f3-9e7e-e1ceae7e0b47")
+		(uuid "c92130c1-4a68-58c2-bba1-8c89415757df")
 		(property "Reference" "TP60042"
 			(at 121.92 360.68 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_POR_N"
+		(property "Value" "TP_FAULT_LATCH_SENSE_AON"
 			(at 121.92 370.84 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5521,7 +5463,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "always-on supervisor reset and genuine-restart observation"
+		(property "Description" "latched FAULT_KILL state observation on the always-on plane"
 			(at 121.92 365.76 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5529,7 +5471,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "89745624-695b-58ca-99df-186ad5943b2c")
+			(uuid "de199cb4-b17a-5504-841f-5dbe2394a69e")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5540,28 +5482,28 @@
 			)
 		)
 	)
-	(hierarchical_label "POR_N"
+	(hierarchical_label "FAULT_LATCH_SENSE_AON"
 		(shape bidirectional)
 		(at 104.14 364.49 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "8d658859-fc8c-516f-8157-8c019f700992")
+		(uuid "a0a24a54-6e06-59da-bc32-d3d5d224ef5c")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_FAULT_LATCH_SENSE_AON")
+		(lib_id "Leshy2:RF60_TP_NRF0_CE_SAFE")
 		(at 198.12 365.76 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "c92130c1-4a68-58c2-bba1-8c89415757df")
+		(uuid "3c11017b-4331-59a7-8980-fe8232c1f8d6")
 		(property "Reference" "TP60043"
 			(at 198.12 360.68 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_FAULT_LATCH_SENSE_AON"
+		(property "Value" "TP_NRF0_CE_SAFE"
 			(at 198.12 370.84 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5581,7 +5523,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "latched FAULT_KILL state observation on the always-on plane"
+		(property "Description" "nRF24-0 hardware-gated CE observation"
 			(at 198.12 365.76 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5589,7 +5531,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "de199cb4-b17a-5504-841f-5dbe2394a69e")
+			(uuid "f171b42a-29c0-5341-be05-a1ea94d1352a")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5600,28 +5542,28 @@
 			)
 		)
 	)
-	(hierarchical_label "FAULT_LATCH_SENSE_AON"
+	(hierarchical_label "NRF0_CE_SAFE"
 		(shape bidirectional)
 		(at 180.34 364.49 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "a0a24a54-6e06-59da-bc32-d3d5d224ef5c")
+		(uuid "2269c0c6-a4be-55be-bfd7-1684d13ef262")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_NRF0_CE_SAFE")
+		(lib_id "Leshy2:RF60_TP_NRF1_CE_SAFE")
 		(at 274.32 365.76 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "3c11017b-4331-59a7-8980-fe8232c1f8d6")
+		(uuid "98bb7c1a-6d9f-5cfc-a5c3-5c2dd52e976d")
 		(property "Reference" "TP60044"
 			(at 274.32 360.68 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_NRF0_CE_SAFE"
+		(property "Value" "TP_NRF1_CE_SAFE"
 			(at 274.32 370.84 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5641,7 +5583,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "nRF24-0 hardware-gated CE observation"
+		(property "Description" "nRF24-1 hardware-gated CE observation"
 			(at 274.32 365.76 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5649,7 +5591,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "f171b42a-29c0-5341-be05-a1ea94d1352a")
+			(uuid "8a6de7b4-8034-5c04-ba71-c122b5a7c535")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5660,28 +5602,28 @@
 			)
 		)
 	)
-	(hierarchical_label "NRF0_CE_SAFE"
+	(hierarchical_label "NRF1_CE_SAFE"
 		(shape bidirectional)
 		(at 256.54 364.49 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "2269c0c6-a4be-55be-bfd7-1684d13ef262")
+		(uuid "b692da25-2f91-52e4-9d3a-97eff16b1a44")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_NRF1_CE_SAFE")
+		(lib_id "Leshy2:RF60_TP_NRF2_CE_SAFE")
 		(at 350.52 365.76 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "98bb7c1a-6d9f-5cfc-a5c3-5c2dd52e976d")
+		(uuid "4b9f9cec-55bc-5fec-8e2d-8b901df7b4fc")
 		(property "Reference" "TP60045"
 			(at 350.52 360.68 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_NRF1_CE_SAFE"
+		(property "Value" "TP_NRF2_CE_SAFE"
 			(at 350.52 370.84 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5701,7 +5643,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "nRF24-1 hardware-gated CE observation"
+		(property "Description" "nRF24-2 hardware-gated CE observation"
 			(at 350.52 365.76 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5709,7 +5651,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "8a6de7b4-8034-5c04-ba71-c122b5a7c535")
+			(uuid "9484c1db-f2d3-510b-b041-57c3bd32cb00")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5720,28 +5662,28 @@
 			)
 		)
 	)
-	(hierarchical_label "NRF1_CE_SAFE"
+	(hierarchical_label "NRF2_CE_SAFE"
 		(shape bidirectional)
 		(at 332.74 364.49 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "b692da25-2f91-52e4-9d3a-97eff16b1a44")
+		(uuid "149abbe3-e2b2-5c16-9372-f6fcd045a002")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_NRF2_CE_SAFE")
+		(lib_id "Leshy2:RF60_TP_NRF_RAIL_EN_SAFE")
 		(at 45.72 406.40 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "4b9f9cec-55bc-5fec-8e2d-8b901df7b4fc")
+		(uuid "99d26587-3ee8-5655-acfc-3cdd6c37c1cf")
 		(property "Reference" "TP60046"
 			(at 45.72 401.32 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_NRF2_CE_SAFE"
+		(property "Value" "TP_NRF_RAIL_EN_SAFE"
 			(at 45.72 411.48 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5761,7 +5703,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "nRF24-2 hardware-gated CE observation"
+		(property "Description" "post-primary-and-backup nRF24 group rail-enable observation"
 			(at 45.72 406.40 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5769,7 +5711,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "9484c1db-f2d3-510b-b041-57c3bd32cb00")
+			(uuid "2f631eb1-490e-5f03-933a-bf2fc2061f6d")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5780,28 +5722,28 @@
 			)
 		)
 	)
-	(hierarchical_label "NRF2_CE_SAFE"
+	(hierarchical_label "NRF_GROUP_PWR_EN_SAFE"
 		(shape bidirectional)
 		(at 27.94 405.13 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "149abbe3-e2b2-5c16-9372-f6fcd045a002")
+		(uuid "21abfb03-c8c6-52a5-8980-5d83a4c64d17")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_NRF_RAIL_EN_SAFE")
+		(lib_id "Leshy2:RF60_TP_CC_RAIL_EN_SAFE")
 		(at 121.92 406.40 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "99d26587-3ee8-5655-acfc-3cdd6c37c1cf")
+		(uuid "54c0a3ae-8501-569f-a230-35d4cbbe3ce2")
 		(property "Reference" "TP60047"
 			(at 121.92 401.32 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_NRF_RAIL_EN_SAFE"
+		(property "Value" "TP_CC_RAIL_EN_SAFE"
 			(at 121.92 411.48 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5821,7 +5763,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "post-primary-and-backup nRF24 group rail-enable observation"
+		(property "Description" "post-primary-and-backup CC1101 rail-enable observation"
 			(at 121.92 406.40 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5829,7 +5771,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "2f631eb1-490e-5f03-933a-bf2fc2061f6d")
+			(uuid "3bf9df41-ecc0-5cc0-90d4-0b34bfecf384")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5840,28 +5782,28 @@
 			)
 		)
 	)
-	(hierarchical_label "NRF_GROUP_PWR_EN_SAFE"
+	(hierarchical_label "CC_PWR_EN_SAFE"
 		(shape bidirectional)
 		(at 104.14 405.13 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "21abfb03-c8c6-52a5-8980-5d83a4c64d17")
+		(uuid "4aa4711a-c5d7-53e4-8980-70bd6ae4ba08")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_CC_RAIL_EN_SAFE")
+		(lib_id "Leshy2:RF60_TP_VOICE_RAIL_EN_SAFE")
 		(at 198.12 406.40 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "54c0a3ae-8501-569f-a230-35d4cbbe3ce2")
+		(uuid "7de098d9-c7f3-56c3-a87c-841c858c4955")
 		(property "Reference" "TP60048"
 			(at 198.12 401.32 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_CC_RAIL_EN_SAFE"
+		(property "Value" "TP_VOICE_RAIL_EN_SAFE"
 			(at 198.12 411.48 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5881,7 +5823,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "post-primary-and-backup CC1101 rail-enable observation"
+		(property "Description" "voice-module hardware-gated rail-enable observation"
 			(at 198.12 406.40 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5889,7 +5831,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "3bf9df41-ecc0-5cc0-90d4-0b34bfecf384")
+			(uuid "d6c2e290-2dfb-52d1-ab23-d0b54e390ef3")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5900,28 +5842,28 @@
 			)
 		)
 	)
-	(hierarchical_label "CC_PWR_EN_SAFE"
+	(hierarchical_label "VOICE_DOMAIN_EN_SAFE"
 		(shape bidirectional)
 		(at 180.34 405.13 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "4aa4711a-c5d7-53e4-8980-70bd6ae4ba08")
+		(uuid "ca352b2d-070d-52f4-9421-1089d0a9f95a")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_VOICE_RAIL_EN_SAFE")
+		(lib_id "Leshy2:RF60_TP_VOICE_PTT_SAFE_N")
 		(at 274.32 406.40 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "7de098d9-c7f3-56c3-a87c-841c858c4955")
+		(uuid "f86c3dff-0524-5a89-b2f4-08575922e79e")
 		(property "Reference" "TP60049"
 			(at 274.32 401.32 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_VOICE_RAIL_EN_SAFE"
+		(property "Value" "TP_VOICE_PTT_SAFE_N"
 			(at 274.32 411.48 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5941,7 +5883,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "voice-module hardware-gated rail-enable observation"
+		(property "Description" "voice-module hardware-gated PTT-safe observation"
 			(at 274.32 406.40 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5949,7 +5891,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "d6c2e290-2dfb-52d1-ab23-d0b54e390ef3")
+			(uuid "8d8c345a-0544-588c-8542-806fdfd8cd33")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -5960,28 +5902,28 @@
 			)
 		)
 	)
-	(hierarchical_label "VOICE_DOMAIN_EN_SAFE"
+	(hierarchical_label "VOICE_PTT_SAFE_N"
 		(shape bidirectional)
 		(at 256.54 405.13 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "ca352b2d-070d-52f4-9421-1089d0a9f95a")
+		(uuid "bd2f375b-3a63-5a1d-8a2b-5befed93e631")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_VOICE_PTT_SAFE_N")
+		(lib_id "Leshy2:RF60_TP_EXT_5V_EN_SAFE")
 		(at 350.52 406.40 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "f86c3dff-0524-5a89-b2f4-08575922e79e")
+		(uuid "1d486802-f20d-54c8-8887-24f2cdf2b645")
 		(property "Reference" "TP60050"
 			(at 350.52 401.32 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_VOICE_PTT_SAFE_N"
+		(property "Value" "TP_EXT_5V_EN_SAFE"
 			(at 350.52 411.48 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6001,7 +5943,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "voice-module hardware-gated PTT-safe observation"
+		(property "Description" "shared external 5-V hardware-gated enable observation"
 			(at 350.52 406.40 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6009,7 +5951,7 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "8d8c345a-0544-588c-8542-806fdfd8cd33")
+			(uuid "c82fa887-5f43-547a-9cb0-c8fd69c8b915")
 		)
 		(instances
 			(project "LESHY2-RF"
@@ -6020,28 +5962,28 @@
 			)
 		)
 	)
-	(hierarchical_label "VOICE_PTT_SAFE_N"
+	(hierarchical_label "EXT_ANY_5V_EN_SAFE"
 		(shape bidirectional)
 		(at 332.74 405.13 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "bd2f375b-3a63-5a1d-8a2b-5befed93e631")
+		(uuid "1b0a5699-e36c-5741-929a-9fb9a63d095d")
 	)
 	(symbol
-		(lib_id "Leshy2:RF60_TP_EXT_5V_EN_SAFE")
+		(lib_id "Leshy2:RF60_TP_RP_ANY_TX_N")
 		(at 45.72 447.04 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(uuid "1d486802-f20d-54c8-8887-24f2cdf2b645")
+		(uuid "870bc341-5ec9-5711-a6cc-02627d624f3e")
 		(property "Reference" "TP60051"
 			(at 45.72 441.96 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TP_EXT_5V_EN_SAFE"
+		(property "Value" "TP_RP_ANY_TX_N"
 			(at 45.72 452.12 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6061,68 +6003,8 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "shared external 5-V hardware-gated enable observation"
-			(at 45.72 447.04 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(pin "1"
-			(uuid "c82fa887-5f43-547a-9cb0-c8fd69c8b915")
-		)
-		(instances
-			(project "LESHY2-RF"
-				(path "/99063688-2758-5999-a095-faa626d641bb"
-					(reference "TP60051")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(hierarchical_label "EXT_ANY_5V_EN_SAFE"
-		(shape bidirectional)
-		(at 27.94 445.77 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "1b0a5699-e36c-5741-929a-9fb9a63d095d")
-	)
-	(symbol
-		(lib_id "Leshy2:RF60_TP_RP_ANY_TX_N")
-		(at 121.92 447.04 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(uuid "870bc341-5ec9-5711-a6cc-02627d624f3e")
-		(property "Reference" "TP60052"
-			(at 121.92 441.96 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "TP_RP_ANY_TX_N"
-			(at 121.92 452.12 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
-			(at 121.92 447.04 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "~"
-			(at 121.92 447.04 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
 		(property "Description" "main-domain isolated aggregate TX diagnostic observation"
-			(at 121.92 447.04 0)
+			(at 45.72 447.04 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -6134,7 +6016,7 @@
 		(instances
 			(project "LESHY2-RF"
 				(path "/99063688-2758-5999-a095-faa626d641bb"
-					(reference "TP60052")
+					(reference "TP60051")
 					(unit 1)
 				)
 			)
@@ -6142,7 +6024,7 @@
 	)
 	(hierarchical_label "RP_ANY_TX_N"
 		(shape bidirectional)
-		(at 104.14 445.77 0)
+		(at 27.94 445.77 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "9e4e7cb1-0e20-5e01-a262-86aefe17691b")
 	)

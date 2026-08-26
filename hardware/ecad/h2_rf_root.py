@@ -46,7 +46,7 @@ IMPLEMENTED_CHILD_STATUSES = {
     "RF_03_MAIN_RAILS_DOMAIN_GATES": "reviewed_exact_main_rails_domain_gates_sheet",
     "RF_30_RP2354_CORE_SERVICE": "reviewed_exact_rp2354_core_service_sheet",
     "RF_31_NRF24_X3": "reviewed_exact_three_nrf24_sheet",
-    "RF_32_SUBGHZ_VOICE": "reviewed_exact_electrical_subghz_voice_sheet",
+    "RF_32_SUBGHZ_VOICE": "reviewed_exact_electrical_subghz_dual_sa818s_sheet",
     "RF_34_U214_M5_EXT": "reviewed_exact_u214_m5_expansion_sheet",
     "RF_35_REAR_CONTROLS": "reviewed_exact_rear_controls_sheet",
     "RF_36_AUDIO_IO_AMP": "reviewed_exact_audio_io_amplifier_sheet",
@@ -375,9 +375,9 @@ def parse_check(generated: dict[Path, str], manifest: dict) -> None:
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     summary = manifest["summary"]
     expected = {
-        "child_sheet_count": 12, "cross_sheet_net_count": 159,
-        "root_hierarchical_pin_count": 388,
-        "child_hierarchical_label_count": 388,
+        "child_sheet_count": 12, "cross_sheet_net_count": 161,
+        "root_hierarchical_pin_count": 395,
+        "child_hierarchical_label_count": 395,
         "known_child_stub_erc_violations": 0,
         "implemented_child_sheet_count": 12,
         "circuit_symbols_placed": summary["circuit_symbols_placed"],
@@ -389,9 +389,9 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     root = generated[ROOT_PATH]
     if root.count("\n\t(sheet\n") != 12:
         raise ValueError("RF/power root child-sheet count mismatch")
-    if root.count("\n\t\t(pin \"") != 388:
+    if root.count("\n\t\t(pin \"") != 395:
         raise ValueError("RF/power root hierarchical-pin count mismatch")
-    if root.count("\n\t(wire\n") != 547 or root.count("\n\t(junction ") != 388:
+    if root.count("\n\t(wire\n") != 556 or root.count("\n\t(junction ") != 395:
         raise ValueError("RF/power root rail accounting mismatch")
     labels = sum(
         content.count("\n\t(hierarchical_label \"")
@@ -401,8 +401,8 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     # The first root pass in regenerate_h2 intentionally precedes child
     # regeneration so changed interfaces can be published to those children.
     # During that bootstrap pass changed children may still carry the previous
-    # interface set; the second root pass and repository tests require 388.
-    if not 362 <= labels <= 388:
+    # interface set; the second root pass and repository tests require 395.
+    if not 388 <= labels <= 395:
         raise ValueError("RF/power child-label count mismatch")
     if "\n\t(label \"" in root or "\n\t(global_label \"" in root:
         raise ValueError("RF/power root may not hide interfaces behind labels")

@@ -2232,12 +2232,13 @@
       "kind": "dual_two_input_and_gate",
       "qualification": "reference_only",
       "lifecycle": "active",
-      "dimensions_mm": [2.3, 2.0, null],
+      "dimensions_mm": [2.3, 2.0, 0.9],
+      "maximum_dimensions_mm": [2.4, 2.1, 0.9],
       "source": {
         "document": "SN74LVC2G08 dual 2-input positive-AND gate datasheet",
         "version": "SCES198N, April 1999, revised December 2015",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc2g08.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-26"
       },
       "orderable_source": {
         "document": "SN74LVC2G08DCUR product/orderable page",
@@ -3751,71 +3752,199 @@
         "ROUT_DOUT": {"physical": "16", "role": "analog"}
       }
     },
-    "nicerf_sa518_v11": {
-      "mpn": "NiceRF SA518",
-      "kind": "dual_band_analog_voice_module",
-      "qualification": "verified_candidate",
-      "lifecycle": "current_product",
-      "dimensions_mm": [39.5, 24.0, 3.15],
-      "maximum_dimensions_mm": [40.0, 24.5, 3.25],
-      "mechanical_height_basis": "NiceRF SA518 Rev 1.1 mechanical drawing: 39.50±0.5 by 24.00±0.5 by 3.15±0.1 mm",
+    "nicerf_sa818s_u_v18": {
+      "mpn": "G-NiceRF SA818S-U",
+      "kind": "uhf_analog_voice_module",
+      "qualification": "manufacturer_and_jlcpcb_exact_candidate",
+      "lifecycle": "current_orderable_product",
+      "dimensions_mm": [35.6, 19.0, 3.2],
+      "maximum_dimensions_mm": [35.6, 19.0, 3.2],
+      "mechanical_height_basis": "G-NiceRF SA818S Rev 1.8 page 11: 35.60 by 19.00 mm module and 3.20-mm overall height; official SA818S package.zip supplies the 18-land PADS/DXF host pattern",
       "mechanical_contract": {
         "antenna_contact": {
-          "physical": "7",
+          "physical": "12",
           "illustrated_edge": "bottom edge in the manufacturer underside view",
-          "nominal_center_from_illustrated_top_left_mm": [2.0, 24.0],
-          "coordinate_qualification": "manufacturer-dimensioned nominal: Rev 1.1 page 9 shows the end castellated-pad axis 2.00±0.10 mm from the board edge; received land-pattern and solder-fit qualification remains H5"
+          "nominal_center_from_illustrated_top_left_mm": [31.15, 19.0],
+          "coordinate_qualification": "official SA818S package.zip PADS source fixes the 4.45-mm edge pitch and 1.80-mm module contacts; generated host lands reproduce that source and received solder-fit remains H5"
         },
-        "placement_rule": "rotate 180 degrees so contact 7 faces the VHF/UHF SMA through the shortest pre-ECAD controlled corridor that clears the encoder through-board keep-out"
+        "placement_rule": "orient ANT contact 12 toward the dedicated UHF SMA through the shortest controlled 50-Ohm corridor"
       },
       "source": {
-        "document": "SA518 UV Dual Frequency Walkie-talkie Module Product Specification",
-        "version": "1.1 / 2026-05",
-        "url": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
-        "checked": "2026-08-22"
+        "document": "SA818S 1W Embedded walkie talkie module Product Specification",
+        "version": "Rev 1.8 / 2026-06",
+        "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+        "checked": "2026-08-26"
       },
-      "documentation_conflicts": [
-        "Rev 1.1 contact 17 UPDATE is marked output in the pin table but described as an externally pulled-low update-mode input; runtime drive remains forbidden until supplier response and specimen HIL",
-        "Rev 1.1 advertises 0.5-W/1-W as optional while contact 12 H/L is also described as a live power selector; exact delivered variant behavior requires supplier confirmation and specimen HIL"
-      ],
+      "package_source": {
+        "document": "G-NiceRF SA818S package.zip: sa818s.asc, sa818s.pcb and sa818s(1).dxf",
+        "url": "https://www.nicerf.com/upload/20240508/15920bc3c0d003841f4af8edad4e7b29.zip",
+        "checked": "2026-08-26"
+      },
       "orderable_source": {
-        "document": "SA518 current manufacturer product/RFQ page; no authorized stocking distributor or public quantity inventory is claimed",
-        "url": "https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html",
-        "checked": "2026-08-22"
+        "document": "JLCPCB exact G-NiceRF SA818S-U PCBA catalog line C3001549",
+        "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549",
+        "checked": "2026-08-26"
       },
       "cost_gate": {
         "status": "quantity_100_rfq_required",
-        "reason": "The exact current SA518 manufacturer page offers contact/RFQ rather than a published quantity-100 USD price",
+        "reason": "JLCPCB exposes the exact G-NiceRF PCBA line, but a durable comparable quantity-100 quote is not yet captured",
         "source": {
-          "document": "NiceRF exact SA518 manufacturer product/RFQ page",
-          "url": "https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html",
-          "checked": "2026-08-22"
+          "document": "JLCPCB exact G-NiceRF SA818S-U line C3001549",
+          "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549",
+          "checked": "2026-08-26"
         }
+      },
+      "electrical_contract": {
+        "frequency_mhz": [400.0, 480.0],
+        "supply_v": [3.3, 5.5],
+        "selected_supply_v": 4.0,
+        "rx_current_ma_typ": 60,
+        "tx_current_ma_high_max": 750,
+        "tx_current_ma_low_max": 550,
+        "uart": "9600 8N1 ASCII AT command interface",
+        "high_power_control": "H/L must be left open for high power and pulled low for low power; it must never be driven high",
+        "rf_port": "contact 12, 50 Ohm"
       },
       "programmable": false,
       "controller_capabilities": ["UART_CONTROL", "GPIO_CONTROL"],
-      "service_required": ["UPDATE", "UART_TX", "UART_RX", "PD"],
+      "service_required": ["UART_TX", "UART_RX", "PD"],
       "contacts": {
-        "MIC_IN": {"physical": "1", "role": "analog"},
-        "UART_TX": {"physical": "2", "role": "signal"},
-        "UART_RX": {"physical": "3", "role": "signal"},
-        "VOXEN": {"physical": "4", "role": "signal"},
-        "NC_5": {"physical": "5", "role": "reserved"},
-        "NC_6": {"physical": "6", "role": "reserved"},
-        "ANT": {"physical": "7", "role": "rf"},
-        "GND_8": {"physical": "8", "role": "power"},
+        "AUDIO_ON": {"physical": "1", "role": "signal"},
+        "NC_2": {"physical": "2", "role": "reserved"},
+        "AFOUT": {"physical": "3", "role": "analog"},
+        "NC_4": {"physical": "4", "role": "reserved"},
+        "PTT": {"physical": "5", "role": "signal"},
+        "PD": {"physical": "6", "role": "signal"},
+        "HL": {"physical": "7", "role": "signal"},
+        "VCC": {"physical": "8", "role": "power"},
         "GND_9": {"physical": "9", "role": "power"},
         "GND_10": {"physical": "10", "role": "power"},
-        "VCC": {"physical": "11", "role": "power"},
-        "HL": {"physical": "12", "role": "signal"},
-        "PD": {"physical": "13", "role": "signal"},
-        "PTT": {"physical": "14", "role": "signal"},
+        "NC_11": {"physical": "11", "role": "reserved"},
+        "ANT": {"physical": "12", "role": "rf"},
+        "NC_13": {"physical": "13", "role": "reserved"},
+        "NC_14": {"physical": "14", "role": "reserved"},
         "NC_15": {"physical": "15", "role": "reserved"},
-        "AFOUT": {"physical": "16", "role": "analog"},
-        "UPDATE": {"physical": "17", "role": "service"},
-        "AUDIO_ON": {"physical": "18", "role": "signal"},
-        "GND_19": {"physical": "19", "role": "power"},
-        "GND_20": {"physical": "20", "role": "power"}
+        "UART_RX": {"physical": "16", "role": "signal"},
+        "UART_TX": {"physical": "17", "role": "signal"},
+        "MIC_IN": {"physical": "18", "role": "analog"}
+      }
+    },
+    "nicerf_sa818s_v_v18": {
+      "mpn": "G-NiceRF SA818S-V",
+      "kind": "vhf_analog_voice_module",
+      "qualification": "manufacturer_and_jlcpcb_exact_candidate_preorder",
+      "lifecycle": "current_preorder_product",
+      "dimensions_mm": [35.6, 19.0, 3.2],
+      "maximum_dimensions_mm": [35.6, 19.0, 3.2],
+      "mechanical_height_basis": "G-NiceRF SA818S Rev 1.8 page 11 and official SA818S package.zip; identical 18-land mechanical interface to SA818S-U",
+      "mechanical_contract": {
+        "antenna_contact": {
+          "physical": "12",
+          "illustrated_edge": "bottom edge in the manufacturer underside view",
+          "nominal_center_from_illustrated_top_left_mm": [31.15, 19.0],
+          "coordinate_qualification": "same official SA818S package.zip PADS/DXF host pattern as SA818S-U; received solder-fit remains H5"
+        },
+        "placement_rule": "orient ANT contact 12 toward the dedicated VHF SMA through the shortest controlled 50-Ohm corridor"
+      },
+      "source": {
+        "document": "SA818S 1W Embedded walkie talkie module Product Specification",
+        "version": "Rev 1.8 / 2026-06",
+        "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+        "checked": "2026-08-26"
+      },
+      "package_source": {
+        "document": "G-NiceRF SA818S package.zip: sa818s.asc, sa818s.pcb and sa818s(1).dxf",
+        "url": "https://www.nicerf.com/upload/20240508/15920bc3c0d003841f4af8edad4e7b29.zip",
+        "checked": "2026-08-26"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact G-NiceRF SA818S-V PCBA catalog line C51897911; pre-order at check time",
+        "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911",
+        "checked": "2026-08-26"
+      },
+      "cost_gate": {
+        "status": "quantity_100_rfq_required",
+        "reason": "The exact G-NiceRF SA818S-V line exists at JLCPCB but is pre-order and lacks a durable comparable quantity-100 quote",
+        "source": {
+          "document": "JLCPCB exact G-NiceRF SA818S-V line C51897911",
+          "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911",
+          "checked": "2026-08-26"
+        }
+      },
+      "electrical_contract": {
+        "frequency_mhz": [134.0, 174.0],
+        "supply_v": [3.3, 5.5],
+        "selected_supply_v": 4.0,
+        "rx_current_ma_typ": 60,
+        "tx_current_ma_high_max": 750,
+        "tx_current_ma_low_max": 550,
+        "uart": "9600 8N1 ASCII AT command interface",
+        "high_power_control": "H/L must be left open for high power and pulled low for low power; it must never be driven high",
+        "rf_port": "contact 12, 50 Ohm"
+      },
+      "programmable": false,
+      "controller_capabilities": ["UART_CONTROL", "GPIO_CONTROL"],
+      "service_required": ["UART_TX", "UART_RX", "PD"],
+      "contacts": {
+        "AUDIO_ON": {"physical": "1", "role": "signal"}, "NC_2": {"physical": "2", "role": "reserved"},
+        "AFOUT": {"physical": "3", "role": "analog"}, "NC_4": {"physical": "4", "role": "reserved"},
+        "PTT": {"physical": "5", "role": "signal"}, "PD": {"physical": "6", "role": "signal"},
+        "HL": {"physical": "7", "role": "signal"}, "VCC": {"physical": "8", "role": "power"},
+        "GND_9": {"physical": "9", "role": "power"}, "GND_10": {"physical": "10", "role": "power"},
+        "NC_11": {"physical": "11", "role": "reserved"}, "ANT": {"physical": "12", "role": "rf"},
+        "NC_13": {"physical": "13", "role": "reserved"}, "NC_14": {"physical": "14", "role": "reserved"},
+        "NC_15": {"physical": "15", "role": "reserved"}, "UART_RX": {"physical": "16", "role": "signal"},
+        "UART_TX": {"physical": "17", "role": "signal"}, "MIC_IN": {"physical": "18", "role": "analog"}
+      }
+    },
+    "nicerf_sa818s_ce_v18": {
+      "mpn": "G-NiceRF SA818S-CE",
+      "kind": "ce_red_uhf_analog_voice_module",
+      "qualification": "pin_and_command_compatible_uhf_alternate_hil_open",
+      "lifecycle": "current_orderable_product",
+      "dimensions_mm": [35.6, 19.0, 3.2],
+      "maximum_dimensions_mm": [35.6, 19.0, 3.2],
+      "mechanical_height_basis": "G-NiceRF SA818S Rev 1.8 page 11 and the common official SA818S package.zip",
+      "source": {
+        "document": "SA818S 1W Embedded walkie talkie module Product Specification",
+        "version": "Rev 1.8 / 2026-06",
+        "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+        "checked": "2026-08-26"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact G-NiceRF SA818S-CE PCBA catalog line C19632390",
+        "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SCE/C19632390",
+        "checked": "2026-08-26"
+      },
+      "cost_gate": {
+        "status": "quantity_100_rfq_required",
+        "reason": "Exact PCBA identity exists, but no durable comparable quantity-100 quote is captured",
+        "source": {
+          "document": "JLCPCB exact G-NiceRF SA818S-CE line C19632390",
+          "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SCE/C19632390",
+          "checked": "2026-08-26"
+        }
+      },
+      "electrical_contract": {
+        "frequency_mhz": [400.0, 470.0],
+        "substitutes_for": "nicerf_sa818s_u_v18 only",
+        "hardware_interface": "same 18 contacts and official package as SA818S-U/V",
+        "software_interface": "same 9600 8N1 ASCII AT command set",
+        "qualification_rule": "manifest must identify CE; 470-480 MHz remains disabled because Rev 1.8 order information limits CE to 400-470 MHz"
+      },
+      "programmable": false,
+      "controller_capabilities": ["UART_CONTROL", "GPIO_CONTROL"],
+      "service_required": ["UART_TX", "UART_RX", "PD"],
+      "contacts": {
+        "AUDIO_ON": {"physical": "1", "role": "signal"}, "NC_2": {"physical": "2", "role": "reserved"},
+        "AFOUT": {"physical": "3", "role": "analog"}, "NC_4": {"physical": "4", "role": "reserved"},
+        "PTT": {"physical": "5", "role": "signal"}, "PD": {"physical": "6", "role": "signal"},
+        "HL": {"physical": "7", "role": "signal"}, "VCC": {"physical": "8", "role": "power"},
+        "GND_9": {"physical": "9", "role": "power"}, "GND_10": {"physical": "10", "role": "power"},
+        "NC_11": {"physical": "11", "role": "reserved"}, "ANT": {"physical": "12", "role": "rf"},
+        "NC_13": {"physical": "13", "role": "reserved"}, "NC_14": {"physical": "14", "role": "reserved"},
+        "NC_15": {"physical": "15", "role": "reserved"}, "UART_RX": {"physical": "16", "role": "signal"},
+        "UART_TX": {"physical": "17", "role": "signal"}, "MIC_IN": {"physical": "18", "role": "analog"}
       }
     },
     "tca9535pwr": {
@@ -8563,7 +8692,7 @@
         "maximum_active_current_ma": 5.7,
         "typical_shutdown_current_ua": 20,
         "measurement_mode": "VSET tied to V_UP; actual-TX evidence uses V_UP",
-        "qualification_note": "every nRF, CC1101 and SA518 sample topology still requires conducted threshold and temperature margin HIL"
+        "qualification_note": "every nRF, CC1101 and SA818S-U/V sample topology still requires conducted threshold and temperature margin HIL"
       },
       "programmable": false,
       "contacts": {

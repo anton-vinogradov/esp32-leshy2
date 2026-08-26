@@ -3,10 +3,10 @@
   "stage": "H3.1.4",
   "status": "reviewed_h3_1_steady_dc_phase_complete",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF11-power-state-register.json": "055ad115d35e47639db0fc235314d46bc683a8dc046ec4054f93cbe20b704228",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "6dc167646883c397c92f91a051ee1565285fd81c0f540c49c16044b0e42d5f70",
-    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "a81dc62adf108d5c447f605f47bad87cabe717cab2e4799d3cdaee1e3ebf64f8",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "ee8a370e9cea1ccf51880099e8b0a7265e13c1c8868f6f47179c3174955ef7e9"
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "8cec33794f3230b7c1679ed9a40ba244e118a7899ba3aad551def7568378b7c7",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "268b349628b3bd8da9f99105e07af43a5f955a373fb6b86e8a008161fb8e5f13",
+    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "085b567258d56f9a6fa379e38e8a13bd2f4573b47557fed6d9a47afc4b615e7e",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "13400b84266596a7bb9c6e0c04f8f4f67957801efe8f9dc9c5a6cb4c6a085126"
   },
   "checks": {
     "all_states_enumerated": true,
@@ -30,7 +30,7 @@
     "maximum_rail_conversion_loss_w": "2.534",
     "maximum_efuse_conduction_loss_w": "0.393",
     "usb_5v3a_profiles_explicitly_refused_without_pack": 14,
-    "charge_states_derated_by_dpm": 258,
+    "charge_states_derated_by_dpm": 254,
     "failed_checks": 0
   },
   "corrections": [

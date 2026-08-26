@@ -39,7 +39,7 @@ def render_doc(manifest: dict, final_counts: dict, russian: bool) -> str:
     if russian:
         title = "# Пакет приёмки production ECAD H2"
         nav = "[English](h2-acceptance.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Схемы](schematics.ru.md)"
-        intro = "H2 принят пользователем как неизменяемый исходный материал H3. Приёмка означает согласие с production schematic-контрактом, а не разрешение KiCad layout, закупки или печати; позднее несоответствие повторно открывает затронутый gate."
+        intro = "Текущая ревизия H2 принята пользователем как неизменяемый исходный материал повторного прогона H3. Приёмка означает согласие с production schematic-контрактом, а не разрешение KiCad layout, закупки или печати; позднее несоответствие повторно открывает затронутый gate."
         done_h = "## Что завершено"
         done = [
             "четыре полные native KiCad-иерархии: UI, RF/power, display-adapter и LoRa Cap",
@@ -47,14 +47,15 @@ def render_doc(manifest: dict, final_counts: dict, russian: bool) -> str:
             f"нулевой native ERC и {final_counts['intentional_no_connects']} физически сопоставленных намеренных NC",
             f"{final_counts['ledger_rows']:,} ledger-строк, {final_counts['reconciled_electrical_identities']:,} сопоставленных электрических identities, {final_counts['root_named_nets']} root nets и {final_counts['m1_physical_contacts']} M1 contacts сверены".replace(",", " "),
             "130 controller allocations совпадают с KiCad; 125 MCU-контактов byte-identical в firmware F2",
+            "два независимых SA818S-V/U тракта имеют собственные SMA и TX evidence; one-hot selector не расходует новый MCU или M1 contact",
         ]
         defer_h = "## Что сознательно остаётся за границей H2"
         defer = {"H3": "виртуальные worst-case и timing/transient проверки", "firmware F3": "сборка и emulator-прогон до заказа", "H5": "проверка полученных образцов и land-fit", "H6": "placement/routing/DRC", "H8": "физический bring-up и HIL"}
-        close = "**Результат:** ✅ `H2.8.2` принят пользователем 24 августа 2026 года на hardware commit `25d9ee2` и firmware commit `900bb2b`. Следующий аппаратный маркер — `H3.0.1`."
+        close = f"**Результат:** ✅ ревизия `H2.8.2-R1` принята пользователем {manifest['decision']['date']}; точный baseline связан SHA-256 всех перечисленных входов, поэтому не зависит от ещё не созданного commit hash. Предыдущая SA518-ревизия заменена. Следующий аппаратный маркер — `H3.0.1-R1`."
     else:
         title = "# H2 production ECAD acceptance package"
         nav = "[Русский](h2-acceptance.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Schematics](schematics.md)"
-        intro = "H2 was accepted by the user as the immutable H3 input. Acceptance means agreement with the production-schematic contract, not authorization for KiCad layout, purchasing or fabrication; a later mismatch reopens the affected gate."
+        intro = "The current H2 revision was accepted by the user as the immutable input for the repeated H3 run. Acceptance means agreement with the production-schematic contract, not authorization for KiCad layout, purchasing or fabrication; a later mismatch reopens the affected gate."
         done_h = "## Completed"
         done = [
             "four complete native KiCad hierarchies: UI, RF/power, display adapter and LoRa Cap",
@@ -62,10 +63,11 @@ def render_doc(manifest: dict, final_counts: dict, russian: bool) -> str:
             f"zero native ERC findings and {final_counts['intentional_no_connects']} physically reconciled intentional NCs",
             f"{final_counts['ledger_rows']:,} ledger rows, {final_counts['reconciled_electrical_identities']:,} reconciled electrical identities, {final_counts['root_named_nets']} root nets and {final_counts['m1_physical_contacts']} M1 contacts reconciled",
             "130 controller allocations agree with KiCad; 125 MCU contacts are byte-identical in firmware F2",
+            "two independent SA818S-V/U paths have separate SMA and TX evidence; the one-hot selector consumes no new MCU or M1 contact",
         ]
         defer_h = "## Deliberately outside H2"
         defer = {"H3": "virtual worst-case and timing/transient verification", "firmware F3": "build and emulator execution before ordering", "H5": "received-sample and land-fit checks", "H6": "placement/routing/DRC", "H8": "physical bring-up and HIL"}
-        close = "**Result:** ✅ `H2.8.2` was accepted by the user on 24 August 2026 at hardware commit `25d9ee2` and firmware commit `900bb2b`. The next hardware marker is `H3.0.1`."
+        close = f"**Result:** ✅ revision `H2.8.2-R1` was accepted by the user on {manifest['decision']['date']}; the exact baseline is bound by SHA-256 for every listed input and therefore does not depend on a not-yet-created commit hash. It supersedes the former SA518 revision. The next hardware marker is `H3.0.1-R1`."
     done_text = "\n".join(f"- {item}" for item in done)
     deferred_text = "\n".join(f"- `{row['gate']}` — {defer[row['gate']]}" for row in manifest["deferred_gates"])
     evidence = "[Машинный пакет](../hardware/ecad/generated/H2-REV81-acceptance-package.json)." if russian else "[Machine package](../hardware/ecad/generated/H2-REV81-acceptance-package.json)."
@@ -100,7 +102,7 @@ def build() -> tuple[dict[Path, str], dict]:
         reviews.append({"stage": data["stage"], "artifact": str(path.relative_to(REPO)), "status": "reviewed"})
     manifest = {
         "schema_version": 1,
-        "stage": "H2.8.1",
+        "stage": "H2.8.1-R1",
         "status": "reviewed_h2_user_accepted",
         "source_hashes": {
             **{str(path.relative_to(REPO)): sha256(path) for path in INPUTS},
@@ -114,11 +116,11 @@ def build() -> tuple[dict[Path, str], dict]:
         "deferred_gates": DEFERRED,
         "open_h2_technical_findings": [],
         "decision": {
-            "stage": "H2.8.2",
+            "stage": "H2.8.2-R1",
             "status": "accepted_by_user",
             "date": acceptance["date"],
-            "accepted_hardware_commit": acceptance["accepted_hardware_commit"],
-            "accepted_firmware_commit": acceptance["accepted_firmware_commit"],
+            "baseline_binding": "source_hashes_in_this_artifact",
+            "supersedes": acceptance["supersedes"],
         },
     }
     return {

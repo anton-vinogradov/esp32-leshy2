@@ -4,10 +4,10 @@
   "status": "reviewed_power_sources_admission_charge_and_rails",
   "method": "fresh KiCad XML netlist export of every complete hierarchy plus exact RF power-net membership comparison",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
-    "hardware/ecad/generated/H2-instance-ledger.json": "1c06ac58503e62b22c6fea1b084d297b85e1190547e305187969a414418223c2",
-    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "95c3549487207b2c805663bd6e9be7ff251a116a64f9820d32e60f714e2232fc",
-    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "7079f94dceeef0ed9a569fc2a13f53af125e26c57f6b455bfe2d3b6e5edaca51",
+    "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
+    "hardware/ecad/generated/H2-instance-ledger.json": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "ab4e73fe576c5e1557e6695b89fd3ce182c4533a61e984bd755d3c25b287ce97",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "62036d985924f988257859617422a4eedbdab3d0d8f940cb485d32b7b97f23bc",
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c"
   },
   "hierarchy_exports": {
@@ -19,10 +19,10 @@
       "annotation_warnings": 0
     },
     "LESHY2-RF": {
-      "component_count": 690,
-      "unique_reference_count": 690,
+      "component_count": 722,
+      "unique_reference_count": 722,
       "duplicate_references": [],
-      "net_count": 544,
+      "net_count": 580,
       "annotation_warnings": 0
     },
     "LESHY2-LORA-CAP-01": {
@@ -172,7 +172,7 @@
     {
       "net": "AON_SAFE_3V3",
       "status": "reviewed",
-      "component_count": 95,
+      "component_count": 104,
       "instances": [
         "TP_AON_SAFE_3V3",
         "any_tx_aon_pullup",
@@ -189,10 +189,13 @@
         "det_nrf1",
         "det_nrf2",
         "det_voice",
+        "det_voice_v",
         "evidence_cmp_b",
         "evidence_cmp_b_bypass",
         "evidence_cmp_voice",
         "evidence_cmp_voice_bypass",
+        "evidence_cmp_voice_v",
+        "evidence_cmp_voice_v_bypass",
         "evidence_main_isolator",
         "evidence_main_isolator_bypass",
         "evidence_mask",
@@ -263,12 +266,18 @@
         "u214_supervisor_bypass",
         "unit_supervisor",
         "unit_supervisor_bypass",
+        "voice_band_inverter",
+        "voice_band_inverter_bypass",
         "voice_detector_bypass",
         "voice_evidence_output_pullup",
         "voice_evidence_threshold_top",
+        "voice_pd_gate",
+        "voice_pd_gate_bypass",
         "voice_supervisor",
         "voice_supervisor_bypass",
-        "voice_supervisor_pullup"
+        "voice_supervisor_pullup",
+        "voice_v_detector_bypass",
+        "voice_v_evidence_threshold_top"
       ]
     },
     {
@@ -288,7 +297,7 @@
     {
       "net": "3V3_MAIN",
       "status": "reviewed",
-      "component_count": 65,
+      "component_count": 67,
       "instances": [
         "TP_3V3_MAIN",
         "cc_host_csn_pullup",
@@ -350,6 +359,8 @@
         "unit_signal_iso_vcca_bypass",
         "unit_signal_iso_vccb_bypass",
         "unit_supervisor_pullup",
+        "voice_band_io",
+        "voice_band_io_bypass",
         "voice_hl_driver",
         "voice_hl_driver_bypass",
         "voice_io_power_input_cap",
@@ -375,13 +386,14 @@
     {
       "net": "VVOICE_4V",
       "status": "reviewed",
-      "component_count": 5,
+      "component_count": 6,
       "instances": [
         "voice",
         "voice_efuse",
         "voice_efuse_output_cap",
         "voice_efuse_pg_top",
-        "voice_supervisor_sense_top"
+        "voice_supervisor_sense_top",
+        "voice_v"
       ]
     },
     {
@@ -521,13 +533,13 @@
     },
     {
       "instance": "voice_buck",
-      "reference": "U32015",
+      "reference": "U32019",
       "mpn": "Texas Instruments TPS564252DRLR",
       "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-N6_DRL-6"
     },
     {
       "instance": "voice_efuse",
-      "reference": "U32016",
+      "reference": "U32020",
       "mpn": "Texas Instruments TPS25974LRPWR",
       "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10"
     },

@@ -49,6 +49,7 @@ def pins_for(instance: str, device: dict) -> list[Pin]:
         "det_nrf2": {"EPAD": "9"},
         "det_cc": {"EPAD": "9"},
         "det_voice": {"EPAD": "9"},
+        "det_voice_v": {"EPAD": "9"},
     }
     passive = {"END_1": "1", "END_2": "2"}
     pins: list[Pin] = []
@@ -90,8 +91,10 @@ def footprint_for(instance: str, device_key: str) -> str:
         "det_nrf2": "Package_CSP:LFCSP-8-1EP_3x2mm_P0.5mm_EP1.6x1.65mm",
         "det_cc": "Package_CSP:LFCSP-8-1EP_3x2mm_P0.5mm_EP1.6x1.65mm",
         "det_voice": "Package_CSP:LFCSP-8-1EP_3x2mm_P0.5mm_EP1.6x1.65mm",
+        "det_voice_v": "Package_CSP:LFCSP-8-1EP_3x2mm_P0.5mm_EP1.6x1.65mm",
         "evidence_cmp_b": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
         "evidence_cmp_voice": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
+        "evidence_cmp_voice_v": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
         "evidence_mask": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm",
         "evidence_main_isolator": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
         "safety_control_esd": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
@@ -150,8 +153,8 @@ def build() -> tuple[dict[Path, str], dict]:
         row for row in ledger["rows"]
         if row["project"] == PROJECT_ID and row["sheet"] == SHEET_ID
     ]
-    if len(rows) != 104:
-        raise ValueError(f"{SHEET_ID} must own exactly 104 rows, got {len(rows)}")
+    if len(rows) != 113:
+        raise ValueError(f"{SHEET_ID} must own exactly 113 rows, got {len(rows)}")
     interface_order = list(next(
         row["interfaces"] for row in root_manifest["sheets"] if row["id"] == SHEET_ID
     ))
@@ -262,7 +265,7 @@ def build() -> tuple[dict[Path, str], dict]:
             "ledger_instances": len(rows), "schematic_symbols": len(specs),
             "board_fitted_symbols": len(specs), "hierarchical_interfaces": len(interfaces),
             "physical_contacts": sum(len(spec["pins"]) for spec in specs),
-            "rf_detector_channels": 5, "comparator_channels": 5,
+            "rf_detector_channels": 6, "comparator_channels": 6,
             "independent_watchdogs": 2, "tx_gate_packages": 3,
             "evidence_mask_inputs": 9, "custom_footprints": len(footprint_outputs()),
             "intentional_no_connect_pins": len(no_connect_endpoints),
@@ -306,17 +309,17 @@ def build() -> tuple[dict[Path, str], dict]:
         "corrections_closed": [
             "AD8314ACPZ-RL7 uses the real 3x2-mm CP-8-23 footprint and explicit exposed pad 9 rather than a fictitious 3x3-mm package",
             "RUN/KILL is one maintained low-current SPDT command switch; it never carries pack, charge or load current",
-            "five forward-power samples create independent physical RF evidence for all three nRF24 paths, CC1101 and voice TX",
+            "six forward-power samples create independent physical RF evidence for all three nRF24 paths, CC1101, UHF voice and VHF voice TX",
             "TX request gates and physical evidence remain separate so firmware cannot claim transmission solely from a command bit",
             "the always-on MSPM0, TPS3435 watchdog, POR supervisor and asynchronous latch retain kill authority when application processors stall",
             "every safety logic package now has explicit supply/return contacts and local bypass; the latch D input has a physical 10-kOhm fail-low resistor",
         ],
         "review_boundary": {
             "complete": [
-                "all 104 RF50 ledger instances have exact MPN, contacts, footprint and circuit nets",
+                "all 113 RF50 ledger instances have exact MPN, contacts, footprint and circuit nets",
                 "all RF50 hierarchy interfaces terminate on physical component contacts",
                 "RUN/KILL, POR, watchdog, fault latch, reset sinks and TX request gates are explicit",
-                "five RF detector channels, five comparator channels, evidence mask and any-TX diode OR are explicit",
+                "six RF detector channels, six comparator channels, evidence mask and any-TX diode OR are explicit; UHF/VHF comparators share the reviewed EV_N6 voice identity",
                 "native KiCad parses the live hierarchy and controlled switch footprint",
             ],
             "deferred": [
@@ -334,28 +337,29 @@ def build() -> tuple[dict[Path, str], dict]:
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     summary = manifest["summary"]
     expected = {
-        "ledger_instances": 104, "schematic_symbols": 104,
-        "board_fitted_symbols": 104, "hierarchical_interfaces": 75,
-        "physical_contacts": 392, "rf_detector_channels": 5,
-        "comparator_channels": 5, "independent_watchdogs": 2,
+        "ledger_instances": 113, "schematic_symbols": 113,
+        "board_fitted_symbols": 113, "hierarchical_interfaces": 78,
+        "physical_contacts": 421, "rf_detector_channels": 6,
+        "comparator_channels": 6, "independent_watchdogs": 2,
         "tx_gate_packages": 3, "evidence_mask_inputs": 9,
-        "custom_footprints": 1, "intentional_no_connect_pins": 22,
+        "custom_footprints": 1, "intentional_no_connect_pins": 24,
         "pcb_files_created": 0,
     }
     if summary != expected:
         raise ValueError(f"H2.3.12 accounting drifted: {summary}")
     schematic = generated[OUTPUT_SCH]
-    if schematic.count("\n\t(symbol\n") != 104:
+    if schematic.count("\n\t(symbol\n") != 113:
         raise ValueError("RF50 symbol accounting mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 75:
+    if schematic.count("\n\t(hierarchical_label \"") != 78:
         raise ValueError("RF50 hierarchy interface accounting mismatch")
     for row in manifest["instances"]:
         if not row["footprint"]:
             raise ValueError(f"fitted RF50 component lacks footprint: {row['instance']}")
     expected_nc = {
         "cc_evidence_hold_diode.NC", "voice_evidence_hold_diode.NC",
+        "voice_v_evidence_hold_diode.NC",
         "det_nrf0.V_DN", "det_nrf1.V_DN", "det_nrf2.V_DN",
-        "det_cc.V_DN", "det_voice.V_DN", "evidence_or_4.K2",
+        "det_cc.V_DN", "det_voice.V_DN", "det_voice_v.V_DN", "evidence_or_4.K2",
         "safe_rearm_buffer.NC",
         "safe_reset_buffer.NC", "safe_reset_sink_b.D2",
         "safe_run_fault_iso.NC", "safe_supervisor.CT",
@@ -378,7 +382,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         if token not in switch:
             raise ValueError("JS102011SCQN exact three-land footprint drifted")
     detector_rows = [row for row in manifest["instances"] if row["instance"].startswith("det_")]
-    if len(detector_rows) != 5 or any(row["pin_count"] != 9 for row in detector_rows):
+    if len(detector_rows) != 6 or any(row["pin_count"] != 9 for row in detector_rows):
         raise ValueError("AD8314 detector package/pad-9 accounting drifted")
 
 

@@ -11,8 +11,8 @@
   ],
   "policy": "Every mechanically rendered body has one exact instance, MPN or explicit TBD, sourced envelope, datum, orientation and interface direction.",
   "summary": {
-    "rendered_physical_instances": 187,
-    "exact_mpn_instances": 187,
+    "rendered_physical_instances": 195,
+    "exact_mpn_instances": 195,
     "explicit_mpn_tbd_instances": 0,
     "h1_blockers": 0,
     "h5_received_sample_gates": 14
@@ -508,8 +508,8 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        68.3,
-        58.0
+        58.65,
+        74.55
       ]
     },
     {
@@ -558,8 +558,8 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        56.5,
-        58.0
+        57.4,
+        68.8
       ]
     },
     {
@@ -585,8 +585,8 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        62.4,
-        58.0
+        63.2,
+        68.8
       ]
     },
     {
@@ -1439,8 +1439,8 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        50.0,
-        67.0
+        61.7,
+        74.55
       ]
     },
     {
@@ -2336,8 +2336,8 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        56.5,
-        34.0
+        37.3,
+        52.55
       ]
     },
     {
@@ -2363,8 +2363,8 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        62.4,
-        34.0
+        43.1,
+        52.55
       ]
     },
     {
@@ -2554,8 +2554,8 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        56.5,
-        40.0
+        46.15,
+        52.55
       ]
     },
     {
@@ -2581,8 +2581,8 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        62.4,
-        40.0
+        55.6,
+        74.55
       ]
     },
     {
@@ -4491,8 +4491,8 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        56.5,
-        27.3
+        16.0,
+        52.55
       ]
     },
     {
@@ -4518,8 +4518,8 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        62.4,
-        27.3
+        21.8,
+        52.55
       ]
     },
     {
@@ -4545,8 +4545,8 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        68.3,
-        34.0
+        33.45,
+        52.55
       ]
     },
     {
@@ -4572,8 +4572,8 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        68.3,
-        27.3
+        27.6,
+        52.55
       ]
     },
     {
@@ -5144,24 +5144,24 @@
     },
     {
       "instance": "voice",
-      "device_key": "nicerf_sa518_v11",
-      "mpn": "NiceRF SA518",
-      "role": "VHF/UHF voice transceiver; contact 7 uses a short controlled jog to its SMA",
+      "device_key": "nicerf_sa818s_u_v18",
+      "mpn": "G-NiceRF SA818S-U",
+      "role": "UHF 400-480-MHz SA818S-U; dedicated contact-12 RF path",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
-      "rotation_deg": 180,
-      "direction": "contact 7 faces the antenna edge along the controlled VHF/UHF corridor",
+      "rotation_deg": 270,
+      "direction": "contact 12 faces the antenna edge along the dedicated UHF corridor",
       "envelope_mm": [
-        40.0,
-        24.5,
-        3.25
+        35.6,
+        19.0,
+        3.2
       ],
-      "qualification": "verified_candidate",
+      "qualification": "manufacturer_and_jlcpcb_exact_candidate",
       "source": {
-        "document": "SA518 UV Dual Frequency Walkie-talkie Module Product Specification",
-        "version": "1.1 / 2026-05",
-        "url": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
-        "checked": "2026-08-22"
+        "document": "SA818S 1W Embedded walkie talkie module Product Specification",
+        "version": "Rev 1.8 / 2026-06",
+        "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+        "checked": "2026-08-26"
       },
       "evidence_gates": [
         {
@@ -5170,8 +5170,89 @@
         }
       ],
       "position_mm": [
-        15.8,
-        32.7
+        52.2,
+        32.5
+      ]
+    },
+    {
+      "instance": "voice_audio_mux",
+      "device_key": "ti_tmux1136_dgsr",
+      "mpn": "Texas Instruments TMUX1136DGSR",
+      "role": "selected-module AFOUT and microphone multiplexer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 90,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.1,
+        5.05,
+        1.1
+      ],
+      "qualification": "reference_only",
+      "source": {
+        "document": "TMUX1136 5-V, low-leakage-current, 2:1, 2-channel precision switch datasheet",
+        "version": "SCDS402B, June 2019, revised February 2024",
+        "url": "https://www.ti.com/lit/ds/symlink/tmux1136.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        44.0,
+        74.55
+      ]
+    },
+    {
+      "instance": "voice_band_inverter",
+      "device_key": "nexperia_74lvc2g14gw_125",
+      "mpn": "74LVC2G14GW,125",
+      "role": "AON complement for one-hot voice selection",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        1.25,
+        1.1
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "74LVC2G14 Dual inverting Schmitt trigger datasheet",
+        "version": "2023-08-18",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G14.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        49.75,
+        74.55
+      ]
+    },
+    {
+      "instance": "voice_band_io",
+      "device_key": "ti_tca9534a_pwr",
+      "mpn": "TCA9534APWR",
+      "role": "TCA9534A UHF/VHF selector and deterministic reset straps",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.0,
+        4.4,
+        1.2
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TCA9534A Low-Voltage 8-Bit I2C/SMBus I/O Expander datasheet",
+        "version": "Rev. C",
+        "url": "https://www.ti.com/lit/ds/symlink/tca9534a.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        44.0,
+        68.8
       ]
     },
     {
@@ -5199,6 +5280,60 @@
       "position_mm": [
         28.0,
         61.0
+      ]
+    },
+    {
+      "instance": "voice_control_mux_a",
+      "device_key": "ti_tmux1136_dgsr",
+      "mpn": "Texas Instruments TMUX1136DGSR",
+      "role": "selected-module UART multiplexer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.1,
+        5.05,
+        1.1
+      ],
+      "qualification": "reference_only",
+      "source": {
+        "document": "TMUX1136 5-V, low-leakage-current, 2:1, 2-channel precision switch datasheet",
+        "version": "SCDS402B, June 2019, revised February 2024",
+        "url": "https://www.ti.com/lit/ds/symlink/tmux1136.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        49.7,
+        68.8
+      ]
+    },
+    {
+      "instance": "voice_control_mux_b",
+      "device_key": "ti_tmux1136_dgsr",
+      "mpn": "Texas Instruments TMUX1136DGSR",
+      "role": "selected-module PTT and AUDIO_ON multiplexer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.1,
+        5.05,
+        1.1
+      ],
+      "qualification": "reference_only",
+      "source": {
+        "document": "TMUX1136 5-V, low-leakage-current, 2:1, 2-channel precision switch datasheet",
+        "version": "SCDS402B, June 2019, revised February 2024",
+        "url": "https://www.ti.com/lit/ds/symlink/tmux1136.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        53.55,
+        68.8
       ]
     },
     {
@@ -5333,6 +5468,33 @@
       ]
     },
     {
+      "instance": "voice_pd_gate",
+      "device_key": "ti_sn74lvc2g08_dcur",
+      "mpn": "Texas Instruments SN74LVC2G08DCUR",
+      "role": "AON mutually-exclusive voice PD gate",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.4,
+        2.1,
+        0.9
+      ],
+      "qualification": "reference_only",
+      "source": {
+        "document": "SN74LVC2G08 dual 2-input positive-AND gate datasheet",
+        "version": "SCES198N, April 1999, revised December 2015",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc2g08.pdf",
+        "checked": "2026-08-26"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        52.45,
+        74.55
+      ]
+    },
+    {
       "instance": "voice_tx_led",
       "device_key": "liteon_ltst_c190krkt",
       "mpn": "LTST-C190KRKT",
@@ -5352,6 +5514,56 @@
         "version": "BNS-OD-C131/A4",
         "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
         "checked": "2026-08-17"
+      },
+      "evidence_gates": []
+    },
+    {
+      "instance": "voice_v",
+      "device_key": "nicerf_sa818s_v_v18",
+      "mpn": "G-NiceRF SA818S-V",
+      "role": "VHF 134-174-MHz SA818S-V; dedicated contact-12 RF path",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 180,
+      "direction": "contact 12 faces the antenna edge along the dedicated VHF corridor",
+      "envelope_mm": [
+        35.6,
+        19.0,
+        3.2
+      ],
+      "qualification": "manufacturer_and_jlcpcb_exact_candidate_preorder",
+      "source": {
+        "document": "SA818S 1W Embedded walkie talkie module Product Specification",
+        "version": "Rev 1.8 / 2026-06",
+        "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+        "checked": "2026-08-26"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        15.8,
+        32.5
+      ]
+    },
+    {
+      "instance": "voice_v_external_sma",
+      "device_key": "gct_rfpc_sma31_fn_175_a",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "toward the antenna edge along board -Y",
+      "envelope_mm": [
+        15.2,
+        10.2,
+        3.9
+      ],
+      "qualification": "verified_exact_external_standard_sma_body",
+      "source": {
+        "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+        "version": "drawing dated 2025-04-07",
+        "url": "https://gct.co/connector/rfpc-sma31-fn",
+        "checked": "2026-08-19"
       },
       "evidence_gates": []
     }

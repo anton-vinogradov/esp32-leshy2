@@ -55,7 +55,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "leaf_stages_are_exact": [row["stage"] for row in rows.values()] == ["H3.4.1", "H3.4.2", "H3.4.3"],
         "all_leaf_statuses_are_reviewed": all(row["review_summary"]["status"] == "reviewed" for row in rows.values()),
         "all_leaf_open_findings_are_empty": all(row["open_findings"] == [] for row in rows.values()),
-        "leaf_check_count_is_162": leaf_checks == 162,
+        "leaf_check_count_is_171": leaf_checks == 171,
         "single_self_review_correction_is_preserved": len(corrections) == 1 and "pF-to-ns" in corrections[0],
         "all_19_physical_residuals_are_preserved": len(physical_flat) == 19,
         "physical_residuals_are_nonempty_and_unique": all(item.strip() for item in physical_flat) and len(physical_flat) == len(set(physical_flat)),

@@ -3,15 +3,15 @@
   "stage": "H3.4.4",
   "status": "reviewed_digital_interface_timing_level_and_loading_consolidation",
   "input_hashes": {
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "e094a3a98c92d525925fbdf59c1f0264f36b6ddde464b39e91fa205c7d19c899",
-    "hardware/verification/generated/H3-VRF42-digital-timing.json": "e98cb3e457746b5fbee7529592a0220960af8fd8790b364e4cbb1046df9a59b4",
-    "hardware/verification/generated/H3-VRF43-boundary-loading.json": "7e6ac95aa19a3a74c7a7ca825b1be55cb497c9e3f68300ccad5999831f336808"
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "46c2718c074da8c2897f4e8c49a76cbd2d29dc2060294ea535d0ced1f119f5f6",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "0f0729d921a8b2860ec1d23859e704c845d60fa27809b29474e2863f3dd60b3d",
+    "hardware/verification/generated/H3-VRF43-boundary-loading.json": "0e91b6587ba94290bb2536c29133964e49a0bfb2c9da0660de72a2900a15904b"
   },
   "leaf_summary": {
     "levels": {
       "stage": "H3.4.1",
       "status": "reviewed_digital_levels_pulls_reset_defaults_and_no_back_power",
-      "checks": 73,
+      "checks": 82,
       "corrections": 0,
       "physical_residuals": 5
     },
@@ -31,7 +31,7 @@
     }
   },
   "consolidated": {
-    "leaf_checks": 162,
+    "leaf_checks": 171,
     "consolidation_checks": 27,
     "failed_checks": 0,
     "source_or_self_review_corrections": 1,
@@ -84,7 +84,7 @@
     "leaf_stages_are_exact": true,
     "all_leaf_statuses_are_reviewed": true,
     "all_leaf_open_findings_are_empty": true,
-    "leaf_check_count_is_162": true,
+    "leaf_check_count_is_171": true,
     "single_self_review_correction_is_preserved": true,
     "all_19_physical_residuals_are_preserved": true,
     "physical_residuals_are_nonempty_and_unique": true,

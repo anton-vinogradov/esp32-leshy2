@@ -82,13 +82,13 @@ def build() -> tuple[dict[Path, str], dict]:
         "all_six_h3_phase_results_are_reviewed": all(row["status"] == "reviewed" for row in phase_results),
         "all_six_h3_phase_results_have_zero_analytical_findings": all(row["unresolved_analytical_findings"] == 0 for row in phase_results),
         "crosscheck_has_zero_missing_joins": crosscheck["summary"]["missing_joins"] == 0 and crosscheck["summary"]["hash_mismatches"] == 0,
-        "crosscheck_covers_all_h2_identities": crosscheck["summary"]["h2_instances"] == 1048 and crosscheck["summary"]["h2_root_nets"] == 268,
+        "crosscheck_covers_all_h2_identities": crosscheck["summary"]["h2_instances"] == 1081 and crosscheck["summary"]["h2_root_nets"] == 270,
         "all_physical_residuals_are_published": residuals["summary"]["physical_evidence_rows"] == 85 and residuals["summary"]["unassigned"] == 0,
         "no_physical_residual_is_claimed_closed": residuals["summary"]["analytically_closed_by_h3"] == 0 and all(row["status"] == "physical_evidence_required" for row in residuals["registry"]),
         "all_25_corrections_are_accounted": sum(corrections.values()) == 25,
         "known_bom_delta_is_bounded": known_bom_delta == Decimal("1.2814"),
         "h3_acceptance_is_recorded": plan["status"] == "reviewed" and plan["substeps"][7]["children"][3]["status"] == "reviewed",
-        "h4_remains_blocked_by_firmware_f3": True,
+        "h4_rejoin_is_required_with_existing_firmware_f3_evidence": True,
         "acceptance_does_not_authorize_layout": plan["authorization"]["pcb_placement_and_routing"] is False,
         "acceptance_does_not_authorize_fabrication": plan["authorization"]["fabrication"] is False,
         "acceptance_does_not_authorize_purchase": plan["authorization"]["purchasing"] is False,
@@ -113,7 +113,7 @@ def build() -> tuple[dict[Path, str], dict]:
             "KiCad PCB placement or routing",
             "prototype or production fabrication",
             "calling any physical-only residual passed",
-            "starting H4 while firmware F3 target boot/emulation remains incomplete",
+            "treating the former H4 join as current before it consumes this H3 revision and the existing firmware F3 evidence",
         ],
         "phase_results": phase_results,
         "correction_summary": {
@@ -127,18 +127,18 @@ def build() -> tuple[dict[Path, str], dict]:
         "acceptance_gate": {
             "id": "H3.7.4",
             "state": "accepted_by_user",
-            "effect": "H3 is reviewed; H4 still waits for firmware F3 and does not authorize purchase, layout or fabrication",
+            "effect": "H3 is reviewed; H4 must be rejoined with existing firmware F3 evidence and still does not authorize purchase, layout or fabrication",
         },
         "user_acceptance": {
             "accepted": True,
-            "date": "2026-08-24",
-            "basis": "user instructed automatic acceptance for clean reviews without questions or proposals while H3.7.4 was the explicit pending gate",
+            "date": "2026-08-26",
+            "basis": "user instructed automatic acceptance for clean reviews without questions or proposals; this revision re-runs every H3 artifact against the accepted dual-SA818S H2 baseline",
         },
         "checks": checks,
         "open_analytical_findings": [],
         "pending_decisions": [],
         "review_summary": {"checks": len(checks), "failed": 0, "unresolved_analytical_findings": 0, "status": "reviewed"},
-        "next": {"stage": "H4.0.1", "action": "wait for and consume firmware F3 target boot/emulation evidence in the joined pre-layout gate"},
+        "next": {"stage": "H4.0.1-R1", "action": "rejoin this H3 revision with the existing firmware F3 target boot/emulation evidence"},
     }
 
     phase_table_en = "\n".join(f"| `{row['phase']}` | reviewed | {row['recorded_corrections']} | 0 |" for row in phase_results)

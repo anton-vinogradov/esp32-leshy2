@@ -13,7 +13,7 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 
 ## RF/power board
 
-- Real-time radio domain: `SC1512-A4`, three `Ebyte E01-ML01IPX`, `CC1101RGPR` and `NiceRF SA518`.
+- Real-time radio domain: `SC1512-A4`, three `Ebyte E01-ML01IPX`, `CC1101RGPR` and `G-NiceRF SA818S-U`.
 - External modules: removable `M5Stack U214 Cap LoRa-1262` on exact vertical `Samtec HLE-107-02-G-DV-PE-LC` of the raised rear rail and an independent M5 Unit port on exact `1125R-SMT-4P`.
 - Power and product USB-C: `JAE DX07S016JA1R1500`, `Texas Instruments TPD4S201RUKR` protection, `Texas Instruments TPS25751DREFR` USB-PD, charger, cells and every rail converter.
 - Rear-board audio: `Same Sky CMEJ-0413-42-SMT-TR` microphone with local bias, `Diodes Incorporated PAM8302AAYCR` differential amplifier and `PUI Audio AS02404PO` speaker.
@@ -88,7 +88,7 @@ This closes physical bodies and the inter-board air channel, not PCB routing. Fa
 | `39` | `POWER_GROUND` | return | `return` |
 | `40` | `C5_RF_TX_EVIDENCE_N` | RF→UI | `tx_evidence` |
 | `41` | `IR_TX_EVIDENCE_N` | RF→UI | `tx_evidence` |
-| `42` | `RX_SA518_AFOUT_ISOLATED` | RF→UI | `audio` |
+| `42` | `RX_VOICE_AFOUT_SELECTED` | RF→UI | `audio` |
 | `43` | `AUDIO_GROUND` | return | `return` |
 | `44` | `VOICE_MIC_SELECTED_MAIN` | UI→RF | `audio` |
 | `45` | `AUDIO_GROUND` | return | `return` |

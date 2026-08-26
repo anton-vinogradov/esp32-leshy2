@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
-  "stage": "H4.1",
+  "stage": "H4.1-R1",
   "status": "reviewed",
   "method": "machine join of accepted mechanics, production ECAD, virtual electrical evidence, target-visible BSP consumption and firmware F3 execution boundaries",
   "source_hashes": {
-    "hardware/verification/h4-prelayout-plan.json": "653aed9964ada7d0880929aa4450ee7d89982ae376a989f879e6f4e0ae2236c0",
+    "hardware/verification/h4-prelayout-plan.json": "5bf1a07e29b8d33a3695107c3a39ae429946990a7dce7d20ee609a5d3acddd1c",
     "hardware/verification/preorder-verification-contract.json": "79637665bab58234b02e7b8b10a2cdec4efb9182ad0a26c994ebe2fb8d9c2387",
-    "hardware/product-design/generated/H1-cross-view-acceptance.json": "bbb7623c11806b3d976d7d84dec617457eecba2b48711ce01c188c0d9709360b",
-    "hardware/ecad/generated/H2-REV81-acceptance-package.json": "90f766d0ddc089c0d24d04263d50374310310c0352fbde5aa4b5a6163a904be2",
-    "hardware/ecad/generated/H2-REV71-canonical-inventories.json": "1471af922476d9b21ae58db08d664053769587c948a5da443cd8baf8b3aa3382",
-    "hardware/ecad/generated/H2-REV72-physical-contacts.json": "18d3c2d529d419989f499af56ce8c57411106fb9674182a93fa306caf0960cc7",
-    "hardware/ecad/generated/H2-REV73-named-nets-m1.json": "282dfd9b62b81c32fa9d56b956b4b1a6cfe270d705243addb23e476fdf4682a5",
-    "hardware/ecad/generated/H2-hwfw-contract.json": "62fe0a9ed6ee597b60dcb08c3319a98c9a07d9f4216a59d1c401aa2f5f17a8aa",
-    "hardware/verification/generated/H3-VRF73-acceptance-package.json": "1e48d53f2dea449193da2c7e874b37ae19b537bf75124ac3144818dcdd8696be",
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "750d2b1bb3f421fe62122269fbce07a0b00328e143151264affde6d536d524e5",
-    "../esp32-leshy2-firmware/config/hardware_bsp_contract.json": "62fe0a9ed6ee597b60dcb08c3319a98c9a07d9f4216a59d1c401aa2f5f17a8aa",
-    "../esp32-leshy2-firmware/config/hardware_integration_contract.json": "4f0c9be2cf020dfc21bb90c2d5be0efc8e52815340f681d5481e197dd627760f",
-    "../esp32-leshy2-firmware/config/bsp_generation_input.json": "94f22c3b12fb17c37b8bfa203a25bcfc48290f7fa209a498c9817f0a630500fd",
+    "hardware/product-design/generated/H1-cross-view-acceptance.json": "45f335d982dae628027a83d4c6f89c78c6727a2586d70ba6d0d68b0115fd8412",
+    "hardware/ecad/generated/H2-REV81-acceptance-package.json": "94659b53507b0af3d01028cb8bb27efdcd4013dd28ecbe95f07fa3735b7dd326",
+    "hardware/ecad/generated/H2-REV71-canonical-inventories.json": "43909f43d127587cfb7291bccc6af8ff1199c6e26579263d86ba45995227a0f2",
+    "hardware/ecad/generated/H2-REV72-physical-contacts.json": "617fdb0a5694a087258ee37a993f32d87749fc99b6f10d2f79a1b92eb0fc2ba4",
+    "hardware/ecad/generated/H2-REV73-named-nets-m1.json": "38adc9f1ea13cce9268adf4d52c74133a5ec3312dbfb88ccbb1eeeb6437402fc",
+    "hardware/ecad/generated/H2-hwfw-contract.json": "3604889fbf94c28fd0b110b16596c63fa56927df7ff3ff49d0cdfff9d6e7b014",
+    "hardware/verification/generated/H3-VRF73-acceptance-package.json": "561bc078896e69fd1cac0c8dc991caacf8ed26284beb34d50fc796e9821edcc1",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "78aef8a986e51d1b046409466bae48277d99c33d536964d8c894d57298269bbd",
+    "../esp32-leshy2-firmware/config/hardware_bsp_contract.json": "3604889fbf94c28fd0b110b16596c63fa56927df7ff3ff49d0cdfff9d6e7b014",
+    "../esp32-leshy2-firmware/config/hardware_integration_contract.json": "7f0fb4904a81851e3aa2a21ac15181b49245ca96a4608cdb9e9bd2ca735fcab0",
+    "../esp32-leshy2-firmware/config/bsp_generation_input.json": "e0cb112757864b6304fce0c29b1943d6ccb5f0662268929b9b47e53adc494c04",
     "../esp32-leshy2-firmware/config/bsp_target_consumption.json": "dc4c61d5b4f58486c9819294d310b44a0f9bd2ddbd8b4d0b7364d055385fae0c",
-    "../esp32-leshy2-firmware/generated/source_manifest.json": "7d0d23fb6df9558df5b85fd1802b9b53215d010280dc69f14a6f18d82168348b",
-    "../esp32-leshy2-firmware/config/f3_4_review.json": "9cca6bfa765d9dc7f0be3f5b1b82ba7d5ce62f3e9ea3b16e7cdf8a7c2222817b",
+    "../esp32-leshy2-firmware/generated/source_manifest.json": "587a91492c9c7a9d0f626e60dce3ad2527652f37946532dd467ec8aaaa5a81f3",
+    "../esp32-leshy2-firmware/config/f3_4_review.json": "63b3a1cf933d7a58e9be589bb62bdd815e25223b9cc240f95e5a0d27ca197ed8",
     "../esp32-leshy2-firmware/config/preorder_verification_contract.json": "79637665bab58234b02e7b8b10a2cdec4efb9182ad0a26c994ebe2fb8d9c2387"
   },
   "counts": {
-    "h1_dimensioned_instances": 187,
-    "h2_ledger_rows": 1048,
-    "h2_reconciled_electrical_identities": 1046,
-    "h2_root_nets": 268,
+    "h1_dimensioned_instances": 195,
+    "h2_ledger_rows": 1081,
+    "h2_reconciled_electrical_identities": 1079,
+    "h2_root_nets": 270,
     "m1_contacts": 80,
     "firmware_bsp_contacts": 125
   },
-  "firmware_f3_commit": "9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5",
+  "firmware_f3_revision": "source-hash-bound-precommit-revision",
   "firmware_f3_result": {
     "official_exact_target_emulator": "ESP32-S3 QEMU",
     "s3_debug_release_boot_runs": 2,
@@ -76,42 +76,20 @@
     "firmware_f3_exact_claim_boundary_is_honest": true,
     "firmware_f3_counts_match_review": true,
     "firmware_f3_has_all_five_physical_gates": true,
-    "pinned_f3_commit_is_in_current_firmware_history": true,
+    "firmware_f3_revision_is_source_hash_bound": true,
     "preorder_contract_is_identical_across_repositories": true,
     "preorder_virtual_gates_are_reviewed": true,
     "orders_layout_and_fabrication_remain_blocked": true,
     "h4_plan_records_all_substeps_reviewed": true,
     "public_h2_totals_are_current": true
   },
-  "corrections": [
-    {
-      "id": "H4-JOIN-001",
-      "finding": "H1 machine counts said 80 assigned M1 contacts while its inherited narrative still claimed four reserved/no-connect contacts",
-      "source_correction": "hardware/architecture/candidates/G2F-3I.json now states 80 assigned / 0 reserved / 0 no-connect and all H1/H2/H3 derivatives were regenerated",
-      "functional_effect": "none; the accepted 80-contact electrical mapping did not change",
-      "cost_effect_usd": "0.0000"
-    },
-    {
-      "id": "H4-JOIN-002",
-      "finding": "the product-facing H2 summaries retained superseded inventory, identity and root-net totals",
-      "source_correction": "H2 acceptance now derives final counts from H2-REV71/72/73 and every public summary uses 1048 / 1046 / 268",
-      "functional_effect": "none; documentation and traceability now match current generated ECAD evidence",
-      "cost_effect_usd": "0.0000"
-    },
-    {
-      "id": "H4-JOIN-003",
-      "finding": "the product-facing H2 summaries retained the superseded count of 189 intentional no-connect contacts while the current native register contains 191",
-      "source_correction": "H2 acceptance now derives the NC count from H2-REV62 and all public summaries use 191",
-      "functional_effect": "none; the KiCad no-connect markers and rationales were already present and reviewed",
-      "cost_effect_usd": "0.0000"
-    }
-  ],
+  "corrections": [],
   "open_findings": [],
   "pending_decisions": [],
   "review_summary": {
     "checks": 31,
     "failed": 0,
-    "corrected_findings": 3,
+    "corrected_findings": 0,
     "unresolved": 0,
     "status": "reviewed"
   },
@@ -121,7 +99,7 @@
     "fabrication": false
   },
   "next": {
-    "stage": "H4.2",
-    "action": "prove that every joined-review contradiction is corrected at source and all affected evidence is regenerated"
+    "stage": "H4.2-R1",
+    "action": "prove that the repeated dual-SA818S join contains no stale source or open virtual contradiction"
   }
 }

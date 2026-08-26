@@ -3,9 +3,9 @@
   "stage": "H3.0.2",
   "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
-    "hardware/architecture/devices.json": "b7c9e0a591613e05e2b39fd315e301f6e628464b8cc1e46d983fc67b05204424",
-    "hardware/ecad/generated/H2-instance-ledger.json": "1c06ac58503e62b22c6fea1b084d297b85e1190547e305187969a414418223c2",
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "67ef4a39a93ea8c4c84202b2cccfffb2dc518c12acf1f0624a29a7496ddf419d"
+    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+    "hardware/ecad/generated/H2-instance-ledger.json": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "5c6b4ec5cbd9de69e04fb21d5ec517fdc98b14e7cce9442075d6a40bec876507"
   },
   "policy": {
     "accepted_h2_baseline_is_immutable": true,
@@ -177,7 +177,7 @@
       "device_key": "adi_ad8314acpz_rl7",
       "mpn": "Analog Devices AD8314ACPZ-RL7",
       "kind": "lfcsp8_100mhz_2_7ghz_log_rf_detector",
-      "instance_count": 6,
+      "instance_count": 7,
       "projects": [
         "LESHY2-LORA-CAP-01",
         "LESHY2-RF"
@@ -222,7 +222,7 @@
         "maximum_active_current_ma": 5.7,
         "typical_shutdown_current_ua": 20,
         "measurement_mode": "VSET tied to V_UP; actual-TX evidence uses V_UP",
-        "qualification_note": "every nRF, CC1101 and SA518 sample topology still requires conducted threshold and temperature margin HIL"
+        "qualification_note": "every nRF, CC1101 and SA818S-U/V sample topology still requires conducted threshold and temperature margin HIL"
       },
       "parameter_class": "radio_rf",
       "required_parameter_groups": [
@@ -653,7 +653,7 @@
       "device_key": "diodes_bat54_7_f",
       "mpn": "Diodes Incorporated BAT54-7-F",
       "kind": "single_schottky_system_source_isolation_diode",
-      "instance_count": 4,
+      "instance_count": 5,
       "projects": [
         "LESHY2-RF"
       ],
@@ -1045,7 +1045,7 @@
       "device_key": "gct_rfpc_sma31_fn_175_a",
       "mpn": "GCT RFPC-SMA31-FN-175-A",
       "kind": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
-      "instance_count": 8,
+      "instance_count": 9,
       "projects": [
         "LESHY2-LORA-CAP-01",
         "LESHY2-RF",
@@ -2544,7 +2544,7 @@
       "device_key": "murata_grm1555c1h121ja01d",
       "mpn": "Murata GRM1555C1H121JA01D",
       "kind": "120pf_5pct_50v_c0g_0402_efuse_transient_timer_capacitor",
-      "instance_count": 7,
+      "instance_count": 8,
       "projects": [
         "LESHY2-RF"
       ],
@@ -3826,14 +3826,16 @@
       "device_key": "nexperia_74lvc2g14gw_125",
       "mpn": "74LVC2G14GW,125",
       "kind": "tssop6_dual_schmitt_inverter",
-      "instance_count": 1,
+      "instance_count": 2,
       "projects": [
         "LESHY2-RF"
       ],
       "sheets": [
+        "RF_32_SUBGHZ_VOICE",
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "roles": [
+        "AON complement for one-hot voice selection",
         "RUN and S3 fault-reset conditioner"
       ],
       "lifecycle": "production",
@@ -3868,7 +3870,7 @@
       "device_key": "nexperia_pesd24vy1bsf",
       "mpn": "Nexperia PESD24VY1BSF",
       "kind": "dsn0603_2_24v_0_17pf_bidirectional_antenna_esd_diode",
-      "instance_count": 1,
+      "instance_count": 2,
       "projects": [
         "LESHY2-RF"
       ],
@@ -4035,9 +4037,9 @@
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
-      "device_key": "nicerf_sa518_v11",
-      "mpn": "NiceRF SA518",
-      "kind": "dual_band_analog_voice_module",
+      "device_key": "nicerf_sa818s_u_v18",
+      "mpn": "G-NiceRF SA818S-U",
+      "kind": "uhf_analog_voice_module",
       "instance_count": 1,
       "projects": [
         "LESHY2-RF"
@@ -4046,25 +4048,100 @@
         "RF_32_SUBGHZ_VOICE"
       ],
       "roles": [
-        "VHF/UHF voice transceiver; contact 7 uses a short controlled jog to its SMA"
+        "UHF 400-480-MHz SA818S-U; dedicated contact-12 RF path"
       ],
-      "lifecycle": "current_product",
+      "lifecycle": "current_orderable_product",
       "source": {
-        "document": "SA518 UV Dual Frequency Walkie-talkie Module Product Specification",
-        "version": "1.1 / 2026-05",
-        "url": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
-        "checked": "2026-08-22"
+        "document": "SA818S 1W Embedded walkie talkie module Product Specification",
+        "version": "Rev 1.8 / 2026-06",
+        "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+        "checked": "2026-08-26"
       },
       "source_status": "accepted_h2_authoritative_source",
       "source_host": "www.nicerf.com",
       "accepted_h2_source_preserved": {
-        "document": "SA518 UV Dual Frequency Walkie-talkie Module Product Specification",
-        "version": "1.1 / 2026-05",
-        "url": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
-        "checked": "2026-08-22"
+        "document": "SA818S 1W Embedded walkie talkie module Product Specification",
+        "version": "Rev 1.8 / 2026-06",
+        "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+        "checked": "2026-08-26"
       },
-      "structured_parameter_count": 0,
-      "structured_parameters": {},
+      "structured_parameter_count": 9,
+      "structured_parameters": {
+        "frequency_mhz": [
+          400.0,
+          480.0
+        ],
+        "supply_v": [
+          3.3,
+          5.5
+        ],
+        "selected_supply_v": 4.0,
+        "rx_current_ma_typ": 60,
+        "tx_current_ma_high_max": 750,
+        "tx_current_ma_low_max": 550,
+        "uart": "9600 8N1 ASCII AT command interface",
+        "high_power_control": "H/L must be left open for high power and pulled low for low power; it must never be driven high",
+        "rf_port": "contact 12, 50 Ohm"
+      },
+      "parameter_class": "radio_rf",
+      "required_parameter_groups": [
+        "supply range",
+        "RX/TX current",
+        "power/sensitivity",
+        "timing",
+        "impedance/loss/matching",
+        "temperature limits"
+      ],
+      "h3_model_method": "datasheet_behavioral_and_rf_budget",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
+      "device_key": "nicerf_sa818s_v_v18",
+      "mpn": "G-NiceRF SA818S-V",
+      "kind": "vhf_analog_voice_module",
+      "instance_count": 1,
+      "projects": [
+        "LESHY2-RF"
+      ],
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE"
+      ],
+      "roles": [
+        "VHF 134-174-MHz SA818S-V; dedicated contact-12 RF path"
+      ],
+      "lifecycle": "current_preorder_product",
+      "source": {
+        "document": "SA818S 1W Embedded walkie talkie module Product Specification",
+        "version": "Rev 1.8 / 2026-06",
+        "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+        "checked": "2026-08-26"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.nicerf.com",
+      "accepted_h2_source_preserved": {
+        "document": "SA818S 1W Embedded walkie talkie module Product Specification",
+        "version": "Rev 1.8 / 2026-06",
+        "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+        "checked": "2026-08-26"
+      },
+      "structured_parameter_count": 9,
+      "structured_parameters": {
+        "frequency_mhz": [
+          134.0,
+          174.0
+        ],
+        "supply_v": [
+          3.3,
+          5.5
+        ],
+        "selected_supply_v": 4.0,
+        "rx_current_ma_typ": 60,
+        "tx_current_ma_high_max": 750,
+        "tx_current_ma_low_max": 550,
+        "uart": "9600 8N1 ASCII AT command interface",
+        "high_power_control": "H/L must be left open for high power and pulled low for low power; it must never be driven high",
+        "rf_port": "contact 12, 50 Ohm"
+      },
       "parameter_class": "radio_rf",
       "required_parameter_groups": [
         "supply range",
@@ -5397,7 +5474,7 @@
       "device_key": "tdk_c1005x7r1h104k050bb",
       "mpn": "TDK C1005X7R1H104K050BB",
       "kind": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
-      "instance_count": 148,
+      "instance_count": 153,
       "projects": [
         "LESHY2-LORA-CAP-01",
         "LESHY2-RF",
@@ -5459,7 +5536,7 @@
       "device_key": "tdk_c1608x7r1c105k080ac",
       "mpn": "TDK C1608X7R1C105K080AC",
       "kind": "1uf_10pct_16v_x7r_0603_diagnostic_lockout_timing_capacitor",
-      "instance_count": 37,
+      "instance_count": 39,
       "projects": [
         "LESHY2-LORA-CAP-01",
         "LESHY2-RF",
@@ -6093,13 +6170,11 @@
       "device_key": "ti_sn74lvc1g126_dckr",
       "mpn": "Texas Instruments SN74LVC1G126DCKR",
       "kind": "single_ioff_active_high_tristate_buffer",
-      "instance_count": 6,
+      "instance_count": 4,
       "projects": [
-        "LESHY2-RF",
         "LESHY2-UI"
       ],
       "sheets": [
-        "RF_32_SUBGHZ_VOICE",
         "UI_13_AUDIO_CODEC_HEADSET"
       ],
       "roles": [
@@ -6281,16 +6356,18 @@
       "device_key": "ti_sn74lvc2g08_dcur",
       "mpn": "Texas Instruments SN74LVC2G08DCUR",
       "kind": "dual_two_input_and_gate",
-      "instance_count": 2,
+      "instance_count": 3,
       "projects": [
         "LESHY2-RF",
         "LESHY2-UI"
       ],
       "sheets": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_32_SUBGHZ_VOICE",
         "UI_13_AUDIO_CODEC_HEADSET"
       ],
       "roles": [
+        "AON mutually-exclusive voice PD gate",
         "dual_two_input_and_gate"
       ],
       "lifecycle": "active",
@@ -6298,7 +6375,7 @@
         "document": "SN74LVC2G08 dual 2-input positive-AND gate datasheet",
         "version": "SCES198N, April 1999, revised December 2015",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc2g08.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-26"
       },
       "source_status": "accepted_h2_authoritative_source",
       "source_host": "www.ti.com",
@@ -6306,7 +6383,7 @@
         "document": "SN74LVC2G08 dual 2-input positive-AND gate datasheet",
         "version": "SCES198N, April 1999, revised December 2015",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc2g08.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-26"
       },
       "structured_parameter_count": 0,
       "structured_parameters": {},
@@ -6325,13 +6402,11 @@
       "device_key": "ti_sn74lvc2g66_dcur",
       "mpn": "Texas Instruments SN74LVC2G66DCUR",
       "kind": "dual_bilateral_spst_analog_switch",
-      "instance_count": 3,
+      "instance_count": 2,
       "projects": [
-        "LESHY2-RF",
         "LESHY2-UI"
       ],
       "sheets": [
-        "RF_32_SUBGHZ_VOICE",
         "UI_13_AUDIO_CODEC_HEADSET",
         "UI_21_FM_AM_RECEIVER"
       ],
@@ -6471,14 +6546,17 @@
       "device_key": "ti_tca9534a_pwr",
       "mpn": "TCA9534APWR",
       "kind": "tssop16_i2c_8bit_io_expander",
-      "instance_count": 1,
+      "instance_count": 2,
       "projects": [
+        "LESHY2-RF",
         "LESHY2-UI"
       ],
       "sheets": [
+        "RF_32_SUBGHZ_VOICE",
         "UI_13_AUDIO_CODEC_HEADSET"
       ],
       "roles": [
+        "TCA9534A UHF/VHF selector and deterministic reset straps",
         "dedicated 0x39 headset source controller and seven reserve I/O lines"
       ],
       "lifecycle": "active",
@@ -6633,7 +6711,7 @@
       "device_key": "ti_tlv1821_dckr",
       "mpn": "TLV1821DCKR",
       "kind": "sc70_5_single_open_drain_comparator",
-      "instance_count": 2,
+      "instance_count": 3,
       "projects": [
         "LESHY2-LORA-CAP-01",
         "LESHY2-RF"
@@ -6784,15 +6862,20 @@
       "device_key": "ti_tmux1136_dgsr",
       "mpn": "Texas Instruments TMUX1136DGSR",
       "kind": "dual_spdt_analog_switch",
-      "instance_count": 1,
+      "instance_count": 4,
       "projects": [
+        "LESHY2-RF",
         "LESHY2-UI"
       ],
       "sheets": [
+        "RF_32_SUBGHZ_VOICE",
         "UI_13_AUDIO_CODEC_HEADSET"
       ],
       "roles": [
-        "active differential speaker-path selector"
+        "active differential speaker-path selector",
+        "selected-module AFOUT and microphone multiplexer",
+        "selected-module PTT and AUDIO_ON multiplexer",
+        "selected-module UART multiplexer"
       ],
       "lifecycle": "active",
       "source": {
@@ -8385,7 +8468,7 @@
       "device_key": "yageo_rc0402fr_07100kl",
       "mpn": "Yageo RC0402FR-07100KL",
       "kind": "100kohm_1pct_0402_charger_ilim_bottom_resistor",
-      "instance_count": 38,
+      "instance_count": 40,
       "projects": [
         "LESHY2-RF",
         "LESHY2-UI"
@@ -8479,7 +8562,7 @@
       "device_key": "yageo_rc0402fr_0710kl",
       "mpn": "Yageo RC0402FR-0710KL",
       "kind": "10kohm_1pct_0402_main_feedback_bottom_resistor",
-      "instance_count": 194,
+      "instance_count": 205,
       "projects": [
         "LESHY2-LORA-CAP-01",
         "LESHY2-RF",
@@ -8888,7 +8971,7 @@
       "device_key": "yageo_rc0402fr_071ml",
       "mpn": "Yageo RC0402FR-071ML",
       "kind": "1megohm_1pct_0402_service_vbus_bleeder",
-      "instance_count": 11,
+      "instance_count": 12,
       "projects": [
         "LESHY2-RF",
         "LESHY2-UI"
@@ -9683,7 +9766,7 @@
       "device_key": "yageo_rc0402fr_0752r3l",
       "mpn": "Yageo RC0402FR-0752R3L",
       "kind": "52_3ohm_1pct_0402_rf_detector_shunt_match_resistor",
-      "instance_count": 5,
+      "instance_count": 6,
       "projects": [
         "LESHY2-LORA-CAP-01",
         "LESHY2-RF"
@@ -9770,7 +9853,7 @@
       "device_key": "yageo_rc0402fr_075k1l",
       "mpn": "Yageo RC0402FR-075K1L",
       "kind": "5_1kohm_1pct_0402_resistor",
-      "instance_count": 5,
+      "instance_count": 6,
       "projects": [
         "LESHY2-RF",
         "LESHY2-UI"
@@ -10206,13 +10289,13 @@
   ],
   "local_model_files": [],
   "summary": {
-    "registered_instances": 1048,
-    "used_device_types": 217,
-    "used_types_with_source": 217,
+    "registered_instances": 1081,
+    "used_device_types": 218,
+    "used_types_with_source": 218,
     "source_missing": 0,
     "official_h3_source_overrides": 2,
-    "used_types_with_structured_electrical_contract": 71,
-    "used_types_requiring_parameter_extraction": 146,
+    "used_types_with_structured_electrical_contract": 73,
+    "used_types_requiring_parameter_extraction": 145,
     "local_vendor_model_files": 0,
     "parameter_classes": {
       "analog_peripheral": 7,
@@ -10223,7 +10306,7 @@
       "passive_corner": 96,
       "power_safety_active": 11,
       "programmable_controller": 2,
-      "radio_rf": 12
+      "radio_rf": 13
     },
     "lifecycle_decisions": 1,
     "open_decisions": 0

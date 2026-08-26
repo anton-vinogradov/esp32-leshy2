@@ -2,7 +2,7 @@
 
 [Русский](audio-electrical-verification.ru.md) · [Home](../README.md) · [Schematics](schematics.md) · [Virtual verification](virtual-verification.md)
 
-H3.3.2 checks the complete analog chain: internal/headset microphone and RX → ES8311 → headset/speaker, plus calibrated codec-audio injection into SA518. This is a serial-part calculation; routed-board noise, acoustics and RF immunity remain H8 measurements.
+H3.3.2 checks the complete analog chain: internal/headset microphone and RX → ES8311 → headset/speaker, plus calibrated codec-audio injection into the selected SA818S-V or SA818S-U. This is a serial-part calculation; routed-board noise, acoustics and RF immunity remain H8 measurements.
 
 ## Capture and microphones
 
@@ -18,9 +18,9 @@ The jack is CTIA/AHJ mono dual-ear plus microphone, not a stereo codec. Even wit
 
 At the real `4 ohm −15% = 3.400 ohm` corner, the theoretical BTL ceiling is `1.587581 W`, below the speaker's 2-W rating. PAM8302A needs at most `576.453 mA`; the branch receives `625.000 mA`. Calculated junction at 85 C ambient is `99.679 C`, but the speaker itself is limited to a 50 C local environment, so playback is muted above that threshold while later H3.6 governs the remaining product. SD is not released until at least 10 ms after rail validity.
 
-## Codec audio into SA518
+## Codec audio into SA818S-V/U
 
-`Vishay CRCW0402160KFKED` with 2.2 kohm/10 nF produces `10.454…12.797 mVrms` against the published `10.000-mV target. Calibration only turns codec volume down; selecting audio never asserts PTT.
+`Vishay CRCW0402160KFKED` with 2.2 kohm/10 nF produces `10.454…12.797 mVrms` against the published `10.000-mV target for both SA818S variants. Calibration only turns codec volume down; selecting audio never asserts PTT.
 
 ## 3V3_MAIN cross-check
 

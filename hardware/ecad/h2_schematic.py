@@ -98,9 +98,9 @@ def sheet_for(instance: str, frame: str) -> str:
         "evidence_cmp_a", "evidence_cmp_a_bypass", "det_s3", "det_c5", "det_ir",
     }:
         return "UI_50_TX_SAFETY_EVIDENCE"
-    if instance.startswith(("nrf0_evidence_", "nrf1_evidence_", "nrf2_evidence_", "cc_evidence_", "voice_evidence_")) or instance.startswith("evidence_") or instance in {
+    if instance.startswith(("nrf0_evidence_", "nrf1_evidence_", "nrf2_evidence_", "cc_evidence_", "voice_evidence_", "voice_v_evidence_")) or instance.startswith("evidence_") or instance in {
         "evidence_cmp_b", "evidence_cmp_voice", "det_nrf0", "det_nrf1", "det_nrf2",
-        "det_cc", "det_voice", "any_tx_aon_pullup", "fault_assert_pullup",
+        "det_cc", "det_voice", "det_voice_v", "any_tx_aon_pullup", "fault_assert_pullup",
     }:
         return "RF_50_TX_SAFETY_EVIDENCE"
     if instance.startswith(("s3_detector_",)):

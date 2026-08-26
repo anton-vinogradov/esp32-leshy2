@@ -23,19 +23,19 @@
 | [`UI_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch) | точный ECAD | один FX8C plug, 80 отдельных физических контактов, 51 интерфейс, 20 `POWER_GROUND`, 7 `3V3_MAIN`, без резервов и NC |
 | [`UI_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch) | точный ECAD | 28 компонентов, два RF detector, физический optical IR sensor, четыре comparator-канала, два reset-sink, 18 интерфейсов и один NC |
 | [`UI_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-UI/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch) | точный ECAD | 11 физических test-площадок 1,0 мм на точных цепях; PCB copper без покупного MPN/BOM |
-| [`RF_00_ROOT`](../hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch) | точный ECAD | 12 заполненных дочерних листов, 149 межлистовых цепей и 351 явный pin/label; без stub и отложенных fixture labels |
+| [`RF_00_ROOT`](../hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch) | точный ECAD | 12 заполненных дочерних листов, 161 межлистовая цепь и 395 явных pins/labels; без stub и отложенных fixture labels |
 | [`RF_01_USB_PD_CHARGE`](../hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch) | точный ECAD | 52 компонента, 208 физических контактов корпусов, защищённый sink-only USB-PD, 2S/750-кГц NVDC-зарядка, 9 интерфейсов и 10 объяснённых NC |
 | [`RF_02_PACK_SAFETY_AON`](../hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch) | точный ECAD | 61 symbol, 198 физических контактов корпусов/интерфейсов, fail-closed допуск 2S pack, 14 интерфейсов и 6 объяснённых NC |
 | [`RF_03_MAIN_RAILS_DOMAIN_GATES`](../hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch) | точный ECAD | 69 компонентов, 186 физических контактов, независимые AON/main/accessory rails, eFuse и domain gates, 21 интерфей и 3 объяснённых NC |
 | [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch) | точный ECAD | 48 компонентов, все 81 контакта SC1512-A4, референсные regulator/clock, USB/recovery, 52 интерфейса и 13 объяснённых NC |
 | [`RF_31_NRF24_X3`](../hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch) | точный ECAD | 105 компонентов ledger плюс 3 границы заводских IPEX, 311 физических контактов, 3 независимых PIO SPI/RF-тракта, 33 интерфейса и 2 объяснённых NC |
-| [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch) | точный electrical ECAD | 116 компонентов, 363 физических контакта, независимые CC1101 data и SA518 voice power/control/RF-тракты, 32 интерфейса и 11 объяснённых NC; land-fit SA518 остаётся gate H5 |
+| [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch) | точный electrical ECAD | 143 компонента, 473 физических контакта, независимый CC1101 data-тракт и отдельные SA818S-U/V voice power/control/RF-тракты с аппаратным one-hot выбором, 40 интерфейсов и 20 объяснённых NC; solder/RF-fit обоих модулей остаётся gate H5 |
 | [`RF_34_U214_M5_EXT`](../hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch) | точный ECAD | 53 символа, 52 устанавливаемых компонента, 228 контактов, 27 интерфейсов, отдельные защищённые ветви U214 и нативного M5 Unit; сам U214 остаётся внешним изделием |
 | [`RF_35_REAR_CONTROLS`](../hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch) | точный ECAD | 7 устанавливаемых компонентов и 36 контактов: отдельные encoder A/B/push и PTT, локальная ESD-защита; серийная ручка остаётся внешней механической деталью |
 | [`RF_36_AUDIO_IO_AMP`](../hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch) | точный ECAD | 14 символов и 34 контакта: направленный вниз микрофон, reset-safe U-DFN amplifier и два независимых floating-BTL выхода к проводному динамику |
 | [`RF_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-RF/RF_40_INTERBOARD_M1.kicad_sch) | точный ECAD | один FX8C receptacle, 80 отдельных физических контактов, 51 интерфейс и построчное равенство UI-side M1 без резервов/NC |
-| [`RF_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch) | точный ECAD | 97 компонентов и 369 контактов: независимые RUN/KILL, POR, watchdog/latch/reset и TX-gates, пять физических RF detector, пять comparator-каналов, 74 интерфейса и 22 объяснённых NC |
-| [`RF_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch) | точный ECAD | 52 физических test-площадки 1,0 мм: recovery, USB VBUS sense, PD/EEPROM, watchdog/latch, safe gates, power-good, RF evidence, thermal и rail references; PCB copper без покупного MPN/BOM |
+| [`RF_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch) | точный ECAD | 113 компонентов и 421 контакт: независимые RUN/KILL, POR, watchdog/latch/reset и TX-gates, шесть физических RF detector, шесть comparator-каналов, 78 интерфейсов и 24 объяснённых NC |
+| [`RF_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch) | точный ECAD | 51 физическая test-площадка 1,0 мм: recovery, USB VBUS sense, PD/EEPROM, watchdog/latch, safe gates, power-good, RF evidence, thermal и rail references; PCB copper без покупного MPN/BOM |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
@@ -122,7 +122,7 @@ NRF0["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-рад�
 NRF1["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-радио №1"]
 NRF2["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-радио №2"]
 CC["CC1101RGPR<br/>многодиапазонный sub-GHz transceiver"]
-VOICE["NiceRF SA518<br/>аналоговый VHF/UHF voice transceiver"]
+VOICE["G-NiceRF SA818S-U<br/>аналоговый VHF/UHF voice transceiver"]
 U214_CONNECTOR["Samtec HLE-107-02-G-DV-PE-LC<br/>вертикальный 14-контактный host Cap-Bus на поднятой планке"]
 U214["M5Stack U214 Cap LoRa-1262<br/>съёмный LoRa/GNSS Cap-модуль"]
   RP <-->|"independent PIO0 SM0"| NRF0
@@ -196,7 +196,7 @@ flowchart TD
 S3["ESP32-S3-WROOM-1U-N16R8<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
 SLOW_IO["TCA6424ARGJR<br/>24-линейный slow-control expander"]
 RECEIVER["Si4732-A10-GSR<br/>приёмник FM/AM/SW/LW"]
-VOICE["NiceRF SA518<br/>аналоговый VHF/UHF voice transceiver"]
+VOICE["G-NiceRF SA818S-U<br/>аналоговый VHF/UHF voice transceiver"]
 MICROPHONE["Same Sky CMEJ-0413-42-SMT-TR<br/>внутренний электретный микрофон"]
 HEADSET_CONTROL_IO["TCA9534APWR<br/>выделенное управление гарнитурой и 7 резервных I/O"]
 HEADSET_MIC_SELECTOR["Texas Instruments TS5A63157DCKR<br/>выбор встроенного/гарнитурного микрофона"]
@@ -292,7 +292,7 @@ NRF2["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-рад�
 NRF2_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>независимый SMA порт nRF24 №2"]
 CC["CC1101RGPR<br/>многодиапазонный sub-GHz transceiver"]
 CC_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>многодиапазонный SMA порт sub-GHz"]
-VOICE["NiceRF SA518<br/>аналоговый VHF/UHF voice transceiver"]
+VOICE["G-NiceRF SA818S-U<br/>аналоговый VHF/UHF voice transceiver"]
 VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>SMA порт VHF/UHF voice"]
   S3 -->|"50 Ω"| S3_EXTERNAL_RP_SMA
   C5 -->|"50 Ω"| C5_EXTERNAL_RP_SMA

@@ -4,11 +4,11 @@
   "status": "reviewed_all_source_charge_discharge_and_steady_loss_envelopes",
   "method": "all 2,032 enumerated states; Decimal arithmetic; 85% minimum cascaded conversion factors; PF-02 pack current reserve",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF11-power-state-register.json": "055ad115d35e47639db0fc235314d46bc683a8dc046ec4054f93cbe20b704228",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "6dc167646883c397c92f91a051ee1565285fd81c0f540c49c16044b0e42d5f70",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "ee8a370e9cea1ccf51880099e8b0a7265e13c1c8868f6f47179c3174955ef7e9",
-    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
-    "hardware/ecad/generated/H2-REV51-power-paths.json": "ebeebe0ffa9a13aa9558f9cafa999af4761032b7d85c3ff7b9391ac913178398"
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "8cec33794f3230b7c1679ed9a40ba244e118a7899ba3aad551def7568378b7c7",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "268b349628b3bd8da9f99105e07af43a5f955a373fb6b86e8a008161fb8e5f13",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "13400b84266596a7bb9c6e0c04f8f4f67957801efe8f9dc9c5a6cb4c6a085126",
+    "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
+    "hardware/ecad/generated/H2-REV51-power-paths.json": "c4299077e86598d247215e12cd4bb23624273e371851e03fed33e402099aea91"
   },
   "contracts": {
     "minimum_conversion_efficiency": "0.850",
@@ -2005,11 +2005,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -2019,14 +2019,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "0.000",
       "usb_input_a": "0.000",
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "1.019",
+      "pack_discharge_a": "0.901",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -2061,11 +2061,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -2075,14 +2075,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "0.000",
       "usb_input_a": "0.000",
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "2.300",
+      "pack_discharge_a": "2.182",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -2117,11 +2117,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -2131,14 +2131,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "0.000",
       "usb_input_a": "0.000",
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "1.019",
+      "pack_discharge_a": "0.901",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -2173,11 +2173,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -2187,14 +2187,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "0.000",
       "usb_input_a": "0.000",
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "2.300",
+      "pack_discharge_a": "2.182",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -4917,11 +4917,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -4931,14 +4931,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "0.000",
       "usb_input_a": "0.000",
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "0.849",
+      "pack_discharge_a": "0.751",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -4973,11 +4973,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -4987,14 +4987,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "0.000",
       "usb_input_a": "0.000",
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "1.917",
+      "pack_discharge_a": "1.818",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -5029,11 +5029,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -5043,14 +5043,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "0.000",
       "usb_input_a": "0.000",
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "0.849",
+      "pack_discharge_a": "0.751",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -5085,11 +5085,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -5099,14 +5099,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "0.000",
       "usb_input_a": "0.000",
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "1.917",
+      "pack_discharge_a": "1.818",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -7829,11 +7829,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -7843,14 +7843,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "0.000",
       "usb_input_a": "0.000",
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "0.728",
+      "pack_discharge_a": "0.644",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -7885,11 +7885,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -7899,14 +7899,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "0.000",
       "usb_input_a": "0.000",
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "1.643",
+      "pack_discharge_a": "1.559",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -7941,11 +7941,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -7955,14 +7955,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "0.000",
       "usb_input_a": "0.000",
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "0.728",
+      "pack_discharge_a": "0.644",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -7997,11 +7997,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -8011,14 +8011,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "0.000",
       "usb_input_a": "0.000",
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "1.643",
+      "pack_discharge_a": "1.559",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -10853,11 +10853,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -10867,14 +10867,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "1.019",
+      "pack_discharge_a": "0.901",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -10909,11 +10909,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -10923,14 +10923,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "2.300",
+      "pack_discharge_a": "2.182",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -10965,11 +10965,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -10979,14 +10979,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "1.019",
+      "pack_discharge_a": "0.901",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -11021,11 +11021,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -11035,14 +11035,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "2.300",
+      "pack_discharge_a": "2.182",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -13765,11 +13765,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -13779,14 +13779,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "1.019",
+      "pack_discharge_a": "0.901",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -13821,11 +13821,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -13835,14 +13835,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "2.300",
+      "pack_discharge_a": "2.182",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -13877,11 +13877,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -13891,14 +13891,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "1.019",
+      "pack_discharge_a": "0.901",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -13933,11 +13933,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -13947,14 +13947,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "2.300",
+      "pack_discharge_a": "2.182",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -16677,11 +16677,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -16691,14 +16691,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "0.849",
+      "pack_discharge_a": "0.751",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -16733,11 +16733,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -16747,14 +16747,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "1.917",
+      "pack_discharge_a": "1.818",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -16789,11 +16789,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -16803,14 +16803,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "0.849",
+      "pack_discharge_a": "0.751",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -16845,11 +16845,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -16859,14 +16859,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "1.917",
+      "pack_discharge_a": "1.818",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -19589,11 +19589,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -19603,14 +19603,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "0.849",
+      "pack_discharge_a": "0.751",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -19645,11 +19645,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -19659,14 +19659,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "1.917",
+      "pack_discharge_a": "1.818",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -19701,11 +19701,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -19715,14 +19715,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "0.849",
+      "pack_discharge_a": "0.751",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -19757,11 +19757,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -19771,14 +19771,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "1.917",
+      "pack_discharge_a": "1.818",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -22501,11 +22501,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -22515,14 +22515,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "0.728",
+      "pack_discharge_a": "0.644",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -22557,11 +22557,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -22571,14 +22571,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "1.643",
+      "pack_discharge_a": "1.559",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -22613,11 +22613,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -22627,14 +22627,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "0.728",
+      "pack_discharge_a": "0.644",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -22669,11 +22669,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -22683,14 +22683,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "1.643",
+      "pack_discharge_a": "1.559",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -25413,11 +25413,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -25427,14 +25427,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "0.728",
+      "pack_discharge_a": "0.644",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -25469,11 +25469,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -25483,14 +25483,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "1.643",
+      "pack_discharge_a": "1.559",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -25525,11 +25525,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -25539,14 +25539,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "0.728",
+      "pack_discharge_a": "0.644",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -25581,11 +25581,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -25595,14 +25595,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": null,
       "usb_input_a": null,
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "1.643",
+      "pack_discharge_a": "1.559",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -28325,11 +28325,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -28339,12 +28339,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
-      "usb_input_a": "1.438",
+      "usb_input_a": "1.272",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -28381,11 +28381,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -28395,10 +28395,10 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": null,
@@ -28437,11 +28437,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -28451,12 +28451,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
-      "usb_input_a": "1.438",
+      "usb_input_a": "1.272",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -28493,11 +28493,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -28507,10 +28507,10 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": null,
@@ -31237,11 +31237,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -31251,12 +31251,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
-      "usb_input_a": "1.438",
+      "usb_input_a": "1.272",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -31293,11 +31293,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -31307,10 +31307,10 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": null,
@@ -31349,11 +31349,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -31363,12 +31363,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
-      "usb_input_a": "1.438",
+      "usb_input_a": "1.272",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -31405,11 +31405,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -31419,10 +31419,10 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": null,
@@ -34149,11 +34149,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -34163,12 +34163,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
-      "usb_input_a": "1.438",
+      "usb_input_a": "1.272",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -34205,11 +34205,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -34219,14 +34219,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "0.175",
+      "pack_discharge_a": "0.057",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -34261,11 +34261,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -34275,12 +34275,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
-      "usb_input_a": "1.438",
+      "usb_input_a": "1.272",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -34317,11 +34317,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -34331,14 +34331,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "0.175",
+      "pack_discharge_a": "0.057",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -37061,11 +37061,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -37075,12 +37075,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
-      "usb_input_a": "2.850",
+      "usb_input_a": "2.684",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -37117,11 +37117,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -37131,14 +37131,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "0.175",
+      "pack_discharge_a": "0.057",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "1.000",
       "actual_charge_a": "0.000",
@@ -37173,11 +37173,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -37187,12 +37187,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
-      "usb_input_a": "2.850",
+      "usb_input_a": "2.684",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -37229,11 +37229,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -37243,14 +37243,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "0.175",
+      "pack_discharge_a": "0.057",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "1.000",
       "actual_charge_a": "0.000",
@@ -39973,11 +39973,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -39987,17 +39987,17 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
-      "actual_charge_a": "1.106",
+      "actual_charge_a": "1.224",
       "charge_derated": true,
       "admission": "admitted",
       "required_action": "charge_derated_by_dpm_headroom",
@@ -40029,11 +40029,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -40043,14 +40043,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "0.175",
+      "pack_discharge_a": "0.057",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
       "actual_charge_a": "0.000",
@@ -40085,11 +40085,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -40099,17 +40099,17 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
-      "actual_charge_a": "1.106",
+      "actual_charge_a": "1.224",
       "charge_derated": true,
       "admission": "admitted",
       "required_action": "charge_derated_by_dpm_headroom",
@@ -40141,11 +40141,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -40155,14 +40155,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "6.000",
-      "pack_discharge_a": "0.175",
+      "pack_discharge_a": "0.057",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
       "actual_charge_a": "0.000",
@@ -42885,11 +42885,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -42899,12 +42899,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
-      "usb_input_a": "1.438",
+      "usb_input_a": "1.272",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -42941,11 +42941,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -42955,14 +42955,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "0.146",
+      "pack_discharge_a": "0.048",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -42997,11 +42997,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -43011,12 +43011,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
-      "usb_input_a": "1.438",
+      "usb_input_a": "1.272",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -43053,11 +43053,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -43067,14 +43067,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "0.146",
+      "pack_discharge_a": "0.048",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -45797,11 +45797,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -45811,20 +45811,20 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
-      "usb_input_a": "3.000",
+      "usb_input_a": "2.966",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "1.000",
-      "actual_charge_a": "0.922",
-      "charge_derated": true,
+      "actual_charge_a": "1.000",
+      "charge_derated": false,
       "admission": "admitted",
-      "required_action": "charge_derated_by_dpm_headroom",
+      "required_action": "charge_as_requested",
       "status": "pass"
     },
     {
@@ -45853,11 +45853,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -45867,14 +45867,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "0.146",
+      "pack_discharge_a": "0.048",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "1.000",
       "actual_charge_a": "0.000",
@@ -45909,11 +45909,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -45923,20 +45923,20 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
-      "usb_input_a": "3.000",
+      "usb_input_a": "2.966",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "1.000",
-      "actual_charge_a": "0.922",
-      "charge_derated": true,
+      "actual_charge_a": "1.000",
+      "charge_derated": false,
       "admission": "admitted",
-      "required_action": "charge_derated_by_dpm_headroom",
+      "required_action": "charge_as_requested",
       "status": "pass"
     },
     {
@@ -45965,11 +45965,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -45979,14 +45979,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "0.146",
+      "pack_discharge_a": "0.048",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "1.000",
       "actual_charge_a": "0.000",
@@ -48709,11 +48709,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -48723,17 +48723,17 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
-      "actual_charge_a": "0.922",
+      "actual_charge_a": "1.020",
       "charge_derated": true,
       "admission": "admitted",
       "required_action": "charge_derated_by_dpm_headroom",
@@ -48765,11 +48765,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -48779,14 +48779,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "0.146",
+      "pack_discharge_a": "0.048",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
       "actual_charge_a": "0.000",
@@ -48821,11 +48821,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -48835,17 +48835,17 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
-      "actual_charge_a": "0.922",
+      "actual_charge_a": "1.020",
       "charge_derated": true,
       "admission": "admitted",
       "required_action": "charge_derated_by_dpm_headroom",
@@ -48877,11 +48877,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -48891,14 +48891,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "7.200",
-      "pack_discharge_a": "0.146",
+      "pack_discharge_a": "0.048",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
       "actual_charge_a": "0.000",
@@ -51621,11 +51621,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -51635,12 +51635,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
-      "usb_input_a": "1.438",
+      "usb_input_a": "1.272",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -51677,11 +51677,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -51691,14 +51691,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "0.125",
+      "pack_discharge_a": "0.041",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -51733,11 +51733,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -51747,12 +51747,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
-      "usb_input_a": "1.438",
+      "usb_input_a": "1.272",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -51789,11 +51789,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -51803,14 +51803,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "0.125",
+      "pack_discharge_a": "0.041",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "0.000",
       "actual_charge_a": "0.000",
@@ -54533,11 +54533,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -54547,17 +54547,17 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "1.000",
-      "actual_charge_a": "0.790",
+      "actual_charge_a": "0.874",
       "charge_derated": true,
       "admission": "admitted",
       "required_action": "charge_derated_by_dpm_headroom",
@@ -54589,11 +54589,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -54603,14 +54603,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "0.125",
+      "pack_discharge_a": "0.041",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "1.000",
       "actual_charge_a": "0.000",
@@ -54645,11 +54645,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -54659,17 +54659,17 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "1.000",
-      "actual_charge_a": "0.790",
+      "actual_charge_a": "0.874",
       "charge_derated": true,
       "admission": "admitted",
       "required_action": "charge_derated_by_dpm_headroom",
@@ -54701,11 +54701,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -54715,14 +54715,14 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "12.750",
       "usb_input_a": "3.000",
       "pack_voltage_v": "8.400",
-      "pack_discharge_a": "0.125",
+      "pack_discharge_a": "0.041",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "1.000",
       "actual_charge_a": "0.000",
@@ -57445,11 +57445,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -57459,12 +57459,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "0.799",
+      "usb_input_a": "0.707",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -57501,11 +57501,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -57515,12 +57515,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.804",
+      "usb_input_a": "1.712",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -57557,11 +57557,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -57571,12 +57571,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "0.799",
+      "usb_input_a": "0.707",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -57613,11 +57613,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -57627,12 +57627,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.804",
+      "usb_input_a": "1.712",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -60357,11 +60357,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -60371,12 +60371,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "0.799",
+      "usb_input_a": "0.707",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -60413,11 +60413,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -60427,12 +60427,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.804",
+      "usb_input_a": "1.712",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -60469,11 +60469,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -60483,12 +60483,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "0.799",
+      "usb_input_a": "0.707",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -60525,11 +60525,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -60539,12 +60539,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.804",
+      "usb_input_a": "1.712",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -63269,11 +63269,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -63283,12 +63283,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "0.799",
+      "usb_input_a": "0.707",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -63325,11 +63325,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -63339,12 +63339,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.804",
+      "usb_input_a": "1.712",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -63381,11 +63381,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -63395,12 +63395,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "0.799",
+      "usb_input_a": "0.707",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -63437,11 +63437,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -63451,12 +63451,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.804",
+      "usb_input_a": "1.712",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -66181,11 +66181,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -66195,12 +66195,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.583",
+      "usb_input_a": "1.491",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -66237,11 +66237,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -66251,12 +66251,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "2.588",
+      "usb_input_a": "2.496",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -66293,11 +66293,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -66307,12 +66307,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.583",
+      "usb_input_a": "1.491",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -66349,11 +66349,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -66363,12 +66363,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "2.588",
+      "usb_input_a": "2.496",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -69093,11 +69093,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -69107,12 +69107,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "2.368",
+      "usb_input_a": "2.275",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -69149,11 +69149,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -69163,17 +69163,17 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
       "usb_input_a": "3.000",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
-      "actual_charge_a": "1.525",
+      "actual_charge_a": "1.643",
       "charge_derated": true,
       "admission": "admitted",
       "required_action": "charge_derated_by_dpm_headroom",
@@ -69205,11 +69205,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -69219,12 +69219,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "2.368",
+      "usb_input_a": "2.275",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -69261,11 +69261,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -69275,17 +69275,17 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
       "usb_input_a": "3.000",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
-      "actual_charge_a": "1.525",
+      "actual_charge_a": "1.643",
       "charge_derated": true,
       "admission": "admitted",
       "required_action": "charge_derated_by_dpm_headroom",
@@ -72005,11 +72005,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -72019,12 +72019,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "0.799",
+      "usb_input_a": "0.707",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -72061,11 +72061,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -72075,12 +72075,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.804",
+      "usb_input_a": "1.712",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -72117,11 +72117,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -72131,12 +72131,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "0.799",
+      "usb_input_a": "0.707",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -72173,11 +72173,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -72187,12 +72187,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.804",
+      "usb_input_a": "1.712",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -74917,11 +74917,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -74931,12 +74931,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.740",
+      "usb_input_a": "1.648",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -74973,11 +74973,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -74987,12 +74987,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "2.745",
+      "usb_input_a": "2.653",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -75029,11 +75029,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -75043,12 +75043,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.740",
+      "usb_input_a": "1.648",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -75085,11 +75085,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -75099,12 +75099,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "2.745",
+      "usb_input_a": "2.653",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -77829,11 +77829,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -77843,12 +77843,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "2.681",
+      "usb_input_a": "2.589",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -77885,11 +77885,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -77899,17 +77899,17 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
       "usb_input_a": "3.000",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
-      "actual_charge_a": "1.271",
+      "actual_charge_a": "1.369",
       "charge_derated": true,
       "admission": "admitted",
       "required_action": "charge_derated_by_dpm_headroom",
@@ -77941,11 +77941,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -77955,12 +77955,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "2.681",
+      "usb_input_a": "2.589",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -77997,11 +77997,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -78011,17 +78011,17 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
       "usb_input_a": "3.000",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
-      "actual_charge_a": "1.271",
+      "actual_charge_a": "1.369",
       "charge_derated": true,
       "admission": "admitted",
       "required_action": "charge_derated_by_dpm_headroom",
@@ -80741,11 +80741,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -80755,12 +80755,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "0.799",
+      "usb_input_a": "0.707",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -80797,11 +80797,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -80811,12 +80811,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.804",
+      "usb_input_a": "1.712",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -80853,11 +80853,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -80867,12 +80867,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "0.799",
+      "usb_input_a": "0.707",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -80909,11 +80909,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -80923,12 +80923,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.804",
+      "usb_input_a": "1.712",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -83653,11 +83653,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -83667,12 +83667,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.897",
+      "usb_input_a": "1.805",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -83709,11 +83709,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -83723,12 +83723,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "2.902",
+      "usb_input_a": "2.810",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -83765,11 +83765,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -83779,12 +83779,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "1.897",
+      "usb_input_a": "1.805",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -83821,11 +83821,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -83835,12 +83835,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "22.950",
-      "usb_input_a": "2.902",
+      "usb_input_a": "2.810",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -86565,11 +86565,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -86579,12 +86579,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "0.479",
+      "usb_input_a": "0.424",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -86621,11 +86621,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -86635,12 +86635,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.082",
+      "usb_input_a": "1.027",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -86677,11 +86677,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -86691,12 +86691,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "0.479",
+      "usb_input_a": "0.424",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -86733,11 +86733,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -86747,12 +86747,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.082",
+      "usb_input_a": "1.027",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -89477,11 +89477,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -89491,12 +89491,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "0.479",
+      "usb_input_a": "0.424",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -89533,11 +89533,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -89547,12 +89547,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.082",
+      "usb_input_a": "1.027",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -89589,11 +89589,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -89603,12 +89603,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "0.479",
+      "usb_input_a": "0.424",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -89645,11 +89645,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -89659,12 +89659,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.082",
+      "usb_input_a": "1.027",
       "pack_voltage_v": null,
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -92389,11 +92389,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -92403,12 +92403,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "0.479",
+      "usb_input_a": "0.424",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -92445,11 +92445,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -92459,12 +92459,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.082",
+      "usb_input_a": "1.027",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -92501,11 +92501,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -92515,12 +92515,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "0.479",
+      "usb_input_a": "0.424",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -92557,11 +92557,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -92571,12 +92571,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.082",
+      "usb_input_a": "1.027",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -95301,11 +95301,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -95315,12 +95315,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "0.950",
+      "usb_input_a": "0.895",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -95357,11 +95357,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -95371,12 +95371,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.553",
+      "usb_input_a": "1.497",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -95413,11 +95413,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -95427,12 +95427,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "0.950",
+      "usb_input_a": "0.895",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -95469,11 +95469,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -95483,12 +95483,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.553",
+      "usb_input_a": "1.497",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -98213,11 +98213,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -98227,12 +98227,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.421",
+      "usb_input_a": "1.365",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -98269,11 +98269,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -98283,20 +98283,20 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "2.000",
+      "usb_input_a": "1.968",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
-      "actual_charge_a": "1.950",
-      "charge_derated": true,
+      "actual_charge_a": "2.000",
+      "charge_derated": false,
       "admission": "admitted",
-      "required_action": "charge_derated_by_dpm_headroom",
+      "required_action": "charge_as_requested",
       "status": "pass"
     },
     {
@@ -98325,11 +98325,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -98339,12 +98339,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.421",
+      "usb_input_a": "1.365",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -98381,11 +98381,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -98395,20 +98395,20 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "2.000",
+      "usb_input_a": "1.968",
       "pack_voltage_v": "6.000",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
-      "actual_charge_a": "1.950",
-      "charge_derated": true,
+      "actual_charge_a": "2.000",
+      "charge_derated": false,
       "admission": "admitted",
-      "required_action": "charge_derated_by_dpm_headroom",
+      "required_action": "charge_as_requested",
       "status": "pass"
     },
     {
@@ -101125,11 +101125,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -101139,12 +101139,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "0.479",
+      "usb_input_a": "0.424",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -101181,11 +101181,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -101195,12 +101195,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.082",
+      "usb_input_a": "1.027",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -101237,11 +101237,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -101251,12 +101251,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "0.479",
+      "usb_input_a": "0.424",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -101293,11 +101293,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -101307,12 +101307,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.082",
+      "usb_input_a": "1.027",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -104037,11 +104037,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -104051,12 +104051,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.044",
+      "usb_input_a": "0.989",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -104093,11 +104093,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -104107,12 +104107,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.647",
+      "usb_input_a": "1.592",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -104149,11 +104149,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -104163,12 +104163,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.044",
+      "usb_input_a": "0.989",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -104205,11 +104205,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -104219,12 +104219,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.647",
+      "usb_input_a": "1.592",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -106949,11 +106949,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -106963,12 +106963,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.609",
+      "usb_input_a": "1.553",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -107005,11 +107005,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -107019,17 +107019,17 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
       "usb_input_a": "2.000",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
-      "actual_charge_a": "1.625",
+      "actual_charge_a": "1.723",
       "charge_derated": true,
       "admission": "admitted",
       "required_action": "charge_derated_by_dpm_headroom",
@@ -107061,11 +107061,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -107075,12 +107075,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.609",
+      "usb_input_a": "1.553",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -107117,11 +107117,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -107131,17 +107131,17 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
       "usb_input_a": "2.000",
       "pack_voltage_v": "7.200",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
       "requested_charge_a": "2.000",
-      "actual_charge_a": "1.625",
+      "actual_charge_a": "1.723",
       "charge_derated": true,
       "admission": "admitted",
       "required_action": "charge_derated_by_dpm_headroom",
@@ -109861,11 +109861,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -109875,12 +109875,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "0.479",
+      "usb_input_a": "0.424",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -109917,11 +109917,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -109931,12 +109931,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.082",
+      "usb_input_a": "1.027",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -109973,11 +109973,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -109987,12 +109987,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "0.479",
+      "usb_input_a": "0.424",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -110029,11 +110029,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -110043,12 +110043,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.082",
+      "usb_input_a": "1.027",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -112773,11 +112773,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -112787,12 +112787,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.138",
+      "usb_input_a": "1.083",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -112829,11 +112829,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -112843,12 +112843,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.741",
+      "usb_input_a": "1.686",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -112885,11 +112885,11 @@
           "efuse_loss_w": "0.009"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -112899,12 +112899,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "5.195",
-      "rail_conversion_loss_w": "0.917",
-      "efuse_conduction_loss_w": "0.051",
-      "sys_demand_w": "6.112",
+      "rail_output_w": "4.595",
+      "rail_conversion_loss_w": "0.811",
+      "efuse_conduction_loss_w": "0.038",
+      "sys_demand_w": "5.406",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.138",
+      "usb_input_a": "1.083",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -112941,11 +112941,11 @@
           "efuse_loss_w": "0.298"
         },
         "VVOICE_4V": {
-          "load_ma": "900.000",
-          "output_w": "3.600",
-          "input_from_sys_w": "4.235",
-          "conversion_loss_w": "0.635",
-          "efuse_loss_w": "0.040"
+          "load_ma": "750.000",
+          "output_w": "3.000",
+          "input_from_sys_w": "3.529",
+          "conversion_loss_w": "0.529",
+          "efuse_loss_w": "0.028"
         },
         "5V_EXT_ACTIVE_BRANCH": {
           "load_ma": "0.000",
@@ -112955,12 +112955,12 @@
           "efuse_loss_w": "0.000"
         }
       },
-      "rail_output_w": "11.729",
-      "rail_conversion_loss_w": "2.070",
-      "efuse_conduction_loss_w": "0.340",
-      "sys_demand_w": "13.799",
+      "rail_output_w": "11.129",
+      "rail_conversion_loss_w": "1.964",
+      "efuse_conduction_loss_w": "0.328",
+      "sys_demand_w": "13.093",
       "usb_usable_sys_w": "25.500",
-      "usb_input_a": "1.741",
+      "usb_input_a": "1.686",
       "pack_voltage_v": "8.400",
       "pack_discharge_a": "0.000",
       "pack_pf02_limit_a": "8.000",
@@ -113908,7 +113908,7 @@
     "failed_states": 0,
     "unresolved_numeric_inputs": 0,
     "source_limited_profiles_explicitly_refused": 14,
-    "charge_states_derated_by_dpm": 258,
+    "charge_states_derated_by_dpm": 254,
     "admission_counts": {
       "admitted": 2014,
       "diagnostic_only_pending_source_current": 2,
@@ -113916,8 +113916,8 @@
       "run_profile_not_admitted_on_this_source": 14
     },
     "action_counts": {
-      "charge_as_requested": 522,
-      "charge_derated_by_dpm_headroom": 223,
+      "charge_as_requested": 526,
+      "charge_derated_by_dpm_headroom": 219,
       "hold_run_off": 2,
       "none": 747,
       "pack_supplements_usb": 56,

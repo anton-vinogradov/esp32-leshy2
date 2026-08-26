@@ -3,9 +3,9 @@
   "stage": "H3.5.1",
   "status": "reviewed_rf_feed_connector_matching_and_loss_constraints",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
-    "hardware/architecture/devices.json": "b7c9e0a591613e05e2b39fd315e301f6e628464b8cc1e46d983fc67b05204424",
-    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "08ad0235e407d6273934cbe38a001fb382d08a328e8ecf8ba3b0906e352e7a0e"
+    "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
+    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "1e2ee3a577606eeecee19090f57790753a954baaab737cbc5c463cefa147c3e7"
   },
   "provenance": {
     "s3_module": "https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
@@ -24,10 +24,10 @@
     "receiver_guidance": "https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/application-notes/AN383.pdf"
   },
   "summary": {
-    "external_ports": 9,
-    "tx_capable_paths": 7,
+    "external_ports": 10,
+    "tx_capable_paths": 8,
     "receive_only_paths": 2,
-    "generic_50_ohm_paths": 7,
+    "generic_50_ohm_paths": 8,
     "matched_or_special_receive_paths": 2
   },
   "path_constraints": [
@@ -126,14 +126,32 @@
       "rule": "315/433 switch loss and all branch matching remain VNA/conducted gates; first-pass values are not accepted as a paper match"
     },
     {
-      "id": "VOICE-V/U",
+      "id": "VOICE-VHF",
       "mode": "50_ohm_tx_rx",
       "band_mhz": [
-        136,
+        134,
+        174
+      ],
+      "connector": "RFPC-SMA31-FN-175-A SMA",
+      "source": "SA818S-V ANT contact 12",
+      "ideal_0p17pf_esd_loss_db_at_480mhz_upper_bound": "0.000713",
+      "complete_feed_loss_target_db_max": "0.750",
+      "return_loss_target_db_min": "10.000"
+    },
+    {
+      "id": "VOICE-UHF",
+      "mode": "50_ohm_tx_rx",
+      "band_mhz": [
+        400,
+        480
+      ],
+      "qualified_alternate_band_mhz": [
+        400,
         470
       ],
       "connector": "RFPC-SMA31-FN-175-A SMA",
-      "ideal_0p17pf_esd_loss_db_at_470mhz": "0.000684",
+      "source": "SA818S-U ANT contact 12; SA818S-CE only after qualification",
+      "ideal_0p17pf_esd_loss_db_at_480mhz": "0.000713",
       "complete_feed_loss_target_db_max": "0.750",
       "return_loss_target_db_min": "10.000"
     },
@@ -169,12 +187,12 @@
     "complete_feed_return_loss_db_min": "10.000 for every generic 50-ohm TX/RX path at every admitted band edge",
     "measurement_rule": "loss, return loss and regional EIRP use the complete assembled feed; component maxima are bounds, not substitutes for VNA/HIL",
     "connector_rule": "S3/C5 use RP-SMA; nRF/CC/voice/receiver use standard SMA; permanent band labels remain mandatory",
-    "matching_rule": "reserve tuneable 0402 positions where a discrete match exists; do not add an unproven match to module-native 50-ohm S3/C5/nRF/SA518 paths"
+    "matching_rule": "reserve tuneable 0402 positions where a discrete match exists; do not add an unproven match to module-native 50-ohm S3/C5/nRF/SA818S paths"
   },
   "derived": {
     "c5_connector_frequency_margin_ghz": "0.115",
     "cc_known_868_915_loss_db_before_passives_trace_connector": "1.840",
-    "voice_ideal_esd_loss_db_at_470mhz": "0.000684",
+    "voice_ideal_esd_loss_db_at_480mhz": "0.000713",
     "amlw_total_capacitance_pf_max_at_1710khz_315uh": "27.500",
     "amlw_external_capacitance_pf_max_after_8pf_input": "19.500",
     "amlw_remaining_pf_after_0p25pf_esd": "19.250"
@@ -191,6 +209,7 @@
     "exact_nrf2_external_sma": true,
     "exact_cc_external_sma": true,
     "exact_voice_external_sma": true,
+    "exact_voice_v_external_sma": true,
     "exact_s3_rf_jumper": true,
     "exact_c5_rf_jumper": true,
     "exact_nrf0_rf_jumper": true,
@@ -211,6 +230,7 @@
     "exact_cc_switch_a": true,
     "exact_cc_switch_b": true,
     "exact_voice": true,
+    "exact_voice_v": true,
     "exact_receiver": true,
     "route_s3_module_to_jumper": true,
     "route_s3_jumper_to_board": true,
@@ -221,7 +241,8 @@
     "route_cc_to_balun_p": true,
     "route_cc_to_balun_n": true,
     "route_cc_selected_to_sma": true,
-    "route_voice_direct_to_sma": true,
+    "route_voice_u_direct_to_sma": true,
+    "route_voice_v_direct_to_sma": true,
     "route_fmsw_to_match": true,
     "route_amlw_to_coupling": true,
     "route_nrf0_module_to_jumper": true,
@@ -234,9 +255,9 @@
     "route_nrf2_jumper_to_board": true,
     "route_nrf2_coupler_to_sma": true,
     "h34_digital_phase_is_reviewed": true,
-    "antenna_policy_has_exactly_nine_onboard_ports": true,
-    "all_nine_paths_are_instantiated_once": true,
-    "seven_tx_capable_and_two_receive_only_paths": true,
+    "antenna_policy_has_exactly_ten_onboard_ports": true,
+    "all_ten_paths_are_instantiated_once": true,
+    "eight_tx_capable_and_two_receive_only_paths": true,
     "every_external_connector_is_50_ohm_and_6ghz": true,
     "c5_top_band_fits_connector_with_115mhz_margin": true,
     "jumper_and_board_receptacle_cover_c5_top_band": true,
@@ -259,14 +280,14 @@
     "measure S3/C5 complete-feed insertion and return loss at every channel edge, including both microcoax transitions and the selected stackup launch",
     "measure all three E01 module-to-SMA feeds and received-lot Gen1 mating/retention independently",
     "VNA-tune CC1101 differential-to-single-ended match and every 315/433/868/915 branch; prove output, sensitivity, harmonics and switch loss",
-    "measure SA518 VHF/UHF feed insertion/return loss, output power and harmonics at both power settings",
+    "measure the independent SA818S-V and SA818S-U feed insertion/return loss, output power and harmonics at both power settings; repeat UHF for SA818S-CE before enabling that alternate",
     "qualify Si4732 FMI FM and SW sensitivity/overload with the complete external whip and first-pass 56-nH/1-nF network",
     "measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod",
     "derate every allowed TX power/EIRP table by measured complete-feed loss and selected antenna gain before regional profile release",
     "use impedance coupons and de-embedded SMA/U.FL fixtures for H6/H8 acceptance; nominal field-solver values alone cannot close a feed"
   ],
   "review_summary": {
-    "checks": 72,
+    "checks": 75,
     "failed": 0,
     "unresolved": 0,
     "status": "reviewed"

@@ -190,7 +190,7 @@
       {
         "instance": "voice_tx_led",
         "mpn": "LTST-C190KRKT",
-        "silkscreen": "VHF/UHF",
+        "silkscreen": "V/U TX",
         "position_mm": [
           20.9,
           111.0
@@ -591,7 +591,7 @@
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 13.5
+        "x_center_mm": 7.5
       },
       {
         "path": "CC-SUB",
@@ -600,7 +600,7 @@
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 25.5
+        "x_center_mm": 19.5
       },
       {
         "path": "N24-1",
@@ -610,16 +610,27 @@
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 37.5
+        "x_center_mm": 31.5
       },
       {
-        "path": "VOICE-V/U",
+        "path": "VOICE-VHF",
         "user_label": [
-          "VHF/UHF"
+          "VHF VOICE",
+          "134-174 MHz"
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 49.5
+        "x_center_mm": 43.5
+      },
+      {
+        "path": "VOICE-UHF",
+        "user_label": [
+          "UHF VOICE",
+          "400-480 MHz"
+        ],
+        "connector_type": "SMA",
+        "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
+        "x_center_mm": 55.5
       },
       {
         "path": "N24-2",
@@ -629,7 +640,7 @@
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 61.5
+        "x_center_mm": 67.5
       }
     ],
     "u214": {

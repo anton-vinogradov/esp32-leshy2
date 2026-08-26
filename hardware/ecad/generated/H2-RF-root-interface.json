@@ -5,19 +5,19 @@
   "project": "LESHY2-RF",
   "root_sheet": "RF_00_ROOT",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
-    "hardware/ecad/generated/H2-instance-ledger.json": "1c06ac58503e62b22c6fea1b084d297b85e1190547e305187969a414418223c2",
-    "hardware/ecad/H2-sheet-contract.json": "a37128516052981f243fdca14134bbb5e68def8af75aea709c504eeb52f18ec3"
+    "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
+    "hardware/ecad/generated/H2-instance-ledger.json": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
+    "hardware/ecad/H2-sheet-contract.json": "dedde349ad7ad53440ee33244f7f4189078819e61b3f15d3d161261853e74c78"
   },
   "summary": {
     "child_sheet_count": 12,
-    "cross_sheet_net_count": 159,
-    "root_hierarchical_pin_count": 388,
-    "child_hierarchical_label_count": 388,
+    "cross_sheet_net_count": 161,
+    "root_hierarchical_pin_count": 395,
+    "child_hierarchical_label_count": 395,
     "known_child_stub_erc_violations": 0,
     "implemented_child_sheet_count": 12,
-    "circuit_symbols_placed": 690,
-    "suppressed_generated_library_copy_checks": 690,
+    "circuit_symbols_placed": 722,
+    "suppressed_generated_library_copy_checks": 722,
     "known_deferred_fixture_erc_violations": 0,
     "pcb_files_created": 0
   },
@@ -189,7 +189,7 @@
     },
     {
       "id": "RF_32_SUBGHZ_VOICE",
-      "interface_count": 35,
+      "interface_count": 40,
       "interfaces": [
         "3V3_MAIN",
         "AON_SAFE_3V3",
@@ -211,8 +211,11 @@
         "NVDC_SYS",
         "POWER_FAULT_N",
         "POWER_GROUND",
-        "RX_SA518_AFOUT_ISOLATED",
+        "RX_VOICE_AFOUT_SELECTED",
         "SAFETY_GROUND",
+        "SYS_I2C_SCL",
+        "SYS_I2C_SDA",
+        "SYS_INT_N",
         "VOICE_AUDIO_ON_N",
         "VOICE_DETECT_FILTER",
         "VOICE_DETECT_V",
@@ -222,10 +225,12 @@
         "VOICE_MIC_SELECTED_MAIN",
         "VOICE_PTT_SAFE_N",
         "VOICE_RAW_4V_PG_N",
-        "VOICE_RF_SAMPLE",
         "VOICE_UART_RX",
         "VOICE_UART_TX",
-        "VOICE_UPDATE_FIXTURE"
+        "VOICE_U_RF_SAMPLE",
+        "VOICE_V_DETECT_FILTER",
+        "VOICE_V_DETECT_V",
+        "VOICE_V_RF_SAMPLE"
       ]
     },
     {
@@ -315,7 +320,7 @@
         "POWER_GROUND",
         "RP_ALERT_N",
         "RUN_PERMIT",
-        "RX_SA518_AFOUT_ISOLATED",
+        "RX_VOICE_AFOUT_SELECTED",
         "S3_RESET_KILL_GATE",
         "S3_RP_IPC_CS_N",
         "S3_RP_IPC_MISO",
@@ -345,7 +350,7 @@
     },
     {
       "id": "RF_50_TX_SAFETY_EVIDENCE",
-      "interface_count": 75,
+      "interface_count": 78,
       "interfaces": [
         "3V3_MAIN",
         "ANY_TX_AON_N",
@@ -421,12 +426,15 @@
         "VOICE_EFUSE_BACKUP_EN_N",
         "VOICE_PTT_REQ_N",
         "VOICE_PTT_SAFE_N",
-        "VOICE_RF_SAMPLE"
+        "VOICE_U_RF_SAMPLE",
+        "VOICE_V_DETECT_FILTER",
+        "VOICE_V_DETECT_V",
+        "VOICE_V_RF_SAMPLE"
       ]
     },
     {
       "id": "RF_60_TESTPOINTS_MANUFACTURING",
-      "interface_count": 52,
+      "interface_count": 51,
       "interfaces": [
         "3V3_MAIN",
         "ANY_TX_AON_N",
@@ -478,8 +486,7 @@
         "SYS_INT_N",
         "VOICE_DOMAIN_EN_SAFE",
         "VOICE_PTT_SAFE_N",
-        "VOICE_RAW_4V_PG_N",
-        "VOICE_UPDATE_FIXTURE"
+        "VOICE_RAW_4V_PG_N"
       ]
     }
   ],
@@ -1246,7 +1253,7 @@
       ]
     },
     {
-      "name": "RX_SA518_AFOUT_ISOLATED",
+      "name": "RX_VOICE_AFOUT_SELECTED",
       "sheets": [
         "RF_32_SUBGHZ_VOICE",
         "RF_40_INTERBOARD_M1"
@@ -1380,6 +1387,7 @@
       "sheets": [
         "RF_01_USB_PD_CHARGE",
         "RF_02_PACK_SAFETY_AON",
+        "RF_32_SUBGHZ_VOICE",
         "RF_40_INTERBOARD_M1",
         "RF_50_TX_SAFETY_EVIDENCE",
         "RF_60_TESTPOINTS_MANUFACTURING"
@@ -1390,6 +1398,7 @@
       "sheets": [
         "RF_01_USB_PD_CHARGE",
         "RF_02_PACK_SAFETY_AON",
+        "RF_32_SUBGHZ_VOICE",
         "RF_40_INTERBOARD_M1",
         "RF_50_TX_SAFETY_EVIDENCE",
         "RF_60_TESTPOINTS_MANUFACTURING"
@@ -1400,6 +1409,7 @@
       "sheets": [
         "RF_01_USB_PD_CHARGE",
         "RF_02_PACK_SAFETY_AON",
+        "RF_32_SUBGHZ_VOICE",
         "RF_40_INTERBOARD_M1",
         "RF_60_TESTPOINTS_MANUFACTURING"
       ]
@@ -1640,13 +1650,6 @@
       ]
     },
     {
-      "name": "VOICE_RF_SAMPLE",
-      "sheets": [
-        "RF_32_SUBGHZ_VOICE",
-        "RF_50_TX_SAFETY_EVIDENCE"
-      ]
-    },
-    {
       "name": "VOICE_UART_RX",
       "sheets": [
         "RF_30_RP2354_CORE_SERVICE",
@@ -1661,10 +1664,31 @@
       ]
     },
     {
-      "name": "VOICE_UPDATE_FIXTURE",
+      "name": "VOICE_U_RF_SAMPLE",
       "sheets": [
         "RF_32_SUBGHZ_VOICE",
-        "RF_60_TESTPOINTS_MANUFACTURING"
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "VOICE_V_DETECT_FILTER",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "VOICE_V_DETECT_V",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "VOICE_V_RF_SAMPLE",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
       ]
     }
   ],

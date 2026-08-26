@@ -3,7 +3,7 @@
 [English](h3-acceptance.md) · [На главную](../README.ru.md) ·
 [Роадмап](roadmap.ru.md)
 
-**Статус:** ✅ проведено ревью и принято 24 августа 2026 года. Все доступные
+**Статус:** ✅ проведено ревью и автоматически принято 26 августа 2026 года. Все доступные
 до изготовления платы электрические проверки воспроизводимы и аналитически
 закрыты. Сквозная сверка не имеет пропусков или hash mismatch, а все `85`
 physical-only строк сохраняют владельцев и pass rules H5/H6/H8.
@@ -15,7 +15,7 @@ flowchart TB
   TR["H3.2<br/>startup, handover, fault"]
   AN["H3.3<br/>analog corners"]
   DI["H3.4<br/>digital interfaces"]
-  RF["H3.5<br/>9 RF-трактов"]
+  RF["H3.5<br/>10 RF-трактов"]
   SF["H3.6<br/>thermal и single fault"]
   X["H3.7<br/>сквозная сверка"]
   OK["H3 принято<br/>0 открытых analytical findings"]
@@ -23,8 +23,8 @@ flowchart TB
   H2 --> DC & TR & AN & DI & RF & SF
   DC & TR & AN & DI & RF & SF --> X --> OK
   X --> PH
-  OK --> H4["✅ H4 объединённое ревью"]
-  H4 --> H5["▶️ H5.0.1 сокращение evidence"]
+  OK --> H4["▶️ H4.0.1-R1<br/>объединённое ревью"]
+  H4 --> H5["🔒 пересборка H5"]
 ```
 
 ## Проверенный результат
@@ -41,9 +41,9 @@ flowchart TB
 | **Итого** | **закрыт** | **25** | **0** |
 
 Проверены DC-бюджеты и переходы питания, display/audio/IR/battery analog,
-digital levels/timing/loading, все девять RF feed и coexistence, thermal,
+digital levels/timing/loading, все десять RF feed и coexistence, thermal,
 watchdog, единичные отказы и длительная работа. Сквозная модель соединяет `16`
-verification requirements, `29` H3-artifacts, `1 048` H2 instances и `268`
+verification requirements, `29` H3-artifacts, `1 081` H2 instances и `270`
 root nets без пропущенной связи.
 
 Учтены все `25` исправлений, включая одно исправление сквозной сверки H3.7,
@@ -58,7 +58,7 @@ baseline. Она **не** разрешает закупку, PCB placement/routi
 называет пройденной ни одну из `85` физических проверок. Полученные детали,
 реальную геометрию, трассировку и прототип закрывают H5, H6 и H8.
 
-Firmware F3 затем прошла ревью без повышения non-S3 или физических claims. Её точное S3 QEMU и five-target boundary evidence объединены с H1–H3 в [проведённом H4](h4-prelayout-gate-report.ru.md). Текущий аппаратный маркер — `H5.0.1`.
+Firmware F3 остаётся принятой без повышения non-S3 или физических claims. Её точное S3 QEMU и five-target boundary evidence сейчас повторно объединяется с текущей ревизией H1–H3 на `H4.0.1-R1`; прежние H4/H5 evidence на основе SA518 не считаются текущими.
 
 ## Evidence
 

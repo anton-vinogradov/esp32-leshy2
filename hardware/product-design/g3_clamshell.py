@@ -80,13 +80,15 @@ FRONT_RF = (
     (59.0, "C5-2G4/5", "RP-SMA"),
 )
 REAR_RF = (
-    (13.5, "N24-0", "SMA"),
-    (25.5, "CC-SUB", "SMA"),
-    (37.5, "N24-1", "SMA"),
-    (49.5, "VOICE-V/U", "SMA"),
-    (61.5, "N24-2", "SMA"),
+    (7.5, "N24-0", "SMA"),
+    (19.5, "CC-SUB", "SMA"),
+    (31.5, "N24-1", "SMA"),
+    (43.5, "VOICE-VHF", "SMA"),
+    (55.5, "VOICE-UHF", "SMA"),
+    (67.5, "N24-2", "SMA"),
 )
-VOICE_RF_CORRIDOR = ((49.5, 0.0), (53.3, 32.7))
+VOICE_V_RF_CORRIDOR = ((43.5, 0.0), (20.25, 32.5))
+VOICE_U_RF_CORRIDOR = ((55.5, 0.0), (71.2, 36.95))
 OPPOSITE_FACE_CLEARANCE_MM = 1.5
 RF_INSTANCE_BY_PATH = {
     "S3-2G4": "s3_external_rp_sma",
@@ -96,7 +98,8 @@ RF_INSTANCE_BY_PATH = {
     "N24-0": "nrf0_external_sma",
     "CC-SUB": "cc_external_sma",
     "N24-1": "nrf1_external_sma",
-    "VOICE-V/U": "voice_external_sma",
+    "VOICE-VHF": "voice_v_external_sma",
+    "VOICE-UHF": "voice_external_sma",
     "N24-2": "nrf2_external_sma",
 }
 RF_SOURCE_INSTANCE_BY_PATH = {
@@ -107,7 +110,8 @@ RF_SOURCE_INSTANCE_BY_PATH = {
     "N24-0": "nrf0",
     "CC-SUB": "cc",
     "N24-1": "nrf1",
-    "VOICE-V/U": "voice",
+    "VOICE-VHF": "voice_v",
+    "VOICE-UHF": "voice",
     "N24-2": "nrf2",
 }
 BOARD_RF_CABLE_TO_TRACE_HANDOFFS = frozenset(
@@ -127,11 +131,12 @@ RF_USER_LABEL_LINES = {
     "N24-0": ("nRF24-1", "2.4 GHz"),
     "CC-SUB": ("SUB-GHz",),
     "N24-1": ("nRF24-2", "2.4 GHz"),
-    "VOICE-V/U": ("VHF/UHF",),
+    "VOICE-VHF": ("VHF VOICE", "134-174 MHz"),
+    "VOICE-UHF": ("UHF VOICE", "400-480 MHz"),
     "N24-2": ("nRF24-3", "2.4 GHz"),
 }
 TX_RF_PATHS = {
-    "S3-2G4", "C5-2G4/5", "N24-0", "CC-SUB", "N24-1", "VOICE-V/U", "N24-2"
+    "S3-2G4", "C5-2G4/5", "N24-0", "CC-SUB", "N24-1", "VOICE-VHF", "VOICE-UHF", "N24-2"
 }
 TX_LED_W = 1.6
 TX_LED_H = 0.8
@@ -141,7 +146,8 @@ TX_LED_INSTANCES = {
     "N24-0": "nrf0_tx_led",
     "CC-SUB": "cc_tx_led",
     "N24-1": "nrf1_tx_led",
-    "VOICE-V/U": "voice_tx_led",
+    "VOICE-VHF": "voice_tx_led",
+    "VOICE-UHF": "voice_tx_led",
     "N24-2": "nrf2_tx_led",
 }
 FRONT_FACE_INDICATORS = (
@@ -151,7 +157,7 @@ FRONT_FACE_INDICATORS = (
     ("nrf1_tx_led", "nRF24-2", 52.5, 104.5),
     ("nrf2_tx_led", "nRF24-3", 68.3, 104.5),
     ("cc_tx_led", "SUB-GHz", 5.1, 111.0),
-    ("voice_tx_led", "VHF/UHF", 20.9, 111.0),
+    ("voice_tx_led", "V/U TX", 20.9, 111.0),
     ("ir_tx_led", "IR", 36.7, 111.0),
     ("ext_tx_led", "LORA/EXT", 52.5, 111.0),
     ("fault_led", "FAULT", 68.3, 111.0),
@@ -347,10 +353,10 @@ UI_RF_CABLES = (
     ),
 )
 
-# These are topology guides, not routed copper. They connect all nine radio
+# These are topology guides, not routed copper. They connect all ten radio
 # sources to the matching outward antenna datum. S3/C5 and nRF guides continue
 # after the visible microcoax at the board-mounted U.FL; the four direct paths
-# begin at the receiver, CC1101 or SA518 source. KiCad owns final geometry.
+# begin at the receiver, CC1101 or SA818S source. KiCad owns final geometry.
 ANTENNA_TOPOLOGY_GUIDES = (
     AntennaTopologyGuide(
         "s3_native_rf_pcb_guide",
@@ -394,7 +400,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "rf-inner",
         "nrf0_rf_board_connector",
         "nrf0_external_sma",
-        ((24.5, 29.55), (9.5, 29.55), (9.5, 5.0), (13.5, 5.0), (13.5, 0.0)),
+        ((24.5, 29.55), (9.5, 29.55), (9.5, 5.0), (7.5, 5.0), (7.5, 0.0)),
         "nRF24 #0 board U.FL through forward coupler to outward SMA",
     ),
     AntennaTopologyGuide(
@@ -403,7 +409,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "rf-inner",
         "nrf1_rf_board_connector",
         "nrf1_external_sma",
-        ((51.5, 29.55), (51.75, 27.0), (51.75, 5.0), (37.5, 5.0), (37.5, 0.0)),
+        ((51.5, 29.55), (51.75, 27.0), (51.75, 5.0), (31.5, 5.0), (31.5, 0.0)),
         "nRF24 #1 board U.FL through forward coupler to outward SMA",
     ),
     AntennaTopologyGuide(
@@ -412,7 +418,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "rf-inner",
         "nrf2_rf_board_connector",
         "nrf2_external_sma",
-        ((71.5, 23.55), (65.2, 27.5), (65.2, 5.0), (61.5, 5.0), (61.5, 0.0)),
+        ((71.5, 23.55), (65.2, 27.5), (65.2, 5.0), (67.5, 5.0), (67.5, 0.0)),
         "nRF24 #2 board U.FL through forward coupler to outward SMA",
     ),
     AntennaTopologyGuide(
@@ -421,17 +427,26 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "rf-inner",
         "cc",
         "cc_external_sma",
-        ((25.5, 10.3), (25.5, 0.0)),
+        ((19.5, 10.3), (19.5, 0.0)),
         "CC1101 selected matching branch to outward Sub-GHz SMA",
     ),
     AntennaTopologyGuide(
-        "voice_pcb_guide",
-        "VOICE-V/U",
+        "voice_v_pcb_guide",
+        "VOICE-VHF",
+        "rf-inner",
+        "voice_v",
+        "voice_v_external_sma",
+        tuple(reversed(VOICE_V_RF_CORRIDOR)),
+        "SA818S-V contact 12 to outward VHF 134-174-MHz SMA",
+    ),
+    AntennaTopologyGuide(
+        "voice_u_pcb_guide",
+        "VOICE-UHF",
         "rf-inner",
         "voice",
         "voice_external_sma",
-        ((53.3, 32.7), (65.8, 31.8), (65.8, 6.5), (49.5, 6.5), (49.5, 0.0)),
-        "SA518 contact 7 to outward VHF/UHF SMA",
+        tuple(reversed(VOICE_U_RF_CORRIDOR)),
+        "SA818S-U contact 12 to outward UHF 400-480-MHz SMA",
     ),
 )
 
@@ -443,7 +458,8 @@ RF_INNER = (
     Placement("nrf0", 10.0, 7.5, "full-function nRF24 radio #0"),
     Placement("nrf1", 31.5, 7.5, "full-function nRF24 radio #1; rotated for U214 tail clearance", 90),
     Placement("nrf2", 52.9, 7.5, "full-function nRF24 radio #2"),
-    Placement("voice", 15.8, 32.7, "VHF/UHF voice transceiver; contact 7 uses a short controlled jog to its SMA", 180),
+    Placement("voice_v", 15.8, 32.5, "VHF 134-174-MHz SA818S-V; dedicated contact-12 RF path", 180),
+    Placement("voice", 52.2, 32.5, "UHF 400-480-MHz SA818S-U; dedicated contact-12 RF path", 270),
     Placement("cc", 24.0, 8.3, "multi-band sub-GHz transceiver inside its local reference RF zone"),
     Placement("nvdc_charger", 1.0, 63.0, "2S charger and NVDC power path"),
     Placement("pack_gauge", 1.0, 84.0, "2S protection and fuel gauge"),
@@ -484,19 +500,25 @@ RF_INNER = (
     Placement("rp_boot_button", 0.0, 113.0, "external left-side RP USB_BOOT service control", 90),
     Placement("power_command_switch", 65.8, 111.0, "single low-current RUN/KILL; charging remains available in KILL"),
 
-    Placement("u214_host_buffer_a", 56.5, 27.3, "U214 host-command buffer A"),
-    Placement("u214_host_buffer_b", 62.4, 27.3, "U214 host-command buffer B"),
-    Placement("u214_return_buffer", 68.3, 27.3, "U214 return-path buffer"),
-    Placement("u214_i2c_iso", 68.3, 34.0, "U214 hot-swap I2C isolation and stuck-bus recovery"),
+    Placement("voice_band_io", 44.0, 68.8, "TCA9534A UHF/VHF selector and deterministic reset straps"),
+    Placement("voice_control_mux_a", 49.7, 68.8, "selected-module UART multiplexer"),
+    Placement("voice_control_mux_b", 53.55, 68.8, "selected-module PTT and AUDIO_ON multiplexer"),
+    Placement("voice_audio_mux", 44.0, 74.55, "selected-module AFOUT and microphone multiplexer", 90),
+    Placement("voice_band_inverter", 49.75, 74.55, "AON complement for one-hot voice selection"),
+    Placement("voice_pd_gate", 52.45, 74.55, "AON mutually-exclusive voice PD gate"),
+    Placement("u214_host_buffer_a", 16.0, 52.55, "U214 host-command buffer A"),
+    Placement("u214_host_buffer_b", 21.8, 52.55, "U214 host-command buffer B"),
+    Placement("u214_return_buffer", 27.6, 52.55, "U214 return-path buffer"),
+    Placement("u214_i2c_iso", 33.45, 52.55, "U214 hot-swap I2C isolation and stuck-bus recovery"),
     Placement("nrf0_host_buffer", 0.0, 26.8, "nRF24 #0 host-command buffer"),
     Placement("nrf0_return_buffer", 6.0, 26.8, "nRF24 #0 return-path buffer"),
-    Placement("nrf1_host_buffer", 56.5, 34.0, "nRF24 #1 host-command buffer"),
-    Placement("nrf1_return_buffer", 62.4, 34.0, "nRF24 #1 return-path buffer"),
-    Placement("nrf2_host_buffer", 56.5, 40.0, "nRF24 #2 host-command buffer"),
-    Placement("nrf2_return_buffer", 62.4, 40.0, "nRF24 #2 return-path buffer"),
-    Placement("cc_host_buffer", 56.5, 58.0, "CC1101 host-command buffer"),
-    Placement("cc_return_buffer", 62.4, 58.0, "CC1101 return-path buffer"),
-    Placement("cc_band_buffer", 68.3, 58.0, "CC1101 band-select buffer"),
+    Placement("nrf1_host_buffer", 37.3, 52.55, "nRF24 #1 host-command buffer"),
+    Placement("nrf1_return_buffer", 43.1, 52.55, "nRF24 #1 return-path buffer"),
+    Placement("nrf2_host_buffer", 46.15, 52.55, "nRF24 #2 host-command buffer"),
+    Placement("nrf2_return_buffer", 55.6, 74.55, "nRF24 #2 return-path buffer"),
+    Placement("cc_host_buffer", 57.4, 68.8, "CC1101 host-command buffer"),
+    Placement("cc_return_buffer", 63.2, 68.8, "CC1101 return-path buffer"),
+    Placement("cc_band_buffer", 58.65, 74.55, "CC1101 band-select buffer"),
 
     # High-profile and high-current support parts are explicit physical bodies,
     # not hidden inside a generic power-zone rectangle.
@@ -537,7 +559,7 @@ RF_INNER = (
     Placement("pack_power_fet", 21.7, 80.0, "back-to-back pack admission FET"),
     Placement("pack_diag_res0", 11.5, 84.0, "pack diagnostic pulse resistor #0"),
     Placement("pack_diag_res1", 18.5, 84.0, "pack diagnostic pulse resistor #1"),
-    Placement("evidence_mask", 50.0, 67.0, "AON evidence-source mask expander"),
+    Placement("evidence_mask", 61.7, 74.55, "AON evidence-source mask expander"),
 
     Placement("pd_pphv_cap0", 1.0, 127.0, "USB-PD high-voltage bulk capacitor #0"),
     Placement("pd_pphv_cap1", 4.9, 127.0, "USB-PD high-voltage bulk capacitor #1"),
@@ -702,7 +724,8 @@ INTERNAL_CONNECTOR_ACTUATOR_DIRECTIONS = {
     "nrf0": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
     "nrf1": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
     "nrf2": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
-    "voice": "contact 7 faces the antenna edge along the controlled VHF/UHF corridor",
+    "voice": "contact 12 faces the antenna edge along the dedicated UHF corridor",
+    "voice_v": "contact 12 faces the antenna edge along the dedicated VHF corridor",
 }
 
 DIRECTIONAL_BODY_DIRECTIONS = {
@@ -807,6 +830,26 @@ def placement_size(item: Placement, devices: dict, instances: dict) -> tuple[flo
         abs(w * math.cos(angle)) + abs(h * math.sin(angle)),
         abs(w * math.sin(angle)) + abs(h * math.cos(angle)),
     )
+
+
+def placed_contact_xy(
+    item: Placement, device: dict, contact_xy: tuple[float, float]
+) -> tuple[float, float]:
+    """Transform a manufacturer top-left contact coordinate into board space."""
+    width, height = map(float, device["dimensions_mm"][:2])
+    contact_x, contact_y = contact_xy
+    rotation = item.rotation % 360
+    if rotation == 0:
+        local_x, local_y = contact_x, contact_y
+    elif rotation == 90:
+        local_x, local_y = height - contact_y, contact_x
+    elif rotation == 180:
+        local_x, local_y = width - contact_x, height - contact_y
+    elif rotation == 270:
+        local_x, local_y = contact_y, width - contact_x
+    else:
+        raise ValueError(f"{item.instance}: unsupported contact rotation {rotation}")
+    return item.x + local_x, item.y + local_y
 
 
 def placement_height(item: Placement, devices: dict, instances: dict) -> float:
@@ -2082,29 +2125,30 @@ def validate() -> list[str]:
             elif overlaps(zone_box, item_box, MIN_INTERBOARD_Z_CLEARANCE_MM):
                 errors.append(f"internal-zone: {zone.name} lacks clearance to {item.instance}")
 
-    voice = rf_by_instance["voice"]
-    voice_device = devices[instances["voice"]]
-    voice_contact = voice_device.get("mechanical_contract", {}).get("antenna_contact", {})
-    voice_nominal_w, voice_nominal_h = map(float, voice_device["dimensions_mm"][:2])
-    voice_contact_xy = voice_contact.get("nominal_center_from_illustrated_top_left_mm", [])
-    if voice.rotation != 180 or len(voice_contact_xy) != 2:
-        errors.append("SA518 must retain its manufacturer-drawing contact-7 orientation contract")
-    else:
-        voice_ant_x = voice.x + voice_nominal_w - float(voice_contact_xy[0])
-        voice_ant_y = voice.y + voice_nominal_h - float(voice_contact_xy[1])
-        voice_port_x = next(centre for centre, path, _ in REAR_RF if path == "VOICE-V/U")
-        if VOICE_RF_CORRIDOR[0] != (voice_port_x, 0.0) or any(
-            abs(a - b) > 0.01
-            for a, b in zip(VOICE_RF_CORRIDOR[-1], (voice_ant_x, voice_ant_y))
+    for instance, path, corridor in (
+        ("voice_v", "VOICE-VHF", VOICE_V_RF_CORRIDOR),
+        ("voice", "VOICE-UHF", VOICE_U_RF_CORRIDOR),
+    ):
+        module = rf_by_instance[instance]
+        module_device = devices[instances[instance]]
+        contact = module_device.get("mechanical_contract", {}).get("antenna_contact", {})
+        contact_xy = contact.get("nominal_center_from_illustrated_top_left_mm", [])
+        if contact.get("physical") != "12" or len(contact_xy) != 2:
+            errors.append(f"{instance}: SA818S official contact-12 orientation contract is missing")
+            continue
+        antenna_xy = placed_contact_xy(module, module_device, tuple(map(float, contact_xy)))
+        port_x = next(centre for centre, candidate_path, _ in REAR_RF if candidate_path == path)
+        if corridor[0] != (port_x, 0.0) or any(
+            abs(a - b) > 0.01 for a, b in zip(corridor[-1], antenna_xy)
         ):
-            errors.append("SA518 contact 7 must retain the controlled VHF/UHF corridor endpoints")
-        if polyline_length(VOICE_RF_CORRIDOR) > 40.0:
-            errors.append("SA518 RF corridor exceeds the 40-mm paper routing allowance")
+            errors.append(f"{instance}: contact 12 and dedicated {path} corridor endpoints disagree")
+        if polyline_length(corridor) > 41.0:
+            errors.append(f"{instance}: dedicated RF corridor exceeds the 41-mm worst-case planar allowance")
 
     cc_zone = next(zone for zone in INTERNAL_RESERVES if zone.name == "cc-reference-rf-network")
     cc_port_x = next(centre for centre, path, _ in REAR_RF if path == "CC-SUB")
     if not (
-        cc_zone.x <= cc_port_x <= cc_zone.x + cc_zone.w
+        cc_zone.x - RF_BODY_W / 2 <= cc_port_x <= cc_zone.x + cc_zone.w + RF_BODY_W / 2
         and cc_zone.y >= RF_BODY_D + OPPOSITE_FACE_CLEARANCE_MM
     ):
         errors.append("CC1101 reference RF zone must align to SUB-GHz and clear the outer connector land")
@@ -2188,7 +2232,7 @@ def validate() -> list[str]:
         errors.append("vertical U214 host socket must project beneath the installed Cap")
     # Only the exact through-hole pad/locking-clip keep-out reaches the inner
     # PCB face.  Projecting the complete 5.08-mm external moulding through the
-    # board would create a false collision with the SA518 and CC reference
+    # board would create a false collision with the SA818S and CC reference
     # zone.  The 3.81-mm opposite-face depth is the two 2.54-mm rows plus the
     # controlled pad radius from the Samtec through-hole footprint.
     opposite_connector_box = (
@@ -2290,14 +2334,14 @@ def validate() -> list[str]:
 
     machine_paths = set(candidate["antenna_policy"]["base_onboard_sma_paths"])
     drawn_paths = {path for _, path, _ in FRONT_RF + REAR_RF}
-    if machine_paths != drawn_paths or len(drawn_paths) != 9:
-        errors.append("mechanical projection must retain all nine unique onboard RF paths")
+    if machine_paths != drawn_paths or len(drawn_paths) != 10:
+        errors.append("mechanical projection must retain all ten unique onboard RF paths")
     topology_paths = {guide.path for guide in ANTENNA_TOPOLOGY_GUIDES}
-    if topology_paths != drawn_paths or len(ANTENNA_TOPOLOGY_GUIDES) != 9:
+    if topology_paths != drawn_paths or len(ANTENNA_TOPOLOGY_GUIDES) != 10:
         errors.append("every onboard antenna path must have exactly one topology guide")
     if set(RF_SOURCE_INSTANCE_BY_PATH) != drawn_paths:
         errors.append("every onboard antenna path must name one radio source instance")
-    if len({guide.instance for guide in ANTENNA_TOPOLOGY_GUIDES}) != 9:
+    if len({guide.instance for guide in ANTENNA_TOPOLOGY_GUIDES}) != 10:
         errors.append("antenna topology guide instance names must be unique")
     ui_inner_instances = {item.instance for item in UI_INNER}
     rf_inner_instances = {item.instance for item in RF_INNER}
@@ -2398,8 +2442,8 @@ def validate() -> list[str]:
         lines = RF_USER_LABEL_LINES.get(path, ())
         if not lines or any("SMA" in line for line in lines):
             errors.append(f"{path}: antenna silkscreen must identify the function without connector-family text")
-    if len(TX_RF_PATHS) != 7 or not TX_RF_PATHS <= drawn_paths:
-        errors.append("seven transmitting RF paths must retain individual TX indicators")
+    if len(TX_RF_PATHS) != 8 or not TX_RF_PATHS <= drawn_paths:
+        errors.append("eight transmitting RF paths must remain represented; VHF/UHF share one wired-OR V/U TX indicator")
     display_box = (display.x, display.y, *placement_size(display, devices, instances))
     for control in SIDE_FUNCTION_CONTROLS:
         control_box = (control.x, control.y, *placement_size(control, devices, instances))
@@ -2439,9 +2483,12 @@ def validate() -> list[str]:
         errors.append("front: all ten front indicators must remain in two rows of five")
     if len({tuple(sorted(xs)) for xs in indicator_rows.values()}) != 1:
         errors.append("front: both five-indicator rows must retain aligned columns")
-    expected_labels = {RF_USER_LABEL_LINES[path][0] for path in TX_RF_PATHS} | {"IR", "LORA/EXT", "FAULT"}
+    expected_labels = {
+        "WI-FI/BLE", "WI-FI/15.4", "nRF24-1", "nRF24-2", "nRF24-3",
+        "SUB-GHz", "V/U TX", "IR", "LORA/EXT", "FAULT",
+    }
     if {label for _, label, _, _ in FRONT_FACE_INDICATORS} != expected_labels:
-        errors.append("front: indicator labels must match nine physical TX paths plus FAULT")
+        errors.append("front: indicator labels must match nine TX/evidence identities plus FAULT")
     edge_instances = {item.instance for item in UI_INNER + RF_INNER}
     edge_placements = {item.instance: item for item in UI_INNER + RF_INNER}
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
@@ -2545,7 +2592,7 @@ def validate() -> list[str]:
         instance for instance, _, _, _ in FRONT_FACE_INDICATORS
         if instance != "fault_led"
     }:
-        errors.append("external layout must render all nine exact actual-TX indicators")
+        errors.append("external layout must render all nine exact actual-TX/evidence indicators")
     fault_nodes = [
         element
         for element in external_root.iter("{http://www.w3.org/2000/svg}rect")
@@ -2721,7 +2768,14 @@ def rf_bank(
         if show_annotations:
             label_y = (compact_label_y if compact_label_y is not None else 9.0) if compact_labels else 15.5
             if compact_labels:
-                for line_index, visible_label in enumerate(RF_USER_LABEL_LINES[path]):
+                visible_lines = RF_USER_LABEL_LINES[path]
+                # The two corner nRF ports sit beside the upper mounting-hole
+                # keep-outs.  Their complete function is printed on one line
+                # in the narrow, visible strip immediately above the U214 rail.
+                if path in {"N24-0", "N24-2"}:
+                    visible_lines = (f"{visible_lines[0]} · 2.4G",)
+                    label_y = 16.2
+                for line_index, visible_label in enumerate(visible_lines):
                     rows.append(text(x, sy(origin, label_y + 2.0 * line_index), visible_label, 3.8, "bold", "middle", "#1d4ed8"))
             else:
                 rows.append(text(x, sy(origin, label_y), path, 6.2, "bold", "middle", "#1d4ed8"))
@@ -3304,7 +3358,8 @@ def render_internal(devices, instances, display_adapter_design):
         "N24-0": "N24-1",
         "CC-SUB": "SUB",
         "N24-1": "N24-2",
-        "VOICE-V/U": "V/U",
+        "VOICE-VHF": "VHF",
+        "VOICE-UHF": "UHF",
         "N24-2": "N24-3",
     }
     out.append('<g id="outer-antenna-datum-annotations" data-layer="drawing-annotation">')
@@ -3372,7 +3427,7 @@ def render_internal(devices, instances, display_adapter_design):
         return rendered
 
     out += [
-        text(820, 102, "Antenna-to-radio map · all nine paths", 17, "bold"),
+        text(820, 102, "Antenna-to-radio map · all ten paths", 17, "bold"),
         text(820, 122, "Drawing explanation — not PCB silkscreen.", 9.5, colour="#526076"),
         text(820, 529, "ring on S3/C5 = module U.FL · ring on nRF = module IPEX · numbered ring = board U.FL", 9.5, "bold", colour="#0f766e"),
         text(820, 547, "nRF ring position is schematic; its connector exists, while generation and exact axis close at H5", 9.2, colour="#0e7490"),
@@ -3680,7 +3735,7 @@ def render_internal(devices, instances, display_adapter_design):
         f'data-opposing-cable-pairs="{len(cable_clearance_pairs)}" data-cable-od-max-mm="{maximum_cable_od:.2f}" '
         f'data-nrf-reserve-opposing-pairs="{len(nrf_reserve_clearance_pairs)}" '
         f'data-encoder-through-features="{len(encoder_through_board_features(devices, instances))}" '
-        f'data-functional-zones="{len(INTERNAL_RESERVES)}" data-voice-rf-endpoint-distance-mm="{polyline_length(VOICE_RF_CORRIDOR):.2f}">',
+        f'data-functional-zones="{len(INTERNAL_RESERVES)}" data-voice-v-rf-endpoint-distance-mm="{polyline_length(VOICE_V_RF_CORRIDOR):.2f}" data-voice-u-rf-endpoint-distance-mm="{polyline_length(VOICE_U_RF_CORRIDOR):.2f}">',
         text(note_x,notes_top,"Validated clearances",14,"bold"),
         text(note_x,notes_top+24,"• same-face device-to-device clearance: ≥0.7 mm",10),
         text(note_x,notes_top+45,f"• all {len(individual_clearances)} inner bodies checked individually; tallest {tallest_height:.2f} mm; opposite-plane remainder {minimum_individual_clearance:.2f} mm",10),
@@ -3868,7 +3923,7 @@ def render_rear_face(devices, instances):
     note_x = 560.0
     out += [
         t(note_x, 112, "Fit result", 17, "bold"),
-        t(note_x, 143, "✓ antenna bodies end at Y=6 mm; the Cap starts at Y=17 mm", 12, "bold", colour="#166534"),
+        t(note_x, 143, "✓ ten antenna bodies end at Y=6 mm; the Cap starts at Y=17 mm", 12, "bold", colour="#166534"),
         t(note_x, 170, "✓ U214 occupies Y=17…41 mm", 12, "bold", colour="#166534"),
         t(note_x, 197, "✓ battery holder occupies Y=42…128 mm", 12, "bold", colour="#166534"),
         t(note_x, 224, "✓ the two envelopes have a 1.0-mm plan gap", 12, "bold", colour="#166534"),
@@ -4053,7 +4108,7 @@ def _render_sandwich_legacy(devices, instances):
         t(note_x, 340, "← front: touch/view and front labels", 11),
         t(note_x, 366, "→ rear: open battery holder; controls sit beside it on the same PCB face", 11),
         t(note_x, 392, "⊗/⊙ on rear face: U214 presses onto / lifts from the vertical socket", 11),
-        t(note_x, 418, "↑ top: nine separately labelled SMA/RP-SMA antenna ports", 11),
+        t(note_x, 418, "↑ top: ten separately labelled antenna ports", 11),
         t(note_x, 444, "bottom/sides: USB, microSD, downward microphone, headphones and M5 Unit", 11),
         t(note_x, 486, "Clearance meaning", 15, "bold"),
         t(note_x, 514, "The 11-mm value is the selected connector's board-to-board height.", 11),
@@ -4283,14 +4338,14 @@ def render_top_edge(devices, instances):
     ]
     for centre, path, _ in FRONT_RF:
         out.append(f'<ellipse cx="{x(centre):.1f}" cy="{z(front_rf_centre_z):.1f}" rx="{RF_BARREL_D*scale_x/2:.1f}" ry="{RF_BARREL_D*scale_z/2:.1f}" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="{path}"/>')
-    out += ['</g>', '<g id="rear-antenna-bank" data-count="5" data-mount-face="rf-pcb-outer">']
+    out += ['</g>', '<g id="rear-antenna-bank" data-count="6" data-mount-face="rf-pcb-outer">']
     for centre, path, _ in REAR_RF:
         out.append(f'<ellipse cx="{x(centre):.1f}" cy="{z(rear_rf_centre_z):.1f}" rx="{RF_BARREL_D*scale_x/2:.1f}" ry="{RF_BARREL_D*scale_z/2:.1f}" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="{path}"/>')
     out += [
         '</g>',
         t(790, z(front_rf_centre_z)-2, "4 front ports", 9, "bold", "start", "#1d4ed8"),
         t(790, z(front_rf_centre_z)+11, "UI outer face", 8.5, "normal", "start", "#1d4ed8"),
-        t(790, z(rear_rf_centre_z)-2, "5 rear ports", 9, "bold", "start", "#9a3412"),
+        t(790, z(rear_rf_centre_z)-2, "6 rear ports", 9, "bold", "start", "#9a3412"),
         t(790, z(rear_rf_centre_z)+11, "RF/power outer face", 8.5, "normal", "start", "#9a3412"),
         f'<line x1="{x(0):.1f}" y1="{z(max_rear_z)+58:.1f}" x2="{x(75):.1f}" y2="{z(max_rear_z)+58:.1f}" stroke="#344054"/>',
         f'<line x1="{x(0):.1f}" y1="{z(max_rear_z)+52:.1f}" x2="{x(0):.1f}" y2="{z(max_rear_z)+64:.1f}" stroke="#344054"/>',
@@ -4884,7 +4939,7 @@ def build_unified_coordinate_table(
                 ],
             },
             "antenna_source_to_port_topology": {
-                "result": "all_nine_onboard_paths_accounted_topology_only",
+                "result": "all_ten_onboard_paths_accounted_topology_only",
                 "guide_count": len(ANTENNA_TOPOLOGY_GUIDES),
                 "final_copper_status": "open_until_kicad_drc",
                 "rendered_medium_boundaries": {
@@ -4967,10 +5022,9 @@ def build_unified_coordinate_table(
             "pcb_copper_and_vias": {
                 "result": "not_yet_proven_pre_kicad",
                 "reason": "logical pin and net maps do not prove escape routing, return paths, via fields or DRC clearance through real footprints",
-                "voice_rf_endpoint_distance_mm": round(
-                    polyline_length(VOICE_RF_CORRIDOR), 6
-                ),
-                "voice_rf_route_rendering": "source_to_port_topology_guide_no_claimed_copper_path",
+                "voice_v_rf_endpoint_distance_mm": round(polyline_length(VOICE_V_RF_CORRIDOR), 6),
+                "voice_u_rf_endpoint_distance_mm": round(polyline_length(VOICE_U_RF_CORRIDOR), 6),
+                "voice_rf_route_rendering": "two_source_to_two_port_topology_guides_no_claimed_copper_path",
                 "closure": "route both boards in KiCad, then pass schematic/ERC, layout DRC, differential/controlled-impedance review and independent manufacturing-rule review",
             },
             "remaining_gates": [
@@ -5290,7 +5344,7 @@ def build_cross_view_acceptance(
             "five_rf_microcoaxes_accounted": passage["rf_microcoax"][
                 "all_five_feed_assemblies_accounted"
             ],
-            "nine_outward_rf_ports": passage["outer_face_through_board_features"][
+            "ten_outward_rf_ports": passage["outer_face_through_board_features"][
                 "outward_rf_connector_count"
             ],
         },

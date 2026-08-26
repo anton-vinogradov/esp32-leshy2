@@ -13,8 +13,8 @@ This page is generated from the same device and net map used by the electrical c
 | Contact | Net | Direction | Peripheral | Connected endpoint |
 |---|---|---|---|---|
 | `GPIO0` | `I2S_DIN` | `i` | `I2S0` | codec_i2s_din_iso.Y<br>s3_boot_pullup.END_2<br>s3_dbg_boot_series.END_2 |
-| `GPIO1` | `SYS_I2C_SDA` | `io` | `I2C0` | slow_io.SDA<br>ui_matrix_io.SDA<br>headset_control_io.SDA<br>receiver_i2c_iso.1A<br>display_connector.PIN_2<br>codec_i2c_iso.1A<br>pd_controller.I2Ct_SDA<br>pack_admission.PA0<br>safety_controller.PA0 |
-| `GPIO2` | `SYS_I2C_SCL` | `o` | `I2C0` | slow_io.SCL<br>ui_matrix_io.SCL<br>headset_control_io.SCL<br>receiver_i2c_iso.2A<br>display_connector.PIN_1<br>codec_i2c_iso.2A<br>pd_controller.I2Ct_SCL<br>pack_admission.PA11<br>safety_controller.PA11 |
+| `GPIO1` | `SYS_I2C_SDA` | `io` | `I2C0` | slow_io.SDA<br>ui_matrix_io.SDA<br>headset_control_io.SDA<br>voice_band_io.SDA<br>receiver_i2c_iso.1A<br>display_connector.PIN_2<br>codec_i2c_iso.1A<br>pd_controller.I2Ct_SDA<br>pack_admission.PA0<br>safety_controller.PA0 |
+| `GPIO2` | `SYS_I2C_SCL` | `o` | `I2C0` | slow_io.SCL<br>ui_matrix_io.SCL<br>headset_control_io.SCL<br>voice_band_io.SCL<br>receiver_i2c_iso.2A<br>display_connector.PIN_1<br>codec_i2c_iso.2A<br>pd_controller.I2Ct_SCL<br>pack_admission.PA11<br>safety_controller.PA11 |
 | `GPIO3` | `RP_ALERT_N` | `i` | `GPIO_IRQ` | rp.GPIO19 |
 | `GPIO4` | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | sd_miso_series.END_2<br>sd_host_d1_pullup.END_1<br>display_connector.PIN_10 |
 | `GPIO5` | `SD_SPI_CS_N` | `o` | `SPI2` | sd_host_buffer.3A<br>sd_miso_buffer.OE_N<br>sd_host_cs_pullup.END_1 |
@@ -89,11 +89,11 @@ This page is generated from the same device and net map used by the electrical c
 | `GPIO13` | `U214_HOST_IRQ` | `i` | `GPIO_IRQ` | u214_series_irq.END_2 |
 | `GPIO14` | `U214_HOST_RST_N` | `o` | `GPIO` | u214_host_buffer_a.1A |
 | `GPIO15` | `NRF_GROUP_PWR_EN` | `o` | `GPIO` | safe_gate_a.4A |
-| `GPIO16` | `VOICE_UART_TX` | `o` | `UART0` | voice_uart_tx_iso.A |
-| `GPIO17` | `VOICE_UART_RX` | `i` | `UART0` | voice.UART_TX |
+| `GPIO16` | `VOICE_UART_TX` | `o` | `UART0` | voice_control_mux_a.D1 |
+| `GPIO17` | `VOICE_UART_RX` | `i` | `UART0` | voice_control_mux_a.D2 |
 | `GPIO18` | `VOICE_PTT_REQ_N` | `o` | `GPIO` | safe_ptt_or.1A |
 | `GPIO19` | `RP_ALERT_N` | `od` | `GPIO_IRQ` | s3.GPIO3 |
-| `GPIO20` | `VOICE_AUDIO_ON_N` | `i` | `GPIO_IRQ` | voice.AUDIO_ON<br>voice_audio_on_pulldown.END_1 |
+| `GPIO20` | `VOICE_AUDIO_ON_N` | `i` | `GPIO_IRQ` | voice_control_mux_b.D2<br>voice_audio_on_pulldown.END_1 |
 | `GPIO21` | `PTT_BUTTON_N` | `i` | `GPIO_IRQ` | ptt_series.END_2 |
 | `GPIO22` | `RP_ANY_TX_N` | `i` | `GPIO_IRQ` | evidence_main_isolator.3Y<br>rp_any_tx_main_pullup.END_2 |
 | `GPIO23` | `CC_PWR_EN` | `o` | `GPIO` | safe_gate_b.1A |

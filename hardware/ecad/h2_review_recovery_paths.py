@@ -49,7 +49,7 @@ REVIEWED_NETS = {
         "SAFETY_SWDIO", "SAFETY_SWCLK",
         "SYS_I2C_SDA", "SYS_I2C_SCL", "SYS_INT_N",
         "PD_LOCAL_I2C_SDA", "PD_LOCAL_I2C_SCL", "PD_EEPROM_WP",
-        "VOICE_UPDATE_FIXTURE", "VOICE_UART_TX", "VOICE_UART_RX", "VOICE_READY",
+        "VOICE_UART_TX", "VOICE_UART_RX", "VOICE_READY", "VOICE_V_SELECT",
         "RP_SERVICE_VBUS_SENSE_ONLY",
     ),
 }
@@ -81,7 +81,6 @@ EXPECTED_ADDITIONS = {
         "PD_LOCAL_I2C_SDA": {"TP_PD_LOCAL_I2C_SDA"},
         "PD_LOCAL_I2C_SCL": {"TP_PD_LOCAL_I2C_SCL"},
         "PD_EEPROM_WP": {"TP_PD_EEPROM_WP"},
-        "VOICE_UPDATE_FIXTURE": {"TP_VOICE_UPDATE"},
         "RP_SERVICE_VBUS_SENSE_ONLY": {"TP_RP_SERVICE_VBUS_SENSE"},
     },
 }
@@ -130,9 +129,9 @@ TARGETS = [
         "project": "LESHY2-RF",
     },
     {
-        "target": "SA518 voice module",
-        "primary": "internal UPDATE pad plus permanent UART and hardware PD",
-        "fallback": "UPDATE stays inhibited until module-revision timing is qualified",
+        "target": "SA818S-U and SA818S-V voice modules",
+        "primary": "permanent hardware-selected UART plus independent UHF/VHF PD controls",
+        "fallback": "rail cycle, selection readback and replaceable serial module; neither part requires an undocumented firmware-update contact",
         "project": "LESHY2-RF",
     },
 ]
@@ -143,7 +142,7 @@ CRITICAL_INSTANCES = (
     "c5_reset_button", "c5_boot_button", "rp_service_usb_connector",
     "rp_service_usb_switch", "rp_dbg_header", "rp_reset_button", "rp_boot_button",
     "pack_admission", "safety_controller", "pd_controller", "pd_config_eeprom",
-    "pack_gauge", "voice",
+    "pack_gauge", "voice", "voice_v", "voice_band_io", "voice_control_mux_a",
 )
 
 
@@ -215,8 +214,8 @@ def build() -> tuple[dict[Path, str], dict]:
         })
 
     service = candidate["service_recovery_contract"]
-    if len(candidate["services"]) != 9:
-        raise ValueError("service target register must retain nine entries")
+    if len(candidate["services"]) != 10:
+        raise ValueError("service target register must retain ten entries")
     manifest = {
         "schema_version": 1,
         "stage": "H2.5.2",
@@ -237,7 +236,7 @@ def build() -> tuple[dict[Path, str], dict]:
             "severity": "recovery_blocking",
             "finding": "the reviewed service contract promised PD target-bus and direct EEPROM recovery pads, but RF60 did not instantiate them",
             "correction": "six BOM-free 1.0-mm internal copper pads now expose SYS_I2C_SDA/SCL/SYS_INT_N and PD_LOCAL_I2C_SDA/SCL/PD_EEPROM_WP",
-            "evidence": "the complete RF hierarchy contains 36 physical test pads, including 13 programming/recovery pads",
+            "evidence": "the complete RF hierarchy contains 51 physical test pads, including 13 programming/recovery pads",
         }],
         "service_scope": service["scope"],
         "targets": TARGETS,
@@ -253,7 +252,7 @@ def build() -> tuple[dict[Path, str], dict]:
         ],
         "review_boundary": {
             "complete": [
-                "every selected reset, boot, USB, UART, SWD, PD and vendor-update net is present with exact reviewed membership in exported KiCad netlists",
+                "every selected reset, boot, USB, UART, SWD, PD and vendor-configuration net is present with exact reviewed membership in exported KiCad netlists",
                 "all purchased connectors, switches and active recovery devices have exact MPNs and footprints",
                 "every promised fixture-only contact is represented by real PCB copper",
             ],
@@ -289,7 +288,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
             ("AON safety MSPM0", "внутренние AON-powered UART + SWD + NRST", "recovery не отпускает RUN_PERMIT и не очищает аппаратный FAULT_KILL", "RF"),
             ("TPS25751D + EEPROM конфигурации", "площадки SYS_I2C и прямые SDA/SCL/WP локальной шины", "заранее прошитая EEPROM либо current-limited raw-VBUS fixture", "RF"),
             ("MAX17320 аккумуляторов", "защищённая локальная I2C и наблюдение fault/hold", "checksum образа и readback override до установки запитанных ячеек", "RF"),
-            ("голосовой модуль SA518", "площадка UPDATE, постоянный UART и аппаратный PD", "UPDATE запрещён до квалификации timing конкретной ревизии модуля", "RF"),
+            ("голосовые модули SA818S-U и SA818S-V", "постоянный аппаратно выбранный UART и отдельные UHF/VHF PD", "цикл питания, readback выбора и заменяемый серийный модуль; недокументированный UPDATE не требуется", "RF"),
         ]
         rendered_invariants = [
             "S3, C5 и RP2354B имеют каждый свой USB и независимый keyed DBG10 fallback",

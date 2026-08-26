@@ -2,12 +2,12 @@
   "schema_version": 1,
   "stage": "H5",
   "status": "in_progress",
-  "current_substep": "H5.0.3",
+  "current_substep": "H5.0.1-R1",
   "purpose": "close received-part uncertainties with the least expensive reliable evidence, using documents or serial replacements before buying samples",
   "accepted_inputs": [
     "H4 joined pre-layout gate reviewed",
     "nine H3 physical residuals explicitly assigned to H5",
-    "fourteen H1 received-part evidence gates",
+    "current dual-SA818S H1/H2/H3 received-part evidence gates",
     "user rule: purchasing is the last step after deeper research or a documented serial replacement search"
   ],
   "authorization": {
@@ -34,19 +34,19 @@
       "status": "current",
       "children": [
         {
-          "id": "H5.0.1",
+          "id": "H5.0.1-R1",
           "title": "Join every H5 residual to its exact MPN, missing datum, existing source and accepted pass rule",
-          "status": "reviewed"
-        },
-        {
-          "id": "H5.0.2",
-          "title": "Search manufacturer and distributor evidence more deeply and evaluate fully documented serial replacements",
-          "status": "reviewed"
-        },
-        {
-          "id": "H5.0.3",
-          "title": "Publish only the irreducible received-sample set, exact measurements and cost for explicit approval",
           "status": "current"
+        },
+        {
+          "id": "H5.0.2-R1",
+          "title": "Search manufacturer and distributor evidence more deeply and evaluate fully documented serial replacements",
+          "status": "waiting"
+        },
+        {
+          "id": "H5.0.3-R1",
+          "title": "Publish only the irreducible received-sample set, exact measurements and cost for explicit approval",
+          "status": "waiting"
         }
       ]
     },
@@ -66,7 +66,7 @@
       "status": "waiting"
     }
   ],
-  "reviewed_artifacts": {
+  "superseded_artifacts": {
     "H5.0.1": {
       "machine_result": "hardware/verification/generated/H5-EVR01-residual-map.json",
       "readable_result_en": "docs/component-evidence-map.md",
@@ -80,7 +80,7 @@
       "result": "nine H5 residuals and fourteen mechanical gates researched; two test-article categories and four exact SKUs selected; zero physical claims closed; zero orders authorized"
     }
   },
-  "current_artifacts": {
+  "superseded_current_artifacts": {
     "H5.0.3": {
       "machine_result": "hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json",
       "readable_result_en": "docs/component-sample-basket.md",
@@ -94,13 +94,7 @@
       "result": "the 32-line evidence basket covers all nine H5 residuals and fourteen mechanical gates; JLCPCB Standard PCBA is the non-exclusive manufacturing reference; the normalized compact BOM was processed for five boards, 176 of 209 lines matched and all 1019 placements parsed; exact search resolves all 33 outliers, giving J0=147, J1=0, J2=45, J3=12, J4-F=3 and J4-P=2 with zero replacements; the JLCAPI app and external credential storage are ready while Parts permission is reviewing; the short quote form maps SA518 to unqualified JLCPCB Assembly C9900300438 and no quote was submitted; exact-NiceRF-SA518 pricing and J4-F/J4-P factory final-assembly gates remain open"
     }
   },
-  "blocker": {
-    "id": "H5-BLK-SA518-QUALIFIED-PRICE",
-    "scope": "H5.0.3 production assembly availability and exact basket cost",
-    "reason": "all 209 production-BOM lines now have exact J0-J3, J4-F or J4-P routes without component replacement, but the short quote form maps SA518 to generic JLCPCB Assembly C9900300438 without NiceRF identity; exact NiceRF SA518 pricing and factory acceptance/pricing for J4-F box-build and J4-P kit/packing/shipping remain open",
-    "prepared_action": "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json",
-    "authority_required": "JLCPCB must approve the pending Parts permission; sending a no-order exact-NiceRF-SA518 sourcing inquiry, quote creation, private-stock reservation and purchase still require separate explicit authority"
-  },
+  "blocker": null,
   "next_active_repository": "esp32-leshy2",
-  "next_active_substep": "H5.0.3"
+  "next_active_substep": "H5.0.1-R1"
 }

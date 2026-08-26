@@ -3,14 +3,14 @@
   "stage": "H3.5.2",
   "status": "reviewed_rf_corridor_plane_and_return_constraints",
   "source_hashes": {
-    "hardware/product-design/generated/H1-unified-coordinate-table.json": "223356774b4dc7b7f5218712145822f7807aa6bdabfa96a14e3de04e48d3d523",
-    "hardware/verification/generated/H3-VRF51-rf-feed-constraints.json": "34bdc88eae66b5ce2ca283bfd8f641e864ec9a7535d0cf37078d14b8cea8740e",
-    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae"
+    "hardware/product-design/generated/H1-unified-coordinate-table.json": "805842b318cfe26654d06884ef149c34b4db938f25134d886c5cb58ebe790f55",
+    "hardware/verification/generated/H3-VRF51-rf-feed-constraints.json": "b87b3f03f98421101b6dcaaa355ffa6487bbb14427a2eb2e397654eefea6c968",
+    "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc"
   },
   "summary": {
-    "paths": 9,
+    "paths": 10,
     "ui_inner_paths": 4,
-    "rf_inner_paths": 5,
+    "rf_inner_paths": 6,
     "microcoaxes": 5,
     "checks": 23
   },
@@ -92,15 +92,15 @@
           5.0
         ],
         [
-          13.5,
+          7.5,
           5.0
         ],
         [
-          13.5,
+          7.5,
           0.0
         ]
       ],
-      "h1_topology_guide_length_mm": 48.55,
+      "h1_topology_guide_length_mm": 46.55,
       "guide_status": "topology-and-paper-corridor only; not production copper",
       "mode": "50_ohm_tx_rx",
       "maximum_signal_layer_transitions": 1,
@@ -127,15 +127,15 @@
           5.0
         ],
         [
-          37.5,
+          31.5,
           5.0
         ],
         [
-          37.5,
+          31.5,
           0.0
         ]
       ],
-      "h1_topology_guide_length_mm": 43.812,
+      "h1_topology_guide_length_mm": 49.812,
       "guide_status": "topology-and-paper-corridor only; not production copper",
       "mode": "50_ohm_tx_rx",
       "maximum_signal_layer_transitions": 1,
@@ -162,15 +162,15 @@
           5.0
         ],
         [
-          61.5,
+          67.5,
           5.0
         ],
         [
-          61.5,
+          67.5,
           0.0
         ]
       ],
-      "h1_topology_guide_length_mm": 38.636,
+      "h1_topology_guide_length_mm": 37.236,
       "guide_status": "topology-and-paper-corridor only; not production copper",
       "mode": "50_ohm_tx_rx",
       "maximum_signal_layer_transitions": 1,
@@ -185,11 +185,11 @@
       "external_connector_instance": "cc_external_sma",
       "h1_topology_guide_mm": [
         [
-          25.5,
+          19.5,
           10.3
         ],
         [
-          25.5,
+          19.5,
           0.0
         ]
       ],
@@ -202,33 +202,44 @@
       "return_contract": "one uninterrupted reference plane follows the entire PCB mainline; every allowed layer transition gets an adjacent symmetric ground-via pair"
     },
     {
-      "id": "VOICE-V/U",
+      "id": "VOICE-VHF",
+      "frame": "rf-inner",
+      "source_instance": "voice_v",
+      "external_connector_instance": "voice_v_external_sma",
+      "h1_topology_guide_mm": [
+        [
+          20.25,
+          32.5
+        ],
+        [
+          43.5,
+          0.0
+        ]
+      ],
+      "h1_topology_guide_length_mm": 39.96,
+      "guide_status": "topology-and-paper-corridor only; not production copper",
+      "mode": "50_ohm_tx_rx",
+      "maximum_signal_layer_transitions": 1,
+      "via_fence_pitch_mm_max": 2.5,
+      "aggressor_clearance": "max(3 x solved trace width, 1.00 mm)",
+      "return_contract": "one uninterrupted reference plane follows the entire PCB mainline; every allowed layer transition gets an adjacent symmetric ground-via pair"
+    },
+    {
+      "id": "VOICE-UHF",
       "frame": "rf-inner",
       "source_instance": "voice",
       "external_connector_instance": "voice_external_sma",
       "h1_topology_guide_mm": [
         [
-          53.3,
-          32.7
+          71.2,
+          36.95
         ],
         [
-          65.8,
-          31.8
-        ],
-        [
-          65.8,
-          6.5
-        ],
-        [
-          49.5,
-          6.5
-        ],
-        [
-          49.5,
+          55.5,
           0.0
         ]
       ],
-      "h1_topology_guide_length_mm": 60.632,
+      "h1_topology_guide_length_mm": 40.147,
       "guide_status": "topology-and-paper-corridor only; not production copper",
       "mode": "50_ohm_tx_rx",
       "maximum_signal_layer_transitions": 1,
@@ -304,12 +315,12 @@
     "quiet_aggressors": "no display/SD/USB clock, DC/DC switch node, crystal clock, class-D output or high-current LED/IR edge is routed parallel inside an RF clearance corridor",
     "coupled_evidence": "LTC5532 detector and hold circuitry live outside the mainline corridor; the coupled branch is shortest-first and never returns through receiver or oscillator ground",
     "tuning": "CC1101 branches and receiver matching retain accessible 0402 tuning lands inside their RF zones without lengthening unrelated paths",
-    "documentation": "H6 exports routed length, layer, solved impedance, reference plane, transitions, fence pitch and nearest aggressor for each of the nine path IDs"
+    "documentation": "H6 exports routed length, layer, solved impedance, reference plane, transitions, fence pitch and nearest aggressor for each of the ten path IDs"
   },
   "special_rules": {
     "native_and_nrf": "module U.FL/IPEX-to-board U.FL remains physical microcoax; only the board-receptacle-to-coupler-to-SMA section is PCB mainline",
     "cc_sub": "keep RF_P/RF_N length mismatch <=0.50 mm through the balun; place both BGS13SN8 switches and four branch networks as one compact, symmetric, via-fenced island; isolate every unselected branch without shared narrow ground",
-    "voice": "place SA518 contact 7, protection and SMA in the shortest practical corridor; keep class-D speaker current and codec input ground outside it",
+    "voice": "place each SA818S ANT contact 12, its own protection and its own SMA in an independent shortest practical corridor; keep class-D speaker current, the other voice corridor and codec input ground outside both",
     "fm_sw": "hold 50 ohms only from SMA to the first 56-nH body; the receiver-side match is not forced into a 50-ohm geometry",
     "am_lw": "do not apply the 50-ohm plane/fence template to the high-Z AMI segment; minimize surface area and extracted capacitance, forbid long coax, and keep all copper/aggressors away beneath it"
   },
@@ -317,10 +328,10 @@
     "h351_is_reviewed": true,
     "h1_clearance_audit_passed": true,
     "h1_topology_is_explicitly_not_final_copper": true,
-    "exactly_nine_guides": true,
+    "exactly_ten_guides": true,
     "guide_paths_equal_feed_paths": true,
     "guide_paths_equal_antenna_policy": true,
-    "four_ui_and_five_rf_paths": true,
+    "four_ui_and_six_rf_paths": true,
     "only_two_board_frames": true,
     "every_guide_reaches_antenna_edge": true,
     "all_guide_lengths_positive": true,
@@ -336,7 +347,7 @@
     "all_paths_limit_layer_transitions": true,
     "no_stub_rule_is_explicit": true,
     "aggressor_rule_names_all_major_classes": true,
-    "h6_export_contract_names_nine_ids": true
+    "h6_export_contract_names_ten_ids": true
   },
   "corrections": [
     "RX-AM/LW is excluded from the generic 50-ohm plane/via-fence template; its controlling layout quantity is extracted capacitance"

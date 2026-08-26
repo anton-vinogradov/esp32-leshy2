@@ -14980,42 +14980,42 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "91ebd841-c308-5cb5-9e68-b8c5ce5fda2f")
 	)
-	(label "RX_SA518_AFOUT_AC"
-		(at 312.42 68.58 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "176c3cf0-50a6-5a14-802a-b39d2795ecb3")
-	)
-	(label "RX_SA518_AFOUT_AC"
-		(at 358.14 68.58 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "c70dda32-0216-5535-b20c-112fb137c210")
-	)
-	(label "RX_SA518_AFOUT_BIASED"
-		(at 114.30 43.18 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "38ad9dd2-50e4-58f7-8c19-204b509a7544")
-	)
-	(label "RX_SA518_AFOUT_BIASED"
-		(at 393.70 68.58 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "9161d999-4030-546b-83ef-d5651f3803e2")
-	)
-	(label "RX_SA518_AFOUT_BIASED"
-		(at 439.42 68.58 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "a60dfae7-72d7-5b5f-b167-64e232acf389")
-	)
-	(hierarchical_label "RX_SA518_AFOUT_ISOLATED"
-		(shape bidirectional)
-		(at 276.86 68.58 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "f6881708-7a88-51c5-a90a-72567d8889b1")
-	)
 	(hierarchical_label "RX_SI4732_MONO"
 		(shape bidirectional)
 		(at 114.30 48.26 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "3a8cacad-ad86-530b-a9aa-9fe9f9cfbb79")
+	)
+	(label "RX_VOICE_AFOUT_AC"
+		(at 312.42 68.58 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "12603173-0497-57cb-a1ef-4119deab41b6")
+	)
+	(label "RX_VOICE_AFOUT_AC"
+		(at 358.14 68.58 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "94941b8d-3472-5ea1-9002-0d93a32f57c7")
+	)
+	(label "RX_VOICE_AFOUT_BIASED"
+		(at 114.30 43.18 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "25e37ad1-9a44-55d7-9a7b-569d68afd670")
+	)
+	(label "RX_VOICE_AFOUT_BIASED"
+		(at 393.70 68.58 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "e5b33964-5a07-5595-8279-429fc67d80ef")
+	)
+	(label "RX_VOICE_AFOUT_BIASED"
+		(at 439.42 68.58 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "9af319d2-b8c9-5a08-9f26-7f9c3e502562")
+	)
+	(hierarchical_label "RX_VOICE_AFOUT_SELECTED"
+		(shape bidirectional)
+		(at 276.86 68.58 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "66114366-2f9d-5631-be48-ffe78997b7ec")
 	)
 	(hierarchical_label "SPEAKER_SELECTED_N"
 		(shape bidirectional)

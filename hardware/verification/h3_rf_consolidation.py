@@ -37,7 +37,8 @@ def build() -> tuple[dict[Path, str], dict]:
         "N24-1": "SG-N24",
         "N24-2": "SG-N24",
         "CC-SUB": "SG-CC",
-        "VOICE-V/U": "SG-VOICE",
+        "VOICE-VHF": "SG-VOICE",
+        "VOICE-UHF": "SG-VOICE",
         "RX-FM/SW": "SG-BROADCAST",
         "RX-AM/LW": "SG-BROADCAST",
     }
@@ -59,7 +60,7 @@ def build() -> tuple[dict[Path, str], dict]:
         ],
         "H6": [
             "release a fabricator stack-up, field-solve and coupon-correlate every 50-ohm launch/mainline",
-            "export for all nine path IDs: routed length, layer, solved impedance, reference plane, transitions, fence pitch and nearest aggressor",
+            "export for all ten path IDs: routed length, layer, solved impedance, reference plane, transitions, fence pitch and nearest aggressor",
             "run DRC plus explicit return-path/plane-slot/RF-corridor review; extract RX-AM/LW capacitance rather than forcing it to 50 ohms",
         ],
         "H8": [
@@ -73,11 +74,11 @@ def build() -> tuple[dict[Path, str], dict]:
         "all_leaf_fail_counts_are_zero": all(leaf["review_summary"]["failed"] == 0 for leaf in leaves),
         "all_leaf_unresolved_counts_are_zero": all(leaf["review_summary"]["unresolved"] == 0 for leaf in leaves),
         "all_leaf_open_findings_are_empty": all(not leaf["open_findings"] for leaf in leaves),
-        "leaf_check_total_is_125": leaf_checks == 125,
-        "feed_and_layout_cover_same_nine_paths": feed_ids == layout_ids and len(feed_ids) == 9,
+        "leaf_check_total_is_128": leaf_checks == 128,
+        "feed_and_layout_cover_same_ten_paths": feed_ids == layout_ids and len(feed_ids) == 10,
         "every_onboard_path_has_runtime_group": set(path_groups) == feed_ids and set(path_groups.values()).issubset(groups),
         "all_nine_runtime_groups_are_covered": len(groups) == 9,
-        "seven_tx_and_two_receive_only_paths_preserved": feed["summary"]["tx_capable_paths"] == 7 and feed["summary"]["receive_only_paths"] == 2,
+        "eight_tx_and_two_receive_only_paths_preserved": feed["summary"]["tx_capable_paths"] == 8 and feed["summary"]["receive_only_paths"] == 2,
         "all_five_microcoaxes_preserved": layout["summary"]["microcoaxes"] == 5,
         "ordinary_paths_have_plane_and_return_contract": all("reference plane" in row["return_contract"] for row in layout["path_corridors"] if row["id"] != "RX-AM/LW"),
         "amlw_is_non50_end_to_end": am_feed["mode"] == "non50_high_impedance_loop_pod" and am_layout["via_fence_pitch_mm_max"] is None and "no plane" in am_layout["return_contract"],
@@ -101,7 +102,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "stage": "H3.5.4",
         "status": "reviewed_rf_prelayout_and_coexistence_consolidation",
         "source_hashes": {str(path.relative_to(REPO)): sha256(path) for path in (FEED_PATH, LAYOUT_PATH, COEX_PATH)},
-        "consolidated": {"leaf_packages": 3, "leaf_checks": leaf_checks, "consolidation_checks": len(checks), "paths": 9, "signal_groups": 9, "quiet_contracts": 13, "physical_residuals": len(residual)},
+        "consolidated": {"leaf_packages": 3, "leaf_checks": leaf_checks, "consolidation_checks": len(checks), "paths": 10, "signal_groups": 9, "quiet_contracts": 13, "physical_residuals": len(residual)},
         "path_to_runtime_group": path_groups,
         "corrections": corrections,
         "downstream_evidence": downstream,
@@ -116,7 +117,7 @@ def build() -> tuple[dict[Path, str], dict]:
 
 `H3.5` is reviewed: three leaf packages contribute `{leaf_checks}` passing checks and this consolidation adds `{len(checks)}` cross-domain checks. No analytical finding remains open. The exact current marker is `H3.6.1`.
 
-The closed paper contract contains nine source-to-port paths, seven TX-capable paths, five removable microcoaxes, nine runtime signal groups and thirteen quiet-state contracts. Ordinary RF mainlines have feed/loss, corridor, plane and return rules; `RX-AM/LW` retains its separate high-impedance `19.500-pF` external-capacitance contract. Full 3×nRF24 remains mandatory in all four role mixes and all eight identity permutations.
+The closed paper contract contains ten source-to-port paths, eight TX-capable paths, five removable microcoaxes, nine runtime signal groups and thirteen quiet-state contracts. VHF and UHF are independent physical feeds but one runtime group with hardware one-hot selection. Ordinary RF mainlines have feed/loss, corridor, plane and return rules; `RX-AM/LW` retains its separate high-impedance `19.500-pF` external-capacitance contract. Full 3×nRF24 remains mandatory in all four role mixes and all eight identity permutations.
 
 This is a pre-layout result, not final RF performance. `{len(residual)}` physical-only items are explicitly assigned to H5 received evidence, H6 field-solved/coupon-correlated routing and H8 VNA/spectrum/OTA/coexistence qualification. It does not authorize purchase, KiCad placement/routing or fabrication.
 
@@ -126,7 +127,7 @@ Machine evidence: [`H3-VRF54-rf-consolidation.json`](../hardware/verification/ge
 
 `H3.5` проведён ревью: три leaf-пакета дают `{leaf_checks}` проходящих checks, сведение добавляет `{len(checks)}` сквозных checks. Незакрытых аналитических findings нет. Точный текущий маркер — `H3.6.1`.
 
-Закрытый бумажный контракт содержит девять source-to-port трактов, семь TX-capable трактов, пять съёмных microcoax, девять runtime signal groups и тринадцать quiet-state contracts. Обычные RF-mainline имеют правила feed/loss, corridor, plane и return; `RX-AM/LW` сохраняет отдельный high-impedance бюджет внешней ёмкости `19,500 пФ`. Полные 3×nRF24 остаются обязательными во всех четырёх смесях и восьми перестановках ролей.
+Закрытый бумажный контракт содержит десять source-to-port трактов, восемь TX-capable трактов, пять съёмных microcoax, девять runtime signal groups и тринадцать quiet-state contracts. VHF и UHF физически независимы, но образуют одну runtime-группу с аппаратным one-hot выбором. Обычные RF-mainline имеют правила feed/loss, corridor, plane и return; `RX-AM/LW` сохраняет отдельный high-impedance бюджет внешней ёмкости `19,500 пФ`. Полные 3×nRF24 остаются обязательными во всех четырёх смесях и восьми перестановках ролей.
 
 Это pre-layout результат, а не заявление финальных RF-характеристик. `{len(residual)}` только физических пунктов явно назначены H5 received evidence, H6 field-solved/coupon-correlated routing и H8 VNA/spectrum/OTA/coexistence qualification. Результат не разрешает закупку, KiCad placement/routing или печать.
 

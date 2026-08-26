@@ -13,7 +13,7 @@ A damaged image in one controller cannot permanently brick the product. No recov
 | AON safety MSPM0 | internal AON-powered UART + SWD + NRST pads | recovery cannot release RUN_PERMIT or clear hardware FAULT_KILL | LESHY2-RF |
 | TPS25751D + configuration EEPROM | SYS_I2C target pads plus direct local SDA/SCL/WP pads | pre-programmed loose EEPROM or current-limited raw-VBUS fixture | LESHY2-RF |
 | MAX17320 pack gauge | internal protected local I2C and fault/hold observation | image checksum and override readback before energized cell installation | LESHY2-RF |
-| SA518 voice module | internal UPDATE pad plus permanent UART and hardware PD | UPDATE stays inhibited until module-revision timing is qualified | LESHY2-RF |
+| SA818S-U and SA818S-V voice modules | permanent hardware-selected UART plus independent UHF/VHF PD controls | rail cycle, selection readback and replaceable serial module; neither part requires an undocumented firmware-update contact | LESHY2-RF |
 
 ## Hardware boundaries
 

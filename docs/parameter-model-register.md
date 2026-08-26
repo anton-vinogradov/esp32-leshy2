@@ -6,9 +6,9 @@ This is the H3 calculation input register: for every actually fitted device type
 
 ## Coverage
 
-- `1048` instances and `217` used device types.
-- A primary source exists for `217` of `217` types; missing: `0`.
-- `71` types already have structured parameters; `146` are extracted by class during H3.1–H3.6.
+- `1081` instances and `218` used device types.
+- A primary source exists for `218` of `218` types; missing: `0`.
+- `73` types already have structured parameters; `145` are extracted by class during H3.1–H3.6.
 - There are `0` local vendor models; an admissible analytic, behavioral or circuit method is frozen in `H3.0.3`, never invented silently.
 - Two H2 document mirrors are superseded here by exact official Hirose and JAE sources without changing accepted H2.
 

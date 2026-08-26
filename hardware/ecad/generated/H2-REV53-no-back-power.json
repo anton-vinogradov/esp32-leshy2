@@ -4,12 +4,12 @@
   "status": "reviewed_no_back_power_boundaries",
   "method": "fresh complete KiCad netlists plus exact USB, M1 and expansion-boundary membership checks",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
-    "hardware/architecture/devices.json": "b7c9e0a591613e05e2b39fd315e301f6e628464b8cc1e46d983fc67b05204424",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "49c4b495cf150bafb36b4af63e36546fffa5af217bcd62a8e5457040acc70c8e",
-    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "3e101404e98d4f89190992b056d064c3eafb3dc05cec4b9550c0803146807b57",
-    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "95c3549487207b2c805663bd6e9be7ff251a116a64f9820d32e60f714e2232fc",
-    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "7079f94dceeef0ed9a569fc2a13f53af125e26c57f6b455bfe2d3b6e5edaca51"
+    "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
+    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "50224b50fe674f8f36e7f559b62bde8a771f60f547027ecfc6ff7f1cf740a6b7",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "64597d964c10d8eb0659f6c09b1464edf497117e48c68a95aadecaeb22c8a39a",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "ab4e73fe576c5e1557e6695b89fd3ce182c4533a61e984bd755d3c25b287ce97",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "62036d985924f988257859617422a4eedbdab3d0d8f940cb485d32b7b97f23bc"
   },
   "hierarchy_exports": {
     "LESHY2-UI": {
@@ -20,10 +20,10 @@
       "annotation_warnings": 0
     },
     "LESHY2-RF": {
-      "component_count": 690,
-      "unique_reference_count": 690,
+      "component_count": 722,
+      "unique_reference_count": 722,
       "duplicate_references": [],
-      "net_count": 544,
+      "net_count": 580,
       "annotation_warnings": 0
     }
   },

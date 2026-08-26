@@ -4,40 +4,40 @@
   "status": "reviewed_every_intentional_no_connect",
   "method": "manifest-to-symbol-to-physical-pin-to-coordinate NC-marker reconciliation plus one written rationale per endpoint",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
+    "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
     "hardware/accessories/leshy2-lora-cap-01.json": "aea57801c58d9f255774bc58ecf51aff7238d9e8557d0ae25da6f81145ff5301",
-    "hardware/ecad/generated/H2-ADP00-display-adapter.json": "1255342fa902d75ca39401fe799c35c6758b155a019e7f7f0b065278209b9126",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "8db3c25c548349bdb4b5bb189422a3441c2e4bfc89d9196fb1115cc96d259534",
-    "hardware/ecad/generated/H2-CAP10-radio-control.json": "6b5349ec948bdc6beae5f1958295c6302c319d4a0295a05908461e8c03443b28",
-    "hardware/ecad/generated/H2-CAP20-power-bus.json": "e74157079808f56881ed7cdbb81d15b022d8fd6c117609b4f2b0cc470577c37c",
-    "hardware/ecad/generated/H2-CAP30-tx-evidence.json": "7f2c302fc88698a6a8ed12d0c0821aa928fe02cc18a0fa44895bfe12d4cb19a2",
-    "hardware/ecad/generated/H2-RF01-usb-pd-charge.json": "9fa3f7d09ec7177fb00e9f273159524dbd2422fa25139c8246ee244046bc3f06",
-    "hardware/ecad/generated/H2-RF02-pack-safety-aon.json": "be816f3d6325e318177bb9c4bebfeb5d0b39e5ace62a92c5a1877929bd5ff286",
-    "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json": "8c9c2ae5188445056daaf6a79875d51b6e23df26521e4d1bf623f28cd5bbb330",
-    "hardware/ecad/generated/H2-RF30-rp2354-core-service.json": "8daf4b7fef535c63033565d1487205decb7dd835704bd6e8eb52a8dac10414de",
-    "hardware/ecad/generated/H2-RF31-nrf24-x3.json": "5f327867ca3acc1f37f693a3a0f99111c2d2c1ccbf89f406dcfaee74b8dede0c",
-    "hardware/ecad/generated/H2-RF32-subghz-voice.json": "77fbddfe0df53dc981d8289aded16f9105eabfd4bf01dbea9c8e08bf5d749a73",
-    "hardware/ecad/generated/H2-RF34-u214-m5-ext.json": "b479f958f09899e0db6ed62e5a4d1c8202ee2bc9e2c95cdd3025106f72083bb3",
-    "hardware/ecad/generated/H2-RF35-rear-controls.json": "3a266adc74ea1d290d4785f929e2a68bf90b262cf7c8be53895e14b26f68362c",
-    "hardware/ecad/generated/H2-RF36-audio-io-amp.json": "fbe14ae69b10f63bc06f31cb50863de9d3e6ea5197375c7a2ef91bf139b815d4",
-    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "3e101404e98d4f89190992b056d064c3eafb3dc05cec4b9550c0803146807b57",
-    "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json": "e907d79cef1727031d0a055096efce56dfaa37c8623a7394cfa09067bc8a034d",
-    "hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json": "07f957065958156b5266d5582551c5696e34e8cff2bce6e2f5476e9e329b0f24",
-    "hardware/ecad/generated/H2-UI10-S3-core.json": "108847d867292ab0a3499763915fb834cd080ecb05af8f2bab38e86d86426832",
-    "hardware/ecad/generated/H2-UI11-display-touch-storage.json": "a53db3718f5a69e4df865065892f612df9bfc4ea57e09522cce3fe69c8d89247",
-    "hardware/ecad/generated/H2-UI12-controls-indicators.json": "1d75b5a5766ced4da68adde7b6adf538394883cb0649dacd51845d247c9c595d",
-    "hardware/ecad/generated/H2-UI13-audio-codec-headset.json": "8cff747283601d50f376f1ede88ddcc23c2f703b196004944a642dee4611f7bd",
-    "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json": "9b4405d7edfa126b8639f3d1815fdcf236c503927bba39d981a44b400b131f55",
-    "hardware/ecad/generated/H2-UI21-fm-am-receiver.json": "2a015d058d397e927df4975eed119d9b854b6defb80bcf137434032411fba0ee",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "49c4b495cf150bafb36b4af63e36546fffa5af217bcd62a8e5457040acc70c8e",
-    "hardware/ecad/generated/H2-UI50-tx-safety-evidence.json": "9c78b0adb57c28a13fb588739bfc9036d7dc69fc2851baba32e89f3b317a2f89",
-    "hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json": "d8e0dc22363480f9c470ecfde9e77677a287b71e261e12f0ad5db49a681bbc6c"
+    "hardware/ecad/generated/H2-ADP00-display-adapter.json": "2a7200209747a2e68316835da4130decdb4a3173e62fc07f487d99d13bf07fb1",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "d0fc0f3128535a69375117e740d03e33379669f6bb566d586c5f7d917d273000",
+    "hardware/ecad/generated/H2-CAP10-radio-control.json": "250a0a8fc40460db2d3ed2c10480e3f5c72afcba8c37b826bd614447e6b05f99",
+    "hardware/ecad/generated/H2-CAP20-power-bus.json": "7e42b3f93bdf377ce5eb78c44a0cf53ba5818489ee62d0a53a2605601742572d",
+    "hardware/ecad/generated/H2-CAP30-tx-evidence.json": "5e98cbc894c0bf4781f90873dd58b452467e378b78cce86f2e48b602634399bf",
+    "hardware/ecad/generated/H2-RF01-usb-pd-charge.json": "1bbd912eccdaeaf47e981fcb6ef33bb856be1d980dd374b8e3b2ee4247f8110c",
+    "hardware/ecad/generated/H2-RF02-pack-safety-aon.json": "50a7272454aae9ed2aa6e75af6e3988d7b1ff89abf031266870a9afe1ceecd2f",
+    "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json": "403bfb75bfa8a569fe4d4dd4ff25756b1eaff794f010afc968a808f057b156e4",
+    "hardware/ecad/generated/H2-RF30-rp2354-core-service.json": "4a68a13457aa23b256838c4256efd805646a958cdaff84c0933bf97d91b4b10d",
+    "hardware/ecad/generated/H2-RF31-nrf24-x3.json": "070a9c9c16b6512add07e0af8b6c626391d779ce61ba00751de85477b5bb2054",
+    "hardware/ecad/generated/H2-RF32-subghz-voice.json": "b90c4f30ecf456a413418d22f9a44b9b4df7e55913e776485e522651220364ef",
+    "hardware/ecad/generated/H2-RF34-u214-m5-ext.json": "2611969a9e9b1468eb9c138e68861bba91f58be56c8ebd10ebef3dd7e287120e",
+    "hardware/ecad/generated/H2-RF35-rear-controls.json": "7145f6b2acc457e4469975b9b59d154c5edb3c5276ec00b52256a384c1b5b4e3",
+    "hardware/ecad/generated/H2-RF36-audio-io-amp.json": "fcda53bd2103f94c12ad2bec5c4948f372c1676706723a1eafa66f4b5e50a501",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "64597d964c10d8eb0659f6c09b1464edf497117e48c68a95aadecaeb22c8a39a",
+    "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json": "e1bfa2a1821dcb07883d0407ffb55718c1534d877484576be72983daea8aa4c7",
+    "hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json": "fee8aa0abedb9a4f2ec9ee449715fa32ea016529675b0e68ca81b5882abbdf9f",
+    "hardware/ecad/generated/H2-UI10-S3-core.json": "c679efd59d2aae10a7021885f54f9d4fc5bd3c0ceb8bab7ce890a10ac9afa11b",
+    "hardware/ecad/generated/H2-UI11-display-touch-storage.json": "507b6ed25da1d25e8428078c8afc88b45382bace2c089bd49d093be116df2489",
+    "hardware/ecad/generated/H2-UI12-controls-indicators.json": "66b5e3fc486959c97a3b1d68f2887f7e54d5e548230adbdb0508411a46693d3a",
+    "hardware/ecad/generated/H2-UI13-audio-codec-headset.json": "bb4d3748deb0c8dede0461b956b622b0bc2685cf899ae8449acd156bed081348",
+    "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json": "7e90d4dd507933f5d461ba810f8a09730f10e8d097eca12ac01e2ae131be1316",
+    "hardware/ecad/generated/H2-UI21-fm-am-receiver.json": "9448a19612fe816226c08576a475ddd5edf2861c1cda0497ff3244b1e1662f2f",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "50224b50fe674f8f36e7f559b62bde8a771f60f547027ecfc6ff7f1cf740a6b7",
+    "hardware/ecad/generated/H2-UI50-tx-safety-evidence.json": "1805019083b3ff6c00a7bf26f299d70908d2bee7f2e5b5de6da91059669d37c1",
+    "hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json": "47fddc2388bec77a77cbac208f102b9c19332d7b6b35de19396672b0806982b4"
   },
   "summary": {
     "reviewed_sheet_manifests": 26,
     "nonzero_nc_sheets": 22,
     "zero_nc_sheets": 4,
-    "intentional_no_connects": 191,
+    "intentional_no_connects": 202,
     "missing_physical_contacts": 0,
     "missing_kicad_markers": 0,
     "missing_rationales": 0
@@ -463,7 +463,7 @@
       "artifact": "hardware/ecad/generated/H2-RF32-subghz-voice.json",
       "schematic": "hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch",
       "sheet": "RF_32_SUBGHZ_VOICE",
-      "count": 11,
+      "count": 20,
       "endpoints": [
         {
           "endpoint": "cc_balun.DNC_5",
@@ -501,32 +501,53 @@
           "rationale": "disabled spare output is unconnected"
         },
         {
+          "endpoint": "voice.NC_11",
+          "physical_pin": "11",
+          "symbol": "RF32_VOICE",
+          "marker": "present",
+          "rationale": "manufacturer reserved contact remains open"
+        },
+        {
+          "endpoint": "voice.NC_13",
+          "physical_pin": "13",
+          "symbol": "RF32_VOICE",
+          "marker": "present",
+          "rationale": "manufacturer reserved contact remains open"
+        },
+        {
+          "endpoint": "voice.NC_14",
+          "physical_pin": "14",
+          "symbol": "RF32_VOICE",
+          "marker": "present",
+          "rationale": "manufacturer reserved contact remains open"
+        },
+        {
           "endpoint": "voice.NC_15",
           "physical_pin": "15",
           "symbol": "RF32_VOICE",
           "marker": "present",
-          "rationale": "module reserved contact remains open"
+          "rationale": "manufacturer reserved contact remains open"
         },
         {
-          "endpoint": "voice.NC_5",
-          "physical_pin": "5",
+          "endpoint": "voice.NC_2",
+          "physical_pin": "2",
           "symbol": "RF32_VOICE",
           "marker": "present",
-          "rationale": "module reserved contact remains open"
+          "rationale": "manufacturer reserved contact remains open"
         },
         {
-          "endpoint": "voice.NC_6",
-          "physical_pin": "6",
-          "symbol": "RF32_VOICE",
-          "marker": "present",
-          "rationale": "module reserved contact remains open"
-        },
-        {
-          "endpoint": "voice.VOXEN",
+          "endpoint": "voice.NC_4",
           "physical_pin": "4",
           "symbol": "RF32_VOICE",
           "marker": "present",
-          "rationale": "standard SA518 leaves VOXEN without function; host-side authorized VOX uses the exact microphone capture path and preserves data TX"
+          "rationale": "manufacturer reserved contact remains open"
+        },
+        {
+          "endpoint": "voice_band_inverter.2Y",
+          "physical_pin": "4",
+          "symbol": "RF32_VOICE_BAND_INVERTER",
+          "marker": "present",
+          "rationale": "unused inverter output remains open"
         },
         {
           "endpoint": "voice_hl_driver.NC",
@@ -541,6 +562,48 @@
           "symbol": "RF32_VOICE_IO_POWER_SWITCH",
           "marker": "present",
           "rationale": "TPS22919 physical pin 4 remains open"
+        },
+        {
+          "endpoint": "voice_v.NC_11",
+          "physical_pin": "11",
+          "symbol": "RF32_VOICE_V",
+          "marker": "present",
+          "rationale": "manufacturer reserved contact remains open"
+        },
+        {
+          "endpoint": "voice_v.NC_13",
+          "physical_pin": "13",
+          "symbol": "RF32_VOICE_V",
+          "marker": "present",
+          "rationale": "manufacturer reserved contact remains open"
+        },
+        {
+          "endpoint": "voice_v.NC_14",
+          "physical_pin": "14",
+          "symbol": "RF32_VOICE_V",
+          "marker": "present",
+          "rationale": "manufacturer reserved contact remains open"
+        },
+        {
+          "endpoint": "voice_v.NC_15",
+          "physical_pin": "15",
+          "symbol": "RF32_VOICE_V",
+          "marker": "present",
+          "rationale": "manufacturer reserved contact remains open"
+        },
+        {
+          "endpoint": "voice_v.NC_2",
+          "physical_pin": "2",
+          "symbol": "RF32_VOICE_V",
+          "marker": "present",
+          "rationale": "manufacturer reserved contact remains open"
+        },
+        {
+          "endpoint": "voice_v.NC_4",
+          "physical_pin": "4",
+          "symbol": "RF32_VOICE_V",
+          "marker": "present",
+          "rationale": "manufacturer reserved contact remains open"
         }
       ]
     },
@@ -817,7 +880,7 @@
       "artifact": "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json",
       "schematic": "hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
-      "count": 22,
+      "count": 24,
       "endpoints": [
         {
           "endpoint": "cc_evidence_hold_diode.NC",
@@ -860,6 +923,13 @@
           "symbol": "RF50_DET_VOICE",
           "marker": "present",
           "rationale": "unused controller output remains unconnected"
+        },
+        {
+          "endpoint": "det_voice_v.V_DN",
+          "physical_pin": "7",
+          "symbol": "RF50_DET_VOICE_V",
+          "marker": "present",
+          "rationale": "unused VHF detector controller output remains unconnected"
         },
         {
           "endpoint": "evidence_or_4.K2",
@@ -970,6 +1040,13 @@
           "endpoint": "voice_evidence_hold_diode.NC",
           "physical_pin": "2",
           "symbol": "RF50_VOICE_EVIDENCE_HOLD_DIODE",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "voice_v_evidence_hold_diode.NC",
+          "physical_pin": "2",
+          "symbol": "RF50_VOICE_V_EVIDENCE_HOLD_DIODE",
           "marker": "present",
           "rationale": "manufacturer no-connect remains open"
         }

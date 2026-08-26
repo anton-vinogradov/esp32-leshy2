@@ -120,8 +120,8 @@
     "result": "paper_geometry_passed",
     "interboard_gap_mm": 11.0,
     "minimum_required_clearance_mm": 0.7,
-    "inner_body_count": 136,
-    "total_inner_component_count_including_adapter": 138,
+    "inner_body_count": 143,
+    "total_inner_component_count_including_adapter": 145,
     "all_inner_bodies_have_sourced_positive_height": true,
     "no_inner_body_exceeds_gap": true,
     "no_inner_body_violates_minimum_clearance": true,
@@ -265,13 +265,6 @@
         "remaining_to_opposite_pcb_plane_mm": 7.7
       },
       {
-        "instance": "voice",
-        "frame": "rf-inner",
-        "mpn": "NiceRF SA518",
-        "height_mm": 3.25,
-        "remaining_to_opposite_pcb_plane_mm": 7.75
-      },
-      {
         "instance": "ir_carrier",
         "frame": "ui-inner",
         "mpn": "Vishay TSMP95000TT",
@@ -289,6 +282,20 @@
         "instance": "s3",
         "frame": "ui-inner",
         "mpn": "ESP32-S3-WROOM-1U-N16R8",
+        "height_mm": 3.2,
+        "remaining_to_opposite_pcb_plane_mm": 7.8
+      },
+      {
+        "instance": "voice",
+        "frame": "rf-inner",
+        "mpn": "G-NiceRF SA818S-U",
+        "height_mm": 3.2,
+        "remaining_to_opposite_pcb_plane_mm": 7.8
+      },
+      {
+        "instance": "voice_v",
+        "frame": "rf-inner",
+        "mpn": "G-NiceRF SA818S-V",
         "height_mm": 3.2,
         "remaining_to_opposite_pcb_plane_mm": 7.8
       },
@@ -706,6 +713,13 @@
         "remaining_to_opposite_pcb_plane_mm": 9.8
       },
       {
+        "instance": "voice_band_io",
+        "frame": "rf-inner",
+        "mpn": "TCA9534APWR",
+        "height_mm": 1.2,
+        "remaining_to_opposite_pcb_plane_mm": 9.8
+      },
+      {
         "instance": "audio_speaker_selector",
         "frame": "ui-inner",
         "mpn": "Texas Instruments TMUX1136DGSR",
@@ -888,6 +902,34 @@
         "remaining_to_opposite_pcb_plane_mm": 9.9
       },
       {
+        "instance": "voice_audio_mux",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments TMUX1136DGSR",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "voice_band_inverter",
+        "frame": "rf-inner",
+        "mpn": "74LVC2G14GW,125",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "voice_control_mux_a",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments TMUX1136DGSR",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "voice_control_mux_b",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments TMUX1136DGSR",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
         "instance": "cc",
         "frame": "rf-inner",
         "mpn": "CC1101RGPR",
@@ -993,6 +1035,13 @@
         "remaining_to_opposite_pcb_plane_mm": 10.1
       },
       {
+        "instance": "voice_pd_gate",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments SN74LVC2G08DCUR",
+        "height_mm": 0.9,
+        "remaining_to_opposite_pcb_plane_mm": 10.1
+      },
+      {
         "instance": "pd_controller",
         "frame": "rf-inner",
         "mpn": "Texas Instruments TPS25751DREFR",
@@ -1091,7 +1140,7 @@
         "remaining_to_opposite_pcb_plane_mm": 10.4
       }
     ],
-    "opposing_non_mating_pair_count": 37,
+    "opposing_non_mating_pair_count": 36,
     "minimum_opposing_pair": {
       "ui_instance": "headphone_jack",
       "rf_instance": "pack_fuse0",
@@ -1135,17 +1184,24 @@
       },
       {
         "ui_instance": "c5",
-        "rf_instance": "voice",
+        "rf_instance": "voice_v",
         "ui_height_mm": 3.3,
-        "rf_height_mm": 3.25,
-        "remaining_z_clearance_mm": 4.45
+        "rf_height_mm": 3.2,
+        "remaining_z_clearance_mm": 4.5
       },
       {
         "ui_instance": "s3",
         "rf_instance": "voice",
         "ui_height_mm": 3.2,
-        "rf_height_mm": 3.25,
-        "remaining_z_clearance_mm": 4.55
+        "rf_height_mm": 3.2,
+        "remaining_z_clearance_mm": 4.6
+      },
+      {
+        "ui_instance": "s3",
+        "rf_instance": "voice_v",
+        "ui_height_mm": 3.2,
+        "rf_height_mm": 3.2,
+        "remaining_z_clearance_mm": 4.6
       },
       {
         "ui_instance": "c5",
@@ -1176,13 +1232,6 @@
         "remaining_z_clearance_mm": 5.7
       },
       {
-        "ui_instance": "receiver",
-        "rf_instance": "voice",
-        "ui_height_mm": 1.75,
-        "rf_height_mm": 3.25,
-        "remaining_z_clearance_mm": 6.0
-      },
-      {
         "ui_instance": "sd",
         "rf_instance": "product_usb_connector",
         "ui_height_mm": 1.68,
@@ -1211,53 +1260,11 @@
         "remaining_z_clearance_mm": 6.5
       },
       {
-        "ui_instance": "ui_matrix_io",
-        "rf_instance": "voice",
-        "ui_height_mm": 1.2,
-        "rf_height_mm": 3.25,
-        "remaining_z_clearance_mm": 6.55
-      },
-      {
-        "ui_instance": "s3",
-        "rf_instance": "nrf1_host_buffer",
+        "ui_instance": "ir_demod",
+        "rf_instance": "evidence_mask",
         "ui_height_mm": 3.2,
-        "rf_height_mm": 1.1,
-        "remaining_z_clearance_mm": 6.7
-      },
-      {
-        "ui_instance": "s3",
-        "rf_instance": "nrf2_host_buffer",
-        "ui_height_mm": 3.2,
-        "rf_height_mm": 1.1,
-        "remaining_z_clearance_mm": 6.7
-      },
-      {
-        "ui_instance": "s3",
-        "rf_instance": "u214_host_buffer_a",
-        "ui_height_mm": 3.2,
-        "rf_height_mm": 1.1,
-        "remaining_z_clearance_mm": 6.7
-      },
-      {
-        "ui_instance": "s3",
-        "rf_instance": "u214_host_buffer_b",
-        "ui_height_mm": 3.2,
-        "rf_height_mm": 1.1,
-        "remaining_z_clearance_mm": 6.7
-      },
-      {
-        "ui_instance": "s3",
-        "rf_instance": "u214_i2c_iso",
-        "ui_height_mm": 3.2,
-        "rf_height_mm": 1.1,
-        "remaining_z_clearance_mm": 6.7
-      },
-      {
-        "ui_instance": "s3",
-        "rf_instance": "u214_return_buffer",
-        "ui_height_mm": 3.2,
-        "rf_height_mm": 1.1,
-        "remaining_z_clearance_mm": 6.7
+        "rf_height_mm": 1.2,
+        "remaining_z_clearance_mm": 6.6
       },
       {
         "ui_instance": "c5",
@@ -1274,20 +1281,6 @@
         "remaining_z_clearance_mm": 6.8
       },
       {
-        "ui_instance": "s3",
-        "rf_instance": "nrf1_return_buffer",
-        "ui_height_mm": 3.2,
-        "rf_height_mm": 1.0,
-        "remaining_z_clearance_mm": 6.8
-      },
-      {
-        "ui_instance": "s3",
-        "rf_instance": "nrf2_return_buffer",
-        "ui_height_mm": 3.2,
-        "rf_height_mm": 1.0,
-        "remaining_z_clearance_mm": 6.8
-      },
-      {
         "ui_instance": "audio_speaker_selector",
         "rf_instance": "voice_inductor",
         "ui_height_mm": 1.1,
@@ -1295,25 +1288,25 @@
         "remaining_z_clearance_mm": 6.9
       },
       {
-        "ui_instance": "codec",
-        "rf_instance": "voice",
-        "ui_height_mm": 0.6,
-        "rf_height_mm": 3.25,
-        "remaining_z_clearance_mm": 7.15
-      },
-      {
-        "ui_instance": "slow_io",
-        "rf_instance": "voice",
-        "ui_height_mm": 0.6,
-        "rf_height_mm": 3.25,
-        "remaining_z_clearance_mm": 7.15
-      },
-      {
         "ui_instance": "sd",
         "rf_instance": "pd_config_eeprom",
         "ui_height_mm": 1.68,
         "rf_height_mm": 1.75,
         "remaining_z_clearance_mm": 7.57
+      },
+      {
+        "ui_instance": "receiver",
+        "rf_instance": "u214_host_buffer_a",
+        "ui_height_mm": 1.75,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 8.15
+      },
+      {
+        "ui_instance": "receiver",
+        "rf_instance": "u214_host_buffer_b",
+        "ui_height_mm": 1.75,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 8.15
       },
       {
         "ui_instance": "safe_c5_fault_reset_buffer",
@@ -1344,6 +1337,27 @@
         "remaining_z_clearance_mm": 8.52
       },
       {
+        "ui_instance": "ir_safe_gate",
+        "rf_instance": "evidence_mask",
+        "ui_height_mm": 1.1,
+        "rf_height_mm": 1.2,
+        "remaining_z_clearance_mm": 8.7
+      },
+      {
+        "ui_instance": "ui_matrix_io",
+        "rf_instance": "nrf1_host_buffer",
+        "ui_height_mm": 1.2,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 8.7
+      },
+      {
+        "ui_instance": "ui_matrix_io",
+        "rf_instance": "u214_i2c_iso",
+        "ui_height_mm": 1.2,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 8.7
+      },
+      {
         "ui_instance": "safe_reset_sink_a",
         "rf_instance": "safe_reset_sink_b",
         "ui_height_mm": 1.1,
@@ -1351,11 +1365,39 @@
         "remaining_z_clearance_mm": 8.8
       },
       {
+        "ui_instance": "codec_i2s_din_boot_gate",
+        "rf_instance": "nrf2_return_buffer",
+        "ui_height_mm": 1.1,
+        "rf_height_mm": 1.0,
+        "remaining_z_clearance_mm": 8.9
+      },
+      {
+        "ui_instance": "ui_zone_ntc",
+        "rf_instance": "evidence_mask",
+        "ui_height_mm": 0.9,
+        "rf_height_mm": 1.2,
+        "remaining_z_clearance_mm": 8.9
+      },
+      {
         "ui_instance": "headset_control_io",
         "rf_instance": "pack_shunt",
         "ui_height_mm": 1.2,
         "rf_height_mm": 0.635,
         "remaining_z_clearance_mm": 9.165
+      },
+      {
+        "ui_instance": "codec",
+        "rf_instance": "u214_return_buffer",
+        "ui_height_mm": 0.6,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 9.3
+      },
+      {
+        "ui_instance": "slow_io",
+        "rf_instance": "nrf2_host_buffer",
+        "ui_height_mm": 0.6,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 9.3
       }
     ],
     "display_adapter_assembly": {
@@ -1584,8 +1626,8 @@
       ]
     },
     "antenna_source_to_port_topology": {
-      "result": "all_nine_onboard_paths_accounted_topology_only",
-      "guide_count": 9,
+      "result": "all_ten_onboard_paths_accounted_topology_only",
+      "guide_count": 10,
       "final_copper_status": "open_until_kicad_drc",
       "rendered_medium_boundaries": {
         "module_integrated_connector_instances": [
@@ -1729,11 +1771,11 @@
               5.0
             ],
             [
-              13.5,
+              7.5,
               5.0
             ],
             [
-              13.5,
+              7.5,
               0.0
             ]
           ],
@@ -1761,11 +1803,11 @@
               5.0
             ],
             [
-              37.5,
+              31.5,
               5.0
             ],
             [
-              37.5,
+              31.5,
               0.0
             ]
           ],
@@ -1793,11 +1835,11 @@
               5.0
             ],
             [
-              61.5,
+              67.5,
               5.0
             ],
             [
-              61.5,
+              67.5,
               0.0
             ]
           ],
@@ -1813,47 +1855,55 @@
           "external_connector_mpn": "GCT RFPC-SMA31-FN-175-A",
           "points_mm": [
             [
-              25.5,
+              19.5,
               10.3
             ],
             [
-              25.5,
+              19.5,
               0.0
             ]
           ],
           "meaning": "CC1101 selected matching branch to outward Sub-GHz SMA"
         },
         {
-          "path": "VOICE-V/U",
+          "path": "VOICE-VHF",
+          "frame": "rf-inner",
+          "radio_source_instance": "voice_v",
+          "radio_source_mpn": "G-NiceRF SA818S-V",
+          "guide_start_instance": "voice_v",
+          "external_connector_instance": "voice_v_external_sma",
+          "external_connector_mpn": "GCT RFPC-SMA31-FN-175-A",
+          "points_mm": [
+            [
+              20.25,
+              32.5
+            ],
+            [
+              43.5,
+              0.0
+            ]
+          ],
+          "meaning": "SA818S-V contact 12 to outward VHF 134-174-MHz SMA"
+        },
+        {
+          "path": "VOICE-UHF",
           "frame": "rf-inner",
           "radio_source_instance": "voice",
-          "radio_source_mpn": "NiceRF SA518",
+          "radio_source_mpn": "G-NiceRF SA818S-U",
           "guide_start_instance": "voice",
           "external_connector_instance": "voice_external_sma",
           "external_connector_mpn": "GCT RFPC-SMA31-FN-175-A",
           "points_mm": [
             [
-              53.3,
-              32.7
+              71.2,
+              36.95
             ],
             [
-              65.8,
-              31.8
-            ],
-            [
-              65.8,
-              6.5
-            ],
-            [
-              49.5,
-              6.5
-            ],
-            [
-              49.5,
+              55.5,
               0.0
             ]
           ],
-          "meaning": "SA518 contact 7 to outward VHF/UHF SMA"
+          "meaning": "SA818S-U contact 12 to outward UHF 400-480-MHz SMA"
         }
       ]
     },
@@ -1883,14 +1933,15 @@
         "minimum_inner_plan_clearance_mm": 1.5,
         "result": "paper_geometry_passed_H5_mating_fit_open"
       },
-      "outward_rf_connector_count": 9,
+      "outward_rf_connector_count": 10,
       "outward_rf_tail_minimum_inner_plan_clearance_mm": 1.5
     },
     "pcb_copper_and_vias": {
       "result": "not_yet_proven_pre_kicad",
       "reason": "logical pin and net maps do not prove escape routing, return paths, via fields or DRC clearance through real footprints",
-      "voice_rf_endpoint_distance_mm": 32.920055,
-      "voice_rf_route_rendering": "source_to_port_topology_guide_no_claimed_copper_path",
+      "voice_v_rf_endpoint_distance_mm": 39.960136,
+      "voice_u_rf_endpoint_distance_mm": 40.147136,
+      "voice_rf_route_rendering": "two_source_to_two_port_topology_guides_no_claimed_copper_path",
       "closure": "route both boards in KiCad, then pass schematic/ERC, layout DRC, differential/controlled-impedance review and independent manufacturing-rule review"
     },
     "remaining_gates": [
@@ -1900,7 +1951,7 @@
       "assembled tolerance stack and HIL"
     ]
   },
-  "resolved_body_count": 155,
+  "resolved_body_count": 162,
   "rows": [
     {
       "instance": "aon_buck",
@@ -2173,12 +2224,12 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          4.4,
-          6.7
+          14.05,
+          16.35
         ],
         "y": [
-          58.0,
-          60.0
+          74.55,
+          76.55
         ],
         "z": [
           14.8,
@@ -2192,12 +2243,12 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          13.4,
-          18.5
+          12.5,
+          17.6
         ],
         "y": [
-          58.0,
-          62.5
+          68.8,
+          73.3
         ],
         "z": [
           14.7,
@@ -2211,12 +2262,12 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          7.5,
-          12.6
+          6.7,
+          11.8
         ],
         "y": [
-          58.0,
-          62.5
+          68.8,
+          73.3
         ],
         "z": [
           14.7,
@@ -2648,12 +2699,12 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          17.2,
-          25.0
+          5.5,
+          13.3
         ],
         "y": [
-          67.0,
-          71.4
+          74.55,
+          78.95
         ],
         "z": [
           14.6,
@@ -3123,12 +3174,12 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          13.4,
-          18.5
+          32.6,
+          37.7
         ],
         "y": [
-          34.0,
-          38.5
+          52.55,
+          57.05
         ],
         "z": [
           14.7,
@@ -3142,12 +3193,12 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          10.3,
-          12.6
+          29.6,
+          31.9
         ],
         "y": [
-          34.0,
-          36.0
+          52.55,
+          54.55
         ],
         "z": [
           14.8,
@@ -3199,12 +3250,12 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          13.4,
-          18.5
+          23.75,
+          28.85
         ],
         "y": [
-          40.0,
-          44.5
+          52.55,
+          57.05
         ],
         "z": [
           14.7,
@@ -3218,12 +3269,12 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          10.3,
-          12.6
+          17.1,
+          19.4
         ],
         "y": [
-          40.0,
-          42.0
+          74.55,
+          76.55
         ],
         "z": [
           14.8,
@@ -4320,12 +4371,12 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          13.4,
-          18.5
+          53.9,
+          59.0
         ],
         "y": [
-          27.3,
-          31.8
+          52.55,
+          57.05
         ],
         "z": [
           14.7,
@@ -4339,12 +4390,12 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          7.5,
-          12.6
+          48.1,
+          53.2
         ],
         "y": [
-          27.3,
-          31.8
+          52.55,
+          57.05
         ],
         "z": [
           14.7,
@@ -4358,12 +4409,12 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          3.6,
-          6.7
+          38.45,
+          41.55
         ],
         "y": [
-          34.0,
-          39.05
+          52.55,
+          57.6
         ],
         "z": [
           14.7,
@@ -4377,12 +4428,12 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          1.6,
-          6.7
+          42.3,
+          47.4
         ],
         "y": [
-          27.3,
-          31.8
+          52.55,
+          57.05
         ],
         "z": [
           14.7,
@@ -4738,19 +4789,76 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          19.2,
-          59.2
+          3.8,
+          22.8
         ],
         "y": [
-          32.7,
-          57.2
+          32.5,
+          68.1
         ],
         "z": [
-          12.55,
+          12.6,
           15.8
         ]
       },
-      "direction": "contact 7 faces the antenna edge along the controlled VHF/UHF corridor"
+      "direction": "contact 12 faces the antenna edge along the dedicated UHF corridor"
+    },
+    {
+      "instance": "voice_audio_mux",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          25.95,
+          31.0
+        ],
+        "y": [
+          74.55,
+          77.65
+        ],
+        "z": [
+          14.7,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "voice_band_inverter",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          23.25,
+          25.25
+        ],
+        "y": [
+          74.55,
+          75.8
+        ],
+        "z": [
+          14.7,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "voice_band_io",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          26.0,
+          31.0
+        ],
+        "y": [
+          68.8,
+          73.2
+        ],
+        "z": [
+          14.6,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
     },
     {
       "instance": "voice_buck",
@@ -4766,6 +4874,44 @@
         ],
         "z": [
           15.2,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "voice_control_mux_a",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          22.2,
+          25.3
+        ],
+        "y": [
+          68.8,
+          73.85
+        ],
+        "z": [
+          14.7,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "voice_control_mux_b",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          18.35,
+          21.45
+        ],
+        "y": [
+          68.8,
+          73.85
+        ],
+        "z": [
+          14.7,
           15.8
         ]
       },
@@ -4846,6 +4992,44 @@
         ]
       },
       "direction": "not applicable"
+    },
+    {
+      "instance": "voice_pd_gate",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          20.15,
+          22.55
+        ],
+        "y": [
+          74.55,
+          76.65
+        ],
+        "z": [
+          14.9,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "voice_v",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          23.6,
+          59.2
+        ],
+        "y": [
+          32.5,
+          51.5
+        ],
+        "z": [
+          12.6,
+          15.8
+        ]
+      },
+      "direction": "contact 12 faces the antenna edge along the dedicated VHF corridor"
     }
   ]
 }

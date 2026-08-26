@@ -11,15 +11,17 @@
   ],
   "firmware_f3_evidence": {
     "repository": "anton-vinogradov/esp32-leshy2-firmware",
-    "commit": "9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5",
-    "report": "https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5/docs/f3-boot-memory-emulation-report.md",
-    "machine_closure": "https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5/config/f3_4_review.json",
+    "revision": "source-hash-bound-precommit-revision",
+    "report": "../esp32-leshy2-firmware/docs/f3-boot-memory-emulation-report.md",
+    "machine_closure": "../esp32-leshy2-firmware/config/f3_4_review.json",
+    "supersedes_commit": "9c4c061d4df8cba8a9dbdf4dee7fbef7029a3ad5",
     "result": {
       "exact_s3_qemu": true,
       "byte_reproducible_artifacts": 52,
       "image_and_linked_memory_gates": 10,
       "static_rollback_topologies": 5,
-      "physical_runs": 0
+      "physical_runs": 0,
+      "reason": "the generated BSP peer metadata changed on the dual-SA818S revision, so all target builds and available emulator evidence were repeated before this H4 join"
     }
   },
   "authorization": {
@@ -35,29 +37,29 @@
       "status": "reviewed",
       "children": [
         {
-          "id": "H4.0.1",
+          "id": "H4.0.1-R1",
           "title": "Obtain firmware F3 target builds, image-size/rollback gates and maximum available emulator/portable evidence",
           "status": "reviewed"
         }
       ]
     },
     {
-      "id": "H4.1",
+      "id": "H4.1-R1",
       "title": "Join H1 mechanics, H2 ECAD, H3 evidence and firmware F3",
       "status": "reviewed"
     },
     {
-      "id": "H4.2",
+      "id": "H4.2-R1",
       "title": "Correct every cross-domain contradiction and regenerate affected evidence",
       "status": "reviewed"
     },
     {
-      "id": "H4.3",
+      "id": "H4.3-R1",
       "title": "Prepare and accept the joined pre-layout gate before H5",
       "status": "reviewed"
     }
   ],
   "blocker": null,
   "next_active_repository": "esp32-leshy2",
-  "next_active_substep": "H5.0.1"
+  "next_active_substep": "H5.0.1-R1"
 }

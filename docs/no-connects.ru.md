@@ -58,12 +58,21 @@
 | `RF_32_SUBGHZ_VOICE` | `cc_host_buffer.4Y` | `11` | disabled spare output is unconnected |
 | `RF_32_SUBGHZ_VOICE` | `cc_power_switch.NC` | `4` | SC70 pin 4 is left floating as required |
 | `RF_32_SUBGHZ_VOICE` | `cc_return_buffer.4Y` | `11` | disabled spare output is unconnected |
-| `RF_32_SUBGHZ_VOICE` | `voice.NC_15` | `15` | module reserved contact remains open |
-| `RF_32_SUBGHZ_VOICE` | `voice.NC_5` | `5` | module reserved contact remains open |
-| `RF_32_SUBGHZ_VOICE` | `voice.NC_6` | `6` | module reserved contact remains open |
-| `RF_32_SUBGHZ_VOICE` | `voice.VOXEN` | `4` | standard SA518 leaves VOXEN without function; host-side authorized VOX uses the exact microphone capture path and preserves data TX |
+| `RF_32_SUBGHZ_VOICE` | `voice.NC_11` | `11` | manufacturer reserved contact remains open |
+| `RF_32_SUBGHZ_VOICE` | `voice.NC_13` | `13` | manufacturer reserved contact remains open |
+| `RF_32_SUBGHZ_VOICE` | `voice.NC_14` | `14` | manufacturer reserved contact remains open |
+| `RF_32_SUBGHZ_VOICE` | `voice.NC_15` | `15` | manufacturer reserved contact remains open |
+| `RF_32_SUBGHZ_VOICE` | `voice.NC_2` | `2` | manufacturer reserved contact remains open |
+| `RF_32_SUBGHZ_VOICE` | `voice.NC_4` | `4` | manufacturer reserved contact remains open |
+| `RF_32_SUBGHZ_VOICE` | `voice_band_inverter.2Y` | `4` | unused inverter output remains open |
 | `RF_32_SUBGHZ_VOICE` | `voice_hl_driver.NC` | `1` | SC70 no-connect remains open |
 | `RF_32_SUBGHZ_VOICE` | `voice_io_power_switch.NC` | `4` | TPS22919 physical pin 4 remains open |
+| `RF_32_SUBGHZ_VOICE` | `voice_v.NC_11` | `11` | manufacturer reserved contact remains open |
+| `RF_32_SUBGHZ_VOICE` | `voice_v.NC_13` | `13` | manufacturer reserved contact remains open |
+| `RF_32_SUBGHZ_VOICE` | `voice_v.NC_14` | `14` | manufacturer reserved contact remains open |
+| `RF_32_SUBGHZ_VOICE` | `voice_v.NC_15` | `15` | manufacturer reserved contact remains open |
+| `RF_32_SUBGHZ_VOICE` | `voice_v.NC_2` | `2` | manufacturer reserved contact remains open |
+| `RF_32_SUBGHZ_VOICE` | `voice_v.NC_4` | `4` | manufacturer reserved contact remains open |
 | `RF_34_U214_M5_EXT` | `u214_esd_a.NC_10` | `10` | manufacturer NC pad of the fitted ESD protector remains open |
 | `RF_34_U214_M5_EXT` | `u214_esd_a.NC_6` | `6` | manufacturer NC pad of the fitted ESD protector remains open |
 | `RF_34_U214_M5_EXT` | `u214_esd_a.NC_7` | `7` | manufacturer NC pad of the fitted ESD protector remains open |
@@ -105,6 +114,7 @@
 | `RF_50_TX_SAFETY_EVIDENCE` | `det_nrf1.V_DN` | `7` | controller-mode falling output is intentionally unused |
 | `RF_50_TX_SAFETY_EVIDENCE` | `det_nrf2.V_DN` | `7` | controller-mode falling output is intentionally unused |
 | `RF_50_TX_SAFETY_EVIDENCE` | `det_voice.V_DN` | `7` | unused controller output remains unconnected |
+| `RF_50_TX_SAFETY_EVIDENCE` | `det_voice_v.V_DN` | `7` | unused VHF detector controller output remains unconnected |
 | `RF_50_TX_SAFETY_EVIDENCE` | `evidence_or_4.K2` | `2` | unused second cathode remains open and cannot create a false source |
 | `RF_50_TX_SAFETY_EVIDENCE` | `safe_rearm_buffer.NC` | `2` | manufacturer no-connect remains open |
 | `RF_50_TX_SAFETY_EVIDENCE` | `safe_reset_buffer.NC` | `1` | manufacturer no-connect remains open |
@@ -121,6 +131,7 @@
 | `RF_50_TX_SAFETY_EVIDENCE` | `safety_fault_request_iso.NC` | `1` | manufacturer no-connect remains open |
 | `RF_50_TX_SAFETY_EVIDENCE` | `safety_s3_reset_iso.NC` | `1` | manufacturer no-connect remains open |
 | `RF_50_TX_SAFETY_EVIDENCE` | `voice_evidence_hold_diode.NC` | `2` | manufacturer no-connect remains open |
+| `RF_50_TX_SAFETY_EVIDENCE` | `voice_v_evidence_hold_diode.NC` | `2` | manufacturer no-connect remains open |
 | `UI_10_S3_CORE_MEMORY_BOOT` | `s3.NC_PSRAM_GPIO35` | `28` | N16R8 octal PSRAM consumes this package-visible carrier pad internally |
 | `UI_10_S3_CORE_MEMORY_BOOT` | `s3.NC_PSRAM_GPIO36` | `29` | N16R8 octal PSRAM consumes this package-visible carrier pad internally |
 | `UI_10_S3_CORE_MEMORY_BOOT` | `s3.NC_PSRAM_GPIO37` | `30` | N16R8 octal PSRAM consumes this package-visible carrier pad internally |
@@ -198,6 +209,6 @@
 | `UI_50_TX_SAFETY_EVIDENCE` | `safe_c5_fault_reset_buffer.NC` | `1` | manufacturer no-connect remains open |
 | `UI_50_TX_SAFETY_EVIDENCE` | `safe_c5_reset_buffer.NC` | `1` | manufacturer no-connect remains open |
 
-✅ **Проведено ревью:** 191 NC / 22 листов; отсутствующих контактов, маркеров и обоснований нет.
+✅ **Проведено ревью:** 202 NC / 22 листов; отсутствующих контактов, маркеров и обоснований нет.
 
 [Машинное evidence](../hardware/ecad/generated/H2-REV62-no-connects.json).

@@ -86,8 +86,8 @@ def build() -> tuple[str, dict]:
             "mpn": symbol.get("mpn"),
             "disposition": disposition,
         })
-    if len(extras) != 68:
-        raise ValueError(f"expected 68 non-BOM/interface-only symbols, got {len(extras)}")
+    if len(extras) != 67:
+        raise ValueError(f"expected 67 non-BOM/interface-only symbols, got {len(extras)}")
     manifest = {
         "schema_version": 1,
         "stage": "H2.7.2",

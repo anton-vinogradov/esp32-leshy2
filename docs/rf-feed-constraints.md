@@ -1,6 +1,6 @@
 # RF feed constraints
 
-`H3.5.1` is reviewed: `72` machine checks cover all nine external antenna ports and leave no analytical finding open. The exact current marker is `H3.6.1`.
+`H3.5.1` is reviewed: `75` machine checks cover all ten external antenna ports and leave no analytical finding open. The exact current marker is `H3.6.1`.
 
 ## Per-path contract
 
@@ -10,7 +10,8 @@
 | C5-2G4/5 | same, through 5.885 GHz | <=1.5 dB at 2.4 GHz, <=2.0 dB at 5 GHz, return loss >=10 dB |
 | N24-0/1/2 | three independent 50-ohm module -> UMCC/U.FL -> 10-dB coupler -> SMA feeds | each <=1.5 dB and >=10-dB return loss through 2525 MHz |
 | CC-SUB | CC1101 differential match -> balun -> dual-ended selected branch -> SMA | tuned complete path <=3 dB and >=10-dB return loss at 315/433/868/915 MHz |
-| VOICE-V/U | native 50-ohm SA518 ANT -> short protected trace -> SMA | <=0.75 dB and >=10-dB return loss at both 136-174 and 400-470 MHz |
+| VOICE-VHF | native 50-ohm SA818S-V ANT 12 -> short protected trace -> dedicated SMA | <=0.75 dB and >=10-dB return loss at 134-174 MHz |
+| VOICE-UHF | native 50-ohm SA818S-U ANT 12 -> short protected trace -> dedicated SMA | <=0.75 dB and >=10-dB return loss at 400-480 MHz; CE alternate is capped at 470 MHz |
 | RX-FM/SW | 50-ohm SMA corridor only up to the first 56-nH body, then receiver-specific match | complete-fixture sensitivity degradation <=1.5 dB; FM and SW qualify separately |
 | RX-AM/LW | **not a 50-ohm feed**; SMA is only the serial mechanical boundary for a short loop/pod | external capacitance <=`19.500 pF` including connector, PCB, ESD and pod |
 

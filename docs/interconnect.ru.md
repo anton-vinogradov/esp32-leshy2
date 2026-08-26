@@ -13,7 +13,7 @@
 
 ## RF/power-плата
 
-- Радиодомен реального времени: `SC1512-A4`, три `Ebyte E01-ML01IPX`, `CC1101RGPR` и `NiceRF SA518`.
+- Радиодомен реального времени: `SC1512-A4`, три `Ebyte E01-ML01IPX`, `CC1101RGPR` и `G-NiceRF SA818S-U`.
 - Внешние модули: съёмный `M5Stack U214 Cap LoRa-1262` на точном вертикальном `Samtec HLE-107-02-G-DV-PE-LC` поднятой задней планки и независимый порт M5 Unit на точном `1125R-SMT-4P`.
 - Питание и основной USB-C: `JAE DX07S016JA1R1500`, защита `Texas Instruments TPD4S201RUKR`, USB-PD `Texas Instruments TPS25751DREFR`, заряд, аккумуляторы и все преобразователи питания.
 - Аудио на задней плате: микрофон `Same Sky CMEJ-0413-42-SMT-TR` с локальным смещением, дифференциальный усилитель `Diodes Incorporated PAM8302AAYCR` и динамик `PUI Audio AS02404PO`.
@@ -87,7 +87,7 @@
 | `39` | `POWER_GROUND` | return | `return` |
 | `40` | `C5_RF_TX_EVIDENCE_N` | RF→UI | `tx_evidence` |
 | `41` | `IR_TX_EVIDENCE_N` | RF→UI | `tx_evidence` |
-| `42` | `RX_SA518_AFOUT_ISOLATED` | RF→UI | `audio` |
+| `42` | `RX_VOICE_AFOUT_SELECTED` | RF→UI | `audio` |
 | `43` | `AUDIO_GROUND` | return | `return` |
 | `44` | `VOICE_MIC_SELECTED_MAIN` | UI→RF | `audio` |
 | `45` | `AUDIO_GROUND` | return | `return` |

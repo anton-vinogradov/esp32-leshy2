@@ -32,7 +32,7 @@ OUTPUT_MANIFEST = ECAD / "generated/H2-RF60-testpoints-manufacturing.json"
 SYMBOL_LIBRARY = ECAD / "libraries/leshy2.kicad_sym"
 FOOTPRINT = "TestPoint:TestPoint_Pad_D1.0mm"
 SYMBOL_NAMESPACE = "RF60"
-EXPECTED_POINT_COUNT = 52
+EXPECTED_POINT_COUNT = 51
 PROGRAMMING_RECOVERY_NETS = {
     "PACK_ADMISSION_SWDIO", "PACK_ADMISSION_SWCLK", "PACK_ADMISSION_NRST_N",
     "SAFETY_SWDIO", "SAFETY_SWCLK", "SAFETY_CONTROLLER_NRST_N", "RP_RESET_N",
@@ -169,7 +169,7 @@ def build() -> tuple[dict[Path, str], dict]:
         },
         "review_boundary": {
             "complete": [
-                "all fifty-two selected RF/power manufacturing nets terminate on one physical 1.0-mm pad each",
+                "all fifty-one selected RF/power manufacturing nets terminate on one physical 1.0-mm pad each",
                 "both MSPM0 domains expose independent UART, SWD and reset recovery paths",
                 "TPS25751D target I2C and direct local EEPROM/charger I2C plus EEPROM WP are fixture-accessible",
                 "all six RF evidence nets plus the always-on aggregate and both thermal channels are fixture-observable",

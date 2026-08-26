@@ -90,7 +90,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "ambient_target_matches_leaf_models": thermal["product_ambient_envelope"]["minimum_c"] == ambient["design_target_c"]["minimum"] == 0 and thermal["product_ambient_envelope"]["maximum_c"] == ambient["design_target_c"]["maximum"] == 35,
         "ambient_target_is_not_published_guarantee": "not a published" in ambient["status"],
         "support_worst_is_not_sustained": "not admitted" in thermal["scenarios"]["electrical_absolute_corner"]["admission"] and "SUPPORT_WORST" in unattended["sustained_operation_policy"]["excluded"][0],
-        "voice_35c_thermal_ceiling_matches_leaf": d(ambient["h6_base_to_ambient_rtheta_k_per_w_max_at_35c"]["voice_support_idle_worst_group"]) == d("4.803"),
+        "voice_35c_thermal_ceiling_matches_leaf": d(ambient["h6_base_to_ambient_rtheta_k_per_w_max_at_35c"]["voice_support_idle_worst_group"]) == d("5.446"),
         "fault_plane_proof_is_physical_rearm_bound": "physical KILL-to-RUN" in fault["fault_plane"]["destructive_test_boundary"],
         "self_test_default_is_48h": self_test["default"] == "EVERY_48_H" and value_by_id["EVERY_48_H"]["active_session_seconds"] == 172800,
         "self_test_24h_and_startup_only_are_explicit": value_by_id["EVERY_24_H"]["active_session_seconds"] == 86400 and value_by_id["STARTUP_ONLY"]["active_session_seconds"] is None,

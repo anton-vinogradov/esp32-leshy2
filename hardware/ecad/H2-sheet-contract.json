@@ -14,13 +14,13 @@
     "status": "reviewed_against_complete_h2_0_1_inventory",
     "source": "hardware/ecad/generated/H2-instance-ledger.json",
     "source_schema_version": 2,
-    "registered_inventory_rows": 1048,
-    "main_candidate_instances": 1020,
+    "registered_inventory_rows": 1081,
+    "main_candidate_instances": 1053,
     "lora_cap_common_instances": 26,
     "lora_cap_alternative_module_instances": 2,
     "project_row_counts": {
       "LESHY2-UI": 382,
-      "LESHY2-RF": 636,
+      "LESHY2-RF": 669,
       "L2-DISP-ADP-001-A": 2,
       "LESHY2-LORA-CAP-01": 28
     },
@@ -35,12 +35,12 @@
       "RF_03_MAIN_RAILS_DOMAIN_GATES": 69,
       "RF_30_RP2354_CORE_SERVICE": 48,
       "RF_31_NRF24_X3": 107,
-      "RF_32_SUBGHZ_VOICE": 119,
+      "RF_32_SUBGHZ_VOICE": 143,
       "RF_34_U214_M5_EXT": 53,
       "RF_35_REAR_CONTROLS": 8,
       "RF_36_AUDIO_IO_AMP": 14,
       "RF_40_INTERBOARD_M1": 1,
-      "RF_50_TX_SAFETY_EVIDENCE": 104,
+      "RF_50_TX_SAFETY_EVIDENCE": 113,
       "UI_10_S3_CORE_MEMORY_BOOT": 32,
       "UI_11_DISPLAY_TOUCH_STORAGE": 49,
       "UI_12_CONTROLS_INDICATORS": 71,
@@ -54,7 +54,7 @@
       "UI_00_ROOT": "hierarchy and named sheet interfaces only",
       "UI_60_TESTPOINTS_MANUFACTURING": "eleven reviewed physical PCB-copper test-point symbols terminate exact implemented nets in H2.2.10",
       "RF_00_ROOT": "hierarchy and named sheet interfaces only",
-      "RF_60_TESTPOINTS_MANUFACTURING": "fifty-two reviewed physical PCB-copper test-point symbols terminate exact implemented nets through H2.5.5"
+    "RF_60_TESTPOINTS_MANUFACTURING": "fifty-one reviewed physical PCB-copper test-point symbols terminate exact implemented nets through H2.5.5"
     },
     "rule": "Every inventory row has exactly one project, physical-board disposition and owning functional sheet; alternative LoRa modules are distinct assembly variants, not simultaneously fitted parts."
   },
@@ -140,7 +140,6 @@
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_PD_EEPROM_WP","net":"PD_EEPROM_WP","owner_sheet":"RF_01_USB_PD_CHARGE","purpose":"direct EEPROM write-protect control during current-limited first programming"},
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_RP_SERVICE_VBUS_SENSE","net":"RP_SERVICE_VBUS_SENSE_ONLY","owner_sheet":"RF_30_RP2354_CORE_SERVICE","purpose":"high-impedance service-cable attach diagnosis without a product power path"},
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_MAIN_RAW_PG_N","net":"MAIN_RAW_3V3_PG_N","owner_sheet":"RF_03_MAIN_RAILS_DOMAIN_GATES","purpose":"raw main-converter power-good diagnosis"},
-    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_VOICE_UPDATE","net":"VOICE_UPDATE_FIXTURE","owner_sheet":"RF_32_SUBGHZ_VOICE","purpose":"voice-module controlled update fixture signal"},
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_VOICE_RAW_PG_N","net":"VOICE_RAW_4V_PG_N","owner_sheet":"RF_32_SUBGHZ_VOICE","purpose":"raw voice-converter power-good diagnosis"},
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_EVIDENCE_MASK_INT_N","net":"EVIDENCE_MASK_INT_N_TP","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"evidence-mask interrupt observation"},
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_SAFETY_UART_TX","net":"SAFETY_SERVICE_UART_TX","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"independent safety-controller service UART transmit"},

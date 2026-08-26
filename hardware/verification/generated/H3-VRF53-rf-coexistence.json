@@ -3,12 +3,12 @@
   "stage": "H3.5.3",
   "status": "reviewed_one_group_quiet_and_three_nrf_concurrency_model",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c0900dd5fb781368528dc6d88f3bb9536565bd6554ffd9de595d67d530af01ae",
-    "hardware/verification/generated/H3-VRF11-power-state-register.json": "055ad115d35e47639db0fc235314d46bc683a8dc046ec4054f93cbe20b704228",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "6dc167646883c397c92f91a051ee1565285fd81c0f540c49c16044b0e42d5f70",
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "e094a3a98c92d525925fbdf59c1f0264f36b6ddde464b39e91fa205c7d19c899",
-    "hardware/verification/generated/H3-VRF42-digital-timing.json": "e98cb3e457746b5fbee7529592a0220960af8fd8790b364e4cbb1046df9a59b4",
-    "hardware/verification/generated/H3-VRF52-rf-layout-constraints.json": "c779fa4239ce10e9ceaae1ed3b29d4a32532f6d2156efc1fb35ebadf34a34655"
+    "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "8cec33794f3230b7c1679ed9a40ba244e118a7899ba3aad551def7568378b7c7",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "268b349628b3bd8da9f99105e07af43a5f955a373fb6b86e8a008161fb8e5f13",
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "46c2718c074da8c2897f4e8c49a76cbd2d29dc2060294ea535d0ced1f119f5f6",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "0f0729d921a8b2860ec1d23859e704c845d60fa27809b29474e2863f3dd60b3d",
+    "hardware/verification/generated/H3-VRF52-rf-layout-constraints.json": "2c81aab8b6ec0716ff3e1c8a846e98ae680b1e1daec8075b3c080db8367761e0"
   },
   "summary": {
     "signal_groups": 9,
@@ -103,7 +103,8 @@
       "signal_group": "SG-VOICE",
       "operating_group": "VOICE",
       "active_members": [
-        "voice"
+        "voice UHF",
+        "voice_v VHF"
       ],
       "required_foreign_quiet_contracts": [
         "C5_RF_QUIET",

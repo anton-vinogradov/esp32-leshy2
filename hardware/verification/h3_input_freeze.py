@@ -70,19 +70,19 @@ def render_doc(manifest: dict, russian: bool) -> str:
         nav = "[English](virtual-verification.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Принятый H2](h2-acceptance.ru.md)"
         intro = "H3 проверяет всё, что можно доказать расчётом или симуляцией до закупки и PCB layout. Физические измерения не подменяются: каждая такая неопределённость заранее назначена H5, H6 или H8."
         freeze_h = "## Принятый исходный материал"
-        freeze = f"H2 принят 24 августа 2026 года на hardware commit `25d9ee2` и firmware commit `900bb2b`. Заморожено {manifest['summary']['frozen_files']} файла с SHA-256; изменение любого из них повторно открывает затронутые проверки."
+        freeze = f"Ревизия H2 с независимыми SA818S-V/U принята 26 августа 2026 года и привязана к исходникам SHA-256. Заморожено {manifest['summary']['frozen_files']} файла; изменение любого из них повторно открывает затронутые проверки."
         matrix_h = "## Матрица проверки"
         headers = "| Этап | Область | Метод до изготовления | Артефакт H3 | Остаточная физическая проверка |\n|---|---|---|---|---|"
-        current = "**Текущий аппаратный маркер:** `H5.0.3` — [единая корзина](component-sample-basket.ru.md) покрывает все девять H5 residuals и 14 mechanical gates, а [JLCPCB Standard PCBA](manufacturing-platform.ru.md) принят рабочим производственным reference. Минимальный BOM upload из MPN и количества разрешён и подготовлен, но ожидает пользовательского входа; закупка, замены, layout и fabrication не разрешены."
+        current = "**Текущий аппаратный маркер:** `H3.0.1-R1` — повторный виртуальный прогон использует два независимых голосовых RF-тракта и десять антенных портов. Закупка, PCB layout и fabrication не разрешены."
     else:
         title = "# Leshy2 virtual electrical verification"
         nav = "[Русский](virtual-verification.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Accepted H2](h2-acceptance.md)"
         intro = "H3 checks everything that can be proven analytically or by simulation before purchasing and PCB layout. Physical measurements are not imitated: every such uncertainty is assigned to H5, H6 or H8 in advance."
         freeze_h = "## Accepted input"
-        freeze = f"H2 was accepted on 24 August 2026 at hardware commit `25d9ee2` and firmware commit `900bb2b`. {manifest['summary']['frozen_files']} files are frozen by SHA-256; changing any one reopens the affected verification."
+        freeze = f"The H2 revision with independent SA818S-V/U paths was accepted on 26 August 2026 and is source-bound by SHA-256. {manifest['summary']['frozen_files']} files are frozen; changing any one reopens the affected verification."
         matrix_h = "## Verification matrix"
         headers = "| Stage | Area | Pre-fabrication method | H3 artifact | Residual physical check |\n|---|---|---|---|---|"
-        current = "**Current hardware marker:** `H5.0.3` — the [single basket](component-sample-basket.md) covers all nine H5 residuals and 14 mechanical gates, while [JLCPCB Standard PCBA](manufacturing-platform.md) is the working manufacturing reference. The minimum MPN-and-quantity BOM upload is authorized and prepared but awaits user sign-in; purchase, replacements, layout and fabrication are not authorized."
+        current = "**Current hardware marker:** `H3.0.1-R1` — the repeated virtual run uses two independent voice RF paths and ten antenna ports. Purchasing, PCB layout and fabrication are not authorized."
     rows = "\n".join(
         f"| `{row['stage']}` | `{row['area']}` | {row['method']} | {row['h3_output']} | {row['physical_evidence']} |"
         for row in manifest["verification_matrix"]
@@ -103,12 +103,12 @@ def build() -> tuple[dict[Path, str], dict]:
     ]
     manifest = {
         "schema_version": 1,
-        "stage": "H3.0.1",
+        "stage": "H3.0.1-R1",
         "status": "reviewed_accepted_h2_inputs_and_complete_verification_matrix_frozen",
         "accepted_baseline": {
-            "date": "2026-08-24",
-            "hardware_commit": "25d9ee2",
-            "firmware_commit": "900bb2b",
+            "date": "2026-08-26",
+            "binding": "source_hashes",
+            "superseded_architecture": "single SA518 voice path",
         },
         "source_hashes": {str(path.relative_to(REPO)): sha256(path) for path in paths},
         "verification_matrix": matrix,

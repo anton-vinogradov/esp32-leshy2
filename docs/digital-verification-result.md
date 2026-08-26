@@ -1,6 +1,6 @@
 # Consolidated digital-interface result
 
-`H3.4` is reviewed: all three leaf packages and `162` leaf checks pass, followed by `27` cross-domain consolidation checks. No analytical finding remains open. The exact current marker is `H3.6.1`.
+`H3.4` is reviewed: all three leaf packages and `171` leaf checks pass, followed by `27` cross-domain consolidation checks. No analytical finding remains open. The exact current marker is `H3.6.1`.
 
 ## Closed analytical envelope
 

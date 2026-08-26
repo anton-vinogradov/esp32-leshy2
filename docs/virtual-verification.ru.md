@@ -6,7 +6,7 @@ H3 проверяет всё, что можно доказать расчёто�
 
 ## Принятый исходный материал
 
-H2 принят 24 августа 2026 года на hardware commit `25d9ee2` и firmware commit `900bb2b`. Заморожено 43 файла с SHA-256; изменение любого из них повторно открывает затронутые проверки.
+Ревизия H2 с независимыми SA818S-V/U принята 26 августа 2026 года и привязана к исходникам SHA-256. Заморожено 43 файла; изменение любого из них повторно открывает затронутые проверки.
 
 ## Матрица проверки
 
@@ -29,6 +29,6 @@ H2 принят 24 августа 2026 года на hardware commit `25d9ee2` �
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | extended-operation and configurable self-test policy without a runtime claim | H8 24/48-hour qualified-USB endurance and battery-to-protected-cutoff measurements |
 
-**Текущий аппаратный маркер:** `H5.0.3` — [единая корзина](component-sample-basket.ru.md) покрывает все девять H5 residuals и 14 mechanical gates, а [JLCPCB Standard PCBA](manufacturing-platform.ru.md) принят рабочим производственным reference. Контрольный BOM Tool прогон сопоставил 176/209 строк и распознал все 1019 установок; exact-поиск разрешил все 33 outlier в `J0`–`J3`, `J4-F` или `J4-P` без замены. Открыты квалифицированная цена exact `SA518` и фабричные gates финальной сборки `J4-F/P`. Закупка, layout и fabrication не разрешены.
+**Текущий аппаратный маркер:** `H3.0.1-R1` — повторный виртуальный прогон использует два независимых голосовых RF-тракта и десять антенных портов. Закупка, PCB layout и fabrication не разрешены.
 
 [Машинный freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

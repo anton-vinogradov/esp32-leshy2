@@ -278,7 +278,7 @@ flowchart TD
   ENCODER --> ENCODER_PTT_ESD
 ```
 
-### 5. Приём, запись, воспроизведение и voice audio — узлы 1/5
+### 5. Приём, запись, воспроизведение и voice audio — узлы 1/6
 
 ```mermaid
 flowchart TD
@@ -291,7 +291,9 @@ flowchart TD
   RECEIVER_FMSW_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>dedicated FM/SW standard-SMA receive jack"]
   RECEIVER_AMLW_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>dedicated non-50-Ohm AM/LW loop-pod standard-SMA jack"]
   VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>voice dedicated 6-GHz IP67 standard-SMA edge-launch jack"]
-  VOICE["NiceRF SA518<br/>136-174/400-470-MHz analog voice transceiver"]
+  VOICE_V_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>voice v external sma physical component"]
+  VOICE["G-NiceRF SA818S-U<br/>UHF 400–480-MHz analog voice transceiver"]
+  VOICE_V["G-NiceRF SA818S-V<br/>VHF 134–174-MHz analog voice transceiver"]
   VOICE_RF_ESD["Nexperia PESD24VY1BSF<br/>24-V ultra-low-capacitance external voice RF ESD diode"]
   VOICE_DETECTOR_SERIES_ATTENUATOR["Yageo RC0402FR-075K1L<br/>actual-TX 5.1-kOhm RF series sampler"]
   VOICE_DETECTOR_MATCH["Yageo RC0402FR-0752R3L<br/>AD8314 52.3-Ohm detector input shunt"]
@@ -300,9 +302,17 @@ flowchart TD
   VOICE_EVIDENCE_HOLD_DIODE["Diodes Incorporated BAT54-7-F<br/>actual-TX evidence hold isolation diode"]
   VOICE_EVIDENCE_HOLD_CAP["TDK C1608X7R1C105K080AC<br/>actual-TX evidence enable hold capacitor"]
   VOICE_EVIDENCE_HOLD_PULLDOWN["Yageo RC0402FR-0710KL<br/>actual-TX evidence hold discharge resistor"]
+  VOICE_V_RF_ESD["Nexperia PESD24VY1BSF<br/>24-V ultra-low-capacitance external VHF RF ESD diode"]
+  VOICE_V_DETECTOR_SERIES_ATTENUATOR["Yageo RC0402FR-075K1L<br/>VHF actual-TX 5.1-kOhm RF series sampler"]
+  VOICE_V_DETECTOR_MATCH["Yageo RC0402FR-0752R3L<br/>VHF AD8314 52.3-Ohm detector input shunt"]
+  VOICE_V_DETECTOR_FILTER["Murata GRM1555C1H121JA01D<br/>VHF AD8314 response filter capacitor"]
+  VOICE_V_DETECTOR_BYPASS["TDK C1005X7R1H104K050BB<br/>VHF AD8314 local bypass capacitor"]
+  VOICE_V_EVIDENCE_HOLD_DIODE["Diodes Incorporated BAT54-7-F<br/>VHF actual-TX evidence hold isolation diode"]
+  VOICE_V_EVIDENCE_HOLD_CAP["TDK C1608X7R1C105K080AC<br/>VHF actual-TX evidence enable hold capacitor"]
+  VOICE_V_EVIDENCE_HOLD_PULLDOWN["Yageo RC0402FR-0710KL<br/>VHF actual-TX evidence hold discharge resistor"]
   RECEIVER["Si4732-A10-GSR<br/>AM/FM/SW/LW broadcast receiver"]
   CODEC["Everest Semiconductor ES8311<br/>mono ADC/DAC audio codec"]
-  AUDIO_RX_MUX["Texas Instruments SN74LVC1G3157DBVR<br/>Si4732/SA518 receive-audio source selector"]
+  AUDIO_RX_MUX["Texas Instruments SN74LVC1G3157DBVR<br/>Si4732/selected-SA818S receive-audio source selector"]
   AUDIO_RX_MUX_BYPASS["TDK C1005X7R1H104K050BB<br/>audio rx mux bypass physical component"]
   AUDIO_RX_SEL_PULLDOWN["Yageo RC0402FR-0710KL<br/>audio rx sel pulldown physical component"]
   AUDIO_VMID_TOP["Yageo RC0402FR-07100KL<br/>audio vmid top physical component"]
@@ -322,6 +332,32 @@ flowchart TD
   AUDIO_CAPTURE_SEL_PULLDOWN["Yageo RC0402FR-0710KL<br/>audio capture sel pulldown physical component"]
   AUDIO_CAPTURE_RX_COUPLING["TDK C1608X7R1C105K080AC<br/>audio capture rx coupling physical component"]
   AUDIO_CAPTURE_RX_BIAS["Yageo RC0402FR-07100KL<br/>audio capture rx bias physical component"]
+  end
+  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ RECEIVER_FMSW_EXTERNAL_SMA ~~~ RECEIVER_AMLW_EXTERNAL_SMA ~~~ VOICE_EXTERNAL_SMA ~~~ VOICE_V_EXTERNAL_SMA ~~~ VOICE ~~~ VOICE_V ~~~ VOICE_RF_ESD
+  VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH ~~~ VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN ~~~ VOICE_V_RF_ESD ~~~ VOICE_V_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_V_DETECTOR_MATCH ~~~ VOICE_V_DETECTOR_FILTER ~~~ VOICE_V_DETECTOR_BYPASS
+  VOICE_V_EVIDENCE_HOLD_DIODE ~~~ VOICE_V_EVIDENCE_HOLD_CAP ~~~ VOICE_V_EVIDENCE_HOLD_PULLDOWN ~~~ RECEIVER ~~~ CODEC ~~~ AUDIO_RX_MUX ~~~ AUDIO_RX_MUX_BYPASS ~~~ AUDIO_RX_SEL_PULLDOWN ~~~ AUDIO_VMID_TOP ~~~ AUDIO_VMID_BOTTOM ~~~ AUDIO_VMID_CAP ~~~ AUDIO_GROUND_LINK
+  SI_AUDIO_L_COUPLING ~~~ SI_AUDIO_R_COUPLING ~~~ SI_AUDIO_L_SUM ~~~ SI_AUDIO_R_SUM ~~~ SI_AUDIO_SUM_BIAS ~~~ VOICE_RX_COUPLING ~~~ VOICE_RX_SERIES ~~~ VOICE_RX_BIAS ~~~ AUDIO_CAPTURE_SELECTOR ~~~ AUDIO_CAPTURE_SELECTOR_BYPASS ~~~ AUDIO_CAPTURE_SEL_PULLDOWN ~~~ AUDIO_CAPTURE_RX_COUPLING
+  VOICE -->|"short controlled 50-Ohm line"| VOICE_EXTERNAL_SMA
+  VOICE -->|"24-V shunt at external boundary"| VOICE_RF_ESD
+  VOICE_EVIDENCE_HOLD_DIODE --> VOICE_EVIDENCE_HOLD_PULLDOWN
+  RP <-->|"UART0/PTT request: GPIO16,GPIO17,GPIO18,GPIO20,GPIO21"| VOICE
+  RECEIVER --> SI_AUDIO_L_COUPLING --> SI_AUDIO_L_SUM --> AUDIO_RX_MUX
+  RECEIVER --> SI_AUDIO_R_COUPLING --> SI_AUDIO_R_SUM --> AUDIO_RX_MUX
+  SLOW_IO -->|"P27 source request"| AUDIO_RX_MUX
+  AUDIO_RX_MUX --> AUDIO_CAPTURE_RX_COUPLING --> AUDIO_CAPTURE_SELECTOR
+  SLOW_IO -->|"P00 RX/microphone capture select"| AUDIO_CAPTURE_SELECTOR
+```
+
+### 6. Приём, запись, воспроизведение и voice audio — узлы 2/6
+
+```mermaid
+flowchart TD
+  subgraph AUDIO_PATH_2["Broadcast, voice and fail-safe audio devices"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  RP["SC1512-A4<br/>deterministic radio and voice owner"]
+  SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
+  MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
+  VOICE_EFUSE["Texas Instruments TPS25974LRPWR<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG"]
   AUDIO_CAPTURE_MIC_COUPLING["TDK C1608X7R1C105K080AC<br/>audio capture mic coupling physical component"]
   AUDIO_CAPTURE_MIC_BIAS["Yageo RC0402FR-07100KL<br/>audio capture mic bias physical component"]
   AUDIO_CAPTURE_INPUT_COUPLING["TDK C1608X7R1C105K080AC<br/>audio capture input coupling physical component"]
@@ -332,33 +368,6 @@ flowchart TD
   AUDIO_CAPTURE_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>audio capture buffer bypass physical component"]
   CODEC_ADC_P_COUPLING["TDK C1608X7R1C105K080AC<br/>codec adc p coupling physical component"]
   CODEC_ADC_P_SERIES["Yageo RC0402JR-070RL<br/>codec adc p series physical component"]
-  end
-  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ RECEIVER_FMSW_EXTERNAL_SMA ~~~ RECEIVER_AMLW_EXTERNAL_SMA ~~~ VOICE_EXTERNAL_SMA ~~~ VOICE ~~~ VOICE_RF_ESD ~~~ VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH
-  VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN ~~~ RECEIVER ~~~ CODEC ~~~ AUDIO_RX_MUX ~~~ AUDIO_RX_MUX_BYPASS ~~~ AUDIO_RX_SEL_PULLDOWN ~~~ AUDIO_VMID_TOP ~~~ AUDIO_VMID_BOTTOM
-  AUDIO_VMID_CAP ~~~ AUDIO_GROUND_LINK ~~~ SI_AUDIO_L_COUPLING ~~~ SI_AUDIO_R_COUPLING ~~~ SI_AUDIO_L_SUM ~~~ SI_AUDIO_R_SUM ~~~ SI_AUDIO_SUM_BIAS ~~~ VOICE_RX_COUPLING ~~~ VOICE_RX_SERIES ~~~ VOICE_RX_BIAS ~~~ AUDIO_CAPTURE_SELECTOR ~~~ AUDIO_CAPTURE_SELECTOR_BYPASS
-  AUDIO_CAPTURE_SEL_PULLDOWN ~~~ AUDIO_CAPTURE_RX_COUPLING ~~~ AUDIO_CAPTURE_RX_BIAS ~~~ AUDIO_CAPTURE_MIC_COUPLING ~~~ AUDIO_CAPTURE_MIC_BIAS ~~~ AUDIO_CAPTURE_INPUT_COUPLING ~~~ AUDIO_CAPTURE_LOCAL_BIAS_TOP ~~~ AUDIO_CAPTURE_LOCAL_BIAS_BOTTOM ~~~ AUDIO_CAPTURE_LOCAL_BIAS_CAP ~~~ AUDIO_CAPTURE_BUFFER ~~~ AUDIO_CAPTURE_BUFFER_BYPASS ~~~ CODEC_ADC_P_COUPLING
-  VOICE -->|"short controlled 50-Ohm line"| VOICE_EXTERNAL_SMA
-  VOICE -->|"24-V shunt at external boundary"| VOICE_RF_ESD
-  VOICE_EVIDENCE_HOLD_DIODE --> VOICE_EVIDENCE_HOLD_PULLDOWN
-  RP <-->|"UART0/PTT request: GPIO16,GPIO17,GPIO18,GPIO20,GPIO21"| VOICE
-  RECEIVER --> SI_AUDIO_L_COUPLING --> SI_AUDIO_L_SUM --> AUDIO_RX_MUX
-  RECEIVER --> SI_AUDIO_R_COUPLING --> SI_AUDIO_R_SUM --> AUDIO_RX_MUX
-  SLOW_IO -->|"P27 source request"| AUDIO_RX_MUX
-  AUDIO_RX_MUX --> AUDIO_CAPTURE_RX_COUPLING --> AUDIO_CAPTURE_SELECTOR
-  SLOW_IO -->|"P00 RX/microphone capture select"| AUDIO_CAPTURE_SELECTOR
-  AUDIO_CAPTURE_SELECTOR --> AUDIO_CAPTURE_INPUT_COUPLING --> AUDIO_CAPTURE_BUFFER --> CODEC_ADC_P_COUPLING --> CODEC
-```
-
-### 6. Приём, запись, воспроизведение и voice audio — узлы 2/5
-
-```mermaid
-flowchart TD
-  subgraph AUDIO_PATH_2["Broadcast, voice and fail-safe audio devices"]
-  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
-  RP["SC1512-A4<br/>deterministic radio and voice owner"]
-  SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
-  MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
-  VOICE_EFUSE["Texas Instruments TPS25974LRPWR<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG"]
   CODEC_ADC_N_COUPLING["TDK C1608X7R1C105K080AC<br/>codec adc n coupling physical component"]
   CODEC_ADC_N_SERIES["Yageo RC0402JR-070RL<br/>codec adc n series physical component"]
   AUDIO_SPEAKER_SELECTOR["Texas Instruments TMUX1136DGSR<br/>dual differential RX-bypass/codec speaker selector"]
@@ -376,6 +385,7 @@ flowchart TD
   CODEC_TX_ATTEN_BOTTOM["Yageo RC0402FR-072K2L<br/>codec tx atten bottom physical component"]
   CODEC_TX_FILTER["Murata GRM155R71H103KA88D<br/>codec tx filter physical component"]
   VOICE_MIC_COUPLING["TDK C1608X7R1C105K080AC<br/>voice mic coupling physical component"]
+  VOICE_V_MIC_COUPLING["TDK C1608X7R1C105K080AC<br/>voice v mic coupling physical component"]
   AUDIO_SAFE_GATE["Texas Instruments SN74LVC2G08DCUR<br/>direct-AUDIO_ARM dual selector-request gate"]
   AUDIO_SAFE_GATE_BYPASS["TDK C1005X7R1H104K050BB<br/>audio safe gate bypass physical component"]
   AUDIO_SPEAKER_REQ_PULLDOWN["Yageo RC0402FR-0710KL<br/>audio speaker req pulldown physical component"]
@@ -391,6 +401,30 @@ flowchart TD
   SPEAKER_OUTPUT_BEAD_N["Murata BLM18PG181SN1D<br/>speaker output bead n physical component"]
   SPEAKER_OUTPUT_CAP_P["Murata GRM1555C1H221JA01D<br/>speaker output cap p physical component"]
   SPEAKER_OUTPUT_CAP_N["Murata GRM1555C1H221JA01D<br/>speaker output cap n physical component"]
+  end
+  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ AUDIO_CAPTURE_MIC_COUPLING ~~~ AUDIO_CAPTURE_MIC_BIAS ~~~ AUDIO_CAPTURE_INPUT_COUPLING ~~~ AUDIO_CAPTURE_LOCAL_BIAS_TOP ~~~ AUDIO_CAPTURE_LOCAL_BIAS_BOTTOM ~~~ AUDIO_CAPTURE_LOCAL_BIAS_CAP ~~~ AUDIO_CAPTURE_BUFFER
+  AUDIO_CAPTURE_BUFFER_BYPASS ~~~ CODEC_ADC_P_COUPLING ~~~ CODEC_ADC_P_SERIES ~~~ CODEC_ADC_N_COUPLING ~~~ CODEC_ADC_N_SERIES ~~~ AUDIO_SPEAKER_SELECTOR ~~~ AUDIO_SPEAKER_SELECTOR_BYPASS ~~~ SPEAKER_INPUT_P_COUPLING ~~~ SPEAKER_INPUT_N_COUPLING ~~~ SPEAKER_INPUT_P_GAIN ~~~ SPEAKER_INPUT_N_GAIN ~~~ AUDIO_TX_SELECTOR
+  AUDIO_TX_SELECTOR_BYPASS ~~~ MIC_TX_COUPLING ~~~ MIC_TX_BIAS ~~~ CODEC_TX_COUPLING ~~~ CODEC_TX_ATTEN_TOP ~~~ CODEC_TX_ATTEN_BOTTOM ~~~ CODEC_TX_FILTER ~~~ VOICE_MIC_COUPLING ~~~ VOICE_V_MIC_COUPLING ~~~ AUDIO_SAFE_GATE ~~~ AUDIO_SAFE_GATE_BYPASS ~~~ AUDIO_SPEAKER_REQ_PULLDOWN
+  AUDIO_TX_REQ_PULLDOWN ~~~ AUDIO_ARM_PULLDOWN ~~~ AUDIO_SPEAKER_SAFE_PULLDOWN ~~~ AUDIO_TX_SAFE_PULLDOWN ~~~ SPEAKER_AMP ~~~ SPEAKER_AMP_INPUT_CAP ~~~ SPEAKER_AMP_BULK_CAP ~~~ SPEAKER_AMP_ENABLE_PULLDOWN ~~~ SPEAKER_OUTPUT_BEAD_P ~~~ SPEAKER_OUTPUT_BEAD_N ~~~ SPEAKER_OUTPUT_CAP_P ~~~ SPEAKER_OUTPUT_CAP_N
+  AUDIO_SPEAKER_SELECTOR --> SPEAKER_INPUT_P_COUPLING --> SPEAKER_AMP
+  AUDIO_SPEAKER_SELECTOR --> SPEAKER_INPUT_N_COUPLING --> SPEAKER_AMP
+  SLOW_IO -->|"P01 reset-off speaker enable"| SPEAKER_AMP
+  SLOW_IO -->|"P11/P12 requests"| AUDIO_SAFE_GATE
+  S3 -->|"GPIO6 AUDIO_ARM"| AUDIO_SAFE_GATE
+  AUDIO_SAFE_GATE --> AUDIO_SPEAKER_SELECTOR
+  AUDIO_SAFE_GATE --> AUDIO_TX_SELECTOR
+```
+
+### 7. Приём, запись, воспроизведение и voice audio — узлы 3/6
+
+```mermaid
+flowchart TD
+  subgraph AUDIO_PATH_3["Broadcast, voice and fail-safe audio devices"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  RP["SC1512-A4<br/>deterministic radio and voice owner"]
+  SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
+  MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
+  VOICE_EFUSE["Texas Instruments TPS25974LRPWR<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG"]
   SPEAKER["PUI Audio AS02404PO<br/>24-by-12-mm 4-Ohm internal loudspeaker"]
   MICROPHONE["Same Sky CMEJ-0413-42-SMT-TR<br/>top-port analog electret microphone"]
   MICROPHONE_BIAS_FILTER_RES["Yageo RC0402FR-07220RL<br/>microphone bias filter res physical component"]
@@ -401,37 +435,6 @@ flowchart TD
   HEADSET_MIC_SELECTOR_BYPASS["TDK C1005X7R1H104K050BB<br/>headset-microphone selector bypass capacitor"]
   HEADSET_MICROPHONE_BIAS_FILTER_RES["Yageo RC0402FR-07220RL<br/>headset microphone bias filter res physical component"]
   HEADSET_MICROPHONE_BIAS_FILTER_CAP["Murata GRM188R60J106ME47D<br/>headset microphone bias filter cap physical component"]
-  end
-  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ CODEC_ADC_N_COUPLING ~~~ CODEC_ADC_N_SERIES ~~~ AUDIO_SPEAKER_SELECTOR ~~~ AUDIO_SPEAKER_SELECTOR_BYPASS ~~~ SPEAKER_INPUT_P_COUPLING ~~~ SPEAKER_INPUT_N_COUPLING ~~~ SPEAKER_INPUT_P_GAIN
-  SPEAKER_INPUT_N_GAIN ~~~ AUDIO_TX_SELECTOR ~~~ AUDIO_TX_SELECTOR_BYPASS ~~~ MIC_TX_COUPLING ~~~ MIC_TX_BIAS ~~~ CODEC_TX_COUPLING ~~~ CODEC_TX_ATTEN_TOP ~~~ CODEC_TX_ATTEN_BOTTOM ~~~ CODEC_TX_FILTER ~~~ VOICE_MIC_COUPLING ~~~ AUDIO_SAFE_GATE ~~~ AUDIO_SAFE_GATE_BYPASS
-  AUDIO_SPEAKER_REQ_PULLDOWN ~~~ AUDIO_TX_REQ_PULLDOWN ~~~ AUDIO_ARM_PULLDOWN ~~~ AUDIO_SPEAKER_SAFE_PULLDOWN ~~~ AUDIO_TX_SAFE_PULLDOWN ~~~ SPEAKER_AMP ~~~ SPEAKER_AMP_INPUT_CAP ~~~ SPEAKER_AMP_BULK_CAP ~~~ SPEAKER_AMP_ENABLE_PULLDOWN ~~~ SPEAKER_OUTPUT_BEAD_P ~~~ SPEAKER_OUTPUT_BEAD_N ~~~ SPEAKER_OUTPUT_CAP_P
-  SPEAKER_OUTPUT_CAP_N ~~~ SPEAKER ~~~ MICROPHONE ~~~ MICROPHONE_BIAS_FILTER_RES ~~~ MICROPHONE_BIAS_FILTER_CAP ~~~ MICROPHONE_BIAS_RES ~~~ HEADPHONE_JACK ~~~ HEADSET_MIC_SELECTOR ~~~ HEADSET_MIC_SELECTOR_BYPASS ~~~ HEADSET_MICROPHONE_BIAS_FILTER_RES ~~~ HEADSET_MICROPHONE_BIAS_FILTER_CAP
-  MICROPHONE --> HEADSET_MIC_SELECTOR
-  HEADPHONE_JACK -->|"CTIA sleeve microphone"| HEADSET_MIC_SELECTOR
-  SLOW_IO -->|"P02 plug state / inserted-only override"| HEADSET_MIC_SELECTOR
-  AUDIO_SPEAKER_SELECTOR --> SPEAKER_INPUT_P_COUPLING --> SPEAKER_AMP
-  AUDIO_SPEAKER_SELECTOR --> SPEAKER_INPUT_N_COUPLING --> SPEAKER_AMP
-  SPEAKER_AMP --> SPEAKER_OUTPUT_BEAD_P --> SPEAKER
-  SPEAKER_AMP --> SPEAKER_OUTPUT_BEAD_N --> SPEAKER
-  SLOW_IO -->|"P01 reset-off speaker enable"| SPEAKER_AMP
-  HEADPHONE_JACK -->|"P02 insertion state"| SLOW_IO
-  HEADSET_MIC_SELECTOR --> MIC_TX_COUPLING --> AUDIO_TX_SELECTOR
-  SLOW_IO -->|"P11/P12 requests"| AUDIO_SAFE_GATE
-  S3 -->|"GPIO6 AUDIO_ARM"| AUDIO_SAFE_GATE
-  AUDIO_SAFE_GATE --> AUDIO_SPEAKER_SELECTOR
-  AUDIO_SAFE_GATE --> AUDIO_TX_SELECTOR
-```
-
-### 7. Приём, запись, воспроизведение и voice audio — узлы 3/5
-
-```mermaid
-flowchart TD
-  subgraph AUDIO_PATH_3["Broadcast, voice and fail-safe audio devices"]
-  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
-  RP["SC1512-A4<br/>deterministic radio and voice owner"]
-  SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
-  MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
-  VOICE_EFUSE["Texas Instruments TPS25974LRPWR<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG"]
   HEADSET_MIC_BIAS_RES["Yageo RC0402FR-072K2L<br/>separate 2.2-kOhm CTIA microphone-bias resistor"]
   HEADSET_CONTROL_IO["TCA9534APWR<br/>0x39 microphone-source controller with seven pulled reserve I/O lines"]
   HEADSET_CONTROL_IO_BYPASS["TDK C1005X7R1H104K050BB<br/>headset-controller bypass capacitor"]
@@ -463,6 +466,30 @@ flowchart TD
   CODEC_I2C_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>codec i2c iso bypass physical component"]
   CODEC_I2C_SCL_PULLUP["Yageo RC0402FR-072K2L<br/>codec i2c scl pullup physical component"]
   CODEC_I2C_SDA_PULLUP["Yageo RC0402FR-072K2L<br/>codec i2c sda pullup physical component"]
+  end
+  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ SPEAKER ~~~ MICROPHONE ~~~ MICROPHONE_BIAS_FILTER_RES ~~~ MICROPHONE_BIAS_FILTER_CAP ~~~ MICROPHONE_BIAS_RES ~~~ HEADPHONE_JACK ~~~ HEADSET_MIC_SELECTOR
+  HEADSET_MIC_SELECTOR_BYPASS ~~~ HEADSET_MICROPHONE_BIAS_FILTER_RES ~~~ HEADSET_MICROPHONE_BIAS_FILTER_CAP ~~~ HEADSET_MIC_BIAS_RES ~~~ HEADSET_CONTROL_IO ~~~ HEADSET_CONTROL_IO_BYPASS ~~~ HEADSET_MIC_SELECT_PULLUP ~~~ HEADSET_CONTROL_P1_PULLDOWN ~~~ HEADSET_CONTROL_P2_PULLDOWN ~~~ HEADSET_CONTROL_P3_PULLDOWN ~~~ HEADSET_CONTROL_P4_PULLDOWN ~~~ HEADSET_CONTROL_P5_PULLDOWN
+  HEADSET_CONTROL_P6_PULLDOWN ~~~ HEADSET_CONTROL_P7_PULLDOWN ~~~ HEADPHONE_ESD ~~~ HEADPHONE_L_COUPLING0 ~~~ HEADPHONE_L_COUPLING1 ~~~ HEADPHONE_R_COUPLING0 ~~~ HEADPHONE_R_COUPLING1 ~~~ HEADPHONE_L_SERIES ~~~ HEADPHONE_R_SERIES ~~~ HEADPHONE_TIP_DETECT_PULLUP ~~~ HEADSET_DETECT_SERIES ~~~ HEADSET_ABSENT_PULLDOWN
+  CODEC_POWER_INPUT_CAP ~~~ CODEC_POWER_OUTPUT_CAP ~~~ CODEC_POWER_ON_PULLDOWN ~~~ CODEC_SUPERVISOR ~~~ CODEC_SUPERVISOR_BYPASS ~~~ CODEC_READY_PULLDOWN ~~~ CODEC_I2C_ISO ~~~ CODEC_I2C_ISO_BYPASS ~~~ CODEC_I2C_SCL_PULLUP ~~~ CODEC_I2C_SDA_PULLUP
+  S3 <-->|"I²C0 host side: GPIO1,GPIO2"| CODEC_I2C_ISO
+  MICROPHONE --> HEADSET_MIC_SELECTOR
+  HEADPHONE_JACK -->|"CTIA sleeve microphone"| HEADSET_MIC_SELECTOR
+  HEADSET_MIC_BIAS_RES --> HEADPHONE_JACK
+  SLOW_IO -->|"P02 plug state / inserted-only override"| HEADSET_MIC_SELECTOR
+  HEADPHONE_JACK --> HEADPHONE_ESD
+  HEADPHONE_JACK -->|"P02 insertion state"| SLOW_IO
+```
+
+### 8. Приём, запись, воспроизведение и voice audio — узлы 4/6
+
+```mermaid
+flowchart TD
+  subgraph AUDIO_PATH_4["Broadcast, voice and fail-safe audio devices"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  RP["SC1512-A4<br/>deterministic radio and voice owner"]
+  SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
+  MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
+  VOICE_EFUSE["Texas Instruments TPS25974LRPWR<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG"]
   CODEC_I2S_BCLK_ISO["Texas Instruments SN74LVC1G126DCKR<br/>physical BCLK tri-state isolation buffer"]
   CODEC_I2S_WS_ISO["Texas Instruments SN74LVC1G126DCKR<br/>physical word-select tri-state isolation buffer"]
   CODEC_I2S_DOUT_ISO["Texas Instruments SN74LVC1G126DCKR<br/>physical playback-data tri-state isolation buffer"]
@@ -473,29 +500,6 @@ flowchart TD
   CODEC_I2S_DOUT_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>codec i2s dout iso bypass physical component"]
   CODEC_I2S_DIN_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>codec i2s din iso bypass physical component"]
   CODEC_I2S_DIN_BOOT_GATE_BYPASS["TDK C1005X7R1H104K050BB<br/>codec i2s din boot gate bypass physical component"]
-  end
-  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ HEADSET_MIC_BIAS_RES ~~~ HEADSET_CONTROL_IO ~~~ HEADSET_CONTROL_IO_BYPASS ~~~ HEADSET_MIC_SELECT_PULLUP ~~~ HEADSET_CONTROL_P1_PULLDOWN ~~~ HEADSET_CONTROL_P2_PULLDOWN ~~~ HEADSET_CONTROL_P3_PULLDOWN
-  HEADSET_CONTROL_P4_PULLDOWN ~~~ HEADSET_CONTROL_P5_PULLDOWN ~~~ HEADSET_CONTROL_P6_PULLDOWN ~~~ HEADSET_CONTROL_P7_PULLDOWN ~~~ HEADPHONE_ESD ~~~ HEADPHONE_L_COUPLING0 ~~~ HEADPHONE_L_COUPLING1 ~~~ HEADPHONE_R_COUPLING0 ~~~ HEADPHONE_R_COUPLING1 ~~~ HEADPHONE_L_SERIES ~~~ HEADPHONE_R_SERIES ~~~ HEADPHONE_TIP_DETECT_PULLUP
-  HEADSET_DETECT_SERIES ~~~ HEADSET_ABSENT_PULLDOWN ~~~ CODEC_POWER_INPUT_CAP ~~~ CODEC_POWER_OUTPUT_CAP ~~~ CODEC_POWER_ON_PULLDOWN ~~~ CODEC_SUPERVISOR ~~~ CODEC_SUPERVISOR_BYPASS ~~~ CODEC_READY_PULLDOWN ~~~ CODEC_I2C_ISO ~~~ CODEC_I2C_ISO_BYPASS ~~~ CODEC_I2C_SCL_PULLUP ~~~ CODEC_I2C_SDA_PULLUP
-  CODEC_I2S_BCLK_ISO ~~~ CODEC_I2S_WS_ISO ~~~ CODEC_I2S_DOUT_ISO ~~~ CODEC_I2S_DIN_ISO ~~~ CODEC_I2S_DIN_BOOT_GATE ~~~ CODEC_I2S_BCLK_ISO_BYPASS ~~~ CODEC_I2S_WS_ISO_BYPASS ~~~ CODEC_I2S_DOUT_ISO_BYPASS ~~~ CODEC_I2S_DIN_ISO_BYPASS ~~~ CODEC_I2S_DIN_BOOT_GATE_BYPASS
-  S3 <-->|"I²C0 host side: GPIO1,GPIO2"| CODEC_I2C_ISO
-  S3 -->|"I²S0 outputs: GPIO15,GPIO16,GPIO17"| CODEC_I2S_BCLK_ISO
-  CODEC_SUPERVISOR -->|"CODEC_READY"| CODEC_I2S_DIN_BOOT_GATE
-  S3 -->|"GPIO6 AUDIO_ARM; reset-low"| CODEC_I2S_DIN_BOOT_GATE
-  CODEC_I2S_DIN_BOOT_GATE -->|"output enable"| CODEC_I2S_DIN_ISO
-  CODEC_SUPERVISOR --> CODEC_I2S_BCLK_ISO
-```
-
-### 8. Приём, запись, воспроизведение и voice audio — узлы 4/5
-
-```mermaid
-flowchart TD
-  subgraph AUDIO_PATH_4["Broadcast, voice and fail-safe audio devices"]
-  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
-  RP["SC1512-A4<br/>deterministic radio and voice owner"]
-  SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
-  MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
-  VOICE_EFUSE["Texas Instruments TPS25974LRPWR<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG"]
   CODEC_PVDD_BYPASS["TDK C1005X7R1H104K050BB<br/>codec pvdd bypass physical component"]
   CODEC_DVDD_BEAD["Murata BLM18PG181SN1D<br/>codec dvdd bead physical component"]
   CODEC_DVDD_BYPASS["TDK C1005X7R1H104K050BB<br/>codec dvdd bypass physical component"]
@@ -529,27 +533,19 @@ flowchart TD
   RECEIVER_AMI_ESD["Littelfuse SESD0402X1UN-0020-090<br/>AM/LW-boundary 0.2-pF RF ESD shunt"]
   RECEIVER_AMI_COUPLING_CAP["Murata GRM155R71A474KE01D<br/>0.47-uF AMI AC-coupling capacitor"]
   VOICE_SUPERVISOR["TPS3808G33DBVR<br/>FAULT_KILL-qualified protected-4-V voice supervisor"]
-  VOICE_SUPERVISOR_BYPASS["TDK C1005X7R1H104K050BB<br/>voice supervisor bypass physical component"]
-  VOICE_SUPERVISOR_SENSE_TOP["Yageo RC0402FR-0747KL<br/>voice supervisor sense top physical component"]
-  VOICE_SUPERVISOR_SENSE_BOTTOM["Yageo RC0402FR-07220KL<br/>voice supervisor sense bottom physical component"]
-  VOICE_SUPERVISOR_CT["Murata GRM155R71H103KA88D<br/>voice supervisor ct physical component"]
-  VOICE_SUPERVISOR_PULLUP["Yageo RC0402FR-0710KL<br/>voice supervisor pullup physical component"]
-  VOICE_IO_POWER_SWITCH["Texas Instruments TPS22919DCKR<br/>discharged local voice-interface supply switch"]
-  VOICE_IO_POWER_INPUT_CAP["TDK C1608X7R1C105K080AC<br/>voice io power input cap physical component"]
-  VOICE_IO_POWER_OUTPUT_CAP["TDK C1608X7R1C105K080AC<br/>voice io power output cap physical component"]
-  VOICE_PTT_ISO["Texas Instruments SN74LVC1G126DCKR<br/>physical module-PTT tri-state isolation buffer"]
-  VOICE_PTT_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>voice ptt iso bypass physical component"]
   end
-  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ CODEC_PVDD_BYPASS ~~~ CODEC_DVDD_BEAD ~~~ CODEC_DVDD_BYPASS ~~~ CODEC_AVDD_BEAD ~~~ CODEC_AVDD_BYPASS ~~~ CODEC_DACVREF_CAP ~~~ CODEC_ADCVREF_CAP
-  CODEC_VMID_CAP ~~~ CODEC_CE_PULLUP ~~~ RECEIVER_POWER_INPUT_CAP ~~~ RECEIVER_POWER_OUTPUT_CAP ~~~ RECEIVER_POWER_ON_PULLDOWN ~~~ RECEIVER_SUPERVISOR ~~~ RECEIVER_SUPERVISOR_BYPASS ~~~ RECEIVER_READY_PULLDOWN ~~~ RECEIVER_I2C_ISO ~~~ RECEIVER_I2C_ISO_BYPASS ~~~ RECEIVER_I2C_SCL_PULLUP ~~~ RECEIVER_I2C_SDA_PULLUP
-  RECEIVER_IRQ_ISO ~~~ RECEIVER_IRQ_ISO_BYPASS ~~~ RECEIVER_IRQ_PULLUP ~~~ RECEIVER_VDD_BYPASS ~~~ RECEIVER_CLOCK ~~~ RECEIVER_CLOCK_CAP_RCLK ~~~ RECEIVER_CLOCK_CAP_GPO3 ~~~ RECEIVER_SENB_PULLDOWN ~~~ RECEIVER_FMI_ESD ~~~ RECEIVER_FMI_MATCH_INDUCTOR ~~~ RECEIVER_FMI_COUPLING_CAP ~~~ RECEIVER_AMI_ESD
-  RECEIVER_AMI_COUPLING_CAP ~~~ VOICE_SUPERVISOR ~~~ VOICE_SUPERVISOR_BYPASS ~~~ VOICE_SUPERVISOR_SENSE_TOP ~~~ VOICE_SUPERVISOR_SENSE_BOTTOM ~~~ VOICE_SUPERVISOR_CT ~~~ VOICE_SUPERVISOR_PULLUP ~~~ VOICE_IO_POWER_SWITCH ~~~ VOICE_IO_POWER_INPUT_CAP ~~~ VOICE_IO_POWER_OUTPUT_CAP ~~~ VOICE_PTT_ISO ~~~ VOICE_PTT_ISO_BYPASS
+  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ CODEC_I2S_BCLK_ISO ~~~ CODEC_I2S_WS_ISO ~~~ CODEC_I2S_DOUT_ISO ~~~ CODEC_I2S_DIN_ISO ~~~ CODEC_I2S_DIN_BOOT_GATE ~~~ CODEC_I2S_BCLK_ISO_BYPASS ~~~ CODEC_I2S_WS_ISO_BYPASS
+  CODEC_I2S_DOUT_ISO_BYPASS ~~~ CODEC_I2S_DIN_ISO_BYPASS ~~~ CODEC_I2S_DIN_BOOT_GATE_BYPASS ~~~ CODEC_PVDD_BYPASS ~~~ CODEC_DVDD_BEAD ~~~ CODEC_DVDD_BYPASS ~~~ CODEC_AVDD_BEAD ~~~ CODEC_AVDD_BYPASS ~~~ CODEC_DACVREF_CAP ~~~ CODEC_ADCVREF_CAP ~~~ CODEC_VMID_CAP ~~~ CODEC_CE_PULLUP
+  RECEIVER_POWER_INPUT_CAP ~~~ RECEIVER_POWER_OUTPUT_CAP ~~~ RECEIVER_POWER_ON_PULLDOWN ~~~ RECEIVER_SUPERVISOR ~~~ RECEIVER_SUPERVISOR_BYPASS ~~~ RECEIVER_READY_PULLDOWN ~~~ RECEIVER_I2C_ISO ~~~ RECEIVER_I2C_ISO_BYPASS ~~~ RECEIVER_I2C_SCL_PULLUP ~~~ RECEIVER_I2C_SDA_PULLUP ~~~ RECEIVER_IRQ_ISO ~~~ RECEIVER_IRQ_ISO_BYPASS
+  RECEIVER_IRQ_PULLUP ~~~ RECEIVER_VDD_BYPASS ~~~ RECEIVER_CLOCK ~~~ RECEIVER_CLOCK_CAP_RCLK ~~~ RECEIVER_CLOCK_CAP_GPO3 ~~~ RECEIVER_SENB_PULLDOWN ~~~ RECEIVER_FMI_ESD ~~~ RECEIVER_FMI_MATCH_INDUCTOR ~~~ RECEIVER_FMI_COUPLING_CAP ~~~ RECEIVER_AMI_ESD ~~~ RECEIVER_AMI_COUPLING_CAP ~~~ VOICE_SUPERVISOR
+  S3 -->|"I²S0 outputs: GPIO15,GPIO16,GPIO17"| CODEC_I2S_BCLK_ISO
+  S3 -->|"GPIO6 AUDIO_ARM; reset-low"| CODEC_I2S_DIN_BOOT_GATE
+  CODEC_I2S_DIN_BOOT_GATE -->|"output enable"| CODEC_I2S_DIN_ISO
   S3 <-->|"I²C0 host side"| RECEIVER_I2C_ISO
   RECEIVER_SUPERVISOR -->|"reset + 200-ms isolation release"| RECEIVER_I2C_ISO
-  VOICE_SUPERVISOR --> VOICE_IO_POWER_SWITCH --> VOICE_PTT_ISO
 ```
 
-### 9. Приём, запись, воспроизведение и voice audio — узлы 5/5
+### 9. Приём, запись, воспроизведение и voice audio — узлы 5/6
 
 ```mermaid
 flowchart TD
@@ -559,30 +555,77 @@ flowchart TD
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
   VOICE_EFUSE["Texas Instruments TPS25974LRPWR<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG"]
+  VOICE_SUPERVISOR_BYPASS["TDK C1005X7R1H104K050BB<br/>voice supervisor bypass physical component"]
+  VOICE_SUPERVISOR_SENSE_TOP["Yageo RC0402FR-0747KL<br/>voice supervisor sense top physical component"]
+  VOICE_SUPERVISOR_SENSE_BOTTOM["Yageo RC0402FR-07220KL<br/>voice supervisor sense bottom physical component"]
+  VOICE_SUPERVISOR_CT["Murata GRM155R71H103KA88D<br/>voice supervisor ct physical component"]
+  VOICE_SUPERVISOR_PULLUP["Yageo RC0402FR-0710KL<br/>voice supervisor pullup physical component"]
+  VOICE_IO_POWER_SWITCH["Texas Instruments TPS22919DCKR<br/>discharged local voice-interface supply switch"]
+  VOICE_IO_POWER_INPUT_CAP["TDK C1608X7R1C105K080AC<br/>voice io power input cap physical component"]
+  VOICE_IO_POWER_OUTPUT_CAP["TDK C1608X7R1C105K080AC<br/>voice io power output cap physical component"]
+  VOICE_BAND_IO["TCA9534APWR<br/>0x3A reset-default-UHF band selector"]
+  VOICE_BAND_IO_BYPASS["TDK C1005X7R1H104K050BB<br/>voice band io bypass physical component"]
+  VOICE_BAND_SELECT_PULLDOWN["Yageo RC0402FR-0710KL<br/>voice band select pulldown physical component"]
+  VOICE_BAND_P1_PULLDOWN["Yageo RC0402FR-0710KL<br/>voice band p1 pulldown physical component"]
+  VOICE_BAND_P2_PULLDOWN["Yageo RC0402FR-0710KL<br/>voice band p2 pulldown physical component"]
+  VOICE_BAND_P3_PULLDOWN["Yageo RC0402FR-0710KL<br/>voice band p3 pulldown physical component"]
+  VOICE_BAND_P4_PULLDOWN["Yageo RC0402FR-0710KL<br/>voice band p4 pulldown physical component"]
+  VOICE_BAND_P5_PULLDOWN["Yageo RC0402FR-0710KL<br/>voice band p5 pulldown physical component"]
+  VOICE_BAND_P6_PULLDOWN["Yageo RC0402FR-0710KL<br/>voice band p6 pulldown physical component"]
+  VOICE_BAND_P7_PULLDOWN["Yageo RC0402FR-0710KL<br/>voice band p7 pulldown physical component"]
+  VOICE_BAND_INVERTER["74LVC2G14GW,125<br/>always-on hardware complement for one-hot band selection"]
+  VOICE_BAND_INVERTER_BYPASS["TDK C1005X7R1H104K050BB<br/>voice band inverter bypass physical component"]
+  VOICE_PD_GATE["Texas Instruments SN74LVC2G08DCUR<br/>always-on one-hot SA818S-U/V power-down gate"]
+  VOICE_PD_GATE_BYPASS["TDK C1005X7R1H104K050BB<br/>voice pd gate bypass physical component"]
+  VOICE_CONTROL_MUX_A["Texas Instruments TMUX1136DGSR<br/>selected-band UART TX/RX selector"]
+  VOICE_CONTROL_MUX_A_BYPASS["TDK C1005X7R1H104K050BB<br/>voice control mux a bypass physical component"]
+  VOICE_CONTROL_MUX_B["Texas Instruments TMUX1136DGSR<br/>selected-band PTT/AUDIO_ON selector"]
+  VOICE_CONTROL_MUX_B_BYPASS["TDK C1005X7R1H104K050BB<br/>voice control mux b bypass physical component"]
+  VOICE_AUDIO_MUX["Texas Instruments TMUX1136DGSR<br/>selected-band AFOUT/MIC_IN selector"]
+  VOICE_AUDIO_MUX_BYPASS["TDK C1005X7R1H104K050BB<br/>voice audio mux bypass physical component"]
   VOICE_PTT_PULLUP["Yageo RC0402FR-0710KL<br/>voice ptt pullup physical component"]
-  VOICE_UART_TX_ISO["Texas Instruments SN74LVC1G126DCKR<br/>physical host-to-module UART isolation buffer"]
-  VOICE_UART_TX_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>voice uart tx iso bypass physical component"]
+  VOICE_V_PTT_PULLUP["Yageo RC0402FR-0710KL<br/>voice v ptt pullup physical component"]
   VOICE_UART_RX_PULLDOWN["Yageo RC0402FR-07100KL<br/>voice uart rx pulldown physical component"]
+  VOICE_V_UART_RX_PULLDOWN["Yageo RC0402FR-07100KL<br/>voice v uart rx pulldown physical component"]
   VOICE_UART_TX_PULLDOWN["Yageo RC0402FR-07100KL<br/>voice uart tx pulldown physical component"]
-  VOICE_HL_DRIVER["SN74LVC1G07DCKR<br/>low-or-open SA518 H/L driver"]
+  VOICE_HL_DRIVER["SN74LVC1G07DCKR<br/>shared low-or-open SA818S H/L driver"]
   VOICE_HL_DRIVER_BYPASS["TDK C1005X7R1H104K050BB<br/>voice hl driver bypass physical component"]
   VOICE_HL_REQ_PULLDOWN["Yageo RC0402FR-0710KL<br/>voice hl req pulldown physical component"]
-  VOICE_AUDIO_ISO["Texas Instruments SN74LVC2G66DCUR<br/>dual AFOUT/MIC_IN power-domain isolation switch"]
-  VOICE_AUDIO_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>voice audio iso bypass physical component"]
   VOICE_AUDIO_ON_PULLDOWN["Yageo RC0402FR-07100KL<br/>voice audio on pulldown physical component"]
   VOICE_EFUSE_EN_PULLUP["Yageo RC0402FR-0710KL<br/>voice efuse en pullup physical component"]
   VOICE_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>voice first-population 100-kOhm threshold upper resistor"]
   VOICE_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>voice first-population 10-kOhm threshold lower resistor"]
   VOICE_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>voice 1-MOhm evidence-hysteresis feedback resistor"]
   VOICE_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>voice 10-kOhm AON comparator-output pull-up resistor"]
+  end
+  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ VOICE_SUPERVISOR_BYPASS ~~~ VOICE_SUPERVISOR_SENSE_TOP ~~~ VOICE_SUPERVISOR_SENSE_BOTTOM ~~~ VOICE_SUPERVISOR_CT ~~~ VOICE_SUPERVISOR_PULLUP ~~~ VOICE_IO_POWER_SWITCH ~~~ VOICE_IO_POWER_INPUT_CAP
+  VOICE_IO_POWER_OUTPUT_CAP ~~~ VOICE_BAND_IO ~~~ VOICE_BAND_IO_BYPASS ~~~ VOICE_BAND_SELECT_PULLDOWN ~~~ VOICE_BAND_P1_PULLDOWN ~~~ VOICE_BAND_P2_PULLDOWN ~~~ VOICE_BAND_P3_PULLDOWN ~~~ VOICE_BAND_P4_PULLDOWN ~~~ VOICE_BAND_P5_PULLDOWN ~~~ VOICE_BAND_P6_PULLDOWN ~~~ VOICE_BAND_P7_PULLDOWN ~~~ VOICE_BAND_INVERTER
+  VOICE_BAND_INVERTER_BYPASS ~~~ VOICE_PD_GATE ~~~ VOICE_PD_GATE_BYPASS ~~~ VOICE_CONTROL_MUX_A ~~~ VOICE_CONTROL_MUX_A_BYPASS ~~~ VOICE_CONTROL_MUX_B ~~~ VOICE_CONTROL_MUX_B_BYPASS ~~~ VOICE_AUDIO_MUX ~~~ VOICE_AUDIO_MUX_BYPASS ~~~ VOICE_PTT_PULLUP ~~~ VOICE_V_PTT_PULLUP ~~~ VOICE_UART_RX_PULLDOWN
+  VOICE_V_UART_RX_PULLDOWN ~~~ VOICE_UART_TX_PULLDOWN ~~~ VOICE_HL_DRIVER ~~~ VOICE_HL_DRIVER_BYPASS ~~~ VOICE_HL_REQ_PULLDOWN ~~~ VOICE_AUDIO_ON_PULLDOWN ~~~ VOICE_EFUSE_EN_PULLUP ~~~ VOICE_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP
+  VOICE_IO_POWER_SWITCH --> VOICE_CONTROL_MUX_B
+  VOICE_IO_POWER_SWITCH --> VOICE_AUDIO_MUX
+```
+
+### 10. Приём, запись, воспроизведение и voice audio — узлы 6/6
+
+```mermaid
+flowchart TD
+  subgraph AUDIO_PATH_6["Broadcast, voice and fail-safe audio devices"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  RP["SC1512-A4<br/>deterministic radio and voice owner"]
+  SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
+  MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
+  VOICE_EFUSE["Texas Instruments TPS25974LRPWR<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG"]
+  VOICE_V_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>voice_v first-population 100-kOhm threshold upper resistor"]
+  VOICE_V_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>voice_v first-population 10-kOhm threshold lower resistor"]
+  VOICE_V_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>voice_v 1-MOhm evidence-hysteresis feedback resistor"]
   VOICE_TX_LED["LTST-C190KRKT<br/>voice antenna-local actual-TX indicator"]
   VOICE_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>voice actual-TX indicator 2.2-kOhm current limit"]
   end
-  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ VOICE_PTT_PULLUP ~~~ VOICE_UART_TX_ISO ~~~ VOICE_UART_TX_ISO_BYPASS ~~~ VOICE_UART_RX_PULLDOWN ~~~ VOICE_UART_TX_PULLDOWN ~~~ VOICE_HL_DRIVER ~~~ VOICE_HL_DRIVER_BYPASS
-  VOICE_HL_REQ_PULLDOWN ~~~ VOICE_AUDIO_ISO ~~~ VOICE_AUDIO_ISO_BYPASS ~~~ VOICE_AUDIO_ON_PULLDOWN ~~~ VOICE_EFUSE_EN_PULLUP ~~~ VOICE_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP ~~~ VOICE_TX_LED ~~~ VOICE_TX_LED_SERIES
+  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ VOICE_V_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_V_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_V_EVIDENCE_HYSTERESIS ~~~ VOICE_TX_LED ~~~ VOICE_TX_LED_SERIES
 ```
 
-### 10. Радиотракты и внешние расширения — узлы 1/7
+### 11. Радиотракты и внешние расширения — узлы 1/7
 
 ```mermaid
 flowchart TD
@@ -600,7 +643,7 @@ flowchart TD
   DET_NRF1["Analog Devices AD8314ACPZ-RL7<br/>nRF1 2.4-GHz RF power detector"]
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
-  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
+  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA818S-U UHF RF power detector"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
   EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
   S3_RF_JUMPER["TE Connectivity 2118651-2<br/>S3 exact 30-mm UMCC Gen1 module jumper"]
@@ -680,7 +723,7 @@ flowchart TD
   C5_DETECTOR_BYPASS --> DET_C5
 ```
 
-### 11. Радиотракты и внешние расширения — узлы 2/7
+### 12. Радиотракты и внешние расширения — узлы 2/7
 
 ```mermaid
 flowchart TD
@@ -698,7 +741,7 @@ flowchart TD
   DET_NRF1["Analog Devices AD8314ACPZ-RL7<br/>nRF1 2.4-GHz RF power detector"]
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
-  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
+  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA818S-U UHF RF power detector"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
   EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
   NRF0_MODULE_HF_CAP["TDK C1005X7R1H104K050BB<br/>radio-module high-frequency bypass capacitor"]
@@ -754,7 +797,7 @@ flowchart TD
   NRF0_COUPLER -->|"10-dB forward sample"| DET_NRF0 --> EVIDENCE_CMP_B
 ```
 
-### 12. Радиотракты и внешние расширения — узлы 3/7
+### 13. Радиотракты и внешние расширения — узлы 3/7
 
 ```mermaid
 flowchart TD
@@ -772,7 +815,7 @@ flowchart TD
   DET_NRF1["Analog Devices AD8314ACPZ-RL7<br/>nRF1 2.4-GHz RF power detector"]
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
-  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
+  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA818S-U UHF RF power detector"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
   EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
   NRF1_MODULE_CSN_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
@@ -830,7 +873,7 @@ flowchart TD
   NRF2_COUPLER -->|"10-dB forward sample"| DET_NRF2 --> EVIDENCE_CMP_B
 ```
 
-### 13. Радиотракты и внешние расширения — узлы 4/7
+### 14. Радиотракты и внешние расширения — узлы 4/7
 
 ```mermaid
 flowchart TD
@@ -848,7 +891,7 @@ flowchart TD
   DET_NRF1["Analog Devices AD8314ACPZ-RL7<br/>nRF1 2.4-GHz RF power detector"]
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
-  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
+  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA818S-U UHF RF power detector"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
   EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
   NRF2_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>antenna-local actual-TX indicator 2.2-kOhm current limit"]
@@ -908,7 +951,7 @@ flowchart TD
   RP <-->|"PIO0 SM3 + GDO/power: GPIO9,GPIO10,GPIO11,GPIO23,GPIO39,GPIO42,GPIO43"| CC
 ```
 
-### 14. Радиотракты и внешние расширения — узлы 5/7
+### 15. Радиотракты и внешние расширения — узлы 5/7
 
 ```mermaid
 flowchart TD
@@ -926,7 +969,7 @@ flowchart TD
   DET_NRF1["Analog Devices AD8314ACPZ-RL7<br/>nRF1 2.4-GHz RF power detector"]
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
-  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
+  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA818S-U UHF RF power detector"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
   EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
   CC_RF_P_DC_BLOCK["Murata GJM1555C1H101JB01D<br/>RF_P high-Q series DC-block capacitor"]
@@ -959,7 +1002,8 @@ flowchart TD
   CC_TX_LED["LTST-C190KRKT<br/>CC antenna-local actual-TX indicator"]
   CC_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>CC actual-TX indicator 2.2-kOhm current limit"]
   CC_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>CC dedicated 6-GHz IP67 standard-SMA edge-launch jack"]
-  VOICE["NiceRF SA518<br/>136-174/400-470-MHz analog voice transceiver"]
+  VOICE["G-NiceRF SA818S-U<br/>UHF 400–480-MHz analog voice transceiver"]
+  VOICE_V["G-NiceRF SA818S-V<br/>VHF 134–174-MHz analog voice transceiver"]
   VOICE_RF_ESD["Nexperia PESD24VY1BSF<br/>24-V ultra-low-capacitance external voice RF ESD diode"]
   VOICE_DETECTOR_SERIES_ATTENUATOR["Yageo RC0402FR-075K1L<br/>actual-TX 5.1-kOhm RF series sampler"]
   VOICE_DETECTOR_MATCH["Yageo RC0402FR-0752R3L<br/>AD8314 52.3-Ohm detector input shunt"]
@@ -968,21 +1012,19 @@ flowchart TD
   VOICE_EVIDENCE_HOLD_DIODE["Diodes Incorporated BAT54-7-F<br/>actual-TX evidence hold isolation diode"]
   VOICE_EVIDENCE_HOLD_CAP["TDK C1608X7R1C105K080AC<br/>actual-TX evidence enable hold capacitor"]
   VOICE_EVIDENCE_HOLD_PULLDOWN["Yageo RC0402FR-0710KL<br/>actual-TX evidence hold discharge resistor"]
-  VOICE_TX_LED["LTST-C190KRKT<br/>voice antenna-local actual-TX indicator"]
-  VOICE_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>voice actual-TX indicator 2.2-kOhm current limit"]
-  VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>voice dedicated 6-GHz IP67 standard-SMA edge-launch jack"]
-  RECEIVER_FMSW_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>dedicated FM/SW standard-SMA receive jack"]
-  RECEIVER_AMLW_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>dedicated non-50-Ohm AM/LW loop-pod standard-SMA jack"]
-  U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
-  U214_CONNECTOR["Samtec HLE-107-02-G-DV-PE-LC<br/>vertical 14-contact Cap-Bus host socket on raised rear rail"]
-  U214_I2C_ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
+  VOICE_V_RF_ESD["Nexperia PESD24VY1BSF<br/>24-V ultra-low-capacitance external VHF RF ESD diode"]
+  VOICE_V_DETECTOR_SERIES_ATTENUATOR["Yageo RC0402FR-075K1L<br/>VHF actual-TX 5.1-kOhm RF series sampler"]
+  VOICE_V_DETECTOR_MATCH["Yageo RC0402FR-0752R3L<br/>VHF AD8314 52.3-Ohm detector input shunt"]
+  VOICE_V_DETECTOR_FILTER["Murata GRM1555C1H121JA01D<br/>VHF AD8314 response filter capacitor"]
+  VOICE_V_DETECTOR_BYPASS["TDK C1005X7R1H104K050BB<br/>VHF AD8314 local bypass capacitor"]
+  VOICE_V_EVIDENCE_HOLD_DIODE["Diodes Incorporated BAT54-7-F<br/>VHF actual-TX evidence hold isolation diode"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
   DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ CC_RF_P_DC_BLOCK ~~~ CC_RF_N_DC_BLOCK ~~~ CC_RF_DIFF_CAP ~~~ CC_BALUN ~~~ CC_MATCH_L3N3 ~~~ CC_MATCH_C1P2 ~~~ CC_MATCH_L6N8 ~~~ CC_SWITCH_A
   CC_SWITCH_B ~~~ CC_315_L10_IN ~~~ CC_315_SHUNT_L3N6 ~~~ CC_315_SHUNT_C8P ~~~ CC_315_L10_OUT ~~~ CC_433_SHUNT_C10P ~~~ CC_433_L15 ~~~ CC_433_SHUNT_C6P2 ~~~ CC_868_915_L10 ~~~ CC_OUTPUT_L2N2 ~~~ CC_RF_ESD ~~~ CC_DETECTOR_TAP_CAP
-  CC_DETECTOR_FILTER ~~~ CC_DETECTOR_BYPASS ~~~ CC_EVIDENCE_HOLD_DIODE ~~~ CC_EVIDENCE_HOLD_CAP ~~~ CC_EVIDENCE_HOLD_PULLDOWN ~~~ CC_BACKUP_GATE ~~~ CC_BACKUP_GATE_BYPASS ~~~ CC_TX_LED ~~~ CC_TX_LED_SERIES ~~~ CC_EXTERNAL_SMA ~~~ VOICE ~~~ VOICE_RF_ESD
-  VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH ~~~ VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN ~~~ VOICE_TX_LED ~~~ VOICE_TX_LED_SERIES ~~~ VOICE_EXTERNAL_SMA ~~~ RECEIVER_FMSW_EXTERNAL_SMA ~~~ RECEIVER_AMLW_EXTERNAL_SMA
-  U214 ~~~ U214_CONNECTOR ~~~ U214_I2C_ISO
+  CC_DETECTOR_FILTER ~~~ CC_DETECTOR_BYPASS ~~~ CC_EVIDENCE_HOLD_DIODE ~~~ CC_EVIDENCE_HOLD_CAP ~~~ CC_EVIDENCE_HOLD_PULLDOWN ~~~ CC_BACKUP_GATE ~~~ CC_BACKUP_GATE_BYPASS ~~~ CC_TX_LED ~~~ CC_TX_LED_SERIES ~~~ CC_EXTERNAL_SMA ~~~ VOICE ~~~ VOICE_V
+  VOICE_RF_ESD ~~~ VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH ~~~ VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN ~~~ VOICE_V_RF_ESD ~~~ VOICE_V_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_V_DETECTOR_MATCH ~~~ VOICE_V_DETECTOR_FILTER
+  VOICE_V_DETECTOR_BYPASS ~~~ VOICE_V_EVIDENCE_HOLD_DIODE
   CC_RF_P_DC_BLOCK --> CC_RF_DIFF_CAP
   CC_RF_N_DC_BLOCK --> CC_RF_DIFF_CAP
   CC_BALUN --> CC_MATCH_L3N3 --> CC_MATCH_L6N8 --> CC_SWITCH_A
@@ -995,7 +1037,6 @@ flowchart TD
   CC_SWITCH_A -->|"RF3 = 868/915 MHz"| CC_868_915_L10 --> CC_SWITCH_B
   CC_SWITCH_B --> CC_OUTPUT_L2N2 --> CC_RF_ESD --> CC_EXTERNAL_SMA
   CC_OUTPUT_L2N2 -->|"0.47-pF actual-TX sample"| CC_DETECTOR_TAP_CAP --> DET_CC
-  VOICE -->|"short controlled 50-Ohm line"| VOICE_EXTERNAL_SMA
   VOICE -->|"24-V shunt at external boundary"| VOICE_RF_ESD
   VOICE -->|"5.1-kOhm actual-TX sample"| VOICE_DETECTOR_SERIES_ATTENUATOR --> DET_VOICE
   DET_VOICE -->|"52.3-Ohm RFIN shunt"| VOICE_DETECTOR_MATCH
@@ -1005,12 +1046,9 @@ flowchart TD
   VOICE_EVIDENCE_HOLD_DIODE --> VOICE_EVIDENCE_HOLD_PULLDOWN
   VOICE_EVIDENCE_HOLD_DIODE --> DET_VOICE
   RP <-->|"UART0/PTT request: GPIO16,GPIO17,GPIO18,GPIO20,GPIO21"| VOICE
-  RP <-->|"I²C0"| U214_I2C_ISO
-  U214_I2C_ISO <-->|"isolated external I²C"| U214_CONNECTOR
-  U214_CONNECTOR <-->|"contacts 1..14"| U214
 ```
 
-### 15. Радиотракты и внешние расширения — узлы 6/7
+### 16. Радиотракты и внешние расширения — узлы 6/7
 
 ```mermaid
 flowchart TD
@@ -1028,9 +1066,19 @@ flowchart TD
   DET_NRF1["Analog Devices AD8314ACPZ-RL7<br/>nRF1 2.4-GHz RF power detector"]
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
-  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
+  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA818S-U UHF RF power detector"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
   EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
+  VOICE_V_EVIDENCE_HOLD_CAP["TDK C1608X7R1C105K080AC<br/>VHF actual-TX evidence enable hold capacitor"]
+  VOICE_V_EVIDENCE_HOLD_PULLDOWN["Yageo RC0402FR-0710KL<br/>VHF actual-TX evidence hold discharge resistor"]
+  VOICE_TX_LED["LTST-C190KRKT<br/>voice antenna-local actual-TX indicator"]
+  VOICE_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>voice actual-TX indicator 2.2-kOhm current limit"]
+  VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>voice dedicated 6-GHz IP67 standard-SMA edge-launch jack"]
+  RECEIVER_FMSW_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>dedicated FM/SW standard-SMA receive jack"]
+  RECEIVER_AMLW_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>dedicated non-50-Ohm AM/LW loop-pod standard-SMA jack"]
+  U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
+  U214_CONNECTOR["Samtec HLE-107-02-G-DV-PE-LC<br/>vertical 14-contact Cap-Bus host socket on raised rear rail"]
+  U214_I2C_ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
   U214_I2C_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF external-I2C-isolator bypass capacitor"]
   U214_I2C_HOST_SDA_PULLUP["Yageo RC0402FR-072K2L<br/>2.2-kOhm U214 controller-side SDA pull-up"]
   U214_I2C_HOST_SCL_PULLUP["Yageo RC0402FR-072K2L<br/>2.2-kOhm U214 controller-side SCL pull-up"]
@@ -1064,29 +1112,27 @@ flowchart TD
   U214_SUPERVISOR_SENSE_TOP["Yageo RC0402FR-07110KL<br/>110-kOhm U214-ready threshold top resistor"]
   U214_SUPERVISOR_SENSE_BOTTOM["Yageo RC0402FR-07220KL<br/>220-kOhm U214-ready threshold bottom resistor"]
   U214_SUPERVISOR_CT["Murata GRM155R71H103KA88D<br/>10-nF U214-ready delay capacitor"]
-  U214_SUPERVISOR_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm U214-ready main-domain pull-up"]
-  UNIT_EFUSE["Texas Instruments TPS259470LRPWR<br/>native-Unit true-reverse-blocking latch-off eFuse"]
-  UNIT_RILM["Yageo RC0402FR-071K82L<br/>1.82-kOhm native-Unit eFuse current-limit resistor"]
-  UNIT_DVDT_CAP["Murata GRM155R71H472KA01D<br/>4.7-nF native-Unit eFuse slew capacitor"]
-  UNIT_ITIMER_CAP["Murata GRM188R71E224KA88D<br/>220-nF native-Unit post-start transient timer"]
-  UNIT_OVLO_TOP["Yageo RC0402FR-07169KL<br/>169-kOhm native-Unit OVLO top resistor"]
-  UNIT_OVLO_BOTTOM["Yageo RC0402FR-0747KL<br/>47-kOhm native-Unit OVLO bottom resistor"]
-  UNIT_INPUT_CAP["Murata GRM21BR71E225KE11L<br/>2.2-uF native-Unit eFuse input capacitor"]
-  UNIT_OUTPUT_CAP["Murata GRM21BR71E225KE11L<br/>2.2-uF native-Unit eFuse output capacitor"]
-  UNIT_BLEEDER["Yageo RC0603FR-071KL<br/>1-kOhm native-Unit protected-output discharge resistor"]
-  UNIT_SUPERVISOR["TPS3808G33DBVR<br/>protected-native-Unit-5-V readiness supervisor"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
-  DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ U214_I2C_ISO_BYPASS ~~~ U214_I2C_HOST_SDA_PULLUP ~~~ U214_I2C_HOST_SCL_PULLUP ~~~ U214_HOST_BUFFER_A ~~~ U214_HOST_BUFFER_B ~~~ U214_RETURN_BUFFER ~~~ U214_HOST_BUFFER_A_BYPASS ~~~ U214_HOST_BUFFER_B_BYPASS
-  U214_RETURN_BUFFER_BYPASS ~~~ U214_SERIES_RST ~~~ U214_SERIES_GPS_RX ~~~ U214_SERIES_SCK ~~~ U214_SERIES_MOSI ~~~ U214_SERIES_NSS ~~~ U214_SERIES_BUSY ~~~ U214_SERIES_IRQ ~~~ U214_SERIES_GPS_TX ~~~ U214_SERIES_MISO ~~~ U214_ESD_A ~~~ U214_ESD_B
-  U214_ESD_C ~~~ EXT_REQUEST_OR ~~~ EXT_REQUEST_OR_BYPASS ~~~ EXT_ANY_REQ_PULLDOWN ~~~ EXT_BRANCH_GATE ~~~ EXT_BRANCH_GATE_BYPASS ~~~ U214_REQ_PULLDOWN ~~~ UNIT_REQ_PULLDOWN ~~~ U214_SUPERVISOR ~~~ U214_SUPERVISOR_BYPASS ~~~ U214_SUPERVISOR_SENSE_TOP ~~~ U214_SUPERVISOR_SENSE_BOTTOM
-  U214_SUPERVISOR_CT ~~~ U214_SUPERVISOR_PULLUP ~~~ UNIT_EFUSE ~~~ UNIT_RILM ~~~ UNIT_DVDT_CAP ~~~ UNIT_ITIMER_CAP ~~~ UNIT_OVLO_TOP ~~~ UNIT_OVLO_BOTTOM ~~~ UNIT_INPUT_CAP ~~~ UNIT_OUTPUT_CAP ~~~ UNIT_BLEEDER ~~~ UNIT_SUPERVISOR
+  DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ VOICE_V_EVIDENCE_HOLD_CAP ~~~ VOICE_V_EVIDENCE_HOLD_PULLDOWN ~~~ VOICE_TX_LED ~~~ VOICE_TX_LED_SERIES ~~~ VOICE_EXTERNAL_SMA ~~~ RECEIVER_FMSW_EXTERNAL_SMA ~~~ RECEIVER_AMLW_EXTERNAL_SMA ~~~ U214
+  U214_CONNECTOR ~~~ U214_I2C_ISO ~~~ U214_I2C_ISO_BYPASS ~~~ U214_I2C_HOST_SDA_PULLUP ~~~ U214_I2C_HOST_SCL_PULLUP ~~~ U214_HOST_BUFFER_A ~~~ U214_HOST_BUFFER_B ~~~ U214_RETURN_BUFFER ~~~ U214_HOST_BUFFER_A_BYPASS ~~~ U214_HOST_BUFFER_B_BYPASS ~~~ U214_RETURN_BUFFER_BYPASS ~~~ U214_SERIES_RST
+  U214_SERIES_GPS_RX ~~~ U214_SERIES_SCK ~~~ U214_SERIES_MOSI ~~~ U214_SERIES_NSS ~~~ U214_SERIES_BUSY ~~~ U214_SERIES_IRQ ~~~ U214_SERIES_GPS_TX ~~~ U214_SERIES_MISO ~~~ U214_ESD_A ~~~ U214_ESD_B ~~~ U214_ESD_C ~~~ EXT_REQUEST_OR
+  EXT_REQUEST_OR_BYPASS ~~~ EXT_ANY_REQ_PULLDOWN ~~~ EXT_BRANCH_GATE ~~~ EXT_BRANCH_GATE_BYPASS ~~~ U214_REQ_PULLDOWN ~~~ UNIT_REQ_PULLDOWN ~~~ U214_SUPERVISOR ~~~ U214_SUPERVISOR_BYPASS ~~~ U214_SUPERVISOR_SENSE_TOP ~~~ U214_SUPERVISOR_SENSE_BOTTOM ~~~ U214_SUPERVISOR_CT
+  RP -->|"PIO1/UART1 outputs: GPIO12,GPIO13,GPIO14,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47"| U214_HOST_BUFFER_A --> U214_CONNECTOR --> U214
+  RP --> U214_HOST_BUFFER_B --> U214_CONNECTOR
+  U214 --> U214_CONNECTOR -->|"BUSY/IRQ/GPS-TX/MISO"| U214_RETURN_BUFFER --> RP
+  RP <-->|"I²C0"| U214_I2C_ISO
+  U214_I2C_ISO <-->|"isolated external I²C"| U214_CONNECTOR
+  U214_CONNECTOR <-->|"contacts 1..14"| U214
+  U214_ESD_A -.->|"I²C/RST/GPS-RX shunt protection"| U214_CONNECTOR
+  U214_ESD_B -.->|"SCK/MOSI/NSS/BUSY shunt protection"| U214_CONNECTOR
+  U214_ESD_C -.->|"IRQ/GPS-TX/MISO shunt protection"| U214_CONNECTOR
   SLOW_IO -->|"P17/P05 independent requests"| EXT_REQUEST_OR --> SAFE_GATE_B
   SAFE_GATE_B --> EXT_BRANCH_GATE
-  EXT_BRANCH_GATE --> UNIT_EFUSE
+  U214_SUPERVISOR --> U214_I2C_ISO
 ```
 
-### 16. Радиотракты и внешние расширения — узлы 7/7
+### 17. Радиотракты и внешние расширения — узлы 7/7
 
 ```mermaid
 flowchart TD
@@ -1104,9 +1150,20 @@ flowchart TD
   DET_NRF1["Analog Devices AD8314ACPZ-RL7<br/>nRF1 2.4-GHz RF power detector"]
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
-  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
+  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA818S-U UHF RF power detector"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
   EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
+  U214_SUPERVISOR_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm U214-ready main-domain pull-up"]
+  UNIT_EFUSE["Texas Instruments TPS259470LRPWR<br/>native-Unit true-reverse-blocking latch-off eFuse"]
+  UNIT_RILM["Yageo RC0402FR-071K82L<br/>1.82-kOhm native-Unit eFuse current-limit resistor"]
+  UNIT_DVDT_CAP["Murata GRM155R71H472KA01D<br/>4.7-nF native-Unit eFuse slew capacitor"]
+  UNIT_ITIMER_CAP["Murata GRM188R71E224KA88D<br/>220-nF native-Unit post-start transient timer"]
+  UNIT_OVLO_TOP["Yageo RC0402FR-07169KL<br/>169-kOhm native-Unit OVLO top resistor"]
+  UNIT_OVLO_BOTTOM["Yageo RC0402FR-0747KL<br/>47-kOhm native-Unit OVLO bottom resistor"]
+  UNIT_INPUT_CAP["Murata GRM21BR71E225KE11L<br/>2.2-uF native-Unit eFuse input capacitor"]
+  UNIT_OUTPUT_CAP["Murata GRM21BR71E225KE11L<br/>2.2-uF native-Unit eFuse output capacitor"]
+  UNIT_BLEEDER["Yageo RC0603FR-071KL<br/>1-kOhm native-Unit protected-output discharge resistor"]
+  UNIT_SUPERVISOR["TPS3808G33DBVR<br/>protected-native-Unit-5-V readiness supervisor"]
   UNIT_SUPERVISOR_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF native-Unit-supervisor bypass capacitor"]
   UNIT_SUPERVISOR_SENSE_TOP["Yageo RC0402FR-07110KL<br/>110-kOhm native-Unit-ready threshold top resistor"]
   UNIT_SUPERVISOR_SENSE_BOTTOM["Yageo RC0402FR-07220KL<br/>220-kOhm native-Unit-ready threshold bottom resistor"]
@@ -1120,14 +1177,16 @@ flowchart TD
   UNIT_CONNECTOR["1125R-SMT-4P<br/>exact protected HY2.0-4P M5 Unit connector"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
-  DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ UNIT_SUPERVISOR_BYPASS ~~~ UNIT_SUPERVISOR_SENSE_TOP ~~~ UNIT_SUPERVISOR_SENSE_BOTTOM ~~~ UNIT_SUPERVISOR_CT ~~~ UNIT_SUPERVISOR_PULLUP ~~~ UNIT_SIGNAL_ISO ~~~ UNIT_SIGNAL_ISO_VCCA_BYPASS ~~~ UNIT_SIGNAL_ISO_VCCB_BYPASS
-  UNIT_SIGNAL_ISO_OE_PULLDOWN ~~~ UNIT_ESD ~~~ UNIT_CONNECTOR
+  DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ U214_SUPERVISOR_PULLUP ~~~ UNIT_EFUSE ~~~ UNIT_RILM ~~~ UNIT_DVDT_CAP ~~~ UNIT_ITIMER_CAP ~~~ UNIT_OVLO_TOP ~~~ UNIT_OVLO_BOTTOM ~~~ UNIT_INPUT_CAP
+  UNIT_OUTPUT_CAP ~~~ UNIT_BLEEDER ~~~ UNIT_SUPERVISOR ~~~ UNIT_SUPERVISOR_BYPASS ~~~ UNIT_SUPERVISOR_SENSE_TOP ~~~ UNIT_SUPERVISOR_SENSE_BOTTOM ~~~ UNIT_SUPERVISOR_CT ~~~ UNIT_SUPERVISOR_PULLUP ~~~ UNIT_SIGNAL_ISO ~~~ UNIT_SIGNAL_ISO_VCCA_BYPASS ~~~ UNIT_SIGNAL_ISO_VCCB_BYPASS ~~~ UNIT_SIGNAL_ISO_OE_PULLDOWN
+  UNIT_ESD ~~~ UNIT_CONNECTOR
   S3 <-->|"profile port: GPIO7,GPIO8"| UNIT_CONNECTOR
   S3 <-->|"GPIO7/GPIO8 profile signals"| UNIT_SIGNAL_ISO <-->|"isolated I²C/UART/GPIO"| UNIT_CONNECTOR
   UNIT_ESD -.->|"two signal shunt clamps"| UNIT_CONNECTOR
+  UNIT_EFUSE --> UNIT_SUPERVISOR --> UNIT_SIGNAL_ISO
 ```
 
-### 17. Инфракрасный приём, передача и оптическое evidence
+### 18. Инфракрасный приём, передача и оптическое evidence
 
 ```mermaid
 flowchart TD
@@ -1180,7 +1239,7 @@ flowchart TD
   SAFE_GATE_B --> IR_EMITTER
 ```
 
-### 18. Независимая прошивка, recovery и диагностика — узлы 1/2
+### 19. Независимая прошивка, recovery и диагностика — узлы 1/2
 
 ```mermaid
 flowchart TD
@@ -1245,7 +1304,7 @@ flowchart TD
   RP_DBG_HEADER <-->|"protected SWD + RESET/BOOT"| RP_DBG_ESD <-->|"current-limited"| RP
 ```
 
-### 19. Независимая прошивка, recovery и диагностика — узлы 2/2
+### 20. Независимая прошивка, recovery и диагностика — узлы 2/2
 
 ```mermaid
 flowchart TD
@@ -1298,7 +1357,7 @@ flowchart TD
   RP_IOVDD60_BYPASS ~~~ RP_IOVDD76_BYPASS ~~~ RP_ADC_AVDD_BYPASS ~~~ RP_USB_OTP_VDD_BYPASS ~~~ RP_QSPI_IOVDD_BYPASS
 ```
 
-### 20. Always-on RUN/KILL, watchdog и аппаратный запрет передачи — узлы 1/2
+### 21. Always-on RUN/KILL, watchdog и аппаратный запрет передачи — узлы 1/2
 
 ```mermaid
 flowchart TD
@@ -1379,7 +1438,7 @@ flowchart TD
   SAFETY_CONTROLLER -->|"bounded fault reset"| SAFE_CONDITIONER -->|"CHIP_PU"| S3
 ```
 
-### 21. Always-on RUN/KILL, watchdog и аппаратный запрет передачи — узлы 2/2
+### 22. Always-on RUN/KILL, watchdog и аппаратный запрет передачи — узлы 2/2
 
 ```mermaid
 flowchart TD
@@ -1431,7 +1490,7 @@ flowchart TD
   SLOW_IO -->|"voice/accessory rail requests"| SAFE_GATE_B
 ```
 
-### 22. Физическое evidence фактической передачи — узлы 1/2
+### 23. Физическое evidence фактической передачи — узлы 1/2
 
 ```mermaid
 flowchart TD
@@ -1448,7 +1507,8 @@ flowchart TD
   DET_NRF1["Analog Devices AD8314ACPZ-RL7<br/>nRF1 2.4-GHz RF power detector"]
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
-  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
+  DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA818S-U UHF RF power detector"]
+  DET_VOICE_V["Analog Devices AD8314ACPZ-RL7<br/>SA818S-V VHF RF power detector"]
   DET_IR["VEMD1060X01<br/>IR optical-evidence photodiode"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
   EVIDENCE_CMP_A_BYPASS["TDK C1005X7R1H104K050BB<br/>UI evidence-comparator local bypass capacitor"]
@@ -1456,6 +1516,8 @@ flowchart TD
   EVIDENCE_CMP_B_BYPASS["TDK C1005X7R1H104K050BB<br/>RF evidence-comparator local bypass capacitor"]
   EVIDENCE_CMP_VOICE["TLV1821DCKR<br/>RF-local dedicated voice AON evidence comparator"]
   EVIDENCE_CMP_VOICE_BYPASS["TDK C1005X7R1H104K050BB<br/>voice evidence-comparator local bypass capacitor"]
+  EVIDENCE_CMP_VOICE_V["TLV1821DCKR<br/>evidence cmp voice v evidence component"]
+  EVIDENCE_CMP_VOICE_V_BYPASS["TDK C1005X7R1H104K050BB<br/>evidence cmp voice v bypass evidence component"]
   S3_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>s3 first-population 100-kOhm threshold upper resistor"]
   S3_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>s3 first-population 10-kOhm threshold lower resistor"]
   S3_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>s3 1-MOhm evidence-hysteresis feedback resistor"]
@@ -1480,14 +1542,11 @@ flowchart TD
   CC_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>cc first-population 10-kOhm threshold lower resistor"]
   CC_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>cc 1-MOhm evidence-hysteresis feedback resistor"]
   CC_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>cc 10-kOhm AON comparator-output pull-up resistor"]
-  VOICE_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>voice first-population 100-kOhm threshold upper resistor"]
-  VOICE_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>voice first-population 10-kOhm threshold lower resistor"]
-  VOICE_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>voice 1-MOhm evidence-hysteresis feedback resistor"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2 ~~~ DET_CC
-  DET_VOICE ~~~ DET_IR ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_A_BYPASS ~~~ EVIDENCE_CMP_B ~~~ EVIDENCE_CMP_B_BYPASS ~~~ EVIDENCE_CMP_VOICE ~~~ EVIDENCE_CMP_VOICE_BYPASS ~~~ S3_EVIDENCE_THRESHOLD_TOP ~~~ S3_EVIDENCE_THRESHOLD_BOTTOM ~~~ S3_EVIDENCE_HYSTERESIS ~~~ S3_EVIDENCE_OUTPUT_PULLUP
-  C5_EVIDENCE_THRESHOLD_TOP ~~~ C5_EVIDENCE_THRESHOLD_BOTTOM ~~~ C5_EVIDENCE_HYSTERESIS ~~~ C5_EVIDENCE_OUTPUT_PULLUP ~~~ NRF0_EVIDENCE_THRESHOLD_TOP ~~~ NRF0_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF0_EVIDENCE_HYSTERESIS ~~~ NRF0_EVIDENCE_OUTPUT_PULLUP ~~~ NRF1_EVIDENCE_THRESHOLD_TOP ~~~ NRF1_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF1_EVIDENCE_HYSTERESIS ~~~ NRF1_EVIDENCE_OUTPUT_PULLUP
-  NRF2_EVIDENCE_THRESHOLD_TOP ~~~ NRF2_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF2_EVIDENCE_HYSTERESIS ~~~ NRF2_EVIDENCE_OUTPUT_PULLUP ~~~ CC_EVIDENCE_THRESHOLD_TOP ~~~ CC_EVIDENCE_THRESHOLD_BOTTOM ~~~ CC_EVIDENCE_HYSTERESIS ~~~ CC_EVIDENCE_OUTPUT_PULLUP ~~~ VOICE_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS
+  DET_VOICE ~~~ DET_VOICE_V ~~~ DET_IR ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_A_BYPASS ~~~ EVIDENCE_CMP_B ~~~ EVIDENCE_CMP_B_BYPASS ~~~ EVIDENCE_CMP_VOICE ~~~ EVIDENCE_CMP_VOICE_BYPASS ~~~ EVIDENCE_CMP_VOICE_V ~~~ EVIDENCE_CMP_VOICE_V_BYPASS ~~~ S3_EVIDENCE_THRESHOLD_TOP
+  S3_EVIDENCE_THRESHOLD_BOTTOM ~~~ S3_EVIDENCE_HYSTERESIS ~~~ S3_EVIDENCE_OUTPUT_PULLUP ~~~ C5_EVIDENCE_THRESHOLD_TOP ~~~ C5_EVIDENCE_THRESHOLD_BOTTOM ~~~ C5_EVIDENCE_HYSTERESIS ~~~ C5_EVIDENCE_OUTPUT_PULLUP ~~~ NRF0_EVIDENCE_THRESHOLD_TOP ~~~ NRF0_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF0_EVIDENCE_HYSTERESIS ~~~ NRF0_EVIDENCE_OUTPUT_PULLUP ~~~ NRF1_EVIDENCE_THRESHOLD_TOP
+  NRF1_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF1_EVIDENCE_HYSTERESIS ~~~ NRF1_EVIDENCE_OUTPUT_PULLUP ~~~ NRF2_EVIDENCE_THRESHOLD_TOP ~~~ NRF2_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF2_EVIDENCE_HYSTERESIS ~~~ NRF2_EVIDENCE_OUTPUT_PULLUP ~~~ CC_EVIDENCE_THRESHOLD_TOP ~~~ CC_EVIDENCE_THRESHOLD_BOTTOM ~~~ CC_EVIDENCE_HYSTERESIS ~~~ CC_EVIDENCE_OUTPUT_PULLUP
   DET_CC --> EVIDENCE_CMP_B
   DET_VOICE --> EVIDENCE_CMP_VOICE
   EVIDENCE_CMP_A_BYPASS --> EVIDENCE_CMP_A
@@ -1511,11 +1570,9 @@ flowchart TD
   CC_EVIDENCE_THRESHOLD_TOP --> CC_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_B
   CC_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_B
   CC_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_B
-  VOICE_EVIDENCE_THRESHOLD_TOP --> VOICE_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_VOICE
-  VOICE_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_VOICE
 ```
 
-### 23. Физическое evidence фактической передачи — узлы 2/2
+### 24. Физическое evidence фактической передачи — узлы 2/2
 
 ```mermaid
 flowchart TD
@@ -1526,7 +1583,13 @@ flowchart TD
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
   SAFE_GATE_A["SN74LVC08APWR<br/>four FAULT_KILL-dominant nRF request gates"]
   SAFE_GATE_B["SN74LVC08APWR<br/>four FAULT_KILL-dominant rail/IR/accessory gates"]
+  VOICE_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>voice first-population 100-kOhm threshold upper resistor"]
+  VOICE_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>voice first-population 10-kOhm threshold lower resistor"]
+  VOICE_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>voice 1-MOhm evidence-hysteresis feedback resistor"]
   VOICE_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>voice 10-kOhm AON comparator-output pull-up resistor"]
+  VOICE_V_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>voice_v first-population 100-kOhm threshold upper resistor"]
+  VOICE_V_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>voice_v first-population 10-kOhm threshold lower resistor"]
+  VOICE_V_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>voice_v 1-MOhm evidence-hysteresis feedback resistor"]
   IR_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>ir first-population 100-kOhm threshold upper resistor"]
   IR_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0712KL<br/>ir first-population 12-kOhm threshold lower resistor"]
   IR_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>ir 1-MOhm evidence-hysteresis feedback resistor"]
@@ -1561,10 +1624,10 @@ flowchart TD
   IR_EVIDENCE_MAIN_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm main-domain IR-evidence pull-up resistor"]
   RP_ANY_TX_MAIN_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm main-domain RP ANY-TX pull-up resistor"]
   end
-  S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP ~~~ IR_EVIDENCE_THRESHOLD_TOP ~~~ IR_EVIDENCE_THRESHOLD_BOTTOM ~~~ IR_EVIDENCE_HYSTERESIS ~~~ IR_EVIDENCE_OUTPUT_PULLUP ~~~ EXT_EVIDENCE_INPUT_SERIES
-  EXT_EVIDENCE_INPUT_PULLUP ~~~ EXT_EVIDENCE_BUFFER ~~~ EXT_EVIDENCE_BUFFER_BYPASS ~~~ EXT_EVIDENCE_OUTPUT_PULLUP ~~~ EVIDENCE_MASK ~~~ EVIDENCE_MASK_BYPASS ~~~ EVIDENCE_MASK_SCL_PULLUP ~~~ EVIDENCE_MASK_SDA_PULLUP ~~~ FAULT_ASSERT_SENSE_SERIES ~~~ EVIDENCE_MASK_P12_PULLDOWN ~~~ EVIDENCE_MASK_P13_PULLDOWN ~~~ EVIDENCE_MASK_P14_PULLDOWN
-  EVIDENCE_MASK_P15_PULLDOWN ~~~ EVIDENCE_MASK_P16_PULLDOWN ~~~ EVIDENCE_MASK_P17_PULLDOWN ~~~ EVIDENCE_OR_0 ~~~ EVIDENCE_OR_1 ~~~ EVIDENCE_OR_2 ~~~ EVIDENCE_OR_3 ~~~ EVIDENCE_OR_4 ~~~ ANY_TX_AON_PULLUP ~~~ EXT_TX_LED_SERIES ~~~ EXT_TX_LED ~~~ EVIDENCE_MAIN_ISOLATOR
-  EVIDENCE_MAIN_ISOLATOR_BYPASS ~~~ C5_EVIDENCE_MAIN_PULLUP ~~~ IR_EVIDENCE_MAIN_PULLUP ~~~ RP_ANY_TX_MAIN_PULLUP
+  S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ VOICE_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP ~~~ VOICE_V_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_V_EVIDENCE_THRESHOLD_BOTTOM
+  VOICE_V_EVIDENCE_HYSTERESIS ~~~ IR_EVIDENCE_THRESHOLD_TOP ~~~ IR_EVIDENCE_THRESHOLD_BOTTOM ~~~ IR_EVIDENCE_HYSTERESIS ~~~ IR_EVIDENCE_OUTPUT_PULLUP ~~~ EXT_EVIDENCE_INPUT_SERIES ~~~ EXT_EVIDENCE_INPUT_PULLUP ~~~ EXT_EVIDENCE_BUFFER ~~~ EXT_EVIDENCE_BUFFER_BYPASS ~~~ EXT_EVIDENCE_OUTPUT_PULLUP ~~~ EVIDENCE_MASK ~~~ EVIDENCE_MASK_BYPASS
+  EVIDENCE_MASK_SCL_PULLUP ~~~ EVIDENCE_MASK_SDA_PULLUP ~~~ FAULT_ASSERT_SENSE_SERIES ~~~ EVIDENCE_MASK_P12_PULLDOWN ~~~ EVIDENCE_MASK_P13_PULLDOWN ~~~ EVIDENCE_MASK_P14_PULLDOWN ~~~ EVIDENCE_MASK_P15_PULLDOWN ~~~ EVIDENCE_MASK_P16_PULLDOWN ~~~ EVIDENCE_MASK_P17_PULLDOWN ~~~ EVIDENCE_OR_0 ~~~ EVIDENCE_OR_1 ~~~ EVIDENCE_OR_2
+  EVIDENCE_OR_3 ~~~ EVIDENCE_OR_4 ~~~ ANY_TX_AON_PULLUP ~~~ EXT_TX_LED_SERIES ~~~ EXT_TX_LED ~~~ EVIDENCE_MAIN_ISOLATOR ~~~ EVIDENCE_MAIN_ISOLATOR_BYPASS ~~~ C5_EVIDENCE_MAIN_PULLUP ~~~ IR_EVIDENCE_MAIN_PULLUP ~~~ RP_ANY_TX_MAIN_PULLUP
   EXT_EVIDENCE_INPUT_PULLUP --> EXT_EVIDENCE_BUFFER
   EXT_EVIDENCE_BUFFER_BYPASS --> EXT_EVIDENCE_BUFFER
   EXT_EVIDENCE_OUTPUT_PULLUP --> EXT_EVIDENCE_BUFFER
@@ -1591,7 +1654,7 @@ flowchart TD
   EVIDENCE_MAIN_ISOLATOR --> RP_ANY_TX_MAIN_PULLUP -->|"GPIO22 active-low"| RP
 ```
 
-### 24. Независимые rails и тихое отключение неиспользуемых интерфейсов — узлы 1/2
+### 25. Независимые rails и тихое отключение неиспользуемых интерфейсов — узлы 1/2
 
 ```mermaid
 flowchart TD
@@ -1601,7 +1664,7 @@ flowchart TD
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
-  VOICE["NiceRF SA518<br/>136-174/400-470-MHz analog voice transceiver"]
+  VOICE["G-NiceRF SA818S-U<br/>UHF 400–480-MHz analog voice transceiver"]
   U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
   AON_BUCK["Texas Instruments TPS629203DRLR<br/>low-IQ always-on 3.3-V safety converter"]
   AON_INDUCTOR["Sunlord WPN201612H2R2MT<br/>2.2-uH shielded AON converter inductor"]
@@ -1691,7 +1754,7 @@ flowchart TD
   VOICE_EFUSE -->|"dVdt"| VOICE_EFUSE_DVDT_CAP
 ```
 
-### 25. Независимые rails и тихое отключение неиспользуемых интерфейсов — узлы 2/2
+### 26. Независимые rails и тихое отключение неиспользуемых интерфейсов — узлы 2/2
 
 ```mermaid
 flowchart TD
@@ -1701,7 +1764,7 @@ flowchart TD
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
-  VOICE["NiceRF SA518<br/>136-174/400-470-MHz analog voice transceiver"]
+  VOICE["G-NiceRF SA818S-U<br/>UHF 400–480-MHz analog voice transceiver"]
   U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
   VOICE_EFUSE_ITIMER_CAP["Murata GRM1555C1H121JA01D<br/>120-pF 50-V C0G voice eFuse transient timer"]
   VOICE_EFUSE_OVLO_TOP["Yageo RC0402FR-07270KL<br/>270-kOhm 1% voice eFuse OVLO top resistor"]
@@ -1766,7 +1829,7 @@ flowchart TD
   SLOW_IO -->|"P20 session enable"| SD_POWER_SWITCH
 ```
 
-### 26. USB-PD, зарядка, сменные элементы и допуск батареи — узлы 1/3
+### 27. USB-PD, зарядка, сменные элементы и допуск батареи — узлы 1/3
 
 ```mermaid
 flowchart TD
@@ -1838,7 +1901,7 @@ flowchart TD
   PD_CONTROLLER <-->|"protected VBUS + local I²C/IRQ"| NVDC_CHARGER
 ```
 
-### 27. USB-PD, зарядка, сменные элементы и допуск батареи — узлы 2/3
+### 28. USB-PD, зарядка, сменные элементы и допуск батареи — узлы 2/3
 
 ```mermaid
 flowchart TD
@@ -1931,7 +1994,7 @@ flowchart TD
   PACK_GAUGE_SDA_PULLUP --> PACK_GAUGE
 ```
 
-### 28. USB-PD, зарядка, сменные элементы и допуск батареи — узлы 3/3
+### 29. USB-PD, зарядка, сменные элементы и допуск батареи — узлы 3/3
 
 ```mermaid
 flowchart TD
@@ -2034,7 +2097,6 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `TP_UNIT_5V_ILM`
 - `TP_USB_PROTECTOR_FAULT_N`
 - `TP_VOICE_EFUSE_PG_N`
-- `TP_VOICE_UPDATE_WITH_GND`
 - `VVOICE_RAW_4V`
 - `admitted-system-3v3`
 - `audio-ground`
@@ -2075,8 +2137,8 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
 |---|---:|---|---|---|---|---|
 | `GPIO0` | 27 | `I2S_DIN` | `i` | `I2S0` | `codec_i2s_din_iso.Y`, `s3_boot_pullup.END_2`, `s3_dbg_boot_series.END_2` | the exact 10-kOhm pull-up preserves normal boot; CODEC_READY is ANDed with reset-low AUDIO_ARM before the DIN buffer can drive, so GPIO0 remains fixture-controllable throughout ROM strap sampling; the 1-kOhm service path bounds accidental runtime contention |
-| `GPIO1` | 39 | `SYS_I2C_SDA` | `io` | `I2C0` | `slow_io.SDA`, `ui_matrix_io.SDA`, `headset_control_io.SDA`, `receiver_i2c_iso.1A`, `display_connector.PIN_2`, `codec_i2c_iso.1A`, `pd_controller.I2Ct_SDA`, `pack_admission.PA0`, `safety_controller.PA0` | — |
-| `GPIO2` | 38 | `SYS_I2C_SCL` | `o` | `I2C0` | `slow_io.SCL`, `ui_matrix_io.SCL`, `headset_control_io.SCL`, `receiver_i2c_iso.2A`, `display_connector.PIN_1`, `codec_i2c_iso.2A`, `pd_controller.I2Ct_SCL`, `pack_admission.PA11`, `safety_controller.PA11` | — |
+| `GPIO1` | 39 | `SYS_I2C_SDA` | `io` | `I2C0` | `slow_io.SDA`, `ui_matrix_io.SDA`, `headset_control_io.SDA`, `voice_band_io.SDA`, `receiver_i2c_iso.1A`, `display_connector.PIN_2`, `codec_i2c_iso.1A`, `pd_controller.I2Ct_SDA`, `pack_admission.PA0`, `safety_controller.PA0` | — |
+| `GPIO2` | 38 | `SYS_I2C_SCL` | `o` | `I2C0` | `slow_io.SCL`, `ui_matrix_io.SCL`, `headset_control_io.SCL`, `voice_band_io.SCL`, `receiver_i2c_iso.2A`, `display_connector.PIN_1`, `codec_i2c_iso.2A`, `pd_controller.I2Ct_SCL`, `pack_admission.PA11`, `safety_controller.PA11` | — |
 | `GPIO3` | 15 | `RP_ALERT_N` | `i` | `GPIO_IRQ` | `rp.GPIO19` | RP is held reset/high-Z through S3 strap sampling; an external pull fixes the accepted S3 boot state |
 | `GPIO4` | 4 | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | `sd_miso_series.END_2`, `sd_host_d1_pullup.END_1`, `display_connector.PIN_10` | — |
 | `GPIO5` | 5 | `SD_SPI_CS_N` | `o` | `SPI2` | `sd_host_buffer.3A`, `sd_miso_buffer.OE_N`, `sd_host_cs_pullup.END_1` | — |
@@ -2153,11 +2215,11 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5
 | `GPIO13` | 12 | `U214_HOST_IRQ` | `i` | `GPIO_IRQ` | `u214_series_irq.END_2` | — |
 | `GPIO14` | 13 | `U214_HOST_RST_N` | `o` | `GPIO` | `u214_host_buffer_a.1A` | — |
 | `GPIO15` | 14 | `NRF_GROUP_PWR_EN` | `o` | `GPIO` | `safe_gate_a.4A` | — |
-| `GPIO16` | 16 | `VOICE_UART_TX` | `o` | `UART0` | `voice_uart_tx_iso.A` | — |
-| `GPIO17` | 17 | `VOICE_UART_RX` | `i` | `UART0` | `voice.UART_TX` | — |
+| `GPIO16` | 16 | `VOICE_UART_TX` | `o` | `UART0` | `voice_control_mux_a.D1` | — |
+| `GPIO17` | 17 | `VOICE_UART_RX` | `i` | `UART0` | `voice_control_mux_a.D2` | — |
 | `GPIO18` | 18 | `VOICE_PTT_REQ_N` | `o` | `GPIO` | `safe_ptt_or.1A` | — |
 | `GPIO19` | 19 | `RP_ALERT_N` | `od` | `GPIO_IRQ` | `s3.GPIO3` | — |
-| `GPIO20` | 20 | `VOICE_AUDIO_ON_N` | `i` | `GPIO_IRQ` | `voice.AUDIO_ON`, `voice_audio_on_pulldown.END_1` | — |
+| `GPIO20` | 20 | `VOICE_AUDIO_ON_N` | `i` | `GPIO_IRQ` | `voice_control_mux_b.D2`, `voice_audio_on_pulldown.END_1` | — |
 | `GPIO21` | 21 | `PTT_BUTTON_N` | `i` | `GPIO_IRQ` | `ptt_series.END_2` | — |
 | `GPIO22` | 22 | `RP_ANY_TX_N` | `i` | `GPIO_IRQ` | `evidence_main_isolator.3Y`, `rp_any_tx_main_pullup.END_2` | — |
 | `GPIO23` | 23 | `CC_PWR_EN` | `o` | `GPIO` | `safe_gate_b.1A` | — |
@@ -2288,6 +2350,10 @@ Reserved: `PA1_NRST`. Free: none.
 | `VOICE_SMA_RF_GROUND` | `voice_external_sma.GROUND_TOP_RIGHT` | `abstract:rf-ground-dedicated-via` | second connector ground pad enters the local stitched RF return |
 | `VOICE_SMA_RF_GROUND` | `voice_external_sma.GROUND_BOTTOM_LEFT` | `abstract:rf-ground-dedicated-via` | third connector ground pad enters the local stitched RF return |
 | `VOICE_SMA_RF_GROUND` | `voice_external_sma.GROUND_BOTTOM_RIGHT` | `abstract:rf-ground-dedicated-via` | fourth connector ground pad enters the local stitched RF return |
+| `VOICE_V_SMA_RF_GROUND` | `voice_v_external_sma.GROUND_TOP_LEFT` | `abstract:rf-ground-dedicated-via` | first VHF connector ground pad enters the local stitched RF return |
+| `VOICE_V_SMA_RF_GROUND` | `voice_v_external_sma.GROUND_TOP_RIGHT` | `abstract:rf-ground-dedicated-via` | second VHF connector ground pad enters the local stitched RF return |
+| `VOICE_V_SMA_RF_GROUND` | `voice_v_external_sma.GROUND_BOTTOM_LEFT` | `abstract:rf-ground-dedicated-via` | third VHF connector ground pad enters the local stitched RF return |
+| `VOICE_V_SMA_RF_GROUND` | `voice_v_external_sma.GROUND_BOTTOM_RIGHT` | `abstract:rf-ground-dedicated-via` | fourth VHF connector ground pad enters the local stitched RF return |
 | `POWER_GROUND` | `c5_service_usb_connector.A1_GND` | `c5_service_usb_connector.A12_GND` | all four C5 service-port ground contacts join the local connector return |
 | `POWER_GROUND` | `c5_service_usb_connector.A12_GND` | `c5_service_usb_connector.B1_GND` | second C5 service-port ground pair is physically soldered |
 | `POWER_GROUND` | `c5_service_usb_connector.B1_GND` | `c5_service_usb_connector.B12_GND` | all C5 service-port ground contacts remain present |
@@ -3014,7 +3080,8 @@ Reserved: `PA1_NRST`. Free: none.
 | `VOICE_EFUSE_OVLO` | `voice_efuse_ovlo_top.END_2` | `voice_efuse.OVLO` | 270/100-kOhm divider yields a 4.314-to-4.610-V full-corner cutoff window |
 | `VOICE_EFUSE_OVLO` | `voice_efuse.OVLO` | `voice_efuse_ovlo_bottom.END_1` | OVLO is never left floating |
 | `POWER_GROUND` | `voice_efuse_ovlo_bottom.END_2` | `abstract:power-ground` | 100-kOhm 1% completes the OVLO divider |
-| `VVOICE_4V` | `voice_efuse.OUT` | `voice.VCC` | only the protected fixed 4.0-V rail powers the SA518; it can never be switched to the 5-V accessory setting |
+| `VVOICE_4V` | `voice_efuse.OUT` | `voice.VCC` | the protected fixed 4.0-V rail powers the UHF SA818S; PD keeps it asleep unless UHF is selected |
+| `VVOICE_4V` | `voice_efuse.OUT` | `voice_v.VCC` | the same protected fixed 4.0-V rail powers the VHF SA818S; PD keeps it asleep unless VHF is selected |
 | `VVOICE_4V` | `voice_efuse.OUT` | `voice_efuse_output_cap.END_1` | 10-uF 6.3-V X5R is the exact local protected-side capacitor |
 | `POWER_GROUND` | `voice_efuse_output_cap.END_2` | `abstract:power-ground` | protected voice local return |
 | `VVOICE_4V` | `voice_efuse.OUT` | `voice_efuse_pg_top.END_1` | 68-kOhm 1% starts the protected-output power-good divider |
@@ -4124,10 +4191,10 @@ Reserved: `PA1_NRST`. Free: none.
 | `RX_SI4732_MONO` | `si_audio_l_sum.END_2` | `si_audio_sum_bias.END_1` | 100-kOhm midpoint bias defines the AC-coupled sum |
 | `AUDIO_VMID_MAIN` | `si_audio_sum_bias.END_2` | `audio_vmid_top.END_2` | receive sum uses the always-available audio midpoint |
 | `RX_SI4732_MONO` | `si_audio_l_sum.END_2` | `audio_rx_mux.B1` | logic-low selector default is the broadcast receiver |
-| `RX_SA518_AFOUT_ISOLATED` | `voice_audio_iso.1B` | `voice_rx_coupling.END_1` | voice audio reaches the main audio region only through a power-valid bilateral switch |
-| `RX_SA518_AFOUT_AC` | `voice_rx_coupling.END_2` | `voice_rx_series.END_1` | exact 1-uF coupling removes module DC state |
-| `RX_SA518_AFOUT_BIASED` | `voice_rx_series.END_2` | `audio_rx_mux.B2` | exact 10-kOhm branch limits source and selector fault current |
-| `RX_SA518_AFOUT_BIASED` | `voice_rx_series.END_2` | `voice_rx_bias.END_1` | 100-kOhm bias defines the source while voice audio is disconnected |
+| `RX_VOICE_AFOUT_SELECTED` | `voice_audio_mux.D1` | `voice_rx_coupling.END_1` | only the hardware-selected VHF or UHF audio reaches the main audio region |
+| `RX_VOICE_AFOUT_AC` | `voice_rx_coupling.END_2` | `voice_rx_series.END_1` | exact 1-uF coupling removes selected-module DC state |
+| `RX_VOICE_AFOUT_BIASED` | `voice_rx_series.END_2` | `audio_rx_mux.B2` | exact 10-kOhm branch limits source and selector fault current |
+| `RX_VOICE_AFOUT_BIASED` | `voice_rx_series.END_2` | `voice_rx_bias.END_1` | 100-kOhm bias defines the source while voice audio is disconnected |
 | `AUDIO_VMID_MAIN` | `voice_rx_bias.END_2` | `audio_vmid_top.END_2` | voice RX branch uses the main midpoint |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_rx_mux.VCC` | receive selector remains available while codec and radio domains are independently off |
 | `AUDIO_GROUND` | `audio_rx_mux.GND` | `abstract:audio-ground` | receive selector quiet return |
@@ -4283,15 +4350,12 @@ Reserved: `PA1_NRST`. Free: none.
 | `VOICE_ELECTRET_DEFAULT` | `mic_tx_coupling.END_2` | `mic_tx_bias.END_1` | 100-kOhm midpoint bias defines the selector input |
 | `AUDIO_VMID_MAIN` | `mic_tx_bias.END_2` | `audio_vmid_top.END_2` | ordinary TX audio uses main midpoint |
 | `CODEC_TX_DAC_TAP` | `codec.OUTP` | `codec_tx_coupling.END_1` | codec injection is separately AC-coupled and cannot assert PTT |
-| `CODEC_TX_AC` | `codec_tx_coupling.END_2` | `codec_tx_atten_top.END_1` | exact 160-kOhm upper attenuation leg ensures the full-scale codec can exceed the SA518 10-mVrms modulation target at every calculated tolerance corner |
+| `CODEC_TX_AC` | `codec_tx_coupling.END_2` | `codec_tx_atten_top.END_1` | exact 160-kOhm upper attenuation leg preserves downward calibration margin for the selected SA818S modulation input |
 | `VOICE_CODEC_INJECT` | `codec_tx_atten_top.END_2` | `audio_tx_selector.NO` | about -38.5-dB passive target leaves bounded downward DAC-volume calibration instead of an unreachable under-drive corner |
 | `VOICE_CODEC_INJECT` | `codec_tx_atten_top.END_2` | `codec_tx_atten_bottom.END_1` | exact 2.2-kOhm lower leg fixes passive attenuation |
 | `AUDIO_VMID_MAIN` | `codec_tx_atten_bottom.END_2` | `audio_vmid_top.END_2` | attenuator is centered on the main analog midpoint |
 | `VOICE_CODEC_INJECT` | `codec_tx_atten_top.END_2` | `codec_tx_filter.END_1` | exact 10-nF shunt limits out-of-band codec energy |
 | `AUDIO_GROUND` | `codec_tx_filter.END_2` | `abstract:audio-ground` | TX-injection filter return |
-| `VOICE_MIC_SELECTED_MAIN` | `audio_tx_selector.COM` | `voice_audio_iso.2A` | selected audio remains physically disconnected while the voice domain is invalid |
-| `VOICE_MIC_SELECTED_ISOLATED` | `voice_audio_iso.2B` | `voice_mic_coupling.END_1` | voice-side bilateral output is AC-coupled into the module |
-| `VOICE_MIC_IN` | `voice_mic_coupling.END_2` | `voice.MIC_IN` | audio selection never bypasses PTT and the independent KILL/FAULT_KILL gate; level/deviation closes in HIL |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_safe_gate.VCC` | reset-safe AND gate remains available independently of codec power |
 | `AUDIO_GROUND` | `audio_safe_gate.GND` | `abstract:audio-ground` | audio safe-gate return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_safe_gate_bypass.END_1` | exact 100-nF safe-gate bypass |
@@ -4314,7 +4378,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `AUDIO_TX_SEL_SAFE` | `audio_safe_gate.2Y` | `audio_tx_safe_pulldown.END_1` | exact output-side pull-down preserves electret default |
 | `AUDIO_GROUND` | `audio_tx_safe_pulldown.END_2` | `abstract:audio-ground` | TX audio selector fails low |
 | `VOICE_DOMAIN_REQ` | `slow_io.P13` | `safe_gate_b.2A` | request only; RUN_PERMIT still dominates the exact 4-V converter enable |
-| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_supervisor.VDD` | voice-valid supervision remains alive across main-domain reset and cannot depend on SA518 firmware |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_supervisor.VDD` | voice-valid supervision remains alive across main-domain reset and cannot depend on either SA818S module |
 | `SAFETY_GROUND` | `voice_supervisor.GND` | `abstract:safety-ground` | supervisor return stays with always-on gating |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_supervisor_bypass.END_1` | exact 100-nF local voice-supervisor bypass |
 | `SAFETY_GROUND` | `voice_supervisor_bypass.END_2` | `abstract:safety-ground` | voice-supervisor bypass return |
@@ -4336,31 +4400,89 @@ Reserved: `PA1_NRST`. Free: none.
 | `AUDIO_GROUND` | `voice_io_power_output_cap.END_2` | `abstract:audio-ground` | voice-interface output bypass return |
 | `VOICE_IO_QOD` | `voice_io_power_switch.QOD` | `voice_io_power_switch.VOUT` | interface rail is actively discharged before the 4-V module rail falls |
 | `VOICE_IO_SWITCH_NC` | `voice_io_power_switch.NC` | `abstract:no-connect` | TPS22919 physical pin 4 remains open |
-| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_ptt_iso.VCC` | one physical tri-state buffer owns module PTT drive |
-| `AUDIO_GROUND` | `voice_ptt_iso.GND` | `abstract:audio-ground` | PTT-isolator return |
-| `VOICE_READY` | `voice_supervisor.RESET_N` | `voice_ptt_iso.OE` | module-side PTT is high impedance until power is qualified |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `voice_band_io.VCC` | local band selector uses the existing system I2C bus without another interboard contact |
+| `POWER_GROUND` | `voice_band_io.GND` | `abstract:power-ground` | short local band-selector return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `voice_band_io_bypass.END_1` | exact 100-nF local TCA9534A bypass |
+| `POWER_GROUND` | `voice_band_io_bypass.END_2` | `abstract:power-ground` | band-selector bypass return |
+| `SYS_I2C_SDA` | `voice_band_io.SDA` | `s3.GPIO1` | existing system I2C reaches the RF-board-local selector |
+| `SYS_I2C_SCL` | `voice_band_io.SCL` | `s3.GPIO2` | selector shares the reviewed 400-kHz system bus |
+| `SYS_INT_N` | `voice_band_io.INT_N` | `abstract:SYS_INT_N_WIRED_LOW` | open-drain interrupt joins the existing source-identification line |
+| `VOICE_BAND_A0_LOW` | `voice_band_io.A0` | `abstract:power-ground` | address strap bit zero |
+| `VOICE_BAND_A1_HIGH` | `voice_band_io.A1` | `abstract:3V3_MAIN` | A2:A1:A0 010 selects unused exact 7-bit address 0x3A |
+| `VOICE_BAND_A2_LOW` | `voice_band_io.A2` | `abstract:power-ground` | address strap bit two |
+| `VOICE_V_SELECT` | `voice_band_io.P0` | `voice_band_select_pulldown.END_1` | reset-default input plus external pull-down selects UHF without enabling either transmitter |
+| `POWER_GROUND` | `voice_band_select_pulldown.END_2` | `abstract:power-ground` | band selection cannot float |
+| `VOICE_BAND_RESERVE_P1` | `voice_band_io.P1` | `voice_band_p1_pulldown.END_1` | unused expander contact is a deterministic pulled input |
+| `VOICE_BAND_RESERVE_P2` | `voice_band_io.P2` | `voice_band_p2_pulldown.END_1` | unused expander contact is a deterministic pulled input |
+| `VOICE_BAND_RESERVE_P3` | `voice_band_io.P3` | `voice_band_p3_pulldown.END_1` | unused expander contact is a deterministic pulled input |
+| `VOICE_BAND_RESERVE_P4` | `voice_band_io.P4` | `voice_band_p4_pulldown.END_1` | unused expander contact is a deterministic pulled input |
+| `VOICE_BAND_RESERVE_P5` | `voice_band_io.P5` | `voice_band_p5_pulldown.END_1` | unused expander contact is a deterministic pulled input |
+| `VOICE_BAND_RESERVE_P6` | `voice_band_io.P6` | `voice_band_p6_pulldown.END_1` | unused expander contact is a deterministic pulled input |
+| `VOICE_BAND_RESERVE_P7` | `voice_band_io.P7` | `voice_band_p7_pulldown.END_1` | unused expander contact is a deterministic pulled input |
+| `POWER_GROUND` | `voice_band_p1_pulldown.END_2` | `abstract:power-ground` | reserve input return |
+| `POWER_GROUND` | `voice_band_p2_pulldown.END_2` | `abstract:power-ground` | reserve input return |
+| `POWER_GROUND` | `voice_band_p3_pulldown.END_2` | `abstract:power-ground` | reserve input return |
+| `POWER_GROUND` | `voice_band_p4_pulldown.END_2` | `abstract:power-ground` | reserve input return |
+| `POWER_GROUND` | `voice_band_p5_pulldown.END_2` | `abstract:power-ground` | reserve input return |
+| `POWER_GROUND` | `voice_band_p6_pulldown.END_2` | `abstract:power-ground` | reserve input return |
+| `POWER_GROUND` | `voice_band_p7_pulldown.END_2` | `abstract:power-ground` | reserve input return |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_band_inverter.VCC` | one-hot PD logic remains alive through main reset |
+| `SAFETY_GROUND` | `voice_band_inverter.GND` | `abstract:safety-ground` | band inverter return stays in the safety domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_band_inverter_bypass.END_1` | exact local inverter bypass |
+| `SAFETY_GROUND` | `voice_band_inverter_bypass.END_2` | `abstract:safety-ground` | inverter bypass return |
+| `VOICE_V_SELECT` | `voice_band_io.P0` | `voice_band_inverter.1A` | one physical select bit determines every control and audio path |
+| `VOICE_U_SELECT` | `voice_band_inverter.1Y` | `voice_pd_gate.1B` | hardware complement makes UHF and VHF PD mutually exclusive |
+| `VOICE_BAND_INV_SPARE_LOW` | `abstract:safety-ground` | `voice_band_inverter.2A` | unused inverter input cannot float |
+| `VOICE_BAND_INV_SPARE_NC` | `voice_band_inverter.2Y` | `abstract:no-connect` | unused inverter output remains open |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_pd_gate.VCC` | one-hot PD gate is independent of application firmware power |
+| `SAFETY_GROUND` | `voice_pd_gate.GND` | `abstract:safety-ground` | one-hot gate return |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_pd_gate_bypass.END_1` | exact local one-hot gate bypass |
+| `SAFETY_GROUND` | `voice_pd_gate_bypass.END_2` | `abstract:safety-ground` | one-hot gate bypass return |
+| `VOICE_READY` | `voice_supervisor.RESET_N` | `voice_pd_gate.1A` | no module can leave PD until the protected rail passes threshold and delay |
+| `VOICE_READY` | `voice_supervisor.RESET_N` | `voice_pd_gate.2A` | the same qualified readiness gates the VHF module |
+| `VOICE_V_SELECT` | `voice_band_io.P0` | `voice_pd_gate.2B` | VHF selection is the true branch of the one-hot gate |
+| `VOICE_U_PD` | `voice_pd_gate.1Y` | `voice.PD` | UHF leaves sleep only when power is ready and VHF is not selected |
+| `VOICE_V_PD` | `voice_pd_gate.2Y` | `voice_v.PD` | VHF leaves sleep only when power is ready and VHF is selected |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_ptt_or.VCC` | the voice PTT safety OR remains valid whenever the AON safety rail exists |
 | `SAFETY_GROUND` | `safe_ptt_or.GND` | `abstract:safety-ground` | voice PTT safety-gate return is explicit and local |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_ptt_or_bypass.END_1` | exact 100-nF local PTT-gate bypass |
 | `SAFETY_GROUND` | `safe_ptt_or_bypass.END_2` | `abstract:safety-ground` | PTT-gate bypass returns locally |
-| `VOICE_PTT_SAFE_N` | `safe_ptt_or.1Y` | `voice_ptt_iso.A` | AON KILL/FAULT_KILL gate remains dominant over the active-low PTT request |
-| `VOICE_PTT_MODULE_N` | `voice_ptt_iso.Y` | `voice.PTT` | buffer cannot create TX while its interface rail or enable is absent |
-| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_ptt_pullup.END_1` | exact 10-kOhm module-side pull-up forces RX during buffer startup |
-| `VOICE_PTT_MODULE_N` | `voice_ptt_pullup.END_2` | `voice.PTT` | PTT remains high/RX through every normal power transition |
-| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_ptt_iso_bypass.END_1` | exact 100-nF PTT-buffer bypass |
-| `AUDIO_GROUND` | `voice_ptt_iso_bypass.END_2` | `abstract:audio-ground` | PTT-buffer bypass return |
-| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_uart_tx_iso.VCC` | separate physical buffer owns RP-to-module UART TX |
-| `AUDIO_GROUND` | `voice_uart_tx_iso.GND` | `abstract:audio-ground` | voice-UART TX buffer return |
-| `VOICE_READY` | `voice_supervisor.RESET_N` | `voice_uart_tx_iso.OE` | module RX cannot be driven while the module rail is invalid |
-| `VOICE_UART_TX` | `rp.GPIO16` | `voice_uart_tx_iso.A` | firmware holds the host UART output low through SA518 sleep/startup, as required by the module specification |
-| `VOICE_UART_RX_MODULE` | `voice_uart_tx_iso.Y` | `voice.UART_RX` | UART idle is admitted only after voice readiness |
-| `VOICE_UART_RX_MODULE` | `voice.UART_RX` | `voice_uart_rx_pulldown.END_1` | 100-kOhm module-side pull-down enforces the documented sleep leakage/reset rule |
-| `AUDIO_GROUND` | `voice_uart_rx_pulldown.END_2` | `abstract:audio-ground` | module UART RX fails low |
-| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_uart_tx_iso_bypass.END_1` | exact 100-nF UART-buffer bypass |
-| `AUDIO_GROUND` | `voice_uart_tx_iso_bypass.END_2` | `abstract:audio-ground` | UART-buffer bypass return |
-| `VOICE_UART_RX` | `voice.UART_TX` | `rp.GPIO17` | module-to-host direction needs no driven off-domain source |
-| `VOICE_UART_RX` | `rp.GPIO17` | `voice_uart_tx_pulldown.END_1` | 100-kOhm defines the host receive input while the module is off |
-| `POWER_GROUND` | `voice_uart_tx_pulldown.END_2` | `abstract:power-ground` | host voice-UART receive defaults low |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_control_mux_a.VDD` | UART selector is absent electrically until the shared voice rail is valid |
+| `AUDIO_GROUND` | `voice_control_mux_a.GND` | `abstract:audio-ground` | UART selector return |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_control_mux_a_bypass.END_1` | exact UART selector bypass |
+| `AUDIO_GROUND` | `voice_control_mux_a_bypass.END_2` | `abstract:audio-ground` | UART selector bypass return |
+| `VOICE_V_SELECT` | `voice_band_io.P0` | `voice_control_mux_a.SEL1` | UART TX follows the same physical band selection as PD |
+| `VOICE_V_SELECT` | `voice_band_io.P0` | `voice_control_mux_a.SEL2` | UART RX follows the same physical band selection as PD |
+| `VOICE_UART_TX` | `rp.GPIO16` | `voice_control_mux_a.D1` | one RP UART drives only the selected module |
+| `VOICE_U_UART_RX` | `voice_control_mux_a.S1A` | `voice.UART_RX` | UHF UART input is isolated when VHF is selected |
+| `VOICE_V_UART_RX` | `voice_control_mux_a.S1B` | `voice_v.UART_RX` | VHF UART input is isolated when UHF is selected |
+| `VOICE_U_UART_TX` | `voice.UART_TX` | `voice_control_mux_a.S2A` | only the selected UHF return can reach RP |
+| `VOICE_V_UART_TX` | `voice_v.UART_TX` | `voice_control_mux_a.S2B` | only the selected VHF return can reach RP |
+| `VOICE_UART_RX` | `voice_control_mux_a.D2` | `rp.GPIO17` | single selected module-to-host UART return |
+| `VOICE_U_UART_RX` | `voice.UART_RX` | `voice_uart_rx_pulldown.END_1` | UHF UART input defaults low while unselected |
+| `VOICE_V_UART_RX` | `voice_v.UART_RX` | `voice_v_uart_rx_pulldown.END_1` | VHF UART input defaults low while unselected |
+| `AUDIO_GROUND` | `voice_uart_rx_pulldown.END_2` | `abstract:audio-ground` | UHF UART-input pull-down return |
+| `AUDIO_GROUND` | `voice_v_uart_rx_pulldown.END_2` | `abstract:audio-ground` | VHF UART-input pull-down return |
+| `VOICE_UART_RX` | `rp.GPIO17` | `voice_uart_tx_pulldown.END_1` | host receive input defaults low while voice I/O is off |
+| `POWER_GROUND` | `voice_uart_tx_pulldown.END_2` | `abstract:power-ground` | host UART-receive pull-down return |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_control_mux_b.VDD` | PTT and AUDIO_ON selector is powered only after voice readiness |
+| `AUDIO_GROUND` | `voice_control_mux_b.GND` | `abstract:audio-ground` | PTT and AUDIO_ON selector return |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_control_mux_b_bypass.END_1` | exact PTT/AUDIO_ON selector bypass |
+| `AUDIO_GROUND` | `voice_control_mux_b_bypass.END_2` | `abstract:audio-ground` | PTT/AUDIO_ON selector bypass return |
+| `VOICE_V_SELECT` | `voice_band_io.P0` | `voice_control_mux_b.SEL1` | PTT follows the same band selection as PD |
+| `VOICE_V_SELECT` | `voice_band_io.P0` | `voice_control_mux_b.SEL2` | AUDIO_ON follows the same band selection as PD |
+| `VOICE_PTT_SAFE_N` | `safe_ptt_or.1Y` | `voice_control_mux_b.D1` | AON KILL/FAULT_KILL remains dominant before band selection |
+| `VOICE_U_PTT_N` | `voice_control_mux_b.S1A` | `voice.PTT` | PTT reaches only selected UHF |
+| `VOICE_V_PTT_N` | `voice_control_mux_b.S1B` | `voice_v.PTT` | PTT reaches only selected VHF |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_ptt_pullup.END_1` | UHF PTT is held in receive while unselected |
+| `VOICE_U_PTT_N` | `voice_ptt_pullup.END_2` | `voice.PTT` | UHF fail-high receive default |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_v_ptt_pullup.END_1` | VHF PTT is held in receive while unselected |
+| `VOICE_V_PTT_N` | `voice_v_ptt_pullup.END_2` | `voice_v.PTT` | VHF fail-high receive default |
+| `VOICE_U_AUDIO_ON_N` | `voice.AUDIO_ON` | `voice_control_mux_b.S2A` | only selected UHF AUDIO_ON reaches RP |
+| `VOICE_V_AUDIO_ON_N` | `voice_v.AUDIO_ON` | `voice_control_mux_b.S2B` | only selected VHF AUDIO_ON reaches RP |
+| `VOICE_AUDIO_ON_N` | `voice_control_mux_b.D2` | `rp.GPIO20` | single selected active-low receive indication |
+| `VOICE_AUDIO_ON_N` | `rp.GPIO20` | `voice_audio_on_pulldown.END_1` | host indication defaults low and is ignored unless VOICE_READY is high |
+| `POWER_GROUND` | `voice_audio_on_pulldown.END_2` | `abstract:power-ground` | host AUDIO_ON pull-down return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `voice_hl_driver.VCC` | open-drain H/L driver remains available while module power is sequenced |
 | `POWER_GROUND` | `voice_hl_driver.GND` | `abstract:power-ground` | H/L driver return |
 | `VOICE_HL_DRIVER_NC` | `voice_hl_driver.NC` | `abstract:no-connect` | SC70 no-connect remains open |
@@ -4368,36 +4490,52 @@ Reserved: `PA1_NRST`. Free: none.
 | `POWER_GROUND` | `voice_hl_driver_bypass.END_2` | `abstract:power-ground` | H/L-driver bypass return |
 | `VOICE_HL_RELEASE_REQ` | `slow_io.P14` | `voice_hl_driver.A` | low requests conservative module power; high only releases the open-drain output |
 | `VOICE_HL_RELEASE_REQ` | `slow_io.P14` | `voice_hl_req_pulldown.END_1` | exact 10-kOhm default selects low-power output |
-| `POWER_GROUND` | `voice_hl_req_pulldown.END_2` | `abstract:power-ground` | no circuit ever actively drives the SA518 H/L contact high |
-| `VOICE_HL_OPEN_DRAIN` | `voice_hl_driver.Y` | `voice.HL` | datasheet-required low-or-open behavior is physical, not a firmware convention |
-| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_audio_iso.VCC` | dual bilateral switch disconnects both AFOUT and MIC_IN with voice power |
-| `AUDIO_GROUND` | `voice_audio_iso.GND` | `abstract:audio-ground` | voice-audio isolation return |
-| `VOICE_READY` | `voice_supervisor.RESET_N` | `voice_audio_iso.1C` | AFOUT remains open until module power is valid |
-| `VOICE_READY` | `voice_supervisor.RESET_N` | `voice_audio_iso.2C` | MIC_IN remains open until module power is valid |
-| `RX_SA518_AFOUT_LOCAL` | `voice.AFOUT` | `voice_audio_iso.1A` | receive audio is disconnected before module rail collapse |
-| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_audio_iso_bypass.END_1` | exact 100-nF voice-audio-isolator bypass |
-| `AUDIO_GROUND` | `voice_audio_iso_bypass.END_2` | `abstract:audio-ground` | voice-audio-isolator bypass return |
-| `VOICE_PD` | `voice_supervisor.RESET_N` | `voice.PD` | PD stays low through rail ramp and becomes high/normal only after exact threshold and delay |
-| `VOICE_AUDIO_ON_N` | `voice.AUDIO_ON` | `rp.GPIO20` | firmware qualifies the active-low indication by VOICE_READY; it never acts as a TX authorization |
-| `VOICE_AUDIO_ON_N` | `rp.GPIO20` | `voice_audio_on_pulldown.END_1` | 100-kOhm prevents a floating host input while the module is off |
-| `POWER_GROUND` | `voice_audio_on_pulldown.END_2` | `abstract:power-ground` | off-domain low is ignored unless VOICE_READY is high |
-| `VOICE_UPDATE_FIXTURE` | `voice.UPDATE` | `abstract:TP_VOICE_UPDATE_WITH_GND` | fixture-only contact; runtime never drives it until specimen HIL resolves the rev-1.1 input/output wording conflict |
-| `VOICE_VOXEN_NC` | `voice.VOXEN` | `abstract:no-connect` | standard SA518 leaves VOXEN without function; host-side authorized VOX uses the exact microphone capture path and preserves data TX |
-| `VOICE_NC5` | `voice.NC_5` | `abstract:no-connect` | module reserved contact remains open |
-| `VOICE_NC6` | `voice.NC_6` | `abstract:no-connect` | module reserved contact remains open |
-| `VOICE_NC15` | `voice.NC_15` | `abstract:no-connect` | module reserved contact remains open |
-| `POWER_GROUND` | `voice.GND_8` | `abstract:power-ground` | first SA518 ground land is physically connected |
-| `POWER_GROUND` | `voice.GND_9` | `abstract:power-ground` | second SA518 ground land is physically connected |
-| `POWER_GROUND` | `voice.GND_10` | `abstract:power-ground` | third SA518 ground land is physically connected |
-| `POWER_GROUND` | `voice.GND_19` | `abstract:power-ground` | fourth SA518 ground land is physically connected |
-| `POWER_GROUND` | `voice.GND_20` | `abstract:power-ground` | fifth SA518 ground land is physically connected |
-| `VOICE_EXTERNAL_RF_50R` | `voice.ANT` | `voice_external_sma.RF` | physical SA518 ANT contact 7 feeds one shortest controlled-50-Ohm edge-launch route |
-| `VOICE_EXTERNAL_RF_50R` | `voice.ANT` | `voice_rf_esd.K1` | 24-V 0.17-pF bidirectional antenna TVS is a shunt at the external boundary, not a series RF body |
-| `VOICE_RF_ESD_RETURN` | `voice_rf_esd.K2` | `abstract:chassis-rf-ground` | PESD24VY1BSF returns through the shortest connector-boundary via field |
-| `VOICE_EXTERNAL_RF_50R` | `voice.ANT` | `voice_detector_series_attenuator.END_1` | actual-TX sample is taken from the complete protected external line without a mainline series element |
-| `VOICE_RF_SAMPLE` | `voice_detector_series_attenuator.END_2` | `det_voice.RFIN` | exact 5.1-kOhm series attenuation follows the AD8314 high-power sampling method |
-| `VOICE_RF_SAMPLE` | `det_voice.RFIN` | `voice_detector_match.END_1` | exact 52.3-Ohm shunt defines the detector input and approximately 40-dB resistive tap |
-| `VOICE_RF_GROUND` | `voice_detector_match.END_2` | `abstract:rf-ground` | detector input return stays beside RFIN and the sampler |
+| `POWER_GROUND` | `voice_hl_req_pulldown.END_2` | `abstract:power-ground` | no circuit ever actively drives either SA818S H/L contact high |
+| `VOICE_HL_OPEN_DRAIN` | `voice_hl_driver.Y` | `voice.HL` | datasheet-required low-or-open behavior is physical for UHF |
+| `VOICE_HL_OPEN_DRAIN` | `voice_hl_driver.Y` | `voice_v.HL` | the same low-or-open power request reaches VHF; only one module can leave PD |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_audio_mux.VDD` | audio selector is absent electrically until the shared voice rail is valid |
+| `AUDIO_GROUND` | `voice_audio_mux.GND` | `abstract:audio-ground` | voice-audio selector return |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_audio_mux_bypass.END_1` | exact voice-audio selector bypass |
+| `AUDIO_GROUND` | `voice_audio_mux_bypass.END_2` | `abstract:audio-ground` | voice-audio selector bypass return |
+| `VOICE_V_SELECT` | `voice_band_io.P0` | `voice_audio_mux.SEL1` | receive audio selection follows the one-hot PD band |
+| `VOICE_V_SELECT` | `voice_band_io.P0` | `voice_audio_mux.SEL2` | microphone routing follows the one-hot PD band |
+| `RX_VOICE_U_AFOUT_LOCAL` | `voice.AFOUT` | `voice_audio_mux.S1A` | unselected UHF receive audio is isolated |
+| `RX_VOICE_V_AFOUT_LOCAL` | `voice_v.AFOUT` | `voice_audio_mux.S1B` | unselected VHF receive audio is isolated |
+| `VOICE_MIC_SELECTED_MAIN` | `audio_tx_selector.COM` | `voice_audio_mux.D2` | one selected microphone source reaches only the selected module |
+| `VOICE_U_MIC_SELECTED` | `voice_audio_mux.S2A` | `voice_mic_coupling.END_1` | UHF microphone branch is selected with UHF PD |
+| `VOICE_V_MIC_SELECTED` | `voice_audio_mux.S2B` | `voice_v_mic_coupling.END_1` | VHF microphone branch is selected with VHF PD |
+| `VOICE_U_MIC_IN` | `voice_mic_coupling.END_2` | `voice.MIC_IN` | AC-coupled UHF microphone input |
+| `VOICE_V_MIC_IN` | `voice_v_mic_coupling.END_2` | `voice_v.MIC_IN` | AC-coupled VHF microphone input |
+| `VOICE_U_NC2` | `voice.NC_2` | `abstract:no-connect` | manufacturer reserved contact remains open |
+| `VOICE_U_NC4` | `voice.NC_4` | `abstract:no-connect` | manufacturer reserved contact remains open |
+| `VOICE_U_NC11` | `voice.NC_11` | `abstract:no-connect` | manufacturer reserved contact remains open |
+| `VOICE_U_NC13` | `voice.NC_13` | `abstract:no-connect` | manufacturer reserved contact remains open |
+| `VOICE_U_NC14` | `voice.NC_14` | `abstract:no-connect` | manufacturer reserved contact remains open |
+| `VOICE_U_NC15` | `voice.NC_15` | `abstract:no-connect` | manufacturer reserved contact remains open |
+| `POWER_GROUND` | `voice.GND_9` | `abstract:power-ground` | first UHF SA818S ground land is physically connected |
+| `POWER_GROUND` | `voice.GND_10` | `abstract:power-ground` | second UHF SA818S ground land is physically connected |
+| `VOICE_V_NC2` | `voice_v.NC_2` | `abstract:no-connect` | manufacturer reserved contact remains open |
+| `VOICE_V_NC4` | `voice_v.NC_4` | `abstract:no-connect` | manufacturer reserved contact remains open |
+| `VOICE_V_NC11` | `voice_v.NC_11` | `abstract:no-connect` | manufacturer reserved contact remains open |
+| `VOICE_V_NC13` | `voice_v.NC_13` | `abstract:no-connect` | manufacturer reserved contact remains open |
+| `VOICE_V_NC14` | `voice_v.NC_14` | `abstract:no-connect` | manufacturer reserved contact remains open |
+| `VOICE_V_NC15` | `voice_v.NC_15` | `abstract:no-connect` | manufacturer reserved contact remains open |
+| `POWER_GROUND` | `voice_v.GND_9` | `abstract:power-ground` | first VHF SA818S ground land is physically connected |
+| `POWER_GROUND` | `voice_v.GND_10` | `abstract:power-ground` | second VHF SA818S ground land is physically connected |
+| `VOICE_U_EXTERNAL_RF_50R` | `voice.ANT` | `voice_external_sma.RF` | physical SA818S-U ANT contact 12 feeds the shortest controlled-50-Ohm UHF route |
+| `VOICE_U_EXTERNAL_RF_50R` | `voice.ANT` | `voice_rf_esd.K1` | 24-V 0.17-pF bidirectional TVS shunts only the UHF antenna boundary |
+| `VOICE_U_RF_ESD_RETURN` | `voice_rf_esd.K2` | `abstract:chassis-rf-ground` | UHF antenna ESD returns through the shortest connector-boundary via field |
+| `VOICE_U_EXTERNAL_RF_50R` | `voice.ANT` | `voice_detector_series_attenuator.END_1` | UHF actual-TX sample is taken after the complete module output |
+| `VOICE_U_RF_SAMPLE` | `voice_detector_series_attenuator.END_2` | `det_voice.RFIN` | exact 5.1-kOhm series attenuation follows the AD8314 high-power sampling method |
+| `VOICE_U_RF_SAMPLE` | `det_voice.RFIN` | `voice_detector_match.END_1` | exact 52.3-Ohm shunt defines the UHF detector input and approximately 40-dB tap |
+| `VOICE_U_RF_GROUND` | `voice_detector_match.END_2` | `abstract:rf-ground` | UHF detector input return stays beside RFIN and the sampler |
+| `VOICE_V_EXTERNAL_RF_50R` | `voice_v.ANT` | `voice_v_external_sma.RF` | physical SA818S-V ANT contact 12 feeds the shortest controlled-50-Ohm VHF route |
+| `VOICE_V_EXTERNAL_RF_50R` | `voice_v.ANT` | `voice_v_rf_esd.K1` | 24-V 0.17-pF bidirectional TVS shunts only the VHF antenna boundary |
+| `VOICE_V_RF_ESD_RETURN` | `voice_v_rf_esd.K2` | `abstract:chassis-rf-ground` | VHF antenna ESD returns through the shortest connector-boundary via field |
+| `VOICE_V_EXTERNAL_RF_50R` | `voice_v.ANT` | `voice_v_detector_series_attenuator.END_1` | VHF actual-TX sample is taken after the complete module output |
+| `VOICE_V_RF_SAMPLE` | `voice_v_detector_series_attenuator.END_2` | `det_voice_v.RFIN` | exact 5.1-kOhm series attenuation follows the AD8314 high-power sampling method |
+| `VOICE_V_RF_SAMPLE` | `det_voice_v.RFIN` | `voice_v_detector_match.END_1` | exact 52.3-Ohm shunt defines the VHF detector input and approximately 40-dB tap |
+| `VOICE_V_RF_GROUND` | `voice_v_detector_match.END_2` | `abstract:rf-ground` | VHF detector input return stays beside RFIN and the sampler |
 | `U214_5V_REQ` | `slow_io.P17` | `ext_request_or.1A` | U214-only request; exact endpoint pull-down keeps the branch off while the expander resets as inputs |
 | `U214_5V_REQ` | `slow_io.P17` | `u214_req_pulldown.END_1` | exact 10-kOhm fail-low default |
 | `POWER_GROUND` | `u214_req_pulldown.END_2` | `abstract:power-ground` | U214 request cannot float high |
@@ -4926,6 +5064,22 @@ Reserved: `PA1_NRST`. Free: none.
 | `SAFETY_GROUND` | `voice_evidence_hold_cap.END_2` | `abstract:safety-ground` | hold capacitor returns in the AON evidence domain |
 | `SAFETY_GROUND` | `voice_evidence_hold_pulldown.END_2` | `abstract:safety-ground` | detector cannot remain enabled indefinitely after voice shutdown |
 | `VOICE_EVIDENCE_DIODE_NC` | `voice_evidence_hold_diode.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `det_voice_v.VPOS` | VHF actual-TX detector remains alive independently of the voice application rail |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_v_detector_bypass.END_1` | exact 100-nF local VHF AD8314 bypass |
+| `SAFETY_GROUND` | `voice_v_detector_bypass.END_2` | `abstract:safety-ground` | VHF detector bypass return |
+| `SAFETY_GROUND` | `det_voice_v.COMM` | `abstract:safety-ground` | VHF AD8314 signal ground |
+| `SAFETY_GROUND` | `det_voice_v.EPAD` | `abstract:safety-ground` | VHF AD8314 exposed paddle ground |
+| `VOICE_V_DETECT_V` | `det_voice_v.VSET` | `det_voice_v.V_UP` | measurement-mode connection follows the AD8314 datasheet |
+| `VOICE_V_DETECT_FILTER` | `det_voice_v.FLTR` | `voice_v_detector_filter.END_1` | exact 120-pF VHF response capacitor |
+| `VOICE_V_DETECT_V` | `voice_v_detector_filter.END_2` | `det_voice_v.V_UP` | VHF filter capacitor is placed between FLTR and V_UP |
+| `VOICE_V_DETECT_VDN_NC` | `det_voice_v.V_DN` | `abstract:no-connect` | unused VHF detector controller output remains unconnected |
+| `VOICE_DOMAIN_EN_SAFE` | `safe_gate_b.2Y` | `voice_v_evidence_hold_diode.A` | shared safe enable pre-arms the VHF detector before rail rise |
+| `VOICE_V_EVIDENCE_HOLD` | `voice_v_evidence_hold_diode.K` | `voice_v_evidence_hold_cap.END_1` | Schottky isolation retains VHF detector enable through rail collapse |
+| `VOICE_V_EVIDENCE_HOLD` | `voice_v_evidence_hold_diode.K` | `voice_v_evidence_hold_pulldown.END_1` | 10-kOhm and 1-uF create an approximately 10-ms nominal discharge constant |
+| `VOICE_V_EVIDENCE_HOLD` | `voice_v_evidence_hold_diode.K` | `det_voice_v.ENBL` | VHF detector remains active long enough to observe commanded shutdown |
+| `SAFETY_GROUND` | `voice_v_evidence_hold_cap.END_2` | `abstract:safety-ground` | VHF hold capacitor return |
+| `SAFETY_GROUND` | `voice_v_evidence_hold_pulldown.END_2` | `abstract:safety-ground` | VHF detector cannot remain enabled indefinitely |
+| `VOICE_V_EVIDENCE_DIODE_NC` | `voice_v_evidence_hold_diode.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `SAFETY_GROUND` | `det_ir.ANODE` | `abstract:safety-ground` | the optical sensor is electrically independent of the emitter drive and returns only in the AON evidence domain |
 | `IR_OPTICAL_SUM` | `det_ir.CATHODE` | `ir_evidence_amp.IN_MINUS` | reverse-biased VEMD1060X01 in the internal light-tight tunnel sources only measured physical optical response into the TIA |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_evidence_amp.V_PLUS` | actual-optical evidence stays alive independently of the C5 and IR receive rail |
@@ -4949,6 +5103,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `NRF2_DETECT_V` | `det_nrf2.V_UP` | `evidence_cmp_b.IN3_N` | rear-local forward RF above the channel-qualified threshold makes active-low comparator output assert |
 | `CC_DETECT_V` | `det_cc.V_UP` | `evidence_cmp_b.IN4_N` | rear-local RF above the qualified threshold makes active-low comparator output assert |
 | `VOICE_DETECT_V` | `det_voice.V_UP` | `evidence_cmp_voice.IN_N` | rear-local RF above the qualified threshold makes the dedicated active-low comparator output assert |
+| `VOICE_V_DETECT_V` | `det_voice_v.V_UP` | `evidence_cmp_voice_v.IN_N` | rear-local VHF RF above threshold asserts the second open-drain comparator |
 | `IR_DETECT_V` | `ir_evidence_amp.OUT` | `evidence_cmp_a.IN3_N` | UI-local physical optical energy above the qualified HIL threshold makes active-low comparator output assert; drive current cannot substitute |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_cmp_a.VPLUS` | first quad comparator remains alive with the KILL/FAULT_KILL evidence plane |
 | `SAFETY_GROUND` | `evidence_cmp_a.VMINUS` | `abstract:safety-ground` | first comparator return stays in the AON evidence domain |
@@ -4962,6 +5117,10 @@ Reserved: `PA1_NRST`. Free: none.
 | `SAFETY_GROUND` | `evidence_cmp_voice.VMINUS` | `abstract:safety-ground` | voice comparator return stays in the rear AON evidence domain |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_cmp_voice_bypass.END_1` | exact 100-nF local bypass required at TLV1821DCKR |
 | `SAFETY_GROUND` | `evidence_cmp_voice_bypass.END_2` | `abstract:safety-ground` | voice comparator bypass returns locally |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_cmp_voice_v.VPLUS` | dedicated VHF comparator remains alive with the KILL/FAULT_KILL evidence plane |
+| `SAFETY_GROUND` | `evidence_cmp_voice_v.VMINUS` | `abstract:safety-ground` | VHF comparator return stays in the rear AON evidence domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_cmp_voice_v_bypass.END_1` | exact 100-nF local VHF comparator bypass |
+| `SAFETY_GROUND` | `evidence_cmp_voice_v_bypass.END_2` | `abstract:safety-ground` | VHF comparator bypass return |
 | `SAFETY_GROUND` | `evidence_cmp_a.IN4_N` | `abstract:safety-ground` | unused UI comparator channel negative input is fixed low |
 | `SAFETY_GROUND` | `evidence_cmp_a.IN4_P` | `abstract:safety-ground` | unused UI comparator channel positive input is fixed low |
 | `NO_CONNECT` | `evidence_cmp_a.OUT4` | `abstract:no-connect` | unused UI comparator open-drain output remains unconnected |
@@ -5021,6 +5180,13 @@ Reserved: `PA1_NRST`. Free: none.
 | `EV_THRESH_6_VOICE` | `voice_evidence_hysteresis.END_2` | `evidence_cmp_voice.IN_P` | voice threshold clears near 0.297 V nominal |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
 | `EV_N6_VOICE` | `voice_evidence_output_pullup.END_2` | `evidence_cmp_voice.OUT` | individually readable active-low evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_v_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the VHF threshold population |
+| `EV_THRESH_6_VOICE_V` | `voice_v_evidence_threshold_top.END_2` | `evidence_cmp_voice_v.IN_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
+| `EV_THRESH_6_VOICE_V` | `evidence_cmp_voice_v.IN_P` | `voice_v_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
+| `SAFETY_GROUND` | `voice_v_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | VHF threshold returns locally |
+| `EV_N6_VOICE` | `evidence_cmp_voice_v.OUT` | `voice_v_evidence_hysteresis.END_1` | open-drain output wire-ORs with UHF into the existing V/U evidence identity |
+| `EV_THRESH_6_VOICE_V` | `voice_v_evidence_hysteresis.END_2` | `evidence_cmp_voice_v.IN_P` | VHF threshold clears near 0.297 V nominal |
+| `EV_N6_VOICE` | `evidence_cmp_voice_v.OUT` | `evidence_cmp_voice.OUT` | only open-drain comparator outputs share the existing evidence input, aggregate and LED |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the IR first threshold population |
 | `EV_THRESH_7_IR` | `ir_evidence_threshold_top.END_2` | `evidence_cmp_a.IN3_P` | 12-kOhm lower leg raises nominal optical assert threshold to approximately 0.384 V |
 | `EV_THRESH_7_IR` | `evidence_cmp_a.IN3_P` | `ir_evidence_threshold_bottom.END_1` | IR population differs because the optical TIA idles near 0.30 V |
@@ -5139,7 +5305,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `pack_gauge`: `ALRT`, `SCL_OD`, `SDA_DQ`, `PFAIL` — direct protected I2C/NVM and hold/fault pads with fixture ground and qualified stack-sense supply; protected image checksum and OvrdEn readback are mandatory before energized cell installation.
 - `pack_admission`: `PA1_NRST`, `PA17`, `PA18`, `PA19_SWDIO`, `PA20_SWCLK`, `VDD`, `VSS` — permanent NRST/SWD/UART1 plus isolated fixture VDD/VSS; fixture or admitted system rail powers flash programming because MAX17320 AOLDO is not sized for it.
 - `safety_controller`: `PA1_NRST`, `PA17`, `PA18`, `PA19_SWDIO`, `PA20_SWCLK`, `VDD`, `VSS` — permanent isolated NRST/SWD/UART1/power fixture path; recovery cannot drive RUN_PERMIT, mask TPS3435 WDO_N or clear the hardware FAULT_KILL latch.
-- `voice`: `UPDATE`, `UART_TX`, `UART_RX`, `PD` — permanent fixture breakout for vendor update/recovery plus UART and hardware power-down; UPDATE drive remains inhibited until exact rev-1.1 direction/timing proof.
+- `voice`: `UART_TX`, `UART_RX`, `PD` — UHF SA818S UART and hardware power-down remain reachable through the selected service path.
+- `voice_v`: `UART_TX`, `UART_RX`, `PD` — VHF SA818S UART and hardware power-down remain reachable through the selected service path.
 
 ### Non-MCU contact accounting
 
@@ -5237,6 +5404,7 @@ Reserved: `PA1_NRST`. Free: none.
 - `nrf2_external_sma` uses `GCT RFPC-SMA31-FN-175-A` as `verified_exact_external_standard_sma_body`, not an accepted production choice.
 - `cc_external_sma` uses `GCT RFPC-SMA31-FN-175-A` as `verified_exact_external_standard_sma_body`, not an accepted production choice.
 - `voice_external_sma` uses `GCT RFPC-SMA31-FN-175-A` as `verified_exact_external_standard_sma_body`, not an accepted production choice.
+- `voice_v_external_sma` uses `GCT RFPC-SMA31-FN-175-A` as `verified_exact_external_standard_sma_body`, not an accepted production choice.
 - `u214_connector` uses `Samtec HLE-107-02-G-DV-PE-LC` as `verified_bounded_paper_fit_received_u214_mating_hil_open`, not an accepted production choice.
 - `u214_connector` lifecycle: `active Extended Life Product; 138 exact parts shown as ships-tomorrow stock`.
 - `u214_i2c_iso` uses `TCA4307DGKR` as `verified_exact_u214_i2c_hot_swap_boundary`, not an accepted production choice.
@@ -5383,7 +5551,10 @@ Reserved: `PA1_NRST`. Free: none.
 - `cc_detector_tap_cap` uses `Murata GJM1555C1HR47BB01D` as `verified_exact_cc_detector_tap_passive`, not an accepted production choice.
 - `cc_detector_tap_cap` lifecycle: `active_orderable`.
 - `cc_evidence_hold_cap` lifecycle: `active_production`.
-- `voice` lifecycle: `current_product`.
+- `voice` uses `G-NiceRF SA818S-U` as `manufacturer_and_jlcpcb_exact_candidate`, not an accepted production choice.
+- `voice` lifecycle: `current_orderable_product`.
+- `voice_v` uses `G-NiceRF SA818S-V` as `manufacturer_and_jlcpcb_exact_candidate_preorder`, not an accepted production choice.
+- `voice_v` lifecycle: `current_preorder_product`.
 - `voice_rf_esd` uses `Nexperia PESD24VY1BSF` as `verified_exact_sa518_external_rf_esd`, not an accepted production choice.
 - `voice_rf_esd` lifecycle: `production_orderable`.
 - `voice_detector_series_attenuator` uses `Yageo RC0402FR-075K1L` as `verified_exact_sa518_detector_series_attenuator_and_usb_type_c_rd`, not an accepted production choice.
@@ -5391,6 +5562,13 @@ Reserved: `PA1_NRST`. Free: none.
 - `voice_detector_match` uses `Yageo RC0402FR-0752R3L` as `verified_exact_ad8314_broadband_input_match`, not an accepted production choice.
 - `voice_detector_match` lifecycle: `active_orderable`.
 - `voice_evidence_hold_cap` lifecycle: `active_production`.
+- `voice_v_rf_esd` uses `Nexperia PESD24VY1BSF` as `verified_exact_sa518_external_rf_esd`, not an accepted production choice.
+- `voice_v_rf_esd` lifecycle: `production_orderable`.
+- `voice_v_detector_series_attenuator` uses `Yageo RC0402FR-075K1L` as `verified_exact_sa518_detector_series_attenuator_and_usb_type_c_rd`, not an accepted production choice.
+- `voice_v_detector_series_attenuator` lifecycle: `active_orderable`.
+- `voice_v_detector_match` uses `Yageo RC0402FR-0752R3L` as `verified_exact_ad8314_broadband_input_match`, not an accepted production choice.
+- `voice_v_detector_match` lifecycle: `active_orderable`.
+- `voice_v_evidence_hold_cap` lifecycle: `active_production`.
 - `receiver` uses `Si4732-A10-GSR` as `verified_exact_production_candidate`, not an accepted production choice.
 - `receiver` lifecycle: `active_orderable`.
 - `slow_io` uses `TCA6424ARGJR` as `verified_exact_main_slow_io_core`, not an accepted production choice.
@@ -5471,6 +5649,7 @@ Reserved: `PA1_NRST`. Free: none.
 - `codec_tx_coupling` lifecycle: `active_production`.
 - `codec_tx_atten_top` lifecycle: `active_orderable`.
 - `voice_mic_coupling` lifecycle: `active_production`.
+- `voice_v_mic_coupling` lifecycle: `active_production`.
 - `audio_safe_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
 - `speaker_amp_input_cap` lifecycle: `active_production`.
 - `speaker_output_bead_p` lifecycle: `active_orderable`.
@@ -5524,6 +5703,11 @@ Reserved: `PA1_NRST`. Free: none.
 - `ir_evidence_amp` uses `TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
 - `voice_io_power_input_cap` lifecycle: `active_production`.
 - `voice_io_power_output_cap` lifecycle: `active_production`.
+- `voice_band_inverter` lifecycle: `production`.
+- `voice_pd_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
+- `voice_control_mux_a` uses `Texas Instruments TMUX1136DGSR` as `reference_only`, not an accepted production choice.
+- `voice_control_mux_b` uses `Texas Instruments TMUX1136DGSR` as `reference_only`, not an accepted production choice.
+- `voice_audio_mux` uses `Texas Instruments TMUX1136DGSR` as `reference_only`, not an accepted production choice.
 - `voice_hl_driver` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `product_usb_vpwr_cap` lifecycle: `active_production`.
 - `pack_gauge` lifecycle: `recommended_for_new_designs`.
@@ -5673,9 +5857,13 @@ Reserved: `PA1_NRST`. Free: none.
 - `det_cc` lifecycle: `production_active_orderable`.
 - `det_voice` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_wideband_rf_power_detector`, not an accepted production choice.
 - `det_voice` lifecycle: `production_active_orderable`.
+- `det_voice_v` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_wideband_rf_power_detector`, not an accepted production choice.
+- `det_voice_v` lifecycle: `production_active_orderable`.
 - `det_ir` uses `VEMD1060X01` as `verified_exact_ir_actual_optical_evidence_sensor`, not an accepted production choice.
 - `evidence_cmp_voice` uses `TLV1821DCKR` as `verified_exact_local_voice_evidence_comparator`, not an accepted production choice.
 - `evidence_cmp_voice` lifecycle: `active_orderable`.
+- `evidence_cmp_voice_v` uses `TLV1821DCKR` as `verified_exact_local_voice_evidence_comparator`, not an accepted production choice.
+- `evidence_cmp_voice_v` lifecycle: `active_orderable`.
 - `ext_evidence_input_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
 - `ext_evidence_input_series` lifecycle: `active_orderable`.
 - `ext_evidence_buffer` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
@@ -5697,6 +5885,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `cc_evidence_hysteresis` lifecycle: `active_orderable`.
 - `voice_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
 - `voice_evidence_hysteresis` lifecycle: `active_orderable`.
+- `voice_v_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
+- `voice_v_evidence_hysteresis` lifecycle: `active_orderable`.
 - `ir_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
 - `ir_evidence_hysteresis` lifecycle: `active_orderable`.
 - SC1512-A4 is the exact 7-inch-reel order code for RP2354B0A4; received A4 marking/lot identity, power/clock/land pattern and prototype assembly remain implementation gates, so the verified QFN80 contact map is not a BOM freeze
@@ -5712,7 +5902,7 @@ Reserved: `PA1_NRST`. Free: none.
 - DEC-0045 prohibits cross-group simultaneous signal operation but requires all three SG-N24 radios concurrently active in every independent PTX/PRX mix; DEC-0047 selects a qualified internal envelope; N24H-0001 L0 DIV-DIV is pre-HIL only and T1 TARGET must prove exact channel/power/sensitivity points
 - SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and KILL/FAULT_KILL behavior at the qualified power profile; an RX-only budget is insufficient
 - DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates. DEC-0090 closes the exact audio/receiver/voice switches, isolation, discharge and no-back-power sequence; DEC-0091 through DEC-0096 close every separate base RF/IR paper endpoint. Whole-device quiet-state EMI, conducted/OTA/optical coexistence and no-stall HIL remain I6 gates, leaving no free direct RP GPIO
-- DEC-0090 supersedes the abstract DEC-0054 endpoint with exact ES8311, Si4732-A10, SA518, source selectors, buffers, four I2S isolators, power supervisors/switches, PAM8302A, Same Sky CMEJ-0413-42-SMT-TR internal microphone, PUI AS02404PO speaker and the CTIA-wired shielded SJ-43504-SMT-TR headset jack. The later headset update leaves P02 detect-only and adds exact TS5A63157DCKR plus a dedicated TCA9534APWR at non-conflicting address 0x39; P0 selects the microphone cleanly and P1-P7 remain pulled interrupt-capable local reserves. Existing resistor/capacitor SKUs provide bias, reset default, protection and bypass without consuming another MCU GPIO. Paper contacts, power, common mode, gain, reset-off behavior and no-backfeed are closed; received cutout, accessory behavior, acoustic gain/noise, pop/click, RF immunity and concurrent-load evidence remain explicit HIL gates before schematic/BOM freeze
+- The audio/voice endpoint uses exact ES8311, Si4732-A10, SA818S-U, SA818S-V, source selectors, buffers, four I2S isolators, power supervisors/switches, PAM8302A, Same Sky CMEJ-0413-42-SMT-TR internal microphone, PUI AS02404PO speaker and the CTIA-wired shielded SJ-43504-SMT-TR headset jack. Headset P02 remains detect-only; TCA9534A 0x39 selects the microphone, while a separate TCA9534A 0x3A selects the one-hot VHF/UHF module through three exact TMUX1136 paths without another MCU or M1 contact. Dual-SA818S paper contacts, ECAD and mechanical placement are re-closed at H2; received audio, RF and concurrent-load HIL remain explicit gates before BOM freeze
 - The sink-only 30-W USB-PD/NVDC path uses TPS25751DREFR, BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR. MAX17320G20+T plus MSPM0C1106SDGS20R form the fail-closed 2S manager pair, and in-device deep-cell recovery stays disabled. Independent fixed TPS629203/TPS564252 rails, protected post-buck eFuses, threshold/timer networks, a <=50-ms pre-admission cutoff, exact charger energy parts, polarized Keystone 1048P contacts and three NTC roles are fully instantiated on paper. Two XTAR 18650 4000mAh protected button-top cells are the first qualification target with a 2-A charge ceiling. The protected product USB endpoint, direct multi-via shell bond, internal-service-only display FPC and isolated microSD endpoint are also instantiated. Exact-cell droop, specimen fit, continuity/thermal/hot-copper/source handover, connector integrity and destructive fault HIL remain implementation gates
 - HMX035CTFT-001 exact contacts, power/reset/backlight/first-mate paper circuit and the isolated DM3AT-SF-PEJM5 storage circuit are instantiated, but display/storage production qualification, physical integration and electrical HIL remain open. The independent RUN/KILL, watchdog, evidence and every RF/IR endpoint are paper-reviewed; RFPC-SMA31-FN-175-A/RFPC-SMA32-FN-175-A bodies are selected, while antenna/pod lots, placement, sensitivity, audio/noise, optical, conducted/OTA and coexistence HIL remain implementation gates
 

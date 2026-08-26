@@ -96,12 +96,12 @@ def build() -> tuple[dict[Path, str], dict]:
         "quiet_aggressors": "no display/SD/USB clock, DC/DC switch node, crystal clock, class-D output or high-current LED/IR edge is routed parallel inside an RF clearance corridor",
         "coupled_evidence": "LTC5532 detector and hold circuitry live outside the mainline corridor; the coupled branch is shortest-first and never returns through receiver or oscillator ground",
         "tuning": "CC1101 branches and receiver matching retain accessible 0402 tuning lands inside their RF zones without lengthening unrelated paths",
-        "documentation": "H6 exports routed length, layer, solved impedance, reference plane, transitions, fence pitch and nearest aggressor for each of the nine path IDs",
+        "documentation": "H6 exports routed length, layer, solved impedance, reference plane, transitions, fence pitch and nearest aggressor for each of the ten path IDs",
     }
     special_rules = {
         "native_and_nrf": "module U.FL/IPEX-to-board U.FL remains physical microcoax; only the board-receptacle-to-coupler-to-SMA section is PCB mainline",
         "cc_sub": "keep RF_P/RF_N length mismatch <=0.50 mm through the balun; place both BGS13SN8 switches and four branch networks as one compact, symmetric, via-fenced island; isolate every unselected branch without shared narrow ground",
-        "voice": "place SA518 contact 7, protection and SMA in the shortest practical corridor; keep class-D speaker current and codec input ground outside it",
+        "voice": "place each SA818S ANT contact 12, its own protection and its own SMA in an independent shortest practical corridor; keep class-D speaker current, the other voice corridor and codec input ground outside both",
         "fm_sw": "hold 50 ohms only from SMA to the first 56-nH body; the receiver-side match is not forced into a 50-ohm geometry",
         "am_lw": "do not apply the 50-ohm plane/fence template to the high-Z AMI segment; minimize surface area and extracted capacitance, forbid long coax, and keep all copper/aggressors away beneath it",
     }
@@ -110,10 +110,10 @@ def build() -> tuple[dict[Path, str], dict]:
         "h351_is_reviewed": feed["review_summary"]["status"] == "reviewed",
         "h1_clearance_audit_passed": audit["result"] == "paper_keepouts_passed_final_ecad_and_h5_open",
         "h1_topology_is_explicitly_not_final_copper": topology["final_copper_status"] == "open_until_kicad_drc",
-        "exactly_nine_guides": topology["guide_count"] == len(guides) == 9,
+        "exactly_ten_guides": topology["guide_count"] == len(guides) == 10,
         "guide_paths_equal_feed_paths": set(guide_by_path) == set(feed_by_path),
         "guide_paths_equal_antenna_policy": source_paths == expected_paths,
-        "four_ui_and_five_rf_paths": sum(row["frame"] == "ui-inner" for row in per_path) == 4 and sum(row["frame"] == "rf-inner" for row in per_path) == 5,
+        "four_ui_and_six_rf_paths": sum(row["frame"] == "ui-inner" for row in per_path) == 4 and sum(row["frame"] == "rf-inner" for row in per_path) == 6,
         "only_two_board_frames": frames == {"ui-inner", "rf-inner"},
         "every_guide_reaches_antenna_edge": all(row["h1_topology_guide_mm"][-1][1] == 0.0 for row in per_path),
         "all_guide_lengths_positive": all(row["h1_topology_guide_length_mm"] > 0 for row in per_path),
@@ -129,7 +129,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "all_paths_limit_layer_transitions": all(row["maximum_signal_layer_transitions"] == 1 for row in per_path),
         "no_stub_rule_is_explicit": "no tee" in common_rules["stubs"],
         "aggressor_rule_names_all_major_classes": all(token in common_rules["quiet_aggressors"] for token in ("display", "USB", "DC/DC", "class-D", "IR")),
-        "h6_export_contract_names_nine_ids": "nine path IDs" in common_rules["documentation"],
+        "h6_export_contract_names_ten_ids": "ten path IDs" in common_rules["documentation"],
     }
     failed = [name for name, passed in checks.items() if not passed]
     if failed:
@@ -147,7 +147,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "stage": "H3.5.2",
         "status": "reviewed_rf_corridor_plane_and_return_constraints",
         "source_hashes": {str(path.relative_to(REPO)): sha256(path) for path in (H1_PATH, FEED_PATH, CANDIDATE_PATH)},
-        "summary": {"paths": len(per_path), "ui_inner_paths": 4, "rf_inner_paths": 5, "microcoaxes": 5, "checks": len(checks)},
+        "summary": {"paths": len(per_path), "ui_inner_paths": 4, "rf_inner_paths": 6, "microcoaxes": 5, "checks": len(checks)},
         "derived": {"c5_lambda_g_over_20_mm_at_5p885ghz_eps_eff_3p5": round(calculated_pitch_mm, 3), "selected_high_band_fence_pitch_mm_max": high_band_fence_pitch_mm},
         "path_corridors": per_path,
         "common_rules": common_rules,

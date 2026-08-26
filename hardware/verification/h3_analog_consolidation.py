@@ -80,7 +80,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "audio_has_no_open_findings": audio["open_findings"] == [],
         "ir_has_no_open_findings": ir["open_findings"] == [],
         "battery_reports_zero_failed_checks": battery["review_summary"]["failed"] == 0,
-        "leaf_check_count_is_154": total_checks == 154,
+        "leaf_check_count_is_156": total_checks == 156,
         "correction_ids_are_unique": len(correction_ids) == len(set(correction_ids)),
         "fourteen_corrections_are_preserved": total_corrections == 14,
         "cost_delta_remains_below_half_dollar": total_cost < d("0.50"),

@@ -3,10 +3,10 @@
 [Русский](roadmap.ru.md) · [Home](../README.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶️ Current hardware boundary: H5.0.3 — PCBA platform and BOM availability audit.**
+> **▶️ Current hardware boundary: H5.0.1-R1 — component-evidence rebuild.**
 > H0–H4 are reviewed. There is no PCB layout or authorized order.
 
-Status last reconciled: **25 August 2026**. This is the hardware repository's
+Status last reconciled: **26 August 2026**. This is the hardware repository's
 own, sequential roadmap. Firmware work has its own `F0–F11` stages. Firmware
 results appear here only where they are prerequisites of a hardware gate.
 
@@ -25,13 +25,13 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Production ECAD schematic | ✅ H2 accepted at hardware `25d9ee2`; firmware F2 synchronized at `900bb2b` |
+| Production ECAD schematic | ✅ Current dual-SA818S H2 revision accepted; firmware BSP synchronized byte-for-byte |
 | Electrical and transient evidence | ✅ H3 accepted; 85 physical-only rows remain assigned to H5/H6/H8 |
 | Firmware interlock | ✅ [F3 reviewed](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f3-boot-memory-emulation-report.md): exact S3 QEMU execution, 52 reproducible artifacts and explicit physical gates |
 | Joined pre-layout gate | ✅ [H4 reviewed](h4-prelayout-gate-report.md): 0 open virtual contradictions; 85 physical residuals keep H5/H6/H8 owners |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
-| Component evidence | ▶️ [JLCPCB Standard PCBA selected as the non-exclusive reference](manufacturing-platform.md): all 209 production-BOM lines have exact `J0`–`J3`, `J4-F` or `J4-P` routes without replacement; exact SA518 price and factory final-assembly gates remain open; generic `C9900300438` is rejected as NiceRF evidence; JLCAPI app/key ready outside Git, Parts permission reviewing; sample purchase remains blocked |
+| Component evidence | ▶️ H5.0.1-R1 rebuilds the physical-residual map for both serial SA818S modules and the current 210-line BOM; the former SA518/209-line evidence is historical only; sample purchase remains blocked |
 | Prototype PCB order | 🔒 Forbidden before H7 |
 | Production order | 🔒 Forbidden before H9 |
 
@@ -39,23 +39,17 @@ Principle diagrams explain **what connects to what**. Production ECAD must add
 exact symbols, contacts, values, rails, protection, footprints and ERC
 evidence. PCB placement and routing begin only after the earlier gates close.
 
-## Completed H1–H4 and current H5 evidence reduction
+## Completed H1–H4 and current H5 evidence rebuild
 
-<!-- current-substep: H5.0.3 -->
+<!-- current-substep: H5.0.1-R1 -->
 
-**Exact marker: `H5.0.3`** — the [deduplicated basket](component-sample-basket.md)
-covers all nine H5 residuals and 14 mechanical gates. The
-[manufacturing-platform baseline](manufacturing-platform.md) selects JLCPCB
-Standard PCBA without lock-in. The controlled normalized BOM Tool run matched
-176 of 209 lines and parsed all 1019 placements; exact search resolved all 33
-outliers. The resulting map is `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4-F=3`, `J4-P=2`
-without component replacement. A qualified exact-`SA518` price, `J4-F`
-box-build acceptance/pricing and `J4-P` kit/packing/shipping terms remain open.
-The JLCAPI app/key are ready outside Git while Parts permission remains
-under JLCPCB review. The short quote form maps bare `SA518` to generic
-`JLCPCB Assembly C9900300438`; that identity and its `$0.0203` estimate are
-rejected, and no quote was submitted. H5.0.3 is not yet reviewed;
-quote/reservation and purchase are not authorized.
+**Exact marker: `H5.0.1-R1`** — rebuild the [physical residual map](component-evidence-map.md)
+against `SA818S-V`, `SA818S-U`, their official common 18-land package, two
+independent RF feeds and the exact current production BOM. Source documents
+and serial alternatives are exhausted before the basket and JLCPCB route map
+are regenerated. The old single-SA518 basket and 209-line platform snapshot do
+not describe the current product. Quote/reservation and purchase are not authorized;
+the exact marker and evidence move together in one commit.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.

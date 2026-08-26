@@ -70,7 +70,7 @@ def evidence_for_net(name: str) -> str:
     upper = name.upper()
     if any(token in upper for token in ("FAULT", "RUN_PERMIT", "KILL", "WDI", "WDO", "WATCHDOG", "EVIDENCE", "EV_N", "ANY_TX", "NTC", "THERM")):
         return "H3.6"
-    if any(token in upper for token in ("RF", "ANT", "UFL", "SMA", "LORA", "NRF", "CC11", "SA518")):
+    if any(token in upper for token in ("RF", "ANT", "UFL", "SMA", "LORA", "NRF", "CC11", "SA818")):
         return "H3.5"
     if any(token in upper for token in ("AUDIO", "MIC", "SPK", "HEAD", "CODEC", "IR_", "ADC", "BACKLIGHT", "DISPLAY_BL", "CELL_SENSE")):
         return "H3.3"
@@ -187,11 +187,11 @@ def build() -> tuple[dict[Path, str], dict]:
         "all_recorded_hash_edges_are_current": bool(hash_edges) and not hash_mismatches,
         "all_16_verification_requirements_have_results": len(requirement_coverage) == 16 and {row["area"] for row in requirement_coverage} == set(area_to_artifact),
         "every_requirement_has_downstream_consumers": all(row["downstream_consumers"] for row in requirement_coverage),
-        "all_1048_h2_instance_identities_are_joined": len(instance_coverage) == instances["summary"]["registered_inventory_rows"] == 1048,
+        "all_1081_h2_instance_identities_are_joined": len(instance_coverage) == instances["summary"]["registered_inventory_rows"] == 1081,
         "every_h2_instance_has_parameter_provenance": all(row["parameter_inventory_present"] for row in instance_coverage),
         "every_h2_instance_has_h3_result": all(row["h3_results"] for row in instance_coverage),
         "every_h2_instance_has_downstream_consumer": all(row["downstream_consumers"] for row in instance_coverage),
-        "all_268_root_net_identities_are_joined": len(net_coverage) == 268,
+        "all_270_root_net_identities_are_joined": len(net_coverage) == 270,
         "root_net_identities_are_unique": len({row["net_uid"] for row in net_coverage}) == len(net_coverage),
         "every_root_net_has_h3_result": all(row["h3_result"] for row in net_coverage),
         "every_root_net_has_downstream_consumer": all(row["downstream_consumers"] for row in net_coverage),
