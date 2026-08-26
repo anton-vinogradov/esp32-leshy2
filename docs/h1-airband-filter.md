@@ -26,4 +26,4 @@ This is not the filter BOM. These rows prove that the required precision serial 
 
 H3 must find one fixed factory BOM state with extracted PCB parasitics and tolerances. If the complete mask does not close, the design returns to an exact purchased filter or a different receiver boundary; nominal compliance will not be presented as a finished result.
 
-> Exact current marker: **H1-R2.3**. H1 remains in progress.
+> Result marker: **H1-R2.3**. The current H1 marker is published on the roadmap.

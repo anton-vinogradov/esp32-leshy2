@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "id": "L2-H1-R2-POWER-001",
+  "marker": "H1-R2.4",
+  "checked_on": "2026-08-27",
+  "status": "reviewed_working_power_architecture",
+  "purpose": "Rebuild the six-domain R2 rail envelope and select a physically placed 3V3_MAIN power cell before production ECAD.",
+  "source_contract": {
+    "nvdc_sys_voltage_v": [6.0, 8.4],
+    "main_voltage_v": 3.222,
+    "minimum_continuous_a": 3.5,
+    "minimum_step_a": 4.0,
+    "one_active_signal_group": true,
+    "fpv_airband_mutually_exclusive": true
+  },
+  "six_compute_domains": [
+    {"id": "S3", "mpn": "ESP32-S3-WROOM-1U-N16R8", "main_worst_ma": 340},
+    {"id": "C5", "mpn": "ESP32-C5-WROOM-1U-N8R8", "main_worst_ma": 408},
+    {"id": "RF_RP", "mpn": "SC1512-A4", "main_worst_ma": 250},
+    {"id": "HUB_RP", "mpn": "SC1512-A4", "main_worst_ma": 250},
+    {"id": "PACK", "mpn": "MSPM0C1106SDGS20R", "rail": "AON_SAFE_3V3"},
+    {"id": "SAFETY", "mpn": "MSPM0C1106SDGS20R", "rail": "AON_SAFE_3V3"}
+  ],
+  "main_support_worst_ma": {
+    "s3_compute_memory_and_rf_peak_reservation": 340,
+    "c5_compute_memory_and_5ghz_peak_reservation": 408,
+    "rf_rp_pio_dma_io_and_stacked_flash": 250,
+    "hub_rp_fanout_pio_dma_io_and_stacked_flash": 250,
+    "display_touch_and_max_normal_backlight": 200,
+    "qualified_micro_sd_at_socket_limit": 500,
+    "codec_selectors_and_max_speaker_playback": 625,
+    "remaining_named_main_logic_controls_pullups_and_isolators": 100
+  },
+  "signal_group_loads": {
+    "NONE": {"main_ma": 0, "voice_4v_ma": 0, "active_5v_ma": 0},
+    "S3_RF": {"main_ma": 0, "voice_4v_ma": 0, "active_5v_ma": 0},
+    "C5_RF": {"main_ma": 0, "voice_4v_ma": 0, "active_5v_ma": 0},
+    "NRF24": {"main_ma": 42, "voice_4v_ma": 0, "active_5v_ma": 0},
+    "CC1101": {"main_ma": 35, "voice_4v_ma": 0, "active_5v_ma": 0},
+    "VOICE": {"main_ma": 20, "voice_4v_ma": 750, "active_5v_ma": 0},
+    "IR": {"main_ma": 70, "voice_4v_ma": 0, "active_5v_ma": 0},
+    "LORA_CAP": {"main_ma": 20, "voice_4v_ma": 0, "active_5v_ma": 1250},
+    "M5_UNIT": {"main_ma": 20, "voice_4v_ma": 0, "active_5v_ma": 1250},
+    "BROADCAST_RX": {"main_ma": 30, "voice_4v_ma": 0, "active_5v_ma": 0},
+    "AIRBAND_RX": {"main_ma": 150, "voice_4v_ma": 0, "active_5v_ma": 0},
+    "FPV_RX": {"main_ma": 70, "voice_4v_ma": 0, "active_5v_ma": 350}
+  },
+  "rail_capabilities": {
+    "AON_SAFE_3V3": {"accepted_continuous_a": 0.165, "worst_load_a": 0.0895, "unchanged_from_r1": true},
+    "3V3_MAIN": {"accepted_continuous_a": 3.75, "accepted_step_a": 4.25},
+    "VVOICE_4V": {"accepted_continuous_a": 1.25, "worst_load_a": 0.75, "unchanged_from_r1": true},
+    "5V_ACTIVE_BRANCH": {"accepted_continuous_a": 1.25, "worst_load_a": 1.25, "fpv_internal_reserve_a": 0.35, "one_branch_at_a_time": true}
+  },
+  "main_power_cell": {
+    "converter": {
+      "mpn": "TPS566231PRQFR",
+      "jlcpcb_part": "C3190178",
+      "manufacturer": "Texas Instruments",
+      "package": "VQFN-9-HR 1.5 x 2.0 mm",
+      "continuous_rating_a": 6.0,
+      "valley_current_limit_a": {"minimum": 6.1, "typical": 7.4, "maximum": 8.9},
+      "switching_frequency_khz": 600,
+      "soft_start": "internal 0.93 to 2.9 ms",
+      "diagnostic": "open-drain PG retained on the raw rail; protected TPS25974 PG remains authoritative",
+      "availability": "112 pieces, MOQ 1, USD 1.0478 at quantity 1, Extended SMT / Standard PCBA",
+      "url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS566231PRQFR/C3190178",
+      "manufacturer_url": "https://www.ti.com/product/TPS566231",
+      "datasheet_url": "https://www.ti.com/lit/gpn/TPS566231"
+    },
+    "inductor": {
+      "mpn": "PSPMAA0605H-2R2M-ANP",
+      "jlcpcb_part": "C2983088",
+      "manufacturer": "PROD Tech",
+      "package_mm": [7.1, 6.6, 5.0],
+      "inductance_uh": 2.2,
+      "tolerance_fraction": 0.2,
+      "dcr_max_ohm": 0.0135,
+      "rms_rating_a": 10.0,
+      "saturation_rating_a": 15.0,
+      "availability": "627 pieces, MOQ 1, USD 0.1735 at quantity 1, Extended SMT / Standard PCBA",
+      "url": "https://jlcpcb.com/partdetail/PRODTech-PSPMAA0605H2R2MANP/C2983088"
+    },
+    "efuse": {
+      "mpn": "TPS25974LRPWR",
+      "jlcpcb_part": "C3662931",
+      "manufacturer": "Texas Instruments",
+      "ron_thermal_envelope_ohm": 0.05,
+      "rtheta_ja_8via_c_per_w": 49.7,
+      "availability": "2,915 pieces, MOQ 1, USD 0.9763 at quantity 1, Extended SMT / Standard PCBA",
+      "url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS25974LRPWR/C3662931",
+      "datasheet_url": "https://www.ti.com/lit/ds/symlink/tps2597.pdf"
+    },
+    "efuse_threshold_resistor": {
+      "mpn": "RC0402FR-071K18L",
+      "jlcpcb_part": "C273709",
+      "manufacturer": "Yageo",
+      "resistance_ohm": 1180,
+      "tolerance_fraction": 0.01,
+      "availability": "5,864 pieces, MOQ 1, USD 0.0025 at quantity 1, Extended SMT / Standard PCBA",
+      "url": "https://jlcpcb.com/partdetail/YAGEO-RC0402FR071K18L/C273709"
+    },
+    "input_capacitors": {
+      "mpn": "GRM32ER71E226KE15L",
+      "jlcpcb_part": "C21397",
+      "manufacturer": "Murata",
+      "quantity": 3,
+      "nominal_each_uf": 22,
+      "voltage_v": 25,
+      "dielectric": "X7R",
+      "effective_minimum_gate_uf": 30,
+      "availability": "116,360 pieces, MOQ 1, USD 0.6222 at quantity 1, Extended SMT / Standard PCBA; recheck at freeze",
+      "url": "https://jlcpcb.com/partdetail/MurataElectronics-GRM32ER71E226KE15L/C21397"
+    },
+    "output_capacitors": {
+      "mpn": "GRM32ER71E226KE15L",
+      "jlcpcb_part": "C21397",
+      "manufacturer": "Murata",
+      "quantity": 3,
+      "nominal_each_uf": 22,
+      "voltage_v": 25,
+      "dielectric": "X7R",
+      "effective_minimum_gate_uf": 44,
+      "availability": "116,360 pieces, MOQ 1, USD 0.6222 at quantity 1, Extended SMT / Standard PCBA; recheck at freeze"
+    },
+    "vcc_capacitor": {
+      "mpn": "CL10B105KO8NNNC",
+      "jlcpcb_part": "C59782",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "value": "1 uF, 16 V, X7R, 0603",
+      "availability": "631,719 pieces, MOQ 1, USD 0.0210 at quantity 1"
+    },
+    "bootstrap_capacitor": {
+      "mpn": "CL05B104KB5NNNC",
+      "jlcpcb_part": "C960916",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "value": "100 nF, 50 V, X7R, 0402",
+      "availability": "754,861 pieces, MOQ 1, USD 0.0093 at quantity 1"
+    },
+    "bootstrap_link": {
+      "mpn": "RC0402JR-070RL",
+      "jlcpcb_part": "C60485",
+      "manufacturer": "Yageo",
+      "value": "0 ohm, 0402",
+      "role": "serial tuning position; fitted 0 ohm by default",
+      "availability": "4,551,848 pieces, MOQ 1, USD 0.0034 at quantity 1, Extended SMT / Standard PCBA",
+      "url": "https://jlcpcb.com/partdetail/YAGEO-RC0402JR070RL/C60485"
+    },
+    "feedback": {
+      "bottom_ohm": 10000,
+      "top_ohm": 43700,
+      "feed_forward_pf": 33,
+      "nominal_output_v": 3.222
+    }
+  },
+  "thermal_contract": {
+    "ambient_design_c": 45,
+    "converter_junction_design_c": 105,
+    "converter_rtheta_ja_effective_c_per_w": 44,
+    "converter_layout_basis": "four-layer PCB, maximum ground plane, short SW loop, multiple VIN/PGND vias and same-layer inductor/capacitors per TI",
+    "efuse_junction_design_c": 105,
+    "inductor_temperature_rise_rating_c": 40,
+    "h3_required_evidence": [
+      "DC-bias, tolerance and temperature effective capacitance at 6.0-8.4 V input and 3.222 V output",
+      "WEBENCH or equivalent switching-loss model at 2.823-A worst enumerated load and 3.75-A admission limit",
+      "extracted switch-loop and power-plane parasitics",
+      "0.1-to-4.25-A load-step simulation and protected-rail droop",
+      "board-plus-enclosure thermal solution and sensor-map update"
+    ]
+  },
+  "placement_contract": {
+    "source": "hardware/product-design/h1-r2-placement.json",
+    "one_device_per_body": true,
+    "old_r1_bodies_replaced": ["main_buck", "main_inductor", "main_input_cap", "main_output_cap0", "main_output_cap1"],
+    "same_face_collision_limit": 0,
+    "minimum_opposing_clearance_mm": 0.7
+  },
+  "decision": {
+    "accepted": "TPS566231PRQFR plus PSPMAA0605H-2R2M-ANP and the retained TPS25974 protection path form the H1-R2 working 3V3_MAIN cell.",
+    "cost_effect": "The active conversion/protection cell remains below USD 2.25 at quantity one before passives; the functional upgrade is not a dramatic BOM expansion.",
+    "not_authorized": "This H1 result does not authorize production ECAD, PCB routing or order. H3 dynamic/thermal evidence and the remaining H1 physical gates still apply."
+  }
+}

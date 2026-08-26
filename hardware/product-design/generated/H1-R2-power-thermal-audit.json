@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "marker": "H1-R2.4",
+  "status": "pass_architecture_with_h3_dynamic_thermal_gate",
+  "support_worst_ma": 2673,
+  "groups": [
+    {
+      "group": "NONE",
+      "main_ma": 2673,
+      "voice_4v_ma": 0,
+      "active_5v_ma": 0
+    },
+    {
+      "group": "S3_RF",
+      "main_ma": 2673,
+      "voice_4v_ma": 0,
+      "active_5v_ma": 0
+    },
+    {
+      "group": "C5_RF",
+      "main_ma": 2673,
+      "voice_4v_ma": 0,
+      "active_5v_ma": 0
+    },
+    {
+      "group": "NRF24",
+      "main_ma": 2715,
+      "voice_4v_ma": 0,
+      "active_5v_ma": 0
+    },
+    {
+      "group": "CC1101",
+      "main_ma": 2708,
+      "voice_4v_ma": 0,
+      "active_5v_ma": 0
+    },
+    {
+      "group": "VOICE",
+      "main_ma": 2693,
+      "voice_4v_ma": 750,
+      "active_5v_ma": 0
+    },
+    {
+      "group": "IR",
+      "main_ma": 2743,
+      "voice_4v_ma": 0,
+      "active_5v_ma": 0
+    },
+    {
+      "group": "LORA_CAP",
+      "main_ma": 2693,
+      "voice_4v_ma": 0,
+      "active_5v_ma": 1250
+    },
+    {
+      "group": "M5_UNIT",
+      "main_ma": 2693,
+      "voice_4v_ma": 0,
+      "active_5v_ma": 1250
+    },
+    {
+      "group": "BROADCAST_RX",
+      "main_ma": 2703,
+      "voice_4v_ma": 0,
+      "active_5v_ma": 0
+    },
+    {
+      "group": "AIRBAND_RX",
+      "main_ma": 2823,
+      "voice_4v_ma": 0,
+      "active_5v_ma": 0
+    },
+    {
+      "group": "FPV_RX",
+      "main_ma": 2743,
+      "voice_4v_ma": 0,
+      "active_5v_ma": 350
+    }
+  ],
+  "worst_main_group": {
+    "group": "AIRBAND_RX",
+    "main_ma": 2823,
+    "voice_4v_ma": 0,
+    "active_5v_ma": 0
+  },
+  "main_margin": {
+    "accepted_continuous_a": 3.75,
+    "accepted_step_a": 4.25,
+    "worst_load_a": 2.823,
+    "continuous_margin_a": 0.927,
+    "continuous_margin_percent_of_load": 32.84
+  },
+  "efuse_threshold_a": {
+    "nominal": 4.8703,
+    "guaranteed_minimum": 4.3399,
+    "guaranteed_maximum": 5.4115
+  },
+  "switching_cell": {
+    "inductor_ripple_at_8v4_a": 1.5046,
+    "inductor_peak_at_worst_load_a": 3.5753,
+    "inductor_peak_at_admitted_step_a": 5.0023
+  },
+  "thermal_bounds": {
+    "allowed_converter_loss_w": 1.3636,
+    "required_converter_efficiency_at_worst": 0.8696,
+    "required_converter_efficiency_at_admitted_continuous": 0.8986,
+    "efuse_loss_at_worst_w": 0.3985,
+    "efuse_loss_at_admitted_continuous_w": 0.7031,
+    "efuse_junction_at_worst_c": 64.8,
+    "efuse_junction_at_admitted_continuous_c": 79.95,
+    "inductor_copper_loss_at_worst_w": 0.1076,
+    "inductor_copper_loss_at_admitted_continuous_w": 0.1898,
+    "inductor_estimated_rise_at_admitted_continuous_c": 5.62,
+    "interpretation": "converter efficiency is an H3 pass threshold, not a predicted value; eFuse and inductor figures are conservative H1 bounds"
+  },
+  "checks": {
+    "six_compute_domains_present": true,
+    "all_signal_groups_enumerated": true,
+    "h0_continuous_minimum_met": true,
+    "h0_step_minimum_met": true,
+    "worst_load_within_admitted_continuous": true,
+    "efuse_guaranteed_low_above_step": true,
+    "efuse_high_below_converter_low_limit": true,
+    "inductor_peak_below_saturation_rating": true,
+    "inductor_rms_above_admission": true,
+    "converter_efficiency_gate_is_realistic_not_claimed": true,
+    "efuse_thermal_bound_below_design_junction": true,
+    "placed_power_cell_has_no_collision": true
+  },
+  "failures": [],
+  "h3_required_evidence": [
+    "DC-bias, tolerance and temperature effective capacitance at 6.0-8.4 V input and 3.222 V output",
+    "WEBENCH or equivalent switching-loss model at 2.823-A worst enumerated load and 3.75-A admission limit",
+    "extracted switch-loop and power-plane parasitics",
+    "0.1-to-4.25-A load-step simulation and protected-rail droop",
+    "board-plus-enclosure thermal solution and sensor-map update"
+  ]
+}

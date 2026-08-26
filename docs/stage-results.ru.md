@@ -20,14 +20,16 @@
 <a id="h1"></a>
 ## ⭐ H1 · Физический дизайн устройства
 
-**Статус:** ▶️ сейчас `H1-R2.3`; результат R1 сохранён как evidence, а не как текущая приёмка.
+**Статус:** ▶️ сейчас `H1-R2.4`; результат R1 сохранён как evidence, а не как текущая приёмка.
 
-- [Текущее физическое размещение H1-R2.3](h1-r2-physical-layout.ru.md) — новые
+- [Текущее физическое размещение H1-R2.4](h1-r2-physical-layout.ru.md) — новые
   Hub, Airband и корпуса/резервы аналогового FPV в общей системе координат,
   с генерируемыми проверками коллизий и встречного зазора.
-- [Машинный аудит размещения H1-R2.3](../hardware/product-design/generated/H1-R2-placement-audit.json).
+- [Машинный аудит размещения H1-R2.4](../hardware/product-design/generated/H1-R2-placement-audit.json).
 - [Проверка реализуемости фильтра Airband](h1-airband-filter.ru.md) и её
   [машинный аудит](../hardware/product-design/generated/H1-Airband-filter-audit.json).
+- [Rail/thermal-архитектура шести доменов](h1-r2-power-thermal.ru.md) и её
+  [машинный аудит](../hardware/product-design/generated/H1-R2-power-thermal-audit.json).
 
 Сохранённые входы R1, которые пересобираются:
 
@@ -44,7 +46,7 @@
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD-схема
 
-**Статус:** ✅ текущая ревизия проведена ревью и принята пользователем 26 августа 2026 года.
+**Статус:** ⏳ Evidence R1 сохранено; production-схема R2 ждёт закрытия H1-R2.
 
 - [Публичная страница схем](schematics.ru.md) — принципиальные диаграммы и
   ссылки на текущие native KiCad-листы.

@@ -211,7 +211,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     lines = [title, '', intro, '', '![Airband filter feasibility](images/h1-airband-filter.svg)', '', result_heading, '', *bullets, '', factory, '', note, '', '| Exact MPN | JLCPCB | Value | Current route |', '|---|---|---|---|']
     for row in model['factory_feasibility_witnesses']:
         lines.append(f'| `{row["mpn"]}` | [`{row["jlcpcb_part"]}`]({row["url"]}) | {row["value"]} | {row["availability"]} |')
-    lines.extend(['', next_heading, '', next_text, '', f'> Exact current marker: **{model["marker"]}**. H1 remains in progress.' if not ru else f'> Точный текущий маркер: **{model["marker"]}**. H1 продолжается.', ''])
+    lines.extend(['', next_heading, '', next_text, '', f'> Result marker: **{model["marker"]}**. The current H1 marker is published on the roadmap.' if not ru else f'> Маркер результата: **{model["marker"]}**. Текущий маркер H1 опубликован в роадмапе.', ''])
     return '\n'.join(lines)
 
 

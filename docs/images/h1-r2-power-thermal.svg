@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760">
+<rect width="1280" height="760" fill="#ffffff"/>
+<text x="36" y="38" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · H1-R2.4 rail and thermal architecture</text>
+<text x="36" y="65" font-family="sans-serif" font-size="13" fill="#526076">Every box is one exact device or one named rail; H3 still proves dynamic and enclosure behaviour.</text>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2563eb"/></marker></defs>
+<rect x="40" y="105" width="180" height="82" rx="9" fill="#e0f2fe" stroke="#2563eb" stroke-width="2"/>
+<text x="130.0" y="137" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">NVDC_SYS</text>
+<text x="130.0" y="161" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#526076">6.0–8.4 V source</text>
+<rect x="260" y="105" width="220" height="82" rx="9" fill="#eef2ff" stroke="#2563eb" stroke-width="2"/>
+<text x="370.0" y="137" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">TPS566231PRQFR</text>
+<text x="370.0" y="161" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#526076">6-A buck · C3190178</text>
+<path d="M 220 146 L 250 146" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="520" y="105" width="230" height="82" rx="9" fill="#eef2ff" stroke="#2563eb" stroke-width="2"/>
+<text x="635.0" y="137" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">PSPMAA0605H-2R2M-ANP</text>
+<text x="635.0" y="161" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#526076">2.2 µH · 10 A RMS / 15 A sat</text>
+<path d="M 480 146 L 510 146" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="790" y="105" width="210" height="82" rx="9" fill="#eef2ff" stroke="#2563eb" stroke-width="2"/>
+<text x="895.0" y="137" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">TPS25974LRPWR</text>
+<text x="895.0" y="161" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#526076">4.34-A guaranteed-low trip</text>
+<path d="M 750 146 L 780 146" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1040" y="105" width="200" height="82" rx="9" fill="#e0f2fe" stroke="#2563eb" stroke-width="2"/>
+<text x="1140.0" y="137" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">3V3_MAIN</text>
+<text x="1140.0" y="161" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#526076">3.75 A continuous / 4.25 A step</text>
+<path d="M 1000 146 L 1030 146" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="36" y="245" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Enumerated 3V3_MAIN worst cases</text>
+<line x1="445" y1="228" x2="445" y2="555" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="445" y="220" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#526076">3.75-A admission</text>
+<text x="38" y="281" font-family="sans-serif" font-size="10.5" fill="#334155">AIRBAND_RX</text>
+<rect x="145" y="270" width="225.84" height="14" rx="3" fill="#16a34a"/>
+<text x="376.84" y="281" font-family="sans-serif" font-size="10" fill="#334155">2.823 A</text>
+<text x="38" y="305" font-family="sans-serif" font-size="10.5" fill="#334155">IR</text>
+<rect x="145" y="294" width="219.44" height="14" rx="3" fill="#60a5fa"/>
+<text x="370.44" y="305" font-family="sans-serif" font-size="10" fill="#334155">2.743 A</text>
+<text x="38" y="329" font-family="sans-serif" font-size="10.5" fill="#334155">FPV_RX</text>
+<rect x="145" y="318" width="219.44" height="14" rx="3" fill="#60a5fa"/>
+<text x="370.44" y="329" font-family="sans-serif" font-size="10" fill="#334155">2.743 A</text>
+<text x="38" y="353" font-family="sans-serif" font-size="10.5" fill="#334155">NRF24</text>
+<rect x="145" y="342" width="217.20" height="14" rx="3" fill="#60a5fa"/>
+<text x="368.20" y="353" font-family="sans-serif" font-size="10" fill="#334155">2.715 A</text>
+<text x="38" y="377" font-family="sans-serif" font-size="10.5" fill="#334155">CC1101</text>
+<rect x="145" y="366" width="216.64" height="14" rx="3" fill="#60a5fa"/>
+<text x="367.64" y="377" font-family="sans-serif" font-size="10" fill="#334155">2.708 A</text>
+<text x="38" y="401" font-family="sans-serif" font-size="10.5" fill="#334155">BROADCAST_RX</text>
+<rect x="145" y="390" width="216.24" height="14" rx="3" fill="#60a5fa"/>
+<text x="367.24" y="401" font-family="sans-serif" font-size="10" fill="#334155">2.703 A</text>
+<text x="38" y="425" font-family="sans-serif" font-size="10.5" fill="#334155">VOICE</text>
+<rect x="145" y="414" width="215.44" height="14" rx="3" fill="#60a5fa"/>
+<text x="366.44" y="425" font-family="sans-serif" font-size="10" fill="#334155">2.693 A</text>
+<text x="38" y="449" font-family="sans-serif" font-size="10.5" fill="#334155">LORA_CAP</text>
+<rect x="145" y="438" width="215.44" height="14" rx="3" fill="#60a5fa"/>
+<text x="366.44" y="449" font-family="sans-serif" font-size="10" fill="#334155">2.693 A</text>
+<text x="38" y="473" font-family="sans-serif" font-size="10.5" fill="#334155">M5_UNIT</text>
+<rect x="145" y="462" width="215.44" height="14" rx="3" fill="#60a5fa"/>
+<text x="366.44" y="473" font-family="sans-serif" font-size="10" fill="#334155">2.693 A</text>
+<text x="38" y="497" font-family="sans-serif" font-size="10.5" fill="#334155">NONE</text>
+<rect x="145" y="486" width="213.84" height="14" rx="3" fill="#60a5fa"/>
+<text x="364.84" y="497" font-family="sans-serif" font-size="10" fill="#334155">2.673 A</text>
+<text x="38" y="521" font-family="sans-serif" font-size="10.5" fill="#334155">S3_RF</text>
+<rect x="145" y="510" width="213.84" height="14" rx="3" fill="#60a5fa"/>
+<text x="364.84" y="521" font-family="sans-serif" font-size="10" fill="#334155">2.673 A</text>
+<text x="38" y="545" font-family="sans-serif" font-size="10.5" fill="#334155">C5_RF</text>
+<rect x="145" y="534" width="213.84" height="14" rx="3" fill="#60a5fa"/>
+<text x="364.84" y="545" font-family="sans-serif" font-size="10" fill="#334155">2.673 A</text>
+<text x="520" y="245" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Electrical result</text>
+<text x="520" y="277" font-family="sans-serif" font-size="12" fill="#166534">✓ worst group: AIRBAND_RX · 2.823 A</text>
+<text x="520" y="301" font-family="sans-serif" font-size="12" fill="#166534">✓ continuous margin: 0.927 A · 32.8%</text>
+<text x="520" y="325" font-family="sans-serif" font-size="12" fill="#166534">✓ eFuse guaranteed: 4.340–5.412 A</text>
+<text x="520" y="349" font-family="sans-serif" font-size="12" fill="#166534">✓ step peak in inductor: 5.002 A</text>
+<text x="520" y="397" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Thermal admission</text>
+<text x="520" y="429" font-family="sans-serif" font-size="12" fill="#166534">✓ eFuse at 3.75 A / 45°C ambient: 80.0°C bound</text>
+<text x="520" y="453" font-family="sans-serif" font-size="12" fill="#166534">✓ inductor estimated rise at 3.75 A: 5.6°C</text>
+<text x="520" y="477" font-family="sans-serif" font-size="12" fill="#b45309">H3 gate: converter efficiency ≥ 89.9%</text>
+<text x="520" y="501" font-family="sans-serif" font-size="12" fill="#b45309">H3 gate: effective input/output C ≥ 30 / 44 µF</text>
+<text x="520" y="549" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Physical result</text>
+<text x="520" y="581" font-family="sans-serif" font-size="12" fill="#166534">✓ exact bodies fit without same-face or opposing collision</text>
+<text x="520" y="605" font-family="sans-serif" font-size="12" fill="#526076">3×22 µF input + 3×22 µF output are individually placed.</text>
+<text x="36" y="714" font-family="sans-serif" font-size="11" fill="#526076">H1 accepts the architecture and physical envelopes. H3 closes effective capacitance, switching loss, load-step response and enclosure thermal behaviour.</text>
+</svg>

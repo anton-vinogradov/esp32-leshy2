@@ -4,8 +4,9 @@
 
 > Current baseline: [H0-R2](h0-r2-functional-architecture.md). The R1 pin,
 > interconnect and ECAD pages linked below are retained inputs and are being
-> regenerated at H1-R2.3. The [current physical projection](h1-r2-physical-layout.md)
-> is collision-tested but incomplete; neither artifact authorizes R2 PCB routing.
+> regenerated at H1-R2.4. The [current physical projection](h1-r2-physical-layout.md)
+> and [rail/thermal architecture](h1-r2-power-thermal.md) are collision- and
+> capacity-tested but incomplete; neither artifact authorizes R2 PCB routing.
 
 ## Principle component interconnections
 

@@ -65,11 +65,18 @@ def audit(model: dict, base: dict) -> dict:
                 errors.append(f"{item['id']} leaves the PCB outline")
 
     fixed = [x for x in new if x["item"]["kind"] == "fixed_body"]
+    replaced = {
+        instance
+        for entry in new
+        for instance in entry["item"].get("replaces", [])
+    }
     same_face = []
     for entry in fixed:
         item, b = entry["item"], entry["bbox"]
         for row in base["rows"]:
             if row["source_frame"] != item["frame"]:
+                continue
+            if row["instance"] in replaced:
                 continue
             if overlaps(b, row["world_bbox_mm"]):
                 same_face.append([item["id"], row["instance"]])
@@ -90,6 +97,8 @@ def audit(model: dict, base: dict) -> dict:
         for row in base["rows"]:
             if row["source_frame"] != opposite or not overlaps(b, row["world_bbox_mm"]):
                 continue
+            if row["instance"] in replaced:
+                continue
             gap = z_clearance(b, row["world_bbox_mm"])
             cross.append({"new": item["id"], "base": row["instance"], "clearance_mm": round(gap, 3)})
             if gap < minimum:
@@ -102,6 +111,7 @@ def audit(model: dict, base: dict) -> dict:
         "base_model": model["base_model"],
         "new_fixed_body_count": len(fixed),
         "new_reserve_count": sum(x["item"]["kind"] == "reserve" for x in new),
+        "replaced_seed_instances": sorted(replaced),
         "same_face_collisions": same_face,
         "opposing_overlap_count": len(cross),
         "minimum_opposing_clearance_mm": min_cross,
@@ -124,6 +134,7 @@ def audit(model: dict, base: dict) -> dict:
 
 
 def render_svg(model: dict, base: dict, result: dict) -> str:
+    height = max(850, 220 + len(model["placements"]) * 59)
     scale = 3.20
     ox = {"ui-inner": 70.0, "rf-inner": 410.0}
     oy = 122.0
@@ -142,8 +153,8 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
         return f'<rect x="{x:.2f}" y="{y:.2f}" width="{w:.2f}" height="{h:.2f}" {tail}/>'
 
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="850" viewBox="0 0 1380 850">',
-        '<rect width="1380" height="850" fill="#ffffff"/>',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="{height}" viewBox="0 0 1380 {height}">',
+        f'<rect width="1380" height="{height}" fill="#ffffff"/>',
         f'<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · {esc(model["marker"])} inner placement</text>',
         '<text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · RF board is mirrored · numbered marks are documentation, never inner-face silkscreen.</text>',
     ]
@@ -153,6 +164,8 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
         out.append(rect(x0, oy, board_w * scale, board_h * scale, fill="#f8fafc", stroke="#334155", stroke_width="2"))
         for row in base["rows"]:
             if row["source_frame"] != frame:
+                continue
+            if row["instance"] in set(result["replaced_seed_instances"]):
                 continue
             b = row["world_bbox_mm"]
             x = b["x"][0]

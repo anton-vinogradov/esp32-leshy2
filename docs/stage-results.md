@@ -20,14 +20,16 @@ are satisfied.
 <a id="h1"></a>
 ## ⭐ H1 · Physical product design
 
-**Status:** ▶️ current at `H1-R2.3`; R1 result is retained evidence, not current acceptance.
+**Status:** ▶️ current at `H1-R2.4`; R1 result is retained evidence, not current acceptance.
 
-- [Current H1-R2.3 physical placement](h1-r2-physical-layout.md) — new Hub,
+- [Current H1-R2.4 physical placement](h1-r2-physical-layout.md) — new Hub,
   Airband and analog-FPV bodies/reserves in the shared coordinate model, with
   generated collision and opposing-clearance evidence.
-- [Machine H1-R2.3 placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json).
+- [Machine H1-R2.4 placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json).
 - [Airband filter feasibility](h1-airband-filter.md) and its
   [machine audit](../hardware/product-design/generated/H1-Airband-filter-audit.json).
+- [Six-domain rail and thermal architecture](h1-r2-power-thermal.md) and its
+  [machine audit](../hardware/product-design/generated/H1-R2-power-thermal-audit.json).
 
 Retained R1 inputs being regenerated:
 
@@ -44,7 +46,7 @@ Retained R1 inputs being regenerated:
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD schematic
 
-**Status:** ✅ current revision reviewed and accepted by the user on 26 August 2026.
+**Status:** ⏳ R1 evidence retained; the R2 production schematic waits for H1-R2 to close.
 
 - [Public schematics](schematics.md) — principle diagrams and current native
   KiCad sheet links.

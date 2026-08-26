@@ -1,12 +1,19 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.3",
+  "marker": "H1-R2.4",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
-  "new_fixed_body_count": 6,
+  "new_fixed_body_count": 17,
   "new_reserve_count": 3,
+  "replaced_seed_instances": [
+    "main_buck",
+    "main_inductor",
+    "main_input_cap",
+    "main_output_cap0",
+    "main_output_cap1"
+  ],
   "same_face_collisions": [],
-  "opposing_overlap_count": 30,
+  "opposing_overlap_count": 26,
   "minimum_opposing_clearance_mm": 2.44,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
@@ -37,23 +44,8 @@
     },
     {
       "new": "airband_lna",
-      "base": "main_inductor",
-      "clearance_mm": 6.5
-    },
-    {
-      "new": "airband_lna",
       "base": "voice_inductor",
       "clearance_mm": 6.5
-    },
-    {
-      "new": "airband_mixer",
-      "base": "main_buck",
-      "clearance_mm": 9.6
-    },
-    {
-      "new": "airband_mixer",
-      "base": "main_inductor",
-      "clearance_mm": 7.2
     },
     {
       "new": "airband_filter_reserve",
@@ -126,26 +118,6 @@
       "clearance_mm": 8.2
     },
     {
-      "new": "airband_filter_reserve",
-      "base": "main_inductor",
-      "clearance_mm": 6.8
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "main_input_cap",
-      "clearance_mm": 7.1
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "main_output_cap0",
-      "clearance_mm": 7.1
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "main_output_cap1",
-      "clearance_mm": 7.1
-    },
-    {
       "new": "fpv_decoder",
       "base": "display_connector",
       "clearance_mm": 7.85
@@ -159,6 +131,21 @@
       "new": "fpv_receiver_bay",
       "base": "display_connector",
       "clearance_mm": 6.05
+    },
+    {
+      "new": "main_input_cap0_r2",
+      "base": "receiver",
+      "clearance_mm": 6.55
+    },
+    {
+      "new": "main_input_cap1_r2",
+      "base": "receiver",
+      "clearance_mm": 6.55
+    },
+    {
+      "new": "main_input_cap2_r2",
+      "base": "receiver",
+      "clearance_mm": 6.55
     }
   ],
   "errors": [],
@@ -167,7 +154,6 @@
     "prove manual-assembly accessibility and the enclosure side opening around the exact MMCX body",
     "close the H1-R2.3 Airband candidate with extracted PCB parasitics and one fixed factory BOM state; nominal finite-Q compliance is retained only as feasibility evidence",
     "select the exact post-installed 5.8-GHz FPV antenna and give it the same code-plus-colour identification used by the other antenna-kit items",
-    "rebuild the complete six-domain rail and thermal matrix",
     "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
   ],
   "placements": [
@@ -378,6 +364,237 @@
         "z": [
           15.8,
           19.8
+        ]
+      }
+    },
+    {
+      "id": "main_buck_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "TPS566231PRQFR",
+      "role": "6-A 3V3_MAIN synchronous buck with raw-rail Power-Good",
+      "world_bbox_mm": {
+        "x": [
+          53.5,
+          55.5
+        ],
+        "y": [
+          61.0,
+          62.5
+        ],
+        "z": [
+          14.8,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "main_inductor_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "PSPMAA0605H-2R2M-ANP",
+      "role": "2.2-uH, 10-A RMS / 15-A saturation 3V3_MAIN inductor",
+      "world_bbox_mm": {
+        "x": [
+          49.5,
+          56.6
+        ],
+        "y": [
+          63.2,
+          69.8
+        ],
+        "z": [
+          10.8,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "main_input_cap0_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "GRM32ER71E226KE15L",
+      "role": "first local 22-uF / 25-V X7R main-buck input capacitor",
+      "world_bbox_mm": {
+        "x": [
+          53.0,
+          56.2
+        ],
+        "y": [
+          57.5,
+          60.0
+        ],
+        "z": [
+          13.100000000000001,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "main_input_cap1_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "GRM32ER71E226KE15L",
+      "role": "second local 22-uF / 25-V X7R main-buck input capacitor",
+      "world_bbox_mm": {
+        "x": [
+          56.5,
+          59.7
+        ],
+        "y": [
+          57.5,
+          60.0
+        ],
+        "z": [
+          13.100000000000001,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "main_input_cap2_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "GRM32ER71E226KE15L",
+      "role": "third local 22-uF / 25-V X7R main-buck input capacitor",
+      "world_bbox_mm": {
+        "x": [
+          60.0,
+          63.2
+        ],
+        "y": [
+          57.5,
+          60.0
+        ],
+        "z": [
+          13.100000000000001,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "main_output_cap0_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "GRM32ER71E226KE15L",
+      "role": "first local 22-uF / 25-V X7R main-buck output capacitor",
+      "world_bbox_mm": {
+        "x": [
+          48.5,
+          51.7
+        ],
+        "y": [
+          70.4,
+          72.9
+        ],
+        "z": [
+          13.100000000000001,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "main_output_cap1_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "GRM32ER71E226KE15L",
+      "role": "second local 22-uF / 25-V X7R main-buck output capacitor",
+      "world_bbox_mm": {
+        "x": [
+          52.0,
+          55.2
+        ],
+        "y": [
+          70.4,
+          72.9
+        ],
+        "z": [
+          13.100000000000001,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "main_output_cap2_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "GRM32ER71E226KE15L",
+      "role": "third local 22-uF / 25-V X7R main-buck output capacitor",
+      "world_bbox_mm": {
+        "x": [
+          55.5,
+          58.7
+        ],
+        "y": [
+          70.4,
+          72.9
+        ],
+        "z": [
+          13.100000000000001,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "main_vcc_cap_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "CL10B105KO8NNNC",
+      "role": "1-uF TPS566231P VCC decoupling capacitor",
+      "world_bbox_mm": {
+        "x": [
+          56.0,
+          57.6
+        ],
+        "y": [
+          61.1,
+          61.9
+        ],
+        "z": [
+          15.0,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "main_bst_cap_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "CL05B104KB5NNNC",
+      "role": "100-nF TPS566231P bootstrap capacitor",
+      "world_bbox_mm": {
+        "x": [
+          51.4,
+          52.4
+        ],
+        "y": [
+          61.2,
+          61.7
+        ],
+        "z": [
+          15.3,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "main_bst_resistor_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "RC0402JR-070RL",
+      "role": "0-ohm serial bootstrap link retained for EMI tuning",
+      "world_bbox_mm": {
+        "x": [
+          50.0,
+          51.0
+        ],
+        "y": [
+          61.2,
+          61.7
+        ],
+        "z": [
+          15.4,
+          15.8
         ]
       }
     }

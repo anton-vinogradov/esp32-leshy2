@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.3",
+  "marker": "H1-R2.4",
   "checked_on": "2026-08-27",
   "purpose": "Place the new R2 Hub, Airband and analog-FPV bodies in the accepted 75 x 150 mm two-board coordinate system before any R2 KiCad work.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -84,6 +84,113 @@
       "availability_ru": "2 225 шт., MOQ/кратность 5, $0.2413 при количестве 5; JLC указывает Economic и Standard SMT assembly",
       "url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS7A2018PDBVR/C963430",
       "supply_url": "https://www.lcsc.com/product-detail/C963430.html",
+      "checked": "2026-08-27",
+      "accepted": true
+    },
+    {
+      "role": "3V3_MAIN 6-A synchronous buck with protected diagnostic PG",
+      "role_ru": "6-А синхронный преобразователь 3V3_MAIN с диагностическим PG",
+      "mpn": "TPS566231PRQFR",
+      "jlcpcb_part": "C3190178",
+      "manufacturer": "Texas Instruments",
+      "assembly": "Extended SMT; Standard PCBA",
+      "selection_status": "accepted H1-R2 working selection; dynamic and thermal closure remains H3",
+      "selection_status_ru": "принят для H1-R2; динамика и тепло закрываются в H3",
+      "availability": "112 pieces, MOQ 1, USD 1.0478 at quantity 1",
+      "availability_ru": "112 шт., MOQ 1, $1.0478 при количестве 1",
+      "url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS566231PRQFR/C3190178",
+      "manufacturer_url": "https://www.ti.com/product/TPS566231",
+      "checked": "2026-08-27",
+      "accepted": true
+    },
+    {
+      "role": "3V3_MAIN 2.2-uH high-current shielded inductor",
+      "role_ru": "силовой экранированный дроссель 2,2 мкГн для 3V3_MAIN",
+      "mpn": "PSPMAA0605H-2R2M-ANP",
+      "jlcpcb_part": "C2983088",
+      "manufacturer": "PROD Tech",
+      "assembly": "Extended SMT; Standard PCBA",
+      "selection_status": "accepted H1-R2 working selection; 10-A RMS and 15-A saturation ratings",
+      "selection_status_ru": "принят для H1-R2; рейтинги 10 А RMS и 15 А насыщения",
+      "availability": "627 pieces, MOQ 1, USD 0.1735 at quantity 1",
+      "availability_ru": "627 шт., MOQ 1, $0.1735 при количестве 1",
+      "url": "https://jlcpcb.com/partdetail/PRODTech-PSPMAA0605H2R2MANP/C2983088",
+      "datasheet_url": "https://datasheet.lcsc.com/lcsc/2410121508_PROD-Tech-PSPMAA1265H-8R2M-ANF_C5273818.pdf",
+      "checked": "2026-08-27",
+      "accepted": true
+    },
+    {
+      "role": "3V3_MAIN eFuse threshold resistor",
+      "role_ru": "резистор порога eFuse шины 3V3_MAIN",
+      "mpn": "RC0402FR-071K18L",
+      "jlcpcb_part": "C273709",
+      "manufacturer": "Yageo",
+      "assembly": "Extended SMT; Standard PCBA",
+      "selection_status": "accepted H1-R2 working selection; 4.870-A nominal and 4.340-A guaranteed-low threshold",
+      "selection_status_ru": "принят для H1-R2; номинальный порог 4,870 А, гарантированный минимум 4,340 А",
+      "availability": "5,864 pieces, MOQ 1, USD 0.0025 at quantity 1",
+      "availability_ru": "5 864 шт., MOQ 1, $0.0025 при количестве 1",
+      "url": "https://jlcpcb.com/partdetail/YAGEO-RC0402FR071K18L/C273709",
+      "checked": "2026-08-27",
+      "accepted": true
+    },
+    {
+      "role": "TPS566231P VCC decoupling capacitor",
+      "role_ru": "развязывающий конденсатор VCC для TPS566231P",
+      "mpn": "CL10B105KO8NNNC",
+      "jlcpcb_part": "C59782",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "assembly": "Extended SMT; Standard PCBA",
+      "selection_status": "accepted H1-R2 working selection",
+      "selection_status_ru": "принят для H1-R2",
+      "availability": "631,719 pieces, MOQ 1, USD 0.0210 at quantity 1",
+      "availability_ru": "631 719 шт., MOQ 1, $0.0210 при количестве 1",
+      "url": "https://jlcpcb.com/partdetail/SamsungElectroMechanics-CL10B105KO8NNNC/C59782",
+      "checked": "2026-08-27",
+      "accepted": true
+    },
+    {
+      "role": "TPS566231P bootstrap and local high-frequency decoupling capacitor",
+      "role_ru": "bootstrap- и локальный высокочастотный конденсатор TPS566231P",
+      "mpn": "CL05B104KB5NNNC",
+      "jlcpcb_part": "C960916",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "assembly": "Extended SMT; Standard PCBA",
+      "selection_status": "accepted H1-R2 working selection",
+      "selection_status_ru": "принят для H1-R2",
+      "availability": "754,861 pieces, MOQ 1, USD 0.0093 at quantity 1",
+      "availability_ru": "754 861 шт., MOQ 1, $0.0093 при количестве 1",
+      "url": "https://jlcpcb.com/partdetail/SamsungElectroMechanics-CL05B104KB5NNNC/C960916",
+      "checked": "2026-08-27",
+      "accepted": true
+    },
+    {
+      "role": "3V3_MAIN input/output bulk capacitor",
+      "role_ru": "входной/выходной bulk-конденсатор 3V3_MAIN",
+      "mpn": "GRM32ER71E226KE15L",
+      "jlcpcb_part": "C21397",
+      "manufacturer": "Murata Electronics",
+      "assembly": "Extended SMT; Standard PCBA",
+      "selection_status": "accepted physical body and working nominal; H3 proves effective capacitance after bias/temperature/tolerance",
+      "selection_status_ru": "приняты корпус и рабочий номинал; H3 доказывает эффективную ёмкость с bias/температурой/допуском",
+      "availability": "116,360 pieces, MOQ 1, USD 0.6222 at quantity 1",
+      "availability_ru": "116 360 шт., MOQ 1, $0.6222 при количестве 1",
+      "url": "https://jlcpcb.com/partdetail/MurataElectronics-GRM32ER71E226KE15L/C21397",
+      "checked": "2026-08-27",
+      "accepted": true
+    },
+    {
+      "role": "TPS566231P serial bootstrap tuning link",
+      "role_ru": "последовательная bootstrap-перемычка настройки TPS566231P",
+      "mpn": "RC0402JR-070RL",
+      "jlcpcb_part": "C60485",
+      "manufacturer": "Yageo",
+      "assembly": "Extended SMT; Standard PCBA",
+      "selection_status": "accepted fitted 0-ohm default",
+      "selection_status_ru": "принята штатно установленная перемычка 0 Ом",
+      "availability": "4,551,848 pieces, MOQ 1, USD 0.0034 at quantity 1",
+      "availability_ru": "4 551 848 шт., MOQ 1, $0.0034 при количестве 1",
+      "url": "https://jlcpcb.com/partdetail/YAGEO-RC0402JR070RL/C60485",
       "checked": "2026-08-27",
       "accepted": true
     }
@@ -196,6 +303,121 @@
         "pin_projection_below_board_mm": 2.8
       },
       "direction": "right side of the finished device"
+    },
+    {
+      "id": "main_buck_r2",
+      "drawing_ref": "8",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "TPS566231PRQFR",
+      "role": "6-A 3V3_MAIN synchronous buck with raw-rail Power-Good",
+      "world_xy_mm": [53.5, 61.0],
+      "size_mm": [2.0, 1.5, 1.0],
+      "replaces": ["main_buck"]
+    },
+    {
+      "id": "main_inductor_r2",
+      "drawing_ref": "9",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "PSPMAA0605H-2R2M-ANP",
+      "role": "2.2-uH, 10-A RMS / 15-A saturation 3V3_MAIN inductor",
+      "world_xy_mm": [49.5, 63.2],
+      "size_mm": [7.1, 6.6, 5.0],
+      "replaces": ["main_inductor"]
+    },
+    {
+      "id": "main_input_cap0_r2",
+      "drawing_ref": "10",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "GRM32ER71E226KE15L",
+      "role": "first local 22-uF / 25-V X7R main-buck input capacitor",
+      "world_xy_mm": [53.0, 57.5],
+      "size_mm": [3.2, 2.5, 2.7],
+      "replaces": ["main_input_cap"]
+    },
+    {
+      "id": "main_input_cap1_r2",
+      "drawing_ref": "11",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "GRM32ER71E226KE15L",
+      "role": "second local 22-uF / 25-V X7R main-buck input capacitor",
+      "world_xy_mm": [56.5, 57.5],
+      "size_mm": [3.2, 2.5, 2.7]
+    },
+    {
+      "id": "main_input_cap2_r2",
+      "drawing_ref": "12",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "GRM32ER71E226KE15L",
+      "role": "third local 22-uF / 25-V X7R main-buck input capacitor",
+      "world_xy_mm": [60.0, 57.5],
+      "size_mm": [3.2, 2.5, 2.7]
+    },
+    {
+      "id": "main_output_cap0_r2",
+      "drawing_ref": "13",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "GRM32ER71E226KE15L",
+      "role": "first local 22-uF / 25-V X7R main-buck output capacitor",
+      "world_xy_mm": [48.5, 70.4],
+      "size_mm": [3.2, 2.5, 2.7],
+      "replaces": ["main_output_cap0"]
+    },
+    {
+      "id": "main_output_cap1_r2",
+      "drawing_ref": "14",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "GRM32ER71E226KE15L",
+      "role": "second local 22-uF / 25-V X7R main-buck output capacitor",
+      "world_xy_mm": [52.0, 70.4],
+      "size_mm": [3.2, 2.5, 2.7],
+      "replaces": ["main_output_cap1"]
+    },
+    {
+      "id": "main_output_cap2_r2",
+      "drawing_ref": "15",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "GRM32ER71E226KE15L",
+      "role": "third local 22-uF / 25-V X7R main-buck output capacitor",
+      "world_xy_mm": [55.5, 70.4],
+      "size_mm": [3.2, 2.5, 2.7]
+    },
+    {
+      "id": "main_vcc_cap_r2",
+      "drawing_ref": "16",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "CL10B105KO8NNNC",
+      "role": "1-uF TPS566231P VCC decoupling capacitor",
+      "world_xy_mm": [56.0, 61.1],
+      "size_mm": [1.6, 0.8, 0.8]
+    },
+    {
+      "id": "main_bst_cap_r2",
+      "drawing_ref": "17",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "CL05B104KB5NNNC",
+      "role": "100-nF TPS566231P bootstrap capacitor",
+      "world_xy_mm": [51.4, 61.2],
+      "size_mm": [1.0, 0.5, 0.5]
+    },
+    {
+      "id": "main_bst_resistor_r2",
+      "drawing_ref": "18",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "RC0402JR-070RL",
+      "role": "0-ohm serial bootstrap link retained for EMI tuning",
+      "world_xy_mm": [50.0, 61.2],
+      "size_mm": [1.0, 0.5, 0.4]
     }
   ],
   "trace_corridors": [
@@ -226,7 +448,6 @@
     "prove manual-assembly accessibility and the enclosure side opening around the exact MMCX body",
     "close the H1-R2.3 Airband candidate with extracted PCB parasitics and one fixed factory BOM state; nominal finite-Q compliance is retained only as feasibility evidence",
     "select the exact post-installed 5.8-GHz FPV antenna and give it the same code-plus-colour identification used by the other antenna-kit items",
-    "rebuild the complete six-domain rail and thermal matrix",
     "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
   ],
   "open_gates_ru": [
@@ -234,7 +455,6 @@
     "доказать доступ для ручной установки и боковой проём корпуса вокруг точного корпуса MMCX",
     "закрыть кандидат фильтра Airband H1-R2.3 с учётом извлечённых паразитик PCB и одним фиксированным фабричным BOM-state; nominal finite-Q соответствие остаётся только evidence реализуемости",
     "выбрать точную устанавливаемую после PCBA антенну FPV 5,8 ГГц и дать ей ту же кодово-цветовую маркировку, что и остальным предметам антенного комплекта",
-    "пересобрать полную матрицу шин и тепла для шести доменов",
     "перегенерировать все внешние и внутренние виды и оба разреза после прекращения перемещений корпусов R2"
   ]
 }

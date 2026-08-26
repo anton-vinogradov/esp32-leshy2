@@ -12,13 +12,14 @@
 
 </div>
 
-> **Now: H1-R2.3 · the reviewed functional architecture is being turned into a new physical design.**
+> **Now: H1-R2.4 · the six-domain rail and thermal architecture is placed and reviewed.**
 > [H0-R2](docs/h0-r2-functional-architecture.md) adds a second `SC1512-A4`
 > Hub, direct S3 analog-FPV capture and mandatory receive-only Airband AM.
 > GPIO ownership and the factory-first Airband active BOM are closed. The Hub,
 > Airband bodies and a replaceable FPV receiver bay now have a collision-tested
 > physical projection. The Airband filter now has a generated nominal/stress
-> feasibility audit and a larger tuning cell; R2 power, remaining placement, schematics and firmware
+> feasibility audit and a larger tuning cell. The new 3V3_MAIN cell is now
+> placed and accepts 3.75 A continuous / 4.25 A step; remaining placement, schematics and firmware
 > contracts are still being regenerated. R1 H1–H5 remains evidence only.
 > Purchasing, PCB routing and fabrication remain blocked.
 
@@ -69,15 +70,18 @@ See the [hardware architecture](docs/hardware.md) and
 ## Target device mockup
 
 The compact diagram below is the current R2 architecture. The following
-H1-R2.3 drawing is the current collision-tested incremental placement. The
+H1-R2.4 drawing is the current collision-tested incremental placement. The
 complete exterior and sandwich views beneath it remain the accepted R1
 geometric seed until all R2 bodies and the new rail stop moving.
 
 ![Leshy2 H0-R2 functional architecture](docs/images/h0-r2-functional-architecture.svg)
 
-![Leshy2 H1-R2.3 inner placement](docs/images/h1-r2-inner-placement.svg)
+![Leshy2 H1-R2.4 inner placement](docs/images/h1-r2-inner-placement.svg)
 
-[Open the readable H1-R2.3 placement result](docs/h1-r2-physical-layout.md) ·
+![Leshy2 H1-R2.4 rail and thermal architecture](docs/images/h1-r2-power-thermal.svg)
+
+[Open the readable H1-R2.4 placement result](docs/h1-r2-physical-layout.md) ·
+[Rail and thermal result](docs/h1-r2-power-thermal.md) ·
 [Airband filter feasibility](docs/h1-airband-filter.md).
 
 Every view below is generated from the real envelopes of selected MPNs and one
@@ -122,7 +126,7 @@ drawings, schematics, contracts and checks.
 | Stage | Status | Result |
 |---|---|---|
 | H0 · Product requirements and functional architecture | ✅ R2 Reviewed | [H0-R2 report](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶️ Current: H1-R2.3 Airband filter feasibility and inner placement** | [Current result](docs/h1-r2-physical-layout.md) |
+| **H1 · Physical product design** | **▶️ Current: H1-R2.4 rail/thermal architecture and inner placement** | [Current result](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ⏳ R1 evidence retained; waiting for R2 H1 | [H2 results](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ rerun after R2 H2 | [R1 report](docs/h3-acceptance.md) |
 | H4 · Joined pre-layout gate | ⏳ rerun after R2 H3 and firmware R2 contract | [R1 report](docs/h4-prelayout-gate-report.md) |
@@ -136,7 +140,7 @@ Every completed top-level `H*` phase receives a separate readable result report
 linked from this table. Internal substeps update the exact marker but do not
 create separate global reports.
 
-**Hardware is at H1-R2.3.** H0-R2 fixes six compute domains, 33/33 used S3
+**Hardware is at H1-R2.4.** H0-R2 fixes six compute domains, 33/33 used S3
 GPIO, 45/48 used Hub GPIO and the receive-only Airband frequency plan. The
 incremental Airband active BOM is live-checked at JLCPCB and costs `$20.2038`
 before passives/assembly. The initial R2 placement adds four exact Airband
@@ -150,16 +154,18 @@ nominal reference mask and 95/105/155/220-MHz stress points, but its worst
 production BOM; a 24×11-mm ground-fenced tuning cell with alternate/DNP pads is
 reserved for H3 extracted-parasitic closure. Antenna ports and kit antennas now
 share durable text codes, with colour only as redundant guidance. The R1 2.5-A
-rail remains invalidated: H1 must still
-close a ≥3.5-A continuous /
-≥4.0-A step envelope and regenerate every complete physical view. No order is
+main rail is replaced by a placed `TPS566231PRQFR` / `PSPMAA0605H-2R2M-ANP`
+cell. Twelve legal group states peak at 2.823 A; the accepted envelope is
+3.75 A continuous / 4.25 A step, with a guaranteed 4.340-A eFuse threshold and
+zero new body collision. H3 still proves effective capacitance, load-step,
+switching loss and enclosure thermal behaviour. H1 must regenerate every complete physical view. No order is
 authorized.
 
-<!-- current-substep: H1-R2.3 -->
+<!-- current-substep: H1-R2.4 -->
 
-**Exact marker: `H1-R2.3`** — the [current placement](docs/h1-r2-physical-layout.md)
-passes its incremental body/cross-board audit. Next, complete the remaining
-R2 body selection and the full rail/thermal envelope before regenerating all
+**Exact marker: `H1-R2.4`** — the [current placement](docs/h1-r2-physical-layout.md)
+and [power result](docs/h1-r2-power-thermal.md) pass their machine audits. Next,
+complete the remaining R2 body selection before regenerating all
 views. This marker, its machine state and both language pages move together.
 
 <details>
