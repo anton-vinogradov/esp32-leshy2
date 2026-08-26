@@ -20,6 +20,11 @@
     "parts_api_permission_status": "rejected",
     "parts_api_permission_checked_on": "2026-08-26",
     "parts_api_rejection_reason": null,
+    "parts_api_support_contact_send": true,
+    "parts_api_support_contact_sent_on": "2026-08-26",
+    "parts_api_support_contact_channel": "JLCPCB Contact Us / Others",
+    "parts_api_support_contact_result": "successfully_submitted",
+    "parts_api_support_ticket_number": null,
     "parts_api_access_key_created": true,
     "parts_api_credentials_in_repository": false,
     "parts_api_tokenization_key_created": false,
@@ -94,11 +99,12 @@
       "supplier_response_record": "hardware/procurement/H5.0.3-R1-supplier-response.json",
       "machine_supplier_response_gate": "hardware/verification/generated/H5-EVR07-supplier-response-gate.json",
       "supplier_response_contract": "hardware/procurement/H5.0.3-R1-no-order-supplier-inquiry.md#response-acceptance",
+      "parts_api_support_inquiry": "hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md",
       "readable_basket_en": "docs/component-sample-basket.md",
       "readable_basket_ru": "docs/component-sample-basket.ru.md",
       "readable_platform_en": "docs/manufacturing-platform.md",
       "readable_platform_ru": "docs/manufacturing-platform.ru.md",
-      "result": "33 priced sample lines cover all nine H5 residuals and fourteen mechanical gates for USD 286.43 before freight/tax/coupons; all 210 current BOM lines and 1052 placements have exact J0-J3/J4-F/J4-P routes with zero replacement and zero unmapped lines; a no-order JLCPCB inquiry was submitted on 2026-08-26 and H5.0.3-R1 now waits for exact SA818S-V pre-order and J4-F/J4-P responses; H5-EVR07 separately checks response completeness and gate acceptance without granting order authority; the optional Parts API path is fail-closed after its permission was rejected without a stated reason"
+      "result": "33 priced sample lines cover all nine H5 residuals and fourteen mechanical gates for USD 286.43 before freight/tax/coupons; all 210 current BOM lines and 1052 placements have exact J0-J3/J4-F/J4-P routes with zero replacement and zero unmapped lines; a no-order JLCPCB inquiry was submitted on 2026-08-26 and H5.0.3-R1 now waits for exact SA818S-V pre-order and J4-F/J4-P responses; H5-EVR07 separately checks response completeness and gate acceptance without granting order authority; the optional Parts API path is fail-closed after its permission was rejected without a stated reason and a no-secret support inquiry was submitted on 2026-08-26"
     }
   },
   "superseded_artifacts": {

@@ -127,6 +127,15 @@
     "credential_storage": "local macOS Keychain; no credential is stored in this repository",
     "raw_api_data_publication": false,
     "usable_now": false,
+    "support_inquiry": {
+      "submitted_on": "2026-08-26",
+      "channel": "JLCPCB Contact Us / Others",
+      "subject": "Parts API permission rejected — App ID 615135176579813377",
+      "result": "successfully_submitted",
+      "ticket_number": null,
+      "contains_api_secret": false,
+      "commercial_authority_granted": false
+    },
     "checked_on": "2026-08-26"
   },
   "supplier_inquiry": {
@@ -414,6 +423,7 @@
     "factory_final_assembly_gate_is_explicitly_open": true,
     "jlcapi_application_and_app_are_ready": true,
     "parts_api_rejection_is_explicit_and_fail_closed": true,
+    "parts_api_support_request_is_recorded_without_secret_or_commercial_authority": true,
     "both_selected_voice_modules_have_exact_jlcpcb_routes": true,
     "api_credentials_are_not_repository_data": true,
     "no_order_or_layout_is_authorized": true

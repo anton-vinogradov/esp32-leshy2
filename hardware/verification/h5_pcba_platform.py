@@ -168,6 +168,15 @@ JLCAPI_STATE = {
     "credential_storage": "local macOS Keychain; no credential is stored in this repository",
     "raw_api_data_publication": False,
     "usable_now": False,
+    "support_inquiry": {
+        "submitted_on": "2026-08-26",
+        "channel": "JLCPCB Contact Us / Others",
+        "subject": "Parts API permission rejected — App ID 615135176579813377",
+        "result": "successfully_submitted",
+        "ticket_number": None,
+        "contains_api_secret": False,
+        "commercial_authority_granted": False,
+    },
     "checked_on": CHECKED_ON,
 }
 
@@ -598,6 +607,9 @@ def build() -> dict:
         and JLCAPI_STATE["access_key_created"],
         "parts_api_rejection_is_explicit_and_fail_closed": JLCAPI_STATE["parts_permission_status"] == "rejected"
         and not JLCAPI_STATE["usable_now"],
+        "parts_api_support_request_is_recorded_without_secret_or_commercial_authority": JLCAPI_STATE["support_inquiry"]["result"] == "successfully_submitted"
+        and not JLCAPI_STATE["support_inquiry"]["contains_api_secret"]
+        and not JLCAPI_STATE["support_inquiry"]["commercial_authority_granted"],
         "both_selected_voice_modules_have_exact_jlcpcb_routes": set(VOICE_PART_ROUTES) == {"SA818S-U", "SA818S-V"}
         and all(row["lcsc"] and row["quantity_one_usd"] for row in VOICE_PART_ROUTES.values()),
         "api_credentials_are_not_repository_data": "no credential" in JLCAPI_STATE["credential_storage"]
@@ -818,7 +830,7 @@ JLCPCB Standard PCBA собирает обе платы и принятые SMT/
 - JLCPCB Standard PCBA принят как рабочий reference без lock-in.
 - Все `{summary['target_bom_lines']}` строк имеют определённый маршрут `J0`–`J3`, `J4-F` или `J4-P`; функциональных замен нет.
 - Все component prices минимальной evidence-корзины известны. Запрос JLCPCB без заказа успешно отправлен 26 августа 2026 года; H5.0.3-R1 теперь ожидает точный срок/условия pre-order `SA818S-V`, подтверждение/цену `J4-F` box-build и условия `J4-P` kit/packing/shipping. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) отдельно проверит полноту ответа и прохождение gates, не разрешая заказ. Закупка образцов остаётся отдельным последующим решением.
-- Заявка JLCAPI одобрена, приложение `ESP32-Leshy2 BOM Validator` создано, ключ подписи хранится только локально вне Git. Портал теперь показывает право Parts как `Rejected`, но причины в журнале нет, поэтому API-вызовы по-прежнему невозможны. PCB/3D также отклонены, SMT Stencil и JLC Balance выключены. Активным остаётся ручной путь через каталог и BOM.
+- Заявка JLCAPI одобрена, приложение `ESP32-Leshy2 BOM Validator` создано, ключ подписи хранится только локально вне Git. Портал показывает право Parts как `Rejected`, но причины в журнале нет; [информационный запрос в поддержку](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md) отправлен 26 августа 2026 года и ожидает ответа. До фактического одобрения API-вызовы невозможны. PCB/3D также отклонены, SMT Stencil и JLC Balance выключены. Активным остаётся ручной путь через каталог и BOM.
 - Прежний 209-строчный BOM upload был передан и обработан; текущий 210-строчный файл сгенерирован локально, но не передавался, потому что 208 identity неизменны, а обе новые exact-страницы проверены отдельно. Quote, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены. Сырые API-ответы публично не распространяются.
 
 Машинные результаты: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json), [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json) и [`H5-EVR06`](../hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json). [Требования JLCPCB к BOM]({SOURCES['jlc_bom_format']}).
@@ -896,7 +908,7 @@ JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts. That does
 - JLCPCB Standard PCBA is the working reference without lock-in.
 - All `{summary['target_bom_lines']}` lines have a defined `J0`–`J3`, `J4-F` or `J4-P` route; no functional replacement was introduced.
 - Every component price in the minimum evidence basket is known. A no-order JLCPCB inquiry was successfully submitted on 26 August 2026; H5.0.3-R1 now waits for exact `SA818S-V` pre-order lead time/terms, `J4-F` box-build acceptance/pricing and `J4-P` kit/packing/shipping terms. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) will separately check response completeness and gate acceptance without authorizing an order. Sample purchase remains a later separate decision.
-- The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git. The portal now reports Parts permission as `Rejected`, without a reason in its activity log, so API calls remain unusable. PCB/3D are also rejected; SMT Stencil and JLC Balance remain inactive. Manual catalogue/BOM evidence remains the active path.
+- The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git. The portal reports Parts permission as `Rejected`, without a reason in its activity log; an [information-only support request](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md) was submitted on 26 August 2026 and awaits a response. API calls remain unusable until actual approval. PCB/3D are also rejected; SMT Stencil and JLC Balance remain inactive. Manual catalogue/BOM evidence remains the active path.
 - The former 209-line BOM upload was transmitted and processed; the current 210-line file was generated locally but not transmitted because 208 identities are unchanged and both new exact pages were checked separately. No quote, sourcing request, reservation, purchase, replacement, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
 
 Machine results: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json), [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json) and [`H5-EVR06`](../hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json). [JLCPCB BOM requirements]({SOURCES['jlc_bom_format']}).

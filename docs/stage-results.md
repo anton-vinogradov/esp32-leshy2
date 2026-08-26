@@ -229,8 +229,10 @@ inquiry successfully submitted on 26 August 2026. The fail-closed
 [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json)
 checks response completeness separately from factory-gate acceptance and cannot
 grant order authority. The JLCAPI app/key are ready
-outside Git, but Parts permission is rejected without a stated reason; manual
-catalogue/BOM evidence remains authoritative. Quote/reservation and
+outside Git, but Parts permission is rejected without a stated reason. An
+[information-only support request](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md)
+was submitted successfully on 26 August 2026; manual catalogue/BOM evidence
+remains authoritative until a real approval. Quote/reservation and
 purchase are not authorized. This is not a production order.
 
 <a id="h6"></a>
