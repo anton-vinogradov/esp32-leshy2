@@ -12,12 +12,13 @@
 
 </div>
 
-> **Now: H1-R2.0 · the reviewed functional architecture is being turned into a new physical design.**
+> **Now: H1-R2.1 · the reviewed functional architecture is being turned into a new physical design.**
 > [H0-R2](docs/h0-r2-functional-architecture.md) adds a second `SC1512-A4`
 > Hub, direct S3 analog-FPV capture and mandatory receive-only Airband AM.
-> GPIO ownership and the factory-first Airband active BOM are closed; the old
-> R1 H1–H5 artifacts are retained only as evidence to reuse. R2 power,
-> placement, schematics and firmware contracts are being regenerated.
+> GPIO ownership and the factory-first Airband active BOM are closed. The Hub,
+> Airband bodies and a replaceable FPV receiver bay now have a collision-tested
+> physical projection; R2 power, remaining placement, schematics and firmware
+> contracts are still being regenerated. R1 H1–H5 remains evidence only.
 > Purchasing, PCB routing and fabrication remain blocked.
 
 <div align="center">
@@ -66,12 +67,16 @@ See the [hardware architecture](docs/hardware.md) and
 
 ## Target device mockup
 
-The compact diagram below is the current R2 architecture. The dimensioned
-physical views that follow are the accepted R1 geometry being regenerated at
-H1-R2.0; the shared receive-port silkscreen is already updated, but new Hub,
-FPV and Airband body placement is not claimed until the collision/power pass.
+The compact diagram below is the current R2 architecture. The following
+H1-R2.1 drawing is the current collision-tested incremental placement. The
+complete exterior and sandwich views beneath it remain the accepted R1
+geometric seed until all R2 bodies and the new rail stop moving.
 
 ![Leshy2 H0-R2 functional architecture](docs/images/h0-r2-functional-architecture.svg)
+
+![Leshy2 H1-R2.1 inner placement](docs/images/h1-r2-inner-placement.svg)
+
+[Open the readable H1-R2.1 placement result](docs/h1-r2-physical-layout.md).
 
 Every view below is generated from the real envelopes of selected MPNs and one
 coordinate model. Text outside component bodies on outer PCB faces is intended
@@ -115,7 +120,7 @@ drawings, schematics, contracts and checks.
 | Stage | Status | Result |
 |---|---|---|
 | H0 · Product requirements and functional architecture | ✅ R2 Reviewed | [H0-R2 report](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶️ Current: H1-R2.0 complete physical re-layout** | [H1 plan](docs/stage-results.md#h1) |
+| **H1 · Physical product design** | **▶️ Current: H1-R2.1 component inventory and inner placement** | [Current result](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ⏳ R1 evidence retained; waiting for R2 H1 | [H2 results](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ rerun after R2 H2 | [R1 report](docs/h3-acceptance.md) |
 | H4 · Joined pre-layout gate | ⏳ rerun after R2 H3 and firmware R2 contract | [R1 report](docs/h4-prelayout-gate-report.md) |
@@ -129,18 +134,22 @@ Every completed top-level `H*` phase receives a separate readable result report
 linked from this table. Internal substeps update the exact marker but do not
 create separate global reports.
 
-**Hardware is at H1-R2.0.** H0-R2 fixes six compute domains, 33/33 used S3
+**Hardware is at H1-R2.1.** H0-R2 fixes six compute domains, 33/33 used S3
 GPIO, 45/48 used Hub GPIO and the receive-only Airband frequency plan. The
 incremental Airband active BOM is live-checked at JLCPCB and costs `$20.2038`
-before passives/assembly. The R1 2.5-A rail is explicitly invalidated; H1 must
-close a ≥3.5-A continuous / ≥4.0-A step envelope and regenerate every physical
-view before production ECAD resumes. No order is authorized.
+before passives/assembly. The initial R2 placement adds four exact Airband
+devices, Hub RP2354B, TVP5150 and an exact MMCX without same-face collisions;
+26 opposing projections retain at least 2.44 mm against 0.70 mm required. The
+R1 2.5-A rail remains invalidated: H1 must still close a ≥3.5-A continuous /
+≥4.0-A step envelope and regenerate every complete physical view. No order is
+authorized.
 
-<!-- current-substep: H1-R2.0 -->
+<!-- current-substep: H1-R2.1 -->
 
-**Exact marker: `H1-R2.0`** — complete the R2 physical component map, collision
-checks, rail envelope and all current views. This marker, its machine state and
-both language pages move together in every commit.
+**Exact marker: `H1-R2.1`** — the [current placement](docs/h1-r2-physical-layout.md)
+passes its incremental body/cross-board audit. Next, complete the remaining
+R2 body selection and the full rail/thermal envelope before regenerating all
+views. This marker, its machine state and both language pages move together.
 
 <details>
 <summary><strong>R1 evidence retained for reuse — not the current design</strong></summary>

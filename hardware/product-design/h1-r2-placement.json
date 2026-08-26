@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "id": "L2-H1-R2-PLACEMENT-001",
+  "status": "in_progress",
+  "marker": "H1-R2.1",
+  "checked_on": "2026-08-27",
+  "purpose": "Place the new R2 Hub, Airband and analog-FPV bodies in the accepted 75 x 150 mm two-board coordinate system before any R2 KiCad work.",
+  "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
+  "board_mm": [75.0, 150.0],
+  "stack": {
+    "ui_inner_z_mm": 4.8,
+    "rf_inner_z_mm": 15.8,
+    "interboard_gap_mm": 11.0,
+    "minimum_opposing_clearance_mm": 0.7
+  },
+  "policy": {
+    "coordinates": "world X/Y from the accepted assembly-coordinate model; RF-inner drawing is mirrored only for the viewer",
+    "base_geometry": "R1 bodies are retained only as a collision-tested placement seed and may move during complete R2 optimisation",
+    "fixed_body": "one exact serial device per rectangle",
+    "reserve": "a dashed physical allocation, never a component or accepted MPN",
+    "silkscreen": "none of the inner-face annotations in the generated engineering drawing are PCB silkscreen"
+  },
+  "factory_evidence": [
+    {
+      "role": "Hub RP2354B factory assembly cross-reference",
+      "role_ru": "фабричная позиция Hub RP2354B",
+      "mpn": "SC1512-A4",
+      "factory_alias": "RP2354B",
+      "jlcpcb_part": "C39843328",
+      "manufacturer": "Raspberry Pi",
+      "assembly": "SMT; Economic and Standard",
+      "accepted": true,
+      "selection_status": "working selection; A4 marking remains an incoming gate",
+      "selection_status_ru": "рабочий выбор; маркировка A4 остаётся входным gate",
+      "availability": "LCSC/JLC supply surface showed 3,682 pieces, MOQ 1, USD 1.6225 at quantity 1",
+      "availability_ru": "поверхность поставки LCSC/JLC показала 3 682 шт., MOQ 1, $1.6225 при количестве 1",
+      "identity_gate": "JLC names the silicon RP2354B while Raspberry Pi's exact A4 7-inch-reel order code is SC1512-A4; received marking and A4 stepping remain an incoming inspection gate",
+      "url": "https://jlcpcb.com/partdetail/RaspberryPi-RP2354B/C39843328",
+      "checked": "2026-08-26"
+    },
+    {
+      "role": "analog composite-video decoder",
+      "role_ru": "декодер аналогового композитного видео",
+      "mpn": "TVP5150AM1PBS",
+      "jlcpcb_part": "C3824301",
+      "manufacturer": "Texas Instruments",
+      "assembly": "Extended SMT; Economic and Standard",
+      "accepted": true,
+      "selection_status": "accepted for the working placement",
+      "selection_status_ru": "принят для рабочего размещения",
+      "availability": "62 pieces, MOQ 1, USD 6.4081 at quantity 1",
+      "availability_ru": "62 шт., MOQ 1, $6.4081 при количестве 1",
+      "url": "https://jlcpcb.com/partdetail/TexasInstruments-TVP5150AM1PBS/C3824301",
+      "checked": "2026-08-26"
+    },
+    {
+      "role": "side-facing 5.8-GHz user connector",
+      "role_ru": "боковой пользовательский разъём 5,8 ГГц",
+      "mpn": "DL-MMCX-KWE-90",
+      "jlcpcb_part": "C2894793",
+      "manufacturer": "DreamLNK",
+      "assembly": "Extended through-hole/manual assembly",
+      "accepted": true,
+      "selection_status": "working selection; exact mechanical drawing remains open",
+      "selection_status_ru": "рабочий выбор; точный механический чертёж остаётся открытым",
+      "availability": "22,687 pieces, MOQ 1, USD 0.9032 at quantity 1",
+      "availability_ru": "22 687 шт., MOQ 1, $0.9032 при количестве 1",
+      "url": "https://jlcpcb.com/partdetail/DreamLNK-DL_MMCX_KWE90/C2894793",
+      "checked": "2026-08-26"
+    },
+    {
+      "role": "FPV decoder 1.8-V rail",
+      "role_ru": "шина 1,8 В декодера FPV",
+      "mpn": "TPS7A2018PDBVR",
+      "jlcpcb_part": "C963430",
+      "manufacturer": "Texas Instruments",
+      "assembly": "Extended SMT; Economic and Standard",
+      "selection_status": "not accepted",
+      "selection_status_ru": "не принят",
+      "availability": "JLC assembly card and LCSC stock exist; live JLC stock/MOQ/price recheck remains required before acceptance",
+      "availability_ru": "есть assembly-card JLC и остаток LCSC; перед принятием нужна повторная живая проверка stock/MOQ/цены JLC",
+      "url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS7A2018PDBVR/C963430",
+      "checked": "2026-08-26",
+      "accepted": false
+    }
+  ],
+  "placements": [
+    {
+      "id": "hub_rp",
+      "drawing_ref": "1",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "SC1512-A4",
+      "role": "Hub RP2354B; C5/RF fan-out, storage, audio and broadcast control",
+      "world_xy_mm": [37.5, 70.0],
+      "size_mm": [10.0, 10.0, 0.9]
+    },
+    {
+      "id": "airband_lna",
+      "drawing_ref": "2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "PGA-103+",
+      "role": "Airband low-noise gain stage",
+      "world_xy_mm": [47.0, 62.0],
+      "size_mm": [4.5, 4.1, 1.5]
+    },
+    {
+      "id": "airband_mixer",
+      "drawing_ref": "3",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "LT5560EDD#TRPBF",
+      "role": "118-137 MHz to 6-25 MHz down-converter",
+      "world_xy_mm": [52.5, 62.0],
+      "size_mm": [3.0, 3.0, 0.8]
+    },
+    {
+      "id": "airband_selector",
+      "drawing_ref": "4",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "HMC544AETR",
+      "role": "direct FM/SW versus converted Airband selector",
+      "world_xy_mm": [56.5, 62.0],
+      "size_mm": [3.0, 3.0, 1.1]
+    },
+    {
+      "id": "airband_lo",
+      "drawing_ref": "5",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "SI5351A-B-GTR",
+      "role": "fixed 112-MHz Airband local oscillator",
+      "world_xy_mm": [60.5, 62.0],
+      "size_mm": [3.0, 3.0, 1.1]
+    },
+    {
+      "id": "airband_filter_reserve",
+      "drawing_ref": "R1",
+      "kind": "reserve",
+      "frame": "ui-inner",
+      "mpn": null,
+      "role": "118-137-MHz image-rejection BPF and 6-25-MHz IF cleanup; individually serial passives close after synthesis",
+      "world_xy_mm": [48.5, 67.5],
+      "size_mm": [20.0, 6.5, 1.2]
+    },
+    {
+      "id": "fpv_decoder",
+      "drawing_ref": "6",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "TVP5150AM1PBS",
+      "role": "CVBS to 8-bit BT.656 decoder beside the receiver bay",
+      "world_xy_mm": [31.0, 96.5],
+      "size_mm": [7.0, 7.0, 1.2]
+    },
+    {
+      "id": "fpv_power_reserve",
+      "drawing_ref": "R2",
+      "kind": "reserve",
+      "frame": "rf-inner",
+      "mpn": null,
+      "role": "decoder 1.8-V LDO, switched receiver rail and local capacitors",
+      "world_xy_mm": [30.5, 90.0],
+      "size_mm": [8.0, 5.5, 1.4]
+    },
+    {
+      "id": "fpv_receiver_bay",
+      "drawing_ref": "R3",
+      "kind": "reserve",
+      "frame": "rf-inner",
+      "mpn": null,
+      "role": "replaceable exact serial 5.8-GHz analog receiver; MM238R-MCU is dimensional evidence only",
+      "world_xy_mm": [39.5, 90.5],
+      "size_mm": [28.0, 23.0, 3.0]
+    },
+    {
+      "id": "fpv_mmcx",
+      "drawing_ref": "7",
+      "kind": "external_body",
+      "frame": "rf-outer-right-edge",
+      "mpn": "DL-MMCX-KWE-90",
+      "role": "user-facing 50-ohm MMCX labelled FPV RX 5.8G",
+      "world_xy_mm": [75.0, 99.5],
+      "size_mm": [3.5, 3.5, 3.5],
+      "direction": "right side of the finished device"
+    }
+  ],
+  "trace_corridors": [
+    {
+      "id": "fpv_rf",
+      "frame": "rf-inner",
+      "from": "fpv_mmcx",
+      "to": "fpv_receiver_bay",
+      "rule": "short controlled-impedance 50-ohm launch; no internal U.FL"
+    },
+    {
+      "id": "fpv_cvbs",
+      "frame": "rf-inner",
+      "from": "fpv_receiver_bay",
+      "to": "fpv_decoder",
+      "rule": "short 75-ohm composite-video trace"
+    },
+    {
+      "id": "fpv_bt656",
+      "frame": "interboard",
+      "from": "fpv_decoder",
+      "to": "S3 LCD_CAM",
+      "rule": "8 data lines plus PCLK/VSYNC/HREF and interleaved grounds through the 80-contact mezzanine connector"
+    }
+  ],
+  "open_gates": [
+    "select an in-production exact serial 5.8-GHz analog receiver with a live purchase route; generic RX5808 and discontinued MM238R-MCU are not accepted",
+    "close the exact MMCX drawing, hole pattern, hand-assembly accessibility and enclosure side opening",
+    "live-check JLC stock, MOQ and price for the 1.8-V LDO before accepting it",
+    "synthesize the Airband input and IF filters from factory-stock serial passives and prove the 87-106-MHz image rejection mask",
+    "rebuild the complete six-domain rail and thermal matrix",
+    "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
+  ],
+  "open_gates_ru": [
+    "выбрать точный серийный аналоговый 5,8-ГГц приёмник с действующим каналом покупки; generic RX5808 и снятый MM238R-MCU не приняты",
+    "закрыть точный чертёж MMCX, отверстия, доступ для ручной установки и боковой проём корпуса",
+    "повторно проверить живые остаток, MOQ и цену JLC для LDO 1,8 В до его принятия",
+    "синтезировать входной и IF-фильтры Airband из доступных фабричных пассивов и доказать подавление зеркальной полосы 87–106 МГц",
+    "пересобрать полную матрицу шин и тепла для шести доменов",
+    "перегенерировать все внешние и внутренние виды и оба разреза после прекращения перемещений корпусов R2"
+  ]
+}

@@ -20,7 +20,14 @@ are satisfied.
 <a id="h1"></a>
 ## ⭐ H1 · Physical product design
 
-**Status:** ✅ reviewed.
+**Status:** ▶️ current at `H1-R2.1`; R1 result is retained evidence, not current acceptance.
+
+- [Current H1-R2.1 physical placement](h1-r2-physical-layout.md) — new Hub,
+  Airband and analog-FPV bodies/reserves in the shared coordinate model, with
+  generated collision and opposing-clearance evidence.
+- [Machine H1-R2.1 audit](../hardware/product-design/generated/H1-R2-placement-audit.json).
+
+Retained R1 inputs being regenerated:
 
 - [Outer faces](images/current-clamshell.svg),
   [service access](images/service-access.svg) and

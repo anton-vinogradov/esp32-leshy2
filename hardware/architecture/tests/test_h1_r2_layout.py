@@ -1,0 +1,67 @@
+import importlib.util
+import json
+import unittest
+from pathlib import Path
+
+
+REPO = Path(__file__).resolve().parents[3]
+SCRIPT = REPO / "hardware/product-design/h1_r2_layout.py"
+SPEC = importlib.util.spec_from_file_location("h1_r2_layout", SCRIPT)
+MODULE = importlib.util.module_from_spec(SPEC)
+assert SPEC.loader is not None
+SPEC.loader.exec_module(MODULE)
+
+
+class H1R2LayoutTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.model = json.loads(MODULE.MODEL_PATH.read_text())
+        cls.base = json.loads(MODULE.BASE_PATH.read_text())
+        cls.audit = MODULE.audit(cls.model, cls.base)
+
+    def test_incremental_placement_passes(self):
+        self.assertEqual([], self.audit["errors"])
+        self.assertEqual([], self.audit["same_face_collisions"])
+        self.assertGreaterEqual(
+            self.audit["minimum_opposing_clearance_mm"],
+            self.audit["required_opposing_clearance_mm"],
+        )
+
+    def test_every_fixed_body_has_exact_mpn(self):
+        for item in self.model["placements"]:
+            if item["kind"] == "fixed_body":
+                self.assertTrue(item["mpn"], item["id"])
+
+    def test_every_drawn_item_has_one_unique_compact_reference(self):
+        refs = [item["drawing_ref"] for item in self.model["placements"]]
+        self.assertEqual(len(refs), len(set(refs)))
+        self.assertTrue(all(len(ref) <= 2 for ref in refs))
+
+    def test_unresolved_fpv_is_a_reserve_not_a_fake_component(self):
+        bay = next(x for x in self.model["placements"] if x["id"] == "fpv_receiver_bay")
+        self.assertEqual("reserve", bay["kind"])
+        self.assertIsNone(bay["mpn"])
+        self.assertIn("generic RX5808", self.model["open_gates"][0])
+
+    def test_factory_rows_include_current_identity(self):
+        by_mpn = {row["mpn"]: row for row in self.model["factory_evidence"]}
+        self.assertEqual("C3824301", by_mpn["TVP5150AM1PBS"]["jlcpcb_part"])
+        self.assertEqual("C2894793", by_mpn["DL-MMCX-KWE-90"]["jlcpcb_part"])
+        self.assertEqual("C39843328", by_mpn["SC1512-A4"]["jlcpcb_part"])
+        self.assertTrue(all("accepted" in row for row in self.model["factory_evidence"]))
+        self.assertFalse(by_mpn["TPS7A2018PDBVR"]["accepted"])
+
+    def test_generated_artifacts_are_current(self):
+        expected = {
+            MODULE.AUDIT_PATH: json.dumps(self.audit, indent=2, ensure_ascii=False) + "\n",
+            MODULE.SVG_PATH: MODULE.render_svg(self.model, self.base, self.audit),
+            MODULE.EN_DOC_PATH: MODULE.render_doc(self.model, self.audit, False),
+            MODULE.RU_DOC_PATH: MODULE.render_doc(self.model, self.audit, True),
+        }
+        for path, content in expected.items():
+            self.assertTrue(path.exists(), path)
+            self.assertEqual(content, path.read_text(), path)
+
+
+if __name__ == "__main__":
+    unittest.main()

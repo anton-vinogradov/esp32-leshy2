@@ -3,10 +3,10 @@
 [Русский](roadmap.ru.md) · [Home](../README.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶️ Current hardware boundary: H1-R2.0 — complete physical re-layout after the reviewed H0-R2 rebaseline.**
+> **▶️ Current hardware boundary: H1-R2.1 — component inventory and incremental inner placement.**
 > R1 H1–H5 remain reusable evidence, not current acceptance. There is no R2 PCB layout or authorized order.
 
-Status last reconciled: **26 August 2026**. This is the hardware repository's
+Status last reconciled: **27 August 2026**. This is the hardware repository's
 own, sequential roadmap. Firmware work has its own `F0–F11` stages. Firmware
 results appear here only where they are prerequisites of a hardware gate.
 
@@ -23,8 +23,8 @@ results appear here only where they are prerequisites of a hardware gate.
 | Area | Actual state |
 |---|---|
 | Product requirements and functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): six domains, direct S3 UI/display/FPV and mandatory receive-only Airband |
-| Physical product design | ▶️ H1-R2.0: new components, inter-board clearances, RF paths and power are being laid out together |
-| Principle diagrams on the site | H0-R2 functional map is current; dimensioned R1 views are explicit inputs being regenerated |
+| Physical product design | ▶️ [H1-R2.1](h1-r2-physical-layout.md): Hub, Airband, FPV reserve and MMCX are placed; remaining bodies and rail/thermal closure continue |
+| Principle diagrams on the site | H0-R2 functional map and H1-R2.1 inner placement are current; complete dimensioned R1 views are explicit inputs being regenerated |
 | Production ECAD schematic | ⏳ R1 sheets retained; R2 work waits for the H1-R2 placement and rail contract |
 | Electrical and transient evidence | ⏳ R1 evidence retained; full R2 H3 rerun follows R2 H2 |
 | Firmware interlock | ▶️ firmware F0-R2.0 must replace the five-image R1 boundary with six domains and the new Hub/Airband contracts |
@@ -39,14 +39,16 @@ Principle diagrams explain **what connects to what**. Production ECAD must add
 exact symbols, contacts, values, rails, protection, footprints and ERC
 evidence. PCB placement and routing begin only after the earlier gates close.
 
-## Current H1-R2.0 and retained R1 evidence
+## Current H1-R2.1 and retained R1 evidence
 
-<!-- current-substep: H1-R2.0 -->
+<!-- current-substep: H1-R2.1 -->
 
-**Exact marker: `H1-R2.0`** — the [H0-R2 report](h0-r2-functional-architecture.md)
-fixes the new functional input. H1 now regenerates the physical component map,
-all inter-board collision checks, the 3.5-A/4.0-A rail envelope and every
-external/internal view before R2 ECAD is allowed.
+**Exact marker: `H1-R2.1`** — the [incremental physical result](h1-r2-physical-layout.md)
+places the new Hub, Airband chain, analog-FPV decoder/receiver reserve and exact
+side MMCX in the accepted coordinate system. The generated audit reports zero
+same-face body collisions and 2.44 mm minimum opposing clearance. H1 next closes
+the remaining exact bodies and the 3.5-A/4.0-A rail/thermal envelope before the
+complete exterior, inner faces and sections are regenerated. R2 ECAD remains blocked.
 
 The following detailed H1–H5 material is retained R1 evidence. The [physical residual map](component-evidence-map.md)
 and [primary-source research](component-source-research.md) have passed review.
@@ -316,11 +318,11 @@ same commit. A later change reopens affected gates and dependencies.
 flowchart TD
   subgraph HW["Hardware roadmap — sequential"]
     H0["✅ H0<br/>requirements and functional architecture"]
-    H1["✅ H1<br/>physical product design"]
-    H2["✅ H2<br/>production ECAD schematic"]
-    H3["✅ H3<br/>virtual electrical verification"]
-    H4["✅ H4<br/>joined pre-layout gate"]
-    H5["▶️ H5<br/>component evidence"]
+    H1["▶️ H1-R2<br/>physical product design"]
+    H2["⏳ H2-R2<br/>production ECAD schematic"]
+    H3["⏳ H3-R2<br/>virtual electrical verification"]
+    H4["⏳ H4-R2<br/>joined pre-layout gate"]
+    H5["⏳ H5-R2<br/>component evidence"]
     H6["H6<br/>PCB placement and routing"]
     H7["H7<br/>prototype and bring-up"]
     H8["H8<br/>physical qualification"]
@@ -344,11 +346,9 @@ flowchart TD
   F11 -. "compatible release" .-> H9
 ```
 
-H5 begins with documentary research and serial-replacement analysis. Evidence-
-component ordering is allowed only later in H5 after separate cost approval.
-Firmware F3 is now a reviewed H4 input: target skeletons for all five domains,
-image-size/rollback gates, exact S3 QEMU and portable/host models for targets
-without exact emulators ran before layout and fabrication.
+The former H1–H5 reviews are reusable R1 evidence, not statuses of this R2
+sequence. Firmware is independently rebuilding its six-domain contract at
+F0-R2; target emulator/dev-board evidence must be current before H7.
 Prototype PCB submission is allowed at H7 only after H6 acceptance, inherited
 F3 closure through H4 and explicit order approval. Emulation does not replace
 physical bring-up, but fabrication cannot be the first execution of the code.
@@ -359,7 +359,7 @@ A production order is possible only after H9.
 | Stage | Status | Stage output | Exit criterion |
 |---|---|---|---|
 | **H0. Product requirements and functional architecture** | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Six compute domains, direct S3 UI/display/FPV, independent Hub fan-out and mandatory receive-only Airband | Every function has one owner; S3 and Hub GPIO budgets close; transport, quiet-state and firmware boundaries are explicit |
-| **H1. Physical product design** | ▶️ Current `H1-R2.0` | Regenerated exterior/inner faces, sections, assembly sequence, exact body envelopes, RF paths and ≥3.5-A continuous / ≥4.0-A step power contract | No component, fastener, silkscreen, antenna, accessory or cross-board collision; every R2 body has an exact MPN or explicit qualified replaceable boundary; the user accepts the mockup |
+| **H1. Physical product design** | ▶️ Current `H1-R2.1` | Regenerated exterior/inner faces, sections, assembly sequence, exact body envelopes, RF paths and ≥3.5-A continuous / ≥4.0-A step power contract | No component, fastener, silkscreen, antenna, accessory or cross-board collision; every R2 body has an exact MPN or explicit qualified replaceable boundary; the user accepts the mockup |
 | **H2. Production ECAD schematic** | ⏳ Waiting for H1-R2 | R2 sheets and machine-readable HW↔FW contract; R1 sheets remain evidence only | Exact symbol/footprint/pin/net/value; quiet/recovery/safety reviewed; firmware consumes the R2 contract without invented pins |
 | **H3. Virtual electrical verification** | ⏳ Waiting for H2-R2 | Complete R2 electrical, RF, power, timing and thermal rerun | All six-domain states and Airband/FPV coexistence pass before fabrication |
 | **H4. Joined pre-layout gate** | ⏳ Waiting for H3-R2 and firmware R2 | One current mechanics/ECAD/electrical/firmware review | No virtual blocker remains and every physical residual owns a measurement |
@@ -389,9 +389,9 @@ A production order is possible only after H9.
 
 ## Next action
 
-The current boundary is `H1-R2.0`. It must place the second Hub RP, FPV decoder
-boundary and exact Airband active parts, then rerun same-face, cross-board,
-antenna, U214, battery, service and thermal clearances. In parallel it replaces
-the historical 2.5-A R1 rail claim with a verified ≥3.5-A continuous / ≥4.0-A
-step contract. R1 factory evidence remains reusable, but PCB routing,
-quote/reservation and every order remain blocked.
+The current boundary is `H1-R2.1`. The second Hub RP, exact Airband active
+parts, FPV decoder/receiver reserve and side MMCX have passed the incremental
+body audit. Next, close the remaining exact bodies and rebuild the complete
+same-face, cross-board, antenna, U214, battery, service, rail and thermal model.
+The historical 2.5-A R1 rail must become a verified ≥3.5-A continuous / ≥4.0-A
+step contract. PCB routing, quote/reservation and every order remain blocked.

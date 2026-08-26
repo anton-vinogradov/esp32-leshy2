@@ -1,0 +1,365 @@
+{
+  "schema_version": 1,
+  "marker": "H1-R2.1",
+  "status": "pass",
+  "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
+  "new_fixed_body_count": 6,
+  "new_reserve_count": 3,
+  "same_face_collisions": [],
+  "opposing_overlap_count": 26,
+  "minimum_opposing_clearance_mm": 2.44,
+  "required_opposing_clearance_mm": 0.7,
+  "opposing_overlaps": [
+    {
+      "new": "hub_rp",
+      "base": "ext_buck_input_cap",
+      "clearance_mm": 7.4
+    },
+    {
+      "new": "hub_rp",
+      "base": "ext_buck_output_cap1",
+      "clearance_mm": 7.4
+    },
+    {
+      "new": "hub_rp",
+      "base": "voice_input_cap",
+      "clearance_mm": 7.4
+    },
+    {
+      "new": "hub_rp",
+      "base": "voice_output_cap0",
+      "clearance_mm": 7.4
+    },
+    {
+      "new": "hub_rp",
+      "base": "voice_output_cap1",
+      "clearance_mm": 7.4
+    },
+    {
+      "new": "airband_lna",
+      "base": "main_inductor",
+      "clearance_mm": 6.5
+    },
+    {
+      "new": "airband_lna",
+      "base": "voice_inductor",
+      "clearance_mm": 6.5
+    },
+    {
+      "new": "airband_mixer",
+      "base": "main_buck",
+      "clearance_mm": 9.6
+    },
+    {
+      "new": "airband_mixer",
+      "base": "main_inductor",
+      "clearance_mm": 7.2
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "charger_bat_cap0",
+      "clearance_mm": 8.2
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "charger_bat_cap1",
+      "clearance_mm": 8.2
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "charger_inductor",
+      "clearance_mm": 6.8
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "charger_pmid_cap0",
+      "clearance_mm": 8.2
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "charger_pmid_cap1",
+      "clearance_mm": 8.2
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "charger_sys_cap0",
+      "clearance_mm": 8.2
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "charger_sys_cap1",
+      "clearance_mm": 8.2
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "charger_sys_cap2",
+      "clearance_mm": 8.2
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "charger_sys_cap4",
+      "clearance_mm": 8.2
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "charger_vbus_cap1",
+      "clearance_mm": 8.2
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "main_inductor",
+      "clearance_mm": 6.8
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "main_input_cap",
+      "clearance_mm": 7.1
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "main_output_cap0",
+      "clearance_mm": 7.1
+    },
+    {
+      "new": "airband_filter_reserve",
+      "base": "main_output_cap1",
+      "clearance_mm": 7.1
+    },
+    {
+      "new": "fpv_decoder",
+      "base": "display_connector",
+      "clearance_mm": 7.85
+    },
+    {
+      "new": "fpv_receiver_bay",
+      "base": "c5_dbg_header",
+      "clearance_mm": 2.44
+    },
+    {
+      "new": "fpv_receiver_bay",
+      "base": "display_connector",
+      "clearance_mm": 6.05
+    }
+  ],
+  "errors": [],
+  "open_gates": [
+    "select an in-production exact serial 5.8-GHz analog receiver with a live purchase route; generic RX5808 and discontinued MM238R-MCU are not accepted",
+    "close the exact MMCX drawing, hole pattern, hand-assembly accessibility and enclosure side opening",
+    "live-check JLC stock, MOQ and price for the 1.8-V LDO before accepting it",
+    "synthesize the Airband input and IF filters from factory-stock serial passives and prove the 87-106-MHz image rejection mask",
+    "rebuild the complete six-domain rail and thermal matrix",
+    "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
+  ],
+  "placements": [
+    {
+      "id": "hub_rp",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "SC1512-A4",
+      "role": "Hub RP2354B; C5/RF fan-out, storage, audio and broadcast control",
+      "world_bbox_mm": {
+        "x": [
+          37.5,
+          47.5
+        ],
+        "y": [
+          70.0,
+          80.0
+        ],
+        "z": [
+          4.8,
+          5.7
+        ]
+      }
+    },
+    {
+      "id": "airband_lna",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "PGA-103+",
+      "role": "Airband low-noise gain stage",
+      "world_bbox_mm": {
+        "x": [
+          47.0,
+          51.5
+        ],
+        "y": [
+          62.0,
+          66.1
+        ],
+        "z": [
+          4.8,
+          6.3
+        ]
+      }
+    },
+    {
+      "id": "airband_mixer",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "LT5560EDD#TRPBF",
+      "role": "118-137 MHz to 6-25 MHz down-converter",
+      "world_bbox_mm": {
+        "x": [
+          52.5,
+          55.5
+        ],
+        "y": [
+          62.0,
+          65.0
+        ],
+        "z": [
+          4.8,
+          5.6
+        ]
+      }
+    },
+    {
+      "id": "airband_selector",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "HMC544AETR",
+      "role": "direct FM/SW versus converted Airband selector",
+      "world_bbox_mm": {
+        "x": [
+          56.5,
+          59.5
+        ],
+        "y": [
+          62.0,
+          65.0
+        ],
+        "z": [
+          4.8,
+          5.9
+        ]
+      }
+    },
+    {
+      "id": "airband_lo",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "SI5351A-B-GTR",
+      "role": "fixed 112-MHz Airband local oscillator",
+      "world_bbox_mm": {
+        "x": [
+          60.5,
+          63.5
+        ],
+        "y": [
+          62.0,
+          65.0
+        ],
+        "z": [
+          4.8,
+          5.9
+        ]
+      }
+    },
+    {
+      "id": "airband_filter_reserve",
+      "kind": "reserve",
+      "frame": "ui-inner",
+      "mpn": null,
+      "role": "118-137-MHz image-rejection BPF and 6-25-MHz IF cleanup; individually serial passives close after synthesis",
+      "world_bbox_mm": {
+        "x": [
+          48.5,
+          68.5
+        ],
+        "y": [
+          67.5,
+          74.0
+        ],
+        "z": [
+          4.8,
+          6.0
+        ]
+      }
+    },
+    {
+      "id": "fpv_decoder",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "TVP5150AM1PBS",
+      "role": "CVBS to 8-bit BT.656 decoder beside the receiver bay",
+      "world_bbox_mm": {
+        "x": [
+          31.0,
+          38.0
+        ],
+        "y": [
+          96.5,
+          103.5
+        ],
+        "z": [
+          14.600000000000001,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "fpv_power_reserve",
+      "kind": "reserve",
+      "frame": "rf-inner",
+      "mpn": null,
+      "role": "decoder 1.8-V LDO, switched receiver rail and local capacitors",
+      "world_bbox_mm": {
+        "x": [
+          30.5,
+          38.5
+        ],
+        "y": [
+          90.0,
+          95.5
+        ],
+        "z": [
+          14.4,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "fpv_receiver_bay",
+      "kind": "reserve",
+      "frame": "rf-inner",
+      "mpn": null,
+      "role": "replaceable exact serial 5.8-GHz analog receiver; MM238R-MCU is dimensional evidence only",
+      "world_bbox_mm": {
+        "x": [
+          39.5,
+          67.5
+        ],
+        "y": [
+          90.5,
+          113.5
+        ],
+        "z": [
+          12.8,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "fpv_mmcx",
+      "kind": "external_body",
+      "frame": "rf-outer-right-edge",
+      "mpn": "DL-MMCX-KWE-90",
+      "role": "user-facing 50-ohm MMCX labelled FPV RX 5.8G",
+      "world_bbox_mm": {
+        "x": [
+          75.0,
+          78.5
+        ],
+        "y": [
+          99.5,
+          103.0
+        ],
+        "z": [
+          15.8,
+          19.3
+        ]
+      }
+    }
+  ]
+}

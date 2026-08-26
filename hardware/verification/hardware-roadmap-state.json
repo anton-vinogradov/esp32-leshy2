@@ -2,8 +2,8 @@
   "schema_version": 1,
   "baseline": "R2",
   "current_stage": "H1",
-  "current_substep": "H1-R2.0",
-  "current_detail": "H0-R2 is reviewed with six compute domains, direct S3 UI/display/analog-FPV, mandatory receive-only Airband and a live-checked active BOM delta. H1-R2 now owns the complete physical re-layout, collision and interconnect pass, 3.5-A continuous / 4.0-A step power requalification, current mockups and the production-schematic input. All R1 H1-H5 artifacts remain historical evidence only. Purchasing, PCB layout and fabrication remain unauthorized.",
+  "current_substep": "H1-R2.1",
+  "current_detail": "The accepted 75 x 150 mm coordinate model now contains the Hub RP2354B, exact Airband active bodies, TVP5150, an explicit replaceable 5.8-GHz receiver bay and exact side MMCX. The generated incremental audit has zero same-face collisions and 2.44 mm minimum opposing clearance. Exact remaining R2 bodies, the 3.5-A continuous / 4.0-A step rail and thermal matrix, and all complete physical views remain open. R1 H1-H5 artifacts are historical evidence only; purchasing, PCB layout and fabrication remain unauthorized.",
   "stages": [
     {"id": "H0", "status": "reviewed", "baseline": "R2"},
     {"id": "H1", "status": "current", "baseline": "R2", "historical_r1_status": "reviewed"},
