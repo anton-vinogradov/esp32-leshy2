@@ -2,8 +2,8 @@
   "schema_version": 1,
   "baseline": "R2",
   "current_stage": "H1",
-  "current_substep": "H1-R2.1",
-  "current_detail": "The accepted 75 x 150 mm coordinate model now contains the Hub RP2354B, exact Airband active bodies, TVP5150, an explicit replaceable 5.8-GHz receiver bay and exact side MMCX. The generated incremental audit has zero same-face collisions and 2.44 mm minimum opposing clearance. Exact remaining R2 bodies, the 3.5-A continuous / 4.0-A step rail and thermal matrix, and all complete physical views remain open. R1 H1-H5 artifacts are historical evidence only; purchasing, PCB layout and fabrication remain unauthorized.",
+  "current_substep": "H1-R2.2",
+  "current_detail": "The accepted 75 x 150 mm coordinate model now contains the Hub RP2354B, exact Airband active bodies, TVP5150, an explicit replaceable 5.8-GHz receiver bay and the manufacturer-dimensioned side MMCX. The exact TPS7A2018PDBVR 1.8-V rail is accepted on the live JLC/LCSC supply surface. The generated incremental audit has zero same-face collisions and 2.44 mm minimum opposing clearance. The exact 5.8-GHz receiver boundary, Airband filters, the 3.5-A continuous / 4.0-A step rail and thermal matrix, and all complete physical views remain open. R1 H1-H5 artifacts are historical evidence only; purchasing, PCB layout and fabrication remain unauthorized.",
   "stages": [
     {"id": "H0", "status": "reviewed", "baseline": "R2"},
     {"id": "H1", "status": "current", "baseline": "R2", "historical_r1_status": "reviewed"},

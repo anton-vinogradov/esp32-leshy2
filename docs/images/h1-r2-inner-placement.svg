@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1380" height="850" viewBox="0 0 1380 850">
 <rect width="1380" height="850" fill="#ffffff"/>
-<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.1 inner placement</text>
+<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.2 inner placement</text>
 <text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · RF board is mirrored · numbered marks are documentation, never inner-face silkscreen.</text>
 <text x="190.00" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">UI PCB · inner</text>
 <rect x="70.00" y="122.00" width="240.00" height="480.00" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -167,11 +167,11 @@
 <text x="539.60" y="418.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#1d4ed8">R2</text>
 <rect x="434.00" y="411.60" width="89.60" height="73.60" rx="3" fill="#dbeafe" fill-opacity="0.92" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="6 4"/>
 <text x="478.80" y="448.40" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#1d4ed8">R3</text>
-<rect x="391.00" y="440.40" width="19.00" height="13.00" rx="3" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
-<text x="400.5" y="446.90" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#1d4ed8">7</text>
-<path d="M 391.0 446.90 L 373.0 446.90" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="369.0" y="444.40" text-anchor="end" font-family="sans-serif" font-size="9" font-weight="700" fill="#dc2626">finished-device RIGHT side</text>
-<path d="M 410.00 446.90 L 434.00 448.40" stroke="#0f766e" stroke-width="3" fill="none"/>
+<rect x="388.88" y="440.40" width="21.12" height="11.52" rx="3" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<text x="399.44" y="446.16" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#1d4ed8">7</text>
+<path d="M 388.88 446.16 L 370.88 446.16" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="366.88" y="444.16" text-anchor="end" font-family="sans-serif" font-size="9" font-weight="700" fill="#dc2626">finished-device RIGHT side</text>
+<path d="M 410.00 446.16 L 434.00 448.40" stroke="#0f766e" stroke-width="3" fill="none"/>
 <path d="M 523.60 448.40 L 528.40 442.00" stroke="#7c3aed" stroke-width="3" fill="none"/>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker></defs>
 <text x="730" y="112" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Placed devices and allocations</text>
@@ -214,9 +214,21 @@
 <line x1="1100" y1="294" x2="1134" y2="294" stroke="#7c3aed" stroke-width="3"/>
 <text x="1144" y="298" font-family="sans-serif" font-size="11" fill="#526076">75 Ω CVBS PCB trace</text>
 <text x="1100" y="344" font-family="sans-serif" font-size="15" font-weight="700" fill="#9a3412">Still open</text>
-<text x="1100" y="370" font-family="sans-serif" font-size="11" fill="#9a3412">• exact in-production 5.8-GHz RX module</text>
-<text x="1100" y="392" font-family="sans-serif" font-size="11" fill="#9a3412">• Airband LC synthesis and image mask</text>
-<text x="1100" y="414" font-family="sans-serif" font-size="11" fill="#9a3412">• MMCX drawing / enclosure side opening</text>
-<text x="1100" y="436" font-family="sans-serif" font-size="11" fill="#9a3412">• 1.8-V LDO live JLC stock recheck</text>
-<text x="1100" y="458" font-family="sans-serif" font-size="11" fill="#9a3412">• complete R2 rail and thermal matrix</text>
+<text x="1100" y="370" font-family="sans-serif" font-size="10.5" fill="#9a3412">• select an in-production exact serial</text>
+<text x="1100" y="385" font-family="sans-serif" font-size="10.5" fill="#9a3412">  5.8-GHz analog receiver with a live</text>
+<text x="1100" y="400" font-family="sans-serif" font-size="10.5" fill="#9a3412">  purchase route; generic RX5808 and</text>
+<text x="1100" y="415" font-family="sans-serif" font-size="10.5" fill="#9a3412">  discontinued MM238R-MCU are not</text>
+<text x="1100" y="430" font-family="sans-serif" font-size="10.5" fill="#9a3412">  accepted</text>
+<text x="1100" y="451" font-family="sans-serif" font-size="10.5" fill="#9a3412">• prove manual-assembly accessibility</text>
+<text x="1100" y="466" font-family="sans-serif" font-size="10.5" fill="#9a3412">  and the enclosure side opening around</text>
+<text x="1100" y="481" font-family="sans-serif" font-size="10.5" fill="#9a3412">  the exact MMCX body</text>
+<text x="1100" y="502" font-family="sans-serif" font-size="10.5" fill="#9a3412">• synthesize the Airband input and IF</text>
+<text x="1100" y="517" font-family="sans-serif" font-size="10.5" fill="#9a3412">  filters from factory-stock serial</text>
+<text x="1100" y="532" font-family="sans-serif" font-size="10.5" fill="#9a3412">  passives and prove the 87-106-MHz</text>
+<text x="1100" y="547" font-family="sans-serif" font-size="10.5" fill="#9a3412">  image rejection mask</text>
+<text x="1100" y="568" font-family="sans-serif" font-size="10.5" fill="#9a3412">• rebuild the complete six-domain rail</text>
+<text x="1100" y="583" font-family="sans-serif" font-size="10.5" fill="#9a3412">  and thermal matrix</text>
+<text x="1100" y="604" font-family="sans-serif" font-size="10.5" fill="#9a3412">• regenerate the complete exterior,</text>
+<text x="1100" y="619" font-family="sans-serif" font-size="10.5" fill="#9a3412">  inner faces and both sections only</text>
+<text x="1100" y="634" font-family="sans-serif" font-size="10.5" fill="#9a3412">  after the R2 bodies stop moving</text>
 </svg>

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.1",
+  "marker": "H1-R2.2",
   "checked_on": "2026-08-27",
   "purpose": "Place the new R2 Hub, Airband and analog-FPV bodies in the accepted 75 x 150 mm two-board coordinate system before any R2 KiCad work.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -61,12 +61,14 @@
       "manufacturer": "DreamLNK",
       "assembly": "Extended through-hole/manual assembly",
       "accepted": true,
-      "selection_status": "working selection; exact mechanical drawing remains open",
-      "selection_status_ru": "рабочий выбор; точный механический чертёж остаётся открытым",
-      "availability": "22,687 pieces, MOQ 1, USD 0.9032 at quantity 1",
-      "availability_ru": "22 687 шт., MOQ 1, $0.9032 при количестве 1",
+      "selection_status": "accepted physical definition; manual access and enclosure opening remain H1 gates",
+      "selection_status_ru": "принятая физическая позиция; доступ для ручной пайки и проём корпуса остаются gates H1",
+      "availability": "25,383 pieces, MOQ 1, USD 0.9077 at quantity 1",
+      "availability_ru": "25 383 шт., MOQ 1, $0.9077 при количестве 1",
       "url": "https://jlcpcb.com/partdetail/DreamLNK-DL_MMCX_KWE90/C2894793",
-      "checked": "2026-08-26"
+      "manufacturer_url": "https://www.dreamlnk.com/en/DL-MMCX-KWE-90.html",
+      "drawing_url": "https://www.dreamlnk.com/static/upload/image/20230728/1690528389712742.jpg",
+      "checked": "2026-08-27"
     },
     {
       "role": "FPV decoder 1.8-V rail",
@@ -75,13 +77,14 @@
       "jlcpcb_part": "C963430",
       "manufacturer": "Texas Instruments",
       "assembly": "Extended SMT; Economic and Standard",
-      "selection_status": "not accepted",
-      "selection_status_ru": "не принят",
-      "availability": "JLC assembly card and LCSC stock exist; live JLC stock/MOQ/price recheck remains required before acceptance",
-      "availability_ru": "есть assembly-card JLC и остаток LCSC; перед принятием нужна повторная живая проверка stock/MOQ/цены JLC",
+      "selection_status": "accepted for the working placement",
+      "selection_status_ru": "принят для рабочего размещения",
+      "availability": "2,225 pieces, MOQ/multiple 5, USD 0.2413 at quantity 5; JLC identifies Economic and Standard SMT assembly",
+      "availability_ru": "2 225 шт., MOQ/кратность 5, $0.2413 при количестве 5; JLC указывает Economic и Standard SMT assembly",
       "url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS7A2018PDBVR/C963430",
-      "checked": "2026-08-26",
-      "accepted": false
+      "supply_url": "https://www.lcsc.com/product-detail/C963430.html",
+      "checked": "2026-08-27",
+      "accepted": true
     }
   ],
   "placements": [
@@ -183,7 +186,14 @@
       "mpn": "DL-MMCX-KWE-90",
       "role": "user-facing 50-ohm MMCX labelled FPV RX 5.8G",
       "world_xy_mm": [75.0, 99.5],
-      "size_mm": [3.5, 3.5, 3.5],
+      "size_mm": [6.6, 3.6, 4.0],
+      "mounting": {
+        "centre_pin_diameter_mm": 0.7,
+        "ground_post_count": 4,
+        "ground_post_square_mm": 0.5,
+        "ground_post_pitch_mm": [2.0, 2.0],
+        "pin_projection_below_board_mm": 2.8
+      },
       "direction": "right side of the finished device"
     }
   ],
@@ -212,16 +222,14 @@
   ],
   "open_gates": [
     "select an in-production exact serial 5.8-GHz analog receiver with a live purchase route; generic RX5808 and discontinued MM238R-MCU are not accepted",
-    "close the exact MMCX drawing, hole pattern, hand-assembly accessibility and enclosure side opening",
-    "live-check JLC stock, MOQ and price for the 1.8-V LDO before accepting it",
+    "prove manual-assembly accessibility and the enclosure side opening around the exact MMCX body",
     "synthesize the Airband input and IF filters from factory-stock serial passives and prove the 87-106-MHz image rejection mask",
     "rebuild the complete six-domain rail and thermal matrix",
     "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
   ],
   "open_gates_ru": [
     "выбрать точный серийный аналоговый 5,8-ГГц приёмник с действующим каналом покупки; generic RX5808 и снятый MM238R-MCU не приняты",
-    "закрыть точный чертёж MMCX, отверстия, доступ для ручной установки и боковой проём корпуса",
-    "повторно проверить живые остаток, MOQ и цену JLC для LDO 1,8 В до его принятия",
+    "доказать доступ для ручной установки и боковой проём корпуса вокруг точного корпуса MMCX",
     "синтезировать входной и IF-фильтры Airband из доступных фабричных пассивов и доказать подавление зеркальной полосы 87–106 МГц",
     "пересобрать полную матрицу шин и тепла для шести доменов",
     "перегенерировать все внешние и внутренние виды и оба разреза после прекращения перемещений корпусов R2"

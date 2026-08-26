@@ -144,7 +144,7 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
     out = [
         '<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="850" viewBox="0 0 1380 850">',
         '<rect width="1380" height="850" fill="#ffffff"/>',
-        '<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.1 inner placement</text>',
+        f'<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · {esc(model["marker"])} inner placement</text>',
         '<text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · RF board is mirrored · numbered marks are documentation, never inner-face silkscreen.</text>',
     ]
     for frame, title in (("ui-inner", "UI PCB · inner"), ("rf-inner", "RF / power PCB · inner · mirrored")):
@@ -179,7 +179,10 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
 
     # Physical device-right becomes viewer-left on the mirrored RF inner face.
     rf_x = ox["rf-inner"]
-    mmcx_y = oy + 99.5 * scale
+    mmcx = next(item for item in model["placements"] if item["id"] == "fpv_mmcx")
+    mmcx_w = mmcx["size_mm"][0] * scale
+    mmcx_h = mmcx["size_mm"][1] * scale
+    mmcx_y = oy + mmcx["world_xy_mm"][1] * scale
     fpv = next(item for item in model["placements"] if item["id"] == "fpv_receiver_bay")
     dec = next(item for item in model["placements"] if item["id"] == "fpv_decoder")
     fpv_x = rf_x + (board_w - fpv["world_xy_mm"][0] - fpv["size_mm"][0]) * scale
@@ -187,11 +190,11 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
     dec_x = rf_x + (board_w - dec["world_xy_mm"][0] - dec["size_mm"][0]) * scale
     dec_cy = oy + (dec["world_xy_mm"][1] + dec["size_mm"][1] / 2) * scale
     out.extend([
-        rect(rf_x - 19, mmcx_y, 19, 13, rx="3", fill="#dbeafe", stroke="#1d4ed8", stroke_width="2"),
-        f'<text x="{rf_x - 9.5}" y="{mmcx_y + 6.5:.2f}" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#1d4ed8">7</text>',
-        f'<path d="M {rf_x - 19} {mmcx_y + 6.5:.2f} L {rf_x - 37} {mmcx_y + 6.5:.2f}" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>',
-        f'<text x="{rf_x - 41}" y="{mmcx_y + 4:.2f}" text-anchor="end" font-family="sans-serif" font-size="9" font-weight="700" fill="#dc2626">finished-device RIGHT side</text>',
-        f'<path d="M {rf_x:.2f} {mmcx_y + 6.5:.2f} L {fpv_x:.2f} {fpv_cy:.2f}" stroke="#0f766e" stroke-width="3" fill="none"/>',
+        rect(rf_x - mmcx_w, mmcx_y, mmcx_w, mmcx_h, rx="3", fill="#dbeafe", stroke="#1d4ed8", stroke_width="2"),
+        f'<text x="{rf_x - mmcx_w / 2:.2f}" y="{mmcx_y + mmcx_h / 2:.2f}" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#1d4ed8">7</text>',
+        f'<path d="M {rf_x - mmcx_w:.2f} {mmcx_y + mmcx_h / 2:.2f} L {rf_x - mmcx_w - 18:.2f} {mmcx_y + mmcx_h / 2:.2f}" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>',
+        f'<text x="{rf_x - mmcx_w - 22:.2f}" y="{mmcx_y + mmcx_h / 2 - 2:.2f}" text-anchor="end" font-family="sans-serif" font-size="9" font-weight="700" fill="#dc2626">finished-device RIGHT side</text>',
+        f'<path d="M {rf_x:.2f} {mmcx_y + mmcx_h / 2:.2f} L {fpv_x:.2f} {fpv_cy:.2f}" stroke="#0f766e" stroke-width="3" fill="none"/>',
         f'<path d="M {fpv_x + fpv["size_mm"][0] * scale:.2f} {fpv_cy:.2f} L {dec_x:.2f} {dec_cy:.2f}" stroke="#7c3aed" stroke-width="3" fill="none"/>',
         '<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker></defs>',
     ])
@@ -225,22 +228,20 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
         f'<text x="{audit_x}" y="344" font-family="sans-serif" font-size="15" font-weight="700" fill="#9a3412">Still open</text>',
     ])
     y = 370
-    for line in (
-        "exact in-production 5.8-GHz RX module",
-        "Airband LC synthesis and image mask",
-        "MMCX drawing / enclosure side opening",
-        "1.8-V LDO live JLC stock recheck",
-        "complete R2 rail and thermal matrix",
-    ):
-        out.append(f'<text x="{audit_x}" y="{y}" font-family="sans-serif" font-size="11" fill="#9a3412">• {esc(line)}</text>')
-        y += 22
+    for gate in model["open_gates"]:
+        gate_lines = textwrap.wrap(gate, width=38, break_long_words=False, break_on_hyphens=False)
+        for offset, line in enumerate(gate_lines):
+            prefix = "• " if offset == 0 else "  "
+            out.append(f'<text x="{audit_x}" y="{y}" font-family="sans-serif" font-size="10.5" fill="#9a3412">{esc(prefix + line)}</text>')
+            y += 15
+        y += 6
     out.append('</svg>')
     return "\n".join(out) + "\n"
 
 
 def render_doc(model: dict, result: dict, ru: bool) -> str:
     if ru:
-        title = "# H1-R2.1 · физическая перекомпоновка"
+        title = f'# {model["marker"]} · физическая перекомпоновка'
         intro = "Это текущий проверяемый результат H1, а не журнал решений и не разрешение начинать KiCad."
         state = "В принятую 75×150-мм систему координат добавлены второй Hub RP, активные корпуса Airband, видеодекодер FPV и сменная зона его ещё не выбранного 5,8-ГГц приёмника."
         audit_heading = "## Что уже проверено"
@@ -255,7 +256,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         table_header = "| Роль | Точный MPN | JLCPCB | Статус выбора | Текущий маршрут |\n|---|---|---|---|---|"
         gates = model["open_gates_ru"]
     else:
-        title = "# H1-R2.1 · physical re-layout"
+        title = f'# {model["marker"]} · physical re-layout'
         intro = "This is the current verified H1 result, not a decision diary and not authorization to start KiCad."
         state = "The second Hub RP, Airband active bodies, FPV video decoder and a replaceable bay for its still-unselected 5.8-GHz receiver are placed in the accepted 75 × 150 mm coordinate system."
         audit_heading = "## Already verified"

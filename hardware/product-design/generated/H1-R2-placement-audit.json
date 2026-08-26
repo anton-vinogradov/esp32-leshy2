@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.1",
+  "marker": "H1-R2.2",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "new_fixed_body_count": 6,
@@ -144,8 +144,7 @@
   "errors": [],
   "open_gates": [
     "select an in-production exact serial 5.8-GHz analog receiver with a live purchase route; generic RX5808 and discontinued MM238R-MCU are not accepted",
-    "close the exact MMCX drawing, hole pattern, hand-assembly accessibility and enclosure side opening",
-    "live-check JLC stock, MOQ and price for the 1.8-V LDO before accepting it",
+    "prove manual-assembly accessibility and the enclosure side opening around the exact MMCX body",
     "synthesize the Airband input and IF filters from factory-stock serial passives and prove the 87-106-MHz image rejection mask",
     "rebuild the complete six-domain rail and thermal matrix",
     "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
@@ -349,15 +348,15 @@
       "world_bbox_mm": {
         "x": [
           75.0,
-          78.5
+          81.6
         ],
         "y": [
           99.5,
-          103.0
+          103.1
         ],
         "z": [
           15.8,
-          19.3
+          19.8
         ]
       }
     }

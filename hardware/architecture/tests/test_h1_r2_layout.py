@@ -49,7 +49,17 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("C2894793", by_mpn["DL-MMCX-KWE-90"]["jlcpcb_part"])
         self.assertEqual("C39843328", by_mpn["SC1512-A4"]["jlcpcb_part"])
         self.assertTrue(all("accepted" in row for row in self.model["factory_evidence"]))
-        self.assertFalse(by_mpn["TPS7A2018PDBVR"]["accepted"])
+        self.assertTrue(by_mpn["TPS7A2018PDBVR"]["accepted"])
+        self.assertIn("2,225 pieces", by_mpn["TPS7A2018PDBVR"]["availability"])
+
+    def test_mmcx_uses_manufacturer_body_and_mounting_geometry(self):
+        mmcx = next(x for x in self.model["placements"] if x["id"] == "fpv_mmcx")
+        self.assertEqual([6.6, 3.6, 4.0], mmcx["size_mm"])
+        self.assertEqual(4, mmcx["mounting"]["ground_post_count"])
+        self.assertEqual([2.0, 2.0], mmcx["mounting"]["ground_post_pitch_mm"])
+        evidence = next(x for x in self.model["factory_evidence"] if x["mpn"] == mmcx["mpn"])
+        self.assertTrue(evidence["accepted"])
+        self.assertIn("dreamlnk.com", evidence["drawing_url"])
 
     def test_generated_artifacts_are_current(self):
         expected = {
