@@ -95,6 +95,23 @@
     }
   ],
   "receiver_research_conclusion": "Keep K331 as the leading functional candidate and request its controlled mechanical/assembly package plus a JLCPCB sourcing response; do not enlarge or weaken the architecture for the documented alternatives.",
+  "supplier_outreach": {
+    "sent_on": "2026-08-27",
+    "akk": {
+      "destination": "AKK Technology support",
+      "channel": "manufacturer support email",
+      "subject": "AKK K331 engineering documentation and production availability",
+      "requested": "controlled mechanical/land/assembly package, electrical truth table, lifecycle, MOQ, lead time and direct 50-ohm MMCX-feed confirmation",
+      "status": "sent; manufacturer response pending"
+    },
+    "jlcpcb": {
+      "destination": "JLCPCB support",
+      "channel": "authenticated contact form",
+      "subject": "AKK K331 sourcing and PCBA assembly feasibility",
+      "requested": "exact private/global sourcing route, MOQ, price, lead time, factory placement or consignment route, required engineering package and Function Test feasibility",
+      "status": "submitted successfully; support response pending"
+    }
+  },
   "antenna": {
     "mpn": "TBS5G8MMCXA",
     "exact_order_identity": "TBS 5G8 MMCX Linear Antenna; manufacturer product 1914; GTIN 768684799503",

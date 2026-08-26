@@ -23,7 +23,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Area | Actual state |
 |---|---|
 | Product requirements and functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): six domains, direct S3 UI/display/FPV and mandatory receive-only Airband |
-| Physical product design | ▶️ [H1-R2.5](h1-r2-fpv.md): K331 functional/pin fit and the exact TBS FPV antenna join the placed Hub, Airband, MMCX/LDO and 3.75-A continuous / 4.25-A step main rail; K331 physical/factory gates and remaining views continue |
+| Physical product design | ▶️ [H1-R2.5](h1-r2-fpv.md): K331 functional/pin fit and the exact TBS FPV antenna join the placed Hub, Airband, MMCX/LDO and 3.75-A continuous / 4.25-A step main rail; AKK/JLCPCB evidence requests are sent, while K331 physical/factory gates and remaining views continue |
 | Principle diagrams on the site | H0-R2 functional map plus H1-R2.5 FPV path/inner placement and H1-R2.4 filter/rail diagrams are current; complete dimensioned R1 views are explicit inputs being regenerated |
 | Production ECAD schematic | ⏳ R1 sheets retained; R2 work waits for the H1-R2 placement and rail contract |
 | Electrical and transient evidence | ⏳ R1 evidence retained; full R2 H3 rerun follows R2 H2 |
@@ -56,7 +56,8 @@ on each port and antenna make the 13-piece kit unambiguous; colour is redundant.
 The [FPV path result](h1-r2-fpv.md) accepts K331 functional and reserved-pin fit,
 one direct 50-ohm trace without U.FL, and exact linear `TBS5G8MMCXA`. K331
 remains a physical reserve until controlled dimensions and a JLCPCB sourcing or
-explicit post-PCBA installation route exist.
+explicit post-PCBA installation route exist. Exact requests were sent to AKK and
+JLCPCB on 27 August 2026; both replies are pending and no gate is pre-closed.
 The [rail/thermal result](h1-r2-power-thermal.md) enumerates all twelve legal
 groups: Airband is worst at 2.823 A, while the placed `TPS566231PRQFR` cell
 accepts 3.75 A continuous / 4.25 A step and has a guaranteed 4.340-A eFuse

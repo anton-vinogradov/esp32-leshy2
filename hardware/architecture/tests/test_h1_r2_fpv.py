@@ -49,6 +49,13 @@ class H1R2FPVTest(unittest.TestCase):
         self.assertGreater(alternatives["AWM682 RX"]["controlled_envelope_mm"][1], 23.0)
         self.assertGreater(alternatives["TUE-RFVRX-58-D"]["maximum_current_ma"], 350)
 
+    def test_supplier_requests_are_sent_but_do_not_close_gates(self):
+        outreach = self.model["supplier_outreach"]
+        self.assertEqual("2026-08-27", outreach["sent_on"])
+        self.assertEqual({"akk", "jlcpcb"}, set(outreach) - {"sent_on"})
+        self.assertEqual(["akk", "jlcpcb"], self.audit["supplier_responses_pending"])
+        self.assertFalse(self.model["result"]["production_acceptance"])
+
     def test_exact_linear_mmcx_antenna_covers_k331(self):
         antenna = self.model["antenna"]
         self.assertEqual("TBS5G8MMCXA", antenna["mpn"])

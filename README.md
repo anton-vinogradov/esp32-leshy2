@@ -18,7 +18,8 @@
 > GPIO ownership and the factory-first Airband active BOM are closed. The Hub,
 > Airband bodies and a replaceable K331 FPV receiver bay now have a collision-tested
 > physical projection. K331 fits the reserved pins and power; its controlled
-> body drawing and factory route remain open. The exact linear FPV antenna is
+> body drawing and factory route remain open. Exact evidence requests were sent
+> to AKK and JLCPCB on 27 August; both replies are pending. The exact linear FPV antenna is
 > selected. The Airband filter now has a generated nominal/stress
 > feasibility audit and a larger tuning cell. The new 3V3_MAIN cell is now
 > placed and accepts 3.75 A continuous / 4.25 A step; remaining placement, schematics and firmware
@@ -167,6 +168,8 @@ zero new body collision. `AKK K331` passes the reserved Hub pin and 5-V budget
 fit, while `TBS5G8MMCXA` is the exact 13th kit antenna for the keyed
 `FPV RX 5.8G` MMCX port. K331 remains a physical reserve until AKK-controlled
 dimensions and a JLCPCB private/global-sourcing or explicit hand-install route exist.
+The exact mechanical/assembly and sourcing requests were sent to AKK and JLCPCB
+on 27 August 2026; neither pending reply closes a gate.
 H3 still proves effective capacitance, load-step,
 switching loss and enclosure thermal behaviour. H1 must regenerate every complete physical view. No order is
 authorized.

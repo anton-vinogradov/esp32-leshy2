@@ -25,6 +25,7 @@ def audit(model: dict) -> dict:
     receiver = model["receiver"]
     antenna = model["antenna"]
     alternate = antenna["supply_independent_alternate"]
+    outreach = model["supplier_outreach"]
     pins = {row["pin"]: row for row in receiver["pinout"]}
     errors: list[str] = []
     if set(pins) != set(range(1, 15)):
@@ -61,6 +62,12 @@ def audit(model: dict) -> dict:
         errors.append("AWM682 rejection no longer proves a larger controlled body")
     if alternatives.get("TUE-RFVRX-58-D", {}).get("maximum_current_ma", 0) <= model["power_fit"]["reserved_active_5v_ma"]:
         errors.append("Top-Unum rejection no longer proves a power overrun")
+    if outreach.get("sent_on") != model["checked_on"]:
+        errors.append("supplier outreach date is missing or stale")
+    if set(outreach) != {"sent_on", "akk", "jlcpcb"}:
+        errors.append("supplier outreach does not cover both AKK and JLCPCB")
+    if any("pending" not in outreach[key].get("status", "") for key in ("akk", "jlcpcb")):
+        errors.append("supplier outreach status must remain fail-closed until replies arrive")
     return {
         "schema_version": 1,
         "marker": model["marker"],
@@ -76,6 +83,8 @@ def audit(model: dict) -> dict:
         "factory_placement_accepted": receiver["jlcpcb_surface"]["accepted_for_factory_placement"],
         "production_acceptance": model["result"]["production_acceptance"],
         "receiver_alternatives_reviewed": len(alternatives),
+        "supplier_outreach_sent_on": outreach["sent_on"],
+        "supplier_responses_pending": [key for key in ("akk", "jlcpcb") if "pending" in outreach[key]["status"]],
         "open_gates": model["open_gates"],
         "errors": errors,
     }
@@ -131,7 +140,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         factory = (
             'Производитель показывает K331 в наличии по $29.99; точные поиски JLCPCB по `AKK K331`, `RX5808` и `RTC6715` дали 0 результатов. '
             'Поэтому до ответа private/global sourcing это отдельный модуль, а не заявленная фабричная PCBA-позиция. '
-            f'Антенна продаётся производителем за $6.95 и ставится в комплект после PCBA; JLCPCB для неё также не является сборочным маршрутом.'
+            f'Антенна продаётся производителем за $6.95 и ставится в комплект после PCBA; JLCPCB для неё также не является сборочным маршрутом. '
+            f'{model["supplier_outreach"]["sent_on"]} запросы с точным перечнем механических, assembly и sourcing-свидетельств отправлены AKK и JLCPCB; оба ответа ожидаются.'
         )
         gates = '\n'.join(f'- {gate}' for gate in model['open_gates'])
         headings = ('## Результат', '## Фабричная граница', '## Открытые gates')
@@ -150,7 +160,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         factory = (
             'The manufacturer lists K331 in stock at $29.99; exact JLCPCB searches for `AKK K331`, `RX5808` and `RTC6715` returned zero results. '
             'It therefore remains a separate module until a private/global-sourcing response exists, not a claimed factory PCBA line item. '
-            'The $6.95 antenna is a post-PCBA kit accessory and likewise not an assembly line item.'
+            'The $6.95 antenna is a post-PCBA kit accessory and likewise not an assembly line item. '
+            f'On {model["supplier_outreach"]["sent_on"]}, exact mechanical, assembly and sourcing evidence requests were sent to AKK and JLCPCB; both replies are pending.'
         )
         gates = '\n'.join(f'- {gate}' for gate in model['open_gates'])
         headings = ('## Result', '## Factory boundary', '## Open gates')
