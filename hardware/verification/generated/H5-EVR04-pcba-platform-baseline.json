@@ -113,10 +113,10 @@
     "application_status": "approved",
     "app_name": "ESP32-Leshy2 BOM Validator",
     "app_status": "enabled",
-    "parts_permission_status": "reviewing",
+    "parts_permission_status": "rejected",
     "automatically_listed_permissions": {
-      "PCB": "reviewing",
-      "3D": "reviewing"
+      "PCB": "rejected",
+      "3D": "rejected"
     },
     "inactive_permissions": [
       "SMT Stencil",
@@ -371,7 +371,7 @@
     "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot"
   },
   "next": {
-    "local": "all 210 lines have defined routes; preserve the map, keep SA818S-V lead time and J4-F/J4-P as open factory gates, and wait for Parts permission approval",
+    "local": "all 210 lines have defined routes; preserve the map, keep SA818S-V lead time and J4-F/J4-P as open factory gates, and keep the optional rejected Parts API path fail-closed",
     "external_authority_later": "quote creation, sourcing requests, private-stock reservation, purchase and any materially expanded supplier request still require separate explicit authority",
     "forbidden": [
       "purchase",
@@ -413,7 +413,7 @@
     "sa818s_v_preorder_lead_time_is_explicitly_open": true,
     "factory_final_assembly_gate_is_explicitly_open": true,
     "jlcapi_application_and_app_are_ready": true,
-    "parts_api_waits_for_jlc_review": true,
+    "parts_api_rejection_is_explicit_and_fail_closed": true,
     "both_selected_voice_modules_have_exact_jlcpcb_routes": true,
     "api_credentials_are_not_repository_data": true,
     "no_order_or_layout_is_authorized": true

@@ -17,7 +17,9 @@
     "parts_api_application": true,
     "parts_api_application_status": "approved",
     "parts_api_app_status": "enabled",
-    "parts_api_permission_status": "reviewing",
+    "parts_api_permission_status": "rejected",
+    "parts_api_permission_checked_on": "2026-08-26",
+    "parts_api_rejection_reason": null,
     "parts_api_access_key_created": true,
     "parts_api_credentials_in_repository": false,
     "parts_api_tokenization_key_created": false,
@@ -89,11 +91,12 @@
       "machine_platform": "hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json",
       "machine_route_join": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
       "machine_route_resolution": "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json",
+      "supplier_response_contract": "hardware/procurement/H5.0.3-R1-no-order-supplier-inquiry.md#response-acceptance",
       "readable_basket_en": "docs/component-sample-basket.md",
       "readable_basket_ru": "docs/component-sample-basket.ru.md",
       "readable_platform_en": "docs/manufacturing-platform.md",
       "readable_platform_ru": "docs/manufacturing-platform.ru.md",
-      "result": "33 priced sample lines cover all nine H5 residuals and fourteen mechanical gates for USD 286.43 before freight/tax/coupons; all 210 current BOM lines and 1052 placements have exact J0-J3/J4-F/J4-P routes with zero replacement and zero unmapped lines; a no-order JLCPCB inquiry was submitted on 2026-08-26 and H5.0.3-R1 now waits for exact SA818S-V pre-order and J4-F/J4-P responses"
+      "result": "33 priced sample lines cover all nine H5 residuals and fourteen mechanical gates for USD 286.43 before freight/tax/coupons; all 210 current BOM lines and 1052 placements have exact J0-J3/J4-F/J4-P routes with zero replacement and zero unmapped lines; a no-order JLCPCB inquiry was submitted on 2026-08-26 and H5.0.3-R1 now waits for exact SA818S-V pre-order and J4-F/J4-P responses; the optional Parts API path is fail-closed after its permission was rejected without a stated reason"
     }
   },
   "superseded_artifacts": {

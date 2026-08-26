@@ -226,7 +226,8 @@ routes are assigned, with no semantic MPN substitution or component
 replacement. Exact SA818S-V pre-order lead time and J4-F/J4-P factory
 acceptance/pricing now await the itemized response to the no-order JLCPCB
 inquiry successfully submitted on 26 August 2026. The JLCAPI app/key are ready
-outside Git while Parts permission remains under review. Quote/reservation and
+outside Git, but Parts permission is rejected without a stated reason; manual
+catalogue/BOM evidence remains authoritative. Quote/reservation and
 purchase are not authorized. This is not a production order.
 
 <a id="h6"></a>

@@ -431,7 +431,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(0, evidence["summary"]["open_qualified_price_lines"])
         self.assertEqual("approved", evidence["parts_api"]["application_status"])
         self.assertEqual("enabled", evidence["parts_api"]["app_status"])
-        self.assertEqual("reviewing", evidence["parts_api"]["parts_permission_status"])
+        self.assertEqual("rejected", evidence["parts_api"]["parts_permission_status"])
         self.assertTrue(evidence["parts_api"]["access_key_created"])
         self.assertFalse(evidence["parts_api"]["tokenization_key_created"])
         self.assertFalse(evidence["parts_api"]["usable_now"])
@@ -922,7 +922,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertFalse(h5_plan["authorization"]["sample_or_component_purchase"])
         self.assertTrue(h5_plan["authorization"]["parts_api_application"])
         self.assertEqual("approved", h5_plan["authorization"]["parts_api_application_status"])
-        self.assertEqual("reviewing", h5_plan["authorization"]["parts_api_permission_status"])
+        self.assertEqual("rejected", h5_plan["authorization"]["parts_api_permission_status"])
+        self.assertIsNone(h5_plan["authorization"]["parts_api_rejection_reason"])
         self.assertTrue(h5_plan["authorization"]["parts_api_access_key_created"])
         self.assertFalse(h5_plan["authorization"]["parts_api_credentials_in_repository"])
         self.assertEqual(

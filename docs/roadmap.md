@@ -384,5 +384,5 @@ lines / 1052 placements have exact routes with zero replacement. Read-only
 public evidence can no longer close the remaining gates: exact SA818S-V
 pre-order lead time and J4-F/J4-P factory acceptance/pricing now await the
 itemized response to the no-order inquiry submitted on 26 August 2026. Parts
-API permission still awaits JLCPCB review; PCB
+API permission is rejected without a stated reason, so the manual evidence path remains active; PCB
 placement/routing, quote/reservation and every order remain blocked.
