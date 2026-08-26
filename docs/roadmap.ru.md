@@ -53,7 +53,9 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 snapshot из 209 строк не описывают текущий продукт. Публичные/read-only
 источники исчерпаны; точный срок SA818S-V и принятие/цена J4-F/J4-P требуют
 построчного ответа на информационный запрос JLCPCB, успешно отправленный
-26 августа 2026 года. Quote/reservation и закупка не разрешены.
+26 августа 2026 года. PCBWay уже сохранён как подготовленный резерв полной
+сборки, Seeed — как второй источник PCBA; связи с ними не было.
+Quote/reservation и закупка не разрешены.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -294,7 +296,7 @@ snapshot из 209 строк не описывают текущий продук
 - ✅ `H4.3` — [объединённый gate H4 проведён](h4-prelayout-gate-report.ru.md).
 - ✅ `H5.0.1-R1` — [все девять residuals и 14 механических gates связаны](component-evidence-map.ru.md) для текущей dual-SA818S архитектуры.
 - ✅ `H5.0.2-R1` — [первичные источники и серийные альтернативы проведены](component-source-research.ru.md); exact U/V-маршруты сохранены, CE ограничен как немолчаливая qualified-pending UHF-замена.
-- ▶️ `H5.0.3-R1` — корзина и карта 210 маршрутов готовы; запрос JLCPCB без заказа отправлен 26 августа 2026 года, ожидается ответ по SA818S-V и J4-F/J4-P.
+- ▶️ `H5.0.3-R1` — корзина и карта 210 маршрутов готовы; запрос JLCPCB без заказа отправлен 26 августа 2026 года, ожидается ответ по SA818S-V и J4-F/J4-P; резерв PCBWay подготовлен, но связь с ним не инициирована.
 
 Проверенный план H2 — [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json),
 завершённые планы H3/H4 — [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json)
@@ -356,7 +358,7 @@ gates, точный S3 QEMU и portable/host-модели для targets без 
 | **H2. Production ECAD-схема** | ✅ Проведено ревью и принято | Новая актуальная схема на читаемых листах и machine-readable HW↔FW contract | Точные symbol/footprint/pin/net/value; объяснены NC; ERC без необъяснённых ошибок; отдельно проверены reset, boot, recovery, no-back-power, quiet state и `FAULT_KILL`; firmware F2 использует контракт без выдуманных pins |
 | **H3. Виртуальная электрическая проверка** | ✅ Проведено ревью и принято | [Итоговый отчёт H3](h3-acceptance.ru.md): расчёты и симуляции до дорогой физики | Проходят worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse и load-step; thermal/fault tree; все analog corners; timing/levels; RF corridors, returns и pre-layout constraints |
 | **H4. Объединённый pre-layout gate** | ✅ [Проведено ревью](h4-prelayout-gate-report.ru.md) | Единое ревью механики, production ECAD, электрических evidence и видимых target-прошивке контрактов | Нет открытого виртуально проверяемого blocker; target skeletons используют реальный контракт; у каждой остаточной физической неопределённости есть измерение и bring-up test |
-| **H5. Evidence компонентов** | ▶️ Сейчас `H5.0.3-R1`; карта 9 residuals/14 gates и source research проведены, корзина из 33 строк за `$286.43` и все 210 маршрутов готовы без замен; запрос JLCPCB без заказа отправлен, ожидается ответ поставщика; закупка заблокирована | [Текущая корзина](component-sample-basket.ru.md) и [карта 210 маршрутов](manufacturing-platform.ru.md); прежняя SA518-корзина и аудит 209 строк остаются только отменёнными входами | У каждой production-BOM-строки есть точный маршрут `J0`–`J3`, `J4-F` или `J4-P`, молчаливых замен нет; опубликованы точная стоимость корзины и финальной сборки; фабрика приняла `J4-F` box-build и `J4-P` kit/packing/shipping; одобренные полученные образцы доказывают identity, mating, stack-up и критические размеры |
+| **H5. Evidence компонентов** | ▶️ Сейчас `H5.0.3-R1`; карта 9 residuals/14 gates и source research проведены, корзина из 33 строк за `$286.43` и все 210 маршрутов готовы без замен; запрос JLCPCB без заказа отправлен, ожидается ответ поставщика; резерв полной сборки PCBWay подготовлен, но связь с ним не инициирована; закупка заблокирована | [Текущая корзина](component-sample-basket.ru.md) и [карта 210 маршрутов](manufacturing-platform.ru.md); прежняя SA518-корзина и аудит 209 строк остаются только отменёнными входами | У каждой production-BOM-строки есть точный маршрут `J0`–`J3`, `J4-F` или `J4-P`, молчаливых замен нет; опубликованы точная стоимость корзины и финальной сборки; фабрика приняла `J4-F` box-build и `J4-P` kit/packing/shipping; одобренные полученные образцы доказывают identity, mating, stack-up и критические размеры |
 | **H6. PCB placement и routing** | 🔒 Ожидает H5 | Две реальные платы, реализующие принятую схему и механику | Пройдены placement review обеих сторон, DRC, impedance и return-current review, RF isolation, antenna feeds, thermal copper, creepage, test points, assembly и manufacturability; fab package принят отдельно |
 | **H7. Печать прототипа и bring-up** | 🔒 Ожидает H6, унаследованный firmware F3, принятую фабричную границу `J4-F/P` и одобрение заказа | Небольшая партия прототипов, фабрично собранные `J4-F`, отдельно упакованные `J4-P` и сохранённый bring-up log | Результат box-build соответствует принятой границе; rails запускаются по контракту; все пять контроллеров прошиваются и восстанавливаются; интерфейсы, display, storage, audio, radio и expansion проходят smoke tests; каждый rework отражён в исходниках |
 | **H8. Физическая квалификация** | 🔒 Ожидает H7 | HIL, RF, thermal, power, safety и endurance evidence | 3×nRF24 проходят `3R/1T2R/2T1R/3T`; активные сигналы не тормозятся соседями; выключенные интерфейсы физически тихие; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog и single-fault tests пройдены |
@@ -393,3 +395,6 @@ JLCPCB без заказа, отправленный 26 августа 2026 го
 26 августа 2026 года, поэтому до ответа активным остаётся ручной evidence-путь; PCB placement/routing, quote/reservation и любой
 заказ остаются заблокированы. `H5-EVR07` готов отклонить неполный или отрицательный
 ответ поставщика, не открывая H6.
+[`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json)
+сохраняет PCBWay как неотправленный резерв полной сборки, а Seeed — как второй
+источник PCBA.

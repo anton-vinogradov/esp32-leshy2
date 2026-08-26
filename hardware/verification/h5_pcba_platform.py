@@ -20,6 +20,7 @@ CAPTURE = REPO / "hardware/verification/jlcpcb-bom-tool-capture-2026-08-25-compa
 MATCH_OUTPUT = REPO / "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json"
 OUTLIER_CAPTURE = REPO / "hardware/verification/jlcpcb-outlier-search-capture-2026-08-25.json"
 OUTLIER_OUTPUT = REPO / "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json"
+FALLBACK_OUTPUT = REPO / "hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json"
 DOC_EN = REPO / "docs/manufacturing-platform.md"
 DOC_RU = REPO / "docs/manufacturing-platform.ru.md"
 CHECKED_ON = "2026-08-26"
@@ -152,6 +153,7 @@ SOURCES = {
     "jlc_api": "https://jlcpcb.com/help/article/jlcpcb-online-api-available-now",
     "jlc_bom_format": "https://jlcpcb.com/help/article/bill-of-materials-for-pcb-assembly",
     "pcbway_capabilities": "https://www.pcbway.com/assembly-capabilities.html",
+    "pcbway_oem": "https://www.pcbway.com/oem.html",
     "seeed_pcba": "https://www.seeedstudio.com/pcb-assembly.html",
 }
 
@@ -230,15 +232,15 @@ PLATFORMS = [
     },
     {
         "id": "pcbway-turnkey",
-        "role": "fallback-quote",
-        "reason": "turnkey, combo and consigned sourcing plus functional test and box-build options, but component availability is approval/quote driven rather than a public stock contract",
-        "fit": {"double_sided_smt_tht": True, "box_build_claimed": True, "public_machine_readable_parts_path": False},
+        "role": "first-fallback-for-full-device",
+        "reason": "official sources confirm turnkey/combo/consigned sourcing, customer approval before component decisions, double-sided mixed PCBA, inspection/customer functional test and OEM final assembly; exact Leshy2 acceptance and price remain written-response gates",
+        "fit": {"double_sided_smt_tht": True, "functional_test": True, "final_device_assembly_class": True, "public_machine_readable_parts_path": False},
     },
     {
         "id": "seeed-fusion",
-        "role": "second-source-quote",
-        "reason": "turnkey PCBA, public OPL and distributor-linked sourcing, but a smaller public local library and no selected advantage over JLCPCB for this BOM",
-        "fit": {"double_sided_smt_tht": True, "public_local_parts_library": True, "public_machine_readable_parts_path": False},
+        "role": "second-source-for-pcba-only",
+        "reason": "official PCBA source confirms turnkey sourcing, OPL, double-sided mixed assembly and functional test; the inspected productization deep link returned 404 and the required J4-F/J4-P full-device operations remain unproven",
+        "fit": {"double_sided_smt_tht": True, "functional_test": True, "public_local_parts_library": True, "final_device_assembly_class": False, "public_machine_readable_parts_path": False},
     },
 ]
 
@@ -590,6 +592,7 @@ def build() -> dict:
     match_summary = match_result["summary"]
     by_id = {row["device_id"]: row for row in rows}
     missing = [row["device_id"] for row in SPOT_CHECKS if row["device_id"] not in by_id]
+    fallback = json.loads(FALLBACK_OUTPUT.read_text(encoding="utf-8"))
     checks = {
         "reference_is_standard_pcba": PLATFORMS[0]["id"] == "jlcpcb-standard-pcba",
         "target_bom_has_210_exact_lines": len(rows) == 210,
@@ -608,6 +611,13 @@ def build() -> dict:
         "all_component_sample_prices_are_known": outlier_result["summary"]["open_qualified_price_lines"] == 0,
         "sa818s_v_preorder_lead_time_is_explicitly_open": outlier_result["summary"]["preorder_lead_time_open_mpn"] == "SA818S-V",
         "factory_final_assembly_gate_is_explicitly_open": not PLATFORMS[0]["fit"]["final_box_build_proven"],
+        "fallback_factory_readiness_is_current_and_fail_closed": fallback["artifact"] == "H5-EVR08"
+        and fallback["gate"] == "H5.0.3-R1"
+        and fallback["selection"]["first_fallback"] == "pcbway"
+        and fallback["selection"]["second_source_pcba"] == "seeed-fusion"
+        and fallback["selection"]["jlcpcb_remains_primary"]
+        and all(fallback["checks"].values())
+        and not any(fallback["authorization"].values()),
         "jlcapi_application_and_app_are_ready": JLCAPI_STATE["application_status"] == "approved"
         and JLCAPI_STATE["app_status"] == "enabled"
         and JLCAPI_STATE["access_key_created"],
@@ -627,7 +637,7 @@ def build() -> dict:
     if not all(checks.values()):
         raise ValueError({"failed": [key for key, value in checks.items() if not value], "missing": missing})
     return {
-        "schema_version": 2,
+        "schema_version": 3,
         "artifact": "H5-EVR04",
         "stage": "H5.0.3-R1",
         "status": "routes_complete_dual_sa818s_preorder_and_factory_gates_open",
@@ -641,6 +651,14 @@ def build() -> dict:
             "reason": "JLCPCB gives the strongest public, repeatable component-selection surface while retaining exact-part pre-order, global sourcing and consignment paths.",
         },
         "platforms": PLATFORMS,
+        "fallback_factory_evidence": {
+            "path": str(FALLBACK_OUTPUT.relative_to(REPO)),
+            "sha256": sha256(FALLBACK_OUTPUT),
+            "status": fallback["status"],
+            "first_fallback": fallback["selection"]["first_fallback"],
+            "second_source_pcba": fallback["selection"]["second_source_pcba"],
+            "contact_authorized": fallback["authorization"]["fallback_supplier_contact_send"],
+        },
         "availability_tiers": TIERS,
         "assembly_boundary": {
             "inside_pcba": ["both Leshy2 rigid boards", "all ordinary SMT/THT parts accepted by Standard PCBA", "board connectors and soldered RF boundaries when their exact assembly rule is accepted"],
@@ -726,7 +744,7 @@ def build() -> dict:
             "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot",
         },
         "next": {
-            "local": "all 210 lines have defined routes; preserve the map, keep SA818S-V lead time and J4-F/J4-P as open factory gates, and keep the optional rejected Parts API path fail-closed",
+            "local": "all 210 lines have defined routes; preserve the map, keep SA818S-V lead time and J4-F/J4-P as open factory gates, keep the optional rejected Parts API path fail-closed, and retain PCBWay as the prepared unsent full-device fallback",
             "external_authority_later": "quote creation, sourcing requests, private-stock reservation, purchase and any materially expanded supplier request still require separate explicit authority",
             "forbidden": ["purchase", "component replacement", "sourcing request", "quote creation", "private-stock reservation", "raw API data redistribution", "KiCad placement/routing", "fabrication"],
         },
@@ -773,7 +791,7 @@ def render(data: dict, match_result: dict, outlier_result: dict, russian: bool) 
 
 **Рабочий reference — JLCPCB Standard PCBA.** Это не эксклюзивная привязка и не разрешение заказа. Standard выбран из-за публичной assembly-библиотеки со stock/JLC-number, двухстороннего SMT+THT, fine-pitch/BGA/QFN, специального stack-up и SPI/AOI/X-ray. [Официальные capabilities]({SOURCES['jlc_capabilities']}) и [варианты sourcing]({SOURCES['jlc_sourcing']}).
 
-PCBWay остаётся fallback для ручного turnkey/box-build quote, Seeed Fusion — второй производственный quote. Их supplier availability хуже подходит как автоматически проверяемый источник выбора MPN.
+PCBWay — первый резерв полного устройства: его официальные страницы подтверждают [turnkey/combo/consigned PCBA и тестирование]({SOURCES['pcbway_capabilities']}), а также [OEM final assembly]({SOURCES['pcbway_oem']}). Точное принятие Leshy2 и цены ещё не подтверждены письменно; подготовленный запрос не отправлялся. Seeed Fusion подтверждён только как второй источник PCBA: [turnkey, OPL, mixed assembly и functional test]({SOURCES['seeed_pcba']}) есть, но требуемая полная сборка `J4-F/J4-P` публично не доказана.
 
 ```mermaid
 flowchart TD
@@ -839,9 +857,10 @@ JLCPCB Standard PCBA собирает обе платы и принятые SMT/
 - Все `{summary['target_bom_lines']}` строк имеют определённый маршрут `J0`–`J3`, `J4-F` или `J4-P`; функциональных замен нет.
 - Все component prices минимальной evidence-корзины известны. Запрос JLCPCB без заказа успешно отправлен 26 августа 2026 года; H5.0.3-R1 теперь ожидает точный срок/условия pre-order `SA818S-V`, подтверждение/цену `J4-F` box-build и условия `J4-P` kit/packing/shipping. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) отдельно проверит полноту ответа и прохождение gates, не разрешая заказ. Закупка образцов остаётся отдельным последующим решением.
 - Заявка JLCAPI одобрена, приложение `ESP32-Leshy2 BOM Validator` создано, ключ подписи хранится только локально вне Git. Портал показывает право Parts как `Rejected`, но причины в журнале нет. Официальная политика говорит, что решения учитывают предыдущие заказы JLCPCB, компанию и характер бизнеса, однако не указывает, какой именно фактор сработал здесь; [информационный запрос в поддержку](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md) отправлен 26 августа 2026 года и ожидает ответа. До фактического одобрения API-вызовы невозможны. PCB/3D также отклонены, SMT Stencil и JLC Balance выключены. Активным остаётся ручной путь через каталог и BOM.
+- [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) фиксирует резерв без возврата к началу H5: PCBWay — первый кандидат на полную сборку, Seeed — второй источник PCBA. [Одинаковый no-order запрос PCBWay](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) подготовлен, но его отправка и любые коммерческие действия не разрешены.
 - Прежний 209-строчный BOM upload был передан и обработан; текущий 210-строчный файл сгенерирован локально, но не передавался, потому что 208 identity неизменны, а обе новые exact-страницы проверены отдельно. Quote, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены. Сырые API-ответы публично не распространяются.
 
-Машинные результаты: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json), [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json) и [`H5-EVR06`](../hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json). [Требования JLCPCB к BOM]({SOURCES['jlc_bom_format']}).
+Машинные результаты: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json), [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json), [`H5-EVR06`](../hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json) и [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json). [Требования JLCPCB к BOM]({SOURCES['jlc_bom_format']}).
 """
     return f"""# Leshy2 manufacturing platform
 
@@ -851,7 +870,7 @@ JLCPCB Standard PCBA собирает обе платы и принятые SMT/
 
 **The working reference is JLCPCB Standard PCBA.** This is neither exclusive lock-in nor order authorization. Standard was selected for its public stock/JLC-number assembly library, double-sided SMT+THT, fine-pitch/BGA/QFN, special stackups and SPI/AOI/X-ray. See the official [assembly capabilities]({SOURCES['jlc_capabilities']}) and [parts-sourcing paths]({SOURCES['jlc_sourcing']}).
 
-PCBWay remains the manual turnkey/box-build quote fallback; Seeed Fusion remains a second manufacturing quote. Their supplier availability is less suitable as a repeatable machine-checkable MPN-selection source.
+PCBWay is the first full-device fallback: its official pages confirm [turnkey/combo/consigned PCBA and test]({SOURCES['pcbway_capabilities']}) plus [OEM final assembly]({SOURCES['pcbway_oem']}). Exact Leshy2 acceptance and prices still need a written answer; the prepared inquiry has not been sent. Seeed Fusion is confirmed only as a PCBA second source: [turnkey, OPL, mixed assembly and functional test]({SOURCES['seeed_pcba']}) are public, but the required complete `J4-F/J4-P` assembly is not proven.
 
 ```mermaid
 flowchart TD
@@ -917,9 +936,10 @@ JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts. That does
 - All `{summary['target_bom_lines']}` lines have a defined `J0`–`J3`, `J4-F` or `J4-P` route; no functional replacement was introduced.
 - Every component price in the minimum evidence basket is known. A no-order JLCPCB inquiry was successfully submitted on 26 August 2026; H5.0.3-R1 now waits for exact `SA818S-V` pre-order lead time/terms, `J4-F` box-build acceptance/pricing and `J4-P` kit/packing/shipping terms. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) will separately check response completeness and gate acceptance without authorizing an order. Sample purchase remains a later separate decision.
 - The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git. The portal reports Parts permission as `Rejected`, without a reason in its activity log. Official policy says decisions consider previous JLCPCB orders, company situation and business situation, but does not identify which factor applied here; an [information-only support request](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md) was submitted on 26 August 2026 and awaits a response. API calls remain unusable until actual approval. PCB/3D are also rejected; SMT Stencil and JLC Balance remain inactive. Manual catalogue/BOM evidence remains the active path.
+- [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) preserves a fallback without restarting H5: PCBWay is the first full-device candidate and Seeed is the PCBA second source. The [same no-order PCBWay questionnaire](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) is prepared but sending it and all commercial actions remain unauthorized.
 - The former 209-line BOM upload was transmitted and processed; the current 210-line file was generated locally but not transmitted because 208 identities are unchanged and both new exact pages were checked separately. No quote, sourcing request, reservation, purchase, replacement, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
 
-Machine results: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json), [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json) and [`H5-EVR06`](../hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json). [JLCPCB BOM requirements]({SOURCES['jlc_bom_format']}).
+Machine results: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json), [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json), [`H5-EVR06`](../hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json) and [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json). [JLCPCB BOM requirements]({SOURCES['jlc_bom_format']}).
 """
 
 

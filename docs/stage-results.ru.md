@@ -225,7 +225,15 @@ qualified-pending UHF alternate SA818S-CE. Текущая
 строк. Все маршруты назначены, семантических подмен MPN и замен компонентов нет.
 Точный срок pre-order SA818S-V и принятие/цена J4-F/J4-P теперь ожидают
 построчного ответа на запрос JLCPCB без заказа, успешно отправленный 26 августа
-2026 года. JLCAPI app/key готовы вне Git, пока право Parts проходит ревью.
+2026 года. Fail-closed
+[`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json)
+проверяет полноту ответа отдельно от прохождения фабричных gates и не может
+разрешить заказ. JLCAPI app/key готовы вне Git, но право Parts отклонено без
+указанной причины; [информационный запрос в поддержку](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md)
+успешно отправлен 26 августа 2026 года. Пока действует ручной evidence-путь.
+[`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json)
+сохраняет PCBWay как неотправленный первый резерв полной сборки, а Seeed — как
+второй источник PCBA, поэтому отрицательный ответ JLCPCB не перезапускает фазу.
 Quote/reservation и закупка не разрешены. Это не production order.
 
 <a id="h6"></a>

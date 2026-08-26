@@ -232,7 +232,11 @@ grant order authority. The JLCAPI app/key are ready
 outside Git, but Parts permission is rejected without a stated reason. An
 [information-only support request](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md)
 was submitted successfully on 26 August 2026; manual catalogue/BOM evidence
-remains authoritative until a real approval. Quote/reservation and
+remains authoritative until a real approval.
+[`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json)
+keeps PCBWay ready as the unsent first full-device fallback and Seeed as the
+PCBA second source, so a negative JLCPCB answer does not restart the phase.
+Quote/reservation and
 purchase are not authorized. This is not a production order.
 
 <a id="h6"></a>

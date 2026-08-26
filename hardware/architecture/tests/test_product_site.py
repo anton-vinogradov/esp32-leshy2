@@ -445,6 +445,9 @@ class ProductSiteTests(unittest.TestCase):
         self.assertFalse(evidence["parts_api"]["usable_now"])
         self.assertEqual("successfully_submitted", evidence["supplier_inquiry"]["result"])
         self.assertIsNone(evidence["supplier_inquiry"]["ticket_number"])
+        self.assertEqual("pcbway", evidence["fallback_factory_evidence"]["first_fallback"])
+        self.assertEqual("seeed-fusion", evidence["fallback_factory_evidence"]["second_source_pcba"])
+        self.assertFalse(evidence["fallback_factory_evidence"]["contact_authorized"])
         self.assertTrue(all(evidence["checks"].values()))
         self.assertIn("component replacement", evidence["next"]["forbidden"])
         self.assertIn("purchase", evidence["next"]["forbidden"])
@@ -925,6 +928,14 @@ class ProductSiteTests(unittest.TestCase):
             "hardware/verification/generated/H5-EVR07-supplier-response-gate.json",
             h5_plan["current_artifacts"]["H5.0.3-R1"]["machine_supplier_response_gate"],
         )
+        self.assertEqual(
+            "hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json",
+            h5_plan["current_artifacts"]["H5.0.3-R1"]["machine_fallback_factory"],
+        )
+        self.assertEqual(
+            "hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md",
+            h5_plan["current_artifacts"]["H5.0.3-R1"]["prepared_fallback_inquiry"],
+        )
         self.assertFalse(h5_plan["decision_gate"]["requires_user_authority"])
         self.assertTrue(h5_plan["decision_gate"]["authorized_now"])
         self.assertEqual("submitted_waiting_for_response", h5_plan["decision_gate"]["action_status"])
@@ -944,6 +955,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertFalse(h5_plan["authorization"]["parts_api_credentials_in_repository"])
         self.assertIn("H5-EVR07", self.read("docs/roadmap.md"))
         self.assertIn("H5-EVR07", self.read("docs/roadmap.ru.md"))
+        self.assertIn("H5-EVR08", self.read("docs/roadmap.md"))
+        self.assertIn("H5-EVR08", self.read("docs/roadmap.ru.md"))
         self.assertEqual(
             "source-hash-bound-precommit-revision",
             h4_plan["firmware_f3_evidence"]["revision"],

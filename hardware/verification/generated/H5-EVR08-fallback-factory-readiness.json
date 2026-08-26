@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "artifact": "H5-EVR08",
+  "gate": "H5.0.3-R1",
+  "checked_on": "2026-08-26",
+  "status": "fallback_ranked_no_contact_authorized",
+  "factories": [
+    {
+      "id": "pcbway",
+      "role": "first_fallback_for_full_device",
+      "official_sources": [
+        "https://www.pcbway.com/assembly-capabilities.html",
+        "https://www.pcbway.com/oem.html"
+      ],
+      "publicly_confirmed": {
+        "consigned_kitted_parts": true,
+        "turnkey_parts": true,
+        "partial_turnkey_combo": true,
+        "customer_approval_before_component_decisions": true,
+        "double_sided_mixed_smt_tht": true,
+        "prototype_minimum_quantity_five": true,
+        "xray_aoi_ict_and_customer_functional_test": true,
+        "repair_and_rework": true,
+        "oem_component_procurement_pcba_testing_and_final_assembly": true
+      },
+      "still_requires_written_acceptance": [
+        "exact SA818S-V sourcing lead time or consignment",
+        "all five J4-F operations and itemized quantity-5/10 price",
+        "all three J4-P operations and protected-cell shipping boundary",
+        "exact-MPN incoming inspection and no-silent-substitution terms"
+      ],
+      "status": "ready_for_same_no_order_questionnaire_if_authorized"
+    },
+    {
+      "id": "seeed-fusion",
+      "role": "second_source_for_pcba_not_yet_full_box_build",
+      "official_sources": [
+        "https://www.seeedstudio.com/pcb-assembly.html"
+      ],
+      "publicly_confirmed": {
+        "turnkey_pcba": true,
+        "supplier_linked_component_sourcing": true,
+        "local_open_parts_library": true,
+        "no_minimum_order": true,
+        "double_sided_mixed_smt_tht": true,
+        "functional_testing": true
+      },
+      "observed_gap": "the inspected productization/mass-production deep link returned HTTP 404; the PCBA page does not itemize the required final-device J4-F/J4-P operations",
+      "still_requires_written_acceptance": [
+        "full-device final assembly rather than PCBA only",
+        "exact SA818S-U/V sourcing or consignment",
+        "all J4-F/J4-P operations, prices and battery-shipping boundary"
+      ],
+      "status": "retain_as_pcba_second_source_not_first_box_build_fallback"
+    }
+  ],
+  "selection": {
+    "first_fallback": "pcbway",
+    "reason": "strongest public evidence for exact-part approval, consignment, mixed PCBA, customer functional test and final product assembly in one supplier class",
+    "second_source_pcba": "seeed-fusion",
+    "jlcpcb_remains_primary": true
+  },
+  "checks": {
+    "exactly_two_non_jlc_candidates_are_recorded": true,
+    "pcbway_public_evidence_covers_sourcing_pcba_test_and_final_assembly_classes": true,
+    "pcbway_exact_leshy_acceptance_and_price_remain_open": true,
+    "seeed_public_evidence_is_not_overstated_as_full_box_build": true,
+    "no_supplier_contact_or_commercial_action_is_authorized": true
+  },
+  "authorization": {
+    "fallback_supplier_contact_send": false,
+    "quote_project": false,
+    "reservation": false,
+    "sourcing_request": false,
+    "purchase": false,
+    "component_replacement": false,
+    "pcb_placement_and_routing": false,
+    "fabrication": false
+  },
+  "next": "keep waiting for JLCPCB; if its response fails H5-EVR07, request separate authority to send the identical no-order gate questionnaire to PCBWay"
+}
