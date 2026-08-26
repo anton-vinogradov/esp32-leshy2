@@ -5,6 +5,7 @@
   "functional_and_pin_fit": true,
   "receiver": "K331",
   "antenna": "TBS5G8MMCXA",
+  "antenna_alternate": "FXP831.09.0100C",
   "pin_count": 14,
   "power_margin_ma": 150,
   "antenna_covers_receiver_band": true,
@@ -15,7 +16,7 @@
     "obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence",
     "obtain a JLCPCB private/global-sourcing response or retain explicit post-PCBA hand installation",
     "prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality on assembled hardware",
-    "qualify at least one supply-independent antenna fallback before antenna-kit freeze"
+    "qualify FXP831.09.0100C on the assembled enclosure and secure available stock before relying on its current 16-week backorder route"
   ],
   "errors": []
 }

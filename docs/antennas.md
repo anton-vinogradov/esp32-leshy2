@@ -69,9 +69,9 @@ sensitivity claim.
 
 ## Backup choices
 
-An orderable backup candidate is named for the original 12 items. A
-supply-independent linear MMCX fallback for the thirteenth `FPV` item remains
-an explicit kit-freeze gate:
+An orderable backup candidate is named for every item. The `FPV` backup is
+supply-independent and electrically exact, but its current 16-week backorder
+route remains a kit-freeze supply gate:
 
 - `WI-FI/BLE` and `WI-FI/15.4` — Taoglas [`GW.05.0153`](https://www.taoglas.com/datasheets/GW.05.0153.pdf);
 - all three `nRF24` items — Pulse [`W1010`](https://www.digikey.com/en/products/detail/pulse-electronics/W1010/1616689);
@@ -82,6 +82,7 @@ an explicit kit-freeze gate:
 - UHF — Hytera [`AN0435H25`](https://www.hytera.com/br/product-new/accessories/radio-antennas/an0435h25.html);
 - `FM/SW/AIR RX` — remote receive-only Opek [`SCANSMA 25-1300`](https://www.hamradio.com/detail.cfm?pid=H0-016713); the shared port is receive-only and FM/SW/AIR modes are mutually exclusive;
 - `AM/LW LOOP` — controlled assembly [`L2-ANT-AM-LW-ALT01`](../hardware/architecture/am-lw-pod.json) using core `3061990891` and connector `CONSMA013.062-G`.
+- `FPV RX 5.8G` — linear Taoglas [`FXP831.09.0100C`](https://www.taoglas.com/datasheets/FXP831.09.0100C.pdf), 4.9–6.0 GHz with an MMCX male right-angle plug; active but currently zero-stock/backorder at DigiKey and Mouser with a 16-week manufacturer lead time.
 
 These are purchasing and test backups, not permission for silent substitution.
 Narrower antennas enable only the stated firmware profile. Every substitution
@@ -92,8 +93,8 @@ manufacturers.
 
 ## Kit readiness and cost
 
-First choices are named for all 13 physical items. Backup choices are named for
-12; 11 are independent of their first target's manufacturer. No backup has completed
+First and backup choices are named for all 13 physical items; 12 backups are
+independent of their first target's manufacturer. No backup has completed
 hardware qualification yet. Availability, price and limits dated 20 August
 2026, plus the FPV selection checked 27 August 2026, are retained in the
 [machine manifest](../hardware/architecture/antenna-kit.json).
@@ -103,8 +104,8 @@ antennas, $6.39 for the 433-MHz antenna and $20 for the remote FM/SW antenna.
 The 315-MHz estimate is about $3.71, but it compares different quantity tiers.
 The 868/915-MHz backup adds $0.49. No total is shown because Ebyte is RFQ-only,
 VHF/UHF lack comparable volume tiers, and AM/LW pricing excludes assembly.
-The exact FPV first target is $6.95 at quantity one; no comparable alternate is
-claimed yet.
+The exact FPV first target is $6.95 at quantity one. The Taoglas fallback is
+$10.34 (+$3.39), but has no immediate distributor stock.
 
 Both `SMA-W100RX2` and `SCANSMA 25-1300` are documented only from 25 MHz, so no
 below-25-MHz performance is claimed before hardware testing.

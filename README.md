@@ -157,7 +157,8 @@ factory supply surface. A compact generated Airband LC candidate passes the
 nominal reference mask and 95/105/155/220-MHz stress points, but its worst
 180-MHz stress case is 34.62 dB against 40 dB required. It is therefore not a
 production BOM; a 24×11-mm ground-fenced tuning cell with alternate/DNP pads is
-reserved for H3 extracted-parasitic closure. Antenna ports and kit antennas now
+reserved. H3 uses bounded pre-layout parasitics, H6 repeats with routed extraction
+before the H7 order, and H8 closes the fitted/DNP state by VNA. Antenna ports and kit antennas now
 share durable text codes, with colour only as redundant guidance. The R1 2.5-A
 main rail is replaced by a placed `TPS566231PRQFR` / `PSPMAA0605H-2R2M-ANP`
 cell. Twelve legal group states peak at 2.823 A; the accepted envelope is

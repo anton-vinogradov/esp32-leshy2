@@ -24,6 +24,7 @@ def load() -> dict:
 def audit(model: dict) -> dict:
     receiver = model["receiver"]
     antenna = model["antenna"]
+    alternate = antenna["supply_independent_alternate"]
     pins = {row["pin"]: row for row in receiver["pinout"]}
     errors: list[str] = []
     if set(pins) != set(range(1, 15)):
@@ -42,6 +43,13 @@ def audit(model: dict) -> dict:
         errors.append("selected antenna does not cover the complete K331 band")
     if antenna["termination"] != "MMCX plug":
         errors.append("selected antenna does not mate the external MMCX")
+    if not (
+        alternate["frequency_mhz"][0] <= receiver["frequency_mhz"][0]
+        and alternate["frequency_mhz"][1] >= receiver["frequency_mhz"][1]
+    ):
+        errors.append("supply-independent antenna alternate does not cover K331")
+    if not alternate["termination"].startswith("MMCX male"):
+        errors.append("supply-independent antenna alternate does not mate MMCX")
     if not any("without U.FL or cable" in step for step in model["signal_path"]):
         errors.append("the selected same-board RF path regressed to U.FL")
     if receiver["jlcpcb_surface"]["accepted_for_factory_placement"]:
@@ -53,6 +61,7 @@ def audit(model: dict) -> dict:
         "functional_and_pin_fit": not errors,
         "receiver": receiver["mpn"],
         "antenna": antenna["mpn"],
+        "antenna_alternate": alternate["mpn"],
         "pin_count": len(pins),
         "power_margin_ma": model["power_fit"]["margin_ma"],
         "antenna_covers_receiver_band": antenna_covers_receiver_band,
@@ -109,6 +118,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             '- CH1/CH2/CH3 используют уже зарезервированные Hub GPIO36/37/38; новых GPIO или расширителя нет.\n'
             f'- Резерв 5 В оставляет {result["power_margin_ma"]} мА запаса. RF идёт напрямую по 50-омной PCB-дорожке к MMCX без U.FL.\n'
             f'- Антенна `{a["mpn"]}` линейная, {a["frequency_mhz"][0]}–{a["frequency_mhz"][1]} МГц, {a["gain_dbi"]} dBi, {a["cable_length_mm"]} мм; точная маркировка комплекта — `{a["printed_identity"]}`.'
+            f' Независимый линейный резерв `{a["supply_independent_alternate"]["mpn"]}` покрывает 4,9–6,0 ГГц и сохраняет MMCX, но сейчас доступен только под заказ с lead time 16 недель.'
         )
         factory = (
             'Производитель показывает K331 в наличии по $29.99; точные поиски JLCPCB по `AKK K331`, `RX5808` и `RTC6715` дали 0 результатов. '
@@ -126,6 +136,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             '- CH1/CH2/CH3 use already-reserved Hub GPIO36/37/38; no new GPIO or expander is needed.\n'
             f'- The 5-V reserve retains {result["power_margin_ma"]} mA. RF runs directly over a 50-ohm PCB trace to MMCX without U.FL.\n'
             f'- `{a["mpn"]}` is linear, {a["frequency_mhz"][0]}–{a["frequency_mhz"][1]} MHz, {a["gain_dbi"]} dBi and {a["cable_length_mm"]} mm; its exact kit mark is `{a["printed_identity"]}`.'
+            f' Independent linear fallback `{a["supply_independent_alternate"]["mpn"]}` covers 4.9–6.0 GHz and retains MMCX, but is presently backorder-only with a 16-week lead time.'
         )
         factory = (
             'The manufacturer lists K331 in stock at $29.99; exact JLCPCB searches for `AKK K331`, `RX5808` and `RTC6715` returned zero results. '

@@ -29,7 +29,9 @@ class H1AirbandFilterTest(unittest.TestCase):
         rows = self.model["factory_feasibility_witnesses"]
         self.assertTrue(all(row["mpn"] and row["jlcpcb_part"].startswith("C") for row in rows))
         self.assertIn("not production MPNs", self.model["decision"]["rejected"])
-        self.assertIn("24 x 11 mm", self.model["decision"]["next_gate"])
+        self.assertIn("24 x 11 mm", self.model["decision"]["accepted"])
+        self.assertIn("H6", self.model["decision"]["next_gate"])
+        self.assertIn("before the H7 order", self.model["decision"]["next_gate"])
 
     def test_generated_artifacts_are_current(self):
         expected = {

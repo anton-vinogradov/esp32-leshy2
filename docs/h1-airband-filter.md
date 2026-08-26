@@ -9,11 +9,11 @@ A compact low-cost replacement for the large `BPF-A127+` has been tested. This i
 - The nominal finite-Q model passes: worst 118–137 MHz loss is `3.03 dB` against `4.5 dB`, and every named nominal stop point passes.
 - A `16386`-state value stress sweep keeps the passband within limit (`4.27 dB` against `4.5 dB`), but worst 180-MHz rejection is `34.62 dB` against `40 dB`. Values and production MPNs are therefore **not accepted**.
 - The serial LC route is retained, but its physical cell grows to `24 × 11 mm` and gains a via fence plus alternate-value/DNP tuning pads.
-- A lumped model cannot prove 180–2200 MHz above component SRF; H3 extracted modelling and H7 VNA measurement close that band.
+- A lumped model cannot prove 180–2200 MHz above component SRF: H3 uses a bounded pre-layout model, H6 reruns with routed/extracted parasitics before the H7 order, and H8 closes the production state by VNA.
 
 ## Factory feasibility witnesses
 
-This is not the filter BOM. These rows prove that the required precision serial RF-inductor classes exist on the factory surface. The complete MPN set is accepted only after H3.
+This is not the production filter BOM. These rows prove that the required precision serial RF-inductor classes exist on the factory surface. H2 fixes a nominal ECAD state, H6 a pre-order fitted/DNP state after extraction, and H8 the production state after VNA.
 
 | Exact MPN | JLCPCB | Value | Current route |
 |---|---|---|---|
@@ -24,6 +24,6 @@ This is not the filter BOM. These rows prove that the required precision serial 
 
 ## Next gate
 
-H3 must find one fixed factory BOM state with extracted PCB parasitics and tolerances. If the complete mask does not close, the design returns to an exact purchased filter or a different receiver boundary; nominal compliance will not be presented as a finished result.
+H2 carries the complete tuning network into ECAD. H3 checks it with bounded pre-layout parasitics; H6 repeats the proof with routed/extracted parasitics before the H7 order; H8 selects the production fitted/DNP state by VNA. A failed mask returns the design to an exact purchased filter or different receiver boundary.
 
 > Result marker: **H1-R2.3**. The current H1 marker is published on the roadmap.

@@ -168,7 +168,7 @@ def render_svg(model: dict, result: dict) -> str:
         '<text x="840" y="267" font-family="sans-serif" font-size="16" font-weight="700" fill="#172033">Physical consequence</text>',
         '<text x="840" y="297" font-family="sans-serif" font-size="12" fill="#526076">24 × 11 mm ground-fenced cell</text>',
         '<text x="840" y="318" font-family="sans-serif" font-size="12" fill="#526076">alternate-value / DNP tuning pads</text>',
-        '<text x="840" y="339" font-family="sans-serif" font-size="12" fill="#526076">H3 extracted-parasitic optimisation</text>',
+        '<text x="840" y="339" font-family="sans-serif" font-size="12" fill="#526076">H3 bounded estimate · H6 extraction · H8 VNA</text>',
         '<text x="840" y="373" font-family="sans-serif" font-size="16" font-weight="700" fill="#172033">Interpretation</text>',
         '<text x="840" y="403" font-family="sans-serif" font-size="12" fill="#526076">The cheap compact route survives,</text>',
         '<text x="840" y="424" font-family="sans-serif" font-size="12" fill="#526076">but nominal simulation is not review.</text>',
@@ -188,12 +188,12 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f'- Номинальный finite-Q расчёт проходит маску: худшая потеря в 118–137 МГц — `{result["nominal_passband_maximum_loss_db"]:.2f} дБ` при лимите `4,5 дБ`; все именованные nominal stop-точки проходят.',
             f'- Stress sweep из `{result["stress_scenario_count"]}` наборов сохраняет passband (`{result["stress_passband_maximum_loss_db"]:.2f} дБ` при лимите `4,5 дБ`), но на {failed_stress["frequency_mhz"]:g} МГц худшее подавление — `{failed_stress["stress_minimum_loss_db"]:.2f} дБ` вместо `{failed_stress["minimum_loss_db"]:g} дБ`. Поэтому значения элементов и production MPN **не приняты**.',
             '- Сохраняется серийная LC-реализация, но её физическая ячейка увеличена до `24 × 11 мм`, получает via-fence и площадки альтернативных/DNP номиналов.',
-            '- Полоса 180–2200 МГц не доказывается lumped-моделью выше SRF: её закрывают extracted-модель H3 и VNA в H7.',
+            '- Полоса 180–2200 МГц не доказывается lumped-моделью выше SRF: H3 использует ограниченную pre-layout-модель, H6 повторяет расчёт с извлечёнными паразитиками до заказа H7, а H8 закрывает production-state измерением VNA.',
         ]
         factory = '## Свидетельства фабричной реализуемости'
-        note = 'Это не BOM фильтра: строки доказывают, что нужные классы точных серийных RF-индуктивностей существуют на фабричной поверхности. Полный набор MPN принимается только после H3.'
+        note = 'Это не production BOM фильтра: строки доказывают, что нужные классы точных серийных RF-индуктивностей существуют на фабричной поверхности. H2 фиксирует номинальный ECAD-state, H6 — предзаказный fitted/DNP-state после extraction, H8 — production-state после VNA.'
         next_heading = '## Следующий gate'
-        next_text = 'H3 должен подобрать один фиксированный фабричный BOM-state с учётом паразитик платы и допусков. Если полная маска не сойдётся, возвращаемся к точному покупному фильтру или меняем границу приёмника; номинальный результат не будет выдан за готовое решение.'
+        next_text = 'H2 переносит полную tuning-сеть в ECAD. H3 проверяет её с ограниченными pre-layout-паразитиками; H6 повторяет проверку с routed/extracted-паразитиками до заказа H7; H8 выбирает production fitted/DNP-state по VNA. При провале маски возвращаемся к точному покупному фильтру или меняем границу приёмника.'
     else:
         title = f'# {model["marker"]} · Airband input filter'
         intro = 'A compact low-cost replacement for the large `BPF-A127+` has been tested. This is a physical-design result, not authorization to start KiCad.'
@@ -202,12 +202,12 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f'- The nominal finite-Q model passes: worst 118–137 MHz loss is `{result["nominal_passband_maximum_loss_db"]:.2f} dB` against `4.5 dB`, and every named nominal stop point passes.',
             f'- A `{result["stress_scenario_count"]}`-state value stress sweep keeps the passband within limit (`{result["stress_passband_maximum_loss_db"]:.2f} dB` against `4.5 dB`), but worst {failed_stress["frequency_mhz"]:g}-MHz rejection is `{failed_stress["stress_minimum_loss_db"]:.2f} dB` against `{failed_stress["minimum_loss_db"]:g} dB`. Values and production MPNs are therefore **not accepted**.',
             '- The serial LC route is retained, but its physical cell grows to `24 × 11 mm` and gains a via fence plus alternate-value/DNP tuning pads.',
-            '- A lumped model cannot prove 180–2200 MHz above component SRF; H3 extracted modelling and H7 VNA measurement close that band.',
+            '- A lumped model cannot prove 180–2200 MHz above component SRF: H3 uses a bounded pre-layout model, H6 reruns with routed/extracted parasitics before the H7 order, and H8 closes the production state by VNA.',
         ]
         factory = '## Factory feasibility witnesses'
-        note = 'This is not the filter BOM. These rows prove that the required precision serial RF-inductor classes exist on the factory surface. The complete MPN set is accepted only after H3.'
+        note = 'This is not the production filter BOM. These rows prove that the required precision serial RF-inductor classes exist on the factory surface. H2 fixes a nominal ECAD state, H6 a pre-order fitted/DNP state after extraction, and H8 the production state after VNA.'
         next_heading = '## Next gate'
-        next_text = 'H3 must find one fixed factory BOM state with extracted PCB parasitics and tolerances. If the complete mask does not close, the design returns to an exact purchased filter or a different receiver boundary; nominal compliance will not be presented as a finished result.'
+        next_text = 'H2 carries the complete tuning network into ECAD. H3 checks it with bounded pre-layout parasitics; H6 repeats the proof with routed/extracted parasitics before the H7 order; H8 selects the production fitted/DNP state by VNA. A failed mask returns the design to an exact purchased filter or different receiver boundary.'
     lines = [title, '', intro, '', '![Airband filter feasibility](images/h1-airband-filter.svg)', '', result_heading, '', *bullets, '', factory, '', note, '', '| Exact MPN | JLCPCB | Value | Current route |', '|---|---|---|---|']
     for row in model['factory_feasibility_witnesses']:
         lines.append(f'| `{row["mpn"]}` | [`{row["jlcpcb_part"]}`]({row["url"]}) | {row["value"]} | {row["availability"]} |')

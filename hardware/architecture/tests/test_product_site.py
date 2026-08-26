@@ -2704,13 +2704,13 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(13, manifest["physical_item_count"])
         self.assertEqual(13, manifest["exact_target_item_count"])
-        self.assertEqual(12, manifest["paper_alternate_item_count"])
-        self.assertEqual(11, manifest["supply_independent_alternate_item_count"])
+        self.assertEqual(13, manifest["paper_alternate_item_count"])
+        self.assertEqual(12, manifest["supply_independent_alternate_item_count"])
         self.assertEqual(0, manifest["hil_qualified_alternate_item_count"])
         self.assertEqual(13, sum(item["quantity"] for item in manifest["items"]))
-        self.assertEqual(12, sum("alternate" in item for item in manifest["items"]))
+        self.assertEqual(13, sum("alternate" in item for item in manifest["items"]))
         self.assertEqual(
-            11,
+            12,
             sum(
                 item["alternate"]["manufacturer_independent_from_first_target"]
                 for item in manifest["items"]
@@ -2761,6 +2761,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("TBS5G8MMCXA", fpv["mpn"])
         self.assertEqual("MMCX plug", fpv["termination"])
         self.assertEqual("FPV RX 5.8G", fpv["port_label"])
+        self.assertEqual("FXP831.09.0100C", fpv["alternate"]["mpn"])
+        self.assertTrue(fpv["alternate"]["manufacturer_independent_from_first_target"])
         candidate_policy = candidate["audio_receiver_contract"]["broadcast_transmit_policy"]
         self.assertIn("no custom transmitter", candidate_policy)
         self.assertIn("not a current product capability", candidate_policy)
@@ -2783,6 +2785,7 @@ class ProductSiteTests(unittest.TestCase):
                 "UHX-325ASAXB", "GHX-221ASA3B", "SPWB24150",
                 "AN0435H25", "SCANSMA 25-1300", "L2-ANT-AM-LW-ALT01",
                 "TBS5G8MMCXA",
+                "FXP831.09.0100C",
             ):
                 self.assertIn(token, page)
 

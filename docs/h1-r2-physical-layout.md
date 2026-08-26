@@ -13,7 +13,7 @@ The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell fo
 - The K331 reserve fits without changing the PCB outline or battery/U214 exterior zones; functional pin fit is accepted while physical dimensions remain open.
 - The exact linear TBS5G8MMCXA antenna mates with the distinct MMCX; K331 ANT IN reaches it over one direct 50-ohm PCB trace without U.FL.
 - Hub remains on the UI board beside storage/audio/broadcast; the FPV RF module and decoder remain together on the RF board.
-- Airband now has a [nominally passing but stress-open synthesis](h1-airband-filter.md); the enlarged cell carries alternate/DNP pads until H3 parasitics are checked.
+- Airband now has a [nominally passing but stress-open synthesis](h1-airband-filter.md); the enlarged cell carries alternate/DNP pads, H3 checks bounded estimates, H6 routed extraction before order and H8 the final VNA state.
 
 ## Exact factory parts
 
@@ -37,8 +37,7 @@ The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell fo
 - obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence before replacing the K331 reserve with a fixed body
 - obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation
 - prove manual-assembly accessibility and the enclosure side opening around the exact MMCX body
-- close the H1-R2.3 Airband candidate with extracted PCB parasitics and one fixed factory BOM state; nominal finite-Q compliance is retained only as feasibility evidence
-- qualify a supply-independent fallback for the exact TBS5G8MMCXA post-installed FPV antenna
+- qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route
 - regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving
 
 > Exact current marker: **H1-R2.5**. H1 remains in progress.

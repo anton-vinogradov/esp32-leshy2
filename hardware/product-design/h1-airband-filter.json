@@ -19,7 +19,7 @@
       {"frequency_mhz": 180.0, "minimum_loss_db": 40.0},
       {"frequency_mhz": 220.0, "minimum_loss_db": 40.0}
     ],
-    "wide_stopband_gate": "The reference specifies at least 40 dB from 180 to 2200 MHz. Lumped pre-layout calculation above component SRF is not accepted as proof; H3 EM/S-parameter work and H7 VNA measurement remain mandatory."
+    "wide_stopband_gate": "The reference specifies at least 40 dB from 180 to 2200 MHz. Lumped pre-layout calculation above component SRF is not accepted as proof; H3 bounded EM/S-parameter work, H6 routed extraction before order and H8 VNA measurement remain mandatory."
   },
   "candidate": {
     "topology": "two low-side shunt series notches, three-element band-pass core, three upper-edge shunt series notches and two high-side shunt series notches",
@@ -86,8 +86,8 @@
     }
   ],
   "decision": {
-    "accepted": "A fixed-value factory LC implementation remains feasible and materially cheaper/smaller than BPF-A127+, so the replaceable LC reserve is retained.",
+    "accepted": "H1 accepts the LC topology, 24 x 11 mm tuning envelope, alternate/DNP pad strategy and factory-placeable precision passive families as the physical boundary; this remains materially cheaper/smaller than BPF-A127+.",
     "rejected": "The listed engineering values are not production MPNs and are not frozen: nominal compliance alone is insufficient.",
-    "next_gate": "H1 must reserve a ground-fenced 24 x 11 mm cell with alternate-value/DNP tuning pads. H3 must add extracted PCB parasitics and find one factory BOM state that passes the full mask across tolerance; otherwise the architecture returns to an exact purchased filter or a different receiver boundary."
+    "next_gate": "H2 carries the complete tuning network and nominal engineering values into ECAD. H3 proves the topology with manufacturer models and bounded pre-layout parasitics. H6 repeats the proof with routed/extracted PCB parasitics before the H7 order, and H8 selects the production fitted/DNP state by VNA; failure returns to an exact purchased filter or a different receiver boundary."
   }
 }

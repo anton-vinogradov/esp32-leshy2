@@ -11,7 +11,7 @@ The serial receiver functional candidate and exact antenna are selected; K331 ph
 - `AKK K331` covers 5645–5945 MHz, draws at most 200 mA and emits 1-Vpp/75-ohm CVBS.
 - CH1/CH2/CH3 use already-reserved Hub GPIO36/37/38; no new GPIO or expander is needed.
 - The 5-V reserve retains 150 mA. RF runs directly over a 50-ohm PCB trace to MMCX without U.FL.
-- `TBS5G8MMCXA` is linear, 5500–6000 MHz, 2.2 dBi and 102 mm; its exact kit mark is `FPV · RX 5.8G`.
+- `TBS5G8MMCXA` is linear, 5500–6000 MHz, 2.2 dBi and 102 mm; its exact kit mark is `FPV · RX 5.8G`. Independent linear fallback `FXP831.09.0100C` covers 4.9–6.0 GHz and retains MMCX, but is presently backorder-only with a 16-week lead time.
 
 ## Factory boundary
 
@@ -22,6 +22,6 @@ The manufacturer lists K331 in stock at $29.99; exact JLCPCB searches for `AKK K
 - obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence
 - obtain a JLCPCB private/global-sourcing response or retain explicit post-PCBA hand installation
 - prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality on assembled hardware
-- qualify at least one supply-independent antenna fallback before antenna-kit freeze
+- qualify FXP831.09.0100C on the assembled enclosure and secure available stock before relying on its current 16-week backorder route
 
 > Exact current marker: **H1-R2.5**. H1 remains in progress.

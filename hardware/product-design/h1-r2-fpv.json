@@ -70,7 +70,18 @@
       "found": 0,
       "assembly": "post-PCBA kit accessory; not a PCB-assembly line item"
     },
-    "accepted": true
+    "accepted": true,
+    "supply_independent_alternate": {
+      "mpn": "FXP831.09.0100C",
+      "manufacturer": "Taoglas",
+      "official_datasheet": "https://www.taoglas.com/datasheets/FXP831.09.0100C.pdf",
+      "frequency_mhz": [4900, 6000],
+      "polarization": "linear",
+      "termination": "MMCX male right-angle",
+      "availability": "active part; DigiKey and Mouser zero stock/backorder, 16-week manufacturer lead time, USD 10.34 at quantity 1; checked 2026-08-27",
+      "jlcpcb_exact_search_found": 0,
+      "status": "paper alternate accepted; HIL and available-stock gate open"
+    }
   },
   "power_fit": {
     "reserved_active_5v_ma": 350,
@@ -100,6 +111,6 @@
     "obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence",
     "obtain a JLCPCB private/global-sourcing response or retain explicit post-PCBA hand installation",
     "prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality on assembled hardware",
-    "qualify at least one supply-independent antenna fallback before antenna-kit freeze"
+    "qualify FXP831.09.0100C on the assembled enclosure and secure available stock before relying on its current 16-week backorder route"
   ]
 }

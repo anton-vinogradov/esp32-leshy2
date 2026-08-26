@@ -275,15 +275,12 @@
 <text x="1100" y="517" font-family="sans-serif" font-size="10.5" fill="#9a3412">• prove manual-assembly accessibility</text>
 <text x="1100" y="532" font-family="sans-serif" font-size="10.5" fill="#9a3412">  and the enclosure side opening around</text>
 <text x="1100" y="547" font-family="sans-serif" font-size="10.5" fill="#9a3412">  the exact MMCX body</text>
-<text x="1100" y="568" font-family="sans-serif" font-size="10.5" fill="#9a3412">• close the H1-R2.3 Airband candidate</text>
-<text x="1100" y="583" font-family="sans-serif" font-size="10.5" fill="#9a3412">  with extracted PCB parasitics and one</text>
-<text x="1100" y="598" font-family="sans-serif" font-size="10.5" fill="#9a3412">  fixed factory BOM state; nominal</text>
-<text x="1100" y="613" font-family="sans-serif" font-size="10.5" fill="#9a3412">  finite-Q compliance is retained only</text>
-<text x="1100" y="628" font-family="sans-serif" font-size="10.5" fill="#9a3412">  as feasibility evidence</text>
-<text x="1100" y="649" font-family="sans-serif" font-size="10.5" fill="#9a3412">• qualify a supply-independent fallback</text>
-<text x="1100" y="664" font-family="sans-serif" font-size="10.5" fill="#9a3412">  for the exact TBS5G8MMCXA</text>
-<text x="1100" y="679" font-family="sans-serif" font-size="10.5" fill="#9a3412">  post-installed FPV antenna</text>
-<text x="1100" y="700" font-family="sans-serif" font-size="10.5" fill="#9a3412">• regenerate the complete exterior,</text>
-<text x="1100" y="715" font-family="sans-serif" font-size="10.5" fill="#9a3412">  inner faces and both sections only</text>
-<text x="1100" y="730" font-family="sans-serif" font-size="10.5" fill="#9a3412">  after the R2 bodies stop moving</text>
+<text x="1100" y="568" font-family="sans-serif" font-size="10.5" fill="#9a3412">• qualify the supply-independent</text>
+<text x="1100" y="583" font-family="sans-serif" font-size="10.5" fill="#9a3412">  FXP831.09.0100C FPV fallback on the</text>
+<text x="1100" y="598" font-family="sans-serif" font-size="10.5" fill="#9a3412">  assembled enclosure and secure stock</text>
+<text x="1100" y="613" font-family="sans-serif" font-size="10.5" fill="#9a3412">  before relying on its current 16-week</text>
+<text x="1100" y="628" font-family="sans-serif" font-size="10.5" fill="#9a3412">  backorder route</text>
+<text x="1100" y="649" font-family="sans-serif" font-size="10.5" fill="#9a3412">• regenerate the complete exterior,</text>
+<text x="1100" y="664" font-family="sans-serif" font-size="10.5" fill="#9a3412">  inner faces and both sections only</text>
+<text x="1100" y="679" font-family="sans-serif" font-size="10.5" fill="#9a3412">  after the R2 bodies stop moving</text>
 </svg>

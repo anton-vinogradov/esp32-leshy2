@@ -52,6 +52,11 @@ class H1R2FPVTest(unittest.TestCase):
         self.assertEqual("MMCX plug", antenna["termination"])
         self.assertEqual("FPV · RX 5.8G", antenna["printed_identity"])
         self.assertTrue(antenna["accepted"])
+        alternate = antenna["supply_independent_alternate"]
+        self.assertEqual("FXP831.09.0100C", alternate["mpn"])
+        self.assertEqual([4900, 6000], alternate["frequency_mhz"])
+        self.assertTrue(alternate["termination"].startswith("MMCX male"))
+        self.assertEqual(0, alternate["jlcpcb_exact_search_found"])
 
     def test_generated_artifacts_are_current(self):
         for path, content in MODULE.outputs(self.model).items():

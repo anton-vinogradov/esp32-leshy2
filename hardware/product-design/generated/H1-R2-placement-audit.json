@@ -153,8 +153,7 @@
     "obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence before replacing the K331 reserve with a fixed body",
     "obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation",
     "prove manual-assembly accessibility and the enclosure side opening around the exact MMCX body",
-    "close the H1-R2.3 Airband candidate with extracted PCB parasitics and one fixed factory BOM state; nominal finite-Q compliance is retained only as feasibility evidence",
-    "qualify a supply-independent fallback for the exact TBS5G8MMCXA post-installed FPV antenna",
+    "qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route",
     "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
   ],
   "placements": [

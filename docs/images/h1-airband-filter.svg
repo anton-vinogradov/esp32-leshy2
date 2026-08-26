@@ -48,7 +48,7 @@
 <text x="840" y="267" font-family="sans-serif" font-size="16" font-weight="700" fill="#172033">Physical consequence</text>
 <text x="840" y="297" font-family="sans-serif" font-size="12" fill="#526076">24 × 11 mm ground-fenced cell</text>
 <text x="840" y="318" font-family="sans-serif" font-size="12" fill="#526076">alternate-value / DNP tuning pads</text>
-<text x="840" y="339" font-family="sans-serif" font-size="12" fill="#526076">H3 extracted-parasitic optimisation</text>
+<text x="840" y="339" font-family="sans-serif" font-size="12" fill="#526076">H3 bounded estimate · H6 extraction · H8 VNA</text>
 <text x="840" y="373" font-family="sans-serif" font-size="16" font-weight="700" fill="#172033">Interpretation</text>
 <text x="840" y="403" font-family="sans-serif" font-size="12" fill="#526076">The cheap compact route survives,</text>
 <text x="840" y="424" font-family="sans-serif" font-size="12" fill="#526076">but nominal simulation is not review.</text>
