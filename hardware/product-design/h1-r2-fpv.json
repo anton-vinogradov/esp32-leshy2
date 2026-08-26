@@ -49,6 +49,52 @@
       "accepted_for_factory_placement": false
     }
   },
+  "receiver_alternatives_reviewed": [
+    {
+      "mpn": "AKK K331",
+      "manufacturer": "AKK Technology",
+      "controlled_source": "https://www.akktek.com/products/vtx-modules/akk-k331.html",
+      "frequency_mhz": [5645, 5945],
+      "maximum_current_ma": 200,
+      "channel_count": 24,
+      "working_envelope_mm": [28.0, 23.0, 3.0],
+      "controlled_mechanical_drawing": false,
+      "result": "leading candidate: only option reviewed that fits the reserved pins, power and working envelope; controlled body/factory evidence remains open",
+      "result_ru": "ведущий кандидат: единственный рассмотренный вариант, вписывающийся в зарезервированные GPIO, питание и рабочий габарит; контролируемый корпус и фабричный маршрут открыты"
+    },
+    {
+      "mpn": "AWM682 RX",
+      "manufacturer": "Airwave Technologies",
+      "controlled_source": "https://www.airwave.com.tw/ftp/pdf/AWM682-RX.pdf",
+      "frequency_mhz": [5725, 5875],
+      "maximum_current_ma": 240,
+      "channel_count": 7,
+      "controlled_envelope_mm": [30.5, 51.05, 4.51],
+      "availability": "current manufacturer catalog is inquiry-only",
+      "result": "rejected as primary: controlled body is more than twice the reserved area and its band/channel coverage is narrower",
+      "result_ru": "отклонён как основной: документированный корпус более чем вдвое превышает резерв по площади, а диапазон и число каналов уже"
+    },
+    {
+      "mpn": "TUE-RFVRX-58-D",
+      "manufacturer": "Top-Unum Electronics",
+      "controlled_source": "https://www.top-unum.com.tw/video-transmitter-product/tue-rfvrx-58-d",
+      "frequency_mhz": [4900, 6000],
+      "maximum_current_ma": 400,
+      "controlled_envelope_mm": [44.24, 26.0, 28.0],
+      "availability": "manufacturer inquiry required",
+      "result": "rejected as primary: exceeds the 350-mA reserve and the 11-mm interboard channel before tolerance",
+      "result_ru": "отклонён как основной: ещё до допуска превышает резерв 350 мА и межплатный просвет 11 мм"
+    },
+    {
+      "mpn": "generic RX5808",
+      "manufacturer": null,
+      "controlled_source": null,
+      "working_envelope_mm": [28.0, 23.0, 3.0],
+      "result": "rejected as production identity: published integration evidence exists but there is no unique manufacturer-controlled order code, drawing and factory route",
+      "result_ru": "отклонён как production-identity: опубликованные integration-evidence есть, но нет уникального order code, чертежа производителя и фабричного маршрута"
+    }
+  ],
+  "receiver_research_conclusion": "Keep K331 as the leading functional candidate and request its controlled mechanical/assembly package plus a JLCPCB sourcing response; do not enlarge or weaken the architecture for the documented alternatives.",
   "antenna": {
     "mpn": "TBS5G8MMCXA",
     "exact_order_identity": "TBS 5G8 MMCX Linear Antenna; manufacturer product 1914; GTIN 768684799503",

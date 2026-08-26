@@ -12,6 +12,7 @@
   "receiver_physical_body_accepted": false,
   "factory_placement_accepted": false,
   "production_acceptance": false,
+  "receiver_alternatives_reviewed": 4,
   "open_gates": [
     "obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence",
     "obtain a JLCPCB private/global-sourcing response or retain explicit post-PCBA hand installation",

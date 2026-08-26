@@ -44,6 +44,10 @@ class H1R2FPVTest(unittest.TestCase):
         self.assertFalse(receiver["jlcpcb_surface"]["accepted_for_factory_placement"])
         self.assertFalse(receiver["mechanical"]["accepted"])
         self.assertFalse(self.model["result"]["production_acceptance"])
+        self.assertEqual(4, self.audit["receiver_alternatives_reviewed"])
+        alternatives = {row["mpn"]: row for row in self.model["receiver_alternatives_reviewed"]}
+        self.assertGreater(alternatives["AWM682 RX"]["controlled_envelope_mm"][1], 23.0)
+        self.assertGreater(alternatives["TUE-RFVRX-58-D"]["maximum_current_ma"], 350)
 
     def test_exact_linear_mmcx_antenna_covers_k331(self):
         antenna = self.model["antenna"]

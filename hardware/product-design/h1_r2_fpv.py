@@ -54,6 +54,13 @@ def audit(model: dict) -> dict:
         errors.append("the selected same-board RF path regressed to U.FL")
     if receiver["jlcpcb_surface"]["accepted_for_factory_placement"]:
         errors.append("K331 factory placement is claimed without a JLCPCB route")
+    alternatives = {row["mpn"]: row for row in model["receiver_alternatives_reviewed"]}
+    if set(alternatives) != {"AKK K331", "AWM682 RX", "TUE-RFVRX-58-D", "generic RX5808"}:
+        errors.append("receiver alternative review is incomplete")
+    if alternatives.get("AWM682 RX", {}).get("controlled_envelope_mm", [0, 0])[1] <= model["receiver"]["mechanical"]["working_envelope_mm"][1]:
+        errors.append("AWM682 rejection no longer proves a larger controlled body")
+    if alternatives.get("TUE-RFVRX-58-D", {}).get("maximum_current_ma", 0) <= model["power_fit"]["reserved_active_5v_ma"]:
+        errors.append("Top-Unum rejection no longer proves a power overrun")
     return {
         "schema_version": 1,
         "marker": model["marker"],
@@ -68,6 +75,7 @@ def audit(model: dict) -> dict:
         "receiver_physical_body_accepted": receiver["mechanical"]["accepted"],
         "factory_placement_accepted": receiver["jlcpcb_surface"]["accepted_for_factory_placement"],
         "production_acceptance": model["result"]["production_acceptance"],
+        "receiver_alternatives_reviewed": len(alternatives),
         "open_gates": model["open_gates"],
         "errors": errors,
     }
@@ -127,6 +135,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         )
         gates = '\n'.join(f'- {gate}' for gate in model['open_gates'])
         headings = ('## Результат', '## Фабричная граница', '## Открытые gates')
+        alternatives_heading = '## Почему K331 остаётся ведущим кандидатом'
         footer = f'> Точный текущий маркер: **{model["marker"]}**. H1 продолжается.'
     else:
         title = f'# {model["marker"]} · analog-FPV receive path'
@@ -145,7 +154,12 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         )
         gates = '\n'.join(f'- {gate}' for gate in model['open_gates'])
         headings = ('## Result', '## Factory boundary', '## Open gates')
+        alternatives_heading = '## Why K331 remains the leading candidate'
         footer = f'> Exact current marker: **{model["marker"]}**. H1 remains in progress.'
+    alternatives = '\n'.join(
+        f'- `{row["mpn"]}` — {row["result_ru"] if ru else row["result"]}.'
+        for row in model["receiver_alternatives_reviewed"]
+    )
     return f'''{title}
 
 [{'Главная' if ru else 'Home'}](../{'README.ru.md' if ru else 'README.md'}) · [{'English' if ru else 'Русский'}](h1-r2-fpv{'' if ru else '.ru'}.md)
@@ -157,6 +171,10 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
 {headings[0]}
 
 {result_text}
+
+{alternatives_heading}
+
+{alternatives}
 
 {headings[1]}
 
