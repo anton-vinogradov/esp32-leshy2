@@ -1,8 +1,8 @@
-# H1-R2.4 · physical re-layout
+# H1-R2.5 · physical re-layout
 
 This is the current verified H1 result, not a decision diary and not authorization to start KiCad.
 
-The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell for its filter, the FPV video decoder and a replaceable bay for its still-unselected 5.8-GHz receiver are placed in the accepted 75 × 150 mm coordinate system.
+The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell for its filter, the FPV video decoder and a replaceable bay for the leading serial AKK K331 candidate are placed in the accepted 75 × 150 mm coordinate system. The reserve is not promoted to a fixed body before AKK-controlled dimensions exist.
 
 ![H1-R2 inner placement](images/h1-r2-inner-placement.svg)
 
@@ -10,7 +10,8 @@ The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell fo
 
 - Same-face body collisions: `0`.
 - Intentional opposing XY projections: `26`; minimum Z clearance is `2.44 mm` against `0.70 mm` required.
-- The large FPV receiver bay fits without changing the PCB outline or battery/U214 exterior zones.
+- The K331 reserve fits without changing the PCB outline or battery/U214 exterior zones; functional pin fit is accepted while physical dimensions remain open.
+- The exact linear TBS5G8MMCXA antenna mates with the distinct MMCX; K331 ANT IN reaches it over one direct 50-ohm PCB trace without U.FL.
 - Hub remains on the UI board beside storage/audio/broadcast; the FPV RF module and decoder remain together on the RF board.
 - Airband now has a [nominally passing but stress-open synthesis](h1-airband-filter.md); the enlarged cell carries alternate/DNP pads until H3 parasitics are checked.
 
@@ -20,6 +21,7 @@ The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell fo
 |---|---|---|---|---|
 | Hub RP2354B factory assembly cross-reference | `SC1512-A4` | [`C39843328`](https://jlcpcb.com/partdetail/RaspberryPi-RP2354B/C39843328) | working selection; A4 marking remains an incoming gate | LCSC/JLC supply surface showed 3,682 pieces, MOQ 1, USD 1.6225 at quantity 1 |
 | analog composite-video decoder | `TVP5150AM1PBS` | [`C3824301`](https://jlcpcb.com/partdetail/TexasInstruments-TVP5150AM1PBS/C3824301) | accepted for the working placement | 62 pieces, MOQ 1, USD 6.4081 at quantity 1 |
+| 24-channel 5.8-GHz analog-FPV receiver module | `K331` | [`None`](https://www.akktek.com/products/vtx-modules/akk-k331.html) | accepted functional and pin-fit candidate; physical body and factory-placement route remain open | manufacturer store showed in stock at USD 29.99; exact JLCPCB searches for AKK K331, RX5808 and RTC6715 returned zero results |
 | side-facing 5.8-GHz user connector | `DL-MMCX-KWE-90` | [`C2894793`](https://jlcpcb.com/partdetail/DreamLNK-DL_MMCX_KWE90/C2894793) | accepted physical definition; manual access and enclosure opening remain H1 gates | 25,383 pieces, MOQ 1, USD 0.9077 at quantity 1 |
 | FPV decoder 1.8-V rail | `TPS7A2018PDBVR` | [`C963430`](https://jlcpcb.com/partdetail/TexasInstruments-TPS7A2018PDBVR/C963430) | accepted for the working placement | 2,225 pieces, MOQ/multiple 5, USD 0.2413 at quantity 5; JLC identifies Economic and Standard SMT assembly |
 | 3V3_MAIN 6-A synchronous buck with protected diagnostic PG | `TPS566231PRQFR` | [`C3190178`](https://jlcpcb.com/partdetail/TexasInstruments-TPS566231PRQFR/C3190178) | accepted H1-R2 working selection; dynamic and thermal closure remains H3 | 112 pieces, MOQ 1, USD 1.0478 at quantity 1 |
@@ -32,10 +34,11 @@ The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell fo
 
 ## What still blocks H1
 
-- select an in-production exact serial 5.8-GHz analog receiver with a live purchase route; generic RX5808 and discontinued MM238R-MCU are not accepted
+- obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence before replacing the K331 reserve with a fixed body
+- obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation
 - prove manual-assembly accessibility and the enclosure side opening around the exact MMCX body
 - close the H1-R2.3 Airband candidate with extracted PCB parasitics and one fixed factory BOM state; nominal finite-Q compliance is retained only as feasibility evidence
-- select the exact post-installed 5.8-GHz FPV antenna and give it the same code-plus-colour identification used by the other antenna-kit items
+- qualify a supply-independent fallback for the exact TBS5G8MMCXA post-installed FPV antenna
 - regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving
 
-> Exact current marker: **H1-R2.4**. H1 remains in progress.
+> Exact current marker: **H1-R2.5**. H1 remains in progress.

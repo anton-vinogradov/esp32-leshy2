@@ -1,16 +1,17 @@
 {
   "schema_version": 2,
-  "snapshot_date": "2026-08-20",
+  "snapshot_date": "2026-08-27",
   "variant": "full_field_kit",
-  "physical_item_count": 12,
-  "exact_target_item_count": 12,
+  "physical_item_count": 13,
+  "exact_target_item_count": 13,
   "paper_alternate_item_count": 12,
   "supply_independent_alternate_item_count": 11,
   "hil_qualified_alternate_item_count": 0,
-  "maximum_simultaneously_connected": 10,
+  "maximum_simultaneously_connected": 11,
   "connector_rule": {
     "rp_sma_ports": "antenna must have an RP-SMA male plug with socket centre contact",
-    "sma_ports": "antenna must have a standard SMA male plug with pin centre contact"
+    "sma_ports": "antenna must have a standard SMA male plug with pin centre contact",
+    "fpv_mmcx_port": "antenna must have an MMCX plug; the keyed mechanics are distinct from every SMA family"
   },
   "identification_contract": {
     "checked_on": "2026-08-27",
@@ -20,7 +21,8 @@
     "accessibility": "Text and code are authoritative and remain sufficient for colour-vision deficiency; colour is redundant only.",
     "nrf24_rule": "N1, N2 and N3 antennas are electrically interchangeable, but individual codes preserve a one-glance installed-kit inventory.",
     "substitution_rule": "A substitute antenna receives the code of the qualified profile, never a code inferred only from connector type or appearance.",
-    "fpv_r2_gate": "The new FPV RX 5.8G MMCX antenna is added to this contract after its exact post-installed MPN is selected in H1-R2."
+    "fpv_r2_result": "TBS5G8MMCXA is the exact linear first target for the FPV RX 5.8G MMCX port; its printed FPV code and band are repeated on the antenna flag and package slot.",
+    "fpv_r2_gate": "A supply-independent fallback and assembled sensitivity/mechanical HIL remain open before antenna-kit freeze."
   },
   "items": [
     {
@@ -485,17 +487,46 @@
         },
         "substitution_limit": "a controlled geometry fallback only; it still shares the Fair-Rite core family and Remington wire source, and it requires a separately measured winding and complete receiver HIL"
       }
+    },
+    {
+      "id": "fpv_5g8",
+      "kit_code": "FPV",
+      "marker_colour": "lime #65A30D",
+      "port_label": "FPV RX 5.8G",
+      "quantity": 1,
+      "profile": "receive-only 5.8-GHz analog FPV, unknown source polarization",
+      "mpn": "TBS5G8MMCXA",
+      "exact_order_identity": "TBS 5G8 MMCX Linear Antenna; manufacturer product 1914; GTIN 768684799503",
+      "manufacturer": "Team BlackSheep",
+      "termination": "MMCX plug",
+      "specified_bands_mhz": [[5500, 6000]],
+      "peak_gain_dbi": 2.2,
+      "polarization": "linear",
+      "cable_length_mm": 102,
+      "weight_g": 1.8,
+      "status": "selected_first_target_hil_and_supply_independent_alternate_open",
+      "primary_spec": "https://www.team-blacksheep.com/products/product%3A1914",
+      "availability": {
+        "source": "Team BlackSheep manufacturer store",
+        "url": "https://www.team-blacksheep.com/products/product%3A1914",
+        "stock_state": "in_stock",
+        "unit_price_usd_at_1": 6.95,
+        "checked_on": "2026-08-27",
+        "jlcpcb_exact_search_found": 0,
+        "assembly_route": "post-PCBA kit accessory"
+      }
     }
   ],
   "qualification": {
-    "status": "first_targets_and_paper_alternates_selected_for_12_of_12_items_hil_open",
+    "status": "first_targets_selected_for_13_of_13_items; paper alternates selected for 12 of 13; all HIL open",
     "open_items": [
       "qualify the selected AM/LW controlled assembly across its complete band, especially 153-200 kHz",
       "qualify every paper alternate on assembled hardware and retain explicit per-profile substitution limits",
       "select a source-independent AM/LW alternate rather than only a second controlled geometry",
       "measure every antenna on the assembled enclosure and actual ground plane",
       "verify receive sensitivity, TX EIRP, harmonics, coexistence and connector mechanics",
-      "request quantity-100 quotes where public tiers are absent"
+      "request quantity-100 quotes where public tiers are absent",
+      "select and qualify a supply-independent linear MMCX fallback for FPV RX 5.8G"
     ]
   },
   "cost_observations": {
@@ -505,8 +536,9 @@
       {"profile": "315 MHz", "first_target_usd_at_250": 9.275, "alternate_usd_at_100": 5.5693, "approximate_difference_usd_per_item": -3.7057},
       {"profile": "433 MHz", "first_target_usd_at_100": 11.23, "alternate_usd_at_100": 4.8421, "difference_usd_per_item": -6.3879},
       {"profile": "868/915 MHz", "first_target_usd_at_100": 4.7866, "alternate_usd_at_100": 5.2742, "difference_usd_per_item": 0.4876},
-      {"profile": "FM/SW receive", "first_target_usd_at_1": 35.95, "alternate_usd_at_1": 15.95, "difference_usd_per_item": -20.0}
+      {"profile": "FM/SW receive", "first_target_usd_at_1": 35.95, "alternate_usd_at_1": 15.95, "difference_usd_per_item": -20.0},
+      {"profile": "FPV RX 5.8G", "first_target_usd_at_1": 6.95, "alternate": "open"}
     ],
-    "not_totalled": "nRF first-target price is RFQ-only, VHF/UHF comparisons mix currencies or missing volume tiers, and AM/LW estimates exclude assembly"
+    "not_totalled": "nRF first-target price is RFQ-only, VHF/UHF comparisons mix currencies or missing volume tiers, AM/LW estimates exclude assembly, and FPV has no qualified alternate or volume tier yet"
   }
 }

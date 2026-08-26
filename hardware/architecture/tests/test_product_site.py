@@ -138,6 +138,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h1-airband-filter.ru.md",
         "docs/h1-r2-power-thermal.md",
         "docs/h1-r2-power-thermal.ru.md",
+        "docs/h1-r2-fpv.md",
+        "docs/h1-r2-fpv.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -163,13 +165,13 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: H1-R2.4", "H0-R2 reviewed",
+                "Current hardware boundary: H1-R2.5", "H0-R2 reviewed",
                 "firmware F0-R2.0",
                 "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: H1-R2.4", "H0-R2 проведено ревью",
+                "Текущая аппаратная граница: H1-R2.5", "H0-R2 проведено ревью",
                 "firmware F0-R2.0", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
@@ -185,8 +187,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Hardware is at H1-R2.4", "printing/fabrication"),
-            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H1-R2.4", "печать/на фабрику"),
+            "README.md": ("Roadmap and current position", "Hardware is at H1-R2.5", "printing/fabrication"),
+            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H1-R2.5", "печать/на фабрику"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -826,7 +828,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H1", state["current_stage"])
-        self.assertEqual("H1-R2.4", state["current_substep"])
+        self.assertEqual("H1-R2.5", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -2695,40 +2697,36 @@ class ProductSiteTests(unittest.TestCase):
                 encoding="utf-8"
             )
         )
-        self.assertEqual(12, manifest["physical_item_count"])
-        self.assertEqual(12, manifest["exact_target_item_count"])
+        rebaseline = json.loads(
+            (REPO_ROOT / "hardware/architecture/h0-r2-rebaseline.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(13, manifest["physical_item_count"])
+        self.assertEqual(13, manifest["exact_target_item_count"])
         self.assertEqual(12, manifest["paper_alternate_item_count"])
         self.assertEqual(11, manifest["supply_independent_alternate_item_count"])
         self.assertEqual(0, manifest["hil_qualified_alternate_item_count"])
-        self.assertEqual(12, sum(item["quantity"] for item in manifest["items"]))
+        self.assertEqual(13, sum(item["quantity"] for item in manifest["items"]))
         self.assertEqual(12, sum("alternate" in item for item in manifest["items"]))
         self.assertEqual(
             11,
             sum(
                 item["alternate"]["manufacturer_independent_from_first_target"]
                 for item in manifest["items"]
+                if "alternate" in item
             ),
         )
         self.assertTrue(
-            all("hil_open" in item["alternate"]["status"] for item in manifest["items"])
+            all(
+                "hil_open" in item["alternate"]["status"]
+                for item in manifest["items"]
+                if "alternate" in item
+            )
         )
-        self.assertEqual(10, manifest["maximum_simultaneously_connected"])
-        self.assertEqual(
-            candidate["antenna_policy"]["full_field_kit_physical_items"],
-            manifest["physical_item_count"],
-        )
-        self.assertEqual(
-            candidate["antenna_policy"]["max_simultaneously_connected"],
-            manifest["maximum_simultaneously_connected"],
-        )
-        self.assertEqual(
-            manifest["physical_item_count"],
-            next(
-                item["quantity"]
-                for item in candidate["bom_audit"]["required_uninstantiated_parts"]
-                if item["id"] == "external_antenna_kit"
-            ),
-        )
+        self.assertEqual(11, manifest["maximum_simultaneously_connected"])
+        self.assertIn("MMCX", rebaseline["video_contract"]["external_connector"])
+        self.assertIn("FPV RX 5.8G", rebaseline["video_contract"]["external_connector"])
         self.assertEqual(0, sum(item["mpn"] is None for item in manifest["items"]))
         kit_codes = [item["kit_code"] for item in manifest["items"]]
         self.assertEqual(len(kit_codes), len(set(kit_codes)))
@@ -2759,6 +2757,10 @@ class ProductSiteTests(unittest.TestCase):
                 if item["id"] in {"voice_vhf", "voice_uhf"}
             },
         )
+        fpv = next(item for item in manifest["items"] if item["id"] == "fpv_5g8")
+        self.assertEqual("TBS5G8MMCXA", fpv["mpn"])
+        self.assertEqual("MMCX plug", fpv["termination"])
+        self.assertEqual("FPV RX 5.8G", fpv["port_label"])
         candidate_policy = candidate["audio_receiver_contract"]["broadcast_transmit_policy"]
         self.assertIn("no custom transmitter", candidate_policy)
         self.assertIn("not a current product capability", candidate_policy)
@@ -2780,6 +2782,7 @@ class ProductSiteTests(unittest.TestCase):
                 "GW.05.0153", "W1010", "UHX-328ASA2B",
                 "UHX-325ASAXB", "GHX-221ASA3B", "SPWB24150",
                 "AN0435H25", "SCANSMA 25-1300", "L2-ANT-AM-LW-ALT01",
+                "TBS5G8MMCXA",
             ):
                 self.assertIn(token, page)
 

@@ -256,14 +256,15 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     if ru:
         title = f'# {model["marker"]} · физическая перекомпоновка'
         intro = "Это текущий проверяемый результат H1, а не журнал решений и не разрешение начинать KiCad."
-        state = "В принятую 75×150-мм систему координат добавлены второй Hub RP, активные корпуса Airband, расширенная 24×11-мм ячейка настройки его фильтра, видеодекодер FPV и сменная зона его ещё не выбранного 5,8-ГГц приёмника."
+        state = "В принятую 75×150-мм систему координат добавлены второй Hub RP, активные корпуса Airband, расширенная 24×11-мм ячейка настройки его фильтра, видеодекодер FPV и сменная зона ведущего серийного кандидата AKK K331. Резерв не превращён в точный корпус до получения контролируемых размеров AKK."
         audit_heading = "## Что уже проверено"
         open_heading = "## Что ещё блокирует H1"
         factory_heading = "## Точные фабричные позиции"
         bullets = [
             f'- Коллизии корпусов на одной стороне: `{len(result["same_face_collisions"])}`.',
             f'- Намеренных встречных XY-проекций: `{result["opposing_overlap_count"]}`; минимальный Z-зазор `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
-            '- Большой резерв приёмника FPV помещается без изменения контура платы и внешних зон аккумуляторов/U214.',
+            '- Резерв K331 помещается без изменения контура платы и внешних зон аккумуляторов/U214; функциональная распиновка принята, а физические размеры ещё закрываются.',
+            '- Точная линейная антенна TBS5G8MMCXA подключается к отдельному MMCX; между ANT IN K331 и MMCX запланирована прямая 50-омная PCB-дорожка без U.FL.',
             '- Hub остаётся на UI-плате рядом со storage/audio/broadcast; RF-модуль FPV и видеодекодер расположены вместе на RF-плате.',
             '- Для Airband получен [номинально проходящий, но открытый по stress синтез](h1-airband-filter.ru.md); увеличенная ячейка содержит альтернативные/DNP-площадки до проверки паразитик H3.',
         ]
@@ -272,14 +273,15 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     else:
         title = f'# {model["marker"]} · physical re-layout'
         intro = "This is the current verified H1 result, not a decision diary and not authorization to start KiCad."
-        state = "The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell for its filter, the FPV video decoder and a replaceable bay for its still-unselected 5.8-GHz receiver are placed in the accepted 75 × 150 mm coordinate system."
+        state = "The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell for its filter, the FPV video decoder and a replaceable bay for the leading serial AKK K331 candidate are placed in the accepted 75 × 150 mm coordinate system. The reserve is not promoted to a fixed body before AKK-controlled dimensions exist."
         audit_heading = "## Already verified"
         open_heading = "## What still blocks H1"
         factory_heading = "## Exact factory parts"
         bullets = [
             f'- Same-face body collisions: `{len(result["same_face_collisions"])}`.',
             f'- Intentional opposing XY projections: `{result["opposing_overlap_count"]}`; minimum Z clearance is `{result["minimum_opposing_clearance_mm"]:.2f} mm` against `{result["required_opposing_clearance_mm"]:.2f} mm` required.',
-            '- The large FPV receiver bay fits without changing the PCB outline or battery/U214 exterior zones.',
+            '- The K331 reserve fits without changing the PCB outline or battery/U214 exterior zones; functional pin fit is accepted while physical dimensions remain open.',
+            '- The exact linear TBS5G8MMCXA antenna mates with the distinct MMCX; K331 ANT IN reaches it over one direct 50-ohm PCB trace without U.FL.',
             '- Hub remains on the UI board beside storage/audio/broadcast; the FPV RF module and decoder remain together on the RF board.',
             '- Airband now has a [nominally passing but stress-open synthesis](h1-airband-filter.md); the enlarged cell carries alternate/DNP pads until H3 parasitics are checked.',
         ]

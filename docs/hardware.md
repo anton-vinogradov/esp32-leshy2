@@ -4,8 +4,8 @@
 
 > Current baseline: [H0-R2](h0-r2-functional-architecture.md). The R1 pin,
 > interconnect and ECAD pages linked below are retained inputs and are being
-> regenerated at H1-R2.4. The [current physical projection](h1-r2-physical-layout.md)
-> and [rail/thermal architecture](h1-r2-power-thermal.md) are collision- and
+> regenerated at H1-R2.5. The [current physical projection](h1-r2-physical-layout.md),
+> [FPV path](h1-r2-fpv.md) and [rail/thermal architecture](h1-r2-power-thermal.md) are collision-, functional- and
 > capacity-tested but incomplete; neither artifact authorizes R2 PCB routing.
 
 ## Principle component interconnections
@@ -52,7 +52,7 @@ later because Espressif does not support SDIO on revision v0.1.
 | nRF24 ×3 | `Ebyte E01-ML01IPX` | RP2354B | Concurrent `3R`, `1T2R`, `2T1R`, `3T` |
 | Sub-GHz | `CC1101RGPR` | RP2354B | 315, 433, 868 and 915 MHz |
 | Broadcast/Airband RX | `Si4732-A10-GSR` + `LT5560EDD#TRPBF` + `PGA-103+` + `SI5351A-B-GTR` + `HMC544AETR` | Hub RP2354B | FM/SW, separate AM/LW and mandatory receive-only 118–137-MHz Airband AM through the shared `FM/SW/AIR RX` port |
-| Analog FPV RX | `TVP5150AM1PBS` plus replaceable exact 5.8-GHz receiver boundary | S3 | Receive-only NTSC/PAL capture; exact serial RF module and MMCX close in H1-R2 |
+| Analog FPV RX | `AKK K331` candidate + `TVP5150AM1PBS` + `DL-MMCX-KWE-90` | S3 | Receive-only NTSC/PAL capture; pin/power fit and exact MMCX close, while controlled K331 body/factory route remain H1 gates |
 | Voice VHF/UHF | `G-NiceRF SA818S-V` + `G-NiceRF SA818S-U` | RP2354B | Independent analog VHF and UHF communications with hardware one-hot selection |
 | IR RX | `TSOP75238TT` + `TSMP95000TT` | C5 | 38-kHz demodulation and 30–60-kHz learning |
 | IR TX | `VSMY14940` | C5 | Controlled 940-nm transmit with optical evidence |
@@ -317,13 +317,12 @@ remain unauthorized.
 
 ## External antennas
 
-The [complete established 12-item antenna kit](antennas.md) maps ten
-user-facing SMA/RP-SMA port labels to an exact first-target MPN and band. Three
-antennas are interchangeable profiles for the single `SUB-GHz` port; the other
-nine have one fixed port each, including independent VHF and UHF feeds. R2 adds
-an eleventh, mechanically distinct MMCX `FPV RX 5.8G` input. Its exact
-post-installed antenna is still an H1 selection gate and is not silently
-counted as a selected kit item.
+The [complete established 13-item antenna kit](antennas.md) maps ten
+user-facing SMA/RP-SMA labels and one MMCX label to exact first-target MPNs and
+bands. Three antennas are interchangeable profiles for the single `SUB-GHz`
+port; the other ten have one fixed port each, including independent VHF/UHF and
+the mechanically distinct MMCX `FPV RX 5.8G`. Its exact post-installed linear
+antenna is `TBS5G8MMCXA`; its `FPV · RX 5.8G` flag matches the device silk.
 
 ## Power and service
 

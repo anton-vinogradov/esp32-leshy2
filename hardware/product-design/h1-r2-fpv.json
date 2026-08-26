@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "marker": "H1-R2.5",
+  "checked_on": "2026-08-27",
+  "status": "functional_fit_passed_physical_and_factory_route_open",
+  "receiver": {
+    "mpn": "K331",
+    "manufacturer": "AKK Technology",
+    "official_url": "https://www.akktek.com/products/vtx-modules/akk-k331.html",
+    "availability": "manufacturer store: in stock, USD 29.99, checked 2026-08-27",
+    "supply_v": [3.3, 5.0],
+    "maximum_current_ma": 200,
+    "frequency_mhz": [5645, 5945],
+    "sensitivity_dbm": -93,
+    "video_output": "negative CVBS, 1 Vpp typical into 75 ohm, 50 Hz to 6 MHz",
+    "demodulation": "FM / PLL",
+    "channel_count": 24,
+    "pinout": [
+      {"pin": 1, "name": "CH1", "owner": "Hub RP GPIO36"},
+      {"pin": 2, "name": "CH2", "owner": "Hub RP GPIO37"},
+      {"pin": 3, "name": "CH3", "owner": "Hub RP GPIO38"},
+      {"pin": 4, "name": "GND", "owner": "RF ground"},
+      {"pin": 5, "name": "+3.3-5V ON", "owner": "Hub RP GPIO34 through fail-low switched 5-V rail"},
+      {"pin": 6, "name": "RSSI", "owner": "Hub RP GPIO33 ADC"},
+      {"pin": 7, "name": "AUDIO 6.5MHz", "owner": "not connected in R2"},
+      {"pin": 8, "name": "VIDEO OUT", "owner": "TVP5150AM1PBS CVBS input"},
+      {"pin": 9, "name": "GND", "owner": "RF ground"},
+      {"pin": 10, "name": "GND", "owner": "RF ground"},
+      {"pin": 11, "name": "ANT IN", "owner": "direct 50-ohm PCB feed to DL-MMCX-KWE-90"},
+      {"pin": 12, "name": "GND", "owner": "RF ground"},
+      {"pin": 13, "name": "GND", "owner": "RF ground"},
+      {"pin": 14, "name": "GND", "owner": "RF ground"}
+    ],
+    "decoder_lock_evidence": "Hub RP GPIO35 reads qualified TVP5150 video-lock/evidence; K331 has no separate lock pin",
+    "published_integration_sheet": "https://flymod.net/en/item/akk_k331_58g",
+    "mechanical": {
+      "working_envelope_mm": [28.0, 23.0, 3.0],
+      "working_envelope_source": "common shielded RX5808-family envelope and published K331 photography; not a manufacturer drawing",
+      "accepted": false,
+      "gate": "obtain a manufacturer-controlled maximum envelope, land pattern and packaging/reflow statement before replacing the reserve with a fixed body"
+    },
+    "jlcpcb_surface": {
+      "assembly": "not present in the public Standard PCBA library; private/global sourcing or post-PCBA installation only",
+      "searches": [
+        {"query": "AKK K331", "found": 0},
+        {"query": "RX5808", "found": 0},
+        {"query": "RTC6715", "found": 0}
+      ],
+      "accepted_for_factory_placement": false
+    }
+  },
+  "antenna": {
+    "mpn": "TBS5G8MMCXA",
+    "exact_order_identity": "TBS 5G8 MMCX Linear Antenna; manufacturer product 1914; GTIN 768684799503",
+    "manufacturer": "Team BlackSheep",
+    "official_url": "https://www.team-blacksheep.com/products/product%3A1914",
+    "availability": "manufacturer store: in stock, USD 6.95, checked 2026-08-27",
+    "frequency_mhz": [5500, 6000],
+    "polarization": "linear",
+    "gain_dbi": 2.2,
+    "cable_length_mm": 102,
+    "weight_g": 1.8,
+    "termination": "MMCX plug",
+    "kit_code": "FPV",
+    "marker_colour": "lime #65A30D",
+    "printed_identity": "FPV · RX 5.8G",
+    "selection_reason": "linear polarization avoids committing the general receiver to RHCP or LHCP and stays usable with unknown FPV sources",
+    "jlcpcb_surface": {
+      "query": "TBS 5G8 MMCX Linear",
+      "found": 0,
+      "assembly": "post-PCBA kit accessory; not a PCB-assembly line item"
+    },
+    "accepted": true
+  },
+  "power_fit": {
+    "reserved_active_5v_ma": 350,
+    "receiver_maximum_ma": 200,
+    "margin_ma": 150,
+    "result": "pass"
+  },
+  "signal_path": [
+    "TBS5G8MMCXA",
+    "DL-MMCX-KWE-90",
+    "direct 50-ohm PCB trace without U.FL or cable",
+    "AKK K331 ANT IN",
+    "K331 CVBS OUT",
+    "TVP5150AM1PBS",
+    "8-bit BT.656",
+    "ESP32-S3 LCD_CAM"
+  ],
+  "result": {
+    "functional_and_pin_fit": "pass",
+    "exact_antenna_selection": "accepted",
+    "receiver_exact_identity": "accepted as leading serial module",
+    "receiver_physical_body": "open",
+    "factory_placement_route": "open",
+    "production_acceptance": false
+  },
+  "open_gates": [
+    "obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence",
+    "obtain a JLCPCB private/global-sourcing response or retain explicit post-PCBA hand installation",
+    "prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality on assembled hardware",
+    "qualify at least one supply-independent antenna fallback before antenna-kit freeze"
+  ]
+}

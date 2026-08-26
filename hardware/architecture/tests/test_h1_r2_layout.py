@@ -37,17 +37,20 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual(len(refs), len(set(refs)))
         self.assertTrue(all(len(ref) <= 2 for ref in refs))
 
-    def test_unresolved_fpv_is_a_reserve_not_a_fake_component(self):
+    def test_k331_physical_boundary_is_a_reserve_not_a_fake_component(self):
         bay = next(x for x in self.model["placements"] if x["id"] == "fpv_receiver_bay")
         self.assertEqual("reserve", bay["kind"])
         self.assertIsNone(bay["mpn"])
-        self.assertIn("generic RX5808", self.model["open_gates"][0])
+        self.assertEqual("AKK K331", bay["candidate_mpn"])
+        self.assertIn("AKK-controlled maximum dimensions", self.model["open_gates"][0])
 
     def test_factory_rows_include_current_identity(self):
         by_mpn = {row["mpn"]: row for row in self.model["factory_evidence"]}
         self.assertEqual("C3824301", by_mpn["TVP5150AM1PBS"]["jlcpcb_part"])
         self.assertEqual("C2894793", by_mpn["DL-MMCX-KWE-90"]["jlcpcb_part"])
         self.assertEqual("C39843328", by_mpn["SC1512-A4"]["jlcpcb_part"])
+        self.assertIsNone(by_mpn["K331"]["jlcpcb_part"])
+        self.assertFalse(by_mpn["K331"]["accepted"])
         self.assertTrue(all("accepted" in row for row in self.model["factory_evidence"]))
         self.assertTrue(by_mpn["TPS7A2018PDBVR"]["accepted"])
         self.assertIn("2,225 pieces", by_mpn["TPS7A2018PDBVR"]["availability"])

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.4",
+  "marker": "H1-R2.5",
   "checked_on": "2026-08-27",
   "purpose": "Place the new R2 Hub, Airband and analog-FPV bodies in the accepted 75 x 150 mm two-board coordinate system before any R2 KiCad work.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -53,6 +53,22 @@
       "availability_ru": "62 шт., MOQ 1, $6.4081 при количестве 1",
       "url": "https://jlcpcb.com/partdetail/TexasInstruments-TVP5150AM1PBS/C3824301",
       "checked": "2026-08-26"
+    },
+    {
+      "role": "24-channel 5.8-GHz analog-FPV receiver module",
+      "role_ru": "24-канальный модуль приёмника аналогового FPV 5,8 ГГц",
+      "mpn": "K331",
+      "jlcpcb_part": null,
+      "manufacturer": "AKK Technology",
+      "assembly": "not in the public JLCPCB Standard PCBA library; private/global sourcing or post-PCBA hand installation only",
+      "accepted": false,
+      "selection_status": "accepted functional and pin-fit candidate; physical body and factory-placement route remain open",
+      "selection_status_ru": "принят функциональный кандидат с подходящей распиновкой; корпус и фабричный маршрут установки остаются открыты",
+      "availability": "manufacturer store showed in stock at USD 29.99; exact JLCPCB searches for AKK K331, RX5808 and RTC6715 returned zero results",
+      "availability_ru": "магазин производителя показывал наличие по $29.99; точные поиски JLCPCB по AKK K331, RX5808 и RTC6715 дали ноль результатов",
+      "identity_gate": "manufacturer-controlled maximum envelope, land pattern and packaging/reflow evidence are required before the reserve becomes a fixed body",
+      "url": "https://www.akktek.com/products/vtx-modules/akk-k331.html",
+      "checked": "2026-08-27"
     },
     {
       "role": "side-facing 5.8-GHz user connector",
@@ -282,7 +298,8 @@
       "kind": "reserve",
       "frame": "rf-inner",
       "mpn": null,
-      "role": "replaceable exact serial 5.8-GHz analog receiver; MM238R-MCU is dimensional evidence only",
+      "candidate_mpn": "AKK K331",
+      "role": "leading serial 5.8-GHz analog receiver candidate; 28 x 23 x 3 mm remains a reserve until AKK-controlled physical evidence exists",
       "world_xy_mm": [39.5, 90.5],
       "size_mm": [28.0, 23.0, 3.0]
     },
@@ -444,17 +461,19 @@
     }
   ],
   "open_gates": [
-    "select an in-production exact serial 5.8-GHz analog receiver with a live purchase route; generic RX5808 and discontinued MM238R-MCU are not accepted",
+    "obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence before replacing the K331 reserve with a fixed body",
+    "obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation",
     "prove manual-assembly accessibility and the enclosure side opening around the exact MMCX body",
     "close the H1-R2.3 Airband candidate with extracted PCB parasitics and one fixed factory BOM state; nominal finite-Q compliance is retained only as feasibility evidence",
-    "select the exact post-installed 5.8-GHz FPV antenna and give it the same code-plus-colour identification used by the other antenna-kit items",
+    "qualify a supply-independent fallback for the exact TBS5G8MMCXA post-installed FPV antenna",
     "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
   ],
   "open_gates_ru": [
-    "выбрать точный серийный аналоговый 5,8-ГГц приёмник с действующим каналом покупки; generic RX5808 и снятый MM238R-MCU не приняты",
+    "получить контролируемые AKK максимальные размеры, посадочное место и данные упаковки/reflow до замены резерва K331 точным корпусом",
+    "получить ответ JLCPCB о private/global sourcing K331 либо явно оставить ручную установку после PCBA",
     "доказать доступ для ручной установки и боковой проём корпуса вокруг точного корпуса MMCX",
     "закрыть кандидат фильтра Airband H1-R2.3 с учётом извлечённых паразитик PCB и одним фиксированным фабричным BOM-state; nominal finite-Q соответствие остаётся только evidence реализуемости",
-    "выбрать точную устанавливаемую после PCBA антенну FPV 5,8 ГГц и дать ей ту же кодово-цветовую маркировку, что и остальным предметам антенного комплекта",
+    "квалифицировать независимую по поставщику замену точной устанавливаемой после PCBA антенны FPV TBS5G8MMCXA",
     "перегенерировать все внешние и внутренние виды и оба разреза после прекращения перемещений корпусов R2"
   ]
 }

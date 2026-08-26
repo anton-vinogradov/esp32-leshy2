@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.4",
+  "marker": "H1-R2.5",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "new_fixed_body_count": 17,
@@ -150,10 +150,11 @@
   ],
   "errors": [],
   "open_gates": [
-    "select an in-production exact serial 5.8-GHz analog receiver with a live purchase route; generic RX5808 and discontinued MM238R-MCU are not accepted",
+    "obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence before replacing the K331 reserve with a fixed body",
+    "obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation",
     "prove manual-assembly accessibility and the enclosure side opening around the exact MMCX body",
     "close the H1-R2.3 Airband candidate with extracted PCB parasitics and one fixed factory BOM state; nominal finite-Q compliance is retained only as feasibility evidence",
-    "select the exact post-installed 5.8-GHz FPV antenna and give it the same code-plus-colour identification used by the other antenna-kit items",
+    "qualify a supply-independent fallback for the exact TBS5G8MMCXA post-installed FPV antenna",
     "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
   ],
   "placements": [
@@ -330,7 +331,7 @@
       "kind": "reserve",
       "frame": "rf-inner",
       "mpn": null,
-      "role": "replaceable exact serial 5.8-GHz analog receiver; MM238R-MCU is dimensional evidence only",
+      "role": "leading serial 5.8-GHz analog receiver candidate; 28 x 23 x 3 mm remains a reserve until AKK-controlled physical evidence exists",
       "world_bbox_mm": {
         "x": [
           39.5,
