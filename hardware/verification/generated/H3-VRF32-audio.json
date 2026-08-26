@@ -5,9 +5,9 @@
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
     "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "13400b84266596a7bb9c6e0c04f8f4f67957801efe8f9dc9c5a6cb4c6a085126",
-    "hardware/verification/generated/H3-VRF31-display.json": "c15e0b44d41fcddee437f1bb7fd707825e381f0ae0b785e4c6b8514fc71c9d9c",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "268b349628b3bd8da9f99105e07af43a5f955a373fb6b86e8a008161fb8e5f13"
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "a694b03086417a29c179cd3183f41a08d7a0672935f7377084bc0d00ea7de123",
+    "hardware/verification/generated/H3-VRF31-display.json": "1aad2d8e7816e3ed0096c2362b543e11645a616b46452800193bc93869ffff74",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "3bfc91b91bb997c4fe4c92b1b686c9c60e3f795ebe4d1331a0961e772e695ceb"
   },
   "provenance": {
     "codec_product_brief": "https://www.everest-semi.com/pdf/ES8311%20PB.pdf",

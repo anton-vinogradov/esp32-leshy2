@@ -1,20 +1,20 @@
 {
   "schema_version": 1,
-  "stage": "H5.0.1",
+  "stage": "H5.0.1-R1",
   "status": "reviewed_mapping_only",
   "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "750d2b1bb3f421fe62122269fbce07a0b00328e143151264affde6d536d524e5",
-    "hardware/product-design/generated/H1-physical-source-table.json": "e6e9894c7be59227fe4b7f3f6ad8e4b92588179b8a179c7bc9ad0224342af563",
-    "hardware/product-design/mechanical-evidence-gates.json": "18ffa4bd890c45bd21a87fa10d0fc3e70edfc2336291757624bb31c756a82ef6",
-    "hardware/architecture/devices.json": "b7c9e0a591613e05e2b39fd315e301f6e628464b8cc1e46d983fc67b05204424",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "78aef8a986e51d1b046409466bae48277d99c33d536964d8c894d57298269bbd",
+    "hardware/product-design/generated/H1-physical-source-table.json": "e2c7d21d0379f30040bd6c6da934caa030019b76aa58cbe4312d73af3ec42a7b",
+    "hardware/product-design/mechanical-evidence-gates.json": "c6d3a2366cbb7657d09aea80019a59909d83457d3b7b2bba2cb328f967e12a1d",
+    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
     "hardware/architecture/am-lw-pod.json": "6571e20c26f2ceaebf9c4bf410d155417a68116b3b5ef2e16d7c77ee06503e08"
   },
   "summary": {
     "h3_residuals": 9,
     "mechanical_gates": 14,
     "mapped_selected_part_references": 44,
-    "board_fitted_mechanical_part_references": 53,
+    "board_fitted_mechanical_part_references": 54,
     "physical_claims_closed": 0,
     "sample_orders_authorized": 0,
     "explicit_research_targets": 15
@@ -1055,24 +1055,36 @@
       "status": "mapped_evidence_open"
     },
     {
-      "id": "H5-MECH-SA518-LAND-FIT",
+      "id": "H5-MECH-SA818S-DUAL-LAND-FIT",
       "parts": [
         {
           "identity": "voice",
           "kind": "selected_physical_instance",
-          "mpn": "NiceRF SA518",
-          "role": "VHF/UHF voice transceiver; contact 7 uses a short controlled jog to its SMA",
+          "mpn": "G-NiceRF SA818S-U",
+          "role": "UHF 400-480-MHz SA818S-U; dedicated contact-12 RF path",
           "source": {
-            "document": "SA518 UV Dual Frequency Walkie-talkie Module Product Specification",
-            "version": "1.1 / 2026-05",
-            "url": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
-            "checked": "2026-08-22"
+            "document": "SA818S 1W Embedded walkie talkie module Product Specification",
+            "version": "Rev 1.8 / 2026-06",
+            "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+            "checked": "2026-08-26"
+          }
+        },
+        {
+          "identity": "voice_v",
+          "kind": "selected_physical_instance",
+          "mpn": "G-NiceRF SA818S-V",
+          "role": "VHF 134-174-MHz SA818S-V; dedicated contact-12 RF path",
+          "source": {
+            "document": "SA818S 1W Embedded walkie talkie module Product Specification",
+            "version": "Rev 1.8 / 2026-06",
+            "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+            "checked": "2026-08-26"
           }
         }
       ],
-      "known_boundary": "Rev 1.1 dimensionally fixes contact 7 at 2.00+/-0.10 mm from the board end; the corrected mockup aligns that nominal axis to the VHF/UHF SMA.",
-      "missing_data": "Received castellated-pad tolerance, solder fillet, thermal behaviour and conducted RF performance.",
-      "accepted_pass_rule": "Incoming measurement, land-pattern coupon, solder inspection and RF/thermal HIL pass in H5.",
+      "known_boundary": "SA818S Rev 1.8 plus the official manufacturer package archive define one common 35.60 x 19.00-mm, 18-land host pattern for SA818S-U and SA818S-V; each contact-12 RF corridor is independent.",
+      "missing_data": "Received SA818S-U/V lot identity, common-land tolerance, solder fillet and thermal assembly behaviour.",
+      "accepted_pass_rule": "Incoming identity check, one common land-pattern coupon populated with both variants, solder inspection and power/thermal smoke test pass in H5; conducted RF remains H8.",
       "blocks": [
         "H8"
       ],
@@ -1538,7 +1550,7 @@
   "decision_boundary": {
     "accepted_now": "the evidence map, exact selected identities and existing source join",
     "not_accepted": "received-part fit, lot identity, electrical performance or any production qualification",
-    "next": "H5.0.2 searches primary manufacturer/distributor evidence and fully documented serial alternatives before any sample proposal",
+    "next": "H5.0.2-R1 searches primary manufacturer/distributor evidence and fully documented serial alternatives before any sample proposal",
     "purchase_authorized": false,
     "pcb_placement_and_routing_authorized": false,
     "fabrication_authorized": false

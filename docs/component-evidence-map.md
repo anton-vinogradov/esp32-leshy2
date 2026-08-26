@@ -1,4 +1,4 @@
-# H5.0.1 · component-evidence map
+# H5.0.1-R1 · component-evidence map
 
 [Русский](component-evidence-map.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)
 
@@ -8,8 +8,8 @@ The mapping review is complete: all nine H5 residuals and all 14 mechanical gate
 flowchart LR
   R["9 H5 residuals"] --> M["✅ exact identities<br/>and sources joined"]
   G["14 mechanical gates"] --> M
-  M --> S["▶️ H5.0.2<br/>documents and serial alternatives"]
-  S --> P["H5.0.3<br/>irreducible samples only"]
+  M --> S["▶️ H5.0.2-R1<br/>documents and serial alternatives"]
+  S --> P["H5.0.3-R1<br/>irreducible samples only"]
 ```
 
 ## Nine physical residuals
@@ -74,7 +74,7 @@ flowchart LR
 - `H5-MECH-NRF-GEN1-FEEDS` — `Ebyte E01-ML01IPX`; `TE Connectivity 2118651-2`; `Hirose U.FL-R-SMT-1(10)`; `GCT RFPC-SMA31-FN-175-A`; open: The connector axis and current-lot receptacle manufacturer's exact MPN, actual fit/retention, bend/strain behaviour and end-to-end RF loss remain received-part properties. H1.2/H1.6 must prove the conservative module-face-to-board-receptacle corridor without relying on a nominal axis.
 - `H5-MECH-U214-MATING-STACK` — `M5Stack U214 Cap LoRa-1262`; `Samtec HLE-107-02-G-DV-PE-LC`; open: Current-lot U214 post section, insertion force, contact retention, repeated-cycle fit, retention-screw engagement and final compliant rail preload remain received-part properties; none changes the bounded H1 exterior envelope or main-board placement.
 - `H5-MECH-NAVIGATION-CONTROLS` — `OMRON B3S-1100P`; open: Assembled enclosure opening access, accidental-press margin, multi-button feel, sealing boundary and endurance.
-- `H5-MECH-SA518-LAND-FIT` — `NiceRF SA518`; open: Received castellated-pad tolerance, solder fillet, thermal behaviour and conducted RF performance.
+- `H5-MECH-SA818S-DUAL-LAND-FIT` — `G-NiceRF SA818S-U`; `G-NiceRF SA818S-V`; open: Received SA818S-U/V lot identity, common-land tolerance, solder fillet and thermal assembly behaviour.
 - `H5-MECH-ENCODER-KNOB` — `Alps Alpine EC11E18244AU`; `Davies Molding 1227-J`; open: Insertion depth, retention, push travel, feel and final rear depth on received parts.
 - `H5-MECH-DIRECT-PRESS-CONTROLS` — `OMRON B3S-1100P`; open: PCB/enclosure press feel, accidental-press margin and endurance.
 - `H5-MECH-RUN-KILL` — `C&K JS102011SCQN`; open: Received side access, detent force, accidental motion and endurance.
@@ -91,6 +91,6 @@ flowchart LR
 - Test articles not selected yet are explicit: a reference microSD and the M5 Unit/cable profile set.
 - The fitted connector in a received `E01-ML01IPX` and the fitted post on a stock `U214` were not assigned invented MPNs; their makers do not publish them.
 - Actual fit, retention, RF, timing and lot identity remain open until received-sample evidence exists.
-- The next exact marker is `H5.0.2`; purchase, PCB placement/routing and fabrication remain prohibited.
+- The next exact marker is `H5.0.2-R1`; purchase, PCB placement/routing and fabrication remain prohibited.
 
 Machine result: [`H5-EVR01`](../hardware/verification/generated/H5-EVR01-residual-map.json).

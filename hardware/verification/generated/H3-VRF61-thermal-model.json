@@ -6,10 +6,10 @@
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
     "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "268b349628b3bd8da9f99105e07af43a5f955a373fb6b86e8a008161fb8e5f13",
-    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "085b567258d56f9a6fa379e38e8a13bd2f4573b47557fed6d9a47afc4b615e7e",
-    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "b5b4fd70cd288ff0401231dfa35b427907a4d12cc8a18937d5fa9d36b5fe38e4",
-    "hardware/verification/generated/H3-VRF34-battery-analog.json": "01c25800ee6ec85b255822b30efa61c9b214e255af90664dcbc734989f737f18"
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "3bfc91b91bb997c4fe4c92b1b686c9c60e3f795ebe4d1331a0961e772e695ceb",
+    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "b6474e49ecd7784ac66edb9e009c65a6059340bf6450ec21d9885c90c66c3c53",
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "b215819946b24289b9e07abe20a77cfc7f932aeea75350a00fbddb08ea439e22",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "bf0c776c9eb80ad25a67255ba71e8711327c03eb66297fed8672020baf7d97c8"
   },
   "thermal_parts": {
     "main_voice_ext_buck": {

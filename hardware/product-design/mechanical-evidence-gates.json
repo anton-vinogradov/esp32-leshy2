@@ -51,12 +51,12 @@
       "blocks": ["H8"]
     },
     {
-      "id": "H5-MECH-SA518-LAND-FIT",
+      "id": "H5-MECH-SA818S-DUAL-LAND-FIT",
       "disposition": "h5_received_sample_gate",
-      "affected_instances": ["voice"],
-      "evidence_boundary": "Rev 1.1 dimensionally fixes contact 7 at 2.00+/-0.10 mm from the board end; the corrected mockup aligns that nominal axis to the VHF/UHF SMA.",
-      "unknown": "Received castellated-pad tolerance, solder fillet, thermal behaviour and conducted RF performance.",
-      "closure": "Incoming measurement, land-pattern coupon, solder inspection and RF/thermal HIL pass in H5.",
+      "affected_instances": ["voice", "voice_v"],
+      "evidence_boundary": "SA818S Rev 1.8 plus the official manufacturer package archive define one common 35.60 x 19.00-mm, 18-land host pattern for SA818S-U and SA818S-V; each contact-12 RF corridor is independent.",
+      "unknown": "Received SA818S-U/V lot identity, common-land tolerance, solder fillet and thermal assembly behaviour.",
+      "closure": "Incoming identity check, one common land-pattern coupon populated with both variants, solder inspection and power/thermal smoke test pass in H5; conducted RF remains H8.",
       "blocks": ["H8"]
     },
     {

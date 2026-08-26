@@ -7,8 +7,8 @@
     "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
     "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
     "hardware/ecad/generated/H2-REV55-fault-kill.json": "b94e5acf978e7ed997b8dd8e8ee742d9dfed617f50491303681f057dbd131524",
-    "hardware/verification/generated/H3-VRF24-watchdog-fault-display.json": "d5486acb6754cc76c2189174bef7c0648f1c8903fa31dce4a650b0be0e3e4689",
-    "hardware/verification/generated/H3-VRF61-thermal-model.json": "c7faafef7cf47944beef7e231cd1c84e44f6e4f01e4928448558035b56d0a075"
+    "hardware/verification/generated/H3-VRF24-watchdog-fault-display.json": "4d48ffb0adba47afbdf9140764d58c58a5ace484fe9883110ffc588700bded8e",
+    "hardware/verification/generated/H3-VRF61-thermal-model.json": "d816e79cc7235ab3bb161d8928a82162140935e0c7bc34cc7f57d34b492be403"
   },
   "fault_plane": {
     "healthy_nominal_v": "3.2673",

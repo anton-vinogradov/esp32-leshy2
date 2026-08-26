@@ -8,8 +8,8 @@
   ],
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
-    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "b5b4fd70cd288ff0401231dfa35b427907a4d12cc8a18937d5fa9d36b5fe38e4",
-    "hardware/verification/generated/H3-VRF21-startup-shutdown.json": "404be5e81bf1cb58c439830eb1f8765460b7fe760bcabfde5ab23bdec9de2fb4"
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "b215819946b24289b9e07abe20a77cfc7f932aeea75350a00fbddb08ea439e22",
+    "hardware/verification/generated/H3-VRF21-startup-shutdown.json": "59fc6e1861215d2bbfcedb5386244912f938653b81b4f15d8d0d574dbaaa56fa"
   },
   "provenance": {
     "charger": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",

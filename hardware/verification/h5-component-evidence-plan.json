@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "H5",
   "status": "in_progress",
-  "current_substep": "H5.0.1-R1",
+  "current_substep": "H5.0.2-R1",
   "purpose": "close received-part uncertainties with the least expensive reliable evidence, using documents or serial replacements before buying samples",
   "accepted_inputs": [
     "H4 joined pre-layout gate reviewed",
@@ -36,12 +36,12 @@
         {
           "id": "H5.0.1-R1",
           "title": "Join every H5 residual to its exact MPN, missing datum, existing source and accepted pass rule",
-          "status": "current"
+          "status": "reviewed"
         },
         {
           "id": "H5.0.2-R1",
           "title": "Search manufacturer and distributor evidence more deeply and evaluate fully documented serial replacements",
-          "status": "waiting"
+          "status": "current"
         },
         {
           "id": "H5.0.3-R1",
@@ -66,6 +66,14 @@
       "status": "waiting"
     }
   ],
+  "reviewed_artifacts": {
+    "H5.0.1-R1": {
+      "machine_result": "hardware/verification/generated/H5-EVR01-residual-map.json",
+      "readable_result_en": "docs/component-evidence-map.md",
+      "readable_result_ru": "docs/component-evidence-map.ru.md",
+      "result": "nine H5 residuals and fourteen current mechanical gates mapped; both SA818S variants share one official 18-land evidence boundary; zero physical claims closed and zero orders authorized"
+    }
+  },
   "superseded_artifacts": {
     "H5.0.1": {
       "machine_result": "hardware/verification/generated/H5-EVR01-residual-map.json",
@@ -96,5 +104,5 @@
   },
   "blocker": null,
   "next_active_repository": "esp32-leshy2",
-  "next_active_substep": "H5.0.1-R1"
+  "next_active_substep": "H5.0.2-R1"
 }

@@ -12,7 +12,7 @@
 
 </div>
 
-> **Now: H5.0.1-R1 · component-evidence rebuild.**
+> **Now: H5.0.2-R1 · primary-source and serial-alternative research.**
 > H2 and H3 are reviewed for independent `SA818S-V` and `SA818S-U` paths,
 > ten antenna ports and hardware one-hot voice selection. H4 has rejoined that
 > evidence with the reviewed firmware F3 target/QEMU package. Former H5
@@ -120,7 +120,7 @@ Every completed top-level `H*` phase receives a separate readable result report
 linked from this table. Internal substeps update the exact marker but do not
 create separate global reports.
 
-**Hardware is at H5.0.1-R1.** The current [H4 report](docs/h4-prelayout-gate-report.md)
+**Hardware is at H5.0.2-R1.** The current [H4 report](docs/h4-prelayout-gate-report.md)
 closes the joined review with 33 clean checks. H5 is rebuilding exact component
 evidence for the dual-SA818S 210-line BOM; its old SA518 basket and 209-line
 platform snapshot are historical inputs only. Physical evidence, PCB layout,
@@ -129,11 +129,12 @@ quote/reservation and every order remain unauthorized.
 <details open>
 <summary><strong>Current component evidence — exact detailed position</strong></summary>
 
-<!-- current-substep: H5.0.1-R1 -->
+<!-- current-substep: H5.0.2-R1 -->
 
-**Exact marker: `H5.0.1-R1`** — rebuild the physical-residual map against both
-serial SA818S modules and the current 210-line BOM. Documentary evidence and
-serial replacements are exhausted before any sample can be proposed. No
+**Exact marker: `H5.0.2-R1`** — the refreshed [physical-residual map](docs/component-evidence-map.md)
+now binds all nine H5 residuals and 14 mechanical gates to the dual-SA818S
+product. Primary sources and fully documented serial replacements are now
+being exhausted before any sample can be proposed. No
 purchase, placement, routing or fabrication is authorized; this marker and its
 evidence move together in the same commit.
 
@@ -248,8 +249,8 @@ evidence move together in the same commit.
 - ✅ `H4.1-R1` — H1 mechanics, H2 ECAD, H3 evidence and firmware F3 joined.
 - ✅ `H4.2-R1` — repeated join contains no stale source or open virtual contradiction.
 - ✅ `H4.3-R1` — refreshed [joined pre-layout report reviewed](docs/h4-prelayout-gate-report.md).
-- ▶️ `H5.0.1-R1` — rebuild component evidence for both serial SA818S modules.
-- ✅ `H5.0.2` — [primary-source and serial-alternative research reviewed](docs/component-source-research.md); two test-article categories now have four exact serial SKUs.
+- ✅ `H5.0.1-R1` — [nine residuals and 14 mechanical gates remapped](docs/component-evidence-map.md) for both serial SA818S modules.
+- ▶️ `H5.0.2-R1` — rebuild primary-source and serial-alternative research for `SA818S-U`, `SA818S-V` and the qualification-pending `SA818S-CE` alternate.
 - 🔒 `H5.0.3-R1` — refresh the JLCPCB map for the 210-line dual-SA818S BOM; purchasing remains a later, separate gate.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).

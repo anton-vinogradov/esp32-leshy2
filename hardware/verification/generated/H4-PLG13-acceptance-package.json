@@ -4,8 +4,8 @@
   "status": "reviewed_h4_complete",
   "reviewed_at": "2026-08-26",
   "source_hashes": {
-    "hardware/verification/generated/H4-PLG11-joined-review.json": "ce3fff0a60e37effc9ab93d02056a7fcea342dbd688c0be80b41874bfd8f2baa",
-    "hardware/verification/generated/H4-PLG12-correction-closure.json": "72e0874c3ff55bc8d5bdb6a5179d063b7f97f741f252390ac548b771c29e7715"
+    "hardware/verification/generated/H4-PLG11-joined-review.json": "b82cc28de1e3b2958ad46517dcb2c39189a7a5bfcd427b2bc665fa66e7e6bd24",
+    "hardware/verification/generated/H4-PLG12-correction-closure.json": "e0377e3862fb777f377ce1983d32bf7b55a3fcc15cf54b158db074b1b5341a43"
   },
   "acceptance_meaning": [
     "all currently possible H1/H2/H3/F3 cross-domain checks are joined and reproducible",

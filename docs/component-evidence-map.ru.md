@@ -1,4 +1,4 @@
-# H5.0.1 · карта evidence компонентов
+# H5.0.1-R1 · карта evidence компонентов
 
 [English](component-evidence-map.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md)
 
@@ -8,8 +8,8 @@
 flowchart LR
   R["9 H5 residuals"] --> M["✅ точные identities<br/>и источники связаны"]
   G["14 mechanical gates"] --> M
-  M --> S["▶️ H5.0.2<br/>документы и серийные замены"]
-  S --> P["H5.0.3<br/>только неустранимые образцы"]
+  M --> S["▶️ H5.0.2-R1<br/>документы и серийные замены"]
+  S --> P["H5.0.3-R1<br/>только неустранимые образцы"]
 ```
 
 ## Девять физических residuals
@@ -74,7 +74,7 @@ flowchart LR
 - `H5-MECH-NRF-GEN1-FEEDS` — `Ebyte E01-ML01IPX`; `TE Connectivity 2118651-2`; `Hirose U.FL-R-SMT-1(10)`; `GCT RFPC-SMA31-FN-175-A`; открыто: ось и MPN встроенного разъёма партии E01, fit/retention, изгиб и сквозные RF-потери
 - `H5-MECH-U214-MATING-STACK` — `M5Stack U214 Cap LoRa-1262`; `Samtec HLE-107-02-G-DV-PE-LC`; открыто: сечение штырей U214, усилия, циклы, винтовое удержание и preload планки
 - `H5-MECH-NAVIGATION-CONTROLS` — `OMRON B3S-1100P`; открыто: доступ через корпус, защита от случайного нажатия, ощущения, герметизация и ресурс
-- `H5-MECH-SA518-LAND-FIT` — `NiceRF SA518`; открыто: допуски castellated pads, пайка, нагрев и conducted RF полученного модуля
+- `H5-MECH-SA818S-DUAL-LAND-FIT` — `G-NiceRF SA818S-U`; `G-NiceRF SA818S-V`; открыто: identity двух партий, общий 18-land fit, пайку и тепловое поведение SA818S-U/V; conducted RF остаётся H8
 - `H5-MECH-ENCODER-KNOB` — `Alps Alpine EC11E18244AU`; `Davies Molding 1227-J`; открыто: глубина посадки, удержание, ход нажатия, ощущения и итоговая глубина
 - `H5-MECH-DIRECT-PRESS-CONTROLS` — `OMRON B3S-1100P`; открыто: ощущения через корпус, защита от случайного нажатия и ресурс
 - `H5-MECH-RUN-KILL` — `C&K JS102011SCQN`; открыто: доступ сбоку, усилие фиксации, случайное перемещение и ресурс
@@ -91,6 +91,6 @@ flowchart LR
 - Не выбранные пока **тестовые** изделия отмечены явно: эталонная microSD и набор M5 Unit/cable для профилей.
 - Встроенный разъём полученного `E01-ML01IPX` и штырь установленного на stock `U214` не превращены в выдуманные MPN: производитель их не публикует.
 - Реальный fit, retention, RF, timing и lot identity остаются открыты до полученного образца.
-- Следующий точный маркер — `H5.0.2`; заказ, PCB placement/routing и fabrication запрещены.
+- Следующий точный маркер — `H5.0.2-R1`; заказ, PCB placement/routing и fabrication запрещены.
 
 Машинный результат: [`H5-EVR01`](../hardware/verification/generated/H5-EVR01-residual-map.json).

@@ -208,11 +208,13 @@ residuals сохраняют владельцев H5/H6/H8; закупка, PCB 
 <a id="h5"></a>
 ## H5 · Образцы компонентов
 
-**Статус:** ▶️ сейчас `H5.0.1-R1`. Прежнее SA518-evidence отменено и
-пересобирается для 210-строчного dual-SA818S BOM; закупка не разрешена.
+**Статус:** ▶️ сейчас `H5.0.2-R1`. Обновлённая [карта residuals](component-evidence-map.ru.md)
+связывает все девять H5 residuals и 14 механических gates с 210-строчным
+dual-SA818S BOM. Сейчас повторно проверяются первичные источники и серийные
+альтернативы; закупка не разрешена.
 
 Текущий [машинный план](../hardware/verification/h5-component-evidence-plan.json)
-содержит только отменённый baseline. Новое evidence должно покрыть обе
+фиксирует `H5.0.1-R1` как проведённый и прежние SA518-артефакты как отменённые. Новое evidence должно покрыть обе
 identity SA818S, общий land pattern, два независимых RF-тракта и
 qualified-pending UHF alternate SA818S-CE. Прежний
 [Baseline PCBA-площадки](manufacturing-platform.ru.md) выбирает JLCPCB Standard

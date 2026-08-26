@@ -15,7 +15,7 @@
     "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json": "2c7f1a6778ff21897c9599fef307801bb03cb2b5fdd18e475e7d6b4ba6bbb4eb",
     "hardware/ecad/generated/H2-hwfw-contract.json": "3604889fbf94c28fd0b110b16596c63fa56927df7ff3ff49d0cdfff9d6e7b014",
     "hardware/ecad/generated/H2-instance-ledger.json": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
-    "hardware/product-design/generated/H1-physical-source-table.json": "8e9099af81f88640835a7c804ded39ffe9cd6d24fb1ac42028c2346742305dd6",
+    "hardware/product-design/generated/H1-physical-source-table.json": "e2c7d21d0379f30040bd6c6da934caa030019b76aa58cbe4312d73af3ec42a7b",
     "hardware/product-design/generated/H1-unified-coordinate-table.json": "805842b318cfe26654d06884ef149c34b4db938f25134d886c5cb58ebe790f55",
     "hardware/architecture/candidates/G2F-3I.json": "8fc9c5444e0fd690b9c2d7d2444646228d14998668ecc0af3c9c37973cb691bc",
     "hardware/accessories/leshy2-lora-cap-01.json": "aea57801c58d9f255774bc58ecf51aff7238d9e8557d0ae25da6f81145ff5301",

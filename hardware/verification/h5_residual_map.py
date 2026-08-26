@@ -125,7 +125,7 @@ MECHANICAL_MISSING_RU = {
     "H5-MECH-NRF-GEN1-FEEDS": "ось и MPN встроенного разъёма партии E01, fit/retention, изгиб и сквозные RF-потери",
     "H5-MECH-U214-MATING-STACK": "сечение штырей U214, усилия, циклы, винтовое удержание и preload планки",
     "H5-MECH-NAVIGATION-CONTROLS": "доступ через корпус, защита от случайного нажатия, ощущения, герметизация и ресурс",
-    "H5-MECH-SA518-LAND-FIT": "допуски castellated pads, пайка, нагрев и conducted RF полученного модуля",
+    "H5-MECH-SA818S-DUAL-LAND-FIT": "identity двух партий, общий 18-land fit, пайку и тепловое поведение SA818S-U/V; conducted RF остаётся H8",
     "H5-MECH-ENCODER-KNOB": "глубина посадки, удержание, ход нажатия, ощущения и итоговая глубина",
     "H5-MECH-DIRECT-PRESS-CONTROLS": "ощущения через корпус, защита от случайного нажатия и ресурс",
     "H5-MECH-RUN-KILL": "доступ сбоку, усилие фиксации, случайное перемещение и ресурс",
@@ -247,7 +247,7 @@ def build() -> dict:
 
     return {
         "schema_version": 1,
-        "stage": "H5.0.1",
+        "stage": "H5.0.1-R1",
         "status": "reviewed_mapping_only",
         "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
         "source_hashes": {
@@ -269,7 +269,7 @@ def build() -> dict:
         "decision_boundary": {
             "accepted_now": "the evidence map, exact selected identities and existing source join",
             "not_accepted": "received-part fit, lot identity, electrical performance or any production qualification",
-            "next": "H5.0.2 searches primary manufacturer/distributor evidence and fully documented serial alternatives before any sample proposal",
+            "next": "H5.0.2-R1 searches primary manufacturer/distributor evidence and fully documented serial alternatives before any sample proposal",
             "purchase_authorized": False,
             "pcb_placement_and_routing_authorized": False,
             "fabrication_authorized": False,
@@ -308,7 +308,7 @@ def residual_sections(data: dict, russian: bool) -> str:
 
 def render_doc(data: dict, russian: bool) -> str:
     if russian:
-        title = "# H5.0.1 · карта evidence компонентов"
+        title = "# H5.0.1-R1 · карта evidence компонентов"
         intro = (
             "[English](component-evidence-map.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md)\n\n"
             "Карта проведена: все девять H5-residuals и все 14 механических gate’ов связаны с выбранными "
@@ -324,8 +324,8 @@ def render_doc(data: dict, russian: bool) -> str:
 flowchart LR
   R["9 H5 residuals"] --> M["✅ точные identities<br/>и источники связаны"]
   G["14 mechanical gates"] --> M
-  M --> S["▶️ H5.0.2<br/>документы и серийные замены"]
-  S --> P["H5.0.3<br/>только неустранимые образцы"]
+  M --> S["▶️ H5.0.2-R1<br/>документы и серийные замены"]
+  S --> P["H5.0.3-R1<br/>только неустранимые образцы"]
 ```
 
 ## Девять физических residuals
@@ -342,11 +342,11 @@ flowchart LR
 - Не выбранные пока **тестовые** изделия отмечены явно: эталонная microSD и набор M5 Unit/cable для профилей.
 - Встроенный разъём полученного `E01-ML01IPX` и штырь установленного на stock `U214` не превращены в выдуманные MPN: производитель их не публикует.
 - Реальный fit, retention, RF, timing и lot identity остаются открыты до полученного образца.
-- Следующий точный маркер — `H5.0.2`; заказ, PCB placement/routing и fabrication запрещены.
+- Следующий точный маркер — `H5.0.2-R1`; заказ, PCB placement/routing и fabrication запрещены.
 
 Машинный результат: [`H5-EVR01`](../hardware/verification/generated/H5-EVR01-residual-map.json).
 """
-    title = "# H5.0.1 · component-evidence map"
+    title = "# H5.0.1-R1 · component-evidence map"
     intro = (
         "[Русский](component-evidence-map.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)\n\n"
         "The mapping review is complete: all nine H5 residuals and all 14 mechanical gates are joined to selected "
@@ -362,8 +362,8 @@ flowchart LR
 flowchart LR
   R["9 H5 residuals"] --> M["✅ exact identities<br/>and sources joined"]
   G["14 mechanical gates"] --> M
-  M --> S["▶️ H5.0.2<br/>documents and serial alternatives"]
-  S --> P["H5.0.3<br/>irreducible samples only"]
+  M --> S["▶️ H5.0.2-R1<br/>documents and serial alternatives"]
+  S --> P["H5.0.3-R1<br/>irreducible samples only"]
 ```
 
 ## Nine physical residuals
@@ -380,7 +380,7 @@ flowchart LR
 - Test articles not selected yet are explicit: a reference microSD and the M5 Unit/cable profile set.
 - The fitted connector in a received `E01-ML01IPX` and the fitted post on a stock `U214` were not assigned invented MPNs; their makers do not publish them.
 - Actual fit, retention, RF, timing and lot identity remain open until received-sample evidence exists.
-- The next exact marker is `H5.0.2`; purchase, PCB placement/routing and fabrication remain prohibited.
+- The next exact marker is `H5.0.2-R1`; purchase, PCB placement/routing and fabrication remain prohibited.
 
 Machine result: [`H5-EVR01`](../hardware/verification/generated/H5-EVR01-residual-map.json).
 """
@@ -409,7 +409,7 @@ def main() -> None:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(content, encoding="utf-8")
     data = build()
-    print(f"ok: H5.0.1 mapped {data['summary']['h3_residuals']} residuals and {data['summary']['mechanical_gates']} mechanical gates; physical closures 0")
+    print(f"ok: H5.0.1-R1 mapped {data['summary']['h3_residuals']} residuals and {data['summary']['mechanical_gates']} mechanical gates; physical closures 0")
 
 
 if __name__ == "__main__":

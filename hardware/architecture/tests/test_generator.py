@@ -37,8 +37,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H5.0.1-R1", roadmap["current_substep"])
-        self.assertEqual("H5.0.1-R1", h5["current_substep"])
+        self.assertEqual("H5.0.2-R1", roadmap["current_substep"])
+        self.assertEqual("H5.0.2-R1", h5["current_substep"])
+        self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
         self.assertIn("H5.0.3", h5["superseded_current_artifacts"])
         self.assertFalse(h5["authorization"]["sample_or_component_purchase"])
         self.assertIn("superseded", plan)

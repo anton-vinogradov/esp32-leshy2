@@ -5165,7 +5165,7 @@
       },
       "evidence_gates": [
         {
-          "id": "H5-MECH-SA518-LAND-FIT",
+          "id": "H5-MECH-SA818S-DUAL-LAND-FIT",
           "disposition": "h5_received_sample_gate"
         }
       ],
@@ -5538,7 +5538,12 @@
         "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
         "checked": "2026-08-26"
       },
-      "evidence_gates": [],
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-SA818S-DUAL-LAND-FIT",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
       "position_mm": [
         15.8,
         32.5
