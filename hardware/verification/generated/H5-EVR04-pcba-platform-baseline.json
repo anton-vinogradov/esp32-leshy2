@@ -114,6 +114,12 @@
     "app_name": "ESP32-Leshy2 BOM Validator",
     "app_status": "enabled",
     "parts_permission_status": "rejected",
+    "official_review_basis": [
+      "previous JLCPCB orders",
+      "company situation",
+      "business situation"
+    ],
+    "exact_rejection_reason_confirmed": false,
     "automatically_listed_permissions": {
       "PCB": "rejected",
       "3D": "rejected"
@@ -423,6 +429,7 @@
     "factory_final_assembly_gate_is_explicitly_open": true,
     "jlcapi_application_and_app_are_ready": true,
     "parts_api_rejection_is_explicit_and_fail_closed": true,
+    "parts_api_official_review_basis_is_recorded_without_guessing_the_exact_reason": true,
     "parts_api_support_request_is_recorded_without_secret_or_commercial_authority": true,
     "both_selected_voice_modules_have_exact_jlcpcb_routes": true,
     "api_credentials_are_not_repository_data": true,

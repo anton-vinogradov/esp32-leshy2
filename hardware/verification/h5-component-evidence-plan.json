@@ -20,6 +20,7 @@
     "parts_api_permission_status": "rejected",
     "parts_api_permission_checked_on": "2026-08-26",
     "parts_api_rejection_reason": null,
+    "parts_api_official_review_basis": ["previous JLCPCB orders", "company situation", "business situation"],
     "parts_api_support_contact_send": true,
     "parts_api_support_contact_sent_on": "2026-08-26",
     "parts_api_support_contact_channel": "JLCPCB Contact Us / Others",
@@ -104,7 +105,7 @@
       "readable_basket_ru": "docs/component-sample-basket.ru.md",
       "readable_platform_en": "docs/manufacturing-platform.md",
       "readable_platform_ru": "docs/manufacturing-platform.ru.md",
-      "result": "33 priced sample lines cover all nine H5 residuals and fourteen mechanical gates for USD 286.43 before freight/tax/coupons; all 210 current BOM lines and 1052 placements have exact J0-J3/J4-F/J4-P routes with zero replacement and zero unmapped lines; a no-order JLCPCB inquiry was submitted on 2026-08-26 and H5.0.3-R1 now waits for exact SA818S-V pre-order and J4-F/J4-P responses; H5-EVR07 separately checks response completeness and gate acceptance without granting order authority; the optional Parts API path is fail-closed after its permission was rejected without a stated reason and a no-secret support inquiry was submitted on 2026-08-26"
+      "result": "33 priced sample lines cover all nine H5 residuals and fourteen mechanical gates for USD 286.43 before freight/tax/coupons; all 210 current BOM lines and 1052 placements have exact J0-J3/J4-F/J4-P routes with zero replacement and zero unmapped lines; a no-order JLCPCB inquiry was submitted on 2026-08-26 and H5.0.3-R1 now waits for exact SA818S-V pre-order and J4-F/J4-P responses; H5-EVR07 separately checks response completeness and gate acceptance without granting order authority; the optional Parts API path is fail-closed after its permission was rejected without a stated reason, official discretionary review criteria are recorded without guessing the applied factor, and a no-secret support inquiry was submitted on 2026-08-26"
     }
   },
   "superseded_artifacts": {

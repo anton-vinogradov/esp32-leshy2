@@ -432,6 +432,11 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("approved", evidence["parts_api"]["application_status"])
         self.assertEqual("enabled", evidence["parts_api"]["app_status"])
         self.assertEqual("rejected", evidence["parts_api"]["parts_permission_status"])
+        self.assertEqual(
+            ["previous JLCPCB orders", "company situation", "business situation"],
+            evidence["parts_api"]["official_review_basis"],
+        )
+        self.assertFalse(evidence["parts_api"]["exact_rejection_reason_confirmed"])
         self.assertEqual("successfully_submitted", evidence["parts_api"]["support_inquiry"]["result"])
         self.assertFalse(evidence["parts_api"]["support_inquiry"]["contains_api_secret"])
         self.assertIsNone(evidence["parts_api"]["support_inquiry"]["ticket_number"])
@@ -931,6 +936,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("approved", h5_plan["authorization"]["parts_api_application_status"])
         self.assertEqual("rejected", h5_plan["authorization"]["parts_api_permission_status"])
         self.assertIsNone(h5_plan["authorization"]["parts_api_rejection_reason"])
+        self.assertEqual(3, len(h5_plan["authorization"]["parts_api_official_review_basis"]))
         self.assertTrue(h5_plan["authorization"]["parts_api_support_contact_send"])
         self.assertEqual("successfully_submitted", h5_plan["authorization"]["parts_api_support_contact_result"])
         self.assertIsNone(h5_plan["authorization"]["parts_api_support_ticket_number"])
