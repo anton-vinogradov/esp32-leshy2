@@ -3,7 +3,7 @@
 [Русский](roadmap.ru.md) · [Home](../README.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶️ Current hardware boundary: H5.0.3-R1 — irreducible basket and 210-line JLCPCB route rebuild.**
+> **▶️ Current hardware boundary: H5.0.3-R1 — basket and 210 routes complete; supplier-response gate.**
 > H0–H4 are reviewed. There is no PCB layout or authorized order.
 
 Status last reconciled: **26 August 2026**. This is the hardware repository's
@@ -31,7 +31,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Joined pre-layout gate | ✅ [H4 reviewed](h4-prelayout-gate-report.md): 0 open virtual contradictions; 85 physical residuals keep H5/H6/H8 owners |
 | KiCad schematic work | ✅ H2 reviewed; later findings reopen affected sheets |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
-| Component evidence | ▶️ H5.0.3-R1 rebuilds the irreducible sample basket and all 210 JLCPCB routes after the dual-SA818S map and source research passed review; sample purchase remains blocked |
+| Component evidence | ▶️ H5.0.3-R1 has a 33-line `$286.43` basket and exact routes for all 210 BOM lines / 1052 placements with zero replacement; SA818S-V lead time and J4-F/J4-P supplier responses remain open; sample purchase remains blocked |
 | Prototype PCB order | 🔒 Forbidden before H7 |
 | Production order | 🔒 Forbidden before H9 |
 
@@ -45,11 +45,13 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 **Exact marker: `H5.0.3-R1`** — the [physical residual map](component-evidence-map.md)
 and [primary-source research](component-source-research.md) have passed review.
-The current step deduplicates only irreducible received samples, exact
-measurements and current cost, then rebuilds every JLCPCB route for the
-210-line dual-SA818S production BOM. The old single-SA518 basket and 209-line platform snapshot do
-not describe the current product. Quote/reservation and purchase are not authorized;
-the exact marker and evidence move together in one commit.
+The [33-line irreducible basket](component-sample-basket.md) is priced at
+`$286.43`, and the [platform map](manufacturing-platform.md) assigns all 210
+BOM lines / 1052 placements to exact `J0`–`J3`/`J4-F`/`J4-P` routes with zero
+replacement. The old single-SA518 basket and 209-line platform snapshot do not
+describe the current product. Public/read-only evidence is exhausted; exact
+SA818S-V lead time and J4-F/J4-P factory acceptance/pricing require supplier
+responses. Quote/reservation and purchase are not authorized.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -287,7 +289,7 @@ Current H2 execution:
 - ✅ `H4.3` — [joined H4 gate reviewed](h4-prelayout-gate-report.md).
 - ✅ `H5.0.1-R1` — [all nine residuals and 14 mechanical gates mapped](component-evidence-map.md) for the current dual-SA818S design.
 - ✅ `H5.0.2-R1` — [primary sources and serial alternatives reviewed](component-source-research.md); U/V exact routes retained and CE constrained as a non-silent qualified-pending UHF alternate.
-- ▶️ `H5.0.3-R1` — rebuild the irreducible basket and JLCPCB map for the 210-line BOM.
+- ▶️ `H5.0.3-R1` — basket and 210-route map complete; waiting for authority to request SA818S-V lead time and J4-F/J4-P capability/pricing without ordering.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json),
 the completed H3/H4 plans are [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json)
@@ -349,7 +351,7 @@ A production order is possible only after H9.
 | **H2. Production ECAD schematic** | ✅ Reviewed and accepted | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 consumes the contract without invented pins |
 | **H3. Virtual electrical verification** | ✅ Reviewed and accepted | [H3 result report](h3-acceptance.md): calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; all analog corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
 | **H4. Joined pre-layout gate** | ✅ [Reviewed](h4-prelayout-gate-report.md) | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
-| **H5. Component evidence** | ▶️ Current `H5.0.3-R1`; 9-residual/14-gate map and source research reviewed, 210-line routes and irreducible basket being rebuilt, purchase blocked | [Current residual map](component-evidence-map.md) and [source report](component-source-research.md); former SA518 basket and 209-line platform audit are superseded inputs only | Every production-BOM line has an exact `J0`–`J3`, `J4-F` or `J4-P` route and no silent substitution; exact whole-basket and final-assembly costs are published; the factory accepts `J4-F` box-build and `J4-P` kit/packing/shipping; approved received samples prove identity, mating, stack-up and critical dimensions |
+| **H5. Component evidence** | ▶️ Current `H5.0.3-R1`; 9-residual/14-gate map and source research reviewed, 33-line `$286.43` basket and all 210 routes complete with zero replacement; waiting for authority to obtain SA818S-V and J4-F/J4-P supplier responses; purchase blocked | [Current basket](component-sample-basket.md) and [210-route platform map](manufacturing-platform.md); former SA518 basket and 209-line audit are superseded inputs only | Every production-BOM line has an exact `J0`–`J3`, `J4-F` or `J4-P` route and no silent substitution; exact whole-basket and final-assembly costs are published; the factory accepts `J4-F` box-build and `J4-P` kit/packing/shipping; approved received samples prove identity, mating, stack-up and critical dimensions |
 | **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |
 | **H7. Prototype fabrication and bring-up** | 🔒 Waiting for H6, inherited firmware F3, accepted `J4-F/P` factory boundary and order approval | Small prototype lot, factory-integrated `J4-F`, separately packed `J4-P` and retained bring-up log | Box-build output matches the accepted boundary; rails sequence correctly; all five controllers program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |
 | **H8. Physical qualification** | 🔒 Waiting for H7 | HIL, RF, thermal, power, safety and endurance evidence | 3×nRF24 pass `3R/1T2R/2T1R/3T`; active signals are not stalled by neighbors; inactive interfaces are physically quiet; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog and single-fault tests pass |
@@ -376,8 +378,9 @@ A production order is possible only after H9.
 ## Next action
 
 The current boundary is `H5.0.3-R1`: all nine H5 physical residuals and 14
-mechanical gates are mapped, and primary-source research is reviewed. The
-irreducible received-sample basket, exact measurement contracts, current cost
-and all 210 JLCPCB routes are now being rebuilt. Read-only Parts access is
-configured but awaits JLCPCB permission review; PCB placement/routing,
-quote/reservation and every order remain blocked.
+mechanical gates are covered by a 33-line `$286.43` basket, and all 210 BOM
+lines / 1052 placements have exact routes with zero replacement. Read-only
+public evidence can no longer close the remaining gates: exact SA818S-V
+pre-order lead time and J4-F/J4-P factory acceptance/pricing require supplier
+responses. Parts API permission still awaits JLCPCB review; PCB
+placement/routing, quote/reservation and every order remain blocked.

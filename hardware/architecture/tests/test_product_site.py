@@ -343,7 +343,7 @@ class ProductSiteTests(unittest.TestCase):
 
     def test_h5_0_3_sample_basket_is_complete_and_honest(self):
         plan = json.loads(self.read("hardware/verification/h5-component-evidence-plan.json"))
-        if plan["current_substep"] in {"H5.0.1-R1", "H5.0.2-R1", "H5.0.3-R1"} and "H5.0.3-R1" not in plan["reviewed_artifacts"]:
+        if plan["current_substep"] in {"H5.0.1-R1", "H5.0.2-R1"}:
             self.assertIn("H5.0.3", plan["superseded_current_artifacts"])
             self.assertFalse(plan["authorization"]["sample_or_component_purchase"])
             return
@@ -355,29 +355,29 @@ class ProductSiteTests(unittest.TestCase):
         evidence = json.loads(
             self.read("hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json")
         )
-        self.assertEqual("H5.0.3", evidence["stage"])
-        self.assertEqual("draft_component_and_factory_quotes_open", evidence["status"])
-        self.assertEqual(32, evidence["summary"]["article_lines"])
+        self.assertEqual("H5.0.3-R1", evidence["stage"])
+        self.assertEqual("draft_factory_and_preorder_gates_open", evidence["status"])
+        self.assertEqual(33, evidence["summary"]["article_lines"])
         self.assertEqual(11, evidence["summary"]["measurement_contracts"])
         self.assertEqual(23, evidence["summary"]["covered_residuals_and_gates"])
-        self.assertEqual("266.63", evidence["summary"]["known_engineering_material_budget_usd"])
-        self.assertEqual(1, evidence["summary"]["unpriced_manufacturer_lines"])
+        self.assertEqual("286.43", evidence["summary"]["known_engineering_material_budget_usd"])
+        self.assertEqual(0, evidence["summary"]["unpriced_manufacturer_lines"])
         self.assertTrue(all(evidence["checks"].values()))
-        self.assertEqual("voice-module", evidence["supplier_blocker"]["article"])
-        self.assertFalse(
-            evidence["supplier_blocker"]["marketplace_reference"]["accepted_as_qualified_source"]
-        )
+        self.assertEqual("C3001549", evidence["supply_constraints"]["selected_uhf"]["jlcpcb_part"])
+        self.assertEqual("C51897911", evidence["supply_constraints"]["selected_vhf"]["jlcpcb_part"])
+        self.assertEqual("priced_preorder_lead_time_open", evidence["supply_constraints"]["selected_vhf"]["status"])
+        self.assertEqual(0, evidence["supply_constraints"]["orders_or_requests_submitted"])
         self.assertTrue(all(not row["purchase_authorized"] for row in evidence["articles"]))
         for name in ("docs/component-sample-basket.md", "docs/component-sample-basket.ru.md"):
             page = self.read(name)
             self.assertEqual(1, page.count("```mermaid"), name)
             self.assertIn("H5-EVR03", page, name)
-            self.assertIn("266.63", page, name)
-            self.assertIn("SA518", page, name)
+            self.assertIn("286.43", page, name)
+            self.assertIn("SA818S-V", page, name)
 
     def test_h5_0_3_pcba_platform_baseline_is_complete_and_honest(self):
         plan = json.loads(self.read("hardware/verification/h5-component-evidence-plan.json"))
-        if plan["current_substep"] in {"H5.0.1-R1", "H5.0.2-R1", "H5.0.3-R1"} and "H5.0.3-R1" not in plan["reviewed_artifacts"]:
+        if plan["current_substep"] in {"H5.0.1-R1", "H5.0.2-R1"}:
             legacy = json.loads(
                 self.read("hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json")
             )
@@ -394,15 +394,15 @@ class ProductSiteTests(unittest.TestCase):
             self.read("hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json")
         )
         self.assertEqual("H5-EVR04", evidence["artifact"])
-        self.assertEqual("H5.0.3", evidence["stage"])
-        self.assertEqual("routes_complete_sa518_and_factory_gates_open", evidence["status"])
+        self.assertEqual("H5.0.3-R1", evidence["stage"])
+        self.assertEqual("routes_complete_dual_sa818s_preorder_and_factory_gates_open", evidence["status"])
         self.assertEqual("JLCPCB Standard PCBA", evidence["decision"]["reference_platform"])
         self.assertFalse(evidence["decision"]["exclusive_lock_in"])
-        self.assertEqual(209, evidence["summary"]["target_bom_lines"])
-        self.assertEqual(10, evidence["summary"]["critical_lines_spot_checked"])
-        self.assertEqual(5, evidence["summary"]["public_stock_exact_or_revision_explicit"])
-        self.assertEqual(2, evidence["summary"]["preorder_reservation"])
-        self.assertEqual(2, evidence["summary"]["global_sourcing_or_consignment"])
+        self.assertEqual(210, evidence["summary"]["target_bom_lines"])
+        self.assertEqual(11, evidence["summary"]["critical_lines_spot_checked"])
+        self.assertEqual(6, evidence["summary"]["public_stock_exact_or_revision_explicit"])
+        self.assertEqual(3, evidence["summary"]["preorder_reservation"])
+        self.assertEqual(1, evidence["summary"]["global_sourcing_or_consignment"])
         self.assertEqual(1, evidence["summary"]["factory_final_assembly"])
         self.assertEqual(0, evidence["summary"]["factory_packed_removable"])
         self.assertEqual(
@@ -413,17 +413,18 @@ class ProductSiteTests(unittest.TestCase):
             "open_until_kit_and_shipping_quote",
             evidence["assembly_boundary"]["J4-P_factory_packed_removable"]["status"],
         )
-        self.assertEqual(176, evidence["summary"]["bom_tool_exact_or_punctuation_equivalent_matches"])
-        self.assertEqual(135, evidence["summary"]["bom_tool_public_stock_lines"])
-        self.assertEqual(41, evidence["summary"]["bom_tool_preorder_lines"])
-        self.assertEqual(33, evidence["summary"]["bom_tool_unmatched_lines"])
-        self.assertEqual(1019, evidence["summary"]["target_placements_parsed"])
+        self.assertEqual(176, evidence["summary"]["historical_bom_tool_matched_lines"])
+        self.assertEqual(178, evidence["summary"]["current_exact_catalogue_routes_before_outlier_resolution"])
+        self.assertEqual(136, evidence["summary"]["current_public_stock_lines_before_outlier_resolution"])
+        self.assertEqual(42, evidence["summary"]["current_preorder_lines_before_outlier_resolution"])
+        self.assertEqual(32, evidence["summary"]["current_unmatched_lines_before_outlier_resolution"])
+        self.assertEqual(1052, evidence["summary"]["target_placements_parsed"])
         self.assertEqual(
-            {"J0": 147, "J1": 0, "J2": 45, "J3": 12, "J4-F": 3, "J4-P": 2},
+            {"J0": 148, "J1": 0, "J2": 46, "J3": 11, "J4-F": 3, "J4-P": 2},
             evidence["summary"]["availability_routes"],
         )
         self.assertEqual(0, evidence["summary"]["full_bom_lines_pending_mapping"])
-        self.assertEqual(1, evidence["summary"]["open_qualified_price_lines"])
+        self.assertEqual(0, evidence["summary"]["open_qualified_price_lines"])
         self.assertEqual("approved", evidence["parts_api"]["application_status"])
         self.assertEqual("enabled", evidence["parts_api"]["app_status"])
         self.assertEqual("reviewing", evidence["parts_api"]["parts_permission_status"])
@@ -437,9 +438,10 @@ class ProductSiteTests(unittest.TestCase):
         self.assertTrue(
             evidence["checks"]["first_minimum_bom_upload_was_transmitted_and_parse_failed"]
         )
-        self.assertTrue(evidence["checks"]["normalized_compact_bom_was_transmitted_and_processed"])
-        self.assertTrue(evidence["bom_tool_upload"]["transmitted"])
-        self.assertTrue(evidence["bom_tool_upload"]["processed"])
+        self.assertTrue(evidence["checks"]["historical_209_line_compact_bom_was_transmitted_and_processed"])
+        self.assertTrue(evidence["checks"]["current_210_line_upload_was_generated_but_not_transmitted"])
+        self.assertFalse(evidence["bom_tool_upload"]["transmitted"])
+        self.assertFalse(evidence["bom_tool_upload"]["processed"])
         self.assertEqual(
             [
                 "Comment",
@@ -466,7 +468,7 @@ class ProductSiteTests(unittest.TestCase):
             ],
             list(upload_rows[0]),
         )
-        self.assertEqual(209, len(upload_rows))
+        self.assertEqual(210, len(upload_rows))
         self.assertTrue(all(row["Manufacturer Part Number"] for row in upload_rows))
         self.assertTrue(all(int(row["Quantity"]) > 0 for row in upload_rows))
         self.assertTrue(all(row["Footprint"] == "TBD" for row in upload_rows))
@@ -476,26 +478,27 @@ class ProductSiteTests(unittest.TestCase):
             self.read("hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json")
         )
         self.assertEqual("H5-EVR05", match["artifact"])
-        self.assertEqual(176, match["summary"]["matched_lines"])
-        self.assertEqual(33, match["summary"]["unmatched_lines"])
-        self.assertEqual(1019, match["summary"]["parsed_placements"])
+        self.assertEqual(178, match["summary"]["matched_lines"])
+        self.assertEqual(32, match["summary"]["unmatched_lines"])
+        self.assertEqual(1052, match["summary"]["parsed_placements"])
         self.assertEqual(2, match["summary"]["strict_text_variants"])
         self.assertEqual(0, match["summary"]["semantic_mpn_mismatches"])
-        self.assertEqual(209, len(match["routes"]))
+        self.assertEqual(210, len(match["routes"]))
         self.assertTrue(all(route["designators_complete"] for route in match["routes"]))
         self.assertTrue(all(match["checks"].values()))
         outliers = json.loads(
             self.read("hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json")
         )
         self.assertEqual("H5-EVR06", outliers["artifact"])
-        self.assertEqual(33, outliers["summary"]["bom_tool_outliers_resolved"])
+        self.assertEqual(32, outliers["summary"]["bom_tool_outliers_resolved"])
         self.assertEqual(
-            {"J0": 147, "J1": 0, "J2": 45, "J3": 12, "J4-F": 3, "J4-P": 2},
+            {"J0": 148, "J1": 0, "J2": 46, "J3": 11, "J4-F": 3, "J4-P": 2},
             outliers["summary"]["availability_routes"],
         )
         self.assertEqual(0, outliers["summary"]["component_replacements"])
         self.assertEqual(0, outliers["summary"]["unmapped_lines"])
-        self.assertEqual("SA518", outliers["summary"]["open_qualified_price_mpn"])
+        self.assertIsNone(outliers["summary"]["open_qualified_price_mpn"])
+        self.assertEqual("SA818S-V", outliers["summary"]["preorder_lead_time_open_mpn"])
         self.assertFalse(
             outliers["boundary"]["factory_final_assembly"]["accepted_and_quoted"]
         )
@@ -523,7 +526,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(name)
             self.assertEqual(1, page.count("```mermaid"), name)
             self.assertIn("JLCPCB", page, name)
-            self.assertIn("209", page, name)
+            self.assertIn("210", page, name)
             self.assertIn("H5-EVR04", page, name)
             self.assertIn("H5-EVR05", page, name)
             self.assertIn("H5-EVR06", page, name)
@@ -899,11 +902,14 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("H5.0.3-R1", h5_plan["current_substep"])
         self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][1]["status"])
-        self.assertEqual("current", h5_plan["substeps"][0]["children"][2]["status"])
+        self.assertEqual("current_waiting_for_external_authority", h5_plan["substeps"][0]["children"][2]["status"])
         self.assertIn("H5.0.1-R1", h5_plan["reviewed_artifacts"])
         self.assertIn("H5.0.2-R1", h5_plan["reviewed_artifacts"])
         self.assertIn("H5.0.3", h5_plan["superseded_current_artifacts"])
-        self.assertIsNone(h5_plan["blocker"])
+        self.assertIn("H5.0.3-R1", h5_plan["current_artifacts"])
+        self.assertTrue(h5_plan["decision_gate"]["requires_user_authority"])
+        self.assertFalse(h5_plan["decision_gate"]["authorized_now"])
+        self.assertIn("supplier responses", h5_plan["blocker"])
         self.assertFalse(h5_plan["authorization"]["sample_or_component_purchase"])
         self.assertTrue(h5_plan["authorization"]["parts_api_application"])
         self.assertEqual("approved", h5_plan["authorization"]["parts_api_application_status"])

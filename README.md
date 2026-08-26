@@ -12,12 +12,13 @@
 
 </div>
 
-> **Now: H5.0.3-R1 · irreducible sample basket and 210-line JLCPCB route rebuild.**
+> **Now: H5.0.3-R1 · basket and 210 routes complete; supplier-response gate.**
 > H2 and H3 are reviewed for independent `SA818S-V` and `SA818S-U` paths,
 > ten antenna ports and hardware one-hot voice selection. H4 has rejoined that
 > evidence with the reviewed firmware F3 target/QEMU package. Former H5
-> results derived from SA518 are superseded. Purchasing, PCB routing and
-> fabrication remain blocked.
+> results derived from SA518 are superseded. The remaining inputs are exact
+> SA818S-V pre-order lead time and J4-F/J4-P factory acceptance/pricing.
+> Purchasing, PCB routing and fabrication remain blocked.
 
 <div align="center">
 
@@ -121,10 +122,13 @@ linked from this table. Internal substeps update the exact marker but do not
 create separate global reports.
 
 **Hardware is at H5.0.3-R1.** The current [H4 report](docs/h4-prelayout-gate-report.md)
-closes the joined review with 33 clean checks. H5 is rebuilding exact component
-evidence for the dual-SA818S 210-line BOM; its old SA518 basket and 209-line
-platform snapshot are historical inputs only. Physical evidence, PCB layout,
-quote/reservation and every order remain unauthorized.
+closes the joined review with 33 clean checks. H5 now has a 33-line `$286.43`
+evidence basket and exact routes for all 210 dual-SA818S BOM lines / 1052
+placements with zero replacement. Its old SA518 basket and 209-line platform
+snapshot are historical inputs only. Closing H5.0.3-R1 requires supplier
+responses for SA818S-V pre-order lead time and J4-F/J4-P final assembly.
+Physical evidence, PCB layout, quote/reservation and every order remain
+unauthorized.
 
 <details open>
 <summary><strong>Current component evidence — exact detailed position</strong></summary>
@@ -133,11 +137,12 @@ quote/reservation and every order remain unauthorized.
 
 **Exact marker: `H5.0.3-R1`** — the refreshed [physical-residual map](docs/component-evidence-map.md)
 and [primary-source research](docs/component-source-research.md) are reviewed.
-The current work deduplicates only irreducible received samples, their exact
-measurements and cost, and rebuilds every route for the 210-line dual-SA818S
-BOM. No
-purchase, placement, routing or fabrication is authorized; this marker and its
-evidence move together in the same commit.
+The [irreducible basket](docs/component-sample-basket.md) now contains 33 priced
+lines for `$286.43`; the [platform map](docs/manufacturing-platform.md) assigns
+all 210 BOM lines and 1052 placements to exact `J0`–`J3`/`J4-F`/`J4-P` routes
+with zero replacement. Public/read-only evidence is exhausted: exact
+SA818S-V lead time and J4-F/J4-P acceptance/pricing require supplier replies.
+No purchase, placement, routing or fabrication is authorized.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,081-row circuit inventory reviewed.
@@ -252,7 +257,7 @@ evidence move together in the same commit.
 - ✅ `H4.3-R1` — refreshed [joined pre-layout report reviewed](docs/h4-prelayout-gate-report.md).
 - ✅ `H5.0.1-R1` — [nine residuals and 14 mechanical gates remapped](docs/component-evidence-map.md) for both serial SA818S modules.
 - ✅ `H5.0.2-R1` — [primary sources and serial alternatives reviewed](docs/component-source-research.md); exact U/V routes retained and CE recorded as a non-silent qualified-pending UHF alternate.
-- ▶️ `H5.0.3-R1` — rebuild the irreducible basket and JLCPCB map for the 210-line dual-SA818S BOM; purchasing remains a later, separate gate.
+- ▶️ `H5.0.3-R1` — basket and 210-route map complete; waiting for authority to request SA818S-V lead time and J4-F/J4-P capability/pricing without ordering.
 
 The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
 The completed H3/H4 plans are [`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json)

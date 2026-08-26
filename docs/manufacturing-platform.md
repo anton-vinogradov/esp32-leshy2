@@ -2,10 +2,6 @@
 
 [Русский](manufacturing-platform.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)
 
-> **Superseded working input:** the 209-line single-SA518 audit below does not
-> describe the current product. `H5.0.3-R1` is rebuilding all 210 dual-SA818S
-> routes. JLCPCB remains the non-exclusive reference; no order is authorized.
-
 ## Reference line
 
 **The working reference is JLCPCB Standard PCBA.** This is neither exclusive lock-in nor order authorization. Standard was selected for its public stock/JLC-number assembly library, double-sided SMT+THT, fine-pitch/BGA/QFN, special stackups and SPI/AOI/X-ray. See the official [assembly capabilities](https://jlcpcb.com/capabilities/pcb-assembly-capabilities) and [parts-sourcing paths](https://jlcpcb.com/help/article/pcba-parts-sourcing-instruction).
@@ -36,28 +32,27 @@ No platform guarantees perpetual public stock. Leshy2 therefore selects ordinary
 
 ## Controlled BOM Tool run
 
-The normalized BOM was accepted and processed for an assessment quantity of five boards. JLCPCB matched `176` of `209` unique lines: `135` public-stock and `41` pre-order; `33` required a separate exact search. All `1019` placements were parsed. Two Panasonic spellings differ only by punctuation; zero semantic MPN substitutions were observed.
+The controlled BOM Tool capture belongs to the former 209-line BOM: 176 matched, 33 unmatched and 1019 placements. The current BOM differs only by replacing `SA518` with exact `SA818S-U` + `SA818S-V`: 208 unchanged identities are joined by MPN, and the two new modules by exact `C3001549` and `C51897911` pages. This yields a checkable current map of `210` lines and `1052` placements without retransmitting the BOM. Before applying the retained outlier resolutions it has 178 exact catalogue routes and 32 unresolved lines; zero semantic MPN substitutions were observed.
 
-Exact search resolved all 33 outliers without component replacement: 12 were added to `J0`, 4 to `J2`, 12 retain the exact MPN through `J3`, 3 require factory final assembly `J4-F`, and 2 are packed separately through `J4-P`. Whole-BOM result: `J0=147`, `J1=0`, `J2=45`, `J3=12`, `J4-F=3`, `J4-P=2`; zero lines remain unmapped.
+The retained exact search resolves all 32 unchanged outliers without component replacement: 12 are added to `J0`, 4 to `J2`, 11 retain the exact MPN through `J3`, 3 require factory final assembly `J4-F`, and 2 are packed separately through `J4-P`. With the new voice routes, the whole-BOM result is `J0=148`, `J1=0`, `J2=46`, `J3=11`, `J4-F=3`, `J4-P=2`; zero lines remain unmapped.
 
-The displayed `$1255.6365` is the sum of recommended order quantities for only the 176 matched lines, including reference pre-order prices. It is **not** a complete assembly price, quote or order.
+The `$1255.6365` displayed in the historical BOM Tool capture covers only its former 176 matched lines and is **not** a current complete assembly price, quote or order. The current minimum evidence basket is calculated separately on the [sample page](component-sample-basket.md).
 
 <details>
-<summary>How the original 33 outliers were resolved</summary>
+<summary>How the 32 unchanged outliers were resolved</summary>
 
 | Normalized MPN | Qty | Route | Evidence |
 |---|---:|---:|---|
 | `1227-J` | 1 | `J4-F` | encoder knob requires factory installation and control test after enclosure integration |
 | `E01-ML01IPX` | 3 | `J3` | three exact full-power nRF24 modules are externally orderable and must be consigned or globally sourced |
 | `ESP32-C5-WROOM-1U-N8R8` | 1 | `J2` | `C51950748` · stock 0 |
-| `RFPC-SMA31-FN-175-A` | 7 | `J3` | exact board SMA is orderable outside the public JLC library |
+| `RFPC-SMA31-FN-175-A` | 8 | `J3` | exact board SMA is orderable outside the public JLC library |
 | `RFPC-SMA32-FN-175-A` | 2 | `J3` | exact board RP-SMA is orderable outside the public JLC library |
 | `FX8C-80S-SV5(92)` | 1 | `J3` | exact inter-board receptacle is orderable outside the public JLC library |
 | `BGS13SN8E6327XTSA1` | 2 | `J2` | `C55118249` · stock 0 |
 | `U214 Cap LoRa-1262` | 1 | `J4-P` | removable rear Cap accessory is factory-tested, then packed separately for user installation |
 | `GJM1555C1H101JB01D` | 2 | `J3` | retain exact RF capacitor until an RF-equivalent alternate is separately qualified |
-| `PESD24VY1BSF` | 1 | `J3` | retain exact low-capacitance RF ESD identity until an RF-equivalent alternate is separately qualified |
-| `SA518` | 1 | `J3` | JLCPCB Assembly C9900300438 is a generic zero-stock placeholder, not NiceRF identity evidence; exact module requires qualified sourcing |
+| `PESD24VY1BSF` | 2 | `J3` | retain exact low-capacitance RF ESD identity until an RF-equivalent alternate is separately qualified |
 | `AS02404PO` | 1 | `J3` | exact board speaker is orderable outside the public JLC library and needs manual/THT assembly acceptance |
 | `HMX035CTFT-001` | 1 | `J4-F` | display/flex requires factory mating and display/touch functional test during final assembly |
 | `SC1512-A4` | 1 | `J2` | `C52763783` · stock 0 |
@@ -68,7 +63,7 @@ The displayed `$1255.6365` is the sum of recommended order quantities for only t
 | `SN74LVC1G08DCKR` | 4 | `J0` | `C7832` · stock 179787 |
 | `SN74LVC1G17DCKR` | 1 | `J0` | `C10425` · stock 59402 |
 | `TCA9539PWR` | 1 | `J0` | `C131972` · stock 8380 |
-| `TLV1821DCKR` | 1 | `J3` | exact voice-evidence comparator must be sourced; no silent threshold/path alternate |
+| `TLV1821DCKR` | 2 | `J3` | exact voice-evidence comparator must be sourced; no silent threshold/path alternate |
 | `TLV1824PWR` | 2 | `J0` | `C35149428` · stock 9 |
 | `TPD2EUSB30ADRTR` | 2 | `J0` | `C94934` · stock 5068 |
 | `TPD4E05U06DQAR` | 13 | `J0` | `C138714` · stock 61819 |
@@ -85,7 +80,7 @@ The displayed `$1255.6365` is the sum of recommended order quantities for only t
 
 ## Independent critical-part check
 
-`10` critical identities were checked independently before the bulk run. Their stock snapshots neither override the current BOM Tool result nor promise permanent availability.
+`11` critical identities were checked independently before the bulk run. Their stock snapshots neither override the current BOM Tool result nor promise permanent availability.
 
 | MPN | JLC | Current evidence | Route |
 |---|---:|---|---|
@@ -97,7 +92,8 @@ The displayed `$1255.6365` is the sum of recommended order quantities for only t
 | [`SC1512-A4`](https://jlcpcb.com/partdetail/RaspberryPi-SC1512A4/C52763783) | `C52763783` | SMT; fixture; Economic and Standard | `J2` · listed and assembleable, but not public-stock; reserve by pre-order or consign exact parts |
 | [`MSPM0C1106SDGS20R`](https://jlcpcb.com/partdetail/55934010-MSPM0C1106SDGS20R/C52995805) | `C52995805` | Extended SMT | `J2` · listed with pre-order MOQ 6; two fitted devices plus attrition are compatible with a small reservation |
 | [`E01-ML01IPX`](https://jlcpcb.com/parts/componentSearch?searchTxt=E01-ML01IPX) | `—` | not found in public library | `J3` · retain exact module only through new-part/global-sourcing/consignment until a function-preserving stocked module is qualified |
-| [`NiceRF SA518`](https://jlcpcb.com/parts/componentSearch?searchTxt=SA518) | `—` | not found in public library | `J3` · route the exact module and its supplier questions through JLC sourcing first; direct manufacturer contact is no longer the first action |
+| [`G-NiceRF SA818S-U`](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549) | `C3001549` | stock 68 | `J0` · exact selected UHF module is priced and in public stock |
+| [`G-NiceRF SA818S-V`](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911) | `C51897911` | Standard PCBA pre-order | `J2` · exact selected VHF module is priced but stock-zero pre-order; lead time remains open |
 | [`HMX035CTFT-001`](https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001) | `—` | display/flex belongs to factory final assembly | `J4-F` · keep replaceable display-adapter architecture; require factory mating plus display/touch test rather than treating the display as an ordinary line-loaded SMT part |
 
 ## Assembly boundary
@@ -111,16 +107,16 @@ JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts. That does
 
 `J4-F` and `J4-P` do not claim that JLCPCB has already accepted these operations. They define the required result for the selected factory or fallback box-build contractor.
 
-## SA518 identity gate
+## Two exact voice routes
 
-The live quote form binds bare `SA518` to `C9900300438`: its manufacturer is `JLCPCB Assembly`, stock is `0`, MOQ is `442`, full reel is `500`, and the displayed estimated unit price is `$0.0203`. That row carries no NiceRF identity, controlled datasheet or production revision, so it is not accepted as pricing or supply evidence for the selected module. No quote was submitted; a qualified request must explicitly bind `NiceRF`, the current production revision and its datasheet.
+`SA818S-U` is bound to exact `C3001549`: stock 68, available quantity 60 and one-piece price `$9.7347`. `SA818S-V` is bound to exact `C51897911`: stock 0, MOQ 1, one-piece price `$10.0710` and route `J2` pre-order. `SA818S-CE C19632390` remains only a qualified-pending UHF alternate and is not in the production BOM: it requires HIL and a 470-MHz firmware clamp, never replaces VHF and is never substituted silently.
 
 ## Current result
 
 - JLCPCB Standard PCBA is the working reference without lock-in.
-- All `209` lines have a defined `J0`–`J3`, `J4-F` or `J4-P` route; no functional replacement was introduced.
-- H5.0.3 remains open for a qualified exact-`NiceRF SA518` price, `J4-F` box-build acceptance/pricing, `J4-P` kit/packing/shipping terms and the later separate sample-purchase decision.
+- All `210` lines have a defined `J0`–`J3`, `J4-F` or `J4-P` route; no functional replacement was introduced.
+- Every component price in the minimum evidence basket is known. H5.0.3-R1 remains open for exact `SA818S-V` pre-order lead time/terms, `J4-F` box-build acceptance/pricing, `J4-P` kit/packing/shipping terms and the later separate sample-purchase decision.
 - The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git. Parts permission is `Reviewing`, so API calls are not usable yet. PCB/3D were also listed as reviewing by the platform; SMT Stencil and JLC Balance remain inactive, and Leshy2 will use only Parts.
-- The minimum BOM upload was transmitted and processed. No quote, sourcing request, reservation, purchase, replacement, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
+- The former 209-line BOM upload was transmitted and processed; the current 210-line file was generated locally but not transmitted because 208 identities are unchanged and both new exact pages were checked separately. No quote, sourcing request, reservation, purchase, replacement, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
 
 Machine results: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json), [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json) and [`H5-EVR06`](../hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json). [JLCPCB BOM requirements](https://jlcpcb.com/help/article/bill-of-materials-for-pcb-assembly).

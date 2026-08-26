@@ -210,21 +210,22 @@ residuals сохраняют владельцев H5/H6/H8; закупка, PCB 
 
 **Статус:** ▶️ сейчас `H5.0.3-R1`. Обновлённые [карта residuals](component-evidence-map.ru.md)
 и [ревью источников](component-source-research.ru.md) связывают все девять H5
-residuals и 14 механических gates с 210-строчным dual-SA818S BOM. Для обоих
-выбранных голосовых модулей сохранены точные маршруты; сейчас пересобираются
-неустранимая корзина и все 210 маршрутов JLCPCB. Закупка не разрешена.
+residuals и 14 механических gates с 210-строчным dual-SA818S BOM.
+[Неустранимая корзина](component-sample-basket.ru.md) содержит 33 строки на
+`$286.43`, а [карта площадки](manufacturing-platform.ru.md) назначает всем 210
+строкам BOM / 1052 установкам точные маршруты без замен. Закупка не разрешена.
 
 Текущий [машинный план](../hardware/verification/h5-component-evidence-plan.json)
 фиксирует `H5.0.1-R1` и `H5.0.2-R1` как проведённые и прежние SA518-артефакты как отменённые. Новое evidence должно покрыть обе
 identity SA818S, общий land pattern, два независимых RF-тракта и
-qualified-pending UHF alternate SA818S-CE. Прежний
-[Страница PCBA-площадки](manufacturing-platform.ru.md) сейчас пересобирается вокруг JLCPCB Standard как
-неэксклюзивным ориентиром. Нормализованный compact upload сопоставил 176 строк
-из 209 и распознал все 1019 установок. Exact public search разрешил все 33
-outlier в `J0`–`J3`, `J4-F` или `J4-P`; семантических подмен MPN и замен компонентов нет. JLCAPI
-app/key готовы вне Git, пока право Parts проходит ревью, но прежняя карта
-остаётся только историческим input. Quote/reservation и закупка не разрешены.
-Это не production order.
+qualified-pending UHF alternate SA818S-CE. Текущая
+[страница PCBA-площадки](manufacturing-platform.ru.md) сохраняет JLCPCB Standard
+как неэксклюзивный ориентир. Прежний capture из 209 строк используется только
+для 208 неизменившихся identity; exact U/V-страницы завершают текущую карту 210
+строк. Все маршруты назначены, семантических подмен MPN и замен компонентов нет.
+Точный срок pre-order SA818S-V и принятие/цена J4-F/J4-P теперь требуют ответов
+поставщика. JLCAPI app/key готовы вне Git, пока право Parts проходит ревью.
+Quote/reservation и закупка не разрешены. Это не production order.
 
 <a id="h6"></a>
 ## H6 · PCB placement и routing

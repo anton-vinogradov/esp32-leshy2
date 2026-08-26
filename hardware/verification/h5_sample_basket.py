@@ -18,7 +18,7 @@ OUTPUT = REPO / "hardware/verification/generated/H5-EVR03-irreducible-sample-bas
 DOC_EN = REPO / "docs/component-sample-basket.md"
 DOC_RU = REPO / "docs/component-sample-basket.ru.md"
 LEGACY_PLAN = REPO / "hardware/procurement/pre-kicad-sample-plan.md"
-CHECKED_ON = "2026-08-25"
+CHECKED_ON = "2026-08-26"
 
 
 def article(
@@ -83,7 +83,8 @@ ARTICLES = [
     article("rf-jumpers", "rf", "TE Connectivity 2118651-2", 5, "2.52", "published_usd", "DigiKey exact-MPN listing", "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824", "3,082 shown in stock", ["H3-PHY-053", "H3-PHY-062", "H5-MECH-NRF-GEN1-FEEDS", "H5-MECH-NATIVE-RF-JUMPERS"], "five real paths exist: S3, C5 and three nRF24; every installed bend/retention path must be represented"),
     article("rf-board-receptacles", "rf", "Hirose U.FL-R-SMT-1(10)", 5, "1.67", "published_usd", "DigiKey exact-MPN listing", "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/U-FL-R-SMT-1-10/2391570", "319,443 shown in stock", ["H3-PHY-053", "H3-PHY-062", "H5-MECH-NRF-GEN1-FEEDS", "H5-MECH-NATIVE-RF-JUMPERS"], "one board mate per selected 30-mm jumper path"),
     article("edge-sma", "rf", "GCT RFPC-SMA31-FN-175-A", 4, "3.39", "published_usd", "DigiKey exact-MPN listing", "https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/25576371", "638 shown in stock", ["H3-PHY-053", "H3-PHY-057", "H5-MECH-NRF-GEN1-FEEDS"], "three nRF24 boundaries plus one AM/LW receive boundary; the S3/C5 module cables use their separately selected SMA32 path"),
-    article("voice-module", "rf", "NiceRF SA518", 1, None, "manufacturer_rfq", "NiceRF manufacturer product/RFQ page", "https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html", "current product; public manufacturer price absent", ["H5-MECH-SA518-LAND-FIT"], "one module is enough for land-fit, thermal, conducted RF, audio and fault testing; a spare does not add a distinct claim", risk="Manufacturer quote and exact production-variant confirmation remain open. Third-party marketplace stock is not accepted as identity-controlled supply."),
+    article("voice-uhf-module", "rf", "G-NiceRF SA818S-U", 1, "9.7347", "published_usd", "JLCPCB exact G-NiceRF part C3001549", "https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549", "68 in stock; 60 available to order", ["H5-MECH-SA818S-DUAL-LAND-FIT"], "one exact UHF module is required because band-specific RF, conducted power, audio, UART and thermal behavior cannot be inferred from the VHF variant"),
+    article("voice-vhf-module", "rf", "G-NiceRF SA818S-V", 1, "10.0710", "published_usd", "JLCPCB exact G-NiceRF part C51897911", "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911", "stock zero; minimum one; pre-order", ["H5-MECH-SA818S-DUAL-LAND-FIT"], "one exact VHF module is required because it is an independent installed product path; common land geometry alone does not prove band-specific RF, audio, UART or thermal behavior", risk="The exact part is priced but stock-zero pre-order; lead time remains a sourcing gate. SA818S-CE cannot replace this VHF path."),
 
     article("navigation-and-direct-switches", "controls", "Omron B3S-1100P", 16, "0.90", "published_usd", "DigiKey exact-MPN listing", "https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3S-1100P/368393", "33,862 shown in stock", ["H5-MECH-NAVIGATION-CONTROLS", "H5-MECH-DIRECT-PRESS-CONTROLS"], "five navigation positions plus BACK, OPT, F1-F8 and PTT must all be populated simultaneously to test spacing and enclosure actuation"),
     article("encoder", "controls", "Alps Alpine EC11E18244AU", 1, "4.90", "published_usd", "Mouser exact-MPN listing", "https://www.mouser.com/en/ProductDetail/Alps-Alpine/EC11E18244AU", "966 shown in stock", ["H5-MECH-ENCODER-KNOB"], "one assembled encoder/knob path closes the only encoder gate"),
@@ -115,7 +116,7 @@ MEASUREMENTS = [
     {"id": "H5-MSR-U214", "articles": ["u214", "u214-host-socket"], "evidence": ["H3-PHY-046", "H5-MECH-U214-MATING-STACK"], "method": "measure the fitted U214 posts and exact HLE; record all 14 continuities, bottoming, insertion/withdrawal force, repeated cycles, rail preload and screw retention", "pass_rule": "the mixed U214/HLE pair mates without yield or bottoming, retains every contact and preserves the protected hot-plug sequence", "artifacts": "metrology, force/cycle CSV, continuity log and installed photos"},
     {"id": "H5-MSR-M5", "articles": ["m5-host-header-pack", "m5-short-cable", "m5-boundary-cable", "m5-instrument-cable"], "evidence": ["H3-PHY-048", "H5-MECH-M5-UNIT-MATE"], "method": "measure connector/cable geometry and run I2C, UART, GPIO and 1-Wire profiles through TXS0102 at short and boundary lengths with the breakout attached", "pass_rule": "insertion, retention, strain relief, pull networks and waveforms satisfy each admitted profile; unsupported motor/actuator loads remain excluded", "artifacts": "cable photos/lengths, force/cycle records and oscilloscope captures"},
     {"id": "H5-MSR-RF5", "articles": ["nrf-modules", "rf-jumpers", "rf-board-receptacles", "edge-sma"], "evidence": ["H3-PHY-053", "H3-PHY-062", "H5-MECH-NRF-GEN1-FEEDS", "H5-MECH-NATIVE-RF-JUMPERS"], "method": "inspect all E01 factory receptacles; assemble five straight U.FL-to-U.FL cable paths and four edge SMA boundaries; measure bend, retention and S-parameters; run all three nRF24 simultaneously in full RX, TX and mixed modes with every inactive interface hardware-quiet", "pass_rule": "all five paths meet inherited loss/match and retention limits, all three nRF24 meet concurrent deadlines without neighbouring-interface stalls or desense", "artifacts": "microscope photos, force/cycle CSV, five VNA touchstone sets and 3R/1T2R/2T1R/3T traffic traces"},
-    {"id": "H5-MSR-SA518", "articles": ["voice-module"], "evidence": ["H5-MECH-SA518-LAND-FIT"], "method": "confirm received revision/variant and contact map; measure castellations; populate one shortest contact-7 coupon; record solder heat, VNA, supply/current/temperature, both bands, both power settings, audio, UART/PTT/PD/H-L and FAULT_KILL", "pass_rule": "the exact manufacturer-controlled sample fits the accepted reserve and meets the complete inherited RF/audio/safety contract without undocumented drive of UPDATE or VOXEN", "artifacts": "supplier response, incoming record, land-fit X-ray/photos, VNA/RF/audio/power/thermal/fault traces"},
+    {"id": "H5-MSR-SA818S-DUAL", "articles": ["voice-uhf-module", "voice-vhf-module"], "evidence": ["H5-MECH-SA818S-DUAL-LAND-FIT"], "method": "confirm both received G-NiceRF identities and the common Rev 1.8 18-land contact map; measure each module and castellations; populate one common-land coupon with independently selectable UHF/VHF positions; record solder heat, VNA, supply/current/temperature, band limits, both power settings, audio, UART/PTT/PD/H-L and FAULT_KILL for each installed variant", "pass_rule": "both exact modules fit the common accepted reserve and each independently meets its inherited RF/audio/safety contract; no CE substitution is silent and no test drives reserved contacts 8-18", "artifacts": "JLC identity records, incoming photos, land-fit X-ray/photos, VNA/RF/audio/power/thermal/fault traces for U and V"},
     {"id": "H5-MSR-CONTROLS", "articles": ["navigation-and-direct-switches", "encoder", "encoder-knob", "run-kill-switch"], "evidence": ["H5-MECH-NAVIGATION-CONTROLS", "H5-MECH-DIRECT-PRESS-CONTROLS", "H5-MECH-ENCODER-KNOB", "H5-MECH-RUN-KILL"], "method": "populate the full 16-switch interface plus encoder/knob and side RUN/KILL aperture; measure access, actuation, accidental-press protection, depth, detents and repeated cycles", "pass_rule": "every serial control is independently reachable in the accepted external layout, remains recessed where required and passes the declared force/endurance limits", "artifacts": "dimensioned assembled photos, force curves, cycle log and signed ergonomic checklist"},
     {"id": "H5-MSR-PACK", "articles": ["cell-holder", "protected-cells", "pack-gauges"], "evidence": ["H3-PHY-028", "H5-MECH-CELL-HOLDER-FIT"], "method": "test one matched same-lot protected-cell pair in the exact holder across insertion, compression, polarity, vibration and thermal cycles; retain one MAX17320 golden device and sequence the second through blank, corrupt and exhausted-write conditions", "pass_rule": "the matched pair remains mechanically/electrically retained at all admitted corners and every gauge fault state deterministically blocks or recovers exactly as specified", "artifacts": "cell lot record, dimensional/force/thermal/vibration traces, gauge images/readbacks and fault logs"},
     {"id": "H5-MSR-AUDIO", "articles": ["speaker", "microphone", "headset-jack"], "evidence": ["H5-MECH-ACOUSTIC-PATHS", "H5-MECH-HEADSET-JACK"], "method": "mount the exact speaker and downward microphone in the representative cavity; sweep response/noise/feedback/vibration; cycle the jack with CTIA and ordinary TRS while recording detect, source selection, bias, transient and unplug pop", "pass_rule": "the enclosure path meets the inherited gain/noise/thermal limits and the jack preserves CTIA/TRS behavior without blocking the internal microphone", "artifacts": "audio sweeps, noise/feedback captures, insertion-force/cycle data and transient traces"},
@@ -142,7 +143,7 @@ def build() -> dict:
     article_ids = {row["id"] for row in ARTICLES}
     measurement_articles = {item for row in MEASUREMENTS for item in row["articles"]}
     priced = [row for row in ARTICLES if row["pricing"]["subtotal_usd"] is not None]
-    rfq = [row for row in ARTICLES if row["pricing"]["kind"] == "manufacturer_rfq"]
+    unpriced = [row for row in ARTICLES if row["pricing"]["subtotal_usd"] is None]
     published_total = sum(Decimal(row["pricing"]["subtotal_usd"]) for row in priced if row["pricing"]["kind"] == "published_usd")
     budget_total = sum(Decimal(row["pricing"]["subtotal_usd"]) for row in priced if row["pricing"]["kind"] == "conservative_budget_cap_usd")
     total = published_total + budget_total
@@ -150,15 +151,20 @@ def build() -> dict:
     for row in priced:
         groups[row["group"]] += Decimal(row["pricing"]["subtotal_usd"])
     checks = {
-        "h5_0_2_is_reviewed_and_current": research["status"] == "reviewed_research_only" and research["input"]["sha256"] == sha256(RESIDUAL_MAP),
+        "h5_0_2_is_reviewed_and_current": research["status"] == "reviewed_research_only" and research["inputs"][str(RESIDUAL_MAP.relative_to(REPO))] == sha256(RESIDUAL_MAP),
         "every_required_residual_and_gate_has_an_article": required <= covered,
         "every_required_residual_and_gate_has_a_measurement_contract": required <= measurement_evidence,
         "article_ids_are_unique": len(article_ids) == len(ARTICLES),
         "every_article_is_used_by_a_measurement": article_ids == measurement_articles,
         "every_identity_is_exact_and_non_tbd": all(row["mpn"] and "TBD" not in row["mpn"].upper() for row in ARTICLES),
         "every_quantity_has_an_explicit_minimum_basis": all(row["order_quantity"] > 0 and row["minimum_quantity_basis"] for row in ARTICLES),
-        "all_non_rfq_lines_have_a_current_cost": all(row["pricing"]["subtotal_usd"] is not None for row in ARTICLES if row["pricing"]["kind"] != "manufacturer_rfq"),
-        "exactly_one_supplier_price_and_variant_remain_open": len(rfq) == 1 and rfq[0]["id"] == "voice-module",
+        "every_article_has_a_current_cost": not unpriced,
+        "both_selected_voice_variants_are_in_the_basket": {"voice-uhf-module", "voice-vhf-module"} <= article_ids,
+        "voice_prices_match_reviewed_jlcpcb_routes": {
+            row["mpn"]: row["pricing"]["unit_usd"]
+            for row in ARTICLES
+            if row["id"] in {"voice-uhf-module", "voice-vhf-module"}
+        } == {"G-NiceRF SA818S-U": "9.7347", "G-NiceRF SA818S-V": "10.0710"},
         "purchase_layout_fabrication_not_authorized": all(not row["purchase_authorized"] for row in ARTICLES),
     }
     failed = [name for name, passed in checks.items() if not passed]
@@ -166,8 +172,8 @@ def build() -> dict:
         raise ValueError("H5.0.3 basket checks failed: " + ", ".join(failed))
     return {
         "schema_version": 2,
-        "stage": "H5.0.3",
-        "status": "draft_component_and_factory_quotes_open",
+        "stage": "H5.0.3-R1",
+        "status": "draft_factory_and_preorder_gates_open",
         "checked_on": CHECKED_ON,
         "purpose": "one deduplicated engineering-sample basket after documentary and serial-replacement research; no purchase authorization",
         "inputs": {
@@ -181,46 +187,24 @@ def build() -> dict:
             "published_price_subtotal_usd": f"{published_total:.2f}",
             "conservative_budget_caps_usd": f"{budget_total:.2f}",
             "known_engineering_material_budget_usd": f"{total:.2f}",
-            "unpriced_manufacturer_lines": len(rfq),
-            "excluded_from_budget": ["SA518 manufacturer sample quote", "J4-F box-build", "J4-P kit/packing/battery shipping", "freight", "tax", "customs", "H5.2 coupon PCB fabrication/assembly", "general laboratory instruments and ordinary passives"],
+            "unpriced_manufacturer_lines": len(unpriced),
+            "excluded_from_budget": ["SA818S-V pre-order freight/lead-time charge", "J4-F box-build", "J4-P kit/packing/battery shipping", "freight", "tax", "customs", "H5.2 coupon PCB fabrication/assembly", "general laboratory instruments and ordinary passives"],
             "former_parked_plan_usd": "164.54 for only a partial eight-line lot",
             "comparison_note": "The new total is larger because it covers all 9 H5 residuals and 14 mechanical gates, but quantities within each line are reduced to evidence minima.",
         },
         "group_budget_usd": {key: f"{value:.2f}" for key, value in sorted(groups.items())},
         "articles": ARTICLES,
         "measurements": MEASUREMENTS,
-        "supplier_blocker": {
-            "article": "voice-module",
-            "reason": "NiceRF publishes current SA518 technical evidence but no controlled sample price, production-variant confirmation or authorized-stock channel. Marketplace listings provide a cost ceiling only and do not prove identity-controlled supply.",
-            "marketplace_reference": {
-                "currency": "GBP",
-                "item": "20.72",
-                "delivery": "3.52",
-                "total": "24.24",
-                "source": "https://www.onbuy.com/gb/p/1pc-sa518-1w-uv-dual-frequency-walkie-talkie-module-support-wireless-data-and-voice~p259569520/",
-                "accepted_as_qualified_source": False,
-            },
-            "replacements_rejected": [
-                "SA818Pro is ordered as separate UHF or VHF variants; preserving both bands requires two modules and a full redesign",
-                "SA528 is simultaneous U/V but 54.03 x 38.30 x 7.70 mm with a different 23-contact/audio interface",
-            ],
-            "jlcpcb_placeholder": {
-                "part": "C9900300438",
-                "catalog_manufacturer": "JLCPCB Assembly",
-                "stock": 0,
-                "minimum_quantity": 442,
-                "estimated_unit_price_usd": "0.0203",
-                "accepted_as_exact_nicerf_identity": False,
-                "quote_submitted": False,
-                "reason": "the short quote form binds bare SA518 to a generic placeholder without NiceRF manufacturer, controlled datasheet or production revision",
-            },
-            "prepared_request": "hardware/procurement/SA518-sample-rfq.md",
-            "direct_request_status": "ready; no request has been sent because the JLCPCB short form resolves to an unqualified generic placeholder and external contact still needs explicit authority",
-            "next_action": "qualify exact NiceRF SA518 pricing and the J4-F/J4-P factory final-assembly boundary without ordering; all 209 BOM lines already have defined routes without replacement, and JLCAPI Parts permission is still reviewing",
+        "supply_constraints": {
+            "selected_uhf": {"mpn": "G-NiceRF SA818S-U", "jlcpcb_part": "C3001549", "stock": 68, "available_order_quantity": 60, "quantity_one_usd": "9.7347", "status": "priced_in_stock"},
+            "selected_vhf": {"mpn": "G-NiceRF SA818S-V", "jlcpcb_part": "C51897911", "stock": 0, "minimum_quantity": 1, "quantity_one_usd": "10.0710", "status": "priced_preorder_lead_time_open"},
+            "qualified_pending_uhf_alternate": {"mpn": "G-NiceRF SA818S-CE", "jlcpcb_part": "C19632390", "stock": 8, "quantity_one_usd": "9.3449", "status": "not_in_minimum_basket", "restriction": "may replace only SA818S-U after received-part HIL and a 470-MHz firmware clamp; never replaces SA818S-V and never substitutes silently"},
+            "orders_or_requests_submitted": 0,
+            "next_action": "finish the 210-line route rebuild, then resolve SA818S-V pre-order lead time and J4-F/J4-P factory assembly boundaries without ordering",
         },
         "sequencing": {
-            "now": "keep all 209 exact sourcing/final-assembly routes stable; do not accept generic JLCPCB Assembly C9900300438 as NiceRF; retain J4-F/J4-P as open factory gates",
-            "after_mapping": "use approved read-only Parts access for repeatable availability checks; qualify exact SA518 identity/price and obtain a no-order J4-F box-build plus J4-P kit/packing/shipping response",
+            "now": "rebuild all 210 exact sourcing/final-assembly routes around the selected SA818S-U and SA818S-V identities; retain J4-F/J4-P as open factory gates",
+            "after_mapping": "use approved read-only Parts access for repeatable availability checks; obtain SA818S-V pre-order lead time and a no-order J4-F box-build plus J4-P kit/packing/shipping response",
             "after_quote": "publish exact whole-basket and final-assembly costs, then request a separate sample-order decision",
             "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",
             "forbidden": ["component purchase without a separate decision", "PCB placement/routing", "prototype fabrication"],
@@ -290,14 +274,14 @@ def render_doc(data: dict, russian: bool) -> str:
 
 [English](component-sample-basket.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Предыдущий поиск](component-source-research.ru.md)
 
-Корзина опубликована, но **H5.0.3 ещё не закрыт**: [JLCPCB Standard PCBA выбран рабочей производственной линией](manufacturing-platform.ru.md); контрольный BOM Tool прогон сопоставил 176/209 строк и распознал все 1019 установок, а exact-поиск дал всем 209 строкам маршруты `J0`–`J3`, `J4-F` или `J4-P` без замен. `NiceRF SA518` остаётся единственной неизвестной ценой компонента; отдельно открыты фабричные gates `J4-F` box-build и `J4-P` kit/packing/shipping. Приложение JLCAPI создано, право Parts находится на ревью; закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication не разрешены.
+Корзина `H5.0.3-R1` пересобрана для текущей dual-SA818S архитектуры. В ней есть по одному exact `SA818S-U` и `SA818S-V`; обе цены известны, но VHF-модуль доступен только через pre-order. [JLCPCB Standard PCBA остаётся неэксклюзивным производственным ориентиром](manufacturing-platform.ru.md). Закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication не разрешены.
 
 ```mermaid
 flowchart TD
-  R["✅ H5.0.2<br/>источники и замены"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
-  B --> P["JLCPCB Standard<br/>176/209 · 1019/1019"]
-  P --> Q["✅ 209/209 маршрутов<br/>J0–J3 · J4-F/P"]
-  Q --> S["цена exact SA518"]
+  R["✅ H5.0.2-R1<br/>источники и замены"] --> B["▶️ H5.0.3-R1<br/>${summary['known_engineering_material_budget_usd']} · 33 строки"]
+  B --> P["JLCPCB Standard<br/>210 строк · 1052 установки"]
+  P --> Q["пересборка маршрутов<br/>J0–J3 · J4-F/P"]
+  Q --> S["SA818S-V<br/>pre-order lead time"]
   Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
   S --> A["полная цена и отдельное решение<br/>о закупке образцов"]
   X --> A
@@ -309,7 +293,7 @@ flowchart TD
 
 - **${summary['known_engineering_material_budget_usd']}** — известный консервативный material budget для всех priced lines.
 - Внутри него **${summary['published_price_subtotal_usd']}** — публичные USD-цены и **${summary['conservative_budget_caps_usd']}** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
-- Отдельно: **один `SA518` — RFQ**. Непроверенный marketplace даёт только ceiling `£24.24` с доставкой, но не квалифицированный источник.
+- В сумму включены exact `SA818S-U` `C3001549` за `$9.7347` и exact `SA818S-V` `C51897911` за `$10.0710`; у VHF-модуля stock `0`, поэтому lead time остаётся отдельным sourcing gate.
 - Не включены доставка, налоги, таможня и H5.2 coupon PCB: геометрия части coupons зависит от H5.1 incoming measurements, поэтому преждевременная печать создала бы тот же цикл, который мы устраняем.
 - Старая сумма `$164.54` была не дешёвой полной корзиной, а неполным набором из восьми строк; она не покрывала большинство H5 gates.
 
@@ -323,11 +307,9 @@ flowchart TD
 
 {measurement_sections(data, True)}
 
-## Единственный открытый supplier input
+## Открытые supplier inputs
 
-`SA518` остаётся функционально лучшим вариантом: `SA818Pro` требует два отдельных U/V-модуля и переделку RF/power/audio, а dual-band `SA528` имеет корпус `54.03 × 38.30 × 7.70 мм` и другой 23-контактный interface. У NiceRF есть текущие datasheet и product page, но нет публичной квалифицированной цены образца и подтверждения production variant.
-
-Живая короткая quote-форма JLCPCB подставляет generic `JLCPCB Assembly C9900300438` со stock `0`, MOQ `442` и ориентиром `$0.0203`; manufacturer/datasheet/revision NiceRF там не доказаны, поэтому quote не отправлен и эта цена отвергнута. Подготовленный [exact-identity RFQ](../hardware/procurement/SA518-sample-rfq.md) должен уходить только через канал, сохраняющий `NiceRF`, актуальную production revision и datasheet. После квалифицированного ответа появится точная полная стоимость и отдельный вопрос о заказе.
+Цена каждого выбранного модуля известна. Открыты только срок/условия pre-order для exact `SA818S-V`, а также фабричные gates `J4-F` box-build и `J4-P` kit/packing/shipping. `SA818S-CE C19632390` не входит в минимальную корзину: это только qualified-pending UHF-замена после HIL и firmware-clamp 470 МГц; VHF-модуль она не заменяет. Ни одного запроса или заказа не отправлено.
 
 Машинный результат: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """
@@ -335,14 +317,14 @@ flowchart TD
 
 [Русский](component-sample-basket.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Previous research](component-source-research.md)
 
-The basket is published, but **H5.0.3 is not yet reviewed**: [JLCPCB Standard PCBA is now the manufacturing reference](manufacturing-platform.md); its controlled BOM Tool run matched 176/209 lines and parsed all 1019 placements, while exact search gave all 209 lines `J0`–`J3`, `J4-F` or `J4-P` routes without replacement. `NiceRF SA518` remains the basket's only unpriced component; the `J4-F` box-build and `J4-P` kit/packing/shipping factory gates are separately open. The JLCAPI app exists and Parts permission is under review; purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication are not authorized.
+The `H5.0.3-R1` basket is rebuilt for the current dual-SA818S architecture. It contains one exact `SA818S-U` and one exact `SA818S-V`; both prices are known, but the VHF module is pre-order only. [JLCPCB Standard PCBA remains the non-exclusive manufacturing reference](manufacturing-platform.md). Purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication are not authorized.
 
 ```mermaid
 flowchart TD
-  R["✅ H5.0.2<br/>sources + replacements"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
-  B --> P["JLCPCB Standard<br/>176/209 · 1019/1019"]
-  P --> Q["✅ 209/209 routes<br/>J0–J3 · J4-F/P"]
-  Q --> S["qualified exact-SA518<br/>price"]
+  R["✅ H5.0.2-R1<br/>sources + replacements"] --> B["▶️ H5.0.3-R1<br/>${summary['known_engineering_material_budget_usd']} · 33 lines"]
+  B --> P["JLCPCB Standard<br/>210 lines · 1052 placements"]
+  P --> Q["route rebuild<br/>J0–J3 · J4-F/P"]
+  Q --> S["SA818S-V<br/>pre-order lead time"]
   Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
   S --> A["complete price and separate<br/>sample-order decision"]
   X --> A
@@ -354,7 +336,7 @@ flowchart TD
 
 - **${summary['known_engineering_material_budget_usd']}** is the known conservative material budget for every priced line.
 - It contains **${summary['published_price_subtotal_usd']}** of published USD prices and **${summary['conservative_budget_caps_usd']}** of conservative caps for two cheap IR parts whose live pages expose AUD/INR prices.
-- Separately, **one `SA518` is RFQ**. An unqualified marketplace listing gives only a `£24.24` delivered ceiling, not an identity-controlled source.
+- The total includes exact `SA818S-U` `C3001549` at `$9.7347` and exact `SA818S-V` `C51897911` at `$10.0710`; the VHF module has zero stock, so lead time remains a separate sourcing gate.
 - Freight, taxes, customs and H5.2 coupon PCBs are excluded. Some coupon geometry depends on H5.1 incoming measurements; fabricating it now would recreate the cycle this phase removes.
 - The former `$164.54` was not a cheaper complete basket: it covered only eight partial lines and omitted most H5 gates.
 
@@ -368,11 +350,9 @@ All `{summary['covered_residuals_and_gates']}` residuals/gates are covered by `{
 
 {measurement_sections(data, False)}
 
-## Sole open supplier input
+## Open supplier inputs
 
-`SA518` remains the best functional fit: `SA818Pro` needs two separate U/V modules and an RF/power/audio redesign, while dual-band `SA528` is `54.03 × 38.30 × 7.70 mm` with a different 23-contact interface. NiceRF publishes current technical sources but no qualified sample price or production-variant confirmation.
-
-The live short JLCPCB quote form substitutes generic `JLCPCB Assembly C9900300438`, with stock `0`, MOQ `442` and a `$0.0203` estimate; NiceRF manufacturer/datasheet/revision identity is not proven, so no quote was submitted and that price is rejected. The prepared [exact-identity RFQ](../hardware/procurement/SA518-sample-rfq.md) may be sent only through a channel that preserves `NiceRF`, the current production revision and its datasheet. A qualified response enables the exact whole-basket cost and a separate order decision.
+Both selected module prices are known. The remaining inputs are exact `SA818S-V` pre-order lead time and the `J4-F` box-build plus `J4-P` kit/packing/shipping factory gates. `SA818S-CE C19632390` is excluded from the minimum basket: it is only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp; it never replaces the VHF module. No request or order has been submitted.
 
 Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """
@@ -392,9 +372,8 @@ The old quantities and `$164.54` partial subtotal are intentionally not an
 ordering source. Purchasing is the last resort after documentary and
 function-preserving replacement research. Sample ordering, PCB
 placement/routing and fabrication remain unauthorized. The current basket has
-one component-price input open (`SA518`); all 209 sourcing/final-assembly routes
-are mapped, the J4-F/J4-P factory gates remain open, the JLCAPI Parts permission
-is under review, and the prepared direct manufacturer request remains a fallback.
+33 priced lines including exact SA818S-U and SA818S-V; the VHF pre-order lead
+time and J4-F/J4-P factory gates remain open while all 210 routes are rebuilt.
 """
 
 
@@ -426,12 +405,12 @@ def main() -> None:
             print(f"wrote {path.relative_to(REPO)}")
     data = build()
     print(
-        "ok: H5.0.3 draft covers "
+        "ok: H5.0.3-R1 draft covers "
         f"{data['summary']['covered_residuals_and_gates']} residuals/gates with "
         f"{data['summary']['article_lines']} article lines and "
         f"{data['summary']['measurement_contracts']} measurement contracts; "
         f"known material budget ${data['summary']['known_engineering_material_budget_usd']}; "
-        "one SA518 manufacturer quote remains open"
+        "all component prices known; SA818S-V lead time and factory gates open"
     )
 
 

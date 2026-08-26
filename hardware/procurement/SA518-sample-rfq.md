@@ -1,3 +1,13 @@
+# Superseded SA518 request
+
+The current product no longer uses SA518. This file is retained only so old
+internal references cannot be mistaken for an active request. Do not send it.
+
+The current prepared, no-order question set is
+[`H5.0.3-R1-no-order-supplier-inquiry.md`](H5.0.3-R1-no-order-supplier-inquiry.md).
+
+<details><summary>Superseded text</summary>
+
 # Sample/RFQ — NiceRF SA518
 
 Recipient: `sales@nicerf.com`  
@@ -71,3 +81,5 @@ Public references:
 
 - [current manufacturer product/RFQ page](https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html);
 - [current downloadable SA518 specification](https://www.nicerf.com/upload/20260430/391f11abcc1d835ac5ed151613fdae68.pdf).
+
+</details>

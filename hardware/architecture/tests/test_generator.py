@@ -42,6 +42,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
         self.assertIn("H5.0.2-R1", h5["reviewed_artifacts"])
         self.assertIn("H5.0.3", h5["superseded_current_artifacts"])
+        self.assertIn("H5.0.3-R1", h5["current_artifacts"])
         self.assertFalse(h5["authorization"]["sample_or_component_purchase"])
         self.assertIn("superseded", plan)
         self.assertIn("Purchasing is the last resort", plan)

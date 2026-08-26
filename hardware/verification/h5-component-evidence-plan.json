@@ -46,7 +46,7 @@
         {
           "id": "H5.0.3-R1",
           "title": "Publish only the irreducible received-sample set, exact measurements and cost for explicit approval",
-          "status": "current"
+          "status": "current_waiting_for_external_authority"
         }
       ]
     },
@@ -80,6 +80,19 @@
       "result": "all nine H5 residuals and fourteen gates researched; SA818S-U and SA818S-V retain exact manufacturer/JLCPCB routes; stock-zero SA818S-V is pre-order; SA818S-CE is a non-silent qualified-pending UHF-only alternate with a 470-MHz clamp; zero physical claims closed and zero orders authorized"
     }
   },
+  "current_artifacts": {
+    "H5.0.3-R1": {
+      "machine_basket": "hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json",
+      "machine_platform": "hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json",
+      "machine_route_join": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
+      "machine_route_resolution": "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json",
+      "readable_basket_en": "docs/component-sample-basket.md",
+      "readable_basket_ru": "docs/component-sample-basket.ru.md",
+      "readable_platform_en": "docs/manufacturing-platform.md",
+      "readable_platform_ru": "docs/manufacturing-platform.ru.md",
+      "result": "33 priced sample lines cover all nine H5 residuals and fourteen mechanical gates for USD 286.43 before freight/tax/coupons; all 210 current BOM lines and 1052 placements have exact J0-J3/J4-F/J4-P routes with zero replacement and zero unmapped lines; SA818S-V pre-order lead time and J4-F/J4-P supplier acceptance/pricing require external inquiry authority"
+    }
+  },
   "superseded_artifacts": {
     "H5.0.1": {
       "machine_result": "hardware/verification/generated/H5-EVR01-residual-map.json",
@@ -108,7 +121,14 @@
       "result": "the 32-line evidence basket covers all nine H5 residuals and fourteen mechanical gates; JLCPCB Standard PCBA is the non-exclusive manufacturing reference; the normalized compact BOM was processed for five boards, 176 of 209 lines matched and all 1019 placements parsed; exact search resolves all 33 outliers, giving J0=147, J1=0, J2=45, J3=12, J4-F=3 and J4-P=2 with zero replacements; the JLCAPI app and external credential storage are ready while Parts permission is reviewing; the short quote form maps SA518 to unqualified JLCPCB Assembly C9900300438 and no quote was submitted; exact-NiceRF-SA518 pricing and J4-F/J4-P factory final-assembly gates remain open"
     }
   },
-  "blocker": null,
+  "decision_gate": {
+    "requires_user_authority": true,
+    "authorized_now": false,
+    "requested_scope": "send no-order supplier inquiries for exact SA818S-V pre-order lead time and J4-F/J4-P final-assembly capability/pricing",
+    "prepared_message": "hardware/procurement/H5.0.3-R1-no-order-supplier-inquiry.md",
+    "does_not_authorize": ["reservation", "purchase", "component replacement", "PCB placement/routing", "fabrication"]
+  },
+  "blocker": "H5.0.3-R1 cannot close from public/read-only evidence alone: exact SA818S-V lead time and J4-F/J4-P factory acceptance/pricing require external supplier responses",
   "next_active_repository": "esp32-leshy2",
   "next_active_substep": "H5.0.3-R1"
 }

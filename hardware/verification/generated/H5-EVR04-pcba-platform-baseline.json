@@ -1,13 +1,13 @@
 {
   "schema_version": 2,
   "artifact": "H5-EVR04",
-  "stage": "H5.0.3",
-  "status": "routes_complete_sa518_and_factory_gates_open",
-  "checked_on": "2026-08-25",
+  "stage": "H5.0.3-R1",
+  "status": "routes_complete_dual_sa818s_preorder_and_factory_gates_open",
+  "checked_on": "2026-08-26",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-    "sha256": "e9e1516193a78100d073daeaba9befa08fa365c76beae2219b8fab8af4cd7b49",
-    "exact_lines": 209
+    "sha256": "307bf994a0e721f7492cc2d1d4d83e8e37a27d1e866873f9a0c791a35afbeeed",
+    "exact_lines": 210
   },
   "decision": {
     "reference_platform": "JLCPCB Standard PCBA",
@@ -127,25 +127,35 @@
     "credential_storage": "local macOS Keychain; no credential is stored in this repository",
     "raw_api_data_publication": false,
     "usable_now": false,
-    "checked_on": "2026-08-25"
+    "checked_on": "2026-08-26"
   },
-  "sa518_quote_probe": {
-    "requested_identity": "NiceRF SA518",
-    "jlcpcb_autocomplete_part": "C9900300438",
-    "jlcpcb_catalog_manufacturer": "JLCPCB Assembly",
-    "catalog_stock": 0,
-    "catalog_minimum_quantity": 442,
-    "catalog_full_reel": 500,
-    "catalog_estimated_unit_price_usd": "0.0203",
-    "source": "https://jlcpcb.com/partdetail/59277957-JIALICHUANG_SMTSA518/C9900300438",
-    "identity_qualified": false,
-    "quote_submitted": false,
-    "finding": "the short quote form silently binds bare SA518 to an unqualified JLCPCB Assembly placeholder; it must not be treated as the selected NiceRF module or submitted without an exact manufacturer/datasheet identity channel",
-    "checked_on": "2026-08-25"
+  "voice_part_routes": {
+    "SA818S-U": {
+      "device_id": "nicerf_sa818s_u_v18",
+      "mpn": "G-NiceRF SA818S-U",
+      "lcsc": "C3001549",
+      "route": "J0",
+      "stock": 68,
+      "available_order_quantity": 60,
+      "quantity_one_usd": "9.7347",
+      "status": "in_stock",
+      "source": "https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549"
+    },
+    "SA818S-V": {
+      "device_id": "nicerf_sa818s_v_v18",
+      "mpn": "G-NiceRF SA818S-V",
+      "lcsc": "C51897911",
+      "route": "J2",
+      "stock": 0,
+      "minimum_quantity": 1,
+      "quantity_one_usd": "10.0710",
+      "status": "pre_order",
+      "source": "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911"
+    }
   },
   "bom_tool_upload": {
     "path": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
-    "sha256": "132580d69856b903998d3556ec6487d37052621e488bb69234fda00b035f6120",
+    "sha256": "ea97ad136e79e8a1426b8c5bfe222a63e4c2f8edc9029af5c50169adb30ea95e",
     "columns": [
       "Comment",
       "Designator",
@@ -154,7 +164,7 @@
       "Manufacturer Part Number",
       "LCSC Part #"
     ],
-    "exact_lines": 209,
+    "exact_lines": 210,
     "project_data_fields": [
       "Manufacturer Part Number",
       "Quantity"
@@ -165,8 +175,8 @@
     ],
     "contains_only_authorized_project_data": true,
     "authorized_on": "2026-08-25",
-    "transmitted": true,
-    "processed": true,
+    "transmitted": false,
+    "processed": false,
     "assembly_quantity": 5,
     "result_artifact": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
     "outlier_result_artifact": "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json",
@@ -191,13 +201,19 @@
       "transmitted": true,
       "result": "176 matched, 33 unmatched, but one 192-placement designator list was truncated to 191; superseded"
     },
-    "current_attempt": {
-      "sha256": "132580d69856b903998d3556ec6487d37052621e488bb69234fda00b035f6120",
+    "historical_209_line_attempt": {
+      "capture": "hardware/verification/jlcpcb-bom-tool-capture-2026-08-25-compact.json",
       "transmitted": true,
       "processed": true,
-      "result": "176 matched, 33 unmatched, all 1019 target placements parsed"
+      "result": "176 matched, 33 unmatched, all 1019 historical target placements parsed"
     },
-    "blocker": "all 33 BOM Tool outliers have defined routes; bare SA518 resolves to unqualified JLCPCB Assembly placeholder C9900300438, exact NiceRF SA518 qualified price and J4-F/J4-P final-assembly acceptance/pricing remain open, and no sourcing request, quote, reservation or order has been created"
+    "current_210_line_attempt": {
+      "sha256": "ea97ad136e79e8a1426b8c5bfe222a63e4c2f8edc9029af5c50169adb30ea95e",
+      "transmitted": false,
+      "processed": false,
+      "result": "historical 209-line capture retained for 208 unchanged identities; exact current SA818S-U/V pages joined separately into the 210-line map"
+    },
+    "blocker": "all 210 current lines have defined routes and all sample component prices are known; exact SA818S-V pre-order lead time plus J4-F/J4-P final-assembly acceptance/pricing remain open, and no sourcing request, quote, reservation or order has been created"
   },
   "critical_spot_checks": [
     {
@@ -281,14 +297,24 @@
       "finding": "retain exact module only through new-part/global-sourcing/consignment until a function-preserving stocked module is qualified"
     },
     {
-      "device_id": "nicerf_sa518_v11",
-      "mpn": "NiceRF SA518",
-      "jlc": null,
-      "tier": "J3",
+      "device_id": "nicerf_sa818s_u_v18",
+      "mpn": "G-NiceRF SA818S-U",
+      "jlc": "C3001549",
+      "tier": "J0",
+      "stock": 68,
+      "pcba": "Standard PCBA",
+      "source": "https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549",
+      "finding": "exact selected UHF module is priced and in public stock"
+    },
+    {
+      "device_id": "nicerf_sa818s_v_v18",
+      "mpn": "G-NiceRF SA818S-V",
+      "jlc": "C51897911",
+      "tier": "J2",
       "stock": 0,
-      "pcba": "not found in public library",
-      "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=SA518",
-      "finding": "route the exact module and its supplier questions through JLC sourcing first; direct manufacturer contact is no longer the first action"
+      "pcba": "Standard PCBA pre-order",
+      "source": "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911",
+      "finding": "exact selected VHF module is priced but stock-zero pre-order; lead time remains open"
     },
     {
       "device_id": "qdtech_hmx035ctft_001",
@@ -302,29 +328,33 @@
     }
   ],
   "summary": {
-    "target_bom_lines": 209,
-    "critical_lines_spot_checked": 10,
-    "public_stock_exact_or_revision_explicit": 5,
-    "preorder_reservation": 2,
-    "global_sourcing_or_consignment": 2,
+    "target_bom_lines": 210,
+    "critical_lines_spot_checked": 11,
+    "public_stock_exact_or_revision_explicit": 6,
+    "preorder_reservation": 3,
+    "global_sourcing_or_consignment": 1,
     "factory_final_assembly": 1,
     "factory_packed_removable": 0,
-    "bom_tool_exact_or_punctuation_equivalent_matches": 176,
-    "bom_tool_public_stock_lines": 135,
-    "bom_tool_preorder_lines": 41,
-    "bom_tool_unmatched_lines": 33,
-    "target_placements_parsed": 1019,
-    "outliers_resolved_after_exact_search": 33,
+    "historical_bom_tool_matched_lines": 176,
+    "historical_bom_tool_public_stock_lines": 135,
+    "historical_bom_tool_preorder_lines": 41,
+    "historical_bom_tool_unmatched_lines": 33,
+    "current_exact_catalogue_routes_before_outlier_resolution": 178,
+    "current_public_stock_lines_before_outlier_resolution": 136,
+    "current_preorder_lines_before_outlier_resolution": 42,
+    "current_unmatched_lines_before_outlier_resolution": 32,
+    "target_placements_parsed": 1052,
+    "outliers_resolved_after_exact_search": 32,
     "availability_routes": {
-      "J0": 147,
+      "J0": 148,
       "J1": 0,
-      "J2": 45,
-      "J3": 12,
+      "J2": 46,
+      "J3": 11,
       "J4-F": 3,
       "J4-P": 2
     },
     "full_bom_lines_pending_mapping": 0,
-    "open_qualified_price_lines": 1
+    "open_qualified_price_lines": 0
   },
   "policy": {
     "selection_time": "prefer J0; use J1 only after owner-level equivalence checks; use J2/J3 for function-critical identities that cannot be replaced without degradation",
@@ -333,8 +363,8 @@
     "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot"
   },
   "next": {
-    "local": "all 209 lines have defined routes; preserve the map, keep J4-F/J4-P as open factory-quote gates, wait for Parts permission approval and keep the no-order exact-NiceRF-SA518 inquiry separate from generic C9900300438",
-    "external_authority_later": "sending the SA518 sourcing inquiry, quote creation, private-stock reservation and purchase still require separate explicit authority",
+    "local": "all 210 lines have defined routes; preserve the map, keep SA818S-V lead time and J4-F/J4-P as open factory gates, and wait for Parts permission approval",
+    "external_authority_later": "sending a pre-order or final-assembly inquiry, quote creation, private-stock reservation and purchase still require separate explicit authority",
     "forbidden": [
       "purchase",
       "component replacement",
@@ -358,23 +388,25 @@
   },
   "checks": {
     "reference_is_standard_pcba": true,
-    "target_bom_has_209_exact_lines": true,
+    "target_bom_has_210_exact_lines": true,
     "every_spot_check_is_in_target_bom": true,
     "every_spot_check_has_a_source_and_tier": true,
     "no_stock_snapshot_claims_permanent_availability": true,
     "no_component_replacement_is_authorized": true,
     "minimum_bom_upload_authorized_by_user": true,
     "first_minimum_bom_upload_was_transmitted_and_parse_failed": true,
-    "normalized_compact_bom_was_transmitted_and_processed": true,
+    "historical_209_line_compact_bom_was_transmitted_and_processed": true,
+    "current_210_line_upload_was_generated_but_not_transmitted": true,
     "all_target_placements_were_parsed": true,
     "no_semantic_mpn_substitution_was_observed": true,
-    "all_33_unmatched_lines_remain_explicit": true,
-    "all_209_lines_have_defined_availability_or_final_assembly_route": true,
-    "sa518_is_the_only_open_qualified_component_price": true,
+    "all_32_unchanged_unmatched_lines_remain_explicit": true,
+    "all_210_lines_have_defined_availability_or_final_assembly_route": true,
+    "all_component_sample_prices_are_known": true,
+    "sa818s_v_preorder_lead_time_is_explicitly_open": true,
     "factory_final_assembly_gate_is_explicitly_open": true,
     "jlcapi_application_and_app_are_ready": true,
     "parts_api_waits_for_jlc_review": true,
-    "sa518_generic_placeholder_is_not_accepted": true,
+    "both_selected_voice_modules_have_exact_jlcpcb_routes": true,
     "api_credentials_are_not_repository_data": true,
     "no_order_or_layout_is_authorized": true
   }

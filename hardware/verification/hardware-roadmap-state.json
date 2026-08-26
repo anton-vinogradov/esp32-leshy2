@@ -2,7 +2,7 @@
   "schema_version": 1,
   "current_stage": "H5",
   "current_substep": "H5.0.3-R1",
-  "current_detail": "The 9-residual/14-gate map and primary-source research are reviewed; SA818S-U is stocked, SA818S-V is exact but pre-order, and SA818S-CE is a qualified-pending UHF-only alternate; H5 is rebuilding the irreducible basket and current 210-line JLCPCB routes; purchasing, PCB layout and fabrication remain unauthorized",
+  "current_detail": "The 33-line USD 286.43 evidence basket and all 210 JLCPCB routes are rebuilt with zero replacement; exact SA818S-V pre-order lead time and J4-F/J4-P factory acceptance/pricing now require authority for no-order supplier inquiries; purchasing, PCB layout and fabrication remain unauthorized",
   "stages": [
     {"id": "H0", "status": "reviewed"},
     {"id": "H1", "status": "reviewed"},

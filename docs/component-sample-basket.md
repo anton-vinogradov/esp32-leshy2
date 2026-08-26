@@ -2,18 +2,14 @@
 
 [Русский](component-sample-basket.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Previous research](component-source-research.md)
 
-> **Superseded working input:** this page still shows the former single-SA518
-> basket. It does not describe the current product. `H5.0.3-R1` is rebuilding
-> it for the selected `SA818S-U` + `SA818S-V` pair; no purchase is authorized.
-
-The basket is published, but **H5.0.3 is not yet reviewed**: [JLCPCB Standard PCBA is now the manufacturing reference](manufacturing-platform.md); its controlled BOM Tool run matched 176/209 lines and parsed all 1019 placements, while exact search gave all 209 lines `J0`–`J3`, `J4-F` or `J4-P` routes without replacement. `NiceRF SA518` remains the basket's only unpriced component; the `J4-F` box-build and `J4-P` kit/packing/shipping factory gates are separately open. The JLCAPI app exists and Parts permission is under review; purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication are not authorized.
+The `H5.0.3-R1` basket is rebuilt for the current dual-SA818S architecture. It contains one exact `SA818S-U` and one exact `SA818S-V`; both prices are known, but the VHF module is pre-order only. [JLCPCB Standard PCBA remains the non-exclusive manufacturing reference](manufacturing-platform.md). Purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication are not authorized.
 
 ```mermaid
 flowchart TD
-  R["✅ H5.0.2<br/>sources + replacements"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
-  B --> P["JLCPCB Standard<br/>176/209 · 1019/1019"]
-  P --> Q["✅ 209/209 routes<br/>J0–J3 · J4-F/P"]
-  Q --> S["qualified exact-SA518<br/>price"]
+  R["✅ H5.0.2-R1<br/>sources + replacements"] --> B["▶️ H5.0.3-R1<br/>$286.43 · 33 lines"]
+  B --> P["JLCPCB Standard<br/>210 lines · 1052 placements"]
+  P --> Q["route rebuild<br/>J0–J3 · J4-F/P"]
+  Q --> S["SA818S-V<br/>pre-order lead time"]
   Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
   S --> A["complete price and separate<br/>sample-order decision"]
   X --> A
@@ -23,9 +19,9 @@ flowchart TD
 
 ## Cost summary
 
-- **$266.63** is the known conservative material budget for every priced line.
-- It contains **$262.63** of published USD prices and **$4.00** of conservative caps for two cheap IR parts whose live pages expose AUD/INR prices.
-- Separately, **one `SA518` is RFQ**. An unqualified marketplace listing gives only a `£24.24` delivered ceiling, not an identity-controlled source.
+- **$286.43** is the known conservative material budget for every priced line.
+- It contains **$282.43** of published USD prices and **$4.00** of conservative caps for two cheap IR parts whose live pages expose AUD/INR prices.
+- The total includes exact `SA818S-U` `C3001549` at `$9.7347` and exact `SA818S-V` `C51897911` at `$10.0710`; the VHF module has zero stock, so lead time remains a separate sourcing gate.
 - Freight, taxes, customs and H5.2 coupon PCBs are excluded. Some coupon geometry depends on H5.1 incoming measurements; fabricating it now would recreate the cycle this phase removes.
 - The former `$164.54` was not a cheaper complete basket: it covered only eight partial lines and omitted most H5 gates.
 
@@ -67,8 +63,10 @@ flowchart TD
   Minimum basis: one board mate per selected 30-mm jumper path
 - **4 × `GCT RFPC-SMA31-FN-175-A` — $13.56.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/25576371); 638 shown in stock.
   Minimum basis: three nRF24 boundaries plus one AM/LW receive boundary; the S3/C5 module cables use their separately selected SMA32 path
-- **1 × `NiceRF SA518` — RFQ.** [NiceRF manufacturer product/RFQ page](https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html); current product; public manufacturer price absent.
-  Minimum basis: one module is enough for land-fit, thermal, conducted RF, audio and fault testing; a spare does not add a distinct claim
+- **1 × `G-NiceRF SA818S-U` — $9.74.** [JLCPCB exact G-NiceRF part C3001549](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549); 68 in stock; 60 available to order.
+  Minimum basis: one exact UHF module is required because band-specific RF, conducted power, audio, UART and thermal behavior cannot be inferred from the VHF variant
+- **1 × `G-NiceRF SA818S-V` — $10.07.** [JLCPCB exact G-NiceRF part C51897911](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911); stock zero; minimum one; pre-order.
+  Minimum basis: one exact VHF module is required because it is an independent installed product path; common land geometry alone does not prove band-specific RF, audio, UART or thermal behavior
 
 ### Controls
 
@@ -162,12 +160,12 @@ All `23` residuals/gates are covered by `11` contracts. A pass/fail summary with
 
 </details>
 
-<details><summary><code>H5-MSR-SA518</code></summary>
+<details><summary><code>H5-MSR-SA818S-DUAL</code></summary>
 
-- Covers: `H5-MECH-SA518-LAND-FIT`.
-- Method: confirm received revision/variant and contact map; measure castellations; populate one shortest contact-7 coupon; record solder heat, VNA, supply/current/temperature, both bands, both power settings, audio, UART/PTT/PD/H-L and FAULT_KILL.
-- Pass rule: the exact manufacturer-controlled sample fits the accepted reserve and meets the complete inherited RF/audio/safety contract without undocumented drive of UPDATE or VOXEN.
-- Artifacts: supplier response, incoming record, land-fit X-ray/photos, VNA/RF/audio/power/thermal/fault traces.
+- Covers: `H5-MECH-SA818S-DUAL-LAND-FIT`.
+- Method: confirm both received G-NiceRF identities and the common Rev 1.8 18-land contact map; measure each module and castellations; populate one common-land coupon with independently selectable UHF/VHF positions; record solder heat, VNA, supply/current/temperature, band limits, both power settings, audio, UART/PTT/PD/H-L and FAULT_KILL for each installed variant.
+- Pass rule: both exact modules fit the common accepted reserve and each independently meets its inherited RF/audio/safety contract; no CE substitution is silent and no test drives reserved contacts 8-18.
+- Artifacts: JLC identity records, incoming photos, land-fit X-ray/photos, VNA/RF/audio/power/thermal/fault traces for U and V.
 
 </details>
 
@@ -225,10 +223,8 @@ All `23` residuals/gates are covered by `11` contracts. A pass/fail summary with
 
 </details>
 
-## Sole open supplier input
+## Open supplier inputs
 
-`SA518` remains the best functional fit: `SA818Pro` needs two separate U/V modules and an RF/power/audio redesign, while dual-band `SA528` is `54.03 × 38.30 × 7.70 mm` with a different 23-contact interface. NiceRF publishes current technical sources but no qualified sample price or production-variant confirmation.
-
-The live short JLCPCB quote form substitutes generic `JLCPCB Assembly C9900300438`, with stock `0`, MOQ `442` and a `$0.0203` estimate; NiceRF manufacturer/datasheet/revision identity is not proven, so no quote was submitted and that price is rejected. The prepared [exact-identity RFQ](../hardware/procurement/SA518-sample-rfq.md) may be sent only through a channel that preserves `NiceRF`, the current production revision and its datasheet. A qualified response enables the exact whole-basket cost and a separate order decision.
+Both selected module prices are known. The remaining inputs are exact `SA818S-V` pre-order lead time and the `J4-F` box-build plus `J4-P` kit/packing/shipping factory gates. `SA818S-CE C19632390` is excluded from the minimum basket: it is only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp; it never replaces the VHF module. No request or order has been submitted.
 
 Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).

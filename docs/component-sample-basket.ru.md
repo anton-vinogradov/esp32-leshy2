@@ -2,18 +2,14 @@
 
 [English](component-sample-basket.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Предыдущий поиск](component-source-research.ru.md)
 
-> **Отменённый рабочий input:** эта страница пока показывает прежнюю
-> single-SA518 корзину и не описывает текущий продукт. `H5.0.3-R1`
-> пересобирает её для выбранной пары `SA818S-U` + `SA818S-V`; закупка не разрешена.
-
-Корзина опубликована, но **H5.0.3 ещё не закрыт**: [JLCPCB Standard PCBA выбран рабочей производственной линией](manufacturing-platform.ru.md); контрольный BOM Tool прогон сопоставил 176/209 строк и распознал все 1019 установок, а exact-поиск дал всем 209 строкам маршруты `J0`–`J3`, `J4-F` или `J4-P` без замен. `NiceRF SA518` остаётся единственной неизвестной ценой компонента; отдельно открыты фабричные gates `J4-F` box-build и `J4-P` kit/packing/shipping. Приложение JLCAPI создано, право Parts находится на ревью; закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication не разрешены.
+Корзина `H5.0.3-R1` пересобрана для текущей dual-SA818S архитектуры. В ней есть по одному exact `SA818S-U` и `SA818S-V`; обе цены известны, но VHF-модуль доступен только через pre-order. [JLCPCB Standard PCBA остаётся неэксклюзивным производственным ориентиром](manufacturing-platform.ru.md). Закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication не разрешены.
 
 ```mermaid
 flowchart TD
-  R["✅ H5.0.2<br/>источники и замены"] --> B["▶️ H5.0.3<br/>$266.63 + SA518 RFQ"]
-  B --> P["JLCPCB Standard<br/>176/209 · 1019/1019"]
-  P --> Q["✅ 209/209 маршрутов<br/>J0–J3 · J4-F/P"]
-  Q --> S["цена exact SA518"]
+  R["✅ H5.0.2-R1<br/>источники и замены"] --> B["▶️ H5.0.3-R1<br/>$286.43 · 33 строки"]
+  B --> P["JLCPCB Standard<br/>210 строк · 1052 установки"]
+  P --> Q["пересборка маршрутов<br/>J0–J3 · J4-F/P"]
+  Q --> S["SA818S-V<br/>pre-order lead time"]
   Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
   S --> A["полная цена и отдельное решение<br/>о закупке образцов"]
   X --> A
@@ -23,9 +19,9 @@ flowchart TD
 
 ## Сводка стоимости
 
-- **$266.63** — известный консервативный material budget для всех priced lines.
-- Внутри него **$262.63** — публичные USD-цены и **$4.00** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
-- Отдельно: **один `SA518` — RFQ**. Непроверенный marketplace даёт только ceiling `£24.24` с доставкой, но не квалифицированный источник.
+- **$286.43** — известный консервативный material budget для всех priced lines.
+- Внутри него **$282.43** — публичные USD-цены и **$4.00** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
+- В сумму включены exact `SA818S-U` `C3001549` за `$9.7347` и exact `SA818S-V` `C51897911` за `$10.0710`; у VHF-модуля stock `0`, поэтому lead time остаётся отдельным sourcing gate.
 - Не включены доставка, налоги, таможня и H5.2 coupon PCB: геометрия части coupons зависит от H5.1 incoming measurements, поэтому преждевременная печать создала бы тот же цикл, который мы устраняем.
 - Старая сумма `$164.54` была не дешёвой полной корзиной, а неполным набором из восьми строк; она не покрывала большинство H5 gates.
 
@@ -67,8 +63,10 @@ flowchart TD
   Почему минимум: one board mate per selected 30-mm jumper path
 - **4 × `GCT RFPC-SMA31-FN-175-A` — $13.56.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/25576371); 638 shown in stock.
   Почему минимум: three nRF24 boundaries plus one AM/LW receive boundary; the S3/C5 module cables use their separately selected SMA32 path
-- **1 × `NiceRF SA518` — RFQ.** [NiceRF manufacturer product/RFQ page](https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html); current product; public manufacturer price absent.
-  Почему минимум: one module is enough for land-fit, thermal, conducted RF, audio and fault testing; a spare does not add a distinct claim
+- **1 × `G-NiceRF SA818S-U` — $9.74.** [JLCPCB exact G-NiceRF part C3001549](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549); 68 in stock; 60 available to order.
+  Почему минимум: one exact UHF module is required because band-specific RF, conducted power, audio, UART and thermal behavior cannot be inferred from the VHF variant
+- **1 × `G-NiceRF SA818S-V` — $10.07.** [JLCPCB exact G-NiceRF part C51897911](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911); stock zero; minimum one; pre-order.
+  Почему минимум: one exact VHF module is required because it is an independent installed product path; common land geometry alone does not prove band-specific RF, audio, UART or thermal behavior
 
 ### Органы управления
 
@@ -162,12 +160,12 @@ flowchart TD
 
 </details>
 
-<details><summary><code>H5-MSR-SA518</code></summary>
+<details><summary><code>H5-MSR-SA818S-DUAL</code></summary>
 
-- Покрывает: `H5-MECH-SA518-LAND-FIT`.
-- Метод: confirm received revision/variant and contact map; measure castellations; populate one shortest contact-7 coupon; record solder heat, VNA, supply/current/temperature, both bands, both power settings, audio, UART/PTT/PD/H-L and FAULT_KILL.
-- Критерий: the exact manufacturer-controlled sample fits the accepted reserve and meets the complete inherited RF/audio/safety contract without undocumented drive of UPDATE or VOXEN.
-- Артефакты: supplier response, incoming record, land-fit X-ray/photos, VNA/RF/audio/power/thermal/fault traces.
+- Покрывает: `H5-MECH-SA818S-DUAL-LAND-FIT`.
+- Метод: confirm both received G-NiceRF identities and the common Rev 1.8 18-land contact map; measure each module and castellations; populate one common-land coupon with independently selectable UHF/VHF positions; record solder heat, VNA, supply/current/temperature, band limits, both power settings, audio, UART/PTT/PD/H-L and FAULT_KILL for each installed variant.
+- Критерий: both exact modules fit the common accepted reserve and each independently meets its inherited RF/audio/safety contract; no CE substitution is silent and no test drives reserved contacts 8-18.
+- Артефакты: JLC identity records, incoming photos, land-fit X-ray/photos, VNA/RF/audio/power/thermal/fault traces for U and V.
 
 </details>
 
@@ -225,10 +223,8 @@ flowchart TD
 
 </details>
 
-## Единственный открытый supplier input
+## Открытые supplier inputs
 
-`SA518` остаётся функционально лучшим вариантом: `SA818Pro` требует два отдельных U/V-модуля и переделку RF/power/audio, а dual-band `SA528` имеет корпус `54.03 × 38.30 × 7.70 мм` и другой 23-контактный interface. У NiceRF есть текущие datasheet и product page, но нет публичной квалифицированной цены образца и подтверждения production variant.
-
-Живая короткая quote-форма JLCPCB подставляет generic `JLCPCB Assembly C9900300438` со stock `0`, MOQ `442` и ориентиром `$0.0203`; manufacturer/datasheet/revision NiceRF там не доказаны, поэтому quote не отправлен и эта цена отвергнута. Подготовленный [exact-identity RFQ](../hardware/procurement/SA518-sample-rfq.md) должен уходить только через канал, сохраняющий `NiceRF`, актуальную production revision и datasheet. После квалифицированного ответа появится точная полная стоимость и отдельный вопрос о заказе.
+Цена каждого выбранного модуля известна. Открыты только срок/условия pre-order для exact `SA818S-V`, а также фабричные gates `J4-F` box-build и `J4-P` kit/packing/shipping. `SA818S-CE C19632390` не входит в минимальную корзину: это только qualified-pending UHF-замена после HIL и firmware-clamp 470 МГц; VHF-модуль она не заменяет. Ни одного запроса или заказа не отправлено.
 
 Машинный результат: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
