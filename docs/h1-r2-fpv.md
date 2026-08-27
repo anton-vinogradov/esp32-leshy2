@@ -1,4 +1,4 @@
-# H1-R2.10 · analog-FPV receive path
+# H1-R2.11 · analog-FPV receive path
 
 [Home](../README.md) · [Русский](h1-r2-fpv.ru.md)
 
@@ -20,12 +20,14 @@ The serial receiver functional candidate and exact antenna are selected; K331 ph
 - `AWM682 RX` — rejected as primary: controlled body is more than twice the reserved area and its band/channel coverage is narrower.
 - `AWM666V RX` — retained as the best controlled physical fallback, not the primary: its manufacturer drawing and recommended land pattern fit inside the existing 30 x 24 x 4 mm bay and its 210-mA maximum fits power, but it covers only seven 5725-5875-MHz channels versus K331's 24 channels across 5645-5945 MHz and has no public JLCPCB route.
 - `TUE-RFVRX-58-D` — rejected as primary: exceeds the 350-mA reserve and the 11-mm interboard channel before tolerance.
+- `SP166RX` — rejected as a drop-in fallback: its manufacturer drawing is 42.418 x 29.46 mm before height, so it exceeds the 30 x 24 mm bay; its RF summary contradicts its 24-channel table, no current order route is published and exact JLCPCB search returns zero results.
+- `MM238R-MCU` — rejected as production fallback despite the functional and physical fit: the available sheet is reseller-hosted, the stated SFT identity does not lead to a controlled current manufacturer route, both located sellers are out of stock or discontinued and exact JLCPCB search returns zero results.
 - `RichWave RTC6715 IC` — rejected as primary: it is an unavailable bare IC, not a receiver module; the public preliminary sheet lacks the reference RF/IF application and PCB layout needed to reduce 5.8-GHz implementation risk.
 - `generic RX5808` — rejected as production identity: the public card has zero stock and no manufacturer identity, controlled drawing or purchasable factory route.
 
 ## Factory boundary
 
-The manufacturer lists K331 in stock at $29.99; JLCPCB has no exact public K331 card. Its `RichWave RTC6715` `C7464354` and generic `RX5808` `C9900139392` cards are unavailable: zero stock, MOQ 442 and Consign/Request-a-Quote only. RTC6715 is a bare QFN48 whose public 2007 preliminary sheet has no reference application or PCB layout; a custom RF/IF path would add risk without fixing supply. K331 therefore remains a separate module until a private/global-sourcing response exists, not a claimed factory PCBA line item. The $6.95 antenna is a post-PCBA kit accessory and likewise not an assembly line item. On 2026-08-27, exact mechanical, assembly and sourcing evidence requests were sent to AKK and JLCPCB; both replies are pending.
+The manufacturer lists K331 in stock at $29.99; JLCPCB has no exact public K331 card. Its `RichWave RTC6715` `C7464354` and generic `RX5808` `C9900139392` cards are unavailable: zero stock, MOQ 442 and Consign/Request-a-Quote only. Exact `SP166RX` and `MM238R-MCU` searches return zero results; the former does not fit the present bay, while the latter has no controlled current production identity and was found only out of stock or discontinued. RTC6715 is a bare QFN48 whose public 2007 preliminary sheet has no reference application or PCB layout; a custom RF/IF path would add risk without fixing supply. K331 therefore remains a separate module until a private/global-sourcing response exists, not a claimed factory PCBA line item. The $6.95 antenna is a post-PCBA kit accessory and likewise not an assembly line item. On 2026-08-27, exact mechanical, assembly and sourcing evidence requests were sent to AKK and JLCPCB; both replies are pending.
 
 ## What blocks H1 now
 
@@ -37,4 +39,4 @@ The manufacturer lists K331 in stock at $29.99; JLCPCB has no exact public K331 
 - **H3/H6/H8:** prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality before production release
 - **H5/H8:** qualify FXP831.09.0100C on the assembled enclosure and secure available stock before relying on its current 16-week backorder route
 
-> Exact current marker: **H1-R2.10**. H1 remains in progress.
+> Exact current marker: **H1-R2.11**. H1 remains in progress.

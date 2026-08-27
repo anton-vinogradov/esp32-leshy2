@@ -72,10 +72,21 @@ class H1R2FPVTest(unittest.TestCase):
         self.assertFalse(receiver["jlcpcb_surface"]["accepted_for_factory_placement"])
         self.assertFalse(receiver["mechanical"]["accepted"])
         self.assertFalse(self.model["result"]["production_acceptance"])
-        self.assertEqual(6, self.audit["receiver_alternatives_reviewed"])
+        self.assertEqual(8, self.audit["receiver_alternatives_reviewed"])
         alternatives = {row["mpn"]: row for row in self.model["receiver_alternatives_reviewed"]}
         self.assertGreater(alternatives["AWM682 RX"]["controlled_envelope_mm"][1], 23.0)
         self.assertGreater(alternatives["TUE-RFVRX-58-D"]["maximum_current_ma"], 350)
+        sp166rx = alternatives["SP166RX"]
+        self.assertEqual([42.418, 29.46], sp166rx["controlled_board_xy_mm"])
+        self.assertGreater(sp166rx["controlled_board_xy_mm"][0], 30.0)
+        self.assertGreater(sp166rx["controlled_board_xy_mm"][1], 24.0)
+        self.assertEqual(0, sp166rx["jlcpcb_surface"]["placeable_hits"])
+        self.assertIn("contradict", sp166rx["result"])
+        mm238r = alternatives["MM238R-MCU"]
+        self.assertEqual([28.0, 23.0, 3.0], mm238r["working_envelope_mm"])
+        self.assertFalse(mm238r["controlled_mechanical_drawing"])
+        self.assertIn("discontinued", mm238r["availability"])
+        self.assertEqual(0, mm238r["jlcpcb_surface"]["placeable_hits"])
         rtc = alternatives["RichWave RTC6715 IC"]
         self.assertEqual("C7464354", rtc["jlcpcb_part"])
         self.assertEqual("RichWave", rtc["jlcpcb_surface"]["manufacturer"])

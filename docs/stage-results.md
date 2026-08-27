@@ -20,14 +20,14 @@ are satisfied.
 <a id="h1"></a>
 ## ⭐ H1 · Physical product design
 
-**Status:** ▶️ current at `H1-R2.10`; R1 result is retained evidence, not current acceptance.
+**Status:** ▶️ current at `H1-R2.11`; R1 result is retained evidence, not current acceptance.
 
-- [Current H1-R2.10 physical placement](h1-r2-physical-layout.md) — new Hub,
+- [Current H1-R2.11 physical placement](h1-r2-physical-layout.md) — new Hub,
   Airband and analog-FPV bodies/reserves in the shared coordinate model, with
   generated collision, opposing-clearance and exact MMCX service evidence.
 - [Exact MMCX placement/service view](images/h1-r2-mmcx-service.svg): corrected
   edge registration, wave-solder tail keepout and sidewall/plug corridors.
-- [Machine H1-R2.10 placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json).
+- [Machine H1-R2.11 placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json).
 - [Analog-FPV functional path](h1-r2-fpv.md) and its
   [machine audit](../hardware/product-design/generated/H1-R2-fpv-audit.json):
   K331 pin/power fit, exact MMCX path, exact TBS antenna and live rejection of

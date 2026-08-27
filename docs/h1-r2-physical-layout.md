@@ -1,4 +1,4 @@
-# H1-R2.10 · physical re-layout
+# H1-R2.11 · physical re-layout
 
 This is the current verified H1 result, not a decision diary and not authorization to start KiCad.
 
@@ -51,4 +51,4 @@ The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell fo
 
 - **H5/H8:** qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route
 
-> Exact current marker: **H1-R2.10**. H1 remains in progress.
+> Exact current marker: **H1-R2.11**. H1 remains in progress.

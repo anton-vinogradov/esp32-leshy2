@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.10",
+  "marker": "H1-R2.11",
   "status": "pass",
   "functional_and_pin_fit": true,
   "receiver": "K331",
@@ -21,7 +21,7 @@
   ],
   "factory_placement_accepted": false,
   "production_acceptance": false,
-  "receiver_alternatives_reviewed": 6,
+  "receiver_alternatives_reviewed": 8,
   "jlcpcb_catalogue_hits": 3,
   "jlcpcb_placeable_hits": 0,
   "supplier_outreach_sent_on": "2026-08-27",

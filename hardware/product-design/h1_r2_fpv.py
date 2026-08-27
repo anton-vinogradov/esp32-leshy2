@@ -71,7 +71,7 @@ def audit(model: dict) -> dict:
     if "reseller" not in mechanical.get("nominal_board_xy_source_class", ""):
         errors.append("K331 nominal XY evidence is overstated as controlled")
     alternatives = {row["mpn"]: row for row in model["receiver_alternatives_reviewed"]}
-    if set(alternatives) != {"AKK K331", "AWM666V RX", "AWM682 RX", "TUE-RFVRX-58-D", "RichWave RTC6715 IC", "generic RX5808"}:
+    if set(alternatives) != {"AKK K331", "AWM666V RX", "AWM682 RX", "TUE-RFVRX-58-D", "SP166RX", "MM238R-MCU", "RichWave RTC6715 IC", "generic RX5808"}:
         errors.append("receiver alternative review is incomplete")
     controlled_fallback = alternatives.get("AWM666V RX", {})
     if controlled_fallback.get("controlled_envelope_mm") != [26.16, 16.38, 3.7]:
@@ -86,8 +86,18 @@ def audit(model: dict) -> dict:
         errors.append("AWM682 rejection no longer proves a larger controlled body")
     if alternatives.get("TUE-RFVRX-58-D", {}).get("maximum_current_ma", 0) <= model["power_fit"]["reserved_active_5v_ma"]:
         errors.append("Top-Unum rejection no longer proves a power overrun")
+    sp166rx = alternatives.get("SP166RX", {})
+    if sp166rx.get("controlled_board_xy_mm", [0, 0])[0] <= mechanical["working_envelope_mm"][0] or sp166rx.get("controlled_board_xy_mm", [0, 0])[1] <= mechanical["working_envelope_mm"][1]:
+        errors.append("SP166RX rejection no longer proves an oversized controlled board")
+    if sp166rx.get("jlcpcb_surface", {}).get("placeable_hits") != 0 or "contradict" not in sp166rx.get("result", ""):
+        errors.append("SP166RX factory or specification rejection is no longer explicit")
+    mm238r = alternatives.get("MM238R-MCU", {})
+    if mm238r.get("working_envelope_mm") != [28.0, 23.0, 3.0] or mm238r.get("jlcpcb_surface", {}).get("placeable_hits") != 0:
+        errors.append("MM238R-MCU fit or factory-route evidence is stale")
+    if "discontinued" not in mm238r.get("availability", "") or mm238r.get("controlled_mechanical_drawing"):
+        errors.append("MM238R-MCU supply and documentary rejection is no longer fail-closed")
     searches = {row["query"]: row for row in receiver["jlcpcb_surface"]["searches"]}
-    if set(searches) != {"AKK K331", "RX5808", "RTC6715"}:
+    if set(searches) != {"AKK K331", "RX5808", "RTC6715", "SP166RX", "MM238R-MCU"}:
         errors.append("JLCPCB receiver search surface is incomplete")
     if any(row["placeable_hits"] != 0 for row in searches.values()):
         errors.append("a JLCPCB receiver route is marked placeable without live stock")
@@ -193,6 +203,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         factory = (
             'Производитель показывает K331 в наличии по $29.99; точной публичной карточки K331 у JLCPCB нет. '
             '`RichWave RTC6715` `C7464354` и безродный `RX5808` `C9900139392` присутствуют только как недоступные карточки: склад 0, MOQ 442, маршрут Consign/Request a Quote. '
+            'Точные запросы `SP166RX` и `MM238R-MCU` дали ноль результатов; первый не входит в текущую ячейку, второй не имеет контролируемой текущей production-identity и найден только как отсутствующий/снятый товар. '
             'RTC6715 — голая QFN48, а её публичный preliminary-документ 2007 года не содержит reference application или PCB layout; собственный RF/IF-тракт повысил бы риск, не решив supply. '
             'Поэтому до ответа private/global sourcing K331 остаётся отдельным модулем, а не заявленной фабричной PCBA-позицией. '
             f'Антенна продаётся производителем за $6.95 и ставится в комплект после PCBA; JLCPCB для неё также не является сборочным маршрутом. '
@@ -220,6 +231,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         factory = (
             'The manufacturer lists K331 in stock at $29.99; JLCPCB has no exact public K331 card. '
             'Its `RichWave RTC6715` `C7464354` and generic `RX5808` `C9900139392` cards are unavailable: zero stock, MOQ 442 and Consign/Request-a-Quote only. '
+            'Exact `SP166RX` and `MM238R-MCU` searches return zero results; the former does not fit the present bay, while the latter has no controlled current production identity and was found only out of stock or discontinued. '
             'RTC6715 is a bare QFN48 whose public 2007 preliminary sheet has no reference application or PCB layout; a custom RF/IF path would add risk without fixing supply. '
             'K331 therefore remains a separate module until a private/global-sourcing response exists, not a claimed factory PCBA line item. '
             'The $6.95 antenna is a post-PCBA kit accessory and likewise not an assembly line item. '
