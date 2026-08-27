@@ -49,6 +49,13 @@ class H1R2FPVTest(unittest.TestCase):
         self.assertIn("maximum body dimensions", evidence["does_not_cover"])
         self.assertFalse(self.model["receiver"]["mechanical"]["accepted"])
 
+    def test_k331_nominal_xy_is_not_overstated_as_a_controlled_body(self):
+        mechanical = self.model["receiver"]["mechanical"]
+        self.assertEqual([28.7, 23.1], mechanical["nominal_board_xy_mm"])
+        self.assertEqual([30.0, 24.0, 4.0], mechanical["working_envelope_mm"])
+        self.assertIn("reseller", mechanical["nominal_board_xy_source_class"])
+        self.assertFalse(mechanical["accepted"])
+
     def test_receiver_factory_and_physical_limits_fail_closed(self):
         receiver = self.model["receiver"]
         self.assertEqual({0}, {row["placeable_hits"] for row in receiver["jlcpcb_surface"]["searches"]})

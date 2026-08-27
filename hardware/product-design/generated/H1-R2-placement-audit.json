@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.8",
+  "marker": "H1-R2.9",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "new_fixed_body_count": 17,
@@ -14,7 +14,7 @@
   ],
   "same_face_collisions": [],
   "opposing_overlap_count": 26,
-  "minimum_opposing_clearance_mm": 2.44,
+  "minimum_opposing_clearance_mm": 1.44,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
     {
@@ -125,12 +125,12 @@
     {
       "new": "fpv_receiver_bay",
       "base": "c5_dbg_header",
-      "clearance_mm": 2.44
+      "clearance_mm": 1.44
     },
     {
       "new": "fpv_receiver_bay",
       "base": "display_connector",
-      "clearance_mm": 6.05
+      "clearance_mm": 5.05
     },
     {
       "new": "main_input_cap0_r2",
@@ -236,7 +236,7 @@
   },
   "errors": [],
   "current_h1_blockers": [
-    "obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence before replacing the K331 reserve with a fixed body",
+    "obtain AKK-controlled maximum XYZ dimensions, pad pitch/land pattern and packaging/reflow evidence before replacing the K331 reserve with a fixed body",
     "obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation"
   ],
   "dependent_h1_work": [
@@ -423,18 +423,18 @@
       "kind": "reserve",
       "frame": "rf-inner",
       "mpn": null,
-      "role": "leading serial 5.8-GHz analog receiver candidate with official functional integration; 28 x 23 x 3 mm remains a reserve until AKK-controlled physical evidence exists",
+      "role": "leading serial 5.8-GHz analog receiver candidate with official functional integration; 30 x 24 x 4 mm is a conservative collision reserve around reseller-hosted AKK-branded 28.7 x 23.1 mm nominal XY until controlled physical evidence exists",
       "world_bbox_mm": {
         "x": [
-          39.5,
-          67.5
+          38.5,
+          68.5
         ],
         "y": [
-          90.5,
-          113.5
+          90.0,
+          114.0
         ],
         "z": [
-          12.8,
+          11.8,
           15.8
         ]
       }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.8",
+  "marker": "H1-R2.9",
   "checked_on": "2026-08-27",
   "status": "official_functional_integration_passed_physical_and_factory_route_open",
   "receiver": {
@@ -43,10 +43,13 @@
       "does_not_cover": "maximum body dimensions, pad pitch and land geometry, packaging or reflow profile"
     },
     "mechanical": {
-      "working_envelope_mm": [28.0, 23.0, 3.0],
-      "working_envelope_source": "common shielded RX5808-family envelope and published K331 photography; not a manufacturer drawing",
+      "nominal_board_xy_mm": [28.7, 23.1],
+      "nominal_board_xy_source": "https://rcdrone.top/cdn/shop/files/HTB1t6KlSFXXXXaEXFXXq6xXFXXXo.webp?v=1710867640&width=1946",
+      "nominal_board_xy_source_class": "AKK-branded dimensioned product image hosted by a reseller; corroboration only, not a controlled AKK drawing",
+      "working_envelope_mm": [30.0, 24.0, 4.0],
+      "working_envelope_source": "conservative collision reserve around the 28.7 x 23.1 mm AKK-branded nominal XY image and the common 3 mm RX5808-family height; not a manufacturer maximum drawing",
       "accepted": false,
-      "gate": "obtain a manufacturer-controlled maximum envelope, land pattern and packaging/reflow statement before replacing the reserve with a fixed body"
+      "gate": "obtain a manufacturer-controlled maximum XYZ envelope, pad pitch and land pattern, packaging and reflow statement before replacing the reserve with a fixed body"
     },
     "jlcpcb_surface": {
       "assembly": "K331 is absent from the public Standard PCBA library; public RTC6715/RX5808 cards are unavailable and do not provide a drop-in module route; private/global sourcing or post-PCBA installation only",
@@ -89,10 +92,11 @@
       "frequency_mhz": [5645, 5945],
       "maximum_current_ma": 200,
       "channel_count": 24,
-      "working_envelope_mm": [28.0, 23.0, 3.0],
+      "nominal_board_xy_mm": [28.7, 23.1],
+      "working_envelope_mm": [30.0, 24.0, 4.0],
       "controlled_mechanical_drawing": false,
-      "result": "leading candidate: manufacturer-hosted media now confirms its application circuit, complete 14-pin functions and 24-channel truth table; the working envelope still lacks a controlled drawing and factory route",
-      "result_ru": "ведущий кандидат: материалы на сайте производителя подтверждают схему включения, функции всех 14 контактов и таблицу 24 каналов; рабочий габарит всё ещё не имеет контролируемого чертежа и фабричного маршрута"
+      "result": "leading candidate: manufacturer-hosted media confirms its application circuit, complete 14-pin functions and 24-channel truth table; a separate AKK-branded reseller image gives 28.7 x 23.1 mm nominal XY, so collision work uses a conservative 30 x 24 x 4 mm reserve while controlled maximum XYZ/land/factory evidence remains open",
+      "result_ru": "ведущий кандидат: материалы на сайте производителя подтверждают схему включения, функции всех 14 контактов и таблицу 24 каналов; отдельный AKK-брендированный кадр у продавца даёт номинал 28,7×23,1 мм, поэтому коллизии проверяются с консервативным резервом 30×24×4 мм, а контролируемые maximum XYZ/land/factory evidence остаются открыты"
     },
     {
       "mpn": "AWM682 RX",
@@ -239,7 +243,7 @@
     "production_acceptance": false
   },
   "current_h1_blockers": [
-    "obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence",
+    "obtain AKK-controlled maximum XYZ dimensions, pad pitch/land pattern and packaging/reflow evidence",
     "obtain a JLCPCB private/global-sourcing response or retain explicit post-PCBA hand installation"
   ],
   "downstream_verification": [

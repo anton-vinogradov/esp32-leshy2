@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1380" height="1459" viewBox="0 0 1380 1459">
 <rect width="1380" height="1459" fill="#ffffff"/>
-<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.8 inner placement</text>
+<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.9 inner placement</text>
 <text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · RF board is mirrored · numbered marks are documentation, never inner-face silkscreen.</text>
 <text x="190.00" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">UI PCB · inner</text>
 <rect x="70.00" y="122.00" width="240.00" height="480.00" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -160,7 +160,7 @@
 <text x="539.60" y="442.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#1d4ed8">6</text>
 <rect x="526.80" y="410.00" width="25.60" height="17.60" rx="3" fill="#dbeafe" fill-opacity="0.92" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="6 4"/>
 <text x="539.60" y="418.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#1d4ed8">R2</text>
-<rect x="434.00" y="411.60" width="89.60" height="73.60" rx="3" fill="#dbeafe" fill-opacity="0.92" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="6 4"/>
+<rect x="430.80" y="410.00" width="96.00" height="76.80" rx="3" fill="#dbeafe" fill-opacity="0.92" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="6 4"/>
 <text x="478.80" y="448.40" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#1d4ed8">R3</text>
 <rect x="472.40" y="317.20" width="6.40" height="4.80" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="475.60" y="319.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">8</text>
@@ -190,8 +190,8 @@
 <text x="415.76" y="439.16" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#1d4ed8">7</text>
 <path d="M 400.40 446.16 L 382.40 446.16" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>
 <text x="378.40" y="444.16" text-anchor="end" font-family="sans-serif" font-size="9" font-weight="700" fill="#dc2626">finished-device RIGHT side</text>
-<path d="M 415.76 446.16 L 434.00 448.40" stroke="#0f766e" stroke-width="3" fill="none"/>
-<path d="M 523.60 448.40 L 528.40 442.00" stroke="#7c3aed" stroke-width="3" fill="none"/>
+<path d="M 415.76 446.16 L 430.80 448.40" stroke="#0f766e" stroke-width="3" fill="none"/>
+<path d="M 526.80 448.40 L 528.40 442.00" stroke="#7c3aed" stroke-width="3" fill="none"/>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker></defs>
 <text x="730" y="112" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Placed devices and allocations</text>
 <text x="730" y="140" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">1 · SC1512-A4</text>
@@ -219,46 +219,48 @@
 <text x="730" y="584" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">R3 · physical reserve</text>
 <text x="755" y="601" font-family="sans-serif" font-size="10.5" fill="#526076">leading serial 5.8-GHz analog receiver</text>
 <text x="755" y="615" font-family="sans-serif" font-size="10.5" fill="#526076">candidate with official functional</text>
-<text x="755" y="629" font-family="sans-serif" font-size="10.5" fill="#526076">integration; 28 x 23 x 3 mm remains a</text>
-<text x="755" y="643" font-family="sans-serif" font-size="10.5" fill="#526076">reserve until AKK-controlled physical</text>
-<text x="755" y="657" font-family="sans-serif" font-size="10.5" fill="#526076">evidence exists</text>
-<text x="730" y="685" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">7 · DL-MMCX-KWE-90</text>
-<text x="755" y="702" font-family="sans-serif" font-size="10.5" fill="#526076">user-facing 50-ohm MMCX labelled FPV RX 5.8G</text>
-<text x="730" y="730" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">8 · TPS566231PRQFR</text>
-<text x="755" y="747" font-family="sans-serif" font-size="10.5" fill="#526076">6-A 3V3_MAIN synchronous buck with raw-rail</text>
-<text x="755" y="761" font-family="sans-serif" font-size="10.5" fill="#526076">Power-Good</text>
-<text x="730" y="789" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">9 · PSPMAA0605H-2R2M-ANP</text>
-<text x="755" y="806" font-family="sans-serif" font-size="10.5" fill="#526076">2.2-uH, 10-A RMS / 15-A saturation 3V3_MAIN</text>
-<text x="755" y="820" font-family="sans-serif" font-size="10.5" fill="#526076">inductor</text>
-<text x="730" y="848" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">10 · GRM32ER71E226KE15L</text>
-<text x="755" y="865" font-family="sans-serif" font-size="10.5" fill="#526076">first local 22-uF / 25-V X7R main-buck input</text>
-<text x="755" y="879" font-family="sans-serif" font-size="10.5" fill="#526076">capacitor</text>
-<text x="730" y="907" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">11 · GRM32ER71E226KE15L</text>
-<text x="755" y="924" font-family="sans-serif" font-size="10.5" fill="#526076">second local 22-uF / 25-V X7R main-buck</text>
-<text x="755" y="938" font-family="sans-serif" font-size="10.5" fill="#526076">input capacitor</text>
-<text x="730" y="966" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">12 · GRM32ER71E226KE15L</text>
-<text x="755" y="983" font-family="sans-serif" font-size="10.5" fill="#526076">third local 22-uF / 25-V X7R main-buck input</text>
-<text x="755" y="997" font-family="sans-serif" font-size="10.5" fill="#526076">capacitor</text>
-<text x="730" y="1025" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">13 · GRM32ER71E226KE15L</text>
-<text x="755" y="1042" font-family="sans-serif" font-size="10.5" fill="#526076">first local 22-uF / 25-V X7R main-buck</text>
-<text x="755" y="1056" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
-<text x="730" y="1084" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">14 · GRM32ER71E226KE15L</text>
-<text x="755" y="1101" font-family="sans-serif" font-size="10.5" fill="#526076">second local 22-uF / 25-V X7R main-buck</text>
-<text x="755" y="1115" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
-<text x="730" y="1143" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">15 · GRM32ER71E226KE15L</text>
-<text x="755" y="1160" font-family="sans-serif" font-size="10.5" fill="#526076">third local 22-uF / 25-V X7R main-buck</text>
-<text x="755" y="1174" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
-<text x="730" y="1202" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">16 · CL10B105KO8NNNC</text>
-<text x="755" y="1219" font-family="sans-serif" font-size="10.5" fill="#526076">1-uF TPS566231P VCC decoupling capacitor</text>
-<text x="730" y="1247" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">17 · CL05B104KB5NNNC</text>
-<text x="755" y="1264" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF TPS566231P bootstrap capacitor</text>
-<text x="730" y="1292" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">18 · RC0402JR-070RL</text>
-<text x="755" y="1309" font-family="sans-serif" font-size="10.5" fill="#526076">0-ohm serial bootstrap link retained for EMI</text>
-<text x="755" y="1323" font-family="sans-serif" font-size="10.5" fill="#526076">tuning</text>
+<text x="755" y="629" font-family="sans-serif" font-size="10.5" fill="#526076">integration; 30 x 24 x 4 mm is a</text>
+<text x="755" y="643" font-family="sans-serif" font-size="10.5" fill="#526076">conservative collision reserve around</text>
+<text x="755" y="657" font-family="sans-serif" font-size="10.5" fill="#526076">reseller-hosted AKK-branded 28.7 x 23.1 mm</text>
+<text x="755" y="671" font-family="sans-serif" font-size="10.5" fill="#526076">nominal XY until controlled physical</text>
+<text x="755" y="685" font-family="sans-serif" font-size="10.5" fill="#526076">evidence exists</text>
+<text x="730" y="713" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">7 · DL-MMCX-KWE-90</text>
+<text x="755" y="730" font-family="sans-serif" font-size="10.5" fill="#526076">user-facing 50-ohm MMCX labelled FPV RX 5.8G</text>
+<text x="730" y="758" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">8 · TPS566231PRQFR</text>
+<text x="755" y="775" font-family="sans-serif" font-size="10.5" fill="#526076">6-A 3V3_MAIN synchronous buck with raw-rail</text>
+<text x="755" y="789" font-family="sans-serif" font-size="10.5" fill="#526076">Power-Good</text>
+<text x="730" y="817" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">9 · PSPMAA0605H-2R2M-ANP</text>
+<text x="755" y="834" font-family="sans-serif" font-size="10.5" fill="#526076">2.2-uH, 10-A RMS / 15-A saturation 3V3_MAIN</text>
+<text x="755" y="848" font-family="sans-serif" font-size="10.5" fill="#526076">inductor</text>
+<text x="730" y="876" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">10 · GRM32ER71E226KE15L</text>
+<text x="755" y="893" font-family="sans-serif" font-size="10.5" fill="#526076">first local 22-uF / 25-V X7R main-buck input</text>
+<text x="755" y="907" font-family="sans-serif" font-size="10.5" fill="#526076">capacitor</text>
+<text x="730" y="935" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">11 · GRM32ER71E226KE15L</text>
+<text x="755" y="952" font-family="sans-serif" font-size="10.5" fill="#526076">second local 22-uF / 25-V X7R main-buck</text>
+<text x="755" y="966" font-family="sans-serif" font-size="10.5" fill="#526076">input capacitor</text>
+<text x="730" y="994" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">12 · GRM32ER71E226KE15L</text>
+<text x="755" y="1011" font-family="sans-serif" font-size="10.5" fill="#526076">third local 22-uF / 25-V X7R main-buck input</text>
+<text x="755" y="1025" font-family="sans-serif" font-size="10.5" fill="#526076">capacitor</text>
+<text x="730" y="1053" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">13 · GRM32ER71E226KE15L</text>
+<text x="755" y="1070" font-family="sans-serif" font-size="10.5" fill="#526076">first local 22-uF / 25-V X7R main-buck</text>
+<text x="755" y="1084" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
+<text x="730" y="1112" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">14 · GRM32ER71E226KE15L</text>
+<text x="755" y="1129" font-family="sans-serif" font-size="10.5" fill="#526076">second local 22-uF / 25-V X7R main-buck</text>
+<text x="755" y="1143" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
+<text x="730" y="1171" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">15 · GRM32ER71E226KE15L</text>
+<text x="755" y="1188" font-family="sans-serif" font-size="10.5" fill="#526076">third local 22-uF / 25-V X7R main-buck</text>
+<text x="755" y="1202" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
+<text x="730" y="1230" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">16 · CL10B105KO8NNNC</text>
+<text x="755" y="1247" font-family="sans-serif" font-size="10.5" fill="#526076">1-uF TPS566231P VCC decoupling capacitor</text>
+<text x="730" y="1275" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">17 · CL05B104KB5NNNC</text>
+<text x="755" y="1292" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF TPS566231P bootstrap capacitor</text>
+<text x="730" y="1320" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">18 · RC0402JR-070RL</text>
+<text x="755" y="1337" font-family="sans-serif" font-size="10.5" fill="#526076">0-ohm serial bootstrap link retained for EMI</text>
+<text x="755" y="1351" font-family="sans-serif" font-size="10.5" fill="#526076">tuning</text>
 <text x="1100" y="112" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Machine audit</text>
 <text x="1100" y="142" font-family="sans-serif" font-size="12" fill="#166534">✓ same-face collisions: 0</text>
 <text x="1100" y="164" font-family="sans-serif" font-size="12" fill="#166534">✓ opposing crossings: 26</text>
-<text x="1100" y="186" font-family="sans-serif" font-size="12" fill="#166534">✓ minimum Z clearance: 2.44 mm</text>
+<text x="1100" y="186" font-family="sans-serif" font-size="12" fill="#166534">✓ minimum Z clearance: 1.44 mm</text>
 <text x="1100" y="208" font-family="sans-serif" font-size="12" fill="#526076">required: 0.70 mm</text>
 <text x="1100" y="248" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">Line key</text>
 <line x1="1100" y1="270" x2="1134" y2="270" stroke="#0f766e" stroke-width="3"/>
@@ -266,8 +268,8 @@
 <line x1="1100" y1="294" x2="1134" y2="294" stroke="#7c3aed" stroke-width="3"/>
 <text x="1144" y="298" font-family="sans-serif" font-size="11" fill="#526076">75 Ω CVBS PCB trace</text>
 <text x="1100" y="344" font-family="sans-serif" font-size="15" font-weight="700" fill="#9a3412">Blocks H1 now</text>
-<text x="1100" y="370" font-family="sans-serif" font-size="10.5" fill="#9a3412">• obtain AKK-controlled maximum</text>
-<text x="1100" y="385" font-family="sans-serif" font-size="10.5" fill="#9a3412">  dimensions, land pattern and</text>
+<text x="1100" y="370" font-family="sans-serif" font-size="10.5" fill="#9a3412">• obtain AKK-controlled maximum XYZ</text>
+<text x="1100" y="385" font-family="sans-serif" font-size="10.5" fill="#9a3412">  dimensions, pad pitch/land pattern and</text>
 <text x="1100" y="400" font-family="sans-serif" font-size="10.5" fill="#9a3412">  packaging/reflow evidence before</text>
 <text x="1100" y="415" font-family="sans-serif" font-size="10.5" fill="#9a3412">  replacing the K331 reserve with a</text>
 <text x="1100" y="430" font-family="sans-serif" font-size="10.5" fill="#9a3412">  fixed body</text>

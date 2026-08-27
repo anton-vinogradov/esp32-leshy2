@@ -488,7 +488,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         bullets = [
             f'- Коллизии корпусов на одной стороне: `{len(result["same_face_collisions"])}`.',
             f'- Намеренных встречных XY-проекций: `{result["opposing_overlap_count"]}`; минимальный Z-зазор `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
-            '- Резерв K331 помещается без изменения контура платы и внешних зон аккумуляторов/U214; функциональная распиновка принята, а физические размеры ещё закрываются.',
+            '- AKK-брендированный размерный кадр у продавца задаёт номинал платы K331 28,7×23,1 мм; коллизии проверены с консервативным резервом 30×24×4 мм без изменения контура платы и внешних зон аккумуляторов/U214.',
+            '- Функциональная распиновка K331 принята, но резерв не считается точным корпусом: максимальные XYZ, посадочное место и reflow/packaging должны прийти из контролируемого документа AKK.',
             '- Точная линейная антенна TBS5G8MMCXA подключается к отдельному MMCX; между ANT IN K331 и MMCX запланирована прямая 50-омная PCB-дорожка без U.FL.',
             '- Исправленная геометрия `DL-MMCX-KWE-90`: 3,6 мм корпуса находятся на RF-плате, ствол выступает за правую кромку на 3,0 мм; выводы входят в межплатный просвет номинально на 1,2 мм, а их keepout не пересекает встречные корпуса.',
             '- Для боковой стенки закреплён минимальный свободный диаметр 4,5 мм, для подключения — свободный внешний коридор Ø12×20 мм. Полученный экземпляр, финальный допуск стенки, удержание и нагрузку кабеля проверяет H5.',
@@ -511,7 +512,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         bullets = [
             f'- Same-face body collisions: `{len(result["same_face_collisions"])}`.',
             f'- Intentional opposing XY projections: `{result["opposing_overlap_count"]}`; minimum Z clearance is `{result["minimum_opposing_clearance_mm"]:.2f} mm` against `{result["required_opposing_clearance_mm"]:.2f} mm` required.',
-            '- The K331 reserve fits without changing the PCB outline or battery/U214 exterior zones; functional pin fit is accepted while physical dimensions remain open.',
+            '- An AKK-branded dimensioned reseller image gives a 28.7 × 23.1 mm nominal K331 board; collision checks use a conservative 30 × 24 × 4 mm reserve without changing the PCB outline or battery/U214 exterior zones.',
+            '- K331 functional pin fit is accepted, but the reserve is not a fixed body: maximum XYZ, land pattern and reflow/packaging must come from an AKK-controlled document.',
             '- The exact linear TBS5G8MMCXA antenna mates with the distinct MMCX; K331 ANT IN reaches it over one direct 50-ohm PCB trace without U.FL.',
             '- Corrected `DL-MMCX-KWE-90` geometry keeps 3.6 mm of body on the RF PCB and projects only the 3.0-mm barrel beyond the right edge; its pins enter the interboard gap by a nominal 1.2 mm and the tail keepout meets no opposing body.',
             '- The side wall now has a 4.5-mm minimum free aperture and the plug a clear Ø12×20-mm exterior service corridor. H5 later verifies the received mating pair, final wall tolerance, retention and cable strain.',

@@ -42,7 +42,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("reserve", bay["kind"])
         self.assertIsNone(bay["mpn"])
         self.assertEqual("AKK K331", bay["candidate_mpn"])
-        self.assertIn("AKK-controlled maximum dimensions", self.model["current_h1_blockers"][0])
+        self.assertIn("AKK-controlled maximum XYZ dimensions", self.model["current_h1_blockers"][0])
 
     def test_h1_blockers_are_separate_from_dependent_and_later_work(self):
         self.assertEqual(2, len(self.model["current_h1_blockers"]))

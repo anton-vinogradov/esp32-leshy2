@@ -63,6 +63,13 @@ def audit(model: dict) -> dict:
         errors.append("official K331 integration evidence is not manufacturer-hosted")
     if official.get("does_not_cover") != "maximum body dimensions, pad pitch and land geometry, packaging or reflow profile":
         errors.append("official K331 media no longer preserves the physical-evidence boundary")
+    mechanical = receiver["mechanical"]
+    if mechanical.get("nominal_board_xy_mm") != [28.7, 23.1]:
+        errors.append("K331 nominal XY corroboration is missing or stale")
+    if mechanical.get("working_envelope_mm") != [30.0, 24.0, 4.0]:
+        errors.append("K331 conservative collision reserve is missing or stale")
+    if "reseller" not in mechanical.get("nominal_board_xy_source_class", ""):
+        errors.append("K331 nominal XY evidence is overstated as controlled")
     alternatives = {row["mpn"]: row for row in model["receiver_alternatives_reviewed"]}
     if set(alternatives) != {"AKK K331", "AWM682 RX", "TUE-RFVRX-58-D", "RichWave RTC6715 IC", "generic RX5808"}:
         errors.append("receiver alternative review is incomplete")
@@ -109,6 +116,8 @@ def audit(model: dict) -> dict:
         "power_margin_ma": model["power_fit"]["margin_ma"],
         "antenna_covers_receiver_band": antenna_covers_receiver_band,
         "receiver_physical_body_accepted": receiver["mechanical"]["accepted"],
+        "receiver_nominal_board_xy_mm": receiver["mechanical"]["nominal_board_xy_mm"],
+        "receiver_collision_reserve_mm": receiver["mechanical"]["working_envelope_mm"],
         "factory_placement_accepted": receiver["jlcpcb_surface"]["accepted_for_factory_placement"],
         "production_acceptance": model["result"]["production_acceptance"],
         "receiver_alternatives_reviewed": len(alternatives),
@@ -166,7 +175,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         intro = 'Принят серийный функциональный кандидат приёмника и точная антенна; физическая приёмка K331 ещё не заявлена.'
         result_text = (
             f'- `AKK {r["mpn"]}` покрывает {r["frequency_mhz"][0]}–{r["frequency_mhz"][1]} МГц, до {r["maximum_current_ma"]} мА и выдаёт CVBS 1 Vpp/75 Ω.\n'
-            f'- Официальные материалы AKK подтверждают [схему включения 331RX]({e["application_circuit"]}), [функции всех 14 контактов]({e["pinout"]}) и [таблицу выбора 24 каналов]({e["channel_table"]}).\n'
+            f'- Официальные материалы AKK подтверждают [схему включения 331RX]({e["application_circuit"]}), [функции всех 14 контактов]({e["pinout"]}) и [таблицу выбора 24 каналов]({e["channel_table"]}). AKK-брендированный кадр у продавца даёт номинальный контур платы 28,7×23,1 мм; аудит коллизий использует увеличенный резерв 30×24×4 мм.\n'
             '- CH1/CH2/CH3 используют уже зарезервированные Hub GPIO36/37/38; новых GPIO или расширителя нет.\n'
             f'- Резерв 5 В оставляет {result["power_margin_ma"]} мА запаса. RF идёт напрямую по 50-омной PCB-дорожке к MMCX без U.FL.\n'
             f'- Антенна `{a["mpn"]}` линейная, {a["frequency_mhz"][0]}–{a["frequency_mhz"][1]} МГц, {a["gain_dbi"]} dBi, {a["cable_length_mm"]} мм; точная маркировка комплекта — `{a["printed_identity"]}`.'
@@ -193,7 +202,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         intro = 'The serial receiver functional candidate and exact antenna are selected; K331 physical acceptance is not claimed yet.'
         result_text = (
             f'- `AKK {r["mpn"]}` covers {r["frequency_mhz"][0]}–{r["frequency_mhz"][1]} MHz, draws at most {r["maximum_current_ma"]} mA and emits 1-Vpp/75-ohm CVBS.\n'
-            f'- Official AKK-hosted media confirms the [331RX application circuit]({e["application_circuit"]}), [all 14 pin functions]({e["pinout"]}) and the [24-channel selection table]({e["channel_table"]}).\n'
+            f'- Official AKK-hosted media confirms the [331RX application circuit]({e["application_circuit"]}), [all 14 pin functions]({e["pinout"]}) and the [24-channel selection table]({e["channel_table"]}). An AKK-branded reseller image gives a 28.7 × 23.1 mm nominal board outline; collision audit uses an enlarged 30 × 24 × 4 mm reserve.\n'
             '- CH1/CH2/CH3 use already-reserved Hub GPIO36/37/38; no new GPIO or expander is needed.\n'
             f'- The 5-V reserve retains {result["power_margin_ma"]} mA. RF runs directly over a 50-ohm PCB trace to MMCX without U.FL.\n'
             f'- `{a["mpn"]}` is linear, {a["frequency_mhz"][0]}–{a["frequency_mhz"][1]} MHz, {a["gain_dbi"]} dBi and {a["cable_length_mm"]} mm; its exact kit mark is `{a["printed_identity"]}`.'
