@@ -28,10 +28,10 @@ M1 идут transport управления/данных, один CVBS, safety e
 **Статус:** ▶️ сейчас **`H1-R2.18`**.
 
 - [Текущий физический дизайн](h1-r2-physical-layout.ru.md)
-- [Внешние стороны](images/h1-r2-external-layout.svg)
+- [Внешние стороны](images/h1-r2-external-layout.svg?rev=h1-r2.18-usb-silk-2)
 - [Внутренняя сторона передней платы](images/h1-r2-inner-ui.svg)
 - [Внутренняя сторона задней платы](images/h1-r2-inner-rf.svg)
-- [Внешний сервисный доступ](images/h1-r2-service-access.svg)
+- [Внешний сервисный доступ](images/h1-r2-service-access.svg?rev=h1-r2.18-usb-silk-2)
 - [Проверка вертикального FPV MMCX](images/h1-r2-mmcx-service.svg)
 - [Машинный аудит размещения](../hardware/product-design/generated/H1-R2-placement-audit.json)
 - [Тракт аналогового FPV](h1-r2-fpv.ru.md)

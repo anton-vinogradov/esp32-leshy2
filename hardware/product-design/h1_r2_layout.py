@@ -29,6 +29,7 @@ FOUR_FACES_SVG_PATH = REPO / "docs/images/h1-r2-four-faces.svg"
 EN_DOC_PATH = REPO / "docs/h1-r2-physical-layout.md"
 RU_DOC_PATH = REPO / "docs/h1-r2-physical-layout.ru.md"
 SOURCE_TABLE_PATH = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
+PUBLIC_ASSET_REV = "h1-r2.18-usb-silk-2"
 
 
 def load(path: Path) -> dict:
@@ -1329,11 +1330,11 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
         "",
         state,
         "",
-        "![H1-R2 current external layout](images/h1-r2-external-layout.svg)",
+        f"![H1-R2 current external layout](images/h1-r2-external-layout.svg?rev={PUBLIC_ASSET_REV})",
         "",
         "![H1-R2 complete internal layout](images/h1-r2-inner-complete.svg)",
         "",
-        "![H1-R2 external service access](images/h1-r2-service-access.svg)",
+        f"![H1-R2 external service access](images/h1-r2-service-access.svg?rev={PUBLIC_ASSET_REV})",
         "",
         "![H1-R2 inner sandwich sections](images/h1-r2-inner-sections.svg)",
         "",
@@ -1431,9 +1432,9 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         route_col = "Current availability/route"
     lines = [
         title, "", intro, "", outside, "",
-        "![Four matched PCB faces](images/h1-r2-four-faces.svg)", "",
-        "[Detailed exterior at full scale](images/h1-r2-external-layout.svg)", "",
-        "![External service access](images/h1-r2-service-access.svg)", "",
+        f"![Four matched PCB faces](images/h1-r2-four-faces.svg?rev={PUBLIC_ASSET_REV})", "",
+        f"[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev={PUBLIC_ASSET_REV})", "",
+        f"![External service access](images/h1-r2-service-access.svg?rev={PUBLIC_ASSET_REV})", "",
         inside, "",
         f"### {board_names[0]}", "", "![Front PCB inner face](images/h1-r2-inner-ui.svg)", "",
         f"### {board_names[1]}", "", "![Rear PCB inner face](images/h1-r2-inner-rf.svg)", "",

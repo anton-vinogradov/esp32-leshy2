@@ -73,9 +73,9 @@ below 0.4 MB/s, so it does not saturate the RP transport.
 
 ## Physical layout
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-usb-silk-2)
 
-[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg).
+[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-usb-silk-2).
 
 The ten main antenna ports are split symmetrically:
 
@@ -127,7 +127,7 @@ the drawing is its pad span.
 - User silkscreen is printed only on visible outer faces and is not hidden by
   the display, batteries or U214.
 
-![External service access](images/h1-r2-service-access.svg)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-usb-silk-2)
 
 ## Power and unattended safety
 

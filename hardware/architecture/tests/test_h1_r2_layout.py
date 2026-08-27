@@ -217,6 +217,14 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertNotIn('data-part="usb-c-tongue"', expected[MODULE.EXTERNAL_SVG_PATH])
         self.assertEqual(4, expected[MODULE.EXTERNAL_SVG_PATH].count('data-mpn="USB4105-GF-A"'))
         self.assertEqual(4, expected[MODULE.SERVICE_SVG_PATH].count('data-mpn="USB4105-GF-A"'))
+        self.assertIn(
+            f"h1-r2-four-faces.svg?rev={MODULE.PUBLIC_ASSET_REV}",
+            expected[MODULE.EN_DOC_PATH],
+        )
+        self.assertIn(
+            f"h1-r2-service-access.svg?rev={MODULE.PUBLIC_ASSET_REV}",
+            expected[MODULE.RU_DOC_PATH],
+        )
 
 
 if __name__ == "__main__":

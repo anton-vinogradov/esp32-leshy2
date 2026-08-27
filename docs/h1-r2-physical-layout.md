@@ -4,11 +4,11 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 
 ## What the user sees
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-usb-silk-2)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-usb-silk-2)
 
-![External service access](images/h1-r2-service-access.svg)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-usb-silk-2)
 
 ## What is inside
 

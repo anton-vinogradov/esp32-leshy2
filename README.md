@@ -12,7 +12,7 @@
 
 > **Current hardware marker: `H1-R2.18`.** The two-PCB physical model is in progress. Ten main SMA ports are split `5 + 5`; the separate vertical rear-face MMCX is `FPV RX · 5.8G`. Placement and interboard budgets pass, but KiCad and ordering remain blocked until the controlled K331 production package closes H1.
 
-![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg)
+![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.18-usb-silk-2)
 
 ## What it is
 
