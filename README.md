@@ -10,7 +10,7 @@
 
 </div>
 
-> **Current hardware marker: `H1-R2.20`.** The two-PCB physical model is in progress. Ten main SMA ports are split `5 + 5`; the separate vertical rear-face MMCX is `FPV RX · 5.8G`. Stable board revision silk is separated from the changing documentation marker, but KiCad and ordering remain blocked until K331 equivalence and the remaining assembly package close H1.
+> **Current hardware marker: `H1-R2.21`.** The two-PCB physical model has no remaining engineering blocker. Ten main SMA ports are split `5 + 5`; the separate rear MMCX feeds a mutually exclusive post-PCBA K331/AWM666V receiver bay. H1 now awaits explicit acceptance of the complete mock-up; KiCad and ordering remain blocked until that review.
 
 ## What it is
 
@@ -36,10 +36,10 @@ user to accept the non-aggression/authorized-use terms.
 
 ## Physical mock-up
 
-![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.20-board-id-6)
+![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.21-dual-fpv-7)
 
-[Open the legend for all 163 numbered components](docs/images/h1-r2-component-legend.svg?rev=h1-r2.20-board-id-6) ·
-[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.20-board-id-6) ·
+[Open the legend for all 163 numbered components](docs/images/h1-r2-component-legend.svg?rev=h1-r2.21-dual-fpv-7) ·
+[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.21-dual-fpv-7) ·
 [front inner face](docs/images/h1-r2-inner-ui.svg) ·
 [rear inner face](docs/images/h1-r2-inner-rf.svg)
 
@@ -52,7 +52,7 @@ The exterior silkscreen identifies `UI PCB · R2-EVT1 · REV A` and
 
 The front UI/radio PCB owns S3, C5, all three complete nRF24 islands, the front
 RP, microSD and the TVP5150 decoder. The rear RF/power PCB owns CC1101,
-VHF/UHF voice, broadcast/Airband, audio, K331 FPV, M5/U214, the rear RP, power
+VHF/UHF voice, broadcast/Airband, audio, the one-of-two K331/AWM666V FPV bay, M5/U214, the rear RP, power
 and independent safety.
 
 Only one 75-ohm CVBS signal crosses the 80-contact M1 connector. The decoder's
@@ -89,7 +89,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | Stage | Status | Published result |
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.20`** | [Current placement](docs/h1-r2-physical-layout.md) |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.21`** | [Current placement](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ⏳ Waiting for R2 H1 | [Stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
@@ -107,17 +107,18 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ M1 has a complete 80-contact map and an enclosure load path: four 11-mm stops, anti-shear datums and independent PCB capture.
 - ✅ Antenna silkscreen passes generated body/cable/accessory/fastener no-overlap checks.
 - ✅ Vertical Molex `73415-2063` FPV MMCX: exact JLCPCB route, SMT-only, no interboard tail.
-- ✅ Placement audit: zero same-face collisions; 1.44 mm minimum opposing clearance against 0.70 mm required.
+- ✅ Enlarged `30 × 24 × 8 mm` K331/AWM666V post-PCBA bay; exactly one receiver is installed and the unused RF branch is isolated at the MMCX launch.
+- ✅ C5 DBG10 moved beside S3 DBG10; placement audit reports zero same-face collisions and 1.05 mm minimum opposing clearance against 0.70 mm required.
 - ✅ Public exterior, separate readable inner faces, service surface and real section views regenerated.
-- ✅ Official Sinopine `SP331R-MANUAL-V1.0` controls `28.7 × 23.1 mm` nominal XY, `2.54 mm` contact pitch and `1.4 mm` edge offset for the matching SP331RX family; this is not yet claimed as K331 production equivalence.
-- ▶ **Exact current point:** obtain either an AKK-native K331 package or formal K331↔SP331RX equivalence, plus maximum Z/tolerances, recommended land/paste and packaging/reflow evidence.
+- ✅ Official Sinopine `SP331R-MANUAL-V1.0` controls the axes of the tolerant 14-pad K331 hand-solder land; exact-drawing AWM666V is the seven-channel fallback. Neither receiver enters the normal PCBA BOM.
+- ▶ **Exact current point:** review and explicitly accept the complete exterior, both true-view inner faces and the real sandwich sections. A later AKK/Sinopine package can simplify the K331 footprint but no longer blocks H1.
 - 🔒 KiCad, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H1-R2.20 -->
+<!-- current-substep: H1-R2.21 -->
 
 ## Repository
 

@@ -25,13 +25,13 @@ safety evidence and power—not primary RF payloads.
 <a id="h1"></a>
 ## H1 · Physical product design
 
-**Status:** ▶️ current at **`H1-R2.20`**.
+**Status:** ▶️ current at **`H1-R2.21`**.
 
 - [Current physical design](h1-r2-physical-layout.md)
-- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.20-board-id-6)
+- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.21-dual-fpv-7)
 - [Front inner face](images/h1-r2-inner-ui.svg)
 - [Rear inner face](images/h1-r2-inner-rf.svg)
-- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.20-board-id-6)
+- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.21-dual-fpv-7)
 - [Vertical FPV MMCX proof](images/h1-r2-mmcx-service.svg)
 - [Machine placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json)
 - [Analog FPV path](h1-r2-fpv.md)
@@ -40,11 +40,11 @@ safety evidence and power—not primary RF payloads.
 
 Current result: ten main SMA ports are split 5+5; FPV uses a separate vertical
 Molex `73415-2063` (`C588480`) MMCX on the rear face. The generated two-board
-placement has zero same-face collisions and 1.44 mm minimum opposing clearance.
-Official Sinopine SP331RX evidence now controls the candidate-family nominal
-XY, contact pitch and edge offset. The remaining H1 blocker is formal
-K331-to-SP331RX equivalence plus controlled maximum Z, tolerances,
-land/paste and assembly evidence.
+placement has zero same-face collisions and 1.05 mm minimum opposing clearance.
+The enlarged 30 × 24 × 8 mm bay carries mutually exclusive post-PCBA K331 and
+AWM666V lands; exactly one receiver is installed and C5 DBG10 is relocated.
+Actual-module and solder qualification move to H5/H7. No engineering blocker
+remains; explicit acceptance of the complete mock-up is the final H1 action.
 
 <a id="h2"></a>
 ## H2 · Production schematic

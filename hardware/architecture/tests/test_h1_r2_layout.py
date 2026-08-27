@@ -20,10 +20,10 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.20", self.model["marker"])
+        self.assertEqual("H1-R2.21", self.model["marker"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
-        self.assertEqual(36, len(self.audit["opposing_overlaps"]))
+        self.assertEqual(35, len(self.audit["opposing_overlaps"]))
         self.assertGreaterEqual(
             self.audit["minimum_opposing_clearance_mm"],
             self.audit["required_opposing_clearance_mm"],
@@ -39,23 +39,35 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual(len(refs), len(set(refs)))
         self.assertTrue(all(len(ref) <= 2 for ref in refs))
 
-    def test_k331_physical_boundary_is_a_reserve_not_a_fake_component(self):
+    def test_fpv_bay_is_a_dual_post_pcba_reserve_not_a_fake_component(self):
         bay = next(x for x in self.model["placements"] if x["id"] == "fpv_receiver_bay")
         self.assertEqual("reserve", bay["kind"])
         self.assertIsNone(bay["mpn"])
         self.assertEqual("AKK K331", bay["candidate_mpn"])
-        self.assertIn("official Sinopine SP331RX", bay["role"])
-        self.assertNotIn("reseller-hosted AKK-branded", bay["role"])
-        self.assertIn("K331-to-SP331RX equivalence", self.model["current_h1_blockers"][0])
-        self.assertIn("maximum Z/tolerances", self.model["current_h1_blockers"][0])
+        self.assertEqual("AWM666V RX", bay["alternate_mpn"])
+        self.assertEqual([30.0, 24.0, 8.0], bay["size_mm"])
+        self.assertEqual("dual mutually exclusive post-PCBA land", bay["attachment"]["architecture"])
+        self.assertEqual("exactly one receiver module", bay["attachment"]["population_rule"])
+        self.assertEqual(14, bay["attachment"]["primary"]["contact_count"])
+        self.assertEqual([26.16, 16.38, 3.7], bay["attachment"]["fallback"]["body_mm"])
+        self.assertEqual(0, bay["attachment"]["normal_pcba_bom_additions"])
+        self.assertIn("no live stub", bay["attachment"]["rf_selection"])
 
     def test_h1_blockers_are_separate_from_dependent_and_later_work(self):
-        self.assertEqual(1, len(self.model["current_h1_blockers"]))
+        self.assertEqual(0, len(self.model["current_h1_blockers"]))
         self.assertEqual(1, len(self.model["dependent_h1_work"]))
-        self.assertIn("promote the generated complete R2", self.model["dependent_h1_work"][0])
-        self.assertEqual({"H5/H6/H7", "H5/H8"}, {row["stage"] for row in self.model["downstream_verification"]})
+        self.assertIn("explicitly accept the generated complete R2", self.model["dependent_h1_work"][0])
+        self.assertEqual({"H5/H6/H7", "H5/H7", "H5/H8"}, {row["stage"] for row in self.model["downstream_verification"]})
         self.assertEqual(self.model["current_h1_blockers"], self.audit["current_h1_blockers"])
         self.assertEqual(self.model["dependent_h1_work"], self.audit["dependent_h1_work"])
+
+    def test_c5_dbg10_is_relocated_clear_of_the_enlarged_fpv_bay(self):
+        header = next(x for x in self.model["placements"] if x["id"] == "c5_dbg_header_r2")
+        self.assertEqual(["c5_dbg_header"], header["replaces"])
+        self.assertEqual([15.5, 104.0], header["world_xy_mm"])
+        self.assertEqual("FTSH-105-01-L-DV-K-P-TR", header["mpn"])
+        self.assertEqual("c5_dbg_header_r2", self.audit["relocated_c5_dbg_header"])
+        self.assertGreaterEqual(self.audit["minimum_opposing_clearance_mm"], 1.05)
 
     def test_factory_rows_include_current_identity(self):
         by_mpn = {row["mpn"]: row for row in self.model["factory_evidence"]}
@@ -64,11 +76,11 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("C39843328", by_mpn["SC1512-A4"]["jlcpcb_part"])
         self.assertIsNone(by_mpn["K331"]["jlcpcb_part"])
         self.assertFalse(by_mpn["K331"]["accepted"])
-        self.assertIn("Consigned Parts", by_mpn["K331"]["assembly"])
+        self.assertIn("post-PCBA", by_mpn["K331"]["assembly"])
         self.assertEqual("unavailable", self.model["k331_factory_route"]["exact_parts_library"])
         self.assertEqual("unavailable", self.model["k331_factory_route"]["global_sourcing"])
         self.assertIsNone(self.model["k331_factory_route"]["confirmed_drop_in_alternative"])
-        self.assertIn("genuine K331", self.model["k331_factory_route"]["selected_route"])
+        self.assertIn("post-PCBA manual installation", self.model["k331_factory_route"]["selected_route"])
         self.assertTrue(all("accepted" in row for row in self.model["factory_evidence"]))
         self.assertTrue(by_mpn["TPS7A2018PDBVR"]["accepted"])
         self.assertIn("2,225 pieces", by_mpn["TPS7A2018PDBVR"]["availability"])

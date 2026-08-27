@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H1-R2.20`**. The functional architecture is reviewed; the
+> Current marker: **`H1-R2.21`**. The functional architecture is reviewed; the
 > physical design is in progress. Nothing on this page authorizes KiCad routing
 > or an order.
 
@@ -17,7 +17,7 @@
 | VHF voice | `SA818S-V` | Rear RP | Independent analog VHF RX/TX |
 | UHF voice | `SA818S-U` | Rear RP | Independent analog UHF RX/TX |
 | Broadcast/Airband | `Si4732-A10-GSR`, `PGA-103+`, `LT5560EDD#TRPBF`, `SI5351A-B-GTR`, `HMC544AETR` | Rear RP | FM/AM/SW/LW and receive-only 118–137-MHz Airband AM |
-| Analog FPV | K331 functional boundary + `TVP5150AM1PBS` | Rear RP + S3 | Receive-only 5.8-GHz PAL/NTSC capture |
+| Analog FPV | post-PCBA `K331` / `AWM666V RX` bay + `TVP5150AM1PBS` | Rear RP + S3 | Receive-only 5.8-GHz PAL/NTSC capture |
 | Audio | `ES8311`, `PAM8302AAYCR`, speaker, microphone and CTIA headset | Rear RP | Record, monitor and play audio |
 | Expansion | M5 Unit + rear U214 Cap rail | Rear RP | External GPS/radio modules and regional LoRa Cap |
 
@@ -48,7 +48,7 @@ here so S3 can retain every direct UI path and the complete i8080-8 bus.
 - `SC1512-A4` rear RP: CC1101, voice, broadcast/Airband, audio, FPV, M5 and U214.
 - Power conversion, pack admission, independent watchdog, thermal sensing and
   hard-off safety.
-- K331 receiver boundary and direct 50-ohm path to the rear FPV MMCX.
+- One mutually exclusive post-PCBA K331/AWM666V receiver and a direct selected 50-ohm path to the rear FPV MMCX.
 - Audio codec, speaker amplifier, microphone and CTIA headset path.
 
 Rear RP GPIO budget: **45 used / 3 free**. The K331 `RSSI (NC)` contact is not allocated.
@@ -73,9 +73,9 @@ below 0.4 MB/s, so it does not saturate the RP transport.
 
 ## Physical layout
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.20-board-id-6)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.21-dual-fpv-7)
 
-[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.20-board-id-6).
+[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.21-dual-fpv-7).
 
 The ten main antenna ports are split symmetrically:
 
@@ -95,7 +95,7 @@ both mounting holes; Ø12 is only a temporary H5 finger-access check.
 
 ### Component legend
 
-![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.20-board-id-6)
+![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.21-dual-fpv-7)
 
 [Front inner face at full scale](images/h1-r2-inner-ui.svg) ·
 [rear inner face at full scale](images/h1-r2-inner-rf.svg)
@@ -112,8 +112,13 @@ over, so left and right swap relative to the outer face. Numbers are drawing
 references, not silkscreen. The complete legend lists all 163 bodies without
 repeating the PCB drawings.
 
-Placement currently has **zero same-face collisions** and **1.44 mm** minimum
+Placement currently has **zero same-face collisions** and **1.05 mm** minimum
 opposing clearance against **0.70 mm** required.
+
+The receiver reserve is **30 × 24 × 8 mm**. Primary K331 uses a tolerant
+14-pad hand-solder land; the exact AWM666V manufacturer land nests inside it as
+a seven-channel fallback. Exactly one module is installed after PCBA and C5
+DBG10 is relocated beside S3 DBG10 to preserve the measured clearance.
 
 M1 is not structural: four 11.00-mm compression stops, at least two enclosure
 anti-shear datums and independent capture of both PCBs carry screw, drop and
@@ -133,7 +138,7 @@ the drawing is its pad span.
 - User silkscreen is printed only on visible outer faces and is not hidden by
   the display, batteries or U214.
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.20-board-id-6)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.21-dual-fpv-7)
 
 ## Power and unattended safety
 
@@ -155,11 +160,9 @@ See [power and thermal architecture](h1-r2-power-thermal.md) and the
 
 ## Current physical-design gate
 
-Everything above is generated and audit-checked. Official Sinopine SP331RX
-evidence now controls the candidate-family nominal 28.7 × 23.1 mm outline,
-2.54 mm contact pitch and 1.4 mm edge offset. H1 remains open because the
-manufacturer has not yet formally tied that package to AKK K331, and neither
-source controls maximum Z, tolerances, recommended land/paste or
-packaging/soldering/reflow. JLCPCB confirmed no Parts Library or Global Sourcing
-route; genuine manufacturer supply through Consigned Parts remains the selected
-later factory route. KiCad and all purchasing remain blocked.
+Everything above is generated and audit-checked. The post-PCBA one-of-two
+receiver architecture removes the unavailable K331 production package from the
+H1 critical path. Actual body, hand soldering, Z and durability are explicit
+H5/H7 qualification items; a later AKK/Sinopine package may simplify only the
+K331 footprint. No engineering blocker remains, but H1 stays open until the
+complete mock-up is explicitly accepted. KiCad and all purchasing remain blocked.

@@ -1,12 +1,13 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.20",
+  "marker": "H1-R2.21",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
-  "new_fixed_body_count": 47,
+  "new_fixed_body_count": 48,
   "new_reserve_count": 3,
   "replaced_seed_instances": [
     "audio_speaker_selector",
+    "c5_dbg_header",
     "c5_rf_board_connector",
     "c5_rf_coupler",
     "cc",
@@ -38,8 +39,8 @@
     "safe_gate_a"
   ],
   "same_face_collisions": [],
-  "opposing_overlap_count": 36,
-  "minimum_opposing_clearance_mm": 1.44,
+  "opposing_overlap_count": 35,
+  "minimum_opposing_clearance_mm": 1.05,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
     {
@@ -99,13 +100,8 @@
     },
     {
       "new": "fpv_receiver_bay",
-      "base": "c5_dbg_header",
-      "clearance_mm": 1.44
-    },
-    {
-      "new": "fpv_receiver_bay",
       "base": "display_connector",
-      "clearance_mm": 5.05
+      "clearance_mm": 1.05
     },
     {
       "new": "nrf0_r2",
@@ -658,18 +654,47 @@
     "load_path": "an enclosure cradle and two end stops capture the plastic body and cell insertion axis so insertion, removal and drop loads do not peel the SMT pads",
     "h5_proof": "cell insertion/removal cycles and drop inspection with the enclosure load path installed"
   },
+  "fpv_receiver_attachment": {
+    "architecture": "dual mutually exclusive post-PCBA land",
+    "population_rule": "exactly one receiver module",
+    "primary": {
+      "mpn": "AKK K331",
+      "contact_count": 14,
+      "contact_pitch_mm": 2.54,
+      "contact_edge_offset_mm": 1.4,
+      "land_class": "project-engineered tolerant hand-solder land; not claimed as an AKK production footprint",
+      "qualification_stage": "H5/H7"
+    },
+    "fallback": {
+      "mpn": "AWM666V RX",
+      "body_mm": [
+        26.16,
+        16.38,
+        3.7
+      ],
+      "land_class": "manufacturer-documented recommended land pattern",
+      "channel_count": 7
+    },
+    "rf_selection": "two population-specific short 50-ohm launches selected by a copper solder bridge at the MMCX launch; the unused branch is isolated at the launch and creates no live stub",
+    "normal_pcba_bom_additions": 0,
+    "future_simplification": "if AKK or Sinopine supplies a complete controlled production package, replace the tolerant K331 land with the regular footprint without changing the MMCX, CVBS or control interfaces"
+  },
+  "relocated_c5_dbg_header": "c5_dbg_header_r2",
   "errors": [],
-  "current_h1_blockers": [
-    "close one controlled K331 production identity: either AKK supplies its own package or AKK/Sinopine formally confirms K331-to-SP331RX equivalence; in either case obtain maximum Z/tolerances, recommended land/paste geometry and packaging/soldering/reflow evidence before replacing the reserve with a fixed body and submitting the Consigned Parts application"
-  ],
+  "current_h1_blockers": [],
   "dependent_h1_work": [
-    "promote the generated complete R2 exterior, mirrored inner faces and four real section planes from in-progress to reviewed only after the K331 reserve becomes a controlled fixed body"
+    "review and explicitly accept the generated complete R2 exterior, both true-view inner faces and four real section planes before closing H1"
   ],
   "downstream_verification": [
     {
       "stage": "H5/H6/H7",
-      "requirement": "submit the genuine AKK K331 Consigned Parts application, pass final Gerber/BOM/CPL DFM and obtain feasibility plus quotation for the 5-V/channel-select/CVBS function test",
-      "requirement_ru": "подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/CVBS"
+      "requirement": "qualify the received K331 on the tolerant 14-pad post-PCBA land, prove the 8-mm Z reserve and solder/process durability, and decide between owner installation and an approved Consigned Parts factory route; repeat with AWM666V only if the fallback is populated",
+      "requirement_ru": "квалифицировать полученный K331 на толерантной 14-pad post-PCBA-посадке, доказать резерв Z 8 мм и прочность пайки/процесса, затем выбрать между установкой владельцем и одобренным фабричным Consigned Parts; повторить для AWM666V только при установке fallback"
+    },
+    {
+      "stage": "H5/H7",
+      "requirement": "inspect the relocated C5 DBG10 access and opposing clearance in the mechanical article before fabrication release",
+      "requirement_ru": "проверить доступ к перенесённому C5 DBG10 и встречный зазор на механическом образце до разрешения печати"
     },
     {
       "stage": "H5/H8",
@@ -935,7 +960,7 @@
       "kind": "reserve",
       "frame": "rf-inner",
       "mpn": null,
-      "role": "leading serial 5.8-GHz analog receiver candidate with official AKK functional integration; 30 x 24 x 4 mm is a conservative collision reserve around the official Sinopine SP331RX 28.7 x 23.1 mm nominal XY while formal K331 equivalence and the remaining production package stay open",
+      "role": "30 x 24 x 8 mm mutually exclusive post-PCBA receiver bay: primary AKK K331 uses a tolerant 14-pad direct-solder land; the exact documented Airwave AWM666V land overlaps as a seven-channel fallback; only one module is installed",
       "world_bbox_mm": {
         "x": [
           38.5,
@@ -946,8 +971,29 @@
           114.0
         ],
         "z": [
-          11.8,
+          7.800000000000001,
           15.8
+        ]
+      }
+    },
+    {
+      "id": "c5_dbg_header_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "FTSH-105-01-L-DV-K-P-TR",
+      "role": "relocated keyed C5 UART0/RESET/BOOT DBG10 header; moved clear of the enlarged FPV receiver bay",
+      "world_bbox_mm": {
+        "x": [
+          15.5,
+          25.15
+        ],
+        "y": [
+          104.0,
+          109.84
+        ],
+        "z": [
+          4.8,
+          10.36
         ]
       }
     },

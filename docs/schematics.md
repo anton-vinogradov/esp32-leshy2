@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)
 
-These are the current `H0-R2`/`H1-R2.20` principle diagrams of the finished
+These are the current `H0-R2`/`H1-R2.21` principle diagrams of the finished
 device. They explain ownership, buses, RF locality, power and service access.
 The R2 production ECAD schematic does **not** exist yet: H2 starts only after
 the complete H1 mock-up is accepted.
@@ -13,7 +13,7 @@ the complete H1 mock-up is accepted.
 
 The front UI/radio PCB owns S3, C5, all three complete nRF24 islands, the front
 RP, microSD and TVP5150. The rear RF/power PCB owns CC1101, both voice radios,
-broadcast/Airband, audio, K331 FPV, M5/U214, the rear RP, power and safety.
+broadcast/Airband, audio, the one-of-two post-PCBA K331/AWM666V FPV bay, M5/U214, the rear RP, power and safety.
 
 Exact working GPIO groups and their budgets are published with the
 [H0-R2 architecture](h0-r2-functional-architecture.md#working-principle-pin-design).
@@ -27,7 +27,7 @@ flowchart TD
   FRP["SC1512-A4 · front RP<br/>3× nRF24, microSD"]
   RRP["SC1512-A4 · rear RP<br/>RF, audio, FPV, expansion"]
   TVP["TVP5150AM1PBS<br/>front-local CVBS decoder"]
-  K331["AKK K331<br/>rear-local analog FPV RX"]
+  K331["AKK K331 / AWM666V<br/>one post-PCBA analog FPV RX"]
   LCD["HMX035CTFT-001<br/>direct 8-bit i8080 · 32 MHz"]
   M1["Hirose FX8C-80<br/>25 signals · 14 main-power · 2 AON<br/>25 returns · 14 NC reserve"]
 
@@ -47,13 +47,13 @@ anti-shear enclosure datums and independent PCB capture carry mechanical load.
 
 ## Physical implementation of the principle
 
-![Outer faces and direct views after turning the PCBs over](images/h1-r2-four-faces.svg?rev=h1-r2.20-board-id-6)
+![Outer faces and direct views after turning the PCBs over](images/h1-r2-four-faces.svg?rev=h1-r2.21-dual-fpv-7)
 
 [Front PCB inner face](images/h1-r2-inner-ui.svg) ·
 [Rear PCB inner face](images/h1-r2-inner-rf.svg)
 
 Internal numbers are drawing references, not silkscreen. The current placement
-audit reports zero same-face body collisions and 1.44 mm minimum opposing
+audit reports zero same-face body collisions and 1.05 mm minimum opposing
 clearance against the 0.70 mm requirement.
 
 ## Dedicated signal and power paths

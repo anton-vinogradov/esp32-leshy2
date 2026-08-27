@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1110" viewBox="0 0 1160 1110" data-marker="H1-R2.20" data-frame="rf-inner" data-inner-silkscreen="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1110" viewBox="0 0 1160 1110" data-marker="H1-R2.21" data-frame="rf-inner" data-inner-silkscreen="none">
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.20 · RF / power PCB inner face</text>
+<text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.21 · RF / power PCB inner face</text>
 <text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.</text>
 <text x="290.0" y="105.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ANTENNA EDGE · five board-local RF paths</text>
 <rect x="80.0" y="165.0" width="420.0" height="840.0" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -255,6 +255,9 @@
 <text x="172.2" y="988.0" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">113</text>
 <rect x="332.00" y="982.60" width="22.40" height="22.40" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="microphone" data-mpn="Same Sky CMEJ-0413-42-SMT-TR"/>
 <text x="343.2" y="996.1" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">114</text>
+<rect x="127.15" y="690.34" width="146.50" height="91.73" rx="2" fill="none" stroke="#16a34a" stroke-width="1.4" stroke-dasharray="4 3" data-alternate-mpn="AWM666V RX" data-population="mutually-exclusive"/>
+<text x="122.4" y="683.0" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="start" fill="#9a3412">K331 tolerant land · 30×24×8</text>
+<text x="133.2" y="776.1" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="start" fill="#166534">AWM666V exact fallback · one populated</text>
 <g id="antenna-removable-media" data-topology-source="r2">
 </g>
 <text x="550.0" y="125.0" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="start" fill="#172033">Functional islands on this PCB</text>
@@ -263,7 +266,7 @@
 <text x="550.0" y="224.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#334155">• VHF/UHF voice</text>
 <text x="550.0" y="252.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#334155">• FM/SW/AM/LW/Airband</text>
 <text x="550.0" y="280.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#334155">• audio</text>
-<text x="550.0" y="308.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#334155">• K331 FPV receiver</text>
+<text x="550.0" y="308.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#334155">• one K331 / AWM666V post-PCBA FPV receiver</text>
 <text x="550.0" y="336.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#334155">• M5 Unit</text>
 <text x="550.0" y="364.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#334155">• U214</text>
 <text x="550.0" y="392.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#334155">• rear RP</text>

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.20",
+  "marker": "H1-R2.21",
   "status": "pass",
   "functional_and_pin_fit": true,
   "receiver": "K331",
@@ -17,8 +17,11 @@
   "receiver_collision_reserve_mm": [
     30.0,
     24.0,
-    4.0
+    8.0
   ],
+  "attachment_strategy": "dual mutually exclusive post-PCBA land",
+  "attachment_h1_accepted": true,
+  "receiver_population_rule": "exactly one receiver module",
   "factory_placement_accepted": false,
   "production_acceptance": false,
   "receiver_alternatives_reviewed": 8,
@@ -46,14 +49,12 @@
     "akk",
     "sinopine"
   ],
-  "current_h1_blockers": [
-    "close one controlled K331 production identity: either AKK supplies its own package or AKK/Sinopine formally confirms K331-to-SP331RX equivalence; in either case obtain maximum Z/tolerances, recommended land/paste geometry and packaging/soldering/reflow evidence for the fixed body and Consigned Parts application"
-  ],
+  "current_h1_blockers": [],
   "downstream_verification": [
     {
       "stage": "H5/H6/H7",
-      "requirement": "submit the genuine AKK K331 Consigned Parts application, pass final Gerber/BOM/CPL DFM and obtain feasibility plus quotation for the 5-V/channel-select/CVBS function test",
-      "requirement_ru": "подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/CVBS"
+      "requirement": "qualify the received K331 on the tolerant 14-pad post-PCBA land, prove the 8-mm Z reserve and solder/process durability, then choose owner installation or an approved optional Consigned Parts route; qualify AWM666V only if the fallback is populated",
+      "requirement_ru": "квалифицировать полученный K331 на толерантной 14-pad post-PCBA-посадке, доказать резерв Z 8 мм и прочность пайки/процесса, затем выбрать установку владельцем или одобренный необязательный Consigned Parts; квалифицировать AWM666V только при установке fallback"
     },
     {
       "stage": "H3/H6/H8",

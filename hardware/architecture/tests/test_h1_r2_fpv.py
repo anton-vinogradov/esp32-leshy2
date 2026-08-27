@@ -53,7 +53,7 @@ class H1R2FPVTest(unittest.TestCase):
     def test_k331_nominal_xy_is_not_overstated_as_a_controlled_body(self):
         mechanical = self.model["receiver"]["mechanical"]
         self.assertEqual([28.7, 23.1], mechanical["nominal_board_xy_mm"])
-        self.assertEqual([30.0, 24.0, 4.0], mechanical["working_envelope_mm"])
+        self.assertEqual([30.0, 24.0, 8.0], mechanical["working_envelope_mm"])
         self.assertIn("SP331RX", mechanical["nominal_board_xy_source_class"])
         self.assertIn("not yet formally tied", mechanical["nominal_board_xy_source_class"])
         self.assertFalse(mechanical["accepted"])
@@ -82,6 +82,21 @@ class H1R2FPVTest(unittest.TestCase):
         self.assertEqual(7, fallback["channel_count"])
         self.assertEqual(0, fallback["jlcpcb_surface"]["placeable_hits"])
         self.assertIn("CH7", fallback["datasheet_inconsistency"])
+
+    def test_dual_post_pcba_attachment_is_h1_accepted_and_fail_closed(self):
+        attachment = self.model["receiver"]["attachment_strategy"]
+        self.assertTrue(attachment["h1_accepted"])
+        self.assertEqual("dual mutually exclusive post-PCBA land", attachment["architecture"])
+        self.assertEqual("exactly one receiver module", attachment["population_rule"])
+        self.assertEqual("AKK K331", attachment["primary"]["mpn"])
+        self.assertEqual(14, attachment["primary"]["contact_count"])
+        self.assertEqual("AWM666V RX", attachment["fallback"]["mpn"])
+        self.assertTrue(attachment["fallback"]["controlled_land_pattern"])
+        self.assertEqual(0, attachment["normal_pcba_bom_additions"])
+        self.assertFalse(attachment["rf_selection"]["internal_ufl"])
+        self.assertFalse(attachment["rf_selection"]["internal_cable"])
+        self.assertIn("no live RF stub", attachment["rf_selection"]["unused_path"])
+        self.assertEqual("dual mutually exclusive post-PCBA land", self.audit["attachment_strategy"])
 
     def test_receiver_factory_and_physical_limits_fail_closed(self):
         receiver = self.model["receiver"]
@@ -123,16 +138,17 @@ class H1R2FPVTest(unittest.TestCase):
         self.assertEqual("SP331RX", self.audit["candidate_oem_family"])
         self.assertFalse(self.audit["candidate_oem_equivalence_accepted"])
         self.assertIn("response received", outreach["jlcpcb"]["status"])
-        self.assertTrue(self.model["receiver"]["jlcpcb_surface"]["consigned_parts_route"]["selected"])
+        route = self.model["receiver"]["jlcpcb_surface"]["consigned_parts_route"]
+        self.assertFalse(route["selected"])
+        self.assertTrue(route["optional_later_simplification"])
         self.assertFalse(self.model["result"]["production_acceptance"])
 
-    def test_only_present_blockers_are_owned_by_h1(self):
+    def test_post_pcba_strategy_moves_only_qualification_downstream(self):
         blockers = self.model["current_h1_blockers"]
         downstream = self.model["downstream_verification"]
-        self.assertEqual(1, len(blockers))
-        self.assertTrue(any("K331-to-SP331RX equivalence" in row for row in blockers))
-        self.assertTrue(any("maximum Z/tolerances" in row for row in blockers))
+        self.assertEqual([], blockers)
         self.assertEqual({"H5/H6/H7", "H3/H6/H8", "H5/H8"}, {row["stage"] for row in downstream})
+        self.assertTrue(any("tolerant 14-pad" in row["requirement"] for row in downstream))
         self.assertEqual(blockers, self.audit["current_h1_blockers"])
         self.assertEqual(downstream, self.audit["downstream_verification"])
 

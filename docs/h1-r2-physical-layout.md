@@ -1,18 +1,18 @@
-# H1-R2.20 · finished-device placement
+# H1-R2.21 · finished-device placement
 
-Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, not authorization to start KiCad: formal K331 identity and the remaining production package are the sole open input.
+Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, not authorization to start KiCad: no engineering blocker remains, but the complete mock-up still needs explicit acceptance.
 
 ## What the user sees
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.20-board-id-6)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.21-dual-fpv-7)
 
 ## Component legend
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.20-board-id-6)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.21-dual-fpv-7)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.20-board-id-6)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.21-dual-fpv-7)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.20-board-id-6)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.21-dual-fpv-7)
 
 ## What is inside
 
@@ -27,7 +27,8 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 - All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.
 - Each outer face prints a stable board role/revision — `UI PCB · R2-EVT1 · REV A` and `RF/PWR PCB · R2-EVT1 · REV A`; the changing H1-R2.xx work marker is never printed on a PCB.
 - All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.
-- K331 remains rear-local while `TVP5150AM1PBS` moves beside S3: M1 carries one 75-ohm CVBS signal, not the 11-line LCD_CAM bus.
+- A mutually exclusive post-PCBA `K331 / AWM666V` bay remains rear-local while `TVP5150AM1PBS` moves beside S3: M1 carries one 75-ohm CVBS signal, not the 11-line LCD_CAM bus.
+- Primary K331 uses a tolerant 14-pad land; the exact seven-channel AWM666V land nests in the same bay. Exactly one module is installed, without an internal U.FL or RF cable.
 - FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, camera RX, buttons, encoder and USB.
 
 ![True inner sandwich sections](images/h1-r2-inner-sections.svg)
@@ -37,7 +38,8 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 ## Generator-verified
 
 - Same-face body collisions: `0`.
-- Minimum opposing Z clearance: `1.44 mm` against `0.70 mm` required.
+- Minimum opposing Z clearance: `1.05 mm` against `0.70 mm` required.
+- The FPV reserve is enlarged to `30 × 24 × 8 mm`; C5 DBG10 is relocated beside S3 DBG10 and intersects neither the bay nor adjacent bodies.
 - FPV MMCX: the jack body leaves `2.07 mm` to the nearest SMA; the controlled right-angle plug leaves `2.40 mm` to SMA and `4.80 mm` to U214. Ø12 is only a temporary finger-approach zone and remains an H5 ergonomic check.
 - GPIO: front RP `46/48` with `2` free; rear RP `45/48` with `3` free. K331 RSSI is officially marked NC.
 - M1: all 80 contacts are assigned — 25 signals, 14 main-power, 2 AON, 25 returns and 14 NC reserves.
@@ -64,8 +66,9 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 | 3V3_MAIN input/output bulk capacitor | `GRM32ER71E226KE15L` | [`C21397`](https://jlcpcb.com/partdetail/MurataElectronics-GRM32ER71E226KE15L/C21397) | 116,360 pieces, MOQ 1, USD 0.6222 at quantity 1 |
 | TPS566231P serial bootstrap tuning link | `RC0402JR-070RL` | [`C60485`](https://jlcpcb.com/partdetail/YAGEO-RC0402JR070RL/C60485) | 4,551,848 pieces, MOQ 1, USD 0.0034 at quantity 1 |
 
-## Current H1 blocker
+## Final H1 acceptance
 
-- close one controlled K331 production identity: either AKK supplies its own package or AKK/Sinopine formally confirms K331-to-SP331RX equivalence; in either case obtain maximum Z/tolerances, recommended land/paste geometry and packaging/soldering/reflow evidence before replacing the reserve with a fixed body and submitting the Consigned Parts application
+- No engineering blockers remain.
+- review and explicitly accept the generated complete R2 exterior, both true-view inner faces and four real section planes before closing H1
 
-> Exact current marker: **H1-R2.20**. H1 remains in progress.
+> Exact current marker: **H1-R2.21**. H1 remains in progress.

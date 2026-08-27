@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.20",
-  "checked_on": "2026-08-27",
-  "status": "official_functional_integration_and_sinopine_candidate_geometry_passed_consigned_route_selected_production_identity_open",
+  "marker": "H1-R2.21",
+  "checked_on": "2026-08-28",
+  "status": "dual_post_pcba_k331_awm666v_attachment_accepted_h1_clear_production_qualification_downstream",
   "receiver": {
     "mpn": "K331",
     "manufacturer": "AKK Technology",
@@ -70,16 +70,47 @@
       "nominal_board_xy_mm": [28.7, 23.1],
       "nominal_board_xy_source": "SP331R-MANUAL-V1.0 Figure 1, exposed by the official Sinopine SP331RX page",
       "nominal_board_xy_source_class": "manufacturer-controlled for the Sinopine SP331RX candidate OEM family; not yet formally tied to the supplied AKK K331 production identity",
-      "working_envelope_mm": [30.0, 24.0, 4.0],
-      "working_envelope_source": "conservative collision reserve around the official SP331RX nominal XY and the common 3 mm RX5808-family height; not an accepted AKK maximum drawing",
+      "working_envelope_mm": [30.0, 24.0, 8.0],
+      "working_envelope_source": "deliberately doubled post-PCBA collision envelope around the official SP331RX nominal XY; it is an accepted board-and-enclosure reserve, not a claimed AKK maximum drawing",
       "accepted": false,
-      "gate": "obtain either an AKK-controlled K331 package or formal AKK/Sinopine K331-to-SP331RX production equivalence, plus maximum Z/tolerances, recommended PCB land/paste geometry, packaging and soldering/reflow requirements before replacing the reserve with a fixed body"
+      "gate": "H5/H7 qualifies the received module, tolerant hand-solder land, process durability and actual Z; a later controlled AKK/Sinopine package may simplify the footprint without changing the accepted architecture"
+    },
+    "attachment_strategy": {
+      "architecture": "dual mutually exclusive post-PCBA land",
+      "h1_accepted": true,
+      "normal_pcba_bom_additions": 0,
+      "population_rule": "exactly one receiver module",
+      "primary": {
+        "mpn": "AKK K331",
+        "contact_count": 14,
+        "contact_pitch_mm": 2.54,
+        "contact_edge_offset_mm": 1.4,
+        "land_class": "project-engineered tolerant direct-solder land for post-reflow hand installation; not represented as an AKK production footprint",
+        "qualification_stage": "H5/H7"
+      },
+      "fallback": {
+        "mpn": "AWM666V RX",
+        "manufacturer": "Airwave Technologies",
+        "controlled_body_mm": [26.16, 16.38, 3.7],
+        "controlled_land_pattern": true,
+        "channel_count": 7,
+        "qualification_stage": "H5/H7 only if populated"
+      },
+      "rf_selection": {
+        "method": "population-specific copper solder bridge at the MMCX launch",
+        "active_path": "one short 50-ohm PCB branch",
+        "unused_path": "isolated at the launch; no live RF stub",
+        "internal_ufl": false,
+        "internal_cable": false
+      },
+      "future_simplification": "replace only the tolerant K331 land with a regular controlled production footprint if AKK or Sinopine later supplies the complete package; MMCX, controls, power and CVBS stay unchanged"
     },
     "jlcpcb_surface": {
-      "assembly": "JLCPCB confirmed K331 is absent from Parts Library and Global Sourcing and found no direct replacement; selected conditional route is genuine AKK supply through Consigned Parts, subject to application approval and final DFM",
+      "assembly": "JLCPCB confirmed K331 is absent from Parts Library and Global Sourcing and found no direct replacement; the normal PCBA BOM omits the receiver and post-PCBA installation is the accepted route",
       "consigned_parts_route": {
         "response_date": "2026-08-27",
-        "selected": true,
+        "selected": false,
+        "optional_later_simplification": true,
         "approval_required_before_shipment": true,
         "required_package": "a controlled document identifying the supplied K331 or formally linking it to SP331RX, with maximum Z/tolerances, recommended land/paste pattern, pin definitions, packaging, soldering/reflow and special assembly requirements",
         "final_review_inputs": "Gerber, BOM, CPL and order",
@@ -137,10 +168,10 @@
       "maximum_current_ma": 200,
       "channel_count": 24,
       "nominal_board_xy_mm": [28.7, 23.1],
-      "working_envelope_mm": [30.0, 24.0, 4.0],
+      "working_envelope_mm": [30.0, 24.0, 8.0],
       "controlled_mechanical_drawing": false,
-      "result": "leading candidate: AKK-hosted media closes functional integration, while the official Sinopine SP331RX manual confirms 28.7 x 23.1 mm nominal XY, 2.54-mm contact pitch and 1.4-mm edge offset for the matching 331RX family; formal K331 equivalence, maximum Z/tolerances, recommended land/paste and assembly evidence remain open",
-      "result_ru": "ведущий кандидат: материалы AKK закрывают функциональную интеграцию, а официальный manual Sinopine SP331RX подтверждает номинал 28,7×23,1 мм, шаг контактов 2,54 мм и краевой отступ 1,4 мм совпадающего семейства 331RX; формальная эквивалентность K331, maximum Z/допуски, рекомендуемые land/paste и assembly evidence остаются открыты"
+      "result": "primary post-PCBA module: AKK-hosted media closes functional integration, while the official Sinopine SP331RX manual controls the 14 contact axes used by the tolerant hand-solder land; formal equivalence and the production package remain optional footprint-simplification evidence, while received-part and solder qualification moves to H5/H7",
+      "result_ru": "основной post-PCBA-модуль: материалы AKK закрывают функциональную интеграцию, а официальный manual Sinopine SP331RX контролирует 14 осей контактов толерантной ручной посадки; формальная эквивалентность и production-пакет остаются необязательными данными для упрощения footprint, а квалификация полученной детали и пайки переносится в H5/H7"
     },
     {
       "mpn": "AWM682 RX",
@@ -176,8 +207,8 @@
         "route": "manufacturer inquiry, private/global sourcing or post-PCBA installation only",
         "checked": "2026-08-27"
       },
-      "result": "retained as the best controlled physical fallback, not the primary: its manufacturer drawing and recommended land pattern fit inside the existing 30 x 24 x 4 mm bay and its 210-mA maximum fits power, but it covers only seven 5725-5875-MHz channels versus K331's 24 channels across 5645-5945 MHz and has no public JLCPCB route",
-      "result_ru": "сохранён как лучший контролируемый физический fallback, но не основной: чертёж производителя и рекомендуемая посадка входят в существующую ячейку 30×24×4 мм, максимальные 210 мА проходят по питанию, однако доступны только семь каналов 5725–5875 МГц вместо 24 каналов K331 5645–5945 МГц и публичного маршрута JLCPCB нет"
+      "result": "accepted as the exact-drawing mutually exclusive post-PCBA fallback: its manufacturer body and recommended land pattern fit inside the 30 x 24 x 8 mm bay and its 210-mA maximum fits power, but it covers only seven 5725-5875-MHz channels versus K331's 24 channels across 5645-5945 MHz and has no public JLCPCB route",
+      "result_ru": "принят как взаимоисключающий post-PCBA fallback с точным чертежом: корпус производителя и рекомендуемая посадка входят в ячейку 30×24×8 мм, максимальные 210 мА проходят по питанию, однако доступны только семь каналов 5725–5875 МГц вместо 24 каналов K331 5645–5945 МГц и публичного маршрута JLCPCB нет"
     },
     {
       "mpn": "TUE-RFVRX-58-D",
@@ -280,7 +311,7 @@
       "result_ru": "отклонён как production-identity: у публичной карточки нулевой склад и нет личности производителя, контролируемого чертежа или доступного фабричного маршрута"
     }
   ],
-  "receiver_research_conclusion": "Keep K331 as the leading functional candidate: official AKK-hosted media closes the application circuit, complete 14-pin function and 24-channel truth table. The official Sinopine SP331RX manual now controls the matching 331RX family's nominal 28.7 x 23.1 mm XY, 2.54-mm contact pitch and 1.4-mm edge offset, but does not formally prove that the supplied AKK K331 is the same production identity and omits maximum Z/tolerances, recommended land/paste, packaging and reflow. AWM666V RX remains the controlled contingency because its exact body, recommended land pattern, 210-mA maximum and CVBS/RSSI/control interface fit the existing reserve, but its seven-channel 5725-5875-MHz coverage and absent public JLCPCB route are material degradations. JLCPCB confirmed no Parts Library, Global Sourcing or direct replacement route and accepts genuine AKK supply through Consigned Parts. Wait for AKK or Sinopine to close only the narrowed production-identity/assembly package; public RTC6715/RX5808 cards and a custom bare-IC design still do not solve supply or RF risk.",
+  "receiver_research_conclusion": "Use an adaptable dual post-PCBA receiver bay. K331 remains primary because official AKK media closes the application circuit, complete 14-pin function and 24-channel truth table; the official Sinopine SP331RX axes support a deliberately tolerant hand-solder land without claiming formal K331 production equivalence. AWM666V RX is the exact-drawing mutually exclusive fallback inside the same enlarged 30 x 24 x 8 mm bay, with a material seven-channel degradation. The receiver is omitted from the normal PCBA BOM; H5/H7 qualifies the received module, land, solder process and actual Z. A later manufacturer package can simplify the K331 footprint, but no longer blocks H1.",
   "supplier_outreach": {
     "sent_on": "2026-08-27",
     "akk": {
@@ -348,9 +379,9 @@
   "signal_path": [
     "TBS5G8MMCXA",
     "Molex 73415-2063 C588480",
-    "direct 50-ohm PCB trace without U.FL or cable",
-    "AKK K331 ANT IN",
-    "K331 CVBS OUT over one 75-ohm M1 crossing",
+    "population-selected direct 50-ohm PCB trace without U.FL or cable; unused branch isolated at the MMCX launch",
+    "AKK K331 ANT IN or AWM666V RF IN; exactly one module installed",
+    "selected receiver CVBS OUT over one 75-ohm M1 crossing",
     "TVP5150AM1PBS",
     "8-bit BT.656",
     "ESP32-S3 LCD_CAM"
@@ -359,18 +390,17 @@
     "functional_and_pin_fit": "pass",
     "exact_antenna_selection": "accepted",
     "receiver_exact_identity": "accepted as leading serial module",
-    "receiver_physical_body": "open",
-    "factory_placement_route": "conditional JLCPCB Consigned Parts route selected",
+    "receiver_physical_body": "8-mm H1 reserve accepted; exact received body remains an H5/H7 gate",
+    "attachment_strategy": "accepted dual mutually exclusive post-PCBA K331/AWM666V land",
+    "factory_placement_route": "not required for H1; optional Consigned Parts simplification remains downstream",
     "production_acceptance": false
   },
-  "current_h1_blockers": [
-    "close one controlled K331 production identity: either AKK supplies its own package or AKK/Sinopine formally confirms K331-to-SP331RX equivalence; in either case obtain maximum Z/tolerances, recommended land/paste geometry and packaging/soldering/reflow evidence for the fixed body and Consigned Parts application"
-  ],
+  "current_h1_blockers": [],
   "downstream_verification": [
     {
       "stage": "H5/H6/H7",
-      "requirement": "submit the genuine AKK K331 Consigned Parts application, pass final Gerber/BOM/CPL DFM and obtain feasibility plus quotation for the 5-V/channel-select/CVBS function test",
-      "requirement_ru": "подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/CVBS"
+      "requirement": "qualify the received K331 on the tolerant 14-pad post-PCBA land, prove the 8-mm Z reserve and solder/process durability, then choose owner installation or an approved optional Consigned Parts route; qualify AWM666V only if the fallback is populated",
+      "requirement_ru": "квалифицировать полученный K331 на толерантной 14-pad post-PCBA-посадке, доказать резерв Z 8 мм и прочность пайки/процесса, затем выбрать установку владельцем или одобренный необязательный Consigned Parts; квалифицировать AWM666V только при установке fallback"
     },
     {
       "stage": "H3/H6/H8",

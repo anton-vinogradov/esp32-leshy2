@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2910" viewBox="0 0 1900 2910" data-marker="H1-R2.20" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2910" viewBox="0 0 1900 2910" data-marker="H1-R2.21" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="1900" height="2910" fill="#ffffff"/>
-<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.20 complete inner-body map</text>
+<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.21 complete inner-body map</text>
 <text x="30.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Each PCB is shown exactly as viewed after turning it over. Numbers are drawing references; inner faces contain no silkscreen.</text>
 <text x="201.9" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="65.0" y="130.0" width="273.8" height="547.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -331,8 +331,8 @@
 <text x="201.9" y="488.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">150</text>
 <rect x="285.28" y="509.60" width="35.22" height="21.32" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="s3_dbg_header" data-mpn="Samtec FTSH-105-01-L-DV-K-P-TR"/>
 <text x="302.9" y="522.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">151</text>
-<rect x="131.98" y="509.60" width="35.22" height="21.32" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5_dbg_header" data-mpn="Samtec FTSH-105-01-L-DV-K-P-TR"/>
-<text x="149.6" y="522.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">152</text>
+<rect x="246.95" y="509.60" width="35.22" height="21.32" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_dbg_header_r2" data-mpn="FTSH-105-01-L-DV-K-P-TR"/>
+<text x="264.6" y="522.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">152</text>
 <rect x="326.34" y="549.75" width="12.41" height="16.43" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="s3_reset_button" data-mpn="Alps Alpine SKRTLAE010"/>
 <text x="332.5" y="560.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">153</text>
 <rect x="65.00" y="549.75" width="12.41" height="16.43" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5_reset_button" data-mpn="Alps Alpine SKRTLAE010"/>
@@ -355,6 +355,7 @@
 <text x="278.6" y="666.4" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">162</text>
 <rect x="207.57" y="650.67" width="32.63" height="26.83" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5_service_usb_connector" data-mpn="GCT USB4105-GF-A"/>
 <text x="223.9" y="666.4" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">163</text>
+<rect x="470.73" y="472.41" width="95.48" height="59.79" rx="2" fill="none" stroke="#16a34a" stroke-width="1.2" stroke-dasharray="3 2" data-alternate-mpn="AWM666V RX" data-population="mutually-exclusive"/>
 <g id="antenna-removable-media" data-topology-source="r2">
 <polyline points="274.7,305.4 296.8,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-0" data-medium="removable-microcoax"/>
 <polyline points="284.0,245.3 255.5,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="S3-2G4" data-medium="removable-microcoax"/>
@@ -389,7 +390,7 @@
 <path d="M65.0 638.3 L35.8 638.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M440.0 499.7 L410.8 499.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="30.0" y="720.0" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="start" fill="#172033">Numbered registered bodies · 163 total</text>
-<text x="410.0" y="720.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#166534">R2 machine audit: zero same-face collisions · 1.44 mm minimum opposing gap</text>
+<text x="410.0" y="720.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#166534">R2 machine audit: zero same-face collisions · 1.05 mm minimum opposing gap</text>
 <text x="30.0" y="760.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#9a3412">001  PHYSICAL RESERVE</text>
 <text x="58.0" y="773.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">118-137-MHz image-rejection BPF and 6-25-MHz IF cleanup;</text>
 <text x="58.0" y="784.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">individually serial passives close after synthesis</text>
@@ -575,8 +576,8 @@
 <text x="950.0" y="1160.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">091  SN74LVC08APWR</text>
 <text x="978.0" y="1173.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">rear-domain transmit safety gates</text>
 <text x="950.0" y="1210.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#9a3412">092  PHYSICAL RESERVE</text>
-<text x="978.0" y="1223.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">leading serial 5.8-GHz analog receiver candidate with</text>
-<text x="978.0" y="1234.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">official AKK functional integration; 30 x 24 x 4 mm is a</text>
+<text x="978.0" y="1223.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">30 x 24 x 8 mm mutually exclusive post-PCBA receiver bay:</text>
+<text x="978.0" y="1234.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">primary AKK K331 uses a tolerant 14-pad direct-solder</text>
 <text x="950.0" y="1260.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">093  74LVC2G14GW,125</text>
 <text x="978.0" y="1273.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">RUN and S3 fault-reset conditioner</text>
 <text x="950.0" y="1310.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">094  Texas Instruments TPS3435CAKAGDDFR</text>
@@ -708,8 +709,9 @@
 <text x="1438.0" y="2084.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">adapter</text>
 <text x="1410.0" y="2110.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">151  Samtec FTSH-105-01-L-DV-K-P-TR</text>
 <text x="1438.0" y="2123.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">keyed S3 UART0/RESET/BOOT header</text>
-<text x="1410.0" y="2160.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">152  Samtec FTSH-105-01-L-DV-K-P-TR</text>
-<text x="1438.0" y="2173.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">keyed C5 UART0/RESET/BOOT header</text>
+<text x="1410.0" y="2160.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">152  FTSH-105-01-L-DV-K-P-TR</text>
+<text x="1438.0" y="2173.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">relocated keyed C5 UART0/RESET/BOOT DBG10 header; moved</text>
+<text x="1438.0" y="2184.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">clear of the enlarged FPV receiver bay</text>
 <text x="1410.0" y="2210.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">153  Alps Alpine SKRTLAE010</text>
 <text x="1438.0" y="2223.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">external left-side S3 RESET service control</text>
 <text x="1410.0" y="2260.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">154  Alps Alpine SKRTLAE010</text>

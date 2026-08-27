@@ -3,10 +3,10 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H1-R2.20`.** H0 is reviewed. H1 is not.
+> **▶ Current hardware boundary: `H1-R2.21`.** H0 is reviewed. H1 is not.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
-Status reconciled: **27 August 2026**.
+Status reconciled: **28 August 2026**.
 
 ## Status rules
 
@@ -24,7 +24,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ▶ [H1-R2.20](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks, separate rear FPV MMCX, controlled SP331RX candidate-family geometry and stable per-board revision silk |
+| Physical design | ▶ [H1-R2.21](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks, separate rear FPV MMCX, dual post-PCBA K331/AWM666V bay and stable per-board revision silk |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map, FPV/MMCX proof and power/filter diagrams are published |
 | Production ECAD | ⏳ R1 evidence retained; R2 schematic waits for H1 |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.0 is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); emulator/dev-board execution must precede H7 fabrication |
@@ -32,9 +32,9 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Current H1 · exact composition
 
-<!-- current-substep: H1-R2.20 -->
+<!-- current-substep: H1-R2.21 -->
 
-**Exact marker: `H1-R2.20`.** This is one physical-design substep, not a closed
+**Exact marker: `H1-R2.21`.** This is one physical-design substep, not a closed
 H1 report.
 
 ### 1. Functional-island placement
@@ -42,7 +42,7 @@ H1 report.
 - ✅ Front UI/radio PCB: S3, C5, three complete nRF24 islands, front RP,
   microSD and UI-local TVP5150.
 - ✅ Rear RF/power PCB: CC1101, VHF/UHF voice, FM/SW/AM/LW/Airband, audio,
-  K331 FPV, M5, U214, rear RP, power and safety.
+  one-of-two K331/AWM666V FPV bay, M5, U214, rear RP, power and safety.
 - ✅ Front RP GPIO: `46/48` with 2 free; rear RP GPIO: `45/48` with 3 free; K331 RSSI is officially NC.
 - ✅ Display is direct 32-MHz i8080-8; all user keys, encoder, USB and camera RX remain direct S3 interfaces.
 
@@ -58,7 +58,7 @@ H1 report.
 
 ### 3. Interboard transport
 
-- ✅ K331 remains rear-local and TVP5150 becomes UI-local.
+- ✅ The mutually exclusive K331/AWM666V receiver bay remains rear-local and TVP5150 becomes UI-local.
 - ✅ M1 carries one 75-ohm CVBS beside ground; the 8-bit data bus plus
   PCLK/VSYNC/HREF remain UI-local.
 - ✅ M1 is fully counted: 25 live signals, 14 main-power, 2 AON, 25 defined
@@ -71,7 +71,8 @@ H1 report.
 ### 4. Physical and service audit
 
 - ✅ Same-face body collisions: `0`.
-- ✅ Minimum opposing clearance: `1.44 mm`; required: `0.70 mm`.
+- ✅ The FPV reserve is enlarged to `30 × 24 × 8 mm`; C5 DBG10 moves beside S3 DBG10.
+- ✅ Minimum opposing clearance: `1.05 mm`; required: `0.70 mm`.
 - ✅ FPV MMCX body clearance to nearest SMA: `2.07 mm`.
 - ✅ Controlled right-angle plug: `2.40 mm` to SMA, `4.80 mm` to U214 and no
   mounting-hole conflict; Ø12 remains a temporary H5 finger-access check.
@@ -85,24 +86,24 @@ H1 report.
   `RF/PWR PCB · R2-EVT1 · REV A`; the changing H1-R2.xx work marker is never
   printed and PCB REV advances only with released manufacturing-file changes.
 
-### 5. Exact current blocker
+### 5. Final H1 acceptance input
 
-- ✅ Official Sinopine `SP331R-MANUAL-V1.0` controls `28.7 × 23.1 mm` nominal
-  XY, `2.54 mm` contact pitch and `1.4 mm` edge offset for SP331RX.
-- ▶ Obtain either an AKK-native K331 package or formal K331↔SP331RX production
-  equivalence, plus maximum Z/tolerances, recommended land/paste and
-  packaging/soldering/reflow data.
-- This same evidence lets H5 submit the selected genuine-AKK/JLCPCB Consigned
-  Parts route and H6 perform final Gerber/BOM/CPL DFM.
-- AWM666V remains a controlled but materially degraded seven-channel fallback;
-  it is not an automatic replacement.
+- ✅ Primary K331 uses a tolerant 14-pad direct-solder land whose axes come from
+  the official SP331RX drawing; exact-drawing AWM666V nests in the same bay as a
+  materially degraded seven-channel fallback. Exactly one module is populated.
+- ✅ One population-specific 50-ohm branch is completed at the MMCX launch; the
+  unused branch is isolated there, with no internal U.FL, cable or live stub.
+- ✅ Neither receiver enters the normal PCBA BOM. Actual body, hand soldering,
+  Z and durability move to H5/H7; a later manufacturer package can simplify the footprint.
+- ▶ Review and explicitly accept the complete exterior, both true-view inner
+  faces and the real sandwich sections. This is the only remaining H1 action.
 
 ## Complete hardware path
 
 | Phase | Status | Result | Exit criterion |
 |---|---|---|---|
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.20`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.21`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ⏳ Waiting for H1 | Exact R2 symbols, contacts, nets, values, protection and footprints | ERC-clean sheets and machine-readable HW↔FW contract |
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
@@ -123,6 +124,6 @@ H1 report.
 
 ## Next action
 
-Close the narrowed K331/SP331RX production-identity and assembly input, regenerate the same H1
-views and ask the user to accept the complete mock-up. H2 can start only after
-that H1 review. KiCad routing, quoting and every order remain blocked.
+Obtain explicit acceptance of the complete H1 mock-up. H2 can start only after
+that H1 review. KiCad routing, quoting and every order remain blocked. If AKK or
+Sinopine replies later, simplify only the K331 land without changing the interfaces.

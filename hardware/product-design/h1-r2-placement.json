@@ -2,9 +2,9 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.20",
-  "checked_on": "2026-08-27",
-  "purpose": "Close the pre-KiCad physical architecture around direct i8080-8, a fully counted 80-contact M1, mechanically unloaded board retention, direct 5+5 antenna locality, local nRF concurrency and a one-signal FPV interboard path.",
+  "marker": "H1-R2.21",
+  "checked_on": "2026-08-28",
+  "purpose": "Close the pre-KiCad physical architecture around direct i8080-8, a fully counted 80-contact M1, mechanically unloaded board retention, direct 5+5 antenna locality, local nRF concurrency and an adaptable post-PCBA analog-FPV receiver bay.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "board_mm": [75.0, 150.0],
   "stack": {
@@ -78,7 +78,7 @@
   "functional_partition": {
     "accepted_on": "2026-08-27",
     "ui_board": ["S3 direct UI/display", "C5 native RF/IR", "three complete nRF24 islands", "front RP", "microSD", "UI-local TVP5150 decoder"],
-    "rf_power_board": ["CC1101", "VHF/UHF voice", "FM/SW/AM/LW/Airband", "audio", "K331 FPV receiver", "M5 Unit", "U214", "rear RP", "power and safety"],
+    "rf_power_board": ["CC1101", "VHF/UHF voice", "FM/SW/AM/LW/Airband", "audio", "one K331 / AWM666V post-PCBA FPV receiver", "M5 Unit", "U214", "rear RP", "power and safety"],
     "front_rp_gpio": {"used": 46, "free": 2},
     "rear_rp_gpio": {"used": 45, "free": 3},
     "m1": {
@@ -119,11 +119,11 @@
     "exact_parts_library": "unavailable",
     "global_sourcing": "unavailable",
     "confirmed_drop_in_alternative": null,
-    "selected_route": "JLCPCB Consigned Parts using genuine K331 purchased from AKK; approval required before shipment",
-    "selected_route_ru": "JLCPCB Consigned Parts с оригинальным K331, купленным у AKK; одобрение требуется до отправки деталей",
+    "selected_route": "post-PCBA manual installation on the accepted dual K331/AWM666V land; JLCPCB Consigned Parts remains an optional later simplification if the production package is accepted",
+    "selected_route_ru": "ручная установка после PCBA на принятую двойную посадку K331/AWM666V; JLCPCB Consigned Parts остаётся необязательным последующим упрощением при принятом production-пакете",
     "candidate_oem_evidence": "official Sinopine SP331R-MANUAL-V1.0 confirms 28.7 x 23.1 mm nominal XY, 2.54-mm contact pitch and 1.4-mm edge offset for SP331RX; formal K331 equivalence and the remaining production package are open",
-    "assembly_gate": "submit a controlled document identifying the supplied K331 or formally linking it to SP331RX, with maximum Z/tolerances, recommended land/paste pattern, pin definitions, packaging, soldering/reflow and special assembly requirements; final DFM follows Gerber/BOM/CPL and order review",
-    "assembly_gate_ru": "подать контролируемый документ, идентифицирующий поставляемый K331 или формально связывающий его с SP331RX, с maximum Z/допусками, рекомендуемыми land/paste, распиновкой, packaging, soldering/reflow и особыми требованиями сборки; финальный DFM выполняется по Gerber/BOM/CPL и заказу",
+    "assembly_gate": "H1 no longer depends on automatic factory placement: the primary K331 and exact-drawing AWM666V fallback are mutually exclusive post-PCBA modules. H5/H7 must qualify the received module, tolerant K331 land, solder process and enclosure Z before fabrication release; a later controlled vendor package may replace the tolerant land with a regular production footprint without changing the external interface.",
+    "assembly_gate_ru": "H1 больше не зависит от автоматической фабричной установки: основной K331 и fallback AWM666V с точным чертежом являются взаимоисключающими post-PCBA-модулями. H5/H7 должны квалифицировать полученный модуль, толерантную посадку K331, процесс пайки и Z корпуса до разрешения печати; последующий контролируемый пакет производителя может заменить толерантную посадку обычным production-footprint без изменения внешнего интерфейса.",
     "function_test_route": "JLCPCB will review a procedure that applies 5 V, drives the three channel-select inputs and checks CVBS lock/output; feasibility and quotation remain later factory gates",
     "function_test_route_ru": "JLCPCB готова рассмотреть процедуру с 5 В, тремя входами выбора канала и проверкой CVBS lock/output; реализуемость и цена остаются последующими фабричными gates",
     "source": "direct email response to the project sourcing request"
@@ -167,13 +167,13 @@
       "mpn": "K331",
       "jlcpcb_part": null,
       "manufacturer": "AKK Technology",
-      "assembly": "not in Parts Library or Global Sourcing; selected JLCPCB Consigned Parts route is subject to datasheet/application approval and final DFM",
+      "assembly": "not in Parts Library or Global Sourcing; excluded from the normal PCBA BOM and installed post-PCBA after reflow on the dual receiver land; optional Consigned Parts remains subject to application approval and final DFM",
       "accepted": false,
       "selection_status": "AKK functional integration is accepted; official Sinopine SP331RX evidence controls nominal XY and contact axes for the matching 331RX family, but formal K331 equivalence and the remaining physical/assembly package are open",
       "selection_status_ru": "функциональная интеграция AKK принята; официальный документ Sinopine SP331RX контролирует номинальный XY и оси контактов совпадающего семейства 331RX, но формальная эквивалентность K331 и остаток physical/assembly-пакета открыты",
       "availability": "manufacturer store showed in stock at USD 29.99; JLCPCB confirmed zero Parts Library/Global Sourcing route and no direct replacement, but accepts a Consigned Parts application before shipment",
       "availability_ru": "магазин производителя показывал наличие по $29.99; JLCPCB подтвердила отсутствие Parts Library/Global Sourcing и прямой замены, но принимает Consigned Parts application до отправки",
-      "identity_gate": "Sinopine SP331R-MANUAL-V1.0 confirms 28.7 x 23.1 mm nominal XY, 2.54-mm pitch and 1.4-mm edge offset for SP331RX; formal K331 equivalence, maximum Z/tolerances, recommended land/paste and packaging/reflow remain required before the reserve becomes a fixed body",
+      "identity_gate": "Sinopine SP331R-MANUAL-V1.0 confirms 28.7 x 23.1 mm nominal XY, 2.54-mm pitch and 1.4-mm edge offset for SP331RX. Formal equivalence and the production package remain desirable for later footprint simplification, while H5/H7 physical qualification controls the accepted post-PCBA route.",
       "url": "https://www.akktek.com/products/vtx-modules/akk-k331.html",
       "checked": "2026-08-27"
     },
@@ -514,9 +514,42 @@
       "frame": "rf-inner",
       "mpn": null,
       "candidate_mpn": "AKK K331",
-      "role": "leading serial 5.8-GHz analog receiver candidate with official AKK functional integration; 30 x 24 x 4 mm is a conservative collision reserve around the official Sinopine SP331RX 28.7 x 23.1 mm nominal XY while formal K331 equivalence and the remaining production package stay open",
+      "alternate_mpn": "AWM666V RX",
+      "role": "30 x 24 x 8 mm mutually exclusive post-PCBA receiver bay: primary AKK K331 uses a tolerant 14-pad direct-solder land; the exact documented Airwave AWM666V land overlaps as a seven-channel fallback; only one module is installed",
       "world_xy_mm": [38.5, 90.0],
-      "size_mm": [30.0, 24.0, 4.0]
+      "size_mm": [30.0, 24.0, 8.0],
+      "attachment": {
+        "architecture": "dual mutually exclusive post-PCBA land",
+        "population_rule": "exactly one receiver module",
+        "primary": {
+          "mpn": "AKK K331",
+          "contact_count": 14,
+          "contact_pitch_mm": 2.54,
+          "contact_edge_offset_mm": 1.4,
+          "land_class": "project-engineered tolerant hand-solder land; not claimed as an AKK production footprint",
+          "qualification_stage": "H5/H7"
+        },
+        "fallback": {
+          "mpn": "AWM666V RX",
+          "body_mm": [26.16, 16.38, 3.7],
+          "land_class": "manufacturer-documented recommended land pattern",
+          "channel_count": 7
+        },
+        "rf_selection": "two population-specific short 50-ohm launches selected by a copper solder bridge at the MMCX launch; the unused branch is isolated at the launch and creates no live stub",
+        "normal_pcba_bom_additions": 0,
+        "future_simplification": "if AKK or Sinopine supplies a complete controlled production package, replace the tolerant K331 land with the regular footprint without changing the MMCX, CVBS or control interfaces"
+      }
+    },
+    {
+      "id": "c5_dbg_header_r2",
+      "drawing_ref": "49",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "FTSH-105-01-L-DV-K-P-TR",
+      "role": "relocated keyed C5 UART0/RESET/BOOT DBG10 header; moved clear of the enlarged FPV receiver bay",
+      "world_xy_mm": [15.5, 104.0],
+      "size_mm": [9.65, 5.84, 5.56],
+      "replaces": ["c5_dbg_header"]
     },
     {
       "id": "fpv_mmcx",
@@ -964,7 +997,7 @@
       "frame": "rf-outer-to-inner",
       "from": "fpv_mmcx",
       "to": "fpv_receiver_bay",
-      "rule": "short controlled-impedance 50-ohm launch through the rear PCB; no internal U.FL and no interboard RF crossing"
+      "rule": "short controlled-impedance 50-ohm launch through the rear PCB into a population-selected K331 or AWM666V branch; the unused branch is isolated at the launch; no internal U.FL, cable or interboard RF crossing"
     },
     {
       "id": "fpv_cvbs",
@@ -981,23 +1014,24 @@
       "rule": "8 data lines plus PCLK/VSYNC/HREF stay entirely on the UI PCB"
     }
   ],
-  "current_h1_blockers": [
-    "close one controlled K331 production identity: either AKK supplies its own package or AKK/Sinopine formally confirms K331-to-SP331RX equivalence; in either case obtain maximum Z/tolerances, recommended land/paste geometry and packaging/soldering/reflow evidence before replacing the reserve with a fixed body and submitting the Consigned Parts application"
-  ],
-  "current_h1_blockers_ru": [
-    "закрыть единую контролируемую production-identity K331: либо AKK предоставляет свой пакет, либо AKK/Sinopine формально подтверждают эквивалентность K331 и SP331RX; в любом случае получить maximum Z/допуски, рекомендуемые land/paste и packaging/soldering/reflow до замены резерва точным корпусом и подачи Consigned Parts application"
-  ],
+  "current_h1_blockers": [],
+  "current_h1_blockers_ru": [],
   "dependent_h1_work": [
-    "promote the generated complete R2 exterior, mirrored inner faces and four real section planes from in-progress to reviewed only after the K331 reserve becomes a controlled fixed body"
+    "review and explicitly accept the generated complete R2 exterior, both true-view inner faces and four real section planes before closing H1"
   ],
   "dependent_h1_work_ru": [
-    "перевести сгенерированные полные внешние виды, зеркальные внутренние стороны и четыре реальные плоскости разреза из in-progress в reviewed только после превращения резерва K331 в контролируемый точный корпус"
+    "проверить и явно принять сгенерированные полные внешние виды, обе внутренние стороны в прямом виде и четыре реальные плоскости разреза до закрытия H1"
   ],
   "downstream_verification": [
     {
       "stage": "H5/H6/H7",
-      "requirement": "submit the genuine AKK K331 Consigned Parts application, pass final Gerber/BOM/CPL DFM and obtain feasibility plus quotation for the 5-V/channel-select/CVBS function test",
-      "requirement_ru": "подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/CVBS"
+      "requirement": "qualify the received K331 on the tolerant 14-pad post-PCBA land, prove the 8-mm Z reserve and solder/process durability, and decide between owner installation and an approved Consigned Parts factory route; repeat with AWM666V only if the fallback is populated",
+      "requirement_ru": "квалифицировать полученный K331 на толерантной 14-pad post-PCBA-посадке, доказать резерв Z 8 мм и прочность пайки/процесса, затем выбрать между установкой владельцем и одобренным фабричным Consigned Parts; повторить для AWM666V только при установке fallback"
+    },
+    {
+      "stage": "H5/H7",
+      "requirement": "inspect the relocated C5 DBG10 access and opposing clearance in the mechanical article before fabrication release",
+      "requirement_ru": "проверить доступ к перенесённому C5 DBG10 и встречный зазор на механическом образце до разрешения печати"
     },
     {
       "stage": "H5/H8",

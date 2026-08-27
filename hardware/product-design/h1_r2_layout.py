@@ -30,7 +30,7 @@ COMPONENT_LEGEND_SVG_PATH = REPO / "docs/images/h1-r2-component-legend.svg"
 EN_DOC_PATH = REPO / "docs/h1-r2-physical-layout.md"
 RU_DOC_PATH = REPO / "docs/h1-r2-physical-layout.ru.md"
 SOURCE_TABLE_PATH = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
-PUBLIC_ASSET_REV = "h1-r2.20-board-id-6"
+PUBLIC_ASSET_REV = "h1-r2.21-dual-fpv-7"
 BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
 BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
@@ -369,14 +369,30 @@ def audit(model: dict, base: dict) -> dict:
             if gap < minimum:
                 errors.append(f"opposing clearance {item['id']} / {row['instance']} is {gap:.3f} mm")
     min_cross = min((x["clearance_mm"] for x in cross), default=None)
-    if len(model["current_h1_blockers"]) != 1:
-        errors.append("physical layout must expose exactly the one present H1 blocker")
+    if model["current_h1_blockers"]:
+        errors.append("the accepted dual post-PCBA receiver architecture still exposes an H1 blocker")
     if len(model["current_h1_blockers_ru"]) != len(model["current_h1_blockers"]):
         errors.append("bilingual current H1 blockers are out of sync")
     if len(model["dependent_h1_work"]) != 1:
         errors.append("physical layout must expose the one dependent H1 rendering task")
     if len(model["dependent_h1_work_ru"]) != len(model["dependent_h1_work"]):
         errors.append("bilingual dependent H1 work is out of sync")
+    fpv_bay = next((row for row in model["placements"] if row["id"] == "fpv_receiver_bay"), None)
+    if not fpv_bay or fpv_bay.get("size_mm") != [30.0, 24.0, 8.0]:
+        errors.append("the enlarged 30 x 24 x 8 mm FPV receiver bay is missing")
+    else:
+        attachment = fpv_bay.get("attachment", {})
+        if attachment.get("architecture") != "dual mutually exclusive post-PCBA land":
+            errors.append("the dual K331/AWM666V attachment is missing")
+        if attachment.get("population_rule") != "exactly one receiver module":
+            errors.append("the FPV receiver bay does not fail closed to one module")
+        if attachment.get("primary", {}).get("mpn") != "AKK K331" or attachment.get("fallback", {}).get("mpn") != "AWM666V RX":
+            errors.append("the FPV receiver primary/fallback identity is incomplete")
+        if "no live stub" not in attachment.get("rf_selection", ""):
+            errors.append("the alternate FPV RF branch is not isolated at the launch")
+    relocated_c5 = next((row for row in model["placements"] if row["id"] == "c5_dbg_header_r2"), None)
+    if not relocated_c5 or relocated_c5.get("replaces") != ["c5_dbg_header"]:
+        errors.append("the enlarged FPV bay does not relocate the opposing C5 DBG10")
     if any(row.get("stage") == "H1" for row in model["downstream_verification"]):
         errors.append("a downstream physical verification item is still owned by H1")
     mmcx_service = mmcx_service_audit(model, base, new)
@@ -410,6 +426,8 @@ def audit(model: dict, base: dict) -> dict:
         "silkscreen": silk,
         "mechanical_retention": retention,
         "battery_holder_mechanics": holder,
+        "fpv_receiver_attachment": fpv_bay.get("attachment") if fpv_bay else None,
+        "relocated_c5_dbg_header": relocated_c5["id"] if relocated_c5 else None,
         "errors": errors,
         "current_h1_blockers": model["current_h1_blockers"],
         "dependent_h1_work": model["dependent_h1_work"],
@@ -534,7 +552,7 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
         f'<text x="{audit_x + 44}" y="274" font-family="sans-serif" font-size="11" fill="#526076">50 Ω RF PCB trace</text>',
         f'<line x1="{audit_x}" y1="294" x2="{audit_x + 34}" y2="294" stroke="#7c3aed" stroke-width="3"/>',
         f'<text x="{audit_x + 44}" y="298" font-family="sans-serif" font-size="11" fill="#526076">75 Ω CVBS PCB trace</text>',
-        f'<text x="{audit_x}" y="344" font-family="sans-serif" font-size="15" font-weight="700" fill="#9a3412">Blocks H1 now</text>',
+        f'<text x="{audit_x}" y="344" font-family="sans-serif" font-size="15" font-weight="700" fill="#166534">H1 engineering blockers: none</text>',
     ])
     y = 370
     for gate in model["current_h1_blockers"]:
@@ -544,7 +562,7 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
             out.append(f'<text x="{audit_x}" y="{y}" font-family="sans-serif" font-size="10.5" fill="#9a3412">{esc(prefix + line)}</text>')
             y += 15
         y += 6
-    out.append(f'<text x="{audit_x}" y="{y + 10}" font-family="sans-serif" font-size="14" font-weight="700" fill="#526076">Dependent H1 work</text>')
+    out.append(f'<text x="{audit_x}" y="{y + 10}" font-family="sans-serif" font-size="14" font-weight="700" fill="#526076">Final H1 acceptance input</text>')
     y += 36
     for gate in model["dependent_h1_work"]:
         gate_lines = textwrap.wrap(gate, width=38, break_long_words=False, break_on_hyphens=False)
@@ -1040,6 +1058,21 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
         font = 6.8 if min(w, h) >= 1.6 else 4.8
         out.append(t(vx+w*scale/2, vy+h*scale/2+font/3, str(numbers[row["id"]]), font, "bold", "middle", stroke))
 
+    # The FPV reserve is one physical bay with two mutually exclusive lands.
+    # Show the exact AWM666V body inside it without inventing a second component.
+    fpv_bay = next(row for row in rows if row["id"] == "fpv_receiver_bay")
+    fpv_origin = origins["rf-inner"]
+    bay_box = fpv_bay["bbox"]
+    awm_w, awm_h = 26.16, 16.38
+    awm_x = bay_box["x"][0] + ((bay_box["x"][1] - bay_box["x"][0]) - awm_w) / 2
+    awm_y = bay_box["y"][0] + ((bay_box["y"][1] - bay_box["y"][0]) - awm_h) / 2
+    out.append(
+        f'<rect x="{sx(fpv_origin,awm_x,awm_w):.2f}" y="{sy(fpv_origin,awm_y):.2f}" '
+        f'width="{awm_w*scale:.2f}" height="{awm_h*scale:.2f}" rx="2" fill="none" '
+        f'stroke="#16a34a" stroke-width="1.2" stroke-dasharray="3 2" '
+        f'data-alternate-mpn="AWM666V RX" data-population="mutually-exclusive"/>'
+    )
+
     # Flexible microcoax and its two connector ends sit above the board bodies;
     # keeping them separate from the under-body PCB topology is intentional.
     out.append('<g id="antenna-removable-media" data-topology-source="r2">')
@@ -1226,6 +1259,20 @@ def render_inner_face_svg(
         font = 7.0 if min(body_w, body_d) >= 1.6 else 4.8
         out.append(text(vx + body_w*scale/2, vy + body_d*scale/2 + font/3, str(numbers[row["id"]]), font, "bold", "middle", stroke))
 
+    if not is_ui:
+        fpv_bay = next(row for row in rows if row["id"] == "fpv_receiver_bay")
+        bay = fpv_bay["bbox"]
+        awm_w, awm_h = 26.16, 16.38
+        awm_x = bay["x"][0] + ((bay["x"][1] - bay["x"][0]) - awm_w) / 2
+        awm_y = bay["y"][0] + ((bay["y"][1] - bay["y"][0]) - awm_h) / 2
+        out.append(
+            f'<rect x="{sx(awm_x,awm_w):.2f}" y="{sy(awm_y):.2f}" width="{awm_w*scale:.2f}" '
+            f'height="{awm_h*scale:.2f}" rx="2" fill="none" stroke="#16a34a" stroke-width="1.4" '
+            f'stroke-dasharray="4 3" data-alternate-mpn="AWM666V RX" data-population="mutually-exclusive"/>'
+        )
+        out.append(text(sx(bay["x"][0], bay["x"][1]-bay["x"][0]) + 6, sy(bay["y"][0]) + 14, "K331 tolerant land · 30×24×8", 7.5, "bold", colour="#9a3412"))
+        out.append(text(sx(awm_x, awm_w) + 6, sy(awm_y) + awm_h*scale - 6, "AWM666V exact fallback · one populated", 7.0, "bold", colour="#166534"))
+
     # Removable microcoax and its two connector ends are physical objects above
     # the PCB; draw them after the body layer. Rear paths have no such cables.
     out.append('<g id="antenna-removable-media" data-topology-source="r2">')
@@ -1343,7 +1390,7 @@ def render_inner_sections_svg(model: dict, base: dict, source_table: dict, resul
                 f'<rect x="{px(0):.1f}" y="{pz(4.8):.1f}" width="{board_w*x_scale:.1f}" height="{11.0*z_scale:.1f}" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="5 4"/>',
                 t(px(-2), pz(4.0), "UI", 9, "bold", "end", "#166534"),
                 t(px(-2), pz(16.6), "RF", 9, "bold", "end", "#c2410c"),
-                t(px(37.5), pz(10.6), "exact 11-mm board gap", 9, "bold", "middle", "#526076"),
+                t(px(30.0), pz(10.6), "exact 11-mm board gap", 9, "bold", "middle", "#526076"),
             ]
         )
         for row in rows:
@@ -1381,9 +1428,11 @@ def render_inner_sections_svg(model: dict, base: dict, source_table: dict, resul
         col = index // per_col
         slot = index % per_col
         lx = 35 + col*480
-        ly = 640 + slot*38
+        ly = 640 + slot*54
         out.append(t(lx, ly, f'{ref:02d}  {row["mpn"]}', 8.8, "bold"))
-        out.append(t(lx+26, ly+13, row["role"], 7.4, colour="#526076"))
+        role_lines = textwrap.wrap(row["role"], width=58, break_long_words=False, break_on_hyphens=False)[:2]
+        for line_no, line in enumerate(role_lines):
+            out.append(t(lx+26, ly+13+line_no*11, line, 7.4, colour="#526076"))
     out.append('</svg>')
     return "\n".join(out) + "\n"
 
@@ -1580,7 +1629,7 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
     if ru:
         title = f'# {model["marker"]} · физическая перекомпоновка'
         intro = "Это текущий проверяемый результат H1, а не журнал решений и не разрешение начинать KiCad."
-        state = "В принятую 75×150-мм систему координат добавлены второй Hub RP, его полный независимый внешний recovery-набор, активные корпуса Airband, расширенная 24×11-мм ячейка настройки фильтра, видеодекодер FPV и сменная зона ведущего серийного кандидата AKK K331. Официальная геометрия семейства SP331RX уже учтена, но резерв не превращён в точный корпус без формальной эквивалентности K331 и полного production-пакета."
+        state = "В принятую 75×150-мм систему координат добавлены второй Hub RP, его полный независимый внешний recovery-набор, активные корпуса Airband, расширенная 24×11-мм ячейка настройки фильтра, видеодекодер FPV и двойная взаимоисключающая post-PCBA-зона K331/AWM666V."
         audit_heading = "## Что уже проверено"
         open_heading = "## Что блокирует H1 сейчас"
         dependent_heading = "## Зависимая работа H1"
@@ -1593,9 +1642,9 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
             '- Все четыре независимых USB теперь направлены в нижний торец: основной `USB / POWER` и три data-only service-порта S3/C5, RF RP и Hub RP сохраняют раздельные тракты.',
             '- Десять основных SMA разделены 5+5 между UI- и RF-платами; отдельный MMCX FPV расположен ниже заднего ряда. Радио, ответвители и цепи контроля фактической передачи остаются локальны своим разъёмам; новых межплатных RF-переходов нет.',
             '- Обе внутренние стороны показаны ровно так, как их видно после физического переворота платы; прежняя инкрементальная картинка ошибочно переворачивала только RF-плату.',
-            '- Официальный manual Sinopine SP331RX задаёт номинал 28,7×23,1 мм, шаг контактов 2,54 мм и краевой отступ 1,4 мм совпадающего семейства 331RX; коллизии проверены с консервативным резервом 30×24×4 мм.',
-            '- Функциональная распиновка K331 принята, но резерв не считается точным корпусом: нужны формальная эквивалентность K331↔SP331RX или собственный пакет AKK, maximum Z/допуски, land/paste и reflow/packaging.',
-            '- JLCPCB подтвердила отсутствие K331 в Parts Library и Global Sourcing и не нашла прямой замены. Выбран фабричный маршрут: оригинальная поставка AKK через Consigned Parts; application и финальный DFM по Gerber/BOM/CPL относятся к последующим этапам.',
+            '- Двойная post-PCBA-зона K331/AWM666V проверена с резервом 30×24×8 мм; после переноса C5 DBG10 минимальный встречный зазор составляет 1,05 мм.',
+            '- Основной K331 использует толерантную 14-pad посадку, а точная вложенная посадка AWM666V служит деградированным fallback; устанавливается ровно один модуль.',
+            '- JLCPCB подтвердила отсутствие K331 в Parts Library и Global Sourcing и не нашла прямой замены. Обычный PCBA BOM не содержит приёмника; Consigned Parts остаётся необязательным последующим упрощением.',
             '- JLCPCB готова рассмотреть процедуру function test для 5 В, channel-select и CVBS. Проверка реализуемости и цена относятся к H5/H6/H7 и не блокируют текущую физическую модель.',
             '- Контролируемый fallback `AWM666V RX` размером 26,16×16,38×3,70 мм и его рекомендованная посадка входят в ту же ячейку; он не заменяет K331 автоматически из-за семи каналов вместо 24 и отсутствия публичного маршрута JLCPCB.',
             '- Точная линейная антенна TBS5G8MMCXA подключается к отдельному MMCX; между ANT IN K331 и MMCX запланирована прямая 50-омная PCB-дорожка без U.FL.',
@@ -1611,7 +1660,7 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
     else:
         title = f'# {model["marker"]} · physical re-layout'
         intro = "This is the current verified H1 result, not a decision diary and not authorization to start KiCad."
-        state = "The second Hub RP, its complete independent external recovery set, Airband active bodies, an expanded 24 × 11 mm filter-tuning cell, the FPV video decoder and a replaceable bay for the leading serial AKK K331 candidate are placed in the accepted 75 × 150 mm coordinate system. Official SP331RX-family geometry is included, but the reserve is not promoted to a fixed body without formal K331 equivalence and the complete production package."
+        state = "The second Hub RP, its complete independent external recovery set, Airband active bodies, an expanded 24 × 11 mm filter-tuning cell, the FPV video decoder and a mutually exclusive post-PCBA K331/AWM666V bay are placed in the accepted 75 × 150 mm coordinate system."
         audit_heading = "## Already verified"
         open_heading = "## What blocks H1 now"
         dependent_heading = "## Dependent H1 work"
@@ -1624,9 +1673,9 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
             '- All four independent USB openings now face the bottom edge: the main `USB / POWER` and the three data-only service paths for C5, RF RP and Hub RP remain electrically independent.',
             '- The ten main SMA ports are split 5+5 between the UI and RF PCBs; the separate FPV MMCX sits below the rear row. Radios, couplers and physical-TX evidence remain local to their connectors, with no new interboard RF transition.',
             '- Both inner faces are shown exactly as viewed after physically turning each PCB over; the earlier incremental view incorrectly turned only the RF PCB.',
-            '- The official Sinopine SP331RX manual controls 28.7 × 23.1 mm nominal XY, 2.54-mm contact pitch and 1.4-mm edge offset for the matching 331RX family; collision checks retain a conservative 30 × 24 × 4 mm reserve.',
-            '- K331 functional pin fit is accepted, but the reserve is not a fixed body: formal K331↔SP331RX equivalence or an AKK-native package, maximum Z/tolerances, land/paste and reflow/packaging remain required.',
-            '- JLCPCB confirmed that K331 is absent from both Parts Library and Global Sourcing and found no direct replacement. The selected factory route is genuine AKK supply through Consigned Parts; its application and final Gerber/BOM/CPL DFM are later gates.',
+            '- The dual post-PCBA K331/AWM666V bay is checked as a 30 × 24 × 8 mm reserve; relocating C5 DBG10 leaves 1.05 mm minimum opposing clearance.',
+            '- Primary K331 uses a tolerant 14-pad land and the exact nested AWM666V land is a degraded fallback; exactly one receiver is installed.',
+            '- JLCPCB confirmed that K331 is absent from both Parts Library and Global Sourcing and found no direct replacement. The normal PCBA BOM omits the receiver; Consigned Parts remains an optional later simplification.',
             '- JLCPCB can review a later 5 V, channel-select and CVBS function-test procedure. Feasibility and quotation belong to H5/H6/H7 and do not block the present physical model.',
             '- The controlled 26.16 × 16.38 × 3.70 mm `AWM666V RX` fallback and its recommended land pattern fit the same bay; it does not replace K331 automatically because it has seven channels instead of 24 and no public JLCPCB route.',
             '- The exact linear TBS5G8MMCXA antenna mates with the distinct MMCX; K331 ANT IN reaches it over one direct 50-ohm PCB trace without U.FL.',
@@ -1690,13 +1739,13 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         title = f'# {model["marker"]} · компоновка готового устройства'
         intro = (
             "Текущая физическая модель двух плат 75×150 мм. Это проверяемый результат H1, "
-            "но ещё не разрешение начинать KiCad: формальная identity K331 и остаток production-пакета остаются единственным открытым входом."
+            "но ещё не разрешение начинать KiCad: инженерных блокеров не осталось, ожидается явное принятие полного мокапа."
         )
         outside = "## Что увидит пользователь"
         inside = "## Что находится внутри"
         verified = "## Проверено генератором"
         factory = "## Точные фабричные позиции"
-        blocker = "## Текущий блокер H1"
+        blocker = "## Финальное принятие H1"
         component_legend_heading = "## Легенда компонентов"
         board_names = ("Передняя UI/radio-плата", "Задняя RF/power-плата")
         bullets = [
@@ -1707,12 +1756,14 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "Все пользовательские подписи являются читаемой шелкографией; внутренние стороны плат шелкографии не содержат.",
             "На внешней стороне каждой платы печатаются стабильные role/revision `UI PCB · R2-EVT1 · REV A` и `RF/PWR PCB · R2-EVT1 · REV A`; изменяемый рабочий маркер H1-R2.xx на PCB не печатается.",
             "Три nRF24 полностью перенесены на переднюю плату вместе с буферами, safety-gate и отдельным `TLV1824PWR`.",
-            "K331 остаётся на задней плате, а `TVP5150AM1PBS` — на передней рядом с S3: через M1 проходит только один 75-омный CVBS, не 11-линейная LCD_CAM-шина.",
+            "На задней плате находится взаимоисключающая post-PCBA-зона `K331 / AWM666V`, а `TVP5150AM1PBS` — на передней рядом с S3: через M1 проходит только один 75-омный CVBS, не 11-линейная LCD_CAM-шина.",
+            "Основной K331 использует толерантную 14-pad посадку; точная посадка семиканального AWM666V вложена в ту же зону. Устанавливается ровно один модуль, без внутреннего U.FL или RF-кабеля.",
             "FM/SW/AM/LW/Airband, CC1101, два voice-тракта и аудио локальны задней плате; S3 напрямую ведёт i8080-8, camera RX, кнопки, энкодер и USB.",
         ]
         audit_lines = [
             f'Коллизии корпусов на одной стороне: `{len(result["same_face_collisions"])}`.',
             f'Минимальный встречный Z-зазор: `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
+            "Резерв FPV увеличен до `30×24×8 мм`; C5 DBG10 перенесён рядом с S3 DBG10 и не пересекается ни с резервом, ни с соседними корпусами.",
             f'FPV MMCX: корпус оставляет `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} мм` до ближайшего SMA; контролируемый угловой штекер — `{result["mmcx_service"]["minimum_right_angle_plug_clearance_mm"]:.2f} мм` до SMA и `{result["mmcx_service"]["right_angle_plug_u214_clearance_mm"]:.2f} мм` до U214. Ø12 — только временная зона пальцев и остаётся H5-проверкой.',
             f'GPIO: передний RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["front_rp_gpio"]["free"]}`; задний RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["rear_rp_gpio"]["free"]}`. K331 RSSI официально помечен NC.',
             "M1: все 80 контактов распределены — 25 сигналов, 14 main-power, 2 AON, 25 возвратов и 14 NC-резервов.",
@@ -1724,13 +1775,13 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         title = f'# {model["marker"]} · finished-device placement'
         intro = (
             "Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, "
-            "not authorization to start KiCad: formal K331 identity and the remaining production package are the sole open input."
+            "not authorization to start KiCad: no engineering blocker remains, but the complete mock-up still needs explicit acceptance."
         )
         outside = "## What the user sees"
         inside = "## What is inside"
         verified = "## Generator-verified"
         factory = "## Exact factory parts"
-        blocker = "## Current H1 blocker"
+        blocker = "## Final H1 acceptance"
         component_legend_heading = "## Component legend"
         board_names = ("Front UI/radio PCB", "Rear RF/power PCB")
         bullets = [
@@ -1741,12 +1792,14 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.",
             "Each outer face prints a stable board role/revision — `UI PCB · R2-EVT1 · REV A` and `RF/PWR PCB · R2-EVT1 · REV A`; the changing H1-R2.xx work marker is never printed on a PCB.",
             "All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.",
-            "K331 remains rear-local while `TVP5150AM1PBS` moves beside S3: M1 carries one 75-ohm CVBS signal, not the 11-line LCD_CAM bus.",
+            "A mutually exclusive post-PCBA `K331 / AWM666V` bay remains rear-local while `TVP5150AM1PBS` moves beside S3: M1 carries one 75-ohm CVBS signal, not the 11-line LCD_CAM bus.",
+            "Primary K331 uses a tolerant 14-pad land; the exact seven-channel AWM666V land nests in the same bay. Exactly one module is installed, without an internal U.FL or RF cable.",
             "FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, camera RX, buttons, encoder and USB.",
         ]
         audit_lines = [
             f'Same-face body collisions: `{len(result["same_face_collisions"])}`.',
             f'Minimum opposing Z clearance: `{result["minimum_opposing_clearance_mm"]:.2f} mm` against `{result["required_opposing_clearance_mm"]:.2f} mm` required.',
+            "The FPV reserve is enlarged to `30 × 24 × 8 mm`; C5 DBG10 is relocated beside S3 DBG10 and intersects neither the bay nor adjacent bodies.",
             f'FPV MMCX: the jack body leaves `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} mm` to the nearest SMA; the controlled right-angle plug leaves `{result["mmcx_service"]["minimum_right_angle_plug_clearance_mm"]:.2f} mm` to SMA and `{result["mmcx_service"]["right_angle_plug_u214_clearance_mm"]:.2f} mm` to U214. Ø12 is only a temporary finger-approach zone and remains an H5 ergonomic check.',
             f'GPIO: front RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["front_rp_gpio"]["free"]}` free; rear RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["rear_rp_gpio"]["free"]}` free. K331 RSSI is officially marked NC.',
             "M1: all 80 contacts are assigned — 25 signals, 14 main-power, 2 AON, 25 returns and 14 NC reserves.",
@@ -1775,8 +1828,13 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         ref = f'[`{row["jlcpcb_part"]}`]({row["url"]})' if row["jlcpcb_part"] else "—"
         lines.append(f'| {role} | `{row["mpn"]}` | {ref} | {route} |')
     blockers = model["current_h1_blockers_ru"] if ru else model["current_h1_blockers"]
+    acceptance = model["dependent_h1_work_ru"] if ru else model["dependent_h1_work"]
     lines.extend(["", blocker, ""])
-    lines.extend(f"- {row}" for row in blockers)
+    if blockers:
+        lines.extend(f"- {row}" for row in blockers)
+    else:
+        lines.append("- Инженерных блокеров нет." if ru else "- No engineering blockers remain.")
+    lines.extend(f"- {row}" for row in acceptance)
     marker = f'> Точный текущий маркер: **{model["marker"]}**. H1 продолжается.' if ru else f'> Exact current marker: **{model["marker"]}**. H1 remains in progress.'
     lines.extend(["", marker, ""])
     return "\n".join(lines)
