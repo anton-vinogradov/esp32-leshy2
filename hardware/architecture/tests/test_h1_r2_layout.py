@@ -212,6 +212,15 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn('data-view="four-faces-matched-columns"', expected[MODULE.FOUR_FACES_SVG_PATH])
         self.assertIn('data-port-role="power-and-data"', expected[MODULE.EXTERNAL_SVG_PATH])
         self.assertIn('data-port-role="data-only"', expected[MODULE.EXTERNAL_SVG_PATH])
+        self.assertEqual(
+            4,
+            expected[MODULE.EXTERNAL_SVG_PATH].count('data-interface-shape="usb-c-receptacle"'),
+        )
+        self.assertEqual(
+            4,
+            expected[MODULE.SERVICE_SVG_PATH].count('data-interface-shape="usb-c-receptacle"'),
+        )
+        self.assertEqual(4, expected[MODULE.EXTERNAL_SVG_PATH].count('data-part="usb-c-tongue"'))
 
 
 if __name__ == "__main__":

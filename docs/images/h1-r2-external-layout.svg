@@ -240,19 +240,35 @@
 <text x="850.0" y="722.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">UP/DOWN/LEFT/RIGHT/OK/BACK/OPT/F1…F8/PTT are serial direct buttons.</text>
 <text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The side C&amp;K JS102011SCQN is the sole RUN/KILL and source-command control.</text>
 <g id="h1-r2-external-delta" data-marker="H1-R2.18" data-state="in-progress">
-<rect x="124.4" y="695.4" width="33.1" height="9.6" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
+<g data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only" data-interface-shape="usb-c-receptacle">
+<rect x="124.4" y="695.4" width="33.1" height="9.6" rx="3.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<rect x="127.4" y="697.1" width="27.1" height="6.2" rx="2.6" fill="#0f172a" stroke="#2563eb" stroke-width="0.9"/>
+<rect x="133.0" y="699.3" width="15.9" height="1.6" rx="0.6" fill="#dbeafe" stroke="none" data-part="usb-c-tongue"/>
+</g>
 <path d="M140.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="140.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">HUB RP</text>
 <text data-layer="pcb-silkscreen" x="140.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
-<rect x="179.9" y="695.4" width="33.1" height="9.6" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6" data-instance="c5_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
+<g data-instance="c5_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only" data-interface-shape="usb-c-receptacle">
+<rect x="179.9" y="695.4" width="33.1" height="9.6" rx="3.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<rect x="182.9" y="697.1" width="27.1" height="6.2" rx="2.6" fill="#0f172a" stroke="#2563eb" stroke-width="0.9"/>
+<rect x="188.5" y="699.3" width="15.9" height="1.6" rx="0.6" fill="#dbeafe" stroke="none" data-part="usb-c-tongue"/>
+</g>
 <path d="M196.4 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="196.4" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">C5</text>
 <text data-layer="pcb-silkscreen" x="196.4" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
-<rect x="509.4" y="695.4" width="33.1" height="9.6" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1.6" data-instance="product_usb_connector" data-mpn="USB4105-GF-A" data-port-role="power-and-data"/>
+<g data-instance="product_usb_connector" data-mpn="USB4105-GF-A" data-port-role="power-and-data" data-interface-shape="usb-c-receptacle">
+<rect x="509.4" y="695.4" width="33.1" height="9.6" rx="3.5" fill="#dcfce7" stroke="#16a34a" stroke-width="1.6"/>
+<rect x="512.4" y="697.1" width="27.1" height="6.2" rx="2.6" fill="#0f172a" stroke="#16a34a" stroke-width="0.9"/>
+<rect x="518.0" y="699.3" width="15.9" height="1.6" rx="0.6" fill="#dcfce7" stroke="none" data-part="usb-c-tongue"/>
+</g>
 <path d="M525.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="525.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#16a34a">S3</text>
 <text data-layer="pcb-silkscreen" x="525.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#16a34a">POWER + USB</text>
-<rect x="587.1" y="695.4" width="33.1" height="9.6" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6" data-instance="rp_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
+<g data-instance="rp_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only" data-interface-shape="usb-c-receptacle">
+<rect x="587.1" y="695.4" width="33.1" height="9.6" rx="3.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<rect x="590.1" y="697.1" width="27.1" height="6.2" rx="2.6" fill="#0f172a" stroke="#2563eb" stroke-width="0.9"/>
+<rect x="595.7" y="699.3" width="15.9" height="1.6" rx="0.6" fill="#dbeafe" stroke="none" data-part="usb-c-tongue"/>
+</g>
 <path d="M603.6 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="603.6" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">RF RP</text>
 <text data-layer="pcb-silkscreen" x="603.6" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
