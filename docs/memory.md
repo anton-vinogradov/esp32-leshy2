@@ -26,8 +26,9 @@ Firmware F0-R2.3 now fixes the S3-last six-image update transaction; its actual
 16.7-second RP TBYB timing remains a later firmware/physical qualification gate.
 The [reviewed firmware F0-R2 result](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f0-product-contracts-report.md)
 also records that only S3 has an exact official emulator; Pico 2 remains a
-non-exact surrogate for both selected RP2354B targets. Firmware is now at
-F1-R2.0 without claiming an R2 target build or physical run.
+non-exact surrogate for both selected RP2354B targets. The
+[F1-R2 portable result is reviewed](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f1-portable-cores-report.md);
+firmware is now at F2-R2.0 without claiming an R2 target build or physical run.
 
 ## Hardware rules that preserve boot and recovery
 

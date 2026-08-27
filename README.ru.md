@@ -37,7 +37,8 @@
 > 3,75 А continuous / 4,25 А step. Полные текущие физические виды сгенерированы,
 > включая исправленный четвёртый независимый recovery-набор; их граница K331,
 > схемы R2 остаются in progress. [Firmware-контракты F0-R2 проведены ревью](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f0-product-contracts-report.ru.md),
-> portable implementation теперь находится на F1-R2.0. H1–H5 R1 остаются только evidence.
+> [Portable F1-R2 проведено ревью](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f1-portable-cores-report.ru.md)
+> с 34 normal+sanitizer scenarios; работа над six-target build теперь на F2-R2.0. H1–H5 R1 остаются только evidence.
 > Закупка, PCB routing и печать заблокированы.
 
 <div align="center">

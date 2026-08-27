@@ -37,7 +37,8 @@
 > views are generated, including the corrected fourth independent recovery set;
 > their K331 boundary and R2 schematics remain in progress. Firmware
 > [F0-R2 contracts are reviewed](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f0-product-contracts-report.md);
-> portable implementation is now at F1-R2.0.
+> [Portable F1-R2 is reviewed](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f1-portable-cores-report.md)
+> with 34 normal plus sanitizer scenarios; six-target build work is now at F2-R2.0.
 > R1 H1–H5 remains evidence only.
 > Purchasing, PCB routing and fabrication remain blocked.
 

@@ -26,8 +26,9 @@ Firmware F0-R2.3 теперь фиксирует S3-last update transaction ше
 реальный timing окна RP TBYB 16,7 с остаётся последующим firmware/physical gate.
 [Проведённое ревью firmware F0-R2](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f0-product-contracts-report.ru.md)
 также фиксирует: точный официальный emulator есть только у S3, а Pico 2
-остаётся неточным surrogate обоих выбранных RP2354B. Firmware теперь находится
-на F1-R2.0, не заявляя R2 target build или физический run.
+остаётся неточным surrogate обоих выбранных RP2354B. [Portable F1-R2 проведено
+ревью](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f1-portable-cores-report.ru.md);
+firmware теперь находится на F2-R2.0, не заявляя R2 target build или физический run.
 
 ## Аппаратные правила, сохраняющие boot и recovery
 

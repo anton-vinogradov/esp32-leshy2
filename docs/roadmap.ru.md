@@ -27,7 +27,7 @@
 | Принципиальные диаграммы на сайте | Функциональная карта H0-R2, полные физические виды и FPV/MMCX-тракт H1-R2.13, а также диаграммы фильтра/rail H1-R2.4 актуальны; сгенерированные физические виды явно остаются in progress до фиксации границы K331 |
 | Production ECAD-схема | ⏳ Листы R1 сохранены; R2 ждёт компоновку и rail-контракт H1-R2 |
 | Электрические и переходные evidence | ⏳ Evidence R1 сохранено; полный повтор H3 R2 идёт после H2 R2 |
-| Пересечение с прошивкой | ✅ [firmware F0-R2 проведено ревью](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f0-product-contracts-report.ru.md): все контракты шести доменов и пять слоёв evidence согласованы; сейчас идёт portable rebaseline F1-R2.0, а точное execution остаётся downstream |
+| Пересечение с прошивкой | ✅ [firmware F1-R2 проведено ревью](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f1-portable-cores-report.ru.md): 34 сценария проходят normal+sanitizer runs; сейчас идёт rebaseline projects/build шести targets F2-R2.0, а точное target/physical execution остаётся downstream |
 | Объединённый pre-layout gate | ⏳ H4 R1 сохранён; H4 R2 ждёт H3 R2 и firmware-evidence R2 |
 | Работа над KiCad-схемой | ⏳ ни один лист R2 не принимается до закрытия H1-R2 |
 | KiCad placement и PCB routing | 🔒 H6: не начаты и не разрешены |
@@ -406,8 +406,9 @@ flowchart TD
 ```
 
 Прежние ревью H1–H5 остаются переиспользуемым evidence R1, а не статусами этой
-последовательности R2. Прошивка провела ревью контракта шести доменов F0-R2 и
-теперь находится на F1-R2.0; актуальные emulator/dev-board evidence нужны до H7.
+последовательности R2. Прошивка провела ревью контрактов шести доменов F0-R2 и
+portable core F1-R2 и теперь находится на F2-R2.0; актуальные emulator/dev-board
+evidence нужны до H7.
 Подача прототипных PCB в печать разрешается на H7 только
 после принятия H6, унаследованного закрытия F3 через H4 и явного одобрения
 заказа. Эмуляция не заменяет физический bring-up, но печать не может быть
