@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1230" height="365" viewBox="0 0 1230 365">
 <rect width="1230" height="365" fill="#ffffff"/>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#334155"/></marker><marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/></marker></defs>
-<text x="32" y="42" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · H1-R2.18 analog-FPV receive path</text>
+<text x="32" y="42" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · H1-R2.19 analog-FPV receive path</text>
 <text x="32" y="70" font-family="sans-serif" font-size="13" fill="#526076">Receive-only · direct rear RF trace · one 75-ohm CVBS signal crosses M1 · the decoder and LCD_CAM remain front-local.</text>
 <rect x="35" y="118" width="170" height="72" rx="9" fill="#ecfccb" stroke="#4d7c0f" stroke-width="2"/>
 <text x="120.0" y="147" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#365314">TBS5G8MMCXA</text>
@@ -31,5 +31,5 @@
 <text x="633" y="290" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP15 free · GP30 power · GP31 video lock</text>
 <text x="633" y="309" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP32/33/34 → K331 CH1/CH2/CH3</text>
 <path d="M633 240 V194" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
-<text x="32" y="347" font-family="sans-serif" font-size="11" fill="#9a3412">K331 functional/pin fit and conditional Consigned Parts route pass; the AKK production package remains the H1 gate.</text>
+<text x="32" y="347" font-family="sans-serif" font-size="11" fill="#9a3412">SP331RX controls nominal XY/contact axes; K331 equivalence, maximum Z/land-paste and assembly evidence remain the H1 gate.</text>
 </svg>

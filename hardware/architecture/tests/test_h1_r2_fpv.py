@@ -54,8 +54,24 @@ class H1R2FPVTest(unittest.TestCase):
         mechanical = self.model["receiver"]["mechanical"]
         self.assertEqual([28.7, 23.1], mechanical["nominal_board_xy_mm"])
         self.assertEqual([30.0, 24.0, 4.0], mechanical["working_envelope_mm"])
-        self.assertIn("reseller", mechanical["nominal_board_xy_source_class"])
+        self.assertIn("SP331RX", mechanical["nominal_board_xy_source_class"])
+        self.assertIn("not yet formally tied", mechanical["nominal_board_xy_source_class"])
         self.assertFalse(mechanical["accepted"])
+
+    def test_sinopine_candidate_geometry_is_controlled_but_not_overstated(self):
+        candidate = self.model["receiver"]["candidate_oem_family"]
+        self.assertEqual("SP331RX", candidate["mpn"])
+        self.assertEqual([28.7, 23.1], candidate["controlled_geometry"]["nominal_board_xy_mm"])
+        self.assertEqual(2.54, candidate["controlled_geometry"]["contact_pitch_mm"])
+        self.assertEqual(1.4, candidate["controlled_geometry"]["contact_edge_offset_mm"])
+        self.assertEqual(14, candidate["controlled_geometry"]["pin_count"])
+        self.assertFalse(candidate["formal_equivalence_to_akk_k331"])
+        self.assertFalse(candidate["accepted_as_k331_physical_body"])
+        self.assertIn("maximum Z", candidate["does_not_cover"])
+        self.assertEqual(
+            "6ed3b34c23092c62891a6dfcd2608f8beca6dd3b1f401c6dfb540b4c5e51756f",
+            candidate["retrieval_evidence"]["pdf_sha256"],
+        )
 
     def test_awm666v_is_a_controlled_but_degraded_fallback(self):
         alternatives = {row["mpn"]: row for row in self.model["receiver_alternatives_reviewed"]}
@@ -102,8 +118,10 @@ class H1R2FPVTest(unittest.TestCase):
     def test_supplier_responses_preserve_the_remaining_gate(self):
         outreach = self.model["supplier_outreach"]
         self.assertEqual("2026-08-27", outreach["sent_on"])
-        self.assertEqual({"akk", "jlcpcb"}, set(outreach) - {"sent_on"})
-        self.assertEqual(["akk"], self.audit["supplier_responses_pending"])
+        self.assertEqual({"akk", "sinopine", "jlcpcb"}, set(outreach) - {"sent_on"})
+        self.assertEqual(["akk", "sinopine"], self.audit["supplier_responses_pending"])
+        self.assertEqual("SP331RX", self.audit["candidate_oem_family"])
+        self.assertFalse(self.audit["candidate_oem_equivalence_accepted"])
         self.assertIn("response received", outreach["jlcpcb"]["status"])
         self.assertTrue(self.model["receiver"]["jlcpcb_surface"]["consigned_parts_route"]["selected"])
         self.assertFalse(self.model["result"]["production_acceptance"])
@@ -112,7 +130,8 @@ class H1R2FPVTest(unittest.TestCase):
         blockers = self.model["current_h1_blockers"]
         downstream = self.model["downstream_verification"]
         self.assertEqual(1, len(blockers))
-        self.assertTrue(any("AKK-controlled" in row for row in blockers))
+        self.assertTrue(any("K331-to-SP331RX equivalence" in row for row in blockers))
+        self.assertTrue(any("maximum Z/tolerances" in row for row in blockers))
         self.assertEqual({"H5/H6/H7", "H3/H6/H8", "H5/H8"}, {row["stage"] for row in downstream})
         self.assertEqual(blockers, self.audit["current_h1_blockers"])
         self.assertEqual(downstream, self.audit["downstream_verification"])

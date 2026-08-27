@@ -165,12 +165,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H1-R2.18`", "H0 is reviewed",
+                "Current hardware boundary: `H1-R2.19`", "H0 is reviewed",
                 "firmware F1-R2 reviewed", "F2-R2.0",
                 "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H1-R2.18`", "H0 проведено ревью",
+                "Текущая аппаратная граница: `H1-R2.19`", "H0 проведено ревью",
                 "firmware F1-R2 проведено ревью", "F2-R2.0",
                 "H9 · Manufacturing release",
                 "Production ECAD",
@@ -186,8 +186,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.18`", "fabrication"),
-            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.18`", "печати прототипа"),
+            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.19`", "fabrication"),
+            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.19`", "печати прототипа"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -300,12 +300,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_public_schematics_describe_current_r2_not_superseded_r1_ecad(self):
         expectations = {
             "docs/schematics.md": (
-                "H0-R2", "H1-R2.18", "does **not** exist yet",
+                "H0-R2", "H1-R2.19", "does **not** exist yet",
                 "3× nRF24", "one analog video signal", "14 NC reserve",
                 "historical engineering evidence", "must not be used for fabrication",
             ),
             "docs/schematics.ru.md": (
-                "H0-R2", "H1-R2.18", "пока **нет**",
+                "H0-R2", "H1-R2.19", "пока **нет**",
                 "3× nRF24", "один аналоговый видеосигнал", "25 возвратов · 14 NC",
                 "историческое инженерное evidence", "печатать по ним нельзя",
             ),
@@ -667,7 +667,7 @@ class ProductSiteTests(unittest.TestCase):
                 rf"\*\*(?:(?:Exact|Current hardware) marker|Точный маркер|Текущий маркер железа): `{re.escape(found[0])}`[.]?\*\*",
                 name,
             )
-            self.assertIn("H1-R2.18", page, name)
+            self.assertIn("H1-R2.19", page, name)
 
         self.assertEqual({current_substep}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
@@ -678,12 +678,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_current_mockup_review_scope_is_explicit(self):
         expectations = {
             "docs/roadmap.md": (
-                "H1-R2.18", "Functional-island placement", "RF and antenna locality",
+                "H1-R2.19", "Functional-island placement", "RF and antenna locality",
                 "Interboard transport", "Physical and service audit", "Exact current blocker",
                 "ask the user to accept the complete mock-up",
             ),
             "docs/roadmap.ru.md": (
-                "H1-R2.18", "Размещение функциональных островов", "Локальность RF и антенн",
+                "H1-R2.19", "Размещение функциональных островов", "Локальность RF и антенн",
                 "Межплатный transport", "Физический и сервисный аудит", "Точный текущий блокер",
                 "получить принятие полного мокапа пользователем",
             ),
@@ -860,7 +860,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H1", state["current_stage"])
-        self.assertEqual("H1-R2.18", state["current_substep"])
+        self.assertEqual("H1-R2.19", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -1011,7 +1011,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(name)
             self.assertNotIn("H5-EVR07", page, name)
             self.assertNotIn("H5-EVR08", page, name)
-            self.assertIn("H1-R2.18", page, name)
+            self.assertIn("H1-R2.19", page, name)
         self.assertEqual(
             "source-hash-bound-precommit-revision",
             h4_plan["firmware_f3_evidence"]["revision"],
@@ -2718,7 +2718,7 @@ class ProductSiteTests(unittest.TestCase):
         for name in ("docs/hardware.md", "docs/hardware.ru.md"):
             page = self.read(name)
             self.assertNotIn("H1-cross-view-acceptance.json", page, name)
-            self.assertIn("H1-R2.18", page, name)
+            self.assertIn("H1-R2.19", page, name)
 
     def test_antenna_kit_is_product_facing_and_machine_accounted(self):
         import json

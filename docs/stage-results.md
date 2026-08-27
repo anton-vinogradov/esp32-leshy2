@@ -25,13 +25,13 @@ safety evidence and power—not primary RF payloads.
 <a id="h1"></a>
 ## H1 · Physical product design
 
-**Status:** ▶️ current at **`H1-R2.18`**.
+**Status:** ▶️ current at **`H1-R2.19`**.
 
 - [Current physical design](h1-r2-physical-layout.md)
-- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.18-rf-topology-4)
+- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.19-oem-evidence-5)
 - [Front inner face](images/h1-r2-inner-ui.svg)
 - [Rear inner face](images/h1-r2-inner-rf.svg)
-- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-rf-topology-4)
+- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.19-oem-evidence-5)
 - [Vertical FPV MMCX proof](images/h1-r2-mmcx-service.svg)
 - [Machine placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json)
 - [Analog FPV path](h1-r2-fpv.md)
@@ -41,8 +41,10 @@ safety evidence and power—not primary RF payloads.
 Current result: ten main SMA ports are split 5+5; FPV uses a separate vertical
 Molex `73415-2063` (`C588480`) MMCX on the rear face. The generated two-board
 placement has zero same-face collisions and 1.44 mm minimum opposing clearance.
-The remaining H1 blocker is the controlled maximum-XYZ, land-pattern and
-assembly package for the AKK K331 receiver candidate.
+Official Sinopine SP331RX evidence now controls the candidate-family nominal
+XY, contact pitch and edge offset. The remaining H1 blocker is formal
+K331-to-SP331RX equivalence plus controlled maximum Z, tolerances,
+land/paste and assembly evidence.
 
 <a id="h2"></a>
 ## H2 · Production schematic

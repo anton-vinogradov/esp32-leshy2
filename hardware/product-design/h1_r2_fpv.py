@@ -58,6 +58,7 @@ def audit(model: dict) -> dict:
     if receiver["jlcpcb_surface"]["accepted_for_factory_placement"]:
         errors.append("K331 factory placement is claimed without a JLCPCB route")
     official = receiver.get("official_integration_evidence", {})
+    candidate_oem = receiver.get("candidate_oem_family", {})
     required_official_evidence = {"application_circuit", "pinout", "channel_table"}
     if not required_official_evidence.issubset(official):
         errors.append("official K331 integration evidence is incomplete")
@@ -65,13 +66,28 @@ def audit(model: dict) -> dict:
         errors.append("official K331 integration evidence is not manufacturer-hosted")
     if official.get("does_not_cover") != "maximum body dimensions, pad pitch and land geometry, packaging or reflow profile":
         errors.append("official K331 media no longer preserves the physical-evidence boundary")
+    candidate_geometry = candidate_oem.get("controlled_geometry", {})
+    if candidate_oem.get("mpn") != "SP331RX" or candidate_oem.get("manufacturer") != "Shenzhen Sinopine Technology Co., Ltd.":
+        errors.append("the controlled 331RX-family candidate identity is missing")
+    if candidate_geometry.get("nominal_board_xy_mm") != [28.7, 23.1]:
+        errors.append("official SP331RX nominal XY is missing or stale")
+    if candidate_geometry.get("contact_pitch_mm") != 2.54 or candidate_geometry.get("contact_edge_offset_mm") != 1.4:
+        errors.append("official SP331RX contact-axis geometry is missing or stale")
+    if candidate_geometry.get("pin_count") != 14:
+        errors.append("official SP331RX pin count is missing or stale")
+    if candidate_oem.get("formal_equivalence_to_akk_k331") or candidate_oem.get("accepted_as_k331_physical_body"):
+        errors.append("SP331RX evidence is overstated as accepted K331 production equivalence")
+    if candidate_oem.get("retrieval_evidence", {}).get("pdf_sha256") != "6ed3b34c23092c62891a6dfcd2608f8beca6dd3b1f401c6dfb540b4c5e51756f":
+        errors.append("the inspected official-origin SP331RX PDF is not hash-pinned")
+    if "maximum Z" not in candidate_oem.get("does_not_cover", "") or "recommended PCB land/paste" not in candidate_oem.get("does_not_cover", ""):
+        errors.append("SP331RX evidence no longer preserves the remaining assembly boundary")
     mechanical = receiver["mechanical"]
     if mechanical.get("nominal_board_xy_mm") != [28.7, 23.1]:
         errors.append("K331 nominal XY corroboration is missing or stale")
     if mechanical.get("working_envelope_mm") != [30.0, 24.0, 4.0]:
         errors.append("K331 conservative collision reserve is missing or stale")
-    if "reseller" not in mechanical.get("nominal_board_xy_source_class", ""):
-        errors.append("K331 nominal XY evidence is overstated as controlled")
+    if "SP331RX" not in mechanical.get("nominal_board_xy_source_class", "") or "not yet formally tied" not in mechanical.get("nominal_board_xy_source_class", ""):
+        errors.append("candidate SP331RX geometry is overstated as accepted K331 geometry")
     alternatives = {row["mpn"]: row for row in model["receiver_alternatives_reviewed"]}
     if set(alternatives) != {"AKK K331", "AWM666V RX", "AWM682 RX", "TUE-RFVRX-58-D", "SP166RX", "MM238R-MCU", "RichWave RTC6715 IC", "generic RX5808"}:
         errors.append("receiver alternative review is incomplete")
@@ -113,10 +129,12 @@ def audit(model: dict) -> dict:
         errors.append("generic RX5808 factory evidence is stale")
     if outreach.get("sent_on") != model["checked_on"]:
         errors.append("supplier outreach date is missing or stale")
-    if set(outreach) != {"sent_on", "akk", "jlcpcb"}:
-        errors.append("supplier outreach does not cover both AKK and JLCPCB")
+    if set(outreach) != {"sent_on", "akk", "sinopine", "jlcpcb"}:
+        errors.append("supplier outreach does not cover AKK, Sinopine and JLCPCB")
     if "pending" not in outreach["akk"].get("status", ""):
         errors.append("AKK production-package request must remain fail-closed until the reply arrives")
+    if "pending" not in outreach["sinopine"].get("status", ""):
+        errors.append("Sinopine production-identity request must remain fail-closed until the reply arrives")
     if "response received" not in outreach["jlcpcb"].get("status", ""):
         errors.append("JLCPCB factory-route response is missing")
     route = receiver["jlcpcb_surface"].get("consigned_parts_route", {})
@@ -151,7 +169,10 @@ def audit(model: dict) -> dict:
         "jlcpcb_placeable_hits": sum(row["placeable_hits"] for row in searches.values()),
         "supplier_outreach_sent_on": outreach["sent_on"],
         "official_integration_evidence": sorted(required_official_evidence),
-        "supplier_responses_pending": [key for key in ("akk", "jlcpcb") if "pending" in outreach[key]["status"]],
+        "candidate_oem_family": candidate_oem.get("mpn"),
+        "candidate_oem_geometry": candidate_geometry,
+        "candidate_oem_equivalence_accepted": candidate_oem.get("formal_equivalence_to_akk_k331"),
+        "supplier_responses_pending": [key for key in ("akk", "sinopine", "jlcpcb") if "pending" in outreach[key]["status"]],
         "current_h1_blockers": current_blockers,
         "downstream_verification": downstream,
         "errors": errors,
@@ -187,7 +208,7 @@ def render_svg(model: dict) -> str:
         '<text x="633" y="290" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP15 free · GP30 power · GP31 video lock</text>',
         '<text x="633" y="309" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP32/33/34 → K331 CH1/CH2/CH3</text>',
         '<path d="M633 240 V194" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrowBlue)"/>',
-        '<text x="32" y="347" font-family="sans-serif" font-size="11" fill="#9a3412">K331 functional/pin fit and conditional Consigned Parts route pass; the AKK production package remains the H1 gate.</text>',
+        '<text x="32" y="347" font-family="sans-serif" font-size="11" fill="#9a3412">SP331RX controls nominal XY/contact axes; K331 equivalence, maximum Z/land-paste and assembly evidence remain the H1 gate.</text>',
         '</svg>\n',
     ])
     return "\n".join(out)
@@ -201,7 +222,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         intro = 'Принят серийный функциональный кандидат приёмника и точная антенна; физическая приёмка K331 ещё не заявлена.'
         result_text = (
             f'- `AKK {r["mpn"]}` покрывает {r["frequency_mhz"][0]}–{r["frequency_mhz"][1]} МГц, до {r["maximum_current_ma"]} мА и выдаёт CVBS 1 Vpp/75 Ω.\n'
-            f'- Официальные материалы AKK подтверждают [схему включения 331RX]({e["application_circuit"]}), [функции всех 14 контактов]({e["pinout"]}) и [таблицу выбора 24 каналов]({e["channel_table"]}). AKK-брендированный кадр у продавца даёт номинальный контур платы 28,7×23,1 мм; аудит коллизий использует увеличенный резерв 30×24×4 мм.\n'
+            f'- Официальные материалы AKK подтверждают [схему включения 331RX]({e["application_circuit"]}), [функции всех 14 контактов]({e["pinout"]}) и [таблицу выбора 24 каналов]({e["channel_table"]}). Официальный `SP331R-MANUAL-V1.0` Sinopine подтверждает для совпадающего семейства SP331RX номинальный контур 28,7×23,1 мм, шаг контактов 2,54 мм и краевой отступ 1,4 мм. Формальная эквивалентность поставляемому AKK K331 пока не заявлена; аудит сохраняет увеличенный резерв 30×24×4 мм.\n'
             '- CH1/CH2/CH3 используют задние RP GPIO32/33/34; GPIO30/31 обслуживают power/video-lock. Официальный pinout помечает K331 pin 6 `RSSI (NC)`, поэтому GPIO15 остаётся свободным.\n'
             f'- Резерв 5 В оставляет {result["power_margin_ma"]} мА запаса. RF идёт напрямую по 50-омной PCB-дорожке к MMCX без U.FL.\n'
             f'- Антенна `{a["mpn"]}` линейная, {a["frequency_mhz"][0]}–{a["frequency_mhz"][1]} МГц, {a["gain_dbi"]} dBi, {a["cable_length_mm"]} мм; точная маркировка комплекта — `{a["printed_identity"]}`.'
@@ -214,7 +235,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             'RTC6715 — голая QFN48, а её публичный preliminary-документ 2007 года не содержит reference application или PCB layout; собственный RF/IF-тракт повысил бы риск, не решив supply. '
             'Поэтому выбран условный фабричный маршрут: оригинальная поставка AKK плюс JLCPCB Consigned Parts. '
             'Антенна за $6.95 остаётся аксессуаром комплекта после PCBA. '
-            'Официальный production-пакет AKK всё ещё нужен для точной установки и consignment application; финальный DFM по Gerber/BOM/CPL и дополнительное рассмотрение function test 5 В/channel-select/CVBS следуют в H5/H6/H7.'
+            'Открытый H1-пакет теперь уже: нужен либо собственный production-пакет AKK, либо формальное подтверждение K331≡SP331RX, а также maximum Z/допуски, рекомендуемые land/paste и packaging/soldering/reflow. Финальный DFM по Gerber/BOM/CPL и дополнительное рассмотрение function test 5 В/channel-select/CVBS следуют в H5/H6/H7.'
         )
         blockers = '\n'.join(f'- {gate}' for gate in model['current_h1_blockers'])
         downstream = '\n'.join(
@@ -229,7 +250,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         intro = 'The serial receiver functional candidate and exact antenna are selected; K331 physical acceptance is not claimed yet.'
         result_text = (
             f'- `AKK {r["mpn"]}` covers {r["frequency_mhz"][0]}–{r["frequency_mhz"][1]} MHz, draws at most {r["maximum_current_ma"]} mA and emits 1-Vpp/75-ohm CVBS.\n'
-            f'- Official AKK-hosted media confirms the [331RX application circuit]({e["application_circuit"]}), [all 14 pin functions]({e["pinout"]}) and the [24-channel selection table]({e["channel_table"]}). An AKK-branded reseller image gives a 28.7 × 23.1 mm nominal board outline; collision audit uses an enlarged 30 × 24 × 4 mm reserve.\n'
+            f'- Official AKK-hosted media confirms the [331RX application circuit]({e["application_circuit"]}), [all 14 pin functions]({e["pinout"]}) and the [24-channel selection table]({e["channel_table"]}). The official Sinopine `SP331R-MANUAL-V1.0` controls 28.7 × 23.1 mm nominal XY, 2.54-mm contact pitch and 1.4-mm edge offset for the matching SP331RX family. Formal equivalence to the supplied AKK K331 is not claimed; collision audit retains the enlarged 30 × 24 × 4 mm reserve.\n'
             '- CH1/CH2/CH3 use rear-RP GPIO32/33/34; GPIO30/31 serve power/video lock. The official pinout marks K331 pin 6 `RSSI (NC)`, so GPIO15 remains free.\n'
             f'- The 5-V reserve retains {result["power_margin_ma"]} mA. RF runs directly over a 50-ohm PCB trace to MMCX without U.FL.\n'
             f'- `{a["mpn"]}` is linear, {a["frequency_mhz"][0]}–{a["frequency_mhz"][1]} MHz, {a["gain_dbi"]} dBi and {a["cable_length_mm"]} mm; its exact kit mark is `{a["printed_identity"]}`.'
@@ -242,7 +263,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             'RTC6715 is a bare QFN48 whose public 2007 preliminary sheet has no reference application or PCB layout; a custom RF/IF path would add risk without fixing supply. '
             'Genuine AKK supply plus JLCPCB Consigned Parts is therefore the selected conditional factory route. '
             'The $6.95 antenna remains a post-PCBA kit accessory. '
-            'The official AKK production package is still required for exact placement and the consignment application; final Gerber/BOM/CPL DFM and optional 5-V/channel-select/CVBS function-test review follow in H5/H6/H7.'
+            'The open H1 package is now narrower: either an AKK-native production package or formal K331-to-SP331RX equivalence is required, together with maximum Z/tolerances, recommended land/paste and packaging/soldering/reflow. Final Gerber/BOM/CPL DFM and optional 5-V/channel-select/CVBS function-test review follow in H5/H6/H7.'
         )
         blockers = '\n'.join(f'- {gate}' for gate in model['current_h1_blockers'])
         downstream = '\n'.join(

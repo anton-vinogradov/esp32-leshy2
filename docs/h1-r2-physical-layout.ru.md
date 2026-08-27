@@ -1,18 +1,18 @@
-# H1-R2.18 · компоновка готового устройства
+# H1-R2.19 · компоновка готового устройства
 
-Текущая физическая модель двух плат 75×150 мм. Это проверяемый результат H1, но ещё не разрешение начинать KiCad: точный production-пакет K331 остаётся единственным открытым входом.
+Текущая физическая модель двух плат 75×150 мм. Это проверяемый результат H1, но ещё не разрешение начинать KiCad: формальная identity K331 и остаток production-пакета остаются единственным открытым входом.
 
 ## Что увидит пользователь
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-rf-topology-4)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.19-oem-evidence-5)
 
 ## Легенда компонентов
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.18-rf-topology-4)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.19-oem-evidence-5)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-rf-topology-4)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.19-oem-evidence-5)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-rf-topology-4)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.19-oem-evidence-5)
 
 ## Что находится внутри
 
@@ -65,6 +65,6 @@
 
 ## Текущий блокер H1
 
-- получить единый контролируемый production-пакет AKK с максимальными размерами, посадочным местом и данными упаковки/soldering/reflow до замены резерва K331 точным корпусом и подачи Consigned Parts application
+- закрыть единую контролируемую production-identity K331: либо AKK предоставляет свой пакет, либо AKK/Sinopine формально подтверждают эквивалентность K331 и SP331RX; в любом случае получить maximum Z/допуски, рекомендуемые land/paste и packaging/soldering/reflow до замены резерва точным корпусом и подачи Consigned Parts application
 
-> Точный текущий маркер: **H1-R2.18**. H1 продолжается.
+> Точный текущий маркер: **H1-R2.19**. H1 продолжается.

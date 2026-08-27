@@ -1,18 +1,18 @@
-# H1-R2.18 · finished-device placement
+# H1-R2.19 · finished-device placement
 
-Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, not authorization to start KiCad: the controlled K331 production package remains the sole open input.
+Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, not authorization to start KiCad: formal K331 identity and the remaining production package are the sole open input.
 
 ## What the user sees
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-rf-topology-4)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.19-oem-evidence-5)
 
 ## Component legend
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.18-rf-topology-4)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.19-oem-evidence-5)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-rf-topology-4)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.19-oem-evidence-5)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-rf-topology-4)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.19-oem-evidence-5)
 
 ## What is inside
 
@@ -65,6 +65,6 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 
 ## Current H1 blocker
 
-- obtain one AKK-controlled production package with maximum XYZ dimensions, pad pitch/land pattern and packaging/soldering/reflow evidence before replacing the K331 reserve with a fixed body and submitting the Consigned Parts application
+- close one controlled K331 production identity: either AKK supplies its own package or AKK/Sinopine formally confirms K331-to-SP331RX equivalence; in either case obtain maximum Z/tolerances, recommended land/paste geometry and packaging/soldering/reflow evidence before replacing the reserve with a fixed body and submitting the Consigned Parts application
 
-> Exact current marker: **H1-R2.18**. H1 remains in progress.
+> Exact current marker: **H1-R2.19**. H1 remains in progress.

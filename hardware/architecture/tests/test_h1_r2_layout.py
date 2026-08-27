@@ -20,7 +20,7 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.18", self.model["marker"])
+        self.assertEqual("H1-R2.19", self.model["marker"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
         self.assertEqual(36, len(self.audit["opposing_overlaps"]))
@@ -44,7 +44,10 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("reserve", bay["kind"])
         self.assertIsNone(bay["mpn"])
         self.assertEqual("AKK K331", bay["candidate_mpn"])
-        self.assertIn("AKK-controlled production package", self.model["current_h1_blockers"][0])
+        self.assertIn("official Sinopine SP331RX", bay["role"])
+        self.assertNotIn("reseller-hosted AKK-branded", bay["role"])
+        self.assertIn("K331-to-SP331RX equivalence", self.model["current_h1_blockers"][0])
+        self.assertIn("maximum Z/tolerances", self.model["current_h1_blockers"][0])
 
     def test_h1_blockers_are_separate_from_dependent_and_later_work(self):
         self.assertEqual(1, len(self.model["current_h1_blockers"]))

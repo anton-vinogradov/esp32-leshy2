@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.18",
+  "marker": "H1-R2.19",
   "status": "pass",
   "functional_and_pin_fit": true,
   "receiver": "K331",
@@ -30,11 +30,24 @@
     "channel_table",
     "pinout"
   ],
+  "candidate_oem_family": "SP331RX",
+  "candidate_oem_geometry": {
+    "nominal_board_xy_mm": [
+      28.7,
+      23.1
+    ],
+    "contact_pitch_mm": 2.54,
+    "contact_edge_offset_mm": 1.4,
+    "pin_count": 14,
+    "source": "Figure 1 on page 7 of SP331R-MANUAL-V1.0"
+  },
+  "candidate_oem_equivalence_accepted": false,
   "supplier_responses_pending": [
-    "akk"
+    "akk",
+    "sinopine"
   ],
   "current_h1_blockers": [
-    "obtain one AKK-controlled production package with maximum XYZ dimensions, pad pitch/land pattern and packaging/soldering/reflow evidence for the fixed body and Consigned Parts application"
+    "close one controlled K331 production identity: either AKK supplies its own package or AKK/Sinopine formally confirms K331-to-SP331RX equivalence; in either case obtain maximum Z/tolerances, recommended land/paste geometry and packaging/soldering/reflow evidence for the fixed body and Consigned Parts application"
   ],
   "downstream_verification": [
     {

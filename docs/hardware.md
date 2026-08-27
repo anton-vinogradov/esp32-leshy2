@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H1-R2.18`**. The functional architecture is reviewed; the
+> Current marker: **`H1-R2.19`**. The functional architecture is reviewed; the
 > physical design is in progress. Nothing on this page authorizes KiCad routing
 > or an order.
 
@@ -73,9 +73,9 @@ below 0.4 MB/s, so it does not saturate the RP transport.
 
 ## Physical layout
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-rf-topology-4)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.19-oem-evidence-5)
 
-[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-rf-topology-4).
+[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.19-oem-evidence-5).
 
 The ten main antenna ports are split symmetrically:
 
@@ -95,7 +95,7 @@ both mounting holes; Ø12 is only a temporary H5 finger-access check.
 
 ### Component legend
 
-![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.18-rf-topology-4)
+![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.19-oem-evidence-5)
 
 [Front inner face at full scale](images/h1-r2-inner-ui.svg) ·
 [rear inner face at full scale](images/h1-r2-inner-rf.svg)
@@ -133,7 +133,7 @@ the drawing is its pad span.
 - User silkscreen is printed only on visible outer faces and is not hidden by
   the display, batteries or U214.
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-rf-topology-4)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.19-oem-evidence-5)
 
 ## Power and unattended safety
 
@@ -155,8 +155,11 @@ See [power and thermal architecture](h1-r2-power-thermal.md) and the
 
 ## Current physical-design gate
 
-Everything above is generated and audit-checked. H1 remains open because K331
-still lacks one AKK-controlled package containing maximum XYZ, land pattern and
-packaging/soldering/reflow evidence. JLCPCB confirmed no Parts Library or Global
-Sourcing route; genuine AKK supply through Consigned Parts is the selected later
-factory route. KiCad and all purchasing remain blocked.
+Everything above is generated and audit-checked. Official Sinopine SP331RX
+evidence now controls the candidate-family nominal 28.7 × 23.1 mm outline,
+2.54 mm contact pitch and 1.4 mm edge offset. H1 remains open because the
+manufacturer has not yet formally tied that package to AKK K331, and neither
+source controls maximum Z, tolerances, recommended land/paste or
+packaging/soldering/reflow. JLCPCB confirmed no Parts Library or Global Sourcing
+route; genuine manufacturer supply through Consigned Parts remains the selected
+later factory route. KiCad and all purchasing remain blocked.

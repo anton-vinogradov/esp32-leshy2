@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.18",
+  "marker": "H1-R2.19",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "new_fixed_body_count": 47,
@@ -589,7 +589,7 @@
   },
   "errors": [],
   "current_h1_blockers": [
-    "obtain one AKK-controlled production package with maximum XYZ dimensions, pad pitch/land pattern and packaging/soldering/reflow evidence before replacing the K331 reserve with a fixed body and submitting the Consigned Parts application"
+    "close one controlled K331 production identity: either AKK supplies its own package or AKK/Sinopine formally confirms K331-to-SP331RX equivalence; in either case obtain maximum Z/tolerances, recommended land/paste geometry and packaging/soldering/reflow evidence before replacing the reserve with a fixed body and submitting the Consigned Parts application"
   ],
   "dependent_h1_work": [
     "promote the generated complete R2 exterior, mirrored inner faces and four real section planes from in-progress to reviewed only after the K331 reserve becomes a controlled fixed body"
@@ -864,7 +864,7 @@
       "kind": "reserve",
       "frame": "rf-inner",
       "mpn": null,
-      "role": "leading serial 5.8-GHz analog receiver candidate with official functional integration; 30 x 24 x 4 mm is a conservative collision reserve around reseller-hosted AKK-branded 28.7 x 23.1 mm nominal XY until controlled physical evidence exists",
+      "role": "leading serial 5.8-GHz analog receiver candidate with official AKK functional integration; 30 x 24 x 4 mm is a conservative collision reserve around the official Sinopine SP331RX 28.7 x 23.1 mm nominal XY while formal K331 equivalence and the remaining production package stay open",
       "world_bbox_mm": {
         "x": [
           38.5,

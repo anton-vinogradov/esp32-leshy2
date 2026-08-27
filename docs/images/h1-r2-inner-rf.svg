@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1110" viewBox="0 0 1160 1110" data-marker="H1-R2.18" data-frame="rf-inner" data-inner-silkscreen="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1110" viewBox="0 0 1160 1110" data-marker="H1-R2.19" data-frame="rf-inner" data-inner-silkscreen="none">
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.18 · RF / power PCB inner face</text>
+<text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.19 · RF / power PCB inner face</text>
 <text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.</text>
 <text x="290.0" y="105.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ANTENNA EDGE · five board-local RF paths</text>
 <rect x="80.0" y="165.0" width="420.0" height="840.0" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>

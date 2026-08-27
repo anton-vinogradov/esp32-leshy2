@@ -30,7 +30,7 @@ COMPONENT_LEGEND_SVG_PATH = REPO / "docs/images/h1-r2-component-legend.svg"
 EN_DOC_PATH = REPO / "docs/h1-r2-physical-layout.md"
 RU_DOC_PATH = REPO / "docs/h1-r2-physical-layout.ru.md"
 SOURCE_TABLE_PATH = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
-PUBLIC_ASSET_REV = "h1-r2.18-rf-topology-4"
+PUBLIC_ASSET_REV = "h1-r2.19-oem-evidence-5"
 BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
 BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
@@ -1528,7 +1528,7 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
     if ru:
         title = f'# {model["marker"]} · физическая перекомпоновка'
         intro = "Это текущий проверяемый результат H1, а не журнал решений и не разрешение начинать KiCad."
-        state = "В принятую 75×150-мм систему координат добавлены второй Hub RP, его полный независимый внешний recovery-набор, активные корпуса Airband, расширенная 24×11-мм ячейка настройки фильтра, видеодекодер FPV и сменная зона ведущего серийного кандидата AKK K331. Резерв не превращён в точный корпус до получения контролируемых размеров AKK."
+        state = "В принятую 75×150-мм систему координат добавлены второй Hub RP, его полный независимый внешний recovery-набор, активные корпуса Airband, расширенная 24×11-мм ячейка настройки фильтра, видеодекодер FPV и сменная зона ведущего серийного кандидата AKK K331. Официальная геометрия семейства SP331RX уже учтена, но резерв не превращён в точный корпус без формальной эквивалентности K331 и полного production-пакета."
         audit_heading = "## Что уже проверено"
         open_heading = "## Что блокирует H1 сейчас"
         dependent_heading = "## Зависимая работа H1"
@@ -1539,16 +1539,16 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
             f'- Намеренных встречных XY-проекций: `{result["opposing_overlap_count"]}`; минимальный Z-зазор `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
             '- Исправлено найденное расхождение H0↔H1: Hub RP получил четвёртый независимый data-only `HUB SERVICE USB`, две утопленные боковые кнопки `HUB RST/BOOT` и четвёртый внутренний DBG10. Hub и C5 используют один и тот же точный `SKRTLAE010`, поэтому генератор показывает одинаковые корпус, защитную выемку и утопленный толкатель.',
             '- Все четыре независимых USB теперь направлены в нижний торец: основной `USB / POWER` и три data-only service-порта S3/C5, RF RP и Hub RP сохраняют раздельные тракты.',
-            '- На UI-плате остаются четыре SMA, а на RF-плате в один антенный торец помещаются шесть SMA и отдельный MMCX FPV: точные корпуса дают зазоры 0,7 мм и поля платы по 3,0 мм. Радио, ответвители и цепи контроля фактической передачи не переносятся; новых RF-переходов и потерь в тракте нет.',
+            '- Десять основных SMA разделены 5+5 между UI- и RF-платами; отдельный MMCX FPV расположен ниже заднего ряда. Радио, ответвители и цепи контроля фактической передачи остаются локальны своим разъёмам; новых межплатных RF-переходов нет.',
             '- Обе внутренние стороны показаны ровно так, как их видно после физического переворота платы; прежняя инкрементальная картинка ошибочно переворачивала только RF-плату.',
-            '- AKK-брендированный размерный кадр у продавца задаёт номинал платы K331 28,7×23,1 мм; коллизии проверены с консервативным резервом 30×24×4 мм без изменения контура платы и внешних зон аккумуляторов/U214.',
-            '- Функциональная распиновка K331 принята, но резерв не считается точным корпусом: максимальные XYZ, посадочное место и reflow/packaging должны прийти из контролируемого документа AKK.',
+            '- Официальный manual Sinopine SP331RX задаёт номинал 28,7×23,1 мм, шаг контактов 2,54 мм и краевой отступ 1,4 мм совпадающего семейства 331RX; коллизии проверены с консервативным резервом 30×24×4 мм.',
+            '- Функциональная распиновка K331 принята, но резерв не считается точным корпусом: нужны формальная эквивалентность K331↔SP331RX или собственный пакет AKK, maximum Z/допуски, land/paste и reflow/packaging.',
             '- JLCPCB подтвердила отсутствие K331 в Parts Library и Global Sourcing и не нашла прямой замены. Выбран фабричный маршрут: оригинальная поставка AKK через Consigned Parts; application и финальный DFM по Gerber/BOM/CPL относятся к последующим этапам.',
             '- JLCPCB готова рассмотреть процедуру function test для 5 В, channel-select и CVBS. Проверка реализуемости и цена относятся к H5/H6/H7 и не блокируют текущую физическую модель.',
             '- Контролируемый fallback `AWM666V RX` размером 26,16×16,38×3,70 мм и его рекомендованная посадка входят в ту же ячейку; он не заменяет K331 автоматически из-за семи каналов вместо 24 и отсутствия публичного маршрута JLCPCB.',
             '- Точная линейная антенна TBS5G8MMCXA подключается к отдельному MMCX; между ANT IN K331 и MMCX запланирована прямая 50-омная PCB-дорожка без U.FL.',
             '- Исправленная геометрия `DL-MMCX-KWE-90`: 3,6 мм корпуса находятся на RF-плате, ствол выступает за верхний антенный торец на 3,0 мм; выводы входят в межплатный просвет номинально на 1,2 мм, а их keepout не пересекает встречные корпуса.',
-            '- Для антенного торца закреплён минимальный свободный диаметр 4,5 мм и внешний коридор подключения Ø12×20 мм. Корпус MMCX оставляет по 0,7 мм до соседних SMA `nRF24-2` и `VHF VOICE`; Ø12-мм монтажная оболочка их перекрывает, поэтому гибкая 102-мм антенна FPV ставится первой. H5 проверяет полученные разъёмы, порядок установки, снятие, удержание и нагрузку антенны.',
+            '- Корпус MMCX оставляет 2,07 мм до ближайших SMA `CC-SUB` и `VOICE-VHF`; Ø12-мм временная зона пальцев пересекает только их handling-envelope. Контролируемый угловой штекер сохраняет 2,40 мм до SMA и 4,80 мм до U214; H5 проверяет полученные детали, порядок установки, снятие, удержание и нагрузку антенны.',
             '- Hub остаётся на UI-плате рядом со storage/audio/broadcast; RF-модуль FPV и видеодекодер расположены вместе на RF-плате.',
             '- Для Airband получен [номинально проходящий, но открытый по stress синтез](h1-airband-filter.ru.md); увеличенная ячейка содержит альтернативные/DNP-площадки, H3 проверяет bounded-оценку, H6 — routed extraction до заказа, H8 — финальный VNA-state.',
         ]
@@ -1559,7 +1559,7 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
     else:
         title = f'# {model["marker"]} · physical re-layout'
         intro = "This is the current verified H1 result, not a decision diary and not authorization to start KiCad."
-        state = "The second Hub RP, its complete independent external recovery set, Airband active bodies, an expanded 24 × 11 mm filter-tuning cell, the FPV video decoder and a replaceable bay for the leading serial AKK K331 candidate are placed in the accepted 75 × 150 mm coordinate system. The reserve is not promoted to a fixed body before AKK-controlled dimensions exist."
+        state = "The second Hub RP, its complete independent external recovery set, Airband active bodies, an expanded 24 × 11 mm filter-tuning cell, the FPV video decoder and a replaceable bay for the leading serial AKK K331 candidate are placed in the accepted 75 × 150 mm coordinate system. Official SP331RX-family geometry is included, but the reserve is not promoted to a fixed body without formal K331 equivalence and the complete production package."
         audit_heading = "## Already verified"
         open_heading = "## What blocks H1 now"
         dependent_heading = "## Dependent H1 work"
@@ -1570,16 +1570,16 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
             f'- Intentional opposing XY projections: `{result["opposing_overlap_count"]}`; minimum Z clearance is `{result["minimum_opposing_clearance_mm"]:.2f} mm` against `{result["required_opposing_clearance_mm"]:.2f} mm` required.',
             '- The discovered H0↔H1 mismatch is corrected: Hub RP now has the fourth independent data-only `HUB SERVICE USB`, two recessed side `HUB RST/BOOT` controls and the fourth internal DBG10. Hub and C5 use the same exact `SKRTLAE010`, so the generator renders the same body, protective recess and recessed actuator.',
             '- All four independent USB openings now face the bottom edge: the main `USB / POWER` and the three data-only service paths for C5, RF RP and Hub RP remain electrically independent.',
-            '- The UI board retains four SMA while the RF board packs six SMA plus the distinct FPV MMCX onto one antenna edge: exact bodies preserve 0.7-mm gaps and 3.0-mm board margins. No radio, coupler or physical-TX evidence chain moves, and no RF transition or link-budget loss is added.',
+            '- The ten main SMA ports are split 5+5 between the UI and RF PCBs; the separate FPV MMCX sits below the rear row. Radios, couplers and physical-TX evidence remain local to their connectors, with no new interboard RF transition.',
             '- Both inner faces are shown exactly as viewed after physically turning each PCB over; the earlier incremental view incorrectly turned only the RF PCB.',
-            '- An AKK-branded dimensioned reseller image gives a 28.7 × 23.1 mm nominal K331 board; collision checks use a conservative 30 × 24 × 4 mm reserve without changing the PCB outline or battery/U214 exterior zones.',
-            '- K331 functional pin fit is accepted, but the reserve is not a fixed body: maximum XYZ, land pattern and reflow/packaging must come from an AKK-controlled document.',
+            '- The official Sinopine SP331RX manual controls 28.7 × 23.1 mm nominal XY, 2.54-mm contact pitch and 1.4-mm edge offset for the matching 331RX family; collision checks retain a conservative 30 × 24 × 4 mm reserve.',
+            '- K331 functional pin fit is accepted, but the reserve is not a fixed body: formal K331↔SP331RX equivalence or an AKK-native package, maximum Z/tolerances, land/paste and reflow/packaging remain required.',
             '- JLCPCB confirmed that K331 is absent from both Parts Library and Global Sourcing and found no direct replacement. The selected factory route is genuine AKK supply through Consigned Parts; its application and final Gerber/BOM/CPL DFM are later gates.',
             '- JLCPCB can review a later 5 V, channel-select and CVBS function-test procedure. Feasibility and quotation belong to H5/H6/H7 and do not block the present physical model.',
             '- The controlled 26.16 × 16.38 × 3.70 mm `AWM666V RX` fallback and its recommended land pattern fit the same bay; it does not replace K331 automatically because it has seven channels instead of 24 and no public JLCPCB route.',
             '- The exact linear TBS5G8MMCXA antenna mates with the distinct MMCX; K331 ANT IN reaches it over one direct 50-ohm PCB trace without U.FL.',
             '- Corrected `DL-MMCX-KWE-90` geometry keeps 3.6 mm of body on the RF PCB and projects only the 3.0-mm barrel beyond the top antenna edge; its pins enter the interboard gap by a nominal 1.2 mm and the tail keepout meets no opposing body.',
-            '- The antenna edge has a 4.5-mm minimum free aperture and a Ø12×20-mm exterior handling corridor. The MMCX body leaves 0.7 mm to each adjacent `nRF24-2` and `VHF VOICE` SMA; its Ø12-mm handling envelope overlaps them, so the flexible 102-mm FPV antenna is fitted first. H5 verifies received parts, installation/removal order, retention and antenna strain.',
+            '- The MMCX body leaves 2.07 mm to the nearest `CC-SUB` and `VOICE-VHF` SMA bodies; only its temporary Ø12 finger envelope overlaps their handling envelopes. The controlled right-angle plug retains 2.40 mm to SMA and 4.80 mm to U214; H5 verifies received parts, installation/removal order, retention and antenna strain.',
             '- Hub remains on the UI board beside storage/audio/broadcast; the FPV RF module and decoder remain together on the RF board.',
             '- Airband now has a [nominally passing but stress-open synthesis](h1-airband-filter.md); the enlarged cell carries alternate/DNP pads, H3 checks bounded estimates, H6 routed extraction before order and H8 the final VNA state.',
         ]
@@ -1638,7 +1638,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         title = f'# {model["marker"]} · компоновка готового устройства'
         intro = (
             "Текущая физическая модель двух плат 75×150 мм. Это проверяемый результат H1, "
-            "но ещё не разрешение начинать KiCad: точный production-пакет K331 остаётся единственным открытым входом."
+            "но ещё не разрешение начинать KiCad: формальная identity K331 и остаток production-пакета остаются единственным открытым входом."
         )
         outside = "## Что увидит пользователь"
         inside = "## Что находится внутри"
@@ -1671,7 +1671,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         title = f'# {model["marker"]} · finished-device placement'
         intro = (
             "Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, "
-            "not authorization to start KiCad: the controlled K331 production package remains the sole open input."
+            "not authorization to start KiCad: formal K331 identity and the remaining production package are the sole open input."
         )
         outside = "## What the user sees"
         inside = "## What is inside"

@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H1-R2.18`.** H0 проведено ревью. H1 — нет.
+> **▶ Текущая аппаратная граница: `H1-R2.19`.** H0 проведено ревью. H1 — нет.
 > KiCad routing R2, quote, reservation и заказ не разрешены.
 
 Статус сверен: **27 августа 2026 года**.
@@ -24,7 +24,7 @@
 | Область | Текущий результат |
 |---|---|
 | Функциональная архитектура | ✅ [H0-R2 проведено ревью](h0-r2-functional-architecture.ru.md): передний UI/radio и задний RF/power домены, явные владельцы, transport, quiet-state и safety-crossings |
-| Физический дизайн | ▶ [H1-R2.18](h1-r2-physical-layout.ru.md): полные функциональные острова, основные антенные банки `5 + 5` и отдельный вертикальный задний FPV MMCX |
+| Физический дизайн | ▶ [H1-R2.19](h1-r2-physical-layout.ru.md): полные функциональные острова, основные антенные банки `5 + 5`, отдельный задний FPV MMCX и контролируемая геометрия семейства-кандидата SP331RX |
 | Принципиальные диаграммы | Опубликованы актуальные связи компонентов/шин, внешний мокап, отдельные читаемые внутренние стороны, service map, FPV/MMCX proof и диаграммы питания/фильтра |
 | Production ECAD | ⏳ Evidence R1 сохранено; схема R2 ожидает H1 |
 | Пререквизит прошивки | ✅ firmware F1-R2 проведено ревью; F2-R2.0 сейчас в отдельном [роадмапе F0–F11](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md); emulator/dev-board execution обязательно до H7 |
@@ -32,9 +32,9 @@
 
 ## Текущий H1 · точный состав
 
-<!-- current-substep: H1-R2.18 -->
+<!-- current-substep: H1-R2.19 -->
 
-**Точный маркер: `H1-R2.18`.** Это один подшаг физического дизайна, а не
+**Точный маркер: `H1-R2.19`.** Это один подшаг физического дизайна, а не
 закрытый отчёт H1.
 
 ### 1. Размещение функциональных островов
@@ -84,8 +84,11 @@
 
 ### 5. Точный текущий блокер
 
-- ▶ Получить контролируемый AKK production-пакет K331 с maximum XYZ, land
-  pattern и packaging/soldering/reflow.
+- ✅ Официальный `SP331R-MANUAL-V1.0` Sinopine контролирует номинальный XY
+  `28,7 × 23,1 мм`, шаг контактов `2,54 мм` и краевой отступ `1,4 мм` SP331RX.
+- ▶ Получить либо собственный production-пакет AKK K331, либо формальную
+  эквивалентность K331↔SP331RX, а также maximum Z/допуски, рекомендуемые
+  land/paste и packaging/soldering/reflow.
 - Этот же evidence позволит H5 подать выбранный genuine-AKK/JLCPCB Consigned
   Parts route, а H6 — провести финальный DFM Gerber/BOM/CPL.
 - AWM666V остаётся контролируемым, но заметно урезанным семиканальным fallback;
@@ -96,7 +99,7 @@
 | Фаза | Статус | Результат | Критерий выхода |
 |---|---|---|---|
 | H0 · Требования и функциональная архитектура | ✅ [R2 проведено ревью](h0-r2-functional-architecture.ru.md) | Функции продукта, владельцы, transport, safety и рабочие pin-бюджеты | У каждой функции один владелец; все рабочие бюджеты сходятся |
-| **H1 · Физический дизайн продукта** | **▶ Сейчас · `H1-R2.18`** | Внешний вид, отдельные внутренние стороны, разрезы, точные корпуса, RF-локальность, сервис и power-envelope | Нет коллизий bodies/fasteners/silkscreen/antennas/accessories/opposing sides; точный MPN или контролируемый reserve; мокап принят |
+| **H1 · Физический дизайн продукта** | **▶ Сейчас · `H1-R2.19`** | Внешний вид, отдельные внутренние стороны, разрезы, точные корпуса, RF-локальность, сервис и power-envelope | Нет коллизий bodies/fasteners/silkscreen/antennas/accessories/opposing sides; точный MPN или контролируемый reserve; мокап принят |
 | H2 · Production ECAD-схема | ⏳ Ожидает H1 | Точные R2 symbols, contacts, nets, values, protection и footprints | ERC-clean sheets и machine-readable HW↔FW contract |
 | H3 · Виртуальная электрическая проверка | ⏳ Ожидает H2 | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
 | H4 · Объединённый pre-layout gate | ⏳ Ожидает H3 и firmware R2 evidence | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
@@ -117,6 +120,6 @@
 
 ## Следующее действие
 
-Закрыть контролируемый mechanical/assembly-вход K331, перегенерировать те же
+Закрыть суженный production-identity/assembly-вход K331/SP331RX, перегенерировать те же
 виды H1 и получить принятие полного мокапа пользователем. H2 начинается только
 после такого ревью H1. KiCad routing, quote и любой заказ остаются заблокированы.

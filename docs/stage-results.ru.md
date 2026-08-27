@@ -25,13 +25,13 @@ M1 идут transport управления/данных, один CVBS, safety e
 <a id="h1"></a>
 ## H1 · Физический дизайн устройства
 
-**Статус:** ▶️ сейчас **`H1-R2.18`**.
+**Статус:** ▶️ сейчас **`H1-R2.19`**.
 
 - [Текущий физический дизайн](h1-r2-physical-layout.ru.md)
-- [Внешние стороны](images/h1-r2-external-layout.svg?rev=h1-r2.18-rf-topology-4)
+- [Внешние стороны](images/h1-r2-external-layout.svg?rev=h1-r2.19-oem-evidence-5)
 - [Внутренняя сторона передней платы](images/h1-r2-inner-ui.svg)
 - [Внутренняя сторона задней платы](images/h1-r2-inner-rf.svg)
-- [Внешний сервисный доступ](images/h1-r2-service-access.svg?rev=h1-r2.18-rf-topology-4)
+- [Внешний сервисный доступ](images/h1-r2-service-access.svg?rev=h1-r2.19-oem-evidence-5)
 - [Проверка вертикального FPV MMCX](images/h1-r2-mmcx-service.svg)
 - [Машинный аудит размещения](../hardware/product-design/generated/H1-R2-placement-audit.json)
 - [Тракт аналогового FPV](h1-r2-fpv.ru.md)
@@ -41,8 +41,10 @@ M1 идут transport управления/данных, один CVBS, safety e
 Текущий результат: десять основных SMA разделены 5+5; FPV использует отдельный
 вертикальный Molex `73415-2063` (`C588480`) MMCX на задней стороне. В
 генерируемом размещении двух плат нет коллизий на одной стороне, минимальный
-встречный зазор — 1,44 мм. Оставшийся blocker H1 — контролируемый maximum-XYZ,
-land-pattern и assembly-пакет кандидата приёмника AKK K331.
+встречный зазор — 1,44 мм. Официальные данные Sinopine SP331RX теперь
+контролируют номинальные XY, шаг и отступ контактов семейства-кандидата.
+Оставшийся blocker H1 — формальное соответствие K331↔SP331RX, maximum Z,
+допуски, land/paste и assembly-evidence.
 
 <a id="h2"></a>
 ## H2 · Production-схема

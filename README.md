@@ -10,7 +10,7 @@
 
 </div>
 
-> **Current hardware marker: `H1-R2.18`.** The two-PCB physical model is in progress. Ten main SMA ports are split `5 + 5`; the separate vertical rear-face MMCX is `FPV RX · 5.8G`. Placement and interboard budgets pass, but KiCad and ordering remain blocked until the controlled K331 production package closes H1.
+> **Current hardware marker: `H1-R2.19`.** The two-PCB physical model is in progress. Ten main SMA ports are split `5 + 5`; the separate vertical rear-face MMCX is `FPV RX · 5.8G`. Official Sinopine SP331RX evidence now controls nominal XY and contact axes for the matching 331RX family, but KiCad and ordering remain blocked until K331 equivalence and the remaining assembly package close H1.
 
 ## What it is
 
@@ -36,10 +36,10 @@ user to accept the non-aggression/authorized-use terms.
 
 ## Physical mock-up
 
-![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.18-rf-topology-4)
+![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.19-oem-evidence-5)
 
-[Open the legend for all 163 numbered components](docs/images/h1-r2-component-legend.svg?rev=h1-r2.18-rf-topology-4) ·
-[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.18-rf-topology-4) ·
+[Open the legend for all 163 numbered components](docs/images/h1-r2-component-legend.svg?rev=h1-r2.19-oem-evidence-5) ·
+[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.19-oem-evidence-5) ·
 [front inner face](docs/images/h1-r2-inner-ui.svg) ·
 [rear inner face](docs/images/h1-r2-inner-rf.svg)
 
@@ -86,7 +86,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | Stage | Status | Published result |
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.18`** | [Current placement](docs/h1-r2-physical-layout.md) |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.19`** | [Current placement](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ⏳ Waiting for R2 H1 | [Stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
@@ -106,14 +106,15 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ Vertical Molex `73415-2063` FPV MMCX: exact JLCPCB route, SMT-only, no interboard tail.
 - ✅ Placement audit: zero same-face collisions; 1.44 mm minimum opposing clearance against 0.70 mm required.
 - ✅ Public exterior, separate readable inner faces, service surface and real section views regenerated.
-- ▶ **Exact current point:** obtain one AKK-controlled K331 package with maximum XYZ, land pattern and packaging/reflow evidence.
+- ✅ Official Sinopine `SP331R-MANUAL-V1.0` controls `28.7 × 23.1 mm` nominal XY, `2.54 mm` contact pitch and `1.4 mm` edge offset for the matching SP331RX family; this is not yet claimed as K331 production equivalence.
+- ▶ **Exact current point:** obtain either an AKK-native K331 package or formal K331↔SP331RX equivalence, plus maximum Z/tolerances, recommended land/paste and packaging/reflow evidence.
 - 🔒 KiCad, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H1-R2.18 -->
+<!-- current-substep: H1-R2.19 -->
 
 ## Repository
 

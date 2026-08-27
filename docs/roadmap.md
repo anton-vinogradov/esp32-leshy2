@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H1-R2.18`.** H0 is reviewed. H1 is not.
+> **▶ Current hardware boundary: `H1-R2.19`.** H0 is reviewed. H1 is not.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **27 August 2026**.
@@ -24,7 +24,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ▶ [H1-R2.18](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks and a separate vertical rear FPV MMCX |
+| Physical design | ▶ [H1-R2.19](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks, separate rear FPV MMCX and controlled SP331RX candidate-family geometry |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map, FPV/MMCX proof and power/filter diagrams are published |
 | Production ECAD | ⏳ R1 evidence retained; R2 schematic waits for H1 |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.0 is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); emulator/dev-board execution must precede H7 fabrication |
@@ -32,9 +32,9 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Current H1 · exact composition
 
-<!-- current-substep: H1-R2.18 -->
+<!-- current-substep: H1-R2.19 -->
 
-**Exact marker: `H1-R2.18`.** This is one physical-design substep, not a closed
+**Exact marker: `H1-R2.19`.** This is one physical-design substep, not a closed
 H1 report.
 
 ### 1. Functional-island placement
@@ -84,8 +84,11 @@ H1 report.
 
 ### 5. Exact current blocker
 
-- ▶ Obtain one AKK-controlled K331 production package with maximum XYZ, land
-  pattern and packaging/soldering/reflow data.
+- ✅ Official Sinopine `SP331R-MANUAL-V1.0` controls `28.7 × 23.1 mm` nominal
+  XY, `2.54 mm` contact pitch and `1.4 mm` edge offset for SP331RX.
+- ▶ Obtain either an AKK-native K331 package or formal K331↔SP331RX production
+  equivalence, plus maximum Z/tolerances, recommended land/paste and
+  packaging/soldering/reflow data.
 - This same evidence lets H5 submit the selected genuine-AKK/JLCPCB Consigned
   Parts route and H6 perform final Gerber/BOM/CPL DFM.
 - AWM666V remains a controlled but materially degraded seven-channel fallback;
@@ -96,7 +99,7 @@ H1 report.
 | Phase | Status | Result | Exit criterion |
 |---|---|---|---|
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.18`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.19`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ⏳ Waiting for H1 | Exact R2 symbols, contacts, nets, values, protection and footprints | ERC-clean sheets and machine-readable HW↔FW contract |
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
@@ -117,6 +120,6 @@ H1 report.
 
 ## Next action
 
-Close the controlled K331 mechanical/assembly input, regenerate the same H1
+Close the narrowed K331/SP331RX production-identity and assembly input, regenerate the same H1
 views and ask the user to accept the complete mock-up. H2 can start only after
 that H1 review. KiCad routing, quoting and every order remain blocked.
