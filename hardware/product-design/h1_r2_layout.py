@@ -26,10 +26,13 @@ INNER_UI_SVG_PATH = REPO / "docs/images/h1-r2-inner-ui.svg"
 INNER_RF_SVG_PATH = REPO / "docs/images/h1-r2-inner-rf.svg"
 INNER_SECTIONS_SVG_PATH = REPO / "docs/images/h1-r2-inner-sections.svg"
 FOUR_FACES_SVG_PATH = REPO / "docs/images/h1-r2-four-faces.svg"
+COMPONENT_LEGEND_SVG_PATH = REPO / "docs/images/h1-r2-component-legend.svg"
 EN_DOC_PATH = REPO / "docs/h1-r2-physical-layout.md"
 RU_DOC_PATH = REPO / "docs/h1-r2-physical-layout.ru.md"
 SOURCE_TABLE_PATH = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
-PUBLIC_ASSET_REV = "h1-r2.18-usb-silk-2"
+PUBLIC_ASSET_REV = "h1-r2.18-layout-clean-3"
+BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
+BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
 
 def load(path: Path) -> dict:
@@ -411,9 +414,9 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
         f'<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="{height}" viewBox="0 0 1380 {height}">',
         f'<rect width="1380" height="{height}" fill="#ffffff"/>',
         f'<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · {esc(model["marker"])} inner placement</text>',
-        '<text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · both opened inner faces are mirrored · numbered marks are documentation, never inner-face silkscreen.</text>',
+        '<text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · both inner faces are shown directly after turning each PCB over · numbered marks are documentation, never inner-face silkscreen.</text>',
     ]
-    for frame, title in (("ui-inner", "UI PCB · inner · mirrored"), ("rf-inner", "RF / power PCB · inner · mirrored")):
+    for frame, title in (("ui-inner", "UI PCB · inner · turned-over view"), ("rf-inner", "RF / power PCB · inner · turned-over view")):
         x0 = ox[frame]
         out.append(f'<text x="{x0 + board_w * scale / 2:.2f}" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">{esc(title)}</text>')
         out.append(rect(x0, oy, board_w * scale, board_h * scale, fill="#f8fafc", stroke="#334155", stroke_width="2"))
@@ -578,6 +581,19 @@ def render_external_svg(model: dict) -> str:
             f'text-anchor="{anchor}" fill="#1d4ed8">{html.escape(value)}</text>'
         )
 
+    # The legacy exterior used a separate 149-mm baseline for the microphone,
+    # microSD and M5 labels.  Normalize every bottom-edge interface to the same
+    # two-row grid used by USB: owner at 145.1 mm, role/single label at 147.0 mm.
+    # These are actual PCB-silkscreen positions; outward arrows remain drawing
+    # annotation and are deliberately excluded from the baseline rule.
+    bottom_role_y = py(front, BOTTOM_SILK_ROLE_BASELINE_MM)
+    for value in ("MICROPHONE", "microSD", "M5 UNIT"):
+        svg = re.sub(
+            rf'(<text data-layer="pcb-silkscreen" x="[^"]+" )y="[^"]+"([^>]*>{re.escape(value)}</text>)',
+            rf'\1y="{bottom_role_y:.1f}" data-edge="bottom" data-silk-row="role"\2',
+            svg,
+        )
+
     additions = [
         f'<g id="h1-r2-external-delta" data-marker="{marker}" data-state="in-progress">',
     ]
@@ -592,8 +608,12 @@ def render_external_svg(model: dict) -> str:
         additions.extend(
             [
                 f'<path d="M{px(origin,cx):.1f} {py(origin,150):.1f} V{py(origin,158):.1f}" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)" data-instance="{instance}" data-mpn="USB4105-GF-A" data-port-role="{"power-and-data" if powered else "data-only"}"/>',
-                label(px(origin,cx), py(origin,145.1), owner, "middle", 4.7).replace("#1d4ed8", stroke),
-                label(px(origin,cx), py(origin,147.0), role, "middle", 4.2).replace("#1d4ed8", stroke),
+                label(px(origin,cx), py(origin,BOTTOM_SILK_OWNER_BASELINE_MM), owner, "middle", 4.7)
+                .replace("#1d4ed8", stroke)
+                .replace("<text ", '<text data-edge="bottom" data-silk-row="owner" '),
+                label(px(origin,cx), py(origin,BOTTOM_SILK_ROLE_BASELINE_MM), role, "middle", 4.2)
+                .replace("#1d4ed8", stroke)
+                .replace("<text ", '<text data-edge="bottom" data-silk-row="role" '),
             ]
         )
     for item in model["placements"]:
@@ -699,8 +719,8 @@ def render_service_svg(model: dict) -> str:
     for origin, cx, instance, owner, role, note, powered in bottom_ports:
         stroke = "#16a34a" if powered else "#2563eb"
         out.append(f'<path d="M{x(origin,cx):.1f} {y(origin,board_h):.1f} L{x(origin,cx):.1f} {y(origin,board_h)+34:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)" data-instance="{instance}" data-mpn="USB4105-GF-A" data-port-role="{"power-and-data" if powered else "data-only"}"/>')
-        out.append(t(x(origin,cx), y(origin,145.0), owner, 6.7, "bold", "middle", stroke, True))
-        out.append(t(x(origin,cx), y(origin,147.5), role, 6.2, "bold", "middle", stroke, True))
+        out.append(t(x(origin,cx), y(origin,BOTTOM_SILK_OWNER_BASELINE_MM), owner, 6.7, "bold", "middle", stroke, True))
+        out.append(t(x(origin,cx), y(origin,BOTTOM_SILK_ROLE_BASELINE_MM), role, 6.2, "bold", "middle", stroke, True))
         out.append(t(x(origin,cx), y(origin,board_h)+50, note, 7.2, anchor="middle", colour="#526076"))
     out.extend(
         [
@@ -799,9 +819,9 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         f'<rect width="{width}" height="{height}" fill="#ffffff"/>',
         t(30, 40, f'Leshy2 — {model["marker"]} complete inner-body map', 24, "bold"),
-        t(30, 68, "Both boards are physically turned over and therefore mirrored. Numbers are drawing references; inner faces contain no silkscreen.", 12, colour="#526076"),
+        t(30, 68, "Each PCB is shown exactly as viewed after turning it over. Numbers are drawing references; inner faces contain no silkscreen.", 12, colour="#526076"),
     ]
-    for frame, title in (("ui-inner", "UI PCB · inner · mirrored"), ("rf-inner", "RF / power PCB · inner · mirrored")):
+    for frame, title in (("ui-inner", "UI PCB · inner · turned-over view"), ("rf-inner", "RF / power PCB · inner · turned-over view")):
         origin = origins[frame]
         out.append(t(origin[0] + board_w*scale/2, 110, title, 16, "bold", "middle"))
         out.append(f'<rect x="{origin[0]:.1f}" y="{origin[1]:.1f}" width="{board_w*scale:.1f}" height="{board_h*scale:.1f}" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>')
@@ -877,6 +897,51 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
     return "\n".join(out) + "\n"
 
 
+def render_component_legend_svg(model: dict, base: dict, source_table: dict, result: dict) -> str:
+    """Render the complete numbered-body legend without repeating either PCB view."""
+    rows = complete_inner_rows(model, base, source_table, result)
+    columns = 4
+    slots = math.ceil(len(rows) / columns)
+    width = 1900
+    column_width = 465
+    row_height = 50
+    first_y = 126
+    height = first_y + slots * row_height + 55
+
+    def text(x: float, y: float, value: str, size=10, weight="normal", colour="#172033") -> str:
+        return (
+            f'<text x="{x:.1f}" y="{y:.1f}" font-family="sans-serif" font-size="{size}" '
+            f'font-weight="{weight}" fill="{colour}">{html.escape(value)}</text>'
+        )
+
+    out = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
+        f'viewBox="0 0 {width} {height}" data-marker="{html.escape(model["marker"])}" '
+        f'data-view="numbered-component-legend">',
+        f'<rect width="{width}" height="{height}" fill="#ffffff"/>',
+        text(30, 42, f'Leshy2 · {model["marker"]} · numbered component legend', 24, "bold"),
+        text(30, 72, f'{len(rows)} drawing references · MPN or explicit physical reserve · role in the finished device', 12, colour="#526076"),
+        text(30, 100, 'Blue: explicit R2 placement · grey: retained registered body · orange: physical reserve', 11, colour="#526076"),
+    ]
+    for index, row in enumerate(rows):
+        column = index // slots
+        slot = index % slots
+        x = 30 + column * column_width
+        y = first_y + slot * row_height
+        if row["kind"] == "reserve":
+            colour = "#9a3412"
+        elif row["origin"] == "R2 placement":
+            colour = "#1d4ed8"
+        else:
+            colour = "#172033"
+        out.append(text(x, y, f'{index + 1:03d}  {row["mpn"]}', 8.5, "bold", colour))
+        role_lines = textwrap.wrap(row["role"], width=61, break_long_words=False, break_on_hyphens=False)[:2]
+        for line_number, line in enumerate(role_lines):
+            out.append(text(x + 28, y + 14 + line_number * 11, line, 7.4, colour="#526076"))
+    out.append('</svg>')
+    return "\n".join(out) + "\n"
+
+
 def render_inner_face_svg(
     model: dict,
     base: dict,
@@ -897,16 +962,23 @@ def render_inner_face_svg(
     paths = model["antenna_bank_optimization"]["front_paths" if is_ui else "rear_paths"]
     centres = model["antenna_bank_optimization"]["front_x_centres_mm" if is_ui else "rear_x_centres_mm"]
     source_ids = {
-        "N24-0": "nrf0_rf_board_connector_r2",
-        "S3-2G4": "s3_rf_board_connector_r2",
-        "N24-1": "nrf1_rf_board_connector_r2",
-        "C5-2G4/5": "c5_rf_board_connector_r2",
-        "N24-2": "nrf2_rf_board_connector_r2",
+        "N24-0": "nrf0_r2",
+        "S3-2G4": "s3",
+        "N24-1": "nrf1_r2",
+        "C5-2G4/5": "c5",
+        "N24-2": "nrf2_r2",
         "RX-FM/SW": "receiver_r2",
         "RX-AM/LW": "receiver_r2",
         "CC-SUB": "cc_r2",
         "VOICE-VHF": "voice_v",
         "VOICE-UHF": "voice",
+    }
+    board_connector_ids = {
+        "N24-0": "nrf0_rf_board_connector_r2",
+        "S3-2G4": "s3_rf_board_connector_r2",
+        "N24-1": "nrf1_rf_board_connector_r2",
+        "C5-2G4/5": "c5_rf_board_connector_r2",
+        "N24-2": "nrf2_rf_board_connector_r2",
     }
 
     def sx(world_x: float, body_w: float = 0.0) -> float:
@@ -922,7 +994,7 @@ def render_inner_face_svg(
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" data-marker="{html.escape(model["marker"])}" data-frame="{frame}" data-inner-silkscreen="none">',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         text(35, 40, f'Leshy2 · {model["marker"]} · {face_name} inner face', 24, "bold"),
-        text(35, 68, "PCB is physically turned over: X is mirrored. Numbers are drawing references; this face has no silkscreen.", 12, colour="#526076"),
+        text(35, 68, "Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.", 12, colour="#526076"),
         text(ox + board_w*scale/2, 105, "ANTENNA EDGE · five direct source-board ports", 13, "bold", "middle", "#1d4ed8"),
         f'<rect x="{ox}" y="{oy}" width="{board_w*scale:.1f}" height="{board_h*scale:.1f}" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>',
     ]
@@ -935,15 +1007,6 @@ def render_inner_face_svg(
     for hole_x, hole_y in legacy.HOLES:
         out.append(f'<circle cx="{sx(hole_x):.1f}" cy="{sy(hole_y):.1f}" r="{legacy.MOUNT_KEEPOUT_R*scale:.1f}" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>')
     row_by_id = {row["id"]: row for row in rows}
-    out.append('<g id="antenna-topology" data-route-state="pre-ecad-topology-only">')
-    for centre, path in zip(centres, paths):
-        source = row_by_id[source_ids[path]]
-        b = source["bbox"]
-        source_x = sx(b["x"][0], b["x"][1] - b["x"][0]) + (b["x"][1] - b["x"][0])*scale/2
-        source_y = sy((b["y"][0] + b["y"][1]) / 2)
-        port_x = sx(centre)
-        out.append(f'<polyline points="{source_x:.1f},{source_y:.1f} {port_x:.1f},{sy(18):.1f} {port_x:.1f},{oy:.1f}" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="{html.escape(path)}"/>')
-    out.append('</g>')
     for row in rows:
         b = row["bbox"]
         body_w = b["x"][1] - b["x"][0]
@@ -958,6 +1021,41 @@ def render_inner_face_svg(
         out.append(f'<rect x="{vx:.2f}" y="{vy:.2f}" width="{body_w*scale:.2f}" height="{body_d*scale:.2f}" rx="2" fill="{fill}" stroke="{stroke}" stroke-width="1"{dash} data-instance="{html.escape(row["id"])}" data-mpn="{html.escape(row["mpn"])}"/>')
         font = 7.0 if min(body_w, body_d) >= 1.6 else 4.8
         out.append(text(vx + body_w*scale/2, vy + body_d*scale/2 + font/3, str(numbers[row["id"]]), font, "bold", "middle", stroke))
+
+    # Draw RF media after the bodies so the connector symbols remain visible.
+    # Front paths have two physical connector ends joined by one removable,
+    # straight microcoax; the short board-U.FL-to-SMA segment is controlled PCB
+    # copper. Rear receive/voice paths are board-local controlled PCB topology.
+    out.append('<g id="antenna-connectivity" data-route-state="pre-ecad-topology-only">')
+    for centre, path in zip(centres, paths):
+        source = row_by_id[source_ids[path]]
+        sb = source["bbox"]
+        source_x = sx(sb["x"][0], sb["x"][1] - sb["x"][0]) + (sb["x"][1] - sb["x"][0]) * scale / 2
+        source_y = sy((sb["y"][0] + sb["y"][1]) / 2)
+        port_x = sx(centre)
+        if is_ui:
+            connector = row_by_id[board_connector_ids[path]]
+            cb = connector["bbox"]
+            connector_x = sx(cb["x"][0], cb["x"][1] - cb["x"][0]) + (cb["x"][1] - cb["x"][0]) * scale / 2
+            connector_y = sy((cb["y"][0] + cb["y"][1]) / 2)
+            source_kind = "IPEX" if path.startswith("N24") else "U.FL"
+            out.extend(
+                [
+                    f'<line x1="{source_x:.1f}" y1="{source_y:.1f}" x2="{connector_x:.1f}" y2="{connector_y:.1f}" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="{html.escape(path)}" data-medium="removable-microcoax"/>',
+                    f'<line x1="{connector_x:.1f}" y1="{connector_y:.1f}" x2="{port_x:.1f}" y2="{oy:.1f}" stroke="#2563eb" stroke-width="1.7" data-path="{html.escape(path)}" data-medium="controlled-50-ohm-pcb"/>',
+                    f'<circle cx="{source_x:.1f}" cy="{source_y:.1f}" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="{html.escape(path)}" data-part="module-rf-connector" data-connector-kind="{source_kind}"/>',
+                    f'<circle cx="{connector_x:.1f}" cy="{connector_y:.1f}" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="{html.escape(path)}" data-part="board-ufl" data-mpn="U.FL-R-SMT-1(10)"/>',
+                    f'<circle cx="{source_x:.1f}" cy="{source_y:.1f}" r="2.0" fill="#d97706"/>',
+                    f'<circle cx="{connector_x:.1f}" cy="{connector_y:.1f}" r="2.0" fill="#d97706"/>',
+                ]
+            )
+        else:
+            out.append(
+                f'<line x1="{source_x:.1f}" y1="{source_y:.1f}" x2="{port_x:.1f}" y2="{oy:.1f}" '
+                f'stroke="#2563eb" stroke-width="1.7" data-path="{html.escape(path)}" '
+                'data-medium="controlled-50-ohm-pcb"/>'
+            )
+    out.append('</g>')
     note_x = 550
     island_rows = model["functional_partition"]["ui_board" if is_ui else "rf_power_board"]
     out.extend([
@@ -970,8 +1068,10 @@ def render_inner_face_svg(
         note_y += 28
     out.extend([
         text(note_x, note_y+20, "Line key", 16, "bold"),
-        f'<line x1="{note_x}" y1="{note_y+48}" x2="{note_x+44}" y2="{note_y+48}" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="5 4"/>',
-        text(note_x+56, note_y+52, "source-to-port topology; final copper belongs to KiCad", 10, colour="#526076"),
+        f'<line x1="{note_x}" y1="{note_y+48}" x2="{note_x+44}" y2="{note_y+48}" stroke="#2563eb" stroke-width="1.7"/>',
+        text(note_x+56, note_y+52, "controlled 50-ohm PCB topology; final route belongs to KiCad", 10, colour="#526076"),
+        f'<line x1="{note_x}" y1="{note_y+70}" x2="{note_x+44}" y2="{note_y+70}" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round"/>',
+        text(note_x+56, note_y+74, "straight removable microcoax: module IPEX/U.FL to board U.FL", 10, colour="#526076"),
         text(note_x, note_y+92, "Body key", 16, "bold"),
         '<rect x="550" y="{:.1f}" width="28" height="18" fill="#eef2f6" stroke="#94a3b8"/>'.format(note_y+108),
         text(590, note_y+122, "retained registered body", 10, colour="#526076"),
@@ -1225,7 +1325,7 @@ def _prefixed_svg_body(svg: str, prefix: str) -> str:
 
 
 def render_four_faces_svg(model: dict, external_svg: str, inner_ui_svg: str, inner_rf_svg: str) -> str:
-    """Place each physically mirrored inner face below its matching exterior."""
+    """Place each directly viewed, physically turned-over inner face below its exterior."""
     external = _prefixed_svg_body(external_svg, "ext")
     inner_ui = _prefixed_svg_body(inner_ui_svg, "ui")
     inner_rf = _prefixed_svg_body(inner_rf_svg, "rf")
@@ -1241,17 +1341,18 @@ def render_four_faces_svg(model: dict, external_svg: str, inner_ui_svg: str, inn
 
     out = [
         '<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="1500" viewBox="0 0 1050 1500" data-view="four-faces-matched-columns">',
+        '<defs><clipPath id="front-external-content"><rect x="106" y="145" width="328" height="615"/></clipPath><clipPath id="rear-external-content"><rect x="616" y="145" width="328" height="615"/></clipPath></defs>',
         '<rect width="1050" height="1500" fill="#ffffff"/>',
         text(40, 42, f'Leshy2 · {model["marker"]} · four matched PCB faces', 26, "bold"),
-        text(40, 70, "Outer face above; the physically turned-over, mirrored inner face is directly below it at the same board scale.", 13, colour="#526076"),
+        text(40, 70, "Outer face above; the inner face is shown exactly as viewed after physically turning the PCB over.", 13, colour="#526076"),
         text(270, 104, "FRONT / UI PCB", 18, "bold", "middle", "#1d4ed8"),
         text(780, 104, "REAR / RF-POWER PCB", 18, "bold", "middle", "#166534"),
         text(270, 130, "outer · user-facing silk", 12, "bold", "middle", "#526076"),
         text(780, 130, "outer · user-facing silk", 12, "bold", "middle", "#526076"),
-        f'<svg x="45" y="145" width="450" height="615" viewBox="45 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">{external}</svg>',
-        f'<svg x="555" y="145" width="450" height="615" viewBox="430 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">{external}</svg>',
-        text(270, 790, "inner · mirrored · no silkscreen", 12, "bold", "middle", "#526076"),
-        text(780, 790, "inner · mirrored · no silkscreen", 12, "bold", "middle", "#526076"),
+        f'<g clip-path="url(#front-external-content)" data-panel="front-external"><svg x="45" y="145" width="450" height="615" viewBox="45 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">{external}</svg></g>',
+        f'<g clip-path="url(#rear-external-content)" data-panel="rear-external"><svg x="555" y="145" width="450" height="615" viewBox="430 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">{external}</svg></g>',
+        text(270, 790, "inner · viewed after turning over · no silkscreen", 12, "bold", "middle", "#526076"),
+        text(780, 790, "inner · viewed after turning over · no silkscreen", 12, "bold", "middle", "#526076"),
         f'<svg x="45" y="805" width="450" height="650" viewBox="70 95 440 940" preserveAspectRatio="xMidYMid meet" overflow="hidden">{inner_ui}</svg>',
         f'<svg x="555" y="805" width="450" height="650" viewBox="70 95 440 940" preserveAspectRatio="xMidYMid meet" overflow="hidden">{inner_rf}</svg>',
         text(525, 1480, "Matched physical columns · 75 × 150 mm PCBs · not authorization for KiCad", 12, "bold", "middle", "#b42318"),
@@ -1276,7 +1377,7 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
             '- Исправлено найденное расхождение H0↔H1: Hub RP получил четвёртый независимый data-only `HUB SERVICE USB`, две утопленные боковые кнопки `HUB RST/BOOT` и четвёртый внутренний DBG10. Hub и C5 используют один и тот же точный `SKRTLAE010`, поэтому генератор показывает одинаковые корпус, защитную выемку и утопленный толкатель.',
             '- Все четыре независимых USB теперь направлены в нижний торец: основной `USB / POWER` и три data-only service-порта S3/C5, RF RP и Hub RP сохраняют раздельные тракты.',
             '- На UI-плате остаются четыре SMA, а на RF-плате в один антенный торец помещаются шесть SMA и отдельный MMCX FPV: точные корпуса дают зазоры 0,7 мм и поля платы по 3,0 мм. Радио, ответвители и цепи контроля фактической передачи не переносятся; новых RF-переходов и потерь в тракте нет.',
-            '- Обе внутренние стороны теперь зеркалятся при физическом перевороте платы; прежняя инкрементальная картинка ошибочно зеркалила только RF-плату.',
+            '- Обе внутренние стороны показаны ровно так, как их видно после физического переворота платы; прежняя инкрементальная картинка ошибочно переворачивала только RF-плату.',
             '- AKK-брендированный размерный кадр у продавца задаёт номинал платы K331 28,7×23,1 мм; коллизии проверены с консервативным резервом 30×24×4 мм без изменения контура платы и внешних зон аккумуляторов/U214.',
             '- Функциональная распиновка K331 принята, но резерв не считается точным корпусом: максимальные XYZ, посадочное место и reflow/packaging должны прийти из контролируемого документа AKK.',
             '- JLCPCB подтвердила отсутствие K331 в Parts Library и Global Sourcing и не нашла прямой замены. Выбран фабричный маршрут: оригинальная поставка AKK через Consigned Parts; application и финальный DFM по Gerber/BOM/CPL относятся к последующим этапам.',
@@ -1307,7 +1408,7 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
             '- The discovered H0↔H1 mismatch is corrected: Hub RP now has the fourth independent data-only `HUB SERVICE USB`, two recessed side `HUB RST/BOOT` controls and the fourth internal DBG10. Hub and C5 use the same exact `SKRTLAE010`, so the generator renders the same body, protective recess and recessed actuator.',
             '- All four independent USB openings now face the bottom edge: the main `USB / POWER` and the three data-only service paths for C5, RF RP and Hub RP remain electrically independent.',
             '- The UI board retains four SMA while the RF board packs six SMA plus the distinct FPV MMCX onto one antenna edge: exact bodies preserve 0.7-mm gaps and 3.0-mm board margins. No radio, coupler or physical-TX evidence chain moves, and no RF transition or link-budget loss is added.',
-            '- Both inner faces are now mirrored when each PCB is physically turned over; the earlier incremental view incorrectly mirrored only the RF PCB.',
+            '- Both inner faces are shown exactly as viewed after physically turning each PCB over; the earlier incremental view incorrectly turned only the RF PCB.',
             '- An AKK-branded dimensioned reseller image gives a 28.7 × 23.1 mm nominal K331 board; collision checks use a conservative 30 × 24 × 4 mm reserve without changing the PCB outline or battery/U214 exterior zones.',
             '- K331 functional pin fit is accepted, but the reserve is not a fixed body: maximum XYZ, land pattern and reflow/packaging must come from an AKK-controlled document.',
             '- JLCPCB confirmed that K331 is absent from both Parts Library and Global Sourcing and found no direct replacement. The selected factory route is genuine AKK supply through Consigned Parts; its application and final Gerber/BOM/CPL DFM are later gates.',
@@ -1381,6 +1482,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         verified = "## Проверено генератором"
         factory = "## Точные фабричные позиции"
         blocker = "## Текущий блокер H1"
+        component_legend_heading = "## Легенда компонентов"
         board_names = ("Передняя UI/radio-плата", "Задняя RF/power-плата")
         bullets = [
             "Десять основных SMA разделены симметрично `5 + 5`; каждый радиотракт остаётся на плате своего разъёма.",
@@ -1411,6 +1513,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         verified = "## Generator-verified"
         factory = "## Exact factory parts"
         blocker = "## Current H1 blocker"
+        component_legend_heading = "## Component legend"
         board_names = ("Front UI/radio PCB", "Rear RF/power PCB")
         bullets = [
             "Ten main SMA ports are split symmetrically `5 + 5`; every radio path remains on the PCB that carries its connector.",
@@ -1433,11 +1536,13 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     lines = [
         title, "", intro, "", outside, "",
         f"![Four matched PCB faces](images/h1-r2-four-faces.svg?rev={PUBLIC_ASSET_REV})", "",
+        component_legend_heading, "",
+        f"![Numbered component legend](images/h1-r2-component-legend.svg?rev={PUBLIC_ASSET_REV})", "",
         f"[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev={PUBLIC_ASSET_REV})", "",
         f"![External service access](images/h1-r2-service-access.svg?rev={PUBLIC_ASSET_REV})", "",
         inside, "",
-        f"### {board_names[0]}", "", "![Front PCB inner face](images/h1-r2-inner-ui.svg)", "",
-        f"### {board_names[1]}", "", "![Rear PCB inner face](images/h1-r2-inner-rf.svg)", "",
+        f"[{board_names[0]} · full-scale inner view](images/h1-r2-inner-ui.svg)", "",
+        f"[{board_names[1]} · full-scale inner view](images/h1-r2-inner-rf.svg)", "",
     ]
     lines.extend(f"- {row}" for row in bullets)
     lines.extend(["", "![True inner sandwich sections](images/h1-r2-inner-sections.svg)", "", "![Rear-face FPV connector proof](images/h1-r2-mmcx-service.svg)", "", verified, ""])
@@ -1479,6 +1584,7 @@ def main() -> int:
         INNER_RF_SVG_PATH: inner_rf_svg,
         INNER_SECTIONS_SVG_PATH: render_inner_sections_svg(model, base, source_table, result),
         FOUR_FACES_SVG_PATH: render_four_faces_svg(model, external_svg, inner_ui_svg, inner_rf_svg),
+        COMPONENT_LEGEND_SVG_PATH: render_component_legend_svg(model, base, source_table, result),
         EN_DOC_PATH: render_doc(model, result, False),
         RU_DOC_PATH: render_doc(model, result, True),
     }

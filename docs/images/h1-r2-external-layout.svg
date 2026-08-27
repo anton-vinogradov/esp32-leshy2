@@ -172,9 +172,9 @@
 <path d="M383.4 609.7 L353.1 609.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="331.6" y="609.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">C5 BOOT</text>
 <path d="M287.1 705.0 L287.1 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="287.1" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">microSD</text>
+<text data-layer="pcb-silkscreen" x="287.1" y="693.9" data-edge="bottom" data-silk-row="role" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">microSD</text>
 <path d="M253.9 705.0 L253.9 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="253.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">MICROPHONE</text>
+<text data-layer="pcb-silkscreen" x="253.9" y="693.9" data-edge="bottom" data-silk-row="role" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">MICROPHONE</text>
 <rect x="530.1" y="305.4" width="147.3" height="318.2" rx="3" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 3" data-part="1048P-pcb-pad-span" data-dimension-mm="86.00"/>
 <rect x="530.2" y="321.9" width="147.2" height="285.1" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" data-instance="pack_holder" data-mpn="Keystone 1048P" data-mounting="SMT"/>
 <path d="M525.7 318.2 H681.8" stroke="#ea580c" stroke-width="2" data-layer="mechanical-reference" data-part="enclosure-holder-end-stop"/>
@@ -203,7 +203,7 @@
 <path d="M439.1 576.4 L469.4 576.4" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="490.9" y="576.4" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">RP BOOT</text>
 <path d="M675.9 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="675.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">M5 UNIT</text>
+<text data-layer="pcb-silkscreen" x="675.9" y="693.9" data-edge="bottom" data-silk-row="role" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">M5 UNIT</text>
 <text data-layer="pcb-silkscreen" x="716.6" y="646.5" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">SPEAKER</text>
 <text data-role="product-mark" data-face="front" data-layer="pcb-silkscreen" x="218.8" y="518.2" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#172033">Леший</text>
 <text data-role="product-mark" data-face="rear" data-layer="pcb-silkscreen" x="603.8" y="653.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">ESP32-LESHY2</text>
@@ -241,17 +241,17 @@
 <text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The side C&amp;K JS102011SCQN is the sole RUN/KILL and source-command control.</text>
 <g id="h1-r2-external-delta" data-marker="H1-R2.18" data-state="in-progress">
 <path d="M140.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
-<text data-layer="pcb-silkscreen" x="140.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">HUB RP</text>
-<text data-layer="pcb-silkscreen" x="140.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
+<text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="140.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">HUB RP</text>
+<text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="140.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <path d="M196.4 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)" data-instance="c5_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
-<text data-layer="pcb-silkscreen" x="196.4" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">C5</text>
-<text data-layer="pcb-silkscreen" x="196.4" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
+<text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="196.4" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">C5</text>
+<text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="196.4" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <path d="M525.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)" data-instance="product_usb_connector" data-mpn="USB4105-GF-A" data-port-role="power-and-data"/>
-<text data-layer="pcb-silkscreen" x="525.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#16a34a">S3</text>
-<text data-layer="pcb-silkscreen" x="525.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#16a34a">POWER + USB</text>
+<text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="525.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#16a34a">S3</text>
+<text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="525.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#16a34a">POWER + USB</text>
 <path d="M603.6 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)" data-instance="rp_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
-<text data-layer="pcb-silkscreen" x="603.6" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">RF RP</text>
-<text data-layer="pcb-silkscreen" x="603.6" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
+<text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="603.6" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">RF RP</text>
+<text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="603.6" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <rect x="344.9" y="631.0" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_reset_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
 <rect x="351.2" y="630.1" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_reset_button" data-part="protective-recess" data-recess-mm="1.2"/>
 <path d="M353.1 634.1 V644.5" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_reset_button" data-part="side-actuator" data-recessed="true"/>

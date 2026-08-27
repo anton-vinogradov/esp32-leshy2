@@ -492,7 +492,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "PTT",
             "four matched PCB faces",
             "outer · user-facing silk",
-            "inner · mirrored · no silkscreen",
+            "inner · viewed after turning over · no silkscreen",
             "ACTIVE 48.96×73.44 mm · 320×480 · 2:3",
             "SUB-GHz",
             "V/U TX",

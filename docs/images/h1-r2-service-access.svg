@@ -32,20 +32,20 @@
 <path d="M520.0 511.1 L489.9 511.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="530.7" y="508.7" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="start" fill="#6d28d9">RF RP BOOT</text>
 <path d="M165.2 627.5 L165.2 661.5" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
-<text data-layer="pcb-silkscreen" x="165.2" y="610.8" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#2563eb">HUB RP</text>
-<text data-layer="pcb-silkscreen" x="165.2" y="619.1" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
+<text data-layer="pcb-silkscreen" x="165.2" y="611.1" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#2563eb">HUB RP</text>
+<text data-layer="pcb-silkscreen" x="165.2" y="617.5" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <text x="165.2" y="677.5" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="middle" fill="#526076">data only</text>
 <path d="M215.4 627.5 L215.4 661.5" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)" data-instance="c5_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
-<text data-layer="pcb-silkscreen" x="215.4" y="610.8" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#2563eb">C5</text>
-<text data-layer="pcb-silkscreen" x="215.4" y="619.1" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
+<text data-layer="pcb-silkscreen" x="215.4" y="611.1" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#2563eb">C5</text>
+<text data-layer="pcb-silkscreen" x="215.4" y="617.5" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <text x="215.4" y="677.5" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="middle" fill="#526076">data only</text>
 <path d="M575.2 627.5 L575.2 661.5" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)" data-instance="product_usb_connector" data-mpn="USB4105-GF-A" data-port-role="power-and-data"/>
-<text data-layer="pcb-silkscreen" x="575.2" y="610.8" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#16a34a">S3</text>
-<text data-layer="pcb-silkscreen" x="575.2" y="619.1" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#16a34a">POWER + USB</text>
+<text data-layer="pcb-silkscreen" x="575.2" y="611.1" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#16a34a">S3</text>
+<text data-layer="pcb-silkscreen" x="575.2" y="617.5" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#16a34a">POWER + USB</text>
 <text x="575.2" y="677.5" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="middle" fill="#526076">native USB + power/charge</text>
 <path d="M645.5 627.5 L645.5 661.5" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)" data-instance="rp_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
-<text data-layer="pcb-silkscreen" x="645.5" y="610.8" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#2563eb">RF RP</text>
-<text data-layer="pcb-silkscreen" x="645.5" y="619.1" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
+<text data-layer="pcb-silkscreen" x="645.5" y="611.1" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#2563eb">RF RP</text>
+<text data-layer="pcb-silkscreen" x="645.5" y="617.5" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <text x="645.5" y="677.5" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="middle" fill="#526076">data only</text>
 <text x="940.0" y="130.0" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="start" fill="#172033">Recovery map</text>
 <text x="940.0" y="164.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#6d28d9">S3</text>

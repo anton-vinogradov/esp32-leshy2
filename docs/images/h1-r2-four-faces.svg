@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1050" height="1500" viewBox="0 0 1050 1500" data-view="four-faces-matched-columns">
+<defs><clipPath id="front-external-content"><rect x="106" y="145" width="328" height="615"/></clipPath><clipPath id="rear-external-content"><rect x="616" y="145" width="328" height="615"/></clipPath></defs>
 <rect width="1050" height="1500" fill="#ffffff"/>
 <text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.18 · four matched PCB faces</text>
-<text x="40" y="70" font-family="sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#526076">Outer face above; the physically turned-over, mirrored inner face is directly below it at the same board scale.</text>
+<text x="40" y="70" font-family="sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#526076">Outer face above; the inner face is shown exactly as viewed after physically turning the PCB over.</text>
 <text x="270" y="104" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#1d4ed8">FRONT / UI PCB</text>
 <text x="780" y="104" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#166534">REAR / RF-POWER PCB</text>
 <text x="270" y="130" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#526076">outer · user-facing silk</text>
 <text x="780" y="130" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#526076">outer · user-facing silk</text>
-<svg x="45" y="145" width="450" height="615" viewBox="45 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">
+<g clip-path="url(#front-external-content)" data-panel="front-external"><svg x="45" y="145" width="450" height="615" viewBox="45 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">
 <defs><marker id="ext-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 
 <text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.18 current external layout</text>
@@ -180,9 +181,9 @@
 <path d="M383.4 609.7 L353.1 609.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
 <text data-layer="pcb-silkscreen" x="331.6" y="609.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">C5 BOOT</text>
 <path d="M287.1 705.0 L287.1 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
-<text data-layer="pcb-silkscreen" x="287.1" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">microSD</text>
+<text data-layer="pcb-silkscreen" x="287.1" y="693.9" data-edge="bottom" data-silk-row="role" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">microSD</text>
 <path d="M253.9 705.0 L253.9 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
-<text data-layer="pcb-silkscreen" x="253.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">MICROPHONE</text>
+<text data-layer="pcb-silkscreen" x="253.9" y="693.9" data-edge="bottom" data-silk-row="role" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">MICROPHONE</text>
 <rect x="530.1" y="305.4" width="147.3" height="318.2" rx="3" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 3" data-part="1048P-pcb-pad-span" data-dimension-mm="86.00"/>
 <rect x="530.2" y="321.9" width="147.2" height="285.1" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" data-instance="pack_holder" data-mpn="Keystone 1048P" data-mounting="SMT"/>
 <path d="M525.7 318.2 H681.8" stroke="#ea580c" stroke-width="2" data-layer="mechanical-reference" data-part="enclosure-holder-end-stop"/>
@@ -211,7 +212,7 @@
 <path d="M439.1 576.4 L469.4 576.4" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
 <text data-layer="pcb-silkscreen" x="490.9" y="576.4" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">RP BOOT</text>
 <path d="M675.9 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
-<text data-layer="pcb-silkscreen" x="675.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">M5 UNIT</text>
+<text data-layer="pcb-silkscreen" x="675.9" y="693.9" data-edge="bottom" data-silk-row="role" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">M5 UNIT</text>
 <text data-layer="pcb-silkscreen" x="716.6" y="646.5" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">SPEAKER</text>
 <text data-role="product-mark" data-face="front" data-layer="pcb-silkscreen" x="218.8" y="518.2" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#172033">Леший</text>
 <text data-role="product-mark" data-face="rear" data-layer="pcb-silkscreen" x="603.8" y="653.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">ESP32-LESHY2</text>
@@ -249,17 +250,17 @@
 <text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The side C&amp;K JS102011SCQN is the sole RUN/KILL and source-command control.</text>
 <g id="ext-h1-r2-external-delta" data-marker="H1-R2.18" data-state="in-progress">
 <path d="M140.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ext-arrow)" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
-<text data-layer="pcb-silkscreen" x="140.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">HUB RP</text>
-<text data-layer="pcb-silkscreen" x="140.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
+<text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="140.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">HUB RP</text>
+<text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="140.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <path d="M196.4 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ext-arrow)" data-instance="c5_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
-<text data-layer="pcb-silkscreen" x="196.4" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">C5</text>
-<text data-layer="pcb-silkscreen" x="196.4" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
+<text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="196.4" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">C5</text>
+<text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="196.4" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <path d="M525.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ext-arrow)" data-instance="product_usb_connector" data-mpn="USB4105-GF-A" data-port-role="power-and-data"/>
-<text data-layer="pcb-silkscreen" x="525.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#16a34a">S3</text>
-<text data-layer="pcb-silkscreen" x="525.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#16a34a">POWER + USB</text>
+<text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="525.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#16a34a">S3</text>
+<text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="525.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#16a34a">POWER + USB</text>
 <path d="M603.6 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ext-arrow)" data-instance="rp_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
-<text data-layer="pcb-silkscreen" x="603.6" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">RF RP</text>
-<text data-layer="pcb-silkscreen" x="603.6" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
+<text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="603.6" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">RF RP</text>
+<text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="603.6" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <rect x="344.9" y="631.0" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_reset_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
 <rect x="351.2" y="630.1" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_reset_button" data-part="protective-recess" data-recess-mm="1.2"/>
 <path d="M353.1 634.1 V644.5" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_reset_button" data-part="side-actuator" data-recessed="true"/>
@@ -276,8 +277,8 @@
 <path d="M616.1 188.1 H593.9" stroke="#dc2626" stroke-width="1.4" marker-end="url(#ext-arrow)"/>
 <text data-layer="pcb-silkscreen" x="630.9" y="210.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">FPV 5G8</text>
 </g>
-</svg>
-<svg x="555" y="145" width="450" height="615" viewBox="430 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">
+</svg></g>
+<g clip-path="url(#rear-external-content)" data-panel="rear-external"><svg x="555" y="145" width="450" height="615" viewBox="430 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">
 <defs><marker id="ext-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 
 <text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.18 current external layout</text>
@@ -451,9 +452,9 @@
 <path d="M383.4 609.7 L353.1 609.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
 <text data-layer="pcb-silkscreen" x="331.6" y="609.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">C5 BOOT</text>
 <path d="M287.1 705.0 L287.1 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
-<text data-layer="pcb-silkscreen" x="287.1" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">microSD</text>
+<text data-layer="pcb-silkscreen" x="287.1" y="693.9" data-edge="bottom" data-silk-row="role" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">microSD</text>
 <path d="M253.9 705.0 L253.9 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
-<text data-layer="pcb-silkscreen" x="253.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">MICROPHONE</text>
+<text data-layer="pcb-silkscreen" x="253.9" y="693.9" data-edge="bottom" data-silk-row="role" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">MICROPHONE</text>
 <rect x="530.1" y="305.4" width="147.3" height="318.2" rx="3" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 3" data-part="1048P-pcb-pad-span" data-dimension-mm="86.00"/>
 <rect x="530.2" y="321.9" width="147.2" height="285.1" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" data-instance="pack_holder" data-mpn="Keystone 1048P" data-mounting="SMT"/>
 <path d="M525.7 318.2 H681.8" stroke="#ea580c" stroke-width="2" data-layer="mechanical-reference" data-part="enclosure-holder-end-stop"/>
@@ -482,7 +483,7 @@
 <path d="M439.1 576.4 L469.4 576.4" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
 <text data-layer="pcb-silkscreen" x="490.9" y="576.4" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">RP BOOT</text>
 <path d="M675.9 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
-<text data-layer="pcb-silkscreen" x="675.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">M5 UNIT</text>
+<text data-layer="pcb-silkscreen" x="675.9" y="693.9" data-edge="bottom" data-silk-row="role" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">M5 UNIT</text>
 <text data-layer="pcb-silkscreen" x="716.6" y="646.5" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">SPEAKER</text>
 <text data-role="product-mark" data-face="front" data-layer="pcb-silkscreen" x="218.8" y="518.2" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#172033">Леший</text>
 <text data-role="product-mark" data-face="rear" data-layer="pcb-silkscreen" x="603.8" y="653.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">ESP32-LESHY2</text>
@@ -520,17 +521,17 @@
 <text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The side C&amp;K JS102011SCQN is the sole RUN/KILL and source-command control.</text>
 <g id="ext-h1-r2-external-delta" data-marker="H1-R2.18" data-state="in-progress">
 <path d="M140.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ext-arrow)" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
-<text data-layer="pcb-silkscreen" x="140.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">HUB RP</text>
-<text data-layer="pcb-silkscreen" x="140.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
+<text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="140.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">HUB RP</text>
+<text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="140.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <path d="M196.4 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ext-arrow)" data-instance="c5_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
-<text data-layer="pcb-silkscreen" x="196.4" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">C5</text>
-<text data-layer="pcb-silkscreen" x="196.4" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
+<text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="196.4" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">C5</text>
+<text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="196.4" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <path d="M525.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ext-arrow)" data-instance="product_usb_connector" data-mpn="USB4105-GF-A" data-port-role="power-and-data"/>
-<text data-layer="pcb-silkscreen" x="525.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#16a34a">S3</text>
-<text data-layer="pcb-silkscreen" x="525.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#16a34a">POWER + USB</text>
+<text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="525.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#16a34a">S3</text>
+<text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="525.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#16a34a">POWER + USB</text>
 <path d="M603.6 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ext-arrow)" data-instance="rp_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
-<text data-layer="pcb-silkscreen" x="603.6" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">RF RP</text>
-<text data-layer="pcb-silkscreen" x="603.6" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
+<text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="603.6" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">RF RP</text>
+<text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="603.6" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <rect x="344.9" y="631.0" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_reset_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
 <rect x="351.2" y="630.1" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_reset_button" data-part="protective-recess" data-recess-mm="1.2"/>
 <path d="M353.1 634.1 V644.5" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_reset_button" data-part="side-actuator" data-recessed="true"/>
@@ -547,13 +548,13 @@
 <path d="M616.1 188.1 H593.9" stroke="#dc2626" stroke-width="1.4" marker-end="url(#ext-arrow)"/>
 <text data-layer="pcb-silkscreen" x="630.9" y="210.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">FPV 5G8</text>
 </g>
-</svg>
-<text x="270" y="790" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#526076">inner · mirrored · no silkscreen</text>
-<text x="780" y="790" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#526076">inner · mirrored · no silkscreen</text>
+</svg></g>
+<text x="270" y="790" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#526076">inner · viewed after turning over · no silkscreen</text>
+<text x="780" y="790" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#526076">inner · viewed after turning over · no silkscreen</text>
 <svg x="45" y="805" width="450" height="650" viewBox="70 95 440 940" preserveAspectRatio="xMidYMid meet" overflow="hidden">
 
 <text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.18 · UI / radio PCB inner face</text>
-<text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">PCB is physically turned over: X is mirrored. Numbers are drawing references; this face has no silkscreen.</text>
+<text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.</text>
 <text x="290.0" y="105.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ANTENNA EDGE · five direct source-board ports</text>
 <rect x="80.0" y="165.0" width="420.0" height="840.0" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
 <rect x="426.1" y="131.4" width="57.1" height="33.6" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
@@ -570,13 +571,6 @@
 <circle cx="108.0" cy="226.6" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="472.0" cy="977.0" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="108.0" cy="977.0" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
-<g id="ui-antenna-topology" data-route-state="pre-ecad-topology-only">
-<polyline points="435.6,224.1 454.6,265.8 454.6,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="N24-0"/>
-<polyline points="372.3,224.1 372.3,265.8 372.3,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="S3-2G4"/>
-<polyline points="290.0,224.1 290.0,265.8 290.0,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="N24-1"/>
-<polyline points="207.7,224.1 207.7,265.8 207.7,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="C5-2G4/5"/>
-<polyline points="144.4,224.1 125.4,265.8 125.4,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="N24-2"/>
-</g>
 <rect x="367.84" y="199.72" width="8.96" height="4.70" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
 <text x="372.3" y="203.7" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">115</text>
 <rect x="203.20" y="199.72" width="8.96" height="4.70" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
@@ -675,11 +669,43 @@
 <text x="407.8" y="986.8" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#2563eb">162</text>
 <rect x="298.74" y="963.84" width="50.06" height="41.16" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5_service_usb_connector" data-mpn="GCT USB4105-GF-A"/>
 <text x="323.8" y="986.8" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">163</text>
+<g id="ui-antenna-connectivity" data-route-state="pre-ecad-topology-only">
+<line x1="401.7" y1="434.1" x2="435.6" y2="224.1" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-0" data-medium="removable-microcoax"/>
+<line x1="435.6" y1="224.1" x2="454.6" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="N24-0" data-medium="controlled-50-ohm-pcb"/>
+<circle cx="401.7" cy="434.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="N24-0" data-part="module-rf-connector" data-connector-kind="IPEX"/>
+<circle cx="435.6" cy="224.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="N24-0" data-part="board-ufl" data-mpn="U.FL-R-SMT-1(10)"/>
+<circle cx="401.7" cy="434.1" r="2.0" fill="#d97706"/>
+<circle cx="435.6" cy="224.1" r="2.0" fill="#d97706"/>
+<line x1="416.0" y1="342.0" x2="372.3" y2="224.1" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="S3-2G4" data-medium="removable-microcoax"/>
+<line x1="372.3" y1="224.1" x2="372.3" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="S3-2G4" data-medium="controlled-50-ohm-pcb"/>
+<circle cx="416.0" cy="342.0" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="S3-2G4" data-part="module-rf-connector" data-connector-kind="U.FL"/>
+<circle cx="372.3" cy="224.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="S3-2G4" data-part="board-ufl" data-mpn="U.FL-R-SMT-1(10)"/>
+<circle cx="416.0" cy="342.0" r="2.0" fill="#d97706"/>
+<circle cx="372.3" cy="224.1" r="2.0" fill="#d97706"/>
+<line x1="290.8" y1="434.1" x2="290.0" y2="224.1" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-1" data-medium="removable-microcoax"/>
+<line x1="290.0" y1="224.1" x2="290.0" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="N24-1" data-medium="controlled-50-ohm-pcb"/>
+<circle cx="290.8" cy="434.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="N24-1" data-part="module-rf-connector" data-connector-kind="IPEX"/>
+<circle cx="290.0" cy="224.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="N24-1" data-part="board-ufl" data-mpn="U.FL-R-SMT-1(10)"/>
+<circle cx="290.8" cy="434.1" r="2.0" fill="#d97706"/>
+<circle cx="290.0" cy="224.1" r="2.0" fill="#d97706"/>
+<line x1="164.0" y1="347.6" x2="207.7" y2="224.1" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="C5-2G4/5" data-medium="removable-microcoax"/>
+<line x1="207.7" y1="224.1" x2="207.7" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="C5-2G4/5" data-medium="controlled-50-ohm-pcb"/>
+<circle cx="164.0" cy="347.6" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="C5-2G4/5" data-part="module-rf-connector" data-connector-kind="U.FL"/>
+<circle cx="207.7" cy="224.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="C5-2G4/5" data-part="board-ufl" data-mpn="U.FL-R-SMT-1(10)"/>
+<circle cx="164.0" cy="347.6" r="2.0" fill="#d97706"/>
+<circle cx="207.7" cy="224.1" r="2.0" fill="#d97706"/>
+<line x1="180.0" y1="445.3" x2="144.4" y2="224.1" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-2" data-medium="removable-microcoax"/>
+<line x1="144.4" y1="224.1" x2="125.4" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="N24-2" data-medium="controlled-50-ohm-pcb"/>
+<circle cx="180.0" cy="445.3" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="N24-2" data-part="module-rf-connector" data-connector-kind="IPEX"/>
+<circle cx="144.4" cy="224.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="N24-2" data-part="board-ufl" data-mpn="U.FL-R-SMT-1(10)"/>
+<circle cx="180.0" cy="445.3" r="2.0" fill="#d97706"/>
+<circle cx="144.4" cy="224.1" r="2.0" fill="#d97706"/>
+</g>
 </svg>
 <svg x="555" y="805" width="450" height="650" viewBox="70 95 440 940" preserveAspectRatio="xMidYMid meet" overflow="hidden">
 
 <text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.18 · RF / power PCB inner face</text>
-<text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">PCB is physically turned over: X is mirrored. Numbers are drawing references; this face has no silkscreen.</text>
+<text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.</text>
 <text x="290.0" y="105.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ANTENNA EDGE · five direct source-board ports</text>
 <rect x="80.0" y="165.0" width="420.0" height="840.0" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
 <rect x="426.1" y="131.4" width="57.1" height="33.6" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
@@ -696,13 +722,6 @@
 <circle cx="108.0" cy="226.6" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="472.0" cy="977.0" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="108.0" cy="977.0" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
-<g id="rf-antenna-topology" data-route-state="pre-ecad-topology-only">
-<polyline points="421.9,313.4 454.6,265.8 454.6,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="RX-FM/SW"/>
-<polyline points="421.9,313.4 372.3,265.8 372.3,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="RX-AM/LW"/>
-<polyline points="298.4,222.7 290.0,265.8 290.0,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="CC-SUB"/>
-<polyline points="268.2,400.2 207.7,265.8 207.7,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="VOICE-VHF"/>
-<polyline points="425.5,446.7 125.4,265.8 125.4,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="VOICE-UHF"/>
-</g>
 <rect x="312.40" y="204.20" width="134.40" height="61.60" rx="2" fill="#fff7ed" stroke="#ea580c" stroke-width="1" stroke-dasharray="6 4" data-instance="airband_filter_reserve" data-mpn="PHYSICAL RESERVE"/>
 <text x="379.6" y="237.3" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#ea580c">1</text>
 <rect x="287.20" y="211.48" width="22.40" height="22.40" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="cc_r2" data-mpn="CC1101RGPR"/>
@@ -931,6 +950,13 @@
 <text x="172.2" y="988.0" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">113</text>
 <rect x="332.00" y="982.60" width="22.40" height="22.40" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="microphone" data-mpn="Same Sky CMEJ-0413-42-SMT-TR"/>
 <text x="343.2" y="996.1" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">114</text>
+<g id="rf-antenna-connectivity" data-route-state="pre-ecad-topology-only">
+<line x1="421.9" y1="313.4" x2="454.6" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="RX-FM/SW" data-medium="controlled-50-ohm-pcb"/>
+<line x1="421.9" y1="313.4" x2="372.3" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="RX-AM/LW" data-medium="controlled-50-ohm-pcb"/>
+<line x1="298.4" y1="222.7" x2="290.0" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="CC-SUB" data-medium="controlled-50-ohm-pcb"/>
+<line x1="268.2" y1="400.2" x2="207.7" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-VHF" data-medium="controlled-50-ohm-pcb"/>
+<line x1="425.5" y1="446.7" x2="125.4" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-UHF" data-medium="controlled-50-ohm-pcb"/>
+</g>
 </svg>
 <text x="525" y="1480" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#b42318">Matched physical columns · 75 × 150 mm PCBs · not authorization for KiCad</text>
 </svg>

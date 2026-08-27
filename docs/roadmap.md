@@ -79,8 +79,8 @@ H1 report.
   four keyed DBG10 fallbacks remain available.
 - ✅ Public diagrams use one board per inner image. The complete numbered
   163-body projection is retained only as machine-review evidence.
-- ✅ The main public mock-up places each mirrored inner face directly below its
-  matching exterior; antenna silk passes body/cable/U214/display/fastener checks.
+- ✅ The main public mock-up places the direct turned-over view of each PCB
+  below its matching exterior; antenna silk passes body/cable/U214/display/fastener checks.
 
 ### 5. Exact current blocker
 

@@ -4,21 +4,21 @@
 
 ## Что увидит пользователь
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-usb-silk-2)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-layout-clean-3)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-usb-silk-2)
+## Легенда компонентов
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-usb-silk-2)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.18-layout-clean-3)
+
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-layout-clean-3)
+
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-layout-clean-3)
 
 ## Что находится внутри
 
-### Передняя UI/radio-плата
+[Передняя UI/radio-плата · full-scale inner view](images/h1-r2-inner-ui.svg)
 
-![Front PCB inner face](images/h1-r2-inner-ui.svg)
-
-### Задняя RF/power-плата
-
-![Rear PCB inner face](images/h1-r2-inner-rf.svg)
+[Задняя RF/power-плата · full-scale inner view](images/h1-r2-inner-rf.svg)
 
 - Десять основных SMA разделены симметрично `5 + 5`; каждый радиотракт остаётся на плате своего разъёма.
 - Отдельный вертикальный MMCX `FPV RX · 5.8 GHz` расположен ниже равномерного ряда из пяти задних SMA и над U214; ответный угловой штекер с кабелем уходит вдоль платы.

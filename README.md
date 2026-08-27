@@ -12,8 +12,6 @@
 
 > **Current hardware marker: `H1-R2.18`.** The two-PCB physical model is in progress. Ten main SMA ports are split `5 + 5`; the separate vertical rear-face MMCX is `FPV RX · 5.8G`. Placement and interboard budgets pass, but KiCad and ordering remain blocked until the controlled K331 production package closes H1.
 
-![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.18-usb-silk-2)
-
 ## What it is
 
 Leshy2 is a portable, repairable instrument for radio observation,
@@ -36,6 +34,15 @@ Transmission and intrusive laboratory functions are separated from ordinary
 use by the [three-level safety model](docs/safety.md). Installation requires the
 user to accept the non-aggression/authorized-use terms.
 
+## Physical mock-up
+
+![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.18-layout-clean-3)
+
+[Open the legend for all 163 numbered components](docs/images/h1-r2-component-legend.svg?rev=h1-r2.18-layout-clean-3) ·
+[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.18-layout-clean-3) ·
+[front inner face](docs/images/h1-r2-inner-ui.svg) ·
+[rear inner face](docs/images/h1-r2-inner-rf.svg)
+
 ## How it is built
 
 ![Leshy2 functional architecture](docs/images/h0-r2-functional-architecture.svg)
@@ -51,17 +58,10 @@ S3; nRF payload remains local to the front RP. M1 is fully assigned: 25 live
 signals, 14 main-power contacts, 2 AON contacts, 25 defined returns and 14 NC
 reserves.
 
-### Front PCB · inner face
-
-![Front UI/radio PCB inner face](docs/images/h1-r2-inner-ui.svg)
-
-### Rear PCB · inner face
-
-![Rear RF/power PCB inner face](docs/images/h1-r2-inner-rf.svg)
-
 The drawings are generated from one machine-readable placement source. Inner
-labels are drawing references, not silkscreen. The complete 163-body projection
-is retained as machine-review evidence and intentionally omitted from this page.
+labels are drawing references, not silkscreen. The complete component legend is
+linked beside the mock-up; individual inner views remain links without repeating
+the same diagrams on the page.
 
 [Open the readable physical result](docs/h1-r2-physical-layout.md) ·
 [Power and thermal result](docs/h1-r2-power-thermal.md) ·

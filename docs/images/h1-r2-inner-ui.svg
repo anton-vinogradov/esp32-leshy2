@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1110" viewBox="0 0 1160 1110" data-marker="H1-R2.18" data-frame="ui-inner" data-inner-silkscreen="none">
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.18 · UI / radio PCB inner face</text>
-<text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">PCB is physically turned over: X is mirrored. Numbers are drawing references; this face has no silkscreen.</text>
+<text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.</text>
 <text x="290.0" y="105.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ANTENNA EDGE · five direct source-board ports</text>
 <rect x="80.0" y="165.0" width="420.0" height="840.0" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
 <rect x="426.1" y="131.4" width="57.1" height="33.6" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
@@ -18,13 +18,6 @@
 <circle cx="108.0" cy="226.6" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="472.0" cy="977.0" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="108.0" cy="977.0" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
-<g id="antenna-topology" data-route-state="pre-ecad-topology-only">
-<polyline points="435.6,224.1 454.6,265.8 454.6,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="N24-0"/>
-<polyline points="372.3,224.1 372.3,265.8 372.3,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="S3-2G4"/>
-<polyline points="290.0,224.1 290.0,265.8 290.0,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="N24-1"/>
-<polyline points="207.7,224.1 207.7,265.8 207.7,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="C5-2G4/5"/>
-<polyline points="144.4,224.1 125.4,265.8 125.4,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="N24-2"/>
-</g>
 <rect x="367.84" y="199.72" width="8.96" height="4.70" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
 <text x="372.3" y="203.7" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">115</text>
 <rect x="203.20" y="199.72" width="8.96" height="4.70" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
@@ -123,6 +116,38 @@
 <text x="407.8" y="986.8" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#2563eb">162</text>
 <rect x="298.74" y="963.84" width="50.06" height="41.16" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5_service_usb_connector" data-mpn="GCT USB4105-GF-A"/>
 <text x="323.8" y="986.8" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">163</text>
+<g id="antenna-connectivity" data-route-state="pre-ecad-topology-only">
+<line x1="401.7" y1="434.1" x2="435.6" y2="224.1" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-0" data-medium="removable-microcoax"/>
+<line x1="435.6" y1="224.1" x2="454.6" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="N24-0" data-medium="controlled-50-ohm-pcb"/>
+<circle cx="401.7" cy="434.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="N24-0" data-part="module-rf-connector" data-connector-kind="IPEX"/>
+<circle cx="435.6" cy="224.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="N24-0" data-part="board-ufl" data-mpn="U.FL-R-SMT-1(10)"/>
+<circle cx="401.7" cy="434.1" r="2.0" fill="#d97706"/>
+<circle cx="435.6" cy="224.1" r="2.0" fill="#d97706"/>
+<line x1="416.0" y1="342.0" x2="372.3" y2="224.1" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="S3-2G4" data-medium="removable-microcoax"/>
+<line x1="372.3" y1="224.1" x2="372.3" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="S3-2G4" data-medium="controlled-50-ohm-pcb"/>
+<circle cx="416.0" cy="342.0" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="S3-2G4" data-part="module-rf-connector" data-connector-kind="U.FL"/>
+<circle cx="372.3" cy="224.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="S3-2G4" data-part="board-ufl" data-mpn="U.FL-R-SMT-1(10)"/>
+<circle cx="416.0" cy="342.0" r="2.0" fill="#d97706"/>
+<circle cx="372.3" cy="224.1" r="2.0" fill="#d97706"/>
+<line x1="290.8" y1="434.1" x2="290.0" y2="224.1" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-1" data-medium="removable-microcoax"/>
+<line x1="290.0" y1="224.1" x2="290.0" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="N24-1" data-medium="controlled-50-ohm-pcb"/>
+<circle cx="290.8" cy="434.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="N24-1" data-part="module-rf-connector" data-connector-kind="IPEX"/>
+<circle cx="290.0" cy="224.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="N24-1" data-part="board-ufl" data-mpn="U.FL-R-SMT-1(10)"/>
+<circle cx="290.8" cy="434.1" r="2.0" fill="#d97706"/>
+<circle cx="290.0" cy="224.1" r="2.0" fill="#d97706"/>
+<line x1="164.0" y1="347.6" x2="207.7" y2="224.1" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="C5-2G4/5" data-medium="removable-microcoax"/>
+<line x1="207.7" y1="224.1" x2="207.7" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="C5-2G4/5" data-medium="controlled-50-ohm-pcb"/>
+<circle cx="164.0" cy="347.6" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="C5-2G4/5" data-part="module-rf-connector" data-connector-kind="U.FL"/>
+<circle cx="207.7" cy="224.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="C5-2G4/5" data-part="board-ufl" data-mpn="U.FL-R-SMT-1(10)"/>
+<circle cx="164.0" cy="347.6" r="2.0" fill="#d97706"/>
+<circle cx="207.7" cy="224.1" r="2.0" fill="#d97706"/>
+<line x1="180.0" y1="445.3" x2="144.4" y2="224.1" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-2" data-medium="removable-microcoax"/>
+<line x1="144.4" y1="224.1" x2="125.4" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="N24-2" data-medium="controlled-50-ohm-pcb"/>
+<circle cx="180.0" cy="445.3" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="N24-2" data-part="module-rf-connector" data-connector-kind="IPEX"/>
+<circle cx="144.4" cy="224.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="N24-2" data-part="board-ufl" data-mpn="U.FL-R-SMT-1(10)"/>
+<circle cx="180.0" cy="445.3" r="2.0" fill="#d97706"/>
+<circle cx="144.4" cy="224.1" r="2.0" fill="#d97706"/>
+</g>
 <text x="550.0" y="125.0" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="start" fill="#172033">Functional islands on this PCB</text>
 <text x="550.0" y="158.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#166534">49 registered bodies · zero same-face collisions</text>
 <text x="550.0" y="196.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#334155">• S3 direct UI/display</text>
@@ -132,8 +157,10 @@
 <text x="550.0" y="308.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#334155">• microSD</text>
 <text x="550.0" y="336.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#334155">• UI-local TVP5150 decoder</text>
 <text x="550.0" y="384.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Line key</text>
-<line x1="550" y1="412" x2="594" y2="412" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="5 4"/>
-<text x="606.0" y="416.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#526076">source-to-port topology; final copper belongs to KiCad</text>
+<line x1="550" y1="412" x2="594" y2="412" stroke="#2563eb" stroke-width="1.7"/>
+<text x="606.0" y="416.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#526076">controlled 50-ohm PCB topology; final route belongs to KiCad</text>
+<line x1="550" y1="434" x2="594" y2="434" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round"/>
+<text x="606.0" y="438.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#526076">straight removable microcoax: module IPEX/U.FL to board U.FL</text>
 <text x="550.0" y="456.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Body key</text>
 <rect x="550" y="472.0" width="28" height="18" fill="#eef2f6" stroke="#94a3b8"/>
 <text x="590.0" y="486.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#526076">retained registered body</text>

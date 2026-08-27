@@ -287,9 +287,13 @@ class ProductSiteTests(unittest.TestCase):
             ),
         }
         for name, tokens in expectations.items():
-            page = " ".join(self.read(name).split())
+            raw_page = self.read(name)
+            page = " ".join(raw_page.split())
             self.assertEqual(1, page.count("⭐"), name)
             self.assertIn("docs/images/h1-r2-four-faces.svg", page, name)
+            intro_heading = "## Что это" if name.endswith(".ru.md") else "## What it is"
+            self.assertLess(raw_page.index(intro_heading), raw_page.index("h1-r2-four-faces.svg"), name)
+            self.assertIn("docs/images/h1-r2-component-legend.svg", raw_page, name)
             for token in tokens:
                 self.assertIn(token, page, f"{name}: {token}")
 

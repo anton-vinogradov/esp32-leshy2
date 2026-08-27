@@ -4,21 +4,21 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 
 ## What the user sees
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-usb-silk-2)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-layout-clean-3)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-usb-silk-2)
+## Component legend
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-usb-silk-2)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.18-layout-clean-3)
+
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-layout-clean-3)
+
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-layout-clean-3)
 
 ## What is inside
 
-### Front UI/radio PCB
+[Front UI/radio PCB · full-scale inner view](images/h1-r2-inner-ui.svg)
 
-![Front PCB inner face](images/h1-r2-inner-ui.svg)
-
-### Rear RF/power PCB
-
-![Rear PCB inner face](images/h1-r2-inner-rf.svg)
+[Rear RF/power PCB · full-scale inner view](images/h1-r2-inner-rf.svg)
 
 - Ten main SMA ports are split symmetrically `5 + 5`; every radio path remains on the PCB that carries its connector.
 - The separate vertical `FPV RX · 5.8 GHz` MMCX sits below the evenly pitched five-SMA rear row and above U214; its mating right-angle plug and cable run parallel to the PCB.

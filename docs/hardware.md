@@ -73,9 +73,9 @@ below 0.4 MB/s, so it does not saturate the RP transport.
 
 ## Physical layout
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-usb-silk-2)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-layout-clean-3)
 
-[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-usb-silk-2).
+[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-layout-clean-3).
 
 The ten main antenna ports are split symmetrically:
 
@@ -93,18 +93,17 @@ has no interboard tail. Its body leaves 2.07 mm to SMA. The controlled
 right-angle plug reference leaves 2.40 mm to SMA, 4.80 mm to U214 and clears
 both mounting holes; Ø12 is only a temporary H5 finger-access check.
 
-### Front inner face
+### Component legend
 
-![Front PCB inner face](images/h1-r2-inner-ui.svg)
+![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.18-layout-clean-3)
 
-### Rear inner face
+[Front inner face at full scale](images/h1-r2-inner-ui.svg) ·
+[rear inner face at full scale](images/h1-r2-inner-rf.svg)
 
-![Rear PCB inner face](images/h1-r2-inner-rf.svg)
-
-The boards are physically turned over in these views, so both are mirrored.
-Numbers are drawing references; inner PCB faces contain no silkscreen. The
-complete numbered 163-body projection remains generated machine evidence rather
-than a second tiny public diagram.
+The inner faces are shown exactly as viewed after physically turning each PCB
+over, so left and right swap relative to the outer face. Numbers are drawing
+references, not silkscreen. The complete legend lists all 163 bodies without
+repeating the PCB drawings.
 
 Placement currently has **zero same-face collisions** and **1.44 mm** minimum
 opposing clearance against **0.70 mm** required.
@@ -127,7 +126,7 @@ the drawing is its pad span.
 - User silkscreen is printed only on visible outer faces and is not hidden by
   the display, batteries or U214.
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-usb-silk-2)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-layout-clean-3)
 
 ## Power and unattended safety
 

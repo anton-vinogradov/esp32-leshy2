@@ -47,7 +47,7 @@ anti-shear enclosure datums and independent PCB capture carry mechanical load.
 
 ## Physical implementation of the principle
 
-![Outer and mirrored inner faces in matched columns](images/h1-r2-four-faces.svg?rev=h1-r2.18-usb-silk-2)
+![Outer faces and direct views after turning the PCBs over](images/h1-r2-four-faces.svg?rev=h1-r2.18-layout-clean-3)
 
 [Front PCB inner face](images/h1-r2-inner-ui.svg) ·
 [Rear PCB inner face](images/h1-r2-inner-rf.svg)

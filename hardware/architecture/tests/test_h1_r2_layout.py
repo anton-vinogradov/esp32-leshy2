@@ -158,6 +158,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual(86.0, holder["pcb_pad_span_mm"][0])
 
     def test_generated_artifacts_are_current(self):
+        source_table = json.loads(MODULE.SOURCE_TABLE_PATH.read_text())
         expected = {
             MODULE.AUDIT_PATH: json.dumps(self.audit, indent=2, ensure_ascii=False) + "\n",
             MODULE.SVG_PATH: MODULE.render_svg(self.model, self.base, self.audit),
@@ -165,16 +166,19 @@ class H1R2LayoutTest(unittest.TestCase):
             MODULE.EXTERNAL_SVG_PATH: MODULE.render_external_svg(self.model),
             MODULE.SERVICE_SVG_PATH: MODULE.render_service_svg(self.model),
             MODULE.COMPLETE_INNER_SVG_PATH: MODULE.render_complete_inner_svg(
-                self.model, self.base, json.loads(MODULE.SOURCE_TABLE_PATH.read_text()), self.audit
+                self.model, self.base, source_table, self.audit
             ),
             MODULE.INNER_UI_SVG_PATH: MODULE.render_inner_face_svg(
-                self.model, self.base, json.loads(MODULE.SOURCE_TABLE_PATH.read_text()), self.audit, "ui-inner"
+                self.model, self.base, source_table, self.audit, "ui-inner"
             ),
             MODULE.INNER_RF_SVG_PATH: MODULE.render_inner_face_svg(
-                self.model, self.base, json.loads(MODULE.SOURCE_TABLE_PATH.read_text()), self.audit, "rf-inner"
+                self.model, self.base, source_table, self.audit, "rf-inner"
             ),
             MODULE.INNER_SECTIONS_SVG_PATH: MODULE.render_inner_sections_svg(
-                self.model, self.base, json.loads(MODULE.SOURCE_TABLE_PATH.read_text()), self.audit
+                self.model, self.base, source_table, self.audit
+            ),
+            MODULE.COMPONENT_LEGEND_SVG_PATH: MODULE.render_component_legend_svg(
+                self.model, self.base, source_table, self.audit
             ),
             MODULE.EN_DOC_PATH: MODULE.render_doc(self.model, self.audit, False),
             MODULE.RU_DOC_PATH: MODULE.render_doc(self.model, self.audit, True),
@@ -210,6 +214,14 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn('data-view="both-inner-faces-mirrored"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
         self.assertIn('data-inner-silkscreen="none"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
         self.assertIn('data-view="four-faces-matched-columns"', expected[MODULE.FOUR_FACES_SVG_PATH])
+        self.assertIn('clip-path="url(#front-external-content)"', expected[MODULE.FOUR_FACES_SVG_PATH])
+        self.assertIn('clip-path="url(#rear-external-content)"', expected[MODULE.FOUR_FACES_SVG_PATH])
+        self.assertIn('data-view="numbered-component-legend"', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
+        self.assertIn('163 drawing references', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
+        self.assertEqual(5, expected[MODULE.INNER_UI_SVG_PATH].count('data-medium="removable-microcoax"'))
+        self.assertEqual(5, expected[MODULE.INNER_UI_SVG_PATH].count('data-part="board-ufl"'))
+        self.assertEqual(5, expected[MODULE.INNER_UI_SVG_PATH].count('data-part="module-rf-connector"'))
+        self.assertEqual(5, expected[MODULE.INNER_RF_SVG_PATH].count('data-medium="controlled-50-ohm-pcb"'))
         self.assertIn('data-port-role="power-and-data"', expected[MODULE.EXTERNAL_SVG_PATH])
         self.assertIn('data-port-role="data-only"', expected[MODULE.EXTERNAL_SVG_PATH])
         self.assertNotIn('data-interface-shape="usb-c-receptacle"', expected[MODULE.EXTERNAL_SVG_PATH])
@@ -217,6 +229,13 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertNotIn('data-part="usb-c-tongue"', expected[MODULE.EXTERNAL_SVG_PATH])
         self.assertEqual(4, expected[MODULE.EXTERNAL_SVG_PATH].count('data-mpn="USB4105-GF-A"'))
         self.assertEqual(4, expected[MODULE.SERVICE_SVG_PATH].count('data-mpn="USB4105-GF-A"'))
+        role_baseline = 150.0 + MODULE.BOTTOM_SILK_ROLE_BASELINE_MM * 3.7
+        owner_baseline = 150.0 + MODULE.BOTTOM_SILK_OWNER_BASELINE_MM * 3.7
+        external = expected[MODULE.EXTERNAL_SVG_PATH]
+        self.assertEqual(7, external.count('data-edge="bottom" data-silk-row="role"'))
+        self.assertEqual(4, external.count('data-edge="bottom" data-silk-row="owner"'))
+        self.assertEqual(7, external.count(f'y="{role_baseline:.1f}"'))
+        self.assertEqual(4, external.count(f'y="{owner_baseline:.1f}"'))
         self.assertIn(
             f"h1-r2-four-faces.svg?rev={MODULE.PUBLIC_ASSET_REV}",
             expected[MODULE.EN_DOC_PATH],

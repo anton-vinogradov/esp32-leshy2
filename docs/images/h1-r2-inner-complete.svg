@@ -2,14 +2,14 @@
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="1900" height="2910" fill="#ffffff"/>
 <text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.18 complete inner-body map</text>
-<text x="30.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Both boards are physically turned over and therefore mirrored. Numbers are drawing references; inner faces contain no silkscreen.</text>
-<text x="201.9" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">UI PCB · inner · mirrored</text>
+<text x="30.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Each PCB is shown exactly as viewed after turning it over. Numbers are drawing references; inner faces contain no silkscreen.</text>
+<text x="201.9" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="65.0" y="130.0" width="273.8" height="547.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
 <circle cx="320.5" cy="170.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="83.2" cy="170.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="320.5" cy="659.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="83.2" cy="659.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
-<text x="576.9" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">RF / power PCB · inner · mirrored</text>
+<text x="576.9" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">RF / power PCB · inner · turned-over view</text>
 <rect x="440.0" y="130.0" width="273.8" height="547.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
 <circle cx="695.5" cy="170.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="458.2" cy="170.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>

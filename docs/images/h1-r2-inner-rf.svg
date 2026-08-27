@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1110" viewBox="0 0 1160 1110" data-marker="H1-R2.18" data-frame="rf-inner" data-inner-silkscreen="none">
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.18 · RF / power PCB inner face</text>
-<text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">PCB is physically turned over: X is mirrored. Numbers are drawing references; this face has no silkscreen.</text>
+<text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.</text>
 <text x="290.0" y="105.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ANTENNA EDGE · five direct source-board ports</text>
 <rect x="80.0" y="165.0" width="420.0" height="840.0" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
 <rect x="426.1" y="131.4" width="57.1" height="33.6" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
@@ -18,13 +18,6 @@
 <circle cx="108.0" cy="226.6" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="472.0" cy="977.0" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="108.0" cy="977.0" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
-<g id="antenna-topology" data-route-state="pre-ecad-topology-only">
-<polyline points="421.9,313.4 454.6,265.8 454.6,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="RX-FM/SW"/>
-<polyline points="421.9,313.4 372.3,265.8 372.3,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="RX-AM/LW"/>
-<polyline points="298.4,222.7 290.0,265.8 290.0,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="CC-SUB"/>
-<polyline points="268.2,400.2 207.7,265.8 207.7,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="VOICE-VHF"/>
-<polyline points="425.5,446.7 125.4,265.8 125.4,165.0" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="VOICE-UHF"/>
-</g>
 <rect x="312.40" y="204.20" width="134.40" height="61.60" rx="2" fill="#fff7ed" stroke="#ea580c" stroke-width="1" stroke-dasharray="6 4" data-instance="airband_filter_reserve" data-mpn="PHYSICAL RESERVE"/>
 <text x="379.6" y="237.3" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#ea580c">1</text>
 <rect x="287.20" y="211.48" width="22.40" height="22.40" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="cc_r2" data-mpn="CC1101RGPR"/>
@@ -253,6 +246,13 @@
 <text x="172.2" y="988.0" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">113</text>
 <rect x="332.00" y="982.60" width="22.40" height="22.40" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="microphone" data-mpn="Same Sky CMEJ-0413-42-SMT-TR"/>
 <text x="343.2" y="996.1" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">114</text>
+<g id="antenna-connectivity" data-route-state="pre-ecad-topology-only">
+<line x1="421.9" y1="313.4" x2="454.6" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="RX-FM/SW" data-medium="controlled-50-ohm-pcb"/>
+<line x1="421.9" y1="313.4" x2="372.3" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="RX-AM/LW" data-medium="controlled-50-ohm-pcb"/>
+<line x1="298.4" y1="222.7" x2="290.0" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="CC-SUB" data-medium="controlled-50-ohm-pcb"/>
+<line x1="268.2" y1="400.2" x2="207.7" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-VHF" data-medium="controlled-50-ohm-pcb"/>
+<line x1="425.5" y1="446.7" x2="125.4" y2="165.0" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-UHF" data-medium="controlled-50-ohm-pcb"/>
+</g>
 <text x="550.0" y="125.0" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="start" fill="#172033">Functional islands on this PCB</text>
 <text x="550.0" y="158.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#166534">114 registered bodies · zero same-face collisions</text>
 <text x="550.0" y="196.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#334155">• CC1101</text>
@@ -265,8 +265,10 @@
 <text x="550.0" y="392.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#334155">• rear RP</text>
 <text x="550.0" y="420.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#334155">• power and safety</text>
 <text x="550.0" y="468.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Line key</text>
-<line x1="550" y1="496" x2="594" y2="496" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="5 4"/>
-<text x="606.0" y="500.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#526076">source-to-port topology; final copper belongs to KiCad</text>
+<line x1="550" y1="496" x2="594" y2="496" stroke="#2563eb" stroke-width="1.7"/>
+<text x="606.0" y="500.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#526076">controlled 50-ohm PCB topology; final route belongs to KiCad</text>
+<line x1="550" y1="518" x2="594" y2="518" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round"/>
+<text x="606.0" y="522.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#526076">straight removable microcoax: module IPEX/U.FL to board U.FL</text>
 <text x="550.0" y="540.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Body key</text>
 <rect x="550" y="556.0" width="28" height="18" fill="#eef2f6" stroke="#94a3b8"/>
 <text x="590.0" y="570.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#526076">retained registered body</text>
