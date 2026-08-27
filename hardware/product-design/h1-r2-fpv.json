@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.9",
+  "marker": "H1-R2.10",
   "checked_on": "2026-08-27",
   "status": "official_functional_integration_passed_physical_and_factory_route_open",
   "receiver": {
@@ -111,6 +111,31 @@
       "result_ru": "отклонён как основной: документированный корпус более чем вдвое превышает резерв по площади, а диапазон и число каналов уже"
     },
     {
+      "mpn": "AWM666V RX",
+      "manufacturer": "Airwave Technologies",
+      "controlled_source": "https://www.airwave.com.tw/en/product-441209/5-8GHz-RF-Modules-AWM666V-RX.html",
+      "controlled_datasheet": "https://www.airwave.com.tw/ftp/pdf/AWM666V.pdf",
+      "datasheet_revision": "Rev 1.4, 2011-10-19",
+      "frequency_mhz": [5725, 5875],
+      "channel_frequencies_mhz": [5740, 5760, 5780, 5800, 5820, 5840, 5860],
+      "channel_count": 7,
+      "maximum_current_ma": 210,
+      "controlled_envelope_mm": [26.16, 16.38, 3.7],
+      "controlled_land_pattern": true,
+      "fits_k331_working_envelope": true,
+      "datasheet_inconsistency": "the function block and channel-selection table identify CH7 as 5860 MHz, while the later electrical-summary line repeats 5820 MHz; treat 5860 MHz as the documented table value and retain HIL confirmation",
+      "availability": "listed in the current manufacturer catalogue as Inquire Now; exact JLCPCB search returned 0 results on 2026-08-27",
+      "jlcpcb_surface": {
+        "query": "AWM666V",
+        "catalogue_hits": 0,
+        "placeable_hits": 0,
+        "route": "manufacturer inquiry, private/global sourcing or post-PCBA installation only",
+        "checked": "2026-08-27"
+      },
+      "result": "retained as the best controlled physical fallback, not the primary: its manufacturer drawing and recommended land pattern fit inside the existing 30 x 24 x 4 mm bay and its 210-mA maximum fits power, but it covers only seven 5725-5875-MHz channels versus K331's 24 channels across 5645-5945 MHz and has no public JLCPCB route",
+      "result_ru": "сохранён как лучший контролируемый физический fallback, но не основной: чертёж производителя и рекомендуемая посадка входят в существующую ячейку 30×24×4 мм, максимальные 210 мА проходят по питанию, однако доступны только семь каналов 5725–5875 МГц вместо 24 каналов K331 5645–5945 МГц и публичного маршрута JLCPCB нет"
+    },
+    {
       "mpn": "TUE-RFVRX-58-D",
       "manufacturer": "Top-Unum Electronics",
       "controlled_source": "https://www.top-unum.com.tw/video-transmitter-product/tue-rfvrx-58-d",
@@ -166,7 +191,7 @@
       "result_ru": "отклонён как production-identity: у публичной карточки нулевой склад и нет личности производителя, контролируемого чертежа или доступного фабричного маршрута"
     }
   ],
-  "receiver_research_conclusion": "Keep K331 as the leading functional candidate: official AKK-hosted media closes the application-circuit, complete 14-pin function and 24-channel truth-table evidence. Request only the still-missing controlled mechanical/assembly package plus a JLCPCB sourcing response. Public RTC6715/RX5808 catalogue cards do not create a purchasable module route, and a custom 5.8-GHz receiver around the bare RTC6715 would increase RF risk without solving supply.",
+  "receiver_research_conclusion": "Keep K331 as the leading functional candidate: official AKK-hosted media closes the application-circuit, complete 14-pin function and 24-channel truth-table evidence. AWM666V RX is the controlled contingency because its exact body, recommended land pattern, 210-mA maximum and CVBS/RSSI/control interface fit the existing reserve, but its seven-channel 5725-5875-MHz coverage and absent public JLCPCB route are material degradations. Request only the still-missing K331 controlled mechanical/assembly package plus a JLCPCB sourcing response. Public RTC6715/RX5808 catalogue cards do not create a purchasable module route, and a custom 5.8-GHz receiver around the bare RTC6715 would increase RF risk without solving supply.",
   "supplier_outreach": {
     "sent_on": "2026-08-27",
     "akk": {

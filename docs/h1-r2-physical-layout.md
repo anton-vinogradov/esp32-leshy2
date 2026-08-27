@@ -1,4 +1,4 @@
-# H1-R2.9 · physical re-layout
+# H1-R2.10 · physical re-layout
 
 This is the current verified H1 result, not a decision diary and not authorization to start KiCad.
 
@@ -14,6 +14,7 @@ The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell fo
 - Intentional opposing XY projections: `26`; minimum Z clearance is `1.44 mm` against `0.70 mm` required.
 - An AKK-branded dimensioned reseller image gives a 28.7 × 23.1 mm nominal K331 board; collision checks use a conservative 30 × 24 × 4 mm reserve without changing the PCB outline or battery/U214 exterior zones.
 - K331 functional pin fit is accepted, but the reserve is not a fixed body: maximum XYZ, land pattern and reflow/packaging must come from an AKK-controlled document.
+- The controlled 26.16 × 16.38 × 3.70 mm `AWM666V RX` fallback and its recommended land pattern fit the same bay; it does not replace K331 automatically because it has seven channels instead of 24 and no public JLCPCB route.
 - The exact linear TBS5G8MMCXA antenna mates with the distinct MMCX; K331 ANT IN reaches it over one direct 50-ohm PCB trace without U.FL.
 - Corrected `DL-MMCX-KWE-90` geometry keeps 3.6 mm of body on the RF PCB and projects only the 3.0-mm barrel beyond the right edge; its pins enter the interboard gap by a nominal 1.2 mm and the tail keepout meets no opposing body.
 - The side wall now has a 4.5-mm minimum free aperture and the plug a clear Ø12×20-mm exterior service corridor. H5 later verifies the received mating pair, final wall tolerance, retention and cable strain.
@@ -50,4 +51,4 @@ The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell fo
 
 - **H5/H8:** qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route
 
-> Exact current marker: **H1-R2.9**. H1 remains in progress.
+> Exact current marker: **H1-R2.10**. H1 remains in progress.

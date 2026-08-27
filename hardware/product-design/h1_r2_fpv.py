@@ -71,8 +71,17 @@ def audit(model: dict) -> dict:
     if "reseller" not in mechanical.get("nominal_board_xy_source_class", ""):
         errors.append("K331 nominal XY evidence is overstated as controlled")
     alternatives = {row["mpn"]: row for row in model["receiver_alternatives_reviewed"]}
-    if set(alternatives) != {"AKK K331", "AWM682 RX", "TUE-RFVRX-58-D", "RichWave RTC6715 IC", "generic RX5808"}:
+    if set(alternatives) != {"AKK K331", "AWM666V RX", "AWM682 RX", "TUE-RFVRX-58-D", "RichWave RTC6715 IC", "generic RX5808"}:
         errors.append("receiver alternative review is incomplete")
+    controlled_fallback = alternatives.get("AWM666V RX", {})
+    if controlled_fallback.get("controlled_envelope_mm") != [26.16, 16.38, 3.7]:
+        errors.append("AWM666V controlled fallback envelope is missing or stale")
+    if not controlled_fallback.get("fits_k331_working_envelope"):
+        errors.append("AWM666V no longer fits the K331 reserve")
+    if controlled_fallback.get("jlcpcb_surface", {}).get("placeable_hits") != 0:
+        errors.append("AWM666V factory route is overstated")
+    if controlled_fallback.get("channel_count") >= receiver["channel_count"]:
+        errors.append("AWM666V channel degradation is no longer explicit")
     if alternatives.get("AWM682 RX", {}).get("controlled_envelope_mm", [0, 0])[1] <= model["receiver"]["mechanical"]["working_envelope_mm"][1]:
         errors.append("AWM682 rejection no longer proves a larger controlled body")
     if alternatives.get("TUE-RFVRX-58-D", {}).get("maximum_current_ma", 0) <= model["power_fit"]["reserved_active_5v_ma"]:

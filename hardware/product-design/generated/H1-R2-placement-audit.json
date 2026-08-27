@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.9",
+  "marker": "H1-R2.10",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "new_fixed_body_count": 17,

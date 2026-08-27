@@ -56,13 +56,23 @@ class H1R2FPVTest(unittest.TestCase):
         self.assertIn("reseller", mechanical["nominal_board_xy_source_class"])
         self.assertFalse(mechanical["accepted"])
 
+    def test_awm666v_is_a_controlled_but_degraded_fallback(self):
+        alternatives = {row["mpn"]: row for row in self.model["receiver_alternatives_reviewed"]}
+        fallback = alternatives["AWM666V RX"]
+        self.assertEqual([26.16, 16.38, 3.7], fallback["controlled_envelope_mm"])
+        self.assertTrue(fallback["controlled_land_pattern"])
+        self.assertTrue(fallback["fits_k331_working_envelope"])
+        self.assertEqual(7, fallback["channel_count"])
+        self.assertEqual(0, fallback["jlcpcb_surface"]["placeable_hits"])
+        self.assertIn("CH7", fallback["datasheet_inconsistency"])
+
     def test_receiver_factory_and_physical_limits_fail_closed(self):
         receiver = self.model["receiver"]
         self.assertEqual({0}, {row["placeable_hits"] for row in receiver["jlcpcb_surface"]["searches"]})
         self.assertFalse(receiver["jlcpcb_surface"]["accepted_for_factory_placement"])
         self.assertFalse(receiver["mechanical"]["accepted"])
         self.assertFalse(self.model["result"]["production_acceptance"])
-        self.assertEqual(5, self.audit["receiver_alternatives_reviewed"])
+        self.assertEqual(6, self.audit["receiver_alternatives_reviewed"])
         alternatives = {row["mpn"]: row for row in self.model["receiver_alternatives_reviewed"]}
         self.assertGreater(alternatives["AWM682 RX"]["controlled_envelope_mm"][1], 23.0)
         self.assertGreater(alternatives["TUE-RFVRX-58-D"]["maximum_current_ma"], 350)
