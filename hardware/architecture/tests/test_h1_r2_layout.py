@@ -20,8 +20,10 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
+        self.assertEqual("H1-R2.12", self.model["marker"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
+        self.assertEqual(27, len(self.audit["opposing_overlaps"]))
         self.assertGreaterEqual(
             self.audit["minimum_opposing_clearance_mm"],
             self.audit["required_opposing_clearance_mm"],
@@ -47,7 +49,7 @@ class H1R2LayoutTest(unittest.TestCase):
     def test_h1_blockers_are_separate_from_dependent_and_later_work(self):
         self.assertEqual(2, len(self.model["current_h1_blockers"]))
         self.assertEqual(1, len(self.model["dependent_h1_work"]))
-        self.assertIn("regenerate", self.model["dependent_h1_work"][0])
+        self.assertIn("promote the generated complete R2", self.model["dependent_h1_work"][0])
         self.assertEqual({"H5/H8"}, {row["stage"] for row in self.model["downstream_verification"]})
         self.assertEqual(self.model["current_h1_blockers"], self.audit["current_h1_blockers"])
         self.assertEqual(self.model["dependent_h1_work"], self.audit["dependent_h1_work"])
@@ -62,6 +64,24 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertTrue(all("accepted" in row for row in self.model["factory_evidence"]))
         self.assertTrue(by_mpn["TPS7A2018PDBVR"]["accepted"])
         self.assertIn("2,225 pieces", by_mpn["TPS7A2018PDBVR"]["availability"])
+
+    def test_hub_has_a_fourth_independent_recovery_set(self):
+        placed = {row["id"]: row for row in self.model["placements"]}
+        self.assertEqual("USB4105-GF-A", placed["hub_service_usb_connector"]["mpn"])
+        self.assertEqual("FTSH-105-01-L-DV-K-P-TR", placed["hub_dbg_header"]["mpn"])
+        self.assertEqual("SKRTLAE010", placed["hub_reset_button"]["mpn"])
+        self.assertEqual("SKRTLAE010", placed["hub_boot_button"]["mpn"])
+        self.assertEqual("left", placed["hub_service_usb_connector"]["external_interface"]["side"])
+        self.assertEqual("right", placed["hub_reset_button"]["external_interface"]["side"])
+        self.assertEqual("right", placed["hub_boot_button"]["external_interface"]["side"])
+
+        evidence = {row["mpn"]: row for row in self.model["factory_evidence"]}
+        self.assertEqual("C3020560", evidence["USB4105-GF-A"]["jlcpcb_part"])
+        self.assertEqual("C110293", evidence["SKRTLAE010"]["jlcpcb_part"])
+        self.assertEqual("C2932107", evidence["FTSH-105-01-L-DV-K-P-TR"]["jlcpcb_part"])
+        for mpn in ("USB4105-GF-A", "SKRTLAE010", "FTSH-105-01-L-DV-K-P-TR"):
+            self.assertTrue(evidence[mpn]["accepted"])
+            self.assertEqual("2026-08-27", evidence[mpn]["checked"])
 
     def test_mmcx_uses_manufacturer_body_and_mounting_geometry(self):
         mmcx = next(x for x in self.model["placements"] if x["id"] == "fpv_mmcx")
@@ -97,6 +117,20 @@ class H1R2LayoutTest(unittest.TestCase):
             MODULE.AUDIT_PATH: json.dumps(self.audit, indent=2, ensure_ascii=False) + "\n",
             MODULE.SVG_PATH: MODULE.render_svg(self.model, self.base, self.audit),
             MODULE.MMCX_SVG_PATH: MODULE.render_mmcx_service_svg(self.model, self.audit),
+            MODULE.EXTERNAL_SVG_PATH: MODULE.render_external_svg(self.model),
+            MODULE.SERVICE_SVG_PATH: MODULE.render_service_svg(self.model),
+            MODULE.COMPLETE_INNER_SVG_PATH: MODULE.render_complete_inner_svg(
+                self.model, self.base, json.loads(MODULE.SOURCE_TABLE_PATH.read_text()), self.audit
+            ),
+            MODULE.INNER_SECTIONS_SVG_PATH: MODULE.render_inner_sections_svg(
+                self.model, self.base, json.loads(MODULE.SOURCE_TABLE_PATH.read_text()), self.audit
+            ),
+            MODULE.ANTENNA_EDGE_SVG_PATH: MODULE.render_retitled_legacy_view(
+                self.model, "render_top_edge"
+            ),
+            MODULE.SANDWICH_SVG_PATH: MODULE.render_retitled_legacy_view(
+                self.model, "render_sandwich"
+            ),
             MODULE.EN_DOC_PATH: MODULE.render_doc(self.model, self.audit, False),
             MODULE.RU_DOC_PATH: MODULE.render_doc(self.model, self.audit, True),
         }
@@ -105,6 +139,10 @@ class H1R2LayoutTest(unittest.TestCase):
             self.assertEqual(content, path.read_text(), path)
         self.assertNotIn("[`None`]", expected[MODULE.EN_DOC_PATH])
         self.assertNotIn("[`None`]", expected[MODULE.RU_DOC_PATH])
+        self.assertIn("Four independent USB paths", expected[MODULE.SERVICE_SVG_PATH])
+        self.assertIn("HUB SERVICE USB", expected[MODULE.SERVICE_SVG_PATH])
+        self.assertIn('data-view="both-inner-faces-mirrored"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
+        self.assertIn('data-inner-silkscreen="none"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
 
 
 if __name__ == "__main__":

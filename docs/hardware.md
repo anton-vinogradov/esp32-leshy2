@@ -3,10 +3,11 @@
 [Home](../README.md) · [Русский](hardware.ru.md) · [Safety](safety.md)
 
 > Current baseline: [H0-R2](h0-r2-functional-architecture.md). The R1 pin,
-> interconnect and ECAD pages linked below are retained inputs and are being
-> regenerated at H1-R2.11. The [current physical projection](h1-r2-physical-layout.md),
-> [FPV path](h1-r2-fpv.md) and [rail/thermal architecture](h1-r2-power-thermal.md) are collision-, functional- and
-> capacity-tested but incomplete; neither artifact authorizes R2 PCB routing.
+> interconnect and ECAD pages linked below are retained inputs for the future R2
+> schematic. H1-R2.12 generates the complete current physical views, including
+> four independent USB/RESET/BOOT/DBG10 recovery sets. The [physical projection](h1-r2-physical-layout.md),
+> [FPV path](h1-r2-fpv.md) and [rail/thermal architecture](h1-r2-power-thermal.md)
+> pass their present checks but remain in progress; none authorizes R2 PCB routing.
 
 ## Principle component interconnections
 
@@ -299,19 +300,21 @@ The machine-readable source for this table is
 It authorizes H2 schematic work only; PCB placement/routing and purchasing
 remain unauthorized.
 
-![Dimensioned external layout](images/current-clamshell.svg?layout=19)
+![Current H1-R2 dimensioned external layout](images/h1-r2-external-layout.svg)
 
-![External service access: three USB ports and six recovery buttons](images/service-access.svg?layout=3)
+![External service access: four USB ports and eight recovery buttons](images/h1-r2-service-access.svg)
 
 ![Dimensioned series navigation cluster](images/navigation-cluster.svg?layout=1)
 
 ![Dimensioned replaceable display adapter](images/display-adapter.svg?layout=1)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=18)
+![Complete mirrored H1-R2 internal-board layout](images/h1-r2-inner-complete.svg)
 
-![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=5)
+![Dimensioned H1-R2 view from the antenna edge](images/h1-r2-antenna-edge.svg)
 
-![Dimensioned sections through the LoRa Cap and battery zones](images/sandwich-section.svg?layout=11)
+![Dimensioned sections through the R2 Airband/power and FPV/service zones](images/h1-r2-inner-sections.svg)
+
+![Dimensioned sections through the LoRa Cap and battery zones](images/h1-r2-sandwich-sections.svg)
 
 ![Dimensioned custom LoRa Cap component zones](images/lora-cap-layout.svg?layout=1)
 

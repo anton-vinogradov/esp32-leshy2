@@ -20,14 +20,21 @@
 <a id="h1"></a>
 ## ⭐ H1 · Физический дизайн устройства
 
-**Статус:** ▶️ сейчас `H1-R2.11`; результат R1 сохранён как evidence, а не как текущая приёмка.
+**Статус:** ▶️ сейчас `H1-R2.12`; результат R1 сохранён как evidence, а не как текущая приёмка.
 
-- [Текущее физическое размещение H1-R2.11](h1-r2-physical-layout.ru.md) — новые
-  Hub, Airband и корпуса/резервы аналогового FPV в общей системе координат,
-  с генерируемыми проверками коллизий, встречного зазора и точного service MMCX.
+- [Текущее физическое размещение H1-R2.12](h1-r2-physical-layout.ru.md) — новые
+  Hub, его четвёртый независимый набор USB/recovery, Airband и корпуса/резервы
+  аналогового FPV в общей системе координат, с генерируемыми проверками
+  коллизий, встречного зазора и точного service MMCX.
+- [Текущие внешние стороны](images/h1-r2-external-layout.svg),
+  [сервисный доступ четырёх доменов](images/h1-r2-service-access.svg) и
+  [полные зеркальные внутренние стороны](images/h1-r2-inner-complete.svg).
+- [Текущий антенный торец](images/h1-r2-antenna-edge.svg),
+  [внутренние разрезы R2](images/h1-r2-inner-sections.svg) и
+  [разрезы внешних зон](images/h1-r2-sandwich-sections.svg).
 - [Точный вид установки/service MMCX](images/h1-r2-mmcx-service.svg): исправленная
   привязка к кромке, keepout выводов wave soldering и коридоры стенки/штекера.
-- [Машинный аудит размещения H1-R2.11](../hardware/product-design/generated/H1-R2-placement-audit.json).
+- [Машинный аудит размещения H1-R2.12](../hardware/product-design/generated/H1-R2-placement-audit.json).
 - [Функциональный тракт аналогового FPV](h1-r2-fpv.ru.md) и его
   [машинный аудит](../hardware/product-design/generated/H1-R2-fpv-audit.json):
   распиновка/питание K331, точный MMCX-тракт, точная антенна TBS и живое
@@ -37,17 +44,12 @@
 - [Rail/thermal-архитектура шести доменов](h1-r2-power-thermal.ru.md) и её
   [машинный аудит](../hardware/product-design/generated/H1-R2-power-thermal-audit.json).
 
-Сохранённые входы R1, которые пересобираются:
+Неизменившиеся сохранённые узлы R1:
 
-- [Внешние стороны](images/current-clamshell.svg),
-  [сервисный доступ](images/service-access.svg) и
-  [зеркальные внутренние стороны](images/internal-board-layout.svg).
-- [Настоящий вид от антенного торца](images/top-edge-view.svg) и
-  [разрезы бутерброда](images/sandwich-section.svg).
 - [Серийная навигация](images/navigation-cluster.svg) и
   [сменный display-adapter](images/display-adapter.svg).
 - [Реестр физических первоисточников](physical-source-register.ru.md).
-- [Machine acceptance package](../hardware/product-design/generated/H1-cross-view-acceptance.json).
+- [Machine acceptance package R1](../hardware/product-design/generated/H1-cross-view-acceptance.json), сохранённый только как историческое evidence.
 
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD-схема

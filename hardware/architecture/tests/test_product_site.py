@@ -165,13 +165,13 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: H1-R2.11", "H0-R2 reviewed",
+                "Current hardware boundary: H1-R2.12", "H0-R2 reviewed",
                 "firmware F0-R2.0",
                 "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: H1-R2.11", "H0-R2 проведено ревью",
+                "Текущая аппаратная граница: H1-R2.12", "H0-R2 проведено ревью",
                 "firmware F0-R2.0", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
@@ -187,8 +187,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Hardware is at H1-R2.11", "printing/fabrication"),
-            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H1-R2.11", "печать/на фабрику"),
+            "README.md": ("Roadmap and current position", "Hardware is at H1-R2.12", "printing/fabrication"),
+            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H1-R2.12", "печать/на фабрику"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -290,7 +290,7 @@ class ProductSiteTests(unittest.TestCase):
         for name, tokens in expectations.items():
             page = self.read(name)
             self.assertEqual(1, page.count("⭐"), name)
-            self.assertIn("docs/images/current-clamshell.svg", page, name)
+            self.assertIn("docs/images/h1-r2-external-layout.svg", page, name)
             for token in tokens:
                 self.assertIn(token, page, f"{name}: {token}")
 
@@ -831,7 +831,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H1", state["current_stage"])
-        self.assertEqual("H1-R2.11", state["current_substep"])
+        self.assertEqual("H1-R2.12", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -2913,22 +2913,26 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertIsNotNone(bounds)
         self.assertGreaterEqual(float(bounds.group(2)) - float(bounds.group(1)), 24.0)
-        for path in (
-            "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
+        for path, prefix in (
+            ("README.md", "docs/images/"),
+            ("README.ru.md", "docs/images/"),
+            ("docs/hardware.md", "images/"),
+            ("docs/hardware.ru.md", "images/"),
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=19", page)
-            self.assertIn("navigation-cluster.svg?layout=1", page)
-            self.assertIn("internal-board-layout.svg?layout=18", page)
-            self.assertIn("sandwich-section.svg?layout=11", page)
-            self.assertIn("top-edge-view.svg?layout=5", page)
+            self.assertIn(prefix + "h1-r2-external-layout.svg", page)
+            self.assertIn(prefix + "navigation-cluster.svg?layout=1", page)
+            self.assertIn(prefix + "h1-r2-inner-complete.svg", page)
+            self.assertIn(prefix + "h1-r2-inner-sections.svg", page)
+            self.assertIn(prefix + "h1-r2-sandwich-sections.svg", page)
+            self.assertIn(prefix + "h1-r2-antenna-edge.svg", page)
             self.assertLess(
-                page.index("current-clamshell.svg"),
-                page.index("internal-board-layout.svg"),
+                page.index("h1-r2-external-layout.svg"),
+                page.index("h1-r2-inner-complete.svg"),
             )
             self.assertLess(
-                page.index("internal-board-layout.svg"),
-                page.index("top-edge-view.svg"),
+                page.index("h1-r2-inner-complete.svg"),
+                page.index("h1-r2-antenna-edge.svg"),
             )
         import json
 
@@ -3148,12 +3152,14 @@ class ProductSiteTests(unittest.TestCase):
         ):
             landing = self.read(name)
             for image in (
-                "docs/images/current-clamshell.svg",
+                "docs/images/h1-r2-external-layout.svg",
                 "docs/images/navigation-cluster.svg",
                 "docs/images/display-adapter.svg",
-                "docs/images/internal-board-layout.svg",
-                "docs/images/sandwich-section.svg",
-                "docs/images/top-edge-view.svg",
+                "docs/images/h1-r2-service-access.svg",
+                "docs/images/h1-r2-inner-complete.svg",
+                "docs/images/h1-r2-inner-sections.svg",
+                "docs/images/h1-r2-sandwich-sections.svg",
+                "docs/images/h1-r2-antenna-edge.svg",
             ):
                 self.assertIn(image, landing, name)
             self.assertEqual(0, landing.count("```mermaid"), name)

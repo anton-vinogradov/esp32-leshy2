@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.11",
+  "marker": "H1-R2.12",
   "checked_on": "2026-08-27",
   "purpose": "Place the new R2 Hub, Airband and analog-FPV bodies in the accepted 75 x 150 mm two-board coordinate system before any R2 KiCad work.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -86,6 +86,51 @@
       "url": "https://jlcpcb.com/partdetail/DreamLNK-DL_MMCX_KWE90/C2894793",
       "manufacturer_url": "https://www.dreamlnk.com/en/DL-MMCX-KWE-90.html",
       "drawing_url": "https://30665759.s21i.faiusr.com/2/ABUIABACGAAg38ennwYo-uKFpAUwlgY4lQc.jpg",
+      "checked": "2026-08-27"
+    },
+    {
+      "role": "Hub RP independent data-only service USB-C",
+      "role_ru": "независимый data-only сервисный USB-C Hub RP",
+      "mpn": "USB4105-GF-A",
+      "jlcpcb_part": "C3020560",
+      "manufacturer": "Global Connector Technology",
+      "assembly": "Extended SMT; Economic and Standard PCBA",
+      "accepted": true,
+      "selection_status": "reused exact R1 service connector; accepted for the fourth independent R2 recovery path",
+      "selection_status_ru": "повторно использован точный сервисный разъём R1; принят для четвёртого независимого recovery-тракта R2",
+      "availability": "3,712 pieces, MOQ 1, USD 1.0605 at quantity 1",
+      "availability_ru": "3 712 шт., MOQ 1, $1.0605 при количестве 1",
+      "url": "https://jlcpcb.com/partdetail/GlobalConnectorTechnology-USB4105_GF_A/C3020560",
+      "checked": "2026-08-27"
+    },
+    {
+      "role": "Hub RP recessed RESET/USB_BOOT side switch",
+      "role_ru": "утопленная боковая кнопка RESET/USB_BOOT Hub RP",
+      "mpn": "SKRTLAE010",
+      "jlcpcb_part": "C110293",
+      "manufacturer": "Alps Alpine",
+      "assembly": "Extended SMT; Economic and Standard PCBA",
+      "accepted": true,
+      "selection_status": "reused exact R1 external recovery switch; two additional R2 placements",
+      "selection_status_ru": "повторно использована точная внешняя recovery-кнопка R1; добавлены две позиции R2",
+      "availability": "49,305 pieces, MOQ 1, USD 0.1443 at quantity 1",
+      "availability_ru": "49 305 шт., MOQ 1, $0.1443 при количестве 1",
+      "url": "https://jlcpcb.com/partdetail/ALPSALPINE-SKRTLAE010/C110293",
+      "checked": "2026-08-27"
+    },
+    {
+      "role": "Hub RP keyed internal DBG10 recovery header",
+      "role_ru": "ключевой внутренний recovery-разъём DBG10 Hub RP",
+      "mpn": "FTSH-105-01-L-DV-K-P-TR",
+      "jlcpcb_part": "C2932107",
+      "manufacturer": "Samtec",
+      "assembly": "Extended SMT; Economic and Standard PCBA",
+      "accepted": true,
+      "selection_status": "reused exact R1 DBG10 header; accepted for opened-sandwich Hub recovery",
+      "selection_status_ru": "повторно использован точный DBG10 R1; принят для восстановления Hub при раскрытом бутерброде",
+      "availability": "11,433 pieces, MOQ 1, USD 1.2797 at quantity 1",
+      "availability_ru": "11 433 шт., MOQ 1, $1.2797 при количестве 1",
+      "url": "https://jlcpcb.com/partdetail/Samtec-FTSH_105_01_L_DV_K_PTR/C2932107",
       "checked": "2026-08-27"
     },
     {
@@ -222,6 +267,69 @@
       "role": "Hub RP2354B; C5/RF fan-out, storage, audio and broadcast control",
       "world_xy_mm": [37.5, 70.0],
       "size_mm": [10.0, 10.0, 0.9]
+    },
+    {
+      "id": "hub_service_usb_connector",
+      "drawing_ref": "19",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "USB4105-GF-A",
+      "role": "Hub RP independent data-only USB-C; left-side enclosure exit",
+      "world_xy_mm": [0.0, 133.0],
+      "size_mm": [7.35, 8.94, 3.31],
+      "rotation_deg": 90,
+      "external_interface": {
+        "face": "front",
+        "side": "left",
+        "label": "HUB SERVICE USB",
+        "direction": "outward left"
+      }
+    },
+    {
+      "id": "hub_dbg_header",
+      "drawing_ref": "20",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "FTSH-105-01-L-DV-K-P-TR",
+      "role": "Hub RP keyed SWD/RUN/USB_BOOT fallback; accessible only after opening the sandwich",
+      "world_xy_mm": [25.7, 133.0],
+      "size_mm": [9.65, 5.84, 5.56]
+    },
+    {
+      "id": "hub_reset_button",
+      "drawing_ref": "21",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "SKRTLAE010",
+      "role": "recessed right-side Hub RP RUN/RESET service control",
+      "world_xy_mm": [71.6, 130.0],
+      "size_mm": [3.4, 4.5, 3.3],
+      "rotation_deg": 270,
+      "external_interface": {
+        "face": "front",
+        "side": "right",
+        "label": "HUB RST",
+        "direction": "outward right",
+        "recess_mm": 1.2
+      }
+    },
+    {
+      "id": "hub_boot_button",
+      "drawing_ref": "22",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "SKRTLAE010",
+      "role": "recessed right-side Hub RP USB_BOOT service control",
+      "world_xy_mm": [71.6, 137.0],
+      "size_mm": [3.4, 4.5, 3.3],
+      "rotation_deg": 270,
+      "external_interface": {
+        "face": "front",
+        "side": "right",
+        "label": "HUB BOOT",
+        "direction": "outward right",
+        "recess_mm": 1.2
+      }
     },
     {
       "id": "airband_lna",
@@ -487,10 +595,10 @@
     "получить ответ JLCPCB о private/global sourcing K331 либо явно оставить ручную установку после PCBA"
   ],
   "dependent_h1_work": [
-    "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
+    "promote the generated complete R2 exterior, mirrored inner faces and four real section planes from in-progress to reviewed only after the K331 body and installation route stop moving"
   ],
   "dependent_h1_work_ru": [
-    "перегенерировать все внешние и внутренние виды и оба разреза после прекращения перемещений корпусов R2"
+    "перевести сгенерированные полные внешние виды, зеркальные внутренние стороны и четыре реальные плоскости разреза из in-progress в reviewed только после фиксации корпуса и маршрута установки K331"
   ],
   "downstream_verification": [
     {

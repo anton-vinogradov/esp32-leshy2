@@ -12,7 +12,7 @@
 
 </div>
 
-> **Now: H1-R2.11 · K331 remains primary after the full-coverage fallback search; physical and factory gates remain.**
+> **Now: H1-R2.12 · K331 remains primary after the full-coverage fallback search; physical and factory gates remain.**
 > [H0-R2](docs/h0-r2-functional-architecture.md) adds a second `SC1512-A4`
 > Hub, direct S3 analog-FPV capture and mandatory receive-only Airband AM.
 > GPIO ownership and the factory-first Airband active BOM are closed. The Hub,
@@ -31,13 +31,15 @@
 > its real 3.6-mm-on-board / 3.0-mm-outboard geometry; wave-solder tails and
 > the sidewall/plug service corridors pass the coordinate audit. The Airband filter now has a generated nominal/stress
 > feasibility audit and a larger tuning cell. The new 3V3_MAIN cell is now
-> placed and accepts 3.75 A continuous / 4.25 A step; remaining placement, schematics and firmware
-> contracts are still being regenerated. R1 H1–H5 remains evidence only.
+> placed and accepts 3.75 A continuous / 4.25 A step. Complete current physical
+> views are generated, including the corrected fourth independent recovery set;
+> their K331 boundary, R2 schematics and firmware contracts remain in progress.
+> R1 H1–H5 remains evidence only.
 > Purchasing, PCB routing and fabrication remain blocked.
 
 <div align="center">
 
-![Leshy2 external faces](docs/images/current-clamshell.svg?layout=19)
+![Leshy2 H1-R2 current external faces](docs/images/h1-r2-external-layout.svg)
 
 **Direct UI and display · six compute domains · isolated radio groups · one autonomous instrument**
 
@@ -81,16 +83,16 @@ See the [hardware architecture](docs/hardware.md) and
 
 ## Target device mockup
 
-The compact diagram below is the current R2 architecture. The following
-H1-R2.11 drawing is the current collision-tested incremental placement. The
-complete exterior and sandwich views beneath it remain the accepted R1
-geometric seed until all R2 bodies and the new rail stop moving.
+The compact diagram below is the current R2 architecture. H1-R2.12 now
+generates the complete current exterior, both correctly mirrored inner faces,
+the four-domain service surface, the antenna edge and four real section planes.
+They remain in progress until the K331 body and installation route close.
 
 ![Leshy2 H0-R2 functional architecture](docs/images/h0-r2-functional-architecture.svg)
 
-![Leshy2 H1-R2.11 inner placement](docs/images/h1-r2-inner-placement.svg)
+![Leshy2 H1-R2.12 complete inner placement](docs/images/h1-r2-inner-complete.svg)
 
-![Leshy2 H1-R2.11 MMCX placement and service proof](docs/images/h1-r2-mmcx-service.svg)
+![Leshy2 H1-R2.12 MMCX placement and service proof](docs/images/h1-r2-mmcx-service.svg)
 
 ![Leshy2 H1-R2.4 rail and thermal architecture](docs/images/h1-r2-power-thermal.svg)
 
@@ -99,7 +101,7 @@ geometric seed until all R2 bodies and the new rail stop moving.
 [Analog-FPV path](docs/h1-r2-fpv.md) ·
 [Airband filter feasibility](docs/h1-airband-filter.md).
 
-![Leshy2 H1-R2.11 analog-FPV path](docs/images/h1-r2-fpv-path.svg)
+![Leshy2 current analog-FPV path](docs/images/h1-r2-fpv-path.svg)
 
 Every view below is generated from the real envelopes of selected MPNs and one
 coordinate model. Text outside component bodies on outer PCB faces is intended
@@ -111,7 +113,7 @@ The main view opens this page; the detailed service, inner and edge views follow
 
 ### Programming and recovery
 
-![Leshy2 external service access](docs/images/service-access.svg?layout=3)
+![Leshy2 H1-R2 external service access](docs/images/h1-r2-service-access.svg)
 
 ### Series navigation and replaceable display
 
@@ -121,15 +123,17 @@ The main view opens this page; the detailed service, inner and edge views follow
 
 ### Inner sandwich faces
 
-![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=18)
+![Leshy2 H1-R2 inner board faces](docs/images/h1-r2-inner-complete.svg)
 
 ### Antenna-edge view
 
-![Leshy2 top view from the antenna edge](docs/images/top-edge-view.svg?layout=5)
+![Leshy2 H1-R2 antenna-edge view](docs/images/h1-r2-antenna-edge.svg)
 
 ### Cross-sections
 
-![Leshy2 sandwich sections](docs/images/sandwich-section.svg?layout=11)
+![Leshy2 H1-R2 inner sandwich sections](docs/images/h1-r2-inner-sections.svg)
+
+![Leshy2 H1-R2 exterior-zone sandwich sections](docs/images/h1-r2-sandwich-sections.svg)
 
 ---
 
@@ -143,7 +147,7 @@ drawings, schematics, contracts and checks.
 | Stage | Status | Result |
 |---|---|---|
 | H0 · Product requirements and functional architecture | ✅ R2 Reviewed | [H0-R2 report](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶️ Current: H1-R2.11 K331 primary after the full-coverage fallback search** | [Current result](docs/h1-r2-physical-layout.md) |
+| **H1 · Physical product design** | **▶️ Current: H1-R2.12 K331 primary after the full-coverage fallback search** | [Current result](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ⏳ R1 evidence retained; waiting for R2 H1 | [H2 results](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ rerun after R2 H2 | [R1 report](docs/h3-acceptance.md) |
 | H4 · Joined pre-layout gate | ⏳ rerun after R2 H3 and firmware R2 contract | [R1 report](docs/h4-prelayout-gate-report.md) |
@@ -157,15 +161,21 @@ Every completed top-level `H*` phase receives a separate readable result report
 linked from this table. Internal substeps update the exact marker but do not
 create separate global reports.
 
-**Hardware is at H1-R2.11.** H0-R2 fixes six compute domains, 33/33 used S3
+**Hardware is at H1-R2.12.** H0-R2 fixes six compute domains, 33/33 used S3
 GPIO, 45/48 used Hub GPIO and the receive-only Airband frequency plan. The
 incremental Airband active BOM is live-checked at JLCPCB and costs `$20.2038`
 before passives/assembly. The initial R2 placement adds four exact Airband
 devices, Hub RP2354B, TVP5150 and a manufacturer-dimensioned MMCX without
 same-face collisions. An AKK-branded dimensioned reseller image corrects the
 K331 nominal board to 28.7×23.1 mm; the collision model deliberately reserves
-30×24×4 mm. With that larger reserve, 26 opposing projections retain at least
-1.44 mm against 0.70 mm required. The
+30×24×4 mm. With that larger reserve, 27 opposing projections retain at least
+1.44 mm against 0.70 mm required. The complete current exterior, both mirrored
+inner faces, service map, antenna-edge view and four section planes are generated
+from the same placement source. That regeneration exposed and corrected an H0↔H1
+mismatch: the Hub RP now has its own data-only USB-C, two recessed RESET/BOOT
+controls and keyed internal DBG10. The device therefore has four independent USB
+paths, eight external recovery controls and four internal fallbacks; all three
+reused exact MPNs were live-checked at JLCPCB. The
 exact `TPS7A2018PDBVR` part for the 1.8-V rail is accepted on the current
 factory supply surface. A compact generated Airband LC candidate passes the
 nominal reference mask and 95/105/155/220-MHz stress points, but its worst
@@ -198,16 +208,18 @@ minimum 4.5-mm wall / Ø12×20-mm plug-service keepouts are machine checked.
 JLCPCB identifies it as a wave-soldered Economic/Standard PCBA part; received
 mating, final wall tolerance, retention and strain remain later H5 evidence.
 H3 still proves effective capacitance, load-step,
-switching loss and enclosure thermal behaviour. H1 must regenerate every complete physical view. No order is
-authorized.
+switching loss and enclosure thermal behaviour. The complete physical views stay
+in progress until the K331 controlled body and installation route close. No order
+is authorized.
 
-<!-- current-substep: H1-R2.11 -->
+<!-- current-substep: H1-R2.12 -->
 
-**Exact marker: `H1-R2.11`** — the [current placement](docs/h1-r2-physical-layout.md),
+**Exact marker: `H1-R2.12`** — the [current placement](docs/h1-r2-physical-layout.md),
 [power result](docs/h1-r2-power-thermal.md) and [FPV result](docs/h1-r2-fpv.md)
-pass their machine audits. Next,
-complete the remaining R2 body selection before regenerating all
-views. This marker, its machine state and both language pages move together.
+pass their machine audits. Next, obtain controlled K331 body/land data and close
+its JLCPCB sourcing or explicit post-PCBA installation route; the generated views
+can then be promoted to reviewed. This marker, its machine state and both language
+pages move together.
 
 <details>
 <summary><strong>R1 evidence retained for reuse — not the current design</strong></summary>

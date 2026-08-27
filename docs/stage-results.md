@@ -20,14 +20,21 @@ are satisfied.
 <a id="h1"></a>
 ## ⭐ H1 · Physical product design
 
-**Status:** ▶️ current at `H1-R2.11`; R1 result is retained evidence, not current acceptance.
+**Status:** ▶️ current at `H1-R2.12`; R1 result is retained evidence, not current acceptance.
 
-- [Current H1-R2.11 physical placement](h1-r2-physical-layout.md) — new Hub,
-  Airband and analog-FPV bodies/reserves in the shared coordinate model, with
-  generated collision, opposing-clearance and exact MMCX service evidence.
+- [Current H1-R2.12 physical placement](h1-r2-physical-layout.md) — new Hub,
+  its fourth independent USB/recovery set, Airband and analog-FPV bodies/reserves
+  in the shared coordinate model, with generated collision, opposing-clearance
+  and exact MMCX service evidence.
+- [Current outer faces](images/h1-r2-external-layout.svg),
+  [four-domain service access](images/h1-r2-service-access.svg) and
+  [complete mirrored inner faces](images/h1-r2-inner-complete.svg).
+- [Current antenna edge](images/h1-r2-antenna-edge.svg),
+  [R2 inner sections](images/h1-r2-inner-sections.svg) and
+  [exterior-zone sections](images/h1-r2-sandwich-sections.svg).
 - [Exact MMCX placement/service view](images/h1-r2-mmcx-service.svg): corrected
   edge registration, wave-solder tail keepout and sidewall/plug corridors.
-- [Machine H1-R2.11 placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json).
+- [Machine H1-R2.12 placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json).
 - [Analog-FPV functional path](h1-r2-fpv.md) and its
   [machine audit](../hardware/product-design/generated/H1-R2-fpv-audit.json):
   K331 pin/power fit, exact MMCX path, exact TBS antenna and live rejection of
@@ -37,17 +44,12 @@ are satisfied.
 - [Six-domain rail and thermal architecture](h1-r2-power-thermal.md) and its
   [machine audit](../hardware/product-design/generated/H1-R2-power-thermal-audit.json).
 
-Retained R1 inputs being regenerated:
+Unaffected retained R1 subassemblies:
 
-- [Outer faces](images/current-clamshell.svg),
-  [service access](images/service-access.svg) and
-  [mirrored inner faces](images/internal-board-layout.svg).
-- [True antenna-edge view](images/top-edge-view.svg) and
-  [sandwich sections](images/sandwich-section.svg).
 - [Series navigation](images/navigation-cluster.svg) and
   [replaceable display adapter](images/display-adapter.svg).
 - [Physical source register](physical-source-register.md).
-- [Machine acceptance package](../hardware/product-design/generated/H1-cross-view-acceptance.json).
+- [R1 machine acceptance package](../hardware/product-design/generated/H1-cross-view-acceptance.json), retained as historical evidence only.
 
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD schematic

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="820" viewBox="0 0 1500 820">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="30.0" y="38.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.12 external service access</text>
+<text x="30.0" y="66.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Four independent USB paths, eight recessed recovery controls and four internal keyed DBG10 fallbacks.</text>
+<text x="235.6" y="105.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">Front / UI face</text>
+<rect x="110.0" y="125.0" width="251.2" height="502.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="645.6" y="105.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">Rear / battery face</text>
+<rect x="520.0" y="125.0" width="251.2" height="502.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<rect x="107.7" y="511.8" width="4.0" height="12.1" rx="2" fill="#ede9fe" stroke="#7c3aed" data-recessed="true" data-mpn="SKRTLAE010"/>
+<path d="M110.0 517.8 L79.8 517.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="120.7" y="515.4" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="start" fill="#6d28d9">S3 RST</text>
+<rect x="107.7" y="535.2" width="4.0" height="12.1" rx="2" fill="#ede9fe" stroke="#7c3aed" data-recessed="true" data-mpn="SKRTLAE010"/>
+<path d="M110.0 541.2 L79.8 541.2" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="120.7" y="538.9" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="start" fill="#6d28d9">S3 BOOT</text>
+<rect x="359.6" y="511.8" width="4.0" height="12.1" rx="2" fill="#ede9fe" stroke="#7c3aed" data-recessed="true" data-mpn="SKRTLAE010"/>
+<path d="M361.2 517.8 L391.4 517.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="350.5" y="515.4" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="end" fill="#6d28d9">C5 RST</text>
+<rect x="359.6" y="535.2" width="4.0" height="12.1" rx="2" fill="#ede9fe" stroke="#7c3aed" data-recessed="true" data-mpn="SKRTLAE010"/>
+<path d="M361.2 541.2 L391.4 541.2" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="350.5" y="538.9" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="end" fill="#6d28d9">C5 BOOT</text>
+<rect x="359.6" y="562.0" width="4.0" height="12.1" rx="2" fill="#ede9fe" stroke="#7c3aed" data-recessed="true" data-mpn="SKRTLAE010"/>
+<path d="M361.2 568.0 L391.4 568.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="350.5" y="565.7" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="end" fill="#6d28d9">HUB RST</text>
+<rect x="359.6" y="585.5" width="4.0" height="12.1" rx="2" fill="#ede9fe" stroke="#7c3aed" data-recessed="true" data-mpn="SKRTLAE010"/>
+<path d="M361.2 591.5 L391.4 591.5" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="350.5" y="589.1" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="end" fill="#6d28d9">HUB BOOT</text>
+<rect x="517.7" y="481.6" width="4.0" height="12.1" rx="2" fill="#ede9fe" stroke="#7c3aed" data-recessed="true" data-mpn="SKRTLAE010"/>
+<path d="M520.0 487.6 L489.9 487.6" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="530.7" y="485.3" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="start" fill="#6d28d9">RF RP RST</text>
+<rect x="517.7" y="505.1" width="4.0" height="12.1" rx="2" fill="#ede9fe" stroke="#7c3aed" data-recessed="true" data-mpn="SKRTLAE010"/>
+<path d="M520.0 511.1 L489.9 511.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="530.7" y="508.7" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="start" fill="#6d28d9">RF RP BOOT</text>
+<rect x="202.9" y="624.5" width="25" height="12" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-mpn="USB4105-GF-A"/>
+<path d="M215.4 627.5 L215.4 661.5" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="215.4" y="623.5" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5 SERVICE USB</text>
+<text x="215.4" y="677.5" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="middle" fill="#526076">data only</text>
+<rect x="562.7" y="624.5" width="25" height="12" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-mpn="USB4105-GF-A"/>
+<path d="M575.2 627.5 L575.2 661.5" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="575.2" y="623.5" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">USB / POWER</text>
+<text x="575.2" y="677.5" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="middle" fill="#526076">S3 native + power/charge</text>
+<rect x="633.0" y="624.5" width="25" height="12" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-mpn="USB4105-GF-A"/>
+<path d="M645.5 627.5 L645.5 661.5" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="645.5" y="623.5" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RF RP SERVICE USB</text>
+<text x="645.5" y="677.5" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="middle" fill="#526076">data only</text>
+<rect x="106.7" y="570.5" width="8.0" height="29.9" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-mpn="USB4105-GF-A"/>
+<path d="M110.0 585.5 L76.5 585.5" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="118.4" y="579.9" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="start" fill="#1d4ed8">HUB SERVICE USB</text>
+<text x="940.0" y="130.0" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="start" fill="#172033">Recovery map</text>
+<text x="940.0" y="164.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#6d28d9">S3</text>
+<text x="990.0" y="164.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">USB / POWER + RST + BOOT</text>
+<text x="940.0" y="196.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#6d28d9">C5</text>
+<text x="990.0" y="196.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">SERVICE USB + RST + BOOT</text>
+<text x="940.0" y="228.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#6d28d9">RF RP</text>
+<text x="990.0" y="228.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">SERVICE USB + RUN + USB_BOOT</text>
+<text x="940.0" y="260.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#6d28d9">HUB RP</text>
+<text x="1010.0" y="260.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">SERVICE USB + RUN + USB_BOOT</text>
+<text x="940.0" y="315.0" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="start" fill="#172033">Inside after opening</text>
+<text x="940.0" y="348.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">4× FTSH-105-01-L-DV-K-P-TR keyed DBG10</text>
+<text x="940.0" y="376.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">S3/C5: UART0 · RESET · BOOT</text>
+<text x="940.0" y="402.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">RF RP/Hub RP: SWD · RUN · USB_BOOT</text>
+<text x="940.0" y="452.0" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="start" fill="#172033">Port policy</text>
+<text x="940.0" y="484.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• USB / POWER is the sole powered USB port</text>
+<text x="940.0" y="510.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• C5, RF RP and Hub VBUS are sense-only</text>
+<text x="940.0" y="536.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• every RST/BOOT control is recessed and independent</text>
+<text x="940.0" y="562.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• Pack and Safety use isolated internal fixtures</text>
+<text x="940.0" y="620.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#166534">Exact live JLCPCB routes · 2026-08-27</text>
+<text x="940.0" y="650.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">USB4105-GF-A · C3020560 · 3,712 pcs</text>
+<text x="940.0" y="676.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">SKRTLAE010 · C110293 · 49,305 pcs</text>
+<text x="940.0" y="702.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">FTSH-105-01-L-DV-K-P-TR · C2932107 · 11,433 pcs</text>
+</svg>

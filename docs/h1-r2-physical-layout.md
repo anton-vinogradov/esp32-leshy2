@@ -1,17 +1,31 @@
-# H1-R2.11 · physical re-layout
+# H1-R2.12 · physical re-layout
 
 This is the current verified H1 result, not a decision diary and not authorization to start KiCad.
 
-The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell for its filter, the FPV video decoder and a replaceable bay for the leading serial AKK K331 candidate are placed in the accepted 75 × 150 mm coordinate system. The reserve is not promoted to a fixed body before AKK-controlled dimensions exist.
+The second Hub RP, its complete independent external recovery set, Airband active bodies, an expanded 24 × 11 mm filter-tuning cell, the FPV video decoder and a replaceable bay for the leading serial AKK K331 candidate are placed in the accepted 75 × 150 mm coordinate system. The reserve is not promoted to a fixed body before AKK-controlled dimensions exist.
 
-![H1-R2 inner placement](images/h1-r2-inner-placement.svg)
+![H1-R2 current external layout](images/h1-r2-external-layout.svg)
+
+![H1-R2 complete internal layout](images/h1-r2-inner-complete.svg)
+
+![H1-R2 external service access](images/h1-r2-service-access.svg)
+
+![H1-R2 inner sandwich sections](images/h1-r2-inner-sections.svg)
+
+![H1-R2 antenna-edge view](images/h1-r2-antenna-edge.svg)
+
+![H1-R2 exterior-zone sandwich sections](images/h1-r2-sandwich-sections.svg)
+
+![H1-R2 placement delta](images/h1-r2-inner-placement.svg)
 
 ![H1-R2 MMCX placement and service proof](images/h1-r2-mmcx-service.svg)
 
 ## Already verified
 
 - Same-face body collisions: `0`.
-- Intentional opposing XY projections: `26`; minimum Z clearance is `1.44 mm` against `0.70 mm` required.
+- Intentional opposing XY projections: `27`; minimum Z clearance is `1.44 mm` against `0.70 mm` required.
+- The discovered H0↔H1 mismatch is corrected: Hub RP now has the fourth independent data-only `HUB SERVICE USB`, two recessed side `HUB RST/BOOT` controls and the fourth internal DBG10. All three reused MPNs have live exact JLCPCB cards.
+- Both inner faces are now mirrored when each PCB is physically turned over; the earlier incremental view incorrectly mirrored only the RF PCB.
 - An AKK-branded dimensioned reseller image gives a 28.7 × 23.1 mm nominal K331 board; collision checks use a conservative 30 × 24 × 4 mm reserve without changing the PCB outline or battery/U214 exterior zones.
 - K331 functional pin fit is accepted, but the reserve is not a fixed body: maximum XYZ, land pattern and reflow/packaging must come from an AKK-controlled document.
 - The controlled 26.16 × 16.38 × 3.70 mm `AWM666V RX` fallback and its recommended land pattern fit the same bay; it does not replace K331 automatically because it has seven channels instead of 24 and no public JLCPCB route.
@@ -29,6 +43,9 @@ The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell fo
 | analog composite-video decoder | `TVP5150AM1PBS` | [`C3824301`](https://jlcpcb.com/partdetail/TexasInstruments-TVP5150AM1PBS/C3824301) | accepted for the working placement | 62 pieces, MOQ 1, USD 6.4081 at quantity 1 |
 | 24-channel 5.8-GHz analog-FPV receiver module | `K331` | — | official application, complete 14-pin functions and 24-channel table accepted; physical body and factory-placement route remain open | manufacturer store showed in stock at USD 29.99; K331 has no public JLCPCB card; RTC6715/RX5808 cards have zero stock and no purchasable drop-in module route |
 | side-facing 5.8-GHz user connector | `DL-MMCX-KWE-90` | [`C2894793`](https://jlcpcb.com/partdetail/DreamLNK-DL_MMCX_KWE90/C2894793) | accepted physical definition, corrected edge placement and machine-proved solder-tail/side-service keepouts | 25,383 pieces, MOQ 1, USD 0.9077 at quantity 1 |
+| Hub RP independent data-only service USB-C | `USB4105-GF-A` | [`C3020560`](https://jlcpcb.com/partdetail/GlobalConnectorTechnology-USB4105_GF_A/C3020560) | reused exact R1 service connector; accepted for the fourth independent R2 recovery path | 3,712 pieces, MOQ 1, USD 1.0605 at quantity 1 |
+| Hub RP recessed RESET/USB_BOOT side switch | `SKRTLAE010` | [`C110293`](https://jlcpcb.com/partdetail/ALPSALPINE-SKRTLAE010/C110293) | reused exact R1 external recovery switch; two additional R2 placements | 49,305 pieces, MOQ 1, USD 0.1443 at quantity 1 |
+| Hub RP keyed internal DBG10 recovery header | `FTSH-105-01-L-DV-K-P-TR` | [`C2932107`](https://jlcpcb.com/partdetail/Samtec-FTSH_105_01_L_DV_K_PTR/C2932107) | reused exact R1 DBG10 header; accepted for opened-sandwich Hub recovery | 11,433 pieces, MOQ 1, USD 1.2797 at quantity 1 |
 | FPV decoder 1.8-V rail | `TPS7A2018PDBVR` | [`C963430`](https://jlcpcb.com/partdetail/TexasInstruments-TPS7A2018PDBVR/C963430) | accepted for the working placement | 2,225 pieces, MOQ/multiple 5, USD 0.2413 at quantity 5; JLC identifies Economic and Standard SMT assembly |
 | 3V3_MAIN 6-A synchronous buck with protected diagnostic PG | `TPS566231PRQFR` | [`C3190178`](https://jlcpcb.com/partdetail/TexasInstruments-TPS566231PRQFR/C3190178) | accepted H1-R2 working selection; dynamic and thermal closure remains H3 | 112 pieces, MOQ 1, USD 1.0478 at quantity 1 |
 | 3V3_MAIN 2.2-uH high-current shielded inductor | `PSPMAA0605H-2R2M-ANP` | [`C2983088`](https://jlcpcb.com/partdetail/PRODTech-PSPMAA0605H2R2MANP/C2983088) | accepted H1-R2 working selection; 10-A RMS and 15-A saturation ratings | 627 pieces, MOQ 1, USD 0.1735 at quantity 1 |
@@ -45,10 +62,10 @@ The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell fo
 
 ## Dependent H1 work
 
-- regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving
+- promote the generated complete R2 exterior, mirrored inner faces and four real section planes from in-progress to reviewed only after the K331 body and installation route stop moving
 
 ## Later verification — does not block H1
 
 - **H5/H8:** qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route
 
-> Exact current marker: **H1-R2.11**. H1 remains in progress.
+> Exact current marker: **H1-R2.12**. H1 remains in progress.

@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.11",
+  "marker": "H1-R2.12",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
-  "new_fixed_body_count": 17,
+  "new_fixed_body_count": 21,
   "new_reserve_count": 3,
   "replaced_seed_instances": [
     "main_buck",
@@ -13,7 +13,7 @@
     "main_output_cap1"
   ],
   "same_face_collisions": [],
-  "opposing_overlap_count": 26,
+  "opposing_overlap_count": 27,
   "minimum_opposing_clearance_mm": 1.44,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
@@ -41,6 +41,11 @@
       "new": "hub_rp",
       "base": "voice_output_cap1",
       "clearance_mm": 7.4
+    },
+    {
+      "new": "hub_service_usb_connector",
+      "base": "speaker",
+      "clearance_mm": 3.19
     },
     {
       "new": "airband_lna",
@@ -240,7 +245,7 @@
     "obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation"
   ],
   "dependent_h1_work": [
-    "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
+    "promote the generated complete R2 exterior, mirrored inner faces and four real section planes from in-progress to reviewed only after the K331 body and installation route stop moving"
   ],
   "downstream_verification": [
     {
@@ -268,6 +273,90 @@
         "z": [
           4.8,
           5.7
+        ]
+      }
+    },
+    {
+      "id": "hub_service_usb_connector",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "USB4105-GF-A",
+      "role": "Hub RP independent data-only USB-C; left-side enclosure exit",
+      "world_bbox_mm": {
+        "x": [
+          0.0,
+          7.35
+        ],
+        "y": [
+          133.0,
+          141.94
+        ],
+        "z": [
+          4.8,
+          8.11
+        ]
+      }
+    },
+    {
+      "id": "hub_dbg_header",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "FTSH-105-01-L-DV-K-P-TR",
+      "role": "Hub RP keyed SWD/RUN/USB_BOOT fallback; accessible only after opening the sandwich",
+      "world_bbox_mm": {
+        "x": [
+          25.7,
+          35.35
+        ],
+        "y": [
+          133.0,
+          138.84
+        ],
+        "z": [
+          4.8,
+          10.36
+        ]
+      }
+    },
+    {
+      "id": "hub_reset_button",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "SKRTLAE010",
+      "role": "recessed right-side Hub RP RUN/RESET service control",
+      "world_bbox_mm": {
+        "x": [
+          71.6,
+          75.0
+        ],
+        "y": [
+          130.0,
+          134.5
+        ],
+        "z": [
+          4.8,
+          8.1
+        ]
+      }
+    },
+    {
+      "id": "hub_boot_button",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "SKRTLAE010",
+      "role": "recessed right-side Hub RP USB_BOOT service control",
+      "world_bbox_mm": {
+        "x": [
+          71.6,
+          75.0
+        ],
+        "y": [
+          137.0,
+          141.5
+        ],
+        "z": [
+          4.8,
+          8.1
         ]
       }
     },

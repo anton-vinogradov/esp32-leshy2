@@ -3,10 +3,11 @@
 [На главную](../README.ru.md) · [English](hardware.md) · [Безопасность](safety.ru.md)
 
 > Текущий baseline: [H0-R2](h0-r2-functional-architecture.ru.md). Ссылки на
-> pin/interconnect/ECAD R1 ниже сохранены как входы и пересобираются на
-> H1-R2.11. [Текущая физическая проекция](h1-r2-physical-layout.ru.md),
-> [тракт FPV](h1-r2-fpv.ru.md) и [rail/thermal-архитектура](h1-r2-power-thermal.ru.md) проверены на коллизии, функциональность и
-> запас, но ещё не полны; ни один из этих материалов не разрешает routing PCB R2.
+> pin/interconnect/ECAD R1 ниже сохранены как входы для будущей схемы R2.
+> H1-R2.12 генерирует полные текущие физические виды, включая четыре независимых
+> набора USB/RESET/BOOT/DBG10. [Физическая проекция](h1-r2-physical-layout.ru.md),
+> [тракт FPV](h1-r2-fpv.ru.md) и [rail/thermal-архитектура](h1-r2-power-thermal.ru.md)
+> проходят текущие проверки, но остаются in progress; ни один материал не разрешает routing PCB R2.
 
 ## Принципиальные связи компонентов
 
@@ -301,19 +302,21 @@ H5-evidence. Все механически значимые корпуса — �
 Он разрешает только работу над схемой H2; PCB placement/routing и закупка
 остаются запрещены.
 
-![Размерная внешняя компоновка](images/current-clamshell.svg?layout=19)
+![Текущая размерная внешняя компоновка H1-R2](images/h1-r2-external-layout.svg)
 
-![Внешний сервисный доступ: три USB и шесть кнопок восстановления](images/service-access.svg?layout=3)
+![Внешний сервисный доступ: четыре USB и восемь кнопок восстановления](images/h1-r2-service-access.svg)
 
 ![Размерный серийный блок навигации](images/navigation-cluster.svg?layout=1)
 
 ![Размерный сменный переходник дисплея](images/display-adapter.svg?layout=1)
 
-![Размерная компоновка внутренних плат](images/internal-board-layout.svg?layout=18)
+![Полная зеркальная компоновка внутренних плат H1-R2](images/h1-r2-inner-complete.svg)
 
-![Размерный вид сверху со стороны антенного торца](images/top-edge-view.svg?layout=5)
+![Размерный вид H1-R2 со стороны антенного торца](images/h1-r2-antenna-edge.svg)
 
-![Размерные разрезы зон LoRa Cap и батарей](images/sandwich-section.svg?layout=11)
+![Размерные разрезы зон Airband/power и FPV/service R2](images/h1-r2-inner-sections.svg)
+
+![Размерные разрезы зон LoRa Cap и батарей](images/h1-r2-sandwich-sections.svg)
 
 ![Размерные зоны компонентов заказного LoRa Cap](images/lora-cap-layout.svg?layout=1)
 
