@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.5",
+  "marker": "H1-R2.6",
   "checked_on": "2026-08-27",
   "purpose": "Place the new R2 Hub, Airband and analog-FPV bodies in the accepted 75 x 150 mm two-board coordinate system before any R2 KiCad work.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -10,6 +10,7 @@
   "stack": {
     "ui_inner_z_mm": 4.8,
     "rf_inner_z_mm": 15.8,
+    "rf_pcb_thickness_mm": 1.6,
     "interboard_gap_mm": 11.0,
     "minimum_opposing_clearance_mm": 0.7
   },
@@ -76,15 +77,15 @@
       "mpn": "DL-MMCX-KWE-90",
       "jlcpcb_part": "C2894793",
       "manufacturer": "DreamLNK",
-      "assembly": "Extended through-hole/manual assembly",
+      "assembly": "Extended through-hole; Wave Soldering; Economic and Standard PCBA",
       "accepted": true,
-      "selection_status": "accepted physical definition; manual access and enclosure opening remain H1 gates",
-      "selection_status_ru": "принятая физическая позиция; доступ для ручной пайки и проём корпуса остаются gates H1",
+      "selection_status": "accepted physical definition, corrected edge placement and machine-proved solder-tail/side-service keepouts",
+      "selection_status_ru": "приняты физическая позиция, исправленное размещение у кромки и машинно проверенные зоны выводов/бокового подключения",
       "availability": "25,383 pieces, MOQ 1, USD 0.9077 at quantity 1",
       "availability_ru": "25 383 шт., MOQ 1, $0.9077 при количестве 1",
       "url": "https://jlcpcb.com/partdetail/DreamLNK-DL_MMCX_KWE90/C2894793",
       "manufacturer_url": "https://www.dreamlnk.com/en/DL-MMCX-KWE-90.html",
-      "drawing_url": "https://www.dreamlnk.com/static/upload/image/20230728/1690528389712742.jpg",
+      "drawing_url": "https://30665759.s21i.faiusr.com/2/ABUIABACGAAg38ennwYo-uKFpAUwlgY4lQc.jpg",
       "checked": "2026-08-27"
     },
     {
@@ -310,14 +311,31 @@
       "frame": "rf-outer-right-edge",
       "mpn": "DL-MMCX-KWE-90",
       "role": "user-facing 50-ohm MMCX labelled FPV RX 5.8G",
-      "world_xy_mm": [75.0, 99.5],
+      "world_xy_mm": [71.4, 99.5],
       "size_mm": [6.6, 3.6, 4.0],
       "mounting": {
+        "drawing_total_length_mm": 6.6,
+        "drawing_total_length_tolerance_mm": 0.2,
+        "square_body_mm": 3.6,
+        "barrel_diameter_mm": 3.5,
+        "board_edge_x_mm": 75.0,
+        "body_inboard_mm": 3.6,
+        "barrel_outboard_mm": 3.0,
+        "mounting_axis_world_xy_mm": [73.2, 101.3],
         "centre_pin_diameter_mm": 0.7,
         "ground_post_count": 4,
         "ground_post_square_mm": 0.5,
         "ground_post_pitch_mm": [2.0, 2.0],
-        "pin_projection_below_board_mm": 2.8
+        "pin_projection_below_board_mm": 2.8,
+        "pin_projection_tolerance_mm": 0.15,
+        "tail_projection_into_interboard_gap_mm": 1.2,
+        "rf_inner_tail_keepout_world_xy_mm": [[70.95, 75.0], [99.05, 103.55]],
+        "rf_inner_tail_keepout_margin_mm": 1.0,
+        "minimum_sidewall_free_diameter_mm": 4.5,
+        "minimum_sidewall_radial_clearance_mm": 0.5,
+        "external_plug_service_keepout_diameter_mm": 12.0,
+        "external_plug_service_keepout_length_mm": 20.0,
+        "service_keepout_rule": "No enclosure wall or rib may enter the 4.5-mm barrel aperture; no fixed exterior body may enter the 12-mm-diameter by 20-mm-long outward mating corridor. Final wall tolerance, mating retention and strain remain H5 verification."
       },
       "direction": "right side of the finished device"
     },
@@ -463,14 +481,12 @@
   "open_gates": [
     "obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence before replacing the K331 reserve with a fixed body",
     "obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation",
-    "prove manual-assembly accessibility and the enclosure side opening around the exact MMCX body",
     "qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route",
     "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
   ],
   "open_gates_ru": [
     "получить контролируемые AKK максимальные размеры, посадочное место и данные упаковки/reflow до замены резерва K331 точным корпусом",
     "получить ответ JLCPCB о private/global sourcing K331 либо явно оставить ручную установку после PCBA",
-    "доказать доступ для ручной установки и боковой проём корпуса вокруг точного корпуса MMCX",
     "квалифицировать независимую антенну FPV FXP831.09.0100C на собранном корпусе и обеспечить склад до опоры на текущий backorder 16 недель",
     "перегенерировать все внешние и внутренние виды и оба разреза после прекращения перемещений корпусов R2"
   ]

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.5",
+  "marker": "H1-R2.6",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "new_fixed_body_count": 17,
@@ -148,11 +148,96 @@
       "clearance_mm": 6.55
     }
   ],
+  "mmcx_service": {
+    "status": "pass",
+    "mpn": "DL-MMCX-KWE-90",
+    "drawing_source": "https://30665759.s21i.faiusr.com/2/ABUIABACGAAg38ennwYo-uKFpAUwlgY4lQc.jpg",
+    "installed_body_world_bbox_mm": {
+      "x": [
+        71.4,
+        78.0
+      ],
+      "y": [
+        99.5,
+        103.1
+      ],
+      "z": [
+        17.4,
+        21.4
+      ]
+    },
+    "board_edge_x_mm": 75.0,
+    "mounting_axis_world_xy_mm": [
+      73.2,
+      101.3
+    ],
+    "inboard_body_mm": 3.6,
+    "outboard_barrel_mm": 3.0,
+    "nominal_tail_tip_z_mm": 14.6,
+    "worst_case_tail_tip_z_mm": 14.45,
+    "nominal_tail_projection_into_gap_mm": 1.2,
+    "tail_keepout_world_bbox_mm": {
+      "x": [
+        70.95,
+        75.0
+      ],
+      "y": [
+        99.05,
+        103.55
+      ],
+      "z": [
+        14.450000000000003,
+        15.8
+      ]
+    },
+    "opposing_body_hits": [],
+    "sidewall_minimum_free_diameter_mm": 4.5,
+    "sidewall_radial_clearance_mm": 0.5,
+    "sidewall_aperture_world_bbox_mm": {
+      "x": [
+        75.0,
+        78.0
+      ],
+      "y": [
+        99.05,
+        103.55
+      ],
+      "z": [
+        17.150000000000002,
+        21.650000000000002
+      ]
+    },
+    "external_service_keepout": {
+      "diameter_mm": 12.0,
+      "outward_length_mm": 20.0,
+      "world_bbox_mm": {
+        "x": [
+          78.0,
+          98.0
+        ],
+        "y": [
+          95.3,
+          107.3
+        ],
+        "z": [
+          13.400000000000002,
+          25.400000000000002
+        ]
+      }
+    },
+    "accessory_hits": [],
+    "factory_assembly": "Wave Soldering; Economic and Standard PCBA",
+    "later_hil": [
+      "received connector-to-antenna mating and retention",
+      "final enclosure aperture tolerance",
+      "plug insertion cycles and cable strain"
+    ],
+    "errors": []
+  },
   "errors": [],
   "open_gates": [
     "obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence before replacing the K331 reserve with a fixed body",
     "obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation",
-    "prove manual-assembly accessibility and the enclosure side opening around the exact MMCX body",
     "qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route",
     "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
   ],
@@ -354,16 +439,16 @@
       "role": "user-facing 50-ohm MMCX labelled FPV RX 5.8G",
       "world_bbox_mm": {
         "x": [
-          75.0,
-          81.6
+          71.4,
+          78.0
         ],
         "y": [
           99.5,
           103.1
         ],
         "z": [
-          15.8,
-          19.8
+          17.400000000000002,
+          21.400000000000002
         ]
       }
     },

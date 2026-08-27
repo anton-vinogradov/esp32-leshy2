@@ -1,4 +1,4 @@
-# H1-R2.5 · тракт аналогового FPV
+# H1-R2.6 · тракт аналогового FPV
 
 [Главная](../README.ru.md) · [English](h1-r2-fpv.md)
 
@@ -31,4 +31,4 @@
 - prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality on assembled hardware
 - qualify FXP831.09.0100C on the assembled enclosure and secure available stock before relying on its current 16-week backorder route
 
-> Точный текущий маркер: **H1-R2.5**. H1 продолжается.
+> Точный текущий маркер: **H1-R2.6**. H1 продолжается.

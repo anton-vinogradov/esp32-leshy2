@@ -4,7 +4,7 @@
 
 > Текущий baseline: [H0-R2](h0-r2-functional-architecture.ru.md). Ссылки на
 > pin/interconnect/ECAD R1 ниже сохранены как входы и пересобираются на
-> H1-R2.5. [Текущая физическая проекция](h1-r2-physical-layout.ru.md),
+> H1-R2.6. [Текущая физическая проекция](h1-r2-physical-layout.ru.md),
 > [тракт FPV](h1-r2-fpv.ru.md) и [rail/thermal-архитектура](h1-r2-power-thermal.ru.md) проверены на коллизии, функциональность и
 > запас, но ещё не полны; ни один из этих материалов не разрешает routing PCB R2.
 

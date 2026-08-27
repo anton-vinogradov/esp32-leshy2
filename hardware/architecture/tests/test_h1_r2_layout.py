@@ -57,17 +57,38 @@ class H1R2LayoutTest(unittest.TestCase):
 
     def test_mmcx_uses_manufacturer_body_and_mounting_geometry(self):
         mmcx = next(x for x in self.model["placements"] if x["id"] == "fpv_mmcx")
+        self.assertEqual([71.4, 99.5], mmcx["world_xy_mm"])
         self.assertEqual([6.6, 3.6, 4.0], mmcx["size_mm"])
+        self.assertEqual(3.6, mmcx["mounting"]["body_inboard_mm"])
+        self.assertEqual(3.0, mmcx["mounting"]["barrel_outboard_mm"])
+        self.assertEqual([73.2, 101.3], mmcx["mounting"]["mounting_axis_world_xy_mm"])
         self.assertEqual(4, mmcx["mounting"]["ground_post_count"])
         self.assertEqual([2.0, 2.0], mmcx["mounting"]["ground_post_pitch_mm"])
         evidence = next(x for x in self.model["factory_evidence"] if x["mpn"] == mmcx["mpn"])
         self.assertTrue(evidence["accepted"])
-        self.assertIn("dreamlnk.com", evidence["drawing_url"])
+        self.assertIn("dreamlnk.com", evidence["manufacturer_url"])
+        self.assertIn("faiusr.com", evidence["drawing_url"])
+        self.assertIn("Wave Soldering", evidence["assembly"])
+
+    def test_mmcx_tail_and_service_keepouts_pass(self):
+        service = self.audit["mmcx_service"]
+        self.assertEqual(
+            self.base["stack"]["rf_pcb_thickness_mm"],
+            self.model["stack"]["rf_pcb_thickness_mm"],
+        )
+        self.assertEqual("pass", service["status"])
+        self.assertEqual([], service["errors"])
+        self.assertEqual([], service["opposing_body_hits"])
+        self.assertEqual([], service["accessory_hits"])
+        self.assertAlmostEqual(1.2, service["nominal_tail_projection_into_gap_mm"])
+        self.assertAlmostEqual(0.5, service["sidewall_radial_clearance_mm"])
+        self.assertEqual(12.0, service["external_service_keepout"]["diameter_mm"])
 
     def test_generated_artifacts_are_current(self):
         expected = {
             MODULE.AUDIT_PATH: json.dumps(self.audit, indent=2, ensure_ascii=False) + "\n",
             MODULE.SVG_PATH: MODULE.render_svg(self.model, self.base, self.audit),
+            MODULE.MMCX_SVG_PATH: MODULE.render_mmcx_service_svg(self.model, self.audit),
             MODULE.EN_DOC_PATH: MODULE.render_doc(self.model, self.audit, False),
             MODULE.RU_DOC_PATH: MODULE.render_doc(self.model, self.audit, True),
         }

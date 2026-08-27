@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1380" height="1459" viewBox="0 0 1380 1459">
 <rect width="1380" height="1459" fill="#ffffff"/>
-<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.5 inner placement</text>
+<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.6 inner placement</text>
 <text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · RF board is mirrored · numbered marks are documentation, never inner-face silkscreen.</text>
 <text x="190.00" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">UI PCB · inner</text>
 <rect x="70.00" y="122.00" width="240.00" height="480.00" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -184,11 +184,13 @@
 <text x="483.92" y="318.64" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">17</text>
 <rect x="486.80" y="317.84" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="488.40" y="318.64" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">18</text>
-<rect x="388.88" y="440.40" width="21.12" height="11.52" rx="3" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
-<text x="399.44" y="446.16" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#1d4ed8">7</text>
-<path d="M 388.88 446.16 L 370.88 446.16" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="366.88" y="444.16" text-anchor="end" font-family="sans-serif" font-size="9" font-weight="700" fill="#dc2626">finished-device RIGHT side</text>
-<path d="M 410.00 446.16 L 434.00 448.40" stroke="#0f766e" stroke-width="3" fill="none"/>
+<rect x="410.00" y="440.40" width="11.52" height="11.52" rx="2" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<rect x="400.40" y="442.47" width="9.60" height="7.37" rx="2" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
+<circle cx="415.76" cy="446.16" r="3.2" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+<text x="415.76" y="439.16" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#1d4ed8">7</text>
+<path d="M 400.40 446.16 L 382.40 446.16" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="378.40" y="444.16" text-anchor="end" font-family="sans-serif" font-size="9" font-weight="700" fill="#dc2626">finished-device RIGHT side</text>
+<path d="M 415.76 446.16 L 434.00 448.40" stroke="#0f766e" stroke-width="3" fill="none"/>
 <path d="M 523.60 448.40 L 528.40 442.00" stroke="#7c3aed" stroke-width="3" fill="none"/>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker></defs>
 <text x="730" y="112" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Placed devices and allocations</text>
@@ -272,15 +274,12 @@
 <text x="1100" y="466" font-family="sans-serif" font-size="10.5" fill="#9a3412">  private/global-sourcing response for</text>
 <text x="1100" y="481" font-family="sans-serif" font-size="10.5" fill="#9a3412">  K331 or retain explicit post-PCBA hand</text>
 <text x="1100" y="496" font-family="sans-serif" font-size="10.5" fill="#9a3412">  installation</text>
-<text x="1100" y="517" font-family="sans-serif" font-size="10.5" fill="#9a3412">• prove manual-assembly accessibility</text>
-<text x="1100" y="532" font-family="sans-serif" font-size="10.5" fill="#9a3412">  and the enclosure side opening around</text>
-<text x="1100" y="547" font-family="sans-serif" font-size="10.5" fill="#9a3412">  the exact MMCX body</text>
-<text x="1100" y="568" font-family="sans-serif" font-size="10.5" fill="#9a3412">• qualify the supply-independent</text>
-<text x="1100" y="583" font-family="sans-serif" font-size="10.5" fill="#9a3412">  FXP831.09.0100C FPV fallback on the</text>
-<text x="1100" y="598" font-family="sans-serif" font-size="10.5" fill="#9a3412">  assembled enclosure and secure stock</text>
-<text x="1100" y="613" font-family="sans-serif" font-size="10.5" fill="#9a3412">  before relying on its current 16-week</text>
-<text x="1100" y="628" font-family="sans-serif" font-size="10.5" fill="#9a3412">  backorder route</text>
-<text x="1100" y="649" font-family="sans-serif" font-size="10.5" fill="#9a3412">• regenerate the complete exterior,</text>
-<text x="1100" y="664" font-family="sans-serif" font-size="10.5" fill="#9a3412">  inner faces and both sections only</text>
-<text x="1100" y="679" font-family="sans-serif" font-size="10.5" fill="#9a3412">  after the R2 bodies stop moving</text>
+<text x="1100" y="517" font-family="sans-serif" font-size="10.5" fill="#9a3412">• qualify the supply-independent</text>
+<text x="1100" y="532" font-family="sans-serif" font-size="10.5" fill="#9a3412">  FXP831.09.0100C FPV fallback on the</text>
+<text x="1100" y="547" font-family="sans-serif" font-size="10.5" fill="#9a3412">  assembled enclosure and secure stock</text>
+<text x="1100" y="562" font-family="sans-serif" font-size="10.5" fill="#9a3412">  before relying on its current 16-week</text>
+<text x="1100" y="577" font-family="sans-serif" font-size="10.5" fill="#9a3412">  backorder route</text>
+<text x="1100" y="598" font-family="sans-serif" font-size="10.5" fill="#9a3412">• regenerate the complete exterior,</text>
+<text x="1100" y="613" font-family="sans-serif" font-size="10.5" fill="#9a3412">  inner faces and both sections only</text>
+<text x="1100" y="628" font-family="sans-serif" font-size="10.5" fill="#9a3412">  after the R2 bodies stop moving</text>
 </svg>
