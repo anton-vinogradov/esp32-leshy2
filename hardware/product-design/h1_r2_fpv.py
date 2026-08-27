@@ -30,10 +30,12 @@ def audit(model: dict) -> dict:
     errors: list[str] = []
     if set(pins) != set(range(1, 15)):
         errors.append("K331 pinout is not the complete 1..14 set")
-    expected_controls = {1: "GPIO32", 2: "GPIO33", 3: "GPIO34", 5: "GPIO30", 6: "GPIO15"}
+    expected_controls = {1: "GPIO32", 2: "GPIO33", 3: "GPIO34", 5: "GPIO30"}
     for pin, token in expected_controls.items():
         if token not in pins[pin]["owner"]:
             errors.append(f"K331 pin {pin} does not use reserved {token}")
+    if pins[6]["name"] != "RSSI (NC)" or "No connect" not in pins[6]["owner"]:
+        errors.append("K331 pin 6 is overstated as an available RSSI output")
     if receiver["maximum_current_ma"] > model["power_fit"]["reserved_active_5v_ma"]:
         errors.append("K331 exceeds the reserved active 5-V budget")
     antenna_covers_receiver_band = (
@@ -182,7 +184,7 @@ def render_svg(model: dict) -> str:
     out.extend([
         '<rect x="498" y="240" width="270" height="82" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>',
         '<text x="633" y="266" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#1d4ed8">SC1512-A4 rear RP · local controls</text>',
-        '<text x="633" y="290" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP15 RSSI · GP30 power · GP31 lock</text>',
+        '<text x="633" y="290" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP15 free · GP30 power · GP31 video lock</text>',
         '<text x="633" y="309" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP32/33/34 → K331 CH1/CH2/CH3</text>',
         '<path d="M633 240 V194" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrowBlue)"/>',
         '<text x="32" y="347" font-family="sans-serif" font-size="11" fill="#9a3412">K331 functional/pin fit and conditional Consigned Parts route pass; the AKK production package remains the H1 gate.</text>',
@@ -200,7 +202,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         result_text = (
             f'- `AKK {r["mpn"]}` покрывает {r["frequency_mhz"][0]}–{r["frequency_mhz"][1]} МГц, до {r["maximum_current_ma"]} мА и выдаёт CVBS 1 Vpp/75 Ω.\n'
             f'- Официальные материалы AKK подтверждают [схему включения 331RX]({e["application_circuit"]}), [функции всех 14 контактов]({e["pinout"]}) и [таблицу выбора 24 каналов]({e["channel_table"]}). AKK-брендированный кадр у продавца даёт номинальный контур платы 28,7×23,1 мм; аудит коллизий использует увеличенный резерв 30×24×4 мм.\n'
-            '- CH1/CH2/CH3 используют задние RP GPIO32/33/34; GPIO15/30/31 обслуживают RSSI/power/lock. Новых GPIO или расширителя нет.\n'
+            '- CH1/CH2/CH3 используют задние RP GPIO32/33/34; GPIO30/31 обслуживают power/video-lock. Официальный pinout помечает K331 pin 6 `RSSI (NC)`, поэтому GPIO15 остаётся свободным.\n'
             f'- Резерв 5 В оставляет {result["power_margin_ma"]} мА запаса. RF идёт напрямую по 50-омной PCB-дорожке к MMCX без U.FL.\n'
             f'- Антенна `{a["mpn"]}` линейная, {a["frequency_mhz"][0]}–{a["frequency_mhz"][1]} МГц, {a["gain_dbi"]} dBi, {a["cable_length_mm"]} мм; точная маркировка комплекта — `{a["printed_identity"]}`.'
             f' Независимый линейный резерв `{a["supply_independent_alternate"]["mpn"]}` покрывает 4,9–6,0 ГГц и сохраняет MMCX, но сейчас доступен только под заказ с lead time 16 недель.'
@@ -212,7 +214,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             'RTC6715 — голая QFN48, а её публичный preliminary-документ 2007 года не содержит reference application или PCB layout; собственный RF/IF-тракт повысил бы риск, не решив supply. '
             'Поэтому выбран условный фабричный маршрут: оригинальная поставка AKK плюс JLCPCB Consigned Parts. '
             'Антенна за $6.95 остаётся аксессуаром комплекта после PCBA. '
-            'Официальный production-пакет AKK всё ещё нужен для точной установки и consignment application; финальный DFM по Gerber/BOM/CPL и дополнительное рассмотрение function test 5 В/channel-select/RSSI/CVBS следуют в H5/H6/H7.'
+            'Официальный production-пакет AKK всё ещё нужен для точной установки и consignment application; финальный DFM по Gerber/BOM/CPL и дополнительное рассмотрение function test 5 В/channel-select/CVBS следуют в H5/H6/H7.'
         )
         blockers = '\n'.join(f'- {gate}' for gate in model['current_h1_blockers'])
         downstream = '\n'.join(
@@ -228,7 +230,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         result_text = (
             f'- `AKK {r["mpn"]}` covers {r["frequency_mhz"][0]}–{r["frequency_mhz"][1]} MHz, draws at most {r["maximum_current_ma"]} mA and emits 1-Vpp/75-ohm CVBS.\n'
             f'- Official AKK-hosted media confirms the [331RX application circuit]({e["application_circuit"]}), [all 14 pin functions]({e["pinout"]}) and the [24-channel selection table]({e["channel_table"]}). An AKK-branded reseller image gives a 28.7 × 23.1 mm nominal board outline; collision audit uses an enlarged 30 × 24 × 4 mm reserve.\n'
-            '- CH1/CH2/CH3 use rear-RP GPIO32/33/34; GPIO15/30/31 serve RSSI/power/lock. No new GPIO or expander is needed.\n'
+            '- CH1/CH2/CH3 use rear-RP GPIO32/33/34; GPIO30/31 serve power/video lock. The official pinout marks K331 pin 6 `RSSI (NC)`, so GPIO15 remains free.\n'
             f'- The 5-V reserve retains {result["power_margin_ma"]} mA. RF runs directly over a 50-ohm PCB trace to MMCX without U.FL.\n'
             f'- `{a["mpn"]}` is linear, {a["frequency_mhz"][0]}–{a["frequency_mhz"][1]} MHz, {a["gain_dbi"]} dBi and {a["cable_length_mm"]} mm; its exact kit mark is `{a["printed_identity"]}`.'
             f' Independent linear fallback `{a["supply_independent_alternate"]["mpn"]}` covers 4.9–6.0 GHz and retains MMCX, but is presently backorder-only with a 16-week lead time.'
@@ -240,7 +242,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             'RTC6715 is a bare QFN48 whose public 2007 preliminary sheet has no reference application or PCB layout; a custom RF/IF path would add risk without fixing supply. '
             'Genuine AKK supply plus JLCPCB Consigned Parts is therefore the selected conditional factory route. '
             'The $6.95 antenna remains a post-PCBA kit accessory. '
-            'The official AKK production package is still required for exact placement and the consignment application; final Gerber/BOM/CPL DFM and optional 5-V/channel-select/RSSI/CVBS function-test review follow in H5/H6/H7.'
+            'The official AKK production package is still required for exact placement and the consignment application; final Gerber/BOM/CPL DFM and optional 5-V/channel-select/CVBS function-test review follow in H5/H6/H7.'
         )
         blockers = '\n'.join(f'- {gate}' for gate in model['current_h1_blockers'])
         downstream = '\n'.join(

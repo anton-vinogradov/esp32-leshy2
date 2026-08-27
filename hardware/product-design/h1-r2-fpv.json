@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.15",
+  "marker": "H1-R2.16",
   "checked_on": "2026-08-27",
   "status": "official_functional_integration_passed_consigned_factory_route_selected_physical_package_open",
   "receiver": {
@@ -20,8 +20,8 @@
       {"pin": 2, "name": "CH2", "owner": "Rear RP GPIO33"},
       {"pin": 3, "name": "CH3", "owner": "Rear RP GPIO34"},
       {"pin": 4, "name": "GND", "owner": "RF ground"},
-      {"pin": 5, "name": "+3.3-5V ON", "owner": "Rear RP GPIO30 through fail-low switched 5-V rail"},
-      {"pin": 6, "name": "RSSI", "owner": "Rear RP GPIO15 ADC"},
+      {"pin": 5, "name": "+3.3-5V SUPPLY", "owner": "Rear RP GPIO30 through fail-low switched 5-V rail"},
+      {"pin": 6, "name": "RSSI (NC)", "owner": "No connect; official AKK pinout marks this contact unavailable"},
       {"pin": 7, "name": "AUDIO 6.5MHz", "owner": "not connected in R2"},
       {"pin": 8, "name": "VIDEO OUT", "owner": "one 75-ohm FPV_CVBS crossing over M1 to UI-local TVP5150AM1PBS"},
       {"pin": 9, "name": "GND", "owner": "RF ground"},
@@ -59,7 +59,7 @@
         "approval_required_before_shipment": true,
         "required_package": "official AKK datasheet with maximum mechanical dimensions, recommended land pattern, pin definitions, soldering/reflow and special assembly requirements",
         "final_review_inputs": "Gerber, BOM, CPL and order",
-        "function_test_review": "5 V supply, three channel-select inputs, RSSI and CVBS lock/output; feasibility and quotation pending H5/H6/H7"
+        "function_test_review": "5 V supply, three channel-select inputs and CVBS lock/output; feasibility and quotation pending H5/H6/H7"
       },
       "searches": [
         {
@@ -338,8 +338,8 @@
   "downstream_verification": [
     {
       "stage": "H5/H6/H7",
-      "requirement": "submit the genuine AKK K331 Consigned Parts application, pass final Gerber/BOM/CPL DFM and obtain feasibility plus quotation for the 5-V/channel-select/RSSI/CVBS function test",
-      "requirement_ru": "подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/RSSI/CVBS"
+      "requirement": "submit the genuine AKK K331 Consigned Parts application, pass final Gerber/BOM/CPL DFM and obtain feasibility plus quotation for the 5-V/channel-select/CVBS function test",
+      "requirement_ru": "подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/CVBS"
     },
     {
       "stage": "H3/H6/H8",

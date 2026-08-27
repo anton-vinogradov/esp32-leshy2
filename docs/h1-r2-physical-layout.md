@@ -1,4 +1,4 @@
-# H1-R2.15 · finished-device placement
+# H1-R2.16 · finished-device placement
 
 Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, not authorization to start KiCad: the controlled K331 production package remains the sole open input.
 
@@ -34,7 +34,7 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 - Same-face body collisions: `0`.
 - Minimum opposing Z clearance: `1.44 mm` against `0.70 mm` required.
 - FPV MMCX: `5.72 mm` to the nearest SMA; its Ø12 handling envelope leaves `0.70 mm` to U214.
-- GPIO: front RP `45/48`, rear RP `46/48`; 3 and 2 lines remain free respectively.
+- GPIO: front RP `45/48`, rear RP `45/48`; each retains 3 free lines. K331 RSSI is officially marked NC.
 - M1: 9 obsolete signals are released, 1 contact carries CVBS and 8 signal contacts remain spare.
 
 ## Exact factory parts
@@ -61,4 +61,4 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 
 - obtain one AKK-controlled production package with maximum XYZ dimensions, pad pitch/land pattern and packaging/soldering/reflow evidence before replacing the K331 reserve with a fixed body and submitting the Consigned Parts application
 
-> Exact current marker: **H1-R2.15**. H1 remains in progress.
+> Exact current marker: **H1-R2.16**. H1 remains in progress.

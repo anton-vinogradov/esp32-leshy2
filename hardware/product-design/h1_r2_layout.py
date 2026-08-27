@@ -1080,7 +1080,7 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
             '- AKK-брендированный размерный кадр у продавца задаёт номинал платы K331 28,7×23,1 мм; коллизии проверены с консервативным резервом 30×24×4 мм без изменения контура платы и внешних зон аккумуляторов/U214.',
             '- Функциональная распиновка K331 принята, но резерв не считается точным корпусом: максимальные XYZ, посадочное место и reflow/packaging должны прийти из контролируемого документа AKK.',
             '- JLCPCB подтвердила отсутствие K331 в Parts Library и Global Sourcing и не нашла прямой замены. Выбран фабричный маршрут: оригинальная поставка AKK через Consigned Parts; application и финальный DFM по Gerber/BOM/CPL относятся к последующим этапам.',
-            '- JLCPCB готова рассмотреть процедуру function test для 5 В, channel-select, RSSI и CVBS. Проверка реализуемости и цена относятся к H5/H6/H7 и не блокируют текущую физическую модель.',
+            '- JLCPCB готова рассмотреть процедуру function test для 5 В, channel-select и CVBS. Проверка реализуемости и цена относятся к H5/H6/H7 и не блокируют текущую физическую модель.',
             '- Контролируемый fallback `AWM666V RX` размером 26,16×16,38×3,70 мм и его рекомендованная посадка входят в ту же ячейку; он не заменяет K331 автоматически из-за семи каналов вместо 24 и отсутствия публичного маршрута JLCPCB.',
             '- Точная линейная антенна TBS5G8MMCXA подключается к отдельному MMCX; между ANT IN K331 и MMCX запланирована прямая 50-омная PCB-дорожка без U.FL.',
             '- Исправленная геометрия `DL-MMCX-KWE-90`: 3,6 мм корпуса находятся на RF-плате, ствол выступает за верхний антенный торец на 3,0 мм; выводы входят в межплатный просвет номинально на 1,2 мм, а их keepout не пересекает встречные корпуса.',
@@ -1111,7 +1111,7 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
             '- An AKK-branded dimensioned reseller image gives a 28.7 × 23.1 mm nominal K331 board; collision checks use a conservative 30 × 24 × 4 mm reserve without changing the PCB outline or battery/U214 exterior zones.',
             '- K331 functional pin fit is accepted, but the reserve is not a fixed body: maximum XYZ, land pattern and reflow/packaging must come from an AKK-controlled document.',
             '- JLCPCB confirmed that K331 is absent from both Parts Library and Global Sourcing and found no direct replacement. The selected factory route is genuine AKK supply through Consigned Parts; its application and final Gerber/BOM/CPL DFM are later gates.',
-            '- JLCPCB can review a later 5 V, channel-select, RSSI and CVBS function-test procedure. Feasibility and quotation belong to H5/H6/H7 and do not block the present physical model.',
+            '- JLCPCB can review a later 5 V, channel-select and CVBS function-test procedure. Feasibility and quotation belong to H5/H6/H7 and do not block the present physical model.',
             '- The controlled 26.16 × 16.38 × 3.70 mm `AWM666V RX` fallback and its recommended land pattern fit the same bay; it does not replace K331 automatically because it has seven channels instead of 24 and no public JLCPCB route.',
             '- The exact linear TBS5G8MMCXA antenna mates with the distinct MMCX; K331 ANT IN reaches it over one direct 50-ohm PCB trace without U.FL.',
             '- Corrected `DL-MMCX-KWE-90` geometry keeps 3.6 mm of body on the RF PCB and projects only the 3.0-mm barrel beyond the top antenna edge; its pins enter the interboard gap by a nominal 1.2 mm and the tail keepout meets no opposing body.',
@@ -1194,7 +1194,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f'Коллизии корпусов на одной стороне: `{len(result["same_face_collisions"])}`.',
             f'Минимальный встречный Z-зазор: `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
             f'FPV MMCX: `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} мм` до ближайшего SMA; Ø12-зона обращения оставляет `{result["mmcx_service"]["u214_service_clearance_mm"]:.2f} мм` до U214.',
-            "GPIO: передний RP `45/48`, задний RP `46/48`; резерв — 3 и 2 линии соответственно.",
+            "GPIO: передний RP `45/48`, задний RP `45/48`; резерв — по 3 линии. K331 RSSI официально помечен NC.",
             "M1: 9 устаревших сигналов освобождены, 1 контакт занят CVBS, 8 сигнальных контактов остаются резервом.",
         ]
         route_col = "Текущая доступность/маршрут"
@@ -1222,7 +1222,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f'Same-face body collisions: `{len(result["same_face_collisions"])}`.',
             f'Minimum opposing Z clearance: `{result["minimum_opposing_clearance_mm"]:.2f} mm` against `{result["required_opposing_clearance_mm"]:.2f} mm` required.',
             f'FPV MMCX: `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} mm` to the nearest SMA; its Ø12 handling envelope leaves `{result["mmcx_service"]["u214_service_clearance_mm"]:.2f} mm` to U214.',
-            "GPIO: front RP `45/48`, rear RP `46/48`; 3 and 2 lines remain free respectively.",
+            "GPIO: front RP `45/48`, rear RP `45/48`; each retains 3 free lines. K331 RSSI is officially marked NC.",
             "M1: 9 obsolete signals are released, 1 contact carries CVBS and 8 signal contacts remain spare.",
         ]
         route_col = "Current availability/route"

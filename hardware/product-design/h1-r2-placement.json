@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.15",
+  "marker": "H1-R2.16",
   "checked_on": "2026-08-27",
   "purpose": "Repartition complete functional islands for direct 5+5 antenna locality, local nRF concurrency and a one-signal FPV interboard path before any R2 KiCad work.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -63,8 +63,8 @@
     "selected_route_ru": "JLCPCB Consigned Parts с оригинальным K331, купленным у AKK; одобрение требуется до отправки деталей",
     "assembly_gate": "submit the AKK official datasheet with recommended land pattern, mechanical dimensions, pin definitions, soldering/reflow and special assembly requirements; final DFM follows Gerber/BOM/CPL and order review",
     "assembly_gate_ru": "подать официальный datasheet AKK с рекомендованной посадкой, механическими размерами, распиновкой, soldering/reflow и особыми требованиями сборки; финальный DFM выполняется по Gerber/BOM/CPL и заказу",
-    "function_test_route": "JLCPCB will review a procedure that applies 5 V, drives the three channel-select inputs and checks RSSI plus CVBS lock/output; feasibility and quotation remain later factory gates",
-    "function_test_route_ru": "JLCPCB готова рассмотреть процедуру с 5 В, тремя входами выбора канала и проверкой RSSI плюс CVBS lock/output; реализуемость и цена остаются последующими фабричными gates",
+    "function_test_route": "JLCPCB will review a procedure that applies 5 V, drives the three channel-select inputs and checks CVBS lock/output; feasibility and quotation remain later factory gates",
+    "function_test_route_ru": "JLCPCB готова рассмотреть процедуру с 5 В, тремя входами выбора канала и проверкой CVBS lock/output; реализуемость и цена остаются последующими фабричными gates",
     "source": "direct email response to the project sourcing request"
   },
   "factory_evidence": [
@@ -923,8 +923,8 @@
   "downstream_verification": [
     {
       "stage": "H5/H6/H7",
-      "requirement": "submit the genuine AKK K331 Consigned Parts application, pass final Gerber/BOM/CPL DFM and obtain feasibility plus quotation for the 5-V/channel-select/RSSI/CVBS function test",
-      "requirement_ru": "подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/RSSI/CVBS"
+      "requirement": "submit the genuine AKK K331 Consigned Parts application, pass final Gerber/BOM/CPL DFM and obtain feasibility plus quotation for the 5-V/channel-select/CVBS function test",
+      "requirement_ru": "подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/CVBS"
     },
     {
       "stage": "H5/H8",

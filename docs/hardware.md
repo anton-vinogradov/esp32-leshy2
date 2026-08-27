@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H1-R2.15`**. The functional architecture is reviewed; the
+> Current marker: **`H1-R2.16`**. The functional architecture is reviewed; the
 > physical design is in progress. Nothing on this page authorizes KiCad routing
 > or an order.
 
@@ -50,7 +50,7 @@ Front RP GPIO budget: **45 used / 3 free**.
 - K331 receiver boundary and direct 50-ohm path to the rear FPV MMCX.
 - Audio codec, speaker amplifier, microphone and CTIA headset path.
 
-Rear RP GPIO budget: **46 used / 2 free**.
+Rear RP GPIO budget: **45 used / 3 free**. The K331 `RSSI (NC)` contact is not allocated.
 
 ## Interboard connector
 

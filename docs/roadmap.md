@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H1-R2.15`.** H0 is reviewed. H1 is not.
+> **▶ Current hardware boundary: `H1-R2.16`.** H0 is reviewed. H1 is not.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **27 August 2026**.
@@ -24,7 +24,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ▶ [H1-R2.15](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks and a separate vertical rear FPV MMCX |
+| Physical design | ▶ [H1-R2.16](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks and a separate vertical rear FPV MMCX |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map, FPV/MMCX proof and power/filter diagrams are published |
 | Production ECAD | ⏳ R1 evidence retained; R2 schematic waits for H1 |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.0 is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); emulator/dev-board execution must precede H7 fabrication |
@@ -32,9 +32,9 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Current H1 · exact composition
 
-<!-- current-substep: H1-R2.15 -->
+<!-- current-substep: H1-R2.16 -->
 
-**Exact marker: `H1-R2.15`.** This is one physical-design substep, not a closed
+**Exact marker: `H1-R2.16`.** This is one physical-design substep, not a closed
 H1 report.
 
 ### 1. Functional-island placement
@@ -43,7 +43,7 @@ H1 report.
   microSD and UI-local TVP5150.
 - ✅ Rear RF/power PCB: CC1101, VHF/UHF voice, FM/SW/AM/LW/Airband, audio,
   K331 FPV, M5, U214, rear RP, power and safety.
-- ✅ Front RP GPIO: `45/48`; rear RP GPIO: `46/48`.
+- ✅ Front RP GPIO: `45/48`; rear RP GPIO: `45/48`; K331 RSSI is officially NC.
 - ✅ Display and all user keys remain direct S3 interfaces.
 
 ### 2. RF and antenna locality
@@ -91,7 +91,7 @@ H1 report.
 | Phase | Status | Result | Exit criterion |
 |---|---|---|---|
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.15`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.16`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ⏳ Waiting for H1 | Exact R2 symbols, contacts, nets, values, protection and footprints | ERC-clean sheets and machine-readable HW↔FW contract |
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |

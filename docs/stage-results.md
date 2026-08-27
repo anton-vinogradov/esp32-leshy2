@@ -25,7 +25,7 @@ safety evidence and power—not primary RF payloads.
 <a id="h1"></a>
 ## H1 · Physical product design
 
-**Status:** ▶️ current at **`H1-R2.15`**.
+**Status:** ▶️ current at **`H1-R2.16`**.
 
 - [Current physical design](h1-r2-physical-layout.md)
 - [Outer faces](images/h1-r2-external-layout.svg)

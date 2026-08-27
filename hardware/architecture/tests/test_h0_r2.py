@@ -84,6 +84,21 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertIn("AIR_RX_EN", roles[(35,)])
         self.assertIn("AIR_RX_MODE", roles[(36,)])
 
+    def test_rear_gpio_budget_does_not_allocate_unavailable_k331_rssi(self):
+        rear = self.data["rf_rp"]
+        groups = rear["pin_groups"]
+        gpios = [gpio for group in groups for gpio in group["gpios"]]
+        reserve = next(group for group in groups if group["role"] == "uncommitted electrical reserve")
+        committed = [gpio for group in groups if group is not reserve for gpio in group["gpios"]]
+        fpv = next(group for group in groups if "K331 RSSI is NC" in group["role"])
+        self.assertEqual(45, rear["gpio_budget"]["used"])
+        self.assertEqual(3, rear["gpio_budget"]["free"])
+        self.assertEqual(rear["gpio_budget"]["used"], len(committed))
+        self.assertEqual(list(range(48)), sorted(gpios))
+        self.assertEqual(len(gpios), len(set(gpios)))
+        self.assertIn(15, reserve["gpios"])
+        self.assertNotIn(15, fpv["gpios"])
+
     def test_airband_factory_bom_is_exact_and_costed(self):
         bom = self.data["airband_factory_bom_delta"]
         incremental = sum(row["qty"] * row["unit_price"] for row in bom["lines"])

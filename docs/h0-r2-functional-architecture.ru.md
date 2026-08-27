@@ -2,7 +2,7 @@
 
 H0-R2 проведён как новый функциональный baseline: UI и дисплей остаются на S3, высокоскоростные периферийные тракты разгружены через Hub RP, аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен.
 
-> Текущий точный маркер — **H1-R2.15**: физическая модель уже пересчитана под локальные функциональные острова 5+5, но H1 ещё не завершён и не разрешает KiCad routing или заказ R2.
+> Текущий точный маркер — **H1-R2.16**: физическая модель уже пересчитана под локальные функциональные острова 5+5, но H1 ещё не завершён и не разрешает KiCad routing или заказ R2.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 
@@ -27,7 +27,7 @@ H0-R2 проведён как новый функциональный baseline: 
 | Rear RP GP35 | `AIR_RX_EN` | pulled low; LNA/mixer/LO domain off |
 | Rear RP GP36 | `AIR_RX_MODE` | direct FM/SW path selected |
 
-Front RP budget: **45 used / 3 free**. Rear RP budget: **46 used / 2 free**. SI5351 control stays on the rear-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
+Front RP budget: **45 used / 3 free**. Rear RP budget: **45 used / 3 free**. SI5351 control stays on the rear-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
 
 ## Рабочая принципиальная распиновка
 
@@ -89,12 +89,12 @@ Front RP budget: **45 used / 3 free**. Rear RP budget: **46 used / 2 free**. SI5
 | `7, 8` | rear-local isolated M5 Unit I2C/UART/GPIO |
 | `9, 10, 11, 23, 39, 42, 43` | CC1101 CS/GDO0/GDO2/power plus dedicated PIO SPI |
 | `12, 13, 14, 28, 29, 40, 41, 44, 45, 46, 47` | U214 busy/IRQ/reset, I2C, GNSS UART and dedicated SPI |
-| `15, 30, 31, 32, 33, 34` | FPV RSSI, receiver power, lock/evidence and three channel-select outputs |
+| `30, 31, 32, 33, 34` | FPV receiver power, video lock/evidence and three channel-select outputs; K331 RSSI is NC |
 | `16, 17, 18, 20, 21, 22` | voice UART/PTT/audio-on, direct PTT input and ANY_TX diagnostic |
 | `19, 24, 25, 26, 27` | dedicated SPI plus ALERT to front RP |
 | `35` | AIR_RX_EN fail-low switched-domain and LT5560 enable control |
 | `36` | AIR_RX_MODE direct-FM/SW versus converted-Airband selector; reset default direct |
-| `37, 38` | uncommitted electrical reserve |
+| `15, 37, 38` | uncommitted electrical reserve |
 
 ## Питание
 

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.15",
+  "marker": "H1-R2.16",
   "status": "pass",
   "functional_and_pin_fit": true,
   "receiver": "K331",
@@ -39,8 +39,8 @@
   "downstream_verification": [
     {
       "stage": "H5/H6/H7",
-      "requirement": "submit the genuine AKK K331 Consigned Parts application, pass final Gerber/BOM/CPL DFM and obtain feasibility plus quotation for the 5-V/channel-select/RSSI/CVBS function test",
-      "requirement_ru": "подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/RSSI/CVBS"
+      "requirement": "submit the genuine AKK K331 Consigned Parts application, pass final Gerber/BOM/CPL DFM and obtain feasibility plus quotation for the 5-V/channel-select/CVBS function test",
+      "requirement_ru": "подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/CVBS"
     },
     {
       "stage": "H3/H6/H8",
