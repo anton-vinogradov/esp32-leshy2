@@ -1,18 +1,18 @@
-# H1-R2.19 · компоновка готового устройства
+# H1-R2.20 · компоновка готового устройства
 
 Текущая физическая модель двух плат 75×150 мм. Это проверяемый результат H1, но ещё не разрешение начинать KiCad: формальная identity K331 и остаток production-пакета остаются единственным открытым входом.
 
 ## Что увидит пользователь
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.19-oem-evidence-5)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.20-board-id-6)
 
 ## Легенда компонентов
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.19-oem-evidence-5)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.20-board-id-6)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.19-oem-evidence-5)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.20-board-id-6)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.19-oem-evidence-5)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.20-board-id-6)
 
 ## Что находится внутри
 
@@ -25,6 +25,7 @@
 - На задней плате U.FL и съёмных RF-кабелей нет: voice и FM/SW идут локальными RF-трактами, AM/LW — отдельным высокоомным AMI-трактом, а Airband — через питаемую ветвь преобразования и селектор.
 - Отдельный вертикальный MMCX `FPV RX · 5.8 GHz` расположен ниже равномерного ряда из пяти задних SMA и над U214; ответный угловой штекер с кабелем уходит вдоль платы.
 - Все пользовательские подписи являются читаемой шелкографией; внутренние стороны плат шелкографии не содержат.
+- На внешней стороне каждой платы печатаются стабильные role/revision `UI PCB · R2-EVT1 · REV A` и `RF/PWR PCB · R2-EVT1 · REV A`; изменяемый рабочий маркер H1-R2.xx на PCB не печатается.
 - Три nRF24 полностью перенесены на переднюю плату вместе с буферами, safety-gate и отдельным `TLV1824PWR`.
 - K331 остаётся на задней плате, а `TVP5150AM1PBS` — на передней рядом с S3: через M1 проходит только один 75-омный CVBS, не 11-линейная LCD_CAM-шина.
 - FM/SW/AM/LW/Airband, CC1101, два voice-тракта и аудио локальны задней плате; S3 напрямую ведёт i8080-8, camera RX, кнопки, энкодер и USB.
@@ -67,4 +68,4 @@
 
 - закрыть единую контролируемую production-identity K331: либо AKK предоставляет свой пакет, либо AKK/Sinopine формально подтверждают эквивалентность K331 и SP331RX; в любом случае получить maximum Z/допуски, рекомендуемые land/paste и packaging/soldering/reflow до замены резерва точным корпусом и подачи Consigned Parts application
 
-> Точный текущий маркер: **H1-R2.19**. H1 продолжается.
+> Точный текущий маркер: **H1-R2.20**. H1 продолжается.

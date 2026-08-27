@@ -1,18 +1,18 @@
-# H1-R2.19 · finished-device placement
+# H1-R2.20 · finished-device placement
 
 Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, not authorization to start KiCad: formal K331 identity and the remaining production package are the sole open input.
 
 ## What the user sees
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.19-oem-evidence-5)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.20-board-id-6)
 
 ## Component legend
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.19-oem-evidence-5)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.20-board-id-6)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.19-oem-evidence-5)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.20-board-id-6)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.19-oem-evidence-5)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.20-board-id-6)
 
 ## What is inside
 
@@ -25,6 +25,7 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 - The rear PCB has no U.FL or removable RF cable: voice and FM/SW use board-local RF paths, AM/LW uses a separate high-impedance AMI path, and Airband uses the powered conversion branch and selector.
 - The separate vertical `FPV RX · 5.8 GHz` MMCX sits below the evenly pitched five-SMA rear row and above U214; its mating right-angle plug and cable run parallel to the PCB.
 - All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.
+- Each outer face prints a stable board role/revision — `UI PCB · R2-EVT1 · REV A` and `RF/PWR PCB · R2-EVT1 · REV A`; the changing H1-R2.xx work marker is never printed on a PCB.
 - All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.
 - K331 remains rear-local while `TVP5150AM1PBS` moves beside S3: M1 carries one 75-ohm CVBS signal, not the 11-line LCD_CAM bus.
 - FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, camera RX, buttons, encoder and USB.
@@ -67,4 +68,4 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 
 - close one controlled K331 production identity: either AKK supplies its own package or AKK/Sinopine formally confirms K331-to-SP331RX equivalence; in either case obtain maximum Z/tolerances, recommended land/paste geometry and packaging/soldering/reflow evidence before replacing the reserve with a fixed body and submitting the Consigned Parts application
 
-> Exact current marker: **H1-R2.19**. H1 remains in progress.
+> Exact current marker: **H1-R2.20**. H1 remains in progress.

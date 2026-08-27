@@ -30,7 +30,7 @@ COMPONENT_LEGEND_SVG_PATH = REPO / "docs/images/h1-r2-component-legend.svg"
 EN_DOC_PATH = REPO / "docs/h1-r2-physical-layout.md"
 RU_DOC_PATH = REPO / "docs/h1-r2-physical-layout.ru.md"
 SOURCE_TABLE_PATH = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
-PUBLIC_ASSET_REV = "h1-r2.19-oem-evidence-5"
+PUBLIC_ASSET_REV = "h1-r2.20-board-id-6"
 BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
 BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
@@ -212,16 +212,16 @@ def mmcx_service_audit(model: dict, base: dict, placed: list[dict]) -> dict:
 
 
 def silkscreen_audit(model: dict) -> dict:
-    """Reject outer-face antenna silk hidden by any installed body/cable/cover."""
+    """Reject outer-face antenna or board-ID silk hidden by product geometry."""
     font_px = float(model["antenna_silkscreen"]["font_size_px"])
     px_per_mm = 3.7
-    text_height = font_px / px_per_mm * 1.15
-
     def text_box(row: dict) -> dict:
-        width = max(1.0, len(row["text"]) * font_px * 0.60 / px_per_mm)
+        row_font_px = float(row.get("font_size_px", font_px))
+        row_text_height = row_font_px / px_per_mm * 1.15
+        width = max(1.0, len(row["text"]) * row_font_px * 0.60 / px_per_mm)
         return {
             "x": [row["x_mm"] - width / 2, row["x_mm"] + width / 2],
-            "y": [row["baseline_y_mm"] - text_height, row["baseline_y_mm"] + text_height * 0.18],
+            "y": [row["baseline_y_mm"] - row_text_height, row["baseline_y_mm"] + row_text_height * 0.18],
         }
 
     def expanded(box: dict, margin: float) -> dict:
@@ -277,7 +277,44 @@ def silkscreen_audit(model: dict) -> dict:
             for second in boxes[face][index + 1:]:
                 if overlaps(expanded(first["box_mm"], 0.25), expanded(second["box_mm"], 0.25)):
                     errors.append(f'{face} silk "{first["text"]}" overlaps "{second["text"]}"')
-    return {"status": "pass" if not errors else "fail", "faces": boxes, "errors": errors}
+    identity_boxes: dict[str, list[dict]] = {"front": [], "rear": []}
+    identity = model["hardware_identification"]
+    if identity["documentation_marker_printed"]:
+        errors.append("documentation work marker must never become PCB silkscreen")
+    for face, face_rows in identity["silkscreen"].items():
+        forbidden = (
+            [
+                {"name": "display", "box": {"x": [10.25, 64.75], "y": [11.0, 94.0]}},
+                {"name": "front controls/indicators", "box": {"x": [0.0, 75.0], "y": [104.0, 150.0]}},
+            ]
+            if face == "front"
+            else [
+                {"name": "rear product bodies", "box": {"x": [0.0, 75.0], "y": [0.0, 132.0]}},
+            ]
+        )
+        for row in face_rows:
+            box = text_box(row)
+            identity_boxes[face].append({"text": row["text"], "box_mm": box})
+            if model["marker"] in row["text"]:
+                errors.append(f'{face} identity silk prints documentation marker {model["marker"]}')
+            if box["x"][0] < 0 or box["x"][1] > 75 or box["y"][0] < 0 or box["y"][1] > 150:
+                errors.append(f'{face} identity silk "{row["text"]}" leaves the PCB outline')
+            for item in forbidden:
+                if overlaps(box, item["box"]):
+                    errors.append(f'{face} identity silk "{row["text"]}" is hidden by {item["name"]}')
+            for hole_x, hole_y in ((5.0, 11.0), (70.0, 11.0), (5.0, 145.0), (70.0, 145.0)):
+                if hits_circle(box, hole_x, hole_y, 4.0):
+                    errors.append(f'{face} identity silk "{row["text"]}" enters mounting keep-out')
+        for index, first in enumerate(identity_boxes[face]):
+            for second in identity_boxes[face][index + 1:]:
+                if overlaps(expanded(first["box_mm"], 0.25), expanded(second["box_mm"], 0.25)):
+                    errors.append(f'{face} identity silk "{first["text"]}" overlaps "{second["text"]}"')
+    return {
+        "status": "pass" if not errors else "fail",
+        "faces": boxes,
+        "identity": identity_boxes,
+        "errors": errors,
+    }
 
 
 def audit(model: dict, base: dict) -> dict:
@@ -597,6 +634,21 @@ def render_external_svg(model: dict) -> str:
     additions = [
         f'<g id="h1-r2-external-delta" data-marker="{marker}" data-state="in-progress">',
     ]
+    for face, origin in (("front", front), ("rear", rear)):
+        for row in model["hardware_identification"]["silkscreen"][face]:
+            if row["render_by"] != "r2":
+                continue
+            additions.append(
+                label(
+                    px(origin, row["x_mm"]),
+                    py(origin, row["baseline_y_mm"]),
+                    row["text"],
+                    "middle",
+                    row["font_size_px"],
+                )
+                .replace("#1d4ed8", "#172033")
+                .replace("<text ", f'<text data-role="board-identification" data-face="{face}" ')
+            )
     usb_ports = (
         (front, 16.47, "hub_service_usb_connector", "HUB RP", "DATA USB", False),
         (front, 31.47, "c5_service_usb_connector", "C5", "DATA USB", False),
@@ -1653,6 +1705,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "На задней плате U.FL и съёмных RF-кабелей нет: voice и FM/SW идут локальными RF-трактами, AM/LW — отдельным высокоомным AMI-трактом, а Airband — через питаемую ветвь преобразования и селектор.",
             "Отдельный вертикальный MMCX `FPV RX · 5.8 GHz` расположен ниже равномерного ряда из пяти задних SMA и над U214; ответный угловой штекер с кабелем уходит вдоль платы.",
             "Все пользовательские подписи являются читаемой шелкографией; внутренние стороны плат шелкографии не содержат.",
+            "На внешней стороне каждой платы печатаются стабильные role/revision `UI PCB · R2-EVT1 · REV A` и `RF/PWR PCB · R2-EVT1 · REV A`; изменяемый рабочий маркер H1-R2.xx на PCB не печатается.",
             "Три nRF24 полностью перенесены на переднюю плату вместе с буферами, safety-gate и отдельным `TLV1824PWR`.",
             "K331 остаётся на задней плате, а `TVP5150AM1PBS` — на передней рядом с S3: через M1 проходит только один 75-омный CVBS, не 11-линейная LCD_CAM-шина.",
             "FM/SW/AM/LW/Airband, CC1101, два voice-тракта и аудио локальны задней плате; S3 напрямую ведёт i8080-8, camera RX, кнопки, энкодер и USB.",
@@ -1686,6 +1739,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "The rear PCB has no U.FL or removable RF cable: voice and FM/SW use board-local RF paths, AM/LW uses a separate high-impedance AMI path, and Airband uses the powered conversion branch and selector.",
             "The separate vertical `FPV RX · 5.8 GHz` MMCX sits below the evenly pitched five-SMA rear row and above U214; its mating right-angle plug and cable run parallel to the PCB.",
             "All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.",
+            "Each outer face prints a stable board role/revision — `UI PCB · R2-EVT1 · REV A` and `RF/PWR PCB · R2-EVT1 · REV A`; the changing H1-R2.xx work marker is never printed on a PCB.",
             "All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.",
             "K331 remains rear-local while `TVP5150AM1PBS` moves beside S3: M1 carries one 75-ohm CVBS signal, not the 11-line LCD_CAM bus.",
             "FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, camera RX, buttons, encoder and USB.",

@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)
 
-These are the current `H0-R2`/`H1-R2.19` principle diagrams of the finished
+These are the current `H0-R2`/`H1-R2.20` principle diagrams of the finished
 device. They explain ownership, buses, RF locality, power and service access.
 The R2 production ECAD schematic does **not** exist yet: H2 starts only after
 the complete H1 mock-up is accepted.
@@ -47,7 +47,7 @@ anti-shear enclosure datums and independent PCB capture carry mechanical load.
 
 ## Physical implementation of the principle
 
-![Outer faces and direct views after turning the PCBs over](images/h1-r2-four-faces.svg?rev=h1-r2.19-oem-evidence-5)
+![Outer faces and direct views after turning the PCBs over](images/h1-r2-four-faces.svg?rev=h1-r2.20-board-id-6)
 
 [Front PCB inner face](images/h1-r2-inner-ui.svg) ·
 [Rear PCB inner face](images/h1-r2-inner-rf.svg)

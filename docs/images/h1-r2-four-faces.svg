@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1050" height="1500" viewBox="0 0 1050 1500" data-view="four-faces-matched-columns">
 <defs><clipPath id="front-external-content"><rect x="106" y="145" width="328" height="615"/></clipPath><clipPath id="rear-external-content"><rect x="616" y="145" width="328" height="615"/></clipPath></defs>
 <rect width="1050" height="1500" fill="#ffffff"/>
-<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.19 · four matched PCB faces</text>
+<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.20 · four matched PCB faces</text>
 <text x="40" y="70" font-family="sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#526076">Outer face above; the inner face is shown exactly as viewed after physically turning the PCB over.</text>
 <text x="270" y="104" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#1d4ed8">FRONT / UI PCB</text>
 <text x="780" y="104" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#166534">REAR / RF-POWER PCB</text>
@@ -10,7 +10,7 @@
 <g clip-path="url(#front-external-content)" data-panel="front-external"><svg x="45" y="145" width="450" height="615" viewBox="45 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">
 <defs><marker id="ext-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 
-<text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.19 current external layout</text>
+<text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.20 current external layout</text>
 <text x="30.0" y="56.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Current R2 exterior. PCB-face free text is silkscreen; drawing notes and arrows are annotations. H1 remains in progress.</text>
 <text x="80.0" y="85.8" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Front / UI face</text>
 <rect x="80.0" y="150.0" width="277.5" height="555.0" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="1.5" data-face="front-outer" data-board-mm="75x150"/>
@@ -248,7 +248,9 @@
 <text x="850.0" y="699.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Davies 1227-J is the exact encoder knob; only its fit HIL remains.</text>
 <text x="850.0" y="722.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">UP/DOWN/LEFT/RIGHT/OK/BACK/OPT/F1…F8/PTT are serial direct buttons.</text>
 <text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The side C&amp;K JS102011SCQN is the sole RUN/KILL and source-command control.</text>
-<g id="ext-h1-r2-external-delta" data-marker="H1-R2.19" data-state="in-progress">
+<g id="ext-h1-r2-external-delta" data-marker="H1-R2.20" data-state="in-progress">
+<text data-role="board-identification" data-face="front" data-layer="pcb-silkscreen" x="218.8" y="528.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#172033">ESP32-LESHY2 · UI PCB · R2-EVT1 · REV A</text>
+<text data-role="board-identification" data-face="rear" data-layer="pcb-silkscreen" x="603.8" y="664.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#172033">RF/PWR PCB · R2-EVT1 · REV A</text>
 <path d="M140.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ext-arrow)" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
 <text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="140.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">HUB RP</text>
 <text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="140.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
@@ -281,7 +283,7 @@
 <g clip-path="url(#rear-external-content)" data-panel="rear-external"><svg x="555" y="145" width="450" height="615" viewBox="430 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">
 <defs><marker id="ext-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 
-<text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.19 current external layout</text>
+<text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.20 current external layout</text>
 <text x="30.0" y="56.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Current R2 exterior. PCB-face free text is silkscreen; drawing notes and arrows are annotations. H1 remains in progress.</text>
 <text x="80.0" y="85.8" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Front / UI face</text>
 <rect x="80.0" y="150.0" width="277.5" height="555.0" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="1.5" data-face="front-outer" data-board-mm="75x150"/>
@@ -519,7 +521,9 @@
 <text x="850.0" y="699.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Davies 1227-J is the exact encoder knob; only its fit HIL remains.</text>
 <text x="850.0" y="722.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">UP/DOWN/LEFT/RIGHT/OK/BACK/OPT/F1…F8/PTT are serial direct buttons.</text>
 <text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The side C&amp;K JS102011SCQN is the sole RUN/KILL and source-command control.</text>
-<g id="ext-h1-r2-external-delta" data-marker="H1-R2.19" data-state="in-progress">
+<g id="ext-h1-r2-external-delta" data-marker="H1-R2.20" data-state="in-progress">
+<text data-role="board-identification" data-face="front" data-layer="pcb-silkscreen" x="218.8" y="528.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#172033">ESP32-LESHY2 · UI PCB · R2-EVT1 · REV A</text>
+<text data-role="board-identification" data-face="rear" data-layer="pcb-silkscreen" x="603.8" y="664.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#172033">RF/PWR PCB · R2-EVT1 · REV A</text>
 <path d="M140.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ext-arrow)" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
 <text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="140.9" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">HUB RP</text>
 <text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="140.9" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
@@ -553,7 +557,7 @@
 <text x="780" y="790" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#526076">inner · viewed after turning over · no silkscreen</text>
 <svg x="45" y="805" width="450" height="650" viewBox="70 95 440 940" preserveAspectRatio="xMidYMid meet" overflow="hidden">
 
-<text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.19 · UI / radio PCB inner face</text>
+<text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.20 · UI / radio PCB inner face</text>
 <text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.</text>
 <text x="290.0" y="105.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ANTENNA EDGE · five board-local RF paths</text>
 <rect x="80.0" y="165.0" width="420.0" height="840.0" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -706,7 +710,7 @@
 </svg>
 <svg x="555" y="805" width="450" height="650" viewBox="70 95 440 940" preserveAspectRatio="xMidYMid meet" overflow="hidden">
 
-<text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.19 · RF / power PCB inner face</text>
+<text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.20 · RF / power PCB inner face</text>
 <text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.</text>
 <text x="290.0" y="105.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ANTENNA EDGE · five board-local RF paths</text>
 <rect x="80.0" y="165.0" width="420.0" height="840.0" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>

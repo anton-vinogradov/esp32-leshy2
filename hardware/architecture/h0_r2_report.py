@@ -93,7 +93,7 @@ def render_svg(data: dict) -> str:
         '<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6z" fill="#475569"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         '<text x="630" y="38" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · H0-R2 functional architecture</text>',
-        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.19 projection: direct i8080 display, camera RX and radio payload remain local; M1 is fully counted.</text>',
+        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.20 projection: direct i8080 display, camera RX and radio payload remain local; M1 is fully counted.</text>',
         '<rect x="40" y="105" width="540" height="610" rx="18" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>',
         '<rect x="680" y="105" width="540" height="610" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>',
         '<text x="310" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#1d4ed8">FRONT · UI / RADIO PCB · five SMA</text>',
@@ -165,7 +165,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H1-R2.19**: физическая модель пересчитана под i8080-8, локальные острова 5+5 и полную 80-контактную M1; документ SP331RX сузил K331-блокер, но H1 ещё не завершён и не разрешает KiCad routing или заказ R2."
+        current = "Текущий точный маркер — **H1-R2.20**: физическая модель пересчитана под i8080-8, локальные острова 5+5 и полную 80-контактную M1; стабильные role/revision плат отделены от рабочего маркера, но H1 ещё не завершён и не разрешает KiCad routing или заказ R2."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -204,7 +204,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, analog FPV "
             "remains receive-only, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H1-R2.19**: the physical model now covers i8080-8, local 5+5 islands and the complete 80-contact M1; SP331RX evidence narrows the K331 blocker, but H1 remains open and does not authorize R2 KiCad routing or ordering."
+        current = "The exact current marker is **H1-R2.20**: the physical model now covers i8080-8, local 5+5 islands and the complete 80-contact M1; stable board role/revision silk is separated from the work marker, but H1 remains open and does not authorize R2 KiCad routing or ordering."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",

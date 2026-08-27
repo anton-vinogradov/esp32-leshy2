@@ -10,7 +10,7 @@
 
 </div>
 
-> **Current hardware marker: `H1-R2.19`.** The two-PCB physical model is in progress. Ten main SMA ports are split `5 + 5`; the separate vertical rear-face MMCX is `FPV RX · 5.8G`. Official Sinopine SP331RX evidence now controls nominal XY and contact axes for the matching 331RX family, but KiCad and ordering remain blocked until K331 equivalence and the remaining assembly package close H1.
+> **Current hardware marker: `H1-R2.20`.** The two-PCB physical model is in progress. Ten main SMA ports are split `5 + 5`; the separate vertical rear-face MMCX is `FPV RX · 5.8G`. Stable board revision silk is separated from the changing documentation marker, but KiCad and ordering remain blocked until K331 equivalence and the remaining assembly package close H1.
 
 ## What it is
 
@@ -36,12 +36,15 @@ user to accept the non-aggression/authorized-use terms.
 
 ## Physical mock-up
 
-![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.19-oem-evidence-5)
+![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.20-board-id-6)
 
-[Open the legend for all 163 numbered components](docs/images/h1-r2-component-legend.svg?rev=h1-r2.19-oem-evidence-5) ·
-[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.19-oem-evidence-5) ·
+[Open the legend for all 163 numbered components](docs/images/h1-r2-component-legend.svg?rev=h1-r2.20-board-id-6) ·
+[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.20-board-id-6) ·
 [front inner face](docs/images/h1-r2-inner-ui.svg) ·
 [rear inner face](docs/images/h1-r2-inner-rf.svg)
+
+The exterior silkscreen identifies `UI PCB · R2-EVT1 · REV A` and
+`RF/PWR PCB · R2-EVT1 · REV A`; `H1-R2.xx` remains documentation-only.
 
 ## How it is built
 
@@ -86,7 +89,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | Stage | Status | Published result |
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.19`** | [Current placement](docs/h1-r2-physical-layout.md) |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.20`** | [Current placement](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ⏳ Waiting for R2 H1 | [Stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
@@ -114,7 +117,7 @@ Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H1-R2.19 -->
+<!-- current-substep: H1-R2.20 -->
 
 ## Repository
 

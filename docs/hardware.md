@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H1-R2.19`**. The functional architecture is reviewed; the
+> Current marker: **`H1-R2.20`**. The functional architecture is reviewed; the
 > physical design is in progress. Nothing on this page authorizes KiCad routing
 > or an order.
 
@@ -73,9 +73,9 @@ below 0.4 MB/s, so it does not saturate the RP transport.
 
 ## Physical layout
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.19-oem-evidence-5)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.20-board-id-6)
 
-[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.19-oem-evidence-5).
+[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.20-board-id-6).
 
 The ten main antenna ports are split symmetrically:
 
@@ -95,7 +95,7 @@ both mounting holes; Ø12 is only a temporary H5 finger-access check.
 
 ### Component legend
 
-![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.19-oem-evidence-5)
+![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.20-board-id-6)
 
 [Front inner face at full scale](images/h1-r2-inner-ui.svg) ·
 [rear inner face at full scale](images/h1-r2-inner-rf.svg)
@@ -133,7 +133,7 @@ the drawing is its pad span.
 - User silkscreen is printed only on visible outer faces and is not hidden by
   the display, batteries or U214.
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.19-oem-evidence-5)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.20-board-id-6)
 
 ## Power and unattended safety
 

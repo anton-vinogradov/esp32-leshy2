@@ -20,7 +20,7 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.19", self.model["marker"])
+        self.assertEqual("H1-R2.20", self.model["marker"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
         self.assertEqual(36, len(self.audit["opposing_overlaps"]))
@@ -149,6 +149,22 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual([], self.audit["silkscreen"]["errors"])
         self.assertEqual(5, len(self.audit["silkscreen"]["faces"]["front"]))
         self.assertEqual(6, len(self.audit["silkscreen"]["faces"]["rear"]))
+
+    def test_board_identity_is_stable_silkscreen_not_the_work_marker(self):
+        identity = self.model["hardware_identification"]
+        self.assertFalse(identity["documentation_marker_printed"])
+        self.assertEqual("R2", identity["design_generation"])
+        self.assertEqual("EVT1", identity["prototype_stage"])
+        self.assertEqual(2, len(self.audit["silkscreen"]["identity"]["front"]))
+        self.assertEqual(3, len(self.audit["silkscreen"]["identity"]["rear"]))
+        all_text = [
+            row["text"]
+            for face in identity["silkscreen"].values()
+            for row in face
+        ]
+        self.assertIn("ESP32-LESHY2 · UI PCB · R2-EVT1 · REV A", all_text)
+        self.assertIn("RF/PWR PCB · R2-EVT1 · REV A", all_text)
+        self.assertTrue(all(self.model["marker"] not in row for row in all_text))
 
     def test_m1_and_battery_holder_have_independent_mechanical_load_paths(self):
         retention = self.audit["mechanical_retention"]
