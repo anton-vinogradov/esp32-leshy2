@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H1-R2.16`.** H0 is reviewed. H1 is not.
+> **▶ Current hardware boundary: `H1-R2.17`.** H0 is reviewed. H1 is not.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **27 August 2026**.
@@ -24,7 +24,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ▶ [H1-R2.16](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks and a separate vertical rear FPV MMCX |
+| Physical design | ▶ [H1-R2.17](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks and a separate vertical rear FPV MMCX |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map, FPV/MMCX proof and power/filter diagrams are published |
 | Production ECAD | ⏳ R1 evidence retained; R2 schematic waits for H1 |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.0 is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); emulator/dev-board execution must precede H7 fabrication |
@@ -32,9 +32,9 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Current H1 · exact composition
 
-<!-- current-substep: H1-R2.16 -->
+<!-- current-substep: H1-R2.17 -->
 
-**Exact marker: `H1-R2.16`.** This is one physical-design substep, not a closed
+**Exact marker: `H1-R2.17`.** This is one physical-design substep, not a closed
 H1 report.
 
 ### 1. Functional-island placement
@@ -53,7 +53,7 @@ H1 report.
 - ✅ Front order: `N24-0`, `S3-2G4`, `N24-1`, `C5-2G4/5`, `N24-2`.
 - ✅ Rear order: `RX-FM/SW`, `RX-AM/LW`, `CC-SUB`, `VOICE-VHF`, `VOICE-UHF`.
 - ✅ Separate Molex `73415-2063` (`C588480`) vertical SMT MMCX provides
-  `FPV RX · 5.8G` between the rear SMA groups and above U214.
+  `FPV RX · 5.8G` below the evenly pitched five-SMA rear row and above U214.
 - ✅ No main RF trace crosses M1; the MMCX has no through-board tail.
 
 ### 3. Interboard transport
@@ -70,8 +70,9 @@ H1 report.
 
 - ✅ Same-face body collisions: `0`.
 - ✅ Minimum opposing clearance: `1.44 mm`; required: `0.70 mm`.
-- ✅ FPV MMCX body clearance to nearest SMA: `5.72 mm`.
-- ✅ Ø12 MMCX handling clearance: `1.95 mm` to SMA and `0.70 mm` to U214.
+- ✅ FPV MMCX body clearance to nearest SMA: `2.07 mm`.
+- ✅ Controlled right-angle plug: `2.40 mm` to SMA, `4.80 mm` to U214 and no
+  mounting-hole conflict; Ø12 remains a temporary H5 finger-access check.
 - ✅ Four independent USB paths, eight recessed external recovery controls and
   four keyed DBG10 fallbacks remain available.
 - ✅ Public diagrams use one board per inner image. The complete numbered
@@ -91,7 +92,7 @@ H1 report.
 | Phase | Status | Result | Exit criterion |
 |---|---|---|---|
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.16`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.17`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ⏳ Waiting for H1 | Exact R2 symbols, contacts, nets, values, protection and footprints | ERC-clean sheets and machine-readable HW↔FW contract |
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.16",
+  "marker": "H1-R2.17",
   "checked_on": "2026-08-27",
   "purpose": "Repartition complete functional islands for direct 5+5 antenna locality, local nRF concurrency and a one-signal FPV interboard path before any R2 KiCad work.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -29,13 +29,13 @@
     "front_paths": ["N24-0", "S3-2G4", "N24-1", "C5-2G4/5", "N24-2"],
     "rear_paths": ["RX-FM/SW", "RX-AM/LW", "CC-SUB", "VOICE-VHF", "VOICE-UHF"],
     "front_x_centres_mm": [8.1, 22.8, 37.5, 52.2, 66.9],
-    "rear_x_centres_mm": [8.1, 19.0, 29.9, 56.0, 66.9],
-    "fpv_mmcx_axis_world_xy_mm": [42.95, 10.3],
+    "rear_x_centres_mm": [8.1, 22.8, 37.5, 52.2, 66.9],
+    "fpv_mmcx_axis_world_xy_mm": [44.85, 10.3],
     "moved_rf_paths_between_boards": ["N24-0", "N24-1", "N24-2", "RX-FM/SW", "RX-AM/LW"],
     "minimum_installed_body_clearance_mm": 0.7,
     "board_edge_margin_each_side_mm": 3.0,
-    "allowed_handling_overlaps": [],
-    "installation_sequence": "the rear-face FPV MMCX remains independently accessible between the two rear SMA groups and above the U214 rail",
+    "allowed_handling_overlaps": ["CC-SUB", "VOICE-VHF"],
+    "installation_sequence": "five rear SMA ports retain an even pitch; the lower FPV MMCX uses a right-angle plug whose cable exits along -X below the SMA bodies and away from both mounting holes, while the temporary finger-approach envelope is verified ergonomically in H5",
     "reason": "move complete radio/control/evidence islands so every main antenna terminates on its source PCB; no high-speed radio bus and no main RF trace crosses M1"
   },
   "functional_partition": {
@@ -463,12 +463,12 @@
       "kind": "external_body",
       "frame": "rf-outer-face",
       "mpn": "73415-2063",
-      "role": "vertical rear-face 50-ohm MMCX labelled FPV RX 5.8G, centred between the SMA groups and above U214",
-      "world_xy_mm": [40.72, 8.07],
+      "role": "vertical rear-face 50-ohm MMCX labelled FPV RX 5.8G, below the evenly pitched SMA row and above U214",
+      "world_xy_mm": [42.62, 8.07],
       "size_mm": [4.46, 4.46, 5.0],
       "mounting": {
         "connector_style": "straight vertical SMT jack",
-        "mounting_axis_world_xy_mm": [42.95, 10.3],
+        "mounting_axis_world_xy_mm": [44.85, 10.3],
         "body_xy_mm": [4.46, 4.46],
         "height_above_outer_pcb_mm": 5.0,
         "through_board_tail": false,
@@ -477,7 +477,19 @@
         "external_plug_service_keepout_length_mm": 20.0,
         "u214_near_edge_y_mm": 17.0,
         "minimum_u214_clearance_mm": 0.7,
-        "service_keepout_rule": "The connector stands on the rear outer face, between the two rear SMA groups and above the U214 rail. No solder tail enters the interboard gap; H5 proves the received plug, cap insertion and finger access together."
+        "service_keepout_rule": "The connector stands on the rear outer face below the even five-SMA row, between the two central SMA bodies and above the U214 rail. The static right-angle plug and strain relief run along -X below the SMA bodies and away from both mounting holes; the larger 12-mm circle is only a temporary finger-approach zone. No solder tail enters the interboard gap; H5 proves the received TBS plug and finger access.",
+        "controlled_right_angle_plug_reference": {
+          "mpn": "FXP831.09.0100C",
+          "manufacturer": "Taoglas",
+          "role": "controlled maximum geometry fallback for the MMCX male right-angle plug and strain relief; it does not replace the selected TBS antenna",
+          "connector_head_width_max_mm": 3.8,
+          "strain_relief_run_max_mm": 22.0,
+          "strain_relief_width_max_mm": 2.91,
+          "exit_direction": "-X parallel to the rear PCB below the SMA bodies",
+          "datasheet": "https://www.taoglas.com/datasheets/FXP831.09.0100C.pdf",
+          "drawing_page": 17,
+          "checked": "2026-08-27"
+        }
       },
       "direction": "normal to the rear battery face"
     },

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.16",
+  "marker": "H1-R2.17",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "new_fixed_body_count": 47,
@@ -229,8 +229,8 @@
     "drawing_source": "https://www.molex.com/en-us/products/part-detail/734152063",
     "installed_body_world_bbox_mm": {
       "x": [
-        40.72,
-        45.18
+        42.62,
+        47.08
       ],
       "y": [
         8.07,
@@ -242,7 +242,7 @@
       ]
     },
     "mounting_axis_world_xy_mm": [
-      42.95,
+      44.85,
       10.3
     ],
     "through_board_tail": false,
@@ -252,8 +252,8 @@
       "outward_length_mm": 20.0,
       "world_xy_bbox_mm": {
         "x": [
-          36.95,
-          48.95
+          38.85,
+          50.85
         ],
         "y": [
           4.300000000000001,
@@ -264,50 +264,122 @@
     "rear_antenna_connector_clearances": [
       {
         "path": "RX-FM/SW",
-        "clearance_mm": 27.52
+        "clearance_mm": 29.493
       },
       {
         "path": "RX-AM/LW",
-        "clearance_mm": 16.62
+        "clearance_mm": 14.865
       },
       {
         "path": "CC-SUB",
-        "clearance_mm": 5.72
+        "clearance_mm": 2.07
       },
       {
         "path": "VOICE-VHF",
-        "clearance_mm": 5.72
+        "clearance_mm": 2.07
       },
       {
         "path": "VOICE-UHF",
-        "clearance_mm": 16.62
+        "clearance_mm": 14.865
       }
     ],
-    "minimum_rear_antenna_connector_clearance_mm": 5.72,
+    "minimum_rear_antenna_connector_clearance_mm": 2.07,
     "handling_envelope_clearances": [
       {
         "path": "RX-FM/SW",
-        "clearance_mm": 23.75
+        "clearance_mm": 25.941
       },
       {
         "path": "RX-AM/LW",
-        "clearance_mm": 12.85
+        "clearance_mm": 11.487
       },
       {
         "path": "CC-SUB",
-        "clearance_mm": 1.95
+        "clearance_mm": -1.147
       },
       {
         "path": "VOICE-VHF",
-        "clearance_mm": 1.95
+        "clearance_mm": -1.147
       },
       {
         "path": "VOICE-UHF",
-        "clearance_mm": 12.85
+        "clearance_mm": 11.487
       }
     ],
-    "handling_envelope_overlaps": [],
-    "fixed_installation_sequence": "the rear-face FPV MMCX remains independently accessible between the two rear SMA groups and above the U214 rail",
+    "handling_envelope_overlaps": [
+      {
+        "path": "CC-SUB",
+        "clearance_mm": -1.147
+      },
+      {
+        "path": "VOICE-VHF",
+        "clearance_mm": -1.147
+      }
+    ],
+    "handling_envelope_semantics": "temporary finger approach only; not a static installed body",
+    "controlled_right_angle_plug_reference": {
+      "mpn": "FXP831.09.0100C",
+      "manufacturer": "Taoglas",
+      "role": "controlled maximum geometry fallback for the MMCX male right-angle plug and strain relief; it does not replace the selected TBS antenna",
+      "connector_head_width_max_mm": 3.8,
+      "strain_relief_run_max_mm": 22.0,
+      "strain_relief_width_max_mm": 2.91,
+      "exit_direction": "-X parallel to the rear PCB below the SMA bodies",
+      "datasheet": "https://www.taoglas.com/datasheets/FXP831.09.0100C.pdf",
+      "drawing_page": 17,
+      "checked": "2026-08-27"
+    },
+    "right_angle_plug_world_bbox_mm": {
+      "x": [
+        22.85,
+        46.75
+      ],
+      "y": [
+        8.4,
+        12.200000000000001
+      ]
+    },
+    "right_angle_plug_clearances": [
+      {
+        "path": "RX-FM/SW",
+        "clearance_mm": 9.944
+      },
+      {
+        "path": "RX-AM/LW",
+        "clearance_mm": 2.4
+      },
+      {
+        "path": "CC-SUB",
+        "clearance_mm": 2.4
+      },
+      {
+        "path": "VOICE-VHF",
+        "clearance_mm": 2.425
+      },
+      {
+        "path": "VOICE-UHF",
+        "clearance_mm": 15.24
+      }
+    ],
+    "minimum_right_angle_plug_clearance_mm": 2.4,
+    "right_angle_plug_u214_clearance_mm": 4.8,
+    "right_angle_plug_mounting_keepout_clearances": [
+      {
+        "hole_world_xy_mm": [
+          5.0,
+          11.0
+        ],
+        "clearance_mm": 13.85
+      },
+      {
+        "hole_world_xy_mm": [
+          70.0,
+          11.0
+        ],
+        "clearance_mm": 19.25
+      }
+    ],
+    "fixed_installation_sequence": "five rear SMA ports retain an even pitch; the lower FPV MMCX uses a right-angle plug whose cable exits along -X below the SMA bodies and away from both mounting holes, while the temporary finger-approach envelope is verified ergonomically in H5",
     "u214_service_clearance_mm": 0.7,
     "factory_assembly": "Extended SMT; Economic and Standard PCBA",
     "later_hil": [
@@ -615,11 +687,11 @@
       "kind": "external_body",
       "frame": "rf-outer-face",
       "mpn": "73415-2063",
-      "role": "vertical rear-face 50-ohm MMCX labelled FPV RX 5.8G, centred between the SMA groups and above U214",
+      "role": "vertical rear-face 50-ohm MMCX labelled FPV RX 5.8G, below the evenly pitched SMA row and above U214",
       "world_bbox_mm": {
         "x": [
-          40.72,
-          45.18
+          42.62,
+          47.08
         ],
         "y": [
           8.07,

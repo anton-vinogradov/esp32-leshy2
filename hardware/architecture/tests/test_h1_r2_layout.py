@@ -20,7 +20,7 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.16", self.model["marker"])
+        self.assertEqual("H1-R2.17", self.model["marker"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
         self.assertEqual(36, len(self.audit["opposing_overlaps"]))
@@ -91,10 +91,10 @@ class H1R2LayoutTest(unittest.TestCase):
 
     def test_mmcx_uses_manufacturer_body_and_mounting_geometry(self):
         mmcx = next(x for x in self.model["placements"] if x["id"] == "fpv_mmcx")
-        self.assertEqual([40.72, 8.07], mmcx["world_xy_mm"])
+        self.assertEqual([42.62, 8.07], mmcx["world_xy_mm"])
         self.assertEqual([4.46, 4.46, 5.0], mmcx["size_mm"])
         self.assertEqual("straight vertical SMT jack", mmcx["mounting"]["connector_style"])
-        self.assertEqual([42.95, 10.3], mmcx["mounting"]["mounting_axis_world_xy_mm"])
+        self.assertEqual([44.85, 10.3], mmcx["mounting"]["mounting_axis_world_xy_mm"])
         self.assertFalse(mmcx["mounting"]["through_board_tail"])
         self.assertEqual(6.0, mmcx["mounting"]["rated_frequency_ghz"])
         evidence = next(x for x in self.model["factory_evidence"] if x["mpn"] == mmcx["mpn"])
@@ -115,9 +115,31 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertFalse(service["through_board_tail"])
         self.assertEqual(12.0, service["external_service_keepout"]["diameter_mm"])
         self.assertGreaterEqual(service["minimum_rear_antenna_connector_clearance_mm"], 0.7)
-        self.assertEqual([], service["handling_envelope_overlaps"])
-        self.assertAlmostEqual(1.95, min(row["clearance_mm"] for row in service["handling_envelope_clearances"]))
+        self.assertEqual(
+            {"CC-SUB", "VOICE-VHF"},
+            {row["path"] for row in service["handling_envelope_overlaps"]},
+        )
+        self.assertEqual(
+            "temporary finger approach only; not a static installed body",
+            service["handling_envelope_semantics"],
+        )
+        self.assertGreaterEqual(service["minimum_right_angle_plug_clearance_mm"], 0.7)
+        self.assertGreaterEqual(service["right_angle_plug_u214_clearance_mm"], 0.7)
+        self.assertEqual(
+            "FXP831.09.0100C",
+            service["controlled_right_angle_plug_reference"]["mpn"],
+        )
         self.assertAlmostEqual(0.7, service["u214_service_clearance_mm"])
+
+    def test_rear_main_sma_row_is_even_and_fpv_sits_below_it(self):
+        rear = self.model["antenna_bank_optimization"]["rear_x_centres_mm"]
+        self.assertEqual([8.1, 22.8, 37.5, 52.2, 66.9], rear)
+        self.assertEqual(
+            self.model["antenna_bank_optimization"]["front_x_centres_mm"], rear
+        )
+        axis_x, axis_y = self.model["antenna_bank_optimization"]["fpv_mmcx_axis_world_xy_mm"]
+        self.assertAlmostEqual((rear[2] + rear[3]) / 2, axis_x)
+        self.assertGreater(axis_y, 6.0)
 
     def test_generated_artifacts_are_current(self):
         expected = {

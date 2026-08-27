@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-marker="H1-R2.16" data-review-status="in-progress">
+<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-marker="H1-R2.17" data-review-status="in-progress">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.16 current external layout</text>
+<text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.17 current external layout</text>
 <text x="30.0" y="56.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Current R2 exterior. PCB-face free text is silkscreen; drawing notes and arrows are annotations. H1 remains in progress.</text>
 <text x="80.0" y="85.8" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Front / UI face</text>
 <rect x="80.0" y="150.0" width="277.5" height="555.0" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="1.5" data-face="front-outer" data-board-mm="75x150"/>
@@ -37,21 +37,21 @@
 <polygon points="507.8,157.4 495.0,164.8 482.2,157.4 482.2,142.6 495.0,135.2 507.8,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M495.0 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="495.0" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">FM/SW/AIR RX</text>
-<rect x="516.4" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="523.6" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="548.1,157.4 535.3,164.8 522.5,157.4 522.5,142.6 535.3,135.2 548.1,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M535.3 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="535.3" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">AM/LW RX</text>
-<rect x="556.8" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="563.9" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="588.4,157.4 575.6,164.8 562.8,157.4 562.8,142.6 575.6,135.2 588.4,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M575.6 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="575.6" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">SUB-G RX/TX</text>
-<rect x="653.3" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="660.5" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="685.0,157.4 672.2,164.8 659.4,157.4 659.4,142.6 672.2,135.2 685.0,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M672.2 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="672.2" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">VHF RX/TX</text>
+<rect x="530.5" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
+<rect x="537.6" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<polygon points="562.2,157.4 549.4,164.8 536.5,157.4 536.5,142.6 549.4,135.2 562.2,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
+<path d="M549.4 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="549.4" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">AM/LW RX</text>
+<rect x="584.9" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
+<rect x="592.0" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<polygon points="616.6,157.4 603.8,164.8 590.9,157.4 590.9,142.6 603.8,135.2 616.6,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
+<path d="M603.8 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="603.8" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">SUB-G RX/TX</text>
+<rect x="639.3" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
+<rect x="646.4" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<polygon points="671.0,157.4 658.1,164.8 645.3,157.4 645.3,142.6 658.1,135.2 671.0,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
+<path d="M658.1 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="658.1" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">VHF RX/TX</text>
 <rect x="693.7" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
 <rect x="700.8" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="725.3,157.4 712.5,164.8 699.7,157.4 699.7,142.6 712.5,135.2 725.3,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
@@ -242,7 +242,7 @@
 <text x="850.0" y="699.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Davies 1227-J is the exact encoder knob; only its fit HIL remains.</text>
 <text x="850.0" y="722.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">UP/DOWN/LEFT/RIGHT/OK/BACK/OPT/F1…F8/PTT are serial direct buttons.</text>
 <text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The side C&amp;K JS102011SCQN is the sole RUN/KILL and source-command control.</text>
-<g id="h1-r2-external-delta" data-marker="H1-R2.16" data-state="in-progress">
+<g id="h1-r2-external-delta" data-marker="H1-R2.17" data-state="in-progress">
 <rect x="124.4" y="695.4" width="33.1" height="9.6" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A"/>
 <path d="M140.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="140.9" y="690.9" font-family="sans-serif" font-size="5.3" font-weight="bold" text-anchor="middle" fill="#1d4ed8">HUB SERVICE USB</text>
@@ -256,10 +256,10 @@
 <path d="M353.1 660.0 V670.4" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_boot_button" data-part="side-actuator" data-recessed="true"/>
 <path d="M383.4 665.2 L353.1 665.2" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="331.6" y="665.2" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB BOOT</text>
-<circle cx="623.9" cy="188.1" r="22.2" fill="none" stroke="#ea580c" stroke-width="1.4" stroke-dasharray="5 3" data-service-diameter-mm="12"/>
-<rect x="615.7" y="179.9" width="16.5" height="16.5" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6" data-instance="fpv_mmcx" data-mpn="73415-2063"/>
-<circle cx="623.9" cy="188.1" r="3.2" fill="#fff" stroke="#0f766e" stroke-width="1.5"/>
-<path d="M623.9 188.1 H657.4" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="660.4" y="185.9" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">FPV RX 5.8G</text>
+<rect x="622.7" y="179.9" width="16.5" height="16.5" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6" data-instance="fpv_mmcx" data-mpn="73415-2063"/>
+<path d="M630.9 188.1 H549.5" stroke="#0f766e" stroke-width="10.8" stroke-linecap="round" data-part="controlled-right-angle-plug-envelope" data-reference-mpn="FXP831.09.0100C"/>
+<circle cx="630.9" cy="188.1" r="7.0" fill="#fff" stroke="#0f766e" stroke-width="1.5"/>
+<path d="M616.1 188.1 H593.9" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="630.9" y="207.7" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">FPV RX 5.8G</text>
 </g>
 </svg>

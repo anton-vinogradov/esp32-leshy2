@@ -1,4 +1,4 @@
-# H1-R2.16 · finished-device placement
+# H1-R2.17 · finished-device placement
 
 Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, not authorization to start KiCad: the controlled K331 production package remains the sole open input.
 
@@ -19,7 +19,7 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 ![Rear PCB inner face](images/h1-r2-inner-rf.svg)
 
 - Ten main SMA ports are split symmetrically `5 + 5`; every radio path remains on the PCB that carries its connector.
-- The separate vertical `FPV RX · 5.8 GHz` MMCX sits on the rear face between the SMA groups and above U214.
+- The separate vertical `FPV RX · 5.8 GHz` MMCX sits below the evenly pitched five-SMA rear row and above U214; its mating right-angle plug and cable run parallel to the PCB.
 - All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.
 - All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.
 - K331 remains rear-local while `TVP5150AM1PBS` moves beside S3: M1 carries one 75-ohm CVBS signal, not the 11-line LCD_CAM bus.
@@ -33,7 +33,7 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 
 - Same-face body collisions: `0`.
 - Minimum opposing Z clearance: `1.44 mm` against `0.70 mm` required.
-- FPV MMCX: `5.72 mm` to the nearest SMA; its Ø12 handling envelope leaves `0.70 mm` to U214.
+- FPV MMCX: the jack body leaves `2.07 mm` to the nearest SMA; the controlled right-angle plug leaves `2.40 mm` to SMA and `4.80 mm` to U214. Ø12 is only a temporary finger-approach zone and remains an H5 ergonomic check.
 - GPIO: front RP `45/48`, rear RP `45/48`; each retains 3 free lines. K331 RSSI is officially marked NC.
 - M1: 9 obsolete signals are released, 1 contact carries CVBS and 8 signal contacts remain spare.
 
@@ -61,4 +61,4 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 
 - obtain one AKK-controlled production package with maximum XYZ dimensions, pad pitch/land pattern and packaging/soldering/reflow evidence before replacing the K331 reserve with a fixed body and submitting the Consigned Parts application
 
-> Exact current marker: **H1-R2.16**. H1 remains in progress.
+> Exact current marker: **H1-R2.17**. H1 remains in progress.

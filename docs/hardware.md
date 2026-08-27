@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H1-R2.16`**. The functional architecture is reviewed; the
+> Current marker: **`H1-R2.17`**. The functional architecture is reviewed; the
 > physical design is in progress. Nothing on this page authorizes KiCad routing
 > or an order.
 
@@ -84,9 +84,10 @@ The ten main antenna ports are split symmetrically:
 | `nRF3 · 2.4G` | `UHF RX/TX` |
 
 The separate Molex `73415-2063` (`C588480`) vertical SMT MMCX is labelled
-`FPV RX · 5.8G` on the rear face between the SMA groups and above U214. It has
-no interboard tail. The generated audit reports 5.72 mm body clearance to the
-nearest SMA, 1.95 mm handling clearance and 0.70 mm to the installed U214 zone.
+`FPV RX · 5.8G` below the evenly pitched five-SMA rear row and above U214. It
+has no interboard tail. Its body leaves 2.07 mm to SMA. The controlled
+right-angle plug reference leaves 2.40 mm to SMA, 4.80 mm to U214 and clears
+both mounting holes; Ø12 is only a temporary H5 finger-access check.
 
 ### Front inner face
 

@@ -1,4 +1,4 @@
-# H1-R2.16 · analog-FPV receive path
+# H1-R2.17 · analog-FPV receive path
 
 [Home](../README.md) · [Русский](h1-r2-fpv.ru.md)
 
@@ -39,4 +39,4 @@ The manufacturer lists K331 in stock at $29.99. JLCPCB confirmed that it is unav
 - **H3/H6/H8:** prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality before production release
 - **H5/H8:** qualify FXP831.09.0100C on the assembled enclosure and secure available stock before relying on its current 16-week backorder route
 
-> Exact current marker: **H1-R2.16**. H1 remains in progress.
+> Exact current marker: **H1-R2.17**. H1 remains in progress.

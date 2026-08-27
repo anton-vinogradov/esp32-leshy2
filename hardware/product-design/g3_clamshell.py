@@ -65,6 +65,9 @@ U214_RETENTION_X = (
     U214_X + (U214_W + U214_RETENTION_PITCH) / 2,
 )
 U214_RETENTION_Y = U214_Y + U214_H / 2
+PACK_HOLDER_Y = 42.0
+PACK_HOLDER_H = 86.0
+PACK_CELL_Y = PACK_HOLDER_Y + 10.0
 
 # Exact GCT RFPC-SMA31/SMA32 1.6-mm edge-launch family. The 10.2-mm
 # plan width includes the nut envelope; the 6-mm board-side depth comes from
@@ -1200,7 +1203,7 @@ def validate_external_silkscreen(svg: str, devices: dict, instances: dict) -> li
         return origin[0] + x * scale, origin[1] + y * scale, w * scale, h * scale
 
     display = Placement("display", 10.25, 11.0, "display")
-    holder = Placement("pack_holder", 17.6, 42.0, "holder", 90)
+    holder = Placement("pack_holder", 17.6, PACK_HOLDER_Y, "holder", 90)
     knob = REAR_SELECTED_ACTUATORS[0]
     visible = {
         "front": [
@@ -1954,9 +1957,9 @@ def validate_assembly_coordinate_model(
     zones = model.get("longitudinal_zones", {})
     u214_y = list(map(float, zones.get("u214_cap_y_mm", [])))
     battery_y = list(map(float, zones.get("battery_holder_y_mm", [])))
-    if u214_y != [U214_Y, U214_Y + U214_H] or battery_y != [42.0, 128.0]:
+    if u214_y != [U214_Y, U214_Y + U214_H] or battery_y != [PACK_HOLDER_Y, PACK_HOLDER_Y + PACK_HOLDER_H]:
         errors.append("coordinate-model: U214 or battery Y zone drifted")
-    elif u214_y[1] + 1.0 > battery_y[0]:
+    elif u214_y[1] + U214_CLEARANCE > battery_y[0]:
         errors.append("coordinate-model: U214 and battery longitudinal zones overlap")
 
     envelopes = model.get("accessory_envelopes", {})
@@ -2193,7 +2196,7 @@ def validate() -> list[str]:
     if direct_mechanical.get("nominal_height_mm") != 4.3:
         errors.append("B3S-1100P nominal direct-press height must remain 4.3 mm")
     display = Placement("display", 10.25, 11.0, "display")
-    holder = Placement("pack_holder", 17.6, 42.0, "battery holder", 90)
+    holder = Placement("pack_holder", 17.6, PACK_HOLDER_Y, "battery holder", 90)
     errors += validate_items("front-display", (display,), devices, instances)
     errors += validate_items("rear-exact", (holder,), devices, instances)
     ui_instances = {item.instance for item in UI_INNER}
@@ -2996,7 +2999,7 @@ def render_external(devices, instances):
         out.append(f'<path d="M{sx(front,x):.1f} {sy(front,150):.1f} L{sx(front,x):.1f} {sy(front,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
         out.append(silk_text(sx(front,x), sy(front,149), label, 4.2, "bold", "middle", "#1d4ed8"))
 
-    holder = Placement("pack_holder", 17.6, 42.0, "holder", 90)
+    holder = Placement("pack_holder", 17.6, PACK_HOLDER_Y, "holder", 90)
     hw, hh = placement_size(holder, devices, instances)
     out.append(rect(rear, holder.x, holder.y, hw, hh, "#dcfce7", "#16a34a", rx=10))
     out.append(text(sx(rear,37.5), sy(rear,126), "Keystone 1048P · 86×39.8 mm", 6.5, "bold", "middle", "#166534"))
@@ -3172,7 +3175,7 @@ def render_service_access(devices, instances):
     # unrelated controls and RF parts so each recovery interface is legible.
     out.append(rect(front, 10.25, 11.0, 54.5, 83.0, "#eff6ff", "#93c5fd", rx=5))
     out.append(text(sx(front, 37.5), sy(front, 53.0), "DISPLAY", 11, "bold", "middle", "#60a5fa"))
-    out.append(rect(rear, 17.6, 42.0, 39.8, 86.0, "#ecfdf3", "#86efac", rx=10))
+    out.append(rect(rear, 17.6, PACK_HOLDER_Y, 39.8, PACK_HOLDER_H, "#ecfdf3", "#86efac", rx=10))
     out.append(text(sx(rear, 37.5), sy(rear, 85.0), "2× 18650", 11, "bold", "middle", "#4ade80"))
 
     def side_control(origin, instance, side, silk):
@@ -3819,7 +3822,7 @@ def render_rear_face(devices, instances):
     cap_mpn = devices[instances["u214"]]["mpn"]
     socket_mpn = devices[instances["u214_connector"]]["mpn"]
     holder_mpn = devices[instances["pack_holder"]]["mpn"]
-    holder = Placement("pack_holder", 17.6, 42.0, "battery holder", 90)
+    holder = Placement("pack_holder", 17.6, PACK_HOLDER_Y, "battery holder", 90)
     holder_w, holder_h = placement_size(holder, devices, instances)
 
     out = [
@@ -3857,7 +3860,7 @@ def render_rear_face(devices, instances):
     # The rail is part of the base; the Cap is the larger removable orange
     # envelope. The connector and two retention points are below the Cap.
     out += [
-        '<g id="u214-zone" data-plan-y-mm="17..41" data-overhang-mm="4.5" data-retention-pitch-mm="56">',
+        f'<g id="u214-zone" data-plan-y-mm="{U214_Y:.1f}..{U214_Y + U214_H:.1f}" data-overhang-mm="4.5" data-retention-pitch-mm="56">',
         r(0, U214_Y, BOARD_W, U214_H, "#e0f2fe", "#0284c7", "5 3", 4, ' data-part="raised-host-rail"'),
         r(U214_X, U214_Y, U214_W, U214_H, "#ffedd5", "#ea580c", "", 6, ' fill-opacity="0.72" data-part="installed-u214"'),
         r(U214_CONNECTOR_X, U214_CONNECTOR_Y, U214_CONNECTOR_W, U214_CONNECTOR_D, "#bae6fd", "#0369a1", "4 2", 2, ' data-part="vertical-host-socket"'),
@@ -3868,23 +3871,23 @@ def render_rear_face(devices, instances):
             'fill="#ffffff" stroke="#0369a1" stroke-width="1.5" data-part="u214-retention"/>'
         )
     out += [
-        t(x(37.5), y(21.5), "removable U214 Cap · 84×24 mm", 11, "bold", "middle", "#9a3412"),
-        t(x(37.5), y(26.0), "raised 75-mm rail · vertical socket beneath", 8.5, "bold", "middle", "#075985"),
-        t(x(37.5), y(34.5), "insert ⊗ / remove ⊙", 8.5, "bold", "middle", "#075985"),
+        t(x(37.5), y(U214_Y + 4.5), "removable U214 Cap · 84×24 mm", 11, "bold", "middle", "#9a3412"),
+        t(x(37.5), y(U214_Y + 9.0), "raised 75-mm rail · vertical socket beneath", 8.5, "bold", "middle", "#075985"),
+        t(x(37.5), y(U214_Y + 17.5), "insert ⊗ / remove ⊙", 8.5, "bold", "middle", "#075985"),
         '</g>',
     ]
 
-    # Battery holder begins one millimetre after the Cap envelope. It never
+    # Battery holder begins 0.9 mm after the Cap envelope. It never
     # shares plan area with the Cap or its rail.
     out += [
-        '<g id="battery-zone" data-plan-y-mm="42..128" data-gap-from-u214-mm="1">',
+        f'<g id="battery-zone" data-plan-y-mm="{PACK_HOLDER_Y:.1f}..{PACK_HOLDER_Y + PACK_HOLDER_H:.1f}" data-gap-from-u214-mm="{PACK_HOLDER_Y - U214_Y - U214_H:.1f}">',
         r(holder.x, holder.y, holder_w, holder_h, "#dcfce7", "#16a34a", "", 12, ' data-part="battery-holder"'),
     ]
     for cell_x in (28.0, 47.0):
-        out.append(r(cell_x-9.3, 52.0, 18.6, 65.0, "#ecfdf3", "#22c55e", "", 20, ' data-part="18650-cell"'))
-        out.append(t(x(cell_x), y(86), "18650", 10, "bold", "middle", "#166534"))
+        out.append(r(cell_x-9.3, PACK_CELL_Y, 18.6, 65.0, "#ecfdf3", "#22c55e", "", 20, ' data-part="18650-cell"'))
+        out.append(t(x(cell_x), y(PACK_CELL_Y + 34.0), "18650", 10, "bold", "middle", "#166534"))
     out += [
-        t(x(37.5), y(124.0), "Keystone 1048P · 39.8×86 mm plan", 9, "bold", "middle", "#166534"),
+        t(x(37.5), y(PACK_HOLDER_Y + 82.0), "Keystone 1048P · 39.8×86 mm plan", 9, "bold", "middle", "#166534"),
         '</g>',
     ]
 
@@ -3921,15 +3924,15 @@ def render_rear_face(devices, instances):
     out += h_dim(BOARD_W, U214_X+U214_W, y(U214_Y)-10, "4.5")
     out += h_dim(U214_RETENTION_X[0], U214_RETENTION_X[1], 802, "retention · 56 mm")
     out += v_dim(U214_Y, U214_Y+U214_H, x(U214_X)-30, "24 mm")
-    out += v_dim(42.0, 128.0, x(BOARD_W)+52, "86 mm holder", rotate_label=True)
+    out += v_dim(PACK_HOLDER_Y, PACK_HOLDER_Y + PACK_HOLDER_H, x(BOARD_W)+52, "86 mm holder", rotate_label=True)
 
     note_x = 560.0
     out += [
         t(note_x, 112, "Fit result", 17, "bold"),
-        t(note_x, 143, "✓ ten antenna bodies end at Y=6 mm; the Cap starts at Y=17 mm", 12, "bold", colour="#166534"),
-        t(note_x, 170, "✓ U214 occupies Y=17…41 mm", 12, "bold", colour="#166534"),
-        t(note_x, 197, "✓ battery holder occupies Y=42…128 mm", 12, "bold", colour="#166534"),
-        t(note_x, 224, "✓ the two envelopes have a 1.0-mm plan gap", 12, "bold", colour="#166534"),
+        t(note_x, 143, f"✓ ten antenna bodies end at Y=6 mm; the Cap starts at Y={U214_Y:.1f} mm", 12, "bold", colour="#166534"),
+        t(note_x, 170, f"✓ U214 occupies Y={U214_Y:.1f}…{U214_Y + U214_H:.1f} mm", 12, "bold", colour="#166534"),
+        t(note_x, 197, f"✓ battery holder occupies Y={PACK_HOLDER_Y:.1f}…{PACK_HOLDER_Y + PACK_HOLDER_H:.1f} mm", 12, "bold", colour="#166534"),
+        t(note_x, 224, f"✓ the two envelopes have a {PACK_HOLDER_Y - U214_Y - U214_H:.1f}-mm plan gap", 12, "bold", colour="#166534"),
         t(note_x, 251, "✓ 84-mm Cap overhang is symmetric: 4.5 mm per side", 12, "bold", colour="#166534"),
         t(note_x, 278, "✓ 56-mm retention pitch remains inside the 75-mm base", 12, "bold", colour="#166534"),
         t(note_x, 305, "✓ direct buttons and exact knob clear the battery and U214", 12, "bold", colour="#166534"),
@@ -4008,9 +4011,9 @@ def _render_sandwich_legacy(devices, instances):
     u214_h = U214_H * plan_scale
     connector_y = top + U214_CONNECTOR_Y * plan_scale
     connector_h = U214_CONNECTOR_D * plan_scale
-    holder_y = top + 42.0 * plan_scale
-    holder_h = 86.0 * plan_scale
-    cells_y = top + 52.0 * plan_scale
+    holder_y = top + PACK_HOLDER_Y * plan_scale
+    holder_h = PACK_HOLDER_H * plan_scale
+    cells_y = top + PACK_CELL_Y * plan_scale
     cells_h = 65.0 * plan_scale
 
     out = [
@@ -4026,7 +4029,7 @@ def _render_sandwich_legacy(devices, instances):
         r(x_ui, top, pcb_z, height, "#dcfce7", "#16a34a", rx=1),
         r(x_gap, top, gap_z, height, "#f8fafc", "#94a3b8", "5 4", 2),
         r(x_rf, top, pcb_z, height, "#ffedd5", "#ea580c", rx=1),
-        '<g id="battery-zone" data-plan-y-mm="42..128">',
+        f'<g id="battery-zone" data-plan-y-mm="{PACK_HOLDER_Y:.1f}..{PACK_HOLDER_Y + PACK_HOLDER_H:.1f}">',
         r(x_holder, holder_y, holder_installed_z, holder_h, "#f0fdf4", "#16a34a", rx=18),
         r(x_cells, cells_y, cell_z, cells_h, "#dcfce7", "#22c55e", rx=18),
         '</g>',
@@ -4053,7 +4056,7 @@ def _render_sandwich_legacy(devices, instances):
             2,
         ),
         '</g>',
-        '<g id="u214-zone" data-plan-y-mm="17..41">',
+        f'<g id="u214-zone" data-plan-y-mm="{U214_Y:.1f}..{U214_Y + U214_H:.1f}">',
         r(x_rear_outer, u214_y, u214_z, u214_h, "#ffedd5", "#ea580c", rx=5),
         r(x_rear_outer, connector_y, u214_connector_z, connector_h, "#e0f2fe", "#0369a1", rx=2),
         '</g>',
@@ -4218,7 +4221,7 @@ def render_sandwich(devices, instances):
                 r(px(U214_CONNECTOR_X), pz(base_rear_z), U214_CONNECTOR_W*x_scale, depth("u214_connector")*z_scale, "#bae6fd", "#0369a1", "4 2", 2, ' data-instance="u214-connector"'),
                 t(px(37.5), pz(base_rear_z+4.7), "Samtec HLE-107-02-G-DV-PE-LC · pass-through host socket", 7.2, "bold", "middle", "#075985"),
                 t(px(37.5), pz(base_rear_z+12.4), "M5Stack U214 worst-case · 84 × 24 × 15.287 mm", 9.2, "bold", "middle", "#9a3412"),
-                t(px(37.5), pz(cap_rear_z)+24, "No battery appears: its Y=42…128-mm zone does not cross A–A.", 9.3, "bold", "middle", "#166534"),
+                t(px(37.5), pz(cap_rear_z)+24, f"No battery appears: its Y={PACK_HOLDER_Y:.1f}…{PACK_HOLDER_Y + PACK_HOLDER_H:.1f}-mm zone does not cross A–A.", 9.3, "bold", "middle", "#166534"),
                 *service_motion(px(72.0), pz(base_rear_z)+8, pz(cap_rear_z)-8, "CAP"),
                 '</g>',
             ]
@@ -4233,7 +4236,7 @@ def render_sandwich(devices, instances):
                 r(px(18.7), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-left"'),
                 r(px(37.7), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-right"'),
                 t(px(37.5), pz(base_rear_z+10.8), "Keystone Electronics 1048P + 2× 18650", 9.2, "bold", "middle", "#166534"),
-                t(px(37.5), pz(battery_rear_z)+24, "No installed Cap appears: its Y=17…41-mm zone does not cross B–B.", 9.3, "bold", "middle", "#9a3412"),
+                t(px(37.5), pz(battery_rear_z)+24, f"No installed Cap appears: its Y={U214_Y:.1f}…{U214_Y + U214_H:.1f}-mm zone does not cross B–B.", 9.3, "bold", "middle", "#9a3412"),
                 *service_motion(px(10.0), pz(base_rear_z)+8, pz(battery_rear_z)-8, "CELLS"),
                 '</g>',
             ]
@@ -4368,8 +4371,8 @@ def render_top_edge(devices, instances):
         t(920, 350, "Display/front-bank and installed-Cap/battery overlaps are Y-collapse artifacts.", 11),
         t(920, 378, "Use the adjacent external views for their real longitudinal positions.", 11),
         t(920, 420, "Y-collapsed rear envelopes", 15, "bold"),
-        t(920, 450, "orange dashed — U214 · 84 mm · Y=17…41", 10, colour="#9a3412"),
-        t(920, 476, "green dashed — 1048P + cells · 39.8 mm · Y=42…128", 10, colour="#166534"),
+        t(920, 450, f"orange dashed — U214 · 84 mm · Y={U214_Y:.1f}…{U214_Y + U214_H:.1f}", 10, colour="#9a3412"),
+        t(920, 476, f"green dashed — 1048P + cells · 39.8 mm · Y={PACK_HOLDER_Y:.1f}…{PACK_HOLDER_Y + PACK_HOLDER_H:.1f}", 10, colour="#166534"),
         t(920, 516, "Selected Z envelopes", 15, "bold"),
         t(920, 546, f"{mpn('u214')} · {depth('u214'):.3f} mm", 10),
         t(920, 570, f"{mpn('pack_holder')} · {holder_depth:.1f} mm installed", 10),
@@ -5231,7 +5234,7 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
             },
             "battery_holder": {
                 "mpn": devices[instances["pack_holder"]]["mpn"],
-                "position_mm": [17.6, 42.0],
+                "position_mm": [17.6, PACK_HOLDER_Y],
                 "orientation_deg": 90,
                 "cells": ["pack_cell0", "pack_cell1"],
             },

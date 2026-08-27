@@ -102,17 +102,40 @@ def mmcx_service_audit(model: dict, base: dict, placed: list[dict]) -> dict:
     }
     installed_connector_clearances = []
     handling_envelope_clearances = []
+    physical_plug_clearances = []
+    mmcx_body_box = {"x": [x, x + width], "y": [y, y + depth]}
+    plug = mount["controlled_right_angle_plug_reference"]
+    plug_half_width = plug["connector_head_width_max_mm"] / 2
+    physical_plug_box = {
+        "x": [axis_x - plug["strain_relief_run_max_mm"], axis_x + plug_half_width],
+        "y": [axis_y - plug_half_width, axis_y + plug_half_width],
+    }
+
+    def rectangle_distance(a: dict, b: dict) -> float:
+        dx = max(a["x"][0] - b["x"][1], b["x"][0] - a["x"][1], 0.0)
+        dy = max(a["y"][0] - b["y"][1], b["y"][0] - a["y"][1], 0.0)
+        return math.hypot(dx, dy)
+
+    def point_to_rectangle_distance(px: float, py: float, box: dict) -> float:
+        dx = max(box["x"][0] - px, px - box["x"][1], 0.0)
+        dy = max(box["y"][0] - py, py - box["y"][1], 0.0)
+        return math.hypot(dx, dy)
+
     for centre, path in zip(
         model["antenna_bank_optimization"]["rear_x_centres_mm"],
         model["antenna_bank_optimization"]["rear_paths"],
     ):
-        centre_distance = abs(axis_x - centre)
-        body_clearance = centre_distance - width / 2 - 10.2 / 2
-        handling_clearance = centre_distance - service_radius - 10.2 / 2
+        sma_box = {"x": [centre - 10.2 / 2, centre + 10.2 / 2], "y": [0.0, 6.0]}
+        body_clearance = rectangle_distance(mmcx_body_box, sma_box)
+        handling_clearance = point_to_rectangle_distance(axis_x, axis_y, sma_box) - service_radius
+        physical_plug_clearance = rectangle_distance(physical_plug_box, sma_box)
         installed_connector_clearances.append({"path": path, "clearance_mm": round(body_clearance, 3)})
         handling_envelope_clearances.append({"path": path, "clearance_mm": round(handling_clearance, 3)})
+        physical_plug_clearances.append({"path": path, "clearance_mm": round(physical_plug_clearance, 3)})
         if body_clearance + 1e-6 < model["stack"]["minimum_opposing_clearance_mm"]:
             errors.append(f"MMCX installed body leaves only {body_clearance:.3f} mm to rear antenna {path}")
+        if physical_plug_clearance + 1e-6 < model["stack"]["minimum_opposing_clearance_mm"]:
+            errors.append(f"MMCX right-angle plug leaves only {physical_plug_clearance:.3f} mm to rear antenna {path}")
     handling_overlaps = [row for row in handling_envelope_clearances if row["clearance_mm"] < 0]
     actual_handling_overlaps = {row["path"] for row in handling_overlaps}
     expected_handling_overlaps = set(model["antenna_bank_optimization"]["allowed_handling_overlaps"])
@@ -125,6 +148,23 @@ def mmcx_service_audit(model: dict, base: dict, placed: list[dict]) -> dict:
     u214_clearance = mount["u214_near_edge_y_mm"] - service_keepout["y"][1]
     if u214_clearance + 1e-6 < mount["minimum_u214_clearance_mm"]:
         errors.append(f"MMCX service envelope leaves only {u214_clearance:.3f} mm to U214")
+    physical_plug_u214_clearance = mount["u214_near_edge_y_mm"] - physical_plug_box["y"][1]
+    if physical_plug_u214_clearance + 1e-6 < mount["minimum_u214_clearance_mm"]:
+        errors.append(
+            f"MMCX right-angle plug leaves only {physical_plug_u214_clearance:.3f} mm to U214"
+        )
+    if physical_plug_box["x"][0] < 0 or physical_plug_box["x"][1] > board_w:
+        errors.append("MMCX right-angle plug and strain relief leave the rear PCB plan")
+    mounting_keepout_clearances = []
+    for hole_x, hole_y in ((5.0, 11.0), (70.0, 11.0)):
+        clearance = point_to_rectangle_distance(hole_x, hole_y, physical_plug_box) - 4.0
+        mounting_keepout_clearances.append(
+            {"hole_world_xy_mm": [hole_x, hole_y], "clearance_mm": round(clearance, 3)}
+        )
+        if clearance + 1e-6 < model["stack"]["minimum_opposing_clearance_mm"]:
+            errors.append(
+                f"MMCX right-angle plug leaves only {clearance:.3f} mm to mounting keep-out at {(hole_x, hole_y)}"
+            )
     return {
         "status": "pass" if not errors else "fail",
         "mpn": mmcx["mpn"],
@@ -146,6 +186,13 @@ def mmcx_service_audit(model: dict, base: dict, placed: list[dict]) -> dict:
         "minimum_rear_antenna_connector_clearance_mm": min(row["clearance_mm"] for row in installed_connector_clearances),
         "handling_envelope_clearances": handling_envelope_clearances,
         "handling_envelope_overlaps": handling_overlaps,
+        "handling_envelope_semantics": "temporary finger approach only; not a static installed body",
+        "controlled_right_angle_plug_reference": plug,
+        "right_angle_plug_world_bbox_mm": physical_plug_box,
+        "right_angle_plug_clearances": physical_plug_clearances,
+        "minimum_right_angle_plug_clearance_mm": min(row["clearance_mm"] for row in physical_plug_clearances),
+        "right_angle_plug_u214_clearance_mm": round(physical_plug_u214_clearance, 3),
+        "right_angle_plug_mounting_keepout_clearances": mounting_keepout_clearances,
         "fixed_installation_sequence": model["antenna_bank_optimization"]["installation_sequence"],
         "u214_service_clearance_mm": round(u214_clearance, 3),
         "factory_assembly": "Extended SMT; Economic and Standard PCBA",
@@ -473,14 +520,15 @@ def render_external_svg(model: dict) -> str:
     mmcx = next(x for x in model["placements"] if x["id"] == "fpv_mmcx")
     axis_x, axis_y = mmcx["mounting"]["mounting_axis_world_xy_mm"]
     body = mmcx["size_mm"][0]
+    plug = mmcx["mounting"]["controlled_right_angle_plug_reference"]
     fpv_x, fpv_y = mmcx["world_xy_mm"]
     additions.extend(
         [
-            f'<circle cx="{px(rear,axis_x):.1f}" cy="{py(rear,axis_y):.1f}" r="{6*scale:.1f}" fill="none" stroke="#ea580c" stroke-width="1.4" stroke-dasharray="5 3" data-service-diameter-mm="12"/>',
             f'<rect x="{px(rear,fpv_x):.1f}" y="{py(rear,fpv_y):.1f}" width="{body*scale:.1f}" height="{body*scale:.1f}" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6" data-instance="fpv_mmcx" data-mpn="73415-2063"/>',
-            f'<circle cx="{px(rear,axis_x):.1f}" cy="{py(rear,axis_y):.1f}" r="3.2" fill="#fff" stroke="#0f766e" stroke-width="1.5"/>',
-            f'<path d="M{px(rear,axis_x):.1f} {py(rear,axis_y):.1f} H{px(rear,52):.1f}" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arrow)"/>',
-            label(px(rear,52.8), py(rear,axis_y-0.6), "FPV RX 5.8G", "start", 5.2),
+            f'<path d="M{px(rear,axis_x):.1f} {py(rear,axis_y):.1f} H{px(rear,axis_x - plug["strain_relief_run_max_mm"]):.1f}" stroke="#0f766e" stroke-width="{plug["strain_relief_width_max_mm"]*scale:.1f}" stroke-linecap="round" data-part="controlled-right-angle-plug-envelope" data-reference-mpn="{html.escape(plug["mpn"])}"/>',
+            f'<circle cx="{px(rear,axis_x):.1f}" cy="{py(rear,axis_y):.1f}" r="{plug["connector_head_width_max_mm"]*scale/2:.1f}" fill="#fff" stroke="#0f766e" stroke-width="1.5"/>',
+            f'<path d="M{px(rear,axis_x - 4):.1f} {py(rear,axis_y):.1f} H{px(rear,axis_x - 10):.1f}" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arrow)"/>',
+            label(px(rear,axis_x), py(rear,15.6), "FPV RX 5.8G", "middle", 5.2),
             '</g>',
         ]
     )
@@ -1020,6 +1068,7 @@ def render_mmcx_service_svg(model: dict, result: dict) -> str:
     axis_x, axis_y = mount["mounting_axis_world_xy_mm"]
     body_x, body_y = mmcx["world_xy_mm"]
     body_w, body_d, body_h = mmcx["size_mm"]
+    plug = mount["controlled_right_angle_plug_reference"]
     out = [
         '<svg xmlns="http://www.w3.org/2000/svg" width="980" height="880" viewBox="0 0 980 880">',
         '<rect width="980" height="880" fill="#ffffff"/>',
@@ -1040,13 +1089,14 @@ def render_mmcx_service_svg(model: dict, result: dict) -> str:
     out.extend([
         f'<circle cx="{ox+axis_x*scale:.1f}" cy="{oy+axis_y*scale:.1f}" r="{6*scale:.1f}" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="8 5"/>',
         f'<rect x="{ox+body_x*scale:.1f}" y="{oy+body_y*scale:.1f}" width="{body_w*scale:.1f}" height="{body_d*scale:.1f}" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>',
-        f'<circle cx="{ox+axis_x*scale:.1f}" cy="{oy+axis_y*scale:.1f}" r="8" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>',
-        f'<path d="M{ox+axis_x*scale:.1f} {oy+axis_y*scale:.1f} H{ox+52*scale:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#redArrow)"/>',
-        f'<text x="{ox+52.8*scale:.1f}" y="{oy+(axis_y-0.5)*scale:.1f}" text-anchor="start" font-family="sans-serif" font-size="10" font-weight="700" fill="#1d4ed8">FPV RX · 5.8 GHz</text>',
+        f'<path d="M{ox+axis_x*scale:.1f} {oy+axis_y*scale:.1f} H{ox+(axis_x-plug["strain_relief_run_max_mm"])*scale:.1f}" stroke="#0f766e" stroke-width="{plug["strain_relief_width_max_mm"]*scale:.1f}" stroke-linecap="round" data-part="controlled-right-angle-plug-envelope"/>',
+        f'<circle cx="{ox+axis_x*scale:.1f}" cy="{oy+axis_y*scale:.1f}" r="{plug["connector_head_width_max_mm"]*scale/2:.1f}" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>',
+        f'<text x="{ox+axis_x*scale:.1f}" y="{oy+16.0*scale:.1f}" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#1d4ed8">FPV RX · 5.8 GHz</text>',
         f'<rect x="{ox-4.5*scale:.1f}" y="{oy+17*scale:.1f}" width="{84*scale:.1f}" height="{24*scale:.1f}" rx="8" fill="#fff7ed" fill-opacity="0.72" stroke="#ea580c" stroke-width="2" data-accessory="U214"/>',
         f'<text x="{ox+37.5*scale:.1f}" y="{oy+30*scale:.1f}" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#9a3412">removable U214 Cap zone</text>',
-        f'<text x="80" y="560" font-family="sans-serif" font-size="13" fill="#0f766e">✓ Ø12 plug envelope to U214: {service["u214_service_clearance_mm"]:.1f} mm · required {mount["minimum_u214_clearance_mm"]:.1f} mm</text>',
-        f'<text x="80" y="590" font-family="sans-serif" font-size="13" fill="#0f766e">✓ nearest SMA handling clearance: {min(row["clearance_mm"] for row in service["handling_envelope_clearances"]):.2f} mm</text>',
+        f'<text x="80" y="530" font-family="sans-serif" font-size="13" fill="#0f766e">✓ static RA plug to nearest SMA: {service["minimum_right_angle_plug_clearance_mm"]:.2f} mm · required {mount["minimum_u214_clearance_mm"]:.1f} mm</text>',
+        f'<text x="80" y="560" font-family="sans-serif" font-size="13" fill="#0f766e">✓ static RA plug to U214: {service["right_angle_plug_u214_clearance_mm"]:.2f} mm</text>',
+        f'<text x="80" y="590" font-family="sans-serif" font-size="13" fill="#9a3412">△ dashed Ø12 is temporary finger approach; overlaps {", ".join(x["path"] for x in service["handling_envelope_overlaps"])} and closes ergonomically in H5</text>',
         '<text x="80" y="635" font-family="sans-serif" font-size="16" font-weight="700" fill="#172033">2 · TRUE SIDE SECTION</text>',
         '<rect x="250" y="730" width="460" height="28" fill="#f1f5f9" stroke="#334155" stroke-width="2"/>',
         '<text x="265" y="750" font-family="sans-serif" font-size="11" fill="#526076">RF PCB · 1.6 mm</text>',
@@ -1184,7 +1234,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         board_names = ("Передняя UI/radio-плата", "Задняя RF/power-плата")
         bullets = [
             "Десять основных SMA разделены симметрично `5 + 5`; каждый радиотракт остаётся на плате своего разъёма.",
-            "Отдельный вертикальный MMCX `FPV RX · 5.8 GHz` расположен на задней стороне между группами SMA и над U214.",
+            "Отдельный вертикальный MMCX `FPV RX · 5.8 GHz` расположен ниже равномерного ряда из пяти задних SMA и над U214; ответный угловой штекер с кабелем уходит вдоль платы.",
             "Все пользовательские подписи являются читаемой шелкографией; внутренние стороны плат шелкографии не содержат.",
             "Три nRF24 полностью перенесены на переднюю плату вместе с буферами, safety-gate и отдельным `TLV1824PWR`.",
             "K331 остаётся на задней плате, а `TVP5150AM1PBS` — на передней рядом с S3: через M1 проходит только один 75-омный CVBS, не 11-линейная LCD_CAM-шина.",
@@ -1193,7 +1243,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         audit_lines = [
             f'Коллизии корпусов на одной стороне: `{len(result["same_face_collisions"])}`.',
             f'Минимальный встречный Z-зазор: `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
-            f'FPV MMCX: `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} мм` до ближайшего SMA; Ø12-зона обращения оставляет `{result["mmcx_service"]["u214_service_clearance_mm"]:.2f} мм` до U214.',
+            f'FPV MMCX: корпус оставляет `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} мм` до ближайшего SMA; контролируемый угловой штекер — `{result["mmcx_service"]["minimum_right_angle_plug_clearance_mm"]:.2f} мм` до SMA и `{result["mmcx_service"]["right_angle_plug_u214_clearance_mm"]:.2f} мм` до U214. Ø12 — только временная зона пальцев и остаётся H5-проверкой.',
             "GPIO: передний RP `45/48`, задний RP `45/48`; резерв — по 3 линии. K331 RSSI официально помечен NC.",
             "M1: 9 устаревших сигналов освобождены, 1 контакт занят CVBS, 8 сигнальных контактов остаются резервом.",
         ]
@@ -1212,7 +1262,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         board_names = ("Front UI/radio PCB", "Rear RF/power PCB")
         bullets = [
             "Ten main SMA ports are split symmetrically `5 + 5`; every radio path remains on the PCB that carries its connector.",
-            "The separate vertical `FPV RX · 5.8 GHz` MMCX sits on the rear face between the SMA groups and above U214.",
+            "The separate vertical `FPV RX · 5.8 GHz` MMCX sits below the evenly pitched five-SMA rear row and above U214; its mating right-angle plug and cable run parallel to the PCB.",
             "All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.",
             "All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.",
             "K331 remains rear-local while `TVP5150AM1PBS` moves beside S3: M1 carries one 75-ohm CVBS signal, not the 11-line LCD_CAM bus.",
@@ -1221,7 +1271,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         audit_lines = [
             f'Same-face body collisions: `{len(result["same_face_collisions"])}`.',
             f'Minimum opposing Z clearance: `{result["minimum_opposing_clearance_mm"]:.2f} mm` against `{result["required_opposing_clearance_mm"]:.2f} mm` required.',
-            f'FPV MMCX: `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} mm` to the nearest SMA; its Ø12 handling envelope leaves `{result["mmcx_service"]["u214_service_clearance_mm"]:.2f} mm` to U214.',
+            f'FPV MMCX: the jack body leaves `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} mm` to the nearest SMA; the controlled right-angle plug leaves `{result["mmcx_service"]["minimum_right_angle_plug_clearance_mm"]:.2f} mm` to SMA and `{result["mmcx_service"]["right_angle_plug_u214_clearance_mm"]:.2f} mm` to U214. Ø12 is only a temporary finger-approach zone and remains an H5 ergonomic check.',
             "GPIO: front RP `45/48`, rear RP `45/48`; each retains 3 free lines. K331 RSSI is officially marked NC.",
             "M1: 9 obsolete signals are released, 1 contact carries CVBS and 8 signal contacts remain spare.",
         ]
