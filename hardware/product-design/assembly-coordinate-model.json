@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "model_id": "L2-ASM-COORD-001-A",
-  "stage": "H1.2",
-  "status": "reviewed",
+  "stage": "H1-R2.18",
+  "status": "in_progress",
   "units": "mm",
   "world": {
     "origin": "front-left corner of the HMX035CTFT-001 touch/view plane at the antenna-side edge",
@@ -45,7 +45,9 @@
     "diameter_mm": 2.7,
     "head_keepout_radius_mm": 4.0,
     "world_xy": [[5.0, 11.0], [70.0, 11.0], [5.0, 145.0], [70.0, 145.0]],
-    "axis": "parallel to world Z through both PCBs"
+    "axis": "parallel to world Z through both PCBs",
+    "compression_stops": "four exact 11.00-mm nonconductive sleeves/stops define the interboard gap; screw clamp load closes through the stops, never through M1",
+    "one_loose_screw_case": "two enclosure anti-shear datums plus independent PCB capture lips prevent relative board motion when any one screw is loosened by one turn"
   },
   "antenna_planes": {
     "front_bank_mount_face_z": 3.2,
@@ -63,12 +65,13 @@
   },
   "accessory_envelopes": {
     "u214": {"x_mm": [-4.5, 79.5], "y_mm": [17.0, 41.0], "z_mm": [17.4, 32.687]},
-    "battery_holder": {"x_mm": [17.6, 57.4], "y_mm": [42.0, 128.0], "z_mm": [17.4, 38.1]},
+    "battery_holder": {"body_x_mm": [17.6, 57.38], "body_y_mm": [46.47, 123.53], "pad_span_y_mm": [42.0, 128.0], "z_mm": [17.4, 38.1], "mounting": "SMT with enclosure cradle/end-stop load path"},
     "display_adapter_bay": {"x_mm": [24.75, 50.25], "y_mm": [90.5, 102.5], "z_mm": [4.8, 8.6]}
   },
   "enclosure_reference": {
     "locked": "world datum, PCB outlines, mounting axes, touch plane, external interface directions and component/accessory keep-outs",
     "not_yet_locked": "wall thickness, ribs, seals, bezel, grille, external fillets and manufacturing tolerance stack",
-    "rule": "later enclosure surfaces may grow around the locked component model but may not move an accepted PCB/interface datum silently"
+    "rule": "later enclosure surfaces may grow around the locked component model but may not move an accepted PCB/interface datum silently",
+    "mandatory_load_paths": "front/rear PCB capture lips, two anti-shear datums, four 11.00-mm compression stops and a Keystone 1048P cradle/end-stop pair are required before enclosure release"
   }
 }

@@ -2,7 +2,7 @@
 
 H0-R2 проведён как новый функциональный baseline: UI и дисплей остаются на S3, высокоскоростные периферийные тракты разгружены через Hub RP, аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен.
 
-> Текущий точный маркер — **H1-R2.17**: физическая модель уже пересчитана под локальные функциональные острова 5+5, но H1 ещё не завершён и не разрешает KiCad routing или заказ R2.
+> Текущий точный маркер — **H1-R2.18**: физическая модель пересчитана под i8080-8, локальные острова 5+5 и полную 80-контактную M1, но H1 ещё не завершён и не разрешает KiCad routing или заказ R2.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 
@@ -10,7 +10,7 @@ H0-R2 проведён как новый функциональный baseline: 
 
 - Один пользовательский порт `FM / SW / AIR RX`; новый внешний разъём не добавлен.
 - Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с FPV или TX-группой.
-- S3 не получает новую периферию: интерфейс, кнопки и direct-QSPI display не деградируют.
+- S3 сохраняет прямые кнопки, энкодер и USB; direct i8080-8 даёт 32 МБ/с, а camera RX работает независимо.
 - Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, FPV, M5 и U214.
 - Через M1 проходит один CVBS, control/status и питание; 11-линейная LCD_CAM-шина остаётся локальной S3.
 
@@ -27,7 +27,7 @@ H0-R2 проведён как новый функциональный baseline: 
 | Rear RP GP35 | `AIR_RX_EN` | pulled low; LNA/mixer/LO domain off |
 | Rear RP GP36 | `AIR_RX_MODE` | direct FM/SW path selected |
 
-Front RP budget: **45 used / 3 free**. Rear RP budget: **45 used / 3 free**. SI5351 control stays on the rear-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
+Front RP budget: **46 used / 2 free**. Rear RP budget: **45 used / 3 free**. SI5351 control stays on the rear-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
 
 ## Рабочая принципиальная распиновка
 
@@ -38,13 +38,13 @@ Front RP budget: **45 used / 3 free**. Rear RP budget: **45 used / 3 free**. SI5
 | `0` | `VIDEO_D0` | `LCD_CAM` | `in` |
 | `1` | `SYS_UI_I2C_SDA` | `I2C0` | `io` |
 | `2` | `SYS_UI_I2C_SCL` | `I2C0` | `out` |
-| `3` | `HUB_ALERT_N` | `GPIO_IRQ` | `in` |
-| `4` | `LCD_QSPI_D1_DC` | `SPI2` | `out` |
+| `3` | `UI_HUB_ALERT_N` | `GPIO_IRQ` | `in` |
+| `4` | `LCD_DB0` | `LCD_CAM_TX` | `out` |
 | `5` | `VIDEO_D1` | `LCD_CAM` | `in` |
 | `6` | `VIDEO_D2` | `LCD_CAM` | `in` |
 | `7` | `VIDEO_D3` | `LCD_CAM` | `in` |
 | `8` | `VIDEO_D4` | `LCD_CAM` | `in` |
-| `9` | `S3_HUB_CS_N` | `SPI3` | `out` |
+| `9` | `LCD_DB1` | `LCD_CAM_TX` | `out` |
 | `10` | `VIDEO_D5` | `LCD_CAM` | `in` |
 | `11` | `VIDEO_D6` | `LCD_CAM` | `in` |
 | `12` | `VIDEO_D7` | `LCD_CAM` | `in` |
@@ -52,26 +52,26 @@ Front RP budget: **45 used / 3 free**. Rear RP budget: **45 used / 3 free**. SI5
 | `14` | `S3_HUB_D1` | `SPI3` | `io` |
 | `15` | `VIDEO_VSYNC` | `LCD_CAM` | `in` |
 | `16` | `VIDEO_HREF` | `LCD_CAM` | `in` |
-| `17` | `LCD_TE` | `GPIO_IRQ` | `in` |
-| `18` | `LCD_QSPI_SCK` | `SPI2` | `out` |
+| `17` | `LCD_WR_N` | `LCD_CAM_TX` | `out` |
+| `18` | `LCD_DB2` | `LCD_CAM_TX` | `out` |
 | `19` | `S3_USB_DM` | `USB_SERIAL_JTAG` | `io` |
 | `20` | `S3_USB_DP` | `USB_SERIAL_JTAG` | `io` |
 | `21` | `S3_HUB_D0` | `SPI3` | `io` |
-| `38` | `LCD_CS_N` | `SPI2` | `out` |
+| `38` | `LCD_DB3` | `LCD_CAM_TX` | `out` |
 | `39` | `ENCODER_A` | `PCNT0` | `in` |
-| `40` | `LCD_BL_PWM` | `LEDC` | `out` |
-| `41` | `LCD_QSPI_D2` | `SPI2` | `out` |
-| `42` | `LCD_QSPI_D3` | `SPI2` | `out` |
+| `40` | `LCD_DB4` | `LCD_CAM_TX` | `out` |
+| `41` | `LCD_DB5` | `LCD_CAM_TX` | `out` |
+| `42` | `LCD_DB6` | `LCD_CAM_TX` | `out` |
 | `43` | `S3_HUB_D2` | `SPI3` | `io` |
 | `44` | `S3_HUB_D3` | `SPI3` | `io` |
-| `45` | `UI_FAULT_INT_N` | `GPIO_IRQ` | `in` |
-| `46` | `LCD_QSPI_D0` | `SPI2` | `out` |
+| `45` | `LCD_DC` | `LCD_CAM_TX` | `out` |
+| `46` | `LCD_DB7` | `LCD_CAM_TX` | `out` |
 | `47` | `ENCODER_B` | `PCNT0` | `in` |
 | `48` | `S3_HUB_SCK` | `SPI3` | `out` |
 
 | GPIO переднего RP | Назначение |
 |---|---|
-| `0, 1, 2, 3, 4, 5, 6` | S3 quad-SPI D0..D3/SCK/CS plus ALERT |
+| `0, 1, 2, 3, 4, 5` | exclusive point-to-point S3 quad-SPI D0..D3/SCK plus wired-OR UI_HUB_ALERT_N; no redundant chip-select wire |
 | `7, 8, 9, 10, 11, 12` | C5 native 4-bit SDIO CLK/CMD/D0..D3 |
 | `13, 14, 15, 16, 17` | dedicated SPI plus ALERT to RF RP |
 | `18, 19, 20, 21, 22, 23` | nRF24 #0 dedicated SPI SCK/MOSI/MISO/CS plus CE and IRQ |
@@ -80,7 +80,9 @@ Front RP budget: **45 used / 3 free**. Rear RP budget: **45 used / 3 free**. SI5
 | `36` | FAULT_KILL-qualified common nRF24 switched-rail request |
 | `37, 38, 39, 40, 41, 42` | dedicated microSD SPI SCK/MOSI/MISO/CS plus power and detect |
 | `43, 44` | dedicated fail-closed I2C controller bus to Pack and Safety MSPM0 mailboxes |
-| `45, 46, 47` | uncommitted electrical reserve |
+| `45` | LCD_TE direct front-local edge capture; Hub timestamps/alerts S3 without consuming another S3 GPIO |
+| `46` | LCD_BL_PWM front-local backlight gate drive with the existing hardware reset-off pull-down |
+| `6, 47` | uncommitted electrical reserve |
 
 | GPIO заднего RP | Назначение |
 |---|---|
@@ -98,7 +100,7 @@ Front RP budget: **45 used / 3 free**. Rear RP budget: **45 used / 3 free**. SI5
 
 ## Питание
 
-Старый R1-лимит 2,5 А больше не действителен. Airband резервирует 150 мА / 0.5 Вт; новый H1 gate — не менее 3.5 А непрерывно и 4.0 А step с повторной проверкой buck/eFuse/индуктора/меди/тепла.
+Старый R1-лимит 2,5 А больше не действителен. Airband резервирует 150 мА / 0.5 Вт; новый H1 gate — не менее 3.8 А непрерывно и 4.2 А step с повторной проверкой buck/eFuse/индуктора/меди/тепла.
 
 ## Фабричный BOM-delta
 
@@ -140,4 +142,4 @@ Incremental-стоимость активных компонентов: **`$20.2
 - select exact DVP reset/strap isolation and C5 USB/SDIO switching components
 - synthesize the factory-stock Airband LC filter, extract its layout and prove the BPF-A127+ acceptance mask including 87-106-MHz image rejection
 - recalculate the six-domain 3.3-V state matrix against the new >=3.5-A continuous and >=4.0-A step contract
-- regenerate every physical view and inter-board contact budget before H1-R2 acceptance
+- regenerate every physical view and prove the 80-contact inter-board electrical and mechanical load-path contract before H1-R2 acceptance

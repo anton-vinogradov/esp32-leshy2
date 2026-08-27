@@ -20,7 +20,7 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.17", self.model["marker"])
+        self.assertEqual("H1-R2.18", self.model["marker"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
         self.assertEqual(36, len(self.audit["opposing_overlaps"]))
@@ -141,6 +141,22 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertAlmostEqual((rear[2] + rear[3]) / 2, axis_x)
         self.assertGreater(axis_y, 6.0)
 
+    def test_outer_antenna_silkscreen_is_not_hidden(self):
+        self.assertEqual("pass", self.audit["silkscreen"]["status"])
+        self.assertEqual([], self.audit["silkscreen"]["errors"])
+        self.assertEqual(5, len(self.audit["silkscreen"]["faces"]["front"]))
+        self.assertEqual(6, len(self.audit["silkscreen"]["faces"]["rear"]))
+
+    def test_m1_and_battery_holder_have_independent_mechanical_load_paths(self):
+        retention = self.audit["mechanical_retention"]
+        holder = self.audit["battery_holder_mechanics"]
+        self.assertEqual(4, retention["compression_stops"]["count"])
+        self.assertEqual(11.0, retention["compression_stops"]["exact_working_length_mm"])
+        self.assertGreaterEqual(retention["anti_shear_datums_min"], 2)
+        self.assertEqual("SMT", holder["mounting"])
+        self.assertEqual(77.06, holder["manufacturer_body_mm"][0])
+        self.assertEqual(86.0, holder["pcb_pad_span_mm"][0])
+
     def test_generated_artifacts_are_current(self):
         expected = {
             MODULE.AUDIT_PATH: json.dumps(self.audit, indent=2, ensure_ascii=False) + "\n",
@@ -163,16 +179,23 @@ class H1R2LayoutTest(unittest.TestCase):
             MODULE.EN_DOC_PATH: MODULE.render_doc(self.model, self.audit, False),
             MODULE.RU_DOC_PATH: MODULE.render_doc(self.model, self.audit, True),
         }
+        expected[MODULE.FOUR_FACES_SVG_PATH] = MODULE.render_four_faces_svg(
+            self.model,
+            expected[MODULE.EXTERNAL_SVG_PATH],
+            expected[MODULE.INNER_UI_SVG_PATH],
+            expected[MODULE.INNER_RF_SVG_PATH],
+        )
         for path, content in expected.items():
             self.assertTrue(path.exists(), path)
             self.assertEqual(content, path.read_text(), path)
         self.assertNotIn("[`None`]", expected[MODULE.EN_DOC_PATH])
         self.assertNotIn("[`None`]", expected[MODULE.RU_DOC_PATH])
         self.assertIn("Four independent USB paths", expected[MODULE.SERVICE_SVG_PATH])
-        self.assertIn("HUB SERVICE USB", expected[MODULE.SERVICE_SVG_PATH])
+        self.assertIn(">HUB RP</text>", expected[MODULE.SERVICE_SVG_PATH])
+        self.assertIn(">DATA USB</text>", expected[MODULE.SERVICE_SVG_PATH])
         self.assertIn('data-instance="fpv_mmcx"', expected[MODULE.EXTERNAL_SVG_PATH])
-        self.assertIn('FPV RX', expected[MODULE.EXTERNAL_SVG_PATH])
-        self.assertIn('5.8G', expected[MODULE.EXTERNAL_SVG_PATH])
+        self.assertIn('>FPV 5G8</text>', expected[MODULE.EXTERNAL_SVG_PATH])
+        self.assertIn('5G8', expected[MODULE.EXTERNAL_SVG_PATH])
         for instance in ("hub_reset_button", "hub_boot_button"):
             self.assertIn(
                 f'data-instance="{instance}" data-mpn="SKRTLAE010" '
@@ -186,6 +209,9 @@ class H1R2LayoutTest(unittest.TestCase):
             )
         self.assertIn('data-view="both-inner-faces-mirrored"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
         self.assertIn('data-inner-silkscreen="none"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
+        self.assertIn('data-view="four-faces-matched-columns"', expected[MODULE.FOUR_FACES_SVG_PATH])
+        self.assertIn('data-port-role="power-and-data"', expected[MODULE.EXTERNAL_SVG_PATH])
+        self.assertIn('data-port-role="data-only"', expected[MODULE.EXTERNAL_SVG_PATH])
 
 
 if __name__ == "__main__":

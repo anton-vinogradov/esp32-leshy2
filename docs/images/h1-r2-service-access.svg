@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="820" viewBox="0 0 1500 820">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="30.0" y="38.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.17 external service access</text>
+<text x="30.0" y="38.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.18 external service access</text>
 <text x="30.0" y="66.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Four independent USB paths, eight recessed recovery controls and four internal keyed DBG10 fallbacks.</text>
 <text x="235.6" y="105.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">Front / UI face</text>
 <rect x="110.0" y="125.0" width="251.2" height="502.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -31,21 +31,25 @@
 <rect x="517.7" y="505.1" width="4.0" height="12.1" rx="2" fill="#ede9fe" stroke="#7c3aed" data-recessed="true" data-mpn="SKRTLAE010"/>
 <path d="M520.0 511.1 L489.9 511.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="530.7" y="508.7" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="start" fill="#6d28d9">RF RP BOOT</text>
-<rect x="152.7" y="624.5" width="25" height="12" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-mpn="USB4105-GF-A"/>
+<rect x="152.7" y="624.5" width="25" height="12" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
 <path d="M165.2 627.5 L165.2 661.5" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="165.2" y="614.1" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">HUB SERVICE USB</text>
+<text data-layer="pcb-silkscreen" x="165.2" y="610.8" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#2563eb">HUB RP</text>
+<text data-layer="pcb-silkscreen" x="165.2" y="619.1" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <text x="165.2" y="677.5" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="middle" fill="#526076">data only</text>
-<rect x="202.9" y="624.5" width="25" height="12" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-mpn="USB4105-GF-A"/>
+<rect x="202.9" y="624.5" width="25" height="12" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
 <path d="M215.4 627.5 L215.4 661.5" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="215.4" y="624.2" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5 SERVICE USB</text>
+<text data-layer="pcb-silkscreen" x="215.4" y="610.8" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#2563eb">C5</text>
+<text data-layer="pcb-silkscreen" x="215.4" y="619.1" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <text x="215.4" y="677.5" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="middle" fill="#526076">data only</text>
-<rect x="562.7" y="624.5" width="25" height="12" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-mpn="USB4105-GF-A"/>
+<rect x="562.7" y="624.5" width="25" height="12" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" data-mpn="USB4105-GF-A" data-port-role="power-and-data"/>
 <path d="M575.2 627.5 L575.2 661.5" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="575.2" y="624.2" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">USB / POWER</text>
-<text x="575.2" y="677.5" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="middle" fill="#526076">S3 native + power/charge</text>
-<rect x="633.0" y="624.5" width="25" height="12" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-mpn="USB4105-GF-A"/>
+<text data-layer="pcb-silkscreen" x="575.2" y="610.8" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#16a34a">S3</text>
+<text data-layer="pcb-silkscreen" x="575.2" y="619.1" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#16a34a">POWER + USB</text>
+<text x="575.2" y="677.5" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="middle" fill="#526076">native USB + power/charge</text>
+<rect x="633.0" y="624.5" width="25" height="12" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
 <path d="M645.5 627.5 L645.5 661.5" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="645.5" y="624.2" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RF RP SERVICE USB</text>
+<text data-layer="pcb-silkscreen" x="645.5" y="610.8" font-family="sans-serif" font-size="6.7" font-weight="bold" text-anchor="middle" fill="#2563eb">RF RP</text>
+<text data-layer="pcb-silkscreen" x="645.5" y="619.1" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
 <text x="645.5" y="677.5" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="middle" fill="#526076">data only</text>
 <text x="940.0" y="130.0" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="start" fill="#172033">Recovery map</text>
 <text x="940.0" y="164.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#6d28d9">S3</text>

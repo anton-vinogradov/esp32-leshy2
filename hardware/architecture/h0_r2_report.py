@@ -93,13 +93,13 @@ def render_svg(data: dict) -> str:
         '<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6z" fill="#475569"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         '<text x="630" y="38" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · H0-R2 functional architecture</text>',
-        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.17 projection: radio payload, display traffic and the 11-line video bus never compete on M1.</text>',
+        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.18 projection: direct i8080 display, camera RX and radio payload remain local; M1 is fully counted.</text>',
         '<rect x="40" y="105" width="540" height="610" rx="18" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>',
         '<rect x="680" y="105" width="540" height="610" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>',
         '<text x="310" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#1d4ed8">FRONT · UI / RADIO PCB · five SMA</text>',
         '<text x="950" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#9a3412">REAR · RF / POWER PCB · five SMA + FPV MMCX</text>',
     ]
-    out += box(70, 165, 225, 74, "ESP32-S3-WROOM-1U-N16R8", "direct QSPI display · touch · all UI keys", "#2563eb")
+    out += box(70, 165, 225, 74, "ESP32-S3-WROOM-1U-N16R8", "direct i8080-8 · camera RX · touch · all UI keys", "#2563eb")
     out += box(325, 165, 225, 74, "ESP32-C5-WROOM-1U-N8R8", "2.4/5 GHz · 802.15.4 · IR", "#2563eb")
     out += box(70, 270, 480, 78, "SC1512-A4 · FRONT RP", f"UI/radio fan-out · microSD · {front['used']}/48 GPIO", "#7c3aed")
     out += box(70, 380, 480, 82, "3 × E01-ML01IPX nRF24 ISLANDS", "three concurrent full RX/TX/mixed paths · local buffers/evidence", "#0f766e")
@@ -122,9 +122,10 @@ def render_svg(data: dict) -> str:
         '<text x="630" y="373" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">75 Ω + GND</text>',
         '<text x="630" y="420" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#b42318">RUN / FAULT</text>',
         '<text x="630" y="438" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">3× nRF evidence</text>',
-        '<text x="630" y="485" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#166534">3V3 + GND</text>',
-        '<text x="630" y="520" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">8 signal</text>',
-        '<text x="630" y="538" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">contacts spare</text>',
+        '<text x="630" y="485" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#166534">14 × 3V3</text>',
+        '<text x="630" y="503" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">25 returns</text>',
+        '<text x="630" y="520" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">25 signals</text>',
+        '<text x="630" y="538" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">14 NC reserve</text>',
         '<line x1="550" y1="309" x2="585" y2="309" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>',
         '<line x1="675" y1="309" x2="710" y2="309" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>',
         '<path d="M965 307 H945 V475 H690 V355 H675" fill="none" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>',
@@ -164,7 +165,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H1-R2.17**: физическая модель уже пересчитана под локальные функциональные острова 5+5, но H1 ещё не завершён и не разрешает KiCad routing или заказ R2."
+        current = "Текущий точный маркер — **H1-R2.18**: физическая модель пересчитана под i8080-8, локальные острова 5+5 и полную 80-контактную M1, но H1 ещё не завершён и не разрешает KiCad routing или заказ R2."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -203,7 +204,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, analog FPV "
             "remains receive-only, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H1-R2.17**: the physical model is repartitioned into local 5+5 functional islands, but H1 remains open and does not authorize R2 KiCad routing or ordering."
+        current = "The exact current marker is **H1-R2.18**: the physical model now covers i8080-8, local 5+5 islands and the complete 80-contact M1, but H1 remains open and does not authorize R2 KiCad routing or ordering."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",
@@ -259,14 +260,14 @@ def render_report(data: dict, ru: bool) -> str:
     result_lines = (
         "- Один пользовательский порт `FM / SW / AIR RX`; новый внешний разъём не добавлен.\n"
         "- Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с FPV или TX-группой.\n"
-        "- S3 не получает новую периферию: интерфейс, кнопки и direct-QSPI display не деградируют.\n"
+        "- S3 сохраняет прямые кнопки, энкодер и USB; direct i8080-8 даёт 32 МБ/с, а camera RX работает независимо.\n"
         "- Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, FPV, M5 и U214.\n"
         "- Через M1 проходит один CVBS, control/status и питание; 11-линейная LCD_CAM-шина остаётся локальной S3."
         if ru
         else
         "- One user port is labelled `FM / SW / AIR RX`; no new external connector is added.\n"
         "- Airband is a `BROADCAST_RX` submode, so its RF domain cannot run together with FPV or a TX group.\n"
-        "- S3 gains no peripheral load: UI, buttons and direct-QSPI display do not degrade.\n"
+        "- S3 retains direct buttons, encoder and USB; direct i8080-8 provides 32 MB/s while camera RX runs independently.\n"
         "- The front RP owns three nRF24 paths and microSD; the rear RP owns Si4732/Airband, CC1101, voice, audio, FPV, M5 and U214.\n"
         "- M1 carries one CVBS signal, control/status and power; the 11-line LCD_CAM bus stays local to S3."
     )

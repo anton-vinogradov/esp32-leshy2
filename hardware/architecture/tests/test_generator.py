@@ -37,7 +37,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H1-R2.17", roadmap["current_substep"])
+        self.assertEqual("H1-R2.18", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -457,8 +457,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("целевая принципиальная распиновка G2F-3I", pinout)
         self.assertNotIn("не target architecture", pinout)
 
-    def test_g3_current_clamshell_projection_is_current_and_complete(self):
-        script = GENERATOR.REPO_ROOT / "hardware/product-design/g3_clamshell.py"
+    def test_h1_r2_current_four_face_projection_is_current_and_complete(self):
+        script = GENERATOR.REPO_ROOT / "hardware/product-design/h1_r2_layout.py"
         result = subprocess.run(
             [sys.executable, str(script), "--check"],
             cwd=GENERATOR.REPO_ROOT,
@@ -469,21 +469,19 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(0, result.returncode, result.stdout + result.stderr)
         rendered = (
             GENERATOR.REPO_ROOT
-            / "docs/images/current-clamshell.svg"
+            / "docs/images/h1-r2-four-faces.svg"
         ).read_text(encoding="utf-8")
         for token in (
             "HMX035CTFT-001",
             "M5Stack U214",
             "Keystone 1048P",
             "WI-FI/BLE",
-            "2.4 GHz",
             "WI-FI/15.4",
-            "2.4/5 GHz",
             "nRF24-1",
             "nRF24-2",
             "nRF24-3",
-            "FM/SW/AIR RX",
-            "AM/LW LOOP",
+            "AIR/FM RX",
+            "AM/LW RX",
             'data-instance="ui_dpad_up" data-direct-press="true"',
             'data-instance="ui_dpad_down" data-direct-press="true"',
             'data-instance="ui_dpad_left" data-direct-press="true"',
@@ -492,19 +490,18 @@ class ArchitectureValidationTests(unittest.TestCase):
             "RUN",
             "KILL",
             "PTT",
-            "Leshy2 — dimensioned external layout",
-            "physical actual-TX evidence for each built-in transmitting path",
-            "form two aligned rows of five",
+            "four matched PCB faces",
+            "outer · user-facing silk",
+            "inner · mirrored · no silkscreen",
             "ACTIVE 48.96×73.44 mm · 320×480 · 2:3",
-            "M2.5 hole/head keep-outs",
             "SUB-GHz",
-            "VHF/UHF",
+            "V/U TX",
             "FAULT",
             "HEADSET",
             "CTIA",
             "SPEAKER",
             "MICROPHONE",
-            "POWER",
+            "POWER + USB",
             "S3 RST",
             "S3 BOOT",
             "C5 RST",

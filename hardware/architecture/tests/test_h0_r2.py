@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 SOURCE = ROOT / "hardware/architecture/h0-r2-rebaseline.json"
 REPORT_SCRIPT = ROOT / "hardware/architecture/h0_r2_report.py"
+INTERCONNECT_SCRIPT = ROOT / "hardware/architecture/h0_r2_interconnect.py"
 
 
 class H0R2ArchitectureTest(unittest.TestCase):
@@ -16,7 +17,7 @@ class H0R2ArchitectureTest(unittest.TestCase):
 
     def test_review_identity_and_next_marker(self):
         self.assertEqual("H0-R2", self.data["id"])
-        self.assertEqual("reviewed_functional_architecture_repartitioned", self.data["status"])
+        self.assertEqual("reviewed_functional_architecture_i8080_and_r2_interboard_reconciled", self.data["status"])
         self.assertEqual("H1-R2.0", self.data["next_marker"])
 
     def test_s3_uses_every_real_n16r8_gpio_once(self):
@@ -34,14 +35,17 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertIn("PCNT", ui["encoder"])
         self.assertIn("RF RP", ui["ptt_exception"])
 
-    def test_display_is_dedicated_and_clock_is_legal(self):
+    def test_display_is_direct_i8080_and_clock_is_legal(self):
         display = self.data["display_contract"]
-        self.assertEqual(40_000_000, display["selected_clock_hz"])
+        self.assertEqual(32_000_000, display["selected_clock_hz"])
         self.assertLessEqual(display["selected_clock_hz"], display["controller_limit_hz"])
-        self.assertEqual(20.0, display["payload_mb_s"])
+        self.assertEqual(32.0, display["payload_mb_s"])
         calculated = display["full_frame_bytes"] / (display["payload_mb_s"] * 1_000_000) * 1000
         self.assertAlmostEqual(display["full_frame_wire_ms"], calculated, places=6)
-        self.assertIn("no shared client", self.data["exit_review"]["display"])
+        self.assertIn("i8080", display["interface"])
+        self.assertIn("QSPI", display["fallback"])
+        lcd = [row["net"] for row in self.data["s3"]["pin_map"] if row["net"].startswith("LCD_DB")]
+        self.assertEqual([f"LCD_DB{i}" for i in range(8)], sorted(lcd, key=lambda x: int(x[6:])))
 
     def test_video_is_direct_and_digital_systems_are_not_claimed(self):
         accepted = self.data["accepted_scope"]
@@ -61,8 +65,20 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertEqual(len(gpios), len(set(gpios)))
         self.assertEqual(48, hub["gpio_budget"]["available"])
         self.assertEqual(hub["gpio_budget"]["free"], len(reserve["gpios"]))
-        self.assertEqual(3, hub["gpio_budget"]["free"])
+        self.assertEqual(2, hub["gpio_budget"]["free"])
         self.assertEqual(list(range(48)), sorted(gpios))
+
+    def test_interboard_map_closes_current_and_mechanics(self):
+        m1 = self.data["interboard_rebaseline"]
+        rows = m1["pin_map"]
+        self.assertEqual(list(range(1, 81)), [row["contact"] for row in rows])
+        classes = [row["class"] for row in rows]
+        self.assertEqual(14, classes.count("main_power"))
+        self.assertEqual(14, classes.count("reserve"))
+        self.assertEqual(14, classes.count("main_return"))
+        self.assertLess(m1["main_current"]["step_per_contact_a"], m1["main_current"]["contact_rating_a"])
+        self.assertIn("compression stops", m1["mechanical_load_path"])
+        self.assertIn("electrical/alignment only", m1["mechanical_load_path"])
 
     def test_airband_is_mandatory_receive_only_and_reuses_the_receiver_port(self):
         accepted = self.data["accepted_scope"]["airband_acceptance"]
@@ -143,6 +159,16 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertEqual(module.render_report(self.data, True), module.REPORT_RU.read_text(encoding="utf-8"))
         self.assertIn("AIR_RX_EN", module.REPORT_EN.read_text(encoding="utf-8"))
         self.assertIn("Зеркальный диапазон", module.REPORT_RU.read_text(encoding="utf-8"))
+
+    def test_interconnect_page_is_generated_from_the_exact_80_contact_map(self):
+        spec = importlib.util.spec_from_file_location("h0_r2_interconnect", INTERCONNECT_SCRIPT)
+        module = importlib.util.module_from_spec(spec)
+        assert spec.loader is not None
+        spec.loader.exec_module(module)
+        self.assertEqual(module.render(self.data, False), module.EN.read_text(encoding="utf-8"))
+        self.assertEqual(module.render(self.data, True), module.RU.read_text(encoding="utf-8"))
+        self.assertIn("0.3036 A/contact", module.EN.read_text(encoding="utf-8"))
+        self.assertIn("`14` NC reserve", module.EN.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

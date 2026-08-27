@@ -1,132 +1,121 @@
-# Межплатное соединение M1
+# M1 · межплатное соединение
 
-[На главную](../README.ru.md) · [Аппаратная часть](hardware.ru.md) · [English](interconnect.md)
+[Главная](../README.md) · [Железо](hardware.ru.md) · [English](interconnect.md)
 
-Две платы соединяет одна точная 80-контактная пара с рабочим межплатным расстоянием 11 мм: `Hirose FX8C-80P-SV1(92)` на UI-плате и `Hirose FX8C-80S-SV5(92)` на RF/power-плате. Шаг — 0,6 мм, паспортная скорость — 8 Гбит/с, ток одного контакта — до 0.4 А; разъём не является механическим крепежом корпуса.
+UI- и RF/power-платы соединяет одна точная прямая SMT-пара `Hirose FX8C-80P-SV1(92)` / `FX8C-80S-SV5(92)` с рабочим зазором 11,00 мм. Все 80 контактов определены ниже; сквозных электрических выводов на внешних сторонах нет.
 
-Обе половины M1 — прямые SMT-разъёмы, а не сквозные гребёнки: все 80 электрических контактов паяются только к площадкам внутренних сторон плат. Позиционирующие выступы входят в неплакированные посадочные отверстия, но не являются паяными выводами; на наружной UI-стороне над кнопками не остаётся торчащих ножек. Изгиб и отрыв пайки предотвращают четыре совмещённые стойки/винта плат: M1 задаёт электрическое соединение и точное совмещение, но не несёт изгибающую нагрузку корпуса. Паспортный ресурс пары — 50 циклов сочленения.
+## Бюджет 80 контактов
 
-## UI/control-плата
+`25` live signals · `14` main-power · `2` AON · `25` defined returns · `14` NC reserve
 
-- Вычислители: `ESP32-S3-WROOM-1U-N16R8` управляет UI, экраном, картой памяти и аудио; `ESP32-C5-WROOM-1U-N8R8` — собственными диапазонами 2,4/5 ГГц и IR.
-- Интерфейсы: `HMX035CTFT-001 (QDtech schematic assembly marking)`, microSD, `Everest Semiconductor ES8311`, `Si4732-A10-GSR`, CTIA-гарнитура, D-pad, BACK, OPT и F1…F8.
-- Локальная безопасность: аппаратный сброс S3/C5, IR-гейт и аналоговое подтверждение передачи S3/C5/IR.
-- Обслуживание C5: отдельный data-only USB-C `GCT USB4105-GF-A`.
+Основная шина использует **14** параллельных контактов и столько же основных возвратов. При continuous `3.75 А` получается `0.2679 А/контакт`; при step `4.25 А` — `0.3036 А/контакт` против рейтинга `0.4 А`.
 
-## RF/power-плата
+## Механическая нагрузка
 
-- Радиодомен реального времени: `SC1512-A4`, три `Ebyte E01-ML01IPX`, `CC1101RGPR`, `G-NiceRF SA818S-U` и `G-NiceRF SA818S-V`.
-- Внешние модули: съёмный `M5Stack U214 Cap LoRa-1262` на точном вертикальном `Samtec HLE-107-02-G-DV-PE-LC` поднятой задней планки и независимый порт M5 Unit на точном `1125R-SMT-4P`.
-- Питание и основной USB-C: `JAE DX07S016JA1R1500`, защита `Texas Instruments TPD4S201RUKR`, USB-PD `Texas Instruments TPS25751DREFR`, заряд, аккумуляторы и все преобразователи питания.
-- Аудио на задней плате: микрофон `Same Sky CMEJ-0413-42-SMT-TR` с локальным смещением, дифференциальный усилитель `Diodes Incorporated PAM8302AAYCR` и динамик `PUI Audio AS02404PO`.
-- Задние органы управления: энкодер и PTT; единственный боковой RUN/KILL одновременно задаёт safety-состояние и малотоковую команду источнику.
-- Локальная безопасность: `Texas Instruments MSPM0C1106SDGS20R`, `Texas Instruments TPS3435CAKAGDDFR`, защёлка FAULT_KILL, три температурные зоны, аппаратные гейты и физическое подтверждение передачи.
+M1 выполняет только электрическую функцию и совмещение. Четыре точных 11,00-мм compression-stop, не менее двух противосдвиговых упоров корпуса и независимые захваты обеих PCB не дают платам разойтись или сдвинуться даже при одном ослабленном винте. Падение, установка аккумуляторов и изгиб корпуса не должны нагружать SMT-пайку M1.
 
-## Почему такое разделение
+## Принципиальная группировка
 
-- Сырой VBUS, согласованное повышенное напряжение USB-PD, зарядное устройство и аккумуляторы остаются на RF/power-плате.
-- Класс-D усилитель остаётся рядом с динамиком; через M1 проходит только низкоуровневый дифференциальный аудиосигнал.
-- Микрофон и его цепь смещения находятся на RF/power-плате; MIC_RAW проходит через M1 рядом с AUDIO_GROUND к расположенным на UI-плате селекторам записи и передачи.
-- Аналоговые выходы детекторов передачи и IR-несущая обрабатываются на своей плате; через M1 проходят только цифровые признаки передачи.
-- RUN/KILL, независимый watchdog, safety-контроллер и защёлка FAULT_KILL расположены на RF/power-плате; на UI-плату передаются RUN_PERMIT, раздельный reset S3, температура UI и read-only status.
-- Через M1 проходят только нажатие и фазы энкодера; F1…F8 локальны для UI-платы, PTT локальна для RP/voice, а четыре контакта M1 зарезервированы и оставлены NC.
+| Contacts | Назначение |
+|---|---|
+| `1–16` | 8 пар POWER_GROUND + 3V3_MAIN |
+| `17–20` | 2 × AON_SAFE_3V3 с safety-return |
+| `21–28` | выделенный SPI Hub↔RF RP + alert и возвраты |
+| `29–31` | продуктовый USB 2.0 S3 D−/D+ + возврат |
+| `32–34` | fail-closed I²C Pack/Safety + возврат |
+| `35–36` | 75-омный FPV_CVBS + отдельный video-return |
+| `37–40` | RUN, fault и UI thermal safety + возврат |
+| `41–50` | 9 сигналов actual-TX evidence + safety-return |
+| `51–54` | задний энкодер A/B/push + возврат |
+| `55–64` | 10 резервных NC-контактов |
+| `65–76` | 6 пар POWER_GROUND + 3V3_MAIN |
+| `77–80` | 4 резервных NC-контакта |
 
-## Бюджет контактов
+<details><summary>Полная контактная карта</summary>
 
-- Всего 80 контактов; 0 зарезервированы и физически не подключены.
-- 7 × `3V3_MAIN`, 2 × `AON_SAFE_3V3`.
-- 20 силовых возвратов, 3 аудиовозврата и 2 возврата безопасности.
-- Сырой VBUS/PD, ток аккумуляторов, аналоговые выходы TX-детекторов, IR-несущая и выходы класса D через M1 не проходят.
+| Контакт | Сеть | Класс |
+|---:|---|---|
+| `1` | `POWER_GROUND` | `main_return` |
+| `2` | `3V3_MAIN` | `main_power` |
+| `3` | `POWER_GROUND` | `main_return` |
+| `4` | `3V3_MAIN` | `main_power` |
+| `5` | `POWER_GROUND` | `main_return` |
+| `6` | `3V3_MAIN` | `main_power` |
+| `7` | `POWER_GROUND` | `main_return` |
+| `8` | `3V3_MAIN` | `main_power` |
+| `9` | `POWER_GROUND` | `main_return` |
+| `10` | `3V3_MAIN` | `main_power` |
+| `11` | `POWER_GROUND` | `main_return` |
+| `12` | `3V3_MAIN` | `main_power` |
+| `13` | `POWER_GROUND` | `main_return` |
+| `14` | `3V3_MAIN` | `main_power` |
+| `15` | `POWER_GROUND` | `main_return` |
+| `16` | `3V3_MAIN` | `main_power` |
+| `17` | `AON_SAFE_3V3` | `aon_power` |
+| `18` | `SAFETY_GROUND` | `safety_return` |
+| `19` | `AON_SAFE_3V3` | `aon_power` |
+| `20` | `SAFETY_GROUND` | `safety_return` |
+| `21` | `POWER_GROUND` | `ipc_return` |
+| `22` | `HUB_RF_ALERT_N` | `ipc` |
+| `23` | `HUB_RF_CS_N` | `ipc` |
+| `24` | `HUB_RF_SCK` | `ipc` |
+| `25` | `POWER_GROUND` | `ipc_return` |
+| `26` | `HUB_RF_MOSI` | `ipc` |
+| `27` | `HUB_RF_MISO` | `ipc` |
+| `28` | `POWER_GROUND` | `ipc_return` |
+| `29` | `S3_USB_DM` | `usb2` |
+| `30` | `S3_USB_DP` | `usb2` |
+| `31` | `POWER_GROUND` | `usb_return` |
+| `32` | `HUB_SAFE_I2C_SDA` | `control` |
+| `33` | `HUB_SAFE_I2C_SCL` | `control` |
+| `34` | `POWER_GROUND` | `control_return` |
+| `35` | `FPV_CVBS` | `video_75ohm` |
+| `36` | `VIDEO_GROUND` | `video_return` |
+| `37` | `RUN_PERMIT` | `safety` |
+| `38` | `FAULT_ASSERT_N` | `safety` |
+| `39` | `UI_ZONE_TEMP_ADC` | `safety_analog` |
+| `40` | `SAFETY_GROUND` | `safety_return` |
+| `41` | `EV_N0_S3` | `tx_evidence` |
+| `42` | `EV_N1_C5` | `tx_evidence` |
+| `43` | `EV_N2_NRF0` | `tx_evidence` |
+| `44` | `EV_N3_NRF1` | `tx_evidence` |
+| `45` | `EV_N4_NRF2` | `tx_evidence` |
+| `46` | `EV_N7_IR` | `tx_evidence` |
+| `47` | `SAFETY_GROUND` | `safety_return` |
+| `48` | `EV_N5_CC` | `tx_evidence` |
+| `49` | `EV_N6_VOICE` | `tx_evidence` |
+| `50` | `EV_N8_LORA_EXT` | `tx_evidence` |
+| `51` | `ENCODER_A` | `ui` |
+| `52` | `ENCODER_B` | `ui` |
+| `53` | `UI_ENCODER_PUSH_N` | `ui` |
+| `54` | `POWER_GROUND` | `ui_return` |
+| `55` | `NC_55` | `reserve` |
+| `56` | `NC_56` | `reserve` |
+| `57` | `NC_57` | `reserve` |
+| `58` | `NC_58` | `reserve` |
+| `59` | `NC_59` | `reserve` |
+| `60` | `NC_60` | `reserve` |
+| `61` | `NC_61` | `reserve` |
+| `62` | `NC_62` | `reserve` |
+| `63` | `NC_63` | `reserve` |
+| `64` | `NC_64` | `reserve` |
+| `65` | `POWER_GROUND` | `main_return` |
+| `66` | `3V3_MAIN` | `main_power` |
+| `67` | `POWER_GROUND` | `main_return` |
+| `68` | `3V3_MAIN` | `main_power` |
+| `69` | `POWER_GROUND` | `main_return` |
+| `70` | `3V3_MAIN` | `main_power` |
+| `71` | `POWER_GROUND` | `main_return` |
+| `72` | `3V3_MAIN` | `main_power` |
+| `73` | `POWER_GROUND` | `main_return` |
+| `74` | `3V3_MAIN` | `main_power` |
+| `75` | `POWER_GROUND` | `main_return` |
+| `76` | `3V3_MAIN` | `main_power` |
+| `77` | `NC_77` | `reserve` |
+| `78` | `NC_78` | `reserve` |
+| `79` | `NC_79` | `reserve` |
+| `80` | `NC_80` | `reserve` |
 
-## Физический проход через бутерброд
+</details>
 
-Все перечисленные ниже межплатные цепи проходят только внутри единого корпуса M1: в воздушном 11-мм канале нет отдельных шлейфов или проводов для USB, IPC, I2C, аудио, управления либо питания. Поэтому их общий механический конфликт с компонентами проверяется один раз полным keep-out точной пары `FX8C-80P-SV1(92)` / `FX8C-80S-SV5(92)`. Пара совмещена намеренно и не пересекается с посторонними корпусами на обеих платах. Отдельно проверены пять RF-коаксиалов, переходник дисплея, проходная розетка U214, девять выводов антенных разъёмов и семь сквозных выводов энкодера.
-
-Эта проверка закрывает объёмы деталей и межплатный воздушный канал, но не подменяет трассировку: fan-out всех 80 контактов, via fields, возвратные пути, импеданс и электрические зазоры будут доказаны только ERC/DRC готовых плат в KiCad. До этого карта ниже является утверждённой картой цепей, а не заявлением, что медь уже разведена.
-
-## Точная карта контактов
-
-| Контакт | Цепь | Направление | Класс |
-|---:|---|---|---|
-| `1` | `POWER_GROUND` | return | `return` |
-| `2` | `RP_ALERT_N` | RF→UI | `ipc_high_speed` |
-| `3` | `POWER_GROUND` | return | `return` |
-| `4` | `S3_RP_IPC_CS_N` | UI→RF | `ipc_high_speed` |
-| `5` | `S3_RP_IPC_SCK` | UI→RF | `ipc_high_speed` |
-| `6` | `POWER_GROUND` | return | `return` |
-| `7` | `S3_RP_IPC_MOSI` | UI→RF | `ipc_high_speed` |
-| `8` | `S3_RP_IPC_MISO` | RF→UI | `ipc_high_speed` |
-| `9` | `POWER_GROUND` | return | `return` |
-| `10` | `S3_USB_DM` | bidirectional | `usb2_high_speed` |
-| `11` | `S3_USB_DP` | bidirectional | `usb2_high_speed` |
-| `12` | `POWER_GROUND` | return | `return` |
-| `13` | `SYS_I2C_SDA` | bidirectional | `control` |
-| `14` | `SYS_I2C_SCL` | bidirectional | `control` |
-| `15` | `POWER_GROUND` | return | `return` |
-| `16` | `SYS_INT_N` | RF→UI | `control` |
-| `17` | `CC_BAND_V1_REQ` | UI→RF | `control` |
-| `18` | `CC_BAND_V2_REQ` | UI→RF | `control` |
-| `19` | `POWER_GROUND` | return | `return` |
-| `20` | `U214_I2C_READY` | RF→UI | `control` |
-| `21` | `VOICE_DOMAIN_REQ` | UI→RF | `control` |
-| `22` | `VOICE_HL_RELEASE_REQ` | UI→RF | `control` |
-| `23` | `POWER_GROUND` | return | `return` |
-| `24` | `U214_5V_REQ` | UI→RF | `control` |
-| `25` | `UNIT_5V_REQ` | UI→RF | `control` |
-| `26` | `POWER_FAULT_N` | RF→UI | `control` |
-| `27` | `POWER_GROUND` | return | `return` |
-| `28` | `UNIT_READY` | RF→UI | `control` |
-| `29` | `EV_N2_NRF0` | RF→UI | `tx_evidence` |
-| `30` | `EV_N3_NRF1` | RF→UI | `tx_evidence` |
-| `31` | `POWER_GROUND` | return | `return` |
-| `32` | `RUN_PERMIT` | RF→UI | `safety` |
-| `33` | `EV_N4_NRF2` | RF→UI | `tx_evidence` |
-| `34` | `FAULT_ASSERT_N` | RF→UI | `safety` |
-| `35` | `POWER_GROUND` | return | `return` |
-| `36` | `EV_N0_S3` | UI→RF | `tx_evidence` |
-| `37` | `EV_N1_C5` | UI→RF | `tx_evidence` |
-| `38` | `EV_N7_IR` | UI→RF | `tx_evidence` |
-| `39` | `POWER_GROUND` | return | `return` |
-| `40` | `C5_RF_TX_EVIDENCE_N` | RF→UI | `tx_evidence` |
-| `41` | `IR_TX_EVIDENCE_N` | RF→UI | `tx_evidence` |
-| `42` | `RX_VOICE_AFOUT_SELECTED` | RF→UI | `audio` |
-| `43` | `AUDIO_GROUND` | return | `return` |
-| `44` | `VOICE_MIC_SELECTED_MAIN` | UI→RF | `audio` |
-| `45` | `AUDIO_GROUND` | return | `return` |
-| `46` | `SPEAKER_SELECTED_P` | UI→RF | `audio` |
-| `47` | `SPEAKER_SELECTED_N` | UI→RF | `audio` |
-| `48` | `MIC_RAW` | RF→UI | `audio` |
-| `49` | `AUDIO_GROUND` | return | `return` |
-| `50` | `UI_ENCODER_PUSH_N` | RF→UI | `control` |
-| `51` | `3V3_MAIN` | rail | `power` |
-| `52` | `3V3_MAIN` | rail | `power` |
-| `53` | `3V3_MAIN` | rail | `power` |
-| `54` | `3V3_MAIN` | rail | `power` |
-| `55` | `3V3_MAIN` | rail | `power` |
-| `56` | `3V3_MAIN` | rail | `power` |
-| `57` | `3V3_MAIN` | rail | `power` |
-| `58` | `EV_N5_CC` | RF→UI | `tx_evidence` |
-| `59` | `POWER_GROUND` | return | `return` |
-| `60` | `POWER_GROUND` | return | `return` |
-| `61` | `POWER_GROUND` | return | `return` |
-| `62` | `POWER_GROUND` | return | `return` |
-| `63` | `POWER_GROUND` | return | `return` |
-| `64` | `POWER_GROUND` | return | `return` |
-| `65` | `AON_SAFE_3V3` | rail | `power` |
-| `66` | `AON_SAFE_3V3` | rail | `power` |
-| `67` | `SAFETY_GROUND` | return | `return` |
-| `68` | `SAFETY_GROUND` | return | `return` |
-| `69` | `UNIT_HOST_SIG0` | bidirectional | `unit_configurable` |
-| `70` | `POWER_GROUND` | return | `return` |
-| `71` | `UNIT_HOST_SIG1` | bidirectional | `unit_configurable` |
-| `72` | `POWER_GROUND` | return | `return` |
-| `73` | `ENCODER_A` | RF→UI | `control` |
-| `74` | `ENCODER_B` | RF→UI | `control` |
-| `75` | `S3_RESET_KILL_GATE` | RF→UI | `safety` |
-| `76` | `UI_ZONE_TEMP_ADC` | UI→RF | `analog` |
-| `77` | `FAULT_LATCH_SENSE_AON` | RF→UI | `safety` |
-| `78` | `SPEAKER_AMP_EN` | UI→RF | `control` |
-| `79` | `EV_N6_VOICE` | RF→UI | `tx_evidence` |
-| `80` | `EV_N8_LORA_EXT` | RF→UI | `tx_evidence` |
-
-Семь параллельных контактов `3V3_MAIN` дают паспортный потолок 2,8 А, но допустимый ток готового устройства определяется только измерением нагрева разъёма при одновременной нагрузке. Все 80 контактов назначены; шесть цифровых линий RF evidence выделены для лицевых индикаторов передачи.
+> Источник истины — `hardware/architecture/h0-r2-rebaseline.json`; таблица генерируется из него.

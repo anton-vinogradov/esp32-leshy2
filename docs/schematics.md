@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)
 
-These are the current `H0-R2`/`H1-R2.17` principle diagrams of the finished
+These are the current `H0-R2`/`H1-R2.18` principle diagrams of the finished
 device. They explain ownership, buses, RF locality, power and service access.
 The R2 production ECAD schematic does **not** exist yet: H2 starts only after
 the complete H1 mock-up is accepted.
@@ -22,35 +22,35 @@ Exact working GPIO groups and their budgets are published with the
 
 ```mermaid
 flowchart TD
-  S3["ESP32-S3-WROOM-1U-N16R8<br/>UI, display, direct keys"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>UI, i8080-8 TX, camera RX, direct keys"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, 802.15.4, IR"]
   FRP["SC1512-A4 · front RP<br/>3× nRF24, microSD"]
   RRP["SC1512-A4 · rear RP<br/>RF, audio, FPV, expansion"]
   TVP["TVP5150AM1PBS<br/>front-local CVBS decoder"]
   K331["AKK K331<br/>rear-local analog FPV RX"]
-  M1["Hirose FX8C-80<br/>one CVBS + bounded IPC/control<br/>power, ground, eight spare signals"]
+  LCD["HMX035CTFT-001<br/>direct 8-bit i8080 · 32 MHz"]
+  M1["Hirose FX8C-80<br/>25 signals · 14 main-power · 2 AON<br/>25 returns · 14 NC reserve"]
 
-  S3 <-->|"1-bit SDIO"| C5
-  S3 <-->|"local high-speed link"| FRP
+  S3 -->|"LCD_CAM TX + GDMA"| LCD
+  S3 <-->|"quad data + clock"| FRP
+  FRP <-->|"4-bit SDIO"| C5
   FRP <-->|"1.5 MB/s qualified RP link"| RRP
   K331 -->|"75-ohm CVBS"| M1
   M1 --> TVP
-  TVP -->|"local LCD_CAM"| S3
+  TVP -->|"local camera RX + GDMA"| S3
 ```
 
 No nRF payload and no main RF antenna trace crosses M1. Only the one analog
 video signal crosses before decoding; the 11-line decoded video bus stays on
-the front PCB.
+the front PCB. M1 is electrical/alignment only; four 11-mm compression stops,
+anti-shear enclosure datums and independent PCB capture carry mechanical load.
 
 ## Physical implementation of the principle
 
-### Front UI/radio PCB
+![Outer and mirrored inner faces in matched columns](images/h1-r2-four-faces.svg)
 
-![Front PCB inner face](images/h1-r2-inner-ui.svg)
-
-### Rear RF/power PCB
-
-![Rear PCB inner face](images/h1-r2-inner-rf.svg)
+[Front PCB inner face](images/h1-r2-inner-ui.svg) ·
+[Rear PCB inner face](images/h1-r2-inner-rf.svg)
 
 Internal numbers are drawing references, not silkscreen. The current placement
 audit reports zero same-face body collisions and 1.44 mm minimum opposing

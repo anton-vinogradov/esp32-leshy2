@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.17",
+  "marker": "H1-R2.18",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "new_fixed_body_count": 47,
@@ -388,6 +388,204 @@
       "plug insertion cycles, finger access and antenna strain"
     ],
     "errors": []
+  },
+  "silkscreen": {
+    "status": "pass",
+    "faces": {
+      "front": [
+        {
+          "text": "nRF1 · 2G4",
+          "box_mm": {
+            "x": [
+              8.894594594594595,
+              15.705405405405406
+            ],
+            "y": [
+              7.894594594594594,
+              9.434972972972972
+            ]
+          }
+        },
+        {
+          "text": "S3 · 2G4",
+          "box_mm": {
+            "x": [
+              20.075675675675676,
+              25.524324324324326
+            ],
+            "y": [
+              7.894594594594594,
+              9.434972972972972
+            ]
+          }
+        },
+        {
+          "text": "nRF2 · 2G4",
+          "box_mm": {
+            "x": [
+              34.0945945945946,
+              40.9054054054054
+            ],
+            "y": [
+              7.894594594594594,
+              9.434972972972972
+            ]
+          }
+        },
+        {
+          "text": "C5 · 2G4/5G",
+          "box_mm": {
+            "x": [
+              48.454054054054055,
+              55.94594594594595
+            ],
+            "y": [
+              7.894594594594594,
+              9.434972972972972
+            ]
+          }
+        },
+        {
+          "text": "nRF3 · 2G4",
+          "box_mm": {
+            "x": [
+              59.2945945945946,
+              66.1054054054054
+            ],
+            "y": [
+              7.894594594594594,
+              9.434972972972972
+            ]
+          }
+        }
+      ],
+      "rear": [
+        {
+          "text": "AIR/FM RX",
+          "box_mm": {
+            "x": [
+              5.0351351351351346,
+              11.164864864864864
+            ],
+            "y": [
+              15.094594594594593,
+              16.63497297297297
+            ]
+          }
+        },
+        {
+          "text": "AM/LW RX",
+          "box_mm": {
+            "x": [
+              20.075675675675676,
+              25.524324324324326
+            ],
+            "y": [
+              15.094594594594593,
+              16.63497297297297
+            ]
+          }
+        },
+        {
+          "text": "SUB-G TX",
+          "box_mm": {
+            "x": [
+              34.77567567567568,
+              40.22432432432432
+            ],
+            "y": [
+              15.094594594594593,
+              16.63497297297297
+            ]
+          }
+        },
+        {
+          "text": "VHF TX",
+          "box_mm": {
+            "x": [
+              50.15675675675676,
+              54.24324324324325
+            ],
+            "y": [
+              15.094594594594593,
+              16.63497297297297
+            ]
+          }
+        },
+        {
+          "text": "UHF TX",
+          "box_mm": {
+            "x": [
+              64.85675675675677,
+              68.94324324324324
+            ],
+            "y": [
+              15.094594594594593,
+              16.63497297297297
+            ]
+          }
+        },
+        {
+          "text": "FPV 5G8",
+          "box_mm": {
+            "x": [
+              42.46621621621622,
+              47.233783783783785
+            ],
+            "y": [
+              15.094594594594593,
+              16.63497297297297
+            ]
+          }
+        }
+      ]
+    },
+    "errors": []
+  },
+  "mechanical_retention": {
+    "m1_rule": "M1 is never a load-bearing member",
+    "compression_stops": {
+      "count": 4,
+      "exact_working_length_mm": 11.0,
+      "axes": [
+        [
+          5.0,
+          11.0
+        ],
+        [
+          70.0,
+          11.0
+        ],
+        [
+          5.0,
+          145.0
+        ],
+        [
+          70.0,
+          145.0
+        ]
+      ]
+    },
+    "anti_shear_datums_min": 2,
+    "pcb_capture": "independent front and rear enclosure lips/edge rails prevent board separation and relative shear even with any one screw loosened by one turn",
+    "fasteners": "captive or thread-locked M2.5 screws with a documented torque; parallel mating fixture required",
+    "h5_proof": "continuity and solder-joint inspection after one-loose-screw handling, drop, vibration and 50 service mating cycles"
+  },
+  "battery_holder_mechanics": {
+    "mpn": "Keystone 1048P",
+    "mounting": "SMT",
+    "manufacturer_body_mm": [
+      77.06,
+      39.78,
+      14.85
+    ],
+    "pcb_pad_span_mm": [
+      86.0,
+      39.78
+    ],
+    "drawing_rule": "render the 77.06-mm plastic body separately from the 86.00-mm PCB pad span",
+    "load_path": "an enclosure cradle and two end stops capture the plastic body and cell insertion axis so insertion, removal and drop loads do not peel the SMT pads",
+    "h5_proof": "cell insertion/removal cycles and drop inspection with the enclosure load path installed"
   },
   "errors": [],
   "current_h1_blockers": [

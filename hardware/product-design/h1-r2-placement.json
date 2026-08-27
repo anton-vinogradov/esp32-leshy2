@@ -2,9 +2,9 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.17",
+  "marker": "H1-R2.18",
   "checked_on": "2026-08-27",
-  "purpose": "Repartition complete functional islands for direct 5+5 antenna locality, local nRF concurrency and a one-signal FPV interboard path before any R2 KiCad work.",
+  "purpose": "Close the pre-KiCad physical architecture around direct i8080-8, a fully counted 80-contact M1, mechanically unloaded board retention, direct 5+5 antenna locality, local nRF concurrency and a one-signal FPV interboard path.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "board_mm": [75.0, 150.0],
   "stack": {
@@ -19,7 +19,7 @@
     "base_geometry": "R1 bodies are retained only as a collision-tested placement seed and may move during complete R2 optimisation",
     "fixed_body": "one exact serial device per rectangle",
     "reserve": "a dashed physical allocation, never a component or accepted MPN",
-    "silkscreen": "none of the inner-face annotations in the generated engineering drawing are PCB silkscreen",
+    "silkscreen": "none of the inner-face annotations in the generated engineering drawing are PCB silkscreen; every outer-face label must pass a generated no-overlap audit against component bodies, installed cables, mounting keep-outs and covered accessory zones",
     "antenna_identification": "Every outward RF port keeps a readable role/band label and gains a compact kit code. A post-assembly colour collar around the connector base and a durable heat-shrink flag on the matching antenna repeat that code; colour is redundant and is never the sole identifier."
   },
   "antenna_bank_optimization": {
@@ -38,20 +38,62 @@
     "installation_sequence": "five rear SMA ports retain an even pitch; the lower FPV MMCX uses a right-angle plug whose cable exits along -X below the SMA bodies and away from both mounting holes, while the temporary finger-approach envelope is verified ergonomically in H5",
     "reason": "move complete radio/control/evidence islands so every main antenna terminates on its source PCB; no high-speed radio bus and no main RF trace crosses M1"
   },
+  "antenna_silkscreen": {
+    "font_size_px": 4.2,
+    "front": [
+      {"path": "N24-0", "x_mm": 12.3, "baseline_y_mm": 9.2, "text": "nRF1 · 2G4"},
+      {"path": "S3-2G4", "x_mm": 22.8, "baseline_y_mm": 9.2, "text": "S3 · 2G4"},
+      {"path": "N24-1", "x_mm": 37.5, "baseline_y_mm": 9.2, "text": "nRF2 · 2G4"},
+      {"path": "C5-2G4/5", "x_mm": 52.2, "baseline_y_mm": 9.2, "text": "C5 · 2G4/5G"},
+      {"path": "N24-2", "x_mm": 62.7, "baseline_y_mm": 9.2, "text": "nRF3 · 2G4"}
+    ],
+    "rear": [
+      {"path": "RX-FM/SW", "x_mm": 8.1, "baseline_y_mm": 16.4, "text": "AIR/FM RX"},
+      {"path": "RX-AM/LW", "x_mm": 22.8, "baseline_y_mm": 16.4, "text": "AM/LW RX"},
+      {"path": "CC-SUB", "x_mm": 37.5, "baseline_y_mm": 16.4, "text": "SUB-G TX"},
+      {"path": "VOICE-VHF", "x_mm": 52.2, "baseline_y_mm": 16.4, "text": "VHF TX"},
+      {"path": "VOICE-UHF", "x_mm": 66.9, "baseline_y_mm": 16.4, "text": "UHF TX"}
+    ],
+    "fpv": {"x_mm": 44.85, "baseline_y_mm": 16.4, "text": "FPV 5G8"},
+    "role": "short user-facing PCB silk sits in the free strip below the physical RF bodies and installed FPV cable; the adjacent documentation legend expands every code"
+  },
   "functional_partition": {
     "accepted_on": "2026-08-27",
     "ui_board": ["S3 direct UI/display", "C5 native RF/IR", "three complete nRF24 islands", "front RP", "microSD", "UI-local TVP5150 decoder"],
     "rf_power_board": ["CC1101", "VHF/UHF voice", "FM/SW/AM/LW/Airband", "audio", "K331 FPV receiver", "M5 Unit", "U214", "rear RP", "power and safety"],
-    "front_rp_gpio": {"used": 45, "free": 3},
-    "rear_rp_gpio": {"used": 46, "free": 2},
+    "front_rp_gpio": {"used": 46, "free": 2},
+    "rear_rp_gpio": {"used": 45, "free": 3},
     "m1": {
-      "video_crossing": "one 75-ohm FPV_CVBS signal beside ground; decoder and 11-line LCD_CAM bus remain UI-local",
-      "released_legacy_signal_contacts": 9,
-      "used_for_fpv_cvbs": 1,
-      "remaining_signal_reserve": 8,
-      "nrf_evidence": "three active-low evidence lines remain explicit safety crossings; only their direction reverses"
+      "connector": "FX8C-80P-SV1(92) / FX8C-80S-SV5(92)",
+      "positions": 80,
+      "live_signals": 25,
+      "main_power_contacts": 14,
+      "aon_power_contacts": 2,
+      "defined_returns": 25,
+      "nc_reserve_contacts": 14,
+      "video_crossing": "one 75-ohm FPV_CVBS signal beside ground; decoder and 11-line camera RX bus remain UI-local",
+      "nrf_evidence": "three active-low evidence lines remain explicit safety crossings; only their direction reverses",
+      "structural_role": "none; M1 is electrical/alignment only"
     },
-    "transport": "rear audio at 48-kHz full duplex remains below 0.4 MB/s on the 1.5-MB/s qualified RP link; nRF payload is now front-local"
+    "transport": "rear audio at 48-kHz full duplex remains below 0.4 MB/s on the 1.5-MB/s qualified RP link; nRF payload is now front-local",
+    "display": "S3 drives HMX035CTFT-001 directly over 8-bit i8080 at a conservative 32 MHz while the independent camera RX/GDMA path captures BT.656; buttons, encoder and USB stay direct to S3; QSPI is prototype recovery only"
+  },
+  "mechanical_retention": {
+    "m1_rule": "M1 is never a load-bearing member",
+    "compression_stops": {"count": 4, "exact_working_length_mm": 11.0, "axes": [[5.0, 11.0], [70.0, 11.0], [5.0, 145.0], [70.0, 145.0]]},
+    "anti_shear_datums_min": 2,
+    "pcb_capture": "independent front and rear enclosure lips/edge rails prevent board separation and relative shear even with any one screw loosened by one turn",
+    "fasteners": "captive or thread-locked M2.5 screws with a documented torque; parallel mating fixture required",
+    "h5_proof": "continuity and solder-joint inspection after one-loose-screw handling, drop, vibration and 50 service mating cycles"
+  },
+  "battery_holder_mechanics": {
+    "mpn": "Keystone 1048P",
+    "mounting": "SMT",
+    "manufacturer_body_mm": [77.06, 39.78, 14.85],
+    "pcb_pad_span_mm": [86.0, 39.78],
+    "drawing_rule": "render the 77.06-mm plastic body separately from the 86.00-mm PCB pad span",
+    "load_path": "an enclosure cradle and two end stops capture the plastic body and cell insertion axis so insertion, removal and drop loads do not peel the SMT pads",
+    "h5_proof": "cell insertion/removal cycles and drop inspection with the enclosure load path installed"
   },
   "k331_factory_route": {
     "response_date": "2026-08-27",

@@ -1,10 +1,12 @@
-# H1-R2.17 · finished-device placement
+# H1-R2.18 · finished-device placement
 
 Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, not authorization to start KiCad: the controlled K331 production package remains the sole open input.
 
 ## What the user sees
 
-![Current complete exterior](images/h1-r2-external-layout.svg)
+![Four matched PCB faces](images/h1-r2-four-faces.svg)
+
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg)
 
 ![External service access](images/h1-r2-service-access.svg)
 
@@ -23,7 +25,7 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 - All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.
 - All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.
 - K331 remains rear-local while `TVP5150AM1PBS` moves beside S3: M1 carries one 75-ohm CVBS signal, not the 11-line LCD_CAM bus.
-- FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; display and buttons remain direct S3 interfaces.
+- FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, camera RX, buttons, encoder and USB.
 
 ![True inner sandwich sections](images/h1-r2-inner-sections.svg)
 
@@ -34,8 +36,10 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 - Same-face body collisions: `0`.
 - Minimum opposing Z clearance: `1.44 mm` against `0.70 mm` required.
 - FPV MMCX: the jack body leaves `2.07 mm` to the nearest SMA; the controlled right-angle plug leaves `2.40 mm` to SMA and `4.80 mm` to U214. Ø12 is only a temporary finger-approach zone and remains an H5 ergonomic check.
-- GPIO: front RP `45/48`, rear RP `45/48`; each retains 3 free lines. K331 RSSI is officially marked NC.
-- M1: 9 obsolete signals are released, 1 contact carries CVBS and 8 signal contacts remain spare.
+- GPIO: front RP `46/48` with `2` free; rear RP `45/48` with `3` free. K331 RSSI is officially marked NC.
+- M1: all 80 contacts are assigned — 25 signals, 14 main-power, 2 AON, 25 returns and 14 NC reserves.
+- M1 mechanics: four 11.00-mm compression stops, two anti-shear datums and independent PCB capture; the connector carries no impact or bending load.
+- Antenna silkscreen: the generator proves no overlap with SMA/MMCX bodies, the installed FPV cable, U214, the display or mounting keep-outs.
 
 ## Exact factory parts
 
@@ -61,4 +65,4 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 
 - obtain one AKK-controlled production package with maximum XYZ dimensions, pad pitch/land pattern and packaging/soldering/reflow evidence before replacing the K331 reserve with a fixed body and submitting the Consigned Parts application
 
-> Exact current marker: **H1-R2.17**. H1 remains in progress.
+> Exact current marker: **H1-R2.18**. H1 remains in progress.

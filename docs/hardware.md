@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H1-R2.17`**. The functional architecture is reviewed; the
+> Current marker: **`H1-R2.18`**. The functional architecture is reviewed; the
 > physical design is in progress. Nothing on this page authorizes KiCad routing
 > or an order.
 
@@ -32,15 +32,16 @@ safety gates.
 
 ### Front UI/radio PCB
 
-- `ESP32-S3-WROOM-1U-N16R8`: menus, touch, all user keys, direct QSPI display,
-  BLE/Wi-Fi and the local BT.656 video bus.
+- `ESP32-S3-WROOM-1U-N16R8`: menus, touch, all user keys, direct 32-MHz
+  i8080-8 display TX, BLE/Wi-Fi and the independent local BT.656 camera RX bus.
 - `ESP32-C5-WROOM-1U-N8R8`: 2.4/5-GHz Wi-Fi, 802.15.4 and IR.
 - `SC1512-A4` front RP: C5/S3/rear-RP links, three local nRF24 paths and microSD.
 - Three complete nRF islands: radio, command/return buffers, safety gate and
   dedicated physical-TX evidence.
 - `TVP5150AM1PBS`: CVBS decoding beside S3.
 
-Front RP GPIO budget: **45 used / 3 free**.
+Front RP GPIO budget: **46 used / 2 free**. TE capture and backlight PWM moved
+here so S3 can retain every direct UI path and the complete i8080-8 bus.
 
 ### Rear RF/power PCB
 
@@ -62,8 +63,9 @@ M1 is the exact straight-SMT Hirose pair `FX8C-80P-SV1(92)` /
 | Controller transport | Dedicated front-RP ↔ rear-RP SPI plus alert, qualified at 1.5 MB/s |
 | Analog video | One 75-ohm `FPV_CVBS` beside ground |
 | Safety | RUN/FAULT and three active-low nRF TX-evidence lines |
-| Power | Seven parallel 3V3_MAIN contacts plus grounds |
-| Reserve | Eight signal contacts remain free after the R2.15 repartition |
+| Power | Fourteen parallel 3V3_MAIN contacts; 0.3036 A/contact at the 4.25-A step |
+| Returns | Twenty-five defined main/safety/IPC/USB/video/UI returns |
+| Reserve | Fourteen true NC contacts |
 
 The decoder's eight data lines plus PCLK/VSYNC/HREF stay on the front PCB. No
 main RF trace and no nRF payload crosses M1. Rear 48-kHz full-duplex audio stays
@@ -71,7 +73,9 @@ below 0.4 MB/s, so it does not saturate the RP transport.
 
 ## Physical layout
 
-![Current external layout](images/h1-r2-external-layout.svg)
+![Four matched PCB faces](images/h1-r2-four-faces.svg)
+
+[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg).
 
 The ten main antenna ports are split symmetrically:
 
@@ -104,6 +108,12 @@ than a second tiny public diagram.
 
 Placement currently has **zero same-face collisions** and **1.44 mm** minimum
 opposing clearance against **0.70 mm** required.
+
+M1 is not structural: four 11.00-mm compression stops, at least two enclosure
+anti-shear datums and independent capture of both PCBs carry screw, drop and
+bending loads. The `Keystone 1048P` is also SMT; its 77.06-mm plastic body is
+captured by an enclosure cradle/end-stop pair while the 86.00-mm value shown in
+the drawing is its pad span.
 
 ## User interface and service
 

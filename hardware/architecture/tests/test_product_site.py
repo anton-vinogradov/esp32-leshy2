@@ -165,12 +165,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H1-R2.17`", "H0 is reviewed",
+                "Current hardware boundary: `H1-R2.18`", "H0 is reviewed",
                 "firmware F1-R2 reviewed", "F2-R2.0",
                 "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H1-R2.17`", "H0 проведено ревью",
+                "Текущая аппаратная граница: `H1-R2.18`", "H0 проведено ревью",
                 "firmware F1-R2 проведено ревью", "F2-R2.0",
                 "H9 · Manufacturing release",
                 "Production ECAD",
@@ -186,8 +186,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.17`", "fabrication"),
-            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.17`", "печати прототипа"),
+            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.18`", "fabrication"),
+            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.18`", "печати прототипа"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -272,7 +272,7 @@ class ProductSiteTests(unittest.TestCase):
             "README.md": (
                 "# Leshy2 ⭐",
                 "What it is",
-                "Current Leshy2 exterior",
+                "Current four-face Leshy2 mock-up",
                 "Roadmap and current position",
                 "Schematics and interfaces",
                 "Published result",
@@ -280,7 +280,7 @@ class ProductSiteTests(unittest.TestCase):
             "README.ru.md": (
                 "# Леший2 ⭐",
                 "Что это",
-                "Текущий внешний вид Лешего2",
+                "Текущий четырёхсторонний мокап Лешего2",
                 "Роадмап и текущее положение",
                 "Схемы и интерфейсы",
                 "Опубликованный результат",
@@ -289,20 +289,20 @@ class ProductSiteTests(unittest.TestCase):
         for name, tokens in expectations.items():
             page = " ".join(self.read(name).split())
             self.assertEqual(1, page.count("⭐"), name)
-            self.assertIn("docs/images/h1-r2-external-layout.svg", page, name)
+            self.assertIn("docs/images/h1-r2-four-faces.svg", page, name)
             for token in tokens:
                 self.assertIn(token, page, f"{name}: {token}")
 
     def test_public_schematics_describe_current_r2_not_superseded_r1_ecad(self):
         expectations = {
             "docs/schematics.md": (
-                "H0-R2", "H1-R2.17", "does **not** exist yet",
-                "3× nRF24", "one CVBS", "eight spare signals",
+                "H0-R2", "H1-R2.18", "does **not** exist yet",
+                "3× nRF24", "one analog video signal", "14 NC reserve",
                 "historical engineering evidence", "must not be used for fabrication",
             ),
             "docs/schematics.ru.md": (
-                "H0-R2", "H1-R2.17", "пока **нет**",
-                "3× nRF24", "один CVBS", "восемь резервных сигналов",
+                "H0-R2", "H1-R2.18", "пока **нет**",
+                "3× nRF24", "один аналоговый видеосигнал", "25 возвратов · 14 NC",
                 "историческое инженерное evidence", "печатать по ним нельзя",
             ),
         }
@@ -628,14 +628,14 @@ class ProductSiteTests(unittest.TestCase):
     def test_interconnect_page_distinguishes_mechanical_fit_from_ecad(self):
         expectations = {
             "docs/interconnect.md": (
-                "Every inter-board net listed below crosses only inside the single M1 body",
-                "The five RF microcoaxes",
-                "not a claim that copper is already routed",
+                "All 80 contacts are defined below",
+                "M1 is electrical/alignment only",
+                "source of truth is `hardware/architecture/h0-r2-rebaseline.json`",
             ),
             "docs/interconnect.ru.md": (
-                "Все перечисленные ниже межплатные цепи проходят только внутри единого корпуса",
-                "Отдельно проверены пять RF-коаксиалов",
-                "не заявлением, что медь уже разведена",
+                "Все 80 контактов определены ниже",
+                "M1 выполняет только электрическую функцию и совмещение",
+                "Источник истины — `hardware/architecture/h0-r2-rebaseline.json`",
             ),
         }
         for name, tokens in expectations.items():
@@ -663,7 +663,7 @@ class ProductSiteTests(unittest.TestCase):
                 rf"\*\*(?:(?:Exact|Current hardware) marker|Точный маркер|Текущий маркер железа): `{re.escape(found[0])}`[.]?\*\*",
                 name,
             )
-            self.assertIn("H1-R2.17", page, name)
+            self.assertIn("H1-R2.18", page, name)
 
         self.assertEqual({current_substep}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
@@ -674,12 +674,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_current_mockup_review_scope_is_explicit(self):
         expectations = {
             "docs/roadmap.md": (
-                "H1-R2.17", "Functional-island placement", "RF and antenna locality",
+                "H1-R2.18", "Functional-island placement", "RF and antenna locality",
                 "Interboard transport", "Physical and service audit", "Exact current blocker",
                 "ask the user to accept the complete mock-up",
             ),
             "docs/roadmap.ru.md": (
-                "H1-R2.17", "Размещение функциональных островов", "Локальность RF и антенн",
+                "H1-R2.18", "Размещение функциональных островов", "Локальность RF и антенн",
                 "Межплатный transport", "Физический и сервисный аудит", "Точный текущий блокер",
                 "получить принятие полного мокапа пользователем",
             ),
@@ -856,7 +856,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H1", state["current_stage"])
-        self.assertEqual("H1-R2.17", state["current_substep"])
+        self.assertEqual("H1-R2.18", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -1007,7 +1007,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(name)
             self.assertNotIn("H5-EVR07", page, name)
             self.assertNotIn("H5-EVR08", page, name)
-            self.assertIn("H1-R2.17", page, name)
+            self.assertIn("H1-R2.18", page, name)
         self.assertEqual(
             "source-hash-bound-precommit-revision",
             h4_plan["firmware_f3_evidence"]["revision"],
@@ -2714,7 +2714,7 @@ class ProductSiteTests(unittest.TestCase):
         for name in ("docs/hardware.md", "docs/hardware.ru.md"):
             page = self.read(name)
             self.assertNotIn("H1-cross-view-acceptance.json", page, name)
-            self.assertIn("H1-R2.17", page, name)
+            self.assertIn("H1-R2.18", page, name)
 
     def test_antenna_kit_is_product_facing_and_machine_accounted(self):
         import json
@@ -2939,12 +2939,12 @@ class ProductSiteTests(unittest.TestCase):
             ("docs/hardware.ru.md", "images/"),
         ):
             page = self.read(path)
-            self.assertIn(prefix + "h1-r2-external-layout.svg", page)
+            self.assertIn(prefix + "h1-r2-four-faces.svg", page)
             self.assertIn(prefix + "h0-r2-functional-architecture.svg", page)
             self.assertIn(prefix + "h1-r2-inner-ui.svg", page)
             self.assertIn(prefix + "h1-r2-inner-rf.svg", page)
             self.assertLess(
-                page.index("h1-r2-external-layout.svg"),
+                page.index("h1-r2-four-faces.svg"),
                 page.index("h1-r2-inner-ui.svg"),
             )
             self.assertLess(
@@ -3169,7 +3169,7 @@ class ProductSiteTests(unittest.TestCase):
         ):
             landing = self.read(name)
             for image in (
-                "docs/images/h1-r2-external-layout.svg",
+                "docs/images/h1-r2-four-faces.svg",
                 "docs/images/h0-r2-functional-architecture.svg",
                 "docs/images/h1-r2-inner-ui.svg",
                 "docs/images/h1-r2-inner-rf.svg",

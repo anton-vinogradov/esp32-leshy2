@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H1-R2.17`.** H0 is reviewed. H1 is not.
+> **▶ Current hardware boundary: `H1-R2.18`.** H0 is reviewed. H1 is not.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **27 August 2026**.
@@ -24,7 +24,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ▶ [H1-R2.17](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks and a separate vertical rear FPV MMCX |
+| Physical design | ▶ [H1-R2.18](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks and a separate vertical rear FPV MMCX |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map, FPV/MMCX proof and power/filter diagrams are published |
 | Production ECAD | ⏳ R1 evidence retained; R2 schematic waits for H1 |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.0 is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); emulator/dev-board execution must precede H7 fabrication |
@@ -32,9 +32,9 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Current H1 · exact composition
 
-<!-- current-substep: H1-R2.17 -->
+<!-- current-substep: H1-R2.18 -->
 
-**Exact marker: `H1-R2.17`.** This is one physical-design substep, not a closed
+**Exact marker: `H1-R2.18`.** This is one physical-design substep, not a closed
 H1 report.
 
 ### 1. Functional-island placement
@@ -43,8 +43,8 @@ H1 report.
   microSD and UI-local TVP5150.
 - ✅ Rear RF/power PCB: CC1101, VHF/UHF voice, FM/SW/AM/LW/Airband, audio,
   K331 FPV, M5, U214, rear RP, power and safety.
-- ✅ Front RP GPIO: `45/48`; rear RP GPIO: `45/48`; K331 RSSI is officially NC.
-- ✅ Display and all user keys remain direct S3 interfaces.
+- ✅ Front RP GPIO: `46/48` with 2 free; rear RP GPIO: `45/48` with 3 free; K331 RSSI is officially NC.
+- ✅ Display is direct 32-MHz i8080-8; all user keys, encoder, USB and camera RX remain direct S3 interfaces.
 
 ### 2. RF and antenna locality
 
@@ -61,8 +61,10 @@ H1 report.
 - ✅ K331 remains rear-local and TVP5150 becomes UI-local.
 - ✅ M1 carries one 75-ohm CVBS beside ground; the 8-bit data bus plus
   PCLK/VSYNC/HREF remain UI-local.
-- ✅ Nine obsolete M1 signal contacts are released; one becomes CVBS and eight
-  remain spare.
+- ✅ M1 is fully counted: 25 live signals, 14 main-power, 2 AON, 25 defined
+  returns and 14 NC reserves; the 4.25-A step is 0.3036 A per main contact.
+- ✅ M1 carries no structural load: four 11.00-mm stops, at least two anti-shear
+  datums and independent PCB capture cover the one-loose-screw case.
 - ✅ Rear audio stays below 0.4 MB/s on the qualified 1.5 MB/s RP link; nRF
   payload is front-local.
 
@@ -77,6 +79,8 @@ H1 report.
   four keyed DBG10 fallbacks remain available.
 - ✅ Public diagrams use one board per inner image. The complete numbered
   163-body projection is retained only as machine-review evidence.
+- ✅ The main public mock-up places each mirrored inner face directly below its
+  matching exterior; antenna silk passes body/cable/U214/display/fastener checks.
 
 ### 5. Exact current blocker
 
@@ -92,7 +96,7 @@ H1 report.
 | Phase | Status | Result | Exit criterion |
 |---|---|---|---|
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.17`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.18`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ⏳ Waiting for H1 | Exact R2 symbols, contacts, nets, values, protection and footprints | ERC-clean sheets and machine-readable HW↔FW contract |
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |

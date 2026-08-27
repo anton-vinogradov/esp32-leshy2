@@ -10,9 +10,9 @@
 
 </div>
 
-> **Current hardware marker: `H1-R2.17`.** The two-PCB physical model is in progress. Ten main SMA ports are split `5 + 5`; the separate vertical rear-face MMCX is `FPV RX · 5.8G`. Placement and interboard budgets pass, but KiCad and ordering remain blocked until the controlled K331 production package closes H1.
+> **Current hardware marker: `H1-R2.18`.** The two-PCB physical model is in progress. Ten main SMA ports are split `5 + 5`; the separate vertical rear-face MMCX is `FPV RX · 5.8G`. Placement and interboard budgets pass, but KiCad and ordering remain blocked until the controlled K331 production package closes H1.
 
-![Current Leshy2 exterior](docs/images/h1-r2-external-layout.svg)
+![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg)
 
 ## What it is
 
@@ -27,7 +27,7 @@ interfaces enter a hardware-verifiable quiet state.
 | Native wireless | S3 Wi-Fi/BLE and C5 2.4/5-GHz Wi-Fi, 802.15.4 and IR |
 | Dedicated RF | CC1101 Sub-GHz, independent VHF/UHF voice, FM/AM/SW/LW/Airband RX |
 | Video | Receive-only analog 5.8-GHz FPV through a dedicated rear MMCX |
-| Interface | 3.5-inch 320×480 touch IPS, direct S3 buttons, waterfall, microSD and audio |
+| Interface | 3.5-inch 320×480 touch IPS over direct 32-MHz i8080-8, direct S3 buttons, waterfall, microSD and audio |
 | Expansion | Rear U214 LoRa Cap rail and protected M5 Unit interface |
 | Recovery | Four independent USB paths, recessed per-controller controls and DBG10 fallbacks |
 | Unattended safety | TX evidence, watchdog, thermal supervision, hard power-off and retained fault reason |
@@ -46,9 +46,10 @@ VHF/UHF voice, broadcast/Airband, audio, K331 FPV, M5/U214, the rear RP, power
 and independent safety.
 
 Only one 75-ohm CVBS signal crosses the 80-contact M1 connector. The decoder's
-11-line LCD_CAM bus remains local to S3; nRF payload remains local to the front
-RP. M1 also carries bounded control/status, safety evidence, power and ground,
-with eight signal contacts still free.
+11-line camera bus and the independent i8080-8 display TX path remain local to
+S3; nRF payload remains local to the front RP. M1 is fully assigned: 25 live
+signals, 14 main-power contacts, 2 AON contacts, 25 defined returns and 14 NC
+reserves.
 
 ### Front PCB · inner face
 
@@ -85,7 +86,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | Stage | Status | Published result |
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.17`** | [Current placement](docs/h1-r2-physical-layout.md) |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.18`** | [Current placement](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ⏳ Waiting for R2 H1 | [Stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
@@ -97,8 +98,11 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 
 ### Current H1 composition
 
-- ✅ Functional islands and front/rear RP GPIO budgets: `45/48` and `45/48`; K331 RSSI is officially NC.
+- ✅ Functional islands and front/rear RP GPIO budgets: `46/48` (2 free) and `45/48` (3 free); K331 RSSI is officially NC.
 - ✅ Ten main antenna ports repartitioned `5 + 5`; no main RF trace crosses M1.
+- ✅ Direct i8080-8 display closes at 32 MB/s while buttons, encoder, USB and camera RX remain direct S3 paths.
+- ✅ M1 has a complete 80-contact map and an enclosure load path: four 11-mm stops, anti-shear datums and independent PCB capture.
+- ✅ Antenna silkscreen passes generated body/cable/accessory/fastener no-overlap checks.
 - ✅ Vertical Molex `73415-2063` FPV MMCX: exact JLCPCB route, SMT-only, no interboard tail.
 - ✅ Placement audit: zero same-face collisions; 1.44 mm minimum opposing clearance against 0.70 mm required.
 - ✅ Public exterior, separate readable inner faces, service surface and real section views regenerated.
@@ -109,7 +113,7 @@ Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H1-R2.17 -->
+<!-- current-substep: H1-R2.18 -->
 
 ## Repository
 

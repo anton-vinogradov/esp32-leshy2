@@ -68,6 +68,10 @@ U214_RETENTION_Y = U214_Y + U214_H / 2
 PACK_HOLDER_Y = 42.0
 PACK_HOLDER_H = 86.0
 PACK_CELL_Y = PACK_HOLDER_Y + 10.0
+PACK_HOLDER_BODY_W = 39.78
+PACK_HOLDER_BODY_H = 77.06
+PACK_HOLDER_BODY_X = (BOARD_W - PACK_HOLDER_BODY_W) / 2
+PACK_HOLDER_BODY_Y = PACK_HOLDER_Y + (PACK_HOLDER_H - PACK_HOLDER_BODY_H) / 2
 
 # Exact GCT RFPC-SMA31/SMA32 1.6-mm edge-launch family. The 10.2-mm
 # plan width includes the nut envelope; the 6-mm board-side depth comes from
@@ -141,6 +145,11 @@ RF_USER_LABEL_LINES = {
     "VOICE-UHF": ("UHF VOICE", "400-480 MHz"),
     "N24-2": ("nRF24-3", "2.4 GHz"),
 }
+# Optional per-path label coordinates for derivative layouts.  Coordinates
+# are PCB millimetres in the matching outer-face frame.  Keeping them in the
+# drawing input lets the geometry audit reject silk hidden by a connector,
+# cable, display, Cap or mounting keep-out instead of relying on hand tuning.
+RF_COMPACT_LABEL_POSITIONS = {}
 TX_RF_PATHS = {
     "S3-2G4", "C5-2G4/5", "N24-0", "CC-SUB", "N24-1", "VOICE-VHF", "VOICE-UHF", "N24-2"
 }
@@ -2773,16 +2782,15 @@ def rf_bank(
             rows.append(f'<path d="M{x:.1f} {arrow_start:.1f} V{arrow_start-14:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
         if show_annotations:
             label_y = (compact_label_y if compact_label_y is not None else 9.0) if compact_labels else 15.5
+            label_x = centre
             if compact_labels:
                 visible_lines = RF_USER_LABEL_LINES[path]
-                # The two corner nRF ports sit beside the upper mounting-hole
-                # keep-outs.  Their complete function is printed on one line
-                # in the narrow, visible strip immediately above the U214 rail.
-                if path in {"N24-0", "N24-2"}:
-                    visible_lines = (f"{visible_lines[0]} · 2.4G",)
-                    label_y = 16.2
+                position = RF_COMPACT_LABEL_POSITIONS.get(path)
+                if position is not None:
+                    label_x = float(position[0])
+                    label_y = float(position[1])
                 for line_index, visible_label in enumerate(visible_lines):
-                    rows.append(text(x, sy(origin, label_y + 2.0 * line_index), visible_label, 3.8, "bold", "middle", "#1d4ed8"))
+                    rows.append(text(sx(origin, label_x), sy(origin, label_y + 2.0 * line_index), visible_label, 4.2, "bold", "middle", "#1d4ed8"))
             else:
                 rows.append(text(x, sy(origin, label_y), path, 6.2, "bold", "middle", "#1d4ed8"))
                 rows.append(text(x, sy(origin, 18.2), polarity, 5.2, anchor="middle", colour="#526076"))
@@ -3001,8 +3009,27 @@ def render_external(devices, instances):
 
     holder = Placement("pack_holder", 17.6, PACK_HOLDER_Y, "holder", 90)
     hw, hh = placement_size(holder, devices, instances)
-    out.append(rect(rear, holder.x, holder.y, hw, hh, "#dcfce7", "#16a34a", rx=10))
-    out.append(text(sx(rear,37.5), sy(rear,126), "Keystone 1048P · 86×39.8 mm", 6.5, "bold", "middle", "#166534"))
+    # The manufacturer's plastic body is 77.06 mm long.  The 86.00-mm value
+    # is the PCB pad span, not a second body envelope.  Draw both so the SMT
+    # mounting and the enclosure load path cannot be confused.
+    out.append(rect(rear, holder.x, holder.y, hw, hh, "none", "#16a34a", "4 3", 3).replace(
+        "/>", ' data-part="1048P-pcb-pad-span" data-dimension-mm="86.00"/>',
+    ))
+    out.append(rect(
+        rear, PACK_HOLDER_BODY_X, PACK_HOLDER_BODY_Y,
+        PACK_HOLDER_BODY_W, PACK_HOLDER_BODY_H,
+        "#dcfce7", "#16a34a", rx=10,
+        extra=' data-instance="pack_holder" data-mpn="Keystone 1048P" data-mounting="SMT"',
+    ))
+    cradle_x = PACK_HOLDER_BODY_X - 1.2
+    cradle_w = PACK_HOLDER_BODY_W + 2.4
+    for stop_y in (PACK_HOLDER_BODY_Y - 1.0, PACK_HOLDER_BODY_Y + PACK_HOLDER_BODY_H + 1.0):
+        out.append(
+            f'<path d="M{sx(rear,cradle_x):.1f} {sy(rear,stop_y):.1f} '
+            f'H{sx(rear,cradle_x+cradle_w):.1f}" stroke="#ea580c" stroke-width="2" '
+            'data-layer="mechanical-reference" data-part="enclosure-holder-end-stop"/>'
+        )
+    out.append(text(sx(rear,37.5), sy(rear,126), "1048P body 77.1 · SMT pad span 86.0", 6.1, "bold", "middle", "#166534"))
     for cell_instance, cell_x in (("pack_cell0", 28.0), ("pack_cell1", 47.0)):
         cell = Placement(cell_instance, 0.0, 0.0, "protected 18650 cell", 90)
         cell_w, cell_h = placement_size(cell, devices, instances)
