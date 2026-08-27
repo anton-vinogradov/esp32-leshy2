@@ -22,6 +22,8 @@ The two RP2354B devices and the two MSPM0 devices share only partition
 geometry. Their target IDs, image identities, boot state and physical storage
 remain separate. Firmware F0-R2.2 checks this one-to-one ownership in its
 [machine contract](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/f0_r2_memory_rollback_contract.json).
+Firmware F0-R2.3 now fixes the S3-last six-image update transaction; its actual
+16.7-second RP TBYB timing remains a later firmware/physical qualification gate.
 
 ## Hardware rules that preserve boot and recovery
 

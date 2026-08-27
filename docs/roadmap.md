@@ -27,7 +27,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Principle diagrams on the site | H0-R2 functional map, H1-R2.13 complete physical views and FPV/MMCX path, and H1-R2.4 filter/rail diagrams are current; the generated physical views remain explicitly in progress until the K331 boundary stops moving |
 | Production ECAD schematic | ⏳ R1 sheets retained; R2 work waits for the H1-R2 placement and rail contract |
 | Electrical and transient evidence | ⏳ R1 evidence retained; full R2 H3 rerun follows R2 H2 |
-| Firmware interlock | ▶️ firmware F0-R2.2 has reviewed six target/image identities and six independent local rollback domains without claiming physical transitions or R2 builds; activation/execution contracts remain |
+| Firmware interlock | ▶️ firmware F0-R2.3 has reviewed identities, local rollback and the S3-last six-image transaction without claiming flash transitions or qualified timing; execution gates remain |
 | Joined pre-layout gate | ⏳ R1 H4 retained; R2 H4 waits for R2 H3 and firmware R2 evidence |
 | KiCad schematic work | ⏳ no R2 sheet is accepted before H1-R2 closes |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |

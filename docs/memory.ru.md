@@ -22,6 +22,8 @@ last-known-good image.
 identities images, boot state и физическое хранилище раздельны. Firmware
 F0-R2.2 проверяет этот one-to-one ownership в
 [машинном контракте](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/f0_r2_memory_rollback_contract.json).
+Firmware F0-R2.3 теперь фиксирует S3-last update transaction шести образов;
+реальный timing окна RP TBYB 16,7 с остаётся последующим firmware/physical gate.
 
 ## Аппаратные правила, сохраняющие boot и recovery
 
