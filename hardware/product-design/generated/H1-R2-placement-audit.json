@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.7",
+  "marker": "H1-R2.8",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "new_fixed_body_count": 17,
@@ -423,7 +423,7 @@
       "kind": "reserve",
       "frame": "rf-inner",
       "mpn": null,
-      "role": "leading serial 5.8-GHz analog receiver candidate; 28 x 23 x 3 mm remains a reserve until AKK-controlled physical evidence exists",
+      "role": "leading serial 5.8-GHz analog receiver candidate with official functional integration; 28 x 23 x 3 mm remains a reserve until AKK-controlled physical evidence exists",
       "world_bbox_mm": {
         "x": [
           39.5,

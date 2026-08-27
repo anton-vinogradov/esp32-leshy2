@@ -55,6 +55,14 @@ def audit(model: dict) -> dict:
         errors.append("the selected same-board RF path regressed to U.FL")
     if receiver["jlcpcb_surface"]["accepted_for_factory_placement"]:
         errors.append("K331 factory placement is claimed without a JLCPCB route")
+    official = receiver.get("official_integration_evidence", {})
+    required_official_evidence = {"application_circuit", "pinout", "channel_table"}
+    if not required_official_evidence.issubset(official):
+        errors.append("official K331 integration evidence is incomplete")
+    if any("akktek.com/media/catalog/product/" not in official.get(key, "") for key in required_official_evidence):
+        errors.append("official K331 integration evidence is not manufacturer-hosted")
+    if official.get("does_not_cover") != "maximum body dimensions, pad pitch and land geometry, packaging or reflow profile":
+        errors.append("official K331 media no longer preserves the physical-evidence boundary")
     alternatives = {row["mpn"]: row for row in model["receiver_alternatives_reviewed"]}
     if set(alternatives) != {"AKK K331", "AWM682 RX", "TUE-RFVRX-58-D", "RichWave RTC6715 IC", "generic RX5808"}:
         errors.append("receiver alternative review is incomplete")
@@ -107,6 +115,7 @@ def audit(model: dict) -> dict:
         "jlcpcb_catalogue_hits": sum(row["catalogue_hits"] for row in searches.values()),
         "jlcpcb_placeable_hits": sum(row["placeable_hits"] for row in searches.values()),
         "supplier_outreach_sent_on": outreach["sent_on"],
+        "official_integration_evidence": sorted(required_official_evidence),
         "supplier_responses_pending": [key for key in ("akk", "jlcpcb") if "pending" in outreach[key]["status"]],
         "current_h1_blockers": current_blockers,
         "downstream_verification": downstream,
@@ -151,11 +160,13 @@ def render_svg(model: dict) -> str:
 
 def render_doc(model: dict, result: dict, ru: bool) -> str:
     r, a = model["receiver"], model["antenna"]
+    e = r["official_integration_evidence"]
     if ru:
         title = f'# {model["marker"]} · тракт аналогового FPV'
         intro = 'Принят серийный функциональный кандидат приёмника и точная антенна; физическая приёмка K331 ещё не заявлена.'
         result_text = (
             f'- `AKK {r["mpn"]}` покрывает {r["frequency_mhz"][0]}–{r["frequency_mhz"][1]} МГц, до {r["maximum_current_ma"]} мА и выдаёт CVBS 1 Vpp/75 Ω.\n'
+            f'- Официальные материалы AKK подтверждают [схему включения 331RX]({e["application_circuit"]}), [функции всех 14 контактов]({e["pinout"]}) и [таблицу выбора 24 каналов]({e["channel_table"]}).\n'
             '- CH1/CH2/CH3 используют уже зарезервированные Hub GPIO36/37/38; новых GPIO или расширителя нет.\n'
             f'- Резерв 5 В оставляет {result["power_margin_ma"]} мА запаса. RF идёт напрямую по 50-омной PCB-дорожке к MMCX без U.FL.\n'
             f'- Антенна `{a["mpn"]}` линейная, {a["frequency_mhz"][0]}–{a["frequency_mhz"][1]} МГц, {a["gain_dbi"]} dBi, {a["cable_length_mm"]} мм; точная маркировка комплекта — `{a["printed_identity"]}`.'
@@ -182,6 +193,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         intro = 'The serial receiver functional candidate and exact antenna are selected; K331 physical acceptance is not claimed yet.'
         result_text = (
             f'- `AKK {r["mpn"]}` covers {r["frequency_mhz"][0]}–{r["frequency_mhz"][1]} MHz, draws at most {r["maximum_current_ma"]} mA and emits 1-Vpp/75-ohm CVBS.\n'
+            f'- Official AKK-hosted media confirms the [331RX application circuit]({e["application_circuit"]}), [all 14 pin functions]({e["pinout"]}) and the [24-channel selection table]({e["channel_table"]}).\n'
             '- CH1/CH2/CH3 use already-reserved Hub GPIO36/37/38; no new GPIO or expander is needed.\n'
             f'- The 5-V reserve retains {result["power_margin_ma"]} mA. RF runs directly over a 50-ohm PCB trace to MMCX without U.FL.\n'
             f'- `{a["mpn"]}` is linear, {a["frequency_mhz"][0]}–{a["frequency_mhz"][1]} MHz, {a["gain_dbi"]} dBi and {a["cable_length_mm"]} mm; its exact kit mark is `{a["printed_identity"]}`.'

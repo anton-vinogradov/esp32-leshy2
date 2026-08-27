@@ -20,14 +20,14 @@
 <a id="h1"></a>
 ## ⭐ H1 · Физический дизайн устройства
 
-**Статус:** ▶️ сейчас `H1-R2.7`; результат R1 сохранён как evidence, а не как текущая приёмка.
+**Статус:** ▶️ сейчас `H1-R2.8`; результат R1 сохранён как evidence, а не как текущая приёмка.
 
-- [Текущее физическое размещение H1-R2.7](h1-r2-physical-layout.ru.md) — новые
+- [Текущее физическое размещение H1-R2.8](h1-r2-physical-layout.ru.md) — новые
   Hub, Airband и корпуса/резервы аналогового FPV в общей системе координат,
   с генерируемыми проверками коллизий, встречного зазора и точного service MMCX.
 - [Точный вид установки/service MMCX](images/h1-r2-mmcx-service.svg): исправленная
   привязка к кромке, keepout выводов wave soldering и коридоры стенки/штекера.
-- [Машинный аудит размещения H1-R2.7](../hardware/product-design/generated/H1-R2-placement-audit.json).
+- [Машинный аудит размещения H1-R2.8](../hardware/product-design/generated/H1-R2-placement-audit.json).
 - [Функциональный тракт аналогового FPV](h1-r2-fpv.ru.md) и его
   [машинный аудит](../hardware/product-design/generated/H1-R2-fpv-audit.json):
   распиновка/питание K331, точный MMCX-тракт, точная антенна TBS и живое
@@ -250,9 +250,11 @@ qualified-pending UHF alternate SA818S-CE. Текущая
 разрешая заказ. Отказ JLCPCB работать с аккумуляторами относится к исключённому
 из поставки пользовательскому `J5-U` и потому не является отказом по устройству.
 [Уточнение](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md)
-подготовлено, но не отправлено. JLCAPI app/key готовы вне Git, но право Parts отклонено без
-указанной причины; [информационный запрос в поддержку](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md)
-успешно отправлен 26 августа 2026 года. Пока действует ручной evidence-путь.
+подготовлено, но не отправлено. JLCAPI app/key готовы вне Git, но право Parts
+остаётся отклонённым. [Поддержка ответила](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md),
+что у нового аккаунта нет истории заказов, при этом автор ответа не входит в
+API review team и не назвал порог одобрения. Повторная заявка не отправлена;
+пока действует ручной evidence-путь.
 [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json)
 сохраняет PCBWay как неотправленный первый резерв полной сборки, а Seeed — как
 второй источник PCBA, поэтому отрицательный ответ JLCPCB не перезапускает фазу.

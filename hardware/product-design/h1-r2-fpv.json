@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.7",
+  "marker": "H1-R2.8",
   "checked_on": "2026-08-27",
-  "status": "functional_fit_passed_physical_and_factory_route_open",
+  "status": "official_functional_integration_passed_physical_and_factory_route_open",
   "receiver": {
     "mpn": "K331",
     "manufacturer": "AKK Technology",
@@ -33,6 +33,15 @@
     ],
     "decoder_lock_evidence": "Hub RP GPIO35 reads qualified TVP5150 video-lock/evidence; K331 has no separate lock pin",
     "published_integration_sheet": "https://flymod.net/en/item/akk_k331_58g",
+    "official_integration_evidence": {
+      "host": "AKK Technology product media",
+      "checked_on": "2026-08-27",
+      "application_circuit": "https://www.akktek.com/media/catalog/product/6/1/614ind1rmzl._sl1100_.jpg",
+      "pinout": "https://www.akktek.com/media/catalog/product/6/1/61ruo85qnbl._sl1100_.jpg",
+      "channel_table": "https://www.akktek.com/media/catalog/product/7/1/71tyrmpocol._sl1100_.jpg",
+      "coverage": "manufacturer-hosted 331RX application circuit, complete 1..14 functional pin map and 24-channel truth table",
+      "does_not_cover": "maximum body dimensions, pad pitch and land geometry, packaging or reflow profile"
+    },
     "mechanical": {
       "working_envelope_mm": [28.0, 23.0, 3.0],
       "working_envelope_source": "common shielded RX5808-family envelope and published K331 photography; not a manufacturer drawing",
@@ -82,8 +91,8 @@
       "channel_count": 24,
       "working_envelope_mm": [28.0, 23.0, 3.0],
       "controlled_mechanical_drawing": false,
-      "result": "leading candidate: only option reviewed that fits the reserved pins, power and working envelope; controlled body/factory evidence remains open",
-      "result_ru": "ведущий кандидат: единственный рассмотренный вариант, вписывающийся в зарезервированные GPIO, питание и рабочий габарит; контролируемый корпус и фабричный маршрут открыты"
+      "result": "leading candidate: manufacturer-hosted media now confirms its application circuit, complete 14-pin functions and 24-channel truth table; the working envelope still lacks a controlled drawing and factory route",
+      "result_ru": "ведущий кандидат: материалы на сайте производителя подтверждают схему включения, функции всех 14 контактов и таблицу 24 каналов; рабочий габарит всё ещё не имеет контролируемого чертежа и фабричного маршрута"
     },
     {
       "mpn": "AWM682 RX",
@@ -153,7 +162,7 @@
       "result_ru": "отклонён как production-identity: у публичной карточки нулевой склад и нет личности производителя, контролируемого чертежа или доступного фабричного маршрута"
     }
   ],
-  "receiver_research_conclusion": "Keep K331 as the leading functional candidate and request its controlled mechanical/assembly package plus a JLCPCB sourcing response. Public RTC6715/RX5808 catalogue cards do not create a purchasable module route, and a custom 5.8-GHz receiver around the bare RTC6715 would increase RF risk without solving supply.",
+  "receiver_research_conclusion": "Keep K331 as the leading functional candidate: official AKK-hosted media closes the application-circuit, complete 14-pin function and 24-channel truth-table evidence. Request only the still-missing controlled mechanical/assembly package plus a JLCPCB sourcing response. Public RTC6715/RX5808 catalogue cards do not create a purchasable module route, and a custom 5.8-GHz receiver around the bare RTC6715 would increase RF risk without solving supply.",
   "supplier_outreach": {
     "sent_on": "2026-08-27",
     "akk": {

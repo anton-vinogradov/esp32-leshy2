@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.7",
+  "marker": "H1-R2.8",
   "status": "pass",
   "functional_and_pin_fit": true,
   "receiver": "K331",
@@ -16,6 +16,11 @@
   "jlcpcb_catalogue_hits": 3,
   "jlcpcb_placeable_hits": 0,
   "supplier_outreach_sent_on": "2026-08-27",
+  "official_integration_evidence": [
+    "application_circuit",
+    "channel_table",
+    "pinout"
+  ],
   "supplier_responses_pending": [
     "akk",
     "jlcpcb"

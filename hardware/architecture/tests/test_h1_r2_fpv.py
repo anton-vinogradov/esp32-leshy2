@@ -38,6 +38,17 @@ class H1R2FPVTest(unittest.TestCase):
         self.assertIn("direct 50-ohm PCB trace", path)
         self.assertIn("without U.FL or cable", path)
 
+    def test_official_k331_media_closes_functional_integration_only(self):
+        evidence = self.model["receiver"]["official_integration_evidence"]
+        self.assertEqual(
+            {"application_circuit", "channel_table", "pinout"},
+            set(self.audit["official_integration_evidence"]),
+        )
+        for key in ("application_circuit", "pinout", "channel_table"):
+            self.assertIn("akktek.com/media/catalog/product/", evidence[key])
+        self.assertIn("maximum body dimensions", evidence["does_not_cover"])
+        self.assertFalse(self.model["receiver"]["mechanical"]["accepted"])
+
     def test_receiver_factory_and_physical_limits_fail_closed(self):
         receiver = self.model["receiver"]
         self.assertEqual({0}, {row["placeable_hits"] for row in receiver["jlcpcb_surface"]["searches"]})

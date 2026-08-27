@@ -165,13 +165,13 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: H1-R2.7", "H0-R2 reviewed",
+                "Current hardware boundary: H1-R2.8", "H0-R2 reviewed",
                 "firmware F0-R2.0",
                 "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: H1-R2.7", "H0-R2 проведено ревью",
+                "Текущая аппаратная граница: H1-R2.8", "H0-R2 проведено ревью",
                 "firmware F0-R2.0", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
@@ -187,8 +187,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Hardware is at H1-R2.7", "printing/fabrication"),
-            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H1-R2.7", "печать/на фабрику"),
+            "README.md": ("Roadmap and current position", "Hardware is at H1-R2.8", "printing/fabrication"),
+            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H1-R2.8", "печать/на фабрику"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -448,6 +448,9 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertFalse(evidence["parts_api"]["exact_rejection_reason_confirmed"])
         self.assertEqual("successfully_submitted", evidence["parts_api"]["support_inquiry"]["result"])
+        self.assertEqual("2026-08-27", evidence["parts_api"]["support_inquiry"]["response_received_on"])
+        self.assertFalse(evidence["parts_api"]["support_inquiry"]["api_review_team_confirmation"])
+        self.assertFalse(evidence["parts_api"]["support_inquiry"]["exact_order_history_threshold_provided"])
         self.assertFalse(evidence["parts_api"]["support_inquiry"]["contains_api_secret"])
         self.assertIsNone(evidence["parts_api"]["support_inquiry"]["ticket_number"])
         self.assertTrue(evidence["parts_api"]["access_key_created"])
@@ -828,7 +831,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H1", state["current_stage"])
-        self.assertEqual("H1-R2.7", state["current_substep"])
+        self.assertEqual("H1-R2.8", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -965,6 +968,10 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("approved", h5_plan["authorization"]["parts_api_application_status"])
         self.assertEqual("rejected", h5_plan["authorization"]["parts_api_permission_status"])
         self.assertIsNone(h5_plan["authorization"]["parts_api_rejection_reason"])
+        self.assertEqual("2026-08-27", h5_plan["authorization"]["parts_api_support_response_received_on"])
+        self.assertFalse(h5_plan["authorization"]["parts_api_support_responder_is_api_review_team"])
+        self.assertIsNone(h5_plan["authorization"]["parts_api_order_history_threshold"])
+        self.assertFalse(h5_plan["authorization"]["parts_api_reapplication_submitted"])
         self.assertEqual(3, len(h5_plan["authorization"]["parts_api_official_review_basis"]))
         self.assertTrue(h5_plan["authorization"]["parts_api_support_contact_send"])
         self.assertEqual("successfully_submitted", h5_plan["authorization"]["parts_api_support_contact_result"])

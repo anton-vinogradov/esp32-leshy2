@@ -20,14 +20,14 @@ are satisfied.
 <a id="h1"></a>
 ## ⭐ H1 · Physical product design
 
-**Status:** ▶️ current at `H1-R2.7`; R1 result is retained evidence, not current acceptance.
+**Status:** ▶️ current at `H1-R2.8`; R1 result is retained evidence, not current acceptance.
 
-- [Current H1-R2.7 physical placement](h1-r2-physical-layout.md) — new Hub,
+- [Current H1-R2.8 physical placement](h1-r2-physical-layout.md) — new Hub,
   Airband and analog-FPV bodies/reserves in the shared coordinate model, with
   generated collision, opposing-clearance and exact MMCX service evidence.
 - [Exact MMCX placement/service view](images/h1-r2-mmcx-service.svg): corrected
   edge registration, wave-solder tail keepout and sidewall/plug corridors.
-- [Machine H1-R2.7 placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json).
+- [Machine H1-R2.8 placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json).
 - [Analog-FPV functional path](h1-r2-fpv.md) and its
   [machine audit](../hardware/product-design/generated/H1-R2-fpv-audit.json):
   K331 pin/power fit, exact MMCX path, exact TBS antenna and live rejection of
@@ -248,11 +248,11 @@ U/V job, most J4-F/J4-P operations or exact-MPN control. The fail-closed
 [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json)
 records 16 unanswered fields without granting order
 authority. The [clarification reply](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md)
-is prepared but unsent. The JLCAPI app/key are ready
-outside Git, but Parts permission is rejected without a stated reason. An
-[information-only support request](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md)
-was submitted successfully on 26 August 2026; manual catalogue/BOM evidence
-remains authoritative until a real approval.
+is prepared but unsent. The JLCAPI app/key are ready outside Git, but Parts
+permission remains rejected. [Support replied](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md)
+that the new account has no order history, while explicitly not speaking as
+the API review team and giving no approval threshold. No reapplication was
+submitted; manual catalogue/BOM evidence remains authoritative until a real approval.
 [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json)
 keeps PCBWay ready as the unsent first full-device fallback and Seeed as the
 PCBA second source, so a negative JLCPCB answer does not restart the phase.

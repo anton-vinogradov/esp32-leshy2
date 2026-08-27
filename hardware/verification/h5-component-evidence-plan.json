@@ -18,7 +18,7 @@
     "parts_api_application_status": "approved",
     "parts_api_app_status": "enabled",
     "parts_api_permission_status": "rejected",
-    "parts_api_permission_checked_on": "2026-08-26",
+    "parts_api_permission_checked_on": "2026-08-27",
     "parts_api_rejection_reason": null,
     "parts_api_official_review_basis": ["previous JLCPCB orders", "company situation", "business situation"],
     "parts_api_support_contact_send": true,
@@ -26,6 +26,11 @@
     "parts_api_support_contact_channel": "JLCPCB Contact Us / Others",
     "parts_api_support_contact_result": "successfully_submitted",
     "parts_api_support_ticket_number": null,
+    "parts_api_support_response_received_on": "2026-08-27",
+    "parts_api_support_explanation": "account is relatively new and has no order history, so a clear ongoing business need cannot yet be verified",
+    "parts_api_support_responder_is_api_review_team": false,
+    "parts_api_order_history_threshold": null,
+    "parts_api_reapplication_submitted": false,
     "parts_api_access_key_created": true,
     "parts_api_credentials_in_repository": false,
     "parts_api_tokenization_key_created": false,
@@ -107,7 +112,7 @@
       "readable_basket_ru": "docs/component-sample-basket.ru.md",
       "readable_platform_en": "docs/manufacturing-platform.md",
       "readable_platform_ru": "docs/manufacturing-platform.ru.md",
-      "result": "33 priced sample lines cover all nine H5 residuals and fourteen mechanical gates for USD 286.43 before freight/tax/coupons; all 210 current BOM lines and 1052 placements have exact J0-J3/J4-F/J4-P/J5-U routes with zero replacement and zero unmapped lines. JLCPCB's partial 2026-08-26 response confirms exact SA818S-V MOQ 1, typical 8-15-working-day pre-order and conditional post-order Function Test pricing. Accumulators are owner-confirmed J5-U, user-supplied and not part of delivery or supplier gate. H5-EVR07 remains fail-closed on 16 unanswered fields; the actual two-designator job, remaining J4-F/J4-P and identity control require the prepared clarification. Parts API remains rejected and H5-EVR08 preserves PCBWay/Seeed fallback without authorizing another inquiry or commercial action."
+      "result": "33 priced sample lines cover all nine H5 residuals and fourteen mechanical gates for USD 286.43 before freight/tax/coupons; all 210 current BOM lines and 1052 placements have exact J0-J3/J4-F/J4-P/J5-U routes with zero replacement and zero unmapped lines. JLCPCB's partial 2026-08-26 response confirms exact SA818S-V MOQ 1, typical 8-15-working-day pre-order and conditional post-order Function Test pricing. Accumulators are owner-confirmed J5-U, user-supplied and not part of delivery or supplier gate. H5-EVR07 remains fail-closed on 16 unanswered fields; the actual two-designator job, remaining J4-F/J4-P and identity control require the prepared clarification. Parts API remains rejected after support attributed it to a new account with no order history; the responder is not the API review team and supplied no approval threshold, so no reapplication was submitted and manual catalogue/BOM evidence remains authoritative. H5-EVR08 preserves PCBWay/Seeed fallback without authorizing another inquiry or commercial action."
     }
   },
   "superseded_artifacts": {

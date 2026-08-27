@@ -185,8 +185,14 @@ JLCAPI_STATE = {
         "ticket_number": None,
         "contains_api_secret": False,
         "commercial_authority_granted": False,
+        "response_received_on": "2026-08-27",
+        "response_author": "JLCPCB customer support; explicitly not a member of the API review team",
+        "response": "account is relatively new and has no order history, so JLCPCB cannot verify a clear ongoing business need; build order history and reapply, or submit a more detailed business case/integration plan for possible exception review",
+        "exact_order_history_threshold_provided": False,
+        "api_review_team_confirmation": False,
+        "follow_up_status": "no reapplication submitted; manual catalogue and BOM validation remain authoritative",
     },
-    "checked_on": CHECKED_ON,
+    "checked_on": "2026-08-27",
 }
 
 
@@ -640,6 +646,10 @@ def build() -> dict:
         "parts_api_support_request_is_recorded_without_secret_or_commercial_authority": JLCAPI_STATE["support_inquiry"]["result"] == "successfully_submitted"
         and not JLCAPI_STATE["support_inquiry"]["contains_api_secret"]
         and not JLCAPI_STATE["support_inquiry"]["commercial_authority_granted"],
+        "parts_api_support_response_preserves_manual_fail_closed_route": JLCAPI_STATE["support_inquiry"]["response_received_on"] == "2026-08-27"
+        and not JLCAPI_STATE["support_inquiry"]["exact_order_history_threshold_provided"]
+        and not JLCAPI_STATE["support_inquiry"]["api_review_team_confirmation"]
+        and "manual catalogue" in JLCAPI_STATE["support_inquiry"]["follow_up_status"],
         "both_selected_voice_modules_have_exact_jlcpcb_routes": set(VOICE_PART_ROUTES) == {"SA818S-U", "SA818S-V"}
         and all(row["lcsc"] and row["quantity_one_usd"] for row in VOICE_PART_ROUTES.values()),
         "api_credentials_are_not_repository_data": "no credential" in JLCAPI_STATE["credential_storage"]
@@ -877,7 +887,7 @@ JLCPCB Standard PCBA собирает обе платы и принятые SMT/
 - JLCPCB Standard PCBA принят как рабочий reference без lock-in.
 - Все `{summary['target_bom_lines']}` строк имеют определённый маршрут `J0`–`J3`, `J4-F`, `J4-P` или `J5-U`; функциональных замен нет.
 - Частичный [ответ JLCPCB](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) от 26 августа 2026 года подтверждает для exact `SA818S-V C51897911` MOQ 1 и типичные 8–15 рабочих дней pre-order; final quote/lead появляются только после pre-order, а срок свыше 18 рабочих дней требует continue/cancel confirmation. Function Test условно рассматривается после заказа по базе `$15.70 + $7.86/hour`. Аккумуляторы решением владельца перенесены в `J5-U`: пользователь покупает их отдельно, поэтому это не supplier-gate. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) остаётся открыт на actual two-designator U/V job, остальные `J4-F/J4-P` и identity control. [Уточнение](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md) подготовлено; закупка и заказ не разрешены.
-- Заявка JLCAPI одобрена, приложение `ESP32-Leshy2 BOM Validator` создано, ключ подписи хранится только локально вне Git. Портал показывает право Parts как `Rejected`, но причины в журнале нет. Официальная политика говорит, что решения учитывают предыдущие заказы JLCPCB, компанию и характер бизнеса, однако не указывает, какой именно фактор сработал здесь; [информационный запрос в поддержку](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md) отправлен 26 августа 2026 года и ожидает ответа. До фактического одобрения API-вызовы невозможны. PCB/3D также отклонены, SMT Stencil и JLC Balance выключены. Активным остаётся ручной путь через каталог и BOM.
+- Заявка JLCAPI одобрена, приложение `ESP32-Leshy2 BOM Validator` создано, ключ подписи хранится только локально вне Git, но право Parts остаётся `Rejected`. [Поддержка ответила](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md), что аккаунт новый и не имеет истории заказов, поэтому устойчивую business need пока не удалось подтвердить; повторная заявка возможна после появления истории либо с расширенным business case/integration plan. Автор ответа отдельно указал, что не входит в API review team, и точный порог заказов не назван. Повторная заявка не отправлена: до фактического одобрения API-вызовы невозможны, а активным авторитетным путём остаются ручные карточки каталога и BOM. PCB/3D также отклонены, SMT Stencil и JLC Balance выключены.
 - [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) фиксирует резерв без возврата к началу H5: PCBWay — первый кандидат на полную сборку, Seeed — второй источник PCBA. [Одинаковый no-order запрос PCBWay](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) подготовлен, но его отправка и любые коммерческие действия не разрешены.
 - Прежний 209-строчный BOM upload был передан и обработан; текущий 210-строчный файл сгенерирован локально, но не передавался, потому что 208 identity неизменны, а обе новые exact-страницы проверены отдельно. Quote, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены. Сырые API-ответы публично не распространяются.
 
@@ -959,7 +969,7 @@ JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts. That does
 - JLCPCB Standard PCBA is the working reference without lock-in.
 - All `{summary['target_bom_lines']}` lines have a defined `J0`–`J3`, `J4-F`, `J4-P` or `J5-U` route; no functional replacement was introduced.
 - JLCPCB's partial [26 August 2026 response](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) confirms MOQ 1 and a typical 8–15-working-day pre-order for exact `SA818S-V C51897911`; final quote/lead exist only after pre-order, and more than 18 working days triggers continue/cancel confirmation. Function Test is conditionally reviewed after order at a `$15.70 + $7.86/hour` basis. By owner decision, accumulators now use `J5-U`: the user buys them separately, so they are not a supplier gate. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) remains open on the actual two-designator U/V job, remaining `J4-F/J4-P`, and identity control. A [clarification reply](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md) is prepared; purchase and order remain unauthorized.
-- The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git. The portal reports Parts permission as `Rejected`, without a reason in its activity log. Official policy says decisions consider previous JLCPCB orders, company situation and business situation, but does not identify which factor applied here; an [information-only support request](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md) was submitted on 26 August 2026 and awaits a response. API calls remain unusable until actual approval. PCB/3D are also rejected; SMT Stencil and JLC Balance remain inactive. Manual catalogue/BOM evidence remains the active path.
+- The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git, but Parts permission remains `Rejected`. [Support replied](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md) that the account is new and has no order history, so an ongoing business need could not yet be verified; reapplication is possible after building history or with a fuller business case/integration plan. The responder explicitly is not on the API review team and supplied no exact order threshold. No reapplication was submitted: API calls remain unusable, and live manual catalogue cards plus BOM validation remain authoritative. PCB/3D are also rejected; SMT Stencil and JLC Balance remain inactive.
 - [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) preserves a fallback without restarting H5: PCBWay is the first full-device candidate and Seeed is the PCBA second source. The [same no-order PCBWay questionnaire](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) is prepared but sending it and all commercial actions remain unauthorized.
 - The former 209-line BOM upload was transmitted and processed; the current 210-line file was generated locally but not transmitted because 208 identities are unchanged and both new exact pages were checked separately. No quote, sourcing request, reservation, purchase, replacement, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
 
