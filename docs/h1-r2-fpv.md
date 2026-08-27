@@ -1,4 +1,4 @@
-# H1-R2.11 · analog-FPV receive path
+# H1-R2.15 · analog-FPV receive path
 
 [Home](../README.md) · [Русский](h1-r2-fpv.ru.md)
 
@@ -10,7 +10,7 @@ The serial receiver functional candidate and exact antenna are selected; K331 ph
 
 - `AKK K331` covers 5645–5945 MHz, draws at most 200 mA and emits 1-Vpp/75-ohm CVBS.
 - Official AKK-hosted media confirms the [331RX application circuit](https://www.akktek.com/media/catalog/product/6/1/614ind1rmzl._sl1100_.jpg), [all 14 pin functions](https://www.akktek.com/media/catalog/product/6/1/61ruo85qnbl._sl1100_.jpg) and the [24-channel selection table](https://www.akktek.com/media/catalog/product/7/1/71tyrmpocol._sl1100_.jpg). An AKK-branded reseller image gives a 28.7 × 23.1 mm nominal board outline; collision audit uses an enlarged 30 × 24 × 4 mm reserve.
-- CH1/CH2/CH3 use already-reserved Hub GPIO36/37/38; no new GPIO or expander is needed.
+- CH1/CH2/CH3 use rear-RP GPIO32/33/34; GPIO15/30/31 serve RSSI/power/lock. No new GPIO or expander is needed.
 - The 5-V reserve retains 150 mA. RF runs directly over a 50-ohm PCB trace to MMCX without U.FL.
 - `TBS5G8MMCXA` is linear, 5500–6000 MHz, 2.2 dBi and 102 mm; its exact kit mark is `FPV · RX 5.8G`. Independent linear fallback `FXP831.09.0100C` covers 4.9–6.0 GHz and retains MMCX, but is presently backorder-only with a 16-week lead time.
 
@@ -39,4 +39,4 @@ The manufacturer lists K331 in stock at $29.99. JLCPCB confirmed that it is unav
 - **H3/H6/H8:** prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality before production release
 - **H5/H8:** qualify FXP831.09.0100C on the assembled enclosure and secure available stock before relying on its current 16-week backorder route
 
-> Exact current marker: **H1-R2.11**. H1 remains in progress.
+> Exact current marker: **H1-R2.15**. H1 remains in progress.

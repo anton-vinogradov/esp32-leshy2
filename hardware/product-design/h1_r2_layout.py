@@ -21,9 +21,9 @@ MMCX_SVG_PATH = REPO / "docs/images/h1-r2-mmcx-service.svg"
 EXTERNAL_SVG_PATH = REPO / "docs/images/h1-r2-external-layout.svg"
 SERVICE_SVG_PATH = REPO / "docs/images/h1-r2-service-access.svg"
 COMPLETE_INNER_SVG_PATH = REPO / "docs/images/h1-r2-inner-complete.svg"
+INNER_UI_SVG_PATH = REPO / "docs/images/h1-r2-inner-ui.svg"
+INNER_RF_SVG_PATH = REPO / "docs/images/h1-r2-inner-rf.svg"
 INNER_SECTIONS_SVG_PATH = REPO / "docs/images/h1-r2-inner-sections.svg"
-ANTENNA_EDGE_SVG_PATH = REPO / "docs/images/h1-r2-antenna-edge.svg"
-SANDWICH_SVG_PATH = REPO / "docs/images/h1-r2-sandwich-sections.svg"
 EN_DOC_PATH = REPO / "docs/h1-r2-physical-layout.md"
 RU_DOC_PATH = REPO / "docs/h1-r2-physical-layout.ru.md"
 SOURCE_TABLE_PATH = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
@@ -78,165 +78,81 @@ def z_clearance(a: dict, b: dict) -> float:
 
 
 def mmcx_service_audit(model: dict, base: dict, placed: list[dict]) -> dict:
+    """Audit the vertical rear-face SMT MMCX and its user-access envelope."""
+    del base, placed  # The accepted connector has no tail inside the sandwich.
     mmcx = next(x for x in model["placements"] if x["id"] == "fpv_mmcx")
     mount = mmcx["mounting"]
-    board_edge = mount["board_edge_y_mm"]
     x, y = mmcx["world_xy_mm"]
-    width, length, body_height = mmcx["size_mm"]
+    width, depth, body_height = mmcx["size_mm"]
     axis_x, axis_y = mount["mounting_axis_world_xy_mm"]
-    rf_inner = model["stack"]["rf_inner_z_mm"]
-    pcb_thickness = model["stack"]["rf_pcb_thickness_mm"]
-    rf_outer = rf_inner + pcb_thickness
-    pin_nominal = mount["pin_projection_below_board_mm"]
-    pin_maximum = pin_nominal + mount["pin_projection_tolerance_mm"]
-    nominal_tip = rf_outer - pin_nominal
-    worst_tip = rf_outer - pin_maximum
-    keepout_x, keepout_y = mount["rf_inner_tail_keepout_world_xy_mm"]
-    keepout = {
-        "x": keepout_x,
-        "y": keepout_y,
-        "z": [worst_tip, rf_inner],
-    }
     errors: list[str] = []
 
-    def close(a: float, b: float) -> bool:
-        return abs(a - b) < 1e-6
+    if abs(axis_x - (x + width / 2)) > 1e-6 or abs(axis_y - (y + depth / 2)) > 1e-6:
+        errors.append("vertical MMCX mounting axis is not centred in its SMT body")
+    if mount["through_board_tail"]:
+        errors.append("vertical MMCX unexpectedly declares a through-board tail")
+    board_w, board_h = model["board_mm"]
+    if x < 0 or y < 0 or x + width > board_w or y + depth > board_h:
+        errors.append("vertical MMCX body leaves the RF outer-face PCB outline")
 
-    if not close(y + mount["barrel_outboard_mm"], board_edge):
-        errors.append("MMCX barrel is not registered to the antenna edge")
-    if not close(y + length, board_edge + mount["body_inboard_mm"]):
-        errors.append("MMCX square body is not registered to the PCB edge")
-    if not close(axis_x, x + width / 2) or not close(axis_y, board_edge + mount["square_body_mm"] / 2):
-        errors.append("MMCX mounting axis is not centred in the 3.6-mm square body")
-    if not close(pin_nominal - pcb_thickness, mount["tail_projection_into_interboard_gap_mm"]):
-        errors.append("MMCX solder-tail projection into the interboard gap is inconsistent")
-    radial_clearance = (mount["minimum_sidewall_free_diameter_mm"] - mount["barrel_diameter_mm"]) / 2
-    if radial_clearance + 1e-6 < mount["minimum_sidewall_radial_clearance_mm"]:
-        errors.append("MMCX sidewall aperture does not preserve the required radial clearance")
-    if mount["external_plug_service_keepout_diameter_mm"] < mount["minimum_sidewall_free_diameter_mm"]:
-        errors.append("MMCX plug service keepout is smaller than the wall aperture")
-
-    axis_z = rf_outer + body_height / 2
-    aperture_radius = mount["minimum_sidewall_free_diameter_mm"] / 2
     service_radius = mount["external_plug_service_keepout_diameter_mm"] / 2
-    aperture_keepout = {
-        "x": [axis_x - aperture_radius, axis_x + aperture_radius],
-        "y": [y, board_edge],
-        "z": [axis_z - aperture_radius, axis_z + aperture_radius],
-    }
-    external_service_keepout = {
+    service_keepout = {
         "x": [axis_x - service_radius, axis_x + service_radius],
-        "y": [y - mount["external_plug_service_keepout_length_mm"], y],
-        "z": [axis_z - service_radius, axis_z + service_radius],
+        "y": [axis_y - service_radius, axis_y + service_radius],
     }
-
-    legacy = legacy_generator()
     installed_connector_clearances = []
     handling_envelope_clearances = []
-    for centre, path, _polarity in legacy.REAR_RF:
+    for centre, path in zip(
+        model["antenna_bank_optimization"]["rear_x_centres_mm"],
+        model["antenna_bank_optimization"]["rear_paths"],
+    ):
         centre_distance = abs(axis_x - centre)
-        body_clearance = centre_distance - width / 2 - legacy.RF_BODY_W / 2
-        handling_clearance = centre_distance - service_radius - legacy.RF_BODY_W / 2
-        installed_connector_clearances.append(
-            {"path": path, "clearance_mm": round(body_clearance, 3)}
-        )
-        handling_envelope_clearances.append(
-            {"path": path, "clearance_mm": round(handling_clearance, 3)}
-        )
-        if body_clearance + 1e-6 < legacy.MIN_INTERBOARD_Z_CLEARANCE_MM:
-            errors.append(
-                f"MMCX installed body leaves only {body_clearance:.3f} mm to rear antenna {path}"
-            )
-    handling_overlaps = [
-        row for row in handling_envelope_clearances if row["clearance_mm"] < 0
-    ]
-    allowed_handling_overlaps = set(model["antenna_bank_optimization"]["allowed_handling_overlaps"])
+        body_clearance = centre_distance - width / 2 - 10.2 / 2
+        handling_clearance = centre_distance - service_radius - 10.2 / 2
+        installed_connector_clearances.append({"path": path, "clearance_mm": round(body_clearance, 3)})
+        handling_envelope_clearances.append({"path": path, "clearance_mm": round(handling_clearance, 3)})
+        if body_clearance + 1e-6 < model["stack"]["minimum_opposing_clearance_mm"]:
+            errors.append(f"MMCX installed body leaves only {body_clearance:.3f} mm to rear antenna {path}")
+    handling_overlaps = [row for row in handling_envelope_clearances if row["clearance_mm"] < 0]
     actual_handling_overlaps = {row["path"] for row in handling_overlaps}
-    if actual_handling_overlaps != allowed_handling_overlaps:
+    expected_handling_overlaps = set(model["antenna_bank_optimization"]["allowed_handling_overlaps"])
+    if actual_handling_overlaps != expected_handling_overlaps:
         errors.append(
-            "MMCX handling-envelope overlaps do not match the accepted installation sequence: "
-            f"expected {sorted(allowed_handling_overlaps)}, got {sorted(actual_handling_overlaps)}"
+            "MMCX handling-envelope overlaps do not match the model: "
+            f"expected {sorted(expected_handling_overlaps)}, got {sorted(actual_handling_overlaps)}"
         )
 
-    def overlaps_3d(a: dict, b: dict) -> bool:
-        return overlaps(a, b) and a["z"][0] < b["z"][1] and a["z"][1] > b["z"][0]
-
-    accessory_hits: list[dict] = []
-    for name, envelope in base["accessory_envelopes"].items():
-        accessory = {"x": envelope["x_mm"], "y": envelope["y_mm"], "z": envelope["z_mm"]}
-        zones = [
-            zone
-            for zone, candidate in (
-                ("sidewall_aperture", aperture_keepout),
-                ("plug_service", external_service_keepout),
-            )
-            if overlaps_3d(candidate, accessory)
-        ]
-        if zones:
-            accessory_hits.append({"id": name, "zones": zones})
-            errors.append(f"MMCX exterior service keepout intersects accessory {name}: {', '.join(zones)}")
-
-    opposing: list[dict] = []
-    candidates = [
-        {"id": row["instance"], "frame": row["source_frame"], "bbox": row["world_bbox_mm"]}
-        for row in base["rows"]
-        if row["source_frame"] == "ui-inner"
-    ]
-    candidates.extend(
-        {"id": entry["item"]["id"], "frame": entry["item"]["frame"], "bbox": entry["bbox"]}
-        for entry in placed
-        if entry["item"]["frame"] == "ui-inner"
-    )
-    for candidate in candidates:
-        if not overlaps(keepout, candidate["bbox"]):
-            continue
-        clearance = z_clearance(keepout, candidate["bbox"])
-        opposing.append({"id": candidate["id"], "clearance_mm": round(clearance, 3)})
-        if clearance < model["stack"]["minimum_opposing_clearance_mm"]:
-            errors.append(
-                f"MMCX tail/service keepout collides with {candidate['id']} at {clearance:.3f} mm"
-            )
+    u214_clearance = mount["u214_near_edge_y_mm"] - service_keepout["y"][1]
+    if u214_clearance + 1e-6 < mount["minimum_u214_clearance_mm"]:
+        errors.append(f"MMCX service envelope leaves only {u214_clearance:.3f} mm to U214")
     return {
         "status": "pass" if not errors else "fail",
         "mpn": mmcx["mpn"],
-        "drawing_source": next(
-            row["drawing_url"] for row in model["factory_evidence"] if row["mpn"] == mmcx["mpn"]
-        ),
+        "drawing_source": next(row["drawing_url"] for row in model["factory_evidence"] if row["mpn"] == mmcx["mpn"]),
         "installed_body_world_bbox_mm": {
             "x": [round(x, 3), round(x + width, 3)],
-            "y": [round(y, 3), round(y + length, 3)],
-            "z": [round(rf_outer, 3), round(rf_outer + body_height, 3)],
+            "y": [round(y, 3), round(y + depth, 3)],
+            "z_above_outer_pcb": [0.0, body_height],
         },
-        "board_edge_y_mm": board_edge,
         "mounting_axis_world_xy_mm": [axis_x, axis_y],
-        "inboard_body_mm": mount["body_inboard_mm"],
-        "outboard_barrel_mm": mount["barrel_outboard_mm"],
-        "nominal_tail_tip_z_mm": round(nominal_tip, 3),
-        "worst_case_tail_tip_z_mm": round(worst_tip, 3),
-        "nominal_tail_projection_into_gap_mm": mount["tail_projection_into_interboard_gap_mm"],
-        "tail_keepout_world_bbox_mm": keepout,
-        "opposing_body_hits": opposing,
-        "sidewall_minimum_free_diameter_mm": mount["minimum_sidewall_free_diameter_mm"],
-        "sidewall_radial_clearance_mm": round(radial_clearance, 3),
-        "sidewall_aperture_world_bbox_mm": aperture_keepout,
+        "through_board_tail": False,
+        "opposing_body_hits": [],
         "external_service_keepout": {
             "diameter_mm": mount["external_plug_service_keepout_diameter_mm"],
             "outward_length_mm": mount["external_plug_service_keepout_length_mm"],
-            "world_bbox_mm": external_service_keepout,
+            "world_xy_bbox_mm": service_keepout,
         },
         "rear_antenna_connector_clearances": installed_connector_clearances,
-        "minimum_rear_antenna_connector_clearance_mm": min(
-            row["clearance_mm"] for row in installed_connector_clearances
-        ),
+        "minimum_rear_antenna_connector_clearance_mm": min(row["clearance_mm"] for row in installed_connector_clearances),
         "handling_envelope_clearances": handling_envelope_clearances,
         "handling_envelope_overlaps": handling_overlaps,
         "fixed_installation_sequence": model["antenna_bank_optimization"]["installation_sequence"],
-        "accessory_hits": accessory_hits,
-        "factory_assembly": "Wave Soldering; Economic and Standard PCBA",
+        "u214_service_clearance_mm": round(u214_clearance, 3),
+        "factory_assembly": "Extended SMT; Economic and Standard PCBA",
         "later_hil": [
             "received connector-to-antenna mating and retention",
-            "final enclosure aperture tolerance",
-            "plug insertion cycles and antenna strain",
+            "U214 Cap insertion with the FPV plug fitted",
+            "plug insertion cycles, finger access and antenna strain",
         ],
         "errors": errors,
     }
@@ -393,30 +309,28 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
             font = 11 if w >= 6 else 8.5
             out.append(f'<text x="{tx:.2f}" y="{ty:.2f}" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="{font}" font-weight="700" fill="{stroke}">{esc(label)}</text>')
 
-    # The top antenna edge remains drawing-top; RF-inner X is mirrored because
-    # the board has been physically turned over for this service view.
+    # The vertical FPV connector is projected through the RF board outline.
+    # It has no through-board tail; its plan marker only explains the RF path.
     rf_x = ox["rf-inner"]
     mmcx = next(item for item in model["placements"] if item["id"] == "fpv_mmcx")
     mmcx_mount = mmcx["mounting"]
-    mmcx_body = mmcx_mount["body_inboard_mm"] * scale
-    mmcx_outboard = mmcx_mount["barrel_outboard_mm"] * scale
+    mmcx_body = mmcx["size_mm"][0] * scale
     mmcx_axis_x = rf_x + (board_w - mmcx_mount["mounting_axis_world_xy_mm"][0]) * scale
     mmcx_axis_y = oy + mmcx_mount["mounting_axis_world_xy_mm"][1] * scale
     fpv = next(item for item in model["placements"] if item["id"] == "fpv_receiver_bay")
     dec = next(item for item in model["placements"] if item["id"] == "fpv_decoder")
     fpv_x = rf_x + (board_w - fpv["world_xy_mm"][0] - fpv["size_mm"][0]) * scale
     fpv_cy = oy + (fpv["world_xy_mm"][1] + fpv["size_mm"][1] / 2) * scale
-    dec_x = rf_x + (board_w - dec["world_xy_mm"][0] - dec["size_mm"][0]) * scale
+    dec_x = ox["ui-inner"] + (board_w - dec["world_xy_mm"][0] - dec["size_mm"][0]) * scale
     dec_cy = oy + (dec["world_xy_mm"][1] + dec["size_mm"][1] / 2) * scale
     out.extend([
-        rect(mmcx_axis_x - mmcx_body / 2, oy, mmcx_body, mmcx_body, rx="2", fill="#dbeafe", stroke="#1d4ed8", stroke_width="2"),
-        rect(mmcx_axis_x - 0.32 * mmcx_body, oy - mmcx_outboard, 0.64 * mmcx_body, mmcx_outboard, rx="2", fill="#bfdbfe", stroke="#1d4ed8", stroke_width="2"),
+        rect(mmcx_axis_x - mmcx_body / 2, mmcx_axis_y - mmcx_body / 2, mmcx_body, mmcx_body, rx="2", fill="#dbeafe", stroke="#1d4ed8", stroke_width="2"),
+        f'<circle cx="{mmcx_axis_x:.2f}" cy="{mmcx_axis_y:.2f}" r="{6*scale:.2f}" fill="none" stroke="#ea580c" stroke-width="1.4" stroke-dasharray="6 4"/>',
         f'<circle cx="{mmcx_axis_x:.2f}" cy="{mmcx_axis_y:.2f}" r="3.2" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>',
         f'<text x="{mmcx_axis_x:.2f}" y="{mmcx_axis_y - 7:.2f}" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#1d4ed8">7</text>',
-        f'<path d="M {mmcx_axis_x:.2f} {oy - mmcx_outboard:.2f} V {oy - mmcx_outboard - 18:.2f}" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>',
-        f'<text x="{mmcx_axis_x + 8:.2f}" y="{oy - mmcx_outboard - 20:.2f}" text-anchor="start" font-family="sans-serif" font-size="9" font-weight="700" fill="#dc2626">finished-device antenna edge</text>',
+        f'<text x="{mmcx_axis_x:.2f}" y="{mmcx_axis_y + mmcx_body/2 + 14:.2f}" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#1d4ed8">rear-face FPV 5.8G</text>',
         f'<path d="M {mmcx_axis_x:.2f} {mmcx_axis_y:.2f} L {fpv_x:.2f} {fpv_cy:.2f}" stroke="#0f766e" stroke-width="3" fill="none"/>',
-        f'<path d="M {fpv_x + fpv["size_mm"][0] * scale:.2f} {fpv_cy:.2f} L {dec_x:.2f} {dec_cy:.2f}" stroke="#7c3aed" stroke-width="3" fill="none"/>',
+        f'<path d="M {fpv_x + fpv["size_mm"][0] * scale:.2f} {fpv_cy:.2f} L {rf_x-20:.2f} {fpv_cy:.2f} L {ox["ui-inner"]+board_w*scale+20:.2f} {dec_cy:.2f} L {dec_x:.2f} {dec_cy:.2f}" stroke="#7c3aed" stroke-width="3" fill="none" stroke-dasharray="7 4" data-medium="one-75-ohm-cvbs-through-m1"/>',
         '<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker></defs>',
     ])
 
@@ -473,6 +387,32 @@ def render_external_svg(model: dict) -> str:
     """Reuse the mature exterior drawing and add every accepted R2 interface."""
     legacy = legacy_generator()
     devices, _candidate, instances, *_rest = legacy.load()
+    legacy.FRONT_RF = tuple(
+        (centre, path, "RP-SMA" if path in {"S3-2G4", "C5-2G4/5"} else "SMA")
+        for centre, path in zip(
+            model["antenna_bank_optimization"]["front_x_centres_mm"],
+            model["antenna_bank_optimization"]["front_paths"],
+        )
+    )
+    legacy.REAR_RF = tuple(
+        (centre, path, "SMA")
+        for centre, path in zip(
+            model["antenna_bank_optimization"]["rear_x_centres_mm"],
+            model["antenna_bank_optimization"]["rear_paths"],
+        )
+    )
+    legacy.RF_USER_LABEL_LINES = {
+        "N24-0": ("nRF1",),
+        "S3-2G4": ("S3 · 2.4G",),
+        "N24-1": ("nRF2",),
+        "C5-2G4/5": ("C5 · 2.4/5G",),
+        "N24-2": ("nRF3",),
+        "RX-FM/SW": ("FM/SW/AIR RX",),
+        "RX-AM/LW": ("AM/LW RX",),
+        "CC-SUB": ("SUB-G RX/TX",),
+        "VOICE-VHF": ("VHF RX/TX",),
+        "VOICE-UHF": ("UHF RX/TX",),
+    }
     svg = legacy.render_external(devices, instances)
     marker = html.escape(model["marker"])
     svg = svg.replace(
@@ -531,16 +471,16 @@ def render_external_svg(model: dict) -> str:
             ]
         )
     mmcx = next(x for x in model["placements"] if x["id"] == "fpv_mmcx")
-    axis_x, _axis_y = mmcx["mounting"]["mounting_axis_world_xy_mm"]
-    body = mmcx["mounting"]["body_inboard_mm"]
-    outboard = mmcx["mounting"]["barrel_outboard_mm"]
+    axis_x, axis_y = mmcx["mounting"]["mounting_axis_world_xy_mm"]
+    body = mmcx["size_mm"][0]
+    fpv_x, fpv_y = mmcx["world_xy_mm"]
     additions.extend(
         [
-            f'<rect x="{px(rear,axis_x-body/2):.1f}" y="{py(rear,0):.1f}" width="{body*scale:.1f}" height="{body*scale:.1f}" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6" data-instance="fpv_mmcx" data-mpn="DL-MMCX-KWE-90"/>',
-            f'<rect x="{px(rear,axis_x-0.32*body):.1f}" y="{py(rear,-outboard):.1f}" width="{0.64*body*scale:.1f}" height="{outboard*scale:.1f}" rx="3" fill="#bfdbfe" stroke="#2563eb" stroke-width="1.6"/>',
-            f'<path d="M{px(rear,axis_x):.1f} {py(rear,-outboard):.1f} V{py(rear,-11):.1f}" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)"/>',
-            label(px(rear,axis_x), py(rear,7.2), "FPV RX", "middle", 5.6),
-            label(px(rear,axis_x), py(rear,9.4), "5.8 GHz", "middle", 5.2),
+            f'<circle cx="{px(rear,axis_x):.1f}" cy="{py(rear,axis_y):.1f}" r="{6*scale:.1f}" fill="none" stroke="#ea580c" stroke-width="1.4" stroke-dasharray="5 3" data-service-diameter-mm="12"/>',
+            f'<rect x="{px(rear,fpv_x):.1f}" y="{py(rear,fpv_y):.1f}" width="{body*scale:.1f}" height="{body*scale:.1f}" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6" data-instance="fpv_mmcx" data-mpn="73415-2063"/>',
+            f'<circle cx="{px(rear,axis_x):.1f}" cy="{py(rear,axis_y):.1f}" r="3.2" fill="#fff" stroke="#0f766e" stroke-width="1.5"/>',
+            f'<path d="M{px(rear,axis_x):.1f} {py(rear,axis_y):.1f} H{px(rear,52):.1f}" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arrow)"/>',
+            label(px(rear,52.8), py(rear,axis_y-0.6), "FPV RX 5.8G", "start", 5.2),
             '</g>',
         ]
     )
@@ -785,6 +725,115 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
     return "\n".join(out) + "\n"
 
 
+def render_inner_face_svg(
+    model: dict,
+    base: dict,
+    source_table: dict,
+    result: dict,
+    frame: str,
+) -> str:
+    """Render one readable inner face; keep the combined map machine-only."""
+    legacy = legacy_generator()
+    all_rows = complete_inner_rows(model, base, source_table, result)
+    rows = [row for row in all_rows if row["frame"] == frame]
+    numbers = {row["id"]: index for index, row in enumerate(all_rows, 1)}
+    board_w, board_h = model["board_mm"]
+    scale, ox, oy = 5.6, 80.0, 165.0
+    width, height = 1160, 1110
+    is_ui = frame == "ui-inner"
+    face_name = "UI / radio PCB" if is_ui else "RF / power PCB"
+    paths = model["antenna_bank_optimization"]["front_paths" if is_ui else "rear_paths"]
+    centres = model["antenna_bank_optimization"]["front_x_centres_mm" if is_ui else "rear_x_centres_mm"]
+    source_ids = {
+        "N24-0": "nrf0_rf_board_connector_r2",
+        "S3-2G4": "s3_rf_board_connector_r2",
+        "N24-1": "nrf1_rf_board_connector_r2",
+        "C5-2G4/5": "c5_rf_board_connector_r2",
+        "N24-2": "nrf2_rf_board_connector_r2",
+        "RX-FM/SW": "receiver_r2",
+        "RX-AM/LW": "receiver_r2",
+        "CC-SUB": "cc_r2",
+        "VOICE-VHF": "voice_v",
+        "VOICE-UHF": "voice",
+    }
+
+    def sx(world_x: float, body_w: float = 0.0) -> float:
+        return ox + (board_w - world_x - body_w) * scale
+
+    def sy(world_y: float) -> float:
+        return oy + world_y * scale
+
+    def text(x: float, y: float, value: str, size=10, weight="normal", anchor="start", colour="#172033") -> str:
+        return f'<text x="{x:.1f}" y="{y:.1f}" font-family="sans-serif" font-size="{size}" font-weight="{weight}" text-anchor="{anchor}" fill="{colour}">{html.escape(value)}</text>'
+
+    out = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" data-marker="{html.escape(model["marker"])}" data-frame="{frame}" data-inner-silkscreen="none">',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        text(35, 40, f'Leshy2 · {model["marker"]} · {face_name} inner face', 24, "bold"),
+        text(35, 68, "PCB is physically turned over: X is mirrored. Numbers are drawing references; this face has no silkscreen.", 12, colour="#526076"),
+        text(ox + board_w*scale/2, 105, "ANTENNA EDGE · five direct source-board ports", 13, "bold", "middle", "#1d4ed8"),
+        f'<rect x="{ox}" y="{oy}" width="{board_w*scale:.1f}" height="{board_h*scale:.1f}" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>',
+    ]
+    for centre, path in zip(centres, paths):
+        port_x = sx(centre)
+        out.extend([
+            f'<rect x="{port_x-5.1*scale:.1f}" y="{oy-6*scale:.1f}" width="{10.2*scale:.1f}" height="{6*scale:.1f}" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>',
+            text(port_x, oy-7*scale, path, 8.2, "bold", "middle", "#1d4ed8" if is_ui else "#9a3412"),
+        ])
+    for hole_x, hole_y in legacy.HOLES:
+        out.append(f'<circle cx="{sx(hole_x):.1f}" cy="{sy(hole_y):.1f}" r="{legacy.MOUNT_KEEPOUT_R*scale:.1f}" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>')
+    row_by_id = {row["id"]: row for row in rows}
+    out.append('<g id="antenna-topology" data-route-state="pre-ecad-topology-only">')
+    for centre, path in zip(centres, paths):
+        source = row_by_id[source_ids[path]]
+        b = source["bbox"]
+        source_x = sx(b["x"][0], b["x"][1] - b["x"][0]) + (b["x"][1] - b["x"][0])*scale/2
+        source_y = sy((b["y"][0] + b["y"][1]) / 2)
+        port_x = sx(centre)
+        out.append(f'<polyline points="{source_x:.1f},{source_y:.1f} {port_x:.1f},{sy(18):.1f} {port_x:.1f},{oy:.1f}" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="5 4" data-path="{html.escape(path)}"/>')
+    out.append('</g>')
+    for row in rows:
+        b = row["bbox"]
+        body_w = b["x"][1] - b["x"][0]
+        body_d = b["y"][1] - b["y"][0]
+        vx, vy = sx(b["x"][0], body_w), sy(b["y"][0])
+        if row["kind"] == "reserve":
+            fill, stroke, dash = "#fff7ed", "#ea580c", ' stroke-dasharray="6 4"'
+        elif row["origin"] == "R2 placement":
+            fill, stroke, dash = "#dbeafe", "#2563eb", ""
+        else:
+            fill, stroke, dash = "#eef2f6", "#94a3b8", ""
+        out.append(f'<rect x="{vx:.2f}" y="{vy:.2f}" width="{body_w*scale:.2f}" height="{body_d*scale:.2f}" rx="2" fill="{fill}" stroke="{stroke}" stroke-width="1"{dash} data-instance="{html.escape(row["id"])}" data-mpn="{html.escape(row["mpn"])}"/>')
+        font = 7.0 if min(body_w, body_d) >= 1.6 else 4.8
+        out.append(text(vx + body_w*scale/2, vy + body_d*scale/2 + font/3, str(numbers[row["id"]]), font, "bold", "middle", stroke))
+    note_x = 550
+    island_rows = model["functional_partition"]["ui_board" if is_ui else "rf_power_board"]
+    out.extend([
+        text(note_x, 125, "Functional islands on this PCB", 18, "bold"),
+        text(note_x, 158, f'{len(rows)} registered bodies · zero same-face collisions', 12, "bold", colour="#166534"),
+    ])
+    note_y = 196
+    for island in island_rows:
+        out.append(text(note_x, note_y, f'• {island}', 12, colour="#334155"))
+        note_y += 28
+    out.extend([
+        text(note_x, note_y+20, "Line key", 16, "bold"),
+        f'<line x1="{note_x}" y1="{note_y+48}" x2="{note_x+44}" y2="{note_y+48}" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="5 4"/>',
+        text(note_x+56, note_y+52, "source-to-port topology; final copper belongs to KiCad", 10, colour="#526076"),
+        text(note_x, note_y+92, "Body key", 16, "bold"),
+        '<rect x="550" y="{:.1f}" width="28" height="18" fill="#eef2f6" stroke="#94a3b8"/>'.format(note_y+108),
+        text(590, note_y+122, "retained registered body", 10, colour="#526076"),
+        '<rect x="550" y="{:.1f}" width="28" height="18" fill="#dbeafe" stroke="#2563eb"/>'.format(note_y+140),
+        text(590, note_y+154, "explicit R2 placement", 10, colour="#526076"),
+        '<rect x="550" y="{:.1f}" width="28" height="18" fill="#fff7ed" stroke="#ea580c" stroke-dasharray="5 3"/>'.format(note_y+172),
+        text(590, note_y+186, "controlled physical reserve", 10, colour="#526076"),
+        text(note_x, 1000, "The complete numbered register remains generated for machine review.", 10, colour="#526076"),
+        text(note_x, 1020, "The public page uses these two readable one-board maps.", 10, colour="#526076"),
+        '</svg>',
+    ])
+    return "\n".join(out) + "\n"
+
+
 def render_inner_sections_svg(model: dict, base: dict, source_table: dict, result: dict) -> str:
     """Render true X/Z cuts through the R2 Airband/power and FPV zones."""
     rows = complete_inner_rows(model, base, source_table, result)
@@ -900,7 +949,7 @@ def render_retitled_legacy_view(model: dict, renderer: str) -> str:
     return svg.replace("<svg ", f'<svg data-marker="{html.escape(marker)}" data-review-status="in-progress" ', 1)
 
 
-def render_mmcx_service_svg(model: dict, result: dict) -> str:
+def render_mmcx_service_svg_legacy(model: dict, result: dict) -> str:
     service = result["mmcx_service"]
     mmcx = next(x for x in model["placements"] if x["id"] == "fpv_mmcx")
     mount = mmcx["mounting"]
@@ -962,7 +1011,56 @@ def render_mmcx_service_svg(model: dict, result: dict) -> str:
     return "\n".join(out) + "\n"
 
 
-def render_doc(model: dict, result: dict, ru: bool) -> str:
+def render_mmcx_service_svg(model: dict, result: dict) -> str:
+    """Show the vertical rear-face MMCX in true plan and side views."""
+    service = result["mmcx_service"]
+    mmcx = next(x for x in model["placements"] if x["id"] == "fpv_mmcx")
+    mount = mmcx["mounting"]
+    scale, ox, oy = 7.0, 80.0, 130.0
+    axis_x, axis_y = mount["mounting_axis_world_xy_mm"]
+    body_x, body_y = mmcx["world_xy_mm"]
+    body_w, body_d, body_h = mmcx["size_mm"]
+    out = [
+        '<svg xmlns="http://www.w3.org/2000/svg" width="980" height="880" viewBox="0 0 980 880">',
+        '<rect width="980" height="880" fill="#ffffff"/>',
+        '<defs><marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#dc2626"/></marker></defs>',
+        f'<text x="32" y="42" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · {html.escape(model["marker"])} rear-face FPV connector</text>',
+        '<text x="32" y="70" font-family="sans-serif" font-size="13" fill="#526076">Molex 73415-2063 · C588480 · vertical SMT MMCX; dashed circle is the Ø12-mm handling envelope.</text>',
+        '<text x="80" y="108" font-family="sans-serif" font-size="16" font-weight="700" fill="#172033">1 · REAR OUTER FACE · user looking at the battery side</text>',
+        f'<rect x="{ox}" y="{oy}" width="{75*scale}" height="{54*scale}" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2"/>',
+    ]
+    for centre, path in zip(
+        model["antenna_bank_optimization"]["rear_x_centres_mm"],
+        model["antenna_bank_optimization"]["rear_paths"],
+    ):
+        out.extend([
+            f'<rect x="{ox+(centre-5.1)*scale:.1f}" y="{oy:.1f}" width="{10.2*scale:.1f}" height="{6*scale:.1f}" rx="3" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="{html.escape(path)}"/>',
+            f'<text x="{ox+centre*scale:.1f}" y="{oy+54:.1f}" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#9a3412">{html.escape(path)}</text>',
+        ])
+    out.extend([
+        f'<circle cx="{ox+axis_x*scale:.1f}" cy="{oy+axis_y*scale:.1f}" r="{6*scale:.1f}" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="8 5"/>',
+        f'<rect x="{ox+body_x*scale:.1f}" y="{oy+body_y*scale:.1f}" width="{body_w*scale:.1f}" height="{body_d*scale:.1f}" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>',
+        f'<circle cx="{ox+axis_x*scale:.1f}" cy="{oy+axis_y*scale:.1f}" r="8" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>',
+        f'<path d="M{ox+axis_x*scale:.1f} {oy+axis_y*scale:.1f} H{ox+52*scale:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#redArrow)"/>',
+        f'<text x="{ox+52.8*scale:.1f}" y="{oy+(axis_y-0.5)*scale:.1f}" text-anchor="start" font-family="sans-serif" font-size="10" font-weight="700" fill="#1d4ed8">FPV RX · 5.8 GHz</text>',
+        f'<rect x="{ox-4.5*scale:.1f}" y="{oy+17*scale:.1f}" width="{84*scale:.1f}" height="{24*scale:.1f}" rx="8" fill="#fff7ed" fill-opacity="0.72" stroke="#ea580c" stroke-width="2" data-accessory="U214"/>',
+        f'<text x="{ox+37.5*scale:.1f}" y="{oy+30*scale:.1f}" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#9a3412">removable U214 Cap zone</text>',
+        f'<text x="80" y="560" font-family="sans-serif" font-size="13" fill="#0f766e">✓ Ø12 plug envelope to U214: {service["u214_service_clearance_mm"]:.1f} mm · required {mount["minimum_u214_clearance_mm"]:.1f} mm</text>',
+        f'<text x="80" y="590" font-family="sans-serif" font-size="13" fill="#0f766e">✓ nearest SMA handling clearance: {min(row["clearance_mm"] for row in service["handling_envelope_clearances"]):.2f} mm</text>',
+        '<text x="80" y="635" font-family="sans-serif" font-size="16" font-weight="700" fill="#172033">2 · TRUE SIDE SECTION</text>',
+        '<rect x="250" y="730" width="460" height="28" fill="#f1f5f9" stroke="#334155" stroke-width="2"/>',
+        '<text x="265" y="750" font-family="sans-serif" font-size="11" fill="#526076">RF PCB · 1.6 mm</text>',
+        f'<rect x="444" y="{730-body_h*18:.1f}" width="72" height="{body_h*18:.1f}" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>',
+        f'<line x1="480" y1="{730-body_h*18:.1f}" x2="480" y2="625" stroke="#dc2626" stroke-width="2.5" marker-end="url(#redArrow)"/>',
+        '<text x="530" y="665" font-family="sans-serif" font-size="12" fill="#dc2626">plug / antenna points out of the rear face</text>',
+        '<text x="80" y="815" font-family="sans-serif" font-size="13" fill="#0f766e">✓ SMT-only: no pins or keepout enter the 11-mm interboard gap.</text>',
+        '<text x="80" y="845" font-family="sans-serif" font-size="12" fill="#526076">H5 verifies the received plug, U214 insertion, finger access, retention and antenna strain together.</text>',
+        '</svg>',
+    ])
+    return "\n".join(out) + "\n"
+
+
+def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
     if ru:
         title = f'# {model["marker"]} · физическая перекомпоновка'
         intro = "Это текущий проверяемый результат H1, а не журнал решений и не разрешение начинать KiCad."
@@ -1070,6 +1168,89 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     return "\n".join(lines)
 
 
+def render_doc(model: dict, result: dict, ru: bool) -> str:
+    """Publish the present product state without the design-decision diary."""
+    if ru:
+        title = f'# {model["marker"]} · компоновка готового устройства'
+        intro = (
+            "Текущая физическая модель двух плат 75×150 мм. Это проверяемый результат H1, "
+            "но ещё не разрешение начинать KiCad: точный production-пакет K331 остаётся единственным открытым входом."
+        )
+        outside = "## Что увидит пользователь"
+        inside = "## Что находится внутри"
+        verified = "## Проверено генератором"
+        factory = "## Точные фабричные позиции"
+        blocker = "## Текущий блокер H1"
+        board_names = ("Передняя UI/radio-плата", "Задняя RF/power-плата")
+        bullets = [
+            "Десять основных SMA разделены симметрично `5 + 5`; каждый радиотракт остаётся на плате своего разъёма.",
+            "Отдельный вертикальный MMCX `FPV RX · 5.8 GHz` расположен на задней стороне между группами SMA и над U214.",
+            "Все пользовательские подписи являются читаемой шелкографией; внутренние стороны плат шелкографии не содержат.",
+            "Три nRF24 полностью перенесены на переднюю плату вместе с буферами, safety-gate и отдельным `TLV1824PWR`.",
+            "K331 остаётся на задней плате, а `TVP5150AM1PBS` — на передней рядом с S3: через M1 проходит только один 75-омный CVBS, не 11-линейная LCD_CAM-шина.",
+            "FM/SW/AM/LW/Airband, CC1101, два voice-тракта и аудио локальны задней плате; дисплей и кнопки остаются прямыми интерфейсами S3.",
+        ]
+        audit_lines = [
+            f'Коллизии корпусов на одной стороне: `{len(result["same_face_collisions"])}`.',
+            f'Минимальный встречный Z-зазор: `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
+            f'FPV MMCX: `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} мм` до ближайшего SMA; Ø12-зона обращения оставляет `{result["mmcx_service"]["u214_service_clearance_mm"]:.2f} мм` до U214.',
+            "GPIO: передний RP `45/48`, задний RP `46/48`; резерв — 3 и 2 линии соответственно.",
+            "M1: 9 устаревших сигналов освобождены, 1 контакт занят CVBS, 8 сигнальных контактов остаются резервом.",
+        ]
+        route_col = "Текущая доступность/маршрут"
+    else:
+        title = f'# {model["marker"]} · finished-device placement'
+        intro = (
+            "Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, "
+            "not authorization to start KiCad: the controlled K331 production package remains the sole open input."
+        )
+        outside = "## What the user sees"
+        inside = "## What is inside"
+        verified = "## Generator-verified"
+        factory = "## Exact factory parts"
+        blocker = "## Current H1 blocker"
+        board_names = ("Front UI/radio PCB", "Rear RF/power PCB")
+        bullets = [
+            "Ten main SMA ports are split symmetrically `5 + 5`; every radio path remains on the PCB that carries its connector.",
+            "The separate vertical `FPV RX · 5.8 GHz` MMCX sits on the rear face between the SMA groups and above U214.",
+            "All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.",
+            "All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.",
+            "K331 remains rear-local while `TVP5150AM1PBS` moves beside S3: M1 carries one 75-ohm CVBS signal, not the 11-line LCD_CAM bus.",
+            "FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; display and buttons remain direct S3 interfaces.",
+        ]
+        audit_lines = [
+            f'Same-face body collisions: `{len(result["same_face_collisions"])}`.',
+            f'Minimum opposing Z clearance: `{result["minimum_opposing_clearance_mm"]:.2f} mm` against `{result["required_opposing_clearance_mm"]:.2f} mm` required.',
+            f'FPV MMCX: `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} mm` to the nearest SMA; its Ø12 handling envelope leaves `{result["mmcx_service"]["u214_service_clearance_mm"]:.2f} mm` to U214.',
+            "GPIO: front RP `45/48`, rear RP `46/48`; 3 and 2 lines remain free respectively.",
+            "M1: 9 obsolete signals are released, 1 contact carries CVBS and 8 signal contacts remain spare.",
+        ]
+        route_col = "Current availability/route"
+    lines = [
+        title, "", intro, "", outside, "",
+        "![Current complete exterior](images/h1-r2-external-layout.svg)", "",
+        "![External service access](images/h1-r2-service-access.svg)", "",
+        inside, "",
+        f"### {board_names[0]}", "", "![Front PCB inner face](images/h1-r2-inner-ui.svg)", "",
+        f"### {board_names[1]}", "", "![Rear PCB inner face](images/h1-r2-inner-rf.svg)", "",
+    ]
+    lines.extend(f"- {row}" for row in bullets)
+    lines.extend(["", "![True inner sandwich sections](images/h1-r2-inner-sections.svg)", "", "![Rear-face FPV connector proof](images/h1-r2-mmcx-service.svg)", "", verified, ""])
+    lines.extend(f"- {row}" for row in audit_lines)
+    lines.extend(["", factory, "", f"| {'Роль' if ru else 'Role'} | MPN | JLCPCB | {route_col} |", "|---|---|---|---|"])
+    for row in model["factory_evidence"]:
+        role = row.get("role_ru", row["role"]) if ru else row["role"]
+        route = row.get("availability_ru", row["availability"]) if ru else row["availability"]
+        ref = f'[`{row["jlcpcb_part"]}`]({row["url"]})' if row["jlcpcb_part"] else "—"
+        lines.append(f'| {role} | `{row["mpn"]}` | {ref} | {route} |')
+    blockers = model["current_h1_blockers_ru"] if ru else model["current_h1_blockers"]
+    lines.extend(["", blocker, ""])
+    lines.extend(f"- {row}" for row in blockers)
+    marker = f'> Точный текущий маркер: **{model["marker"]}**. H1 продолжается.' if ru else f'> Exact current marker: **{model["marker"]}**. H1 remains in progress.'
+    lines.extend(["", marker, ""])
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--write", action="store_true")
@@ -1086,9 +1267,9 @@ def main() -> int:
         EXTERNAL_SVG_PATH: render_external_svg(model),
         SERVICE_SVG_PATH: render_service_svg(model),
         COMPLETE_INNER_SVG_PATH: render_complete_inner_svg(model, base, source_table, result),
+        INNER_UI_SVG_PATH: render_inner_face_svg(model, base, source_table, result, "ui-inner"),
+        INNER_RF_SVG_PATH: render_inner_face_svg(model, base, source_table, result, "rf-inner"),
         INNER_SECTIONS_SVG_PATH: render_inner_sections_svg(model, base, source_table, result),
-        ANTENNA_EDGE_SVG_PATH: render_retitled_legacy_view(model, "render_top_edge"),
-        SANDWICH_SVG_PATH: render_retitled_legacy_view(model, "render_sandwich"),
         EN_DOC_PATH: render_doc(model, result, False),
         RU_DOC_PATH: render_doc(model, result, True),
     }

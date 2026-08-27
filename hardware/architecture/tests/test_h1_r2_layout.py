@@ -20,10 +20,10 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.14", self.model["marker"])
+        self.assertEqual("H1-R2.15", self.model["marker"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
-        self.assertEqual(27, len(self.audit["opposing_overlaps"]))
+        self.assertEqual(36, len(self.audit["opposing_overlaps"]))
         self.assertGreaterEqual(
             self.audit["minimum_opposing_clearance_mm"],
             self.audit["required_opposing_clearance_mm"],
@@ -57,7 +57,7 @@ class H1R2LayoutTest(unittest.TestCase):
     def test_factory_rows_include_current_identity(self):
         by_mpn = {row["mpn"]: row for row in self.model["factory_evidence"]}
         self.assertEqual("C3824301", by_mpn["TVP5150AM1PBS"]["jlcpcb_part"])
-        self.assertEqual("C2894793", by_mpn["DL-MMCX-KWE-90"]["jlcpcb_part"])
+        self.assertEqual("C588480", by_mpn["73415-2063"]["jlcpcb_part"])
         self.assertEqual("C39843328", by_mpn["SC1512-A4"]["jlcpcb_part"])
         self.assertIsNone(by_mpn["K331"]["jlcpcb_part"])
         self.assertFalse(by_mpn["K331"]["accepted"])
@@ -91,19 +91,17 @@ class H1R2LayoutTest(unittest.TestCase):
 
     def test_mmcx_uses_manufacturer_body_and_mounting_geometry(self):
         mmcx = next(x for x in self.model["placements"] if x["id"] == "fpv_mmcx")
-        self.assertEqual([35.7, -3.0], mmcx["world_xy_mm"])
-        self.assertEqual([3.6, 6.6, 4.0], mmcx["size_mm"])
-        self.assertEqual(3.6, mmcx["mounting"]["body_inboard_mm"])
-        self.assertEqual(3.0, mmcx["mounting"]["barrel_outboard_mm"])
-        self.assertEqual([37.5, 1.8], mmcx["mounting"]["mounting_axis_world_xy_mm"])
-        self.assertEqual(0.0, mmcx["mounting"]["board_edge_y_mm"])
-        self.assertEqual(4, mmcx["mounting"]["ground_post_count"])
-        self.assertEqual([2.0, 2.0], mmcx["mounting"]["ground_post_pitch_mm"])
+        self.assertEqual([40.72, 8.07], mmcx["world_xy_mm"])
+        self.assertEqual([4.46, 4.46, 5.0], mmcx["size_mm"])
+        self.assertEqual("straight vertical SMT jack", mmcx["mounting"]["connector_style"])
+        self.assertEqual([42.95, 10.3], mmcx["mounting"]["mounting_axis_world_xy_mm"])
+        self.assertFalse(mmcx["mounting"]["through_board_tail"])
+        self.assertEqual(6.0, mmcx["mounting"]["rated_frequency_ghz"])
         evidence = next(x for x in self.model["factory_evidence"] if x["mpn"] == mmcx["mpn"])
         self.assertTrue(evidence["accepted"])
-        self.assertIn("dreamlnk.com", evidence["manufacturer_url"])
-        self.assertIn("faiusr.com", evidence["drawing_url"])
-        self.assertIn("Wave Soldering", evidence["assembly"])
+        self.assertIn("molex.com", evidence["manufacturer_url"])
+        self.assertIn("molex.com", evidence["drawing_url"])
+        self.assertIn("Extended SMT", evidence["assembly"])
 
     def test_mmcx_tail_and_service_keepouts_pass(self):
         service = self.audit["mmcx_service"]
@@ -114,16 +112,12 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("pass", service["status"])
         self.assertEqual([], service["errors"])
         self.assertEqual([], service["opposing_body_hits"])
-        self.assertEqual([], service["accessory_hits"])
-        self.assertAlmostEqual(1.2, service["nominal_tail_projection_into_gap_mm"])
-        self.assertAlmostEqual(0.5, service["sidewall_radial_clearance_mm"])
+        self.assertFalse(service["through_board_tail"])
         self.assertEqual(12.0, service["external_service_keepout"]["diameter_mm"])
         self.assertGreaterEqual(service["minimum_rear_antenna_connector_clearance_mm"], 0.7)
-        self.assertEqual(
-            {"N24-1", "VOICE-VHF"},
-            {row["path"] for row in service["handling_envelope_overlaps"]},
-        )
-        self.assertIn("FPV antenna before", service["fixed_installation_sequence"])
+        self.assertEqual([], service["handling_envelope_overlaps"])
+        self.assertAlmostEqual(1.95, min(row["clearance_mm"] for row in service["handling_envelope_clearances"]))
+        self.assertAlmostEqual(0.7, service["u214_service_clearance_mm"])
 
     def test_generated_artifacts_are_current(self):
         expected = {
@@ -135,14 +129,14 @@ class H1R2LayoutTest(unittest.TestCase):
             MODULE.COMPLETE_INNER_SVG_PATH: MODULE.render_complete_inner_svg(
                 self.model, self.base, json.loads(MODULE.SOURCE_TABLE_PATH.read_text()), self.audit
             ),
+            MODULE.INNER_UI_SVG_PATH: MODULE.render_inner_face_svg(
+                self.model, self.base, json.loads(MODULE.SOURCE_TABLE_PATH.read_text()), self.audit, "ui-inner"
+            ),
+            MODULE.INNER_RF_SVG_PATH: MODULE.render_inner_face_svg(
+                self.model, self.base, json.loads(MODULE.SOURCE_TABLE_PATH.read_text()), self.audit, "rf-inner"
+            ),
             MODULE.INNER_SECTIONS_SVG_PATH: MODULE.render_inner_sections_svg(
                 self.model, self.base, json.loads(MODULE.SOURCE_TABLE_PATH.read_text()), self.audit
-            ),
-            MODULE.ANTENNA_EDGE_SVG_PATH: MODULE.render_retitled_legacy_view(
-                self.model, "render_top_edge"
-            ),
-            MODULE.SANDWICH_SVG_PATH: MODULE.render_retitled_legacy_view(
-                self.model, "render_sandwich"
             ),
             MODULE.EN_DOC_PATH: MODULE.render_doc(self.model, self.audit, False),
             MODULE.RU_DOC_PATH: MODULE.render_doc(self.model, self.audit, True),
@@ -156,7 +150,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn("HUB SERVICE USB", expected[MODULE.SERVICE_SVG_PATH])
         self.assertIn('data-instance="fpv_mmcx"', expected[MODULE.EXTERNAL_SVG_PATH])
         self.assertIn('FPV RX', expected[MODULE.EXTERNAL_SVG_PATH])
-        self.assertIn('5.8 GHz', expected[MODULE.EXTERNAL_SVG_PATH])
+        self.assertIn('5.8G', expected[MODULE.EXTERNAL_SVG_PATH])
         for instance in ("hub_reset_button", "hub_boot_button"):
             self.assertIn(
                 f'data-instance="{instance}" data-mpn="SKRTLAE010" '

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.11",
+  "marker": "H1-R2.15",
   "checked_on": "2026-08-27",
   "status": "official_functional_integration_passed_consigned_factory_route_selected_physical_package_open",
   "receiver": {
@@ -16,22 +16,22 @@
     "demodulation": "FM / PLL",
     "channel_count": 24,
     "pinout": [
-      {"pin": 1, "name": "CH1", "owner": "Hub RP GPIO36"},
-      {"pin": 2, "name": "CH2", "owner": "Hub RP GPIO37"},
-      {"pin": 3, "name": "CH3", "owner": "Hub RP GPIO38"},
+      {"pin": 1, "name": "CH1", "owner": "Rear RP GPIO32"},
+      {"pin": 2, "name": "CH2", "owner": "Rear RP GPIO33"},
+      {"pin": 3, "name": "CH3", "owner": "Rear RP GPIO34"},
       {"pin": 4, "name": "GND", "owner": "RF ground"},
-      {"pin": 5, "name": "+3.3-5V ON", "owner": "Hub RP GPIO34 through fail-low switched 5-V rail"},
-      {"pin": 6, "name": "RSSI", "owner": "Hub RP GPIO33 ADC"},
+      {"pin": 5, "name": "+3.3-5V ON", "owner": "Rear RP GPIO30 through fail-low switched 5-V rail"},
+      {"pin": 6, "name": "RSSI", "owner": "Rear RP GPIO15 ADC"},
       {"pin": 7, "name": "AUDIO 6.5MHz", "owner": "not connected in R2"},
-      {"pin": 8, "name": "VIDEO OUT", "owner": "TVP5150AM1PBS CVBS input"},
+      {"pin": 8, "name": "VIDEO OUT", "owner": "one 75-ohm FPV_CVBS crossing over M1 to UI-local TVP5150AM1PBS"},
       {"pin": 9, "name": "GND", "owner": "RF ground"},
       {"pin": 10, "name": "GND", "owner": "RF ground"},
-      {"pin": 11, "name": "ANT IN", "owner": "direct 50-ohm PCB feed to DL-MMCX-KWE-90"},
+      {"pin": 11, "name": "ANT IN", "owner": "direct 50-ohm PCB feed to Molex 73415-2063 C588480"},
       {"pin": 12, "name": "GND", "owner": "RF ground"},
       {"pin": 13, "name": "GND", "owner": "RF ground"},
       {"pin": 14, "name": "GND", "owner": "RF ground"}
     ],
-    "decoder_lock_evidence": "Hub RP GPIO35 reads qualified TVP5150 video-lock/evidence; K331 has no separate lock pin",
+    "decoder_lock_evidence": "Rear RP GPIO31 receives qualified TVP5150 video-lock/evidence across M1; K331 has no separate lock pin",
     "published_integration_sheet": "https://flymod.net/en/item/akk_k331_58g",
     "official_integration_evidence": {
       "host": "AKK Technology product media",
@@ -316,10 +316,10 @@
   },
   "signal_path": [
     "TBS5G8MMCXA",
-    "DL-MMCX-KWE-90",
+    "Molex 73415-2063 C588480",
     "direct 50-ohm PCB trace without U.FL or cable",
     "AKK K331 ANT IN",
-    "K331 CVBS OUT",
+    "K331 CVBS OUT over one 75-ohm M1 crossing",
     "TVP5150AM1PBS",
     "8-bit BT.656",
     "ESP32-S3 LCD_CAM"

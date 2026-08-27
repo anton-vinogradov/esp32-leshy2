@@ -2,7 +2,7 @@
 
 H0-R2 проведён как новый функциональный baseline: UI и дисплей остаются на S3, высокоскоростные периферийные тракты разгружены через Hub RP, аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен.
 
-> Следующий точный маркер — **H1-R2.0**: физическая компоновка, питание и production-схема пересчитываются под шесть вычислительных доменов. Старые H1–H5 относятся к R1 и не разрешают KiCad routing или заказ R2.
+> Текущий точный маркер — **H1-R2.15**: физическая модель уже пересчитана под локальные функциональные острова 5+5, но H1 ещё не завершён и не разрешает KiCad routing или заказ R2.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 
@@ -11,7 +11,8 @@ H0-R2 проведён как новый функциональный baseline: 
 - Один пользовательский порт `FM / SW / AIR RX`; новый внешний разъём не добавлен.
 - Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с FPV или TX-группой.
 - S3 не получает новую периферию: интерфейс, кнопки и direct-QSPI display не деградируют.
-- Hub RP владеет Si4732, LO, селектором, аудио и записью.
+- Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, FPV, M5 и U214.
+- Через M1 проходит один CVBS, control/status и питание; 11-линейная LCD_CAM-шина остаётся локальной S3.
 
 ## Airband RX
 
@@ -23,10 +24,10 @@ H0-R2 проведён как новый функциональный baseline: 
 
 | GPIO | Функция | Поведение после reset |
 |---|---|---|
-| Hub GP41 | `AIR_RX_EN` | pulled low; LNA/mixer/LO domain off |
-| Hub GP42 | `AIR_RX_MODE` | direct FM/SW path selected |
+| Rear RP GP35 | `AIR_RX_EN` | pulled low; LNA/mixer/LO domain off |
+| Rear RP GP36 | `AIR_RX_MODE` | direct FM/SW path selected |
 
-Hub budget: **45 used / 3 free**. SI5351 control stays on the Hub-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
+Front RP budget: **45 used / 3 free**. Rear RP budget: **46 used / 2 free**. SI5351 control stays on the rear-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
 
 ## Рабочая принципиальная распиновка
 
@@ -68,22 +69,32 @@ Hub budget: **45 used / 3 free**. SI5351 control stays on the Hub-local I²C bus
 | `47` | `ENCODER_B` | `PCNT0` | `in` |
 | `48` | `S3_HUB_SCK` | `SPI3` | `out` |
 
-| GPIO Hub RP | Назначение |
+| GPIO переднего RP | Назначение |
 |---|---|
 | `0, 1, 2, 3, 4, 5, 6` | S3 quad-SPI D0..D3/SCK/CS plus ALERT |
 | `7, 8, 9, 10, 11, 12` | C5 native 4-bit SDIO CLK/CMD/D0..D3 |
 | `13, 14, 15, 16, 17` | dedicated SPI plus ALERT to RF RP |
-| `18, 19, 20, 21, 22` | full-duplex audio BCLK/WS/DOUT/DIN/ARM |
-| `23, 24` | Hub-local I2C for codec, Si4732, headset, video decoder and slow controls |
-| `25, 26` | isolated M5 Unit I2C/UART/GPIO |
-| `27, 28, 29, 30, 31, 32` | dedicated microSD SPI SCK/MOSI/MISO/CS plus power and detect |
-| `33, 34, 35` | FPV RSSI ADC, receiver power and lock/evidence |
-| `36, 37, 38` | receiver channel-control reserve for the selected exact serial module |
-| `39, 40` | Hub diagnostic UART reserve |
-| `41` | AIR_RX_EN fail-low switched-domain and LT5560 enable control |
-| `42` | AIR_RX_MODE direct-FM/SW versus converted-Airband RF selector; reset default is direct FM/SW |
+| `18, 19, 20, 21, 22, 23` | nRF24 #0 dedicated SPI SCK/MOSI/MISO/CS plus CE and IRQ |
+| `24, 25, 26, 27, 28, 29` | nRF24 #1 dedicated SPI SCK/MOSI/MISO/CS plus CE and IRQ |
+| `30, 31, 32, 33, 34, 35` | nRF24 #2 dedicated SPI SCK/MOSI/MISO/CS plus CE and IRQ |
+| `36` | FAULT_KILL-qualified common nRF24 switched-rail request |
+| `37, 38, 39, 40, 41, 42` | dedicated microSD SPI SCK/MOSI/MISO/CS plus power and detect |
 | `43, 44` | dedicated fail-closed I2C controller bus to Pack and Safety MSPM0 mailboxes |
 | `45, 46, 47` | uncommitted electrical reserve |
+
+| GPIO заднего RP | Назначение |
+|---|---|
+| `0, 1, 2, 3, 4` | full-duplex codec/audio BCLK/WS/DOUT/DIN/ARM |
+| `5, 6` | rear-local I2C for codec, Si4732, Airband LO, headset and slow controls |
+| `7, 8` | rear-local isolated M5 Unit I2C/UART/GPIO |
+| `9, 10, 11, 23, 39, 42, 43` | CC1101 CS/GDO0/GDO2/power plus dedicated PIO SPI |
+| `12, 13, 14, 28, 29, 40, 41, 44, 45, 46, 47` | U214 busy/IRQ/reset, I2C, GNSS UART and dedicated SPI |
+| `15, 30, 31, 32, 33, 34` | FPV RSSI, receiver power, lock/evidence and three channel-select outputs |
+| `16, 17, 18, 20, 21, 22` | voice UART/PTT/audio-on, direct PTT input and ANY_TX diagnostic |
+| `19, 24, 25, 26, 27` | dedicated SPI plus ALERT to front RP |
+| `35` | AIR_RX_EN fail-low switched-domain and LT5560 enable control |
+| `36` | AIR_RX_MODE direct-FM/SW versus converted-Airband selector; reset default direct |
+| `37, 38` | uncommitted electrical reserve |
 
 ## Питание
 

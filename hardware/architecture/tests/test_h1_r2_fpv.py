@@ -24,14 +24,14 @@ class H1R2FPVTest(unittest.TestCase):
         self.assertEqual(14, self.audit["pin_count"])
         self.assertEqual(150, self.audit["power_margin_ma"])
 
-    def test_k331_uses_the_reserved_hub_controls(self):
+    def test_k331_uses_the_reserved_rear_rp_controls(self):
         pins = {row["pin"]: row["owner"] for row in self.model["receiver"]["pinout"]}
-        self.assertIn("GPIO36", pins[1])
-        self.assertIn("GPIO37", pins[2])
-        self.assertIn("GPIO38", pins[3])
-        self.assertIn("GPIO34", pins[5])
-        self.assertIn("GPIO33", pins[6])
-        self.assertIn("GPIO35", self.model["receiver"]["decoder_lock_evidence"])
+        self.assertIn("GPIO32", pins[1])
+        self.assertIn("GPIO33", pins[2])
+        self.assertIn("GPIO34", pins[3])
+        self.assertIn("GPIO30", pins[5])
+        self.assertIn("GPIO15", pins[6])
+        self.assertIn("GPIO31", self.model["receiver"]["decoder_lock_evidence"])
 
     def test_same_board_rf_path_has_no_ufl(self):
         path = " ".join(self.model["signal_path"])

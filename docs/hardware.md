@@ -1,367 +1,145 @@
-# Leshy2 hardware architecture
+# Leshy2 hardware
 
-[Home](../README.md) · [Русский](hardware.ru.md) · [Safety](safety.md)
+[Home](../README.md) · [Русский](hardware.ru.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current baseline: [H0-R2](h0-r2-functional-architecture.md). The R1 pin,
-> interconnect and ECAD pages linked below are retained inputs for the future R2
-> schematic. H1-R2.14 generates the complete current physical views, including
-> four independent USB/RESET/BOOT/DBG10 recovery sets. The [physical projection](h1-r2-physical-layout.md),
-> [FPV path](h1-r2-fpv.md) and [rail/thermal architecture](h1-r2-power-thermal.md)
-> pass their present checks but remain in progress; none authorizes R2 PCB routing.
+> Current marker: **`H1-R2.15`**. The functional architecture is reviewed; the
+> physical design is in progress. Nothing on this page authorizes KiCad routing
+> or an order.
 
-## Principle component interconnections
+## Capabilities
 
-[Open the complete principle-diagram set](schematics.md). It is split into
-readable maps for compute owners, UI and storage, C5 and IR, the RF RP radio
-domain, controls, audio, service and recovery, antenna paths, power
-and hardware safety. Every node represents one physical device and includes
-its MPN and product role; arrows show link purpose and direction.
-
-The [pin table](pinout.md) gives the exact contacts behind these links, while
-the [M1 map](interconnect.md) shows how they cross the two boards.
-The machine-readable
-[HW/FW integration contract](../hardware/architecture/target-integration-contract.json)
-freezes the same controller MPNs, transports, pins, signal-group mapping,
-safety timings and regional LoRa profiles for both repositories.
-
-## Compute ownership
-
-```mermaid
-flowchart TB
-  S3["ESP32-S3-WROOM-1U-N16R8<br/>UI, direct QSPI display, FPV capture, BLE/Wi-Fi"]
-  C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, 802.15.4, IR"]
-  HUB["SC1512-A4 · Hub RP2354B<br/>C5/RF fan-out, storage, audio, broadcast/Airband"]
-  RF["SC1512-A4 · RF RP2354B<br/>nRF24 ×3, Sub-GHz, voice, Cap Bus"]
-  S3 <-->|"quad SPI"| HUB
-  HUB <-->|"4-bit SDIO"| C5
-  HUB <-->|"dedicated SPI + alert"| RF
-```
-
-Each owner has independent buses to latency-sensitive devices. The display,
-storage and radio paths do not wait on one overloaded shared bus. Within its
-group, all three nRF24 radios retain concurrent receive and transmit. Across
-top-level signal groups, one group is active while the others are physically
-powered down and discharged. The C5 lot must identify chip revision v1.0 or
-later because Espressif does not support SDIO on revision v0.1.
-
-## Radio paths
-
-| Path | Primary MPN | Owner | Capability |
+| Path | Production device or boundary | Owner | Finished-device capability |
 |---|---|---|---|
-| Native S3 | `ESP32-S3-WROOM-1U-N16R8` | S3 | 2.4-GHz Wi-Fi, BLE, ESP-NOW |
-| Native C5 | `ESP32-C5-WROOM-1U-N8R8` | C5 | 2.4/5-GHz Wi-Fi, IEEE 802.15.4 |
-| nRF24 ×3 | `Ebyte E01-ML01IPX` | RP2354B | Concurrent `3R`, `1T2R`, `2T1R`, `3T` |
-| Sub-GHz | `CC1101RGPR` | RP2354B | 315, 433, 868 and 915 MHz |
-| Broadcast/Airband RX | `Si4732-A10-GSR` + `LT5560EDD#TRPBF` + `PGA-103+` + `SI5351A-B-GTR` + `HMC544AETR` | Hub RP2354B | FM/SW, separate AM/LW and mandatory receive-only 118–137-MHz Airband AM through the shared `FM/SW/AIR RX` port |
-| Analog FPV RX | `AKK K331` candidate + `TVP5150AM1PBS` + `DL-MMCX-KWE-90` | S3 | Receive-only NTSC/PAL capture; pin/power fit, exact MMCX and genuine-AKK/JLCPCB Consigned Parts route close; one controlled AKK production package remains the H1 gate |
-| Voice VHF/UHF | `G-NiceRF SA818S-V` + `G-NiceRF SA818S-U` | RP2354B | Independent analog VHF and UHF communications with hardware one-hot selection |
-| IR RX | `TSOP75238TT` + `TSMP95000TT` | C5 | 38-kHz demodulation and 30–60-kHz learning |
-| IR TX | `VSMY14940` | C5 | Controlled 940-nm transmit with optical evidence |
-| LoRa/GNSS Cap | `M5Stack U214 Cap LoRa-1262` or `LESHY2-LORA-CAP-01-EU868/US915` | RP2354B | Stock Cap: RX/GNSS; exact Leshy Cap: qualified regional RX/TX |
-| External antenna jacks | `8× GCT RFPC-SMA31-FN-175-A` + `2× GCT RFPC-SMA32-FN-175-A` | Dedicated per path | Ten 6-GHz, 50-ohm board-edge SMA/RP-SMA bodies on the two outward PCB faces; no RF sharing or connector bodies in the interboard channel |
+| Native S3 | `ESP32-S3-WROOM-1U-N16R8` | S3 | 2.4-GHz Wi-Fi, BLE, ESP-NOW, UI and direct display |
+| Native C5 | `ESP32-C5-WROOM-1U-N8R8` | C5 | 2.4/5-GHz Wi-Fi, IEEE 802.15.4 and IR |
+| nRF24 ×3 | `E01-ML01IPX` | Front RP | Three full concurrent RX/TX/mixed paths |
+| Sub-GHz | `CC1101RGPR` | Rear RP | 315/433/868/915-MHz RX/TX profiles |
+| VHF voice | `SA818S-V` | Rear RP | Independent analog VHF RX/TX |
+| UHF voice | `SA818S-U` | Rear RP | Independent analog UHF RX/TX |
+| Broadcast/Airband | `Si4732-A10-GSR`, `PGA-103+`, `LT5560EDD#TRPBF`, `SI5351A-B-GTR`, `HMC544AETR` | Rear RP | FM/AM/SW/LW and receive-only 118–137-MHz Airband AM |
+| Analog FPV | K331 functional boundary + `TVP5150AM1PBS` | Rear RP + S3 | Receive-only 5.8-GHz PAL/NTSC capture |
+| Audio | `ES8311`, `PAM8302AAYCR`, speaker, microphone and CTIA headset | Rear RP | Record, monitor and play audio |
+| Expansion | M5 Unit + rear U214 Cap rail | Rear RP | External GPS/radio modules and regional LoRa Cap |
 
-FM/AM/SW/LW/Airband broadcast transmission is not a device capability: both Si4732
-ports remain receive-only. No custom transmitter or RF Cap is developed for
-them. The function may appear only through an exact orderable off-the-shelf
-self-contained module with manufacturer documentation, integrated RF-output
-protection and a qualified product interface. No suitable module is currently
-selected. Airband uses a fixed 112-MHz low-side LO to translate 118–137 MHz
-to 6–25 MHz for the existing Si4732 FMI. The mandatory input filter rejects
-the 87–106-MHz image band; voice, scan, recording and ACARS are in scope,
-while VDL2, wideband I/Q capture and Airband TX are not.
+FM/AM/SW/LW/Airband and analog FPV are receive-only. No custom broadcast or
+Airband transmitter is part of Leshy2. VHF/UHF, Sub-GHz, nRF, native Wi-Fi/IR
+and an explicitly qualified LoRa expansion retain their documented TX paths and
+safety gates.
 
-Every built-in transmit path has independent actual-TX evidence. Native S3/C5 each use
-an exact 30-mm `TE Connectivity 2118651-2` UMCC Gen1 jumper, their own
-`U.FL-R-SMT-1(10)` and a `CP0603Q5425ENTR` directional coupler beside the
-external RP-SMA. The module and board connector axes and both 30-mm cable
-corridors are fixed in the dimensioned inner-board drawing. Each nRF24 has its
-own external SMA and `DC2337J5010AHF`; its pigtail remains specimen-gated
-because Ebyte documents only `IPEX`, not a mating generation. Nine labelled
-per-path indicators plus a `TX ACTIVE` summary sit in one line on the front below
-the display. Evidence reports actual transmit activity and a relative level; it
-never grants transmit permission.
+## Functional ownership
 
-The two board-mounted U.FL receptacles are not substitutes for available RF
-module lands. The selected S3 module exposes no RF/ANT land: its supported RF
-output is the connector built into `ESP32-S3-WROOM-1U-N16R8`. The C5 module
-does expose `ANT2` on contact 31, but the exact standard module enables its
-built-in `ANT1` connector and leaves `ANT2` disabled; Espressif requires prior
-contact before `ANT2` is used. Therefore each cable returns to the PCB through
-the numbered board U.FL, where the real forward-power TX detector branches off
-before the outward RP-SMA. A direct cable-to-SMA path would remove that
-measurement rather than merely remove a redundant connector.
+![Current two-PCB architecture](images/h0-r2-functional-architecture.svg)
 
-The internal drawing renders those media separately. A concentric ring inside
-the S3 or C5 module is the module-integrated U.FL at its datasheet axis. A
-numbered ring is the distinct board-mounted U.FL where the solid cable stops
-and the dashed PCB guide begins. Each nRF24 module also carries a visible IPEX
-ring connected directly to its board U.FL. Its position is schematic inside
-the whole-face reserve until H5 establishes the current-lot generation and
-axis.
+### Front UI/radio PCB
 
-The stock U214 provides receive and GNSS but no independent actual-RF evidence,
-so its TX remains blocked. Cap-Bus contact 5 is monitored through the exact
-5-V-tolerant `SN74LVC1G07DCKR`: stock `5V_OUT` reads inactive. The
-[exact Leshy LoRa Cap](lora-cap.md) uses `NiceRF LoRa1262-868` or
-`LoRa1262-915` and may assert open-drain `EXT_TX_EVIDENCE_N` only from a
-`DC0710J5020AHF`/`AD8314ACPZ-RL7` detector on its final external 50-ohm RF
-feed. `BUSY`, `IRQ`, branch power and firmware state are diagnostic context,
-never substitutes for measured RF.
+- `ESP32-S3-WROOM-1U-N16R8`: menus, touch, all user keys, direct QSPI display,
+  BLE/Wi-Fi and the local BT.656 video bus.
+- `ESP32-C5-WROOM-1U-N8R8`: 2.4/5-GHz Wi-Fi, 802.15.4 and IR.
+- `SC1512-A4` front RP: C5/S3/rear-RP links, three local nRF24 paths and microSD.
+- Three complete nRF islands: radio, command/return buffers, safety gate and
+  dedicated physical-TX evidence.
+- `TVP5150AM1PBS`: CVBS decoding beside S3.
 
-## User interface, storage and audio
+Front RP GPIO budget: **45 used / 3 free**.
 
-| Device | MPN | Implementation |
-|---|---|---|
-| Display | `HMX035CTFT-001` | 3.5-inch `320×480` IPS, direct QSPI, capacitive touch; proven 54.5×83.0×3.2-mm LCD/CTP body and 48.96×73.44-mm 2:3 active area |
-| Main-board display mate | `Hirose DF40C(2.0)-40DS-0.4V(58)` | Fixed 40-contact receptacle; exact 2.0-mm stack |
-| Adapter-board mate | `Hirose DF40C-40DP-0.4V(51)` | Exact 40-contact plug; all contacts map one-to-one |
-| Panel ZIF | `Hirose FH34SRJ-40S-0.5SH(99)` | 40 contacts, 0.5-mm pitch, top-and-bottom contact |
-| microSD | `Hirose DM3AT-SF-PEJM5` | Push-push; independently powered and isolated |
-| Audio codec | `Everest ES8311` | I²S capture and playback |
-| Microphone | `Same Sky CMEJ-0413-42-SMT-TR` | Rear RF/power board; faces the bottom edge |
-| Speaker | `PUI Audio AS02404PO` | Rear RF/power board; 4-ohm differential output; enclosure acoustic treatment is verified later |
-| CTIA headset | `Same Sky SJ-43504-SMT-TR` | Shielded 3.5-mm TRRS mid-mount connector; stereo output, external-microphone input and insertion detect |
-| Main I/O expander | `TCA6424ARGJR` | Power, modes and slow signals |
-| Control panel | `TCA9539PWR` | Sixteen independent active-low inputs for D-pad, BACK, OPT, F1…F8 and encoder push |
-| Navigation buttons | `5× OMRON B3S-1100P` | Independent direct-press UP, DOWN, LEFT, RIGHT and OK |
-| Other direct buttons | `11× OMRON B3S-1100P` | BACK, OPT, F1…F8 and PTT |
-| RUN/KILL | `C&K JS102011SCQN` | Sole side control for physical safety state and low-current source command |
-| Safety controller | `Texas Instruments MSPM0C1106SDGS20R` | Independent heartbeat, TX-lease, evidence and three-zone thermal supervisor |
-| Independent watchdog | `Texas Instruments TPS3435CAKAGDDFR` | 1.6-second AON timeout; directly latches FAULT_KILL |
-| Encoder | `Alps Alpine EC11E18244AU` | Phases wired directly to S3 PCNT |
-| Encoder knob | `Davies Molding 1227-J` | 15-mm soft-touch interference fit for the 6×4.5-mm D shaft |
+### Rear RF/power PCB
 
-The front navigation cluster uses five independent, directly pressed
-`OMRON B3S-1100P` buttons for UP, DOWN, LEFT, RIGHT and `OK`. The fifteen
-front buttons plus encoder push use all sixteen independent expander inputs;
-PTT has its own direct RP line. Simultaneous keys therefore need no matrix
-scan or ghost-key reconstruction. `BACK`, `OPT`, `F1` through `F8` and `PTT`
-use the same series button; no control needs a custom cap or plunger. Four
-function keys sit in each display-side gutter: F1–F4 on the left and F5–F8 on
-the right. The rear face retains only the encoder on the left and PTT on the
-right. The encoder
-carries an exact `Davies Molding 1227-J` knob. The side-facing
-`C&K JS102011SCQN` is the sole `RUN/KILL` control; separate STOP and RE-ARM
-buttons are not fitted. A phone may provide occasional long-form text input but
-cannot confirm dangerous actions.
+- `SC1512-A4` rear RP: CC1101, voice, broadcast/Airband, audio, FPV, M5 and U214.
+- Power conversion, pack admission, independent watchdog, thermal sensing and
+  hard-off safety.
+- K331 receiver boundary and direct 50-ohm path to the rear FPV MMCX.
+- Audio codec, speaker amplifier, microphone and CTIA headset path.
 
-All sixteen `TCA9539PWR` inputs are assigned. The two display-side key columns
-have local ESD protection, and F1/F2 no longer consume inter-board contacts.
-Adding another ordinary key now requires a second input expander or an explicit
-function trade.
+Rear RP GPIO budget: **46 used / 2 free**.
 
-The headset connector follows CTIA/AHJ: tip is left, ring 1 is right, ring 2
-is audio ground and the sleeve is the biased microphone input. Insertion opens
-the jack's tip switch; protected slow-I/O P02 remains a detect-only input, so
-removal is observable continuously. Firmware silences the loudspeaker on
-insertion and uses dedicated P0 of an exact `TCA9534APWR` at non-conflicting
-I²C address `0x39` to choose the headset microphone or retain the internal
-microphone for an ordinary three-pole headphone plug. A physical pull-up makes
-the internal microphone the reset default. The new expander consumes no MCU
-GPIO and leaves seven pulled, interrupt-capable local I/O reserves. The three
-exposed audio conductors use separate channels of the existing low-capacitance
-ESD array.
+## Interboard connector
 
-The battery holder and rear controls mount directly on the external face of the
-RF/power PCB. There is no continuous rear lid over the holder: cells insert
-directly into the open `Keystone 1048P`. The encoder sits to the holder's left
-and `PTT` to its right, so their actuation axes do not cross the battery envelope.
-RUN/KILL faces the enclosure side and is labelled on that external edge.
+M1 is the exact straight-SMT Hirose pair `FX8C-80P-SV1(92)` /
+`FX8C-80S-SV5(92)`. It has no user-facing through-hole tails.
 
-## Expansion
-
-- The raised rear 14-contact rail uses exact pass-through
-  `Samtec HLE-107-02-G-DV-PE-LC`
-  and accepts either `M5Stack U214 Cap LoRa-1262` or
-  `LESHY2-LORA-CAP-01-EU868/US915` normal to the rear face. Both share the
-  84×24-mm envelope and 56-mm retention pitch; the stock U214 remains the
-  worst-case depth. The Cap sits between the antenna bank and battery holder
-  and overhangs the 75-mm base by 4.5 mm per side.
-  Pass-through entry prevents an undocumented long Cap post from bottoming;
-  current-lot fit, force and cycle life are verified at incoming inspection.
-- A separate exact `1125R-SMT-4P` right-angle M5 Unit receptacle provides a
-  protected, switchable 5-V branch and two isolated signal lines for qualified
-  GNSS, LoRa, NFC, iButton/1-Wire and other modules. Its keyed mating-view order
-  is GND, 5 V, SIG0, SIG1.
-- High-throughput raw SDR needs a dedicated interface; the low-rate Unit port
-  is not presented as a raw RF data path.
-
-## Dimensioned layout
-
-Solid component outlines use dimensions from the part-number register. The
-display uses the published `54.5×83.0×3.2 mm` LCD/CTP screen-body envelope,
-not the complete ES3C35P donor-board envelope of `54.5×101.5×≈10 mm`. The
-published 3.2-mm depth excludes the flex and adhesive. Replaceable adapter
-`L2-DISP-ADP-001-A` decouples that unknown tail from the main UI PCB: exact
-`DF40C(2.0)-40DS-0.4V(58)` and `DF40C-40DP-0.4V(51)` form the fixed 40-contact
-2-mm mate, while dual-contact `FH34SRJ-40S-0.5SH(99)` accepts either exposed-
-contact orientation. All 40 contacts map one-to-one. Received-tail thickness,
-outline, stiffener and bend clearance remain H5 checks and may revise only
-the small adapter, not the main PCB or enclosure datum. Navigation is a
-24.6×24.0-mm cluster of five exact `OMRON B3S-1100P` series switches on 9-mm
-centre pitch. Each switch is pressed directly; there is no custom cap,
-plunger, guide or actuator. Button accessibility, feel and endurance in the
-assembled enclosure remain H5 tests. The exact `Davies Molding 1227-J` encoder
-knob is rendered as a solid 15-mm part.
-The generator rejects component-to-
-component overlap and entry into the 4-mm screw-head keep-outs around the M2.5
-mounting holes.
-
-Every placed body on both inner faces must also have a manufacturer-backed body
-height. Maximum tolerance envelopes are used where the manufacturer publishes
-them. The generator mirrors the RF/power board into the UI-board physical datum
-datum. All 130 bodies on the two main inner faces are first checked individually
-against the opposite PCB plane: the tallest body is 8.95 mm and leaves 2.05 mm
-in the 11-mm channel. The two additional display-adapter connectors are checked
-as one complete 3.8-mm assembly; its five rear-board crossings retain at least
-6.00 mm, bringing the covered internal component count to 132. The audit then
-checks all 36 non-mating main-board pairs whose XY projections overlap. The
-current limiting pair—the mid-mount headset jack opposite a protected
-pack fuse—retains a 3.31-mm Z gap, above the enforced 0.7-mm minimum. The aligned
-FX8C plug and receptacle are validated separately as the single intentional mate.
-The opposite-face bodies and tails of the nine external RF jacks and the exact
-pass-through U214 socket retain at least 1.5 mm of plan clearance from inner
-components. All five 30-mm `TE Connectivity 2118651-2` RF feeds are now in the
-mechanical audit. S3 and C5 use direct projections between exact connector
-axes: their chords are 14.78 and 15.50 mm, leaving 15.22 and 14.50 mm of the
-selected assemblies as three-dimensional slack. Their two direct-chord
-opposing XY crossings retain 7.77 mm of Z clearance; final slack bend and
-retention remain H5 work. The three Ebyte feeds use the complete module face as
-a conservative cable-head reserve plus a direct projection to the exact board
-receptacle. Their five opposing crossings retain at
-least 5.20 mm; the current-lot module connector axes and cable bends remain an
-explicit H5 received-part gate rather than invented geometry.
-
-The solid green lines on the UI board have one bounded meaning. Each starts at
-the built-in U.FL of the S3 or C5 radio module and represents one removable
-30-mm `TE Connectivity 2118651-2` cable. Its other end snaps onto a
-UI-board-mounted `Hirose U.FL-R-SMT-1(10)` receptacle, where the green line
-ends. The solid line is the direct 2D connector chord, not the shape imposed on
-the flexible 30-mm cable. There is no further loose cable: the signal continues on a future 50-ohm
-PCB mainline through its own `KYOCERA AVX CP0603Q5425ENTR`, which takes a small
-forward sample for the TX detector, and then reaches the outward
-`GCT RFPC-SMA32-FN-175-A` RP-SMA. Dashed blue lines show only that topology;
-their final geometry is created and verified in KiCad.
-
-Both inner projections now carry ten dashed-blue source-to-port guides:
-`S3→S3 RP-SMA`, `Si4732 FMI→FM/SW SMA`, `Si4732 AMI→AM/LW SMA`,
-`C5→C5 RP-SMA`, three independent `E01-ML01IPX→nRF24 SMA` paths,
-`CC1101→SUB-GHz SMA`, `SA818S-V ANT12→VHF SMA` and
-`SA818S-U ANT12→UHF SMA`. On each nRF24 path the
-cyan portion is the physical microcoax to the board U.FL; the blue PCB guide
-begins there. Every blue endpoint coincides with the red datum of its matching
-outward antenna connector. This is a complete connectivity map, not accepted
-trace geometry.
-
-The externally mounted `Alps Alpine EC11E18244AU` is treated as a through-board
-part, not just an outer 11-mm class body. Its two mounting tabs and five signal
-terminals project 3.5 mm into the channel. Their exact seven keep-outs forced a
-small paper-layout correction: the RP2354 and nRF0 buffers moved upward while
-the right-hand buffer columns moved right. No component, net or function
-changed. The seven features clear every RF-side body by at least the enforced
-0.7 mm; their two opposing UI-body crossings retain 4.20 mm of Z clearance.
-The drawing shows only the real contact-12 endpoint of each SA818S and its own
-VHF or UHF connector endpoint; no invented pre-KiCad copper line crosses a
-component body or masquerades as a routed trace.
-
-The exact 80-contact M1 body and the complete 3.8-mm display-adapter stack also
-pass the physical keep-out audit. This result deliberately does not claim that
-PCB copper is routed: escape routing, return paths, via fields, controlled
-impedance and footprint-level clearance close only after both boards pass KiCad
-ERC/DRC and an independent layout review. The received display FPC outline and
-bend path remain H5 evidence. All mechanically significant bodies—including
-power inductors, bulk capacitors, pack protection, interface buffers and audio
-selectors—must appear in a physical projection.
-
-In two aligned rows of five below the display, user-facing actual-transmit labels cover
-`WI-FI/BLE`, `WI-FI/15.4`, `nRF24-1`, `nRF24-2`, `nRF24-3`, `SUB-GHz`,
-`VHF/UHF`, `IR`, `LORA/EXT` and the aggregate `TX ACTIVE`. Antenna silkscreen
-uses the same functional names and adds a frequency only where it helps identify
-the radio; connector-family text is omitted from the board face.
-The two Si4732 antenna inputs are receive-only. Both exact GCT end-launch
-connector banks are mirrored onto the outward PCB faces: the faces are
-14.2 mm apart, their antenna centre planes are 20.55 mm apart, and no
-connector body enters the exact 11-mm interboard channel.
-
-### Consolidated layout result
-
-| Check | Result |
+| Crossing | Current contract |
 |---|---|
-| External faces | Passed: controls, interface directions and unobscured user silkscreen |
-| Internal bodies | 130 bodies; 132 including the display-adapter assembly |
-| Opposing inner faces | 36 non-mating pairs; minimum Z clearance 3.31 mm against the 0.7-mm requirement |
-| Interconnect passage | Exact 80-contact M1 mate, five RF microcoaxes, nine outward antenna tails and seven encoder through-features accounted |
-| Pin/resources | S3 33 used / 0 free; C5 `GPIO5` free; RP 48 used / 0 free; slow I/O 24/24; UI inputs 16/16; headset expander keeps seven local reserves |
-| M1 contacts | all 80 assigned; seven parallel 3V3_MAIN contacts and six RF-evidence crossings |
-| Still open | Production schematic, footprint escape/routing, PCB copper, ERC/DRC, H5 received-part fit and assembled HIL |
+| Controller transport | Dedicated front-RP ↔ rear-RP SPI plus alert, qualified at 1.5 MB/s |
+| Analog video | One 75-ohm `FPV_CVBS` beside ground |
+| Safety | RUN/FAULT and three active-low nRF TX-evidence lines |
+| Power | Seven parallel 3V3_MAIN contacts plus grounds |
+| Reserve | Eight signal contacts remain free after the R2.15 repartition |
 
-The machine-readable source for this table is
-[`H1-cross-view-acceptance.json`](../hardware/product-design/generated/H1-cross-view-acceptance.json).
-It authorizes H2 schematic work only; PCB placement/routing and purchasing
-remain unauthorized.
+The decoder's eight data lines plus PCLK/VSYNC/HREF stay on the front PCB. No
+main RF trace and no nRF payload crosses M1. Rear 48-kHz full-duplex audio stays
+below 0.4 MB/s, so it does not saturate the RP transport.
 
-![Current H1-R2 dimensioned external layout](images/h1-r2-external-layout.svg)
+## Physical layout
 
-![External service access: four USB ports and eight recovery buttons](images/h1-r2-service-access.svg)
+![Current external layout](images/h1-r2-external-layout.svg)
 
-![Dimensioned series navigation cluster](images/navigation-cluster.svg?layout=1)
+The ten main antenna ports are split symmetrically:
 
-![Dimensioned replaceable display adapter](images/display-adapter.svg?layout=1)
+| Front PCB | Rear PCB |
+|---|---|
+| `nRF1 · 2.4G` | `FM/SW/AIR RX` |
+| `S3 · 2.4G` | `AM/LW RX` |
+| `nRF2 · 2.4G` | `SUB-G RX/TX` |
+| `C5 · 2.4/5G` | `VHF RX/TX` |
+| `nRF3 · 2.4G` | `UHF RX/TX` |
 
-![Complete mirrored H1-R2 internal-board layout](images/h1-r2-inner-complete.svg)
+The separate Molex `73415-2063` (`C588480`) vertical SMT MMCX is labelled
+`FPV RX · 5.8G` on the rear face between the SMA groups and above U214. It has
+no interboard tail. The generated audit reports 5.72 mm body clearance to the
+nearest SMA, 1.95 mm handling clearance and 0.70 mm to the installed U214 zone.
 
-![Dimensioned H1-R2 view from the antenna edge](images/h1-r2-antenna-edge.svg)
+### Front inner face
 
-![Dimensioned sections through the R2 Airband/power and FPV/service zones](images/h1-r2-inner-sections.svg)
+![Front PCB inner face](images/h1-r2-inner-ui.svg)
 
-![Dimensioned sections through the LoRa Cap and battery zones](images/h1-r2-sandwich-sections.svg)
+### Rear inner face
 
-![Dimensioned custom LoRa Cap component zones](images/lora-cap-layout.svg?layout=1)
+![Rear PCB inner face](images/h1-r2-inner-rf.svg)
 
-## External antennas
+The boards are physically turned over in these views, so both are mirrored.
+Numbers are drawing references; inner PCB faces contain no silkscreen. The
+complete numbered 163-body projection remains generated machine evidence rather
+than a second tiny public diagram.
 
-The [complete established 13-item antenna kit](antennas.md) maps ten
-user-facing SMA/RP-SMA labels and one MMCX label to exact first-target MPNs and
-bands. Three antennas are interchangeable profiles for the single `SUB-GHz`
-port; the other ten have one fixed port each, including independent VHF/UHF and
-the mechanically distinct MMCX `FPV RX 5.8G`. Its exact post-installed linear
-antenna is `TBS5G8MMCXA`; its `FPV · RX 5.8G` flag matches the device silk.
+Placement currently has **zero same-face collisions** and **1.44 mm** minimum
+opposing clearance against **0.70 mm** required.
 
-## Power and service
+## User interface and service
 
-- The main `JAE DX07S016JA1R1500` carries S3 USB 2.0 Full-Speed and sink-only
-  USB-PD: 5 V, 9 V × 3 A or 15 V × 2 A, up to 30 W. There is no power-bank mode.
-- `TPS25751DREFR`, `TVS2200DRVR` and `BQ25798RQMR` form the protected PD/NVDC
-  frontend and 2S charger, starting conservatively at 1 A and capped at 2 A.
-- Two replaceable protected button-top `XTAR 18650 4000mAh` cells sit in a
-  polarized `Keystone 1048P`; both are required, providing 28.8 Wh total.
-- `MAX17320G20+T` protects and gauges the 2S pack while one
-  `MSPM0C1106SDGS20R` performs local fail-closed admission. A second MSPM0,
-  powered by AON, owns heartbeat, transmit leases, evidence and three board NTCs.
-- The maintained `C&K JS102011SCQN` is the sole low-current RUN/KILL control.
-  KILL asks pack admission to shut down and removes RUN_PERMIT; it never carries
-  cell or load current, so USB charging and service recovery remain available.
-- `TPS3435CAKAGDDFR` independently watches the safety MSPM0 and directly
-  latches FAULT_KILL. Restart always requires a physical KILL-to-RUN cycle.
-- Independent fixed rails: 3.3-V always-on from `TPS629203DRLR`, plus separate
-  3.3-V main, 4.0-V voice and 5.0-V accessory rails from `TPS564252DRLR`.
-- Three labelled USB-C ports are externally accessible: S3 `USB / POWER`,
-  `C5 SERVICE USB` and `RP SERVICE USB`. The two service ports never power the
-  device. Six labelled side buttons expose RST/BOOT for S3, C5 and RP. All six
-  sit 1.2 mm behind DIV-like protective side pockets: they cannot be struck as
-  protruding controls but remain finger/tool accessible. Three keyed DBG10
-  headers are internal fallback diagnostics, accessible only after
-  opening the board sandwich; they are not user-interface connectors.
+- 3.5-inch portrait 320×480 IPS display `HMX035CTFT-001`.
+- Five serial navigation switches forming the D-pad, eight side function keys,
+  PTT and encoder.
+- Two aligned rows of five user-facing status LEDs below the display.
+- Four independent USB paths; only `USB / POWER` powers and charges Leshy2.
+- Per-controller recessed RESET/BOOT or RUN/USB_BOOT controls and keyed DBG10
+  recovery headers.
+- User silkscreen is printed only on visible outer faces and is not hidden by
+  the display, batteries or U214.
 
-## Implementation data
+![External service access](images/h1-r2-service-access.svg)
 
-The detailed tables serve schematic, verification and manufacturing work:
+## Power and unattended safety
 
-- [Exact assignment of every programmable controller](pinout.md)
-- [Device principle diagrams](schematics.md)
-- [Exact M1 inter-board connection](interconnect.md)
-- [Antenna profiles and exact field kit](antennas.md)
-- [Machine-readable BOM CSV](../hardware/architecture/generated/G2F-3I-target-bom.csv)
-- [Machine-readable antenna-kit manifest](../hardware/architecture/antenna-kit.json)
-- [Exact removable LoRa Cap](lora-cap.md)
-- [Machine-readable LoRa Cap source](../hardware/accessories/leshy2-lora-cap-01.json)
+Two user-supplied protected 18650 cells operate in parallel. One cell can run
+the device; the pair increases available energy and current rather than voltage.
+USB is the only alternate power source.
+
+Separate `MSPM0C1106SDGS20R` controllers own pack admission and independent
+safety/watchdog supervision.
+
+The placed main rail uses `TPS566231PRQFR` with
+`PSPMAA0605H-2R2M-ANP`. The current contract is 3.75 A continuous and 4.25 A
+step. Independent hardware can revoke transmit permission and hard-disable the
+device on watchdog, thermal, rail or evidence faults while preserving a concise
+fault reason for the next boot/display opportunity.
+
+See [power and thermal architecture](h1-r2-power-thermal.md) and the
+[three-level safety model](safety.md).
+
+## Current physical-design gate
+
+Everything above is generated and audit-checked. H1 remains open because K331
+still lacks one AKK-controlled package containing maximum XYZ, land pattern and
+packaging/soldering/reflow evidence. JLCPCB confirmed no Parts Library or Global
+Sourcing route; genuine AKK supply through Consigned Parts is the selected later
+factory route. KiCad and all purchasing remain blocked.

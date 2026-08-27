@@ -16,7 +16,7 @@ class H0R2ArchitectureTest(unittest.TestCase):
 
     def test_review_identity_and_next_marker(self):
         self.assertEqual("H0-R2", self.data["id"])
-        self.assertEqual("reviewed_functional_architecture", self.data["status"])
+        self.assertEqual("reviewed_functional_architecture_repartitioned", self.data["status"])
         self.assertEqual("H1-R2.0", self.data["next_marker"])
 
     def test_s3_uses_every_real_n16r8_gpio_once(self):
@@ -75,14 +75,14 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertIn("no eleventh", air["antenna_port"])
         self.assertIn("transmit", " ".join(air["performance_boundary"]["excluded"]).lower())
 
-    def test_airband_controls_are_fail_low_and_consume_only_two_hub_pins(self):
+    def test_airband_controls_are_fail_low_and_consume_only_two_rear_pins(self):
         air = self.data["airband_contract"]
-        self.assertIn("pulled low", air["control"]["gp41"])
-        self.assertIn("defaults", air["control"]["gp42"])
-        groups = self.data["hub_rp"]["pin_groups"]
+        self.assertIn("pulled low", air["control"]["gp35"])
+        self.assertIn("defaults", air["control"]["gp36"])
+        groups = self.data["rf_rp"]["pin_groups"]
         roles = {tuple(group["gpios"]): group["role"] for group in groups}
-        self.assertIn("AIR_RX_EN", roles[(41,)])
-        self.assertIn("AIR_RX_MODE", roles[(42,)])
+        self.assertIn("AIR_RX_EN", roles[(35,)])
+        self.assertIn("AIR_RX_MODE", roles[(36,)])
 
     def test_airband_factory_bom_is_exact_and_costed(self):
         bom = self.data["airband_factory_bom_delta"]

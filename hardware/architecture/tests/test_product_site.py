@@ -165,15 +165,14 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: H1-R2.14", "H0-R2 reviewed",
+                "Current hardware boundary: `H1-R2.15`", "H0 is reviewed",
                 "firmware F1-R2 reviewed", "F2-R2.0",
-                "H2.2.5",
-                "H9. Manufacturing release", "Production ECAD",
+                "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: H1-R2.14", "H0-R2 проведено ревью",
-                "firmware F1-R2 проведено ревью", "F2-R2.0", "H2.2.5",
-                "H9. Производственный release",
+                "Текущая аппаратная граница: `H1-R2.15`", "H0 проведено ревью",
+                "firmware F1-R2 проведено ревью", "F2-R2.0",
+                "H9 · Manufacturing release",
                 "Production ECAD",
             ),
         }
@@ -187,8 +186,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Hardware is at H1-R2.14", "printing/fabrication"),
-            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H1-R2.14", "печать/на фабрику"),
+            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.15`", "fabrication"),
+            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.15`", "печати прототипа"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -197,7 +196,7 @@ class ProductSiteTests(unittest.TestCase):
             for stage in range(10):
                 self.assertIn(f"H{stage} ·", page, f"{name}: missing H{stage}")
 
-    def test_completed_global_h3_has_bilingual_result_report(self):
+    def test_superseded_r1_h3_report_is_retained_but_not_advertised_as_current(self):
         reports = {
             "docs/h3-acceptance.md": (
                 "H3 result · Virtual electrical verification",
@@ -228,9 +227,9 @@ class ProductSiteTests(unittest.TestCase):
             ("docs/roadmap.md", "h3-acceptance.md"),
             ("docs/roadmap.ru.md", "h3-acceptance.ru.md"),
         ):
-            self.assertIn(report, self.read(name), name)
+            self.assertNotIn(report, self.read(name), name)
 
-    def test_completed_global_h4_has_bilingual_result_report(self):
+    def test_superseded_r1_h4_report_is_retained_but_not_advertised_as_current(self):
         reports = {
             "docs/h4-prelayout-gate-report.md": (
                 "H4 result · joined pre-layout gate",
@@ -266,33 +265,57 @@ class ProductSiteTests(unittest.TestCase):
             ("docs/roadmap.md", "h4-prelayout-gate-report.md"),
             ("docs/roadmap.ru.md", "h4-prelayout-gate-report.ru.md"),
         ):
-            self.assertIn(report, self.read(name), name)
+            self.assertNotIn(report, self.read(name), name)
 
     def test_landing_page_is_a_product_front_door(self):
         expectations = {
             "README.md": (
-                "⭐ Leshy2",
-                "What Leshy2 is",
-                "Target device mockup",
+                "# Leshy2 ⭐",
+                "What it is",
+                "Current Leshy2 exterior",
                 "Roadmap and current position",
-                "Principle diagrams and electrical implementation",
-                "Stage results",
+                "Schematics and interfaces",
+                "Published result",
             ),
             "README.ru.md": (
-                "⭐ Leshy2",
-                "Что такое Leshy2",
-                "Макет целевого устройства",
-                "Роадмап и текущая позиция",
-                "Принципиальные схемы и электрическая реализация",
-                "Результаты этапов",
+                "# Леший2 ⭐",
+                "Что это",
+                "Текущий внешний вид Лешего2",
+                "Роадмап и текущее положение",
+                "Схемы и интерфейсы",
+                "Опубликованный результат",
             ),
         }
         for name, tokens in expectations.items():
-            page = self.read(name)
+            page = " ".join(self.read(name).split())
             self.assertEqual(1, page.count("⭐"), name)
             self.assertIn("docs/images/h1-r2-external-layout.svg", page, name)
             for token in tokens:
                 self.assertIn(token, page, f"{name}: {token}")
+
+    def test_public_schematics_describe_current_r2_not_superseded_r1_ecad(self):
+        expectations = {
+            "docs/schematics.md": (
+                "H0-R2", "H1-R2.15", "does **not** exist yet",
+                "3× nRF24", "one CVBS", "eight spare signals",
+                "historical engineering evidence", "must not be used for fabrication",
+            ),
+            "docs/schematics.ru.md": (
+                "H0-R2", "H1-R2.15", "пока **нет**",
+                "3× nRF24", "один CVBS", "восемь резервных сигналов",
+                "историческое инженерное evidence", "печатать по ним нельзя",
+            ),
+        }
+        for name, tokens in expectations.items():
+            page = " ".join(self.read(name).split())
+            self.assertEqual(1, page.count("```mermaid"), name)
+            self.assertIn("images/h0-r2-functional-architecture.svg", page, name)
+            self.assertIn("images/h1-r2-inner-ui.svg", page, name)
+            self.assertIn("images/h1-r2-inner-rf.svg", page, name)
+            for token in tokens:
+                self.assertIn(token, page, f"{name}: {token}")
+            for obsolete in ("RF_31_NRF24_X3", "2S/750", "no reserves or NCs"):
+                self.assertNotIn(obsolete, page, f"{name}: {obsolete}")
 
     def test_h5_0_1_component_evidence_map_is_complete_and_honest(self):
         plan = json.loads(self.read("hardware/verification/h5-component-evidence-plan.json"))
@@ -637,32 +660,34 @@ class ProductSiteTests(unittest.TestCase):
             self.assertIn(f"`{found[0]}`", page, name)
             self.assertRegex(
                 page,
-                rf"\*\*(?:Exact marker|Точный маркер): `{re.escape(found[0])}`\*\*",
+                rf"\*\*(?:(?:Exact|Current hardware) marker|Точный маркер|Текущий маркер железа): `{re.escape(found[0])}`[.]?\*\*",
                 name,
             )
-            self.assertIn("commit", page, name)
+            self.assertIn("H1-R2.15", page, name)
 
         self.assertEqual({current_substep}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
-            for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
-                self.assertIn(f"`{substep}`", page, f"{name}: {substep}")
+            self.assertIn("K331", page, name)
+            self.assertIn("H2", page, name)
 
-    def test_mockup_has_staged_user_review_gates(self):
-        gates = ("H1.3.1", "H1.4.1", "H1.5.1", "H1.7.1", "H1.8")
-        for name in ("docs/roadmap.md",):
+    def test_current_mockup_review_scope_is_explicit(self):
+        expectations = {
+            "docs/roadmap.md": (
+                "H1-R2.15", "Functional-island placement", "RF and antenna locality",
+                "Interboard transport", "Physical and service audit", "Exact current blocker",
+                "ask the user to accept the complete mock-up",
+            ),
+            "docs/roadmap.ru.md": (
+                "H1-R2.15", "Размещение функциональных островов", "Локальность RF и антенн",
+                "Межплатный transport", "Физический и сервисный аудит", "Точный текущий блокер",
+                "получить принятие полного мокапа пользователем",
+            ),
+        }
+        for name, tokens in expectations.items():
             page = self.read(name)
-            for gate in gates:
-                self.assertIn(f"`{gate}`", page, f"{name}: {gate}")
-            self.assertIn("accepted by the user", page, name)
-            self.assertIn("reopens", page, name)
-
-        for name in ("docs/roadmap.ru.md",):
-            page = self.read(name)
-            for gate in gates:
-                self.assertIn(f"`{gate}`", page, f"{name}: {gate}")
-            self.assertIn("пользовательское согласование", page, name)
-            self.assertIn("повторно открывает", page, name)
+            for token in tokens:
+                self.assertIn(token, page, f"{name}: {token}")
 
     def test_h2_schematic_plan_starts_only_authorized_work(self):
         import json
@@ -831,7 +856,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H1", state["current_stage"])
-        self.assertEqual("H1-R2.14", state["current_substep"])
+        self.assertEqual("H1-R2.15", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -978,10 +1003,11 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(h5_plan["authorization"]["parts_api_support_ticket_number"])
         self.assertTrue(h5_plan["authorization"]["parts_api_access_key_created"])
         self.assertFalse(h5_plan["authorization"]["parts_api_credentials_in_repository"])
-        self.assertIn("H5-EVR07", self.read("docs/roadmap.md"))
-        self.assertIn("H5-EVR07", self.read("docs/roadmap.ru.md"))
-        self.assertIn("H5-EVR08", self.read("docs/roadmap.md"))
-        self.assertIn("H5-EVR08", self.read("docs/roadmap.ru.md"))
+        for name in ("docs/roadmap.md", "docs/roadmap.ru.md"):
+            page = self.read(name)
+            self.assertNotIn("H5-EVR07", page, name)
+            self.assertNotIn("H5-EVR08", page, name)
+            self.assertIn("H1-R2.15", page, name)
         self.assertEqual(
             "source-hash-bound-precommit-revision",
             h4_plan["firmware_f3_evidence"]["revision"],
@@ -1493,8 +1519,8 @@ class ProductSiteTests(unittest.TestCase):
             self.assertTrue(module["footprint"])
             self.assertFalse(boundary["board_fitted"])
             self.assertFalse(boundary["ledger_component"])
-        self.assertIn("RF_31_NRF24_X3", self.read("docs/schematics.md"))
-        self.assertIn("RF_31_NRF24_X3", self.read("docs/schematics.ru.md"))
+        self.assertNotIn("RF_31_NRF24_X3", self.read("docs/schematics.md"))
+        self.assertNotIn("RF_31_NRF24_X3", self.read("docs/schematics.ru.md"))
 
     def test_h2_3_7_exact_subghz_voice_sheet_is_reviewed_and_current(self):
         import json
@@ -1558,8 +1584,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(143, sheet.count("\n\t(symbol\n"))
         self.assertEqual(40, sheet.count("\n\t(hierarchical_label \""))
         self.assertEqual(20, sheet.count("\n\t(no_connect "))
-        self.assertIn("RF_32_SUBGHZ_VOICE", self.read("docs/schematics.md"))
-        self.assertIn("RF_32_SUBGHZ_VOICE", self.read("docs/schematics.ru.md"))
+        self.assertNotIn("RF_32_SUBGHZ_VOICE", self.read("docs/schematics.md"))
+        self.assertNotIn("RF_32_SUBGHZ_VOICE", self.read("docs/schematics.ru.md"))
 
     def test_h2_3_8_exact_u214_m5_expansion_sheet_is_reviewed(self):
         import json
@@ -1619,8 +1645,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(53, sheet.count("\n\t(symbol\n"))
         self.assertEqual(27, sheet.count("\n\t(hierarchical_label \""))
         self.assertEqual(22, sheet.count("\n\t(no_connect "))
-        self.assertIn("RF_34_U214_M5_EXT", self.read("docs/schematics.md"))
-        self.assertIn("RF_34_U214_M5_EXT", self.read("docs/schematics.ru.md"))
+        self.assertNotIn("RF_34_U214_M5_EXT", self.read("docs/schematics.md"))
+        self.assertNotIn("RF_34_U214_M5_EXT", self.read("docs/schematics.ru.md"))
 
     def test_h2_3_9_exact_rear_controls_sheet_is_reviewed(self):
         import json
@@ -1679,8 +1705,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(12, sheet.count("\n\t(no_connect "))
         self.assertNotIn("STOP", sheet)
         self.assertNotIn("REARM", sheet)
-        self.assertIn("RF_35_REAR_CONTROLS", self.read("docs/schematics.md"))
-        self.assertIn("RF_35_REAR_CONTROLS", self.read("docs/schematics.ru.md"))
+        self.assertNotIn("RF_35_REAR_CONTROLS", self.read("docs/schematics.md"))
+        self.assertNotIn("RF_35_REAR_CONTROLS", self.read("docs/schematics.ru.md"))
 
     def test_h2_3_10_exact_audio_io_amplifier_sheet_is_reviewed(self):
         import json
@@ -1732,8 +1758,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(14, sheet.count("\n\t(symbol\n"))
         self.assertEqual(7, sheet.count("\n\t(hierarchical_label \""))
         self.assertEqual(1, sheet.count("\n\t(no_connect "))
-        self.assertIn("RF_36_AUDIO_IO_AMP", self.read("docs/schematics.md"))
-        self.assertIn("RF_36_AUDIO_IO_AMP", self.read("docs/schematics.ru.md"))
+        self.assertNotIn("RF_36_AUDIO_IO_AMP", self.read("docs/schematics.md"))
+        self.assertNotIn("RF_36_AUDIO_IO_AMP", self.read("docs/schematics.ru.md"))
 
     def test_h2_3_11_exact_rf_interboard_m1_sheet_is_reviewed(self):
         import json
@@ -1782,8 +1808,8 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(1, sheet.count("\n\t(symbol\n"))
         self.assertEqual(51, sheet.count("\n\t(hierarchical_label \""))
-        self.assertIn("RF_40_INTERBOARD_M1", self.read("docs/schematics.md"))
-        self.assertIn("RF_40_INTERBOARD_M1", self.read("docs/schematics.ru.md"))
+        self.assertNotIn("RF_40_INTERBOARD_M1", self.read("docs/schematics.md"))
+        self.assertNotIn("RF_40_INTERBOARD_M1", self.read("docs/schematics.ru.md"))
 
     def test_h2_3_12_exact_rf_tx_safety_evidence_sheet_is_reviewed(self):
         import json
@@ -1846,8 +1872,8 @@ class ProductSiteTests(unittest.TestCase):
             sheet.count("\n\t(hierarchical_label \""),
         )
         self.assertEqual(24, sheet.count("\n\t(no_connect "))
-        self.assertIn("RF_50_TX_SAFETY_EVIDENCE", self.read("docs/schematics.md"))
-        self.assertIn("RF_50_TX_SAFETY_EVIDENCE", self.read("docs/schematics.ru.md"))
+        self.assertNotIn("RF_50_TX_SAFETY_EVIDENCE", self.read("docs/schematics.md"))
+        self.assertNotIn("RF_50_TX_SAFETY_EVIDENCE", self.read("docs/schematics.ru.md"))
 
     def test_h2_3_13_exact_rf_testpoints_sheet_is_reviewed(self):
         import json
@@ -1909,8 +1935,8 @@ class ProductSiteTests(unittest.TestCase):
             - manifest["summary"]["bom_symbols"],
             sheet.count("\n\t\t(in_bom no)"),
         )
-        self.assertIn("RF_60_TESTPOINTS_MANUFACTURING", self.read("docs/schematics.md"))
-        self.assertIn("RF_60_TESTPOINTS_MANUFACTURING", self.read("docs/schematics.ru.md"))
+        self.assertNotIn("RF_60_TESTPOINTS_MANUFACTURING", self.read("docs/schematics.md"))
+        self.assertNotIn("RF_60_TESTPOINTS_MANUFACTURING", self.read("docs/schematics.ru.md"))
 
     def test_h2_2_2_exact_s3_core_sheet_is_reviewed_and_current(self):
         import json
@@ -2686,11 +2712,9 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertFalse(package["not_claimed"]["purchase_authorized"])
         for name in ("docs/hardware.md", "docs/hardware.ru.md"):
-            page = self.read(name).replace(",", ".")
-            for token in (
-                "H1-cross-view-acceptance.json", "3.31", "0.7", "80", "GPIO5",
-            ):
-                self.assertIn(token, page, f"{name}: {token}")
+            page = self.read(name)
+            self.assertNotIn("H1-cross-view-acceptance.json", page, name)
+            self.assertIn("H1-R2.15", page, name)
 
     def test_antenna_kit_is_product_facing_and_machine_accounted(self):
         import json
@@ -2775,14 +2799,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("no custom transmitter", candidate_policy)
         self.assertIn("not a current product capability", candidate_policy)
         self.assertIn("receive-only", candidate_policy)
-        self.assertIn(
-            "Вещательная передача FM/AM/SW/LW/Airband не является возможностью устройства",
-            self.read("docs/hardware.ru.md"),
-        )
-        self.assertIn(
-            "FM/AM/SW/LW/Airband broadcast transmission is not a device capability",
-            self.read("docs/hardware.md"),
-        )
+        self.assertIn("Airband-передатчика в Лешем2 нет", self.read("docs/hardware.ru.md"))
+        self.assertIn("No custom broadcast or", self.read("docs/hardware.md"))
         for name in ("docs/antennas.md", "docs/antennas.ru.md"):
             page = self.read(name)
             for token in (
@@ -2922,18 +2940,16 @@ class ProductSiteTests(unittest.TestCase):
         ):
             page = self.read(path)
             self.assertIn(prefix + "h1-r2-external-layout.svg", page)
-            self.assertIn(prefix + "navigation-cluster.svg?layout=1", page)
-            self.assertIn(prefix + "h1-r2-inner-complete.svg", page)
-            self.assertIn(prefix + "h1-r2-inner-sections.svg", page)
-            self.assertIn(prefix + "h1-r2-sandwich-sections.svg", page)
-            self.assertIn(prefix + "h1-r2-antenna-edge.svg", page)
+            self.assertIn(prefix + "h0-r2-functional-architecture.svg", page)
+            self.assertIn(prefix + "h1-r2-inner-ui.svg", page)
+            self.assertIn(prefix + "h1-r2-inner-rf.svg", page)
             self.assertLess(
                 page.index("h1-r2-external-layout.svg"),
-                page.index("h1-r2-inner-complete.svg"),
+                page.index("h1-r2-inner-ui.svg"),
             )
             self.assertLess(
-                page.index("h1-r2-inner-complete.svg"),
-                page.index("h1-r2-antenna-edge.svg"),
+                page.index("h1-r2-inner-ui.svg"),
+                page.index("h1-r2-inner-rf.svg"),
             )
         import json
 
@@ -3088,19 +3104,19 @@ class ProductSiteTests(unittest.TestCase):
             landing = self.read(hardware)
             diagrams = self.read(schematics)
             self.assertIn(f"]({Path(schematics).name})", landing)
-            self.assertGreaterEqual(diagrams.count("```mermaid"), 10)
+            self.assertEqual(1, diagrams.count("```mermaid"))
+            self.assertIn("images/h0-r2-functional-architecture.svg", diagrams)
+            self.assertIn("images/h1-r2-inner-ui.svg", diagrams)
+            self.assertIn("images/h1-r2-inner-rf.svg", diagrams)
             for token in (
-                "HMX035CTFT-001",
-                "CMEJ-0413-42-SMT-TR",
-                "AS02404PO",
-                "SKRTLAE010",
-                "FTSH-105-01-L-DV-K-P-TR",
-                "USB4105-GF-A",
-                "JS102011SCQN",
-                "MSPM0C1106SDGS20R",
-                "TPS3435CAKAGDDFR",
-                "1125R-SMT-4P",
-                "HLE-107-02-G-DV-PE-LC",
+                "ESP32-S3-WROOM-1U-N16R8",
+                "ESP32-C5-WROOM-1U-N8R8",
+                "SC1512-A4",
+                "TVP5150AM1PBS",
+                "AKK K331",
+                "Hirose FX8C-80",
+                "3× nRF24",
+                "75-ohm CVBS" if schematics.endswith("schematics.md") else "75-омный CVBS",
             ):
                 self.assertIn(token, diagrams)
 
@@ -3154,19 +3170,15 @@ class ProductSiteTests(unittest.TestCase):
             landing = self.read(name)
             for image in (
                 "docs/images/h1-r2-external-layout.svg",
-                "docs/images/navigation-cluster.svg",
-                "docs/images/display-adapter.svg",
-                "docs/images/h1-r2-service-access.svg",
-                "docs/images/h1-r2-inner-complete.svg",
-                "docs/images/h1-r2-inner-sections.svg",
-                "docs/images/h1-r2-sandwich-sections.svg",
-                "docs/images/h1-r2-antenna-edge.svg",
+                "docs/images/h0-r2-functional-architecture.svg",
+                "docs/images/h1-r2-inner-ui.svg",
+                "docs/images/h1-r2-inner-rf.svg",
             ):
                 self.assertIn(image, landing, name)
             self.assertEqual(0, landing.count("```mermaid"), name)
             self.assertIn(schematics, landing, name)
-            self.assertIn("docs/pinout", landing, name)
-            self.assertIn("docs/interconnect", landing, name)
+            self.assertIn("docs/h0-r2-functional-architecture", landing, name)
+            self.assertIn("docs/h1-r2-physical-layout", landing, name)
 
     def test_navigation_cluster_uses_only_series_controls(self):
         drawing = self.read("docs/images/navigation-cluster.svg")

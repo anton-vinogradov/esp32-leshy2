@@ -1,19 +1,44 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.14",
+  "marker": "H1-R2.15",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
-  "new_fixed_body_count": 21,
+  "new_fixed_body_count": 47,
   "new_reserve_count": 3,
   "replaced_seed_instances": [
+    "audio_speaker_selector",
+    "c5_rf_board_connector",
+    "c5_rf_coupler",
+    "cc",
+    "codec",
+    "codec_i2s_din_boot_gate",
+    "headphone_jack",
+    "headset_control_io",
     "main_buck",
     "main_inductor",
     "main_input_cap",
     "main_output_cap0",
-    "main_output_cap1"
+    "main_output_cap1",
+    "nrf0",
+    "nrf0_host_buffer",
+    "nrf0_return_buffer",
+    "nrf0_rf_board_connector",
+    "nrf1",
+    "nrf1_host_buffer",
+    "nrf1_return_buffer",
+    "nrf1_rf_board_connector",
+    "nrf2",
+    "nrf2_host_buffer",
+    "nrf2_return_buffer",
+    "nrf2_rf_board_connector",
+    "nrf_backup_gate",
+    "receiver",
+    "s3_rf_board_connector",
+    "s3_rf_coupler",
+    "safe_gate_a"
   ],
   "same_face_collisions": [],
-  "opposing_overlap_count": 27,
+  "opposing_overlap_count": 36,
   "minimum_opposing_clearance_mm": 1.44,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
@@ -48,84 +73,29 @@
       "clearance_mm": 2.59
     },
     {
-      "new": "airband_lna",
-      "base": "voice_inductor",
-      "clearance_mm": 6.5
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "charger_bat_cap0",
-      "clearance_mm": 8.2
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "charger_bat_cap1",
-      "clearance_mm": 8.2
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "charger_inductor",
-      "clearance_mm": 6.8
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "charger_pmid_cap0",
-      "clearance_mm": 8.2
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "charger_pmid_cap1",
-      "clearance_mm": 8.2
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "charger_pmid_cap2",
-      "clearance_mm": 8.2
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "charger_regn_cap",
-      "clearance_mm": 8.2
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "charger_sys_cap0",
-      "clearance_mm": 8.2
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "charger_sys_cap1",
-      "clearance_mm": 8.2
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "charger_sys_cap2",
-      "clearance_mm": 8.2
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "charger_sys_cap3",
-      "clearance_mm": 8.2
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "charger_sys_cap4",
-      "clearance_mm": 8.2
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "charger_vbus_cap0",
-      "clearance_mm": 8.2
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "charger_vbus_cap1",
-      "clearance_mm": 8.2
+      "new": "fpv_decoder",
+      "base": "safe_conditioner",
+      "clearance_mm": 8.7
     },
     {
       "new": "fpv_decoder",
-      "base": "display_connector",
-      "clearance_mm": 7.85
+      "base": "safety_controller",
+      "clearance_mm": 8.7
+    },
+    {
+      "new": "fpv_decoder",
+      "base": "safety_watchdog",
+      "clearance_mm": 8.8
+    },
+    {
+      "new": "fpv_power_reserve",
+      "base": "safe_latch",
+      "clearance_mm": 8.5
+    },
+    {
+      "new": "fpv_power_reserve",
+      "base": "safe_reset_buffer",
+      "clearance_mm": 8.5
     },
     {
       "new": "fpv_receiver_bay",
@@ -138,168 +108,212 @@
       "clearance_mm": 5.05
     },
     {
-      "new": "main_input_cap0_r2",
-      "base": "receiver",
-      "clearance_mm": 6.55
+      "new": "nrf0_r2",
+      "base": "voice",
+      "clearance_mm": 5.7
     },
     {
-      "new": "main_input_cap1_r2",
-      "base": "receiver",
-      "clearance_mm": 6.55
+      "new": "nrf0_r2",
+      "base": "voice_v",
+      "clearance_mm": 5.7
     },
     {
-      "new": "main_input_cap2_r2",
-      "base": "receiver",
-      "clearance_mm": 6.55
+      "new": "nrf1_r2",
+      "base": "u214_i2c_iso",
+      "clearance_mm": 7.8
+    },
+    {
+      "new": "nrf1_r2",
+      "base": "u214_return_buffer",
+      "clearance_mm": 7.8
+    },
+    {
+      "new": "nrf1_r2",
+      "base": "voice_v",
+      "clearance_mm": 5.7
+    },
+    {
+      "new": "nrf2_r2",
+      "base": "u214_host_buffer_a",
+      "clearance_mm": 7.8
+    },
+    {
+      "new": "nrf2_r2",
+      "base": "u214_host_buffer_b",
+      "clearance_mm": 7.8
+    },
+    {
+      "new": "nrf2_r2",
+      "base": "voice_v",
+      "clearance_mm": 5.7
+    },
+    {
+      "new": "nrf0_host_buffer_r2",
+      "base": "voice",
+      "clearance_mm": 6.7
+    },
+    {
+      "new": "nrf0_return_buffer_r2",
+      "base": "voice",
+      "clearance_mm": 6.8
+    },
+    {
+      "new": "nrf1_host_buffer_r2",
+      "base": "voice",
+      "clearance_mm": 6.7
+    },
+    {
+      "new": "nrf1_return_buffer_r2",
+      "base": "voice",
+      "clearance_mm": 6.8
+    },
+    {
+      "new": "nrf2_host_buffer_r2",
+      "base": "aon_buck",
+      "clearance_mm": 9.3
+    },
+    {
+      "new": "nrf2_host_buffer_r2",
+      "base": "aon_inductor",
+      "clearance_mm": 8.7
+    },
+    {
+      "new": "nrf2_host_buffer_r2",
+      "base": "aon_input_cap",
+      "clearance_mm": 8.3
+    },
+    {
+      "new": "nrf2_host_buffer_r2",
+      "base": "aon_output_cap",
+      "clearance_mm": 8.3
+    },
+    {
+      "new": "safe_gate_a_r2",
+      "base": "ext_inductor",
+      "clearance_mm": 6.8
+    },
+    {
+      "new": "safe_gate_a_r2",
+      "base": "voice_inductor",
+      "clearance_mm": 6.8
+    },
+    {
+      "new": "nrf_backup_gate_r2",
+      "base": "voice_buck",
+      "clearance_mm": 9.3
+    },
+    {
+      "new": "receiver_r2",
+      "base": "s3",
+      "clearance_mm": 6.05
+    },
+    {
+      "new": "headset_control_io_r2",
+      "base": "c5",
+      "clearance_mm": 6.5
+    },
+    {
+      "new": "headphone_jack_r2",
+      "base": "c5",
+      "clearance_mm": 2.7
+    },
+    {
+      "new": "codec_i2s_din_boot_gate_r2",
+      "base": "c5",
+      "clearance_mm": 6.6
     }
   ],
   "mmcx_service": {
     "status": "pass",
-    "mpn": "DL-MMCX-KWE-90",
-    "drawing_source": "https://30665759.s21i.faiusr.com/2/ABUIABACGAAg38ennwYo-uKFpAUwlgY4lQc.jpg",
+    "mpn": "73415-2063",
+    "drawing_source": "https://www.molex.com/en-us/products/part-detail/734152063",
     "installed_body_world_bbox_mm": {
       "x": [
-        35.7,
-        39.3
+        40.72,
+        45.18
       ],
       "y": [
-        -3.0,
-        3.6
+        8.07,
+        12.53
       ],
-      "z": [
-        17.4,
-        21.4
-      ]
-    },
-    "board_edge_y_mm": 0.0,
-    "mounting_axis_world_xy_mm": [
-      37.5,
-      1.8
-    ],
-    "inboard_body_mm": 3.6,
-    "outboard_barrel_mm": 3.0,
-    "nominal_tail_tip_z_mm": 14.6,
-    "worst_case_tail_tip_z_mm": 14.45,
-    "nominal_tail_projection_into_gap_mm": 1.2,
-    "tail_keepout_world_bbox_mm": {
-      "x": [
-        35.25,
-        39.75
-      ],
-      "y": [
+      "z_above_outer_pcb": [
         0.0,
-        4.05
-      ],
-      "z": [
-        14.450000000000003,
-        15.8
+        5.0
       ]
     },
+    "mounting_axis_world_xy_mm": [
+      42.95,
+      10.3
+    ],
+    "through_board_tail": false,
     "opposing_body_hits": [],
-    "sidewall_minimum_free_diameter_mm": 4.5,
-    "sidewall_radial_clearance_mm": 0.5,
-    "sidewall_aperture_world_bbox_mm": {
-      "x": [
-        35.25,
-        39.75
-      ],
-      "y": [
-        -3.0,
-        0.0
-      ],
-      "z": [
-        17.150000000000002,
-        21.650000000000002
-      ]
-    },
     "external_service_keepout": {
       "diameter_mm": 12.0,
       "outward_length_mm": 20.0,
-      "world_bbox_mm": {
+      "world_xy_bbox_mm": {
         "x": [
-          31.5,
-          43.5
+          36.95,
+          48.95
         ],
         "y": [
-          -23.0,
-          -3.0
-        ],
-        "z": [
-          13.400000000000002,
-          25.400000000000002
+          4.300000000000001,
+          16.3
         ]
       }
     },
     "rear_antenna_connector_clearances": [
       {
-        "path": "N24-0",
-        "clearance_mm": 22.5
+        "path": "RX-FM/SW",
+        "clearance_mm": 27.52
+      },
+      {
+        "path": "RX-AM/LW",
+        "clearance_mm": 16.62
       },
       {
         "path": "CC-SUB",
-        "clearance_mm": 11.6
-      },
-      {
-        "path": "N24-1",
-        "clearance_mm": 0.7
+        "clearance_mm": 5.72
       },
       {
         "path": "VOICE-VHF",
-        "clearance_mm": 0.7
+        "clearance_mm": 5.72
       },
       {
         "path": "VOICE-UHF",
-        "clearance_mm": 11.6
-      },
-      {
-        "path": "N24-2",
-        "clearance_mm": 22.5
+        "clearance_mm": 16.62
       }
     ],
-    "minimum_rear_antenna_connector_clearance_mm": 0.7,
+    "minimum_rear_antenna_connector_clearance_mm": 5.72,
     "handling_envelope_clearances": [
       {
-        "path": "N24-0",
-        "clearance_mm": 18.3
+        "path": "RX-FM/SW",
+        "clearance_mm": 23.75
+      },
+      {
+        "path": "RX-AM/LW",
+        "clearance_mm": 12.85
       },
       {
         "path": "CC-SUB",
-        "clearance_mm": 7.4
-      },
-      {
-        "path": "N24-1",
-        "clearance_mm": -3.5
+        "clearance_mm": 1.95
       },
       {
         "path": "VOICE-VHF",
-        "clearance_mm": -3.5
+        "clearance_mm": 1.95
       },
       {
         "path": "VOICE-UHF",
-        "clearance_mm": 7.4
-      },
-      {
-        "path": "N24-2",
-        "clearance_mm": 18.3
+        "clearance_mm": 12.85
       }
     ],
-    "handling_envelope_overlaps": [
-      {
-        "path": "N24-1",
-        "clearance_mm": -3.5
-      },
-      {
-        "path": "VOICE-VHF",
-        "clearance_mm": -3.5
-      }
-    ],
-    "fixed_installation_sequence": "mate the flexible 102-mm TBS5G8MMCXA FPV antenna before fitting the two adjacent SMA antennas; H5 proves received-plug interference and removal access",
-    "accessory_hits": [],
-    "factory_assembly": "Wave Soldering; Economic and Standard PCBA",
+    "handling_envelope_overlaps": [],
+    "fixed_installation_sequence": "the rear-face FPV MMCX remains independently accessible between the two rear SMA groups and above the U214 rail",
+    "u214_service_clearance_mm": 0.7,
+    "factory_assembly": "Extended SMT; Economic and Standard PCBA",
     "later_hil": [
       "received connector-to-antenna mating and retention",
-      "final enclosure aperture tolerance",
-      "plug insertion cycles and antenna strain"
+      "U214 Cap insertion with the FPV plug fitted",
+      "plug insertion cycles, finger access and antenna strain"
     ],
     "errors": []
   },
@@ -431,122 +445,101 @@
     {
       "id": "airband_lna",
       "kind": "fixed_body",
-      "frame": "ui-inner",
+      "frame": "rf-inner",
       "mpn": "PGA-103+",
       "role": "Airband low-noise gain stage",
       "world_bbox_mm": {
         "x": [
-          47.0,
-          51.5
+          10.0,
+          14.5
         ],
         "y": [
-          62.0,
-          66.1
+          9.0,
+          13.1
         ],
         "z": [
-          4.8,
-          6.3
+          14.3,
+          15.8
         ]
       }
     },
     {
       "id": "airband_mixer",
       "kind": "fixed_body",
-      "frame": "ui-inner",
+      "frame": "rf-inner",
       "mpn": "LT5560EDD#TRPBF",
       "role": "118-137 MHz to 6-25 MHz down-converter",
       "world_bbox_mm": {
         "x": [
-          52.5,
-          55.5
+          15.5,
+          18.5
         ],
         "y": [
-          62.0,
-          65.0
+          9.0,
+          12.0
         ],
         "z": [
-          4.8,
-          5.6
+          15.0,
+          15.8
         ]
       }
     },
     {
       "id": "airband_selector",
       "kind": "fixed_body",
-      "frame": "ui-inner",
+      "frame": "rf-inner",
       "mpn": "HMC544AETR",
       "role": "direct FM/SW versus converted Airband selector",
       "world_bbox_mm": {
         "x": [
-          56.5,
-          59.5
+          19.5,
+          22.5
         ],
         "y": [
-          62.0,
-          65.0
+          9.0,
+          12.0
         ],
         "z": [
-          4.8,
-          5.9
+          14.700000000000001,
+          15.8
         ]
       }
     },
     {
       "id": "airband_lo",
       "kind": "fixed_body",
-      "frame": "ui-inner",
+      "frame": "rf-inner",
       "mpn": "SI5351A-B-GTR",
       "role": "fixed 112-MHz Airband local oscillator",
       "world_bbox_mm": {
         "x": [
-          60.5,
-          63.5
+          23.5,
+          26.5
         ],
         "y": [
-          62.0,
-          65.0
+          9.0,
+          12.0
         ],
         "z": [
-          4.8,
-          5.9
+          14.700000000000001,
+          15.8
         ]
       }
     },
     {
       "id": "airband_filter_reserve",
       "kind": "reserve",
-      "frame": "ui-inner",
+      "frame": "rf-inner",
       "mpn": null,
       "role": "118-137-MHz image-rejection BPF and 6-25-MHz IF cleanup; individually serial passives close after synthesis",
       "world_bbox_mm": {
         "x": [
-          48.5,
-          72.5
+          9.5,
+          33.5
         ],
         "y": [
-          67.5,
-          78.5
-        ],
-        "z": [
-          4.8,
-          6.0
-        ]
-      }
-    },
-    {
-      "id": "fpv_decoder",
-      "kind": "fixed_body",
-      "frame": "rf-inner",
-      "mpn": "TVP5150AM1PBS",
-      "role": "CVBS to 8-bit BT.656 decoder beside the receiver bay",
-      "world_bbox_mm": {
-        "x": [
-          31.0,
-          38.0
-        ],
-        "y": [
-          96.5,
-          103.5
+          7.0,
+          18.0
         ],
         "z": [
           14.600000000000001,
@@ -555,23 +548,44 @@
       }
     },
     {
+      "id": "fpv_decoder",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "TVP5150AM1PBS",
+      "role": "UI-local CVBS to 8-bit BT.656 decoder; only one 75-ohm CVBS signal crosses M1",
+      "world_bbox_mm": {
+        "x": [
+          31.0,
+          38.0
+        ],
+        "y": [
+          88.0,
+          95.0
+        ],
+        "z": [
+          4.8,
+          6.0
+        ]
+      }
+    },
+    {
       "id": "fpv_power_reserve",
       "kind": "reserve",
-      "frame": "rf-inner",
+      "frame": "ui-inner",
       "mpn": null,
       "role": "decoder 1.8-V LDO, switched receiver rail and local capacitors",
       "world_bbox_mm": {
         "x": [
-          30.5,
-          38.5
+          31.0,
+          39.0
         ],
         "y": [
-          90.0,
-          95.5
+          81.0,
+          86.5
         ],
         "z": [
-          14.4,
-          15.8
+          4.8,
+          6.199999999999999
         ]
       }
     },
@@ -599,21 +613,567 @@
     {
       "id": "fpv_mmcx",
       "kind": "external_body",
-      "frame": "rf-outer-antenna-edge",
-      "mpn": "DL-MMCX-KWE-90",
-      "role": "user-facing 50-ohm MMCX labelled FPV RX 5.8G",
+      "frame": "rf-outer-face",
+      "mpn": "73415-2063",
+      "role": "vertical rear-face 50-ohm MMCX labelled FPV RX 5.8G, centred between the SMA groups and above U214",
       "world_bbox_mm": {
         "x": [
-          35.7,
-          39.300000000000004
+          40.72,
+          45.18
         ],
         "y": [
-          -3.0,
-          3.5999999999999996
+          8.07,
+          12.530000000000001
         ],
         "z": [
           15.8,
-          19.8
+          20.8
+        ]
+      }
+    },
+    {
+      "id": "s3_rf_board_connector_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "U.FL-R-SMT-1(10)",
+      "role": "S3 module microcoax termination beside the S3-2G4 front SMA path",
+      "world_bbox_mm": {
+        "x": [
+          21.3,
+          24.3
+        ],
+        "y": [
+          9.0,
+          12.1
+        ],
+        "z": [
+          4.8,
+          7.199999999999999
+        ]
+      }
+    },
+    {
+      "id": "s3_rf_coupler_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "CP0603Q5425ENTR",
+      "role": "S3 forward-power evidence coupler aligned with the S3-2G4 front SMA",
+      "world_bbox_mm": {
+        "x": [
+          22.0,
+          23.6
+        ],
+        "y": [
+          6.2,
+          7.04
+        ],
+        "z": [
+          4.8,
+          5.3999999999999995
+        ]
+      }
+    },
+    {
+      "id": "c5_rf_board_connector_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "U.FL-R-SMT-1(10)",
+      "role": "C5 module microcoax termination beside the C5-2G4/5 front SMA path",
+      "world_bbox_mm": {
+        "x": [
+          50.7,
+          53.7
+        ],
+        "y": [
+          9.0,
+          12.1
+        ],
+        "z": [
+          4.8,
+          7.199999999999999
+        ]
+      }
+    },
+    {
+      "id": "c5_rf_coupler_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "CP0603Q5425ENTR",
+      "role": "C5 dual-band forward-power evidence coupler aligned with the C5-2G4/5 front SMA",
+      "world_bbox_mm": {
+        "x": [
+          51.4,
+          53.0
+        ],
+        "y": [
+          6.2,
+          7.04
+        ],
+        "z": [
+          4.8,
+          5.3999999999999995
+        ]
+      }
+    },
+    {
+      "id": "nrf0_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "E01-ML01IPX",
+      "role": "complete full-function nRF24 radio #0 on the front radio/UI domain",
+      "world_bbox_mm": {
+        "x": [
+          8.0,
+          27.1
+        ],
+        "y": [
+          42.0,
+          54.1
+        ],
+        "z": [
+          4.8,
+          6.9
+        ]
+      }
+    },
+    {
+      "id": "nrf1_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "E01-ML01IPX",
+      "role": "complete full-function nRF24 radio #1 on the front radio/UI domain",
+      "world_bbox_mm": {
+        "x": [
+          27.8,
+          46.900000000000006
+        ],
+        "y": [
+          42.0,
+          54.1
+        ],
+        "z": [
+          4.8,
+          6.9
+        ]
+      }
+    },
+    {
+      "id": "nrf2_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "E01-ML01IPX",
+      "role": "complete full-function nRF24 radio #2 on the front radio/UI domain",
+      "world_bbox_mm": {
+        "x": [
+          47.6,
+          66.7
+        ],
+        "y": [
+          44.0,
+          56.1
+        ],
+        "z": [
+          4.8,
+          6.9
+        ]
+      }
+    },
+    {
+      "id": "nrf0_rf_board_connector_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "U.FL-R-SMT-1(10)",
+      "role": "nRF24 #0 module-to-board microcoax termination",
+      "world_bbox_mm": {
+        "x": [
+          10.0,
+          13.0
+        ],
+        "y": [
+          9.0,
+          12.1
+        ],
+        "z": [
+          4.8,
+          7.199999999999999
+        ]
+      }
+    },
+    {
+      "id": "nrf1_rf_board_connector_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "U.FL-R-SMT-1(10)",
+      "role": "nRF24 #1 module-to-board microcoax termination",
+      "world_bbox_mm": {
+        "x": [
+          36.0,
+          39.0
+        ],
+        "y": [
+          9.0,
+          12.1
+        ],
+        "z": [
+          4.8,
+          7.199999999999999
+        ]
+      }
+    },
+    {
+      "id": "nrf2_rf_board_connector_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "U.FL-R-SMT-1(10)",
+      "role": "nRF24 #2 module-to-board microcoax termination",
+      "world_bbox_mm": {
+        "x": [
+          62.0,
+          65.0
+        ],
+        "y": [
+          9.0,
+          12.1
+        ],
+        "z": [
+          4.8,
+          7.199999999999999
+        ]
+      }
+    },
+    {
+      "id": "nrf0_host_buffer_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "74LVC126APW,118",
+      "role": "front-local nRF24 #0 full-rate host-command buffer",
+      "world_bbox_mm": {
+        "x": [
+          6.0,
+          11.1
+        ],
+        "y": [
+          62.0,
+          66.5
+        ],
+        "z": [
+          4.8,
+          5.9
+        ]
+      }
+    },
+    {
+      "id": "nrf0_return_buffer_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "74LVC2G126DC,125",
+      "role": "front-local nRF24 #0 full-rate return buffer",
+      "world_bbox_mm": {
+        "x": [
+          12.0,
+          14.3
+        ],
+        "y": [
+          62.0,
+          64.0
+        ],
+        "z": [
+          4.8,
+          5.8
+        ]
+      }
+    },
+    {
+      "id": "nrf1_host_buffer_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "74LVC126APW,118",
+      "role": "front-local nRF24 #1 full-rate host-command buffer",
+      "world_bbox_mm": {
+        "x": [
+          16.0,
+          21.1
+        ],
+        "y": [
+          62.0,
+          66.5
+        ],
+        "z": [
+          4.8,
+          5.9
+        ]
+      }
+    },
+    {
+      "id": "nrf1_return_buffer_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "74LVC2G126DC,125",
+      "role": "front-local nRF24 #1 full-rate return buffer",
+      "world_bbox_mm": {
+        "x": [
+          22.0,
+          24.3
+        ],
+        "y": [
+          62.0,
+          64.0
+        ],
+        "z": [
+          4.8,
+          5.8
+        ]
+      }
+    },
+    {
+      "id": "nrf2_host_buffer_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "74LVC126APW,118",
+      "role": "front-local nRF24 #2 full-rate host-command buffer",
+      "world_bbox_mm": {
+        "x": [
+          27.0,
+          32.1
+        ],
+        "y": [
+          62.0,
+          66.5
+        ],
+        "z": [
+          4.8,
+          5.9
+        ]
+      }
+    },
+    {
+      "id": "nrf2_return_buffer_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "74LVC2G126DC,125",
+      "role": "front-local nRF24 #2 full-rate return buffer",
+      "world_bbox_mm": {
+        "x": [
+          33.0,
+          35.3
+        ],
+        "y": [
+          62.0,
+          64.0
+        ],
+        "z": [
+          4.8,
+          5.8
+        ]
+      }
+    },
+    {
+      "id": "safe_gate_a_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "SN74LVC08APWR",
+      "role": "front-local nRF transmit safety gates",
+      "world_bbox_mm": {
+        "x": [
+          39.0,
+          44.0
+        ],
+        "y": [
+          62.0,
+          66.4
+        ],
+        "z": [
+          4.8,
+          6.0
+        ]
+      }
+    },
+    {
+      "id": "nrf_backup_gate_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "SN74LVC1G08DCKR",
+      "role": "front-local independent FAULT_ASSERT_N nRF rail qualifier",
+      "world_bbox_mm": {
+        "x": [
+          45.0,
+          47.0
+        ],
+        "y": [
+          62.0,
+          63.25
+        ],
+        "z": [
+          4.8,
+          5.9
+        ]
+      }
+    },
+    {
+      "id": "nrf_evidence_cmp_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "TLV1824PWR",
+      "role": "second accepted quad comparator dedicated to the three front-local nRF TX-evidence channels",
+      "world_bbox_mm": {
+        "x": [
+          48.0,
+          53.0
+        ],
+        "y": [
+          62.0,
+          66.4
+        ],
+        "z": [
+          4.8,
+          6.0
+        ]
+      }
+    },
+    {
+      "id": "receiver_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "SI4732-A10-GSR",
+      "role": "rear-local FM/AM/SW/LW and converted Airband receiver",
+      "world_bbox_mm": {
+        "x": [
+          9.0,
+          18.9
+        ],
+        "y": [
+          23.5,
+          29.5
+        ],
+        "z": [
+          14.05,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "cc_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "CC1101RGPR",
+      "role": "rear-local sub-GHz transceiver aligned with the CC-SUB SMA",
+      "world_bbox_mm": {
+        "x": [
+          34.0,
+          38.0
+        ],
+        "y": [
+          8.3,
+          12.3
+        ],
+        "z": [
+          14.8,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "codec_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "ES8311",
+      "role": "rear-local audio capture and playback codec",
+      "world_bbox_mm": {
+        "x": [
+          54.0,
+          57.0
+        ],
+        "y": [
+          15.0,
+          18.0
+        ],
+        "z": [
+          15.200000000000001,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "audio_speaker_selector_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "TMUX1136DGSR",
+      "role": "rear-local active differential speaker-path selector",
+      "world_bbox_mm": {
+        "x": [
+          58.0,
+          61.1
+        ],
+        "y": [
+          15.0,
+          20.05
+        ],
+        "z": [
+          14.700000000000001,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "headset_control_io_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "TCA9534APWR",
+      "role": "rear-local headset source controller and reserve audio I/O",
+      "world_bbox_mm": {
+        "x": [
+          54.0,
+          59.0
+        ],
+        "y": [
+          22.0,
+          26.4
+        ],
+        "z": [
+          14.600000000000001,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "headphone_jack_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "SJ-43504-SMT-TR",
+      "role": "rear-local CTIA headset TRRS mid-mount connector with right-side enclosure exit",
+      "world_bbox_mm": {
+        "x": [
+          60.4,
+          75.0
+        ],
+        "y": [
+          22.0,
+          29.5
+        ],
+        "z": [
+          10.8,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "codec_i2s_din_boot_gate_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "SN74LVC1G08DCKR",
+      "role": "rear-local codec readiness and AUDIO_ARM reset-safe gate",
+      "world_bbox_mm": {
+        "x": [
+          54.0,
+          56.0
+        ],
+        "y": [
+          28.0,
+          29.25
+        ],
+        "z": [
+          14.700000000000001,
+          15.8
         ]
       }
     },

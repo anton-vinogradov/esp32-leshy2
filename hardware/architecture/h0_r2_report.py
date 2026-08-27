@@ -21,7 +21,7 @@ def load() -> dict:
     return json.loads(SOURCE.read_text(encoding="utf-8"))
 
 
-def render_svg(data: dict) -> str:
+def render_svg_legacy(data: dict) -> str:
     air = data["airband_contract"]
     hub = data["hub_rp"]["gpio_budget"]
     blocks = [
@@ -76,6 +76,77 @@ def render_svg(data: dict) -> str:
     return "\n".join(out) + "\n"
 
 
+def render_svg(data: dict) -> str:
+    """Render the whole two-PCB architecture and the Airband branch in context."""
+    front = data["hub_rp"]["gpio_budget"]
+    rear = data["rf_rp"]["gpio_budget"]
+
+    def box(x: int, y: int, w: int, h: int, title: str, detail: str, colour: str) -> list[str]:
+        return [
+            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="9" fill="#ffffff" stroke="{colour}" stroke-width="2"/>',
+            f'<text x="{x+w/2:.1f}" y="{y+23}" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">{html.escape(title)}</text>',
+            f'<text x="{x+w/2:.1f}" y="{y+43}" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">{html.escape(detail)}</text>',
+        ]
+
+    out = [
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1260" height="960" viewBox="0 0 1260 960">',
+        '<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6z" fill="#475569"/></marker></defs>',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        '<text x="630" y="38" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · H0-R2 functional architecture</text>',
+        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.15 projection: radio payload, display traffic and the 11-line video bus never compete on M1.</text>',
+        '<rect x="40" y="105" width="540" height="610" rx="18" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>',
+        '<rect x="680" y="105" width="540" height="610" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>',
+        '<text x="310" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#1d4ed8">FRONT · UI / RADIO PCB · five SMA</text>',
+        '<text x="950" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#9a3412">REAR · RF / POWER PCB · five SMA + FPV MMCX</text>',
+    ]
+    out += box(70, 165, 225, 74, "ESP32-S3-WROOM-1U-N16R8", "direct QSPI display · touch · all UI keys", "#2563eb")
+    out += box(325, 165, 225, 74, "ESP32-C5-WROOM-1U-N8R8", "2.4/5 GHz · 802.15.4 · IR", "#2563eb")
+    out += box(70, 270, 480, 78, "SC1512-A4 · FRONT RP", f"UI/radio fan-out · microSD · {front['used']}/48 GPIO", "#7c3aed")
+    out += box(70, 380, 480, 82, "3 × E01-ML01IPX nRF24 ISLANDS", "three concurrent full RX/TX/mixed paths · local buffers/evidence", "#0f766e")
+    out += box(70, 500, 225, 74, "TVP5150AM1PBS", "UI-local CVBS → 8-bit BT.656", "#7c3aed")
+    out += box(325, 500, 225, 74, "microSD + local service", "direct front RP storage and recovery", "#64748b")
+    out += box(710, 165, 480, 78, "SC1512-A4 · REAR RP", f"RF / audio / expansion owner · {rear['used']}/48 GPIO", "#7c3aed")
+    out += box(710, 270, 225, 74, "CC1101 + VHF/UHF voice", "SUB-G RX/TX · two full-duplex voice paths", "#ea580c")
+    out += box(965, 270, 225, 74, "K331 FPV RX", "5.8-GHz receive-only · direct rear MMCX", "#ea580c")
+    out += box(710, 380, 225, 74, "Audio", "ES8311 · speaker · mic · CTIA headset", "#ea580c")
+    out += box(965, 380, 225, 74, "M5 + U214", "external radio/GPS expansion · local buses", "#ea580c")
+    out += box(710, 500, 225, 74, "Power + safety", "watchdog · evidence · thermal hard-off", "#b42318")
+    out += box(965, 500, 225, 74, "FM/SW/AM/LW/AIR RX", "Si4732 with direct and converted Airband paths", "#0f766e")
+    out.extend([
+        '<rect x="585" y="205" width="90" height="420" rx="12" fill="#f8fafc" stroke="#334155" stroke-width="2"/>',
+        '<text x="630" y="235" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">M1</text>',
+        '<text x="630" y="258" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#526076">80-contact</text>',
+        '<text x="630" y="292" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7c3aed">RP link</text>',
+        '<text x="630" y="310" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">1.5 MB/s</text>',
+        '<text x="630" y="355" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7c3aed">1 × CVBS</text>',
+        '<text x="630" y="373" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">75 Ω + GND</text>',
+        '<text x="630" y="420" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#b42318">RUN / FAULT</text>',
+        '<text x="630" y="438" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">3× nRF evidence</text>',
+        '<text x="630" y="485" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#166534">3V3 + GND</text>',
+        '<text x="630" y="520" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">8 signal</text>',
+        '<text x="630" y="538" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">contacts spare</text>',
+        '<line x1="550" y1="309" x2="585" y2="309" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>',
+        '<line x1="675" y1="309" x2="710" y2="309" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>',
+        '<path d="M965 307 H945 V475 H690 V355 H675" fill="none" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>',
+        '<path d="M585 355 V480 H310 V537 H295" fill="none" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>',
+        '<text x="630" y="675" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#166534">No main RF trace crosses M1 · nRF payload is front-local · audio remains below 0.4 MB/s</text>',
+        '<text x="40" y="765" font-family="sans-serif" font-size="18" font-weight="700" fill="#172033">Airband receive branch inside the rear broadcast island</text>',
+    ])
+    out += box(45, 800, 180, 62, "FM/SW input", "direct path", "#2563eb")
+    out += box(265, 800, 180, 62, "AIR 118–137 MHz", "BPF → PGA-103+", "#0f766e")
+    out += box(485, 800, 180, 62, "LT5560 mixer", "− 112 MHz from SI5351A", "#ea580c")
+    out += box(705, 800, 180, 62, "HMC544A selector", "direct or converted 6–25 MHz", "#7c3aed")
+    out += box(925, 800, 180, 62, "SI4732-A10-GSR", "audio → rear RP", "#2563eb")
+    out.extend([
+        '<path d="M225 831 H705" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>',
+        '<path d="M445 831 H485 M665 831 H705 M885 831 H925" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>',
+        '<text x="575" y="900" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#b42318">AIR_RX_EN is fail-low · default is direct FM/SW · Airband TX does not exist</text>',
+        '<text x="575" y="925" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#526076">The mandatory 118–137 MHz BPF rejects the 87–106 MHz image before conversion.</text>',
+        '</svg>',
+    ])
+    return "\n".join(out) + "\n"
+
+
 def bom_rows(data: dict) -> list[dict]:
     return data["airband_factory_bom_delta"]["lines"]
 
@@ -85,6 +156,7 @@ def render_report(data: dict, ru: bool) -> str:
     bom = data["airband_factory_bom_delta"]
     power = data["power_rebaseline"]
     hub = data["hub_rp"]["gpio_budget"]
+    rear = data["rf_rp"]["gpio_budget"]
     if ru:
         title = "H0-R2 · Функциональная архитектура"
         intro = (
@@ -92,7 +164,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Следующий точный маркер — **H1-R2.0**: физическая компоновка, питание и production-схема пересчитываются под шесть вычислительных доменов. Старые H1–H5 относятся к R1 и не разрешают KiCad routing или заказ R2."
+        current = "Текущий точный маркер — **H1-R2.15**: физическая модель уже пересчитана под локальные функциональные острова 5+5, но H1 ещё не завершён и не разрешает KiCad routing или заказ R2."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -118,7 +190,8 @@ def render_report(data: dict, ru: bool) -> str:
         cost_note = "Incremental-стоимость активных компонентов"
         existing_note = "Существующая строка Si4732 переиспользуется и не входит в эту дельту."
         s3_headers = ("GPIO S3", "Сеть", "Периферия", "Направление")
-        hub_headers = ("GPIO Hub RP", "Назначение")
+        hub_headers = ("GPIO переднего RP", "Назначение")
+        rear_headers = ("GPIO заднего RP", "Назначение")
         pinmap_note = (
             "Это полный рабочий принципиальный бюджет H0-R2, а не разрешение начинать KiCad. "
             "H1 может изменить конкретный контакт только вместе с этим источником, проверками и публичной таблицей."
@@ -130,7 +203,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, analog FPV "
             "remains receive-only, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The next exact marker is **H1-R2.0**: physical placement, power and production schematics are being recalculated for six compute domains. The old H1–H5 belong to R1 and do not authorize R2 KiCad routing or ordering."
+        current = "The exact current marker is **H1-R2.15**: the physical model is repartitioned into local 5+5 functional islands, but H1 remains open and does not authorize R2 KiCad routing or ordering."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",
@@ -156,7 +229,8 @@ def render_report(data: dict, ru: bool) -> str:
         cost_note = "Incremental active-component cost"
         existing_note = "The existing Si4732 line is reused and is not counted in that delta."
         s3_headers = ("S3 GPIO", "Net", "Peripheral", "Direction")
-        hub_headers = ("Hub RP GPIO", "Assignment")
+        hub_headers = ("Front RP GPIO", "Assignment")
+        rear_headers = ("Rear RP GPIO", "Assignment")
         pinmap_note = (
             "This is the complete H0-R2 working principle budget, not authorization to begin KiCad. "
             "H1 may change a contact only together with this source, its checks and this public table."
@@ -178,17 +252,23 @@ def render_report(data: dict, ru: bool) -> str:
         f'| `{", ".join(str(gpio) for gpio in row["gpios"])}` | {row["role"]} |'
         for row in data["hub_rp"]["pin_groups"]
     )
+    rear_rows = "\n".join(
+        f'| `{", ".join(str(gpio) for gpio in row["gpios"])}` | {row["role"]} |'
+        for row in data["rf_rp"]["pin_groups"]
+    )
     result_lines = (
         "- Один пользовательский порт `FM / SW / AIR RX`; новый внешний разъём не добавлен.\n"
         "- Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с FPV или TX-группой.\n"
         "- S3 не получает новую периферию: интерфейс, кнопки и direct-QSPI display не деградируют.\n"
-        "- Hub RP владеет Si4732, LO, селектором, аудио и записью."
+        "- Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, FPV, M5 и U214.\n"
+        "- Через M1 проходит один CVBS, control/status и питание; 11-линейная LCD_CAM-шина остаётся локальной S3."
         if ru
         else
         "- One user port is labelled `FM / SW / AIR RX`; no new external connector is added.\n"
         "- Airband is a `BROADCAST_RX` submode, so its RF domain cannot run together with FPV or a TX group.\n"
         "- S3 gains no peripheral load: UI, buttons and direct-QSPI display do not degrade.\n"
-        "- Hub RP owns Si4732, LO, selector, audio and recording."
+        "- The front RP owns three nRF24 paths and microSD; the rear RP owns Si4732/Airband, CC1101, voice, audio, FPV, M5 and U214.\n"
+        "- M1 carries one CVBS signal, control/status and power; the 11-line LCD_CAM bus stays local to S3."
     )
     filter_note = (
         "`BPF-A127+` не найден в каталоге JLCPCB (0 exact matches). Он используется как опубликованный эталон маски; production-вариант — серийная LC-лестница из фабричных passives, а не кастомная деталь. Все её MPN закрываются после H1 RF-синтеза и layout extraction."
@@ -224,10 +304,10 @@ def render_report(data: dict, ru: bool) -> str:
 
 | {gpio_headers[0]} | {gpio_headers[1]} | {gpio_headers[2]} |
 |---|---|---|
-| Hub GP41 | `AIR_RX_EN` | pulled low; LNA/mixer/LO domain off |
-| Hub GP42 | `AIR_RX_MODE` | direct FM/SW path selected |
+| Rear RP GP35 | `AIR_RX_EN` | pulled low; LNA/mixer/LO domain off |
+| Rear RP GP36 | `AIR_RX_MODE` | direct FM/SW path selected |
 
-Hub budget: **{hub['used']} used / {hub['free']} free**. SI5351 control stays on the Hub-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
+Front RP budget: **{hub['used']} used / {hub['free']} free**. Rear RP budget: **{rear['used']} used / {rear['free']} free**. SI5351 control stays on the rear-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
 
 ## {sections['pinmap']}
 
@@ -240,6 +320,10 @@ Hub budget: **{hub['used']} used / {hub['free']} free**. SI5351 control stays on
 | {hub_headers[0]} | {hub_headers[1]} |
 |---|---|
 {hub_rows}
+
+| {rear_headers[0]} | {rear_headers[1]} |
+|---|---|
+{rear_rows}
 
 ## {sections['power']}
 

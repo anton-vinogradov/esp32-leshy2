@@ -37,7 +37,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H1-R2.14", roadmap["current_substep"])
+        self.assertEqual("H1-R2.15", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -1138,20 +1138,17 @@ class ArchitectureValidationTests(unittest.TestCase):
                     f"{context}: implicit Mermaid nodes {sorted(referenced - declared)} in {line}",
                 )
 
+        architecture_svg = (
+            GENERATOR.REPO_ROOT / "docs/images/h0-r2-functional-architecture.svg"
+        ).read_text(encoding="utf-8")
         for doc_name in ("docs/hardware.md", "docs/hardware.ru.md"):
             public_doc = (GENERATOR.REPO_ROOT / doc_name).read_text(encoding="utf-8")
-            diagrams = re.findall(r"```mermaid\n(.*?)```", public_doc, re.DOTALL)
-            self.assertEqual(1, len(diagrams), doc_name)
-            for diagram in diagrams:
-                self.assertIn("flowchart TB", diagram, doc_name)
-                self.assertLess(len(diagram), GENERATOR.MERMAID_RENDER_LIMIT, doc_name)
-                assert_no_implicit_mermaid_nodes(diagram, doc_name)
-            combined_diagrams = "\n".join(diagrams)
-            for token in ("ESP32-S3-WROOM-1U-N16R8", "ESP32-C5-WROOM-1U-N8R8", "SC1512-A4"):
-                self.assertIn(token, combined_diagrams, doc_name)
-            self.assertIn('S3 <-->|"quad SPI"| HUB', combined_diagrams, doc_name)
-            self.assertIn('HUB <-->|"4-bit SDIO"| C5', combined_diagrams, doc_name)
-            self.assertIn('HUB <-->|"dedicated SPI + alert"| RF', combined_diagrams, doc_name)
+            self.assertIn("images/h0-r2-functional-architecture.svg", public_doc, doc_name)
+            self.assertEqual([], re.findall(r"```mermaid\n(.*?)```", public_doc, re.DOTALL), doc_name)
+        for token in ("ESP32-S3-WROOM-1U-N16R8", "ESP32-C5-WROOM-1U-N8R8", "SC1512-A4"):
+            self.assertIn(token, architecture_svg)
+        for token in ("FRONT · UI / RADIO PCB", "REAR · RF / POWER PCB", "M1", "1 × CVBS"):
+            self.assertIn(token, architecture_svg)
             for mpn_token in current_mpn_tokens:
                 self.assertIn(
                     mpn_token,
@@ -1267,11 +1264,8 @@ class ArchitectureValidationTests(unittest.TestCase):
 
         for doc_name in ("docs/hardware.md", "docs/hardware.ru.md"):
             public_doc = (GENERATOR.REPO_ROOT / doc_name).read_text(encoding="utf-8")
-            self.assertIn(
-                "pinout",
-                public_doc,
-                doc_name,
-            )
+            self.assertIn("h0-r2-functional-architecture.svg", public_doc, doc_name)
+            self.assertIn("45 used / 3 free" if doc_name.endswith("hardware.md") else "45 занято / 3 свободно", public_doc)
 
     def test_target_readmes_remain_product_sites_not_review_ledgers(self):
         for readme_name in ("README.md", "README.ru.md"):
@@ -1290,15 +1284,15 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertIn("docs/hardware", readme, readme_name)
             self.assertIn("docs/safety", readme, readme_name)
 
-    def test_target_readmes_keep_accepted_supervised_2s_behavior(self):
+    def test_target_readmes_keep_parallel_user_cell_behavior(self):
         expected = {
             "docs/hardware.md": (
-                "XTAR 18650 4000mAh", "28.8 Wh", "both are required",
-                "MAX17320G20+T", "MSPM0C1106SDGS20R",
+                "user-supplied protected 18650", "operate in parallel", "One cell can run",
+                "USB is the only alternate", "MSPM0C1106SDGS20R",
             ),
             "docs/hardware.ru.md": (
-                "XTAR 18650 4000mAh", "28,8 Вт·ч", "обе нужны",
-                "MAX17320G20+T", "MSPM0C1106SDGS20R",
+                "защищённых пользовательских 18650", "соединены параллельно", "работать от одного",
+                "альтернативный источник питания — USB", "MSPM0C1106SDGS20R",
             ),
         }
         for doc_name, phrases in expected.items():
@@ -4120,10 +4114,6 @@ class ArchitectureValidationTests(unittest.TestCase):
             "SLOW_IO_RESET_N",
         ):
             self.assertIn(token, rendered)
-
-        for doc_name in ("docs/hardware.md", "docs/hardware.ru.md"):
-            target = (GENERATOR.REPO_ROOT / doc_name).read_text(encoding="utf-8")
-            self.assertIn("TCA6424ARGJR", target, doc_name)
 
         for token in (
             "TDK C1005X7R1H104K050BB<br/>100-nF main slow-I/O VCCI bypass capacitor",

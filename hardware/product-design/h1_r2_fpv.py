@@ -30,7 +30,7 @@ def audit(model: dict) -> dict:
     errors: list[str] = []
     if set(pins) != set(range(1, 15)):
         errors.append("K331 pinout is not the complete 1..14 set")
-    expected_controls = {1: "GPIO36", 2: "GPIO37", 3: "GPIO38", 5: "GPIO34", 6: "GPIO33"}
+    expected_controls = {1: "GPIO32", 2: "GPIO33", 3: "GPIO34", 5: "GPIO30", 6: "GPIO15"}
     for pin, token in expected_controls.items():
         if token not in pins[pin]["owner"]:
             errors.append(f"K331 pin {pin} does not use reserved {token}")
@@ -160,10 +160,10 @@ def render_svg(model: dict) -> str:
     esc = html.escape
     nodes = [
         (35, 118, 170, "TBS5G8MMCXA", "linear 5.5–6.0 GHz"),
-        (245, 118, 150, "DL-MMCX-KWE-90", "external MMCX"),
+        (245, 118, 150, "73415-2063", "C588480 · vertical MMCX"),
         (435, 118, 150, "50 Ω PCB", "no U.FL / cable"),
         (625, 118, 150, "AKK K331", "24-channel VRX"),
-        (815, 118, 170, "TVP5150AM1PBS", "CVBS → BT.656"),
+        (815, 118, 170, "TVP5150AM1PBS", "UI-local CVBS → BT.656"),
         (1025, 118, 170, "ESP32-S3", "direct LCD_CAM"),
     ]
     out = [
@@ -171,7 +171,7 @@ def render_svg(model: dict) -> str:
         '<rect width="1230" height="365" fill="#ffffff"/>',
         '<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#334155"/></marker><marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/></marker></defs>',
         f'<text x="32" y="42" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · {esc(model["marker"])} analog-FPV receive path</text>',
-        '<text x="32" y="70" font-family="sans-serif" font-size="13" fill="#526076">Receive-only · one direct RF trace · channel control is offloaded to the Hub RP.</text>',
+        '<text x="32" y="70" font-family="sans-serif" font-size="13" fill="#526076">Receive-only · direct rear RF trace · one 75-ohm CVBS signal crosses M1 · the decoder and LCD_CAM remain front-local.</text>',
     ]
     for x, y, w, title, subtitle in nodes:
         out.append(f'<rect x="{x}" y="{y}" width="{w}" height="72" rx="9" fill="#ecfccb" stroke="#4d7c0f" stroke-width="2"/>')
@@ -181,9 +181,9 @@ def render_svg(model: dict) -> str:
         out.append(f'<path d="M{x} 154 H{x+40}" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow)"/>')
     out.extend([
         '<rect x="498" y="240" width="270" height="82" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>',
-        '<text x="633" y="266" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#1d4ed8">RP2354B Hub · exact reserved controls</text>',
-        '<text x="633" y="290" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP33 RSSI · GP34 power · GP35 lock</text>',
-        '<text x="633" y="309" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP36/37/38 → K331 CH1/CH2/CH3</text>',
+        '<text x="633" y="266" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#1d4ed8">SC1512-A4 rear RP · local controls</text>',
+        '<text x="633" y="290" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP15 RSSI · GP30 power · GP31 lock</text>',
+        '<text x="633" y="309" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP32/33/34 → K331 CH1/CH2/CH3</text>',
         '<path d="M633 240 V194" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrowBlue)"/>',
         '<text x="32" y="347" font-family="sans-serif" font-size="11" fill="#9a3412">K331 functional/pin fit and conditional Consigned Parts route pass; the AKK production package remains the H1 gate.</text>',
         '</svg>\n',
@@ -200,7 +200,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         result_text = (
             f'- `AKK {r["mpn"]}` покрывает {r["frequency_mhz"][0]}–{r["frequency_mhz"][1]} МГц, до {r["maximum_current_ma"]} мА и выдаёт CVBS 1 Vpp/75 Ω.\n'
             f'- Официальные материалы AKK подтверждают [схему включения 331RX]({e["application_circuit"]}), [функции всех 14 контактов]({e["pinout"]}) и [таблицу выбора 24 каналов]({e["channel_table"]}). AKK-брендированный кадр у продавца даёт номинальный контур платы 28,7×23,1 мм; аудит коллизий использует увеличенный резерв 30×24×4 мм.\n'
-            '- CH1/CH2/CH3 используют уже зарезервированные Hub GPIO36/37/38; новых GPIO или расширителя нет.\n'
+            '- CH1/CH2/CH3 используют задние RP GPIO32/33/34; GPIO15/30/31 обслуживают RSSI/power/lock. Новых GPIO или расширителя нет.\n'
             f'- Резерв 5 В оставляет {result["power_margin_ma"]} мА запаса. RF идёт напрямую по 50-омной PCB-дорожке к MMCX без U.FL.\n'
             f'- Антенна `{a["mpn"]}` линейная, {a["frequency_mhz"][0]}–{a["frequency_mhz"][1]} МГц, {a["gain_dbi"]} dBi, {a["cable_length_mm"]} мм; точная маркировка комплекта — `{a["printed_identity"]}`.'
             f' Независимый линейный резерв `{a["supply_independent_alternate"]["mpn"]}` покрывает 4,9–6,0 ГГц и сохраняет MMCX, но сейчас доступен только под заказ с lead time 16 недель.'
@@ -228,7 +228,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         result_text = (
             f'- `AKK {r["mpn"]}` covers {r["frequency_mhz"][0]}–{r["frequency_mhz"][1]} MHz, draws at most {r["maximum_current_ma"]} mA and emits 1-Vpp/75-ohm CVBS.\n'
             f'- Official AKK-hosted media confirms the [331RX application circuit]({e["application_circuit"]}), [all 14 pin functions]({e["pinout"]}) and the [24-channel selection table]({e["channel_table"]}). An AKK-branded reseller image gives a 28.7 × 23.1 mm nominal board outline; collision audit uses an enlarged 30 × 24 × 4 mm reserve.\n'
-            '- CH1/CH2/CH3 use already-reserved Hub GPIO36/37/38; no new GPIO or expander is needed.\n'
+            '- CH1/CH2/CH3 use rear-RP GPIO32/33/34; GPIO15/30/31 serve RSSI/power/lock. No new GPIO or expander is needed.\n'
             f'- The 5-V reserve retains {result["power_margin_ma"]} mA. RF runs directly over a 50-ohm PCB trace to MMCX without U.FL.\n'
             f'- `{a["mpn"]}` is linear, {a["frequency_mhz"][0]}–{a["frequency_mhz"][1]} MHz, {a["gain_dbi"]} dBi and {a["cable_length_mm"]} mm; its exact kit mark is `{a["printed_identity"]}`.'
             f' Independent linear fallback `{a["supply_independent_alternate"]["mpn"]}` covers 4.9–6.0 GHz and retains MMCX, but is presently backorder-only with a 16-week lead time.'
