@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.6",
+  "marker": "H1-R2.7",
   "checked_on": "2026-08-27",
   "status": "functional_fit_passed_physical_and_factory_route_open",
   "receiver": {
@@ -40,11 +40,34 @@
       "gate": "obtain a manufacturer-controlled maximum envelope, land pattern and packaging/reflow statement before replacing the reserve with a fixed body"
     },
     "jlcpcb_surface": {
-      "assembly": "not present in the public Standard PCBA library; private/global sourcing or post-PCBA installation only",
+      "assembly": "K331 is absent from the public Standard PCBA library; public RTC6715/RX5808 cards are unavailable and do not provide a drop-in module route; private/global sourcing or post-PCBA installation only",
       "searches": [
-        {"query": "AKK K331", "found": 0},
-        {"query": "RX5808", "found": 0},
-        {"query": "RTC6715", "found": 0}
+        {
+          "query": "AKK K331",
+          "catalogue_hits": 0,
+          "placeable_hits": 0,
+          "result": "no exact public card"
+        },
+        {
+          "query": "RX5808",
+          "catalogue_hits": 1,
+          "placeable_hits": 0,
+          "jlcpcb_part": "C9900139392",
+          "manufacturer": "JLCPCB Assembly",
+          "stock": 0,
+          "minimum": 442,
+          "route": "Consign Part / Request a Quote; unavailable for purchase"
+        },
+        {
+          "query": "RTC6715",
+          "catalogue_hits": 2,
+          "placeable_hits": 0,
+          "best_identity_jlcpcb_part": "C7464354",
+          "best_identity_manufacturer": "RichWave",
+          "stock": 0,
+          "minimum": 442,
+          "route": "Consign Part / Request a Quote; unavailable for purchase"
+        }
       ],
       "accepted_for_factory_placement": false
     }
@@ -86,15 +109,51 @@
       "result_ru": "отклонён как основной: ещё до допуска превышает резерв 350 мА и межплатный просвет 11 мм"
     },
     {
+      "mpn": "RichWave RTC6715 IC",
+      "manufacturer": "RichWave Technology",
+      "controlled_source": "https://www.richwave.com.tw/en/page_prd_new.aspx?Id=8",
+      "archived_datasheet": "https://s3.amazonaws.com/assets.flitetest.com/article_files/RTC6715_1420104047.pdf",
+      "datasheet_status": "manufacturer-authored preliminary confidential proprietary Rev V0.2 from September 2007; pin/register/package data only, without a public reference application or PCB-layout design",
+      "frequency_mhz": [5645, 5945],
+      "maximum_current_ma": 195,
+      "controlled_envelope_mm": [7.0, 7.0, 0.85],
+      "jlcpcb_part": "C7464354",
+      "jlcpcb_surface": {
+        "manufacturer": "RichWave",
+        "assembly": "SMT Assembly; Economic and Standard",
+        "stock": 0,
+        "minimum": 442,
+        "full_reel": 1000,
+        "unquoted_estimated_unit_price_usd": 0.0203,
+        "price_status": "page estimate only; no stock or supplier quote, not accepted as BOM price",
+        "route": "Consign Part / Request a Quote; unavailable for purchase",
+        "checked": "2026-08-27"
+      },
+      "result": "rejected as primary: it is an unavailable bare IC, not a receiver module; the public preliminary sheet lacks the reference RF/IF application and PCB layout needed to reduce 5.8-GHz implementation risk",
+      "result_ru": "отклонён как основной: это недоступная голая микросхема, а не модуль приёмника; в публичном предварительном документе нет reference RF/IF application и PCB layout, необходимых для снижения риска собственной реализации 5,8 ГГц"
+    },
+    {
       "mpn": "generic RX5808",
       "manufacturer": null,
       "controlled_source": null,
       "working_envelope_mm": [28.0, 23.0, 3.0],
-      "result": "rejected as production identity: published integration evidence exists but there is no unique manufacturer-controlled order code, drawing and factory route",
-      "result_ru": "отклонён как production-identity: опубликованные integration-evidence есть, но нет уникального order code, чертежа производителя и фабричного маршрута"
+      "jlcpcb_part": "C9900139392",
+      "jlcpcb_surface": {
+        "manufacturer": "JLCPCB Assembly",
+        "assembly": "Reflow Soldering; Economic and Standard",
+        "stock": 0,
+        "minimum": 442,
+        "full_reel": 500,
+        "unquoted_estimated_unit_price_usd": 0.0203,
+        "price_status": "page estimate only; no stock or supplier quote, not accepted as BOM price",
+        "route": "Consign Part / Request a Quote; unavailable for purchase",
+        "checked": "2026-08-27"
+      },
+      "result": "rejected as production identity: the public card has zero stock and no manufacturer identity, controlled drawing or purchasable factory route",
+      "result_ru": "отклонён как production-identity: у публичной карточки нулевой склад и нет личности производителя, контролируемого чертежа или доступного фабричного маршрута"
     }
   ],
-  "receiver_research_conclusion": "Keep K331 as the leading functional candidate and request its controlled mechanical/assembly package plus a JLCPCB sourcing response; do not enlarge or weaken the architecture for the documented alternatives.",
+  "receiver_research_conclusion": "Keep K331 as the leading functional candidate and request its controlled mechanical/assembly package plus a JLCPCB sourcing response. Public RTC6715/RX5808 catalogue cards do not create a purchasable module route, and a custom 5.8-GHz receiver around the bare RTC6715 would increase RF risk without solving supply.",
   "supplier_outreach": {
     "sent_on": "2026-08-27",
     "akk": {

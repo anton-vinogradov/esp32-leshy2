@@ -12,7 +12,7 @@
 
 </div>
 
-> **Now: H1-R2.6 · the exact MMCX edge placement and service keepouts are proved.**
+> **Now: H1-R2.7 · FPV receiver factory alternatives are rechecked without weakening the architecture.**
 > [H0-R2](docs/h0-r2-functional-architecture.md) adds a second `SC1512-A4`
 > Hub, direct S3 analog-FPV capture and mandatory receive-only Airband AM.
 > GPIO ownership and the factory-first Airband active BOM are closed. The Hub,
@@ -22,7 +22,10 @@
 > to AKK and JLCPCB on 27 August; both replies are pending. The exact linear FPV antenna is
 > selected. Those two external items are the only present H1 blockers; assembled
 > RF/video proof and qualification of the Taoglas fallback remain mandatory at
-> their downstream H3/H5/H6/H8 owners. The MMCX body is corrected from a fully outboard placeholder to
+> their downstream H3/H5/H6/H8 owners. The new public `RTC6715`/`RX5808`
+> cards have zero stock and no purchasable module route; the bare RTC6715 also
+> lacks a public reference RF/IF application, so it is not a lower-risk replacement.
+> The MMCX body is corrected from a fully outboard placeholder to
 > its real 3.6-mm-on-board / 3.0-mm-outboard geometry; wave-solder tails and
 > the sidewall/plug service corridors pass the coordinate audit. The Airband filter now has a generated nominal/stress
 > feasibility audit and a larger tuning cell. The new 3V3_MAIN cell is now
@@ -77,15 +80,15 @@ See the [hardware architecture](docs/hardware.md) and
 ## Target device mockup
 
 The compact diagram below is the current R2 architecture. The following
-H1-R2.6 drawing is the current collision-tested incremental placement. The
+H1-R2.7 drawing is the current collision-tested incremental placement. The
 complete exterior and sandwich views beneath it remain the accepted R1
 geometric seed until all R2 bodies and the new rail stop moving.
 
 ![Leshy2 H0-R2 functional architecture](docs/images/h0-r2-functional-architecture.svg)
 
-![Leshy2 H1-R2.6 inner placement](docs/images/h1-r2-inner-placement.svg)
+![Leshy2 H1-R2.7 inner placement](docs/images/h1-r2-inner-placement.svg)
 
-![Leshy2 H1-R2.6 MMCX placement and service proof](docs/images/h1-r2-mmcx-service.svg)
+![Leshy2 H1-R2.7 MMCX placement and service proof](docs/images/h1-r2-mmcx-service.svg)
 
 ![Leshy2 H1-R2.4 rail and thermal architecture](docs/images/h1-r2-power-thermal.svg)
 
@@ -94,7 +97,7 @@ geometric seed until all R2 bodies and the new rail stop moving.
 [Analog-FPV path](docs/h1-r2-fpv.md) ·
 [Airband filter feasibility](docs/h1-airband-filter.md).
 
-![Leshy2 H1-R2.6 analog-FPV path](docs/images/h1-r2-fpv-path.svg)
+![Leshy2 H1-R2.7 analog-FPV path](docs/images/h1-r2-fpv-path.svg)
 
 Every view below is generated from the real envelopes of selected MPNs and one
 coordinate model. Text outside component bodies on outer PCB faces is intended
@@ -138,7 +141,7 @@ drawings, schematics, contracts and checks.
 | Stage | Status | Result |
 |---|---|---|
 | H0 · Product requirements and functional architecture | ✅ R2 Reviewed | [H0-R2 report](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶️ Current: H1-R2.6 MMCX mechanics and inner placement** | [Current result](docs/h1-r2-physical-layout.md) |
+| **H1 · Physical product design** | **▶️ Current: H1-R2.7 MMCX mechanics and inner placement** | [Current result](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ⏳ R1 evidence retained; waiting for R2 H1 | [H2 results](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ rerun after R2 H2 | [R1 report](docs/h3-acceptance.md) |
 | H4 · Joined pre-layout gate | ⏳ rerun after R2 H3 and firmware R2 contract | [R1 report](docs/h4-prelayout-gate-report.md) |
@@ -152,7 +155,7 @@ Every completed top-level `H*` phase receives a separate readable result report
 linked from this table. Internal substeps update the exact marker but do not
 create separate global reports.
 
-**Hardware is at H1-R2.6.** H0-R2 fixes six compute domains, 33/33 used S3
+**Hardware is at H1-R2.7.** H0-R2 fixes six compute domains, 33/33 used S3
 GPIO, 45/48 used Hub GPIO and the receive-only Airband frequency plan. The
 incremental Airband active BOM is live-checked at JLCPCB and costs `$20.2038`
 before passives/assembly. The initial R2 placement adds four exact Airband
@@ -185,9 +188,9 @@ H3 still proves effective capacitance, load-step,
 switching loss and enclosure thermal behaviour. H1 must regenerate every complete physical view. No order is
 authorized.
 
-<!-- current-substep: H1-R2.6 -->
+<!-- current-substep: H1-R2.7 -->
 
-**Exact marker: `H1-R2.6`** — the [current placement](docs/h1-r2-physical-layout.md),
+**Exact marker: `H1-R2.7`** — the [current placement](docs/h1-r2-physical-layout.md),
 [power result](docs/h1-r2-power-thermal.md) and [FPV result](docs/h1-r2-fpv.md)
 pass their machine audits. Next,
 complete the remaining R2 body selection before regenerating all

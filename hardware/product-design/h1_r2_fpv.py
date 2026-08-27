@@ -56,12 +56,25 @@ def audit(model: dict) -> dict:
     if receiver["jlcpcb_surface"]["accepted_for_factory_placement"]:
         errors.append("K331 factory placement is claimed without a JLCPCB route")
     alternatives = {row["mpn"]: row for row in model["receiver_alternatives_reviewed"]}
-    if set(alternatives) != {"AKK K331", "AWM682 RX", "TUE-RFVRX-58-D", "generic RX5808"}:
+    if set(alternatives) != {"AKK K331", "AWM682 RX", "TUE-RFVRX-58-D", "RichWave RTC6715 IC", "generic RX5808"}:
         errors.append("receiver alternative review is incomplete")
     if alternatives.get("AWM682 RX", {}).get("controlled_envelope_mm", [0, 0])[1] <= model["receiver"]["mechanical"]["working_envelope_mm"][1]:
         errors.append("AWM682 rejection no longer proves a larger controlled body")
     if alternatives.get("TUE-RFVRX-58-D", {}).get("maximum_current_ma", 0) <= model["power_fit"]["reserved_active_5v_ma"]:
         errors.append("Top-Unum rejection no longer proves a power overrun")
+    searches = {row["query"]: row for row in receiver["jlcpcb_surface"]["searches"]}
+    if set(searches) != {"AKK K331", "RX5808", "RTC6715"}:
+        errors.append("JLCPCB receiver search surface is incomplete")
+    if any(row["placeable_hits"] != 0 for row in searches.values()):
+        errors.append("a JLCPCB receiver route is marked placeable without live stock")
+    rtc = alternatives.get("RichWave RTC6715 IC", {})
+    if rtc.get("jlcpcb_part") != "C7464354" or rtc.get("jlcpcb_surface", {}).get("stock") != 0:
+        errors.append("exact RichWave RTC6715 factory evidence is stale")
+    if "without a public reference application" not in rtc.get("datasheet_status", ""):
+        errors.append("RTC6715 custom-RF rejection lost its documentation gate")
+    rx5808 = alternatives.get("generic RX5808", {})
+    if rx5808.get("jlcpcb_part") != "C9900139392" or rx5808.get("jlcpcb_surface", {}).get("stock") != 0:
+        errors.append("generic RX5808 factory evidence is stale")
     if outreach.get("sent_on") != model["checked_on"]:
         errors.append("supplier outreach date is missing or stale")
     if set(outreach) != {"sent_on", "akk", "jlcpcb"}:
@@ -91,6 +104,8 @@ def audit(model: dict) -> dict:
         "factory_placement_accepted": receiver["jlcpcb_surface"]["accepted_for_factory_placement"],
         "production_acceptance": model["result"]["production_acceptance"],
         "receiver_alternatives_reviewed": len(alternatives),
+        "jlcpcb_catalogue_hits": sum(row["catalogue_hits"] for row in searches.values()),
+        "jlcpcb_placeable_hits": sum(row["placeable_hits"] for row in searches.values()),
         "supplier_outreach_sent_on": outreach["sent_on"],
         "supplier_responses_pending": [key for key in ("akk", "jlcpcb") if "pending" in outreach[key]["status"]],
         "current_h1_blockers": current_blockers,
@@ -147,8 +162,10 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f' Независимый линейный резерв `{a["supply_independent_alternate"]["mpn"]}` покрывает 4,9–6,0 ГГц и сохраняет MMCX, но сейчас доступен только под заказ с lead time 16 недель.'
         )
         factory = (
-            'Производитель показывает K331 в наличии по $29.99; точные поиски JLCPCB по `AKK K331`, `RX5808` и `RTC6715` дали 0 результатов. '
-            'Поэтому до ответа private/global sourcing это отдельный модуль, а не заявленная фабричная PCBA-позиция. '
+            'Производитель показывает K331 в наличии по $29.99; точной публичной карточки K331 у JLCPCB нет. '
+            '`RichWave RTC6715` `C7464354` и безродный `RX5808` `C9900139392` присутствуют только как недоступные карточки: склад 0, MOQ 442, маршрут Consign/Request a Quote. '
+            'RTC6715 — голая QFN48, а её публичный preliminary-документ 2007 года не содержит reference application или PCB layout; собственный RF/IF-тракт повысил бы риск, не решив supply. '
+            'Поэтому до ответа private/global sourcing K331 остаётся отдельным модулем, а не заявленной фабричной PCBA-позицией. '
             f'Антенна продаётся производителем за $6.95 и ставится в комплект после PCBA; JLCPCB для неё также не является сборочным маршрутом. '
             f'{model["supplier_outreach"]["sent_on"]} запросы с точным перечнем механических, assembly и sourcing-свидетельств отправлены AKK и JLCPCB; оба ответа ожидаются.'
         )
@@ -171,8 +188,10 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f' Independent linear fallback `{a["supply_independent_alternate"]["mpn"]}` covers 4.9–6.0 GHz and retains MMCX, but is presently backorder-only with a 16-week lead time.'
         )
         factory = (
-            'The manufacturer lists K331 in stock at $29.99; exact JLCPCB searches for `AKK K331`, `RX5808` and `RTC6715` returned zero results. '
-            'It therefore remains a separate module until a private/global-sourcing response exists, not a claimed factory PCBA line item. '
+            'The manufacturer lists K331 in stock at $29.99; JLCPCB has no exact public K331 card. '
+            'Its `RichWave RTC6715` `C7464354` and generic `RX5808` `C9900139392` cards are unavailable: zero stock, MOQ 442 and Consign/Request-a-Quote only. '
+            'RTC6715 is a bare QFN48 whose public 2007 preliminary sheet has no reference application or PCB layout; a custom RF/IF path would add risk without fixing supply. '
+            'K331 therefore remains a separate module until a private/global-sourcing response exists, not a claimed factory PCBA line item. '
             'The $6.95 antenna is a post-PCBA kit accessory and likewise not an assembly line item. '
             f'On {model["supplier_outreach"]["sent_on"]}, exact mechanical, assembly and sourcing evidence requests were sent to AKK and JLCPCB; both replies are pending.'
         )

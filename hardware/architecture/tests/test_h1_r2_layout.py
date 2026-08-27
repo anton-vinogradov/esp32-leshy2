@@ -103,6 +103,8 @@ class H1R2LayoutTest(unittest.TestCase):
         for path, content in expected.items():
             self.assertTrue(path.exists(), path)
             self.assertEqual(content, path.read_text(), path)
+        self.assertNotIn("[`None`]", expected[MODULE.EN_DOC_PATH])
+        self.assertNotIn("[`None`]", expected[MODULE.RU_DOC_PATH])
 
 
 if __name__ == "__main__":

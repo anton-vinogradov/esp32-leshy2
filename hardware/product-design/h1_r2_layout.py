@@ -542,7 +542,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         role = row.get("role_ru", row["role"]) if ru else row["role"]
         route = row.get("availability_ru", row["availability"]) if ru else row["availability"]
         status = row.get("selection_status_ru", row["selection_status"]) if ru else row["selection_status"]
-        lines.append(f'| {role} | `{row["mpn"]}` | [`{row["jlcpcb_part"]}`]({row["url"]}) | {status} | {route} |')
+        factory_ref = f'[`{row["jlcpcb_part"]}`]({row["url"]})' if row["jlcpcb_part"] else '—'
+        lines.append(f'| {role} | `{row["mpn"]}` | {factory_ref} | {status} | {route} |')
     lines.extend(["", open_heading, ""])
     lines.extend(f"- {gate}" for gate in blockers)
     lines.extend(["", dependent_heading, ""])

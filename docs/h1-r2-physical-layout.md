@@ -1,4 +1,4 @@
-# H1-R2.6 · physical re-layout
+# H1-R2.7 · physical re-layout
 
 This is the current verified H1 result, not a decision diary and not authorization to start KiCad.
 
@@ -25,7 +25,7 @@ The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell fo
 |---|---|---|---|---|
 | Hub RP2354B factory assembly cross-reference | `SC1512-A4` | [`C39843328`](https://jlcpcb.com/partdetail/RaspberryPi-RP2354B/C39843328) | working selection; A4 marking remains an incoming gate | LCSC/JLC supply surface showed 3,682 pieces, MOQ 1, USD 1.6225 at quantity 1 |
 | analog composite-video decoder | `TVP5150AM1PBS` | [`C3824301`](https://jlcpcb.com/partdetail/TexasInstruments-TVP5150AM1PBS/C3824301) | accepted for the working placement | 62 pieces, MOQ 1, USD 6.4081 at quantity 1 |
-| 24-channel 5.8-GHz analog-FPV receiver module | `K331` | [`None`](https://www.akktek.com/products/vtx-modules/akk-k331.html) | accepted functional and pin-fit candidate; physical body and factory-placement route remain open | manufacturer store showed in stock at USD 29.99; exact JLCPCB searches for AKK K331, RX5808 and RTC6715 returned zero results |
+| 24-channel 5.8-GHz analog-FPV receiver module | `K331` | — | accepted functional and pin-fit candidate; physical body and factory-placement route remain open | manufacturer store showed in stock at USD 29.99; K331 has no public JLCPCB card; RTC6715/RX5808 cards have zero stock and no purchasable drop-in module route |
 | side-facing 5.8-GHz user connector | `DL-MMCX-KWE-90` | [`C2894793`](https://jlcpcb.com/partdetail/DreamLNK-DL_MMCX_KWE90/C2894793) | accepted physical definition, corrected edge placement and machine-proved solder-tail/side-service keepouts | 25,383 pieces, MOQ 1, USD 0.9077 at quantity 1 |
 | FPV decoder 1.8-V rail | `TPS7A2018PDBVR` | [`C963430`](https://jlcpcb.com/partdetail/TexasInstruments-TPS7A2018PDBVR/C963430) | accepted for the working placement | 2,225 pieces, MOQ/multiple 5, USD 0.2413 at quantity 5; JLC identifies Economic and Standard SMT assembly |
 | 3V3_MAIN 6-A synchronous buck with protected diagnostic PG | `TPS566231PRQFR` | [`C3190178`](https://jlcpcb.com/partdetail/TexasInstruments-TPS566231PRQFR/C3190178) | accepted H1-R2 working selection; dynamic and thermal closure remains H3 | 112 pieces, MOQ 1, USD 1.0478 at quantity 1 |
@@ -49,4 +49,4 @@ The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell fo
 
 - **H5/H8:** qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route
 
-> Exact current marker: **H1-R2.6**. H1 remains in progress.
+> Exact current marker: **H1-R2.7**. H1 remains in progress.

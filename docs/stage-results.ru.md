@@ -20,17 +20,18 @@
 <a id="h1"></a>
 ## ⭐ H1 · Физический дизайн устройства
 
-**Статус:** ▶️ сейчас `H1-R2.6`; результат R1 сохранён как evidence, а не как текущая приёмка.
+**Статус:** ▶️ сейчас `H1-R2.7`; результат R1 сохранён как evidence, а не как текущая приёмка.
 
-- [Текущее физическое размещение H1-R2.6](h1-r2-physical-layout.ru.md) — новые
+- [Текущее физическое размещение H1-R2.7](h1-r2-physical-layout.ru.md) — новые
   Hub, Airband и корпуса/резервы аналогового FPV в общей системе координат,
   с генерируемыми проверками коллизий, встречного зазора и точного service MMCX.
 - [Точный вид установки/service MMCX](images/h1-r2-mmcx-service.svg): исправленная
   привязка к кромке, keepout выводов wave soldering и коридоры стенки/штекера.
-- [Машинный аудит размещения H1-R2.6](../hardware/product-design/generated/H1-R2-placement-audit.json).
+- [Машинный аудит размещения H1-R2.7](../hardware/product-design/generated/H1-R2-placement-audit.json).
 - [Функциональный тракт аналогового FPV](h1-r2-fpv.ru.md) и его
   [машинный аудит](../hardware/product-design/generated/H1-R2-fpv-audit.json):
-  распиновка/питание K331, точный MMCX-тракт и точная антенна TBS.
+  распиновка/питание K331, точный MMCX-тракт, точная антенна TBS и живое
+  отклонение недоступных карточек RTC6715/RX5808 как менее рискованных замен.
 - [Проверка реализуемости фильтра Airband](h1-airband-filter.ru.md) и её
   [машинный аудит](../hardware/product-design/generated/H1-Airband-filter-audit.json).
 - [Rail/thermal-архитектура шести доменов](h1-r2-power-thermal.ru.md) и её

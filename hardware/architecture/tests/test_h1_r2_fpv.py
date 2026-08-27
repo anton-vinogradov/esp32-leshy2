@@ -40,14 +40,24 @@ class H1R2FPVTest(unittest.TestCase):
 
     def test_receiver_factory_and_physical_limits_fail_closed(self):
         receiver = self.model["receiver"]
-        self.assertEqual({0}, {row["found"] for row in receiver["jlcpcb_surface"]["searches"]})
+        self.assertEqual({0}, {row["placeable_hits"] for row in receiver["jlcpcb_surface"]["searches"]})
         self.assertFalse(receiver["jlcpcb_surface"]["accepted_for_factory_placement"])
         self.assertFalse(receiver["mechanical"]["accepted"])
         self.assertFalse(self.model["result"]["production_acceptance"])
-        self.assertEqual(4, self.audit["receiver_alternatives_reviewed"])
+        self.assertEqual(5, self.audit["receiver_alternatives_reviewed"])
         alternatives = {row["mpn"]: row for row in self.model["receiver_alternatives_reviewed"]}
         self.assertGreater(alternatives["AWM682 RX"]["controlled_envelope_mm"][1], 23.0)
         self.assertGreater(alternatives["TUE-RFVRX-58-D"]["maximum_current_ma"], 350)
+        rtc = alternatives["RichWave RTC6715 IC"]
+        self.assertEqual("C7464354", rtc["jlcpcb_part"])
+        self.assertEqual("RichWave", rtc["jlcpcb_surface"]["manufacturer"])
+        self.assertEqual(0, rtc["jlcpcb_surface"]["stock"])
+        self.assertEqual(442, rtc["jlcpcb_surface"]["minimum"])
+        self.assertIn("without a public reference application", rtc["datasheet_status"])
+        rx5808 = alternatives["generic RX5808"]
+        self.assertEqual("C9900139392", rx5808["jlcpcb_part"])
+        self.assertEqual(0, rx5808["jlcpcb_surface"]["stock"])
+        self.assertEqual(0, self.audit["jlcpcb_placeable_hits"])
 
     def test_supplier_requests_are_sent_but_do_not_close_gates(self):
         outreach = self.model["supplier_outreach"]
