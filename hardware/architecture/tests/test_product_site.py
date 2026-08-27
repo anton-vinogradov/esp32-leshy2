@@ -166,13 +166,13 @@ class ProductSiteTests(unittest.TestCase):
         pages = {
             "docs/roadmap.md": (
                 "Current hardware boundary: H1-R2.13", "H0-R2 reviewed",
-                "firmware F0-R2.1",
+                "firmware F0-R2.2",
                 "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
                 "Текущая аппаратная граница: H1-R2.13", "H0-R2 проведено ревью",
-                "firmware F0-R2.1", "H2.2.5",
+                "firmware F0-R2.2", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
             ),
@@ -2380,9 +2380,10 @@ class ProductSiteTests(unittest.TestCase):
         for name in ("docs/memory.md", "docs/memory.ru.md"):
             page = self.read(name)
             for token in (
-                "ESP32-S3-WROOM-1U-N16R8", "16", "8", "GPIO0",
-                "GPIO18", "GPIO45", "GPIO46", "ECC", "BOOT",
-                "CONFIG_SPIRAM_ECC_ENABLE=y", "0x780000", "self-test",
+                "ESP32-S3-WROOM-1U-N16R8", "ESP32-C5-WROOM-1U-N8R8",
+                "SC1512-A4", "MSPM0C1106SDGS20R", "GPIO0", "GPIO46",
+                "ECC", "BOOT", "CONFIG_SPIRAM_ECC_ENABLE=y", "0x780000",
+                "F0-R2.2", "FAULT_KILL",
             ):
                 self.assertIn(token, page, f"{name}: {token}")
             self.assertRegex(page, r"7[.,]5")

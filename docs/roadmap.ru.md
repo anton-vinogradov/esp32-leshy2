@@ -27,7 +27,7 @@
 | Принципиальные диаграммы на сайте | Функциональная карта H0-R2, полные физические виды и FPV/MMCX-тракт H1-R2.13, а также диаграммы фильтра/rail H1-R2.4 актуальны; сгенерированные физические виды явно остаются in progress до фиксации границы K331 |
 | Production ECAD-схема | ⏳ Листы R1 сохранены; R2 ждёт компоновку и rail-контракт H1-R2 |
 | Электрические и переходные evidence | ⏳ Evidence R1 сохранено; полный повтор H3 R2 идёт после H2 R2 |
-| Пересечение с прошивкой | ▶️ firmware F0-R2.1 провела ревью identities шести targets/images без claims о готовых R2 projects или builds; до закрытия F0-R2 остаются memory/update/execution-контракты |
+| Пересечение с прошивкой | ▶️ firmware F0-R2.2 провела ревью identities шести targets/images и шести независимых локальных rollback-доменов без claims о физических transitions или R2 builds; остаются activation/execution-контракты |
 | Объединённый pre-layout gate | ⏳ H4 R1 сохранён; H4 R2 ждёт H3 R2 и firmware-evidence R2 |
 | Работа над KiCad-схемой | ⏳ ни один лист R2 не принимается до закрытия H1-R2 |
 | KiCad placement и PCB routing | 🔒 H6: не начаты и не разрешены |

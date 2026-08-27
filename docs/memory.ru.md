@@ -1,39 +1,56 @@
-# Память S3 и загрузочные линии
+# Память контроллеров и граница восстановления
 
-[На главную](../README.ru.md) · [English](memory.md) · [Распиновка](pinout.ru.md) · [Карта памяти прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/memory.ru.md)
+[На главную](../README.ru.md) · [English](memory.md) · [Распиновка](pinout.ru.md) ·
+[Карта памяти прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/memory.ru.md)
 
-Контроллер приложения — точный модуль с внешней антенной
-`ESP32-S3-WROOM-1U-N16R8`: 16 МБ quad flash и 8 МБ 3,3-В octal PSRAM в прежнем
-габарите 18,0 × 19,2 × 3,2 мм. В production-прошивке включается ECC PSRAM:
-сохраняется диапазон модуля −40…+85 °C и остаётся не менее 7,5 МБ доступной
-внешней RAM.
+В Leshy2 R2 шесть независимо восстанавливаемых firmware-доменов. Ни один
+контроллер не загружается из flash другого, а общая шина не заменяет локальный
+last-known-good image.
 
-ECC является частью интерфейса между железом и прошивкой, а не рекомендацией:
-production defaults обязаны содержать `CONFIG_SPIRAM_ECC_ENABLE=y`, а startup
-self-test — подтвердить не менее `0x780000` байт usable PSRAM до запуска UI или
-радио. Сборка без этого признака относится только к лабораторной диагностике в
-диапазоне до +65 °C и не может быть выпущена как production.
+## Физический состав памяти
 
-GPIO35, GPIO36 и GPIO37 у этого точного модуля заняты внутренней шиной octal
-PSRAM и на PCB не используются. Полный бюджет выводов приложения при этом
-сходится:
+| Домен | Точное устройство | Локальное хранилище кода | Оперативная память | Локальный rollback | Физическое восстановление |
+|---|---|---:|---:|---|---|
+| S3 | `ESP32-S3-WROOM-1U-N16R8` | 16 МиБ flash модуля | 8 МиБ octal PSRAM с ECC | два OTA slot по 7 МиБ | product USB, UART0, RESET и BOOT |
+| C5 | `ESP32-C5-WROOM-1U-N8R8` | 8 МиБ flash модуля | 8 МиБ PSRAM модуля | два OTA slot по 3,5 МиБ | независимый data-only USB, UART0, RESET и BOOT |
+| RF RP | `SC1512-A4` (`RP2354B`) | 2 МиБ stacked flash | 520 КиБ on-chip SRAM | нативная A/B-пара по 896 КиБ | независимый data-only USB, SWD, RUN и USB_BOOT |
+| Hub RP | второй `SC1512-A4` (`RP2354B`) | собственные 2 МиБ stacked flash | 520 КиБ on-chip SRAM | отдельная нативная A/B-пара по 896 КиБ | независимый data-only USB, SWD, RUN и USB_BOOT |
+| Pack | `MSPM0C1106SDGS20R` | 64 КиБ on-chip flash | 8 КиБ on-chip SRAM | независимая разметка boot/A/B/state 16/22/22/4 КиБ | NRST, SWDIO, SWCLK, UART1 и изолированное fixture-питание |
+| Safety | второй `MSPM0C1106SDGS20R` | собственные 64 КиБ on-chip flash | 8 КиБ on-chip SRAM | отдельная разметка 16/22/22/4 КиБ | NRST, SWDIO, SWCLK, UART1 и изолированное fixture-питание |
 
-| Контакт S3 | Сигнал продукта | Безопасное состояние при загрузке |
-|---|---|---|
-| `GPIO0` | `I2S_DIN` кодека после загрузки | pull-up 10 кОм для normal boot; буфер кодека включается только по `CODEC_READY AND AUDIO_ARM`, а `AUDIO_ARM` аппаратно удерживается в нуле при reset |
-| `GPIO18` | `SPI2 SCK` экрана/microSD | reset-low через 10 кОм; обычный не-strap GPIO |
-| `GPIO45` | общий active-low `SYS_INT_N` | у N16R8 питание `VDD_SPI` 3,3 В зафиксировано eFuse, поэтому pull-up interrupt не меняет питание памяти |
-| `GPIO46` | `SPI2 D0` экрана/microSD | pull-down 10 кОм удерживает требуемый нулевой strap; push-pull включается только после ROM sampling |
+Два RP2354B и два MSPM0 имеют общую только геометрию разделов. Их target ID,
+identities images, boot state и физическое хранилище раздельны. Firmware
+F0-R2.2 проверяет этот one-to-one ownership в
+[машинном контракте](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/f0_r2_memory_rollback_contract.json).
 
-Native USB, UART0, RESET и BOOT остаются постоянными путями восстановления.
-Защищённая цепь 1 кОм по-прежнему может притянуть GPIO0 к нулю, а
-reset-квалифицированный gate кодека не позволяет аварии audio-домена закрыть
-ROM download.
+## Аппаратные правила, сохраняющие boot и recovery
 
-Машинные build defaults и точная разметка flash находятся в
-[репозитории прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/sdkconfig.defaults.esp32s3).
+- GPIO35/36/37 модуля S3 являются внутренними сигналами octal PSRAM и никогда
+  не считаются ресурсом PCB. Production firmware сохраняет
+  `CONFIG_SPIRAM_ECC_ENABLE=y` и до обычной работы UI/radio доказывает не менее
+  7,5 МиБ (`0x780000` bytes) usable PSRAM.
+- Strap-sensitive GPIO0 S3 сейчас является входом `VIDEO_D0`; decoder обязан
+  оставаться high-impedance до завершения ROM sampling. GPIO46 —
+  `LCD_QSPI_D0`; его внешний bias сохраняет принятый strap до перехода в
+  push-pull.
+- Product USB S3 — единственный USB, которому разрешено питать устройство.
+  Service USB C5 и обоих RP являются data-only и не могут back-power ни один
+  rail.
+- GPIO13/14 C5 намеренно мультиплексируются между native SDIO D3/D2 и service
+  USB. Service mode останавливает и сбрасывает runtime link до переключения
+  analog switch.
+- Recovery Pack и Safety может заменить firmware, но не может синтезировать
+  `RUN`, обслужить независимый watchdog или снять аппаратную защёлку
+  `FAULT_KILL`. Пустая или неисправная прошивка остаётся fail-closed.
 
-Production validation проверяет active/sleep current, температурный stress,
-strap-осциллограммы и recovery при включённом, выключенном и неисправном
-кодеке. Точный модуль также присутствует в
-[машинном BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv).
+Это требования функциональной архитектуры, а не разрешение PCB routing. H2-R2
+должен реализовать точные symbols, strap networks, switches и service headers;
+H3/H6 проверяют power, timing и no-back-power; H7 доказывает programming и
+rollback всех шести физических контроллеров.
+
+## Детальная разметка принадлежит прошивке
+
+Точные offsets, image limits, manifests и rollback state генерируются и
+тестируются на [странице памяти firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/memory.ru.md).
+Hardware-контракт фиксирует установленные ёмкости и recovery wiring; firmware
+не может незаметно занять inactive slot или переосмыслить service port.
