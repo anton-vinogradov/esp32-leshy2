@@ -166,13 +166,13 @@ class ProductSiteTests(unittest.TestCase):
         pages = {
             "docs/roadmap.md": (
                 "Current hardware boundary: H1-R2.13", "H0-R2 reviewed",
-                "firmware F0-R2.0",
+                "firmware F0-R2.1",
                 "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
                 "Текущая аппаратная граница: H1-R2.13", "H0-R2 проведено ревью",
-                "firmware F0-R2.0", "H2.2.5",
+                "firmware F0-R2.1", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
             ),
