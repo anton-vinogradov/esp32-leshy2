@@ -42,7 +42,15 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("reserve", bay["kind"])
         self.assertIsNone(bay["mpn"])
         self.assertEqual("AKK K331", bay["candidate_mpn"])
-        self.assertIn("AKK-controlled maximum dimensions", self.model["open_gates"][0])
+        self.assertIn("AKK-controlled maximum dimensions", self.model["current_h1_blockers"][0])
+
+    def test_h1_blockers_are_separate_from_dependent_and_later_work(self):
+        self.assertEqual(2, len(self.model["current_h1_blockers"]))
+        self.assertEqual(1, len(self.model["dependent_h1_work"]))
+        self.assertIn("regenerate", self.model["dependent_h1_work"][0])
+        self.assertEqual({"H5/H8"}, {row["stage"] for row in self.model["downstream_verification"]})
+        self.assertEqual(self.model["current_h1_blockers"], self.audit["current_h1_blockers"])
+        self.assertEqual(self.model["dependent_h1_work"], self.audit["dependent_h1_work"])
 
     def test_factory_rows_include_current_identity(self):
         by_mpn = {row["mpn"]: row for row in self.model["factory_evidence"]}

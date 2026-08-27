@@ -170,10 +170,20 @@
     "factory_placement_route": "open",
     "production_acceptance": false
   },
-  "open_gates": [
+  "current_h1_blockers": [
     "obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence",
-    "obtain a JLCPCB private/global-sourcing response or retain explicit post-PCBA hand installation",
-    "prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality on assembled hardware",
-    "qualify FXP831.09.0100C on the assembled enclosure and secure available stock before relying on its current 16-week backorder route"
+    "obtain a JLCPCB private/global-sourcing response or retain explicit post-PCBA hand installation"
+  ],
+  "downstream_verification": [
+    {
+      "stage": "H3/H6/H8",
+      "requirement": "prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality before production release",
+      "requirement_ru": "доказать прямой 50-омный тракт, запуск MMCX, таблицу каналов, чувствительность, подавление зеркального канала, decoder lock и качество видео до производственного release"
+    },
+    {
+      "stage": "H5/H8",
+      "requirement": "qualify FXP831.09.0100C on the assembled enclosure and secure available stock before relying on its current 16-week backorder route",
+      "requirement_ru": "квалифицировать FXP831.09.0100C на собранном корпусе и обеспечить доступный склад до опоры на текущий backorder 16 недель"
+    }
   ]
 }

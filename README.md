@@ -20,7 +20,9 @@
 > physical projection. K331 fits the reserved pins and power; its controlled
 > body drawing and factory route remain open. Exact evidence requests were sent
 > to AKK and JLCPCB on 27 August; both replies are pending. The exact linear FPV antenna is
-> selected. The MMCX body is corrected from a fully outboard placeholder to
+> selected. Those two external items are the only present H1 blockers; assembled
+> RF/video proof and qualification of the Taoglas fallback remain mandatory at
+> their downstream H3/H5/H6/H8 owners. The MMCX body is corrected from a fully outboard placeholder to
 > its real 3.6-mm-on-board / 3.0-mm-outboard geometry; wave-solder tails and
 > the sidewall/plug service corridors pass the coordinate audit. The Airband filter now has a generated nominal/stress
 > feasibility audit and a larger tuning cell. The new 3V3_MAIN cell is now

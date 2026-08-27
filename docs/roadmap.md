@@ -23,7 +23,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Area | Actual state |
 |---|---|
 | Product requirements and functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): six domains, direct S3 UI/display/FPV and mandatory receive-only Airband |
-| Physical product design | ▶️ [H1-R2.6](h1-r2-physical-layout.md): K331 functional/pin fit and the exact TBS FPV antenna join the placed Hub/Airband/power bodies; exact MMCX edge geometry, wave-solder tails and wall/plug service keepouts now pass, while K331 physical/factory gates and remaining views continue |
+| Physical product design | ▶️ [H1-R2.6](h1-r2-physical-layout.md): K331 functional/pin fit and the exact TBS FPV antenna join the placed Hub/Airband/power bodies; exact MMCX edge geometry, wave-solder tails and wall/plug service keepouts pass; only the K331 controlled body and installation route block H1 now, then complete views are regenerated |
 | Principle diagrams on the site | H0-R2 functional map plus H1-R2.6 FPV/MMCX/inner-placement and H1-R2.4 filter/rail diagrams are current; complete dimensioned R1 views are explicit inputs being regenerated |
 | Production ECAD schematic | ⏳ R1 sheets retained; R2 work waits for the H1-R2 placement and rail contract |
 | Electrical and transient evidence | ⏳ R1 evidence retained; full R2 H3 rerun follows R2 H2 |
@@ -58,6 +58,9 @@ one direct 50-ohm trace without U.FL, and exact linear `TBS5G8MMCXA`. K331
 remains a physical reserve until controlled dimensions and a JLCPCB sourcing or
 explicit post-PCBA installation route exist. Exact requests were sent to AKK and
 JLCPCB on 27 August 2026; both replies are pending and no gate is pre-closed.
+These are the two present H1 blockers. Assembled RF/video performance and the
+Taoglas fallback remain explicit H3/H5/H6/H8 verification rather than being
+misreported as work that can close during physical design.
 The MMCX correction puts its 3.6-mm square body on the RF PCB and only its
 3.0-mm barrel beyond the right edge. A generated service view proves the
 1.2-mm nominal solder-tail projection has no opposing body and reserves a

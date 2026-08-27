@@ -24,11 +24,14 @@ The serial receiver functional candidate and exact antenna are selected; K331 ph
 
 The manufacturer lists K331 in stock at $29.99; exact JLCPCB searches for `AKK K331`, `RX5808` and `RTC6715` returned zero results. It therefore remains a separate module until a private/global-sourcing response exists, not a claimed factory PCBA line item. The $6.95 antenna is a post-PCBA kit accessory and likewise not an assembly line item. On 2026-08-27, exact mechanical, assembly and sourcing evidence requests were sent to AKK and JLCPCB; both replies are pending.
 
-## Open gates
+## What blocks H1 now
 
 - obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence
 - obtain a JLCPCB private/global-sourcing response or retain explicit post-PCBA hand installation
-- prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality on assembled hardware
-- qualify FXP831.09.0100C on the assembled enclosure and secure available stock before relying on its current 16-week backorder route
+
+## Later verification — does not block H1
+
+- **H3/H6/H8:** prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality before production release
+- **H5/H8:** qualify FXP831.09.0100C on the assembled enclosure and secure available stock before relying on its current 16-week backorder route
 
 > Exact current marker: **H1-R2.6**. H1 remains in progress.

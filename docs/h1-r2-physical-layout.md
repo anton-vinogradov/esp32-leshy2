@@ -36,11 +36,17 @@ The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell fo
 | 3V3_MAIN input/output bulk capacitor | `GRM32ER71E226KE15L` | [`C21397`](https://jlcpcb.com/partdetail/MurataElectronics-GRM32ER71E226KE15L/C21397) | accepted physical body and working nominal; H3 proves effective capacitance after bias/temperature/tolerance | 116,360 pieces, MOQ 1, USD 0.6222 at quantity 1 |
 | TPS566231P serial bootstrap tuning link | `RC0402JR-070RL` | [`C60485`](https://jlcpcb.com/partdetail/YAGEO-RC0402JR070RL/C60485) | accepted fitted 0-ohm default | 4,551,848 pieces, MOQ 1, USD 0.0034 at quantity 1 |
 
-## What still blocks H1
+## What blocks H1 now
 
 - obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence before replacing the K331 reserve with a fixed body
 - obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation
-- qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route
+
+## Dependent H1 work
+
 - regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving
+
+## Later verification — does not block H1
+
+- **H5/H8:** qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route
 
 > Exact current marker: **H1-R2.6**. H1 remains in progress.

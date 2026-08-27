@@ -56,6 +56,16 @@ class H1R2FPVTest(unittest.TestCase):
         self.assertEqual(["akk", "jlcpcb"], self.audit["supplier_responses_pending"])
         self.assertFalse(self.model["result"]["production_acceptance"])
 
+    def test_only_present_blockers_are_owned_by_h1(self):
+        blockers = self.model["current_h1_blockers"]
+        downstream = self.model["downstream_verification"]
+        self.assertEqual(2, len(blockers))
+        self.assertTrue(any("AKK-controlled" in row for row in blockers))
+        self.assertTrue(any("JLCPCB" in row for row in blockers))
+        self.assertEqual({"H3/H6/H8", "H5/H8"}, {row["stage"] for row in downstream})
+        self.assertEqual(blockers, self.audit["current_h1_blockers"])
+        self.assertEqual(downstream, self.audit["downstream_verification"])
+
     def test_exact_linear_mmcx_antenna_covers_k331(self):
         antenna = self.model["antenna"]
         self.assertEqual("TBS5G8MMCXA", antenna["mpn"])

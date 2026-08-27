@@ -478,16 +478,25 @@
       "rule": "8 data lines plus PCLK/VSYNC/HREF and interleaved grounds through the 80-contact mezzanine connector"
     }
   ],
-  "open_gates": [
+  "current_h1_blockers": [
     "obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence before replacing the K331 reserve with a fixed body",
-    "obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation",
-    "qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route",
+    "obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation"
+  ],
+  "current_h1_blockers_ru": [
+    "получить контролируемые AKK максимальные размеры, посадочное место и данные упаковки/reflow до замены резерва K331 точным корпусом",
+    "получить ответ JLCPCB о private/global sourcing K331 либо явно оставить ручную установку после PCBA"
+  ],
+  "dependent_h1_work": [
     "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
   ],
-  "open_gates_ru": [
-    "получить контролируемые AKK максимальные размеры, посадочное место и данные упаковки/reflow до замены резерва K331 точным корпусом",
-    "получить ответ JLCPCB о private/global sourcing K331 либо явно оставить ручную установку после PCBA",
-    "квалифицировать независимую антенну FPV FXP831.09.0100C на собранном корпусе и обеспечить склад до опоры на текущий backorder 16 недель",
+  "dependent_h1_work_ru": [
     "перегенерировать все внешние и внутренние виды и оба разреза после прекращения перемещений корпусов R2"
+  ],
+  "downstream_verification": [
+    {
+      "stage": "H5/H8",
+      "requirement": "qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route",
+      "requirement_ru": "квалифицировать независимую антенну FPV FXP831.09.0100C на собранном корпусе и обеспечить склад до опоры на текущий backorder 16 недель"
+    }
   ]
 }

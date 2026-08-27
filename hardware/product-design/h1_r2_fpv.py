@@ -68,6 +68,14 @@ def audit(model: dict) -> dict:
         errors.append("supplier outreach does not cover both AKK and JLCPCB")
     if any("pending" not in outreach[key].get("status", "") for key in ("akk", "jlcpcb")):
         errors.append("supplier outreach status must remain fail-closed until replies arrive")
+    current_blockers = model["current_h1_blockers"]
+    downstream = model["downstream_verification"]
+    if len(current_blockers) != 2:
+        errors.append("FPV must expose exactly the two present H1 blockers")
+    if any(not row.get("stage") or not row.get("requirement") for row in downstream):
+        errors.append("downstream FPV verification must retain an owning stage and requirement")
+    if any(row["stage"] == "H1" for row in downstream):
+        errors.append("a downstream FPV verification item is still owned by H1")
     return {
         "schema_version": 1,
         "marker": model["marker"],
@@ -85,7 +93,8 @@ def audit(model: dict) -> dict:
         "receiver_alternatives_reviewed": len(alternatives),
         "supplier_outreach_sent_on": outreach["sent_on"],
         "supplier_responses_pending": [key for key in ("akk", "jlcpcb") if "pending" in outreach[key]["status"]],
-        "open_gates": model["open_gates"],
+        "current_h1_blockers": current_blockers,
+        "downstream_verification": downstream,
         "errors": errors,
     }
 
@@ -143,8 +152,12 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f'Антенна продаётся производителем за $6.95 и ставится в комплект после PCBA; JLCPCB для неё также не является сборочным маршрутом. '
             f'{model["supplier_outreach"]["sent_on"]} запросы с точным перечнем механических, assembly и sourcing-свидетельств отправлены AKK и JLCPCB; оба ответа ожидаются.'
         )
-        gates = '\n'.join(f'- {gate}' for gate in model['open_gates'])
-        headings = ('## Результат', '## Фабричная граница', '## Открытые gates')
+        blockers = '\n'.join(f'- {gate}' for gate in model['current_h1_blockers'])
+        downstream = '\n'.join(
+            f'- **{row["stage"]}:** {row["requirement_ru"]}'
+            for row in model['downstream_verification']
+        )
+        headings = ('## Результат', '## Фабричная граница', '## Что блокирует H1 сейчас', '## Последующая проверка — не блокирует H1')
         alternatives_heading = '## Почему K331 остаётся ведущим кандидатом'
         footer = f'> Точный текущий маркер: **{model["marker"]}**. H1 продолжается.'
     else:
@@ -163,8 +176,12 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             'The $6.95 antenna is a post-PCBA kit accessory and likewise not an assembly line item. '
             f'On {model["supplier_outreach"]["sent_on"]}, exact mechanical, assembly and sourcing evidence requests were sent to AKK and JLCPCB; both replies are pending.'
         )
-        gates = '\n'.join(f'- {gate}' for gate in model['open_gates'])
-        headings = ('## Result', '## Factory boundary', '## Open gates')
+        blockers = '\n'.join(f'- {gate}' for gate in model['current_h1_blockers'])
+        downstream = '\n'.join(
+            f'- **{row["stage"]}:** {row["requirement"]}'
+            for row in model['downstream_verification']
+        )
+        headings = ('## Result', '## Factory boundary', '## What blocks H1 now', '## Later verification — does not block H1')
         alternatives_heading = '## Why K331 remains the leading candidate'
         footer = f'> Exact current marker: **{model["marker"]}**. H1 remains in progress.'
     alternatives = '\n'.join(
@@ -193,7 +210,11 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
 
 {headings[2]}
 
-{gates}
+{blockers}
+
+{headings[3]}
+
+{downstream}
 
 {footer}
 '''

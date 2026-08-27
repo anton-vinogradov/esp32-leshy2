@@ -235,11 +235,19 @@
     "errors": []
   },
   "errors": [],
-  "open_gates": [
+  "current_h1_blockers": [
     "obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence before replacing the K331 reserve with a fixed body",
-    "obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation",
-    "qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route",
+    "obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation"
+  ],
+  "dependent_h1_work": [
     "regenerate the complete exterior, inner faces and both sections only after the R2 bodies stop moving"
+  ],
+  "downstream_verification": [
+    {
+      "stage": "H5/H8",
+      "requirement": "qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route",
+      "requirement_ru": "квалифицировать независимую антенну FPV FXP831.09.0100C на собранном корпусе и обеспечить склад до опоры на текущий backorder 16 недель"
+    }
   ],
   "placements": [
     {

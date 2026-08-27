@@ -24,11 +24,14 @@
 
 Производитель показывает K331 в наличии по $29.99; точные поиски JLCPCB по `AKK K331`, `RX5808` и `RTC6715` дали 0 результатов. Поэтому до ответа private/global sourcing это отдельный модуль, а не заявленная фабричная PCBA-позиция. Антенна продаётся производителем за $6.95 и ставится в комплект после PCBA; JLCPCB для неё также не является сборочным маршрутом. 2026-08-27 запросы с точным перечнем механических, assembly и sourcing-свидетельств отправлены AKK и JLCPCB; оба ответа ожидаются.
 
-## Открытые gates
+## Что блокирует H1 сейчас
 
 - obtain AKK-controlled maximum dimensions, land pattern and packaging/reflow evidence
 - obtain a JLCPCB private/global-sourcing response or retain explicit post-PCBA hand installation
-- prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality on assembled hardware
-- qualify FXP831.09.0100C on the assembled enclosure and secure available stock before relying on its current 16-week backorder route
+
+## Последующая проверка — не блокирует H1
+
+- **H3/H6/H8:** доказать прямой 50-омный тракт, запуск MMCX, таблицу каналов, чувствительность, подавление зеркального канала, decoder lock и качество видео до производственного release
+- **H5/H8:** квалифицировать FXP831.09.0100C на собранном корпусе и обеспечить доступный склад до опоры на текущий backorder 16 недель
 
 > Точный текущий маркер: **H1-R2.6**. H1 продолжается.

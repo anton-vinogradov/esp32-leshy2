@@ -240,6 +240,16 @@ def audit(model: dict, base: dict) -> dict:
             if gap < minimum:
                 errors.append(f"opposing clearance {item['id']} / {row['instance']} is {gap:.3f} mm")
     min_cross = min((x["clearance_mm"] for x in cross), default=None)
+    if len(model["current_h1_blockers"]) != 2:
+        errors.append("physical layout must expose exactly the two present H1 blockers")
+    if len(model["current_h1_blockers_ru"]) != len(model["current_h1_blockers"]):
+        errors.append("bilingual current H1 blockers are out of sync")
+    if len(model["dependent_h1_work"]) != 1:
+        errors.append("physical layout must expose the one dependent H1 rendering task")
+    if len(model["dependent_h1_work_ru"]) != len(model["dependent_h1_work"]):
+        errors.append("bilingual dependent H1 work is out of sync")
+    if any(row.get("stage") == "H1" for row in model["downstream_verification"]):
+        errors.append("a downstream physical verification item is still owned by H1")
     mmcx_service = mmcx_service_audit(model, base, new)
     errors.extend(mmcx_service["errors"])
     return {
@@ -257,7 +267,9 @@ def audit(model: dict, base: dict) -> dict:
         "opposing_overlaps": cross,
         "mmcx_service": mmcx_service,
         "errors": errors,
-        "open_gates": model["open_gates"],
+        "current_h1_blockers": model["current_h1_blockers"],
+        "dependent_h1_work": model["dependent_h1_work"],
+        "downstream_verification": model["downstream_verification"],
         "placements": [
             {
                 "id": x["item"]["id"],
@@ -384,14 +396,23 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
         f'<text x="{audit_x + 44}" y="274" font-family="sans-serif" font-size="11" fill="#526076">50 Ω RF PCB trace</text>',
         f'<line x1="{audit_x}" y1="294" x2="{audit_x + 34}" y2="294" stroke="#7c3aed" stroke-width="3"/>',
         f'<text x="{audit_x + 44}" y="298" font-family="sans-serif" font-size="11" fill="#526076">75 Ω CVBS PCB trace</text>',
-        f'<text x="{audit_x}" y="344" font-family="sans-serif" font-size="15" font-weight="700" fill="#9a3412">Still open</text>',
+        f'<text x="{audit_x}" y="344" font-family="sans-serif" font-size="15" font-weight="700" fill="#9a3412">Blocks H1 now</text>',
     ])
     y = 370
-    for gate in model["open_gates"]:
+    for gate in model["current_h1_blockers"]:
         gate_lines = textwrap.wrap(gate, width=38, break_long_words=False, break_on_hyphens=False)
         for offset, line in enumerate(gate_lines):
             prefix = "• " if offset == 0 else "  "
             out.append(f'<text x="{audit_x}" y="{y}" font-family="sans-serif" font-size="10.5" fill="#9a3412">{esc(prefix + line)}</text>')
+            y += 15
+        y += 6
+    out.append(f'<text x="{audit_x}" y="{y + 10}" font-family="sans-serif" font-size="14" font-weight="700" fill="#526076">Dependent H1 work</text>')
+    y += 36
+    for gate in model["dependent_h1_work"]:
+        gate_lines = textwrap.wrap(gate, width=38, break_long_words=False, break_on_hyphens=False)
+        for offset, line in enumerate(gate_lines):
+            prefix = "• " if offset == 0 else "  "
+            out.append(f'<text x="{audit_x}" y="{y}" font-family="sans-serif" font-size="10.5" fill="#526076">{esc(prefix + line)}</text>')
             y += 15
         y += 6
     out.append('</svg>')
@@ -460,7 +481,9 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         intro = "Это текущий проверяемый результат H1, а не журнал решений и не разрешение начинать KiCad."
         state = "В принятую 75×150-мм систему координат добавлены второй Hub RP, активные корпуса Airband, расширенная 24×11-мм ячейка настройки его фильтра, видеодекодер FPV и сменная зона ведущего серийного кандидата AKK K331. Резерв не превращён в точный корпус до получения контролируемых размеров AKK."
         audit_heading = "## Что уже проверено"
-        open_heading = "## Что ещё блокирует H1"
+        open_heading = "## Что блокирует H1 сейчас"
+        dependent_heading = "## Зависимая работа H1"
+        downstream_heading = "## Последующая проверка — не блокирует H1"
         factory_heading = "## Точные фабричные позиции"
         bullets = [
             f'- Коллизии корпусов на одной стороне: `{len(result["same_face_collisions"])}`.',
@@ -473,13 +496,17 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             '- Для Airband получен [номинально проходящий, но открытый по stress синтез](h1-airband-filter.ru.md); увеличенная ячейка содержит альтернативные/DNP-площадки, H3 проверяет bounded-оценку, H6 — routed extraction до заказа, H8 — финальный VNA-state.',
         ]
         table_header = "| Роль | Точный MPN | JLCPCB | Статус выбора | Текущий маршрут |\n|---|---|---|---|---|"
-        gates = model["open_gates_ru"]
+        blockers = model["current_h1_blockers_ru"]
+        dependent = model["dependent_h1_work_ru"]
+        downstream = [f'**{row["stage"]}:** {row["requirement_ru"]}' for row in model["downstream_verification"]]
     else:
         title = f'# {model["marker"]} · physical re-layout'
         intro = "This is the current verified H1 result, not a decision diary and not authorization to start KiCad."
         state = "The second Hub RP, Airband active bodies, an expanded 24 × 11 mm tuning cell for its filter, the FPV video decoder and a replaceable bay for the leading serial AKK K331 candidate are placed in the accepted 75 × 150 mm coordinate system. The reserve is not promoted to a fixed body before AKK-controlled dimensions exist."
         audit_heading = "## Already verified"
-        open_heading = "## What still blocks H1"
+        open_heading = "## What blocks H1 now"
+        dependent_heading = "## Dependent H1 work"
+        downstream_heading = "## Later verification — does not block H1"
         factory_heading = "## Exact factory parts"
         bullets = [
             f'- Same-face body collisions: `{len(result["same_face_collisions"])}`.',
@@ -492,7 +519,9 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             '- Airband now has a [nominally passing but stress-open synthesis](h1-airband-filter.md); the enlarged cell carries alternate/DNP pads, H3 checks bounded estimates, H6 routed extraction before order and H8 the final VNA state.',
         ]
         table_header = "| Role | Exact MPN | JLCPCB | Selection status | Current route |\n|---|---|---|---|---|"
-        gates = model["open_gates"]
+        blockers = model["current_h1_blockers"]
+        dependent = model["dependent_h1_work"]
+        downstream = [f'**{row["stage"]}:** {row["requirement"]}' for row in model["downstream_verification"]]
     lines = [
         title,
         "",
@@ -515,7 +544,11 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         status = row.get("selection_status_ru", row["selection_status"]) if ru else row["selection_status"]
         lines.append(f'| {role} | `{row["mpn"]}` | [`{row["jlcpcb_part"]}`]({row["url"]}) | {status} | {route} |')
     lines.extend(["", open_heading, ""])
-    lines.extend(f"- {gate}" for gate in gates)
+    lines.extend(f"- {gate}" for gate in blockers)
+    lines.extend(["", dependent_heading, ""])
+    lines.extend(f"- {gate}" for gate in dependent)
+    lines.extend(["", downstream_heading, ""])
+    lines.extend(f"- {gate}" for gate in downstream)
     marker = f'> Точный текущий маркер: **{model["marker"]}**. H1 продолжается.' if ru else f'> Exact current marker: **{model["marker"]}**. H1 remains in progress.'
     lines.extend(["", marker, ""])
     return "\n".join(lines)
