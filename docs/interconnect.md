@@ -4,6 +4,8 @@
 
 The two boards use one exact 80-contact pair at the working 11-mm board spacing: `Hirose FX8C-80P-SV1(92)` on the UI board and `Hirose FX8C-80S-SV5(92)` on the RF/power board. Both parts use 0.6-mm pitch, are rated for 8 Gbit/s and up to 0.4 A per contact; the connector is not an enclosure fastener.
 
+Both M1 halves are straight SMT connectors, not through-hole pin headers: all 80 electrical contacts solder only to pads on the inner board faces. The positioning bosses enter non-plated locating holes but are not soldered leads, so no pins protrude through the outer UI face above the buttons. Four aligned board standoffs and screws prevent board flex and solder-joint peel; M1 provides electrical connection and alignment but does not act as an enclosure beam. The rated mating life is 50 cycles.
+
 ## UI/control board
 
 - Compute: `ESP32-S3-WROOM-1U-N16R8` owns UI, display, storage and audio; `ESP32-C5-WROOM-1U-N8R8` owns native 2.4/5-GHz radio and IR.

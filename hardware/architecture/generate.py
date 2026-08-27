@@ -2772,6 +2772,16 @@ def render_public_interconnect(
             f"ток одного контакта — до {connector['rated_current_per_contact_a']:g} А; "
             "разъём не является механическим крепежом корпуса."
         )
+        mounting_note = (
+            "Обе половины M1 — прямые SMT-разъёмы, а не сквозные гребёнки: все "
+            "80 электрических контактов паяются только к площадкам внутренних "
+            "сторон плат. Позиционирующие выступы входят в неплакированные "
+            "посадочные отверстия, но не являются паяными выводами; на наружной "
+            "UI-стороне над кнопками не остаётся торчащих ножек. Изгиб и отрыв "
+            "пайки предотвращают четыре совмещённые стойки/винта плат: M1 задаёт "
+            "электрическое соединение и точное совмещение, но не несёт изгибающую "
+            "нагрузку корпуса. Паспортный ресурс пары — 50 циклов сочленения."
+        )
         ui_label = "UI/control-плата"
         rf_label = "RF/power-плата"
         principles = "Почему такое разделение"
@@ -2826,6 +2836,16 @@ def render_public_interconnect(
             f"up to {connector['rated_current_per_contact_a']:g} A per contact; the connector is not "
             "an enclosure fastener."
         )
+        mounting_note = (
+            "Both M1 halves are straight SMT connectors, not through-hole pin "
+            "headers: all 80 electrical contacts solder only to pads on the inner "
+            "board faces. The positioning bosses enter non-plated locating holes "
+            "but are not soldered leads, so no pins protrude through the outer UI "
+            "face above the buttons. Four aligned board standoffs and screws prevent "
+            "board flex and solder-joint peel; M1 provides electrical connection and "
+            "alignment but does not act as an enclosure beam. The rated mating life "
+            "is 50 cycles."
+        )
         ui_label = "UI/control board"
         rf_label = "RF/power board"
         principles = "Why the split is arranged this way"
@@ -2870,7 +2890,7 @@ def render_public_interconnect(
             f"Local safety: `{mpn('safety_controller')}`, `{mpn('safety_watchdog')}`, FAULT_KILL latch, three thermal zones, hardware gates and physical transmit evidence.",
         )
 
-    lines = [title, "", navigation, "", intro, "", f"## {ui_label}", ""]
+    lines = [title, "", navigation, "", intro, "", mounting_note, "", f"## {ui_label}", ""]
     lines.extend(f"- {item}" for item in ui_groups)
     lines += ["", f"## {rf_label}", ""]
     lines.extend(f"- {item}" for item in rf_groups)

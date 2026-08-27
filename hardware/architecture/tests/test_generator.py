@@ -203,6 +203,17 @@ class ArchitectureValidationTests(unittest.TestCase):
             )
             self.assertIn("FX8C-80P-SV1(92)", rendered)
             self.assertIn("FX8C-80S-SV5(92)", rendered)
+            self.assertIn("SMT", rendered)
+            self.assertIn(
+                "не сквозные гребёнки" if language else "not through-hole pin headers",
+                rendered,
+            )
+            self.assertIn(
+                "четыре совмещённые стойки/винта"
+                if language
+                else "Four aligned board standoffs and screws",
+                rendered,
+            )
             self.assertIn("| `80` |", rendered)
 
     def test_exact_ten_external_sma_bodies_do_not_regress(self):
