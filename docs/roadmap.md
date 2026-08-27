@@ -27,7 +27,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Principle diagrams on the site | H0-R2 functional map, H1-R2.13 complete physical views and FPV/MMCX path, and H1-R2.4 filter/rail diagrams are current; the generated physical views remain explicitly in progress until the K331 boundary stops moving |
 | Production ECAD schematic | ⏳ R1 sheets retained; R2 work waits for the H1-R2 placement and rail contract |
 | Electrical and transient evidence | ⏳ R1 evidence retained; full R2 H3 rerun follows R2 H2 |
-| Firmware interlock | ▶️ firmware F0-R2.4 has reviewed all six-domain contracts and five-layer execution gates; only S3 has an exact emulator, both RP paths are explicit surrogates and F0 closure audit/report remains |
+| Firmware interlock | ✅ [firmware F0-R2 reviewed](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f0-product-contracts-report.md): all six-domain contracts and five evidence layers are coherent; F1-R2.0 portable rebaseline is current, while exact execution remains downstream |
 | Joined pre-layout gate | ⏳ R1 H4 retained; R2 H4 waits for R2 H3 and firmware R2 evidence |
 | KiCad schematic work | ⏳ no R2 sheet is accepted before H1-R2 closes |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
@@ -402,8 +402,8 @@ flowchart TD
 ```
 
 The former H1–H5 reviews are reusable R1 evidence, not statuses of this R2
-sequence. Firmware is independently rebuilding its six-domain contract at
-F0-R2; target emulator/dev-board evidence must be current before H7.
+sequence. Firmware has reviewed its six-domain contract at F0-R2 and is now at
+F1-R2.0; target emulator/dev-board evidence must be current before H7.
 Prototype PCB submission is allowed at H7 only after H6 acceptance, inherited
 F3 closure through H4 and explicit order approval. Emulation does not replace
 physical bring-up, but fabrication cannot be the first execution of the code.

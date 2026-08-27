@@ -35,7 +35,9 @@
 > feasibility audit and a larger tuning cell. The new 3V3_MAIN cell is now
 > placed and accepts 3.75 A continuous / 4.25 A step. Complete current physical
 > views are generated, including the corrected fourth independent recovery set;
-> their K331 boundary, R2 schematics and firmware contracts remain in progress.
+> their K331 boundary and R2 schematics remain in progress. Firmware
+> [F0-R2 contracts are reviewed](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f0-product-contracts-report.md);
+> portable implementation is now at F1-R2.0.
 > R1 H1–H5 remains evidence only.
 > Purchasing, PCB routing and fabrication remain blocked.
 
