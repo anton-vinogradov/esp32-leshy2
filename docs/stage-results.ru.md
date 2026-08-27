@@ -20,9 +20,9 @@
 <a id="h1"></a>
 ## ⭐ H1 · Физический дизайн устройства
 
-**Статус:** ▶️ сейчас `H1-R2.12`; результат R1 сохранён как evidence, а не как текущая приёмка.
+**Статус:** ▶️ сейчас `H1-R2.13`; результат R1 сохранён как evidence, а не как текущая приёмка.
 
-- [Текущее физическое размещение H1-R2.12](h1-r2-physical-layout.ru.md) — новые
+- [Текущее физическое размещение H1-R2.13](h1-r2-physical-layout.ru.md) — новые
   Hub, его четвёртый независимый набор USB/recovery, Airband и корпуса/резервы
   аналогового FPV в общей системе координат, с генерируемыми проверками
   коллизий, встречного зазора и точного service MMCX.
@@ -34,11 +34,16 @@
   [разрезы внешних зон](images/h1-r2-sandwich-sections.svg).
 - [Точный вид установки/service MMCX](images/h1-r2-mmcx-service.svg): исправленная
   привязка к кромке, keepout выводов wave soldering и коридоры стенки/штекера.
-- [Машинный аудит размещения H1-R2.12](../hardware/product-design/generated/H1-R2-placement-audit.json).
+- [Машинный аудит размещения H1-R2.13](../hardware/product-design/generated/H1-R2-placement-audit.json).
 - [Функциональный тракт аналогового FPV](h1-r2-fpv.ru.md) и его
   [машинный аудит](../hardware/product-design/generated/H1-R2-fpv-audit.json):
   распиновка/питание K331, точный MMCX-тракт, точная антенна TBS и живое
   отклонение недоступных карточек RTC6715/RX5808 как менее рискованных замен.
+- Ответ фабрики JLCPCB: K331 отсутствует в Parts Library и Global Sourcing,
+  прямой замены не найдено, выбран условный сборочный маршрут оригинальной
+  поставки AKK через Consigned Parts. В H1 остаётся один контролируемый
+  production-пакет AKK; application, финальный DFM и рассмотрение фабричного
+  function test назначены H5/H6/H7.
 - [Проверка реализуемости фильтра Airband](h1-airband-filter.ru.md) и её
   [машинный аудит](../hardware/product-design/generated/H1-Airband-filter-audit.json).
 - [Rail/thermal-архитектура шести доменов](h1-r2-power-thermal.ru.md) и её

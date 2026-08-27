@@ -3,7 +3,7 @@
 [Русский](roadmap.ru.md) · [Home](../README.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶️ Current hardware boundary: H1-R2.12 — K331 remains primary after the full-coverage fallback search.**
+> **▶️ Current hardware boundary: H1-R2.13 — K331 remains primary after the full-coverage fallback search.**
 > R1 H1–H5 remain reusable evidence, not current acceptance. There is no R2 PCB layout or authorized order.
 
 Status last reconciled: **27 August 2026**. This is the hardware repository's
@@ -23,8 +23,8 @@ results appear here only where they are prerequisites of a hardware gate.
 | Area | Actual state |
 |---|---|
 | Product requirements and functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): six domains, direct S3 UI/display/FPV and mandatory receive-only Airband |
-| Physical product design | ▶️ [H1-R2.12](h1-r2-physical-layout.md): complete current exterior, mirrored inner-face, service, antenna-edge and section views are generated; the recovered Hub path gives all four compute chips independent USB, RESET/BOOT and DBG10; only the controlled K331 body and installation route still block H1 |
-| Principle diagrams on the site | H0-R2 functional map, H1-R2.12 complete physical views and FPV/MMCX path, and H1-R2.4 filter/rail diagrams are current; the generated physical views remain explicitly in progress until the K331 boundary stops moving |
+| Physical product design | ▶️ [H1-R2.13](h1-r2-physical-layout.md): complete current exterior, mirrored inner-face, service, antenna-edge and section views are generated; the recovered Hub path gives all four compute chips independent USB, RESET/BOOT and DBG10; only one controlled AKK production package still blocks H1 |
+| Principle diagrams on the site | H0-R2 functional map, H1-R2.13 complete physical views and FPV/MMCX path, and H1-R2.4 filter/rail diagrams are current; the generated physical views remain explicitly in progress until the K331 boundary stops moving |
 | Production ECAD schematic | ⏳ R1 sheets retained; R2 work waits for the H1-R2 placement and rail contract |
 | Electrical and transient evidence | ⏳ R1 evidence retained; full R2 H3 rerun follows R2 H2 |
 | Firmware interlock | ▶️ firmware F0-R2.0 must replace the five-image R1 boundary with six domains and the new Hub/Airband contracts |
@@ -39,11 +39,11 @@ Principle diagrams explain **what connects to what**. Production ECAD must add
 exact symbols, contacts, values, rails, protection, footprints and ERC
 evidence. PCB placement and routing begin only after the earlier gates close.
 
-## Current H1-R2.12 and retained R1 evidence
+## Current H1-R2.13 and retained R1 evidence
 
-<!-- current-substep: H1-R2.12 -->
+<!-- current-substep: H1-R2.13 -->
 
-**Exact marker: `H1-R2.12`** — the [current physical result](h1-r2-physical-layout.md)
+**Exact marker: `H1-R2.13`** — the [current physical result](h1-r2-physical-layout.md)
 places the new Hub, Airband chain, analog-FPV decoder/receiver reserve and exact
 side MMCX in the accepted coordinate system. The connector now uses its exact
 manufacturer body and mounting geometry; the exact FPV 1.8-V LDO is accepted
@@ -67,10 +67,12 @@ on each port and antenna make the 13-piece kit unambiguous; colour is redundant.
 The [FPV path result](h1-r2-fpv.md) accepts the manufacturer-hosted 331RX
 application circuit, complete 14-pin function map and 24-channel table,
 K331 functional and reserved-pin fit,
-one direct 50-ohm trace without U.FL, and exact linear `TBS5G8MMCXA`. K331
-remains a physical reserve until controlled maximum dimensions and a JLCPCB sourcing or
-explicit post-PCBA installation route exist. Exact requests were sent to AKK and
-JLCPCB on 27 August 2026; both replies are pending and no gate is pre-closed.
+one direct 50-ohm trace without U.FL, and exact linear `TBS5G8MMCXA`. JLCPCB
+confirmed that K331 is absent from Parts Library and Global Sourcing, found no
+direct replacement and accepts genuine AKK modules through Consigned Parts.
+K331 remains a physical reserve until one AKK-controlled production package
+provides maximum XYZ, land pattern and packaging/soldering/reflow evidence.
+The same package is the prerequisite for the consignment application.
 Controlled `AWM666V RX` geometry and land data fit the same reserve, but its
 seven-channel 5725–5875-MHz plan and zero exact JLCPCB search results keep it a
 degraded contingency rather than an automatic replacement.
@@ -79,7 +81,9 @@ The full-coverage search is likewise closed without a replacement: controlled
 on RF coverage; physically compatible `MM238R-MCU` has no controlled current
 manufacturer route and is out of stock/discontinued. Exact JLCPCB searches
 return zero results for both.
-These are the two present H1 blockers. Assembled RF/video performance and the
+This is the one present H1 blocker. Consigned Parts approval, final
+Gerber/BOM/CPL DFM, the optional 5-V/channel-select/RSSI/CVBS factory function
+test, assembled RF/video performance and the
 Taoglas fallback remain explicit H3/H5/H6/H8 verification rather than being
 misreported as work that can close during physical design.
 The live JLCPCB recheck found `RichWave RTC6715` `C7464354` and generic
@@ -98,7 +102,7 @@ groups: Airband is worst at 2.823 A, while the placed `TPS566231PRQFR` cell
 accepts 3.75 A continuous / 4.25 A step and has a guaranteed 4.340-A eFuse
 threshold. H3 owns effective-capacitance, switching-loss, load-step and
 enclosure-thermal proof. The generated complete views remain in progress, not
-reviewed, until the K331 controlled body and installation route stop moving.
+reviewed, until the K331 reserve becomes a controlled fixed body.
 R2 ECAD remains blocked.
 
 The following detailed H1–H5 material is retained R1 evidence. The [physical residual map](component-evidence-map.md)
@@ -410,7 +414,7 @@ A production order is possible only after H9.
 | Stage | Status | Stage output | Exit criterion |
 |---|---|---|---|
 | **H0. Product requirements and functional architecture** | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Six compute domains, direct S3 UI/display/FPV, independent Hub fan-out and mandatory receive-only Airband | Every function has one owner; S3 and Hub GPIO budgets close; transport, quiet-state and firmware boundaries are explicit |
-| **H1. Physical product design** | ▶️ Current `H1-R2.12` | Regenerated exterior/inner faces, sections, assembly sequence, exact body envelopes, RF paths and ≥3.5-A continuous / ≥4.0-A step power contract | No component, fastener, silkscreen, antenna, accessory or cross-board collision; every R2 body has an exact MPN or explicit qualified replaceable boundary; the user accepts the mockup |
+| **H1. Physical product design** | ▶️ Current `H1-R2.13` | Regenerated exterior/inner faces, sections, assembly sequence, exact body envelopes, RF paths and ≥3.5-A continuous / ≥4.0-A step power contract | No component, fastener, silkscreen, antenna, accessory or cross-board collision; every R2 body has an exact MPN or explicit qualified replaceable boundary; the user accepts the mockup |
 | **H2. Production ECAD schematic** | ⏳ Waiting for H1-R2 | R2 sheets and machine-readable HW↔FW contract; R1 sheets remain evidence only | Exact symbol/footprint/pin/net/value; quiet/recovery/safety reviewed; firmware consumes the R2 contract without invented pins |
 | **H3. Virtual electrical verification** | ⏳ Waiting for H2-R2 | Complete R2 electrical, RF, power, timing and thermal rerun | All six-domain states and Airband/FPV coexistence pass before fabrication |
 | **H4. Joined pre-layout gate** | ⏳ Waiting for H3-R2 and firmware R2 | One current mechanics/ECAD/electrical/firmware review | No virtual blocker remains and every physical residual owns a measurement |
@@ -440,7 +444,7 @@ A production order is possible only after H9.
 
 ## Next action
 
-The current boundary is `H1-R2.12`. The second Hub RP, its fourth independent
+The current boundary is `H1-R2.13`. The second Hub RP, its fourth independent
 USB/RESET/BOOT/DBG10 recovery path, exact Airband active parts, FPV decoder/K331
 reserve, dimensioned side MMCX, exact FPV LDO and exact TBS5G8MMCXA antenna have
 passed their present functional/body/supply boundaries. Complete current exterior,
@@ -448,7 +452,8 @@ mirrored inner-face, service, antenna-edge and section views are generated and
 remain explicitly in progress.
 The main rail is now a placed
 3.75-A continuous / 4.25-A step architecture with all legal groups enumerated.
-Next, obtain the controlled K331 maximum body/land data and close its JLCPCB
-private/global-sourcing or explicit post-PCBA installation route; the same generated
-views can then be promoted to reviewed. H3 later proves the
+Next, obtain the one controlled AKK K331 production package with maximum XYZ,
+land pattern and packaging/soldering/reflow data; the same generated views can
+then be promoted to reviewed. The selected Consigned Parts application and final
+factory DFM follow in H5/H6/H7. H3 later proves the
 dynamic and enclosure-thermal power gates. PCB routing, quote/reservation and every order remain blocked.

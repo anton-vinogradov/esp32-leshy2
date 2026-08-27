@@ -1,6 +1,6 @@
-<svg data-marker="H1-R2.12" data-review-status="in-progress" xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" data-view="top-edge" data-look-direction="antenna-edge-to-bottom" data-rf-mounting="opposed-outer-faces" data-x-scale-px-per-mm="8.0" data-z-scale-px-per-mm="8.0">
+<svg data-marker="H1-R2.13" data-review-status="in-progress" xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" data-view="top-edge" data-look-direction="antenna-edge-to-bottom" data-rf-mounting="opposed-outer-faces" data-x-scale-px-per-mm="8.0" data-z-scale-px-per-mm="8.0">
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="30.0" y="36.0" font-family="sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.12 antenna-edge view</text>
+<text x="30.0" y="36.0" font-family="sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.13 antenna-edge view</text>
 <text x="30.0" y="62.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Looking along board +Y. Horizontal is board X; vertical is front-to-rear depth Z.</text>
 <text x="30.0" y="84.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Board Y is collapsed in this orthographic projection; the rear view separately proves Cap/battery longitudinal clearance.</text>
 <text x="96.0" y="150.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="end" fill="#1d4ed8">FRONT</text>

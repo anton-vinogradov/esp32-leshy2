@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.12",
+  "marker": "H1-R2.13",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "new_fixed_body_count": 21,
@@ -241,13 +241,17 @@
   },
   "errors": [],
   "current_h1_blockers": [
-    "obtain AKK-controlled maximum XYZ dimensions, pad pitch/land pattern and packaging/reflow evidence before replacing the K331 reserve with a fixed body",
-    "obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation"
+    "obtain one AKK-controlled production package with maximum XYZ dimensions, pad pitch/land pattern and packaging/soldering/reflow evidence before replacing the K331 reserve with a fixed body and submitting the Consigned Parts application"
   ],
   "dependent_h1_work": [
-    "promote the generated complete R2 exterior, mirrored inner faces and four real section planes from in-progress to reviewed only after the K331 body and installation route stop moving"
+    "promote the generated complete R2 exterior, mirrored inner faces and four real section planes from in-progress to reviewed only after the K331 reserve becomes a controlled fixed body"
   ],
   "downstream_verification": [
+    {
+      "stage": "H5/H6/H7",
+      "requirement": "submit the genuine AKK K331 Consigned Parts application, pass final Gerber/BOM/CPL DFM and obtain feasibility plus quotation for the 5-V/channel-select/RSSI/CVBS function test",
+      "requirement_ru": "подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/RSSI/CVBS"
+    },
     {
       "stage": "H5/H8",
       "requirement": "qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route",

@@ -12,17 +12,19 @@
 
 </div>
 
-> **Now: H1-R2.12 · K331 remains primary after the full-coverage fallback search; physical and factory gates remain.**
+> **Now: H1-R2.13 · K331 remains primary; one controlled AKK production-package gate remains.**
 > [H0-R2](docs/h0-r2-functional-architecture.md) adds a second `SC1512-A4`
 > Hub, direct S3 analog-FPV capture and mandatory receive-only Airband AM.
 > GPIO ownership and the factory-first Airband active BOM are closed. The Hub,
 > Airband bodies and a replaceable K331 FPV receiver bay now have a collision-tested
 > physical projection. Official AKK-hosted media now confirms the K331
 > application circuit, all 14 pin functions and the 24-channel table. K331
-> fits the reserved pins and power; its controlled
-> body drawing and factory route remain open. Exact evidence requests were sent
-> to AKK and JLCPCB on 27 August; both replies are pending. The exact linear FPV antenna is
-> selected. Those two external items are the only present H1 blockers; assembled
+> fits the reserved pins and power. JLCPCB confirmed that it is absent from Parts
+> Library and Global Sourcing, found no direct replacement and accepts genuine
+> AKK modules through Consigned Parts. The remaining H1 blocker is one official
+> AKK production package covering maximum XYZ, land pattern and soldering/reflow;
+> it also unlocks the consignment application. The exact linear FPV antenna is
+> selected. Assembled
 > RF/video proof and qualification of the Taoglas fallback remain mandatory at
 > their downstream H3/H5/H6/H8 owners. The new public `RTC6715`/`RX5808`
 > cards have zero stock and no purchasable module route; the bare RTC6715 also
@@ -83,16 +85,16 @@ See the [hardware architecture](docs/hardware.md) and
 
 ## Target device mockup
 
-The compact diagram below is the current R2 architecture. H1-R2.12 now
+The compact diagram below is the current R2 architecture. H1-R2.13 now
 generates the complete current exterior, both correctly mirrored inner faces,
 the four-domain service surface, the antenna edge and four real section planes.
-They remain in progress until the K331 body and installation route close.
+They remain in progress until the K331 reserve becomes a controlled fixed body.
 
 ![Leshy2 H0-R2 functional architecture](docs/images/h0-r2-functional-architecture.svg)
 
-![Leshy2 H1-R2.12 complete inner placement](docs/images/h1-r2-inner-complete.svg)
+![Leshy2 H1-R2.13 complete inner placement](docs/images/h1-r2-inner-complete.svg)
 
-![Leshy2 H1-R2.12 MMCX placement and service proof](docs/images/h1-r2-mmcx-service.svg)
+![Leshy2 H1-R2.13 MMCX placement and service proof](docs/images/h1-r2-mmcx-service.svg)
 
 ![Leshy2 H1-R2.4 rail and thermal architecture](docs/images/h1-r2-power-thermal.svg)
 
@@ -147,7 +149,7 @@ drawings, schematics, contracts and checks.
 | Stage | Status | Result |
 |---|---|---|
 | H0 · Product requirements and functional architecture | ✅ R2 Reviewed | [H0-R2 report](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶️ Current: H1-R2.12 K331 primary after the full-coverage fallback search** | [Current result](docs/h1-r2-physical-layout.md) |
+| **H1 · Physical product design** | **▶️ Current: H1-R2.13 K331 primary after the full-coverage fallback search** | [Current result](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ⏳ R1 evidence retained; waiting for R2 H1 | [H2 results](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ rerun after R2 H2 | [R1 report](docs/h3-acceptance.md) |
 | H4 · Joined pre-layout gate | ⏳ rerun after R2 H3 and firmware R2 contract | [R1 report](docs/h4-prelayout-gate-report.md) |
@@ -161,7 +163,7 @@ Every completed top-level `H*` phase receives a separate readable result report
 linked from this table. Internal substeps update the exact marker but do not
 create separate global reports.
 
-**Hardware is at H1-R2.12.** H0-R2 fixes six compute domains, 33/33 used S3
+**Hardware is at H1-R2.13.** H0-R2 fixes six compute domains, 33/33 used S3
 GPIO, 45/48 used Hub GPIO and the receive-only Airband frequency plan. The
 incremental Airband active BOM is live-checked at JLCPCB and costs `$20.2038`
 before passives/assembly. The initial R2 placement adds four exact Airband
@@ -190,8 +192,10 @@ cell. Twelve legal group states peak at 2.823 A; the accepted envelope is
 zero new body collision. AKK-hosted media confirms the 331RX application
 circuit, all 14 K331 pin functions and the 24-channel table; `AKK K331` passes
 the reserved Hub pin and 5-V budget fit, while `TBS5G8MMCXA` is the exact 13th kit antenna for the keyed
-`FPV RX 5.8G` MMCX port. K331 remains a physical reserve until AKK-controlled
-dimensions and a JLCPCB private/global-sourcing or explicit hand-install route exist.
+`FPV RX 5.8G` MMCX port. JLCPCB confirmed there is no Parts Library, Global
+Sourcing or direct-replacement route for K331 and selected genuine AKK supply
+through Consigned Parts. K331 remains a physical reserve only until one
+AKK-controlled maximum-XYZ, land-pattern and soldering/reflow package exists.
 The manufacturer-documented `AWM666V RX` fits the same 30×24×4-mm bay and power
 budget as a contingency, but its seven-channel 5725–5875-MHz plan is a material
 reduction from K331 and exact JLCPCB search returns no result, so it is not promoted.
@@ -200,8 +204,9 @@ The full-coverage search also found no production replacement: controlled
 channel table; `MM238R-MCU` fits function and space but has no controlled current
 manufacturer route and was found only out of stock or discontinued. Exact
 JLCPCB searches return zero results for both.
-The exact mechanical/assembly and sourcing requests were sent to AKK and JLCPCB
-on 27 August 2026; neither pending reply closes a gate.
+The exact mechanical/assembly request remains with AKK. The JLCPCB reply moves
+consignment application, final Gerber/BOM/CPL DFM and the optional 5-V/channel-select/RSSI/CVBS
+function test to H5/H6/H7 rather than leaving them as H1 blockers.
 The exact `DL-MMCX-KWE-90` is now registered correctly across the right PCB
 edge, its 1.2-mm nominal solder-tail projection meets no opposing body, and
 minimum 4.5-mm wall / Ø12×20-mm plug-service keepouts are machine checked.
@@ -209,16 +214,16 @@ JLCPCB identifies it as a wave-soldered Economic/Standard PCBA part; received
 mating, final wall tolerance, retention and strain remain later H5 evidence.
 H3 still proves effective capacitance, load-step,
 switching loss and enclosure thermal behaviour. The complete physical views stay
-in progress until the K331 controlled body and installation route close. No order
+in progress until the K331 reserve becomes a controlled fixed body. No order
 is authorized.
 
-<!-- current-substep: H1-R2.12 -->
+<!-- current-substep: H1-R2.13 -->
 
-**Exact marker: `H1-R2.12`** — the [current placement](docs/h1-r2-physical-layout.md),
+**Exact marker: `H1-R2.13`** — the [current placement](docs/h1-r2-physical-layout.md),
 [power result](docs/h1-r2-power-thermal.md) and [FPV result](docs/h1-r2-fpv.md)
-pass their machine audits. Next, obtain controlled K331 body/land data and close
-its JLCPCB sourcing or explicit post-PCBA installation route; the generated views
-can then be promoted to reviewed. This marker, its machine state and both language
+pass their machine audits. Next, obtain the one controlled K331 production package
+covering maximum XYZ, land pattern and soldering/reflow; the generated views can
+then be promoted to reviewed. This marker, its machine state and both language
 pages move together.
 
 <details>

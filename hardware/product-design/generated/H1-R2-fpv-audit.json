@@ -31,14 +31,17 @@
     "pinout"
   ],
   "supplier_responses_pending": [
-    "akk",
-    "jlcpcb"
+    "akk"
   ],
   "current_h1_blockers": [
-    "obtain AKK-controlled maximum XYZ dimensions, pad pitch/land pattern and packaging/reflow evidence",
-    "obtain a JLCPCB private/global-sourcing response or retain explicit post-PCBA hand installation"
+    "obtain one AKK-controlled production package with maximum XYZ dimensions, pad pitch/land pattern and packaging/soldering/reflow evidence for the fixed body and Consigned Parts application"
   ],
   "downstream_verification": [
+    {
+      "stage": "H5/H6/H7",
+      "requirement": "submit the genuine AKK K331 Consigned Parts application, pass final Gerber/BOM/CPL DFM and obtain feasibility plus quotation for the 5-V/channel-select/RSSI/CVBS function test",
+      "requirement_ru": "подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/RSSI/CVBS"
+    },
     {
       "stage": "H3/H6/H8",
       "requirement": "prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality before production release",

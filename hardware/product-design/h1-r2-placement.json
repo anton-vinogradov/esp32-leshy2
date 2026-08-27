@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.12",
+  "marker": "H1-R2.13",
   "checked_on": "2026-08-27",
   "purpose": "Place the new R2 Hub, Airband and analog-FPV bodies in the accepted 75 x 150 mm two-board coordinate system before any R2 KiCad work.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -21,6 +21,20 @@
     "reserve": "a dashed physical allocation, never a component or accepted MPN",
     "silkscreen": "none of the inner-face annotations in the generated engineering drawing are PCB silkscreen",
     "antenna_identification": "Every outward RF port keeps a readable role/band label and gains a compact kit code. A post-assembly colour collar around the connector base and a durable heat-shrink flag on the matching antenna repeat that code; colour is redundant and is never the sole identifier."
+  },
+  "k331_factory_route": {
+    "response_date": "2026-08-27",
+    "responder": "JLCPCB support",
+    "exact_parts_library": "unavailable",
+    "global_sourcing": "unavailable",
+    "confirmed_drop_in_alternative": null,
+    "selected_route": "JLCPCB Consigned Parts using genuine K331 purchased from AKK; approval required before shipment",
+    "selected_route_ru": "JLCPCB Consigned Parts с оригинальным K331, купленным у AKK; одобрение требуется до отправки деталей",
+    "assembly_gate": "submit the AKK official datasheet with recommended land pattern, mechanical dimensions, pin definitions, soldering/reflow and special assembly requirements; final DFM follows Gerber/BOM/CPL and order review",
+    "assembly_gate_ru": "подать официальный datasheet AKK с рекомендованной посадкой, механическими размерами, распиновкой, soldering/reflow и особыми требованиями сборки; финальный DFM выполняется по Gerber/BOM/CPL и заказу",
+    "function_test_route": "JLCPCB will review a procedure that applies 5 V, drives the three channel-select inputs and checks RSSI plus CVBS lock/output; feasibility and quotation remain later factory gates",
+    "function_test_route_ru": "JLCPCB готова рассмотреть процедуру с 5 В, тремя входами выбора канала и проверкой RSSI плюс CVBS lock/output; реализуемость и цена остаются последующими фабричными gates",
+    "source": "direct email response to the project sourcing request"
   },
   "factory_evidence": [
     {
@@ -61,12 +75,12 @@
       "mpn": "K331",
       "jlcpcb_part": null,
       "manufacturer": "AKK Technology",
-      "assembly": "not in the public JLCPCB Standard PCBA library; private/global sourcing or post-PCBA hand installation only",
+      "assembly": "not in Parts Library or Global Sourcing; selected JLCPCB Consigned Parts route is subject to datasheet/application approval and final DFM",
       "accepted": false,
-      "selection_status": "official application, complete 14-pin functions and 24-channel table accepted; physical body and factory-placement route remain open",
-      "selection_status_ru": "официальные схема включения, функции всех 14 контактов и таблица 24 каналов приняты; корпус и фабричный маршрут установки остаются открыты",
-      "availability": "manufacturer store showed in stock at USD 29.99; K331 has no public JLCPCB card; RTC6715/RX5808 cards have zero stock and no purchasable drop-in module route",
-      "availability_ru": "магазин производителя показывал наличие по $29.99; публичной карточки K331 у JLCPCB нет; карточки RTC6715/RX5808 имеют нулевой склад и не дают доступного drop-in module route",
+      "selection_status": "official application, complete 14-pin functions and 24-channel table accepted; genuine AKK supply plus JLCPCB Consigned Parts is the selected factory route; only the controlled physical/assembly package remains open",
+      "selection_status_ru": "официальные схема включения, функции всех 14 контактов и таблица 24 каналов приняты; выбран фабричный маршрут оригинальная поставка AKK плюс JLCPCB Consigned Parts; открыт только контролируемый физический/assembly-пакет",
+      "availability": "manufacturer store showed in stock at USD 29.99; JLCPCB confirmed zero Parts Library/Global Sourcing route and no direct replacement, but accepts a Consigned Parts application before shipment",
+      "availability_ru": "магазин производителя показывал наличие по $29.99; JLCPCB подтвердила отсутствие Parts Library/Global Sourcing и прямой замены, но принимает Consigned Parts application до отправки",
       "identity_gate": "a reseller-hosted AKK-branded image gives 28.7 x 23.1 mm nominal XY; manufacturer-controlled maximum XYZ, pad pitch/land pattern and packaging/reflow evidence are required before the reserve becomes a fixed body",
       "url": "https://www.akktek.com/products/vtx-modules/akk-k331.html",
       "checked": "2026-08-27"
@@ -587,20 +601,23 @@
     }
   ],
   "current_h1_blockers": [
-    "obtain AKK-controlled maximum XYZ dimensions, pad pitch/land pattern and packaging/reflow evidence before replacing the K331 reserve with a fixed body",
-    "obtain a JLCPCB private/global-sourcing response for K331 or retain explicit post-PCBA hand installation"
+    "obtain one AKK-controlled production package with maximum XYZ dimensions, pad pitch/land pattern and packaging/soldering/reflow evidence before replacing the K331 reserve with a fixed body and submitting the Consigned Parts application"
   ],
   "current_h1_blockers_ru": [
-    "получить контролируемые AKK максимальные размеры, посадочное место и данные упаковки/reflow до замены резерва K331 точным корпусом",
-    "получить ответ JLCPCB о private/global sourcing K331 либо явно оставить ручную установку после PCBA"
+    "получить единый контролируемый production-пакет AKK с максимальными размерами, посадочным местом и данными упаковки/soldering/reflow до замены резерва K331 точным корпусом и подачи Consigned Parts application"
   ],
   "dependent_h1_work": [
-    "promote the generated complete R2 exterior, mirrored inner faces and four real section planes from in-progress to reviewed only after the K331 body and installation route stop moving"
+    "promote the generated complete R2 exterior, mirrored inner faces and four real section planes from in-progress to reviewed only after the K331 reserve becomes a controlled fixed body"
   ],
   "dependent_h1_work_ru": [
-    "перевести сгенерированные полные внешние виды, зеркальные внутренние стороны и четыре реальные плоскости разреза из in-progress в reviewed только после фиксации корпуса и маршрута установки K331"
+    "перевести сгенерированные полные внешние виды, зеркальные внутренние стороны и четыре реальные плоскости разреза из in-progress в reviewed только после превращения резерва K331 в контролируемый точный корпус"
   ],
   "downstream_verification": [
+    {
+      "stage": "H5/H6/H7",
+      "requirement": "submit the genuine AKK K331 Consigned Parts application, pass final Gerber/BOM/CPL DFM and obtain feasibility plus quotation for the 5-V/channel-select/RSSI/CVBS function test",
+      "requirement_ru": "подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/RSSI/CVBS"
+    },
     {
       "stage": "H5/H8",
       "requirement": "qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route",

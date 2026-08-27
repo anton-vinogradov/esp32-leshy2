@@ -2,7 +2,7 @@
   "schema_version": 1,
   "marker": "H1-R2.11",
   "checked_on": "2026-08-27",
-  "status": "official_functional_integration_passed_physical_and_factory_route_open",
+  "status": "official_functional_integration_passed_consigned_factory_route_selected_physical_package_open",
   "receiver": {
     "mpn": "K331",
     "manufacturer": "AKK Technology",
@@ -52,7 +52,15 @@
       "gate": "obtain a manufacturer-controlled maximum XYZ envelope, pad pitch and land pattern, packaging and reflow statement before replacing the reserve with a fixed body"
     },
     "jlcpcb_surface": {
-      "assembly": "K331 is absent from the public Standard PCBA library; public RTC6715/RX5808 cards are unavailable and do not provide a drop-in module route; private/global sourcing or post-PCBA installation only",
+      "assembly": "JLCPCB confirmed K331 is absent from Parts Library and Global Sourcing and found no direct replacement; selected conditional route is genuine AKK supply through Consigned Parts, subject to application approval and final DFM",
+      "consigned_parts_route": {
+        "response_date": "2026-08-27",
+        "selected": true,
+        "approval_required_before_shipment": true,
+        "required_package": "official AKK datasheet with maximum mechanical dimensions, recommended land pattern, pin definitions, soldering/reflow and special assembly requirements",
+        "final_review_inputs": "Gerber, BOM, CPL and order",
+        "function_test_review": "5 V supply, three channel-select inputs, RSSI and CVBS lock/output; feasibility and quotation pending H5/H6/H7"
+      },
       "searches": [
         {
           "query": "AKK K331",
@@ -248,7 +256,7 @@
       "result_ru": "отклонён как production-identity: у публичной карточки нулевой склад и нет личности производителя, контролируемого чертежа или доступного фабричного маршрута"
     }
   ],
-  "receiver_research_conclusion": "Keep K331 as the leading functional candidate: official AKK-hosted media closes the application-circuit, complete 14-pin function and 24-channel truth-table evidence. AWM666V RX is the controlled contingency because its exact body, recommended land pattern, 210-mA maximum and CVBS/RSSI/control interface fit the existing reserve, but its seven-channel 5725-5875-MHz coverage and absent public JLCPCB route are material degradations. The manufacturer-documented 24-channel SP166RX is too large, has an internally inconsistent RF specification and has no public factory route. MM238R-MCU fits function and space but only has reseller-hosted evidence, no controlled current manufacturer route, out-of-stock/discontinued sellers and no public JLCPCB result. Request only the still-missing K331 controlled mechanical/assembly package plus a JLCPCB sourcing response. Public RTC6715/RX5808 catalogue cards do not create a purchasable module route, and a custom 5.8-GHz receiver around the bare RTC6715 would increase RF risk without solving supply.",
+  "receiver_research_conclusion": "Keep K331 as the leading functional candidate: official AKK-hosted media closes the application-circuit, complete 14-pin function and 24-channel truth-table evidence. AWM666V RX is the controlled contingency because its exact body, recommended land pattern, 210-mA maximum and CVBS/RSSI/control interface fit the existing reserve, but its seven-channel 5725-5875-MHz coverage and absent public JLCPCB route are material degradations. The manufacturer-documented 24-channel SP166RX is too large, has an internally inconsistent RF specification and has no public factory route. MM238R-MCU fits function and space but only has reseller-hosted evidence, no controlled current manufacturer route, out-of-stock/discontinued sellers and no public JLCPCB result. JLCPCB confirmed no Parts Library, Global Sourcing or direct replacement route and accepts genuine AKK supply through Consigned Parts. Request only the still-missing K331 controlled mechanical/assembly production package. Public RTC6715/RX5808 catalogue cards do not create a purchasable module route, and a custom 5.8-GHz receiver around the bare RTC6715 would increase RF risk without solving supply.",
   "supplier_outreach": {
     "sent_on": "2026-08-27",
     "akk": {
@@ -263,7 +271,7 @@
       "channel": "authenticated contact form",
       "subject": "AKK K331 sourcing and PCBA assembly feasibility",
       "requested": "exact private/global sourcing route, MOQ, price, lead time, factory placement or consignment route, required engineering package and Function Test feasibility",
-      "status": "submitted successfully; support response pending"
+      "status": "response received: Parts Library and Global Sourcing unavailable, no direct replacement, genuine AKK supply accepted through Consigned Parts subject to application and final DFM"
     }
   },
   "antenna": {
@@ -321,14 +329,18 @@
     "exact_antenna_selection": "accepted",
     "receiver_exact_identity": "accepted as leading serial module",
     "receiver_physical_body": "open",
-    "factory_placement_route": "open",
+    "factory_placement_route": "conditional JLCPCB Consigned Parts route selected",
     "production_acceptance": false
   },
   "current_h1_blockers": [
-    "obtain AKK-controlled maximum XYZ dimensions, pad pitch/land pattern and packaging/reflow evidence",
-    "obtain a JLCPCB private/global-sourcing response or retain explicit post-PCBA hand installation"
+    "obtain one AKK-controlled production package with maximum XYZ dimensions, pad pitch/land pattern and packaging/soldering/reflow evidence for the fixed body and Consigned Parts application"
   ],
   "downstream_verification": [
+    {
+      "stage": "H5/H6/H7",
+      "requirement": "submit the genuine AKK K331 Consigned Parts application, pass final Gerber/BOM/CPL DFM and obtain feasibility plus quotation for the 5-V/channel-select/RSSI/CVBS function test",
+      "requirement_ru": "подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/RSSI/CVBS"
+    },
     {
       "stage": "H3/H6/H8",
       "requirement": "prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality before production release",

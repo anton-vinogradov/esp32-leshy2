@@ -4,7 +4,7 @@
 
 > Текущий baseline: [H0-R2](h0-r2-functional-architecture.ru.md). Ссылки на
 > pin/interconnect/ECAD R1 ниже сохранены как входы для будущей схемы R2.
-> H1-R2.12 генерирует полные текущие физические виды, включая четыре независимых
+> H1-R2.13 генерирует полные текущие физические виды, включая четыре независимых
 > набора USB/RESET/BOOT/DBG10. [Физическая проекция](h1-r2-physical-layout.ru.md),
 > [тракт FPV](h1-r2-fpv.ru.md) и [rail/thermal-архитектура](h1-r2-power-thermal.ru.md)
 > проходят текущие проверки, но остаются in progress; ни один материал не разрешает routing PCB R2.
@@ -54,7 +54,7 @@ flowchart TB
 | nRF24 ×3 | `Ebyte E01-ML01IPX` | RP2354B | Одновременные `3R`, `1T2R`, `2T1R`, `3T` |
 | Sub‑GHz | `CC1101RGPR` | RP2354B | 315, 433, 868 и 915 МГц |
 | Broadcast/Airband RX | `Si4732-A10-GSR` + `LT5560EDD#TRPBF` + `PGA-103+` + `SI5351A-B-GTR` + `HMC544AETR` | Hub RP2354B | FM/SW, отдельный AM/LW и обязательный receive-only Airband AM 118–137 МГц через общий порт `FM/SW/AIR RX` |
-| Аналоговый FPV RX | кандидат `AKK K331` + `TVP5150AM1PBS` + `DL-MMCX-KWE-90` | S3 | Receive-only NTSC/PAL capture; распиновка/питание и точный MMCX закрыты, а контролируемый корпус/фабричный маршрут K331 остаются gates H1 |
+| Аналоговый FPV RX | кандидат `AKK K331` + `TVP5150AM1PBS` + `DL-MMCX-KWE-90` | S3 | Receive-only NTSC/PAL capture; распиновка/питание, точный MMCX и маршрут оригинальный AKK/JLCPCB Consigned Parts закрыты; один контролируемый production-пакет AKK остаётся gate H1 |
 | Voice VHF/UHF | `G-NiceRF SA818S-V` + `G-NiceRF SA818S-U` | RP2354B | Независимая аналоговая VHF- и UHF-связь с аппаратным one-hot выбором |
 | IR RX | `TSOP75238TT` + `TSMP95000TT` | C5 | 38-кГц демодуляция и обучение 30–60 кГц |
 | IR TX | `VSMY14940` | C5 | Управляемая передача 940 нм с оптическим подтверждением |

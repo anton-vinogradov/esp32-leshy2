@@ -113,12 +113,17 @@ def audit(model: dict) -> dict:
         errors.append("supplier outreach date is missing or stale")
     if set(outreach) != {"sent_on", "akk", "jlcpcb"}:
         errors.append("supplier outreach does not cover both AKK and JLCPCB")
-    if any("pending" not in outreach[key].get("status", "") for key in ("akk", "jlcpcb")):
-        errors.append("supplier outreach status must remain fail-closed until replies arrive")
+    if "pending" not in outreach["akk"].get("status", ""):
+        errors.append("AKK production-package request must remain fail-closed until the reply arrives")
+    if "response received" not in outreach["jlcpcb"].get("status", ""):
+        errors.append("JLCPCB factory-route response is missing")
+    route = receiver["jlcpcb_surface"].get("consigned_parts_route", {})
+    if not route.get("selected") or not route.get("approval_required_before_shipment"):
+        errors.append("the conditional K331 Consigned Parts route is not explicit")
     current_blockers = model["current_h1_blockers"]
     downstream = model["downstream_verification"]
-    if len(current_blockers) != 2:
-        errors.append("FPV must expose exactly the two present H1 blockers")
+    if len(current_blockers) != 1:
+        errors.append("FPV must expose exactly the one present H1 blocker")
     if any(not row.get("stage") or not row.get("requirement") for row in downstream):
         errors.append("downstream FPV verification must retain an owning stage and requirement")
     if any(row["stage"] == "H1" for row in downstream):
@@ -180,7 +185,7 @@ def render_svg(model: dict) -> str:
         '<text x="633" y="290" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP33 RSSI · GP34 power · GP35 lock</text>',
         '<text x="633" y="309" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP36/37/38 → K331 CH1/CH2/CH3</text>',
         '<path d="M633 240 V194" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrowBlue)"/>',
-        '<text x="32" y="347" font-family="sans-serif" font-size="11" fill="#9a3412">K331 functional/pin fit passes; its manufacturer drawing and JLCPCB placement route remain explicit H1 gates.</text>',
+        '<text x="32" y="347" font-family="sans-serif" font-size="11" fill="#9a3412">K331 functional/pin fit and conditional Consigned Parts route pass; the AKK production package remains the H1 gate.</text>',
         '</svg>\n',
     ])
     return "\n".join(out)
@@ -201,13 +206,13 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f' Независимый линейный резерв `{a["supply_independent_alternate"]["mpn"]}` покрывает 4,9–6,0 ГГц и сохраняет MMCX, но сейчас доступен только под заказ с lead time 16 недель.'
         )
         factory = (
-            'Производитель показывает K331 в наличии по $29.99; точной публичной карточки K331 у JLCPCB нет. '
-            '`RichWave RTC6715` `C7464354` и безродный `RX5808` `C9900139392` присутствуют только как недоступные карточки: склад 0, MOQ 442, маршрут Consign/Request a Quote. '
+            'Производитель показывает K331 в наличии по $29.99. JLCPCB подтвердила его отсутствие и в Parts Library, и в Global Sourcing, не нашла прямой замены и принимает оригинальные модули AKK через Consigned Parts application до отправки деталей. '
+            '`RichWave RTC6715` `C7464354` и безродный `RX5808` `C9900139392` остаются недоступными карточками: склад 0, MOQ 442 и нет покупаемого module route. '
             'Точные запросы `SP166RX` и `MM238R-MCU` дали ноль результатов; первый не входит в текущую ячейку, второй не имеет контролируемой текущей production-identity и найден только как отсутствующий/снятый товар. '
             'RTC6715 — голая QFN48, а её публичный preliminary-документ 2007 года не содержит reference application или PCB layout; собственный RF/IF-тракт повысил бы риск, не решив supply. '
-            'Поэтому до ответа private/global sourcing K331 остаётся отдельным модулем, а не заявленной фабричной PCBA-позицией. '
-            f'Антенна продаётся производителем за $6.95 и ставится в комплект после PCBA; JLCPCB для неё также не является сборочным маршрутом. '
-            f'{model["supplier_outreach"]["sent_on"]} запросы с точным перечнем механических, assembly и sourcing-свидетельств отправлены AKK и JLCPCB; оба ответа ожидаются.'
+            'Поэтому выбран условный фабричный маршрут: оригинальная поставка AKK плюс JLCPCB Consigned Parts. '
+            'Антенна за $6.95 остаётся аксессуаром комплекта после PCBA. '
+            'Официальный production-пакет AKK всё ещё нужен для точной установки и consignment application; финальный DFM по Gerber/BOM/CPL и дополнительное рассмотрение function test 5 В/channel-select/RSSI/CVBS следуют в H5/H6/H7.'
         )
         blockers = '\n'.join(f'- {gate}' for gate in model['current_h1_blockers'])
         downstream = '\n'.join(
@@ -229,13 +234,13 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f' Independent linear fallback `{a["supply_independent_alternate"]["mpn"]}` covers 4.9–6.0 GHz and retains MMCX, but is presently backorder-only with a 16-week lead time.'
         )
         factory = (
-            'The manufacturer lists K331 in stock at $29.99; JLCPCB has no exact public K331 card. '
-            'Its `RichWave RTC6715` `C7464354` and generic `RX5808` `C9900139392` cards are unavailable: zero stock, MOQ 442 and Consign/Request-a-Quote only. '
+            'The manufacturer lists K331 in stock at $29.99. JLCPCB confirmed that it is unavailable in both Parts Library and Global Sourcing, found no direct replacement and accepts genuine AKK modules through a Consigned Parts application before shipment. '
+            'Its `RichWave RTC6715` `C7464354` and generic `RX5808` `C9900139392` cards remain unavailable: zero stock, MOQ 442 and no purchasable module route. '
             'Exact `SP166RX` and `MM238R-MCU` searches return zero results; the former does not fit the present bay, while the latter has no controlled current production identity and was found only out of stock or discontinued. '
             'RTC6715 is a bare QFN48 whose public 2007 preliminary sheet has no reference application or PCB layout; a custom RF/IF path would add risk without fixing supply. '
-            'K331 therefore remains a separate module until a private/global-sourcing response exists, not a claimed factory PCBA line item. '
-            'The $6.95 antenna is a post-PCBA kit accessory and likewise not an assembly line item. '
-            f'On {model["supplier_outreach"]["sent_on"]}, exact mechanical, assembly and sourcing evidence requests were sent to AKK and JLCPCB; both replies are pending.'
+            'Genuine AKK supply plus JLCPCB Consigned Parts is therefore the selected conditional factory route. '
+            'The $6.95 antenna remains a post-PCBA kit accessory. '
+            'The official AKK production package is still required for exact placement and the consignment application; final Gerber/BOM/CPL DFM and optional 5-V/channel-select/RSSI/CVBS function-test review follow in H5/H6/H7.'
         )
         blockers = '\n'.join(f'- {gate}' for gate in model['current_h1_blockers'])
         downstream = '\n'.join(

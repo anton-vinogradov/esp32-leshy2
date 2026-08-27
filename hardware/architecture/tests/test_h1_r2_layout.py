@@ -20,7 +20,7 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.12", self.model["marker"])
+        self.assertEqual("H1-R2.13", self.model["marker"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
         self.assertEqual(27, len(self.audit["opposing_overlaps"]))
@@ -44,13 +44,13 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("reserve", bay["kind"])
         self.assertIsNone(bay["mpn"])
         self.assertEqual("AKK K331", bay["candidate_mpn"])
-        self.assertIn("AKK-controlled maximum XYZ dimensions", self.model["current_h1_blockers"][0])
+        self.assertIn("AKK-controlled production package", self.model["current_h1_blockers"][0])
 
     def test_h1_blockers_are_separate_from_dependent_and_later_work(self):
-        self.assertEqual(2, len(self.model["current_h1_blockers"]))
+        self.assertEqual(1, len(self.model["current_h1_blockers"]))
         self.assertEqual(1, len(self.model["dependent_h1_work"]))
         self.assertIn("promote the generated complete R2", self.model["dependent_h1_work"][0])
-        self.assertEqual({"H5/H8"}, {row["stage"] for row in self.model["downstream_verification"]})
+        self.assertEqual({"H5/H6/H7", "H5/H8"}, {row["stage"] for row in self.model["downstream_verification"]})
         self.assertEqual(self.model["current_h1_blockers"], self.audit["current_h1_blockers"])
         self.assertEqual(self.model["dependent_h1_work"], self.audit["dependent_h1_work"])
 
@@ -61,6 +61,11 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("C39843328", by_mpn["SC1512-A4"]["jlcpcb_part"])
         self.assertIsNone(by_mpn["K331"]["jlcpcb_part"])
         self.assertFalse(by_mpn["K331"]["accepted"])
+        self.assertIn("Consigned Parts", by_mpn["K331"]["assembly"])
+        self.assertEqual("unavailable", self.model["k331_factory_route"]["exact_parts_library"])
+        self.assertEqual("unavailable", self.model["k331_factory_route"]["global_sourcing"])
+        self.assertIsNone(self.model["k331_factory_route"]["confirmed_drop_in_alternative"])
+        self.assertIn("genuine K331", self.model["k331_factory_route"]["selected_route"])
         self.assertTrue(all("accepted" in row for row in self.model["factory_evidence"]))
         self.assertTrue(by_mpn["TPS7A2018PDBVR"]["accepted"])
         self.assertIn("2,225 pieces", by_mpn["TPS7A2018PDBVR"]["availability"])

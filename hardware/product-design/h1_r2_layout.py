@@ -259,8 +259,8 @@ def audit(model: dict, base: dict) -> dict:
             if gap < minimum:
                 errors.append(f"opposing clearance {item['id']} / {row['instance']} is {gap:.3f} mm")
     min_cross = min((x["clearance_mm"] for x in cross), default=None)
-    if len(model["current_h1_blockers"]) != 2:
-        errors.append("physical layout must expose exactly the two present H1 blockers")
+    if len(model["current_h1_blockers"]) != 1:
+        errors.append("physical layout must expose exactly the one present H1 blocker")
     if len(model["current_h1_blockers_ru"]) != len(model["current_h1_blockers"]):
         errors.append("bilingual current H1 blockers are out of sync")
     if len(model["dependent_h1_work"]) != 1:
@@ -918,6 +918,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             '- Обе внутренние стороны теперь зеркалятся при физическом перевороте платы; прежняя инкрементальная картинка ошибочно зеркалила только RF-плату.',
             '- AKK-брендированный размерный кадр у продавца задаёт номинал платы K331 28,7×23,1 мм; коллизии проверены с консервативным резервом 30×24×4 мм без изменения контура платы и внешних зон аккумуляторов/U214.',
             '- Функциональная распиновка K331 принята, но резерв не считается точным корпусом: максимальные XYZ, посадочное место и reflow/packaging должны прийти из контролируемого документа AKK.',
+            '- JLCPCB подтвердила отсутствие K331 в Parts Library и Global Sourcing и не нашла прямой замены. Выбран фабричный маршрут: оригинальная поставка AKK через Consigned Parts; application и финальный DFM по Gerber/BOM/CPL относятся к последующим этапам.',
+            '- JLCPCB готова рассмотреть процедуру function test для 5 В, channel-select, RSSI и CVBS. Проверка реализуемости и цена относятся к H5/H6/H7 и не блокируют текущую физическую модель.',
             '- Контролируемый fallback `AWM666V RX` размером 26,16×16,38×3,70 мм и его рекомендованная посадка входят в ту же ячейку; он не заменяет K331 автоматически из-за семи каналов вместо 24 и отсутствия публичного маршрута JLCPCB.',
             '- Точная линейная антенна TBS5G8MMCXA подключается к отдельному MMCX; между ANT IN K331 и MMCX запланирована прямая 50-омная PCB-дорожка без U.FL.',
             '- Исправленная геометрия `DL-MMCX-KWE-90`: 3,6 мм корпуса находятся на RF-плате, ствол выступает за правую кромку на 3,0 мм; выводы входят в межплатный просвет номинально на 1,2 мм, а их keepout не пересекает встречные корпуса.',
@@ -945,6 +947,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             '- Both inner faces are now mirrored when each PCB is physically turned over; the earlier incremental view incorrectly mirrored only the RF PCB.',
             '- An AKK-branded dimensioned reseller image gives a 28.7 × 23.1 mm nominal K331 board; collision checks use a conservative 30 × 24 × 4 mm reserve without changing the PCB outline or battery/U214 exterior zones.',
             '- K331 functional pin fit is accepted, but the reserve is not a fixed body: maximum XYZ, land pattern and reflow/packaging must come from an AKK-controlled document.',
+            '- JLCPCB confirmed that K331 is absent from both Parts Library and Global Sourcing and found no direct replacement. The selected factory route is genuine AKK supply through Consigned Parts; its application and final Gerber/BOM/CPL DFM are later gates.',
+            '- JLCPCB can review a later 5 V, channel-select, RSSI and CVBS function-test procedure. Feasibility and quotation belong to H5/H6/H7 and do not block the present physical model.',
             '- The controlled 26.16 × 16.38 × 3.70 mm `AWM666V RX` fallback and its recommended land pattern fit the same bay; it does not replace K331 automatically because it has seven channels instead of 24 and no public JLCPCB route.',
             '- The exact linear TBS5G8MMCXA antenna mates with the distinct MMCX; K331 ANT IN reaches it over one direct 50-ohm PCB trace without U.FL.',
             '- Corrected `DL-MMCX-KWE-90` geometry keeps 3.6 mm of body on the RF PCB and projects only the 3.0-mm barrel beyond the right edge; its pins enter the interboard gap by a nominal 1.2 mm and the tail keepout meets no opposing body.',

@@ -20,9 +20,9 @@ are satisfied.
 <a id="h1"></a>
 ## ⭐ H1 · Physical product design
 
-**Status:** ▶️ current at `H1-R2.12`; R1 result is retained evidence, not current acceptance.
+**Status:** ▶️ current at `H1-R2.13`; R1 result is retained evidence, not current acceptance.
 
-- [Current H1-R2.12 physical placement](h1-r2-physical-layout.md) — new Hub,
+- [Current H1-R2.13 physical placement](h1-r2-physical-layout.md) — new Hub,
   its fourth independent USB/recovery set, Airband and analog-FPV bodies/reserves
   in the shared coordinate model, with generated collision, opposing-clearance
   and exact MMCX service evidence.
@@ -34,11 +34,16 @@ are satisfied.
   [exterior-zone sections](images/h1-r2-sandwich-sections.svg).
 - [Exact MMCX placement/service view](images/h1-r2-mmcx-service.svg): corrected
   edge registration, wave-solder tail keepout and sidewall/plug corridors.
-- [Machine H1-R2.12 placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json).
+- [Machine H1-R2.13 placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json).
 - [Analog-FPV functional path](h1-r2-fpv.md) and its
   [machine audit](../hardware/product-design/generated/H1-R2-fpv-audit.json):
   K331 pin/power fit, exact MMCX path, exact TBS antenna and live rejection of
   unavailable RTC6715/RX5808 catalogue cards as lower-risk replacements.
+- JLCPCB factory response: K331 is absent from Parts Library and Global Sourcing,
+  no direct replacement was found, and genuine AKK supply through Consigned Parts
+  is the selected conditional assembly route. One AKK-controlled production
+  package remains H1 work; application, final DFM and factory function-test review
+  are assigned to H5/H6/H7.
 - [Airband filter feasibility](h1-airband-filter.md) and its
   [machine audit](../hardware/product-design/generated/H1-Airband-filter-audit.json).
 - [Six-domain rail and thermal architecture](h1-r2-power-thermal.md) and its

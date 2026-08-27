@@ -98,20 +98,21 @@ class H1R2FPVTest(unittest.TestCase):
         self.assertEqual(0, rx5808["jlcpcb_surface"]["stock"])
         self.assertEqual(0, self.audit["jlcpcb_placeable_hits"])
 
-    def test_supplier_requests_are_sent_but_do_not_close_gates(self):
+    def test_supplier_responses_preserve_the_remaining_gate(self):
         outreach = self.model["supplier_outreach"]
         self.assertEqual("2026-08-27", outreach["sent_on"])
         self.assertEqual({"akk", "jlcpcb"}, set(outreach) - {"sent_on"})
-        self.assertEqual(["akk", "jlcpcb"], self.audit["supplier_responses_pending"])
+        self.assertEqual(["akk"], self.audit["supplier_responses_pending"])
+        self.assertIn("response received", outreach["jlcpcb"]["status"])
+        self.assertTrue(self.model["receiver"]["jlcpcb_surface"]["consigned_parts_route"]["selected"])
         self.assertFalse(self.model["result"]["production_acceptance"])
 
     def test_only_present_blockers_are_owned_by_h1(self):
         blockers = self.model["current_h1_blockers"]
         downstream = self.model["downstream_verification"]
-        self.assertEqual(2, len(blockers))
+        self.assertEqual(1, len(blockers))
         self.assertTrue(any("AKK-controlled" in row for row in blockers))
-        self.assertTrue(any("JLCPCB" in row for row in blockers))
-        self.assertEqual({"H3/H6/H8", "H5/H8"}, {row["stage"] for row in downstream})
+        self.assertEqual({"H5/H6/H7", "H3/H6/H8", "H5/H8"}, {row["stage"] for row in downstream})
         self.assertEqual(blockers, self.audit["current_h1_blockers"])
         self.assertEqual(downstream, self.audit["downstream_verification"])
 

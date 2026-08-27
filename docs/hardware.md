@@ -4,7 +4,7 @@
 
 > Current baseline: [H0-R2](h0-r2-functional-architecture.md). The R1 pin,
 > interconnect and ECAD pages linked below are retained inputs for the future R2
-> schematic. H1-R2.12 generates the complete current physical views, including
+> schematic. H1-R2.13 generates the complete current physical views, including
 > four independent USB/RESET/BOOT/DBG10 recovery sets. The [physical projection](h1-r2-physical-layout.md),
 > [FPV path](h1-r2-fpv.md) and [rail/thermal architecture](h1-r2-power-thermal.md)
 > pass their present checks but remain in progress; none authorizes R2 PCB routing.
@@ -53,7 +53,7 @@ later because Espressif does not support SDIO on revision v0.1.
 | nRF24 ×3 | `Ebyte E01-ML01IPX` | RP2354B | Concurrent `3R`, `1T2R`, `2T1R`, `3T` |
 | Sub-GHz | `CC1101RGPR` | RP2354B | 315, 433, 868 and 915 MHz |
 | Broadcast/Airband RX | `Si4732-A10-GSR` + `LT5560EDD#TRPBF` + `PGA-103+` + `SI5351A-B-GTR` + `HMC544AETR` | Hub RP2354B | FM/SW, separate AM/LW and mandatory receive-only 118–137-MHz Airband AM through the shared `FM/SW/AIR RX` port |
-| Analog FPV RX | `AKK K331` candidate + `TVP5150AM1PBS` + `DL-MMCX-KWE-90` | S3 | Receive-only NTSC/PAL capture; pin/power fit and exact MMCX close, while controlled K331 body/factory route remain H1 gates |
+| Analog FPV RX | `AKK K331` candidate + `TVP5150AM1PBS` + `DL-MMCX-KWE-90` | S3 | Receive-only NTSC/PAL capture; pin/power fit, exact MMCX and genuine-AKK/JLCPCB Consigned Parts route close; one controlled AKK production package remains the H1 gate |
 | Voice VHF/UHF | `G-NiceRF SA818S-V` + `G-NiceRF SA818S-U` | RP2354B | Independent analog VHF and UHF communications with hardware one-hot selection |
 | IR RX | `TSOP75238TT` + `TSMP95000TT` | C5 | 38-kHz demodulation and 30–60-kHz learning |
 | IR TX | `VSMY14940` | C5 | Controlled 940-nm transmit with optical evidence |

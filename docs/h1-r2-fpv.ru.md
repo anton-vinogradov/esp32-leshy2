@@ -27,15 +27,15 @@
 
 ## Фабричная граница
 
-Производитель показывает K331 в наличии по $29.99; точной публичной карточки K331 у JLCPCB нет. `RichWave RTC6715` `C7464354` и безродный `RX5808` `C9900139392` присутствуют только как недоступные карточки: склад 0, MOQ 442, маршрут Consign/Request a Quote. Точные запросы `SP166RX` и `MM238R-MCU` дали ноль результатов; первый не входит в текущую ячейку, второй не имеет контролируемой текущей production-identity и найден только как отсутствующий/снятый товар. RTC6715 — голая QFN48, а её публичный preliminary-документ 2007 года не содержит reference application или PCB layout; собственный RF/IF-тракт повысил бы риск, не решив supply. Поэтому до ответа private/global sourcing K331 остаётся отдельным модулем, а не заявленной фабричной PCBA-позицией. Антенна продаётся производителем за $6.95 и ставится в комплект после PCBA; JLCPCB для неё также не является сборочным маршрутом. 2026-08-27 запросы с точным перечнем механических, assembly и sourcing-свидетельств отправлены AKK и JLCPCB; оба ответа ожидаются.
+Производитель показывает K331 в наличии по $29.99. JLCPCB подтвердила его отсутствие и в Parts Library, и в Global Sourcing, не нашла прямой замены и принимает оригинальные модули AKK через Consigned Parts application до отправки деталей. `RichWave RTC6715` `C7464354` и безродный `RX5808` `C9900139392` остаются недоступными карточками: склад 0, MOQ 442 и нет покупаемого module route. Точные запросы `SP166RX` и `MM238R-MCU` дали ноль результатов; первый не входит в текущую ячейку, второй не имеет контролируемой текущей production-identity и найден только как отсутствующий/снятый товар. RTC6715 — голая QFN48, а её публичный preliminary-документ 2007 года не содержит reference application или PCB layout; собственный RF/IF-тракт повысил бы риск, не решив supply. Поэтому выбран условный фабричный маршрут: оригинальная поставка AKK плюс JLCPCB Consigned Parts. Антенна за $6.95 остаётся аксессуаром комплекта после PCBA. Официальный production-пакет AKK всё ещё нужен для точной установки и consignment application; финальный DFM по Gerber/BOM/CPL и дополнительное рассмотрение function test 5 В/channel-select/RSSI/CVBS следуют в H5/H6/H7.
 
 ## Что блокирует H1 сейчас
 
-- obtain AKK-controlled maximum XYZ dimensions, pad pitch/land pattern and packaging/reflow evidence
-- obtain a JLCPCB private/global-sourcing response or retain explicit post-PCBA hand installation
+- obtain one AKK-controlled production package with maximum XYZ dimensions, pad pitch/land pattern and packaging/soldering/reflow evidence for the fixed body and Consigned Parts application
 
 ## Последующая проверка — не блокирует H1
 
+- **H5/H6/H7:** подать Consigned Parts application на оригинальный AKK K331, пройти финальный DFM по Gerber/BOM/CPL и получить подтверждение реализуемости плюс цену function test для 5 В/channel-select/RSSI/CVBS
 - **H3/H6/H8:** доказать прямой 50-омный тракт, запуск MMCX, таблицу каналов, чувствительность, подавление зеркального канала, decoder lock и качество видео до производственного release
 - **H5/H8:** квалифицировать FXP831.09.0100C на собранном корпусе и обеспечить доступный склад до опоры на текущий backorder 16 недель
 
