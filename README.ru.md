@@ -36,10 +36,10 @@
 
 ## Физический мокап
 
-![Текущий четырёхсторонний мокап Лешего2](docs/images/h1-r2-four-faces.svg?rev=h1-r2.18-layout-clean-3)
+![Текущий четырёхсторонний мокап Лешего2](docs/images/h1-r2-four-faces.svg?rev=h1-r2.18-rf-topology-4)
 
-[Открыть легенду всех 163 пронумерованных компонентов](docs/images/h1-r2-component-legend.svg?rev=h1-r2.18-layout-clean-3) ·
-[детальный внешний вид](docs/images/h1-r2-external-layout.svg?rev=h1-r2.18-layout-clean-3) ·
+[Открыть легенду всех 163 пронумерованных компонентов](docs/images/h1-r2-component-legend.svg?rev=h1-r2.18-rf-topology-4) ·
+[детальный внешний вид](docs/images/h1-r2-external-layout.svg?rev=h1-r2.18-rf-topology-4) ·
 [передняя внутренняя сторона](docs/images/h1-r2-inner-ui.svg) ·
 [задняя внутренняя сторона](docs/images/h1-r2-inner-rf.svg)
 

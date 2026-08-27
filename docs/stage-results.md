@@ -28,10 +28,10 @@ safety evidence and power—not primary RF payloads.
 **Status:** ▶️ current at **`H1-R2.18`**.
 
 - [Current physical design](h1-r2-physical-layout.md)
-- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.18-layout-clean-3)
+- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.18-rf-topology-4)
 - [Front inner face](images/h1-r2-inner-ui.svg)
 - [Rear inner face](images/h1-r2-inner-rf.svg)
-- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-layout-clean-3)
+- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-rf-topology-4)
 - [Vertical FPV MMCX proof](images/h1-r2-mmcx-service.svg)
 - [Machine placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json)
 - [Analog FPV path](h1-r2-fpv.md)

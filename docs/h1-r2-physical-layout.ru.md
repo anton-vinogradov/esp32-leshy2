@@ -4,15 +4,15 @@
 
 ## Что увидит пользователь
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-layout-clean-3)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-rf-topology-4)
 
 ## Легенда компонентов
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.18-layout-clean-3)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.18-rf-topology-4)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-layout-clean-3)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-rf-topology-4)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-layout-clean-3)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-rf-topology-4)
 
 ## Что находится внутри
 
@@ -21,6 +21,8 @@
 [Задняя RF/power-плата · full-scale inner view](images/h1-r2-inner-rf.svg)
 
 - Десять основных SMA разделены симметрично `5 + 5`; каждый радиотракт остаётся на плате своего разъёма.
+- На передней плате пять коротких съёмных микрокоаксиальных перемычек соединяют IPEX/U.FL радиоисточников с платными U.FL; дальше до SMA идут локальные контролируемые PCB-тракты.
+- На задней плате U.FL и съёмных RF-кабелей нет: voice и FM/SW идут локальными RF-трактами, AM/LW — отдельным высокоомным AMI-трактом, а Airband — через питаемую ветвь преобразования и селектор.
 - Отдельный вертикальный MMCX `FPV RX · 5.8 GHz` расположен ниже равномерного ряда из пяти задних SMA и над U214; ответный угловой штекер с кабелем уходит вдоль платы.
 - Все пользовательские подписи являются читаемой шелкографией; внутренние стороны плат шелкографии не содержат.
 - Три nRF24 полностью перенесены на переднюю плату вместе с буферами, safety-gate и отдельным `TLV1824PWR`.

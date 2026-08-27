@@ -36,10 +36,10 @@ user to accept the non-aggression/authorized-use terms.
 
 ## Physical mock-up
 
-![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.18-layout-clean-3)
+![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.18-rf-topology-4)
 
-[Open the legend for all 163 numbered components](docs/images/h1-r2-component-legend.svg?rev=h1-r2.18-layout-clean-3) ·
-[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.18-layout-clean-3) ·
+[Open the legend for all 163 numbered components](docs/images/h1-r2-component-legend.svg?rev=h1-r2.18-rf-topology-4) ·
+[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.18-rf-topology-4) ·
 [front inner face](docs/images/h1-r2-inner-ui.svg) ·
 [rear inner face](docs/images/h1-r2-inner-rf.svg)
 

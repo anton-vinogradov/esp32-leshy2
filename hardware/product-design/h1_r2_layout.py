@@ -30,7 +30,7 @@ COMPONENT_LEGEND_SVG_PATH = REPO / "docs/images/h1-r2-component-legend.svg"
 EN_DOC_PATH = REPO / "docs/h1-r2-physical-layout.md"
 RU_DOC_PATH = REPO / "docs/h1-r2-physical-layout.ru.md"
 SOURCE_TABLE_PATH = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
-PUBLIC_ASSET_REV = "h1-r2.18-layout-clean-3"
+PUBLIC_ASSET_REV = "h1-r2.18-rf-topology-4"
 BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
 BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
@@ -788,6 +788,135 @@ def complete_inner_rows(model: dict, base: dict, source_table: dict, result: dic
     return sorted(rows, key=lambda row: (row["frame"], row["bbox"]["y"][0], row["bbox"]["x"][0], row["id"]))
 
 
+def r2_antenna_topology(model: dict, rows: list[dict]) -> dict:
+    """Return the one truthful R2 antenna-media model used by every inner view.
+
+    Coordinates are physical world millimetres.  PCB segments express topology,
+    never finished KiCad geometry.  Removable microcoaxes are separate objects.
+    """
+    row_by_id = {row["id"]: row for row in rows}
+    port_centres = {
+        path: (centre, 0.0)
+        for path, centre in zip(
+            model["antenna_bank_optimization"]["front_paths"]
+            + model["antenna_bank_optimization"]["rear_paths"],
+            model["antenna_bank_optimization"]["front_x_centres_mm"]
+            + model["antenna_bank_optimization"]["rear_x_centres_mm"],
+        )
+    }
+
+    def centre(instance: str) -> tuple[float, float]:
+        box = row_by_id[instance]["bbox"]
+        return ((box["x"][0] + box["x"][1]) / 2, (box["y"][0] + box["y"][1]) / 2)
+
+    pcb_segments: list[dict] = []
+    cables: list[dict] = []
+    connectors: list[dict] = []
+
+    front_sources = {
+        "N24-0": ("nrf0_r2", "nrf0_rf_board_connector_r2", "IPEX"),
+        "S3-2G4": ("s3", "s3_rf_board_connector_r2", "U.FL"),
+        "N24-1": ("nrf1_r2", "nrf1_rf_board_connector_r2", "IPEX"),
+        "C5-2G4/5": ("c5", "c5_rf_board_connector_r2", "U.FL"),
+        "N24-2": ("nrf2_r2", "nrf2_rf_board_connector_r2", "IPEX"),
+    }
+    front_couplers = {
+        "S3-2G4": "s3_rf_coupler_r2",
+        "C5-2G4/5": "c5_rf_coupler_r2",
+    }
+    for path, (source_id, connector_id, source_kind) in front_sources.items():
+        source_point = centre(source_id)
+        connector_point = centre(connector_id)
+        trace_points = [connector_point]
+        if path in front_couplers:
+            trace_points.append(centre(front_couplers[path]))
+        trace_points.append(port_centres[path])
+        pcb_segments.append(
+            {
+                "frame": "ui-inner",
+                "path": path,
+                "branch": "main",
+                "points": trace_points,
+                "medium": "controlled-50-ohm-pcb",
+                "stroke": "#2563eb",
+                "width": 1.7,
+                "dash": None,
+            }
+        )
+        cables.append(
+            {
+                "frame": "ui-inner",
+                "path": path,
+                "points": [source_point, connector_point],
+                "medium": "removable-microcoax",
+                "stroke": "#0f766e",
+                "width": 3.2,
+            }
+        )
+        connectors.extend(
+            [
+                {"frame": "ui-inner", "path": path, "point": source_point, "part": "module-rf-connector", "kind": source_kind},
+                {"frame": "ui-inner", "path": path, "point": connector_point, "part": "board-ufl", "kind": "U.FL"},
+            ]
+        )
+
+    # Two voice feeds are controlled 50-ohm traces from module contact 12.
+    for path, source_id in (("VOICE-VHF", "voice_v"), ("VOICE-UHF", "voice")):
+        pcb_segments.append(
+            {
+                "frame": "rf-inner", "path": path, "branch": "main",
+                "points": [centre(source_id), port_centres[path]],
+                "medium": "controlled-50-ohm-pcb", "stroke": "#2563eb", "width": 1.7, "dash": None,
+            }
+        )
+
+    # CC1101 reaches 50 ohms through its selected matching branch; the straight
+    # guide must not imply that the RF IC pin itself is a 50-ohm endpoint.
+    pcb_segments.append(
+        {
+            "frame": "rf-inner", "path": "CC-SUB", "branch": "matched-main",
+            "points": [centre("cc_r2"), port_centres["CC-SUB"]],
+            "medium": "matched-rf-pcb-topology", "stroke": "#2563eb", "width": 1.7, "dash": None,
+        }
+    )
+
+    # AMI is deliberately not presented as a 50-ohm feed.  The external ferrite
+    # pod reaches the Si4732 high-impedance AMI input through ESD and AC coupling.
+    pcb_segments.append(
+        {
+            "frame": "rf-inner", "path": "RX-AM/LW", "branch": "ami",
+            "points": [port_centres["RX-AM/LW"], centre("receiver_r2")],
+            "medium": "high-impedance-ami-pcb", "stroke": "#7c3aed", "width": 1.9, "dash": None,
+        }
+    )
+
+    # FM/SW and Airband share one SMA, then split.  Direct FM/SW bypasses the
+    # powered converter chain; Airband passes the reserved BPF/IF cell, LNA and
+    # mixer before the selector.  SI5351 supplies the separate 112-MHz LO.
+    selector = centre("airband_selector")
+    receiver = centre("receiver_r2")
+    pcb_segments.extend(
+        [
+            {
+                "frame": "rf-inner", "path": "RX-FM/SW", "branch": "direct-fm-sw",
+                "points": [port_centres["RX-FM/SW"], selector, receiver],
+                "medium": "direct-fm-sw-pcb", "stroke": "#2563eb", "width": 1.7, "dash": None,
+            },
+            {
+                "frame": "rf-inner", "path": "RX-FM/SW", "branch": "converted-airband",
+                "points": [port_centres["RX-FM/SW"], centre("airband_lna"), centre("airband_mixer"), selector],
+                "medium": "converted-airband-rf-if-pcb", "stroke": "#ea580c", "width": 2.0, "dash": None,
+            },
+            {
+                "frame": "rf-inner", "path": "RX-FM/SW", "branch": "airband-lo",
+                "points": [centre("airband_lo"), centre("airband_mixer")],
+                "medium": "112-mhz-local-oscillator-pcb", "stroke": "#ea580c", "width": 1.5, "dash": "4 3",
+            },
+        ]
+    )
+    return {"pcb_segments": pcb_segments, "cables": cables, "connectors": connectors}
+
+
 def render_complete_inner_svg(model: dict, base: dict, source_table: dict, result: dict) -> str:
     """Render every mechanically registered inner body with an exact legend."""
     legacy = legacy_generator()
@@ -828,6 +957,19 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
         for hole_x, hole_y in legacy.HOLES:
             out.append(f'<circle cx="{sx(origin,hole_x):.1f}" cy="{sy(origin,hole_y):.1f}" r="{legacy.MOUNT_KEEPOUT_R*scale:.1f}" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>')
 
+    topology = r2_antenna_topology(model, rows)
+    out.append('<g id="antenna-pcb-topology" data-topology-source="r2" data-route-state="pre-ecad-topology-only">')
+    for segment in topology["pcb_segments"]:
+        origin = origins[segment["frame"]]
+        points = " ".join(f'{sx(origin,x):.1f},{sy(origin,y):.1f}' for x, y in segment["points"])
+        dash = f' stroke-dasharray="{segment["dash"]}"' if segment["dash"] else ""
+        out.append(
+            f'<polyline points="{points}" fill="none" stroke="{segment["stroke"]}" '
+            f'stroke-width="{segment["width"]}"{dash} data-path="{esc(segment["path"])}" '
+            f'data-branch="{esc(segment["branch"])}" data-medium="{esc(segment["medium"])}"/>'
+        )
+    out.append('</g>')
+
     numbers = {row["id"]: index for index, row in enumerate(rows, 1)}
     for row in rows:
         origin = origins[row["frame"]]
@@ -846,14 +988,29 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
         font = 6.8 if min(w, h) >= 1.6 else 4.8
         out.append(t(vx+w*scale/2, vy+h*scale/2+font/3, str(numbers[row["id"]]), font, "bold", "middle", stroke))
 
-    # Existing ten antenna topologies are kept as topology guides, not claims
-    # of routed production copper. FPV gets its own direct trace pair.
-    out.append('<g id="antenna-topology" data-route-state="pre-ecad-topology-only">')
-    for guide in legacy.ANTENNA_TOPOLOGY_GUIDES:
-        origin = origins[guide.frame]
-        points = " ".join(f'{sx(origin,x):.1f},{sy(origin,y):.1f}' for x, y in guide.points)
-        out.append(f'<polyline points="{points}" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="4 3" data-path="{esc(guide.path)}"/>')
+    # Flexible microcoax and its two connector ends sit above the board bodies;
+    # keeping them separate from the under-body PCB topology is intentional.
+    out.append('<g id="antenna-removable-media" data-topology-source="r2">')
+    for cable in topology["cables"]:
+        origin = origins[cable["frame"]]
+        points = " ".join(f'{sx(origin,x):.1f},{sy(origin,y):.1f}' for x, y in cable["points"])
+        out.append(
+            f'<polyline points="{points}" fill="none" stroke="{cable["stroke"]}" '
+            f'stroke-width="{cable["width"]}" stroke-linecap="round" '
+            f'data-path="{esc(cable["path"])}" data-medium="{esc(cable["medium"])}"/>'
+        )
+    for connector in topology["connectors"]:
+        origin = origins[connector["frame"]]
+        x, y = connector["point"]
+        out.append(
+            f'<circle cx="{sx(origin,x):.1f}" cy="{sy(origin,y):.1f}" r="4.0" fill="#ffffff" '
+            f'stroke="#0f766e" stroke-width="1.5" data-path="{esc(connector["path"])}" '
+            f'data-part="{esc(connector["part"])}" data-connector-kind="{esc(connector["kind"])}"/>'
+        )
+        out.append(f'<circle cx="{sx(origin,x):.1f}" cy="{sy(origin,y):.1f}" r="1.3" fill="#d97706"/>')
     out.append('</g>')
+
+    # FPV gets its own direct trace pair.
     fpv = next(item for item in model["placements"] if item["id"] == "fpv_receiver_bay")
     decoder = next(item for item in model["placements"] if item["id"] == "fpv_decoder")
     rf_origin = origins["rf-inner"]
@@ -961,25 +1118,6 @@ def render_inner_face_svg(
     face_name = "UI / radio PCB" if is_ui else "RF / power PCB"
     paths = model["antenna_bank_optimization"]["front_paths" if is_ui else "rear_paths"]
     centres = model["antenna_bank_optimization"]["front_x_centres_mm" if is_ui else "rear_x_centres_mm"]
-    source_ids = {
-        "N24-0": "nrf0_r2",
-        "S3-2G4": "s3",
-        "N24-1": "nrf1_r2",
-        "C5-2G4/5": "c5",
-        "N24-2": "nrf2_r2",
-        "RX-FM/SW": "receiver_r2",
-        "RX-AM/LW": "receiver_r2",
-        "CC-SUB": "cc_r2",
-        "VOICE-VHF": "voice_v",
-        "VOICE-UHF": "voice",
-    }
-    board_connector_ids = {
-        "N24-0": "nrf0_rf_board_connector_r2",
-        "S3-2G4": "s3_rf_board_connector_r2",
-        "N24-1": "nrf1_rf_board_connector_r2",
-        "C5-2G4/5": "c5_rf_board_connector_r2",
-        "N24-2": "nrf2_rf_board_connector_r2",
-    }
 
     def sx(world_x: float, body_w: float = 0.0) -> float:
         return ox + (board_w - world_x - body_w) * scale
@@ -995,7 +1133,7 @@ def render_inner_face_svg(
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         text(35, 40, f'Leshy2 · {model["marker"]} · {face_name} inner face', 24, "bold"),
         text(35, 68, "Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.", 12, colour="#526076"),
-        text(ox + board_w*scale/2, 105, "ANTENNA EDGE · five direct source-board ports", 13, "bold", "middle", "#1d4ed8"),
+        text(ox + board_w*scale/2, 105, "ANTENNA EDGE · five board-local RF paths", 13, "bold", "middle", "#1d4ed8"),
         f'<rect x="{ox}" y="{oy}" width="{board_w*scale:.1f}" height="{board_h*scale:.1f}" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>',
     ]
     for centre, path in zip(centres, paths):
@@ -1006,7 +1144,21 @@ def render_inner_face_svg(
         ])
     for hole_x, hole_y in legacy.HOLES:
         out.append(f'<circle cx="{sx(hole_x):.1f}" cy="{sy(hole_y):.1f}" r="{legacy.MOUNT_KEEPOUT_R*scale:.1f}" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>')
-    row_by_id = {row["id"]: row for row in rows}
+
+    topology = r2_antenna_topology(model, all_rows)
+    out.append('<g id="antenna-pcb-topology" data-topology-source="r2" data-route-state="pre-ecad-topology-only">')
+    for segment in topology["pcb_segments"]:
+        if segment["frame"] != frame:
+            continue
+        points = " ".join(f'{sx(x):.1f},{sy(y):.1f}' for x, y in segment["points"])
+        dash = f' stroke-dasharray="{segment["dash"]}"' if segment["dash"] else ""
+        out.append(
+            f'<polyline points="{points}" fill="none" stroke="{segment["stroke"]}" '
+            f'stroke-width="{segment["width"]}"{dash} data-path="{html.escape(segment["path"])}" '
+            f'data-branch="{html.escape(segment["branch"])}" data-medium="{html.escape(segment["medium"])}"/>'
+        )
+    out.append('</g>')
+
     for row in rows:
         b = row["bbox"]
         body_w = b["x"][1] - b["x"][0]
@@ -1022,39 +1174,29 @@ def render_inner_face_svg(
         font = 7.0 if min(body_w, body_d) >= 1.6 else 4.8
         out.append(text(vx + body_w*scale/2, vy + body_d*scale/2 + font/3, str(numbers[row["id"]]), font, "bold", "middle", stroke))
 
-    # Draw RF media after the bodies so the connector symbols remain visible.
-    # Front paths have two physical connector ends joined by one removable,
-    # straight microcoax; the short board-U.FL-to-SMA segment is controlled PCB
-    # copper. Rear receive/voice paths are board-local controlled PCB topology.
-    out.append('<g id="antenna-connectivity" data-route-state="pre-ecad-topology-only">')
-    for centre, path in zip(centres, paths):
-        source = row_by_id[source_ids[path]]
-        sb = source["bbox"]
-        source_x = sx(sb["x"][0], sb["x"][1] - sb["x"][0]) + (sb["x"][1] - sb["x"][0]) * scale / 2
-        source_y = sy((sb["y"][0] + sb["y"][1]) / 2)
-        port_x = sx(centre)
-        if is_ui:
-            connector = row_by_id[board_connector_ids[path]]
-            cb = connector["bbox"]
-            connector_x = sx(cb["x"][0], cb["x"][1] - cb["x"][0]) + (cb["x"][1] - cb["x"][0]) * scale / 2
-            connector_y = sy((cb["y"][0] + cb["y"][1]) / 2)
-            source_kind = "IPEX" if path.startswith("N24") else "U.FL"
-            out.extend(
-                [
-                    f'<line x1="{source_x:.1f}" y1="{source_y:.1f}" x2="{connector_x:.1f}" y2="{connector_y:.1f}" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="{html.escape(path)}" data-medium="removable-microcoax"/>',
-                    f'<line x1="{connector_x:.1f}" y1="{connector_y:.1f}" x2="{port_x:.1f}" y2="{oy:.1f}" stroke="#2563eb" stroke-width="1.7" data-path="{html.escape(path)}" data-medium="controlled-50-ohm-pcb"/>',
-                    f'<circle cx="{source_x:.1f}" cy="{source_y:.1f}" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="{html.escape(path)}" data-part="module-rf-connector" data-connector-kind="{source_kind}"/>',
-                    f'<circle cx="{connector_x:.1f}" cy="{connector_y:.1f}" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="{html.escape(path)}" data-part="board-ufl" data-mpn="U.FL-R-SMT-1(10)"/>',
-                    f'<circle cx="{source_x:.1f}" cy="{source_y:.1f}" r="2.0" fill="#d97706"/>',
-                    f'<circle cx="{connector_x:.1f}" cy="{connector_y:.1f}" r="2.0" fill="#d97706"/>',
-                ]
-            )
-        else:
-            out.append(
-                f'<line x1="{source_x:.1f}" y1="{source_y:.1f}" x2="{port_x:.1f}" y2="{oy:.1f}" '
-                f'stroke="#2563eb" stroke-width="1.7" data-path="{html.escape(path)}" '
-                'data-medium="controlled-50-ohm-pcb"/>'
-            )
+    # Removable microcoax and its two connector ends are physical objects above
+    # the PCB; draw them after the body layer. Rear paths have no such cables.
+    out.append('<g id="antenna-removable-media" data-topology-source="r2">')
+    for cable in topology["cables"]:
+        if cable["frame"] != frame:
+            continue
+        points = " ".join(f'{sx(x):.1f},{sy(y):.1f}' for x, y in cable["points"])
+        out.append(
+            f'<polyline points="{points}" fill="none" stroke="{cable["stroke"]}" '
+            f'stroke-width="{cable["width"]}" stroke-linecap="round" '
+            f'data-path="{html.escape(cable["path"])}" data-medium="{html.escape(cable["medium"])}"/>'
+        )
+    for connector in topology["connectors"]:
+        if connector["frame"] != frame:
+            continue
+        x, y = connector["point"]
+        mpn = ' data-mpn="U.FL-R-SMT-1(10)"' if connector["part"] == "board-ufl" else ""
+        out.append(
+            f'<circle cx="{sx(x):.1f}" cy="{sy(y):.1f}" r="6.3" fill="#ffffff" stroke="#0f766e" '
+            f'stroke-width="2" data-path="{html.escape(connector["path"])}" '
+            f'data-part="{html.escape(connector["part"])}" data-connector-kind="{html.escape(connector["kind"])}"{mpn}/>'
+        )
+        out.append(f'<circle cx="{sx(x):.1f}" cy="{sy(y):.1f}" r="2.0" fill="#d97706"/>')
     out.append('</g>')
     note_x = 550
     island_rows = model["functional_partition"]["ui_board" if is_ui else "rf_power_board"]
@@ -1069,20 +1211,41 @@ def render_inner_face_svg(
     out.extend([
         text(note_x, note_y+20, "Line key", 16, "bold"),
         f'<line x1="{note_x}" y1="{note_y+48}" x2="{note_x+44}" y2="{note_y+48}" stroke="#2563eb" stroke-width="1.7"/>',
-        text(note_x+56, note_y+52, "controlled 50-ohm PCB topology; final route belongs to KiCad", 10, colour="#526076"),
-        f'<line x1="{note_x}" y1="{note_y+70}" x2="{note_x+44}" y2="{note_y+70}" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round"/>',
-        text(note_x+56, note_y+74, "straight removable microcoax: module IPEX/U.FL to board U.FL", 10, colour="#526076"),
-        text(note_x, note_y+92, "Body key", 16, "bold"),
-        '<rect x="550" y="{:.1f}" width="28" height="18" fill="#eef2f6" stroke="#94a3b8"/>'.format(note_y+108),
-        text(590, note_y+122, "retained registered body", 10, colour="#526076"),
-        '<rect x="550" y="{:.1f}" width="28" height="18" fill="#dbeafe" stroke="#2563eb"/>'.format(note_y+140),
-        text(590, note_y+154, "explicit R2 placement", 10, colour="#526076"),
-        '<rect x="550" y="{:.1f}" width="28" height="18" fill="#fff7ed" stroke="#ea580c" stroke-dasharray="5 3"/>'.format(note_y+172),
-        text(590, note_y+186, "controlled physical reserve", 10, colour="#526076"),
-        text(note_x, 1000, "The complete numbered register remains generated for machine review.", 10, colour="#526076"),
-        text(note_x, 1020, "The public page uses these two readable one-board maps.", 10, colour="#526076"),
-        '</svg>',
+        text(note_x+56, note_y+52, "board-local RF topology; matching and final geometry belong to KiCad", 10, colour="#526076"),
     ])
+    if is_ui:
+        out.extend(
+            [
+                f'<line x1="{note_x}" y1="{note_y+70}" x2="{note_x+44}" y2="{note_y+70}" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round"/>',
+                text(note_x+56, note_y+74, "straight removable microcoax: module IPEX/U.FL to board U.FL", 10, colour="#526076"),
+            ]
+        )
+        key_tail_y = note_y + 92
+    else:
+        out.extend(
+            [
+                text(note_x, note_y+76, "No U.FL or removable RF cable on this PCB.", 10, "bold", colour="#166534"),
+                f'<line x1="{note_x}" y1="{note_y+98}" x2="{note_x+44}" y2="{note_y+98}" stroke="#ea580c" stroke-width="2"/>',
+                text(note_x+56, note_y+102, "powered converted-Airband RF/IF branch and 112-MHz LO", 10, colour="#526076"),
+                f'<line x1="{note_x}" y1="{note_y+120}" x2="{note_x+44}" y2="{note_y+120}" stroke="#7c3aed" stroke-width="1.9"/>',
+                text(note_x+56, note_y+124, "high-impedance Si4732 AMI path; not a 50-ohm antenna feed", 10, colour="#526076"),
+            ]
+        )
+        key_tail_y = note_y + 142
+    out.extend(
+        [
+            text(note_x, key_tail_y, "Body key", 16, "bold"),
+            f'<rect x="550" y="{key_tail_y+16:.1f}" width="28" height="18" fill="#eef2f6" stroke="#94a3b8"/>',
+            text(590, key_tail_y+30, "retained registered body", 10, colour="#526076"),
+            f'<rect x="550" y="{key_tail_y+48:.1f}" width="28" height="18" fill="#dbeafe" stroke="#2563eb"/>',
+            text(590, key_tail_y+62, "explicit R2 placement", 10, colour="#526076"),
+            f'<rect x="550" y="{key_tail_y+80:.1f}" width="28" height="18" fill="#fff7ed" stroke="#ea580c" stroke-dasharray="5 3"/>',
+            text(590, key_tail_y+94, "controlled physical reserve", 10, colour="#526076"),
+            text(note_x, 1000, "The complete numbered register remains generated for machine review.", 10, colour="#526076"),
+            text(note_x, 1020, "The public page uses these two readable one-board maps.", 10, colour="#526076"),
+            '</svg>',
+        ]
+    )
     return "\n".join(out) + "\n"
 
 
@@ -1486,6 +1649,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         board_names = ("Передняя UI/radio-плата", "Задняя RF/power-плата")
         bullets = [
             "Десять основных SMA разделены симметрично `5 + 5`; каждый радиотракт остаётся на плате своего разъёма.",
+            "На передней плате пять коротких съёмных микрокоаксиальных перемычек соединяют IPEX/U.FL радиоисточников с платными U.FL; дальше до SMA идут локальные контролируемые PCB-тракты.",
+            "На задней плате U.FL и съёмных RF-кабелей нет: voice и FM/SW идут локальными RF-трактами, AM/LW — отдельным высокоомным AMI-трактом, а Airband — через питаемую ветвь преобразования и селектор.",
             "Отдельный вертикальный MMCX `FPV RX · 5.8 GHz` расположен ниже равномерного ряда из пяти задних SMA и над U214; ответный угловой штекер с кабелем уходит вдоль платы.",
             "Все пользовательские подписи являются читаемой шелкографией; внутренние стороны плат шелкографии не содержат.",
             "Три nRF24 полностью перенесены на переднюю плату вместе с буферами, safety-gate и отдельным `TLV1824PWR`.",
@@ -1517,6 +1682,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         board_names = ("Front UI/radio PCB", "Rear RF/power PCB")
         bullets = [
             "Ten main SMA ports are split symmetrically `5 + 5`; every radio path remains on the PCB that carries its connector.",
+            "On the front PCB, five short removable microcoax jumpers connect the radio-source IPEX/U.FL sockets to board U.FL sockets; controlled board-local PCB paths continue from there to SMA.",
+            "The rear PCB has no U.FL or removable RF cable: voice and FM/SW use board-local RF paths, AM/LW uses a separate high-impedance AMI path, and Airband uses the powered conversion branch and selector.",
             "The separate vertical `FPV RX · 5.8 GHz` MMCX sits below the evenly pitched five-SMA rear row and above U214; its mating right-angle plug and cable run parallel to the PCB.",
             "All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.",
             "All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.",

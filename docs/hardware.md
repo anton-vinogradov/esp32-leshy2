@@ -73,9 +73,9 @@ below 0.4 MB/s, so it does not saturate the RP transport.
 
 ## Physical layout
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-layout-clean-3)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-rf-topology-4)
 
-[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-layout-clean-3).
+[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-rf-topology-4).
 
 The ten main antenna ports are split symmetrically:
 
@@ -95,10 +95,17 @@ both mounting holes; Ø12 is only a temporary H5 finger-access check.
 
 ### Component legend
 
-![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.18-layout-clean-3)
+![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.18-rf-topology-4)
 
 [Front inner face at full scale](images/h1-r2-inner-ui.svg) ·
 [rear inner face at full scale](images/h1-r2-inner-rf.svg)
+
+The front PCB shows two different physical media: five removable
+IPEX/U.FL-to-U.FL microcoax jumpers and the board-local RF paths that continue
+from the board U.FL sockets to SMA. The rear PCB has no U.FL or removable RF
+cable. Its voice/FM/SW paths are board-local, AM/LW is a separate
+high-impedance AMI path, and Airband uses a powered conversion branch and
+selector.
 
 The inner faces are shown exactly as viewed after physically turning each PCB
 over, so left and right swap relative to the outer face. Numbers are drawing
@@ -126,7 +133,7 @@ the drawing is its pad span.
 - User silkscreen is printed only on visible outer faces and is not hidden by
   the display, batteries or U214.
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-layout-clean-3)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-rf-topology-4)
 
 ## Power and unattended safety
 

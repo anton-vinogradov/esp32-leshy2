@@ -157,6 +157,28 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual(77.06, holder["manufacturer_body_mm"][0])
         self.assertEqual(86.0, holder["pcb_pad_span_mm"][0])
 
+    def test_r2_antenna_topology_distinguishes_every_physical_medium(self):
+        source_table = json.loads(MODULE.SOURCE_TABLE_PATH.read_text())
+        rows = MODULE.complete_inner_rows(self.model, self.base, source_table, self.audit)
+        topology = MODULE.r2_antenna_topology(self.model, rows)
+        self.assertEqual(12, len(topology["pcb_segments"]))
+        self.assertEqual(5, len(topology["cables"]))
+        self.assertEqual(10, len(topology["connectors"]))
+        self.assertEqual(
+            set(self.model["antenna_bank_optimization"]["front_paths"]),
+            {row["path"] for row in topology["pcb_segments"] if row["frame"] == "ui-inner"},
+        )
+        self.assertEqual(
+            set(self.model["antenna_bank_optimization"]["rear_paths"]),
+            {row["path"] for row in topology["pcb_segments"] if row["frame"] == "rf-inner"},
+        )
+        by_medium = {row["medium"] for row in topology["pcb_segments"]}
+        self.assertIn("high-impedance-ami-pcb", by_medium)
+        self.assertIn("matched-rf-pcb-topology", by_medium)
+        self.assertIn("converted-airband-rf-if-pcb", by_medium)
+        self.assertIn("112-mhz-local-oscillator-pcb", by_medium)
+        self.assertTrue(all(row["frame"] == "ui-inner" for row in topology["cables"]))
+
     def test_generated_artifacts_are_current(self):
         source_table = json.loads(MODULE.SOURCE_TABLE_PATH.read_text())
         expected = {
@@ -221,7 +243,14 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual(5, expected[MODULE.INNER_UI_SVG_PATH].count('data-medium="removable-microcoax"'))
         self.assertEqual(5, expected[MODULE.INNER_UI_SVG_PATH].count('data-part="board-ufl"'))
         self.assertEqual(5, expected[MODULE.INNER_UI_SVG_PATH].count('data-part="module-rf-connector"'))
-        self.assertEqual(5, expected[MODULE.INNER_RF_SVG_PATH].count('data-medium="controlled-50-ohm-pcb"'))
+        self.assertEqual(2, expected[MODULE.INNER_RF_SVG_PATH].count('data-medium="controlled-50-ohm-pcb"'))
+        self.assertEqual(1, expected[MODULE.INNER_RF_SVG_PATH].count('data-medium="high-impedance-ami-pcb"'))
+        self.assertEqual(1, expected[MODULE.INNER_RF_SVG_PATH].count('data-medium="matched-rf-pcb-topology"'))
+        self.assertEqual(1, expected[MODULE.INNER_RF_SVG_PATH].count('data-medium="converted-airband-rf-if-pcb"'))
+        self.assertEqual(1, expected[MODULE.INNER_RF_SVG_PATH].count('data-medium="112-mhz-local-oscillator-pcb"'))
+        self.assertNotIn('data-medium="removable-microcoax"', expected[MODULE.INNER_RF_SVG_PATH])
+        self.assertIn("No U.FL or removable RF cable on this PCB", expected[MODULE.INNER_RF_SVG_PATH])
+        self.assertIn('data-topology-source="r2"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
         self.assertIn('data-port-role="power-and-data"', expected[MODULE.EXTERNAL_SVG_PATH])
         self.assertIn('data-port-role="data-only"', expected[MODULE.EXTERNAL_SVG_PATH])
         self.assertNotIn('data-interface-shape="usb-c-receptacle"', expected[MODULE.EXTERNAL_SVG_PATH])

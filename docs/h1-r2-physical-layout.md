@@ -4,15 +4,15 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 
 ## What the user sees
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-layout-clean-3)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.18-rf-topology-4)
 
 ## Component legend
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.18-layout-clean-3)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.18-rf-topology-4)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-layout-clean-3)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.18-rf-topology-4)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-layout-clean-3)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.18-rf-topology-4)
 
 ## What is inside
 
@@ -21,6 +21,8 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 [Rear RF/power PCB · full-scale inner view](images/h1-r2-inner-rf.svg)
 
 - Ten main SMA ports are split symmetrically `5 + 5`; every radio path remains on the PCB that carries its connector.
+- On the front PCB, five short removable microcoax jumpers connect the radio-source IPEX/U.FL sockets to board U.FL sockets; controlled board-local PCB paths continue from there to SMA.
+- The rear PCB has no U.FL or removable RF cable: voice and FM/SW use board-local RF paths, AM/LW uses a separate high-impedance AMI path, and Airband uses the powered conversion branch and selector.
 - The separate vertical `FPV RX · 5.8 GHz` MMCX sits below the evenly pitched five-SMA rear row and above U214; its mating right-angle plug and cable run parallel to the PCB.
 - All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.
 - All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.
