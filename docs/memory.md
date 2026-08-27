@@ -24,6 +24,8 @@ remain separate. Firmware F0-R2.2 checks this one-to-one ownership in its
 [machine contract](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/f0_r2_memory_rollback_contract.json).
 Firmware F0-R2.3 now fixes the S3-last six-image update transaction; its actual
 16.7-second RP TBYB timing remains a later firmware/physical qualification gate.
+Firmware F0-R2.4 further records that only S3 has an exact official emulator;
+Pico 2 remains a non-exact surrogate for both selected RP2354B targets.
 
 ## Hardware rules that preserve boot and recovery
 
