@@ -89,7 +89,7 @@
         ],
         "connector_type": "RP-SMA",
         "connector_mpn": "GCT RFPC-SMA32-FN-175-A",
-        "x_center_mm": 16.0
+        "x_center_mm": 15.7
       },
       {
         "path": "RX-FM/SW",
@@ -117,7 +117,7 @@
         ],
         "connector_type": "RP-SMA",
         "connector_mpn": "GCT RFPC-SMA32-FN-175-A",
-        "x_center_mm": 59.0
+        "x_center_mm": 59.3
       }
     ],
     "tx_indicators": [
@@ -591,7 +591,7 @@
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 7.5
+        "x_center_mm": 8.1
       },
       {
         "path": "CC-SUB",
@@ -600,7 +600,7 @@
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 19.5
+        "x_center_mm": 19.0
       },
       {
         "path": "N24-1",
@@ -610,7 +610,7 @@
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 31.5
+        "x_center_mm": 29.9
       },
       {
         "path": "VOICE-VHF",
@@ -620,7 +620,7 @@
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 43.5
+        "x_center_mm": 45.1
       },
       {
         "path": "VOICE-UHF",
@@ -630,7 +630,7 @@
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 55.5
+        "x_center_mm": 56.0
       },
       {
         "path": "N24-2",
@@ -640,7 +640,7 @@
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 67.5
+        "x_center_mm": 66.9
       }
     ],
     "u214": {

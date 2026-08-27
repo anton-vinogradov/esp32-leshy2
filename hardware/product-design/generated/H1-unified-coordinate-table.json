@@ -1663,15 +1663,15 @@
           "external_connector_mpn": "GCT RFPC-SMA32-FN-175-A",
           "points_mm": [
             [
-              16.0,
+              15.7,
               10.55
             ],
             [
-              16.0,
+              15.7,
               6.62
             ],
             [
-              16.0,
+              15.7,
               0.0
             ]
           ],
@@ -1687,15 +1687,15 @@
           "external_connector_mpn": "GCT RFPC-SMA32-FN-175-A",
           "points_mm": [
             [
-              59.0,
+              59.3,
               10.55
             ],
             [
-              59.0,
+              59.3,
               6.62
             ],
             [
-              59.0,
+              59.3,
               0.0
             ]
           ],
@@ -1771,11 +1771,11 @@
               5.0
             ],
             [
-              7.5,
+              8.1,
               5.0
             ],
             [
-              7.5,
+              8.1,
               0.0
             ]
           ],
@@ -1803,11 +1803,11 @@
               5.0
             ],
             [
-              31.5,
+              29.9,
               5.0
             ],
             [
-              31.5,
+              29.9,
               0.0
             ]
           ],
@@ -1835,11 +1835,11 @@
               5.0
             ],
             [
-              67.5,
+              66.9,
               5.0
             ],
             [
-              67.5,
+              66.9,
               0.0
             ]
           ],
@@ -1855,11 +1855,11 @@
           "external_connector_mpn": "GCT RFPC-SMA31-FN-175-A",
           "points_mm": [
             [
-              19.5,
+              19.0,
               10.3
             ],
             [
-              19.5,
+              19.0,
               0.0
             ]
           ],
@@ -1879,7 +1879,7 @@
               32.5
             ],
             [
-              43.5,
+              45.1,
               0.0
             ]
           ],
@@ -1899,7 +1899,7 @@
               36.95
             ],
             [
-              55.5,
+              56.0,
               0.0
             ]
           ],
@@ -1939,8 +1939,8 @@
     "pcb_copper_and_vias": {
       "result": "not_yet_proven_pre_kicad",
       "reason": "logical pin and net maps do not prove escape routing, return paths, via fields or DRC clearance through real footprints",
-      "voice_v_rf_endpoint_distance_mm": 39.960136,
-      "voice_u_rf_endpoint_distance_mm": 40.147136,
+      "voice_v_rf_endpoint_distance_mm": 40.911765,
+      "voice_u_rf_endpoint_distance_mm": 39.954255,
       "voice_rf_route_rendering": "two_source_to_two_port_topology_guides_no_claimed_copper_path",
       "closure": "route both boards in KiCad, then pass schematic/ERC, layout DRC, differential/controlled-impedance review and independent manufacturing-rule review"
     },

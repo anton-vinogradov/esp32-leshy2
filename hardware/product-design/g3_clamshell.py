@@ -74,21 +74,24 @@ RF_BODY_D = 6.0
 RF_BARREL_D = 6.35
 RF_BARREL_OUT = 11.4
 FRONT_RF = (
-    (16.0, "S3-2G4", "RP-SMA"),
+    (15.7, "S3-2G4", "RP-SMA"),
     (30.0, "RX-FM/SW", "SMA"),
     (45.0, "RX-AM/LW", "SMA"),
-    (59.0, "C5-2G4/5", "RP-SMA"),
+    (59.3, "C5-2G4/5", "RP-SMA"),
 )
 REAR_RF = (
-    (7.5, "N24-0", "SMA"),
-    (19.5, "CC-SUB", "SMA"),
-    (31.5, "N24-1", "SMA"),
-    (43.5, "VOICE-VHF", "SMA"),
-    (55.5, "VOICE-UHF", "SMA"),
-    (67.5, "N24-2", "SMA"),
+    # Six 10.2-mm SMA bodies plus the 3.6-mm FPV MMCX fit the 75-mm edge
+    # with 0.7-mm body gaps and 3.0-mm board margins.  The H1-R2 overlay
+    # inserts the MMCX at X=37.5 between N24-1 and VHF.
+    (8.1, "N24-0", "SMA"),
+    (19.0, "CC-SUB", "SMA"),
+    (29.9, "N24-1", "SMA"),
+    (45.1, "VOICE-VHF", "SMA"),
+    (56.0, "VOICE-UHF", "SMA"),
+    (66.9, "N24-2", "SMA"),
 )
-VOICE_V_RF_CORRIDOR = ((43.5, 0.0), (20.25, 32.5))
-VOICE_U_RF_CORRIDOR = ((55.5, 0.0), (71.2, 36.95))
+VOICE_V_RF_CORRIDOR = ((45.1, 0.0), (20.25, 32.5))
+VOICE_U_RF_CORRIDOR = ((56.0, 0.0), (71.2, 36.95))
 OPPOSITE_FACE_CLEARANCE_MM = 1.5
 RF_INSTANCE_BY_PATH = {
     "S3-2G4": "s3_external_rp_sma",
@@ -364,7 +367,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "ui-inner",
         "s3_rf_board_connector",
         "s3_external_rp_sma",
-        ((16.0, 10.55), (16.0, 6.62), (16.0, 0.0)),
+        ((15.7, 10.55), (15.7, 6.62), (15.7, 0.0)),
         "S3 board U.FL through forward coupler to outward S3 RP-SMA",
     ),
     AntennaTopologyGuide(
@@ -373,7 +376,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "ui-inner",
         "c5_rf_board_connector",
         "c5_external_rp_sma",
-        ((59.0, 10.55), (59.0, 6.62), (59.0, 0.0)),
+        ((59.3, 10.55), (59.3, 6.62), (59.3, 0.0)),
         "C5 board U.FL through forward coupler to outward C5 RP-SMA",
     ),
     AntennaTopologyGuide(
@@ -400,7 +403,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "rf-inner",
         "nrf0_rf_board_connector",
         "nrf0_external_sma",
-        ((24.5, 29.55), (9.5, 29.55), (9.5, 5.0), (7.5, 5.0), (7.5, 0.0)),
+        ((24.5, 29.55), (9.5, 29.55), (9.5, 5.0), (8.1, 5.0), (8.1, 0.0)),
         "nRF24 #0 board U.FL through forward coupler to outward SMA",
     ),
     AntennaTopologyGuide(
@@ -409,7 +412,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "rf-inner",
         "nrf1_rf_board_connector",
         "nrf1_external_sma",
-        ((51.5, 29.55), (51.75, 27.0), (51.75, 5.0), (31.5, 5.0), (31.5, 0.0)),
+        ((51.5, 29.55), (51.75, 27.0), (51.75, 5.0), (29.9, 5.0), (29.9, 0.0)),
         "nRF24 #1 board U.FL through forward coupler to outward SMA",
     ),
     AntennaTopologyGuide(
@@ -418,7 +421,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "rf-inner",
         "nrf2_rf_board_connector",
         "nrf2_external_sma",
-        ((71.5, 23.55), (65.2, 27.5), (65.2, 5.0), (67.5, 5.0), (67.5, 0.0)),
+        ((71.5, 23.55), (65.2, 27.5), (65.2, 5.0), (66.9, 5.0), (66.9, 0.0)),
         "nRF24 #2 board U.FL through forward coupler to outward SMA",
     ),
     AntennaTopologyGuide(
@@ -427,7 +430,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "rf-inner",
         "cc",
         "cc_external_sma",
-        ((19.5, 10.3), (19.5, 0.0)),
+        ((19.0, 10.3), (19.0, 0.0)),
         "CC1101 selected matching branch to outward Sub-GHz SMA",
     ),
     AntennaTopologyGuide(
@@ -1118,7 +1121,7 @@ def nrf_cable_reserve_opposing_pairs(
     devices: dict,
     instances: dict,
 ) -> list[tuple[float, CableReserve, Placement]]:
-    """Check the three conservative RF-inner cable reserves against UI bodies."""
+    """Check the same-board RF-inner cable reserves against UI bodies."""
     pairs: list[tuple[float, CableReserve, Placement]] = []
     for reserve in RF_NRF_CABLE_RESERVES:
         cable = devices[instances[reserve.instance]]
@@ -1371,7 +1374,7 @@ def validate_cable_routes(devices: dict, instances: dict) -> list[str]:
 
 
 def validate_nrf_cable_reserves(devices: dict, instances: dict) -> list[str]:
-    """Validate the conservative module-face reserves for the three nRF jumpers."""
+    """Validate conservative RF-inner module-face reserves for all three nRF jumpers."""
     errors: list[str] = []
     rf_by_instance = {item.instance: item for item in RF_INNER}
     expected = {f"nrf{index}_rf_jumper" for index in range(3)}
@@ -2153,7 +2156,7 @@ def validate() -> list[str]:
     ):
         errors.append("CC1101 reference RF zone must align to SUB-GHz and clear the outer connector land")
     front_path_centres = {path: centre for centre, path, _ in FRONT_RF}
-    if front_path_centres.get("S3-2G4") != 16.0 or front_path_centres.get("C5-2G4/5") != 59.0:
+    if front_path_centres.get("S3-2G4") != 15.7 or front_path_centres.get("C5-2G4/5") != 59.3:
         errors.append("native RF ports must remain aligned to the two exact 30-mm jumper corridors")
     navigation_items = {
         item.instance: item
@@ -3433,8 +3436,8 @@ def render_internal(devices, instances, display_adapter_design):
         text(820, 547, "nRF ring position is schematic; its connector exists, while generation and exact axis close at H5", 9.2, colour="#0e7490"),
         text(820, 570, "solid green/cyan = direct cable projection · dashed blue = future 50 Ω PCB mainline", 10, "bold", colour="#344054"),
         text(820, 589, "The 30-mm cable has 3D slack; the forward TX sample branches only after the board U.FL.", 9.2, colour="#526076"),
-        text(820, 616, "UI board: S3 · FM/SW/AIR · AM/LW · C5", 10, "bold", colour="#1d4ed8"),
-        text(820, 636, "RF board: nRF24-1 · SUB-GHz · nRF24-2 · VHF/UHF · nRF24-3", 10, "bold", colour="#1d4ed8"),
+        text(820, 616, "UI antenna bank: S3 · FM/SW/AIR · AM/LW · C5", 10, "bold", colour="#1d4ed8"),
+        text(820, 636, "RF antenna bank: nRF24-1/2/3 · SUB-GHz · FPV · VHF/UHF", 10, "bold", colour="#1d4ed8"),
         text(820, 656, "Every blue guide ends at its matching red outer-face antenna datum; none represents finished KiCad copper.", 9.2, colour="#526076"),
     ]
     out += rf_feed_path_callout(
@@ -4334,19 +4337,20 @@ def render_top_edge(devices, instances):
         r(x(U214_X), z(base_rear_z), U214_W*scale_x, depth("u214")*scale_z, "#ffedd5", "#ea580c", "7 4", 5, ' fill-opacity="0.45" data-instance="u214"'),
         r(x(17.6), z(base_rear_z), 39.8*scale_x, holder_depth*scale_z, "#dcfce7", "#16a34a", "4 3", 12, ' fill-opacity="0.45" data-instance="pack-holder"'),
         '</g>',
-        '<g id="front-antenna-bank" data-count="4" data-mount-face="ui-pcb-outer">',
+        f'<g id="front-antenna-bank" data-count="{len(FRONT_RF)}" data-mount-face="ui-pcb-outer">',
     ]
     for centre, path, _ in FRONT_RF:
         out.append(f'<ellipse cx="{x(centre):.1f}" cy="{z(front_rf_centre_z):.1f}" rx="{RF_BARREL_D*scale_x/2:.1f}" ry="{RF_BARREL_D*scale_z/2:.1f}" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="{path}"/>')
-    out += ['</g>', '<g id="rear-antenna-bank" data-count="6" data-mount-face="rf-pcb-outer">']
+    out += ['</g>', f'<g id="rear-antenna-bank" data-count="{len(REAR_RF)}" data-mount-face="rf-pcb-outer">']
     for centre, path, _ in REAR_RF:
         out.append(f'<ellipse cx="{x(centre):.1f}" cy="{z(rear_rf_centre_z):.1f}" rx="{RF_BARREL_D*scale_x/2:.1f}" ry="{RF_BARREL_D*scale_z/2:.1f}" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="{path}"/>')
     out += [
         '</g>',
-        t(790, z(front_rf_centre_z)-2, "4 front ports", 9, "bold", "start", "#1d4ed8"),
+        t(790, z(front_rf_centre_z)-2, f"{len(FRONT_RF)} front ports", 9, "bold", "start", "#1d4ed8"),
         t(790, z(front_rf_centre_z)+11, "UI outer face", 8.5, "normal", "start", "#1d4ed8"),
-        t(790, z(rear_rf_centre_z)-2, "6 rear ports", 9, "bold", "start", "#9a3412"),
-        t(790, z(rear_rf_centre_z)+11, "RF/power outer face", 8.5, "normal", "start", "#9a3412"),
+        t(790, z(rear_rf_centre_z)-5, f"{len(REAR_RF)} rear SMA", 8.5, "bold", "start", "#9a3412"),
+        t(790, z(rear_rf_centre_z)+7, "+ 1 FPV MMCX", 8.5, "bold", "start", "#9a3412"),
+        t(790, z(rear_rf_centre_z)+19, "RF/power outer face", 8.0, "normal", "start", "#9a3412"),
         f'<line x1="{x(0):.1f}" y1="{z(max_rear_z)+58:.1f}" x2="{x(75):.1f}" y2="{z(max_rear_z)+58:.1f}" stroke="#344054"/>',
         f'<line x1="{x(0):.1f}" y1="{z(max_rear_z)+52:.1f}" x2="{x(0):.1f}" y2="{z(max_rear_z)+64:.1f}" stroke="#344054"/>',
         f'<line x1="{x(75):.1f}" y1="{z(max_rear_z)+52:.1f}" x2="{x(75):.1f}" y2="{z(max_rear_z)+64:.1f}" stroke="#344054"/>',

@@ -20,7 +20,7 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.13", self.model["marker"])
+        self.assertEqual("H1-R2.14", self.model["marker"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
         self.assertEqual(27, len(self.audit["opposing_overlaps"]))
@@ -76,7 +76,8 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("FTSH-105-01-L-DV-K-P-TR", placed["hub_dbg_header"]["mpn"])
         self.assertEqual("SKRTLAE010", placed["hub_reset_button"]["mpn"])
         self.assertEqual("SKRTLAE010", placed["hub_boot_button"]["mpn"])
-        self.assertEqual("left", placed["hub_service_usb_connector"]["external_interface"]["side"])
+        self.assertEqual("bottom", placed["hub_service_usb_connector"]["external_interface"]["side"])
+        self.assertEqual([12.0, 142.65], placed["hub_service_usb_connector"]["world_xy_mm"])
         self.assertEqual("right", placed["hub_reset_button"]["external_interface"]["side"])
         self.assertEqual("right", placed["hub_boot_button"]["external_interface"]["side"])
 
@@ -90,11 +91,12 @@ class H1R2LayoutTest(unittest.TestCase):
 
     def test_mmcx_uses_manufacturer_body_and_mounting_geometry(self):
         mmcx = next(x for x in self.model["placements"] if x["id"] == "fpv_mmcx")
-        self.assertEqual([71.4, 99.5], mmcx["world_xy_mm"])
-        self.assertEqual([6.6, 3.6, 4.0], mmcx["size_mm"])
+        self.assertEqual([35.7, -3.0], mmcx["world_xy_mm"])
+        self.assertEqual([3.6, 6.6, 4.0], mmcx["size_mm"])
         self.assertEqual(3.6, mmcx["mounting"]["body_inboard_mm"])
         self.assertEqual(3.0, mmcx["mounting"]["barrel_outboard_mm"])
-        self.assertEqual([73.2, 101.3], mmcx["mounting"]["mounting_axis_world_xy_mm"])
+        self.assertEqual([37.5, 1.8], mmcx["mounting"]["mounting_axis_world_xy_mm"])
+        self.assertEqual(0.0, mmcx["mounting"]["board_edge_y_mm"])
         self.assertEqual(4, mmcx["mounting"]["ground_post_count"])
         self.assertEqual([2.0, 2.0], mmcx["mounting"]["ground_post_pitch_mm"])
         evidence = next(x for x in self.model["factory_evidence"] if x["mpn"] == mmcx["mpn"])
@@ -116,6 +118,12 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertAlmostEqual(1.2, service["nominal_tail_projection_into_gap_mm"])
         self.assertAlmostEqual(0.5, service["sidewall_radial_clearance_mm"])
         self.assertEqual(12.0, service["external_service_keepout"]["diameter_mm"])
+        self.assertGreaterEqual(service["minimum_rear_antenna_connector_clearance_mm"], 0.7)
+        self.assertEqual(
+            {"N24-1", "VOICE-VHF"},
+            {row["path"] for row in service["handling_envelope_overlaps"]},
+        )
+        self.assertIn("FPV antenna before", service["fixed_installation_sequence"])
 
     def test_generated_artifacts_are_current(self):
         expected = {
@@ -146,6 +154,20 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertNotIn("[`None`]", expected[MODULE.RU_DOC_PATH])
         self.assertIn("Four independent USB paths", expected[MODULE.SERVICE_SVG_PATH])
         self.assertIn("HUB SERVICE USB", expected[MODULE.SERVICE_SVG_PATH])
+        self.assertIn('data-instance="fpv_mmcx"', expected[MODULE.EXTERNAL_SVG_PATH])
+        self.assertIn('FPV RX', expected[MODULE.EXTERNAL_SVG_PATH])
+        self.assertIn('5.8 GHz', expected[MODULE.EXTERNAL_SVG_PATH])
+        for instance in ("hub_reset_button", "hub_boot_button"):
+            self.assertIn(
+                f'data-instance="{instance}" data-mpn="SKRTLAE010" '
+                'data-projection="inner-mounted-side-switch"',
+                expected[MODULE.EXTERNAL_SVG_PATH],
+            )
+            self.assertIn(
+                f'data-instance="{instance}" data-part="side-actuator" '
+                'data-recessed="true"',
+                expected[MODULE.EXTERNAL_SVG_PATH],
+            )
         self.assertIn('data-view="both-inner-faces-mirrored"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
         self.assertIn('data-inner-silkscreen="none"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
 

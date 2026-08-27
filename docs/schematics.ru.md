@@ -2,50 +2,9 @@
 
 [На главную](../README.ru.md) · [Аппаратная часть](hardware.ru.md) · [English](schematics.md)
 
-Видимая ниже схема — текущий принципиальный дизайн R2. Точные рабочие
-контакты и бюджеты находятся в [отчёте H0-R2](h0-r2-functional-architecture.ru.md)
-и [публичной распиновке](pinout.ru.md). У съёмного передающего аксессуара есть
-свои схемы на странице [Leshy LoRa Cap](lora-cap.ru.md).
+Схемы ниже показывают конечное устройство по функциональным доменам. Точные контакты, направления сигналов и электрические связи находятся в [публичной таблице распиновки](pinout.ru.md). Полный состав устройства — в [машинном BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv). Отдельные принципиальные схемы съёмного передающего аксессуара находятся на странице [Leshy LoRa Cap](lora-cap.ru.md).
 
-## Текущая связь компонентов R2
-
-Каждый узел обозначает одно физическое устройство или одну серийную пассивную
-цепь. Общий внешний порт в этом режиме остаётся только приёмным; прямой FM/SW
-и конвертированный Airband включаются взаимоисключающе.
-
-```mermaid
-flowchart TD
-  ANT["GCT CON-SMA-EDGE-S<br/>пользовательский порт FM / SW / AIR RX"]
-  BPF["серийная high-Q LC-лестница<br/>входной band-pass 118–137 МГц"]
-  LNA["Mini-Circuits PGA-103+<br/>малошумящее усиление Airband"]
-  MIX["Analog Devices LT5560EDD#TRPBF<br/>downconverter Airband"]
-  LO["Skyworks SI5351A-B-GTR<br/>фиксированный LO 112 МГц"]
-  SEL["Analog Devices HMC544AETR<br/>селектор direct / converted RF"]
-  RX["Skyworks SI4732-A10-GSR<br/>FM/SW и IF 6–25 МГц"]
-  HUB["SC1512-A4 · Hub RP2354B<br/>управление RX, audio и запись"]
-  S3["ESP32-S3-WROOM-1U-N16R8<br/>прямые UI и display"]
-  ANT --> BPF --> LNA --> MIX --> SEL
-  ANT -->|"прямая ветвь FM/SW"| SEL
-  LO -->|"LO 112 МГц"| MIX
-  SEL --> RX --> HUB --> S3
-```
-
-`BPF-A127+` — опубликованный эталон маски, а не выбранная фабричная деталь:
-exact-позиции в каталоге JLCPCB нет. H1-R2 должен синтезировать production-
-фильтр из точных серийных passives JLCPCB и проверить АЧХ, подавление зеркала
-и layout. Активная дельта и live catalogue evidence перечислены в
-[отчёте H0-R2](h0-r2-functional-architecture.ru.md).
-
-## Статус production ECAD
-
-Принятой production-схемы R2 ещё нет. Сначала H1-R2 закрывает физическую
-компоновку, межплатные переходы и новый rail envelope. Следующие листы KiCad —
-сохранённая реализация R1; переиспользовать её можно только после сверки с R2.
-
-<details>
-<summary><strong>Сохранённые ECAD и принципиальные схемы R1</strong></summary>
-
-## Историческая production ECAD-схема R1
+## Актуальная production ECAD-схема
 
 Функциональные диаграммы ниже остаются обзорной картой готового продукта.
 Реализованные листы KiCad — точная электрическая схема: каждый покупной
@@ -434,5 +393,3 @@ EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX
   EVIDENCE_OR_3 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_4 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
 ```
-
-</details>

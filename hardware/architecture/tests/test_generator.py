@@ -37,7 +37,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H1-R2.13", roadmap["current_substep"])
+        self.assertEqual("H1-R2.14", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -561,8 +561,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             'data-nrf-cable-reserves="3"',
             'data-nrf-reserve-opposing-pairs="5"',
             'data-encoder-through-features="7"',
-            'data-voice-v-rf-endpoint-distance-mm="39.96"',
-            'data-voice-u-rf-endpoint-distance-mm="40.15"',
+            'data-voice-v-rf-endpoint-distance-mm="40.91"',
+            'data-voice-u-rf-endpoint-distance-mm="39.95"',
             'data-path="S3-2G4"',
             'data-path="RX-FM/SW"',
             'data-path="RX-AM/LW"',

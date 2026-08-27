@@ -4,7 +4,7 @@
 
 > Current baseline: [H0-R2](h0-r2-functional-architecture.md). The R1 pin,
 > interconnect and ECAD pages linked below are retained inputs for the future R2
-> schematic. H1-R2.13 generates the complete current physical views, including
+> schematic. H1-R2.14 generates the complete current physical views, including
 > four independent USB/RESET/BOOT/DBG10 recovery sets. The [physical projection](h1-r2-physical-layout.md),
 > [FPV path](h1-r2-fpv.md) and [rail/thermal architecture](h1-r2-power-thermal.md)
 > pass their present checks but remain in progress; none authorizes R2 PCB routing.

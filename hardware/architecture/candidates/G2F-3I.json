@@ -744,22 +744,22 @@
         "board": "ui_control_board",
         "face": "outward_front",
         "ports": [
-          {"instance":"s3_external_rp_sma","path":"S3-2G4","x_center_mm":16.0},
+          {"instance":"s3_external_rp_sma","path":"S3-2G4","x_center_mm":15.7},
           {"instance":"receiver_fmsw_external_sma","path":"RX-FM/SW","x_center_mm":30.0},
           {"instance":"receiver_amlw_external_sma","path":"RX-AM/LW","x_center_mm":45.0},
-          {"instance":"c5_external_rp_sma","path":"C5-2G4/5","x_center_mm":59.0}
+          {"instance":"c5_external_rp_sma","path":"C5-2G4/5","x_center_mm":59.3}
         ]
       },
       "rf_power_outer_face": {
         "board": "rf_power_board",
         "face": "outward_rear",
         "ports": [
-          {"instance":"nrf0_external_sma","path":"N24-0","x_center_mm":7.5},
-          {"instance":"cc_external_sma","path":"CC-SUB","x_center_mm":19.5},
-          {"instance":"nrf1_external_sma","path":"N24-1","x_center_mm":31.5},
-          {"instance":"voice_v_external_sma","path":"VOICE-VHF","x_center_mm":43.5},
-          {"instance":"voice_external_sma","path":"VOICE-UHF","x_center_mm":55.5},
-          {"instance":"nrf2_external_sma","path":"N24-2","x_center_mm":67.5}
+          {"instance":"nrf0_external_sma","path":"N24-0","x_center_mm":8.1},
+          {"instance":"cc_external_sma","path":"CC-SUB","x_center_mm":19.0},
+          {"instance":"nrf1_external_sma","path":"N24-1","x_center_mm":29.9},
+          {"instance":"voice_v_external_sma","path":"VOICE-VHF","x_center_mm":45.1},
+          {"instance":"voice_external_sma","path":"VOICE-UHF","x_center_mm":56.0},
+          {"instance":"nrf2_external_sma","path":"N24-2","x_center_mm":66.9}
         ]
       },
       "separation": {

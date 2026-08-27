@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1380" height="1695" viewBox="0 0 1380 1695">
 <rect width="1380" height="1695" fill="#ffffff"/>
-<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.13 inner placement</text>
+<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.14 inner placement</text>
 <text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · both opened inner faces are mirrored · numbered marks are documentation, never inner-face silkscreen.</text>
 <text x="190.00" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">UI PCB · inner · mirrored</text>
 <rect x="70.00" y="122.00" width="240.00" height="480.00" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -39,8 +39,8 @@
 <rect x="266.48" y="362.00" width="5.12" height="2.56" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="158.00" y="346.00" width="32.00" height="32.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="174.00" y="362.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">1</text>
-<rect x="286.48" y="547.60" width="23.52" height="28.61" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="298.24" y="561.90" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">19</text>
+<rect x="242.99" y="578.48" width="28.61" height="23.52" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="257.30" y="590.24" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">19</text>
 <rect x="196.88" y="547.60" width="30.88" height="18.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="212.32" y="556.94" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">20</text>
 <rect x="70.00" y="538.00" width="10.88" height="14.40" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
@@ -192,13 +192,13 @@
 <text x="483.92" y="318.64" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">17</text>
 <rect x="486.80" y="317.84" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="488.40" y="318.64" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">18</text>
-<rect x="410.00" y="440.40" width="11.52" height="11.52" rx="2" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
-<rect x="400.40" y="442.47" width="9.60" height="7.37" rx="2" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
-<circle cx="415.76" cy="446.16" r="3.2" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
-<text x="415.76" y="439.16" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#1d4ed8">7</text>
-<path d="M 400.40 446.16 L 382.40 446.16" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="378.40" y="444.16" text-anchor="end" font-family="sans-serif" font-size="9" font-weight="700" fill="#dc2626">finished-device RIGHT side</text>
-<path d="M 415.76 446.16 L 430.80 448.40" stroke="#0f766e" stroke-width="3" fill="none"/>
+<rect x="524.24" y="122.00" width="11.52" height="11.52" rx="2" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+<rect x="526.31" y="112.40" width="7.37" height="9.60" rx="2" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
+<circle cx="530.00" cy="127.76" r="3.2" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+<text x="530.00" y="120.76" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#1d4ed8">7</text>
+<path d="M 530.00 112.40 V 94.40" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="538.00" y="92.40" text-anchor="start" font-family="sans-serif" font-size="9" font-weight="700" fill="#dc2626">finished-device antenna edge</text>
+<path d="M 530.00 127.76 L 430.80 448.40" stroke="#0f766e" stroke-width="3" fill="none"/>
 <path d="M 526.80 448.40 L 528.40 442.00" stroke="#7c3aed" stroke-width="3" fill="none"/>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker></defs>
 <text x="730" y="112" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Placed devices and allocations</text>
@@ -206,8 +206,8 @@
 <text x="755" y="157" font-family="sans-serif" font-size="10.5" fill="#526076">Hub RP2354B; C5/RF fan-out, storage, audio</text>
 <text x="755" y="171" font-family="sans-serif" font-size="10.5" fill="#526076">and broadcast control</text>
 <text x="730" y="199" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">19 · USB4105-GF-A</text>
-<text x="755" y="216" font-family="sans-serif" font-size="10.5" fill="#526076">Hub RP independent data-only USB-C;</text>
-<text x="755" y="230" font-family="sans-serif" font-size="10.5" fill="#526076">left-side enclosure exit</text>
+<text x="755" y="216" font-family="sans-serif" font-size="10.5" fill="#526076">Hub RP independent data-only USB-C; bottom</text>
+<text x="755" y="230" font-family="sans-serif" font-size="10.5" fill="#526076">enclosure exit</text>
 <text x="730" y="258" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">20 · FTSH-105-01-L-DV-K-P-TR</text>
 <text x="755" y="275" font-family="sans-serif" font-size="10.5" fill="#526076">Hub RP keyed SWD/RUN/USB_BOOT fallback;</text>
 <text x="755" y="289" font-family="sans-serif" font-size="10.5" fill="#526076">accessible only after opening the sandwich</text>

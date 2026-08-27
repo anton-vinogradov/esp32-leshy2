@@ -2,51 +2,9 @@
 
 [Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)
 
-The visible diagram below is the current R2 principle design. Exact working
-contacts and budgets are in the [H0-R2 report](h0-r2-functional-architecture.md)
-and [public pin page](pinout.md). The removable transmitting accessory has its
-own split diagrams on the [Leshy LoRa Cap](lora-cap.md) page.
+The diagrams below describe the finished device by functional domain. Exact contacts, signal directions and electrical connections are in the [public pin table](pinout.md). The complete device content is in the [machine-readable BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv). The removable transmitting accessory has its own split principle diagrams on the [Leshy LoRa Cap](lora-cap.md) page.
 
-## Current R2 component relationship
-
-Every node is one physical device or one serial passive network. The shared
-external port remains receive-only in this mode; direct FM/SW and converted
-Airband are mutually exclusive.
-
-```mermaid
-flowchart TD
-  ANT["GCT CON-SMA-EDGE-S<br/>FM / SW / AIR RX user port"]
-  BPF["serial high-Q LC ladder<br/>118–137 MHz input band-pass"]
-  LNA["Mini-Circuits PGA-103+<br/>Airband low-noise gain"]
-  MIX["Analog Devices LT5560EDD#TRPBF<br/>Airband downconverter"]
-  LO["Skyworks SI5351A-B-GTR<br/>fixed 112 MHz local oscillator"]
-  SEL["Analog Devices HMC544AETR<br/>direct / converted RF selector"]
-  RX["Skyworks SI4732-A10-GSR<br/>FM/SW and 6–25 MHz IF receiver"]
-  HUB["SC1512-A4 · Hub RP2354B<br/>receiver control, audio and recording"]
-  S3["ESP32-S3-WROOM-1U-N16R8<br/>direct UI and display application"]
-  ANT --> BPF --> LNA --> MIX --> SEL
-  ANT -->|"direct FM/SW branch"| SEL
-  LO -->|"112 MHz LO"| MIX
-  SEL --> RX --> HUB --> S3
-```
-
-`BPF-A127+` is the published response-mask reference, not a selected factory
-part: JLCPCB has no exact catalogue match. H1-R2 must synthesize the production
-filter from exact serial JLCPCB passives and qualify its response, image
-rejection and layout. The active delta and live catalogue evidence are listed
-in the [H0-R2 report](h0-r2-functional-architecture.md).
-
-## Production ECAD status
-
-There is no accepted R2 production schematic yet. H1-R2 must first close
-physical placement, inter-board crossings and the new rail envelope. The
-following KiCad sheets are the retained R1 implementation and may be reused
-only after reconciliation with R2.
-
-<details>
-<summary><strong>Retained R1 ECAD and principle diagrams</strong></summary>
-
-## Historical R1 production ECAD schematic
+## Current production ECAD schematic
 
 The functional diagrams below remain the overview of the finished product.
 The implemented KiCad sheets are the exact electrical schematic: every
@@ -435,5 +393,3 @@ EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>digital TX-evidence isolation into t
   EVIDENCE_OR_3 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_4 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
 ```
-
-</details>

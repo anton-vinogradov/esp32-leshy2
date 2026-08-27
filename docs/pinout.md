@@ -2,18 +2,9 @@
 
 [Home](../README.md) · [Русский](pinout.ru.md) · [Hardware architecture](hardware.md)
 
-The current working R2 contact design and both complete S3/Hub budgets are
-generated in the [H0-R2 report](h0-r2-functional-architecture.md). H1-R2 is
-now reconciling that principle map with physical placement and inter-board
-crossings; a contact change is valid only when the machine contract, checks and
-public report change together.
+This page is generated from the same device and net map used by the electrical checks. It shows the current target contact assignment.
 
-> Current source: `hardware/architecture/h0-r2-rebaseline.json`. The table below
-> is the retained exact **R1** contact assignment and is not authorization for
-> R2 KiCad work.
-
-<details>
-<summary><strong>Retained exact R1 pin assignment</strong></summary>
+> Generated from `hardware/architecture/devices.json` and `hardware/architecture/candidates/G2F-3I.json`.
 
 ## S3 — application, UI, display, storage and audio
 
@@ -164,5 +155,3 @@ public report change together.
 | `PA26` | `PACK_STACK_ADC` | `i` | `ADC` | pack_stack_adc_top4.END_2<br>pack_stack_adc_bottom.END_1<br>pack_stack_adc_filter.END_1 |
 
 `i` means input, `o` output and `io` bidirectional. Service, power and fixed-function contacts remain accounted in the complete machine map even when they are not GPIO.
-
-</details>

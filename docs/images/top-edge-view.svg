@@ -15,23 +15,24 @@
 <rect x="296.8" y="284.2" width="318.4" height="165.6" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 3" fill-opacity="0.45" data-instance="pack-holder"/>
 </g>
 <g id="front-antenna-bank" data-count="4" data-mount-face="ui-pcb-outer">
-<ellipse cx="284.0" cy="145.2" rx="25.4" ry="25.4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="S3-2G4"/>
+<ellipse cx="281.6" cy="145.2" rx="25.4" ry="25.4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="S3-2G4"/>
 <ellipse cx="396.0" cy="145.2" rx="25.4" ry="25.4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="RX-FM/SW"/>
 <ellipse cx="516.0" cy="145.2" rx="25.4" ry="25.4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="RX-AM/LW"/>
-<ellipse cx="628.0" cy="145.2" rx="25.4" ry="25.4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="C5-2G4/5"/>
+<ellipse cx="630.4" cy="145.2" rx="25.4" ry="25.4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="C5-2G4/5"/>
 </g>
 <g id="rear-antenna-bank" data-count="6" data-mount-face="rf-pcb-outer">
-<ellipse cx="216.0" cy="309.6" rx="25.4" ry="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="N24-0"/>
-<ellipse cx="312.0" cy="309.6" rx="25.4" ry="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="CC-SUB"/>
-<ellipse cx="408.0" cy="309.6" rx="25.4" ry="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="N24-1"/>
-<ellipse cx="504.0" cy="309.6" rx="25.4" ry="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="VOICE-VHF"/>
-<ellipse cx="600.0" cy="309.6" rx="25.4" ry="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="VOICE-UHF"/>
-<ellipse cx="696.0" cy="309.6" rx="25.4" ry="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="N24-2"/>
+<ellipse cx="220.8" cy="309.6" rx="25.4" ry="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="N24-0"/>
+<ellipse cx="308.0" cy="309.6" rx="25.4" ry="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="CC-SUB"/>
+<ellipse cx="395.2" cy="309.6" rx="25.4" ry="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="N24-1"/>
+<ellipse cx="516.8" cy="309.6" rx="25.4" ry="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="VOICE-VHF"/>
+<ellipse cx="604.0" cy="309.6" rx="25.4" ry="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="VOICE-UHF"/>
+<ellipse cx="691.2" cy="309.6" rx="25.4" ry="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="N24-2"/>
 </g>
 <text x="790.0" y="143.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="start" fill="#1d4ed8">4 front ports</text>
 <text x="790.0" y="156.2" font-family="sans-serif" font-size="8.5" font-weight="normal" text-anchor="start" fill="#1d4ed8">UI outer face</text>
-<text x="790.0" y="307.6" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="start" fill="#9a3412">6 rear ports</text>
-<text x="790.0" y="320.6" font-family="sans-serif" font-size="8.5" font-weight="normal" text-anchor="start" fill="#9a3412">RF/power outer face</text>
+<text x="790.0" y="304.6" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="start" fill="#9a3412">6 rear SMA</text>
+<text x="790.0" y="316.6" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="start" fill="#9a3412">+ 1 FPV MMCX</text>
+<text x="790.0" y="328.6" font-family="sans-serif" font-size="8.0" font-weight="normal" text-anchor="start" fill="#9a3412">RF/power outer face</text>
 <line x1="156.0" y1="507.8" x2="756.0" y2="507.8" stroke="#344054"/>
 <line x1="156.0" y1="501.8" x2="156.0" y2="513.8" stroke="#344054"/>
 <line x1="756.0" y1="501.8" x2="756.0" y2="513.8" stroke="#344054"/>

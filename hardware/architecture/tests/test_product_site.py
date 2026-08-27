@@ -165,13 +165,13 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: H1-R2.13", "H0-R2 reviewed",
+                "Current hardware boundary: H1-R2.14", "H0-R2 reviewed",
                 "firmware F1-R2 reviewed", "F2-R2.0",
                 "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: H1-R2.13", "H0-R2 проведено ревью",
+                "Текущая аппаратная граница: H1-R2.14", "H0-R2 проведено ревью",
                 "firmware F1-R2 проведено ревью", "F2-R2.0", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
@@ -187,8 +187,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Hardware is at H1-R2.13", "printing/fabrication"),
-            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H1-R2.13", "печать/на фабрику"),
+            "README.md": ("Roadmap and current position", "Hardware is at H1-R2.14", "printing/fabrication"),
+            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H1-R2.14", "печать/на фабрику"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -831,7 +831,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H1", state["current_stage"])
-        self.assertEqual("H1-R2.13", state["current_substep"])
+        self.assertEqual("H1-R2.14", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -2861,8 +2861,8 @@ class ProductSiteTests(unittest.TestCase):
             'data-encoder-through-features="7"',
             'data-cable-od-max-mm="1.13"',
             'data-functional-zones="1"',
-            'data-voice-v-rf-endpoint-distance-mm="39.96"',
-            'data-voice-u-rf-endpoint-distance-mm="40.15"',
+            'data-voice-v-rf-endpoint-distance-mm="40.91"',
+            'data-voice-u-rf-endpoint-distance-mm="39.95"',
             'data-path="S3-2G4"',
             'data-path="RX-FM/SW"',
             'data-path="RX-AM/LW"',

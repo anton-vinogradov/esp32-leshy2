@@ -3,7 +3,7 @@
 [Русский](roadmap.ru.md) · [Home](../README.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶️ Current hardware boundary: H1-R2.13 — K331 remains primary after the full-coverage fallback search.**
+> **▶️ Current hardware boundary: H1-R2.14 — K331 remains primary after the full-coverage fallback search.**
 > R1 H1–H5 remain reusable evidence, not current acceptance. There is no R2 PCB layout or authorized order.
 
 Status last reconciled: **27 August 2026**. This is the hardware repository's
@@ -23,8 +23,8 @@ results appear here only where they are prerequisites of a hardware gate.
 | Area | Actual state |
 |---|---|
 | Product requirements and functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): six domains, direct S3 UI/display/FPV and mandatory receive-only Airband |
-| Physical product design | ▶️ [H1-R2.13](h1-r2-physical-layout.md): complete current exterior, mirrored inner-face, service, antenna-edge and section views are generated; the recovered Hub path gives all four compute chips independent USB, RESET/BOOT and DBG10; only one controlled AKK production package still blocks H1 |
-| Principle diagrams on the site | H0-R2 functional map, H1-R2.13 complete physical views and FPV/MMCX path, and H1-R2.4 filter/rail diagrams are current; the generated physical views remain explicitly in progress until the K331 boundary stops moving |
+| Physical product design | ▶️ [H1-R2.14](h1-r2-physical-layout.md): all four USB openings face downward, all eight recessed recovery switches share one exact visual contract, and the unchanged RF topology fits four UI SMA plus six RF SMA and one top-edge FPV MMCX; only one controlled AKK production package still blocks H1 |
+| Principle diagrams on the site | H0-R2 functional map, H1-R2.14 complete physical views and FPV/MMCX path, and H1-R2.4 filter/rail diagrams are current; the generated physical views remain explicitly in progress until the K331 boundary stops moving |
 | Production ECAD schematic | ⏳ R1 sheets retained; R2 work waits for the H1-R2 placement and rail contract |
 | Electrical and transient evidence | ⏳ R1 evidence retained; full R2 H3 rerun follows R2 H2 |
 | Firmware interlock | ✅ [firmware F1-R2 reviewed](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/f1-portable-cores-report.md): 34 scenarios pass normal plus sanitizer runs; six-target project/build rebaseline F2-R2.0 is current, while exact target and physical execution remain downstream |
@@ -39,13 +39,13 @@ Principle diagrams explain **what connects to what**. Production ECAD must add
 exact symbols, contacts, values, rails, protection, footprints and ERC
 evidence. PCB placement and routing begin only after the earlier gates close.
 
-## Current H1-R2.13 and retained R1 evidence
+## Current H1-R2.14 and retained R1 evidence
 
-<!-- current-substep: H1-R2.13 -->
+<!-- current-substep: H1-R2.14 -->
 
-**Exact marker: `H1-R2.13`** — the [current physical result](h1-r2-physical-layout.md)
+**Exact marker: `H1-R2.14`** — the [current physical result](h1-r2-physical-layout.md)
 places the new Hub, Airband chain, analog-FPV decoder/receiver reserve and exact
-side MMCX in the accepted coordinate system. The connector now uses its exact
+top-edge MMCX in the accepted coordinate system. The connector now uses its exact
 manufacturer body and mounting geometry; the exact FPV 1.8-V LDO is accepted
 against the live factory supply surface. A reseller-hosted AKK-branded drawing
 corroborates a 28.7×23.1-mm nominal K331 board, while the audit intentionally
@@ -92,7 +92,9 @@ Consign/Request-a-Quote routes. The RTC6715 public preliminary sheet also lacks
 a reference RF/IF application and PCB layout. A custom receiver would therefore
 increase 5.8-GHz design risk without fixing supply and is rejected as an H1 replacement.
 The MMCX correction puts its 3.6-mm square body on the RF PCB and only its
-3.0-mm barrel beyond the right edge. A generated service view proves the
+3.0-mm barrel beyond the top antenna edge. Six exact SMA bodies and this MMCX
+fit the RF edge with 0.7-mm installed-body gaps; the flexible FPV antenna is
+installed before the two adjacent SMA antennas. A generated service view proves the
 1.2-mm nominal solder-tail projection has no opposing body and reserves a
 4.5-mm wall aperture plus a Ø12×20-mm plug corridor; JLCPCB classifies the
 exact C2894793 route as wave soldering on Economic/Standard PCBA. Received
@@ -415,7 +417,7 @@ A production order is possible only after H9.
 | Stage | Status | Stage output | Exit criterion |
 |---|---|---|---|
 | **H0. Product requirements and functional architecture** | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Six compute domains, direct S3 UI/display/FPV, independent Hub fan-out and mandatory receive-only Airband | Every function has one owner; S3 and Hub GPIO budgets close; transport, quiet-state and firmware boundaries are explicit |
-| **H1. Physical product design** | ▶️ Current `H1-R2.13` | Regenerated exterior/inner faces, sections, assembly sequence, exact body envelopes, RF paths and ≥3.5-A continuous / ≥4.0-A step power contract | No component, fastener, silkscreen, antenna, accessory or cross-board collision; every R2 body has an exact MPN or explicit qualified replaceable boundary; the user accepts the mockup |
+| **H1. Physical product design** | ▶️ Current `H1-R2.14` | Regenerated exterior/inner faces, sections, assembly sequence, exact body envelopes, RF paths and ≥3.5-A continuous / ≥4.0-A step power contract | No component, fastener, silkscreen, antenna, accessory or cross-board collision; every R2 body has an exact MPN or explicit qualified replaceable boundary; the user accepts the mockup |
 | **H2. Production ECAD schematic** | ⏳ Waiting for H1-R2 | R2 sheets and machine-readable HW↔FW contract; R1 sheets remain evidence only | Exact symbol/footprint/pin/net/value; quiet/recovery/safety reviewed; firmware consumes the R2 contract without invented pins |
 | **H3. Virtual electrical verification** | ⏳ Waiting for H2-R2 | Complete R2 electrical, RF, power, timing and thermal rerun | All six-domain states and Airband/FPV coexistence pass before fabrication |
 | **H4. Joined pre-layout gate** | ⏳ Waiting for H3-R2 and firmware R2 | One current mechanics/ECAD/electrical/firmware review | No virtual blocker remains and every physical residual owns a measurement |
@@ -445,9 +447,9 @@ A production order is possible only after H9.
 
 ## Next action
 
-The current boundary is `H1-R2.13`. The second Hub RP, its fourth independent
+The current boundary is `H1-R2.14`. The second Hub RP, its fourth independent
 USB/RESET/BOOT/DBG10 recovery path, exact Airband active parts, FPV decoder/K331
-reserve, dimensioned side MMCX, exact FPV LDO and exact TBS5G8MMCXA antenna have
+reserve, dimensioned top-edge MMCX, exact FPV LDO and exact TBS5G8MMCXA antenna have
 passed their present functional/body/supply boundaries. Complete current exterior,
 mirrored inner-face, service, antenna-edge and section views are generated and
 remain explicitly in progress.

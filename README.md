@@ -12,7 +12,7 @@
 
 </div>
 
-> **Now: H1-R2.13 · K331 remains primary; one controlled AKK production-package gate remains.**
+> **Now: H1-R2.14 · K331 remains primary; one controlled AKK production-package gate remains.**
 > [H0-R2](docs/h0-r2-functional-architecture.md) adds a second `SC1512-A4`
 > Hub, direct S3 analog-FPV capture and mandatory receive-only Airband AM.
 > GPIO ownership and the factory-first Airband active BOM are closed. The Hub,
@@ -88,16 +88,16 @@ See the [hardware architecture](docs/hardware.md) and
 
 ## Target device mockup
 
-The compact diagram below is the current R2 architecture. H1-R2.13 now
+The compact diagram below is the current R2 architecture. H1-R2.14 now
 generates the complete current exterior, both correctly mirrored inner faces,
 the four-domain service surface, the antenna edge and four real section planes.
 They remain in progress until the K331 reserve becomes a controlled fixed body.
 
 ![Leshy2 H0-R2 functional architecture](docs/images/h0-r2-functional-architecture.svg)
 
-![Leshy2 H1-R2.13 complete inner placement](docs/images/h1-r2-inner-complete.svg)
+![Leshy2 H1-R2.14 complete inner placement](docs/images/h1-r2-inner-complete.svg)
 
-![Leshy2 H1-R2.13 MMCX placement and service proof](docs/images/h1-r2-mmcx-service.svg)
+![Leshy2 H1-R2.14 MMCX placement and service proof](docs/images/h1-r2-mmcx-service.svg)
 
 ![Leshy2 H1-R2.4 rail and thermal architecture](docs/images/h1-r2-power-thermal.svg)
 
@@ -152,7 +152,7 @@ drawings, schematics, contracts and checks.
 | Stage | Status | Result |
 |---|---|---|
 | H0 · Product requirements and functional architecture | ✅ R2 Reviewed | [H0-R2 report](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶️ Current: H1-R2.13 K331 primary after the full-coverage fallback search** | [Current result](docs/h1-r2-physical-layout.md) |
+| **H1 · Physical product design** | **▶️ Current: H1-R2.14 K331 primary after the full-coverage fallback search** | [Current result](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ⏳ R1 evidence retained; waiting for R2 H1 | [H2 results](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ rerun after R2 H2 | [R1 report](docs/h3-acceptance.md) |
 | H4 · Joined pre-layout gate | ⏳ rerun after R2 H3 and firmware R2 contract | [R1 report](docs/h4-prelayout-gate-report.md) |
@@ -166,7 +166,7 @@ Every completed top-level `H*` phase receives a separate readable result report
 linked from this table. Internal substeps update the exact marker but do not
 create separate global reports.
 
-**Hardware is at H1-R2.13.** H0-R2 fixes six compute domains, 33/33 used S3
+**Hardware is at H1-R2.14.** H0-R2 fixes six compute domains, 33/33 used S3
 GPIO, 45/48 used Hub GPIO and the receive-only Airband frequency plan. The
 incremental Airband active BOM is live-checked at JLCPCB and costs `$20.2038`
 before passives/assembly. The initial R2 placement adds four exact Airband
@@ -220,9 +220,9 @@ switching loss and enclosure thermal behaviour. The complete physical views stay
 in progress until the K331 reserve becomes a controlled fixed body. No order
 is authorized.
 
-<!-- current-substep: H1-R2.13 -->
+<!-- current-substep: H1-R2.14 -->
 
-**Exact marker: `H1-R2.13`** — the [current placement](docs/h1-r2-physical-layout.md),
+**Exact marker: `H1-R2.14`** — the [current placement](docs/h1-r2-physical-layout.md),
 [power result](docs/h1-r2-power-thermal.md) and [FPV result](docs/h1-r2-fpv.md)
 pass their machine audits. Next, obtain the one controlled K331 production package
 covering maximum XYZ, land pattern and soldering/reflow; the generated views can

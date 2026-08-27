@@ -80,9 +80,9 @@ def z_clearance(a: dict, b: dict) -> float:
 def mmcx_service_audit(model: dict, base: dict, placed: list[dict]) -> dict:
     mmcx = next(x for x in model["placements"] if x["id"] == "fpv_mmcx")
     mount = mmcx["mounting"]
-    board_edge = mount["board_edge_x_mm"]
+    board_edge = mount["board_edge_y_mm"]
     x, y = mmcx["world_xy_mm"]
-    length, width, body_height = mmcx["size_mm"]
+    width, length, body_height = mmcx["size_mm"]
     axis_x, axis_y = mount["mounting_axis_world_xy_mm"]
     rf_inner = model["stack"]["rf_inner_z_mm"]
     pcb_thickness = model["stack"]["rf_pcb_thickness_mm"]
@@ -102,11 +102,11 @@ def mmcx_service_audit(model: dict, base: dict, placed: list[dict]) -> dict:
     def close(a: float, b: float) -> bool:
         return abs(a - b) < 1e-6
 
-    if not close(x, board_edge - mount["body_inboard_mm"]):
+    if not close(y + mount["barrel_outboard_mm"], board_edge):
+        errors.append("MMCX barrel is not registered to the antenna edge")
+    if not close(y + length, board_edge + mount["body_inboard_mm"]):
         errors.append("MMCX square body is not registered to the PCB edge")
-    if not close(x + length, board_edge + mount["barrel_outboard_mm"]):
-        errors.append("MMCX barrel projection does not match the manufacturer drawing")
-    if not close(axis_x, x + mount["square_body_mm"] / 2) or not close(axis_y, y + width / 2):
+    if not close(axis_x, x + width / 2) or not close(axis_y, board_edge + mount["square_body_mm"] / 2):
         errors.append("MMCX mounting axis is not centred in the 3.6-mm square body")
     if not close(pin_nominal - pcb_thickness, mount["tail_projection_into_interboard_gap_mm"]):
         errors.append("MMCX solder-tail projection into the interboard gap is inconsistent")
@@ -120,15 +120,43 @@ def mmcx_service_audit(model: dict, base: dict, placed: list[dict]) -> dict:
     aperture_radius = mount["minimum_sidewall_free_diameter_mm"] / 2
     service_radius = mount["external_plug_service_keepout_diameter_mm"] / 2
     aperture_keepout = {
-        "x": [board_edge, x + length],
-        "y": [axis_y - aperture_radius, axis_y + aperture_radius],
+        "x": [axis_x - aperture_radius, axis_x + aperture_radius],
+        "y": [y, board_edge],
         "z": [axis_z - aperture_radius, axis_z + aperture_radius],
     }
     external_service_keepout = {
-        "x": [x + length, x + length + mount["external_plug_service_keepout_length_mm"]],
-        "y": [axis_y - service_radius, axis_y + service_radius],
+        "x": [axis_x - service_radius, axis_x + service_radius],
+        "y": [y - mount["external_plug_service_keepout_length_mm"], y],
         "z": [axis_z - service_radius, axis_z + service_radius],
     }
+
+    legacy = legacy_generator()
+    installed_connector_clearances = []
+    handling_envelope_clearances = []
+    for centre, path, _polarity in legacy.REAR_RF:
+        centre_distance = abs(axis_x - centre)
+        body_clearance = centre_distance - width / 2 - legacy.RF_BODY_W / 2
+        handling_clearance = centre_distance - service_radius - legacy.RF_BODY_W / 2
+        installed_connector_clearances.append(
+            {"path": path, "clearance_mm": round(body_clearance, 3)}
+        )
+        handling_envelope_clearances.append(
+            {"path": path, "clearance_mm": round(handling_clearance, 3)}
+        )
+        if body_clearance + 1e-6 < legacy.MIN_INTERBOARD_Z_CLEARANCE_MM:
+            errors.append(
+                f"MMCX installed body leaves only {body_clearance:.3f} mm to rear antenna {path}"
+            )
+    handling_overlaps = [
+        row for row in handling_envelope_clearances if row["clearance_mm"] < 0
+    ]
+    allowed_handling_overlaps = set(model["antenna_bank_optimization"]["allowed_handling_overlaps"])
+    actual_handling_overlaps = {row["path"] for row in handling_overlaps}
+    if actual_handling_overlaps != allowed_handling_overlaps:
+        errors.append(
+            "MMCX handling-envelope overlaps do not match the accepted installation sequence: "
+            f"expected {sorted(allowed_handling_overlaps)}, got {sorted(actual_handling_overlaps)}"
+        )
 
     def overlaps_3d(a: dict, b: dict) -> bool:
         return overlaps(a, b) and a["z"][0] < b["z"][1] and a["z"][1] > b["z"][0]
@@ -175,11 +203,11 @@ def mmcx_service_audit(model: dict, base: dict, placed: list[dict]) -> dict:
             row["drawing_url"] for row in model["factory_evidence"] if row["mpn"] == mmcx["mpn"]
         ),
         "installed_body_world_bbox_mm": {
-            "x": [round(x, 3), round(x + length, 3)],
-            "y": [round(y, 3), round(y + width, 3)],
+            "x": [round(x, 3), round(x + width, 3)],
+            "y": [round(y, 3), round(y + length, 3)],
             "z": [round(rf_outer, 3), round(rf_outer + body_height, 3)],
         },
-        "board_edge_x_mm": board_edge,
+        "board_edge_y_mm": board_edge,
         "mounting_axis_world_xy_mm": [axis_x, axis_y],
         "inboard_body_mm": mount["body_inboard_mm"],
         "outboard_barrel_mm": mount["barrel_outboard_mm"],
@@ -196,12 +224,19 @@ def mmcx_service_audit(model: dict, base: dict, placed: list[dict]) -> dict:
             "outward_length_mm": mount["external_plug_service_keepout_length_mm"],
             "world_bbox_mm": external_service_keepout,
         },
+        "rear_antenna_connector_clearances": installed_connector_clearances,
+        "minimum_rear_antenna_connector_clearance_mm": min(
+            row["clearance_mm"] for row in installed_connector_clearances
+        ),
+        "handling_envelope_clearances": handling_envelope_clearances,
+        "handling_envelope_overlaps": handling_overlaps,
+        "fixed_installation_sequence": model["antenna_bank_optimization"]["installation_sequence"],
         "accessory_hits": accessory_hits,
         "factory_assembly": "Wave Soldering; Economic and Standard PCBA",
         "later_hil": [
             "received connector-to-antenna mating and retention",
             "final enclosure aperture tolerance",
-            "plug insertion cycles and cable strain",
+            "plug insertion cycles and antenna strain",
         ],
         "errors": errors,
     }
@@ -358,15 +393,13 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
             font = 11 if w >= 6 else 8.5
             out.append(f'<text x="{tx:.2f}" y="{ty:.2f}" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="{font}" font-weight="700" fill="{stroke}">{esc(label)}</text>')
 
-    # Physical device-right becomes viewer-left on the mirrored RF inner face.
+    # The top antenna edge remains drawing-top; RF-inner X is mirrored because
+    # the board has been physically turned over for this service view.
     rf_x = ox["rf-inner"]
     mmcx = next(item for item in model["placements"] if item["id"] == "fpv_mmcx")
-    mmcx_w = mmcx["size_mm"][0] * scale
-    mmcx_h = mmcx["size_mm"][1] * scale
-    mmcx_y = oy + mmcx["world_xy_mm"][1] * scale
     mmcx_mount = mmcx["mounting"]
-    mmcx_outboard_w = mmcx_mount["barrel_outboard_mm"] * scale
-    mmcx_inboard_w = mmcx_mount["body_inboard_mm"] * scale
+    mmcx_body = mmcx_mount["body_inboard_mm"] * scale
+    mmcx_outboard = mmcx_mount["barrel_outboard_mm"] * scale
     mmcx_axis_x = rf_x + (board_w - mmcx_mount["mounting_axis_world_xy_mm"][0]) * scale
     mmcx_axis_y = oy + mmcx_mount["mounting_axis_world_xy_mm"][1] * scale
     fpv = next(item for item in model["placements"] if item["id"] == "fpv_receiver_bay")
@@ -376,12 +409,12 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
     dec_x = rf_x + (board_w - dec["world_xy_mm"][0] - dec["size_mm"][0]) * scale
     dec_cy = oy + (dec["world_xy_mm"][1] + dec["size_mm"][1] / 2) * scale
     out.extend([
-        rect(rf_x, mmcx_y, mmcx_inboard_w, mmcx_h, rx="2", fill="#dbeafe", stroke="#1d4ed8", stroke_width="2"),
-        rect(rf_x - mmcx_outboard_w, mmcx_y + 0.18 * mmcx_h, mmcx_outboard_w, 0.64 * mmcx_h, rx="2", fill="#bfdbfe", stroke="#1d4ed8", stroke_width="2"),
+        rect(mmcx_axis_x - mmcx_body / 2, oy, mmcx_body, mmcx_body, rx="2", fill="#dbeafe", stroke="#1d4ed8", stroke_width="2"),
+        rect(mmcx_axis_x - 0.32 * mmcx_body, oy - mmcx_outboard, 0.64 * mmcx_body, mmcx_outboard, rx="2", fill="#bfdbfe", stroke="#1d4ed8", stroke_width="2"),
         f'<circle cx="{mmcx_axis_x:.2f}" cy="{mmcx_axis_y:.2f}" r="3.2" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>',
         f'<text x="{mmcx_axis_x:.2f}" y="{mmcx_axis_y - 7:.2f}" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#1d4ed8">7</text>',
-        f'<path d="M {rf_x - mmcx_outboard_w:.2f} {mmcx_y + mmcx_h / 2:.2f} L {rf_x - mmcx_outboard_w - 18:.2f} {mmcx_y + mmcx_h / 2:.2f}" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>',
-        f'<text x="{rf_x - mmcx_outboard_w - 22:.2f}" y="{mmcx_y + mmcx_h / 2 - 2:.2f}" text-anchor="end" font-family="sans-serif" font-size="9" font-weight="700" fill="#dc2626">finished-device RIGHT side</text>',
+        f'<path d="M {mmcx_axis_x:.2f} {oy - mmcx_outboard:.2f} V {oy - mmcx_outboard - 18:.2f}" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>',
+        f'<text x="{mmcx_axis_x + 8:.2f}" y="{oy - mmcx_outboard - 20:.2f}" text-anchor="start" font-family="sans-serif" font-size="9" font-weight="700" fill="#dc2626">finished-device antenna edge</text>',
         f'<path d="M {mmcx_axis_x:.2f} {mmcx_axis_y:.2f} L {fpv_x:.2f} {fpv_cy:.2f}" stroke="#0f766e" stroke-width="3" fill="none"/>',
         f'<path d="M {fpv_x + fpv["size_mm"][0] * scale:.2f} {fpv_cy:.2f} L {dec_x:.2f} {dec_cy:.2f}" stroke="#7c3aed" stroke-width="3" fill="none"/>',
         '<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker></defs>',
@@ -471,35 +504,43 @@ def render_external_svg(model: dict) -> str:
 
     additions = [
         f'<g id="h1-r2-external-delta" data-marker="{marker}" data-state="in-progress">',
-        # The rotated mid-mount USB body is on UI-inner. Only its side opening,
+        # The mid-mount USB body is on UI-inner. Only its bottom opening,
         # outward direction and user-readable outer-face silk belong here.
-        f'<rect x="{px(front,-1.2):.1f}" y="{py(front,133.0):.1f}" width="{2.6*scale:.1f}" height="{8.94*scale:.1f}" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A"/>',
-        f'<path d="M{px(front,0):.1f} {py(front,137.47):.1f} L{px(front,-8):.1f} {py(front,137.47):.1f}" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)"/>',
-        label(px(front,2.2), py(front,136.3), "HUB SERVICE USB"),
+        f'<rect x="{px(front,12.0):.1f}" y="{py(front,147.4):.1f}" width="{8.94*scale:.1f}" height="{2.6*scale:.1f}" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A"/>',
+        f'<path d="M{px(front,16.47):.1f} {py(front,150):.1f} V{py(front,158):.1f}" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)"/>',
+        label(px(front,16.47), py(front,146.2), "HUB SERVICE USB", "middle"),
     ]
     for item in model["placements"]:
         if item["id"] not in {"hub_reset_button", "hub_boot_button"}:
             continue
         x, y = item["world_xy_mm"]
-        _w, h, _z = item["size_mm"]
+        w, h, _z = item["size_mm"]
         cy = y + h / 2
         visible = item["external_interface"]["label"]
         additions.extend(
             [
-                f'<rect x="{px(front,74.2):.1f}" y="{py(front,y-0.25):.1f}" width="{1.2*scale:.1f}" height="{(h+0.5)*scale:.1f}" rx="2" fill="none" stroke="#ea580c" stroke-dasharray="3 2" data-instance="{item["id"]}" data-recess-mm="1.2"/>',
-                f'<path d="M{px(front,75):.1f} {py(front,cy):.1f} L{px(front,83):.1f} {py(front,cy):.1f}" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)"/>',
-                label(px(front,72.9), py(front,cy+0.5), visible, "end"),
+                # Hub uses the exact same Alps side switch and 1.2-mm DIV-like
+                # protective recess as S3/C5/RF-RP.  Keep all three layers so
+                # the exterior does not make one identical MPN look like a
+                # different control: inner-mounted body, recess and actuator.
+                f'<rect x="{px(front,x):.1f}" y="{py(front,y):.1f}" width="{w*scale:.1f}" height="{h*scale:.1f}" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="{item["id"]}" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>',
+                f'<rect x="{px(front,73.3):.1f}" y="{py(front,cy-2.5):.1f}" width="{2.5*scale:.1f}" height="{5.0*scale:.1f}" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="{item["id"]}" data-part="protective-recess" data-recess-mm="1.2"/>',
+                f'<path d="M{px(front,73.8):.1f} {py(front,cy-1.4):.1f} V{py(front,cy+1.4):.1f}" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="{item["id"]}" data-part="side-actuator" data-recessed="true"/>',
+                f'<path d="M{px(front,82):.1f} {py(front,cy):.1f} L{px(front,73.8):.1f} {py(front,cy):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>',
+                label(px(front,68), py(front,cy), visible, "middle", 4.2).replace("#1d4ed8", "#7c3aed"),
             ]
         )
     mmcx = next(x for x in model["placements"] if x["id"] == "fpv_mmcx")
-    mx, my = mmcx["world_xy_mm"]
-    _mw, mh, _mz = mmcx["size_mm"]
+    axis_x, _axis_y = mmcx["mounting"]["mounting_axis_world_xy_mm"]
+    body = mmcx["mounting"]["body_inboard_mm"]
+    outboard = mmcx["mounting"]["barrel_outboard_mm"]
     additions.extend(
         [
-            f'<rect x="{px(rear,mx):.1f}" y="{py(rear,my):.1f}" width="{(75-mx)*scale:.1f}" height="{mh*scale:.1f}" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6" data-instance="fpv_mmcx" data-mpn="DL-MMCX-KWE-90"/>',
-            f'<rect x="{px(rear,75):.1f}" y="{py(rear,my+0.65):.1f}" width="{3.0*scale:.1f}" height="{(mh-1.3)*scale:.1f}" rx="3" fill="#bfdbfe" stroke="#2563eb" stroke-width="1.6"/>',
-            f'<path d="M{px(rear,78):.1f} {py(rear,my+mh/2):.1f} L{px(rear,86):.1f} {py(rear,my+mh/2):.1f}" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)"/>',
-            label(px(rear,70.6), py(rear,my-1.0), "FPV RX 5.8G", "end", 5.8),
+            f'<rect x="{px(rear,axis_x-body/2):.1f}" y="{py(rear,0):.1f}" width="{body*scale:.1f}" height="{body*scale:.1f}" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6" data-instance="fpv_mmcx" data-mpn="DL-MMCX-KWE-90"/>',
+            f'<rect x="{px(rear,axis_x-0.32*body):.1f}" y="{py(rear,-outboard):.1f}" width="{0.64*body*scale:.1f}" height="{outboard*scale:.1f}" rx="3" fill="#bfdbfe" stroke="#2563eb" stroke-width="1.6"/>',
+            f'<path d="M{px(rear,axis_x):.1f} {py(rear,-outboard):.1f} V{py(rear,-11):.1f}" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)"/>',
+            label(px(rear,axis_x), py(rear,7.2), "FPV RX", "middle", 5.6),
+            label(px(rear,axis_x), py(rear,9.4), "5.8 GHz", "middle", 5.2),
             '</g>',
         ]
     )
@@ -556,24 +597,21 @@ def render_service_svg(model: dict) -> str:
         out.append(f'<path d="M{x(origin,edge):.1f} {y(origin,cy):.1f} L{x(origin,outside):.1f} {y(origin,cy):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
         out.append(t(x(origin,label_x), y(origin,cy-0.7), visible, 7.0, "bold", anchor, "#6d28d9", True))
 
-    # Exact user connectors. The Hub port is side-facing; the other three are
-    # bottom-facing. Service VBUS remains sense-only and cannot power Leshy2.
+    # Exact user connectors. All four USB openings now face the bottom edge.
+    # Service VBUS remains sense-only and cannot power Leshy2.
     bottom_ports = [
-        (front, 31.47, "C5 SERVICE USB", "data only"),
-        (rear, 16.47, "USB / POWER", "S3 native + power/charge"),
-        (rear, 37.47, "RF RP SERVICE USB", "data only"),
+        (front, 16.47, "HUB SERVICE USB", "data only", 146.0),
+        (front, 31.47, "C5 SERVICE USB", "data only", 149.0),
+        (rear, 16.47, "USB / POWER", "S3 native + power/charge", 149.0),
+        (rear, 37.47, "RF RP SERVICE USB", "data only", 149.0),
     ]
-    for origin, cx, visible, note in bottom_ports:
+    for origin, cx, visible, note, silk_y in bottom_ports:
         out.append(f'<rect x="{x(origin,cx)-12.5:.1f}" y="{y(origin,board_h)-3:.1f}" width="25" height="12" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-mpn="USB4105-GF-A"/>')
         out.append(f'<path d="M{x(origin,cx):.1f} {y(origin,board_h):.1f} L{x(origin,cx):.1f} {y(origin,board_h)+34:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        out.append(t(x(origin,cx), y(origin,board_h)-4, visible, 6.7, "bold", "middle", "#1d4ed8", True))
+        out.append(t(x(origin,cx), y(origin,silk_y), visible, 6.7, "bold", "middle", "#1d4ed8", True))
         out.append(t(x(origin,cx), y(origin,board_h)+50, note, 7.2, anchor="middle", colour="#526076"))
-    hub_y = 137.47
     out.extend(
         [
-            f'<rect x="{x(front,-1.0):.1f}" y="{y(front,133.0):.1f}" width="{2.4*scale:.1f}" height="{8.94*scale:.1f}" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-mpn="USB4105-GF-A"/>',
-            f'<path d="M{x(front,0):.1f} {y(front,hub_y):.1f} L{x(front,-10):.1f} {y(front,hub_y):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>',
-            t(x(front,2.5), y(front,135.8), "HUB SERVICE USB", 6.7, "bold", "start", "#1d4ed8", True),
             t(940, 130, "Recovery map", 18, "bold"),
             t(940, 164, "S3", 13, "bold", colour="#6d28d9"), t(990, 164, "USB / POWER + RST + BOOT", 11),
             t(940, 196, "C5", 13, "bold", colour="#6d28d9"), t(990, 196, "SERVICE USB + RST + BOOT", 11),
@@ -842,6 +880,23 @@ def render_retitled_legacy_view(model: dict, renderer: str) -> str:
     marker = model["marker"]
     svg = svg.replace("Leshy2 — two physical cross-sections", f"Leshy2 — {marker} exterior-zone cross-sections")
     svg = svg.replace("Leshy2 — true top view from the antenna edge", f"Leshy2 — {marker} antenna-edge view")
+    if renderer == "render_top_edge":
+        mmcx = next(x for x in model["placements"] if x["id"] == "fpv_mmcx")
+        axis_x = mmcx["mounting"]["mounting_axis_world_xy_mm"][0]
+        drawing_x = 120.0 + (axis_x + 4.5) * 8.0
+        drawing_z = 145.0 + 20.575 * 8.0
+        addition = (
+            f'<g id="fpv-mmcx-top-edge" data-instance="fpv_mmcx" data-mpn="DL-MMCX-KWE-90" '
+            f'data-total-rear-port-count="6">'
+            f'<circle cx="{drawing_x:.1f}" cy="{drawing_z:.1f}" r="48.0" fill="none" '
+            f'stroke="#2563eb" stroke-width="1.4" stroke-dasharray="7 4" data-service-diameter-mm="12"/>'
+            f'<ellipse cx="{drawing_x:.1f}" cy="{drawing_z:.1f}" rx="14.0" ry="14.0" '
+            f'fill="#dbeafe" stroke="#1d4ed8" stroke-width="2" data-path="FPV-5G8-RX"/>'
+            f'<text x="{drawing_x:.1f}" y="{drawing_z-54:.1f}" text-anchor="middle" '
+            f'font-family="sans-serif" font-size="8.5" font-weight="700" fill="#1d4ed8">FPV RX 5.8G · MMCX</text>'
+            '</g>'
+        )
+        svg = svg.replace("</svg>", addition + "\n</svg>")
     return svg.replace("<svg ", f'<svg data-marker="{html.escape(marker)}" data-review-status="in-progress" ', 1)
 
 
@@ -855,47 +910,53 @@ def render_mmcx_service_svg(model: dict, result: dict) -> str:
     orange = "#ea580c"
     ink = "#172033"
     muted = "#526076"
+    plan_scale = 6.6
+    plan_x = 60.0
+    edge_y = 175.0
+    axis_x = plan_x + mount["mounting_axis_world_xy_mm"][0] * plan_scale
+    nrf_x = plan_x + 29.9 * plan_scale
+    vhf_x = plan_x + 45.1 * plan_scale
+    body_clearance_by_path = {
+        row["path"]: row["clearance_mm"]
+        for row in service["rear_antenna_connector_clearances"]
+    }
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1030" viewBox="0 0 900 1030">',
-        '<rect width="900" height="1030" fill="#ffffff"/>',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="900" height="930" viewBox="0 0 900 930">',
+        '<rect width="900" height="930" fill="#ffffff"/>',
         '<defs><marker id="redArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker></defs>',
-        f'<text x="32" y="42" font-family="sans-serif" font-size="25" font-weight="700" fill="{ink}">Leshy2 · {esc(model["marker"])} MMCX placement and service proof</text>',
-        f'<text x="32" y="70" font-family="sans-serif" font-size="13" fill="{muted}">DL-MMCX-KWE-90 · C2894793 · exact body geometry; enclosure values are minimum keepouts, not a final wall design.</text>',
-        f'<text x="40" y="112" font-family="sans-serif" font-size="16" font-weight="700" fill="{ink}">1 · TOP / PLAN · looking at the RF outer face from the rear</text>',
-        '<rect x="40" y="145" width="330" height="250" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2"/>',
-        f'<text x="55" y="172" font-family="sans-serif" font-size="12" fill="{muted}">RF PCB</text>',
-        f'<line x1="370" y1="135" x2="370" y2="405" stroke="{ink}" stroke-width="3"/>',
-        f'<text x="370" y="425" text-anchor="middle" font-family="sans-serif" font-size="11" fill="{ink}">PCB edge X=75.0</text>',
-        f'<rect x="334" y="230" width="36" height="72" rx="3" fill="#dbeafe" stroke="{blue}" stroke-width="2"/>',
-        f'<rect x="370" y="243" width="30" height="46" rx="4" fill="#bfdbfe" stroke="{blue}" stroke-width="2"/>',
-        f'<circle cx="352" cy="266" r="6" fill="#ffffff" stroke="{green}" stroke-width="2"/>',
-        f'<text x="352" y="217" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="{blue}">3.6-mm square body on PCB</text>',
-        f'<text x="385" y="326" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="{blue}">3.0 mm outboard</text>',
-        f'<line x1="400" y1="266" x2="650" y2="266" stroke="#dc2626" stroke-width="2.5" marker-end="url(#redArrow)"/>',
-        f'<text x="525" y="250" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#dc2626">device RIGHT · plug insertion</text>',
-        f'<rect x="400" y="206" width="250" height="120" rx="60" fill="none" stroke="{orange}" stroke-width="2" stroke-dasharray="8 5"/>',
-        f'<text x="525" y="349" text-anchor="middle" font-family="sans-serif" font-size="11" fill="{orange}">12-mm Ø × 20-mm outward service corridor</text>',
-        f'<text x="40" y="473" font-family="sans-serif" font-size="16" font-weight="700" fill="{ink}">Manufacturer drawing → installed envelope</text>',
-        f'<text x="40" y="500" font-family="sans-serif" font-size="12" fill="{muted}">6.60 ± 0.20 mm total · SQ3.60 body · Ø3.50 interface</text>',
-        f'<text x="40" y="522" font-family="sans-serif" font-size="12" fill="{muted}">4 × SQ0.50 ± 0.05 posts · 2.00 × 2.00 mm pitch</text>',
-        f'<text x="40" y="544" font-family="sans-serif" font-size="12" fill="{muted}">World X {service["installed_body_world_bbox_mm"]["x"][0]:.1f}…{service["installed_body_world_bbox_mm"]["x"][1]:.1f}; axis ({service["mounting_axis_world_xy_mm"][0]:.1f}, {service["mounting_axis_world_xy_mm"][1]:.1f}) mm</text>',
-        f'<text x="40" y="600" font-family="sans-serif" font-size="16" font-weight="700" fill="{ink}">2 · SECTION ALONG MMCX AXIS · looking from device bottom</text>',
-        f'<rect x="70" y="710" width="430" height="40" fill="#f1f5f9" stroke="#334155" stroke-width="2"/>',
-        f'<text x="85" y="736" font-family="sans-serif" font-size="11" fill="{muted}">RF PCB · 1.6 mm</text>',
-        f'<line x1="500" y1="635" x2="500" y2="810" stroke="{ink}" stroke-width="3"/>',
-        f'<text x="500" y="832" text-anchor="middle" font-family="sans-serif" font-size="11" fill="{ink}">device side plane</text>',
-        f'<rect x="464" y="650" width="36" height="60" rx="3" fill="#dbeafe" stroke="{blue}" stroke-width="2"/>',
-        f'<rect x="500" y="664" width="60" height="32" rx="5" fill="#bfdbfe" stroke="{blue}" stroke-width="2"/>',
-        f'<rect x="476" y="750" width="8" height="44" fill="#ccfbf1" stroke="{green}" stroke-width="2"/>',
-        f'<line x1="560" y1="680" x2="760" y2="680" stroke="#dc2626" stroke-width="2.5" marker-end="url(#redArrow)"/>',
-        f'<text x="660" y="663" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#dc2626">outward mating direction</text>',
-        f'<line x1="560" y1="650" x2="560" y2="710" stroke="{orange}" stroke-width="2" stroke-dasharray="6 4"/>',
-        f'<text x="580" y="724" font-family="sans-serif" font-size="11" fill="{orange}">≥ {mount["minimum_sidewall_free_diameter_mm"]:.1f}-mm free wall aperture</text>',
-        f'<text x="580" y="746" font-family="sans-serif" font-size="10" fill="{orange}">0.5-mm radial minimum around Ø3.50</text>',
-        f'<text x="40" y="890" font-family="sans-serif" font-size="16" font-weight="700" fill="{ink}">3 · TAIL / OPPOSING-SIDE CHECK</text>',
-        f'<text x="40" y="918" font-family="sans-serif" font-size="12" fill="{muted}">2.80 ± 0.15-mm pins through 1.60-mm PCB → nominal 1.20 mm into the 11-mm interboard gap.</text>',
-        f'<text x="40" y="944" font-family="sans-serif" font-size="12" fill="{green}">✓ Tail keepout opposing-body hits: {len(service["opposing_body_hits"])} · factory route: wave soldering</text>',
-        f'<text x="40" y="970" font-family="sans-serif" font-size="11" fill="{orange}">H5 later verifies received mating/retention, final enclosure tolerance, insertion cycles and cable strain.</text>',
+        f'<text x="32" y="42" font-family="sans-serif" font-size="25" font-weight="700" fill="{ink}">Leshy2 · {esc(model["marker"])} top-edge MMCX proof</text>',
+        f'<text x="32" y="70" font-family="sans-serif" font-size="13" fill="{muted}">DL-MMCX-KWE-90 · C2894793 · exact connector; dashed circle is the installation handling envelope.</text>',
+        f'<text x="40" y="112" font-family="sans-serif" font-size="16" font-weight="700" fill="{ink}">1 · RF OUTER FACE · looking from the rear</text>',
+        f'<rect x="{plan_x:.1f}" y="{edge_y:.1f}" width="{75*plan_scale:.1f}" height="250" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2"/>',
+        f'<line x1="{plan_x:.1f}" y1="{edge_y:.1f}" x2="{plan_x+75*plan_scale:.1f}" y2="{edge_y:.1f}" stroke="{ink}" stroke-width="3"/>',
+        f'<text x="{plan_x+8:.1f}" y="{edge_y+24:.1f}" font-family="sans-serif" font-size="12" fill="{muted}">RF PCB · antenna edge Y=0</text>',
+        f'<circle cx="{nrf_x:.1f}" cy="{edge_y+25:.1f}" r="{5.1*plan_scale:.1f}" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6" data-path="N24-1"/>',
+        f'<circle cx="{vhf_x:.1f}" cy="{edge_y+25:.1f}" r="{5.1*plan_scale:.1f}" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6" data-path="VOICE-VHF"/>',
+        f'<circle cx="{axis_x:.1f}" cy="{edge_y+12:.1f}" r="{6*plan_scale:.1f}" fill="none" stroke="{orange}" stroke-width="2" stroke-dasharray="8 5" data-service-diameter-mm="12"/>',
+        f'<rect x="{axis_x-1.8*plan_scale:.1f}" y="{edge_y:.1f}" width="{3.6*plan_scale:.1f}" height="{3.6*plan_scale:.1f}" rx="3" fill="#dbeafe" stroke="{blue}" stroke-width="2"/>',
+        f'<rect x="{axis_x-1.15*plan_scale:.1f}" y="{edge_y-3*plan_scale:.1f}" width="{2.3*plan_scale:.1f}" height="{3*plan_scale:.1f}" rx="3" fill="#bfdbfe" stroke="{blue}" stroke-width="2"/>',
+        f'<line x1="{axis_x:.1f}" y1="{edge_y-3*plan_scale:.1f}" x2="{axis_x:.1f}" y2="132" stroke="#dc2626" stroke-width="2.5" marker-end="url(#redArrow)"/>',
+        f'<text x="{nrf_x:.1f}" y="{edge_y+82:.1f}" text-anchor="end" font-family="sans-serif" font-size="10" font-weight="700" fill="#9a3412">nRF24-2</text>',
+        f'<text x="{axis_x:.1f}" y="{edge_y+82:.1f}" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="{blue}">FPV RX · 5.8 GHz</text>',
+        f'<text x="{vhf_x:.1f}" y="{edge_y+82:.1f}" text-anchor="start" font-family="sans-serif" font-size="10" font-weight="700" fill="#9a3412">VHF VOICE</text>',
+        f'<text x="{axis_x+16:.1f}" y="132" text-anchor="start" font-family="sans-serif" font-size="11" font-weight="700" fill="#dc2626">antenna / plug points upward</text>',
+        f'<text x="70" y="455" font-family="sans-serif" font-size="12" fill="{green}">✓ Installed-body clearance: nRF24-2 {body_clearance_by_path["N24-1"]:.1f} mm · VHF {body_clearance_by_path["VOICE-VHF"]:.1f} mm</text>',
+        f'<text x="70" y="480" font-family="sans-serif" font-size="11" fill="{orange}">⚠ Ø12 handling envelope overlaps both adjacent SMA bodies: fit the flexible FPV antenna first.</text>',
+        f'<text x="70" y="505" font-family="sans-serif" font-size="12" fill="{muted}">Installed body X {service["installed_body_world_bbox_mm"]["x"][0]:.1f}…{service["installed_body_world_bbox_mm"]["x"][1]:.1f} mm · axis ({service["mounting_axis_world_xy_mm"][0]:.1f}, {service["mounting_axis_world_xy_mm"][1]:.1f}) mm</text>',
+        f'<text x="40" y="545" font-family="sans-serif" font-size="16" font-weight="700" fill="{ink}">2 · SECTION ALONG ANTENNA AXIS</text>',
+        f'<rect x="230" y="650" width="440" height="40" fill="#f1f5f9" stroke="#334155" stroke-width="2"/>',
+        f'<text x="245" y="676" font-family="sans-serif" font-size="11" fill="{muted}">RF PCB · 1.6 mm</text>',
+        f'<rect x="412" y="614" width="76" height="36" rx="3" fill="#dbeafe" stroke="{blue}" stroke-width="2"/>',
+        f'<rect x="426" y="554" width="48" height="60" rx="5" fill="#bfdbfe" stroke="{blue}" stroke-width="2"/>',
+        f'<line x1="450" y1="554" x2="450" y2="515" stroke="#dc2626" stroke-width="2.5" marker-end="url(#redArrow)"/>',
+        f'<rect x="438" y="690" width="8" height="44" fill="#ccfbf1" stroke="{green}" stroke-width="2"/>',
+        f'<line x1="405" y1="554" x2="495" y2="554" stroke="{orange}" stroke-width="2" stroke-dasharray="6 4"/>',
+        f'<text x="520" y="570" font-family="sans-serif" font-size="11" fill="{orange}">≥ {mount["minimum_sidewall_free_diameter_mm"]:.1f}-mm antenna-edge aperture</text>',
+        f'<text x="520" y="593" font-family="sans-serif" font-size="10" fill="{orange}">Ø12 × 20-mm outward plug corridor</text>',
+        f'<text x="40" y="790" font-family="sans-serif" font-size="16" font-weight="700" fill="{ink}">3 · TAIL / OPPOSING-SIDE CHECK</text>',
+        f'<text x="40" y="822" font-family="sans-serif" font-size="12" fill="{muted}">2.80 ± 0.15-mm pins through 1.60-mm PCB → nominal 1.20 mm into the 11-mm interboard gap.</text>',
+        f'<text x="40" y="850" font-family="sans-serif" font-size="12" fill="{green}">✓ Tail keepout opposing-body hits: {len(service["opposing_body_hits"])} · factory route: wave soldering</text>',
+        f'<text x="40" y="880" font-family="sans-serif" font-size="11" fill="{orange}">H5 verifies received mating/retention, final edge aperture, insertion cycles and antenna strain.</text>',
         '</svg>',
     ]
     return "\n".join(out) + "\n"
@@ -914,7 +975,9 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         bullets = [
             f'- Коллизии корпусов на одной стороне: `{len(result["same_face_collisions"])}`.',
             f'- Намеренных встречных XY-проекций: `{result["opposing_overlap_count"]}`; минимальный Z-зазор `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
-            '- Исправлено найденное расхождение H0↔H1: Hub RP получил четвёртый независимый data-only `HUB SERVICE USB`, две утопленные боковые кнопки `HUB RST/BOOT` и четвёртый внутренний DBG10. Все три повторно используемых MPN имеют живые точные карточки JLCPCB.',
+            '- Исправлено найденное расхождение H0↔H1: Hub RP получил четвёртый независимый data-only `HUB SERVICE USB`, две утопленные боковые кнопки `HUB RST/BOOT` и четвёртый внутренний DBG10. Hub и C5 используют один и тот же точный `SKRTLAE010`, поэтому генератор показывает одинаковые корпус, защитную выемку и утопленный толкатель.',
+            '- Все четыре независимых USB теперь направлены в нижний торец: основной `USB / POWER` и три data-only service-порта S3/C5, RF RP и Hub RP сохраняют раздельные тракты.',
+            '- На UI-плате остаются четыре SMA, а на RF-плате в один антенный торец помещаются шесть SMA и отдельный MMCX FPV: точные корпуса дают зазоры 0,7 мм и поля платы по 3,0 мм. Радио, ответвители и цепи контроля фактической передачи не переносятся; новых RF-переходов и потерь в тракте нет.',
             '- Обе внутренние стороны теперь зеркалятся при физическом перевороте платы; прежняя инкрементальная картинка ошибочно зеркалила только RF-плату.',
             '- AKK-брендированный размерный кадр у продавца задаёт номинал платы K331 28,7×23,1 мм; коллизии проверены с консервативным резервом 30×24×4 мм без изменения контура платы и внешних зон аккумуляторов/U214.',
             '- Функциональная распиновка K331 принята, но резерв не считается точным корпусом: максимальные XYZ, посадочное место и reflow/packaging должны прийти из контролируемого документа AKK.',
@@ -922,8 +985,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             '- JLCPCB готова рассмотреть процедуру function test для 5 В, channel-select, RSSI и CVBS. Проверка реализуемости и цена относятся к H5/H6/H7 и не блокируют текущую физическую модель.',
             '- Контролируемый fallback `AWM666V RX` размером 26,16×16,38×3,70 мм и его рекомендованная посадка входят в ту же ячейку; он не заменяет K331 автоматически из-за семи каналов вместо 24 и отсутствия публичного маршрута JLCPCB.',
             '- Точная линейная антенна TBS5G8MMCXA подключается к отдельному MMCX; между ANT IN K331 и MMCX запланирована прямая 50-омная PCB-дорожка без U.FL.',
-            '- Исправленная геометрия `DL-MMCX-KWE-90`: 3,6 мм корпуса находятся на RF-плате, ствол выступает за правую кромку на 3,0 мм; выводы входят в межплатный просвет номинально на 1,2 мм, а их keepout не пересекает встречные корпуса.',
-            '- Для боковой стенки закреплён минимальный свободный диаметр 4,5 мм, для подключения — свободный внешний коридор Ø12×20 мм. Полученный экземпляр, финальный допуск стенки, удержание и нагрузку кабеля проверяет H5.',
+            '- Исправленная геометрия `DL-MMCX-KWE-90`: 3,6 мм корпуса находятся на RF-плате, ствол выступает за верхний антенный торец на 3,0 мм; выводы входят в межплатный просвет номинально на 1,2 мм, а их keepout не пересекает встречные корпуса.',
+            '- Для антенного торца закреплён минимальный свободный диаметр 4,5 мм и внешний коридор подключения Ø12×20 мм. Корпус MMCX оставляет по 0,7 мм до соседних SMA `nRF24-2` и `VHF VOICE`; Ø12-мм монтажная оболочка их перекрывает, поэтому гибкая 102-мм антенна FPV ставится первой. H5 проверяет полученные разъёмы, порядок установки, снятие, удержание и нагрузку антенны.',
             '- Hub остаётся на UI-плате рядом со storage/audio/broadcast; RF-модуль FPV и видеодекодер расположены вместе на RF-плате.',
             '- Для Airband получен [номинально проходящий, но открытый по stress синтез](h1-airband-filter.ru.md); увеличенная ячейка содержит альтернативные/DNP-площадки, H3 проверяет bounded-оценку, H6 — routed extraction до заказа, H8 — финальный VNA-state.',
         ]
@@ -943,7 +1006,9 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         bullets = [
             f'- Same-face body collisions: `{len(result["same_face_collisions"])}`.',
             f'- Intentional opposing XY projections: `{result["opposing_overlap_count"]}`; minimum Z clearance is `{result["minimum_opposing_clearance_mm"]:.2f} mm` against `{result["required_opposing_clearance_mm"]:.2f} mm` required.',
-            '- The discovered H0↔H1 mismatch is corrected: Hub RP now has the fourth independent data-only `HUB SERVICE USB`, two recessed side `HUB RST/BOOT` controls and the fourth internal DBG10. All three reused MPNs have live exact JLCPCB cards.',
+            '- The discovered H0↔H1 mismatch is corrected: Hub RP now has the fourth independent data-only `HUB SERVICE USB`, two recessed side `HUB RST/BOOT` controls and the fourth internal DBG10. Hub and C5 use the same exact `SKRTLAE010`, so the generator renders the same body, protective recess and recessed actuator.',
+            '- All four independent USB openings now face the bottom edge: the main `USB / POWER` and the three data-only service paths for C5, RF RP and Hub RP remain electrically independent.',
+            '- The UI board retains four SMA while the RF board packs six SMA plus the distinct FPV MMCX onto one antenna edge: exact bodies preserve 0.7-mm gaps and 3.0-mm board margins. No radio, coupler or physical-TX evidence chain moves, and no RF transition or link-budget loss is added.',
             '- Both inner faces are now mirrored when each PCB is physically turned over; the earlier incremental view incorrectly mirrored only the RF PCB.',
             '- An AKK-branded dimensioned reseller image gives a 28.7 × 23.1 mm nominal K331 board; collision checks use a conservative 30 × 24 × 4 mm reserve without changing the PCB outline or battery/U214 exterior zones.',
             '- K331 functional pin fit is accepted, but the reserve is not a fixed body: maximum XYZ, land pattern and reflow/packaging must come from an AKK-controlled document.',
@@ -951,8 +1016,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             '- JLCPCB can review a later 5 V, channel-select, RSSI and CVBS function-test procedure. Feasibility and quotation belong to H5/H6/H7 and do not block the present physical model.',
             '- The controlled 26.16 × 16.38 × 3.70 mm `AWM666V RX` fallback and its recommended land pattern fit the same bay; it does not replace K331 automatically because it has seven channels instead of 24 and no public JLCPCB route.',
             '- The exact linear TBS5G8MMCXA antenna mates with the distinct MMCX; K331 ANT IN reaches it over one direct 50-ohm PCB trace without U.FL.',
-            '- Corrected `DL-MMCX-KWE-90` geometry keeps 3.6 mm of body on the RF PCB and projects only the 3.0-mm barrel beyond the right edge; its pins enter the interboard gap by a nominal 1.2 mm and the tail keepout meets no opposing body.',
-            '- The side wall now has a 4.5-mm minimum free aperture and the plug a clear Ø12×20-mm exterior service corridor. H5 later verifies the received mating pair, final wall tolerance, retention and cable strain.',
+            '- Corrected `DL-MMCX-KWE-90` geometry keeps 3.6 mm of body on the RF PCB and projects only the 3.0-mm barrel beyond the top antenna edge; its pins enter the interboard gap by a nominal 1.2 mm and the tail keepout meets no opposing body.',
+            '- The antenna edge has a 4.5-mm minimum free aperture and a Ø12×20-mm exterior handling corridor. The MMCX body leaves 0.7 mm to each adjacent `nRF24-2` and `VHF VOICE` SMA; its Ø12-mm handling envelope overlaps them, so the flexible 102-mm FPV antenna is fitted first. H5 verifies received parts, installation/removal order, retention and antenna strain.',
             '- Hub remains on the UI board beside storage/audio/broadcast; the FPV RF module and decoder remain together on the RF board.',
             '- Airband now has a [nominally passing but stress-open synthesis](h1-airband-filter.md); the enlarged cell carries alternate/DNP pads, H3 checks bounded estimates, H6 routed extraction before order and H8 the final VNA state.',
         ]
