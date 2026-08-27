@@ -45,44 +45,6 @@ def legacy_generator():
     return g3_clamshell
 
 
-def usb_c_mouth_svg(
-    *,
-    centre_x: float,
-    top_y: float,
-    width: float,
-    height: float,
-    instance: str,
-    powered: bool,
-    stroke_width: float = 1.6,
-) -> str:
-    """Render a recognisable edge-on USB-C mouth instead of a plain capsule."""
-    fill, stroke = ("#dcfce7", "#16a34a") if powered else ("#dbeafe", "#2563eb")
-    outer_x = centre_x - width / 2
-    radius = min(width, height) * 0.36
-    mouth_x = outer_x + width * 0.09
-    mouth_y = top_y + height * 0.18
-    mouth_w = width * 0.82
-    mouth_h = height * 0.64
-    tongue_w = width * 0.48
-    tongue_h = max(1.0, height * 0.17)
-    tongue_x = centre_x - tongue_w / 2
-    tongue_y = top_y + height * 0.49 - tongue_h / 2
-    role = "power-and-data" if powered else "data-only"
-    return "\n".join(
-        (
-            f'<g data-instance="{html.escape(instance)}" data-mpn="USB4105-GF-A" '
-            f'data-port-role="{role}" data-interface-shape="usb-c-receptacle">',
-            f'<rect x="{outer_x:.1f}" y="{top_y:.1f}" width="{width:.1f}" height="{height:.1f}" '
-            f'rx="{radius:.1f}" fill="{fill}" stroke="{stroke}" stroke-width="{stroke_width:.1f}"/>',
-            f'<rect x="{mouth_x:.1f}" y="{mouth_y:.1f}" width="{mouth_w:.1f}" height="{mouth_h:.1f}" '
-            f'rx="{mouth_h * 0.42:.1f}" fill="#0f172a" stroke="{stroke}" stroke-width="{max(0.7, stroke_width * 0.55):.1f}"/>',
-            f'<rect x="{tongue_x:.1f}" y="{tongue_y:.1f}" width="{tongue_w:.1f}" height="{tongue_h:.1f}" '
-            f'rx="{tongue_h * 0.35:.1f}" fill="{fill}" stroke="none" data-part="usb-c-tongue"/>',
-            '</g>',
-        )
-    )
-
-
 def bbox(item: dict, model: dict) -> dict:
     x, y = item["world_xy_mm"]
     w, h, z = item["size_mm"]
@@ -628,15 +590,7 @@ def render_external_svg(model: dict) -> str:
         stroke = "#16a34a" if powered else "#2563eb"
         additions.extend(
             [
-                usb_c_mouth_svg(
-                    centre_x=px(origin, cx),
-                    top_y=py(origin, 147.4),
-                    width=8.94 * scale,
-                    height=2.6 * scale,
-                    instance=instance,
-                    powered=powered,
-                ),
-                f'<path d="M{px(origin,cx):.1f} {py(origin,150):.1f} V{py(origin,158):.1f}" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)"/>',
+                f'<path d="M{px(origin,cx):.1f} {py(origin,150):.1f} V{py(origin,158):.1f}" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)" data-instance="{instance}" data-mpn="USB4105-GF-A" data-port-role="{"power-and-data" if powered else "data-only"}"/>',
                 label(px(origin,cx), py(origin,145.1), owner, "middle", 4.7).replace("#1d4ed8", stroke),
                 label(px(origin,cx), py(origin,147.0), role, "middle", 4.2).replace("#1d4ed8", stroke),
             ]
@@ -743,18 +697,7 @@ def render_service_svg(model: dict) -> str:
     ]
     for origin, cx, instance, owner, role, note, powered in bottom_ports:
         stroke = "#16a34a" if powered else "#2563eb"
-        out.append(
-            usb_c_mouth_svg(
-                centre_x=x(origin, cx),
-                top_y=y(origin, board_h) - 3,
-                width=25,
-                height=12,
-                instance=instance,
-                powered=powered,
-                stroke_width=1.5,
-            )
-        )
-        out.append(f'<path d="M{x(origin,cx):.1f} {y(origin,board_h):.1f} L{x(origin,cx):.1f} {y(origin,board_h)+34:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+        out.append(f'<path d="M{x(origin,cx):.1f} {y(origin,board_h):.1f} L{x(origin,cx):.1f} {y(origin,board_h)+34:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)" data-instance="{instance}" data-mpn="USB4105-GF-A" data-port-role="{"power-and-data" if powered else "data-only"}"/>')
         out.append(t(x(origin,cx), y(origin,145.0), owner, 6.7, "bold", "middle", stroke, True))
         out.append(t(x(origin,cx), y(origin,147.5), role, 6.2, "bold", "middle", stroke, True))
         out.append(t(x(origin,cx), y(origin,board_h)+50, note, 7.2, anchor="middle", colour="#526076"))
