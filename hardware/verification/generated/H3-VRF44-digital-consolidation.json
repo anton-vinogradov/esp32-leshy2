@@ -3,9 +3,9 @@
   "stage": "H3.4.4",
   "status": "reviewed_digital_interface_timing_level_and_loading_consolidation",
   "input_hashes": {
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "4763a4fefe59f9c464f223fcdb3b9dfdcfcc388ece52071c60042ba5bf33c45a",
-    "hardware/verification/generated/H3-VRF42-digital-timing.json": "f04f9ef699bdd00c075b0fa6b78b0e180e48f11516e4a5638ab6e43871357d16",
-    "hardware/verification/generated/H3-VRF43-boundary-loading.json": "1843f873a871fae597b878a44b65c71d63eeb4f168c09d69e55a9882f50c0eda"
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "cc5752717f26060587518c5b472bc7083e86d7d2760b3d203847c5f10b587b9a",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "876481d8010d70a3c46b9184213ff130d97e084d49ca69b25ae1b18b750c625a",
+    "hardware/verification/generated/H3-VRF43-boundary-loading.json": "731bb7014badadfa50f6e38a3e9e3b08227f2bcbca4d29b8c33f505f743e8262"
   },
   "leaf_summary": {
     "levels": {
@@ -32,7 +32,7 @@
   },
   "consolidated": {
     "leaf_checks": 171,
-    "consolidation_checks": 27,
+    "consolidation_checks": 28,
     "failed_checks": 0,
     "source_or_self_review_corrections": 1,
     "unresolved_analytical_findings": 0,
@@ -47,7 +47,18 @@
     "compatibility_radios": "three independent nRF24 SPI engines plus independent CC1101 SPI service fit their FIFO guards",
     "ipc": "both S3-RP and S3-C5 links admit >=1.5 MB/s without sharing display, storage, audio or radio controllers",
     "quiet_state": "all 13 interface groups have reset/off and no-back-power contracts; inactive interfaces are hardware-quiet",
-    "m1_expansion_service": "M1 current/drop/rate, protected extension branches, U214 load and data-only service USB limits pass"
+    "m1_expansion_service": "M1 current/drop/rate, protected extension branches, U214 load and data-only service USB limits pass",
+    "c5_revision_admission": "production requires incoming MD/lot identity and eFuse revision >=v1.2; v1.0 is engineering-only and v0.1/unknown fail closed"
+  },
+  "c5_procurement_invariant": {
+    "path": "hardware/architecture/c5-procurement-invariant.json",
+    "sha256": "ff9c31d74e6bb80e966aac6f8a0188dde778f9990b05b7863f1c96db95c9132c",
+    "invariant_id": "C5-PROCUREMENT-IDENTITY-1",
+    "production_floor": "v1.2",
+    "incoming_checks": [
+      "MD_IDENTITY",
+      "EFUSE_SILICON_REVISION"
+    ]
   },
   "corrections": [
     "self-review corrected the U214 I2C pF-to-ns conversion before accepting H3.4.3; the corrected 150-pF rise is 279.609 ns and still passes the 300-ns limit"
@@ -106,10 +117,11 @@
     "expansion_branches_fit_converter_and_efuses": true,
     "u214_spi_and_i2c_loading_pass": true,
     "service_vbus_cannot_power_product": true,
-    "resource_ownership_rows_are_unique": true
+    "resource_ownership_rows_are_unique": true,
+    "c5_production_revision_is_dual_source_and_fail_closed": true
   },
   "review_summary": {
-    "checks": 27,
+    "checks": 28,
     "failed": 0,
     "unresolved": 0,
     "status": "reviewed"

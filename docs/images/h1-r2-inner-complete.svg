@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2910" viewBox="0 0 1900 2910" data-marker="H1-R2.27" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2910" viewBox="0 0 1900 2910" data-marker="H1-R2.28" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="1900" height="2910" fill="#ffffff"/>
-<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.27 complete inner-body map</text>
+<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.28 complete inner-body map</text>
 <text x="30.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Each PCB is shown exactly as viewed after turning it over. Numbers are drawing references; inner faces contain no silkscreen.</text>
 <text x="201.9" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="65.0" y="130.0" width="273.8" height="547.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>

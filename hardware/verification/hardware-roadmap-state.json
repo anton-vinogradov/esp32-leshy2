@@ -2,7 +2,7 @@
   "schema_version": 1,
   "baseline": "R2",
   "current_stage": "H1",
-  "current_substep": "H1-R2.27",
+  "current_substep": "H1-R2.28",
   "current_detail": "The current 75 x 150 mm two-PCB model keeps UI, all direct buttons, encoder, USB, an 8-bit 32-MHz i8080 display transmit path and the independent BT.656 camera receive path local to S3. Front RP uses 46/48 GPIO; rear RP uses 45/48. The exact 80-contact M1 map closes 25 live signals, fourteen 3V3_MAIN contacts, two AON contacts, twenty-five returns and fourteen NC reserves. Four 11-mm compression stops, anti-shear datums and independent PCB capture keep M1 electrical/alignment-only. The generated four-face mock-up places each directly viewed turned-over inner face below its exterior and audits all antenna, silkscreen and service geometry. The rear FPV receiver is now an accepted dual mutually exclusive post-PCBA K331/AWM666V land inside a 30 x 24 x 8 mm reserve. Exactly one module is installed; the selected short 50-ohm branch is completed at the MMCX launch and the unused branch is isolated there. C5 DBG10 is relocated beside S3 DBG10. Machine audit reports zero same-face collisions and 1.05 mm minimum opposing clearance against 0.70 mm required. Received-module, hand-solder, actual Z and durability qualification move to H5/H7; a later AKK/Sinopine package may simplify the K331 footprint without changing interfaces. No engineering blocker remains in H1; explicit acceptance of the complete mock-up is the final H1 action. Purchasing, KiCad and fabrication remain unauthorized.",
   "stages": [
     {"id": "H0", "status": "reviewed", "baseline": "R2"},

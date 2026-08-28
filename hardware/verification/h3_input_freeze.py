@@ -27,6 +27,7 @@ FIXED_INPUTS = (
     REPO / "hardware/product-design/generated/H1-physical-source-table.json",
     REPO / "hardware/product-design/generated/H1-unified-coordinate-table.json",
     REPO / "hardware/architecture/candidates/G2F-3I.json",
+    REPO / "hardware/architecture/c5-procurement-invariant.json",
     REPO / "hardware/accessories/leshy2-lora-cap-01.json",
 )
 

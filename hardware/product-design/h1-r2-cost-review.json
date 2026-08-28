@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.27",
+  "marker": "H1-R2.28",
   "checked_on": "2026-08-28",
   "purpose": "Rank the complete-device component burden, remove avoidable pre-order penalties without functional degradation, and keep small-lot purchasing penalties separate from quantity-100 material cost.",
   "trial_device_quantity": 5,
@@ -55,6 +55,22 @@
     }
   ],
   "live_jlcpcb_spot_checks": {
+    "esp32_c5_wroom_1u_n8r8": {
+      "manufacturer": "Espressif Systems",
+      "mpn": "ESP32-C5-WROOM-1U-N8R8",
+      "supplier_order_code": "ESP32-C5-WROOM-1U-N8R8-V1.2",
+      "jlcpcb_part": "C54951858",
+      "assembly_type": "SMT; Standard PCBA",
+      "stock": 460,
+      "available_order_quantity": 440,
+      "moq": 1,
+      "trial_required_quantity": 5,
+      "trial_displayed_cost_usd": 29.2935,
+      "estimated_unit_price_usd": 5.8587,
+      "route": "in stock; official MPN is unsuffixed and the supplier order code enforces the V1.2 production floor",
+      "source": "https://jlcpcb.com/partdetail/C54951858",
+      "checked_on": "2026-08-28"
+    },
     "adi_ad8314acpz_rl7": {
       "manufacturer": "Analog Devices",
       "mpn": "AD8314ACPZ-RL7",
@@ -307,6 +323,25 @@
     "antenna_mechanics_rule": "Use individually board-retained DIV-like SMA/RP-SMA bodies without nuts, sealing hardware or a shared protective frame when an exact standard/reverse pair and controlled drawing are available. The PCB tabs and soldered shield legs carry each connector independently."
   },
   "current_stocked_candidate_checks": [
+    {
+      "scope": "ESP32-C5 production supplier route and revision floor",
+      "current_mpn": "ESP32-C5-WROOM-1U-N8R8 / historical C51950748",
+      "candidate_mpn": "ESP32-C5-WROOM-1U-N8R8 / supplier code ESP32-C5-WROOM-1U-N8R8-V1.2",
+      "jlcpcb_part": "C54951858",
+      "manufacturer": "Espressif Systems",
+      "assembly_type": "SMT; Standard PCBA",
+      "stock": 460,
+      "available_order_quantity": 440,
+      "moq": 1,
+      "trial_required_quantity": 5,
+      "price_tiers_usd": {"1": 5.8587, "10": 5.045, "30": 4.5496, "100": 4.1338},
+      "status": "accepted_stocked_supplier_route_identity_normalization",
+      "why": "Accepted at H1-R2.28 without changing the official Espressif MPN, 8-MiB flash, 8-MiB PSRAM, module body, land pattern or antenna connector. The JLC suffix is a supplier order code only. C54951858 is the active stocked Standard-PCBA route; historical zero-stock C51950748 is forbidden as active. Production requires incoming MD/lot identity and eFuse revision >=v1.2; v1.0 is engineering-only and v0.1/unknown fail closed. The quantity-100 material basis falls from USD 4.3700 to USD 4.1338 per device, while the five-device live line is USD 29.2935.",
+      "why_ru": "Принято в H1-R2.28 без изменения официального MPN Espressif, 8 МиБ flash, 8 МиБ PSRAM, корпуса, land pattern или антенного разъёма. Суффикс JLC является только supplier order code. Активный складской маршрут Standard PCBA — C54951858; исторический zero-stock C51950748 запрещён как active. Production требует одновременно MD/lot identity и eFuse revision >=v1.2; v1.0 только engineering, v0.1/unknown запрещены. Серийная материальная база снижается с $4,3700 до $4,1338 на устройство, live-строка пяти устройств равна $29,2935.",
+      "source": "https://jlcpcb.com/partdetail/C54951858",
+      "manufacturer_source": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+      "checked_on": "2026-08-28"
+    },
     {
       "scope": "dual Ioff return buffers",
       "current_mpn": "Nexperia 74LVC2G126DC,125",

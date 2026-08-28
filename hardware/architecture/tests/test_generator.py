@@ -37,7 +37,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H1-R2.27", roadmap["current_substep"])
+        self.assertEqual("H1-R2.28", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -382,7 +382,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("**210/210** lines", rendered)
         self.assertIn("**198/210** lines", rendered)
         self.assertIn("**1033/1052** supplied placements", rendered)
-        self.assertIn("USD 235.3348", rendered)
+        self.assertIn("USD 235.0986", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -3931,16 +3931,19 @@ class ArchitectureValidationTests(unittest.TestCase):
             if item["id"] == "S3_C5_IPC"
         )
         self.assertIn("1-bit SDIO at 20 MHz raw 2.5 MB/s", ipc["deadline"])
-        self.assertIn("revision v1.0 or later", ipc["proof_gate"])
+        self.assertIn("eFuse revision v1.2 or later", ipc["proof_gate"])
+        self.assertIn("C54951858", ipc["proof_gate"])
         self.assertIn("4-bit fallback only if this gate fails", ipc["proof_gate"])
 
         c5 = self.database["devices"]["esp32_c5_wroom_1u_n8r8"]
         self.assertIn(
-            "revision v1.0 or later",
+            "revision v1.2 or later",
             c5["controller_notes"]["SDIO_SILICON_FLOOR"],
         )
-        self.assertEqual("v1.0", c5["silicon_revision_requirement"]["minimum"])
-        self.assertEqual("v0.1", c5["silicon_revision_requirement"]["rejected"])
+        self.assertEqual("v1.2", c5["silicon_revision_requirement"]["production_minimum"])
+        self.assertEqual("v1.0", c5["silicon_revision_requirement"]["engineering_only"])
+        self.assertEqual(["v0.1", "unknown"], c5["silicon_revision_requirement"]["rejected"])
+        self.assertIn("MD/lot identity", c5["silicon_revision_requirement"]["incoming_inspection"])
         self.assertIn(
             "docs.espressif.com",
             c5["silicon_revision_requirement"]["source"]["url"],
@@ -3949,6 +3952,35 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         self.assertIn("1-bit SDIO: S3 GPIO10,GPIO11,GPIO12,GPIO13", rendered)
         self.assertNotIn("4-bit SDIO: S3", rendered)
+
+    def test_c5_procurement_identity_is_single_and_fail_closed(self):
+        invariant = json.loads(
+            (GENERATOR.REPO_ROOT / "hardware/architecture/c5-procurement-invariant.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual("C5-PROCUREMENT-IDENTITY-1", invariant["invariant_id"])
+        self.assertEqual(
+            "ESP32-C5-WROOM-1U-N8R8", invariant["official_identity"]["mpn"]
+        )
+        route = invariant["active_supplier_route"]
+        self.assertEqual("Espressif Systems", route["manufacturer"])
+        self.assertEqual("C54951858", route["jlcpcb_part_number"])
+        self.assertEqual("ESP32-C5-WROOM-1U-N8R8-V1.2", route["supplier_order_code"])
+        self.assertEqual("Standard PCBA", route["pcba_surface"])
+        self.assertEqual((460, 440, 1), (route["stock"], route["available_order_quantity"], route["moq"]))
+        policy = invariant["silicon_revision_policy"]
+        self.assertEqual("v1.2", policy["production_floor"])
+        self.assertEqual(["v1.0"], policy["engineering_only"])
+        self.assertEqual(["v0.1", "unknown"], policy["rejected"])
+        self.assertEqual(
+            {"MD_IDENTITY", "EFUSE_SILICON_REVISION"},
+            {row["id"] for row in invariant["incoming_inspection"]["checks"]},
+        )
+        self.assertEqual(
+            ["C51950748"],
+            [row["jlcpcb_part_number"] for row in invariant["forbidden_active_routes"]],
+        )
 
     def test_i7_exact_three_domain_service_recovery_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

@@ -9,15 +9,16 @@
   },
   "source_hashes": {
     "hardware/ecad/h2-schematic-plan.json": "d8e5adab56730f7cc57508d0637b6d9ba1a385f0f7cb0f7ad03e45671954ea2b",
-    "hardware/ecad/generated/H2-REV81-acceptance-package.json": "2fbf365b79133bf17427800b4114de09dd454ccadb4dc785542068985ca6ce7d",
-    "hardware/ecad/generated/H2-REV56-safety-consolidated.json": "e5b1cec25e3eaaba8ebe35ce8531f94663dc5dbd50913b3d324f7c6a2f60980d",
-    "hardware/ecad/generated/H2-REV64-erc-consolidated.json": "6c89434d5a7b0271c10a5d610bde219978e3b4ca6f98e8613f66b49d6591768e",
-    "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json": "770e34f730d04c08e8b742ede8fb39f88fb9b8ba0ef398ba3913e07fc3667d8a",
-    "hardware/ecad/generated/H2-hwfw-contract.json": "9d451d0db45535d43971bd3e1feccbc8624302afb26f0a101b5bb3ed552d9ac8",
+    "hardware/ecad/generated/H2-REV81-acceptance-package.json": "86de79b226690ed76227f4ee34af03a5927428b689e9bd93fad00b5fa1d8eebd",
+    "hardware/ecad/generated/H2-REV56-safety-consolidated.json": "ff42ab63f4bbcd3d4312f66f760d3f990a6a3c3e0a61739df06263840457094e",
+    "hardware/ecad/generated/H2-REV64-erc-consolidated.json": "d1cd20b6ee4f63ddc3b56032c463f301f07ff30b4f5dd9519096e97ddba467d8",
+    "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json": "2a7e61dcda631854b73c09890cc8894120c8a0d594f16599995c67f76fd1f517",
+    "hardware/ecad/generated/H2-hwfw-contract.json": "84ecabc72e13bd7be43cf425aa3124a21f1f556dc6b7f56a2d95de538be3a6f3",
     "hardware/ecad/generated/H2-instance-ledger.json": "f7a63ce11661f220b48186693ba880d1c1c0ff383b82e827a2715bd5a7993c52",
     "hardware/product-design/generated/H1-physical-source-table.json": "b9c08f658d1c3688003b9909cfe178db32dcde80b8a556e3c80bff8ecbdfb6d4",
     "hardware/product-design/generated/H1-unified-coordinate-table.json": "1b76867ef64eba64e581197ae00f6f1053c86012132afe7c9356ccab61ddc0e1",
-    "hardware/architecture/candidates/G2F-3I.json": "43ef20d2caf84cf506adedf0a98b8feac59cbe4f9e642d04113e55631b8ecdf1",
+    "hardware/architecture/candidates/G2F-3I.json": "02ac03cb8843a01f32acd1caa84c5c46c878e6324bef8139565f17d9d476c046",
+    "hardware/architecture/c5-procurement-invariant.json": "ff9c31d74e6bb80e966aac6f8a0188dde778f9990b05b7863f1c96db95c9132c",
     "hardware/accessories/leshy2-lora-cap-01.json": "dd3cd0e9741b704c4ad6bf1c03f54d95884df2cebefd4c3fb57a238bcbc0d6ab",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch": "9dc3755f2e8b625b4bd68d28cbd153f50ebf12e567d8270598277a041d8187a3",
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_10_RADIO_CONTROL.kicad_sch": "131977c59a37ef18516c5a11de5fe2d77eb4968542e0d118e9faa35448edd14d",
@@ -167,7 +168,7 @@
     }
   ],
   "summary": {
-    "frozen_files": 43,
+    "frozen_files": 44,
     "verification_domains": 16,
     "unassigned_virtual_checks": 0,
     "unassigned_physical_checks": 0

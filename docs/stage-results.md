@@ -25,7 +25,7 @@ safety evidence and power—not primary RF payloads.
 <a id="h1"></a>
 ## H1 · Physical product design
 
-**Status:** ▶️ current at **`H1-R2.27`**.
+**Status:** ▶️ current at **`H1-R2.28`**.
 
 - [Current physical design](h1-r2-physical-layout.md)
 - [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.21-dual-fpv-7)
@@ -52,6 +52,10 @@ same-family `74LVC2G126DP,125` (`C503392`), cutting the observed trial line from
 `$40.60` to `$12.1425` without changing the circuit function. Cheaper stocked
 no-nut SMA/RP-SMA pairs were rejected where their orientation, height or
 through-hole tails degraded the accepted geometry; the independent GCT pair is retained.
+The C5 manufacturer identity remains `ESP32-C5-WROOM-1U-N8R8`, while the active
+stocked Standard-PCBA route is `C54951858` / supplier code `...-V1.2`. Incoming
+MD/lot identity and eFuse revision must both prove >=v1.2 for production; v1.0 is
+engineering-only and the historical `C51950748` cannot be selected as active.
 
 <a id="h2"></a>
 ## H2 · Production schematic

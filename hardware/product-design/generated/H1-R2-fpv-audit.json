@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.27",
+  "marker": "H1-R2.28",
   "status": "pass",
   "functional_and_pin_fit": true,
   "receiver": "K331",

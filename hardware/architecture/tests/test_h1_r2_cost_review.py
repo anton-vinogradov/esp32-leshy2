@@ -40,7 +40,7 @@ class H1R2CostReviewTest(unittest.TestCase):
             summary["planning_base_plus_post_pcba_usd_per_device"] * 5,
             places=3,
         )
-        self.assertEqual(summary["trial_unmatched_lines"], 32)
+        self.assertEqual(summary["trial_unmatched_lines"], 31)
 
     def test_trial_projection_keeps_fitted_quantity(self):
         by_id = {row["device_id"]: row for row in self.result["rows"]}

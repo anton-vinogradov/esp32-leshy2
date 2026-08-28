@@ -167,12 +167,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H1-R2.27`", "H0 is reviewed",
+                "Current hardware boundary: `H1-R2.28`", "H0 is reviewed",
                 "firmware F1-R2 reviewed", "F2-R2.0",
                 "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H1-R2.27`", "H0 проведено ревью",
+                "Текущая аппаратная граница: `H1-R2.28`", "H0 проведено ревью",
                 "firmware F1-R2 проведено ревью", "F2-R2.0",
                 "H9 · Manufacturing release",
                 "Production ECAD",
@@ -188,8 +188,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.27`", "fabrication"),
-            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.27`", "печати прототипа"),
+            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.28`", "fabrication"),
+            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.28`", "печати прототипа"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -302,12 +302,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_public_schematics_describe_current_r2_not_superseded_r1_ecad(self):
         expectations = {
             "docs/schematics.md": (
-                "H0-R2", "H1-R2.27", "does **not** exist yet",
+                "H0-R2", "H1-R2.28", "does **not** exist yet",
                 "3× nRF24", "one analog video signal", "14 NC reserve",
                 "historical engineering evidence", "must not be used for fabrication",
             ),
             "docs/schematics.ru.md": (
-                "H0-R2", "H1-R2.27", "пока **нет**",
+                "H0-R2", "H1-R2.28", "пока **нет**",
                 "3× nRF24", "один аналоговый видеосигнал", "25 возвратов · 14 NC",
                 "историческое инженерное evidence", "печатать по ним нельзя",
             ),
@@ -457,13 +457,13 @@ class ProductSiteTests(unittest.TestCase):
             evidence["assembly_boundary"]["J4-P_factory_packed_removable"]["status"],
         )
         self.assertEqual(176, evidence["summary"]["historical_bom_tool_matched_lines"])
-        self.assertEqual(178, evidence["summary"]["current_exact_catalogue_routes_before_outlier_resolution"])
-        self.assertEqual(148, evidence["summary"]["current_public_stock_lines_before_outlier_resolution"])
+        self.assertEqual(179, evidence["summary"]["current_exact_catalogue_routes_before_outlier_resolution"])
+        self.assertEqual(149, evidence["summary"]["current_public_stock_lines_before_outlier_resolution"])
         self.assertEqual(30, evidence["summary"]["current_preorder_lines_before_outlier_resolution"])
-        self.assertEqual(32, evidence["summary"]["current_unmatched_lines_before_outlier_resolution"])
+        self.assertEqual(31, evidence["summary"]["current_unmatched_lines_before_outlier_resolution"])
         self.assertEqual(1052, evidence["summary"]["target_placements_parsed"])
         self.assertEqual(
-            {"J0": 160, "J1": 0, "J2": 34, "J3": 11, "J4-F": 3, "J4-P": 1, "J5-U": 1},
+            {"J0": 161, "J1": 0, "J2": 33, "J3": 11, "J4-F": 3, "J4-P": 1, "J5-U": 1},
             evidence["summary"]["availability_routes"],
         )
         self.assertEqual(0, evidence["summary"]["full_bom_lines_pending_mapping"])
@@ -537,8 +537,8 @@ class ProductSiteTests(unittest.TestCase):
             self.read("hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json")
         )
         self.assertEqual("H5-EVR05", match["artifact"])
-        self.assertEqual(178, match["summary"]["matched_lines"])
-        self.assertEqual(32, match["summary"]["unmatched_lines"])
+        self.assertEqual(179, match["summary"]["matched_lines"])
+        self.assertEqual(31, match["summary"]["unmatched_lines"])
         self.assertEqual(1052, match["summary"]["parsed_placements"])
         self.assertEqual(2, match["summary"]["strict_text_variants"])
         self.assertEqual(0, match["summary"]["semantic_mpn_mismatches"])
@@ -549,9 +549,9 @@ class ProductSiteTests(unittest.TestCase):
             self.read("hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json")
         )
         self.assertEqual("H5-EVR06", outliers["artifact"])
-        self.assertEqual(32, outliers["summary"]["bom_tool_outliers_resolved"])
+        self.assertEqual(31, outliers["summary"]["bom_tool_outliers_resolved"])
         self.assertEqual(
-            {"J0": 160, "J1": 0, "J2": 34, "J3": 11, "J4-F": 3, "J4-P": 1, "J5-U": 1},
+            {"J0": 161, "J1": 0, "J2": 33, "J3": 11, "J4-F": 3, "J4-P": 1, "J5-U": 1},
             outliers["summary"]["availability_routes"],
         )
         self.assertEqual(0, outliers["summary"]["component_replacements"])
@@ -669,7 +669,7 @@ class ProductSiteTests(unittest.TestCase):
                 rf"\*\*(?:(?:Exact|Current hardware) marker|Точный маркер|Текущий маркер железа): `{re.escape(found[0])}`[.]?\*\*",
                 name,
             )
-            self.assertIn("H1-R2.27", page, name)
+            self.assertIn("H1-R2.28", page, name)
 
         self.assertEqual({current_substep}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
@@ -680,12 +680,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_current_mockup_review_scope_is_explicit(self):
         expectations = {
             "docs/roadmap.md": (
-                "H1-R2.27", "Functional-island placement", "RF and antenna locality",
+                "H1-R2.28", "Functional-island placement", "RF and antenna locality",
                 "Interboard transport", "Physical and service audit", "Final H1 acceptance input",
                 "Obtain explicit acceptance of the complete H1 mock-up",
             ),
             "docs/roadmap.ru.md": (
-                "H1-R2.27", "Размещение функциональных островов", "Локальность RF и антенн",
+                "H1-R2.28", "Размещение функциональных островов", "Локальность RF и антенн",
                 "Межплатный transport", "Физический и сервисный аудит", "Финальный вход принятия H1",
                 "Получить явное принятие полного мокапа H1",
             ),
@@ -862,7 +862,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H1", state["current_stage"])
-        self.assertEqual("H1-R2.27", state["current_substep"])
+        self.assertEqual("H1-R2.28", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -1013,7 +1013,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(name)
             self.assertNotIn("H5-EVR07", page, name)
             self.assertNotIn("H5-EVR08", page, name)
-            self.assertIn("H1-R2.27", page, name)
+            self.assertIn("H1-R2.28", page, name)
         self.assertEqual(
             "source-hash-bound-precommit-revision",
             h4_plan["firmware_f3_evidence"]["revision"],
@@ -2763,7 +2763,7 @@ class ProductSiteTests(unittest.TestCase):
         for name in ("docs/hardware.md", "docs/hardware.ru.md"):
             page = self.read(name)
             self.assertNotIn("H1-cross-view-acceptance.json", page, name)
-            self.assertIn("H1-R2.27", page, name)
+            self.assertIn("H1-R2.28", page, name)
 
     def test_antenna_kit_is_product_facing_and_machine_accounted(self):
         import json

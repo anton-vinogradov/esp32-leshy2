@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "invariant_id": "C5-PROCUREMENT-IDENTITY-1",
+  "checked_on": "2026-08-28",
+  "official_identity": {
+    "device_id": "esp32_c5_wroom_1u_n8r8",
+    "manufacturer": "Espressif Systems",
+    "mpn": "ESP32-C5-WROOM-1U-N8R8",
+    "flash_mib": 8,
+    "psram_mib": 8,
+    "module_dimensions_mm": [18.0, 21.2, 3.3],
+    "antenna_connector": "first-generation external-antenna connector compatible with U.FL / I-PEX MHF I / Amphenol AMC"
+  },
+  "silicon_revision_policy": {
+    "production_floor": "v1.2",
+    "engineering_only": ["v1.0"],
+    "rejected": ["v0.1", "unknown"],
+    "reason": "the production BOM and SDIO contract require revision v1.2 or later; v1.0 may be used only as a labelled engineering specimen, while Espressif marks v0.1 SDIO unsupported",
+    "source": {
+      "document": "ESP32-C5-WROOM-1/WROOM-1U Datasheet v1.2 and ESP32-C5 Schematic Checklist SDIO note",
+      "urls": [
+        "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+        "https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32c5/schematic-checklist.html"
+      ]
+    }
+  },
+  "active_supplier_route": {
+    "supplier": "JLCPCB",
+    "manufacturer": "Espressif Systems",
+    "jlcpcb_part_number": "C54951858",
+    "supplier_order_code": "ESP32-C5-WROOM-1U-N8R8-V1.2",
+    "route": "J0",
+    "assembly_type": "SMT",
+    "pcba_surface": "Standard PCBA",
+    "status": "in_stock",
+    "stock": 460,
+    "available_order_quantity": 440,
+    "moq": 1,
+    "price_tiers_usd": [
+      {"minimum_quantity": 1, "maximum_quantity": 9, "unit_price_usd": 5.8587},
+      {"minimum_quantity": 10, "maximum_quantity": 29, "unit_price_usd": 5.0450},
+      {"minimum_quantity": 30, "maximum_quantity": 99, "unit_price_usd": 4.5496},
+      {"minimum_quantity": 100, "maximum_quantity": null, "unit_price_usd": 4.1338}
+    ],
+    "source": "https://jlcpcb.com/partdetail/C54951858"
+  },
+  "forbidden_active_routes": [
+    {
+      "jlcpcb_part_number": "C51950748",
+      "reason": "historical zero-stock catalogue row; retained only in dated evidence and forbidden as the current production route"
+    }
+  ],
+  "incoming_inspection": {
+    "acceptance": "both independent checks must report revision v1.2 or later for production",
+    "checks": [
+      {
+        "id": "MD_IDENTITY",
+        "method": "record the supplier material declaration, reel or lot identity and bind C54951858 plus supplier order code ESP32-C5-WROOM-1U-N8R8-V1.2 to the received quantity",
+        "pass": "declared order identity is the active supplier route and the declared silicon floor is v1.2 or later"
+      },
+      {
+        "id": "EFUSE_SILICON_REVISION",
+        "method": "read and archive the chip revision reported from eFuse for every received production module",
+        "pass": "reported silicon revision is v1.2 or later"
+      }
+    ],
+    "engineering_disposition": "v1.0 specimens are conspicuously labelled engineering-only and cannot enter production inventory",
+    "reject": "reject, quarantine and reopen the route on v0.1, unknown identity, an MD/eFuse mismatch or either result below v1.2"
+  }
+}

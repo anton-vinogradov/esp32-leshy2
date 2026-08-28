@@ -6,11 +6,11 @@
   "source_hashes": {
     "h1_physical_acceptance": "3d880042d5a914c933928401fee95beb6e23ceb302a8d9fb3a581f6824c2d280",
     "h2_instance_ledger": "f7a63ce11661f220b48186693ba880d1c1c0ff383b82e827a2715bd5a7993c52",
-    "architecture_pin_source": "43ef20d2caf84cf506adedf0a98b8feac59cbe4f9e642d04113e55631b8ecdf1",
-    "ui_m1": "1b9d3a71f6a31dd1330a81da4ec4a8c5694e76fc94ab341d8e3395772fb4a31b",
-    "rf_m1": "ec7a51cd6edd570a70c57373f80675ff5aa6a358273cb9e49bedca3abf6860b9",
-    "h2_hwfw_export": "9d451d0db45535d43971bd3e1feccbc8624302afb26f0a101b5bb3ed552d9ac8",
-    "firmware_f2_import": "9d451d0db45535d43971bd3e1feccbc8624302afb26f0a101b5bb3ed552d9ac8"
+    "architecture_pin_source": "02ac03cb8843a01f32acd1caa84c5c46c878e6324bef8139565f17d9d476c046",
+    "ui_m1": "6e1a207ae2cb7c50288aa63d65986173557ab16732891a05f9d3aa39618e0fb1",
+    "rf_m1": "0caa54be08691ff97365219f7e612ed5486cf88ce0e367ae7d36e76ba832f6d4",
+    "h2_hwfw_export": "84ecabc72e13bd7be43cf425aa3124a21f1f556dc6b7f56a2d95de538be3a6f3",
+    "firmware_f2_import": "84ecabc72e13bd7be43cf425aa3124a21f1f556dc6b7f56a2d95de538be3a6f3"
   },
   "inventories": [
     {

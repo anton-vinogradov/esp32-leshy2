@@ -19,6 +19,7 @@ INPUTS = {
 OUTPUT = REPO / "hardware/verification/generated/H3-VRF44-digital-consolidation.json"
 DOC_EN = REPO / "docs/digital-verification-result.md"
 DOC_RU = REPO / "docs/digital-verification-result.ru.md"
+C5_INVARIANT_PATH = REPO / "hardware/architecture/c5-procurement-invariant.json"
 
 
 def d(value: str | int | float) -> Decimal:
@@ -49,6 +50,7 @@ def build() -> tuple[dict[Path, str], dict]:
     expansion = boundaries["expansion_power"]
     u214 = boundaries["u214_signal_loading"]
     service = boundaries["service_boundaries"]
+    c5 = json.loads(C5_INVARIANT_PATH.read_text(encoding="utf-8"))
 
     checks = {
         "all_leaf_checks_pass": all(all(row["checks"].values()) for row in rows.values()),
@@ -78,6 +80,10 @@ def build() -> tuple[dict[Path, str], dict]:
         "u214_spi_and_i2c_loading_pass": d(u214["timing_margin_ns"]) > d(40) and d(u214["i2c"]["rise_at_admission_ns"]) < d(u214["i2c"]["rise_ns_max"]),
         "service_vbus_cannot_power_product": service["product_power_from_service_vbus"] is False and d(service["two_ports_four_lines_poweroff_leakage_ua_max"]) <= d(8),
         "resource_ownership_rows_are_unique": len(timing["resource_rows"]) == 9 and len({row["id"] for row in timing["resource_rows"]}) == 9,
+        "c5_production_revision_is_dual_source_and_fail_closed": c5["silicon_revision_policy"]["production_floor"] == "v1.2"
+        and c5["silicon_revision_policy"]["engineering_only"] == ["v1.0"]
+        and set(c5["silicon_revision_policy"]["rejected"]) == {"v0.1", "unknown"}
+        and {row["id"] for row in c5["incoming_inspection"]["checks"]} == {"MD_IDENTITY", "EFUSE_SILICON_REVISION"},
     }
     failed = [name for name, passed in checks.items() if not passed]
     if failed:
@@ -110,6 +116,14 @@ def build() -> tuple[dict[Path, str], dict]:
             "ipc": "both S3-RP and S3-C5 links admit >=1.5 MB/s without sharing display, storage, audio or radio controllers",
             "quiet_state": "all 13 interface groups have reset/off and no-back-power contracts; inactive interfaces are hardware-quiet",
             "m1_expansion_service": "M1 current/drop/rate, protected extension branches, U214 load and data-only service USB limits pass",
+            "c5_revision_admission": "production requires incoming MD/lot identity and eFuse revision >=v1.2; v1.0 is engineering-only and v0.1/unknown fail closed",
+        },
+        "c5_procurement_invariant": {
+            "path": str(C5_INVARIANT_PATH.relative_to(REPO)),
+            "sha256": sha256(C5_INVARIANT_PATH),
+            "invariant_id": c5["invariant_id"],
+            "production_floor": c5["silicon_revision_policy"]["production_floor"],
+            "incoming_checks": [row["id"] for row in c5["incoming_inspection"]["checks"]],
         },
         "corrections": corrections,
         "physical_hil_residuals": physical,
@@ -132,6 +146,7 @@ def build() -> tuple[dict[Path, str], dict]:
 | Compatibility radios | Three simultaneous full-function nRF24 paths and CC1101 have independent SPI/DMA service; worst serialized nRF drain is 79.2 us inside a 457.5-us guard |
 | IPC | Both S3-RP and S3-C5 admit >=1.5 MB/s; S3-RP retains 675 kB/s over the three-nRF-plus-CC theoretical payload |
 | M1 and extensions | 80-contact/51-net M1, protected U214/native Unit branches, U214 10-MHz SPI/150-pF I2C and data-only service USB pass |
+| C5 revision admission | Official MPN stays `ESP32-C5-WROOM-1U-N8R8`; production requires both incoming MD/lot identity and eFuse revision >=v1.2; v1.0 is engineering-only and v0.1/unknown fail closed |
 
 The one-active-signal-group rule still applies at the product level. It does not serialize the three nRF24 radios: those three remain a deliberately concurrent group with independent engines, full RX/TX/mixed-role operation and bounded FIFO service.
 
@@ -157,6 +172,7 @@ Machine evidence: [`H3-VRF44-digital-consolidation.json`](../hardware/verificati
 | Compatibility radios | Три одновременно полнофункциональных nRF24 и CC1101 имеют независимый SPI/DMA service; worst serialized drain трёх nRF равен 79,2 мкс при guard 457,5 мкс |
 | IPC | S3-RP и S3-C5 допускают >=1,5 МБ/с; S3-RP сохраняет 675 кБ/с сверх теоретического payload трёх nRF плюс CC |
 | M1 и расширения | Проходят M1 на 80 контактов/51 net, защищённые ветки U214/native Unit, U214 SPI 10 МГц/I2C 150 пФ и data-only service USB |
+| Допуск ревизии C5 | Официальный MPN остаётся `ESP32-C5-WROOM-1U-N8R8`; production требует одновременно MD/lot identity и eFuse revision >=v1.2; v1.0 только engineering, v0.1/unknown запрещены |
 
 Правило one-active-signal-group остаётся продуктовым. Оно не сериализует три nRF24: это намеренно одновременная группа с независимыми engines, полным RX/TX/mixed-role режимом и ограниченным временем обслуживания FIFO.
 

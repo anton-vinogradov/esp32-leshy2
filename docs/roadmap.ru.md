@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H1-R2.27`.** H0 проведено ревью. H1 — нет.
+> **▶ Текущая аппаратная граница: `H1-R2.28`.** H0 проведено ревью. H1 — нет.
 > KiCad routing R2, quote, reservation и заказ не разрешены.
 
 Статус сверен: **28 августа 2026 года**.
@@ -24,7 +24,7 @@
 | Область | Текущий результат |
 |---|---|
 | Функциональная архитектура | ✅ [H0-R2 проведено ревью](h0-r2-functional-architecture.ru.md): передний UI/radio и задний RF/power домены, явные владельцы, transport, quiet-state и safety-crossings |
-| Физический дизайн | ▶ [H1-R2.27](h1-r2-physical-layout.ru.md): полные функциональные острова, основные антенные банки `5 + 5`, отдельный задний FPV MMCX, двойная post-PCBA-зона K331/AWM666V, шлейф экрана к антенному торцу и пять безопасных пакетов снижения pre-order; [все 210 строк BOM ранжированы по стоимости](h1-r2-cost.ru.md) |
+| Физический дизайн | ▶ [H1-R2.28](h1-r2-physical-layout.ru.md): полные функциональные острова, основные антенные банки `5 + 5`, отдельный задний FPV MMCX, двойная post-PCBA-зона K331/AWM666V, шлейф экрана к антенному торцу, пять безопасных пакетов снижения pre-order и складской supplier route C5 v1.2; [все 210 строк BOM ранжированы по стоимости](h1-r2-cost.ru.md) |
 | Принципиальные диаграммы | Опубликованы актуальные связи компонентов/шин, внешний мокап, отдельные читаемые внутренние стороны, service map, FPV/MMCX proof и диаграммы питания/фильтра |
 | Production ECAD | ⏳ Evidence R1 сохранено; схема R2 ожидает H1 |
 | Пререквизит прошивки | ✅ firmware F1-R2 проведено ревью; F2-R2.0 сейчас в отдельном [роадмапе F0–F11](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md); emulator/dev-board execution обязательно до H7 |
@@ -32,9 +32,9 @@
 
 ## Текущий H1 · точный состав
 
-<!-- current-substep: H1-R2.27 -->
+<!-- current-substep: H1-R2.28 -->
 
-**Точный маркер: `H1-R2.27`.** Это один подшаг физического дизайна, а не
+**Точный маркер: `H1-R2.28`.** Это один подшаг физического дизайна, а не
 закрытый отчёт H1.
 
 ### 1. Размещение функциональных островов
@@ -96,6 +96,11 @@
   `RFPC-SMA31/32-FN-175-A` без общей антенной рамки. HenryTech направлены
   перпендикулярно плате, а DreamLNK `SMA-KWE901/902` имеют высоту около 10,2 мм
   и сквозные хвосты. Ни один вариант не является равноценной механической заменой.
+- ✅ C5 сохраняет официальный MPN `ESP32-C5-WROOM-1U-N8R8`; active route
+  Standard PCBA — Espressif `C54951858` с supplier code `...-V1.2`, stock 460,
+  available 440 и MOQ 1. Production допускает только совпадающие MD/lot identity
+  и eFuse revision >=v1.2; v1.0 остаётся engineering-only, а `C51950748`, v0.1,
+  unknown identity и любое расхождение fail closed.
 
 ### 5. Финальный вход принятия H1
 
@@ -114,7 +119,7 @@
 | Фаза | Статус | Результат | Критерий выхода |
 |---|---|---|---|
 | H0 · Требования и функциональная архитектура | ✅ [R2 проведено ревью](h0-r2-functional-architecture.ru.md) | Функции продукта, владельцы, transport, safety и рабочие pin-бюджеты | У каждой функции один владелец; все рабочие бюджеты сходятся |
-| **H1 · Физический дизайн продукта** | **▶ Сейчас · `H1-R2.27`** | Внешний вид, отдельные внутренние стороны, разрезы, точные корпуса, RF-локальность, сервис и power-envelope | Нет коллизий bodies/fasteners/silkscreen/antennas/accessories/opposing sides; точный MPN или контролируемый reserve; мокап принят |
+| **H1 · Физический дизайн продукта** | **▶ Сейчас · `H1-R2.28`** | Внешний вид, отдельные внутренние стороны, разрезы, точные корпуса, RF-локальность, сервис и power-envelope | Нет коллизий bodies/fasteners/silkscreen/antennas/accessories/opposing sides; точный MPN или контролируемый reserve; мокап принят |
 | H2 · Production ECAD-схема | ⏳ Ожидает H1 | Точные R2 symbols, contacts, nets, values, protection и footprints | ERC-clean sheets и machine-readable HW↔FW contract |
 | H3 · Виртуальная электрическая проверка | ⏳ Ожидает H2 | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
 | H4 · Объединённый pre-layout gate | ⏳ Ожидает H3 и firmware R2 evidence | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |

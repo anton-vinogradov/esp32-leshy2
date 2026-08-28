@@ -6,7 +6,7 @@
   "checked_on": "2026-08-28",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-    "sha256": "f3d1fe8d665f994f8ae86e93c5b45eb9521746120ceea7bb13a156e17ec3f2bf",
+    "sha256": "85e4ffaa09fe0e2ddac9692b12d66027774c0a1c7f94f4a02b5139db5659a6d9",
     "exact_lines": 210
   },
   "decision": {
@@ -204,6 +204,100 @@
       "source": "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911"
     }
   },
+  "c5_procurement_invariant": {
+    "path": "hardware/architecture/c5-procurement-invariant.json",
+    "sha256": "ff9c31d74e6bb80e966aac6f8a0188dde778f9990b05b7863f1c96db95c9132c",
+    "official_identity": {
+      "device_id": "esp32_c5_wroom_1u_n8r8",
+      "manufacturer": "Espressif Systems",
+      "mpn": "ESP32-C5-WROOM-1U-N8R8",
+      "flash_mib": 8,
+      "psram_mib": 8,
+      "module_dimensions_mm": [
+        18.0,
+        21.2,
+        3.3
+      ],
+      "antenna_connector": "first-generation external-antenna connector compatible with U.FL / I-PEX MHF I / Amphenol AMC"
+    },
+    "silicon_revision_policy": {
+      "production_floor": "v1.2",
+      "engineering_only": [
+        "v1.0"
+      ],
+      "rejected": [
+        "v0.1",
+        "unknown"
+      ],
+      "reason": "the production BOM and SDIO contract require revision v1.2 or later; v1.0 may be used only as a labelled engineering specimen, while Espressif marks v0.1 SDIO unsupported",
+      "source": {
+        "document": "ESP32-C5-WROOM-1/WROOM-1U Datasheet v1.2 and ESP32-C5 Schematic Checklist SDIO note",
+        "urls": [
+          "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+          "https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32c5/schematic-checklist.html"
+        ]
+      }
+    },
+    "active_supplier_route": {
+      "supplier": "JLCPCB",
+      "manufacturer": "Espressif Systems",
+      "jlcpcb_part_number": "C54951858",
+      "supplier_order_code": "ESP32-C5-WROOM-1U-N8R8-V1.2",
+      "route": "J0",
+      "assembly_type": "SMT",
+      "pcba_surface": "Standard PCBA",
+      "status": "in_stock",
+      "stock": 460,
+      "available_order_quantity": 440,
+      "moq": 1,
+      "price_tiers_usd": [
+        {
+          "minimum_quantity": 1,
+          "maximum_quantity": 9,
+          "unit_price_usd": 5.8587
+        },
+        {
+          "minimum_quantity": 10,
+          "maximum_quantity": 29,
+          "unit_price_usd": 5.045
+        },
+        {
+          "minimum_quantity": 30,
+          "maximum_quantity": 99,
+          "unit_price_usd": 4.5496
+        },
+        {
+          "minimum_quantity": 100,
+          "maximum_quantity": null,
+          "unit_price_usd": 4.1338
+        }
+      ],
+      "source": "https://jlcpcb.com/partdetail/C54951858"
+    },
+    "forbidden_active_routes": [
+      {
+        "jlcpcb_part_number": "C51950748",
+        "reason": "historical zero-stock catalogue row; retained only in dated evidence and forbidden as the current production route"
+      }
+    ],
+    "incoming_inspection": {
+      "acceptance": "both independent checks must report revision v1.2 or later for production",
+      "checks": [
+        {
+          "id": "MD_IDENTITY",
+          "method": "record the supplier material declaration, reel or lot identity and bind C54951858 plus supplier order code ESP32-C5-WROOM-1U-N8R8-V1.2 to the received quantity",
+          "pass": "declared order identity is the active supplier route and the declared silicon floor is v1.2 or later"
+        },
+        {
+          "id": "EFUSE_SILICON_REVISION",
+          "method": "read and archive the chip revision reported from eFuse for every received production module",
+          "pass": "reported silicon revision is v1.2 or later"
+        }
+      ],
+      "engineering_disposition": "v1.0 specimens are conspicuously labelled engineering-only and cannot enter production inventory",
+      "reject": "reject, quarantine and reopen the route on v0.1, unknown identity, an MD/eFuse mismatch or either result below v1.2"
+    }
+  },
   "bom_tool_upload": {
     "path": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
     "sha256": "2c0704c471ba338128e41904b102c54f59172bfcbb72e3fa486cb7125782e890",
@@ -262,7 +356,7 @@
       "sha256": "2c0704c471ba338128e41904b102c54f59172bfcbb72e3fa486cb7125782e890",
       "transmitted": false,
       "processed": false,
-      "result": "historical 209-line capture retained for 196 unchanged identities; exact current SA818S-U/V plus stocked 74LVC2G126DP, 74LVC2G14GV, bypass and resistor pages joined separately into the 210-line map"
+      "result": "historical 209-line capture retained for 196 preserved identities; 195 join unchanged, C5 is rebound to current exact C54951858, and 14 new exact rows join separately into the 210-line map"
     },
     "blocker": "all 210 current lines have defined routes and all sample component prices are known; the actual two-designator U/V job plus J4-F/J4-P final-assembly acceptance/pricing remain open; accumulators are user-supplied and not a delivery gate; no sourcing request, quote, reservation or order has been created"
   },
@@ -279,13 +373,16 @@
     },
     {
       "device_id": "esp32_c5_wroom_1u_n8r8",
-      "mpn": "ESP32-C5-WROOM-1U-N8R8-V1.2",
+      "mpn": "ESP32-C5-WROOM-1U-N8R8",
+      "supplier_order_code": "ESP32-C5-WROOM-1U-N8R8-V1.2",
       "jlc": "C54951858",
       "tier": "J0",
-      "stock": 547,
-      "pcba": "Extended SMT",
+      "stock": 460,
+      "available_order_quantity": 440,
+      "moq": 1,
+      "pcba": "SMT; Standard PCBA",
       "source": "https://jlcpcb.com/partdetail/C54951858",
-      "finding": "current explicit V1.2 stock matches the architecture revision floor; BOM spelling must be normalized before release"
+      "finding": "official Espressif MPN remains unsuffixed; the supplier code fixes the production route at V1.2 and incoming MD plus eFuse must independently prove revision >=v1.2"
     },
     {
       "device_id": "cc1101rgpr",
@@ -438,19 +535,19 @@
     "factory_packed_removable": 0,
     "user_supplied_not_delivered": 0,
     "historical_bom_tool_matched_lines": 176,
-    "historical_bom_tool_public_stock_lines": 146,
-    "historical_bom_tool_preorder_lines": 30,
+    "historical_bom_tool_public_stock_lines": 135,
+    "historical_bom_tool_preorder_lines": 41,
     "historical_bom_tool_unmatched_lines": 33,
-    "current_exact_catalogue_routes_before_outlier_resolution": 178,
-    "current_public_stock_lines_before_outlier_resolution": 148,
+    "current_exact_catalogue_routes_before_outlier_resolution": 179,
+    "current_public_stock_lines_before_outlier_resolution": 149,
     "current_preorder_lines_before_outlier_resolution": 30,
-    "current_unmatched_lines_before_outlier_resolution": 32,
+    "current_unmatched_lines_before_outlier_resolution": 31,
     "target_placements_parsed": 1052,
-    "outliers_resolved_after_exact_search": 32,
+    "outliers_resolved_after_exact_search": 31,
     "availability_routes": {
-      "J0": 160,
+      "J0": 161,
       "J1": 0,
-      "J2": 34,
+      "J2": 33,
       "J3": 11,
       "J4-F": 3,
       "J4-P": 1,
@@ -503,7 +600,7 @@
     "current_210_line_upload_was_generated_but_not_transmitted": true,
     "all_target_placements_were_parsed": true,
     "no_semantic_mpn_substitution_was_observed": true,
-    "all_32_unchanged_unmatched_lines_remain_explicit": true,
+    "all_31_unchanged_unmatched_lines_remain_explicit": true,
     "all_210_lines_have_defined_availability_or_final_assembly_route": true,
     "all_component_sample_prices_are_known": true,
     "sa818s_v_preorder_lead_time_is_explicitly_open": true,
@@ -515,6 +612,9 @@
     "parts_api_support_request_is_recorded_without_secret_or_commercial_authority": true,
     "parts_api_support_response_preserves_manual_fail_closed_route": true,
     "both_selected_voice_modules_have_exact_jlcpcb_routes": true,
+    "c5_machine_invariant_binds_official_mpn_to_explicit_v1_2_supplier_route": true,
+    "c5_revision_and_incoming_policy_is_fail_closed": true,
+    "historical_c5_catalogue_row_is_forbidden_as_active_route": true,
     "api_credentials_are_not_repository_data": true,
     "no_order_or_layout_is_authorized": true
   }

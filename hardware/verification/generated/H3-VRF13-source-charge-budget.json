@@ -4,11 +4,11 @@
   "status": "reviewed_all_source_charge_discharge_and_steady_loss_envelopes",
   "method": "all 2,032 enumerated states; Decimal arithmetic; 85% minimum cascaded conversion factors; PF-02 pack current reserve",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF11-power-state-register.json": "0c8a6128e082102eab2d9a43fe5e43287a935f9ebb1714e7da2777deb468386c",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "5f22dd37fb765f790cf89d8413f9dbd7ba6cfd46e1085c973d78b0b6ae586664",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "566a810aa14da526bda0342c0322fce5d31a97eab2dbb1f7c31e85856a8cb5d5",
-    "hardware/architecture/candidates/G2F-3I.json": "43ef20d2caf84cf506adedf0a98b8feac59cbe4f9e642d04113e55631b8ecdf1",
-    "hardware/ecad/generated/H2-REV51-power-paths.json": "46656ce75df71862088ecf2dc3d52a6a95d2931cbdd74d071cbaafa559fed83e"
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "d404bfaa0363bda155413e1a5c1f289b9e612e0782701472a67ab4b645d7f40c",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "c46d37db904154560793364bb46d9f7026d7166ac193291b856531d4ab2d0c8f",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "964057c973204c84e5c6965b5f66f33e304fb3588f69e047670eb01d0feafb93",
+    "hardware/architecture/candidates/G2F-3I.json": "02ac03cb8843a01f32acd1caa84c5c46c878e6324bef8139565f17d9d476c046",
+    "hardware/ecad/generated/H2-REV51-power-paths.json": "d0362385044cc45910fda2a3f69f3b417c9144da1f1b7b21431ebb01f9fd152d"
   },
   "contracts": {
     "minimum_conversion_efficiency": "0.850",

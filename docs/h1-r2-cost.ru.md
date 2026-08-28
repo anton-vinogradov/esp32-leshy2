@@ -1,4 +1,4 @@
-# H1-R2.27 · стоимость компонентов
+# H1-R2.28 · стоимость компонентов
 
 [Русский](h1-r2-cost.ru.md) · [English](h1-r2-cost.md) · [Current placement](h1-r2-physical-layout.md)
 
@@ -6,10 +6,10 @@
 
 ## Сводка
 
-- Серийная материальная база: **$235.33** на устройство; цены известны для `198/210` строк.
-- Достижимый плановый минимум: **$284.61** на устройство; ещё `5` базовых строк не оценены.
-- С обязательным модулем K331, устанавливаемым после PCBA: **$314.60** на устройство или **$1,573.00** на пять устройств до стоимости плат, сборки, корпуса, антенн, доставки, налогов, брака и теста.
-- Частичный JLCPCB-снимок партии из пяти устройств: **$1,224.48** по `178` найденным строкам; `16` live-проверок дают **$1,283.40**, ещё `32` строки не входят.
+- Серийная материальная база: **$235.10** на устройство; цены известны для `198/210` строк.
+- Достижимый плановый минимум: **$284.37** на устройство; ещё `5` базовых строк не оценены.
+- С обязательным модулем K331, устанавливаемым после PCBA: **$314.36** на устройство или **$1,571.82** на пять устройств до стоимости плат, сборки, корпуса, антенн, доставки, налогов, брака и теста.
+- Частичный JLCPCB-снимок партии из пяти устройств: **$1,253.77** по `179` найденным строкам; `17` live-проверок дают **$1,312.69**, ещё `31` строки не входят.
 - Внешний антенный комплект вынесен отдельно: уже известно **$145.27**, ещё `4` позиции не оценены.
 
 ## Самые дорогие строки готового устройства
@@ -32,8 +32,8 @@
 | `Samtec FTSH-105-01-L-DV-K-P-TR` | three internal recovery headers / три внутренних recovery-разъёма | 3 | $1.70 | $5.10 | 15 | $25.49 | $16.35 |
 | `GCT RFPC-SMA32-FN-175-A` | two native-radio RP-SMA / два RP-SMA native-радио | 2 | $2.46 | $4.93 | 10 | $24.65 | — |
 | `TPS3808G33DBVR` | safe_supervisor, u214_supervisor, unit_supervisor, voice_supervisor | 4 | $1.10 | $4.39 | 20 | $21.97 | $8.86 |
-| `ESP32-C5-WROOM-1U-N8R8` | c5 | 1 | $4.37 | $4.37 | 5 | $21.85 | — |
 | `Murata GRM32ER71E226KE15L` | thirteen 22-uF power capacitors / тринадцать силовых конденсаторов 22 мкФ | 13 | $0.33 | $4.29 | 65 | $21.47 | $31.67 |
+| `ESP32-C5-WROOM-1U-N8R8` | c5 | 1 | $4.13 | $4.13 | 5 | $20.67 | $29.29 |
 | `Texas Instruments TPD4E05U06DQAR` | thirteen four-line ESD arrays / тринадцать четырёхканальных ESD-сборок | 13 | $0.31 | $4.02 | 65 | $20.09 | — |
 | `Analog Devices MAX17320G20+T` | pack_gauge | 1 | $4.00 | $4.00 | 5 | $20.01 | $31.06 |
 
@@ -67,6 +67,7 @@
 
 | Scope | Current | Candidate | JLCPCB | Stock | Status |
 |---|---|---|---|---:|---|
+| ESP32-C5 production supplier route and revision floor | `ESP32-C5-WROOM-1U-N8R8 / historical C51950748` | `ESP32-C5-WROOM-1U-N8R8 / supplier code ESP32-C5-WROOM-1U-N8R8-V1.2` | `C54951858` | 460 | `accepted_stocked_supplier_route_identity_normalization` |
 | dual Ioff return buffers | `Nexperia 74LVC2G126DC,125` | `Nexperia 74LVC2G126DP,125` | `C503392` | 155 | `accepted_stocked_exact_family_package_variant` |
 | all 100-nF 50-V X7R 0402 bypass positions | `TDK C1005X7R1H104K050BB` | `YAGEO CC0402KRX7R9BB104` | `C131394` | 9027089 | `accepted_stocked_exact_parametric_replacement` |
 | six ordinary 0402 resistor identities across 28 positions | `YAGEO RC0402FR-072K2L / 07133KL / 07270KL / 075K23L / 078K2L / 071K65L` | `UNI-ROYAL 0402WGF2201TCE / 1333TCE / 2703TCE / 5231TCE / 8201TCE / 1651TCE` | `C25879 / C25753 / C25770 / C25907 / C25924 / C25869` | 2027222 / 6692 / 156208 / 40861 / 234262 / 5616 | `accepted_stocked_exact_parametric_replacements` |
@@ -78,6 +79,7 @@
 | ten outward antenna connectors | `GCT RFPC-SMA31-FN-175-A / RFPC-SMA32-FN-175-A` | `HenryTech HL2-SMA-KEP-13.5 / HL2-RP-SMA-KEP-13.5` | `C53278703 / C53278707` | 67 standard / 133 reverse | `rejected_wrong_board_normal_orientation` |
 | ten outward antenna connectors | `GCT RFPC-SMA31-FN-175-A / RFPC-SMA32-FN-175-A` | `DreamLNK SMA-KWE902 / SMA-KWE901` | `C914554 / C914553` | 5594 standard / 64 reverse | `rejected_high_profile_tht_form_change` |
 
+- **`ESP32-C5-WROOM-1U-N8R8 / supplier code ESP32-C5-WROOM-1U-N8R8-V1.2`:** Принято в H1-R2.28 без изменения официального MPN Espressif, 8 МиБ flash, 8 МиБ PSRAM, корпуса, land pattern или антенного разъёма. Суффикс JLC является только supplier order code. Активный складской маршрут Standard PCBA — C54951858; исторический zero-stock C51950748 запрещён как active. Production требует одновременно MD/lot identity и eFuse revision >=v1.2; v1.0 только engineering, v0.1/unknown запрещены. Серийная материальная база снижается с $4,3700 до $4,1338 на устройство, live-строка пяти устройств равна $29,2935. [JLCPCB](https://jlcpcb.com/partdetail/C54951858)
 - **`Nexperia 74LVC2G126DP,125`:** Принято в H1-R2.23. DP и DC — корпусные варианты одного семейства Nexperia 74LVC2G126: логика, порядок выводов, Schmitt-входы, Ioff и тайминги сохранены. Увеличенные TSSOP-корпуса прошли повторный аудит компоновки. Строка партии из пяти устройств снижается с наблюдавшихся $40,60 pre-order до $12,1425 со склада; цена одной микросхемы на ступени 100 шт. растёт с прежней внешней базы $0,2086 до JLCPCB $0,3753. [JLCPCB](https://jlcpcb.com/partdetail/Nexperia-74LVC2G126DP125/C503392)
 - **`YAGEO CC0402KRX7R9BB104`:** Принято в H1-R2.24. YAGEO сохраняет 100 нФ, 50 В, X7R, +/-10%, 0402/1005, диапазон -55…+125 °C и тот же корпус 1,0 x 0,5 x 0,5 мм. На JLCPCB это складская позиция для Standard PCBA с MOQ 1. Строка партии из пяти устройств снижается с наблюдавшихся $22,5624 pre-order TDK до $5,9535 со склада, экономия $16,6089; серийная материальная база уменьшается на $2,2197 на устройство. [JLCPCB](https://jlcpcb.com/partdetail/Yageo-CC0402KRX7R9BB104/C131394)
 - **`UNI-ROYAL 0402WGF2201TCE / 1333TCE / 2703TCE / 5231TCE / 8201TCE / 1651TCE`:** Принято в H1-R2.26. Каждая замена сохраняет точный номинал, корпус 0402, допуск 1 %, мощность 62,5 мВт, рабочее напряжение 50 В, ТКС 100 ppm/°C и диапазон -55…+155 °C. Все шесть точных MPN UNI-ROYAL есть на складе JLCPCB для Standard PCBA с MOQ 1. Потребность партии из пяти устройств снижается примерно с $53,7347 по зафиксированному pre-order-маршруту до $0,5430 со склада, экономия около $53,1917; публичная материальная база снижается на $0,1542 на устройство. [JLCPCB](https://jlcpcb.com/partdetail/26622-0402WGF2201TCE/C25879)
@@ -108,4 +110,4 @@
 - Принятая верхняя позиция adapter PCB `[24.75, 1.0]` прогнана по текущим точным корпусам: `0` same-face collisions, минимальный встречный зазор `5.1 мм` при требуемых `0.7 мм`, GPIO и BOM не меняются.
 - Ориентация зафиксирована в H1; H5 проверяет реальный шлейф, bend и retention сменного адаптера. Несовпадение не возвращает шлейф в зону органов управления молча.
 
-> Marker: **H1-R2.27**. H1 remains open pending the complete mock-up decision.
+> Marker: **H1-R2.28**. H1 remains open pending the complete mock-up decision.

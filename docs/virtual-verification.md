@@ -6,7 +6,7 @@ H3 checks everything that can be proven analytically or by simulation before pur
 
 ## Accepted input
 
-The H2 revision with independent SA818S-V/U paths was accepted on 26 August 2026 and is source-bound by SHA-256. 43 files are frozen; changing any one reopens the affected verification.
+The H2 revision with independent SA818S-V/U paths was accepted on 26 August 2026 and is source-bound by SHA-256. 44 files are frozen; changing any one reopens the affected verification.
 
 ## Verification matrix
 

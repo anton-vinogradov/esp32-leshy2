@@ -1054,19 +1054,19 @@
         "checked": "2026-08-17"
       },
       "orderable_source": {
-        "document": "ESP32-C5-WROOM-1U-N8R8 exact authorized-distributor page; 1,838 shown in stock",
-        "url": "https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-C5-WROOM-1U-N8R8?qs=4dK74SdgGtxee18dMuslog%3D%3D",
-        "checked": "2026-08-19"
+        "document": "JLCPCB C54951858 exact Espressif supplier route; supplier order code ESP32-C5-WROOM-1U-N8R8-V1.2; Standard PCBA stock 460, available order quantity 440 and MOQ 1",
+        "url": "https://jlcpcb.com/partdetail/C54951858",
+        "checked": "2026-08-28"
       },
       "cost": {
         "currency": "USD",
         "target_quantity": 100,
-        "unit_price_usd": 4.37,
-        "price_break": "Mouser cut-tape quantity-100 tier",
+        "unit_price_usd": 4.1338,
+        "price_break": "JLCPCB C54951858 quantity-100 tier",
         "source": {
-          "document": "Mouser exact-MPN published price table",
-          "url": "https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-C5-WROOM-1U-N8R8?qs=4dK74SdgGtxee18dMuslog%3D%3D",
-          "checked": "2026-08-19"
+          "document": "JLCPCB exact supplier-route live price table",
+          "url": "https://jlcpcb.com/partdetail/C54951858",
+          "checked": "2026-08-28"
         }
       },
       "rf_connector": {
@@ -1083,12 +1083,14 @@
       "controller_notes": {
         "SPI2_OR_GPIO": "the shared data pin changes between GP-SPI2 MOSI and software latch-data mode; concurrent use is not implied",
         "SDIO_SLAVE_4BIT": "fixed C5 signals: CLK GPIO9, CMD GPIO10, DAT0 GPIO8, DAT1 GPIO7, DAT2 GPIO14 and DAT3 GPIO13; GPIO13/14 therefore cannot simultaneously provide native USB",
-        "SDIO_SILICON_FLOOR": "production and prototype lots must identify ESP32-C5 chip revision v1.0 or later; Espressif states that the SDIO peripheral is not supported by revision v0.1"
+        "SDIO_SILICON_FLOOR": "production lots require ESP32-C5 chip revision v1.2 or later; v1.0 is engineering-only and v0.1/unknown are rejected; Espressif states that the SDIO peripheral is not supported by revision v0.1"
       },
       "silicon_revision_requirement": {
-        "minimum": "v1.0",
-        "rejected": "v0.1",
-        "reason": "the selected 1-bit SDIO architecture requires the peripheral that Espressif marks unsupported on revision v0.1",
+        "production_minimum": "v1.2",
+        "engineering_only": "v1.0",
+        "rejected": ["v0.1", "unknown"],
+        "incoming_inspection": "supplier MD/lot identity and per-module eFuse revision must both prove v1.2 or later; any mismatch is quarantined",
+        "reason": "the selected production route and 1-bit SDIO architecture require a fail-closed v1.2 floor; v1.0 remains engineering-only and Espressif marks v0.1 SDIO unsupported",
         "source": {
           "document": "Espressif ESP32-C5 Schematic Checklist — SDIO note",
           "url": "https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32c5/schematic-checklist.html",
