@@ -132,9 +132,9 @@ def build() -> tuple[dict[Path, str], dict]:
         "next": {"stage": "H3.6.1", "action": "build the worst-case board, battery and enclosure thermal model"},
     }
 
-    en = f"""# Consolidated digital-interface result
+    en = f"""# Consolidated digital-interface result · historical R1
 
-`H3.4` is reviewed: all three leaf packages and `{leaf_checks}` leaf checks pass, followed by `{len(checks)}` cross-domain consolidation checks. No analytical finding remains open. The exact current marker is `H3.6.1`.
+`H3.4` is reviewed: all three leaf packages and `{leaf_checks}` leaf checks pass, followed by `{len(checks)}` cross-domain consolidation checks. No analytical finding remains open. The historical R1 progression marker is `H3.6.1`.
 
 ## Closed analytical envelope
 
@@ -158,9 +158,9 @@ One self-review correction is preserved in the evidence: the U214 I2C pF-to-ns c
 
 Machine evidence: [`H3-VRF44-digital-consolidation.json`](../hardware/verification/generated/H3-VRF44-digital-consolidation.json).
 """
-    ru = f"""# Сводный результат digital interfaces
+    ru = f"""# Сводный результат digital interfaces · historical R1
 
-`H3.4` проведён ревью: проходят все три leaf-пакета, `{leaf_checks}` их checks и `{len(checks)}` сквозных сводных checks. Незакрытых аналитических findings нет. Точный текущий маркер — `H3.6.1`.
+`H3.4` проведён ревью: проходят все три leaf-пакета, `{leaf_checks}` их checks и `{len(checks)}` сквозных сводных checks. Незакрытых аналитических findings нет. Исторический маркер прогресса R1 — `H3.6.1`.
 
 ## Закрытый аналитический envelope
 

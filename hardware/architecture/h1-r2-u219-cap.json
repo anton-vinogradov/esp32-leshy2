@@ -136,14 +136,23 @@
   },
   "shared_i2c_contract": {
     "owner": "rear RF RP2354B I2C1 domain",
-    "scl": "official U219 contact 3 SCL -> existing u214 connector ESD -> TCA4307DGKR -> RF RP GPIO29",
-    "sda": "official U219 contact 4 SDA <-> existing u214 connector ESD <-> TCA4307DGKR <-> RF RP GPIO28",
+    "scl": "official U219 contact 3 SCL -> existing u214 connector ESD -> TCA4307DGKR -> RF RP GPIO31",
+    "sda": "official U219 contact 4 SDA <-> existing u214 connector ESD <-> TCA4307DGKR <-> RF RP GPIO30",
     "isolation": "existing U214_I2C_READY hot-plug/stuck-low boundary; no new GPIO, M1 contact or isolator",
     "rules": [
       "contact 3 and contact 4 are exact current official EN-page assignments, not received-unit ambiguities",
       "controller-side pulls remain on the host segment and the accessory-side segment is connected only after protected power is qualified",
       "profile change requires branch-off discharge and the TCA4307 boundary disabled"
     ]
+  },
+  "shared_irq_contract": {
+    "connector_contact": 9,
+    "host_gpio": "RP GPIO13",
+    "host_net": "CAP_IRQ",
+    "u214_role": "SX1262 DIO1; active-high event semantics from the U214 profile",
+    "u219_role": "NFC_IRQ; polarity is not published in the official U219 pin table and remains received-unit HIL",
+    "reset": "accessory branch off; host input held low by the existing pull-down",
+    "rule": "never encode active-low polarity in the shared net; the admitted signed profile owns edge and level interpretation"
   },
   "shared_spi_contract": {
     "owner": "rear RF RP2354B PIO/SPI domain",
@@ -215,7 +224,7 @@
   },
   "jlcpcb_live_surface": {
     "semantics": "availability is canPresaleNumber > 0; displayed stock and catalog presence alone are not orderability",
-    "checked_at": "2026-08-28T21:07:39+03:00",
+    "checked_at": "2026-08-28T22:04:04+03:00",
     "currency": "USD",
     "parts": [
       {
@@ -282,8 +291,8 @@
         "assembly_type": "SMT",
         "library_type": "Extended",
         "standard_pcba": true,
-        "can_presale_number": 41278,
-        "displayed_stock": 42820,
+        "can_presale_number": 41081,
+        "displayed_stock": 42623,
         "moq": 1,
         "least_patch_number": 5,
         "unit_price_usd": 0.1655,
@@ -294,20 +303,19 @@
     ]
   },
   "bom_delta": {
-    "price_basis": "saved JLC one-piece tiers checked 2026-08-28; placement fees, PCB area, freight and tax excluded",
-    "pin10_and_power_fixed_usd_per_device": 0.4853,
+    "price_basis": "saved JLC one-piece tiers for exact active MPNs checked 2026-08-28; support passives, placement fees, PCB area, freight and tax excluded",
+    "cost_status": "provisional_known_active_only",
     "pin10_new_active_usd_per_device": 0.452,
-    "pin10_reused_passive_bundle_usd_per_device": 0.0333,
-    "nfc_evidence_fixed_usd_per_device": 0.2732,
     "nfc_evidence_new_active_usd_per_device": 0.2325,
-    "nfc_evidence_reused_passive_bundle_usd_per_device": 0.0407,
-    "fixed_added_usd_per_device": 0.7585,
+    "support_passives_usd_per_device": null,
+    "known_active_added_usd_per_device": 0.6845,
     "removed_22r_usd_per_device": 0.0155,
-    "net_fixed_usd_per_device": 0.743,
-    "trial_lot_5_fixed_added_usd": 3.7925,
+    "known_active_net_after_removed_usd_per_device": 0.669,
+    "trial_lot_5_known_active_added_usd": 3.4225,
     "trial_lot_5_removed_22r_usd": 0.0775,
-    "trial_lot_5_net_fixed_usd": 3.715,
+    "trial_lot_5_known_active_net_after_removed_usd": 3.345,
     "excluded": [
+      "support-passive values, exact MPNs and quantities until the explicit H1 blocker closes",
       "DNP C0G pickup-tuning bank until VNA/HIL selection",
       "PCB loop area and placement fees",
       "received U219 accessory",

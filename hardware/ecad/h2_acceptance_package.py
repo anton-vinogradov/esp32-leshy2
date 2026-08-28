@@ -51,7 +51,7 @@ def render_doc(manifest: dict, final_counts: dict, russian: bool) -> str:
         ]
         defer_h = "## Что сознательно остаётся за границей H2"
         defer = {"H3": "виртуальные worst-case и timing/transient проверки", "firmware F3": "сборка и emulator-прогон до заказа", "H5": "проверка полученных образцов и land-fit", "H6": "placement/routing/DRC", "H8": "физический bring-up и HIL"}
-        close = f"**Исторический результат:** ✅ ревизия `H2.8.2-R1` была принята пользователем {manifest['decision']['date']} и остаётся связанной SHA-256. Она явно запрещена как authority для R2. Текущий аппаратный маркер — `H1-R2.30`."
+        close = f"**Исторический результат:** ✅ ревизия `H2.8.2-R1` была принята пользователем {manifest['decision']['date']} и остаётся связанной SHA-256. Она явно запрещена как authority для R2. Текущий аппаратный маркер — `H1-R2.31`."
     else:
         title = "# Historical H2 production ECAD acceptance package · R1"
         nav = "[Русский](h2-acceptance.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Schematics](schematics.md)"
@@ -67,7 +67,7 @@ def render_doc(manifest: dict, final_counts: dict, russian: bool) -> str:
         ]
         defer_h = "## Deliberately outside H2"
         defer = {"H3": "virtual worst-case and timing/transient verification", "firmware F3": "build and emulator execution before ordering", "H5": "received-sample and land-fit checks", "H6": "placement/routing/DRC", "H8": "physical bring-up and HIL"}
-        close = f"**Historical result:** ✅ revision `H2.8.2-R1` was accepted by the user on {manifest['decision']['date']} and remains SHA-256 bound. It is explicitly forbidden as R2 authority. The current hardware marker is `H1-R2.30`."
+        close = f"**Historical result:** ✅ revision `H2.8.2-R1` was accepted by the user on {manifest['decision']['date']} and remains SHA-256 bound. It is explicitly forbidden as R2 authority. The current hardware marker is `H1-R2.31`."
     done_text = "\n".join(f"- {item}" for item in done)
     deferred_text = "\n".join(f"- `{row['gate']}` — {defer[row['gate']]}" for row in manifest["deferred_gates"])
     evidence = "[Машинный пакет](../hardware/ecad/generated/H2-REV81-acceptance-package.json)." if russian else "[Machine package](../hardware/ecad/generated/H2-REV81-acceptance-package.json)."

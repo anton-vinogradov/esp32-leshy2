@@ -1,8 +1,8 @@
-# Physical evidence register
+# Physical evidence register · historical R1
 
 H3.7.2 is closed. The six H3 phase consolidations contain 88 residual rows: three were H3-internal dependencies already closed by H3.2/H3.6, and all remaining `85` are published below. `9` belong to H5 received-part evidence, `10` to H6 final placement/routing evidence and `78` to H8 populated-device qualification. None is silently called analytically complete.
 
-Each machine row also carries its exact source artifact, responsible gate, required artifact and pass rule. A mismatch reopens the owning result rather than becoming a layout or test waiver. This register does not authorize purchase, layout or fabrication. The exact current marker is `H3.7.3`.
+Each machine row also carries its exact source artifact, responsible gate, required artifact and pass rule. A mismatch reopens the owning result rather than becoming a layout or test waiver. This register does not authorize purchase, layout or fabrication. The historical R1 progression marker is `H3.7.3`.
 
 | ID | Gate | Source | Required physical evidence |
 |---|---|---|---|

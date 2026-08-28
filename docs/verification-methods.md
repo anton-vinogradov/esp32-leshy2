@@ -1,4 +1,4 @@
-# How hardware is verified before fabrication
+# How hardware is verified before fabrication · historical R1
 
 [Русский](verification-methods.ru.md) · [Home](../README.md) · [Virtual verification](virtual-verification.md) · [Parameters](parameter-model-register.md)
 
@@ -34,6 +34,6 @@ H3 uses reproducible worst-case analysis rather than optimistic typical values. 
 
 The calculation core uses only the Python standard library, fixed-precision `Decimal`, and JSON/CSV/SVG. Network access and randomness do not participate in acceptance; every generator must provide `--write` and `--check`, input SHA-256 and tests.
 
-**Status:** `H3.0.3` is reviewed. The current exact marker is `H3.6.1`, worst-case board, battery and enclosure thermal model.
+**Status:** `H3.0.3` is reviewed. The historical R1 progression marker is `H3.6.1`, worst-case board, battery and enclosure thermal model.
 
 [Machine method contract](../hardware/verification/generated/H3-VRF03-method-contract.json).

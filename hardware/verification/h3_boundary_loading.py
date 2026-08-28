@@ -266,9 +266,9 @@ def build() -> tuple[dict[Path, str], dict]:
         "next": {"stage": "H3.6.1", "action": "build the worst-case board, battery and enclosure thermal model"},
     }
 
-    en = f"""# M1, expansion and service-boundary loading
+    en = f"""# M1, expansion and service-boundary loading · historical R1
 
-`H3.4.3` is reviewed with `{len(checks)}` machine checks and no open analytical finding. The exact current marker is `H3.6.1`.
+`H3.4.3` is reviewed with `{len(checks)}` machine checks and no open analytical finding. The historical R1 progression marker is `H3.6.1`.
 
 ## M1 worst-case bounds
 
@@ -286,9 +286,9 @@ Service VBUS cannot power the product. Two service ports draw only 10 uA through
 
 Machine evidence: [`H3-VRF43-boundary-loading.json`](../hardware/verification/generated/H3-VRF43-boundary-loading.json).
 """
-    ru = f"""# Loading M1, expansions и service boundaries
+    ru = f"""# Loading M1, expansions и service boundaries · historical R1
 
-`H3.4.3` проверено: `{len(checks)}` машинных checks, незакрытых аналитических findings нет. Точный текущий маркер — `H3.6.1`.
+`H3.4.3` проверено: `{len(checks)}` машинных checks, незакрытых аналитических findings нет. Исторический маркер прогресса R1 — `H3.6.1`.
 
 ## Worst-case границы M1
 

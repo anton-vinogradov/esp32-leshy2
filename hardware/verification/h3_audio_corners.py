@@ -390,7 +390,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
     rail = manifest["main_rail_crosscheck"]
     cost = manifest["cost_delta_usd_at_100"]
     if russian:
-        title = "# Электрическая проверка аудио"
+        title = "# Электрическая проверка аудио · historical R1"
         nav = "[English](audio-electrical-verification.md) · [На главную](../README.ru.md) · [Схемы](schematics.ru.md) · [Виртуальная проверка](virtual-verification.ru.md)"
         intro = "H3.3.2 проверяет весь аналоговый тракт: внутренний/гарнитурный микрофон и RX → ES8311 → гарнитура/динамик, плюс регулируемую подачу codec audio в выбранный SA818S-V или SA818S-U. Это расчёт серийных деталей; акустика, шум разведённой платы и RF immunity остаются измерениями H8."
         sections = f"""## Захват и микрофоны
@@ -415,11 +415,11 @@ def render_doc(manifest: dict, russian: bool) -> str:
 
 Исправленный worst case — `{rail['worst_profile_load_ma']} мА` из 2500 мА принятого режима и `{rail['hardware_reserve_percent']}%` до гарантированного hardware limit. Normal display/backlight теперь `{rail['normal_display_branch_ma']} мА`, audio — `{rail['audio_branch_ma']} мА`; fault-порог подсветки больше не считается рабочей нагрузкой.
 
-Итоговая аналоговая конфигурация добавляет `{cost['total_delta_per_board']} USD` на устройство при количестве 100. **H3.3.2 проверено; текущий точный маркер — `H3.6.1`.**
+Итоговая аналоговая конфигурация добавляет `{cost['total_delta_per_board']} USD` на устройство при количестве 100. **H3.3.2 проверено; исторический маркер прогресса R1 — `H3.6.1`.**
 
 [Машинный пакет H3-VRF32](../hardware/verification/generated/H3-VRF32-audio.json)."""
     else:
-        title = "# Audio electrical verification"
+        title = "# Audio electrical verification · historical R1"
         nav = "[Русский](audio-electrical-verification.ru.md) · [Home](../README.md) · [Schematics](schematics.md) · [Virtual verification](virtual-verification.md)"
         intro = "H3.3.2 checks the complete analog chain: internal/headset microphone and RX → ES8311 → headset/speaker, plus calibrated codec-audio injection into the selected SA818S-V or SA818S-U. This is a serial-part calculation; routed-board noise, acoustics and RF immunity remain H8 measurements."
         sections = f"""## Capture and microphones
@@ -444,7 +444,7 @@ At the real `4 ohm −15% = {speaker['minimum_impedance_corner_ohm']} ohm` corne
 
 The corrected worst case is `{rail['worst_profile_load_ma']} mA` inside the 2500-mA admission and retains `{rail['hardware_reserve_percent']}%` to the guaranteed hardware limit. Normal display/backlight is now `{rail['normal_display_branch_ma']} mA`, audio is `{rail['audio_branch_ma']} mA`; a backlight fault threshold is no longer counted as an operating load.
 
-The final analog configuration adds `{cost['total_delta_per_board']} USD` per unit at quantity 100. **H3.3.2 is verified; the exact current marker is `H3.6.1`.**
+The final analog configuration adds `{cost['total_delta_per_board']} USD` per unit at quantity 100. **H3.3.2 is verified; the historical R1 progression marker is `H3.6.1`.**
 
 [Machine H3-VRF32 package](../hardware/verification/generated/H3-VRF32-audio.json)."""
     return "\n\n".join((title, nav, intro, sections)) + "\n"

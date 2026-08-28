@@ -84,6 +84,33 @@
         32.687
       ]
     },
+    "cap_bus_slot": {
+      "population": "exactly_one_of_u214_or_u219",
+      "x_mm": [
+        -4.5,
+        79.5
+      ],
+      "y_mm": [
+        17.0,
+        41.0
+      ],
+      "host_outer_plane_z_mm": 17.4,
+      "maximum_profile": "u219"
+    },
+    "u219": {
+      "x_mm": [
+        -4.5,
+        79.5
+      ],
+      "y_mm": [
+        17.0,
+        41.0
+      ],
+      "z_mm": [
+        17.4,
+        37.1
+      ]
+    },
     "battery_holder": {
       "body_x_mm": [
         17.6,

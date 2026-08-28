@@ -1,4 +1,4 @@
-# Как проверяется железо до изготовления
+# Как проверяется железо до изготовления · historical R1
 
 [English](verification-methods.md) · [На главную](../README.ru.md) · [Виртуальная проверка](virtual-verification.ru.md) · [Параметры](parameter-model-register.ru.md)
 
@@ -34,6 +34,6 @@ H3 использует воспроизводимые worst-case расчёты
 
 Расчётное ядро использует только Python standard library, `Decimal` с фиксированной точностью и JSON/CSV/SVG. Сеть и случайность не участвуют в acceptance; каждый генератор обязан иметь режимы `--write` и `--check`, входные SHA-256 и тесты.
 
-**Статус:** `H3.0.3` завершено и проверено. Текущий точный маркер — `H3.6.1`, worst-case thermal model плат, аккумуляторов и корпуса.
+**Статус:** `H3.0.3` завершено и проверено. Исторический маркер прогресса R1 — `H3.6.1`, worst-case thermal model плат, аккумуляторов и корпуса.
 
 [Машинный контракт методов](../hardware/verification/generated/H3-VRF03-method-contract.json).

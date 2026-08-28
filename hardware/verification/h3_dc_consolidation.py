@@ -96,7 +96,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
     r = manifest["accepted_results"]
     corrections = manifest["corrections"]
     if russian:
-        title = "# Результат проверки постоянного питания"
+        title = "# Результат проверки постоянного питания · historical R1"
         nav = "[English](dc-verification-result.md) · [На главную](../README.ru.md) · [DC-шины](dc-power-budget.ru.md) · [Источники](source-charge-budget.ru.md)"
         intro = "H3.1 завершена как единая проверка: реестр состояний → нагрузки шин → источники/заряд/разряд → сводное ревью. Ни один следующий вывод не основан на типовом токе вместо maximum или принятого admission limit."
         result_h = "## Принятый результат"
@@ -113,10 +113,10 @@ def render_doc(manifest: dict, russian: bool) -> str:
         ))
         next_h = "## Что ещё не доказано"
         next_text = "Постоянные пределы не заменяют динамику и температуру. H3.2 проверяет startup/shutdown, USB↔pack handover, brownout, DPM, inrush и FAULT_KILL; H3.6 получает 2,550 Вт converter-loss и 0,386 Вт eFuse-loss для thermal model; H8 оставляет реальные измерения."
-        marker = "**Статус:** `H3.1` завершено и проверено. Текущий точный маркер — `H3.6.1`, worst-case thermal model плат, аккумуляторов и корпуса."
+        marker = "**Статус:** `H3.1` завершено и проверено. Исторический маркер прогресса R1 — `H3.6.1`, worst-case thermal model плат, аккумуляторов и корпуса."
         evidence = "[Машинный пакет закрытия H3.1](../hardware/verification/generated/H3-VRF14-dc-consolidation.json)."
     else:
-        title = "# Steady-power verification result"
+        title = "# Steady-power verification result · historical R1"
         nav = "[Русский](dc-verification-result.ru.md) · [Home](../README.md) · [DC rails](dc-power-budget.md) · [Sources](source-charge-budget.md)"
         intro = "H3.1 closes as one chain: state register → rail loads → source/charge/discharge → consolidated review. No result substitutes a typical current for a maximum or accepted admission limit."
         result_h = "## Accepted result"
@@ -133,7 +133,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         next_h = "## What remains unproven"
         next_text = "Steady limits do not replace dynamics or temperature. H3.2 checks startup/shutdown, USB↔pack handover, brownout, DPM, inrush and FAULT_KILL; H3.6 consumes the 2.550-W converter loss and 0.386-W eFuse loss in its thermal model; H8 retains physical measurements."
-        marker = "**Status:** `H3.1` is reviewed. The exact current marker is `H3.6.1`, worst-case board, battery and enclosure thermal model."
+        marker = "**Status:** `H3.1` is reviewed. The historical R1 progression marker is `H3.6.1`, worst-case board, battery and enclosure thermal model."
         evidence = "[Machine H3.1 closure package](../hardware/verification/generated/H3-VRF14-dc-consolidation.json)."
     return "\n\n".join((title, nav, intro, result_h, result, correction_h, correction_text, next_h, next_text, marker, evidence)) + "\n"
 

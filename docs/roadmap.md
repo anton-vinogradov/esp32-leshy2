@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H1-R2.30`.** H0 is reviewed. H1 is not.
+> **▶ Current hardware boundary: `H1-R2.31`.** H0 is reviewed. H1 is not.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **28 August 2026**.
@@ -24,17 +24,17 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ▶ [H1-R2.30](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks, separate rear FPV MMCX, dual post-PCBA K331/AWM666V bay, display flex toward the antenna edge, six safe factory-route/cost batches and the stocked C5 v1.2 supplier route; [all 210 BOM lines are cost-ranked](h1-r2-cost.md) |
+| Physical design | ▶ [H1-R2.31](h1-r2-physical-layout.md): exact dual-RP/C5 electrical authority and five active U219 source-backed courtyards are closed; the canonical Cap/evidence body register, support passives, NFC pickup and antenna swept volume are the four remaining blockers before mock-up acceptance; [all 210 base BOM lines are cost-ranked](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map, FPV/MMCX proof and power/filter diagrams are published |
 | Production ECAD | 🔒 Reviewed G2F/H2/KiCad is historical single-RP R1 evidence only. Current H0/H1 has front Hub RP + rear RF RP; R2 H2 must regenerate six domains and exact H0 M1 |
-| Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.0 is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); emulator/dev-board execution must precede H7 fabrication |
+| Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); emulator/dev-board execution must precede H7 fabrication |
 | Ordering | 🔒 Prototype order only at H7 after H6 and explicit approval; production only at H9 |
 
 ## Current H1 · exact composition
 
-<!-- current-substep: H1-R2.30 -->
+<!-- current-substep: H1-R2.31 -->
 
-**Exact marker: `H1-R2.30`.** This is one physical-design substep, not a closed
+**Exact marker: `H1-R2.31`.** This is one physical-design substep, not a closed
 H1 report.
 
 ### 1. Functional-island placement
@@ -42,12 +42,13 @@ H1 report.
 - ✅ Front UI/radio PCB: S3, C5, three complete nRF24 islands, front RP,
   microSD and UI-local TVP5150.
 - ✅ Rear RF/power PCB: CC1101, VHF/UHF voice, FM/SW/AM/LW/Airband, audio,
-  one-of-two K331/AWM666V FPV bay, M5, U214, rear RP, power and safety.
+  one-of-two K331/AWM666V FPV bay, M5, the exact-one U214/U219 Cap slot, rear RP, power and safety.
 - ✅ Authority is fail-closed: H0/H1 owns six domains and two RP controllers;
   old G2F/H2/KiCad has five domains, one RP and the old M1, so it is historical
-  R1 reference only. Exact RP per-signal GPIO order is deliberately not invented.
-- ✅ Front RP GPIO: `46/48` with 2 free; rear RP GPIO: `45/48` with 3 free; K331 RSSI is officially NC.
-- ✅ Display is direct 32-MHz i8080-8; all user keys, encoder, USB and camera RX remain direct S3 interfaces.
+  R1 reference only. Exact GPIO0..47 maps for both RPs, the five Hub↔RF M1
+  signals and the C5 SDIO/service-mux join are now machine-checked H1 authority.
+- ✅ Front RP GPIO: `46/48` with 2 free; rear RP GPIO: `44/48` with 4 free (GP15/29/37/38); K331 RSSI is officially NC.
+- ✅ Display is direct 32-MHz i8080-8; user keys stay on the S3-local `TCA9539PWR` path, while encoder, USB and camera RX remain direct S3 interfaces.
 
 ### 2. RF and antenna locality
 
@@ -75,14 +76,14 @@ H1 report.
 
 - ✅ Same-face body collisions: `0`.
 - ✅ The FPV reserve is enlarged to `30 × 24 × 8 mm`; C5 DBG10 moves beside S3 DBG10.
-- ✅ Minimum opposing clearance: `1.05 mm`; required: `0.70 mm`.
+- ✅ Minimum opposing clearance: `2.59 mm`; required: `0.70 mm`.
 - ✅ FPV MMCX body clearance to nearest SMA: `2.07 mm`.
 - ✅ Controlled right-angle plug: `2.40 mm` to SMA, `4.80 mm` to U214 and no
   mounting-hole conflict; Ø12 remains a temporary H5 finger-access check.
 - ✅ Four independent USB paths, eight recessed external recovery controls and
   four keyed DBG10 fallbacks remain available.
 - ✅ Public diagrams use one board per inner image. The complete numbered
-  163-body projection is retained only as machine-review evidence.
+  168-reference projection is retained only as machine-review evidence.
 - ✅ The main public mock-up places the direct turned-over view of each PCB
   below its matching exterior; antenna silk passes body/cable/U214/display/fastener checks.
 - ✅ Exterior silk prints `UI PCB · R2-EVT1 · REV A` and
@@ -105,7 +106,23 @@ H1 report.
   identity and eFuse revision >=v1.2; v1.0 is engineering-only, while
   `C51950748`, v0.1, unknown identity and any mismatch fail closed.
 
-### 5. Final H1 acceptance input
+### 5. U219 Cap integration
+
+- ✅ U214 and U219 are mutually exclusive profiles of the same protected Cap
+  slot. U219 CC1101 is hard RX-only; NFC is poll/read-only and cannot enable a
+  field without independent `EV_N9` evidence in `ANY_TX_AON_N`.
+- ✅ Pin 8 fails low, pin 10 is disconnected until qualified, and the exact
+  SCL/SDA contacts reuse the existing isolated rear-RF-RP I²C path.
+- ⚠️ U219 pin 7 power identity remains a received-unit gate. The profile stays
+  off if continuity, polarity and exact revision do not prove protected 5 V.
+- ✅ The pin-10 switch, AON gate, two field bridges and comparator use official
+  maximum full-package envelopes and source-backed courtyards; all five fit the
+  reserved islands and the complete opposing-face audit passes.
+- ▶ Complete the canonical coordinate register for the existing Cap/evidence
+  bodies, support-passive values/MPNs and courtyards, pickup-loop geometry and
+  tuning, and the installed U219 antenna swept volume.
+
+### 6. Final H1 acceptance input
 
 - ✅ Primary K331 uses a tolerant 14-pad direct-solder land whose axes come from
   the official SP331RX drawing; exact-drawing AWM666V nests in the same bay as a
@@ -114,15 +131,16 @@ H1 report.
   unused branch is isolated there, with no internal U.FL, cable or live stub.
 - ✅ Neither receiver enters the normal PCBA BOM. Actual body, hand soldering,
   Z and durability move to H5/H7; a later manufacturer package can simplify the footprint.
-- ▶ Review and explicitly accept the complete exterior, both true-view inner
-  faces and the real sandwich sections. This is the only remaining H1 action.
+- ▶ After the remaining canonical-register, U219 support-passive, pickup and antenna gates close,
+  review and explicitly accept the complete exterior, both true-view inner faces and the
+  real sandwich sections. H2/KiCad has not started.
 
 ## Complete hardware path
 
 | Phase | Status | Result | Exit criterion |
 |---|---|---|---|
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.30`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.31`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ⏳ Waiting for H1 | Exact R2 symbols, contacts, nets, values, protection and footprints | ERC-clean sheets and machine-readable HW↔FW contract |
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
@@ -143,6 +161,9 @@ H1 report.
 
 ## Next action
 
-Obtain explicit acceptance of the complete H1 mock-up. H2 can start only after
-that H1 review. KiCad routing, quoting and every order remain blocked. If AKK or
-Sinopine replies later, simplify only the K331 land without changing the interfaces.
+Complete the canonical coordinate register for the existing Cap/evidence bodies,
+close the U219 support-passive values/MPNs and courtyards, locate and tune the
+NFC pickup, bound the installed antenna swept volume, then obtain explicit acceptance of the complete H1 mock-up.
+H2 can start only after that H1 review.
+KiCad routing, quoting and every order remain blocked. If AKK or Sinopine
+replies later, simplify only the K331 land without changing the interfaces.

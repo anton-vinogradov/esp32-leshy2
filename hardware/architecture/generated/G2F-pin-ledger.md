@@ -4700,4 +4700,4 @@ Reserved: `PA1_NRST`. Free: none.
 
 ## Machine-check result and review boundary
 
-All source candidates pass their historical structural checks. G2F-3I remains useful reviewed R1 evidence, but it contains one RP domain and the old M1 contract. It is not current R2 authority and cannot authorize R2 firmware, R2 KiCad, fabrication or ordering. Current functional authority is H0-R2 with distinct front Hub RP and rear RF RP; exact per-signal RP GPIO order remains open until the future R2 H2 export.
+All source candidates pass their historical structural checks. G2F-3I remains useful reviewed R1 evidence, but it contains one RP domain and the old M1 contract. It is not current R2 authority and cannot authorize R2 firmware, R2 KiCad, fabrication or ordering. Current functional authority is H0-R2 with distinct front Hub RP and rear RF RP; H1-R2.31 closes the exact per-signal RP GPIO/M1 order, while physical H1 and production gates still block the future R2 H2 export.

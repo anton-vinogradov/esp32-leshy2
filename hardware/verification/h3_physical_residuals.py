@@ -177,21 +177,21 @@ def build() -> tuple[dict[Path, str], dict]:
         rows = [f"| `{row['id']}` | `{'+'.join(row['closure_stages'])}` | `{row['source_phase']}` | {row['residual']} |" for row in registry]
         return "\n".join((header, *rows))
 
-    en = f"""# Physical evidence register
+    en = f"""# Physical evidence register · historical R1
 
 H3.7.2 is closed. The six H3 phase consolidations contain 88 residual rows: three were H3-internal dependencies already closed by H3.2/H3.6, and all remaining `{len(registry)}` are published below. `{by_stage['H5']}` belong to H5 received-part evidence, `{by_stage['H6']}` to H6 final placement/routing evidence and `{by_stage['H8']}` to H8 populated-device qualification. None is silently called analytically complete.
 
-Each machine row also carries its exact source artifact, responsible gate, required artifact and pass rule. A mismatch reopens the owning result rather than becoming a layout or test waiver. This register does not authorize purchase, layout or fabrication. The exact current marker is `H3.7.3`.
+Each machine row also carries its exact source artifact, responsible gate, required artifact and pass rule. A mismatch reopens the owning result rather than becoming a layout or test waiver. This register does not authorize purchase, layout or fabrication. The historical R1 progression marker is `H3.7.3`.
 
 {table('en')}
 
 Machine evidence: [`H3-VRF72-physical-residuals.json`](../hardware/verification/generated/H3-VRF72-physical-residuals.json).
 """
-    ru = f"""# Реестр физических evidence
+    ru = f"""# Реестр физических evidence · historical R1
 
 H3.7.2 закрыт. В сведениях шести фаз H3 было 88 residual-строк: три являлись внутренними зависимостями H3, уже закрытыми H3.2/H3.6, а все оставшиеся `{len(registry)}` опубликованы ниже. `{by_stage['H5']}` назначены H5 received-part evidence, `{by_stage['H6']}` — H6 final placement/routing evidence, `{by_stage['H8']}` — H8 qualification собранного устройства. Ни одна не названа аналитически закрытой.
 
-Каждая машинная строка содержит точный исходный artifact, ответственный gate, обязательный artifact и pass rule. Несоответствие повторно открывает исходный результат, а не превращается в waiver разводки или теста. Реестр не разрешает закупку, layout или печать. Точный текущий маркер — `H3.7.3`.
+Каждая машинная строка содержит точный исходный artifact, ответственный gate, обязательный artifact и pass rule. Несоответствие повторно открывает исходный результат, а не превращается в waiver разводки или теста. Реестр не разрешает закупку, layout или печать. Исторический маркер прогресса R1 — `H3.7.3`.
 
 {table('ru')}
 

@@ -1,4 +1,4 @@
-# Single-fault review
+# Single-fault review · historical R1
 
 `H3.6.2` is reviewed: 30 scenarios and 25 machine checks pass. The exact marker is `H3.6.3`.
 

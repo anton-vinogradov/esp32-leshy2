@@ -334,7 +334,7 @@ def build() -> tuple[dict[Path, str], dict]:
 def render_doc(manifest: dict, russian: bool) -> str:
     rx, tx, optical, cost = manifest["receive"], manifest["transmit"], manifest["optical_evidence"], manifest["cost_delta_usd_at_100"]
     if russian:
-        title = "# Электрическая проверка IR"
+        title = "# Электрическая проверка IR · historical R1"
         nav = "[English](ir-electrical-verification.md) · [На главную](../README.ru.md) · [Схемы](schematics.ru.md) · [Виртуальная проверка](virtual-verification.ru.md)"
         intro = "H3.3.3 проверяет полный IR-тракт C5: устойчивый декодированный RX, raw carrier learning, безопасный TX и независимое подтверждение реального света. Бумажный результат не подменяет измерение дальности и optical safety готового корпуса."
         body = f"""## Два приёмника
@@ -349,11 +349,11 @@ def render_doc(manifest: dict, russian: bool) -> str:
 
 VEMD1060X01 смотрит на emitter внутри светонепроницаемого тоннеля. Полный resistor/offset corner оставляет минимум `{optical['false_assert_margin_mv_min_including_offsets']}` мВ до ложного срабатывания в темноте и `{optical['clear_margin_mv_min_including_offsets']}` мВ до гарантированного отпускания. Для assert HIL должен обеспечить не более `{optical['required_photocurrent_ua_max_for_hil']}` мкА на TIA; это намеренно измеряемый порог, потому что даташит фотодиода нормирует irradiance при 5 В, а наша рабочая обратная поляризация около 0,3 В. Evidence подтверждает физический свет, но никогда не разрешает TX.
 
-Исправления добавляют всего `{cost['total_delta_per_board']} USD` на устройство при количестве 100. **H3.3.3 проверено; текущий точный маркер — `H3.6.1`.**
+Исправления добавляют всего `{cost['total_delta_per_board']} USD` на устройство при количестве 100. **H3.3.3 проверено; исторический маркер прогресса R1 — `H3.6.1`.**
 
 [Машинный пакет H3-VRF33](../hardware/verification/generated/H3-VRF33-ir.json)."""
     else:
-        title = "# IR electrical verification"
+        title = "# IR electrical verification · historical R1"
         nav = "[Русский](ir-electrical-verification.ru.md) · [Home](../README.md) · [Schematics](schematics.md) · [Virtual verification](virtual-verification.md)"
         intro = "H3.3.3 checks the complete C5 IR chain: robust demodulated receive, raw carrier learning, bounded transmit and independent physical-light evidence. The paper result does not replace final range and optical-safety measurements through the enclosure."
         body = f"""## Dual receive
@@ -368,7 +368,7 @@ VEMD1060X01 смотрит на emitter внутри светонепрониц�
 
 VEMD1060X01 views the emitter inside a light-tight tunnel. Full resistor/offset corners retain `{optical['false_assert_margin_mv_min_including_offsets']}` mV minimum dark false-assert margin and `{optical['clear_margin_mv_min_including_offsets']}` mV guaranteed-clear margin. HIL must achieve the bounded `{optical['required_photocurrent_ua_max_for_hil']}`-uA TIA assertion target; this remains measured because the photodiode irradiance table is specified at 5-V reverse bias while this circuit operates near 0.3 V. Evidence confirms physical light and never authorizes TX.
 
-The corrections add only `{cost['total_delta_per_board']} USD` per unit at quantity 100. **H3.3.3 is reviewed; the exact current marker is `H3.6.1`.**
+The corrections add only `{cost['total_delta_per_board']} USD` per unit at quantity 100. **H3.3.3 is reviewed; the historical R1 progression marker is `H3.6.1`.**
 
 [Machine H3-VRF33 package](../hardware/verification/generated/H3-VRF33-ir.json)."""
     return "\n\n".join((title, nav, intro, body)) + "\n"

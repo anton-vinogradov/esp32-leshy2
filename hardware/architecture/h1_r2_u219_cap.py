@@ -110,14 +110,25 @@ def validate(model: dict, base: dict) -> list[str]:
     i2c = model.get("shared_i2c_contract", {})
     if i2c.get("owner") != "rear RF RP2354B I2C1 domain":
         errors.append("U219 I2C must reuse the rear RF RP I2C1 domain")
-    if "contact 3 SCL" not in i2c.get("scl", "") or "RF RP GPIO29" not in i2c.get("scl", ""):
-        errors.append("U219 contact 3 must reuse the isolated SCL path to RF GPIO29")
-    if "contact 4 SDA" not in i2c.get("sda", "") or "RF RP GPIO28" not in i2c.get("sda", ""):
-        errors.append("U219 contact 4 must reuse the isolated SDA path to RF GPIO28")
+    if "contact 3 SCL" not in i2c.get("scl", "") or "RF RP GPIO31" not in i2c.get("scl", ""):
+        errors.append("U219 contact 3 must reuse the isolated I2C1 SCL path to RF GPIO31")
+    if "contact 4 SDA" not in i2c.get("sda", "") or "RF RP GPIO30" not in i2c.get("sda", ""):
+        errors.append("U219 contact 4 must reuse the isolated I2C1 SDA path to RF GPIO30")
     if "TCA4307DGKR" not in i2c.get("scl", "") or "TCA4307DGKR" not in i2c.get("sda", ""):
         errors.append("U219 SCL/SDA must retain the existing hot-plug/stuck-low isolator")
     if "no new GPIO" not in i2c.get("isolation", ""):
         errors.append("U219 I2C reuse may not consume a new GPIO")
+
+    irq = model.get("shared_irq_contract", {})
+    if (irq.get("connector_contact"), irq.get("host_gpio"), irq.get("host_net")) != \
+            (9, "RP GPIO13", "CAP_IRQ"):
+        errors.append("U214/U219 contact 9 must use the profile-neutral CAP_IRQ path on RP GPIO13")
+    if "active-high" not in irq.get("u214_role", ""):
+        errors.append("U214 DIO1 active-high semantics must remain profile metadata")
+    if "polarity is not published" not in irq.get("u219_role", ""):
+        errors.append("U219 NFC_IRQ polarity must remain an explicit received-unit HIL gate")
+    if "never encode active-low" not in irq.get("rule", ""):
+        errors.append("shared Cap IRQ net may not invent active-low polarity")
 
     spi = model.get("shared_spi_contract", {})
     if spi.get("owner") != "rear RF RP2354B PIO/SPI domain":
@@ -161,19 +172,22 @@ def validate(model: dict, base: dict) -> list[str]:
     if "canPresaleNumber > 0" not in surface.get("semantics", ""):
         errors.append("JLC availability semantics must use canPresaleNumber")
     expected_parts = {
-        "SN74CBTLV1G125DCKR": ("Texas Instruments", "C131992", 2966, Decimal("0.2846"), 1),
-        "SN74LVC1G06DCKR": ("Texas Instruments", "C7828", 4205, Decimal("0.1674"), 1),
-        "BAT54S,215": ("Nexperia", "C47546", 394964, Decimal("0.0335"), 2),
-        "LMV331IDBVR": ("Texas Instruments", "C34731", 41278, Decimal("0.1655"), 1),
+        "SN74CBTLV1G125DCKR": ("Texas Instruments", "C131992", Decimal("0.2846"), 1),
+        "SN74LVC1G06DCKR": ("Texas Instruments", "C7828", Decimal("0.1674"), 1),
+        "BAT54S,215": ("Nexperia", "C47546", Decimal("0.0335"), 2),
+        "LMV331IDBVR": ("Texas Instruments", "C34731", Decimal("0.1655"), 1),
     }
+    checked_at = surface.get("checked_at", "")
+    if not checked_at.startswith(model.get("evidence_date", "") + "T"):
+        errors.append("live JLC evidence timestamp must match the dated design evidence")
     found_parts = {row.get("mpn"): row for row in surface.get("parts", [])}
     if set(found_parts) != set(expected_parts):
         errors.append("live JLC part set differs from the four audited exact MPNs")
-    for mpn, (manufacturer, cnum, available, price, quantity) in expected_parts.items():
+    for mpn, (manufacturer, cnum, price, quantity) in expected_parts.items():
         row = found_parts.get(mpn, {})
         if row.get("manufacturer") != manufacturer or row.get("jlc_number") != cnum:
             errors.append(f"{mpn}: manufacturer/C-number mismatch")
-        if row.get("can_presale_number") != available or row.get("can_presale_number", 0) <= 0:
+        if row.get("can_presale_number", 0) <= 0:
             errors.append(f"{mpn}: live available-order quantity is not proven")
         if row.get("moq") != 1:
             errors.append(f"{mpn}: expected MOQ 1")
@@ -197,15 +211,23 @@ def validate(model: dict, base: dict) -> list[str]:
         checks = {
             "pin10_new_active_usd_per_device": pin10_active,
             "nfc_evidence_new_active_usd_per_device": nfc_active,
-            "fixed_added_usd_per_device": decimal(bom.get("pin10_and_power_fixed_usd_per_device", 0))
-            + decimal(bom.get("nfc_evidence_fixed_usd_per_device", 0)),
-            "net_fixed_usd_per_device": decimal(bom.get("fixed_added_usd_per_device", 0))
+            "known_active_added_usd_per_device": pin10_active + nfc_active,
+            "known_active_net_after_removed_usd_per_device": pin10_active + nfc_active
             - decimal(bom.get("removed_22r_usd_per_device", 0)),
-            "trial_lot_5_net_fixed_usd": decimal(bom.get("net_fixed_usd_per_device", 0)) * 5,
+            "trial_lot_5_known_active_added_usd": decimal(
+                bom.get("known_active_added_usd_per_device", 0)
+            ) * 5,
+            "trial_lot_5_known_active_net_after_removed_usd": decimal(
+                bom.get("known_active_net_after_removed_usd_per_device", 0)
+            ) * 5,
         }
         for key, calculated in checks.items():
             if decimal(bom.get(key, 0)) != calculated:
                 errors.append(f"BOM calculation mismatch for {key}: {calculated}")
+        if bom.get("cost_status") != "provisional_known_active_only":
+            errors.append("U219 delta must remain provisional until exact support passives close")
+        if bom.get("support_passives_usd_per_device") is not None:
+            errors.append("unselected U219 support passives may not carry a fixed cost")
 
     gates = model.get("acceptance_gates", [])
     if len(gates) < 6 or any(row.get("closed") is not False for row in gates):
@@ -284,18 +306,15 @@ def render_csv(model: dict) -> str:
             "evidence_date": model["evidence_date"],
             "note": "live available-order quantity uses canPresaleNumber",
         })
-    for group, instance, amount, note in (
-        ("pin10_power", "reused_pin10_support_passives", Decimal("0.0333"), "existing stocked resistor/capacitor MPN classes; final schematic quantities retained in H6"),
-        ("nfc_evidence", "reused_field_support_passives", Decimal("0.0407"), "fixed envelope/pull-up/bypass support; tuning bank excluded"),
-    ):
-        rows.append({
-            "change": "ADD", "group": group, "instance": instance,
-            "manufacturer": "existing selected parts", "mpn_or_bundle": "REUSED-J0-PASSIVE-BUNDLE",
-            "jlc_number": "existing", "qty_per_device": "bundle", "qty_evt5": "5 bundles",
-            "route": "reuse existing J0 selections", "can_presale_number": "see base H5 evidence",
-            "moq": "n/a", "unit_price_usd": str(amount), "line_per_device_usd": str(amount),
-            "line_evt5_usd": str(amount * 5), "evidence_date": model["evidence_date"], "note": note,
-        })
+    rows.append({
+        "change": "TBD", "group": "support_passives", "instance": "u219_support_passives",
+        "manufacturer": "TBD", "mpn_or_bundle": "TBD-EXACT-SUPPORT-PASSIVES",
+        "jlc_number": "TBD", "qty_per_device": "TBD", "qty_evt5": "TBD",
+        "route": "blocked pending exact values/MPNs/quantities", "can_presale_number": "TBD",
+        "moq": "TBD", "unit_price_usd": "", "line_per_device_usd": "",
+        "line_evt5_usd": "", "evidence_date": model["evidence_date"],
+        "note": "explicit H1 blocker; excluded from provisional known-active delta",
+    })
     rows.append({
         "change": "REMOVE", "group": "pin10_power", "instance": "u214_series_busy",
         "manufacturer": "Panasonic", "mpn_or_bundle": "ERJ-2RKF22R0X", "jlc_number": "base selection",
@@ -313,12 +332,12 @@ def render_csv(model: dict) -> str:
         "note": "footprints only; no exact production MPN accepted",
     })
     rows.append({
-        "change": "TOTAL", "group": "fixed_net", "instance": "H1-R2-U219-CAP-01",
+        "change": "KNOWN_ACTIVE_NET", "group": "provisional", "instance": "H1-R2-U219-CAP-01",
         "manufacturer": "", "mpn_or_bundle": "", "jlc_number": "", "qty_per_device": "", "qty_evt5": "",
         "route": "", "can_presale_number": "", "moq": "", "unit_price_usd": "",
-        "line_per_device_usd": "0.7430", "line_evt5_usd": "3.7150",
+        "line_per_device_usd": "0.6690", "line_evt5_usd": "3.3450",
         "evidence_date": model["evidence_date"],
-        "note": "fixed additions less removed 22-Ohm; excludes tuning, placement, PCB, freight and tax",
+        "note": "known exact active additions less removed 22-Ohm; support passives and all other exclusions remain unknown",
     })
     fieldnames = list(rows[0])
     stream = io.StringIO(newline="")

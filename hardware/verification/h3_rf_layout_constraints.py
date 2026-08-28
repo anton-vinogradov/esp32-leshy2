@@ -162,9 +162,9 @@ def build() -> tuple[dict[Path, str], dict]:
 
     rows_en = "\n".join(f"| {r['id']} | {r['frame']} | {r['h1_topology_guide_length_mm']:.3f} | {r['via_fence_pitch_mm_max'] if r['via_fence_pitch_mm_max'] is not None else 'capacitance-controlled'} |" for r in per_path)
     rows_ru = rows_en
-    en = f"""# RF layout constraints
+    en = f"""# RF layout constraints · historical R1
 
-`H3.5.2` is reviewed with `{len(checks)}` machine checks and no open analytical finding. The exact current marker is `H3.6.1`.
+`H3.5.2` is reviewed with `{len(checks)}` machine checks and no open analytical finding. The historical R1 progression marker is `H3.6.1`.
 
 The H1 lines remain topology/corridor guides, not alleged KiCad copper. Their projected lengths are carried forward only so H6 cannot silently lose or swap a path.
 
@@ -178,9 +178,9 @@ For every ordinary RF mainline H6 must solve the released stack-up, preserve one
 
 Machine evidence: [`H3-VRF52-rf-layout-constraints.json`](../hardware/verification/generated/H3-VRF52-rf-layout-constraints.json).
 """
-    ru = f"""# Ограничения RF layout
+    ru = f"""# Ограничения RF layout · historical R1
 
-`H3.5.2` проведён ревью: `{len(checks)}` машинных checks, незакрытых аналитических findings нет. Точный текущий маркер — `H3.6.1`.
+`H3.5.2` проведён ревью: `{len(checks)}` машинных checks, незакрытых аналитических findings нет. Исторический маркер прогресса R1 — `H3.6.1`.
 
 Линии H1 остаются topology/corridor guides, а не якобы готовой медью KiCad. Их проекционные длины перенесены только для того, чтобы H6 не мог молча потерять или перепутать тракт.
 

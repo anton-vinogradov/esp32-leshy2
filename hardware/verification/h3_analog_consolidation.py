@@ -139,9 +139,9 @@ def build() -> tuple[dict[Path, str], dict]:
         "next": {"stage": "H3.6.1", "action": "build the worst-case board, battery and enclosure thermal model"},
     }
 
-    en = f"""# Consolidated analog-corner result
+    en = f"""# Consolidated analog-corner result · historical R1
 
-H3.3 is reviewed: all four leaf packages and `{total_checks}` leaf checks pass, followed by `{len(checks)}` consolidation checks. Fourteen source corrections are closed, no analytical finding remains open and the total quantity-100 BOM delta is only `{q(total_cost)} USD`. The exact current marker is `H3.6.1`.
+H3.3 is reviewed: all four leaf packages and `{total_checks}` leaf checks pass, followed by `{len(checks)}` consolidation checks. Fourteen source corrections are closed, no analytical finding remains open and the total quantity-100 BOM delta is only `{q(total_cost)} USD`. The historical R1 progression marker is `H3.6.1`.
 
 ## Closed analytical envelope
 
@@ -164,9 +164,9 @@ All 17 physical-only items remain explicit HIL gates: display signal integrity/c
 
 Machine evidence: [`H3-VRF35-analog-consolidation.json`](../hardware/verification/generated/H3-VRF35-analog-consolidation.json).
 """
-    ru = f"""# Сводный результат analog corners
+    ru = f"""# Сводный результат analog corners · historical R1
 
-`H3.3` проверено: проходят все четыре leaf-пакета, `{total_checks}` их checks и `{len(checks)}` сводных checks. Закрыты четырнадцать source-исправлений, незакрытых аналитических findings нет, суммарная дельта BOM на количестве 100 — лишь `{q(total_cost)} USD`. Точный текущий маркер — `H3.6.1`.
+`H3.3` проверено: проходят все четыре leaf-пакета, `{total_checks}` их checks и `{len(checks)}` сводных checks. Закрыты четырнадцать source-исправлений, незакрытых аналитических findings нет, суммарная дельта BOM на количестве 100 — лишь `{q(total_cost)} USD`. Исторический маркер прогресса R1 — `H3.6.1`.
 
 ## Закрытый аналитический envelope
 

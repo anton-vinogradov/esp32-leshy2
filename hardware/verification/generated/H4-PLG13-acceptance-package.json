@@ -10,8 +10,8 @@
   },
   "reviewed_at": "2026-08-26",
   "source_hashes": {
-    "hardware/verification/generated/H4-PLG11-joined-review.json": "ec410c8ed31b86645d1f69e8edc83f76d11cbada0cd7bc10d33a2dcc43dde877",
-    "hardware/verification/generated/H4-PLG12-correction-closure.json": "6271585df0249d564f7c30981aec912b576ce1b256d0c50af73866efbb67647b"
+    "hardware/verification/generated/H4-PLG11-joined-review.json": "5b6df18d738c1ad7345f319e35f4d7c07007e347706df8e2bd8c6b2239c7de09",
+    "hardware/verification/generated/H4-PLG12-correction-closure.json": "2ce2fe4da6a1e5b67d71434c38ec985018e08644d3f6d4f86be4d34e5c714a11"
   },
   "acceptance_meaning": [
     "all former single-RP R1 H1/H2/H3/F3 cross-domain checks are joined and reproducible",
@@ -51,7 +51,7 @@
   },
   "acceptance_basis": "automatic acceptance authorized by the project owner for clean reviews without a functional, material-cost or safety decision",
   "next": {
-    "stage": "H1-R2.30",
-    "action": "close exact dual-RP GPIO/M1 and C5 SDIO/USB mux before starting R2 H2"
+    "stage": "H1-R2.31",
+    "action": "close physical H1 blockers and all production gates before starting R2 H2"
   }
 }

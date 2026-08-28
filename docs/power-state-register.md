@@ -1,4 +1,4 @@
-# Leshy2 power states
+# Leshy2 power states · historical R1
 
 [Русский](power-state-register.ru.md) · [Home](../README.md) · [Power](power-architecture.md) · [Methods](verification-methods.md)
 

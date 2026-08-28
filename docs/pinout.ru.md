@@ -1,164 +1,169 @@
-# Историческая распиновка Leshy2 R1
+# Текущая распиновка Leshy2 R2
 
-[На главную](../README.ru.md) · [English](pinout.md) · [Аппаратная архитектура](hardware.ru.md)
+[На главную](../README.ru.md) · [English](pinout.md) · [Железо](hardware.ru.md)
 
-Страница автоматически строится из исторической single-RP карты G2F. Она сохранена как проверенный R1 reference, но не является текущей R2 распиновкой. Текущий H0-R2 имеет отдельные front Hub RP и rear RF RP; точный per-signal GPIO order будет опубликован только после нового R2 H2 export.
+Это точная рабочая H1-R2.31-карта GPIO двух независимых RP2354B и их пяти сигналов через M1. Точный электрический контракт module-pad/IO-mux C5 присоединён. Она ещё не разрешает KiCad: до нового R2 H2 остаются live production route FSUSB42MUX/C11355 и точный MPN detector/latch service-VBUS.
 
-> Файл сгенерирован из `hardware/architecture/devices.json` и `hardware/architecture/candidates/G2F-3I.json`.
+> Machine source: `hardware/architecture/h1-r2-dual-rp-pinout.json`. Current marker: **`H1-R2.31`**.
 
-## S3 — приложение, UI, display, storage и audio
+## Передний Hub RP
 
-**MPN:** `ESP32-S3-WROOM-1U-N16R8`
+Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety mailbox, LCD TE and backlight; no audio or broadcast ownership.
 
-| Контакт | Сеть | Направление | Периферия | Подключение |
-|---|---|---|---|---|
-| `GPIO0` | `I2S_DIN` | `i` | `I2S0` | codec_i2s_din_iso.Y<br>s3_boot_pullup.END_2<br>s3_dbg_boot_series.END_2 |
-| `GPIO1` | `SYS_I2C_SDA` | `io` | `I2C0` | slow_io.SDA<br>ui_matrix_io.SDA<br>headset_control_io.SDA<br>voice_band_io.SDA<br>receiver_i2c_iso.1A<br>display_connector.PIN_2<br>codec_i2c_iso.1A<br>pd_controller.I2Ct_SDA<br>pack_admission.PA0<br>safety_controller.PA0 |
-| `GPIO2` | `SYS_I2C_SCL` | `o` | `I2C0` | slow_io.SCL<br>ui_matrix_io.SCL<br>headset_control_io.SCL<br>voice_band_io.SCL<br>receiver_i2c_iso.2A<br>display_connector.PIN_1<br>codec_i2c_iso.2A<br>pd_controller.I2Ct_SCL<br>pack_admission.PA11<br>safety_controller.PA11 |
-| `GPIO3` | `RP_ALERT_N` | `i` | `GPIO_IRQ` | rp.GPIO19 |
-| `GPIO4` | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | sd_miso_series.END_2<br>sd_host_d1_pullup.END_1<br>display_connector.PIN_10 |
-| `GPIO5` | `SD_SPI_CS_N` | `o` | `SPI2` | sd_host_buffer.3A<br>sd_miso_buffer.OE_N<br>sd_host_cs_pullup.END_1 |
-| `GPIO6` | `AUDIO_ARM` | `o` | `GPIO` | audio_safe_gate.1B<br>audio_safe_gate.2B<br>codec_i2s_din_boot_gate.B |
-| `GPIO7` | `UNIT_HOST_SIG0` | `io` | `I2C1_OR_UART1_OR_GPIO` | unit_signal_iso.A1 |
-| `GPIO8` | `UNIT_HOST_SIG1` | `io` | `I2C1_OR_UART1_OR_GPIO` | unit_signal_iso.A2 |
-| `GPIO9` | `S3_RP_IPC_CS_N` | `o` | `SPI3` | rp.GPIO25 |
-| `GPIO10` | `S3_C5_SDIO_CLK` | `o` | `SDMMC_SLOT1_1BIT` | c5.GPIO9 |
-| `GPIO11` | `S3_C5_SDIO_CMD` | `io` | `SDMMC_SLOT1_1BIT` | c5.GPIO10 |
-| `GPIO12` | `S3_C5_SDIO_D0` | `io` | `SDMMC_SLOT1_1BIT` | c5.GPIO8 |
-| `GPIO13` | `S3_C5_SDIO_D1_IRQ` | `io` | `SDMMC_SLOT1_1BIT` | c5.GPIO7 |
-| `GPIO14` | `S3_RP_IPC_MISO` | `i` | `SPI3` | rp.GPIO27 |
-| `GPIO15` | `I2S_BCLK` | `o` | `I2S0` | codec_i2s_bclk_iso.A |
-| `GPIO16` | `I2S_WS` | `o` | `I2S0` | codec_i2s_ws_iso.A |
-| `GPIO17` | `I2S_DOUT` | `o` | `I2S0` | codec_i2s_dout_iso.A |
-| `GPIO18` | `DISPLAY_SD_SPI_SCK` | `o` | `SPI2` | sd_host_buffer.1A<br>sd_host_sck_pulldown.END_1<br>display_connector.PIN_11 |
-| `GPIO19` | `S3_USB_DM_LOCAL` | `io` | `USB_SERIAL_JTAG` | product_usb_dm_series.END_2 |
-| `GPIO20` | `S3_USB_DP_LOCAL` | `io` | `USB_SERIAL_JTAG` | product_usb_dp_series.END_2 |
-| `GPIO21` | `S3_RP_IPC_MOSI` | `o` | `SPI3` | rp.GPIO24 |
-| `GPIO38` | `LCD_CS_N` | `o` | `SPI2` | display_connector.PIN_9<br>lcd_host_cs_pullup.END_1 |
-| `GPIO39` | `ENCODER_A` | `i` | `PCNT0` | encoder.A<br>encoder_a_pullup.END_2 |
-| `GPIO40` | `LCD_BL_PWM` | `o` | `LEDC` | backlight_gate_series.END_1 |
-| `GPIO41` | `LCD_QSPI_D2` | `o` | `SPI2` | display_connector.PIN_17 |
-| `GPIO42` | `LCD_QSPI_D3` | `o` | `SPI2` | display_connector.PIN_18 |
-| `GPIO43` | `S3_UART_SERVICE_TX` | `o` | `UART0` | s3_dbg0_series.END_2 |
-| `GPIO44` | `S3_UART_SERVICE_RX` | `i` | `UART0` | s3_dbg1_series.END_2 |
-| `GPIO45` | `SYS_INT_N` | `i` | `GPIO_IRQ` | slow_io.INT<br>ui_matrix_io.INT_N<br>headset_control_io.INT_N<br>pd_controller.I2Ct_IRQ<br>touch_irq_buffer.Y<br>pack_status_buffer.D2 |
-| `GPIO46` | `DISPLAY_SD_SPI_D0` | `o` | `SPI2` | sd_host_buffer.2A<br>sd_host_d0_pulldown.END_1<br>display_connector.PIN_13 |
-| `GPIO47` | `ENCODER_B` | `i` | `PCNT0` | encoder.B<br>encoder_b_pullup.END_2 |
-| `GPIO48` | `S3_RP_IPC_SCK` | `o` | `SPI3` | rp.GPIO26 |
+**GPIO:** `46/48` used, `2` reserve. **PIO:** `8/12` used. **DMA:** `14/16` used.
 
-## C5 — native 2,4/5 ГГц, IEEE 802.15.4 и IR
+| GPIO | Сеть | Направление | Контроллер | Физический endpoint | Reset / pull |
+|---:|---|---|---|---|---|
+| `0` | `S3_HUB_D0` | `io` | `PIO1_SM0_S3_QUAD` | S3 GPIO21 | input/high-Z; external pull-down |
+| `1` | `S3_HUB_D1` | `io` | `PIO1_SM0_S3_QUAD` | S3 GPIO14 | input/high-Z; external pull-down |
+| `2` | `S3_HUB_D2` | `io` | `PIO1_SM0_S3_QUAD` | S3 GPIO43 through ROM-UART isolation | input/high-Z; Hub-side external pull-down; isolation open |
+| `3` | `S3_HUB_D3` | `io` | `PIO1_SM0_S3_QUAD` | S3 GPIO44 through ROM-UART isolation | input/high-Z; Hub-side external pull-down; isolation open |
+| `4` | `S3_HUB_SCK` | `in` | `PIO1_SM0_S3_QUAD` | S3 GPIO48 | input; external pull-down |
+| `5` | `UI_HUB_ALERT_N` | `od` | `GPIO_IRQ` | S3 GPIO3 wired-OR | released/high-Z; external pull-up |
+| `6` | `HUB_RESERVE_6` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
+| `7` | `C5_SDIO_CLK` | `out` | `PIO1_SM1_2_C5_SDIO` | direct series footprint -> C5 GPIO9 / module pad 11 | input/high-Z; no fitted pull; C5 and Hub held reset until ownership is established |
+| `8` | `C5_SDIO_CMD` | `io` | `PIO1_SM1_2_C5_SDIO` | direct pull-up/series branch -> C5 GPIO10 / module pad 12 | input/high-Z; branch-local 10-kohm pull-up; C5 and Hub held reset |
+| `9` | `C5_SDIO_D0` | `io` | `PIO1_SM1_2_C5_SDIO` | direct pull-up/series branch -> C5 GPIO8 / module pad 10 | input/high-Z; branch-local 10-kohm pull-up; C5 and Hub held reset |
+| `10` | `C5_SDIO_D1` | `io` | `PIO1_SM1_2_C5_SDIO` | direct pull-up/series branch -> C5 GPIO7 / module pad 9 | input/high-Z; branch-local 10-kohm pull-up also fixes the JTAG-source strap; C5 and Hub held reset |
+| `11` | `C5_SDIO_D2` | `io` | `PIO1_SM1_2_C5_SDIO` | FSUSB42 HSD2+ -> D+ common -> C5 GPIO14 / module pad 14 | input/high-Z; 10-kohm HSD2 branch pull-up disconnected from C5 in service mode |
+| `12` | `C5_SDIO_D3` | `io` | `PIO1_SM1_2_C5_SDIO` | FSUSB42 HSD2- -> D- common -> C5 GPIO13 / module pad 13 | input/high-Z; 10-kohm HSD2 branch pull-up disconnected from C5 in service mode |
+| `13` | `HUB_RF_SCK` | `out` | `PIO2_SM0_RF_SPI` | M1.24 -> RF RP GPIO26 | input/high-Z; external pull-down |
+| `14` | `HUB_RF_MOSI` | `out` | `PIO2_SM0_RF_SPI` | M1.26 -> RF RP GPIO24 | input/high-Z; external pull-down |
+| `15` | `HUB_RF_MISO` | `in` | `PIO2_SM0_RF_SPI` | M1.27 <- RF RP GPIO27 | input; external pull-down |
+| `16` | `HUB_RF_CS_N` | `out` | `GPIO` | M1.23 -> RF RP GPIO25 | input/high-Z; external pull-up |
+| `17` | `HUB_RF_ALERT_N` | `in` | `GPIO_IRQ` | M1.22 <- RF RP GPIO19 | input; external pull-up |
+| `18` | `NRF0_SCK` | `out` | `PIO0_SM0_NRF0_SPI` | nRF24 #0 command buffer | input/high-Z; external pull-down |
+| `19` | `NRF0_MOSI` | `out` | `PIO0_SM0_NRF0_SPI` | nRF24 #0 command buffer | input/high-Z; external pull-down |
+| `20` | `NRF0_MISO` | `in` | `PIO0_SM0_NRF0_SPI` | nRF24 #0 return buffer | input; external pull-down |
+| `21` | `NRF0_CSN_N` | `out` | `GPIO` | nRF24 #0 command buffer | input/high-Z; external pull-up |
+| `22` | `NRF0_CE_REQ` | `out` | `GPIO` | nRF24 #0 safety gate | input/high-Z; external pull-down |
+| `23` | `NRF0_IRQ_N` | `in` | `GPIO_IRQ` | nRF24 #0 return buffer | input; external pull-up |
+| `24` | `NRF1_SCK` | `out` | `PIO0_SM1_NRF1_SPI` | nRF24 #1 command buffer | input/high-Z; external pull-down |
+| `25` | `NRF1_MOSI` | `out` | `PIO0_SM1_NRF1_SPI` | nRF24 #1 command buffer | input/high-Z; external pull-down |
+| `26` | `NRF1_MISO` | `in` | `PIO0_SM1_NRF1_SPI` | nRF24 #1 return buffer | input; external pull-down |
+| `27` | `NRF1_CSN_N` | `out` | `GPIO` | nRF24 #1 command buffer | input/high-Z; external pull-up |
+| `28` | `NRF1_CE_REQ` | `out` | `GPIO` | nRF24 #1 safety gate | input/high-Z; external pull-down |
+| `29` | `NRF1_IRQ_N` | `in` | `GPIO_IRQ` | nRF24 #1 return buffer | input; external pull-up |
+| `30` | `NRF2_SCK` | `out` | `PIO0_SM2_NRF2_SPI` | nRF24 #2 command buffer | input/high-Z; external pull-down |
+| `31` | `NRF2_MOSI` | `out` | `PIO0_SM2_NRF2_SPI` | nRF24 #2 command buffer | input/high-Z; external pull-down |
+| `32` | `NRF2_MISO` | `in` | `PIO0_SM2_NRF2_SPI` | nRF24 #2 return buffer | input; external pull-down |
+| `33` | `NRF2_CSN_N` | `out` | `GPIO` | nRF24 #2 command buffer | input/high-Z; external pull-up |
+| `34` | `NRF2_CE_REQ` | `out` | `GPIO` | nRF24 #2 safety gate | input/high-Z; external pull-down |
+| `35` | `NRF2_IRQ_N` | `in` | `GPIO_IRQ` | nRF24 #2 return buffer | input; external pull-up |
+| `36` | `NRF_GROUP_PWR_EN` | `out` | `GPIO` | FAULT_KILL-dominant nRF rail switch | input/high-Z; external pull-down |
+| `37` | `SD_SCK` | `out` | `PIO0_SM3_SD_SPI` | microSD command buffer | input/high-Z; external pull-down |
+| `38` | `SD_MOSI` | `out` | `PIO0_SM3_SD_SPI` | microSD command buffer | input/high-Z; external pull-down |
+| `39` | `SD_MISO` | `in` | `PIO0_SM3_SD_SPI` | microSD return buffer | input; external pull-up |
+| `40` | `SD_CS_N` | `out` | `GPIO` | microSD command buffer | input/high-Z; external pull-up |
+| `41` | `SD_PWR_EN` | `out` | `GPIO` | microSD load switch | input/high-Z; external pull-down |
+| `42` | `HUB_SAFE_I2C_SDA` | `io` | `I2C1` | M1.32 -> Pack/Safety mailboxes | input/open-drain released; external pull-up to AON-safe compatible domain |
+| `43` | `HUB_SAFE_I2C_SCL` | `od` | `I2C1` | M1.33 -> Pack/Safety mailboxes | input/open-drain released; external pull-up to AON-safe compatible domain |
+| `44` | `SD_DETECT_N` | `in` | `GPIO_IRQ` | microSD socket detect | input; external pull-up |
+| `45` | `LCD_TE` | `in` | `GPIO_IRQ` | HMX035CTFT-001 TE | input; external pull-down while panel reset is asserted |
+| `46` | `LCD_BL_PWM` | `out` | `PWM` | backlight hardware gate | input/high-Z; external pull-down keeps backlight off |
+| `47` | `HUB_RESERVE_47` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
 
-**MPN:** `ESP32-C5-WROOM-1U-N8R8`
+### Ресурсы
 
-| Контакт | Сеть | Направление | Периферия | Подключение |
-|---|---|---|---|---|
-| `GPIO0` | `IR_RX_DEMOD` | `i` | `RMT_RX0` | ir_demod_series.END_2<br>ir_demod_host_pullup.END_1 |
-| `GPIO1` | `IR_RX_CARRIER` | `i` | `RMT_RX1` | ir_carrier_series.END_2<br>ir_carrier_host_pullup.END_1 |
-| `GPIO4` | `IR_FRONTEND_PWR_EN` | `o` | `GPIO` | ir_power_switch.ON<br>ir_power_on_pulldown.END_1 |
-| `GPIO6` | `IR_TX_CARRIER` | `o` | `RMT_TX0` | ir_safe_gate.A |
-| `GPIO7` | `S3_C5_SDIO_D1_IRQ` | `io` | `SDIO_SLAVE` | s3.GPIO13 |
-| `GPIO8` | `S3_C5_SDIO_D0` | `io` | `SDIO_SLAVE` | s3.GPIO12 |
-| `GPIO9` | `S3_C5_SDIO_CLK` | `i` | `SDIO_SLAVE` | s3.GPIO10 |
-| `GPIO10` | `S3_C5_SDIO_CMD` | `io` | `SDIO_SLAVE` | s3.GPIO11 |
-| `GPIO11` | `C5_UART_SERVICE_TX` | `o` | `UART0` | c5_dbg0_series.END_2 |
-| `GPIO12` | `C5_UART_SERVICE_RX` | `i` | `UART0` | c5_dbg1_series.END_2 |
-| `GPIO13` | `C5_USB_DM` | `io` | `USB_SERIAL_JTAG` | c5_service_usb_dm_series.END_2 |
-| `GPIO14` | `C5_USB_DP` | `io` | `USB_SERIAL_JTAG` | c5_service_usb_dp_series.END_2 |
-| `GPIO23` | `C5_RF_TX_EVIDENCE_N` | `i` | `GPIO_IRQ` | evidence_main_isolator.1Y<br>c5_evidence_main_pullup.END_2 |
-| `GPIO24` | `IR_TX_EVIDENCE_N` | `i` | `GPIO_IRQ` | evidence_main_isolator.2Y<br>ir_evidence_main_pullup.END_2 |
+| Kind | Allocation |
+|---|---|
+| PIO | `PIO0_SM0` → nRF24 #0 full-duplex SPI; `PIO0_SM1` → nRF24 #1 full-duplex SPI; `PIO0_SM2` → nRF24 #2 full-duplex SPI; `PIO0_SM3` → microSD full-duplex SPI; `PIO1_SM0` → S3 four-data-line half-duplex link; `PIO1_SM1` → C5 4-bit SDIO command/clock; `PIO1_SM2` → C5 4-bit SDIO data; `PIO2_SM0` → rear RF RP full-duplex SPI |
+| DMA | nRF24 #0 full-duplex SPI = `2`; nRF24 #1 full-duplex SPI = `2`; nRF24 #2 full-duplex SPI = `2`; microSD full-duplex SPI = `2`; S3 four-data-line half-duplex link = `2`; C5 4-bit SDIO = `2`; rear RF RP full-duplex SPI = `2` |
 
-## RP2354B — nRF24 ×3, Sub-GHz, voice и Cap Bus
+## Задний RF RP
 
-**MPN:** `SC1512-A4`
+Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, FPV control, M5 Unit and exactly one signed U214/U219 Cap profile owner; no nRF24 or microSD ownership.
 
-| Контакт | Сеть | Направление | Периферия | Подключение |
-|---|---|---|---|---|
-| `GPIO0` | `NRF0_CSN_N` | `o` | `GPIO` | nrf0_host_buffer.2A<br>nrf0_host_csn_pullup.END_1 |
-| `GPIO1` | `NRF0_CE_REQ` | `o` | `GPIO` | safe_gate_a.1A |
-| `GPIO2` | `NRF0_IRQ_N` | `i` | `GPIO_IRQ` | nrf0_irq_series.END_2<br>nrf0_host_irq_pullup.END_1 |
-| `GPIO3` | `NRF1_CSN_N` | `o` | `GPIO` | nrf1_host_buffer.2A<br>nrf1_host_csn_pullup.END_1 |
-| `GPIO4` | `NRF1_CE_REQ` | `o` | `GPIO` | safe_gate_a.2A |
-| `GPIO5` | `NRF1_IRQ_N` | `i` | `GPIO_IRQ` | nrf1_irq_series.END_2<br>nrf1_host_irq_pullup.END_1 |
-| `GPIO6` | `NRF2_CSN_N` | `o` | `GPIO` | nrf2_host_buffer.2A<br>nrf2_host_csn_pullup.END_1 |
-| `GPIO7` | `NRF2_CE_REQ` | `o` | `GPIO` | safe_gate_a.3A |
-| `GPIO8` | `NRF2_IRQ_N` | `i` | `GPIO_IRQ` | nrf2_irq_series.END_2<br>nrf2_host_irq_pullup.END_1 |
-| `GPIO9` | `CC_CSN_N` | `o` | `GPIO` | cc_host_buffer.3A<br>cc_host_csn_pullup.END_1 |
-| `GPIO10` | `CC_GDO0` | `i` | `GPIO_IRQ` | cc_gdo0_series.END_2<br>cc_host_gdo0_pulldown.END_1 |
-| `GPIO11` | `CC_GDO2` | `i` | `GPIO_IRQ` | cc_gdo2_series.END_2<br>cc_host_gdo2_pulldown.END_1 |
-| `GPIO12` | `U214_HOST_BUSY` | `i` | `GPIO_IRQ` | u214_series_busy.END_2 |
-| `GPIO13` | `U214_HOST_IRQ` | `i` | `GPIO_IRQ` | u214_series_irq.END_2 |
-| `GPIO14` | `U214_HOST_RST_N` | `o` | `GPIO` | u214_host_buffer_a.1A |
-| `GPIO15` | `NRF_GROUP_PWR_EN` | `o` | `GPIO` | safe_gate_a.4A |
-| `GPIO16` | `VOICE_UART_TX` | `o` | `UART0` | voice_control_mux_a.D1 |
-| `GPIO17` | `VOICE_UART_RX` | `i` | `UART0` | voice_control_mux_a.D2 |
-| `GPIO18` | `VOICE_PTT_REQ_N` | `o` | `GPIO` | safe_ptt_or.1A |
-| `GPIO19` | `RP_ALERT_N` | `od` | `GPIO_IRQ` | s3.GPIO3 |
-| `GPIO20` | `VOICE_AUDIO_ON_N` | `i` | `GPIO_IRQ` | voice_control_mux_b.D2<br>voice_audio_on_pulldown.END_1 |
-| `GPIO21` | `PTT_BUTTON_N` | `i` | `GPIO_IRQ` | ptt_series.END_2 |
-| `GPIO22` | `RP_ANY_TX_N` | `i` | `GPIO_IRQ` | evidence_main_isolator.3Y<br>rp_any_tx_main_pullup.END_2 |
-| `GPIO23` | `CC_PWR_EN` | `o` | `GPIO` | safe_gate_b.1A |
-| `GPIO24` | `S3_RP_IPC_MOSI` | `i` | `SPI1_IPC` | s3.GPIO21 |
-| `GPIO25` | `S3_RP_IPC_CS_N` | `i` | `SPI1_IPC` | s3.GPIO9 |
-| `GPIO26` | `S3_RP_IPC_SCK` | `i` | `SPI1_IPC` | s3.GPIO48 |
-| `GPIO27` | `S3_RP_IPC_MISO` | `o` | `SPI1_IPC` | s3.GPIO14 |
-| `GPIO28` | `U214_I2C_SDA_IN` | `io` | `I2C0_EXT` | u214_i2c_iso.SDAIN |
-| `GPIO29` | `U214_I2C_SCL_IN` | `o` | `I2C0_EXT` | u214_i2c_iso.SCLIN |
-| `GPIO30` | `NRF0_MISO` | `i` | `PIO0_SM0_RF_SPI` | nrf0_miso_series.END_2<br>nrf0_host_miso_pulldown.END_1 |
-| `GPIO31` | `NRF0_SCK` | `o` | `PIO0_SM0_RF_SPI` | nrf0_host_buffer.3A<br>nrf0_host_sck_pulldown.END_1 |
-| `GPIO32` | `NRF0_MOSI` | `o` | `PIO0_SM0_RF_SPI` | nrf0_host_buffer.4A<br>nrf0_host_mosi_pulldown.END_1 |
-| `GPIO33` | `NRF1_MISO` | `i` | `PIO0_SM1_RF_SPI` | nrf1_miso_series.END_2<br>nrf1_host_miso_pulldown.END_1 |
-| `GPIO34` | `NRF1_SCK` | `o` | `PIO0_SM1_RF_SPI` | nrf1_host_buffer.3A<br>nrf1_host_sck_pulldown.END_1 |
-| `GPIO35` | `NRF1_MOSI` | `o` | `PIO0_SM1_RF_SPI` | nrf1_host_buffer.4A<br>nrf1_host_mosi_pulldown.END_1 |
-| `GPIO36` | `NRF2_MISO` | `i` | `PIO0_SM2_RF_SPI` | nrf2_miso_series.END_2<br>nrf2_host_miso_pulldown.END_1 |
-| `GPIO37` | `NRF2_SCK` | `o` | `PIO0_SM2_RF_SPI` | nrf2_host_buffer.3A<br>nrf2_host_sck_pulldown.END_1 |
-| `GPIO38` | `NRF2_MOSI` | `o` | `PIO0_SM2_RF_SPI` | nrf2_host_buffer.4A<br>nrf2_host_mosi_pulldown.END_1 |
-| `GPIO39` | `CC_MISO` | `i` | `PIO0_SM3_RF_SPI` | cc_so_series.END_2<br>cc_host_so_pulldown.END_1 |
-| `GPIO40` | `U214_HOST_GPS_TX` | `o` | `UART1` | u214_host_buffer_a.2A |
-| `GPIO41` | `U214_HOST_GPS_RX` | `i` | `UART1` | u214_series_gps_tx.END_2 |
-| `GPIO42` | `CC_SCK` | `o` | `PIO0_SM3_RF_SPI` | cc_host_buffer.1A<br>cc_host_sclk_pulldown.END_1 |
-| `GPIO43` | `CC_MOSI` | `o` | `PIO0_SM3_RF_SPI` | cc_host_buffer.2A<br>cc_host_si_pulldown.END_1 |
-| `GPIO44` | `U214_HOST_MISO` | `i` | `PIO1_SM0_EXT_SPI` | u214_series_miso.END_2 |
-| `GPIO45` | `U214_HOST_SCK` | `o` | `PIO1_SM0_EXT_SPI` | u214_host_buffer_a.3A |
-| `GPIO46` | `U214_HOST_MOSI` | `o` | `PIO1_SM0_EXT_SPI` | u214_host_buffer_a.4A |
-| `GPIO47` | `U214_HOST_NSS_N` | `o` | `GPIO` | u214_host_buffer_b.1A |
+**GPIO:** `44/48` used, `4` reserve. **PIO:** `6/12` used. **DMA:** `12/16` used.
 
-## USB-PD controller
+| GPIO | Сеть | Направление | Контроллер | Физический endpoint | Reset / pull |
+|---:|---|---|---|---|---|
+| `0` | `AUDIO_BCLK` | `out` | `PIO1_SM0_I2S_TX` | SN74LVC1G126DCKR Ioff isolation -> ES8311 BCLK | input/high-Z; external pull-down; codec-side isolation OE low |
+| `1` | `AUDIO_WS` | `out` | `PIO1_SM0_I2S_TX` | SN74LVC1G126DCKR Ioff isolation -> ES8311 LRCK | input/high-Z; external pull-down; codec-side isolation OE low |
+| `2` | `AUDIO_DOUT` | `out` | `PIO1_SM0_I2S_TX` | SN74LVC1G126DCKR Ioff isolation -> ES8311 SDIN | input/high-Z; external pull-down; codec-side isolation OE low |
+| `3` | `AUDIO_DIN` | `in` | `PIO1_SM1_I2S_RX` | ES8311 SDOUT -> SN74LVC1G126DCKR Ioff isolation | input; external pull-down; host-side isolation OE low |
+| `4` | `REAR_I2C_SDA` | `io` | `I2C0` | codec/Si4732/Airband/headset slow-control bus | input/open-drain released; external pull-up |
+| `5` | `REAR_I2C_SCL` | `od` | `I2C0` | codec/Si4732/Airband/headset slow-control bus | input/open-drain released; external pull-up |
+| `6` | `AUDIO_ARM` | `out` | `GPIO` | audio reset-safe selector gate | input/high-Z; external pull-down |
+| `7` | `M5_UNIT_SIG0` | `io` | `PIO2_SM0_1_M5_PROFILE` | isolated M5 Unit PIO-I2C/PIO-UART/GPIO profile | input/high-Z; branch isolation disabled; accessory-side profile pull |
+| `8` | `M5_UNIT_SIG1` | `io` | `PIO2_SM0_1_M5_PROFILE` | isolated M5 Unit PIO-I2C/PIO-UART/GPIO profile | input/high-Z; branch isolation disabled; accessory-side profile pull |
+| `9` | `CC_CSN_N` | `out` | `GPIO` | CC1101 command buffer | input/high-Z; external pull-up |
+| `10` | `CC_GDO0` | `in` | `GPIO_IRQ` | CC1101 return buffer | input; external pull-down |
+| `11` | `CC_GDO2` | `in` | `GPIO_IRQ` | CC1101 return buffer | input; external pull-down |
+| `12` | `CAP_PIN10_BUSY_OR_NFC_CS_N` | `io` | `GPIO_IRQ_OR_OUTPUT_PROFILE` | SN74CBTLV1G125: U214 BUSY input or U219 NFC_CS_N output | input/high-Z; AON /OE pull-up disconnects pin 10; U219 profile drives inactive high before POWER_EN |
+| `13` | `CAP_IRQ` | `in` | `GPIO_IRQ` | exact-one profile return buffer: U214 DIO1 or U219 NFC_IRQ; polarity interpreted only by the signed profile | input; external pull-down; accessory branch remains off |
+| `14` | `CAP_RESET_N_OR_POWER_EN` | `out` | `GPIO` | exact-one profile command buffer: U214 RESET_N or U219 POWER_EN | input/high-Z; external pull-down holds U214 reset and U219 power disabled |
+| `15` | `RF_RESERVE_15` | `reserve` | `GPIO` | test pad only; K331 RSSI remains NC | input/high-Z; external pull-down; DNP |
+| `16` | `VOICE_UART_TX` | `out` | `UART0` | SA818S-U/V selected command path | input/high-Z; external pull-up keeps UART idle |
+| `17` | `VOICE_UART_RX` | `in` | `UART0` | SA818S-U/V selected response path | input; external pull-up |
+| `18` | `VOICE_PTT_REQ_N` | `out` | `GPIO` | FAULT_KILL-dominant voice PTT gate | input/high-Z; external pull-up inhibits TX |
+| `19` | `HUB_RF_ALERT_N` | `od` | `GPIO_IRQ` | M1.22 -> Hub RP GPIO17 | released/high-Z; external pull-up |
+| `20` | `VOICE_AUDIO_ON_N` | `in` | `GPIO_IRQ` | voice audio activity selector | input; external pull-up |
+| `21` | `PTT_BUTTON_N` | `in` | `GPIO_IRQ` | direct user PTT | input; external pull-up |
+| `22` | `RF_ANY_TX_N` | `in` | `GPIO_IRQ` | wired actual-TX evidence | input; external pull-up |
+| `23` | `CC_PWR_EN` | `out` | `GPIO` | CC1101 rail switch | input/high-Z; external pull-down |
+| `24` | `HUB_RF_MOSI` | `in` | `SPI1` | M1.26 <- Hub RP GPIO14 | input; external pull-down |
+| `25` | `HUB_RF_CS_N` | `in` | `SPI1` | M1.23 <- Hub RP GPIO16 | input; external pull-up |
+| `26` | `HUB_RF_SCK` | `in` | `SPI1` | M1.24 <- Hub RP GPIO13 | input; external pull-down |
+| `27` | `HUB_RF_MISO` | `out` | `SPI1` | M1.27 -> Hub RP GPIO15 | input/high-Z; external pull-down |
+| `28` | `FPV_RX_PWR_EN` | `out` | `GPIO` | post-PCBA K331/AWM666V receiver bay | input/high-Z; external pull-down |
+| `29` | `RF_RESERVE_29` | `reserve` | `GPIO` | test pad only; UI-local TVP5150 lock is read by S3 and reported over the existing S3-Hub-RF IPC chain | input/high-Z; external pull-down; DNP |
+| `30` | `CAP_I2C_SDA` | `io` | `I2C1` | TCA4307DGKR hot-plug/stuck-bus isolator to exact-one U214/U219 contact 4 SDA | input/open-drain released; external pull-up; isolator disabled |
+| `31` | `CAP_I2C_SCL` | `od` | `I2C1` | TCA4307DGKR hot-plug/stuck-bus isolator to exact-one U214/U219 contact 3 SCL | input/open-drain released; external pull-up; isolator disabled |
+| `32` | `FPV_CH1` | `out` | `GPIO` | receiver channel select | input/high-Z; external pull-down |
+| `33` | `FPV_CH2` | `out` | `GPIO` | receiver channel select | input/high-Z; external pull-down |
+| `34` | `FPV_CH3` | `out` | `GPIO` | receiver channel select | input/high-Z; external pull-down |
+| `35` | `AIR_RX_EN` | `out` | `GPIO` | Airband switched rail and LT5560 enable | input/high-Z; external pull-down disables converted path |
+| `36` | `AIR_RX_MODE` | `out` | `GPIO` | direct FM/SW versus converted-Airband selector | input/high-Z; external pull-down selects direct FM/SW |
+| `37` | `RF_RESERVE_37` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
+| `38` | `RF_RESERVE_38` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
+| `39` | `CC_MISO` | `in` | `PIO0_SM0_CC_SPI` | CC1101 return buffer | input; external pull-down |
+| `40` | `CAP_GNSS_TX_OR_RF_SW0` | `out` | `UART1_OR_GPIO_PROFILE` | exact-one profile: U214 GNSS RX or U219 RF_SW0 | input/high-Z; external pull-down until signed profile admission |
+| `41` | `CAP_GNSS_RX_OR_CC_GDO0` | `in` | `UART1_OR_GPIO_IRQ_PROFILE` | exact-one profile return: U214 GNSS TX or U219 CC1101 GDO0 | input; external pull-down; accessory branch remains off |
+| `42` | `CC_SCK` | `out` | `PIO0_SM0_CC_SPI` | CC1101 command buffer | input/high-Z; external pull-down |
+| `43` | `CC_MOSI` | `out` | `PIO0_SM0_CC_SPI` | CC1101 command buffer | input/high-Z; external pull-down |
+| `44` | `CAP_SPI_MISO` | `in` | `PIO0_SM1_CAP_SPI` | exact-one profile return: U214 MISO or U219 shared MISO | input; external pull-down; accessory branch remains off |
+| `45` | `CAP_SPI_SCK` | `out` | `PIO0_SM1_CAP_SPI` | exact-one profile command: U214 SCK or U219 shared SCLK | input/high-Z; external pull-down |
+| `46` | `CAP_SPI_MOSI` | `out` | `PIO0_SM1_CAP_SPI` | exact-one profile command: U214 MOSI or U219 shared MOSI | input/high-Z; external pull-down |
+| `47` | `CAP_SPI_PRIMARY_CS_N` | `out` | `GPIO` | exact-one profile command: U214 NSS_N or U219 CC1101_CS_N | input/high-Z; external pull-up keeps either profile deselected |
 
-**MPN:** `Texas Instruments TPS25751DREFR`
+### Ресурсы
 
-| Контакт | Сеть | Направление | Периферия | Подключение |
-|---|---|---|---|---|
-| `GPIO0` | `PD_EEPROM_WP` | `od` | `GPIO` | pd_config_eeprom.WP |
-| `GPIO1` | `CHARGE_EN_N` | `od` | `GPIO` | nvdc_charger.CE |
-| `I2Ct_IRQ` | `SYS_INT_N` | `od` | `I2C_TARGET` | s3.GPIO45 |
-| `I2Ct_SCL` | `SYS_I2C_SCL` | `i` | `I2C_TARGET` | s3.GPIO2 |
-| `I2Ct_SDA` | `SYS_I2C_SDA` | `io` | `I2C_TARGET` | s3.GPIO1 |
+| Kind | Allocation |
+|---|---|
+| PIO | `PIO0_SM0` → CC1101 full-duplex SPI; `PIO0_SM1` → exact-one U214/U219 Cap full-duplex SPI; `PIO1_SM0` → codec I2S transmit clocks/data; `PIO1_SM1` → codec I2S receive data; `PIO2_SM0` → isolated M5 Unit PIO-I2C or UART transmit profile; `PIO2_SM1` → isolated M5 Unit UART receive profile; idle in I2C/GPIO profiles |
+| DMA | CC1101 full-duplex SPI = `2`; exact-one U214/U219 Cap full-duplex SPI = `2`; codec full-duplex I2S = `2`; Hub-RF hardware SPI1 = `2`; voice UART continuous RX = `1`; U214 GNSS UART continuous RX = `1`; M5 Unit profile full-duplex worst case = `2` |
 
-## Контроллер допуска батарейного pack
+## Связь Hub RP ↔ RF RP через M1
 
-**MPN:** `Texas Instruments MSPM0C1106SDGS20R`
+| Net | M1 | Hub GPIO | RF GPIO | Driver |
+|---|---:|---:|---:|---|
+| `HUB_RF_ALERT_N` | `22` | `17` | `19` | rf_rp open-drain |
+| `HUB_RF_CS_N` | `23` | `16` | `25` | hub_rp |
+| `HUB_RF_SCK` | `24` | `13` | `26` | hub_rp |
+| `HUB_RF_MOSI` | `26` | `14` | `24` | hub_rp |
+| `HUB_RF_MISO` | `27` | `15` | `27` | rf_rp |
 
-| Контакт | Сеть | Направление | Периферия | Подключение |
-|---|---|---|---|---|
-| `PA0` | `SYS_I2C_SDA` | `io` | `I2C_TARGET` | s3.GPIO1 |
-| `PA2` | `PACK_GAUGE_I2C_SCL` | `io` | `BITBANG_I2C` | pack_gauge.SCL_OD<br>pack_gauge_scl_pullup.END_2 |
-| `PA4` | `PACK_GAUGE_I2C_SDA` | `io` | `BITBANG_I2C` | pack_gauge.SDA_DQ<br>pack_gauge_sda_pullup.END_2 |
-| `PA6` | `PACK_FET_HOLD_RELEASE` | `o` | `GPIO` | pack_hold.G2<br>pack_hold_release_pulldown.END_1 |
-| `PA11` | `SYS_I2C_SCL` | `i` | `I2C_TARGET` | s3.GPIO2 |
-| `PA16` | `PACK_PFAIL_N` | `i` | `GPIO_IRQ` | pack_status_buffer.D1<br>pack_pfail_pullup.END_2 |
-| `PA17` | `PACK_ADMISSION_UART_TX` | `o` | `UART1` | abstract:pack service fixture |
-| `PA18` | `PACK_ADMISSION_UART_RX` | `i` | `UART1` | abstract:pack service fixture |
-| `PA22` | `PACK_DIAG_TRIGGER` | `o` | `GPIO` | pack_diag_timer.CH1_T<br>pack_diag_trigger_pulldown.END_1 |
-| `PA23` | `PACK_SYS_INT_REQ` | `o` | `GPIO` | pack_status_buffer.G2<br>pack_irq_gate_pulldown.END_1 |
-| `PA24` | `POWER_COMMAND_OFF_N` | `i` | `GPIO_IRQ` | power_command_pullup.END_2<br>power_command_filter.END_1<br>power_command_switch.THROW_B |
-| `PA25` | `PACK_CELL0_ADC` | `i` | `ADC` | pack_mid_adc_top1.END_2<br>pack_mid_adc_bottom.END_1<br>pack_mid_adc_filter.END_1 |
-| `PA26` | `PACK_STACK_ADC` | `i` | `ADC` | pack_stack_adc_top4.END_2<br>pack_stack_adc_bottom.END_1<br>pack_stack_adc_filter.END_1 |
+## Изоляция ROM-UART S3
+
+Both lines cross an Ioff-capable bidirectional isolation boundary whose OE is held disabled by a physical pull throughout S3 reset, strap sampling, ROM download and UART0 recovery.
+
+S3 firmware may enable the two data channels only after normal application boot, Hub RUN release and a successful idle/ready handshake; entering ROM download, either-controller reset or fault shutdown opens the boundary again.
+
+## Что ещё не доказано
+
+- PIO instruction fit and Hub/RF 14/12-channel DMA allocation must compile in the six-domain firmware build matrix; exact channel IDs, DREQ routing and peak simultaneous profile remain executable proof gates.
+- Simultaneous three-nRF RX/TX/mix, microSD, S3-Hub, Hub-C5 and Hub-RF traffic must pass emulator/dev-board timing before fabrication and HIL after assembly.
+- Reset-state voltage and no-back-power behavior must be measured for every switched/isolated branch.
+- Hub GPIO42/43 Pack/Safety I2C requires an exact powered-off-Ioff boundary and separate 3V3_MAIN/AON pull-up domains before schematic authorization.
+- The C5 electrical pad/mux contract is joined; exact live production route for FSUSB42MUX/C11355 and an exact service-VBUS detector/latch MPN remain fail-closed before R2 H2.
+- The exact-one signed U214/U219 profile must pass received-unit pin continuity, protected-power, RF-switch, VNA and RX/NFC HIL before the U219 branch can be enabled.
 
 ## Точный pin-map dual NMOS
 
-Во всех четырёх позициях установлен `Diodes Incorporated 2N7002DW-7-F` / JLC `C83571`. Физическая нумерация SOT-363 взята из официальной top-view схемы Diodes Incorporated; footprint не меняется.
+`Diodes Incorporated 2N7002DW-7-F` / JLC `C83571` keeps the exact physical SOT-363 top-view mapping.
 
-| Физический pin | Вывод |
+| Physical pin | Terminal |
 |---:|---|
 | `1` | `S2` |
 | `2` | `G2` |
@@ -167,7 +172,7 @@
 | `5` | `G1` |
 | `6` | `D2` |
 
-| Экземпляр | Канал | Gate | Source | Drain |
+| Instance | Channel | Gate | Source | Drain |
 |---|---|---|---|---|
 | `pack_hold` | `channel_1` | `PACK_HOLD_GATE` | `PACK_LOCAL_GND` | `PACK_FET_OVERRIDE_N` |
 | `pack_hold` | `channel_2` | `PACK_FET_HOLD_RELEASE` | `PACK_LOCAL_GND` | `PACK_HOLD_GATE` |
@@ -177,5 +182,3 @@
 | `safe_reset_sink_a` | `channel_2` | `C5_RESET_KILL_GATE` | `SAFETY_GROUND` | `C5_RESET_N` |
 | `safe_reset_sink_b` | `channel_1` | `RF_RESET_KILL_GATE` | `SAFETY_GROUND` | `RP_RESET_N` |
 | `safe_reset_sink_b` | `channel_2` | `SAFETY_GROUND` | `SAFETY_GROUND` | `NO_CONNECT` |
-
-`i` — вход, `o` — выход, `io` — двунаправленный контакт. Сервисные, питание и fixed-function контакты учитываются в полной machine-карте, даже если не являются GPIO.

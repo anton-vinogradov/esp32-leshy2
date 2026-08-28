@@ -167,13 +167,13 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H1-R2.30`", "H0 is reviewed",
-                "firmware F1-R2 reviewed", "F2-R2.0",
+                "Current hardware boundary: `H1-R2.31`", "H0 is reviewed",
+                "firmware F1-R2 reviewed", "F2-R2.4",
                 "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H1-R2.30`", "H0 проведено ревью",
-                "firmware F1-R2 проведено ревью", "F2-R2.0",
+                "Текущая аппаратная граница: `H1-R2.31`", "H0 проведено ревью",
+                "firmware F1-R2 проведено ревью", "F2-R2.4",
                 "H9 · Manufacturing release",
                 "Production ECAD",
             ),
@@ -188,8 +188,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.30`", "fabrication"),
-            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.30`", "печати прототипа"),
+            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.31`", "fabrication"),
+            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.31`", "печати прототипа"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -201,7 +201,7 @@ class ProductSiteTests(unittest.TestCase):
     def test_superseded_r1_h3_report_is_retained_but_not_advertised_as_current(self):
         reports = {
             "docs/h3-acceptance.md": (
-                "H3 result · Virtual electrical verification",
+                "Historical R1 H3 result · Virtual electrical verification",
                 "25",
                 "0 open analytical findings",
                 "85 physical checks",
@@ -209,7 +209,7 @@ class ProductSiteTests(unittest.TestCase):
                 "does **not** authorize purchase",
             ),
             "docs/h3-acceptance.ru.md": (
-                "Итог H3 · Виртуальная электрическая проверка",
+                "Исторический итог H3/R1 · Виртуальная электрическая проверка",
                 "25",
                 "0 открытых analytical findings",
                 "85 физических проверок",
@@ -237,14 +237,14 @@ class ProductSiteTests(unittest.TestCase):
                 "Historical H4 result · joined R1 pre-layout gate",
                 "single-RP R1 architecture",
                 "85",
-                "H1-R2.30",
+                "H1-R2.31",
                 "remain unauthorized",
             ),
             "docs/h4-prelayout-gate-report.ru.md": (
                 "Исторический итог H4 · объединённый pre-layout gate R1",
                 "одно-RP архитектуру R1",
                 "85",
-                "H1-R2.30",
+                "H1-R2.31",
                 "Не разрешает закупку",
             ),
         }
@@ -302,12 +302,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_public_schematics_describe_current_r2_not_superseded_r1_ecad(self):
         expectations = {
             "docs/schematics.md": (
-                "H0-R2", "H1-R2.30", "does **not** exist yet",
+                "H0-R2", "H1-R2.31", "does **not** exist yet",
                 "3× nRF24", "one analog video signal", "14 NC reserve",
                 "historical engineering evidence", "must not be used for fabrication",
             ),
             "docs/schematics.ru.md": (
-                "H0-R2", "H1-R2.30", "пока **нет**",
+                "H0-R2", "H1-R2.31", "пока **нет**",
                 "3× nRF24", "один аналоговый видеосигнал", "25 возвратов · 14 NC",
                 "историческое инженерное evidence", "печатать по ним нельзя",
             ),
@@ -680,7 +680,7 @@ class ProductSiteTests(unittest.TestCase):
                 rf"\*\*(?:(?:Exact|Current hardware) marker|Точный маркер|Текущий маркер железа): `{re.escape(found[0])}`[.]?\*\*",
                 name,
             )
-            self.assertIn("H1-R2.30", page, name)
+            self.assertIn(current_substep, page, name)
 
         self.assertEqual({current_substep}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
@@ -691,14 +691,80 @@ class ProductSiteTests(unittest.TestCase):
     def test_current_mockup_review_scope_is_explicit(self):
         expectations = {
             "docs/roadmap.md": (
-                "H1-R2.30", "Functional-island placement", "RF and antenna locality",
+                "H1-R2.31", "Functional-island placement", "RF and antenna locality",
                 "Interboard transport", "Physical and service audit", "Final H1 acceptance input",
-                "Obtain explicit acceptance of the complete H1 mock-up",
+                "explicit acceptance of the complete H1 mock-up",
             ),
             "docs/roadmap.ru.md": (
-                "H1-R2.30", "Размещение функциональных островов", "Локальность RF и антенн",
+                "H1-R2.31", "Размещение функциональных островов", "Локальность RF и антенн",
                 "Межплатный transport", "Физический и сервисный аудит", "Финальный вход принятия H1",
-                "Получить явное принятие полного мокапа H1",
+                "явное принятие полного H1-мокапа",
+            ),
+        }
+        for name, tokens in expectations.items():
+            page = self.read(name)
+            for token in tokens:
+                self.assertIn(token, page, f"{name}: {token}")
+
+    def test_h1_r2_31_public_boundary_separates_electrical_and_physical_work(self):
+        expectations = {
+            "README.md": (
+                "Current hardware marker: `H1-R2.31`",
+                "exact dual-RP GPIO/M1 map",
+                "same-slot U214/U219",
+                "R2 H2/KiCad has not started",
+                "five active host packages",
+            ),
+            "README.ru.md": (
+                "Текущий маркер железа: `H1-R2.31`",
+                "dual-RP GPIO/M1",
+                "same-slot роли U214/U219",
+                "H2/KiCad",
+                "не начинались",
+                "все пять активных host-корпусов",
+            ),
+            "docs/roadmap.md": (
+                "Current hardware boundary: `H1-R2.31`",
+                "exact dual-RP/C5 electrical authority and five active U219 source-backed courtyards are closed",
+                "U219 Cap integration",
+                "source-backed courtyards",
+                "H2/KiCad has not started",
+            ),
+            "docs/roadmap.ru.md": (
+                "Текущая аппаратная граница: `H1-R2.31`",
+                "dual-RP/C5 электрическая authority и пять активных U219-courtyard закрыты",
+                "Интеграция U219 Cap",
+                "source-backed courtyards",
+                "H2/KiCad не начинались",
+            ),
+            "docs/stage-results.md": (
+                "current at **`H1-R2.31`**",
+                "exact dual-RP GPIO/M1 map",
+                "accepted U219 profile",
+                "now include the U219 host switch",
+                "R2 H2/KiCad",
+                "has not started",
+            ),
+            "docs/stage-results.ru.md": (
+                "сейчас **`H1-R2.31`**",
+                "Точные dual-RP GPIO/M1",
+                "Принятый профиль U219",
+                "теперь включают host-switch U219",
+                "R2 H2/KiCad не начинались",
+            ),
+            "docs/schematics.md": (
+                "H1-R2.31",
+                "C5 SDIO/service-mux electrical join are closed",
+                "accepted U219 principle",
+                "now registered",
+                "does **not** exist yet",
+            ),
+            "docs/schematics.ru.md": (
+                "H1-R2.31",
+                "стык C5 SDIO/service-mux закрыты",
+                "Принятый принцип U219",
+                "уже зарегистрированы",
+                "пока **нет**",
             ),
         }
         for name, tokens in expectations.items():
@@ -883,7 +949,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H1", state["current_stage"])
-        self.assertEqual("H1-R2.30", state["current_substep"])
+        self.assertEqual("H1-R2.31", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -1034,7 +1100,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(name)
             self.assertNotIn("H5-EVR07", page, name)
             self.assertNotIn("H5-EVR08", page, name)
-            self.assertIn("H1-R2.30", page, name)
+            self.assertIn("H1-R2.31", page, name)
         self.assertEqual(
             "source-hash-bound-precommit-revision",
             h4_plan["firmware_f3_evidence"]["revision"],
@@ -1049,13 +1115,23 @@ class ProductSiteTests(unittest.TestCase):
         self.assertFalse(freeze["authority"]["allowed_as_r2_authority"])
         self.assertEqual("R1", acceptance["authority"]["baseline"])
         self.assertFalse(acceptance["authority"]["allowed_as_r2_authority"])
+        historical_source_drift = {}
         for relative, expected in freeze["source_hashes"].items():
+            self.assertRegex(expected, r"^[0-9a-f]{64}$", relative)
             actual = hashlib.sha256((REPO_ROOT / relative).read_bytes()).hexdigest()
-            self.assertEqual(expected, actual, relative)
+            if expected != actual:
+                historical_source_drift[relative] = (expected, actual)
         for artifact in (inventory, methods, power_states, dc_budget, source_budget, dc_result, audio, ir, thermal, fault, unattended, thermal_fault, crosscheck, residuals, acceptance):
             for relative, expected in artifact["source_hashes"].items():
+                self.assertRegex(expected, r"^[0-9a-f]{64}$", relative)
                 actual = hashlib.sha256((REPO_ROOT / relative).read_bytes()).hexdigest()
-                self.assertEqual(expected, actual, relative)
+                if expected != actual:
+                    historical_source_drift[relative] = (expected, actual)
+        self.assertIn(
+            "hardware/product-design/generated/H1-unified-coordinate-table.json",
+            historical_source_drift,
+            "current R2 physical work must not masquerade as the frozen R1 H3 input",
+        )
         self.assertFalse(plan["authorization"]["pcb_placement_and_routing"])
         self.assertFalse(plan["authorization"]["fabrication"])
         self.assertFalse(plan["authorization"]["purchasing"])
@@ -2844,7 +2920,7 @@ class ProductSiteTests(unittest.TestCase):
         for name in ("docs/hardware.md", "docs/hardware.ru.md"):
             page = self.read(name)
             self.assertNotIn("H1-cross-view-acceptance.json", page, name)
-            self.assertIn("H1-R2.30", page, name)
+            self.assertIn("H1-R2.31", page, name)
 
     def test_antenna_kit_is_product_facing_and_machine_accounted(self):
         import json

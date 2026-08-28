@@ -265,7 +265,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
     qspi = manifest["qspi_corner"]
     cost = manifest["cost_delta_usd_at_100"]
     if russian:
-        title = "# Электрическая проверка дисплея"
+        title = "# Электрическая проверка дисплея · historical R1"
         nav = "[English](display-electrical-verification.md) · [На главную](../README.ru.md) · [Принципиальные схемы](schematics.ru.md) · [Виртуальная проверка](virtual-verification.ru.md)"
         intro = "H3.3.1 проверяет одну полную цепочку: питание ST77922 → силовой тракт подсветки → direct-QSPI/touch timing. Это расчётное ревью серийных деталей и реальных контактов; измерения сырого HMX035CTFT-001 остаются HIL."
         supply_h = "## Питание"
@@ -295,10 +295,10 @@ def render_doc(manifest: dict, russian: bool) -> str:
                 "- измерить реальный ток/яркость подсветки, PWM EMI, температуру и восстановление защёлки TPS2553",
             )
         )
-        marker = f"Три замены добавляют `{cost['delta_per_board']} USD` на устройство при количестве 100. **H3.3.1 проверено; текущий точный маркер — `H3.6.1`.**"
+        marker = f"Три замены добавляют `{cost['delta_per_board']} USD` на устройство при количестве 100. **H3.3.1 проверено; исторический маркер прогресса R1 — `H3.6.1`.**"
         evidence = "[Машинный пакет H3-VRF31](../hardware/verification/generated/H3-VRF31-display.json)."
     else:
-        title = "# Display electrical verification"
+        title = "# Display electrical verification · historical R1"
         nav = "[Русский](display-electrical-verification.ru.md) · [Home](../README.md) · [Schematics](schematics.md) · [Virtual verification](virtual-verification.md)"
         intro = "H3.3.1 checks one complete chain: ST77922 supply → backlight power path → direct-QSPI/touch timing. This is a paper review of serial parts and real contacts; raw HMX035CTFT-001 specimen measurements remain HIL."
         supply_h = "## Supply"
@@ -321,7 +321,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         corrected = "1. Removed the possible ST77922 excursion above 3.3 V.\n2. Removed the mistaken 10-ohm power resistor that would have taken about 1.2 V from the backlight."
         remaining_h = "## What remains physical"
         remaining = "\n".join(f"- {row}" for row in manifest["residual_physical_only"])
-        marker = f"The three replacements add `{cost['delta_per_board']} USD` per unit at quantity 100. **H3.3.1 is reviewed; the exact current marker is `H3.6.1`.**"
+        marker = f"The three replacements add `{cost['delta_per_board']} USD` per unit at quantity 100. **H3.3.1 is reviewed; the historical R1 progression marker is `H3.6.1`.**"
         evidence = "[Machine H3-VRF31 package](../hardware/verification/generated/H3-VRF31-display.json)."
     return "\n\n".join((title, nav, intro, supply_h, supply, backlight_h, backlight, qspi_h, qspi_text, corrected_h, corrected, remaining_h, remaining, marker, evidence)) + "\n"
 

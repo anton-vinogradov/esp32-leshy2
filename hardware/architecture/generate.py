@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import re
 import sys
@@ -1597,7 +1598,7 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
         "",
         "## Machine-check result and review boundary",
         "",
-        "All source candidates pass their historical structural checks. G2F-3I remains useful reviewed R1 evidence, but it contains one RP domain and the old M1 contract. It is not current R2 authority and cannot authorize R2 firmware, R2 KiCad, fabrication or ordering. Current functional authority is H0-R2 with distinct front Hub RP and rear RF RP; exact per-signal RP GPIO order remains open until the future R2 H2 export.",
+        "All source candidates pass their historical structural checks. G2F-3I remains useful reviewed R1 evidence, but it contains one RP domain and the old M1 contract. It is not current R2 authority and cannot authorize R2 firmware, R2 KiCad, fabrication or ordering. Current functional authority is H0-R2 with distinct front Hub RP and rear RF RP; H1-R2.31 closes the exact per-signal RP GPIO/M1 order, while physical H1 and production gates still block the future R2 H2 export.",
         "",
     ]
     return "\n".join(lines)
@@ -4900,6 +4901,16 @@ def render_public_pinout(
     """Render the exact current controller assignment without project history."""
 
     candidate = next(item for item in candidates if item["id"] == "G2F-3I")
+    script = ARCH_DIR / "h1_r2_dual_rp_pinout.py"
+    spec = importlib.util.spec_from_file_location("h1_r2_dual_rp_pinout", script)
+    module = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(module)
+    return module.render_public(module.load(module.SOURCE), candidate, russian)
+
+    # Historical implementation retained below only to keep the R1 rendering
+    # logic reviewable until the next generator cleanup. It is unreachable:
+    # public pinout authority is the exact H1-R2 dual-RP overlay above.
     devices = database["devices"]
     owners = (
         ("s3", "S3 — application, UI, display, storage and audio"),

@@ -10,7 +10,7 @@ flowchart LR
   H2["H2<br/>ECAD"] --> H4
   H3["H3<br/>виртуальная электрика"] --> H4
   F3["F3<br/>сборки и эмуляция"] --> H4
-  H4 --> R2["▶️ H1-R2.30<br/>точная dual-RP архитектура"]
+  H4 --> R2["▶️ H1-R2.31<br/>точная dual-RP распиновка"]
 ```
 
 | Проверенная граница | Результат |
@@ -36,6 +36,6 @@ flowchart LR
 - Не описывает dual-RP R2, `U219`, текущий C5 SDIO/USB mux или новую точную распиновку.
 - Не разрешает закупку, PCB placement/routing или fabrication.
 
-Текущая позиция проекта — `H1-R2.30`: закрыть точные dual-RP GPIO/M1 и C5 SDIO/USB mux, затем строить новый R2 H2. Старый переход к `H5.0.1-R1` отменён сменой архитектуры.
+Текущая позиция проекта — `H1-R2.31`: точные dual-RP GPIO/M1 и C5 SDIO/USB mux закрыты. Новый R2 H2 остаётся закрыт до завершения физических H1-блокеров и всех production-gate. Старый переход к `H5.0.1-R1` отменён сменой архитектуры.
 
 Машинные evidence: [`H4.1`](../hardware/verification/generated/H4-PLG11-joined-review.json), [`H4.2`](../hardware/verification/generated/H4-PLG12-correction-closure.json), [`H4.3`](../hardware/verification/generated/H4-PLG13-acceptance-package.json).

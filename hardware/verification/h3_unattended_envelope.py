@@ -224,7 +224,7 @@ def build() -> tuple[dict[Path, str], dict]:
 def render_doc(manifest: dict, russian: bool) -> str:
     rows = manifest["pack_energy"]["planning_rows"]
     if russian:
-        title = "# Длительная работа и self-test"
+        title = "# Длительная работа и self-test · historical R1"
         intro = (
             "`H3.6.3` проведён ревью. Устройство не обещает автономность или uptime в часах: "
             "для долгой работы подключается USB-PD, а 24/48 часов остаются длительностью испытаний H8."
@@ -249,7 +249,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         evidence = "[Машинное evidence](../hardware/verification/generated/H3-VRF63-unattended-envelope.json)."
     else:
-        title = "# Extended operation and self-test"
+        title = "# Extended operation and self-test · historical R1"
         intro = (
             "`H3.6.3` is reviewed. The product promises no battery autonomy or uptime in hours: "
             "long operation uses USB-PD, while 24 and 48 hours remain H8 validation durations."

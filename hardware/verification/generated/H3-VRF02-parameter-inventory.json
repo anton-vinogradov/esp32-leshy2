@@ -5,7 +5,7 @@
   "source_hashes": {
     "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
     "hardware/ecad/generated/H2-instance-ledger.json": "d2cbdb2302ec006b477959e3dff0d183cacba1055777522a706e186ce3ed7022",
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "8706b3748f92d9f87af9e817648e859cae0b120b8352e8bcd345dec3a2f1eaab"
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "672990f8531ffa803724aa8bf1b3b262436267d89d965c9e2313fdb13c5b57bd"
   },
   "policy": {
     "accepted_h2_baseline_is_immutable": true,

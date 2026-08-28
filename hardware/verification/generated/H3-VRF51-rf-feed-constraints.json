@@ -5,7 +5,7 @@
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
     "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
-    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "bfdad3acc88b8c1295b77e1eb2afd68b71c9728839380896c60edbb887081127"
+    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "e044bcf5c651c6b6428ad7c007ce1f03b23f69296bf3ca99c3497a873960a495"
   },
   "provenance": {
     "s3_module": "https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",

@@ -399,7 +399,7 @@ def build_consolidation(v21: dict, v22: dict, v23: dict, v24: dict) -> dict:
 def md_startup(v: dict, ru: bool) -> str:
     r = v["rearm_calculation"]
     if ru:
-        return f"""# Запуск, выключение и аппаратный FAULT_KILL
+        return f"""# Запуск, выключение и аппаратный FAULT_KILL · historical R1
 
 [English](power-transition-startup.md) · [На главную](../README.ru.md) · [Итог H3.2](power-transition-result.ru.md)
 
@@ -423,7 +423,7 @@ H3.2.1 проверяет не только нормальный запуск, �
 
 **Статус:** `H3.2.1` проверено. [Machine evidence](../hardware/verification/generated/H3-VRF21-startup-shutdown.json).
 """
-    return f"""# Startup, shutdown and hardware FAULT_KILL
+    return f"""# Startup, shutdown and hardware FAULT_KILL · historical R1
 
 [Русский](power-transition-startup.ru.md) · [Home](../README.md) · [H3.2 result](power-transition-result.md)
 
@@ -451,7 +451,7 @@ Power appearing while the maintained switch is already at RUN leaves the product
 
 def md_handover(v: dict, ru: bool) -> str:
     if ru:
-        return """# USB ↔ аккумуляторы и brownout
+        return """# USB ↔ аккумуляторы и brownout · historical R1
 
 [English](power-handover.md) · [На главную](../README.ru.md) · [Итог H3.2](power-transition-result.ru.md)
 
@@ -463,7 +463,7 @@ def md_handover(v: dict, ru: bool) -> str:
 
 **Статус:** `H3.2.2` проверено; 7/7 переходов проходят. [Machine evidence](../hardware/verification/generated/H3-VRF22-handover-brownout.json).
 """
-    return """# USB ↔ pack handover and brownout
+    return """# USB ↔ pack handover and brownout · historical R1
 
 [Русский](power-handover.ru.md) · [Home](../README.md) · [H3.2 result](power-transition-result.md)
 
@@ -480,7 +480,7 @@ The absolute SYS droop inside the proprietary BQ25798 control loop is not invent
 def md_inrush(v: dict, ru: bool) -> str:
     rows = "\n".join(f"| `{x['rail']}` | {x['cap_nominal_uf']} | {x.get('worst_active_load_ma', x.get('active_load_ma'))} | {x['result']} |" for x in v["startup_envelopes"])
     if ru:
-        return f"""# Inrush и скачки нагрузки
+        return f"""# Inrush и скачки нагрузки · historical R1
 
 [English](inrush-load-step.md) · [На главную](../README.ru.md) · [Итог H3.2](power-transition-result.ru.md)
 
@@ -496,7 +496,7 @@ AON eFuse при необходимости входит в current-limited ramp
 
 **Статус:** `H3.2.3` проверено; 5/5 startup envelopes проходят. [Machine evidence](../hardware/verification/generated/H3-VRF23-inrush-load-step.json).
 """
-    return f"""# Inrush and load steps
+    return f"""# Inrush and load steps · historical R1
 
 [Русский](inrush-load-step.ru.md) · [Home](../README.md) · [H3.2 result](power-transition-result.md)
 
@@ -516,7 +516,7 @@ This proves the current envelope, not the short closed-loop buck droop. Effectiv
 
 def md_watchdog(v: dict, ru: bool) -> str:
     if ru:
-        return """# Watchdog и понятная причина отключения
+        return """# Watchdog и понятная причина отключения · historical R1
 
 [English](watchdog-fault-display.md) · [На главную](../README.ru.md) · [Итог H3.2](power-transition-result.ru.md)
 
@@ -528,7 +528,7 @@ Safety-controller сохраняет причину в двухслотовом 
 
 **Статус:** `H3.2.4` проверено; 6/6 fault-сценариев проходят. [Machine evidence](../hardware/verification/generated/H3-VRF24-watchdog-fault-display.json).
 """
-    return """# Watchdog and clear shutdown reason
+    return """# Watchdog and clear shutdown reason · historical R1
 
 [Русский](watchdog-fault-display.ru.md) · [Home](../README.md) · [H3.2 result](power-transition-result.md)
 
@@ -545,7 +545,7 @@ UI overtemperature intentionally sacrifices the screen to remove the unsafe zone
 def md_result(v: dict, ru: bool) -> str:
     r = v["accepted_results"]
     if ru:
-        return f"""# Результат проверки переходов питания
+        return f"""# Результат проверки переходов питания · historical R1
 
 [English](power-transition-result.md) · [На главную](../README.ru.md) · [Startup/KILL](power-transition-startup.ru.md) · [Handover](power-handover.ru.md) · [Inrush](inrush-load-step.ru.md) · [Watchdog/UI](watchdog-fault-display.ru.md)
 
@@ -557,11 +557,11 @@ H3.2 сведена в одну проверенную цепочку: startup/K
 - Исправлены две реальные source-ошибки: полярность/async inputs защёлки и неверная POR timing claim.
 - Физические waveform, switch bounce, MLCC DC-bias, charger-loop droop и fault-injection не объявлены доказанными: они явно переданы H8.
 
-**Статус:** `H3.2` проверено. Точный текущий маркер — `H3.6.1`: worst-case thermal model плат, аккумуляторов и корпуса.
+**Статус:** `H3.2` проверено. Исторический маркер прогресса R1 — `H3.6.1`: worst-case thermal model плат, аккумуляторов и корпуса.
 
 [Machine closure package](../hardware/verification/generated/H3-VRF25-transition-consolidation.json).
 """
-    return f"""# Power-transition verification result
+    return f"""# Power-transition verification result · historical R1
 
 [Русский](power-transition-result.ru.md) · [Home](../README.md) · [Startup/KILL](power-transition-startup.md) · [Handover](power-handover.md) · [Inrush](inrush-load-step.md) · [Watchdog/UI](watchdog-fault-display.md)
 
@@ -573,7 +573,7 @@ H3.2 closes as one reviewed chain: startup/KILL → USB↔pack/brownout → eFus
 - Two real source errors were corrected: latch polarity/asynchronous inputs and the wrong POR timing claim.
 - Physical waveforms, switch bounce, MLCC DC bias, charger-loop droop and fault injection are not claimed complete; they are explicitly assigned to H8.
 
-**Status:** `H3.2` reviewed. Exact current marker: `H3.6.1`, worst-case board, battery and enclosure thermal model.
+**Historical R1-chain status:** `H3.2-R1` reviewed. The later marker in that chain was `H3.6.1-R1`, the worst-case board, battery and enclosure thermal model. The current hardware marker is `H1-R2.31`.
 
 [Machine closure package](../hardware/verification/generated/H3-VRF25-transition-consolidation.json).
 """

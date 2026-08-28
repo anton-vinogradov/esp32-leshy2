@@ -1,6 +1,6 @@
-# RF coexistence model
+# RF coexistence model · historical R1
 
-`H3.5.3` is reviewed with `30` machine checks and no open analytical finding. The exact current marker is `H3.6.1`.
+`H3.5.3` is reviewed with `30` machine checks and no open analytical finding. The historical R1 progression marker is `H3.6.1`.
 
 | Active group | Active members | Foreign RF/IR quiet contracts |
 |---|---|---:|

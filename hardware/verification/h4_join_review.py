@@ -118,7 +118,7 @@ flowchart LR
   H2["H2<br/>ECAD"] --> H4
   H3["H3<br/>виртуальная электрика"] --> H4
   F3["F3<br/>сборки и эмуляция"] --> H4
-  H4 --> R2["▶️ H1-R2.30<br/>точная dual-RP архитектура"]
+  H4 --> R2["▶️ H1-R2.31<br/>точная dual-RP распиновка"]
 ```
 
 | Проверенная граница | Результат |
@@ -144,7 +144,7 @@ flowchart LR
 - Не описывает dual-RP R2, `U219`, текущий C5 SDIO/USB mux или новую точную распиновку.
 - Не разрешает закупку, PCB placement/routing или fabrication.
 
-Текущая позиция проекта — `H1-R2.30`: закрыть точные dual-RP GPIO/M1 и C5 SDIO/USB mux, затем строить новый R2 H2. Старый переход к `H5.0.1-R1` отменён сменой архитектуры.
+Текущая позиция проекта — `H1-R2.31`: точные dual-RP GPIO/M1 и C5 SDIO/USB mux закрыты. Новый R2 H2 остаётся закрыт до завершения физических H1-блокеров и всех production-gate. Старый переход к `H5.0.1-R1` отменён сменой архитектуры.
 
 Машинные evidence: [`H4.1`](../hardware/verification/generated/H4-PLG11-joined-review.json), [`H4.2`](../hardware/verification/generated/H4-PLG12-correction-closure.json), [`H4.3`](../hardware/verification/generated/H4-PLG13-acceptance-package.json).
 """
@@ -160,7 +160,7 @@ flowchart LR
   H2["H2<br/>ECAD"] --> H4
   H3["H3<br/>virtual electrical"] --> H4
   F3["F3<br/>builds and emulation"] --> H4
-  H4 --> R2["▶️ H1-R2.30<br/>exact dual-RP architecture"]
+  H4 --> R2["▶️ H1-R2.31<br/>exact dual-RP pinout"]
 ```
 
 | Reviewed boundary | Result |
@@ -186,7 +186,7 @@ flowchart LR
 - It does not describe dual-RP R2, `U219`, the current C5 SDIO/USB mux or the new exact pinout.
 - Purchase, PCB placement/routing and fabrication remain unauthorized.
 
-The current project position is `H1-R2.30`: close exact dual-RP GPIO/M1 and the C5 SDIO/USB mux, then build the new R2 H2. The former transition to `H5.0.1-R1` was cancelled by the architecture change.
+The current project position is `H1-R2.31`: exact dual-RP GPIO/M1 and the C5 SDIO/USB mux are closed. The new R2 H2 remains closed until the physical H1 blockers and all production gates close. The former transition to `H5.0.1-R1` was cancelled by the architecture change.
 
 Machine evidence: [`H4.1`](../hardware/verification/generated/H4-PLG11-joined-review.json), [`H4.2`](../hardware/verification/generated/H4-PLG12-correction-closure.json), [`H4.3`](../hardware/verification/generated/H4-PLG13-acceptance-package.json).
 """
@@ -328,7 +328,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "pending_decisions": [],
         "review_summary": {"checks": len(checks) + len(correction["checks"]), "failed": 0, "unresolved": 0, "status": "reviewed"},
         "acceptance_basis": "automatic acceptance authorized by the project owner for clean reviews without a functional, material-cost or safety decision",
-        "next": {"stage": "H1-R2.30", "action": "close exact dual-RP GPIO/M1 and C5 SDIO/USB mux before starting R2 H2"},
+        "next": {"stage": "H1-R2.31", "action": "close physical H1 blockers and all production gates before starting R2 H2"},
     }
     outputs = {
         JOIN_OUTPUT: json.dumps(joined, ensure_ascii=False, indent=2) + "\n",
@@ -356,7 +356,7 @@ def main() -> int:
         stale = [relative(path) for path, content in outputs.items() if not path.exists() or path.read_text(encoding="utf-8") != content]
         if stale:
             raise SystemExit("stale H4 artifacts: " + ", ".join(stale))
-    print(f"ok: historical R1 H4 reviewed; {acceptance['review_summary']['checks']} joined checks, 0 unresolved; current H1-R2.30")
+    print(f"ok: historical R1 H4 reviewed; {acceptance['review_summary']['checks']} joined checks, 0 unresolved; current H1-R2.31")
     return 0
 
 

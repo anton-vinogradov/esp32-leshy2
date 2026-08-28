@@ -93,7 +93,7 @@ def render_svg(data: dict) -> str:
         '<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6z" fill="#475569"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         '<text x="630" y="38" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · H0-R2 functional architecture</text>',
-        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.30 projection: dual RP, direct i8080 display, camera RX and radio payload remain local; M1 is fully counted.</text>',
+        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.31 projection: exact dual-RP GPIO/M1, direct i8080 display, camera RX and radio payload remain local.</text>',
         '<rect x="40" y="105" width="540" height="610" rx="18" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>',
         '<rect x="680" y="105" width="540" height="610" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>',
         '<text x="310" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#1d4ed8">FRONT · UI / RADIO PCB · five SMA</text>',
@@ -109,7 +109,7 @@ def render_svg(data: dict) -> str:
     out += box(710, 270, 225, 74, "CC1101 + VHF/UHF voice", "SUB-G RX/TX · two full-duplex voice paths", "#ea580c")
     out += box(965, 270, 225, 74, "K331 / AWM666V FPV RX", "one post-PCBA module · direct rear MMCX", "#ea580c")
     out += box(710, 380, 225, 74, "Audio", "ES8311 · speaker · mic · CTIA headset", "#ea580c")
-    out += box(965, 380, 225, 74, "M5 + U214", "external radio/GPS expansion · local buses", "#ea580c")
+    out += box(965, 380, 225, 74, "M5 + U214 / U219", "one protected Cap profile · local buses", "#ea580c")
     out += box(710, 500, 225, 74, "Power + safety", "watchdog · evidence · thermal hard-off", "#b42318")
     out += box(965, 500, 225, 74, "FM/SW/AM/LW/AIR RX", "Si4732 with direct and converted Airband paths", "#0f766e")
     out.extend([
@@ -165,7 +165,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H1-R2.30**: H0/H1 согласованы с двумя независимыми RP2354B, их количеством 2 на устройство и актуальным factory-route C39843328; старая single-RP G2F/H2-проекция сохранена только как историческое R1 evidence и не разрешает R2 KiCad. Полный мокап всё ещё должен быть явно принят."
+        current = "Текущий точный маркер — **H1-R2.31**: H0/H1 согласованы с двумя независимыми RP2354B, точными GPIO0..47 и пятью M1 endpoints; электрический pin/mux-контракт C5 присоединён. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Новый R2 H2/KiCad заблокирован до live route C11355, точного MPN detector/latch service-VBUS и powered-off-Ioff границы Pack/Safety I2C; полный мокап можно принять только после четырёх физических H1-блокеров."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -204,7 +204,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, analog FPV "
             "remains receive-only, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H1-R2.30**: H0/H1 now agree on two independent RP2354B domains, quantity 2 per device and the current C39843328 factory route; the old single-RP G2F/H2 projection is retained only as historical R1 evidence and does not authorize R2 KiCad. The complete mock-up still needs explicit acceptance."
+        current = "The exact current marker is **H1-R2.31**: H0/H1 now agree on two independent RP2354B domains, exact GPIO0..47 maps and five M1 endpoints; the C5 electrical pin/mux contract is joined. The old single-RP G2F/H2 projection remains historical R1 evidence only. New R2 H2/KiCad stays blocked on the live C11355 route, the exact service-VBUS detector/latch MPN and the Pack/Safety I2C powered-off-Ioff boundary; the complete mock-up can be accepted only after four physical H1 blockers close."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",
@@ -253,22 +253,30 @@ def render_report(data: dict, ru: bool) -> str:
         f'| `{", ".join(str(gpio) for gpio in row["gpios"])}` | {row["role"]} |'
         for row in data["hub_rp"]["pin_groups"]
     )
+    def current_rear_role(role: str) -> str:
+        if role.startswith("U214 busy/IRQ/reset"):
+            return (
+                "exact-one U214/U219 Cap profile: shared SPI/I2C plus "
+                "profile-specific BUSY/NFC_CS, IRQ, reset/power and GNSS/RF-switch lines"
+            )
+        return role
+
     rear_rows = "\n".join(
-        f'| `{", ".join(str(gpio) for gpio in row["gpios"])}` | {row["role"]} |'
+        f'| `{", ".join(str(gpio) for gpio in row["gpios"])}` | {current_rear_role(row["role"])} |'
         for row in data["rf_rp"]["pin_groups"]
     )
     result_lines = (
         "- Один пользовательский порт `FM / SW / AIR RX`; новый внешний разъём не добавлен.\n"
         "- Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с FPV или TX-группой.\n"
-        "- S3 сохраняет прямые кнопки, энкодер и USB; direct i8080-8 даёт 32 МБ/с, а camera RX работает независимо.\n"
-        "- Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, FPV, M5 и U214.\n"
+        "- Кнопки остаются на локальном для S3 TCA9539PWR, энкодер и USB подключены к S3 напрямую; direct i8080-8 даёт 32 МБ/с, а camera RX работает независимо.\n"
+        "- Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, FPV, M5 и одним из U214/U219.\n"
         "- Через M1 проходит один CVBS, control/status и питание; 11-линейная LCD_CAM-шина остаётся локальной S3."
         if ru
         else
         "- One user port is labelled `FM / SW / AIR RX`; no new external connector is added.\n"
         "- Airband is a `BROADCAST_RX` submode, so its RF domain cannot run together with FPV or a TX group.\n"
-        "- S3 retains direct buttons, encoder and USB; direct i8080-8 provides 32 MB/s while camera RX runs independently.\n"
-        "- The front RP owns three nRF24 paths and microSD; the rear RP owns Si4732/Airband, CC1101, voice, audio, FPV, M5 and U214.\n"
+        "- Buttons stay on the S3-local TCA9539PWR path while encoder and USB remain direct; direct i8080-8 provides 32 MB/s while camera RX runs independently.\n"
+        "- The front RP owns three nRF24 paths and microSD; the rear RP owns Si4732/Airband, CC1101, voice, audio, FPV, M5 and exactly one U214/U219 profile.\n"
         "- M1 carries one CVBS signal, control/status and power; the 11-line LCD_CAM bus stays local to S3."
     )
     filter_note = (

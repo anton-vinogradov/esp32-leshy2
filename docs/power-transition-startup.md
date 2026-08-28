@@ -1,4 +1,4 @@
-# Startup, shutdown and hardware FAULT_KILL
+# Startup, shutdown and hardware FAULT_KILL · historical R1
 
 [Русский](power-transition-startup.ru.md) · [Home](../README.md) · [H3.2 result](power-transition-result.md)
 

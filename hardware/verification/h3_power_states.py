@@ -264,7 +264,7 @@ def build() -> tuple[dict[Path, str], dict]:
 def render_doc(manifest: dict, russian: bool) -> str:
     s = manifest["summary"]
     if russian:
-        title = "# Состояния питания Leshy2"
+        title = "# Состояния питания Leshy2 · historical R1"
         nav = "[English](power-state-register.md) · [На главную](../README.ru.md) · [Питание](power-architecture.ru.md) · [Методы](verification-methods.ru.md)"
         intro = "Перед расчётом токов H3 перечисляет все допустимые источники, режимы зарядки и одновременные нагрузки. Так редкий режим не исчезнет внутри одной строки «максимальная мощность»."
         source_h = "## Источники"
@@ -281,7 +281,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         marker = "**Статус:** `H3.1.1` завершено и проверено. Текущий маркер — `H3.6.1`, worst-case thermal model плат, аккумуляторов и корпуса."
         evidence = "[Полный машинный реестр состояний](../hardware/verification/generated/H3-VRF11-power-state-register.json)."
     else:
-        title = "# Leshy2 power states"
+        title = "# Leshy2 power states · historical R1"
         nav = "[Русский](power-state-register.ru.md) · [Home](../README.md) · [Power](power-architecture.md) · [Methods](verification-methods.md)"
         intro = "Before calculating current, H3 enumerates every allowed source, charge and concurrent-load state so a rare condition cannot disappear into one ‘maximum power’ row."
         source_h = "## Sources"

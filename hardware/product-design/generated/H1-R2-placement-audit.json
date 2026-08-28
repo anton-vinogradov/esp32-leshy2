@@ -1,10 +1,13 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.30",
-  "status": "pass",
+  "marker": "H1-R2.31",
+  "status": "pass_with_open_h1_blockers",
+  "structural_status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
-  "new_fixed_body_count": 48,
+  "new_fixed_body_count": 53,
   "new_reserve_count": 3,
+  "placement_drawing_reference_count": 57,
+  "duplicate_placement_drawing_references": {},
   "replaced_seed_instances": [
     "audio_speaker_selector",
     "c5_dbg_header",
@@ -13,6 +16,7 @@
     "cc",
     "codec",
     "codec_i2s_din_boot_gate",
+    "evidence_mask_p12_pulldown",
     "headphone_jack",
     "headset_control_io",
     "main_buck",
@@ -36,199 +40,623 @@
     "receiver",
     "s3_rf_board_connector",
     "s3_rf_coupler",
-    "safe_gate_a"
+    "safe_gate_a",
+    "u214_series_busy"
   ],
   "same_face_collisions": [],
-  "opposing_overlap_count": 37,
+  "opposing_overlap_count": 62,
   "minimum_opposing_clearance_mm": 2.59,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
     {
-      "new": "hub_rp",
-      "base": "ext_buck_input_cap",
-      "clearance_mm": 7.4
-    },
-    {
-      "new": "hub_rp",
-      "base": "ext_buck_output_cap1",
-      "clearance_mm": 7.4
-    },
-    {
-      "new": "hub_rp",
-      "base": "voice_input_cap",
-      "clearance_mm": 7.4
-    },
-    {
-      "new": "hub_rp",
-      "base": "voice_output_cap0",
-      "clearance_mm": 7.4
-    },
-    {
-      "new": "hub_rp",
-      "base": "voice_output_cap1",
-      "clearance_mm": 7.4
-    },
-    {
-      "new": "hub_service_usb_connector",
-      "base": "unit_connector",
-      "clearance_mm": 2.59
-    },
-    {
-      "new": "airband_filter_reserve",
-      "base": "display_connector",
-      "clearance_mm": 7.85
-    },
-    {
-      "new": "fpv_decoder",
-      "base": "safe_conditioner",
-      "clearance_mm": 8.7
-    },
-    {
-      "new": "fpv_decoder",
-      "base": "safety_controller",
-      "clearance_mm": 8.7
-    },
-    {
-      "new": "fpv_decoder",
-      "base": "safety_watchdog",
-      "clearance_mm": 8.8
-    },
-    {
-      "new": "fpv_power_reserve",
-      "base": "safe_latch",
-      "clearance_mm": 8.5
-    },
-    {
-      "new": "fpv_power_reserve",
-      "base": "safe_reset_buffer",
-      "clearance_mm": 8.5
-    },
-    {
-      "new": "nrf0_r2",
-      "base": "voice",
-      "clearance_mm": 5.7
-    },
-    {
-      "new": "nrf0_r2",
-      "base": "voice_v",
-      "clearance_mm": 5.7
-    },
-    {
-      "new": "nrf1_r2",
-      "base": "u214_i2c_iso",
-      "clearance_mm": 7.8
-    },
-    {
-      "new": "nrf1_r2",
-      "base": "u214_return_buffer",
-      "clearance_mm": 7.8
-    },
-    {
-      "new": "nrf1_r2",
-      "base": "voice_v",
-      "clearance_mm": 5.7
-    },
-    {
-      "new": "nrf2_r2",
-      "base": "u214_host_buffer_a",
-      "clearance_mm": 7.8
-    },
-    {
-      "new": "nrf2_r2",
-      "base": "u214_host_buffer_b",
-      "clearance_mm": 7.8
-    },
-    {
-      "new": "nrf2_r2",
-      "base": "voice_v",
-      "clearance_mm": 5.7
-    },
-    {
-      "new": "nrf0_host_buffer_r2",
-      "base": "voice",
-      "clearance_mm": 6.7
-    },
-    {
-      "new": "nrf0_return_buffer_r2",
-      "base": "voice",
-      "clearance_mm": 6.7
-    },
-    {
-      "new": "nrf1_host_buffer_r2",
-      "base": "voice",
-      "clearance_mm": 6.7
-    },
-    {
-      "new": "nrf1_return_buffer_r2",
-      "base": "voice",
-      "clearance_mm": 6.7
-    },
-    {
-      "new": "nrf2_host_buffer_r2",
-      "base": "aon_buck",
-      "clearance_mm": 9.3
-    },
-    {
-      "new": "nrf2_host_buffer_r2",
-      "base": "aon_inductor",
-      "clearance_mm": 8.7
-    },
-    {
-      "new": "nrf2_host_buffer_r2",
-      "base": "aon_input_cap",
-      "clearance_mm": 8.3
-    },
-    {
-      "new": "nrf2_host_buffer_r2",
-      "base": "aon_output_cap",
-      "clearance_mm": 8.3
-    },
-    {
-      "new": "nrf2_return_buffer_r2",
-      "base": "ext_inductor",
-      "clearance_mm": 6.9
-    },
-    {
-      "new": "safe_gate_a_r2",
-      "base": "ext_inductor",
+      "ui": "c5",
+      "rf": "rp",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
       "clearance_mm": 6.8
     },
     {
-      "new": "safe_gate_a_r2",
-      "base": "voice_inductor",
-      "clearance_mm": 6.8
+      "ui": "c5",
+      "rf": "voice_v",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 4.5
     },
     {
-      "new": "nrf_backup_gate_r2",
-      "base": "voice_buck",
-      "clearance_mm": 9.3
-    },
-    {
-      "new": "receiver_r2",
-      "base": "s3",
-      "clearance_mm": 6.05
-    },
-    {
-      "new": "cc_r2",
-      "base": "display_connector",
-      "clearance_mm": 8.05
-    },
-    {
-      "new": "headset_control_io_r2",
-      "base": "c5",
+      "ui": "c5",
+      "rf": "headset_control_io_r2",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
       "clearance_mm": 6.5
     },
     {
-      "new": "headphone_jack_r2",
-      "base": "c5",
+      "ui": "c5",
+      "rf": "headphone_jack_r2",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
       "clearance_mm": 2.7
     },
     {
-      "new": "codec_i2s_din_boot_gate_r2",
-      "base": "c5",
+      "ui": "c5",
+      "rf": "codec_i2s_din_boot_gate_r2",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
       "clearance_mm": 6.6
+    },
+    {
+      "ui": "c5_reset_button",
+      "rf": "rp_boot_button",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 4.4
+    },
+    {
+      "ui": "c5_service_usb_connector",
+      "rf": "microphone",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 6.39
+    },
+    {
+      "ui": "c5_service_usb_connector",
+      "rf": "rp_service_usb_connector",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 4.38
+    },
+    {
+      "ui": "display_connector",
+      "rf": "airband_filter_reserve",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
+      "clearance_mm": 7.85
+    },
+    {
+      "ui": "display_connector",
+      "rf": "cc_r2",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
+      "clearance_mm": 8.05
+    },
+    {
+      "ui": "ir_demod",
+      "rf": "evidence_mask",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 6.6
+    },
+    {
+      "ui": "ir_safe_gate",
+      "rf": "evidence_mask",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.7
+    },
+    {
+      "ui": "s3",
+      "rf": "voice",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 4.6
+    },
+    {
+      "ui": "s3",
+      "rf": "voice_v",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 4.6
+    },
+    {
+      "ui": "s3",
+      "rf": "receiver_r2",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
+      "clearance_mm": 6.05
+    },
+    {
+      "ui": "safe_c5_fault_reset_buffer",
+      "rf": "safe_supervisor",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.45
+    },
+    {
+      "ui": "safe_c5_reset_buffer",
+      "rf": "safe_supervisor",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.45
+    },
+    {
+      "ui": "safe_reset_sink_a",
+      "rf": "safe_reset_sink_b",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.8
+    },
+    {
+      "ui": "sd",
+      "rf": "pd_config_eeprom",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 7.57
+    },
+    {
+      "ui": "sd",
+      "rf": "pd_controller",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.52
+    },
+    {
+      "ui": "sd",
+      "rf": "pd_vbus_tvs",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.52
+    },
+    {
+      "ui": "sd",
+      "rf": "product_usb_connector",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 6.16
+    },
+    {
+      "ui": "ui_matrix_io",
+      "rf": "u214_i2c_iso",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.7
+    },
+    {
+      "ui": "ui_zone_ntc",
+      "rf": "cc_band_buffer",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 9.0
+    },
+    {
+      "ui": "hub_rp",
+      "rf": "ext_buck_input_cap",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 7.4
+    },
+    {
+      "ui": "hub_rp",
+      "rf": "ext_buck_output_cap1",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 7.4
+    },
+    {
+      "ui": "hub_rp",
+      "rf": "voice_input_cap",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 7.4
+    },
+    {
+      "ui": "hub_rp",
+      "rf": "voice_output_cap0",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 7.4
+    },
+    {
+      "ui": "hub_rp",
+      "rf": "voice_output_cap1",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 7.4
+    },
+    {
+      "ui": "hub_service_usb_connector",
+      "rf": "unit_connector",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 2.59
+    },
+    {
+      "ui": "fpv_decoder",
+      "rf": "safe_conditioner",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.7
+    },
+    {
+      "ui": "fpv_decoder",
+      "rf": "safety_controller",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.7
+    },
+    {
+      "ui": "fpv_decoder",
+      "rf": "safety_watchdog",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.8
+    },
+    {
+      "ui": "fpv_power_reserve",
+      "rf": "safe_latch",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.5
+    },
+    {
+      "ui": "fpv_power_reserve",
+      "rf": "safe_reset_buffer",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.5
+    },
+    {
+      "ui": "s3_rf_board_connector_r2",
+      "rf": "airband_selector",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 7.5
+    },
+    {
+      "ui": "s3_rf_board_connector_r2",
+      "rf": "airband_lo",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 7.5
+    },
+    {
+      "ui": "s3_rf_board_connector_r2",
+      "rf": "airband_filter_reserve",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 7.4
+    },
+    {
+      "ui": "s3_rf_coupler_r2",
+      "rf": "airband_filter_reserve",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 9.2
+    },
+    {
+      "ui": "nrf0_r2",
+      "rf": "voice",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 5.7
+    },
+    {
+      "ui": "nrf0_r2",
+      "rf": "voice_v",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 5.7
+    },
+    {
+      "ui": "nrf1_r2",
+      "rf": "u214_i2c_iso",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 7.8
+    },
+    {
+      "ui": "nrf1_r2",
+      "rf": "u214_return_buffer",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 7.8
+    },
+    {
+      "ui": "nrf1_r2",
+      "rf": "voice_v",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 5.7
+    },
+    {
+      "ui": "nrf2_r2",
+      "rf": "u214_host_buffer_a",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 7.8
+    },
+    {
+      "ui": "nrf2_r2",
+      "rf": "u214_host_buffer_b",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 7.8
+    },
+    {
+      "ui": "nrf2_r2",
+      "rf": "voice_v",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 5.7
+    },
+    {
+      "ui": "nrf0_rf_board_connector_r2",
+      "rf": "airband_lna",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 7.1
+    },
+    {
+      "ui": "nrf0_rf_board_connector_r2",
+      "rf": "airband_filter_reserve",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 7.4
+    },
+    {
+      "ui": "nrf0_host_buffer_r2",
+      "rf": "voice",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 6.7
+    },
+    {
+      "ui": "nrf0_return_buffer_r2",
+      "rf": "voice",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 6.7
+    },
+    {
+      "ui": "nrf1_host_buffer_r2",
+      "rf": "voice",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 6.7
+    },
+    {
+      "ui": "nrf1_return_buffer_r2",
+      "rf": "voice",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 6.7
+    },
+    {
+      "ui": "nrf2_host_buffer_r2",
+      "rf": "aon_buck",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 9.3
+    },
+    {
+      "ui": "nrf2_host_buffer_r2",
+      "rf": "aon_inductor",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.7
+    },
+    {
+      "ui": "nrf2_host_buffer_r2",
+      "rf": "aon_input_cap",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.3
+    },
+    {
+      "ui": "nrf2_host_buffer_r2",
+      "rf": "aon_output_cap",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.3
+    },
+    {
+      "ui": "nrf2_return_buffer_r2",
+      "rf": "ext_inductor",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 6.9
+    },
+    {
+      "ui": "safe_gate_a_r2",
+      "rf": "ext_inductor",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 6.8
+    },
+    {
+      "ui": "safe_gate_a_r2",
+      "rf": "voice_inductor",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 6.8
+    },
+    {
+      "ui": "nrf_backup_gate_r2",
+      "rf": "voice_buck",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 9.3
+    },
+    {
+      "ui": "nrf_evidence_cmp_r2",
+      "rf": "main_inductor_r2",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 4.8
     }
   ],
+  "intentional_opposing_mates": [
+    {
+      "ui": "m1_ui_plug",
+      "rf": "m1_rf_receptacle",
+      "overlap_mm": 3.8
+    }
+  ],
+  "physical_features": {
+    "status": "pass",
+    "features": [
+      {
+        "id": "cap_socket_pth_keepout",
+        "kind": "keepout",
+        "world_bbox_mm": {
+          "x": [
+            28.61,
+            46.39
+          ],
+          "y": [
+            27.095,
+            30.905
+          ]
+        },
+        "members": [],
+        "minimum_clearance_mm": 0.96
+      },
+      {
+        "id": "u219_pin10_island_reserve",
+        "kind": "placement_reserve",
+        "world_bbox_mm": {
+          "x": [
+            39.0,
+            45.0
+          ],
+          "y": [
+            21.5,
+            25.5
+          ]
+        },
+        "members": [
+          "u219_pin10_oe_driver",
+          "u219_pin10_switch"
+        ],
+        "minimum_clearance_mm": 2.5
+      },
+      {
+        "id": "u219_nfc_evidence_island_reserve",
+        "kind": "placement_reserve",
+        "world_bbox_mm": {
+          "x": [
+            47.1,
+            53.2
+          ],
+          "y": [
+            20.0,
+            31.8
+          ]
+        },
+        "members": [
+          "u219_field_bridge_a",
+          "u219_field_bridge_b",
+          "u219_field_comparator"
+        ],
+        "minimum_clearance_mm": 0.7
+      },
+      {
+        "id": "u219_nfc_pickup_loop",
+        "kind": "copper_feature_reserve",
+        "world_bbox_mm": null,
+        "minimum_clearance_mm": null
+      }
+    ],
+    "unresolved_geometry": [
+      {
+        "id": "u219_nfc_pickup_loop",
+        "kind": "copper_feature_reserve",
+        "gate": "unlocated until a controlled U219 field-structure drawing or received-unit measurement exists"
+      }
+    ],
+    "errors": []
+  },
+  "u219_contract": {
+    "status": "pass",
+    "source": "hardware/architecture/h1-r2-u219-cap.json",
+    "profile": "U219_CC1101_RX_NFC_READER",
+    "fixed_body_instances": [
+      "u219_field_bridge_a",
+      "u219_field_bridge_b",
+      "u219_field_comparator",
+      "u219_pin10_oe_driver",
+      "u219_pin10_switch"
+    ],
+    "source_backed_courtyard_instances": [
+      "u219_field_bridge_a",
+      "u219_field_bridge_b",
+      "u219_field_comparator",
+      "u219_pin10_oe_driver",
+      "u219_pin10_switch"
+    ],
+    "errors": []
+  },
+  "cap_bus_slot": {
+    "status": "pass",
+    "population": "exactly_one",
+    "profiles": {
+      "u214": {
+        "mpn": "M5Stack U214 Cap LoRa-1262",
+        "envelope_mm": [
+          84.0,
+          24.0,
+          15.287
+        ],
+        "world_bbox_mm": {
+          "x": [
+            -4.5,
+            79.5
+          ],
+          "y": [
+            17.0,
+            41.0
+          ],
+          "z": [
+            17.4,
+            32.687
+          ]
+        },
+        "status": "accepted existing profile"
+      },
+      "u219": {
+        "mpn": "M5Stack U219 Cap CC1101 + NFC",
+        "envelope_mm": [
+          84.0,
+          24.0,
+          19.7
+        ],
+        "world_bbox_mm": {
+          "x": [
+            -4.5,
+            79.5
+          ],
+          "y": [
+            17.0,
+            41.0
+          ],
+          "z": [
+            17.4,
+            37.1
+          ]
+        },
+        "status": "accepted optional paper profile; received-unit geometry and HIL remain open",
+        "dimension_source": "https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/1250/U219_Cap_CC1101_model_size.pdf"
+      }
+    },
+    "calculated_clearances_mm": {
+      "battery_pad_span": 1.0,
+      "battery_holder_body": 5.47,
+      "encoder_knob": 2.0,
+      "main_antenna_body_strip": 11.0,
+      "fpv_mmcx_body": 4.47,
+      "fpv_temporary_finger_envelope": 0.7,
+      "fpv_right_angle_plug": 4.8
+    },
+    "u219_height_delta_vs_u214_mm": 4.413,
+    "u219_margin_below_battery_holder_top_mm": 1.0,
+    "u219_margin_below_current_rear_max_mm": 1.3,
+    "calculated_rear_max_z_mm": 38.4,
+    "open_geometry_gates": [
+      "obtain a controlled U219 STEP/PCB drawing or measure a received unit before fixing the NFC field-structure and printed pickup-loop coordinates",
+      "measure the installed U219 RP-SMA antenna and cable/hand swept volume; the official 84 x 24 x 19.7-mm product body does not bound an attached 108-mm antenna",
+      "select exact C0G tuning-bank MPNs and land patterns only after VNA/HIL",
+      "complete the exact support-passive values/MPNs and prove their courtyards inside the two reserved islands; the five active-package source-backed courtyards already fit"
+    ],
+    "errors": []
+  },
   "mmcx_service": {
     "status": "pass",
     "mpn": "73415-2063",
@@ -621,6 +1049,12 @@
   },
   "mechanical_retention": {
     "m1_rule": "M1 is never a load-bearing member",
+    "intentional_opposing_mates": [
+      [
+        "m1_ui_plug",
+        "m1_rf_receptacle"
+      ]
+    ],
     "compression_stops": {
       "count": 4,
       "exact_working_length_mm": 11.0,
@@ -691,7 +1125,12 @@
   },
   "relocated_c5_dbg_header": "c5_dbg_header_r2",
   "errors": [],
-  "current_h1_blockers": [],
+  "current_h1_blockers": [
+    "complete the canonical coordinate register for the existing Cap-Bus ESD, series, supervisor, bypass and evidence-aggregate bodies before claiming a complete physical placement",
+    "complete exact support-passive values/MPNs and prove their courtyards inside the two bounded U219 placement islands",
+    "obtain controlled U219 field-structure geometry or measure a received unit before locating the weak printed NFC pickup loop and its DNP C0G bank",
+    "measure the installed U219 RP-SMA antenna swept volume against the rear connector bank, FPV plug, enclosure and user hand access"
+  ],
   "dependent_h1_work": [
     "review and explicitly accept the generated complete R2 exterior, both true-view inner faces and four real section planes before closing H1"
   ],
@@ -973,8 +1412,8 @@
       "role": "30 x 24 x 8 mm mutually exclusive post-PCBA receiver bay: primary AKK K331 uses a tolerant 14-pad direct-solder land; the exact documented Airwave AWM666V land overlaps as a seven-channel fallback; only one module is installed",
       "world_bbox_mm": {
         "x": [
-          38.5,
-          68.5
+          39.7,
+          69.7
         ],
         "y": [
           90.0,
@@ -1023,8 +1462,8 @@
           12.530000000000001
         ],
         "z": [
-          15.8,
-          20.8
+          17.400000000000002,
+          22.400000000000002
         ]
       }
     },
@@ -1801,6 +2240,111 @@
         ],
         "z": [
           15.4,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "u219_pin10_switch",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "SN74CBTLV1G125DCKR",
+      "role": "bidirectional contact-10 boundary shared by U214 BUSY input and U219 NFC_CS output",
+      "world_bbox_mm": {
+        "x": [
+          39.25,
+          41.65
+        ],
+        "y": [
+          21.75,
+          23.9
+        ],
+        "z": [
+          14.700000000000001,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "u219_pin10_oe_driver",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "SN74LVC1G06DCKR",
+      "role": "AON open-drain fail-safe driver for the contact-10 bilateral-switch output enable",
+      "world_bbox_mm": {
+        "x": [
+          42.15,
+          44.55
+        ],
+        "y": [
+          21.75,
+          23.9
+        ],
+        "z": [
+          14.700000000000001,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "u219_field_bridge_a",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "BAT54S,215",
+      "role": "first dual-Schottky package in the balanced full-wave U219 NFC-field evidence bridge",
+      "world_bbox_mm": {
+        "x": [
+          47.5,
+          50.5
+        ],
+        "y": [
+          20.5,
+          23.0
+        ],
+        "z": [
+          14.700000000000001,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "u219_field_bridge_b",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "BAT54S,215",
+      "role": "second dual-Schottky package in the balanced full-wave U219 NFC-field evidence bridge",
+      "world_bbox_mm": {
+        "x": [
+          47.5,
+          50.5
+        ],
+        "y": [
+          24.0,
+          26.5
+        ],
+        "z": [
+          14.700000000000001,
+          15.8
+        ]
+      }
+    },
+    {
+      "id": "u219_field_comparator",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "LMV331IDBVR",
+      "role": "open-collector U219 NFC-field envelope comparator driving EV_N9_U219_NFC",
+      "world_bbox_mm": {
+        "x": [
+          47.35,
+          50.4
+        ],
+        "y": [
+          27.25,
+          30.25
+        ],
+        "z": [
+          14.350000000000001,
           15.8
         ]
       }

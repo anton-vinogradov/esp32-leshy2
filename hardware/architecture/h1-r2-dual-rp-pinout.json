@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "id": "H1-R2-DUAL-RP-PINOUT",
+  "marker": "H1-R2.31",
+  "status": "current_working_authority_not_kicad",
+  "scope": "Exact GPIO0..47 assignment, reset state and controller-resource budget for the front Hub RP2354B and rear RF RP2354B, plus the exact five-signal Hub-to-RF binding through the accepted 80-contact M1 map.",
+  "authority_chain": {
+    "functional_source": "hardware/architecture/h0-r2-rebaseline.json",
+    "c5_mux_source": "hardware/architecture/c5-sdio-service-mux-contract.json",
+    "u219_profile_source": "hardware/architecture/h1-r2-u219-cap.json",
+    "rp2354b_fixed_mux_source": "https://github.com/raspberrypi/pico-sdk/blob/master/src/rp2_common/hardware_gpio/include/hardware/gpio.h",
+    "supersedes": "the bounded dual-RP GPIO groups in H0-R2 and every single-RP R1/G2F/H2 GPIO projection for current R2 implementation",
+    "does_not_authorize": ["R2 KiCad", "fabrication", "ordering"],
+    "c5_electrical_join_status": "closed against C5-SDIO-SERVICE-MUX-1: exact module pads, fixed IO mux, FSUSB42 branch polarity, reset ownership and Hub-side signal order are joined.",
+    "remaining_h2_gates": [
+      "live JLC stock-or-explicit-route, MOQ and price for exact onsemi FSUSB42MUX / C11355",
+      "exact factory-placeable service-VBUS detector/latch MPN and implementation"
+    ]
+  },
+  "rp_identity": {
+    "silicon": "RP2354B0A4",
+    "ordering_alias": "SC1512(13)-A4",
+    "incoming_gate": "Accept only the A4-marked RP2354B lot/package identity; reel suffix notation does not change the QFN-80 silicon pin map."
+  },
+  "hub_rp": {
+    "role": "Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety mailbox, LCD TE and backlight; no audio or broadcast ownership.",
+    "gpio_budget": {"available": 48, "used": 46, "reserve": 2, "reserve_gpios": [6, 47]},
+    "pin_map": [
+      {"gpio": 0, "net": "S3_HUB_D0", "direction": "io", "controller": "PIO1_SM0_S3_QUAD", "endpoint": "S3 GPIO21", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 1, "net": "S3_HUB_D1", "direction": "io", "controller": "PIO1_SM0_S3_QUAD", "endpoint": "S3 GPIO14", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 2, "net": "S3_HUB_D2", "direction": "io", "controller": "PIO1_SM0_S3_QUAD", "endpoint": "S3 GPIO43 through ROM-UART isolation", "reset": "input/high-Z; Hub-side external pull-down; isolation open"},
+      {"gpio": 3, "net": "S3_HUB_D3", "direction": "io", "controller": "PIO1_SM0_S3_QUAD", "endpoint": "S3 GPIO44 through ROM-UART isolation", "reset": "input/high-Z; Hub-side external pull-down; isolation open"},
+      {"gpio": 4, "net": "S3_HUB_SCK", "direction": "in", "controller": "PIO1_SM0_S3_QUAD", "endpoint": "S3 GPIO48", "reset": "input; external pull-down"},
+      {"gpio": 5, "net": "UI_HUB_ALERT_N", "direction": "od", "controller": "GPIO_IRQ", "endpoint": "S3 GPIO3 wired-OR", "reset": "released/high-Z; external pull-up"},
+      {"gpio": 6, "net": "HUB_RESERVE_6", "direction": "reserve", "controller": "GPIO", "endpoint": "test pad only", "reset": "input/high-Z; external pull-down; DNP"},
+      {"gpio": 7, "net": "C5_SDIO_CLK", "direction": "out", "controller": "PIO1_SM1_2_C5_SDIO", "endpoint": "direct series footprint -> C5 GPIO9 / module pad 11", "reset": "input/high-Z; no fitted pull; C5 and Hub held reset until ownership is established"},
+      {"gpio": 8, "net": "C5_SDIO_CMD", "direction": "io", "controller": "PIO1_SM1_2_C5_SDIO", "endpoint": "direct pull-up/series branch -> C5 GPIO10 / module pad 12", "reset": "input/high-Z; branch-local 10-kohm pull-up; C5 and Hub held reset"},
+      {"gpio": 9, "net": "C5_SDIO_D0", "direction": "io", "controller": "PIO1_SM1_2_C5_SDIO", "endpoint": "direct pull-up/series branch -> C5 GPIO8 / module pad 10", "reset": "input/high-Z; branch-local 10-kohm pull-up; C5 and Hub held reset"},
+      {"gpio": 10, "net": "C5_SDIO_D1", "direction": "io", "controller": "PIO1_SM1_2_C5_SDIO", "endpoint": "direct pull-up/series branch -> C5 GPIO7 / module pad 9", "reset": "input/high-Z; branch-local 10-kohm pull-up also fixes the JTAG-source strap; C5 and Hub held reset"},
+      {"gpio": 11, "net": "C5_SDIO_D2", "direction": "io", "controller": "PIO1_SM1_2_C5_SDIO", "endpoint": "FSUSB42 HSD2+ -> D+ common -> C5 GPIO14 / module pad 14", "reset": "input/high-Z; 10-kohm HSD2 branch pull-up disconnected from C5 in service mode"},
+      {"gpio": 12, "net": "C5_SDIO_D3", "direction": "io", "controller": "PIO1_SM1_2_C5_SDIO", "endpoint": "FSUSB42 HSD2- -> D- common -> C5 GPIO13 / module pad 13", "reset": "input/high-Z; 10-kohm HSD2 branch pull-up disconnected from C5 in service mode"},
+      {"gpio": 13, "net": "HUB_RF_SCK", "direction": "out", "controller": "PIO2_SM0_RF_SPI", "endpoint": "M1.24 -> RF RP GPIO26", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 14, "net": "HUB_RF_MOSI", "direction": "out", "controller": "PIO2_SM0_RF_SPI", "endpoint": "M1.26 -> RF RP GPIO24", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 15, "net": "HUB_RF_MISO", "direction": "in", "controller": "PIO2_SM0_RF_SPI", "endpoint": "M1.27 <- RF RP GPIO27", "reset": "input; external pull-down"},
+      {"gpio": 16, "net": "HUB_RF_CS_N", "direction": "out", "controller": "GPIO", "endpoint": "M1.23 -> RF RP GPIO25", "reset": "input/high-Z; external pull-up"},
+      {"gpio": 17, "net": "HUB_RF_ALERT_N", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "M1.22 <- RF RP GPIO19", "reset": "input; external pull-up"},
+      {"gpio": 18, "net": "NRF0_SCK", "direction": "out", "controller": "PIO0_SM0_NRF0_SPI", "endpoint": "nRF24 #0 command buffer", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 19, "net": "NRF0_MOSI", "direction": "out", "controller": "PIO0_SM0_NRF0_SPI", "endpoint": "nRF24 #0 command buffer", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 20, "net": "NRF0_MISO", "direction": "in", "controller": "PIO0_SM0_NRF0_SPI", "endpoint": "nRF24 #0 return buffer", "reset": "input; external pull-down"},
+      {"gpio": 21, "net": "NRF0_CSN_N", "direction": "out", "controller": "GPIO", "endpoint": "nRF24 #0 command buffer", "reset": "input/high-Z; external pull-up"},
+      {"gpio": 22, "net": "NRF0_CE_REQ", "direction": "out", "controller": "GPIO", "endpoint": "nRF24 #0 safety gate", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 23, "net": "NRF0_IRQ_N", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "nRF24 #0 return buffer", "reset": "input; external pull-up"},
+      {"gpio": 24, "net": "NRF1_SCK", "direction": "out", "controller": "PIO0_SM1_NRF1_SPI", "endpoint": "nRF24 #1 command buffer", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 25, "net": "NRF1_MOSI", "direction": "out", "controller": "PIO0_SM1_NRF1_SPI", "endpoint": "nRF24 #1 command buffer", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 26, "net": "NRF1_MISO", "direction": "in", "controller": "PIO0_SM1_NRF1_SPI", "endpoint": "nRF24 #1 return buffer", "reset": "input; external pull-down"},
+      {"gpio": 27, "net": "NRF1_CSN_N", "direction": "out", "controller": "GPIO", "endpoint": "nRF24 #1 command buffer", "reset": "input/high-Z; external pull-up"},
+      {"gpio": 28, "net": "NRF1_CE_REQ", "direction": "out", "controller": "GPIO", "endpoint": "nRF24 #1 safety gate", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 29, "net": "NRF1_IRQ_N", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "nRF24 #1 return buffer", "reset": "input; external pull-up"},
+      {"gpio": 30, "net": "NRF2_SCK", "direction": "out", "controller": "PIO0_SM2_NRF2_SPI", "endpoint": "nRF24 #2 command buffer", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 31, "net": "NRF2_MOSI", "direction": "out", "controller": "PIO0_SM2_NRF2_SPI", "endpoint": "nRF24 #2 command buffer", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 32, "net": "NRF2_MISO", "direction": "in", "controller": "PIO0_SM2_NRF2_SPI", "endpoint": "nRF24 #2 return buffer", "reset": "input; external pull-down"},
+      {"gpio": 33, "net": "NRF2_CSN_N", "direction": "out", "controller": "GPIO", "endpoint": "nRF24 #2 command buffer", "reset": "input/high-Z; external pull-up"},
+      {"gpio": 34, "net": "NRF2_CE_REQ", "direction": "out", "controller": "GPIO", "endpoint": "nRF24 #2 safety gate", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 35, "net": "NRF2_IRQ_N", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "nRF24 #2 return buffer", "reset": "input; external pull-up"},
+      {"gpio": 36, "net": "NRF_GROUP_PWR_EN", "direction": "out", "controller": "GPIO", "endpoint": "FAULT_KILL-dominant nRF rail switch", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 37, "net": "SD_SCK", "direction": "out", "controller": "PIO0_SM3_SD_SPI", "endpoint": "microSD command buffer", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 38, "net": "SD_MOSI", "direction": "out", "controller": "PIO0_SM3_SD_SPI", "endpoint": "microSD command buffer", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 39, "net": "SD_MISO", "direction": "in", "controller": "PIO0_SM3_SD_SPI", "endpoint": "microSD return buffer", "reset": "input; external pull-up"},
+      {"gpio": 40, "net": "SD_CS_N", "direction": "out", "controller": "GPIO", "endpoint": "microSD command buffer", "reset": "input/high-Z; external pull-up"},
+      {"gpio": 41, "net": "SD_PWR_EN", "direction": "out", "controller": "GPIO", "endpoint": "microSD load switch", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 42, "net": "HUB_SAFE_I2C_SDA", "direction": "io", "controller": "I2C1", "endpoint": "M1.32 -> Pack/Safety mailboxes", "reset": "input/open-drain released; external pull-up to AON-safe compatible domain"},
+      {"gpio": 43, "net": "HUB_SAFE_I2C_SCL", "direction": "od", "controller": "I2C1", "endpoint": "M1.33 -> Pack/Safety mailboxes", "reset": "input/open-drain released; external pull-up to AON-safe compatible domain"},
+      {"gpio": 44, "net": "SD_DETECT_N", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "microSD socket detect", "reset": "input; external pull-up"},
+      {"gpio": 45, "net": "LCD_TE", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "HMX035CTFT-001 TE", "reset": "input; external pull-down while panel reset is asserted"},
+      {"gpio": 46, "net": "LCD_BL_PWM", "direction": "out", "controller": "PWM", "endpoint": "backlight hardware gate", "reset": "input/high-Z; external pull-down keeps backlight off"},
+      {"gpio": 47, "net": "HUB_RESERVE_47", "direction": "reserve", "controller": "GPIO", "endpoint": "test pad only", "reset": "input/high-Z; external pull-down; DNP"}
+    ],
+    "pio_budget": {
+      "available_state_machines": 12,
+      "used_state_machines": 8,
+      "reserve_state_machines": 4,
+      "allocations": [
+        {"resource": "PIO0_SM0", "consumer": "nRF24 #0 full-duplex SPI"},
+        {"resource": "PIO0_SM1", "consumer": "nRF24 #1 full-duplex SPI"},
+        {"resource": "PIO0_SM2", "consumer": "nRF24 #2 full-duplex SPI"},
+        {"resource": "PIO0_SM3", "consumer": "microSD full-duplex SPI"},
+        {"resource": "PIO1_SM0", "consumer": "S3 four-data-line half-duplex link"},
+        {"resource": "PIO1_SM1", "consumer": "C5 4-bit SDIO command/clock"},
+        {"resource": "PIO1_SM2", "consumer": "C5 4-bit SDIO data"},
+        {"resource": "PIO2_SM0", "consumer": "rear RF RP full-duplex SPI"}
+      ],
+      "gpio_windows": [
+        {"pio": "PIO0", "base": 16, "window": "GPIO16..47"},
+        {"pio": "PIO1", "base": 0, "window": "GPIO0..31"},
+        {"pio": "PIO2", "base": 0, "window": "GPIO0..31"}
+      ]
+    },
+    "dma_budget": {
+      "available_channels": 16,
+      "used_channels": 14,
+      "reserve_channels": 2,
+      "allocations": [
+        {"consumer": "nRF24 #0 full-duplex SPI", "channels": 2},
+        {"consumer": "nRF24 #1 full-duplex SPI", "channels": 2},
+        {"consumer": "nRF24 #2 full-duplex SPI", "channels": 2},
+        {"consumer": "microSD full-duplex SPI", "channels": 2},
+        {"consumer": "S3 four-data-line half-duplex link", "channels": 2},
+        {"consumer": "C5 4-bit SDIO", "channels": 2},
+        {"consumer": "rear RF RP full-duplex SPI", "channels": 2}
+      ]
+    }
+  },
+  "rf_rp": {
+    "role": "Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, FPV control, M5 Unit and exactly one signed U214/U219 Cap profile owner; no nRF24 or microSD ownership.",
+    "gpio_budget": {"available": 48, "used": 44, "reserve": 4, "reserve_gpios": [15, 29, 37, 38]},
+    "pin_map": [
+      {"gpio": 0, "net": "AUDIO_BCLK", "direction": "out", "controller": "PIO1_SM0_I2S_TX", "endpoint": "SN74LVC1G126DCKR Ioff isolation -> ES8311 BCLK", "reset": "input/high-Z; external pull-down; codec-side isolation OE low"},
+      {"gpio": 1, "net": "AUDIO_WS", "direction": "out", "controller": "PIO1_SM0_I2S_TX", "endpoint": "SN74LVC1G126DCKR Ioff isolation -> ES8311 LRCK", "reset": "input/high-Z; external pull-down; codec-side isolation OE low"},
+      {"gpio": 2, "net": "AUDIO_DOUT", "direction": "out", "controller": "PIO1_SM0_I2S_TX", "endpoint": "SN74LVC1G126DCKR Ioff isolation -> ES8311 SDIN", "reset": "input/high-Z; external pull-down; codec-side isolation OE low"},
+      {"gpio": 3, "net": "AUDIO_DIN", "direction": "in", "controller": "PIO1_SM1_I2S_RX", "endpoint": "ES8311 SDOUT -> SN74LVC1G126DCKR Ioff isolation", "reset": "input; external pull-down; host-side isolation OE low"},
+      {"gpio": 4, "net": "REAR_I2C_SDA", "direction": "io", "controller": "I2C0", "endpoint": "codec/Si4732/Airband/headset slow-control bus", "reset": "input/open-drain released; external pull-up"},
+      {"gpio": 5, "net": "REAR_I2C_SCL", "direction": "od", "controller": "I2C0", "endpoint": "codec/Si4732/Airband/headset slow-control bus", "reset": "input/open-drain released; external pull-up"},
+      {"gpio": 6, "net": "AUDIO_ARM", "direction": "out", "controller": "GPIO", "endpoint": "audio reset-safe selector gate", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 7, "net": "M5_UNIT_SIG0", "direction": "io", "controller": "PIO2_SM0_1_M5_PROFILE", "endpoint": "isolated M5 Unit PIO-I2C/PIO-UART/GPIO profile", "reset": "input/high-Z; branch isolation disabled; accessory-side profile pull"},
+      {"gpio": 8, "net": "M5_UNIT_SIG1", "direction": "io", "controller": "PIO2_SM0_1_M5_PROFILE", "endpoint": "isolated M5 Unit PIO-I2C/PIO-UART/GPIO profile", "reset": "input/high-Z; branch isolation disabled; accessory-side profile pull"},
+      {"gpio": 9, "net": "CC_CSN_N", "direction": "out", "controller": "GPIO", "endpoint": "CC1101 command buffer", "reset": "input/high-Z; external pull-up"},
+      {"gpio": 10, "net": "CC_GDO0", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "CC1101 return buffer", "reset": "input; external pull-down"},
+      {"gpio": 11, "net": "CC_GDO2", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "CC1101 return buffer", "reset": "input; external pull-down"},
+      {"gpio": 12, "net": "CAP_PIN10_BUSY_OR_NFC_CS_N", "direction": "io", "controller": "GPIO_IRQ_OR_OUTPUT_PROFILE", "endpoint": "SN74CBTLV1G125: U214 BUSY input or U219 NFC_CS_N output", "reset": "input/high-Z; AON /OE pull-up disconnects pin 10; U219 profile drives inactive high before POWER_EN"},
+      {"gpio": 13, "net": "CAP_IRQ", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "exact-one profile return buffer: U214 DIO1 or U219 NFC_IRQ; polarity interpreted only by the signed profile", "reset": "input; external pull-down; accessory branch remains off"},
+      {"gpio": 14, "net": "CAP_RESET_N_OR_POWER_EN", "direction": "out", "controller": "GPIO", "endpoint": "exact-one profile command buffer: U214 RESET_N or U219 POWER_EN", "reset": "input/high-Z; external pull-down holds U214 reset and U219 power disabled"},
+      {"gpio": 15, "net": "RF_RESERVE_15", "direction": "reserve", "controller": "GPIO", "endpoint": "test pad only; K331 RSSI remains NC", "reset": "input/high-Z; external pull-down; DNP"},
+      {"gpio": 16, "net": "VOICE_UART_TX", "direction": "out", "controller": "UART0", "endpoint": "SA818S-U/V selected command path", "reset": "input/high-Z; external pull-up keeps UART idle"},
+      {"gpio": 17, "net": "VOICE_UART_RX", "direction": "in", "controller": "UART0", "endpoint": "SA818S-U/V selected response path", "reset": "input; external pull-up"},
+      {"gpio": 18, "net": "VOICE_PTT_REQ_N", "direction": "out", "controller": "GPIO", "endpoint": "FAULT_KILL-dominant voice PTT gate", "reset": "input/high-Z; external pull-up inhibits TX"},
+      {"gpio": 19, "net": "HUB_RF_ALERT_N", "direction": "od", "controller": "GPIO_IRQ", "endpoint": "M1.22 -> Hub RP GPIO17", "reset": "released/high-Z; external pull-up"},
+      {"gpio": 20, "net": "VOICE_AUDIO_ON_N", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "voice audio activity selector", "reset": "input; external pull-up"},
+      {"gpio": 21, "net": "PTT_BUTTON_N", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "direct user PTT", "reset": "input; external pull-up"},
+      {"gpio": 22, "net": "RF_ANY_TX_N", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "wired actual-TX evidence", "reset": "input; external pull-up"},
+      {"gpio": 23, "net": "CC_PWR_EN", "direction": "out", "controller": "GPIO", "endpoint": "CC1101 rail switch", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 24, "net": "HUB_RF_MOSI", "direction": "in", "controller": "SPI1", "endpoint": "M1.26 <- Hub RP GPIO14", "reset": "input; external pull-down"},
+      {"gpio": 25, "net": "HUB_RF_CS_N", "direction": "in", "controller": "SPI1", "endpoint": "M1.23 <- Hub RP GPIO16", "reset": "input; external pull-up"},
+      {"gpio": 26, "net": "HUB_RF_SCK", "direction": "in", "controller": "SPI1", "endpoint": "M1.24 <- Hub RP GPIO13", "reset": "input; external pull-down"},
+      {"gpio": 27, "net": "HUB_RF_MISO", "direction": "out", "controller": "SPI1", "endpoint": "M1.27 -> Hub RP GPIO15", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 28, "net": "FPV_RX_PWR_EN", "direction": "out", "controller": "GPIO", "endpoint": "post-PCBA K331/AWM666V receiver bay", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 29, "net": "RF_RESERVE_29", "direction": "reserve", "controller": "GPIO", "endpoint": "test pad only; UI-local TVP5150 lock is read by S3 and reported over the existing S3-Hub-RF IPC chain", "reset": "input/high-Z; external pull-down; DNP"},
+      {"gpio": 30, "net": "CAP_I2C_SDA", "direction": "io", "controller": "I2C1", "endpoint": "TCA4307DGKR hot-plug/stuck-bus isolator to exact-one U214/U219 contact 4 SDA", "reset": "input/open-drain released; external pull-up; isolator disabled"},
+      {"gpio": 31, "net": "CAP_I2C_SCL", "direction": "od", "controller": "I2C1", "endpoint": "TCA4307DGKR hot-plug/stuck-bus isolator to exact-one U214/U219 contact 3 SCL", "reset": "input/open-drain released; external pull-up; isolator disabled"},
+      {"gpio": 32, "net": "FPV_CH1", "direction": "out", "controller": "GPIO", "endpoint": "receiver channel select", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 33, "net": "FPV_CH2", "direction": "out", "controller": "GPIO", "endpoint": "receiver channel select", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 34, "net": "FPV_CH3", "direction": "out", "controller": "GPIO", "endpoint": "receiver channel select", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 35, "net": "AIR_RX_EN", "direction": "out", "controller": "GPIO", "endpoint": "Airband switched rail and LT5560 enable", "reset": "input/high-Z; external pull-down disables converted path"},
+      {"gpio": 36, "net": "AIR_RX_MODE", "direction": "out", "controller": "GPIO", "endpoint": "direct FM/SW versus converted-Airband selector", "reset": "input/high-Z; external pull-down selects direct FM/SW"},
+      {"gpio": 37, "net": "RF_RESERVE_37", "direction": "reserve", "controller": "GPIO", "endpoint": "test pad only", "reset": "input/high-Z; external pull-down; DNP"},
+      {"gpio": 38, "net": "RF_RESERVE_38", "direction": "reserve", "controller": "GPIO", "endpoint": "test pad only", "reset": "input/high-Z; external pull-down; DNP"},
+      {"gpio": 39, "net": "CC_MISO", "direction": "in", "controller": "PIO0_SM0_CC_SPI", "endpoint": "CC1101 return buffer", "reset": "input; external pull-down"},
+      {"gpio": 40, "net": "CAP_GNSS_TX_OR_RF_SW0", "direction": "out", "controller": "UART1_OR_GPIO_PROFILE", "endpoint": "exact-one profile: U214 GNSS RX or U219 RF_SW0", "reset": "input/high-Z; external pull-down until signed profile admission"},
+      {"gpio": 41, "net": "CAP_GNSS_RX_OR_CC_GDO0", "direction": "in", "controller": "UART1_OR_GPIO_IRQ_PROFILE", "endpoint": "exact-one profile return: U214 GNSS TX or U219 CC1101 GDO0", "reset": "input; external pull-down; accessory branch remains off"},
+      {"gpio": 42, "net": "CC_SCK", "direction": "out", "controller": "PIO0_SM0_CC_SPI", "endpoint": "CC1101 command buffer", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 43, "net": "CC_MOSI", "direction": "out", "controller": "PIO0_SM0_CC_SPI", "endpoint": "CC1101 command buffer", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 44, "net": "CAP_SPI_MISO", "direction": "in", "controller": "PIO0_SM1_CAP_SPI", "endpoint": "exact-one profile return: U214 MISO or U219 shared MISO", "reset": "input; external pull-down; accessory branch remains off"},
+      {"gpio": 45, "net": "CAP_SPI_SCK", "direction": "out", "controller": "PIO0_SM1_CAP_SPI", "endpoint": "exact-one profile command: U214 SCK or U219 shared SCLK", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 46, "net": "CAP_SPI_MOSI", "direction": "out", "controller": "PIO0_SM1_CAP_SPI", "endpoint": "exact-one profile command: U214 MOSI or U219 shared MOSI", "reset": "input/high-Z; external pull-down"},
+      {"gpio": 47, "net": "CAP_SPI_PRIMARY_CS_N", "direction": "out", "controller": "GPIO", "endpoint": "exact-one profile command: U214 NSS_N or U219 CC1101_CS_N", "reset": "input/high-Z; external pull-up keeps either profile deselected"}
+    ],
+    "pio_budget": {
+      "available_state_machines": 12,
+      "used_state_machines": 6,
+      "reserve_state_machines": 6,
+      "allocations": [
+        {"resource": "PIO0_SM0", "consumer": "CC1101 full-duplex SPI"},
+        {"resource": "PIO0_SM1", "consumer": "exact-one U214/U219 Cap full-duplex SPI"},
+        {"resource": "PIO1_SM0", "consumer": "codec I2S transmit clocks/data"},
+        {"resource": "PIO1_SM1", "consumer": "codec I2S receive data"},
+        {"resource": "PIO2_SM0", "consumer": "isolated M5 Unit PIO-I2C or UART transmit profile"},
+        {"resource": "PIO2_SM1", "consumer": "isolated M5 Unit UART receive profile; idle in I2C/GPIO profiles"}
+      ],
+      "gpio_windows": [
+        {"pio": "PIO0", "base": 16, "window": "GPIO16..47; GPIO9/12/13/14/23/47 selects and IRQ/reset are ordinary GPIO"},
+        {"pio": "PIO1", "base": 0, "window": "GPIO0..31"},
+        {"pio": "PIO2", "base": 0, "window": "GPIO0..31"}
+      ]
+    },
+    "dma_budget": {
+      "available_channels": 16,
+      "used_channels": 12,
+      "reserve_channels": 4,
+      "allocations": [
+        {"consumer": "CC1101 full-duplex SPI", "channels": 2},
+        {"consumer": "exact-one U214/U219 Cap full-duplex SPI", "channels": 2},
+        {"consumer": "codec full-duplex I2S", "channels": 2},
+        {"consumer": "Hub-RF hardware SPI1", "channels": 2},
+        {"consumer": "voice UART continuous RX", "channels": 1},
+        {"consumer": "U214 GNSS UART continuous RX", "channels": 1},
+        {"consumer": "M5 Unit profile full-duplex worst case", "channels": 2}
+      ]
+    }
+  },
+  "m1_binding": [
+    {"net": "HUB_RF_ALERT_N", "contact": 22, "hub_gpio": 17, "rf_gpio": 19, "driver": "rf_rp open-drain"},
+    {"net": "HUB_RF_CS_N", "contact": 23, "hub_gpio": 16, "rf_gpio": 25, "driver": "hub_rp"},
+    {"net": "HUB_RF_SCK", "contact": 24, "hub_gpio": 13, "rf_gpio": 26, "driver": "hub_rp"},
+    {"net": "HUB_RF_MOSI", "contact": 26, "hub_gpio": 14, "rf_gpio": 24, "driver": "hub_rp"},
+    {"net": "HUB_RF_MISO", "contact": 27, "hub_gpio": 15, "rf_gpio": 27, "driver": "rf_rp"}
+  ],
+  "s3_rom_uart_isolation": {
+    "affected_s3_gpio": [43, 44],
+    "affected_nets": ["S3_HUB_D2", "S3_HUB_D3"],
+    "requirement": "Both lines cross an Ioff-capable bidirectional isolation boundary whose OE is held disabled by a physical pull throughout S3 reset, strap sampling, ROM download and UART0 recovery.",
+    "enable_sequence": "S3 firmware may enable the two data channels only after normal application boot, Hub RUN release and a successful idle/ready handshake; entering ROM download, either-controller reset or fault shutdown opens the boundary again.",
+    "service_result": "S3 GPIO43/44 remain usable as default ROM UART0 TX/RX without Hub contention; Hub GPIO2/3 stay high-Z and pulled low while isolated.",
+    "h2_gate": "The new R2 schematic must instantiate the exact isolator/OE pull and prove powered-off Ioff; this working GPIO authority does not authorize KiCad by itself."
+  },
+  "execution_gates": [
+    "PIO instruction fit and Hub/RF 14/12-channel DMA allocation must compile in the six-domain firmware build matrix; exact channel IDs, DREQ routing and peak simultaneous profile remain executable proof gates.",
+    "Simultaneous three-nRF RX/TX/mix, microSD, S3-Hub, Hub-C5 and Hub-RF traffic must pass emulator/dev-board timing before fabrication and HIL after assembly.",
+    "Reset-state voltage and no-back-power behavior must be measured for every switched/isolated branch.",
+    "Hub GPIO42/43 Pack/Safety I2C requires an exact powered-off-Ioff boundary and separate 3V3_MAIN/AON pull-up domains before schematic authorization.",
+    "The C5 electrical pad/mux contract is joined; exact live production route for FSUSB42MUX/C11355 and an exact service-VBUS detector/latch MPN remain fail-closed before R2 H2.",
+    "The exact-one signed U214/U219 profile must pass received-unit pin continuity, protected-power, RF-switch, VNA and RX/NFC HIL before the U219 branch can be enabled."
+  ]
+}

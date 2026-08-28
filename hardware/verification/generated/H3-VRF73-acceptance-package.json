@@ -11,14 +11,14 @@
   "source_hashes": {
     "hardware/verification/h3-verification-plan.json": "675ad99667f873c347f32633131bcfe398ac2012975e1c29157fe225777ff5e5",
     "hardware/ecad/generated/H2-REV81-acceptance-package.json": "54ad67264ec690a4c18cc6ea40ab0c209e368a3e20d29afcfa417a72b49ff3fc",
-    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "55ebdce93acee4a75e3d7ac974bf66e3be8ad6be1c9da14254412e7f940d1d04",
-    "hardware/verification/generated/H3-VRF25-transition-consolidation.json": "fe75e431250ea59cbd872a2f284a20325215b0cb1ccc09da20464629a8d15036",
-    "hardware/verification/generated/H3-VRF35-analog-consolidation.json": "75540ece04af335d5b1d997ea74fe6afe9d0834a6b97e6d19e121f0ba93fd4b7",
-    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "bfdad3acc88b8c1295b77e1eb2afd68b71c9728839380896c60edbb887081127",
-    "hardware/verification/generated/H3-VRF54-rf-consolidation.json": "ab2945e1f81d9181a0c40b90fc4ea594696d0384ffc474a877da54e5b22fdc4b",
-    "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json": "dc3a1ca0091b864f448593b4e5b57166f527b852a5af976e32a39e7be774d0fe",
-    "hardware/verification/generated/H3-VRF71-crosscheck.json": "1b2c7a6b378c447d581854a46433f857a5d4b497ff4fdcfb21635f055e3d1063",
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "f22256720e99b94b957881aa91f3510268453cc78332e9e24cc5e19c90a73f01"
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "bd0eee45454796c731772ca1ed4d0097d0680e2cc1e67254aefeda2046e1cca1",
+    "hardware/verification/generated/H3-VRF25-transition-consolidation.json": "66d60e15f202bb011e34505080ccdc39e9a9168a93ff332c223ddd628a978cbf",
+    "hardware/verification/generated/H3-VRF35-analog-consolidation.json": "e4f6677aaff2113b6e5f30de81d5db88a3b35d9f5fef66fd279698e40f979c66",
+    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "e044bcf5c651c6b6428ad7c007ce1f03b23f69296bf3ca99c3497a873960a495",
+    "hardware/verification/generated/H3-VRF54-rf-consolidation.json": "f9b9d7f7413a7e00af5c1bac259f55e0eb52a9ff31b098d0a16a71e93ffd7f68",
+    "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json": "c68626d4b6f0eff1450a4fa46e062765344dbd6bdb7e2eb81ea6add8b546749c",
+    "hardware/verification/generated/H3-VRF71-crosscheck.json": "6c74014105013a5a8135a6c9afd4a6dfbfdf5211bc692fd42d70d2b093438ec1",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "c4f8bec6afeaad8dfbe3552400091746e6d18611427e50137b6b2204b3a18db3"
   },
   "acceptance_meaning": [
     "all former single-RP R1 checks possible without fabricated hardware have reproducible reviewed evidence",
@@ -37,7 +37,7 @@
     {
       "phase": "H3.1",
       "artifact": "hardware/verification/generated/H3-VRF14-dc-consolidation.json",
-      "sha256": "55ebdce93acee4a75e3d7ac974bf66e3be8ad6be1c9da14254412e7f940d1d04",
+      "sha256": "bd0eee45454796c731772ca1ed4d0097d0680e2cc1e67254aefeda2046e1cca1",
       "status": "reviewed",
       "unresolved_analytical_findings": 0,
       "recorded_corrections": 2
@@ -45,7 +45,7 @@
     {
       "phase": "H3.2",
       "artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
-      "sha256": "fe75e431250ea59cbd872a2f284a20325215b0cb1ccc09da20464629a8d15036",
+      "sha256": "66d60e15f202bb011e34505080ccdc39e9a9168a93ff332c223ddd628a978cbf",
       "status": "reviewed",
       "unresolved_analytical_findings": 0,
       "recorded_corrections": 2
@@ -53,7 +53,7 @@
     {
       "phase": "H3.3",
       "artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
-      "sha256": "75540ece04af335d5b1d997ea74fe6afe9d0834a6b97e6d19e121f0ba93fd4b7",
+      "sha256": "e4f6677aaff2113b6e5f30de81d5db88a3b35d9f5fef66fd279698e40f979c66",
       "status": "reviewed",
       "unresolved_analytical_findings": 0,
       "recorded_corrections": 14
@@ -61,7 +61,7 @@
     {
       "phase": "H3.4",
       "artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
-      "sha256": "bfdad3acc88b8c1295b77e1eb2afd68b71c9728839380896c60edbb887081127",
+      "sha256": "e044bcf5c651c6b6428ad7c007ce1f03b23f69296bf3ca99c3497a873960a495",
       "status": "reviewed",
       "unresolved_analytical_findings": 0,
       "recorded_corrections": 1
@@ -69,7 +69,7 @@
     {
       "phase": "H3.5",
       "artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
-      "sha256": "ab2945e1f81d9181a0c40b90fc4ea594696d0384ffc474a877da54e5b22fdc4b",
+      "sha256": "f9b9d7f7413a7e00af5c1bac259f55e0eb52a9ff31b098d0a16a71e93ffd7f68",
       "status": "reviewed",
       "unresolved_analytical_findings": 0,
       "recorded_corrections": 1
@@ -77,7 +77,7 @@
     {
       "phase": "H3.6",
       "artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
-      "sha256": "dc3a1ca0091b864f448593b4e5b57166f527b852a5af976e32a39e7be774d0fe",
+      "sha256": "c68626d4b6f0eff1450a4fa46e062765344dbd6bdb7e2eb81ea6add8b546749c",
       "status": "reviewed",
       "unresolved_analytical_findings": 0,
       "recorded_corrections": 4
@@ -161,7 +161,7 @@
     "status": "reviewed"
   },
   "next": {
-    "stage": "H1-R2.30",
-    "action": "close current dual-RP architecture before creating the new R2 H2/H3 chain"
+    "stage": "H1-R2.31",
+    "action": "close physical H1 and production gates before creating the new R2 H2/H3 chain"
   }
 }

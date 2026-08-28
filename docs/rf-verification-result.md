@@ -1,6 +1,6 @@
-# RF verification result
+# RF verification result · historical R1
 
-`H3.5` is reviewed: three leaf packages contribute `128` passing checks and this consolidation adds `22` cross-domain checks. No analytical finding remains open. The exact current marker is `H3.6.1`.
+`H3.5` is reviewed: three leaf packages contribute `128` passing checks and this consolidation adds `22` cross-domain checks. No analytical finding remains open. The historical R1 progression marker is `H3.6.1`.
 
 The closed paper contract contains ten source-to-port paths, eight TX-capable paths, five removable microcoaxes, nine runtime signal groups and thirteen quiet-state contracts. VHF and UHF are independent physical feeds but one runtime group with hardware one-hot selection. Ordinary RF mainlines have feed/loss, corridor, plane and return rules; `RX-AM/LW` retains its separate high-impedance `19.500-pF` external-capacitance contract. Full 3×nRF24 remains mandatory in all four role mixes and all eight identity permutations.
 

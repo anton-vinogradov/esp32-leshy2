@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.30",
+  "marker": "H1-R2.31",
   "checked_on": "2026-08-28",
   "status": "dual_post_pcba_k331_awm666v_attachment_accepted_h1_clear_production_qualification_downstream",
   "receiver": {
@@ -20,7 +20,7 @@
       {"pin": 2, "name": "CH2", "owner": "Rear RP GPIO33"},
       {"pin": 3, "name": "CH3", "owner": "Rear RP GPIO34"},
       {"pin": 4, "name": "GND", "owner": "RF ground"},
-      {"pin": 5, "name": "+3.3-5V SUPPLY", "owner": "Rear RP GPIO30 through fail-low switched 5-V rail"},
+      {"pin": 5, "name": "+3.3-5V SUPPLY", "owner": "Rear RP GPIO28 through fail-low switched 5-V rail"},
       {"pin": 6, "name": "RSSI (NC)", "owner": "No connect; official AKK pinout marks this contact unavailable"},
       {"pin": 7, "name": "AUDIO 6.5MHz", "owner": "not connected in R2"},
       {"pin": 8, "name": "VIDEO OUT", "owner": "one 75-ohm FPV_CVBS crossing over M1 to UI-local TVP5150AM1PBS"},
@@ -31,7 +31,7 @@
       {"pin": 13, "name": "GND", "owner": "RF ground"},
       {"pin": 14, "name": "GND", "owner": "RF ground"}
     ],
-    "decoder_lock_evidence": "Rear RP GPIO31 receives qualified TVP5150 video-lock/evidence across M1; K331 has no separate lock pin",
+    "decoder_lock_evidence": "UI-local TVP5150 lock/status is read by S3 and reported to Hub/RF through the existing S3-Hub-RF IPC chain; K331 has no separate lock pin and M1 carries no dedicated lock net",
     "published_integration_sheet": "https://flymod.net/en/item/akk_k331_58g",
     "official_integration_evidence": {
       "host": "AKK Technology product media",

@@ -10,7 +10,8 @@
   },
   "accepted_baseline": {
     "date": "2026-08-26",
-    "binding": "source_hashes",
+    "binding": "immutable_git_snapshot_and_source_hashes",
+    "source_commit": "afe48e788adeba9fdfc9c84412f8657fe297308b",
     "superseded_architecture": "single SA518 voice path"
   },
   "source_hashes": {

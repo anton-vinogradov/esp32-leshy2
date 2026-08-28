@@ -12,6 +12,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 MODEL_PATH = REPO / "hardware/product-design/h1-r2-fpv.json"
 AUDIT_PATH = REPO / "hardware/product-design/generated/H1-R2-fpv-audit.json"
+PLACEMENT_AUDIT_PATH = REPO / "hardware/product-design/generated/H1-R2-placement-audit.json"
 SVG_PATH = REPO / "docs/images/h1-r2-fpv-path.svg"
 EN_DOC_PATH = REPO / "docs/h1-r2-fpv.md"
 RU_DOC_PATH = REPO / "docs/h1-r2-fpv.ru.md"
@@ -19,6 +20,10 @@ RU_DOC_PATH = REPO / "docs/h1-r2-fpv.ru.md"
 
 def load() -> dict:
     return json.loads(MODEL_PATH.read_text())
+
+
+def load_path(path: Path) -> dict:
+    return json.loads(path.read_text())
 
 
 def audit(model: dict) -> dict:
@@ -30,7 +35,7 @@ def audit(model: dict) -> dict:
     errors: list[str] = []
     if set(pins) != set(range(1, 15)):
         errors.append("K331 pinout is not the complete 1..14 set")
-    expected_controls = {1: "GPIO32", 2: "GPIO33", 3: "GPIO34", 5: "GPIO30"}
+    expected_controls = {1: "GPIO32", 2: "GPIO33", 3: "GPIO34", 5: "GPIO28"}
     for pin, token in expected_controls.items():
         if token not in pins[pin]["owner"]:
             errors.append(f"K331 pin {pin} does not use reserved {token}")
@@ -222,7 +227,7 @@ def render_svg(model: dict) -> str:
     out.extend([
         '<rect x="498" y="240" width="270" height="82" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>',
         '<text x="633" y="266" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#1d4ed8">SC1512-A4 rear RP · local controls</text>',
-        '<text x="633" y="290" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP15 free · GP30 power · GP31 video lock</text>',
+        '<text x="633" y="290" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP28 power · GP29 free · video lock via S3 status / IPC</text>',
         '<text x="633" y="309" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#1d4ed8">GP32/33/34 → K331 CH1/CH2/CH3</text>',
         '<path d="M633 240 V194" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrowBlue)"/>',
         '<text x="32" y="347" font-family="sans-serif" font-size="11" fill="#166534">H1 accepts one-of-two post-PCBA lands: K331 is primary; exact-drawing AWM666V is the seven-channel fallback; H5/H7 qualifies the received module and solder process.</text>',
@@ -235,6 +240,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     r, a = model["receiver"], model["antenna"]
     e = r["official_integration_evidence"]
     attachment = r["attachment_strategy"]
+    placement_clearance = load_path(PLACEMENT_AUDIT_PATH)["minimum_opposing_clearance_mm"]
     if ru:
         title = f'# {model["marker"]} · тракт аналогового FPV'
         intro = 'H1 принимает сменную post-PCBA-посадку одного аналогового FPV-приёмника: основной K331 или документированный fallback AWM666V.'
@@ -242,9 +248,9 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f'- `AKK {r["mpn"]}` покрывает {r["frequency_mhz"][0]}–{r["frequency_mhz"][1]} МГц, до {r["maximum_current_ma"]} мА и выдаёт CVBS 1 Vpp/75 Ω.\n'
             f'- Официальные материалы AKK подтверждают [схему включения 331RX]({e["application_circuit"]}), [функции всех 14 контактов]({e["pinout"]}) и [таблицу 24 каналов]({e["channel_table"]}). Оси толерантной ручной посадки опираются на официальный `SP331R-MANUAL-V1.0`: 28,7×23,1 мм, шаг 2,54 мм, отступ 1,4 мм. Это не выдаётся за production-footprint AKK.\n'
             f'- В той же зоне помещается `AWM666V RX` с точным корпусом 26,16×16,38×3,70 мм и рекомендованной посадкой производителя. Это fallback на семь каналов 5725–5875 МГц, а не функционально равная замена K331.\n'
-            '- CH1/CH2/CH3 используют задние RP GPIO32/33/34; GPIO30/31 обслуживают power/video-lock. Официальный pinout помечает K331 pin 6 `RSSI (NC)`, поэтому GPIO15 остаётся свободным.\n'
+            '- CH1/CH2/CH3 используют задние RP GPIO32/33/34, а GPIO28 включает питание. TVP5150 находится на UI-плате: S3 читает lock/status и передаёт его по существующей IPC-цепочке, поэтому GPIO29 и GPIO15 остаются свободными. Официальный pinout помечает K331 pin 6 `RSSI (NC)`.\n'
             f'- Резерв 5 В оставляет {result["power_margin_ma"]} мА запаса. Один выбранный RF-тракт идёт напрямую к MMCX; альтернативная ветвь разомкнута у запуска, поэтому нет U.FL, кабеля или активного stub.\n'
-            '- Общий резерв увеличен до `30×24×8 мм`; после переноса C5 DBG10 минимальный встречный зазор составляет 1,05 мм при требовании 0,70 мм.\n'
+            f'- Общий резерв увеличен до `30×24×8 мм`; после переноса C5 DBG10 структурный аудит зарегистрированных корпусов даёт минимальный встречный зазор {str(placement_clearance).replace(".", ",")} мм при требовании 0,70 мм.\n'
             f'- Антенна `{a["mpn"]}` линейная, {a["frequency_mhz"][0]}–{a["frequency_mhz"][1]} МГц, {a["gain_dbi"]} dBi, {a["cable_length_mm"]} мм; точная маркировка комплекта — `{a["printed_identity"]}`.'
             f' Независимый линейный резерв `{a["supply_independent_alternate"]["mpn"]}` покрывает 4,9–6,0 ГГц и сохраняет MMCX, но сейчас доступен только под заказ с lead time 16 недель.'
         )
@@ -266,9 +272,9 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f'- `AKK {r["mpn"]}` covers {r["frequency_mhz"][0]}–{r["frequency_mhz"][1]} MHz, draws at most {r["maximum_current_ma"]} mA and emits 1-Vpp/75-ohm CVBS.\n'
             f'- Official AKK-hosted media confirms the [331RX application circuit]({e["application_circuit"]}), [all 14 pin functions]({e["pinout"]}) and the [24-channel table]({e["channel_table"]}). The tolerant hand-solder axes use the official `SP331R-MANUAL-V1.0`: 28.7 × 23.1 mm, 2.54-mm pitch and 1.4-mm edge offset. It is not represented as an AKK production footprint.\n'
             '- The same bay accepts exact-drawing `AWM666V RX`, 26.16 × 16.38 × 3.70 mm, on its manufacturer land. It is a seven-channel 5725–5875-MHz fallback, not a functionally equal K331 replacement.\n'
-            '- CH1/CH2/CH3 use rear-RP GPIO32/33/34; GPIO30/31 serve power/video lock. The official pinout marks K331 pin 6 `RSSI (NC)`, so GPIO15 remains free.\n'
+            '- CH1/CH2/CH3 use rear-RP GPIO32/33/34 and GPIO28 enables receiver power. TVP5150 is UI-local: S3 reads lock/status and reports it over the existing IPC chain, leaving GPIO29 and GPIO15 free. The official pinout marks K331 pin 6 `RSSI (NC)`.\n'
             f'- The 5-V reserve retains {result["power_margin_ma"]} mA. One selected RF branch runs directly to MMCX; the alternate is isolated at the launch, leaving no U.FL, cable or live stub.\n'
-            '- The common reserve is enlarged to `30 × 24 × 8 mm`; after relocating C5 DBG10, minimum opposing clearance is 1.05 mm against 0.70 mm required.\n'
+            f'- The common reserve is enlarged to `30 × 24 × 8 mm`; after relocating C5 DBG10, the structural audit of registered bodies has {placement_clearance} mm minimum opposing clearance against 0.70 mm required.\n'
             f'- `{a["mpn"]}` is linear, {a["frequency_mhz"][0]}–{a["frequency_mhz"][1]} MHz, {a["gain_dbi"]} dBi and {a["cable_length_mm"]} mm; its exact kit mark is `{a["printed_identity"]}`.'
             f' Independent linear fallback `{a["supply_independent_alternate"]["mpn"]}` covers 4.9–6.0 GHz and retains MMCX, but is presently backorder-only with a 16-week lead time.'
         )

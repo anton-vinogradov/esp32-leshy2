@@ -1,6 +1,6 @@
-# Digital levels, defaults и no-back-power
+# Digital levels, defaults и no-back-power · historical R1
 
-`H3.4.1` проверено: `82` машинных checks охватывают все `130` controller allocations, `13` групп digital interfaces, `13` quiet-state contracts и все шесть no-back-power invariants. Незакрытых аналитических findings и замен компонентов нет. Точный текущий маркер — `H3.6.1`.
+`H3.4.1` проверено: `82` машинных checks охватывают все `130` controller allocations, `13` групп digital interfaces, `13` quiet-state contracts и все шесть no-back-power invariants. Незакрытых аналитических findings и замен компонентов нет. Исторический маркер прогресса R1 — `H3.6.1`.
 
 ## Гарантированные статические запасы
 

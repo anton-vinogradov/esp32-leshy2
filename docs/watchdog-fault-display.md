@@ -1,4 +1,4 @@
-# Watchdog and clear shutdown reason
+# Watchdog and clear shutdown reason · historical R1
 
 [Русский](watchdog-fault-display.ru.md) · [Home](../README.md) · [H3.2 result](power-transition-result.md)
 

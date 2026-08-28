@@ -1,4 +1,5 @@
 import importlib.util
+import copy
 import json
 import unittest
 from pathlib import Path
@@ -20,10 +21,16 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.30", self.model["marker"])
+        self.assertEqual("H1-R2.31", self.model["marker"])
+        self.assertEqual("pass_with_open_h1_blockers", self.audit["status"])
+        self.assertEqual("pass", self.audit["structural_status"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
-        self.assertEqual(37, len(self.audit["opposing_overlaps"]))
+        self.assertEqual(62, len(self.audit["opposing_overlaps"]))
+        self.assertEqual(
+            [{"ui": "m1_ui_plug", "rf": "m1_rf_receptacle", "overlap_mm": 3.8}],
+            self.audit["intentional_opposing_mates"],
+        )
         self.assertGreaterEqual(
             self.audit["minimum_opposing_clearance_mm"],
             self.audit["required_opposing_clearance_mm"],
@@ -34,10 +41,23 @@ class H1R2LayoutTest(unittest.TestCase):
             if item["kind"] == "fixed_body":
                 self.assertTrue(item["mpn"], item["id"])
 
+    def test_physical_gpio_budgets_are_bound_to_exact_dual_rp_authority(self):
+        self.assertEqual({"used": 46, "free": 2}, self.model["functional_partition"]["front_rp_gpio"])
+        self.assertEqual({"used": 44, "free": 4}, self.model["functional_partition"]["rear_rp_gpio"])
+        broken = copy.deepcopy(self.model)
+        broken["functional_partition"]["rear_rp_gpio"] = {"used": 45, "free": 3}
+        failed = MODULE.audit(broken, self.base)
+        self.assertIn(
+            "rear_rp_gpio: physical model GPIO budget differs from exact dual-RP authority",
+            failed["errors"],
+        )
+
     def test_every_drawn_item_has_one_unique_compact_reference(self):
         refs = [item["drawing_ref"] for item in self.model["placements"]]
         self.assertEqual(len(refs), len(set(refs)))
         self.assertTrue(all(len(ref) <= 2 for ref in refs))
+        self.assertEqual(len(refs), self.audit["placement_drawing_reference_count"])
+        self.assertEqual({}, self.audit["duplicate_placement_drawing_references"])
 
     def test_fpv_bay_is_a_dual_post_pcba_reserve_not_a_fake_component(self):
         bay = next(x for x in self.model["placements"] if x["id"] == "fpv_receiver_bay")
@@ -54,15 +74,102 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn("no live stub", bay["attachment"]["rf_selection"])
 
     def test_h1_blockers_are_separate_from_dependent_and_later_work(self):
-        self.assertEqual(0, len(self.model["current_h1_blockers"]))
-        self.assertEqual(2, len(self.model["pre_r2_h2_gates"]))
-        self.assertTrue(any("both independent RP2354B" in row for row in self.model["pre_r2_h2_gates"]))
-        self.assertTrue(any("C5 mux/SDIO" in row for row in self.model["pre_r2_h2_gates"]))
+        self.assertEqual(4, len(self.model["current_h1_blockers"]))
+        self.assertEqual(
+            len(self.model["current_h1_blockers"]),
+            len(self.model["current_h1_blockers_ru"]),
+        )
+        self.assertTrue(any("canonical coordinate register" in row for row in self.model["current_h1_blockers"]))
+        self.assertTrue(any("support-passive" in row for row in self.model["current_h1_blockers"]))
+        self.assertTrue(any("printed NFC" in row for row in self.model["current_h1_blockers"]))
+        self.assertTrue(any("swept volume" in row for row in self.model["current_h1_blockers"]))
+        self.assertEqual(3, len(self.model["pre_r2_h2_gates"]))
+        self.assertTrue(any("C11355" in row for row in self.model["pre_r2_h2_gates"]))
+        self.assertTrue(any("service-VBUS" in row for row in self.model["pre_r2_h2_gates"]))
+        self.assertTrue(any("powered-off-Ioff" in row for row in self.model["pre_r2_h2_gates"]))
         self.assertEqual(1, len(self.model["dependent_h1_work"]))
         self.assertIn("explicitly accept the generated complete R2", self.model["dependent_h1_work"][0])
         self.assertEqual({"H5/H6/H7", "H5/H7", "H5/H8"}, {row["stage"] for row in self.model["downstream_verification"]})
         self.assertEqual(self.model["current_h1_blockers"], self.audit["current_h1_blockers"])
         self.assertEqual(self.model["dependent_h1_work"], self.audit["dependent_h1_work"])
+
+    def test_u219_cap_profile_and_only_source_proven_host_bodies_are_registered(self):
+        slot = self.audit["cap_bus_slot"]
+        self.assertEqual("pass", slot["status"])
+        self.assertEqual("exactly_one", slot["population"])
+        self.assertEqual([84.0, 24.0, 15.287], slot["profiles"]["u214"]["envelope_mm"])
+        self.assertEqual([84.0, 24.0, 19.7], slot["profiles"]["u219"]["envelope_mm"])
+        self.assertAlmostEqual(4.413, slot["u219_height_delta_vs_u214_mm"])
+        self.assertAlmostEqual(1.0, slot["u219_margin_below_battery_holder_top_mm"])
+        self.assertAlmostEqual(1.3, slot["u219_margin_below_current_rear_max_mm"])
+        self.assertEqual(
+            {
+                "battery_pad_span": 1.0,
+                "battery_holder_body": 5.47,
+                "encoder_knob": 2.0,
+                "main_antenna_body_strip": 11.0,
+                "fpv_mmcx_body": 4.47,
+                "fpv_temporary_finger_envelope": 0.7,
+                "fpv_right_angle_plug": 4.8,
+            },
+            slot["calculated_clearances_mm"],
+        )
+        expected = {
+            "u219_pin10_switch": "SN74CBTLV1G125DCKR",
+            "u219_pin10_oe_driver": "SN74LVC1G06DCKR",
+            "u219_field_bridge_a": "BAT54S,215",
+            "u219_field_bridge_b": "BAT54S,215",
+            "u219_field_comparator": "LMV331IDBVR",
+        }
+        placed = {row["id"]: row for row in self.model["placements"]}
+        self.assertEqual(set(expected), set(self.audit["u219_contract"]["fixed_body_instances"]))
+        self.assertEqual(set(expected), set(self.audit["u219_contract"]["source_backed_courtyard_instances"]))
+        for instance, mpn in expected.items():
+            self.assertEqual(mpn, placed[instance]["mpn"])
+            self.assertIsNotNone(placed[instance]["courtyard_xy_mm"])
+            self.assertIn("source-backed H1 fit evidence", placed[instance]["courtyard_status"])
+
+        self.assertEqual([2.4, 2.15, 1.1], placed["u219_pin10_switch"]["size_mm"])
+        self.assertEqual([2.4, 2.15, 1.1], placed["u219_pin10_oe_driver"]["size_mm"])
+        self.assertEqual([3.0, 2.5, 1.1], placed["u219_field_bridge_a"]["size_mm"])
+        self.assertEqual([3.0, 2.5, 1.1], placed["u219_field_bridge_b"]["size_mm"])
+        self.assertEqual([3.05, 3.0, 1.45], placed["u219_field_comparator"]["size_mm"])
+
+    def test_u219_source_backed_courtyard_overlap_is_rejected(self):
+        broken = copy.deepcopy(self.model)
+        driver = next(row for row in broken["placements"] if row["id"] == "u219_pin10_oe_driver")
+        driver["courtyard_world_bbox_mm"] = {"x": [41.8, 44.7], "y": [21.5, 24.15]}
+        failed = MODULE.audit(broken, self.base)
+        self.assertEqual("fail", failed["structural_status"])
+        self.assertTrue(any("U219 courtyards overlap" in row for row in failed["errors"]))
+
+    def test_non_component_geometry_is_typed_and_unlocated_loop_stays_a_gate(self):
+        physical = self.audit["physical_features"]
+        self.assertEqual("pass", physical["status"])
+        by_id = {row["id"]: row for row in physical["features"]}
+        self.assertEqual("keepout", by_id["cap_socket_pth_keepout"]["kind"])
+        self.assertEqual("placement_reserve", by_id["u219_pin10_island_reserve"]["kind"])
+        self.assertEqual("placement_reserve", by_id["u219_nfc_evidence_island_reserve"]["kind"])
+        self.assertEqual("copper_feature_reserve", by_id["u219_nfc_pickup_loop"]["kind"])
+        self.assertIsNone(by_id["u219_nfc_pickup_loop"]["world_bbox_mm"])
+        self.assertEqual(["u219_nfc_pickup_loop"], [row["id"] for row in physical["unresolved_geometry"]])
+        self.assertGreaterEqual(by_id["cap_socket_pth_keepout"]["minimum_clearance_mm"], 0.7)
+
+    def test_outer_face_bbox_uses_the_actual_rf_outer_plane(self):
+        mmcx = next(row for row in self.model["placements"] if row["id"] == "fpv_mmcx")
+        outer = MODULE.bbox(mmcx, self.model)["z"]
+        self.assertAlmostEqual(17.4, outer[0])
+        self.assertAlmostEqual(22.4, outer[1])
+
+    def test_unified_opposing_audit_catches_a_new_to_new_violation(self):
+        broken = copy.deepcopy(self.model)
+        comparator = next(row for row in broken["placements"] if row["id"] == "u219_field_comparator")
+        decoder = next(row for row in broken["placements"] if row["id"] == "fpv_decoder")
+        comparator["world_xy_mm"] = decoder["world_xy_mm"]
+        comparator["size_mm"][2] = 10.5
+        failed = MODULE.audit(broken, self.base)
+        self.assertEqual("fail", failed["structural_status"])
+        self.assertTrue(any("opposing clearance fpv_decoder / u219_field_comparator" in row for row in failed["errors"]))
 
     def test_c5_dbg10_is_relocated_clear_of_the_enlarged_fpv_bay(self):
         header = next(x for x in self.model["placements"] if x["id"] == "c5_dbg_header_r2")
@@ -71,6 +178,19 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("FTSH-105-01-L-DV-K-P-TR", header["mpn"])
         self.assertEqual("c5_dbg_header_r2", self.audit["relocated_c5_dbg_header"])
         self.assertGreaterEqual(self.audit["minimum_opposing_clearance_mm"], 1.05)
+
+    def test_fpv_reserve_is_checked_against_same_face_components(self):
+        bay = next(x for x in self.model["placements"] if x["id"] == "fpv_receiver_bay")
+        self.assertEqual([39.7, 90.0], bay["world_xy_mm"])
+        broken = copy.deepcopy(self.model)
+        broken_bay = next(x for x in broken["placements"] if x["id"] == "fpv_receiver_bay")
+        broken_bay["world_xy_mm"] = [38.5, 90.0]
+        failed = MODULE.audit(broken, self.base)
+        self.assertEqual("fail", failed["structural_status"])
+        self.assertTrue(any(
+            "same-face collision: fpv_receiver_bay / safety_controller" in row
+            for row in failed["errors"]
+        ))
 
     def test_factory_rows_include_current_identity(self):
         by_mpn = {row["mpn"]: row for row in self.model["factory_evidence"]}
@@ -284,7 +404,13 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn('clip-path="url(#front-external-content)"', expected[MODULE.FOUR_FACES_SVG_PATH])
         self.assertIn('clip-path="url(#rear-external-content)"', expected[MODULE.FOUR_FACES_SVG_PATH])
         self.assertIn('data-view="numbered-component-legend"', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
-        self.assertIn('163 drawing references', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
+        self.assertIn('168 unique drawing references', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
+        self.assertIn('data-physical-feature="cap_socket_pth_keepout"', expected[MODULE.INNER_RF_SVG_PATH])
+        self.assertIn('data-physical-feature="u219_nfc_evidence_island_reserve"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
+        self.assertIn('u219_nfc_pickup_loop · copper_feature_reserve · UNLOCATED', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
+        self.assertIn('data-cap-profile="u214"', expected[MODULE.INNER_SECTIONS_SVG_PATH])
+        self.assertIn('data-cap-profile="u219"', expected[MODULE.INNER_SECTIONS_SVG_PATH])
+        self.assertNotIn('data-physical-feature="u219_nfc_pickup_loop"', expected[MODULE.INNER_RF_SVG_PATH])
         self.assertEqual(5, expected[MODULE.INNER_UI_SVG_PATH].count('data-medium="removable-microcoax"'))
         self.assertEqual(5, expected[MODULE.INNER_UI_SVG_PATH].count('data-part="board-ufl"'))
         self.assertEqual(5, expected[MODULE.INNER_UI_SVG_PATH].count('data-part="module-rf-connector"'))

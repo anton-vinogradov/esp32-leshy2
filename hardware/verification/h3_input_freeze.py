@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 
@@ -15,6 +16,7 @@ ECAD = REPO / "hardware/ecad"
 OUTPUT = VERIFICATION / "generated/H3-VRF01-input-freeze.json"
 DOC_EN = REPO / "docs/virtual-verification.md"
 DOC_RU = REPO / "docs/virtual-verification.ru.md"
+R1_SOURCE_COMMIT = "afe48e788adeba9fdfc9c84412f8657fe297308b"
 
 FIXED_INPUTS = (
     ECAD / "h2-schematic-plan.json",
@@ -55,13 +57,36 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def frozen_blob_sha256(path: Path) -> str:
+    """Hash the immutable R1 blob, never a mutable current-R2 worktree file."""
+    relative = path.relative_to(REPO)
+    try:
+        blob = subprocess.check_output(
+            ["git", "show", f"{R1_SOURCE_COMMIT}:{relative}"],
+            cwd=REPO,
+        )
+    except subprocess.CalledProcessError as exc:
+        raise ValueError(f"historical R1 source blob is unavailable: {relative}") from exc
+    return hashlib.sha256(blob).hexdigest()
+
+
 def accepted_inputs() -> list[Path]:
-    native = sorted((ECAD / "kicad").glob("**/*.kicad_sch"))
-    projects = sorted((ECAD / "kicad").glob("**/*.kicad_pro"))
+    try:
+        names = subprocess.check_output(
+            [
+                "git", "ls-tree", "-r", "--name-only", R1_SOURCE_COMMIT,
+                "--", "hardware/ecad/kicad",
+            ],
+            cwd=REPO,
+            text=True,
+        ).splitlines()
+    except subprocess.CalledProcessError as exc:
+        raise ValueError("historical R1 source tree is unavailable") from exc
+    native = sorted(REPO / name for name in names if name.endswith(".kicad_sch"))
+    projects = sorted(REPO / name for name in names if name.endswith(".kicad_pro"))
     paths = list(FIXED_INPUTS) + native + projects
-    missing = [path for path in paths if not path.is_file()]
-    if missing:
-        raise ValueError("missing accepted input: " + ", ".join(str(path) for path in missing))
+    if len(paths) != 44:
+        raise ValueError(f"historical R1 freeze input set changed: expected 44, got {len(paths)}")
     return paths
 
 
@@ -71,19 +96,19 @@ def render_doc(manifest: dict, russian: bool) -> str:
         nav = "[English](virtual-verification.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Принятый H2](h2-acceptance.ru.md)"
         intro = "Этот H3 сохраняет воспроизводимые расчёты прежней одно-RP архитектуры R1. Он не доказывает текущую dual-RP R2; физические измерения также не подменяются."
         freeze_h = "## Принятый исходный материал"
-        freeze = f"Ревизия H2 с независимыми SA818S-V/U принята 26 августа 2026 года и привязана к исходникам SHA-256. Заморожено {manifest['summary']['frozen_files']} файла; изменение любого из них повторно открывает затронутые проверки."
+        freeze = f"Ревизия H2 с независимыми SA818S-V/U принята 26 августа 2026 года и привязана к неизменяемому git snapshot `{manifest['accepted_baseline']['source_commit']}` и SHA-256 его {manifest['summary']['frozen_files']} файлов. Текущие R2-файлы не подменяют исторические входы; любое развитие проходит отдельную R2-цепочку H2/H3."
         matrix_h = "## Матрица проверки"
         headers = "| Этап | Область | Метод до изготовления | Артефакт H3 | Остаточная физическая проверка |\n|---|---|---|---|---|"
-        current = "**Исторический маркер:** `H3.0.1-R1`. **Текущий аппаратный маркер:** `H1-R2.30`; R2 должна пройти собственный H2/H3. Закупка, PCB layout и fabrication не разрешены."
+        current = "**Исторический маркер:** `H3.0.1-R1`. **Текущий аппаратный маркер:** `H1-R2.31`; R2 должна пройти собственный H2/H3. Закупка, PCB layout и fabrication не разрешены."
     else:
         title = "# Historical Leshy2 virtual electrical verification · R1"
         nav = "[Русский](virtual-verification.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Accepted H2](h2-acceptance.md)"
         intro = "This H3 retains reproducible analysis for the former single-RP R1 architecture. It does not prove current dual-RP R2, and physical measurements are not imitated."
         freeze_h = "## Accepted input"
-        freeze = f"The H2 revision with independent SA818S-V/U paths was accepted on 26 August 2026 and is source-bound by SHA-256. {manifest['summary']['frozen_files']} files are frozen; changing any one reopens the affected verification."
+        freeze = f"The H2 revision with independent SA818S-V/U paths was accepted on 26 August 2026 and is bound to immutable git snapshot `{manifest['accepted_baseline']['source_commit']}` plus the SHA-256 of its {manifest['summary']['frozen_files']} files. Current R2 files cannot replace those historical inputs; any evolution uses a separate R2 H2/H3 chain."
         matrix_h = "## Verification matrix"
         headers = "| Stage | Area | Pre-fabrication method | H3 artifact | Residual physical check |\n|---|---|---|---|---|"
-        current = "**Historical marker:** `H3.0.1-R1`. **Current hardware marker:** `H1-R2.30`; R2 must pass its own H2/H3. Purchasing, PCB layout and fabrication are not authorized."
+        current = "**Historical marker:** `H3.0.1-R1`. **Current hardware marker:** `H1-R2.31`; R2 must pass its own H2/H3. Purchasing, PCB layout and fabrication are not authorized."
     rows = "\n".join(
         f"| `{row['stage']}` | `{row['area']}` | {row['method']} | {row['h3_output']} | {row['physical_evidence']} |"
         for row in manifest["verification_matrix"]
@@ -103,6 +128,7 @@ def build() -> tuple[dict[Path, str], dict]:
     ):
         raise ValueError("historical H3 may consume only an explicitly non-R2 H2 boundary")
     paths = accepted_inputs()
+    frozen_hashes = {str(path.relative_to(REPO)): frozen_blob_sha256(path) for path in paths}
     matrix = [
         {"stage": stage, "area": area, "method": method, "h3_output": output, "physical_evidence": physical}
         for stage, area, method, output, physical in MATRIX
@@ -114,10 +140,11 @@ def build() -> tuple[dict[Path, str], dict]:
         "authority": {"baseline": "R1", "lifecycle": "historical_single_rp_evidence", "allowed_as_r2_authority": False, "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"},
         "accepted_baseline": {
             "date": "2026-08-26",
-            "binding": "source_hashes",
+            "binding": "immutable_git_snapshot_and_source_hashes",
+            "source_commit": R1_SOURCE_COMMIT,
             "superseded_architecture": "single SA518 voice path",
         },
-        "source_hashes": {str(path.relative_to(REPO)): sha256(path) for path in paths},
+        "source_hashes": frozen_hashes,
         "verification_matrix": matrix,
         "summary": {
             "frozen_files": len(paths),

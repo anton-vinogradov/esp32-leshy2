@@ -6,7 +6,7 @@ This H3 retains reproducible analysis for the former single-RP R1 architecture. 
 
 ## Accepted input
 
-The H2 revision with independent SA818S-V/U paths was accepted on 26 August 2026 and is source-bound by SHA-256. 44 files are frozen; changing any one reopens the affected verification.
+The H2 revision with independent SA818S-V/U paths was accepted on 26 August 2026 and is bound to immutable git snapshot `afe48e788adeba9fdfc9c84412f8657fe297308b` plus the SHA-256 of its 44 files. Current R2 files cannot replace those historical inputs; any evolution uses a separate R2 H2/H3 chain.
 
 ## Verification matrix
 
@@ -29,6 +29,6 @@ The H2 revision with independent SA818S-V/U paths was accepted on 26 August 2026
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | extended-operation and configurable self-test policy without a runtime claim | H8 24/48-hour qualified-USB endurance and battery-to-protected-cutoff measurements |
 
-**Historical marker:** `H3.0.1-R1`. **Current hardware marker:** `H1-R2.30`; R2 must pass its own H2/H3. Purchasing, PCB layout and fabrication are not authorized.
+**Historical marker:** `H3.0.1-R1`. **Current hardware marker:** `H1-R2.31`; R2 must pass its own H2/H3. Purchasing, PCB layout and fabrication are not authorized.
 
 [Machine freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

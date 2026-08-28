@@ -1,4 +1,4 @@
-# Power-transition verification result
+# Power-transition verification result · historical R1
 
 [Русский](power-transition-result.ru.md) · [Home](../README.md) · [Startup/KILL](power-transition-startup.md) · [Handover](power-handover.md) · [Inrush](inrush-load-step.md) · [Watchdog/UI](watchdog-fault-display.md)
 
@@ -10,6 +10,6 @@ H3.2 closes as one reviewed chain: startup/KILL → USB↔pack/brownout → eFus
 - Two real source errors were corrected: latch polarity/asynchronous inputs and the wrong POR timing claim.
 - Physical waveforms, switch bounce, MLCC DC bias, charger-loop droop and fault injection are not claimed complete; they are explicitly assigned to H8.
 
-**Status:** `H3.2` reviewed. Exact current marker: `H3.6.1`, worst-case board, battery and enclosure thermal model.
+**Historical R1-chain status:** `H3.2-R1` reviewed. The later marker in that chain was `H3.6.1-R1`, the worst-case board, battery and enclosure thermal model. The current hardware marker is `H1-R2.31`.
 
 [Machine closure package](../hardware/verification/generated/H3-VRF25-transition-consolidation.json).

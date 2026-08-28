@@ -2,10 +2,15 @@
 
 [Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)
 
-These are the current `H0-R2`/`H1-R2.30` principle diagrams of the finished
+These are the current `H0-R2`/`H1-R2.31` principle diagrams of the finished
 device. They explain ownership, buses, RF locality, power and service access.
-The R2 production ECAD schematic does **not** exist yet: H2 starts only after
-the complete H1 mock-up is accepted.
+The exact dual-RP GPIO/M1 map and C5 SDIO/service-mux electrical join are closed
+as H1 authority. The R2 production ECAD schematic does **not** exist yet. U219
+host-body placement and the structural opposing-face audit are already closed;
+H2 starts only after the four remaining H1 blockers close: the canonical
+Cap/evidence coordinate register, exact support-passive values/MPNs and
+courtyards, NFC-pickup geometry/tuning, installed-U219 antenna swept volume,
+followed by acceptance of the complete H1 mock-up.
 
 The checked-in G2F/H2/KiCad tree is reviewed historical **single-RP R1**
 evidence. Current H0/H1 has six domains, a front Hub RP and a rear RF RP, plus
@@ -19,7 +24,7 @@ used for firmware pin binding, R2 fabrication or ordering.
 The front UI/radio PCB owns S3, C5, all three complete nRF24 islands, the front
 RP, microSD and TVP5150. The rear RF/power PCB owns CC1101, both voice radios,
 broadcast/Airband, audio, the one-of-two post-PCBA K331/AWM666V FPV bay,
-M5/U214, the rear RP, power and safety.
+M5 and the mutually exclusive U214/U219 Cap slot, the rear RP, power and safety.
 
 Exact working GPIO groups and their budgets are published with the
 [H0-R2 architecture](h0-r2-functional-architecture.md#working-principle-pin-design).
@@ -28,7 +33,7 @@ Exact working GPIO groups and their budgets are published with the
 
 ```mermaid
 flowchart TD
-  S3["ESP32-S3-WROOM-1U-N16R8<br/>UI, i8080-8 TX, camera RX, direct keys"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>UI via local TCA9539, direct i8080-8/camera"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, 802.15.4, IR"]
   FRP["SC1512-A4 · front RP<br/>3× nRF24, microSD"]
   RRP["SC1512-A4 · rear RP<br/>RF, audio, FPV, expansion"]
@@ -59,7 +64,7 @@ anti-shear enclosure datums and independent PCB capture carry mechanical load.
 [Rear PCB inner face](images/h1-r2-inner-rf.svg)
 
 Internal numbers are drawing references, not silkscreen. The current placement
-audit reports zero same-face body collisions and 3.31 mm minimum opposing
+audit reports zero same-face body collisions and 2.59 mm minimum opposing
 clearance against the 0.70 mm requirement.
 
 ## Dedicated signal and power paths
@@ -69,6 +74,15 @@ clearance against the 0.70 mm requirement.
 - [Power, pack and thermal supervision](h1-r2-power-thermal.md)
 - [External programming, recovery and physical sections](h1-r2-physical-layout.md)
 - [Safety, watchdog and hard-off architecture](safety.md)
+
+The accepted U219 principle reuses the protected U214 Cap slot and the rear RF
+RP's isolated I²C/SPI paths. Pin 8 fails low, pin 10 is fail-disconnected,
+CC1101 is RX-only, NFC is poll/read-only and independent physical NFC-field
+evidence reaches `ANY_TX_AON_N`. Pin 7 power identity remains a received-unit
+gate. The host switch, AON gate, two bridges and comparator are now registered
+with official full-package envelopes and source-backed courtyards. Support
+passives, pickup-loop geometry and installed-antenna swept volume remain open,
+so the U219 mock-up is not yet reviewed.
 
 ## ECAD status
 

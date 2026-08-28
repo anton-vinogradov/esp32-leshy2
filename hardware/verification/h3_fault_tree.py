@@ -370,7 +370,7 @@ def build() -> tuple[dict[Path, str], dict]:
 
 def render_doc(manifest: dict, russian: bool) -> str:
     if russian:
-        title = "# Проверка единичных отказов"
+        title = "# Проверка единичных отказов · historical R1"
         intro = (
             f"`H3.6.2` проведён ревью: {manifest['review_summary']['single_fault_cases']} сценариев и "
             f"{manifest['review_summary']['checks']} машинных checks проходят. Точный маркер — `H3.6.3`."
@@ -389,7 +389,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         limits = "## Граница результата\n\nНе заявляются: " + "; ".join(manifest["non_claims"]) + "."
         evidence = "[Машинное evidence](../hardware/verification/generated/H3-VRF62-fault-tree.json)."
     else:
-        title = "# Single-fault review"
+        title = "# Single-fault review · historical R1"
         intro = (
             f"`H3.6.2` is reviewed: {manifest['review_summary']['single_fault_cases']} scenarios and "
             f"{manifest['review_summary']['checks']} machine checks pass. The exact marker is `H3.6.3`."

@@ -1,18 +1,18 @@
-# H1-R2.30 · finished-device placement
+# H1-R2.31 · working target-device placement
 
-Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, not authorization to start KiCad: physical-body placement is coherent, while mock-up acceptance and the explicit R2 pin-proof gates below remain open.
+Current verifiable physical model of the two 75 × 150 mm PCBs; it is neither complete placement nor authorization to start KiCad. The structural audit passes, while H1 remains open until the listed U219 geometry gates, complete canonical register and explicit mock-up acceptance are closed.
 
 ## What the user sees
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.22-display-flex-up-1)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.31-u219-cap-profile-1)
 
 ## Component legend
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.22-display-flex-up-1)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.31-u219-cap-profile-1)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.22-display-flex-up-1)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.31-u219-cap-profile-1)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.22-display-flex-up-1)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.31-u219-cap-profile-1)
 
 ## What is inside
 
@@ -23,13 +23,14 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 - Ten main SMA ports are split symmetrically `5 + 5`; every radio path remains on the PCB that carries its connector.
 - On the front PCB, five short removable microcoax jumpers connect the radio-source IPEX/U.FL sockets to board U.FL sockets; controlled board-local PCB paths continue from there to SMA.
 - The rear PCB has no U.FL or removable RF cable: voice and FM/SW use board-local RF paths, AM/LW uses a separate high-impedance AMI path, and Airband uses the powered conversion branch and selector.
-- The separate vertical `FPV RX · 5.8 GHz` MMCX sits below the evenly pitched five-SMA rear row and above U214; its mating right-angle plug and cable run parallel to the PCB.
+- The separate vertical `FPV RX · 5.8 GHz` MMCX sits below the evenly pitched five-SMA rear row and above the shared Cap-Bus slot; its mating right-angle plug and cable run parallel to the PCB.
+- Exactly one accessory occupies the common slot: U214 (84 × 24 × 15.287 mm) or optional U219 (84 × 24 × 19.7 mm). U219 is 4.413 mm taller, yet remains 1.0 mm below the battery holder and 1.3 mm below the selected rear maximum.
 - All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.
 - Each outer face prints a stable board role/revision — `UI PCB · R2-EVT1 · REV A` and `RF/PWR PCB · R2-EVT1 · REV A`; the changing H1-R2.xx work marker is never printed on a PCB.
 - All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.
 - A mutually exclusive post-PCBA `K331 / AWM666V` bay remains rear-local while `TVP5150AM1PBS` moves beside S3: M1 carries one 75-ohm CVBS signal, not the 11-line LCD_CAM bus.
 - Primary K331 uses a tolerant 14-pad land; the exact seven-channel AWM666V land nests in the same bay. Exactly one module is installed, without an internal U.FL or RF cable.
-- FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, camera RX, buttons, encoder and USB.
+- FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, camera RX, encoder and USB, with buttons on its local TCA9539PWR path.
 - The panel is physically turned with its flex toward the antenna edge, as on ESP32-DIV; the adapter occupies the upper inner zone and firmware rotates display output and touch by 180°. The tail stays out of the LED, D-pad and side-key zone.
 
 ![True inner sandwich sections](images/h1-r2-inner-sections.svg)
@@ -41,11 +42,12 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 - Same-face body collisions: `0`.
 - Minimum opposing Z clearance: `2.59 mm` against `0.70 mm` required.
 - The FPV reserve is enlarged to `30 × 24 × 8 mm`; C5 DBG10 is relocated beside S3 DBG10 and intersects neither the bay nor adjacent bodies.
-- FPV MMCX: the jack body leaves `2.07 mm` to the nearest SMA; the controlled right-angle plug leaves `2.40 mm` to SMA and `4.80 mm` to U214. Ø12 is only a temporary finger-approach zone and remains an H5 ergonomic check.
-- GPIO: front RP `46/48` with `2` free; rear RP `45/48` with `3` free. K331 RSSI is officially marked NC.
+- FPV MMCX: the jack body leaves `2.07 mm` to the nearest SMA; the controlled right-angle plug leaves `2.40 mm` to SMA and `4.80 mm` to the common Cap-Bus slot. Ø12 is only a temporary finger-approach zone and remains an H5 ergonomic check.
+- GPIO: front RP `46/48` with `2` free; rear RP `44/48` with `4` free. K331 RSSI is officially marked NC.
 - M1: all 80 contacts are assigned — 25 signals, 14 main-power, 2 AON, 25 returns and 14 NC reserves.
 - M1 mechanics: four 11.00-mm compression stops, two anti-shear datums and independent PCB capture; the connector carries no impact or bending load.
-- Antenna silkscreen: the generator proves no overlap with SMA/MMCX bodies, the installed FPV cable, U214, the display or mounting keep-outs.
+- Antenna silkscreen: the generator proves no overlap with SMA/MMCX bodies, the installed FPV cable, the Cap-Bus slot, the display or mounting keep-outs.
+- Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; five active U219 bodies and their source-backed courtyards are registered, while the legacy Cap register, support-passive courtyards, NFC loop and antenna swept volume remain explicit H1 gates (4).
 - The upper display adapter has zero body collisions and 5.10 mm minimum opposing clearance; the second nRF24 board U.FL moves below it with 1.00 mm planar clearance.
 
 ## Exact factory parts
@@ -70,12 +72,16 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 
 ## Final H1 acceptance
 
-- No additional physical-body geometry blockers remain.
+- complete the canonical coordinate register for the existing Cap-Bus ESD, series, supervisor, bypass and evidence-aggregate bodies before claiming a complete physical placement
+- complete exact support-passive values/MPNs and prove their courtyards inside the two bounded U219 placement islands
+- obtain controlled U219 field-structure geometry or measure a received unit before locating the weak printed NFC pickup loop and its DNP C0G bank
+- measure the installed U219 RP-SMA antenna swept volume against the rear connector bank, FPV plug, enclosure and user hand access
 - review and explicitly accept the generated complete R2 exterior, both true-view inner faces and four real section planes before closing H1
 
 ### Preconditions before R2 H2 / KiCad
 
-- derive and review the exact per-signal GPIO order for both independent RP2354B domains and the resulting M1 endpoints from the accepted H0 functional groups
-- prove the exact C5 mux/SDIO assignment against pins physically exposed by the selected ESP32-C5-WROOM-1U-N8R8-V1.2 module
+- timestamp an exact live JLC stock-or-explicit-route, MOQ and price for onsemi FSUSB42MUX / C11355
+- select and factory-validate the exact service-VBUS detector/latch MPN used by the closed C5 electrical ownership contract
+- instantiate and prove the exact powered-off-Ioff isolation boundary and separate 3V3_MAIN/AON pull-up domains for Hub GPIO42/43 Pack/Safety I2C
 
-> Exact current marker: **H1-R2.30**. H1 remains in progress.
+> Exact current marker: **H1-R2.31**. H1 remains in progress.

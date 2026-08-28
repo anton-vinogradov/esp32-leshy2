@@ -384,9 +384,9 @@ def build() -> tuple[dict[Path, str], dict]:
         "next": {"stage": "H3.6.1", "action": "build the worst-case board, battery and enclosure thermal model"},
     }
 
-    en = f"""# Digital levels, defaults and no-back-power
+    en = f"""# Digital levels, defaults and no-back-power · historical R1
 
-`H3.4.1` is reviewed: `{len(checks)}` machine checks cover all `{len(allocations)}` controller allocations, `{len(interface_groups)}` digital interface groups, `{len(quiet_ids)}` quiet-state contracts and all six no-back-power invariants. No analytical finding or component change remains open. The exact current marker is `H3.6.1`.
+`H3.4.1` is reviewed: `{len(checks)}` machine checks cover all `{len(allocations)}` controller allocations, `{len(interface_groups)}` digital interface groups, `{len(quiet_ids)}` quiet-state contracts and all six no-back-power invariants. No analytical finding or component change remains open. The historical R1 progression marker is `H3.6.1`.
 
 ## Guaranteed static margins
 
@@ -405,9 +405,9 @@ Five measurements remain explicit H8 gates: powered-off leakage, reset/brownout 
 
 Machine evidence: [`H3-VRF41-digital-levels.json`](../hardware/verification/generated/H3-VRF41-digital-levels.json).
 """
-    ru = f"""# Digital levels, defaults и no-back-power
+    ru = f"""# Digital levels, defaults и no-back-power · historical R1
 
-`H3.4.1` проверено: `{len(checks)}` машинных checks охватывают все `{len(allocations)}` controller allocations, `{len(interface_groups)}` групп digital interfaces, `{len(quiet_ids)}` quiet-state contracts и все шесть no-back-power invariants. Незакрытых аналитических findings и замен компонентов нет. Точный текущий маркер — `H3.6.1`.
+`H3.4.1` проверено: `{len(checks)}` машинных checks охватывают все `{len(allocations)}` controller allocations, `{len(interface_groups)}` групп digital interfaces, `{len(quiet_ids)}` quiet-state contracts и все шесть no-back-power invariants. Незакрытых аналитических findings и замен компонентов нет. Исторический маркер прогресса R1 — `H3.6.1`.
 
 ## Гарантированные статические запасы
 

@@ -5,7 +5,7 @@
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
     "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "72ca1c7b4ee8f82194ec5d1731ee95e705a1a68f71892a1dc8bab14ac275a674"
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "65504bd7c7aec1b380a3afa7c4cac22fc1c6db11303a02e6539c6fae48dbf5cf"
   },
   "provenance": {
     "admission_and_safety_mcu": "https://www.ti.com/lit/ds/symlink/mspm0c1106.pdf",

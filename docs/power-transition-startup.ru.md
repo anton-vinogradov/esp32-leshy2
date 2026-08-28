@@ -1,4 +1,4 @@
-# Запуск, выключение и аппаратный FAULT_KILL
+# Запуск, выключение и аппаратный FAULT_KILL · historical R1
 
 [English](power-transition-startup.md) · [На главную](../README.ru.md) · [Итог H3.2](power-transition-result.ru.md)
 

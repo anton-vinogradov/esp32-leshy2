@@ -1,6 +1,6 @@
-# Digital bandwidth, latency and timing
+# Digital bandwidth, latency and timing · historical R1
 
-`H3.4.2` is reviewed with `40` machine checks and no open analytical finding. The exact current marker is `H3.6.1`.
+`H3.4.2` is reviewed with `40` machine checks and no open analytical finding. The historical R1 progression marker is `H3.6.1`.
 
 ## Closed paper budgets
 

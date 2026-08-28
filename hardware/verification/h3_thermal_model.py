@@ -256,7 +256,7 @@ def build() -> tuple[dict[Path, str], dict]:
     peak = scenarios["electrical_absolute_corner"]
     sustained = scenarios["support_idle_worst_group"]
     quiet = scenarios["quiet_idle"]
-    en = f"""# Thermal model
+    en = f"""# Thermal model · historical R1
 
 `H3.6.1` is reviewed with `{len(checks)}` passing checks and one zero-cost safety correction. The exact marker is `H3.6.2`.
 
@@ -268,7 +268,7 @@ BQ25798 is corrected from hot reset defaults to protected/read-back `TREG=60 C`,
 
 Machine evidence: [`H3-VRF61-thermal-model.json`](../hardware/verification/generated/H3-VRF61-thermal-model.json).
 """
-    ru = f"""# Тепловая модель
+    ru = f"""# Тепловая модель · historical R1
 
 `H3.6.1` проведён ревью: `{len(checks)}` checks проходят, внесено одно бесплатное safety-исправление. Точный маркер — `H3.6.2`.
 

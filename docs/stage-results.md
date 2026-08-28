@@ -25,7 +25,7 @@ safety evidence and power—not primary RF payloads.
 <a id="h1"></a>
 ## H1 · Physical product design
 
-**Status:** ▶️ current at **`H1-R2.30`**.
+**Status:** ▶️ current at **`H1-R2.31`**.
 
 - [Current physical design](h1-r2-physical-layout.md)
 - [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.21-dual-fpv-7)
@@ -37,14 +37,24 @@ safety evidence and power—not primary RF payloads.
 - [Analog FPV path](h1-r2-fpv.md)
 - [Airband receive path](h1-airband-filter.md)
 - [Power and thermal architecture](h1-r2-power-thermal.md)
+- [U214/U219 machine policy](../hardware/architecture/generated/H1-R2-U219-cap-policy.json)
 
-Current result: ten main SMA ports are split 5+5; FPV uses a separate vertical
+The exact dual-RP GPIO/M1 map and the C5 SDIO/service-mux electrical join are
+closed as current H1 authority. The accepted U219 profile shares the protected
+Cap slot with U214, keeps CC1101 RX-only and NFC poll/read-only, and adds
+independent NFC-field evidence to the existing safety aggregate.
+
+Current physical result: ten main SMA ports are split 5+5; FPV uses a separate vertical
 Molex `73415-2063` (`C588480`) MMCX on the rear face. The generated two-board
-placement has zero same-face collisions and 1.05 mm minimum opposing clearance.
+placement has zero same-face collisions and 2.59 mm minimum opposing clearance,
+including the corrected official maximum full-package U219 host envelopes.
 The enlarged 30 × 24 × 8 mm bay carries mutually exclusive post-PCBA K331 and
 AWM666V lands; exactly one receiver is installed and C5 DBG10 is relocated.
-Actual-module and solder qualification move to H5/H7. No engineering blocker
-remains; explicit acceptance of the complete mock-up is the final H1 action.
+Actual-module and solder qualification move to H5/H7. The five active U219 host
+packages and their source-backed courtyards now fit the two reserved islands;
+the canonical coordinate register for existing Cap/evidence bodies,
+support-passive footprints, NFC pickup geometry and installed-antenna swept
+volume are the four blockers still preventing final mock-up acceptance.
 The display is physically turned so its flex exits toward the antenna edge;
 firmware rotates display memory and touch coordinates by 180 degrees. The first
 safe pre-order removal replaces five `74LVC2G126DC,125` buffers with stocked
@@ -56,6 +66,12 @@ The C5 manufacturer identity remains `ESP32-C5-WROOM-1U-N8R8`, while the active
 stocked Standard-PCBA route is `C54951858` / supplier code `...-V1.2`. Incoming
 MD/lot identity and eFuse revision must both prove >=v1.2 for production; v1.0 is
 engineering-only and the historical `C51950748` cannot be selected as active.
+Those placement numbers now include the U219 host switch, AON gate, two field
+bridges, comparator and an explicitly unlocated pickup-loop reserve. Completing
+the canonical coordinate register, support-passive values/MPNs and courtyards,
+pickup geometry and installed antenna swept volume is the current H1 work;
+explicit acceptance of the regenerated
+mock-up follows it. R2 H2/KiCad has not started.
 
 <a id="h2"></a>
 ## H2 · Production schematic
@@ -72,38 +88,38 @@ The [schematics page](schematics.md) keeps the principle diagrams visible and
 clearly labels retained R1 ECAD as non-current evidence.
 
 <a id="h3"></a>
-## H3 · PCB placement and routing
+## H3 · Virtual electrical verification
 
 **Status:** 🔒 waits for reviewed H2.
 
-Expected result: routed UI/radio and RF/power PCBs, controlled-impedance RF and
-CVBS paths, return-current review, antenna isolation and post-route electrical
-checks.
+Expected result: complete power, digital, RF, audio, timing, thermal and fault
+simulation. Every legal state and transition must pass before fabrication.
 
 <a id="h4"></a>
-## H4 · Enclosure and mechanical package
+## H4 · Joined pre-layout gate
 
-**Status:** 🔒 waits for reviewed H3.
+**Status:** 🔒 waits for reviewed H3 and current firmware R2 evidence.
 
-Expected result: production enclosure, verified openings and labels, installed
-U214/antenna/USB/button access, thermal clearances and assembly drawings.
+Expected result: one current mechanics/ECAD/electrical/firmware review with no
+virtual blocker and an owned downstream test for every physical residual.
 
 <a id="h5"></a>
-## H5 · Procurement and incoming qualification
+## H5 · Component and factory evidence
 
 **Status:** 🔒 waits for reviewed H4.
 
 Expected result: every exact MPN rechecked on the current JLCPCB surface,
 non-PCBA accessories listed, consigned/private/global sourcing qualified and
-received-part measurements closed.
+received-part measurements assigned to their controlled downstream gates.
 
 <a id="h6"></a>
-## H6 · Fabrication release package
+## H6 · KiCad placement and routing
 
 **Status:** 🔒 waits for reviewed H5.
 
-Expected result: Gerber, drill, BOM, CPL, drawings, impedance, DFM, fixture and
-factory-test package verified together. This is the final pre-order gate.
+Expected result: two routed boards and one accepted fabrication package;
+placement review, DRC, impedance/return paths, RF isolation, thermal copper,
+test access and DFM must pass together. This is the final pre-order gate.
 
 <a id="h7"></a>
 ## H7 · Prototype build and bring-up

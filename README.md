@@ -10,13 +10,21 @@
 
 </div>
 
-> **Current hardware marker: `H1-R2.30`.** The two-PCB H0/H1 working model now has two independent RP2354B domains and a current quantity/factory route. The old single-RP G2F/H2 work is historical R1 evidence only: exact dual-RP GPIO order and the C5 mux/SDIO pin proof remain open before R2 H2 can start. H1 still awaits explicit acceptance of the complete mock-up; KiCad and ordering remain blocked.
+> **Current hardware marker: `H1-R2.31`.** The exact dual-RP GPIO/M1 map and
+> C5 SDIO/service-mux electrical join are closed as current H1 authority. The
+> accepted same-slot U214/U219 role now has all five active host packages and
+> source-backed courtyards registered in the physical model. The complete
+> canonical Cap/evidence body register, support passives, NFC pickup geometry
+> and installed-antenna swept volume remain the four explicit H1 blockers before
+> complete mock-up acceptance. R2 H2/KiCad has not started,
+> and ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
 > material is preserved historical single-RP R1 evidence, not current R2 authority.
-> It cannot authorize firmware, R2 KiCad, fabrication or ordering; exact RP GPIO
-> order remains open for the future R2 H2 export.
+> It cannot authorize firmware, R2 KiCad, fabrication or ordering. The exact
+> dual-RP/C5 electrical authority is the current H1 machine contract; H2 will be
+> a new R2 export only after physical H1 closes.
 
 ## What it is
 
@@ -31,8 +39,8 @@ interfaces enter a hardware-verifiable quiet state.
 | Native wireless | S3 Wi-Fi/BLE and C5 2.4/5-GHz Wi-Fi, 802.15.4 and IR |
 | Dedicated RF | CC1101 Sub-GHz, independent VHF/UHF voice, FM/AM/SW/LW/Airband RX |
 | Video | Receive-only analog 5.8-GHz FPV through a dedicated rear MMCX |
-| Interface | 3.5-inch 320×480 touch IPS over direct 32-MHz i8080-8, direct S3 buttons, waterfall, microSD and audio |
-| Expansion | Rear U214 LoRa Cap rail and protected M5 Unit interface |
+| Interface | 3.5-inch 320×480 touch IPS over direct 32-MHz i8080-8, S3-local buttons through `TCA9539PWR`, waterfall, microSD and audio |
+| Expansion | One protected rear Cap slot for U214 LoRa or U219 CC1101+NFC, plus a protected M5 Unit interface |
 | Recovery | Four independent USB paths, recessed per-controller controls and DBG10 fallbacks |
 | Unattended safety | TX evidence, watchdog, thermal supervision, hard power-off and retained fault reason |
 
@@ -44,7 +52,7 @@ user to accept the non-aggression/authorized-use terms.
 
 ![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.23-cost-display-1)
 
-[Open the legend for all 163 numbered components](docs/images/h1-r2-component-legend.svg?rev=h1-r2.23-cost-display-1) ·
+[Open the legend for all 168 numbered references](docs/images/h1-r2-component-legend.svg?rev=h1-r2.23-cost-display-1) ·
 [detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.23-cost-display-1) ·
 [front inner face](docs/images/h1-r2-inner-ui.svg) ·
 [rear inner face](docs/images/h1-r2-inner-rf.svg)
@@ -58,7 +66,7 @@ The exterior silkscreen identifies `UI PCB · R2-EVT1 · REV A` and
 
 The front UI/radio PCB owns S3, C5, all three complete nRF24 islands, the front
 RP, microSD and the TVP5150 decoder. The rear RF/power PCB owns CC1101,
-VHF/UHF voice, broadcast/Airband, audio, the one-of-two K331/AWM666V FPV bay, M5/U214, the rear RP, power
+VHF/UHF voice, broadcast/Airband, audio, the one-of-two K331/AWM666V FPV bay, M5 and the mutually exclusive U214/U219 Cap slot, the rear RP, power
 and independent safety.
 
 Only one 75-ohm CVBS signal crosses the 80-contact M1 connector. The decoder's
@@ -96,7 +104,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | Stage | Status | Published result |
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.30`** | [Current placement](docs/h1-r2-physical-layout.md) · [cost ranking](docs/h1-r2-cost.md) |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.31`** | [Current placement](docs/h1-r2-physical-layout.md) · [cost ranking](docs/h1-r2-cost.md) |
 | H2 · Production ECAD schematic | ⏳ Waiting for R2 H1 | [Stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
@@ -108,25 +116,27 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 
 ### Current H1 composition
 
-- ✅ Functional islands and front/rear RP GPIO budgets: `46/48` (2 free) and `45/48` (3 free); K331 RSSI is officially NC.
+- ✅ Exact front/rear RP GPIO0..47 maps, five Hub↔RF M1 signals and C5 SDIO/service-mux electrical join are machine-checked; budgets are `46/48` (2 free) and `44/48` (4 free: GP15/29/37/38).
 - ✅ Ten main antenna ports repartitioned `5 + 5`; no main RF trace crosses M1.
-- ✅ Direct i8080-8 display closes at 32 MB/s while buttons, encoder, USB and camera RX remain direct S3 paths.
+- ✅ Direct i8080-8 display closes at 32 MB/s; buttons stay on the S3-local `TCA9539PWR` path, while encoder, USB and camera RX remain direct S3 paths.
 - ✅ M1 has a complete 80-contact map and an enclosure load path: four 11-mm stops, anti-shear datums and independent PCB capture.
 - ✅ Antenna silkscreen passes generated body/cable/accessory/fastener no-overlap checks.
 - ✅ Vertical Molex `73415-2063` FPV MMCX: exact JLCPCB route, SMT-only, no interboard tail.
 - ✅ Enlarged `30 × 24 × 8 mm` K331/AWM666V post-PCBA bay; exactly one receiver is installed and the unused RF branch is isolated at the MMCX launch.
-- ✅ C5 DBG10 moved beside S3 DBG10; placement audit reports zero same-face collisions and 1.05 mm minimum opposing clearance against 0.70 mm required.
+- ✅ C5 DBG10 moved beside S3 DBG10; the structural audit of all currently registered bodies, including corrected maximum U219 package envelopes, reports zero same-face collisions and 2.59 mm minimum opposing clearance against 0.70 mm required.
 - ✅ Public exterior, separate readable inner faces, service surface and real section views regenerated.
 - ✅ Official Sinopine `SP331R-MANUAL-V1.0` controls the axes of the tolerant 14-pad K331 hand-solder land; exact-drawing AWM666V is the seven-channel fallback. Neither receiver enters the normal PCBA BOM.
-- ✅ All 210 BOM lines are cost-ranked per fitted device, five-device trial lot and 100-device projection; external antennas and post-PCBA parts remain visibly separate.
-- ▶ **Exact current point:** review and explicitly accept the complete exterior, both true-view inner faces and the real sandwich sections. A later AKK/Sinopine package can simplify the K331 footprint but no longer blocks H1.
+- ✅ The 210-line `H1-R2.30` base BOM is cost-ranked per fitted device, five-device trial lot and 100-device projection. The later U219 host delta is shown separately as a provisional known-active subtotal; its support passives remain intentionally unpriced until exact values/MPNs close.
+- ✅ U219 is accepted as the second mutually exclusive Cap profile: CC1101 is hard RX-only, NFC is poll/read-only, pin 10 is fail-disconnected and NFC field evidence joins `ANY_TX_AON_N`. Pin 7 power identity remains a received-unit gate, not an H2 claim.
+- ✅ The two DCK boundaries, two BAT54S bridges and LMV331 comparator use official maximum full-package envelopes and source-backed courtyards; all five fit their bounded islands without overlap.
+- ▶ **Exact current point:** complete the canonical coordinate register for the existing Cap/evidence bodies, close the support-passive values/MPNs and courtyards, locate and tune the NFC pickup, bound the installed U219 antenna swept volume, then review and explicitly accept the complete mock-up. A later AKK/Sinopine package can simplify the K331 footprint but no longer blocks H1.
 - 🔒 KiCad, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H1-R2.30 -->
+<!-- current-substep: H1-R2.31 -->
 
 ## Repository
 

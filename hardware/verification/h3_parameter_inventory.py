@@ -256,7 +256,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
     s = manifest["summary"]
     decision = manifest["resolved_choices"][0]
     if russian:
-        title = "# Параметры и модели H3"
+        title = "# Параметры и модели H3 · historical R1"
         nav = "[English](parameter-model-register.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Виртуальная проверка](virtual-verification.ru.md)"
         intro = "Это входной реестр расчётов H3: для каждого реально установленного типа компонента он связывает MPN, экземпляры, схему, первичный источник, требуемые группы параметров и будущий метод модели. Полная таблица остаётся в машинном JSON, чтобы страница продукта была читаемой."
         counts_h = "## Покрытие"
@@ -274,10 +274,10 @@ def render_doc(manifest: dict, russian: bool) -> str:
             f"`{decision['id']}` закрыт вариантом A: остаются три `E01-ML01IPX`, потому что они дают требуемое полное аппаратное поведение nRF24. "
             "Семейство nRF24 не рекомендуется для новых разработок, поэтому H5 проверит поставщика, маркировку silicon и резервную доступность. Современный nRF52 работает только в 2,4 ГГц, поддерживает совместимый эфирный ESB, но не является SPI/register drop-in заменой."
         )
-        marker = "**Статус:** `H3.0.2` завершено и проверено; текущий маркер — `H3.6.1`."
+        marker = "**Статус исторической R1-цепочки:** `H3.0.2-R1` завершено и проверено; последующий маркер этой цепочки — `H3.6.1-R1`. Текущий аппаратный маркер — `H1-R2.31`."
         evidence = "[Машинный реестр из 213 строк](../hardware/verification/generated/H3-VRF02-parameter-inventory.json)."
     else:
-        title = "# H3 parameters and models"
+        title = "# H3 parameters and models · historical R1"
         nav = "[Русский](parameter-model-register.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Virtual verification](virtual-verification.md)"
         intro = "This is the H3 calculation input register: for every actually fitted device type it links the MPN, instances, schematic ownership, primary source, required parameter groups and future model method. The full table remains machine-readable so the product site stays readable."
         counts_h = "## Coverage"
@@ -295,7 +295,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
             f"`{decision['id']}` is closed with option A: three `E01-ML01IPX` modules remain because they provide the required full nRF24 hardware behavior. "
             "The nRF24 family is not recommended for new designs, so H5 must verify supplier, silicon marking and reserve availability. A modern nRF52 is 2.4-GHz-only and supports over-air ESB compatibility, but is not an SPI/register drop-in replacement."
         )
-        marker = "**Status:** `H3.0.2` is reviewed; current marker is `H3.6.1`."
+        marker = "**Historical R1-chain status:** `H3.0.2-R1` is reviewed; the later marker in that chain is `H3.6.1-R1`. The current hardware marker is `H1-R2.31`."
         evidence = "[213-row machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json)."
     return "\n\n".join((title, nav, intro, counts_h, counts, residual_h, residual, decision_h, decision_text, marker, evidence)) + "\n"
 

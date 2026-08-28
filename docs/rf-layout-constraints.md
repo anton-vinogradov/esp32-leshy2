@@ -1,6 +1,6 @@
-# RF layout constraints
+# RF layout constraints · historical R1
 
-`H3.5.2` is reviewed with `23` machine checks and no open analytical finding. The exact current marker is `H3.6.1`.
+`H3.5.2` is reviewed with `23` machine checks and no open analytical finding. The historical R1 progression marker is `H3.6.1`.
 
 The H1 lines remain topology/corridor guides, not alleged KiCad copper. Their projected lengths are carried forward only so H6 cannot silently lose or swap a path.
 

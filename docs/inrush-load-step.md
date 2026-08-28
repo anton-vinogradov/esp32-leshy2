@@ -1,4 +1,4 @@
-# Inrush and load steps
+# Inrush and load steps · historical R1
 
 [Русский](inrush-load-step.ru.md) · [Home](../README.md) · [H3.2 result](power-transition-result.md)
 

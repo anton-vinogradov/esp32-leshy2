@@ -1,4 +1,4 @@
-# Watchdog и понятная причина отключения
+# Watchdog и понятная причина отключения · historical R1
 
 [English](watchdog-fault-display.md) · [На главную](../README.ru.md) · [Итог H3.2](power-transition-result.ru.md)
 

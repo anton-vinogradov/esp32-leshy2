@@ -143,9 +143,9 @@ def build() -> tuple[dict[Path, str], dict]:
         "next": {"stage": "H3.7.1", "action": "cross-check every H3 result against H2 and downstream consumers"},
     }
 
-    en = f"""# Thermal, fault and extended-operation result
+    en = f"""# Thermal, fault and extended-operation result · historical R1
 
-H3.6 is closed: three leaf packages contribute `{leaf_checks}` passing checks and this consolidation adds `{len(checks)}` cross-domain checks. All `{fault['review_summary']['single_fault_cases']}` single-fault cases finish contained or with no admission; no analytical finding or policy decision remains open. The exact current marker is `H3.7.1`.
+H3.6 is closed: three leaf packages contribute `{leaf_checks}` passing checks and this consolidation adds `{len(checks)}` cross-domain checks. All `{fault['review_summary']['single_fault_cases']}` single-fault cases finish contained or with no admission; no analytical finding or policy decision remains open. The historical R1 progression marker is `H3.7.1`.
 
 The engineering ambient target is `0 to 35 °C`, not a published guarantee. Only `SUPPORT_IDLE` with one active top-level signal group may proceed toward sustained-profile qualification; `SUPPORT_WORST`, continuous or unleased TX, unknown accessories and unreadable safety sensors are excluded. H6 must meet the final thermal and route-separation constraints, and H8 must measure the product.
 
@@ -155,9 +155,9 @@ Long operation uses a qualified USB-PD source and carries no uptime or battery-a
 
 Machine evidence: [`H3-VRF64-thermal-fault-consolidation.json`](../hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json).
 """
-    ru = f"""# Сводный результат thermal, fault и длительной работы
+    ru = f"""# Сводный результат thermal, fault и длительной работы · historical R1
 
-H3.6 закрыт: три leaf-пакета дают `{leaf_checks}` проходящих checks, а сведение добавляет `{len(checks)}` сквозных checks. Все `{fault['review_summary']['single_fault_cases']}` single-fault сценариев заканчиваются containment или запретом допуска; незакрытых аналитических findings и решений нет. Точный текущий маркер — `H3.7.1`.
+H3.6 закрыт: три leaf-пакета дают `{leaf_checks}` проходящих checks, а сведение добавляет `{len(checks)}` сквозных checks. Все `{fault['review_summary']['single_fault_cases']}` single-fault сценариев заканчиваются containment или запретом допуска; незакрытых аналитических findings и решений нет. Исторический маркер прогресса R1 — `H3.7.1`.
 
 Инженерная цель среды — `0…35 °C`, а не опубликованная гарантия. К квалификации длительного профиля допускается только `SUPPORT_IDLE` с одной активной верхнеуровневой сигнальной группой; исключены `SUPPORT_WORST`, непрерывный или unleased TX, неизвестные аксессуары и нечитаемые safety sensors. H6 обязан выполнить итоговые thermal- и route-separation ограничения, H8 — измерить изделие.
 

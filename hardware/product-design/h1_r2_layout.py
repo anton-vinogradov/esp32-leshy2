@@ -30,7 +30,9 @@ COMPONENT_LEGEND_SVG_PATH = REPO / "docs/images/h1-r2-component-legend.svg"
 EN_DOC_PATH = REPO / "docs/h1-r2-physical-layout.md"
 RU_DOC_PATH = REPO / "docs/h1-r2-physical-layout.ru.md"
 SOURCE_TABLE_PATH = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
-PUBLIC_ASSET_REV = "h1-r2.22-display-flex-up-1"
+U219_SOURCE_PATH = REPO / "hardware/architecture/h1-r2-u219-cap.json"
+DUAL_RP_PINOUT_PATH = REPO / "hardware/architecture/h1-r2-dual-rp-pinout.json"
+PUBLIC_ASSET_REV = "h1-r2.31-u219-cap-profile-1"
 BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
 BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
@@ -56,14 +58,25 @@ def bbox(item: dict, model: dict) -> dict:
         zr = [model["stack"]["ui_inner_z_mm"], model["stack"]["ui_inner_z_mm"] + z]
     elif item["frame"] == "rf-inner":
         zr = [model["stack"]["rf_inner_z_mm"] - z, model["stack"]["rf_inner_z_mm"]]
-    elif item["frame"] == "rf-outer-right-edge":
+    elif item["frame"] in {"rf-outer-face", "rf-outer-right-edge", "rear-outer"}:
         zr = [
             model["stack"]["rf_inner_z_mm"] + model["stack"]["rf_pcb_thickness_mm"],
             model["stack"]["rf_inner_z_mm"] + model["stack"]["rf_pcb_thickness_mm"] + z,
         ]
+    elif item["frame"] == "ui-outer-face":
+        ui_outer = model["stack"]["ui_inner_z_mm"] - model["stack"]["ui_pcb_thickness_mm"]
+        zr = [ui_outer - z, ui_outer]
     else:
-        zr = [model["stack"]["rf_inner_z_mm"], model["stack"]["rf_inner_z_mm"] + z]
+        raise ValueError(f'unsupported placement frame: {item["frame"]}')
     return {"x": [x, x + w], "y": [y, y + h], "z": zr}
+
+
+def courtyard_bbox(item: dict) -> dict | None:
+    """Return a source-backed XY assembly envelope when one is registered."""
+    box = item.get("courtyard_world_bbox_mm")
+    if box is None:
+        return None
+    return {"x": list(box["x"]), "y": list(box["y"])}
 
 
 def overlaps(a: dict, b: dict) -> bool:
@@ -81,6 +94,22 @@ def z_clearance(a: dict, b: dict) -> float:
     if b["z"][1] <= a["z"][0]:
         return a["z"][0] - b["z"][1]
     return -min(a["z"][1], b["z"][1]) + max(a["z"][0], b["z"][0])
+
+
+def rectangle_distance(a: dict, b: dict) -> float:
+    """Shortest planar distance between two closed axis-aligned rectangles."""
+    dx = max(a["x"][0] - b["x"][1], b["x"][0] - a["x"][1], 0.0)
+    dy = max(a["y"][0] - b["y"][1], b["y"][0] - a["y"][1], 0.0)
+    return math.hypot(dx, dy)
+
+
+def contains(outer: dict, inner: dict) -> bool:
+    return (
+        outer["x"][0] <= inner["x"][0]
+        and outer["x"][1] >= inner["x"][1]
+        and outer["y"][0] <= inner["y"][0]
+        and outer["y"][1] >= inner["y"][1]
+    )
 
 
 def mmcx_service_audit(model: dict, base: dict, placed: list[dict]) -> dict:
@@ -317,60 +346,319 @@ def silkscreen_audit(model: dict) -> dict:
     }
 
 
+def effective_inner_entries(model: dict, base: dict, placed: list[dict]) -> list[dict]:
+    """Return the retained seed and R2 placements as one collision population."""
+    replaced = {
+        instance
+        for entry in placed
+        for instance in entry["item"].get("replaces", [])
+    }
+    entries = [
+        {
+            "id": row["instance"],
+            "frame": row["source_frame"],
+            "bbox": row["world_bbox_mm"],
+            "kind": "fixed_body",
+            "origin": "retained_base",
+        }
+        for row in base["rows"]
+        if row["source_frame"] in {"ui-inner", "rf-inner"}
+        and row["instance"] not in replaced
+    ]
+    entries.extend(
+        {
+            "id": entry["item"]["id"],
+            "frame": entry["item"]["frame"],
+            "bbox": entry["bbox"],
+            "kind": entry["item"]["kind"],
+            "origin": "r2",
+        }
+        for entry in placed
+        if entry["item"]["frame"] in {"ui-inner", "rf-inner"}
+    )
+    return entries
+
+
+def physical_feature_audit(model: dict, entries: list[dict]) -> dict:
+    """Audit explicit keepouts/reserves without pretending they are components."""
+    minimum = model["stack"]["minimum_opposing_clearance_mm"]
+    board_w, board_h = model["board_mm"]
+    by_id = {entry["id"]: entry for entry in entries}
+    placement_by_id = {row["id"]: row for row in model["placements"]}
+    errors: list[str] = []
+    unresolved: list[dict] = []
+    results: list[dict] = []
+    known_kinds = {"keepout", "placement_reserve", "copper_feature_reserve"}
+    for feature in model.get("physical_features", []):
+        kind = feature.get("kind")
+        if kind not in known_kinds:
+            errors.append(f'{feature.get("id", "unnamed feature")}: unsupported physical-feature kind {kind}')
+            continue
+        box = feature.get("world_bbox_mm")
+        if box is None:
+            if kind != "copper_feature_reserve" or not feature.get("geometry_status"):
+                errors.append(f'{feature["id"]}: unresolved geometry lacks an explicit gate')
+            unresolved.append({"id": feature["id"], "kind": kind, "gate": feature.get("geometry_status")})
+            results.append({"id": feature["id"], "kind": kind, "world_bbox_mm": None, "minimum_clearance_mm": None})
+            continue
+        if box["x"][0] < 0 or box["y"][0] < 0 or box["x"][1] > board_w or box["y"][1] > board_h:
+            errors.append(f'{feature["id"]}: feature leaves the PCB outline')
+        members = set(feature.get("members", []))
+        member_errors = []
+        for member in members:
+            entry = by_id.get(member)
+            if not entry:
+                member_errors.append(f"missing member {member}")
+            else:
+                allocation_box = courtyard_bbox(placement_by_id[member]) or entry["bbox"]
+                if entry["frame"] != feature["frame"] or not contains(box, allocation_box):
+                    member_errors.append(f"member {member} leaves its allocation")
+        errors.extend(f'{feature["id"]}: {message}' for message in member_errors)
+        clearances = []
+        if kind in {"keepout", "placement_reserve"}:
+            allowed = members | set(feature.get("allowed_instances", []))
+            for entry in entries:
+                if entry["frame"] != feature["frame"] or entry["id"] in allowed:
+                    continue
+                if entry["kind"] != "fixed_body":
+                    continue
+                gap = rectangle_distance(box, entry["bbox"])
+                clearances.append({"instance": entry["id"], "clearance_mm": round(gap, 3)})
+                if gap + 1e-6 < minimum:
+                    errors.append(
+                        f'{feature["id"]}: only {gap:.3f} mm to {entry["id"]}; {minimum:.3f} mm required'
+                    )
+        results.append(
+            {
+                "id": feature["id"],
+                "kind": kind,
+                "world_bbox_mm": box,
+                "members": sorted(members),
+                "minimum_clearance_mm": min((row["clearance_mm"] for row in clearances), default=None),
+            }
+        )
+    return {
+        "status": "pass" if not errors else "fail",
+        "features": results,
+        "unresolved_geometry": unresolved,
+        "errors": errors,
+    }
+
+
+def u219_contract_audit(model: dict) -> dict:
+    """Cross-check the physical bodies against the accepted U219 architecture overlay."""
+    source = REPO / model["cap_bus_slot"]["architecture_source"]
+    contract = load(source)
+    errors: list[str] = []
+    u219 = model["cap_bus_slot"]["profiles"]["u219"]
+    if u219["envelope_mm"] != contract["accessories"]["u219"]["envelope_mm"]:
+        errors.append("U219 physical envelope differs from the accepted architecture overlay")
+    expected = {
+        "u219_pin10_switch": (contract["pin_10_bidirectional_boundary"]["switch_mpn"], [2.9, 2.65]),
+        "u219_pin10_oe_driver": (contract["pin_10_bidirectional_boundary"]["aon_enable"]["inverter_mpn"], [2.9, 2.65]),
+        "u219_field_bridge_a": ("BAT54S,215", [3.8, 3.5]),
+        "u219_field_bridge_b": ("BAT54S,215", [3.8, 3.5]),
+        "u219_field_comparator": ("LMV331IDBVR", [3.55, 3.5]),
+    }
+    placed = {row["id"]: row for row in model["placements"]}
+    courtyard_entries = []
+    for instance, (mpn, expected_size) in expected.items():
+        row = placed.get(instance)
+        if not row or row.get("mpn") != mpn or row.get("kind") != "fixed_body":
+            errors.append(f"{instance}: exact U219 host body is absent or has the wrong MPN")
+            continue
+        cbox = courtyard_bbox(row)
+        if row.get("courtyard_xy_mm") != expected_size or cbox is None:
+            errors.append(f"{instance}: source-backed H1 courtyard is absent or has the wrong size")
+            continue
+        measured_size = [
+            round(cbox["x"][1] - cbox["x"][0], 3),
+            round(cbox["y"][1] - cbox["y"][0], 3),
+        ]
+        if measured_size != expected_size:
+            errors.append(f"{instance}: courtyard dimensions disagree with its world envelope")
+        body = bbox(row, model)
+        if not contains(cbox, body):
+            errors.append(f"{instance}: maximum full package leaves its courtyard")
+        if "source-backed H1 fit evidence" not in row.get("courtyard_status", ""):
+            errors.append(f"{instance}: courtyard status overclaims or lacks source-backed H1 evidence")
+        if "0.25 mm" not in row.get("courtyard_basis", ""):
+            errors.append(f"{instance}: courtyard lacks the accepted 0.25-mm assembly margin")
+        courtyard_entries.append((instance, cbox))
+    for index, (left_id, left_box) in enumerate(courtyard_entries):
+        for right_id, right_box in courtyard_entries[index + 1:]:
+            if overlaps(left_box, right_box):
+                errors.append(f"U219 courtyards overlap: {left_id} / {right_id}")
+    return {
+        "status": "pass" if not errors else "fail",
+        "source": str(source.relative_to(REPO)),
+        "profile": contract["accessories"]["u219"]["profile"],
+        "fixed_body_instances": sorted(expected),
+        "source_backed_courtyard_instances": sorted(instance for instance, _ in courtyard_entries),
+        "errors": errors,
+    }
+
+
+def cap_bus_slot_audit(model: dict, base: dict, mmcx_service: dict) -> dict:
+    """Validate mutually exclusive U214/U219 envelopes and the current rear geometry."""
+    slot = model["cap_bus_slot"]
+    profiles = slot["profiles"]
+    errors: list[str] = []
+    if slot["population"] != "exactly_one" or set(profiles) != {"u214", "u219"}:
+        errors.append("Cap-Bus slot must contain exactly one mutually exclusive U214 or U219 profile")
+    plan = slot["world_plan_bbox_mm"]
+    for name, profile in profiles.items():
+        world = profile["world_bbox_mm"]
+        if world["x"] != plan["x"] or world["y"] != plan["y"]:
+            errors.append(f"{name}: Cap profile no longer shares the common slot plan")
+        expected_top = round(slot["host_outer_plane_z_mm"] + profile["envelope_mm"][2], 3)
+        if round(world["z"][1], 3) != expected_top:
+            errors.append(f"{name}: installed Z envelope does not match its official height")
+    if slot["maximum_installed_profile"] != "u219":
+        errors.append("U219 must remain the maximum-height Cap profile")
+
+    u219_box = profiles["u219"]["world_bbox_mm"]
+    battery = base["accessory_envelopes"]["battery_holder"]
+    encoder = next(row for row in base["rows"] if row["instance"] == "encoder_knob")["world_bbox_mm"]
+    antenna_y = base["longitudinal_zones"]["antenna_connector_zone_y_mm"]
+    mmcx = next(row for row in model["placements"] if row["id"] == "fpv_mmcx")
+    mmcx_box = bbox(mmcx, model)
+    calculated = {
+        "battery_pad_span": battery["pad_span_y_mm"][0] - u219_box["y"][1],
+        "battery_holder_body": battery["body_y_mm"][0] - u219_box["y"][1],
+        "encoder_knob": encoder["y"][0] - u219_box["y"][1],
+        "main_antenna_body_strip": u219_box["y"][0] - antenna_y[1],
+        "fpv_mmcx_body": u219_box["y"][0] - mmcx_box["y"][1],
+        "fpv_temporary_finger_envelope": mmcx_service["u214_service_clearance_mm"],
+        "fpv_right_angle_plug": mmcx_service["right_angle_plug_u214_clearance_mm"],
+    }
+    for name, expected in slot["clearance_targets_mm"].items():
+        if name == "minimum":
+            continue
+        actual = round(calculated[name], 3)
+        if abs(actual - expected) > 0.011:
+            errors.append(f"Cap-slot {name} clearance changed from {expected:.3f} to {actual:.3f} mm")
+        if actual + 1e-6 < slot["clearance_targets_mm"]["minimum"]:
+            errors.append(f"Cap-slot {name} clearance is only {actual:.3f} mm")
+    rear = slot["rear_depth_reference_mm"]
+    calculated_rear_max = max(
+        u219_box["z"][1],
+        battery["z_mm"][1],
+        encoder["z"][1],
+    )
+    if abs(calculated_rear_max - rear["current_maximum_top_z"]) > 1e-6:
+        errors.append("U219 unexpectedly changes the selected rear-depth envelope")
+    return {
+        "status": "pass" if not errors else "fail",
+        "population": slot["population"],
+        "profiles": profiles,
+        "calculated_clearances_mm": {name: round(value, 3) for name, value in calculated.items()},
+        "u219_height_delta_vs_u214_mm": round(u219_box["z"][1] - profiles["u214"]["world_bbox_mm"]["z"][1], 3),
+        "u219_margin_below_battery_holder_top_mm": round(battery["z_mm"][1] - u219_box["z"][1], 3),
+        "u219_margin_below_current_rear_max_mm": round(calculated_rear_max - u219_box["z"][1], 3),
+        "calculated_rear_max_z_mm": round(calculated_rear_max, 3),
+        "open_geometry_gates": slot["open_geometry_gates"],
+        "errors": errors,
+    }
+
+
 def audit(model: dict, base: dict) -> dict:
     board_w, board_h = model["board_mm"]
     minimum = model["stack"]["minimum_opposing_clearance_mm"]
     new = []
     errors = []
+    dual_rp = load(DUAL_RP_PINOUT_PATH)
+    for placement_key, authority_key in (("front_rp_gpio", "hub_rp"), ("rear_rp_gpio", "rf_rp")):
+        placement_budget = model.get("functional_partition", {}).get(placement_key, {})
+        authority_budget = dual_rp.get(authority_key, {}).get("gpio_budget", {})
+        if (
+            placement_budget.get("used") != authority_budget.get("used")
+            or placement_budget.get("free") != authority_budget.get("reserve")
+        ):
+            errors.append(f"{placement_key}: physical model GPIO budget differs from exact dual-RP authority")
+    drawing_refs: dict[str, list[str]] = {}
     for item in model["placements"]:
+        drawing_ref = str(item.get("drawing_ref", ""))
+        drawing_refs.setdefault(drawing_ref, []).append(item["id"])
         b = bbox(item, model)
         new.append({"item": item, "bbox": b})
         if item["frame"] in {"ui-inner", "rf-inner"}:
             if b["x"][0] < 0 or b["y"][0] < 0 or b["x"][1] > board_w or b["y"][1] > board_h:
                 errors.append(f"{item['id']} leaves the PCB outline")
+    duplicate_refs = {
+        ref: instances for ref, instances in drawing_refs.items()
+        if not ref or len(instances) != 1
+    }
+    if duplicate_refs:
+        errors.append(f"placement drawing references are not globally unique: {duplicate_refs}")
 
-    fixed = [x for x in new if x["item"]["kind"] == "fixed_body"]
+    physical_bodies = [
+        x for x in new if x["item"]["kind"] in {"fixed_body", "reserve"}
+    ]
     replaced = {
         instance
         for entry in new
         for instance in entry["item"].get("replaces", [])
     }
     same_face = []
-    for entry in fixed:
+    for entry in physical_bodies:
         item, b = entry["item"], entry["bbox"]
+        allowed = set(item.get("allowed_instances", []))
         for row in base["rows"]:
             if row["source_frame"] != item["frame"]:
                 continue
             if row["instance"] in replaced:
                 continue
+            if row["instance"] in allowed:
+                continue
             if overlaps(b, row["world_bbox_mm"]):
                 same_face.append([item["id"], row["instance"]])
-        for other in fixed:
+        for other in physical_bodies:
             if other["item"]["id"] <= item["id"] or other["item"]["frame"] != item["frame"]:
+                continue
+            if (
+                other["item"]["id"] in allowed
+                or item["id"] in set(other["item"].get("allowed_instances", []))
+            ):
                 continue
             if overlaps(b, other["bbox"]):
                 same_face.append([item["id"], other["item"]["id"]])
     if same_face:
         errors.extend(f"same-face collision: {a} / {b}" for a, b in same_face)
 
+    effective = effective_inner_entries(model, base, new)
+    ui_entries = [entry for entry in effective if entry["frame"] == "ui-inner"]
+    rf_entries = [entry for entry in effective if entry["frame"] == "rf-inner"]
+    intentional_mates = {
+        frozenset(pair) for pair in model["mechanical_retention"].get("intentional_opposing_mates", [])
+    }
     cross = []
-    for entry in new:
-        item, b = entry["item"], entry["bbox"]
-        if item["frame"] not in {"ui-inner", "rf-inner"}:
-            continue
-        opposite = "rf-inner" if item["frame"] == "ui-inner" else "ui-inner"
-        for row in base["rows"]:
-            if row["source_frame"] != opposite or not overlaps(b, row["world_bbox_mm"]):
+    mated = []
+    for ui_entry in ui_entries:
+        for rf_entry in rf_entries:
+            if not overlaps(ui_entry["bbox"], rf_entry["bbox"]):
                 continue
-            if row["instance"] in replaced:
+            gap = z_clearance(ui_entry["bbox"], rf_entry["bbox"])
+            pair = frozenset((ui_entry["id"], rf_entry["id"]))
+            if pair in intentional_mates:
+                mated.append(
+                    {"ui": ui_entry["id"], "rf": rf_entry["id"], "overlap_mm": round(-gap, 3)}
+                )
                 continue
-            gap = z_clearance(b, row["world_bbox_mm"])
-            cross.append({"new": item["id"], "base": row["instance"], "clearance_mm": round(gap, 3)})
+            cross.append(
+                {
+                    "ui": ui_entry["id"],
+                    "rf": rf_entry["id"],
+                    "ui_origin": ui_entry["origin"],
+                    "rf_origin": rf_entry["origin"],
+                    "clearance_mm": round(gap, 3),
+                }
+            )
             if gap < minimum:
-                errors.append(f"opposing clearance {item['id']} / {row['instance']} is {gap:.3f} mm")
+                errors.append(
+                    f'opposing clearance {ui_entry["id"]} / {rf_entry["id"]} is {gap:.3f} mm'
+                )
     min_cross = min((x["clearance_mm"] for x in cross), default=None)
-    if model["current_h1_blockers"]:
-        errors.append("the accepted dual post-PCBA receiver architecture still exposes an H1 blocker")
     if len(model["current_h1_blockers_ru"]) != len(model["current_h1_blockers"]):
         errors.append("bilingual current H1 blockers are out of sync")
     if len(model["dependent_h1_work"]) != 1:
@@ -397,6 +685,12 @@ def audit(model: dict, base: dict) -> dict:
         errors.append("a downstream physical verification item is still owned by H1")
     mmcx_service = mmcx_service_audit(model, base, new)
     errors.extend(mmcx_service["errors"])
+    features = physical_feature_audit(model, effective)
+    errors.extend(features["errors"])
+    u219_contract = u219_contract_audit(model)
+    errors.extend(u219_contract["errors"])
+    cap_slot = cap_bus_slot_audit(model, base, mmcx_service)
+    errors.extend(cap_slot["errors"])
     silk = silkscreen_audit(model)
     errors.extend(silk["errors"])
     retention = model["mechanical_retention"]
@@ -412,16 +706,23 @@ def audit(model: dict, base: dict) -> dict:
     return {
         "schema_version": 1,
         "marker": model["marker"],
-        "status": "pass" if not errors else "fail",
+        "status": "fail" if errors else "pass_with_open_h1_blockers" if model["current_h1_blockers"] else "pass",
+        "structural_status": "pass" if not errors else "fail",
         "base_model": model["base_model"],
-        "new_fixed_body_count": len(fixed),
+        "new_fixed_body_count": sum(x["item"]["kind"] == "fixed_body" for x in new),
         "new_reserve_count": sum(x["item"]["kind"] == "reserve" for x in new),
+        "placement_drawing_reference_count": len(drawing_refs),
+        "duplicate_placement_drawing_references": duplicate_refs,
         "replaced_seed_instances": sorted(replaced),
         "same_face_collisions": same_face,
         "opposing_overlap_count": len(cross),
         "minimum_opposing_clearance_mm": min_cross,
         "required_opposing_clearance_mm": minimum,
         "opposing_overlaps": cross,
+        "intentional_opposing_mates": mated,
+        "physical_features": features,
+        "u219_contract": u219_contract,
+        "cap_bus_slot": cap_slot,
         "mmcx_service": mmcx_service,
         "silkscreen": silk,
         "mechanical_retention": retention,
@@ -552,7 +853,7 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
         f'<text x="{audit_x + 44}" y="274" font-family="sans-serif" font-size="11" fill="#526076">50 Ω RF PCB trace</text>',
         f'<line x1="{audit_x}" y1="294" x2="{audit_x + 34}" y2="294" stroke="#7c3aed" stroke-width="3"/>',
         f'<text x="{audit_x + 44}" y="298" font-family="sans-serif" font-size="11" fill="#526076">75 Ω CVBS PCB trace</text>',
-        f'<text x="{audit_x}" y="344" font-family="sans-serif" font-size="15" font-weight="700" fill="#166534">H1 engineering blockers: none</text>',
+        f'<text x="{audit_x}" y="344" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#b42318">H1 mock-up blockers: {len(model["current_h1_blockers"])} · structural audit {result["structural_status"]}</text>',
     ])
     y = 370
     for gate in model["current_h1_blockers"]:
@@ -618,6 +919,9 @@ def render_external_svg(model: dict) -> str:
     ).replace(
         "Text on a PCB face but outside component outlines is intended silkscreen; text outside PCB faces or inside outlines is drawing annotation.",
         "Current R2 exterior. PCB-face free text is silkscreen; drawing notes and arrows are annotations. H1 remains in progress.",
+    ).replace(
+        "M5Stack U214 · installed worst-case · 84×24 mm",
+        "Cap-Bus slot · U214 / U219 · 84×24 mm",
     )
     scale = 3.7
     front = (80.0, 150.0)
@@ -858,6 +1162,14 @@ def complete_inner_rows(model: dict, base: dict, source_table: dict, result: dic
     return sorted(rows, key=lambda row: (row["frame"], row["bbox"]["y"][0], row["bbox"]["x"][0], row["id"]))
 
 
+def located_physical_features(model: dict, frame: str) -> list[dict]:
+    """Return drawable non-component geometry; unresolved copper stays a gate."""
+    return [
+        feature for feature in model.get("physical_features", [])
+        if feature["frame"] == frame and feature.get("world_bbox_mm") is not None
+    ]
+
+
 def r2_antenna_topology(model: dict, rows: list[dict]) -> dict:
     """Return the one truthful R2 antenna-media model used by every inner view.
 
@@ -1026,6 +1338,17 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
         out.append(f'<rect x="{origin[0]:.1f}" y="{origin[1]:.1f}" width="{board_w*scale:.1f}" height="{board_h*scale:.1f}" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>')
         for hole_x, hole_y in legacy.HOLES:
             out.append(f'<circle cx="{sx(origin,hole_x):.1f}" cy="{sy(origin,hole_y):.1f}" r="{legacy.MOUNT_KEEPOUT_R*scale:.1f}" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>')
+        for feature in located_physical_features(model, frame):
+            box = feature["world_bbox_mm"]
+            feature_w = box["x"][1] - box["x"][0]
+            feature_h = box["y"][1] - box["y"][0]
+            stroke = "#dc2626" if feature["kind"] == "keepout" else "#7c3aed"
+            out.append(
+                f'<rect x="{sx(origin,box["x"][0],feature_w):.2f}" y="{sy(origin,box["y"][0]):.2f}" '
+                f'width="{feature_w*scale:.2f}" height="{feature_h*scale:.2f}" rx="2" fill="{stroke}" '
+                f'fill-opacity="0.06" stroke="{stroke}" stroke-width="1.2" stroke-dasharray="5 3" '
+                f'data-physical-feature="{esc(feature["id"])}" data-feature-kind="{feature["kind"]}"/>'
+            )
 
     topology = r2_antenna_topology(model, rows)
     out.append('<g id="antenna-pcb-topology" data-topology-source="r2" data-route-state="pre-ecad-topology-only">')
@@ -1121,7 +1444,7 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
     out.extend(
         [
             t(30, 720, f'Numbered registered bodies · {len(rows)} total', 17, "bold"),
-            t(410, 720, f'R2 machine audit: zero same-face collisions · {result["minimum_opposing_clearance_mm"]:.2f} mm minimum opposing gap', 12, "bold", colour="#166534"),
+            t(410, 720, f'R2 structural audit: pass · {len(model["current_h1_blockers"])} open H1 geometry gates · {result["minimum_opposing_clearance_mm"]:.2f} mm minimum opposing gap', 12, "bold", colour="#166534"),
         ]
     )
     column_width = 460
@@ -1147,7 +1470,7 @@ def render_component_legend_svg(model: dict, base: dict, source_table: dict, res
     width = 1900
     column_width = 465
     row_height = 50
-    first_y = 126
+    first_y = 212
     height = first_y + slots * row_height + 55
 
     def text(x: float, y: float, value: str, size=10, weight="normal", colour="#172033") -> str:
@@ -1162,9 +1485,20 @@ def render_component_legend_svg(model: dict, base: dict, source_table: dict, res
         f'data-view="numbered-component-legend">',
         f'<rect width="{width}" height="{height}" fill="#ffffff"/>',
         text(30, 42, f'Leshy2 · {model["marker"]} · numbered component legend', 24, "bold"),
-        text(30, 72, f'{len(rows)} drawing references · MPN or explicit physical reserve · role in the finished device', 12, colour="#526076"),
-        text(30, 100, 'Blue: explicit R2 placement · grey: retained registered body · orange: physical reserve', 11, colour="#526076"),
+        text(30, 72, f'{len(rows)} unique drawing references · MPN or explicit physical reserve · role in the target device', 12, colour="#526076"),
+        text(30, 100, 'Bodies — blue: R2 placement · grey: retained register · orange: physical reserve', 11, colour="#526076"),
+        text(30, 126, 'Non-component geometry — red: exact PTH keepout · violet: bounded placement island', 11, colour="#526076"),
     ]
+    feature_y = 150
+    for feature in model.get("physical_features", []):
+        location = feature.get("world_bbox_mm")
+        location_text = (
+            f'X {location["x"][0]:.3g}…{location["x"][1]:.3g} · Y {location["y"][0]:.3g}…{location["y"][1]:.3g} mm'
+            if location else "UNLOCATED — explicit H1 geometry gate"
+        )
+        colour = "#dc2626" if feature["kind"] == "keepout" else "#7c3aed" if location else "#9a3412"
+        out.append(text(30, feature_y, f'{feature["id"]} · {feature["kind"]} · {location_text}', 9.0, "bold", colour))
+        feature_y += 17
     for index, row in enumerate(rows):
         column = index // slots
         slot = index % slots
@@ -1229,6 +1563,17 @@ def render_inner_face_svg(
         ])
     for hole_x, hole_y in legacy.HOLES:
         out.append(f'<circle cx="{sx(hole_x):.1f}" cy="{sy(hole_y):.1f}" r="{legacy.MOUNT_KEEPOUT_R*scale:.1f}" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>')
+    for feature in located_physical_features(model, frame):
+        box = feature["world_bbox_mm"]
+        feature_w = box["x"][1] - box["x"][0]
+        feature_h = box["y"][1] - box["y"][0]
+        stroke = "#dc2626" if feature["kind"] == "keepout" else "#7c3aed"
+        out.append(
+            f'<rect x="{sx(box["x"][0],feature_w):.2f}" y="{sy(box["y"][0]):.2f}" '
+            f'width="{feature_w*scale:.2f}" height="{feature_h*scale:.2f}" rx="2" fill="{stroke}" '
+            f'fill-opacity="0.06" stroke="{stroke}" stroke-width="1.4" stroke-dasharray="6 4" '
+            f'data-physical-feature="{html.escape(feature["id"])}" data-feature-kind="{feature["kind"]}"/>'
+        )
 
     topology = r2_antenna_topology(model, all_rows)
     out.append('<g id="antenna-pcb-topology" data-topology-source="r2" data-route-state="pre-ecad-topology-only">')
@@ -1340,6 +1685,11 @@ def render_inner_face_svg(
             text(590, key_tail_y+62, "explicit R2 placement", 10, colour="#526076"),
             f'<rect x="550" y="{key_tail_y+80:.1f}" width="28" height="18" fill="#fff7ed" stroke="#ea580c" stroke-dasharray="5 3"/>',
             text(590, key_tail_y+94, "controlled physical reserve", 10, colour="#526076"),
+            f'<rect x="550" y="{key_tail_y+112:.1f}" width="28" height="18" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-dasharray="5 3"/>',
+            text(590, key_tail_y+126, "placement island; outline is not a component", 10, colour="#526076"),
+            f'<rect x="550" y="{key_tail_y+144:.1f}" width="28" height="18" fill="#dc2626" fill-opacity="0.06" stroke="#dc2626" stroke-dasharray="5 3"/>',
+            text(590, key_tail_y+158, "exact keepout; must remain empty", 10, colour="#526076"),
+            text(note_x, key_tail_y+188, "U219 printed pickup loop: UNLOCATED H1 gate; no invented outline.", 10, "bold", colour="#9a3412"),
             text(note_x, 1000, "The complete numbered register remains generated for machine review.", 10, colour="#526076"),
             text(note_x, 1020, "The public page uses these two readable one-board maps.", 10, colour="#526076"),
             '</svg>',
@@ -1349,30 +1699,36 @@ def render_inner_face_svg(
 
 
 def render_inner_sections_svg(model: dict, base: dict, source_table: dict, result: dict) -> str:
-    """Render true X/Z cuts through the R2 Airband/power and FPV zones."""
+    """Render true X/Z cuts through Cap-Bus, Airband/power and FPV zones."""
     rows = complete_inner_rows(model, base, source_table, result)
     board_w, _board_h = model["board_mm"]
-    cuts = ((65.0, "A–A · Airband / 3V3_MAIN"), (101.0, "B–B · analog FPV / service"))
-    x_scale = 6.8
-    z_scale = 20.0
-    panel_w = 700
-    top = 150.0
-    height = 1000
+    cuts = (
+        (29.0, "A–A · Cap-Bus / U219 host islands", True),
+        (65.0, "B–B · Airband / 3V3_MAIN", False),
+        (101.0, "C–C · analog FPV / service", False),
+    )
+    x_scale = 5.4
+    z_scale = 14.0
+    panel_w = 660
+    width = 2020
+    top = 135.0
+    legend_y = 735
+    height = 1390
     esc = html.escape
 
     def t(x: float, y: float, value: str, size=10, weight="normal", anchor="start", colour="#172033") -> str:
         return f'<text x="{x:.1f}" y="{y:.1f}" font-family="sans-serif" font-size="{size}" font-weight="{weight}" text-anchor="{anchor}" fill="{colour}">{esc(value)}</text>'
 
     out = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="{height}" viewBox="0 0 1500 {height}" data-marker="{esc(model["marker"])}" data-view="true-x-z-sections">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" data-marker="{esc(model["marker"])}" data-view="true-x-z-sections">',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         t(30, 38, f'Leshy2 — {model["marker"]} R2 inner sandwich sections', 24, "bold"),
-        t(30, 66, "Horizontal X and front-to-rear Z use registered millimetre scales. Each panel is one real Y cut; unrelated zones are never merged.", 12, colour="#526076"),
+        t(30, 66, "Horizontal X and front-to-rear Z use registered millimetre scales. U214 and U219 outlines are mutually exclusive profiles, never simultaneous hardware.", 12, colour="#526076"),
     ]
     legend_entries: list[tuple[int, dict]] = []
     reference = 1
-    for panel_index, (cut_y, title) in enumerate(cuts):
-        panel_x = 35 + panel_index * panel_w
+    for panel_index, (cut_y, title, show_cap_profiles) in enumerate(cuts):
+        panel_x = 25 + panel_index * panel_w
         ox = panel_x + 75
 
         def px(mm: float) -> float:
@@ -1393,6 +1749,27 @@ def render_inner_sections_svg(model: dict, base: dict, source_table: dict, resul
                 t(px(30.0), pz(10.6), "exact 11-mm board gap", 9, "bold", "middle", "#526076"),
             ]
         )
+        if show_cap_profiles:
+            for profile_name, colour, dash in (("u219", "#ea580c", ""), ("u214", "#2563eb", ' stroke-dasharray="6 4"')):
+                profile = model["cap_bus_slot"]["profiles"][profile_name]
+                box = profile["world_bbox_mm"]
+                out.append(
+                    f'<rect x="{px(box["x"][0]):.1f}" y="{pz(box["z"][0]):.1f}" '
+                    f'width="{(box["x"][1]-box["x"][0])*x_scale:.1f}" height="{(box["z"][1]-box["z"][0])*z_scale:.1f}" '
+                    f'rx="3" fill="{colour}" fill-opacity="0.05" stroke="{colour}" stroke-width="1.5"{dash} '
+                    f'data-cap-profile="{profile_name}" data-population="mutually-exclusive"/>'
+                )
+                out.append(t(px(37.5), pz(box["z"][1])-5, f'{profile_name.upper()} · {profile["envelope_mm"][2]:.3f} mm high', 8.0, "bold", "middle", colour))
+            out.append(t(panel_x, 690, "U219 is +4.413 mm vs U214, yet remains 1.0 mm below the battery holder and 1.3 mm below the rear maximum.", 8.7, "bold", colour="#9a3412"))
+        for feature in located_physical_features(model, "rf-inner"):
+            box = feature["world_bbox_mm"]
+            if not (box["y"][0] <= cut_y <= box["y"][1]):
+                continue
+            colour = "#dc2626" if feature["kind"] == "keepout" else "#7c3aed"
+            out.append(
+                f'<line x1="{px(box["x"][0]):.1f}" y1="{pz(15.45):.1f}" x2="{px(box["x"][1]):.1f}" y2="{pz(15.45):.1f}" '
+                f'stroke="{colour}" stroke-width="3" stroke-dasharray="5 3" data-physical-feature="{esc(feature["id"])}"/>'
+            )
         for row in rows:
             b = row["bbox"]
             if not (b["y"][0] <= cut_y <= b["y"][1]):
@@ -1419,16 +1796,16 @@ def render_inner_sections_svg(model: dict, base: dict, source_table: dict, resul
 
     out.extend(
         [
-            t(35, 610, "Bodies crossed by the two planes", 17, "bold"),
-            t(500, 610, f'Integrated audit: {result["minimum_opposing_clearance_mm"]:.2f} mm minimum opposing gap against {result["required_opposing_clearance_mm"]:.2f} mm required', 11, "bold", colour="#166534"),
+            t(35, legend_y-35, "Bodies crossed by the three planes", 17, "bold"),
+            t(500, legend_y-35, f'Structural audit: pass · {result["minimum_opposing_clearance_mm"]:.2f} mm minimum opposing gap · {len(model["current_h1_blockers"])} explicit H1 geometry gates remain', 11, "bold", colour="#166534"),
         ]
     )
-    per_col = math.ceil(len(legend_entries)/3)
+    per_col = math.ceil(len(legend_entries)/4)
     for index, (ref, row) in enumerate(legend_entries):
         col = index // per_col
         slot = index % per_col
-        lx = 35 + col*480
-        ly = 640 + slot*54
+        lx = 35 + col*490
+        ly = legend_y + slot*54
         out.append(t(lx, ly, f'{ref:02d}  {row["mpn"]}', 8.8, "bold"))
         role_lines = textwrap.wrap(row["role"], width=58, break_long_words=False, break_on_hyphens=False)[:2]
         for line_no, line in enumerate(role_lines):
@@ -1560,10 +1937,10 @@ def render_mmcx_service_svg(model: dict, result: dict) -> str:
         f'<path d="M{ox+axis_x*scale:.1f} {oy+axis_y*scale:.1f} H{ox+(axis_x-plug["strain_relief_run_max_mm"])*scale:.1f}" stroke="#0f766e" stroke-width="{plug["strain_relief_width_max_mm"]*scale:.1f}" stroke-linecap="round" data-part="controlled-right-angle-plug-envelope"/>',
         f'<circle cx="{ox+axis_x*scale:.1f}" cy="{oy+axis_y*scale:.1f}" r="{plug["connector_head_width_max_mm"]*scale/2:.1f}" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>',
         f'<text x="{ox+axis_x*scale:.1f}" y="{oy+16.0*scale:.1f}" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#1d4ed8">FPV RX · 5.8 GHz</text>',
-        f'<rect x="{ox-4.5*scale:.1f}" y="{oy+17*scale:.1f}" width="{84*scale:.1f}" height="{24*scale:.1f}" rx="8" fill="#fff7ed" fill-opacity="0.72" stroke="#ea580c" stroke-width="2" data-accessory="U214"/>',
-        f'<text x="{ox+37.5*scale:.1f}" y="{oy+30*scale:.1f}" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#9a3412">removable U214 Cap zone</text>',
+        f'<rect x="{ox-4.5*scale:.1f}" y="{oy+17*scale:.1f}" width="{84*scale:.1f}" height="{24*scale:.1f}" rx="8" fill="#fff7ed" fill-opacity="0.72" stroke="#ea580c" stroke-width="2" data-accessory-slot="cap-bus" data-population="u214-or-u219"/>',
+        f'<text x="{ox+37.5*scale:.1f}" y="{oy+30*scale:.1f}" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#9a3412">removable U214 / U219 Cap slot</text>',
         f'<text x="80" y="530" font-family="sans-serif" font-size="13" fill="#0f766e">✓ static RA plug to nearest SMA: {service["minimum_right_angle_plug_clearance_mm"]:.2f} mm · required {mount["minimum_u214_clearance_mm"]:.1f} mm</text>',
-        f'<text x="80" y="560" font-family="sans-serif" font-size="13" fill="#0f766e">✓ static RA plug to U214: {service["right_angle_plug_u214_clearance_mm"]:.2f} mm</text>',
+        f'<text x="80" y="560" font-family="sans-serif" font-size="13" fill="#0f766e">✓ static RA plug to shared Cap slot: {service["right_angle_plug_u214_clearance_mm"]:.2f} mm</text>',
         f'<text x="80" y="590" font-family="sans-serif" font-size="13" fill="#9a3412">△ dashed Ø12 is temporary finger approach; overlaps {", ".join(x["path"] for x in service["handling_envelope_overlaps"])} and closes ergonomically in H5</text>',
         '<text x="80" y="635" font-family="sans-serif" font-size="16" font-weight="700" fill="#172033">2 · TRUE SIDE SECTION</text>',
         '<rect x="250" y="730" width="460" height="28" fill="#f1f5f9" stroke="#334155" stroke-width="2"/>',
@@ -1572,7 +1949,7 @@ def render_mmcx_service_svg(model: dict, result: dict) -> str:
         f'<line x1="480" y1="{730-body_h*18:.1f}" x2="480" y2="625" stroke="#dc2626" stroke-width="2.5" marker-end="url(#redArrow)"/>',
         '<text x="530" y="665" font-family="sans-serif" font-size="12" fill="#dc2626">plug / antenna points out of the rear face</text>',
         '<text x="80" y="815" font-family="sans-serif" font-size="13" fill="#0f766e">✓ SMT-only: no pins or keepout enter the 11-mm interboard gap.</text>',
-        '<text x="80" y="845" font-family="sans-serif" font-size="12" fill="#526076">H5 verifies the received plug, U214 insertion, finger access, retention and antenna strain together.</text>',
+        '<text x="80" y="845" font-family="sans-serif" font-size="12" fill="#526076">H5 verifies the received plug, U214/U219 insertion, finger access, retention and antenna strain together.</text>',
         '</svg>',
     ])
     return "\n".join(out) + "\n"
@@ -1736,10 +2113,10 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
 def render_doc(model: dict, result: dict, ru: bool) -> str:
     """Publish the present product state without the design-decision diary."""
     if ru:
-        title = f'# {model["marker"]} · компоновка готового устройства'
+        title = f'# {model["marker"]} · рабочая компоновка целевого устройства'
         intro = (
-            "Текущая физическая модель двух плат 75×150 мм. Это проверяемый результат H1, "
-            "но ещё не разрешение начинать KiCad: инженерных блокеров не осталось, ожидается явное принятие полного мокапа."
+            "Текущая проверяемая физическая модель двух плат 75×150 мм, не завершённая компоновка и не разрешение начинать KiCad. "
+            "Структурный аудит проходит, но H1 остаётся открытым до закрытия перечисленных ниже geometry-gates U219, полного canonical-регистра и явного принятия мокапа."
         )
         outside = "## Что увидит пользователь"
         inside = "## Что находится внутри"
@@ -1752,32 +2129,34 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "Десять основных SMA разделены симметрично `5 + 5`; каждый радиотракт остаётся на плате своего разъёма.",
             "На передней плате пять коротких съёмных микрокоаксиальных перемычек соединяют IPEX/U.FL радиоисточников с платными U.FL; дальше до SMA идут локальные контролируемые PCB-тракты.",
             "На задней плате U.FL и съёмных RF-кабелей нет: voice и FM/SW идут локальными RF-трактами, AM/LW — отдельным высокоомным AMI-трактом, а Airband — через питаемую ветвь преобразования и селектор.",
-            "Отдельный вертикальный MMCX `FPV RX · 5.8 GHz` расположен ниже равномерного ряда из пяти задних SMA и над U214; ответный угловой штекер с кабелем уходит вдоль платы.",
+            "Отдельный вертикальный MMCX `FPV RX · 5.8 GHz` расположен ниже равномерного ряда из пяти задних SMA и над общим Cap-Bus-слотом; ответный угловой штекер с кабелем уходит вдоль платы.",
+            "В общий слот устанавливается ровно один модуль: U214 (84×24×15,287 мм) или optional U219 (84×24×19,7 мм). U219 выше на 4,413 мм, но остаётся на 1,0 мм ниже держателя батарей и на 1,3 мм ниже максимального заднего габарита.",
             "Все пользовательские подписи являются читаемой шелкографией; внутренние стороны плат шелкографии не содержат.",
             "На внешней стороне каждой платы печатаются стабильные role/revision `UI PCB · R2-EVT1 · REV A` и `RF/PWR PCB · R2-EVT1 · REV A`; изменяемый рабочий маркер H1-R2.xx на PCB не печатается.",
             "Три nRF24 полностью перенесены на переднюю плату вместе с буферами, safety-gate и отдельным `TLV1824PWR`.",
             "На задней плате находится взаимоисключающая post-PCBA-зона `K331 / AWM666V`, а `TVP5150AM1PBS` — на передней рядом с S3: через M1 проходит только один 75-омный CVBS, не 11-линейная LCD_CAM-шина.",
             "Основной K331 использует толерантную 14-pad посадку; точная посадка семиканального AWM666V вложена в ту же зону. Устанавливается ровно один модуль, без внутреннего U.FL или RF-кабеля.",
-            "FM/SW/AM/LW/Airband, CC1101, два voice-тракта и аудио локальны задней плате; S3 напрямую ведёт i8080-8, camera RX, кнопки, энкодер и USB.",
+            "FM/SW/AM/LW/Airband, CC1101, два voice-тракта и аудио локальны задней плате; S3 напрямую ведёт i8080-8, camera RX, энкодер и USB, а кнопки — через локальный TCA9539PWR.",
             "Экран физически развёрнут шлейфом к антенному торцу, как у ESP32-DIV; адаптер находится в верхней внутренней зоне, а firmware разворачивает изображение и touch на 180°. Шлейф не входит в зону LED, D-pad и боковых клавиш.",
         ]
         audit_lines = [
             f'Коллизии корпусов на одной стороне: `{len(result["same_face_collisions"])}`.',
             f'Минимальный встречный Z-зазор: `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
             "Резерв FPV увеличен до `30×24×8 мм`; C5 DBG10 перенесён рядом с S3 DBG10 и не пересекается ни с резервом, ни с соседними корпусами.",
-            f'FPV MMCX: корпус оставляет `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} мм` до ближайшего SMA; контролируемый угловой штекер — `{result["mmcx_service"]["minimum_right_angle_plug_clearance_mm"]:.2f} мм` до SMA и `{result["mmcx_service"]["right_angle_plug_u214_clearance_mm"]:.2f} мм` до U214. Ø12 — только временная зона пальцев и остаётся H5-проверкой.',
+            f'FPV MMCX: корпус оставляет `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} мм` до ближайшего SMA; контролируемый угловой штекер — `{result["mmcx_service"]["minimum_right_angle_plug_clearance_mm"]:.2f} мм` до SMA и `{result["mmcx_service"]["right_angle_plug_u214_clearance_mm"]:.2f} мм` до общего Cap-Bus-слота. Ø12 — только временная зона пальцев и остаётся H5-проверкой.',
             f'GPIO: передний RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["front_rp_gpio"]["free"]}`; задний RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["rear_rp_gpio"]["free"]}`. K331 RSSI официально помечен NC.',
             "M1: все 80 контактов распределены — 25 сигналов, 14 main-power, 2 AON, 25 возвратов и 14 NC-резервов.",
             "Механика M1: четыре 11,00-мм compression-stop, два противосдвиговых упора и независимые захваты плат; разъём не несёт ударную или изгибающую нагрузку.",
-            "Шелкография антенн: генератор подтвердил отсутствие пересечений с SMA/MMCX, кабелем FPV, U214, дисплеем и монтажными keep-out.",
+            "Шелкография антенн: генератор подтвердил отсутствие пересечений с SMA/MMCX, кабелем FPV, Cap-Bus-слотом, дисплеем и монтажными keep-out.",
+            f'Cap-Bus: mutually-exclusive U214/U219-профили и все восемь целевых зазоров проходят; пять активных U219-корпусов и их source-backed courtyards зарегистрированы, а прежний Cap-register, support-passive courtyards, NFC-loop и swept volume антенны остаются явными H1 gates ({len(model["current_h1_blockers"])}).',
             "Верхний display-adapter имеет ноль коллизий и 5,10 мм минимального встречного зазора; платный U.FL второго nRF24 сдвинут ниже адаптера с зазором 1,00 мм.",
         ]
         route_col = "Текущая доступность/маршрут"
     else:
-        title = f'# {model["marker"]} · finished-device placement'
+        title = f'# {model["marker"]} · working target-device placement'
         intro = (
-            "Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, "
-            "not authorization to start KiCad: physical-body placement is coherent, while mock-up acceptance and the explicit R2 pin-proof gates below remain open."
+            "Current verifiable physical model of the two 75 × 150 mm PCBs; it is neither complete placement nor authorization to start KiCad. "
+            "The structural audit passes, while H1 remains open until the listed U219 geometry gates, complete canonical register and explicit mock-up acceptance are closed."
         )
         outside = "## What the user sees"
         inside = "## What is inside"
@@ -1790,24 +2169,26 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "Ten main SMA ports are split symmetrically `5 + 5`; every radio path remains on the PCB that carries its connector.",
             "On the front PCB, five short removable microcoax jumpers connect the radio-source IPEX/U.FL sockets to board U.FL sockets; controlled board-local PCB paths continue from there to SMA.",
             "The rear PCB has no U.FL or removable RF cable: voice and FM/SW use board-local RF paths, AM/LW uses a separate high-impedance AMI path, and Airband uses the powered conversion branch and selector.",
-            "The separate vertical `FPV RX · 5.8 GHz` MMCX sits below the evenly pitched five-SMA rear row and above U214; its mating right-angle plug and cable run parallel to the PCB.",
+            "The separate vertical `FPV RX · 5.8 GHz` MMCX sits below the evenly pitched five-SMA rear row and above the shared Cap-Bus slot; its mating right-angle plug and cable run parallel to the PCB.",
+            "Exactly one accessory occupies the common slot: U214 (84 × 24 × 15.287 mm) or optional U219 (84 × 24 × 19.7 mm). U219 is 4.413 mm taller, yet remains 1.0 mm below the battery holder and 1.3 mm below the selected rear maximum.",
             "All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.",
             "Each outer face prints a stable board role/revision — `UI PCB · R2-EVT1 · REV A` and `RF/PWR PCB · R2-EVT1 · REV A`; the changing H1-R2.xx work marker is never printed on a PCB.",
             "All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.",
             "A mutually exclusive post-PCBA `K331 / AWM666V` bay remains rear-local while `TVP5150AM1PBS` moves beside S3: M1 carries one 75-ohm CVBS signal, not the 11-line LCD_CAM bus.",
             "Primary K331 uses a tolerant 14-pad land; the exact seven-channel AWM666V land nests in the same bay. Exactly one module is installed, without an internal U.FL or RF cable.",
-            "FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, camera RX, buttons, encoder and USB.",
+            "FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, camera RX, encoder and USB, with buttons on its local TCA9539PWR path.",
             "The panel is physically turned with its flex toward the antenna edge, as on ESP32-DIV; the adapter occupies the upper inner zone and firmware rotates display output and touch by 180°. The tail stays out of the LED, D-pad and side-key zone.",
         ]
         audit_lines = [
             f'Same-face body collisions: `{len(result["same_face_collisions"])}`.',
             f'Minimum opposing Z clearance: `{result["minimum_opposing_clearance_mm"]:.2f} mm` against `{result["required_opposing_clearance_mm"]:.2f} mm` required.',
             "The FPV reserve is enlarged to `30 × 24 × 8 mm`; C5 DBG10 is relocated beside S3 DBG10 and intersects neither the bay nor adjacent bodies.",
-            f'FPV MMCX: the jack body leaves `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} mm` to the nearest SMA; the controlled right-angle plug leaves `{result["mmcx_service"]["minimum_right_angle_plug_clearance_mm"]:.2f} mm` to SMA and `{result["mmcx_service"]["right_angle_plug_u214_clearance_mm"]:.2f} mm` to U214. Ø12 is only a temporary finger-approach zone and remains an H5 ergonomic check.',
+            f'FPV MMCX: the jack body leaves `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} mm` to the nearest SMA; the controlled right-angle plug leaves `{result["mmcx_service"]["minimum_right_angle_plug_clearance_mm"]:.2f} mm` to SMA and `{result["mmcx_service"]["right_angle_plug_u214_clearance_mm"]:.2f} mm` to the common Cap-Bus slot. Ø12 is only a temporary finger-approach zone and remains an H5 ergonomic check.',
             f'GPIO: front RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["front_rp_gpio"]["free"]}` free; rear RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["rear_rp_gpio"]["free"]}` free. K331 RSSI is officially marked NC.',
             "M1: all 80 contacts are assigned — 25 signals, 14 main-power, 2 AON, 25 returns and 14 NC reserves.",
             "M1 mechanics: four 11.00-mm compression stops, two anti-shear datums and independent PCB capture; the connector carries no impact or bending load.",
-            "Antenna silkscreen: the generator proves no overlap with SMA/MMCX bodies, the installed FPV cable, U214, the display or mounting keep-outs.",
+            "Antenna silkscreen: the generator proves no overlap with SMA/MMCX bodies, the installed FPV cable, the Cap-Bus slot, the display or mounting keep-outs.",
+            f'Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; five active U219 bodies and their source-backed courtyards are registered, while the legacy Cap register, support-passive courtyards, NFC loop and antenna swept volume remain explicit H1 gates ({len(model["current_h1_blockers"])}).',
             "The upper display adapter has zero body collisions and 5.10 mm minimum opposing clearance; the second nRF24 board U.FL moves below it with 1.00 mm planar clearance.",
         ]
         route_col = "Current availability/route"

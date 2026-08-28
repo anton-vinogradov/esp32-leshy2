@@ -1,4 +1,4 @@
-# Состояния питания Leshy2
+# Состояния питания Leshy2 · historical R1
 
 [English](power-state-register.md) · [На главную](../README.ru.md) · [Питание](power-architecture.ru.md) · [Методы](verification-methods.ru.md)
 

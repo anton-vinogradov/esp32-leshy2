@@ -320,9 +320,9 @@ def build() -> tuple[dict[Path, str], dict]:
         "next": {"stage": "H3.3.5", "action": "consolidate display, audio, IR and battery analog corner evidence"},
     }
 
-    en = f"""# Battery sensing and thermal analog verification
+    en = f"""# Battery sensing and thermal analog verification · historical R1
 
-H3.3.4 is reviewed with `{len(checks)}` machine checks and four source corrections. No component or BOM-cost change is required. The exact current marker is `H3.6.1`: worst-case board, battery and enclosure thermal model.
+H3.3.4 is reviewed with `{len(checks)}` machine checks and four source corrections. No component or BOM-cost change is required. The historical R1 progression marker is `H3.6.1`: worst-case board, battery and enclosure thermal model.
 
 ## What is now fixed
 
@@ -352,9 +352,9 @@ The midpoint divider adds only `{q(imbalance_48h_mah, '0.001')}` mAh of lower-ce
 
 Sensor bonding and response, ADC calibration, received-cell identity, actual charger thresholds, balance heat and every open/short/reversed/imbalanced fault remain physical HIL gates. The generated evidence is [`H3-VRF34-battery-analog.json`](../hardware/verification/generated/H3-VRF34-battery-analog.json).
 """
-    ru = f"""# Проверка battery sensing и температурных analog-порогов
+    ru = f"""# Проверка battery sensing и температурных analog-порогов · historical R1
 
-`H3.3.4` проверено: `{len(checks)}` машинных проверок и четыре исправления по первичным источникам. Компоненты и стоимость BOM не изменились. Точный текущий маркер — `H3.6.1`, worst-case thermal model плат, аккумуляторов и корпуса.
+`H3.3.4` проверено: `{len(checks)}` машинных проверок и четыре исправления по первичным источникам. Компоненты и стоимость BOM не изменились. Исторический маркер прогресса R1 — `H3.6.1`, worst-case thermal model плат, аккумуляторов и корпуса.
 
 ## Что теперь зафиксировано
 

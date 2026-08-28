@@ -1,4 +1,4 @@
-# Extended operation and self-test
+# Extended operation and self-test · historical R1
 
 `H3.6.3` is reviewed. The product promises no battery autonomy or uptime in hours: long operation uses USB-PD, while 24 and 48 hours remain H8 validation durations.
 

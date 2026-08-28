@@ -37,7 +37,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H1-R2.30", roadmap["current_substep"])
+        self.assertEqual("H1-R2.31", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -473,7 +473,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         for token in (
             "HMX035CTFT-001",
-            "M5Stack U214",
+            "Cap-Bus slot · U214 / U219",
             "Keystone 1048P",
             "WI-FI/BLE",
             "WI-FI/15.4",
@@ -1302,7 +1302,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         for doc_name in ("docs/hardware.md", "docs/hardware.ru.md"):
             public_doc = (GENERATOR.REPO_ROOT / doc_name).read_text(encoding="utf-8")
             self.assertIn("h0-r2-functional-architecture.svg", public_doc, doc_name)
-            self.assertIn("45 used / 3 free" if doc_name.endswith("hardware.md") else "45 занято / 3 свободно", public_doc)
+            self.assertIn("44 used / 4 free" if doc_name.endswith("hardware.md") else "44 занято / 4 свободно", public_doc)
 
     def test_target_readmes_remain_product_sites_not_review_ledgers(self):
         for readme_name in ("README.md", "README.ru.md"):

@@ -366,7 +366,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
     table = "\n".join(rows)
     if russian:
-        title = "# Постоянный бюджет питания"
+        title = "# Постоянный бюджет питания · historical R1"
         nav = "[English](dc-power-budget.md) · [На главную](../README.ru.md) · [Состояния](power-state-register.ru.md) · [Методы](verification-methods.ru.md)"
         intro = "H3.1.2 привязал численный ток к каждому из 50 профилей нагрузки. Для worst case оба ESP резервируются по опубликованному RF-пику, три nRF24 действительно считаются одновременно, а типовые значения не доказывают прохождение."
         headers = "| Шина | Худшая нагрузка | Минимум железа | Запас железа | До принятого рабочего envelope | Худший профиль |\n|---|---:|---:|---:|---:|---|"
@@ -374,10 +374,10 @@ def render_doc(manifest: dict, russian: bool) -> str:
         finding = "Оба внешних eFuse получили серийный `Yageo RC0402FR-071K82L` 1,82 кΩ вместо 2,21 кΩ. Гарантированный минимум порога вырос с 1,358 до 1,632 А: запас над портом 1,25 А теперь 30,6%, короткий 2-А импульс сохранён. Цена на проверенном тираже 100 не изменилась."
         boundary_h = "## Что результат означает"
         boundary = "Все четыре DC-шины проходят правило 25% по минимальному hardware threshold. Самый тесный рабочий envelope — `3V3_MAIN`: консервативные 2,462 А оставляют 38 мА до принятого требования 2,5 А, но 30,0% до гарантированного 3,2-А порога защиты. Поэтому H3.2 обязан проверить ступень нагрузки, а H8 — измерить реальную сумму."
-        marker = "**Статус:** `H3.1.2` завершено и проверено; текущий точный маркер — `H3.6.1`."
+        marker = "**Статус:** `H3.1.2` завершено и проверено; исторический маркер прогресса R1 — `H3.6.1`."
         evidence = "[Полный машинный расчёт](../hardware/verification/generated/H3-VRF12-dc-budget.json)."
     else:
-        title = "# Steady DC power budget"
+        title = "# Steady DC power budget · historical R1"
         nav = "[Русский](dc-power-budget.ru.md) · [Home](../README.md) · [States](power-state-register.md) · [Methods](verification-methods.md)"
         intro = "H3.1.2 attaches a numeric current to all 50 load profiles. Both ESP devices reserve their published RF peak in the worst case, all three nRF24 radios are genuinely concurrent, and typical values never prove a pass."
         headers = "| Rail | Worst load | Hardware minimum | Hardware reserve | Accepted-envelope margin | Worst profile |\n|---|---:|---:|---:|---:|---|"
@@ -385,7 +385,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         finding = "Both exposed-port eFuses now use the active `Yageo RC0402FR-071K82L` 1.82-kohm resistor instead of 2.21 kohm. The guaranteed-low threshold rises from 1.358 to 1.632 A: steady reserve above the 1.25-A port is 30.6%, while the bounded 2-A pulse remains available. The checked quantity-100 price is unchanged."
         boundary_h = "## What this proves"
         boundary = "All four DC rails pass the 25% rule against the minimum hardware threshold. `3V3_MAIN` has the tightest accepted operating envelope: the conservative 2.462-A load leaves 38 mA to the accepted 2.5-A requirement but 30.0% to the guaranteed 3.2-A protection threshold. H3.2 must therefore prove the load step and H8 must measure the real sum."
-        marker = "**Status:** `H3.1.2` is complete and reviewed; the exact current marker is `H3.6.1`."
+        marker = "**Status:** `H3.1.2` is complete and reviewed; the historical R1 progression marker is `H3.6.1`."
         evidence = "[Complete machine calculation](../hardware/verification/generated/H3-VRF12-dc-budget.json)."
     return "\n\n".join((title, nav, intro, headers + "\n" + table, finding_h, finding, boundary_h, boundary, marker, evidence)) + "\n"
 

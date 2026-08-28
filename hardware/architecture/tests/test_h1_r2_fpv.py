@@ -29,10 +29,11 @@ class H1R2FPVTest(unittest.TestCase):
         self.assertIn("GPIO32", pins[1])
         self.assertIn("GPIO33", pins[2])
         self.assertIn("GPIO34", pins[3])
-        self.assertIn("GPIO30", pins[5])
+        self.assertIn("GPIO28", pins[5])
         self.assertIn("No connect", pins[6])
         self.assertIn("RSSI (NC)", self.model["receiver"]["pinout"][5]["name"])
-        self.assertIn("GPIO31", self.model["receiver"]["decoder_lock_evidence"])
+        self.assertIn("S3", self.model["receiver"]["decoder_lock_evidence"])
+        self.assertIn("M1 carries no dedicated lock net", self.model["receiver"]["decoder_lock_evidence"])
 
     def test_same_board_rf_path_has_no_ufl(self):
         path = " ".join(self.model["signal_path"])

@@ -231,9 +231,9 @@ def build() -> tuple[dict[Path, str], dict]:
         "next": {"stage": "H3.5.2", "action": "derive RF corridors, keepouts, reference-plane and return-current constraints"},
     }
 
-    en = f"""# RF feed constraints
+    en = f"""# RF feed constraints · historical R1
 
-`H3.5.1` is reviewed: `{len(checks)}` machine checks cover all ten external antenna ports and leave no analytical finding open. The exact current marker is `H3.6.1`.
+`H3.5.1` is reviewed: `{len(checks)}` machine checks cover all ten external antenna ports and leave no analytical finding open. The historical R1 progression marker is `H3.6.1`.
 
 ## Per-path contract
 
@@ -254,9 +254,9 @@ Known component loss is not mistaken for complete-feed loss. For example, the CC
 
 Machine evidence: [`H3-VRF51-rf-feed-constraints.json`](../hardware/verification/generated/H3-VRF51-rf-feed-constraints.json).
 """
-    ru = f"""# Ограничения антенных трактов
+    ru = f"""# Ограничения антенных трактов · historical R1
 
-`H3.5.1` проведён ревью: `{len(checks)}` машинных checks охватывают все десять внешних антенных портов, незакрытых аналитических findings нет. Точный текущий маркер — `H3.6.1`.
+`H3.5.1` проведён ревью: `{len(checks)}` машинных checks охватывают все десять внешних антенных портов, незакрытых аналитических findings нет. Исторический маркер прогресса R1 — `H3.6.1`.
 
 ## Контракт каждого тракта
 

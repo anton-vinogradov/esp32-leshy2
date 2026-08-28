@@ -1,4 +1,4 @@
-# USB ↔ pack handover and brownout
+# USB ↔ pack handover and brownout · historical R1
 
 [Русский](power-handover.ru.md) · [Home](../README.md) · [H3.2 result](power-transition-result.md)
 

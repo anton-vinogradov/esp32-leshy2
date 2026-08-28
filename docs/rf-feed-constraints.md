@@ -1,6 +1,6 @@
-# RF feed constraints
+# RF feed constraints · historical R1
 
-`H3.5.1` is reviewed: `75` machine checks cover all ten external antenna ports and leave no analytical finding open. The exact current marker is `H3.6.1`.
+`H3.5.1` is reviewed: `75` machine checks cover all ten external antenna ports and leave no analytical finding open. The historical R1 progression marker is `H3.6.1`.
 
 ## Per-path contract
 

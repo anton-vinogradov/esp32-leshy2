@@ -2,6 +2,8 @@
   "schema_version": 1,
   "id": "LESHY2-R2-AUTHORITY-1",
   "current_authority": "hardware/architecture/h0-r2-rebaseline.json",
+  "current_pin_authority": "hardware/architecture/h1-r2-dual-rp-pinout.json",
+  "current_physical_authority": "hardware/product-design/h1-r2-placement.json",
   "current_r2_h2_export": false,
   "r2_kicad_started": false,
   "historical_r1_inputs": [
@@ -13,6 +15,7 @@
     "hardware/ecad/generated/H2-UI40-interboard-m1.json",
     "hardware/ecad/generated/H2-RF40-interboard-m1.json"
   ],
-  "rule": "G2F/H2/KiCad is retained as reviewed historical single-RP R1 evidence only. It cannot authorize current R2 firmware, R2 KiCad, fabrication or ordering until a new generated H2 export contains all six H0 domains, distinct front Hub RP and rear RF RP identities, and the exact H0 80-contact M1 map.",
-  "exact_rp_gpio_order_status": "open; H0 defines bounded functional groups only and this gate must not invent per-signal GPIO order"
+  "rule": "G2F/H2/KiCad is retained as reviewed historical single-RP R1 evidence only. Current H1-R2.31 closes the exact GPIO0..47 order for both RP domains and their five M1 signals and joins the exact C5 module-pad/IO-mux electrical contract without authorizing KiCad. R2 H2, firmware pin authority, fabrication and ordering remain blocked until physical H1 is reviewed with zero blockers, the live FSUSB42MUX/C11355 production route and exact service-VBUS detector/latch MPN close, and a new generated export contains all six H0 domains, both exact RP maps and the exact H0 80-contact M1 map.",
+  "exact_rp_gpio_order_status": "closed as H1-R2.31 working authority; not yet a generated R2 H2 export",
+  "exact_c5_mux_status": "electrical contract closed; C5 production gates open and fail-closed for live FSUSB42MUX/C11355 route plus exact service-VBUS detector/latch MPN before R2 H2"
 }

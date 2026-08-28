@@ -1,6 +1,6 @@
-# Consolidated digital-interface result
+# Consolidated digital-interface result · historical R1
 
-`H3.4` is reviewed: all three leaf packages and `171` leaf checks pass, followed by `28` cross-domain consolidation checks. No analytical finding remains open. The exact current marker is `H3.6.1`.
+`H3.4` is reviewed: all three leaf packages and `171` leaf checks pass, followed by `28` cross-domain consolidation checks. No analytical finding remains open. The historical R1 progression marker is `H3.6.1`.
 
 ## Closed analytical envelope
 

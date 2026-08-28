@@ -6,7 +6,7 @@
 
 ## Принятый исходный материал
 
-Ревизия H2 с независимыми SA818S-V/U принята 26 августа 2026 года и привязана к исходникам SHA-256. Заморожено 44 файла; изменение любого из них повторно открывает затронутые проверки.
+Ревизия H2 с независимыми SA818S-V/U принята 26 августа 2026 года и привязана к неизменяемому git snapshot `afe48e788adeba9fdfc9c84412f8657fe297308b` и SHA-256 его 44 файлов. Текущие R2-файлы не подменяют исторические входы; любое развитие проходит отдельную R2-цепочку H2/H3.
 
 ## Матрица проверки
 
@@ -29,6 +29,6 @@
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | extended-operation and configurable self-test policy without a runtime claim | H8 24/48-hour qualified-USB endurance and battery-to-protected-cutoff measurements |
 
-**Исторический маркер:** `H3.0.1-R1`. **Текущий аппаратный маркер:** `H1-R2.30`; R2 должна пройти собственный H2/H3. Закупка, PCB layout и fabrication не разрешены.
+**Исторический маркер:** `H3.0.1-R1`. **Текущий аппаратный маркер:** `H1-R2.31`; R2 должна пройти собственный H2/H3. Закупка, PCB layout и fabrication не разрешены.
 
 [Машинный freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

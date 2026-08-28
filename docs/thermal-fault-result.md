@@ -1,6 +1,6 @@
-# Thermal, fault and extended-operation result
+# Thermal, fault and extended-operation result · historical R1
 
-H3.6 is closed: three leaf packages contribute `70` passing checks and this consolidation adds `24` cross-domain checks. All `30` single-fault cases finish contained or with no admission; no analytical finding or policy decision remains open. The exact current marker is `H3.7.1`.
+H3.6 is closed: three leaf packages contribute `70` passing checks and this consolidation adds `24` cross-domain checks. All `30` single-fault cases finish contained or with no admission; no analytical finding or policy decision remains open. The historical R1 progression marker is `H3.7.1`.
 
 The engineering ambient target is `0 to 35 °C`, not a published guarantee. Only `SUPPORT_IDLE` with one active top-level signal group may proceed toward sustained-profile qualification; `SUPPORT_WORST`, continuous or unleased TX, unknown accessories and unreadable safety sensors are excluded. H6 must meet the final thermal and route-separation constraints, and H8 must measure the product.
 

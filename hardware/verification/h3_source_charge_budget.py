@@ -313,7 +313,7 @@ def build() -> tuple[dict[Path, str], dict]:
 def render_doc(manifest: dict, russian: bool) -> str:
     s = manifest["summary"]
     if russian:
-        title = "# Источники, заряд, разряд и постоянные потери"
+        title = "# Источники, заряд, разряд и постоянные потери · historical R1"
         nav = "[English](source-charge-budget.md) · [На главную](../README.ru.md) · [DC-шины](dc-power-budget.ru.md) · [Состояния](power-state-register.ru.md)"
         intro = f"H3.1.3 применил бюджет шин ко всем `{s['states_evaluated']}` состояниям. Между источником и SYS и между SYS и каждой активной шиной независимо заложено не менее 85% эффективности."
         results_h = "## Результат"
@@ -330,10 +330,10 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         boundary_h = "## Граница доказательства"
         boundary = "Это закрывает постоянный энергетический envelope. Числа потерь становятся входом H3.6; переходы, пусковые токи, DPM и USB↔pack handover проверяются в H3.2, а реальные КПД и токи — на H8."
-        marker = "**Статус:** `H3.1.3` завершено и проверено; текущий точный маркер — `H3.6.1`."
+        marker = "**Статус:** `H3.1.3` завершено и проверено; исторический маркер прогресса R1 — `H3.6.1`."
         evidence = "[Полный машинный расчёт](../hardware/verification/generated/H3-VRF13-source-charge-budget.json)."
     else:
-        title = "# Source, charge, discharge and steady losses"
+        title = "# Source, charge, discharge and steady losses · historical R1"
         nav = "[Русский](source-charge-budget.ru.md) · [Home](../README.md) · [DC rails](dc-power-budget.md) · [States](power-state-register.md)"
         intro = f"H3.1.3 applies the rail budget to all `{s['states_evaluated']}` states. At least 85% efficiency is independently reserved from source to SYS and from SYS to each enabled rail."
         results_h = "## Result"
@@ -350,7 +350,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         boundary_h = "## Proof boundary"
         boundary = "This closes the steady energy envelope. Recorded losses feed H3.6; transients, inrush, DPM and USB↔pack handover remain H3.2, while measured efficiency and current remain H8."
-        marker = "**Status:** `H3.1.3` is complete and reviewed; the exact current marker is `H3.6.1`."
+        marker = "**Status:** `H3.1.3` is complete and reviewed; the historical R1 progression marker is `H3.6.1`."
         evidence = "[Complete machine calculation](../hardware/verification/generated/H3-VRF13-source-charge-budget.json)."
     return "\n\n".join((title, nav, intro, results_h, results, admission_h, admission, boundary_h, boundary, marker, evidence)) + "\n"
 

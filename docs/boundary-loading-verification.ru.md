@@ -1,6 +1,6 @@
-# Loading M1, expansions и service boundaries
+# Loading M1, expansions и service boundaries · historical R1
 
-`H3.4.3` проверено: `49` машинных checks, незакрытых аналитических findings нет. Точный текущий маркер — `H3.6.1`.
+`H3.4.3` проверено: `49` машинных checks, незакрытых аналитических findings нет. Исторический маркер прогресса R1 — `H3.6.1`.
 
 ## Worst-case границы M1
 

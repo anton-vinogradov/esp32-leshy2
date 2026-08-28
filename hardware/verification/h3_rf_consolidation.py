@@ -113,9 +113,9 @@ def build() -> tuple[dict[Path, str], dict]:
         "next": {"stage": "H3.6.1", "action": "build the worst-case board, battery and enclosure thermal model"},
     }
 
-    en = f"""# RF verification result
+    en = f"""# RF verification result · historical R1
 
-`H3.5` is reviewed: three leaf packages contribute `{leaf_checks}` passing checks and this consolidation adds `{len(checks)}` cross-domain checks. No analytical finding remains open. The exact current marker is `H3.6.1`.
+`H3.5` is reviewed: three leaf packages contribute `{leaf_checks}` passing checks and this consolidation adds `{len(checks)}` cross-domain checks. No analytical finding remains open. The historical R1 progression marker is `H3.6.1`.
 
 The closed paper contract contains ten source-to-port paths, eight TX-capable paths, five removable microcoaxes, nine runtime signal groups and thirteen quiet-state contracts. VHF and UHF are independent physical feeds but one runtime group with hardware one-hot selection. Ordinary RF mainlines have feed/loss, corridor, plane and return rules; `RX-AM/LW` retains its separate high-impedance `19.500-pF` external-capacitance contract. Full 3×nRF24 remains mandatory in all four role mixes and all eight identity permutations.
 
@@ -123,9 +123,9 @@ This is a pre-layout result, not final RF performance. `{len(residual)}` physica
 
 Machine evidence: [`H3-VRF54-rf-consolidation.json`](../hardware/verification/generated/H3-VRF54-rf-consolidation.json).
 """
-    ru = f"""# Сводный результат RF-проверки
+    ru = f"""# Сводный результат RF-проверки · historical R1
 
-`H3.5` проведён ревью: три leaf-пакета дают `{leaf_checks}` проходящих checks, сведение добавляет `{len(checks)}` сквозных checks. Незакрытых аналитических findings нет. Точный текущий маркер — `H3.6.1`.
+`H3.5` проведён ревью: три leaf-пакета дают `{leaf_checks}` проходящих checks, сведение добавляет `{len(checks)}` сквозных checks. Незакрытых аналитических findings нет. Исторический маркер прогресса R1 — `H3.6.1`.
 
 Закрытый бумажный контракт содержит десять source-to-port трактов, восемь TX-capable трактов, пять съёмных microcoax, девять runtime signal groups и тринадцать quiet-state contracts. VHF и UHF физически независимы, но образуют одну runtime-группу с аппаратным one-hot выбором. Обычные RF-mainline имеют правила feed/loss, corridor, plane и return; `RX-AM/LW` сохраняет отдельный high-impedance бюджет внешней ёмкости `19,500 пФ`. Полные 3×nRF24 остаются обязательными во всех четырёх смесях и восьми перестановках ролей.
 

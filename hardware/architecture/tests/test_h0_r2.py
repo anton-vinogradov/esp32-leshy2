@@ -80,6 +80,29 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertIn("compression stops", m1["mechanical_load_path"])
         self.assertIn("electrical/alignment only", m1["mechanical_load_path"])
 
+    def test_interboard_carries_only_intentional_crossings_not_local_payloads(self):
+        m1 = self.data["interboard_rebaseline"]
+        nets = [row["net"] for row in m1["pin_map"]]
+        contract = m1["locality_contract"]
+        for prefix in contract["forbidden_payload_prefixes"]:
+            self.assertFalse(
+                any(net.startswith(prefix) for net in nets),
+                f"board-local payload unexpectedly crosses M1: {prefix}",
+            )
+        self.assertIn("FPV_CVBS", nets)
+        self.assertEqual(
+            {"HUB_RF_ALERT_N", "HUB_RF_CS_N", "HUB_RF_SCK", "HUB_RF_MOSI", "HUB_RF_MISO"},
+            {row["net"] for row in m1["pin_map"] if row["class"] == "ipc"},
+        )
+        self.assertEqual(
+            {"S3_USB_DM", "S3_USB_DP"},
+            {row["net"] for row in m1["pin_map"] if row["class"] == "usb2"},
+        )
+        self.assertEqual(
+            {"ENCODER_A", "ENCODER_B", "UI_ENCODER_PUSH_N"},
+            {row["net"] for row in m1["pin_map"] if row["class"] == "ui"},
+        )
+
     def test_airband_is_mandatory_receive_only_and_reuses_the_receiver_port(self):
         accepted = self.data["accepted_scope"]["airband_acceptance"]
         air = self.data["airband_contract"]
@@ -107,8 +130,8 @@ class H0R2ArchitectureTest(unittest.TestCase):
         reserve = next(group for group in groups if group["role"] == "uncommitted electrical reserve")
         committed = [gpio for group in groups if group is not reserve for gpio in group["gpios"]]
         fpv = next(group for group in groups if "K331 RSSI is NC" in group["role"])
-        self.assertEqual(45, rear["gpio_budget"]["used"])
-        self.assertEqual(3, rear["gpio_budget"]["free"])
+        self.assertEqual(44, rear["gpio_budget"]["used"])
+        self.assertEqual(4, rear["gpio_budget"]["free"])
         self.assertEqual(rear["gpio_budget"]["used"], len(committed))
         self.assertEqual(list(range(48)), sorted(gpios))
         self.assertEqual(len(gpios), len(set(gpios)))
@@ -144,7 +167,7 @@ class H0R2ArchitectureTest(unittest.TestCase):
         ids = {item["id"] for item in self.data["retained_capabilities"]}
         required = {
             "UI", "DISPLAY", "FPV", "NATIVE-S3", "NATIVE-C5", "IR",
-            "NRF24-X3", "SUB-GHZ", "VOICE", "LORA-GNSS", "BROADCAST-RX",
+            "NRF24-X3", "SUB-GHZ", "VOICE", "CAP-SLOT", "BROADCAST-RX",
             "AUDIO", "STORAGE", "M5-UNIT", "SAFETY", "SERVICE",
         }
         self.assertEqual(required, ids)

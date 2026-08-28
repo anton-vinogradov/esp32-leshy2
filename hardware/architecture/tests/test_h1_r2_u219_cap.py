@@ -61,12 +61,21 @@ class H1R2U219CapTests(unittest.TestCase):
         i2c = self.model["shared_i2c_contract"]
         self.assertEqual("rear RF RP2354B I2C1 domain", i2c["owner"])
         self.assertIn("contact 3 SCL", i2c["scl"])
-        self.assertIn("RF RP GPIO29", i2c["scl"])
+        self.assertIn("RF RP GPIO31", i2c["scl"])
         self.assertIn("contact 4 SDA", i2c["sda"])
-        self.assertIn("RF RP GPIO28", i2c["sda"])
+        self.assertIn("RF RP GPIO30", i2c["sda"])
         self.assertIn("TCA4307DGKR", i2c["scl"])
         self.assertIn("TCA4307DGKR", i2c["sda"])
         self.assertIn("no new GPIO", i2c["isolation"])
+
+    def test_shared_irq_is_profile_neutral_until_u219_polarity_hil(self):
+        irq = self.model["shared_irq_contract"]
+        self.assertEqual((9, "RP GPIO13", "CAP_IRQ"), (
+            irq["connector_contact"], irq["host_gpio"], irq["host_net"],
+        ))
+        self.assertIn("active-high", irq["u214_role"])
+        self.assertIn("polarity is not published", irq["u219_role"])
+        self.assertIn("never encode active-low", irq["rule"])
 
     def test_shared_spi_owner_is_rear_rf_rp_not_hub_rp(self):
         spi = self.model["shared_spi_contract"]
@@ -116,6 +125,16 @@ class H1R2U219CapTests(unittest.TestCase):
         errors = self.errors_for(unavailable)
         self.assertTrue(any("available-order quantity" in error for error in errors), errors)
 
+        refreshed_stock = copy.deepcopy(self.model)
+        refreshed_stock["jlcpcb_live_surface"]["parts"][0]["can_presale_number"] += 17
+        refreshed_stock["jlcpcb_live_surface"]["parts"][0]["displayed_stock"] += 17
+        self.assertEqual([], self.errors_for(refreshed_stock))
+
+        stale_timestamp = copy.deepcopy(self.model)
+        stale_timestamp["jlcpcb_live_surface"]["checked_at"] = "2026-08-27T23:59:59+03:00"
+        errors = self.errors_for(stale_timestamp)
+        self.assertTrue(any("evidence timestamp" in error for error in errors), errors)
+
     def test_ev_n9_is_independent_physical_evidence_and_not_authorization(self):
         evidence = self.model["nfc_field_evidence"]
         self.assertEqual("EV_N9_U219_NFC", evidence["signal"])
@@ -148,16 +167,20 @@ class H1R2U219CapTests(unittest.TestCase):
         )
         self.assertIn("blocked until", policy["nfc"]["runtime_enable"])
 
-    def test_fixed_bom_delta_and_evt5_math_are_reproducible(self):
+    def test_provisional_known_active_bom_delta_is_reproducible(self):
         bom = self.model["bom_delta"]
         self.assertAlmostEqual(0.4520, bom["pin10_new_active_usd_per_device"], places=4)
         self.assertAlmostEqual(0.2325, bom["nfc_evidence_new_active_usd_per_device"], places=4)
-        self.assertAlmostEqual(0.7585, bom["fixed_added_usd_per_device"], places=4)
-        self.assertAlmostEqual(0.7430, bom["net_fixed_usd_per_device"], places=4)
-        self.assertAlmostEqual(3.7150, bom["trial_lot_5_net_fixed_usd"], places=4)
+        self.assertEqual("provisional_known_active_only", bom["cost_status"])
+        self.assertIsNone(bom["support_passives_usd_per_device"])
+        self.assertAlmostEqual(0.6845, bom["known_active_added_usd_per_device"], places=4)
+        self.assertAlmostEqual(0.6690, bom["known_active_net_after_removed_usd_per_device"], places=4)
+        self.assertAlmostEqual(3.3450, bom["trial_lot_5_known_active_net_after_removed_usd"], places=4)
         rows = list(csv.DictReader(io.StringIO(MODULE.render_csv(self.model))))
-        self.assertEqual("0.7430", rows[-1]["line_per_device_usd"])
-        self.assertEqual("3.7150", rows[-1]["line_evt5_usd"])
+        self.assertEqual("KNOWN_ACTIVE_NET", rows[-1]["change"])
+        self.assertEqual("0.6690", rows[-1]["line_per_device_usd"])
+        self.assertEqual("3.3450", rows[-1]["line_evt5_usd"])
+        self.assertEqual(1, sum(row["change"] == "TBD" for row in rows))
         self.assertEqual(1, sum(row["change"] == "DNP" for row in rows))
 
     def test_specimen_vna_and_hil_gates_are_not_overclaimed(self):

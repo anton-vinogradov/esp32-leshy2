@@ -1,4 +1,4 @@
-# H1-R2.30 · analog-FPV receive path
+# H1-R2.31 · analog-FPV receive path
 
 [Home](../README.md) · [Русский](h1-r2-fpv.ru.md)
 
@@ -11,9 +11,9 @@ H1 accepts a replaceable one-of-two post-PCBA analog-FPV receiver land: primary 
 - `AKK K331` covers 5645–5945 MHz, draws at most 200 mA and emits 1-Vpp/75-ohm CVBS.
 - Official AKK-hosted media confirms the [331RX application circuit](https://www.akktek.com/media/catalog/product/6/1/614ind1rmzl._sl1100_.jpg), [all 14 pin functions](https://www.akktek.com/media/catalog/product/6/1/61ruo85qnbl._sl1100_.jpg) and the [24-channel table](https://www.akktek.com/media/catalog/product/7/1/71tyrmpocol._sl1100_.jpg). The tolerant hand-solder axes use the official `SP331R-MANUAL-V1.0`: 28.7 × 23.1 mm, 2.54-mm pitch and 1.4-mm edge offset. It is not represented as an AKK production footprint.
 - The same bay accepts exact-drawing `AWM666V RX`, 26.16 × 16.38 × 3.70 mm, on its manufacturer land. It is a seven-channel 5725–5875-MHz fallback, not a functionally equal K331 replacement.
-- CH1/CH2/CH3 use rear-RP GPIO32/33/34; GPIO30/31 serve power/video lock. The official pinout marks K331 pin 6 `RSSI (NC)`, so GPIO15 remains free.
+- CH1/CH2/CH3 use rear-RP GPIO32/33/34 and GPIO28 enables receiver power. TVP5150 is UI-local: S3 reads lock/status and reports it over the existing IPC chain, leaving GPIO29 and GPIO15 free. The official pinout marks K331 pin 6 `RSSI (NC)`.
 - The 5-V reserve retains 150 mA. One selected RF branch runs directly to MMCX; the alternate is isolated at the launch, leaving no U.FL, cable or live stub.
-- The common reserve is enlarged to `30 × 24 × 8 mm`; after relocating C5 DBG10, minimum opposing clearance is 1.05 mm against 0.70 mm required.
+- The common reserve is enlarged to `30 × 24 × 8 mm`; after relocating C5 DBG10, the structural audit of registered bodies has 2.59 mm minimum opposing clearance against 0.70 mm required.
 - `TBS5G8MMCXA` is linear, 5500–6000 MHz, 2.2 dBi and 102 mm; its exact kit mark is `FPV · RX 5.8G`. Independent linear fallback `FXP831.09.0100C` covers 4.9–6.0 GHz and retains MMCX, but is presently backorder-only with a 16-week lead time.
 
 ## Receivers reviewed
@@ -41,4 +41,4 @@ JLCPCB confirmed that K331 is unavailable in both Parts Library and Global Sourc
 - **H3/H6/H8:** prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality before production release
 - **H5/H8:** qualify FXP831.09.0100C on the assembled enclosure and secure available stock before relying on its current 16-week backorder route
 
-> Exact current marker: **H1-R2.30**. H1 remains in progress.
+> Exact current marker: **H1-R2.31**. H1 remains in progress.

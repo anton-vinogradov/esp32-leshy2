@@ -83,7 +83,14 @@ def audit(model: dict) -> dict:
         "inductor_rms_above_admission": inductor["rms_rating_a"] > main["accepted_continuous_a"],
         "converter_efficiency_gate_is_realistic_not_claimed": efficiency_floor_admitted <= 0.90,
         "efuse_thermal_bound_below_design_junction": efuse_junction_admitted <= thermal["efuse_junction_design_c"],
-        "placed_power_cell_has_no_collision": bool(placement and placement["status"] == "pass"),
+        "placed_power_cell_has_no_collision": bool(
+            placement
+            and placement.get("structural_status") == "pass"
+            and not placement.get("same_face_collisions")
+            and not placement.get("errors")
+            and placement.get("minimum_opposing_clearance_mm", -1)
+            >= placement.get("required_opposing_clearance_mm", 0)
+        ),
     }
     failures = [name for name, passed in checks.items() if not passed]
     return {

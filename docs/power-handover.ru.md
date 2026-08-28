@@ -1,4 +1,4 @@
-# USB ↔ аккумуляторы и brownout
+# USB ↔ аккумуляторы и brownout · historical R1
 
 [English](power-handover.md) · [На главную](../README.ru.md) · [Итог H3.2](power-transition-result.ru.md)
 

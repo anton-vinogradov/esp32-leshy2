@@ -1,4 +1,4 @@
-# Inrush и скачки нагрузки
+# Inrush и скачки нагрузки · historical R1
 
 [English](inrush-load-step.md) · [На главную](../README.ru.md) · [Итог H3.2](power-transition-result.ru.md)
 

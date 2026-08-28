@@ -2,7 +2,7 @@
 
 H0-R2 проведён как новый функциональный baseline: UI и дисплей остаются на S3, высокоскоростные периферийные тракты разгружены через Hub RP, аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен.
 
-> Текущий точный маркер — **H1-R2.30**: H0/H1 согласованы с двумя независимыми RP2354B, их количеством 2 на устройство и актуальным factory-route C39843328; старая single-RP G2F/H2-проекция сохранена только как историческое R1 evidence и не разрешает R2 KiCad. Полный мокап всё ещё должен быть явно принят.
+> Текущий точный маркер — **H1-R2.31**: H0/H1 согласованы с двумя независимыми RP2354B, точными GPIO0..47 и пятью M1 endpoints; электрический pin/mux-контракт C5 присоединён. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Новый R2 H2/KiCad заблокирован до live route C11355, точного MPN detector/latch service-VBUS и powered-off-Ioff границы Pack/Safety I2C; полный мокап можно принять только после четырёх физических H1-блокеров.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 
@@ -10,8 +10,8 @@ H0-R2 проведён как новый функциональный baseline: 
 
 - Один пользовательский порт `FM / SW / AIR RX`; новый внешний разъём не добавлен.
 - Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с FPV или TX-группой.
-- S3 сохраняет прямые кнопки, энкодер и USB; direct i8080-8 даёт 32 МБ/с, а camera RX работает независимо.
-- Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, FPV, M5 и U214.
+- Кнопки остаются на локальном для S3 TCA9539PWR, энкодер и USB подключены к S3 напрямую; direct i8080-8 даёт 32 МБ/с, а camera RX работает независимо.
+- Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, FPV, M5 и одним из U214/U219.
 - Через M1 проходит один CVBS, control/status и питание; 11-линейная LCD_CAM-шина остаётся локальной S3.
 
 ## Airband RX
@@ -27,7 +27,7 @@ H0-R2 проведён как новый функциональный baseline: 
 | Rear RP GP35 | `AIR_RX_EN` | pulled low; LNA/mixer/LO domain off |
 | Rear RP GP36 | `AIR_RX_MODE` | direct FM/SW path selected |
 
-Front RP budget: **46 used / 2 free**. Rear RP budget: **45 used / 3 free**. SI5351 control stays on the rear-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
+Front RP budget: **46 used / 2 free**. Rear RP budget: **44 used / 4 free**. SI5351 control stays on the rear-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
 
 ## Рабочая принципиальная распиновка
 
@@ -78,25 +78,25 @@ Front RP budget: **46 used / 2 free**. Rear RP budget: **45 used / 3 free**. SI5
 | `24, 25, 26, 27, 28, 29` | nRF24 #1 dedicated SPI SCK/MOSI/MISO/CS plus CE and IRQ |
 | `30, 31, 32, 33, 34, 35` | nRF24 #2 dedicated SPI SCK/MOSI/MISO/CS plus CE and IRQ |
 | `36` | FAULT_KILL-qualified common nRF24 switched-rail request |
-| `37, 38, 39, 40, 41, 42` | dedicated microSD SPI SCK/MOSI/MISO/CS plus power and detect |
-| `43, 44` | dedicated fail-closed I2C controller bus to Pack and Safety MSPM0 mailboxes |
+| `37, 38, 39, 40, 41, 44` | dedicated microSD SPI SCK/MOSI/MISO/CS plus power and detect |
+| `42, 43` | dedicated fail-closed I2C1 controller bus to Pack and Safety MSPM0 mailboxes |
 | `45` | LCD_TE direct front-local edge capture; Hub timestamps/alerts S3 without consuming another S3 GPIO |
 | `46` | LCD_BL_PWM front-local backlight gate drive with the existing hardware reset-off pull-down |
 | `6, 47` | uncommitted electrical reserve |
 
 | GPIO заднего RP | Назначение |
 |---|---|
-| `0, 1, 2, 3, 4` | full-duplex codec/audio BCLK/WS/DOUT/DIN/ARM |
-| `5, 6` | rear-local I2C for codec, Si4732, Airband LO, headset and slow controls |
-| `7, 8` | rear-local isolated M5 Unit I2C/UART/GPIO |
+| `0, 1, 2, 3, 6` | full-duplex codec/audio BCLK/WS/DOUT/DIN/ARM |
+| `4, 5` | rear-local hardware I2C0 for codec, Si4732, Airband LO, headset and slow controls |
+| `7, 8` | rear-local isolated M5 Unit PIO-I2C/PIO-UART/GPIO profile |
 | `9, 10, 11, 23, 39, 42, 43` | CC1101 CS/GDO0/GDO2/power plus dedicated PIO SPI |
-| `12, 13, 14, 28, 29, 40, 41, 44, 45, 46, 47` | U214 busy/IRQ/reset, I2C, GNSS UART and dedicated SPI |
-| `30, 31, 32, 33, 34` | FPV receiver power, video lock/evidence and three channel-select outputs; K331 RSSI is NC |
+| `12, 13, 14, 30, 31, 40, 41, 44, 45, 46, 47` | exactly one U214/U219 profile: busy/IRQ/reset-or-power, hardware I2C1, GNSS-or-RF controls and dedicated SPI |
+| `28, 32, 33, 34` | FPV receiver power and three channel-select outputs; UI-local TVP5150 lock is read by S3 and reported over existing IPC, while K331 RSSI is NC |
 | `16, 17, 18, 20, 21, 22` | voice UART/PTT/audio-on, direct PTT input and ANY_TX diagnostic |
 | `19, 24, 25, 26, 27` | dedicated SPI plus ALERT to front RP |
 | `35` | AIR_RX_EN fail-low switched-domain and LT5560 enable control |
 | `36` | AIR_RX_MODE direct-FM/SW versus converted-Airband selector; reset default direct |
-| `15, 37, 38` | uncommitted electrical reserve |
+| `15, 29, 37, 38` | uncommitted electrical reserve |
 
 ## Питание
 
@@ -136,10 +136,7 @@ Incremental-стоимость активных компонентов: **`$20.2
 
 ## Что закрывает H1-R2
 
-- select an exact current serial 5.8-GHz receiver module with controlled pinout and lifecycle
-- select exact edge MMCX MPN and cable/launch geometry
-- prove receiver bay, shielding, power and thermal fit in the dimensioned sandwich
-- select exact DVP reset/strap isolation and C5 USB/SDIO switching components
-- synthesize the factory-stock Airband LC filter, extract its layout and prove the BPF-A127+ acceptance mask including 87-106-MHz image rejection
-- recalculate the six-domain 3.3-V state matrix against the new >=3.5-A continuous and >=4.0-A step contract
-- regenerate every physical view and prove the 80-contact inter-board electrical and mechanical load-path contract before H1-R2 acceptance
+- complete the canonical coordinate register for the existing Cap-Bus ESD, series, supervisor, bypass and evidence-aggregate bodies
+- complete exact U219 support-passive values/MPNs and prove their courtyards inside the bounded placement islands
+- obtain controlled U219 field-structure geometry or measure a received unit before locating the printed NFC pickup loop and DNP C0G bank
+- measure the installed U219 RP-SMA antenna swept volume against the rear connector bank, FPV plug, enclosure and user hand access

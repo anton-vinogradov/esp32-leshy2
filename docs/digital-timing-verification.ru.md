@@ -1,6 +1,6 @@
-# Digital bandwidth, latency и timing
+# Digital bandwidth, latency и timing · historical R1
 
-`H3.4.2` проверено: `40` машинных checks, незакрытых аналитических findings нет. Точный текущий маркер — `H3.6.1`.
+`H3.4.2` проверено: `40` машинных checks, незакрытых аналитических findings нет. Исторический маркер прогресса R1 — `H3.6.1`.
 
 ## Закрытые бумажные бюджеты
 

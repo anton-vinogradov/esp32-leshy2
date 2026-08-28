@@ -1,4 +1,4 @@
-# Thermal model
+# Thermal model · historical R1
 
 `H3.6.1` is reviewed with `21` passing checks and one zero-cost safety correction. The exact marker is `H3.6.2`.
 

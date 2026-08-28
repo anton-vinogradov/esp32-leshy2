@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 
@@ -45,6 +46,16 @@ DOWNSTREAM = {
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def historical_blob_sha256(commit: str, relative: str) -> str | None:
+    try:
+        blob = subprocess.check_output(
+            ["git", "show", f"{commit}:{relative}"], cwd=REPO
+        )
+    except subprocess.CalledProcessError:
+        return None
+    return hashlib.sha256(blob).hexdigest()
 
 
 def evidence_for_instance(row: dict) -> list[str]:
@@ -116,10 +127,21 @@ def build() -> tuple[dict[Path, str], dict]:
     for item in plan_evidence:
         artifact = json.loads((REPO / item["artifact"]).read_text(encoding="utf-8"))
         hashes = {**artifact.get("source_hashes", {}), **artifact.get("input_hashes", {})}
+        historical_commit = artifact.get("accepted_baseline", {}).get("source_commit")
         for relative, expected in hashes.items():
             path = REPO / relative
-            actual = sha256(path) if path.exists() else None
-            edge = {"consumer": item["substep"], "source": relative, "expected": expected, "actual": actual, "matches": actual == expected}
+            actual = (
+                historical_blob_sha256(historical_commit, relative)
+                if historical_commit else sha256(path) if path.exists() else None
+            )
+            edge = {
+                "consumer": item["substep"],
+                "source": relative,
+                "source_commit": historical_commit,
+                "expected": expected,
+                "actual": actual,
+                "matches": actual == expected,
+            }
             hash_edges.append(edge)
             if not edge["matches"]:
                 hash_mismatches.append(edge)
@@ -237,23 +259,23 @@ def build() -> tuple[dict[Path, str], dict]:
         "next": {"stage": "H3.7.2", "action": "publish every physical-only residual and its H5/H6/H8 evidence owner"},
     }
 
-    en = f"""# H3 cross-check result
+    en = f"""# H3 cross-check result · historical R1
 
 H3.7.1 is closed. The machine join covers all `{len(requirement_coverage)}` verification requirements, `{len(plan_evidence)}` planned H3 artifacts, `{len(hash_edges)}` recorded source-hash edges, all `{len(instance_coverage)}` accepted H2 instance identities and all `{len(net_coverage)}` cross-sheet root-net identities. Every row reaches a reviewed H3 consolidation result and at least one H4/F3, H5, H6 or H8 consumer; no join or hash is missing.
 
 One stale description was corrected: 24/48 hours are qualified-USB endurance-test and self-test intervals, not an operating-time envelope. The product still makes no runtime or battery-autonomy promise.
 
-This is traceability evidence, not physical qualification. It does not authorize a purchase, KiCad placement/routing or fabrication. The exact current marker is `H3.7.2`.
+This is traceability evidence, not physical qualification. It does not authorize a purchase, KiCad placement/routing or fabrication. The historical R1 progression marker is `H3.7.2`.
 
 Machine evidence: [`H3-VRF71-crosscheck.json`](../hardware/verification/generated/H3-VRF71-crosscheck.json).
 """
-    ru = f"""# Результат сквозной сверки H3
+    ru = f"""# Результат сквозной сверки H3 · historical R1
 
 H3.7.1 закрыт. Машинное соединение охватывает все `{len(requirement_coverage)}` требований проверки, `{len(plan_evidence)}` плановых H3-artifacts, `{len(hash_edges)}` записанных source-hash связей, все `{len(instance_coverage)}` принятых H2 instance identities и все `{len(net_coverage)}` cross-sheet root-net identities. Каждая строка приходит к закрытому сводному результату H3 и хотя бы одному потребителю H4/F3, H5, H6 или H8; пропусков и несовпадений hash нет.
 
 Исправлено одно устаревшее описание: 24/48 часов — интервалы qualified-USB endurance test и self-test, а не время работы. Продукт по-прежнему не обещает runtime или автономность от батарей.
 
-Это evidence прослеживаемости, а не физическая квалификация. Оно не разрешает закупку, KiCad placement/routing или печать. Точный текущий маркер — `H3.7.2`.
+Это evidence прослеживаемости, а не физическая квалификация. Оно не разрешает закупку, KiCad placement/routing или печать. Исторический маркер прогресса R1 — `H3.7.2`.
 
 Машинное evidence: [`H3-VRF71-crosscheck.json`](../hardware/verification/generated/H3-VRF71-crosscheck.json).
 """

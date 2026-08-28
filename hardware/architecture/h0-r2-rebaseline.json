@@ -4,9 +4,9 @@
   "status": "reviewed_functional_architecture_i8080_and_r2_interboard_reconciled",
   "reviewed_on": "2026-08-27",
   "next_marker": "H1-R2.0",
-  "purpose": "Rebaseline Leshy2 around direct S3 UI, maximum legal display throughput, two locality-first RP2354B domains, analog 5.8-GHz FPV reception and mandatory receive-only 118-137-MHz Airband AM without losing the accepted radio, expansion, safety, service, audio or storage capabilities.",
+  "purpose": "Rebaseline Leshy2 around S3-local UI, maximum legal display throughput, two locality-first RP2354B domains, analog 5.8-GHz FPV reception and mandatory receive-only 118-137-MHz Airband AM without losing the accepted radio, expansion, safety, service, audio or storage capabilities.",
   "accepted_scope": {
-    "user_acceptance": "Analog 5.8-GHz FPV is accepted if the remaining architecture stays optimal; display performance is maximized and ordinary UI buttons remain directly owned by S3.",
+    "user_acceptance": "Analog 5.8-GHz FPV is accepted if the remaining architecture stays optimal; display performance is maximized and ordinary UI buttons remain on an S3-local I2C expander path without crossing RP IPC.",
     "fpv": "Receive-only analog NTSC/PAL FPV. DJI, Walksnail, HDZero and other proprietary digital video systems are outside R2.",
     "external_rf_interface": "User-facing MMCX labelled FPV RX 5.8G; U.FL is permitted only as an internal module interconnect.",
     "production_boundary": "The base PCB contains the video decoder and a replaceable receiver bay. The exact serial 5.8-GHz receiver module and exact MMCX MPN must close in H1 before placement is accepted.",
@@ -16,7 +16,7 @@
     {
       "id": "s3",
       "mpn": "ESP32-S3-WROOM-1U-N16R8",
-      "role": "application, direct UI, touch, encoder, direct 8-bit i8080 display path, simultaneous analog-video capture and native 2.4-GHz Wi-Fi/BLE"
+      "role": "application, S3-local UI-expander path, touch, direct encoder, direct 8-bit i8080 display path, simultaneous analog-video capture and native 2.4-GHz Wi-Fi/BLE"
     },
     {
       "id": "c5",
@@ -26,7 +26,7 @@
     {
       "id": "rf_rp",
       "mpn": "SC1512-A4",
-      "role": "rear RF/I/O domain: CC1101, independent VHF/UHF voice radios, FM/AM/SW/LW/Airband, audio, FPV control, M5 Unit and U214/LoRa Cap"
+      "role": "rear RF/I/O domain: onboard CC1101, independent VHF/UHF voice radios, FM/AM/SW/LW/Airband, audio, FPV control, M5 Unit and exactly one signed U214 LoRa/GNSS or U219 receive-only CC1101/NFC Cap profile"
     },
     {
       "id": "hub_rp",
@@ -45,7 +45,7 @@
     }
   ],
   "retained_capabilities": [
-    {"id": "UI", "owner": "s3", "result": "HMX035CTFT-001, touch, sixteen ordinary UI inputs and encoder remain local to S3; no UI event crosses IPC"},
+    {"id": "UI", "owner": "s3", "result": "HMX035CTFT-001, touch, sixteen ordinary UI inputs through the S3-local TCA9539PWR and a direct encoder remain local to S3; no UI event crosses RP IPC"},
     {"id": "DISPLAY", "owner": "s3", "result": "dedicated direct 8-bit i8080 with LCD_CAM TX and GDMA; panel CS is hard-selected, TE/backlight control is front-Hub-local and microSD is independent"},
     {"id": "FPV", "owner": "s3+rf_rp", "result": "rear K331 receiver sends one 75-ohm CVBS net through M1 to a UI-board decoder beside S3; the 8-bit LCD_CAM bus stays local"},
     {"id": "NATIVE-S3", "owner": "s3", "result": "2.4-GHz Wi-Fi, BLE and ESP-NOW retained"},
@@ -54,11 +54,11 @@
     {"id": "NRF24-X3", "owner": "hub_rp", "result": "3R, 1T2R, 2T1R and 3T concurrency retained on three independent local buses on the UI PCB"},
     {"id": "SUB-GHZ", "owner": "rf_rp", "result": "CC1101 315/433/868/915-MHz receive/transmit retained"},
     {"id": "VOICE", "owner": "rf_rp", "result": "independent SA818S-V and SA818S-U paths with hardware one-hot selection retained"},
-    {"id": "LORA-GNSS", "owner": "rf_rp", "result": "U214 and qualified regional Leshy LoRa Cap contracts retained"},
+    {"id": "CAP-SLOT", "owner": "rf_rp", "result": "exactly one signed U214 LoRa/GNSS or U219 receive-only CC1101/NFC profile uses the protected rear Cap slot; the onboard CC1101 remains fully bidirectional"},
     {"id": "BROADCAST-RX", "owner": "rf_rp", "result": "rear-local Si4732 FM/SW plus separate AM/LW input retained; mandatory receive-only 118-137-MHz Airband AM is downconverted to the supported 6-25-MHz FMI range"},
     {"id": "AUDIO", "owner": "rf_rp", "result": "rear-local full-duplex codec, microphone, speaker and CTIA headset retained; bounded PCM packets use the RP-to-RP link"},
     {"id": "STORAGE", "owner": "hub_rp", "result": "dedicated powered and isolated microSD path retained without display contention"},
-    {"id": "M5-UNIT", "owner": "rf_rp", "result": "generic powered I2C/UART/GPIO Unit port is local to its rear connector and remains independent from U214"},
+    {"id": "M5-UNIT", "owner": "rf_rp", "result": "generic powered I2C/UART/GPIO Unit port is local to its rear connector and remains independent from the mutually exclusive U214/U219 Cap slot"},
     {"id": "SAFETY", "owner": "pack+safety", "result": "RUN/KILL, watchdog suicide shutdown, three thermal zones, TX evidence and retained first-fault display contract remain mandatory"},
     {"id": "SERVICE", "owner": "all", "result": "S3, C5, RF RP and Hub RP each retain independent USB plus physical reset/boot recovery; Pack and Safety retain isolated SWD/UART/NRST fixtures"}
   ],
@@ -118,8 +118,8 @@
       {"gpios": [24, 25, 26, 27, 28, 29], "role": "nRF24 #1 dedicated SPI SCK/MOSI/MISO/CS plus CE and IRQ"},
       {"gpios": [30, 31, 32, 33, 34, 35], "role": "nRF24 #2 dedicated SPI SCK/MOSI/MISO/CS plus CE and IRQ"},
       {"gpios": [36], "role": "FAULT_KILL-qualified common nRF24 switched-rail request"},
-      {"gpios": [37, 38, 39, 40, 41, 42], "role": "dedicated microSD SPI SCK/MOSI/MISO/CS plus power and detect"},
-      {"gpios": [43, 44], "role": "dedicated fail-closed I2C controller bus to Pack and Safety MSPM0 mailboxes"},
+      {"gpios": [37, 38, 39, 40, 41, 44], "role": "dedicated microSD SPI SCK/MOSI/MISO/CS plus power and detect"},
+      {"gpios": [42, 43], "role": "dedicated fail-closed I2C1 controller bus to Pack and Safety MSPM0 mailboxes"},
       {"gpios": [45], "role": "LCD_TE direct front-local edge capture; Hub timestamps/alerts S3 without consuming another S3 GPIO"},
       {"gpios": [46], "role": "LCD_BL_PWM front-local backlight gate drive with the existing hardware reset-off pull-down"},
       {"gpios": [6, 47], "role": "uncommitted electrical reserve"}
@@ -128,25 +128,36 @@
   },
   "rf_rp": {
     "mpn": "SC1512-A4",
-    "gpio_budget": {"available": 48, "used": 45, "free": 3},
+    "gpio_budget": {"available": 48, "used": 44, "free": 4},
     "pin_groups": [
-      {"gpios": [0, 1, 2, 3, 4], "role": "full-duplex codec/audio BCLK/WS/DOUT/DIN/ARM"},
-      {"gpios": [5, 6], "role": "rear-local I2C for codec, Si4732, Airband LO, headset and slow controls"},
-      {"gpios": [7, 8], "role": "rear-local isolated M5 Unit I2C/UART/GPIO"},
+      {"gpios": [0, 1, 2, 3, 6], "role": "full-duplex codec/audio BCLK/WS/DOUT/DIN/ARM"},
+      {"gpios": [4, 5], "role": "rear-local hardware I2C0 for codec, Si4732, Airband LO, headset and slow controls"},
+      {"gpios": [7, 8], "role": "rear-local isolated M5 Unit PIO-I2C/PIO-UART/GPIO profile"},
       {"gpios": [9, 10, 11, 23, 39, 42, 43], "role": "CC1101 CS/GDO0/GDO2/power plus dedicated PIO SPI"},
-      {"gpios": [12, 13, 14, 28, 29, 40, 41, 44, 45, 46, 47], "role": "U214 busy/IRQ/reset, I2C, GNSS UART and dedicated SPI"},
-      {"gpios": [30, 31, 32, 33, 34], "role": "FPV receiver power, video lock/evidence and three channel-select outputs; K331 RSSI is NC"},
+      {"gpios": [12, 13, 14, 30, 31, 40, 41, 44, 45, 46, 47], "role": "exactly one U214/U219 profile: busy/IRQ/reset-or-power, hardware I2C1, GNSS-or-RF controls and dedicated SPI"},
+      {"gpios": [28, 32, 33, 34], "role": "FPV receiver power and three channel-select outputs; UI-local TVP5150 lock is read by S3 and reported over existing IPC, while K331 RSSI is NC"},
       {"gpios": [16, 17, 18, 20, 21, 22], "role": "voice UART/PTT/audio-on, direct PTT input and ANY_TX diagnostic"},
       {"gpios": [19, 24, 25, 26, 27], "role": "dedicated SPI plus ALERT to front RP"},
       {"gpios": [35], "role": "AIR_RX_EN fail-low switched-domain and LT5560 enable control"},
       {"gpios": [36], "role": "AIR_RX_MODE direct-FM/SW versus converted-Airband selector; reset default direct"},
-      {"gpios": [15, 37, 38], "role": "uncommitted electrical reserve"}
+      {"gpios": [15, 29, 37, 38], "role": "uncommitted electrical reserve"}
     ]
   },
   "interboard_rebaseline": {
     "connector": "FX8C-80P-SV1(92) / FX8C-80S-SV5(92), straight SMT, 80 contacts, 11-mm working gap",
     "why_not_20_or_60": "The current 4.25-A step envelope receives fourteen parallel 3V3_MAIN contacts and fourteen primary return contacts, leaving 0.304 A per power contact versus the 0.4-A rating before H3/H5 thermal proof. After two AON contacts, signal-reference returns and 25 live signals, a 60-contact pair has no controlled reserve; 80 is the smallest current FX8C size that preserves both derating and fourteen NC contacts.",
     "video": "K331 remains rear-local; one 75-ohm FPV_CVBS net crosses M1 beside a dedicated return. TVP5150 and all eight data lines plus PCLK/VSYNC/HREF remain UI-local beside S3.",
+    "locality_contract": {
+      "rule": "Every payload endpoint stays on the board that owns its controller. M1 carries no display bus, camera parallel bus, nRF/SPI payload, microSD payload, main RF trace or audio stream.",
+      "intentional_crossings": {
+        "hub_rf_ipc": "five point-to-point Hub-RF control/data wires are the sole compute-domain message path",
+        "fpv_cvbs": "one rear-receiver analog CVBS feed crosses to the front-local decoder beside its dedicated return",
+        "s3_usb": "the rear/bottom power-and-service receptacle reaches the front S3 native USB pair directly",
+        "encoder": "the externally reachable rear encoder remains direct to S3 PCNT plus one local-expander push input",
+        "safety_and_evidence": "AON safety, thermal and TX-evidence nets cross to the rear safety controller by design"
+      },
+      "forbidden_payload_prefixes": ["LCD_", "VIDEO_D", "VIDEO_PCLK", "VIDEO_VSYNC", "VIDEO_HREF", "NRF", "MICROSD", "SD_SPI", "AUDIO_", "VOICE_AF", "SPEAKER_", "MIC_RAW"]
+    },
     "released_legacy_nets": ["UNIT_5V_REQ", "UNIT_READY", "UNIT_HOST_SIG0", "UNIT_HOST_SIG1", "RX_VOICE_AFOUT_SELECTED", "VOICE_MIC_SELECTED_MAIN", "SPEAKER_SELECTED_P", "SPEAKER_SELECTED_N", "MIC_RAW"],
     "retained_safety_crossings": ["EV_N2_NRF0", "EV_N3_NRF1", "EV_N4_NRF2", "RUN_PERMIT", "FAULT_ASSERT_N"],
     "current_budget": {"positions": 80, "live_signals": 25, "main_power": 14, "aon_power": 2, "returns": 25, "no_connect_reserve": 14},
@@ -344,19 +355,16 @@
     "controller_count": 6,
     "s3_gpio": "33 used / 0 free",
     "hub_gpio": "46 used / 2 free",
-    "rf_rp_gpio": "45 used / 3 free",
+    "rf_rp_gpio": "44 used / 4 free",
     "interboard": "80 contacts: 25 live signals, 14 main-power, 2 AON, 25 defined returns and 14 NC reserves; M1 carries no structural load",
     "display": "direct 8-bit i8080 at a conservative 32 MHz with simultaneous LCD_TX/CAM_RX GDMA; QSPI is recovery-only",
     "ui": "local interrupt-driven S3 ownership, no IPC",
     "video": "direct capture path with exact active decoder and replaceable receiver boundary",
     "open_h1_gates": [
-      "select an exact current serial 5.8-GHz receiver module with controlled pinout and lifecycle",
-      "select exact edge MMCX MPN and cable/launch geometry",
-      "prove receiver bay, shielding, power and thermal fit in the dimensioned sandwich",
-      "select exact DVP reset/strap isolation and C5 USB/SDIO switching components",
-      "synthesize the factory-stock Airband LC filter, extract its layout and prove the BPF-A127+ acceptance mask including 87-106-MHz image rejection",
-      "recalculate the six-domain 3.3-V state matrix against the new >=3.5-A continuous and >=4.0-A step contract",
-      "regenerate every physical view and prove the 80-contact inter-board electrical and mechanical load-path contract before H1-R2 acceptance"
+      "complete the canonical coordinate register for the existing Cap-Bus ESD, series, supervisor, bypass and evidence-aggregate bodies",
+      "complete exact U219 support-passive values/MPNs and prove their courtyards inside the bounded placement islands",
+      "obtain controlled U219 field-structure geometry or measure a received unit before locating the printed NFC pickup loop and DNP C0G bank",
+      "measure the installed U219 RP-SMA antenna swept volume against the rear connector bank, FPV plug, enclosure and user hand access"
     ]
   }
 }

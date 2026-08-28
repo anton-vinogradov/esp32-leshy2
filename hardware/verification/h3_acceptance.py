@@ -139,12 +139,12 @@ def build() -> tuple[dict[Path, str], dict]:
         "open_analytical_findings": [],
         "pending_decisions": [],
         "review_summary": {"checks": len(checks), "failed": 0, "unresolved_analytical_findings": 0, "status": "reviewed"},
-        "next": {"stage": "H1-R2.30", "action": "close current dual-RP architecture before creating the new R2 H2/H3 chain"},
+        "next": {"stage": "H1-R2.31", "action": "close physical H1 and production gates before creating the new R2 H2/H3 chain"},
     }
 
     phase_table_en = "\n".join(f"| `{row['phase']}` | reviewed | {row['recorded_corrections']} | 0 |" for row in phase_results)
     phase_table_ru = "\n".join(f"| `{row['phase']}` | закрыт | {row['recorded_corrections']} | 0 |" for row in phase_results)
-    en = f"""# H3 acceptance package
+    en = f"""# H3 acceptance package · historical R1
 
 H3 is accepted. All virtual checks are reproducible and analytically closed: six phase consolidations are reviewed, the exhaustive cross-check has zero missing joins or hash mismatches, and all `{residuals['summary']['physical_evidence_rows']}` physical-only rows retain H5/H6/H8 owners and pass rules.
 
@@ -154,11 +154,11 @@ H3 is accepted. All virtual checks are reproducible and analytically closed: six
 
 The review accounts for `{sum(corrections.values())}` corrections. The known quantity-100 BOM increase is `{known_bom_delta:.4f} USD`; no accepted product capability was removed. Acceptance means the non-physical H3 scope is complete and the corrected artifacts become the baseline. It does **not** approve purchase, PCB layout/routing, fabrication or any physical residual.
 
-H4 remains blocked until firmware F3 target builds and emulator/portable evidence are complete. The exact current hardware marker is `H4.0.1`.
+This historical R1 chain progressed next to `H4.0.1-R1`. It is not the current hardware marker; current R2 remains at `H1-R2.31` and must run its own H2/H3.
 
 Machine package: [`H3-VRF73-acceptance-package.json`](../hardware/verification/generated/H3-VRF73-acceptance-package.json).
 """
-    ru = f"""# Пакет приёмки H3
+    ru = f"""# Пакет приёмки H3 · historical R1
 
 H3 принят. Все виртуальные проверки воспроизводимы и аналитически закрыты: сведения шести фаз имеют закрытый статус, полная сквозная сверка не имеет пропусков или hash mismatch, а все `{residuals['summary']['physical_evidence_rows']}` physical-only строк сохраняют владельцев и pass rules H5/H6/H8.
 
@@ -168,7 +168,7 @@ H3 принят. Все виртуальные проверки воспроиз
 
 Учтены все `{sum(corrections.values())}` исправлений. Известное увеличение BOM на количестве 100 — `{known_bom_delta:.4f} USD`; ни одна принятая возможность продукта не удалена. Приёмка означает завершение нефизической части H3 и превращает исправленные artifacts в baseline. Она **не** разрешает закупку, PCB layout/routing, печать или закрытие любого физического остатка.
 
-H4 остаётся заблокирован до target builds и emulator/portable evidence firmware F3. Точный текущий аппаратный маркер — `H4.0.1`.
+Следующим шагом этой исторической R1-цепочки был `H4.0.1-R1`. Это не текущий аппаратный маркер: текущая R2 остаётся на `H1-R2.31` и должна пройти собственные H2/H3.
 
 Машинный пакет: [`H3-VRF73-acceptance-package.json`](../hardware/verification/generated/H3-VRF73-acceptance-package.json).
 """

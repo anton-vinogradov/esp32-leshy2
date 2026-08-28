@@ -1,6 +1,6 @@
-# Consolidated analog-corner result
+# Consolidated analog-corner result · historical R1
 
-H3.3 is reviewed: all four leaf packages and `156` leaf checks pass, followed by `22` consolidation checks. Fourteen source corrections are closed, no analytical finding remains open and the total quantity-100 BOM delta is only `0.4669 USD`. The exact current marker is `H3.6.1`.
+H3.3 is reviewed: all four leaf packages and `156` leaf checks pass, followed by `22` consolidation checks. Fourteen source corrections are closed, no analytical finding remains open and the total quantity-100 BOM delta is only `0.4669 USD`. The historical R1 progression marker is `H3.6.1`.
 
 ## Closed analytical envelope
 

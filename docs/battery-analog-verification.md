@@ -1,6 +1,6 @@
-# Battery sensing and thermal analog verification
+# Battery sensing and thermal analog verification · historical R1
 
-H3.3.4 is reviewed with `38` machine checks and four source corrections. No component or BOM-cost change is required. The exact current marker is `H3.6.1`: worst-case board, battery and enclosure thermal model.
+H3.3.4 is reviewed with `38` machine checks and four source corrections. No component or BOM-cost change is required. The historical R1 progression marker is `H3.6.1`: worst-case board, battery and enclosure thermal model.
 
 ## What is now fixed
 

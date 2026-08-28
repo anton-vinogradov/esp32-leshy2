@@ -1,14 +1,17 @@
 # Leshy2 hardware
 
-[Home](../README.md) · [Русский](hardware.ru.md) · [Schematics](schematics.md) · [Safety](safety.md)
+[Home](../README.md) · [Русский](hardware.ru.md) · [Pin assignment](pinout.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H1-R2.30`**. The functional architecture is reviewed; the
+> Current marker: **`H1-R2.31`**. The functional architecture is reviewed; the
 > physical design is in progress. Nothing on this page authorizes KiCad routing
 > or an order.
 
 > Current R2 authority is H0/H1: six compute domains with a front Hub RP and a
-> rear RF RP. G2F/H2/KiCad is historical single-RP R1 evidence only; exact R2
-> RP GPIO order and all R2 KiCad work remain blocked until a new H2 export.
+> rear RF RP. The [exact dual-RP GPIO/M1 map](pinout.md) is current working H1
+> authority and the exact C5 module-pad/IO-mux electrical contract is joined.
+> G2F/H2/KiCad is historical single-RP R1 evidence only. R2 H2 and all R2 KiCad
+> work remain blocked on the live FSUSB42MUX/C11355 route, exact service-VBUS
+> detector/latch MPN and Pack/Safety I2C powered-off-Ioff boundary.
 
 ## Capabilities
 
@@ -23,7 +26,7 @@
 | Broadcast/Airband | `Si4732-A10-GSR`, `PGA-103+`, `LT5560EDD#TRPBF`, `SI5351A-B-GTR`, `HMC544AETR` | Rear RP | FM/AM/SW/LW and receive-only 118–137-MHz Airband AM |
 | Analog FPV | post-PCBA `K331` / `AWM666V RX` bay + `TVP5150AM1PBS` | Rear RP + S3 | Receive-only 5.8-GHz PAL/NTSC capture |
 | Audio | `ES8311`, `PAM8302AAYCR`, speaker, microphone and CTIA headset | Rear RP | Record, monitor and play audio |
-| Expansion | M5 Unit + rear U214 Cap rail | Rear RP | External GPS/radio modules and regional LoRa Cap |
+| Expansion | M5 Unit + protected U214/U219 Cap slot | Rear RP | External GPS/radio modules, regional LoRa Cap, or mutually exclusive RX-only CC1101 + read-only NFC profile |
 
 FM/AM/SW/LW/Airband and analog FPV are receive-only. No custom broadcast or
 Airband transmitter is part of Leshy2. VHF/UHF, Sub-GHz, nRF, native Wi-Fi/IR
@@ -36,8 +39,8 @@ safety gates.
 
 ### Front UI/radio PCB
 
-- `ESP32-S3-WROOM-1U-N16R8`: menus, touch, all user keys, direct 32-MHz
-  i8080-8 display TX, BLE/Wi-Fi and the independent local BT.656 camera RX bus.
+- `ESP32-S3-WROOM-1U-N16R8`: menus, touch, the S3-local `TCA9539PWR` key path,
+  direct 32-MHz i8080-8 display TX, BLE/Wi-Fi and the independent local BT.656 camera RX bus.
 - `ESP32-C5-WROOM-1U-N8R8`: 2.4/5-GHz Wi-Fi, 802.15.4 and IR.
 - `SC1512-A4` front RP: C5/S3/rear-RP links, three local nRF24 paths and microSD.
 - Three complete nRF islands: radio, command/return buffers, safety gate and
@@ -45,17 +48,17 @@ safety gates.
 - `TVP5150AM1PBS`: CVBS decoding beside S3.
 
 Front RP GPIO budget: **46 used / 2 free**. TE capture and backlight PWM moved
-here so S3 can retain every direct UI path and the complete i8080-8 bus.
+here so S3 can retain the local UI path and the complete direct i8080-8 bus.
 
 ### Rear RF/power PCB
 
-- `SC1512-A4` rear RP: CC1101, voice, broadcast/Airband, audio, FPV, M5 and U214.
+- `SC1512-A4` rear RP: CC1101, voice, broadcast/Airband, audio, FPV, M5 and exactly one signed U214/U219 profile.
 - Power conversion, pack admission, independent watchdog, thermal sensing and
   hard-off safety.
 - One mutually exclusive post-PCBA K331/AWM666V receiver and a direct selected 50-ohm path to the rear FPV MMCX.
 - Audio codec, speaker amplifier, microphone and CTIA headset path.
 
-Rear RP GPIO budget: **45 used / 3 free**. The K331 `RSSI (NC)` contact is not allocated.
+Rear RP GPIO budget: **44 used / 4 free** (GP15/29/37/38). The K331 `RSSI (NC)` contact is not allocated.
 
 ## Interboard connector
 
@@ -113,10 +116,10 @@ selector.
 
 The inner faces are shown exactly as viewed after physically turning each PCB
 over, so left and right swap relative to the outer face. Numbers are drawing
-references, not silkscreen. The complete legend lists all 163 bodies without
+references, not silkscreen. The complete legend lists all 168 drawing references without
 repeating the PCB drawings.
 
-Placement currently has **zero same-face collisions** and **1.05 mm** minimum
+Placement currently has **zero same-face collisions** and **2.59 mm** minimum
 opposing clearance against **0.70 mm** required.
 
 The receiver reserve is **30 × 24 × 8 mm**. Primary K331 uses a tolerant
@@ -164,9 +167,16 @@ See [power and thermal architecture](h1-r2-power-thermal.md) and the
 
 ## Current physical-design gate
 
-Everything above is generated and audit-checked. The post-PCBA one-of-two
+Everything above is generated and structurally checked for every currently
+registered body. The post-PCBA one-of-two
 receiver architecture removes the unavailable K331 production package from the
 H1 critical path. Actual body, hand soldering, Z and durability are explicit
 H5/H7 qualification items; a later AKK/Sinopine package may simplify only the
-K331 footprint. No engineering blocker remains, but H1 stays open until the
-complete mock-up is explicitly accepted. KiCad and all purchasing remain blocked.
+K331 footprint. The structural body audit passes, but H1 is not complete: the
+canonical Cap/evidence body register, support-passive MPN/courtyards, NFC pickup
+geometry and installed U219 antenna swept volume are four open blockers before
+the complete mock-up can be explicitly accepted. The C5 electrical pin/mux
+contract is closed; its live FSUSB42MUX/C11355 route, exact service-VBUS
+detector/latch MPN and Pack/Safety I2C powered-off-Ioff boundary remain
+production blockers before a new R2 H2 export. KiCad
+and all purchasing remain blocked.

@@ -1,9 +1,13 @@
-# H3 result · Virtual electrical verification
+# Historical R1 H3 result · Virtual electrical verification
 
 [Русский](h3-acceptance.ru.md) · [Home](../README.md) ·
 [Roadmap](roadmap.md)
 
-**Status:** ✅ reviewed and automatically accepted on 26 August 2026. Every electrical check
+> Historical evidence only. This page closes the former single-RP R1 chain; it
+> is not current dual-RP R2 authority. The current hardware marker is `H1-R2.31`,
+> with R2 H2/H3 still waiting.
+
+**Historical R1 status:** ✅ reviewed and automatically accepted on 26 August 2026. Every electrical check
 available before board fabrication is reproducible and analytically closed.
 The end-to-end reconciliation has no missing join or hash mismatch, while all
 `85` physical-only rows retain their H5/H6/H8 owners and pass rules.
@@ -57,7 +61,10 @@ artifacts the baseline. It does **not** authorize purchase, PCB placement or
 routing, fabrication, or call any of the `85` physical checks passed. Received
 parts, real geometry, routing and prototype evidence remain in H5, H6 and H8.
 
-Firmware F3 remains reviewed without promoting non-S3 or physical claims. Its exact S3 QEMU and five-target boundary evidence is now being rejoined with the current H1–H3 revision at `H4.0.1-R1`; the former H4/H5 evidence derived from SA518 is not treated as current.
+Firmware F3 remains reviewed historical R1 evidence without promoting non-S3
+or physical claims. Its exact S3 QEMU and five-target boundary was joined at
+historical `H4.0.1-R1`; neither that join nor the former SA518-derived H4/H5 is
+current R2 authority.
 
 ## Evidence
 
