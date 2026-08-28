@@ -5,10 +5,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-    "hardware/ecad/generated/H2-instance-ledger.json": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "d7882c1d8c265f80f7273b559f8843bc8c8a605cc7a5a107f810898db893cc2a"
+    "hardware/architecture/candidates/G2F-3I.json": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+    "hardware/architecture/devices.json": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+    "hardware/ecad/generated/H2-instance-ledger.json": "5e79e26435c0964540fa1e815a59170cf6715ebcf0672285a378ed6a5de00ccb",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "576c2c0eb060b2b449cea29515f3958a58040fabec923e7e6652e210b5019626"
   },
   "summary": {
     "ledger_instances": 49,
@@ -53,7 +53,7 @@
       "instance": "touch_irq_buffer_bypass",
       "symbol_uuid": "cdcd81c7-2705-56bd-84a7-f60b74f8b77f",
       "reference": "C11001",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -98,7 +98,7 @@
       "instance": "display_logic_hf_cap",
       "symbol_uuid": "95c2b304-7113-5fa8-a63c-1e08e9c01224",
       "reference": "C11003",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -143,7 +143,7 @@
       "instance": "backlight_efuse_input_cap",
       "symbol_uuid": "8a6d469a-519a-5402-87e8-5f9bfb890827",
       "reference": "C11004",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -161,7 +161,7 @@
       "instance": "backlight_efuse_output_hf",
       "symbol_uuid": "5c0768cd-a2bd-557a-b77e-6c03464e59c2",
       "reference": "U11003",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -269,7 +269,7 @@
       "instance": "sd_power_hf_cap",
       "symbol_uuid": "920e553c-f3c2-5274-b10c-ed55d86c7aef",
       "reference": "C11008",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -278,7 +278,7 @@
       "instance": "sd_host_buffer_bypass",
       "symbol_uuid": "c541cd6b-0b35-5c74-bbbc-3586ffc2d2c3",
       "reference": "C11009",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -287,7 +287,7 @@
       "instance": "sd_miso_buffer_bypass",
       "symbol_uuid": "f2b7f328-e339-5c68-83e9-2cacd129b220",
       "reference": "C11010",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -449,7 +449,7 @@
       "instance": "sd_detect_cap",
       "symbol_uuid": "01c72667-d39d-53d5-a8d4-dadf6d82756b",
       "reference": "C11011",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true

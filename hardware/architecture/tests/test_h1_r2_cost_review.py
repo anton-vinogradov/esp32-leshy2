@@ -74,7 +74,11 @@ class H1R2CostReviewTest(unittest.TestCase):
         }
         self.assertEqual(
             candidates["Nexperia 74LVC2G126DP,125"]["status"],
-            "qualified_stocked_candidate_for_next_atomic_replacement",
+            "accepted_stocked_exact_family_package_variant",
+        )
+        self.assertEqual(
+            candidates["YAGEO CC0402KRX7R9BB104"]["status"],
+            "accepted_stocked_exact_parametric_replacement",
         )
         self.assertEqual(
             candidates["OMRON B3S-1000P"]["status"],
@@ -82,7 +86,11 @@ class H1R2CostReviewTest(unittest.TestCase):
         )
         self.assertEqual(
             candidates["HenryTech HL2-SMA-KEP-13.5 / HL2-RP-SMA-KEP-13.5"]["status"],
-            "leading_stocked_pair_pending_controlled_drawing",
+            "rejected_wrong_board_normal_orientation",
+        )
+        self.assertEqual(
+            candidates["DreamLNK SMA-KWE902 / SMA-KWE901"]["status"],
+            "rejected_high_profile_tht_form_change",
         )
 
 

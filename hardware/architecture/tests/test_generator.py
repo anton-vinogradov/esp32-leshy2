@@ -37,7 +37,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H1-R2.22", roadmap["current_substep"])
+        self.assertEqual("H1-R2.24", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -382,7 +382,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("**210/210** lines", rendered)
         self.assertIn("**198/210** lines", rendered)
         self.assertIn("**1033/1052** supplied placements", rendered)
-        self.assertIn("USD 236.7231", rendered)
+        self.assertIn("USD 235.3369", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -561,7 +561,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Sunlord MWSA0503S-2R2MT",
             "Murata GRM31CR71E106MA12L",
             'data-zone="cc-reference-rf-network"',
-            'data-opposing-pairs="37"',
+            'data-opposing-pairs="38"',
             'data-min-z-clearance-mm="3.31"',
             'data-opposing-cable-pairs="2"',
             'data-rf-pcb-topology-guides="10"',
@@ -822,18 +822,18 @@ class ArchitectureValidationTests(unittest.TestCase):
 
         expected_instances = {
             "pack_in_res": "panasonic_erj_p08f10r0v",
-            "pack_in_bypass": "tdk_c1005x7r1h104k050bb",
+            "pack_in_bypass": "yageo_cc0402krx7r9bb104",
             "pack_cp_cap": "murata_grm188r71e474ka12d",
             "pack_aoldo_cap": "murata_grm188r71e474ka12d",
             "pack_reg3_cap": "murata_grm188r71e474ka12d",
             "pack_reg2_cap": "murata_grm188r71e474ka12d",
             "pack_cell1_rbal": "panasonic_erj_p08f49r9v",
             "pack_batts_rbal": "panasonic_erj_p08f49r9v",
-            "pack_cell1_filter_cap": "tdk_c1005x7r1h104k050bb",
-            "pack_batts_filter_cap": "tdk_c1005x7r1h104k050bb",
+            "pack_cell1_filter_cap": "yageo_cc0402krx7r9bb104",
+            "pack_batts_filter_cap": "yageo_cc0402krx7r9bb104",
             "pack_pckp_res": "yageo_rc0402fr_071kl",
-            "pack_chg_gate_cap": "tdk_c1005x7r1h104k050bb",
-            "pack_dis_gate_cap": "tdk_c1005x7r1h104k050bb",
+            "pack_chg_gate_cap": "yageo_cc0402krx7r9bb104",
+            "pack_dis_gate_cap": "yageo_cc0402krx7r9bb104",
             "pack_hold_pullup": "yageo_rc0402fr_0710kl",
             "pack_hold_release_pulldown": "yageo_rc0402fr_0710kl",
             "pack_alrt_pullup": "yageo_rc0402fr_0710kl",
@@ -843,14 +843,14 @@ class ArchitectureValidationTests(unittest.TestCase):
             "pack_gauge_scl_pullup": "yageo_rc0402fr_0710kl",
             "pack_gauge_sda_pullup": "yageo_rc0402fr_0710kl",
             "pack_admission_bulk_cap": "murata_grm188r60j106me47d",
-            "pack_admission_bypass": "tdk_c1005x7r1h104k050bb",
+            "pack_admission_bypass": "yageo_cc0402krx7r9bb104",
             "pack_admission_reset_pullup": "yageo_rc0402fr_0747kl",
             "pack_admission_reset_cap": "murata_grm155r71h103ka88d",
             "power_command_switch": "ck_js102011scqn",
             "power_command_pullup": "yageo_rc0402fr_0747kl",
-            "power_command_filter": "tdk_c1005x7r1h104k050bb",
+            "power_command_filter": "yageo_cc0402krx7r9bb104",
             "run_loop_pullup": "yageo_rc0402fr_0710kl",
-            "run_loop_filter": "tdk_c1005x7r1h104k050bb",
+            "run_loop_filter": "yageo_cc0402krx7r9bb104",
         }
         for instance, device_id in expected_instances.items():
             self.assertEqual(device_id, candidate["instances"][instance])
@@ -966,7 +966,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Murata GRM31C5C1H224JE02L<br/>220-nF 50-V C0G diagnostic-pulse timing capacitor",
             "Yageo RC0402FR-07620KL<br/>620-kOhm 1% refractory-lockout timing resistor",
             "TDK C1608X7R1C105K080AC<br/>1-uF 16-V X7R refractory-lockout timing capacitor",
-            "TDK C1005X7R1H104K050BB<br/>100-nF 50-V X7R one-shot bypass capacitor",
+            "Yageo CC0402KRX7R9BB104<br/>100-nF 50-V X7R one-shot bypass capacitor",
             "Yageo RC0402FR-0710KL<br/>10-kOhm 1% diagnostic-trigger fail-low resistor",
             "Yageo RC0402FR-0710KL<br/>10-kOhm 1% diagnostic-gate fail-low resistor",
             "Diodes Incorporated DMN2056U-7<br/>20-V low-gate-drive diagnostic-load MOSFET",
@@ -997,7 +997,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Texas Instruments TPS564252DRLR<br/>feedback-set 3.222-V 4-A main converter",
             "Sunlord MWSA0503S-3R3MT<br/>3.3-uH main-rail power inductor",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main-converter bulk input capacitor",
-            "TDK C1005X7R1H104K050BB<br/>100-nF 50-V X7R main-converter HF input capacitor",
+            "Yageo CC0402KRX7R9BB104<br/>100-nF 50-V X7R main-converter HF input capacitor",
             "Vishay TNPW040243K7BEED<br/>43.7-kOhm 0.1% main feedback top resistor",
             "Vishay TNPW040210K0BEED<br/>10-kOhm 0.1% main feedback bottom resistor",
             "KEMET C0402C330J5GACTU<br/>33-pF 50-V C0G main feed-forward capacitor",
@@ -1011,7 +1011,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Texas Instruments TPS564252DRLR<br/>fixed 4.0-V 4-A voice converter",
             "Sunlord MWSA0503S-3R3MT<br/>3.3-uH voice-rail power inductor",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R voice-converter bulk input capacitor",
-            "TDK C1005X7R1H104K050BB<br/>100-nF 50-V X7R voice-converter HF input capacitor",
+            "Yageo CC0402KRX7R9BB104<br/>100-nF 50-V X7R voice-converter HF input capacitor",
             "Yageo RC0402FR-0768KL<br/>68-kOhm 1% voice feedback top resistor",
             "Yageo RC0402FR-0712KL<br/>12-kOhm 1% voice feedback bottom resistor",
             "KEMET C0402C330J5GACTU<br/>33-pF 50-V C0G voice feed-forward capacitor",
@@ -1026,7 +1026,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Texas Instruments TPS564252DRLR<br/>fixed 5.0-V 4-A accessory converter",
             "Sunlord MWSA0503S-4R7MT<br/>4.7-uH accessory-rail power inductor",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R accessory-converter bulk input capacitor",
-            "TDK C1005X7R1H104K050BB<br/>100-nF 50-V X7R accessory-converter HF input capacitor",
+            "Yageo CC0402KRX7R9BB104<br/>100-nF 50-V X7R accessory-converter HF input capacitor",
             "Yageo RC0402FR-07220KL<br/>220-kOhm 1% accessory feedback top resistor",
             "Yageo RC0402FR-0730KL<br/>30-kOhm 1% accessory feedback bottom resistor",
             "KEMET C0402C330J5GACTU<br/>33-pF 50-V C0G accessory feed-forward capacitor",
@@ -1059,7 +1059,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Panasonic ERJ-2RKF22R0X<br/>22-Ohm buffered-card clock source-series resistor",
             "Panasonic ERJ-2RKF22R0X<br/>22-Ohm card-MISO buffer source-series resistor",
             "Yageo RC0603FR-071KL<br/>1-kOhm card-detect input series resistor",
-            "TDK C1005X7R1H104K050BB<br/>100-nF card-detect hardware filter capacitor",
+            "Yageo CC0402KRX7R9BB104<br/>100-nF card-detect hardware filter capacitor",
             "Vishay TSOP75238TT<br/>38-kHz AGC2 demodulating IR receiver",
             "Vishay TSMP95000TT<br/>30-to-60-kHz carrier-learning IR receiver",
             "Vishay VSMY14940<br/>side-view 940-nm consumer IR transmit emitter",
@@ -1161,9 +1161,9 @@ class ArchitectureValidationTests(unittest.TestCase):
                 "SDESDB": "TPD4E05U06DQAR",
                 "SDINCAP": "C1608X7R1C105K080AC",
                 "SDBULK": "GRM21BR60J226ME39L",
-                "SDHFCAP": "C1005X7R1H104K050BB",
-                "SDHBUFCAP": "C1005X7R1H104K050BB",
-                "SDMBUFCAP": "C1005X7R1H104K050BB",
+                "SDHFCAP": "CC0402KRX7R9BB104",
+                "SDHBUFCAP": "CC0402KRX7R9BB104",
+                "SDMBUFCAP": "CC0402KRX7R9BB104",
                 "SDONPD": "RC0402FR-0710KL",
                 "SDSCKPD": "RC0402FR-0710KL",
                 "SDD0PU": "RC0402FR-0710KL",
@@ -1181,7 +1181,7 @@ class ArchitectureValidationTests(unittest.TestCase):
                 "SDMISOR": "ERJ-2RKF22R0X",
                 "SDDETR": "RC0603FR-071KL",
                 "SDDETPU": "RC0402FR-0710KL",
-                "SDDETC": "C1005X7R1H104K050BB",
+                "SDDETC": "CC0402KRX7R9BB104",
             }
             assert_individual_mpn_nodes(storage_nodes, f"{doc_name}: storage")
             touch_nodes = {
@@ -1192,18 +1192,18 @@ class ArchitectureValidationTests(unittest.TestCase):
             assert_individual_mpn_nodes(touch_nodes, f"{doc_name}: touch")
             pack_support_nodes = {
                 "PACKINR": "ERJ-P08F10R0V",
-                "PACKINC": "C1005X7R1H104K050BB",
+                "PACKINC": "CC0402KRX7R9BB104",
                 "PACKCPC": "GRM188R71E474KA12D",
                 "PACKAOC": "GRM188R71E474KA12D",
                 "PACKR3C": "GRM188R71E474KA12D",
                 "PACKR2C": "GRM188R71E474KA12D",
                 "PACKRB1": "ERJ-P08F49R9V",
                 "PACKRB4": "ERJ-P08F49R9V",
-                "PACKCF1": "C1005X7R1H104K050BB",
-                "PACKCF4": "C1005X7R1H104K050BB",
+                "PACKCF1": "CC0402KRX7R9BB104",
+                "PACKCF4": "CC0402KRX7R9BB104",
                 "PACKPCKR": "RC0402FR-071KL",
-                "PACKCGC": "C1005X7R1H104K050BB",
-                "PACKDGC": "C1005X7R1H104K050BB",
+                "PACKCGC": "CC0402KRX7R9BB104",
+                "PACKDGC": "CC0402KRX7R9BB104",
                 "PACKHOLDPU": "RC0402FR-0710KL",
                 "PACKRELDPD": "RC0402FR-0710KL",
                 "PACKALRTPU": "RC0402FR-0710KL",
@@ -1213,7 +1213,7 @@ class ArchitectureValidationTests(unittest.TestCase):
                 "PACKSCLPU": "RC0402FR-0710KL",
                 "PACKSDAPU": "RC0402FR-0710KL",
                 "PACKMCUBULK": "GRM188R60J106ME47D",
-                "PACKMCUHF": "C1005X7R1H104K050BB",
+                "PACKMCUHF": "CC0402KRX7R9BB104",
                 "PACKRSTPU": "RC0402FR-0747KL",
                 "PACKRSTC": "GRM155R71H103KA88D",
             }
@@ -1596,17 +1596,17 @@ class ArchitectureValidationTests(unittest.TestCase):
             "charger_inductor": "sunlord_mwsa0503s_2r2mt",
             "charger_vbus_cap0": "murata_grm31cr71e106ma12l",
             "charger_vbus_cap1": "murata_grm31cr71e106ma12l",
-            "charger_vbus_hf_cap": "tdk_c1005x7r1h104k050bb",
+            "charger_vbus_hf_cap": "yageo_cc0402krx7r9bb104",
             "charger_pmid_cap0": "murata_grm31cr71e106ma12l",
             "charger_pmid_cap1": "murata_grm31cr71e106ma12l",
             "charger_pmid_cap2": "murata_grm31cr71e106ma12l",
-            "charger_pmid_hf_cap": "tdk_c1005x7r1h104k050bb",
+            "charger_pmid_hf_cap": "yageo_cc0402krx7r9bb104",
             "charger_sys_cap0": "murata_grm31cr71e106ma12l",
             "charger_sys_cap1": "murata_grm31cr71e106ma12l",
             "charger_sys_cap2": "murata_grm31cr71e106ma12l",
             "charger_sys_cap3": "murata_grm31cr71e106ma12l",
             "charger_sys_cap4": "murata_grm31cr71e106ma12l",
-            "charger_sys_hf_cap": "tdk_c1005x7r1h104k050bb",
+            "charger_sys_hf_cap": "yageo_cc0402krx7r9bb104",
             "charger_bat_cap0": "murata_grm31cr71e106ma12l",
             "charger_bat_cap1": "murata_grm31cr71e106ma12l",
             "charger_btst1_cap": "murata_grm155r71e473ka88d",
@@ -1678,7 +1678,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "pd_vbus_cap": "tdk_cga5l1x7r1e475k160ac",
             "pd_cc1_cap": "murata_grm1555c1h221ja01d",
             "pd_cc2_cap": "murata_grm1555c1h221ja01d",
-            "pd_eeprom_bypass": "tdk_c1005x7r1h104k050bb",
+            "pd_eeprom_bypass": "yageo_cc0402krx7r9bb104",
             "pd_eeprom_wp_pullup": "yageo_rc0402fr_0710kl",
             "pd_local_scl_pullup": "yageo_rc0402fr_072k2l",
             "pd_local_sda_pullup": "yageo_rc0402fr_072k2l",
@@ -1818,13 +1818,13 @@ class ArchitectureValidationTests(unittest.TestCase):
             "aon_efuse_rilim": "yageo_rc0402fr_07240kl",
             "aon_efuse_ovlo_top": "yageo_rc0402fr_07196kl",
             "aon_efuse_ovlo_bottom": "yageo_rc0402fr_07100kl",
-            "aon_efuse_input_cap": "tdk_c1005x7r1h104k050bb",
+            "aon_efuse_input_cap": "yageo_cc0402krx7r9bb104",
             "aon_efuse_output_cap": "murata_grm188r60j106me47d",
             "aon_pg_pullup": "yageo_rc0402fr_0747kl",
             "main_buck": "ti_tps564252_drlr",
             "main_inductor": "sunlord_mwsa0503s_3r3mt",
             "main_input_cap": "murata_grm32er71e226ke15l",
-            "main_hf_input_cap": "tdk_c1005x7r1h104k050bb",
+            "main_hf_input_cap": "yageo_cc0402krx7r9bb104",
             "main_fb_top": "vishay_tnpw040243k7beed",
             "main_fb_bottom": "vishay_tnpw040210k0beed",
             "main_ff_cap": "kemet_c0402c330j5gactu",
@@ -1844,7 +1844,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "voice_buck": "ti_tps564252_drlr",
             "voice_inductor": "sunlord_mwsa0503s_3r3mt",
             "voice_input_cap": "murata_grm32er71e226ke15l",
-            "voice_hf_input_cap": "tdk_c1005x7r1h104k050bb",
+            "voice_hf_input_cap": "yageo_cc0402krx7r9bb104",
             "voice_fb_top": "yageo_rc0402fr_0768kl",
             "voice_fb_bottom": "yageo_rc0402fr_0712kl",
             "voice_ff_cap": "kemet_c0402c330j5gactu",
@@ -1866,7 +1866,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "ext_buck": "ti_tps564252_drlr",
             "ext_inductor": "sunlord_mwsa0503s_4r7mt",
             "ext_buck_input_cap": "murata_grm32er71e226ke15l",
-            "ext_buck_hf_input_cap": "tdk_c1005x7r1h104k050bb",
+            "ext_buck_hf_input_cap": "yageo_cc0402krx7r9bb104",
             "ext_buck_fb_top": "yageo_rc0402fr_07220kl",
             "ext_buck_fb_bottom": "yageo_rc0402fr_0730kl",
             "ext_buck_ff_cap": "kemet_c0402c330j5gactu",
@@ -2302,7 +2302,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertAlmostEqual(0.350, ir_clear, places=3)
 
         for instance in ("evidence_cmp_a_bypass", "evidence_cmp_b_bypass", "evidence_cmp_voice_bypass", "evidence_mask_bypass", "evidence_main_isolator_bypass"):
-            self.assertEqual("tdk_c1005x7r1h104k050bb", instances[instance])
+            self.assertEqual("yageo_cc0402krx7r9bb104", instances[instance])
         self.assertEqual("ti_sn74lvc3g07_dcur", instances["evidence_main_isolator"])
         isolator = self.database["devices"]["ti_sn74lvc3g07_dcur"]
         self.assertEqual("1", isolator["contacts"]["1A"]["physical"])
@@ -2352,11 +2352,11 @@ class ArchitectureValidationTests(unittest.TestCase):
 
         required = {
             "nrf0_host_buffer": "nexperia_74lvc126apw_118",
-            "nrf0_return_buffer": "nexperia_74lvc2g126dc_125",
+            "nrf0_return_buffer": "nexperia_74lvc2g126dp_125",
             "nrf1_host_buffer": "nexperia_74lvc126apw_118",
-            "nrf1_return_buffer": "nexperia_74lvc2g126dc_125",
+            "nrf1_return_buffer": "nexperia_74lvc2g126dp_125",
             "nrf2_host_buffer": "nexperia_74lvc126apw_118",
-            "nrf2_return_buffer": "nexperia_74lvc2g126dc_125",
+            "nrf2_return_buffer": "nexperia_74lvc2g126dp_125",
             "nrf0_coupler": "ttm_dc2337j5010ahf",
             "nrf1_coupler": "ttm_dc2337j5010ahf",
             "nrf2_coupler": "ttm_dc2337j5010ahf",
@@ -2423,7 +2423,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for label in (
             "Nexperia 74LVC126APW,118<br/>CE/CSN/SCK/MOSI switched-rail Ioff buffer",
-            "Nexperia 74LVC2G126DC,125<br/>MISO/IRQ switched-rail Ioff buffer",
+            "Nexperia 74LVC2G126DP,125<br/>MISO/IRQ switched-rail Ioff buffer",
             "TTM Technologies DC2337J5010AHF<br/>full-band forward-power directional coupler",
             "Analog Devices AD8314ACPZ-RL7<br/>nRF0 2.4-GHz RF power detector",
         ):
@@ -2516,7 +2516,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         required = {
             "cc_host_buffer": "nexperia_74lvc126apw_118",
             "cc_return_buffer": "nexperia_74lvc126apw_118",
-            "cc_band_buffer": "nexperia_74lvc2g126dc_125",
+            "cc_band_buffer": "nexperia_74lvc2g126dp_125",
             "cc_crystal": "abracon_abm8_26mhz_10_d_1_g_t",
             "cc_balun": "ttm_b0310j50100ahf",
             "cc_switch_a": "infineon_bgs13sn8e6327xtsa1",
@@ -2600,7 +2600,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "voice_detector_series_attenuator": "yageo_rc0402fr_075k1l",
             "voice_detector_match": "yageo_rc0402fr_0752r3l",
             "voice_detector_filter": "murata_grm1555c1h121ja01d",
-            "voice_detector_bypass": "tdk_c1005x7r1h104k050bb",
+            "voice_detector_bypass": "yageo_cc0402krx7r9bb104",
             "voice_evidence_hold_diode": "diodes_bat54_7_f",
             "voice_evidence_hold_cap": "tdk_c1608x7r1c105k080ac",
             "voice_evidence_hold_pulldown": "yageo_rc0402fr_0710kl",
@@ -2664,7 +2664,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         required = {
             "ir_demod": "vishay_tsop75238tt",
             "ir_carrier": "vishay_tsmp95000tt",
-            "ir_return_buffer": "nexperia_74lvc2g126dc_125",
+            "ir_return_buffer": "nexperia_74lvc2g126dp_125",
             "ir_emitter": "vishay_vsmy14940",
             "ir_emitter_limit": "yageo_rc1206fr_0747rl",
             "ir_tx_mosfet": "diodes_dmn2056u_7",
@@ -4038,8 +4038,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("0x2A", candidate["power_contract"]["pack_system_i2c_target"])
 
         expected_instances = {
-            "slow_io_vcci_bypass": "tdk_c1005x7r1h104k050bb",
-            "slow_io_vccp_bypass": "tdk_c1005x7r1h104k050bb",
+            "slow_io_vcci_bypass": "yageo_cc0402krx7r9bb104",
+            "slow_io_vccp_bypass": "yageo_cc0402krx7r9bb104",
             "slow_io_bulk_cap": "tdk_c1608x7r1c105k080ac",
             "slow_io_reset_pullup": "yageo_rc0402fr_0710kl",
             "slow_io_fault_sense_iso": "ti_sn74lvc1g07_dckr",
@@ -4113,7 +4113,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertIn(token, rendered)
 
         for token in (
-            "TDK C1005X7R1H104K050BB<br/>100-nF main slow-I/O VCCI bypass capacitor",
+            "Yageo CC0402KRX7R9BB104<br/>100-nF main slow-I/O VCCI bypass capacitor",
             "TDK C1608X7R1C105K080AC<br/>1-uF main slow-I/O local bulk capacitor",
             "SN74LVC1G07DCKR<br/>AON-powered open-drain FAULT-sense domain isolator",
             "SN74LVC1G07DCKR<br/>AON-powered open-drain S3-evidence domain isolator",

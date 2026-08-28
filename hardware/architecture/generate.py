@@ -2718,8 +2718,14 @@ def render_readme_schematics(
 
     begin = "<!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->"
     end = "<!-- END GENERATED PRINCIPLE DIAGRAMS -->"
+    if begin not in current and end not in current:
+        # The product landing page intentionally stays compact and already links
+        # to the dedicated schematics atlas from its primary navigation.  Older
+        # revisions embedded a generated duplicate here; absence of both markers
+        # is therefore a valid current layout, not a damaged README.
+        return current
     if begin not in current or end not in current:
-        raise ValueError("README is missing generated principle-diagram markers")
+        raise ValueError("README has only one generated principle-diagram marker")
     if russian:
         section = (
             "## Принципиальные схемы и электрическая реализация\n\n"
@@ -4917,18 +4923,6 @@ def main(argv: list[str] | None = None) -> int:
             database, candidates, russian=False
         ),
         REPO_ROOT / "docs/pinout.ru.md": render_public_pinout(
-            database, candidates, russian=True
-        ),
-        REPO_ROOT / "docs/schematics.md": render_public_schematics(
-            database, candidates, russian=False
-        ),
-        REPO_ROOT / "docs/schematics.ru.md": render_public_schematics(
-            database, candidates, russian=True
-        ),
-        REPO_ROOT / "docs/interconnect.md": render_public_interconnect(
-            database, candidates, russian=False
-        ),
-        REPO_ROOT / "docs/interconnect.ru.md": render_public_interconnect(
             database, candidates, russian=True
         ),
     }

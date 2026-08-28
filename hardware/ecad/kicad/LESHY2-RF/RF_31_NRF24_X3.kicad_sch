@@ -1420,7 +1420,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+			(property "Footprint" "Package_SO:TSSOP-8_3x3mm_P0.65mm"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3408,7 +3408,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+			(property "Footprint" "Package_SO:TSSOP-8_3x3mm_P0.65mm"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5396,7 +5396,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+			(property "Footprint" "Package_SO:TSSOP-8_3x3mm_P0.65mm"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8799,13 +8799,13 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Nexperia 74LVC2G126DC,125"
+		(property "Value" "Nexperia 74LVC2G126DP,125"
 			(at 441.96 103.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+		(property "Footprint" "Package_SO:TSSOP-8_3x3mm_P0.65mm"
 			(at 441.96 97.79 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8874,7 +8874,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 508.00 100.33 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8931,7 +8931,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 574.04 100.33 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9045,7 +9045,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 111.76 102.87 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10368,7 +10368,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 508.00 176.53 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10518,13 +10518,13 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Nexperia 74LVC2G126DC,125"
+		(property "Value" "Nexperia 74LVC2G126DP,125"
 			(at 45.72 182.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+		(property "Footprint" "Package_SO:TSSOP-8_3x3mm_P0.65mm"
 			(at 45.72 176.53 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10593,7 +10593,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 111.76 179.07 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10650,7 +10650,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 177.80 179.07 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10764,7 +10764,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 441.96 181.61 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12087,7 +12087,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 177.80 255.27 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12237,13 +12237,13 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Nexperia 74LVC2G126DC,125"
+		(property "Value" "Nexperia 74LVC2G126DP,125"
 			(at 441.96 260.87 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+		(property "Footprint" "Package_SO:TSSOP-8_3x3mm_P0.65mm"
 			(at 441.96 255.27 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12312,7 +12312,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 45.72 260.35 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12369,7 +12369,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 243.84 260.35 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12483,7 +12483,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 375.92 270.51 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13806,7 +13806,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 243.84 336.55 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13998,7 +13998,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 309.88 346.71 0)
 			(show_name no)
 			(do_not_autoplace no)

@@ -3,9 +3,9 @@
   "stage": "H3.0.2",
   "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
-    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-    "hardware/ecad/generated/H2-instance-ledger.json": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "bce62d0601d118dbbd38a9fb17a82dc76f41dae2137b622b27f9ccde5e6e5eb3"
+    "hardware/architecture/devices.json": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+    "hardware/ecad/generated/H2-instance-ledger.json": "5e79e26435c0964540fa1e815a59170cf6715ebcf0672285a378ed6a5de00ccb",
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "a10e51302d0cfa9e7e457015fd8c17f2393556003291774c0b37ec0643bc75f0"
   },
   "policy": {
     "accepted_h2_baseline_is_immutable": true,
@@ -1212,7 +1212,7 @@
         "UI_11_DISPLAY_TOUCH_STORAGE"
       ],
       "roles": [
-        "40-contact fixed receptacle for the replaceable display adapter"
+        "40-contact fixed receptacle for the antenna-edge replaceable display adapter"
       ],
       "lifecycle": "active and authorized-distributor-stocked",
       "source": {
@@ -3766,9 +3766,9 @@
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
-      "device_key": "nexperia_74lvc2g126dc_125",
-      "mpn": "Nexperia 74LVC2G126DC,125",
-      "kind": "vssop8_dual_noninverting_three_state_buffer_with_ioff",
+      "device_key": "nexperia_74lvc2g126dp_125",
+      "mpn": "Nexperia 74LVC2G126DP,125",
+      "kind": "tssop8_dual_noninverting_three_state_buffer_with_ioff",
       "instance_count": 5,
       "projects": [
         "LESHY2-RF",
@@ -3784,14 +3784,14 @@
         "nRF24 #0 return-path buffer",
         "nRF24 #1 return-path buffer",
         "nRF24 #2 return-path buffer",
-        "vssop8_dual_noninverting_three_state_buffer_with_ioff"
+        "tssop8_dual_noninverting_three_state_buffer_with_ioff"
       ],
-      "lifecycle": "production_active_orderable",
+      "lifecycle": "production_active_factory_stocked",
       "source": {
         "document": "74LVC2G126 dual bus buffer/line driver product data sheet",
         "version": "Rev. 16, 17 August 2023",
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-08-28"
       },
       "source_status": "accepted_h2_authoritative_source",
       "source_host": "assets.nexperia.com",
@@ -3799,7 +3799,7 @@
         "document": "74LVC2G126 dual bus buffer/line driver product data sheet",
         "version": "Rev. 16, 17 August 2023",
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-08-28"
       },
       "structured_parameter_count": 4,
       "structured_parameters": {
@@ -5459,68 +5459,6 @@
         "dielectric": "X5R",
         "reference_note": "Tighter than the Raspberry Pi 20-percent reference tolerance; DC-bias and placement still close with the exact regulator layout."
       },
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "voltage/current derating",
-        "temperature coefficient",
-        "frequency/bias dependence"
-      ],
-      "h3_model_method": "analytic_or_vendor_curve",
-      "model_status": "method_to_be_frozen_in_H3.0.3"
-    },
-    {
-      "device_key": "tdk_c1005x7r1h104k050bb",
-      "mpn": "TDK C1005X7R1H104K050BB",
-      "kind": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
-      "instance_count": 153,
-      "projects": [
-        "LESHY2-LORA-CAP-01",
-        "LESHY2-RF",
-        "LESHY2-UI"
-      ],
-      "sheets": [
-        "CAP_10_RADIO_CONTROL",
-        "CAP_20_POWER_BUS",
-        "CAP_30_TX_EVIDENCE",
-        "RF_01_USB_PD_CHARGE",
-        "RF_02_PACK_SAFETY_AON",
-        "RF_03_MAIN_RAILS_DOMAIN_GATES",
-        "RF_30_RP2354_CORE_SERVICE",
-        "RF_31_NRF24_X3",
-        "RF_32_SUBGHZ_VOICE",
-        "RF_34_U214_M5_EXT",
-        "RF_35_REAR_CONTROLS",
-        "RF_50_TX_SAFETY_EVIDENCE",
-        "UI_10_S3_CORE_MEMORY_BOOT",
-        "UI_11_DISPLAY_TOUCH_STORAGE",
-        "UI_12_CONTROLS_INDICATORS",
-        "UI_13_AUDIO_CODEC_HEADSET",
-        "UI_20_C5_RADIO_IR_SERVICE",
-        "UI_21_FM_AM_RECEIVER",
-        "UI_50_TX_SAFETY_EVIDENCE"
-      ],
-      "roles": [
-        "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
-      ],
-      "lifecycle": "active",
-      "source": {
-        "document": "TDK C1005X7R1H104K050BB product data and characteristic models",
-        "version": "production status checked 2026-08-18",
-        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB",
-        "checked": "2026-08-18"
-      },
-      "source_status": "accepted_h2_authoritative_source",
-      "source_host": "product.tdk.com",
-      "accepted_h2_source_preserved": {
-        "document": "TDK C1005X7R1H104K050BB product data and characteristic models",
-        "version": "production status checked 2026-08-18",
-        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB",
-        "checked": "2026-08-18"
-      },
-      "structured_parameter_count": 0,
-      "structured_parameters": {},
       "parameter_class": "passive_corner",
       "required_parameter_groups": [
         "nominal",
@@ -8462,6 +8400,68 @@
         "applicability"
       ],
       "h3_model_method": "datasheet_corner_model",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
+      "device_key": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "kind": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
+      "instance_count": 153,
+      "projects": [
+        "LESHY2-LORA-CAP-01",
+        "LESHY2-RF",
+        "LESHY2-UI"
+      ],
+      "sheets": [
+        "CAP_10_RADIO_CONTROL",
+        "CAP_20_POWER_BUS",
+        "CAP_30_TX_EVIDENCE",
+        "RF_01_USB_PD_CHARGE",
+        "RF_02_PACK_SAFETY_AON",
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3",
+        "RF_32_SUBGHZ_VOICE",
+        "RF_34_U214_M5_EXT",
+        "RF_35_REAR_CONTROLS",
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE",
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_21_FM_AM_RECEIVER",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ],
+      "roles": [
+        "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+      ],
+      "lifecycle": "active_orderable",
+      "source": {
+        "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+        "version": "generated 2026-06-24",
+        "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+        "checked": "2026-08-28"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.yageogroup.com",
+      "accepted_h2_source_preserved": {
+        "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+        "version": "generated 2026-06-24",
+        "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+        "checked": "2026-08-28"
+      },
+      "structured_parameter_count": 0,
+      "structured_parameters": {},
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "voltage/current derating",
+        "temperature coefficient",
+        "frequency/bias dependence"
+      ],
+      "h3_model_method": "analytic_or_vendor_curve",
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {

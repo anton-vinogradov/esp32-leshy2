@@ -21519,7 +21519,7 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+				(property "Footprint" "Package_SO:TSSOP-8_3x3mm_P0.65mm"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -23875,7 +23875,7 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+				(property "Footprint" "Package_SO:TSSOP-8_3x3mm_P0.65mm"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -26231,7 +26231,7 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+				(property "Footprint" "Package_SO:TSSOP-8_3x3mm_P0.65mm"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -28327,7 +28327,7 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+				(property "Footprint" "Package_SO:TSSOP-8_3x3mm_P0.65mm"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -58409,7 +58409,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Description" "40-contact fixed receptacle for the replaceable display adapter"
+				(property "Description" "40-contact fixed receptacle for the antenna-edge replaceable display adapter"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -77825,7 +77825,7 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+				(property "Footprint" "Package_SO:TSSOP-8_3x3mm_P0.65mm"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -77839,7 +77839,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Description" "vssop8_dual_noninverting_three_state_buffer_with_ioff"
+				(property "Description" "tssop8_dual_noninverting_three_state_buffer_with_ioff"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)

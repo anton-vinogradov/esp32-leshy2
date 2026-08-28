@@ -5,10 +5,10 @@
   "project": "LESHY2-RF",
   "sheet": "RF_36_AUDIO_IO_AMP",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-    "hardware/ecad/generated/H2-instance-ledger.json": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "6e75232396e75d4615081d32d1c7db3419b7a321832f178c011dc1a0dbf6b552"
+    "hardware/architecture/candidates/G2F-3I.json": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+    "hardware/architecture/devices.json": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+    "hardware/ecad/generated/H2-instance-ledger.json": "5e79e26435c0964540fa1e815a59170cf6715ebcf0672285a378ed6a5de00ccb",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "611c32963b5b0c5ab62ef65d45bb5820fa47f581978c416b0a68b205aec7e752"
   },
   "summary": {
     "ledger_instances": 14,

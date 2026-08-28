@@ -13,7 +13,7 @@
 - Current orderability evidence exists for **209/210** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **198/210** lines.
 - Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **1033/1052** supplied placements; their partial subtotals are `base_product` — USD 236.7231. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **1033/1052** supplied placements; their partial subtotals are `base_product` — USD 235.3369. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **210/210** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -96,9 +96,9 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `sunlord_mwsa0503s_4r7mt` — `Sunlord MWSA0503S-4R7MT`.
   - `sunlord_wpn201612h2r2mt` — `Sunlord WPN201612H2R2MT`.
   - `tdk_c1005x5r0j475k050bc` — `TDK C1005X5R0J475K050BC`.
-  - `tdk_c1005x7r1h104k050bb` — `TDK C1005X7R1H104K050BB`.
   - `tdk_c1608x7s2a104k080ab` — `TDK C1608X7S2A104K080AB`.
   - `tdk_cga5l1x7r1e475k160ac` — `TDK CGA5L1X7R1E475K160AC`.
+  - `yageo_cc0402krx7r9bb104` — `Yageo CC0402KRX7R9BB104`.
 
 </details>
 
@@ -220,7 +220,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `everest_es8311_qfn20` — `Everest Semiconductor ES8311`.
   - `nexperia_74lvc126apw_118` — `Nexperia 74LVC126APW,118`.
   - `nexperia_74lvc1g32gv_125` — `74LVC1G32GV,125`.
-  - `nexperia_74lvc2g126dc_125` — `Nexperia 74LVC2G126DC,125`.
+  - `nexperia_74lvc2g126dp_125` — `Nexperia 74LVC2G126DP,125`.
   - `nexperia_74lvc2g14gw_125` — `74LVC2G14GW,125`.
   - `onsemi_fsusb42_mux` — `onsemi FSUSB42MUX`.
   - `tca4307dgkr` — `TCA4307DGKR`.
@@ -1052,12 +1052,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Nexperia 74LVC2G126DC,125</code> — 5 × USD 0.2086 = USD 1.0430</summary>
+<details><summary><code>Nexperia 74LVC2G126DP,125</code> — 5 × USD 0.3753 = USD 1.8765</summary>
 
-- Device id: `nexperia_74lvc2g126dc_125`.
+- Device id: `nexperia_74lvc2g126dp_125`.
 - Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC2G126DC-125/1231578).
+- Comparable basis: JLCPCB quantity-100 tier; live stock 155, MOQ 1; target quantity `100`.
+- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/Nexperia-74LVC2G126DP125/C503392).
 
 </details>
 
@@ -1274,15 +1274,6 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-23`; [published source](https://www.digikey.com/en/products/detail/tdk-corporation/C1005X5R0J475K050BC/2443425).
-
-</details>
-
-<details><summary><code>TDK C1005X7R1H104K050BB</code> — 147 × USD 0.0258 = USD 3.7926</summary>
-
-- Device id: `tdk_c1005x7r1h104k050bb`.
-- Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/tdk/C1005X7R1H104K050BB/2443410).
 
 </details>
 
@@ -1769,6 +1760,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.mouser.com/ProductDetail/Vishay-Dale/WSL25125L000FEA?qs=ViWNInbc%252BeWBpJ7mz8KqSA%3D%3D).
+
+</details>
+
+<details><summary><code>Yageo CC0402KRX7R9BB104</code> — 147 × USD 0.0107 = USD 1.5729</summary>
+
+- Device id: `yageo_cc0402krx7r9bb104`.
+- Scope: `base_product`.
+- Comparable basis: JLCPCB one-piece tier; next displayed tier starts at 500 pieces; target quantity `100`.
+- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/Yageo-CC0402KRX7R9BB104/C131394).
 
 </details>
 

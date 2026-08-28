@@ -1,4 +1,4 @@
-# H1-R2.22 · finished-device placement
+# H1-R2.24 · finished-device placement
 
 Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, not authorization to start KiCad: no engineering blocker remains, but the complete mock-up still needs explicit acceptance.
 
@@ -73,4 +73,4 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 - No engineering blockers remain.
 - review and explicitly accept the generated complete R2 exterior, both true-view inner faces and four real section planes before closing H1
 
-> Exact current marker: **H1-R2.22**. H1 remains in progress.
+> Exact current marker: **H1-R2.24**. H1 remains in progress.

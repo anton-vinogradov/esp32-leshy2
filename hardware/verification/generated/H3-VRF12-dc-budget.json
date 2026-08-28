@@ -4,11 +4,11 @@
   "status": "reviewed_all_rail_loads_and_protection_margins_pass_after_ext_5v_and_audio_source_corrections",
   "method": "dc_network plus Decimal interval corners; PF-02 >=25% steady hardware reserve",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF11-power-state-register.json": "5a5749a2b5ca6ca451648d2b0c6b40beab8530c9b640b20b4863ec5a15cbe0b5",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
-    "hardware/architecture/candidates/G2F-3I.json": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-    "hardware/ecad/generated/H2-REV51-power-paths.json": "8f9e8b9a47d7cb6b277cb72cbf8a32b34bd85c40b8eedbafd9efd3f66c339d6b"
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "ca56af657daed652ab95e6bf5bc1e2b5e4ee62793dc9dd171f92ba0d5f71d112",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
+    "hardware/architecture/candidates/G2F-3I.json": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+    "hardware/architecture/devices.json": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+    "hardware/ecad/generated/H2-REV51-power-paths.json": "7a5825eb94466f63ec9f5a5ae28b9e82ab7bdc5b79812988498d28c935614629"
   },
   "provenance": [
     {

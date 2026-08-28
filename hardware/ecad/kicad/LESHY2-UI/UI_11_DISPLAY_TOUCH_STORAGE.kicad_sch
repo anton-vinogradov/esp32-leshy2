@@ -822,7 +822,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "40-contact fixed receptacle for the replaceable display adapter"
+			(property "Description" "40-contact fixed receptacle for the antenna-edge replaceable display adapter"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4223,7 +4223,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 294.64 49.53 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4555,7 +4555,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "40-contact fixed receptacle for the replaceable display adapter"
+		(property "Description" "40-contact fixed receptacle for the antenna-edge replaceable display adapter"
 			(at 213.36 92.71 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4763,7 +4763,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 132.08 77.47 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5063,7 +5063,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 375.92 113.03 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5177,7 +5177,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 457.20 120.65 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5939,7 +5939,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 457.20 176.53 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5996,7 +5996,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 132.08 181.61 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6053,7 +6053,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 294.64 189.23 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7079,7 +7079,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1005X7R1H104K050BB"
+		(property "Value" "Yageo CC0402KRX7R9BB104"
 			(at 294.64 265.43 0)
 			(show_name no)
 			(do_not_autoplace no)

@@ -10,7 +10,7 @@
 
 </div>
 
-> **Current hardware marker: `H1-R2.22`.** The two-PCB physical model has no remaining engineering blocker. Ten main SMA ports are split `5 + 5`; the separate rear MMCX feeds a mutually exclusive post-PCBA K331/AWM666V receiver bay. H1 now awaits explicit acceptance of the complete mock-up; KiCad and ordering remain blocked until that review.
+> **Current hardware marker: `H1-R2.24`.** The two-PCB physical model has no remaining engineering blocker. Ten main SMA ports are split `5 + 5`; the separate rear MMCX feeds a mutually exclusive post-PCBA K331/AWM666V receiver bay. H1 now awaits explicit acceptance of the complete mock-up; KiCad and ordering remain blocked until that review.
 
 ## What it is
 
@@ -36,10 +36,10 @@ user to accept the non-aggression/authorized-use terms.
 
 ## Physical mock-up
 
-![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.21-dual-fpv-7)
+![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.23-cost-display-1)
 
-[Open the legend for all 163 numbered components](docs/images/h1-r2-component-legend.svg?rev=h1-r2.21-dual-fpv-7) ·
-[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.21-dual-fpv-7) ·
+[Open the legend for all 163 numbered components](docs/images/h1-r2-component-legend.svg?rev=h1-r2.23-cost-display-1) ·
+[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.23-cost-display-1) ·
 [front inner face](docs/images/h1-r2-inner-ui.svg) ·
 [rear inner face](docs/images/h1-r2-inner-rf.svg)
 
@@ -90,7 +90,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | Stage | Status | Published result |
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.22`** | [Current placement](docs/h1-r2-physical-layout.md) · [cost ranking](docs/h1-r2-cost.md) |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.24`** | [Current placement](docs/h1-r2-physical-layout.md) · [cost ranking](docs/h1-r2-cost.md) |
 | H2 · Production ECAD schematic | ⏳ Waiting for R2 H1 | [Stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
@@ -120,7 +120,7 @@ Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H1-R2.22 -->
+<!-- current-substep: H1-R2.24 -->
 
 ## Repository
 

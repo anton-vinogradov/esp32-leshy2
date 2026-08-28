@@ -83,7 +83,7 @@ def footprint_for(instance: str, device_key: str, on_board: bool) -> str:
         return "Capacitor_SMD:C_0805_2012Metric"
     if device_key in {"murata_grm188r60j106me47d", "tdk_c1608x7r1c105k080ac"}:
         return "Capacitor_SMD:C_0603_1608Metric"
-    if device_key.startswith("tdk_c"):
+    if device_key.startswith(("tdk_c", "yageo_cc")):
         return "Capacitor_SMD:C_0402_1005Metric"
     if device_key == "panasonic_erj_p08f10r0v":
         return "Resistor_SMD:R_1206_3216Metric"

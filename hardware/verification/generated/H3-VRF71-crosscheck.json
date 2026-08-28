@@ -5,12 +5,12 @@
   "method": "exhaustive machine join of the H3 verification matrix, plan evidence, source-hash edges, every H2 instance identity and every cross-sheet root-net identity",
   "source_hashes": {
     "hardware/verification/h3-verification-plan.json": "675ad99667f873c347f32633131bcfe398ac2012975e1c29157fe225777ff5e5",
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "bce62d0601d118dbbd38a9fb17a82dc76f41dae2137b622b27f9ccde5e6e5eb3",
-    "hardware/verification/generated/H3-VRF02-parameter-inventory.json": "06a19ffe59177b65b8852dd634f18752c3411803a43b7115063ebcb00170d181",
-    "hardware/ecad/generated/H2-instance-ledger.json": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "d7882c1d8c265f80f7273b559f8843bc8c8a605cc7a5a107f810898db893cc2a",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "6e75232396e75d4615081d32d1c7db3419b7a321832f178c011dc1a0dbf6b552",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "d0fc0f3128535a69375117e740d03e33379669f6bb566d586c5f7d917d273000"
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "a10e51302d0cfa9e7e457015fd8c17f2393556003291774c0b37ec0643bc75f0",
+    "hardware/verification/generated/H3-VRF02-parameter-inventory.json": "a842825538e11fe0fb505b409aeb53eb56c977024ce1e94ec6519fec2beb8a38",
+    "hardware/ecad/generated/H2-instance-ledger.json": "5e79e26435c0964540fa1e815a59170cf6715ebcf0672285a378ed6a5de00ccb",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "576c2c0eb060b2b449cea29515f3958a58040fabec923e7e6652e210b5019626",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "611c32963b5b0c5ab62ef65d45bb5820fa47f581978c416b0a68b205aec7e752",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "2c04e5a9ff5d0235f3a8bd7fe97ef2122cfc87ae7d2be287773331d276bdeb2d"
   },
   "summary": {
     "verification_requirements": 16,
@@ -239,7 +239,7 @@
       "artifact_stage": "H3.0.1-R1",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_accepted_h2_inputs_and_complete_verification_matrix_frozen",
-      "sha256": "bce62d0601d118dbbd38a9fb17a82dc76f41dae2137b622b27f9ccde5e6e5eb3",
+      "sha256": "a10e51302d0cfa9e7e457015fd8c17f2393556003291774c0b37ec0643bc75f0",
       "reviewed": true
     },
     {
@@ -248,7 +248,7 @@
       "artifact_stage": "H3.0.2",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_inventory_complete_lifecycle_choice_resolved",
-      "sha256": "06a19ffe59177b65b8852dd634f18752c3411803a43b7115063ebcb00170d181",
+      "sha256": "a842825538e11fe0fb505b409aeb53eb56c977024ce1e94ec6519fec2beb8a38",
       "reviewed": true
     },
     {
@@ -257,7 +257,7 @@
       "artifact_stage": "H3.0.3",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_reproducible_methods_and_pass_fail_frozen",
-      "sha256": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
+      "sha256": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
       "reviewed": true
     },
     {
@@ -266,7 +266,7 @@
       "artifact_stage": "H3.1.1",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_all_legal_source_charge_and_operating_states_enumerated",
-      "sha256": "5a5749a2b5ca6ca451648d2b0c6b40beab8530c9b640b20b4863ec5a15cbe0b5",
+      "sha256": "ca56af657daed652ab95e6bf5bc1e2b5e4ee62793dc9dd171f92ba0d5f71d112",
       "reviewed": true
     },
     {
@@ -275,7 +275,7 @@
       "artifact_stage": "H3.1.2",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_all_rail_loads_and_protection_margins_pass_after_ext_5v_and_audio_source_corrections",
-      "sha256": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
+      "sha256": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
       "reviewed": true
     },
     {
@@ -284,7 +284,7 @@
       "artifact_stage": "H3.1.3",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_all_source_charge_discharge_and_steady_loss_envelopes",
-      "sha256": "8a6dc11fde865d17946827e44d39b7920d0d64c33e2ee60af7b6ba5ba0a23e53",
+      "sha256": "f2f2ad2af7538dff4ce1982623d9cf91c2239e6794bf31bf3298aa8ebbfd6d43",
       "reviewed": true
     },
     {
@@ -293,7 +293,7 @@
       "artifact_stage": "H3.1.4",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_h3_1_steady_dc_phase_complete",
-      "sha256": "6d8d81718d8934d1203f6315f1adaed47c1d695c46c8539e803642af39137033",
+      "sha256": "80a3fe3f3066d2bff73895806c5a3bb6123450041231b0a4ea03601e9d5e7b19",
       "reviewed": true
     },
     {
@@ -302,7 +302,7 @@
       "artifact_stage": "H3.2.1",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_startup_shutdown_and_fault_kill",
-      "sha256": "c3cd2dba4761b7dd4c2db9bc70b685e57b4116854556d0467eb004a3166f36a7",
+      "sha256": "fb17667bbe6b140a653169ac4e00ba742e4afff08c84447f4f992a362ff71dfb",
       "reviewed": true
     },
     {
@@ -311,7 +311,7 @@
       "artifact_stage": "H3.2.2",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_handover_charger_and_brownout",
-      "sha256": "4a09948610b841da51427a5d0a2f675646fda28b07ef6b3e3e575de43451b3b5",
+      "sha256": "c3ebe34e13dbc5120bd46978f3791405a49dafd9c77fc9a499806c3ce19d2454",
       "reviewed": true
     },
     {
@@ -320,7 +320,7 @@
       "artifact_stage": "H3.2.3",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_inrush_and_load_step_envelopes",
-      "sha256": "5d8621fe0c6241c41cc107c517e6b692f0acd0386f8753a40d39d7987c5ee9c9",
+      "sha256": "eb46808d46dcac2f694d3e9e6d3ca41232ef4d3162097b91959d6a8d20c748cf",
       "reviewed": true
     },
     {
@@ -329,7 +329,7 @@
       "artifact_stage": "H3.2.4",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_watchdog_latch_and_fault_display_contract",
-      "sha256": "23bf919118727e3e2c3049a57d48c7c2f2ff1b19098dda74234fc0678a9689e5",
+      "sha256": "2aabaf5dd9d5ae993fccd8c66c916b9ff85a6a959134b56617cd62b2d2e6faf7",
       "reviewed": true
     },
     {
@@ -338,7 +338,7 @@
       "artifact_stage": "H3.2.5",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_h3_2_power_transitions_complete",
-      "sha256": "9b7541b6170e53067d5221e1bbbb481294145b1f361a78ca8fc91cd5e237e00f",
+      "sha256": "a279736ae5d42abc252a61ffede11c31c4ed8e5ef9c45cf79d757c2e6cb0acf6",
       "reviewed": true
     },
     {
@@ -347,7 +347,7 @@
       "artifact_stage": "H3.3.1",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_display_supply_backlight_and_direct_qspi",
-      "sha256": "e9712f9e1772f0d21ef28af8e871929eb4c44e4d5d740e8eebec041ee67502aa",
+      "sha256": "8b2a03a9dd0cf9903d65919debc8ffc244d97a07751d08c0270f3ac2b29e64bc",
       "reviewed": true
     },
     {
@@ -356,7 +356,7 @@
       "artifact_stage": "H3.3.2",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_audio_analog_corners_after_four_source_corrections",
-      "sha256": "41ec47a7cdc957502bead0bf21b245813941968391792c6025f330b0c4171a8b",
+      "sha256": "7813e3ea26b11c776eebe54d60d5bd2aaef4c3b06845271aaf690ad01b651d65",
       "reviewed": true
     },
     {
@@ -365,7 +365,7 @@
       "artifact_stage": "H3.3.3",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_ir_corners_after_four_source_corrections",
-      "sha256": "c6b69417afb65cd1bde700dfdb71672b1b66ba559b7c3d7955d7057363223b4f",
+      "sha256": "a66993e1a9619068d282c98a5450836bd2776483cdae0ff1fa862139b07f1b79",
       "reviewed": true
     },
     {
@@ -374,7 +374,7 @@
       "artifact_stage": "H3.3.4",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_battery_sensing_thermistors_and_analog_fault_thresholds",
-      "sha256": "b4cdc384e33b787fca5329de88cb01069b84f6f3df63c2434716595cb0535b38",
+      "sha256": "5e04abb52d6f66d5420e9639d17ed92400882eed1600f4e6830573dc5ee1f8e0",
       "reviewed": true
     },
     {
@@ -383,7 +383,7 @@
       "artifact_stage": "H3.3.5",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_analog_corner_consolidation",
-      "sha256": "ff648489c94ec14358a8d617c545931c62f3f0f2efe380d3ced527dfa134f3ac",
+      "sha256": "6f2605e197f793d58e45e1ebc1cc09e439e56b7a04d4815a0e49ed9ae98370d7",
       "reviewed": true
     },
     {
@@ -392,7 +392,7 @@
       "artifact_stage": "H3.4.1",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_digital_levels_pulls_reset_defaults_and_no_back_power",
-      "sha256": "22efce1e5e06e4716209469bf2bd81b6a7fdfcc8b8b46dd7b559d7975efa62fd",
+      "sha256": "7cba0fdd4e37fadc374f7867bc046b179720e1d79d8ea5890ae578b00e1efd3a",
       "reviewed": true
     },
     {
@@ -401,7 +401,7 @@
       "artifact_stage": "H3.4.2",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_digital_bandwidth_latency_and_timing",
-      "sha256": "ab14a1d1ab47ae20de3c2d1b30afa1e558fcc28103ce52f59421148dbae8b41f",
+      "sha256": "fdac01173115ad3a7e4deb4bc2d85d44c1c6dd5ab13684a844e2d64f3723ba5d",
       "reviewed": true
     },
     {
@@ -410,7 +410,7 @@
       "artifact_stage": "H3.4.3",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_m1_expansion_and_service_boundary_loading",
-      "sha256": "8f40f0c2d016b2f38964d9eed41efbc29979d15011492275f6cebcf54a02c80a",
+      "sha256": "a12d557b0f516e46465a471156558d736ac412e81020267c754af7f68b00ccbd",
       "reviewed": true
     },
     {
@@ -419,7 +419,7 @@
       "artifact_stage": "H3.4.4",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_digital_interface_timing_level_and_loading_consolidation",
-      "sha256": "9e996a26055ee5d3b426db574589a7745fd6eb32704299c41f0ad4726c805d0e",
+      "sha256": "19b06513054632ae8eba3abe083851167bf03ab08ec0684b34b98da0c8ecb5a3",
       "reviewed": true
     },
     {
@@ -428,7 +428,7 @@
       "artifact_stage": "H3.5.1",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_rf_feed_connector_matching_and_loss_constraints",
-      "sha256": "f4bdac9fd98ff2ee11f9f39b3e63f57ac206c5fecf0d691e3598b49aae9c6237",
+      "sha256": "63bdc08ab65f33b54ab4906160e669b445ae0414ba8924a62bc0066417abb357",
       "reviewed": true
     },
     {
@@ -437,7 +437,7 @@
       "artifact_stage": "H3.5.2",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_rf_corridor_plane_and_return_constraints",
-      "sha256": "13da3954f34a82fb2c1f84d45b1529da330c0e42be999d0766faf32b104f7e20",
+      "sha256": "0829c9f2bf3c7648620ae72e78ed5a98d15c84537d1354dcb03201e891a7ee8d",
       "reviewed": true
     },
     {
@@ -446,7 +446,7 @@
       "artifact_stage": "H3.5.3",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_one_group_quiet_and_three_nrf_concurrency_model",
-      "sha256": "98acb44ea3489d72758ce9e74a77711097fbecc687d43f8502d8408313992b41",
+      "sha256": "92757f0baaf2463f801211ac678092146b52b2063afbf501b9ebf48cd2fb614b",
       "reviewed": true
     },
     {
@@ -455,7 +455,7 @@
       "artifact_stage": "H3.5.4",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_rf_prelayout_and_coexistence_consolidation",
-      "sha256": "f74790ee2265f562cbe4d9868f4079d2a024665eaa462b5dfef35df29ec2028d",
+      "sha256": "1152ec68ce8430aa51f08b8b80a322d0e15b90af35c628d749fb66805f001236",
       "reviewed": true
     },
     {
@@ -464,7 +464,7 @@
       "artifact_stage": "H3.6.1",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_parameterized_board_cell_and_enclosure_thermal_model",
-      "sha256": "67f8269c9d495e80d4681c8d5346a5721dce2d81d5b5a7721afcbb396227db8c",
+      "sha256": "8d3865787fb78ac2df6dbddb71d64bb44c29e0133219b2b6825d4288afbf7404",
       "reviewed": true
     },
     {
@@ -473,7 +473,7 @@
       "artifact_stage": "H3.6.2",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_single_fault_containment_and_recovery",
-      "sha256": "609936bae351619d37011f3182e7ab5157b20c432146371ebd7a10bcdb9df4ea",
+      "sha256": "d2d94d1dfe98c4017ccb6b27e1b98d8ab944b3d0e940c4270a1cac54fd91df24",
       "reviewed": true
     },
     {
@@ -482,7 +482,7 @@
       "artifact_stage": "H3.6.3",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_unattended_safety_and_endurance_test_envelope",
-      "sha256": "242661bd44b95f479a1e00fa874dd1d445458fa78ecfed3185869923045623fc",
+      "sha256": "53065feac6ac908f9c8c86291ff3d917a90369ced89bb0dcce904b5ac27c0948",
       "reviewed": true
     },
     {
@@ -491,7 +491,7 @@
       "artifact_stage": "H3.6.4",
       "plan_status": "reviewed",
       "artifact_status": "reviewed_thermal_fault_and_unattended_consolidation",
-      "sha256": "fdb03844ee3e584fe439c0828b0cbf34676cb2635fc08936bff275cc24555cb1",
+      "sha256": "c598e2015ef96c401143a99186fc9dd1044d8890f47c9d26a5e34489c479792e",
       "reviewed": true
     }
   ],
@@ -506,71 +506,71 @@
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/generated/H2-REV81-acceptance-package.json",
-      "expected": "e81d128000a863f72eee186e7b1b1da07085f4cf1d824eea5e44661101e4616a",
-      "actual": "e81d128000a863f72eee186e7b1b1da07085f4cf1d824eea5e44661101e4616a",
+      "expected": "efe430f3dd6b517a1476ff4ab6dbd611cebd9112177085a0f2a7985bdecaa0ea",
+      "actual": "efe430f3dd6b517a1476ff4ab6dbd611cebd9112177085a0f2a7985bdecaa0ea",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/generated/H2-REV56-safety-consolidated.json",
-      "expected": "1bbed04453809ca4e4f4e916acf25a0db666c288cfc0fdd1dfcbbf84d95c5a2b",
-      "actual": "1bbed04453809ca4e4f4e916acf25a0db666c288cfc0fdd1dfcbbf84d95c5a2b",
+      "expected": "f3aa06238bdaae724f425a99df2772f94fb6b67eb34a86684d71f08e0f7444c3",
+      "actual": "f3aa06238bdaae724f425a99df2772f94fb6b67eb34a86684d71f08e0f7444c3",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/generated/H2-REV64-erc-consolidated.json",
-      "expected": "8b1cf2d969729fe2751f38ee948aea12499d87129a56a18cb143a02e6fb50a48",
-      "actual": "8b1cf2d969729fe2751f38ee948aea12499d87129a56a18cb143a02e6fb50a48",
+      "expected": "08bebe4648af61e3f630bbe7461892949d68c0fa75c0c6405a60d881130fe27f",
+      "actual": "08bebe4648af61e3f630bbe7461892949d68c0fa75c0c6405a60d881130fe27f",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json",
-      "expected": "ce18a4bc85f908d6e047d48c2601c07fd0aec7d9d91f6d0046e4cf6977bc7fb2",
-      "actual": "ce18a4bc85f908d6e047d48c2601c07fd0aec7d9d91f6d0046e4cf6977bc7fb2",
+      "expected": "004c0af77766918d7d1e3074c6d01f797f29ae44220d0c93c0488d7d8439dc57",
+      "actual": "004c0af77766918d7d1e3074c6d01f797f29ae44220d0c93c0488d7d8439dc57",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/generated/H2-hwfw-contract.json",
-      "expected": "5459b4365af26f37eacab760fc29ed8276508b943f1740e8eb729e5102b6983a",
-      "actual": "5459b4365af26f37eacab760fc29ed8276508b943f1740e8eb729e5102b6983a",
+      "expected": "a64455ec4565d22815a3a73f185d3724c04f7d1dcb2afe97022783bf4ab1737b",
+      "actual": "a64455ec4565d22815a3a73f185d3724c04f7d1dcb2afe97022783bf4ab1737b",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/generated/H2-instance-ledger.json",
-      "expected": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
-      "actual": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
+      "expected": "5e79e26435c0964540fa1e815a59170cf6715ebcf0672285a378ed6a5de00ccb",
+      "actual": "5e79e26435c0964540fa1e815a59170cf6715ebcf0672285a378ed6a5de00ccb",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/product-design/generated/H1-physical-source-table.json",
-      "expected": "ae337233a4146f2934c24838dcc3ea58f192b33b80d71d0453f61933d02158f2",
-      "actual": "ae337233a4146f2934c24838dcc3ea58f192b33b80d71d0453f61933d02158f2",
+      "expected": "b75a3ea3c4038be484cff14bc363dc408341f5b75ecc8d42cc43fb9238fe07eb",
+      "actual": "b75a3ea3c4038be484cff14bc363dc408341f5b75ecc8d42cc43fb9238fe07eb",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/product-design/generated/H1-unified-coordinate-table.json",
-      "expected": "2ee0e14b47251666329328a6066297442a6e3fa2afcd7a4d0eb66043a70508fd",
-      "actual": "2ee0e14b47251666329328a6066297442a6e3fa2afcd7a4d0eb66043a70508fd",
+      "expected": "202e700c6449c7155c26a867d1a419ff2973edf43bf59eee1e48c8d15645533b",
+      "actual": "202e700c6449c7155c26a867d1a419ff2973edf43bf59eee1e48c8d15645533b",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/accessories/leshy2-lora-cap-01.json",
-      "expected": "aea57801c58d9f255774bc58ecf51aff7238d9e8557d0ae25da6f81145ff5301",
-      "actual": "aea57801c58d9f255774bc58ecf51aff7238d9e8557d0ae25da6f81145ff5301",
+      "expected": "7fc99ce67a345aee697f846e97443f0388ee2488b55c1a2af5cd58e90b06a92f",
+      "actual": "7fc99ce67a345aee697f846e97443f0388ee2488b55c1a2af5cd58e90b06a92f",
       "matches": true
     },
     {
@@ -583,22 +583,22 @@
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_10_RADIO_CONTROL.kicad_sch",
-      "expected": "ea71ce96852afce595971244cf7ebda11afe2ec482d483f490bce03a6cead6b4",
-      "actual": "ea71ce96852afce595971244cf7ebda11afe2ec482d483f490bce03a6cead6b4",
+      "expected": "131977c59a37ef18516c5a11de5fe2d77eb4968542e0d118e9faa35448edd14d",
+      "actual": "131977c59a37ef18516c5a11de5fe2d77eb4968542e0d118e9faa35448edd14d",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_20_POWER_BUS.kicad_sch",
-      "expected": "97cf38639e29ff75e7f2ea2c4459d0efcb2dfe023eab6219a764cd53f457a883",
-      "actual": "97cf38639e29ff75e7f2ea2c4459d0efcb2dfe023eab6219a764cd53f457a883",
+      "expected": "165817e32e4067445b952c516d712f15bd36115e111d5094f354bb15f0ad4b29",
+      "actual": "165817e32e4067445b952c516d712f15bd36115e111d5094f354bb15f0ad4b29",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_30_TX_EVIDENCE.kicad_sch",
-      "expected": "ed8af8e0d9073eb790f88a3e866f75a8365485df9aef0f870a549839e4890774",
-      "actual": "ed8af8e0d9073eb790f88a3e866f75a8365485df9aef0f870a549839e4890774",
+      "expected": "bf22a25b2afc3846690c8dcef965763167251ebff9b57074829eab4ece01200a",
+      "actual": "bf22a25b2afc3846690c8dcef965763167251ebff9b57074829eab4ece01200a",
       "matches": true
     },
     {
@@ -618,57 +618,57 @@
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch",
-      "expected": "6d8ff093ffafe32630cfdf94a26baea5cac5d7c6b0eccfe1a63ea8df598cd0c0",
-      "actual": "6d8ff093ffafe32630cfdf94a26baea5cac5d7c6b0eccfe1a63ea8df598cd0c0",
+      "expected": "01ef564ed7838f2ae474a0ff7b7fe791cf0dd2ffda1010bd47d34a0178c66c09",
+      "actual": "01ef564ed7838f2ae474a0ff7b7fe791cf0dd2ffda1010bd47d34a0178c66c09",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch",
-      "expected": "7ab060f920c464bb2586b741b39e99fdfef175754ec7f24243a28ed335714086",
-      "actual": "7ab060f920c464bb2586b741b39e99fdfef175754ec7f24243a28ed335714086",
+      "expected": "75a4a44cfdcbc6d37395a77f66f5cc01a71b413ad73d93748bbb9ed67627e258",
+      "actual": "75a4a44cfdcbc6d37395a77f66f5cc01a71b413ad73d93748bbb9ed67627e258",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch",
-      "expected": "444f8332d8db7dec8ac81225ace1577158ee480ae3a02077d4280c16c2d138c2",
-      "actual": "444f8332d8db7dec8ac81225ace1577158ee480ae3a02077d4280c16c2d138c2",
+      "expected": "49db1db6f6465a8a0672b6a76793d21c0cd0a3aff5b085e3bde8c6bd18ffc992",
+      "actual": "49db1db6f6465a8a0672b6a76793d21c0cd0a3aff5b085e3bde8c6bd18ffc992",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch",
-      "expected": "560096616cfc22bafb2f71164d39ee331c320957640fff571e03b95a3ef10129",
-      "actual": "560096616cfc22bafb2f71164d39ee331c320957640fff571e03b95a3ef10129",
+      "expected": "cb0c025c788a275ef44f95f27d35b3f038ca1dfc38fe33a61efd4da045b04865",
+      "actual": "cb0c025c788a275ef44f95f27d35b3f038ca1dfc38fe33a61efd4da045b04865",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch",
-      "expected": "b2936f631ca0eaa921c9f76ce876867729a1cb6101d22b1dc94ccd95714c3ee3",
-      "actual": "b2936f631ca0eaa921c9f76ce876867729a1cb6101d22b1dc94ccd95714c3ee3",
+      "expected": "19e1d69b1a42a1d26fb3d817e2ba998012bbd9056ffbfdaf3bb761e9807b8f48",
+      "actual": "19e1d69b1a42a1d26fb3d817e2ba998012bbd9056ffbfdaf3bb761e9807b8f48",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch",
-      "expected": "f5472e0af8525cba220b6b32fdc48c7a68f10f7f8dbbb2bebf493d13f10f907c",
-      "actual": "f5472e0af8525cba220b6b32fdc48c7a68f10f7f8dbbb2bebf493d13f10f907c",
+      "expected": "746d9ea202c6ef2a87adfc90876045b32e25aa09eb224ca3740bc5ceb1c7943a",
+      "actual": "746d9ea202c6ef2a87adfc90876045b32e25aa09eb224ca3740bc5ceb1c7943a",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch",
-      "expected": "b241b03bfe0e5887b4477916492ec825e15be2fa4c03f2b999984c469ca5ee6c",
-      "actual": "b241b03bfe0e5887b4477916492ec825e15be2fa4c03f2b999984c469ca5ee6c",
+      "expected": "4ebeefc1f69ef17a408506497bc1c7f52e2738d1c71c924376583d074829472f",
+      "actual": "4ebeefc1f69ef17a408506497bc1c7f52e2738d1c71c924376583d074829472f",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch",
-      "expected": "e4141665bd8e84ca2fabfcda26580b94c8633ce8bb87f547c88860363da896a9",
-      "actual": "e4141665bd8e84ca2fabfcda26580b94c8633ce8bb87f547c88860363da896a9",
+      "expected": "666fdcc877e3ef98e7b71e899a2b5771028fe682cc9a36963d03d100c87be5c0",
+      "actual": "666fdcc877e3ef98e7b71e899a2b5771028fe682cc9a36963d03d100c87be5c0",
       "matches": true
     },
     {
@@ -688,8 +688,8 @@
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch",
-      "expected": "279996eb88a4cb238feeb3f1b7ca6fa31a3d66d35b0dcb81eca1763b18984238",
-      "actual": "279996eb88a4cb238feeb3f1b7ca6fa31a3d66d35b0dcb81eca1763b18984238",
+      "expected": "19525c754334a69d29ffde61ef3b1ee0c71f77def4fa5213f81732e0c8099f77",
+      "actual": "19525c754334a69d29ffde61ef3b1ee0c71f77def4fa5213f81732e0c8099f77",
       "matches": true
     },
     {
@@ -709,43 +709,43 @@
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch",
-      "expected": "fada4565940c8b67dd240679eddf3427baa6204a5161b7b4c6ca8654170555e4",
-      "actual": "fada4565940c8b67dd240679eddf3427baa6204a5161b7b4c6ca8654170555e4",
+      "expected": "f04d8c608f375b3b1aa3bc8121c32455b716634012f963b52334eda1820c188d",
+      "actual": "f04d8c608f375b3b1aa3bc8121c32455b716634012f963b52334eda1820c188d",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch",
-      "expected": "6b728d4f603405b51cf67ac6f5019ef2a48ae7e3e2c98b0f9fa918e33394273e",
-      "actual": "6b728d4f603405b51cf67ac6f5019ef2a48ae7e3e2c98b0f9fa918e33394273e",
+      "expected": "da9c9f134addd121af0f480e5e225215842bbb8026ced0687934ea9603722af7",
+      "actual": "da9c9f134addd121af0f480e5e225215842bbb8026ced0687934ea9603722af7",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch",
-      "expected": "eb43e17113fda9f8daebe0a7c7edcb6d38576a19c6ab01a5e00f18d82db1ca15",
-      "actual": "eb43e17113fda9f8daebe0a7c7edcb6d38576a19c6ab01a5e00f18d82db1ca15",
+      "expected": "8e4438d0f6c64c1f67c581ace409ee345a193385d16f54a642b5953239e8effc",
+      "actual": "8e4438d0f6c64c1f67c581ace409ee345a193385d16f54a642b5953239e8effc",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch",
-      "expected": "6ecc98e20a2ef04a1f39ee8c0715f67a7a16314c3ad97902ef8cd7f967a8990c",
-      "actual": "6ecc98e20a2ef04a1f39ee8c0715f67a7a16314c3ad97902ef8cd7f967a8990c",
+      "expected": "645884bea83129cf710be229de42413a7512df9a0a471ed269169142c7e27be8",
+      "actual": "645884bea83129cf710be229de42413a7512df9a0a471ed269169142c7e27be8",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch",
-      "expected": "4b7aa988588d098cb70346c6329782ac21c3e0eac220e30acad7ad0988d5f7ae",
-      "actual": "4b7aa988588d098cb70346c6329782ac21c3e0eac220e30acad7ad0988d5f7ae",
+      "expected": "f3b40b32ded7fe425ec1ec839ce249944964bb56316014321294015d73dadb7b",
+      "actual": "f3b40b32ded7fe425ec1ec839ce249944964bb56316014321294015d73dadb7b",
       "matches": true
     },
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch",
-      "expected": "8d3a9c3cb2e54d240715f33a1921274cb63309ef6f7bc069fd8b1c8c51d97031",
-      "actual": "8d3a9c3cb2e54d240715f33a1921274cb63309ef6f7bc069fd8b1c8c51d97031",
+      "expected": "8e7fed0f0889cef71c3f0010a411e987c7d6b18748a56f8e264ffcfb0e479968",
+      "actual": "8e7fed0f0889cef71c3f0010a411e987c7d6b18748a56f8e264ffcfb0e479968",
       "matches": true
     },
     {
@@ -758,8 +758,8 @@
     {
       "consumer": "H3.0.1-R1",
       "source": "hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch",
-      "expected": "ed9629baea11d2ea2086afb23136df9d7439f7a8daebc35e992805ab750cfa40",
-      "actual": "ed9629baea11d2ea2086afb23136df9d7439f7a8daebc35e992805ab750cfa40",
+      "expected": "1336cf02d0cf554d584dc5f353fb1df4d1f015dd4ec236327bf277f5416a15e2",
+      "actual": "1336cf02d0cf554d584dc5f353fb1df4d1f015dd4ec236327bf277f5416a15e2",
       "matches": true
     },
     {
@@ -800,43 +800,43 @@
     {
       "consumer": "H3.0.2",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.0.2",
       "source": "hardware/ecad/generated/H2-instance-ledger.json",
-      "expected": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
-      "actual": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
+      "expected": "5e79e26435c0964540fa1e815a59170cf6715ebcf0672285a378ed6a5de00ccb",
+      "actual": "5e79e26435c0964540fa1e815a59170cf6715ebcf0672285a378ed6a5de00ccb",
       "matches": true
     },
     {
       "consumer": "H3.0.2",
       "source": "hardware/verification/generated/H3-VRF01-input-freeze.json",
-      "expected": "bce62d0601d118dbbd38a9fb17a82dc76f41dae2137b622b27f9ccde5e6e5eb3",
-      "actual": "bce62d0601d118dbbd38a9fb17a82dc76f41dae2137b622b27f9ccde5e6e5eb3",
+      "expected": "a10e51302d0cfa9e7e457015fd8c17f2393556003291774c0b37ec0643bc75f0",
+      "actual": "a10e51302d0cfa9e7e457015fd8c17f2393556003291774c0b37ec0643bc75f0",
       "matches": true
     },
     {
       "consumer": "H3.0.3",
       "source": "hardware/verification/generated/H3-VRF01-input-freeze.json",
-      "expected": "bce62d0601d118dbbd38a9fb17a82dc76f41dae2137b622b27f9ccde5e6e5eb3",
-      "actual": "bce62d0601d118dbbd38a9fb17a82dc76f41dae2137b622b27f9ccde5e6e5eb3",
+      "expected": "a10e51302d0cfa9e7e457015fd8c17f2393556003291774c0b37ec0643bc75f0",
+      "actual": "a10e51302d0cfa9e7e457015fd8c17f2393556003291774c0b37ec0643bc75f0",
       "matches": true
     },
     {
       "consumer": "H3.0.3",
       "source": "hardware/verification/generated/H3-VRF02-parameter-inventory.json",
-      "expected": "06a19ffe59177b65b8852dd634f18752c3411803a43b7115063ebcb00170d181",
-      "actual": "06a19ffe59177b65b8852dd634f18752c3411803a43b7115063ebcb00170d181",
+      "expected": "a842825538e11fe0fb505b409aeb53eb56c977024ce1e94ec6519fec2beb8a38",
+      "actual": "a842825538e11fe0fb505b409aeb53eb56c977024ce1e94ec6519fec2beb8a38",
       "matches": true
     },
     {
       "consumer": "H3.1.1",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
@@ -849,785 +849,785 @@
     {
       "consumer": "H3.1.1",
       "source": "hardware/ecad/generated/H2-REV51-power-paths.json",
-      "expected": "8f9e8b9a47d7cb6b277cb72cbf8a32b34bd85c40b8eedbafd9efd3f66c339d6b",
-      "actual": "8f9e8b9a47d7cb6b277cb72cbf8a32b34bd85c40b8eedbafd9efd3f66c339d6b",
+      "expected": "7a5825eb94466f63ec9f5a5ae28b9e82ab7bdc5b79812988498d28c935614629",
+      "actual": "7a5825eb94466f63ec9f5a5ae28b9e82ab7bdc5b79812988498d28c935614629",
       "matches": true
     },
     {
       "consumer": "H3.1.1",
       "source": "hardware/ecad/generated/H2-REV54-quiet-state.json",
-      "expected": "8a1b624c83573b45cd30bbb139bb07ef6abffbb4f9fea4f9563f321b30b047ed",
-      "actual": "8a1b624c83573b45cd30bbb139bb07ef6abffbb4f9fea4f9563f321b30b047ed",
+      "expected": "c779fb48c1925aeb2401b7a2f196488a70591f1f297576121d9601b0a2945d59",
+      "actual": "c779fb48c1925aeb2401b7a2f196488a70591f1f297576121d9601b0a2945d59",
       "matches": true
     },
     {
       "consumer": "H3.1.1",
       "source": "hardware/ecad/generated/H2-RF01-usb-pd-charge.json",
-      "expected": "4f82592ecd28a82af915c10b73aca04e1e06950b98728320bf7ff220c0768c61",
-      "actual": "4f82592ecd28a82af915c10b73aca04e1e06950b98728320bf7ff220c0768c61",
+      "expected": "c911df562edc30d4dbc54004fd5c139932e1235c7c623e8822d4174d269abe01",
+      "actual": "c911df562edc30d4dbc54004fd5c139932e1235c7c623e8822d4174d269abe01",
       "matches": true
     },
     {
       "consumer": "H3.1.1",
       "source": "hardware/verification/generated/H3-VRF03-method-contract.json",
-      "expected": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
-      "actual": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
+      "expected": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
+      "actual": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
       "matches": true
     },
     {
       "consumer": "H3.1.2",
       "source": "hardware/verification/generated/H3-VRF11-power-state-register.json",
-      "expected": "5a5749a2b5ca6ca451648d2b0c6b40beab8530c9b640b20b4863ec5a15cbe0b5",
-      "actual": "5a5749a2b5ca6ca451648d2b0c6b40beab8530c9b640b20b4863ec5a15cbe0b5",
+      "expected": "ca56af657daed652ab95e6bf5bc1e2b5e4ee62793dc9dd171f92ba0d5f71d112",
+      "actual": "ca56af657daed652ab95e6bf5bc1e2b5e4ee62793dc9dd171f92ba0d5f71d112",
       "matches": true
     },
     {
       "consumer": "H3.1.2",
       "source": "hardware/verification/generated/H3-VRF03-method-contract.json",
-      "expected": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
-      "actual": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
+      "expected": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
+      "actual": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
       "matches": true
     },
     {
       "consumer": "H3.1.2",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.1.2",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.1.2",
       "source": "hardware/ecad/generated/H2-REV51-power-paths.json",
-      "expected": "8f9e8b9a47d7cb6b277cb72cbf8a32b34bd85c40b8eedbafd9efd3f66c339d6b",
-      "actual": "8f9e8b9a47d7cb6b277cb72cbf8a32b34bd85c40b8eedbafd9efd3f66c339d6b",
+      "expected": "7a5825eb94466f63ec9f5a5ae28b9e82ab7bdc5b79812988498d28c935614629",
+      "actual": "7a5825eb94466f63ec9f5a5ae28b9e82ab7bdc5b79812988498d28c935614629",
       "matches": true
     },
     {
       "consumer": "H3.1.3",
       "source": "hardware/verification/generated/H3-VRF11-power-state-register.json",
-      "expected": "5a5749a2b5ca6ca451648d2b0c6b40beab8530c9b640b20b4863ec5a15cbe0b5",
-      "actual": "5a5749a2b5ca6ca451648d2b0c6b40beab8530c9b640b20b4863ec5a15cbe0b5",
+      "expected": "ca56af657daed652ab95e6bf5bc1e2b5e4ee62793dc9dd171f92ba0d5f71d112",
+      "actual": "ca56af657daed652ab95e6bf5bc1e2b5e4ee62793dc9dd171f92ba0d5f71d112",
       "matches": true
     },
     {
       "consumer": "H3.1.3",
       "source": "hardware/verification/generated/H3-VRF12-dc-budget.json",
-      "expected": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
-      "actual": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
+      "expected": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
+      "actual": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
       "matches": true
     },
     {
       "consumer": "H3.1.3",
       "source": "hardware/verification/generated/H3-VRF03-method-contract.json",
-      "expected": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
-      "actual": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
+      "expected": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
+      "actual": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
       "matches": true
     },
     {
       "consumer": "H3.1.3",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.1.3",
       "source": "hardware/ecad/generated/H2-REV51-power-paths.json",
-      "expected": "8f9e8b9a47d7cb6b277cb72cbf8a32b34bd85c40b8eedbafd9efd3f66c339d6b",
-      "actual": "8f9e8b9a47d7cb6b277cb72cbf8a32b34bd85c40b8eedbafd9efd3f66c339d6b",
+      "expected": "7a5825eb94466f63ec9f5a5ae28b9e82ab7bdc5b79812988498d28c935614629",
+      "actual": "7a5825eb94466f63ec9f5a5ae28b9e82ab7bdc5b79812988498d28c935614629",
       "matches": true
     },
     {
       "consumer": "H3.1.4",
       "source": "hardware/verification/generated/H3-VRF11-power-state-register.json",
-      "expected": "5a5749a2b5ca6ca451648d2b0c6b40beab8530c9b640b20b4863ec5a15cbe0b5",
-      "actual": "5a5749a2b5ca6ca451648d2b0c6b40beab8530c9b640b20b4863ec5a15cbe0b5",
+      "expected": "ca56af657daed652ab95e6bf5bc1e2b5e4ee62793dc9dd171f92ba0d5f71d112",
+      "actual": "ca56af657daed652ab95e6bf5bc1e2b5e4ee62793dc9dd171f92ba0d5f71d112",
       "matches": true
     },
     {
       "consumer": "H3.1.4",
       "source": "hardware/verification/generated/H3-VRF12-dc-budget.json",
-      "expected": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
-      "actual": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
+      "expected": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
+      "actual": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
       "matches": true
     },
     {
       "consumer": "H3.1.4",
       "source": "hardware/verification/generated/H3-VRF13-source-charge-budget.json",
-      "expected": "8a6dc11fde865d17946827e44d39b7920d0d64c33e2ee60af7b6ba5ba0a23e53",
-      "actual": "8a6dc11fde865d17946827e44d39b7920d0d64c33e2ee60af7b6ba5ba0a23e53",
+      "expected": "f2f2ad2af7538dff4ce1982623d9cf91c2239e6794bf31bf3298aa8ebbfd6d43",
+      "actual": "f2f2ad2af7538dff4ce1982623d9cf91c2239e6794bf31bf3298aa8ebbfd6d43",
       "matches": true
     },
     {
       "consumer": "H3.1.4",
       "source": "hardware/verification/generated/H3-VRF03-method-contract.json",
-      "expected": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
-      "actual": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
+      "expected": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
+      "actual": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
       "matches": true
     },
     {
       "consumer": "H3.2.1",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.2.1",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.2.1",
       "source": "hardware/verification/generated/H3-VRF14-dc-consolidation.json",
-      "expected": "6d8d81718d8934d1203f6315f1adaed47c1d695c46c8539e803642af39137033",
-      "actual": "6d8d81718d8934d1203f6315f1adaed47c1d695c46c8539e803642af39137033",
+      "expected": "80a3fe3f3066d2bff73895806c5a3bb6123450041231b0a4ea03601e9d5e7b19",
+      "actual": "80a3fe3f3066d2bff73895806c5a3bb6123450041231b0a4ea03601e9d5e7b19",
       "matches": true
     },
     {
       "consumer": "H3.2.1",
       "source": "hardware/verification/generated/H3-VRF03-method-contract.json",
-      "expected": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
-      "actual": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
+      "expected": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
+      "actual": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
       "matches": true
     },
     {
       "consumer": "H3.2.2",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.2.2",
       "source": "hardware/verification/generated/H3-VRF14-dc-consolidation.json",
-      "expected": "6d8d81718d8934d1203f6315f1adaed47c1d695c46c8539e803642af39137033",
-      "actual": "6d8d81718d8934d1203f6315f1adaed47c1d695c46c8539e803642af39137033",
+      "expected": "80a3fe3f3066d2bff73895806c5a3bb6123450041231b0a4ea03601e9d5e7b19",
+      "actual": "80a3fe3f3066d2bff73895806c5a3bb6123450041231b0a4ea03601e9d5e7b19",
       "matches": true
     },
     {
       "consumer": "H3.2.2",
       "source": "hardware/verification/generated/H3-VRF21-startup-shutdown.json",
-      "expected": "c3cd2dba4761b7dd4c2db9bc70b685e57b4116854556d0467eb004a3166f36a7",
-      "actual": "c3cd2dba4761b7dd4c2db9bc70b685e57b4116854556d0467eb004a3166f36a7",
+      "expected": "fb17667bbe6b140a653169ac4e00ba742e4afff08c84447f4f992a362ff71dfb",
+      "actual": "fb17667bbe6b140a653169ac4e00ba742e4afff08c84447f4f992a362ff71dfb",
       "matches": true
     },
     {
       "consumer": "H3.2.3",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.2.3",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.2.3",
       "source": "hardware/verification/generated/H3-VRF12-dc-budget.json",
-      "expected": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
-      "actual": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
+      "expected": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
+      "actual": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
       "matches": true
     },
     {
       "consumer": "H3.2.3",
       "source": "hardware/verification/generated/H3-VRF22-handover-brownout.json",
-      "expected": "4a09948610b841da51427a5d0a2f675646fda28b07ef6b3e3e575de43451b3b5",
-      "actual": "4a09948610b841da51427a5d0a2f675646fda28b07ef6b3e3e575de43451b3b5",
+      "expected": "c3ebe34e13dbc5120bd46978f3791405a49dafd9c77fc9a499806c3ce19d2454",
+      "actual": "c3ebe34e13dbc5120bd46978f3791405a49dafd9c77fc9a499806c3ce19d2454",
       "matches": true
     },
     {
       "consumer": "H3.2.4",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.2.4",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.2.4",
       "source": "hardware/verification/generated/H3-VRF23-inrush-load-step.json",
-      "expected": "5d8621fe0c6241c41cc107c517e6b692f0acd0386f8753a40d39d7987c5ee9c9",
-      "actual": "5d8621fe0c6241c41cc107c517e6b692f0acd0386f8753a40d39d7987c5ee9c9",
+      "expected": "eb46808d46dcac2f694d3e9e6d3ca41232ef4d3162097b91959d6a8d20c748cf",
+      "actual": "eb46808d46dcac2f694d3e9e6d3ca41232ef4d3162097b91959d6a8d20c748cf",
       "matches": true
     },
     {
       "consumer": "H3.2.5",
       "source": "hardware/verification/generated/H3-VRF21-startup-shutdown.json",
-      "expected": "c3cd2dba4761b7dd4c2db9bc70b685e57b4116854556d0467eb004a3166f36a7",
-      "actual": "c3cd2dba4761b7dd4c2db9bc70b685e57b4116854556d0467eb004a3166f36a7",
+      "expected": "fb17667bbe6b140a653169ac4e00ba742e4afff08c84447f4f992a362ff71dfb",
+      "actual": "fb17667bbe6b140a653169ac4e00ba742e4afff08c84447f4f992a362ff71dfb",
       "matches": true
     },
     {
       "consumer": "H3.2.5",
       "source": "hardware/verification/generated/H3-VRF22-handover-brownout.json",
-      "expected": "4a09948610b841da51427a5d0a2f675646fda28b07ef6b3e3e575de43451b3b5",
-      "actual": "4a09948610b841da51427a5d0a2f675646fda28b07ef6b3e3e575de43451b3b5",
+      "expected": "c3ebe34e13dbc5120bd46978f3791405a49dafd9c77fc9a499806c3ce19d2454",
+      "actual": "c3ebe34e13dbc5120bd46978f3791405a49dafd9c77fc9a499806c3ce19d2454",
       "matches": true
     },
     {
       "consumer": "H3.2.5",
       "source": "hardware/verification/generated/H3-VRF23-inrush-load-step.json",
-      "expected": "5d8621fe0c6241c41cc107c517e6b692f0acd0386f8753a40d39d7987c5ee9c9",
-      "actual": "5d8621fe0c6241c41cc107c517e6b692f0acd0386f8753a40d39d7987c5ee9c9",
+      "expected": "eb46808d46dcac2f694d3e9e6d3ca41232ef4d3162097b91959d6a8d20c748cf",
+      "actual": "eb46808d46dcac2f694d3e9e6d3ca41232ef4d3162097b91959d6a8d20c748cf",
       "matches": true
     },
     {
       "consumer": "H3.2.5",
       "source": "hardware/verification/generated/H3-VRF24-watchdog-fault-display.json",
-      "expected": "23bf919118727e3e2c3049a57d48c7c2f2ff1b19098dda74234fc0678a9689e5",
-      "actual": "23bf919118727e3e2c3049a57d48c7c2f2ff1b19098dda74234fc0678a9689e5",
+      "expected": "2aabaf5dd9d5ae993fccd8c66c916b9ff85a6a959134b56617cd62b2d2e6faf7",
+      "actual": "2aabaf5dd9d5ae993fccd8c66c916b9ff85a6a959134b56617cd62b2d2e6faf7",
       "matches": true
     },
     {
       "consumer": "H3.3.1",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.3.1",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.3.1",
       "source": "hardware/verification/generated/H3-VRF03-method-contract.json",
-      "expected": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
-      "actual": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
+      "expected": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
+      "actual": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
       "matches": true
     },
     {
       "consumer": "H3.3.2",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.3.2",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.3.2",
       "source": "hardware/verification/generated/H3-VRF03-method-contract.json",
-      "expected": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
-      "actual": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
+      "expected": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
+      "actual": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
       "matches": true
     },
     {
       "consumer": "H3.3.2",
       "source": "hardware/verification/generated/H3-VRF31-display.json",
-      "expected": "e9712f9e1772f0d21ef28af8e871929eb4c44e4d5d740e8eebec041ee67502aa",
-      "actual": "e9712f9e1772f0d21ef28af8e871929eb4c44e4d5d740e8eebec041ee67502aa",
+      "expected": "8b2a03a9dd0cf9903d65919debc8ffc244d97a07751d08c0270f3ac2b29e64bc",
+      "actual": "8b2a03a9dd0cf9903d65919debc8ffc244d97a07751d08c0270f3ac2b29e64bc",
       "matches": true
     },
     {
       "consumer": "H3.3.2",
       "source": "hardware/verification/generated/H3-VRF12-dc-budget.json",
-      "expected": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
-      "actual": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
+      "expected": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
+      "actual": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
       "matches": true
     },
     {
       "consumer": "H3.3.3",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.3.3",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.3.3",
       "source": "hardware/verification/generated/H3-VRF03-method-contract.json",
-      "expected": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
-      "actual": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
+      "expected": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
+      "actual": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
       "matches": true
     },
     {
       "consumer": "H3.3.3",
       "source": "hardware/verification/generated/H3-VRF31-display.json",
-      "expected": "e9712f9e1772f0d21ef28af8e871929eb4c44e4d5d740e8eebec041ee67502aa",
-      "actual": "e9712f9e1772f0d21ef28af8e871929eb4c44e4d5d740e8eebec041ee67502aa",
+      "expected": "8b2a03a9dd0cf9903d65919debc8ffc244d97a07751d08c0270f3ac2b29e64bc",
+      "actual": "8b2a03a9dd0cf9903d65919debc8ffc244d97a07751d08c0270f3ac2b29e64bc",
       "matches": true
     },
     {
       "consumer": "H3.3.3",
       "source": "hardware/verification/generated/H3-VRF12-dc-budget.json",
-      "expected": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
-      "actual": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
+      "expected": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
+      "actual": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
       "matches": true
     },
     {
       "consumer": "H3.3.4",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.3.4",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.3.4",
       "source": "hardware/verification/generated/H3-VRF03-method-contract.json",
-      "expected": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
-      "actual": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
+      "expected": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
+      "actual": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
       "matches": true
     },
     {
       "consumer": "H3.3.5",
       "source": "hardware/verification/generated/H3-VRF31-display.json",
-      "expected": "e9712f9e1772f0d21ef28af8e871929eb4c44e4d5d740e8eebec041ee67502aa",
-      "actual": "e9712f9e1772f0d21ef28af8e871929eb4c44e4d5d740e8eebec041ee67502aa",
+      "expected": "8b2a03a9dd0cf9903d65919debc8ffc244d97a07751d08c0270f3ac2b29e64bc",
+      "actual": "8b2a03a9dd0cf9903d65919debc8ffc244d97a07751d08c0270f3ac2b29e64bc",
       "matches": true
     },
     {
       "consumer": "H3.3.5",
       "source": "hardware/verification/generated/H3-VRF32-audio.json",
-      "expected": "41ec47a7cdc957502bead0bf21b245813941968391792c6025f330b0c4171a8b",
-      "actual": "41ec47a7cdc957502bead0bf21b245813941968391792c6025f330b0c4171a8b",
+      "expected": "7813e3ea26b11c776eebe54d60d5bd2aaef4c3b06845271aaf690ad01b651d65",
+      "actual": "7813e3ea26b11c776eebe54d60d5bd2aaef4c3b06845271aaf690ad01b651d65",
       "matches": true
     },
     {
       "consumer": "H3.3.5",
       "source": "hardware/verification/generated/H3-VRF33-ir.json",
-      "expected": "c6b69417afb65cd1bde700dfdb71672b1b66ba559b7c3d7955d7057363223b4f",
-      "actual": "c6b69417afb65cd1bde700dfdb71672b1b66ba559b7c3d7955d7057363223b4f",
+      "expected": "a66993e1a9619068d282c98a5450836bd2776483cdae0ff1fa862139b07f1b79",
+      "actual": "a66993e1a9619068d282c98a5450836bd2776483cdae0ff1fa862139b07f1b79",
       "matches": true
     },
     {
       "consumer": "H3.3.5",
       "source": "hardware/verification/generated/H3-VRF34-battery-analog.json",
-      "expected": "b4cdc384e33b787fca5329de88cb01069b84f6f3df63c2434716595cb0535b38",
-      "actual": "b4cdc384e33b787fca5329de88cb01069b84f6f3df63c2434716595cb0535b38",
+      "expected": "5e04abb52d6f66d5420e9639d17ed92400882eed1600f4e6830573dc5ee1f8e0",
+      "actual": "5e04abb52d6f66d5420e9639d17ed92400882eed1600f4e6830573dc5ee1f8e0",
       "matches": true
     },
     {
       "consumer": "H3.4.1",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.4.1",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.4.1",
       "source": "hardware/verification/generated/H3-VRF03-method-contract.json",
-      "expected": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
-      "actual": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
+      "expected": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
+      "actual": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
       "matches": true
     },
     {
       "consumer": "H3.4.1",
       "source": "hardware/ecad/generated/H2-REV53-no-back-power.json",
-      "expected": "5810eae22cfe9c9adc71e132f3596655332c653725acf27c40a2c678bcf21fe7",
-      "actual": "5810eae22cfe9c9adc71e132f3596655332c653725acf27c40a2c678bcf21fe7",
+      "expected": "8961af7fb7cb74bb2cd9f7abd916adb01b40a9aeb88dd3e60bd86f958f135474",
+      "actual": "8961af7fb7cb74bb2cd9f7abd916adb01b40a9aeb88dd3e60bd86f958f135474",
       "matches": true
     },
     {
       "consumer": "H3.4.1",
       "source": "hardware/ecad/generated/H2-REV54-quiet-state.json",
-      "expected": "8a1b624c83573b45cd30bbb139bb07ef6abffbb4f9fea4f9563f321b30b047ed",
-      "actual": "8a1b624c83573b45cd30bbb139bb07ef6abffbb4f9fea4f9563f321b30b047ed",
+      "expected": "c779fb48c1925aeb2401b7a2f196488a70591f1f297576121d9601b0a2945d59",
+      "actual": "c779fb48c1925aeb2401b7a2f196488a70591f1f297576121d9601b0a2945d59",
       "matches": true
     },
     {
       "consumer": "H3.4.1",
       "source": "hardware/ecad/generated/H2-REV72-physical-contacts.json",
-      "expected": "7e2759b32c0f58b3fac11be6b1f0f16ed45bc79f86de8d4877b1e857d4431887",
-      "actual": "7e2759b32c0f58b3fac11be6b1f0f16ed45bc79f86de8d4877b1e857d4431887",
+      "expected": "adfda17127612decd7133e480797f5455894fe635bd6acbe2309e11f1aa5a4f4",
+      "actual": "adfda17127612decd7133e480797f5455894fe635bd6acbe2309e11f1aa5a4f4",
       "matches": true
     },
     {
       "consumer": "H3.4.1",
       "source": "hardware/verification/generated/H3-VRF31-display.json",
-      "expected": "e9712f9e1772f0d21ef28af8e871929eb4c44e4d5d740e8eebec041ee67502aa",
-      "actual": "e9712f9e1772f0d21ef28af8e871929eb4c44e4d5d740e8eebec041ee67502aa",
+      "expected": "8b2a03a9dd0cf9903d65919debc8ffc244d97a07751d08c0270f3ac2b29e64bc",
+      "actual": "8b2a03a9dd0cf9903d65919debc8ffc244d97a07751d08c0270f3ac2b29e64bc",
       "matches": true
     },
     {
       "consumer": "H3.4.2",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.4.2",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.4.2",
       "source": "hardware/verification/generated/H3-VRF03-method-contract.json",
-      "expected": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
-      "actual": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc",
+      "expected": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
+      "actual": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe",
       "matches": true
     },
     {
       "consumer": "H3.4.2",
       "source": "hardware/verification/generated/H3-VRF31-display.json",
-      "expected": "e9712f9e1772f0d21ef28af8e871929eb4c44e4d5d740e8eebec041ee67502aa",
-      "actual": "e9712f9e1772f0d21ef28af8e871929eb4c44e4d5d740e8eebec041ee67502aa",
+      "expected": "8b2a03a9dd0cf9903d65919debc8ffc244d97a07751d08c0270f3ac2b29e64bc",
+      "actual": "8b2a03a9dd0cf9903d65919debc8ffc244d97a07751d08c0270f3ac2b29e64bc",
       "matches": true
     },
     {
       "consumer": "H3.4.2",
       "source": "hardware/verification/generated/H3-VRF41-digital-levels.json",
-      "expected": "22efce1e5e06e4716209469bf2bd81b6a7fdfcc8b8b46dd7b559d7975efa62fd",
-      "actual": "22efce1e5e06e4716209469bf2bd81b6a7fdfcc8b8b46dd7b559d7975efa62fd",
+      "expected": "7cba0fdd4e37fadc374f7867bc046b179720e1d79d8ea5890ae578b00e1efd3a",
+      "actual": "7cba0fdd4e37fadc374f7867bc046b179720e1d79d8ea5890ae578b00e1efd3a",
       "matches": true
     },
     {
       "consumer": "H3.4.3",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.4.3",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.4.3",
       "source": "hardware/verification/generated/H3-VRF12-dc-budget.json",
-      "expected": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
-      "actual": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
+      "expected": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
+      "actual": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
       "matches": true
     },
     {
       "consumer": "H3.4.3",
       "source": "hardware/verification/generated/H3-VRF41-digital-levels.json",
-      "expected": "22efce1e5e06e4716209469bf2bd81b6a7fdfcc8b8b46dd7b559d7975efa62fd",
-      "actual": "22efce1e5e06e4716209469bf2bd81b6a7fdfcc8b8b46dd7b559d7975efa62fd",
+      "expected": "7cba0fdd4e37fadc374f7867bc046b179720e1d79d8ea5890ae578b00e1efd3a",
+      "actual": "7cba0fdd4e37fadc374f7867bc046b179720e1d79d8ea5890ae578b00e1efd3a",
       "matches": true
     },
     {
       "consumer": "H3.4.3",
       "source": "hardware/verification/generated/H3-VRF42-digital-timing.json",
-      "expected": "ab14a1d1ab47ae20de3c2d1b30afa1e558fcc28103ce52f59421148dbae8b41f",
-      "actual": "ab14a1d1ab47ae20de3c2d1b30afa1e558fcc28103ce52f59421148dbae8b41f",
+      "expected": "fdac01173115ad3a7e4deb4bc2d85d44c1c6dd5ab13684a844e2d64f3723ba5d",
+      "actual": "fdac01173115ad3a7e4deb4bc2d85d44c1c6dd5ab13684a844e2d64f3723ba5d",
       "matches": true
     },
     {
       "consumer": "H3.4.3",
       "source": "hardware/ecad/generated/H2-REV53-no-back-power.json",
-      "expected": "5810eae22cfe9c9adc71e132f3596655332c653725acf27c40a2c678bcf21fe7",
-      "actual": "5810eae22cfe9c9adc71e132f3596655332c653725acf27c40a2c678bcf21fe7",
+      "expected": "8961af7fb7cb74bb2cd9f7abd916adb01b40a9aeb88dd3e60bd86f958f135474",
+      "actual": "8961af7fb7cb74bb2cd9f7abd916adb01b40a9aeb88dd3e60bd86f958f135474",
       "matches": true
     },
     {
       "consumer": "H3.4.3",
       "source": "hardware/ecad/generated/H2-UI40-interboard-m1.json",
-      "expected": "0e4b50d6074a4c5d1cc42558b8c7b02bd68846292cb47995bd1a28390c681705",
-      "actual": "0e4b50d6074a4c5d1cc42558b8c7b02bd68846292cb47995bd1a28390c681705",
+      "expected": "11ee3693ceb1aed8c4c38d53210bbf4cc8d55456bf413dfda00a2515c31dd3fb",
+      "actual": "11ee3693ceb1aed8c4c38d53210bbf4cc8d55456bf413dfda00a2515c31dd3fb",
       "matches": true
     },
     {
       "consumer": "H3.4.3",
       "source": "hardware/ecad/generated/H2-RF40-interboard-m1.json",
-      "expected": "6b7c33998b7dd66947c207f8416390912cfbc8f8745961c8d1094da5247d81bd",
-      "actual": "6b7c33998b7dd66947c207f8416390912cfbc8f8745961c8d1094da5247d81bd",
+      "expected": "645dd095de91cff8e4bd0fe091630595f99ecb0d5756a10d9a33687a9bb7aabe",
+      "actual": "645dd095de91cff8e4bd0fe091630595f99ecb0d5756a10d9a33687a9bb7aabe",
       "matches": true
     },
     {
       "consumer": "H3.4.4",
       "source": "hardware/verification/generated/H3-VRF41-digital-levels.json",
-      "expected": "22efce1e5e06e4716209469bf2bd81b6a7fdfcc8b8b46dd7b559d7975efa62fd",
-      "actual": "22efce1e5e06e4716209469bf2bd81b6a7fdfcc8b8b46dd7b559d7975efa62fd",
+      "expected": "7cba0fdd4e37fadc374f7867bc046b179720e1d79d8ea5890ae578b00e1efd3a",
+      "actual": "7cba0fdd4e37fadc374f7867bc046b179720e1d79d8ea5890ae578b00e1efd3a",
       "matches": true
     },
     {
       "consumer": "H3.4.4",
       "source": "hardware/verification/generated/H3-VRF42-digital-timing.json",
-      "expected": "ab14a1d1ab47ae20de3c2d1b30afa1e558fcc28103ce52f59421148dbae8b41f",
-      "actual": "ab14a1d1ab47ae20de3c2d1b30afa1e558fcc28103ce52f59421148dbae8b41f",
+      "expected": "fdac01173115ad3a7e4deb4bc2d85d44c1c6dd5ab13684a844e2d64f3723ba5d",
+      "actual": "fdac01173115ad3a7e4deb4bc2d85d44c1c6dd5ab13684a844e2d64f3723ba5d",
       "matches": true
     },
     {
       "consumer": "H3.4.4",
       "source": "hardware/verification/generated/H3-VRF43-boundary-loading.json",
-      "expected": "8f40f0c2d016b2f38964d9eed41efbc29979d15011492275f6cebcf54a02c80a",
-      "actual": "8f40f0c2d016b2f38964d9eed41efbc29979d15011492275f6cebcf54a02c80a",
+      "expected": "a12d557b0f516e46465a471156558d736ac412e81020267c754af7f68b00ccbd",
+      "actual": "a12d557b0f516e46465a471156558d736ac412e81020267c754af7f68b00ccbd",
       "matches": true
     },
     {
       "consumer": "H3.5.1",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.5.1",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.5.1",
       "source": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
-      "expected": "9e996a26055ee5d3b426db574589a7745fd6eb32704299c41f0ad4726c805d0e",
-      "actual": "9e996a26055ee5d3b426db574589a7745fd6eb32704299c41f0ad4726c805d0e",
+      "expected": "19b06513054632ae8eba3abe083851167bf03ab08ec0684b34b98da0c8ecb5a3",
+      "actual": "19b06513054632ae8eba3abe083851167bf03ab08ec0684b34b98da0c8ecb5a3",
       "matches": true
     },
     {
       "consumer": "H3.5.2",
       "source": "hardware/product-design/generated/H1-unified-coordinate-table.json",
-      "expected": "2ee0e14b47251666329328a6066297442a6e3fa2afcd7a4d0eb66043a70508fd",
-      "actual": "2ee0e14b47251666329328a6066297442a6e3fa2afcd7a4d0eb66043a70508fd",
+      "expected": "202e700c6449c7155c26a867d1a419ff2973edf43bf59eee1e48c8d15645533b",
+      "actual": "202e700c6449c7155c26a867d1a419ff2973edf43bf59eee1e48c8d15645533b",
       "matches": true
     },
     {
       "consumer": "H3.5.2",
       "source": "hardware/verification/generated/H3-VRF51-rf-feed-constraints.json",
-      "expected": "f4bdac9fd98ff2ee11f9f39b3e63f57ac206c5fecf0d691e3598b49aae9c6237",
-      "actual": "f4bdac9fd98ff2ee11f9f39b3e63f57ac206c5fecf0d691e3598b49aae9c6237",
+      "expected": "63bdc08ab65f33b54ab4906160e669b445ae0414ba8924a62bc0066417abb357",
+      "actual": "63bdc08ab65f33b54ab4906160e669b445ae0414ba8924a62bc0066417abb357",
       "matches": true
     },
     {
       "consumer": "H3.5.2",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.5.3",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.5.3",
       "source": "hardware/verification/generated/H3-VRF11-power-state-register.json",
-      "expected": "5a5749a2b5ca6ca451648d2b0c6b40beab8530c9b640b20b4863ec5a15cbe0b5",
-      "actual": "5a5749a2b5ca6ca451648d2b0c6b40beab8530c9b640b20b4863ec5a15cbe0b5",
+      "expected": "ca56af657daed652ab95e6bf5bc1e2b5e4ee62793dc9dd171f92ba0d5f71d112",
+      "actual": "ca56af657daed652ab95e6bf5bc1e2b5e4ee62793dc9dd171f92ba0d5f71d112",
       "matches": true
     },
     {
       "consumer": "H3.5.3",
       "source": "hardware/verification/generated/H3-VRF12-dc-budget.json",
-      "expected": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
-      "actual": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
+      "expected": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
+      "actual": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
       "matches": true
     },
     {
       "consumer": "H3.5.3",
       "source": "hardware/verification/generated/H3-VRF41-digital-levels.json",
-      "expected": "22efce1e5e06e4716209469bf2bd81b6a7fdfcc8b8b46dd7b559d7975efa62fd",
-      "actual": "22efce1e5e06e4716209469bf2bd81b6a7fdfcc8b8b46dd7b559d7975efa62fd",
+      "expected": "7cba0fdd4e37fadc374f7867bc046b179720e1d79d8ea5890ae578b00e1efd3a",
+      "actual": "7cba0fdd4e37fadc374f7867bc046b179720e1d79d8ea5890ae578b00e1efd3a",
       "matches": true
     },
     {
       "consumer": "H3.5.3",
       "source": "hardware/verification/generated/H3-VRF42-digital-timing.json",
-      "expected": "ab14a1d1ab47ae20de3c2d1b30afa1e558fcc28103ce52f59421148dbae8b41f",
-      "actual": "ab14a1d1ab47ae20de3c2d1b30afa1e558fcc28103ce52f59421148dbae8b41f",
+      "expected": "fdac01173115ad3a7e4deb4bc2d85d44c1c6dd5ab13684a844e2d64f3723ba5d",
+      "actual": "fdac01173115ad3a7e4deb4bc2d85d44c1c6dd5ab13684a844e2d64f3723ba5d",
       "matches": true
     },
     {
       "consumer": "H3.5.3",
       "source": "hardware/verification/generated/H3-VRF52-rf-layout-constraints.json",
-      "expected": "13da3954f34a82fb2c1f84d45b1529da330c0e42be999d0766faf32b104f7e20",
-      "actual": "13da3954f34a82fb2c1f84d45b1529da330c0e42be999d0766faf32b104f7e20",
+      "expected": "0829c9f2bf3c7648620ae72e78ed5a98d15c84537d1354dcb03201e891a7ee8d",
+      "actual": "0829c9f2bf3c7648620ae72e78ed5a98d15c84537d1354dcb03201e891a7ee8d",
       "matches": true
     },
     {
       "consumer": "H3.5.4",
       "source": "hardware/verification/generated/H3-VRF51-rf-feed-constraints.json",
-      "expected": "f4bdac9fd98ff2ee11f9f39b3e63f57ac206c5fecf0d691e3598b49aae9c6237",
-      "actual": "f4bdac9fd98ff2ee11f9f39b3e63f57ac206c5fecf0d691e3598b49aae9c6237",
+      "expected": "63bdc08ab65f33b54ab4906160e669b445ae0414ba8924a62bc0066417abb357",
+      "actual": "63bdc08ab65f33b54ab4906160e669b445ae0414ba8924a62bc0066417abb357",
       "matches": true
     },
     {
       "consumer": "H3.5.4",
       "source": "hardware/verification/generated/H3-VRF52-rf-layout-constraints.json",
-      "expected": "13da3954f34a82fb2c1f84d45b1529da330c0e42be999d0766faf32b104f7e20",
-      "actual": "13da3954f34a82fb2c1f84d45b1529da330c0e42be999d0766faf32b104f7e20",
+      "expected": "0829c9f2bf3c7648620ae72e78ed5a98d15c84537d1354dcb03201e891a7ee8d",
+      "actual": "0829c9f2bf3c7648620ae72e78ed5a98d15c84537d1354dcb03201e891a7ee8d",
       "matches": true
     },
     {
       "consumer": "H3.5.4",
       "source": "hardware/verification/generated/H3-VRF53-rf-coexistence.json",
-      "expected": "98acb44ea3489d72758ce9e74a77711097fbecc687d43f8502d8408313992b41",
-      "actual": "98acb44ea3489d72758ce9e74a77711097fbecc687d43f8502d8408313992b41",
+      "expected": "92757f0baaf2463f801211ac678092146b52b2063afbf501b9ebf48cd2fb614b",
+      "actual": "92757f0baaf2463f801211ac678092146b52b2063afbf501b9ebf48cd2fb614b",
       "matches": true
     },
     {
       "consumer": "H3.6.1",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.6.1",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.6.1",
       "source": "hardware/verification/generated/H3-VRF12-dc-budget.json",
-      "expected": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
-      "actual": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
+      "expected": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
+      "actual": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
       "matches": true
     },
     {
       "consumer": "H3.6.1",
       "source": "hardware/verification/generated/H3-VRF13-source-charge-budget.json",
-      "expected": "8a6dc11fde865d17946827e44d39b7920d0d64c33e2ee60af7b6ba5ba0a23e53",
-      "actual": "8a6dc11fde865d17946827e44d39b7920d0d64c33e2ee60af7b6ba5ba0a23e53",
+      "expected": "f2f2ad2af7538dff4ce1982623d9cf91c2239e6794bf31bf3298aa8ebbfd6d43",
+      "actual": "f2f2ad2af7538dff4ce1982623d9cf91c2239e6794bf31bf3298aa8ebbfd6d43",
       "matches": true
     },
     {
       "consumer": "H3.6.1",
       "source": "hardware/verification/generated/H3-VRF14-dc-consolidation.json",
-      "expected": "6d8d81718d8934d1203f6315f1adaed47c1d695c46c8539e803642af39137033",
-      "actual": "6d8d81718d8934d1203f6315f1adaed47c1d695c46c8539e803642af39137033",
+      "expected": "80a3fe3f3066d2bff73895806c5a3bb6123450041231b0a4ea03601e9d5e7b19",
+      "actual": "80a3fe3f3066d2bff73895806c5a3bb6123450041231b0a4ea03601e9d5e7b19",
       "matches": true
     },
     {
       "consumer": "H3.6.1",
       "source": "hardware/verification/generated/H3-VRF34-battery-analog.json",
-      "expected": "b4cdc384e33b787fca5329de88cb01069b84f6f3df63c2434716595cb0535b38",
-      "actual": "b4cdc384e33b787fca5329de88cb01069b84f6f3df63c2434716595cb0535b38",
+      "expected": "5e04abb52d6f66d5420e9639d17ed92400882eed1600f4e6830573dc5ee1f8e0",
+      "actual": "5e04abb52d6f66d5420e9639d17ed92400882eed1600f4e6830573dc5ee1f8e0",
       "matches": true
     },
     {
       "consumer": "H3.6.2",
       "source": "hardware/architecture/candidates/G2F-3I.json",
-      "expected": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-      "actual": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+      "expected": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+      "actual": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
       "matches": true
     },
     {
       "consumer": "H3.6.2",
       "source": "hardware/architecture/devices.json",
-      "expected": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-      "actual": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+      "expected": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+      "actual": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
       "matches": true
     },
     {
       "consumer": "H3.6.2",
       "source": "hardware/ecad/generated/H2-REV55-fault-kill.json",
-      "expected": "d07b46dc3792bc6224cd24417b3006320d3553b0794528f05d5984fed7af5bd3",
-      "actual": "d07b46dc3792bc6224cd24417b3006320d3553b0794528f05d5984fed7af5bd3",
+      "expected": "d315640474695d9a8927018066ce222fb1c10b0b6e2eac6079beeded7787d531",
+      "actual": "d315640474695d9a8927018066ce222fb1c10b0b6e2eac6079beeded7787d531",
       "matches": true
     },
     {
       "consumer": "H3.6.2",
       "source": "hardware/verification/generated/H3-VRF24-watchdog-fault-display.json",
-      "expected": "23bf919118727e3e2c3049a57d48c7c2f2ff1b19098dda74234fc0678a9689e5",
-      "actual": "23bf919118727e3e2c3049a57d48c7c2f2ff1b19098dda74234fc0678a9689e5",
+      "expected": "2aabaf5dd9d5ae993fccd8c66c916b9ff85a6a959134b56617cd62b2d2e6faf7",
+      "actual": "2aabaf5dd9d5ae993fccd8c66c916b9ff85a6a959134b56617cd62b2d2e6faf7",
       "matches": true
     },
     {
       "consumer": "H3.6.2",
       "source": "hardware/verification/generated/H3-VRF61-thermal-model.json",
-      "expected": "67f8269c9d495e80d4681c8d5346a5721dce2d81d5b5a7721afcbb396227db8c",
-      "actual": "67f8269c9d495e80d4681c8d5346a5721dce2d81d5b5a7721afcbb396227db8c",
+      "expected": "8d3865787fb78ac2df6dbddb71d64bb44c29e0133219b2b6825d4288afbf7404",
+      "actual": "8d3865787fb78ac2df6dbddb71d64bb44c29e0133219b2b6825d4288afbf7404",
       "matches": true
     },
     {
       "consumer": "H3.6.3",
       "source": "hardware/verification/generated/H3-VRF61-thermal-model.json",
-      "expected": "67f8269c9d495e80d4681c8d5346a5721dce2d81d5b5a7721afcbb396227db8c",
-      "actual": "67f8269c9d495e80d4681c8d5346a5721dce2d81d5b5a7721afcbb396227db8c",
+      "expected": "8d3865787fb78ac2df6dbddb71d64bb44c29e0133219b2b6825d4288afbf7404",
+      "actual": "8d3865787fb78ac2df6dbddb71d64bb44c29e0133219b2b6825d4288afbf7404",
       "matches": true
     },
     {
       "consumer": "H3.6.3",
       "source": "hardware/verification/generated/H3-VRF62-fault-tree.json",
-      "expected": "609936bae351619d37011f3182e7ab5157b20c432146371ebd7a10bcdb9df4ea",
-      "actual": "609936bae351619d37011f3182e7ab5157b20c432146371ebd7a10bcdb9df4ea",
+      "expected": "d2d94d1dfe98c4017ccb6b27e1b98d8ab944b3d0e940c4270a1cac54fd91df24",
+      "actual": "d2d94d1dfe98c4017ccb6b27e1b98d8ab944b3d0e940c4270a1cac54fd91df24",
       "matches": true
     },
     {
       "consumer": "H3.6.3",
       "source": "hardware/verification/generated/H3-VRF13-source-charge-budget.json",
-      "expected": "8a6dc11fde865d17946827e44d39b7920d0d64c33e2ee60af7b6ba5ba0a23e53",
-      "actual": "8a6dc11fde865d17946827e44d39b7920d0d64c33e2ee60af7b6ba5ba0a23e53",
+      "expected": "f2f2ad2af7538dff4ce1982623d9cf91c2239e6794bf31bf3298aa8ebbfd6d43",
+      "actual": "f2f2ad2af7538dff4ce1982623d9cf91c2239e6794bf31bf3298aa8ebbfd6d43",
       "matches": true
     },
     {
       "consumer": "H3.6.3",
       "source": "hardware/verification/generated/H3-VRF34-battery-analog.json",
-      "expected": "b4cdc384e33b787fca5329de88cb01069b84f6f3df63c2434716595cb0535b38",
-      "actual": "b4cdc384e33b787fca5329de88cb01069b84f6f3df63c2434716595cb0535b38",
+      "expected": "5e04abb52d6f66d5420e9639d17ed92400882eed1600f4e6830573dc5ee1f8e0",
+      "actual": "5e04abb52d6f66d5420e9639d17ed92400882eed1600f4e6830573dc5ee1f8e0",
       "matches": true
     },
     {
       "consumer": "H3.6.4",
       "source": "hardware/verification/generated/H3-VRF61-thermal-model.json",
-      "expected": "67f8269c9d495e80d4681c8d5346a5721dce2d81d5b5a7721afcbb396227db8c",
-      "actual": "67f8269c9d495e80d4681c8d5346a5721dce2d81d5b5a7721afcbb396227db8c",
+      "expected": "8d3865787fb78ac2df6dbddb71d64bb44c29e0133219b2b6825d4288afbf7404",
+      "actual": "8d3865787fb78ac2df6dbddb71d64bb44c29e0133219b2b6825d4288afbf7404",
       "matches": true
     },
     {
       "consumer": "H3.6.4",
       "source": "hardware/verification/generated/H3-VRF62-fault-tree.json",
-      "expected": "609936bae351619d37011f3182e7ab5157b20c432146371ebd7a10bcdb9df4ea",
-      "actual": "609936bae351619d37011f3182e7ab5157b20c432146371ebd7a10bcdb9df4ea",
+      "expected": "d2d94d1dfe98c4017ccb6b27e1b98d8ab944b3d0e940c4270a1cac54fd91df24",
+      "actual": "d2d94d1dfe98c4017ccb6b27e1b98d8ab944b3d0e940c4270a1cac54fd91df24",
       "matches": true
     },
     {
       "consumer": "H3.6.4",
       "source": "hardware/verification/generated/H3-VRF63-unattended-envelope.json",
-      "expected": "242661bd44b95f479a1e00fa874dd1d445458fa78ecfed3185869923045623fc",
-      "actual": "242661bd44b95f479a1e00fa874dd1d445458fa78ecfed3185869923045623fc",
+      "expected": "53065feac6ac908f9c8c86291ff3d917a90369ced89bb0dcce904b5ac27c0948",
+      "actual": "53065feac6ac908f9c8c86291ff3d917a90369ced89bb0dcce904b5ac27c0948",
       "matches": true
     }
   ],
@@ -1842,7 +1842,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_dvdd10_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -1858,7 +1858,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_dvdd32_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -1874,7 +1874,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_dvdd51_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -1890,7 +1890,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_iovdd5_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -1906,7 +1906,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_iovdd15_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -1922,7 +1922,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_iovdd24_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -1938,7 +1938,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_iovdd29_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -1954,7 +1954,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_iovdd41_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -1970,7 +1970,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_iovdd50_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -1986,7 +1986,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_iovdd60_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -2002,7 +2002,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_iovdd76_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -2018,7 +2018,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_adc_avdd_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -2034,7 +2034,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_usb_otp_vdd_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -2050,7 +2050,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_qspi_iovdd_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -2316,7 +2316,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:u214_i2c_iso_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_34_U214_M5_EXT",
       "parameter_inventory_present": true,
@@ -2412,7 +2412,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:u214_host_buffer_a_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_34_U214_M5_EXT",
       "parameter_inventory_present": true,
@@ -2428,7 +2428,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:u214_host_buffer_b_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_34_U214_M5_EXT",
       "parameter_inventory_present": true,
@@ -2444,7 +2444,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:u214_return_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_34_U214_M5_EXT",
       "parameter_inventory_present": true,
@@ -2670,7 +2670,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:ext_request_or_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "parameter_inventory_present": true,
@@ -2718,7 +2718,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:ext_branch_gate_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "parameter_inventory_present": true,
@@ -2781,7 +2781,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:u214_supervisor_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_34_U214_M5_EXT",
       "parameter_inventory_present": true,
@@ -3020,7 +3020,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:unit_supervisor_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_34_U214_M5_EXT",
       "parameter_inventory_present": true,
@@ -3116,7 +3116,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:unit_signal_iso_vcca_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_34_U214_M5_EXT",
       "parameter_inventory_present": true,
@@ -3132,7 +3132,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:unit_signal_iso_vccb_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_34_U214_M5_EXT",
       "parameter_inventory_present": true,
@@ -3323,7 +3323,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:s3_detector_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_10_S3_CORE_MEMORY_BOOT",
       "parameter_inventory_present": true,
@@ -3469,7 +3469,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:c5_detector_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_20_C5_RADIO_IR_SERVICE",
       "parameter_inventory_present": true,
@@ -3720,7 +3720,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf0_return_buffer",
-      "device_key": "nexperia_74lvc2g126dc_125",
+      "device_key": "nexperia_74lvc2g126dp_125",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -3737,7 +3737,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf0_host_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -3752,7 +3752,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf0_return_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -3782,7 +3782,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf0_module_hf_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -4127,7 +4127,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf0_detector_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -4159,7 +4159,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf1_return_buffer",
-      "device_key": "nexperia_74lvc2g126dc_125",
+      "device_key": "nexperia_74lvc2g126dp_125",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -4176,7 +4176,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf1_host_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -4191,7 +4191,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf1_return_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -4221,7 +4221,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf1_module_hf_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -4566,7 +4566,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf1_detector_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -4598,7 +4598,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf2_return_buffer",
-      "device_key": "nexperia_74lvc2g126dc_125",
+      "device_key": "nexperia_74lvc2g126dp_125",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -4615,7 +4615,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf2_host_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -4630,7 +4630,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf2_return_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -4660,7 +4660,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf2_module_hf_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -5005,7 +5005,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf2_detector_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -5071,7 +5071,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:cc_band_buffer",
-      "device_key": "nexperia_74lvc2g126dc_125",
+      "device_key": "nexperia_74lvc2g126dp_125",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -5088,7 +5088,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:cc_host_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -5103,7 +5103,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:cc_return_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -5118,7 +5118,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:cc_band_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -5178,7 +5178,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:cc_dvdd_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -5193,7 +5193,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:cc_avdd9_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -5208,7 +5208,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:cc_avdd11_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -5223,7 +5223,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:cc_avdd14_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -5238,7 +5238,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:cc_avdd15_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -5253,7 +5253,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:cc_dcoupl_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -5943,7 +5943,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:cc_detector_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -6098,7 +6098,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:voice_detector_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -6223,7 +6223,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:voice_v_detector_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -6319,7 +6319,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:slow_io_vcci_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_12_CONTROLS_INDICATORS",
       "parameter_inventory_present": true,
@@ -6335,7 +6335,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:slow_io_vccp_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_12_CONTROLS_INDICATORS",
       "parameter_inventory_present": true,
@@ -6399,7 +6399,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:slow_io_fault_sense_iso_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_12_CONTROLS_INDICATORS",
       "parameter_inventory_present": true,
@@ -6447,7 +6447,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:slow_io_s3_evidence_iso_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_12_CONTROLS_INDICATORS",
       "parameter_inventory_present": true,
@@ -6863,7 +6863,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:ptt_filter_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_35_REAR_CONTROLS",
       "parameter_inventory_present": true,
@@ -6956,7 +6956,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:ui_matrix_io_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_12_CONTROLS_INDICATORS",
       "parameter_inventory_present": true,
@@ -6972,7 +6972,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:touch_irq_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
       "parameter_inventory_present": true,
@@ -7373,7 +7373,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:display_logic_hf_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
       "parameter_inventory_present": true,
@@ -7450,7 +7450,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:backlight_efuse_input_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
       "parameter_inventory_present": true,
@@ -7480,7 +7480,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:backlight_efuse_output_hf",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
       "parameter_inventory_present": true,
@@ -7666,7 +7666,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:sd_power_hf_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
       "parameter_inventory_present": true,
@@ -7681,7 +7681,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:sd_host_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
       "parameter_inventory_present": true,
@@ -7696,7 +7696,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:sd_miso_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
       "parameter_inventory_present": true,
@@ -7966,7 +7966,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:sd_detect_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
       "parameter_inventory_present": true,
@@ -8013,7 +8013,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:audio_rx_mux_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -8240,7 +8240,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:audio_capture_selector_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -8405,7 +8405,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:audio_capture_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -8497,7 +8497,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:audio_speaker_selector_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -8589,7 +8589,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:audio_tx_selector_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -8741,7 +8741,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:audio_safe_gate_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -9060,7 +9060,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:headset_mic_selector_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -9137,7 +9137,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:headset_control_io_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -9482,7 +9482,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:codec_supervisor_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -9529,7 +9529,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:codec_i2c_iso_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -9659,7 +9659,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:codec_i2s_bclk_iso_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -9674,7 +9674,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:codec_i2s_ws_iso_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -9689,7 +9689,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:codec_i2s_dout_iso_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -9704,7 +9704,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:codec_i2s_din_iso_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -9719,7 +9719,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:codec_i2s_din_boot_gate_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -9734,7 +9734,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:codec_pvdd_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -9764,7 +9764,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:codec_dvdd_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -9794,7 +9794,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:codec_avdd_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
       "parameter_inventory_present": true,
@@ -9929,7 +9929,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:receiver_supervisor_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_21_FM_AM_RECEIVER",
       "parameter_inventory_present": true,
@@ -9976,7 +9976,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:receiver_i2c_iso_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_21_FM_AM_RECEIVER",
       "parameter_inventory_present": true,
@@ -10038,7 +10038,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:receiver_irq_iso_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_21_FM_AM_RECEIVER",
       "parameter_inventory_present": true,
@@ -10068,7 +10068,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:receiver_vdd_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_21_FM_AM_RECEIVER",
       "parameter_inventory_present": true,
@@ -10270,7 +10270,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:ir_power_output_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_20_C5_RADIO_IR_SERVICE",
       "parameter_inventory_present": true,
@@ -10414,7 +10414,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:ir_return_buffer",
-      "device_key": "nexperia_74lvc2g126dc_125",
+      "device_key": "nexperia_74lvc2g126dp_125",
       "project": "LESHY2-UI",
       "sheet": "UI_20_C5_RADIO_IR_SERVICE",
       "parameter_inventory_present": true,
@@ -10432,7 +10432,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:ir_return_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_20_C5_RADIO_IR_SERVICE",
       "parameter_inventory_present": true,
@@ -10627,7 +10627,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:ir_evidence_amp_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -10675,7 +10675,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:ir_evidence_vref_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -10738,7 +10738,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:voice_supervisor_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -10877,7 +10877,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:voice_band_io_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -11029,7 +11029,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:voice_band_inverter_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -11061,7 +11061,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:voice_pd_gate_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -11093,7 +11093,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:voice_control_mux_a_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -11125,7 +11125,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:voice_control_mux_b_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -11157,7 +11157,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:voice_audio_mux_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -11264,7 +11264,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:voice_hl_driver_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -11617,7 +11617,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:pd_eeprom_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_01_USB_PD_CHARGE",
       "parameter_inventory_present": true,
@@ -11785,7 +11785,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:charger_vbus_hf_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_01_USB_PD_CHARGE",
       "parameter_inventory_present": true,
@@ -11845,7 +11845,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:charger_pmid_hf_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_01_USB_PD_CHARGE",
       "parameter_inventory_present": true,
@@ -11935,7 +11935,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:charger_sys_hf_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_01_USB_PD_CHARGE",
       "parameter_inventory_present": true,
@@ -12244,7 +12244,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:power_command_filter",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -12276,7 +12276,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:run_loop_filter",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -12638,7 +12638,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:pack_in_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_02_PACK_SAFETY_AON",
       "parameter_inventory_present": true,
@@ -12674,7 +12674,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:pack_chg_gate_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_02_PACK_SAFETY_AON",
       "parameter_inventory_present": true,
@@ -12692,7 +12692,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:pack_dis_gate_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_02_PACK_SAFETY_AON",
       "parameter_inventory_present": true,
@@ -12818,7 +12818,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:pack_cell1_filter_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_02_PACK_SAFETY_AON",
       "parameter_inventory_present": true,
@@ -12836,7 +12836,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:pack_batts_filter_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_02_PACK_SAFETY_AON",
       "parameter_inventory_present": true,
@@ -12908,7 +12908,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:pack_admission_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_02_PACK_SAFETY_AON",
       "parameter_inventory_present": true,
@@ -13052,7 +13052,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:pack_diag_timer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_02_PACK_SAFETY_AON",
       "parameter_inventory_present": true,
@@ -13494,7 +13494,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:aon_efuse_input_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "parameter_inventory_present": true,
@@ -13584,7 +13584,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:main_hf_input_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "parameter_inventory_present": true,
@@ -13885,7 +13885,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:voice_hf_input_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -14219,7 +14219,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:ext_buck_hf_input_cap",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "parameter_inventory_present": true,
@@ -14644,7 +14644,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:c5_service_usb_switch_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_20_C5_RADIO_IR_SERVICE",
       "parameter_inventory_present": true,
@@ -14788,7 +14788,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rp_service_usb_switch_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_30_RP2354_CORE_SERVICE",
       "parameter_inventory_present": true,
@@ -15450,7 +15450,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:s3_supply_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_10_S3_CORE_MEMORY_BOOT",
       "parameter_inventory_present": true,
@@ -15594,7 +15594,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:safety_controller_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -15675,7 +15675,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:safety_fault_request_iso_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -15708,7 +15708,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:safety_s3_reset_iso_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -15742,7 +15742,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:safety_watchdog_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -15855,7 +15855,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:safe_run_fault_iso_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -15871,7 +15871,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:safe_supervisor_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -15917,7 +15917,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:power_zone_temp_filter",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "parameter_inventory_present": true,
@@ -15962,7 +15962,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:rf_zone_temp_filter",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "parameter_inventory_present": true,
@@ -16009,7 +16009,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:ui_zone_temp_filter",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_12_CONTROLS_INDICATORS",
       "parameter_inventory_present": true,
@@ -16042,7 +16042,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:safe_conditioner_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -16107,7 +16107,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:safe_rearm_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -16139,7 +16139,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:safe_latch_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -16188,7 +16188,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:safe_reset_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -16221,7 +16221,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:safe_c5_reset_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -16270,7 +16270,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:safe_c5_fault_reset_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -16303,7 +16303,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:safe_fault_reset_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -16448,7 +16448,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:safe_gate_a_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -16481,7 +16481,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:nrf_backup_gate_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_31_NRF24_X3",
       "parameter_inventory_present": true,
@@ -16513,7 +16513,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:safe_gate_b_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -16546,7 +16546,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:cc_backup_gate_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_32_SUBGHZ_VOICE",
       "parameter_inventory_present": true,
@@ -16579,7 +16579,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:ir_safe_gate_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_20_C5_RADIO_IR_SERVICE",
       "parameter_inventory_present": true,
@@ -16612,7 +16612,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:safe_ptt_or_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -16868,7 +16868,7 @@
     },
     {
       "instance_uid": "LESHY2-UI:evidence_cmp_a_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-UI",
       "sheet": "UI_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -16884,7 +16884,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:evidence_cmp_b_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -16900,7 +16900,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:evidence_cmp_voice_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -16916,7 +16916,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:evidence_cmp_voice_v_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -16980,7 +16980,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:ext_evidence_buffer_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "parameter_inventory_present": true,
@@ -17027,7 +17027,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:evidence_mask_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -17204,7 +17204,7 @@
     },
     {
       "instance_uid": "LESHY2-RF:evidence_main_isolator_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-RF",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
       "parameter_inventory_present": true,
@@ -18327,7 +18327,7 @@
     },
     {
       "instance_uid": "LESHY2-LORA-CAP-01:COMMON:rf_detector_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-LORA-CAP-01",
       "sheet": "CAP_10_RADIO_CONTROL",
       "parameter_inventory_present": true,
@@ -18408,7 +18408,7 @@
     },
     {
       "instance_uid": "LESHY2-LORA-CAP-01:COMMON:evidence_comparator_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-LORA-CAP-01",
       "sheet": "CAP_30_TX_EVIDENCE",
       "parameter_inventory_present": true,
@@ -18456,7 +18456,7 @@
     },
     {
       "instance_uid": "LESHY2-LORA-CAP-01:COMMON:evidence_timing_capacitor",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-LORA-CAP-01",
       "sheet": "CAP_30_TX_EVIDENCE",
       "parameter_inventory_present": true,
@@ -18472,7 +18472,7 @@
     },
     {
       "instance_uid": "LESHY2-LORA-CAP-01:COMMON:evidence_monostable_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-LORA-CAP-01",
       "sheet": "CAP_30_TX_EVIDENCE",
       "parameter_inventory_present": true,
@@ -18505,7 +18505,7 @@
     },
     {
       "instance_uid": "LESHY2-LORA-CAP-01:COMMON:evidence_driver_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-LORA-CAP-01",
       "sheet": "CAP_30_TX_EVIDENCE",
       "parameter_inventory_present": true,
@@ -18599,7 +18599,7 @@
     },
     {
       "instance_uid": "LESHY2-LORA-CAP-01:COMMON:identity_bypass",
-      "device_key": "tdk_c1005x7r1h104k050bb",
+      "device_key": "yageo_cc0402krx7r9bb104",
       "project": "LESHY2-LORA-CAP-01",
       "sheet": "CAP_20_POWER_BUS",
       "parameter_inventory_present": true,

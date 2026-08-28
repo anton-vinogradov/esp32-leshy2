@@ -105,7 +105,7 @@ def footprint_for(instance: str, device_key: str) -> str:
         "c5_rf_coupler": "Leshy2:CP0603Q5425ENTR",
         "ir_demod": "Leshy2:Vishay-Heimdall-SMD-TT",
         "ir_carrier": "Leshy2:Vishay-Heimdall-SMD-TT",
-        "ir_return_buffer": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+        "ir_return_buffer": "Package_SO:TSSOP-8_3x3mm_P0.65mm",
         "ir_emitter": "Leshy2:VSMY14940",
         "ir_tx_mosfet": "Package_TO_SOT_SMD:SOT-23",
         "ir_power_switch": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
@@ -122,7 +122,7 @@ def footprint_for(instance: str, device_key: str) -> str:
         return exact[instance]
     if instance in {"c5_factory_ant1", "c5_rf_jumper"}:
         return ""
-    if device_key.startswith(("tdk_c", "murata_grm", "kemet_c")):
+    if device_key.startswith(("tdk_c", "yageo_cc", "murata_grm", "kemet_c")):
         if device_key in {"tdk_c1608x7r1c105k080ac", "murata_grm188r60j106me47d", "murata_grm188z71a475me15d"}:
             return "Capacitor_SMD:C_0603_1608Metric"
         return "Capacitor_SMD:C_0402_1005Metric"
@@ -144,7 +144,7 @@ def reference_prefix(instance: str, device_key: str) -> str:
         return "J"
     if instance == "ir_emitter":
         return "D"
-    if device_key.startswith(("tdk_c", "murata_grm", "kemet_c")):
+    if device_key.startswith(("tdk_c", "yageo_cc", "murata_grm", "kemet_c")):
         return "C"
     if device_key.startswith(("yageo_rc", "panasonic_erj_2r")):
         return "R"

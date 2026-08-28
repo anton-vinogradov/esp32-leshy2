@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)
 
-These are the current `H0-R2`/`H1-R2.22` principle diagrams of the finished
+These are the current `H0-R2`/`H1-R2.24` principle diagrams of the finished
 device. They explain ownership, buses, RF locality, power and service access.
 The R2 production ECAD schematic does **not** exist yet: H2 starts only after
 the complete H1 mock-up is accepted.
@@ -13,7 +13,8 @@ the complete H1 mock-up is accepted.
 
 The front UI/radio PCB owns S3, C5, all three complete nRF24 islands, the front
 RP, microSD and TVP5150. The rear RF/power PCB owns CC1101, both voice radios,
-broadcast/Airband, audio, the one-of-two post-PCBA K331/AWM666V FPV bay, M5/U214, the rear RP, power and safety.
+broadcast/Airband, audio, the one-of-two post-PCBA K331/AWM666V FPV bay,
+M5/U214, the rear RP, power and safety.
 
 Exact working GPIO groups and their budgets are published with the
 [H0-R2 architecture](h0-r2-functional-architecture.md#working-principle-pin-design).
@@ -47,13 +48,13 @@ anti-shear enclosure datums and independent PCB capture carry mechanical load.
 
 ## Physical implementation of the principle
 
-![Outer faces and direct views after turning the PCBs over](images/h1-r2-four-faces.svg?rev=h1-r2.21-dual-fpv-7)
+![Outer faces and direct views after turning the PCBs over](images/h1-r2-four-faces.svg?rev=h1-r2.23-cost-display-1)
 
 [Front PCB inner face](images/h1-r2-inner-ui.svg) ·
 [Rear PCB inner face](images/h1-r2-inner-rf.svg)
 
 Internal numbers are drawing references, not silkscreen. The current placement
-audit reports zero same-face body collisions and 1.05 mm minimum opposing
+audit reports zero same-face body collisions and 3.31 mm minimum opposing
 clearance against the 0.70 mm requirement.
 
 ## Dedicated signal and power paths

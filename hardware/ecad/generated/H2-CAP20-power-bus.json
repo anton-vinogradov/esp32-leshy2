@@ -5,10 +5,10 @@
   "project": "LESHY2-LORA-CAP-01",
   "sheet": "CAP_20_POWER_BUS",
   "source_hashes": {
-    "hardware/accessories/leshy2-lora-cap-01.json": "aea57801c58d9f255774bc58ecf51aff7238d9e8557d0ae25da6f81145ff5301",
-    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-    "hardware/ecad/generated/H2-instance-ledger.json": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "d0fc0f3128535a69375117e740d03e33379669f6bb566d586c5f7d917d273000"
+    "hardware/accessories/leshy2-lora-cap-01.json": "7fc99ce67a345aee697f846e97443f0388ee2488b55c1a2af5cd58e90b06a92f",
+    "hardware/architecture/devices.json": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+    "hardware/ecad/generated/H2-instance-ledger.json": "5e79e26435c0964540fa1e815a59170cf6715ebcf0672285a378ed6a5de00ccb",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "2c04e5a9ff5d0235f3a8bd7fe97ef2122cfc87ae7d2be287773331d276bdeb2d"
   },
   "summary": {
     "ledger_instances": 8,
@@ -72,7 +72,7 @@
       "instance": "identity_bypass",
       "symbol_uuid": "9485c98c-4920-50ca-bd9a-a3ceef9d13d4",
       "reference": "C20004",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true

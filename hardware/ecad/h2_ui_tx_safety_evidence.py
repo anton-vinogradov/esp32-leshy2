@@ -74,7 +74,7 @@ def footprint_for(instance: str, device_key: str) -> str:
     }
     if instance in exact:
         return exact[instance]
-    if device_key.startswith(("tdk_c", "kemet_c")):
+    if device_key.startswith(("tdk_c", "yageo_cc", "kemet_c")):
         return "Capacitor_SMD:C_0402_1005Metric"
     if device_key.startswith("yageo_rc"):
         return "Resistor_SMD:R_0402_1005Metric"
@@ -84,7 +84,7 @@ def footprint_for(instance: str, device_key: str) -> str:
 def reference_prefix(instance: str, device_key: str) -> str:
     if instance == "det_ir":
         return "D"
-    if device_key.startswith(("tdk_c", "kemet_c")):
+    if device_key.startswith(("tdk_c", "yageo_cc", "kemet_c")):
         return "C"
     if device_key.startswith("yageo_rc"):
         return "R"

@@ -4,7 +4,7 @@
   "status": "reviewed_reset_safe_quiet_state_and_isolation",
   "method": "complete KiCad netlist control-membership checks plus exact instantiated isolation evidence for every required quiet contract",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
+    "hardware/architecture/candidates/G2F-3I.json": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "ab4e73fe576c5e1557e6695b89fd3ce182c4533a61e984bd755d3c25b287ce97",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "62036d985924f988257859617422a4eedbdab3d0d8f940cb485d32b7b97f23bc"
   },
@@ -120,17 +120,17 @@
         {
           "instance": "nrf0_return_buffer",
           "reference": "U31005",
-          "mpn": "Nexperia 74LVC2G126DC,125"
+          "mpn": "Nexperia 74LVC2G126DP,125"
         },
         {
           "instance": "nrf1_return_buffer",
           "reference": "U31008",
-          "mpn": "Nexperia 74LVC2G126DC,125"
+          "mpn": "Nexperia 74LVC2G126DP,125"
         },
         {
           "instance": "nrf2_return_buffer",
           "reference": "U31011",
-          "mpn": "Nexperia 74LVC2G126DC,125"
+          "mpn": "Nexperia 74LVC2G126DP,125"
         }
       ]
     },
@@ -796,7 +796,7 @@
         {
           "instance": "ir_return_buffer",
           "reference": "U20006",
-          "mpn": "Nexperia 74LVC2G126DC,125"
+          "mpn": "Nexperia 74LVC2G126DP,125"
         },
         {
           "instance": "safe_c5_fault_reset_buffer",

@@ -114,11 +114,11 @@ def footprint_for(instance: str, device_key: str) -> str:
         return exact[instance]
     if device_key == "nexperia_74lvc126apw_118":
         return "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
-    if device_key == "nexperia_74lvc2g126dc_125":
-        return "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+    if device_key == "nexperia_74lvc2g126dp_125":
+        return "Package_SO:TSSOP-8_3x3mm_P0.65mm"
     if device_key in {"tdk_c1608x7r1c105k080ac", "murata_grm188r60j106me47d"}:
         return "Capacitor_SMD:C_0603_1608Metric"
-    if device_key.startswith(("tdk_c1005", "murata_grm155")):
+    if device_key.startswith(("tdk_c1005", "yageo_cc0402", "murata_grm155")):
         return "Capacitor_SMD:C_0402_1005Metric"
     if device_key.startswith(("yageo_rc0402", "panasonic_erj_2r")):
         return "Resistor_SMD:R_0402_1005Metric"
@@ -134,7 +134,7 @@ def reference_prefix(instance: str, device_key: str) -> str:
         return "J"
     if instance == "nrf_evidence_hold_diode":
         return "D"
-    if device_key.startswith(("tdk_c", "murata_grm")):
+    if device_key.startswith(("tdk_c", "yageo_cc", "murata_grm")):
         return "C"
     if device_key.startswith(("yageo_rc", "panasonic_erj")):
         return "R"
@@ -357,7 +357,7 @@ def build() -> tuple[dict[Path, str], dict]:
                 ("gct_rfpc_sma31_fn_175_a", "Leshy2:RFPC-SMA31-FN-175-A"),
                 ("hirose_ufl_r_smt_1_10", "Connector_Coaxial:U.FL_Hirose_U.FL-R-SMT-1_Vertical"),
                 ("nexperia_74lvc126apw_118", "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"),
-                ("nexperia_74lvc2g126dc_125", "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"),
+                ("nexperia_74lvc2g126dp_125", "Package_SO:TSSOP-8_3x3mm_P0.65mm"),
                 ("ti_tps22919_dckr", "Package_TO_SOT_SMD:SOT-363_SC-70-6"),
             )
         ],

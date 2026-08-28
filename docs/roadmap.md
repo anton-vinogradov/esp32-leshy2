@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H1-R2.22`.** H0 is reviewed. H1 is not.
+> **▶ Current hardware boundary: `H1-R2.24`.** H0 is reviewed. H1 is not.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **28 August 2026**.
@@ -24,7 +24,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ▶ [H1-R2.22](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks, separate rear FPV MMCX, dual post-PCBA K331/AWM666V bay and stable per-board revision silk; [all 210 BOM lines are cost-ranked](h1-r2-cost.md) |
+| Physical design | ▶ [H1-R2.24](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks, separate rear FPV MMCX, dual post-PCBA K331/AWM666V bay, display flex toward the antenna edge and two safe pre-order eliminations; [all 210 BOM lines are cost-ranked](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map, FPV/MMCX proof and power/filter diagrams are published |
 | Production ECAD | ⏳ R1 evidence retained; R2 schematic waits for H1 |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.0 is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); emulator/dev-board execution must precede H7 fabrication |
@@ -32,9 +32,9 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Current H1 · exact composition
 
-<!-- current-substep: H1-R2.22 -->
+<!-- current-substep: H1-R2.24 -->
 
-**Exact marker: `H1-R2.22`.** This is one physical-design substep, not a closed
+**Exact marker: `H1-R2.24`.** This is one physical-design substep, not a closed
 H1 report.
 
 ### 1. Functional-island placement
@@ -87,6 +87,15 @@ H1 report.
   printed and PCB REV advances only with released manufacturing-file changes.
 - ✅ The generated cost review ranks every BOM line by fitted-device burden,
   five-device trial requirement and 100-device projection; antennas and post-PCBA parts stay separate.
+- ✅ Five pre-order `74LVC2G126DC,125` buffers are replaced by the stocked
+  same-family `74LVC2G126DP,125` (`C503392`). Logic, pin order, Schmitt inputs,
+  `Ioff` and timing remain unchanged; regenerated TSSOP bodies pass H2, H3 and
+  physical collision checks. The observed five-device line falls from `$40.60`
+  to `$12.1425`.
+- ✅ The stocked no-nut connector search retained the independent GCT
+  `RFPC-SMA31/32-FN-175-A` edge-launch pair without a shared antenna frame.
+  HenryTech parts point normal to the PCB; DreamLNK `SMA-KWE901/902` are about
+  10.2 mm high with through-hole tails. Neither is a no-worse mechanical swap.
 
 ### 5. Final H1 acceptance input
 
@@ -105,7 +114,7 @@ H1 report.
 | Phase | Status | Result | Exit criterion |
 |---|---|---|---|
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.22`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.24`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ⏳ Waiting for H1 | Exact R2 symbols, contacts, nets, values, protection and footprints | ERC-clean sheets and machine-readable HW↔FW contract |
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |

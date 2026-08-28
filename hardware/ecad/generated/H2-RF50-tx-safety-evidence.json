@@ -5,10 +5,10 @@
   "project": "LESHY2-RF",
   "sheet": "RF_50_TX_SAFETY_EVIDENCE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-    "hardware/ecad/generated/H2-instance-ledger.json": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "6e75232396e75d4615081d32d1c7db3419b7a321832f178c011dc1a0dbf6b552"
+    "hardware/architecture/candidates/G2F-3I.json": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+    "hardware/architecture/devices.json": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+    "hardware/ecad/generated/H2-instance-ledger.json": "5e79e26435c0964540fa1e815a59170cf6715ebcf0672285a378ed6a5de00ccb",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "611c32963b5b0c5ab62ef65d45bb5820fa47f581978c416b0a68b205aec7e752"
   },
   "summary": {
     "ledger_instances": 113,
@@ -138,7 +138,7 @@
       "instance": "power_command_filter",
       "symbol_uuid": "a6754e09-e377-550b-a15b-390b75ff1c3d",
       "reference": "C50004",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -156,7 +156,7 @@
       "instance": "run_loop_filter",
       "symbol_uuid": "63304c78-6e04-580f-a018-5016137cbe5d",
       "reference": "C50005",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -210,7 +210,7 @@
       "instance": "safety_controller_bypass",
       "symbol_uuid": "f6223479-8c7b-50ae-938c-f75e3653b066",
       "reference": "C50007",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -255,7 +255,7 @@
       "instance": "safety_fault_request_iso_bypass",
       "symbol_uuid": "0353f0d3-f86d-5351-bbb4-1e9c56b156c9",
       "reference": "C50009",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -273,7 +273,7 @@
       "instance": "safety_s3_reset_iso_bypass",
       "symbol_uuid": "afb09d21-9464-5cfd-9558-19a0e9fdbbec",
       "reference": "C50010",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -291,7 +291,7 @@
       "instance": "safety_watchdog_bypass",
       "symbol_uuid": "ffaab2ad-e698-54c3-b6e5-a7c039f75ab1",
       "reference": "C50011",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -354,7 +354,7 @@
       "instance": "safe_run_fault_iso_bypass",
       "symbol_uuid": "22ee9d81-c7bd-5e7a-a9c5-423fc9f33353",
       "reference": "C50012",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -363,7 +363,7 @@
       "instance": "safe_supervisor_bypass",
       "symbol_uuid": "1385a198-c256-5ef2-b464-789943785fbe",
       "reference": "C50013",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -381,7 +381,7 @@
       "instance": "safe_conditioner_bypass",
       "symbol_uuid": "4a69793b-c183-558f-8063-59d5392cce38",
       "reference": "C50014",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -417,7 +417,7 @@
       "instance": "safe_rearm_buffer_bypass",
       "symbol_uuid": "7d0d4b5b-2918-57b9-b23f-163587474e4b",
       "reference": "C50016",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -435,7 +435,7 @@
       "instance": "safe_latch_bypass",
       "symbol_uuid": "4900d0ce-abb5-54c1-afa6-b67bc6105a2e",
       "reference": "C50017",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -462,7 +462,7 @@
       "instance": "safe_reset_buffer_bypass",
       "symbol_uuid": "ccdd5c1e-e164-5653-80d2-61b67eab99ba",
       "reference": "C50018",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -480,7 +480,7 @@
       "instance": "safe_fault_reset_buffer_bypass",
       "symbol_uuid": "f95f96e4-cda5-5be2-9c7c-b2e879cdfbca",
       "reference": "C50019",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -516,7 +516,7 @@
       "instance": "safe_gate_a_bypass",
       "symbol_uuid": "418ff30f-079b-565f-ae98-d568dc397309",
       "reference": "C50020",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -534,7 +534,7 @@
       "instance": "safe_gate_b_bypass",
       "symbol_uuid": "4419da25-6ff1-55b1-813a-aa6619853b34",
       "reference": "C50021",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -552,7 +552,7 @@
       "instance": "safe_ptt_or_bypass",
       "symbol_uuid": "e4281de2-0e99-53fe-93a9-89b65fb9551e",
       "reference": "C50022",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -642,7 +642,7 @@
       "instance": "evidence_cmp_b_bypass",
       "symbol_uuid": "e6cc2f1f-754b-5269-bace-0343a212381f",
       "reference": "C50023",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -651,7 +651,7 @@
       "instance": "evidence_cmp_voice_bypass",
       "symbol_uuid": "01b75776-0dfe-5093-bf32-eb37fe932943",
       "reference": "C50024",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -660,7 +660,7 @@
       "instance": "evidence_cmp_voice_v_bypass",
       "symbol_uuid": "10201d49-c963-57b7-9030-db005ff1e4de",
       "reference": "C50025",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -678,7 +678,7 @@
       "instance": "evidence_mask_bypass",
       "symbol_uuid": "663367e4-8210-5bde-a031-304dd0284c11",
       "reference": "C50026",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -777,7 +777,7 @@
       "instance": "evidence_main_isolator_bypass",
       "symbol_uuid": "989237a1-f53a-5702-9b29-ef0cb72c1aba",
       "reference": "C50027",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true

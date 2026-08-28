@@ -4,10 +4,10 @@
   "status": "reviewed_mapping_only",
   "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "78aef8a986e51d1b046409466bae48277d99c33d536964d8c894d57298269bbd",
-    "hardware/product-design/generated/H1-physical-source-table.json": "e2c7d21d0379f30040bd6c6da934caa030019b76aa58cbe4312d73af3ec42a7b",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "9c2d425ea7f6ac2be19c202ae814544c60b390f4defaa1f8d83d95aa23e1f40e",
+    "hardware/product-design/generated/H1-physical-source-table.json": "b75a3ea3c4038be484cff14bc363dc408341f5b75ecc8d42cc43fb9238fe07eb",
     "hardware/product-design/mechanical-evidence-gates.json": "c6d3a2366cbb7657d09aea80019a59909d83457d3b7b2bba2cb328f967e12a1d",
-    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
+    "hardware/architecture/devices.json": "b334541d5b98526a2c6b3e1de2abd4e21ac138bc168e5aa6838a644587836b3c",
     "hardware/architecture/am-lw-pod.json": "6571e20c26f2ceaebf9c4bf410d155417a68116b3b5ef2e16d7c77ee06503e08"
   },
   "summary": {
@@ -65,7 +65,7 @@
           "identity": "display_connector",
           "kind": "selected_physical_instance",
           "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
-          "role": "40-contact fixed receptacle for the replaceable display adapter",
+          "role": "40-contact fixed receptacle for the antenna-edge replaceable display adapter",
           "source": {
             "document": "Hirose exact product page, 2D drawing and specification sheet",
             "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",
@@ -749,7 +749,7 @@
           "identity": "display_connector",
           "kind": "selected_physical_instance",
           "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
-          "role": "40-contact fixed receptacle for the replaceable display adapter",
+          "role": "40-contact fixed receptacle for the antenna-edge replaceable display adapter",
           "source": {
             "document": "Hirose exact product page, 2D drawing and specification sheet",
             "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",
@@ -1445,7 +1445,7 @@
           "identity": "display_connector",
           "kind": "selected_physical_instance",
           "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
-          "role": "40-contact fixed receptacle for the replaceable display adapter",
+          "role": "40-contact fixed receptacle for the antenna-edge replaceable display adapter",
           "source": {
             "document": "Hirose exact product page, 2D drawing and specification sheet",
             "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",

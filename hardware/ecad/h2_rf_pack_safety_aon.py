@@ -115,7 +115,7 @@ def footprint_for(instance: str, device_key: str, on_board: bool) -> str:
         return "Capacitor_SMD:C_0603_1608Metric"
     if device_key == "murata_grm31c5c1h224je02l":
         return "Capacitor_SMD:C_1206_3216Metric"
-    if device_key.startswith(("tdk_c1005", "murata_grm155")):
+    if device_key.startswith(("tdk_c1005", "yageo_cc0402", "murata_grm155")):
         return "Capacitor_SMD:C_0402_1005Metric"
     if device_key.startswith("yageo_rc0402"):
         return "Resistor_SMD:R_0402_1005Metric"
@@ -129,7 +129,7 @@ def reference_prefix(instance: str, device_key: str, on_board: bool) -> str:
         return "F"
     if device_key == "tdk_b57332v5103f360":
         return "RT"
-    if device_key.startswith(("tdk_c", "murata_grm")):
+    if device_key.startswith(("tdk_c", "yageo_cc", "murata_grm")):
         return "C"
     if device_key.startswith(("yageo_rc", "panasonic_erj", "vishay_wsl", "bourns_crm")):
         return "R"

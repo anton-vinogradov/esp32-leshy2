@@ -3,10 +3,10 @@
   "artifact": "H5-EVR04",
   "stage": "H5.0.3-R1",
   "status": "routes_complete_dual_sa818s_preorder_and_factory_gates_open",
-  "checked_on": "2026-08-26",
+  "checked_on": "2026-08-28",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-    "sha256": "307bf994a0e721f7492cc2d1d4d83e8e37a27d1e866873f9a0c791a35afbeeed",
+    "sha256": "9be8c6c1994476b5ea80b6e0a4065944b12c9fc54a8bea0402dd93c6a19ae924",
     "exact_lines": 210
   },
   "decision": {
@@ -206,7 +206,7 @@
   },
   "bom_tool_upload": {
     "path": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
-    "sha256": "ea97ad136e79e8a1426b8c5bfe222a63e4c2f8edc9029af5c50169adb30ea95e",
+    "sha256": "6c5eefd95f6b7f1f0dff0be201ab11097270b7f896ddb122d3bdf373d7ba8802",
     "columns": [
       "Comment",
       "Designator",
@@ -259,10 +259,10 @@
       "result": "176 matched, 33 unmatched, all 1019 historical target placements parsed"
     },
     "current_210_line_attempt": {
-      "sha256": "ea97ad136e79e8a1426b8c5bfe222a63e4c2f8edc9029af5c50169adb30ea95e",
+      "sha256": "6c5eefd95f6b7f1f0dff0be201ab11097270b7f896ddb122d3bdf373d7ba8802",
       "transmitted": false,
       "processed": false,
-      "result": "historical 209-line capture retained for 208 unchanged identities; exact current SA818S-U/V pages joined separately into the 210-line map"
+      "result": "historical 209-line capture retained for 207 unchanged identities; exact current SA818S-U/V and stocked 74LVC2G126DP pages joined separately into the 210-line map"
     },
     "blocker": "all 210 current lines have defined routes and all sample component prices are known; the actual two-designator U/V job plus J4-F/J4-P final-assembly acceptance/pricing remain open; accumulators are user-supplied and not a delivery gate; no sourcing request, quote, reservation or order has been created"
   },
@@ -306,6 +306,16 @@
       "pcba": "Economic and Standard; fixture; MSL3",
       "source": "https://jlcpcb.com/partdetail/1044199-ES8311/C962342",
       "finding": "exact selected codec is directly assembleable"
+    },
+    {
+      "device_id": "nexperia_74lvc2g126dp_125",
+      "mpn": "74LVC2G126DP,125",
+      "jlc": "C503392",
+      "tier": "J0",
+      "stock": 155,
+      "pcba": "Extended SMT; Economic and Standard",
+      "source": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G126DP125/C503392",
+      "finding": "exact selected TSSOP package variant is in public stock; same official family, pin map, logic, Ioff and timing as the former DC package"
     },
     {
       "device_id": "adi_max17320_g20_t",
@@ -380,27 +390,27 @@
   ],
   "summary": {
     "target_bom_lines": 210,
-    "critical_lines_spot_checked": 11,
-    "public_stock_exact_or_revision_explicit": 6,
+    "critical_lines_spot_checked": 12,
+    "public_stock_exact_or_revision_explicit": 7,
     "preorder_reservation": 3,
     "global_sourcing_or_consignment": 1,
     "factory_final_assembly": 1,
     "factory_packed_removable": 0,
     "user_supplied_not_delivered": 0,
     "historical_bom_tool_matched_lines": 176,
-    "historical_bom_tool_public_stock_lines": 135,
-    "historical_bom_tool_preorder_lines": 41,
+    "historical_bom_tool_public_stock_lines": 136,
+    "historical_bom_tool_preorder_lines": 40,
     "historical_bom_tool_unmatched_lines": 33,
     "current_exact_catalogue_routes_before_outlier_resolution": 178,
-    "current_public_stock_lines_before_outlier_resolution": 136,
-    "current_preorder_lines_before_outlier_resolution": 42,
+    "current_public_stock_lines_before_outlier_resolution": 138,
+    "current_preorder_lines_before_outlier_resolution": 40,
     "current_unmatched_lines_before_outlier_resolution": 32,
     "target_placements_parsed": 1052,
     "outliers_resolved_after_exact_search": 32,
     "availability_routes": {
-      "J0": 148,
+      "J0": 150,
       "J1": 0,
-      "J2": 46,
+      "J2": 44,
       "J3": 11,
       "J4-F": 3,
       "J4-P": 1,

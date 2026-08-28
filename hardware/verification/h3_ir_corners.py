@@ -83,7 +83,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "ir_power_switch": "ti_tps22919_dckr",
         "ir_demod": "vishay_tsop75238tt",
         "ir_carrier": "vishay_tsmp95000tt",
-        "ir_return_buffer": "nexperia_74lvc2g126dc_125",
+        "ir_return_buffer": "nexperia_74lvc2g126dp_125",
         "ir_emitter": "vishay_vsmy14940",
         "ir_emitter_limit": "yageo_rc1206fr_0747rl",
         "ir_tx_mosfet": "diodes_dmn2056u_7",

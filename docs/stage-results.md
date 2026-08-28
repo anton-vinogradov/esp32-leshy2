@@ -25,7 +25,7 @@ safety evidence and power—not primary RF payloads.
 <a id="h1"></a>
 ## H1 · Physical product design
 
-**Status:** ▶️ current at **`H1-R2.22`**.
+**Status:** ▶️ current at **`H1-R2.24`**.
 
 - [Current physical design](h1-r2-physical-layout.md)
 - [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.21-dual-fpv-7)
@@ -45,6 +45,13 @@ The enlarged 30 × 24 × 8 mm bay carries mutually exclusive post-PCBA K331 and
 AWM666V lands; exactly one receiver is installed and C5 DBG10 is relocated.
 Actual-module and solder qualification move to H5/H7. No engineering blocker
 remains; explicit acceptance of the complete mock-up is the final H1 action.
+The display is physically turned so its flex exits toward the antenna edge;
+firmware rotates display memory and touch coordinates by 180 degrees. The first
+safe pre-order removal replaces five `74LVC2G126DC,125` buffers with stocked
+same-family `74LVC2G126DP,125` (`C503392`), cutting the observed trial line from
+`$40.60` to `$12.1425` without changing the circuit function. Cheaper stocked
+no-nut SMA/RP-SMA pairs were rejected where their orientation, height or
+through-hole tails degraded the accepted geometry; the independent GCT pair is retained.
 
 <a id="h2"></a>
 ## H2 · Production schematic

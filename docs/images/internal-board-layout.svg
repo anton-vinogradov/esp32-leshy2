@@ -346,22 +346,22 @@
 <text x="613.0" y="371.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">93</text>
 <rect x="723.6" y="264.2" width="18.9" height="16.7" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf0_host_buffer"/>
 <text x="733.1" y="275.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">94</text>
-<rect x="711.8" y="264.2" width="8.5" height="7.4" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf0_return_buffer"/>
-<text x="716.0" y="270.9" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">95</text>
+<rect x="709.2" y="264.2" width="11.1" height="11.5" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf0_return_buffer"/>
+<text x="714.8" y="272.9" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">95</text>
 <rect x="585.6" y="359.4" width="18.9" height="16.7" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf1_host_buffer"/>
 <text x="595.1" y="370.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">96</text>
-<rect x="574.5" y="359.4" width="8.5" height="7.4" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf1_return_buffer"/>
-<text x="578.8" y="366.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">97</text>
-<rect x="552.9" y="359.4" width="18.9" height="16.7" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf2_host_buffer"/>
-<text x="562.3" y="370.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">98</text>
-<rect x="528.3" y="440.8" width="8.5" height="7.4" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf2_return_buffer"/>
-<text x="532.5" y="447.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">99</text>
+<rect x="586.2" y="379.6" width="11.1" height="11.5" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf1_return_buffer"/>
+<text x="591.7" y="388.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">97</text>
+<rect x="564.2" y="359.4" width="18.9" height="16.7" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf2_host_buffer"/>
+<text x="573.6" y="370.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">98</text>
+<rect x="525.5" y="440.8" width="11.1" height="11.5" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf2_return_buffer"/>
+<text x="531.0" y="449.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">99</text>
 <rect x="511.2" y="419.6" width="18.9" height="16.7" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="cc_host_buffer"/>
 <text x="520.7" y="430.9" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">100</text>
 <rect x="489.8" y="419.6" width="18.9" height="16.7" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="cc_return_buffer"/>
 <text x="499.2" y="430.9" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">101</text>
-<rect x="517.0" y="440.8" width="8.5" height="7.4" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="cc_band_buffer"/>
-<text x="521.2" y="447.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">102</text>
+<rect x="511.6" y="440.8" width="11.1" height="11.5" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="cc_band_buffer"/>
+<text x="517.2" y="449.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">102</text>
 <rect x="700.3" y="395.9" width="20.0" height="19.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="charger_inductor"/>
 <text x="710.3" y="408.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">103</text>
 <rect x="727.0" y="420.3" width="11.8" height="5.9" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="charger_vbus_cap0"/>
@@ -432,8 +432,8 @@
 <text x="688.3" y="484.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">136</text>
 <rect x="650.7" y="475.8" width="23.3" height="11.5" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="pack_diag_res1"/>
 <text x="662.4" y="484.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">137</text>
-<rect x="485.3" y="440.8" width="28.9" height="16.3" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="evidence_mask"/>
-<text x="499.8" y="452.0" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">138</text>
+<rect x="480.0" y="440.8" width="28.9" height="16.3" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="evidence_mask"/>
+<text x="494.4" y="452.0" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">138</text>
 <rect x="727.0" y="634.9" width="11.8" height="9.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="pd_pphv_cap0"/>
 <text x="732.9" y="642.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">139</text>
 <rect x="712.5" y="634.9" width="11.8" height="9.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="pd_pphv_cap1"/>
@@ -711,21 +711,21 @@
 <text x="796.0" y="1203.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">U214 hot-swap I2C isolation and stuck-bus recovery</text>
 <text x="770.0" y="1215.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">94  Nexperia 74LVC126APW,118</text>
 <text x="796.0" y="1224.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #0 host-command buffer</text>
-<text x="770.0" y="1236.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">95  Nexperia 74LVC2G126DC,125</text>
+<text x="770.0" y="1236.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">95  Nexperia 74LVC2G126DP,125</text>
 <text x="796.0" y="1245.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #0 return-path buffer</text>
 <text x="770.0" y="1257.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">96  Nexperia 74LVC126APW,118</text>
 <text x="796.0" y="1266.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #1 host-command buffer</text>
-<text x="770.0" y="1278.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">97  Nexperia 74LVC2G126DC,125</text>
+<text x="770.0" y="1278.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">97  Nexperia 74LVC2G126DP,125</text>
 <text x="796.0" y="1287.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #1 return-path buffer</text>
 <text x="770.0" y="1299.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">98  Nexperia 74LVC126APW,118</text>
 <text x="796.0" y="1308.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #2 host-command buffer</text>
-<text x="770.0" y="1320.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">99  Nexperia 74LVC2G126DC,125</text>
+<text x="770.0" y="1320.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">99  Nexperia 74LVC2G126DP,125</text>
 <text x="796.0" y="1329.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #2 return-path buffer</text>
 <text x="770.0" y="1341.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">100  Nexperia 74LVC126APW,118</text>
 <text x="796.0" y="1350.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">CC1101 host-command buffer</text>
 <text x="770.0" y="1362.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">101  Nexperia 74LVC126APW,118</text>
 <text x="796.0" y="1371.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">CC1101 return-path buffer</text>
-<text x="770.0" y="1383.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">102  Nexperia 74LVC2G126DC,125</text>
+<text x="770.0" y="1383.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">102  Nexperia 74LVC2G126DP,125</text>
 <text x="796.0" y="1392.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">CC1101 band-select buffer</text>
 <text x="770.0" y="1404.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">103  Sunlord MWSA0503S-2R2MT</text>
 <text x="796.0" y="1413.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">BQ25798 2.2-uH switching inductor</text>
@@ -820,12 +820,12 @@
 <text x="1166.0" y="1539.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">direct nRF24 #1 IPEX-zone-to-board-U.FL projection; module axis closes at H5</text>
 <text x="1140.0" y="1551.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">148  TE Connectivity 2118651-2</text>
 <text x="1166.0" y="1560.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">direct nRF24 #2 IPEX-zone-to-board-U.FL projection; module axis closes at H5</text>
-<g id="validated-clearances" data-legend-bottom="1581" data-top="1616" data-inner-body-count="143" data-max-inner-height-mm="8.95" data-min-single-body-clearance-mm="2.05" data-display-adapter-opposing-pairs="2" data-min-display-adapter-clearance-mm="5.10" data-opposing-pairs="37" data-intentional-mates="1" data-min-z-clearance-mm="3.31" data-rf-cable-routes="2" data-rf-pcb-topology-guides="10" data-nrf-cable-reserves="3" data-opposing-cable-pairs="2" data-cable-od-max-mm="1.13" data-nrf-reserve-opposing-pairs="6" data-encoder-through-features="7" data-functional-zones="1" data-voice-v-rf-endpoint-distance-mm="40.91" data-voice-u-rf-endpoint-distance-mm="39.95">
+<g id="validated-clearances" data-legend-bottom="1581" data-top="1616" data-inner-body-count="143" data-max-inner-height-mm="8.95" data-min-single-body-clearance-mm="2.05" data-display-adapter-opposing-pairs="2" data-min-display-adapter-clearance-mm="5.10" data-opposing-pairs="38" data-intentional-mates="1" data-min-z-clearance-mm="3.31" data-rf-cable-routes="2" data-rf-pcb-topology-guides="10" data-nrf-cable-reserves="3" data-opposing-cable-pairs="2" data-cable-od-max-mm="1.13" data-nrf-reserve-opposing-pairs="6" data-encoder-through-features="7" data-functional-zones="1" data-voice-v-rf-endpoint-distance-mm="40.91" data-voice-u-rf-endpoint-distance-mm="39.95">
 <text x="30.0" y="1616.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#172033">Validated clearances</text>
 <text x="30.0" y="1640.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• same-face device-to-device clearance: ≥0.7 mm</text>
 <text x="30.0" y="1661.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• all 143 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm</text>
 <text x="30.0" y="1682.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• complete 3.80-mm display adapter: 2 opposing crossings; minimum Z gap 5.10 mm to nrf1</text>
-<text x="30.0" y="1703.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• opposing inner faces: 37 non-mating XY pairs checked; minimum Z gap 3.31 mm</text>
+<text x="30.0" y="1703.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• opposing inner faces: 38 non-mating XY pairs checked; minimum Z gap 3.31 mm</text>
 <text x="30.0" y="1724.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• outward connector / through-hole tail clearance on the opposite face: ≥1.5 mm</text>
 <text x="30.0" y="1745.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• RF coax: 2 direct exact-endpoint projections + 3 nRF module-face reserves; all five 30-mm assemblies accounted</text>
 <text x="30.0" y="1766.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• limiting pair: 23 3.5-mm CTIA headset TRRS mid-mount connector / 132 protected-pack branch fuse #0</text>

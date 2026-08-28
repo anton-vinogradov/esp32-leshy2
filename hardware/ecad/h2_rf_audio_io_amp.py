@@ -100,7 +100,7 @@ def reference_prefix(instance: str, device_key: str) -> str:
         return "MIC"
     if instance == "speaker_amp":
         return "U"
-    if device_key.startswith(("tdk_c", "murata_grm")):
+    if device_key.startswith(("tdk_c", "yageo_cc", "murata_grm")):
         return "C"
     if device_key.startswith("yageo_rc"):
         return "R"

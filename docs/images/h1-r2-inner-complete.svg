@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2910" viewBox="0 0 1900 2910" data-marker="H1-R2.22" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2910" viewBox="0 0 1900 2910" data-marker="H1-R2.24" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="1900" height="2910" fill="#ffffff"/>
-<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.22 complete inner-body map</text>
+<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.24 complete inner-body map</text>
 <text x="30.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Each PCB is shown exactly as viewed after turning it over. Numbers are drawing references; inner faces contain no silkscreen.</text>
 <text x="201.9" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="65.0" y="130.0" width="273.8" height="547.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -157,10 +157,10 @@
 <text x="463.7" y="403.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">63</text>
 <rect x="443.65" y="398.64" width="11.68" height="5.84" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="charger_sys_cap3" data-mpn="Murata GRM31CR71E106MA12L"/>
 <text x="449.5" y="403.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">64</text>
-<rect x="665.21" y="402.11" width="28.47" height="16.06" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="evidence_mask" data-mpn="TCA9535PWR"/>
-<text x="679.4" y="412.4" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">65</text>
-<rect x="654.07" y="402.11" width="8.40" height="7.30" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="cc_band_buffer" data-mpn="Nexperia 74LVC2G126DC,125"/>
-<text x="658.3" y="408.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">66</text>
+<rect x="670.50" y="402.11" width="28.47" height="16.06" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="evidence_mask" data-mpn="TCA9535PWR"/>
+<text x="684.7" y="412.4" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">65</text>
+<rect x="656.81" y="402.11" width="10.95" height="11.32" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="cc_band_buffer" data-mpn="Nexperia 74LVC2G126DP,125"/>
+<text x="662.3" y="410.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">66</text>
 <rect x="631.44" y="402.11" width="8.76" height="7.67" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice_pd_gate" data-mpn="Texas Instruments SN74LVC2G08DCUR"/>
 <text x="635.8" y="408.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">67</text>
 <rect x="621.59" y="402.11" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice_band_inverter" data-mpn="74LVC2G14GW,125"/>
@@ -289,16 +289,16 @@
 <text x="204.1" y="341.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">129</text>
 <rect x="298.24" y="356.30" width="18.61" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_host_buffer_r2" data-mpn="74LVC126APW,118"/>
 <text x="307.5" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">130</text>
-<rect x="286.56" y="356.30" width="8.40" height="7.30" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_return_buffer_r2" data-mpn="74LVC2G126DC,125"/>
-<text x="290.8" y="362.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">131</text>
+<rect x="284.00" y="356.30" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_return_buffer_r2" data-mpn="74LVC2G126DP,125"/>
+<text x="289.5" y="364.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">131</text>
 <rect x="261.74" y="356.30" width="18.62" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_host_buffer_r2" data-mpn="74LVC126APW,118"/>
 <text x="271.0" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">132</text>
-<rect x="250.06" y="356.30" width="8.40" height="7.30" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_return_buffer_r2" data-mpn="74LVC2G126DC,125"/>
-<text x="254.3" y="362.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">133</text>
+<rect x="247.50" y="356.30" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_return_buffer_r2" data-mpn="74LVC2G126DP,125"/>
+<text x="253.0" y="364.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">133</text>
 <rect x="221.58" y="356.30" width="18.62" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_host_buffer_r2" data-mpn="74LVC126APW,118"/>
 <text x="230.9" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">134</text>
-<rect x="209.91" y="356.30" width="8.39" height="7.30" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_return_buffer_r2" data-mpn="74LVC2G126DC,125"/>
-<text x="214.1" y="362.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">135</text>
+<rect x="207.35" y="356.30" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_return_buffer_r2" data-mpn="74LVC2G126DP,125"/>
+<text x="212.8" y="364.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">135</text>
 <rect x="178.15" y="356.30" width="18.25" height="16.06" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="safe_gate_a_r2" data-mpn="SN74LVC08APWR"/>
 <text x="187.3" y="366.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">136</text>
 <rect x="167.20" y="356.30" width="7.30" height="4.56" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf_backup_gate_r2" data-mpn="SN74LVC1G08DCKR"/>
@@ -523,7 +523,7 @@
 <text x="518.0" y="1873.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">BQ25798 SYS bulk capacitor #3</text>
 <text x="490.0" y="1910.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">065  TCA9535PWR</text>
 <text x="518.0" y="1923.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">AON evidence-source mask expander</text>
-<text x="490.0" y="1960.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">066  Nexperia 74LVC2G126DC,125</text>
+<text x="490.0" y="1960.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">066  Nexperia 74LVC2G126DP,125</text>
 <text x="518.0" y="1973.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">CC1101 band-select buffer</text>
 <text x="490.0" y="2010.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">067  Texas Instruments SN74LVC2G08DCUR</text>
 <text x="518.0" y="2023.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">AON mutually-exclusive voice PD gate</text>
@@ -663,15 +663,15 @@
 <text x="1438.0" y="1023.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">sixteen-line direct-control input expander</text>
 <text x="1410.0" y="1060.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">130  74LVC126APW,118</text>
 <text x="1438.0" y="1073.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #0 full-rate host-command buffer</text>
-<text x="1410.0" y="1110.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">131  74LVC2G126DC,125</text>
+<text x="1410.0" y="1110.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">131  74LVC2G126DP,125</text>
 <text x="1438.0" y="1123.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #0 full-rate return buffer</text>
 <text x="1410.0" y="1160.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">132  74LVC126APW,118</text>
 <text x="1438.0" y="1173.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #1 full-rate host-command buffer</text>
-<text x="1410.0" y="1210.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">133  74LVC2G126DC,125</text>
+<text x="1410.0" y="1210.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">133  74LVC2G126DP,125</text>
 <text x="1438.0" y="1223.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #1 full-rate return buffer</text>
 <text x="1410.0" y="1260.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">134  74LVC126APW,118</text>
 <text x="1438.0" y="1273.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #2 full-rate host-command buffer</text>
-<text x="1410.0" y="1310.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">135  74LVC2G126DC,125</text>
+<text x="1410.0" y="1310.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">135  74LVC2G126DP,125</text>
 <text x="1438.0" y="1323.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #2 full-rate return buffer</text>
 <text x="1410.0" y="1360.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">136  SN74LVC08APWR</text>
 <text x="1438.0" y="1373.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF transmit safety gates</text>

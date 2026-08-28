@@ -742,6 +742,13 @@
         "remaining_to_opposite_pcb_plane_mm": 9.9
       },
       {
+        "instance": "cc_band_buffer",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC2G126DP,125",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
         "instance": "cc_host_buffer",
         "frame": "rf-inner",
         "mpn": "Nexperia 74LVC126APW,118",
@@ -784,6 +791,13 @@
         "remaining_to_opposite_pcb_plane_mm": 9.9
       },
       {
+        "instance": "nrf0_return_buffer",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC2G126DP,125",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
         "instance": "nrf1_host_buffer",
         "frame": "rf-inner",
         "mpn": "Nexperia 74LVC126APW,118",
@@ -791,9 +805,23 @@
         "remaining_to_opposite_pcb_plane_mm": 9.9
       },
       {
+        "instance": "nrf1_return_buffer",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC2G126DP,125",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
         "instance": "nrf2_host_buffer",
         "frame": "rf-inner",
         "mpn": "Nexperia 74LVC126APW,118",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "nrf2_return_buffer",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC2G126DP,125",
         "height_mm": 1.1,
         "remaining_to_opposite_pcb_plane_mm": 9.9
       },
@@ -941,34 +969,6 @@
         "instance": "cc",
         "frame": "rf-inner",
         "mpn": "CC1101RGPR",
-        "height_mm": 1.0,
-        "remaining_to_opposite_pcb_plane_mm": 10.0
-      },
-      {
-        "instance": "cc_band_buffer",
-        "frame": "rf-inner",
-        "mpn": "Nexperia 74LVC2G126DC,125",
-        "height_mm": 1.0,
-        "remaining_to_opposite_pcb_plane_mm": 10.0
-      },
-      {
-        "instance": "nrf0_return_buffer",
-        "frame": "rf-inner",
-        "mpn": "Nexperia 74LVC2G126DC,125",
-        "height_mm": 1.0,
-        "remaining_to_opposite_pcb_plane_mm": 10.0
-      },
-      {
-        "instance": "nrf1_return_buffer",
-        "frame": "rf-inner",
-        "mpn": "Nexperia 74LVC2G126DC,125",
-        "height_mm": 1.0,
-        "remaining_to_opposite_pcb_plane_mm": 10.0
-      },
-      {
-        "instance": "nrf2_return_buffer",
-        "frame": "rf-inner",
-        "mpn": "Nexperia 74LVC2G126DC,125",
         "height_mm": 1.0,
         "remaining_to_opposite_pcb_plane_mm": 10.0
       },
@@ -1148,7 +1148,7 @@
         "remaining_to_opposite_pcb_plane_mm": 10.4
       }
     ],
-    "opposing_non_mating_pair_count": 37,
+    "opposing_non_mating_pair_count": 38,
     "minimum_opposing_pair": {
       "ui_instance": "headphone_jack",
       "rf_instance": "pack_fuse0",
@@ -1268,18 +1268,18 @@
         "remaining_z_clearance_mm": 6.5
       },
       {
+        "ui_instance": "c5",
+        "rf_instance": "nrf0_return_buffer",
+        "ui_height_mm": 3.3,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 6.6
+      },
+      {
         "ui_instance": "ir_demod",
         "rf_instance": "evidence_mask",
         "ui_height_mm": 3.2,
         "rf_height_mm": 1.2,
         "remaining_z_clearance_mm": 6.6
-      },
-      {
-        "ui_instance": "c5",
-        "rf_instance": "nrf0_return_buffer",
-        "ui_height_mm": 3.3,
-        "rf_height_mm": 1.0,
-        "remaining_z_clearance_mm": 6.7
       },
       {
         "ui_instance": "c5",
@@ -1367,10 +1367,24 @@
       },
       {
         "ui_instance": "ui_matrix_io",
+        "rf_instance": "nrf1_return_buffer",
+        "ui_height_mm": 1.2,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 8.7
+      },
+      {
+        "ui_instance": "ui_matrix_io",
         "rf_instance": "u214_i2c_iso",
         "ui_height_mm": 1.2,
         "rf_height_mm": 1.1,
         "remaining_z_clearance_mm": 8.7
+      },
+      {
+        "ui_instance": "codec_i2s_din_boot_gate",
+        "rf_instance": "nrf2_return_buffer",
+        "ui_height_mm": 1.1,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 8.8
       },
       {
         "ui_instance": "safe_reset_sink_a",
@@ -1380,18 +1394,11 @@
         "remaining_z_clearance_mm": 8.8
       },
       {
-        "ui_instance": "codec_i2s_din_boot_gate",
-        "rf_instance": "nrf2_return_buffer",
-        "ui_height_mm": 1.1,
-        "rf_height_mm": 1.0,
-        "remaining_z_clearance_mm": 8.9
-      },
-      {
         "ui_instance": "ui_zone_ntc",
-        "rf_instance": "evidence_mask",
+        "rf_instance": "cc_band_buffer",
         "ui_height_mm": 0.9,
-        "rf_height_mm": 1.2,
-        "remaining_z_clearance_mm": 8.9
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 9.0
       },
       {
         "ui_instance": "headset_control_io",
@@ -2224,15 +2231,15 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          14.05,
-          16.35
+          12.6,
+          15.6
         ],
         "y": [
           74.55,
-          76.55
+          77.65
         ],
         "z": [
-          14.8,
+          14.7,
           15.8
         ]
       },
@@ -2699,8 +2706,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          5.5,
-          13.3
+          4.05,
+          11.85
         ],
         "y": [
           74.55,
@@ -3117,15 +3124,15 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          66.7,
+          66.0,
           69.0
         ],
         "y": [
           26.8,
-          28.8
+          29.9
         ],
         "z": [
-          14.8,
+          14.7,
           15.8
         ]
       },
@@ -3193,15 +3200,15 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          29.6,
-          31.9
+          32.75,
+          35.75
         ],
         "y": [
-          52.55,
-          54.55
+          58.0,
+          61.1
         ],
         "z": [
-          14.8,
+          14.7,
           15.8
         ]
       },
@@ -3250,8 +3257,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          23.75,
-          28.85
+          26.8,
+          31.9
         ],
         "y": [
           52.55,
@@ -3269,15 +3276,15 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          17.1,
-          19.4
+          16.35,
+          19.35
         ],
         "y": [
           74.55,
-          76.55
+          77.65
         ],
         "z": [
-          14.8,
+          14.7,
           15.8
         ]
       },

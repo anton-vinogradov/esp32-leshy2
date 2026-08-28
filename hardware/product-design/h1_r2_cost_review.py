@@ -39,18 +39,19 @@ ROLE_OVERRIDES = {
     "ti_tmux1136_dgsr": "four complete audio/control selectors / четыре полных audio/control selector",
     "murata_grm32er71e226ke15l": "thirteen 22-uF power capacitors / тринадцать силовых конденсаторов 22 мкФ",
     "ti_tpd4e05u06_dqar": "thirteen four-line ESD arrays / тринадцать четырёхканальных ESD-сборок",
+    "yageo_cc0402krx7r9bb104": "147 stocked 100-nF bypass capacitors / 147 складских развязывающих конденсаторов 100 нФ",
 }
 
 LANES_RU = {
     "factory-preorder-penalty": (
         "Заменить безопасно эквивалентные pre-order пассивы и обычную логику на складские JLCPCB",
-        "Для 42 pre-order строк нормализованный снимок партии даёт $842,94 против $362,23 по серийной материальной базе: штраф малой партии $480,71 до полного расчёта.",
+        "После двух безопасных замен нормализованный снимок партии даёт $779,78 для 40 оставшихся pre-order строк против $338,05 по серийной материальной базе. Складские 74LVC2G126DP и YAGEO C131394 вместе убирают $45,0664 из наблюдаемой цены пробной партии и уменьшают публичную материальную базу ступени 100 штук на $1,3862 на устройство.",
         "Проверять каждую строку по её substitution-классу; принимать только точную либо не худшую параметрическую замену.",
     ),
     "main-rf-mechanics": (
-        "Заменить десять GCT SMA/RP-SMA на индивидуально удерживаемую фабричную пару без общей рамки",
-        "Десять текущих GCT дают $24,65 на устройство и пока не имеют доказанного маршрута JLCPCB. Складская пара HenryTech уже убирает гайки, герметизацию и идею общей рамки, но для неё пока нет контролируемого механического чертежа.",
-        "Квалифицировать standard/reverse пару с собственными силовыми лапками, чертежом под плату 1,6 мм и рейтингом не ниже 6 ГГц; общую антенную рамку не вводить.",
+        "Сохранить низкопрофильную торцевую пару GCT до появления действительно равноценной складской замены",
+        "HenryTech даёт дешёвую прямую пару, DreamLNK — дешёвую угловую пару без гаек, но обе меняют выбранный профиль 3,9 мм. DreamLNK сэкономил бы около $19,01 на устройство, одновременно подняв ось разъёма примерно на 6,3 мм и добавив сквозные хвосты внутрь бутерброда.",
+        "Оставить GCT RFPC-SMA31/32 с индивидуальным удержанием и без общей рамки. Возвращаться к замене только для складской standard/reverse edge-launch пары до 6 ГГц с не большим профилем и контролируемым чертежом под плату 1,6 мм.",
     ),
     "rf-evidence-detectors": (
         "Пересмотреть восемь RF-детекторов, не ослабляя доказательство реальной передачи",
@@ -275,6 +276,7 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
             "trial_capture_matched_lines": sum(
                 row.get("displayed_line_cost_usd") is not None for row in trial["routes"]
             ),
+            "live_spot_checks": len(live),
             "trial_capture_displayed_usd": round(capture_total, 4),
             "trial_spot_adjusted_displayed_usd": round(adjusted_total, 4),
             "trial_unmatched_lines": sum(
@@ -382,7 +384,7 @@ def render_doc(result: dict, ru: bool) -> str:
             f'на устройство или **{money(summary["planning_base_plus_post_pcba_usd_for_trial"])}** на пять устройств '
             'до стоимости плат, сборки, корпуса, антенн, доставки, налогов, брака и теста.',
             f'- Частичный JLCPCB-снимок партии из пяти устройств: **{money(summary["trial_capture_displayed_usd"])}** по '
-            f'`{summary["trial_capture_matched_lines"]}` найденным строкам; четыре live-проверки дают '
+            f'`{summary["trial_capture_matched_lines"]}` найденным строкам; `{summary["live_spot_checks"]}` live-проверок дают '
             f'**{money(summary["trial_spot_adjusted_displayed_usd"])}**, ещё `{summary["trial_unmatched_lines"]}` строки не входят.',
             f'- Внешний антенный комплект вынесен отдельно: уже известно **{money(summary["antenna_known_first_target_usd"])}**, '
             f'ещё `{summary["antenna_unpriced_lines"]}` позиции не оценены.',
@@ -397,7 +399,7 @@ def render_doc(result: dict, ru: bool) -> str:
             f'per device or **{money(summary["planning_base_plus_post_pcba_usd_for_trial"])}** for five devices '
             'before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.',
             f'- Partial five-device JLCPCB capture: **{money(summary["trial_capture_displayed_usd"])}** for '
-            f'`{summary["trial_capture_matched_lines"]}` matched lines; four live checks move it to '
+            f'`{summary["trial_capture_matched_lines"]}` matched lines; `{summary["live_spot_checks"]}` live checks move it to '
             f'**{money(summary["trial_spot_adjusted_displayed_usd"])}**, with `{summary["trial_unmatched_lines"]}` rows excluded.',
             f'- The external antenna kit is separate: **{money(summary["antenna_known_first_target_usd"])}** is known and '
             f'`{summary["antenna_unpriced_lines"]}` lines remain unpriced.',
@@ -418,7 +420,7 @@ def render_doc(result: dict, ru: bool) -> str:
     lines += ['', f'[{full_text}]({full_csv})', '', trial_h, '']
     if ru:
         lines += [
-            f'- `42` pre-order-строки стоят в снимке **{money(summary["preorder_capture_usd"])}** против '
+            f'- `{summary["preorder_rows"]}` pre-order-строк стоят в снимке **{money(summary["preorder_capture_usd"])}** против '
             f'**{money(summary["preorder_quantity_100_basis_for_five_usd"])}** на массовой материальной базе.',
             f'- Наблюдаемый штраф малой партии — **{money(summary["preorder_observed_small_lot_premium_usd"])}**. '
             'Это верхний приоритет: искать не «дешевле любой ценой», а эквивалентные stocked JLCPCB MPN внутри уже заданных substitution-классов.',
@@ -426,7 +428,7 @@ def render_doc(result: dict, ru: bool) -> str:
         ]
     else:
         lines += [
-            f'- The `42` pre-order rows cost **{money(summary["preorder_capture_usd"])}** in the capture versus '
+            f'- The `{summary["preorder_rows"]}` pre-order rows cost **{money(summary["preorder_capture_usd"])}** in the capture versus '
             f'**{money(summary["preorder_quantity_100_basis_for_five_usd"])}** on their volume material basis.',
             f'- The observed small-lot premium is **{money(summary["preorder_observed_small_lot_premium_usd"])}**. '
             'This is the first priority: seek stocked JLCPCB MPNs that remain inside the existing substitution envelopes.',

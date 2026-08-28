@@ -20,10 +20,10 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.22", self.model["marker"])
+        self.assertEqual("H1-R2.24", self.model["marker"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
-        self.assertEqual(36, len(self.audit["opposing_overlaps"]))
+        self.assertEqual(37, len(self.audit["opposing_overlaps"]))
         self.assertGreaterEqual(
             self.audit["minimum_opposing_clearance_mm"],
             self.audit["required_opposing_clearance_mm"],

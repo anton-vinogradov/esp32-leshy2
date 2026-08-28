@@ -92,7 +92,7 @@ def footprint_for(instance: str, device_key: str) -> str:
         "cc": "Package_DFN_QFN:Texas_RGP0020D_VQFN-20-1EP_4x4mm_P0.5mm_EP2.7x2.7mm",
         "cc_host_buffer": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
         "cc_return_buffer": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
-        "cc_band_buffer": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+        "cc_band_buffer": "Package_SO:TSSOP-8_3x3mm_P0.65mm",
         "cc_crystal": "Crystal:Crystal_SMD_Abracon_ABM8G-4Pin_3.2x2.5mm",
         "cc_balun": "Leshy2:B0310J50100AHF",
         "cc_switch_a": "Leshy2:Infineon-PG-TSNP-8-1",
@@ -126,7 +126,7 @@ def footprint_for(instance: str, device_key: str) -> str:
         return "Capacitor_SMD:C_1210_3225Metric"
     if device_key in {"tdk_c1608x7r1c105k080ac", "murata_grm188r60j106me47d"}:
         return "Capacitor_SMD:C_0603_1608Metric"
-    if device_key.startswith(("tdk_c1005", "murata_grm155", "murata_gjm155", "kemet_c0402")):
+    if device_key.startswith(("tdk_c1005", "yageo_cc0402", "murata_grm155", "murata_gjm155", "kemet_c0402")):
         return "Capacitor_SMD:C_0402_1005Metric"
     if device_key.startswith(("yageo_rc0402", "panasonic_erj_2r")):
         return "Resistor_SMD:R_0402_1005Metric"
@@ -144,7 +144,7 @@ def reference_prefix(instance: str, device_key: str) -> str:
         return "D"
     if instance == "voice_pg_qualifier":
         return "Q"
-    if device_key.startswith(("tdk_c", "murata_grm", "murata_gjm", "kemet_c")):
+    if device_key.startswith(("tdk_c", "yageo_cc", "murata_grm", "murata_gjm", "kemet_c")):
         return "C"
     if device_key.startswith(("yageo_rc", "panasonic_erj_2r")):
         return "R"

@@ -487,28 +487,28 @@
     },
     {
       "instance": "cc_band_buffer",
-      "device_key": "nexperia_74lvc2g126dc_125",
-      "mpn": "Nexperia 74LVC2G126DC,125",
+      "device_key": "nexperia_74lvc2g126dp_125",
+      "mpn": "Nexperia 74LVC2G126DP,125",
       "role": "CC1101 band-select buffer",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
       "direction": "not applicable",
       "envelope_mm": [
-        2.3,
-        2.0,
-        1.0
+        3.0,
+        3.1,
+        1.1
       ],
       "qualification": "verified_exact_nrf_switched_to_host_domain_isolator",
       "source": {
         "document": "74LVC2G126 dual bus buffer/line driver product data sheet",
         "version": "Rev. 16, 17 August 2023",
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-08-28"
       },
       "evidence_gates": [],
       "position_mm": [
-        58.65,
+        59.4,
         74.55
       ]
     },
@@ -1439,7 +1439,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        61.7,
+        63.15,
         74.55
       ]
     },
@@ -2124,24 +2124,24 @@
     },
     {
       "instance": "nrf0_return_buffer",
-      "device_key": "nexperia_74lvc2g126dc_125",
-      "mpn": "Nexperia 74LVC2G126DC,125",
+      "device_key": "nexperia_74lvc2g126dp_125",
+      "mpn": "Nexperia 74LVC2G126DP,125",
       "role": "nRF24 #0 return-path buffer",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
       "direction": "not applicable",
       "envelope_mm": [
-        2.3,
-        2.0,
-        1.0
+        3.0,
+        3.1,
+        1.1
       ],
       "qualification": "verified_exact_nrf_switched_to_host_domain_isolator",
       "source": {
         "document": "74LVC2G126 dual bus buffer/line driver product data sheet",
         "version": "Rev. 16, 17 August 2023",
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-08-28"
       },
       "evidence_gates": [],
       "position_mm": [
@@ -2342,29 +2342,29 @@
     },
     {
       "instance": "nrf1_return_buffer",
-      "device_key": "nexperia_74lvc2g126dc_125",
-      "mpn": "Nexperia 74LVC2G126DC,125",
+      "device_key": "nexperia_74lvc2g126dp_125",
+      "mpn": "Nexperia 74LVC2G126DP,125",
       "role": "nRF24 #1 return-path buffer",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
       "direction": "not applicable",
       "envelope_mm": [
-        2.3,
-        2.0,
-        1.0
+        3.0,
+        3.1,
+        1.1
       ],
       "qualification": "verified_exact_nrf_switched_to_host_domain_isolator",
       "source": {
         "document": "74LVC2G126 dual bus buffer/line driver product data sheet",
         "version": "Rev. 16, 17 August 2023",
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-08-28"
       },
       "evidence_gates": [],
       "position_mm": [
-        43.1,
-        52.55
+        39.25,
+        58.0
       ]
     },
     {
@@ -2554,34 +2554,34 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        46.15,
+        43.1,
         52.55
       ]
     },
     {
       "instance": "nrf2_return_buffer",
-      "device_key": "nexperia_74lvc2g126dc_125",
-      "mpn": "Nexperia 74LVC2G126DC,125",
+      "device_key": "nexperia_74lvc2g126dp_125",
+      "mpn": "Nexperia 74LVC2G126DP,125",
       "role": "nRF24 #2 return-path buffer",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
       "direction": "not applicable",
       "envelope_mm": [
-        2.3,
-        2.0,
-        1.0
+        3.0,
+        3.1,
+        1.1
       ],
       "qualification": "verified_exact_nrf_switched_to_host_domain_isolator",
       "source": {
         "document": "74LVC2G126 dual bus buffer/line driver product data sheet",
         "version": "Rev. 16, 17 August 2023",
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-08-28"
       },
       "evidence_gates": [],
       "position_mm": [
-        55.6,
+        55.65,
         74.55
       ]
     },

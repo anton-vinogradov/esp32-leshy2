@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.22",
+  "marker": "H1-R2.24",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "new_fixed_body_count": 48,
@@ -39,7 +39,7 @@
     "safe_gate_a"
   ],
   "same_face_collisions": [],
-  "opposing_overlap_count": 36,
+  "opposing_overlap_count": 37,
   "minimum_opposing_clearance_mm": 2.59,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
@@ -151,7 +151,7 @@
     {
       "new": "nrf0_return_buffer_r2",
       "base": "voice",
-      "clearance_mm": 6.8
+      "clearance_mm": 6.7
     },
     {
       "new": "nrf1_host_buffer_r2",
@@ -161,7 +161,7 @@
     {
       "new": "nrf1_return_buffer_r2",
       "base": "voice",
-      "clearance_mm": 6.8
+      "clearance_mm": 6.7
     },
     {
       "new": "nrf2_host_buffer_r2",
@@ -182,6 +182,11 @@
       "new": "nrf2_host_buffer_r2",
       "base": "aon_output_cap",
       "clearance_mm": 8.3
+    },
+    {
+      "new": "nrf2_return_buffer_r2",
+      "base": "ext_inductor",
+      "clearance_mm": 6.9
     },
     {
       "new": "safe_gate_a_r2",
@@ -1258,20 +1263,20 @@
       "id": "nrf0_return_buffer_r2",
       "kind": "fixed_body",
       "frame": "ui-inner",
-      "mpn": "74LVC2G126DC,125",
+      "mpn": "74LVC2G126DP,125",
       "role": "front-local nRF24 #0 full-rate return buffer",
       "world_bbox_mm": {
         "x": [
           12.0,
-          14.3
+          15.0
         ],
         "y": [
           62.0,
-          64.0
+          65.1
         ],
         "z": [
           4.8,
-          5.8
+          5.9
         ]
       }
     },
@@ -1300,20 +1305,20 @@
       "id": "nrf1_return_buffer_r2",
       "kind": "fixed_body",
       "frame": "ui-inner",
-      "mpn": "74LVC2G126DC,125",
+      "mpn": "74LVC2G126DP,125",
       "role": "front-local nRF24 #1 full-rate return buffer",
       "world_bbox_mm": {
         "x": [
           22.0,
-          24.3
+          25.0
         ],
         "y": [
           62.0,
-          64.0
+          65.1
         ],
         "z": [
           4.8,
-          5.8
+          5.9
         ]
       }
     },
@@ -1342,20 +1347,20 @@
       "id": "nrf2_return_buffer_r2",
       "kind": "fixed_body",
       "frame": "ui-inner",
-      "mpn": "74LVC2G126DC,125",
+      "mpn": "74LVC2G126DP,125",
       "role": "front-local nRF24 #2 full-rate return buffer",
       "world_bbox_mm": {
         "x": [
           33.0,
-          35.3
+          36.0
         ],
         "y": [
           62.0,
-          64.0
+          65.1
         ],
         "z": [
           4.8,
-          5.8
+          5.9
         ]
       }
     },

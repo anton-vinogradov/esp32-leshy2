@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.22",
+  "marker": "H1-R2.24",
   "checked_on": "2026-08-28",
   "purpose": "Close the pre-KiCad physical architecture around direct i8080-8, a fully counted 80-contact M1, mechanically unloaded board retention, direct 5+5 antenna locality, local nRF concurrency and an adaptable post-PCBA analog-FPV receiver bay.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -716,10 +716,10 @@
       "drawing_ref": "34",
       "kind": "fixed_body",
       "frame": "ui-inner",
-      "mpn": "74LVC2G126DC,125",
+      "mpn": "74LVC2G126DP,125",
       "role": "front-local nRF24 #0 full-rate return buffer",
       "world_xy_mm": [12.0, 62.0],
-      "size_mm": [2.3, 2.0, 1.0],
+      "size_mm": [3.0, 3.1, 1.1],
       "replaces": ["nrf0_return_buffer"]
     },
     {
@@ -738,10 +738,10 @@
       "drawing_ref": "36",
       "kind": "fixed_body",
       "frame": "ui-inner",
-      "mpn": "74LVC2G126DC,125",
+      "mpn": "74LVC2G126DP,125",
       "role": "front-local nRF24 #1 full-rate return buffer",
       "world_xy_mm": [22.0, 62.0],
-      "size_mm": [2.3, 2.0, 1.0],
+      "size_mm": [3.0, 3.1, 1.1],
       "replaces": ["nrf1_return_buffer"]
     },
     {
@@ -760,10 +760,10 @@
       "drawing_ref": "38",
       "kind": "fixed_body",
       "frame": "ui-inner",
-      "mpn": "74LVC2G126DC,125",
+      "mpn": "74LVC2G126DP,125",
       "role": "front-local nRF24 #2 full-rate return buffer",
       "world_xy_mm": [33.0, 62.0],
-      "size_mm": [2.3, 2.0, 1.0],
+      "size_mm": [3.0, 3.1, 1.1],
       "replaces": ["nrf2_return_buffer"]
     },
     {

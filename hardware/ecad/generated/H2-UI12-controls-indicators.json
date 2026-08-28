@@ -5,10 +5,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_12_CONTROLS_INDICATORS",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "1701793a750c80dd68949389038e6567ddeb977ee846c7830b1c717fdc2029cd",
-    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c",
-    "hardware/ecad/generated/H2-instance-ledger.json": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "d7882c1d8c265f80f7273b559f8843bc8c8a605cc7a5a107f810898db893cc2a"
+    "hardware/architecture/candidates/G2F-3I.json": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
+    "hardware/architecture/devices.json": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
+    "hardware/ecad/generated/H2-instance-ledger.json": "5e79e26435c0964540fa1e815a59170cf6715ebcf0672285a378ed6a5de00ccb",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "576c2c0eb060b2b449cea29515f3958a58040fabec923e7e6652e210b5019626"
   },
   "summary": {
     "ledger_instances": 71,
@@ -38,7 +38,7 @@
       "instance": "slow_io_vcci_bypass",
       "symbol_uuid": "0e32742b-619c-5894-b1f3-ed8c6c98d39a",
       "reference": "C12001",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -47,7 +47,7 @@
       "instance": "slow_io_vccp_bypass",
       "symbol_uuid": "07679ab8-48ac-59d1-9f4b-6b9c53d7155e",
       "reference": "C12002",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -83,7 +83,7 @@
       "instance": "slow_io_fault_sense_iso_bypass",
       "symbol_uuid": "55b33f27-1f98-548a-8cde-5844171f581e",
       "reference": "C12004",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -110,7 +110,7 @@
       "instance": "slow_io_s3_evidence_iso_bypass",
       "symbol_uuid": "cb3b6b7f-f497-56ff-a985-59a5d734d4f0",
       "reference": "C12005",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -290,7 +290,7 @@
       "instance": "ui_matrix_io_bypass",
       "symbol_uuid": "f287da37-b412-5b66-9910-7090bf8de213",
       "reference": "C12006",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true
@@ -479,7 +479,7 @@
       "instance": "ui_zone_temp_filter",
       "symbol_uuid": "441320ac-e774-56df-ae9e-10d351313b07",
       "reference": "C12007",
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "board_fitted": true

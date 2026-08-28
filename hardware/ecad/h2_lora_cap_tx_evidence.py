@@ -59,7 +59,7 @@ def footprint_for(instance: str, device_key: str) -> str:
         # TI DCT/SM8: 2.95 x 2.8-mm body, 0.65-mm pitch. This exact stock
         # KiCad footprint is deliberately not the smaller DCU/VSSOP package.
         return "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm"
-    if device_key.startswith("tdk_c1005"):
+    if device_key.startswith(("tdk_c1005", "yageo_cc0402")):
         return "Capacitor_SMD:C_0402_1005Metric"
     if device_key.startswith("yageo_rc0402"):
         return "Resistor_SMD:R_0402_1005Metric"
@@ -67,7 +67,7 @@ def footprint_for(instance: str, device_key: str) -> str:
 
 
 def reference_prefix(device_key: str) -> str:
-    if device_key.startswith("tdk_c"):
+    if device_key.startswith(("tdk_c", "yageo_cc")):
         return "C"
     if device_key.startswith("yageo_rc"):
         return "R"

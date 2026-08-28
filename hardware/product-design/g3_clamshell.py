@@ -531,12 +531,12 @@ RF_INNER = (
     Placement("nrf0_host_buffer", 0.0, 26.8, "nRF24 #0 host-command buffer"),
     Placement("nrf0_return_buffer", 6.0, 26.8, "nRF24 #0 return-path buffer"),
     Placement("nrf1_host_buffer", 37.3, 52.55, "nRF24 #1 host-command buffer"),
-    Placement("nrf1_return_buffer", 43.1, 52.55, "nRF24 #1 return-path buffer"),
-    Placement("nrf2_host_buffer", 46.15, 52.55, "nRF24 #2 host-command buffer"),
-    Placement("nrf2_return_buffer", 55.6, 74.55, "nRF24 #2 return-path buffer"),
+    Placement("nrf1_return_buffer", 39.25, 58.0, "nRF24 #1 return-path buffer"),
+    Placement("nrf2_host_buffer", 43.1, 52.55, "nRF24 #2 host-command buffer"),
+    Placement("nrf2_return_buffer", 55.65, 74.55, "nRF24 #2 return-path buffer"),
     Placement("cc_host_buffer", 57.4, 68.8, "CC1101 host-command buffer"),
     Placement("cc_return_buffer", 63.2, 68.8, "CC1101 return-path buffer"),
-    Placement("cc_band_buffer", 58.65, 74.55, "CC1101 band-select buffer"),
+    Placement("cc_band_buffer", 59.4, 74.55, "CC1101 band-select buffer"),
 
     # High-profile and high-current support parts are explicit physical bodies,
     # not hidden inside a generic power-zone rectangle.
@@ -577,7 +577,7 @@ RF_INNER = (
     Placement("pack_power_fet", 21.7, 80.0, "back-to-back pack admission FET"),
     Placement("pack_diag_res0", 11.5, 84.0, "pack diagnostic pulse resistor #0"),
     Placement("pack_diag_res1", 18.5, 84.0, "pack diagnostic pulse resistor #1"),
-    Placement("evidence_mask", 61.7, 74.55, "AON evidence-source mask expander"),
+    Placement("evidence_mask", 63.15, 74.55, "AON evidence-source mask expander"),
 
     Placement("pd_pphv_cap0", 1.0, 127.0, "USB-PD high-voltage bulk capacitor #0"),
     Placement("pd_pphv_cap1", 4.9, 127.0, "USB-PD high-voltage bulk capacitor #1"),
@@ -1920,7 +1920,7 @@ def validate_assembly_coordinate_model(
     if (
         model.get("schema_version") != 1
         or model.get("model_id") != "L2-ASM-COORD-001-A"
-        or model.get("stage") != "H1-R2.22"
+        or model.get("stage") != "H1-R2.24"
         or model.get("status") != "in_progress"
     ):
         errors.append("coordinate-model: schema, identity, stage or review status drifted")

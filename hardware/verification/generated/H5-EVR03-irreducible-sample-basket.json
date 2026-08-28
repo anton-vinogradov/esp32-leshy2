@@ -7,11 +7,11 @@
   "inputs": {
     "residual_map": {
       "path": "hardware/verification/generated/H5-EVR01-residual-map.json",
-      "sha256": "936756bd7bfd7ccdc91fd6a541a86e475ae377fc4a7b78f37801d17730f0a8db"
+      "sha256": "3b66faa578d298f5d66370d3643cbfb72685b37785226ab6e8e9edd0d739ea25"
     },
     "source_research": {
       "path": "hardware/verification/generated/H5-EVR02-source-research.json",
-      "sha256": "7723a7bcf7a23e944e2a13b0ff6fbca71770565155e6842c33e33462ab841a4b"
+      "sha256": "903552b235085415f93cdafd964f3da4bf193aa347d2d45eb08e92a201e34b40"
     }
   },
   "summary": {

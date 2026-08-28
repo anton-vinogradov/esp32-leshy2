@@ -4,33 +4,33 @@
   "status": "reviewed_all_physical_contacts",
   "method": "normalized ledger identity and exact MPN/physical-pin-count comparison against every populated leaf/root symbol manifest",
   "source_hashes": {
-    "hardware/ecad/generated/H2-instance-ledger.json": "b45de59b0b63b685806bacc15a57208ca308fa4dfd7573f67bf3270543cca2f1",
-    "hardware/ecad/generated/H2-ADP00-display-adapter.json": "f3a7fb69f8b328e6e8a79f0a824ea4e8a019c7e59678a2e7a38f75837688af97",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "d0fc0f3128535a69375117e740d03e33379669f6bb566d586c5f7d917d273000",
-    "hardware/ecad/generated/H2-CAP10-radio-control.json": "250a0a8fc40460db2d3ed2c10480e3f5c72afcba8c37b826bd614447e6b05f99",
-    "hardware/ecad/generated/H2-CAP20-power-bus.json": "7e42b3f93bdf377ce5eb78c44a0cf53ba5818489ee62d0a53a2605601742572d",
-    "hardware/ecad/generated/H2-CAP30-tx-evidence.json": "5e98cbc894c0bf4781f90873dd58b452467e378b78cce86f2e48b602634399bf",
-    "hardware/ecad/generated/H2-RF01-usb-pd-charge.json": "4f82592ecd28a82af915c10b73aca04e1e06950b98728320bf7ff220c0768c61",
-    "hardware/ecad/generated/H2-RF02-pack-safety-aon.json": "d9a8465d4d68116cf8a4dfb6a9003c506dfefa0e5f5ef4f7627758c357929515",
-    "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json": "800cb3e550371093b0ac94f4b4637d9abc13571b8515732affcacb3bf936c6ff",
-    "hardware/ecad/generated/H2-RF30-rp2354-core-service.json": "c35b20cb91626b8acee099aca7bd5644e60aacf455bbcb23dd744207b54bb6d6",
-    "hardware/ecad/generated/H2-RF31-nrf24-x3.json": "fe26973fe627df6828eb2102fcd1ab9b7b267abf1215095461ac832d630407d5",
-    "hardware/ecad/generated/H2-RF32-subghz-voice.json": "9c4bbd9ec62587c68c09663ab6ccdfef4fd43daec3db91c906406a5dfe963ea1",
-    "hardware/ecad/generated/H2-RF34-u214-m5-ext.json": "8b5bc989ce1ad1093af594e41a57df1594bf60213e7ac8986aa72746cec5aefb",
-    "hardware/ecad/generated/H2-RF35-rear-controls.json": "80f9b90741d8562175106ba312ad34b80575d784789a4937600962c41fd06bf0",
-    "hardware/ecad/generated/H2-RF36-audio-io-amp.json": "7e5bdcbc50000a8990f6a7e5f988fbb3a7c8b37612c8b4bd8a054ad72015f428",
-    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "6b7c33998b7dd66947c207f8416390912cfbc8f8745961c8d1094da5247d81bd",
-    "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json": "02e11094c2421cb7cb72b38636f2e5e278b454ab2f228a4ed9a78ca73f524b8e",
-    "hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json": "52fafa73fd04e5736178ec6e449d612a656451d3b236261381dd1231ff560960",
-    "hardware/ecad/generated/H2-UI10-S3-core.json": "a2f9941519696a899e4d3b80b6f4285873a36724b57f68544ed5ead6fe64c6ab",
-    "hardware/ecad/generated/H2-UI11-display-touch-storage.json": "956cf4a265c59c6f6c5c01994564dde0c64b268014f62d1cf23b6723cf1fa360",
-    "hardware/ecad/generated/H2-UI12-controls-indicators.json": "374bcd3f540104c991be47064ac66e5d114bc3671d6bc20df1c63d4a9c47ef21",
-    "hardware/ecad/generated/H2-UI13-audio-codec-headset.json": "3c4b60a3abf027e4d86c60aa67775899f1af3ab9dd6a163fccaac1f30c1cc8ae",
-    "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json": "740120cda32677a9a13124c264eed3d3b607be0ebcc8aee1fabcfe1e2dc9a39c",
-    "hardware/ecad/generated/H2-UI21-fm-am-receiver.json": "e7734ad1219af804e1caebfdef5485033ac3deda6589ecf312d83fa25d92813c",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "0e4b50d6074a4c5d1cc42558b8c7b02bd68846292cb47995bd1a28390c681705",
-    "hardware/ecad/generated/H2-UI50-tx-safety-evidence.json": "77f4cdd5c6366f5a3baaa5649e77e51d00560a446e7989445f839bd95e6cffaa",
-    "hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json": "1a6985edd0cc8a687e15027da9d8b6aa7c59c0c6ba1bd809a3cd0d16afff1a8d"
+    "hardware/ecad/generated/H2-instance-ledger.json": "5e79e26435c0964540fa1e815a59170cf6715ebcf0672285a378ed6a5de00ccb",
+    "hardware/ecad/generated/H2-ADP00-display-adapter.json": "eb65091a5b5831da9b6913aa79bb106d04378aa50f490bda8c1c2746774c40db",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "2c04e5a9ff5d0235f3a8bd7fe97ef2122cfc87ae7d2be287773331d276bdeb2d",
+    "hardware/ecad/generated/H2-CAP10-radio-control.json": "72eeb548df2cef9fd00e2465ef40db2ada4001780820c107f4f7f50e4968c006",
+    "hardware/ecad/generated/H2-CAP20-power-bus.json": "13bb3b037a7e67a299aa0061796afbef55e5ef6866a89b87525dd519bdfbf774",
+    "hardware/ecad/generated/H2-CAP30-tx-evidence.json": "59c6aa70d5567132d6b96c1675f5b736b8487a360011af683dac2649e6b5a2cd",
+    "hardware/ecad/generated/H2-RF01-usb-pd-charge.json": "c911df562edc30d4dbc54004fd5c139932e1235c7c623e8822d4174d269abe01",
+    "hardware/ecad/generated/H2-RF02-pack-safety-aon.json": "7bad7e739b8fa059b696d02fbcb9ea8cadbb6fd118eacba7149c5d284afdcc99",
+    "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json": "0a6cb6eee581b824ce1c5563b4f69ee60e415f28277408d3abcc01a96de5a7f2",
+    "hardware/ecad/generated/H2-RF30-rp2354-core-service.json": "0ae94978ced5ad74a61a55f371da25c27efca2ffe7218f9023698d10bc623f93",
+    "hardware/ecad/generated/H2-RF31-nrf24-x3.json": "d2ef49deadc484fc41b5a6df5e464ca0f6ff55e09b6f002867fa1de9d3997379",
+    "hardware/ecad/generated/H2-RF32-subghz-voice.json": "ce246681e4213de329399fee92b8bf55107e60cc027c6206ba3c54a8e122e0d0",
+    "hardware/ecad/generated/H2-RF34-u214-m5-ext.json": "91993ca476b6148a7689c1edd7aadf4ecf19fd5a1aed2f1e858d776eb4a9da34",
+    "hardware/ecad/generated/H2-RF35-rear-controls.json": "ef5d755c790f60810d1a523b5aabbda4ace5a246afa6b8b202139dc8c16807f7",
+    "hardware/ecad/generated/H2-RF36-audio-io-amp.json": "db7b6de4958ac56958d0cf8bfd87a6b6a054b40ca9c911cbcc36130af4fb4299",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "645dd095de91cff8e4bd0fe091630595f99ecb0d5756a10d9a33687a9bb7aabe",
+    "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json": "c8b2560aafbd73a8006b4c21386ff25a5c661be17d9e0098345f5a76d8789269",
+    "hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json": "dbc41ac2583e001d3de383a16288f8134141d5d93132b69647492c9549305f06",
+    "hardware/ecad/generated/H2-UI10-S3-core.json": "30c489663e7dc70437104b12b76b0a94f425dde58120fe271ccb17cd47f1f5c6",
+    "hardware/ecad/generated/H2-UI11-display-touch-storage.json": "a2f307f273ec1e1dda0b5c913e86b59fd2f347ce6ed8ba451bfc2a4c4a6e73a8",
+    "hardware/ecad/generated/H2-UI12-controls-indicators.json": "abaa8ff7bd288ddfd52a2d23ff1709a3fc4fc646d5a63168ce3e2edebbfccfa5",
+    "hardware/ecad/generated/H2-UI13-audio-codec-headset.json": "144f0f377c9fa296ffbd03479c0118d16a1e9cff90c0c743dfbcd752c63797ea",
+    "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json": "50defc4984da5b0afffb5c6e570f9b9eb96360ccf51167ab45c8ea4607ca7d18",
+    "hardware/ecad/generated/H2-UI21-fm-am-receiver.json": "b018fc154362ffdc8c006188cd51efe00ba035b7b6b2cb5080cb2dc14cef0213",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "11ee3693ceb1aed8c4c38d53210bbf4cc8d55456bf413dfda00a2515c31dd3fb",
+    "hardware/ecad/generated/H2-UI50-tx-safety-evidence.json": "2cd21f1c13ceb0c88bccdc20b96f7f0a364fe0deef5fc079ebb3355024df22d9",
+    "hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json": "ea8432e13f41d327574e1e41f203abad747ee311adb02655b7ce678f70ae4e06"
   },
   "summary": {
     "ledger_rows": 1081,
@@ -350,7 +350,7 @@
       "instance": "LESHY2-LORA-CAP-01:evidence_comparator_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -371,7 +371,7 @@
       "instance": "LESHY2-LORA-CAP-01:evidence_driver_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -385,7 +385,7 @@
       "instance": "LESHY2-LORA-CAP-01:evidence_monostable_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -406,7 +406,7 @@
       "instance": "LESHY2-LORA-CAP-01:evidence_timing_capacitor",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -427,7 +427,7 @@
       "instance": "LESHY2-LORA-CAP-01:identity_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -490,7 +490,7 @@
       "instance": "LESHY2-LORA-CAP-01:rf_detector_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -546,7 +546,7 @@
       "instance": "LESHY2-RF:aon_efuse_input_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -679,28 +679,28 @@
       "instance": "LESHY2-RF:cc_avdd11_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:cc_avdd14_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:cc_avdd15_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:cc_avdd9_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -714,7 +714,7 @@
       "instance": "LESHY2-RF:cc_backup_gate_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -728,14 +728,14 @@
       "instance": "LESHY2-RF:cc_band_buffer",
       "ledger_rows": 1,
       "physical_contacts": 8,
-      "mpn": "Nexperia 74LVC2G126DC,125",
+      "mpn": "Nexperia 74LVC2G126DP,125",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:cc_band_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -798,14 +798,14 @@
       "instance": "LESHY2-RF:cc_dcoupl_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:cc_detector_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -826,7 +826,7 @@
       "instance": "LESHY2-RF:cc_dvdd_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -910,7 +910,7 @@
       "instance": "LESHY2-RF:cc_host_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1029,7 +1029,7 @@
       "instance": "LESHY2-RF:cc_return_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1218,7 +1218,7 @@
       "instance": "LESHY2-RF:charger_pmid_hf_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1281,7 +1281,7 @@
       "instance": "LESHY2-RF:charger_sys_hf_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1323,7 +1323,7 @@
       "instance": "LESHY2-RF:charger_vbus_hf_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1393,7 +1393,7 @@
       "instance": "LESHY2-RF:evidence_cmp_b_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1407,7 +1407,7 @@
       "instance": "LESHY2-RF:evidence_cmp_voice_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1421,7 +1421,7 @@
       "instance": "LESHY2-RF:evidence_cmp_voice_v_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1435,7 +1435,7 @@
       "instance": "LESHY2-RF:evidence_main_isolator_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1449,7 +1449,7 @@
       "instance": "LESHY2-RF:evidence_mask_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1568,7 +1568,7 @@
       "instance": "LESHY2-RF:ext_branch_gate_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1603,7 +1603,7 @@
       "instance": "LESHY2-RF:ext_buck_hf_input_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1659,7 +1659,7 @@
       "instance": "LESHY2-RF:ext_evidence_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1757,7 +1757,7 @@
       "instance": "LESHY2-RF:ext_request_or_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1897,7 +1897,7 @@
       "instance": "LESHY2-RF:main_hf_input_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -1974,7 +1974,7 @@
       "instance": "LESHY2-RF:nrf0_detector_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2037,7 +2037,7 @@
       "instance": "LESHY2-RF:nrf0_host_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2121,7 +2121,7 @@
       "instance": "LESHY2-RF:nrf0_module_hf_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2163,14 +2163,14 @@
       "instance": "LESHY2-RF:nrf0_return_buffer",
       "ledger_rows": 1,
       "physical_contacts": 8,
-      "mpn": "Nexperia 74LVC2G126DC,125",
+      "mpn": "Nexperia 74LVC2G126DP,125",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:nrf0_return_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2233,7 +2233,7 @@
       "instance": "LESHY2-RF:nrf1_detector_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2296,7 +2296,7 @@
       "instance": "LESHY2-RF:nrf1_host_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2380,7 +2380,7 @@
       "instance": "LESHY2-RF:nrf1_module_hf_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2422,14 +2422,14 @@
       "instance": "LESHY2-RF:nrf1_return_buffer",
       "ledger_rows": 1,
       "physical_contacts": 8,
-      "mpn": "Nexperia 74LVC2G126DC,125",
+      "mpn": "Nexperia 74LVC2G126DP,125",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:nrf1_return_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2492,7 +2492,7 @@
       "instance": "LESHY2-RF:nrf2_detector_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2555,7 +2555,7 @@
       "instance": "LESHY2-RF:nrf2_host_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2639,7 +2639,7 @@
       "instance": "LESHY2-RF:nrf2_module_hf_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2681,14 +2681,14 @@
       "instance": "LESHY2-RF:nrf2_return_buffer",
       "ledger_rows": 1,
       "physical_contacts": 8,
-      "mpn": "Nexperia 74LVC2G126DC,125",
+      "mpn": "Nexperia 74LVC2G126DP,125",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:nrf2_return_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2723,7 +2723,7 @@
       "instance": "LESHY2-RF:nrf_backup_gate_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2793,7 +2793,7 @@
       "instance": "LESHY2-RF:pack_admission_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2828,7 +2828,7 @@
       "instance": "LESHY2-RF:pack_batts_filter_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2856,7 +2856,7 @@
       "instance": "LESHY2-RF:pack_cell1_filter_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2870,7 +2870,7 @@
       "instance": "LESHY2-RF:pack_chg_gate_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2933,7 +2933,7 @@
       "instance": "LESHY2-RF:pack_diag_timer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -2961,7 +2961,7 @@
       "instance": "LESHY2-RF:pack_dis_gate_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3031,7 +3031,7 @@
       "instance": "LESHY2-RF:pack_in_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3234,7 +3234,7 @@
       "instance": "LESHY2-RF:pd_eeprom_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3325,7 +3325,7 @@
       "instance": "LESHY2-RF:power_command_filter",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3360,7 +3360,7 @@
       "instance": "LESHY2-RF:power_zone_temp_filter",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3409,7 +3409,7 @@
       "instance": "LESHY2-RF:ptt_filter_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3451,7 +3451,7 @@
       "instance": "LESHY2-RF:rf_zone_temp_filter",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3472,7 +3472,7 @@
       "instance": "LESHY2-RF:rp_adc_avdd_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3591,21 +3591,21 @@
       "instance": "LESHY2-RF:rp_dvdd10_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:rp_dvdd32_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:rp_dvdd51_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3619,63 +3619,63 @@
       "instance": "LESHY2-RF:rp_iovdd15_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:rp_iovdd24_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:rp_iovdd29_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:rp_iovdd41_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:rp_iovdd50_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:rp_iovdd5_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:rp_iovdd60_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:rp_iovdd76_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:rp_qspi_iovdd_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3745,7 +3745,7 @@
       "instance": "LESHY2-RF:rp_service_usb_switch_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3759,7 +3759,7 @@
       "instance": "LESHY2-RF:rp_usb_otp_vdd_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3801,7 +3801,7 @@
       "instance": "LESHY2-RF:run_loop_filter",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3822,7 +3822,7 @@
       "instance": "LESHY2-RF:safe_conditioner_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3836,7 +3836,7 @@
       "instance": "LESHY2-RF:safe_fault_reset_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3850,7 +3850,7 @@
       "instance": "LESHY2-RF:safe_gate_a_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3864,7 +3864,7 @@
       "instance": "LESHY2-RF:safe_gate_b_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3878,7 +3878,7 @@
       "instance": "LESHY2-RF:safe_latch_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3906,7 +3906,7 @@
       "instance": "LESHY2-RF:safe_ptt_or_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3920,7 +3920,7 @@
       "instance": "LESHY2-RF:safe_rearm_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3948,7 +3948,7 @@
       "instance": "LESHY2-RF:safe_reset_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3976,7 +3976,7 @@
       "instance": "LESHY2-RF:safe_run_fault_iso_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -3990,7 +3990,7 @@
       "instance": "LESHY2-RF:safe_supervisor_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4018,7 +4018,7 @@
       "instance": "LESHY2-RF:safety_controller_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4046,7 +4046,7 @@
       "instance": "LESHY2-RF:safety_fault_request_iso_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4067,7 +4067,7 @@
       "instance": "LESHY2-RF:safety_s3_reset_iso_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4081,7 +4081,7 @@
       "instance": "LESHY2-RF:safety_watchdog_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4242,7 +4242,7 @@
       "instance": "LESHY2-RF:u214_host_buffer_a_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4256,7 +4256,7 @@
       "instance": "LESHY2-RF:u214_host_buffer_b_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4284,7 +4284,7 @@
       "instance": "LESHY2-RF:u214_i2c_iso_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4305,7 +4305,7 @@
       "instance": "LESHY2-RF:u214_return_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4382,7 +4382,7 @@
       "instance": "LESHY2-RF:u214_supervisor_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4515,14 +4515,14 @@
       "instance": "LESHY2-RF:unit_signal_iso_vcca_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:unit_signal_iso_vccb_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4536,7 +4536,7 @@
       "instance": "LESHY2-RF:unit_supervisor_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4585,7 +4585,7 @@
       "instance": "LESHY2-RF:voice_audio_mux_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4606,7 +4606,7 @@
       "instance": "LESHY2-RF:voice_band_inverter_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4620,7 +4620,7 @@
       "instance": "LESHY2-RF:voice_band_io_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4697,7 +4697,7 @@
       "instance": "LESHY2-RF:voice_control_mux_a_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4711,14 +4711,14 @@
       "instance": "LESHY2-RF:voice_control_mux_b_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-RF:voice_detector_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4900,7 +4900,7 @@
       "instance": "LESHY2-RF:voice_hf_input_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4914,7 +4914,7 @@
       "instance": "LESHY2-RF:voice_hl_driver_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -4991,7 +4991,7 @@
       "instance": "LESHY2-RF:voice_pd_gate_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5040,7 +5040,7 @@
       "instance": "LESHY2-RF:voice_supervisor_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5096,7 +5096,7 @@
       "instance": "LESHY2-RF:voice_v_detector_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5215,7 +5215,7 @@
       "instance": "LESHY2-UI:audio_capture_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5292,7 +5292,7 @@
       "instance": "LESHY2-UI:audio_capture_selector_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5313,7 +5313,7 @@
       "instance": "LESHY2-UI:audio_rx_mux_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5334,7 +5334,7 @@
       "instance": "LESHY2-UI:audio_safe_gate_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5362,7 +5362,7 @@
       "instance": "LESHY2-UI:audio_speaker_selector_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5390,7 +5390,7 @@
       "instance": "LESHY2-UI:audio_tx_selector_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5432,7 +5432,7 @@
       "instance": "LESHY2-UI:backlight_efuse_input_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5446,7 +5446,7 @@
       "instance": "LESHY2-UI:backlight_efuse_output_hf",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5572,7 +5572,7 @@
       "instance": "LESHY2-UI:c5_detector_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5747,7 +5747,7 @@
       "instance": "LESHY2-UI:c5_service_usb_switch_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5838,7 +5838,7 @@
       "instance": "LESHY2-UI:codec_avdd_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5866,7 +5866,7 @@
       "instance": "LESHY2-UI:codec_dvdd_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5880,7 +5880,7 @@
       "instance": "LESHY2-UI:codec_i2c_iso_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5908,7 +5908,7 @@
       "instance": "LESHY2-UI:codec_i2s_bclk_iso_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5922,7 +5922,7 @@
       "instance": "LESHY2-UI:codec_i2s_din_boot_gate_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5936,7 +5936,7 @@
       "instance": "LESHY2-UI:codec_i2s_din_iso_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5950,7 +5950,7 @@
       "instance": "LESHY2-UI:codec_i2s_dout_iso_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5964,7 +5964,7 @@
       "instance": "LESHY2-UI:codec_i2s_ws_iso_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -5999,7 +5999,7 @@
       "instance": "LESHY2-UI:codec_pvdd_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -6020,7 +6020,7 @@
       "instance": "LESHY2-UI:codec_supervisor_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -6104,7 +6104,7 @@
       "instance": "LESHY2-UI:display_logic_hf_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -6146,7 +6146,7 @@
       "instance": "LESHY2-UI:evidence_cmp_a_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -6265,7 +6265,7 @@
       "instance": "LESHY2-UI:headset_control_io_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -6349,7 +6349,7 @@
       "instance": "LESHY2-UI:headset_mic_selector_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -6468,7 +6468,7 @@
       "instance": "LESHY2-UI:ir_evidence_amp_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -6531,7 +6531,7 @@
       "instance": "LESHY2-UI:ir_evidence_vref_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -6559,7 +6559,7 @@
       "instance": "LESHY2-UI:ir_power_output_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -6580,14 +6580,14 @@
       "instance": "LESHY2-UI:ir_return_buffer",
       "ledger_rows": 1,
       "physical_contacts": 8,
-      "mpn": "Nexperia 74LVC2G126DC,125",
+      "mpn": "Nexperia 74LVC2G126DP,125",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-UI:ir_return_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -6601,7 +6601,7 @@
       "instance": "LESHY2-UI:ir_safe_gate_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -6839,7 +6839,7 @@
       "instance": "LESHY2-UI:receiver_i2c_iso_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -6867,7 +6867,7 @@
       "instance": "LESHY2-UI:receiver_irq_iso_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -6930,14 +6930,14 @@
       "instance": "LESHY2-UI:receiver_supervisor_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-UI:receiver_vdd_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -7028,7 +7028,7 @@
       "instance": "LESHY2-UI:s3_detector_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -7161,7 +7161,7 @@
       "instance": "LESHY2-UI:s3_supply_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -7189,7 +7189,7 @@
       "instance": "LESHY2-UI:safe_c5_fault_reset_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -7203,7 +7203,7 @@
       "instance": "LESHY2-UI:safe_c5_reset_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -7280,7 +7280,7 @@
       "instance": "LESHY2-UI:sd_detect_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -7322,7 +7322,7 @@
       "instance": "LESHY2-UI:sd_host_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -7364,7 +7364,7 @@
       "instance": "LESHY2-UI:sd_miso_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -7392,7 +7392,7 @@
       "instance": "LESHY2-UI:sd_power_hf_cap",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -7476,7 +7476,7 @@
       "instance": "LESHY2-UI:slow_io_fault_sense_iso_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -7504,7 +7504,7 @@
       "instance": "LESHY2-UI:slow_io_s3_evidence_iso_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -7518,14 +7518,14 @@
       "instance": "LESHY2-UI:slow_io_vcci_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
       "instance": "LESHY2-UI:slow_io_vccp_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -7560,7 +7560,7 @@
       "instance": "LESHY2-UI:touch_irq_buffer_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -7742,7 +7742,7 @@
       "instance": "LESHY2-UI:ui_matrix_io_bypass",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {
@@ -7826,7 +7826,7 @@
       "instance": "LESHY2-UI:ui_zone_temp_filter",
       "ledger_rows": 1,
       "physical_contacts": 2,
-      "mpn": "TDK C1005X7R1H104K050BB",
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "disposition": "one ledger row to one populated symbol"
     },
     {

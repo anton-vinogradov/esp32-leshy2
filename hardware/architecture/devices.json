@@ -8026,32 +8026,32 @@
         "END_2": {"physical": "2", "role": "power"}
       }
     },
-    "tdk_c1005x7r1h104k050bb": {
-      "mpn": "TDK C1005X7R1H104K050BB",
+    "yageo_cc0402krx7r9bb104": {
+      "mpn": "Yageo CC0402KRX7R9BB104",
       "kind": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
+      "qualification": "verified_exact_jlcpcb_stocked_standard_pcba",
+      "lifecycle": "active_orderable",
       "dimensions_mm": [1.0, 0.5, 0.5],
       "source": {
-        "document": "TDK C1005X7R1H104K050BB product data and characteristic models",
-        "version": "production status checked 2026-08-18",
-        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB",
-        "checked": "2026-08-18"
+        "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+        "version": "generated 2026-06-24",
+        "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "TDK product-page distributor inventory for exact order code",
-        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB",
-        "checked": "2026-08-18"
+        "document": "JLCPCB C131394 exact-MPN card; Extended SMT, Economic and Standard PCBA, MOQ 1, 9,027,089 in stock and 7,796,754 available",
+        "url": "https://jlcpcb.com/partdetail/Yageo-CC0402KRX7R9BB104/C131394",
+        "checked": "2026-08-28"
       },
       "cost": {
         "currency": "USD",
         "target_quantity": 100,
-        "unit_price_usd": 0.0258,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "unit_price_usd": 0.0107,
+        "price_break": "JLCPCB one-piece tier; next displayed tier starts at 500 pieces",
         "source": {
-          "document": "DigiKey exact-MPN published price table",
-          "url": "https://www.digikey.com/en/products/detail/tdk/C1005X7R1H104K050BB/2443410",
-          "checked": "2026-08-19"
+          "document": "JLCPCB C131394 live exact-MPN price table",
+          "url": "https://jlcpcb.com/partdetail/Yageo-CC0402KRX7R9BB104/C131394",
+          "checked": "2026-08-28"
         }
       },
       "programmable": false,
@@ -8581,27 +8581,27 @@
         "4OE": {"physical": "13", "role": "signal"}, "VCC": {"physical": "14", "role": "power"}
       }
     },
-    "nexperia_74lvc2g126dc_125": {
-      "mpn": "Nexperia 74LVC2G126DC,125",
-      "kind": "vssop8_dual_noninverting_three_state_buffer_with_ioff",
+    "nexperia_74lvc2g126dp_125": {
+      "mpn": "Nexperia 74LVC2G126DP,125",
+      "kind": "tssop8_dual_noninverting_three_state_buffer_with_ioff",
       "qualification": "verified_exact_nrf_switched_to_host_domain_isolator",
-      "lifecycle": "production_active_orderable",
-      "dimensions_mm": [2.3, 2.0, 1.0],
+      "lifecycle": "production_active_factory_stocked",
+      "dimensions_mm": [3.0, 3.1, 1.1],
       "source": {
         "document": "74LVC2G126 dual bus buffer/line driver product data sheet",
         "version": "Rev. 16, 17 August 2023",
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "74LVC2G126DC,125 current manufacturer orderable part",
-        "url": "https://www.nexperia.com/products/analog-logic-ics/logic/buffers-inverters-transceivers/buffers/serie/74lvc2g126",
-        "checked": "2026-08-18"
+        "document": "JLCPCB exact Nexperia 74LVC2G126DP,125 stock and assembly card C503392",
+        "url": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G126DP125/C503392",
+        "checked": "2026-08-28"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.2086,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
-        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC2G126DC-125/1231578", "checked": "2026-08-19"}
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.3753,
+        "price_break": "JLCPCB quantity-100 tier; live stock 155, MOQ 1",
+        "source": {"document": "JLCPCB exact-MPN published price table C503392", "url": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G126DP125/C503392", "checked": "2026-08-28"}
       },
       "electrical_contract": {
         "supply_v": [1.65, 5.5],

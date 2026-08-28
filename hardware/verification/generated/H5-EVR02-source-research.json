@@ -5,8 +5,8 @@
   "checked_on": "2026-08-26",
   "purpose": "exhaust primary documentary evidence and fully documented serial alternatives before proposing any received sample",
   "inputs": {
-    "hardware/verification/generated/H5-EVR01-residual-map.json": "936756bd7bfd7ccdc91fd6a541a86e475ae377fc4a7b78f37801d17730f0a8db",
-    "hardware/architecture/devices.json": "50a39214e4b4048dc20efcf49496177aed53970fe5d36ae7d4fa553c393ff08c"
+    "hardware/verification/generated/H5-EVR01-residual-map.json": "3b66faa578d298f5d66370d3643cbfb72685b37785226ab6e8e9edd0d739ea25",
+    "hardware/architecture/devices.json": "b334541d5b98526a2c6b3e1de2abd4e21ac138bc168e5aa6838a644587836b3c"
   },
   "summary": {
     "h5_residuals_researched": 9,

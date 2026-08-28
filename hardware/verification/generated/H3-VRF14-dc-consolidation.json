@@ -3,10 +3,10 @@
   "stage": "H3.1.4",
   "status": "reviewed_h3_1_steady_dc_phase_complete",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF11-power-state-register.json": "5a5749a2b5ca6ca451648d2b0c6b40beab8530c9b640b20b4863ec5a15cbe0b5",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "088af32769184eecf657f14682d7770e2425852e69321d2d193c5f91c20ff165",
-    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "8a6dc11fde865d17946827e44d39b7920d0d64c33e2ee60af7b6ba5ba0a23e53",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "6227c0bacf70367ac036b6db55e9e1192c1f034427b8982e1647da9b5283dcdc"
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "ca56af657daed652ab95e6bf5bc1e2b5e4ee62793dc9dd171f92ba0d5f71d112",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "69224b5cfe9365eff56f742e24e583d2e0070f142437ad9af44a48ac04aeb27b",
+    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "f2f2ad2af7538dff4ce1982623d9cf91c2239e6794bf31bf3298aa8ebbfd6d43",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe"
   },
   "checks": {
     "all_states_enumerated": true,

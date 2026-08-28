@@ -100,7 +100,7 @@
 | `murata_lqw15an56nj00d` | `Murata LQW15AN56NJ00D` | `verified_exact_si4732_fmi_first_target` | `active_orderable` | [Murata LQW15AN_00 RF-inductor family and exact-product data current manufacturer data checked 2026-08-18](https://www.murata.com/en-global/products/inductor/chip/overview/lineup/rf2) | same primary source |
 | `nexperia_74lvc126apw_118` | `Nexperia 74LVC126APW,118` | `verified_exact_nrf_host_to_switched_domain_isolator` | `production_active_orderable` | [74LVC126A quad buffer/line driver product data sheet Rev. 14, 12 June 2025](https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf) | same primary source |
 | `nexperia_74lvc1g32gv_125` | `74LVC1G32GV,125` | `verified_candidate` | `production` | [74LVC1G32 Single 2-input OR gate datasheet 2024-09-03](https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf) | same primary source |
-| `nexperia_74lvc2g126dc_125` | `Nexperia 74LVC2G126DC,125` | `verified_exact_nrf_switched_to_host_domain_isolator` | `production_active_orderable` | [74LVC2G126 dual bus buffer/line driver product data sheet Rev. 16, 17 August 2023](https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf) | same primary source |
+| `nexperia_74lvc2g126dp_125` | `Nexperia 74LVC2G126DP,125` | `verified_exact_nrf_switched_to_host_domain_isolator` | `production_active_factory_stocked` | [74LVC2G126 dual bus buffer/line driver product data sheet Rev. 16, 17 August 2023](https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf) | same primary source |
 | `nexperia_74lvc2g14gw_125` | `74LVC2G14GW,125` | `verified_candidate` | `production` | [74LVC2G14 Dual inverting Schmitt trigger datasheet 2023-08-18](https://assets.nexperia.com/documents/data-sheet/74LVC2G14.pdf) | same primary source |
 | `nexperia_pesd24vy1bsf` | `Nexperia PESD24VY1BSF` | `verified_exact_sa518_external_rf_esd` | `production_orderable` | [PESD24VY1BSF very-low-harmonic-distortion bidirectional ESD protection diode short data sheet current manufacturer document checked 2026-08-18](https://assets.nexperia.com/documents/short-data-sheet/PESD24VY1BSF_SDS.pdf) | same primary source |
 | `nicerf_sa818s_u_v18` | `G-NiceRF SA818S-U` | `manufacturer_and_jlcpcb_exact_candidate` | `current_orderable_product` | [SA818S 1W Embedded walkie talkie module Product Specification Rev 1.8 / 2026-06](https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf) | same primary source |
@@ -135,7 +135,6 @@
 | `tca9535pwr` | `TCA9535PWR` | `verified_candidate` | `active` | [TCA9535 Remote 16-Bit I2C/SMBus I/O Expander datasheet SCPS201E](https://www.ti.com/lit/ds/symlink/tca9535.pdf) | same primary source |
 | `tdk_b57332v5103f360` | `TDK B57332V5103F360` | `verified_candidate` | `active` | [B57 V5 automotive SMD NTC datasheet and exact product page PPD ML PD 2025-10-30](https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=B57332V5103F360) | same primary source |
 | `tdk_c1005x5r0j475k050bc` | `TDK C1005X5R0J475K050BC` | `verified_exact_rp2350_reference_regulator_capacitor` | `active_orderable` | [TDK C1005X5R0J475K050BC product data and characteristic model; Raspberry Pi Hardware design with RP2350 chapter 2 production status and exact characteristics checked 2026-08-23](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X5R0J475K050BC) | same primary source |
-| `tdk_c1005x7r1h104k050bb` | `TDK C1005X7R1H104K050BB` | `verified_candidate` | `active` | [TDK C1005X7R1H104K050BB product data and characteristic models production status checked 2026-08-18](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB) | same primary source |
 | `tdk_c1608x7r1c105k080ac` | `TDK C1608X7R1C105K080AC` | `verified_candidate` | `active_production` | [TDK C1608X7R1C105K080AC product and characterization data production status and DC-bias/temperature curves checked 2026-08-18](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1608X7R1C105K080AC) | same primary source |
 | `tdk_c1608x7s2a104k080ab` | `TDK C1608X7S2A104K080AB` | `verified_candidate` | `active` | [TDK commercial mid-voltage MLCC datasheet current catalog checked 2026-08-18](https://product.tdk.com/info/en/catalog/datasheets/mlcc_commercial_midvoltage_en.pdf) | same primary source |
 | `tdk_cga5l1x7r1e475k160ac` | `TDK CGA5L1X7R1E475K160AC` | `verified_candidate` | `active` | [TDK CGA5L1X7R1E475K160AC product data and characteristic models production status checked 2026-08-18](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=CGA5L1X7R1E475K160AC) | same primary source |
@@ -193,6 +192,7 @@
 | `vishay_vsmy14940` | `Vishay VSMY14940` | `verified_exact_consumer_ir_transmit_emitter` | `active_stocked_orderable` | [VSMY14940 high-speed infrared emitter datasheet Rev. 1.6, 22-Sep-2017](https://www.vishay.com/docs/84209/vsmy14940.pdf) | same primary source |
 | `vishay_wsl25125l000fea` | `Vishay WSL25125L000FEA` | `verified_candidate` | `active` | [WSL power metal strip resistor datasheet current product data checked 2026-08-18](https://www.vishay.com/docs/30108/wsl.pdf) | same primary source |
 | `xtar_18650_4000mah_protected` | `XTAR 18650 4000mAh` | `selected_qualification_target` | `current_catalog` | [XTAR 18650 4000mAh official two-page battery datasheet official download page last updated 2026-07-06; exact PDF content rechecked 2026-08-18](https://www.xtar.cc/download/18650-4000mah-data-sheet) | same primary source |
+| `yageo_cc0402krx7r9bb104` | `Yageo CC0402KRX7R9BB104` | `verified_exact_jlcpcb_stocked_standard_pcba` | `active_orderable` | [YAGEO CC0402KRX7R9BB104 exact product specification generated 2026-06-24](https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104) | same primary source |
 | `yageo_rc0402fr_07100kl` | `Yageo RC0402FR-07100KL` | `verified_candidate` | `active` | [Yageo RC0402FR-07100KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07100KL) | same primary source |
 | `yageo_rc0402fr_07100rl` | `Yageo RC0402FR-07100RL` | `verified_candidate` | `active` | [Yageo RC0402FR-07100RL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07100RL) | same primary source |
 | `yageo_rc0402fr_0710kl` | `Yageo RC0402FR-0710KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0710KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL) | same primary source |
@@ -3804,6 +3804,34 @@ Reserved: `PA1_NRST`. Free: none.
 - `rp_clock_load_xin` lifecycle: `active_orderable`.
 - `rp_clock_load_xout` uses `Murata GJM1555C1H150JB01D` as `verified_exact_cc_crystal_load_passive`, not an accepted production choice.
 - `rp_clock_load_xout` lifecycle: `active_orderable`.
+- `rp_dvdd10_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_dvdd10_bypass` lifecycle: `active_orderable`.
+- `rp_dvdd32_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_dvdd32_bypass` lifecycle: `active_orderable`.
+- `rp_dvdd51_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_dvdd51_bypass` lifecycle: `active_orderable`.
+- `rp_iovdd5_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_iovdd5_bypass` lifecycle: `active_orderable`.
+- `rp_iovdd15_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_iovdd15_bypass` lifecycle: `active_orderable`.
+- `rp_iovdd24_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_iovdd24_bypass` lifecycle: `active_orderable`.
+- `rp_iovdd29_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_iovdd29_bypass` lifecycle: `active_orderable`.
+- `rp_iovdd41_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_iovdd41_bypass` lifecycle: `active_orderable`.
+- `rp_iovdd50_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_iovdd50_bypass` lifecycle: `active_orderable`.
+- `rp_iovdd60_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_iovdd60_bypass` lifecycle: `active_orderable`.
+- `rp_iovdd76_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_iovdd76_bypass` lifecycle: `active_orderable`.
+- `rp_adc_avdd_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_adc_avdd_bypass` lifecycle: `active_orderable`.
+- `rp_usb_otp_vdd_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_usb_otp_vdd_bypass` lifecycle: `active_orderable`.
+- `rp_qspi_iovdd_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_qspi_iovdd_bypass` lifecycle: `active_orderable`.
 - `m1_ui_plug` uses `Hirose FX8C-80P-SV1(92)` as `verified_exact_m1_11mm_plug`, not an accepted production choice.
 - `m1_rf_receptacle` uses `Hirose FX8C-80S-SV5(92)` as `verified_exact_m1_11mm_receptacle`, not an accepted production choice.
 - `s3_external_rp_sma` uses `GCT RFPC-SMA32-FN-175-A` as `verified_exact_external_reverse_polarity_sma_body`, not an accepted production choice.
@@ -3819,20 +3847,40 @@ Reserved: `PA1_NRST`. Free: none.
 - `u214_connector` uses `Samtec HLE-107-02-G-DV-PE-LC` as `verified_bounded_paper_fit_received_u214_mating_hil_open`, not an accepted production choice.
 - `u214_connector` lifecycle: `active Extended Life Product; 138 exact parts shown as ships-tomorrow stock`.
 - `u214_i2c_iso` uses `TCA4307DGKR` as `verified_exact_u214_i2c_hot_swap_boundary`, not an accepted production choice.
+- `u214_i2c_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `u214_i2c_iso_bypass` lifecycle: `active_orderable`.
 - `u214_host_buffer_a` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
 - `u214_host_buffer_a` lifecycle: `production_active_orderable`.
 - `u214_host_buffer_b` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
 - `u214_host_buffer_b` lifecycle: `production_active_orderable`.
 - `u214_return_buffer` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
 - `u214_return_buffer` lifecycle: `production_active_orderable`.
+- `u214_host_buffer_a_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `u214_host_buffer_a_bypass` lifecycle: `active_orderable`.
+- `u214_host_buffer_b_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `u214_host_buffer_b_bypass` lifecycle: `active_orderable`.
+- `u214_return_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `u214_return_buffer_bypass` lifecycle: `active_orderable`.
 - `ext_request_or` lifecycle: `production`.
+- `ext_request_or_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `ext_request_or_bypass` lifecycle: `active_orderable`.
 - `ext_branch_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
+- `ext_branch_gate_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `ext_branch_gate_bypass` lifecycle: `active_orderable`.
+- `u214_supervisor_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `u214_supervisor_bypass` lifecycle: `active_orderable`.
 - `u214_supervisor_sense_top` lifecycle: `active_orderable`.
 - `unit_rilm` uses `Yageo RC0402FR-071K82L` as `verified_h3_dc_margin_correction`, not an accepted production choice.
 - `unit_rilm` lifecycle: `active_orderable`.
+- `unit_supervisor_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `unit_supervisor_bypass` lifecycle: `active_orderable`.
 - `unit_supervisor_sense_top` lifecycle: `active_orderable`.
 - `unit_signal_iso` uses `Texas Instruments TXS0102DCUR` as `verified_exact_native_m5_unit_signal_isolator`, not an accepted production choice.
 - `unit_signal_iso` lifecycle: `active_production_orderable`.
+- `unit_signal_iso_vcca_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `unit_signal_iso_vcca_bypass` lifecycle: `active_orderable`.
+- `unit_signal_iso_vccb_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `unit_signal_iso_vccb_bypass` lifecycle: `active_orderable`.
 - `unit_connector` uses `1125R-SMT-4P` as `verified_exact_paper_fit_received_cable_hil_open`, not an accepted production choice.
 - `unit_connector` lifecycle: `active in Seeed Open Parts Library as PCBA SKU 320110032`.
 - `s3_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
@@ -3845,6 +3893,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `s3_rf_coupler_termination` lifecycle: `active_orderable`.
 - `s3_detector_input_cap` uses `Murata GRM1555C1H390JA01D` as `verified_exact_ltc5532_rf_input_coupling_capacitor`, not an accepted production choice.
 - `s3_detector_input_cap` lifecycle: `active_orderable`.
+- `s3_detector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `s3_detector_bypass` lifecycle: `active_orderable`.
 - `c5_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
 - `c5_rf_jumper` lifecycle: `active_orderable`.
 - `c5_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
@@ -3855,6 +3905,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `c5_rf_coupler_termination` lifecycle: `active_orderable`.
 - `c5_detector_input_cap` uses `Murata GRM1555C1H390JA01D` as `verified_exact_ltc5532_rf_input_coupling_capacitor`, not an accepted production choice.
 - `c5_detector_input_cap` lifecycle: `active_orderable`.
+- `c5_detector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `c5_detector_bypass` lifecycle: `active_orderable`.
 - `nrf0` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf0` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - `nrf1` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
@@ -3877,42 +3929,84 @@ Reserved: `PA1_NRST`. Free: none.
 - `nrf_evidence_hold_cap` lifecycle: `active_production`.
 - `nrf0_host_buffer` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
 - `nrf0_host_buffer` lifecycle: `production_active_orderable`.
-- `nrf0_return_buffer` uses `Nexperia 74LVC2G126DC,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
-- `nrf0_return_buffer` lifecycle: `production_active_orderable`.
+- `nrf0_return_buffer` uses `Nexperia 74LVC2G126DP,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
+- `nrf0_return_buffer` lifecycle: `production_active_factory_stocked`.
+- `nrf0_host_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `nrf0_host_buffer_bypass` lifecycle: `active_orderable`.
+- `nrf0_return_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `nrf0_return_buffer_bypass` lifecycle: `active_orderable`.
+- `nrf0_module_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `nrf0_module_hf_cap` lifecycle: `active_orderable`.
 - `nrf0_coupler` uses `TTM Technologies DC2337J5010AHF` as `verified_exact_nrf_forward_power_coupler`, not an accepted production choice.
 - `nrf0_coupler` lifecycle: `active_orderable`.
 - `nrf0_coupler_termination` uses `Yageo RC0402FR-0749R9L` as `verified_exact_nrf_coupler_isolated_port_termination`, not an accepted production choice.
 - `nrf0_coupler_termination` lifecycle: `active_orderable`.
 - `nrf0_detector_match` uses `Yageo RC0402FR-0752R3L` as `verified_exact_ad8314_broadband_input_match`, not an accepted production choice.
 - `nrf0_detector_match` lifecycle: `active_orderable`.
+- `nrf0_detector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `nrf0_detector_bypass` lifecycle: `active_orderable`.
 - `nrf1_host_buffer` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
 - `nrf1_host_buffer` lifecycle: `production_active_orderable`.
-- `nrf1_return_buffer` uses `Nexperia 74LVC2G126DC,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
-- `nrf1_return_buffer` lifecycle: `production_active_orderable`.
+- `nrf1_return_buffer` uses `Nexperia 74LVC2G126DP,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
+- `nrf1_return_buffer` lifecycle: `production_active_factory_stocked`.
+- `nrf1_host_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `nrf1_host_buffer_bypass` lifecycle: `active_orderable`.
+- `nrf1_return_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `nrf1_return_buffer_bypass` lifecycle: `active_orderable`.
+- `nrf1_module_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `nrf1_module_hf_cap` lifecycle: `active_orderable`.
 - `nrf1_coupler` uses `TTM Technologies DC2337J5010AHF` as `verified_exact_nrf_forward_power_coupler`, not an accepted production choice.
 - `nrf1_coupler` lifecycle: `active_orderable`.
 - `nrf1_coupler_termination` uses `Yageo RC0402FR-0749R9L` as `verified_exact_nrf_coupler_isolated_port_termination`, not an accepted production choice.
 - `nrf1_coupler_termination` lifecycle: `active_orderable`.
 - `nrf1_detector_match` uses `Yageo RC0402FR-0752R3L` as `verified_exact_ad8314_broadband_input_match`, not an accepted production choice.
 - `nrf1_detector_match` lifecycle: `active_orderable`.
+- `nrf1_detector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `nrf1_detector_bypass` lifecycle: `active_orderable`.
 - `nrf2_host_buffer` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
 - `nrf2_host_buffer` lifecycle: `production_active_orderable`.
-- `nrf2_return_buffer` uses `Nexperia 74LVC2G126DC,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
-- `nrf2_return_buffer` lifecycle: `production_active_orderable`.
+- `nrf2_return_buffer` uses `Nexperia 74LVC2G126DP,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
+- `nrf2_return_buffer` lifecycle: `production_active_factory_stocked`.
+- `nrf2_host_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `nrf2_host_buffer_bypass` lifecycle: `active_orderable`.
+- `nrf2_return_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `nrf2_return_buffer_bypass` lifecycle: `active_orderable`.
+- `nrf2_module_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `nrf2_module_hf_cap` lifecycle: `active_orderable`.
 - `nrf2_coupler` uses `TTM Technologies DC2337J5010AHF` as `verified_exact_nrf_forward_power_coupler`, not an accepted production choice.
 - `nrf2_coupler` lifecycle: `active_orderable`.
 - `nrf2_coupler_termination` uses `Yageo RC0402FR-0749R9L` as `verified_exact_nrf_coupler_isolated_port_termination`, not an accepted production choice.
 - `nrf2_coupler_termination` lifecycle: `active_orderable`.
 - `nrf2_detector_match` uses `Yageo RC0402FR-0752R3L` as `verified_exact_ad8314_broadband_input_match`, not an accepted production choice.
 - `nrf2_detector_match` lifecycle: `active_orderable`.
+- `nrf2_detector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `nrf2_detector_bypass` lifecycle: `active_orderable`.
 - `cc_host_buffer` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
 - `cc_host_buffer` lifecycle: `production_active_orderable`.
 - `cc_return_buffer` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
 - `cc_return_buffer` lifecycle: `production_active_orderable`.
-- `cc_band_buffer` uses `Nexperia 74LVC2G126DC,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
-- `cc_band_buffer` lifecycle: `production_active_orderable`.
+- `cc_band_buffer` uses `Nexperia 74LVC2G126DP,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
+- `cc_band_buffer` lifecycle: `production_active_factory_stocked`.
+- `cc_host_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `cc_host_buffer_bypass` lifecycle: `active_orderable`.
+- `cc_return_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `cc_return_buffer_bypass` lifecycle: `active_orderable`.
+- `cc_band_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `cc_band_buffer_bypass` lifecycle: `active_orderable`.
 - `cc_power_input_cap` lifecycle: `active_production`.
 - `cc_local_bulk_cap` lifecycle: `active_production`.
+- `cc_dvdd_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `cc_dvdd_bypass` lifecycle: `active_orderable`.
+- `cc_avdd9_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `cc_avdd9_bypass` lifecycle: `active_orderable`.
+- `cc_avdd11_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `cc_avdd11_bypass` lifecycle: `active_orderable`.
+- `cc_avdd14_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `cc_avdd14_bypass` lifecycle: `active_orderable`.
+- `cc_avdd15_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `cc_avdd15_bypass` lifecycle: `active_orderable`.
+- `cc_dcoupl_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `cc_dcoupl_cap` lifecycle: `active_orderable`.
 - `cc_rbias_res` uses `Yageo RC0402FR-0756KL` as `verified_exact_cc_bias_passive`, not an accepted production choice.
 - `cc_rbias_res` lifecycle: `active_orderable`.
 - `cc_crystal` uses `Abracon ABM8-26.000MHZ-10-D-1-G-T` as `verified_exact_cc_reference_crystal`, not an accepted production choice.
@@ -3961,6 +4055,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `cc_rf_esd` lifecycle: `active_orderable`.
 - `cc_detector_tap_cap` uses `Murata GJM1555C1HR47BB01D` as `verified_exact_cc_detector_tap_passive`, not an accepted production choice.
 - `cc_detector_tap_cap` lifecycle: `active_orderable`.
+- `cc_detector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `cc_detector_bypass` lifecycle: `active_orderable`.
 - `cc_evidence_hold_cap` lifecycle: `active_production`.
 - `voice` uses `G-NiceRF SA818S-U` as `manufacturer_and_jlcpcb_exact_candidate`, not an accepted production choice.
 - `voice` lifecycle: `current_orderable_product`.
@@ -3972,6 +4068,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `voice_detector_series_attenuator` lifecycle: `active_orderable`.
 - `voice_detector_match` uses `Yageo RC0402FR-0752R3L` as `verified_exact_ad8314_broadband_input_match`, not an accepted production choice.
 - `voice_detector_match` lifecycle: `active_orderable`.
+- `voice_detector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `voice_detector_bypass` lifecycle: `active_orderable`.
 - `voice_evidence_hold_cap` lifecycle: `active_production`.
 - `voice_v_rf_esd` uses `Nexperia PESD24VY1BSF` as `verified_exact_sa518_external_rf_esd`, not an accepted production choice.
 - `voice_v_rf_esd` lifecycle: `production_orderable`.
@@ -3979,13 +4077,23 @@ Reserved: `PA1_NRST`. Free: none.
 - `voice_v_detector_series_attenuator` lifecycle: `active_orderable`.
 - `voice_v_detector_match` uses `Yageo RC0402FR-0752R3L` as `verified_exact_ad8314_broadband_input_match`, not an accepted production choice.
 - `voice_v_detector_match` lifecycle: `active_orderable`.
+- `voice_v_detector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `voice_v_detector_bypass` lifecycle: `active_orderable`.
 - `voice_v_evidence_hold_cap` lifecycle: `active_production`.
 - `receiver` uses `Si4732-A10-GSR` as `verified_exact_production_candidate`, not an accepted production choice.
 - `receiver` lifecycle: `active_orderable`.
 - `slow_io` uses `TCA6424ARGJR` as `verified_exact_main_slow_io_core`, not an accepted production choice.
+- `slow_io_vcci_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `slow_io_vcci_bypass` lifecycle: `active_orderable`.
+- `slow_io_vccp_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `slow_io_vccp_bypass` lifecycle: `active_orderable`.
 - `slow_io_bulk_cap` lifecycle: `active_production`.
 - `slow_io_fault_sense_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `slow_io_fault_sense_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `slow_io_fault_sense_iso_bypass` lifecycle: `active_orderable`.
 - `slow_io_s3_evidence_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `slow_io_s3_evidence_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `slow_io_s3_evidence_iso_bypass` lifecycle: `active_orderable`.
 - `ui_matrix_io` uses `TCA9539PWR` as `verified_exact_direct_control_input_expander`, not an accepted production choice.
 - `ui_matrix_io` lifecycle: `active_orderable`.
 - `ui_dpad_up` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
@@ -4020,12 +4128,18 @@ Reserved: `PA1_NRST`. Free: none.
 - `ui_switch_f8` lifecycle: `active_orderable`.
 - `ptt_switch` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
 - `ptt_switch` lifecycle: `active_orderable`.
+- `ptt_filter_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `ptt_filter_cap` lifecycle: `active_orderable`.
 - `encoder` uses `Alps Alpine EC11E18244AU` as `verified_first_target_mechanical_fit_hil_open`, not an accepted production choice.
 - `encoder` lifecycle: `active_standard`.
 - `encoder_knob` uses `Davies Molding 1227-J` as `verified_exact_shaft_and_plan_fit_hil_open`, not an accepted production choice.
 - `display_touch_controller` uses `Sitronix ST77922` as `verified_exact_controller_inside_hmx035ctft_001`, not an accepted production choice.
 - `display_touch_controller` lifecycle: `active manufacturer-catalog TDDI; sourced only inside a qualified display assembly`.
 - `touch_irq_buffer` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `ui_matrix_io_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `ui_matrix_io_bypass` lifecycle: `active_orderable`.
+- `touch_irq_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `touch_irq_buffer_bypass` lifecycle: `active_orderable`.
 - `display` lifecycle: `assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified`.
 - `display_connector` uses `Hirose DF40C(2.0)-40DS-0.4V(58)` as `verified_exact_display_adapter_main_board_receptacle`, not an accepted production choice.
 - `display_connector` lifecycle: `active and authorized-distributor-stocked`.
@@ -4033,35 +4147,61 @@ Reserved: `PA1_NRST`. Free: none.
 - `display_adapter_plug` lifecycle: `active and authorized-distributor-stocked`.
 - `display_panel_connector` uses `Hirose FH34SRJ-40S-0.5SH(99)` as `verified_dual_contact_adapter_panel_connector_received_tail_thickness_h5_open`, not an accepted production choice.
 - `display_panel_connector` lifecycle: `active and authorized-distributor-stocked; exact HMX035CTFT-001 tail thickness and insertion fit remain H5`.
+- `display_logic_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `display_logic_hf_cap` lifecycle: `active_orderable`.
+- `backlight_efuse_input_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `backlight_efuse_input_cap` lifecycle: `active_orderable`.
+- `backlight_efuse_output_hf` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `backlight_efuse_output_hf` lifecycle: `active_orderable`.
 - `backlight_series_resistor` lifecycle: `active_orderable`.
 - `sd_power_input_cap` lifecycle: `active_production`.
+- `sd_power_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `sd_power_hf_cap` lifecycle: `active_orderable`.
+- `sd_host_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `sd_host_buffer_bypass` lifecycle: `active_orderable`.
+- `sd_miso_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `sd_miso_buffer_bypass` lifecycle: `active_orderable`.
+- `sd_detect_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `sd_detect_cap` lifecycle: `active_orderable`.
 - `codec` lifecycle: `current manufacturer product brief revision 17.0 dated 2026-02; production sourcing and lot qualification remain open`.
 - `audio_rx_mux` uses `Texas Instruments SN74LVC1G3157DBVR` as `verified_reference`, not an accepted production choice.
+- `audio_rx_mux_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `audio_rx_mux_bypass` lifecycle: `active_orderable`.
 - `audio_vmid_cap` lifecycle: `active_production`.
 - `audio_ground_link` lifecycle: `active_orderable`.
 - `si_audio_l_coupling` lifecycle: `active_production`.
 - `si_audio_r_coupling` lifecycle: `active_production`.
 - `voice_rx_coupling` lifecycle: `active_production`.
 - `audio_capture_selector` uses `Texas Instruments TS5A63157DCKR` as `reference_only`, not an accepted production choice.
+- `audio_capture_selector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `audio_capture_selector_bypass` lifecycle: `active_orderable`.
 - `audio_capture_rx_coupling` lifecycle: `active_production`.
 - `audio_capture_mic_coupling` lifecycle: `active_production`.
 - `audio_capture_input_coupling` lifecycle: `active_production`.
 - `audio_capture_local_bias_cap` lifecycle: `active_production`.
 - `audio_capture_buffer` uses `TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
+- `audio_capture_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `audio_capture_buffer_bypass` lifecycle: `active_orderable`.
 - `codec_adc_p_coupling` lifecycle: `active_production`.
 - `codec_adc_p_series` lifecycle: `active_orderable`.
 - `codec_adc_n_coupling` lifecycle: `active_production`.
 - `codec_adc_n_series` lifecycle: `active_orderable`.
 - `audio_speaker_selector` uses `Texas Instruments TMUX1136DGSR` as `reference_only`, not an accepted production choice.
+- `audio_speaker_selector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `audio_speaker_selector_bypass` lifecycle: `active_orderable`.
 - `speaker_input_p_coupling` lifecycle: `active_production`.
 - `speaker_input_n_coupling` lifecycle: `active_production`.
 - `audio_tx_selector` uses `Texas Instruments TS5A63157DCKR` as `reference_only`, not an accepted production choice.
+- `audio_tx_selector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `audio_tx_selector_bypass` lifecycle: `active_orderable`.
 - `mic_tx_coupling` lifecycle: `active_production`.
 - `codec_tx_coupling` lifecycle: `active_production`.
 - `codec_tx_atten_top` lifecycle: `active_orderable`.
 - `voice_mic_coupling` lifecycle: `active_production`.
 - `voice_v_mic_coupling` lifecycle: `active_production`.
 - `audio_safe_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
+- `audio_safe_gate_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `audio_safe_gate_bypass` lifecycle: `active_orderable`.
 - `speaker_amp_input_cap` lifecycle: `active_production`.
 - `speaker_output_bead_p` lifecycle: `active_orderable`.
 - `speaker_output_bead_n` lifecycle: `active_orderable`.
@@ -4070,17 +4210,49 @@ Reserved: `PA1_NRST`. Free: none.
 - `microphone_bias_filter_res` lifecycle: `active_orderable`.
 - `headphone_jack` lifecycle: `active_orderable`.
 - `headset_mic_selector` uses `Texas Instruments TS5A63157DCKR` as `reference_only`, not an accepted production choice.
+- `headset_mic_selector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `headset_mic_selector_bypass` lifecycle: `active_orderable`.
 - `headset_microphone_bias_filter_res` lifecycle: `active_orderable`.
+- `headset_control_io_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `headset_control_io_bypass` lifecycle: `active_orderable`.
 - `codec_power_input_cap` lifecycle: `active_production`.
+- `codec_supervisor_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `codec_supervisor_bypass` lifecycle: `active_orderable`.
+- `codec_i2c_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `codec_i2c_iso_bypass` lifecycle: `active_orderable`.
 - `codec_i2s_din_boot_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.
 - `codec_i2s_din_boot_gate` lifecycle: `active_orderable`.
+- `codec_i2s_bclk_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `codec_i2s_bclk_iso_bypass` lifecycle: `active_orderable`.
+- `codec_i2s_ws_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `codec_i2s_ws_iso_bypass` lifecycle: `active_orderable`.
+- `codec_i2s_dout_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `codec_i2s_dout_iso_bypass` lifecycle: `active_orderable`.
+- `codec_i2s_din_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `codec_i2s_din_iso_bypass` lifecycle: `active_orderable`.
+- `codec_i2s_din_boot_gate_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `codec_i2s_din_boot_gate_bypass` lifecycle: `active_orderable`.
+- `codec_pvdd_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `codec_pvdd_bypass` lifecycle: `active_orderable`.
 - `codec_dvdd_bead` lifecycle: `active_orderable`.
+- `codec_dvdd_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `codec_dvdd_bypass` lifecycle: `active_orderable`.
 - `codec_avdd_bead` lifecycle: `active_orderable`.
+- `codec_avdd_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `codec_avdd_bypass` lifecycle: `active_orderable`.
 - `codec_dacvref_cap` lifecycle: `active_production`.
 - `codec_adcvref_cap` lifecycle: `active_production`.
 - `codec_vmid_cap` lifecycle: `active_production`.
 - `receiver_power_input_cap` lifecycle: `active_production`.
+- `receiver_supervisor_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `receiver_supervisor_bypass` lifecycle: `active_orderable`.
+- `receiver_i2c_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `receiver_i2c_iso_bypass` lifecycle: `active_orderable`.
 - `receiver_irq_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `receiver_irq_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `receiver_irq_iso_bypass` lifecycle: `active_orderable`.
+- `receiver_vdd_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `receiver_vdd_bypass` lifecycle: `active_orderable`.
 - `receiver_clock` lifecycle: `active_orderable`.
 - `receiver_clock_cap_rclk` lifecycle: `active_orderable`.
 - `receiver_clock_cap_gpo3` lifecycle: `active_orderable`.
@@ -4095,6 +4267,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `receiver_ami_coupling_cap` uses `Murata GRM155R71A474KE01D` as `verified_exact_si4732_ami_first_target`, not an accepted production choice.
 - `receiver_ami_coupling_cap` lifecycle: `active_orderable`.
 - `ir_power_input_cap` lifecycle: `active_production`.
+- `ir_power_output_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `ir_power_output_bypass` lifecycle: `active_orderable`.
 - `ir_demod` uses `Vishay TSOP75238TT` as `verified_exact_stocked_robust_ir_receiver`, not an accepted production choice.
 - `ir_demod` lifecycle: `active_stocked_orderable`.
 - `ir_demod_supply_cap` uses `Murata GRM188Z71A475ME15D` as `verified_exact_ir_receiver_filter_capacitor`, not an accepted production choice.
@@ -4105,34 +4279,74 @@ Reserved: `PA1_NRST`. Free: none.
 - `ir_carrier_supply_cap` lifecycle: `active_stocked_orderable`.
 - `ir_carrier_pullup` uses `Yageo RC0402FR-074K7L` as `verified_exact_ir_carrier_output_pullup`, not an accepted production choice.
 - `ir_carrier_pullup` lifecycle: `active_stocked_orderable`.
-- `ir_return_buffer` uses `Nexperia 74LVC2G126DC,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
-- `ir_return_buffer` lifecycle: `production_active_orderable`.
+- `ir_return_buffer` uses `Nexperia 74LVC2G126DP,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
+- `ir_return_buffer` lifecycle: `production_active_factory_stocked`.
+- `ir_return_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `ir_return_buffer_bypass` lifecycle: `active_orderable`.
 - `ir_emitter` uses `Vishay VSMY14940` as `verified_exact_consumer_ir_transmit_emitter`, not an accepted production choice.
 - `ir_emitter` lifecycle: `active_stocked_orderable`.
 - `ir_emitter_limit` uses `Yageo RC1206FR-0747RL` as `verified_exact_ir_emitter_current_limit_resistor`, not an accepted production choice.
 - `ir_emitter_limit` lifecycle: `active_stocked_orderable`.
 - `ir_evidence_amp` uses `TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
+- `ir_evidence_amp_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `ir_evidence_amp_bypass` lifecycle: `active_orderable`.
+- `ir_evidence_vref_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `ir_evidence_vref_cap` lifecycle: `active_orderable`.
+- `voice_supervisor_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `voice_supervisor_bypass` lifecycle: `active_orderable`.
 - `voice_io_power_input_cap` lifecycle: `active_production`.
 - `voice_io_power_output_cap` lifecycle: `active_production`.
+- `voice_band_io_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `voice_band_io_bypass` lifecycle: `active_orderable`.
 - `voice_band_inverter` lifecycle: `production`.
+- `voice_band_inverter_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `voice_band_inverter_bypass` lifecycle: `active_orderable`.
 - `voice_pd_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
+- `voice_pd_gate_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `voice_pd_gate_bypass` lifecycle: `active_orderable`.
 - `voice_control_mux_a` uses `Texas Instruments TMUX1136DGSR` as `reference_only`, not an accepted production choice.
+- `voice_control_mux_a_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `voice_control_mux_a_bypass` lifecycle: `active_orderable`.
 - `voice_control_mux_b` uses `Texas Instruments TMUX1136DGSR` as `reference_only`, not an accepted production choice.
+- `voice_control_mux_b_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `voice_control_mux_b_bypass` lifecycle: `active_orderable`.
 - `voice_audio_mux` uses `Texas Instruments TMUX1136DGSR` as `reference_only`, not an accepted production choice.
+- `voice_audio_mux_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `voice_audio_mux_bypass` lifecycle: `active_orderable`.
 - `voice_hl_driver` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `voice_hl_driver_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `voice_hl_driver_bypass` lifecycle: `active_orderable`.
 - `product_usb_vpwr_cap` lifecycle: `active_production`.
+- `pd_eeprom_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `pd_eeprom_bypass` lifecycle: `active_orderable`.
+- `charger_vbus_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `charger_vbus_hf_cap` lifecycle: `active_orderable`.
+- `charger_pmid_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `charger_pmid_hf_cap` lifecycle: `active_orderable`.
+- `charger_sys_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `charger_sys_hf_cap` lifecycle: `active_orderable`.
 - `pack_gauge` lifecycle: `recommended_for_new_designs`.
 - `pack_admission` uses `Texas Instruments MSPM0C1106SDGS20R` as `verified_exact_64kb_flash_8kb_sram_hybrid_bsl_candidate`, not an accepted production choice.
 - `pack_admission` lifecycle: `active_orderable`.
 - `power_command_switch` uses `C&K JS102011SCQN` as `verified_exact_low_current_power_command_switch_mechanical_hil_open`, not an accepted production choice.
 - `power_command_switch` lifecycle: `active_orderable`.
+- `power_command_filter` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `power_command_filter` lifecycle: `active_orderable`.
+- `run_loop_filter` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `run_loop_filter` lifecycle: `active_orderable`.
 - `pack_holder` uses `Keystone Electronics 1048P` as `verified_mechanical_reference`, not an accepted production choice.
 - `pack_cell0` uses `XTAR 18650 4000mAh` as `selected_qualification_target`, not an accepted production choice.
 - `pack_cell0` lifecycle: `current_catalog`.
 - `pack_cell1` uses `XTAR 18650 4000mAh` as `selected_qualification_target`, not an accepted production choice.
 - `pack_cell1` lifecycle: `current_catalog`.
+- `pack_in_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `pack_in_bypass` lifecycle: `active_orderable`.
 - `pack_cp_cap` uses `Murata GRM188R71E474KA12D` as `verified_exact_max17320_bypass_capacitor`, not an accepted production choice.
 - `pack_cp_cap` lifecycle: `active_stocked_orderable`.
+- `pack_chg_gate_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `pack_chg_gate_cap` lifecycle: `active_orderable`.
+- `pack_dis_gate_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `pack_dis_gate_cap` lifecycle: `active_orderable`.
 - `pack_pckp_res` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
 - `pack_pckp_res` lifecycle: `active_orderable`.
 - `pack_aoldo_cap` uses `Murata GRM188R71E474KA12D` as `verified_exact_max17320_bypass_capacitor`, not an accepted production choice.
@@ -4145,12 +4359,28 @@ Reserved: `PA1_NRST`. Free: none.
 - `pack_cell1_rbal` lifecycle: `active_orderable`.
 - `pack_batts_rbal` uses `Panasonic ERJ-P08F49R9V` as `verified_exact_max17320_2s_balance_resistor`, not an accepted production choice.
 - `pack_batts_rbal` lifecycle: `active_orderable`.
+- `pack_cell1_filter_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `pack_cell1_filter_cap` lifecycle: `active_orderable`.
+- `pack_batts_filter_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `pack_batts_filter_cap` lifecycle: `active_orderable`.
+- `pack_admission_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `pack_admission_bypass` lifecycle: `active_orderable`.
 - `pack_diag_timer` lifecycle: `active_production`.
 - `pack_diag_lockout_cap` lifecycle: `active_production`.
+- `pack_diag_timer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `pack_diag_timer_bypass` lifecycle: `active_orderable`.
+- `aon_efuse_input_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `aon_efuse_input_cap` lifecycle: `active_orderable`.
+- `main_hf_input_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `main_hf_input_cap` lifecycle: `active_orderable`.
 - `main_fb_top` uses `Vishay TNPW040243K7BEED` as `verified_exact_precision_main_feedback_resistor`, not an accepted production choice.
 - `main_fb_top` lifecycle: `active_orderable`.
 - `main_fb_bottom` uses `Vishay TNPW040210K0BEED` as `verified_exact_precision_main_feedback_resistor`, not an accepted production choice.
 - `main_fb_bottom` lifecycle: `active_orderable`.
+- `voice_hf_input_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `voice_hf_input_cap` lifecycle: `active_orderable`.
+- `ext_buck_hf_input_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `ext_buck_hf_input_cap` lifecycle: `active_orderable`.
 - `ext_rilm` uses `Yageo RC0402FR-071K82L` as `verified_h3_dc_margin_correction`, not an accepted production choice.
 - `ext_rilm` lifecycle: `active_orderable`.
 - `c5_service_usb_connector` uses `GCT USB4105-GF-A` as `verified_exact_service_usb_receptacle`, not an accepted production choice.
@@ -4159,6 +4389,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `c5_service_usb_esd` lifecycle: `active_orderable`.
 - `c5_service_usb_switch` uses `onsemi FSUSB42MUX` as `verified_exact_data_only_service_usb_isolator`, not an accepted production choice.
 - `c5_service_usb_switch` lifecycle: `active_orderable`.
+- `c5_service_usb_switch_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `c5_service_usb_switch_bypass` lifecycle: `active_orderable`.
 - `c5_service_usb_cc1_rd` uses `Yageo RC0402FR-075K1L` as `verified_exact_sa518_detector_series_attenuator_and_usb_type_c_rd`, not an accepted production choice.
 - `c5_service_usb_cc1_rd` lifecycle: `active_orderable`.
 - `c5_service_usb_cc2_rd` uses `Yageo RC0402FR-075K1L` as `verified_exact_sa518_detector_series_attenuator_and_usb_type_c_rd`, not an accepted production choice.
@@ -4171,6 +4403,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `rp_service_usb_esd` lifecycle: `active_orderable`.
 - `rp_service_usb_switch` uses `onsemi FSUSB42MUX` as `verified_exact_data_only_service_usb_isolator`, not an accepted production choice.
 - `rp_service_usb_switch` lifecycle: `active_orderable`.
+- `rp_service_usb_switch_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rp_service_usb_switch_bypass` lifecycle: `active_orderable`.
 - `rp_service_usb_cc1_rd` uses `Yageo RC0402FR-075K1L` as `verified_exact_sa518_detector_series_attenuator_and_usb_type_c_rd`, not an accepted production choice.
 - `rp_service_usb_cc1_rd` lifecycle: `active_orderable`.
 - `rp_service_usb_cc2_rd` uses `Yageo RC0402FR-075K1L` as `verified_exact_sa518_detector_series_attenuator_and_usb_type_c_rd`, not an accepted production choice.
@@ -4229,33 +4463,79 @@ Reserved: `PA1_NRST`. Free: none.
 - `rp_dbg0_series` lifecycle: `active_orderable`.
 - `rp_dbg1_series` uses `Yageo RC0402FR-07470RL` as `verified_exact_dbg10_uart_swd_series_resistor`, not an accepted production choice.
 - `rp_dbg1_series` lifecycle: `active_orderable`.
+- `s3_supply_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `s3_supply_bypass` lifecycle: `active_orderable`.
 - `s3_reset_delay_cap` lifecycle: `active_production`.
 - `safety_controller` uses `Texas Instruments MSPM0C1106SDGS20R` as `verified_exact_64kb_flash_8kb_sram_hybrid_bsl_candidate`, not an accepted production choice.
 - `safety_controller` lifecycle: `active_orderable`.
+- `safety_controller_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safety_controller_bypass` lifecycle: `active_orderable`.
 - `safety_fault_request_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `safety_fault_request_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safety_fault_request_iso_bypass` lifecycle: `active_orderable`.
 - `safety_s3_reset_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `safety_s3_reset_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safety_s3_reset_iso_bypass` lifecycle: `active_orderable`.
 - `safety_watchdog` uses `Texas Instruments TPS3435CAKAGDDFR` as `verified_exact_independent_aon_watchdog`, not an accepted production choice.
 - `safety_watchdog` lifecycle: `active_orderable`.
+- `safety_watchdog_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safety_watchdog_bypass` lifecycle: `active_orderable`.
 - `fault_assert_backup_pulldown` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
 - `fault_assert_backup_pulldown` lifecycle: `active_orderable`.
 - `safe_run_fault_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `safe_run_fault_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safe_run_fault_iso_bypass` lifecycle: `active_orderable`.
+- `safe_supervisor_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safe_supervisor_bypass` lifecycle: `active_orderable`.
+- `power_zone_temp_filter` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `power_zone_temp_filter` lifecycle: `active_orderable`.
+- `rf_zone_temp_filter` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `rf_zone_temp_filter` lifecycle: `active_orderable`.
+- `ui_zone_temp_filter` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `ui_zone_temp_filter` lifecycle: `active_orderable`.
 - `safe_conditioner` lifecycle: `production`.
+- `safe_conditioner_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safe_conditioner_bypass` lifecycle: `active_orderable`.
 - `safe_rearm_buffer` uses `SN74LVC1G17DCKR` as `verified_exact_schmitt_buffer`, not an accepted production choice.
 - `safe_rearm_buffer` lifecycle: `active_orderable`.
+- `safe_rearm_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safe_rearm_buffer_bypass` lifecycle: `active_orderable`.
+- `safe_latch_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safe_latch_bypass` lifecycle: `active_orderable`.
 - `safe_reset_buffer` uses `Texas Instruments SN74LVC1G06DCKR` as `verified_exact_fail_low_reset_gate_driver`, not an accepted production choice.
 - `safe_reset_buffer` lifecycle: `active_orderable`.
+- `safe_reset_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safe_reset_buffer_bypass` lifecycle: `active_orderable`.
 - `safe_c5_reset_buffer` uses `Texas Instruments SN74LVC1G06DCKR` as `verified_exact_fail_low_reset_gate_driver`, not an accepted production choice.
 - `safe_c5_reset_buffer` lifecycle: `active_orderable`.
+- `safe_c5_reset_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safe_c5_reset_buffer_bypass` lifecycle: `active_orderable`.
 - `safe_c5_fault_reset_buffer` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `safe_c5_fault_reset_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safe_c5_fault_reset_buffer_bypass` lifecycle: `active_orderable`.
 - `safe_fault_reset_buffer` uses `SN74LVC3G07DCUR` as `verified_exact_aon_to_main_open_drain_isolator`, not an accepted production choice.
 - `safe_fault_reset_buffer` lifecycle: `active_orderable`.
+- `safe_fault_reset_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safe_fault_reset_buffer_bypass` lifecycle: `active_orderable`.
+- `safe_gate_a_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safe_gate_a_bypass` lifecycle: `active_orderable`.
 - `nrf_backup_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.
 - `nrf_backup_gate` lifecycle: `active_orderable`.
+- `nrf_backup_gate_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `nrf_backup_gate_bypass` lifecycle: `active_orderable`.
+- `safe_gate_b_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safe_gate_b_bypass` lifecycle: `active_orderable`.
 - `cc_backup_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.
 - `cc_backup_gate` lifecycle: `active_orderable`.
+- `cc_backup_gate_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `cc_backup_gate_bypass` lifecycle: `active_orderable`.
 - `ir_safe_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.
 - `ir_safe_gate` lifecycle: `active_orderable`.
+- `ir_safe_gate_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `ir_safe_gate_bypass` lifecycle: `active_orderable`.
 - `safe_ptt_or` lifecycle: `production`.
+- `safe_ptt_or_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safe_ptt_or_bypass` lifecycle: `active_orderable`.
 - `det_s3` lifecycle: `production`.
 - `det_c5` lifecycle: `production`.
 - `det_nrf0` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_wideband_rf_power_detector`, not an accepted production choice.
@@ -4275,13 +4555,27 @@ Reserved: `PA1_NRST`. Free: none.
 - `evidence_cmp_voice` lifecycle: `active_orderable`.
 - `evidence_cmp_voice_v` uses `TLV1821DCKR` as `verified_exact_local_voice_evidence_comparator`, not an accepted production choice.
 - `evidence_cmp_voice_v` lifecycle: `active_orderable`.
+- `evidence_cmp_a_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `evidence_cmp_a_bypass` lifecycle: `active_orderable`.
+- `evidence_cmp_b_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `evidence_cmp_b_bypass` lifecycle: `active_orderable`.
+- `evidence_cmp_voice_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `evidence_cmp_voice_bypass` lifecycle: `active_orderable`.
+- `evidence_cmp_voice_v_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `evidence_cmp_voice_v_bypass` lifecycle: `active_orderable`.
 - `ext_evidence_input_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
 - `ext_evidence_input_series` lifecycle: `active_orderable`.
 - `ext_evidence_buffer` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `ext_evidence_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `ext_evidence_buffer_bypass` lifecycle: `active_orderable`.
 - `evidence_mask` uses `TCA9535PWR` as `verified_exact_aon_evidence_mask_expander`, not an accepted production choice.
 - `evidence_mask` lifecycle: `active_orderable`.
+- `evidence_mask_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `evidence_mask_bypass` lifecycle: `active_orderable`.
 - `evidence_main_isolator` uses `SN74LVC3G07DCUR` as `verified_exact_aon_to_main_open_drain_isolator`, not an accepted production choice.
 - `evidence_main_isolator` lifecycle: `active_orderable`.
+- `evidence_main_isolator_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `evidence_main_isolator_bypass` lifecycle: `active_orderable`.
 - `s3_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
 - `s3_evidence_hysteresis` lifecycle: `active_orderable`.
 - `c5_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.

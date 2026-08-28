@@ -84,10 +84,10 @@ def footprint_for(instance: str, device_key: str) -> str:
     if device_key in {"tdk_c1608x7r1c105k080ac", "tdk_b57332v5103f360"}:
         return (
             "Capacitor_SMD:C_0603_1608Metric"
-            if device_key.startswith("tdk_c")
+            if device_key.startswith(("tdk_c", "yageo_cc"))
             else "Resistor_SMD:R_0603_1608Metric"
         )
-    if device_key.startswith("tdk_c"):
+    if device_key.startswith(("tdk_c", "yageo_cc")):
         return "Capacitor_SMD:C_0402_1005Metric"
     if device_key.startswith("yageo_rc"):
         return "Resistor_SMD:R_0402_1005Metric"
@@ -103,7 +103,7 @@ def reference_prefix(instance: str, device_key: str) -> str:
         return "RT"
     if device_key.startswith("liteon_") or device_key == "ti_tpd8e003_dqdr":
         return "D"
-    if device_key.startswith("tdk_c"):
+    if device_key.startswith(("tdk_c", "yageo_cc")):
         return "C"
     if device_key.startswith("yageo_rc"):
         return "R"
