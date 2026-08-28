@@ -398,7 +398,7 @@
     "primary_target": "Eliminate avoidable small-lot pre-order penalties before reducing already-stocked material cost.",
     "stocked_replacement_rule": "Prefer a currently stocked JLCPCB part only when the electrical, RF, safety, lifecycle and mechanical contract is exact or no worse. If no such part exists, keep the selected MPN and its explicit pre-order route.",
     "function_sensitive_rule": "RF detectors, RF filters/couplers, power safety, battery protection and user-exposed ESD boundaries never change for price alone.",
-    "antenna_mechanics_rule": "Use individually board-retained DIV-like SMA/RP-SMA bodies without nuts, sealing hardware or a shared protective frame when an exact standard/reverse pair and controlled drawing are available. The PCB tabs and soldered shield legs carry each connector independently."
+    "antenna_mechanics_rule": "Prefer individually board-retained DIV-like SMA/RP-SMA bodies without nuts, sealing hardware or a shared protective frame when an exact standard/reverse pair and controlled drawing are available. No such no-worse pair is currently proved; the selected low-profile GCT pair remains the controlled exception with individual nut/washer retention and no shared frame."
   },
   "current_stocked_candidate_checks": [
     {
@@ -436,6 +436,25 @@
       "why_ru": "Принято в H1-R2.23. DP и DC — корпусные варианты одного семейства Nexperia 74LVC2G126: логика, порядок выводов, Schmitt-входы, Ioff и тайминги сохранены. Увеличенные TSSOP-корпуса прошли повторный аудит компоновки. Строка партии из пяти устройств снижается с наблюдавшихся $40,60 pre-order до $12,1425 со склада; цена одной микросхемы на ступени 100 шт. растёт с прежней внешней базы $0,2086 до JLCPCB $0,3753.",
       "source": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G126DP125/C503392",
       "manufacturer_source": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
+      "checked_on": "2026-08-28"
+    },
+    {
+      "scope": "six AD8314 real-TX evidence detectors",
+      "current_mpn": "Analog Devices AD8314ACPZ-RL7",
+      "candidate_mpn": "Analog Devices AD8314ARMZ-REEL",
+      "jlcpcb_part": "C652687",
+      "manufacturer": "Analog Devices",
+      "assembly_type": "Extended SMT; Economic and Standard PCBA",
+      "stock": 2977,
+      "available_order_quantity": 2977,
+      "moq": 3,
+      "trial_required_quantity": 30,
+      "price_tiers_usd": {"1": 2.987, "10": 2.5956, "30": 2.352, "100": 1.9426, "500": 1.829, "1000": 1.7802},
+      "status": "qualified_same_device_pending_six_body_placement_gate",
+      "why": "Analog Devices lists ACPZ-RL7 and ARMZ-REEL as production package variants of the same AD8314 specification with the same pins 1-8 and electrical behavior. C652687 is live JLCPCB stock. Thirty trial parts cost USD 70.56 instead of the current C578691 live requirement of USD 159.55, saving USD 88.99; 600 parts cost USD 1,097.40, reducing the six-device line from USD 17.142 to USD 10.974 per finished device. This is not accepted into the production BOM yet: MSOP grows from the 2 x 3-mm LFCSP body to a roughly 3 x 3-mm body with up to 5.15-mm lead span and 1.10-mm height, and removes the exposed pad. All six exact courtyards, adjacent RF match/bypass bodies and RF-ground fanout must pass the H1 placement and route audit first.",
+      "why_ru": "Analog Devices указывает ACPZ-RL7 и ARMZ-REEL как серийные корпусные варианты одной спецификации AD8314 с теми же выводами 1-8 и электрическим поведением. C652687 есть на складе JLCPCB. 30 деталей для пробной партии стоят $70,56 вместо live-требования $159,55 для текущего C578691, экономия $88,99; 600 деталей стоят $1 097,40, уменьшая строку шести детекторов с $17,142 до $10,974 на готовое устройство. В production BOM замена ещё не принята: MSOP увеличивает корпус с LFCSP 2 x 3 мм до тела около 3 x 3 мм с размахом выводов до 5,15 мм и высотой 1,10 мм, а exposed pad исчезает. Сначала должны пройти H1 placement/RF-route audit все шесть точных courtyard, соседние RF match/bypass корпуса и разводка RF-земли.",
+      "source": "https://jlcpcb.com/partdetail/AD8314ARMZ-REEL/C652687",
+      "manufacturer_source": "https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf",
       "checked_on": "2026-08-28"
     },
     {
@@ -685,6 +704,7 @@
     {
       "priority": 1,
       "id": "factory-preorder-penalty",
+      "queue_status": "accepted",
       "title": "Replace safe equivalent pre-order passives and ordinary logic with in-stock JLCPCB parts",
       "production_function_change": false,
       "evidence": "After six safe replacement batches, 26 pre-order rows cost USD 648.0444 in the normalized five-device evidence versus USD 322.6465 on their quantity-100 material basis. The stocked Nexperia, YAGEO, UNI-ROYAL, FH, Hirose, TI, Vishay and Murata routes together remove approximately USD 137.7020 from the observed trial route and reduce the public material basis by a net USD 3.0885 per device.",
@@ -693,38 +713,43 @@
     {
       "priority": 2,
       "id": "main-rf-mechanics",
+      "queue_status": "accepted",
       "title": "Retain the low-profile GCT edge-launch pair unless a truly equivalent stocked pair appears",
       "production_function_change": false,
-      "evidence": "HenryTech provides a cheaper straight pair and DreamLNK provides a cheaper right-angle pair without nuts, but neither preserves the selected 3.9-mm edge-launch envelope. The DreamLNK pair would save about USD 19.01 per device at the quantity-100 tiers while raising the connector axis roughly 6.3 mm and adding through-hole tails inside the sandwich.",
-      "action": "Keep GCT RFPC-SMA31/32 with independent board retention and no shared frame. Reopen replacement only for a stocked standard/reverse edge-launch pair rated to at least 6 GHz with equal or lower profile and a controlled 1.6-mm PCB drawing."
+      "evidence": "The selected GCT RFPC-SMA31/32 pair preserves the 3.9-mm edge-launch envelope, but the official GCT set includes an individual panel nut and washer; no nutless GCT sibling was found. HenryTech points normal to the PCB, while the stocked nutless DreamLNK pair would save about USD 19.01 per device but raises the connector axis roughly 6.3 mm and adds through-hole tails inside the sandwich.",
+      "action": "Keep the GCT pair with no shared frame; safe connector saving is currently USD 0. Reopen only for a stocked standard/reverse edge-launch pair rated to at least 6 GHz with equal or lower profile and a controlled 1.6-mm PCB drawing."
     },
     {
       "priority": 3,
       "id": "rf-evidence-detectors",
+      "queue_status": "active",
       "title": "Re-evaluate eight RF power detectors without weakening real-TX evidence",
       "production_function_change": true,
-      "evidence": "Six AD8314 plus two LTC5532 contribute USD 24.9174 per device at quantity 100; the live five-device requirement is USD 276.70 and both families require pre-order for the complete quantity.",
-      "action": "Compare factory-stocked detectors and calibrated diode cells per band. Keep independent evidence for the three concurrently active nRF24 paths."
+      "evidence": "Six AD8314 plus two LTC5532 contribute USD 24.9174 per device at quantity 100; the live five-device requirement is USD 276.70. Stocked same-device AD8314ARMZ-REEL C652687 would save USD 88.99 on EVT5 and USD 6.168 per finished device at a 100-device run. No strict no-worse LTC5532 replacement is proved.",
+      "action": "Register and collision-check all six larger MSOP courtyards, adjacent match/bypass bodies and RF-ground fanout before accepting C652687. Keep the two LTC5532 and independent evidence for the three concurrently active nRF24 paths."
     },
     {
       "priority": 4,
       "id": "ordinary-controls",
+      "queue_status": "waiting",
       "title": "Find one serial in-stock tact-switch family for all sixteen ordinary controls",
       "production_function_change": false,
-      "evidence": "B3S-1100P contributes USD 10.248 per device at quantity 100 and USD 74.58 for 80 pieces in the five-device pre-order route.",
-      "action": "Preserve footprint/enclosure reach, force, height, endurance and recessed actuation."
+      "evidence": "B3S-1100P contributes USD 10.248 per device at quantity 100 and USD 74.58 for 80 pieces in the five-device pre-order route. The first stocked candidate was rejected because it removes the grounded cover terminal.",
+      "action": "Preserve footprint/enclosure reach, force, height, endurance, the ESD boundary and recessed actuation."
     },
     {
       "priority": 5,
       "id": "native-rf-jumpers",
-      "title": "Reduce five U.FL receptacle plus 30-mm jumper paths by source-to-port placement",
-      "production_function_change": true,
-      "evidence": "Five board U.FL plus five TE jumpers contribute USD 14.433 per device at quantity 100, before assembly handling.",
-      "action": "Remove a cable only where a short controlled-impedance direct path preserves module keep-outs, repairability and coexistence."
+      "queue_status": "accepted",
+      "title": "Retain all five U.FL plus 30-mm jumper paths after source-to-port review",
+      "production_function_change": false,
+      "evidence": "The five paths contribute USD 14.433 per device at quantity 100, before assembly handling. S3 and all three E01 modules expose only microcoax RF outputs, and each path must still pass through its local coupler and real-TX detector before SMA. The current C5 module also exposes U.FL; an exact stocked Espressif T2/ANT2 factory route is not proved.",
+      "action": "Therefore 0/5 paths can be removed safely now. A future qualified C5 T2 route could remove one path and save about USD 2.89 per device."
     },
     {
       "priority": 6,
       "id": "battery-holder",
+      "queue_status": "waiting",
       "title": "Compare the 1048P holder with serial cell contacts captured by the enclosure cradle",
       "production_function_change": true,
       "evidence": "1048P contributes USD 8.57 per device at quantity 100 and is currently stock-zero pre-order at JLCPCB.",
@@ -733,6 +758,7 @@
     {
       "priority": 7,
       "id": "service-headers",
+      "queue_status": "waiting",
       "title": "Replace three premium DBG10 headers with an equally keyed serial factory-stocked family",
       "production_function_change": false,
       "evidence": "Three Samtec FTSH headers contribute USD 5.0973 per device and exist only as opened-sandwich recovery fallbacks.",
@@ -741,6 +767,7 @@
     {
       "priority": 8,
       "id": "display-production-route",
+      "queue_status": "waiting",
       "title": "Obtain the standalone panel route instead of consuming a complete donor per device",
       "production_function_change": false,
       "evidence": "The current reachable DLE06235B donor is USD 20.90 per display, while standalone HMX035CTFT-001 price and production identity remain open.",

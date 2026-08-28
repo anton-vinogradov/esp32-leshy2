@@ -113,6 +113,28 @@ class H1R2CostReviewTest(unittest.TestCase):
             candidates["Murata LQW15AN56NG00D"]["jlcpcb_part"],
             "C167482",
         )
+        self.assertEqual(
+            candidates["Analog Devices AD8314ARMZ-REEL"]["status"],
+            "qualified_same_device_pending_six_body_placement_gate",
+        )
+        self.assertEqual(
+            candidates["Analog Devices AD8314ARMZ-REEL"]["jlcpcb_part"],
+            "C652687",
+        )
+
+    def test_cost_queue_does_not_present_open_work_as_finished(self):
+        lanes = {
+            row["id"]: row["queue_status"]
+            for row in self.result["optimization_lanes"]
+        }
+        self.assertEqual(lanes["factory-preorder-penalty"], "accepted")
+        self.assertEqual(lanes["main-rf-mechanics"], "accepted")
+        self.assertEqual(lanes["native-rf-jumpers"], "accepted")
+        self.assertEqual(lanes["rf-evidence-detectors"], "active")
+        self.assertEqual(lanes["ordinary-controls"], "waiting")
+        self.assertEqual(lanes["battery-holder"], "waiting")
+        self.assertEqual(lanes["service-headers"], "waiting")
+        self.assertEqual(lanes["display-production-route"], "waiting")
 
 
 if __name__ == "__main__":
