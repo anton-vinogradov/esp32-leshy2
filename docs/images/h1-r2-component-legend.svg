@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2231" viewBox="0 0 1900 2231" data-marker="H1-R2.21" data-view="numbered-component-legend">
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2231" viewBox="0 0 1900 2231" data-marker="H1-R2.22" data-view="numbered-component-legend">
 <rect width="1900" height="2231" fill="#ffffff"/>
-<text x="30.0" y="42.0" font-family="sans-serif" font-size="24" font-weight="bold" fill="#172033">Leshy2 · H1-R2.21 · numbered component legend</text>
+<text x="30.0" y="42.0" font-family="sans-serif" font-size="24" font-weight="bold" fill="#172033">Leshy2 · H1-R2.22 · numbered component legend</text>
 <text x="30.0" y="72.0" font-family="sans-serif" font-size="12" font-weight="normal" fill="#526076">163 drawing references · MPN or explicit physical reserve · role in the finished device</text>
 <text x="30.0" y="100.0" font-family="sans-serif" font-size="11" font-weight="normal" fill="#526076">Blue: explicit R2 placement · grey: retained registered body · orange: physical reserve</text>
 <text x="30.0" y="126.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#9a3412">001  PHYSICAL RESERVE</text>
@@ -241,84 +241,84 @@
 <text x="960.0" y="1776.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">116  CP0603Q5425ENTR</text>
 <text x="988.0" y="1790.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5 dual-band forward-power evidence coupler aligned with the</text>
 <text x="988.0" y="1801.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5-2G4/5 front SMA</text>
-<text x="960.0" y="1826.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">117  U.FL-R-SMT-1(10)</text>
-<text x="988.0" y="1840.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #0 module-to-board microcoax termination</text>
+<text x="960.0" y="1826.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">117  Hirose DF40C(2.0)-40DS-0.4V(58)</text>
+<text x="988.0" y="1840.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">40-contact fixed receptacle for the antenna-edge replaceable</text>
+<text x="988.0" y="1851.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">display adapter</text>
 <text x="960.0" y="1876.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">118  U.FL-R-SMT-1(10)</text>
-<text x="988.0" y="1890.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">S3 module microcoax termination beside the S3-2G4 front SMA</text>
-<text x="988.0" y="1901.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">path</text>
+<text x="988.0" y="1890.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #0 module-to-board microcoax termination</text>
 <text x="960.0" y="1926.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">119  U.FL-R-SMT-1(10)</text>
-<text x="988.0" y="1940.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #1 module-to-board microcoax termination</text>
+<text x="988.0" y="1940.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">S3 module microcoax termination beside the S3-2G4 front SMA</text>
+<text x="988.0" y="1951.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">path</text>
 <text x="960.0" y="1976.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">120  U.FL-R-SMT-1(10)</text>
 <text x="988.0" y="1990.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5 module microcoax termination beside the C5-2G4/5 front SMA</text>
 <text x="988.0" y="2001.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">path</text>
 <text x="960.0" y="2026.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">121  U.FL-R-SMT-1(10)</text>
 <text x="988.0" y="2040.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #2 module-to-board microcoax termination</text>
-<text x="960.0" y="2076.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">122  ESP32-S3-WROOM-1U-N16R8</text>
-<text x="988.0" y="2090.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI, display, storage and audio owner</text>
-<text x="960.0" y="2126.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">123  ESP32-C5-WROOM-1U-N8R8</text>
-<text x="988.0" y="2140.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">native 2.4/5-GHz and IR owner</text>
-<text x="1425.0" y="126.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">124  E01-ML01IPX</text>
-<text x="1453.0" y="140.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">complete full-function nRF24 radio #0 on the front radio/UI</text>
-<text x="1453.0" y="151.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">domain</text>
+<text x="960.0" y="2076.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">122  U.FL-R-SMT-1(10)</text>
+<text x="988.0" y="2090.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #1 module-to-board microcoax termination</text>
+<text x="960.0" y="2126.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">123  ESP32-S3-WROOM-1U-N16R8</text>
+<text x="988.0" y="2140.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI, display, storage and audio owner</text>
+<text x="1425.0" y="126.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">124  ESP32-C5-WROOM-1U-N8R8</text>
+<text x="1453.0" y="140.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">native 2.4/5-GHz and IR owner</text>
 <text x="1425.0" y="176.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">125  E01-ML01IPX</text>
-<text x="1453.0" y="190.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">complete full-function nRF24 radio #1 on the front radio/UI</text>
+<text x="1453.0" y="190.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">complete full-function nRF24 radio #0 on the front radio/UI</text>
 <text x="1453.0" y="201.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">domain</text>
 <text x="1425.0" y="226.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">126  E01-ML01IPX</text>
-<text x="1453.0" y="240.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">complete full-function nRF24 radio #2 on the front radio/UI</text>
+<text x="1453.0" y="240.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">complete full-function nRF24 radio #1 on the front radio/UI</text>
 <text x="1453.0" y="251.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">domain</text>
-<text x="1425.0" y="276.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">127  TCA6424ARGJR</text>
-<text x="1453.0" y="290.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">24-line slow-control expander</text>
-<text x="1425.0" y="326.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">128  TCA9539PWR</text>
-<text x="1453.0" y="340.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">sixteen-line direct-control input expander</text>
-<text x="1425.0" y="376.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">129  74LVC126APW,118</text>
-<text x="1453.0" y="390.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #0 full-rate host-command buffer</text>
-<text x="1425.0" y="426.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">130  74LVC2G126DC,125</text>
-<text x="1453.0" y="440.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #0 full-rate return buffer</text>
-<text x="1425.0" y="476.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">131  74LVC126APW,118</text>
-<text x="1453.0" y="490.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #1 full-rate host-command buffer</text>
-<text x="1425.0" y="526.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">132  74LVC2G126DC,125</text>
-<text x="1453.0" y="540.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #1 full-rate return buffer</text>
-<text x="1425.0" y="576.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">133  74LVC126APW,118</text>
-<text x="1453.0" y="590.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #2 full-rate host-command buffer</text>
-<text x="1425.0" y="626.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">134  74LVC2G126DC,125</text>
-<text x="1453.0" y="640.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #2 full-rate return buffer</text>
-<text x="1425.0" y="676.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">135  SN74LVC08APWR</text>
-<text x="1453.0" y="690.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF transmit safety gates</text>
-<text x="1425.0" y="726.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">136  SN74LVC1G08DCKR</text>
-<text x="1453.0" y="740.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local independent FAULT_ASSERT_N nRF rail qualifier</text>
-<text x="1425.0" y="776.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">137  TLV1824PWR</text>
-<text x="1453.0" y="790.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">second accepted quad comparator dedicated to the three</text>
-<text x="1453.0" y="801.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF TX-evidence channels</text>
-<text x="1425.0" y="826.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">138  SC1512-A4</text>
-<text x="1453.0" y="840.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">Hub RP2354B; C5/RF fan-out, storage, audio and broadcast</text>
-<text x="1453.0" y="851.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">control</text>
-<text x="1425.0" y="876.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">139  Vishay TSOP75238TT</text>
-<text x="1453.0" y="890.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">38-kHz IR receiver</text>
-<text x="1425.0" y="926.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">140  SN74LVC1G08DCKR</text>
-<text x="1453.0" y="940.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local FAULT_KILL-qualified IR carrier gate</text>
-<text x="1425.0" y="976.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">141  TDK B57332V5103F360</text>
-<text x="1453.0" y="990.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI/display hotspot safety sensor</text>
-<text x="1425.0" y="1026.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#9a3412">142  PHYSICAL RESERVE</text>
-<text x="1453.0" y="1040.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">decoder 1.8-V LDO, switched receiver rail and local</text>
-<text x="1453.0" y="1051.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">capacitors</text>
-<text x="1425.0" y="1076.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">143  Vishay TSMP95000TT</text>
-<text x="1453.0" y="1090.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">carrier-learning IR receiver</text>
-<text x="1425.0" y="1126.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">144  TLV1824PWR</text>
-<text x="1453.0" y="1140.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local S3/C5/IR TX evidence comparator</text>
-<text x="1425.0" y="1176.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">145  Diodes Incorporated 2N7002DW-7-F</text>
-<text x="1453.0" y="1190.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local S3/C5 passive-drain reset sinks</text>
-<text x="1425.0" y="1226.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">146  Texas Instruments SN74LVC1G06DCKR</text>
-<text x="1453.0" y="1240.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local RUN_PERMIT C5 reset inverter</text>
-<text x="1425.0" y="1276.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">147  SN74LVC1G07DCKR</text>
-<text x="1453.0" y="1290.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local direct FAULT_ASSERT_N C5 reset sink</text>
-<text x="1425.0" y="1326.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">148  TVP5150AM1PBS</text>
-<text x="1453.0" y="1340.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local CVBS to 8-bit BT.656 decoder; only one 75-ohm CVBS</text>
-<text x="1453.0" y="1351.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">signal crosses M1</text>
-<text x="1425.0" y="1376.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">149  Vishay VSMY14940</text>
-<text x="1453.0" y="1390.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">940-nm IR transmitter</text>
-<text x="1425.0" y="1426.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">150  Hirose DF40C(2.0)-40DS-0.4V(58)</text>
-<text x="1453.0" y="1440.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">40-contact fixed receptacle for the replaceable display</text>
-<text x="1453.0" y="1451.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">adapter</text>
+<text x="1425.0" y="276.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">127  E01-ML01IPX</text>
+<text x="1453.0" y="290.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">complete full-function nRF24 radio #2 on the front radio/UI</text>
+<text x="1453.0" y="301.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">domain</text>
+<text x="1425.0" y="326.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">128  TCA6424ARGJR</text>
+<text x="1453.0" y="340.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">24-line slow-control expander</text>
+<text x="1425.0" y="376.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">129  TCA9539PWR</text>
+<text x="1453.0" y="390.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">sixteen-line direct-control input expander</text>
+<text x="1425.0" y="426.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">130  74LVC126APW,118</text>
+<text x="1453.0" y="440.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #0 full-rate host-command buffer</text>
+<text x="1425.0" y="476.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">131  74LVC2G126DC,125</text>
+<text x="1453.0" y="490.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #0 full-rate return buffer</text>
+<text x="1425.0" y="526.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">132  74LVC126APW,118</text>
+<text x="1453.0" y="540.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #1 full-rate host-command buffer</text>
+<text x="1425.0" y="576.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">133  74LVC2G126DC,125</text>
+<text x="1453.0" y="590.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #1 full-rate return buffer</text>
+<text x="1425.0" y="626.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">134  74LVC126APW,118</text>
+<text x="1453.0" y="640.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #2 full-rate host-command buffer</text>
+<text x="1425.0" y="676.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">135  74LVC2G126DC,125</text>
+<text x="1453.0" y="690.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #2 full-rate return buffer</text>
+<text x="1425.0" y="726.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">136  SN74LVC08APWR</text>
+<text x="1453.0" y="740.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF transmit safety gates</text>
+<text x="1425.0" y="776.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">137  SN74LVC1G08DCKR</text>
+<text x="1453.0" y="790.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local independent FAULT_ASSERT_N nRF rail qualifier</text>
+<text x="1425.0" y="826.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">138  TLV1824PWR</text>
+<text x="1453.0" y="840.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">second accepted quad comparator dedicated to the three</text>
+<text x="1453.0" y="851.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF TX-evidence channels</text>
+<text x="1425.0" y="876.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">139  SC1512-A4</text>
+<text x="1453.0" y="890.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">Hub RP2354B; C5/RF fan-out, storage, audio and broadcast</text>
+<text x="1453.0" y="901.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">control</text>
+<text x="1425.0" y="926.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">140  Vishay TSOP75238TT</text>
+<text x="1453.0" y="940.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">38-kHz IR receiver</text>
+<text x="1425.0" y="976.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">141  SN74LVC1G08DCKR</text>
+<text x="1453.0" y="990.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local FAULT_KILL-qualified IR carrier gate</text>
+<text x="1425.0" y="1026.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">142  TDK B57332V5103F360</text>
+<text x="1453.0" y="1040.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI/display hotspot safety sensor</text>
+<text x="1425.0" y="1076.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#9a3412">143  PHYSICAL RESERVE</text>
+<text x="1453.0" y="1090.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">decoder 1.8-V LDO, switched receiver rail and local</text>
+<text x="1453.0" y="1101.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">capacitors</text>
+<text x="1425.0" y="1126.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">144  Vishay TSMP95000TT</text>
+<text x="1453.0" y="1140.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">carrier-learning IR receiver</text>
+<text x="1425.0" y="1176.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">145  TLV1824PWR</text>
+<text x="1453.0" y="1190.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local S3/C5/IR TX evidence comparator</text>
+<text x="1425.0" y="1226.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">146  Diodes Incorporated 2N7002DW-7-F</text>
+<text x="1453.0" y="1240.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local S3/C5 passive-drain reset sinks</text>
+<text x="1425.0" y="1276.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">147  Texas Instruments SN74LVC1G06DCKR</text>
+<text x="1453.0" y="1290.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local RUN_PERMIT C5 reset inverter</text>
+<text x="1425.0" y="1326.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">148  SN74LVC1G07DCKR</text>
+<text x="1453.0" y="1340.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local direct FAULT_ASSERT_N C5 reset sink</text>
+<text x="1425.0" y="1376.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">149  TVP5150AM1PBS</text>
+<text x="1453.0" y="1390.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local CVBS to 8-bit BT.656 decoder; only one 75-ohm CVBS</text>
+<text x="1453.0" y="1401.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">signal crosses M1</text>
+<text x="1425.0" y="1426.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">150  Vishay VSMY14940</text>
+<text x="1453.0" y="1440.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">940-nm IR transmitter</text>
 <text x="1425.0" y="1476.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">151  Samtec FTSH-105-01-L-DV-K-P-TR</text>
 <text x="1453.0" y="1490.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">keyed S3 UART0/RESET/BOOT header</text>
 <text x="1425.0" y="1526.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">152  FTSH-105-01-L-DV-K-P-TR</text>

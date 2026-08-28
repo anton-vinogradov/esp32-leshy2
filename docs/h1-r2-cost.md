@@ -1,4 +1,4 @@
-# H1-R2.21 · component cost ranking
+# H1-R2.22 · component cost ranking
 
 [Русский](h1-r2-cost.ru.md) · [English](h1-r2-cost.md) · [Current placement](h1-r2-physical-layout.md)
 
@@ -63,10 +63,23 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 | `N3` | 2.4 GHz nRF24 | `TX2400-JW-5` | 1 | — |
 | `LOOP` | passive receive-only direct-plug ferrite pod | `L2-ANT-AM-LW-001` | 1 | — |
 
+## Verified stocked candidates
+
+| Scope | Current | Candidate | JLCPCB | Stock | Status |
+|---|---|---|---|---:|---|
+| dual Ioff return buffers | `Nexperia 74LVC2G126DC,125` | `Nexperia 74LVC2G126DP,125` | `C503392` | 155 | `qualified_stocked_candidate_for_next_atomic_replacement` |
+| sixteen ordinary user controls | `OMRON B3S-1100P` | `OMRON B3S-1000P` | `C180420` | 3254 | `not_accepted_missing_ground_terminal` |
+| ten outward antenna connectors | `GCT RFPC-SMA31-FN-175-A / RFPC-SMA32-FN-175-A` | `HenryTech HL2-SMA-KEP-13.5 / HL2-RP-SMA-KEP-13.5` | `C53278703 / C53278707` | 67 standard / 133 reverse | `leading_stocked_pair_pending_controlled_drawing` |
+
+- **`Nexperia 74LVC2G126DP,125`:** The DP and DC order codes are package variants of the same current Nexperia 74LVC2G126 family and preserve the exact logic, pin order, Schmitt inputs, Ioff contract and 3.0-to-3.6-V timing limits. TSSOP is larger than VSSOP and therefore still requires a placement rerun before replacement. [JLCPCB](https://jlcpcb.com/partdetail/Nexperia-74LVC2G126DP125/C503392)
+- **`OMRON B3S-1000P`:** The stocked member preserves the 6.6 x 6.0 x 4.3-mm body, 1.57-N feel, 500k endurance and IP67 family boundary, but removes the fifth cover-ground terminal. That can weaken the user-exposed ESD path, so the current B3S-1100P remains selected until an equivalent grounded stocked part is proven. [JLCPCB](https://jlcpcb.com/partdetail/OmronElectronics-B3S1000P/C180420)
+- **`HenryTech HL2-SMA-KEP-13.5 / HL2-RP-SMA-KEP-13.5`:** The JLCPCB cards prove a 6-GHz, 50-ohm standard/reverse pair, individual board-retention legs, factory SMT route, no nut and enough live stock for five devices. The cards do not expose a manufacturer-controlled drawing for both bodies, so footprint, pin projection, board-thickness capture and mating torque are not yet safe to freeze. [JLCPCB](https://jlcpcb.com/partdetail/HenryTech-HL2_SMA_KEP_135/C53278703)
+**Accepted rule:** remove avoidable small-lot pre-order first, but replace an MPN only with an exact or no-worse stocked part. RF, power-safety, battery-protection and user-exposed ESD boundaries are not simplified for cost. When no proven equivalent exists, the original MPN and explicit pre-order route remain.
+
 ## Cost-reduction queue
 
 1. ✅ **Replace safe equivalent pre-order passives and ordinary logic with in-stock JLCPCB parts** — The normalized five-device evidence charges USD 842.9365 for 42 pre-order rows versus USD 362.2315 for the same rows on their quantity-100 material basis; the observed small-lot premium is USD 480.705 before full quotation. Review every pre-order row against its substitution class; only exact or no-worse parametric replacements may be accepted.
-2. ✅ **Replace the ten GCT bulkhead-style SMA/RP-SMA bodies with factory-placeable edge connectors and a shared protective frame** — The current ten GCT bodies contribute USD 24.6456 per device at the quantity-100 source tier and have no demonstrated current JLCPCB route; their individual nuts do not transfer load without a real enclosure wall. Search an exact standard/reverse pair with mechanical board tabs, 1.6-mm PCB fit and at least 6-GHz rating for native paths.
+2. ✅ **Replace the ten GCT bulkhead-style SMA/RP-SMA bodies with individually retained factory-placeable board connectors** — The current ten GCT bodies contribute USD 24.6456 per device at the quantity-100 source tier and have no demonstrated current JLCPCB route. A stocked HenryTech standard/reverse pair already removes the nut, sealing hardware and shared-frame idea, but its controlled mechanical drawing remains missing. Qualify an exact standard/reverse pair with individual board-retention legs, a controlled 1.6-mm PCB drawing and at least 6-GHz rating for native paths; do not introduce a shared antenna frame.
 3. ⚠️ **Re-evaluate eight RF power detectors without weakening real-TX evidence** — Six AD8314 plus two LTC5532 contribute USD 24.9174 per device at quantity 100; the live five-device requirement is USD 276.70 and both families require pre-order for the complete quantity. Compare factory-stocked detectors and calibrated diode cells per band. Keep independent evidence for the three concurrently active nRF24 paths.
 4. ✅ **Find one serial in-stock tact-switch family for all sixteen ordinary controls** — B3S-1100P contributes USD 10.248 per device at quantity 100 and USD 74.58 for 80 pieces in the five-device pre-order route. Preserve footprint/enclosure reach, force, height, endurance and recessed actuation.
 5. ⚠️ **Reduce five U.FL receptacle plus 30-mm jumper paths by source-to-port placement** — Five board U.FL plus five TE jumpers contribute USD 14.433 per device at quantity 100, before assembly handling. Remove a cable only where a short controlled-impedance direct path preserves module keep-outs, repairability and coexistence.
@@ -78,7 +91,7 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 
 - The official complete-donor rear view does show a folded FPC and rear ZIF, but it does not disclose the standalone raw `HMX035CTFT-001` outline, length or contact side.
 - The correct rule is to physically orient the panel **with its flex toward the antenna edge**, then rotate display memory and touch coordinates in firmware. The tail then stays out of the LED, D-pad and function-key zone.
-- The upper adapter PCB position `[24.75, 1.0]` already passes the current exact-body model: `0` same-face collisions and `5.1 mm` minimum opposing clearance versus `0.7 mm` required, with no GPIO or BOM change.
-- This is a preferred orientation rather than a frozen production fact until the received flex passes H5 bend/retention. The lower position remains the proven fallback until then.
+- The accepted upper adapter PCB position `[24.75, 1.0]` passes the current exact-body model: `0` same-face collisions and `5.1 mm` minimum opposing clearance versus `0.7 mm` required, with no GPIO or BOM change.
+- H1 now fixes this orientation; H5 qualifies the received flex, bend and retention on the replaceable adapter. A mismatch cannot silently return the tail to the control zone.
 
-> Marker: **H1-R2.21**. H1 remains open pending the complete mock-up decision.
+> Marker: **H1-R2.22**. H1 remains open pending the complete mock-up decision.

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.21",
+  "marker": "H1-R2.22",
   "checked_on": "2026-08-28",
   "status": "pass_review_with_open_cost_actions",
   "summary": {
@@ -3911,16 +3911,16 @@
   "display_orientation_review": {
     "official_complete_donor_rear_view": "https://media-cdn.elecrow.com/media/webp_image/wysiwyg/products/2026/DLE06235B/hardware_overview_of_3.5inch_ESP32_IPS_Touchscreen.webp",
     "observed": "The official complete-donor rear view proves a folded display flex and rear ZIF path, but does not disclose the standalone HMX035CTFT-001 tail outline, exit edge, free length, stiffener or production-lot invariance.",
-    "preferred_rule": "Physically orient the received panel so its flex points toward the antenna edge, then rotate display memory and touch coordinates in firmware. Do not allow the tail to enter the LED, D-pad or function-button zone.",
-    "current_lower_adapter_board_xy_mm": [
+    "accepted_rule": "Physically orient the received panel so its flex points toward the antenna edge, then rotate display memory and touch coordinates in firmware. Do not allow the tail to enter the LED, D-pad or function-button zone.",
+    "previous_lower_adapter_board_xy_mm": [
       24.75,
       90.5
     ],
-    "candidate_upper_adapter_board_xy_mm": [
+    "current_upper_adapter_board_xy_mm": [
       24.75,
       1.0
     ],
-    "candidate_upper_main_connector_xy_mm": [
+    "current_upper_main_connector_xy_mm": [
       32.2,
       6.5
     ],
@@ -3932,8 +3932,84 @@
       "bom_change_usd": 0.0,
       "firmware_change": "ST77922 orientation plus touch-coordinate transform only"
     },
-    "remaining_gate": "Received HMX035CTFT-001 tail length, bend radius, contact side and retention must prove the upper adapter path before it replaces the lower working position."
+    "remaining_gate": "Received HMX035CTFT-001 tail length, bend radius, contact side and retention must qualify the replaceable upper adapter; the accepted control layout and flex-to-antenna rule do not move silently."
   },
+  "accepted_cost_reduction_policy": {
+    "accepted_on": "2026-08-28",
+    "primary_target": "Eliminate avoidable small-lot pre-order penalties before reducing already-stocked material cost.",
+    "stocked_replacement_rule": "Prefer a currently stocked JLCPCB part only when the electrical, RF, safety, lifecycle and mechanical contract is exact or no worse. If no such part exists, keep the selected MPN and its explicit pre-order route.",
+    "function_sensitive_rule": "RF detectors, RF filters/couplers, power safety, battery protection and user-exposed ESD boundaries never change for price alone.",
+    "antenna_mechanics_rule": "Use individually board-retained DIV-like SMA/RP-SMA bodies without nuts, sealing hardware or a shared protective frame when an exact standard/reverse pair and controlled drawing are available. The PCB tabs and soldered shield legs carry each connector independently."
+  },
+  "current_stocked_candidate_checks": [
+    {
+      "scope": "dual Ioff return buffers",
+      "current_mpn": "Nexperia 74LVC2G126DC,125",
+      "candidate_mpn": "Nexperia 74LVC2G126DP,125",
+      "jlcpcb_part": "C503392",
+      "manufacturer": "Nexperia",
+      "assembly_type": "Extended SMT; Economic and Standard PCBA",
+      "stock": 155,
+      "moq": 1,
+      "trial_required_quantity": 25,
+      "price_tiers_usd": {
+        "1": 0.5961,
+        "10": 0.4857,
+        "30": 0.4305,
+        "100": 0.3753
+      },
+      "status": "qualified_stocked_candidate_for_next_atomic_replacement",
+      "why": "The DP and DC order codes are package variants of the same current Nexperia 74LVC2G126 family and preserve the exact logic, pin order, Schmitt inputs, Ioff contract and 3.0-to-3.6-V timing limits. TSSOP is larger than VSSOP and therefore still requires a placement rerun before replacement.",
+      "why_ru": "Коды DP и DC — корпусные варианты одного семейства Nexperia 74LVC2G126: логика, порядок выводов, Schmitt-входы, Ioff и тайминги при 3,0–3,6 В совпадают. TSSOP крупнее VSSOP, поэтому до замены всё равно нужен повторный прогон компоновки.",
+      "source": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G126DP125/C503392",
+      "manufacturer_source": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
+      "checked_on": "2026-08-28"
+    },
+    {
+      "scope": "sixteen ordinary user controls",
+      "current_mpn": "OMRON B3S-1100P",
+      "candidate_mpn": "OMRON B3S-1000P",
+      "jlcpcb_part": "C180420",
+      "manufacturer": "Omron Electronics",
+      "assembly_type": "Extended SMT; Economic and Standard PCBA",
+      "stock": 3254,
+      "moq": 1,
+      "trial_required_quantity": 80,
+      "price_tiers_usd": {
+        "1": 0.3509,
+        "1000": 0.2356
+      },
+      "status": "not_accepted_missing_ground_terminal",
+      "why": "The stocked member preserves the 6.6 x 6.0 x 4.3-mm body, 1.57-N feel, 500k endurance and IP67 family boundary, but removes the fifth cover-ground terminal. That can weaken the user-exposed ESD path, so the current B3S-1100P remains selected until an equivalent grounded stocked part is proven.",
+      "why_ru": "Складской вариант сохраняет корпус 6,6 × 6,0 × 4,3 мм, усилие 1,57 Н, ресурс 500 тысяч нажатий и IP67, но лишён пятого вывода заземления крышки. Это может ухудшить ESD-защиту доступной пользователю клавиши, поэтому B3S-1100P остаётся выбранной до доказательства равноценной складской замены.",
+      "source": "https://jlcpcb.com/partdetail/OmronElectronics-B3S1000P/C180420",
+      "manufacturer_source": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+      "checked_on": "2026-08-28"
+    },
+    {
+      "scope": "ten outward antenna connectors",
+      "current_mpn": "GCT RFPC-SMA31-FN-175-A / RFPC-SMA32-FN-175-A",
+      "candidate_mpn": "HenryTech HL2-SMA-KEP-13.5 / HL2-RP-SMA-KEP-13.5",
+      "jlcpcb_part": "C53278703 / C53278707",
+      "manufacturer": "HenryTech",
+      "assembly_type": "Extended SMT; Economic and Standard PCBA",
+      "stock": "67 standard / 133 reverse",
+      "moq": 1,
+      "trial_required_quantity": "40 standard / 10 reverse",
+      "price_tiers_usd": {
+        "standard_1": 1.0022,
+        "standard_30": 0.731,
+        "reverse_1": 1.3368,
+        "reverse_10": 1.1029
+      },
+      "status": "leading_stocked_pair_pending_controlled_drawing",
+      "why": "The JLCPCB cards prove a 6-GHz, 50-ohm standard/reverse pair, individual board-retention legs, factory SMT route, no nut and enough live stock for five devices. The cards do not expose a manufacturer-controlled drawing for both bodies, so footprint, pin projection, board-thickness capture and mating torque are not yet safe to freeze.",
+      "why_ru": "Карточки JLCPCB подтверждают standard/reverse-пару 50 Ом до 6 ГГц, собственные силовые лапки каждого корпуса, фабричный SMT-маршрут, отсутствие гайки и достаточный остаток для пяти устройств. Но контролируемого производителем чертежа обоих корпусов нет, поэтому посадку, выступ центрального контакта, захват платы по толщине и допустимый момент пока нельзя фиксировать.",
+      "source": "https://jlcpcb.com/partdetail/HenryTech-HL2_SMA_KEP_135/C53278703",
+      "reverse_source": "https://jlcpcb.com/partdetail/HenryTech-HL2_RP_SMA_KEP_135/C53278707",
+      "checked_on": "2026-08-28"
+    }
+  ],
   "optimization_lanes": [
     {
       "priority": 1,
@@ -3946,10 +4022,10 @@
     {
       "priority": 2,
       "id": "main-rf-mechanics",
-      "title": "Replace the ten GCT bulkhead-style SMA/RP-SMA bodies with factory-placeable edge connectors and a shared protective frame",
+      "title": "Replace the ten GCT bulkhead-style SMA/RP-SMA bodies with individually retained factory-placeable board connectors",
       "production_function_change": false,
-      "evidence": "The current ten GCT bodies contribute USD 24.6456 per device at the quantity-100 source tier and have no demonstrated current JLCPCB route; their individual nuts do not transfer load without a real enclosure wall.",
-      "action": "Search an exact standard/reverse pair with mechanical board tabs, 1.6-mm PCB fit and at least 6-GHz rating for native paths."
+      "evidence": "The current ten GCT bodies contribute USD 24.6456 per device at the quantity-100 source tier and have no demonstrated current JLCPCB route. A stocked HenryTech standard/reverse pair already removes the nut, sealing hardware and shared-frame idea, but its controlled mechanical drawing remains missing.",
+      "action": "Qualify an exact standard/reverse pair with individual board-retention legs, a controlled 1.6-mm PCB drawing and at least 6-GHz rating for native paths; do not introduce a shared antenna frame."
     },
     {
       "priority": 3,

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "model_id": "L2-ASM-COORD-001-A",
-  "stage": "H1-R2.21",
+  "stage": "H1-R2.22",
   "status": "in_progress",
   "units": "mm",
   "world": {
@@ -66,7 +66,7 @@
   "accessory_envelopes": {
     "u214": {"x_mm": [-4.5, 79.5], "y_mm": [17.0, 41.0], "z_mm": [17.4, 32.687]},
     "battery_holder": {"body_x_mm": [17.6, 57.38], "body_y_mm": [46.47, 123.53], "pad_span_y_mm": [42.0, 128.0], "z_mm": [17.4, 38.1], "mounting": "SMT with enclosure cradle/end-stop load path"},
-    "display_adapter_bay": {"x_mm": [24.75, 50.25], "y_mm": [90.5, 102.5], "z_mm": [4.8, 8.6]}
+    "display_adapter_bay": {"x_mm": [24.75, 50.25], "y_mm": [1.0, 13.0], "z_mm": [4.8, 8.6]}
   },
   "enclosure_reference": {
     "locked": "world datum, PCB outlines, mounting axes, touch plane, external interface directions and component/accessory keep-outs",

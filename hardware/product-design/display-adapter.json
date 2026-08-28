@@ -8,7 +8,7 @@
     "width_mm": 25.5,
     "height_mm": 12.0,
     "thickness_mm": 0.8,
-    "ui_inner_position_mm": [24.75, 90.5],
+    "ui_inner_position_mm": [24.75, 1.0],
     "datum": "top-left in the UI-inner placement frame"
   },
   "components": [
@@ -16,7 +16,7 @@
       "instance": "display_connector",
       "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
       "mount": "UI PCB",
-      "ui_inner_position_mm": [32.2, 96.0],
+      "ui_inner_position_mm": [32.2, 6.5],
       "envelope_mm": [10.6, 3.38, 1.95],
       "role": "fixed 40-contact main-board receptacle"
     },
@@ -51,7 +51,14 @@
     "main_interface_pitch_mm": 0.4,
     "panel_interface_pitch_mm": 0.5,
     "added_active_devices": 0,
-    "signal_contract": "all display power, ground, QSPI, I2C, reset, backlight and strap contacts are preserved one-to-one"
+    "signal_contract": "all display power, ground, i8080/QSPI recovery, I2C, reset, backlight and strap contacts are preserved one-to-one"
+  },
+  "orientation": {
+    "accepted_on": "2026-08-28",
+    "panel_rule": "mount the panel with its flex toward the antenna edge, as on ESP32-DIV, so the tail never enters the LED, D-pad or function-key zone",
+    "display_memory_transform": "rotate the ST77922 output by 180 degrees relative to the previous physical orientation",
+    "touch_transform": "rotate both touch coordinates by 180 degrees before UI hit-testing",
+    "received_tail_gate": "H5 verifies exact HMX035CTFT-001 tail length, contact side, stiffener, bend radius and retention; a mismatch revises the replaceable adapter, not the accepted control layout"
   },
   "paper_checks": {
     "board_within_ui_outline": true,
@@ -79,5 +86,5 @@
       "finding": "DF40C-40DP-0.4V(51) is the exact 40-position mating plug."
     }
   ],
-  "release_boundary": "H1 freezes the main-board bay, exact DF40 mate and one-to-one electrical map. H5 incoming inspection measures the current HMX035CTFT-001 tail outline, thickness, stiffener and bend path; a mismatch may revise only this adapter PCB and its panel-side connector, not the UI PCB or enclosure datum."
+  "release_boundary": "H1 freezes the antenna-edge adapter bay, flex-to-antenna panel orientation, exact DF40 mate and one-to-one electrical map. H5 incoming inspection measures the current HMX035CTFT-001 tail outline, thickness, stiffener and bend path; a mismatch may revise only this adapter PCB and its panel-side connector, not the control layout or accepted panel orientation unless the received part proves that orientation physically impossible."
 }

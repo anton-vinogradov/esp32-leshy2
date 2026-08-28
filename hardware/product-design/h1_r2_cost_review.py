@@ -48,9 +48,9 @@ LANES_RU = {
         "Проверять каждую строку по её substitution-классу; принимать только точную либо не худшую параметрическую замену.",
     ),
     "main-rf-mechanics": (
-        "Заменить десять GCT SMA/RP-SMA на устанавливаемую фабрикой торцевую пару и общую защитную рамку",
-        "Десять текущих GCT дают $24,65 на устройство и пока не имеют доказанного маршрута JLCPCB; отдельная гайка не разгружает пайку без силовой стенки корпуса.",
-        "Искать согласованную standard/reverse пару с механическими лапками, платой 1,6 мм и рейтингом не ниже 6 ГГц для native-трактов.",
+        "Заменить десять GCT SMA/RP-SMA на индивидуально удерживаемую фабричную пару без общей рамки",
+        "Десять текущих GCT дают $24,65 на устройство и пока не имеют доказанного маршрута JLCPCB. Складская пара HenryTech уже убирает гайки, герметизацию и идею общей рамки, но для неё пока нет контролируемого механического чертежа.",
+        "Квалифицировать standard/reverse пару с собственными силовыми лапками, чертежом под плату 1,6 мм и рейтингом не ниже 6 ГГц; общую антенную рамку не вводить.",
     ),
     "rf-evidence-detectors": (
         "Пересмотреть восемь RF-детекторов, не ослабляя доказательство реальной передачи",
@@ -291,6 +291,8 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         "post_pcba_required": model["post_pcba_required"],
         "antenna_rows": antenna_rows,
         "display_orientation_review": display,
+        "accepted_cost_reduction_policy": model["accepted_cost_reduction_policy"],
+        "current_stocked_candidate_checks": model["current_stocked_candidate_checks"],
         "optimization_lanes": model["optimization_lanes"],
         "errors": errors,
     }
@@ -333,6 +335,7 @@ def render_doc(result: dict, ru: bool) -> str:
         table_h = '## Самые дорогие строки готового устройства'
         trial_h = '## Где малая партия переплачивает'
         antenna_h = '## Внешний антенный комплект'
+        candidates_h = '## Проверенные складские кандидаты'
         improve_h = '## Очередь удешевления'
         display_h = '## Ориентация экрана и шлейфа'
         role_h = 'Роль'
@@ -354,6 +357,7 @@ def render_doc(result: dict, ru: bool) -> str:
         table_h = '## Highest-cost finished-device lines'
         trial_h = '## Where the small batch overpays'
         antenna_h = '## External antenna kit'
+        candidates_h = '## Verified stocked candidates'
         improve_h = '## Cost-reduction queue'
         display_h = '## Display and flex orientation'
         role_h = 'Role'
@@ -431,6 +435,32 @@ def render_doc(result: dict, ru: bool) -> str:
     lines += ['', antenna_h, '', '| Code | Profile | MPN | Qty | Known line |', '|---|---|---|---:|---:|']
     for row in result["antenna_rows"]:
         lines.append(f'| `{row["code"]}` | {row["profile"]} | `{row["mpn"]}` | {row["quantity"]} | {money(row["known_line_usd"])} |')
+    lines += ['', candidates_h, '']
+    lines += [
+        '| Scope | Current | Candidate | JLCPCB | Stock | Status |',
+        '|---|---|---|---|---:|---|',
+    ]
+    for candidate in result["current_stocked_candidate_checks"]:
+        lines.append(
+            f'| {candidate["scope"]} | `{candidate["current_mpn"]}` | '
+            f'`{candidate["candidate_mpn"]}` | `{candidate["jlcpcb_part"]}` | '
+            f'{candidate["stock"]} | `{candidate["status"]}` |'
+        )
+    lines.append('')
+    for candidate in result["current_stocked_candidate_checks"]:
+        explanation = candidate.get("why_ru", candidate["why"]) if ru else candidate["why"]
+        lines.append(
+            f'- **`{candidate["candidate_mpn"]}`:** {explanation} '
+            f'[JLCPCB]({candidate["source"]})'
+        )
+    if ru:
+        lines += [
+            '**Принятое правило:** сначала устранять pre-order на малой партии, но менять MPN только на точный или не худший складской вариант. RF, power-safety, battery-protection и пользовательские ESD-границы не упрощаются ради цены. Если доказанного аналога нет, остаётся исходный MPN и явный pre-order.',
+        ]
+    else:
+        lines += [
+            '**Accepted rule:** remove avoidable small-lot pre-order first, but replace an MPN only with an exact or no-worse stocked part. RF, power-safety, battery-protection and user-exposed ESD boundaries are not simplified for cost. When no proven equivalent exists, the original MPN and explicit pre-order route remain.',
+        ]
     lines += ['', improve_h, '']
     for lane in result["optimization_lanes"]:
         marker = '⚠️' if lane["production_function_change"] else '✅'
@@ -445,15 +475,15 @@ def render_doc(result: dict, ru: bool) -> str:
         lines += [
             '- Официальный rear-view полного донора действительно показывает сложенный FPC и задний ZIF, но не раскрывает отдельный контур, длину и сторону контактов raw `HMX035CTFT-001`.',
             '- Правильное правило — физически ориентировать экран **шлейфом к антенному торцу**, а изображение и touch развернуть программно. Тогда шлейф не входит в зону LED, D-pad и функциональных клавиш.',
-            f'- Верхняя позиция adapter PCB `{display["candidate_upper_adapter_board_xy_mm"]}` уже прогнана по текущим точным корпусам: `0` same-face collisions, минимальный встречный зазор `{display["paper_fit"]["minimum_opposing_clearance_mm"]:.1f} мм` при требуемых `{display["paper_fit"]["required_minimum_mm"]:.1f} мм`, GPIO и BOM не меняются.',
-            '- Пока это предпочтительная ориентация, а не замороженный production-факт: реальный шлейф должен дотянуться и пройти bend/retention H5. Нижняя позиция остаётся доказанным резервом до этой проверки.',
+            f'- Принятая верхняя позиция adapter PCB `{display["current_upper_adapter_board_xy_mm"]}` прогнана по текущим точным корпусам: `0` same-face collisions, минимальный встречный зазор `{display["paper_fit"]["minimum_opposing_clearance_mm"]:.1f} мм` при требуемых `{display["paper_fit"]["required_minimum_mm"]:.1f} мм`, GPIO и BOM не меняются.',
+            '- Ориентация зафиксирована в H1; H5 проверяет реальный шлейф, bend и retention сменного адаптера. Несовпадение не возвращает шлейф в зону органов управления молча.',
         ]
     else:
         lines += [
             '- The official complete-donor rear view does show a folded FPC and rear ZIF, but it does not disclose the standalone raw `HMX035CTFT-001` outline, length or contact side.',
             '- The correct rule is to physically orient the panel **with its flex toward the antenna edge**, then rotate display memory and touch coordinates in firmware. The tail then stays out of the LED, D-pad and function-key zone.',
-            f'- The upper adapter PCB position `{display["candidate_upper_adapter_board_xy_mm"]}` already passes the current exact-body model: `0` same-face collisions and `{display["paper_fit"]["minimum_opposing_clearance_mm"]:.1f} mm` minimum opposing clearance versus `{display["paper_fit"]["required_minimum_mm"]:.1f} mm` required, with no GPIO or BOM change.',
-            '- This is a preferred orientation rather than a frozen production fact until the received flex passes H5 bend/retention. The lower position remains the proven fallback until then.',
+            f'- The accepted upper adapter PCB position `{display["current_upper_adapter_board_xy_mm"]}` passes the current exact-body model: `0` same-face collisions and `{display["paper_fit"]["minimum_opposing_clearance_mm"]:.1f} mm` minimum opposing clearance versus `{display["paper_fit"]["required_minimum_mm"]:.1f} mm` required, with no GPIO or BOM change.',
+            '- H1 now fixes this orientation; H5 qualifies the received flex, bend and retention on the replaceable adapter. A mismatch cannot silently return the tail to the control zone.',
         ]
     lines += ['', f'> Marker: **{result["marker"]}**. H1 remains open pending the complete mock-up decision.']
     return '\n'.join(lines) + '\n'

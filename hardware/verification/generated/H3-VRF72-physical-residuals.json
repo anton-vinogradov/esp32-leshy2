@@ -4,13 +4,13 @@
   "status": "reviewed_complete_physical_only_residual_register",
   "method": "flatten the physical-only output of every H3 phase consolidation, remove only H3-internal dependencies already closed, preserve exact provenance and assign an evidence owner plus pass rule",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "b839d4c170563dd43b71e8da73ecd48d8fccabdfbcaf25a65122713e133b223e",
-    "hardware/verification/generated/H3-VRF25-transition-consolidation.json": "7af00fb927892548b7e0c1dd131953ceb64ff526043db15f38366072467dfca7",
-    "hardware/verification/generated/H3-VRF35-analog-consolidation.json": "9cbdcfa75b13f1f762ec9f695d5fc8aca94ef1a5977bf720d8a450f11012a920",
-    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "7a7713bf8cf8ca79895b579ab5dc50267914860e92176b53a526b849bb7a72d9",
-    "hardware/verification/generated/H3-VRF54-rf-consolidation.json": "10a1fcb69092bea6f75697ed7fc755dae189e78a6ea7eb6b64a6498855b8e4ce",
-    "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json": "35ec81e490af404a85cc31904ff52f38602a5cf326cbe57bac921b37725b52c6",
-    "hardware/verification/generated/H3-VRF71-crosscheck.json": "5dae1d59726dc86055c05c5df6d4375559a83f9b1f7f78cc4aea5d5be9ef25c9"
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "6d8d81718d8934d1203f6315f1adaed47c1d695c46c8539e803642af39137033",
+    "hardware/verification/generated/H3-VRF25-transition-consolidation.json": "9b7541b6170e53067d5221e1bbbb481294145b1f361a78ca8fc91cd5e237e00f",
+    "hardware/verification/generated/H3-VRF35-analog-consolidation.json": "ff648489c94ec14358a8d617c545931c62f3f0f2efe380d3ced527dfa134f3ac",
+    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "9e996a26055ee5d3b426db574589a7745fd6eb32704299c41f0ad4726c805d0e",
+    "hardware/verification/generated/H3-VRF54-rf-consolidation.json": "f74790ee2265f562cbe4d9868f4079d2a024665eaa462b5dfef35df29ec2028d",
+    "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json": "fdb03844ee3e584fe439c0828b0cbf34676cb2635fc08936bff275cc24555cb1",
+    "hardware/verification/generated/H3-VRF71-crosscheck.json": "20876f02553563638f5af9db3a4dee09c8711b30280a964f18586d715b7ab536"
   },
   "summary": {
     "raw_consolidated_rows": 88,

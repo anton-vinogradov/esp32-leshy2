@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.21",
+  "marker": "H1-R2.22",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "new_fixed_body_count": 48,
@@ -39,8 +39,8 @@
     "safe_gate_a"
   ],
   "same_face_collisions": [],
-  "opposing_overlap_count": 35,
-  "minimum_opposing_clearance_mm": 1.05,
+  "opposing_overlap_count": 36,
+  "minimum_opposing_clearance_mm": 2.59,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
     {
@@ -74,6 +74,11 @@
       "clearance_mm": 2.59
     },
     {
+      "new": "airband_filter_reserve",
+      "base": "display_connector",
+      "clearance_mm": 7.85
+    },
+    {
       "new": "fpv_decoder",
       "base": "safe_conditioner",
       "clearance_mm": 8.7
@@ -97,11 +102,6 @@
       "new": "fpv_power_reserve",
       "base": "safe_reset_buffer",
       "clearance_mm": 8.5
-    },
-    {
-      "new": "fpv_receiver_bay",
-      "base": "display_connector",
-      "clearance_mm": 1.05
     },
     {
       "new": "nrf0_r2",
@@ -202,6 +202,11 @@
       "new": "receiver_r2",
       "base": "s3",
       "clearance_mm": 6.05
+    },
+    {
+      "new": "cc_r2",
+      "base": "display_connector",
+      "clearance_mm": 8.05
     },
     {
       "new": "headset_control_io_r2",
@@ -1198,8 +1203,8 @@
           39.0
         ],
         "y": [
-          9.0,
-          12.1
+          14.0,
+          17.1
         ],
         "z": [
           4.8,

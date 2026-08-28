@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.21",
+  "marker": "H1-R2.22",
   "checked_on": "2026-08-28",
   "purpose": "Close the pre-KiCad physical architecture around direct i8080-8, a fully counted 80-contact M1, mechanically unloaded board retention, direct 5+5 antenna locality, local nRF concurrency and an adaptable post-PCBA analog-FPV receiver bay.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -94,7 +94,7 @@
       "structural_role": "none; M1 is electrical/alignment only"
     },
     "transport": "rear audio at 48-kHz full duplex remains below 0.4 MB/s on the 1.5-MB/s qualified RP link; nRF payload is now front-local",
-    "display": "S3 drives HMX035CTFT-001 directly over 8-bit i8080 at a conservative 32 MHz while the independent camera RX/GDMA path captures BT.656; buttons, encoder and USB stay direct to S3; QSPI is prototype recovery only"
+    "display": "S3 drives HMX035CTFT-001 directly over 8-bit i8080 at a conservative 32 MHz while the independent camera RX/GDMA path captures BT.656; the panel flex faces the antenna edge and firmware rotates display memory and touch coordinates by 180 degrees; buttons, encoder and USB stay direct to S3; QSPI is prototype recovery only"
   },
   "mechanical_retention": {
     "m1_rule": "M1 is never a load-bearing member",
@@ -685,7 +685,7 @@
       "frame": "ui-inner",
       "mpn": "U.FL-R-SMT-1(10)",
       "role": "nRF24 #1 module-to-board microcoax termination",
-      "world_xy_mm": [36.0, 9.0],
+      "world_xy_mm": [36.0, 14.0],
       "size_mm": [3.0, 3.1, 2.4],
       "replaces": ["nrf1_rf_board_connector"]
     },

@@ -62,7 +62,7 @@
       "rf_instance": "pack_fuse0",
       "remaining_z_clearance_mm": 3.31
     },
-    "display_adapter_minimum_clearance_mm": 6.0,
+    "display_adapter_minimum_clearance_mm": 5.1,
     "all_external_machine_checks": true,
     "physical_interconnect_result": "paper_keepouts_passed_final_ecad_and_h5_open",
     "five_rf_microcoaxes_accounted": true,

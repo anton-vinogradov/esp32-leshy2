@@ -1112,7 +1112,7 @@
       "instance": "display_connector",
       "device_key": "hirose_df40c_2_0_40ds_0_4v_58",
       "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
-      "role": "40-contact fixed receptacle for the replaceable display adapter",
+      "role": "40-contact fixed receptacle for the antenna-edge replaceable display adapter",
       "frame": "ui-inner",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
@@ -1141,7 +1141,7 @@
       ],
       "position_mm": [
         32.2,
-        96.0
+        6.5
       ]
     },
     {

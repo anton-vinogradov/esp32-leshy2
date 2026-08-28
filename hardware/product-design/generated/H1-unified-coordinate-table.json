@@ -42,7 +42,9 @@
         145.0
       ]
     ],
-    "axis": "parallel to world Z through both PCBs"
+    "axis": "parallel to world Z through both PCBs",
+    "compression_stops": "four exact 11.00-mm nonconductive sleeves/stops define the interboard gap; screw clamp load closes through the stops, never through M1",
+    "one_loose_screw_case": "two enclosure anti-shear datums plus independent PCB capture lips prevent relative board motion when any one screw is loosened by one turn"
   },
   "antenna_planes": {
     "front_bank_mount_face_z": 3.2,
@@ -83,18 +85,23 @@
       ]
     },
     "battery_holder": {
-      "x_mm": [
+      "body_x_mm": [
         17.6,
-        57.4
+        57.38
       ],
-      "y_mm": [
+      "body_y_mm": [
+        46.47,
+        123.53
+      ],
+      "pad_span_y_mm": [
         42.0,
         128.0
       ],
       "z_mm": [
         17.4,
         38.1
-      ]
+      ],
+      "mounting": "SMT with enclosure cradle/end-stop load path"
     },
     "display_adapter_bay": {
       "x_mm": [
@@ -102,8 +109,8 @@
         50.25
       ],
       "y_mm": [
-        90.5,
-        102.5
+        1.0,
+        13.0
       ],
       "z_mm": [
         4.8,
@@ -114,7 +121,8 @@
   "enclosure_reference": {
     "locked": "world datum, PCB outlines, mounting axes, touch plane, external interface directions and component/accessory keep-outs",
     "not_yet_locked": "wall thickness, ribs, seals, bezel, grille, external fillets and manufacturing tolerance stack",
-    "rule": "later enclosure surfaces may grow around the locked component model but may not move an accepted PCB/interface datum silently"
+    "rule": "later enclosure surfaces may grow around the locked component model but may not move an accepted PCB/interface datum silently",
+    "mandatory_load_paths": "front/rear PCB capture lips, two anti-shear datums, four 11.00-mm compression stops and a Keystone 1048P cradle/end-stop pair are required before enclosure release"
   },
   "interboard_fit_audit": {
     "result": "paper_geometry_passed",
@@ -1140,7 +1148,7 @@
         "remaining_to_opposite_pcb_plane_mm": 10.4
       }
     ],
-    "opposing_non_mating_pair_count": 36,
+    "opposing_non_mating_pair_count": 37,
     "minimum_opposing_pair": {
       "ui_instance": "headphone_jack",
       "rf_instance": "pack_fuse0",
@@ -1288,6 +1296,13 @@
         "remaining_z_clearance_mm": 6.9
       },
       {
+        "ui_instance": "display_connector",
+        "rf_instance": "nrf1",
+        "ui_height_mm": 1.95,
+        "rf_height_mm": 2.1,
+        "remaining_z_clearance_mm": 6.95
+      },
+      {
         "ui_instance": "sd",
         "rf_instance": "pd_config_eeprom",
         "ui_height_mm": 1.68,
@@ -1412,32 +1427,17 @@
       ],
       "complete_height_from_ui_inner_mm": 3.8,
       "remaining_to_opposite_pcb_plane_mm": 7.2,
-      "opposing_pair_count": 5,
-      "minimum_opposing_body": "safe_gate_a",
-      "minimum_opposing_z_clearance_mm": 6.0,
+      "opposing_pair_count": 2,
+      "minimum_opposing_body": "nrf1",
+      "minimum_opposing_z_clearance_mm": 5.1,
       "opposing_pairs": [
         {
-          "rf_instance": "safe_gate_a",
-          "rf_height_mm": 1.2,
-          "remaining_z_clearance_mm": 6.0
+          "rf_instance": "nrf1",
+          "rf_height_mm": 2.1,
+          "remaining_z_clearance_mm": 5.1
         },
         {
-          "rf_instance": "safe_gate_b",
-          "rf_height_mm": 1.2,
-          "remaining_z_clearance_mm": 6.0
-        },
-        {
-          "rf_instance": "safe_conditioner",
-          "rf_height_mm": 1.1,
-          "remaining_z_clearance_mm": 6.1
-        },
-        {
-          "rf_instance": "safety_controller",
-          "rf_height_mm": 1.1,
-          "remaining_z_clearance_mm": 6.1
-        },
-        {
-          "rf_instance": "safety_watchdog",
+          "rf_instance": "cc",
           "rf_height_mm": 1.0,
           "remaining_z_clearance_mm": 6.2
         }
@@ -1524,7 +1524,7 @@
         }
       ],
       "native_slack_bend_and_retention_status": "H5_open",
-      "nrf_reserve_opposing_crossing_count": 5,
+      "nrf_reserve_opposing_crossing_count": 6,
       "minimum_nrf_reserve_opposing_crossing": {
         "cable_instance": "nrf0_rf_jumper",
         "ui_instance": "c5",
@@ -1910,7 +1910,7 @@
     "display_bus": {
       "main_board_and_adapter_stack_result": "paper_geometry_passed",
       "complete_adapter_height_mm": 3.8,
-      "minimum_opposing_z_clearance_mm": 6.0,
+      "minimum_opposing_z_clearance_mm": 5.1,
       "received_panel_tail_result": "H5_open",
       "open_evidence": "current-lot FPC outline, stiffener, thickness and bend path"
     },
@@ -2589,8 +2589,8 @@
           42.8
         ],
         "y": [
-          96.0,
-          99.38
+          6.5,
+          9.88
         ],
         "z": [
           4.8,

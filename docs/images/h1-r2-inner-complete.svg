@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2910" viewBox="0 0 1900 2910" data-marker="H1-R2.21" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2910" viewBox="0 0 1900 2910" data-marker="H1-R2.22" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="1900" height="2910" fill="#ffffff"/>
-<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.21 complete inner-body map</text>
+<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.22 complete inner-body map</text>
 <text x="30.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Each PCB is shown exactly as viewed after turning it over. Numbers are drawing references; inner faces contain no silkscreen.</text>
 <text x="201.9" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="65.0" y="130.0" width="273.8" height="547.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -18,7 +18,7 @@
 <g id="antenna-pcb-topology" data-topology-source="r2" data-route-state="pre-ecad-topology-only">
 <polyline points="296.8,168.5 309.2,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-0" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
 <polyline points="255.5,168.5 255.5,154.2 255.5,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="S3-2G4" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
-<polyline points="201.9,168.5 201.9,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-1" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
+<polyline points="201.9,186.8 201.9,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-1" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
 <polyline points="148.2,168.5 148.2,154.2 148.2,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="C5-2G4/5" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
 <polyline points="107.0,168.5 94.6,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-2" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
 <polyline points="562.6,283.3 523.2,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-VHF" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
@@ -261,74 +261,74 @@
 <text x="255.5" y="155.8" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">115</text>
 <rect x="145.30" y="152.63" width="5.84" height="3.07" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
 <text x="148.2" y="155.8" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">116</text>
+<rect x="182.53" y="153.72" width="38.69" height="12.34" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="display_connector" data-mpn="Hirose DF40C(2.0)-40DS-0.4V(58)"/>
+<text x="201.9" y="162.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">117</text>
 <rect x="291.30" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(10)"/>
-<text x="296.8" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">117</text>
+<text x="296.8" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">118</text>
 <rect x="250.06" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(10)"/>
-<text x="255.5" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">118</text>
-<rect x="196.40" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(10)"/>
-<text x="201.9" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">119</text>
+<text x="255.5" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">119</text>
 <rect x="142.75" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(10)"/>
 <text x="148.2" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">120</text>
 <rect x="101.50" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(10)"/>
 <text x="107.0" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">121</text>
+<rect x="196.40" y="181.10" width="10.95" height="11.32" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(10)"/>
+<text x="201.9" y="189.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">122</text>
 <rect x="251.15" y="210.30" width="65.70" height="70.08" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="s3" data-mpn="ESP32-S3-WROOM-1U-N16R8"/>
-<text x="284.0" y="247.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">122</text>
+<text x="284.0" y="247.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">123</text>
 <rect x="86.90" y="210.30" width="65.70" height="77.38" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5" data-mpn="ESP32-C5-WROOM-1U-N8R8"/>
-<text x="119.8" y="251.3" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">123</text>
+<text x="119.8" y="251.3" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">124</text>
 <rect x="239.83" y="283.30" width="69.72" height="44.17" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_r2" data-mpn="E01-ML01IPX"/>
-<text x="274.7" y="307.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">124</text>
+<text x="274.7" y="307.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">125</text>
 <rect x="167.56" y="283.30" width="69.72" height="44.17" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_r2" data-mpn="E01-ML01IPX"/>
-<text x="202.4" y="307.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">125</text>
+<text x="202.4" y="307.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">126</text>
 <rect x="95.29" y="290.60" width="69.72" height="44.17" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_r2" data-mpn="E01-ML01IPX"/>
-<text x="130.2" y="314.9" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">126</text>
+<text x="130.2" y="314.9" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">127</text>
 <rect x="232.90" y="330.75" width="18.25" height="18.25" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="slow_io" data-mpn="TCA6424ARGJR"/>
-<text x="242.0" y="342.1" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">127</text>
+<text x="242.0" y="342.1" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">128</text>
 <rect x="189.83" y="330.75" width="28.47" height="16.06" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ui_matrix_io" data-mpn="TCA9539PWR"/>
-<text x="204.1" y="341.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">128</text>
+<text x="204.1" y="341.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">129</text>
 <rect x="298.24" y="356.30" width="18.61" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_host_buffer_r2" data-mpn="74LVC126APW,118"/>
-<text x="307.5" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">129</text>
+<text x="307.5" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">130</text>
 <rect x="286.56" y="356.30" width="8.40" height="7.30" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_return_buffer_r2" data-mpn="74LVC2G126DC,125"/>
-<text x="290.8" y="362.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">130</text>
+<text x="290.8" y="362.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">131</text>
 <rect x="261.74" y="356.30" width="18.62" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_host_buffer_r2" data-mpn="74LVC126APW,118"/>
-<text x="271.0" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">131</text>
+<text x="271.0" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">132</text>
 <rect x="250.06" y="356.30" width="8.40" height="7.30" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_return_buffer_r2" data-mpn="74LVC2G126DC,125"/>
-<text x="254.3" y="362.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">132</text>
+<text x="254.3" y="362.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">133</text>
 <rect x="221.58" y="356.30" width="18.62" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_host_buffer_r2" data-mpn="74LVC126APW,118"/>
-<text x="230.9" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">133</text>
+<text x="230.9" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">134</text>
 <rect x="209.91" y="356.30" width="8.39" height="7.30" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_return_buffer_r2" data-mpn="74LVC2G126DC,125"/>
-<text x="214.1" y="362.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">134</text>
+<text x="214.1" y="362.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">135</text>
 <rect x="178.15" y="356.30" width="18.25" height="16.06" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="safe_gate_a_r2" data-mpn="SN74LVC08APWR"/>
-<text x="187.3" y="366.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">135</text>
+<text x="187.3" y="366.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">136</text>
 <rect x="167.20" y="356.30" width="7.30" height="4.56" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf_backup_gate_r2" data-mpn="SN74LVC1G08DCKR"/>
-<text x="170.8" y="360.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">136</text>
+<text x="170.8" y="360.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">137</text>
 <rect x="145.30" y="356.30" width="18.25" height="16.06" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf_evidence_cmp_r2" data-mpn="TLV1824PWR"/>
-<text x="154.4" y="366.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">137</text>
+<text x="154.4" y="366.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">138</text>
 <rect x="165.38" y="385.50" width="36.50" height="36.50" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_rp" data-mpn="SC1512-A4"/>
-<text x="183.6" y="406.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">138</text>
+<text x="183.6" y="406.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">139</text>
 <rect x="313.93" y="403.75" width="24.82" height="10.95" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_demod" data-mpn="Vishay TSOP75238TT"/>
-<text x="326.3" y="411.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">139</text>
+<text x="326.3" y="411.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">140</text>
 <rect x="302.25" y="403.75" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_safe_gate" data-mpn="SN74LVC1G08DCKR"/>
-<text x="305.9" y="407.6" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">140</text>
+<text x="305.9" y="407.6" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">141</text>
 <rect x="289.11" y="403.75" width="5.84" height="2.92" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ui_zone_ntc" data-mpn="TDK B57332V5103F360"/>
-<text x="292.0" y="406.8" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">141</text>
+<text x="292.0" y="406.8" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">142</text>
 <rect x="196.40" y="425.65" width="29.20" height="20.07" rx="2" fill="#fff7ed" stroke="#ea580c" stroke-width="1" stroke-dasharray="6 4" data-instance="fpv_power_reserve" data-mpn="PHYSICAL RESERVE"/>
-<text x="211.0" y="438.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#ea580c">142</text>
+<text x="211.0" y="438.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#ea580c">143</text>
 <rect x="313.93" y="429.30" width="24.82" height="10.95" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_carrier" data-mpn="Vishay TSMP95000TT"/>
-<text x="326.3" y="437.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">143</text>
+<text x="326.3" y="437.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">144</text>
 <rect x="291.30" y="429.30" width="18.25" height="16.06" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="evidence_cmp_a" data-mpn="TLV1824PWR"/>
-<text x="300.4" y="439.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">144</text>
+<text x="300.4" y="439.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">145</text>
 <rect x="265.75" y="429.30" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_reset_sink_a" data-mpn="Diodes Incorporated 2N7002DW-7-F"/>
-<text x="269.4" y="433.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">145</text>
+<text x="269.4" y="433.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">146</text>
 <rect x="251.15" y="429.30" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_c5_reset_buffer" data-mpn="Texas Instruments SN74LVC1G06DCKR"/>
-<text x="254.8" y="433.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">146</text>
+<text x="254.8" y="433.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">147</text>
 <rect x="240.20" y="429.30" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_c5_fault_reset_buffer" data-mpn="SN74LVC1G07DCKR"/>
-<text x="243.8" y="433.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">147</text>
+<text x="243.8" y="433.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">148</text>
 <rect x="200.05" y="451.20" width="25.55" height="25.55" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="fpv_decoder" data-mpn="TVP5150AM1PBS"/>
-<text x="212.8" y="466.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">148</text>
+<text x="212.8" y="466.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">149</text>
 <rect x="327.80" y="454.85" width="10.95" height="9.16" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_emitter" data-mpn="Vishay VSMY14940"/>
-<text x="333.3" y="461.7" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">149</text>
-<rect x="182.53" y="480.40" width="38.69" height="12.34" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="display_connector" data-mpn="Hirose DF40C(2.0)-40DS-0.4V(58)"/>
-<text x="201.9" y="488.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">150</text>
+<text x="333.3" y="461.7" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">150</text>
 <rect x="285.28" y="509.60" width="35.22" height="21.32" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="s3_dbg_header" data-mpn="Samtec FTSH-105-01-L-DV-K-P-TR"/>
 <text x="302.9" y="522.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">151</text>
 <rect x="246.95" y="509.60" width="35.22" height="21.32" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_dbg_header_r2" data-mpn="FTSH-105-01-L-DV-K-P-TR"/>
@@ -359,7 +359,7 @@
 <g id="antenna-removable-media" data-topology-source="r2">
 <polyline points="274.7,305.4 296.8,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-0" data-medium="removable-microcoax"/>
 <polyline points="284.0,245.3 255.5,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="S3-2G4" data-medium="removable-microcoax"/>
-<polyline points="202.4,305.4 201.9,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-1" data-medium="removable-microcoax"/>
+<polyline points="202.4,305.4 201.9,186.8" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-1" data-medium="removable-microcoax"/>
 <polyline points="119.8,249.0 148.2,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="C5-2G4/5" data-medium="removable-microcoax"/>
 <polyline points="130.2,312.7 107.0,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-2" data-medium="removable-microcoax"/>
 <circle cx="274.7" cy="305.4" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-0" data-part="module-rf-connector" data-connector-kind="IPEX"/>
@@ -372,8 +372,8 @@
 <circle cx="255.5" cy="168.5" r="1.3" fill="#d97706"/>
 <circle cx="202.4" cy="305.4" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-1" data-part="module-rf-connector" data-connector-kind="IPEX"/>
 <circle cx="202.4" cy="305.4" r="1.3" fill="#d97706"/>
-<circle cx="201.9" cy="168.5" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-1" data-part="board-ufl" data-connector-kind="U.FL"/>
-<circle cx="201.9" cy="168.5" r="1.3" fill="#d97706"/>
+<circle cx="201.9" cy="186.8" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-1" data-part="board-ufl" data-connector-kind="U.FL"/>
+<circle cx="201.9" cy="186.8" r="1.3" fill="#d97706"/>
 <circle cx="119.8" cy="249.0" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="C5-2G4/5" data-part="module-rf-connector" data-connector-kind="U.FL"/>
 <circle cx="119.8" cy="249.0" r="1.3" fill="#d97706"/>
 <circle cx="148.2" cy="168.5" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="C5-2G4/5" data-part="board-ufl" data-connector-kind="U.FL"/>
@@ -390,7 +390,7 @@
 <path d="M65.0 638.3 L35.8 638.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M440.0 499.7 L410.8 499.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="30.0" y="720.0" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="start" fill="#172033">Numbered registered bodies · 163 total</text>
-<text x="410.0" y="720.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#166534">R2 machine audit: zero same-face collisions · 1.05 mm minimum opposing gap</text>
+<text x="410.0" y="720.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#166534">R2 machine audit: zero same-face collisions · 2.59 mm minimum opposing gap</text>
 <text x="30.0" y="760.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#9a3412">001  PHYSICAL RESERVE</text>
 <text x="58.0" y="773.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">118-137-MHz image-rejection BPF and 6-25-MHz IF cleanup;</text>
 <text x="58.0" y="784.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">individually serial passives close after synthesis</text>
@@ -629,84 +629,84 @@
 <text x="950.0" y="2410.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">116  CP0603Q5425ENTR</text>
 <text x="978.0" y="2423.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">C5 dual-band forward-power evidence coupler aligned with</text>
 <text x="978.0" y="2434.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">the C5-2G4/5 front SMA</text>
-<text x="950.0" y="2460.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">117  U.FL-R-SMT-1(10)</text>
-<text x="978.0" y="2473.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #0 module-to-board microcoax termination</text>
+<text x="950.0" y="2460.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">117  Hirose DF40C(2.0)-40DS-0.4V(58)</text>
+<text x="978.0" y="2473.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">40-contact fixed receptacle for the antenna-edge</text>
+<text x="978.0" y="2484.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">replaceable display adapter</text>
 <text x="950.0" y="2510.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">118  U.FL-R-SMT-1(10)</text>
-<text x="978.0" y="2523.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">S3 module microcoax termination beside the S3-2G4 front</text>
-<text x="978.0" y="2534.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">SMA path</text>
+<text x="978.0" y="2523.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #0 module-to-board microcoax termination</text>
 <text x="950.0" y="2560.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">119  U.FL-R-SMT-1(10)</text>
-<text x="978.0" y="2573.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #1 module-to-board microcoax termination</text>
+<text x="978.0" y="2573.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">S3 module microcoax termination beside the S3-2G4 front</text>
+<text x="978.0" y="2584.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">SMA path</text>
 <text x="950.0" y="2610.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">120  U.FL-R-SMT-1(10)</text>
 <text x="978.0" y="2623.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">C5 module microcoax termination beside the C5-2G4/5 front</text>
 <text x="978.0" y="2634.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">SMA path</text>
 <text x="950.0" y="2660.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">121  U.FL-R-SMT-1(10)</text>
 <text x="978.0" y="2673.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #2 module-to-board microcoax termination</text>
-<text x="950.0" y="2710.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">122  ESP32-S3-WROOM-1U-N16R8</text>
-<text x="978.0" y="2723.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI, display, storage and audio owner</text>
-<text x="950.0" y="2760.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">123  ESP32-C5-WROOM-1U-N8R8</text>
-<text x="978.0" y="2773.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">native 2.4/5-GHz and IR owner</text>
-<text x="1410.0" y="760.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">124  E01-ML01IPX</text>
-<text x="1438.0" y="773.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">complete full-function nRF24 radio #0 on the front</text>
-<text x="1438.0" y="784.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">radio/UI domain</text>
+<text x="950.0" y="2710.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">122  U.FL-R-SMT-1(10)</text>
+<text x="978.0" y="2723.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #1 module-to-board microcoax termination</text>
+<text x="950.0" y="2760.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">123  ESP32-S3-WROOM-1U-N16R8</text>
+<text x="978.0" y="2773.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI, display, storage and audio owner</text>
+<text x="1410.0" y="760.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">124  ESP32-C5-WROOM-1U-N8R8</text>
+<text x="1438.0" y="773.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">native 2.4/5-GHz and IR owner</text>
 <text x="1410.0" y="810.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">125  E01-ML01IPX</text>
-<text x="1438.0" y="823.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">complete full-function nRF24 radio #1 on the front</text>
+<text x="1438.0" y="823.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">complete full-function nRF24 radio #0 on the front</text>
 <text x="1438.0" y="834.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">radio/UI domain</text>
 <text x="1410.0" y="860.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">126  E01-ML01IPX</text>
-<text x="1438.0" y="873.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">complete full-function nRF24 radio #2 on the front</text>
+<text x="1438.0" y="873.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">complete full-function nRF24 radio #1 on the front</text>
 <text x="1438.0" y="884.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">radio/UI domain</text>
-<text x="1410.0" y="910.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">127  TCA6424ARGJR</text>
-<text x="1438.0" y="923.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">24-line slow-control expander</text>
-<text x="1410.0" y="960.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">128  TCA9539PWR</text>
-<text x="1438.0" y="973.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">sixteen-line direct-control input expander</text>
-<text x="1410.0" y="1010.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">129  74LVC126APW,118</text>
-<text x="1438.0" y="1023.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #0 full-rate host-command buffer</text>
-<text x="1410.0" y="1060.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">130  74LVC2G126DC,125</text>
-<text x="1438.0" y="1073.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #0 full-rate return buffer</text>
-<text x="1410.0" y="1110.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">131  74LVC126APW,118</text>
-<text x="1438.0" y="1123.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #1 full-rate host-command buffer</text>
-<text x="1410.0" y="1160.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">132  74LVC2G126DC,125</text>
-<text x="1438.0" y="1173.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #1 full-rate return buffer</text>
-<text x="1410.0" y="1210.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">133  74LVC126APW,118</text>
-<text x="1438.0" y="1223.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #2 full-rate host-command buffer</text>
-<text x="1410.0" y="1260.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">134  74LVC2G126DC,125</text>
-<text x="1438.0" y="1273.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #2 full-rate return buffer</text>
-<text x="1410.0" y="1310.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">135  SN74LVC08APWR</text>
-<text x="1438.0" y="1323.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF transmit safety gates</text>
-<text x="1410.0" y="1360.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">136  SN74LVC1G08DCKR</text>
-<text x="1438.0" y="1373.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local independent FAULT_ASSERT_N nRF rail qualifier</text>
-<text x="1410.0" y="1410.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">137  TLV1824PWR</text>
-<text x="1438.0" y="1423.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">second accepted quad comparator dedicated to the three</text>
-<text x="1438.0" y="1434.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF TX-evidence channels</text>
-<text x="1410.0" y="1460.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">138  SC1512-A4</text>
-<text x="1438.0" y="1473.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">Hub RP2354B; C5/RF fan-out, storage, audio and broadcast</text>
-<text x="1438.0" y="1484.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">control</text>
-<text x="1410.0" y="1510.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">139  Vishay TSOP75238TT</text>
-<text x="1438.0" y="1523.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">38-kHz IR receiver</text>
-<text x="1410.0" y="1560.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">140  SN74LVC1G08DCKR</text>
-<text x="1438.0" y="1573.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI-local FAULT_KILL-qualified IR carrier gate</text>
-<text x="1410.0" y="1610.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">141  TDK B57332V5103F360</text>
-<text x="1438.0" y="1623.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI/display hotspot safety sensor</text>
-<text x="1410.0" y="1660.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#9a3412">142  PHYSICAL RESERVE</text>
-<text x="1438.0" y="1673.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">decoder 1.8-V LDO, switched receiver rail and local</text>
-<text x="1438.0" y="1684.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">capacitors</text>
-<text x="1410.0" y="1710.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">143  Vishay TSMP95000TT</text>
-<text x="1438.0" y="1723.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">carrier-learning IR receiver</text>
-<text x="1410.0" y="1760.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">144  TLV1824PWR</text>
-<text x="1438.0" y="1773.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI-local S3/C5/IR TX evidence comparator</text>
-<text x="1410.0" y="1810.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">145  Diodes Incorporated 2N7002DW-7-F</text>
-<text x="1438.0" y="1823.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI-local S3/C5 passive-drain reset sinks</text>
-<text x="1410.0" y="1860.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">146  Texas Instruments SN74LVC1G06DCKR</text>
-<text x="1438.0" y="1873.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI-local RUN_PERMIT C5 reset inverter</text>
-<text x="1410.0" y="1910.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">147  SN74LVC1G07DCKR</text>
-<text x="1438.0" y="1923.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI-local direct FAULT_ASSERT_N C5 reset sink</text>
-<text x="1410.0" y="1960.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">148  TVP5150AM1PBS</text>
-<text x="1438.0" y="1973.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI-local CVBS to 8-bit BT.656 decoder; only one 75-ohm</text>
-<text x="1438.0" y="1984.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">CVBS signal crosses M1</text>
-<text x="1410.0" y="2010.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">149  Vishay VSMY14940</text>
-<text x="1438.0" y="2023.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">940-nm IR transmitter</text>
-<text x="1410.0" y="2060.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">150  Hirose DF40C(2.0)-40DS-0.4V(58)</text>
-<text x="1438.0" y="2073.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">40-contact fixed receptacle for the replaceable display</text>
-<text x="1438.0" y="2084.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">adapter</text>
+<text x="1410.0" y="910.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">127  E01-ML01IPX</text>
+<text x="1438.0" y="923.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">complete full-function nRF24 radio #2 on the front</text>
+<text x="1438.0" y="934.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">radio/UI domain</text>
+<text x="1410.0" y="960.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">128  TCA6424ARGJR</text>
+<text x="1438.0" y="973.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">24-line slow-control expander</text>
+<text x="1410.0" y="1010.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">129  TCA9539PWR</text>
+<text x="1438.0" y="1023.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">sixteen-line direct-control input expander</text>
+<text x="1410.0" y="1060.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">130  74LVC126APW,118</text>
+<text x="1438.0" y="1073.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #0 full-rate host-command buffer</text>
+<text x="1410.0" y="1110.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">131  74LVC2G126DC,125</text>
+<text x="1438.0" y="1123.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #0 full-rate return buffer</text>
+<text x="1410.0" y="1160.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">132  74LVC126APW,118</text>
+<text x="1438.0" y="1173.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #1 full-rate host-command buffer</text>
+<text x="1410.0" y="1210.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">133  74LVC2G126DC,125</text>
+<text x="1438.0" y="1223.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #1 full-rate return buffer</text>
+<text x="1410.0" y="1260.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">134  74LVC126APW,118</text>
+<text x="1438.0" y="1273.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #2 full-rate host-command buffer</text>
+<text x="1410.0" y="1310.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">135  74LVC2G126DC,125</text>
+<text x="1438.0" y="1323.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF24 #2 full-rate return buffer</text>
+<text x="1410.0" y="1360.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">136  SN74LVC08APWR</text>
+<text x="1438.0" y="1373.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF transmit safety gates</text>
+<text x="1410.0" y="1410.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">137  SN74LVC1G08DCKR</text>
+<text x="1438.0" y="1423.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local independent FAULT_ASSERT_N nRF rail qualifier</text>
+<text x="1410.0" y="1460.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">138  TLV1824PWR</text>
+<text x="1438.0" y="1473.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">second accepted quad comparator dedicated to the three</text>
+<text x="1438.0" y="1484.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF TX-evidence channels</text>
+<text x="1410.0" y="1510.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">139  SC1512-A4</text>
+<text x="1438.0" y="1523.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">Hub RP2354B; C5/RF fan-out, storage, audio and broadcast</text>
+<text x="1438.0" y="1534.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">control</text>
+<text x="1410.0" y="1560.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">140  Vishay TSOP75238TT</text>
+<text x="1438.0" y="1573.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">38-kHz IR receiver</text>
+<text x="1410.0" y="1610.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">141  SN74LVC1G08DCKR</text>
+<text x="1438.0" y="1623.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI-local FAULT_KILL-qualified IR carrier gate</text>
+<text x="1410.0" y="1660.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">142  TDK B57332V5103F360</text>
+<text x="1438.0" y="1673.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI/display hotspot safety sensor</text>
+<text x="1410.0" y="1710.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#9a3412">143  PHYSICAL RESERVE</text>
+<text x="1438.0" y="1723.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">decoder 1.8-V LDO, switched receiver rail and local</text>
+<text x="1438.0" y="1734.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">capacitors</text>
+<text x="1410.0" y="1760.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">144  Vishay TSMP95000TT</text>
+<text x="1438.0" y="1773.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">carrier-learning IR receiver</text>
+<text x="1410.0" y="1810.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">145  TLV1824PWR</text>
+<text x="1438.0" y="1823.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI-local S3/C5/IR TX evidence comparator</text>
+<text x="1410.0" y="1860.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">146  Diodes Incorporated 2N7002DW-7-F</text>
+<text x="1438.0" y="1873.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI-local S3/C5 passive-drain reset sinks</text>
+<text x="1410.0" y="1910.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">147  Texas Instruments SN74LVC1G06DCKR</text>
+<text x="1438.0" y="1923.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI-local RUN_PERMIT C5 reset inverter</text>
+<text x="1410.0" y="1960.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">148  SN74LVC1G07DCKR</text>
+<text x="1438.0" y="1973.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI-local direct FAULT_ASSERT_N C5 reset sink</text>
+<text x="1410.0" y="2010.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">149  TVP5150AM1PBS</text>
+<text x="1438.0" y="2023.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI-local CVBS to 8-bit BT.656 decoder; only one 75-ohm</text>
+<text x="1438.0" y="2034.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">CVBS signal crosses M1</text>
+<text x="1410.0" y="2060.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">150  Vishay VSMY14940</text>
+<text x="1438.0" y="2073.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">940-nm IR transmitter</text>
 <text x="1410.0" y="2110.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">151  Samtec FTSH-105-01-L-DV-K-P-TR</text>
 <text x="1438.0" y="2123.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">keyed S3 UART0/RESET/BOOT header</text>
 <text x="1410.0" y="2160.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">152  FTSH-105-01-L-DV-K-P-TR</text>

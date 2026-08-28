@@ -53,11 +53,37 @@ class H1R2CostReviewTest(unittest.TestCase):
         )
 
     def test_display_upper_candidate_has_margin(self):
-        fit = self.result["display_orientation_review"]["paper_fit"]
+        display = self.result["display_orientation_review"]
+        fit = display["paper_fit"]
+        self.assertEqual(display["current_upper_adapter_board_xy_mm"], [24.75, 1.0])
+        self.assertIn("antenna edge", display["accepted_rule"])
         self.assertEqual(fit["same_face_collisions"], 0)
         self.assertGreater(fit["minimum_opposing_clearance_mm"], fit["required_minimum_mm"])
         self.assertEqual(fit["gpio_change"], 0)
         self.assertEqual(fit["bom_change_usd"], 0.0)
+
+    def test_stocked_candidate_policy_is_conservative(self):
+        policy = self.result["accepted_cost_reduction_policy"]
+        self.assertIn("pre-order", policy["primary_target"])
+        self.assertIn("exact or no worse", policy["stocked_replacement_rule"])
+        self.assertIn("shared protective frame", policy["antenna_mechanics_rule"])
+
+        candidates = {
+            row["candidate_mpn"]: row
+            for row in self.result["current_stocked_candidate_checks"]
+        }
+        self.assertEqual(
+            candidates["Nexperia 74LVC2G126DP,125"]["status"],
+            "qualified_stocked_candidate_for_next_atomic_replacement",
+        )
+        self.assertEqual(
+            candidates["OMRON B3S-1000P"]["status"],
+            "not_accepted_missing_ground_terminal",
+        )
+        self.assertEqual(
+            candidates["HenryTech HL2-SMA-KEP-13.5 / HL2-RP-SMA-KEP-13.5"]["status"],
+            "leading_stocked_pair_pending_controlled_drawing",
+        )
 
 
 if __name__ == "__main__":

@@ -149,7 +149,10 @@ RF_USER_LABEL_LINES = {
 # are PCB millimetres in the matching outer-face frame.  Keeping them in the
 # drawing input lets the geometry audit reject silk hidden by a connector,
 # cable, display, Cap or mounting keep-out instead of relying on hand tuning.
-RF_COMPACT_LABEL_POSITIONS = {}
+RF_COMPACT_LABEL_POSITIONS = {
+    "N24-0": (12.3, 7.8),
+    "N24-2": (62.7, 7.8),
+}
 TX_RF_PATHS = {
     "S3-2G4", "C5-2G4/5", "N24-0", "CC-SUB", "N24-1", "VOICE-VHF", "VOICE-UHF", "N24-2"
 }
@@ -322,7 +325,7 @@ UI_INNER = (
     Placement("c5_rf_board_connector", 57.5, 9.0, "C5 30-mm jumper board receptacle"),
     Placement("s3", 6.0, 22.0, "UI, display, storage and audio owner"),
     Placement("c5", 51.0, 22.0, "native 2.4/5-GHz and IR owner"),
-    Placement("display_connector", 32.2, 96.0, "40-contact fixed receptacle for the replaceable display adapter"),
+    Placement("display_connector", 32.2, 6.5, "40-contact fixed receptacle for the antenna-edge replaceable display adapter"),
     Placement("slow_io", 24.0, 55.0, "24-line slow-control expander"),
     Placement("ui_matrix_io", 33.0, 55.0, "sixteen-line direct-control input expander"),
     Placement("codec", 42.0, 55.0, "audio capture and playback codec"),
@@ -1917,8 +1920,8 @@ def validate_assembly_coordinate_model(
     if (
         model.get("schema_version") != 1
         or model.get("model_id") != "L2-ASM-COORD-001-A"
-        or model.get("stage") != "H1.2"
-        or model.get("status") != "reviewed"
+        or model.get("stage") != "H1-R2.22"
+        or model.get("status") != "in_progress"
     ):
         errors.append("coordinate-model: schema, identity, stage or review status drifted")
     if [float(value) for value in model.get("board_outline_mm", [])] != [BOARD_W, BOARD_H]:
