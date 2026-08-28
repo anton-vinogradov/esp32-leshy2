@@ -134,6 +134,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h0-r2-functional-architecture.ru.md",
         "docs/h1-r2-physical-layout.md",
         "docs/h1-r2-physical-layout.ru.md",
+        "docs/h1-r2-cost.md",
+        "docs/h1-r2-cost.ru.md",
         "docs/h1-airband-filter.md",
         "docs/h1-airband-filter.ru.md",
         "docs/h1-r2-power-thermal.md",

@@ -67,6 +67,7 @@ linked beside the mock-up; individual inner views remain links without repeating
 the same diagrams on the page.
 
 [Open the readable physical result](docs/h1-r2-physical-layout.md) ·
+[Component cost ranking](docs/h1-r2-cost.md) ·
 [Power and thermal result](docs/h1-r2-power-thermal.md) ·
 [Analog-FPV path](docs/h1-r2-fpv.md) ·
 [Airband filter feasibility](docs/h1-airband-filter.md)
@@ -89,7 +90,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | Stage | Status | Published result |
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.21`** | [Current placement](docs/h1-r2-physical-layout.md) |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.21`** | [Current placement](docs/h1-r2-physical-layout.md) · [cost ranking](docs/h1-r2-cost.md) |
 | H2 · Production ECAD schematic | ⏳ Waiting for R2 H1 | [Stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
@@ -111,6 +112,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ C5 DBG10 moved beside S3 DBG10; placement audit reports zero same-face collisions and 1.05 mm minimum opposing clearance against 0.70 mm required.
 - ✅ Public exterior, separate readable inner faces, service surface and real section views regenerated.
 - ✅ Official Sinopine `SP331R-MANUAL-V1.0` controls the axes of the tolerant 14-pad K331 hand-solder land; exact-drawing AWM666V is the seven-channel fallback. Neither receiver enters the normal PCBA BOM.
+- ✅ All 210 BOM lines are cost-ranked per fitted device, five-device trial lot and 100-device projection; external antennas and post-PCBA parts remain visibly separate.
 - ▶ **Exact current point:** review and explicitly accept the complete exterior, both true-view inner faces and the real sandwich sections. A later AKK/Sinopine package can simplify the K331 footprint but no longer blocks H1.
 - 🔒 KiCad, prototype purchase and fabrication remain unauthorized.
 

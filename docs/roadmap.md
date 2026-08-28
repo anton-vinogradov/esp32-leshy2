@@ -24,7 +24,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ▶ [H1-R2.21](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks, separate rear FPV MMCX, dual post-PCBA K331/AWM666V bay and stable per-board revision silk |
+| Physical design | ▶ [H1-R2.21](h1-r2-physical-layout.md): complete functional islands, `5 + 5` main antenna banks, separate rear FPV MMCX, dual post-PCBA K331/AWM666V bay and stable per-board revision silk; [all 210 BOM lines are cost-ranked](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map, FPV/MMCX proof and power/filter diagrams are published |
 | Production ECAD | ⏳ R1 evidence retained; R2 schematic waits for H1 |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.0 is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); emulator/dev-board execution must precede H7 fabrication |
@@ -85,6 +85,8 @@ H1 report.
 - ✅ Exterior silk prints `UI PCB · R2-EVT1 · REV A` and
   `RF/PWR PCB · R2-EVT1 · REV A`; the changing H1-R2.xx work marker is never
   printed and PCB REV advances only with released manufacturing-file changes.
+- ✅ The generated cost review ranks every BOM line by fitted-device burden,
+  five-device trial requirement and 100-device projection; antennas and post-PCBA parts stay separate.
 
 ### 5. Final H1 acceptance input
 
