@@ -4,7 +4,7 @@ H3.7.2 is closed. The six H3 phase consolidations contain 88 residual rows: thre
 
 Each machine row also carries its exact source artifact, responsible gate, required artifact and pass rule. A mismatch reopens the owning result rather than becoming a layout or test waiver. This register does not authorize purchase, layout or fabrication. The historical R1 progression marker is `H3.7.3`.
 
-Safe fault injection and potentially damaging qualification are separate. MAX17320 exhaustion/failed-copy and pack/NTC electrical faults use an emulator or current-limited fixture; real cells remain inside their exact MPN voltage, current and temperature limits. Drop and endurance run only on dedicated DVT prototypes that may be consumed. Irreversible locks, key/security-fuse burns and intentional real-cell abuse remain forbidden.
+Safe fault injection and potentially damaging qualification are separate. MAX17320 exhaustion/failed-copy and pack/NTC electrical faults use an emulator or current-limited fixture; real cells remain inside their exact MPN voltage, current and temperature limits. Mechanical drop and connector/holder cycle qualification runs only on dedicated DVT prototypes that may be consumed. A 24/48-hour powered endurance run is ordinary non-destructive qualification. Irreversible locks, key/security-fuse burns and intentional real-cell abuse remain forbidden.
 
 | ID | Gate | Source | Required physical evidence |
 |---|---|---|---|

@@ -69,7 +69,18 @@ def assigned_stages(text: str) -> list[str]:
 
 def test_class(text: str) -> str:
     lower = text.lower()
-    if "endurance" in lower or any(token in lower for token in ("drop test", "drop profile", "drop qualification", "drop inspection")):
+    if any(
+        token in lower
+        for token in (
+            "drop test",
+            "drop profile",
+            "drop qualification",
+            "drop inspection",
+            "mechanical endurance",
+            "mating-cycle endurance",
+            "insertion/removal endurance",
+        )
+    ):
         return "potentially_damaging_dvt"
     if any(token in lower for token in ("max17320", "cell simulator", "ntc fixture")):
         return "safe_fault_injection"
@@ -185,7 +196,7 @@ def build() -> tuple[dict[Path, str], dict]:
         },
         "verification_safety_boundary": {
             "safe_fault_injection": "MAX17320 exhaustion/failed-copy and pack/NTC electrical faults use an emulator or current-limited fixture; real cells stay inside exact MPN voltage, current and temperature limits",
-            "potentially_damaging_dvt": "drop and endurance qualification runs only on dedicated prototypes that may be consumed or damaged",
+            "potentially_damaging_dvt": "mechanical drop and connector/holder cycle qualification runs only on dedicated prototypes that may be consumed or damaged",
             "forbidden": "irreversible locks, key/security-fuse burns and intentional real-cell abuse outside exact MPN limits",
         },
         "resolved_h3_internal": resolved_internal,
@@ -211,7 +222,7 @@ H3.7.2 is closed. The six H3 phase consolidations contain 88 residual rows: thre
 
 Each machine row also carries its exact source artifact, responsible gate, required artifact and pass rule. A mismatch reopens the owning result rather than becoming a layout or test waiver. This register does not authorize purchase, layout or fabrication. The historical R1 progression marker is `H3.7.3`.
 
-Safe fault injection and potentially damaging qualification are separate. MAX17320 exhaustion/failed-copy and pack/NTC electrical faults use an emulator or current-limited fixture; real cells remain inside their exact MPN voltage, current and temperature limits. Drop and endurance run only on dedicated DVT prototypes that may be consumed. Irreversible locks, key/security-fuse burns and intentional real-cell abuse remain forbidden.
+Safe fault injection and potentially damaging qualification are separate. MAX17320 exhaustion/failed-copy and pack/NTC electrical faults use an emulator or current-limited fixture; real cells remain inside their exact MPN voltage, current and temperature limits. Mechanical drop and connector/holder cycle qualification runs only on dedicated DVT prototypes that may be consumed. A 24/48-hour powered endurance run is ordinary non-destructive qualification. Irreversible locks, key/security-fuse burns and intentional real-cell abuse remain forbidden.
 
 {table('en')}
 
@@ -223,7 +234,7 @@ H3.7.2 закрыт. В сведениях шести фаз H3 было 88 resi
 
 Каждая машинная строка содержит точный исходный artifact, ответственный gate, обязательный artifact и pass rule. Несоответствие повторно открывает исходный результат, а не превращается в waiver разводки или теста. Реестр не разрешает закупку, layout или печать. Исторический маркер прогресса R1 — `H3.7.3`.
 
-Безопасный fault injection отделён от потенциально повреждающей qualification. Исчерпание/failed-copy MAX17320 и электрические faults pack/NTC задаются emulator или current-limited fixture; реальные банки остаются внутри ограничений точного MPN по напряжению, току и температуре. Drop и endurance выполняются только на выделенных DVT-прототипах, которые могут быть повреждены. Необратимые locks, прожиг ключей/security-fuse и намеренное издевательство над реальными банками запрещены.
+Безопасный fault injection отделён от потенциально повреждающей qualification. Исчерпание/failed-copy MAX17320 и электрические faults pack/NTC задаются emulator или current-limited fixture; реальные банки остаются внутри ограничений точного MPN по напряжению, току и температуре. Механические drop- и cycle-тесты разъёмов/держателя выполняются только на выделенных DVT-прототипах, которые могут быть повреждены. 24/48-часовой прогон под питанием — обычная неразрушающая qualification. Необратимые locks, прожиг ключей/security-fuse и намеренное издевательство над реальными банками запрещены.
 
 {table('ru')}
 

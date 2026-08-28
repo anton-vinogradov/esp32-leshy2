@@ -34,7 +34,7 @@
   },
   "verification_safety_boundary": {
     "safe_fault_injection": "MAX17320 exhaustion/failed-copy and pack/NTC electrical faults use an emulator or current-limited fixture; real cells stay inside exact MPN voltage, current and temperature limits",
-    "potentially_damaging_dvt": "drop and endurance qualification runs only on dedicated prototypes that may be consumed or damaged",
+    "potentially_damaging_dvt": "mechanical drop and connector/holder cycle qualification runs only on dedicated prototypes that may be consumed or damaged",
     "forbidden": "irreversible locks, key/security-fuse burns and intentional real-cell abuse outside exact MPN limits"
   },
   "resolved_h3_internal": [
@@ -1653,15 +1653,15 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H8: run 24-hour and 48-hour USB-powered endurance cases as validation tests, including the configured proof-due stop and retained display reason",
-      "test_class": "potentially_damaging_dvt",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
       "evidence_contracts": {
         "H8": {
-          "owner": "H8 potentially damaging DVT qualification",
-          "required_artifact": "versioned procedure, dedicated-prototype identity, calibrated-instrument raw data, pre/post inspection, computed limit comparison and retained pass/fail log",
-          "pass_rule": "a dedicated prototype passes this potentially damaging DVT case: H8: run 24-hour and 48-hour USB-powered endurance cases as validation tests, including the configured proof-due stop and retained display reason; no production-intent or sole bring-up unit is consumed, and any failure reopens the owning result"
+          "owner": "H8 physical qualification",
+          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8: run 24-hour and 48-hour USB-powered endurance cases as validation tests, including the configured proof-due stop and retained display reason; any failure reopens the owning result and blocks release"
         }
       },
       "status": "physical_evidence_required"

@@ -321,7 +321,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "verification_safety_boundary": {
             "safe_fault_injection": "use one real MAX17320 only for blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery; use a current-limited cell simulator and NTC fixture for zero-remaining, failed-copy, reversed, swapped, open, short, missing, imbalance and threshold cases",
             "real_cell_boundary": "operate the exact matched cell lot only inside its MPN voltage, current and temperature limits; do not heat, overvoltage, reverse or short real cells",
-            "potentially_damaging_dvt": "drop and endurance qualification uses dedicated prototype devices and may consume or damage them",
+            "potentially_damaging_dvt": "mechanical drop and connector/holder cycle qualification uses dedicated prototype devices and may consume or damage them",
             "forbidden": "irreversible locks, security burns and intentional real-cell abuse outside the exact MPN limits",
         },
         "remaining_hil": [
@@ -367,7 +367,7 @@ The midpoint divider adds only `{q(imbalance_48h_mah, '0.001')}` mAh of lower-ce
 
 Sensor bonding and response, ADC calibration, received-cell identity, actual charger thresholds and balance heat remain physical HIL gates. One received MAX17320 is exercised through blank → deliberately invalid but electrically safe configuration → reviewed golden/recovery, with both address spaces, checksum, `NVError` and remaining-update bitmap read at every transition. Zero-remaining and failed-copy are emulator/fixture injections only: all seven physical NVM updates are never consumed, no sacrificial gauge is required and irreversible locks/security burns remain forbidden.
 
-Open/short/swapped/reversed/missing/imbalanced cell states use a current-limited cell simulator; temperature faults and thresholds use an NTC fixture. Real cells remain inside the exact MPN voltage, current and temperature limits. Drop and endurance are separate, potentially damaging DVT tests performed only on dedicated prototypes. The generated evidence is [`H3-VRF34-battery-analog.json`](../hardware/verification/generated/H3-VRF34-battery-analog.json).
+Open/short/swapped/reversed/missing/imbalanced cell states use a current-limited cell simulator; temperature faults and thresholds use an NTC fixture. Real cells remain inside the exact MPN voltage, current and temperature limits. Mechanical drop and connector/holder cycle qualification is separate, potentially damaging DVT work performed only on dedicated prototypes. A 24/48-hour powered endurance run is ordinary non-destructive qualification. The generated evidence is [`H3-VRF34-battery-analog.json`](../hardware/verification/generated/H3-VRF34-battery-analog.json).
 """
     ru = f"""# Проверка battery sensing и температурных analog-порогов · historical R1
 
@@ -401,7 +401,7 @@ Midpoint divider добавляет лишь `{q(imbalance_48h_mah, '0.001')}` �
 
 Прижим и отклик sensors, ADC calibration, подлинность received cells, реальные charger thresholds и нагрев balancing остаются физическими HIL gates. Один полученный MAX17320 проходит последовательность blank → намеренно некорректная, но электрически безопасная конфигурация → проверенный golden/recovery; на каждом переходе читаются оба address space, checksum, `NVError` и bitmap оставшихся обновлений. Zero-remaining и failed-copy вводятся только в emulator/fixture: все семь физических NVM-записей не расходуются, отдельный жертвенный gauge не нужен, необратимые locks/security burns запрещены.
 
-Open/short/swapped/reversed/missing/imbalanced состояния банков задаёт current-limited cell simulator, температурные faults и thresholds — NTC fixture. Реальные банки остаются внутри ограничений точного MPN по напряжению, току и температуре. Drop и endurance — отдельные потенциально повреждающие DVT-тесты только на выделенных прототипах. Машинный результат: [`H3-VRF34-battery-analog.json`](../hardware/verification/generated/H3-VRF34-battery-analog.json).
+Open/short/swapped/reversed/missing/imbalanced состояния банков задаёт current-limited cell simulator, температурные faults и thresholds — NTC fixture. Реальные банки остаются внутри ограничений точного MPN по напряжению, току и температуре. Механические drop- и cycle-тесты разъёмов/держателя — отдельная потенциально повреждающая DVT-работа только на выделенных прототипах. 24/48-часовой прогон под питанием — обычная неразрушающая qualification. Машинный результат: [`H3-VRF34-battery-analog.json`](../hardware/verification/generated/H3-VRF34-battery-analog.json).
 """
     return {OUTPUT: json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", DOC_EN: en, DOC_RU: ru}, manifest
 

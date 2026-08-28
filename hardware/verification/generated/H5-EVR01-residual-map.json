@@ -4,7 +4,7 @@
   "status": "reviewed_mapping_only",
   "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "b1eda36132e650b14db894dd18199222309192ff5f421c9a9809fd796310696e",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "f76f82e4787e9503a01fbc6f4741bd3b2e32b9b73e95f4b4ee04fa1bddfbc19e",
     "hardware/product-design/generated/H1-physical-source-table.json": "ac004c115aba28ab32b54853161b16f2d0c5f5de1630d959bf6752690ea41de7",
     "hardware/product-design/mechanical-evidence-gates.json": "c6d3a2366cbb7657d09aea80019a59909d83457d3b7b2bba2cb328f967e12a1d",
     "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",

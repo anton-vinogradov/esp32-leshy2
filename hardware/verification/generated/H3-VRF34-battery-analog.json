@@ -351,7 +351,7 @@
   "verification_safety_boundary": {
     "safe_fault_injection": "use one real MAX17320 only for blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery; use a current-limited cell simulator and NTC fixture for zero-remaining, failed-copy, reversed, swapped, open, short, missing, imbalance and threshold cases",
     "real_cell_boundary": "operate the exact matched cell lot only inside its MPN voltage, current and temperature limits; do not heat, overvoltage, reverse or short real cells",
-    "potentially_damaging_dvt": "drop and endurance qualification uses dedicated prototype devices and may consume or damage them",
+    "potentially_damaging_dvt": "mechanical drop and connector/holder cycle qualification uses dedicated prototype devices and may consume or damage them",
     "forbidden": "irreversible locks, security burns and intentional real-cell abuse outside the exact MPN limits"
   },
   "remaining_hil": [

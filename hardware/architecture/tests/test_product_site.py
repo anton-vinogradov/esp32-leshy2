@@ -1072,8 +1072,12 @@ class ProductSiteTests(unittest.TestCase):
             next(row for row in residuals["registry"] if row["id"] == "H3-PHY-045")["test_class"],
         )
         self.assertEqual(
-            "potentially_damaging_dvt",
+            "ordinary_qualification",
             next(row for row in residuals["registry"] if row["id"] == "H3-PHY-081")["test_class"],
+        )
+        self.assertIn(
+            "24/48-hour powered endurance run is ordinary non-destructive",
+            self.read("docs/physical-evidence-register.md"),
         )
         self.assertEqual("reviewed_h3_user_accepted", acceptance["status"])
         self.assertEqual(25, acceptance["correction_summary"]["total"])
