@@ -27,7 +27,7 @@
 | Физический дизайн | ▶ [H1-R2.31](h1-r2-physical-layout.ru.md): точная dual-RP/C5 электрическая authority и пять активных U219-courtyard закрыты; полный канонический реестр Cap/evidence-корпусов, вспомогательные пассивы, NFC pickup и swept volume антенны — четыре оставшихся блокера до принятия мокапа; [все 210 строк базового BOM ранжированы по стоимости](h1-r2-cost.ru.md) |
 | Принципиальные диаграммы | Опубликованы актуальные связи компонентов/шин, внешний мокап, отдельные читаемые внутренние стороны, service map, FPV/MMCX proof и диаграммы питания/фильтра |
 | Production ECAD | 🔒 Проведённое ревью G2F/H2/KiCad сохранено только как историческое single-RP evidence R1. В текущем H0/H1 есть передний Hub RP + задний RF RP; H2 R2 обязан заново экспортировать шесть доменов и точный M1 из H0 |
-| Пререквизит прошивки | ✅ firmware F1-R2 проведено ревью; F2-R2.4 сейчас в отдельном [роадмапе F0–F11](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md); emulator/dev-board execution обязательно до H7 |
+| Пререквизит прошивки | ✅ firmware F1-R2 проведено ревью; F2-R2.4 квалифицировал все 12 target builds, 60 artifacts, 16 maps и 16 size gates, а F2-R2.5 reproducibility сейчас в отдельном [роадмапе F0–F11](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md); emulator/dev-board execution обязательно до H7 |
 | Заказ | 🔒 Прототип — только на H7 после H6 и явного одобрения; производство — только на H9 |
 
 ## Текущий H1 · точный состав

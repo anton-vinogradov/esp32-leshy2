@@ -27,7 +27,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Physical design | ▶ [H1-R2.31](h1-r2-physical-layout.md): exact dual-RP/C5 electrical authority and five active U219 source-backed courtyards are closed; the canonical Cap/evidence body register, support passives, NFC pickup and antenna swept volume are the four remaining blockers before mock-up acceptance; [all 210 base BOM lines are cost-ranked](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map, FPV/MMCX proof and power/filter diagrams are published |
 | Production ECAD | 🔒 Reviewed G2F/H2/KiCad is historical single-RP R1 evidence only. Current H0/H1 has front Hub RP + rear RF RP; R2 H2 must regenerate six domains and exact H0 M1 |
-| Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); emulator/dev-board execution must precede H7 fabrication |
+| Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 qualified all 12 target builds, 60 artifacts, 16 maps and 16 size gates, while F2-R2.5 reproducibility is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); emulator/dev-board execution must precede H7 fabrication |
 | Ordering | 🔒 Prototype order only at H7 after H6 and explicit approval; production only at H9 |
 
 ## Current H1 · exact composition
