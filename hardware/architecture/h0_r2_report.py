@@ -93,7 +93,7 @@ def render_svg(data: dict) -> str:
         '<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6z" fill="#475569"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         '<text x="630" y="38" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · H0-R2 functional architecture</text>',
-        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.24 projection: direct i8080 display, camera RX and radio payload remain local; M1 is fully counted.</text>',
+        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.25 projection: direct i8080 display, camera RX and radio payload remain local; M1 is fully counted.</text>',
         '<rect x="40" y="105" width="540" height="610" rx="18" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>',
         '<rect x="680" y="105" width="540" height="610" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>',
         '<text x="310" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#1d4ed8">FRONT · UI / RADIO PCB · five SMA</text>',
@@ -165,7 +165,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H1-R2.24**: физическая модель содержит двойную post-PCBA-зону K331/AWM666V, i8080-8, локальные острова 5+5 и полную 80-контактную M1; пять pre-order-буферов и 147 pre-order-конденсаторов заменены складскими точными или параметрически равноценными вариантами, инженерных блокеров H1 не осталось, но полный мокап ещё должен быть явно принят и не разрешает KiCad routing или заказ R2."
+        current = "Текущий точный маркер — **H1-R2.25**: физическая модель содержит двойную post-PCBA-зону K331/AWM666V, i8080-8, локальные острова 5+5 и полную 80-контактную M1; складскими точными или параметрически равноценными вариантами заменены пять pre-order-буферов, 147 pre-order-конденсаторов и шесть номиналов обычных 0402-резисторов, инженерных блокеров H1 не осталось, но полный мокап ещё должен быть явно принят и не разрешает KiCad routing или заказ R2."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -204,7 +204,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, analog FPV "
             "remains receive-only, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H1-R2.24**: the physical model now includes the dual post-PCBA K331/AWM666V bay, i8080-8, local 5+5 islands and the complete 80-contact M1; five pre-order buffers and 147 pre-order capacitors are replaced by stocked exact or parametrically equivalent variants, no H1 engineering blocker remains, but the complete mock-up still needs explicit acceptance and does not authorize R2 KiCad routing or ordering."
+        current = "The exact current marker is **H1-R2.25**: the physical model now includes the dual post-PCBA K331/AWM666V bay, i8080-8, local 5+5 islands and the complete 80-contact M1; five pre-order buffers, 147 pre-order capacitors and six ordinary 0402 resistor identities are replaced by stocked exact or parametrically equivalent variants, no H1 engineering blocker remains, but the complete mock-up still needs explicit acceptance and does not authorize R2 KiCad routing or ordering."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",

@@ -89,7 +89,7 @@ def footprint_for(instance: str, device_key: str, on_board: bool) -> str:
         return "Resistor_SMD:R_1206_3216Metric"
     if device_key == "yageo_rc0603fr_071kl":
         return "Resistor_SMD:R_0603_1608Metric"
-    if device_key.startswith(("yageo_rc", "panasonic_erj_2r")):
+    if device_key.startswith(("yageo_rc", "uniroyal_0402wgf", "panasonic_erj_2r")):
         return "Resistor_SMD:R_0402_1005Metric"
     raise ValueError(f"no exact footprint mapping for {instance}/{device_key}")
 

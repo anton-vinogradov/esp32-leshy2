@@ -84,7 +84,7 @@
 <text class="small" x="930" y="292"><tspan font-weight="700">11 · Yageo RC0402FR-0710KL</tspan><tspan> — comparator pull-up</tspan></text>
 <text class="small" x="930" y="307"><tspan font-weight="700">12 · Yageo CC0402KRX7R9BB104</tspan><tspan> — comparator bypass</tspan></text>
 <text class="small" x="930" y="322"><tspan font-weight="700">13 · SN74LVC1G123DCTR</tspan><tspan> — evidence pulse extender</tspan></text>
-<text class="small" x="930" y="337"><tspan font-weight="700">14 · Yageo RC0402FR-07133KL</tspan><tspan> — pulse timing resistor</tspan></text>
+<text class="small" x="930" y="337"><tspan font-weight="700">14 · UNI-ROYAL 0402WGF1333TCE</tspan><tspan> — pulse timing resistor</tspan></text>
 <text class="small" x="930" y="352"><tspan font-weight="700">15 · Yageo CC0402KRX7R9BB104</tspan><tspan> — pulse timing capacitor</tspan></text>
 <text class="small" x="930" y="367"><tspan font-weight="700">16 · Yageo CC0402KRX7R9BB104</tspan><tspan> — pulse extender bypass</tspan></text>
 <text class="small" x="930" y="382"><tspan font-weight="700">17 · Texas Instruments SN74LVC1G06DCKR</tspan><tspan> — active-low evidence driver</tspan></text>
@@ -95,8 +95,8 @@
 <text class="small" x="930" y="457"><tspan font-weight="700">22 · Murata GRM188R60J106ME47D</tspan><tspan> — radio bulk capacitor</tspan></text>
 <text class="small" x="930" y="472"><tspan font-weight="700">23 · Microchip 24AA02UIDT-I/OT</tspan><tspan> — factory UID EEPROM</tspan></text>
 <text class="small" x="930" y="487"><tspan font-weight="700">24 · Yageo CC0402KRX7R9BB104</tspan><tspan> — UID bypass</tspan></text>
-<text class="small" x="930" y="502"><tspan font-weight="700">25 · Yageo RC0402FR-072K2L</tspan><tspan> — identity SCL pull-up</tspan></text>
-<text class="small" x="930" y="517"><tspan font-weight="700">26 · Yageo RC0402FR-072K2L</tspan><tspan> — identity SDA pull-up</tspan></text>
+<text class="small" x="930" y="502"><tspan font-weight="700">25 · UNI-ROYAL 0402WGF2201TCE</tspan><tspan> — identity SCL pull-up</tspan></text>
+<text class="small" x="930" y="517"><tspan font-weight="700">26 · UNI-ROYAL 0402WGF2201TCE</tspan><tspan> — identity SDA pull-up</tspan></text>
 <text class="small" x="930" y="532"><tspan font-weight="700">27 · Samtec TSW-107-07-G-D</tspan><tspan> — Cap-Bus male header</tspan></text>
 <text class="label" x="40.0" y="576.0">INNER FACE · direct view, mirrored from outer face · no silkscreen</text>
 <rect x="40.0" y="590.0" width="420.0" height="120.0" rx="7" fill="#f8fafc" stroke="#344054" stroke-width="2"/>
@@ -105,6 +105,6 @@
 <text class="label" x="930" y="590">Exact regional assemblies</text>
 <text class="small" x="930" y="611">LESHY2-LORA-CAP-01-EU868 · NiceRF LoRa1262-868 · 848–888 MHz</text>
 <text class="small" x="930" y="628">LESHY2-LORA-CAP-01-US915 · NiceRF LoRa1262-915 · 900–940 MHz</text>
-<text class="small" x="930" y="650">Known quantity-100 electronics: $10.31; radio module, PCB and assembly remain RFQ gates.</text>
+<text class="small" x="930" y="650">Known quantity-100 electronics: $10.29; radio module, PCB and assembly remain RFQ gates.</text>
 <text class="small" x="930" y="680">Pre-KiCad envelope proof; exact pads and copper follow only after architecture release.</text>
 </svg>

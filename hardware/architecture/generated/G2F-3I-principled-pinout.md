@@ -65,7 +65,7 @@ flowchart TD
   DISPLAY_RESET_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm display RESX reset-default pull-down"]
   TOUCH_RESET_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm touch TP_RESXP reset-default pull-down"]
   BACKLIGHT_EFUSE["Texas Instruments TPS2553DRVR-1<br/>latch-off and reverse-blocking LEDA power switch"]
-  BACKLIGHT_EFUSE_ILIM["Yageo RC0402FR-07133KL<br/>133-kOhm 1% approximately 200-mA backlight-limit resistor"]
+  BACKLIGHT_EFUSE_ILIM["UNI-ROYAL 0402WGF1333TCE<br/>133-kOhm 1% approximately 200-mA backlight-limit resistor"]
   BACKLIGHT_EFUSE_INPUT_CAP["Yageo CC0402KRX7R9BB104<br/>100-nF backlight-switch input bypass capacitor"]
   BACKLIGHT_EFUSE_OUTPUT_BULK["Murata GRM188R60J106ME47D<br/>10-uF protected-LEDA output bulk capacitor"]
   BACKLIGHT_EFUSE_OUTPUT_HF["Yageo CC0402KRX7R9BB104<br/>100-nF protected-LEDA output bypass capacitor"]
@@ -385,7 +385,7 @@ flowchart TD
   MIC_TX_BIAS["Yageo RC0402FR-07100KL<br/>mic tx bias physical component"]
   CODEC_TX_COUPLING["TDK C1608X7R1C105K080AC<br/>codec tx coupling physical component"]
   CODEC_TX_ATTEN_TOP["Vishay CRCW0402160KFKED<br/>codec tx atten top physical component"]
-  CODEC_TX_ATTEN_BOTTOM["Yageo RC0402FR-072K2L<br/>codec tx atten bottom physical component"]
+  CODEC_TX_ATTEN_BOTTOM["UNI-ROYAL 0402WGF2201TCE<br/>codec tx atten bottom physical component"]
   CODEC_TX_FILTER["Murata GRM155R71H103KA88D<br/>codec tx filter physical component"]
   VOICE_MIC_COUPLING["TDK C1608X7R1C105K080AC<br/>voice mic coupling physical component"]
   VOICE_V_MIC_COUPLING["TDK C1608X7R1C105K080AC<br/>voice v mic coupling physical component"]
@@ -432,13 +432,13 @@ flowchart TD
   MICROPHONE["Same Sky CMEJ-0413-42-SMT-TR<br/>top-port analog electret microphone"]
   MICROPHONE_BIAS_FILTER_RES["Yageo RC0402FR-07220RL<br/>microphone bias filter res physical component"]
   MICROPHONE_BIAS_FILTER_CAP["Murata GRM188R60J106ME47D<br/>microphone bias filter cap physical component"]
-  MICROPHONE_BIAS_RES["Yageo RC0402FR-072K2L<br/>microphone bias res physical component"]
+  MICROPHONE_BIAS_RES["UNI-ROYAL 0402WGF2201TCE<br/>microphone bias res physical component"]
   HEADPHONE_JACK["Same Sky SJ-43504-SMT-TR<br/>shielded 3.5-mm CTIA TRRS headset jack with insertion switches"]
   HEADSET_MIC_SELECTOR["Texas Instruments TS5A63157DCKR<br/>controlled internal/CTIA-headset microphone selector"]
   HEADSET_MIC_SELECTOR_BYPASS["Yageo CC0402KRX7R9BB104<br/>headset-microphone selector bypass capacitor"]
   HEADSET_MICROPHONE_BIAS_FILTER_RES["Yageo RC0402FR-07220RL<br/>headset microphone bias filter res physical component"]
   HEADSET_MICROPHONE_BIAS_FILTER_CAP["Murata GRM188R60J106ME47D<br/>headset microphone bias filter cap physical component"]
-  HEADSET_MIC_BIAS_RES["Yageo RC0402FR-072K2L<br/>separate 2.2-kOhm CTIA microphone-bias resistor"]
+  HEADSET_MIC_BIAS_RES["UNI-ROYAL 0402WGF2201TCE<br/>separate 2.2-kOhm CTIA microphone-bias resistor"]
   HEADSET_CONTROL_IO["TCA9534APWR<br/>0x39 microphone-source controller with seven pulled reserve I/O lines"]
   HEADSET_CONTROL_IO_BYPASS["Yageo CC0402KRX7R9BB104<br/>headset-controller bypass capacitor"]
   HEADSET_MIC_SELECT_PULLUP["Yageo RC0402FR-07100KL<br/>internal-microphone reset-default pull-up"]
@@ -467,8 +467,8 @@ flowchart TD
   CODEC_READY_PULLDOWN["Yageo RC0402FR-07100KL<br/>codec ready pulldown physical component"]
   CODEC_I2C_ISO["Texas Instruments SN74LVC2G66DCUR<br/>dual bilateral codec-I2C power isolation"]
   CODEC_I2C_ISO_BYPASS["Yageo CC0402KRX7R9BB104<br/>codec i2c iso bypass physical component"]
-  CODEC_I2C_SCL_PULLUP["Yageo RC0402FR-072K2L<br/>codec i2c scl pullup physical component"]
-  CODEC_I2C_SDA_PULLUP["Yageo RC0402FR-072K2L<br/>codec i2c sda pullup physical component"]
+  CODEC_I2C_SCL_PULLUP["UNI-ROYAL 0402WGF2201TCE<br/>codec i2c scl pullup physical component"]
+  CODEC_I2C_SDA_PULLUP["UNI-ROYAL 0402WGF2201TCE<br/>codec i2c sda pullup physical component"]
   end
   S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ SPEAKER ~~~ MICROPHONE ~~~ MICROPHONE_BIAS_FILTER_RES ~~~ MICROPHONE_BIAS_FILTER_CAP ~~~ MICROPHONE_BIAS_RES ~~~ HEADPHONE_JACK ~~~ HEADSET_MIC_SELECTOR
   HEADSET_MIC_SELECTOR_BYPASS ~~~ HEADSET_MICROPHONE_BIAS_FILTER_RES ~~~ HEADSET_MICROPHONE_BIAS_FILTER_CAP ~~~ HEADSET_MIC_BIAS_RES ~~~ HEADSET_CONTROL_IO ~~~ HEADSET_CONTROL_IO_BYPASS ~~~ HEADSET_MIC_SELECT_PULLUP ~~~ HEADSET_CONTROL_P1_PULLDOWN ~~~ HEADSET_CONTROL_P2_PULLDOWN ~~~ HEADSET_CONTROL_P3_PULLDOWN ~~~ HEADSET_CONTROL_P4_PULLDOWN ~~~ HEADSET_CONTROL_P5_PULLDOWN
@@ -520,8 +520,8 @@ flowchart TD
   RECEIVER_READY_PULLDOWN["Yageo RC0402FR-07100KL<br/>receiver ready pulldown physical component"]
   RECEIVER_I2C_ISO["Texas Instruments SN74LVC2G66DCUR<br/>dual bilateral receiver-I2C power isolation"]
   RECEIVER_I2C_ISO_BYPASS["Yageo CC0402KRX7R9BB104<br/>receiver i2c iso bypass physical component"]
-  RECEIVER_I2C_SCL_PULLUP["Yageo RC0402FR-072K2L<br/>receiver i2c scl pullup physical component"]
-  RECEIVER_I2C_SDA_PULLUP["Yageo RC0402FR-072K2L<br/>receiver i2c sda pullup physical component"]
+  RECEIVER_I2C_SCL_PULLUP["UNI-ROYAL 0402WGF2201TCE<br/>receiver i2c scl pullup physical component"]
+  RECEIVER_I2C_SDA_PULLUP["UNI-ROYAL 0402WGF2201TCE<br/>receiver i2c sda pullup physical component"]
   RECEIVER_IRQ_ISO["SN74LVC1G07DCKR<br/>Ioff open-drain receiver-interrupt isolator"]
   RECEIVER_IRQ_ISO_BYPASS["Yageo CC0402KRX7R9BB104<br/>receiver irq iso bypass physical component"]
   RECEIVER_IRQ_PULLUP["Yageo RC0402FR-0710KL<br/>receiver irq pullup physical component"]
@@ -623,7 +623,7 @@ flowchart TD
   VOICE_V_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>voice_v first-population 10-kOhm threshold lower resistor"]
   VOICE_V_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>voice_v 1-MOhm evidence-hysteresis feedback resistor"]
   VOICE_TX_LED["LTST-C190KRKT<br/>voice antenna-local actual-TX indicator"]
-  VOICE_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>voice actual-TX indicator 2.2-kOhm current limit"]
+  VOICE_TX_LED_SERIES["UNI-ROYAL 0402WGF2201TCE<br/>voice actual-TX indicator 2.2-kOhm current limit"]
   end
   S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ VOICE_V_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_V_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_V_EVIDENCE_HYSTERESIS ~~~ VOICE_TX_LED ~~~ VOICE_TX_LED_SERIES
 ```
@@ -668,9 +668,9 @@ flowchart TD
   C5_DETECTOR_OUTPUT_CAP["KEMET C0402C330J5GACTU<br/>C5 detector output-load capacitor"]
   C5_DETECTOR_BYPASS["Yageo CC0402KRX7R9BB104<br/>C5 detector local bypass capacitor"]
   S3_TX_LED["LTST-C190KRKT<br/>S3 antenna-local actual-TX indicator"]
-  S3_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>S3 actual-TX indicator 2.2-kOhm current limit"]
+  S3_TX_LED_SERIES["UNI-ROYAL 0402WGF2201TCE<br/>S3 actual-TX indicator 2.2-kOhm current limit"]
   C5_TX_LED["LTST-C190KRKT<br/>C5 antenna-local actual-TX indicator"]
-  C5_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>C5 actual-TX indicator 2.2-kOhm current limit"]
+  C5_TX_LED_SERIES["UNI-ROYAL 0402WGF2201TCE<br/>C5 actual-TX indicator 2.2-kOhm current limit"]
   S3_EXTERNAL_RP_SMA["GCT RFPC-SMA32-FN-175-A<br/>S3 dedicated 6-GHz IP67 RP-SMA edge-launch jack"]
   C5_EXTERNAL_RP_SMA["GCT RFPC-SMA32-FN-175-A<br/>C5 dedicated 6-GHz IP67 RP-SMA edge-launch jack"]
   NRF0_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>nRF0 dedicated 6-GHz IP67 standard-SMA edge-launch jack"]
@@ -861,9 +861,9 @@ flowchart TD
   NRF2_DETECTOR_FILTER["Murata GRM1555C1H121JA01D<br/>AD8314 response filter capacitor"]
   NRF2_DETECTOR_BYPASS["Yageo CC0402KRX7R9BB104<br/>AD8314 local bypass capacitor"]
   NRF0_TX_LED["LTST-C190KRKT<br/>antenna-local actual-TX indicator"]
-  NRF0_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>antenna-local actual-TX indicator 2.2-kOhm current limit"]
+  NRF0_TX_LED_SERIES["UNI-ROYAL 0402WGF2201TCE<br/>antenna-local actual-TX indicator 2.2-kOhm current limit"]
   NRF1_TX_LED["LTST-C190KRKT<br/>antenna-local actual-TX indicator"]
-  NRF1_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>antenna-local actual-TX indicator 2.2-kOhm current limit"]
+  NRF1_TX_LED_SERIES["UNI-ROYAL 0402WGF2201TCE<br/>antenna-local actual-TX indicator 2.2-kOhm current limit"]
   NRF2_TX_LED["LTST-C190KRKT<br/>antenna-local actual-TX indicator"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
@@ -897,7 +897,7 @@ flowchart TD
   DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA818S-U UHF RF power detector"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
   EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
-  NRF2_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>antenna-local actual-TX indicator 2.2-kOhm current limit"]
+  NRF2_TX_LED_SERIES["UNI-ROYAL 0402WGF2201TCE<br/>antenna-local actual-TX indicator 2.2-kOhm current limit"]
   NRF0_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>nRF0 dedicated 6-GHz IP67 standard-SMA edge-launch jack"]
   NRF1_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>nRF1 dedicated 6-GHz IP67 standard-SMA edge-launch jack"]
   NRF2_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>nRF2 dedicated 6-GHz IP67 standard-SMA edge-launch jack"]
@@ -1003,7 +1003,7 @@ flowchart TD
   CC_BACKUP_GATE["SN74LVC1G08DCKR<br/>backup gate CC physical component"]
   CC_BACKUP_GATE_BYPASS["Yageo CC0402KRX7R9BB104<br/>local switched-domain bypass capacitor"]
   CC_TX_LED["LTST-C190KRKT<br/>CC antenna-local actual-TX indicator"]
-  CC_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>CC actual-TX indicator 2.2-kOhm current limit"]
+  CC_TX_LED_SERIES["UNI-ROYAL 0402WGF2201TCE<br/>CC actual-TX indicator 2.2-kOhm current limit"]
   CC_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>CC dedicated 6-GHz IP67 standard-SMA edge-launch jack"]
   VOICE["G-NiceRF SA818S-U<br/>UHF 400–480-MHz analog voice transceiver"]
   VOICE_V["G-NiceRF SA818S-V<br/>VHF 134–174-MHz analog voice transceiver"]
@@ -1076,7 +1076,7 @@ flowchart TD
   VOICE_V_EVIDENCE_HOLD_CAP["TDK C1608X7R1C105K080AC<br/>VHF actual-TX evidence enable hold capacitor"]
   VOICE_V_EVIDENCE_HOLD_PULLDOWN["Yageo RC0402FR-0710KL<br/>VHF actual-TX evidence hold discharge resistor"]
   VOICE_TX_LED["LTST-C190KRKT<br/>voice antenna-local actual-TX indicator"]
-  VOICE_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>voice actual-TX indicator 2.2-kOhm current limit"]
+  VOICE_TX_LED_SERIES["UNI-ROYAL 0402WGF2201TCE<br/>voice actual-TX indicator 2.2-kOhm current limit"]
   VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>UHF dedicated 6-GHz IP67 standard-SMA edge-launch jack"]
   VOICE_V_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>VHF dedicated 6-GHz IP67 standard-SMA edge-launch jack"]
   RECEIVER_FMSW_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>dedicated FM/SW standard-SMA receive jack"]
@@ -1085,8 +1085,8 @@ flowchart TD
   U214_CONNECTOR["Samtec HLE-107-02-G-DV-PE-LC<br/>vertical 14-contact Cap-Bus host socket on raised rear rail"]
   U214_I2C_ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
   U214_I2C_ISO_BYPASS["Yageo CC0402KRX7R9BB104<br/>100-nF external-I2C-isolator bypass capacitor"]
-  U214_I2C_HOST_SDA_PULLUP["Yageo RC0402FR-072K2L<br/>2.2-kOhm U214 controller-side SDA pull-up"]
-  U214_I2C_HOST_SCL_PULLUP["Yageo RC0402FR-072K2L<br/>2.2-kOhm U214 controller-side SCL pull-up"]
+  U214_I2C_HOST_SDA_PULLUP["UNI-ROYAL 0402WGF2201TCE<br/>2.2-kOhm U214 controller-side SDA pull-up"]
+  U214_I2C_HOST_SCL_PULLUP["UNI-ROYAL 0402WGF2201TCE<br/>2.2-kOhm U214 controller-side SCL pull-up"]
   U214_HOST_BUFFER_A["Nexperia 74LVC126APW,118<br/>U214 RST/GPS-RX/SCK/MOSI Ioff buffer"]
   U214_HOST_BUFFER_B["Nexperia 74LVC126APW,118<br/>U214 NSS plus disabled-spare Ioff buffer"]
   U214_RETURN_BUFFER["Nexperia 74LVC126APW,118<br/>U214 BUSY/IRQ/GPS-TX/MISO Ioff return buffer"]
@@ -1233,7 +1233,7 @@ flowchart TD
   IR_SAFE_GATE["SN74LVC1G08DCKR<br/>UI-local FAULT_KILL-qualified IR carrier gate"]
   IR_SAFE_GATE_BYPASS["Yageo CC0402KRX7R9BB104<br/>IR safety-gate local bypass capacitor"]
   IR_TX_LED["LTST-C190KRKT<br/>IR-local physical-optical actual-TX indicator"]
-  IR_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>IR actual-TX indicator 2.2-kOhm current limit"]
+  IR_TX_LED_SERIES["UNI-ROYAL 0402WGF2201TCE<br/>IR actual-TX indicator 2.2-kOhm current limit"]
   end
   C5 ~~~ SAFE_GATE_B ~~~ DET_IR ~~~ IR_POWER_SWITCH ~~~ IR_POWER_INPUT_CAP ~~~ IR_POWER_OUTPUT_CAP ~~~ IR_POWER_OUTPUT_BYPASS ~~~ IR_POWER_ON_PULLDOWN ~~~ IR_DEMOD ~~~ IR_DEMOD_SUPPLY_RES ~~~ IR_DEMOD_SUPPLY_CAP ~~~ IR_CARRIER
   IR_CARRIER_SUPPLY_RES ~~~ IR_CARRIER_SUPPLY_CAP ~~~ IR_CARRIER_PULLUP ~~~ IR_RETURN_BUFFER ~~~ IR_RETURN_BUFFER_BYPASS ~~~ IR_DEMOD_SERIES ~~~ IR_CARRIER_SERIES ~~~ IR_DEMOD_HOST_PULLUP ~~~ IR_CARRIER_HOST_PULLUP ~~~ IR_EMITTER ~~~ IR_EMITTER_LIMIT ~~~ IR_TX_MOSFET
@@ -1476,7 +1476,7 @@ flowchart TD
   SAFE_PTT_OR["74LVC1G32GV,125<br/>active-low voice PTT force-RX gate"]
   SAFE_PTT_OR_BYPASS["Yageo CC0402KRX7R9BB104<br/>100-nF voice-PTT safety-gate bypass capacitor"]
   FAULT_LED["LTST-C190KFKT<br/>orange physical latched-FAULT indicator"]
-  FAULT_LED_SERIES["Yageo RC0402FR-072K2L<br/>2.2-kOhm physical FAULT-indicator current limit"]
+  FAULT_LED_SERIES["UNI-ROYAL 0402WGF2201TCE<br/>2.2-kOhm physical FAULT-indicator current limit"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ AON_EFUSE ~~~ SAFE_RESET_BUFFER ~~~ SAFE_RESET_BUFFER_BYPASS ~~~ SAFE_C5_RESET_BUFFER ~~~ SAFE_C5_RESET_BUFFER_BYPASS ~~~ SAFE_C5_RESET_GATE_PULLUP ~~~ SAFE_C5_FAULT_RESET_BUFFER ~~~ SAFE_C5_FAULT_RESET_BUFFER_BYPASS
   SAFE_FAULT_RESET_BUFFER ~~~ SAFE_FAULT_RESET_BUFFER_BYPASS ~~~ SAFE_RESET_GATE_PULLUP ~~~ S3_RESET_GATE_PULLUP ~~~ SAFE_RESET_SINK_A ~~~ SAFE_RESET_SINK_B ~~~ S3_RESET_PULLUP ~~~ C5_RESET_PULLUP ~~~ RP_RESET_PULLUP ~~~ SAFE_GATE_A ~~~ SAFE_GATE_A_BYPASS ~~~ SAFE_GATE_B
@@ -1623,7 +1623,7 @@ flowchart TD
   EVIDENCE_OR_3["BAT54ALT1G<br/>evidence diode-OR pair 6/7"]
   EVIDENCE_OR_4["BAT54ALT1G<br/>evidence diode-OR source 8 with one unused diode"]
   ANY_TX_AON_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm AON ANY-TX logic pull-up resistor"]
-  EXT_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>2.2-kOhm LoRa/EXT physical-TX indicator current limit"]
+  EXT_TX_LED_SERIES["UNI-ROYAL 0402WGF2201TCE<br/>2.2-kOhm LoRa/EXT physical-TX indicator current limit"]
   EXT_TX_LED["LTST-C190KRKT<br/>red physical LoRa/EXT actual-TX indicator"]
   EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>triple AON-to-main open-drain evidence isolator"]
   EVIDENCE_MAIN_ISOLATOR_BYPASS["Yageo CC0402KRX7R9BB104<br/>evidence-domain-isolator local bypass capacitor"]
@@ -1695,7 +1695,7 @@ flowchart TD
   MAIN_OUTPUT_CAP0["Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main raw-output capacitor #0"]
   MAIN_OUTPUT_CAP1["Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main raw-output capacitor #1"]
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
-  MAIN_EFUSE_RILM["Yageo RC0402FR-071K65L<br/>1.65-kOhm 1% main eFuse threshold resistor"]
+  MAIN_EFUSE_RILM["UNI-ROYAL 0402WGF1651TCE<br/>1.65-kOhm 1% main eFuse threshold resistor"]
   MAIN_EFUSE_DVDT_CAP["Murata GRM155R71H472KA01D<br/>4.7-nF 50-V X7R main eFuse slew capacitor"]
   MAIN_EFUSE_ITIMER_CAP["Murata GRM1555C1H121JA01D<br/>120-pF 50-V C0G main eFuse transient timer"]
   MAIN_EFUSE_OVLO_TOP["Yageo RT0402BRD07191KL<br/>191-kOhm 0.1% main eFuse OVLO top resistor"]
@@ -1774,7 +1774,7 @@ flowchart TD
   VOICE["G-NiceRF SA818S-U<br/>UHF 400–480-MHz analog voice transceiver"]
   U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
   VOICE_EFUSE_ITIMER_CAP["Murata GRM1555C1H121JA01D<br/>120-pF 50-V C0G voice eFuse transient timer"]
-  VOICE_EFUSE_OVLO_TOP["Yageo RC0402FR-07270KL<br/>270-kOhm 1% voice eFuse OVLO top resistor"]
+  VOICE_EFUSE_OVLO_TOP["UNI-ROYAL 0402WGF2703TCE<br/>270-kOhm 1% voice eFuse OVLO top resistor"]
   VOICE_EFUSE_OVLO_BOTTOM["Yageo RC0402FR-07100KL<br/>100-kOhm 1% voice eFuse OVLO bottom resistor"]
   VOICE_EFUSE_PG_TOP["Yageo RC0402FR-0768KL<br/>68-kOhm 1% voice protected-PG top resistor"]
   VOICE_EFUSE_PG_BOTTOM["Yageo RC0402FR-0733KL<br/>33-kOhm 1% voice protected-PG bottom resistor"]
@@ -1867,10 +1867,10 @@ flowchart TD
   PD_VBUS_CAP["TDK CGA5L1X7R1E475K160AC<br/>4.7-uF 25-V raw-VBUS startup capacitor"]
   PD_EEPROM_BYPASS["Yageo CC0402KRX7R9BB104<br/>100-nF PD EEPROM bypass capacitor"]
   PD_EEPROM_WP_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm reset-high EEPROM write-protect pull-up"]
-  PD_LOCAL_SCL_PULLUP["Yageo RC0402FR-072K2L<br/>2.2-kOhm local PD-bus SCL pull-up"]
-  PD_LOCAL_SDA_PULLUP["Yageo RC0402FR-072K2L<br/>2.2-kOhm local PD-bus SDA pull-up"]
-  SYS_I2C_SCL_PULLUP["Yageo RC0402FR-072K2L<br/>2.2-kOhm system host-bus SCL pull-up"]
-  SYS_I2C_SDA_PULLUP["Yageo RC0402FR-072K2L<br/>2.2-kOhm system host-bus SDA pull-up"]
+  PD_LOCAL_SCL_PULLUP["UNI-ROYAL 0402WGF2201TCE<br/>2.2-kOhm local PD-bus SCL pull-up"]
+  PD_LOCAL_SDA_PULLUP["UNI-ROYAL 0402WGF2201TCE<br/>2.2-kOhm local PD-bus SDA pull-up"]
+  SYS_I2C_SCL_PULLUP["UNI-ROYAL 0402WGF2201TCE<br/>2.2-kOhm system host-bus SCL pull-up"]
+  SYS_I2C_SDA_PULLUP["UNI-ROYAL 0402WGF2201TCE<br/>2.2-kOhm system host-bus SDA pull-up"]
   SYS_INT_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm shared wired-low system IRQ pull-up"]
   NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S-configured buck-boost charger and NVDC system power path"]
   CHARGER_INDUCTOR["Sunlord MWSA0503S-2R2MT<br/>2.2-uH 7-A 750-kHz charger inductor"]
@@ -1920,9 +1920,9 @@ flowchart TD
   CHARGER_BTST2_CAP["Murata GRM155R71E473KA88D<br/>47-nF 25-V charger bootstrap capacitor #2"]
   CHARGER_REGN_CAP["TDK CGA5L1X7R1E475K160AC<br/>4.7-uF 25-V charger REGN capacitor"]
   CHARGER_SDRV_CAP["KEMET C0402C102K5RACTU<br/>1-nF 50-V no-ship-FET SDRV capacitor"]
-  CHARGER_PROG_RES["Yageo RC0402FR-078K2L<br/>8.2-kOhm 1% 2S/750-kHz PROG resistor"]
+  CHARGER_PROG_RES["UNI-ROYAL 0402WGF8201TCE<br/>8.2-kOhm 1% 2S/750-kHz PROG resistor"]
   CHARGER_BATP_RES["Yageo RC0402FR-07100RL<br/>100-Ohm 1% BATP sense resistor"]
-  CHARGER_TS_TOP["Yageo RC0402FR-075K23L<br/>5.23-kOhm 1% charger TS upper resistor"]
+  CHARGER_TS_TOP["UNI-ROYAL 0402WGF5231TCE<br/>5.23-kOhm 1% charger TS upper resistor"]
   CHARGER_TS_BOTTOM["Yageo RC0402FR-0730K1L<br/>30.1-kOhm 1% charger TS lower resistor"]
   CHARGER_TS_NTC["TDK B57332V5103F360<br/>independent 10-kOhm charger battery NTC"]
   CHARGER_ILIM_TOP["Yageo RC0402FR-0744K2L<br/>44.2-kOhm 1% hardware ILIM upper resistor"]
@@ -5445,6 +5445,10 @@ Reserved: `PA1_NRST`. Free: none.
 - `u214_i2c_iso` uses `TCA4307DGKR` as `verified_exact_u214_i2c_hot_swap_boundary`, not an accepted production choice.
 - `u214_i2c_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `u214_i2c_iso_bypass` lifecycle: `active_orderable`.
+- `u214_i2c_host_sda_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `u214_i2c_host_sda_pullup` lifecycle: `production_active_factory_stocked`.
+- `u214_i2c_host_scl_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `u214_i2c_host_scl_pullup` lifecycle: `production_active_factory_stocked`.
 - `u214_host_buffer_a` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
 - `u214_host_buffer_a` lifecycle: `production_active_orderable`.
 - `u214_host_buffer_b` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
@@ -5745,6 +5749,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `display_panel_connector` lifecycle: `active and authorized-distributor-stocked; exact HMX035CTFT-001 tail thickness and insertion fit remain H5`.
 - `display_logic_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `display_logic_hf_cap` lifecycle: `active_orderable`.
+- `backlight_efuse_ilim` uses `UNI-ROYAL 0402WGF1333TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `backlight_efuse_ilim` lifecycle: `production_active_factory_stocked`.
 - `backlight_efuse_input_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `backlight_efuse_input_cap` lifecycle: `active_orderable`.
 - `backlight_efuse_output_hf` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
@@ -5793,6 +5799,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `mic_tx_coupling` lifecycle: `active_production`.
 - `codec_tx_coupling` lifecycle: `active_production`.
 - `codec_tx_atten_top` lifecycle: `active_orderable`.
+- `codec_tx_atten_bottom` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `codec_tx_atten_bottom` lifecycle: `production_active_factory_stocked`.
 - `voice_mic_coupling` lifecycle: `active_production`.
 - `voice_v_mic_coupling` lifecycle: `active_production`.
 - `audio_safe_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
@@ -5804,11 +5812,15 @@ Reserved: `PA1_NRST`. Free: none.
 - `speaker` lifecycle: `active_orderable`.
 - `microphone` lifecycle: `active_orderable`.
 - `microphone_bias_filter_res` lifecycle: `active_orderable`.
+- `microphone_bias_res` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `microphone_bias_res` lifecycle: `production_active_factory_stocked`.
 - `headphone_jack` lifecycle: `active_orderable`.
 - `headset_mic_selector` uses `Texas Instruments TS5A63157DCKR` as `reference_only`, not an accepted production choice.
 - `headset_mic_selector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `headset_mic_selector_bypass` lifecycle: `active_orderable`.
 - `headset_microphone_bias_filter_res` lifecycle: `active_orderable`.
+- `headset_mic_bias_res` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `headset_mic_bias_res` lifecycle: `production_active_factory_stocked`.
 - `headset_control_io_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `headset_control_io_bypass` lifecycle: `active_orderable`.
 - `codec_power_input_cap` lifecycle: `active_production`.
@@ -5816,6 +5828,10 @@ Reserved: `PA1_NRST`. Free: none.
 - `codec_supervisor_bypass` lifecycle: `active_orderable`.
 - `codec_i2c_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `codec_i2c_iso_bypass` lifecycle: `active_orderable`.
+- `codec_i2c_scl_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `codec_i2c_scl_pullup` lifecycle: `production_active_factory_stocked`.
+- `codec_i2c_sda_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `codec_i2c_sda_pullup` lifecycle: `production_active_factory_stocked`.
 - `codec_i2s_din_boot_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.
 - `codec_i2s_din_boot_gate` lifecycle: `active_orderable`.
 - `codec_i2s_bclk_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
@@ -5844,6 +5860,10 @@ Reserved: `PA1_NRST`. Free: none.
 - `receiver_supervisor_bypass` lifecycle: `active_orderable`.
 - `receiver_i2c_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `receiver_i2c_iso_bypass` lifecycle: `active_orderable`.
+- `receiver_i2c_scl_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `receiver_i2c_scl_pullup` lifecycle: `production_active_factory_stocked`.
+- `receiver_i2c_sda_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `receiver_i2c_sda_pullup` lifecycle: `production_active_factory_stocked`.
 - `receiver_irq_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `receiver_irq_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `receiver_irq_iso_bypass` lifecycle: `active_orderable`.
@@ -5915,12 +5935,24 @@ Reserved: `PA1_NRST`. Free: none.
 - `product_usb_vpwr_cap` lifecycle: `active_production`.
 - `pd_eeprom_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `pd_eeprom_bypass` lifecycle: `active_orderable`.
+- `pd_local_scl_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `pd_local_scl_pullup` lifecycle: `production_active_factory_stocked`.
+- `pd_local_sda_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `pd_local_sda_pullup` lifecycle: `production_active_factory_stocked`.
+- `sys_i2c_scl_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `sys_i2c_scl_pullup` lifecycle: `production_active_factory_stocked`.
+- `sys_i2c_sda_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `sys_i2c_sda_pullup` lifecycle: `production_active_factory_stocked`.
 - `charger_vbus_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `charger_vbus_hf_cap` lifecycle: `active_orderable`.
 - `charger_pmid_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `charger_pmid_hf_cap` lifecycle: `active_orderable`.
 - `charger_sys_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `charger_sys_hf_cap` lifecycle: `active_orderable`.
+- `charger_prog_res` uses `UNI-ROYAL 0402WGF8201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `charger_prog_res` lifecycle: `production_active_factory_stocked`.
+- `charger_ts_top` uses `UNI-ROYAL 0402WGF5231TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `charger_ts_top` lifecycle: `production_active_factory_stocked`.
 - `pack_gauge` lifecycle: `recommended_for_new_designs`.
 - `pack_admission` uses `Texas Instruments MSPM0C1106SDGS20R` as `verified_exact_64kb_flash_8kb_sram_hybrid_bsl_candidate`, not an accepted production choice.
 - `pack_admission` lifecycle: `active_orderable`.
@@ -5973,8 +6005,12 @@ Reserved: `PA1_NRST`. Free: none.
 - `main_fb_top` lifecycle: `active_orderable`.
 - `main_fb_bottom` uses `Vishay TNPW040210K0BEED` as `verified_exact_precision_main_feedback_resistor`, not an accepted production choice.
 - `main_fb_bottom` lifecycle: `active_orderable`.
+- `main_efuse_rilm` uses `UNI-ROYAL 0402WGF1651TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `main_efuse_rilm` lifecycle: `production_active_factory_stocked`.
 - `voice_hf_input_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `voice_hf_input_cap` lifecycle: `active_orderable`.
+- `voice_efuse_ovlo_top` uses `UNI-ROYAL 0402WGF2703TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `voice_efuse_ovlo_top` lifecycle: `production_active_factory_stocked`.
 - `ext_buck_hf_input_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `ext_buck_hf_input_cap` lifecycle: `active_orderable`.
 - `ext_rilm` uses `Yageo RC0402FR-071K82L` as `verified_h3_dc_margin_correction`, not an accepted production choice.
@@ -6190,6 +6226,26 @@ Reserved: `PA1_NRST`. Free: none.
 - `voice_v_evidence_hysteresis` lifecycle: `active_orderable`.
 - `ir_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
 - `ir_evidence_hysteresis` lifecycle: `active_orderable`.
+- `s3_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `s3_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `c5_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `c5_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `nrf0_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `nrf0_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `nrf1_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `nrf1_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `nrf2_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `nrf2_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `cc_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `cc_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `voice_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `voice_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `ir_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `ir_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `ext_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `ext_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `fault_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `fault_led_series` lifecycle: `production_active_factory_stocked`.
 - SC1512-A4 is the exact 7-inch-reel order code for RP2354B0A4; received A4 marking/lot identity, power/clock/land pattern and prototype assembly remain implementation gates, so the verified QFN80 contact map is not a BOM freeze
 - E01-ML01S is a geometry/interface reference, not an accepted three-module RF/power/antenna production choice; nRF24 family lifecycle remains not-recommended-for-new-designs
 - DEC-0093 closes the first exact CC1101 paper endpoint with dual-ended band switching, exact oscillator, first-pass 315/433/868-915 coupon, switched-domain digital isolation, low-capacitance ESD and AD8314 actual-TX evidence. RFPC-SMA31-FN-175-A is now the exact standard-SMA boundary; conducted VNA/tuning, sensitivity/output/spurious/legal-profile/coexistence and received-connector HIL remain blocking before schematic/BOM freeze

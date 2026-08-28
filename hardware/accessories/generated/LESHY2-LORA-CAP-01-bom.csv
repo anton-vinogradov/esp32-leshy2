@@ -11,11 +11,11 @@ LESHY2-LORA-CAP-01-EU868,1,ti_tlv1821_dckr,TLV1821DCKR,evidence_comparator,0.744
 LESHY2-LORA-CAP-01-EU868,1,ti_tps7a2033_pdbvr,TPS7A2033PDBVR,local_regulator,0.16700,priced,https://www.ti.com/product/TPS7A20/part-details/TPS7A2033PDBVR
 LESHY2-LORA-CAP-01-EU868,1,ttm_dc0710j5020ahf,TTM Technologies DC0710J5020AHF,rf_coupler,0.99060,priced,https://www.digikey.com/en/products/detail/ttm-technologies-inc/DC0710J5020AHF/16538438
 LESHY2-LORA-CAP-01-EU868,1,ti_sn74lvc1g06_dckr,Texas Instruments SN74LVC1G06DCKR,evidence_driver,0.07490,priced,https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G06DCKR/377452
+LESHY2-LORA-CAP-01-EU868,1,uniroyal_0402wgf1333tce,UNI-ROYAL 0402WGF1333TCE,evidence_timing_resistor,0.00150,priced,https://jlcpcb.com/partdetail/26496-0402WGF1333TCE/C25753
+LESHY2-LORA-CAP-01-EU868,2,uniroyal_0402wgf2201tce,UNI-ROYAL 0402WGF2201TCE,identity_scl_pullup;identity_sda_pullup,0.00390,priced,https://jlcpcb.com/partdetail/26622-0402WGF2201TCE/C25879
 LESHY2-LORA-CAP-01-EU868,6,yageo_cc0402krx7r9bb104,Yageo CC0402KRX7R9BB104,evidence_comparator_bypass;evidence_driver_bypass;evidence_monostable_bypass;evidence_timing_capacitor;identity_bypass;rf_detector_bypass,0.01070,priced,https://jlcpcb.com/partdetail/Yageo-CC0402KRX7R9BB104/C131394
 LESHY2-LORA-CAP-01-EU868,2,yageo_rc0402fr_0710kl,Yageo RC0402FR-0710KL,evidence_comparator_pullup;evidence_threshold_bottom,0.00970,priced,https://www.digikey.com/en/products/detail/yageo/RC0402FR-0710KL/726523
-LESHY2-LORA-CAP-01-EU868,1,yageo_rc0402fr_07133kl,Yageo RC0402FR-07133KL,evidence_timing_resistor,0.00970,priced,https://www.findchips.com/detail/RC0402FR-07133KL/YAGEO-Corporation
 LESHY2-LORA-CAP-01-EU868,1,yageo_rc0402fr_07220kl,Yageo RC0402FR-07220KL,evidence_threshold_top,0.00970,priced,https://www.digikey.com/en/products/detail/yageo/RC0402FR-07220KL/726564
-LESHY2-LORA-CAP-01-EU868,2,yageo_rc0402fr_072k2l,Yageo RC0402FR-072K2L,identity_scl_pullup;identity_sda_pullup,0.00970,priced,https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K2L/729500
 LESHY2-LORA-CAP-01-EU868,1,yageo_rc0402fr_0749r9l,Yageo RC0402FR-0749R9L,rf_isolated_termination,0.00970,priced,https://www.digikey.com/en/products/detail/yageo/RC0402FR-0749R9L/726621
 LESHY2-LORA-CAP-01-EU868,1,yageo_rc0402fr_0752r3l,Yageo RC0402FR-0752R3L,rf_detector_match,0.00970,priced,https://www.digikey.com/en/products/detail/yageo/RC0402FR-0752R3L/5281040
 LESHY2-LORA-CAP-01-US915,1,adi_ad8314acpz_rl7,Analog Devices AD8314ACPZ-RL7,rf_detector,2.85700,priced,https://www.digikey.com/en/products/detail/analog-devices-inc/AD8314ACPZ-RL7/671084
@@ -30,10 +30,10 @@ LESHY2-LORA-CAP-01-US915,1,ti_tlv1821_dckr,TLV1821DCKR,evidence_comparator,0.744
 LESHY2-LORA-CAP-01-US915,1,ti_tps7a2033_pdbvr,TPS7A2033PDBVR,local_regulator,0.16700,priced,https://www.ti.com/product/TPS7A20/part-details/TPS7A2033PDBVR
 LESHY2-LORA-CAP-01-US915,1,ttm_dc0710j5020ahf,TTM Technologies DC0710J5020AHF,rf_coupler,0.99060,priced,https://www.digikey.com/en/products/detail/ttm-technologies-inc/DC0710J5020AHF/16538438
 LESHY2-LORA-CAP-01-US915,1,ti_sn74lvc1g06_dckr,Texas Instruments SN74LVC1G06DCKR,evidence_driver,0.07490,priced,https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G06DCKR/377452
+LESHY2-LORA-CAP-01-US915,1,uniroyal_0402wgf1333tce,UNI-ROYAL 0402WGF1333TCE,evidence_timing_resistor,0.00150,priced,https://jlcpcb.com/partdetail/26496-0402WGF1333TCE/C25753
+LESHY2-LORA-CAP-01-US915,2,uniroyal_0402wgf2201tce,UNI-ROYAL 0402WGF2201TCE,identity_scl_pullup;identity_sda_pullup,0.00390,priced,https://jlcpcb.com/partdetail/26622-0402WGF2201TCE/C25879
 LESHY2-LORA-CAP-01-US915,6,yageo_cc0402krx7r9bb104,Yageo CC0402KRX7R9BB104,evidence_comparator_bypass;evidence_driver_bypass;evidence_monostable_bypass;evidence_timing_capacitor;identity_bypass;rf_detector_bypass,0.01070,priced,https://jlcpcb.com/partdetail/Yageo-CC0402KRX7R9BB104/C131394
 LESHY2-LORA-CAP-01-US915,2,yageo_rc0402fr_0710kl,Yageo RC0402FR-0710KL,evidence_comparator_pullup;evidence_threshold_bottom,0.00970,priced,https://www.digikey.com/en/products/detail/yageo/RC0402FR-0710KL/726523
-LESHY2-LORA-CAP-01-US915,1,yageo_rc0402fr_07133kl,Yageo RC0402FR-07133KL,evidence_timing_resistor,0.00970,priced,https://www.findchips.com/detail/RC0402FR-07133KL/YAGEO-Corporation
 LESHY2-LORA-CAP-01-US915,1,yageo_rc0402fr_07220kl,Yageo RC0402FR-07220KL,evidence_threshold_top,0.00970,priced,https://www.digikey.com/en/products/detail/yageo/RC0402FR-07220KL/726564
-LESHY2-LORA-CAP-01-US915,2,yageo_rc0402fr_072k2l,Yageo RC0402FR-072K2L,identity_scl_pullup;identity_sda_pullup,0.00970,priced,https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K2L/729500
 LESHY2-LORA-CAP-01-US915,1,yageo_rc0402fr_0749r9l,Yageo RC0402FR-0749R9L,rf_isolated_termination,0.00970,priced,https://www.digikey.com/en/products/detail/yageo/RC0402FR-0749R9L/726621
 LESHY2-LORA-CAP-01-US915,1,yageo_rc0402fr_0752r3l,Yageo RC0402FR-0752R3L,rf_detector_match,0.00970,priced,https://www.digikey.com/en/products/detail/yageo/RC0402FR-0752R3L/5281040

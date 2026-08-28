@@ -61,7 +61,7 @@ def footprint_for(instance: str, device_key: str) -> str:
         return "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm"
     if device_key.startswith(("tdk_c1005", "yageo_cc0402")):
         return "Capacitor_SMD:C_0402_1005Metric"
-    if device_key.startswith("yageo_rc0402"):
+    if device_key.startswith(("yageo_rc0402", "uniroyal_0402wgf")):
         return "Resistor_SMD:R_0402_1005Metric"
     raise ValueError(f"no exact CAP30 footprint for {instance}/{device_key}")
 
@@ -69,7 +69,7 @@ def footprint_for(instance: str, device_key: str) -> str:
 def reference_prefix(device_key: str) -> str:
     if device_key.startswith(("tdk_c", "yageo_cc")):
         return "C"
-    if device_key.startswith("yageo_rc"):
+    if device_key.startswith(("yageo_rc", "uniroyal_0402wgf")):
         return "R"
     return "U"
 

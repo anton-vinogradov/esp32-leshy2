@@ -1097,8 +1097,8 @@
       "instance_uid": "LESHY2-RF:u214_i2c_host_sda_pullup",
       "instance": "u214_i2c_host_sda_pullup",
       "project": "LESHY2-RF",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "rf-power-pcb",
       "sheet": "RF_34_U214_M5_EXT",
@@ -1111,18 +1111,18 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
       "instance_uid": "LESHY2-RF:u214_i2c_host_scl_pullup",
       "instance": "u214_i2c_host_scl_pullup",
       "project": "LESHY2-RF",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "rf-power-pcb",
       "sheet": "RF_34_U214_M5_EXT",
@@ -1135,10 +1135,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -8969,8 +8969,8 @@
       "instance_uid": "LESHY2-UI:backlight_efuse_ilim",
       "instance": "backlight_efuse_ilim",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_07133kl",
-      "mpn": "Yageo RC0402FR-07133KL",
+      "device_key": "uniroyal_0402wgf1333tce",
+      "mpn": "UNI-ROYAL 0402WGF1333TCE",
       "role": "133kohm_1pct_0402_current_limit_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
@@ -8983,10 +8983,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402FR-07133KL product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-07133KL",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -10913,8 +10913,8 @@
       "instance_uid": "LESHY2-UI:codec_tx_atten_bottom",
       "instance": "codec_tx_atten_bottom",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
@@ -10927,10 +10927,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -11465,8 +11465,8 @@
       "instance_uid": "LESHY2-UI:microphone_bias_res",
       "instance": "microphone_bias_res",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
@@ -11479,10 +11479,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -11609,8 +11609,8 @@
       "instance_uid": "LESHY2-UI:headset_mic_bias_res",
       "instance": "headset_mic_bias_res",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
@@ -11623,10 +11623,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -12305,8 +12305,8 @@
       "instance_uid": "LESHY2-UI:codec_i2c_scl_pullup",
       "instance": "codec_i2c_scl_pullup",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
@@ -12319,18 +12319,18 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
       "instance_uid": "LESHY2-UI:codec_i2c_sda_pullup",
       "instance": "codec_i2c_sda_pullup",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_13_AUDIO_CODEC_HEADSET",
@@ -12343,10 +12343,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -13001,8 +13001,8 @@
       "instance_uid": "LESHY2-UI:receiver_i2c_scl_pullup",
       "instance": "receiver_i2c_scl_pullup",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_21_FM_AM_RECEIVER",
@@ -13015,18 +13015,18 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
       "instance_uid": "LESHY2-UI:receiver_i2c_sda_pullup",
       "instance": "receiver_i2c_sda_pullup",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_21_FM_AM_RECEIVER",
@@ -13039,10 +13039,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -15545,8 +15545,8 @@
       "instance_uid": "LESHY2-RF:pd_local_scl_pullup",
       "instance": "pd_local_scl_pullup",
       "project": "LESHY2-RF",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "rf-power-pcb",
       "sheet": "RF_01_USB_PD_CHARGE",
@@ -15559,18 +15559,18 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
       "instance_uid": "LESHY2-RF:pd_local_sda_pullup",
       "instance": "pd_local_sda_pullup",
       "project": "LESHY2-RF",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "rf-power-pcb",
       "sheet": "RF_01_USB_PD_CHARGE",
@@ -15583,18 +15583,18 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
       "instance_uid": "LESHY2-UI:sys_i2c_scl_pullup",
       "instance": "sys_i2c_scl_pullup",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_10_S3_CORE_MEMORY_BOOT",
@@ -15607,18 +15607,18 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
       "instance_uid": "LESHY2-UI:sys_i2c_sda_pullup",
       "instance": "sys_i2c_sda_pullup",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_10_S3_CORE_MEMORY_BOOT",
@@ -15631,10 +15631,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -16169,8 +16169,8 @@
       "instance_uid": "LESHY2-RF:charger_prog_res",
       "instance": "charger_prog_res",
       "project": "LESHY2-RF",
-      "device_key": "yageo_rc0402fr_078k2l",
-      "mpn": "Yageo RC0402FR-078K2L",
+      "device_key": "uniroyal_0402wgf8201tce",
+      "mpn": "UNI-ROYAL 0402WGF8201TCE",
       "role": "8_2kohm_1pct_0402_charger_prog_resistor",
       "board": "rf-power-pcb",
       "sheet": "RF_01_USB_PD_CHARGE",
@@ -16183,10 +16183,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402FR-078K2L product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-078K2L",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -16217,8 +16217,8 @@
       "instance_uid": "LESHY2-RF:charger_ts_top",
       "instance": "charger_ts_top",
       "project": "LESHY2-RF",
-      "device_key": "yageo_rc0402fr_075k23l",
-      "mpn": "Yageo RC0402FR-075K23L",
+      "device_key": "uniroyal_0402wgf5231tce",
+      "mpn": "UNI-ROYAL 0402WGF5231TCE",
       "role": "5_23kohm_1pct_0402_charger_ts_top_resistor",
       "board": "rf-power-pcb",
       "sheet": "RF_01_USB_PD_CHARGE",
@@ -16231,10 +16231,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402FR-075K23L product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-075K23L",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -18497,8 +18497,8 @@
       "instance_uid": "LESHY2-RF:main_efuse_rilm",
       "instance": "main_efuse_rilm",
       "project": "LESHY2-RF",
-      "device_key": "yageo_rc0402fr_071k65l",
-      "mpn": "Yageo RC0402FR-071K65L",
+      "device_key": "uniroyal_0402wgf1651tce",
+      "mpn": "UNI-ROYAL 0402WGF1651TCE",
       "role": "1_65kohm_1pct_0402_main_efuse_current_threshold_resistor",
       "board": "rf-power-pcb",
       "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -18511,10 +18511,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -19049,8 +19049,8 @@
       "instance_uid": "LESHY2-RF:voice_efuse_ovlo_top",
       "instance": "voice_efuse_ovlo_top",
       "project": "LESHY2-RF",
-      "device_key": "yageo_rc0402fr_07270kl",
-      "mpn": "Yageo RC0402FR-07270KL",
+      "device_key": "uniroyal_0402wgf2703tce",
+      "mpn": "UNI-ROYAL 0402WGF2703TCE",
       "role": "270kohm_1pct_0402_voice_efuse_ovlo_top_resistor",
       "board": "rf-power-pcb",
       "sheet": "RF_32_SUBGHZ_VOICE",
@@ -19063,10 +19063,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -24881,8 +24881,8 @@
       "instance_uid": "LESHY2-UI:s3_tx_led_series",
       "instance": "s3_tx_led_series",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_12_CONTROLS_INDICATORS",
@@ -24895,10 +24895,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -24929,8 +24929,8 @@
       "instance_uid": "LESHY2-UI:c5_tx_led_series",
       "instance": "c5_tx_led_series",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_12_CONTROLS_INDICATORS",
@@ -24943,10 +24943,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -24977,8 +24977,8 @@
       "instance_uid": "LESHY2-UI:nrf0_tx_led_series",
       "instance": "nrf0_tx_led_series",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_12_CONTROLS_INDICATORS",
@@ -24991,10 +24991,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -25025,8 +25025,8 @@
       "instance_uid": "LESHY2-UI:nrf1_tx_led_series",
       "instance": "nrf1_tx_led_series",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_12_CONTROLS_INDICATORS",
@@ -25039,10 +25039,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -25073,8 +25073,8 @@
       "instance_uid": "LESHY2-UI:nrf2_tx_led_series",
       "instance": "nrf2_tx_led_series",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_12_CONTROLS_INDICATORS",
@@ -25087,10 +25087,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -25121,8 +25121,8 @@
       "instance_uid": "LESHY2-UI:cc_tx_led_series",
       "instance": "cc_tx_led_series",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_12_CONTROLS_INDICATORS",
@@ -25135,10 +25135,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -25169,8 +25169,8 @@
       "instance_uid": "LESHY2-UI:voice_tx_led_series",
       "instance": "voice_tx_led_series",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_12_CONTROLS_INDICATORS",
@@ -25183,10 +25183,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -25217,8 +25217,8 @@
       "instance_uid": "LESHY2-UI:ir_tx_led_series",
       "instance": "ir_tx_led_series",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_12_CONTROLS_INDICATORS",
@@ -25231,10 +25231,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -25265,8 +25265,8 @@
       "instance_uid": "LESHY2-UI:ext_tx_led_series",
       "instance": "ext_tx_led_series",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_12_CONTROLS_INDICATORS",
@@ -25279,10 +25279,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -25313,8 +25313,8 @@
       "instance_uid": "LESHY2-UI:fault_led_series",
       "instance": "fault_led_series",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_12_CONTROLS_INDICATORS",
@@ -25327,10 +25327,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -25663,8 +25663,8 @@
       "instance": "evidence_timing_resistor",
       "project": "LESHY2-LORA-CAP-01",
       "assembly_variant": "COMMON",
-      "device_key": "yageo_rc0402fr_07133kl",
-      "mpn": "Yageo RC0402FR-07133KL",
+      "device_key": "uniroyal_0402wgf1333tce",
+      "mpn": "UNI-ROYAL 0402WGF1333TCE",
       "role": "133kohm_1pct_0402_current_limit_resistor",
       "board": "lora-cap-pcb",
       "sheet": "CAP_30_TX_EVIDENCE",
@@ -25677,10 +25677,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402FR-07133KL product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-07133KL",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -25938,8 +25938,8 @@
       "instance": "identity_scl_pullup",
       "project": "LESHY2-LORA-CAP-01",
       "assembly_variant": "COMMON",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "lora-cap-pcb",
       "sheet": "CAP_20_POWER_BUS",
@@ -25952,10 +25952,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -25963,8 +25963,8 @@
       "instance": "identity_sda_pullup",
       "project": "LESHY2-LORA-CAP-01",
       "assembly_variant": "COMMON",
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "role": "2_2kohm_1pct_0402_i2c_pullup_resistor",
       "board": "lora-cap-pcb",
       "sheet": "CAP_20_POWER_BUS",
@@ -25977,10 +25977,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       }
     },
     {

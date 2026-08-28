@@ -3,9 +3,9 @@
   "stage": "H3.5.4",
   "status": "reviewed_rf_prelayout_and_coexistence_consolidation",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF51-rf-feed-constraints.json": "63bdc08ab65f33b54ab4906160e669b445ae0414ba8924a62bc0066417abb357",
-    "hardware/verification/generated/H3-VRF52-rf-layout-constraints.json": "0829c9f2bf3c7648620ae72e78ed5a98d15c84537d1354dcb03201e891a7ee8d",
-    "hardware/verification/generated/H3-VRF53-rf-coexistence.json": "92757f0baaf2463f801211ac678092146b52b2063afbf501b9ebf48cd2fb614b"
+    "hardware/verification/generated/H3-VRF51-rf-feed-constraints.json": "813d3ab1e662845c7a2ac43b40cd2f23bae42fea217cb218b106905e6c680b99",
+    "hardware/verification/generated/H3-VRF52-rf-layout-constraints.json": "d12120ff4cc987ae6142cf4e713098f2ab6006be7a5fb8edfe6065d2651f32f0",
+    "hardware/verification/generated/H3-VRF53-rf-coexistence.json": "7fd5ed95d11bf7c7edd0defad64f0c6da33a34f7e6efe17f89dfb4fe3cb0903a"
   },
   "consolidated": {
     "leaf_packages": 3,

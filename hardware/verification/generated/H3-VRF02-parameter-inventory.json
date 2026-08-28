@@ -3,9 +3,9 @@
   "stage": "H3.0.2",
   "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
-    "hardware/architecture/devices.json": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
-    "hardware/ecad/generated/H2-instance-ledger.json": "5e79e26435c0964540fa1e815a59170cf6715ebcf0672285a378ed6a5de00ccb",
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "a10e51302d0cfa9e7e457015fd8c17f2393556003291774c0b37ec0643bc75f0"
+    "hardware/architecture/devices.json": "145e0aff58ab9916c073f1a16ee4f9c2ab10f20b0d16455d15ccaa08be6c9a5a",
+    "hardware/ecad/generated/H2-instance-ledger.json": "c5657e98ebacb3067c233b0654e2eb3dd36369f4e2870639d6548ed8cf9f3a69",
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "53941e365ac902663f6c2f291b4d6e2a183f3e1a515547173ab8edabe82de767"
   },
   "policy": {
     "accepted_h2_baseline_is_immutable": true,
@@ -7928,6 +7928,268 @@
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
+      "device_key": "uniroyal_0402wgf1333tce",
+      "mpn": "UNI-ROYAL 0402WGF1333TCE",
+      "kind": "133kohm_1pct_0402_current_limit_resistor",
+      "instance_count": 2,
+      "projects": [
+        "LESHY2-LORA-CAP-01",
+        "LESHY2-UI"
+      ],
+      "sheets": [
+        "CAP_30_TX_EVIDENCE",
+        "UI_11_DISPLAY_TOUCH_STORAGE"
+      ],
+      "roles": [
+        "133kohm_1pct_0402_current_limit_resistor"
+      ],
+      "lifecycle": "production_active_factory_stocked",
+      "source": {
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.uni-royal.cn",
+      "accepted_h2_source_preserved": {
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
+      },
+      "structured_parameter_count": 0,
+      "structured_parameters": {},
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "voltage/current derating",
+        "temperature coefficient",
+        "frequency/bias dependence"
+      ],
+      "h3_model_method": "analytic_or_vendor_curve",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
+      "device_key": "uniroyal_0402wgf1651tce",
+      "mpn": "UNI-ROYAL 0402WGF1651TCE",
+      "kind": "1_65kohm_1pct_0402_main_efuse_current_threshold_resistor",
+      "instance_count": 1,
+      "projects": [
+        "LESHY2-RF"
+      ],
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ],
+      "roles": [
+        "1_65kohm_1pct_0402_main_efuse_current_threshold_resistor"
+      ],
+      "lifecycle": "production_active_factory_stocked",
+      "source": {
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.uni-royal.cn",
+      "accepted_h2_source_preserved": {
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
+      },
+      "structured_parameter_count": 0,
+      "structured_parameters": {},
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "voltage/current derating",
+        "temperature coefficient",
+        "frequency/bias dependence"
+      ],
+      "h3_model_method": "analytic_or_vendor_curve",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
+      "kind": "2_2kohm_1pct_0402_i2c_pullup_resistor",
+      "instance_count": 25,
+      "projects": [
+        "LESHY2-LORA-CAP-01",
+        "LESHY2-RF",
+        "LESHY2-UI"
+      ],
+      "sheets": [
+        "CAP_20_POWER_BUS",
+        "RF_01_USB_PD_CHARGE",
+        "RF_34_U214_M5_EXT",
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_21_FM_AM_RECEIVER"
+      ],
+      "roles": [
+        "2_2kohm_1pct_0402_i2c_pullup_resistor"
+      ],
+      "lifecycle": "production_active_factory_stocked",
+      "source": {
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.uni-royal.cn",
+      "accepted_h2_source_preserved": {
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
+      },
+      "structured_parameter_count": 0,
+      "structured_parameters": {},
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "voltage/current derating",
+        "temperature coefficient",
+        "frequency/bias dependence"
+      ],
+      "h3_model_method": "analytic_or_vendor_curve",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
+      "device_key": "uniroyal_0402wgf2703tce",
+      "mpn": "UNI-ROYAL 0402WGF2703TCE",
+      "kind": "270kohm_1pct_0402_voice_efuse_ovlo_top_resistor",
+      "instance_count": 1,
+      "projects": [
+        "LESHY2-RF"
+      ],
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE"
+      ],
+      "roles": [
+        "270kohm_1pct_0402_voice_efuse_ovlo_top_resistor"
+      ],
+      "lifecycle": "production_active_factory_stocked",
+      "source": {
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.uni-royal.cn",
+      "accepted_h2_source_preserved": {
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
+      },
+      "structured_parameter_count": 0,
+      "structured_parameters": {},
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "voltage/current derating",
+        "temperature coefficient",
+        "frequency/bias dependence"
+      ],
+      "h3_model_method": "analytic_or_vendor_curve",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
+      "device_key": "uniroyal_0402wgf5231tce",
+      "mpn": "UNI-ROYAL 0402WGF5231TCE",
+      "kind": "5_23kohm_1pct_0402_charger_ts_top_resistor",
+      "instance_count": 1,
+      "projects": [
+        "LESHY2-RF"
+      ],
+      "sheets": [
+        "RF_01_USB_PD_CHARGE"
+      ],
+      "roles": [
+        "5_23kohm_1pct_0402_charger_ts_top_resistor"
+      ],
+      "lifecycle": "production_active_factory_stocked",
+      "source": {
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.uni-royal.cn",
+      "accepted_h2_source_preserved": {
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
+      },
+      "structured_parameter_count": 0,
+      "structured_parameters": {},
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "voltage/current derating",
+        "temperature coefficient",
+        "frequency/bias dependence"
+      ],
+      "h3_model_method": "analytic_or_vendor_curve",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
+      "device_key": "uniroyal_0402wgf8201tce",
+      "mpn": "UNI-ROYAL 0402WGF8201TCE",
+      "kind": "8_2kohm_1pct_0402_charger_prog_resistor",
+      "instance_count": 1,
+      "projects": [
+        "LESHY2-RF"
+      ],
+      "sheets": [
+        "RF_01_USB_PD_CHARGE"
+      ],
+      "roles": [
+        "8_2kohm_1pct_0402_charger_prog_resistor"
+      ],
+      "lifecycle": "production_active_factory_stocked",
+      "source": {
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.uni-royal.cn",
+      "accepted_h2_source_preserved": {
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
+      },
+      "structured_parameter_count": 0,
+      "structured_parameters": {},
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "voltage/current derating",
+        "temperature coefficient",
+        "frequency/bias dependence"
+      ],
+      "h3_model_method": "analytic_or_vendor_curve",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
       "device_key": "vishay_crcw0402160kfked",
       "mpn": "Vishay CRCW0402160KFKED",
       "kind": "160kohm_1pct_0402_audio_attenuator_resistor",
@@ -8706,50 +8968,6 @@
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
-      "device_key": "yageo_rc0402fr_07133kl",
-      "mpn": "Yageo RC0402FR-07133KL",
-      "kind": "133kohm_1pct_0402_current_limit_resistor",
-      "instance_count": 2,
-      "projects": [
-        "LESHY2-LORA-CAP-01",
-        "LESHY2-UI"
-      ],
-      "sheets": [
-        "CAP_30_TX_EVIDENCE",
-        "UI_11_DISPLAY_TOUCH_STORAGE"
-      ],
-      "roles": [
-        "133kohm_1pct_0402_current_limit_resistor"
-      ],
-      "lifecycle": "active",
-      "source": {
-        "document": "Yageo RC0402FR-07133KL product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-07133KL",
-        "checked": "2026-08-18"
-      },
-      "source_status": "accepted_h2_authoritative_source",
-      "source_host": "www.yageogroup.com",
-      "accepted_h2_source_preserved": {
-        "document": "Yageo RC0402FR-07133KL product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-07133KL",
-        "checked": "2026-08-18"
-      },
-      "structured_parameter_count": 0,
-      "structured_parameters": {},
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "voltage/current derating",
-        "temperature coefficient",
-        "frequency/bias dependence"
-      ],
-      "h3_model_method": "analytic_or_vendor_curve",
-      "model_status": "method_to_be_frozen_in_H3.0.3"
-    },
-    {
       "device_key": "yageo_rc0402fr_07169kl",
       "mpn": "Yageo RC0402FR-07169KL",
       "kind": "169kohm_1pct_0402_efuse_ovlo_top_resistor",
@@ -8806,48 +9024,6 @@
       ],
       "roles": [
         "196kohm_1pct_0402_aon_efuse_ovlo_top_resistor"
-      ],
-      "lifecycle": "active",
-      "source": {
-        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
-        "checked": "2026-08-18"
-      },
-      "source_status": "accepted_h2_authoritative_source",
-      "source_host": "www.yageo.com",
-      "accepted_h2_source_preserved": {
-        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
-        "checked": "2026-08-18"
-      },
-      "structured_parameter_count": 0,
-      "structured_parameters": {},
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "voltage/current derating",
-        "temperature coefficient",
-        "frequency/bias dependence"
-      ],
-      "h3_model_method": "analytic_or_vendor_curve",
-      "model_status": "method_to_be_frozen_in_H3.0.3"
-    },
-    {
-      "device_key": "yageo_rc0402fr_071k65l",
-      "mpn": "Yageo RC0402FR-071K65L",
-      "kind": "1_65kohm_1pct_0402_main_efuse_current_threshold_resistor",
-      "instance_count": 1,
-      "projects": [
-        "LESHY2-RF"
-      ],
-      "sheets": [
-        "RF_03_MAIN_RAILS_DOMAIN_GATES"
-      ],
-      "roles": [
-        "1_65kohm_1pct_0402_main_efuse_current_threshold_resistor"
       ],
       "lifecycle": "active",
       "source": {
@@ -9129,98 +9305,6 @@
         "document": "Yageo RC0402FR-07240KL product specification",
         "version": "current product data checked 2026-08-18",
         "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07240KL",
-        "checked": "2026-08-18"
-      },
-      "structured_parameter_count": 0,
-      "structured_parameters": {},
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "voltage/current derating",
-        "temperature coefficient",
-        "frequency/bias dependence"
-      ],
-      "h3_model_method": "analytic_or_vendor_curve",
-      "model_status": "method_to_be_frozen_in_H3.0.3"
-    },
-    {
-      "device_key": "yageo_rc0402fr_07270kl",
-      "mpn": "Yageo RC0402FR-07270KL",
-      "kind": "270kohm_1pct_0402_voice_efuse_ovlo_top_resistor",
-      "instance_count": 1,
-      "projects": [
-        "LESHY2-RF"
-      ],
-      "sheets": [
-        "RF_32_SUBGHZ_VOICE"
-      ],
-      "roles": [
-        "270kohm_1pct_0402_voice_efuse_ovlo_top_resistor"
-      ],
-      "lifecycle": "active",
-      "source": {
-        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
-        "checked": "2026-08-18"
-      },
-      "source_status": "accepted_h2_authoritative_source",
-      "source_host": "www.yageo.com",
-      "accepted_h2_source_preserved": {
-        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
-        "checked": "2026-08-18"
-      },
-      "structured_parameter_count": 0,
-      "structured_parameters": {},
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "voltage/current derating",
-        "temperature coefficient",
-        "frequency/bias dependence"
-      ],
-      "h3_model_method": "analytic_or_vendor_curve",
-      "model_status": "method_to_be_frozen_in_H3.0.3"
-    },
-    {
-      "device_key": "yageo_rc0402fr_072k2l",
-      "mpn": "Yageo RC0402FR-072K2L",
-      "kind": "2_2kohm_1pct_0402_i2c_pullup_resistor",
-      "instance_count": 25,
-      "projects": [
-        "LESHY2-LORA-CAP-01",
-        "LESHY2-RF",
-        "LESHY2-UI"
-      ],
-      "sheets": [
-        "CAP_20_POWER_BUS",
-        "RF_01_USB_PD_CHARGE",
-        "RF_34_U214_M5_EXT",
-        "UI_10_S3_CORE_MEMORY_BOOT",
-        "UI_12_CONTROLS_INDICATORS",
-        "UI_13_AUDIO_CODEC_HEADSET",
-        "UI_21_FM_AM_RECEIVER"
-      ],
-      "roles": [
-        "2_2kohm_1pct_0402_i2c_pullup_resistor"
-      ],
-      "lifecycle": "active",
-      "source": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
-      },
-      "source_status": "accepted_h2_authoritative_source",
-      "source_host": "www.yageo.com",
-      "accepted_h2_source_preserved": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
         "checked": "2026-08-18"
       },
       "structured_parameter_count": 0,
@@ -9895,48 +9979,6 @@
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
-      "device_key": "yageo_rc0402fr_075k23l",
-      "mpn": "Yageo RC0402FR-075K23L",
-      "kind": "5_23kohm_1pct_0402_charger_ts_top_resistor",
-      "instance_count": 1,
-      "projects": [
-        "LESHY2-RF"
-      ],
-      "sheets": [
-        "RF_01_USB_PD_CHARGE"
-      ],
-      "roles": [
-        "5_23kohm_1pct_0402_charger_ts_top_resistor"
-      ],
-      "lifecycle": "active",
-      "source": {
-        "document": "Yageo RC0402FR-075K23L product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-075K23L",
-        "checked": "2026-08-18"
-      },
-      "source_status": "accepted_h2_authoritative_source",
-      "source_host": "yageogroup.com",
-      "accepted_h2_source_preserved": {
-        "document": "Yageo RC0402FR-075K23L product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-075K23L",
-        "checked": "2026-08-18"
-      },
-      "structured_parameter_count": 0,
-      "structured_parameters": {},
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "voltage/current derating",
-        "temperature coefficient",
-        "frequency/bias dependence"
-      ],
-      "h3_model_method": "analytic_or_vendor_curve",
-      "model_status": "method_to_be_frozen_in_H3.0.3"
-    },
-    {
       "device_key": "yageo_rc0402fr_07620kl",
       "mpn": "Yageo RC0402FR-07620KL",
       "kind": "620kohm_1pct_0402_diagnostic_lockout_timing_resistor",
@@ -10006,48 +10048,6 @@
         "document": "Yageo RC0402FR-0768KL product specification",
         "version": "current product data checked 2026-08-18",
         "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0768KL",
-        "checked": "2026-08-18"
-      },
-      "structured_parameter_count": 0,
-      "structured_parameters": {},
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "voltage/current derating",
-        "temperature coefficient",
-        "frequency/bias dependence"
-      ],
-      "h3_model_method": "analytic_or_vendor_curve",
-      "model_status": "method_to_be_frozen_in_H3.0.3"
-    },
-    {
-      "device_key": "yageo_rc0402fr_078k2l",
-      "mpn": "Yageo RC0402FR-078K2L",
-      "kind": "8_2kohm_1pct_0402_charger_prog_resistor",
-      "instance_count": 1,
-      "projects": [
-        "LESHY2-RF"
-      ],
-      "sheets": [
-        "RF_01_USB_PD_CHARGE"
-      ],
-      "roles": [
-        "8_2kohm_1pct_0402_charger_prog_resistor"
-      ],
-      "lifecycle": "active",
-      "source": {
-        "document": "Yageo RC0402FR-078K2L product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-078K2L",
-        "checked": "2026-08-18"
-      },
-      "source_status": "accepted_h2_authoritative_source",
-      "source_host": "yageogroup.com",
-      "accepted_h2_source_preserved": {
-        "document": "Yageo RC0402FR-078K2L product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-078K2L",
         "checked": "2026-08-18"
       },
       "structured_parameter_count": 0,

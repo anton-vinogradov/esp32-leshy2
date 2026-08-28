@@ -13,7 +13,7 @@
 - Current orderability evidence exists for **209/210** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **198/210** lines.
 - Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **1033/1052** supplied placements; their partial subtotals are `base_product` — USD 235.3369. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **1033/1052** supplied placements; their partial subtotals are `base_product` — USD 235.1827. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **210/210** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -132,6 +132,12 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `panasonic_erj_p08f49r9v` — `Panasonic ERJ-P08F49R9V`.
   - `tdk_b57332v5103f360` — `TDK B57332V5103F360`.
   - `tdk_c1608x7r1c105k080ac` — `TDK C1608X7R1C105K080AC`.
+  - `uniroyal_0402wgf1333tce` — `UNI-ROYAL 0402WGF1333TCE`.
+  - `uniroyal_0402wgf1651tce` — `UNI-ROYAL 0402WGF1651TCE`.
+  - `uniroyal_0402wgf2201tce` — `UNI-ROYAL 0402WGF2201TCE`.
+  - `uniroyal_0402wgf2703tce` — `UNI-ROYAL 0402WGF2703TCE`.
+  - `uniroyal_0402wgf5231tce` — `UNI-ROYAL 0402WGF5231TCE`.
+  - `uniroyal_0402wgf8201tce` — `UNI-ROYAL 0402WGF8201TCE`.
   - `vishay_crcw0402160kfked` — `Vishay CRCW0402160KFKED`.
   - `vishay_tnpw040210k0beed` — `Vishay TNPW040210K0BEED`.
   - `vishay_tnpw040243k7beed` — `Vishay TNPW040243K7BEED`.
@@ -141,18 +147,14 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `yageo_rc0402fr_0710kl` — `Yageo RC0402FR-0710KL`.
   - `yageo_rc0402fr_07110kl` — `Yageo RC0402FR-07110KL`.
   - `yageo_rc0402fr_0712kl` — `Yageo RC0402FR-0712KL`.
-  - `yageo_rc0402fr_07133kl` — `Yageo RC0402FR-07133KL`.
   - `yageo_rc0402fr_07169kl` — `Yageo RC0402FR-07169KL`.
   - `yageo_rc0402fr_07196kl` — `Yageo RC0402FR-07196KL`.
-  - `yageo_rc0402fr_071k65l` — `Yageo RC0402FR-071K65L`.
   - `yageo_rc0402fr_071k82l` — `Yageo RC0402FR-071K82L`.
   - `yageo_rc0402fr_071kl` — `Yageo RC0402FR-071KL`.
   - `yageo_rc0402fr_071ml` — `Yageo RC0402FR-071ML`.
   - `yageo_rc0402fr_07220kl` — `Yageo RC0402FR-07220KL`.
   - `yageo_rc0402fr_07220rl` — `Yageo RC0402FR-07220RL`.
   - `yageo_rc0402fr_07240kl` — `Yageo RC0402FR-07240KL`.
-  - `yageo_rc0402fr_07270kl` — `Yageo RC0402FR-07270KL`.
-  - `yageo_rc0402fr_072k2l` — `Yageo RC0402FR-072K2L`.
   - `yageo_rc0402fr_0730k1l` — `Yageo RC0402FR-0730K1L`.
   - `yageo_rc0402fr_0730kl` — `Yageo RC0402FR-0730KL`.
   - `yageo_rc0402fr_0733kl` — `Yageo RC0402FR-0733KL`.
@@ -165,10 +167,8 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `yageo_rc0402fr_0747kl` — `Yageo RC0402FR-0747KL`.
   - `yageo_rc0402fr_074k7l` — `Yageo RC0402FR-074K7L`.
   - `yageo_rc0402fr_075k1l` — `Yageo RC0402FR-075K1L`.
-  - `yageo_rc0402fr_075k23l` — `Yageo RC0402FR-075K23L`.
   - `yageo_rc0402fr_07620kl` — `Yageo RC0402FR-07620KL`.
   - `yageo_rc0402fr_0768kl` — `Yageo RC0402FR-0768KL`.
-  - `yageo_rc0402fr_078k2l` — `Yageo RC0402FR-078K2L`.
   - `yageo_rc0402jr_070rl` — `Yageo RC0402JR-070RL`.
   - `yageo_rc0603fr_071kl` — `Yageo RC0603FR-071KL`.
   - `yageo_rc1206fr_0747rl` — `Yageo RC1206FR-0747RL`.
@@ -1700,6 +1700,60 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>UNI-ROYAL 0402WGF1333TCE</code> — 1 × USD 0.0015 = USD 0.0015</summary>
+
+- Device id: `uniroyal_0402wgf1333tce`.
+- Scope: `base_product`.
+- Comparable basis: JLCPCB one-piece tier; live stock 6692, MOQ 1; target quantity `100`.
+- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/26496-0402WGF1333TCE/C25753).
+
+</details>
+
+<details><summary><code>UNI-ROYAL 0402WGF1651TCE</code> — 1 × USD 0.0008 = USD 0.0008</summary>
+
+- Device id: `uniroyal_0402wgf1651tce`.
+- Scope: `base_product`.
+- Comparable basis: JLCPCB one-piece tier; live stock 5616, MOQ 1; target quantity `100`.
+- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/26612-0402WGF1651TCE/C25869).
+
+</details>
+
+<details><summary><code>UNI-ROYAL 0402WGF2201TCE</code> — 23 × USD 0.0039 = USD 0.0897</summary>
+
+- Device id: `uniroyal_0402wgf2201tce`.
+- Scope: `base_product`.
+- Comparable basis: JLCPCB one-piece tier; live stock 2027222, MOQ 1; target quantity `100`.
+- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/26622-0402WGF2201TCE/C25879).
+
+</details>
+
+<details><summary><code>UNI-ROYAL 0402WGF2703TCE</code> — 1 × USD 0.0057 = USD 0.0057</summary>
+
+- Device id: `uniroyal_0402wgf2703tce`.
+- Scope: `base_product`.
+- Comparable basis: JLCPCB one-piece tier; live stock 156208, MOQ 1; target quantity `100`.
+- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/26513-0402WGF2703TCE/C25770).
+
+</details>
+
+<details><summary><code>UNI-ROYAL 0402WGF5231TCE</code> — 1 × USD 0.0061 = USD 0.0061</summary>
+
+- Device id: `uniroyal_0402wgf5231tce`.
+- Scope: `base_product`.
+- Comparable basis: JLCPCB one-piece tier; live stock 40861, MOQ 1; target quantity `100`.
+- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/26650-0402WGF5231TCE/C25907).
+
+</details>
+
+<details><summary><code>UNI-ROYAL 0402WGF8201TCE</code> — 1 × USD 0.0048 = USD 0.0048</summary>
+
+- Device id: `uniroyal_0402wgf8201tce`.
+- Scope: `base_product`.
+- Comparable basis: JLCPCB one-piece tier; live stock 234262, MOQ 1; target quantity `100`.
+- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/26667-0402WGF8201TCE/C25924).
+
+</details>
+
 <details><summary><code>Vishay CRCW0402160KFKED</code> — 1 × USD 0.0157 = USD 0.0157</summary>
 
 - Device id: `vishay_crcw0402160kfked`.
@@ -1817,15 +1871,6 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-07133KL</code> — 1 × USD 0.0097 = USD 0.0097</summary>
-
-- Device id: `yageo_rc0402fr_07133kl`.
-- Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-07133KL/5280830).
-
-</details>
-
 <details><summary><code>Yageo RC0402FR-07169KL</code> — 5 × USD 0.0097 = USD 0.0485</summary>
 
 - Device id: `yageo_rc0402fr_07169kl`.
@@ -1841,15 +1886,6 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-07196KL/5281889).
-
-</details>
-
-<details><summary><code>Yageo RC0402FR-071K65L</code> — 1 × USD 0.0097 = USD 0.0097</summary>
-
-- Device id: `yageo_rc0402fr_071k65l`.
-- Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-071K65L/5281908).
 
 </details>
 
@@ -1904,24 +1940,6 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: LCSC quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO-RC0402FR-07240KL_C138029.html).
-
-</details>
-
-<details><summary><code>Yageo RC0402FR-07270KL</code> — 1 × USD 0.0097 = USD 0.0097</summary>
-
-- Device id: `yageo_rc0402fr_07270kl`.
-- Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-07270KL/729522).
-
-</details>
-
-<details><summary><code>Yageo RC0402FR-072K2L</code> — 23 × USD 0.0097 = USD 0.2231</summary>
-
-- Device id: `yageo_rc0402fr_072k2l`.
-- Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K2L/726553).
 
 </details>
 
@@ -2060,15 +2078,6 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-075K23L</code> — 1 × USD 0.0097 = USD 0.0097</summary>
-
-- Device id: `yageo_rc0402fr_075k23l`.
-- Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-075K23L/5281055).
-
-</details>
-
 <details><summary><code>Yageo RC0402FR-07620KL</code> — 1 × USD 0.0009 = USD 0.0009</summary>
 
 - Device id: `yageo_rc0402fr_07620kl`.
@@ -2084,15 +2093,6 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-0768KL/729598).
-
-</details>
-
-<details><summary><code>Yageo RC0402FR-078K2L</code> — 1 × USD 0.0009 = USD 0.0009</summary>
-
-- Device id: `yageo_rc0402fr_078k2l`.
-- Scope: `base_product`.
-- Comparable basis: LCSC quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO_C137929.html).
 
 </details>
 

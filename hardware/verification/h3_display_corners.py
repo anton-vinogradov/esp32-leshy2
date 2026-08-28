@@ -65,7 +65,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "main_fb_top": "vishay_tnpw040243k7beed",
         "main_fb_bottom": "vishay_tnpw040210k0beed",
         "backlight_efuse": "ti_tps2553drvr_1",
-        "backlight_efuse_ilim": "yageo_rc0402fr_07133kl",
+        "backlight_efuse_ilim": "uniroyal_0402wgf1333tce",
         "backlight_series_resistor": "yageo_rc0402jr_070rl",
         "backlight_mosfet": "diodes_dmn2056u_7",
         "backlight_gate_series": "yageo_rc0402fr_07100rl",

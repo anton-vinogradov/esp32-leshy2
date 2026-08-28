@@ -183,6 +183,12 @@
 | `ti_txs0102_dcur` | `Texas Instruments TXS0102DCUR` | `verified_exact_native_m5_unit_signal_isolator` | `active_production_orderable` | [TXS0102 2-bit bidirectional voltage-level translator datasheet SCES640L, revised January 2026](https://www.ti.com/lit/ds/symlink/txs0102.pdf) | same primary source |
 | `ttm_b0310j50100ahf` | `TTM Technologies B0310J50100AHF` | `verified_exact_cc_first_pass_balun` | `active_orderable` | [B0310J50100AHF balun datasheet current manufacturer document checked 2026-08-18](https://cdn.ttm.com/repository/products/wireless-xinger/balun-transformers/B0310J50100AHF/B0310J50100AHF.pdf) | same primary source |
 | `ttm_dc2337j5010ahf` | `TTM Technologies DC2337J5010AHF` | `verified_exact_nrf_forward_power_coupler` | `active_orderable` | [DC2337J5010AHF 10-dB directional coupler datasheet Rev. H](https://cdn.ttm.com/repository/products/wireless-xinger/10-20-30-dB-directional-couplers/DC2337J5010AHF/DC2337J5010AHF.pdf) | same primary source |
+| `uniroyal_0402wgf1333tce` | `UNI-ROYAL 0402WGF1333TCE` | `verified_stocked_exact_parametric_replacement` | `production_active_factory_stocked` | [UNI-ROYAL general thick-film chip resistor series datasheet V.10, 28 July 2025](https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf) | same primary source |
+| `uniroyal_0402wgf1651tce` | `UNI-ROYAL 0402WGF1651TCE` | `verified_stocked_exact_parametric_replacement` | `production_active_factory_stocked` | [UNI-ROYAL general thick-film chip resistor series datasheet V.10, 28 July 2025](https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf) | same primary source |
+| `uniroyal_0402wgf2201tce` | `UNI-ROYAL 0402WGF2201TCE` | `verified_stocked_exact_parametric_replacement` | `production_active_factory_stocked` | [UNI-ROYAL general thick-film chip resistor series datasheet V.10, 28 July 2025](https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf) | same primary source |
+| `uniroyal_0402wgf2703tce` | `UNI-ROYAL 0402WGF2703TCE` | `verified_stocked_exact_parametric_replacement` | `production_active_factory_stocked` | [UNI-ROYAL general thick-film chip resistor series datasheet V.10, 28 July 2025](https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf) | same primary source |
+| `uniroyal_0402wgf5231tce` | `UNI-ROYAL 0402WGF5231TCE` | `verified_stocked_exact_parametric_replacement` | `production_active_factory_stocked` | [UNI-ROYAL general thick-film chip resistor series datasheet V.10, 28 July 2025](https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf) | same primary source |
+| `uniroyal_0402wgf8201tce` | `UNI-ROYAL 0402WGF8201TCE` | `verified_stocked_exact_parametric_replacement` | `production_active_factory_stocked` | [UNI-ROYAL general thick-film chip resistor series datasheet V.10, 28 July 2025](https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf) | same primary source |
 | `vishay_crcw0402160kfked` | `Vishay CRCW0402160KFKED` | `verified_candidate` | `active_orderable` | [Vishay D/CRCW e3 thick-film chip resistor datasheet and exact quality listing active exact order code checked 2026-08-24](https://www.vishay.com/docs/20035/dcrcwe3.pdf) | same primary source |
 | `vishay_tnpw040210k0beed` | `Vishay TNPW040210K0BEED` | `verified_exact_precision_main_feedback_resistor` | `active_orderable` | [Vishay TNPW e3 high-stability thin-film resistor datasheet Document 28758, revision 10-Apr-2026](https://www.vishay.com/docs/28758/tnpw_e3.pdf) | same primary source |
 | `vishay_tnpw040243k7beed` | `Vishay TNPW040243K7BEED` | `verified_exact_precision_main_feedback_resistor` | `active_orderable` | [Vishay TNPW e3 high-stability thin-film resistor datasheet Document 28758, revision 10-Apr-2026](https://www.vishay.com/docs/28758/tnpw_e3.pdf) | same primary source |
@@ -198,18 +204,14 @@
 | `yageo_rc0402fr_0710kl` | `Yageo RC0402FR-0710KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0710KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL) | same primary source |
 | `yageo_rc0402fr_07110kl` | `Yageo RC0402FR-07110KL` | `verified_candidate` | `active_orderable` | [RC0402FR-07110KL exact product specification current product data checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-07110KL) | same primary source |
 | `yageo_rc0402fr_0712kl` | `Yageo RC0402FR-0712KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0712KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0712KL) | same primary source |
-| `yageo_rc0402fr_07133kl` | `Yageo RC0402FR-07133KL` | `verified_candidate` | `active` | [Yageo RC0402FR-07133KL product specification current product data checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-07133KL) | same primary source |
 | `yageo_rc0402fr_07169kl` | `Yageo RC0402FR-07169KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
 | `yageo_rc0402fr_07196kl` | `Yageo RC0402FR-07196KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
-| `yageo_rc0402fr_071k65l` | `Yageo RC0402FR-071K65L` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
 | `yageo_rc0402fr_071k82l` | `Yageo RC0402FR-071K82L` | `verified_h3_dc_margin_correction` | `active_orderable` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-24](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
 | `yageo_rc0402fr_071kl` | `Yageo RC0402FR-071KL` | `verified_exact_dbg10_and_boot_series_resistor` | `active_orderable` | [RC0402FR-071KL exact product specification generated 2026-01-15](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-071KL) | same primary source |
 | `yageo_rc0402fr_071ml` | `Yageo RC0402FR-071ML` | `verified_exact_data_only_service_vbus_bleeder` | `active_orderable` | [RC0402FR-071ML exact product specification current exact order code checked 2026-08-19](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-071ML) | same primary source |
 | `yageo_rc0402fr_07220kl` | `Yageo RC0402FR-07220KL` | `verified_candidate` | `active` | [Yageo RC0402FR-07220KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07220KL) | same primary source |
 | `yageo_rc0402fr_07220rl` | `Yageo RC0402FR-07220RL` | `verified_candidate` | `active_orderable` | [Yageo RC general-purpose chip resistor specification current exact order code checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf) | same primary source |
 | `yageo_rc0402fr_07240kl` | `Yageo RC0402FR-07240KL` | `verified_candidate` | `active` | [Yageo RC0402FR-07240KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07240KL) | same primary source |
-| `yageo_rc0402fr_07270kl` | `Yageo RC0402FR-07270KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
-| `yageo_rc0402fr_072k2l` | `Yageo RC0402FR-072K2L` | `verified_candidate` | `active` | [Yageo RC0402 thick-film resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf) | same primary source |
 | `yageo_rc0402fr_0730k1l` | `Yageo RC0402FR-0730K1L` | `verified_candidate` | `active` | [Yageo RC0402FR-0730K1L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0730K1L) | same primary source |
 | `yageo_rc0402fr_0730kl` | `Yageo RC0402FR-0730KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0730KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0730KL) | same primary source |
 | `yageo_rc0402fr_0733kl` | `Yageo RC0402FR-0733KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0733KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0733KL) | same primary source |
@@ -225,10 +227,8 @@
 | `yageo_rc0402fr_0752r3l` | `Yageo RC0402FR-0752R3L` | `verified_exact_ad8314_broadband_input_match` | `active_orderable` | [RC0402FR-0752R3L exact product specification current exact order code checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0752R3L) | same primary source |
 | `yageo_rc0402fr_0756kl` | `Yageo RC0402FR-0756KL` | `verified_exact_cc_bias_passive` | `active_orderable` | [RC0402FR-0756KL exact product specification current exact product data checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0756KL) | same primary source |
 | `yageo_rc0402fr_075k1l` | `Yageo RC0402FR-075K1L` | `verified_exact_sa518_detector_series_attenuator_and_usb_type_c_rd` | `active_orderable` | [RC0402FR-075K1L exact product specification current exact order code checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-075K1L) | same primary source |
-| `yageo_rc0402fr_075k23l` | `Yageo RC0402FR-075K23L` | `verified_candidate` | `active` | [Yageo RC0402FR-075K23L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-075K23L) | same primary source |
 | `yageo_rc0402fr_07620kl` | `Yageo RC0402FR-07620KL` | `verified_candidate` | `active` | [Yageo RC0402FR-07620KL exact product specification generated 2026-05-21; checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07620KL) | same primary source |
 | `yageo_rc0402fr_0768kl` | `Yageo RC0402FR-0768KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0768KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0768KL) | same primary source |
-| `yageo_rc0402fr_078k2l` | `Yageo RC0402FR-078K2L` | `verified_candidate` | `active` | [Yageo RC0402FR-078K2L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-078K2L) | same primary source |
 | `yageo_rc0402jr_070rl` | `Yageo RC0402JR-070RL` | `verified_candidate` | `active_orderable` | [Yageo RC general-purpose chip resistor specification current exact order code checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf) | same primary source |
 | `yageo_rc0603fr_071kl` | `Yageo RC0603FR-071KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
 | `yageo_rc1206fr_0747rl` | `Yageo RC1206FR-0747RL` | `verified_exact_ir_emitter_current_limit_resistor` | `active_stocked_orderable` | [RC1206FR-0747RL product specification current product data checked 2026-08-24](https://yageogroup.com/component-documentation/download/specsheet/RC1206FR-0747RL) | same primary source |
@@ -3849,6 +3849,10 @@ Reserved: `PA1_NRST`. Free: none.
 - `u214_i2c_iso` uses `TCA4307DGKR` as `verified_exact_u214_i2c_hot_swap_boundary`, not an accepted production choice.
 - `u214_i2c_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `u214_i2c_iso_bypass` lifecycle: `active_orderable`.
+- `u214_i2c_host_sda_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `u214_i2c_host_sda_pullup` lifecycle: `production_active_factory_stocked`.
+- `u214_i2c_host_scl_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `u214_i2c_host_scl_pullup` lifecycle: `production_active_factory_stocked`.
 - `u214_host_buffer_a` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
 - `u214_host_buffer_a` lifecycle: `production_active_orderable`.
 - `u214_host_buffer_b` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
@@ -4149,6 +4153,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `display_panel_connector` lifecycle: `active and authorized-distributor-stocked; exact HMX035CTFT-001 tail thickness and insertion fit remain H5`.
 - `display_logic_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `display_logic_hf_cap` lifecycle: `active_orderable`.
+- `backlight_efuse_ilim` uses `UNI-ROYAL 0402WGF1333TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `backlight_efuse_ilim` lifecycle: `production_active_factory_stocked`.
 - `backlight_efuse_input_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `backlight_efuse_input_cap` lifecycle: `active_orderable`.
 - `backlight_efuse_output_hf` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
@@ -4197,6 +4203,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `mic_tx_coupling` lifecycle: `active_production`.
 - `codec_tx_coupling` lifecycle: `active_production`.
 - `codec_tx_atten_top` lifecycle: `active_orderable`.
+- `codec_tx_atten_bottom` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `codec_tx_atten_bottom` lifecycle: `production_active_factory_stocked`.
 - `voice_mic_coupling` lifecycle: `active_production`.
 - `voice_v_mic_coupling` lifecycle: `active_production`.
 - `audio_safe_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
@@ -4208,11 +4216,15 @@ Reserved: `PA1_NRST`. Free: none.
 - `speaker` lifecycle: `active_orderable`.
 - `microphone` lifecycle: `active_orderable`.
 - `microphone_bias_filter_res` lifecycle: `active_orderable`.
+- `microphone_bias_res` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `microphone_bias_res` lifecycle: `production_active_factory_stocked`.
 - `headphone_jack` lifecycle: `active_orderable`.
 - `headset_mic_selector` uses `Texas Instruments TS5A63157DCKR` as `reference_only`, not an accepted production choice.
 - `headset_mic_selector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `headset_mic_selector_bypass` lifecycle: `active_orderable`.
 - `headset_microphone_bias_filter_res` lifecycle: `active_orderable`.
+- `headset_mic_bias_res` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `headset_mic_bias_res` lifecycle: `production_active_factory_stocked`.
 - `headset_control_io_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `headset_control_io_bypass` lifecycle: `active_orderable`.
 - `codec_power_input_cap` lifecycle: `active_production`.
@@ -4220,6 +4232,10 @@ Reserved: `PA1_NRST`. Free: none.
 - `codec_supervisor_bypass` lifecycle: `active_orderable`.
 - `codec_i2c_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `codec_i2c_iso_bypass` lifecycle: `active_orderable`.
+- `codec_i2c_scl_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `codec_i2c_scl_pullup` lifecycle: `production_active_factory_stocked`.
+- `codec_i2c_sda_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `codec_i2c_sda_pullup` lifecycle: `production_active_factory_stocked`.
 - `codec_i2s_din_boot_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.
 - `codec_i2s_din_boot_gate` lifecycle: `active_orderable`.
 - `codec_i2s_bclk_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
@@ -4248,6 +4264,10 @@ Reserved: `PA1_NRST`. Free: none.
 - `receiver_supervisor_bypass` lifecycle: `active_orderable`.
 - `receiver_i2c_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `receiver_i2c_iso_bypass` lifecycle: `active_orderable`.
+- `receiver_i2c_scl_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `receiver_i2c_scl_pullup` lifecycle: `production_active_factory_stocked`.
+- `receiver_i2c_sda_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `receiver_i2c_sda_pullup` lifecycle: `production_active_factory_stocked`.
 - `receiver_irq_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `receiver_irq_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `receiver_irq_iso_bypass` lifecycle: `active_orderable`.
@@ -4319,12 +4339,24 @@ Reserved: `PA1_NRST`. Free: none.
 - `product_usb_vpwr_cap` lifecycle: `active_production`.
 - `pd_eeprom_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `pd_eeprom_bypass` lifecycle: `active_orderable`.
+- `pd_local_scl_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `pd_local_scl_pullup` lifecycle: `production_active_factory_stocked`.
+- `pd_local_sda_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `pd_local_sda_pullup` lifecycle: `production_active_factory_stocked`.
+- `sys_i2c_scl_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `sys_i2c_scl_pullup` lifecycle: `production_active_factory_stocked`.
+- `sys_i2c_sda_pullup` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `sys_i2c_sda_pullup` lifecycle: `production_active_factory_stocked`.
 - `charger_vbus_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `charger_vbus_hf_cap` lifecycle: `active_orderable`.
 - `charger_pmid_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `charger_pmid_hf_cap` lifecycle: `active_orderable`.
 - `charger_sys_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `charger_sys_hf_cap` lifecycle: `active_orderable`.
+- `charger_prog_res` uses `UNI-ROYAL 0402WGF8201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `charger_prog_res` lifecycle: `production_active_factory_stocked`.
+- `charger_ts_top` uses `UNI-ROYAL 0402WGF5231TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `charger_ts_top` lifecycle: `production_active_factory_stocked`.
 - `pack_gauge` lifecycle: `recommended_for_new_designs`.
 - `pack_admission` uses `Texas Instruments MSPM0C1106SDGS20R` as `verified_exact_64kb_flash_8kb_sram_hybrid_bsl_candidate`, not an accepted production choice.
 - `pack_admission` lifecycle: `active_orderable`.
@@ -4377,8 +4409,12 @@ Reserved: `PA1_NRST`. Free: none.
 - `main_fb_top` lifecycle: `active_orderable`.
 - `main_fb_bottom` uses `Vishay TNPW040210K0BEED` as `verified_exact_precision_main_feedback_resistor`, not an accepted production choice.
 - `main_fb_bottom` lifecycle: `active_orderable`.
+- `main_efuse_rilm` uses `UNI-ROYAL 0402WGF1651TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `main_efuse_rilm` lifecycle: `production_active_factory_stocked`.
 - `voice_hf_input_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `voice_hf_input_cap` lifecycle: `active_orderable`.
+- `voice_efuse_ovlo_top` uses `UNI-ROYAL 0402WGF2703TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `voice_efuse_ovlo_top` lifecycle: `production_active_factory_stocked`.
 - `ext_buck_hf_input_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `ext_buck_hf_input_cap` lifecycle: `active_orderable`.
 - `ext_rilm` uses `Yageo RC0402FR-071K82L` as `verified_h3_dc_margin_correction`, not an accepted production choice.
@@ -4594,6 +4630,26 @@ Reserved: `PA1_NRST`. Free: none.
 - `voice_v_evidence_hysteresis` lifecycle: `active_orderable`.
 - `ir_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
 - `ir_evidence_hysteresis` lifecycle: `active_orderable`.
+- `s3_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `s3_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `c5_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `c5_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `nrf0_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `nrf0_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `nrf1_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `nrf1_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `nrf2_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `nrf2_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `cc_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `cc_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `voice_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `voice_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `ir_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `ir_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `ext_tx_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `ext_tx_led_series` lifecycle: `production_active_factory_stocked`.
+- `fault_led_series` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
+- `fault_led_series` lifecycle: `production_active_factory_stocked`.
 - SC1512-A4 is the exact 7-inch-reel order code for RP2354B0A4; received A4 marking/lot identity, power/clock/land pattern and prototype assembly remain implementation gates, so the verified QFN80 contact map is not a BOM freeze
 - E01-ML01S is a geometry/interface reference, not an accepted three-module RF/power/antenna production choice; nRF24 family lifecycle remains not-recommended-for-new-designs
 - DEC-0093 closes the first exact CC1101 paper endpoint with dual-ended band switching, exact oscillator, first-pass 315/433/868-915 coupon, switched-domain digital isolation, low-capacitance ESD and AD8314 actual-TX evidence. RFPC-SMA31-FN-175-A is now the exact standard-SMA boundary; conducted VNA/tuning, sensitivity/output/spurious/legal-profile/coexistence and received-connector HIL remain blocking before schematic/BOM freeze

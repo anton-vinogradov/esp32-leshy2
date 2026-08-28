@@ -36,7 +36,7 @@
     "evidence_comparator_pullup": "yageo_rc0402fr_0710kl",
     "evidence_comparator_bypass": "yageo_cc0402krx7r9bb104",
     "evidence_monostable": "ti_sn74lvc1g123_dctr",
-    "evidence_timing_resistor": "yageo_rc0402fr_07133kl",
+    "evidence_timing_resistor": "uniroyal_0402wgf1333tce",
     "evidence_timing_capacitor": "yageo_cc0402krx7r9bb104",
     "evidence_monostable_bypass": "yageo_cc0402krx7r9bb104",
     "evidence_driver": "ti_sn74lvc1g06_dckr",
@@ -47,8 +47,8 @@
     "radio_bulk": "murata_grm188r60j106me47d",
     "identity": "microchip_24aa02uidt_i_ot",
     "identity_bypass": "yageo_cc0402krx7r9bb104",
-    "identity_scl_pullup": "yageo_rc0402fr_072k2l",
-    "identity_sda_pullup": "yageo_rc0402fr_072k2l"
+    "identity_scl_pullup": "uniroyal_0402wgf2201tce",
+    "identity_sda_pullup": "uniroyal_0402wgf2201tce"
   },
   "pin_contract": [
     {"pin": 1, "stock_u214": "GPS_TX", "custom_cap": "NC", "direction_at_host": "input/reserved"},

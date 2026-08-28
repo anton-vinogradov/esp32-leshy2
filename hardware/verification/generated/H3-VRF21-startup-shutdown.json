@@ -7,10 +7,10 @@
     "state_fault_exploration"
   ],
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
-    "hardware/architecture/devices.json": "1f7c288d5657768d10d0bff81087be3e465ed63cba7f29eb91cb6944fefe4ddf",
-    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "80a3fe3f3066d2bff73895806c5a3bb6123450041231b0a4ea03601e9d5e7b19",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "2647bafcde57058078ccab59fe39af6701e676d4b85cfc5fb37a4153224654fe"
+    "hardware/architecture/candidates/G2F-3I.json": "03554032ffd938a8cc4745b04c1b8fc3c6d561737eb2c6bbf1027c4c81e4120b",
+    "hardware/architecture/devices.json": "145e0aff58ab9916c073f1a16ee4f9c2ab10f20b0d16455d15ccaa08be6c9a5a",
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "608a7a6fefa1e8bfef185d575d2ec59ca2fab16879e947622c09e64ed5afb1b2",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "17b6b71a5abe8717392f8df009d366bdeb2cb2081be06def36bdce8e5c09572e"
   },
   "provenance": {
     "supervisor": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",

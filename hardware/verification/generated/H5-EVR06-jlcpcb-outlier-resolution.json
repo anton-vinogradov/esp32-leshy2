@@ -6,7 +6,7 @@
   "checked_on": "2026-08-28",
   "input": {
     "bom_tool_result": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
-    "bom_tool_result_sha256": "33a3fb8bb54fe2f018d36f4e121df7acea2a53feec3ca23d47bad2fcf2caaad5",
+    "bom_tool_result_sha256": "2a1f6c511ce20ca3b5dbbe931893338bcac147b1f564348916193f9cfc4bd7d2",
     "search_capture": "hardware/verification/jlcpcb-outlier-search-capture-2026-08-25.json",
     "search_capture_sha256": "50fdf7c69a95bc53e32148cf8e7e3b2d245818a74cec065a708c128527af2699"
   },
@@ -15,9 +15,9 @@
     "bom_tool_matched_lines": 178,
     "bom_tool_outliers_resolved": 32,
     "availability_routes": {
-      "J0": 150,
+      "J0": 156,
       "J1": 0,
-      "J2": 44,
+      "J2": 38,
       "J3": 11,
       "J4-F": 3,
       "J4-P": 1,
@@ -396,7 +396,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 163,
+      "bom_index": 169,
       "device_id": "vishay_tsmp95000tt",
       "normalized_mpn": "TSMP95000TT",
       "quantity": 1,
@@ -410,7 +410,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 168,
+      "bom_index": 174,
       "device_id": "xtar_18650_4000mah_protected",
       "normalized_mpn": "18650 4000mAh",
       "quantity": 2,
@@ -424,7 +424,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 171,
+      "bom_index": 177,
       "device_id": "yageo_rc0402fr_07100rl",
       "normalized_mpn": "RC0402FR-07100RL",
       "quantity": 7,
@@ -438,7 +438,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 180,
+      "bom_index": 184,
       "device_id": "yageo_rc0402fr_071kl",
       "normalized_mpn": "RC0402FR-071KL",
       "quantity": 12,
@@ -452,7 +452,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 190,
+      "bom_index": 192,
       "device_id": "yageo_rc0402fr_0733rl",
       "normalized_mpn": "RC0402FR-0733RL",
       "quantity": 1,
@@ -466,7 +466,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 198,
+      "bom_index": 200,
       "device_id": "yageo_rc0402fr_074k7l",
       "normalized_mpn": "RC0402FR-074K7L",
       "quantity": 1,
@@ -3391,6 +3391,102 @@
     },
     {
       "bom_index": 160,
+      "device_id": "uniroyal_0402wgf1333tce",
+      "source_mpn": "UNI-ROYAL 0402WGF1333TCE",
+      "normalized_mpn": "0402WGF1333TCE",
+      "quantity": 1,
+      "route": "J0",
+      "tool_status": "in_stock",
+      "match_provenance": "current_exact_jlcpcb_part_page",
+      "lcsc": "C25753",
+      "matched_mpn": "0402WGF1333TCE",
+      "semantic_mpn_equal": true,
+      "stock_snapshot": 6692,
+      "displayed_line_cost_usd": 0.0015,
+      "designators_complete": true
+    },
+    {
+      "bom_index": 161,
+      "device_id": "uniroyal_0402wgf1651tce",
+      "source_mpn": "UNI-ROYAL 0402WGF1651TCE",
+      "normalized_mpn": "0402WGF1651TCE",
+      "quantity": 1,
+      "route": "J0",
+      "tool_status": "in_stock",
+      "match_provenance": "current_exact_jlcpcb_part_page",
+      "lcsc": "C25869",
+      "matched_mpn": "0402WGF1651TCE",
+      "semantic_mpn_equal": true,
+      "stock_snapshot": 5616,
+      "displayed_line_cost_usd": 0.0008,
+      "designators_complete": true
+    },
+    {
+      "bom_index": 162,
+      "device_id": "uniroyal_0402wgf2201tce",
+      "source_mpn": "UNI-ROYAL 0402WGF2201TCE",
+      "normalized_mpn": "0402WGF2201TCE",
+      "quantity": 23,
+      "route": "J0",
+      "tool_status": "in_stock",
+      "match_provenance": "current_exact_jlcpcb_part_page",
+      "lcsc": "C25879",
+      "matched_mpn": "0402WGF2201TCE",
+      "semantic_mpn_equal": true,
+      "stock_snapshot": 2027222,
+      "displayed_line_cost_usd": 0.0039,
+      "designators_complete": true
+    },
+    {
+      "bom_index": 163,
+      "device_id": "uniroyal_0402wgf2703tce",
+      "source_mpn": "UNI-ROYAL 0402WGF2703TCE",
+      "normalized_mpn": "0402WGF2703TCE",
+      "quantity": 1,
+      "route": "J0",
+      "tool_status": "in_stock",
+      "match_provenance": "current_exact_jlcpcb_part_page",
+      "lcsc": "C25770",
+      "matched_mpn": "0402WGF2703TCE",
+      "semantic_mpn_equal": true,
+      "stock_snapshot": 156208,
+      "displayed_line_cost_usd": 0.0057,
+      "designators_complete": true
+    },
+    {
+      "bom_index": 164,
+      "device_id": "uniroyal_0402wgf5231tce",
+      "source_mpn": "UNI-ROYAL 0402WGF5231TCE",
+      "normalized_mpn": "0402WGF5231TCE",
+      "quantity": 1,
+      "route": "J0",
+      "tool_status": "in_stock",
+      "match_provenance": "current_exact_jlcpcb_part_page",
+      "lcsc": "C25907",
+      "matched_mpn": "0402WGF5231TCE",
+      "semantic_mpn_equal": true,
+      "stock_snapshot": 40861,
+      "displayed_line_cost_usd": 0.0061,
+      "designators_complete": true
+    },
+    {
+      "bom_index": 165,
+      "device_id": "uniroyal_0402wgf8201tce",
+      "source_mpn": "UNI-ROYAL 0402WGF8201TCE",
+      "normalized_mpn": "0402WGF8201TCE",
+      "quantity": 1,
+      "route": "J0",
+      "tool_status": "in_stock",
+      "match_provenance": "current_exact_jlcpcb_part_page",
+      "lcsc": "C25924",
+      "matched_mpn": "0402WGF8201TCE",
+      "semantic_mpn_equal": true,
+      "stock_snapshot": 234262,
+      "displayed_line_cost_usd": 0.0048,
+      "designators_complete": true
+    },
+    {
+      "bom_index": 166,
       "device_id": "vishay_crcw0402160kfked",
       "source_mpn": "Vishay CRCW0402160KFKED",
       "normalized_mpn": "CRCW0402160KFKED",
@@ -3408,7 +3504,7 @@
       "displayed_line_cost_usd": 8.9565
     },
     {
-      "bom_index": 161,
+      "bom_index": 167,
       "device_id": "vishay_tnpw040210k0beed",
       "source_mpn": "Vishay TNPW040210K0BEED",
       "normalized_mpn": "TNPW040210K0BEED",
@@ -3426,7 +3522,7 @@
       "displayed_line_cost_usd": 0.5894
     },
     {
-      "bom_index": 162,
+      "bom_index": 168,
       "device_id": "vishay_tnpw040243k7beed",
       "source_mpn": "Vishay TNPW040243K7BEED",
       "normalized_mpn": "TNPW040243K7BEED",
@@ -3444,7 +3540,7 @@
       "displayed_line_cost_usd": 8.9568
     },
     {
-      "bom_index": 163,
+      "bom_index": 169,
       "device_id": "vishay_tsmp95000tt",
       "source_mpn": "Vishay TSMP95000TT",
       "normalized_mpn": "TSMP95000TT",
@@ -3464,7 +3560,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 164,
+      "bom_index": 170,
       "device_id": "vishay_tsop75238tt",
       "source_mpn": "Vishay TSOP75238TT",
       "normalized_mpn": "TSOP75238TT",
@@ -3482,7 +3578,7 @@
       "displayed_line_cost_usd": 11.839
     },
     {
-      "bom_index": 165,
+      "bom_index": 171,
       "device_id": "vishay_vemd1060x01",
       "source_mpn": "VEMD1060X01",
       "normalized_mpn": "VEMD1060X01",
@@ -3500,7 +3596,7 @@
       "displayed_line_cost_usd": 4.807
     },
     {
-      "bom_index": 166,
+      "bom_index": 172,
       "device_id": "vishay_vsmy14940",
       "source_mpn": "Vishay VSMY14940",
       "normalized_mpn": "VSMY14940",
@@ -3518,7 +3614,7 @@
       "displayed_line_cost_usd": 3.8895
     },
     {
-      "bom_index": 167,
+      "bom_index": 173,
       "device_id": "vishay_wsl25125l000fea",
       "source_mpn": "Vishay WSL25125L000FEA",
       "normalized_mpn": "WSL25125L000FEA",
@@ -3536,7 +3632,7 @@
       "displayed_line_cost_usd": 2.208
     },
     {
-      "bom_index": 168,
+      "bom_index": 174,
       "device_id": "xtar_18650_4000mah_protected",
       "source_mpn": "XTAR 18650 4000mAh",
       "normalized_mpn": "18650 4000mAh",
@@ -3556,7 +3652,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 169,
+      "bom_index": 175,
       "device_id": "yageo_cc0402krx7r9bb104",
       "source_mpn": "Yageo CC0402KRX7R9BB104",
       "normalized_mpn": "CC0402KRX7R9BB104",
@@ -3572,7 +3668,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 170,
+      "bom_index": 176,
       "device_id": "yageo_rc0402fr_07100kl",
       "source_mpn": "Yageo RC0402FR-07100KL",
       "normalized_mpn": "RC0402FR-07100KL",
@@ -3590,7 +3686,7 @@
       "displayed_line_cost_usd": 0.88
     },
     {
-      "bom_index": 171,
+      "bom_index": 177,
       "device_id": "yageo_rc0402fr_07100rl",
       "source_mpn": "Yageo RC0402FR-07100RL",
       "normalized_mpn": "RC0402FR-07100RL",
@@ -3610,7 +3706,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 172,
+      "bom_index": 178,
       "device_id": "yageo_rc0402fr_0710kl",
       "source_mpn": "Yageo RC0402FR-0710KL",
       "normalized_mpn": "RC0402FR-0710KL",
@@ -3628,7 +3724,7 @@
       "displayed_line_cost_usd": 3.589
     },
     {
-      "bom_index": 173,
+      "bom_index": 179,
       "device_id": "yageo_rc0402fr_07110kl",
       "source_mpn": "Yageo RC0402FR-07110KL",
       "normalized_mpn": "RC0402FR-07110KL",
@@ -3646,7 +3742,7 @@
       "displayed_line_cost_usd": 0.076
     },
     {
-      "bom_index": 174,
+      "bom_index": 180,
       "device_id": "yageo_rc0402fr_0712kl",
       "source_mpn": "Yageo RC0402FR-0712KL",
       "normalized_mpn": "RC0402FR-0712KL",
@@ -3664,25 +3760,7 @@
       "displayed_line_cost_usd": 0.074
     },
     {
-      "bom_index": 175,
-      "device_id": "yageo_rc0402fr_07133kl",
-      "source_mpn": "Yageo RC0402FR-07133KL",
-      "normalized_mpn": "RC0402FR-07133KL",
-      "quantity": 1,
-      "designators_complete": true,
-      "historical_capture_quantity": 1,
-      "current_quantity_delta": 0,
-      "match_provenance": "unchanged_mpn_from_2026_08_25_bom_tool_capture",
-      "route": "J2",
-      "tool_status": "pre_order",
-      "lcsc": "C327374",
-      "matched_mpn": "RC0402FR-07133KL",
-      "semantic_mpn_equal": true,
-      "stock_snapshot": 2,
-      "displayed_line_cost_usd": 8.9558
-    },
-    {
-      "bom_index": 176,
+      "bom_index": 181,
       "device_id": "yageo_rc0402fr_07169kl",
       "source_mpn": "Yageo RC0402FR-07169KL",
       "normalized_mpn": "RC0402FR-07169KL",
@@ -3700,7 +3778,7 @@
       "displayed_line_cost_usd": 0.077
     },
     {
-      "bom_index": 177,
+      "bom_index": 182,
       "device_id": "yageo_rc0402fr_07196kl",
       "source_mpn": "Yageo RC0402FR-07196KL",
       "normalized_mpn": "RC0402FR-07196KL",
@@ -3718,25 +3796,7 @@
       "displayed_line_cost_usd": 0.026
     },
     {
-      "bom_index": 178,
-      "device_id": "yageo_rc0402fr_071k65l",
-      "source_mpn": "Yageo RC0402FR-071K65L",
-      "normalized_mpn": "RC0402FR-071K65L",
-      "quantity": 1,
-      "designators_complete": true,
-      "historical_capture_quantity": 1,
-      "current_quantity_delta": 0,
-      "match_provenance": "unchanged_mpn_from_2026_08_25_bom_tool_capture",
-      "route": "J2",
-      "tool_status": "pre_order",
-      "lcsc": "C185453",
-      "matched_mpn": "RC0402FR-071K65L",
-      "semantic_mpn_equal": true,
-      "stock_snapshot": 4,
-      "displayed_line_cost_usd": 8.9557
-    },
-    {
-      "bom_index": 179,
+      "bom_index": 183,
       "device_id": "yageo_rc0402fr_071k82l",
       "source_mpn": "Yageo RC0402FR-071K82L",
       "normalized_mpn": "RC0402FR-071K82L",
@@ -3754,7 +3814,7 @@
       "displayed_line_cost_usd": 0.048
     },
     {
-      "bom_index": 180,
+      "bom_index": 184,
       "device_id": "yageo_rc0402fr_071kl",
       "source_mpn": "Yageo RC0402FR-071KL",
       "normalized_mpn": "RC0402FR-071KL",
@@ -3774,7 +3834,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 181,
+      "bom_index": 185,
       "device_id": "yageo_rc0402fr_071ml",
       "source_mpn": "Yageo RC0402FR-071ML",
       "normalized_mpn": "RC0402FR-071ML",
@@ -3792,7 +3852,7 @@
       "displayed_line_cost_usd": 0.2665
     },
     {
-      "bom_index": 182,
+      "bom_index": 186,
       "device_id": "yageo_rc0402fr_07220kl",
       "source_mpn": "Yageo RC0402FR-07220KL",
       "normalized_mpn": "RC0402FR-07220KL",
@@ -3810,7 +3870,7 @@
       "displayed_line_cost_usd": 0.26
     },
     {
-      "bom_index": 183,
+      "bom_index": 187,
       "device_id": "yageo_rc0402fr_07220rl",
       "source_mpn": "Yageo RC0402FR-07220RL",
       "normalized_mpn": "RC0402FR-07220RL",
@@ -3828,7 +3888,7 @@
       "displayed_line_cost_usd": 0.08
     },
     {
-      "bom_index": 184,
+      "bom_index": 188,
       "device_id": "yageo_rc0402fr_07240kl",
       "source_mpn": "Yageo RC0402FR-07240KL",
       "normalized_mpn": "RC0402FR-07240KL",
@@ -3846,43 +3906,7 @@
       "displayed_line_cost_usd": 0.054
     },
     {
-      "bom_index": 185,
-      "device_id": "yageo_rc0402fr_07270kl",
-      "source_mpn": "Yageo RC0402FR-07270KL",
-      "normalized_mpn": "RC0402FR-07270KL",
-      "quantity": 1,
-      "designators_complete": true,
-      "historical_capture_quantity": 1,
-      "current_quantity_delta": 0,
-      "match_provenance": "unchanged_mpn_from_2026_08_25_bom_tool_capture",
-      "route": "J2",
-      "tool_status": "pre_order",
-      "lcsc": "C163475",
-      "matched_mpn": "RC0402FR-07270KL",
-      "semantic_mpn_equal": true,
-      "stock_snapshot": 0,
-      "displayed_line_cost_usd": 8.9558
-    },
-    {
-      "bom_index": 186,
-      "device_id": "yageo_rc0402fr_072k2l",
-      "source_mpn": "Yageo RC0402FR-072K2L",
-      "normalized_mpn": "RC0402FR-072K2L",
-      "quantity": 23,
-      "designators_complete": true,
-      "historical_capture_quantity": 23,
-      "current_quantity_delta": 0,
-      "match_provenance": "unchanged_mpn_from_2026_08_25_bom_tool_capture",
-      "route": "J2",
-      "tool_status": "pre_order",
-      "lcsc": "C114762",
-      "matched_mpn": "RC0402FR-072K2L",
-      "semantic_mpn_equal": true,
-      "stock_snapshot": 6,
-      "displayed_line_cost_usd": 8.9558
-    },
-    {
-      "bom_index": 187,
+      "bom_index": 189,
       "device_id": "yageo_rc0402fr_0730k1l",
       "source_mpn": "Yageo RC0402FR-0730K1L",
       "normalized_mpn": "RC0402FR-0730K1L",
@@ -3900,7 +3924,7 @@
       "displayed_line_cost_usd": 0.064
     },
     {
-      "bom_index": 188,
+      "bom_index": 190,
       "device_id": "yageo_rc0402fr_0730kl",
       "source_mpn": "Yageo RC0402FR-0730KL",
       "normalized_mpn": "RC0402FR-0730KL",
@@ -3918,7 +3942,7 @@
       "displayed_line_cost_usd": 0.082
     },
     {
-      "bom_index": 189,
+      "bom_index": 191,
       "device_id": "yageo_rc0402fr_0733kl",
       "source_mpn": "Yageo RC0402FR-0733KL",
       "normalized_mpn": "RC0402FR-0733KL",
@@ -3936,7 +3960,7 @@
       "displayed_line_cost_usd": 0.08
     },
     {
-      "bom_index": 190,
+      "bom_index": 192,
       "device_id": "yageo_rc0402fr_0733rl",
       "source_mpn": "Yageo RC0402FR-0733RL",
       "normalized_mpn": "RC0402FR-0733RL",
@@ -3956,7 +3980,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 191,
+      "bom_index": 193,
       "device_id": "yageo_rc0402fr_073k32l",
       "source_mpn": "Yageo RC0402FR-073K32L",
       "normalized_mpn": "RC0402FR-073K32L",
@@ -3974,7 +3998,7 @@
       "displayed_line_cost_usd": 0.328
     },
     {
-      "bom_index": 192,
+      "bom_index": 194,
       "device_id": "yageo_rc0402fr_0742k2l",
       "source_mpn": "Yageo RC0402FR-0742K2L",
       "normalized_mpn": "RC0402FR-0742K2L",
@@ -3992,7 +4016,7 @@
       "displayed_line_cost_usd": 0.078
     },
     {
-      "bom_index": 193,
+      "bom_index": 195,
       "device_id": "yageo_rc0402fr_0744k2l",
       "source_mpn": "Yageo RC0402FR-0744K2L",
       "normalized_mpn": "RC0402FR-0744K2L",
@@ -4010,7 +4034,7 @@
       "displayed_line_cost_usd": 0.082
     },
     {
-      "bom_index": 194,
+      "bom_index": 196,
       "device_id": "yageo_rc0402fr_0745k3l",
       "source_mpn": "Yageo RC0402FR-0745K3L",
       "normalized_mpn": "RC0402FR-0745K3L",
@@ -4028,7 +4052,7 @@
       "displayed_line_cost_usd": 0.078
     },
     {
-      "bom_index": 195,
+      "bom_index": 197,
       "device_id": "yageo_rc0402fr_07470rl",
       "source_mpn": "Yageo RC0402FR-07470RL",
       "normalized_mpn": "RC0402FR-07470RL",
@@ -4046,7 +4070,7 @@
       "displayed_line_cost_usd": 0.164
     },
     {
-      "bom_index": 196,
+      "bom_index": 198,
       "device_id": "yageo_rc0402fr_0747kl",
       "source_mpn": "Yageo RC0402FR-0747KL",
       "normalized_mpn": "RC0402FR-0747KL",
@@ -4064,7 +4088,7 @@
       "displayed_line_cost_usd": 0.2542
     },
     {
-      "bom_index": 197,
+      "bom_index": 199,
       "device_id": "yageo_rc0402fr_0749r9l",
       "source_mpn": "Yageo RC0402FR-0749R9L",
       "normalized_mpn": "RC0402FR-0749R9L",
@@ -4082,7 +4106,7 @@
       "displayed_line_cost_usd": 0.1435
     },
     {
-      "bom_index": 198,
+      "bom_index": 200,
       "device_id": "yageo_rc0402fr_074k7l",
       "source_mpn": "Yageo RC0402FR-074K7L",
       "normalized_mpn": "RC0402FR-074K7L",
@@ -4102,7 +4126,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 199,
+      "bom_index": 201,
       "device_id": "yageo_rc0402fr_0752r3l",
       "source_mpn": "Yageo RC0402FR-0752R3L",
       "normalized_mpn": "RC0402FR-0752R3L",
@@ -4120,7 +4144,7 @@
       "displayed_line_cost_usd": 0.051
     },
     {
-      "bom_index": 200,
+      "bom_index": 202,
       "device_id": "yageo_rc0402fr_0756kl",
       "source_mpn": "Yageo RC0402FR-0756KL",
       "normalized_mpn": "RC0402FR-0756KL",
@@ -4138,7 +4162,7 @@
       "displayed_line_cost_usd": 0.072
     },
     {
-      "bom_index": 201,
+      "bom_index": 203,
       "device_id": "yageo_rc0402fr_075k1l",
       "source_mpn": "Yageo RC0402FR-075K1L",
       "normalized_mpn": "RC0402FR-075K1L",
@@ -4156,25 +4180,7 @@
       "displayed_line_cost_usd": 0.14
     },
     {
-      "bom_index": 202,
-      "device_id": "yageo_rc0402fr_075k23l",
-      "source_mpn": "Yageo RC0402FR-075K23L",
-      "normalized_mpn": "RC0402FR-075K23L",
-      "quantity": 1,
-      "designators_complete": true,
-      "historical_capture_quantity": 1,
-      "current_quantity_delta": 0,
-      "match_provenance": "unchanged_mpn_from_2026_08_25_bom_tool_capture",
-      "route": "J2",
-      "tool_status": "pre_order",
-      "lcsc": "C477746",
-      "matched_mpn": "RC0402FR-075K23L",
-      "semantic_mpn_equal": true,
-      "stock_snapshot": 249,
-      "displayed_line_cost_usd": 8.9558
-    },
-    {
-      "bom_index": 203,
+      "bom_index": 204,
       "device_id": "yageo_rc0402fr_07620kl",
       "source_mpn": "Yageo RC0402FR-07620KL",
       "normalized_mpn": "RC0402FR-07620KL",
@@ -4192,7 +4198,7 @@
       "displayed_line_cost_usd": 0.08
     },
     {
-      "bom_index": 204,
+      "bom_index": 205,
       "device_id": "yageo_rc0402fr_0768kl",
       "source_mpn": "Yageo RC0402FR-0768KL",
       "normalized_mpn": "RC0402FR-0768KL",
@@ -4208,24 +4214,6 @@
       "semantic_mpn_equal": true,
       "stock_snapshot": 813191,
       "displayed_line_cost_usd": 0.114
-    },
-    {
-      "bom_index": 205,
-      "device_id": "yageo_rc0402fr_078k2l",
-      "source_mpn": "Yageo RC0402FR-078K2L",
-      "normalized_mpn": "RC0402FR-078K2L",
-      "quantity": 1,
-      "designators_complete": true,
-      "historical_capture_quantity": 1,
-      "current_quantity_delta": 0,
-      "match_provenance": "unchanged_mpn_from_2026_08_25_bom_tool_capture",
-      "route": "J2",
-      "tool_status": "pre_order",
-      "lcsc": "C137929",
-      "matched_mpn": "RC0402FR-078K2L",
-      "semantic_mpn_equal": true,
-      "stock_snapshot": 14,
-      "displayed_line_cost_usd": 8.9558
     },
     {
       "bom_index": 206,

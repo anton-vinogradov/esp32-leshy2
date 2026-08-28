@@ -6,7 +6,7 @@
   "checked_on": "2026-08-28",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-    "sha256": "9be8c6c1994476b5ea80b6e0a4065944b12c9fc54a8bea0402dd93c6a19ae924",
+    "sha256": "1b6cda058ed38024d872edce498158e48adb99b863b68f10ecb64d1c715f9f27",
     "exact_lines": 210
   },
   "decision": {
@@ -206,7 +206,7 @@
   },
   "bom_tool_upload": {
     "path": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
-    "sha256": "6c5eefd95f6b7f1f0dff0be201ab11097270b7f896ddb122d3bdf373d7ba8802",
+    "sha256": "86bb0769d5756f20c281c2b149d9972a75035fbb57113545fcd035b2c9e15d7a",
     "columns": [
       "Comment",
       "Designator",
@@ -259,7 +259,7 @@
       "result": "176 matched, 33 unmatched, all 1019 historical target placements parsed"
     },
     "current_210_line_attempt": {
-      "sha256": "6c5eefd95f6b7f1f0dff0be201ab11097270b7f896ddb122d3bdf373d7ba8802",
+      "sha256": "86bb0769d5756f20c281c2b149d9972a75035fbb57113545fcd035b2c9e15d7a",
       "transmitted": false,
       "processed": false,
       "result": "historical 209-line capture retained for 207 unchanged identities; exact current SA818S-U/V and stocked 74LVC2G126DP pages joined separately into the 210-line map"
@@ -398,19 +398,19 @@
     "factory_packed_removable": 0,
     "user_supplied_not_delivered": 0,
     "historical_bom_tool_matched_lines": 176,
-    "historical_bom_tool_public_stock_lines": 136,
-    "historical_bom_tool_preorder_lines": 40,
+    "historical_bom_tool_public_stock_lines": 142,
+    "historical_bom_tool_preorder_lines": 34,
     "historical_bom_tool_unmatched_lines": 33,
     "current_exact_catalogue_routes_before_outlier_resolution": 178,
-    "current_public_stock_lines_before_outlier_resolution": 138,
-    "current_preorder_lines_before_outlier_resolution": 40,
+    "current_public_stock_lines_before_outlier_resolution": 144,
+    "current_preorder_lines_before_outlier_resolution": 34,
     "current_unmatched_lines_before_outlier_resolution": 32,
     "target_placements_parsed": 1052,
     "outliers_resolved_after_exact_search": 32,
     "availability_routes": {
-      "J0": 150,
+      "J0": 156,
       "J1": 0,
-      "J2": 44,
+      "J2": 38,
       "J3": 11,
       "J4-F": 3,
       "J4-P": 1,

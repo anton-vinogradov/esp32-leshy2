@@ -8595,7 +8595,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-072K2L"
+		(property "Value" "UNI-ROYAL 0402WGF2201TCE"
 			(at 213.36 285.75 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8709,7 +8709,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-072K2L"
+		(property "Value" "UNI-ROYAL 0402WGF2201TCE"
 			(at 132.08 288.29 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8823,7 +8823,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-072K2L"
+		(property "Value" "UNI-ROYAL 0402WGF2201TCE"
 			(at 457.20 288.29 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8937,7 +8937,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-072K2L"
+		(property "Value" "UNI-ROYAL 0402WGF2201TCE"
 			(at 213.36 311.15 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9051,7 +9051,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-072K2L"
+		(property "Value" "UNI-ROYAL 0402WGF2201TCE"
 			(at 132.08 313.69 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9165,7 +9165,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-072K2L"
+		(property "Value" "UNI-ROYAL 0402WGF2201TCE"
 			(at 457.20 313.69 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9279,7 +9279,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-072K2L"
+		(property "Value" "UNI-ROYAL 0402WGF2201TCE"
 			(at 213.36 336.55 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9393,7 +9393,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-072K2L"
+		(property "Value" "UNI-ROYAL 0402WGF2201TCE"
 			(at 132.08 339.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9507,7 +9507,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-072K2L"
+		(property "Value" "UNI-ROYAL 0402WGF2201TCE"
 			(at 457.20 339.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9621,7 +9621,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-072K2L"
+		(property "Value" "UNI-ROYAL 0402WGF2201TCE"
 			(at 213.36 361.95 0)
 			(show_name no)
 			(do_not_autoplace no)

@@ -7,9 +7,9 @@
     "state_fault_exploration"
   ],
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "656f07eb473dea7f264ece914927a90a14968b00903d20764fe457b14dfeff80",
-    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "80a3fe3f3066d2bff73895806c5a3bb6123450041231b0a4ea03601e9d5e7b19",
-    "hardware/verification/generated/H3-VRF21-startup-shutdown.json": "fb17667bbe6b140a653169ac4e00ba742e4afff08c84447f4f992a362ff71dfb"
+    "hardware/architecture/candidates/G2F-3I.json": "03554032ffd938a8cc4745b04c1b8fc3c6d561737eb2c6bbf1027c4c81e4120b",
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "608a7a6fefa1e8bfef185d575d2ec59ca2fab16879e947622c09e64ed5afb1b2",
+    "hardware/verification/generated/H3-VRF21-startup-shutdown.json": "730874a62e186a0be94d99f63a1e97b1c3878476d0e5429ae8873207bb80dfc7"
   },
   "provenance": {
     "charger": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",

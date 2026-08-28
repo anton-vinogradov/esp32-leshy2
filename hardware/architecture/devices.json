@@ -1659,27 +1659,27 @@
         "POWERPAD": {"physical": "exposed thermal pad", "role": "power"}
       }
     },
-    "yageo_rc0402fr_07133kl": {
-      "mpn": "Yageo RC0402FR-07133KL",
+    "uniroyal_0402wgf1333tce": {
+      "mpn": "UNI-ROYAL 0402WGF1333TCE",
       "kind": "133kohm_1pct_0402_current_limit_resistor",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
+      "qualification": "verified_stocked_exact_parametric_replacement",
+      "lifecycle": "production_active_factory_stocked",
       "dimensions_mm": [1.0, 0.5, 0.35],
       "source": {
-        "document": "Yageo RC0402FR-07133KL product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-07133KL",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "RC0402FR-07133KL authorized-distributor stock aggregation",
-        "url": "https://www.findchips.com/detail/RC0402FR-07133KL/YAGEO-Corporation",
-        "checked": "2026-08-18"
+        "document": "JLCPCB exact UNI-ROYAL 0402WGF1333TCE stock and assembly card C25753",
+        "url": "https://jlcpcb.com/partdetail/26496-0402WGF1333TCE/C25753",
+        "checked": "2026-08-28"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0097,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
-        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07133KL/5280830", "checked": "2026-08-19"}
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0015,
+        "price_break": "JLCPCB one-piece tier; live stock 6692, MOQ 1",
+        "source": {"document": "JLCPCB exact-MPN published price table C25753", "url": "https://jlcpcb.com/partdetail/26496-0402WGF1333TCE/C25753", "checked": "2026-08-28"}
       },
       "programmable": false,
       "contacts": {
@@ -5953,27 +5953,27 @@
         "END_2": {"physical": "2", "role": "power"}
       }
     },
-    "yageo_rc0402fr_078k2l": {
-      "mpn": "Yageo RC0402FR-078K2L",
+    "uniroyal_0402wgf8201tce": {
+      "mpn": "UNI-ROYAL 0402WGF8201TCE",
       "kind": "8_2kohm_1pct_0402_charger_prog_resistor",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
-      "dimensions_mm": [1.0, 0.5, 0.4],
+      "qualification": "verified_stocked_exact_parametric_replacement",
+      "lifecycle": "production_active_factory_stocked",
+      "dimensions_mm": [1.0, 0.5, 0.35],
       "source": {
-        "document": "Yageo RC0402FR-078K2L product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-078K2L",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "RC0402FR-078K2L active distributor stock page",
-        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-078K2L/726662",
-        "checked": "2026-08-18"
+        "document": "JLCPCB exact UNI-ROYAL 0402WGF8201TCE stock and assembly card C25924",
+        "url": "https://jlcpcb.com/partdetail/26667-0402WGF8201TCE/C25924",
+        "checked": "2026-08-28"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0009,
-        "price_break": "LCSC quantity-100 tier",
-        "source": {"document": "LCSC exact-MPN published price table", "url": "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO_C137929.html", "checked": "2026-08-19"}
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0048,
+        "price_break": "JLCPCB one-piece tier; live stock 234262, MOQ 1",
+        "source": {"document": "JLCPCB exact-MPN published price table C25924", "url": "https://jlcpcb.com/partdetail/26667-0402WGF8201TCE/C25924", "checked": "2026-08-28"}
       },
       "programmable": false,
       "contacts": {
@@ -6077,27 +6077,27 @@
         "END_2": {"physical": "2", "role": "power"}
       }
     },
-    "yageo_rc0402fr_075k23l": {
-      "mpn": "Yageo RC0402FR-075K23L",
+    "uniroyal_0402wgf5231tce": {
+      "mpn": "UNI-ROYAL 0402WGF5231TCE",
       "kind": "5_23kohm_1pct_0402_charger_ts_top_resistor",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
-      "dimensions_mm": [1.0, 0.5, 0.4],
+      "qualification": "verified_stocked_exact_parametric_replacement",
+      "lifecycle": "production_active_factory_stocked",
+      "dimensions_mm": [1.0, 0.5, 0.35],
       "source": {
-        "document": "Yageo RC0402FR-075K23L product specification",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-075K23L",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "RC0402FR-075K23L Mouser active stocked exact order code",
-        "url": "https://www.mouser.com/ProductDetail/YAGEO/RC0402FR-075K23L",
-        "checked": "2026-08-18"
+        "document": "JLCPCB exact UNI-ROYAL 0402WGF5231TCE stock and assembly card C25907",
+        "url": "https://jlcpcb.com/partdetail/26650-0402WGF5231TCE/C25907",
+        "checked": "2026-08-28"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0097,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
-        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-075K23L/5281055", "checked": "2026-08-19"}
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0061,
+        "price_break": "JLCPCB one-piece tier; live stock 40861, MOQ 1",
+        "source": {"document": "JLCPCB exact-MPN published price table C25907", "url": "https://jlcpcb.com/partdetail/26650-0402WGF5231TCE/C25907", "checked": "2026-08-28"}
       },
       "programmable": false,
       "contacts": {
@@ -6636,27 +6636,27 @@
         "END_2": {"physical": "2", "role": "power"}
       }
     },
-    "yageo_rc0402fr_07270kl": {
-      "mpn": "Yageo RC0402FR-07270KL",
+    "uniroyal_0402wgf2703tce": {
+      "mpn": "UNI-ROYAL 0402WGF2703TCE",
       "kind": "270kohm_1pct_0402_voice_efuse_ovlo_top_resistor",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
-      "dimensions_mm": [1.0, 0.5, 0.4],
+      "qualification": "verified_stocked_exact_parametric_replacement",
+      "lifecycle": "production_active_factory_stocked",
+      "dimensions_mm": [1.0, 0.5, 0.35],
       "source": {
-        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "RC0402FR-07270KL active authorized-distributor stock page",
-        "url": "https://www.mouser.com/en/ProductDetail/YAGEO/RC0402FR-07270KL",
-        "checked": "2026-08-18"
+        "document": "JLCPCB exact UNI-ROYAL 0402WGF2703TCE stock and assembly card C25770",
+        "url": "https://jlcpcb.com/partdetail/26513-0402WGF2703TCE/C25770",
+        "checked": "2026-08-28"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0097,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
-        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07270KL/729522", "checked": "2026-08-19"}
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0057,
+        "price_break": "JLCPCB one-piece tier; live stock 156208, MOQ 1",
+        "source": {"document": "JLCPCB exact-MPN published price table C25770", "url": "https://jlcpcb.com/partdetail/26513-0402WGF2703TCE/C25770", "checked": "2026-08-28"}
       },
       "programmable": false,
       "contacts": {
@@ -6664,27 +6664,27 @@
         "END_2": {"physical": "2", "role": "analog"}
       }
     },
-    "yageo_rc0402fr_071k65l": {
-      "mpn": "Yageo RC0402FR-071K65L",
+    "uniroyal_0402wgf1651tce": {
+      "mpn": "UNI-ROYAL 0402WGF1651TCE",
       "kind": "1_65kohm_1pct_0402_main_efuse_current_threshold_resistor",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
-      "dimensions_mm": [1.0, 0.5, 0.4],
+      "qualification": "verified_stocked_exact_parametric_replacement",
+      "lifecycle": "production_active_factory_stocked",
+      "dimensions_mm": [1.0, 0.5, 0.35],
       "source": {
-        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "RC0402FR-071K65L LCSC C185453 stocked exact order code",
-        "url": "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO-RC0402FR-071K65L_C185453.html",
-        "checked": "2026-08-18"
+        "document": "JLCPCB exact UNI-ROYAL 0402WGF1651TCE stock and assembly card C25869",
+        "url": "https://jlcpcb.com/partdetail/26612-0402WGF1651TCE/C25869",
+        "checked": "2026-08-28"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0097,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
-        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-071K65L/5281908", "checked": "2026-08-19"}
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0008,
+        "price_break": "JLCPCB one-piece tier; live stock 5616, MOQ 1",
+        "source": {"document": "JLCPCB exact-MPN published price table C25869", "url": "https://jlcpcb.com/partdetail/26612-0402WGF1651TCE/C25869", "checked": "2026-08-28"}
       },
       "programmable": false,
       "contacts": {
@@ -7930,32 +7930,32 @@
         "END_2": {"physical": "2", "role": "signal"}
       }
     },
-    "yageo_rc0402fr_072k2l": {
-      "mpn": "Yageo RC0402FR-072K2L",
+    "uniroyal_0402wgf2201tce": {
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "kind": "2_2kohm_1pct_0402_i2c_pullup_resistor",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
+      "qualification": "verified_stocked_exact_parametric_replacement",
+      "lifecycle": "production_active_factory_stocked",
       "dimensions_mm": [1.0, 0.5, 0.35],
       "source": {
-        "document": "Yageo RC0402 thick-film resistor series datasheet",
-        "version": "current product data checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+        "version": "V.10, 28 July 2025",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "RC0402FR-072K2L active authorized-distributor stock page",
-        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K2L/729500",
-        "checked": "2026-08-18"
+        "document": "JLCPCB exact UNI-ROYAL 0402WGF2201TCE stock and assembly card C25879",
+        "url": "https://jlcpcb.com/partdetail/26622-0402WGF2201TCE/C25879",
+        "checked": "2026-08-28"
       },
       "cost": {
         "currency": "USD",
         "target_quantity": 100,
-        "unit_price_usd": 0.0097,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "unit_price_usd": 0.0039,
+        "price_break": "JLCPCB one-piece tier; live stock 2027222, MOQ 1",
         "source": {
-          "document": "DigiKey exact-MPN published price table",
-          "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K2L/726553",
-          "checked": "2026-08-19"
+          "document": "JLCPCB exact-MPN published price table C25879",
+          "url": "https://jlcpcb.com/partdetail/26622-0402WGF2201TCE/C25879",
+          "checked": "2026-08-28"
         }
       },
       "programmable": false,

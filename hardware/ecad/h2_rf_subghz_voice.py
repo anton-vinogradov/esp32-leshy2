@@ -128,7 +128,7 @@ def footprint_for(instance: str, device_key: str) -> str:
         return "Capacitor_SMD:C_0603_1608Metric"
     if device_key.startswith(("tdk_c1005", "yageo_cc0402", "murata_grm155", "murata_gjm155", "kemet_c0402")):
         return "Capacitor_SMD:C_0402_1005Metric"
-    if device_key.startswith(("yageo_rc0402", "panasonic_erj_2r")):
+    if device_key.startswith(("yageo_rc0402", "uniroyal_0402wgf", "panasonic_erj_2r")):
         return "Resistor_SMD:R_0402_1005Metric"
     raise ValueError(f"no exact footprint mapping for {instance}/{device_key}")
 
@@ -146,7 +146,7 @@ def reference_prefix(instance: str, device_key: str) -> str:
         return "Q"
     if device_key.startswith(("tdk_c", "yageo_cc", "murata_grm", "murata_gjm", "kemet_c")):
         return "C"
-    if device_key.startswith(("yageo_rc", "panasonic_erj_2r")):
+    if device_key.startswith(("yageo_rc", "uniroyal_0402wgf", "panasonic_erj_2r")):
         return "R"
     return "U"
 

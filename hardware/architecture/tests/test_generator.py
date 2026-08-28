@@ -37,7 +37,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H1-R2.24", roadmap["current_substep"])
+        self.assertEqual("H1-R2.25", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -382,7 +382,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("**210/210** lines", rendered)
         self.assertIn("**198/210** lines", rendered)
         self.assertIn("**1033/1052** supplied placements", rendered)
-        self.assertIn("USD 235.3369", rendered)
+        self.assertIn("USD 235.1827", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -1018,7 +1018,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R voice raw-output capacitor #0",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R voice raw-output capacitor #1",
             "Texas Instruments TPS25974LRPWR<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG",
-            "Yageo RC0402FR-07270KL<br/>270-kOhm 1% voice eFuse OVLO top resistor",
+            "UNI-ROYAL 0402WGF2703TCE<br/>270-kOhm 1% voice eFuse OVLO top resistor",
             "Yageo RC0402FR-0710KL<br/>10-kOhm 1% voice-enable fail-low resistor",
             "Yageo RC0402FR-0710KL<br/>10-kOhm 1% voice power-good pull-up resistor",
             "Yageo RC0402FR-0768KL<br/>68-kOhm 1% voice PG-qualifier base resistor",
@@ -1613,15 +1613,15 @@ class ArchitectureValidationTests(unittest.TestCase):
             "charger_btst2_cap": "murata_grm155r71e473ka88d",
             "charger_regn_cap": "tdk_cga5l1x7r1e475k160ac",
             "charger_sdrv_cap": "kemet_c0402c102k5ractu",
-            "charger_prog_res": "yageo_rc0402fr_078k2l",
+            "charger_prog_res": "uniroyal_0402wgf8201tce",
             "charger_batp_res": "yageo_rc0402fr_07100rl",
-            "charger_ts_top": "yageo_rc0402fr_075k23l",
+            "charger_ts_top": "uniroyal_0402wgf5231tce",
             "charger_ts_bottom": "yageo_rc0402fr_0730k1l",
             "charger_ts_ntc": "tdk_b57332v5103f360",
             "charger_ilim_top": "yageo_rc0402fr_0744k2l",
             "charger_ilim_bottom": "yageo_rc0402fr_07100kl",
-            "pd_local_scl_pullup": "yageo_rc0402fr_072k2l",
-            "pd_local_sda_pullup": "yageo_rc0402fr_072k2l",
+            "pd_local_scl_pullup": "uniroyal_0402wgf2201tce",
+            "pd_local_sda_pullup": "uniroyal_0402wgf2201tce",
             "charger_int_pullup": "yageo_rc0402fr_0710kl",
             "charger_ce_pullup": "yageo_rc0402fr_0710kl",
         }
@@ -1680,10 +1680,10 @@ class ArchitectureValidationTests(unittest.TestCase):
             "pd_cc2_cap": "murata_grm1555c1h221ja01d",
             "pd_eeprom_bypass": "yageo_cc0402krx7r9bb104",
             "pd_eeprom_wp_pullup": "yageo_rc0402fr_0710kl",
-            "pd_local_scl_pullup": "yageo_rc0402fr_072k2l",
-            "pd_local_sda_pullup": "yageo_rc0402fr_072k2l",
-            "sys_i2c_scl_pullup": "yageo_rc0402fr_072k2l",
-            "sys_i2c_sda_pullup": "yageo_rc0402fr_072k2l",
+            "pd_local_scl_pullup": "uniroyal_0402wgf2201tce",
+            "pd_local_sda_pullup": "uniroyal_0402wgf2201tce",
+            "sys_i2c_scl_pullup": "uniroyal_0402wgf2201tce",
+            "sys_i2c_sda_pullup": "uniroyal_0402wgf2201tce",
             "sys_int_pullup": "yageo_rc0402fr_0710kl",
         }
         for instance, device_id in expected_instances.items():
@@ -1831,7 +1831,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "main_output_cap0": "murata_grm32er71e226ke15l",
             "main_output_cap1": "murata_grm32er71e226ke15l",
             "main_efuse": "ti_tps25974l_rpwr",
-            "main_efuse_rilm": "yageo_rc0402fr_071k65l",
+            "main_efuse_rilm": "uniroyal_0402wgf1651tce",
             "main_efuse_dvdt_cap": "murata_grm155r71h472ka01d",
             "main_efuse_itimer_cap": "murata_grm1555c1h121ja01d",
             "main_efuse_ovlo_top": "yageo_rt0402brd07191kl",
@@ -1854,7 +1854,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "voice_efuse_rilm": "yageo_rc0402fr_073k32l",
             "voice_efuse_dvdt_cap": "murata_grm155r71h472ka01d",
             "voice_efuse_itimer_cap": "murata_grm1555c1h121ja01d",
-            "voice_efuse_ovlo_top": "yageo_rc0402fr_07270kl",
+            "voice_efuse_ovlo_top": "uniroyal_0402wgf2703tce",
             "voice_efuse_ovlo_bottom": "yageo_rc0402fr_07100kl",
             "voice_efuse_pg_top": "yageo_rc0402fr_0768kl",
             "voice_efuse_pg_bottom": "yageo_rc0402fr_0733kl",
@@ -2278,7 +2278,7 @@ class ArchitectureValidationTests(unittest.TestCase):
                 routes,
             )
             self.assertEqual("liteon_ltst_c190krkt", instances[f"{channel}_tx_led"])
-            self.assertEqual("yageo_rc0402fr_072k2l", instances[f"{channel}_tx_led_series"])
+            self.assertEqual("uniroyal_0402wgf2201tce", instances[f"{channel}_tx_led_series"])
             self.assertIn(
                 (f"{channel}_tx_led.K", f"{comparator}.{output}", output_net),
                 routes,
@@ -4046,7 +4046,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "slow_io_fault_sense_pullup": "yageo_rc0402fr_0710kl",
             "slow_io_s3_evidence_iso": "ti_sn74lvc1g07_dckr",
             "slow_io_s3_evidence_pullup": "yageo_rc0402fr_0710kl",
-            "fault_led_series": "yageo_rc0402fr_072k2l",
+            "fault_led_series": "uniroyal_0402wgf2201tce",
         }
         for instance, device_id in expected_instances.items():
             self.assertEqual(device_id, candidate["instances"][instance])
@@ -4117,7 +4117,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "TDK C1608X7R1C105K080AC<br/>1-uF main slow-I/O local bulk capacitor",
             "SN74LVC1G07DCKR<br/>AON-powered open-drain FAULT-sense domain isolator",
             "SN74LVC1G07DCKR<br/>AON-powered open-drain S3-evidence domain isolator",
-            "Yageo RC0402FR-072K2L<br/>2.2-kOhm physical FAULT-indicator current limit",
+            "UNI-ROYAL 0402WGF2201TCE<br/>2.2-kOhm physical FAULT-indicator current limit",
         ):
             self.assertIn(token, rendered, token)
 
