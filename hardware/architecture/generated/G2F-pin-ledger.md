@@ -101,7 +101,7 @@
 | `nexperia_74lvc126apw_118` | `Nexperia 74LVC126APW,118` | `verified_exact_nrf_host_to_switched_domain_isolator` | `production_active_orderable` | [74LVC126A quad buffer/line driver product data sheet Rev. 14, 12 June 2025](https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf) | same primary source |
 | `nexperia_74lvc1g32gv_125` | `74LVC1G32GV,125` | `verified_candidate` | `production` | [74LVC1G32 Single 2-input OR gate datasheet 2024-09-03](https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf) | same primary source |
 | `nexperia_74lvc2g126dp_125` | `Nexperia 74LVC2G126DP,125` | `verified_exact_nrf_switched_to_host_domain_isolator` | `production_active_factory_stocked` | [74LVC2G126 dual bus buffer/line driver product data sheet Rev. 16, 17 August 2023](https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf) | same primary source |
-| `nexperia_74lvc2g14gw_125` | `74LVC2G14GW,125` | `verified_candidate` | `production` | [74LVC2G14 Dual inverting Schmitt trigger datasheet 2023-08-18](https://assets.nexperia.com/documents/data-sheet/74LVC2G14.pdf) | same primary source |
+| `nexperia_74lvc2g14gv_125` | `74LVC2G14GV,125` | `verified_stocked_exact_family_package_variant` | `production_active_factory_stocked_for_trial` | [74LVC2G14 Dual inverting Schmitt trigger datasheet 2023-08-18](https://assets.nexperia.com/documents/data-sheet/74LVC2G14.pdf) | same primary source |
 | `nexperia_pesd24vy1bsf` | `Nexperia PESD24VY1BSF` | `verified_exact_sa518_external_rf_esd` | `production_orderable` | [PESD24VY1BSF very-low-harmonic-distortion bidirectional ESD protection diode short data sheet current manufacturer document checked 2026-08-18](https://assets.nexperia.com/documents/short-data-sheet/PESD24VY1BSF_SDS.pdf) | same primary source |
 | `nicerf_sa818s_u_v18` | `G-NiceRF SA818S-U` | `manufacturer_and_jlcpcb_exact_candidate` | `current_orderable_product` | [SA818S 1W Embedded walkie talkie module Product Specification Rev 1.8 / 2026-06](https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf) | same primary source |
 | `nicerf_sa818s_v_v18` | `G-NiceRF SA818S-V` | `manufacturer_and_jlcpcb_exact_candidate_preorder` | `current_preorder_product` | [SA818S 1W Embedded walkie talkie module Product Specification Rev 1.8 / 2026-06](https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf) | same primary source |
@@ -4318,7 +4318,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `voice_io_power_output_cap` lifecycle: `active_production`.
 - `voice_band_io_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `voice_band_io_bypass` lifecycle: `active_orderable`.
-- `voice_band_inverter` lifecycle: `production`.
+- `voice_band_inverter` uses `74LVC2G14GV,125` as `verified_stocked_exact_family_package_variant`, not an accepted production choice.
+- `voice_band_inverter` lifecycle: `production_active_factory_stocked_for_trial`.
 - `voice_band_inverter_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `voice_band_inverter_bypass` lifecycle: `active_orderable`.
 - `voice_pd_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
@@ -4529,7 +4530,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `rf_zone_temp_filter` lifecycle: `active_orderable`.
 - `ui_zone_temp_filter` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `ui_zone_temp_filter` lifecycle: `active_orderable`.
-- `safe_conditioner` lifecycle: `production`.
+- `safe_conditioner` uses `74LVC2G14GV,125` as `verified_stocked_exact_family_package_variant`, not an accepted production choice.
+- `safe_conditioner` lifecycle: `production_active_factory_stocked_for_trial`.
 - `safe_conditioner_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `safe_conditioner_bypass` lifecycle: `active_orderable`.
 - `safe_rearm_buffer` uses `SN74LVC1G17DCKR` as `verified_exact_schmitt_buffer`, not an accepted production choice.

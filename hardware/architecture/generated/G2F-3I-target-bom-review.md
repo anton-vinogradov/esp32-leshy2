@@ -13,7 +13,7 @@
 - Current orderability evidence exists for **209/210** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **198/210** lines.
 - Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **1033/1052** supplied placements; their partial subtotals are `base_product` — USD 235.1827. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **1033/1052** supplied placements; their partial subtotals are `base_product` — USD 235.3853. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **210/210** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -221,7 +221,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `nexperia_74lvc126apw_118` — `Nexperia 74LVC126APW,118`.
   - `nexperia_74lvc1g32gv_125` — `74LVC1G32GV,125`.
   - `nexperia_74lvc2g126dp_125` — `Nexperia 74LVC2G126DP,125`.
-  - `nexperia_74lvc2g14gw_125` — `74LVC2G14GW,125`.
+  - `nexperia_74lvc2g14gv_125` — `74LVC2G14GV,125`.
   - `onsemi_fsusb42_mux` — `onsemi FSUSB42MUX`.
   - `tca4307dgkr` — `TCA4307DGKR`.
   - `tca6424argjr` — `TCA6424ARGJR`.
@@ -1061,12 +1061,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>74LVC2G14GW,125</code> — 2 × USD 0.0587 = USD 0.1174</summary>
+<details><summary><code>74LVC2G14GV,125</code> — 2 × USD 0.1600 = USD 0.3200</summary>
 
-- Device id: `nexperia_74lvc2g14gw_125`.
+- Device id: `nexperia_74lvc2g14gv_125`.
 - Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC2G14GW-125/2116536).
+- Comparable basis: JLCPCB 50-piece tier; current stock 153, available order quantity 35, MOQ 1; target quantity `100`.
+- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/Nexperia-74LVC2G14GV125/C426708).
 
 </details>
 

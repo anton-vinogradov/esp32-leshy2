@@ -93,7 +93,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "receiver_i2c_iso": "ti_sn74lvc2g66_dcur",
         "receiver_irq_iso": "ti_sn74lvc1g07_dckr",
         "voice_band_io": "ti_tca9534a_pwr",
-        "voice_band_inverter": "nexperia_74lvc2g14gw_125",
+        "voice_band_inverter": "nexperia_74lvc2g14gv_125",
         "voice_pd_gate": "ti_sn74lvc2g08_dcur",
         "voice_control_mux_a": "ti_tmux1136_dgsr",
         "voice_control_mux_b": "ti_tmux1136_dgsr",

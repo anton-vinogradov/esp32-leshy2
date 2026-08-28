@@ -3,9 +3,9 @@
   "stage": "H3.5.2",
   "status": "reviewed_rf_corridor_plane_and_return_constraints",
   "source_hashes": {
-    "hardware/product-design/generated/H1-unified-coordinate-table.json": "202e700c6449c7155c26a867d1a419ff2973edf43bf59eee1e48c8d15645533b",
-    "hardware/verification/generated/H3-VRF51-rf-feed-constraints.json": "813d3ab1e662845c7a2ac43b40cd2f23bae42fea217cb218b106905e6c680b99",
-    "hardware/architecture/candidates/G2F-3I.json": "03554032ffd938a8cc4745b04c1b8fc3c6d561737eb2c6bbf1027c4c81e4120b"
+    "hardware/product-design/generated/H1-unified-coordinate-table.json": "1b76867ef64eba64e581197ae00f6f1053c86012132afe7c9356ccab61ddc0e1",
+    "hardware/verification/generated/H3-VRF51-rf-feed-constraints.json": "0a3009086b59d0fb9d13268997df863f67472e1f77248e62910e3b81c5c2bab9",
+    "hardware/architecture/candidates/G2F-3I.json": "b3dd3a4ea9097ce3503cff4b356c6f64903cd8ac8f6aa5a94bcfb10913f20a48"
   },
   "summary": {
     "paths": 10,

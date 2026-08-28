@@ -3,9 +3,9 @@
   "stage": "H3.0.2",
   "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
-    "hardware/architecture/devices.json": "145e0aff58ab9916c073f1a16ee4f9c2ab10f20b0d16455d15ccaa08be6c9a5a",
-    "hardware/ecad/generated/H2-instance-ledger.json": "c5657e98ebacb3067c233b0654e2eb3dd36369f4e2870639d6548ed8cf9f3a69",
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "53941e365ac902663f6c2f291b4d6e2a183f3e1a515547173ab8edabe82de767"
+    "hardware/architecture/devices.json": "33077721678642088b09a073b143d0f5a10e91ce0da561c0c55e43b9bf5c1b49",
+    "hardware/ecad/generated/H2-instance-ledger.json": "efc68f5ed6b7ceea08ec662e2cf4bb717a5ffd58aaecd3b33732ed168768233a",
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "c14d5e1081f2c14e8ad2c6aef9715760b2d7bffff64458dbff7b7bc88e18a4e9"
   },
   "policy": {
     "accepted_h2_baseline_is_immutable": true,
@@ -3823,9 +3823,9 @@
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
-      "device_key": "nexperia_74lvc2g14gw_125",
-      "mpn": "74LVC2G14GW,125",
-      "kind": "tssop6_dual_schmitt_inverter",
+      "device_key": "nexperia_74lvc2g14gv_125",
+      "mpn": "74LVC2G14GV,125",
+      "kind": "tsop6_dual_schmitt_inverter",
       "instance_count": 2,
       "projects": [
         "LESHY2-RF"
@@ -3835,10 +3835,10 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "roles": [
-        "AON complement for one-hot voice selection",
+        "AON complement for one-hot voice selection; TSOP6 rotated for local clearance",
         "RUN and S3 fault-reset conditioner"
       ],
-      "lifecycle": "production",
+      "lifecycle": "production_active_factory_stocked_for_trial",
       "source": {
         "document": "74LVC2G14 Dual inverting Schmitt trigger datasheet",
         "version": "2023-08-18",

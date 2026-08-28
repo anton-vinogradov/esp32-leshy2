@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1110" viewBox="0 0 1160 1110" data-marker="H1-R2.25" data-frame="rf-inner" data-inner-silkscreen="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1110" viewBox="0 0 1160 1110" data-marker="H1-R2.26" data-frame="rf-inner" data-inner-silkscreen="none">
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.25 · RF / power PCB inner face</text>
+<text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.26 · RF / power PCB inner face</text>
 <text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.</text>
 <text x="290.0" y="105.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ANTENNA EDGE · five board-local RF paths</text>
 <rect x="80.0" y="165.0" width="420.0" height="840.0" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -161,8 +161,8 @@
 <text x="421.0" y="593.5" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">66</text>
 <rect x="373.72" y="582.48" width="13.44" height="11.76" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice_pd_gate" data-mpn="Texas Instruments SN74LVC2G08DCUR"/>
 <text x="380.4" y="590.7" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">67</text>
-<rect x="358.60" y="582.48" width="11.20" height="7.00" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice_band_inverter" data-mpn="74LVC2G14GW,125"/>
-<text x="364.2" y="587.6" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">68</text>
+<rect x="358.60" y="582.48" width="8.40" height="16.24" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice_band_inverter" data-mpn="74LVC2G14GV,125"/>
+<text x="362.8" y="592.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">68</text>
 <rect x="326.40" y="582.48" width="28.28" height="17.36" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice_audio_mux" data-mpn="Texas Instruments TMUX1136DGSR"/>
 <text x="340.5" y="593.5" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">69</text>
 <rect x="85.60" y="590.04" width="17.92" height="8.96" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="charger_regn_cap" data-mpn="TDK CGA5L1X7R1E475K160AC"/>
@@ -211,8 +211,8 @@
 <text x="368.4" y="672.5" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">91</text>
 <rect x="116.40" y="669.00" width="168.00" height="134.40" rx="2" fill="#fff7ed" stroke="#ea580c" stroke-width="1" stroke-dasharray="6 4" data-instance="fpv_receiver_bay" data-mpn="PHYSICAL RESERVE"/>
 <text x="200.4" y="738.5" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#ea580c">92</text>
-<rect x="315.20" y="691.40" width="11.20" height="7.00" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_conditioner" data-mpn="74LVC2G14GW,125"/>
-<text x="320.8" y="696.5" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">93</text>
+<rect x="315.20" y="691.40" width="16.24" height="8.40" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_conditioner" data-mpn="74LVC2G14GV,125"/>
+<text x="323.3" y="697.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">93</text>
 <rect x="287.20" y="691.40" width="16.24" height="8.96" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safety_watchdog" data-mpn="Texas Instruments TPS3435CAKAGDDFR"/>
 <text x="295.3" y="697.5" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">94</text>
 <rect x="399.20" y="725.00" width="11.20" height="7.00" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="cc_backup_gate" data-mpn="SN74LVC1G08DCKR"/>

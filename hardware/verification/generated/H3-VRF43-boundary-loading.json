@@ -3,14 +3,14 @@
   "stage": "H3.4.3",
   "status": "reviewed_m1_expansion_and_service_boundary_loading",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "03554032ffd938a8cc4745b04c1b8fc3c6d561737eb2c6bbf1027c4c81e4120b",
-    "hardware/architecture/devices.json": "145e0aff58ab9916c073f1a16ee4f9c2ab10f20b0d16455d15ccaa08be6c9a5a",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "95dc58237ce90f98bc93122de7fa467e98d6139a7bc4bdd263616513d3b55f1f",
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "601a3005f92e27dcd5058933d9293d319c2f348e515dc83340ac56a6aaba9e08",
-    "hardware/verification/generated/H3-VRF42-digital-timing.json": "8ddeeaa742000aa4a329fd55e2023a35f3d6c7ca9c52bacf36696cdac2836907",
-    "hardware/ecad/generated/H2-REV53-no-back-power.json": "5572e38612c2fe5e8759378cba057e0bc6e1959b677f8e0ee9aa998e6a8f1363",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "05b406450f6955356577a360e5e730edd5f924f5363ed8e9e33b6fe4c3b091f0",
-    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "3c7269e8b0dc66e80b399f331516c143cab6335f79f6225767bd216bc96b39b7"
+    "hardware/architecture/candidates/G2F-3I.json": "b3dd3a4ea9097ce3503cff4b356c6f64903cd8ac8f6aa5a94bcfb10913f20a48",
+    "hardware/architecture/devices.json": "33077721678642088b09a073b143d0f5a10e91ce0da561c0c55e43b9bf5c1b49",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "f238c5c39996089f4e1668926507c44725d4f165c21ca8ac2c92feb4ab4df074",
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "e72e6724e15b5b40b4698723b95014a78423d2833f212d718659f302c031cb4b",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "b9dbfdc78f2cf20943ec1dabed2d013e6d6caadb63711a2c65d91c51a73b9cb7",
+    "hardware/ecad/generated/H2-REV53-no-back-power.json": "3d47f111d4d95f3ca189df8f4e83a8f6119f0826fdaf9a4806a7d624ce5b01a9",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "0a32593b6bd29c976e27b37769dcac8bbf8f275e5a476d0b414506a3c5b0a573",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "d4ae4307e2fcf86a5f941a9007cece3a6ab2d387cc77f4c5ae881958e95b4534"
   },
   "provenance": {
     "m1_plug": "https://www.hirose.com/product/p/CL0578-0523-1-92",

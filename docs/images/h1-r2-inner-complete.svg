@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2910" viewBox="0 0 1900 2910" data-marker="H1-R2.25" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2910" viewBox="0 0 1900 2910" data-marker="H1-R2.26" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="1900" height="2910" fill="#ffffff"/>
-<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.25 complete inner-body map</text>
+<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.26 complete inner-body map</text>
 <text x="30.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Each PCB is shown exactly as viewed after turning it over. Numbers are drawing references; inner faces contain no silkscreen.</text>
 <text x="201.9" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="65.0" y="130.0" width="273.8" height="547.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -163,8 +163,8 @@
 <text x="662.3" y="410.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">66</text>
 <rect x="631.44" y="402.11" width="8.76" height="7.67" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice_pd_gate" data-mpn="Texas Instruments SN74LVC2G08DCUR"/>
 <text x="635.8" y="408.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">67</text>
-<rect x="621.59" y="402.11" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice_band_inverter" data-mpn="74LVC2G14GW,125"/>
-<text x="625.2" y="406.0" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">68</text>
+<rect x="621.59" y="402.11" width="5.47" height="10.59" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice_band_inverter" data-mpn="74LVC2G14GV,125"/>
+<text x="624.3" y="409.0" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">68</text>
 <rect x="600.60" y="402.11" width="18.43" height="11.32" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice_audio_mux" data-mpn="Texas Instruments TMUX1136DGSR"/>
 <text x="609.8" y="410.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">69</text>
 <rect x="443.65" y="407.04" width="11.68" height="5.84" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="charger_regn_cap" data-mpn="TDK CGA5L1X7R1E475K160AC"/>
@@ -213,8 +213,8 @@
 <text x="628.0" y="461.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">91</text>
 <rect x="463.73" y="458.50" width="109.50" height="87.60" rx="2" fill="#fff7ed" stroke="#ea580c" stroke-width="1" stroke-dasharray="6 4" data-instance="fpv_receiver_bay" data-mpn="PHYSICAL RESERVE"/>
 <text x="518.5" y="504.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#ea580c">92</text>
-<rect x="593.30" y="473.10" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_conditioner" data-mpn="74LVC2G14GW,125"/>
-<text x="596.9" y="477.0" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">93</text>
+<rect x="593.30" y="473.10" width="10.58" height="5.47" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_conditioner" data-mpn="74LVC2G14GV,125"/>
+<text x="598.6" y="477.4" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">93</text>
 <rect x="575.05" y="473.10" width="10.58" height="5.84" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safety_watchdog" data-mpn="Texas Instruments TPS3435CAKAGDDFR"/>
 <text x="580.3" y="477.6" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">94</text>
 <rect x="648.05" y="495.00" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="cc_backup_gate" data-mpn="SN74LVC1G08DCKR"/>
@@ -527,8 +527,9 @@
 <text x="518.0" y="1973.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">CC1101 band-select buffer</text>
 <text x="490.0" y="2010.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">067  Texas Instruments SN74LVC2G08DCUR</text>
 <text x="518.0" y="2023.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">AON mutually-exclusive voice PD gate</text>
-<text x="490.0" y="2060.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">068  74LVC2G14GW,125</text>
-<text x="518.0" y="2073.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">AON complement for one-hot voice selection</text>
+<text x="490.0" y="2060.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">068  74LVC2G14GV,125</text>
+<text x="518.0" y="2073.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">AON complement for one-hot voice selection; TSOP6 rotated</text>
+<text x="518.0" y="2084.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">for local clearance</text>
 <text x="490.0" y="2110.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">069  Texas Instruments TMUX1136DGSR</text>
 <text x="518.0" y="2123.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">selected-module AFOUT and microphone multiplexer</text>
 <text x="490.0" y="2160.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">070  TDK CGA5L1X7R1E475K160AC</text>
@@ -578,7 +579,7 @@
 <text x="950.0" y="1210.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#9a3412">092  PHYSICAL RESERVE</text>
 <text x="978.0" y="1223.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">30 x 24 x 8 mm mutually exclusive post-PCBA receiver bay:</text>
 <text x="978.0" y="1234.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">primary AKK K331 uses a tolerant 14-pad direct-solder</text>
-<text x="950.0" y="1260.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">093  74LVC2G14GW,125</text>
+<text x="950.0" y="1260.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">093  74LVC2G14GV,125</text>
 <text x="978.0" y="1273.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">RUN and S3 fault-reset conditioner</text>
 <text x="950.0" y="1310.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">094  Texas Instruments TPS3435CAKAGDDFR</text>
 <text x="978.0" y="1323.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">independent 1.6-s timeout watchdog</text>

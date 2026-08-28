@@ -167,12 +167,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H1-R2.25`", "H0 is reviewed",
+                "Current hardware boundary: `H1-R2.26`", "H0 is reviewed",
                 "firmware F1-R2 reviewed", "F2-R2.0",
                 "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H1-R2.25`", "H0 проведено ревью",
+                "Текущая аппаратная граница: `H1-R2.26`", "H0 проведено ревью",
                 "firmware F1-R2 проведено ревью", "F2-R2.0",
                 "H9 · Manufacturing release",
                 "Production ECAD",
@@ -188,8 +188,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.25`", "fabrication"),
-            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.25`", "печати прототипа"),
+            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.26`", "fabrication"),
+            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.26`", "печати прототипа"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -302,12 +302,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_public_schematics_describe_current_r2_not_superseded_r1_ecad(self):
         expectations = {
             "docs/schematics.md": (
-                "H0-R2", "H1-R2.25", "does **not** exist yet",
+                "H0-R2", "H1-R2.26", "does **not** exist yet",
                 "3× nRF24", "one analog video signal", "14 NC reserve",
                 "historical engineering evidence", "must not be used for fabrication",
             ),
             "docs/schematics.ru.md": (
-                "H0-R2", "H1-R2.25", "пока **нет**",
+                "H0-R2", "H1-R2.26", "пока **нет**",
                 "3× nRF24", "один аналоговый видеосигнал", "25 возвратов · 14 NC",
                 "историческое инженерное evidence", "печатать по ним нельзя",
             ),
@@ -442,8 +442,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("JLCPCB Standard PCBA", evidence["decision"]["reference_platform"])
         self.assertFalse(evidence["decision"]["exclusive_lock_in"])
         self.assertEqual(210, evidence["summary"]["target_bom_lines"])
-        self.assertEqual(12, evidence["summary"]["critical_lines_spot_checked"])
-        self.assertEqual(7, evidence["summary"]["public_stock_exact_or_revision_explicit"])
+        self.assertEqual(13, evidence["summary"]["critical_lines_spot_checked"])
+        self.assertEqual(8, evidence["summary"]["public_stock_exact_or_revision_explicit"])
         self.assertEqual(3, evidence["summary"]["preorder_reservation"])
         self.assertEqual(1, evidence["summary"]["global_sourcing_or_consignment"])
         self.assertEqual(1, evidence["summary"]["factory_final_assembly"])
@@ -458,12 +458,12 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(176, evidence["summary"]["historical_bom_tool_matched_lines"])
         self.assertEqual(178, evidence["summary"]["current_exact_catalogue_routes_before_outlier_resolution"])
-        self.assertEqual(144, evidence["summary"]["current_public_stock_lines_before_outlier_resolution"])
-        self.assertEqual(34, evidence["summary"]["current_preorder_lines_before_outlier_resolution"])
+        self.assertEqual(145, evidence["summary"]["current_public_stock_lines_before_outlier_resolution"])
+        self.assertEqual(33, evidence["summary"]["current_preorder_lines_before_outlier_resolution"])
         self.assertEqual(32, evidence["summary"]["current_unmatched_lines_before_outlier_resolution"])
         self.assertEqual(1052, evidence["summary"]["target_placements_parsed"])
         self.assertEqual(
-            {"J0": 156, "J1": 0, "J2": 38, "J3": 11, "J4-F": 3, "J4-P": 1, "J5-U": 1},
+            {"J0": 157, "J1": 0, "J2": 37, "J3": 11, "J4-F": 3, "J4-P": 1, "J5-U": 1},
             evidence["summary"]["availability_routes"],
         )
         self.assertEqual(0, evidence["summary"]["full_bom_lines_pending_mapping"])
@@ -551,7 +551,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("H5-EVR06", outliers["artifact"])
         self.assertEqual(32, outliers["summary"]["bom_tool_outliers_resolved"])
         self.assertEqual(
-            {"J0": 156, "J1": 0, "J2": 38, "J3": 11, "J4-F": 3, "J4-P": 1, "J5-U": 1},
+            {"J0": 157, "J1": 0, "J2": 37, "J3": 11, "J4-F": 3, "J4-P": 1, "J5-U": 1},
             outliers["summary"]["availability_routes"],
         )
         self.assertEqual(0, outliers["summary"]["component_replacements"])
@@ -669,7 +669,7 @@ class ProductSiteTests(unittest.TestCase):
                 rf"\*\*(?:(?:Exact|Current hardware) marker|Точный маркер|Текущий маркер железа): `{re.escape(found[0])}`[.]?\*\*",
                 name,
             )
-            self.assertIn("H1-R2.25", page, name)
+            self.assertIn("H1-R2.26", page, name)
 
         self.assertEqual({current_substep}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
@@ -680,12 +680,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_current_mockup_review_scope_is_explicit(self):
         expectations = {
             "docs/roadmap.md": (
-                "H1-R2.25", "Functional-island placement", "RF and antenna locality",
+                "H1-R2.26", "Functional-island placement", "RF and antenna locality",
                 "Interboard transport", "Physical and service audit", "Final H1 acceptance input",
                 "Obtain explicit acceptance of the complete H1 mock-up",
             ),
             "docs/roadmap.ru.md": (
-                "H1-R2.25", "Размещение функциональных островов", "Локальность RF и антенн",
+                "H1-R2.26", "Размещение функциональных островов", "Локальность RF и антенн",
                 "Межплатный transport", "Физический и сервисный аудит", "Финальный вход принятия H1",
                 "Получить явное принятие полного мокапа H1",
             ),
@@ -862,7 +862,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H1", state["current_stage"])
-        self.assertEqual("H1-R2.25", state["current_substep"])
+        self.assertEqual("H1-R2.26", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -1013,7 +1013,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(name)
             self.assertNotIn("H5-EVR07", page, name)
             self.assertNotIn("H5-EVR08", page, name)
-            self.assertIn("H1-R2.25", page, name)
+            self.assertIn("H1-R2.26", page, name)
         self.assertEqual(
             "source-hash-bound-precommit-revision",
             h4_plan["firmware_f3_evidence"]["revision"],
@@ -1583,6 +1583,14 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(6, cc_switch["pin_count"])
         voice = next(row for row in manifest["instances"] if row["instance"] == "voice")
         self.assertEqual("manufacturer_exact_land_pattern_received_fit_required", voice["footprint_status"])
+        voice_band_inverter = next(
+            row for row in manifest["instances"]
+            if row["instance"] == "voice_band_inverter"
+        )
+        self.assertEqual(
+            "Package_TO_SOT_SMD:SC-74-6_1.55x2.9mm_P0.95mm",
+            voice_band_inverter["footprint"],
+        )
         self.assertTrue(all(row["footprint"] for row in manifest["instances"]))
         sheet = self.read(
             "hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch"
@@ -1859,6 +1867,14 @@ class ProductSiteTests(unittest.TestCase):
         )
         for instance in manifest["instances"]:
             self.assertTrue(instance["footprint"], instance["instance"])
+        safe_conditioner = next(
+            row for row in manifest["instances"]
+            if row["instance"] == "safe_conditioner"
+        )
+        self.assertEqual(
+            "Package_TO_SOT_SMD:SC-74-6_1.55x2.9mm_P0.95mm",
+            safe_conditioner["footprint"],
+        )
         detector = next(
             row for row in manifest["instances"] if row["instance"] == "det_nrf0"
         )
@@ -2747,7 +2763,7 @@ class ProductSiteTests(unittest.TestCase):
         for name in ("docs/hardware.md", "docs/hardware.ru.md"):
             page = self.read(name)
             self.assertNotIn("H1-cross-view-acceptance.json", page, name)
-            self.assertIn("H1-R2.25", page, name)
+            self.assertIn("H1-R2.26", page, name)
 
     def test_antenna_kit_is_product_facing_and_machine_accounted(self):
         import json

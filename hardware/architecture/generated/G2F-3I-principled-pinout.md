@@ -576,7 +576,7 @@ flowchart TD
   VOICE_BAND_P5_PULLDOWN["Yageo RC0402FR-0710KL<br/>voice band p5 pulldown physical component"]
   VOICE_BAND_P6_PULLDOWN["Yageo RC0402FR-0710KL<br/>voice band p6 pulldown physical component"]
   VOICE_BAND_P7_PULLDOWN["Yageo RC0402FR-0710KL<br/>voice band p7 pulldown physical component"]
-  VOICE_BAND_INVERTER["74LVC2G14GW,125<br/>always-on hardware complement for one-hot band selection"]
+  VOICE_BAND_INVERTER["74LVC2G14GV,125<br/>always-on hardware complement for one-hot band selection"]
   VOICE_BAND_INVERTER_BYPASS["Yageo CC0402KRX7R9BB104<br/>voice band inverter bypass physical component"]
   VOICE_PD_GATE["Texas Instruments SN74LVC2G08DCUR<br/>always-on one-hot SA818S-U/V power-down gate"]
   VOICE_PD_GATE_BYPASS["Yageo CC0402KRX7R9BB104<br/>voice pd gate bypass physical component"]
@@ -1409,7 +1409,7 @@ flowchart TD
   UI_ZONE_NTC["TDK B57332V5103F360<br/>UI/DISPLAY-zone 10-kOhm NTC"]
   UI_ZONE_TEMP_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm UI/DISPLAY-zone ADC pull-up"]
   UI_ZONE_TEMP_FILTER["Yageo CC0402KRX7R9BB104<br/>100-nF UI/DISPLAY-zone ADC filter"]
-  SAFE_CONDITIONER["74LVC2G14GW,125<br/>physical RUN and S3 fault-reset Schmitt conditioner"]
+  SAFE_CONDITIONER["74LVC2G14GV,125<br/>physical RUN and S3 fault-reset Schmitt conditioner"]
   SAFE_CONDITIONER_BYPASS["Yageo CC0402KRX7R9BB104<br/>100-nF Schmitt-conditioner bypass capacitor"]
   SAFE_REARM_DELAY_RES["Yageo RC0402FR-07100KL<br/>100-kOhm physical re-arm delay resistor"]
   SAFE_REARM_DELAY_CAP["Murata GRM21BR71E225KE11L<br/>2.2-uF physical re-arm delay capacitor"]
@@ -5914,7 +5914,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `voice_io_power_output_cap` lifecycle: `active_production`.
 - `voice_band_io_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `voice_band_io_bypass` lifecycle: `active_orderable`.
-- `voice_band_inverter` lifecycle: `production`.
+- `voice_band_inverter` uses `74LVC2G14GV,125` as `verified_stocked_exact_family_package_variant`, not an accepted production choice.
+- `voice_band_inverter` lifecycle: `production_active_factory_stocked_for_trial`.
 - `voice_band_inverter_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `voice_band_inverter_bypass` lifecycle: `active_orderable`.
 - `voice_pd_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
@@ -6125,7 +6126,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `rf_zone_temp_filter` lifecycle: `active_orderable`.
 - `ui_zone_temp_filter` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `ui_zone_temp_filter` lifecycle: `active_orderable`.
-- `safe_conditioner` lifecycle: `production`.
+- `safe_conditioner` uses `74LVC2G14GV,125` as `verified_stocked_exact_family_package_variant`, not an accepted production choice.
+- `safe_conditioner` lifecycle: `production_active_factory_stocked_for_trial`.
 - `safe_conditioner_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `safe_conditioner_bypass` lifecycle: `active_orderable`.
 - `safe_rearm_buffer` uses `SN74LVC1G17DCKR` as `verified_exact_schmitt_buffer`, not an accepted production choice.

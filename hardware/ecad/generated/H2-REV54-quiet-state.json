@@ -4,7 +4,7 @@
   "status": "reviewed_reset_safe_quiet_state_and_isolation",
   "method": "complete KiCad netlist control-membership checks plus exact instantiated isolation evidence for every required quiet contract",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "03554032ffd938a8cc4745b04c1b8fc3c6d561737eb2c6bbf1027c4c81e4120b",
+    "hardware/architecture/candidates/G2F-3I.json": "b3dd3a4ea9097ce3503cff4b356c6f64903cd8ac8f6aa5a94bcfb10913f20a48",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "ab4e73fe576c5e1557e6695b89fd3ce182c4533a61e984bd755d3c25b287ce97",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "62036d985924f988257859617422a4eedbdab3d0d8f940cb485d32b7b97f23bc"
   },
@@ -527,7 +527,7 @@
         {
           "instance": "voice_band_inverter",
           "reference": "U32013",
-          "mpn": "74LVC2G14GW,125"
+          "mpn": "74LVC2G14GV,125"
         },
         {
           "instance": "voice_pd_gate",
@@ -744,7 +744,7 @@
         {
           "instance": "voice_band_inverter",
           "reference": "U32013",
-          "mpn": "74LVC2G14GW,125"
+          "mpn": "74LVC2G14GV,125"
         },
         {
           "instance": "voice_pd_gate",

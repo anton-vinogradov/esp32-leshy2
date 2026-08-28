@@ -522,7 +522,7 @@ RF_INNER = (
     Placement("voice_control_mux_a", 49.7, 68.8, "selected-module UART multiplexer"),
     Placement("voice_control_mux_b", 53.55, 68.8, "selected-module PTT and AUDIO_ON multiplexer"),
     Placement("voice_audio_mux", 44.0, 74.55, "selected-module AFOUT and microphone multiplexer", 90),
-    Placement("voice_band_inverter", 49.75, 74.55, "AON complement for one-hot voice selection"),
+    Placement("voice_band_inverter", 49.75, 74.55, "AON complement for one-hot voice selection; TSOP6 rotated for local clearance", 90),
     Placement("voice_pd_gate", 52.45, 74.55, "AON mutually-exclusive voice PD gate"),
     Placement("u214_host_buffer_a", 16.0, 52.55, "U214 host-command buffer A"),
     Placement("u214_host_buffer_b", 21.8, 52.55, "U214 host-command buffer B"),
@@ -1920,7 +1920,7 @@ def validate_assembly_coordinate_model(
     if (
         model.get("schema_version") != 1
         or model.get("model_id") != "L2-ASM-COORD-001-A"
-        or model.get("stage") != "H1-R2.25"
+        or model.get("stage") != "H1-R2.26"
         or model.get("status") != "in_progress"
     ):
         errors.append("coordinate-model: schema, identity, stage or review status drifted")

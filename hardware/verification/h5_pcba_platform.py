@@ -236,6 +236,17 @@ CURRENT_EXACT_PART_ROUTES = {
         "status": "in_stock",
         "source": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G126DP125/C503392",
     },
+    "74LVC2G14GV,125": {
+        "device_id": "nexperia_74lvc2g14gv_125",
+        "mpn": "Nexperia 74LVC2G14GV,125",
+        "lcsc": "C426708",
+        "route": "J0",
+        "stock": 153,
+        "available_order_quantity": 35,
+        "quantity_one_usd": "0.2010",
+        "status": "in_stock",
+        "source": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G14GV125/C426708",
+    },
     "CC0402KRX7R9BB104": {
         "device_id": "yageo_cc0402krx7r9bb104",
         "mpn": "Yageo CC0402KRX7R9BB104",
@@ -319,6 +330,7 @@ CURRENT_EXACT_PART_ROUTES = {
 HISTORICAL_REPLACED_MPNS = {
     "SA518",
     "74LVC2G126DC,125",
+    "74LVC2G14GW,125",
     "C1005X7R1H104K050BB",
     "RC0402FR-072K2L",
     "RC0402FR-07133KL",
@@ -378,6 +390,7 @@ SPOT_CHECKS = [
     {"device_id": "cc1101rgpr", "mpn": "CC1101RGPR", "jlc": "C29953", "tier": "J0", "stock": 14194, "pcba": "Economic and Standard", "source": "https://jlcpcb.com/partdetail/TexasInstruments-CC1101RGPR/C29953", "finding": "exact selected transceiver is directly assembleable"},
     {"device_id": "everest_es8311_qfn20", "mpn": "ES8311", "jlc": "C962342", "tier": "J0", "stock": 96905, "pcba": "Economic and Standard; fixture; MSL3", "source": "https://jlcpcb.com/partdetail/1044199-ES8311/C962342", "finding": "exact selected codec is directly assembleable"},
     {"device_id": "nexperia_74lvc2g126dp_125", "mpn": "74LVC2G126DP,125", "jlc": "C503392", "tier": "J0", "stock": 155, "pcba": "Extended SMT; Economic and Standard", "source": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G126DP125/C503392", "finding": "exact selected TSSOP package variant is in public stock; same official family, pin map, logic, Ioff and timing as the former DC package"},
+    {"device_id": "nexperia_74lvc2g14gv_125", "mpn": "74LVC2G14GV,125", "jlc": "C426708", "tier": "J0", "stock": 153, "pcba": "Extended SMT; Economic and Standard", "source": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G14GV125/C426708", "finding": "exact selected TSOP package variant has ten-part trial coverage; same official family, pin map, Schmitt thresholds, Ioff and timing as the former GW package"},
     {"device_id": "adi_max17320_g20_t", "mpn": "MAX17320G20+ / selected order suffix +T", "jlc": "C7457894", "tier": "J0", "stock": 13, "pcba": "Extended SMT", "source": "https://jlcpcb.com/partdetail/8483980-MAX17320G20/C7457894", "finding": "functional identity is present but packaging/order-suffix equivalence and low stock require confirmation or J2 reservation"},
     {"device_id": "rp2354b_a4", "mpn": "SC1512-A4", "jlc": "C52763783", "tier": "J2", "stock": 0, "pcba": "SMT; fixture; Economic and Standard", "source": "https://jlcpcb.com/partdetail/RaspberryPi-SC1512A4/C52763783", "finding": "listed and assembleable, but not public-stock; reserve by pre-order or consign exact parts"},
     {"device_id": "ti_mspm0c1106_sdgs20r", "mpn": "MSPM0C1106SDGS20R", "jlc": "C52995805", "tier": "J2", "stock": 0, "pcba": "Extended SMT", "source": "https://jlcpcb.com/partdetail/55934010-MSPM0C1106SDGS20R/C52995805", "finding": "listed with pre-order MOQ 6; two fitted devices plus attrition are compatible with a small reservation"},
@@ -501,17 +514,20 @@ def build_match_result(rows: list[dict[str, str]]) -> dict:
         ) and summary["parsed_placements"] == 1052,
         "current_exact_route_counts_reconcile": summary["matched_lines"] == 178
         and summary["unmatched_lines"] == 32
-        and summary["in_stock_lines"] == 144
-        and summary["pre_order_lines"] == 34,
+        and summary["in_stock_lines"] == 145
+        and summary["pre_order_lines"] == 33,
         "both_voice_routes_use_exact_current_jlcpcb_pages": all(
             any(route["normalized_mpn"] == mpn and route["lcsc"] == voice["lcsc"] for route in routes)
             for mpn, voice in VOICE_PART_ROUTES.items()
         ),
-        "stocked_logic_route_uses_exact_current_jlcpcb_page": any(
-            route["normalized_mpn"] == "74LVC2G126DP,125"
-            and route["lcsc"] == "C503392"
-            and route["tool_status"] == "in_stock"
-            for route in routes
+        "stocked_logic_routes_use_exact_current_jlcpcb_pages": all(
+            any(
+                route["normalized_mpn"] == mpn
+                and route["lcsc"] == CURRENT_EXACT_PART_ROUTES[mpn]["lcsc"]
+                and route["tool_status"] == "in_stock"
+                for route in routes
+            )
+            for mpn in {"74LVC2G126DP,125", "74LVC2G14GV,125"}
         ),
         "stocked_bypass_route_uses_exact_current_jlcpcb_page": any(
             route["normalized_mpn"] == "CC0402KRX7R9BB104"
@@ -878,7 +894,7 @@ def build() -> dict:
                 "sha256": hashlib.sha256(render_upload().encode("utf-8")).hexdigest(),
                 "transmitted": False,
                 "processed": False,
-                "result": "historical 209-line capture retained for 207 unchanged identities; exact current SA818S-U/V and stocked 74LVC2G126DP pages joined separately into the 210-line map",
+                "result": "historical 209-line capture retained for 199 unchanged identities; exact current SA818S-U/V plus stocked 74LVC2G126DP, 74LVC2G14GV, bypass and resistor pages joined separately into the 210-line map",
             },
             "blocker": "all 210 current lines have defined routes and all sample component prices are known; the actual two-designator U/V job plus J4-F/J4-P final-assembly acceptance/pricing remain open; accumulators are user-supplied and not a delivery gate; no sourcing request, quote, reservation or order has been created",
         },
@@ -988,9 +1004,9 @@ flowchart TD
 
 ## Контрольный BOM Tool прогон
 
-Контрольный BOM Tool capture относится к прежним 209 строкам: 176 matched, 33 unmatched и 1019 установок. Текущий BOM заменяет `SA518` на exact `SA818S-U` + `SA818S-V`, pre-order `74LVC2G126DC,125` — на складской корпусный вариант `74LVC2G126DP,125`, pre-order `C1005X7R1H104K050BB` — на параметрически равноценный складской `CC0402KRX7R9BB104`, а шесть pre-order-номиналов обычных 0402-резисторов — на складские UNI-ROYAL. Двести неизменившихся identity присоединены по MPN, а десять новых строк — по точным страницам `C3001549`, `C51897911`, `C503392`, `C131394`, `C25879`, `C25753`, `C25770`, `C25907`, `C25924` и `C25869`. Так получена проверяемая текущая карта `{summary['target_bom_lines']}` строк и `{summary['target_placements_parsed']}` установок без повторной передачи BOM. До применения сохранённых outlier-решений в ней 178 exact catalogue routes и 32 unresolved lines; семантических подмен MPN — ноль.
+Контрольный BOM Tool capture относится к прежним 209 строкам: 176 matched, 33 unmatched и 1019 установок. Текущий BOM заменяет `SA518` на exact `SA818S-U` + `SA818S-V`, pre-order `74LVC2G126DC,125` и `74LVC2G14GW,125` — на складские корпусные варианты `74LVC2G126DP,125` и `74LVC2G14GV,125`, pre-order `C1005X7R1H104K050BB` — на параметрически равноценный складской `CC0402KRX7R9BB104`, а шесть pre-order-номиналов обычных 0402-резисторов — на складские UNI-ROYAL. Сто девяносто девять неизменившихся identity присоединены по MPN, а одиннадцать новых строк — по точным страницам `C3001549`, `C51897911`, `C503392`, `C426708`, `C131394`, `C25879`, `C25753`, `C25770`, `C25907`, `C25924` и `C25869`. Так получена проверяемая текущая карта `{summary['target_bom_lines']}` строк и `{summary['target_placements_parsed']}` установок без повторной передачи BOM. До применения сохранённых outlier-решений в ней 178 exact catalogue routes и 32 unresolved lines; семантических подмен MPN — ноль.
 
-Сохранённый exact-поиск закрывает все 32 неизменившихся outlier без замены компонентов: 12 добавлены в `J0`, 4 — в `J2`, 11 сохраняют точный MPN через `J3`, 3 требуют фабричной финальной сборки `J4-F`, U214 идёт через `J4-P`, а аккумуляторы — через `J5-U` вне поставки. Вместе с новыми exact routes итог всей BOM: `J0=156`, `J1=0`, `J2=38`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; несопоставленных строк — ноль.
+Сохранённый exact-поиск закрывает все 32 неизменившихся outlier без замены компонентов: 12 добавлены в `J0`, 4 — в `J2`, 11 сохраняют точный MPN через `J3`, 3 требуют фабричной финальной сборки `J4-F`, U214 идёт через `J4-P`, а аккумуляторы — через `J5-U` вне поставки. Вместе с новыми exact routes итог всей BOM: `J0=157`, `J1=0`, `J2=37`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; несопоставленных строк — ноль.
 
 Показываемая в историческом BOM Tool capture сумма `$1255.6365` относится только к прежним 176 найденным строкам и **не** является текущей полной ценой сборки, quote или заказом. Актуальная минимальная корзина evidence отдельно посчитана на [странице образцов](component-sample-basket.ru.md).
 
@@ -1070,9 +1086,9 @@ No platform guarantees perpetual public stock. Leshy2 therefore selects ordinary
 
 ## Controlled BOM Tool run
 
-The controlled BOM Tool capture belongs to the former 209-line BOM: 176 matched, 33 unmatched and 1019 placements. The current BOM replaces `SA518` with exact `SA818S-U` + `SA818S-V`, the pre-order `74LVC2G126DC,125` with the stocked package variant `74LVC2G126DP,125`, the pre-order `C1005X7R1H104K050BB` with the parametrically equivalent stocked `CC0402KRX7R9BB104`, and six ordinary pre-order 0402 resistor values with stocked UNI-ROYAL identities. Two hundred unchanged identities are joined by MPN, and the ten new lines by exact `C3001549`, `C51897911`, `C503392`, `C131394`, `C25879`, `C25753`, `C25770`, `C25907`, `C25924` and `C25869` pages. This yields a checkable current map of `{summary['target_bom_lines']}` lines and `{summary['target_placements_parsed']}` placements without retransmitting the BOM. Before applying the retained outlier resolutions it has 178 exact catalogue routes and 32 unresolved lines; zero semantic MPN substitutions were observed.
+The controlled BOM Tool capture belongs to the former 209-line BOM: 176 matched, 33 unmatched and 1019 placements. The current BOM replaces `SA518` with exact `SA818S-U` + `SA818S-V`, the pre-order `74LVC2G126DC,125` and `74LVC2G14GW,125` with stocked package variants `74LVC2G126DP,125` and `74LVC2G14GV,125`, the pre-order `C1005X7R1H104K050BB` with the parametrically equivalent stocked `CC0402KRX7R9BB104`, and six ordinary pre-order 0402 resistor values with stocked UNI-ROYAL identities. One hundred ninety-nine unchanged identities are joined by MPN, and the eleven new lines by exact `C3001549`, `C51897911`, `C503392`, `C426708`, `C131394`, `C25879`, `C25753`, `C25770`, `C25907`, `C25924` and `C25869` pages. This yields a checkable current map of `{summary['target_bom_lines']}` lines and `{summary['target_placements_parsed']}` placements without retransmitting the BOM. Before applying the retained outlier resolutions it has 178 exact catalogue routes and 32 unresolved lines; zero semantic MPN substitutions were observed.
 
-The retained exact search resolves all 32 unchanged outliers without component replacement: 12 are added to `J0`, 4 to `J2`, 11 retain the exact MPN through `J3`, 3 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. With the new exact routes, the whole-BOM result is `J0=156`, `J1=0`, `J2=38`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
+The retained exact search resolves all 32 unchanged outliers without component replacement: 12 are added to `J0`, 4 to `J2`, 11 retain the exact MPN through `J3`, 3 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. With the new exact routes, the whole-BOM result is `J0=157`, `J1=0`, `J2=37`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
 
 The `$1255.6365` displayed in the historical BOM Tool capture covers only its former 176 matched lines and is **not** a current complete assembly price, quote or order. The current minimum evidence basket is calculated separately on the [sample page](component-sample-basket.md).
 

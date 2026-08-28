@@ -37,7 +37,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H1-R2.25", roadmap["current_substep"])
+        self.assertEqual("H1-R2.26", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -382,7 +382,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("**210/210** lines", rendered)
         self.assertIn("**198/210** lines", rendered)
         self.assertIn("**1033/1052** supplied placements", rendered)
-        self.assertIn("USD 235.1827", rendered)
+        self.assertIn("USD 235.3853", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -2114,7 +2114,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "safe_supervisor": "ti_tps3808g33_dbvr",
             "safety_controller": "ti_mspm0c1106_sdgs20r",
             "safety_watchdog": "ti_tps3435cakagddfr",
-            "safe_conditioner": "nexperia_74lvc2g14gw_125",
+            "safe_conditioner": "nexperia_74lvc2g14gv_125",
             "safe_rearm_buffer": "ti_sn74lvc1g17_dckr",
             "safe_latch": "ti_sn74lvc1g74_dcur",
             "safe_reset_buffer": "ti_sn74lvc1g06_dckr",

@@ -6,7 +6,7 @@
   "checked_on": "2026-08-28",
   "input": {
     "bom_tool_result": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
-    "bom_tool_result_sha256": "2a1f6c511ce20ca3b5dbbe931893338bcac147b1f564348916193f9cfc4bd7d2",
+    "bom_tool_result_sha256": "d6153b711c35319754929a5005202e88fdca4c43e933107741fee8bf6ed47c5d",
     "search_capture": "hardware/verification/jlcpcb-outlier-search-capture-2026-08-25.json",
     "search_capture_sha256": "50fdf7c69a95bc53e32148cf8e7e3b2d245818a74cec065a708c128527af2699"
   },
@@ -15,9 +15,9 @@
     "bom_tool_matched_lines": 178,
     "bom_tool_outliers_resolved": 32,
     "availability_routes": {
-      "J0": 156,
+      "J0": 157,
       "J1": 0,
-      "J2": 38,
+      "J2": 37,
       "J3": 11,
       "J4-F": 3,
       "J4-P": 1,
@@ -1957,21 +1957,19 @@
     },
     {
       "bom_index": 82,
-      "device_id": "nexperia_74lvc2g14gw_125",
-      "source_mpn": "74LVC2G14GW,125",
-      "normalized_mpn": "74LVC2G14GW,125",
+      "device_id": "nexperia_74lvc2g14gv_125",
+      "source_mpn": "74LVC2G14GV,125",
+      "normalized_mpn": "74LVC2G14GV,125",
       "quantity": 2,
-      "designators_complete": true,
-      "historical_capture_quantity": 1,
-      "current_quantity_delta": 1,
-      "match_provenance": "unchanged_mpn_from_2026_08_25_bom_tool_capture",
-      "route": "J2",
-      "tool_status": "pre_order",
-      "lcsc": "C6085",
-      "matched_mpn": "74LVC2G14GW,125",
+      "route": "J0",
+      "tool_status": "in_stock",
+      "match_provenance": "current_exact_jlcpcb_part_page",
+      "lcsc": "C426708",
+      "matched_mpn": "74LVC2G14GV,125",
       "semantic_mpn_equal": true,
-      "stock_snapshot": 4,
-      "displayed_line_cost_usd": 9.0376
+      "stock_snapshot": 153,
+      "displayed_line_cost_usd": 0.201,
+      "designators_complete": true
     },
     {
       "bom_index": 83,

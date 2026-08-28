@@ -77,7 +77,7 @@ def footprint_for(instance: str, device_key: str) -> str:
         "safety_s3_reset_iso": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
         "safety_watchdog": "Package_TO_SOT_SMD:Texas_DDF0008A_SOT-8_1.6x2.9mm_P0.65mm",
         "safe_run_fault_iso": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
-        "safe_conditioner": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+        "safe_conditioner": "Package_TO_SOT_SMD:SC-74-6_1.55x2.9mm_P0.95mm",
         "safe_rearm_buffer": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
         "safe_latch": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
         "safe_reset_buffer": "Package_TO_SOT_SMD:SOT-353_SC-70-5",

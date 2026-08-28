@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.25",
+  "marker": "H1-R2.26",
   "checked_on": "2026-08-28",
   "purpose": "Rank the complete-device component burden, remove avoidable pre-order penalties without functional degradation, and keep small-lot purchasing penalties separate from quantity-100 material cost.",
   "trial_device_quantity": 5,
@@ -123,6 +123,21 @@
       "estimated_unit_price_usd": 0.4857,
       "route": "in stock; 10-piece price tier for the 25-piece trial requirement",
       "source": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G126DP125/C503392",
+      "checked_on": "2026-08-28"
+    },
+    "nexperia_74lvc2g14gv_125": {
+      "manufacturer": "Nexperia",
+      "mpn": "74LVC2G14GV,125",
+      "jlcpcb_part": "C426708",
+      "assembly_type": "Extended SMT; Economic and Standard PCBA",
+      "stock": 153,
+      "available_order_quantity": 35,
+      "moq": 1,
+      "trial_required_quantity": 10,
+      "trial_displayed_cost_usd": 2.01,
+      "estimated_unit_price_usd": 0.201,
+      "route": "in stock for the complete ten-piece trial requirement",
+      "source": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G14GV125/C426708",
       "checked_on": "2026-08-28"
     },
     "yageo_cc0402krx7r9bb104": {
@@ -299,10 +314,29 @@
       "trial_required_quantity": "115 / 5 / 5 / 5 / 5 / 5",
       "price_tiers_usd": {"2k2_1": 0.0039, "133k_1": 0.0015, "270k_1": 0.0057, "5k23_1": 0.0061, "8k2_1": 0.0048, "1k65_1": 0.0008},
       "status": "accepted_stocked_exact_parametric_replacements",
-      "why": "Accepted at H1-R2.25. Every replacement preserves its exact resistance, 0402 body, 1% tolerance, 62.5-mW rating, 50-V working voltage, 100-ppm/C temperature coefficient and -55 to +155 C range. All six exact UNI-ROYAL MPNs are live JLCPCB Standard-PCBA stock with MOQ 1. Their five-device requirement falls from approximately USD 53.7347 in the captured pre-order route to USD 0.5430 in live stock, saving approximately USD 53.1917; the public material basis falls by USD 0.1542 per device.",
-      "why_ru": "Принято в H1-R2.25. Каждая замена сохраняет точный номинал, корпус 0402, допуск 1 %, мощность 62,5 мВт, рабочее напряжение 50 В, ТКС 100 ppm/°C и диапазон -55…+155 °C. Все шесть точных MPN UNI-ROYAL есть на складе JLCPCB для Standard PCBA с MOQ 1. Потребность партии из пяти устройств снижается примерно с $53,7347 по зафиксированному pre-order-маршруту до $0,5430 со склада, экономия около $53,1917; публичная материальная база снижается на $0,1542 на устройство.",
+      "why": "Accepted at H1-R2.26. Every replacement preserves its exact resistance, 0402 body, 1% tolerance, 62.5-mW rating, 50-V working voltage, 100-ppm/C temperature coefficient and -55 to +155 C range. All six exact UNI-ROYAL MPNs are live JLCPCB Standard-PCBA stock with MOQ 1. Their five-device requirement falls from approximately USD 53.7347 in the captured pre-order route to USD 0.5430 in live stock, saving approximately USD 53.1917; the public material basis falls by USD 0.1542 per device.",
+      "why_ru": "Принято в H1-R2.26. Каждая замена сохраняет точный номинал, корпус 0402, допуск 1 %, мощность 62,5 мВт, рабочее напряжение 50 В, ТКС 100 ppm/°C и диапазон -55…+155 °C. Все шесть точных MPN UNI-ROYAL есть на складе JLCPCB для Standard PCBA с MOQ 1. Потребность партии из пяти устройств снижается примерно с $53,7347 по зафиксированному pre-order-маршруту до $0,5430 со склада, экономия около $53,1917; публичная материальная база снижается на $0,1542 на устройство.",
       "source": "https://jlcpcb.com/partdetail/26622-0402WGF2201TCE/C25879",
       "manufacturer_source": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+      "checked_on": "2026-08-28"
+    },
+    {
+      "scope": "two dual Schmitt inverters",
+      "current_mpn": "Nexperia 74LVC2G14GW,125",
+      "candidate_mpn": "Nexperia 74LVC2G14GV,125",
+      "jlcpcb_part": "C426708",
+      "manufacturer": "Nexperia",
+      "assembly_type": "Extended SMT; Economic and Standard PCBA",
+      "stock": 153,
+      "available_order_quantity": 35,
+      "moq": 1,
+      "trial_required_quantity": 10,
+      "price_tiers_usd": {"1": 0.201, "50": 0.16, "150": 0.1425, "500": 0.1206},
+      "status": "accepted_stocked_exact_family_package_variant",
+      "why": "Accepted at H1-R2.26. GV and GW are package variants in the same current Nexperia 74LVC2G14 datasheet: dual Schmitt-inverter behavior, pins 1-6, 1.65-to-5.5-V operation, Ioff partial-power-down protection and timing are common. The 2.9 x 1.5 x 1.1-mm TSOP6 bodies pass the regenerated placement audit. Ten trial parts are covered by the 35-piece available order quantity. The five-device line falls from USD 9.0376 pre-order to USD 2.0100 in stock, saving USD 7.0276; the conservative quantity-100 material basis rises by USD 0.2026 per device.",
+      "why_ru": "Принято в H1-R2.26. GV и GW — корпусные варианты из одного актуального datasheet Nexperia 74LVC2G14: общими остаются два Schmitt-инвертора, выводы 1–6, питание 1,65–5,5 В, Ioff при снятом питании и тайминги. Корпуса TSOP6 2,9 × 1,5 × 1,1 мм проходят повторный аудит компоновки. Для десяти деталей пробной партии доступны 35 штук. Строка партии из пяти устройств снижается с $9,0376 pre-order до $2,0100 со склада, экономия $7,0276; консервативная серийная материальная база растёт на $0,2026 на устройство.",
+      "source": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G14GV125/C426708",
+      "manufacturer_source": "https://assets.nexperia.com/documents/data-sheet/74LVC2G14.pdf",
       "checked_on": "2026-08-28"
     },
     {
@@ -368,7 +402,7 @@
       "id": "factory-preorder-penalty",
       "title": "Replace safe equivalent pre-order passives and ordinary logic with in-stock JLCPCB parts",
       "production_function_change": false,
-      "evidence": "After three safe replacement batches, 34 pre-order rows cost USD 726.0450 in the normalized five-device evidence versus USD 336.7395 on their quantity-100 material basis. The stocked Nexperia buffer, YAGEO bypass capacitor and six UNI-ROYAL resistor identities together remove approximately USD 98.2581 from the observed trial route and reduce the public material basis by USD 1.5404 per device.",
+      "evidence": "After four safe replacement batches, 33 pre-order rows cost USD 717.0074 in the normalized five-device evidence versus USD 336.1525 on their quantity-100 material basis. The two stocked Nexperia package variants, YAGEO bypass capacitor and six UNI-ROYAL resistor identities together remove approximately USD 105.2857 from the observed trial route and reduce the public material basis by a net USD 1.3378 per device.",
       "action": "Review every pre-order row against its substitution class; only exact or no-worse parametric replacements may be accepted."
     },
     {

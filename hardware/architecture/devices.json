@@ -4594,12 +4594,12 @@
         "VDD": {"physical": "6", "role": "power"}
       }
     },
-    "nexperia_74lvc2g14gw_125": {
-      "mpn": "74LVC2G14GW,125",
-      "kind": "tssop6_dual_schmitt_inverter",
-      "qualification": "verified_candidate",
-      "lifecycle": "production",
-      "dimensions_mm": [2.0, 1.25, 1.1],
+    "nexperia_74lvc2g14gv_125": {
+      "mpn": "74LVC2G14GV,125",
+      "kind": "tsop6_dual_schmitt_inverter",
+      "qualification": "verified_stocked_exact_family_package_variant",
+      "lifecycle": "production_active_factory_stocked_for_trial",
+      "dimensions_mm": [2.9, 1.5, 1.1],
       "source": {
         "document": "74LVC2G14 Dual inverting Schmitt trigger datasheet",
         "version": "2023-08-18",
@@ -4607,14 +4607,14 @@
         "checked": "2026-08-17"
       },
       "orderable_source": {
-        "document": "74LVC2G14GW,125 exact current Nexperia authorized-distributor line; 71,287 shown in stock",
-        "url": "https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC2G14GW-125/2116536",
-        "checked": "2026-08-19"
+        "document": "JLCPCB exact Nexperia 74LVC2G14GV,125 stock and assembly card C426708; 153 stock, 35 currently available to order, MOQ 1",
+        "url": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G14GV125/C426708",
+        "checked": "2026-08-28"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0587,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
-        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC2G14GW-125/2116536", "checked": "2026-08-19"}
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.16,
+        "price_break": "JLCPCB 50-piece tier; current stock 153, available order quantity 35, MOQ 1",
+        "source": {"document": "JLCPCB exact-MPN published price table C426708", "url": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G14GV125/C426708", "checked": "2026-08-28"}
       },
       "programmable": false,
       "contacts": {

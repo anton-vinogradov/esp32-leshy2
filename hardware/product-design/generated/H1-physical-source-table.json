@@ -3946,19 +3946,19 @@
     },
     {
       "instance": "safe_conditioner",
-      "device_key": "nexperia_74lvc2g14gw_125",
-      "mpn": "74LVC2G14GW,125",
+      "device_key": "nexperia_74lvc2g14gv_125",
+      "mpn": "74LVC2G14GV,125",
       "role": "RUN and S3 fault-reset conditioner",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
       "direction": "not applicable",
       "envelope_mm": [
-        2.0,
-        1.25,
+        2.9,
+        1.5,
         1.1
       ],
-      "qualification": "verified_candidate",
+      "qualification": "verified_stocked_exact_family_package_variant",
       "source": {
         "document": "74LVC2G14 Dual inverting Schmitt trigger datasheet",
         "version": "2023-08-18",
@@ -5203,19 +5203,19 @@
     },
     {
       "instance": "voice_band_inverter",
-      "device_key": "nexperia_74lvc2g14gw_125",
-      "mpn": "74LVC2G14GW,125",
-      "role": "AON complement for one-hot voice selection",
+      "device_key": "nexperia_74lvc2g14gv_125",
+      "mpn": "74LVC2G14GV,125",
+      "role": "AON complement for one-hot voice selection; TSOP6 rotated for local clearance",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
-      "rotation_deg": 0,
+      "rotation_deg": 90,
       "direction": "not applicable",
       "envelope_mm": [
-        2.0,
-        1.25,
+        2.9,
+        1.5,
         1.1
       ],
-      "qualification": "verified_candidate",
+      "qualification": "verified_stocked_exact_family_package_variant",
       "source": {
         "document": "74LVC2G14 Dual inverting Schmitt trigger datasheet",
         "version": "2023-08-18",

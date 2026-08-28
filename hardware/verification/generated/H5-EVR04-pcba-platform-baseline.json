@@ -6,7 +6,7 @@
   "checked_on": "2026-08-28",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-    "sha256": "1b6cda058ed38024d872edce498158e48adb99b863b68f10ecb64d1c715f9f27",
+    "sha256": "d967c7f726545d4ce54c74b2608fef3275cc56d1184ad05e0225620957db5ce8",
     "exact_lines": 210
   },
   "decision": {
@@ -206,7 +206,7 @@
   },
   "bom_tool_upload": {
     "path": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
-    "sha256": "86bb0769d5756f20c281c2b149d9972a75035fbb57113545fcd035b2c9e15d7a",
+    "sha256": "9f529b39b6ef6a950f9ac53fed5d0fad712808b4913d4d18bd48f03af062d284",
     "columns": [
       "Comment",
       "Designator",
@@ -259,10 +259,10 @@
       "result": "176 matched, 33 unmatched, all 1019 historical target placements parsed"
     },
     "current_210_line_attempt": {
-      "sha256": "86bb0769d5756f20c281c2b149d9972a75035fbb57113545fcd035b2c9e15d7a",
+      "sha256": "9f529b39b6ef6a950f9ac53fed5d0fad712808b4913d4d18bd48f03af062d284",
       "transmitted": false,
       "processed": false,
-      "result": "historical 209-line capture retained for 207 unchanged identities; exact current SA818S-U/V and stocked 74LVC2G126DP pages joined separately into the 210-line map"
+      "result": "historical 209-line capture retained for 199 unchanged identities; exact current SA818S-U/V plus stocked 74LVC2G126DP, 74LVC2G14GV, bypass and resistor pages joined separately into the 210-line map"
     },
     "blocker": "all 210 current lines have defined routes and all sample component prices are known; the actual two-designator U/V job plus J4-F/J4-P final-assembly acceptance/pricing remain open; accumulators are user-supplied and not a delivery gate; no sourcing request, quote, reservation or order has been created"
   },
@@ -316,6 +316,16 @@
       "pcba": "Extended SMT; Economic and Standard",
       "source": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G126DP125/C503392",
       "finding": "exact selected TSSOP package variant is in public stock; same official family, pin map, logic, Ioff and timing as the former DC package"
+    },
+    {
+      "device_id": "nexperia_74lvc2g14gv_125",
+      "mpn": "74LVC2G14GV,125",
+      "jlc": "C426708",
+      "tier": "J0",
+      "stock": 153,
+      "pcba": "Extended SMT; Economic and Standard",
+      "source": "https://jlcpcb.com/partdetail/Nexperia-74LVC2G14GV125/C426708",
+      "finding": "exact selected TSOP package variant has ten-part trial coverage; same official family, pin map, Schmitt thresholds, Ioff and timing as the former GW package"
     },
     {
       "device_id": "adi_max17320_g20_t",
@@ -390,27 +400,27 @@
   ],
   "summary": {
     "target_bom_lines": 210,
-    "critical_lines_spot_checked": 12,
-    "public_stock_exact_or_revision_explicit": 7,
+    "critical_lines_spot_checked": 13,
+    "public_stock_exact_or_revision_explicit": 8,
     "preorder_reservation": 3,
     "global_sourcing_or_consignment": 1,
     "factory_final_assembly": 1,
     "factory_packed_removable": 0,
     "user_supplied_not_delivered": 0,
     "historical_bom_tool_matched_lines": 176,
-    "historical_bom_tool_public_stock_lines": 142,
-    "historical_bom_tool_preorder_lines": 34,
+    "historical_bom_tool_public_stock_lines": 143,
+    "historical_bom_tool_preorder_lines": 33,
     "historical_bom_tool_unmatched_lines": 33,
     "current_exact_catalogue_routes_before_outlier_resolution": 178,
-    "current_public_stock_lines_before_outlier_resolution": 144,
-    "current_preorder_lines_before_outlier_resolution": 34,
+    "current_public_stock_lines_before_outlier_resolution": 145,
+    "current_preorder_lines_before_outlier_resolution": 33,
     "current_unmatched_lines_before_outlier_resolution": 32,
     "target_placements_parsed": 1052,
     "outliers_resolved_after_exact_search": 32,
     "availability_routes": {
-      "J0": 156,
+      "J0": 157,
       "J1": 0,
-      "J2": 38,
+      "J2": 37,
       "J3": 11,
       "J4-F": 3,
       "J4-P": 1,

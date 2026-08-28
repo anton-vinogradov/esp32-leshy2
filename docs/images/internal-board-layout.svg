@@ -270,8 +270,8 @@
 <text x="599.9" y="499.0" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">55</text>
 <rect x="594.9" y="512.8" width="10.7" height="5.9" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="safety_watchdog"/>
 <text x="600.2" y="518.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">56</text>
-<rect x="579.7" y="512.8" width="7.4" height="4.6" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="safe_conditioner"/>
-<text x="583.4" y="518.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">57</text>
+<rect x="576.4" y="512.8" width="10.7" height="5.6" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="safe_conditioner"/>
+<text x="581.7" y="518.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">57</text>
 <rect x="594.1" y="468.4" width="11.5" height="7.4" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="safe_latch"/>
 <text x="599.9" y="475.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">58</text>
 <rect x="583.4" y="468.4" width="7.4" height="4.6" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="safe_reset_buffer"/>
@@ -332,8 +332,8 @@
 <text x="538.6" y="431.9" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">86</text>
 <rect x="561.0" y="440.8" width="18.7" height="11.5" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="voice_audio_mux"/>
 <text x="570.4" y="449.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">87</text>
-<rect x="551.0" y="440.8" width="7.4" height="4.6" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="voice_band_inverter"/>
-<text x="554.7" y="446.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">88</text>
+<rect x="552.9" y="440.8" width="5.6" height="10.7" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="voice_band_inverter"/>
+<text x="555.6" y="449.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">88</text>
 <rect x="539.6" y="440.8" width="8.9" height="7.8" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="voice_pd_gate"/>
 <text x="544.0" y="447.7" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">89</text>
 <rect x="664.4" y="359.4" width="18.9" height="16.7" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="u214_host_buffer_a"/>
@@ -634,7 +634,7 @@
 <text x="426.0" y="1203.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">independent watchdog, thermal and TX-lease controller</text>
 <text x="400.0" y="1215.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">56  Texas Instruments TPS3435CAKAGDDFR</text>
 <text x="426.0" y="1224.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">independent 1.6-s timeout watchdog</text>
-<text x="400.0" y="1236.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">57  74LVC2G14GW,125</text>
+<text x="400.0" y="1236.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">57  74LVC2G14GV,125</text>
 <text x="426.0" y="1245.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">RUN and S3 fault-reset conditioner</text>
 <text x="400.0" y="1257.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">58  SN74LVC1G74DCUR</text>
 <text x="426.0" y="1266.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">asynchronous RUN_PERMIT / FAULT_KILL latch</text>
@@ -697,8 +697,8 @@
 <text x="796.0" y="1056.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">selected-module PTT and AUDIO_ON multiplexer</text>
 <text x="770.0" y="1068.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">87  Texas Instruments TMUX1136DGSR</text>
 <text x="796.0" y="1077.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">selected-module AFOUT and microphone multiplexer</text>
-<text x="770.0" y="1089.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">88  74LVC2G14GW,125</text>
-<text x="796.0" y="1098.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">AON complement for one-hot voice selection</text>
+<text x="770.0" y="1089.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">88  74LVC2G14GV,125</text>
+<text x="796.0" y="1098.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">AON complement for one-hot voice selection; TSOP6 rotated for local clearance</text>
 <text x="770.0" y="1110.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">89  Texas Instruments SN74LVC2G08DCUR</text>
 <text x="796.0" y="1119.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">AON mutually-exclusive voice PD gate</text>
 <text x="770.0" y="1131.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">90  Nexperia 74LVC126APW,118</text>

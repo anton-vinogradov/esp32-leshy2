@@ -105,7 +105,7 @@ def footprint_for(instance: str, device_key: str) -> str:
         "voice_supervisor": "Package_TO_SOT_SMD:SOT-23-6",
         "voice_io_power_switch": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
         "voice_band_io": "Package_SO:TSSOP-16_4.4x5mm_P0.65mm",
-        "voice_band_inverter": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+        "voice_band_inverter": "Package_TO_SOT_SMD:SC-74-6_1.55x2.9mm_P0.95mm",
         "voice_pd_gate": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
         "voice_control_mux_a": "Package_SO:TSSOP-10_3x3mm_P0.5mm",
         "voice_control_mux_b": "Package_SO:TSSOP-10_3x3mm_P0.5mm",
