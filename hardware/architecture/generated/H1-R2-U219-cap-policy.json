@@ -2,7 +2,7 @@
   "schema": "leshy2.generated.h1-r2.u219-cap-policy.v1",
   "design_id": "H1-R2-U219-CAP-01",
   "source": "hardware/architecture/h1-r2-u219-cap.json",
-  "source_sha256": "87795cb81086dd60b5f62b135fc5daffa712b0f940fc268548fde711a700362c",
+  "source_sha256": "cad91a0bd303267699f4c6824462abf335ad3e210e6ba63a113286375e67c02a",
   "base_candidate": "hardware/architecture/candidates/G2F-3I.json",
   "base_candidate_sha256": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
   "evidence_date": "2026-08-28",
@@ -67,6 +67,17 @@
       "u214_return_buffer channels 2..4",
       "U214 IRQ, GNSS TX and MISO return paths",
       "all existing Cap connector ESD channels"
+    ]
+  },
+  "i2c": {
+    "owner": "rear RF RP2354B I2C1 domain",
+    "scl": "official U219 contact 3 SCL -> existing u214 connector ESD -> TCA4307DGKR -> RF RP GPIO29",
+    "sda": "official U219 contact 4 SDA <-> existing u214 connector ESD <-> TCA4307DGKR <-> RF RP GPIO28",
+    "isolation": "existing U214_I2C_READY hot-plug/stuck-low boundary; no new GPIO, M1 contact or isolator",
+    "rules": [
+      "contact 3 and contact 4 are exact current official EN-page assignments, not received-unit ambiguities",
+      "controller-side pulls remain on the host segment and the accessory-side segment is connected only after protected power is qualified",
+      "profile change requires branch-off discharge and the TCA4307 boundary disabled"
     ]
   },
   "spi": {
@@ -265,12 +276,6 @@
       "id": "U219-HIL-01A",
       "stage": "H5/H7",
       "requirement": "resolve official RF_SW1-without-exposed-pin and shared-CS prose inconsistencies against the received unit and exact revision schematic",
-      "closed": false
-    },
-    {
-      "id": "U219-HIL-01B",
-      "stage": "H5/H7",
-      "requirement": "resolve current official EN-table blanks/NC at contacts 3, 4 and 7 against older official-locale SCL/SDA and legacy-dock 5V_IN claims; do not route them before received-unit continuity and schematic proof",
       "closed": false
     },
     {

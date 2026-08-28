@@ -46,8 +46,27 @@ class H1R2U219CapTests(unittest.TestCase):
         self.assertEqual("POWER_EN", accessories["u219"]["official_pin_table"]["8"])
         self.assertEqual("NFC_CS", accessories["u219"]["official_pin_table"]["10"])
         self.assertEqual("CC_CS", accessories["u219"]["official_pin_table"]["14"])
-        for contact in ("3", "4", "7"):
-            self.assertIn("NC/undocumented-current", accessories["u219"]["official_pin_table"][contact])
+        self.assertEqual("SCL", accessories["u219"]["official_pin_table"]["3"])
+        self.assertEqual("SDA", accessories["u219"]["official_pin_table"]["4"])
+        self.assertIn("BLANK/undocumented-current", accessories["u219"]["official_pin_table"]["7"])
+        self.assertEqual(
+            {"7"},
+            {
+                pin for pin, role in accessories["u219"]["official_pin_table"].items()
+                if "undocumented-current" in role
+            },
+        )
+
+    def test_u219_scl_sda_reuse_existing_isolated_rf_rp_i2c(self):
+        i2c = self.model["shared_i2c_contract"]
+        self.assertEqual("rear RF RP2354B I2C1 domain", i2c["owner"])
+        self.assertIn("contact 3 SCL", i2c["scl"])
+        self.assertIn("RF RP GPIO29", i2c["scl"])
+        self.assertIn("contact 4 SDA", i2c["sda"])
+        self.assertIn("RF RP GPIO28", i2c["sda"])
+        self.assertIn("TCA4307DGKR", i2c["scl"])
+        self.assertIn("TCA4307DGKR", i2c["sda"])
+        self.assertIn("no new GPIO", i2c["isolation"])
 
     def test_shared_spi_owner_is_rear_rf_rp_not_hub_rp(self):
         spi = self.model["shared_spi_contract"]
@@ -147,8 +166,9 @@ class H1R2U219CapTests(unittest.TestCase):
         self.assertGreaterEqual(len(gates), 6)
         self.assertTrue(all(not row["closed"] for row in gates))
         requirements = " ".join(row["requirement"] for row in gates)
-        for token in ("RF_SW1", "contacts 3, 4 and 7", "VNA", "no-false-negative", "CC1101 command/register trace"):
+        for token in ("RF_SW1", "VNA", "no-false-negative", "CC1101 command/register trace"):
             self.assertIn(token, requirements)
+        self.assertNotIn("contacts 3, 4 and 7", requirements)
 
 
 if __name__ == "__main__":

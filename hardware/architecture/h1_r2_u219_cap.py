@@ -57,10 +57,9 @@ def validate(model: dict, base: dict) -> list[str]:
         errors.append("U219 protected-power budget must include official listed 96 mA")
     expected_pins = {
         "1": "G0", "2": "RF_SW0",
-        "3": "NC/undocumented-current; older official locale says SCL",
-        "4": "NC/undocumented-current; older official locale says SDA",
+        "3": "SCL", "4": "SDA",
         "5": "5V_OUT", "6": "GND",
-        "7": "NC/undocumented-current; legacy dock contract says 5V_IN",
+        "7": "BLANK/undocumented-current; legacy dock contract says 5V_IN",
         "8": "POWER_EN", "9": "NFC_IRQ",
         "10": "NFC_CS", "11": "SCLK", "12": "MOSI", "13": "MISO", "14": "CC_CS",
     }
@@ -107,6 +106,18 @@ def validate(model: dict, base: dict) -> list[str]:
     missing = sorted(required_base_routes - routes)
     if missing:
         errors.append(f"base candidate routes required by overlay are missing: {missing}")
+
+    i2c = model.get("shared_i2c_contract", {})
+    if i2c.get("owner") != "rear RF RP2354B I2C1 domain":
+        errors.append("U219 I2C must reuse the rear RF RP I2C1 domain")
+    if "contact 3 SCL" not in i2c.get("scl", "") or "RF RP GPIO29" not in i2c.get("scl", ""):
+        errors.append("U219 contact 3 must reuse the isolated SCL path to RF GPIO29")
+    if "contact 4 SDA" not in i2c.get("sda", "") or "RF RP GPIO28" not in i2c.get("sda", ""):
+        errors.append("U219 contact 4 must reuse the isolated SDA path to RF GPIO28")
+    if "TCA4307DGKR" not in i2c.get("scl", "") or "TCA4307DGKR" not in i2c.get("sda", ""):
+        errors.append("U219 SCL/SDA must retain the existing hot-plug/stuck-low isolator")
+    if "no new GPIO" not in i2c.get("isolation", ""):
+        errors.append("U219 I2C reuse may not consume a new GPIO")
 
     spi = model.get("shared_spi_contract", {})
     if spi.get("owner") != "rear RF RP2354B PIO/SPI domain":
@@ -201,8 +212,12 @@ def validate(model: dict, base: dict) -> list[str]:
         errors.append("all U219 specimen/VNA/HIL gates must remain explicitly open")
     if not any("RF_SW1" in row.get("requirement", "") for row in gates):
         errors.append("official RF_SW1 pin-table inconsistency gate is missing")
-    if not any("contacts 3, 4 and 7" in row.get("requirement", "") for row in gates):
-        errors.append("official contact 3/4/7 source inconsistency gate is missing")
+    ambiguous_pins = {
+        pin for pin, role in u219.get("official_pin_table", {}).items()
+        if "undocumented-current" in role
+    }
+    if ambiguous_pins != {"7"}:
+        errors.append("only U219 contact 7 may remain an official-source ambiguity")
     return errors
 
 
@@ -225,6 +240,7 @@ def generated_policy(model: dict, base: dict) -> dict:
         "pin_8": model["pin_8_power_boundary"],
         "protected_5v": model["protected_5v_boundary"],
         "pin_10": model["pin_10_bidirectional_boundary"],
+        "i2c": model["shared_i2c_contract"],
         "spi": model["shared_spi_contract"],
         "radio_policy": model["radio_policy"],
         "nfc_field_evidence": model["nfc_field_evidence"],

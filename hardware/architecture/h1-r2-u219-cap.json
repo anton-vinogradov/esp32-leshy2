@@ -35,11 +35,11 @@
       "official_pin_table": {
         "1": "G0",
         "2": "RF_SW0",
-        "3": "NC/undocumented-current; older official locale says SCL",
-        "4": "NC/undocumented-current; older official locale says SDA",
+        "3": "SCL",
+        "4": "SDA",
         "5": "5V_OUT",
         "6": "GND",
-        "7": "NC/undocumented-current; legacy dock contract says 5V_IN",
+        "7": "BLANK/undocumented-current; legacy dock contract says 5V_IN",
         "8": "POWER_EN",
         "9": "NFC_IRQ",
         "10": "NFC_CS",
@@ -132,6 +132,17 @@
       "u214_return_buffer channels 2..4",
       "U214 IRQ, GNSS TX and MISO return paths",
       "all existing Cap connector ESD channels"
+    ]
+  },
+  "shared_i2c_contract": {
+    "owner": "rear RF RP2354B I2C1 domain",
+    "scl": "official U219 contact 3 SCL -> existing u214 connector ESD -> TCA4307DGKR -> RF RP GPIO29",
+    "sda": "official U219 contact 4 SDA <-> existing u214 connector ESD <-> TCA4307DGKR <-> RF RP GPIO28",
+    "isolation": "existing U214_I2C_READY hot-plug/stuck-low boundary; no new GPIO, M1 contact or isolator",
+    "rules": [
+      "contact 3 and contact 4 are exact current official EN-page assignments, not received-unit ambiguities",
+      "controller-side pulls remain on the host segment and the accessory-side segment is connected only after protected power is qualified",
+      "profile change requires branch-off discharge and the TCA4307 boundary disabled"
     ]
   },
   "shared_spi_contract": {
@@ -321,12 +332,6 @@
       "id": "U219-HIL-01A",
       "stage": "H5/H7",
       "requirement": "resolve official RF_SW1-without-exposed-pin and shared-CS prose inconsistencies against the received unit and exact revision schematic",
-      "closed": false
-    },
-    {
-      "id": "U219-HIL-01B",
-      "stage": "H5/H7",
-      "requirement": "resolve current official EN-table blanks/NC at contacts 3, 4 and 7 against older official-locale SCL/SDA and legacy-dock 5V_IN claims; do not route them before received-unit continuity and schematic proof",
       "closed": false
     },
     {
