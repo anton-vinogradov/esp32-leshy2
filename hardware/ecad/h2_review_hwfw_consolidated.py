@@ -34,7 +34,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
             f"| root hierarchy nets | {c['root_named_nets']} | все присутствуют в native netlists |",
             f"| M1 UI ↔ RF | {c['m1_contacts']} контактов / {c['m1_unique_nets']} nets | построчно идентичны |",
             f"| architecture ↔ KiCad | {c['controller_allocations']} allocations | 0 pin/net mismatches |",
-            f"| H2 export ↔ firmware F2 | {c['firmware_contacts']} MCU-контактов | byte-identical, временные pins запрещены |",
+            f"| H2 export ↔ firmware F2 | {c['firmware_contacts']} MCU-контактов | семантически идентичны; firmware-копия fail-closed как historical R1; временные pins запрещены |",
         ]
         russian_corrections = {
             "H2.7.2-F01": "instance ledger называл число логических функций числом физических контактов в десяти expanded-pad/module случаях → теперь каждая строка отдельно хранит logical_contact_count и physical_pcb_contact_count, а contact_count означает реальные lands корпуса или модуля",
@@ -53,7 +53,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
             f"| root hierarchy nets | {c['root_named_nets']} | all present in native netlists |",
             f"| M1 UI ↔ RF | {c['m1_contacts']} contacts / {c['m1_unique_nets']} nets | row-for-row identical |",
             f"| architecture ↔ KiCad | {c['controller_allocations']} allocations | 0 pin/net mismatches |",
-            f"| H2 export ↔ firmware F2 | {c['firmware_contacts']} MCU contacts | byte-identical, temporary pins forbidden |",
+            f"| H2 export ↔ firmware F2 | {c['firmware_contacts']} MCU contacts | semantically identical; firmware copy is fail-closed as historical R1; temporary pins forbidden |",
         ]
         corrections = "## Corrected mismatches\n\n" + "\n".join(f"- `{row['id']}` — {row['finding']} → {row['correction']}" for row in manifest["corrected_findings"])
         close = "✅ **Reviewed:** H2.7 is closed with no end-to-end mismatch remaining."

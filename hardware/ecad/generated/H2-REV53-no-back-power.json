@@ -5,9 +5,9 @@
   "method": "fresh complete KiCad netlists plus exact USB, M1 and expansion-boundary membership checks",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "b3532cd8bc4a96c32064a79b74bae2e59de8afa9b6193cff95cabb5610e6381a",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "373e6ca74626ec7d013573096162d503ddc67b4f069faa50caed37217bbc072e",
-    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "796b2895522b8f808911a6d6fe0cc5c39f5de4009e9b6fd9cf1022f1b8cdd83f",
+    "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "c9eae7be9c7387ee44ef86b6f5c0d2e5d26983d3bddd9dce852cc54774137318",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "25f74c6cf5187a662b20aed62a64a23b2a5d9b474c6fa3b540f3f5af53c2ee06",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "ab4e73fe576c5e1557e6695b89fd3ce182c4533a61e984bd755d3c25b287ce97",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "62036d985924f988257859617422a4eedbdab3d0d8f940cb485d32b7b97f23bc"
   },

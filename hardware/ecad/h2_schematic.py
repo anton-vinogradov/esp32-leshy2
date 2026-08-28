@@ -565,8 +565,16 @@ def build_hwfw_export() -> dict:
     return {
         "schema_version": 1,
         "stage": "H2.0.3",
-        "status": "reviewed_hwfw_export",
+        "status": "reviewed_historical_r1_hwfw_export",
         "export_id": "LESHY2-H2-HWFW-1",
+        "authority": {
+            "generation": "historical_single_rp_r1",
+            "review_evidence_preserved": True,
+            "current_r2_authority": False,
+            "superseded_by": "hardware/architecture/h0-r2-rebaseline.json",
+            "reason": "five domains, one RP and the old M1 cannot represent current six-domain/two-RP H0-R2",
+            "r2_kicad_started": False,
+        },
         "generated_from": [
             str(path.relative_to(REPO))
             for path in (DEVICES, CANDIDATE, HWFW_INPUT, SHEET_CONTRACT)

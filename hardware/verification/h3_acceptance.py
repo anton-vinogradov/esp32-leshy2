@@ -78,7 +78,7 @@ def build() -> tuple[dict[Path, str], dict]:
     ]
 
     checks = {
-        "accepted_h2_is_the_input_boundary": h2["status"] == "reviewed_h2_user_accepted" and h2["decision"]["status"] == "accepted_by_user",
+        "accepted_h2_is_the_historical_r1_input_boundary": h2["status"] == "reviewed_h2_user_accepted" and h2["decision"]["status"] == "accepted_by_user" and h2.get("authority", {}).get("allowed_as_r2_authority") is False,
         "all_six_h3_phase_results_are_reviewed": all(row["status"] == "reviewed" for row in phase_results),
         "all_six_h3_phase_results_have_zero_analytical_findings": all(row["unresolved_analytical_findings"] == 0 for row in phase_results),
         "crosscheck_has_zero_missing_joins": crosscheck["summary"]["missing_joins"] == 0 and crosscheck["summary"]["hash_mismatches"] == 0,
@@ -101,12 +101,13 @@ def build() -> tuple[dict[Path, str], dict]:
         "schema_version": 1,
         "stage": "H3.7.3",
         "status": "reviewed_h3_user_accepted",
+        "authority": {"baseline": "R1", "lifecycle": "historical_single_rp_evidence", "allowed_as_r2_authority": False, "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"},
         "source_hashes": {str(path.relative_to(REPO)): sha256(path) for path in (PLAN_PATH, H2_ACCEPTANCE_PATH, *PHASE_PATHS.values(), CROSSCHECK_PATH, RESIDUAL_PATH)},
         "acceptance_meaning": [
-            "all checks possible without fabricated hardware have reproducible reviewed evidence",
+            "all former single-RP R1 checks possible without fabricated hardware have reproducible reviewed evidence",
             "no analytical finding or missing H2/H3/downstream trace remains",
             "all physical-only uncertainties remain open and are assigned to exact H5/H6/H8 evidence",
-            "the corrected H2 source is the new baseline; later contradictory evidence reopens the owning result",
+            "the corrected historical H2 source is the R1 evidence baseline and is forbidden as R2 authority",
         ],
         "acceptance_does_not_authorize": [
             "component or sample purchase",
@@ -138,7 +139,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "open_analytical_findings": [],
         "pending_decisions": [],
         "review_summary": {"checks": len(checks), "failed": 0, "unresolved_analytical_findings": 0, "status": "reviewed"},
-        "next": {"stage": "H4.0.1-R1", "action": "rejoin this H3 revision with the existing firmware F3 target boot/emulation evidence"},
+        "next": {"stage": "H1-R2.30", "action": "close current dual-RP architecture before creating the new R2 H2/H3 chain"},
     }
 
     phase_table_en = "\n".join(f"| `{row['phase']}` | reviewed | {row['recorded_corrections']} | 0 |" for row in phase_results)

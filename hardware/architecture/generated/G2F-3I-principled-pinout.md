@@ -1,6 +1,6 @@
 # G2F-3I — generated principled pinout atlas
 
-- Статус: **целевая принципиальная распиновка G2F-3I — проведено сводное предсхемное ревью; H1 принят; разрешена только H2 production-схема, не PCB placement/routing**
+- Статус: **историческая single-RP R1/G2F распиновка; ревью сохранено как reference, но это не current R2 authority и не разрешение на R2 KiCad**
 - Source of truth: `hardware/architecture/devices.json` and `hardware/architecture/candidates/G2F-3I.json`
 - Regenerate: `python3 hardware/architecture/generate.py --write`
 - Verify: `python3 hardware/architecture/generate.py --check`

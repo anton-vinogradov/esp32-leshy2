@@ -5,12 +5,12 @@
   "method": "assign one canonical owner to physical fit, part inventory, pin assignment, interboard crossing and firmware-visible state",
   "source_hashes": {
     "h1_physical_acceptance": "3d880042d5a914c933928401fee95beb6e23ceb302a8d9fb3a581f6824c2d280",
-    "h2_instance_ledger": "88303bb2d17f13fb80d8ce609a6b2fadb03a7f95f8df38e27b905250831525aa",
-    "architecture_pin_source": "2cce7e1637467672ce0b2009c1603ac591a37b53f5e93a399c10014e4fd86f09",
-    "ui_m1": "a1df33d01a5cefcf9bc62be717a006337035202ee07718799d610675b575f171",
-    "rf_m1": "da959a0a445d4004a0f31e4bb52b8d0232acb89693783e0b7d11d092c01e9065",
-    "h2_hwfw_export": "2456085c2a7e43ff72262d5ca2bb29b783a4d71fe41e88ec258870523393dbc4",
-    "firmware_f2_import": "2456085c2a7e43ff72262d5ca2bb29b783a4d71fe41e88ec258870523393dbc4"
+    "h2_instance_ledger": "d2cbdb2302ec006b477959e3dff0d183cacba1055777522a706e186ce3ed7022",
+    "architecture_pin_source": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
+    "ui_m1": "c9eae7be9c7387ee44ef86b6f5c0d2e5d26983d3bddd9dce852cc54774137318",
+    "rf_m1": "25f74c6cf5187a662b20aed62a64a23b2a5d9b474c6fa3b540f3f5af53c2ee06",
+    "h2_hwfw_export": "6565fef2e0c37509ac80af069b4552d1e6f35ff16099194c291981fb62e9ceb5",
+    "firmware_f2_import": "50b47bfde47d1e4e803a68a163364c09905638ffc68408841f51ae3c1e8b05c7"
   },
   "inventories": [
     {
@@ -39,7 +39,7 @@
     },
     {
       "owner": "firmware F2",
-      "role": "byte-stable software-visible copy of the H2 export",
+      "role": "semantic software-visible copy of the H2 export with an explicit fail-closed historical-R1 authority",
       "artifact": "../esp32-leshy2-firmware/config/hardware_bsp_contract.json",
       "count": 125
     }
@@ -51,7 +51,8 @@
     "firmware_bsp_contacts": 125,
     "pd_hardware_configuration_contacts": 5,
     "m1_contacts": 80,
-    "firmware_copy_byte_identical": true
+    "firmware_copy_semantically_identical": true,
+    "firmware_copy_has_fail_closed_authority": true
   },
   "open_findings": []
 }

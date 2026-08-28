@@ -1,8 +1,8 @@
-# Leshy2 pin assignment
+# Historical Leshy2 R1 pin assignment
 
 [Home](../README.md) · [Русский](pinout.ru.md) · [Hardware architecture](hardware.md)
 
-This page is generated from the same device and net map used by the electrical checks. It shows the current target contact assignment.
+This page is generated from the historical single-RP G2F device/net map. It is retained as reviewed R1 reference evidence, not as the current R2 pin assignment. Current H0-R2 has distinct front Hub RP and rear RF RP domains; exact per-signal RP GPIO order will be published only by a future R2 H2 export.
 
 > Generated from `hardware/architecture/devices.json` and `hardware/architecture/candidates/G2F-3I.json`.
 

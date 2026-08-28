@@ -1,8 +1,16 @@
 {
   "schema_version": 1,
   "stage": "H2.0.3",
-  "status": "reviewed_hwfw_export",
+  "status": "reviewed_historical_r1_hwfw_export",
   "export_id": "LESHY2-H2-HWFW-1",
+  "authority": {
+    "generation": "historical_single_rp_r1",
+    "review_evidence_preserved": true,
+    "current_r2_authority": false,
+    "superseded_by": "hardware/architecture/h0-r2-rebaseline.json",
+    "reason": "five domains, one RP and the old M1 cannot represent current six-domain/two-RP H0-R2",
+    "r2_kicad_started": false
+  },
   "generated_from": [
     "hardware/architecture/devices.json",
     "hardware/architecture/candidates/G2F-3I.json",
@@ -10,10 +18,10 @@
     "hardware/ecad/H2-sheet-contract.json"
   ],
   "source_sha256": {
-    "hardware/architecture/devices.json": "b3532cd8bc4a96c32064a79b74bae2e59de8afa9b6193cff95cabb5610e6381a",
+    "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
     "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
     "hardware/architecture/target-integration-contract.json": "b9536dc4730bc8a17b18dae0ab9737ac778c957a45b26e1dcb9216d91eceb78a",
-    "hardware/ecad/H2-sheet-contract.json": "dedde349ad7ad53440ee33244f7f4189078819e61b3f15d3d161261853e74c78"
+    "hardware/ecad/H2-sheet-contract.json": "8d793ea3580542f700514ab6fa315a6e27f06503fa1e23b80c07f1b1afda15c2"
   },
   "integration_contract": {
     "schema": 2,

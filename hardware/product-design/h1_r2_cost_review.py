@@ -124,8 +124,11 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
     rows = []
     for source in bom:
         quantity = int(source["quantity"])
+        override = model.get("r2_quantity_overrides", {}).get(source["device_id"])
+        if override:
+            quantity = int(override["quantity_per_device"])
         production_line = (
-            float(source["line_material_usd"])
+            float(source["unit_price_usd"]) * quantity
             if source["line_material_usd"]
             else None
         )

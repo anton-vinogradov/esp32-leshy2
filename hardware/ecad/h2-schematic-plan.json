@@ -2,6 +2,13 @@
   "schema_version": 1,
   "stage": "H2",
   "status": "reviewed",
+  "authority": {
+    "generation": "historical_single_rp_r1",
+    "review_evidence_preserved": true,
+    "current_r2_authority": false,
+    "superseded_by": "hardware/architecture/h0-r2-rebaseline.json",
+    "reopen_gate": "A new R2 H2 plan/export must instantiate six compute domains, separate front Hub RP and rear RF RP, and the exact H0-R2 M1 before production-schematic authority can be restored. R2 KiCad has not started."
+  },
   "current_substep": null,
   "completed_substep": "H2.8.2",
   "acceptance": {
@@ -15,7 +22,7 @@
       "firmware_commit": "900bb2b",
       "reason": "the former SA518 voice path was replaced by independent SA818S-V and SA818S-U paths"
     },
-    "meaning": "the current source-hash-bound H2 revision is the immutable starting input for regenerated H3; later findings reopen affected gates"
+    "meaning": "this reviewed single-RP R1 revision is preserved as historical evidence only; H0-R2 is a later finding that reopens H2 and forbids using this plan as current R2 authority"
   },
   "accepted_input": {
     "physical_design_gate": "H1.8",
@@ -25,8 +32,8 @@
     "architecture_candidate": "G2F-3I"
   },
   "authorization": {
-    "production_schematic": true,
-    "symbol_and_footprint_library_work": true,
+    "production_schematic": false,
+    "symbol_and_footprint_library_work": false,
     "pcb_placement_and_routing": false,
     "fabrication": false,
     "purchasing": false

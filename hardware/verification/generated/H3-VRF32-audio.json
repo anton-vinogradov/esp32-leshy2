@@ -4,10 +4,10 @@
   "status": "reviewed_audio_analog_corners_after_four_source_corrections",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "b3532cd8bc4a96c32064a79b74bae2e59de8afa9b6193cff95cabb5610e6381a",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "0e8e8b843b460d18b28eda168a69adf10e6b33f4f97035fee6a5082c08b14ffa",
-    "hardware/verification/generated/H3-VRF31-display.json": "972ea1d6669080117e2cf418780bd9f9b02cd802de9cf1e13dc7b1b797e70fc0",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "892c4e1d65c98d6d818988f2d7c54e206d810bccc6353547169a39d6580ad6cf"
+    "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "72ca1c7b4ee8f82194ec5d1731ee95e705a1a68f71892a1dc8bab14ac275a674",
+    "hardware/verification/generated/H3-VRF31-display.json": "f5d84f9a5f748db1dfa85094819c1b51bb75337dc30be333105caa24e3997afd",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "edc49f85f82e9162dba2170c39275e005dcdfa95be8e544c2915121d04acbe7f"
   },
   "provenance": {
     "codec_product_brief": "https://www.everest-semi.com/pdf/ES8311%20PB.pdf",

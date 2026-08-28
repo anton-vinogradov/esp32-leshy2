@@ -5,9 +5,9 @@
   "project": "LESHY2-UI",
   "sheet": "UI_60_TESTPOINTS_MANUFACTURING",
   "source_hashes": {
-    "hardware/ecad/generated/H2-instance-ledger.json": "d402540ba83ec48ad763ece15bb9206aabac2cd0624f5d8ea2a861dab63753cf",
-    "hardware/ecad/H2-sheet-contract.json": "dedde349ad7ad53440ee33244f7f4189078819e61b3f15d3d161261853e74c78",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "dae7f30bd81c612f0a7dfca7cd789de55247ee6ddaadaf2c433f884cc4bbe62a"
+    "hardware/ecad/generated/H2-instance-ledger.json": "d2cbdb2302ec006b477959e3dff0d183cacba1055777522a706e186ce3ed7022",
+    "hardware/ecad/H2-sheet-contract.json": "8d793ea3580542f700514ab6fa315a6e27f06503fa1e23b80c07f1b1afda15c2",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "fe9850f1ee448436de02e3d77144a24ca2d25cd15197c07dbe6a3dc6ccb5df31"
   },
   "summary": {
     "ledger_instances": 0,

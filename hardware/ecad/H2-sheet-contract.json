@@ -2,6 +2,13 @@
   "schema_version": 1,
   "stage": "H2.0.2",
   "status": "reviewed",
+  "authority": {
+    "generation": "historical_single_rp_r1",
+    "review_evidence_preserved": true,
+    "current_r2_authority": false,
+    "superseded_by": "hardware/architecture/h0-r2-rebaseline.json",
+    "r2_kicad_started": false
+  },
   "project_model": "one_independent_kicad_project_per_pcb",
   "rules": {
     "one_physical_pcb_per_project": true,

@@ -10,7 +10,7 @@ H2.7 binds physical H1, production ECAD and the firmware F2 input into one verif
 | root hierarchy nets | 270 | all present in native netlists |
 | M1 UI ↔ RF | 80 contacts / 51 nets | row-for-row identical |
 | architecture ↔ KiCad | 130 allocations | 0 pin/net mismatches |
-| H2 export ↔ firmware F2 | 125 MCU contacts | byte-identical, temporary pins forbidden |
+| H2 export ↔ firmware F2 | 125 MCU contacts | semantically identical; firmware copy is fail-closed as historical R1; temporary pins forbidden |
 
 ## Corrected mismatches
 

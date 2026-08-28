@@ -2,9 +2,13 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H1-R2.29`**. The functional architecture is reviewed; the
+> Current marker: **`H1-R2.30`**. The functional architecture is reviewed; the
 > physical design is in progress. Nothing on this page authorizes KiCad routing
 > or an order.
+
+> Current R2 authority is H0/H1: six compute domains with a front Hub RP and a
+> rear RF RP. G2F/H2/KiCad is historical single-RP R1 evidence only; exact R2
+> RP GPIO order and all R2 KiCad work remain blocked until a new H2 export.
 
 ## Capabilities
 

@@ -10,7 +10,13 @@
 
 </div>
 
-> **Current hardware marker: `H1-R2.29`.** The two-PCB physical model has no remaining engineering blocker. Ten main SMA ports are split `5 + 5`; the separate rear MMCX feeds a mutually exclusive post-PCBA K331/AWM666V receiver bay. Four more exact/no-worse JLCPCB routes now cover the display receptacle, pack FET, robust IR receiver and FM match. H1 awaits explicit acceptance of the complete mock-up; KiCad and ordering remain blocked until that review.
+> **Current hardware marker: `H1-R2.30`.** The two-PCB H0/H1 working model now has two independent RP2354B domains and a current quantity/factory route. The old single-RP G2F/H2 work is historical R1 evidence only: exact dual-RP GPIO order and the C5 mux/SDIO pin proof remain open before R2 H2 can start. H1 still awaits explicit acceptance of the complete mock-up; KiCad and ordering remain blocked.
+
+> **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
+> controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
+> material is preserved historical single-RP R1 evidence, not current R2 authority.
+> It cannot authorize firmware, R2 KiCad, fabrication or ordering; exact RP GPIO
+> order remains open for the future R2 H2 export.
 
 ## What it is
 
@@ -90,7 +96,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | Stage | Status | Published result |
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.29`** | [Current placement](docs/h1-r2-physical-layout.md) · [cost ranking](docs/h1-r2-cost.md) |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.30`** | [Current placement](docs/h1-r2-physical-layout.md) · [cost ranking](docs/h1-r2-cost.md) |
 | H2 · Production ECAD schematic | ⏳ Waiting for R2 H1 | [Stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
@@ -120,7 +126,7 @@ Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H1-R2.29 -->
+<!-- current-substep: H1-R2.30 -->
 
 ## Repository
 

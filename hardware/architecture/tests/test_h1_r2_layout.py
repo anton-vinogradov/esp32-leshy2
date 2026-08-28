@@ -20,7 +20,7 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.29", self.model["marker"])
+        self.assertEqual("H1-R2.30", self.model["marker"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
         self.assertEqual(37, len(self.audit["opposing_overlaps"]))
@@ -55,6 +55,9 @@ class H1R2LayoutTest(unittest.TestCase):
 
     def test_h1_blockers_are_separate_from_dependent_and_later_work(self):
         self.assertEqual(0, len(self.model["current_h1_blockers"]))
+        self.assertEqual(2, len(self.model["pre_r2_h2_gates"]))
+        self.assertTrue(any("both independent RP2354B" in row for row in self.model["pre_r2_h2_gates"]))
+        self.assertTrue(any("C5 mux/SDIO" in row for row in self.model["pre_r2_h2_gates"]))
         self.assertEqual(1, len(self.model["dependent_h1_work"]))
         self.assertIn("explicitly accept the generated complete R2", self.model["dependent_h1_work"][0])
         self.assertEqual({"H5/H6/H7", "H5/H7", "H5/H8"}, {row["stage"] for row in self.model["downstream_verification"]})
@@ -74,6 +77,9 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("C3824301", by_mpn["TVP5150AM1PBS"]["jlcpcb_part"])
         self.assertEqual("C588480", by_mpn["73415-2063"]["jlcpcb_part"])
         self.assertEqual("C39843328", by_mpn["SC1512-A4"]["jlcpcb_part"])
+        self.assertEqual(2, by_mpn["SC1512-A4"]["quantity_per_device"])
+        self.assertEqual(10, by_mpn["SC1512-A4"]["evt5_quantity"])
+        self.assertIn("A4", by_mpn["SC1512-A4"]["identity_gate"])
         self.assertIsNone(by_mpn["K331"]["jlcpcb_part"])
         self.assertFalse(by_mpn["K331"]["accepted"])
         self.assertIn("post-PCBA", by_mpn["K331"]["assembly"])
@@ -103,6 +109,14 @@ class H1R2LayoutTest(unittest.TestCase):
         for mpn in ("USB4105-GF-A", "SKRTLAE010", "FTSH-105-01-L-DV-K-P-TR"):
             self.assertTrue(evidence[mpn]["accepted"])
             self.assertEqual("2026-08-27", evidence[mpn]["checked"])
+
+    def test_hub_role_keeps_audio_and_broadcast_on_rear_rp(self):
+        hub = next(row for row in self.model["placements"] if row["id"] == "hub_rp")
+        self.assertIn("S3/C5/rear-RP fan-out", hub["role"])
+        self.assertIn("three independent nRF24", hub["role"])
+        self.assertIn("microSD", hub["role"])
+        self.assertNotIn("audio", hub["role"].lower())
+        self.assertNotIn("broadcast", hub["role"].lower())
 
     def test_mmcx_uses_manufacturer_body_and_mounting_geometry(self):
         mmcx = next(x for x in self.model["placements"] if x["id"] == "fpv_mmcx")

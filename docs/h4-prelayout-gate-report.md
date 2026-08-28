@@ -1,8 +1,8 @@
-# H4 result · joined pre-layout gate
+# Historical H4 result · joined R1 pre-layout gate
 
 [Русский](h4-prelayout-gate-report.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)
 
-H4 was repeated and is closed on the dual-SA818S revision. Accepted H1 mechanics, H2 production ECAD, H3 virtual verification and executable firmware F3 results now form one checkable boundary. The former SA518 join is superseded; no virtually testable contradiction remains open.
+This reproducible snapshot closes only the former single-RP R1 architecture. It is retained as evidence and is not an authority or authorization for the current dual-RP H0/H1-R2 design. Current R2 explicitly supersedes this boundary and must repeat its own H2–H4 after exact pinout closure.
 
 ```mermaid
 flowchart LR
@@ -10,18 +10,18 @@ flowchart LR
   H2["H2<br/>ECAD"] --> H4
   H3["H3<br/>virtual electrical"] --> H4
   F3["F3<br/>builds and emulation"] --> H4
-  H4 --> H5["▶️ H5<br/>research first,<br/>samples only if necessary"]
+  H4 --> R2["▶️ H1-R2.30<br/>exact dual-RP architecture"]
 ```
 
 | Reviewed boundary | Result |
 |---|---:|
 | H1 M1 | 80 of 80 assigned; no NC |
 | H2 electrical identities / root nets | 1079 / 270 |
-| HW↔FW BSP | 5 domains, 125 contacts, byte-identical contract |
+| HW↔FW BSP | 5 domains, 125 contacts, semantically identical contract; firmware copy is fail-closed historical R1 |
 | Firmware F3 | 52 reproducible artifacts; 10 memory gates; exact S3 QEMU |
 | H3 physical-only registry | 85 rows; H5=9, H6=10, H8=78 |
 
-## What the repeated join proves
+## What the historical join proves
 
 | Boundary | Result |
 |---|---|
@@ -29,12 +29,13 @@ flowchart LR
 | Firmware contract | Five added contacts belong to local hardware logic; the public BSP remains at 125 MCU contacts with no temporary pin assignments |
 | F3 evidence | Existing executable results are rejoined only across the unchanged MCU boundary; real voice modules remain a physical gate |
 
-## What H4 does not prove
+## What historical H4 does not prove
 
 - None of the 85 physical checks is closed; every H5/H6/H8 owner remains intact.
 - Non-S3 boot, real peripherals, RF/antennas, thermal behavior, received-part fit and flash rollback remain physical gates.
+- It does not describe dual-RP R2, `U219`, the current C5 SDIO/USB mux or the new exact pinout.
 - Purchase, PCB placement/routing and fabrication remain unauthorized.
 
-The next exact position is `H5.0.1-R1`: exhaust manufacturer documents and serial alternatives for the nine H5 residuals first. Only evidence that cannot be obtained otherwise may enter a separately cost-approved sample proposal.
+The current project position is `H1-R2.30`: close exact dual-RP GPIO/M1 and the C5 SDIO/USB mux, then build the new R2 H2. The former transition to `H5.0.1-R1` was cancelled by the architecture change.
 
 Machine evidence: [`H4.1`](../hardware/verification/generated/H4-PLG11-joined-review.json), [`H4.2`](../hardware/verification/generated/H4-PLG12-correction-closure.json), [`H4.3`](../hardware/verification/generated/H4-PLG13-acceptance-package.json).

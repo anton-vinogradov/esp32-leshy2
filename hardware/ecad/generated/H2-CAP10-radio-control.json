@@ -6,9 +6,9 @@
   "sheet": "CAP_10_RADIO_CONTROL",
   "source_hashes": {
     "hardware/accessories/leshy2-lora-cap-01.json": "dd3cd0e9741b704c4ad6bf1c03f54d95884df2cebefd4c3fb57a238bcbc0d6ab",
-    "hardware/architecture/devices.json": "b3532cd8bc4a96c32064a79b74bae2e59de8afa9b6193cff95cabb5610e6381a",
-    "hardware/ecad/generated/H2-instance-ledger.json": "d402540ba83ec48ad763ece15bb9206aabac2cd0624f5d8ea2a861dab63753cf",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "8f34b26fb2c247561c0551484b0f8f21ae5dc94293fc55c49a6246dd5658aac5"
+    "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
+    "hardware/ecad/generated/H2-instance-ledger.json": "d2cbdb2302ec006b477959e3dff0d183cacba1055777522a706e186ce3ed7022",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "b8a3db0f0b95577786e6f79c990f4fb7a171c3b7d49d3e723047dab126a7e3b7"
   },
   "summary": {
     "ledger_rows": 8,

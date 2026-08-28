@@ -1,6 +1,6 @@
-# H1-R2.29 · finished-device placement
+# H1-R2.30 · finished-device placement
 
-Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, not authorization to start KiCad: no engineering blocker remains, but the complete mock-up still needs explicit acceptance.
+Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, not authorization to start KiCad: physical-body placement is coherent, while mock-up acceptance and the explicit R2 pin-proof gates below remain open.
 
 ## What the user sees
 
@@ -52,7 +52,7 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 
 | Role | MPN | JLCPCB | Current availability/route |
 |---|---|---|---|
-| Hub RP2354B factory assembly cross-reference | `SC1512-A4` | [`C39843328`](https://jlcpcb.com/partdetail/RaspberryPi-RP2354B/C39843328) | LCSC/JLC supply surface showed 3,682 pieces, MOQ 1, USD 1.6225 at quantity 1 |
+| Hub RP2354B factory assembly cross-reference | `SC1512-A4` | [`C39843328`](https://jlcpcb.com/partdetail/RaspberryPi-RP2354B/C39843328) | LCSC/JLC supply surface showed canPresale 3,442 (authoritative assembly availability), displayed stock 3,605, MOQ 1, USD 1.5658 at quantity 1 and USD 1.4927 at quantity 10 |
 | analog composite-video decoder | `TVP5150AM1PBS` | [`C3824301`](https://jlcpcb.com/partdetail/TexasInstruments-TVP5150AM1PBS/C3824301) | 62 pieces, MOQ 1, USD 6.4081 at quantity 1 |
 | 24-channel 5.8-GHz analog-FPV receiver module | `K331` | — | manufacturer store showed in stock at USD 29.99; JLCPCB confirmed zero Parts Library/Global Sourcing route and no direct replacement, but accepts a Consigned Parts application before shipment |
 | rear-face vertical 5.8-GHz user connector | `73415-2063` | [`C588480`](https://jlcpcb.com/partdetail/Molex-734152063/C588480) | 5,520 pieces (5,506 orderable), MOQ 1, USD 1.9893 at quantity 1; USD 1.7393 at quantity 10 |
@@ -70,7 +70,12 @@ Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 res
 
 ## Final H1 acceptance
 
-- No engineering blockers remain.
+- No additional physical-body geometry blockers remain.
 - review and explicitly accept the generated complete R2 exterior, both true-view inner faces and four real section planes before closing H1
 
-> Exact current marker: **H1-R2.29**. H1 remains in progress.
+### Preconditions before R2 H2 / KiCad
+
+- derive and review the exact per-signal GPIO order for both independent RP2354B domains and the resulting M1 endpoints from the accepted H0 functional groups
+- prove the exact C5 mux/SDIO assignment against pins physically exposed by the selected ESP32-C5-WROOM-1U-N8R8-V1.2 module
+
+> Exact current marker: **H1-R2.30**. H1 remains in progress.

@@ -37,7 +37,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H1-R2.29", roadmap["current_substep"])
+        self.assertEqual("H1-R2.30", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -382,7 +382,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("**210/210** lines", rendered)
         self.assertIn("**199/210** lines", rendered)
         self.assertIn("**1034/1052** supplied placements", rendered)
-        self.assertIn("USD 234.8584", rendered)
+        self.assertIn("USD 235.3511", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -451,11 +451,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             review["scope"],
         )
         rendered = GENERATOR.render_ledger(self.database, self.candidates)
-        self.assertIn("G2F-3I — проведено сводное предсхемное ревью", rendered)
-        self.assertIn("does not authorize PCB placement/routing", rendered)
+        self.assertIn("историческая single-RP R1/G2F проекция", rendered)
+        self.assertIn("отменяет её authority для текущей распиновки", rendered)
         pinout = GENERATOR.render_principled_pinout(self.database, self.candidates)
-        self.assertIn("целевая принципиальная распиновка G2F-3I", pinout)
-        self.assertNotIn("не target architecture", pinout)
+        self.assertIn("историческая single-RP R1/G2F распиновка", pinout)
+        self.assertIn("это не current R2 authority", pinout)
 
     def test_h1_r2_current_four_face_projection_is_current_and_complete(self):
         script = GENERATOR.REPO_ROOT / "hardware/product-design/h1_r2_layout.py"

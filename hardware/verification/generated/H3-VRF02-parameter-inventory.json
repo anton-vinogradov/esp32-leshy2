@@ -3,9 +3,9 @@
   "stage": "H3.0.2",
   "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
-    "hardware/architecture/devices.json": "b3532cd8bc4a96c32064a79b74bae2e59de8afa9b6193cff95cabb5610e6381a",
-    "hardware/ecad/generated/H2-instance-ledger.json": "d402540ba83ec48ad763ece15bb9206aabac2cd0624f5d8ea2a861dab63753cf",
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "505cd1cdfab95048f745077ab8625926de050da2687d9884a96203db6fd7eb45"
+    "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
+    "hardware/ecad/generated/H2-instance-ledger.json": "d2cbdb2302ec006b477959e3dff0d183cacba1055777522a706e186ce3ed7022",
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "8706b3748f92d9f87af9e817648e859cae0b120b8352e8bcd345dec3a2f1eaab"
   },
   "policy": {
     "accepted_h2_baseline_is_immutable": true,

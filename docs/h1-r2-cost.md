@@ -1,4 +1,4 @@
-# H1-R2.29 · component cost ranking
+# H1-R2.30 · component cost ranking
 
 [Русский](h1-r2-cost.ru.md) · [English](h1-r2-cost.md) · [Current placement](h1-r2-physical-layout.md)
 
@@ -6,10 +6,10 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 
 ## Summary
 
-- Volume material basis: **$234.86** per device; `199/210` lines are priced.
-- Reachable planning subtotal: **$282.67** per device, with `5` base-product lines still unpriced.
-- With the required post-PCBA K331: **$312.66** per device or **$1,563.32** for five devices before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
-- Partial five-device JLCPCB capture: **$1,226.57** for `179` matched lines; `21` live checks move it to **$1,285.49**, with `31` rows excluded.
+- Volume material basis: **$235.35** per device; `199/210` lines are priced.
+- Reachable planning subtotal: **$284.66** per device, with `5` base-product lines still unpriced.
+- With the required post-PCBA K331: **$314.65** per device or **$1,573.25** for five devices before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
+- Partial five-device JLCPCB capture: **$1,234.40** for `180` matched lines; `22` live checks move it to **$1,300.42**, with `30` rows excluded.
 - The external antenna kit is separate: **$145.27** is known and `4` lines remain unpriced.
 
 ## Highest-cost finished-device lines
@@ -118,4 +118,4 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 - The accepted upper adapter PCB position `[24.75, 1.0]` passes the current exact-body model: `0` same-face collisions and `5.1 mm` minimum opposing clearance versus `0.7 mm` required, with no GPIO or BOM change.
 - H1 now fixes this orientation; H5 qualifies the received flex, bend and retention on the replaceable adapter. A mismatch cannot silently return the tail to the control zone.
 
-> Marker: **H1-R2.29**. H1 remains open pending the complete mock-up decision.
+> Marker: **H1-R2.30**. H1 remains open pending the complete mock-up decision.

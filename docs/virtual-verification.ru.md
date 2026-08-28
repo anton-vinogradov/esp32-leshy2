@@ -1,8 +1,8 @@
-# Виртуальная электрическая проверка Leshy2
+# Историческая виртуальная электрическая проверка Leshy2 · R1
 
 [English](virtual-verification.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Принятый H2](h2-acceptance.ru.md)
 
-H3 проверяет всё, что можно доказать расчётом или симуляцией до закупки и PCB layout. Физические измерения не подменяются: каждая такая неопределённость заранее назначена H5, H6 или H8.
+Этот H3 сохраняет воспроизводимые расчёты прежней одно-RP архитектуры R1. Он не доказывает текущую dual-RP R2; физические измерения также не подменяются.
 
 ## Принятый исходный материал
 
@@ -29,6 +29,6 @@ H3 проверяет всё, что можно доказать расчёто�
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | extended-operation and configurable self-test policy without a runtime claim | H8 24/48-hour qualified-USB endurance and battery-to-protected-cutoff measurements |
 
-**Текущий аппаратный маркер:** `H3.0.1-R1` — повторный виртуальный прогон использует два независимых голосовых RF-тракта и десять антенных портов. Закупка, PCB layout и fabrication не разрешены.
+**Исторический маркер:** `H3.0.1-R1`. **Текущий аппаратный маркер:** `H1-R2.30`; R2 должна пройти собственный H2/H3. Закупка, PCB layout и fabrication не разрешены.
 
 [Машинный freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

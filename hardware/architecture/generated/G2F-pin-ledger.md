@@ -1,6 +1,6 @@
 # G2F — generated exact-device pin ledger
 
-- Статус: **G2F-3I — проведено сводное предсхемное ревью; H1 принят; разрешена только H2 production-схема, а PCB placement/routing остаётся отдельным gate**
+- Статус: **историческая single-RP R1/G2F проекция; её машинное ревью сохранено, но H0-R2 с двумя RP отменяет её authority для текущей распиновки, R2 KiCad и firmware**
 - Source of truth: `hardware/architecture/devices.json` and `hardware/architecture/candidates/*.json`
 - Regenerate: `python3 hardware/architecture/generate.py --write`
 - Verify: `python3 hardware/architecture/generate.py --check`
@@ -4700,4 +4700,4 @@ Reserved: `PA1_NRST`. Free: none.
 
 ## Machine-check result and review boundary
 
-All source candidates pass structural validation: exact exposed contacts and programmable GPIO are accounted without collisions. For G2F-3I, non-MCU contacts, interface resources, controller windows, fixed-mux contacts, capacity arithmetic, signal groups, quiet states, power/safety paths, product geometry and the HW/FW boundary have also passed the joint pre-schematic review. G2F-3I therefore has status «Проведено ревью» as the target architecture. H1 final acceptance now authorizes H2 production-schematic work only; this status does not replace received-part, electrical, RF, thermal, acoustic or coexistence qualification and does not authorize PCB placement/routing.
+All source candidates pass their historical structural checks. G2F-3I remains useful reviewed R1 evidence, but it contains one RP domain and the old M1 contract. It is not current R2 authority and cannot authorize R2 firmware, R2 KiCad, fabrication or ordering. Current functional authority is H0-R2 with distinct front Hub RP and rear RF RP; exact per-signal RP GPIO order remains open until the future R2 H2 export.

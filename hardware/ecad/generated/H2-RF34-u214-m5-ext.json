@@ -6,9 +6,9 @@
   "sheet": "RF_34_U214_M5_EXT",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "b3532cd8bc4a96c32064a79b74bae2e59de8afa9b6193cff95cabb5610e6381a",
-    "hardware/ecad/generated/H2-instance-ledger.json": "d402540ba83ec48ad763ece15bb9206aabac2cd0624f5d8ea2a861dab63753cf",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "9b110345d6ebaf9c7cb6bb9fb726b33ef85474b8ead8d10cbfa3c5aed3362cde"
+    "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
+    "hardware/ecad/generated/H2-instance-ledger.json": "d2cbdb2302ec006b477959e3dff0d183cacba1055777522a706e186ce3ed7022",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "da10156dd93ec054535df13c9b6025310a24944146955f3b9731eda14bfa2c1e"
   },
   "summary": {
     "ledger_instances": 53,

@@ -6,18 +6,18 @@
   "checked_on": "2026-08-28",
   "input": {
     "bom_tool_result": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
-    "bom_tool_result_sha256": "ad56abc28057b9b8fa0467a4adeb93bab8c60c3d30f675cf3e307dc1969b58fd",
+    "bom_tool_result_sha256": "d5bc8c856d93f12c6122566aec342dd37d1c127da2f3a1ee5e7e1756db4997d7",
     "search_capture": "hardware/verification/jlcpcb-outlier-search-capture-2026-08-25.json",
     "search_capture_sha256": "50fdf7c69a95bc53e32148cf8e7e3b2d245818a74cec065a708c128527af2699"
   },
   "summary": {
     "target_bom_lines": 210,
-    "bom_tool_matched_lines": 179,
-    "bom_tool_outliers_resolved": 31,
+    "bom_tool_matched_lines": 180,
+    "bom_tool_outliers_resolved": 30,
     "availability_routes": {
-      "J0": 165,
+      "J0": 166,
       "J1": 0,
-      "J2": 29,
+      "J2": 28,
       "J3": 11,
       "J4-F": 3,
       "J4-P": 1,
@@ -183,20 +183,6 @@
       "reason": "display/flex requires factory mating and display/touch functional test during final assembly",
       "target_bom_orderable_evidence": "missing",
       "target_bom_source": "",
-      "component_replacement": false
-    },
-    {
-      "bom_index": 98,
-      "device_id": "rp2354b_a4",
-      "normalized_mpn": "SC1512-A4",
-      "quantity": 1,
-      "route": "J2",
-      "lcsc": "C52763783",
-      "manufacturer": "Raspberry Pi",
-      "stock_snapshot": 0,
-      "reason": "exact original-maker public catalogue row exists but has no public stock",
-      "target_bom_orderable_evidence": "present",
-      "target_bom_source": "https://www.mouser.com/en/ProductDetail/Raspberry-Pi/SC1512-A4?qs=4dK74SdgGtwLCXnn6CRJZQ%3D%3D",
       "component_replacement": false
     },
     {
@@ -2233,19 +2219,16 @@
       "source_mpn": "SC1512-A4",
       "normalized_mpn": "SC1512-A4",
       "quantity": 1,
-      "designators_complete": true,
-      "historical_capture_quantity": 1,
-      "current_quantity_delta": 0,
-      "match_provenance": "unchanged_mpn_from_2026_08_25_bom_tool_capture",
-      "route": "J2",
-      "tool_status": "not_matched",
-      "lcsc": "C52763783",
-      "matched_mpn": null,
-      "semantic_mpn_equal": null,
-      "stock_snapshot": 0,
-      "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "exact original-maker public catalogue row exists but has no public stock",
-      "component_replacement": false
+      "route": "J0",
+      "tool_status": "in_stock",
+      "match_provenance": "current_exact_jlcpcb_part_page",
+      "lcsc": "C39843328",
+      "matched_mpn": "SC1512-A4",
+      "supplier_order_code": "SC1512-A4",
+      "semantic_mpn_equal": true,
+      "stock_snapshot": 3442,
+      "displayed_line_cost_usd": 1.5658,
+      "designators_complete": true
     },
     {
       "bom_index": 99,
@@ -4334,7 +4317,7 @@
     "purchase_remains_last": true
   },
   "checks": {
-    "capture_covers_all_31_unchanged_bom_tool_outliers": true,
+    "capture_covers_all_30_unchanged_bom_tool_outliers": true,
     "every_outlier_has_one_route": true,
     "j0_rows_have_positive_original_maker_stock": true,
     "j2_rows_have_exact_zero_stock_catalogue_identity": true,

@@ -1777,7 +1777,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         title = f'# {model["marker"]} · finished-device placement'
         intro = (
             "Current physical model of the two 75 × 150 mm PCBs. This is a verifiable H1 result, "
-            "not authorization to start KiCad: no engineering blocker remains, but the complete mock-up still needs explicit acceptance."
+            "not authorization to start KiCad: physical-body placement is coherent, while mock-up acceptance and the explicit R2 pin-proof gates below remain open."
         )
         outside = "## What the user sees"
         inside = "## What is inside"
@@ -1837,8 +1837,11 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     if blockers:
         lines.extend(f"- {row}" for row in blockers)
     else:
-        lines.append("- Инженерных блокеров нет." if ru else "- No engineering blockers remain.")
+        lines.append("- Новых блокеров геометрии корпусов нет." if ru else "- No additional physical-body geometry blockers remain.")
     lines.extend(f"- {row}" for row in acceptance)
+    r2_gates = model["pre_r2_h2_gates_ru"] if ru else model["pre_r2_h2_gates"]
+    lines.extend(["", "### Preconditions before R2 H2 / KiCad" if not ru else "### Preconditions до R2 H2 / KiCad", ""])
+    lines.extend(f"- {row}" for row in r2_gates)
     marker = f'> Точный текущий маркер: **{model["marker"]}**. H1 продолжается.' if ru else f'> Exact current marker: **{model["marker"]}**. H1 remains in progress.'
     lines.extend(["", marker, ""])
     return "\n".join(lines)

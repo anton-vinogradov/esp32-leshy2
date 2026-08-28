@@ -67,23 +67,23 @@ def accepted_inputs() -> list[Path]:
 
 def render_doc(manifest: dict, russian: bool) -> str:
     if russian:
-        title = "# Виртуальная электрическая проверка Leshy2"
+        title = "# Историческая виртуальная электрическая проверка Leshy2 · R1"
         nav = "[English](virtual-verification.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Принятый H2](h2-acceptance.ru.md)"
-        intro = "H3 проверяет всё, что можно доказать расчётом или симуляцией до закупки и PCB layout. Физические измерения не подменяются: каждая такая неопределённость заранее назначена H5, H6 или H8."
+        intro = "Этот H3 сохраняет воспроизводимые расчёты прежней одно-RP архитектуры R1. Он не доказывает текущую dual-RP R2; физические измерения также не подменяются."
         freeze_h = "## Принятый исходный материал"
         freeze = f"Ревизия H2 с независимыми SA818S-V/U принята 26 августа 2026 года и привязана к исходникам SHA-256. Заморожено {manifest['summary']['frozen_files']} файла; изменение любого из них повторно открывает затронутые проверки."
         matrix_h = "## Матрица проверки"
         headers = "| Этап | Область | Метод до изготовления | Артефакт H3 | Остаточная физическая проверка |\n|---|---|---|---|---|"
-        current = "**Текущий аппаратный маркер:** `H3.0.1-R1` — повторный виртуальный прогон использует два независимых голосовых RF-тракта и десять антенных портов. Закупка, PCB layout и fabrication не разрешены."
+        current = "**Исторический маркер:** `H3.0.1-R1`. **Текущий аппаратный маркер:** `H1-R2.30`; R2 должна пройти собственный H2/H3. Закупка, PCB layout и fabrication не разрешены."
     else:
-        title = "# Leshy2 virtual electrical verification"
+        title = "# Historical Leshy2 virtual electrical verification · R1"
         nav = "[Русский](virtual-verification.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Accepted H2](h2-acceptance.md)"
-        intro = "H3 checks everything that can be proven analytically or by simulation before purchasing and PCB layout. Physical measurements are not imitated: every such uncertainty is assigned to H5, H6 or H8 in advance."
+        intro = "This H3 retains reproducible analysis for the former single-RP R1 architecture. It does not prove current dual-RP R2, and physical measurements are not imitated."
         freeze_h = "## Accepted input"
         freeze = f"The H2 revision with independent SA818S-V/U paths was accepted on 26 August 2026 and is source-bound by SHA-256. {manifest['summary']['frozen_files']} files are frozen; changing any one reopens the affected verification."
         matrix_h = "## Verification matrix"
         headers = "| Stage | Area | Pre-fabrication method | H3 artifact | Residual physical check |\n|---|---|---|---|---|"
-        current = "**Current hardware marker:** `H3.0.1-R1` — the repeated virtual run uses two independent voice RF paths and ten antenna ports. Purchasing, PCB layout and fabrication are not authorized."
+        current = "**Historical marker:** `H3.0.1-R1`. **Current hardware marker:** `H1-R2.30`; R2 must pass its own H2/H3. Purchasing, PCB layout and fabrication are not authorized."
     rows = "\n".join(
         f"| `{row['stage']}` | `{row['area']}` | {row['method']} | {row['h3_output']} | {row['physical_evidence']} |"
         for row in manifest["verification_matrix"]
@@ -97,6 +97,11 @@ def build() -> tuple[dict[Path, str], dict]:
     acceptance = json.loads((ECAD / "generated/H2-REV81-acceptance-package.json").read_text(encoding="utf-8"))
     if h2_plan.get("status") != "reviewed" or acceptance.get("decision", {}).get("status") != "accepted_by_user":
         raise ValueError("H2 is not accepted; H3 input freeze is forbidden")
+    if (
+        h2_plan.get("authority", {}).get("current_r2_authority") is not False
+        or acceptance.get("authority", {}).get("allowed_as_r2_authority") is not False
+    ):
+        raise ValueError("historical H3 may consume only an explicitly non-R2 H2 boundary")
     paths = accepted_inputs()
     matrix = [
         {"stage": stage, "area": area, "method": method, "h3_output": output, "physical_evidence": physical}
@@ -106,6 +111,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "schema_version": 1,
         "stage": "H3.0.1-R1",
         "status": "reviewed_accepted_h2_inputs_and_complete_verification_matrix_frozen",
+        "authority": {"baseline": "R1", "lifecycle": "historical_single_rp_evidence", "allowed_as_r2_authority": False, "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"},
         "accepted_baseline": {
             "date": "2026-08-26",
             "binding": "source_hashes",

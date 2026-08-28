@@ -13,7 +13,7 @@
 - Current orderability evidence exists for **209/210** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **199/210** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **1034/1052** supplied placements; their partial subtotals are `base_product` — USD 234.8584. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **1034/1052** supplied placements; their partial subtotals are `base_product` — USD 235.3511. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **210/210** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -1160,12 +1160,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>SC1512-A4</code> — 1 × USD 1.0000 = USD 1.0000</summary>
+<details><summary><code>SC1512-A4</code> — 1 × USD 1.4927 = USD 1.4927</summary>
 
 - Device id: `rp2354b_a4`.
 - Scope: `base_product`.
-- Comparable basis: Mouser published 1+ cut-tape unit price applied to an order of 100 pieces; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.mouser.com/en/ProductDetail/Raspberry-Pi/SC1512-A4?qs=4dK74SdgGtwLCXnn6CRJZQ%3D%3D).
+- Comparable basis: JLCPCB/LCSC C39843328 public quantity-10 tier used conservatively until the quantity-100 tier is rechecked at freeze; quantity-1 is USD 1.5658; target quantity `100`.
+- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/RaspberryPi-RP2354B/C39843328).
 
 </details>
 

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.29",
+  "marker": "H1-R2.30",
   "checked_on": "2026-08-28",
   "purpose": "Close the pre-KiCad physical architecture around direct i8080-8, a fully counted 80-contact M1, mechanically unloaded board retention, direct 5+5 antenna locality, local nRF concurrency and an adaptable post-PCBA analog-FPV receiver bay.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -138,13 +138,15 @@
       "manufacturer": "Raspberry Pi",
       "assembly": "SMT; Economic and Standard",
       "accepted": true,
+      "quantity_per_device": 2,
+      "evt5_quantity": 10,
       "selection_status": "working selection; A4 marking remains an incoming gate",
       "selection_status_ru": "рабочий выбор; маркировка A4 остаётся входным gate",
-      "availability": "LCSC/JLC supply surface showed 3,682 pieces, MOQ 1, USD 1.6225 at quantity 1",
-      "availability_ru": "поверхность поставки LCSC/JLC показала 3 682 шт., MOQ 1, $1.6225 при количестве 1",
-      "identity_gate": "JLC names the silicon RP2354B while Raspberry Pi's exact A4 7-inch-reel order code is SC1512-A4; received marking and A4 stepping remain an incoming inspection gate",
+      "availability": "LCSC/JLC supply surface showed canPresale 3,442 (authoritative assembly availability), displayed stock 3,605, MOQ 1, USD 1.5658 at quantity 1 and USD 1.4927 at quantity 10",
+      "availability_ru": "поверхность поставки LCSC/JLC показала canPresale 3 442 (приоритетная доступность сборки), отображаемый остаток 3 605, MOQ 1, $1.5658 при количестве 1 и $1.4927 при количестве 10",
+      "identity_gate": "JLC names the silicon RP2354B; the accepted alias is RP2354B / SC1512(13)-A4 and the controlled project MPN remains SC1512-A4. Received marking and A4 stepping remain an incoming inspection gate",
       "url": "https://jlcpcb.com/partdetail/RaspberryPi-RP2354B/C39843328",
-      "checked": "2026-08-26"
+      "checked": "2026-08-28"
     },
     {
       "role": "analog composite-video decoder",
@@ -370,7 +372,7 @@
       "kind": "fixed_body",
       "frame": "ui-inner",
       "mpn": "SC1512-A4",
-      "role": "Hub RP2354B; C5/RF fan-out, storage, audio and broadcast control",
+      "role": "Front Hub RP2354B; S3/C5/rear-RP fan-out, three independent nRF24 paths and microSD",
       "world_xy_mm": [37.5, 70.0],
       "size_mm": [10.0, 10.0, 0.9]
     },
@@ -1016,6 +1018,14 @@
   ],
   "current_h1_blockers": [],
   "current_h1_blockers_ru": [],
+  "pre_r2_h2_gates": [
+    "derive and review the exact per-signal GPIO order for both independent RP2354B domains and the resulting M1 endpoints from the accepted H0 functional groups",
+    "prove the exact C5 mux/SDIO assignment against pins physically exposed by the selected ESP32-C5-WROOM-1U-N8R8-V1.2 module"
+  ],
+  "pre_r2_h2_gates_ru": [
+    "вывести и провести ревью точного порядка GPIO для обоих независимых доменов RP2354B и получающихся M1 endpoints из принятых функциональных групп H0",
+    "доказать точное назначение C5 mux/SDIO на контактах, физически выведенных у выбранного ESP32-C5-WROOM-1U-N8R8-V1.2"
+  ],
   "dependent_h1_work": [
     "review and explicitly accept the generated complete R2 exterior, both true-view inner faces and four real section planes before closing H1"
   ],

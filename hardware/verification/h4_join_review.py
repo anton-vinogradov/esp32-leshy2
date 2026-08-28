@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import subprocess
@@ -38,6 +39,21 @@ CORRECTION_OUTPUT = GEN / "H4-PLG12-correction-closure.json"
 ACCEPTANCE_OUTPUT = GEN / "H4-PLG13-acceptance-package.json"
 DOC_EN = REPO / "docs/h4-prelayout-gate-report.md"
 DOC_RU = REPO / "docs/h4-prelayout-gate-report.ru.md"
+
+FIRMWARE_BSP_AUTHORITY = {
+    "baseline": "R1",
+    "lifecycle": "historical_single_rp_import",
+    "allowed_as_r2_authority": False,
+    "superseded_by": "config/h0_r2_hardware_contract.json",
+    "r2_sync_gate": "config/r2_h2_sync_gate.json",
+}
+FIRMWARE_INTEGRATION_AUTHORITY = {
+    "baseline": "R1",
+    "lifecycle": "historical_single_rp_integration_contract",
+    "allowed_as_r2_authority": False,
+    "superseded_by": "config/h0_r2_hardware_contract.json",
+    "r2_sync_gate": "config/r2_h2_sync_gate.json",
+}
 
 
 def load(path: Path) -> dict:
@@ -77,15 +93,24 @@ def source_hashes_are_current(rows: dict, base: Path) -> bool:
     return all((base / name).exists() and sha256(base / name) == expected for name, expected in rows.items())
 
 
+def expected_historical_firmware_copy(hardware_contract: dict) -> dict:
+    expected = copy.deepcopy(hardware_contract)
+    expected["authority"] = copy.deepcopy(FIRMWARE_BSP_AUTHORITY)
+    integration = copy.deepcopy(expected["integration_contract"])
+    integration["authority"] = copy.deepcopy(FIRMWARE_INTEGRATION_AUTHORITY)
+    expected["integration_contract"] = integration
+    return expected
+
+
 def report(joined: dict, russian: bool) -> str:
     residuals = joined["physical_residuals"]
     counts = joined["counts"]
     if russian:
-        return f"""# Итог H4 · объединённый pre-layout gate
+        return f"""# Исторический итог H4 · объединённый pre-layout gate R1
 
 [English](h4-prelayout-gate-report.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md)
 
-H4 проведён повторно и закрыт на ревизии dual-SA818S. Принятая механика H1, production ECAD H2, виртуальные проверки H3 и исполнимые результаты firmware F3 сведены в одну проверяемую границу. Прежний join для SA518 заменён; открытых виртуально проверяемых противоречий нет.
+Этот воспроизводимый снимок закрывает только прежнюю одно-RP архитектуру R1. Он сохранён как evidence и не является разрешением или исходником для текущего dual-RP H0/H1-R2. Текущий R2 явно заменяет эту границу и должен повторно пройти собственные H2–H4 после завершения точной распиновки.
 
 ```mermaid
 flowchart LR
@@ -93,18 +118,18 @@ flowchart LR
   H2["H2<br/>ECAD"] --> H4
   H3["H3<br/>виртуальная электрика"] --> H4
   F3["F3<br/>сборки и эмуляция"] --> H4
-  H4 --> H5["▶️ H5<br/>сначала поиск данных,<br/>затем только необходимые образцы"]
+  H4 --> R2["▶️ H1-R2.30<br/>точная dual-RP архитектура"]
 ```
 
 | Проверенная граница | Результат |
 |---|---:|
 | H1 M1 | 80 из 80 назначены; NC нет |
 | H2 electrical identities / root nets | {counts['h2_reconciled_electrical_identities']} / {counts['h2_root_nets']} |
-| HW↔FW BSP | 5 доменов, 125 контактов, побайтно одинаковый контракт |
+| HW↔FW BSP | 5 доменов, 125 контактов, семантически одинаковый контракт; firmware-копия fail-closed historical R1 |
 | Firmware F3 | 52 воспроизводимых artifacts; 10 memory gates; точный QEMU для S3 |
 | H3 physical-only registry | {residuals['total']} строк; H5={residuals['by_stage']['H5']}, H6={residuals['by_stage']['H6']}, H8={residuals['by_stage']['H8']} |
 
-## Что доказано повторным join
+## Что доказано историческим join
 
 | Граница | Результат |
 |---|---|
@@ -112,21 +137,22 @@ flowchart LR
 | Контракт прошивки | Дополнительные пять контактов принадлежат локальной аппаратной логике; публичный BSP сохраняет 125 MCU-контактов и не получает временных pin assignments |
 | Evidence F3 | Старые executable results повторно связаны только с неизменившейся MCU-границей; реальные voice-модули остаются физическим gate |
 
-## Что H4 не доказывает
+## Что исторический H4 не доказывает
 
 - Не закрывает ни одну из {residuals['total']} физических проверок: их владельцы H5/H6/H8 сохранены.
 - Не доказывает boot четырёх non-S3 target, реальные peripherals, RF/антенны, тепловой режим, механический fit полученных деталей или flash rollback.
+- Не описывает dual-RP R2, `U219`, текущий C5 SDIO/USB mux или новую точную распиновку.
 - Не разрешает закупку, PCB placement/routing или fabrication.
 
-Следующая точная позиция — `H5.0.1-R1`: сначала исчерпать документацию, производителя и серийные замены для девяти H5 residuals; закупка появится только для того, что нельзя доказать иначе, и потребует отдельного одобрения стоимости.
+Текущая позиция проекта — `H1-R2.30`: закрыть точные dual-RP GPIO/M1 и C5 SDIO/USB mux, затем строить новый R2 H2. Старый переход к `H5.0.1-R1` отменён сменой архитектуры.
 
 Машинные evidence: [`H4.1`](../hardware/verification/generated/H4-PLG11-joined-review.json), [`H4.2`](../hardware/verification/generated/H4-PLG12-correction-closure.json), [`H4.3`](../hardware/verification/generated/H4-PLG13-acceptance-package.json).
 """
-    return f"""# H4 result · joined pre-layout gate
+    return f"""# Historical H4 result · joined R1 pre-layout gate
 
 [Русский](h4-prelayout-gate-report.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)
 
-H4 was repeated and is closed on the dual-SA818S revision. Accepted H1 mechanics, H2 production ECAD, H3 virtual verification and executable firmware F3 results now form one checkable boundary. The former SA518 join is superseded; no virtually testable contradiction remains open.
+This reproducible snapshot closes only the former single-RP R1 architecture. It is retained as evidence and is not an authority or authorization for the current dual-RP H0/H1-R2 design. Current R2 explicitly supersedes this boundary and must repeat its own H2–H4 after exact pinout closure.
 
 ```mermaid
 flowchart LR
@@ -134,18 +160,18 @@ flowchart LR
   H2["H2<br/>ECAD"] --> H4
   H3["H3<br/>virtual electrical"] --> H4
   F3["F3<br/>builds and emulation"] --> H4
-  H4 --> H5["▶️ H5<br/>research first,<br/>samples only if necessary"]
+  H4 --> R2["▶️ H1-R2.30<br/>exact dual-RP architecture"]
 ```
 
 | Reviewed boundary | Result |
 |---|---:|
 | H1 M1 | 80 of 80 assigned; no NC |
 | H2 electrical identities / root nets | {counts['h2_reconciled_electrical_identities']} / {counts['h2_root_nets']} |
-| HW↔FW BSP | 5 domains, 125 contacts, byte-identical contract |
+| HW↔FW BSP | 5 domains, 125 contacts, semantically identical contract; firmware copy is fail-closed historical R1 |
 | Firmware F3 | 52 reproducible artifacts; 10 memory gates; exact S3 QEMU |
 | H3 physical-only registry | {residuals['total']} rows; H5={residuals['by_stage']['H5']}, H6={residuals['by_stage']['H6']}, H8={residuals['by_stage']['H8']} |
 
-## What the repeated join proves
+## What the historical join proves
 
 | Boundary | Result |
 |---|---|
@@ -153,13 +179,14 @@ flowchart LR
 | Firmware contract | Five added contacts belong to local hardware logic; the public BSP remains at 125 MCU contacts with no temporary pin assignments |
 | F3 evidence | Existing executable results are rejoined only across the unchanged MCU boundary; real voice modules remain a physical gate |
 
-## What H4 does not prove
+## What historical H4 does not prove
 
 - None of the {residuals['total']} physical checks is closed; every H5/H6/H8 owner remains intact.
 - Non-S3 boot, real peripherals, RF/antennas, thermal behavior, received-part fit and flash rollback remain physical gates.
+- It does not describe dual-RP R2, `U219`, the current C5 SDIO/USB mux or the new exact pinout.
 - Purchase, PCB placement/routing and fabrication remain unauthorized.
 
-The next exact position is `H5.0.1-R1`: exhaust manufacturer documents and serial alternatives for the nine H5 residuals first. Only evidence that cannot be obtained otherwise may enter a separately cost-approved sample proposal.
+The current project position is `H1-R2.30`: close exact dual-RP GPIO/M1 and the C5 SDIO/USB mux, then build the new R2 H2. The former transition to `H5.0.1-R1` was cancelled by the architecture change.
 
 Machine evidence: [`H4.1`](../hardware/verification/generated/H4-PLG11-joined-review.json), [`H4.2`](../hardware/verification/generated/H4-PLG12-correction-closure.json), [`H4.3`](../hardware/verification/generated/H4-PLG13-acceptance-package.json).
 """
@@ -200,10 +227,7 @@ def build() -> tuple[dict[Path, str], dict]:
     )
     residual_stages = Counter(stage for row in h3_residuals["registry"] for stage in row["closure_stages"])
     pinned_f3_revision = plan["firmware_f3_evidence"]["revision"]
-    public_text = "\n".join(
-        (REPO / name).read_text(encoding="utf-8")
-        for name in ("README.md", "README.ru.md", "docs/stage-results.md", "docs/stage-results.ru.md", "docs/roadmap.md", "docs/roadmap.ru.md")
-    )
+    expected_fw_contract = expected_historical_firmware_copy(h2_contract)
 
     checks = {
         "h1_is_accepted": h1["status"] == "reviewed" and h1["final_acceptance"]["status"] == "accepted",
@@ -216,8 +240,8 @@ def build() -> tuple[dict[Path, str], dict]:
         "h1_h2_firmware_domain_counts_match": {key: h1_counts[key] for key in expected_domains} == h2_domains == project_counts == expected_domains,
         "h2_bsp_contains_no_temporary_pins": h2_contract["bsp"]["temporary_pin_assignments_allowed"] is False,
         "h2_bsp_total_is_125": h2_contract["bsp"]["total_allocated_contacts"] == 125,
-        "hardware_and_firmware_contracts_are_byte_identical": H2_CONTRACT.read_bytes() == FW_CONTRACT.read_bytes(),
-        "integration_views_are_identical": h2_contract["integration_contract"] == fw_integration,
+        "hardware_and_firmware_contracts_are_semantically_identical_with_fail_closed_firmware_authority": fw_contract == expected_fw_contract,
+        "firmware_integration_view_matches_the_fail_closed_bsp_import": fw_integration == expected_fw_contract["integration_contract"],
         "firmware_generation_hashes_current": fw_generation["source_identity"]["source_sha256"] == sha256(FW_CONTRACT) and fw_generation["source_identity"]["integration_sha256"] == sha256(FW_INTEGRATION),
         "firmware_generation_counts_match_contract": fw_generation["expected_counts"] | {"domains": 5, "allocated_contacts": 125, "unique_nets": 112, "transports": 4, "signal_groups": 10} == fw_generation["expected_counts"] and all(fw_generation["expected_counts"][key] == value for key, value in {"domains": 5, "allocated_contacts": 125, "unique_nets": 112, "transports": 4, "signal_groups": 10}.items()),
         "generated_bsp_manifest_is_current": fw_manifest["source_sha256"] == sha256(FW_CONTRACT) and fw_manifest["allocated_contacts"] == 125 and manifest_files_current,
@@ -236,7 +260,6 @@ def build() -> tuple[dict[Path, str], dict]:
         "preorder_virtual_gates_are_reviewed": all(next(row for row in preorder["gates"] if row["id"] == f"P{index}_{suffix}")["status"] == "reviewed" for index, suffix in ((0, "REQUIREMENTS_ARCHITECTURE"), (1, "MECHANICAL_DESIGN"), (2, "CURRENT_SCHEMATIC"), (3, "VIRTUAL_ELECTRICAL"), (4, "EXECUTABLE_FIRMWARE_MODEL"), (5, "TARGET_BUILDS_EMULATION"), (6, "PRE_LAYOUT_REVIEW"))),
         "orders_layout_and_fabrication_remain_blocked": plan["authorization"] == {"joined_read_only_review": True, "component_purchase": False, "pcb_placement_and_routing": False, "fabrication": False} and next(row for row in preorder["gates"] if row["id"] == "P7_ENGINEERING_SAMPLE_ORDER")["status"] == "not_authorized" and next(row for row in preorder["gates"] if row["id"] == "P8_KICAD_LAYOUT_AND_PROTOTYPE_PCB")["status"] == "not_authorized",
         "h4_plan_records_all_substeps_reviewed": plan["status"] == "reviewed" and all(row["status"] == "reviewed" and all(child["status"] == "reviewed" for child in row.get("children", [])) for row in plan["substeps"]),
-        "public_h2_totals_are_current": "1,079 electrical identities" in public_text and "1 079 электрических identities" in public_text and "all 202 intentional NCs" in public_text,
     }
     failed = [name for name, passed in checks.items() if not passed]
     if failed:
@@ -248,6 +271,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "schema_version": 1,
         "stage": "H4.1-R1",
         "status": "reviewed",
+        "authority": {"baseline": "R1", "lifecycle": "historical_single_rp_evidence", "allowed_as_r2_authority": False, "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"},
         "method": "machine join of accepted mechanics, production ECAD, virtual electrical evidence, target-visible BSP consumption and firmware F3 execution boundaries",
         "source_hashes": {relative(path): sha256(path) for path in sources},
         "counts": {
@@ -273,6 +297,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "schema_version": 1,
         "stage": "H4.2-R1",
         "status": "reviewed",
+        "authority": {"baseline": "R1", "lifecycle": "historical_single_rp_evidence", "allowed_as_r2_authority": False, "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"},
         "source_hashes": {relative(JOIN_OUTPUT): hashlib.sha256((json.dumps(joined, ensure_ascii=False, indent=2) + "\n").encode()).hexdigest()},
         "corrections": corrections,
         "summary": {"detected": len(corrections), "corrected_at_source": len(corrections), "regenerated": len(corrections), "open": 0, "functional_changes": 0, "bom_delta_usd": "0.0000"},
@@ -285,14 +310,15 @@ def build() -> tuple[dict[Path, str], dict]:
         "schema_version": 1,
         "stage": "H4.3-R1",
         "status": "reviewed_h4_complete",
+        "authority": {"baseline": "R1", "lifecycle": "historical_single_rp_evidence", "allowed_as_r2_authority": False, "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"},
         "reviewed_at": "2026-08-26",
         "source_hashes": {
             relative(JOIN_OUTPUT): correction["source_hashes"][relative(JOIN_OUTPUT)],
             relative(CORRECTION_OUTPUT): hashlib.sha256((json.dumps(correction, ensure_ascii=False, indent=2) + "\n").encode()).hexdigest(),
         },
         "acceptance_meaning": [
-            "all currently possible H1/H2/H3/F3 cross-domain checks are joined and reproducible",
-            "no virtually testable blocker or contract mismatch remains before H5",
+            "all former single-RP R1 H1/H2/H3/F3 cross-domain checks are joined and reproducible",
+            "no virtually testable blocker or contract mismatch remained in the superseded R1 snapshot",
             "all physical-only uncertainties retain exact H5/H6/H8 evidence owners",
         ],
         "acceptance_does_not_authorize": ["component or sample purchase", "PCB placement or routing", "prototype or production fabrication", "calling physical-only behavior proven"],
@@ -302,7 +328,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "pending_decisions": [],
         "review_summary": {"checks": len(checks) + len(correction["checks"]), "failed": 0, "unresolved": 0, "status": "reviewed"},
         "acceptance_basis": "automatic acceptance authorized by the project owner for clean reviews without a functional, material-cost or safety decision",
-        "next": {"stage": "H5.0.1-R1", "action": "exhaust documentary and serial-replacement evidence before proposing any physical sample purchase"},
+        "next": {"stage": "H1-R2.30", "action": "close exact dual-RP GPIO/M1 and C5 SDIO/USB mux before starting R2 H2"},
     }
     outputs = {
         JOIN_OUTPUT: json.dumps(joined, ensure_ascii=False, indent=2) + "\n",
@@ -330,7 +356,7 @@ def main() -> int:
         stale = [relative(path) for path, content in outputs.items() if not path.exists() or path.read_text(encoding="utf-8") != content]
         if stale:
             raise SystemExit("stale H4 artifacts: " + ", ".join(stale))
-    print(f"ok: H4 reviewed; {acceptance['review_summary']['checks']} joined checks, 0 unresolved, next H5.0.1-R1")
+    print(f"ok: historical R1 H4 reviewed; {acceptance['review_summary']['checks']} joined checks, 0 unresolved; current H1-R2.30")
     return 0
 
 

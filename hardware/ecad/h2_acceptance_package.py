@@ -37,37 +37,37 @@ DEFERRED = [
 
 def render_doc(manifest: dict, final_counts: dict, russian: bool) -> str:
     if russian:
-        title = "# Пакет приёмки production ECAD H2"
+        title = "# Исторический пакет приёмки production ECAD H2 · R1"
         nav = "[English](h2-acceptance.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Схемы](schematics.ru.md)"
-        intro = "Текущая ревизия H2 принята пользователем как неизменяемый исходный материал повторного прогона H3. Приёмка означает согласие с production schematic-контрактом, а не разрешение KiCad layout, закупки или печати; позднее несоответствие повторно открывает затронутый gate."
+        intro = "Этот принятый пакет сохранён как воспроизводимое evidence прежней одно-RP архитектуры R1. Он не является текущей R2-архитектурой и не разрешает R2 KiCad, закупку или печать."
         done_h = "## Что завершено"
         done = [
             "четыре полные native KiCad-иерархии: UI, RF/power, display-adapter и LoRa Cap",
             "независимое power/recovery/isolation/quiet-state/fault-shutdown ревью",
             f"нулевой native ERC и {final_counts['intentional_no_connects']} физически сопоставленных намеренных NC",
             f"{final_counts['ledger_rows']:,} ledger-строк, {final_counts['reconciled_electrical_identities']:,} сопоставленных электрических identities, {final_counts['root_named_nets']} root nets и {final_counts['m1_physical_contacts']} M1 contacts сверены".replace(",", " "),
-            "130 controller allocations совпадают с KiCad; 125 MCU-контактов byte-identical в firmware F2",
+            "130 controller allocations совпадают с KiCad; 125 MCU-контактов семантически идентичны в firmware F2, а импорт помечен fail-closed historical R1",
             "два независимых SA818S-V/U тракта имеют собственные SMA и TX evidence; one-hot selector не расходует новый MCU или M1 contact",
         ]
         defer_h = "## Что сознательно остаётся за границей H2"
         defer = {"H3": "виртуальные worst-case и timing/transient проверки", "firmware F3": "сборка и emulator-прогон до заказа", "H5": "проверка полученных образцов и land-fit", "H6": "placement/routing/DRC", "H8": "физический bring-up и HIL"}
-        close = f"**Результат:** ✅ ревизия `H2.8.2-R1` принята пользователем {manifest['decision']['date']}; точный baseline связан SHA-256 всех перечисленных входов, поэтому не зависит от ещё не созданного commit hash. Предыдущая SA518-ревизия заменена. Следующий аппаратный маркер — `H3.0.1-R1`."
+        close = f"**Исторический результат:** ✅ ревизия `H2.8.2-R1` была принята пользователем {manifest['decision']['date']} и остаётся связанной SHA-256. Она явно запрещена как authority для R2. Текущий аппаратный маркер — `H1-R2.30`."
     else:
-        title = "# H2 production ECAD acceptance package"
+        title = "# Historical H2 production ECAD acceptance package · R1"
         nav = "[Русский](h2-acceptance.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Schematics](schematics.md)"
-        intro = "The current H2 revision was accepted by the user as the immutable input for the repeated H3 run. Acceptance means agreement with the production-schematic contract, not authorization for KiCad layout, purchasing or fabrication; a later mismatch reopens the affected gate."
+        intro = "This accepted package is retained as reproducible evidence for the former single-RP R1 architecture. It is not the current R2 architecture and does not authorize R2 KiCad, purchasing or fabrication."
         done_h = "## Completed"
         done = [
             "four complete native KiCad hierarchies: UI, RF/power, display adapter and LoRa Cap",
             "independent power/recovery/isolation/quiet-state/fault-shutdown review",
             f"zero native ERC findings and {final_counts['intentional_no_connects']} physically reconciled intentional NCs",
             f"{final_counts['ledger_rows']:,} ledger rows, {final_counts['reconciled_electrical_identities']:,} reconciled electrical identities, {final_counts['root_named_nets']} root nets and {final_counts['m1_physical_contacts']} M1 contacts reconciled",
-            "130 controller allocations agree with KiCad; 125 MCU contacts are byte-identical in firmware F2",
+            "130 controller allocations agree with KiCad; 125 MCU contacts are semantically identical in firmware F2 and the import is marked fail-closed historical R1",
             "two independent SA818S-V/U paths have separate SMA and TX evidence; the one-hot selector consumes no new MCU or M1 contact",
         ]
         defer_h = "## Deliberately outside H2"
         defer = {"H3": "virtual worst-case and timing/transient verification", "firmware F3": "build and emulator execution before ordering", "H5": "received-sample and land-fit checks", "H6": "placement/routing/DRC", "H8": "physical bring-up and HIL"}
-        close = f"**Result:** ✅ revision `H2.8.2-R1` was accepted by the user on {manifest['decision']['date']}; the exact baseline is bound by SHA-256 for every listed input and therefore does not depend on a not-yet-created commit hash. It supersedes the former SA518 revision. The next hardware marker is `H3.0.1-R1`."
+        close = f"**Historical result:** ✅ revision `H2.8.2-R1` was accepted by the user on {manifest['decision']['date']} and remains SHA-256 bound. It is explicitly forbidden as R2 authority. The current hardware marker is `H1-R2.30`."
     done_text = "\n".join(f"- {item}" for item in done)
     deferred_text = "\n".join(f"- `{row['gate']}` — {defer[row['gate']]}" for row in manifest["deferred_gates"])
     evidence = "[Машинный пакет](../hardware/ecad/generated/H2-REV81-acceptance-package.json)." if russian else "[Machine package](../hardware/ecad/generated/H2-REV81-acceptance-package.json)."
@@ -104,6 +104,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "schema_version": 1,
         "stage": "H2.8.1-R1",
         "status": "reviewed_h2_user_accepted",
+        "authority": {"baseline": "R1", "lifecycle": "historical_single_rp_evidence", "allowed_as_r2_authority": False, "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"},
         "source_hashes": {
             **{str(path.relative_to(REPO)): sha256(path) for path in INPUTS},
             **{str(path.relative_to(REPO)): sha256(path) for path in (INVENTORY_PATH, CONTACTS_PATH, NETS_PATH, NO_CONNECTS_PATH)},

@@ -40,7 +40,7 @@ class H1R2CostReviewTest(unittest.TestCase):
             summary["planning_base_plus_post_pcba_usd_per_device"] * 5,
             places=3,
         )
-        self.assertEqual(summary["trial_unmatched_lines"], 31)
+        self.assertEqual(summary["trial_unmatched_lines"], 30)
 
     def test_trial_projection_keeps_fitted_quantity(self):
         by_id = {row["device_id"]: row for row in self.result["rows"]}
@@ -51,6 +51,10 @@ class H1R2CostReviewTest(unittest.TestCase):
             buttons["planning_trial_line_usd"],
             buttons["line_burden_per_device_usd"] * 5,
         )
+        rp = by_id["rp2354b_a4"]
+        self.assertEqual(2, rp["quantity_per_device"])
+        self.assertEqual(10, rp["quantity_trial"])
+        self.assertEqual("C39843328", rp["jlcpcb_part"])
 
     def test_display_upper_candidate_has_margin(self):
         display = self.result["display_orientation_review"]

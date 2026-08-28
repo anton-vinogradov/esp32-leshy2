@@ -12,7 +12,13 @@ import tempfile
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from h2_review_canonical_inventories import ECAD, FW, REPO, sha256
+from h2_review_canonical_inventories import (
+    ECAD,
+    FW,
+    REPO,
+    sha256,
+    validate_historical_firmware_copy,
+)
 from h2_review_no_connects import pin_map, top_symbol_blocks
 from h2_review_power_paths import PROJECTS, export_project
 from h2_symbol_library import embedded_symbols
@@ -56,8 +62,9 @@ def build() -> tuple[str, dict]:
     hwfw = json.loads(HWFW.read_text(encoding="utf-8"))
     fw_bsp = json.loads(FW_BSP.read_text(encoding="utf-8"))
     fw_integration = json.loads(FW_INTEGRATION.read_text(encoding="utf-8"))
-    if hwfw != fw_bsp or hwfw["integration_contract"] != fw_integration:
-        raise ValueError("firmware canonical copies differ from the H2 export")
+    validate_historical_firmware_copy(hwfw, fw_bsp)
+    if fw_bsp["integration_contract"] != fw_integration:
+        raise ValueError("firmware integration copy differs from its canonical BSP import")
     result = subprocess.run([sys.executable, str(FW_IMPORTER), "--check"], cwd=FW, text=True, capture_output=True)
     if result.returncode:
         raise RuntimeError(f"firmware importer drift check failed:\n{result.stdout}{result.stderr}")
@@ -113,7 +120,7 @@ def build() -> tuple[str, dict]:
         "schema_version": 1,
         "stage": "H2.7.4",
         "status": "reviewed_zero_hwfw_contract_drift",
-        "method": "fresh native KiCad pin-to-net lookup for every allocation plus byte-identical hardware export and firmware import",
+        "method": "fresh native KiCad pin-to-net lookup for every allocation plus a semantically identical firmware import carrying explicit fail-closed historical-R1 authority",
         "source_hashes": {
             str(CANDIDATE.relative_to(REPO)): sha256(CANDIDATE),
             str(HWFW.relative_to(REPO)): sha256(HWFW),

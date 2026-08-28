@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1380" height="3288" viewBox="0 0 1380 3288">
 <rect width="1380" height="3288" fill="#ffffff"/>
-<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.29 inner placement</text>
+<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.30 inner placement</text>
 <text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · both inner faces are shown directly after turning each PCB over · numbered marks are documentation, never inner-face silkscreen.</text>
 <text x="190.00" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="70.00" y="122.00" width="240.00" height="480.00" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -230,8 +230,8 @@
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker></defs>
 <text x="730" y="112" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Placed devices and allocations</text>
 <text x="730" y="140" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">1 · SC1512-A4</text>
-<text x="755" y="157" font-family="sans-serif" font-size="10.5" fill="#526076">Hub RP2354B; C5/RF fan-out, storage, audio</text>
-<text x="755" y="171" font-family="sans-serif" font-size="10.5" fill="#526076">and broadcast control</text>
+<text x="755" y="157" font-family="sans-serif" font-size="10.5" fill="#526076">Front Hub RP2354B; S3/C5/rear-RP fan-out,</text>
+<text x="755" y="171" font-family="sans-serif" font-size="10.5" fill="#526076">three independent nRF24 paths and microSD</text>
 <text x="730" y="199" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">19 · USB4105-GF-A</text>
 <text x="755" y="216" font-family="sans-serif" font-size="10.5" fill="#526076">Hub RP independent data-only USB-C; bottom</text>
 <text x="755" y="230" font-family="sans-serif" font-size="10.5" fill="#526076">enclosure exit</text>

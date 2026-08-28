@@ -1276,17 +1276,9 @@ def validate_sources(
 def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) -> str:
     devices = database["devices"]
     referenced_ids = sorted({device_id for c in candidates for device_id in c["instances"].values()})
-    reviewed_targets = [
-        candidate["id"]
-        for candidate in candidates
-        if candidate.get("status") == "target_architecture_pre_schematic_reviewed"
-    ]
     review_status = (
-        "- Статус: **"
-        + ", ".join(reviewed_targets)
-        + " — проведено сводное предсхемное ревью; H1 принят; разрешена только H2 production-схема, а PCB placement/routing остаётся отдельным gate**"
-        if reviewed_targets
-        else "- Статус: **машинные проверки проведены; target architecture ещё не принята**"
+        "- Статус: **историческая single-RP R1/G2F проекция; её машинное ревью сохранено, "
+        "но H0-R2 с двумя RP отменяет её authority для текущей распиновки, R2 KiCad и firmware**"
     )
     lines = [
         "# G2F — generated exact-device pin ledger",
@@ -1605,7 +1597,7 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
         "",
         "## Machine-check result and review boundary",
         "",
-        "All source candidates pass structural validation: exact exposed contacts and programmable GPIO are accounted without collisions. For G2F-3I, non-MCU contacts, interface resources, controller windows, fixed-mux contacts, capacity arithmetic, signal groups, quiet states, power/safety paths, product geometry and the HW/FW boundary have also passed the joint pre-schematic review. G2F-3I therefore has status «Проведено ревью» as the target architecture. H1 final acceptance now authorizes H2 production-schematic work only; this status does not replace received-part, electrical, RF, thermal, acoustic or coexistence qualification and does not authorize PCB placement/routing.",
+        "All source candidates pass their historical structural checks. G2F-3I remains useful reviewed R1 evidence, but it contains one RP domain and the old M1 contract. It is not current R2 authority and cannot authorize R2 firmware, R2 KiCad, fabrication or ordering. Current functional authority is H0-R2 with distinct front Hub RP and rear RF RP; exact per-signal RP GPIO order remains open until the future R2 H2 export.",
         "",
     ]
     return "\n".join(lines)
@@ -3650,7 +3642,7 @@ def _render_principled_pinout_bundle(
     lines = [
         "# G2F-3I — generated principled pinout atlas",
         "",
-        "- Статус: **целевая принципиальная распиновка G2F-3I — проведено сводное предсхемное ревью; H1 принят; разрешена только H2 production-схема, не PCB placement/routing**",
+        "- Статус: **историческая single-RP R1/G2F распиновка; ревью сохранено как reference, но это не current R2 authority и не разрешение на R2 KiCad**",
         "- Source of truth: `hardware/architecture/devices.json` and `hardware/architecture/candidates/G2F-3I.json`",
         "- Regenerate: `python3 hardware/architecture/generate.py --write`",
         "- Verify: `python3 hardware/architecture/generate.py --check`",
@@ -4917,11 +4909,13 @@ def render_public_pinout(
         ("pack_admission", "Battery-pack admission controller"),
     )
     if russian:
-        title = "# Распиновка Leshy2"
+        title = "# Историческая распиновка Leshy2 R1"
         navigation = "[На главную](../README.ru.md) · [English](pinout.md) · [Аппаратная архитектура](hardware.ru.md)"
         intro = (
-            "Страница автоматически строится из той же карты устройств и сетей, что используется "
-            "для электрических проверок. Здесь показано текущее целевое назначение контактов."
+            "Страница автоматически строится из исторической single-RP карты G2F. Она сохранена "
+            "как проверенный R1 reference, но не является текущей R2 распиновкой. Текущий H0-R2 "
+            "имеет отдельные front Hub RP и rear RF RP; точный per-signal GPIO order будет опубликован "
+            "только после нового R2 H2 export."
         )
         headings = {
             "s3": "S3 — приложение, UI, display, storage и audio",
@@ -4937,11 +4931,13 @@ def render_public_pinout(
             "даже если не являются GPIO."
         )
     else:
-        title = "# Leshy2 pin assignment"
+        title = "# Historical Leshy2 R1 pin assignment"
         navigation = "[Home](../README.md) · [Русский](pinout.ru.md) · [Hardware architecture](hardware.md)"
         intro = (
-            "This page is generated from the same device and net map used by the electrical "
-            "checks. It shows the current target contact assignment."
+            "This page is generated from the historical single-RP G2F device/net map. It is retained "
+            "as reviewed R1 reference evidence, not as the current R2 pin assignment. Current H0-R2 "
+            "has distinct front Hub RP and rear RF RP domains; exact per-signal RP GPIO order will be "
+            "published only by a future R2 H2 export."
         )
         headings = {owner: heading for owner, heading in owners}
         columns = "| Contact | Net | Direction | Peripheral | Connected endpoint |"

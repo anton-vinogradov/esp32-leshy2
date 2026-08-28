@@ -2,14 +2,20 @@
   "schema_version": 1,
   "stage": "H4.3-R1",
   "status": "reviewed_h4_complete",
+  "authority": {
+    "baseline": "R1",
+    "lifecycle": "historical_single_rp_evidence",
+    "allowed_as_r2_authority": false,
+    "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"
+  },
   "reviewed_at": "2026-08-26",
   "source_hashes": {
-    "hardware/verification/generated/H4-PLG11-joined-review.json": "7e62ad9489e09ea0977c6e7c828c9b582a75bc7f51d42da2d5d3132393d9a233",
-    "hardware/verification/generated/H4-PLG12-correction-closure.json": "feea0faeb0796dd1165b1ae2b7f9a674803be5a2bcaf2d120819570f98aa4efa"
+    "hardware/verification/generated/H4-PLG11-joined-review.json": "ec410c8ed31b86645d1f69e8edc83f76d11cbada0cd7bc10d33a2dcc43dde877",
+    "hardware/verification/generated/H4-PLG12-correction-closure.json": "6271585df0249d564f7c30981aec912b576ce1b256d0c50af73866efbb67647b"
   },
   "acceptance_meaning": [
-    "all currently possible H1/H2/H3/F3 cross-domain checks are joined and reproducible",
-    "no virtually testable blocker or contract mismatch remains before H5",
+    "all former single-RP R1 H1/H2/H3/F3 cross-domain checks are joined and reproducible",
+    "no virtually testable blocker or contract mismatch remained in the superseded R1 snapshot",
     "all physical-only uncertainties retain exact H5/H6/H8 evidence owners"
   ],
   "acceptance_does_not_authorize": [
@@ -38,14 +44,14 @@
   "open_findings": [],
   "pending_decisions": [],
   "review_summary": {
-    "checks": 33,
+    "checks": 32,
     "failed": 0,
     "unresolved": 0,
     "status": "reviewed"
   },
   "acceptance_basis": "automatic acceptance authorized by the project owner for clean reviews without a functional, material-cost or safety decision",
   "next": {
-    "stage": "H5.0.1-R1",
-    "action": "exhaust documentary and serial-replacement evidence before proposing any physical sample purchase"
+    "stage": "H1-R2.30",
+    "action": "close exact dual-RP GPIO/M1 and C5 SDIO/USB mux before starting R2 H2"
   }
 }

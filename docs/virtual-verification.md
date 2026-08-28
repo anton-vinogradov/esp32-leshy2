@@ -1,8 +1,8 @@
-# Leshy2 virtual electrical verification
+# Historical Leshy2 virtual electrical verification · R1
 
 [Русский](virtual-verification.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Accepted H2](h2-acceptance.md)
 
-H3 checks everything that can be proven analytically or by simulation before purchasing and PCB layout. Physical measurements are not imitated: every such uncertainty is assigned to H5, H6 or H8 in advance.
+This H3 retains reproducible analysis for the former single-RP R1 architecture. It does not prove current dual-RP R2, and physical measurements are not imitated.
 
 ## Accepted input
 
@@ -29,6 +29,6 @@ The H2 revision with independent SA818S-V/U paths was accepted on 26 August 2026
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | extended-operation and configurable self-test policy without a runtime claim | H8 24/48-hour qualified-USB endurance and battery-to-protected-cutoff measurements |
 
-**Current hardware marker:** `H3.0.1-R1` — the repeated virtual run uses two independent voice RF paths and ten antenna ports. Purchasing, PCB layout and fabrication are not authorized.
+**Historical marker:** `H3.0.1-R1`. **Current hardware marker:** `H1-R2.30`; R2 must pass its own H2/H3. Purchasing, PCB layout and fabrication are not authorized.
 
 [Machine freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

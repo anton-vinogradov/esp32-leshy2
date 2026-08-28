@@ -2,8 +2,14 @@
   "schema_version": 1,
   "stage": "H4.2-R1",
   "status": "reviewed",
+  "authority": {
+    "baseline": "R1",
+    "lifecycle": "historical_single_rp_evidence",
+    "allowed_as_r2_authority": false,
+    "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"
+  },
   "source_hashes": {
-    "hardware/verification/generated/H4-PLG11-joined-review.json": "7e62ad9489e09ea0977c6e7c828c9b582a75bc7f51d42da2d5d3132393d9a233"
+    "hardware/verification/generated/H4-PLG11-joined-review.json": "ec410c8ed31b86645d1f69e8edc83f76d11cbada0cd7bc10d33a2dcc43dde877"
   },
   "corrections": [],
   "summary": {

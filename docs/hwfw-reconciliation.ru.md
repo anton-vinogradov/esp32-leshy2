@@ -10,7 +10,7 @@ H2.7 связывает физический H1, production ECAD и вход fir
 | root hierarchy nets | 270 | все присутствуют в native netlists |
 | M1 UI ↔ RF | 80 контактов / 51 nets | построчно идентичны |
 | architecture ↔ KiCad | 130 allocations | 0 pin/net mismatches |
-| H2 export ↔ firmware F2 | 125 MCU-контактов | byte-identical, временные pins запрещены |
+| H2 export ↔ firmware F2 | 125 MCU-контактов | семантически идентичны; firmware-копия fail-closed как historical R1; временные pins запрещены |
 
 ## Исправленные несоответствия
 

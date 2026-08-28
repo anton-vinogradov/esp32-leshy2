@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "artifact": "H0-R2-authority-gate",
+  "status": "pass_historical_r1_h2_quarantined",
+  "current_authority": "hardware/architecture/h0-r2-rebaseline.json",
+  "current_h0": {
+    "domain_count": 6,
+    "domain_ids": [
+      "s3",
+      "c5",
+      "rf_rp",
+      "hub_rp",
+      "pack",
+      "safety"
+    ],
+    "rp_domain_ids": [
+      "rf_rp",
+      "hub_rp"
+    ],
+    "m1_contacts": 80,
+    "m1_live_signals": 25,
+    "m1_reserve_contacts": 14
+  },
+  "historical_r1_h2": {
+    "authority": "historical_only_not_r2",
+    "domain_count": 5,
+    "domain_ids": [
+      "S3",
+      "C5",
+      "RP",
+      "PACK",
+      "SAFETY"
+    ],
+    "rp_instances": [
+      "rp"
+    ],
+    "m1_unique_nets": 51,
+    "m1_reserve_contacts": 0,
+    "review_evidence_preserved": true
+  },
+  "r2_h2_compatibility": {
+    "six_compute_domains": false,
+    "two_distinct_rp_domains": false,
+    "h0_m1_live_signal_count": false,
+    "h0_m1_reserve_count": false,
+    "h0_m1_has_all_80_contacts": true
+  },
+  "r2_h2_authoritative": false,
+  "r2_kicad_started": false,
+  "exact_rp_gpio_order_status": "open; H0 defines bounded functional groups only and this gate must not invent per-signal GPIO order",
+  "errors": []
+}

@@ -4,13 +4,13 @@
   "status": "reviewed_m1_expansion_and_service_boundary_loading",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "b3532cd8bc4a96c32064a79b74bae2e59de8afa9b6193cff95cabb5610e6381a",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "892c4e1d65c98d6d818988f2d7c54e206d810bccc6353547169a39d6580ad6cf",
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "072837f5b84187356cda0d97b31847a366121e81fc761bc69d4c8be11e09a7c0",
-    "hardware/verification/generated/H3-VRF42-digital-timing.json": "3a63db8baa7b3f60f1d0b59d9c71d5bd7391f5c2545bd005d04ab59b2f5c2129",
-    "hardware/ecad/generated/H2-REV53-no-back-power.json": "bfed684d00bf00366949177ed2c1b96e03e6d99b084df4516cb79053fcb1a418",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "373e6ca74626ec7d013573096162d503ddc67b4f069faa50caed37217bbc072e",
-    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "796b2895522b8f808911a6d6fe0cc5c39f5de4009e9b6fd9cf1022f1b8cdd83f"
+    "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "edc49f85f82e9162dba2170c39275e005dcdfa95be8e544c2915121d04acbe7f",
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "bc05b74119f7c8cd6271e30f37b95b96204750a74e9fc6e74800c043ba29f72b",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "27d8850ad0a2974ccf356b1c6beeecb33620d34a568c8f595634346d4f2d8a7d",
+    "hardware/ecad/generated/H2-REV53-no-back-power.json": "cb7f092060d0b1fff96bb34ddd699ef6458211d8d3a26744caddb008a5f0369d",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "c9eae7be9c7387ee44ef86b6f5c0d2e5d26983d3bddd9dce852cc54774137318",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "25f74c6cf5187a662b20aed62a64a23b2a5d9b474c6fa3b540f3f5af53c2ee06"
   },
   "provenance": {
     "m1_plug": "https://www.hirose.com/product/p/CL0578-0523-1-92",

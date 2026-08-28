@@ -25,7 +25,7 @@ safety evidence and power—not primary RF payloads.
 <a id="h1"></a>
 ## H1 · Physical product design
 
-**Status:** ▶️ current at **`H1-R2.29`**.
+**Status:** ▶️ current at **`H1-R2.30`**.
 
 - [Current physical design](h1-r2-physical-layout.md)
 - [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.21-dual-fpv-7)
@@ -61,6 +61,10 @@ engineering-only and the historical `C51950748` cannot be selected as active.
 ## H2 · Production schematic
 
 **Status:** ⏳ waits for H1.
+
+The former reviewed G2F/H2/KiCad result is preserved as historical single-RP
+R1 evidence and is explicitly superseded as current authority. R2 H2 remains
+reopened until it exports six domains, both RP controllers and the exact H0 M1.
 
 Expected result: native KiCad schematics regenerated from the R2 architecture,
 with pin reconciliation, ERC, NC review and a synchronized HW↔FW contract.

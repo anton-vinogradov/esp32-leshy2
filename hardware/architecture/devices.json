@@ -1222,7 +1222,19 @@
       "kind": "bare_qfn80",
       "qualification": "verified_exact_rp2354b0a4_7inch_reel_order_code",
       "lifecycle": "active_orderable",
-      "ordering_identity_note": "SC1512-A4 is Raspberry Pi's actual 7-inch-reel order code for RP2354B0A4; SC1512(13)-A4 is the same A4 silicon on a 13-inch reel and is not the first-target purchasing line",
+      "ordering_identity_note": "The accepted factory identity is RP2354B / SC1512(13)-A4; SC1512-A4 is the controlled project MPN. The parenthesized distributor notation must not be expanded into any unverified SKU. JLCPCB C39843328 exposes the original-manufacturer identity as RP2354B, and received top marking plus A4 stepping remain mandatory incoming-inspection gates.",
+      "ordering_alias_sources": [
+        {
+          "document": "DigiKey exact Raspberry Pi SC1512(13)-A4 product page; RP2354B0A4, 13-inch reel",
+          "url": "https://www.digikey.com/en/products/detail/raspberry-pi/SC1512-13-A4/28172155",
+          "checked": "2026-08-28"
+        },
+        {
+          "document": "DigiKey TechForum comparison of SC1512-A4 and SC1512(13)-A4 reel variants",
+          "url": "https://forum.digikey.com/t/sc1512-a4-and-sc1512-13-a4/63363",
+          "checked": "2026-08-28"
+        }
+      ],
       "dimensions_mm": [10.0, 10.0, 0.9],
       "source": {
         "document": "RP2350 Datasheet and Hardware design with RP2350; RP2354B uses the B-package pinout and stacked 2 MB flash",
@@ -1231,19 +1243,19 @@
         "checked": "2026-08-23"
       },
       "orderable_source": {
-        "document": "SC1512-A4 exact authorized-distributor identity and stock page; cut tape is available from the 500-piece 7-inch reel",
-        "url": "https://www.trustedparts.com/en/part/raspberry-pi/SC1512-A4",
-        "checked": "2026-08-19"
+        "document": "JLCPCB/LCSC live Standard-PCBA catalogue route C39843328 under original-manufacturer identity RP2354B; accepted alias RP2354B / SC1512(13)-A4, MOQ 1, canPresale 3442 and displayed stock 3605; A4 marking remains an incoming gate",
+        "url": "https://jlcpcb.com/partdetail/RaspberryPi-RP2354B/C39843328",
+        "checked": "2026-08-28"
       },
       "cost": {
         "currency": "USD",
         "target_quantity": 100,
-        "unit_price_usd": 1.0,
-        "price_break": "Mouser published 1+ cut-tape unit price applied to an order of 100 pieces",
+        "unit_price_usd": 1.4927,
+        "price_break": "JLCPCB/LCSC C39843328 public quantity-10 tier used conservatively until the quantity-100 tier is rechecked at freeze; quantity-1 is USD 1.5658",
         "source": {
-          "document": "Mouser exact-MPN published price table; no lower intermediate tier is advertised",
-          "url": "https://www.mouser.com/en/ProductDetail/Raspberry-Pi/SC1512-A4?qs=4dK74SdgGtwLCXnn6CRJZQ%3D%3D",
-          "checked": "2026-08-19"
+          "document": "JLCPCB/LCSC live C39843328 catalogue card",
+          "url": "https://jlcpcb.com/partdetail/RaspberryPi-RP2354B/C39843328",
+          "checked": "2026-08-28"
         }
       },
       "programmable": true,

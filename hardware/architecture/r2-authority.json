@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "id": "LESHY2-R2-AUTHORITY-1",
+  "current_authority": "hardware/architecture/h0-r2-rebaseline.json",
+  "current_r2_h2_export": false,
+  "r2_kicad_started": false,
+  "historical_r1_inputs": [
+    "hardware/architecture/candidates/G2F-3I.json",
+    "hardware/architecture/target-integration-contract.json",
+    "hardware/ecad/h2-schematic-plan.json",
+    "hardware/ecad/H2-sheet-contract.json",
+    "hardware/ecad/generated/H2-hwfw-contract.json",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json"
+  ],
+  "rule": "G2F/H2/KiCad is retained as reviewed historical single-RP R1 evidence only. It cannot authorize current R2 firmware, R2 KiCad, fabrication or ordering until a new generated H2 export contains all six H0 domains, distinct front Hub RP and rear RF RP identities, and the exact H0 80-contact M1 map.",
+  "exact_rp_gpio_order_status": "open; H0 defines bounded functional groups only and this gate must not invent per-signal GPIO order"
+}

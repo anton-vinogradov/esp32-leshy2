@@ -11,8 +11,8 @@
     "hardware/accessories/leshy2-lora-cap-01.json"
   ],
   "authorization": {
-    "production_schematic": true,
-    "symbol_and_footprint_library_work": true,
+    "production_schematic": false,
+    "symbol_and_footprint_library_work": false,
     "pcb_placement_and_routing": false,
     "fabrication": false,
     "purchasing": false

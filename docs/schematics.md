@@ -2,10 +2,15 @@
 
 [Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)
 
-These are the current `H0-R2`/`H1-R2.29` principle diagrams of the finished
+These are the current `H0-R2`/`H1-R2.30` principle diagrams of the finished
 device. They explain ownership, buses, RF locality, power and service access.
 The R2 production ECAD schematic does **not** exist yet: H2 starts only after
 the complete H1 mock-up is accepted.
+
+The checked-in G2F/H2/KiCad tree is reviewed historical **single-RP R1**
+evidence. Current H0/H1 has six domains, a front Hub RP and a rear RF RP, plus
+the rebaselined M1. The old tree is not current R2 authority and must not be
+used for firmware pin binding, R2 fabrication or ordering.
 
 ## Component and bus architecture
 

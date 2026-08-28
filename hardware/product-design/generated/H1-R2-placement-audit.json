@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.29",
+  "marker": "H1-R2.30",
   "status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "new_fixed_body_count": 48,
@@ -718,7 +718,7 @@
       "kind": "fixed_body",
       "frame": "ui-inner",
       "mpn": "SC1512-A4",
-      "role": "Hub RP2354B; C5/RF fan-out, storage, audio and broadcast control",
+      "role": "Front Hub RP2354B; S3/C5/rear-RP fan-out, three independent nRF24 paths and microSD",
       "world_bbox_mm": {
         "x": [
           37.5,

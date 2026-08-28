@@ -3,9 +3,9 @@
   "stage": "H3.6.4",
   "status": "reviewed_thermal_fault_and_unattended_consolidation",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF61-thermal-model.json": "2a8c44b4978463b0b09c673cf669fc0298282c8eea8ad6b36fe0c9a51489f65f",
-    "hardware/verification/generated/H3-VRF62-fault-tree.json": "b0b66fb57649aa275b67a7c945bd274cb19787b25c52c5880fca1892a57dedae",
-    "hardware/verification/generated/H3-VRF63-unattended-envelope.json": "c27d9c2b69e6df5f368b46788002bf962d46f8412c78431e70351dc8ab327b46"
+    "hardware/verification/generated/H3-VRF61-thermal-model.json": "2d33290d335b4480d07699487c0e76a7767ebe29ebc2d8999011c5cbf7f42038",
+    "hardware/verification/generated/H3-VRF62-fault-tree.json": "9f2c7e4b8b958ded6955cfad5737ab008ab292f011a0db107e8f6ef66e021a9a",
+    "hardware/verification/generated/H3-VRF63-unattended-envelope.json": "b38f69362e416743d7163a276845294b0ab84bdf784753de66262268fb25ce56"
   },
   "consolidated": {
     "leaf_packages": 3,

@@ -1,9 +1,15 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.29",
+  "marker": "H1-R2.30",
   "checked_on": "2026-08-28",
   "purpose": "Rank the complete-device component burden, remove avoidable pre-order penalties without functional degradation, and keep small-lot purchasing penalties separate from quantity-100 material cost.",
   "trial_device_quantity": 5,
+  "r2_quantity_overrides": {
+    "rp2354b_a4": {
+      "quantity_per_device": 2,
+      "reason": "H0-R2 has separate front Hub RP and rear RF RP; the historical G2F BOM contains only the rear R1 RP"
+    }
+  },
   "inputs": {
     "target_bom": "hardware/architecture/generated/G2F-3I-target-bom.csv",
     "jlcpcb_trial_capture": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
@@ -49,6 +55,23 @@
     }
   ],
   "live_jlcpcb_spot_checks": {
+    "rp2354b_a4": {
+      "manufacturer": "Raspberry Pi",
+      "mpn": "SC1512-A4",
+      "factory_alias": "RP2354B",
+      "jlcpcb_part": "C39843328",
+      "assembly_type": "SMT; Economic and Standard PCBA",
+      "stock": 3442,
+      "displayed_stock": 3605,
+      "moq": 1,
+      "trial_required_quantity": 10,
+      "trial_displayed_cost_usd": 14.927,
+      "estimated_unit_price_usd": 1.4927,
+      "quantity_one_unit_price_usd": 1.5658,
+      "route": "in stock; two fitted per device, with received A4 marking retained as an incoming gate",
+      "source": "https://jlcpcb.com/partdetail/RaspberryPi-RP2354B/C39843328",
+      "checked_on": "2026-08-28"
+    },
     "esp32_c5_wroom_1u_n8r8": {
       "manufacturer": "Espressif Systems",
       "mpn": "ESP32-C5-WROOM-1U-N8R8",
