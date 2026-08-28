@@ -120,6 +120,16 @@ RESIDUAL_MISSING_RU = {
 }
 
 
+RESIDUAL_PASS_RU = {
+    "H3-PHY-024": (
+        "полученный и однозначно идентифицированный образец подтверждает TSOP75238TR/TSMP95000TT, "
+        "ориентацию, два канала захвата, 20-мс startup guard, 5-мс QOD quiet guard и отсутствие "
+        "обратного питания; для TSOP75238TR дополнительно сверяются CPL rotation и подача из feeder "
+        "с placement preview JLCPCB; несовпадение повторно открывает связанный результат H1/H2/H3"
+    ),
+}
+
+
 MECHANICAL_MISSING_RU = {
     "H5-MECH-DISPLAY-TAIL": "контур, толщина, stiffener, клей, изгиб и удержание FPC текущей партии дисплея",
     "H5-MECH-NRF-GEN1-FEEDS": "ось и MPN встроенного разъёма партии E01, fit/retention, изгиб и сквозные RF-потери",
@@ -290,11 +300,16 @@ def residual_sections(data: dict, russian: bool) -> str:
     sections = []
     for row in data["residuals"]:
         if russian:
+            pass_rule = RESIDUAL_PASS_RU.get(
+                row["id"],
+                "полученный и однозначно идентифицированный образец напрямую подтверждает пункт; "
+                "несовпадение повторно открывает связанный результат H1/H2/H3",
+            )
             sections.append(
                 f"### `{row['id']}` · `{row['source_group']}`\n\n"
                 f"- Выбрано: {short_mpns(row)}.\n"
                 f"- Осталось доказать: {RESIDUAL_MISSING_RU[row['id']]}.\n"
-                "- Критерий: полученный и однозначно идентифицированный образец напрямую подтверждает пункт; несовпадение повторно открывает связанный результат H1/H2/H3."
+                f"- Критерий: {pass_rule}."
             )
         else:
             sections.append(

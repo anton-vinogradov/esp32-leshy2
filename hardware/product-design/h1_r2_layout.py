@@ -693,6 +693,57 @@ def audit(model: dict, base: dict) -> dict:
     errors.extend(cap_slot["errors"])
     silk = silkscreen_audit(model)
     errors.extend(silk["errors"])
+    sma_mounting = model["antenna_bank_optimization"].get("main_sma_mounting", {})
+    if sma_mounting.get("standard_mpn") != "GCT RFPC-SMA31-FN-175-A":
+        errors.append("main standard-SMA dual-face mounting identity drifted")
+    if sma_mounting.get("reverse_mpn") != "GCT RFPC-SMA32-FN-175-A":
+        errors.append("main RP-SMA dual-face mounting identity drifted")
+    if any(
+        sma_mounting.get("pcb_thickness_mm") != thickness
+        for thickness in (
+            model["stack"]["ui_pcb_thickness_mm"],
+            model["stack"]["rf_pcb_thickness_mm"],
+        )
+    ):
+        errors.append("main SMA board-thickness option differs from the PCB stack")
+    expected_component_lands = [
+        {"role": "RF", "centre_xy_mm": [0.0, -1.65], "size_mm": [1.87, 3.3]},
+        {"role": "GROUND_LEFT", "centre_xy_mm": [-2.55, -1.65], "size_mm": [1.6, 3.3]},
+        {"role": "GROUND_RIGHT", "centre_xy_mm": [2.55, -1.65], "size_mm": [1.6, 3.3]},
+    ]
+    expected_opposite_lands = [
+        {"role": "GROUND_LEFT", "centre_xy_mm": [-2.55, -1.65], "size_mm": [1.6, 3.3]},
+        {"role": "GROUND_RIGHT", "centre_xy_mm": [2.55, -1.65], "size_mm": [1.6, 3.3]},
+    ]
+    if sma_mounting.get("component_face_lands") != expected_component_lands:
+        errors.append("main SMA component-face exact land contract drifted")
+    if sma_mounting.get("opposite_face_lands") != expected_opposite_lands:
+        errors.append("main SMA opposite-face exact land contract drifted")
+    if sma_mounting.get("board_edge_y_mm") != 0.0:
+        errors.append("main SMA board-edge origin drifted")
+    if sma_mounting.get("body_gap_mm", {}).get("nominal") != 1.75:
+        errors.append("main SMA 1.75-mm body-gap option drifted")
+    if "one PCB face" not in sma_mounting.get("substitution_rule", ""):
+        errors.append("main SMA substitution gate no longer rejects one-face mounting")
+    assembly_process = sma_mounting.get("assembly_process_gate", {})
+    if set(assembly_process) != {"factory_route", "fallback_route", "acceptance_record"}:
+        errors.append("main SMA dual-face assembly-process qualification drifted")
+    elif "five visibly wetted rectangular joints" not in assembly_process["acceptance_record"]:
+        errors.append("main SMA assembly acceptance no longer proves all five joints")
+    drop_profile = sma_mounting.get("drop_profile", {})
+    if (
+        drop_profile.get("sample_count") != 5
+        or drop_profile.get("height_m") != 1.0
+        or drop_profile.get("faces") != ["front", "rear", "top", "bottom", "left", "right"]
+        or drop_profile.get("drops_per_face_per_sample") != 1
+        or drop_profile.get("surface") != "18-mm plywood over concrete"
+        or "FM/SW sensitivity/noise" not in drop_profile.get("post_test", "")
+        or "AM/LW loop capacitance/sensitivity" not in drop_profile.get("post_test", "")
+    ):
+        errors.append("main SMA executable drop and per-path RF requalification profile drifted")
+    gates = sma_mounting.get("verification_gates", {})
+    if set(gates) != {"H5", "H7", "H8"}:
+        errors.append("main SMA documentary/assembly/endurance gates drifted")
     retention = model["mechanical_retention"]
     if retention["compression_stops"]["count"] != 4:
         errors.append("M1 retention requires four compression stops")
@@ -725,6 +776,7 @@ def audit(model: dict, base: dict) -> dict:
         "cap_bus_slot": cap_slot,
         "mmcx_service": mmcx_service,
         "silkscreen": silk,
+        "main_sma_mounting": sma_mounting,
         "mechanical_retention": retention,
         "battery_holder_mechanics": holder,
         "fpv_receiver_attachment": fpv_bay.get("attachment") if fpv_bay else None,
@@ -2127,6 +2179,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         board_names = ("Передняя UI/radio-плата", "Задняя RF/power-плата")
         bullets = [
             "Десять основных SMA разделены симметрично `5 + 5`; каждый радиотракт остаётся на плате своего разъёма.",
+            f"Выбранные GCT `RFPC-SMA31/32-FN-175-A` не держатся на одной стороне: корпус охватывает торец 1,6-мм платы, на стороне установки припаиваются RF-пята и две земляные лапы, на противоположной — ещё две земляные лапы. Это тот же двусторонний принцип, который виден в [ESP32-DIV v2]({model['antenna_bank_optimization']['main_sma_mounting']['comparison_url']}); односторонняя замена запрещена.",
             "На передней плате пять коротких съёмных микрокоаксиальных перемычек соединяют IPEX/U.FL радиоисточников с платными U.FL; дальше до SMA идут локальные контролируемые PCB-тракты.",
             "На задней плате U.FL и съёмных RF-кабелей нет: voice и FM/SW идут локальными RF-трактами, AM/LW — отдельным высокоомным AMI-трактом, а Airband — через питаемую ветвь преобразования и селектор.",
             "Отдельный вертикальный MMCX `FPV RX · 5.8 GHz` расположен ниже равномерного ряда из пяти задних SMA и над общим Cap-Bus-слотом; ответный угловой штекер с кабелем уходит вдоль платы.",
@@ -2148,6 +2201,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "M1: все 80 контактов распределены — 25 сигналов, 14 main-power, 2 AON, 25 возвратов и 14 NC-резервов.",
             "Механика M1: четыре 11,00-мм compression-stop, два противосдвиговых упора и независимые захваты плат; разъём не несёт ударную или изгибающую нагрузку.",
             "Шелкография антенн: генератор подтвердил отсутствие пересечений с SMA/MMCX, кабелем FPV, Cap-Bus-слотом, дисплеем и монтажными keep-out.",
+            "Точная посадка десяти SMA следует чертежам A1: прямоугольная RF-пята `1,87×3,30 мм` в `x=0`, четыре прямоугольные земляные лапы `1,60×3,30 мм` в `x=±2,55 мм`, край платы `y=0`. H5 квалифицирует двусторонний процесс пайки, H7 осматривает все пять паек каждого разъёма, H8 выполняет `0,452–0,678 Н·м`, 50 циклов и заданный drop с повторной проверкой каждого RF-тракта.",
             f'Cap-Bus: mutually-exclusive U214/U219-профили и все восемь целевых зазоров проходят; пять активных U219-корпусов и их source-backed courtyards зарегистрированы, а прежний Cap-register, support-passive courtyards, NFC-loop и swept volume антенны остаются явными H1 gates ({len(model["current_h1_blockers"])}).',
             "Верхний display-adapter имеет ноль коллизий и 5,10 мм минимального встречного зазора; платный U.FL второго nRF24 сдвинут ниже адаптера с зазором 1,00 мм.",
         ]
@@ -2167,6 +2221,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         board_names = ("Front UI/radio PCB", "Rear RF/power PCB")
         bullets = [
             "Ten main SMA ports are split symmetrically `5 + 5`; every radio path remains on the PCB that carries its connector.",
+            f"The selected GCT `RFPC-SMA31/32-FN-175-A` bodies are not retained by one PCB face: each shell straddles the 1.6-mm board edge, with one RF plus two ground lands on the component face and two more shell-ground lands on the opposite face. This is the same dual-face principle visible in [ESP32-DIV v2]({model['antenna_bank_optimization']['main_sma_mounting']['comparison_url']}); a one-face substitute is forbidden.",
             "On the front PCB, five short removable microcoax jumpers connect the radio-source IPEX/U.FL sockets to board U.FL sockets; controlled board-local PCB paths continue from there to SMA.",
             "The rear PCB has no U.FL or removable RF cable: voice and FM/SW use board-local RF paths, AM/LW uses a separate high-impedance AMI path, and Airband uses the powered conversion branch and selector.",
             "The separate vertical `FPV RX · 5.8 GHz` MMCX sits below the evenly pitched five-SMA rear row and above the shared Cap-Bus slot; its mating right-angle plug and cable run parallel to the PCB.",
@@ -2188,6 +2243,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "M1: all 80 contacts are assigned — 25 signals, 14 main-power, 2 AON, 25 returns and 14 NC reserves.",
             "M1 mechanics: four 11.00-mm compression stops, two anti-shear datums and independent PCB capture; the connector carries no impact or bending load.",
             "Antenna silkscreen: the generator proves no overlap with SMA/MMCX bodies, the installed FPV cable, the Cap-Bus slot, the display or mounting keep-outs.",
+            "The exact ten-SMA land pattern follows the A1 drawings: one rectangular 1.87 × 3.30-mm RF land at x=0, four rectangular 1.60 × 3.30-mm shell lands at x=±2.55 mm and board edge y=0. H5 qualifies the dual-face soldering process, H7 inspects all five joints per connector, and H8 runs 0.452–0.678 N m, 50-cycle and defined drop evidence followed by every path-specific RF check.",
             f'Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; five active U219 bodies and their source-backed courtyards are registered, while the legacy Cap register, support-passive courtyards, NFC loop and antenna swept volume remain explicit H1 gates ({len(model["current_h1_blockers"])}).',
             "The upper display adapter has zero body collisions and 5.10 mm minimum opposing clearance; the second nRF24 board U.FL moves below it with 1.00 mm planar clearance.",
         ]

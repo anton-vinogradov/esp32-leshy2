@@ -18,7 +18,8 @@ from h2_ui_s3_core import ScopedReferenceCounter
 from h2_ui_audio_codec_headset import endpoint_nets
 from h2_ui_display_touch_storage import pin_net
 from h2_ui_s3_core import (
-    FOOTPRINT_DIR, Pin, custom_footprint, effects, escaped, library_symbol,
+    FOOTPRINT_DIR, Pin, custom_footprint, effects, escaped,
+    gct_rfpc_sma_175_footprint, validate_gct_rfpc_sma_175_footprint, library_symbol,
     schematic_symbol, stable_uuid,
 )
 
@@ -112,15 +113,9 @@ def reference_prefix(instance: str, device_key: str) -> str:
 
 def footprint_outputs() -> dict[Path, str]:
     copper = ("F.Cu", "F.Paste", "F.Mask")
-    sma = custom_footprint(
+    sma = gct_rfpc_sma_175_footprint(
         "RFPC-SMA31-FN-175-A",
-        [("1", 0.0, -1.65, 1.60, 3.30, ("F.Cu", "F.Paste", "F.Mask")),
-         ("2", -1.75, -1.65, 1.60, 3.30, ("F.Cu", "F.Paste", "F.Mask")),
-         ("3", 1.75, -1.65, 1.60, 3.30, ("F.Cu", "F.Paste", "F.Mask")),
-         ("4", -1.75, -1.65, 1.60, 3.30, ("B.Cu", "B.Paste", "B.Mask")),
-         ("5", 1.75, -1.65, 1.60, 3.30, ("B.Cu", "B.Paste", "B.Mask"))],
-        10.20, 6.60, 10.40, 6.80,
-        "GCT RFPC-SMA31-FN drawing Rev.1.5: option 175 for 1.60-mm PCB; exact standard-polarity SMA body with three top and two bottom 1.60x3.30-mm lands",
+        "GCT RFPC-SMA31-FN drawing A1 released 2025-04-07",
     )
     crystal = custom_footprint(
         "FC-135-Q13FC13500005",
@@ -322,9 +317,10 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     for row in manifest["instances"]:
         if not row["footprint"]:
             raise ValueError(f"fitted UI21 component lacks footprint: {row['instance']}")
-    sma = generated[FOOTPRINT_DIR / "RFPC-SMA31-FN-175-A.kicad_mod"]
-    if sma.count('(layers "F.Cu" "F.Paste" "F.Mask")') != 3 or sma.count('(layers "B.Cu" "B.Paste" "B.Mask")') != 2:
-        raise ValueError("RFPC-SMA31 five-land footprint drifted")
+    validate_gct_rfpc_sma_175_footprint(
+        generated[FOOTPRINT_DIR / "RFPC-SMA31-FN-175-A.kicad_mod"],
+        "RFPC-SMA31",
+    )
     crystal = generated[FOOTPRINT_DIR / "FC-135-Q13FC13500005.kicad_mod"]
     if '(pad "1" smd roundrect (at -1.250 0.000) (size 1.000 1.800)' not in crystal or '(pad "2" smd roundrect (at 1.250 0.000) (size 1.000 1.800)' not in crystal:
         raise ValueError("FC-135 exact two-land footprint drifted")

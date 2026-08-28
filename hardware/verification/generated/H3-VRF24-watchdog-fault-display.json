@@ -8,8 +8,8 @@
   ],
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
-    "hardware/verification/generated/H3-VRF23-inrush-load-step.json": "fc39c7c63cf8768d7b70f563e421ca5c665766c069e99cd48f29ee5dab722e9a"
+    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
+    "hardware/verification/generated/H3-VRF23-inrush-load-step.json": "599ff8d4a3ad1281962b0857ff960fc1a034b0dacd35f4ce24bc9f94a09f9db4"
   },
   "provenance": {
     "watchdog": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",

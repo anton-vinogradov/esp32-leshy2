@@ -6,9 +6,9 @@
   "sheet": "UI_10_S3_CORE_MEMORY_BOOT",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
-    "hardware/ecad/generated/H2-instance-ledger.json": "d2cbdb2302ec006b477959e3dff0d183cacba1055777522a706e186ce3ed7022",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "fe9850f1ee448436de02e3d77144a24ca2d25cd15197c07dbe6a3dc6ccb5df31"
+    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
+    "hardware/ecad/generated/H2-instance-ledger.json": "261fa6c38c7a1dabeacbb52f2e4b71f0f4b64e3f29da7b048900c7b4f5d3427f",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "7c1e345e9615929a1709ac024977571afd260f835f50756bc61ccde142f2caae"
   },
   "summary": {
     "ledger_instances": 32,
@@ -424,11 +424,38 @@
         "pcb_thickness": 1.6,
         "top_land_count": 3,
         "bottom_land_count": 2,
-        "land_size": [
+        "land_shape": "rect",
+        "rf_land_size": [
+          1.87,
+          3.3
+        ],
+        "shell_land_size": [
           1.6,
           3.3
         ],
-        "outer_land_span": 5.1
+        "shell_land_centre_span": 5.1,
+        "board_edge_y": 0.0,
+        "body_gap": 1.75,
+        "nominal_body_envelope": {
+          "x": [
+            -4.5,
+            4.5
+          ],
+          "y": [
+            -2.8,
+            12.4
+          ]
+        },
+        "courtyard_envelope": {
+          "x": [
+            -4.85,
+            4.85
+          ],
+          "y": [
+            -3.15,
+            12.75
+          ]
+        }
       }
     }
   ],

@@ -379,6 +379,51 @@ def custom_footprint(
     return "\n".join(lines)
 
 
+def gct_rfpc_sma_175_footprint(name: str, drawing: str) -> str:
+    """Generate the shared exact 1.60-mm SMA31/SMA32 end-launch land pattern."""
+    return custom_footprint(
+        name,
+        [("1", 0.0, -1.65, 1.87, 3.30, ("F.Cu", "F.Paste", "F.Mask"), "rect"),
+         ("2", -2.55, -1.65, 1.60, 3.30, ("F.Cu", "F.Paste", "F.Mask"), "rect"),
+         ("3", 2.55, -1.65, 1.60, 3.30, ("F.Cu", "F.Paste", "F.Mask"), "rect"),
+         ("4", -2.55, -1.65, 1.60, 3.30, ("B.Cu", "B.Paste", "B.Mask"), "rect"),
+         ("5", 2.55, -1.65, 1.60, 3.30, ("B.Cu", "B.Paste", "B.Mask"), "rect")],
+        9.00, 15.20, 9.70, 15.90,
+        f"{drawing}: option 175 has G=1.75+/-0.10 mm for nominal 1.60-mm PCB; "
+        "recommended layout uses board edge y=0, one 1.87x3.30-mm top RF land at x=0, "
+        "two 1.60x3.30-mm top shell lands and two matching bottom shell lands at x=+/-2.55 mm; "
+        "nominal connector body envelope is x=+/-4.50 mm and y=-2.80..12.40 mm",
+        body_y=4.80,
+        courtyard_y=4.80,
+    )
+
+
+def validate_gct_rfpc_sma_175_footprint(footprint: str, name: str) -> None:
+    """Reject geometry, land-shape, envelope and dual-face regressions."""
+    expected = (
+        '(pad "1" smd rect (at 0.000 -1.650) (size 1.870 3.300) (layers "F.Cu" "F.Paste" "F.Mask"))',
+        '(pad "2" smd rect (at -2.550 -1.650) (size 1.600 3.300) (layers "F.Cu" "F.Paste" "F.Mask"))',
+        '(pad "3" smd rect (at 2.550 -1.650) (size 1.600 3.300) (layers "F.Cu" "F.Paste" "F.Mask"))',
+        '(pad "4" smd rect (at -2.550 -1.650) (size 1.600 3.300) (layers "B.Cu" "B.Paste" "B.Mask"))',
+        '(pad "5" smd rect (at 2.550 -1.650) (size 1.600 3.300) (layers "B.Cu" "B.Paste" "B.Mask"))',
+    )
+    if footprint.count('(layers "F.Cu" "F.Paste" "F.Mask")') != 3:
+        raise ValueError(f"{name} top-side three-land contract drifted")
+    if footprint.count('(layers "B.Cu" "B.Paste" "B.Mask")') != 2:
+        raise ValueError(f"{name} bottom-side two-ground-land contract drifted")
+    for land in expected:
+        if land not in footprint:
+            raise ValueError(f"{name} exact board-edge land-pattern drift: {land}")
+    if "roundrect_rratio" in footprint:
+        raise ValueError(f"{name} exact GCT lands must retain sharp rectangular corners")
+    if '(fp_rect (start -4.500 -2.800) (end 4.500 12.400)' not in footprint:
+        raise ValueError(f"{name} exact asymmetric body envelope drifted")
+    if '(fp_rect (start -4.850 -3.150) (end 4.850 12.750)' not in footprint:
+        raise ValueError(f"{name} tolerance-aware asymmetric courtyard drifted")
+    if "board edge y=0" not in footprint or "G=1.75+/-0.10 mm" not in footprint:
+        raise ValueError(f"{name} board-edge/gap semantics drifted")
+
+
 def footprint_outputs() -> dict[Path, str]:
     # These are manufacturer-drawing transcriptions.  Pad identities encode
     # the orientation-sensitive RF functions rather than pretending that the
@@ -401,15 +446,9 @@ def footprint_outputs() -> dict[Path, str]:
         "FTSH-105-01-L-DV-K-P-TR", ftsh_pads, 6.35, 3.43, 6.55, 7.06,
         "Samtec FTSH-1XX-XX-XXX-DV-XXX footprint Rev.H Figure 1: five positions per row, 1.27-mm pitch, 0.74x2.79-mm lands, 6.86-mm total land span; odd row below and even row above in the published view",
     )
-    sma = custom_footprint(
+    sma = gct_rfpc_sma_175_footprint(
         "RFPC-SMA32-FN-175-A",
-        [("1", 0.0, -1.65, 1.60, 3.30, ("F.Cu", "F.Paste", "F.Mask")),
-         ("2", -1.75, -1.65, 1.60, 3.30, ("F.Cu", "F.Paste", "F.Mask")),
-         ("3", 1.75, -1.65, 1.60, 3.30, ("F.Cu", "F.Paste", "F.Mask")),
-         ("4", -1.75, -1.65, 1.60, 3.30, ("B.Cu", "B.Paste", "B.Mask")),
-         ("5", 1.75, -1.65, 1.60, 3.30, ("B.Cu", "B.Paste", "B.Mask"))],
-        10.20, 6.60, 10.40, 6.80,
-        "GCT RFPC-SMA32-FN drawing A1 dated 2025-02-25: option 175 for 1.60-mm PCB; top has three 1.60x3.30-mm lands across 5.10 mm and bottom has two matching outer ground lands",
+        "GCT RFPC-SMA32-FN drawing A1 dated 2025-02-25",
     )
     return {
         FOOTPRINT_DIR / "CP0603Q5425ENTR.kicad_mod": coupler,
@@ -630,8 +669,14 @@ def build() -> tuple[dict[Path, str], dict]:
                     "pcb_thickness": 1.60,
                     "top_land_count": 3,
                     "bottom_land_count": 2,
-                    "land_size": [1.60, 3.30],
-                    "outer_land_span": 5.10,
+                    "land_shape": "rect",
+                    "rf_land_size": [1.87, 3.30],
+                    "shell_land_size": [1.60, 3.30],
+                    "shell_land_centre_span": 5.10,
+                    "board_edge_y": 0.0,
+                    "body_gap": 1.75,
+                    "nominal_body_envelope": {"x": [-4.50, 4.50], "y": [-2.80, 12.40]},
+                    "courtyard_envelope": {"x": [-4.85, 4.85], "y": [-3.15, 12.75]},
                 },
             },
         ],
@@ -713,20 +758,10 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         raise ValueError("FTSH-105 exact 0.74x2.79-mm ten-land contract drifted")
     if ftsh.count("(at ") < 11 or "(at -2.540 2.035)" not in ftsh or "(at -2.540 -2.035)" not in ftsh:
         raise ValueError("FTSH-105 1.27-mm pitch / 6.86-mm row span drifted")
-    sma = generated[FOOTPRINT_DIR / "RFPC-SMA32-FN-175-A.kicad_mod"]
-    if sma.count('(layers "F.Cu" "F.Paste" "F.Mask")') != 3:
-        raise ValueError("RFPC-SMA32 top-side three-land contract drifted")
-    if sma.count('(layers "B.Cu" "B.Paste" "B.Mask")') != 2:
-        raise ValueError("RFPC-SMA32 bottom-side two-ground-land contract drifted")
-    for exact_land in (
-        '(pad "1" smd roundrect (at 0.000 -1.650) (size 1.600 3.300)',
-        '(pad "2" smd roundrect (at -1.750 -1.650) (size 1.600 3.300)',
-        '(pad "3" smd roundrect (at 1.750 -1.650) (size 1.600 3.300)',
-        '(pad "4" smd roundrect (at -1.750 -1.650) (size 1.600 3.300)',
-        '(pad "5" smd roundrect (at 1.750 -1.650) (size 1.600 3.300)',
-    ):
-        if exact_land not in sma:
-            raise ValueError(f"RFPC-SMA32 land-pattern drift: {exact_land}")
+    validate_gct_rfpc_sma_175_footprint(
+        generated[FOOTPRINT_DIR / "RFPC-SMA32-FN-175-A.kicad_mod"],
+        "RFPC-SMA32",
+    )
 
 
 def kicad_check() -> None:

@@ -1322,6 +1322,9 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
     for device_id in referenced_ids:
         device = devices[device_id]
         source = device["source"]
+        source_version = source["version"]
+        if source["document"].lower().endswith("drawing") and source_version.lower().startswith("drawing "):
+            source_version = source_version[len("drawing "):]
         lifecycle_source = device.get("lifecycle_source")
         lifecycle_evidence = (
             f"[{lifecycle_source['document']}]({lifecycle_source['url']})"
@@ -1330,7 +1333,7 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
         )
         lines.append(
             f"| `{device_id}` | `{device['mpn']}` | `{device['qualification']}` | "
-            f"`{device['lifecycle']}` | [{source['document']} {source['version']}]({source['url']}) | "
+            f"`{device['lifecycle']}` | [{source['document']} {source_version}]({source['url']}) | "
             f"{lifecycle_evidence} |"
         )
 

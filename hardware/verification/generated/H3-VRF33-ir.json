@@ -4,10 +4,10 @@
   "status": "reviewed_ir_corners_after_four_source_corrections",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "65504bd7c7aec1b380a3afa7c4cac22fc1c6db11303a02e6539c6fae48dbf5cf",
-    "hardware/verification/generated/H3-VRF31-display.json": "5e5926e14e1e7cb65861e0b92a3e5d292764bffc5067249a4911cbd4b6f992e2",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "22034131908a9bad483c101d6a897093c5d7817a29c2170bf6a497ea996144fc"
+    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "c8561eb86abcb2b484962421c3c379fbcdafa6f0850f6d4634fef355531a233e",
+    "hardware/verification/generated/H3-VRF31-display.json": "406618914ce3c840a15a4c1d387ca905c133955373978498016252b76ea056f6",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "e80c7b7f168746c6436572f0eb7ef4f65c8496f7e242b3e1482dcf70f1bb1b68"
   },
   "provenance": {
     "c5_module": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.html",

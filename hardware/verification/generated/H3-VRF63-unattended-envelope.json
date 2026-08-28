@@ -4,10 +4,10 @@
   "status": "reviewed_unattended_safety_and_endurance_test_envelope",
   "method": "conservative source-energy bounds plus accepted ambient target, configurable destructive-proof interval and explicit H6/H8 admission gates",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF61-thermal-model.json": "98ad14610addc6418076d908983fc3acf7e7c0946ef7076c9c40c35c5bf6c49a",
-    "hardware/verification/generated/H3-VRF62-fault-tree.json": "4636b023184c53da1f586f3609f7979b0f4c3befea29b5c3f562a767c5f5cb68",
-    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "6e78e6d72bffb41720a2e80f45a899a7f06eb4d4041a47577b049c3e6cec9218",
-    "hardware/verification/generated/H3-VRF34-battery-analog.json": "2f6de8b4de15522a8a90a313f044b707d94783f8ef344f2722592580beb73eeb"
+    "hardware/verification/generated/H3-VRF61-thermal-model.json": "f1ba7cb683f990d8a6a06584766e841ea59f4d17819f11a4dcc43ddc39526b88",
+    "hardware/verification/generated/H3-VRF62-fault-tree.json": "5c624ce44ea99f2a46d6fdbfbda7f207279cb3f090b2e800d68ab32623772072",
+    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "327bac00cca35885c72bd49ec0e66eba872e75504e9c95a7a332e64482b987c0",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "3ed3cee18dabd485228154e785192acf5bc123499e3640c50234179e98d31819"
   },
   "accepted_product_policy": {
     "runtime_claim": "none; no battery or USB operating duration is promised",

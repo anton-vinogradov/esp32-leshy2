@@ -717,7 +717,7 @@
       "title": "Retain the low-profile GCT edge-launch pair unless a truly equivalent stocked pair appears",
       "production_function_change": false,
       "evidence": "The selected GCT RFPC-SMA31/32 pair preserves the 3.9-mm edge-launch envelope, but the official GCT set includes an individual panel nut and washer; no nutless GCT sibling was found. HenryTech points normal to the PCB, while the stocked nutless DreamLNK pair would save about USD 19.01 per device but raises the connector axis roughly 6.3 mm and adds through-hole tails inside the sandwich.",
-      "action": "Keep the GCT pair with no shared frame; safe connector saving is currently USD 0. Reopen only for a stocked standard/reverse edge-launch pair rated to at least 6 GHz with equal or lower profile and a controlled 1.6-mm PCB drawing."
+      "action": "Keep the GCT pair with no shared frame; safe connector saving is currently USD 0. Reopen only for a stocked standard/reverse edge-launch pair rated to at least 6 GHz with equal or lower profile, a controlled 1.6-mm PCB drawing and the same dual-face mechanical load path: two shell-ground lands on each PCB face (or a demonstrably stronger through-board equivalent)."
     },
     {
       "priority": 3,

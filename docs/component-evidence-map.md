@@ -24,7 +24,7 @@ flowchart LR
 
 - Selected: `Vishay TSOP75238TR`; `Vishay TSMP95000TT`; `Vishay VSMY14940`.
 - Still to prove: received-lot orientation and measured startup, quiet-guard, capture and no-back-power behaviour.
-- Pass rule: the received specimen directly demonstrates this item: verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; a mismatch reopens the owning H1/H2/H3 result
+- Pass rule: the received specimen directly demonstrates this item: verify received TSOP75238TR/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; confirm TSOP75238TR CPL rotation and feeder presentation against the JLCPCB placement preview; a mismatch reopens the owning H1/H2/H3 result
 
 ### `H3-PHY-028` · `battery`
 

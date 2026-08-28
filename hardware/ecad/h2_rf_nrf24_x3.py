@@ -27,6 +27,8 @@ from h2_ui_s3_core import (
     FOOTPRINT_DIR,
     Pin,
     custom_footprint,
+    gct_rfpc_sma_175_footprint,
+    validate_gct_rfpc_sma_175_footprint,
     effects,
     escaped,
     library_symbol,
@@ -163,15 +165,9 @@ def footprint_outputs() -> dict[Path, str]:
         "DC2337J5010AHF", coupler_pads, 2.04, 1.29, 2.34, 1.59,
         "TTM DC2337J5010AHF Rev.H outline: 2.04x1.29-mm body, six 0.37x0.30-mm terminals on 0.65-mm columns and 0.98-mm rows; pin-1 orientation preserved",
     )
-    sma = custom_footprint(
+    sma = gct_rfpc_sma_175_footprint(
         "RFPC-SMA31-FN-175-A",
-        [("1", 0.0, -1.65, 1.60, 3.30, ("F.Cu", "F.Paste", "F.Mask")),
-         ("2", -1.75, -1.65, 1.60, 3.30, ("F.Cu", "F.Paste", "F.Mask")),
-         ("3", 1.75, -1.65, 1.60, 3.30, ("F.Cu", "F.Paste", "F.Mask")),
-         ("4", -1.75, -1.65, 1.60, 3.30, ("B.Cu", "B.Paste", "B.Mask")),
-         ("5", 1.75, -1.65, 1.60, 3.30, ("B.Cu", "B.Paste", "B.Mask"))],
-        10.20, 6.60, 10.40, 6.80,
-        "GCT RFPC-SMA31-FN drawing Rev.1.5: option 175 for 1.60-mm PCB; exact standard-polarity SMA body with three top and two bottom 1.60x3.30-mm lands",
+        "GCT RFPC-SMA31-FN drawing A1 released 2025-04-07",
     )
     return {
         FOOTPRINT_DIR / "Ebyte-E01-ML01IPX.kicad_mod": module,
@@ -429,6 +425,10 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         raise ValueError("E01-ML01IPX footprint must contain exactly eight host-PCB lands")
     if coupler_fp.count('\n\t(pad "') != 6:
         raise ValueError("DC2337J5010AHF footprint must contain exactly six oriented lands")
+    validate_gct_rfpc_sma_175_footprint(
+        generated[FOOTPRINT_DIR / "RFPC-SMA31-FN-175-A.kicad_mod"],
+        "RFPC-SMA31",
+    )
 
 
 def find_kicad_cli() -> str:

@@ -5,10 +5,10 @@
   "method": "deterministic FMEA over fault sources, primary shutdown, an electrically separate or fail-safe containment path, retained reason and physical recovery",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
-    "hardware/ecad/generated/H2-REV55-fault-kill.json": "2eebac4e33ec148f21222451ad9e3ef8bd0a20daf2b647b4a35dcaa3f9510b82",
-    "hardware/verification/generated/H3-VRF24-watchdog-fault-display.json": "f8c1995adc7e2105014c7494bad65dd09582fc5008dfa3453e1a7acbc553f659",
-    "hardware/verification/generated/H3-VRF61-thermal-model.json": "98ad14610addc6418076d908983fc3acf7e7c0946ef7076c9c40c35c5bf6c49a"
+    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
+    "hardware/ecad/generated/H2-REV55-fault-kill.json": "7a673ff410ac41ba6848804b69451ede801d36ee3e2a6f3b0a39c057eb9dea81",
+    "hardware/verification/generated/H3-VRF24-watchdog-fault-display.json": "d7946542a980d98be01abca477705f73390012f62bb8208c3cd8564bb152c9bb",
+    "hardware/verification/generated/H3-VRF61-thermal-model.json": "f1ba7cb683f990d8a6a06584766e841ea59f4d17819f11a4dcc43ddc39526b88"
   },
   "fault_plane": {
     "healthy_nominal_v": "3.2673",

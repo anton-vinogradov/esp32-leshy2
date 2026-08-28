@@ -2146,6 +2146,24 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(3, sma.count('(layers "F.Cu" "F.Paste" "F.Mask")'))
         self.assertEqual(2, sma.count('(layers "B.Cu" "B.Paste" "B.Mask")'))
+        footprint = next(
+            row for row in manifest["footprint_evidence"]
+            if row["mpn"] == "GCT RFPC-SMA32-FN-175-A"
+        )["locked_geometry_mm"]
+        self.assertEqual([1.87, 3.30], footprint["rf_land_size"])
+        self.assertEqual([1.60, 3.30], footprint["shell_land_size"])
+        self.assertEqual("rect", footprint["land_shape"])
+        self.assertEqual(5.10, footprint["shell_land_centre_span"])
+        self.assertEqual(0.0, footprint["board_edge_y"])
+        self.assertEqual(1.75, footprint["body_gap"])
+        self.assertEqual(
+            {"x": [-4.50, 4.50], "y": [-2.80, 12.40]},
+            footprint["nominal_body_envelope"],
+        )
+        self.assertEqual(
+            {"x": [-4.85, 4.85], "y": [-3.15, 12.75]},
+            footprint["courtyard_envelope"],
+        )
 
     def test_h2_2_3_exact_display_touch_storage_sheet_is_reviewed_and_current(self):
         import json

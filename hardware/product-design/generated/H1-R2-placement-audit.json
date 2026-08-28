@@ -1047,6 +1047,114 @@
     },
     "errors": []
   },
+  "main_sma_mounting": {
+    "standard_mpn": "GCT RFPC-SMA31-FN-175-A",
+    "reverse_mpn": "GCT RFPC-SMA32-FN-175-A",
+    "pcb_thickness_mm": 1.6,
+    "body_gap_mm": {
+      "nominal": 1.75,
+      "tolerance": 0.1,
+      "meaning": "G body gap for nominal 1.60-mm PCB, not a pad coordinate or press fit"
+    },
+    "board_edge_y_mm": 0.0,
+    "mechanical_principle": "true board-edge straddle: the connector shell spans the PCB edge and is soldered to ground lands on both PCB faces; the 1.75-mm body gap does not clamp the 1.60-mm PCB",
+    "component_face_lands": [
+      {
+        "role": "RF",
+        "centre_xy_mm": [
+          0.0,
+          -1.65
+        ],
+        "size_mm": [
+          1.87,
+          3.3
+        ]
+      },
+      {
+        "role": "GROUND_LEFT",
+        "centre_xy_mm": [
+          -2.55,
+          -1.65
+        ],
+        "size_mm": [
+          1.6,
+          3.3
+        ]
+      },
+      {
+        "role": "GROUND_RIGHT",
+        "centre_xy_mm": [
+          2.55,
+          -1.65
+        ],
+        "size_mm": [
+          1.6,
+          3.3
+        ]
+      }
+    ],
+    "opposite_face_lands": [
+      {
+        "role": "GROUND_LEFT",
+        "centre_xy_mm": [
+          -2.55,
+          -1.65
+        ],
+        "size_mm": [
+          1.6,
+          3.3
+        ]
+      },
+      {
+        "role": "GROUND_RIGHT",
+        "centre_xy_mm": [
+          2.55,
+          -1.65
+        ],
+        "size_mm": [
+          1.6,
+          3.3
+        ]
+      }
+    ],
+    "ground_load_spreading": "both face ground pours with a stitched via fence immediately behind the four shell lands; no substitution may rely on copper adhesion on one PCB face",
+    "prototype_load_path": "ESP32-DIV-like dual-face soldered edge mount without a shared antenna rail; the supplied per-port bulkhead nut and washer are not assumed by the current geometry and remain a fallback if enclosure-level qualification requires them",
+    "substitution_rule": "reject any cheaper SMA or RP-SMA whose exact 1.6-mm land pattern lacks the two lower-face shell lands or an equivalent through-board mechanical load path; never accept retention by only one PCB face",
+    "assembly_process_gate": {
+      "factory_route": "before order, obtain written factory DFM acceptance for the straddling five-land connector, including both-face solder delivery, stencil/paste treatment, fixture and inspection access",
+      "fallback_route": "if factory dual-face wetting is not accepted, lock a controlled post-PCBA hand-solder work instruction with alloy, flux, tip, temperature, dwell, cleaning, board support and operator qualification",
+      "acceptance_record": "retain one traceable record per connector with both-face photographs, five visibly wetted rectangular joints, continuity and zero shell movement before antenna fitment"
+    },
+    "drop_profile": {
+      "sample_count": 5,
+      "height_m": 1.0,
+      "faces": [
+        "front",
+        "rear",
+        "top",
+        "bottom",
+        "left",
+        "right"
+      ],
+      "drops_per_face_per_sample": 1,
+      "surface": "18-mm plywood over concrete",
+      "configuration": "production-equivalent closed enclosure with the heaviest approved production antenna for every populated SMA port installed at the specified coupling torque",
+      "post_test": "repeat joint photographs, shell-motion and continuity checks; apply the owning RF criterion to every path: VNA/feed limits for 50-ohm paths, FM/SW sensitivity/noise and AM/LW loop capacitance/sensitivity for the non-50-ohm receive paths"
+    },
+    "verification_gates": {
+      "H5": "lock both exact MPNs, released drawings, rectangular five-land coordinates, antenna test set and an executable factory or controlled post-PCBA dual-face soldering process; no sample purchase is authorized here",
+      "H7": "after assembly, inspect and photograph all five solder joints on every populated connector on every prototype from both PCB faces; reject incomplete wetting, cracks, lift, bridges or shell movement before antenna fitment",
+      "H8": "with the enclosure and approved antennas installed, mate at the GCT brass-SMA 0.452-0.678 N m coupling-torque range, run 50 mating cycles and the defined five-sample one-metre six-face drop profile; reject shell movement, nut loosening if fitted, solder/copper damage, continuity faults or failure of the owning VNA, sensitivity, noise or capacitance limit"
+    },
+    "manufacturer_sources": [
+      "https://gct.co/connector/rfpc-sma31-fn",
+      "https://gct.co/connector/rfpc-sma32-fn",
+      "https://www.mouser.com/datasheet/3/1507/1/RFPC-SMA31-FN.pdf",
+      "https://www.mouser.com/datasheet/3/1507/1/RFPC_SMA32_FN.pdf"
+    ],
+    "comparison_reference": "ESP32-DIV v2 top/bottom Gerbers at commit 9d4d82fe7a12febf554b12e1eca6d434ebe79d39 provide the durable comparison for the same dual-face edge-soldering principle; exact connector identity is not inferred",
+    "comparison_url": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2"
+  },
   "mechanical_retention": {
     "m1_rule": "M1 is never a load-bearing member",
     "intentional_opposing_mates": [

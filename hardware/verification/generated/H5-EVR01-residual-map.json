@@ -4,10 +4,10 @@
   "status": "reviewed_mapping_only",
   "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "b88c68d9e002f69852aff8fceed86ac67a8ee11528c4211f1b1df3901a660ec3",
-    "hardware/product-design/generated/H1-physical-source-table.json": "a4ba50c406410a7fdf102d38a4cd0ff7e267f73bcbaa09f1d21ffd8d8027dbf9",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "c102cae6157d3911ae8dc5d72af1c65a9b2971486da2ba90fd4236d9d4e61534",
+    "hardware/product-design/generated/H1-physical-source-table.json": "f97732a2f871b7c6a1f2bb11be566228485fe9c10d49eb5c3fe44ada5b20968b",
     "hardware/product-design/mechanical-evidence-gates.json": "c6d3a2366cbb7657d09aea80019a59909d83457d3b7b2bba2cb328f967e12a1d",
-    "hardware/architecture/devices.json": "b3532cd8bc4a96c32064a79b74bae2e59de8afa9b6193cff95cabb5610e6381a",
+    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
     "hardware/architecture/am-lw-pod.json": "6571e20c26f2ceaebf9c4bf410d155417a68116b3b5ef2e16d7c77ee06503e08"
   },
   "summary": {
@@ -115,7 +115,7 @@
       "id": "H3-PHY-024",
       "source_phase": "H3.3",
       "source_group": "ir",
-      "requirement": "verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
+      "requirement": "verify received TSOP75238TR/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; confirm TSOP75238TR CPL rotation and feeder presentation against the JLCPCB placement preview",
       "parts": [
         {
           "identity": "ir_demod",
@@ -160,7 +160,7 @@
       ],
       "sample_specific": true,
       "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
-      "accepted_pass_rule": "the received specimen directly demonstrates this item: verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; a mismatch reopens the owning H1/H2/H3 result",
+      "accepted_pass_rule": "the received specimen directly demonstrates this item: verify received TSOP75238TR/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; confirm TSOP75238TR CPL rotation and feeder presentation against the JLCPCB placement preview; a mismatch reopens the owning H1/H2/H3 result",
       "status": "mapped_evidence_open"
     },
     {
@@ -428,8 +428,8 @@
           "mpn": "GCT RFPC-SMA31-FN-175-A",
           "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
           "source": {
-            "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
-            "version": "drawing dated 2025-04-07",
+            "document": "GCT RFPC-SMA31-FN official product page and A1 product drawing",
+            "version": "drawing A1 released 2025-04-07",
             "url": "https://gct.co/connector/rfpc-sma31-fn",
             "checked": "2026-08-19"
           }
@@ -440,8 +440,8 @@
           "mpn": "GCT RFPC-SMA31-FN-175-A",
           "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
           "source": {
-            "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
-            "version": "drawing dated 2025-04-07",
+            "document": "GCT RFPC-SMA31-FN official product page and A1 product drawing",
+            "version": "drawing A1 released 2025-04-07",
             "url": "https://gct.co/connector/rfpc-sma31-fn",
             "checked": "2026-08-19"
           }
@@ -452,8 +452,8 @@
           "mpn": "GCT RFPC-SMA31-FN-175-A",
           "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
           "source": {
-            "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
-            "version": "drawing dated 2025-04-07",
+            "document": "GCT RFPC-SMA31-FN official product page and A1 product drawing",
+            "version": "drawing A1 released 2025-04-07",
             "url": "https://gct.co/connector/rfpc-sma31-fn",
             "checked": "2026-08-19"
           }
@@ -495,8 +495,8 @@
           "mpn": "GCT RFPC-SMA31-FN-175-A",
           "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
           "source": {
-            "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
-            "version": "drawing dated 2025-04-07",
+            "document": "GCT RFPC-SMA31-FN official product page and A1 product drawing",
+            "version": "drawing A1 released 2025-04-07",
             "url": "https://gct.co/connector/rfpc-sma31-fn",
             "checked": "2026-08-19"
           }
@@ -907,8 +907,8 @@
           "mpn": "GCT RFPC-SMA31-FN-175-A",
           "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
           "source": {
-            "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
-            "version": "drawing dated 2025-04-07",
+            "document": "GCT RFPC-SMA31-FN official product page and A1 product drawing",
+            "version": "drawing A1 released 2025-04-07",
             "url": "https://gct.co/connector/rfpc-sma31-fn",
             "checked": "2026-08-19"
           }
@@ -919,8 +919,8 @@
           "mpn": "GCT RFPC-SMA31-FN-175-A",
           "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
           "source": {
-            "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
-            "version": "drawing dated 2025-04-07",
+            "document": "GCT RFPC-SMA31-FN official product page and A1 product drawing",
+            "version": "drawing A1 released 2025-04-07",
             "url": "https://gct.co/connector/rfpc-sma31-fn",
             "checked": "2026-08-19"
           }
@@ -931,8 +931,8 @@
           "mpn": "GCT RFPC-SMA31-FN-175-A",
           "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
           "source": {
-            "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
-            "version": "drawing dated 2025-04-07",
+            "document": "GCT RFPC-SMA31-FN official product page and A1 product drawing",
+            "version": "drawing A1 released 2025-04-07",
             "url": "https://gct.co/connector/rfpc-sma31-fn",
             "checked": "2026-08-19"
           }

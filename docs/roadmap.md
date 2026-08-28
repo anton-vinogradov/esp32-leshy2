@@ -100,6 +100,12 @@ H1 report.
   `RFPC-SMA31/32-FN-175-A` edge-launch pair without a shared antenna frame.
   HenryTech parts point normal to the PCB; DreamLNK `SMA-KWE901/902` are about
   10.2 mm high with through-hole tails. Neither is a no-worse mechanical swap.
+- ✅ The exact GCT land pattern uses the selected dual-face retention principle:
+  the SMA shell straddles the board edge and solders two ground wings to each
+  PCB face. One-face edge soldering is machine-rejected;
+  the exact A1 footprint uses a 1.75-mm body gap, x=±2.55-mm shell-land centres
+  and a 1.87-mm RF land. H5 locks documents/plan, H7 inspects every populated
+  connector on every prototype and H8 runs torque/cycle/drop evidence.
 - ✅ C5 retains official MPN `ESP32-C5-WROOM-1U-N8R8`; the active Standard-PCBA
   route is Espressif `C54951858` with supplier code `...-V1.2`, stock 460,
   available 440 and MOQ 1. Production accepts only matching incoming MD/lot

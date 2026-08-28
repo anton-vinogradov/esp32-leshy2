@@ -290,6 +290,36 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertAlmostEqual((rear[2] + rear[3]) / 2, axis_x)
         self.assertGreater(axis_y, 6.0)
 
+    def test_main_sma_mounts_straddle_and_solder_to_both_pcb_faces(self):
+        mounting = self.audit["main_sma_mounting"]
+        self.assertEqual("GCT RFPC-SMA31-FN-175-A", mounting["standard_mpn"])
+        self.assertEqual("GCT RFPC-SMA32-FN-175-A", mounting["reverse_mpn"])
+        self.assertEqual(1.6, mounting["pcb_thickness_mm"])
+        self.assertEqual(0.0, mounting["board_edge_y_mm"])
+        self.assertEqual(1.75, mounting["body_gap_mm"]["nominal"])
+        self.assertEqual([0.0, -1.65], mounting["component_face_lands"][0]["centre_xy_mm"])
+        self.assertEqual([1.87, 3.3], mounting["component_face_lands"][0]["size_mm"])
+        self.assertEqual(
+            [[-2.55, -1.65], [2.55, -1.65]],
+            [row["centre_xy_mm"] for row in mounting["opposite_face_lands"]],
+        )
+        self.assertIn("both PCB faces", mounting["mechanical_principle"])
+        self.assertIn("one PCB face", mounting["substitution_rule"])
+        self.assertEqual({"H5", "H7", "H8"}, set(mounting["verification_gates"]))
+        self.assertIn("factory DFM acceptance", mounting["assembly_process_gate"]["factory_route"])
+        self.assertIn("post-PCBA hand-solder", mounting["assembly_process_gate"]["fallback_route"])
+        self.assertEqual(5, mounting["drop_profile"]["sample_count"])
+        self.assertEqual("18-mm plywood over concrete", mounting["drop_profile"]["surface"])
+        self.assertIn("AM/LW loop capacitance/sensitivity", mounting["drop_profile"]["post_test"])
+        for name in ("RFPC-SMA31-FN-175-A", "RFPC-SMA32-FN-175-A"):
+            footprint = (REPO / f"hardware/ecad/libraries/Leshy2.pretty/{name}.kicad_mod").read_text()
+            self.assertIn('(pad "1" smd rect (at 0.000 -1.650) (size 1.870 3.300)', footprint)
+            self.assertIn('(pad "2" smd rect (at -2.550 -1.650) (size 1.600 3.300)', footprint)
+            self.assertIn('(pad "5" smd rect (at 2.550 -1.650) (size 1.600 3.300)', footprint)
+            self.assertNotIn("roundrect_rratio", footprint)
+            self.assertIn('(fp_rect (start -4.500 -2.800) (end 4.500 12.400)', footprint)
+            self.assertIn('(fp_rect (start -4.850 -3.150) (end 4.850 12.750)', footprint)
+
     def test_outer_antenna_silkscreen_is_not_hidden(self):
         self.assertEqual("pass", self.audit["silkscreen"]["status"])
         self.assertEqual([], self.audit["silkscreen"]["errors"])

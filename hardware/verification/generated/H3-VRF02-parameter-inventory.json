@@ -3,8 +3,8 @@
   "stage": "H3.0.2",
   "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
-    "hardware/architecture/devices.json": "0100367f3553139224ff02a0d61b6bb70198e8ee293334b07a766411940168a8",
-    "hardware/ecad/generated/H2-instance-ledger.json": "d2cbdb2302ec006b477959e3dff0d183cacba1055777522a706e186ce3ed7022",
+    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
+    "hardware/ecad/generated/H2-instance-ledger.json": "261fa6c38c7a1dabeacbb52f2e4b71f0f4b64e3f29da7b048900c7b4f5d3427f",
     "hardware/verification/generated/H3-VRF01-input-freeze.json": "672990f8531ffa803724aa8bf1b3b262436267d89d965c9e2313fdb13c5b57bd"
   },
   "policy": {
@@ -1114,16 +1114,16 @@
       ],
       "lifecycle": "active",
       "source": {
-        "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
-        "version": "drawing dated 2025-04-07",
+        "document": "GCT RFPC-SMA31-FN official product page and A1 product drawing",
+        "version": "drawing A1 released 2025-04-07",
         "url": "https://gct.co/connector/rfpc-sma31-fn",
         "checked": "2026-08-19"
       },
       "source_status": "accepted_h2_authoritative_source",
       "source_host": "gct.co",
       "accepted_h2_source_preserved": {
-        "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
-        "version": "drawing dated 2025-04-07",
+        "document": "GCT RFPC-SMA31-FN official product page and A1 product drawing",
+        "version": "drawing A1 released 2025-04-07",
         "url": "https://gct.co/connector/rfpc-sma31-fn",
         "checked": "2026-08-19"
       },
@@ -1169,16 +1169,16 @@
       ],
       "lifecycle": "active",
       "source": {
-        "document": "GCT RFPC-SMA32-FN official product page and matching 1.6-mm product drawing",
-        "version": "RFPC-SMA31/SMA32 IP67 edge-launch family",
+        "document": "GCT RFPC-SMA32-FN official product page and A1 product drawing",
+        "version": "drawing A1 dated 2025-02-25, released 2025-04-07",
         "url": "https://gct.co/connector/rfpc-sma32-fn",
         "checked": "2026-08-19"
       },
       "source_status": "accepted_h2_authoritative_source",
       "source_host": "gct.co",
       "accepted_h2_source_preserved": {
-        "document": "GCT RFPC-SMA32-FN official product page and matching 1.6-mm product drawing",
-        "version": "RFPC-SMA31/SMA32 IP67 edge-launch family",
+        "document": "GCT RFPC-SMA32-FN official product page and A1 product drawing",
+        "version": "drawing A1 dated 2025-02-25, released 2025-04-07",
         "url": "https://gct.co/connector/rfpc-sma32-fn",
         "checked": "2026-08-19"
       },
