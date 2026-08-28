@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "contract_id": "C5-SDIO-SERVICE-MUX-1",
+  "checked_on": "2026-08-28",
+  "status": "machine_contract_defined_factory_inventory_gate_open",
+  "scope": "Exact ESP32-C5-WROOM-1U-N8R8 native-service-USB versus four-bit-SDIO ownership, switching and fail-safe electrical contract. This file does not authorize ECAD release.",
+  "official_evidence": [
+    {
+      "document": "ESP32-C5-WROOM-1/WROOM-1U Datasheet",
+      "version": "v1.2 family publication; live PDF checked 2026-08-28",
+      "url": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+      "covers": ["module contacts", "SDIO fixed IO-MUX assignment", "USB fixed assignment", "strapping pins", "3 ms strap hold"]
+    },
+    {
+      "document": "Espressif ESP32-C5 Schematic Checklist",
+      "version": "latest; checked 2026-08-28",
+      "url": "https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32c5/schematic-checklist.html",
+      "covers": ["SDIO routing and per-trace series-resistor reserves", "USB 22/33-ohm series reserves"]
+    },
+    {
+      "document": "ESP-IDF ESP32-C5 SDIO Card Slave Driver",
+      "version": "v5.5; checked 2026-08-28",
+      "url": "https://docs.espressif.com/projects/esp-idf/en/v5.5/esp32c5/api-reference/peripherals/sdio_slave.html",
+      "covers": ["pull-ups required on CMD and DAT0..DAT3", "no CLK pull-up requirement"]
+    },
+    {
+      "document": "onsemi FSUSB42 datasheet",
+      "version": "Rev. 3, May 2022; checked 2026-08-28",
+      "url": "https://www.onsemi.com/download/data-sheet/pdf/fsusb42-d.pdf",
+      "covers": ["MSOP-10 pinout", "truth table", "break-before-make", "power-off isolation", "USB 2.0 bandwidth"]
+    }
+  ],
+  "c5_module": {
+    "device_id": "esp32_c5_wroom_1u_n8r8",
+    "manufacturer": "Espressif Systems",
+    "mpn": "ESP32-C5-WROOM-1U-N8R8",
+    "production_silicon_floor": "v1.2",
+    "signals": [
+      {"signal": "SDIO_DAT1", "gpio": "GPIO7", "module_pad": 9, "muxed_with_usb": false, "strap_role": "JTAG source"},
+      {"signal": "SDIO_DAT0", "gpio": "GPIO8", "module_pad": 10, "muxed_with_usb": false, "strap_role": null},
+      {"signal": "SDIO_CLK", "gpio": "GPIO9", "module_pad": 11, "muxed_with_usb": false, "strap_role": null},
+      {"signal": "SDIO_CMD", "gpio": "GPIO10", "module_pad": 12, "muxed_with_usb": false, "strap_role": null},
+      {"signal": "SDIO_DAT3_USB_DM", "gpio": "GPIO13", "module_pad": 13, "muxed_with_usb": true, "strap_role": null},
+      {"signal": "SDIO_DAT2_USB_DP", "gpio": "GPIO14", "module_pad": 14, "muxed_with_usb": true, "strap_role": null}
+    ],
+    "not_sdio_signals": [
+      {"gpio": "GPIO6", "module_pad": 8, "reason": "exposed GPIO and current IR-TX allocation; not a fixed C5 SDIO signal"},
+      {"gpio": "GPIO11", "module_pad": 25, "reason": "UART0 TX capable GPIO; not a fixed C5 SDIO signal"}
+    ]
+  },
+  "mux": {
+    "electrical_reference": {
+      "manufacturer": "onsemi",
+      "mpn": "FSUSB42MUX",
+      "package": "MSOP-10",
+      "bandwidth_mhz_typ": 720,
+      "on_resistance_ohm_typ": 3.9,
+      "break_before_make_ns_min": 2.0,
+      "power_off_isolation_required": true
+    },
+    "pin_topology": [
+      {"pin": 1, "name": "VCC", "net": "3V3_MAIN"},
+      {"pin": 2, "name": "SEL", "net": "C5_MUX_SEL", "default": "100-kohm pull-down; LOW selects USB HSD1"},
+      {"pin": 3, "name": "D+", "net": "C5_GPIO14_COMMON", "endpoint": "C5 GPIO14 / module pad 14"},
+      {"pin": 4, "name": "D-", "net": "C5_GPIO13_COMMON", "endpoint": "C5 GPIO13 / module pad 13"},
+      {"pin": 5, "name": "GND", "net": "POWER_GROUND"},
+      {"pin": 6, "name": "HSD1-", "net": "C5_SERVICE_USB_DM_BRANCH", "endpoint": "USB connector D- through connector-side ESD and branch-local series footprint"},
+      {"pin": 7, "name": "HSD1+", "net": "C5_SERVICE_USB_DP_BRANCH", "endpoint": "USB connector D+ through connector-side ESD and branch-local series footprint"},
+      {"pin": 8, "name": "HSD2-", "net": "HUB_C5_SDIO_DAT3_BRANCH", "endpoint": "Hub SDIO DAT3 through branch-local pull-up and series footprint"},
+      {"pin": 9, "name": "HSD2+", "net": "HUB_C5_SDIO_DAT2_BRANCH", "endpoint": "Hub SDIO DAT2 through branch-local pull-up and series footprint"},
+      {"pin": 10, "name": "OE", "net": "C5_MUX_DISABLE", "default": "100-kohm pull-down; HIGH disconnects both branches"}
+    ],
+    "truth_table": [
+      {"sel": 0, "oe": 0, "state": "SERVICE_USB", "connection": "D+ to HSD1+ and D- to HSD1-"},
+      {"sel": 1, "oe": 0, "state": "RUNTIME_SDIO", "connection": "D+ to HSD2+ (DAT2) and D- to HSD2- (DAT3)"},
+      {"sel": "X", "oe": 1, "state": "SAFE_DISCONNECTED", "connection": "no branch connected"}
+    ]
+  },
+  "production_mux_route": {
+    "selection_status": "unresolved_live_inventory_gate",
+    "candidate": {
+      "manufacturer": "onsemi",
+      "mpn": "FSUSB42MUX",
+      "jlcpcb_part_number": "C11355",
+      "package": "MSOP-10",
+      "assembly_type": "SMT Assembly",
+      "pcba_type": ["Economic", "Standard"],
+      "catalog_identity_url": "https://jlcpcb.com/partdetail/onsemi-FSUSB42MUX/C11355",
+      "identity_checked_on": "2026-08-28"
+    },
+    "live_inventory": {
+      "stock": null,
+      "available_order_quantity": null,
+      "moq": null,
+      "price_tiers_usd": null,
+      "reason_open": "The current JLC catalogue page proves exact identity, package and Standard-PCBA eligibility, but its live inventory, MOQ and price fields were not available through the unauthenticated machine-readable response. Recheck the live BOM/Parts surface before production selection."
+    },
+    "release_rule": "The candidate is an electrical reference only until exact live stock or an explicit pre-order/private-library/global-sourcing route, MOQ and price are timestamped together."
+  },
+  "branch_conditioning": {
+    "footprint": "R_0402_1005Metric",
+    "sdio_series": [
+      {"signal": "CLK", "location": "direct GPIO9-to-Hub branch", "initial_ohm": 0, "tuning_options_ohm": [0, 22, 33]},
+      {"signal": "CMD", "location": "direct GPIO10-to-Hub branch", "initial_ohm": 0, "tuning_options_ohm": [0, 22, 33]},
+      {"signal": "DAT0", "location": "direct GPIO8-to-Hub branch", "initial_ohm": 0, "tuning_options_ohm": [0, 22, 33]},
+      {"signal": "DAT1", "location": "direct GPIO7-to-Hub branch", "initial_ohm": 0, "tuning_options_ohm": [0, 22, 33]},
+      {"signal": "DAT2", "location": "FSUSB42 HSD2+ SDIO-only branch", "initial_ohm": 0, "tuning_options_ohm": [0, 22, 33]},
+      {"signal": "DAT3", "location": "FSUSB42 HSD2- SDIO-only branch", "initial_ohm": 0, "tuning_options_ohm": [0, 22, 33]}
+    ],
+    "sdio_pullups": [
+      {"signal": "CMD", "gpio": "GPIO10", "value_ohm": 10000, "location": "direct SDIO branch"},
+      {"signal": "DAT0", "gpio": "GPIO8", "value_ohm": 10000, "location": "direct SDIO branch"},
+      {"signal": "DAT1", "gpio": "GPIO7", "value_ohm": 10000, "location": "direct SDIO branch and deterministic JTAG-source strap"},
+      {"signal": "DAT2", "gpio": "GPIO14", "value_ohm": 10000, "location": "FSUSB42 HSD2+ SDIO-only branch; disconnected from C5 during USB service"},
+      {"signal": "DAT3", "gpio": "GPIO13", "value_ohm": 10000, "location": "FSUSB42 HSD2- SDIO-only branch; disconnected from C5 during USB service"}
+    ],
+    "sdio_clock_bias": {
+      "signal": "CLK",
+      "gpio": "GPIO9",
+      "fitted_pull": null,
+      "dnp_footprint": "10-kohm pull-up option, not populated",
+      "reason": "SDIO requires pull-ups on CMD and DAT0..DAT3; CLK is actively driven by the host and remains unbiased. Its independent series tuning footprint remains fitted."
+    },
+    "usb_series": [
+      {"signal": "USB_DP", "location": "FSUSB42 HSD1+ USB-only branch after connector-side ESD", "initial_ohm": 22, "allowed_ohm": [22, 33]},
+      {"signal": "USB_DM", "location": "FSUSB42 HSD1- USB-only branch after connector-side ESD", "initial_ohm": 22, "allowed_ohm": [22, 33]}
+    ],
+    "layout_rules": [
+      "USB and SDIO series footprints are branch-local and are never placed on the C5 common segment shared by GPIO13/GPIO14.",
+      "DAT2/DAT3 pull-ups stay on HSD2 so they cannot bias USB D+/D- in service mode.",
+      "CLK has no fitted pull-up; keep only a DNP diagnostic footprint and the independent series tuning footprint.",
+      "Route each differential USB branch as 90-ohm differential and length-match within the final stack-up rule; avoid stubs at the mux.",
+      "Place every source-series option close to the active source for the direction being qualified; bidirectional SDIO values are finalized by SI/HIL, not assumed from schematic alone."
+    ]
+  },
+  "edge_straps": {
+    "selected_profile": "rising-edge input sample, falling-edge output drive",
+    "contacts": [
+      {"gpio": "GPIO25", "module_pad": 26, "default_pull": "10-kohm pull-up", "latched_value": 1, "opposite_option": "DNP 10-kohm pull-down"},
+      {"gpio": "GPIO3", "module_pad": 5, "alias": "MTDI", "default_pull": "10-kohm pull-down", "latched_value": 0, "opposite_option": "DNP 10-kohm pull-up"}
+    ],
+    "hold_after_c5_en_release_ms_min": 3,
+    "jtag_policy": "GPIO7 is externally pulled high for SDIO. Production eFuse and recovery policy must use USB-JTAG or disabled JTAG and must never depend on a floating GPIO7 or a conflicting pad-JTAG strap."
+  },
+  "ownership": {
+    "service_vbus": {
+      "source": "C5 service USB connector VBUS",
+      "use": "high-impedance presence sense only",
+      "forbidden": ["board power input", "battery charge input", "back-power path"],
+      "hardware_requirement": "An always-on hardware detector and asynchronous latch must seize service ownership without C5 or Hub firmware.",
+      "detector_and_latch_mpn_status": "unresolved_factory_gate"
+    },
+    "latch": {
+      "signal": "C5_SERVICE_OWNED",
+      "asynchronous_set": "service VBUS present",
+      "clear_condition": "service VBUS absent AND C5 EN asserted low AND Hub SDIO pins proven high-impedance AND explicit AON service-release request",
+      "service_override": ["force Hub RUN low", "force C5 EN low during switch", "force mux OE high during branch change", "force mux SEL low", "deny Hub SDIO drive"],
+      "firmware_cannot_override": true
+    },
+    "states": [
+      {"state": "SAFE_DISCONNECTED", "c5_en": 0, "hub_run": 0, "hub_sdio": "high-Z", "mux_oe": 1, "mux_sel": "X"},
+      {"state": "SERVICE_USB", "c5_en": 1, "hub_run": 0, "hub_sdio": "high-Z", "mux_oe": 0, "mux_sel": 0},
+      {"state": "RUNTIME_SDIO", "c5_en": 1, "hub_run": 1, "hub_sdio": "SDIO host", "mux_oe": 0, "mux_sel": 1}
+    ],
+    "power_on_default": "SERVICE_USB branch selected; C5 and Hub remain reset until the always-on sequencer has sampled service VBUS and established one legal state."
+  },
+  "transition_sequences": {
+    "runtime_to_service": [
+      "asynchronously latch C5_SERVICE_OWNED when service VBUS is detected",
+      "assert C5 EN low and Hub RUN low; deny all Hub SDIO output enables and prove the Hub pins high-impedance",
+      "drive mux OE high to disconnect both HSD branches",
+      "wait at least 1 microsecond, exceeding FSUSB42 turn-off and break-before-make maxima",
+      "drive mux SEL low for HSD1 USB",
+      "wait at least 1 microsecond, then drive mux OE low",
+      "establish all C5 boot and SDIO-edge strap levels",
+      "release C5 EN only; keep Hub RUN low and strap levels stable for at least 3 milliseconds"
+    ],
+    "service_to_runtime": [
+      "require service VBUS absent and assert C5 EN low",
+      "keep Hub SDIO pins high-impedance while releasing Hub RUN and entering the ownership stub",
+      "drive mux OE high and wait at least 1 microsecond",
+      "drive mux SEL high for HSD2 SDIO and wait at least 1 microsecond",
+      "drive mux OE low while both endpoints remain non-driving",
+      "apply GPIO25 high, GPIO3 low and GPIO7 high strap levels, then release C5 EN",
+      "hold strap levels for at least 3 milliseconds and initialize C5 SDIO slave",
+      "train at 20 MHz before enabling Hub drive; target 40 MHz only after the HIL gates pass"
+    ],
+    "illegal": [
+      "changing SEL while C5 or Hub can drive GPIO13/GPIO14",
+      "releasing Hub RUN in SERVICE_USB",
+      "letting firmware clear C5_SERVICE_OWNED while VBUS is present",
+      "using service VBUS as a power source"
+    ]
+  },
+  "performance": {
+    "bus_width_bits": 4,
+    "bringup_clock_hz": 20000000,
+    "bringup_raw_mb_s": 10.0,
+    "target_clock_hz": 40000000,
+    "target_raw_mb_s": 20.0,
+    "qualified_payload_floor_mb_s": 7.5,
+    "qualification_frequency_hz": 40000000,
+    "rule": "20 MHz is bring-up only. The 7.5 MB/s payload floor is accepted only at the 40 MHz target after reset, coexistence and long-run HIL."
+  },
+  "hil_gates": [
+    "USB enumerate, flash, reset and recovery with Hub held reset and every non-muxed SDIO signal externally pulled to a legal idle",
+    "hot insertion and removal of service VBUS from every runtime state without contention, back-power or loss of recovery ownership",
+    "CMD52/CMD53, CRC7/CRC16, DAT1 interrupt, turnaround and reset recovery at 20 MHz before 40 MHz",
+    "at least 7.5 MB/s framed payload at 40 MHz with control priority under simultaneous C5 radio load",
+    "USB Full-Speed eye/edge compliance through the selected production mux and final PCB stack-up",
+    "GPIO3/GPIO25/GPIO7 strap readback, eFuse policy and wrong-image recovery across temperature and supply corners",
+    "24-to-48-hour soak with repeated service seizure and release; no C5/Hub bus contention or stuck ownership"
+  ],
+  "integration_boundaries": {
+    "allowed_outputs": ["this contract", "generated machine audit", "focused regression tests"],
+    "not_modified_by_this_contract": ["public README", "roadmap", "dual-RP pin-map artifact", "U219 artifact", "KiCad production sheets"],
+    "required_later_integration": [
+      "replace the historical one-bit C5 map in the atomic G2F/KiCad source after H0-R2 acceptance",
+      "bind Hub-side DAT0..DAT3/CMD/CLK to the accepted dual-RP pin map without changing this C5 physical assignment",
+      "select and live-validate the service-VBUS detector/latch implementation and production mux route",
+      "promote 40 MHz target semantics into the top-level H0 transport contract after HIL readiness review"
+    ]
+  }
+}
