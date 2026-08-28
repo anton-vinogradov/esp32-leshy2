@@ -1,0 +1,307 @@
+{
+  "schema": "leshy2.generated.h1-r2.u219-cap-policy.v1",
+  "design_id": "H1-R2-U219-CAP-01",
+  "source": "hardware/architecture/h1-r2-u219-cap.json",
+  "source_sha256": "87795cb81086dd60b5f62b135fc5daffa712b0f940fc268548fde711a700362c",
+  "base_candidate": "hardware/architecture/candidates/G2F-3I.json",
+  "base_candidate_sha256": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
+  "evidence_date": "2026-08-28",
+  "validation": {
+    "passed": true,
+    "errors": []
+  },
+  "slot": {
+    "population": "exactly_one",
+    "profiles": [
+      "U214_LORA_GNSS",
+      "U219_CC1101_RX_NFC_READER"
+    ],
+    "unknown": "branch_off_and_pin10_disconnected"
+  },
+  "pin_8": {
+    "connector_contact": 8,
+    "host_gpio": "RP GPIO14",
+    "existing_path_reused": "u214_host_buffer_a.1Y -> u214_series_rst -> u214_esd_a.D2_PLUS -> u214_connector.PIN_8",
+    "u214_role": "LORA_RST_N",
+    "u219_role": "POWER_EN",
+    "fail_safe_default": "low",
+    "requirements": [
+      "RP GPIO14 is configured low before the qualified output boundary is enabled",
+      "the existing protected branch and U214_READY qualification remain dominant",
+      "loss of RUN, FAULT_KILL, profile validity or protected 5 V drives or returns the contact low",
+      "no accessory may source contact 8 into an unpowered host"
+    ]
+  },
+  "protected_5v": {
+    "existing_path_reused": "ext_efuse.OUT -> 5V_U214_PROTECTED -> u214_connector.PIN_7",
+    "protection": "existing TPS259470 true-reverse-blocking latch-off eFuse, inrush/current limit, passive discharge and TPS3808 readiness",
+    "u219_listed_load_ma": 96,
+    "paper_fit": "listed U219 load is inside the existing protected Cap-branch budget",
+    "contact_7_gate": "current official EN pin table leaves contact 7 blank/NC while the legacy dock contract calls it 5V_IN; do not energize a received U219 until continuity, polarity and exact revision schematic prove this path",
+    "failure_rule": "if received-unit proof does not establish protected contact-7 power, reject the U219 profile; do not invent an alternate power feed"
+  },
+  "pin_10": {
+    "connector_contact": 10,
+    "host_gpio": "RP GPIO12",
+    "switch": "u219_pin10_switch",
+    "switch_mpn": "SN74CBTLV1G125DCKR",
+    "switch_supply": "3V3_MAIN",
+    "path": "u214_connector.PIN_10 <-> existing connector ESD <-> SN74CBTLV1G125 A/B <-> RP GPIO12",
+    "aon_enable": {
+      "inverter": "u219_pin10_oe_driver",
+      "inverter_mpn": "SN74LVC1G06DCKR",
+      "supply": "AON_SAFE_3V3",
+      "switch_oe_pull": "10 kOhm to AON_SAFE_3V3; disabled when driver is open",
+      "command_default": "10 kOhm to SAFETY_GROUND; low/open keeps /OE high",
+      "command_source": "existing U214_READY; the signed profile is admitted before any upstream branch request can make READY high",
+      "enable_condition": "signed profile AND protected rail qualified AND RUN permitted",
+      "loss_behavior": "any lost qualification releases /OE high and disconnects pin 10"
+    },
+    "partial_power_down": "both selected ICs provide Ioff/powered-off isolation; connector ESD remains ahead of the boundary",
+    "supersedes": [
+      "u214_return_buffer channel 1 on contact 10",
+      "u214_series_busy 22-Ohm resistor",
+      "fixed RP GPIO12 input-only declaration"
+    ],
+    "preserves": [
+      "u214_return_buffer channels 2..4",
+      "U214 IRQ, GNSS TX and MISO return paths",
+      "all existing Cap connector ESD channels"
+    ]
+  },
+  "spi": {
+    "owner": "rear RF RP2354B PIO/SPI domain",
+    "clock": "existing U214 SCK on RP GPIO45",
+    "mosi": "existing U214 MOSI on RP GPIO46",
+    "miso": "existing U214 MISO on RP GPIO44",
+    "chip_selects": {
+      "u214": "contact 14 is LORA_NSS_N",
+      "u219_cc1101": "contact 14 is CC1101_CS_N",
+      "u219_nfc": "contact 10 is NFC_CS_N through the bidirectional switch"
+    },
+    "rules": [
+      "only the signed active profile may drive a chip select",
+      "contact 10 is never driven before the bilateral boundary is enabled",
+      "all chip selects return inactive before changing SPI mode or accessory profile",
+      "SPI timing and the published RF_SW0/RF_SW1 truth-table inconsistency remain received-unit HIL gates",
+      "the official tutorial's conflicting shared-CS prose versus separate NFC-CS example remains a received-unit trace gate"
+    ]
+  },
+  "radio_policy": {
+    "cc1101": {
+      "allowed": "receive, RSSI, carrier sense and packet capture only",
+      "forbidden_commands": [
+        "SFSTXON",
+        "STX",
+        "PATABLE write",
+        "TX FIFO write"
+      ],
+      "forbidden_register_states": [
+        "MCSM0.PIN_CTRL_EN = 1",
+        "MCSM1 RXOFF_MODE = FSTXON or TX",
+        "MCSM1 TXOFF_MODE = FSTXON or TX"
+      ],
+      "hardware_tx_evidence": "absent for U219 CC1101; therefore TX is unconditionally forbidden"
+    },
+    "nfc": {
+      "allowed": "reader/poller inventory and read operations only",
+      "forbidden": [
+        "tag write",
+        "card emulation",
+        "field-on without EV_N9 lease"
+      ],
+      "runtime_enable": "blocked until the printed pickup, field thresholds and no-false-negative timing pass VNA/HIL"
+    }
+  },
+  "nfc_field_evidence": {
+    "signal": "EV_N9_U219_NFC",
+    "function": "independent physical evidence that a 13.56-MHz field exists; never identity and never authorization",
+    "pickup": {
+      "implementation": "weakly coupled printed PCB loop with no galvanic connection to U219",
+      "placement": "host RF/power PCB below the U219 NFC field structure, outside the connector and retention keep-outs",
+      "tuning": "DNP C0G bank selected only after VNA and received-U219 measurements",
+      "loading_limit": "insertion loss, Q change and read-range loss must remain inside HIL limits"
+    },
+    "analog_path": [
+      "NFC_PICKUP_P/N printed loop",
+      "two BAT54S,215 packages as a four-diode balanced full-wave Schottky bridge",
+      "NFC_FIELD_ENV RC envelope and discharge",
+      "LMV331IDBVR with NFC_FIELD_ENV on IN-, threshold/hysteresis on IN+ and open-collector output",
+      "EV_N9_U219_NFC active low with AON pull-up"
+    ],
+    "digital_fanout": [
+      "TCA9535 evidence_mask.P12 diagnostic input",
+      "existing evidence_or_4.K2 spare cathode",
+      "existing evidence_or_4.A_COMMON -> ANY_TX_AON_N"
+    ],
+    "supersedes": [
+      "evidence_mask_p12_pulldown and EVIDENCE_MASK_UNUSED_P12",
+      "evidence_or_4.K2 no-connect"
+    ],
+    "polarity": {
+      "no_field": "comparator released; AON pull-up makes EV_N9 high",
+      "field_present": "comparator sinks EV_N9 low",
+      "stuck_low": "conservative unexpected-evidence fault and hardware aggregate assertion",
+      "open_or_false_negative": "unsafe failure; field generation remains disabled until HIL closes this mode"
+    },
+    "lease": "NFC field-on requires the same pre-existing ANY_TX_AON_N safety observation and an explicit U219 NFC lease; evidence cannot create a lease"
+  },
+  "jlcpcb_live_surface": {
+    "semantics": "availability is canPresaleNumber > 0; displayed stock and catalog presence alone are not orderability",
+    "checked_at": "2026-08-28T21:07:39+03:00",
+    "currency": "USD",
+    "parts": [
+      {
+        "role": "pin10 bilateral switch",
+        "manufacturer": "Texas Instruments",
+        "mpn": "SN74CBTLV1G125DCKR",
+        "jlc_number": "C131992",
+        "package": "SC-70-5",
+        "assembly_type": "SMT",
+        "library_type": "Extended",
+        "standard_pcba": true,
+        "can_presale_number": 2966,
+        "displayed_stock": 2969,
+        "moq": 1,
+        "least_patch_number": 5,
+        "unit_price_usd": 0.2846,
+        "price_tier": "1-49",
+        "url": "https://jlcpcb.com/partdetail/x/C131992",
+        "datasheet": "https://www.ti.com/lit/ds/symlink/sn74cbtlv1g125.pdf"
+      },
+      {
+        "role": "AON open-drain /OE driver",
+        "manufacturer": "Texas Instruments",
+        "mpn": "SN74LVC1G06DCKR",
+        "jlc_number": "C7828",
+        "package": "SC-70-5",
+        "assembly_type": "SMT",
+        "library_type": "Extended",
+        "standard_pcba": true,
+        "can_presale_number": 4205,
+        "displayed_stock": 5365,
+        "moq": 1,
+        "least_patch_number": 5,
+        "unit_price_usd": 0.1674,
+        "price_tier": "1-49",
+        "url": "https://jlcpcb.com/partdetail/x/C7828",
+        "datasheet": "https://www.ti.com/lit/ds/symlink/sn74lvc1g06.pdf"
+      },
+      {
+        "role": "NFC field full-wave bridge",
+        "manufacturer": "Nexperia",
+        "mpn": "BAT54S,215",
+        "jlc_number": "C47546",
+        "package": "SOT-23",
+        "assembly_type": "SMT",
+        "library_type": "Extended",
+        "standard_pcba": true,
+        "quantity_per_device": 2,
+        "can_presale_number": 394964,
+        "displayed_stock": 397275,
+        "moq": 1,
+        "least_patch_number": 5,
+        "unit_price_usd": 0.0335,
+        "price_tier": "1-199",
+        "url": "https://jlcpcb.com/partdetail/Nexperia-BAT54S215/C47546",
+        "datasheet": "https://assets.nexperia.com/documents/data-sheet/BAT54S.pdf?215="
+      },
+      {
+        "role": "NFC field comparator",
+        "manufacturer": "Texas Instruments",
+        "mpn": "LMV331IDBVR",
+        "jlc_number": "C34731",
+        "package": "SOT-23-5",
+        "assembly_type": "SMT",
+        "library_type": "Extended",
+        "standard_pcba": true,
+        "can_presale_number": 41278,
+        "displayed_stock": 42820,
+        "moq": 1,
+        "least_patch_number": 5,
+        "unit_price_usd": 0.1655,
+        "price_tier": "1-49",
+        "url": "https://jlcpcb.com/partdetail/TexasInstruments-LMV331IDBVR/C34731",
+        "datasheet": "https://www.ti.com/lit/ds/symlink/lmv331.pdf"
+      }
+    ]
+  },
+  "bom_delta": {
+    "price_basis": "saved JLC one-piece tiers checked 2026-08-28; placement fees, PCB area, freight and tax excluded",
+    "pin10_and_power_fixed_usd_per_device": 0.4853,
+    "pin10_new_active_usd_per_device": 0.452,
+    "pin10_reused_passive_bundle_usd_per_device": 0.0333,
+    "nfc_evidence_fixed_usd_per_device": 0.2732,
+    "nfc_evidence_new_active_usd_per_device": 0.2325,
+    "nfc_evidence_reused_passive_bundle_usd_per_device": 0.0407,
+    "fixed_added_usd_per_device": 0.7585,
+    "removed_22r_usd_per_device": 0.0155,
+    "net_fixed_usd_per_device": 0.743,
+    "trial_lot_5_fixed_added_usd": 3.7925,
+    "trial_lot_5_removed_22r_usd": 0.0775,
+    "trial_lot_5_net_fixed_usd": 3.715,
+    "excluded": [
+      "DNP C0G pickup-tuning bank until VNA/HIL selection",
+      "PCB loop area and placement fees",
+      "received U219 accessory",
+      "factory functional-test engineering/labour fees"
+    ],
+    "reused_existing_hardware": [
+      "protected 5-V Cap branch and supervisor",
+      "contact-8 output buffer, series element and connector ESD",
+      "contact-10 connector ESD",
+      "TCA9535 evidence mask",
+      "evidence_or_4 package and ANY_TX_AON_N aggregate"
+    ]
+  },
+  "acceptance_gates": [
+    {
+      "id": "U219-HIL-01",
+      "stage": "H5/H7",
+      "requirement": "received U219 exact revision, 14-contact pin map, POWER_EN/NFC_CS/CC1101_CS polarity and 84x24x19.7-mm maximum envelope",
+      "closed": false
+    },
+    {
+      "id": "U219-HIL-01A",
+      "stage": "H5/H7",
+      "requirement": "resolve official RF_SW1-without-exposed-pin and shared-CS prose inconsistencies against the received unit and exact revision schematic",
+      "closed": false
+    },
+    {
+      "id": "U219-HIL-01B",
+      "stage": "H5/H7",
+      "requirement": "resolve current official EN-table blanks/NC at contacts 3, 4 and 7 against older official-locale SCL/SDA and legacy-dock 5V_IN claims; do not route them before received-unit continuity and schematic proof",
+      "closed": false
+    },
+    {
+      "id": "U219-HIL-02",
+      "stage": "H6/H7",
+      "requirement": "pin10 switch truth table, reset/off high-Z, Ioff/no-back-power, U214 BUSY timing and U219 NFC_CS timing across brownout and removal",
+      "closed": false
+    },
+    {
+      "id": "U219-VNA-01",
+      "stage": "H6/H7",
+      "requirement": "VNA proof of printed pickup-loop coupling and DNP C0G selection with bounded loading, Q/read-range loss and enclosure/battery detuning",
+      "closed": false
+    },
+    {
+      "id": "U219-HIL-03",
+      "stage": "H7/H8",
+      "requirement": "EV_N9 asserts before the permitted field-on deadline with no-false-negative proof at minimum field across voltage, temperature, tag loading, alignment and supported reader modes",
+      "closed": false
+    },
+    {
+      "id": "U219-HIL-04",
+      "stage": "H7/H8",
+      "requirement": "false-positive injection, adjacent RF, loop open/short, comparator stuck states, P12 fault, K2 aggregate continuity and immediate lease revocation",
+      "closed": false
+    },
+    {
+      "id": "U219-HIL-05",
+      "stage": "H7/H8",
+      "requirement": "CC1101 command/register trace proves the receive-only firewall; NFC trace proves poll/read-only behavior",
+      "closed": false
+    }
+  ]
+}

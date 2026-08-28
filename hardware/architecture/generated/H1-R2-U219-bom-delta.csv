@@ -1,0 +1,10 @@
+change,group,instance,manufacturer,mpn_or_bundle,jlc_number,qty_per_device,qty_evt5,route,can_presale_number,moq,unit_price_usd,line_per_device_usd,line_evt5_usd,evidence_date,note
+ADD,pin10_power,u219_pin10_switch,Texas Instruments,SN74CBTLV1G125DCKR,C131992,1,5,J0 Extended SMT / Standard PCBA,2966,1,0.2846,0.2846,1.4230,2026-08-28,live available-order quantity uses canPresaleNumber
+ADD,pin10_power,u219_pin10_oe_driver,Texas Instruments,SN74LVC1G06DCKR,C7828,1,5,J0 Extended SMT / Standard PCBA,4205,1,0.1674,0.1674,0.8370,2026-08-28,live available-order quantity uses canPresaleNumber
+ADD,nfc_evidence,u219_field_bridge_d1_d2,Nexperia,"BAT54S,215",C47546,2,10,J0 Extended SMT / Standard PCBA,394964,1,0.0335,0.0670,0.3350,2026-08-28,live available-order quantity uses canPresaleNumber
+ADD,nfc_evidence,u219_field_comparator,Texas Instruments,LMV331IDBVR,C34731,1,5,J0 Extended SMT / Standard PCBA,41278,1,0.1655,0.1655,0.8275,2026-08-28,live available-order quantity uses canPresaleNumber
+ADD,pin10_power,reused_pin10_support_passives,existing selected parts,REUSED-J0-PASSIVE-BUNDLE,existing,bundle,5 bundles,reuse existing J0 selections,see base H5 evidence,n/a,0.0333,0.0333,0.1665,2026-08-28,existing stocked resistor/capacitor MPN classes; final schematic quantities retained in H6
+ADD,nfc_evidence,reused_field_support_passives,existing selected parts,REUSED-J0-PASSIVE-BUNDLE,existing,bundle,5 bundles,reuse existing J0 selections,see base H5 evidence,n/a,0.0407,0.0407,0.2035,2026-08-28,fixed envelope/pull-up/bypass support; tuning bank excluded
+REMOVE,pin10_power,u214_series_busy,Panasonic,ERJ-2RKF22R0X,base selection,-1,-5,removed from overlay target,n/a,n/a,0.0155,-0.0155,-0.0775,2026-08-28,saved base quantity-100 unit-price basis
+DNP,nfc_evidence,u219_pickup_c0g_tuning_bank,TBD after VNA,DNP-C0G-BANK,TBD,0,0,not orderable until VNA/HIL selection,0,TBD,,,,2026-08-28,footprints only; no exact production MPN accepted
+TOTAL,fixed_net,H1-R2-U219-CAP-01,,,,,,,,,,0.7430,3.7150,2026-08-28,"fixed additions less removed 22-Ohm; excludes tuning, placement, PCB, freight and tax"
