@@ -2,7 +2,7 @@
 
 `H3.6.2` is reviewed: 30 scenarios and 25 machine checks pass. The exact marker is `H3.6.3`.
 
-Every fault records detection, the primary shutdown path, an independent or fail-safe path, the safe result and recovery. Automatic restart is forbidden.
+Every fault records detection, the primary shutdown path, an independent or fail-safe path, the safe result and recovery. The KILL-to-RUN fault-plane proof is service-interrupting but does not damage hardware. Automatic restart is forbidden.
 
 | Domain | Single fault | Result |
 |---|---|---|

@@ -78,7 +78,7 @@ def build() -> tuple[dict[Path, str], dict]:
                 "id": "STARTUP_ONLY",
                 "active_session_seconds": None,
                 "bounded_periodic_proof": False,
-                "warning": "periodic destructive fault-plane proof is disabled; proof still runs at every physical KILL-to-RUN boundary",
+                "warning": "periodic service-interrupting fault-plane proof is disabled; proof still runs at every physical KILL-to-RUN boundary and does not damage hardware",
             },
         ],
         "change_authority": "local physical UI only; no radio, network or remote-management command",
@@ -95,7 +95,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "invariants": [
             "the setting never changes watchdog service, temperature FAULT_KILL, power-fault handling or TX-lease limits",
             "loss of S3, its settings storage or the settings mailbox cannot extend the already active safety-controller deadline",
-            "power loss cannot bypass proof because the next RUN admission repeats the destructive startup proof",
+            "power loss cannot bypass proof because the next RUN admission repeats the service-interrupting, non-damaging startup proof",
         ],
     }
 
@@ -162,7 +162,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "self_test_setting_is_local_only": "local physical UI only" in self_test["change_authority"],
         "deadline_revokes_tx_before_fault_request": self_test["deadline_sequence"][0].startswith("revoke every TX lease") and self_test["deadline_sequence"][-1].startswith("hold SAFETY_FAULT_REQUEST"),
         "watchdog_and_thermal_limits_are_not_configurable_here": "never changes watchdog" in self_test["invariants"][0],
-        "fault_plane_requires_physical_rearm_proof": "KILL-to-RUN" in fault["fault_plane"]["destructive_test_boundary"],
+        "fault_plane_requires_physical_rearm_proof": "KILL-to-RUN" in fault["fault_plane"]["service_interrupting_proof_boundary"],
         "ambient_target_is_0_to_35c": ambient["design_target_c"] == {"minimum": 0, "maximum": 35},
         "ambient_target_is_not_a_guarantee": "not a published" in ambient["status"],
         "quiet_35c_rtheta_matches_h3_6_1": ambient["h6_base_to_ambient_rtheta_k_per_w_max_at_35c"]["quiet_support_idle"] == "16.713",
@@ -181,7 +181,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "schema_version": 1,
         "stage": "H3.6.3",
         "status": "reviewed_unattended_safety_and_endurance_test_envelope",
-        "method": "conservative source-energy bounds plus accepted ambient target, configurable destructive-proof interval and explicit H6/H8 admission gates",
+        "method": "conservative source-energy bounds plus accepted ambient target, configurable service-interruption proof interval and explicit H6/H8 admission gates",
         "source_hashes": {
             str(path.relative_to(REPO)): sha256(path)
             for path in (THERMAL_PATH, FAULT_PATH, SOURCE_PATH, BATTERY_PATH)
@@ -236,7 +236,8 @@ def render_doc(manifest: dict, russian: bool) -> str:
         setting = (
             "В `Настройки → Безопасность → Полный self-test` доступны `24 часа`, `48 часов` по умолчанию "
             "и `только при запуске`. Изменение применяется после следующего физического `KILL → RUN`. "
-            "Настройка не меняет watchdog, thermal FAULT_KILL или TX-lease."
+            "Эта проверка fault-plane прерывает работу, но не повреждает железо. Настройка не меняет watchdog, "
+            "thermal FAULT_KILL или TX-lease."
         )
         headers = "| Группа | Тяжёлый SUPPORT_IDLE | Идеальный предел от минимальной энергии, не обещание |\n|---|---|---:|"
         table = "\n".join(
@@ -260,8 +261,8 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         setting = (
             "`Settings > Safety > Full self-test` offers `24 hours`, default `48 hours`, and `startup only`. "
-            "A change activates after the next physical `KILL to RUN`. The setting cannot alter watchdog, "
-            "thermal FAULT_KILL or TX-lease behavior."
+            "A change activates after the next physical `KILL to RUN`. This fault-plane proof is service-interrupting "
+            "but does not damage hardware. The setting cannot alter watchdog, thermal FAULT_KILL or TX-lease behavior."
         )
         headers = "| Group | Heavy SUPPORT_IDLE case | Ideal minimum-energy ceiling, not a promise |\n|---|---|---:|"
         table = "\n".join(

@@ -316,7 +316,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "H8: calibrate evidence thresholds and prove stuck-active, stuck-inactive and unreadable evidence behavior for all nine channels",
         "H8: measure watchdog, reset, eFuse, QOD and transmitter-energy deadlines; analytical 0/100/1760-ms classes are upper-level contracts, not measured closure",
         "H8: interrupt every two-slot flash-journal write boundary and verify last-valid-slot or explicit AON-loss fallback",
-        "H3.6.3: bound the uninterrupted unattended interval because FAULT_ASSERT_N proof is destructive and therefore occurs at physical re-arm, not continuously",
+        "H3.6.3: bound the uninterrupted unattended interval because FAULT_ASSERT_N proof is service-interrupting and therefore occurs at physical re-arm, not continuously; it does not damage hardware",
     ]
     non_claims = [
         "two simultaneous independent faults or a first latent safety fault followed by a second hazard",
@@ -336,9 +336,10 @@ def build() -> tuple[dict[Path, str], dict]:
         "fault_plane": {
             "healthy_nominal_v": q(healthy_fault_v),
             "bias": "10-kOhm AON pull-up plus 1-MOhm fail-low pull-down",
-            "proof": safety["watchdog"]["fault_plane_proof"],
+            "proof": safety["watchdog"]["fault_plane_proof"].rsplit("; ", 1)[0]
+            + "; it is service-interrupting, not hardware-damaging, and no mid-session proof is claimed",
             "sense": "TCA9535 P11 through 100-kOhm series isolation",
-            "destructive_test_boundary": "every physical KILL-to-RUN; never silently re-arms during a running session",
+            "service_interrupting_proof_boundary": "every physical KILL-to-RUN; never silently re-arms during a running session; interrupts service but does not damage hardware",
         },
         "faults": faults,
         "corrections": corrections,
@@ -358,7 +359,7 @@ def build() -> tuple[dict[Path, str], dict]:
         },
         "next": {
             "stage": "H3.6.3",
-            "action": "verify the bounded 24-to-48-hour unattended operating envelope, including the maximum interval between destructive fault-plane proofs",
+            "action": "verify the bounded 24-to-48-hour unattended operating envelope, including the maximum interval between service-interrupting fault-plane proofs",
         },
     }
     return {
@@ -377,7 +378,8 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         explanation = (
             "Для каждого отказа указаны обнаружение, основной путь отключения, независимый или fail-safe путь, "
-            "безопасный результат и восстановление. Автоматического повторного запуска нет."
+            "безопасный результат и восстановление. Проверка fault-plane на границе KILL → RUN прерывает работу, "
+            "но не повреждает железо. Автоматического повторного запуска нет."
         )
         headers = "| Область | Единичный отказ | Результат |\n|---|---|---|"
         rows = "\n".join(
@@ -396,7 +398,8 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
         explanation = (
             "Every fault records detection, the primary shutdown path, an independent or fail-safe path, "
-            "the safe result and recovery. Automatic restart is forbidden."
+            "the safe result and recovery. The KILL-to-RUN fault-plane proof is service-interrupting but does not "
+            "damage hardware. Automatic restart is forbidden."
         )
         headers = "| Domain | Single fault | Result |\n|---|---|---|"
         rows = "\n".join(

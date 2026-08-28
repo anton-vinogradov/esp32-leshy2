@@ -2,10 +2,10 @@
   "schema_version": 1,
   "stage": "H3.6.3",
   "status": "reviewed_unattended_safety_and_endurance_test_envelope",
-  "method": "conservative source-energy bounds plus accepted ambient target, configurable destructive-proof interval and explicit H6/H8 admission gates",
+  "method": "conservative source-energy bounds plus accepted ambient target, configurable service-interruption proof interval and explicit H6/H8 admission gates",
   "source_hashes": {
     "hardware/verification/generated/H3-VRF61-thermal-model.json": "a70869738a152dab37e0ba2e0605cf5b9ce0991e60bc5378822ae8acd50dd6d4",
-    "hardware/verification/generated/H3-VRF62-fault-tree.json": "44cacdcc6e64185a8123332d8eafc2d5b80a929e6ab77f585b10cf378dd40b60",
+    "hardware/verification/generated/H3-VRF62-fault-tree.json": "8586b06745c2f88829dc2dea7309705f7ccfb169d6a82bfc5fd10e30b94115b8",
     "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "327bac00cca35885c72bd49ec0e66eba872e75504e9c95a7a332e64482b987c0",
     "hardware/verification/generated/H3-VRF34-battery-analog.json": "39b87068538107b378e13f966a6ad7ff1639dd8cc6aeaf958faa277f0d851644"
   },
@@ -49,7 +49,7 @@
         "id": "STARTUP_ONLY",
         "active_session_seconds": null,
         "bounded_periodic_proof": false,
-        "warning": "periodic destructive fault-plane proof is disabled; proof still runs at every physical KILL-to-RUN boundary"
+        "warning": "periodic service-interrupting fault-plane proof is disabled; proof still runs at every physical KILL-to-RUN boundary and does not damage hardware"
       }
     ],
     "change_authority": "local physical UI only; no radio, network or remote-management command",
@@ -70,7 +70,7 @@
     "invariants": [
       "the setting never changes watchdog service, temperature FAULT_KILL, power-fault handling or TX-lease limits",
       "loss of S3, its settings storage or the settings mailbox cannot extend the already active safety-controller deadline",
-      "power loss cannot bypass proof because the next RUN admission repeats the destructive startup proof"
+      "power loss cannot bypass proof because the next RUN admission repeats the service-interrupting, non-damaging startup proof"
     ]
   },
   "sustained_operation_policy": {

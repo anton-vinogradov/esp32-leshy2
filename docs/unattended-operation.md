@@ -4,7 +4,7 @@
 
 The pre-physical engineering target is `0 to 35 °C`, not a datasheet guarantee. At 35 °C H6 must achieve no worse than `16.713 K/W` for quiet and `5.446 K/W` for heavy voice RX.
 
-`Settings > Safety > Full self-test` offers `24 hours`, default `48 hours`, and `startup only`. A change activates after the next physical `KILL to RUN`. The setting cannot alter watchdog, thermal FAULT_KILL or TX-lease behavior.
+`Settings > Safety > Full self-test` offers `24 hours`, default `48 hours`, and `startup only`. A change activates after the next physical `KILL to RUN`. This fault-plane proof is service-interrupting but does not damage hardware. The setting cannot alter watchdog, thermal FAULT_KILL or TX-lease behavior.
 
 | Group | Heavy SUPPORT_IDLE case | Ideal minimum-energy ceiling, not a promise |
 |---|---|---:|

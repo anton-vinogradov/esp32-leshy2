@@ -4,8 +4,8 @@
   "status": "reviewed_thermal_fault_and_unattended_consolidation",
   "source_hashes": {
     "hardware/verification/generated/H3-VRF61-thermal-model.json": "a70869738a152dab37e0ba2e0605cf5b9ce0991e60bc5378822ae8acd50dd6d4",
-    "hardware/verification/generated/H3-VRF62-fault-tree.json": "44cacdcc6e64185a8123332d8eafc2d5b80a929e6ab77f585b10cf378dd40b60",
-    "hardware/verification/generated/H3-VRF63-unattended-envelope.json": "2d5c42574b4fca1519278f28b7429b5b7b99df77ecc94c819b5cc63796468a9e"
+    "hardware/verification/generated/H3-VRF62-fault-tree.json": "8586b06745c2f88829dc2dea7309705f7ccfb169d6a82bfc5fd10e30b94115b8",
+    "hardware/verification/generated/H3-VRF63-unattended-envelope.json": "323dffb5545ccc9ec984c53c404e3b6cd6757ab50fb127e5b67795ff0eb0a398"
   },
   "consolidated": {
     "leaf_packages": 3,
@@ -48,7 +48,7 @@
         "id": "STARTUP_ONLY",
         "active_session_seconds": null,
         "bounded_periodic_proof": false,
-        "warning": "periodic destructive fault-plane proof is disabled; proof still runs at every physical KILL-to-RUN boundary"
+        "warning": "periodic service-interrupting fault-plane proof is disabled; proof still runs at every physical KILL-to-RUN boundary and does not damage hardware"
       }
     ],
     "fault_recovery": "retained first cause plus physical KILL-to-RUN; no software or automatic re-arm"
