@@ -36,7 +36,7 @@ flowchart TD
 
 Контрольный BOM Tool capture относится к прежним 209 строкам: 176 matched, 33 unmatched и 1019 установок. Текущий BOM заменяет `SA518` на exact `SA818S-U` + `SA818S-V`, pre-order `74LVC2G126DC,125` и `74LVC2G14GW,125` — на складские корпусные варианты `74LVC2G126DP,125` и `74LVC2G14GV,125`, pre-order `C1005X7R1H104K050BB` — на параметрически равноценный складской `CC0402KRX7R9BB104`, а шесть pre-order-номиналов обычных 0402-резисторов — на складские UNI-ROYAL. Сто девяносто девять неизменившихся identity присоединены по MPN, а одиннадцать новых строк — по точным страницам `C3001549`, `C51897911`, `C503392`, `C426708`, `C131394`, `C25879`, `C25753`, `C25770`, `C25907`, `C25924` и `C25869`. Так получена проверяемая текущая карта `210` строк и `1052` установок без повторной передачи BOM. До применения сохранённых outlier-решений в ней 178 exact catalogue routes и 32 unresolved lines; семантических подмен MPN — ноль.
 
-Сохранённый exact-поиск закрывает все 32 неизменившихся outlier без замены компонентов: 12 добавлены в `J0`, 4 — в `J2`, 11 сохраняют точный MPN через `J3`, 3 требуют фабричной финальной сборки `J4-F`, U214 идёт через `J4-P`, а аккумуляторы — через `J5-U` вне поставки. Вместе с новыми exact routes итог всей BOM: `J0=157`, `J1=0`, `J2=37`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; несопоставленных строк — ноль.
+Сохранённый exact-поиск закрывает все 32 неизменившихся outlier без замены компонентов: 12 добавлены в `J0`, 4 — в `J2`, 11 сохраняют точный MPN через `J3`, 3 требуют фабричной финальной сборки `J4-F`, U214 идёт через `J4-P`, а аккумуляторы — через `J5-U` вне поставки. Вместе с новыми exact routes итог всей BOM: `J0=160`, `J1=0`, `J2=34`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; несопоставленных строк — ноль.
 
 Показываемая в историческом BOM Tool capture сумма `$1255.6365` относится только к прежним 176 найденным строкам и **не** является текущей полной ценой сборки, quote или заказом. Актуальная минимальная корзина evidence отдельно посчитана на [странице образцов](component-sample-basket.ru.md).
 
@@ -82,7 +82,7 @@ flowchart TD
 
 ## Независимая проверка критических деталей
 
-До bulk-прогона отдельно проверены `13` критических идентичностей. Их stock-снимки не заменяют текущий BOM Tool результат и не обещают постоянную доступность.
+До bulk-прогона отдельно проверены `16` критических идентичностей. Их stock-снимки не заменяют текущий BOM Tool результат и не обещают постоянную доступность.
 
 | MPN | JLC | Сейчас | Маршрут |
 |---|---:|---|---|
@@ -99,6 +99,9 @@ flowchart TD
 | [`G-NiceRF SA818S-U`](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549) | `C3001549` | stock 68 | `J0` · exact selected UHF module is priced and in public stock |
 | [`G-NiceRF SA818S-V`](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911) | `C51897911` | Standard PCBA pre-order | `J2` · exact selected VHF module is priced but stock-zero pre-order; lead time remains open |
 | [`HMX035CTFT-001`](https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001) | `—` | display/flex belongs to factory final assembly | `J4-F` · keep replaceable display-adapter architecture; require factory mating plus display/touch test rather than treating the display as an ordinary line-loaded SMT part |
+| [`0402WGF1603TCE`](https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757) | `C25757` | stock 388017 | `J0` · exact stocked 160-kOhm 0402 replacement preserves the complete audio-attenuator electrical contract and uses a thinner body |
+| [`RS-06K47R0FT`](https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014) | `C140014` | stock 78058 | `J0` · exact stocked 47-Ohm 1206 replacement preserves the IR current-limit power, voltage and temperature contract |
+| [`CC0603KRX7R0BB104`](https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803) | `C113803` | stock 1027658 | `J0` · exact stocked 100-nF 100-V 0603 body; X7R temperature stability is stricter than the replaced X7S class |
 
 ## Граница сборки
 

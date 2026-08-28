@@ -13,15 +13,15 @@
     "hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch": "52ee03e67516018f42643e02487a7fa3be09ddad59cbc1270b9ea7dbdcb24f4d",
     "hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch": "b05114abd53ad776792b95bb82cd8f706edef8144396bc18d8f51a9b3cedcb6e",
     "hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch": "5addad9d1f094b3af924445e877aca62703c25593bc782e6bb2b186ddd55b9f5",
-    "hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch": "fa608ab747cdf217317c094e7a73a7fe95337190ed06190e0c27a0c9054d35bb",
-    "hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch": "f3b40b32ded7fe425ec1ec839ce249944964bb56316014321294015d73dadb7b",
+    "hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch": "ec2d898b3ac74e46778a28871cbc6540e63980478605d6ab833545293655cc69",
+    "hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch": "33b69f1a0e213a34493f579029c85a4fca403ab0c7dd506fd9bae153f9c51b70",
     "hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch": "a0b59ce936f22ded0784f56cea684b8ec4aef41c5e7768b8133140844da5dafd",
     "hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch": "837d42635705214c6855e5cda908f5c35389a09465447943292afa3be6e870c0",
     "hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch": "1336cf02d0cf554d584dc5f353fb1df4d1f015dd4ec236327bf277f5416a15e2",
     "hardware/ecad/kicad/LESHY2-UI/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch": "a7546175ef1faa02458a553ab23a94fd9aa55cb82989a36f3c95347ab59b9088",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_pro": "08e872b4c8416b22f2b5b185179d580e04d6c3aaf851cfc833ddc51b00aaf790",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "62036d985924f988257859617422a4eedbdab3d0d8f940cb485d32b7b97f23bc",
-    "hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch": "1f786df6cbc148f50fcab1441b0b2ef66d52ae6d95b9bc4269f1777d2decfc58",
+    "hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch": "89955bc7eefa09f8ee47e6dd841a801a7557514296a827d92299bb70ce7a8c41",
     "hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch": "75a4a44cfdcbc6d37395a77f66f5cc01a71b413ad73d93748bbb9ed67627e258",
     "hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch": "d4cbc712e939b5a11e970fb5fa7796996f5e194867a7e2ed37f71813b5b81e10",
     "hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch": "cb0c025c788a275ef44f95f27d35b3f038ca1dfc38fe33a61efd4da045b04865",
@@ -40,8 +40,8 @@
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_pro": "a38d2ae6ec8a9459cc66d6ca17792208314efced730a29847c7e2011131a486a",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch": "9dc3755f2e8b625b4bd68d28cbd153f50ebf12e567d8270598277a041d8187a3",
-    "hardware/ecad/libraries/leshy2.kicad_sym": "a2307eb07ce6ee0528a178b9635862d51f61b9f5bb109e97ebfa56dbfe0cf4eb",
-    "hardware/ecad/generated/H2-REV62-no-connects.json": "18de9786856b2e86c6197a908b1b207930abfec59b679d55d52b96914f8af340"
+    "hardware/ecad/libraries/leshy2.kicad_sym": "b8197a6466670a6b1bf2cd9bf2696931d958c73c2a58092d87bcf028c6d7af18",
+    "hardware/ecad/generated/H2-REV62-no-connects.json": "ea5ae54138e73bb753a8e6c565b9753ca19d08170c2a134e6a4905810d979689"
   },
   "projects": [
     {

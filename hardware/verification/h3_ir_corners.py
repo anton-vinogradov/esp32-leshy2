@@ -35,7 +35,7 @@ SOURCES = {
     "emitter_mosfet": "https://www.diodes.com/datasheet/download/DMN2056U.pdf",
     "optical_tia": "https://www.ti.com/lit/ds/symlink/tlv9061.pdf",
     "evidence_comparator": "https://www.ti.com/lit/ds/symlink/tlv1824.pdf",
-    "selected_tx_resistor": "https://yageogroup.com/component-documentation/download/specsheet/RC1206FR-0747RL",
+    "selected_tx_resistor": "https://www.fhcomp.com/uploads/20260810/152605_1-R-%E5%B8%B8%E8%A7%84%E5%8E%9A%E8%86%9C%E7%89%87%E5%BC%8F%E5%9B%BA%E5%AE%9A%E7%94%B5%E9%98%BB%E5%99%A8-I%2012.0.pdf",
 }
 
 
@@ -85,7 +85,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "ir_carrier": "vishay_tsmp95000tt",
         "ir_return_buffer": "nexperia_74lvc2g126dp_125",
         "ir_emitter": "vishay_vsmy14940",
-        "ir_emitter_limit": "yageo_rc1206fr_0747rl",
+        "ir_emitter_limit": "fh_rs_06k47r0ft",
         "ir_tx_mosfet": "diodes_dmn2056u_7",
         "ir_tx_carrier_pulldown": "yageo_rc0402fr_0710kl",
         "ir_safe_gate": "ti_sn74lvc1g08_dckr",
@@ -263,7 +263,7 @@ def build() -> tuple[dict[Path, str], dict]:
         raise ValueError("H3.3.3 checks failed: " + ", ".join(failed))
 
     old_cost = d(devices["yageo_rc1206fr_0733rl"]["cost"]["unit_price_usd"])
-    new_cost = d(devices["yageo_rc1206fr_0747rl"]["cost"]["unit_price_usd"])
+    new_cost = d(devices["fh_rs_06k47r0ft"]["cost"]["unit_price_usd"])
     pulldown_cost = d(devices["yageo_rc0402fr_0710kl"]["cost"]["unit_price_usd"])
     manifest = {
         "schema_version": 1,
@@ -312,7 +312,7 @@ def build() -> tuple[dict[Path, str], dict]:
         },
         "checks": checks,
         "corrections": [
-            {"id": "H3.3.3-F01", "finding": "33 ohm targeted the emitter's 70-mA absolute maximum as though it were an operating rating and used a 20-mA forward-voltage limit outside its stated condition", "correction": "fit active/stocked exact RC1206FR-0747RL", "functional_effect": "the circuit still guarantees at least the characterized 20-mA/15-mW-per-sr point and bounds the conservative hot instantaneous corner to 50.6 mA"},
+            {"id": "H3.3.3-F01", "finding": "33 ohm targeted the emitter's 70-mA absolute maximum as though it were an operating rating and used a 20-mA forward-voltage limit outside its stated condition", "correction": "fit factory-stocked exact-value FH RS-06K47R0FT", "functional_effect": "the circuit still guarantees at least the characterized 20-mA/15-mW-per-sr point and bounds the conservative hot instantaneous corner to 50.6 mA"},
             {"id": "H3.3.3-F02", "finding": "C5 GPIO6 could be high impedance while the AON SN74LVC1G08 remained powered, leaving a standard CMOS input floating", "correction": "add an exact 10-kohm pull-down directly at the carrier-gate input", "functional_effect": "reset, missing C5 and disconnect states are deterministically dark before the downstream MOSFET pull-down"},
             {"id": "H3.3.3-F03", "finding": "the device registry claimed a 50-mW-per-sr guaranteed minimum at 70 mA, but the manufacturer gives 90 typical there and guarantees 15 minimum only at 20 mA", "correction": "replace the false limit with the exact guaranteed and typical rows", "functional_effect": "range claims now begin from a real guaranteed optical point; final range remains HIL"},
             {"id": "H3.3.3-F04", "finding": "the IR prose named ESP32-C5-MINI-1U although the selected, pin-reviewed and rendered module is ESP32-C5-WROOM-1U-N8R8", "correction": "use the exact WROOM-1U identity and current v1.2 module source everywhere in the IR contract", "functional_effect": "no pin changes; the documentation now describes the component that will actually be assembled"},

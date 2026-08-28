@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H1-R2.26`**. The functional architecture is reviewed; the
+> Current marker: **`H1-R2.27`**. The functional architecture is reviewed; the
 > physical design is in progress. Nothing on this page authorizes KiCad routing
 > or an order.
 

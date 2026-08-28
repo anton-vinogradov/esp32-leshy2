@@ -1,4 +1,4 @@
-# H1-R2.26 · component cost ranking
+# H1-R2.27 · component cost ranking
 
 [Русский](h1-r2-cost.ru.md) · [English](h1-r2-cost.md) · [Current placement](h1-r2-physical-layout.md)
 
@@ -6,10 +6,10 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 
 ## Summary
 
-- Volume material basis: **$235.39** per device; `198/210` lines are priced.
-- Reachable planning subtotal: **$284.66** per device, with `5` base-product lines still unpriced.
-- With the required post-PCBA K331: **$314.65** per device or **$1,573.26** for five devices before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
-- Partial five-device JLCPCB capture: **$1,251.29** for `178` matched lines; `13` live checks move it to **$1,310.21**, with `32` rows excluded.
+- Volume material basis: **$235.33** per device; `198/210` lines are priced.
+- Reachable planning subtotal: **$284.61** per device, with `5` base-product lines still unpriced.
+- With the required post-PCBA K331: **$314.60** per device or **$1,573.00** for five devices before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
+- Partial five-device JLCPCB capture: **$1,224.48** for `178` matched lines; `16` live checks move it to **$1,283.40**, with `32` rows excluded.
 - The external antenna kit is separate: **$145.27** is known and `4` lines remain unpriced.
 
 ## Highest-cost finished-device lines
@@ -41,8 +41,8 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 
 ## Where the small batch overpays
 
-- The `33` pre-order rows cost **$717.01** in the capture versus **$336.15** on their volume material basis.
-- The observed small-lot premium is **$380.85**. This is the first priority: seek stocked JLCPCB MPNs that remain inside the existing substitution envelopes.
+- The `30` pre-order rows cost **$690.02** in the capture versus **$335.73** on their volume material basis.
+- The observed small-lot premium is **$354.29**. This is the first priority: seek stocked JLCPCB MPNs that remain inside the existing substitution envelopes.
 - JLCPCB displayed-line cost uses recommended quantities and pre-order reference pricing; it is an honest small-batch pain indicator, not a final quote or order total.
 
 ## External antenna kit
@@ -71,6 +71,9 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 | all 100-nF 50-V X7R 0402 bypass positions | `TDK C1005X7R1H104K050BB` | `YAGEO CC0402KRX7R9BB104` | `C131394` | 9027089 | `accepted_stocked_exact_parametric_replacement` |
 | six ordinary 0402 resistor identities across 28 positions | `YAGEO RC0402FR-072K2L / 07133KL / 07270KL / 075K23L / 078K2L / 071K65L` | `UNI-ROYAL 0402WGF2201TCE / 1333TCE / 2703TCE / 5231TCE / 8201TCE / 1651TCE` | `C25879 / C25753 / C25770 / C25907 / C25924 / C25869` | 2027222 / 6692 / 156208 / 40861 / 234262 / 5616 | `accepted_stocked_exact_parametric_replacements` |
 | two dual Schmitt inverters | `Nexperia 74LVC2G14GW,125` | `Nexperia 74LVC2G14GV,125` | `C426708` | 153 | `accepted_stocked_exact_family_package_variant` |
+| codec transmit attenuator top resistor | `Vishay CRCW0402160KFKED` | `UNI-ROYAL 0402WGF1603TCE` | `C25757` | 388017 | `accepted_stocked_exact_parametric_replacement` |
+| IR emitter current-limit resistor | `YAGEO RC1206FR-0747RL` | `FH RS-06K47R0FT` | `C140014` | 78058 | `accepted_stocked_exact_parametric_replacement` |
+| 100-nF 100-V USB VBIAS capacitor | `TDK C1608X7S2A104K080AB` | `YAGEO CC0603KRX7R0BB104` | `C113803` | 1027658 | `accepted_stocked_no_worse_parametric_replacement` |
 | sixteen ordinary user controls | `OMRON B3S-1100P` | `OMRON B3S-1000P` | `C180420` | 3254 | `not_accepted_missing_ground_terminal` |
 | ten outward antenna connectors | `GCT RFPC-SMA31-FN-175-A / RFPC-SMA32-FN-175-A` | `HenryTech HL2-SMA-KEP-13.5 / HL2-RP-SMA-KEP-13.5` | `C53278703 / C53278707` | 67 standard / 133 reverse | `rejected_wrong_board_normal_orientation` |
 | ten outward antenna connectors | `GCT RFPC-SMA31-FN-175-A / RFPC-SMA32-FN-175-A` | `DreamLNK SMA-KWE902 / SMA-KWE901` | `C914554 / C914553` | 5594 standard / 64 reverse | `rejected_high_profile_tht_form_change` |
@@ -79,6 +82,9 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 - **`YAGEO CC0402KRX7R9BB104`:** Accepted at H1-R2.24. The YAGEO part preserves 100 nF, 50 V, X7R, +/-10%, 0402/1005, -55 to +125 C and the exact 1.0 x 0.5 x 0.5-mm body. The JLCPCB route is MOQ 1 and stocked for Standard PCBA. The five-device line falls from the observed USD 22.5624 TDK pre-order charge to USD 5.9535 in stock, saving USD 16.6089; the quantity-100 material basis falls by USD 2.2197 per device. [JLCPCB](https://jlcpcb.com/partdetail/Yageo-CC0402KRX7R9BB104/C131394)
 - **`UNI-ROYAL 0402WGF2201TCE / 1333TCE / 2703TCE / 5231TCE / 8201TCE / 1651TCE`:** Accepted at H1-R2.26. Every replacement preserves its exact resistance, 0402 body, 1% tolerance, 62.5-mW rating, 50-V working voltage, 100-ppm/C temperature coefficient and -55 to +155 C range. All six exact UNI-ROYAL MPNs are live JLCPCB Standard-PCBA stock with MOQ 1. Their five-device requirement falls from approximately USD 53.7347 in the captured pre-order route to USD 0.5430 in live stock, saving approximately USD 53.1917; the public material basis falls by USD 0.1542 per device. [JLCPCB](https://jlcpcb.com/partdetail/26622-0402WGF2201TCE/C25879)
 - **`Nexperia 74LVC2G14GV,125`:** Accepted at H1-R2.26. GV and GW are package variants in the same current Nexperia 74LVC2G14 datasheet: dual Schmitt-inverter behavior, pins 1-6, 1.65-to-5.5-V operation, Ioff partial-power-down protection and timing are common. The 2.9 x 1.5 x 1.1-mm TSOP6 bodies pass the regenerated placement audit. Ten trial parts are covered by the 35-piece available order quantity. The five-device line falls from USD 9.0376 pre-order to USD 2.0100 in stock, saving USD 7.0276; the conservative quantity-100 material basis rises by USD 0.2026 per device. [JLCPCB](https://jlcpcb.com/partdetail/Nexperia-74LVC2G14GV125/C426708)
+- **`UNI-ROYAL 0402WGF1603TCE`:** Accepted at H1-R2.27. The UNI-ROYAL part preserves 160 kOhm, +/-1%, 0402, the standardized 1/16-W rating, 50-V working voltage, 100-ppm/C temperature coefficient and -55 to +155 C range. Its official body is 1.00 x 0.50 x 0.35 mm versus the selected Vishay's 1.00 x 0.50 x 0.40 mm, so the verified 0402 land pattern and sandwich clearance do not degrade. The five-device line falls from USD 8.9565 pre-order to USD 0.0130 in stock, saving USD 8.9435; the public material basis falls by USD 0.0131 per device. [JLCPCB](https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757)
+- **`FH RS-06K47R0FT`:** Accepted at H1-R2.27. The FH part preserves 47 Ohm, +/-1%, 1206, 0.25 W, 200 V, 100 ppm/C and -55 to +155 C. Its official 3.20 x 1.60 x 0.55-mm body is thinner than the selected YAGEO 3.20 x 1.60 x 0.65-mm body and uses the standard 1206 land pattern. The five-device line falls from USD 8.9566 pre-order to USD 0.0310 in stock, saving USD 8.9256; the public material basis falls by USD 0.0108 per device. [JLCPCB](https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014)
+- **`YAGEO CC0603KRX7R0BB104`:** Accepted at H1-R2.27. The YAGEO part preserves 100 nF, +/-10%, 100 V, 0603/1608, -55 to +125 C and the exact 1.60 x 0.80 x 0.80-mm body. X7R holds capacitance within +/-15% over temperature and is stricter than the former X7S +/-22% class, so the USB VBIAS role does not degrade. The five-device line falls from USD 9.0752 pre-order to USD 0.1300 in stock, saving USD 8.9452; the public material basis falls by USD 0.0266 per device. [JLCPCB](https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803)
 - **`OMRON B3S-1000P`:** The stocked member preserves the 6.6 x 6.0 x 4.3-mm body, 1.57-N feel, 500k endurance and IP67 family boundary, but removes the fifth cover-ground terminal. That can weaken the user-exposed ESD path, so the current B3S-1100P remains selected until an equivalent grounded stocked part is proven. [JLCPCB](https://jlcpcb.com/partdetail/OmronElectronics-B3S1000P/C180420)
 - **`HenryTech HL2-SMA-KEP-13.5 / HL2-RP-SMA-KEP-13.5`:** The JLCPCB cards prove a 6-GHz standard/reverse pair and the controlled HenryTech drawings prove individual retention without a nut, but both bodies point normal to the PCB. They do not replace the selected edge-facing GCT bodies without changing antenna direction and product form. [JLCPCB](https://jlcpcb.com/partdetail/HenryTech-HL2_SMA_KEP_135/C53278703)
 - **`DreamLNK SMA-KWE902 / SMA-KWE901`:** This is a fully documented, stocked, no-nut 6-GHz right-angle standard/reverse pair, but its approximately 10.2-mm board profile and through-hole tails replace the 3.9-mm GCT edge-launch envelope. On the front board the connector axis would sit roughly 7 mm above the display glass and the tails would enter the sandwich. The saving is real but not functionally or mechanically neutral. [JLCPCB](https://jlcpcb.com/partdetail/DreamLNK-SMAKWE902/C914554)
@@ -86,7 +92,7 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 
 ## Cost-reduction queue
 
-1. ✅ **Replace safe equivalent pre-order passives and ordinary logic with in-stock JLCPCB parts** — After four safe replacement batches, 33 pre-order rows cost USD 717.0074 in the normalized five-device evidence versus USD 336.1525 on their quantity-100 material basis. The two stocked Nexperia package variants, YAGEO bypass capacitor and six UNI-ROYAL resistor identities together remove approximately USD 105.2857 from the observed trial route and reduce the public material basis by a net USD 1.3378 per device. Review every pre-order row against its substitution class; only exact or no-worse parametric replacements may be accepted.
+1. ✅ **Replace safe equivalent pre-order passives and ordinary logic with in-stock JLCPCB parts** — After five safe replacement batches, 30 pre-order rows cost USD 690.0191 in the normalized five-device evidence versus USD 335.7260 on their quantity-100 material basis. The stocked Nexperia package variants, YAGEO bypass capacitors, UNI-ROYAL resistors and FH IR resistor together remove approximately USD 132.1000 from the observed trial route and reduce the public material basis by a net USD 1.3883 per device. Review every pre-order row against its substitution class; only exact or no-worse parametric replacements may be accepted.
 2. ✅ **Retain the low-profile GCT edge-launch pair unless a truly equivalent stocked pair appears** — HenryTech provides a cheaper straight pair and DreamLNK provides a cheaper right-angle pair without nuts, but neither preserves the selected 3.9-mm edge-launch envelope. The DreamLNK pair would save about USD 19.01 per device at the quantity-100 tiers while raising the connector axis roughly 6.3 mm and adding through-hole tails inside the sandwich. Keep GCT RFPC-SMA31/32 with independent board retention and no shared frame. Reopen replacement only for a stocked standard/reverse edge-launch pair rated to at least 6 GHz with equal or lower profile and a controlled 1.6-mm PCB drawing.
 3. ⚠️ **Re-evaluate eight RF power detectors without weakening real-TX evidence** — Six AD8314 plus two LTC5532 contribute USD 24.9174 per device at quantity 100; the live five-device requirement is USD 276.70 and both families require pre-order for the complete quantity. Compare factory-stocked detectors and calibrated diode cells per band. Keep independent evidence for the three concurrently active nRF24 paths.
 4. ✅ **Find one serial in-stock tact-switch family for all sixteen ordinary controls** — B3S-1100P contributes USD 10.248 per device at quantity 100 and USD 74.58 for 80 pieces in the five-device pre-order route. Preserve footprint/enclosure reach, force, height, endurance and recessed actuation.
@@ -102,4 +108,4 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 - The accepted upper adapter PCB position `[24.75, 1.0]` passes the current exact-body model: `0` same-face collisions and `5.1 mm` minimum opposing clearance versus `0.7 mm` required, with no GPIO or BOM change.
 - H1 now fixes this orientation; H5 qualifies the received flex, bend and retention on the replaceable adapter. A mismatch cannot silently return the tail to the control zone.
 
-> Marker: **H1-R2.26**. H1 remains open pending the complete mock-up decision.
+> Marker: **H1-R2.27**. H1 remains open pending the complete mock-up decision.

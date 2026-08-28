@@ -36,7 +36,7 @@ No platform guarantees perpetual public stock. Leshy2 therefore selects ordinary
 
 The controlled BOM Tool capture belongs to the former 209-line BOM: 176 matched, 33 unmatched and 1019 placements. The current BOM replaces `SA518` with exact `SA818S-U` + `SA818S-V`, the pre-order `74LVC2G126DC,125` and `74LVC2G14GW,125` with stocked package variants `74LVC2G126DP,125` and `74LVC2G14GV,125`, the pre-order `C1005X7R1H104K050BB` with the parametrically equivalent stocked `CC0402KRX7R9BB104`, and six ordinary pre-order 0402 resistor values with stocked UNI-ROYAL identities. One hundred ninety-nine unchanged identities are joined by MPN, and the eleven new lines by exact `C3001549`, `C51897911`, `C503392`, `C426708`, `C131394`, `C25879`, `C25753`, `C25770`, `C25907`, `C25924` and `C25869` pages. This yields a checkable current map of `210` lines and `1052` placements without retransmitting the BOM. Before applying the retained outlier resolutions it has 178 exact catalogue routes and 32 unresolved lines; zero semantic MPN substitutions were observed.
 
-The retained exact search resolves all 32 unchanged outliers without component replacement: 12 are added to `J0`, 4 to `J2`, 11 retain the exact MPN through `J3`, 3 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. With the new exact routes, the whole-BOM result is `J0=157`, `J1=0`, `J2=37`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
+The retained exact search resolves all 32 unchanged outliers without component replacement: 12 are added to `J0`, 4 to `J2`, 11 retain the exact MPN through `J3`, 3 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. With the new exact routes, the whole-BOM result is `J0=160`, `J1=0`, `J2=34`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
 
 The `$1255.6365` displayed in the historical BOM Tool capture covers only its former 176 matched lines and is **not** a current complete assembly price, quote or order. The current minimum evidence basket is calculated separately on the [sample page](component-sample-basket.md).
 
@@ -82,7 +82,7 @@ The `$1255.6365` displayed in the historical BOM Tool capture covers only its fo
 
 ## Independent critical-part check
 
-`13` critical identities were checked independently before the bulk run. Their stock snapshots neither override the current BOM Tool result nor promise permanent availability.
+`16` critical identities were checked independently before the bulk run. Their stock snapshots neither override the current BOM Tool result nor promise permanent availability.
 
 | MPN | JLC | Current evidence | Route |
 |---|---:|---|---|
@@ -99,6 +99,9 @@ The `$1255.6365` displayed in the historical BOM Tool capture covers only its fo
 | [`G-NiceRF SA818S-U`](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549) | `C3001549` | stock 68 | `J0` · exact selected UHF module is priced and in public stock |
 | [`G-NiceRF SA818S-V`](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911) | `C51897911` | Standard PCBA pre-order | `J2` · exact selected VHF module is priced but stock-zero pre-order; lead time remains open |
 | [`HMX035CTFT-001`](https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001) | `—` | display/flex belongs to factory final assembly | `J4-F` · keep replaceable display-adapter architecture; require factory mating plus display/touch test rather than treating the display as an ordinary line-loaded SMT part |
+| [`0402WGF1603TCE`](https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757) | `C25757` | stock 388017 | `J0` · exact stocked 160-kOhm 0402 replacement preserves the complete audio-attenuator electrical contract and uses a thinner body |
+| [`RS-06K47R0FT`](https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014) | `C140014` | stock 78058 | `J0` · exact stocked 47-Ohm 1206 replacement preserves the IR current-limit power, voltage and temperature contract |
+| [`CC0603KRX7R0BB104`](https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803) | `C113803` | stock 1027658 | `J0` · exact stocked 100-nF 100-V 0603 body; X7R temperature stability is stricter than the replaced X7S class |
 
 ## Assembly boundary
 

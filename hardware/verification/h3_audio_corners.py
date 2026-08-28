@@ -34,7 +34,7 @@ SOURCES = {
     "microphone_selectors": "https://www.ti.com/lit/ds/symlink/ts5a63157.pdf",
     "speaker_selector": "https://www.ti.com/lit/ds/symlink/tmux1136.pdf",
     "passive_family": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-    "selected_tx_resistor": "https://www.vishay.com/docs/20035/dcrcwe3.pdf",
+    "selected_tx_resistor": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
 }
 
 PI = Decimal("3.141592653589793238462643383279503")
@@ -101,7 +101,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "headphone_jack": "same_sky_sj_43504_smt_tr",
         "codec_adc_p_series": "yageo_rc0402jr_070rl",
         "codec_adc_n_series": "yageo_rc0402jr_070rl",
-        "codec_tx_atten_top": "vishay_crcw0402160kfked",
+        "codec_tx_atten_top": "uniroyal_0402wgf1603tce",
         "headset_microphone_bias_filter_res": "yageo_rc0402fr_07220rl",
         "headset_microphone_bias_filter_cap": "murata_grm188r60j106me47d",
     }
@@ -249,7 +249,7 @@ def build() -> tuple[dict[Path, str], dict]:
         devices["yageo_rc0402fr_07220kl"]["cost"]["unit_price_usd"]
     )
     new_cost = d(devices["yageo_rc0402jr_070rl"]["cost"]["unit_price_usd"]) * d(2) + d(
-        devices["vishay_crcw0402160kfked"]["cost"]["unit_price_usd"]
+        devices["uniroyal_0402wgf1603tce"]["cost"]["unit_price_usd"]
     )
     added_cost = d(devices["yageo_rc0402fr_07220rl"]["cost"]["unit_price_usd"]) + d(
         devices["murata_grm188r60j106me47d"]["cost"]["unit_price_usd"]
@@ -348,7 +348,7 @@ def build() -> tuple[dict[Path, str], dict]:
             {
                 "id": "H3.3.2-F03",
                 "finding": "the 220-kOhm codec-to-voice attenuator could not reach the published 10-mV SA818S modulation target at low full-scale corners",
-                "correction": "use active/in-stock exact Vishay CRCW0402160KFKED; full-scale injection is 10.454-to-12.797 mVrms and is calibrated only downward",
+                "correction": "use factory-stocked exact-value UNI-ROYAL 0402WGF1603TCE; full-scale injection is 10.454-to-12.797 mVrms and is calibrated only downward",
                 "functional_effect": "digital/recorded audio can reach nominal deviation without adding an active analog stage",
             },
             {

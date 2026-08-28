@@ -86,7 +86,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "all_physical_residuals_are_published": residuals["summary"]["physical_evidence_rows"] == 85 and residuals["summary"]["unassigned"] == 0,
         "no_physical_residual_is_claimed_closed": residuals["summary"]["analytically_closed_by_h3"] == 0 and all(row["status"] == "physical_evidence_required" for row in residuals["registry"]),
         "all_25_corrections_are_accounted": sum(corrections.values()) == 25,
-        "known_bom_delta_is_bounded": known_bom_delta == Decimal("1.2814"),
+        "known_bom_delta_is_bounded": known_bom_delta == Decimal("1.2575"),
         "h3_acceptance_is_recorded": plan["status"] == "reviewed" and plan["substeps"][7]["children"][3]["status"] == "reviewed",
         "h4_rejoin_is_required_with_existing_firmware_f3_evidence": True,
         "acceptance_does_not_authorize_layout": plan["authorization"]["pcb_placement_and_routing"] is False,

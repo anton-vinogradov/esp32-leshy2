@@ -98,7 +98,7 @@ def footprint_for(instance: str, device_key: str) -> str:
     if instance in exact:
         return exact[instance]
     if device_key in {
-        "tdk_c1608x7s2a104k080ab", "tdk_c1608x7r1c105k080ac",
+        "yageo_cc0603krx7r0bb104", "tdk_c1608x7r1c105k080ac",
         "murata_grm188r60j106me47d", "tdk_b57332v5103f360",
     }:
         return "Capacitor_SMD:C_0603_1608Metric" if device_key != "tdk_b57332v5103f360" else "Resistor_SMD:R_0603_1608Metric"

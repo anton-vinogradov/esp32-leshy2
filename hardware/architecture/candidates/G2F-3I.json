@@ -68,7 +68,7 @@
             "abracon_aota_b201610s3r3_101_t", "murata_blm18pg181sn1d", "murata_grm188r60j106me47d", "murata_grm188r71e474ka12d", "murata_grm188z71a475me15d",
             "murata_grm21br60j226me39l", "murata_grm21br71e225ke11l", "murata_grm31cr71a226ke15l", "murata_grm31cr71e106ma12l", "murata_grm32er71e226ke15l",
             "sunlord_mwsa0503s_2r2mt", "sunlord_mwsa0503s_3r3mt", "sunlord_mwsa0503s_4r7mt", "sunlord_wpn201612h2r2mt",
-            "tdk_c1005x5r0j475k050bc", "yageo_cc0402krx7r9bb104", "tdk_c1608x7s2a104k080ab", "tdk_cga5l1x7r1e475k160ac"
+            "tdk_c1005x5r0j475k050bc", "yageo_cc0402krx7r9bb104", "yageo_cc0603krx7r0bb104", "tdk_cga5l1x7r1e475k160ac"
           ]
         },
         {
@@ -81,13 +81,13 @@
             "bourns_crm2512_fx_20r0elf", "kemet_c0402c102k5ractu", "kemet_c0402c330j5gactu", "littelfuse_0451005_mrl",
             "murata_grm1555c1h121ja01d", "murata_grm1555c1h221ja01d", "murata_grm155r71a474ke01d", "murata_grm155r71e473ka88d", "murata_grm155r71h103ka88d", "murata_grm155r71h472ka01d", "murata_grm188r71e224ka88d", "murata_grm31c5c1h224je02l",
             "panasonic_erj_2rkf22r0x", "panasonic_erj_2rkf27r0x", "panasonic_erj_p08f10r0v", "panasonic_erj_p08f49r9v",
-            "tdk_b57332v5103f360", "tdk_c1608x7r1c105k080ac", "vishay_crcw0402160kfked", "vishay_tnpw040210k0beed", "vishay_tnpw040243k7beed", "vishay_wsl25125l000fea",
+            "tdk_b57332v5103f360", "tdk_c1608x7r1c105k080ac", "uniroyal_0402wgf1603tce", "vishay_tnpw040210k0beed", "vishay_tnpw040243k7beed", "vishay_wsl25125l000fea",
             "yageo_rc0402fr_07100kl", "yageo_rc0402fr_07100rl", "yageo_rc0402fr_0710kl", "yageo_rc0402fr_07110kl", "yageo_rc0402fr_0712kl", "uniroyal_0402wgf1333tce", "yageo_rc0402fr_07169kl", "yageo_rc0402fr_07196kl", "uniroyal_0402wgf1651tce", "yageo_rc0402fr_071kl", "yageo_rc0402fr_071ml",
             "yageo_rc0402fr_071k82l", "yageo_rc0402fr_07220kl", "yageo_rc0402fr_07220rl", "yageo_rc0402fr_07240kl", "uniroyal_0402wgf2703tce", "uniroyal_0402wgf2201tce",
             "yageo_rc0402fr_0730k1l", "yageo_rc0402fr_0730kl", "yageo_rc0402fr_0733kl", "yageo_rc0402fr_0733rl", "yageo_rc0402fr_073k32l",
             "yageo_rc0402fr_0742k2l", "yageo_rc0402fr_0744k2l", "yageo_rc0402fr_0745k3l", "yageo_rc0402fr_07470rl", "yageo_rc0402fr_0747kl", "yageo_rc0402fr_074k7l",
             "yageo_rc0402fr_075k1l", "uniroyal_0402wgf5231tce", "yageo_rc0402fr_07620kl", "yageo_rc0402fr_0768kl", "uniroyal_0402wgf8201tce",
-            "yageo_rc0402jr_070rl", "yageo_rc0603fr_071kl", "yageo_rc1206fr_0747rl", "yageo_rt0402brd07100kl", "yageo_rt0402brd07191kl"
+            "yageo_rc0402jr_070rl", "yageo_rc0603fr_071kl", "fh_rs_06k47r0ft", "yageo_rt0402brd07100kl", "yageo_rt0402brd07191kl"
           ]
         },
         {
@@ -1787,7 +1787,7 @@
     "mic_tx_coupling": "tdk_c1608x7r1c105k080ac",
     "mic_tx_bias": "yageo_rc0402fr_07100kl",
     "codec_tx_coupling": "tdk_c1608x7r1c105k080ac",
-    "codec_tx_atten_top": "vishay_crcw0402160kfked",
+    "codec_tx_atten_top": "uniroyal_0402wgf1603tce",
     "codec_tx_atten_bottom": "uniroyal_0402wgf2201tce",
     "codec_tx_filter": "murata_grm155r71h103ka88d",
     "voice_mic_coupling": "tdk_c1608x7r1c105k080ac",
@@ -1909,7 +1909,7 @@
     "ir_demod_host_pullup": "yageo_rc0402fr_0710kl",
     "ir_carrier_host_pullup": "yageo_rc0402fr_0710kl",
     "ir_emitter": "vishay_vsmy14940",
-    "ir_emitter_limit": "yageo_rc1206fr_0747rl",
+    "ir_emitter_limit": "fh_rs_06k47r0ft",
     "ir_tx_mosfet": "diodes_dmn2056u_7",
     "ir_tx_carrier_pulldown": "yageo_rc0402fr_0710kl",
     "ir_tx_gate_series": "yageo_rc0402fr_07100rl",
@@ -1961,7 +1961,7 @@
     "voice_audio_on_pulldown": "yageo_rc0402fr_07100kl",
     "product_usb_connector": "jae_dx07s016ja1r1500",
     "product_usb_protector": "ti_tpd4s201_rukr",
-    "product_usb_vbias_cap": "tdk_c1608x7s2a104k080ab",
+    "product_usb_vbias_cap": "yageo_cc0603krx7r0bb104",
     "product_usb_vpwr_cap": "tdk_c1608x7r1c105k080ac",
     "product_usb_fault_pullup": "yageo_rc0402fr_0710kl",
     "product_usb_dp_series": "panasonic_erj_2rkf22r0x",

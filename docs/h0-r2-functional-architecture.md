@@ -2,7 +2,7 @@
 
 H0-R2 is the new functional baseline: UI and display remain local to S3, high-throughput peripheral work is offloaded through the Hub RP, analog FPV remains receive-only, and 118–137 MHz Airband AM is now mandatory.
 
-> The exact current marker is **H1-R2.26**: the physical model now includes the dual post-PCBA K331/AWM666V bay, i8080-8, local 5+5 islands and the complete 80-contact M1; five pre-order buffers, two Schmitt inverters, 147 pre-order capacitors and six ordinary 0402 resistor identities are replaced by stocked exact or parametrically equivalent variants, no H1 engineering blocker remains, but the complete mock-up still needs explicit acceptance and does not authorize R2 KiCad routing or ordering.
+> The exact current marker is **H1-R2.27**: the physical model now includes the dual post-PCBA K331/AWM666V bay, i8080-8, local 5+5 islands and the complete 80-contact M1; five pre-order buffers, two Schmitt inverters, 148 pre-order capacitors and eight ordinary resistor identities are replaced by stocked exact or parametrically equivalent variants, no H1 engineering blocker remains, but the complete mock-up still needs explicit acceptance and does not authorize R2 KiCad routing or ordering.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 

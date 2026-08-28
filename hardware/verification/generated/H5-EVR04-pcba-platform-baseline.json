@@ -6,7 +6,7 @@
   "checked_on": "2026-08-28",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-    "sha256": "d967c7f726545d4ce54c74b2608fef3275cc56d1184ad05e0225620957db5ce8",
+    "sha256": "f3d1fe8d665f994f8ae86e93c5b45eb9521746120ceea7bb13a156e17ec3f2bf",
     "exact_lines": 210
   },
   "decision": {
@@ -206,7 +206,7 @@
   },
   "bom_tool_upload": {
     "path": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
-    "sha256": "9f529b39b6ef6a950f9ac53fed5d0fad712808b4913d4d18bd48f03af062d284",
+    "sha256": "2c0704c471ba338128e41904b102c54f59172bfcbb72e3fa486cb7125782e890",
     "columns": [
       "Comment",
       "Designator",
@@ -259,10 +259,10 @@
       "result": "176 matched, 33 unmatched, all 1019 historical target placements parsed"
     },
     "current_210_line_attempt": {
-      "sha256": "9f529b39b6ef6a950f9ac53fed5d0fad712808b4913d4d18bd48f03af062d284",
+      "sha256": "2c0704c471ba338128e41904b102c54f59172bfcbb72e3fa486cb7125782e890",
       "transmitted": false,
       "processed": false,
-      "result": "historical 209-line capture retained for 199 unchanged identities; exact current SA818S-U/V plus stocked 74LVC2G126DP, 74LVC2G14GV, bypass and resistor pages joined separately into the 210-line map"
+      "result": "historical 209-line capture retained for 196 unchanged identities; exact current SA818S-U/V plus stocked 74LVC2G126DP, 74LVC2G14GV, bypass and resistor pages joined separately into the 210-line map"
     },
     "blocker": "all 210 current lines have defined routes and all sample component prices are known; the actual two-designator U/V job plus J4-F/J4-P final-assembly acceptance/pricing remain open; accumulators are user-supplied and not a delivery gate; no sourcing request, quote, reservation or order has been created"
   },
@@ -396,31 +396,61 @@
       "pcba": "display/flex belongs to factory final assembly",
       "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001",
       "finding": "keep replaceable display-adapter architecture; require factory mating plus display/touch test rather than treating the display as an ordinary line-loaded SMT part"
+    },
+    {
+      "device_id": "uniroyal_0402wgf1603tce",
+      "mpn": "0402WGF1603TCE",
+      "jlc": "C25757",
+      "tier": "J0",
+      "stock": 388017,
+      "pcba": "Extended SMT; Economic and Standard",
+      "source": "https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757",
+      "finding": "exact stocked 160-kOhm 0402 replacement preserves the complete audio-attenuator electrical contract and uses a thinner body"
+    },
+    {
+      "device_id": "fh_rs_06k47r0ft",
+      "mpn": "RS-06K47R0FT",
+      "jlc": "C140014",
+      "tier": "J0",
+      "stock": 78058,
+      "pcba": "Extended SMT; Economic and Standard",
+      "source": "https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014",
+      "finding": "exact stocked 47-Ohm 1206 replacement preserves the IR current-limit power, voltage and temperature contract"
+    },
+    {
+      "device_id": "yageo_cc0603krx7r0bb104",
+      "mpn": "CC0603KRX7R0BB104",
+      "jlc": "C113803",
+      "tier": "J0",
+      "stock": 1027658,
+      "pcba": "Extended SMT; Economic and Standard; MSL 1",
+      "source": "https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803",
+      "finding": "exact stocked 100-nF 100-V 0603 body; X7R temperature stability is stricter than the replaced X7S class"
     }
   ],
   "summary": {
     "target_bom_lines": 210,
-    "critical_lines_spot_checked": 13,
-    "public_stock_exact_or_revision_explicit": 8,
+    "critical_lines_spot_checked": 16,
+    "public_stock_exact_or_revision_explicit": 11,
     "preorder_reservation": 3,
     "global_sourcing_or_consignment": 1,
     "factory_final_assembly": 1,
     "factory_packed_removable": 0,
     "user_supplied_not_delivered": 0,
     "historical_bom_tool_matched_lines": 176,
-    "historical_bom_tool_public_stock_lines": 143,
-    "historical_bom_tool_preorder_lines": 33,
+    "historical_bom_tool_public_stock_lines": 146,
+    "historical_bom_tool_preorder_lines": 30,
     "historical_bom_tool_unmatched_lines": 33,
     "current_exact_catalogue_routes_before_outlier_resolution": 178,
-    "current_public_stock_lines_before_outlier_resolution": 145,
-    "current_preorder_lines_before_outlier_resolution": 33,
+    "current_public_stock_lines_before_outlier_resolution": 148,
+    "current_preorder_lines_before_outlier_resolution": 30,
     "current_unmatched_lines_before_outlier_resolution": 32,
     "target_placements_parsed": 1052,
     "outliers_resolved_after_exact_search": 32,
     "availability_routes": {
-      "J0": 157,
+      "J0": 160,
       "J1": 0,
-      "J2": 37,
+      "J2": 34,
       "J3": 11,
       "J4-F": 3,
       "J4-P": 1,

@@ -1920,7 +1920,7 @@ def validate_assembly_coordinate_model(
     if (
         model.get("schema_version") != 1
         or model.get("model_id") != "L2-ASM-COORD-001-A"
-        or model.get("stage") != "H1-R2.26"
+        or model.get("stage") != "H1-R2.27"
         or model.get("status") != "in_progress"
     ):
         errors.append("coordinate-model: schema, identity, stage or review status drifted")

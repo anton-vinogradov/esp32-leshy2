@@ -1715,32 +1715,34 @@
         "END_2": {"physical": "2", "role": "power"}
       }
     },
-    "yageo_rc1206fr_0747rl": {
-      "mpn": "Yageo RC1206FR-0747RL",
+    "fh_rs_06k47r0ft": {
+      "mpn": "FH RS-06K47R0FT",
       "kind": "47ohm_1pct_1206_0_25w_ir_emitter_current_limit_resistor",
-      "qualification": "verified_exact_ir_emitter_current_limit_resistor",
-      "lifecycle": "active_stocked_orderable",
-      "dimensions_mm": [3.2, 1.6, 0.65],
+      "qualification": "verified_exact_jlcpcb_stocked_ir_emitter_current_limit_resistor",
+      "lifecycle": "active_factory_stocked_standard_pcba",
+      "dimensions_mm": [3.2, 1.6, 0.55],
       "source": {
-        "document": "RC1206FR-0747RL product specification",
-        "version": "current product data checked 2026-08-24",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC1206FR-0747RL",
-        "checked": "2026-08-24"
+        "document": "FH General Thick Film Chip Fixed Resistor official datasheet",
+        "version": "I 12.0 current official drawing checked 2026-08-28",
+        "url": "https://www.fhcomp.com/uploads/20260810/152605_1-R-%E5%B8%B8%E8%A7%84%E5%8E%9A%E8%86%9C%E7%89%87%E5%BC%8F%E5%9B%BA%E5%AE%9A%E7%94%B5%E9%98%BB%E5%99%A8-I%2012.0.pdf",
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "RC1206FR-0747RL active authorized-distributor stock page",
-        "url": "https://www.mouser.com/ProductDetail/YAGEO/RC1206FR-0747RL",
-        "checked": "2026-08-24"
+        "document": "JLCPCB C140014 exact FH RS-06K47R0FT card; Extended SMT, Economic and Standard PCBA, MOQ 1, 78,058 in live stock",
+        "url": "https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014",
+        "checked": "2026-08-28"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.017,
-        "price_break": "Mouser cut-tape quantity-100 tier",
-        "source": {"document": "Mouser exact-MPN published price table", "url": "https://www.mouser.com/ProductDetail/YAGEO/RC1206FR-0747RL", "checked": "2026-08-24"}
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0062,
+        "price_break": "conservative JLCPCB one-piece tier",
+        "source": {"document": "JLCPCB C140014 live exact-MPN price table", "url": "https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014", "checked": "2026-08-28"}
       },
       "electrical_contract": {
         "resistance_ohm": 47,
         "tolerance_pct": 1,
         "rated_power_w_at_70c": 0.25,
+        "maximum_working_voltage_v": 200,
+        "temperature_coefficient_ppm_per_c": 100,
         "operating_temperature_c": [-55, 155]
       },
       "programmable": false,
@@ -7868,27 +7870,34 @@
         "END_2": {"physical": "2", "role": "power"}
       }
     },
-    "tdk_c1608x7s2a104k080ab": {
-      "mpn": "TDK C1608X7S2A104K080AB",
-      "kind": "100nf_10pct_100v_x7s_0603_usb_protector_bias_capacitor",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
+    "yageo_cc0603krx7r0bb104": {
+      "mpn": "Yageo CC0603KRX7R0BB104",
+      "kind": "100nf_10pct_100v_x7r_0603_usb_protector_bias_capacitor",
+      "qualification": "verified_no_worse_jlcpcb_stocked_standard_pcba",
+      "lifecycle": "active_factory_stocked_standard_pcba",
       "dimensions_mm": [1.6, 0.8, 0.8],
       "source": {
-        "document": "TDK commercial mid-voltage MLCC datasheet",
-        "version": "current catalog checked 2026-08-18",
-        "url": "https://product.tdk.com/info/en/catalog/datasheets/mlcc_commercial_midvoltage_en.pdf",
-        "checked": "2026-08-18"
+        "document": "YAGEO CC0603KRX7R0BB104 exact product specification",
+        "version": "generated 2026-07-09",
+        "url": "https://www.yageogroup.com/download/specsheet/CC0603KRX7R0BB104",
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "C1608X7S2A104K080AB product-page distributor inventory",
-        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1608X7S2A104K080AB",
-        "checked": "2026-08-18"
+        "document": "JLCPCB C113803 exact YAGEO card; Extended SMT, Economic and Standard PCBA, MSL 1, MOQ 1, 1,027,658 in live stock",
+        "url": "https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803",
+        "checked": "2026-08-28"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0526,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
-        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/tdk/C1608X7S2A104K080AB/2116317", "checked": "2026-08-19"}
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.026,
+        "price_break": "conservative JLCPCB one-piece tier",
+        "source": {"document": "JLCPCB C113803 live exact-MPN price table", "url": "https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803", "checked": "2026-08-28"}
+      },
+      "electrical_contract": {
+        "capacitance_f": 1e-7,
+        "tolerance_pct": 10,
+        "rated_voltage_vdc": 100,
+        "dielectric": "X7R",
+        "operating_temperature_c": [-55, 125]
       },
       "programmable": false,
       "contacts": {
@@ -8464,38 +8473,40 @@
         "END_2": {"physical": "2", "role": "analog"}
       }
     },
-    "vishay_crcw0402160kfked": {
-      "mpn": "Vishay CRCW0402160KFKED",
+    "uniroyal_0402wgf1603tce": {
+      "mpn": "UNI-ROYAL 0402WGF1603TCE",
       "kind": "160kohm_1pct_0402_audio_attenuator_resistor",
-      "qualification": "verified_candidate",
-      "lifecycle": "active_orderable",
-      "dimensions_mm": [1.0, 0.5, 0.4],
+      "qualification": "verified_exact_jlcpcb_stocked_standard_pcba",
+      "lifecycle": "active_factory_stocked_standard_pcba",
+      "dimensions_mm": [1.0, 0.5, 0.35],
       "source": {
-        "document": "Vishay D/CRCW e3 thick-film chip resistor datasheet and exact quality listing",
-        "version": "active exact order code checked 2026-08-24",
-        "url": "https://www.vishay.com/docs/20035/dcrcwe3.pdf",
-        "checked": "2026-08-24"
+        "document": "UNI-ROYAL Thick Film Chip Resistors official datasheet",
+        "version": "2025-07-28 V.10",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "CRCW0402160KFKED active authorized-distributor stock page; 46,177 shown in stock",
-        "url": "https://www.digikey.com/en/products/detail/vishay-dale/CRCW0402160KFKED/1178256",
-        "checked": "2026-08-24"
+        "document": "JLCPCB C25757 exact UNI-ROYAL card; Extended SMT, Economic and Standard PCBA, MOQ 1, 388,017 in live stock",
+        "url": "https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757",
+        "checked": "2026-08-28"
       },
       "cost": {
         "currency": "USD",
         "target_quantity": 100,
-        "unit_price_usd": 0.0157,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "unit_price_usd": 0.0026,
+        "price_break": "conservative JLCPCB one-piece tier",
         "source": {
-          "document": "DigiKey exact-MPN published price table",
-          "url": "https://www.digikey.com/en/products/detail/vishay-dale/CRCW0402160KFKED/1178256",
-          "checked": "2026-08-24"
+          "document": "JLCPCB C25757 live exact-MPN price table",
+          "url": "https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757",
+          "checked": "2026-08-28"
         }
       },
       "electrical_contract": {
         "resistance_ohm": 160000,
         "tolerance_pct": 1.0,
-        "rated_power_w": 0.063,
+        "rated_power_w": 0.0625,
+        "maximum_working_voltage_v": 50,
+        "temperature_coefficient_ppm_per_c": 100,
         "operating_temperature_c": [-55, 155]
       },
       "programmable": false,

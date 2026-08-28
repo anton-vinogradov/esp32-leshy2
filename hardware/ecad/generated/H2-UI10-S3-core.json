@@ -5,10 +5,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_10_S3_CORE_MEMORY_BOOT",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "b3dd3a4ea9097ce3503cff4b356c6f64903cd8ac8f6aa5a94bcfb10913f20a48",
-    "hardware/architecture/devices.json": "33077721678642088b09a073b143d0f5a10e91ce0da561c0c55e43b9bf5c1b49",
-    "hardware/ecad/generated/H2-instance-ledger.json": "efc68f5ed6b7ceea08ec662e2cf4bb717a5ffd58aaecd3b33732ed168768233a",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "99e49711c10373735ad2903a115a666531e38390e50e3de1a67b6648390a7226"
+    "hardware/architecture/candidates/G2F-3I.json": "43ef20d2caf84cf506adedf0a98b8feac59cbe4f9e642d04113e55631b8ecdf1",
+    "hardware/architecture/devices.json": "96086ab5d43d7633435682204ba8b7922be133dee7e776e8b0278e1a725fbf3d",
+    "hardware/ecad/generated/H2-instance-ledger.json": "f7a63ce11661f220b48186693ba880d1c1c0ff383b82e827a2715bd5a7993c52",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "20b5a4f2441ec08e77ea72b707bedc76ba20e69bd632cf90408172a9c8755a9f"
   },
   "summary": {
     "ledger_instances": 32,

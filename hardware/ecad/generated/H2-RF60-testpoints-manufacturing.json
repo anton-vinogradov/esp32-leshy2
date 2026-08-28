@@ -5,9 +5,9 @@
   "project": "LESHY2-RF",
   "sheet": "RF_60_TESTPOINTS_MANUFACTURING",
   "source_hashes": {
-    "hardware/ecad/generated/H2-instance-ledger.json": "efc68f5ed6b7ceea08ec662e2cf4bb717a5ffd58aaecd3b33732ed168768233a",
+    "hardware/ecad/generated/H2-instance-ledger.json": "f7a63ce11661f220b48186693ba880d1c1c0ff383b82e827a2715bd5a7993c52",
     "hardware/ecad/H2-sheet-contract.json": "dedde349ad7ad53440ee33244f7f4189078819e61b3f15d3d161261853e74c78",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "1894eb8600f187ad8cca29e73609b3dfe0730b0ed03ac2a0288776794cce9f61"
+    "hardware/ecad/generated/H2-RF-root-interface.json": "5a2dce759545d6b4b59019d19c29fd84c84509e62172ba3ca198b32fb20dae4b"
   },
   "summary": {
     "ledger_instances": 0,

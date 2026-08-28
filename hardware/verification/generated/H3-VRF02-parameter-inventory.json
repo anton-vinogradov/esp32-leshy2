@@ -3,9 +3,9 @@
   "stage": "H3.0.2",
   "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
-    "hardware/architecture/devices.json": "33077721678642088b09a073b143d0f5a10e91ce0da561c0c55e43b9bf5c1b49",
-    "hardware/ecad/generated/H2-instance-ledger.json": "efc68f5ed6b7ceea08ec662e2cf4bb717a5ffd58aaecd3b33732ed168768233a",
-    "hardware/verification/generated/H3-VRF01-input-freeze.json": "c14d5e1081f2c14e8ad2c6aef9715760b2d7bffff64458dbff7b7bc88e18a4e9"
+    "hardware/architecture/devices.json": "96086ab5d43d7633435682204ba8b7922be133dee7e776e8b0278e1a725fbf3d",
+    "hardware/ecad/generated/H2-instance-ledger.json": "f7a63ce11661f220b48186693ba880d1c1c0ff383b82e827a2715bd5a7993c52",
+    "hardware/verification/generated/H3-VRF01-input-freeze.json": "dc7b836ff936dea7fa4bdb03a25fe442bf1c00a0b8b4f3ac6092b0c590307021"
   },
   "policy": {
     "accepted_h2_baseline_is_immutable": true,
@@ -1039,6 +1039,58 @@
         "load and thermal limits"
       ],
       "h3_model_method": "datasheet_corner_model",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
+      "device_key": "fh_rs_06k47r0ft",
+      "mpn": "FH RS-06K47R0FT",
+      "kind": "47ohm_1pct_1206_0_25w_ir_emitter_current_limit_resistor",
+      "instance_count": 1,
+      "projects": [
+        "LESHY2-UI"
+      ],
+      "sheets": [
+        "UI_20_C5_RADIO_IR_SERVICE"
+      ],
+      "roles": [
+        "47ohm_1pct_1206_0_25w_ir_emitter_current_limit_resistor"
+      ],
+      "lifecycle": "active_factory_stocked_standard_pcba",
+      "source": {
+        "document": "FH General Thick Film Chip Fixed Resistor official datasheet",
+        "version": "I 12.0 current official drawing checked 2026-08-28",
+        "url": "https://www.fhcomp.com/uploads/20260810/152605_1-R-%E5%B8%B8%E8%A7%84%E5%8E%9A%E8%86%9C%E7%89%87%E5%BC%8F%E5%9B%BA%E5%AE%9A%E7%94%B5%E9%98%BB%E5%99%A8-I%2012.0.pdf",
+        "checked": "2026-08-28"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.fhcomp.com",
+      "accepted_h2_source_preserved": {
+        "document": "FH General Thick Film Chip Fixed Resistor official datasheet",
+        "version": "I 12.0 current official drawing checked 2026-08-28",
+        "url": "https://www.fhcomp.com/uploads/20260810/152605_1-R-%E5%B8%B8%E8%A7%84%E5%8E%9A%E8%86%9C%E7%89%87%E5%BC%8F%E5%9B%BA%E5%AE%9A%E7%94%B5%E9%98%BB%E5%99%A8-I%2012.0.pdf",
+        "checked": "2026-08-28"
+      },
+      "structured_parameter_count": 6,
+      "structured_parameters": {
+        "resistance_ohm": 47,
+        "tolerance_pct": 1,
+        "rated_power_w_at_70c": 0.25,
+        "maximum_working_voltage_v": 200,
+        "temperature_coefficient_ppm_per_c": 100,
+        "operating_temperature_c": [
+          -55,
+          155
+        ]
+      },
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "voltage/current derating",
+        "temperature coefficient",
+        "frequency/bias dependence"
+      ],
+      "h3_model_method": "analytic_or_vendor_curve",
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
@@ -5527,48 +5579,6 @@
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
-      "device_key": "tdk_c1608x7s2a104k080ab",
-      "mpn": "TDK C1608X7S2A104K080AB",
-      "kind": "100nf_10pct_100v_x7s_0603_usb_protector_bias_capacitor",
-      "instance_count": 1,
-      "projects": [
-        "LESHY2-RF"
-      ],
-      "sheets": [
-        "RF_01_USB_PD_CHARGE"
-      ],
-      "roles": [
-        "100nf_10pct_100v_x7s_0603_usb_protector_bias_capacitor"
-      ],
-      "lifecycle": "active",
-      "source": {
-        "document": "TDK commercial mid-voltage MLCC datasheet",
-        "version": "current catalog checked 2026-08-18",
-        "url": "https://product.tdk.com/info/en/catalog/datasheets/mlcc_commercial_midvoltage_en.pdf",
-        "checked": "2026-08-18"
-      },
-      "source_status": "accepted_h2_authoritative_source",
-      "source_host": "product.tdk.com",
-      "accepted_h2_source_preserved": {
-        "document": "TDK commercial mid-voltage MLCC datasheet",
-        "version": "current catalog checked 2026-08-18",
-        "url": "https://product.tdk.com/info/en/catalog/datasheets/mlcc_commercial_midvoltage_en.pdf",
-        "checked": "2026-08-18"
-      },
-      "structured_parameter_count": 0,
-      "structured_parameters": {},
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "voltage/current derating",
-        "temperature coefficient",
-        "frequency/bias dependence"
-      ],
-      "h3_model_method": "analytic_or_vendor_curve",
-      "model_status": "method_to_be_frozen_in_H3.0.3"
-    },
-    {
       "device_key": "tdk_cga5l1x7r1e475k160ac",
       "mpn": "TDK CGA5L1X7R1E475K160AC",
       "kind": "4_7uf_10pct_25v_x7r_1206_aon_input_capacitor",
@@ -7972,6 +7982,58 @@
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
+      "device_key": "uniroyal_0402wgf1603tce",
+      "mpn": "UNI-ROYAL 0402WGF1603TCE",
+      "kind": "160kohm_1pct_0402_audio_attenuator_resistor",
+      "instance_count": 1,
+      "projects": [
+        "LESHY2-UI"
+      ],
+      "sheets": [
+        "UI_13_AUDIO_CODEC_HEADSET"
+      ],
+      "roles": [
+        "160kohm_1pct_0402_audio_attenuator_resistor"
+      ],
+      "lifecycle": "active_factory_stocked_standard_pcba",
+      "source": {
+        "document": "UNI-ROYAL Thick Film Chip Resistors official datasheet",
+        "version": "2025-07-28 V.10",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.uni-royal.cn",
+      "accepted_h2_source_preserved": {
+        "document": "UNI-ROYAL Thick Film Chip Resistors official datasheet",
+        "version": "2025-07-28 V.10",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-28"
+      },
+      "structured_parameter_count": 6,
+      "structured_parameters": {
+        "resistance_ohm": 160000,
+        "tolerance_pct": 1.0,
+        "rated_power_w": 0.0625,
+        "maximum_working_voltage_v": 50,
+        "temperature_coefficient_ppm_per_c": 100,
+        "operating_temperature_c": [
+          -55,
+          155
+        ]
+      },
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "voltage/current derating",
+        "temperature coefficient",
+        "frequency/bias dependence"
+      ],
+      "h3_model_method": "analytic_or_vendor_curve",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
       "device_key": "uniroyal_0402wgf1651tce",
       "mpn": "UNI-ROYAL 0402WGF1651TCE",
       "kind": "1_65kohm_1pct_0402_main_efuse_current_threshold_resistor",
@@ -8178,56 +8240,6 @@
       },
       "structured_parameter_count": 0,
       "structured_parameters": {},
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "voltage/current derating",
-        "temperature coefficient",
-        "frequency/bias dependence"
-      ],
-      "h3_model_method": "analytic_or_vendor_curve",
-      "model_status": "method_to_be_frozen_in_H3.0.3"
-    },
-    {
-      "device_key": "vishay_crcw0402160kfked",
-      "mpn": "Vishay CRCW0402160KFKED",
-      "kind": "160kohm_1pct_0402_audio_attenuator_resistor",
-      "instance_count": 1,
-      "projects": [
-        "LESHY2-UI"
-      ],
-      "sheets": [
-        "UI_13_AUDIO_CODEC_HEADSET"
-      ],
-      "roles": [
-        "160kohm_1pct_0402_audio_attenuator_resistor"
-      ],
-      "lifecycle": "active_orderable",
-      "source": {
-        "document": "Vishay D/CRCW e3 thick-film chip resistor datasheet and exact quality listing",
-        "version": "active exact order code checked 2026-08-24",
-        "url": "https://www.vishay.com/docs/20035/dcrcwe3.pdf",
-        "checked": "2026-08-24"
-      },
-      "source_status": "accepted_h2_authoritative_source",
-      "source_host": "www.vishay.com",
-      "accepted_h2_source_preserved": {
-        "document": "Vishay D/CRCW e3 thick-film chip resistor datasheet and exact quality listing",
-        "version": "active exact order code checked 2026-08-24",
-        "url": "https://www.vishay.com/docs/20035/dcrcwe3.pdf",
-        "checked": "2026-08-24"
-      },
-      "structured_parameter_count": 4,
-      "structured_parameters": {
-        "resistance_ohm": 160000,
-        "tolerance_pct": 1.0,
-        "rated_power_w": 0.063,
-        "operating_temperature_c": [
-          -55,
-          155
-        ]
-      },
       "parameter_class": "passive_corner",
       "required_parameter_groups": [
         "nominal",
@@ -8715,6 +8727,57 @@
       },
       "structured_parameter_count": 0,
       "structured_parameters": {},
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "voltage/current derating",
+        "temperature coefficient",
+        "frequency/bias dependence"
+      ],
+      "h3_model_method": "analytic_or_vendor_curve",
+      "model_status": "method_to_be_frozen_in_H3.0.3"
+    },
+    {
+      "device_key": "yageo_cc0603krx7r0bb104",
+      "mpn": "Yageo CC0603KRX7R0BB104",
+      "kind": "100nf_10pct_100v_x7r_0603_usb_protector_bias_capacitor",
+      "instance_count": 1,
+      "projects": [
+        "LESHY2-RF"
+      ],
+      "sheets": [
+        "RF_01_USB_PD_CHARGE"
+      ],
+      "roles": [
+        "100nf_10pct_100v_x7r_0603_usb_protector_bias_capacitor"
+      ],
+      "lifecycle": "active_factory_stocked_standard_pcba",
+      "source": {
+        "document": "YAGEO CC0603KRX7R0BB104 exact product specification",
+        "version": "generated 2026-07-09",
+        "url": "https://www.yageogroup.com/download/specsheet/CC0603KRX7R0BB104",
+        "checked": "2026-08-28"
+      },
+      "source_status": "accepted_h2_authoritative_source",
+      "source_host": "www.yageogroup.com",
+      "accepted_h2_source_preserved": {
+        "document": "YAGEO CC0603KRX7R0BB104 exact product specification",
+        "version": "generated 2026-07-09",
+        "url": "https://www.yageogroup.com/download/specsheet/CC0603KRX7R0BB104",
+        "checked": "2026-08-28"
+      },
+      "structured_parameter_count": 5,
+      "structured_parameters": {
+        "capacitance_f": 1e-07,
+        "tolerance_pct": 10,
+        "rated_voltage_vdc": 100,
+        "dielectric": "X7R",
+        "operating_temperature_c": [
+          -55,
+          125
+        ]
+      },
       "parameter_class": "passive_corner",
       "required_parameter_groups": [
         "nominal",
@@ -10153,56 +10216,6 @@
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
-      "device_key": "yageo_rc1206fr_0747rl",
-      "mpn": "Yageo RC1206FR-0747RL",
-      "kind": "47ohm_1pct_1206_0_25w_ir_emitter_current_limit_resistor",
-      "instance_count": 1,
-      "projects": [
-        "LESHY2-UI"
-      ],
-      "sheets": [
-        "UI_20_C5_RADIO_IR_SERVICE"
-      ],
-      "roles": [
-        "47ohm_1pct_1206_0_25w_ir_emitter_current_limit_resistor"
-      ],
-      "lifecycle": "active_stocked_orderable",
-      "source": {
-        "document": "RC1206FR-0747RL product specification",
-        "version": "current product data checked 2026-08-24",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC1206FR-0747RL",
-        "checked": "2026-08-24"
-      },
-      "source_status": "accepted_h2_authoritative_source",
-      "source_host": "yageogroup.com",
-      "accepted_h2_source_preserved": {
-        "document": "RC1206FR-0747RL product specification",
-        "version": "current product data checked 2026-08-24",
-        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC1206FR-0747RL",
-        "checked": "2026-08-24"
-      },
-      "structured_parameter_count": 4,
-      "structured_parameters": {
-        "resistance_ohm": 47,
-        "tolerance_pct": 1,
-        "rated_power_w_at_70c": 0.25,
-        "operating_temperature_c": [
-          -55,
-          155
-        ]
-      },
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "voltage/current derating",
-        "temperature coefficient",
-        "frequency/bias dependence"
-      ],
-      "h3_model_method": "analytic_or_vendor_curve",
-      "model_status": "method_to_be_frozen_in_H3.0.3"
-    },
-    {
       "device_key": "yageo_rt0402brd07100kl",
       "mpn": "Yageo RT0402BRD07100KL",
       "kind": "100kohm_0_1pct_25ppm_0402_main_efuse_ovlo_bottom_resistor",
@@ -10294,8 +10307,8 @@
     "used_types_with_source": 218,
     "source_missing": 0,
     "official_h3_source_overrides": 2,
-    "used_types_with_structured_electrical_contract": 73,
-    "used_types_requiring_parameter_extraction": 145,
+    "used_types_with_structured_electrical_contract": 74,
+    "used_types_requiring_parameter_extraction": 144,
     "local_vendor_model_files": 0,
     "parameter_classes": {
       "analog_peripheral": 7,

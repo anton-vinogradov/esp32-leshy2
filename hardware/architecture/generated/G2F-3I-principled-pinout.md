@@ -384,7 +384,7 @@ flowchart TD
   MIC_TX_COUPLING["TDK C1608X7R1C105K080AC<br/>mic tx coupling physical component"]
   MIC_TX_BIAS["Yageo RC0402FR-07100KL<br/>mic tx bias physical component"]
   CODEC_TX_COUPLING["TDK C1608X7R1C105K080AC<br/>codec tx coupling physical component"]
-  CODEC_TX_ATTEN_TOP["Vishay CRCW0402160KFKED<br/>codec tx atten top physical component"]
+  CODEC_TX_ATTEN_TOP["UNI-ROYAL 0402WGF1603TCE<br/>codec tx atten top physical component"]
   CODEC_TX_ATTEN_BOTTOM["UNI-ROYAL 0402WGF2201TCE<br/>codec tx atten bottom physical component"]
   CODEC_TX_FILTER["Murata GRM155R71H103KA88D<br/>codec tx filter physical component"]
   VOICE_MIC_COUPLING["TDK C1608X7R1C105K080AC<br/>voice mic coupling physical component"]
@@ -1218,7 +1218,7 @@ flowchart TD
   IR_DEMOD_HOST_PULLUP["Yageo RC0402FR-0710KL<br/>host-side demodulated-input idle pull-up"]
   IR_CARRIER_HOST_PULLUP["Yageo RC0402FR-0710KL<br/>host-side carrier-input idle pull-up"]
   IR_EMITTER["Vishay VSMY14940<br/>side-view 940-nm consumer IR transmit emitter"]
-  IR_EMITTER_LIMIT["Yageo RC1206FR-0747RL<br/>47-Ohm 1206 derated emitter current-limit resistor"]
+  IR_EMITTER_LIMIT["FH RS-06K47R0FT<br/>47-Ohm 1206 derated emitter current-limit resistor"]
   IR_TX_MOSFET["Diodes Incorporated DMN2056U-7<br/>FAULT_KILL-qualified low-side IR emitter switch"]
   IR_TX_CARRIER_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm IR-carrier input fail-low resistor"]
   IR_TX_GATE_SERIES["Yageo RC0402FR-07100RL<br/>100-Ohm IR-switch gate resistor"]
@@ -1849,7 +1849,7 @@ flowchart TD
   PRODUCT_USB_PROTECTOR["Texas Instruments TPD4S201RUKR<br/>CC1/CC2 and USB2 D+/D- short-to-VBUS/ESD protector"]
   PRODUCT_USB_DP_SERIES["Panasonic ERJ-2RKF22R0X<br/>22-Ohm S3 USB Full-Speed D+ series resistor"]
   PRODUCT_USB_DM_SERIES["Panasonic ERJ-2RKF22R0X<br/>22-Ohm S3 USB Full-Speed D- series resistor"]
-  PRODUCT_USB_VBIAS_CAP["TDK C1608X7S2A104K080AB<br/>100-nF 100-V port-protector VBIAS capacitor"]
+  PRODUCT_USB_VBIAS_CAP["Yageo CC0603KRX7R0BB104<br/>100-nF 100-V port-protector VBIAS capacitor"]
   PRODUCT_USB_VPWR_CAP["TDK C1608X7R1C105K080AC<br/>1-uF 16-V port-protector VPWR capacitor"]
   PRODUCT_USB_FAULT_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm port-protector fault pull-up"]
   PD_CC1_CAP["Murata GRM1555C1H221JA01D<br/>220-pF C0G protected USB-C CC1 capacitor"]
@@ -5798,7 +5798,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `audio_tx_selector_bypass` lifecycle: `active_orderable`.
 - `mic_tx_coupling` lifecycle: `active_production`.
 - `codec_tx_coupling` lifecycle: `active_production`.
-- `codec_tx_atten_top` lifecycle: `active_orderable`.
+- `codec_tx_atten_top` uses `UNI-ROYAL 0402WGF1603TCE` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `codec_tx_atten_top` lifecycle: `active_factory_stocked_standard_pcba`.
 - `codec_tx_atten_bottom` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
 - `codec_tx_atten_bottom` lifecycle: `production_active_factory_stocked`.
 - `voice_mic_coupling` lifecycle: `active_production`.
@@ -5901,8 +5902,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `ir_return_buffer_bypass` lifecycle: `active_orderable`.
 - `ir_emitter` uses `Vishay VSMY14940` as `verified_exact_consumer_ir_transmit_emitter`, not an accepted production choice.
 - `ir_emitter` lifecycle: `active_stocked_orderable`.
-- `ir_emitter_limit` uses `Yageo RC1206FR-0747RL` as `verified_exact_ir_emitter_current_limit_resistor`, not an accepted production choice.
-- `ir_emitter_limit` lifecycle: `active_stocked_orderable`.
+- `ir_emitter_limit` uses `FH RS-06K47R0FT` as `verified_exact_jlcpcb_stocked_ir_emitter_current_limit_resistor`, not an accepted production choice.
+- `ir_emitter_limit` lifecycle: `active_factory_stocked_standard_pcba`.
 - `ir_evidence_amp` uses `TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
 - `ir_evidence_amp_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `ir_evidence_amp_bypass` lifecycle: `active_orderable`.
@@ -5933,6 +5934,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `voice_hl_driver` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `voice_hl_driver_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `voice_hl_driver_bypass` lifecycle: `active_orderable`.
+- `product_usb_vbias_cap` uses `Yageo CC0603KRX7R0BB104` as `verified_no_worse_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `product_usb_vbias_cap` lifecycle: `active_factory_stocked_standard_pcba`.
 - `product_usb_vpwr_cap` lifecycle: `active_production`.
 - `pd_eeprom_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `pd_eeprom_bypass` lifecycle: `active_orderable`.

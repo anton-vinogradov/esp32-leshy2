@@ -20,12 +20,12 @@ At the real `4 ohm −15% = 3.400 ohm` corner, the theoretical BTL ceiling is `1
 
 ## Codec audio into SA818S-V/U
 
-`Vishay CRCW0402160KFKED` with 2.2 kohm/10 nF produces `10.454…12.797 mVrms` against the published `10.000-mV target for both SA818S variants. Calibration only turns codec volume down; selecting audio never asserts PTT.
+`UNI-ROYAL 0402WGF1603TCE` with 2.2 kohm/10 nF produces `10.454…12.797 mVrms` against the published `10.000-mV target for both SA818S variants. Calibration only turns codec volume down; selecting audio never asserts PTT.
 
 ## 3V3_MAIN cross-check
 
 The corrected worst case is `2493.000 mA` inside the 2500-mA admission and retains `28.359%` to the guaranteed hardware limit. Normal display/backlight is now `200 mA`, audio is `625 mA`; a backlight fault threshold is no longer counted as an operating load.
 
-The final analog configuration adds `0.0436 USD` per unit at quantity 100. **H3.3.2 is verified; the exact current marker is `H3.6.1`.**
+The final analog configuration adds `0.0305 USD` per unit at quantity 100. **H3.3.2 is verified; the exact current marker is `H3.6.1`.**
 
 [Machine H3-VRF32 package](../hardware/verification/generated/H3-VRF32-audio.json).

@@ -37,7 +37,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H1-R2.26", roadmap["current_substep"])
+        self.assertEqual("H1-R2.27", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -382,7 +382,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("**210/210** lines", rendered)
         self.assertIn("**198/210** lines", rendered)
         self.assertIn("**1033/1052** supplied placements", rendered)
-        self.assertIn("USD 235.3853", rendered)
+        self.assertIn("USD 235.3348", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -1745,7 +1745,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "product_usb_protector": "ti_tpd4s201_rukr",
             "product_usb_dp_series": "panasonic_erj_2rkf22r0x",
             "product_usb_dm_series": "panasonic_erj_2rkf22r0x",
-            "product_usb_vbias_cap": "tdk_c1608x7s2a104k080ab",
+            "product_usb_vbias_cap": "yageo_cc0603krx7r0bb104",
             "product_usb_vpwr_cap": "tdk_c1608x7r1c105k080ac",
             "product_usb_fault_pullup": "yageo_rc0402fr_0710kl",
             "pd_cc1_cap": "murata_grm1555c1h221ja01d",
@@ -2666,7 +2666,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "ir_carrier": "vishay_tsmp95000tt",
             "ir_return_buffer": "nexperia_74lvc2g126dp_125",
             "ir_emitter": "vishay_vsmy14940",
-            "ir_emitter_limit": "yageo_rc1206fr_0747rl",
+            "ir_emitter_limit": "fh_rs_06k47r0ft",
             "ir_tx_mosfet": "diodes_dmn2056u_7",
             "ir_tx_carrier_pulldown": "yageo_rc0402fr_0710kl",
             "det_ir": "vishay_vemd1060x01",

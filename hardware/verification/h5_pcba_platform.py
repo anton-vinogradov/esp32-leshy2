@@ -52,6 +52,7 @@ MPN_VENDOR_PREFIXES = tuple(
             "Diodes Incorporated",
             "Ebyte",
             "Everest Semiconductor",
+            "FH",
             "GCT",
             "G-NiceRF",
             "Hirose",
@@ -324,6 +325,39 @@ CURRENT_EXACT_PART_ROUTES = {
         "status": "in_stock",
         "source": "https://jlcpcb.com/partdetail/26612-0402WGF1651TCE/C25869",
     },
+    "0402WGF1603TCE": {
+        "device_id": "uniroyal_0402wgf1603tce",
+        "mpn": "UNI-ROYAL 0402WGF1603TCE",
+        "lcsc": "C25757",
+        "route": "J0",
+        "stock": 388017,
+        "available_order_quantity": 388017,
+        "quantity_one_usd": "0.0026",
+        "status": "in_stock",
+        "source": "https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757",
+    },
+    "RS-06K47R0FT": {
+        "device_id": "fh_rs_06k47r0ft",
+        "mpn": "FH RS-06K47R0FT",
+        "lcsc": "C140014",
+        "route": "J0",
+        "stock": 78058,
+        "available_order_quantity": 78058,
+        "quantity_one_usd": "0.0062",
+        "status": "in_stock",
+        "source": "https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014",
+    },
+    "CC0603KRX7R0BB104": {
+        "device_id": "yageo_cc0603krx7r0bb104",
+        "mpn": "Yageo CC0603KRX7R0BB104",
+        "lcsc": "C113803",
+        "route": "J0",
+        "stock": 1027658,
+        "available_order_quantity": 1027658,
+        "quantity_one_usd": "0.0260",
+        "status": "in_stock",
+        "source": "https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803",
+    },
 }
 
 
@@ -338,6 +372,9 @@ HISTORICAL_REPLACED_MPNS = {
     "RC0402FR-075K23L",
     "RC0402FR-078K2L",
     "RC0402FR-071K65L",
+    "CRCW0402160KFKED",
+    "RC1206FR-0747RL",
+    "C1608X7S2A104K080AB",
 }
 HISTORICAL_MATCHED_REPLACED_MPNS = HISTORICAL_REPLACED_MPNS - {"SA518"}
 HISTORICAL_PREORDER_REPLACED_MPNS = HISTORICAL_MATCHED_REPLACED_MPNS
@@ -398,6 +435,9 @@ SPOT_CHECKS = [
     {"device_id": "nicerf_sa818s_u_v18", "mpn": "G-NiceRF SA818S-U", "jlc": "C3001549", "tier": "J0", "stock": 68, "pcba": "Standard PCBA", "source": "https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549", "finding": "exact selected UHF module is priced and in public stock"},
     {"device_id": "nicerf_sa818s_v_v18", "mpn": "G-NiceRF SA818S-V", "jlc": "C51897911", "tier": "J2", "stock": 0, "pcba": "Standard PCBA pre-order", "source": "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911", "finding": "exact selected VHF module is priced but stock-zero pre-order; lead time remains open"},
     {"device_id": "qdtech_hmx035ctft_001", "mpn": "HMX035CTFT-001", "jlc": None, "tier": "J4-F", "stock": 0, "pcba": "display/flex belongs to factory final assembly", "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001", "finding": "keep replaceable display-adapter architecture; require factory mating plus display/touch test rather than treating the display as an ordinary line-loaded SMT part"},
+    {"device_id": "uniroyal_0402wgf1603tce", "mpn": "0402WGF1603TCE", "jlc": "C25757", "tier": "J0", "stock": 388017, "pcba": "Extended SMT; Economic and Standard", "source": "https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757", "finding": "exact stocked 160-kOhm 0402 replacement preserves the complete audio-attenuator electrical contract and uses a thinner body"},
+    {"device_id": "fh_rs_06k47r0ft", "mpn": "RS-06K47R0FT", "jlc": "C140014", "tier": "J0", "stock": 78058, "pcba": "Extended SMT; Economic and Standard", "source": "https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014", "finding": "exact stocked 47-Ohm 1206 replacement preserves the IR current-limit power, voltage and temperature contract"},
+    {"device_id": "yageo_cc0603krx7r0bb104", "mpn": "CC0603KRX7R0BB104", "jlc": "C113803", "tier": "J0", "stock": 1027658, "pcba": "Extended SMT; Economic and Standard; MSL 1", "source": "https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803", "finding": "exact stocked 100-nF 100-V 0603 body; X7R temperature stability is stricter than the replaced X7S class"},
 ]
 
 
@@ -514,8 +554,8 @@ def build_match_result(rows: list[dict[str, str]]) -> dict:
         ) and summary["parsed_placements"] == 1052,
         "current_exact_route_counts_reconcile": summary["matched_lines"] == 178
         and summary["unmatched_lines"] == 32
-        and summary["in_stock_lines"] == 145
-        and summary["pre_order_lines"] == 33,
+        and summary["in_stock_lines"] == 148
+        and summary["pre_order_lines"] == 30,
         "both_voice_routes_use_exact_current_jlcpcb_pages": all(
             any(route["normalized_mpn"] == mpn and route["lcsc"] == voice["lcsc"] for route in routes)
             for mpn, voice in VOICE_PART_ROUTES.items()
@@ -550,6 +590,15 @@ def build_match_result(rows: list[dict[str, str]]) -> dict:
                 "0402WGF8201TCE",
                 "0402WGF1651TCE",
             }
+        ),
+        "three_new_stocked_passive_routes_use_exact_current_jlcpcb_pages": all(
+            any(
+                route["normalized_mpn"] == mpn
+                and route["lcsc"] == CURRENT_EXACT_PART_ROUTES[mpn]["lcsc"]
+                and route["tool_status"] == "in_stock"
+                for route in routes
+            )
+            for mpn in {"0402WGF1603TCE", "RS-06K47R0FT", "CC0603KRX7R0BB104"}
         ),
         "no_semantic_mpn_substitution_observed": summary["semantic_mpn_mismatches"] == 0
         and all(route["semantic_mpn_equal"] is not False for route in routes),
@@ -894,7 +943,7 @@ def build() -> dict:
                 "sha256": hashlib.sha256(render_upload().encode("utf-8")).hexdigest(),
                 "transmitted": False,
                 "processed": False,
-                "result": "historical 209-line capture retained for 199 unchanged identities; exact current SA818S-U/V plus stocked 74LVC2G126DP, 74LVC2G14GV, bypass and resistor pages joined separately into the 210-line map",
+                "result": "historical 209-line capture retained for 196 unchanged identities; exact current SA818S-U/V plus stocked 74LVC2G126DP, 74LVC2G14GV, bypass and resistor pages joined separately into the 210-line map",
             },
             "blocker": "all 210 current lines have defined routes and all sample component prices are known; the actual two-designator U/V job plus J4-F/J4-P final-assembly acceptance/pricing remain open; accumulators are user-supplied and not a delivery gate; no sourcing request, quote, reservation or order has been created",
         },
@@ -1006,7 +1055,7 @@ flowchart TD
 
 Контрольный BOM Tool capture относится к прежним 209 строкам: 176 matched, 33 unmatched и 1019 установок. Текущий BOM заменяет `SA518` на exact `SA818S-U` + `SA818S-V`, pre-order `74LVC2G126DC,125` и `74LVC2G14GW,125` — на складские корпусные варианты `74LVC2G126DP,125` и `74LVC2G14GV,125`, pre-order `C1005X7R1H104K050BB` — на параметрически равноценный складской `CC0402KRX7R9BB104`, а шесть pre-order-номиналов обычных 0402-резисторов — на складские UNI-ROYAL. Сто девяносто девять неизменившихся identity присоединены по MPN, а одиннадцать новых строк — по точным страницам `C3001549`, `C51897911`, `C503392`, `C426708`, `C131394`, `C25879`, `C25753`, `C25770`, `C25907`, `C25924` и `C25869`. Так получена проверяемая текущая карта `{summary['target_bom_lines']}` строк и `{summary['target_placements_parsed']}` установок без повторной передачи BOM. До применения сохранённых outlier-решений в ней 178 exact catalogue routes и 32 unresolved lines; семантических подмен MPN — ноль.
 
-Сохранённый exact-поиск закрывает все 32 неизменившихся outlier без замены компонентов: 12 добавлены в `J0`, 4 — в `J2`, 11 сохраняют точный MPN через `J3`, 3 требуют фабричной финальной сборки `J4-F`, U214 идёт через `J4-P`, а аккумуляторы — через `J5-U` вне поставки. Вместе с новыми exact routes итог всей BOM: `J0=157`, `J1=0`, `J2=37`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; несопоставленных строк — ноль.
+Сохранённый exact-поиск закрывает все 32 неизменившихся outlier без замены компонентов: 12 добавлены в `J0`, 4 — в `J2`, 11 сохраняют точный MPN через `J3`, 3 требуют фабричной финальной сборки `J4-F`, U214 идёт через `J4-P`, а аккумуляторы — через `J5-U` вне поставки. Вместе с новыми exact routes итог всей BOM: `J0=160`, `J1=0`, `J2=34`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; несопоставленных строк — ноль.
 
 Показываемая в историческом BOM Tool capture сумма `$1255.6365` относится только к прежним 176 найденным строкам и **не** является текущей полной ценой сборки, quote или заказом. Актуальная минимальная корзина evidence отдельно посчитана на [странице образцов](component-sample-basket.ru.md).
 
@@ -1088,7 +1137,7 @@ No platform guarantees perpetual public stock. Leshy2 therefore selects ordinary
 
 The controlled BOM Tool capture belongs to the former 209-line BOM: 176 matched, 33 unmatched and 1019 placements. The current BOM replaces `SA518` with exact `SA818S-U` + `SA818S-V`, the pre-order `74LVC2G126DC,125` and `74LVC2G14GW,125` with stocked package variants `74LVC2G126DP,125` and `74LVC2G14GV,125`, the pre-order `C1005X7R1H104K050BB` with the parametrically equivalent stocked `CC0402KRX7R9BB104`, and six ordinary pre-order 0402 resistor values with stocked UNI-ROYAL identities. One hundred ninety-nine unchanged identities are joined by MPN, and the eleven new lines by exact `C3001549`, `C51897911`, `C503392`, `C426708`, `C131394`, `C25879`, `C25753`, `C25770`, `C25907`, `C25924` and `C25869` pages. This yields a checkable current map of `{summary['target_bom_lines']}` lines and `{summary['target_placements_parsed']}` placements without retransmitting the BOM. Before applying the retained outlier resolutions it has 178 exact catalogue routes and 32 unresolved lines; zero semantic MPN substitutions were observed.
 
-The retained exact search resolves all 32 unchanged outliers without component replacement: 12 are added to `J0`, 4 to `J2`, 11 retain the exact MPN through `J3`, 3 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. With the new exact routes, the whole-BOM result is `J0=157`, `J1=0`, `J2=37`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
+The retained exact search resolves all 32 unchanged outliers without component replacement: 12 are added to `J0`, 4 to `J2`, 11 retain the exact MPN through `J3`, 3 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. With the new exact routes, the whole-BOM result is `J0=160`, `J1=0`, `J2=34`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
 
 The `$1255.6365` displayed in the historical BOM Tool capture covers only its former 176 matched lines and is **not** a current complete assembly price, quote or order. The current minimum evidence basket is calculated separately on the [sample page](component-sample-basket.md).
 

@@ -5,12 +5,12 @@
   "method": "assign one canonical owner to physical fit, part inventory, pin assignment, interboard crossing and firmware-visible state",
   "source_hashes": {
     "h1_physical_acceptance": "3d880042d5a914c933928401fee95beb6e23ceb302a8d9fb3a581f6824c2d280",
-    "h2_instance_ledger": "efc68f5ed6b7ceea08ec662e2cf4bb717a5ffd58aaecd3b33732ed168768233a",
-    "architecture_pin_source": "b3dd3a4ea9097ce3503cff4b356c6f64903cd8ac8f6aa5a94bcfb10913f20a48",
-    "ui_m1": "0a32593b6bd29c976e27b37769dcac8bbf8f275e5a476d0b414506a3c5b0a573",
-    "rf_m1": "d4ae4307e2fcf86a5f941a9007cece3a6ab2d387cc77f4c5ae881958e95b4534",
-    "h2_hwfw_export": "34826d0acbd76ba086932a4b4f2e5ed8daa6f5100e771cf593f4e0f74547ea67",
-    "firmware_f2_import": "34826d0acbd76ba086932a4b4f2e5ed8daa6f5100e771cf593f4e0f74547ea67"
+    "h2_instance_ledger": "f7a63ce11661f220b48186693ba880d1c1c0ff383b82e827a2715bd5a7993c52",
+    "architecture_pin_source": "43ef20d2caf84cf506adedf0a98b8feac59cbe4f9e642d04113e55631b8ecdf1",
+    "ui_m1": "1b9d3a71f6a31dd1330a81da4ec4a8c5694e76fc94ab341d8e3395772fb4a31b",
+    "rf_m1": "ec7a51cd6edd570a70c57373f80675ff5aa6a358273cb9e49bedca3abf6860b9",
+    "h2_hwfw_export": "9d451d0db45535d43971bd3e1feccbc8624302afb26f0a101b5bb3ed552d9ac8",
+    "firmware_f2_import": "9d451d0db45535d43971bd3e1feccbc8624302afb26f0a101b5bb3ed552d9ac8"
   },
   "inventories": [
     {

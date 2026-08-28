@@ -374,7 +374,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "100nf_10pct_100v_x7s_0603_usb_protector_bias_capacitor"
+			(property "Description" "100nf_10pct_100v_x7r_0603_usb_protector_bias_capacitor"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4193,7 +4193,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TDK C1608X7S2A104K080AB"
+		(property "Value" "Yageo CC0603KRX7R0BB104"
 			(at 213.36 49.53 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4213,7 +4213,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "100nf_10pct_100v_x7s_0603_usb_protector_bias_capacitor"
+		(property "Description" "100nf_10pct_100v_x7r_0603_usb_protector_bias_capacitor"
 			(at 213.36 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)

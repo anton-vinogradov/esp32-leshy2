@@ -3,11 +3,11 @@
   "stage": "H3.3.3",
   "status": "reviewed_ir_corners_after_four_source_corrections",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "b3dd3a4ea9097ce3503cff4b356c6f64903cd8ac8f6aa5a94bcfb10913f20a48",
-    "hardware/architecture/devices.json": "33077721678642088b09a073b143d0f5a10e91ce0da561c0c55e43b9bf5c1b49",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "467823d8a19b681fe5b9010742d096d46db6722227a2a495d0b699424e3ba4b6",
-    "hardware/verification/generated/H3-VRF31-display.json": "69ec4c1bfbd1f9b7b1a208e06b04fcba3676f05c9b0618cde48cc38b3ac8437b",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "f238c5c39996089f4e1668926507c44725d4f165c21ca8ac2c92feb4ab4df074"
+    "hardware/architecture/candidates/G2F-3I.json": "43ef20d2caf84cf506adedf0a98b8feac59cbe4f9e642d04113e55631b8ecdf1",
+    "hardware/architecture/devices.json": "96086ab5d43d7633435682204ba8b7922be133dee7e776e8b0278e1a725fbf3d",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "566a810aa14da526bda0342c0322fce5d31a97eab2dbb1f7c31e85856a8cb5d5",
+    "hardware/verification/generated/H3-VRF31-display.json": "ec38c4d26a46704229ff72999c804dd5f09b69c2e3fc9fab73f8c54208ef1f5e",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "5f22dd37fb765f790cf89d8413f9dbd7ba6cfd46e1085c973d78b0b6ae586664"
   },
   "provenance": {
     "c5_module": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.html",
@@ -21,7 +21,7 @@
     "emitter_mosfet": "https://www.diodes.com/datasheet/download/DMN2056U.pdf",
     "optical_tia": "https://www.ti.com/lit/ds/symlink/tlv9061.pdf",
     "evidence_comparator": "https://www.ti.com/lit/ds/symlink/tlv1824.pdf",
-    "selected_tx_resistor": "https://yageogroup.com/component-documentation/download/specsheet/RC1206FR-0747RL"
+    "selected_tx_resistor": "https://www.fhcomp.com/uploads/20260810/152605_1-R-%E5%B8%B8%E8%A7%84%E5%8E%9A%E8%86%9C%E7%89%87%E5%BC%8F%E5%9B%BA%E5%AE%9A%E7%94%B5%E9%98%BB%E5%99%A8-I%2012.0.pdf"
   },
   "exact_part_checks": {
     "c5": true,
@@ -89,7 +89,7 @@
   },
   "transmit": {
     "emitter": "Vishay VSMY14940",
-    "selected_resistor": "Yageo RC1206FR-0747RL",
+    "selected_resistor": "FH RS-06K47R0FT",
     "resistor_ohm": 47,
     "main_rail_v": {
       "minimum": "3.108510",
@@ -183,7 +183,7 @@
     {
       "id": "H3.3.3-F01",
       "finding": "33 ohm targeted the emitter's 70-mA absolute maximum as though it were an operating rating and used a 20-mA forward-voltage limit outside its stated condition",
-      "correction": "fit active/stocked exact RC1206FR-0747RL",
+      "correction": "fit factory-stocked exact-value FH RS-06K47R0FT",
       "functional_effect": "the circuit still guarantees at least the characterized 20-mA/15-mW-per-sr point and bounds the conservative hot instantaneous corner to 50.6 mA"
     },
     {
@@ -207,9 +207,9 @@
   ],
   "cost_delta_usd_at_100": {
     "old_resistor": "0.0247",
-    "new_resistor": "0.0170",
+    "new_resistor": "0.0062",
     "added_input_pulldown": "0.0097",
-    "total_delta_per_board": "0.0020"
+    "total_delta_per_board": "-0.0088"
   },
   "residual_physical_only": [
     "verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
