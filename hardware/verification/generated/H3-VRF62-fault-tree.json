@@ -8,7 +8,7 @@
     "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
     "hardware/ecad/generated/H2-REV55-fault-kill.json": "7a673ff410ac41ba6848804b69451ede801d36ee3e2a6f3b0a39c057eb9dea81",
     "hardware/verification/generated/H3-VRF24-watchdog-fault-display.json": "d7946542a980d98be01abca477705f73390012f62bb8208c3cd8564bb152c9bb",
-    "hardware/verification/generated/H3-VRF61-thermal-model.json": "f1ba7cb683f990d8a6a06584766e841ea59f4d17819f11a4dcc43ddc39526b88"
+    "hardware/verification/generated/H3-VRF61-thermal-model.json": "a70869738a152dab37e0ba2e0605cf5b9ce0991e60bc5378822ae8acd50dd6d4"
   },
   "fault_plane": {
     "healthy_nominal_v": "3.2673",

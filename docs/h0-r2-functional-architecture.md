@@ -2,7 +2,7 @@
 
 H0-R2 is the new functional baseline: UI and display remain local to S3, high-throughput peripheral work is offloaded through the Hub RP, analog FPV remains receive-only, and 118–137 MHz Airband AM is now mandatory.
 
-> The exact current marker is **H1-R2.31**: H0/H1 now agree on two independent RP2354B domains, exact GPIO0..47 maps and five M1 endpoints; the C5 electrical pin/mux contract is joined. The old single-RP G2F/H2 projection remains historical R1 evidence only. New R2 H2/KiCad stays blocked on the live C11355 route, the exact service-VBUS detector/latch MPN and the Pack/Safety I2C powered-off-Ioff boundary; the complete mock-up can be accepted only after four physical H1 blockers close.
+> The exact current marker is **H1-R2.32**: H0/H1 now agree on two independent RP2354B domains, exact GPIO0..47 maps and five M1 endpoints; the C5 electrical pin/mux contract and the 43-body Cap/evidence coordinate register are joined. The old single-RP G2F/H2 projection remains historical R1 evidence only. New R2 H2/KiCad stays blocked on the live C11355 route, the exact service-VBUS detector/latch MPN and the Pack/Safety I2C powered-off-Ioff boundary; the complete mock-up can be accepted only after three physical H1 blockers close.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 

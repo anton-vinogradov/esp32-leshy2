@@ -29,6 +29,6 @@
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | extended-operation and configurable self-test policy without a runtime claim | H8 24/48-hour qualified-USB endurance and battery-to-protected-cutoff measurements |
 
-**Исторический маркер:** `H3.0.1-R1`. **Текущий аппаратный маркер:** `H1-R2.31`; R2 должна пройти собственный H2/H3. Закупка, PCB layout и fabrication не разрешены.
+**Исторический маркер:** `H3.0.1-R1`. **Текущий аппаратный маркер:** `H1-R2.32`; R2 должна пройти собственный H2/H3. Закупка, PCB layout и fabrication не разрешены.
 
 [Машинный freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

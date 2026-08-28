@@ -6,7 +6,7 @@
     "hardware/verification/generated/H3-VRF31-display.json": "406618914ce3c840a15a4c1d387ca905c133955373978498016252b76ea056f6",
     "hardware/verification/generated/H3-VRF32-audio.json": "7917925457b47a1a77474c3a907d3564e0d8dd5f52f230bb3bc82ade74b22ff7",
     "hardware/verification/generated/H3-VRF33-ir.json": "d13153d21550ffbea98baaad38c47e6d96a61c37b6b0947de2dcbcf3465a2367",
-    "hardware/verification/generated/H3-VRF34-battery-analog.json": "3ed3cee18dabd485228154e785192acf5bc123499e3640c50234179e98d31819"
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "39b87068538107b378e13f966a6ad7ff1639dd8cc6aeaf958faa277f0d851644"
   },
   "leaf_summary": {
     "display": {
@@ -85,10 +85,10 @@
       "calibrate the VEMD1060 tunnel against the <=2.271-uA paper target and inject missing emitter, ambient leakage, RX crosstalk, stuck carrier, brownout and FAULT_KILL"
     ],
     "battery": [
-      "program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens",
-      "calibrate the two divider channels on the assembled admission domain and inject open, short, swapped, reversed, missing and imbalanced cells",
-      "thermally ramp every cell and board NTC, measure bond response time and prove open/short/lift detection plus the 35/40/60/65/75-C policy",
-      "verify BQ CE-default-off, TS open/short, exact warm/cold suspend and all source/load/charge-current transitions with the exact cell lot",
+      "on one received MAX17320, record blank fail-closed behavior, program a deliberately invalid but electrically safe configuration, then program the reviewed golden image and prove recovery; read both address spaces, checksum, NVError and remaining-update bitmap at each transition; inject zero-remaining and failed-copy only in the emulator or isolated fixture, never consume all seven physical updates and use no sacrificial chip",
+      "calibrate the two divider channels on the assembled admission domain; inject open, short, swapped, reversed, missing and imbalanced-cell states only with a current-limited cell simulator",
+      "use an NTC fixture to inject open/short/lift and the 35/40/60/65/75-C thresholds, measure sensor bonding/response within component limits, and never heat real cells beyond the exact cell MPN temperature envelope",
+      "verify BQ CE-default-off, TS open/short with the NTC fixture, exact warm/cold suspend and all admitted source/load/charge-current transitions with the exact cell lot inside its MPN limits",
       "measure long-idle divider imbalance, MAX balancing heat and both 49.9-ohm balance-resistor temperatures"
     ]
   },

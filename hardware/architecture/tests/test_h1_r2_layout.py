@@ -21,12 +21,12 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.31", self.model["marker"])
+        self.assertEqual("H1-R2.32", self.model["marker"])
         self.assertEqual("pass_with_open_h1_blockers", self.audit["status"])
         self.assertEqual("pass", self.audit["structural_status"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
-        self.assertEqual(62, len(self.audit["opposing_overlaps"]))
+        self.assertEqual(70, len(self.audit["opposing_overlaps"]))
         self.assertEqual(
             [{"ui": "m1_ui_plug", "rf": "m1_rf_receptacle", "overlap_mm": 3.8}],
             self.audit["intentional_opposing_mates"],
@@ -74,12 +74,12 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn("no live stub", bay["attachment"]["rf_selection"])
 
     def test_h1_blockers_are_separate_from_dependent_and_later_work(self):
-        self.assertEqual(4, len(self.model["current_h1_blockers"]))
+        self.assertEqual(3, len(self.model["current_h1_blockers"]))
         self.assertEqual(
             len(self.model["current_h1_blockers"]),
             len(self.model["current_h1_blockers_ru"]),
         )
-        self.assertTrue(any("canonical coordinate register" in row for row in self.model["current_h1_blockers"]))
+        self.assertFalse(any("canonical coordinate register" in row for row in self.model["current_h1_blockers"]))
         self.assertTrue(any("support-passive" in row for row in self.model["current_h1_blockers"]))
         self.assertTrue(any("printed NFC" in row for row in self.model["current_h1_blockers"]))
         self.assertTrue(any("swept volume" in row for row in self.model["current_h1_blockers"]))
@@ -92,6 +92,30 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual({"H5/H6/H7", "H5/H7", "H5/H8"}, {row["stage"] for row in self.model["downstream_verification"]})
         self.assertEqual(self.model["current_h1_blockers"], self.audit["current_h1_blockers"])
         self.assertEqual(self.model["dependent_h1_work"], self.audit["dependent_h1_work"])
+
+    def test_base_cap_evidence_register_is_exact_complete_and_fail_closed(self):
+        register = self.audit["cap_evidence_coordinate_register"]
+        self.assertEqual("pass", register["status"])
+        self.assertEqual(43, register["expected_instance_count"])
+        self.assertEqual(43, register["resolved_instance_count"])
+        self.assertEqual(43, len(register["instances"]))
+        self.assertTrue(all(row["placement_courtyard_bbox_mm"] for row in register["instances"]))
+
+        broken = copy.deepcopy(self.base)
+        broken["cap_evidence_coordinate_register"]["instances"][0]["device_key"] = "wrong-device"
+        failed = MODULE.audit(self.model, broken)
+        self.assertIn(
+            "base Cap/evidence coordinate register differs from current exact G2F",
+            failed["errors"],
+        )
+
+        broken = copy.deepcopy(self.base)
+        broken["cap_evidence_coordinate_register"]["instances"].pop()
+        failed = MODULE.audit(self.model, broken)
+        self.assertIn(
+            "base Cap/evidence coordinate register differs from current exact G2F",
+            failed["errors"],
+        )
 
     def test_u219_cap_profile_and_only_source_proven_host_bodies_are_registered(self):
         slot = self.audit["cap_bus_slot"]
@@ -434,7 +458,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn('clip-path="url(#front-external-content)"', expected[MODULE.FOUR_FACES_SVG_PATH])
         self.assertIn('clip-path="url(#rear-external-content)"', expected[MODULE.FOUR_FACES_SVG_PATH])
         self.assertIn('data-view="numbered-component-legend"', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
-        self.assertIn('168 unique drawing references', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
+        self.assertIn('205 unique drawing references', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
         self.assertIn('data-physical-feature="cap_socket_pth_keepout"', expected[MODULE.INNER_RF_SVG_PATH])
         self.assertIn('data-physical-feature="u219_nfc_evidence_island_reserve"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
         self.assertIn('u219_nfc_pickup_loop · copper_feature_reserve · UNLOCATED', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])

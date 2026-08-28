@@ -4,8 +4,8 @@
   "status": "reviewed_mapping_only",
   "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "c102cae6157d3911ae8dc5d72af1c65a9b2971486da2ba90fd4236d9d4e61534",
-    "hardware/product-design/generated/H1-physical-source-table.json": "f97732a2f871b7c6a1f2bb11be566228485fe9c10d49eb5c3fe44ada5b20968b",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "39521d6fa6bd68bd1fb6e6d7e3a07389ea606de63f55328ec7fb385270056b85",
+    "hardware/product-design/generated/H1-physical-source-table.json": "ac004c115aba28ab32b54853161b16f2d0c5f5de1630d959bf6752690ea41de7",
     "hardware/product-design/mechanical-evidence-gates.json": "c6d3a2366cbb7657d09aea80019a59909d83457d3b7b2bba2cb328f967e12a1d",
     "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
     "hardware/architecture/am-lw-pod.json": "6571e20c26f2ceaebf9c4bf410d155417a68116b3b5ef2e16d7c77ee06503e08"
@@ -167,7 +167,7 @@
       "id": "H3-PHY-028",
       "source_phase": "H3.3",
       "source_group": "battery",
-      "requirement": "program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens",
+      "requirement": "on one received MAX17320, record blank fail-closed behavior, program a deliberately invalid but electrically safe configuration, then program the reviewed golden image and prove recovery; read both address spaces, checksum, NVError and remaining-update bitmap at each transition; inject zero-remaining and failed-copy only in the emulator or isolated fixture, never consume all seven physical updates and use no sacrificial chip",
       "parts": [
         {
           "identity": "pack_gauge",
@@ -186,11 +186,11 @@
         "H5-MECH-CELL-HOLDER-FIT"
       ],
       "missing_data": [
-        "programmed golden-image readback plus blank, corrupt and exhausted-write fault-injection records"
+        "one-device blank -> deliberately invalid but electrically safe configuration -> golden/recovery record with both address spaces, checksum, NVError and remaining-update bitmap; zero-remaining and failed-copy emulator/fixture injection records without consuming all seven physical updates"
       ],
       "sample_specific": true,
       "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
-      "accepted_pass_rule": "the received specimen directly demonstrates this item: program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens; a mismatch reopens the owning H1/H2/H3 result",
+      "accepted_pass_rule": "the received specimen directly demonstrates this item: on one received MAX17320, record blank fail-closed behavior, program a deliberately invalid but electrically safe configuration, then program the reviewed golden image and prove recovery; read both address spaces, checksum, NVError and remaining-update bitmap at each transition; inject zero-remaining and failed-copy only in the emulator or isolated fixture, never consume all seven physical updates and use no sacrificial chip; a mismatch reopens the owning H1/H2/H3 result",
       "status": "mapped_evidence_open"
     },
     {

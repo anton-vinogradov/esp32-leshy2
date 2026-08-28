@@ -4,6 +4,8 @@ H3.7.2 закрыт. В сведениях шести фаз H3 было 88 resi
 
 Каждая машинная строка содержит точный исходный artifact, ответственный gate, обязательный artifact и pass rule. Несоответствие повторно открывает исходный результат, а не превращается в waiver разводки или теста. Реестр не разрешает закупку, layout или печать. Исторический маркер прогресса R1 — `H3.7.3`.
 
+Безопасный fault injection отделён от потенциально повреждающей qualification. Исчерпание/failed-copy MAX17320 и электрические faults pack/NTC задаются emulator или current-limited fixture; реальные банки остаются внутри ограничений точного MPN по напряжению, току и температуре. Drop и endurance выполняются только на выделенных DVT-прототипах, которые могут быть повреждены. Необратимые locks, прожиг ключей/security-fuse и намеренное издевательство над реальными банками запрещены.
+
 | ID | Этап | Источник | Требуемое физическое evidence |
 |---|---|---|---|
 | `H3-PHY-001` | `H6` | `H3.1` | H6 copper, placement and converter-loop thermal layout |
@@ -33,10 +35,10 @@ H3.7.2 закрыт. В сведениях шести фаз H3 было 88 resi
 | `H3-PHY-025` | `H8` | `H3.3` | replay a representative 30-to-60-kHz protocol corpus and measure carrier/count accuracy, robust AGC behavior, range and field of view |
 | `H3-PHY-026` | `H8` | `H3.3` | measure VSMY14940 current, optical range/alignment, local temperature and IEC 62471 classification through the final enclosure/window |
 | `H3-PHY-027` | `H8` | `H3.3` | calibrate the VEMD1060 tunnel against the <=2.271-uA paper target and inject missing emitter, ambient leakage, RX crosstalk, stuck carrier, brownout and FAULT_KILL |
-| `H3-PHY-028` | `H5+H8` | `H3.3` | program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens |
-| `H3-PHY-029` | `H8` | `H3.3` | calibrate the two divider channels on the assembled admission domain and inject open, short, swapped, reversed, missing and imbalanced cells |
-| `H3-PHY-030` | `H8` | `H3.3` | thermally ramp every cell and board NTC, measure bond response time and prove open/short/lift detection plus the 35/40/60/65/75-C policy |
-| `H3-PHY-031` | `H8` | `H3.3` | verify BQ CE-default-off, TS open/short, exact warm/cold suspend and all source/load/charge-current transitions with the exact cell lot |
+| `H3-PHY-028` | `H5+H8` | `H3.3` | on one received MAX17320, record blank fail-closed behavior, program a deliberately invalid but electrically safe configuration, then program the reviewed golden image and prove recovery; read both address spaces, checksum, NVError and remaining-update bitmap at each transition; inject zero-remaining and failed-copy only in the emulator or isolated fixture, never consume all seven physical updates and use no sacrificial chip |
+| `H3-PHY-029` | `H8` | `H3.3` | calibrate the two divider channels on the assembled admission domain; inject open, short, swapped, reversed, missing and imbalanced-cell states only with a current-limited cell simulator |
+| `H3-PHY-030` | `H8` | `H3.3` | use an NTC fixture to inject open/short/lift and the 35/40/60/65/75-C thresholds, measure sensor bonding/response within component limits, and never heat real cells beyond the exact cell MPN temperature envelope |
+| `H3-PHY-031` | `H8` | `H3.3` | verify BQ CE-default-off, TS open/short with the NTC fixture, exact warm/cold suspend and all admitted source/load/charge-current transitions with the exact cell lot inside its MPN limits |
 | `H3-PHY-032` | `H8` | `H3.3` | measure long-idle divider imbalance, MAX balancing heat and both 49.9-ohm balance-resistor temperatures |
 | `H3-PHY-033` | `H8` | `H3.4` | measure powered-off leakage at every switched-domain signal while the host remains powered |
 | `H3-PHY-034` | `H8` | `H3.4` | capture reset and brownout pin states for S3, C5, RP2354B, both MSPM0 controllers and TCA6424A |

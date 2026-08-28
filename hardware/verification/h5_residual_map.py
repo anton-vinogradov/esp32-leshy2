@@ -39,7 +39,7 @@ RESIDUAL_MAP = {
     "H3-PHY-028": {
         "instances": ["pack_gauge"],
         "mechanical_gates": ["H5-MECH-CELL-HOLDER-FIT"],
-        "missing_data": ["programmed golden-image readback plus blank, corrupt and exhausted-write fault-injection records"],
+        "missing_data": ["one-device blank -> deliberately invalid but electrically safe configuration -> golden/recovery record with both address spaces, checksum, NVError and remaining-update bitmap; zero-remaining and failed-copy emulator/fixture injection records without consuming all seven physical updates"],
         "sample_specific": True,
     },
     "H3-PHY-038": {
@@ -110,7 +110,7 @@ RESIDUAL_MAP = {
 RESIDUAL_MISSING_RU = {
     "H3-PHY-017": "самостоятельный order identity и полный контур FPC текущей партии HMX035CTFT-001; identity/readback контроллера и равенство разгона VDD/VDDI на образце",
     "H3-PHY-024": "ориентацию полученной партии, startup, quiet guard, два канала захвата и отсутствие обратного питания",
-    "H3-PHY-028": "readback эталонного образа и fault injection для пустого, повреждённого и исчерпавшего записи экземпляров",
+    "H3-PHY-028": "на одном экземпляре — blank → намеренно некорректная, но электрически безопасная конфигурация → golden/recovery с чтением обоих address space, checksum, NVError и bitmap оставшихся обновлений; zero-remaining и failed-copy — только в emulator/fixture без расходования всех семи физических записей",
     "H3-PHY-038": "выбрать точный серийный MPN эталонной microSD; измерить CMD6 identity, скорость, задержки и работу 512-КиБ буфера",
     "H3-PHY-046": "непубликуемые MPN/материал/покрытие штырей stock U214; непрерывность, усилия и удержание смешанной пары U214/HLE",
     "H3-PHY-048": "выбрать серийный набор кабелей/аксессуаров для I2C, UART, GPIO и 1-Wire; измерить длины, pull-сети и формы сигналов через TXS0102",

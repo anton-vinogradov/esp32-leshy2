@@ -2,8 +2,9 @@
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
   "status": "in_progress",
-  "marker": "H1-R2.31",
-  "checked_on": "2026-08-28",
+  "marker": "H1-R2.32",
+  "pin_authority_marker": "H1-R2.31",
+  "checked_on": "2026-08-29",
   "purpose": "Close the pre-KiCad physical architecture around direct i8080-8, a fully counted 80-contact M1, mechanically unloaded board retention, direct 5+5 antenna locality, local nRF concurrency and an adaptable post-PCBA analog-FPV receiver bay.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "board_mm": [75.0, 150.0],
@@ -1233,13 +1234,11 @@
     }
   ],
   "current_h1_blockers": [
-    "complete the canonical coordinate register for the existing Cap-Bus ESD, series, supervisor, bypass and evidence-aggregate bodies before claiming a complete physical placement",
     "complete exact support-passive values/MPNs and prove their courtyards inside the two bounded U219 placement islands",
     "obtain controlled U219 field-structure geometry or measure a received unit before locating the weak printed NFC pickup loop and its DNP C0G bank",
     "measure the installed U219 RP-SMA antenna swept volume against the rear connector bank, FPV plug, enclosure and user hand access"
   ],
   "current_h1_blockers_ru": [
-    "завершить канонический реестр координат существующих корпусов Cap-Bus ESD, series, supervisor, bypass и evidence aggregate до заявления о полной физической компоновке",
     "завершить точные значения/MPN вспомогательных пассивов и доказать их courtyards внутри двух ограниченных U219 placement-island",
     "получить контролируемую геометрию field structure U219 или измерить полученный экземпляр до размещения слабосвязанной печатной NFC-петли и её DNP C0G-банка",
     "измерить swept volume установленной RP-SMA-антенны U219 относительно заднего ряда разъёмов, FPV-штекера, корпуса и доступа рукой"

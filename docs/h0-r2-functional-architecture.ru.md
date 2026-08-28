@@ -2,7 +2,7 @@
 
 H0-R2 проведён как новый функциональный baseline: UI и дисплей остаются на S3, высокоскоростные периферийные тракты разгружены через Hub RP, аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен.
 
-> Текущий точный маркер — **H1-R2.31**: H0/H1 согласованы с двумя независимыми RP2354B, точными GPIO0..47 и пятью M1 endpoints; электрический pin/mux-контракт C5 присоединён. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Новый R2 H2/KiCad заблокирован до live route C11355, точного MPN detector/latch service-VBUS и powered-off-Ioff границы Pack/Safety I2C; полный мокап можно принять только после четырёх физических H1-блокеров.
+> Текущий точный маркер — **H1-R2.32**: H0/H1 согласованы с двумя независимыми RP2354B, точными GPIO0..47 и пятью M1 endpoints; электрический pin/mux-контракт C5 и 43-корпусный coordinate-register Cap/evidence присоединены. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Новый R2 H2/KiCad заблокирован до live route C11355, точного MPN detector/latch service-VBUS и powered-off-Ioff границы Pack/Safety I2C; полный мокап можно принять только после трёх физических H1-блокеров.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 

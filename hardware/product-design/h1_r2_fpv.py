@@ -264,7 +264,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         )
         headings = ('## Результат', '## Фабричная граница', '## Блокеры FPV для H1', '## Последующая проверка — не блокирует H1')
         alternatives_heading = '## Рассмотренные приёмники'
-        footer = f'> Точный текущий маркер: **{model["marker"]}**. H1 продолжается.'
+        footer = f'> Маркер артефакта: **{model["marker"]}**. Общий маркер физического дизайна уже **H1-R2.32**; H1 продолжается.'
     else:
         title = f'# {model["marker"]} · analog-FPV receive path'
         intro = 'H1 accepts a replaceable one-of-two post-PCBA analog-FPV receiver land: primary K331 or documented AWM666V fallback.'
@@ -288,7 +288,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         )
         headings = ('## Result', '## Factory boundary', '## FPV blockers for H1', '## Later verification — does not block H1')
         alternatives_heading = '## Receivers reviewed'
-        footer = f'> Exact current marker: **{model["marker"]}**. H1 remains in progress.'
+        footer = f'> Artifact marker: **{model["marker"]}**. The overall physical-design marker has advanced to **H1-R2.32**; H1 remains in progress.'
     alternatives = '\n'.join(
         f'- `{row["mpn"]}` — {row["result_ru"] if ru else row["result"]}.'
         for row in model["receiver_alternatives_reviewed"]

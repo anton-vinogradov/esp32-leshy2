@@ -37,7 +37,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H1-R2.31", roadmap["current_substep"])
+        self.assertEqual("H1-R2.32", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -561,7 +561,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Sunlord MWSA0503S-2R2MT",
             "Murata GRM31CR71E106MA12L",
             'data-zone="cc-reference-rf-network"',
-            'data-opposing-pairs="38"',
+            'data-opposing-pairs="46"',
             'data-min-z-clearance-mm="3.31"',
             'data-opposing-cable-pairs="2"',
             'data-rf-pcb-topology-guides="10"',

@@ -151,12 +151,1356 @@
     "rule": "later enclosure surfaces may grow around the locked component model but may not move an accepted PCB/interface datum silently",
     "mandatory_load_paths": "front/rear PCB capture lips, two anti-shear datums, four 11.00-mm compression stops and a Keystone 1048P cradle/end-stop pair are required before enclosure release"
   },
+  "cap_evidence_coordinate_register": {
+    "status": "pass",
+    "candidate_id": "G2F-3I",
+    "policy": "exact current-G2F identity; exactly one physical coordinate; source body envelope plus 0.35-mm per-side H1 collision halo; H2 retains trace order and the connector-side ESD launch constraint",
+    "courtyard_halo_per_side_mm": 0.35,
+    "expected_instance_count": 43,
+    "resolved_instance_count": 43,
+    "instances": [
+      {
+        "instance": "any_tx_aon_pullup",
+        "device_key": "yageo_rc0402fr_0710kl",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          56.0,
+          90.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            55.65,
+            57.35
+          ],
+          "y": [
+            90.15,
+            91.35
+          ]
+        },
+        "source": {
+          "document": "Yageo RC0402FR-0710KL product specification",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "evidence_main_isolator",
+        "device_key": "ti_sn74lvc3g07_dcur",
+        "mpn": "SN74LVC3G07DCUR",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          58.0,
+          93.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          3.1,
+          2.0
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            57.65,
+            61.45
+          ],
+          "y": [
+            93.15,
+            95.85
+          ]
+        },
+        "source": {
+          "document": "SN74LVC3G07 Triple Buffer/Driver With Open-Drain Outputs datasheet",
+          "version": "Rev. R",
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc3g07.pdf",
+          "checked": "2026-08-19"
+        }
+      },
+      {
+        "instance": "evidence_main_isolator_bypass",
+        "device_key": "yageo_cc0402krx7r9bb104",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          56.0,
+          94.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            55.65,
+            57.35
+          ],
+          "y": [
+            93.65,
+            94.85
+          ]
+        },
+        "source": {
+          "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+          "version": "generated 2026-06-24",
+          "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "evidence_or_0",
+        "device_key": "onsemi_bat54alt1g",
+        "mpn": "BAT54ALT1G",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          58.0,
+          96.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.9,
+          1.3
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            57.65,
+            61.25
+          ],
+          "y": [
+            96.15,
+            98.15
+          ]
+        },
+        "source": {
+          "document": "BAT54ALT1 Schottky Barrier Diodes datasheet",
+          "version": "Rev. 16",
+          "url": "https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf",
+          "checked": "2026-08-17"
+        }
+      },
+      {
+        "instance": "evidence_or_1",
+        "device_key": "onsemi_bat54alt1g",
+        "mpn": "BAT54ALT1G",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          62.0,
+          93.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.9,
+          1.3
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            61.65,
+            65.25
+          ],
+          "y": [
+            93.15,
+            95.15
+          ]
+        },
+        "source": {
+          "document": "BAT54ALT1 Schottky Barrier Diodes datasheet",
+          "version": "Rev. 16",
+          "url": "https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf",
+          "checked": "2026-08-17"
+        }
+      },
+      {
+        "instance": "evidence_or_2",
+        "device_key": "onsemi_bat54alt1g",
+        "mpn": "BAT54ALT1G",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          58.0,
+          86.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.9,
+          1.3
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            57.65,
+            61.25
+          ],
+          "y": [
+            85.65,
+            87.65
+          ]
+        },
+        "source": {
+          "document": "BAT54ALT1 Schottky Barrier Diodes datasheet",
+          "version": "Rev. 16",
+          "url": "https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf",
+          "checked": "2026-08-17"
+        }
+      },
+      {
+        "instance": "evidence_or_3",
+        "device_key": "onsemi_bat54alt1g",
+        "mpn": "BAT54ALT1G",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          64.0,
+          91.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.9,
+          1.3
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            63.65,
+            67.25
+          ],
+          "y": [
+            91.15,
+            93.15
+          ]
+        },
+        "source": {
+          "document": "BAT54ALT1 Schottky Barrier Diodes datasheet",
+          "version": "Rev. 16",
+          "url": "https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf",
+          "checked": "2026-08-17"
+        }
+      },
+      {
+        "instance": "evidence_or_4",
+        "device_key": "onsemi_bat54alt1g",
+        "mpn": "BAT54ALT1G",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          62.0,
+          95.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.9,
+          1.3
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            61.65,
+            65.25
+          ],
+          "y": [
+            95.15,
+            97.15
+          ]
+        },
+        "source": {
+          "document": "BAT54ALT1 Schottky Barrier Diodes datasheet",
+          "version": "Rev. 16",
+          "url": "https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf",
+          "checked": "2026-08-17"
+        }
+      },
+      {
+        "instance": "ext_evidence_buffer",
+        "device_key": "ti_sn74lvc1g07_dckr",
+        "mpn": "SN74LVC1G07DCKR",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          55.0,
+          92.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.0,
+          1.25
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            54.65,
+            57.35
+          ],
+          "y": [
+            91.65,
+            93.6
+          ]
+        },
+        "source": {
+          "document": "SN74LVC1G07 Single Buffer/Driver With Open-Drain Output datasheet",
+          "version": "Rev. V",
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g07.pdf",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "ext_evidence_buffer_bypass",
+        "device_key": "yageo_cc0402krx7r9bb104",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          56.0,
+          89.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            55.65,
+            57.35
+          ],
+          "y": [
+            88.65,
+            89.85
+          ]
+        },
+        "source": {
+          "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+          "version": "generated 2026-06-24",
+          "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "ext_evidence_input_pullup",
+        "device_key": "yageo_rc0402fr_0710kl",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          56.0,
+          95.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            55.65,
+            57.35
+          ],
+          "y": [
+            95.15,
+            96.35
+          ]
+        },
+        "source": {
+          "document": "Yageo RC0402FR-0710KL product specification",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "ext_evidence_input_series",
+        "device_key": "yageo_rc0402fr_071kl",
+        "mpn": "Yageo RC0402FR-071KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          56.0,
+          87.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            55.65,
+            57.35
+          ],
+          "y": [
+            87.15,
+            88.35
+          ]
+        },
+        "source": {
+          "document": "RC0402FR-071KL exact product specification",
+          "version": "generated 2026-01-15",
+          "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-071KL",
+          "checked": "2026-08-19"
+        }
+      },
+      {
+        "instance": "ext_evidence_output_pullup",
+        "device_key": "yageo_rc0402fr_0710kl",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          58.0,
+          98.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            57.65,
+            59.35
+          ],
+          "y": [
+            98.15,
+            99.35
+          ]
+        },
+        "source": {
+          "document": "Yageo RC0402FR-0710KL product specification",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_connector",
+        "device_key": "samtec_hle_107_02_g_dv_pe_lc",
+        "mpn": "Samtec HLE-107-02-G-DV-PE-LC",
+        "frame": "rear-outer",
+        "coordinate_mm": [
+          28.61,
+          26.46
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          17.78,
+          5.08
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            28.26,
+            46.74
+          ],
+          "y": [
+            26.11,
+            31.89
+          ]
+        },
+        "source": {
+          "document": "Samtec exact HLE product page, series print and HLE catalog",
+          "version": "HLE-107-02-G-DV-PE-LC / HLE-1XX-02-XX-DV-XE-XX-MKT",
+          "url": "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc",
+          "checked": "2026-08-23"
+        }
+      },
+      {
+        "instance": "u214_esd_a",
+        "device_key": "ti_tpd4e05u06_dqar",
+        "mpn": "Texas Instruments TPD4E05U06DQAR",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          32.0,
+          58.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.5,
+          1.0
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            31.65,
+            34.85
+          ],
+          "y": [
+            58.15,
+            59.85
+          ]
+        },
+        "source": {
+          "document": "TPDxE05U06 1/4/6-channel ESD protection datasheet",
+          "version": "SLVSBO7O, revised 2024-08; exact order code checked 2026-08-18",
+          "url": "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_esd_b",
+        "device_key": "ti_tpd4e05u06_dqar",
+        "mpn": "Texas Instruments TPD4E05U06DQAR",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          43.0,
+          58.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.5,
+          1.0
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            42.65,
+            45.85
+          ],
+          "y": [
+            57.65,
+            59.35
+          ]
+        },
+        "source": {
+          "document": "TPDxE05U06 1/4/6-channel ESD protection datasheet",
+          "version": "SLVSBO7O, revised 2024-08; exact order code checked 2026-08-18",
+          "url": "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_esd_c",
+        "device_key": "ti_tpd4e05u06_dqar",
+        "mpn": "Texas Instruments TPD4E05U06DQAR",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          28.5,
+          58.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.5,
+          1.0
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            28.15,
+            31.35
+          ],
+          "y": [
+            57.65,
+            59.35
+          ]
+        },
+        "source": {
+          "document": "TPDxE05U06 1/4/6-channel ESD protection datasheet",
+          "version": "SLVSBO7O, revised 2024-08; exact order code checked 2026-08-18",
+          "url": "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_host_buffer_a",
+        "device_key": "nexperia_74lvc126apw_118",
+        "mpn": "Nexperia 74LVC126APW,118",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          16.0,
+          52.55
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          5.1,
+          4.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            15.65,
+            21.45
+          ],
+          "y": [
+            52.2,
+            57.4
+          ]
+        },
+        "source": {
+          "document": "74LVC126A quad buffer/line driver product data sheet",
+          "version": "Rev. 14, 12 June 2025",
+          "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_host_buffer_a_bypass",
+        "device_key": "yageo_cc0402krx7r9bb104",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          49.0,
+          54.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            48.65,
+            50.35
+          ],
+          "y": [
+            53.65,
+            54.85
+          ]
+        },
+        "source": {
+          "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+          "version": "generated 2026-06-24",
+          "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "u214_host_buffer_b",
+        "device_key": "nexperia_74lvc126apw_118",
+        "mpn": "Nexperia 74LVC126APW,118",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          21.8,
+          52.55
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          5.1,
+          4.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            21.45,
+            27.25
+          ],
+          "y": [
+            52.2,
+            57.4
+          ]
+        },
+        "source": {
+          "document": "74LVC126A quad buffer/line driver product data sheet",
+          "version": "Rev. 14, 12 June 2025",
+          "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_host_buffer_b_bypass",
+        "device_key": "yageo_cc0402krx7r9bb104",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          26.5,
+          58.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            26.15,
+            27.85
+          ],
+          "y": [
+            57.65,
+            58.85
+          ]
+        },
+        "source": {
+          "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+          "version": "generated 2026-06-24",
+          "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "u214_i2c_host_scl_pullup",
+        "device_key": "uniroyal_0402wgf2201tce",
+        "mpn": "UNI-ROYAL 0402WGF2201TCE",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          49.0,
+          52.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            48.65,
+            50.35
+          ],
+          "y": [
+            52.15,
+            53.35
+          ]
+        },
+        "source": {
+          "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+          "version": "V.10, 28 July 2025",
+          "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "u214_i2c_host_sda_pullup",
+        "device_key": "uniroyal_0402wgf2201tce",
+        "mpn": "UNI-ROYAL 0402WGF2201TCE",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          31.5,
+          60.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            31.15,
+            32.85
+          ],
+          "y": [
+            60.15,
+            61.35
+          ]
+        },
+        "source": {
+          "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+          "version": "V.10, 28 July 2025",
+          "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "u214_i2c_iso",
+        "device_key": "tca4307dgkr",
+        "mpn": "TCA4307DGKR",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          33.45,
+          52.55
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          3.1,
+          5.05
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            33.1,
+            36.9
+          ],
+          "y": [
+            52.2,
+            57.95
+          ]
+        },
+        "source": {
+          "document": "TCA4307 Hot-Swappable I2C/SMBus Buffer With Stuck-Bus Recovery datasheet",
+          "version": "SCPS270B",
+          "url": "https://www.ti.com/lit/ds/symlink/tca4307.pdf",
+          "checked": "2026-08-17"
+        }
+      },
+      {
+        "instance": "u214_i2c_iso_bypass",
+        "device_key": "yageo_cc0402krx7r9bb104",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          33.5,
+          60.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            33.15,
+            34.85
+          ],
+          "y": [
+            60.15,
+            61.35
+          ]
+        },
+        "source": {
+          "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+          "version": "generated 2026-06-24",
+          "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "u214_req_pulldown",
+        "device_key": "yageo_rc0402fr_0710kl",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          22.5,
+          59.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            22.15,
+            23.85
+          ],
+          "y": [
+            59.15,
+            60.35
+          ]
+        },
+        "source": {
+          "document": "Yageo RC0402FR-0710KL product specification",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_return_buffer",
+        "device_key": "nexperia_74lvc126apw_118",
+        "mpn": "Nexperia 74LVC126APW,118",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          27.6,
+          52.55
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          5.1,
+          4.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            27.25,
+            33.05
+          ],
+          "y": [
+            52.2,
+            57.4
+          ]
+        },
+        "source": {
+          "document": "74LVC126A quad buffer/line driver product data sheet",
+          "version": "Rev. 14, 12 June 2025",
+          "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_return_buffer_bypass",
+        "device_key": "yageo_cc0402krx7r9bb104",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          46.5,
+          58.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            46.15,
+            47.85
+          ],
+          "y": [
+            57.65,
+            58.85
+          ]
+        },
+        "source": {
+          "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+          "version": "generated 2026-06-24",
+          "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "u214_series_busy",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          24.5,
+          59.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            24.15,
+            25.85
+          ],
+          "y": [
+            59.15,
+            60.35
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_gps_rx",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          26.5,
+          59.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            26.15,
+            27.85
+          ],
+          "y": [
+            59.15,
+            60.35
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_gps_tx",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          22.5,
+          58.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            22.15,
+            23.85
+          ],
+          "y": [
+            57.65,
+            58.85
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_irq",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          47.5,
+          59.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            47.15,
+            48.85
+          ],
+          "y": [
+            59.15,
+            60.35
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_miso",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          49.5,
+          58.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            49.15,
+            50.85
+          ],
+          "y": [
+            58.15,
+            59.35
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_mosi",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          45.5,
+          60.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            45.15,
+            46.85
+          ],
+          "y": [
+            59.65,
+            60.85
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_nss",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          49.0,
+          57.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            48.65,
+            50.35
+          ],
+          "y": [
+            56.65,
+            57.85
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_rst",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          49.0,
+          55.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            48.65,
+            50.35
+          ],
+          "y": [
+            55.15,
+            56.35
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_sck",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          24.5,
+          58.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            24.15,
+            25.85
+          ],
+          "y": [
+            57.65,
+            58.85
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_supervisor",
+        "device_key": "ti_tps3808g33_dbvr",
+        "mpn": "TPS3808G33DBVR",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          72.0,
+          57.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.9,
+          1.6
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            71.65,
+            75.25
+          ],
+          "y": [
+            57.15,
+            59.45
+          ]
+        },
+        "source": {
+          "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
+          "version": "Rev. M",
+          "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+          "checked": "2026-08-17"
+        }
+      },
+      {
+        "instance": "u214_supervisor_bypass",
+        "device_key": "yageo_cc0402krx7r9bb104",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          72.0,
+          59.9
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            71.65,
+            73.35
+          ],
+          "y": [
+            59.55,
+            60.75
+          ]
+        },
+        "source": {
+          "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+          "version": "generated 2026-06-24",
+          "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "u214_supervisor_ct",
+        "device_key": "murata_grm155r71h103ka88d",
+        "mpn": "Murata GRM155R71H103KA88D",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          72.0,
+          63.8
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            71.65,
+            73.35
+          ],
+          "y": [
+            63.45,
+            64.65
+          ]
+        },
+        "source": {
+          "document": "Murata GRM155R71H103KA88 product data",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM155R71H103KA88D",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_supervisor_pullup",
+        "device_key": "yageo_rc0402fr_0710kl",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          72.0,
+          65.1
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            71.65,
+            73.35
+          ],
+          "y": [
+            64.75,
+            65.95
+          ]
+        },
+        "source": {
+          "document": "Yageo RC0402FR-0710KL product specification",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_supervisor_sense_bottom",
+        "device_key": "yageo_rc0402fr_07220kl",
+        "mpn": "Yageo RC0402FR-07220KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          72.0,
+          62.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            71.65,
+            73.35
+          ],
+          "y": [
+            62.15,
+            63.35
+          ]
+        },
+        "source": {
+          "document": "Yageo RC0402FR-07220KL product specification",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07220KL",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_supervisor_sense_top",
+        "device_key": "yageo_rc0402fr_07110kl",
+        "mpn": "Yageo RC0402FR-07110KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          72.0,
+          61.2
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            71.65,
+            73.35
+          ],
+          "y": [
+            60.85,
+            62.05
+          ]
+        },
+        "source": {
+          "document": "RC0402FR-07110KL exact product specification",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-07110KL",
+          "checked": "2026-08-18"
+        }
+      }
+    ],
+    "errors": []
+  },
   "interboard_fit_audit": {
     "result": "paper_geometry_passed",
     "interboard_gap_mm": 11.0,
     "minimum_required_clearance_mm": 0.7,
-    "inner_body_count": 143,
-    "total_inner_component_count_including_adapter": 145,
+    "inner_body_count": 181,
+    "total_inner_component_count_including_adapter": 183,
     "all_inner_bodies_have_sourced_positive_height": true,
     "no_inner_body_exceeds_gap": true,
     "no_inner_body_violates_minimum_clearance": true,
@@ -678,6 +2022,13 @@
         "remaining_to_opposite_pcb_plane_mm": 9.55
       },
       {
+        "instance": "u214_supervisor",
+        "frame": "rf-inner",
+        "mpn": "TPS3808G33DBVR",
+        "height_mm": 1.45,
+        "remaining_to_opposite_pcb_plane_mm": 9.55
+      },
+      {
         "instance": "microphone",
         "frame": "rf-inner",
         "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
@@ -800,6 +2151,13 @@
         "instance": "evidence_cmp_voice",
         "frame": "rf-inner",
         "mpn": "TLV1821DCKR",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "ext_evidence_buffer",
+        "frame": "rf-inner",
+        "mpn": "SN74LVC1G07DCKR",
         "height_mm": 1.1,
         "remaining_to_opposite_pcb_plane_mm": 9.9
       },
@@ -1000,6 +2358,41 @@
         "remaining_to_opposite_pcb_plane_mm": 10.0
       },
       {
+        "instance": "evidence_or_0",
+        "frame": "rf-inner",
+        "mpn": "BAT54ALT1G",
+        "height_mm": 1.0,
+        "remaining_to_opposite_pcb_plane_mm": 10.0
+      },
+      {
+        "instance": "evidence_or_1",
+        "frame": "rf-inner",
+        "mpn": "BAT54ALT1G",
+        "height_mm": 1.0,
+        "remaining_to_opposite_pcb_plane_mm": 10.0
+      },
+      {
+        "instance": "evidence_or_2",
+        "frame": "rf-inner",
+        "mpn": "BAT54ALT1G",
+        "height_mm": 1.0,
+        "remaining_to_opposite_pcb_plane_mm": 10.0
+      },
+      {
+        "instance": "evidence_or_3",
+        "frame": "rf-inner",
+        "mpn": "BAT54ALT1G",
+        "height_mm": 1.0,
+        "remaining_to_opposite_pcb_plane_mm": 10.0
+      },
+      {
+        "instance": "evidence_or_4",
+        "frame": "rf-inner",
+        "mpn": "BAT54ALT1G",
+        "height_mm": 1.0,
+        "remaining_to_opposite_pcb_plane_mm": 10.0
+      },
+      {
         "instance": "nvdc_charger",
         "frame": "rf-inner",
         "mpn": "Texas Instruments BQ25798RQMR",
@@ -1019,6 +2412,13 @@
         "mpn": "Texas Instruments TPS3435CAKAGDDFR",
         "height_mm": 1.0,
         "remaining_to_opposite_pcb_plane_mm": 10.0
+      },
+      {
+        "instance": "evidence_main_isolator",
+        "frame": "rf-inner",
+        "mpn": "SN74LVC3G07DCUR",
+        "height_mm": 0.9,
+        "remaining_to_opposite_pcb_plane_mm": 10.1
       },
       {
         "instance": "pack_diag_res0",
@@ -1173,9 +2573,219 @@
         "mpn": "Texas Instruments TPS564252DRLR",
         "height_mm": 0.6,
         "remaining_to_opposite_pcb_plane_mm": 10.4
+      },
+      {
+        "instance": "evidence_main_isolator_bypass",
+        "frame": "rf-inner",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "height_mm": 0.5,
+        "remaining_to_opposite_pcb_plane_mm": 10.5
+      },
+      {
+        "instance": "ext_evidence_buffer_bypass",
+        "frame": "rf-inner",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "height_mm": 0.5,
+        "remaining_to_opposite_pcb_plane_mm": 10.5
+      },
+      {
+        "instance": "u214_esd_a",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments TPD4E05U06DQAR",
+        "height_mm": 0.5,
+        "remaining_to_opposite_pcb_plane_mm": 10.5
+      },
+      {
+        "instance": "u214_esd_b",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments TPD4E05U06DQAR",
+        "height_mm": 0.5,
+        "remaining_to_opposite_pcb_plane_mm": 10.5
+      },
+      {
+        "instance": "u214_esd_c",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments TPD4E05U06DQAR",
+        "height_mm": 0.5,
+        "remaining_to_opposite_pcb_plane_mm": 10.5
+      },
+      {
+        "instance": "u214_host_buffer_a_bypass",
+        "frame": "rf-inner",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "height_mm": 0.5,
+        "remaining_to_opposite_pcb_plane_mm": 10.5
+      },
+      {
+        "instance": "u214_host_buffer_b_bypass",
+        "frame": "rf-inner",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "height_mm": 0.5,
+        "remaining_to_opposite_pcb_plane_mm": 10.5
+      },
+      {
+        "instance": "u214_i2c_iso_bypass",
+        "frame": "rf-inner",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "height_mm": 0.5,
+        "remaining_to_opposite_pcb_plane_mm": 10.5
+      },
+      {
+        "instance": "u214_return_buffer_bypass",
+        "frame": "rf-inner",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "height_mm": 0.5,
+        "remaining_to_opposite_pcb_plane_mm": 10.5
+      },
+      {
+        "instance": "u214_supervisor_bypass",
+        "frame": "rf-inner",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "height_mm": 0.5,
+        "remaining_to_opposite_pcb_plane_mm": 10.5
+      },
+      {
+        "instance": "u214_supervisor_ct",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM155R71H103KA88D",
+        "height_mm": 0.5,
+        "remaining_to_opposite_pcb_plane_mm": 10.5
+      },
+      {
+        "instance": "any_tx_aon_pullup",
+        "frame": "rf-inner",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "height_mm": 0.4,
+        "remaining_to_opposite_pcb_plane_mm": 10.6
+      },
+      {
+        "instance": "ext_evidence_input_pullup",
+        "frame": "rf-inner",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "height_mm": 0.4,
+        "remaining_to_opposite_pcb_plane_mm": 10.6
+      },
+      {
+        "instance": "ext_evidence_output_pullup",
+        "frame": "rf-inner",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "height_mm": 0.4,
+        "remaining_to_opposite_pcb_plane_mm": 10.6
+      },
+      {
+        "instance": "u214_req_pulldown",
+        "frame": "rf-inner",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "height_mm": 0.4,
+        "remaining_to_opposite_pcb_plane_mm": 10.6
+      },
+      {
+        "instance": "u214_supervisor_pullup",
+        "frame": "rf-inner",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "height_mm": 0.4,
+        "remaining_to_opposite_pcb_plane_mm": 10.6
+      },
+      {
+        "instance": "u214_supervisor_sense_bottom",
+        "frame": "rf-inner",
+        "mpn": "Yageo RC0402FR-07220KL",
+        "height_mm": 0.4,
+        "remaining_to_opposite_pcb_plane_mm": 10.6
+      },
+      {
+        "instance": "ext_evidence_input_series",
+        "frame": "rf-inner",
+        "mpn": "Yageo RC0402FR-071KL",
+        "height_mm": 0.35,
+        "remaining_to_opposite_pcb_plane_mm": 10.65
+      },
+      {
+        "instance": "u214_i2c_host_scl_pullup",
+        "frame": "rf-inner",
+        "mpn": "UNI-ROYAL 0402WGF2201TCE",
+        "height_mm": 0.35,
+        "remaining_to_opposite_pcb_plane_mm": 10.65
+      },
+      {
+        "instance": "u214_i2c_host_sda_pullup",
+        "frame": "rf-inner",
+        "mpn": "UNI-ROYAL 0402WGF2201TCE",
+        "height_mm": 0.35,
+        "remaining_to_opposite_pcb_plane_mm": 10.65
+      },
+      {
+        "instance": "u214_series_busy",
+        "frame": "rf-inner",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "height_mm": 0.35,
+        "remaining_to_opposite_pcb_plane_mm": 10.65
+      },
+      {
+        "instance": "u214_series_gps_rx",
+        "frame": "rf-inner",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "height_mm": 0.35,
+        "remaining_to_opposite_pcb_plane_mm": 10.65
+      },
+      {
+        "instance": "u214_series_gps_tx",
+        "frame": "rf-inner",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "height_mm": 0.35,
+        "remaining_to_opposite_pcb_plane_mm": 10.65
+      },
+      {
+        "instance": "u214_series_irq",
+        "frame": "rf-inner",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "height_mm": 0.35,
+        "remaining_to_opposite_pcb_plane_mm": 10.65
+      },
+      {
+        "instance": "u214_series_miso",
+        "frame": "rf-inner",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "height_mm": 0.35,
+        "remaining_to_opposite_pcb_plane_mm": 10.65
+      },
+      {
+        "instance": "u214_series_mosi",
+        "frame": "rf-inner",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "height_mm": 0.35,
+        "remaining_to_opposite_pcb_plane_mm": 10.65
+      },
+      {
+        "instance": "u214_series_nss",
+        "frame": "rf-inner",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "height_mm": 0.35,
+        "remaining_to_opposite_pcb_plane_mm": 10.65
+      },
+      {
+        "instance": "u214_series_rst",
+        "frame": "rf-inner",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "height_mm": 0.35,
+        "remaining_to_opposite_pcb_plane_mm": 10.65
+      },
+      {
+        "instance": "u214_series_sck",
+        "frame": "rf-inner",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "height_mm": 0.35,
+        "remaining_to_opposite_pcb_plane_mm": 10.65
+      },
+      {
+        "instance": "u214_supervisor_sense_top",
+        "frame": "rf-inner",
+        "mpn": "Yageo RC0402FR-07110KL",
+        "height_mm": 0.35,
+        "remaining_to_opposite_pcb_plane_mm": 10.65
       }
     ],
-    "opposing_non_mating_pair_count": 38,
+    "opposing_non_mating_pair_count": 46,
     "minimum_opposing_pair": {
       "ui_instance": "headphone_jack",
       "rf_instance": "pack_fuse0",
@@ -1421,6 +3031,20 @@
         "remaining_z_clearance_mm": 8.8
       },
       {
+        "ui_instance": "receiver",
+        "rf_instance": "u214_req_pulldown",
+        "ui_height_mm": 1.75,
+        "rf_height_mm": 0.4,
+        "remaining_z_clearance_mm": 8.85
+      },
+      {
+        "ui_instance": "receiver",
+        "rf_instance": "u214_series_gps_tx",
+        "ui_height_mm": 1.75,
+        "rf_height_mm": 0.35,
+        "remaining_z_clearance_mm": 8.9
+      },
+      {
         "ui_instance": "ui_zone_ntc",
         "rf_instance": "cc_band_buffer",
         "ui_height_mm": 0.9,
@@ -1447,6 +3071,48 @@
         "ui_height_mm": 0.6,
         "rf_height_mm": 1.1,
         "remaining_z_clearance_mm": 9.3
+      },
+      {
+        "ui_instance": "ui_matrix_io",
+        "rf_instance": "u214_esd_a",
+        "ui_height_mm": 1.2,
+        "rf_height_mm": 0.5,
+        "remaining_z_clearance_mm": 9.3
+      },
+      {
+        "ui_instance": "slow_io",
+        "rf_instance": "u214_return_buffer_bypass",
+        "ui_height_mm": 0.6,
+        "rf_height_mm": 0.5,
+        "remaining_z_clearance_mm": 9.9
+      },
+      {
+        "ui_instance": "slow_io",
+        "rf_instance": "u214_series_irq",
+        "ui_height_mm": 0.6,
+        "rf_height_mm": 0.35,
+        "remaining_z_clearance_mm": 10.05
+      },
+      {
+        "ui_instance": "slow_io",
+        "rf_instance": "u214_series_miso",
+        "ui_height_mm": 0.6,
+        "rf_height_mm": 0.35,
+        "remaining_z_clearance_mm": 10.05
+      },
+      {
+        "ui_instance": "slow_io",
+        "rf_instance": "u214_series_nss",
+        "ui_height_mm": 0.6,
+        "rf_height_mm": 0.35,
+        "remaining_z_clearance_mm": 10.05
+      },
+      {
+        "ui_instance": "slow_io",
+        "rf_instance": "u214_series_rst",
+        "ui_height_mm": 0.6,
+        "rf_height_mm": 0.35,
+        "remaining_z_clearance_mm": 10.05
       }
     ],
     "display_adapter_assembly": {
@@ -1985,8 +3651,27 @@
       "assembled tolerance stack and HIL"
     ]
   },
-  "resolved_body_count": 162,
+  "resolved_body_count": 200,
   "rows": [
+    {
+      "instance": "any_tx_aon_pullup",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          18.0,
+          19.0
+        ],
+        "y": [
+          90.5,
+          91.0
+        ],
+        "z": [
+          15.4,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
     {
       "instance": "aon_buck",
       "source_frame": "rf-inner",
@@ -2729,6 +4414,44 @@
       "direction": "not applicable"
     },
     {
+      "instance": "evidence_main_isolator",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          13.9,
+          17.0
+        ],
+        "y": [
+          93.5,
+          95.5
+        ],
+        "z": [
+          14.9,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "evidence_main_isolator_bypass",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          18.0,
+          19.0
+        ],
+        "y": [
+          94.0,
+          94.5
+        ],
+        "z": [
+          15.3,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
       "instance": "evidence_mask",
       "source_frame": "rf-inner",
       "world_bbox_mm": {
@@ -2742,6 +4465,101 @@
         ],
         "z": [
           14.6,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "evidence_or_0",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          14.1,
+          17.0
+        ],
+        "y": [
+          96.5,
+          97.8
+        ],
+        "z": [
+          14.8,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "evidence_or_1",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          10.1,
+          13.0
+        ],
+        "y": [
+          93.5,
+          94.8
+        ],
+        "z": [
+          14.8,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "evidence_or_2",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          14.1,
+          17.0
+        ],
+        "y": [
+          86.0,
+          87.3
+        ],
+        "z": [
+          14.8,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "evidence_or_3",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          8.1,
+          11.0
+        ],
+        "y": [
+          91.5,
+          92.8
+        ],
+        "z": [
+          14.8,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "evidence_or_4",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          10.1,
+          13.0
+        ],
+        "y": [
+          95.5,
+          96.8
+        ],
+        "z": [
+          14.8,
           15.8
         ]
       },
@@ -2818,6 +4636,101 @@
         ],
         "z": [
           13.1,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "ext_evidence_buffer",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          18.0,
+          20.0
+        ],
+        "y": [
+          92.0,
+          93.25
+        ],
+        "z": [
+          14.7,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "ext_evidence_buffer_bypass",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          18.0,
+          19.0
+        ],
+        "y": [
+          89.0,
+          89.5
+        ],
+        "z": [
+          15.3,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "ext_evidence_input_pullup",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          18.0,
+          19.0
+        ],
+        "y": [
+          95.5,
+          96.0
+        ],
+        "z": [
+          15.4,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "ext_evidence_input_series",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          18.0,
+          19.0
+        ],
+        "y": [
+          87.5,
+          88.0
+        ],
+        "z": [
+          15.45,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "ext_evidence_output_pullup",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          16.0,
+          17.0
+        ],
+        "y": [
+          98.5,
+          99.0
+        ],
+        "z": [
+          15.4,
           15.8
         ]
       },
@@ -4401,6 +6314,63 @@
       "direction": "rear-normal outward mating into the removable Cap"
     },
     {
+      "instance": "u214_esd_a",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          40.5,
+          43.0
+        ],
+        "y": [
+          58.5,
+          59.5
+        ],
+        "z": [
+          15.3,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_esd_b",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          29.5,
+          32.0
+        ],
+        "y": [
+          58.0,
+          59.0
+        ],
+        "z": [
+          15.3,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_esd_c",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          44.0,
+          46.5
+        ],
+        "y": [
+          58.0,
+          59.0
+        ],
+        "z": [
+          15.3,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
       "instance": "u214_host_buffer_a",
       "source_frame": "rf-inner",
       "world_bbox_mm": {
@@ -4414,6 +6384,25 @@
         ],
         "z": [
           14.7,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_host_buffer_a_bypass",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          25.0,
+          26.0
+        ],
+        "y": [
+          54.0,
+          54.5
+        ],
+        "z": [
+          15.3,
           15.8
         ]
       },
@@ -4439,6 +6428,63 @@
       "direction": "not applicable"
     },
     {
+      "instance": "u214_host_buffer_b_bypass",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          47.5,
+          48.5
+        ],
+        "y": [
+          58.0,
+          58.5
+        ],
+        "z": [
+          15.3,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_i2c_host_scl_pullup",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          25.0,
+          26.0
+        ],
+        "y": [
+          52.5,
+          53.0
+        ],
+        "z": [
+          15.45,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_i2c_host_sda_pullup",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          42.5,
+          43.5
+        ],
+        "y": [
+          60.5,
+          61.0
+        ],
+        "z": [
+          15.45,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
       "instance": "u214_i2c_iso",
       "source_frame": "rf-inner",
       "world_bbox_mm": {
@@ -4458,6 +6504,44 @@
       "direction": "not applicable"
     },
     {
+      "instance": "u214_i2c_iso_bypass",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          40.5,
+          41.5
+        ],
+        "y": [
+          60.5,
+          61.0
+        ],
+        "z": [
+          15.3,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_req_pulldown",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          51.5,
+          52.5
+        ],
+        "y": [
+          59.5,
+          60.0
+        ],
+        "z": [
+          15.4,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
       "instance": "u214_return_buffer",
       "source_frame": "rf-inner",
       "world_bbox_mm": {
@@ -4471,6 +6555,310 @@
         ],
         "z": [
           14.7,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_return_buffer_bypass",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          27.5,
+          28.5
+        ],
+        "y": [
+          58.0,
+          58.5
+        ],
+        "z": [
+          15.3,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_series_busy",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          49.5,
+          50.5
+        ],
+        "y": [
+          59.5,
+          60.0
+        ],
+        "z": [
+          15.45,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_series_gps_rx",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          47.5,
+          48.5
+        ],
+        "y": [
+          59.5,
+          60.0
+        ],
+        "z": [
+          15.45,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_series_gps_tx",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          51.5,
+          52.5
+        ],
+        "y": [
+          58.0,
+          58.5
+        ],
+        "z": [
+          15.45,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_series_irq",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          26.5,
+          27.5
+        ],
+        "y": [
+          59.5,
+          60.0
+        ],
+        "z": [
+          15.45,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_series_miso",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          24.5,
+          25.5
+        ],
+        "y": [
+          58.5,
+          59.0
+        ],
+        "z": [
+          15.45,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_series_mosi",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          28.5,
+          29.5
+        ],
+        "y": [
+          60.0,
+          60.5
+        ],
+        "z": [
+          15.45,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_series_nss",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          25.0,
+          26.0
+        ],
+        "y": [
+          57.0,
+          57.5
+        ],
+        "z": [
+          15.45,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_series_rst",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          25.0,
+          26.0
+        ],
+        "y": [
+          55.5,
+          56.0
+        ],
+        "z": [
+          15.45,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_series_sck",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          49.5,
+          50.5
+        ],
+        "y": [
+          58.0,
+          58.5
+        ],
+        "z": [
+          15.45,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_supervisor",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          0.1,
+          3.0
+        ],
+        "y": [
+          57.5,
+          59.1
+        ],
+        "z": [
+          14.35,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_supervisor_bypass",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          2.0,
+          3.0
+        ],
+        "y": [
+          59.9,
+          60.4
+        ],
+        "z": [
+          15.3,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_supervisor_ct",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          2.0,
+          3.0
+        ],
+        "y": [
+          63.8,
+          64.3
+        ],
+        "z": [
+          15.3,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_supervisor_pullup",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          2.0,
+          3.0
+        ],
+        "y": [
+          65.1,
+          65.6
+        ],
+        "z": [
+          15.4,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_supervisor_sense_bottom",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          2.0,
+          3.0
+        ],
+        "y": [
+          62.5,
+          63.0
+        ],
+        "z": [
+          15.4,
+          15.8
+        ]
+      },
+      "direction": "not applicable"
+    },
+    {
+      "instance": "u214_supervisor_sense_top",
+      "source_frame": "rf-inner",
+      "world_bbox_mm": {
+        "x": [
+          2.0,
+          3.0
+        ],
+        "y": [
+          61.2,
+          61.7
+        ],
+        "z": [
+          15.45,
           15.8
         ]
       },

@@ -6,7 +6,7 @@ The `H5.0.3-R1` basket is rebuilt for the current dual-SA818S architecture. It c
 
 ```mermaid
 flowchart TD
-  R["✅ H5.0.2-R1<br/>sources + replacements"] --> B["▶️ H5.0.3-R1<br/>$285.47 · 33 lines"]
+  R["✅ H5.0.2-R1<br/>sources + replacements"] --> B["▶️ H5.0.3-R1<br/>$279.28 · 33 lines"]
   B --> P["JLCPCB Standard<br/>210 lines · 1052 placements"]
   P --> Q["route rebuild<br/>J0–J3 · J4-F/P"]
   Q --> S["SA818S-V<br/>final pre-order quote"]
@@ -19,8 +19,8 @@ flowchart TD
 
 ## Cost summary
 
-- **$285.47** is the known conservative material budget for every priced line.
-- It contains **$281.47** of published USD prices and **$4.00** of conservative caps for two cheap IR parts whose live pages expose AUD/INR prices.
+- **$279.28** is the known conservative material budget for every priced line.
+- It contains **$275.28** of published USD prices and **$4.00** of conservative caps for two cheap IR parts whose live pages expose AUD/INR prices.
 - The total includes exact `SA818S-U` `C3001549` at `$9.7347` and exact `SA818S-V` `C51897911` at `$10.0710`; the VHF module has zero stock, MOQ 1 and a typical 8–15-working-day lead, while final quote/lead remain an order-time gate.
 - Freight, taxes, customs and H5.2 coupon PCBs are excluded. Some coupon geometry depends on H5.1 incoming measurements; fabricating it now would recreate the cycle this phase removes.
 - The former `$164.54` was not a cheaper complete basket: it covered only eight partial lines and omitted most H5 gates.
@@ -85,8 +85,8 @@ flowchart TD
   Minimum basis: one holder is the actual two-cell mechanism
 - **2 × `XTAR protected 18650 4000 mAh 10 A` — $29.00.** [XTAR official store](https://xtardirect.com/products/xtar-high-capacity-36v-18650-4000mah-10a-protected-lithium-ion-battery); 98 shown in stock.
   Minimum basis: one matched same-lot pair is the only admitted operating pack; mixed MPN, lot, age or state of charge remains forbidden
-- **2 × `Analog Devices MAX17320G20+T` — $12.38.** [Mouser exact-MPN listing](https://www.mouser.com/en/ProductDetail/Analog-Devices-Maxim-Integrated/MAX17320G20%2BT); 7,638 shown in stock.
-  Minimum basis: one retained golden device and one sacrificial device sequenced through blank, corrupt and exhausted-write states; four dedicated chips are unnecessary
+- **1 × `Analog Devices MAX17320G20+T` — $6.19.** [Mouser exact-MPN listing](https://www.mouser.com/en/ProductDetail/Analog-Devices-Maxim-Integrated/MAX17320G20%2BT); 7,638 shown in stock.
+  Minimum basis: one device covers blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery with complete readback; zero-remaining and failed-copy are emulator/fixture-only, all seven physical updates are never consumed and no sacrificial chip is required
 
 ### Audio
 
@@ -181,9 +181,9 @@ All `23` residuals/gates are covered by `11` contracts. A pass/fail summary with
 <details><summary><code>H5-MSR-PACK</code></summary>
 
 - Covers: `H3-PHY-028, H5-MECH-CELL-HOLDER-FIT`.
-- Method: test one matched same-lot protected-cell pair in the exact holder across insertion, compression, polarity, vibration and thermal cycles; retain one MAX17320 golden device and sequence the second through blank, corrupt and exhausted-write conditions.
-- Pass rule: the matched pair remains mechanically/electrically retained at all admitted corners and every gauge fault state deterministically blocks or recovers exactly as specified.
-- Artifacts: cell lot record, dimensional/force/thermal/vibration traces, gauge images/readbacks and fault logs.
+- Method: keep one matched same-lot protected-cell pair inside its exact MPN voltage/current/temperature limits for admitted-operation, holder, vibration and thermal evidence; on one MAX17320 record blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery with both address spaces, checksum, NVError and remaining-update bitmap; inject zero-remaining, failed-copy, reversed, swapped, open, short, missing, imbalance and temperature thresholds through the emulator or current-limited cell-simulator/NTC fixture.
+- Pass rule: the matched pair remains mechanically/electrically retained at every admitted corner, the gauge blocks and recovers deterministically, all seven physical NVM updates are not consumed, and no real cell is abused beyond its MPN limits.
+- Artifacts: cell lot record, dimensional/force/vibration traces, simulator/NTC-fixture traces, gauge images/readbacks and fault logs.
 
 </details>
 

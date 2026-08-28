@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Pin assignment](pinout.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H1-R2.31`**. The functional architecture is reviewed; the
+> Current marker: **`H1-R2.32`**. The functional architecture is reviewed; the
 > physical design is in progress. Nothing on this page authorizes KiCad routing
 > or an order.
 
@@ -172,9 +172,10 @@ registered body. The post-PCBA one-of-two
 receiver architecture removes the unavailable K331 production package from the
 H1 critical path. Actual body, hand soldering, Z and durability are explicit
 H5/H7 qualification items; a later AKK/Sinopine package may simplify only the
-K331 footprint. The structural body audit passes, but H1 is not complete: the
-canonical Cap/evidence body register, support-passive MPN/courtyards, NFC pickup
-geometry and installed U219 antenna swept volume are four open blockers before
+K331 footprint. The structural body audit and the 43-body Cap/evidence
+coordinate register pass, but H1 is not complete: support-passive
+MPN/courtyards, NFC pickup geometry and installed U219 antenna swept volume are
+three open blockers before
 the complete mock-up can be explicitly accepted. The C5 electrical pin/mux
 contract is closed; its live FSUSB42MUX/C11355 route, exact service-VBUS
 detector/latch MPN and Pack/Safety I2C powered-off-Ioff boundary remain

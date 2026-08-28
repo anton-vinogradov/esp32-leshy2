@@ -438,7 +438,15 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
 
     lines = [
         title, "", nav, "", intro, "",
-        f"> Machine source: `{SOURCE.relative_to(ROOT)}`. Current marker: **`{source['marker']}`**.", "",
+        (
+            f"> Machine source: `{SOURCE.relative_to(ROOT)}`. "
+            + (
+                f"Маркер pin-map-артефакта: **`{source['marker']}`**; "
+                "текущий маркер физического дизайна: **`H1-R2.32`**."
+                if russian
+                else f"Pin-map artifact marker: **`{source['marker']}`**; current physical-design marker: **`H1-R2.32`**."
+            )
+        ), "",
     ]
     for domain in ("hub_rp", "rf_rp"):
         block = source[domain]

@@ -9,8 +9,8 @@ remains; received fit, RF, acoustic, thermal and endurance checks stay in H5.
 
 | Coverage | Result |
 |---|---:|
-| Rendered physical instances | 195 |
-| Exact-MPN instances | 195 |
+| Rendered physical instances | 233 |
+| Exact-MPN instances | 233 |
 | Explicit MPN TBD instances | 0 |
 | H1 geometry blockers | 0 |
 | H5 received-sample gates | 14 |
@@ -23,7 +23,7 @@ remains; received fit, RF, acoustic, thermal and endurance checks stay in H5.
 | `display-assembly` | HMX035CTFT-001 screen-body top-left, front view | 1 |
 | `front-outer` | UI PCB top-left, viewed from the front/exterior | 30 |
 | `rear-outer` | RF/power PCB top-left, viewed from the rear/exterior | 14 |
-| `rf-inner` | RF/power PCB top-left, viewed from the rear/exterior | 110 |
+| `rf-inner` | RF/power PCB top-left, viewed from the rear/exterior | 148 |
 | `rf-inner-route` | RF/power PCB top-left, viewed from the rear/exterior | 3 |
 | `ui-inner` | UI PCB top-left, viewed from the front/exterior | 33 |
 | `ui-inner-route` | UI PCB top-left, viewed from the front/exterior | 2 |

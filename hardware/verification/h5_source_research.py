@@ -174,10 +174,10 @@ RESIDUAL_FINDINGS = {
     "H3-PHY-028": {
         "disposition": "irreducible_received_sample",
         "sources": [],
-        "finding": "MAX17320 documentation defines the interfaces and limits, but golden-image programming and blank/corrupt/exhausted-write reactions are deliberately injected state tests on received silicon.",
-        "finding_ru": "Документация MAX17320 задаёт интерфейсы и пределы, но programming golden image и реакции на blank/corrupt/exhausted-write — намеренно вводимые состояния реального экземпляра.",
-        "remaining": "program and fault-inject the received gauge specimen set",
-        "remaining_ru": "запрограммировать полученные gauge-образцы и провести fault injection",
+        "finding": "MAX17320 documentation defines the interfaces and limits. One received device covers blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery with both address spaces, checksum, NVError and remaining-update bitmap read at each transition. Zero-remaining and failed-copy are emulator/fixture-only injections; all seven physical writes are never consumed and no sacrificial chip is required.",
+        "finding_ru": "Документация MAX17320 задаёт интерфейсы и пределы. Один полученный экземпляр покрывает blank → намеренно некорректную, но электрически безопасную конфигурацию → проверенный golden/recovery с чтением обоих address space, checksum, NVError и bitmap оставшихся обновлений на каждом переходе. Zero-remaining и failed-copy вводятся только в emulator/fixture; все семь физических записей не расходуются, отдельный жертвенный chip не нужен.",
+        "remaining": "run the one-device safe HIL sequence and the emulator/fixture-only exhaustion and failed-copy injections",
+        "remaining_ru": "выполнить безопасную HIL-последовательность на одном экземпляре и отдельные emulator/fixture-инъекции исчерпания и failed-copy",
     },
     "H3-PHY-038": {
         "disposition": "serial_reference_selected_physical_test_open",

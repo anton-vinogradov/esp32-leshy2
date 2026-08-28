@@ -2,13 +2,13 @@
 
 [Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)
 
-These are the current `H0-R2`/`H1-R2.31` principle diagrams of the finished
+These are the current `H0-R2`/`H1-R2.32` principle diagrams of the finished
 device. They explain ownership, buses, RF locality, power and service access.
 The exact dual-RP GPIO/M1 map and C5 SDIO/service-mux electrical join are closed
 as H1 authority. The R2 production ECAD schematic does **not** exist yet. U219
-host-body placement and the structural opposing-face audit are already closed;
-H2 starts only after the four remaining H1 blockers close: the canonical
-Cap/evidence coordinate register, exact support-passive values/MPNs and
+host-body placement, the structural opposing-face audit and the canonical
+Cap/evidence coordinate register are already closed; H2 starts only after the
+three remaining H1 blockers close: exact support-passive values/MPNs and
 courtyards, NFC-pickup geometry/tuning, installed-U219 antenna swept volume,
 followed by acceptance of the complete H1 mock-up.
 

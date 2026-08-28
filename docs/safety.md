@@ -78,8 +78,9 @@ LED and retained AON record remain available.
   additionally requires physical `RUN=KILL`, quiet TX evidence and qualified
   stable power.
 - Owners can use their own build keys and install their own firmware.
-  Irreversible key lockdown is not enabled by default, preserving device
-  openness.
+  Irreversible key locks, security-fuse burns and equivalent one-way actions
+  are forbidden throughout development, qualification and release, preserving
+  owner recovery and device openness.
 - S3, C5, RP2354B and both MSPM0 controllers have independent physical recovery
   paths. The MSPM0 paths permanently expose NRST, SWDIO, SWCLK, UART1 and
   isolated fixture power. Every recovery boot starts TX-off; RUN/KILL, the

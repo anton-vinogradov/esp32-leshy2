@@ -6,10 +6,10 @@
   "source_hashes": {
     "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "381e9bcbc95ee2994a39e113f6cd3cf1b7d42fc5013225d21bdb935f65fe2e32",
     "hardware/verification/generated/H3-VRF25-transition-consolidation.json": "dcc254e72bb89ba6b7eed6cf5f256c7eb03c3d44302b6c6cecb72e7fd3b7f0e2",
-    "hardware/verification/generated/H3-VRF35-analog-consolidation.json": "f08363d15ad53315b8d12e5ebaf9a57466ac339d32e6fcc136f35f2b2e9c1aa1",
+    "hardware/verification/generated/H3-VRF35-analog-consolidation.json": "ecf9751f9e7796a3969a9ced68d57263c81c5674d06934301586f05da1c5e67a",
     "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "13a319f0f05aaaf505b3aa7acb64b09192a414922cd0749d6dced4d3dd72ad6b",
     "hardware/verification/generated/H3-VRF54-rf-consolidation.json": "3f08871abdf17a264fcd8719d2698b2302cd9bcd77fdb85f9241a6b2ec7d09ea",
-    "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json": "dd4b6503c5ab4de9dd434c68ebdb09e053ff372881bd5351342ecaada6115806",
+    "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json": "ed295d7570488528f3d32d35319deb3deef608829b4153b934fa23917d605bc9",
     "hardware/verification/generated/H3-VRF71-crosscheck.json": "f92281da51c693eecfbe816176ea06a7b8ff9f9473d303d93e18abafc97e9973"
   },
   "summary": {
@@ -31,6 +31,11 @@
     },
     "unassigned": 0,
     "analytically_closed_by_h3": 0
+  },
+  "verification_safety_boundary": {
+    "safe_fault_injection": "MAX17320 exhaustion/failed-copy and pack/NTC electrical faults use an emulator or current-limited fixture; real cells stay inside exact MPN voltage, current and temperature limits",
+    "potentially_damaging_dvt": "drop and endurance qualification runs only on dedicated prototypes that may be consumed or damaged",
+    "forbidden": "irreversible locks, key/security-fuse burns and intentional real-cell abuse outside exact MPN limits"
   },
   "resolved_h3_internal": [
     {
@@ -56,6 +61,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF14-dc-consolidation.json",
       "source_group": "phase",
       "residual": "H6 copper, placement and converter-loop thermal layout",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H6"
       ],
@@ -74,6 +80,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF14-dc-consolidation.json",
       "source_group": "phase",
       "residual": "H8 measured converter efficiency, pack current, DPM charge derating and source handover",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -92,6 +99,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF14-dc-consolidation.json",
       "source_group": "phase",
       "residual": "H8 measured rail currents with display, selected microSD, speaker, every RF group and both exposed-port profiles",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -110,6 +118,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
       "source_group": "phase",
       "residual": "apply named worst load steps while capturing buck/eFuse current and rail minimum",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -128,6 +137,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
       "source_group": "phase",
       "residual": "fault-inject every clear source and measure TX-off/reset/rail-discharge ordering",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -146,6 +156,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
       "source_group": "phase",
       "residual": "inject weak/current-limited USB sources with healthy, absent and rejected packs",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -164,6 +175,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
       "source_group": "phase",
       "residual": "measure SYS and AON droop during USB attach/detach and DPM",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -182,6 +194,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
       "source_group": "phase",
       "residual": "measure actual RC capacitance under DC bias and temperature",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -200,6 +213,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
       "source_group": "phase",
       "residual": "measure charger/BATFET behavior at temperature and cell-voltage corners",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -218,6 +232,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
       "source_group": "phase",
       "residual": "measure effective MLCC capacitance under DC bias and temperature",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -236,6 +251,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
       "source_group": "phase",
       "residual": "measure every protected-rail ramp and discharge",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -254,6 +270,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
       "source_group": "phase",
       "residual": "measure exact watchdog window and WDO pulse on populated hardware",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -272,6 +289,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
       "source_group": "phase",
       "residual": "measure switch bounce and break-before-make interval",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -290,6 +308,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
       "source_group": "phase",
       "residual": "power-cut fault-inject every flash-journal write boundary",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -308,6 +327,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF25-transition-consolidation.json",
       "source_group": "phase",
       "residual": "prove the signed fault-only UI cannot enable a transmitter or external rail",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -326,6 +346,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "display",
       "residual": "measure protected-rail ripple and connector voltage at every accepted load and temperature corner",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -344,6 +365,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "display",
       "residual": "confirm HMX035CTFT-001 tail, ST77922 identity, VDD/VDDI ramp equality and reset/readback on received specimens",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H5",
         "H8"
@@ -368,6 +390,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "display",
       "residual": "measure QSPI edges, CS-high high-Z/contention and shared-microSD throughput before raising the 40-MHz initial cap",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -386,6 +409,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "display",
       "residual": "measure actual panel backlight current, brightness, PWM EMI, temperature and TPS2553 latch recovery",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -404,6 +428,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "audio",
       "residual": "measure microphone/headset sensitivity, codec clipping/ALC/noise, channel phase perception, crosstalk, insertion pop and RF immunity on routed hardware",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -422,6 +447,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "audio",
       "residual": "measure PAM8302A current, output EMI, speaker temperature/excursion and enclosure response; enforce the 50 C speaker-local mute rule",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -440,6 +466,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "audio",
       "residual": "calibrate SA818S-V and SA818S-U deviation downward from the bounded full-scale codec injection and repeat across both module lots, rail and temperature",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -458,6 +485,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "audio",
       "residual": "prove reset/brownout/off ordering, >=10-ms amplifier-enable delay and absence of back-power with codec, voice and main domains independently off",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -476,6 +504,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "ir",
       "residual": "verify received TSOP75238TR/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; confirm TSOP75238TR CPL rotation and feeder presentation against the JLCPCB placement preview",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H5",
         "H8"
@@ -500,6 +529,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "ir",
       "residual": "replay a representative 30-to-60-kHz protocol corpus and measure carrier/count accuracy, robust AGC behavior, range and field of view",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -518,6 +548,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "ir",
       "residual": "measure VSMY14940 current, optical range/alignment, local temperature and IEC 62471 classification through the final enclosure/window",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -536,6 +567,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "ir",
       "residual": "calibrate the VEMD1060 tunnel against the <=2.271-uA paper target and inject missing emitter, ambient leakage, RX crosstalk, stuck carrier, brownout and FAULT_KILL",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -553,7 +585,8 @@
       "source_phase": "H3.3",
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "battery",
-      "residual": "program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens",
+      "residual": "on one received MAX17320, record blank fail-closed behavior, program a deliberately invalid but electrically safe configuration, then program the reviewed golden image and prove recovery; read both address spaces, checksum, NVError and remaining-update bitmap at each transition; inject zero-remaining and failed-copy only in the emulator or isolated fixture, never consume all seven physical updates and use no sacrificial chip",
+      "test_class": "safe_fault_injection",
       "closure_stages": [
         "H5",
         "H8"
@@ -562,12 +595,12 @@
         "H5": {
           "owner": "H5 received-component evidence",
           "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
-          "pass_rule": "the received specimen directly demonstrates this item: program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens; a mismatch reopens the owning H1/H2/H3 result"
+          "pass_rule": "the received specimen directly demonstrates this item: on one received MAX17320, record blank fail-closed behavior, program a deliberately invalid but electrically safe configuration, then program the reviewed golden image and prove recovery; read both address spaces, checksum, NVError and remaining-update bitmap at each transition; inject zero-remaining and failed-copy only in the emulator or isolated fixture, never consume all seven physical updates and use no sacrificial chip; a mismatch reopens the owning H1/H2/H3 result"
         },
         "H8": {
-          "owner": "H8 physical qualification",
-          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
-          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens; any failure reopens the owning result and blocks release"
+          "owner": "H8 safe fault-injection qualification",
+          "required_artifact": "versioned HIL/emulator/fixture procedure, current-limited fixture identity, exact DUT/firmware identity, raw readback or waveform data and retained pass/fail log",
+          "pass_rule": "the safe device/fixture path demonstrates this case without exhausting NVM or abusing real cells outside their exact MPN limits: on one received MAX17320, record blank fail-closed behavior, program a deliberately invalid but electrically safe configuration, then program the reviewed golden image and prove recovery; read both address spaces, checksum, NVError and remaining-update bitmap at each transition; inject zero-remaining and failed-copy only in the emulator or isolated fixture, never consume all seven physical updates and use no sacrificial chip; any failure reopens the owning result"
         }
       },
       "status": "physical_evidence_required"
@@ -577,15 +610,16 @@
       "source_phase": "H3.3",
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "battery",
-      "residual": "calibrate the two divider channels on the assembled admission domain and inject open, short, swapped, reversed, missing and imbalanced cells",
+      "residual": "calibrate the two divider channels on the assembled admission domain; inject open, short, swapped, reversed, missing and imbalanced-cell states only with a current-limited cell simulator",
+      "test_class": "safe_fault_injection",
       "closure_stages": [
         "H8"
       ],
       "evidence_contracts": {
         "H8": {
-          "owner": "H8 physical qualification",
-          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
-          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: calibrate the two divider channels on the assembled admission domain and inject open, short, swapped, reversed, missing and imbalanced cells; any failure reopens the owning result and blocks release"
+          "owner": "H8 safe fault-injection qualification",
+          "required_artifact": "versioned HIL/emulator/fixture procedure, current-limited fixture identity, exact DUT/firmware identity, raw readback or waveform data and retained pass/fail log",
+          "pass_rule": "the safe device/fixture path demonstrates this case without exhausting NVM or abusing real cells outside their exact MPN limits: calibrate the two divider channels on the assembled admission domain; inject open, short, swapped, reversed, missing and imbalanced-cell states only with a current-limited cell simulator; any failure reopens the owning result"
         }
       },
       "status": "physical_evidence_required"
@@ -595,15 +629,16 @@
       "source_phase": "H3.3",
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "battery",
-      "residual": "thermally ramp every cell and board NTC, measure bond response time and prove open/short/lift detection plus the 35/40/60/65/75-C policy",
+      "residual": "use an NTC fixture to inject open/short/lift and the 35/40/60/65/75-C thresholds, measure sensor bonding/response within component limits, and never heat real cells beyond the exact cell MPN temperature envelope",
+      "test_class": "safe_fault_injection",
       "closure_stages": [
         "H8"
       ],
       "evidence_contracts": {
         "H8": {
-          "owner": "H8 physical qualification",
-          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
-          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: thermally ramp every cell and board NTC, measure bond response time and prove open/short/lift detection plus the 35/40/60/65/75-C policy; any failure reopens the owning result and blocks release"
+          "owner": "H8 safe fault-injection qualification",
+          "required_artifact": "versioned HIL/emulator/fixture procedure, current-limited fixture identity, exact DUT/firmware identity, raw readback or waveform data and retained pass/fail log",
+          "pass_rule": "the safe device/fixture path demonstrates this case without exhausting NVM or abusing real cells outside their exact MPN limits: use an NTC fixture to inject open/short/lift and the 35/40/60/65/75-C thresholds, measure sensor bonding/response within component limits, and never heat real cells beyond the exact cell MPN temperature envelope; any failure reopens the owning result"
         }
       },
       "status": "physical_evidence_required"
@@ -613,15 +648,16 @@
       "source_phase": "H3.3",
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "battery",
-      "residual": "verify BQ CE-default-off, TS open/short, exact warm/cold suspend and all source/load/charge-current transitions with the exact cell lot",
+      "residual": "verify BQ CE-default-off, TS open/short with the NTC fixture, exact warm/cold suspend and all admitted source/load/charge-current transitions with the exact cell lot inside its MPN limits",
+      "test_class": "safe_fault_injection",
       "closure_stages": [
         "H8"
       ],
       "evidence_contracts": {
         "H8": {
-          "owner": "H8 physical qualification",
-          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
-          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: verify BQ CE-default-off, TS open/short, exact warm/cold suspend and all source/load/charge-current transitions with the exact cell lot; any failure reopens the owning result and blocks release"
+          "owner": "H8 safe fault-injection qualification",
+          "required_artifact": "versioned HIL/emulator/fixture procedure, current-limited fixture identity, exact DUT/firmware identity, raw readback or waveform data and retained pass/fail log",
+          "pass_rule": "the safe device/fixture path demonstrates this case without exhausting NVM or abusing real cells outside their exact MPN limits: verify BQ CE-default-off, TS open/short with the NTC fixture, exact warm/cold suspend and all admitted source/load/charge-current transitions with the exact cell lot inside its MPN limits; any failure reopens the owning result"
         }
       },
       "status": "physical_evidence_required"
@@ -632,6 +668,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "battery",
       "residual": "measure long-idle divider imbalance, MAX balancing heat and both 49.9-ohm balance-resistor temperatures",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -650,6 +687,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "levels",
       "residual": "measure powered-off leakage at every switched-domain signal while the host remains powered",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -668,6 +706,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "levels",
       "residual": "capture reset and brownout pin states for S3, C5, RP2354B, both MSPM0 controllers and TCA6424A",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -686,6 +725,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "levels",
       "residual": "inject one and three simultaneous service USB hosts and verify no product rail is sourced",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -704,6 +744,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "levels",
       "residual": "exercise U214 and Unit wrong-accessory/external-source cases and measure reverse current",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -722,6 +763,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "levels",
       "residual": "measure VIH/VIL/VOH/VOL at the far end of M1 under simultaneous worst allowed branch load",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -740,6 +782,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "timing",
       "residual": "qualify SD card identity/CMD6 high-speed mode, >=4.0-MB/s storage, 1.5-MB/s record, 250-ms stalls and 512-KiB buffering",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H5",
         "H8"
@@ -764,6 +807,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "timing",
       "residual": "scope shared SPI2 edges, CS-high high-Z/contention and <=1-ms display/SD arbitration under insert/remove",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -782,6 +826,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "timing",
       "residual": "capture all three nRF24 IRQ-to-drain paths and every 3PRX/PTX role mix at 10-Mbit/s SPI",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -800,6 +845,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "timing",
       "residual": "capture CC1101 GDO/FIFO service at 600-kbit/s air rate and 10-Mbit/s SPI",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -818,6 +864,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "timing",
       "residual": "run full-duplex 48-kHz audio without DMA underrun/overrun during display, storage and radio-event stress",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -836,6 +883,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "timing",
       "residual": "prove S3-RP >=1.5 MB/s with <=250-us alert-to-read and S3-C5 >=1.5 MB/s with <=2-ms control RTT",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -854,6 +902,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "timing",
       "residual": "measure 400-kHz SYS_I2C transaction/recovery/IRQ latency with every assembled address and simultaneous UI activity",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -872,6 +921,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "boundaries",
       "residual": "measure M1 far-end rail drop, return offset, crosstalk and USB/SPI eye/edge quality after PCB placement",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -890,6 +940,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "boundaries",
       "residual": "verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H5",
         "H8"
@@ -914,6 +965,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "boundaries",
       "residual": "measure U214 SPI load/edges at 10 MHz and external I2C total capacitance/rise time <=150 pF/300 ns",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -932,6 +984,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "boundaries",
       "residual": "qualify each native Unit profile, cable length and pull network through TXS0102; 1-Wire remains specimen-only",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H5",
         "H8"
@@ -956,6 +1009,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "boundaries",
       "residual": "inject dual-branch request, overload, reverse source, wrong accessory, hot plug and brownout while proving independent latch-off",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -974,6 +1028,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "boundaries",
       "residual": "measure C5/RP service USB edges/eye and powered-off leakage with one and three hosts",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -992,6 +1047,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF44-digital-consolidation.json",
       "source_group": "boundaries",
       "residual": "measure product USB Full-Speed through M1 plus all DBG10 UART/SWD recovery paths in the assembled sandwich",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1010,6 +1066,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "measure S3/C5 complete-feed insertion and return loss at every channel edge, including both microcoax transitions and the selected stackup launch",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1028,6 +1085,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "measure all three E01 module-to-SMA feeds and received-lot Gen1 mating/retention independently",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H5",
         "H8"
@@ -1052,6 +1110,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "VNA-tune CC1101 differential-to-single-ended match and every 315/433/868/915 branch; prove output, sensitivity, harmonics and switch loss",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1070,6 +1129,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "measure the independent SA818S-V and SA818S-U feed insertion/return loss, output power and harmonics at both power settings; repeat UHF for SA818S-CE before enabling that alternate",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1088,6 +1148,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "qualify Si4732 FMI FM and SW sensitivity/overload with the complete external whip and first-pass 56-nH/1-nF network",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1106,6 +1167,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "measure RX-AM/LW total capacitance <=19.500 pF external to the Si4732 input with the received SMA, PCB and exact pod",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H5",
         "H6",
@@ -1136,6 +1198,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "derate every allowed TX power/EIRP table by measured complete-feed loss and selected antenna gain before regional profile release",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1154,6 +1217,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "use impedance coupons and de-embedded SMA/U.FL fixtures for H6/H8 acceptance; nominal field-solver values alone cannot close a feed",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H6",
         "H8"
@@ -1178,6 +1242,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "release the fabricator stack-up, field-solve every launch and 50-ohm geometry, and correlate with coupons in H6",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H6"
       ],
@@ -1196,6 +1261,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "prove each routed path stays inside the accepted mechanical envelope and has no DRC, return-path or plane-slot violation",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H6"
       ],
@@ -1214,6 +1280,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "measure received 2118651-2 bend/retention/strain behavior and E01 connector axes before freezing the five microcoax paths",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H5",
         "H8"
@@ -1238,6 +1305,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "extract AM/LW connector, pad and high-Z trace capacitance and prove the complete external budget remains <=19.500 pF",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H6",
         "H8"
@@ -1262,6 +1330,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "inspect every RF via fence, connector ground, ESD return and coupled-sampler branch on the fabricated board before H8 VNA/spectrum work",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1280,6 +1349,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "run the signed-configuration L1 isolated baseline and L2 foreign-interface quiet/desense matrix for every signal group",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1298,6 +1368,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "run FX-I6-N24-T1 with target plus independent observer for all eight radio-identity permutations at both support loads, all admitted channels/rates/powers and antenna poses",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1316,6 +1387,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "prove inactive rails discharge, I/O remains high-Z, native S3/C5 radios emit no background packet/scan/advertising and service clocks have no periodic activity",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1334,6 +1406,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "capture raw IRQ/FIFO/PIO/DMA/IPC/UI/storage/audio timing while each active group faces maximum valid support-plane aggression",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1352,6 +1425,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF54-rf-consolidation.json",
       "source_group": "phase",
       "residual": "inject cross-group blocking, evidence false-positive, reset/brownout/stuck-line and KILL/FAULT_KILL faults only inside the contained Laboratory fixture",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1370,6 +1444,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H6: solve the real board/enclosure thermal network after placement, copper, vias, wall material, vents and accessory geometry are fixed",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H6"
       ],
@@ -1388,6 +1463,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H6: meet or beat the applicable allowable base-to-ambient resistance from the parameter sweep; SUPPORT_WORST remains non-continuous",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H6"
       ],
@@ -1406,6 +1482,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H8: measure all three NTCs, converter/eFuse/charger junction proxies, both cells and external surfaces at every admitted sustained profile",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1424,6 +1501,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H8: correlate thermal time constants and set per-profile maximum session/duty limits before any unattended claim",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1442,6 +1520,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H8: verify cell-to-NTC contact, replacement spread, charger TREG/TSHUT, warning, FAULT_KILL and physical rearm in a chamber",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1460,6 +1539,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H6: physically separate RUN_PERMIT and FAULT_ASSERT_N routing, their local buffers and endpoint gate returns; verify no single via/pad short joins both paths",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H6"
       ],
@@ -1478,6 +1558,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H8: inject every SF-01..SF-30 case at accessible pads and verify rail fall, no RF/optical output, retained reason and physical-only re-arm",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1496,6 +1577,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H8: calibrate evidence thresholds and prove stuck-active, stuck-inactive and unreadable evidence behavior for all nine channels",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1514,6 +1596,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H8: measure watchdog, reset, eFuse, QOD and transmitter-energy deadlines; analytical 0/100/1760-ms classes are upper-level contracts, not measured closure",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1532,6 +1615,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H8: interrupt every two-slot flash-journal write boundary and verify last-valid-slot or explicit AON-loss fallback",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1550,6 +1634,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H6: meet the profile-specific 35-C base-to-ambient resistance target with final copper, vias, enclosure and installed accessory geometry",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H6"
       ],
@@ -1568,14 +1653,15 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H8: run 24-hour and 48-hour USB-powered endurance cases as validation tests, including the configured proof-due stop and retained display reason",
+      "test_class": "potentially_damaging_dvt",
       "closure_stages": [
         "H8"
       ],
       "evidence_contracts": {
         "H8": {
-          "owner": "H8 physical qualification",
-          "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
-          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: H8: run 24-hour and 48-hour USB-powered endurance cases as validation tests, including the configured proof-due stop and retained display reason; any failure reopens the owning result and blocks release"
+          "owner": "H8 potentially damaging DVT qualification",
+          "required_artifact": "versioned procedure, dedicated-prototype identity, calibrated-instrument raw data, pre/post inspection, computed limit comparison and retained pass/fail log",
+          "pass_rule": "a dedicated prototype passes this potentially damaging DVT case: H8: run 24-hour and 48-hour USB-powered endurance cases as validation tests, including the configured proof-due stop and retained display reason; no production-intent or sole bring-up unit is consumed, and any failure reopens the owning result"
         }
       },
       "status": "physical_evidence_required"
@@ -1586,6 +1672,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H8: run each battery profile to its real protected cutoff and publish measurements only as test results, not guaranteed autonomy",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1604,6 +1691,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H8: chamber-test admitted sustained profiles at 0, 25 and 35 C plus boundary/fault behavior outside the design target",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1622,6 +1710,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H8: verify all three self-test settings, staged activation, local-only authority, warning sequence, S3-loss behavior and physical KILL-to-RUN recovery",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],
@@ -1640,6 +1729,7 @@
       "source_artifact": "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json",
       "source_group": "phase",
       "residual": "H8: correlate final thermal time constants and set per-profile TX duty/session limits before release",
+      "test_class": "ordinary_qualification",
       "closure_stages": [
         "H8"
       ],

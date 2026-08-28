@@ -7,20 +7,20 @@
   "inputs": {
     "residual_map": {
       "path": "hardware/verification/generated/H5-EVR01-residual-map.json",
-      "sha256": "74da99e28428e11289efffbf28f15ee9fe84ba725c74e559d160cc3f7b53b3a0"
+      "sha256": "987a9a38a4d06c2d543b7c0ff74ddbc496a36340d6967113b662bb4854d17f95"
     },
     "source_research": {
       "path": "hardware/verification/generated/H5-EVR02-source-research.json",
-      "sha256": "7438cb56075220340f988cdd208606640439228b81189d5006e4ff9712156e2d"
+      "sha256": "e6a2e5511029d5d6f4dcd38cf4790a8375ec55f494a5e2d1661b21a37d750f11"
     }
   },
   "summary": {
     "article_lines": 33,
     "measurement_contracts": 11,
     "covered_residuals_and_gates": 23,
-    "published_price_subtotal_usd": "281.47",
+    "published_price_subtotal_usd": "275.28",
     "conservative_budget_caps_usd": "4.00",
-    "known_engineering_material_budget_usd": "285.47",
+    "known_engineering_material_budget_usd": "279.28",
     "unpriced_manufacturer_lines": 0,
     "excluded_from_budget": [
       "SA818S-V pre-order freight/lead-time charge",
@@ -42,7 +42,7 @@
     "display": "46.76",
     "expansion": "31.68",
     "ir": "5.30",
-    "power": "52.57",
+    "power": "46.38",
     "rf": "61.43",
     "storage": "40.05"
   },
@@ -646,13 +646,13 @@
       "id": "pack-gauges",
       "group": "power",
       "mpn": "Analog Devices MAX17320G20+T",
-      "order_quantity": 2,
+      "order_quantity": 1,
       "order_unit": "piece",
       "contained_pieces_per_order_unit": 1,
       "pricing": {
         "kind": "published_usd",
         "unit_usd": "6.19",
-        "subtotal_usd": "12.380",
+        "subtotal_usd": "6.190",
         "source_price": null
       },
       "source": {
@@ -664,7 +664,7 @@
       "coverage": [
         "H3-PHY-028"
       ],
-      "minimum_quantity_basis": "one retained golden device and one sacrificial device sequenced through blank, corrupt and exhausted-write states; four dedicated chips are unnecessary",
+      "minimum_quantity_basis": "one device covers blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery with complete readback; zero-remaining and failed-copy are emulator/fixture-only, all seven physical updates are never consumed and no sacrificial chip is required",
       "risk": null,
       "purchase_authorized": false
     },
@@ -1045,9 +1045,9 @@
         "H3-PHY-028",
         "H5-MECH-CELL-HOLDER-FIT"
       ],
-      "method": "test one matched same-lot protected-cell pair in the exact holder across insertion, compression, polarity, vibration and thermal cycles; retain one MAX17320 golden device and sequence the second through blank, corrupt and exhausted-write conditions",
-      "pass_rule": "the matched pair remains mechanically/electrically retained at all admitted corners and every gauge fault state deterministically blocks or recovers exactly as specified",
-      "artifacts": "cell lot record, dimensional/force/thermal/vibration traces, gauge images/readbacks and fault logs"
+      "method": "keep one matched same-lot protected-cell pair inside its exact MPN voltage/current/temperature limits for admitted-operation, holder, vibration and thermal evidence; on one MAX17320 record blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery with both address spaces, checksum, NVError and remaining-update bitmap; inject zero-remaining, failed-copy, reversed, swapped, open, short, missing, imbalance and temperature thresholds through the emulator or current-limited cell-simulator/NTC fixture",
+      "pass_rule": "the matched pair remains mechanically/electrically retained at every admitted corner, the gauge blocks and recovers deterministically, all seven physical NVM updates are not consumed, and no real cell is abused beyond its MPN limits",
+      "artifacts": "cell lot record, dimensional/force/vibration traces, simulator/NTC-fixture traces, gauge images/readbacks and fault logs"
     },
     {
       "id": "H5-MSR-AUDIO",

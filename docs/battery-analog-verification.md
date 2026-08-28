@@ -28,4 +28,6 @@ The midpoint divider adds only `0.339` mAh of lower-cell imbalance over 48 hours
 
 ## What paper evidence does not close
 
-Sensor bonding and response, ADC calibration, received-cell identity, actual charger thresholds, balance heat and every open/short/reversed/imbalanced fault remain physical HIL gates. The generated evidence is [`H3-VRF34-battery-analog.json`](../hardware/verification/generated/H3-VRF34-battery-analog.json).
+Sensor bonding and response, ADC calibration, received-cell identity, actual charger thresholds and balance heat remain physical HIL gates. One received MAX17320 is exercised through blank → deliberately invalid but electrically safe configuration → reviewed golden/recovery, with both address spaces, checksum, `NVError` and remaining-update bitmap read at every transition. Zero-remaining and failed-copy are emulator/fixture injections only: all seven physical NVM updates are never consumed, no sacrificial gauge is required and irreversible locks/security burns remain forbidden.
+
+Open/short/swapped/reversed/missing/imbalanced cell states use a current-limited cell simulator; temperature faults and thresholds use an NTC fixture. Real cells remain inside the exact MPN voltage, current and temperature limits. Drop and endurance are separate, potentially damaging DVT tests performed only on dedicated prototypes. The generated evidence is [`H3-VRF34-battery-analog.json`](../hardware/verification/generated/H3-VRF34-battery-analog.json).

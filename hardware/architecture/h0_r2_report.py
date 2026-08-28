@@ -165,7 +165,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H1-R2.31**: H0/H1 согласованы с двумя независимыми RP2354B, точными GPIO0..47 и пятью M1 endpoints; электрический pin/mux-контракт C5 присоединён. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Новый R2 H2/KiCad заблокирован до live route C11355, точного MPN detector/latch service-VBUS и powered-off-Ioff границы Pack/Safety I2C; полный мокап можно принять только после четырёх физических H1-блокеров."
+        current = "Текущий точный маркер — **H1-R2.32**: H0/H1 согласованы с двумя независимыми RP2354B, точными GPIO0..47 и пятью M1 endpoints; электрический pin/mux-контракт C5 и 43-корпусный coordinate-register Cap/evidence присоединены. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Новый R2 H2/KiCad заблокирован до live route C11355, точного MPN detector/latch service-VBUS и powered-off-Ioff границы Pack/Safety I2C; полный мокап можно принять только после трёх физических H1-блокеров."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -204,7 +204,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, analog FPV "
             "remains receive-only, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H1-R2.31**: H0/H1 now agree on two independent RP2354B domains, exact GPIO0..47 maps and five M1 endpoints; the C5 electrical pin/mux contract is joined. The old single-RP G2F/H2 projection remains historical R1 evidence only. New R2 H2/KiCad stays blocked on the live C11355 route, the exact service-VBUS detector/latch MPN and the Pack/Safety I2C powered-off-Ioff boundary; the complete mock-up can be accepted only after four physical H1 blockers close."
+        current = "The exact current marker is **H1-R2.32**: H0/H1 now agree on two independent RP2354B domains, exact GPIO0..47 maps and five M1 endpoints; the C5 electrical pin/mux contract and the 43-body Cap/evidence coordinate register are joined. The old single-RP G2F/H2 projection remains historical R1 evidence only. New R2 H2/KiCad stays blocked on the live C11355 route, the exact service-VBUS detector/latch MPN and the Pack/Safety I2C powered-off-Ioff boundary; the complete mock-up can be accepted only after three physical H1 blockers close."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",

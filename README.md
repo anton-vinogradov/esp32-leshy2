@@ -10,12 +10,12 @@
 
 </div>
 
-> **Current hardware marker: `H1-R2.31`.** The exact dual-RP GPIO/M1 map and
+> **Current hardware marker: `H1-R2.32`.** The exact dual-RP GPIO/M1 map and
 > C5 SDIO/service-mux electrical join are closed as current H1 authority. The
 > accepted same-slot U214/U219 role now has all five active host packages and
-> source-backed courtyards registered in the physical model. The complete
-> canonical Cap/evidence body register, support passives, NFC pickup geometry
-> and installed-antenna swept volume remain the four explicit H1 blockers before
+> all 43 existing Cap/evidence bodies registered with source-backed courtyards.
+> Support passives, NFC pickup geometry and installed-antenna swept volume
+> remain the three explicit H1 blockers before
 > complete mock-up acceptance. R2 H2/KiCad has not started,
 > and ordering remains blocked.
 
@@ -104,7 +104,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | Stage | Status | Published result |
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.31`** | [Current placement](docs/h1-r2-physical-layout.md) · [cost ranking](docs/h1-r2-cost.md) |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.32`** | [Current placement](docs/h1-r2-physical-layout.md) · [cost ranking](docs/h1-r2-cost.md) |
 | H2 · Production ECAD schematic | ⏳ Waiting for R2 H1 | [Stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
@@ -129,14 +129,15 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ The 210-line `H1-R2.30` base BOM is cost-ranked per fitted device, five-device trial lot and 100-device projection. The later U219 host delta is shown separately as a provisional known-active subtotal; its support passives remain intentionally unpriced until exact values/MPNs close.
 - ✅ U219 is accepted as the second mutually exclusive Cap profile: CC1101 is hard RX-only, NFC is poll/read-only, pin 10 is fail-disconnected and NFC field evidence joins `ANY_TX_AON_N`. Pin 7 power identity remains a received-unit gate, not an H2 claim.
 - ✅ The two DCK boundaries, two BAT54S bridges and LMV331 comparator use official maximum full-package envelopes and source-backed courtyards; all five fit their bounded islands without overlap.
-- ▶ **Exact current point:** complete the canonical coordinate register for the existing Cap/evidence bodies, close the support-passive values/MPNs and courtyards, locate and tune the NFC pickup, bound the installed U219 antenna swept volume, then review and explicitly accept the complete mock-up. A later AKK/Sinopine package can simplify the K331 footprint but no longer blocks H1.
+- ✅ All 43 existing Cap/evidence bodies now have exactly one source-backed coordinate and conservative placement courtyard; substitution, omission or duplicate projection fails generation.
+- ▶ **Exact current point:** close the U219 support-passive values/MPNs and courtyards, locate and tune the NFC pickup, bound the installed U219 antenna swept volume, then review and explicitly accept the complete mock-up. A later AKK/Sinopine package can simplify the K331 footprint but no longer blocks H1.
 - 🔒 KiCad, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H1-R2.31 -->
+<!-- current-substep: H1-R2.32 -->
 
 ## Repository
 

@@ -39,9 +39,9 @@ flowchart LR
 
 ### `H3-PHY-028` · `battery`
 
-- Outcome: MAX17320 documentation defines the interfaces and limits, but golden-image programming and blank/corrupt/exhausted-write reactions are deliberately injected state tests on received silicon.
+- Outcome: MAX17320 documentation defines the interfaces and limits. One received device covers blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery with both address spaces, checksum, NVError and remaining-update bitmap read at each transition. Zero-remaining and failed-copy are emulator/fixture-only injections; all seven physical writes are never consumed and no sacrificial chip is required.
 - Sources: existing selected-part primary datasheets in H5-EVR01.
-- Still physical: program and fault-inject the received gauge specimen set.
+- Still physical: run the one-device safe HIL sequence and the emulator/fixture-only exhaustion and failed-copy injections.
 
 ### `H3-PHY-038` · `timing`
 

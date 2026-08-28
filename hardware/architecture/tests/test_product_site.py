@@ -167,12 +167,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H1-R2.31`", "H0 is reviewed",
+                "Current hardware boundary: `H1-R2.32`", "H0 is reviewed",
                 "firmware F1-R2 reviewed", "F2-R2.4",
                 "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H1-R2.31`", "H0 проведено ревью",
+                "Текущая аппаратная граница: `H1-R2.32`", "H0 проведено ревью",
                 "firmware F1-R2 проведено ревью", "F2-R2.4",
                 "H9 · Manufacturing release",
                 "Production ECAD",
@@ -188,8 +188,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.31`", "fabrication"),
-            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.31`", "печати прототипа"),
+            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.32`", "fabrication"),
+            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.32`", "печати прототипа"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -302,12 +302,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_public_schematics_describe_current_r2_not_superseded_r1_ecad(self):
         expectations = {
             "docs/schematics.md": (
-                "H0-R2", "H1-R2.31", "does **not** exist yet",
+                "H0-R2", "H1-R2.32", "does **not** exist yet",
                 "3× nRF24", "one analog video signal", "14 NC reserve",
                 "historical engineering evidence", "must not be used for fabrication",
             ),
             "docs/schematics.ru.md": (
-                "H0-R2", "H1-R2.31", "пока **нет**",
+                "H0-R2", "H1-R2.32", "пока **нет**",
                 "3× nRF24", "один аналоговый видеосигнал", "25 возвратов · 14 NC",
                 "историческое инженерное evidence", "печатать по ним нельзя",
             ),
@@ -399,9 +399,16 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(33, evidence["summary"]["article_lines"])
         self.assertEqual(11, evidence["summary"]["measurement_contracts"])
         self.assertEqual(23, evidence["summary"]["covered_residuals_and_gates"])
-        self.assertEqual("285.47", evidence["summary"]["known_engineering_material_budget_usd"])
+        self.assertEqual("279.28", evidence["summary"]["known_engineering_material_budget_usd"])
         self.assertEqual(0, evidence["summary"]["unpriced_manufacturer_lines"])
         self.assertTrue(all(evidence["checks"].values()))
+        pack_gauge = next(row for row in evidence["articles"] if row["id"] == "pack-gauges")
+        self.assertEqual(1, pack_gauge["order_quantity"])
+        self.assertIn("no sacrificial chip", pack_gauge["minimum_quantity_basis"])
+        pack_measurement = next(row for row in evidence["measurements"] if row["id"] == "H5-MSR-PACK")
+        self.assertIn("remaining-update bitmap", pack_measurement["method"])
+        self.assertIn("current-limited cell-simulator/NTC fixture", pack_measurement["method"])
+        self.assertIn("all seven physical NVM updates are not consumed", pack_measurement["pass_rule"])
         self.assertEqual("C3001549", evidence["supply_constraints"]["selected_uhf"]["jlcpcb_part"])
         self.assertEqual("C51897911", evidence["supply_constraints"]["selected_vhf"]["jlcpcb_part"])
         self.assertEqual("priced_preorder_lead_time_open", evidence["supply_constraints"]["selected_vhf"]["status"])
@@ -415,7 +422,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(name)
             self.assertEqual(1, page.count("```mermaid"), name)
             self.assertIn("H5-EVR03", page, name)
-            self.assertIn("285.47", page, name)
+            self.assertIn("279.28", page, name)
             self.assertIn("SA818S-V", page, name)
 
     def test_h5_0_3_pcba_platform_baseline_is_complete_and_honest(self):
@@ -691,12 +698,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_current_mockup_review_scope_is_explicit(self):
         expectations = {
             "docs/roadmap.md": (
-                "H1-R2.31", "Functional-island placement", "RF and antenna locality",
+                "H1-R2.32", "Functional-island placement", "RF and antenna locality",
                 "Interboard transport", "Physical and service audit", "Final H1 acceptance input",
                 "explicit acceptance of the complete H1 mock-up",
             ),
             "docs/roadmap.ru.md": (
-                "H1-R2.31", "Размещение функциональных островов", "Локальность RF и антенн",
+                "H1-R2.32", "Размещение функциональных островов", "Локальность RF и антенн",
                 "Межплатный transport", "Физический и сервисный аудит", "Финальный вход принятия H1",
                 "явное принятие полного H1-мокапа",
             ),
@@ -706,17 +713,17 @@ class ProductSiteTests(unittest.TestCase):
             for token in tokens:
                 self.assertIn(token, page, f"{name}: {token}")
 
-    def test_h1_r2_31_public_boundary_separates_electrical_and_physical_work(self):
+    def test_h1_r2_32_public_boundary_separates_electrical_and_physical_work(self):
         expectations = {
             "README.md": (
-                "Current hardware marker: `H1-R2.31`",
+                "Current hardware marker: `H1-R2.32`",
                 "exact dual-RP GPIO/M1 map",
                 "same-slot U214/U219",
                 "R2 H2/KiCad has not started",
                 "five active host packages",
             ),
             "README.ru.md": (
-                "Текущий маркер железа: `H1-R2.31`",
+                "Текущий маркер железа: `H1-R2.32`",
                 "dual-RP GPIO/M1",
                 "same-slot роли U214/U219",
                 "H2/KiCad",
@@ -724,21 +731,21 @@ class ProductSiteTests(unittest.TestCase):
                 "все пять активных host-корпусов",
             ),
             "docs/roadmap.md": (
-                "Current hardware boundary: `H1-R2.31`",
-                "exact dual-RP/C5 electrical authority and five active U219 source-backed courtyards are closed",
+                "Current hardware boundary: `H1-R2.32`",
+                "five active U219 source-backed courtyards and the 43-body Cap/evidence coordinate register are closed",
                 "U219 Cap integration",
                 "source-backed courtyards",
                 "H2/KiCad has not started",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H1-R2.31`",
-                "dual-RP/C5 электрическая authority и пять активных U219-courtyard закрыты",
+                "Текущая аппаратная граница: `H1-R2.32`",
+                "пять активных U219-courtyard и 43-корпусный coordinate-register Cap/evidence закрыты",
                 "Интеграция U219 Cap",
                 "source-backed courtyards",
                 "H2/KiCad не начинались",
             ),
             "docs/stage-results.md": (
-                "current at **`H1-R2.31`**",
+                "current at **`H1-R2.32`**",
                 "exact dual-RP GPIO/M1 map",
                 "accepted U219 profile",
                 "now include the U219 host switch",
@@ -746,21 +753,21 @@ class ProductSiteTests(unittest.TestCase):
                 "has not started",
             ),
             "docs/stage-results.ru.md": (
-                "сейчас **`H1-R2.31`**",
+                "сейчас **`H1-R2.32`**",
                 "Точные dual-RP GPIO/M1",
                 "Принятый профиль U219",
                 "теперь включают host-switch U219",
                 "R2 H2/KiCad не начинались",
             ),
             "docs/schematics.md": (
-                "H1-R2.31",
+                "H1-R2.32",
                 "C5 SDIO/service-mux electrical join are closed",
                 "accepted U219 principle",
                 "now registered",
                 "does **not** exist yet",
             ),
             "docs/schematics.ru.md": (
-                "H1-R2.31",
+                "H1-R2.32",
                 "стык C5 SDIO/service-mux закрыты",
                 "Принятый принцип U219",
                 "уже зарегистрированы",
@@ -909,6 +916,9 @@ class ProductSiteTests(unittest.TestCase):
         audio = json.loads(
             self.read("hardware/verification/generated/H3-VRF32-audio.json")
         )
+        battery = json.loads(
+            self.read("hardware/verification/generated/H3-VRF34-battery-analog.json")
+        )
         ir = json.loads(
             self.read("hardware/verification/generated/H3-VRF33-ir.json")
         )
@@ -949,7 +959,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H1", state["current_stage"])
-        self.assertEqual("H1-R2.31", state["current_substep"])
+        self.assertEqual("H1-R2.32", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -1043,6 +1053,24 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(3, residuals["summary"]["resolved_h3_internal_rows"])
         self.assertEqual(85, residuals["summary"]["physical_evidence_rows"])
         self.assertEqual(0, residuals["summary"]["unassigned"])
+        self.assertEqual(
+            ["both address spaces", "protection checksum", "NVError", "remaining-update bitmap"],
+            battery["max17320"]["required_readback"],
+        )
+        self.assertEqual(
+            ["zero remaining updates", "failed-copy interruption"],
+            battery["max17320"]["emulator_or_fixture_only_faults"],
+        )
+        self.assertIn("dedicated prototype", battery["verification_safety_boundary"]["potentially_damaging_dvt"])
+        self.assertIn("irreversible locks", residuals["verification_safety_boundary"]["forbidden"])
+        self.assertEqual(
+            "ordinary_qualification",
+            next(row for row in residuals["registry"] if row["id"] == "H3-PHY-045")["test_class"],
+        )
+        self.assertEqual(
+            "potentially_damaging_dvt",
+            next(row for row in residuals["registry"] if row["id"] == "H3-PHY-081")["test_class"],
+        )
         self.assertEqual("reviewed_h3_user_accepted", acceptance["status"])
         self.assertEqual(25, acceptance["correction_summary"]["total"])
         self.assertEqual("1.2575", acceptance["correction_summary"]["known_incremental_bom_usd_at_quantity_100"])
@@ -1100,7 +1128,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(name)
             self.assertNotIn("H5-EVR07", page, name)
             self.assertNotIn("H5-EVR08", page, name)
-            self.assertIn("H1-R2.31", page, name)
+            self.assertIn("H1-R2.32", page, name)
         self.assertEqual(
             "source-hash-bound-precommit-revision",
             h4_plan["firmware_f3_evidence"]["revision"],
@@ -2616,12 +2644,12 @@ class ProductSiteTests(unittest.TestCase):
             "docs/safety.md": (
                 "one bundle", "owner/release-signed manifest", "RUN=KILL",
                 "12 seconds", "16.7-second TBYB", "MSPM0C1106SDGS20R",
-                "16-KiB", "22-KiB", "UART1", "not enabled by default",
+                "16-KiB", "22-KiB", "UART1", "forbidden throughout development",
             ),
             "docs/safety.ru.md": (
                 "один bundle", "owner/release-signed manifest", "RUN=KILL",
                 "12 секундам", "16,7 с", "MSPM0C1106SDGS20R",
-                "16 КиБ", "22 КиБ", "UART1", "не включается по умолчанию",
+                "16 КиБ", "22 КиБ", "UART1", "запрещены при разработке",
             ),
         }
         for name, tokens in expected.items():
@@ -2915,8 +2943,8 @@ class ProductSiteTests(unittest.TestCase):
         )
         physical = package["physical_fit"]
         self.assertEqual("paper_geometry_passed", physical["result"])
-        self.assertEqual(143, physical["inner_body_count"])
-        self.assertEqual(145, physical["total_inner_component_count_including_adapter"])
+        self.assertEqual(181, physical["inner_body_count"])
+        self.assertEqual(183, physical["total_inner_component_count_including_adapter"])
         self.assertEqual(3.31, physical["minimum_opposing_pair"]["remaining_z_clearance_mm"])
         self.assertTrue(physical["five_rf_microcoaxes_accounted"])
         self.assertEqual(10, physical["ten_outward_rf_ports"])
@@ -2938,7 +2966,7 @@ class ProductSiteTests(unittest.TestCase):
         for name in ("docs/hardware.md", "docs/hardware.ru.md"):
             page = self.read(name)
             self.assertNotIn("H1-cross-view-acceptance.json", page, name)
-            self.assertIn("H1-R2.31", page, name)
+            self.assertIn("H1-R2.32", page, name)
 
     def test_antenna_kit_is_product_facing_and_machine_accounted(self):
         import json
@@ -3086,12 +3114,12 @@ class ProductSiteTests(unittest.TestCase):
             'data-instance="s3_rf_jumper" data-projected-chord-mm="14.78" data-assembly-length-mm="30.00" data-unprojected-slack-mm="15.22"',
             'data-instance="c5_rf_jumper" data-projected-chord-mm="15.50" data-assembly-length-mm="30.00" data-unprojected-slack-mm="14.50"',
             " · SPK",
-            'data-inner-body-count="143"',
+            'data-inner-body-count="181"',
             'data-max-inner-height-mm="8.95"',
             'data-min-single-body-clearance-mm="2.05"',
             'data-display-adapter-opposing-pairs="2"',
             'data-min-display-adapter-clearance-mm="5.10"',
-            'data-opposing-pairs="38"',
+            'data-opposing-pairs="46"',
             'data-intentional-mates="1"',
             'data-min-z-clearance-mm="3.31"',
             'data-rf-cable-routes="2"',
@@ -3126,13 +3154,13 @@ class ProductSiteTests(unittest.TestCase):
             'data-medium="controlled-50-ohm-pcb"',
             "ring on S3/C5 = module U.FL · ring on nRF = module IPEX · numbered ring = board U.FL",
             "outward RP-SMA · antenna screws on here",
-            "all 143 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm",
+            "all 181 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm",
             "complete 3.80-mm display adapter: 2 opposing crossings; minimum Z gap 5.10 mm",
-            "opposing inner faces: 38 non-mating XY pairs checked; minimum Z gap 3.31 mm",
+            "opposing inner faces: 46 non-mating XY pairs checked; minimum Z gap 3.31 mm",
             "RF coax: 2 direct exact-endpoint projections + 3 nRF module-face reserves; all five 30-mm assemblies accounted",
             "nRF reserve crossings: 6; minimum Z gap 5.20 mm",
             "EC11E through-board features: 7 checked; 2 opposing crossings; minimum Z gap 4.20 mm",
-            "limiting pair: 23 3.5-mm CTIA headset TRRS mid-mount connector / 132 protected-pack branch fuse #0",
+            "limiting pair: 23 3.5-mm CTIA headset TRRS mid-mount connector / 157 protected-pack branch fuse #0",
             "TCA9534APWR",
         ):
             self.assertIn(token, layout)
@@ -3182,23 +3210,23 @@ class ProductSiteTests(unittest.TestCase):
         )
         audit = coordinate_table["interboard_fit_audit"]
         self.assertEqual("paper_geometry_passed", audit["result"])
-        self.assertEqual(143, audit["inner_body_count"])
-        self.assertEqual(145, audit["total_inner_component_count_including_adapter"])
+        self.assertEqual(181, audit["inner_body_count"])
+        self.assertEqual(183, audit["total_inner_component_count_including_adapter"])
         self.assertTrue(audit["all_inner_bodies_have_sourced_positive_height"])
         self.assertTrue(audit["no_inner_body_exceeds_gap"])
         self.assertTrue(audit["no_inner_body_violates_minimum_clearance"])
         self.assertEqual(8.95, audit["tallest_inner_body"]["height_mm"])
         self.assertEqual(2.05, audit["tallest_inner_body"]["remaining_to_opposite_pcb_plane_mm"])
-        self.assertEqual(143, len(audit["individual_body_clearances"]))
+        self.assertEqual(181, len(audit["individual_body_clearances"]))
         self.assertTrue(
             all(
                 row["remaining_to_opposite_pcb_plane_mm"] >= 0.7
                 for row in audit["individual_body_clearances"]
             )
         )
-        self.assertEqual(38, audit["opposing_non_mating_pair_count"])
+        self.assertEqual(46, audit["opposing_non_mating_pair_count"])
         self.assertEqual(3.31, audit["minimum_opposing_pair"]["remaining_z_clearance_mm"])
-        self.assertEqual(38, len(audit["opposing_non_mating_pairs"]))
+        self.assertEqual(46, len(audit["opposing_non_mating_pairs"]))
         self.assertTrue(
             all(
                 row["remaining_z_clearance_mm"] >= 0.7

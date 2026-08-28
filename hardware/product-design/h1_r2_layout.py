@@ -32,7 +32,7 @@ RU_DOC_PATH = REPO / "docs/h1-r2-physical-layout.ru.md"
 SOURCE_TABLE_PATH = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
 U219_SOURCE_PATH = REPO / "hardware/architecture/h1-r2-u219-cap.json"
 DUAL_RP_PINOUT_PATH = REPO / "hardware/architecture/h1-r2-dual-rp-pinout.json"
-PUBLIC_ASSET_REV = "h1-r2.31-u219-cap-profile-1"
+PUBLIC_ASSET_REV = "h1-r2.32-cap-evidence-register-1"
 BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
 BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
@@ -567,6 +567,27 @@ def audit(model: dict, base: dict) -> dict:
     minimum = model["stack"]["minimum_opposing_clearance_mm"]
     new = []
     errors = []
+    cap_evidence_register = base.get("cap_evidence_coordinate_register", {})
+    expected_cap_evidence = legacy_generator().CAP_EVIDENCE_COORDINATE_INSTANCE_DEVICES
+    registered_cap_evidence = {
+        row.get("instance"): row.get("device_key")
+        for row in cap_evidence_register.get("instances", [])
+    }
+    if cap_evidence_register.get("status") != "pass":
+        errors.append("base Cap/evidence coordinate register is absent or failed")
+    if cap_evidence_register.get("expected_instance_count") != len(expected_cap_evidence):
+        errors.append("base Cap/evidence coordinate-register scope count drifted")
+    if cap_evidence_register.get("resolved_instance_count") != len(expected_cap_evidence):
+        errors.append("base Cap/evidence coordinate register is incomplete")
+    if registered_cap_evidence != expected_cap_evidence:
+        errors.append("base Cap/evidence coordinate register differs from current exact G2F")
+    if any(
+        not row.get("coordinate_mm")
+        or not row.get("source_envelope_mm")
+        or not row.get("placement_courtyard_bbox_mm")
+        for row in cap_evidence_register.get("instances", [])
+    ):
+        errors.append("base Cap/evidence register lacks coordinate/envelope/courtyard data")
     dual_rp = load(DUAL_RP_PINOUT_PATH)
     for placement_key, authority_key in (("front_rp_gpio", "hub_rp"), ("rear_rp_gpio", "rf_rp")):
         placement_budget = model.get("functional_partition", {}).get(placement_key, {})
@@ -774,6 +795,7 @@ def audit(model: dict, base: dict) -> dict:
         "physical_features": features,
         "u219_contract": u219_contract,
         "cap_bus_slot": cap_slot,
+        "cap_evidence_coordinate_register": cap_evidence_register,
         "mmcx_service": mmcx_service,
         "silkscreen": silk,
         "main_sma_mounting": sma_mounting,
@@ -2168,7 +2190,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         title = f'# {model["marker"]} · рабочая компоновка целевого устройства'
         intro = (
             "Текущая проверяемая физическая модель двух плат 75×150 мм, не завершённая компоновка и не разрешение начинать KiCad. "
-            "Структурный аудит проходит, но H1 остаётся открытым до закрытия перечисленных ниже geometry-gates U219, полного canonical-регистра и явного принятия мокапа."
+            "Структурный аудит и полный текущий реестр Cap/evidence-корпусов проходят, но H1 остаётся открытым до закрытия трёх перечисленных ниже geometry-gates U219 и явного принятия мокапа."
         )
         outside = "## Что увидит пользователь"
         inside = "## Что находится внутри"
@@ -2202,7 +2224,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "Механика M1: четыре 11,00-мм compression-stop, два противосдвиговых упора и независимые захваты плат; разъём не несёт ударную или изгибающую нагрузку.",
             "Шелкография антенн: генератор подтвердил отсутствие пересечений с SMA/MMCX, кабелем FPV, Cap-Bus-слотом, дисплеем и монтажными keep-out.",
             "Точная посадка десяти SMA следует чертежам A1: прямоугольная RF-пята `1,87×3,30 мм` в `x=0`, четыре прямоугольные земляные лапы `1,60×3,30 мм` в `x=±2,55 мм`, край платы `y=0`. H5 квалифицирует двусторонний процесс пайки, H7 осматривает все пять паек каждого разъёма, H8 выполняет `0,452–0,678 Н·м`, 50 циклов и заданный drop с повторной проверкой каждого RF-тракта.",
-            f'Cap-Bus: mutually-exclusive U214/U219-профили и все восемь целевых зазоров проходят; пять активных U219-корпусов и их source-backed courtyards зарегистрированы, а прежний Cap-register, support-passive courtyards, NFC-loop и swept volume антенны остаются явными H1 gates ({len(model["current_h1_blockers"])}).',
+            f'Cap-Bus: mutually-exclusive U214/U219-профили и все восемь целевых зазоров проходят; 43 существующих Cap/evidence-корпуса и их source-backed placement courtyards зарегистрированы fail-closed; support-passive courtyards U219, NFC-loop и swept volume антенны остаются явными H1 gates ({len(model["current_h1_blockers"])}).',
             "Верхний display-adapter имеет ноль коллизий и 5,10 мм минимального встречного зазора; платный U.FL второго nRF24 сдвинут ниже адаптера с зазором 1,00 мм.",
         ]
         route_col = "Текущая доступность/маршрут"
@@ -2210,7 +2232,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         title = f'# {model["marker"]} · working target-device placement'
         intro = (
             "Current verifiable physical model of the two 75 × 150 mm PCBs; it is neither complete placement nor authorization to start KiCad. "
-            "The structural audit passes, while H1 remains open until the listed U219 geometry gates, complete canonical register and explicit mock-up acceptance are closed."
+            "The structural audit and complete current Cap/evidence body register pass, while H1 remains open until the three listed U219 geometry gates and explicit mock-up acceptance are closed."
         )
         outside = "## What the user sees"
         inside = "## What is inside"
@@ -2244,7 +2266,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "M1 mechanics: four 11.00-mm compression stops, two anti-shear datums and independent PCB capture; the connector carries no impact or bending load.",
             "Antenna silkscreen: the generator proves no overlap with SMA/MMCX bodies, the installed FPV cable, the Cap-Bus slot, the display or mounting keep-outs.",
             "The exact ten-SMA land pattern follows the A1 drawings: one rectangular 1.87 × 3.30-mm RF land at x=0, four rectangular 1.60 × 3.30-mm shell lands at x=±2.55 mm and board edge y=0. H5 qualifies the dual-face soldering process, H7 inspects all five joints per connector, and H8 runs 0.452–0.678 N m, 50-cycle and defined drop evidence followed by every path-specific RF check.",
-            f'Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; five active U219 bodies and their source-backed courtyards are registered, while the legacy Cap register, support-passive courtyards, NFC loop and antenna swept volume remain explicit H1 gates ({len(model["current_h1_blockers"])}).',
+            f'Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; 43 existing Cap/evidence bodies and their source-backed placement courtyards are registered fail-closed, while U219 support-passive courtyards, the NFC loop and antenna swept volume remain explicit H1 gates ({len(model["current_h1_blockers"])}).',
             "The upper display adapter has zero body collisions and 5.10 mm minimum opposing clearance; the second nRF24 board U.FL moves below it with 1.00 mm planar clearance.",
         ]
         route_col = "Current availability/route"

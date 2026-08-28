@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "model_id": "L2-ASM-COORD-001-A",
-  "stage": "H1-R2.30",
+  "stage": "H1-R2.32",
   "status": "in_progress",
   "units": "mm",
   "world": {

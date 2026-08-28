@@ -67,7 +67,16 @@ def assigned_stages(text: str) -> list[str]:
     return sorted(stages)
 
 
-def evidence_contract(stage: str, text: str) -> dict:
+def test_class(text: str) -> str:
+    lower = text.lower()
+    if "endurance" in lower or any(token in lower for token in ("drop test", "drop profile", "drop qualification", "drop inspection")):
+        return "potentially_damaging_dvt"
+    if any(token in lower for token in ("max17320", "cell simulator", "ntc fixture")):
+        return "safe_fault_injection"
+    return "ordinary_qualification"
+
+
+def evidence_contract(stage: str, text: str, classification: str) -> dict:
     if text == AM_LW_CAPACITANCE_RESIDUAL and stage == "H5":
         return {
             "owner": "H5 received-component evidence",
@@ -92,6 +101,18 @@ def evidence_contract(stage: str, text: str) -> dict:
             "required_artifact": "final stack-up plus placement/routing export, solver/DRC output and reviewer sign-off tied to the production PCB revision",
             "pass_rule": f"the final routed design demonstrates this item with no waived contradiction: {text}; otherwise the upstream design reopens before fabrication",
         }
+    if classification == "potentially_damaging_dvt":
+        return {
+            "owner": "H8 potentially damaging DVT qualification",
+            "required_artifact": "versioned procedure, dedicated-prototype identity, calibrated-instrument raw data, pre/post inspection, computed limit comparison and retained pass/fail log",
+            "pass_rule": f"a dedicated prototype passes this potentially damaging DVT case: {text}; no production-intent or sole bring-up unit is consumed, and any failure reopens the owning result",
+        }
+    if classification == "safe_fault_injection":
+        return {
+            "owner": "H8 safe fault-injection qualification",
+            "required_artifact": "versioned HIL/emulator/fixture procedure, current-limited fixture identity, exact DUT/firmware identity, raw readback or waveform data and retained pass/fail log",
+            "pass_rule": f"the safe device/fixture path demonstrates this case without exhausting NVM or abusing real cells outside their exact MPN limits: {text}; any failure reopens the owning result",
+        }
     return {
         "owner": "H8 physical qualification",
         "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
@@ -113,14 +134,16 @@ def build() -> tuple[dict[Path, str], dict]:
     registry = []
     for index, (phase, group, text) in enumerate(unresolved, start=1):
         stages = assigned_stages(text)
+        classification = test_class(text)
         registry.append({
             "id": f"H3-PHY-{index:03d}",
             "source_phase": phase,
             "source_artifact": str(INPUTS[phase].relative_to(REPO)),
             "source_group": group,
             "residual": text,
+            "test_class": classification,
             "closure_stages": stages,
-            "evidence_contracts": {stage: evidence_contract(stage, text) for stage in stages},
+            "evidence_contracts": {stage: evidence_contract(stage, text, classification) for stage in stages},
             "status": "physical_evidence_required",
         })
 
@@ -160,6 +183,11 @@ def build() -> tuple[dict[Path, str], dict]:
             "unassigned": 0,
             "analytically_closed_by_h3": 0,
         },
+        "verification_safety_boundary": {
+            "safe_fault_injection": "MAX17320 exhaustion/failed-copy and pack/NTC electrical faults use an emulator or current-limited fixture; real cells stay inside exact MPN voltage, current and temperature limits",
+            "potentially_damaging_dvt": "drop and endurance qualification runs only on dedicated prototypes that may be consumed or damaged",
+            "forbidden": "irreversible locks, key/security-fuse burns and intentional real-cell abuse outside exact MPN limits",
+        },
         "resolved_h3_internal": resolved_internal,
         "registry": registry,
         "checks": checks,
@@ -183,6 +211,8 @@ H3.7.2 is closed. The six H3 phase consolidations contain 88 residual rows: thre
 
 Each machine row also carries its exact source artifact, responsible gate, required artifact and pass rule. A mismatch reopens the owning result rather than becoming a layout or test waiver. This register does not authorize purchase, layout or fabrication. The historical R1 progression marker is `H3.7.3`.
 
+Safe fault injection and potentially damaging qualification are separate. MAX17320 exhaustion/failed-copy and pack/NTC electrical faults use an emulator or current-limited fixture; real cells remain inside their exact MPN voltage, current and temperature limits. Drop and endurance run only on dedicated DVT prototypes that may be consumed. Irreversible locks, key/security-fuse burns and intentional real-cell abuse remain forbidden.
+
 {table('en')}
 
 Machine evidence: [`H3-VRF72-physical-residuals.json`](../hardware/verification/generated/H3-VRF72-physical-residuals.json).
@@ -192,6 +222,8 @@ Machine evidence: [`H3-VRF72-physical-residuals.json`](../hardware/verification/
 H3.7.2 закрыт. В сведениях шести фаз H3 было 88 residual-строк: три являлись внутренними зависимостями H3, уже закрытыми H3.2/H3.6, а все оставшиеся `{len(registry)}` опубликованы ниже. `{by_stage['H5']}` назначены H5 received-part evidence, `{by_stage['H6']}` — H6 final placement/routing evidence, `{by_stage['H8']}` — H8 qualification собранного устройства. Ни одна не названа аналитически закрытой.
 
 Каждая машинная строка содержит точный исходный artifact, ответственный gate, обязательный artifact и pass rule. Несоответствие повторно открывает исходный результат, а не превращается в waiver разводки или теста. Реестр не разрешает закупку, layout или печать. Исторический маркер прогресса R1 — `H3.7.3`.
+
+Безопасный fault injection отделён от потенциально повреждающей qualification. Исчерпание/failed-copy MAX17320 и электрические faults pack/NTC задаются emulator или current-limited fixture; реальные банки остаются внутри ограничений точного MPN по напряжению, току и температуре. Drop и endurance выполняются только на выделенных DVT-прототипах, которые могут быть повреждены. Необратимые locks, прожиг ключей/security-fuse и намеренное издевательство над реальными банками запрещены.
 
 {table('ru')}
 

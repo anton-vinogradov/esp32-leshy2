@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1380" height="3583" viewBox="0 0 1380 3583">
 <rect width="1380" height="3583" fill="#ffffff"/>
-<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.31 inner placement</text>
+<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.32 inner placement</text>
 <text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · both inner faces are shown directly after turning each PCB over · numbered marks are documentation, never inner-face silkscreen.</text>
 <text x="190.00" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="70.00" y="122.00" width="240.00" height="480.00" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -82,6 +82,7 @@
 <text x="148.40" y="327.44" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">41</text>
 <text x="530.00" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">RF / power PCB · inner · turned-over view</text>
 <rect x="410.00" y="122.00" width="240.00" height="480.00" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<rect x="589.20" y="411.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="547.60" y="317.20" width="5.12" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="557.20" y="326.80" width="6.40" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="544.40" y="326.80" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
@@ -106,11 +107,23 @@
 <rect x="425.68" y="342.80" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="595.60" y="403.60" width="16.00" height="14.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="621.20" y="403.60" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="595.60" y="421.20" width="9.92" height="6.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="589.20" y="422.80" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="612.08" y="360.56" width="24.96" height="14.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="595.60" y="430.80" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="608.40" y="421.20" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="595.60" y="397.20" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="614.80" y="414.80" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="608.40" y="427.60" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="525.20" y="317.20" width="5.12" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="522.00" y="346.00" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="534.80" y="346.00" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="522.00" y="356.24" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="586.00" y="416.40" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="589.20" y="406.80" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="589.20" y="427.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="589.20" y="402.00" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="595.60" y="437.20" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="522.00" y="326.80" width="17.28" height="16.64" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="481.04" y="502.80" width="97.92" height="22.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="554.00" y="589.20" width="12.80" height="12.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
@@ -154,10 +167,34 @@
 <rect x="528.40" y="422.80" width="9.28" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="570.00" y="528.40" width="76.80" height="38.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="509.20" y="400.40" width="9.60" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="512.40" y="309.20" width="8.00" height="3.20" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="547.60" y="307.60" width="8.00" height="3.20" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="501.20" y="307.60" width="8.00" height="3.20" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="461.20" y="290.16" width="16.32" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="566.80" y="294.80" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="479.76" y="290.16" width="16.32" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="494.80" y="307.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="566.80" y="290.00" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="510.80" y="315.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="517.04" y="290.16" width="9.92" height="16.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="517.20" y="315.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="482.00" y="312.40" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="498.32" y="290.16" width="16.32" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="558.80" y="307.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="494.80" y="312.40" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="482.00" y="307.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="562.00" y="312.40" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="568.40" y="309.20" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="555.60" y="314.00" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="566.80" y="304.40" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="566.80" y="299.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="488.40" y="307.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="640.40" y="306.00" width="9.28" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="640.40" y="313.68" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="640.40" y="326.16" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="640.40" y="330.32" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="640.40" y="322.00" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="640.40" y="317.84" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="573.20" y="572.88" width="38.40" height="29.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="577.04" y="226.00" width="60.80" height="113.92" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="550.80" y="360.56" width="16.16" height="9.92" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
@@ -410,7 +447,7 @@
 <text x="755" y="3447" font-family="sans-serif" font-size="10.5" fill="#526076">comparator driving EV_N9_U219_NFC</text>
 <text x="1100" y="112" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Machine audit</text>
 <text x="1100" y="142" font-family="sans-serif" font-size="12" fill="#166534">✓ same-face collisions: 0</text>
-<text x="1100" y="164" font-family="sans-serif" font-size="12" fill="#166534">✓ opposing crossings: 62</text>
+<text x="1100" y="164" font-family="sans-serif" font-size="12" fill="#166534">✓ opposing crossings: 70</text>
 <text x="1100" y="186" font-family="sans-serif" font-size="12" fill="#166534">✓ minimum Z clearance: 2.59 mm</text>
 <text x="1100" y="208" font-family="sans-serif" font-size="12" fill="#526076">required: 0.70 mm</text>
 <text x="1100" y="248" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">Line key</text>
@@ -418,27 +455,22 @@
 <text x="1144" y="274" font-family="sans-serif" font-size="11" fill="#526076">50 Ω RF PCB trace</text>
 <line x1="1100" y1="294" x2="1134" y2="294" stroke="#7c3aed" stroke-width="3"/>
 <text x="1144" y="298" font-family="sans-serif" font-size="11" fill="#526076">75 Ω CVBS PCB trace</text>
-<text x="1100" y="344" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#b42318">H1 mock-up blockers: 4 · structural audit pass</text>
-<text x="1100" y="370" font-family="sans-serif" font-size="10.5" fill="#9a3412">• complete the canonical coordinate</text>
-<text x="1100" y="385" font-family="sans-serif" font-size="10.5" fill="#9a3412">  register for the existing Cap-Bus ESD,</text>
-<text x="1100" y="400" font-family="sans-serif" font-size="10.5" fill="#9a3412">  series, supervisor, bypass and</text>
-<text x="1100" y="415" font-family="sans-serif" font-size="10.5" fill="#9a3412">  evidence-aggregate bodies before</text>
-<text x="1100" y="430" font-family="sans-serif" font-size="10.5" fill="#9a3412">  claiming a complete physical placement</text>
-<text x="1100" y="451" font-family="sans-serif" font-size="10.5" fill="#9a3412">• complete exact support-passive</text>
-<text x="1100" y="466" font-family="sans-serif" font-size="10.5" fill="#9a3412">  values/MPNs and prove their courtyards</text>
-<text x="1100" y="481" font-family="sans-serif" font-size="10.5" fill="#9a3412">  inside the two bounded U219 placement</text>
-<text x="1100" y="496" font-family="sans-serif" font-size="10.5" fill="#9a3412">  islands</text>
-<text x="1100" y="517" font-family="sans-serif" font-size="10.5" fill="#9a3412">• obtain controlled U219 field-structure</text>
-<text x="1100" y="532" font-family="sans-serif" font-size="10.5" fill="#9a3412">  geometry or measure a received unit</text>
-<text x="1100" y="547" font-family="sans-serif" font-size="10.5" fill="#9a3412">  before locating the weak printed NFC</text>
-<text x="1100" y="562" font-family="sans-serif" font-size="10.5" fill="#9a3412">  pickup loop and its DNP C0G bank</text>
-<text x="1100" y="583" font-family="sans-serif" font-size="10.5" fill="#9a3412">• measure the installed U219 RP-SMA</text>
-<text x="1100" y="598" font-family="sans-serif" font-size="10.5" fill="#9a3412">  antenna swept volume against the rear</text>
-<text x="1100" y="613" font-family="sans-serif" font-size="10.5" fill="#9a3412">  connector bank, FPV plug, enclosure</text>
-<text x="1100" y="628" font-family="sans-serif" font-size="10.5" fill="#9a3412">  and user hand access</text>
-<text x="1100" y="659" font-family="sans-serif" font-size="14" font-weight="700" fill="#526076">Final H1 acceptance input</text>
-<text x="1100" y="685" font-family="sans-serif" font-size="10.5" fill="#526076">• review and explicitly accept the</text>
-<text x="1100" y="700" font-family="sans-serif" font-size="10.5" fill="#526076">  generated complete R2 exterior, both</text>
-<text x="1100" y="715" font-family="sans-serif" font-size="10.5" fill="#526076">  true-view inner faces and four real</text>
-<text x="1100" y="730" font-family="sans-serif" font-size="10.5" fill="#526076">  section planes before closing H1</text>
+<text x="1100" y="344" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#b42318">H1 mock-up blockers: 3 · structural audit pass</text>
+<text x="1100" y="370" font-family="sans-serif" font-size="10.5" fill="#9a3412">• complete exact support-passive</text>
+<text x="1100" y="385" font-family="sans-serif" font-size="10.5" fill="#9a3412">  values/MPNs and prove their courtyards</text>
+<text x="1100" y="400" font-family="sans-serif" font-size="10.5" fill="#9a3412">  inside the two bounded U219 placement</text>
+<text x="1100" y="415" font-family="sans-serif" font-size="10.5" fill="#9a3412">  islands</text>
+<text x="1100" y="436" font-family="sans-serif" font-size="10.5" fill="#9a3412">• obtain controlled U219 field-structure</text>
+<text x="1100" y="451" font-family="sans-serif" font-size="10.5" fill="#9a3412">  geometry or measure a received unit</text>
+<text x="1100" y="466" font-family="sans-serif" font-size="10.5" fill="#9a3412">  before locating the weak printed NFC</text>
+<text x="1100" y="481" font-family="sans-serif" font-size="10.5" fill="#9a3412">  pickup loop and its DNP C0G bank</text>
+<text x="1100" y="502" font-family="sans-serif" font-size="10.5" fill="#9a3412">• measure the installed U219 RP-SMA</text>
+<text x="1100" y="517" font-family="sans-serif" font-size="10.5" fill="#9a3412">  antenna swept volume against the rear</text>
+<text x="1100" y="532" font-family="sans-serif" font-size="10.5" fill="#9a3412">  connector bank, FPV plug, enclosure</text>
+<text x="1100" y="547" font-family="sans-serif" font-size="10.5" fill="#9a3412">  and user hand access</text>
+<text x="1100" y="578" font-family="sans-serif" font-size="14" font-weight="700" fill="#526076">Final H1 acceptance input</text>
+<text x="1100" y="604" font-family="sans-serif" font-size="10.5" fill="#526076">• review and explicitly accept the</text>
+<text x="1100" y="619" font-family="sans-serif" font-size="10.5" fill="#526076">  generated complete R2 exterior, both</text>
+<text x="1100" y="634" font-family="sans-serif" font-size="10.5" fill="#526076">  true-view inner faces and four real</text>
+<text x="1100" y="649" font-family="sans-serif" font-size="10.5" fill="#526076">  section planes before closing H1</text>
 </svg>

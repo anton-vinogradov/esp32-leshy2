@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H1-R2.31`.** H0 is reviewed. H1 is not.
+> **▶ Current hardware boundary: `H1-R2.32`.** H0 is reviewed. H1 is not.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **28 August 2026**.
@@ -24,7 +24,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ▶ [H1-R2.31](h1-r2-physical-layout.md): exact dual-RP/C5 electrical authority and five active U219 source-backed courtyards are closed; the canonical Cap/evidence body register, support passives, NFC pickup and antenna swept volume are the four remaining blockers before mock-up acceptance; [all 210 base BOM lines are cost-ranked](h1-r2-cost.md) |
+| Physical design | ▶ [H1-R2.32](h1-r2-physical-layout.md): exact dual-RP/C5 electrical authority, five active U219 source-backed courtyards and the 43-body Cap/evidence coordinate register are closed; support passives, NFC pickup and antenna swept volume are the three remaining blockers before mock-up acceptance; [all 210 base BOM lines are cost-ranked](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map, FPV/MMCX proof and power/filter diagrams are published |
 | Production ECAD | 🔒 Reviewed G2F/H2/KiCad is historical single-RP R1 evidence only. Current H0/H1 has front Hub RP + rear RF RP; R2 H2 must regenerate six domains and exact H0 M1 |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 qualified all 12 target builds, 60 artifacts, 16 maps and 16 size gates, while F2-R2.5 reproducibility is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); emulator/dev-board execution must precede H7 fabrication |
@@ -32,9 +32,9 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Current H1 · exact composition
 
-<!-- current-substep: H1-R2.31 -->
+<!-- current-substep: H1-R2.32 -->
 
-**Exact marker: `H1-R2.31`.** This is one physical-design substep, not a closed
+**Exact marker: `H1-R2.32`.** This is one physical-design substep, not a closed
 H1 report.
 
 ### 1. Functional-island placement
@@ -124,9 +124,11 @@ H1 report.
 - ✅ The pin-10 switch, AON gate, two field bridges and comparator use official
   maximum full-package envelopes and source-backed courtyards; all five fit the
   reserved islands and the complete opposing-face audit passes.
-- ▶ Complete the canonical coordinate register for the existing Cap/evidence
-  bodies, support-passive values/MPNs and courtyards, pickup-loop geometry and
-  tuning, and the installed U219 antenna swept volume.
+- ✅ All 43 existing Cap/evidence bodies have one exact current-G2F identity,
+  source envelope, coordinate and conservative placement courtyard. Missing,
+  duplicate or substituted instances fail generation.
+- ▶ Complete support-passive values/MPNs and courtyards, pickup-loop geometry
+  and tuning, and the installed U219 antenna swept volume.
 
 ### 6. Final H1 acceptance input
 
@@ -137,7 +139,7 @@ H1 report.
   unused branch is isolated there, with no internal U.FL, cable or live stub.
 - ✅ Neither receiver enters the normal PCBA BOM. Actual body, hand soldering,
   Z and durability move to H5/H7; a later manufacturer package can simplify the footprint.
-- ▶ After the remaining canonical-register, U219 support-passive, pickup and antenna gates close,
+- ▶ After the remaining U219 support-passive, pickup and antenna gates close,
   review and explicitly accept the complete exterior, both true-view inner faces and the
   real sandwich sections. H2/KiCad has not started.
 
@@ -146,7 +148,7 @@ H1 report.
 | Phase | Status | Result | Exit criterion |
 |---|---|---|---|
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.31`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
+| **H1 · Physical product design** | **▶ Current · `H1-R2.32`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ⏳ Waiting for H1 | Exact R2 symbols, contacts, nets, values, protection and footprints | ERC-clean sheets and machine-readable HW↔FW contract |
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
@@ -167,8 +169,7 @@ H1 report.
 
 ## Next action
 
-Complete the canonical coordinate register for the existing Cap/evidence bodies,
-close the U219 support-passive values/MPNs and courtyards, locate and tune the
+Close the U219 support-passive values/MPNs and courtyards, locate and tune the
 NFC pickup, bound the installed antenna swept volume, then obtain explicit acceptance of the complete H1 mock-up.
 H2 can start only after that H1 review.
 KiCad routing, quoting and every order remain blocked. If AKK or Sinopine

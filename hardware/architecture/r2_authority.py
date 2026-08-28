@@ -231,6 +231,7 @@ def build(policy: dict | None = None, h0: dict | None = None,
         "source": physical_source,
         "sha256": expected_hashes[physical_source],
         "marker": physical_h1.get("marker"),
+        "pin_authority_marker": physical_h1.get("pin_authority_marker"),
         "status": physical_h1.get("status"),
         "current_h1_blockers": physical_h1.get("current_h1_blockers", []),
         "pre_r2_h2_gates": physical_pre_h2_gates,
@@ -259,7 +260,7 @@ def build(policy: dict | None = None, h0: dict | None = None,
         "zero_unresolved_pre_h2_gates": pre_h2_gates == []
         and physical_pre_h2_gates == []
         and reconciliation.get("pre_h2_gates") == [],
-        "physical_h1_reviewed": physical_h1.get("marker") == pin_authority.get("marker")
+        "physical_h1_reviewed": physical_h1.get("pin_authority_marker") == pin_authority.get("marker")
         and physical_h1.get("status") == "reviewed"
         and physical_h1.get("current_h1_blockers") == []
         and reconciliation.get("physical_h1") == expected_physical_reconciliation,

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.31",
+  "marker": "H1-R2.32",
   "status": "pass_with_open_h1_blockers",
   "structural_status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -44,7 +44,7 @@
     "u214_series_busy"
   ],
   "same_face_collisions": [],
-  "opposing_overlap_count": 62,
+  "opposing_overlap_count": 70,
   "minimum_opposing_clearance_mm": 2.59,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
@@ -203,6 +203,48 @@
       "clearance_mm": 6.16
     },
     {
+      "ui": "slow_io",
+      "rf": "u214_return_buffer_bypass",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 9.9
+    },
+    {
+      "ui": "slow_io",
+      "rf": "u214_series_irq",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 10.05
+    },
+    {
+      "ui": "slow_io",
+      "rf": "u214_series_miso",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 10.05
+    },
+    {
+      "ui": "slow_io",
+      "rf": "u214_series_nss",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 10.05
+    },
+    {
+      "ui": "slow_io",
+      "rf": "u214_series_rst",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 10.05
+    },
+    {
+      "ui": "ui_matrix_io",
+      "rf": "u214_esd_a",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 9.3
+    },
+    {
       "ui": "ui_matrix_io",
       "rf": "u214_i2c_iso",
       "ui_origin": "retained_base",
@@ -320,6 +362,20 @@
       "ui_origin": "r2",
       "rf_origin": "r2",
       "clearance_mm": 9.2
+    },
+    {
+      "ui": "nrf0_r2",
+      "rf": "u214_host_buffer_a_bypass",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.4
+    },
+    {
+      "ui": "nrf0_r2",
+      "rf": "u214_i2c_host_scl_pullup",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.55
     },
     {
       "ui": "nrf0_r2",
@@ -654,6 +710,1350 @@
       "measure the installed U219 RP-SMA antenna and cable/hand swept volume; the official 84 x 24 x 19.7-mm product body does not bound an attached 108-mm antenna",
       "select exact C0G tuning-bank MPNs and land patterns only after VNA/HIL",
       "complete the exact support-passive values/MPNs and prove their courtyards inside the two reserved islands; the five active-package source-backed courtyards already fit"
+    ],
+    "errors": []
+  },
+  "cap_evidence_coordinate_register": {
+    "status": "pass",
+    "candidate_id": "G2F-3I",
+    "policy": "exact current-G2F identity; exactly one physical coordinate; source body envelope plus 0.35-mm per-side H1 collision halo; H2 retains trace order and the connector-side ESD launch constraint",
+    "courtyard_halo_per_side_mm": 0.35,
+    "expected_instance_count": 43,
+    "resolved_instance_count": 43,
+    "instances": [
+      {
+        "instance": "any_tx_aon_pullup",
+        "device_key": "yageo_rc0402fr_0710kl",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          56.0,
+          90.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            55.65,
+            57.35
+          ],
+          "y": [
+            90.15,
+            91.35
+          ]
+        },
+        "source": {
+          "document": "Yageo RC0402FR-0710KL product specification",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "evidence_main_isolator",
+        "device_key": "ti_sn74lvc3g07_dcur",
+        "mpn": "SN74LVC3G07DCUR",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          58.0,
+          93.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          3.1,
+          2.0
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            57.65,
+            61.45
+          ],
+          "y": [
+            93.15,
+            95.85
+          ]
+        },
+        "source": {
+          "document": "SN74LVC3G07 Triple Buffer/Driver With Open-Drain Outputs datasheet",
+          "version": "Rev. R",
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc3g07.pdf",
+          "checked": "2026-08-19"
+        }
+      },
+      {
+        "instance": "evidence_main_isolator_bypass",
+        "device_key": "yageo_cc0402krx7r9bb104",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          56.0,
+          94.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            55.65,
+            57.35
+          ],
+          "y": [
+            93.65,
+            94.85
+          ]
+        },
+        "source": {
+          "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+          "version": "generated 2026-06-24",
+          "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "evidence_or_0",
+        "device_key": "onsemi_bat54alt1g",
+        "mpn": "BAT54ALT1G",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          58.0,
+          96.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.9,
+          1.3
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            57.65,
+            61.25
+          ],
+          "y": [
+            96.15,
+            98.15
+          ]
+        },
+        "source": {
+          "document": "BAT54ALT1 Schottky Barrier Diodes datasheet",
+          "version": "Rev. 16",
+          "url": "https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf",
+          "checked": "2026-08-17"
+        }
+      },
+      {
+        "instance": "evidence_or_1",
+        "device_key": "onsemi_bat54alt1g",
+        "mpn": "BAT54ALT1G",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          62.0,
+          93.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.9,
+          1.3
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            61.65,
+            65.25
+          ],
+          "y": [
+            93.15,
+            95.15
+          ]
+        },
+        "source": {
+          "document": "BAT54ALT1 Schottky Barrier Diodes datasheet",
+          "version": "Rev. 16",
+          "url": "https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf",
+          "checked": "2026-08-17"
+        }
+      },
+      {
+        "instance": "evidence_or_2",
+        "device_key": "onsemi_bat54alt1g",
+        "mpn": "BAT54ALT1G",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          58.0,
+          86.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.9,
+          1.3
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            57.65,
+            61.25
+          ],
+          "y": [
+            85.65,
+            87.65
+          ]
+        },
+        "source": {
+          "document": "BAT54ALT1 Schottky Barrier Diodes datasheet",
+          "version": "Rev. 16",
+          "url": "https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf",
+          "checked": "2026-08-17"
+        }
+      },
+      {
+        "instance": "evidence_or_3",
+        "device_key": "onsemi_bat54alt1g",
+        "mpn": "BAT54ALT1G",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          64.0,
+          91.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.9,
+          1.3
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            63.65,
+            67.25
+          ],
+          "y": [
+            91.15,
+            93.15
+          ]
+        },
+        "source": {
+          "document": "BAT54ALT1 Schottky Barrier Diodes datasheet",
+          "version": "Rev. 16",
+          "url": "https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf",
+          "checked": "2026-08-17"
+        }
+      },
+      {
+        "instance": "evidence_or_4",
+        "device_key": "onsemi_bat54alt1g",
+        "mpn": "BAT54ALT1G",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          62.0,
+          95.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.9,
+          1.3
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            61.65,
+            65.25
+          ],
+          "y": [
+            95.15,
+            97.15
+          ]
+        },
+        "source": {
+          "document": "BAT54ALT1 Schottky Barrier Diodes datasheet",
+          "version": "Rev. 16",
+          "url": "https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf",
+          "checked": "2026-08-17"
+        }
+      },
+      {
+        "instance": "ext_evidence_buffer",
+        "device_key": "ti_sn74lvc1g07_dckr",
+        "mpn": "SN74LVC1G07DCKR",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          55.0,
+          92.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.0,
+          1.25
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            54.65,
+            57.35
+          ],
+          "y": [
+            91.65,
+            93.6
+          ]
+        },
+        "source": {
+          "document": "SN74LVC1G07 Single Buffer/Driver With Open-Drain Output datasheet",
+          "version": "Rev. V",
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g07.pdf",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "ext_evidence_buffer_bypass",
+        "device_key": "yageo_cc0402krx7r9bb104",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          56.0,
+          89.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            55.65,
+            57.35
+          ],
+          "y": [
+            88.65,
+            89.85
+          ]
+        },
+        "source": {
+          "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+          "version": "generated 2026-06-24",
+          "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "ext_evidence_input_pullup",
+        "device_key": "yageo_rc0402fr_0710kl",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          56.0,
+          95.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            55.65,
+            57.35
+          ],
+          "y": [
+            95.15,
+            96.35
+          ]
+        },
+        "source": {
+          "document": "Yageo RC0402FR-0710KL product specification",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "ext_evidence_input_series",
+        "device_key": "yageo_rc0402fr_071kl",
+        "mpn": "Yageo RC0402FR-071KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          56.0,
+          87.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            55.65,
+            57.35
+          ],
+          "y": [
+            87.15,
+            88.35
+          ]
+        },
+        "source": {
+          "document": "RC0402FR-071KL exact product specification",
+          "version": "generated 2026-01-15",
+          "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-071KL",
+          "checked": "2026-08-19"
+        }
+      },
+      {
+        "instance": "ext_evidence_output_pullup",
+        "device_key": "yageo_rc0402fr_0710kl",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          58.0,
+          98.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            57.65,
+            59.35
+          ],
+          "y": [
+            98.15,
+            99.35
+          ]
+        },
+        "source": {
+          "document": "Yageo RC0402FR-0710KL product specification",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_connector",
+        "device_key": "samtec_hle_107_02_g_dv_pe_lc",
+        "mpn": "Samtec HLE-107-02-G-DV-PE-LC",
+        "frame": "rear-outer",
+        "coordinate_mm": [
+          28.61,
+          26.46
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          17.78,
+          5.08
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            28.26,
+            46.74
+          ],
+          "y": [
+            26.11,
+            31.89
+          ]
+        },
+        "source": {
+          "document": "Samtec exact HLE product page, series print and HLE catalog",
+          "version": "HLE-107-02-G-DV-PE-LC / HLE-1XX-02-XX-DV-XE-XX-MKT",
+          "url": "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc",
+          "checked": "2026-08-23"
+        }
+      },
+      {
+        "instance": "u214_esd_a",
+        "device_key": "ti_tpd4e05u06_dqar",
+        "mpn": "Texas Instruments TPD4E05U06DQAR",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          32.0,
+          58.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.5,
+          1.0
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            31.65,
+            34.85
+          ],
+          "y": [
+            58.15,
+            59.85
+          ]
+        },
+        "source": {
+          "document": "TPDxE05U06 1/4/6-channel ESD protection datasheet",
+          "version": "SLVSBO7O, revised 2024-08; exact order code checked 2026-08-18",
+          "url": "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_esd_b",
+        "device_key": "ti_tpd4e05u06_dqar",
+        "mpn": "Texas Instruments TPD4E05U06DQAR",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          43.0,
+          58.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.5,
+          1.0
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            42.65,
+            45.85
+          ],
+          "y": [
+            57.65,
+            59.35
+          ]
+        },
+        "source": {
+          "document": "TPDxE05U06 1/4/6-channel ESD protection datasheet",
+          "version": "SLVSBO7O, revised 2024-08; exact order code checked 2026-08-18",
+          "url": "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_esd_c",
+        "device_key": "ti_tpd4e05u06_dqar",
+        "mpn": "Texas Instruments TPD4E05U06DQAR",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          28.5,
+          58.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.5,
+          1.0
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            28.15,
+            31.35
+          ],
+          "y": [
+            57.65,
+            59.35
+          ]
+        },
+        "source": {
+          "document": "TPDxE05U06 1/4/6-channel ESD protection datasheet",
+          "version": "SLVSBO7O, revised 2024-08; exact order code checked 2026-08-18",
+          "url": "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_host_buffer_a",
+        "device_key": "nexperia_74lvc126apw_118",
+        "mpn": "Nexperia 74LVC126APW,118",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          16.0,
+          52.55
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          5.1,
+          4.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            15.65,
+            21.45
+          ],
+          "y": [
+            52.2,
+            57.4
+          ]
+        },
+        "source": {
+          "document": "74LVC126A quad buffer/line driver product data sheet",
+          "version": "Rev. 14, 12 June 2025",
+          "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_host_buffer_a_bypass",
+        "device_key": "yageo_cc0402krx7r9bb104",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          49.0,
+          54.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            48.65,
+            50.35
+          ],
+          "y": [
+            53.65,
+            54.85
+          ]
+        },
+        "source": {
+          "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+          "version": "generated 2026-06-24",
+          "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "u214_host_buffer_b",
+        "device_key": "nexperia_74lvc126apw_118",
+        "mpn": "Nexperia 74LVC126APW,118",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          21.8,
+          52.55
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          5.1,
+          4.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            21.45,
+            27.25
+          ],
+          "y": [
+            52.2,
+            57.4
+          ]
+        },
+        "source": {
+          "document": "74LVC126A quad buffer/line driver product data sheet",
+          "version": "Rev. 14, 12 June 2025",
+          "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_host_buffer_b_bypass",
+        "device_key": "yageo_cc0402krx7r9bb104",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          26.5,
+          58.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            26.15,
+            27.85
+          ],
+          "y": [
+            57.65,
+            58.85
+          ]
+        },
+        "source": {
+          "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+          "version": "generated 2026-06-24",
+          "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "u214_i2c_host_scl_pullup",
+        "device_key": "uniroyal_0402wgf2201tce",
+        "mpn": "UNI-ROYAL 0402WGF2201TCE",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          49.0,
+          52.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            48.65,
+            50.35
+          ],
+          "y": [
+            52.15,
+            53.35
+          ]
+        },
+        "source": {
+          "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+          "version": "V.10, 28 July 2025",
+          "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "u214_i2c_host_sda_pullup",
+        "device_key": "uniroyal_0402wgf2201tce",
+        "mpn": "UNI-ROYAL 0402WGF2201TCE",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          31.5,
+          60.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            31.15,
+            32.85
+          ],
+          "y": [
+            60.15,
+            61.35
+          ]
+        },
+        "source": {
+          "document": "UNI-ROYAL general thick-film chip resistor series datasheet",
+          "version": "V.10, 28 July 2025",
+          "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "u214_i2c_iso",
+        "device_key": "tca4307dgkr",
+        "mpn": "TCA4307DGKR",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          33.45,
+          52.55
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          3.1,
+          5.05
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            33.1,
+            36.9
+          ],
+          "y": [
+            52.2,
+            57.95
+          ]
+        },
+        "source": {
+          "document": "TCA4307 Hot-Swappable I2C/SMBus Buffer With Stuck-Bus Recovery datasheet",
+          "version": "SCPS270B",
+          "url": "https://www.ti.com/lit/ds/symlink/tca4307.pdf",
+          "checked": "2026-08-17"
+        }
+      },
+      {
+        "instance": "u214_i2c_iso_bypass",
+        "device_key": "yageo_cc0402krx7r9bb104",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          33.5,
+          60.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            33.15,
+            34.85
+          ],
+          "y": [
+            60.15,
+            61.35
+          ]
+        },
+        "source": {
+          "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+          "version": "generated 2026-06-24",
+          "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "u214_req_pulldown",
+        "device_key": "yageo_rc0402fr_0710kl",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          22.5,
+          59.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            22.15,
+            23.85
+          ],
+          "y": [
+            59.15,
+            60.35
+          ]
+        },
+        "source": {
+          "document": "Yageo RC0402FR-0710KL product specification",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_return_buffer",
+        "device_key": "nexperia_74lvc126apw_118",
+        "mpn": "Nexperia 74LVC126APW,118",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          27.6,
+          52.55
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          5.1,
+          4.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            27.25,
+            33.05
+          ],
+          "y": [
+            52.2,
+            57.4
+          ]
+        },
+        "source": {
+          "document": "74LVC126A quad buffer/line driver product data sheet",
+          "version": "Rev. 14, 12 June 2025",
+          "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_return_buffer_bypass",
+        "device_key": "yageo_cc0402krx7r9bb104",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          46.5,
+          58.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            46.15,
+            47.85
+          ],
+          "y": [
+            57.65,
+            58.85
+          ]
+        },
+        "source": {
+          "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+          "version": "generated 2026-06-24",
+          "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "u214_series_busy",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          24.5,
+          59.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            24.15,
+            25.85
+          ],
+          "y": [
+            59.15,
+            60.35
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_gps_rx",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          26.5,
+          59.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            26.15,
+            27.85
+          ],
+          "y": [
+            59.15,
+            60.35
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_gps_tx",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          22.5,
+          58.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            22.15,
+            23.85
+          ],
+          "y": [
+            57.65,
+            58.85
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_irq",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          47.5,
+          59.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            47.15,
+            48.85
+          ],
+          "y": [
+            59.15,
+            60.35
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_miso",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          49.5,
+          58.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            49.15,
+            50.85
+          ],
+          "y": [
+            58.15,
+            59.35
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_mosi",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          45.5,
+          60.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            45.15,
+            46.85
+          ],
+          "y": [
+            59.65,
+            60.85
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_nss",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          49.0,
+          57.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            48.65,
+            50.35
+          ],
+          "y": [
+            56.65,
+            57.85
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_rst",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          49.0,
+          55.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            48.65,
+            50.35
+          ],
+          "y": [
+            55.15,
+            56.35
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_series_sck",
+        "device_key": "panasonic_erj_2rkf22r0x",
+        "mpn": "Panasonic ERJ-2RKF22R0X",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          24.5,
+          58.0
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            24.15,
+            25.85
+          ],
+          "y": [
+            57.65,
+            58.85
+          ]
+        },
+        "source": {
+          "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+          "version": "current family datasheet checked 2026-08-18",
+          "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_supervisor",
+        "device_key": "ti_tps3808g33_dbvr",
+        "mpn": "TPS3808G33DBVR",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          72.0,
+          57.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          2.9,
+          1.6
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            71.65,
+            75.25
+          ],
+          "y": [
+            57.15,
+            59.45
+          ]
+        },
+        "source": {
+          "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
+          "version": "Rev. M",
+          "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+          "checked": "2026-08-17"
+        }
+      },
+      {
+        "instance": "u214_supervisor_bypass",
+        "device_key": "yageo_cc0402krx7r9bb104",
+        "mpn": "Yageo CC0402KRX7R9BB104",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          72.0,
+          59.9
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            71.65,
+            73.35
+          ],
+          "y": [
+            59.55,
+            60.75
+          ]
+        },
+        "source": {
+          "document": "YAGEO CC0402KRX7R9BB104 exact product specification",
+          "version": "generated 2026-06-24",
+          "url": "https://www.yageogroup.com/download/specsheet/CC0402KRX7R9BB104",
+          "checked": "2026-08-28"
+        }
+      },
+      {
+        "instance": "u214_supervisor_ct",
+        "device_key": "murata_grm155r71h103ka88d",
+        "mpn": "Murata GRM155R71H103KA88D",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          72.0,
+          63.8
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            71.65,
+            73.35
+          ],
+          "y": [
+            63.45,
+            64.65
+          ]
+        },
+        "source": {
+          "document": "Murata GRM155R71H103KA88 product data",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM155R71H103KA88D",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_supervisor_pullup",
+        "device_key": "yageo_rc0402fr_0710kl",
+        "mpn": "Yageo RC0402FR-0710KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          72.0,
+          65.1
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            71.65,
+            73.35
+          ],
+          "y": [
+            64.75,
+            65.95
+          ]
+        },
+        "source": {
+          "document": "Yageo RC0402FR-0710KL product specification",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_supervisor_sense_bottom",
+        "device_key": "yageo_rc0402fr_07220kl",
+        "mpn": "Yageo RC0402FR-07220KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          72.0,
+          62.5
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            71.65,
+            73.35
+          ],
+          "y": [
+            62.15,
+            63.35
+          ]
+        },
+        "source": {
+          "document": "Yageo RC0402FR-07220KL product specification",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07220KL",
+          "checked": "2026-08-18"
+        }
+      },
+      {
+        "instance": "u214_supervisor_sense_top",
+        "device_key": "yageo_rc0402fr_07110kl",
+        "mpn": "Yageo RC0402FR-07110KL",
+        "frame": "rf-inner",
+        "coordinate_mm": [
+          72.0,
+          61.2
+        ],
+        "rotation_deg": 0,
+        "source_envelope_mm": [
+          1.0,
+          0.5
+        ],
+        "placement_courtyard_bbox_mm": {
+          "x": [
+            71.65,
+            73.35
+          ],
+          "y": [
+            60.85,
+            62.05
+          ]
+        },
+        "source": {
+          "document": "RC0402FR-07110KL exact product specification",
+          "version": "current product data checked 2026-08-18",
+          "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-07110KL",
+          "checked": "2026-08-18"
+        }
+      }
     ],
     "errors": []
   },
@@ -1234,7 +2634,6 @@
   "relocated_c5_dbg_header": "c5_dbg_header_r2",
   "errors": [],
   "current_h1_blockers": [
-    "complete the canonical coordinate register for the existing Cap-Bus ESD, series, supervisor, bypass and evidence-aggregate bodies before claiming a complete physical placement",
     "complete exact support-passive values/MPNs and prove their courtyards inside the two bounded U219 placement islands",
     "obtain controlled U219 field-structure geometry or measure a received unit before locating the weak printed NFC pickup loop and its DNP C0G bank",
     "measure the installed U219 RP-SMA antenna swept volume against the rear connector bank, FPV plug, enclosure and user hand access"

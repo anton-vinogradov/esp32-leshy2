@@ -65,6 +65,7 @@ class R2AuthorityTest(unittest.TestCase):
                 "source": str(MODULE.PHYSICAL_H1.relative_to(MODULE.REPO)),
                 "sha256": MODULE.digest(MODULE.PHYSICAL_H1),
                 "marker": physical_h1["marker"],
+                "pin_authority_marker": physical_h1["pin_authority_marker"],
                 "status": physical_h1["status"],
                 "current_h1_blockers": [],
                 "pre_r2_h2_gates": [],

@@ -28,4 +28,6 @@ Midpoint divider добавляет лишь `0.339` мА·ч разбаланс
 
 ## Что бумажная проверка не закрывает
 
-Прижим и отклик sensors, ADC calibration, подлинность received cells, реальные charger thresholds, нагрев balancing и все open/short/reversed/imbalanced faults остаются физическими HIL gates. Машинный результат: [`H3-VRF34-battery-analog.json`](../hardware/verification/generated/H3-VRF34-battery-analog.json).
+Прижим и отклик sensors, ADC calibration, подлинность received cells, реальные charger thresholds и нагрев balancing остаются физическими HIL gates. Один полученный MAX17320 проходит последовательность blank → намеренно некорректная, но электрически безопасная конфигурация → проверенный golden/recovery; на каждом переходе читаются оба address space, checksum, `NVError` и bitmap оставшихся обновлений. Zero-remaining и failed-copy вводятся только в emulator/fixture: все семь физических NVM-записей не расходуются, отдельный жертвенный gauge не нужен, необратимые locks/security burns запрещены.
+
+Open/short/swapped/reversed/missing/imbalanced состояния банков задаёт current-limited cell simulator, температурные faults и thresholds — NTC fixture. Реальные банки остаются внутри ограничений точного MPN по напряжению, току и температуре. Drop и endurance — отдельные потенциально повреждающие DVT-тесты только на выделенных прототипах. Машинный результат: [`H3-VRF34-battery-analog.json`](../hardware/verification/generated/H3-VRF34-battery-analog.json).

@@ -100,6 +100,57 @@ REAR_RF = (
 VOICE_V_RF_CORRIDOR = ((45.1, 0.0), (20.25, 32.5))
 VOICE_U_RF_CORRIDOR = ((56.0, 0.0), (71.2, 36.95))
 OPPOSITE_FACE_CLEARANCE_MM = 1.5
+
+# H1-R2.32 fail-closed placement scope. These are the already accepted G2F-3I
+# Cap-Bus protection/control and hardware TX-evidence aggregate bodies. The
+# values bind each instance to its current exact device key: a substitution,
+# omitted coordinate or duplicate projection must fail generation.
+CAP_EVIDENCE_COORDINATE_INSTANCE_DEVICES = {
+    "u214_connector": "samtec_hle_107_02_g_dv_pe_lc",
+    "u214_i2c_iso": "tca4307dgkr",
+    "u214_i2c_iso_bypass": "yageo_cc0402krx7r9bb104",
+    "u214_i2c_host_sda_pullup": "uniroyal_0402wgf2201tce",
+    "u214_i2c_host_scl_pullup": "uniroyal_0402wgf2201tce",
+    "u214_host_buffer_a": "nexperia_74lvc126apw_118",
+    "u214_host_buffer_b": "nexperia_74lvc126apw_118",
+    "u214_return_buffer": "nexperia_74lvc126apw_118",
+    "u214_host_buffer_a_bypass": "yageo_cc0402krx7r9bb104",
+    "u214_host_buffer_b_bypass": "yageo_cc0402krx7r9bb104",
+    "u214_return_buffer_bypass": "yageo_cc0402krx7r9bb104",
+    "u214_series_rst": "panasonic_erj_2rkf22r0x",
+    "u214_series_gps_rx": "panasonic_erj_2rkf22r0x",
+    "u214_series_sck": "panasonic_erj_2rkf22r0x",
+    "u214_series_mosi": "panasonic_erj_2rkf22r0x",
+    "u214_series_nss": "panasonic_erj_2rkf22r0x",
+    "u214_series_busy": "panasonic_erj_2rkf22r0x",
+    "u214_series_irq": "panasonic_erj_2rkf22r0x",
+    "u214_series_gps_tx": "panasonic_erj_2rkf22r0x",
+    "u214_series_miso": "panasonic_erj_2rkf22r0x",
+    "u214_esd_a": "ti_tpd4e05u06_dqar",
+    "u214_esd_b": "ti_tpd4e05u06_dqar",
+    "u214_esd_c": "ti_tpd4e05u06_dqar",
+    "u214_req_pulldown": "yageo_rc0402fr_0710kl",
+    "u214_supervisor": "ti_tps3808g33_dbvr",
+    "u214_supervisor_bypass": "yageo_cc0402krx7r9bb104",
+    "u214_supervisor_sense_top": "yageo_rc0402fr_07110kl",
+    "u214_supervisor_sense_bottom": "yageo_rc0402fr_07220kl",
+    "u214_supervisor_ct": "murata_grm155r71h103ka88d",
+    "u214_supervisor_pullup": "yageo_rc0402fr_0710kl",
+    "any_tx_aon_pullup": "yageo_rc0402fr_0710kl",
+    "evidence_or_0": "onsemi_bat54alt1g",
+    "evidence_or_1": "onsemi_bat54alt1g",
+    "evidence_or_2": "onsemi_bat54alt1g",
+    "evidence_or_3": "onsemi_bat54alt1g",
+    "evidence_or_4": "onsemi_bat54alt1g",
+    "evidence_main_isolator": "ti_sn74lvc3g07_dcur",
+    "evidence_main_isolator_bypass": "yageo_cc0402krx7r9bb104",
+    "ext_evidence_buffer": "ti_sn74lvc1g07_dckr",
+    "ext_evidence_buffer_bypass": "yageo_cc0402krx7r9bb104",
+    "ext_evidence_input_pullup": "yageo_rc0402fr_0710kl",
+    "ext_evidence_input_series": "yageo_rc0402fr_071kl",
+    "ext_evidence_output_pullup": "yageo_rc0402fr_0710kl",
+}
+CAP_EVIDENCE_COURTYARD_HALO_MM = 0.35
 RF_INSTANCE_BY_PATH = {
     "S3-2G4": "s3_external_rp_sma",
     "C5-2G4/5": "c5_external_rp_sma",
@@ -528,6 +579,33 @@ RF_INNER = (
     Placement("u214_host_buffer_b", 21.8, 52.55, "U214 host-command buffer B"),
     Placement("u214_return_buffer", 27.6, 52.55, "U214 return-path buffer"),
     Placement("u214_i2c_iso", 33.45, 52.55, "U214 hot-swap I2C isolation and stuck-bus recovery"),
+    # Canonical support-body pack. These are H1 body/courtyard coordinates;
+    # H2 still owns trace order and the connector-side ESD launch constraint.
+    Placement("u214_supervisor", 72.0, 57.5, "U214 3V3_OUT admission supervisor"),
+    Placement("u214_esd_a", 32.0, 58.5, "U214 connector-side ESD array A"),
+    Placement("u214_esd_b", 43.0, 58.0, "U214 connector-side ESD array B"),
+    Placement("u214_esd_c", 28.5, 58.0, "U214 connector-side ESD array C"),
+    Placement("u214_i2c_iso_bypass", 33.5, 60.5, "U214 I2C isolator local bypass"),
+    Placement("u214_i2c_host_sda_pullup", 31.5, 60.5, "U214 host-side SDA pull-up"),
+    Placement("u214_i2c_host_scl_pullup", 49.0, 52.5, "U214 host-side SCL pull-up"),
+    Placement("u214_host_buffer_a_bypass", 49.0, 54.0, "U214 host-buffer A bypass"),
+    Placement("u214_host_buffer_b_bypass", 26.5, 58.0, "U214 host-buffer B bypass"),
+    Placement("u214_return_buffer_bypass", 46.5, 58.0, "U214 return-buffer bypass"),
+    Placement("u214_series_rst", 49.0, 55.5, "U214 RST 22-ohm source series"),
+    Placement("u214_series_gps_rx", 26.5, 59.5, "U214 GPS_RX 22-ohm source series"),
+    Placement("u214_series_sck", 24.5, 58.0, "U214 SCK 22-ohm source series"),
+    Placement("u214_series_mosi", 45.5, 60.0, "U214 MOSI 22-ohm source series"),
+    Placement("u214_series_nss", 49.0, 57.0, "U214 NSS 22-ohm source series"),
+    Placement("u214_series_busy", 24.5, 59.5, "U214 BUSY 22-ohm source series"),
+    Placement("u214_series_irq", 47.5, 59.5, "U214 IRQ 22-ohm source series"),
+    Placement("u214_series_gps_tx", 22.5, 58.0, "U214 GPS_TX 22-ohm source series"),
+    Placement("u214_series_miso", 49.5, 58.5, "U214 MISO 22-ohm source series"),
+    Placement("u214_req_pulldown", 22.5, 59.5, "U214 request-line fail-safe pull-down"),
+    Placement("u214_supervisor_bypass", 72.0, 59.9, "U214 supervisor local bypass"),
+    Placement("u214_supervisor_sense_top", 72.0, 61.2, "U214 supervisor upper sense leg"),
+    Placement("u214_supervisor_sense_bottom", 72.0, 62.5, "U214 supervisor lower sense leg"),
+    Placement("u214_supervisor_ct", 72.0, 63.8, "U214 supervisor delay capacitor"),
+    Placement("u214_supervisor_pullup", 72.0, 65.1, "U214 supervisor output pull-up"),
     Placement("nrf0_host_buffer", 0.0, 26.8, "nRF24 #0 host-command buffer"),
     Placement("nrf0_return_buffer", 6.0, 26.8, "nRF24 #0 return-path buffer"),
     Placement("nrf1_host_buffer", 37.3, 52.55, "nRF24 #1 host-command buffer"),
@@ -578,6 +656,20 @@ RF_INNER = (
     Placement("pack_diag_res0", 11.5, 84.0, "pack diagnostic pulse resistor #0"),
     Placement("pack_diag_res1", 18.5, 84.0, "pack diagnostic pulse resistor #1"),
     Placement("evidence_mask", 63.15, 74.55, "AON evidence-source mask expander"),
+    # Firmware-independent rear-domain evidence OR aggregate.
+    Placement("evidence_or_2", 58.0, 86.0, "evidence diode OR for nRF24 #2 / CC"),
+    Placement("any_tx_aon_pullup", 56.0, 90.5, "AON pull-up for hardware ANY_TX aggregate"),
+    Placement("evidence_or_3", 64.0, 91.5, "evidence diode OR for voice / IR"),
+    Placement("ext_evidence_buffer", 55.0, 92.0, "5-V-tolerant U214 pin-5 evidence boundary"),
+    Placement("evidence_main_isolator", 58.0, 93.5, "AON-to-main hardware evidence isolator"),
+    Placement("evidence_or_1", 62.0, 93.5, "evidence diode OR for nRF24 #0 / #1"),
+    Placement("evidence_main_isolator_bypass", 56.0, 94.0, "main evidence-isolator bypass"),
+    Placement("evidence_or_4", 62.0, 95.5, "evidence diode OR for external Cap evidence"),
+    Placement("evidence_or_0", 58.0, 96.5, "evidence diode OR for S3 / C5"),
+    Placement("ext_evidence_buffer_bypass", 56.0, 89.0, "U214 evidence-buffer local bypass"),
+    Placement("ext_evidence_input_pullup", 56.0, 95.5, "U214 pin-5 fail-safe input pull-up"),
+    Placement("ext_evidence_input_series", 56.0, 87.5, "U214 pin-5 evidence input series resistor"),
+    Placement("ext_evidence_output_pullup", 58.0, 98.5, "isolated U214 evidence output pull-up"),
 
     Placement("pd_pphv_cap0", 1.0, 127.0, "USB-PD high-voltage bulk capacitor #0"),
     Placement("pd_pphv_cap1", 4.9, 127.0, "USB-PD high-voltage bulk capacitor #1"),
@@ -1309,6 +1401,93 @@ def validate_items(name: str, items: tuple[Placement, ...], devices: dict, insta
     return errors
 
 
+def cap_evidence_coordinate_register_audit(
+    devices: dict,
+    instances: dict,
+    projection_groups: tuple[tuple[str, tuple[Placement, ...]], ...] | None = None,
+) -> dict:
+    """Resolve the exact current-G2F Cap/evidence placement manifest.
+
+    The 0.35-mm per-side placement courtyard is the conservative collision
+    envelope used by the H1 paper model (equivalent to the existing 0.7-mm
+    body-to-body rule). It is not an ECAD land-pattern claim.
+    """
+    projected: dict[str, list[tuple[str, Placement]]] = {}
+    for frame, items in projection_groups or PLACEMENT_PROJECTION_GROUPS:
+        for item in items:
+            projected.setdefault(item.instance, []).append((frame, item))
+    errors: list[str] = []
+    rows = []
+    for instance, expected_device_key in sorted(
+        CAP_EVIDENCE_COORDINATE_INSTANCE_DEVICES.items()
+    ):
+        actual_device_key = instances.get(instance)
+        if actual_device_key != expected_device_key:
+            errors.append(
+                f"cap-evidence-register: {instance} expected current G2F device "
+                f"{expected_device_key}, got {actual_device_key}"
+            )
+            continue
+        occurrences = projected.get(instance, [])
+        if len(occurrences) != 1:
+            errors.append(
+                f"cap-evidence-register: {instance} has {len(occurrences)} physical projections; expected one"
+            )
+            continue
+        frame, item = occurrences[0]
+        expected_frame = "rear-outer" if instance == "u214_connector" else "rf-inner"
+        if frame != expected_frame:
+            errors.append(
+                f"cap-evidence-register: {instance} is in {frame}; expected {expected_frame}"
+            )
+            continue
+        try:
+            width, height = placement_size(item, devices, instances)
+        except ValueError as error:
+            errors.append(f"cap-evidence-register: {error}")
+            continue
+        device = devices[actual_device_key]
+        source = device.get("mechanical_source", device.get("source", {}))
+        if not source.get("document") or not source.get("url"):
+            errors.append(f"cap-evidence-register: {instance} lacks source-backed envelope evidence")
+            continue
+        halo = CAP_EVIDENCE_COURTYARD_HALO_MM
+        rows.append(
+            {
+                "instance": instance,
+                "device_key": actual_device_key,
+                "mpn": device["mpn"],
+                "frame": frame,
+                "coordinate_mm": [item.x, item.y],
+                "rotation_deg": item.rotation,
+                "source_envelope_mm": [width, height],
+                "placement_courtyard_bbox_mm": {
+                    "x": [round(item.x - halo, 6), round(item.x + width + halo, 6)],
+                    "y": [round(item.y - halo, 6), round(item.y + height + halo, 6)],
+                },
+                "source": {
+                    field: source[field]
+                    for field in ("document", "version", "url", "checked")
+                    if field in source
+                },
+            }
+        )
+    return {
+        "status": "pass" if not errors else "fail",
+        "candidate_id": "G2F-3I",
+        "policy": (
+            "exact current-G2F identity; exactly one physical coordinate; "
+            "source body envelope plus 0.35-mm per-side H1 collision halo; "
+            "H2 retains trace order and the connector-side ESD launch constraint"
+        ),
+        "courtyard_halo_per_side_mm": CAP_EVIDENCE_COURTYARD_HALO_MM,
+        "expected_instance_count": len(CAP_EVIDENCE_COORDINATE_INSTANCE_DEVICES),
+        "resolved_instance_count": len(rows),
+        "instances": rows,
+        "errors": errors,
+    }
+
+
 def validate_cable_routes(devices: dict, instances: dict) -> list[str]:
     errors: list[str] = []
     ui_by_instance = {item.instance: item for item in UI_INNER}
@@ -1920,7 +2099,7 @@ def validate_assembly_coordinate_model(
     if (
         model.get("schema_version") != 1
         or model.get("model_id") != "L2-ASM-COORD-001-A"
-        or model.get("stage") != "H1-R2.30"
+        or model.get("stage") != "H1-R2.32"
         or model.get("status") != "in_progress"
     ):
         errors.append("coordinate-model: schema, identity, stage or review status drifted")
@@ -2032,6 +2211,9 @@ def validate() -> list[str]:
         actual = devices[instances[instance]]["mpn"]
         if actual != expected:
             errors.append(f"{instance}: expected {expected}, got {actual}")
+
+    cap_evidence_register = cap_evidence_coordinate_register_audit(devices, instances)
+    errors += cap_evidence_register["errors"]
 
     mechanically_accounted, mechanical_source_errors = validate_mechanical_sources(
         devices, instances
@@ -4662,6 +4844,9 @@ def build_physical_source_table(devices: dict, instances: dict) -> dict:
                 for feature in encoder_through_board_features(devices, instances)
             ]
         rows.append(row)
+    cap_evidence_register = cap_evidence_coordinate_register_audit(devices, instances)
+    if cap_evidence_register["errors"]:
+        raise ValueError("; ".join(cap_evidence_register["errors"]))
     return {
         "schema_version": 1,
         "stage": "H1.1.4",
@@ -4674,6 +4859,7 @@ def build_physical_source_table(devices: dict, instances: dict) -> dict:
             str(Path(__file__).resolve().relative_to(REPO)),
         ],
         "policy": "Every mechanically rendered body has one exact instance, MPN or explicit TBD, sourced envelope, datum, orientation and interface direction.",
+        "cap_evidence_coordinate_register": cap_evidence_register,
         "summary": {
             "rendered_physical_instances": len(rows),
             "exact_mpn_instances": sum("TBD" not in row["mpn"] for row in rows),
@@ -4774,6 +4960,7 @@ def build_unified_coordinate_table(
         "longitudinal_zones": model["longitudinal_zones"],
         "accessory_envelopes": model["accessory_envelopes"],
         "enclosure_reference": model["enclosure_reference"],
+        "cap_evidence_coordinate_register": source_table["cap_evidence_coordinate_register"],
         "interboard_fit_audit": {
             "result": "paper_geometry_passed",
             "interboard_gap_mm": INTERBOARD_GAP_MM,

@@ -1,18 +1,18 @@
-# H1-R2.31 · рабочая компоновка целевого устройства
+# H1-R2.32 · рабочая компоновка целевого устройства
 
-Текущая проверяемая физическая модель двух плат 75×150 мм, не завершённая компоновка и не разрешение начинать KiCad. Структурный аудит проходит, но H1 остаётся открытым до закрытия перечисленных ниже geometry-gates U219, полного canonical-регистра и явного принятия мокапа.
+Текущая проверяемая физическая модель двух плат 75×150 мм, не завершённая компоновка и не разрешение начинать KiCad. Структурный аудит и полный текущий реестр Cap/evidence-корпусов проходят, но H1 остаётся открытым до закрытия трёх перечисленных ниже geometry-gates U219 и явного принятия мокапа.
 
 ## Что увидит пользователь
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.31-u219-cap-profile-1)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.32-cap-evidence-register-1)
 
 ## Легенда компонентов
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.31-u219-cap-profile-1)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.32-cap-evidence-register-1)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.31-u219-cap-profile-1)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.32-cap-evidence-register-1)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.31-u219-cap-profile-1)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.32-cap-evidence-register-1)
 
 ## Что находится внутри
 
@@ -49,7 +49,7 @@
 - Механика M1: четыре 11,00-мм compression-stop, два противосдвиговых упора и независимые захваты плат; разъём не несёт ударную или изгибающую нагрузку.
 - Шелкография антенн: генератор подтвердил отсутствие пересечений с SMA/MMCX, кабелем FPV, Cap-Bus-слотом, дисплеем и монтажными keep-out.
 - Точная посадка десяти SMA следует чертежам A1: прямоугольная RF-пята `1,87×3,30 мм` в `x=0`, четыре прямоугольные земляные лапы `1,60×3,30 мм` в `x=±2,55 мм`, край платы `y=0`. H5 квалифицирует двусторонний процесс пайки, H7 осматривает все пять паек каждого разъёма, H8 выполняет `0,452–0,678 Н·м`, 50 циклов и заданный drop с повторной проверкой каждого RF-тракта.
-- Cap-Bus: mutually-exclusive U214/U219-профили и все восемь целевых зазоров проходят; пять активных U219-корпусов и их source-backed courtyards зарегистрированы, а прежний Cap-register, support-passive courtyards, NFC-loop и swept volume антенны остаются явными H1 gates (4).
+- Cap-Bus: mutually-exclusive U214/U219-профили и все восемь целевых зазоров проходят; 43 существующих Cap/evidence-корпуса и их source-backed placement courtyards зарегистрированы fail-closed; support-passive courtyards U219, NFC-loop и swept volume антенны остаются явными H1 gates (3).
 - Верхний display-adapter имеет ноль коллизий и 5,10 мм минимального встречного зазора; платный U.FL второго nRF24 сдвинут ниже адаптера с зазором 1,00 мм.
 
 ## Точные фабричные позиции
@@ -74,7 +74,6 @@
 
 ## Финальное принятие H1
 
-- завершить канонический реестр координат существующих корпусов Cap-Bus ESD, series, supervisor, bypass и evidence aggregate до заявления о полной физической компоновке
 - завершить точные значения/MPN вспомогательных пассивов и доказать их courtyards внутри двух ограниченных U219 placement-island
 - получить контролируемую геометрию field structure U219 или измерить полученный экземпляр до размещения слабосвязанной печатной NFC-петли и её DNP C0G-банка
 - измерить swept volume установленной RP-SMA-антенны U219 относительно заднего ряда разъёмов, FPV-штекера, корпуса и доступа рукой
@@ -86,4 +85,4 @@
 - выбрать и проверить на фабрике точный MPN detector/latch service-VBUS из закрытого электрического контракта владения C5
 - реализовать и доказать точную powered-off-Ioff границу изоляции и раздельные pull-up домены 3V3_MAIN/AON для Pack/Safety I2C на Hub GPIO42/43
 
-> Точный текущий маркер: **H1-R2.31**. H1 продолжается.
+> Точный текущий маркер: **H1-R2.32**. H1 продолжается.

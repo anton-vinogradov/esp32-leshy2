@@ -240,7 +240,24 @@
       "discharge_hot_block": 60
     },
     "balancing": "BALCFG=011 (10 mV) and Rmismatch=3 (11.7 mohm); exact 49.9-ohm paths remain inside the 100-mA pin and 0.66-W resistor limits",
-    "image_rule": "generate and review one golden image, program once, then verify both address spaces, protection checksum and readback; do not spend the seven-write NVM endurance on iterative tuning"
+    "image_rule": "generate and review one golden image, program once, then verify both address spaces, protection checksum and readback; do not spend the seven-write NVM endurance on iterative tuning",
+    "hil_transition_sequence": [
+      "blank state readback and fail-closed admission",
+      "deliberately invalid but electrically safe configuration and fail-closed admission",
+      "reviewed golden image programming, reset, readback and recovery"
+    ],
+    "required_readback": [
+      "both address spaces",
+      "protection checksum",
+      "NVError",
+      "remaining-update bitmap"
+    ],
+    "emulator_or_fixture_only_faults": [
+      "zero remaining updates",
+      "failed-copy interruption"
+    ],
+    "nvm_endurance_policy": "never consume all seven physical NVM updates; no sacrificial MAX17320 is required",
+    "irreversible_security_policy": "irreversible locks, key burns and security fuses remain forbidden"
   },
   "cell_contract": {
     "nominal_voltage_v": 3.6,
@@ -331,11 +348,17 @@
       "functional_effect": "the product keeps the already accepted 2-A ceiling and applies narrower independent temperature limits"
     }
   ],
+  "verification_safety_boundary": {
+    "safe_fault_injection": "use one real MAX17320 only for blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery; use a current-limited cell simulator and NTC fixture for zero-remaining, failed-copy, reversed, swapped, open, short, missing, imbalance and threshold cases",
+    "real_cell_boundary": "operate the exact matched cell lot only inside its MPN voltage, current and temperature limits; do not heat, overvoltage, reverse or short real cells",
+    "potentially_damaging_dvt": "drop and endurance qualification uses dedicated prototype devices and may consume or damage them",
+    "forbidden": "irreversible locks, security burns and intentional real-cell abuse outside the exact MPN limits"
+  },
   "remaining_hil": [
-    "program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens",
-    "calibrate the two divider channels on the assembled admission domain and inject open, short, swapped, reversed, missing and imbalanced cells",
-    "thermally ramp every cell and board NTC, measure bond response time and prove open/short/lift detection plus the 35/40/60/65/75-C policy",
-    "verify BQ CE-default-off, TS open/short, exact warm/cold suspend and all source/load/charge-current transitions with the exact cell lot",
+    "on one received MAX17320, record blank fail-closed behavior, program a deliberately invalid but electrically safe configuration, then program the reviewed golden image and prove recovery; read both address spaces, checksum, NVError and remaining-update bitmap at each transition; inject zero-remaining and failed-copy only in the emulator or isolated fixture, never consume all seven physical updates and use no sacrificial chip",
+    "calibrate the two divider channels on the assembled admission domain; inject open, short, swapped, reversed, missing and imbalanced-cell states only with a current-limited cell simulator",
+    "use an NTC fixture to inject open/short/lift and the 35/40/60/65/75-C thresholds, measure sensor bonding/response within component limits, and never heat real cells beyond the exact cell MPN temperature envelope",
+    "verify BQ CE-default-off, TS open/short with the NTC fixture, exact warm/cold suspend and all admitted source/load/charge-current transitions with the exact cell lot inside its MPN limits",
     "measure long-idle divider imbalance, MAX balancing heat and both 49.9-ohm balance-resistor temperatures"
   ],
   "review_summary": {

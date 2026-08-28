@@ -300,6 +300,15 @@ def build() -> tuple[dict[Path, str], dict]:
             "temperature_profile_c": {"charge_cold_block": 0, "charge_warm_reduce": 35, "charge_hot_block": 40, "discharge_cold_block": -20, "discharge_hot_block": 60},
             "balancing": "BALCFG=011 (10 mV) and Rmismatch=3 (11.7 mohm); exact 49.9-ohm paths remain inside the 100-mA pin and 0.66-W resistor limits",
             "image_rule": devices["adi_max17320_g20_t"]["configuration_contract"]["protected_image_rule"],
+            "hil_transition_sequence": [
+                "blank state readback and fail-closed admission",
+                "deliberately invalid but electrically safe configuration and fail-closed admission",
+                "reviewed golden image programming, reset, readback and recovery",
+            ],
+            "required_readback": ["both address spaces", "protection checksum", "NVError", "remaining-update bitmap"],
+            "emulator_or_fixture_only_faults": ["zero remaining updates", "failed-copy interruption"],
+            "nvm_endurance_policy": "never consume all seven physical NVM updates; no sacrificial MAX17320 is required",
+            "irreversible_security_policy": "irreversible locks, key burns and security fuses remain forbidden",
         },
         "cell_contract": devices["xtar_18650_4000mah_protected"]["electrical_contract"],
         "checks": checks,
@@ -309,11 +318,17 @@ def build() -> tuple[dict[Path, str], dict]:
             {"id": "H3.3.4-F03", "finding": "the selected TDK NTC had only a generic B3380 label, while its exact product data gives B25/85=3435 K and the MAX17320 curve word depends on that value", "correction": "record every published beta and derive exact nThermCfg 0x71B1", "functional_effect": "cell-temperature conversion uses the selected physical part instead of a near-family assumption"},
             {"id": "H3.3.4-F04", "finding": "the exact XTAR source had not been converted into electrical limits", "correction": "record 2-A standard charge, 4.2+/-0.03 V, 2.5-V cutoff, 10-A continuous discharge, 11-to-14-A protection and exact capacity/resistance rows", "functional_effect": "the product keeps the already accepted 2-A ceiling and applies narrower independent temperature limits"},
         ],
+        "verification_safety_boundary": {
+            "safe_fault_injection": "use one real MAX17320 only for blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery; use a current-limited cell simulator and NTC fixture for zero-remaining, failed-copy, reversed, swapped, open, short, missing, imbalance and threshold cases",
+            "real_cell_boundary": "operate the exact matched cell lot only inside its MPN voltage, current and temperature limits; do not heat, overvoltage, reverse or short real cells",
+            "potentially_damaging_dvt": "drop and endurance qualification uses dedicated prototype devices and may consume or damage them",
+            "forbidden": "irreversible locks, security burns and intentional real-cell abuse outside the exact MPN limits",
+        },
         "remaining_hil": [
-            "program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens",
-            "calibrate the two divider channels on the assembled admission domain and inject open, short, swapped, reversed, missing and imbalanced cells",
-            "thermally ramp every cell and board NTC, measure bond response time and prove open/short/lift detection plus the 35/40/60/65/75-C policy",
-            "verify BQ CE-default-off, TS open/short, exact warm/cold suspend and all source/load/charge-current transitions with the exact cell lot",
+            "on one received MAX17320, record blank fail-closed behavior, program a deliberately invalid but electrically safe configuration, then program the reviewed golden image and prove recovery; read both address spaces, checksum, NVError and remaining-update bitmap at each transition; inject zero-remaining and failed-copy only in the emulator or isolated fixture, never consume all seven physical updates and use no sacrificial chip",
+            "calibrate the two divider channels on the assembled admission domain; inject open, short, swapped, reversed, missing and imbalanced-cell states only with a current-limited cell simulator",
+            "use an NTC fixture to inject open/short/lift and the 35/40/60/65/75-C thresholds, measure sensor bonding/response within component limits, and never heat real cells beyond the exact cell MPN temperature envelope",
+            "verify BQ CE-default-off, TS open/short with the NTC fixture, exact warm/cold suspend and all admitted source/load/charge-current transitions with the exact cell lot inside its MPN limits",
             "measure long-idle divider imbalance, MAX balancing heat and both 49.9-ohm balance-resistor temperatures",
         ],
         "review_summary": {"checks": len(checks), "failed": 0, "corrections": 4, "new_bom_cost_usd": "0.0000"},
@@ -350,7 +365,9 @@ The midpoint divider adds only `{q(imbalance_48h_mah, '0.001')}` mAh of lower-ce
 
 ## What paper evidence does not close
 
-Sensor bonding and response, ADC calibration, received-cell identity, actual charger thresholds, balance heat and every open/short/reversed/imbalanced fault remain physical HIL gates. The generated evidence is [`H3-VRF34-battery-analog.json`](../hardware/verification/generated/H3-VRF34-battery-analog.json).
+Sensor bonding and response, ADC calibration, received-cell identity, actual charger thresholds and balance heat remain physical HIL gates. One received MAX17320 is exercised through blank → deliberately invalid but electrically safe configuration → reviewed golden/recovery, with both address spaces, checksum, `NVError` and remaining-update bitmap read at every transition. Zero-remaining and failed-copy are emulator/fixture injections only: all seven physical NVM updates are never consumed, no sacrificial gauge is required and irreversible locks/security burns remain forbidden.
+
+Open/short/swapped/reversed/missing/imbalanced cell states use a current-limited cell simulator; temperature faults and thresholds use an NTC fixture. Real cells remain inside the exact MPN voltage, current and temperature limits. Drop and endurance are separate, potentially damaging DVT tests performed only on dedicated prototypes. The generated evidence is [`H3-VRF34-battery-analog.json`](../hardware/verification/generated/H3-VRF34-battery-analog.json).
 """
     ru = f"""# Проверка battery sensing и температурных analog-порогов · historical R1
 
@@ -382,7 +399,9 @@ Midpoint divider добавляет лишь `{q(imbalance_48h_mah, '0.001')}` �
 
 ## Что бумажная проверка не закрывает
 
-Прижим и отклик sensors, ADC calibration, подлинность received cells, реальные charger thresholds, нагрев balancing и все open/short/reversed/imbalanced faults остаются физическими HIL gates. Машинный результат: [`H3-VRF34-battery-analog.json`](../hardware/verification/generated/H3-VRF34-battery-analog.json).
+Прижим и отклик sensors, ADC calibration, подлинность received cells, реальные charger thresholds и нагрев balancing остаются физическими HIL gates. Один полученный MAX17320 проходит последовательность blank → намеренно некорректная, но электрически безопасная конфигурация → проверенный golden/recovery; на каждом переходе читаются оба address space, checksum, `NVError` и bitmap оставшихся обновлений. Zero-remaining и failed-copy вводятся только в emulator/fixture: все семь физических NVM-записей не расходуются, отдельный жертвенный gauge не нужен, необратимые locks/security burns запрещены.
+
+Open/short/swapped/reversed/missing/imbalanced состояния банков задаёт current-limited cell simulator, температурные faults и thresholds — NTC fixture. Реальные банки остаются внутри ограничений точного MPN по напряжению, току и температуре. Drop и endurance — отдельные потенциально повреждающие DVT-тесты только на выделенных прототипах. Машинный результат: [`H3-VRF34-battery-analog.json`](../hardware/verification/generated/H3-VRF34-battery-analog.json).
 """
     return {OUTPUT: json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", DOC_EN: en, DOC_RU: ru}, manifest
 

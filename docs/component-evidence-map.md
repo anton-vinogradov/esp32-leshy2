@@ -29,8 +29,8 @@ flowchart LR
 ### `H3-PHY-028` · `battery`
 
 - Selected: `Analog Devices MAX17320G20+T`.
-- Still to prove: programmed golden-image readback plus blank, corrupt and exhausted-write fault-injection records.
-- Pass rule: the received specimen directly demonstrates this item: program one golden MAX17320 image, verify both address spaces/checksum/readback and fault-inject blank, corrupt and exhausted-write specimens; a mismatch reopens the owning H1/H2/H3 result
+- Still to prove: one-device blank -> deliberately invalid but electrically safe configuration -> golden/recovery record with both address spaces, checksum, NVError and remaining-update bitmap; zero-remaining and failed-copy emulator/fixture injection records without consuming all seven physical updates.
+- Pass rule: the received specimen directly demonstrates this item: on one received MAX17320, record blank fail-closed behavior, program a deliberately invalid but electrically safe configuration, then program the reviewed golden image and prove recovery; read both address spaces, checksum, NVError and remaining-update bitmap at each transition; inject zero-remaining and failed-copy only in the emulator or isolated fixture, never consume all seven physical updates and use no sacrificial chip; a mismatch reopens the owning H1/H2/H3 result
 
 ### `H3-PHY-038` · `timing`
 

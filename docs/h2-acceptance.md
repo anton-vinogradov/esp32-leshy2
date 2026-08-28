@@ -21,6 +21,6 @@ This accepted package is retained as reproducible evidence for the former single
 - `H6` — placement/routing/DRC
 - `H8` — physical bring-up and HIL
 
-**Historical result:** ✅ revision `H2.8.2-R1` was accepted by the user on 2026-08-26 and remains SHA-256 bound. It is explicitly forbidden as R2 authority. The current hardware marker is `H1-R2.31`.
+**Historical result:** ✅ revision `H2.8.2-R1` was accepted by the user on 2026-08-26 and remains SHA-256 bound. It is explicitly forbidden as R2 authority. The current hardware marker is `H1-R2.32`.
 
 [Machine package](../hardware/ecad/generated/H2-REV81-acceptance-package.json).
