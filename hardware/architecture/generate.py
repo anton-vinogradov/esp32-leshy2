@@ -16,6 +16,28 @@ REPO_ROOT = ARCH_DIR.parents[1]
 DEVICE_FILE = ARCH_DIR / "devices.json"
 CANDIDATE_DIR = ARCH_DIR / "candidates"
 
+DUAL_NMOS_DEVICE_ID = "diodes_2n7002dw_7_f"
+DUAL_NMOS_MPN = "Diodes Incorporated 2N7002DW-7-F"
+DUAL_NMOS_PIN_MAP = {"1": "S2", "2": "G2", "3": "D1", "4": "S1", "5": "G1", "6": "D2"}
+DUAL_NMOS_INSTANCE_NETS = {
+    "pack_hold": {
+        "G1": "PACK_HOLD_GATE", "S1": "PACK_LOCAL_GND", "D1": "PACK_FET_OVERRIDE_N",
+        "G2": "PACK_FET_HOLD_RELEASE", "S2": "PACK_LOCAL_GND", "D2": "PACK_HOLD_GATE",
+    },
+    "pack_status_buffer": {
+        "G1": "PACK_PFAIL_RAW", "S1": "PACK_LOCAL_GND", "D1": "PACK_PFAIL_N",
+        "G2": "PACK_SYS_INT_REQ", "S2": "PACK_LOCAL_GND", "D2": "SYS_INT_N",
+    },
+    "safe_reset_sink_a": {
+        "G1": "S3_RESET_KILL_GATE", "S1": "SAFETY_GROUND", "D1": "S3_RESET_N",
+        "G2": "C5_RESET_KILL_GATE", "S2": "SAFETY_GROUND", "D2": "C5_RESET_N",
+    },
+    "safe_reset_sink_b": {
+        "G1": "RF_RESET_KILL_GATE", "S1": "SAFETY_GROUND", "D1": "RP_RESET_N",
+        "G2": "SAFETY_GROUND", "S2": "SAFETY_GROUND", "D2": "NO_CONNECT",
+    },
+}
+
 
 def reject_duplicate_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     result: dict[str, Any] = {}
@@ -88,6 +110,20 @@ def validate_sources(
         for contact, attributes in contacts.items():
             if not attributes.get("physical") or not attributes.get("role"):
                 errors.append(f"device {device_id}.{contact}: incomplete physical contact")
+        if device_id == DUAL_NMOS_DEVICE_ID:
+            actual_pin_map = {
+                str(attributes.get("physical")): contact
+                for contact, attributes in contacts.items()
+            }
+            if device.get("mpn") != DUAL_NMOS_MPN:
+                errors.append(f"device {device_id}: exact MPN must remain {DUAL_NMOS_MPN}")
+            if actual_pin_map != DUAL_NMOS_PIN_MAP:
+                errors.append(
+                    f"device {device_id}: SOT363 physical pin map must be {DUAL_NMOS_PIN_MAP}, "
+                    f"got {actual_pin_map}"
+                )
+            if device.get("pinout_invariant", {}).get("physical_pin_to_contact") != DUAL_NMOS_PIN_MAP:
+                errors.append(f"device {device_id}: pinout invariant disagrees with official SOT363 map")
         allocatable_contacts = device.get("allocatable_contacts", [])
         if len(allocatable_contacts) != len(set(allocatable_contacts)):
             errors.append(f"device {device_id}: duplicate allocatable contact")
@@ -536,6 +572,47 @@ def validate_sources(
                 errors.append(f"{candidate_id}: {instance} uses unknown device {device_id}")
         if any(device_id not in devices for device_id in instances.values()):
             continue
+
+        if candidate_id == "G2F-3I":
+            contract = candidate.get("sot363_2n7002dw_contract", {})
+            if contract.get("device_key") != DUAL_NMOS_DEVICE_ID:
+                errors.append(f"{candidate_id}: exact 2N7002DW contract device drifted")
+            if contract.get("mpn") != DUAL_NMOS_MPN or contract.get("jlcpcb_part") != "C83571":
+                errors.append(f"{candidate_id}: exact 2N7002DW MPN/JLC identity drifted")
+            if contract.get("physical_pin_to_contact") != DUAL_NMOS_PIN_MAP:
+                errors.append(f"{candidate_id}: exact 2N7002DW contract pin map drifted")
+            contract_instances = contract.get("instances", {})
+            if set(contract_instances) != set(DUAL_NMOS_INSTANCE_NETS):
+                errors.append(f"{candidate_id}: exact 2N7002DW instance set drifted")
+            route_nets: dict[str, set[str]] = {}
+            for route in candidate.get("fixed_routes", []):
+                for endpoint in (route.get("from", ""), route.get("to", "")):
+                    if "." not in endpoint:
+                        continue
+                    instance, contact = endpoint.split(".", 1)
+                    if instance in DUAL_NMOS_INSTANCE_NETS:
+                        route_nets.setdefault(endpoint, set()).add(route.get("net", ""))
+            for instance, expected_nets in DUAL_NMOS_INSTANCE_NETS.items():
+                if instances.get(instance) != DUAL_NMOS_DEVICE_ID:
+                    errors.append(f"{candidate_id}: {instance} must remain exact 2N7002DW-7-F")
+                declared_channels = contract_instances.get(instance, {})
+                declared_nets = {
+                    contact: net
+                    for channel in declared_channels.values()
+                    for contact, net in channel.items()
+                }
+                if declared_nets != expected_nets:
+                    errors.append(
+                        f"{candidate_id}: {instance} channel-to-net map must be {expected_nets}, "
+                        f"got {declared_nets}"
+                    )
+                for contact, expected_net in expected_nets.items():
+                    endpoint = f"{instance}.{contact}"
+                    if route_nets.get(endpoint) != {expected_net}:
+                        errors.append(
+                            f"{candidate_id}: {endpoint} must connect only to {expected_net}, "
+                            f"got {sorted(route_nets.get(endpoint, set()))}"
+                        )
 
         bom_audit = candidate.get("bom_audit")
         if bom_audit is not None:
@@ -1357,6 +1434,33 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
                     f"| `{quiet['id']}` | {interfaces} | {quiet['inactive_state']} | "
                     f"{quiet['control']} | {quiet['proof_gate']} |"
                 )
+
+        dual_nmos = candidate.get("sot363_2n7002dw_contract")
+        if dual_nmos:
+            lines += [
+                "",
+                "### Exact 2N7002DW SOT-363 pin and channel contract",
+                "",
+                f"Exact identity: `{dual_nmos['mpn']}` / JLC `{dual_nmos['jlcpcb_part']}`. "
+                f"{dual_nmos['proof']}",
+                "",
+                "| Physical pin | Logical terminal |",
+                "|---:|---|",
+            ]
+            for physical, contact in dual_nmos["physical_pin_to_contact"].items():
+                lines.append(f"| `{physical}` | `{contact}` |")
+            lines += [
+                "",
+                "| Instance | Channel | Gate net | Source net | Drain net |",
+                "|---|---|---|---|---|",
+            ]
+            for instance, channels in dual_nmos["instances"].items():
+                for channel, nets in channels.items():
+                    suffix = channel.rsplit("_", 1)[-1]
+                    lines.append(
+                        f"| `{instance}` | `{channel}` | `{nets[f'G{suffix}']}` | "
+                        f"`{nets[f'S{suffix}']}` | `{nets[f'D{suffix}']}` |"
+                    )
         allocations_by_instance: dict[str, list[dict[str, Any]]] = {}
         for allocation in candidate["allocations"]:
             allocations_by_instance.setdefault(allocation["instance"], []).append(allocation)
@@ -4876,6 +4980,37 @@ def render_public_pinout(
                 f"`{clean(row['controller'])}` | {peers} |"
             )
         lines.append("")
+    dual_nmos = candidate["sot363_2n7002dw_contract"]
+    if russian:
+        dual_heading = "## Точный pin-map dual NMOS"
+        dual_intro = (
+            f"Во всех четырёх позициях установлен `{dual_nmos['mpn']}` / JLC "
+            f"`{dual_nmos['jlcpcb_part']}`. Физическая нумерация SOT-363 взята из "
+            "официальной top-view схемы Diodes Incorporated; footprint не меняется."
+        )
+        dual_columns = "| Физический pin | Вывод |"
+        channel_columns = "| Экземпляр | Канал | Gate | Source | Drain |"
+    else:
+        dual_heading = "## Exact dual-NMOS pin map"
+        dual_intro = (
+            f"All four placements use `{dual_nmos['mpn']}` / JLC "
+            f"`{dual_nmos['jlcpcb_part']}`. Physical SOT-363 numbering comes from "
+            "the official Diodes Incorporated top-view diagram; the footprint is unchanged."
+        )
+        dual_columns = "| Physical pin | Terminal |"
+        channel_columns = "| Instance | Channel | Gate | Source | Drain |"
+    lines.extend((dual_heading, "", dual_intro, "", dual_columns, "|---:|---|"))
+    for physical, contact in dual_nmos["physical_pin_to_contact"].items():
+        lines.append(f"| `{physical}` | `{contact}` |")
+    lines.extend(("", channel_columns, "|---|---|---|---|---|"))
+    for instance, channels in dual_nmos["instances"].items():
+        for channel, nets in channels.items():
+            suffix = channel.rsplit("_", 1)[-1]
+            lines.append(
+                f"| `{instance}` | `{channel}` | `{nets[f'G{suffix}']}` | "
+                f"`{nets[f'S{suffix}']}` | `{nets[f'D{suffix}']}` |"
+            )
+    lines.append("")
     lines.extend((footer, ""))
     return "\n".join(lines)
 

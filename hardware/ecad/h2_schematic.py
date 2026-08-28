@@ -8,6 +8,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from h2_dual_nmos import DEVICE_KEY as DUAL_NMOS_DEVICE_KEY, validate_dual_nmos
+
 
 REPO = Path(__file__).resolve().parents[2]
 DEVICES = REPO / "hardware/architecture/devices.json"
@@ -311,6 +313,7 @@ def build() -> dict:
     candidate = json.loads(CANDIDATE.read_text(encoding="utf-8"))
     lora_cap = json.loads(LORA_CAP.read_text(encoding="utf-8"))
     physical_by_instance = {row["instance"]: row for row in source["rows"]}
+    dual_nmos = validate_dual_nmos(candidate, devices)
     rows = []
 
     for instance, device_key in candidate["instances"].items():
@@ -373,6 +376,9 @@ def build() -> dict:
                 },
             }
         )
+        if device_key == DUAL_NMOS_DEVICE_KEY:
+            rows[-1]["physical_pin_to_contact"] = dual_nmos["physical_pin_to_contact"]
+            rows[-1]["channel_to_net"] = dual_nmos["instances"][instance]
 
     for instance, device_key in lora_cap["common_instances"].items():
         device = devices[device_key]
@@ -492,6 +498,7 @@ def build() -> dict:
             "rows_without_sheet_owner": 0,
         },
         "sheet_owners_used": sheets,
+        "exact_dual_nmos_pinout": dual_nmos,
         "rows": rows,
     }
 

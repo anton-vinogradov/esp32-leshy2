@@ -14,6 +14,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from h2_symbol_library import build as build_symbol_library
+from h2_dual_nmos import PIN_MAP as DUAL_NMOS_PIN_MAP, validate_dual_nmos
 from h2_ui_s3_core import ScopedReferenceCounter
 from h2_ui_audio_codec_headset import endpoint_nets
 from h2_ui_display_touch_storage import pin_net
@@ -147,6 +148,7 @@ def footprint_outputs() -> dict[Path, str]:
 def build() -> tuple[dict[Path, str], dict]:
     candidate = json.loads(CANDIDATE_PATH.read_text(encoding="utf-8"))
     devices = json.loads(DEVICES_PATH.read_text(encoding="utf-8"))["devices"]
+    dual_nmos = validate_dual_nmos(candidate, devices, {"safe_reset_sink_b"})
     ledger = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
     root_manifest = json.loads(ROOT_INTERFACE_PATH.read_text(encoding="utf-8"))
     rows = [
@@ -294,6 +296,7 @@ def build() -> tuple[dict[Path, str], dict]:
             )
             if net not in interfaces
         ],
+        "exact_dual_nmos_pinout": dual_nmos,
         "footprint_evidence": [
             {"mpn": devices[key]["mpn"], "footprint": footprint,
              "source": devices[key]["source"], "status": status}
@@ -371,6 +374,13 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     }
     if set(manifest["intentional_no_connect_endpoints"]) != expected_nc:
         raise ValueError(f"RF50 no-connect accounting drifted: {manifest['intentional_no_connect_endpoints']}")
+    if (
+        manifest["exact_dual_nmos_pinout"]["physical_pin_to_contact"]
+        != DUAL_NMOS_PIN_MAP
+        or set(manifest["exact_dual_nmos_pinout"]["instances"])
+        != {"safe_reset_sink_b"}
+    ):
+        raise ValueError("RF50 exact 2N7002DW physical/channel evidence drifted")
     forbidden_nc_suffixes = (".VCC", ".VDD", ".GND", ".VSS", ".EPAD", ".PA19_SWDIO", ".PA20_SWCLK")
     if any(row.endswith(forbidden_nc_suffixes) for row in manifest["intentional_no_connect_endpoints"]):
         raise ValueError("RF50 left a power, exposed-pad or safety-debug contact unconnected")

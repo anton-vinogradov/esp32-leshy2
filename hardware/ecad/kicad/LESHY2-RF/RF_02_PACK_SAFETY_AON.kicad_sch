@@ -1065,37 +1065,37 @@
 				(pin passive line
 					(at -17.78 2.54 0)
 					(length 5.08)
-					(name "D2" (effects (font (size 1.27 1.27))))
+					(name "S2" (effects (font (size 1.27 1.27))))
 					(number "1" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at -17.78 0.00 0)
 					(length 5.08)
-					(name "G1" (effects (font (size 1.27 1.27))))
+					(name "G2" (effects (font (size 1.27 1.27))))
 					(number "2" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at -17.78 -2.54 0)
 					(length 5.08)
-					(name "S1" (effects (font (size 1.27 1.27))))
+					(name "D1" (effects (font (size 1.27 1.27))))
 					(number "3" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at 17.78 2.54 180)
 					(length 5.08)
-					(name "D1" (effects (font (size 1.27 1.27))))
+					(name "S1" (effects (font (size 1.27 1.27))))
 					(number "4" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at 17.78 0.00 180)
 					(length 5.08)
-					(name "G2" (effects (font (size 1.27 1.27))))
+					(name "G1" (effects (font (size 1.27 1.27))))
 					(number "5" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at 17.78 -2.54 180)
 					(length 5.08)
-					(name "S2" (effects (font (size 1.27 1.27))))
+					(name "D2" (effects (font (size 1.27 1.27))))
 					(number "6" (effects (font (size 1.27 1.27))))
 				)
 			)
@@ -1345,37 +1345,37 @@
 				(pin passive line
 					(at -17.78 2.54 0)
 					(length 5.08)
-					(name "D2" (effects (font (size 1.27 1.27))))
+					(name "S2" (effects (font (size 1.27 1.27))))
 					(number "1" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at -17.78 0.00 0)
 					(length 5.08)
-					(name "G1" (effects (font (size 1.27 1.27))))
+					(name "G2" (effects (font (size 1.27 1.27))))
 					(number "2" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at -17.78 -2.54 0)
 					(length 5.08)
-					(name "S1" (effects (font (size 1.27 1.27))))
+					(name "D1" (effects (font (size 1.27 1.27))))
 					(number "3" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at 17.78 2.54 180)
 					(length 5.08)
-					(name "D1" (effects (font (size 1.27 1.27))))
+					(name "S1" (effects (font (size 1.27 1.27))))
 					(number "4" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at 17.78 0.00 180)
 					(length 5.08)
-					(name "G2" (effects (font (size 1.27 1.27))))
+					(name "G1" (effects (font (size 1.27 1.27))))
 					(number "5" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at 17.78 -2.54 180)
 					(length 5.08)
-					(name "S2" (effects (font (size 1.27 1.27))))
+					(name "D2" (effects (font (size 1.27 1.27))))
 					(number "6" (effects (font (size 1.27 1.27))))
 				)
 			)
@@ -8541,9 +8541,9 @@
 		(uuid "e07c3702-b883-5660-87bb-76ecc6bbafd3")
 	)
 	(label "PACK_FET_HOLD_RELEASE"
-		(at 231.14 81.28 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "18e7adc5-709e-5ecf-8410-ecba2a324b1a")
+		(at 195.58 81.28 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "98cd2438-325c-566d-a94b-8261f7bf82c8")
 	)
 	(label "PACK_FET_HOLD_RELEASE"
 		(at 276.86 93.98 0)
@@ -8556,9 +8556,9 @@
 		(uuid "c22e1be8-212c-546b-b947-855e5a9c7bb5")
 	)
 	(label "PACK_FET_OVERRIDE_N"
-		(at 231.14 78.74 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "fec2e2b8-4216-5afb-89af-a8be5ce627aa")
+		(at 195.58 83.82 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "3d94912b-5d08-5d0f-8a91-f32d95e53ac1")
 	)
 	(label "PACK_FET_OVERRIDE_N"
 		(at 393.70 93.98 180)
@@ -8622,14 +8622,14 @@
 		(uuid "63fa3318-cf37-5428-b4ed-303fab47b112")
 	)
 	(label "PACK_HOLD_GATE"
-		(at 195.58 78.74 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "c37c66e6-3fcb-5a32-a9d4-ba7a756d4ba6")
+		(at 231.14 81.28 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "d722c474-dcd3-59b6-9a53-4e9605c5f9d9")
 	)
 	(label "PACK_HOLD_GATE"
-		(at 195.58 81.28 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "b61b0090-4f74-5e77-b3d1-a381457f4367")
+		(at 231.14 83.82 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "c392d6ea-39a5-5d5d-8cd7-9b5ff3896189")
 	)
 	(label "PACK_HOLD_GATE"
 		(at 149.86 91.44 180)
@@ -8692,14 +8692,14 @@
 		(uuid "b811455f-0811-5cc4-858a-4c42c00c535f")
 	)
 	(label "PACK_LOCAL_GND"
-		(at 195.58 83.82 0)
+		(at 195.58 78.74 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "b77f9af4-0723-534a-9166-17a15319e25e")
+		(uuid "b1c1edab-64bd-5261-af32-eb7b0baf4c91")
 	)
 	(label "PACK_LOCAL_GND"
-		(at 231.14 83.82 180)
+		(at 231.14 78.74 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "4acbc26b-b0ff-5f9a-9bf1-bfb20e68e679")
+		(uuid "f470d361-9d29-54ef-9a47-dac3f0fbf4e9")
 	)
 	(label "PACK_LOCAL_GND"
 		(at 312.42 93.98 180)
@@ -8707,14 +8707,14 @@
 		(uuid "963ea26e-39f8-57a0-bbc5-74348ab11b3d")
 	)
 	(label "PACK_LOCAL_GND"
-		(at 439.42 99.06 0)
+		(at 439.42 93.98 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "82f9c7ae-adf2-54ed-b6c9-3a7ec3a79031")
+		(uuid "6d72e40b-94b1-5135-9fad-17c7aa052dcf")
 	)
 	(label "PACK_LOCAL_GND"
-		(at 474.98 99.06 180)
+		(at 474.98 93.98 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "19810a03-52aa-5149-81c1-f79e26f69024")
+		(uuid "bb3a612a-5d48-5ef1-86df-d9fd7f503ee6")
 	)
 	(label "PACK_LOCAL_GND"
 		(at 68.58 99.06 180)
@@ -8862,9 +8862,9 @@
 		(uuid "8fb4e395-a1bd-5780-818a-7d7e0cfa431c")
 	)
 	(label "PACK_PFAIL_N"
-		(at 474.98 93.98 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "11e441ef-4998-5e3f-86d2-a887a61f3f77")
+		(at 439.42 99.06 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "5cda3e71-a8cd-5b09-a4cf-7de7691eafa6")
 	)
 	(label "PACK_PFAIL_N"
 		(at 556.26 93.98 180)
@@ -8877,9 +8877,9 @@
 		(uuid "0e6548ea-a122-5299-8538-9c1688c11bcb")
 	)
 	(label "PACK_PFAIL_RAW"
-		(at 439.42 96.52 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "27dc2c53-1728-5bb0-8b75-fcad8d389cb7")
+		(at 474.98 96.52 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "6ba94dc3-2b5f-5c7e-bf4d-aa4996793b05")
 	)
 	(label "PACK_REG2_1V8"
 		(at 68.58 53.34 180)
@@ -9002,9 +9002,9 @@
 		(uuid "553ee893-e4aa-5a0b-b5df-422cd94383ea")
 	)
 	(label "PACK_SYS_INT_REQ"
-		(at 474.98 96.52 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "b6d33f5a-423d-5402-93b1-c25381b15a5e")
+		(at 439.42 96.52 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "6be0c438-d583-57ae-a5be-20d6daedf6f6")
 	)
 	(label "PACK_SYS_INT_REQ"
 		(at 33.02 99.06 0)
@@ -9063,9 +9063,9 @@
 	)
 	(hierarchical_label "SYS_INT_N"
 		(shape bidirectional)
-		(at 439.42 93.98 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "73d3ef83-cb4d-5c88-8bdd-dc2d268dae30")
+		(at 474.98 99.06 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "e4a93f7a-fade-58bb-926a-80e6a538d3c9")
 	)
 	(sheet_instances
 		(path "/"

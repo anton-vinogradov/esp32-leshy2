@@ -1181,6 +1181,32 @@ class ProductSiteTests(unittest.TestCase):
             )
         )
 
+        expected_pin_map = {
+            "1": "S2", "2": "G2", "3": "D1",
+            "4": "S1", "5": "G1", "6": "D2",
+        }
+        self.assertEqual(expected_pin_map, ledger["exact_dual_nmos_pinout"]["physical_pin_to_contact"])
+        dual_rows = [
+            row for row in rows
+            if row["device_key"] == "diodes_2n7002dw_7_f"
+        ]
+        self.assertEqual(
+            {"pack_hold", "pack_status_buffer", "safe_reset_sink_a", "safe_reset_sink_b"},
+            {row["instance"] for row in dual_rows},
+        )
+        self.assertTrue(all(row["physical_pin_to_contact"] == expected_pin_map for row in dual_rows))
+        self.assertTrue(all(row["channel_to_net"] for row in dual_rows))
+
+    def test_exact_dual_nmos_pinout_is_public_in_both_languages(self):
+        for page in ("docs/pinout.md", "docs/pinout.ru.md"):
+            text = self.read(page)
+            self.assertIn("2N7002DW-7-F", text)
+            self.assertIn("C83571", text)
+            self.assertIn("| `1` | `S2` |", text)
+            self.assertIn("| `6` | `D2` |", text)
+            self.assertIn("| `safe_reset_sink_b` | `channel_2`", text)
+            self.assertIn("`NO_CONNECT`", text)
+
     def test_h2_3_1_rf_power_root_hierarchy_is_complete_and_current(self):
         import json
 
@@ -1341,6 +1367,14 @@ class ProductSiteTests(unittest.TestCase):
             set(manifest["intentional_no_connect_endpoints"]),
         )
         self.assertEqual([], manifest["known_deferred_fixture_labels"])
+        self.assertEqual(
+            {"1": "S2", "2": "G2", "3": "D1", "4": "S1", "5": "G1", "6": "D2"},
+            manifest["exact_dual_nmos_pinout"]["physical_pin_to_contact"],
+        )
+        self.assertEqual(
+            {"pack_hold", "pack_status_buffer"},
+            set(manifest["exact_dual_nmos_pinout"]["instances"]),
+        )
         sheet = self.read(
             "hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch"
         )
@@ -1865,6 +1899,14 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(
             24, len(set(manifest["intentional_no_connect_endpoints"]))
         )
+        self.assertEqual(
+            {"safe_reset_sink_b"},
+            set(manifest["exact_dual_nmos_pinout"]["instances"]),
+        )
+        self.assertEqual(
+            "NO_CONNECT",
+            manifest["exact_dual_nmos_pinout"]["instances"]["safe_reset_sink_b"]["channel_2"]["D2"],
+        )
         for instance in manifest["instances"]:
             self.assertTrue(instance["footprint"], instance["instance"])
         safe_conditioner = next(
@@ -2332,6 +2374,18 @@ class ProductSiteTests(unittest.TestCase):
                 "safe_c5_reset_buffer.NC",
             ],
             manifest["intentional_no_connect_endpoints"],
+        )
+        self.assertEqual(
+            {"safe_reset_sink_a"},
+            set(manifest["exact_dual_nmos_pinout"]["instances"]),
+        )
+        self.assertEqual(
+            {
+                "G2": "C5_RESET_KILL_GATE",
+                "S2": "SAFETY_GROUND",
+                "D2": "C5_RESET_N",
+            },
+            manifest["exact_dual_nmos_pinout"]["instances"]["safe_reset_sink_a"]["channel_2"],
         )
         schematic = self.read(
             "hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch"

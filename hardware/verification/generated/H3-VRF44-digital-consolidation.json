@@ -3,9 +3,9 @@
   "stage": "H3.4.4",
   "status": "reviewed_digital_interface_timing_level_and_loading_consolidation",
   "input_hashes": {
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "cc5752717f26060587518c5b472bc7083e86d7d2760b3d203847c5f10b587b9a",
-    "hardware/verification/generated/H3-VRF42-digital-timing.json": "876481d8010d70a3c46b9184213ff130d97e084d49ca69b25ae1b18b750c625a",
-    "hardware/verification/generated/H3-VRF43-boundary-loading.json": "731bb7014badadfa50f6e38a3e9e3b08227f2bcbca4d29b8c33f505f743e8262"
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "982ede3517b8210f5391f9c7bac06d8a7ead3cebbef166b28aad40f39899f206",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "4b5911826aaf20c6b5d02a7e1abb8d696217ffc5a2dab1072ab1177c6247d00c",
+    "hardware/verification/generated/H3-VRF43-boundary-loading.json": "2d6945c697028ed53bfece52639f7ca8e2b4a09f69d17a3ee04eddcdff2f5870"
   },
   "leaf_summary": {
     "levels": {

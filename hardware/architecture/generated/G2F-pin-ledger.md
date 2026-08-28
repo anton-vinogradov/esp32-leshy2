@@ -543,6 +543,30 @@ Decision `DEC-0046`; default `QUIET`.
 | `STORAGE_QUIET` | `microSD` | bounded flush then controller static and rail off when no storage session | slow_io.P20 SD_PWR_EN | no corruption/back-power and active-receiver desense HIL |
 | `SERVICE_IPC_QUIET` | `USB/UART service`, `S3-RP SPI`, `S3-C5 SDIO`, `display SPI` | detached/suspended or static idle; clocks run only for bounded required transactions | per-controller clock/DMA gates; physical recovery contacts remain available | no periodic logs, measured clock spectrum, recovery and active-receiver desense HIL |
 
+### Exact 2N7002DW SOT-363 pin and channel contract
+
+Exact identity: `Diodes Incorporated 2N7002DW-7-F` / JLC `C83571`. Diodes Incorporated DS30120 Rev. 22-2 page 1 fixes the SOT363 top-view order as pin 1 S2, 2 G2, 3 D1, 4 S1, 5 G1 and 6 D2; every logical channel remains on its intended gate/source/drain net
+
+| Physical pin | Logical terminal |
+|---:|---|
+| `1` | `S2` |
+| `2` | `G2` |
+| `3` | `D1` |
+| `4` | `S1` |
+| `5` | `G1` |
+| `6` | `D2` |
+
+| Instance | Channel | Gate net | Source net | Drain net |
+|---|---|---|---|---|
+| `pack_hold` | `channel_1` | `PACK_HOLD_GATE` | `PACK_LOCAL_GND` | `PACK_FET_OVERRIDE_N` |
+| `pack_hold` | `channel_2` | `PACK_FET_HOLD_RELEASE` | `PACK_LOCAL_GND` | `PACK_HOLD_GATE` |
+| `pack_status_buffer` | `channel_1` | `PACK_PFAIL_RAW` | `PACK_LOCAL_GND` | `PACK_PFAIL_N` |
+| `pack_status_buffer` | `channel_2` | `PACK_SYS_INT_REQ` | `PACK_LOCAL_GND` | `SYS_INT_N` |
+| `safe_reset_sink_a` | `channel_1` | `S3_RESET_KILL_GATE` | `SAFETY_GROUND` | `S3_RESET_N` |
+| `safe_reset_sink_a` | `channel_2` | `C5_RESET_KILL_GATE` | `SAFETY_GROUND` | `C5_RESET_N` |
+| `safe_reset_sink_b` | `channel_1` | `RF_RESET_KILL_GATE` | `SAFETY_GROUND` | `RP_RESET_N` |
+| `safe_reset_sink_b` | `channel_2` | `SAFETY_GROUND` | `SAFETY_GROUND` | `NO_CONNECT` |
+
 ### `s3` — `ESP32-S3-WROOM-1U-N16R8`
 
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |

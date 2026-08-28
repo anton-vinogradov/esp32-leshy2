@@ -7607,13 +7607,18 @@
         }
       },
       "programmable": false,
+      "pinout_invariant": {
+        "package": "SOT363 standard top view",
+        "physical_pin_to_contact": {"1": "S2", "2": "G2", "3": "D1", "4": "S1", "5": "G1", "6": "D2"},
+        "source_figure": "Diodes Incorporated 2N7002DW DS30120 Rev. 22-2 page 1 top-view internal schematic"
+      },
       "contacts": {
-        "D2": {"physical": "1", "role": "signal"},
-        "G1": {"physical": "2", "role": "signal"},
-        "S1": {"physical": "3", "role": "signal"},
-        "D1": {"physical": "4", "role": "signal"},
-        "G2": {"physical": "5", "role": "signal"},
-        "S2": {"physical": "6", "role": "signal"}
+        "S2": {"physical": "1", "role": "signal"},
+        "G2": {"physical": "2", "role": "signal"},
+        "D1": {"physical": "3", "role": "signal"},
+        "S1": {"physical": "4", "role": "signal"},
+        "G1": {"physical": "5", "role": "signal"},
+        "D2": {"physical": "6", "role": "signal"}
       }
     },
     "onsemi_bav70lt1g": {

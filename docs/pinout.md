@@ -154,4 +154,28 @@ This page is generated from the same device and net map used by the electrical c
 | `PA25` | `PACK_CELL0_ADC` | `i` | `ADC` | pack_mid_adc_top1.END_2<br>pack_mid_adc_bottom.END_1<br>pack_mid_adc_filter.END_1 |
 | `PA26` | `PACK_STACK_ADC` | `i` | `ADC` | pack_stack_adc_top4.END_2<br>pack_stack_adc_bottom.END_1<br>pack_stack_adc_filter.END_1 |
 
+## Exact dual-NMOS pin map
+
+All four placements use `Diodes Incorporated 2N7002DW-7-F` / JLC `C83571`. Physical SOT-363 numbering comes from the official Diodes Incorporated top-view diagram; the footprint is unchanged.
+
+| Physical pin | Terminal |
+|---:|---|
+| `1` | `S2` |
+| `2` | `G2` |
+| `3` | `D1` |
+| `4` | `S1` |
+| `5` | `G1` |
+| `6` | `D2` |
+
+| Instance | Channel | Gate | Source | Drain |
+|---|---|---|---|---|
+| `pack_hold` | `channel_1` | `PACK_HOLD_GATE` | `PACK_LOCAL_GND` | `PACK_FET_OVERRIDE_N` |
+| `pack_hold` | `channel_2` | `PACK_FET_HOLD_RELEASE` | `PACK_LOCAL_GND` | `PACK_HOLD_GATE` |
+| `pack_status_buffer` | `channel_1` | `PACK_PFAIL_RAW` | `PACK_LOCAL_GND` | `PACK_PFAIL_N` |
+| `pack_status_buffer` | `channel_2` | `PACK_SYS_INT_REQ` | `PACK_LOCAL_GND` | `SYS_INT_N` |
+| `safe_reset_sink_a` | `channel_1` | `S3_RESET_KILL_GATE` | `SAFETY_GROUND` | `S3_RESET_N` |
+| `safe_reset_sink_a` | `channel_2` | `C5_RESET_KILL_GATE` | `SAFETY_GROUND` | `C5_RESET_N` |
+| `safe_reset_sink_b` | `channel_1` | `RF_RESET_KILL_GATE` | `SAFETY_GROUND` | `RP_RESET_N` |
+| `safe_reset_sink_b` | `channel_2` | `SAFETY_GROUND` | `SAFETY_GROUND` | `NO_CONNECT` |
+
 `i` means input, `o` output and `io` bidirectional. Service, power and fixed-function contacts remain accounted in the complete machine map even when they are not GPIO.

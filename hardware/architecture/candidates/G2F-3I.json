@@ -433,6 +433,32 @@
       {"id":"SERVICE_IPC_QUIET","interfaces":["USB/UART service","S3-RP SPI","S3-C5 SDIO","display SPI"],"inactive_state":"detached/suspended or static idle; clocks run only for bounded required transactions","control":"per-controller clock/DMA gates; physical recovery contacts remain available","proof_gate":"no periodic logs, measured clock spectrum, recovery and active-receiver desense HIL"}
     ]
   },
+  "sot363_2n7002dw_contract": {
+    "device_key": "diodes_2n7002dw_7_f",
+    "mpn": "Diodes Incorporated 2N7002DW-7-F",
+    "jlcpcb_part": "C83571",
+    "package": "SOT363 standard top view",
+    "physical_pin_to_contact": {"1": "S2", "2": "G2", "3": "D1", "4": "S1", "5": "G1", "6": "D2"},
+    "instances": {
+      "pack_hold": {
+        "channel_1": {"G1": "PACK_HOLD_GATE", "S1": "PACK_LOCAL_GND", "D1": "PACK_FET_OVERRIDE_N"},
+        "channel_2": {"G2": "PACK_FET_HOLD_RELEASE", "S2": "PACK_LOCAL_GND", "D2": "PACK_HOLD_GATE"}
+      },
+      "pack_status_buffer": {
+        "channel_1": {"G1": "PACK_PFAIL_RAW", "S1": "PACK_LOCAL_GND", "D1": "PACK_PFAIL_N"},
+        "channel_2": {"G2": "PACK_SYS_INT_REQ", "S2": "PACK_LOCAL_GND", "D2": "SYS_INT_N"}
+      },
+      "safe_reset_sink_a": {
+        "channel_1": {"G1": "S3_RESET_KILL_GATE", "S1": "SAFETY_GROUND", "D1": "S3_RESET_N"},
+        "channel_2": {"G2": "C5_RESET_KILL_GATE", "S2": "SAFETY_GROUND", "D2": "C5_RESET_N"}
+      },
+      "safe_reset_sink_b": {
+        "channel_1": {"G1": "RF_RESET_KILL_GATE", "S1": "SAFETY_GROUND", "D1": "RP_RESET_N"},
+        "channel_2": {"G2": "SAFETY_GROUND", "S2": "SAFETY_GROUND", "D2": "NO_CONNECT"}
+      }
+    },
+    "proof": "Diodes Incorporated DS30120 Rev. 22-2 page 1 fixes the SOT363 top-view order as pin 1 S2, 2 G2, 3 D1, 4 S1, 5 G1 and 6 D2; every logical channel remains on its intended gate/source/drain net"
+  },
   "safety_contract": {
     "decision": "product RUN/KILL and unattended watchdog architecture",
     "status": "paper_reviewed_exact_watchdog_controller_thermal_and_fault_ui_paths",

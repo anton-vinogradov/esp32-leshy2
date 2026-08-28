@@ -813,6 +813,46 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("Keystone Electronics 1048P", rendered)
         self.assertIn("indexed thermally worst-slot contact", rendered)
 
+    def test_exact_2n7002dw_sot363_pin_and_channel_map_cannot_regress(self):
+        expected_pin_map = {
+            "1": "S2", "2": "G2", "3": "D1",
+            "4": "S1", "5": "G1", "6": "D2",
+        }
+        device = self.database["devices"]["diodes_2n7002dw_7_f"]
+        self.assertEqual(
+            expected_pin_map,
+            {str(row["physical"]): contact for contact, row in device["contacts"].items()},
+        )
+        self.assertEqual(expected_pin_map, device["pinout_invariant"]["physical_pin_to_contact"])
+
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["sot363_2n7002dw_contract"]
+        self.assertEqual("C83571", contract["jlcpcb_part"])
+        self.assertEqual(expected_pin_map, contract["physical_pin_to_contact"])
+        self.assertEqual(
+            {"pack_hold", "pack_status_buffer", "safe_reset_sink_a", "safe_reset_sink_b"},
+            set(contract["instances"]),
+        )
+        self.assertEqual(
+            {"G1": "S3_RESET_KILL_GATE", "S1": "SAFETY_GROUND", "D1": "S3_RESET_N"},
+            contract["instances"]["safe_reset_sink_a"]["channel_1"],
+        )
+        self.assertEqual(
+            {"G2": "SAFETY_GROUND", "S2": "SAFETY_GROUND", "D2": "NO_CONNECT"},
+            contract["instances"]["safe_reset_sink_b"]["channel_2"],
+        )
+
+        broken_database = copy.deepcopy(self.database)
+        broken_database["devices"]["diodes_2n7002dw_7_f"]["contacts"]["S2"]["physical"] = "6"
+        errors = GENERATOR.validate_sources(broken_database, self.candidates)
+        self.assertTrue(any("SOT363 physical pin map" in error for error in errors), errors)
+
+        broken_candidates = copy.deepcopy(self.candidates)
+        broken = next(c for c in broken_candidates if c["id"] == "G2F-3I")
+        broken["sot363_2n7002dw_contract"]["instances"]["pack_hold"]["channel_2"]["D2"] = "SYS_INT_N"
+        errors = GENERATOR.validate_sources(self.database, broken_candidates)
+        self.assertTrue(any("pack_hold channel-to-net map" in error for error in errors), errors)
+
     def test_exact_max17320_2s_support_and_safe_status_interface_do_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         contract = candidate["power_contract"]

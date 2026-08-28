@@ -118,7 +118,7 @@ This is the complete H2.6.2 physical NC register. Every row is checked against i
 | `RF_50_TX_SAFETY_EVIDENCE` | `evidence_or_4.K2` | `2` | unused second cathode remains open and cannot create a false source |
 | `RF_50_TX_SAFETY_EVIDENCE` | `safe_rearm_buffer.NC` | `2` | manufacturer no-connect remains open |
 | `RF_50_TX_SAFETY_EVIDENCE` | `safe_reset_buffer.NC` | `1` | manufacturer no-connect remains open |
-| `RF_50_TX_SAFETY_EVIDENCE` | `safe_reset_sink_b.D2` | `1` | unused fourth FET drain remains open |
+| `RF_50_TX_SAFETY_EVIDENCE` | `safe_reset_sink_b.D2` | `6` | unused fourth FET drain remains open |
 | `RF_50_TX_SAFETY_EVIDENCE` | `safe_run_fault_iso.NC` | `1` | manufacturer no-connect remains open |
 | `RF_50_TX_SAFETY_EVIDENCE` | `safe_supervisor.CT` | `4` | open CT selects the documented fixed reset delay; the open contact is explicit rather than omitted |
 | `RF_50_TX_SAFETY_EVIDENCE` | `safety_control_esd.D1_MINUS` | `2` | unused safety-domain ESD channel remains unconnected |

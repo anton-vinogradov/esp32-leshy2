@@ -4,8 +4,8 @@
   "status": "reviewed_power_sources_admission_charge_and_rails",
   "method": "fresh KiCad XML netlist export of every complete hierarchy plus exact RF power-net membership comparison",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "02ac03cb8843a01f32acd1caa84c5c46c878e6324bef8139565f17d9d476c046",
-    "hardware/ecad/generated/H2-instance-ledger.json": "f7a63ce11661f220b48186693ba880d1c1c0ff383b82e827a2715bd5a7993c52",
+    "hardware/architecture/candidates/G2F-3I.json": "2cce7e1637467672ce0b2009c1603ac591a37b53f5e93a399c10014e4fd86f09",
+    "hardware/ecad/generated/H2-instance-ledger.json": "88303bb2d17f13fb80d8ce609a6b2fadb03a7f95f8df38e27b905250831525aa",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "ab4e73fe576c5e1557e6695b89fd3ce182c4533a61e984bd755d3c25b287ce97",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "62036d985924f988257859617422a4eedbdab3d0d8f940cb485d32b7b97f23bc",
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c"

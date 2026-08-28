@@ -60,6 +60,76 @@
     "UI_40_INTERBOARD_M1",
     "UI_50_TX_SAFETY_EVIDENCE"
   ],
+  "exact_dual_nmos_pinout": {
+    "device_key": "diodes_2n7002dw_7_f",
+    "mpn": "Diodes Incorporated 2N7002DW-7-F",
+    "jlcpcb_part": "C83571",
+    "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+    "physical_pin_to_contact": {
+      "1": "S2",
+      "2": "G2",
+      "3": "D1",
+      "4": "S1",
+      "5": "G1",
+      "6": "D2"
+    },
+    "instances": {
+      "pack_hold": {
+        "channel_1": {
+          "G1": "PACK_HOLD_GATE",
+          "S1": "PACK_LOCAL_GND",
+          "D1": "PACK_FET_OVERRIDE_N"
+        },
+        "channel_2": {
+          "G2": "PACK_FET_HOLD_RELEASE",
+          "S2": "PACK_LOCAL_GND",
+          "D2": "PACK_HOLD_GATE"
+        }
+      },
+      "pack_status_buffer": {
+        "channel_1": {
+          "G1": "PACK_PFAIL_RAW",
+          "S1": "PACK_LOCAL_GND",
+          "D1": "PACK_PFAIL_N"
+        },
+        "channel_2": {
+          "G2": "PACK_SYS_INT_REQ",
+          "S2": "PACK_LOCAL_GND",
+          "D2": "SYS_INT_N"
+        }
+      },
+      "safe_reset_sink_a": {
+        "channel_1": {
+          "G1": "S3_RESET_KILL_GATE",
+          "S1": "SAFETY_GROUND",
+          "D1": "S3_RESET_N"
+        },
+        "channel_2": {
+          "G2": "C5_RESET_KILL_GATE",
+          "S2": "SAFETY_GROUND",
+          "D2": "C5_RESET_N"
+        }
+      },
+      "safe_reset_sink_b": {
+        "channel_1": {
+          "G1": "RF_RESET_KILL_GATE",
+          "S1": "SAFETY_GROUND",
+          "D1": "RP_RESET_N"
+        },
+        "channel_2": {
+          "G2": "SAFETY_GROUND",
+          "S2": "SAFETY_GROUND",
+          "D2": "NO_CONNECT"
+        }
+      }
+    },
+    "source": {
+      "document": "2N7002DW dual N-channel MOSFET datasheet",
+      "version": "DS30120 Rev. 22-2, October 2021",
+      "url": "https://www.diodes.com/datasheet/download/2N7002DW.pdf",
+      "checked": "2026-08-18"
+    }
+  },
   "rows": [
     {
       "instance_uid": "LESHY2-UI:s3",
@@ -16787,6 +16857,26 @@
         "version": "DS30120 Rev. 22-2, October 2021",
         "url": "https://www.diodes.com/datasheet/download/2N7002DW.pdf",
         "checked": "2026-08-18"
+      },
+      "physical_pin_to_contact": {
+        "1": "S2",
+        "2": "G2",
+        "3": "D1",
+        "4": "S1",
+        "5": "G1",
+        "6": "D2"
+      },
+      "channel_to_net": {
+        "channel_1": {
+          "G1": "PACK_HOLD_GATE",
+          "S1": "PACK_LOCAL_GND",
+          "D1": "PACK_FET_OVERRIDE_N"
+        },
+        "channel_2": {
+          "G2": "PACK_FET_HOLD_RELEASE",
+          "S2": "PACK_LOCAL_GND",
+          "D2": "PACK_HOLD_GATE"
+        }
       }
     },
     {
@@ -16883,6 +16973,26 @@
         "version": "DS30120 Rev. 22-2, October 2021",
         "url": "https://www.diodes.com/datasheet/download/2N7002DW.pdf",
         "checked": "2026-08-18"
+      },
+      "physical_pin_to_contact": {
+        "1": "S2",
+        "2": "G2",
+        "3": "D1",
+        "4": "S1",
+        "5": "G1",
+        "6": "D2"
+      },
+      "channel_to_net": {
+        "channel_1": {
+          "G1": "PACK_PFAIL_RAW",
+          "S1": "PACK_LOCAL_GND",
+          "D1": "PACK_PFAIL_N"
+        },
+        "channel_2": {
+          "G2": "PACK_SYS_INT_REQ",
+          "S2": "PACK_LOCAL_GND",
+          "D2": "SYS_INT_N"
+        }
       }
     },
     {
@@ -22547,6 +22657,26 @@
         "version": "DS30120 Rev. 22-2, October 2021",
         "url": "https://www.diodes.com/datasheet/download/2N7002DW.pdf",
         "checked": "2026-08-18"
+      },
+      "physical_pin_to_contact": {
+        "1": "S2",
+        "2": "G2",
+        "3": "D1",
+        "4": "S1",
+        "5": "G1",
+        "6": "D2"
+      },
+      "channel_to_net": {
+        "channel_1": {
+          "G1": "S3_RESET_KILL_GATE",
+          "S1": "SAFETY_GROUND",
+          "D1": "S3_RESET_N"
+        },
+        "channel_2": {
+          "G2": "C5_RESET_KILL_GATE",
+          "S2": "SAFETY_GROUND",
+          "D2": "C5_RESET_N"
+        }
       }
     },
     {
@@ -22571,6 +22701,26 @@
         "version": "DS30120 Rev. 22-2, October 2021",
         "url": "https://www.diodes.com/datasheet/download/2N7002DW.pdf",
         "checked": "2026-08-18"
+      },
+      "physical_pin_to_contact": {
+        "1": "S2",
+        "2": "G2",
+        "3": "D1",
+        "4": "S1",
+        "5": "G1",
+        "6": "D2"
+      },
+      "channel_to_net": {
+        "channel_1": {
+          "G1": "RF_RESET_KILL_GATE",
+          "S1": "SAFETY_GROUND",
+          "D1": "RP_RESET_N"
+        },
+        "channel_2": {
+          "G2": "SAFETY_GROUND",
+          "S2": "SAFETY_GROUND",
+          "D2": "NO_CONNECT"
+        }
       }
     },
     {

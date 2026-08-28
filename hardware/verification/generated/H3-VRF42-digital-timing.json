@@ -3,11 +3,11 @@
   "stage": "H3.4.2",
   "status": "reviewed_digital_bandwidth_latency_and_timing",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "02ac03cb8843a01f32acd1caa84c5c46c878e6324bef8139565f17d9d476c046",
-    "hardware/architecture/devices.json": "942700794d5a76bc31c2555dbb7d2a8c6b3c1b775b205559c6c1dfcd151bafd9",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "964057c973204c84e5c6965b5f66f33e304fb3588f69e047670eb01d0feafb93",
-    "hardware/verification/generated/H3-VRF31-display.json": "e0a1b309ec9d1188cebcc6081a3e44b00357ff395250b00a740c2eb989b9bdc7",
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "cc5752717f26060587518c5b472bc7083e86d7d2760b3d203847c5f10b587b9a"
+    "hardware/architecture/candidates/G2F-3I.json": "2cce7e1637467672ce0b2009c1603ac591a37b53f5e93a399c10014e4fd86f09",
+    "hardware/architecture/devices.json": "192f38e0adf8531c14034b009ca69f78f1f4772a02c953a2c1174947c042b2a5",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "d3d3e1bd0f7cecffd6ba2c613797c7f556dc19deea3b46c11fddf95fa71dbdf5",
+    "hardware/verification/generated/H3-VRF31-display.json": "35f21ff83f3dbafaa37510e0df4858a7749075b414bd69a7fce609765e06d58d",
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "982ede3517b8210f5391f9c7bac06d8a7ead3cebbef166b28aad40f39899f206"
   },
   "provenance": {
     "nrf24l01_product_specification": "https://devzone.nordicsemi.com/cfs-file/__key/support-attachments/beef5d1b77644c448dabff31668f3a47-aad1a46f307945a7b0204fd969e86bdf/content.pdf",
