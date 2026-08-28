@@ -144,6 +144,10 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
                 "scope": source["scope"],
                 "quantity_per_device": quantity,
                 "quantity_trial": quantity * model["trial_device_quantity"],
+                "planning_trial_line_usd": (
+                    production_line * model["trial_device_quantity"]
+                    if production_line is not None else None
+                ),
                 "unit_price_quantity_100_usd": (
                     float(source["unit_price_usd"])
                     if source["unit_price_usd"]
@@ -265,6 +269,9 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
             "planning_base_usd_per_device": round(planning_base, 4),
             "remaining_unpriced_base_lines": len(remaining_base),
             "planning_base_plus_post_pcba_usd_per_device": round(planning_base + post_pcba, 4),
+            "planning_base_plus_post_pcba_usd_for_trial": round(
+                (planning_base + post_pcba) * model["trial_device_quantity"], 4
+            ),
             "trial_capture_matched_lines": sum(
                 row.get("displayed_line_cost_usd") is not None for row in trial["routes"]
             ),
@@ -293,7 +300,8 @@ def render_csv(result: dict) -> str:
     fields = [
         "device_id", "mpn", "role", "scope", "quantity_per_device",
         "unit_price_quantity_100_usd", "effective_unit_price_usd", "line_burden_per_device_usd",
-        "line_burden_basis", "quantity_trial", "trial_displayed_line_usd",
+        "line_burden_basis", "quantity_trial", "planning_trial_line_usd",
+        "trial_displayed_line_usd",
         "trial_route", "jlcpcb_part", "quantity_100_batch_line_usd", "cost_gate",
     ]
     import io
@@ -332,7 +340,8 @@ def render_doc(result: dict, ru: bool) -> str:
         unit_h = 'Цена 1 шт. по принятой базе'
         one_h = 'Строка на устройство'
         trial_qty_h = 'На 5 устройств'
-        trial_cost_h = 'JLC-снимок / live'
+        trial_plan_h = 'Плановая строка ×5'
+        trial_cost_h = 'JLC live / MOQ'
     else:
         title = f'# {result["marker"]} · component cost ranking'
         intro = (
@@ -352,7 +361,8 @@ def render_doc(result: dict, ru: bool) -> str:
         unit_h = 'Unit on accepted basis'
         one_h = 'Device line'
         trial_qty_h = 'For 5 devices'
-        trial_cost_h = 'JLC capture / live'
+        trial_plan_h = 'Planned line ×5'
+        trial_cost_h = 'JLC live / MOQ'
     lines = [
         title, '',
         '[Русский](h1-r2-cost.ru.md) · [English](h1-r2-cost.md) · [Current placement](h1-r2-physical-layout.md)',
@@ -365,6 +375,7 @@ def render_doc(result: dict, ru: bool) -> str:
             f'- Достижимый плановый минимум: **{money(summary["planning_base_usd_per_device"])}** на устройство; '
             f'ещё `{summary["remaining_unpriced_base_lines"]}` базовых строк не оценены.',
             f'- С обязательным модулем K331, устанавливаемым после PCBA: **{money(summary["planning_base_plus_post_pcba_usd_per_device"])}** '
+            f'на устройство или **{money(summary["planning_base_plus_post_pcba_usd_for_trial"])}** на пять устройств '
             'до стоимости плат, сборки, корпуса, антенн, доставки, налогов, брака и теста.',
             f'- Частичный JLCPCB-снимок партии из пяти устройств: **{money(summary["trial_capture_displayed_usd"])}** по '
             f'`{summary["trial_capture_matched_lines"]}` найденным строкам; четыре live-проверки дают '
@@ -379,6 +390,7 @@ def render_doc(result: dict, ru: bool) -> str:
             f'- Reachable planning subtotal: **{money(summary["planning_base_usd_per_device"])}** per device, with '
             f'`{summary["remaining_unpriced_base_lines"]}` base-product lines still unpriced.',
             f'- With the required post-PCBA K331: **{money(summary["planning_base_plus_post_pcba_usd_per_device"])}** '
+            f'per device or **{money(summary["planning_base_plus_post_pcba_usd_for_trial"])}** for five devices '
             'before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.',
             f'- Partial five-device JLCPCB capture: **{money(summary["trial_capture_displayed_usd"])}** for '
             f'`{summary["trial_capture_matched_lines"]}` matched lines; four live checks move it to '
@@ -387,14 +399,15 @@ def render_doc(result: dict, ru: bool) -> str:
             f'`{summary["antenna_unpriced_lines"]}` lines remain unpriced.',
         ]
     lines += ['', table_h, '',
-        f'| MPN | {role_h} | {qty_h} | {unit_h} | {one_h} | {trial_qty_h} | {trial_cost_h} |',
-        '|---|---|---:|---:|---:|---:|---:|',
+        f'| MPN | {role_h} | {qty_h} | {unit_h} | {one_h} | {trial_qty_h} | {trial_plan_h} | {trial_cost_h} |',
+        '|---|---|---:|---:|---:|---:|---:|---:|',
     ]
     for row in rows[:20]:
         lines.append(
             f'| `{row["mpn"]}` | {row["role"]} | {row["quantity_per_device"]} | '
             f'{money(row["effective_unit_price_usd"])} | {money(row["line_burden_per_device_usd"])} | '
-            f'{row["quantity_trial"]} | {money(row["trial_displayed_line_usd"])} |'
+            f'{row["quantity_trial"]} | {money(row["planning_trial_line_usd"])} | '
+            f'{money(row["trial_displayed_line_usd"])} |'
         )
     full_csv = '../hardware/product-design/generated/H1-R2-cost-ranked.csv'
     full_text = 'Полный рейтинг 210 строк — CSV' if ru else 'Complete 210-line ranking — CSV'

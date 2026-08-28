@@ -35,7 +35,22 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(summary["quantity_100_priced_lines"], 198)
         self.assertEqual(summary["remaining_unpriced_base_lines"], 5)
         self.assertGreater(summary["planning_base_plus_post_pcba_usd_per_device"], 300)
+        self.assertAlmostEqual(
+            summary["planning_base_plus_post_pcba_usd_for_trial"],
+            summary["planning_base_plus_post_pcba_usd_per_device"] * 5,
+            places=3,
+        )
         self.assertEqual(summary["trial_unmatched_lines"], 32)
+
+    def test_trial_projection_keeps_fitted_quantity(self):
+        by_id = {row["device_id"]: row for row in self.result["rows"]}
+        buttons = by_id["omron_b3s_1100p"]
+        self.assertEqual(buttons["quantity_per_device"], 16)
+        self.assertEqual(buttons["quantity_trial"], 80)
+        self.assertAlmostEqual(
+            buttons["planning_trial_line_usd"],
+            buttons["line_burden_per_device_usd"] * 5,
+        )
 
     def test_display_upper_candidate_has_margin(self):
         fit = self.result["display_orientation_review"]["paper_fit"]
