@@ -3,11 +3,11 @@
   "stage": "H3.3.3",
   "status": "reviewed_ir_corners_after_four_source_corrections",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "2cce7e1637467672ce0b2009c1603ac591a37b53f5e93a399c10014e4fd86f09",
-    "hardware/architecture/devices.json": "192f38e0adf8531c14034b009ca69f78f1f4772a02c953a2c1174947c042b2a5",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "d3d3e1bd0f7cecffd6ba2c613797c7f556dc19deea3b46c11fddf95fa71dbdf5",
-    "hardware/verification/generated/H3-VRF31-display.json": "35f21ff83f3dbafaa37510e0df4858a7749075b414bd69a7fce609765e06d58d",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "4b99ef1b0c0de282c78cca943242b68cd4d2276ec94357362f2345e786e2ca7a"
+    "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
+    "hardware/architecture/devices.json": "b3532cd8bc4a96c32064a79b74bae2e59de8afa9b6193cff95cabb5610e6381a",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "0e8e8b843b460d18b28eda168a69adf10e6b33f4f97035fee6a5082c08b14ffa",
+    "hardware/verification/generated/H3-VRF31-display.json": "972ea1d6669080117e2cf418780bd9f9b02cd802de9cf1e13dc7b1b797e70fc0",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "892c4e1d65c98d6d818988f2d7c54e206d810bccc6353547169a39d6580ad6cf"
   },
   "provenance": {
     "c5_module": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.html",
@@ -57,7 +57,7 @@
   },
   "receive": {
     "robust_path": {
-      "part": "Vishay TSOP75238TT",
+      "part": "Vishay TSOP75238TR",
       "carrier_khz": 38,
       "agc": "AGC2",
       "minimum_burst_cycles": 16,
@@ -212,7 +212,7 @@
     "total_delta_per_board": "-0.0088"
   },
   "residual_physical_only": [
-    "verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
+    "verify received TSOP75238TR/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; confirm TSOP75238TR CPL rotation and feeder presentation against the JLCPCB placement preview",
     "replay a representative 30-to-60-kHz protocol corpus and measure carrier/count accuracy, robust AGC behavior, range and field of view",
     "measure VSMY14940 current, optical range/alignment, local temperature and IEC 62471 classification through the final enclosure/window",
     "calibrate the VEMD1060 tunnel against the <=2.271-uA paper target and inject missing emitter, ambient leakage, RX crosstalk, stuck carrier, brownout and FAULT_KILL"

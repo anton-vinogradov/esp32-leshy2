@@ -4,10 +4,10 @@
   "status": "reviewed_mapping_only",
   "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "9c2d425ea7f6ac2be19c202ae814544c60b390f4defaa1f8d83d95aa23e1f40e",
-    "hardware/product-design/generated/H1-physical-source-table.json": "b75a3ea3c4038be484cff14bc363dc408341f5b75ecc8d42cc43fb9238fe07eb",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "b88c68d9e002f69852aff8fceed86ac67a8ee11528c4211f1b1df3901a660ec3",
+    "hardware/product-design/generated/H1-physical-source-table.json": "a4ba50c406410a7fdf102d38a4cd0ff7e267f73bcbaa09f1d21ffd8d8027dbf9",
     "hardware/product-design/mechanical-evidence-gates.json": "c6d3a2366cbb7657d09aea80019a59909d83457d3b7b2bba2cb328f967e12a1d",
-    "hardware/architecture/devices.json": "b334541d5b98526a2c6b3e1de2abd4e21ac138bc168e5aa6838a644587836b3c",
+    "hardware/architecture/devices.json": "b3532cd8bc4a96c32064a79b74bae2e59de8afa9b6193cff95cabb5610e6381a",
     "hardware/architecture/am-lw-pod.json": "6571e20c26f2ceaebf9c4bf410d155417a68116b3b5ef2e16d7c77ee06503e08"
   },
   "summary": {
@@ -64,13 +64,13 @@
         {
           "identity": "display_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
           "role": "40-contact fixed receptacle for the antenna-edge replaceable display adapter",
           "source": {
             "document": "Hirose exact product page, 2D drawing and specification sheet",
-            "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",
-            "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
-            "checked": "2026-08-23"
+            "version": "CL0684-4042-5-51; exact 40-position receptacle; packaging suffix changes reel quantity only",
+            "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-51",
+            "checked": "2026-08-28"
           }
         },
         {
@@ -120,13 +120,13 @@
         {
           "identity": "ir_demod",
           "kind": "selected_physical_instance",
-          "mpn": "Vishay TSOP75238TT",
+          "mpn": "Vishay TSOP75238TR",
           "role": "38-kHz IR receiver",
           "source": {
             "document": "TSOP752 IR receiver modules datasheet",
             "version": "Rev. 1.6, 06-May-2025",
             "url": "https://www.vishay.com/docs/82494/tsop752.pdf",
-            "checked": "2026-08-25"
+            "checked": "2026-08-28"
           }
         },
         {
@@ -748,13 +748,13 @@
         {
           "identity": "display_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
           "role": "40-contact fixed receptacle for the antenna-edge replaceable display adapter",
           "source": {
             "document": "Hirose exact product page, 2D drawing and specification sheet",
-            "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",
-            "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
-            "checked": "2026-08-23"
+            "version": "CL0684-4042-5-51; exact 40-position receptacle; packaging suffix changes reel quantity only",
+            "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-51",
+            "checked": "2026-08-28"
           }
         },
         {
@@ -1444,13 +1444,13 @@
         {
           "identity": "display_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
           "role": "40-contact fixed receptacle for the antenna-edge replaceable display adapter",
           "source": {
             "document": "Hirose exact product page, 2D drawing and specification sheet",
-            "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",
-            "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
-            "checked": "2026-08-23"
+            "version": "CL0684-4042-5-51; exact 40-position receptacle; packaging suffix changes reel quantity only",
+            "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-51",
+            "checked": "2026-08-28"
           }
         },
         {

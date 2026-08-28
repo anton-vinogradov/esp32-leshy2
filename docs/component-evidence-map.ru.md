@@ -16,13 +16,13 @@ flowchart LR
 
 ### `H3-PHY-017` · `display`
 
-- Выбрано: `HMX035CTFT-001 (QDtech schematic assembly marking)`; `Sitronix ST77922`; `Hirose DF40C(2.0)-40DS-0.4V(58)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-40S-0.5SH(99)`.
+- Выбрано: `HMX035CTFT-001 (QDtech schematic assembly marking)`; `Sitronix ST77922`; `Hirose DF40C(2.0)-40DS-0.4V(51)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-40S-0.5SH(99)`.
 - Осталось доказать: самостоятельный order identity и полный контур FPC текущей партии HMX035CTFT-001; identity/readback контроллера и равенство разгона VDD/VDDI на образце.
 - Критерий: полученный и однозначно идентифицированный образец напрямую подтверждает пункт; несовпадение повторно открывает связанный результат H1/H2/H3.
 
 ### `H3-PHY-024` · `ir`
 
-- Выбрано: `Vishay TSOP75238TT`; `Vishay TSMP95000TT`; `Vishay VSMY14940`.
+- Выбрано: `Vishay TSOP75238TR`; `Vishay TSMP95000TT`; `Vishay VSMY14940`.
 - Осталось доказать: ориентацию полученной партии, startup, quiet guard, два канала захвата и отсутствие обратного питания.
 - Критерий: полученный и однозначно идентифицированный образец напрямую подтверждает пункт; несовпадение повторно открывает связанный результат H1/H2/H3.
 
@@ -70,7 +70,7 @@ flowchart LR
 
 ## Четырнадцать механических gate’ов
 
-- `H5-MECH-DISPLAY-TAIL` — `HMX035CTFT-001 (QDtech schematic assembly marking)`; `Hirose DF40C(2.0)-40DS-0.4V(58)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-40S-0.5SH(99)`; открыто: контур, толщина, stiffener, клей, изгиб и удержание FPC текущей партии дисплея
+- `H5-MECH-DISPLAY-TAIL` — `HMX035CTFT-001 (QDtech schematic assembly marking)`; `Hirose DF40C(2.0)-40DS-0.4V(51)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-40S-0.5SH(99)`; открыто: контур, толщина, stiffener, клей, изгиб и удержание FPC текущей партии дисплея
 - `H5-MECH-NRF-GEN1-FEEDS` — `Ebyte E01-ML01IPX`; `TE Connectivity 2118651-2`; `Hirose U.FL-R-SMT-1(10)`; `GCT RFPC-SMA31-FN-175-A`; открыто: ось и MPN встроенного разъёма партии E01, fit/retention, изгиб и сквозные RF-потери
 - `H5-MECH-U214-MATING-STACK` — `M5Stack U214 Cap LoRa-1262`; `Samtec HLE-107-02-G-DV-PE-LC`; открыто: сечение штырей U214, усилия, циклы, винтовое удержание и preload планки
 - `H5-MECH-NAVIGATION-CONTROLS` — `OMRON B3S-1100P`; открыто: доступ через корпус, защита от случайного нажатия, ощущения, герметизация и ресурс
@@ -81,7 +81,7 @@ flowchart LR
 - `H5-MECH-M5-UNIT-MATE` — `1125R-SMT-4P`; открыто: вставка, удержание, разгрузка и циклы полученного Grove-кабеля
 - `H5-MECH-CELL-HOLDER-FIT` — `Keystone Electronics 1048P`; `XTAR 18650 4000mAh`; открыто: усилие вставки, прижим контактов, полярность, вибрация и термоциклы
 - `H5-MECH-NATIVE-RF-JUMPERS` — `TE Connectivity 2118651-2`; `Hirose U.FL-R-SMT-1(10)`; открыто: реальный радиус изгиба, разгрузка, усилие, удержание и RF-потери после сборки
-- `H5-MECH-DISPLAY-PERFORMANCE` — `HMX035CTFT-001 (QDtech schematic assembly marking)`; `Hirose DF40C(2.0)-40DS-0.4V(58)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-40S-0.5SH(99)`; открыто: QSPI/touch, оптика, ток и нагрев подсветки, ресурс flex и повторяемость партий
+- `H5-MECH-DISPLAY-PERFORMANCE` — `HMX035CTFT-001 (QDtech schematic assembly marking)`; `Hirose DF40C(2.0)-40DS-0.4V(51)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-40S-0.5SH(99)`; открыто: QSPI/touch, оптика, ток и нагрев подсветки, ресурс flex и повторяемость партий
 - `H5-MECH-ACOUSTIC-PATHS` — `PUI Audio AS02404PO`; `Same Sky CMEJ-0413-42-SMT-TR`; открыто: акустика корпуса, резонанс, герметизация, feedback, response микрофона и вибрация
 - `H5-MECH-HEADSET-JACK` — `Same Sky SJ-43504-SMT-TR`; открыто: допуски выреза, shield/solder-tab fit, усилия, CTIA/TRS, удержание и transient отключения
 

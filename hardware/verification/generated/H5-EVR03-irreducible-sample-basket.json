@@ -7,20 +7,20 @@
   "inputs": {
     "residual_map": {
       "path": "hardware/verification/generated/H5-EVR01-residual-map.json",
-      "sha256": "3b66faa578d298f5d66370d3643cbfb72685b37785226ab6e8e9edd0d739ea25"
+      "sha256": "af45315ec7ed66bcc82fe5adc28f46807d871f476a662479091aad6bdcbd554e"
     },
     "source_research": {
       "path": "hardware/verification/generated/H5-EVR02-source-research.json",
-      "sha256": "903552b235085415f93cdafd964f3da4bf193aa347d2d45eb08e92a201e34b40"
+      "sha256": "1c23313f6590edc28b2565aaf3bcad7ab940c4c70719bb04135aa8d14ebc20f8"
     }
   },
   "summary": {
     "article_lines": 33,
     "measurement_contracts": 11,
     "covered_residuals_and_gates": 23,
-    "published_price_subtotal_usd": "282.43",
+    "published_price_subtotal_usd": "281.47",
     "conservative_budget_caps_usd": "4.00",
-    "known_engineering_material_budget_usd": "286.43",
+    "known_engineering_material_budget_usd": "285.47",
     "unpriced_manufacturer_lines": 0,
     "excluded_from_budget": [
       "SA818S-V pre-order freight/lead-time charge",
@@ -39,9 +39,9 @@
     "amlw-pod": "19.79",
     "audio": "5.90",
     "controls": "21.99",
-    "display": "47.57",
+    "display": "46.76",
     "expansion": "31.68",
-    "ir": "5.46",
+    "ir": "5.30",
     "power": "52.57",
     "rf": "61.43",
     "storage": "40.05"
@@ -106,27 +106,27 @@
     {
       "id": "display-df40-receptacle",
       "group": "display",
-      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
       "order_quantity": 1,
       "order_unit": "piece",
       "contained_pieces_per_order_unit": 1,
       "pricing": {
         "kind": "published_usd",
-        "unit_usd": "1.36",
-        "subtotal_usd": "1.360",
+        "unit_usd": "0.5539",
+        "subtotal_usd": "0.554",
         "source_price": null
       },
       "source": {
-        "label": "Mouser exact-MPN listing",
-        "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C2.0-40DS-0.4V58",
+        "label": "JLCPCB C597934 exact HRS(Hirose) listing",
+        "url": "https://jlcpcb.com/partdetail/x/C597934",
         "checked_on": "2026-08-26",
-        "availability": "orderable exact MPN"
+        "availability": "7,205 currently placeable; MOQ 1"
       },
       "coverage": [
         "H3-PHY-017",
         "H5-MECH-DISPLAY-TAIL"
       ],
-      "minimum_quantity_basis": "one fixed receptacle is sufficient for the single display-adapter coupon",
+      "minimum_quantity_basis": "one fixed receptacle is sufficient for the single display-adapter coupon; (51) preserves the exact body/mate and changes only reel quantity from the former (58) order code",
       "risk": null,
       "purchase_authorized": false
     },
@@ -749,26 +749,26 @@
     {
       "id": "ir-demod",
       "group": "ir",
-      "mpn": "Vishay TSOP75238TT",
+      "mpn": "Vishay TSOP75238TR",
       "order_quantity": 1,
       "order_unit": "piece",
       "contained_pieces_per_order_unit": 1,
       "pricing": {
         "kind": "published_usd",
-        "unit_usd": "1.46",
-        "subtotal_usd": "1.460",
+        "unit_usd": "1.3011",
+        "subtotal_usd": "1.301",
         "source_price": null
       },
       "source": {
-        "label": "DigiKey exact-MPN cut-tape listing",
-        "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864",
+        "label": "JLCPCB C511498 exact Vishay listing",
+        "url": "https://jlcpcb.com/partdetail/x/C511498",
         "checked_on": "2026-08-26",
-        "availability": "13 shown in cut-tape stock"
+        "availability": "15 currently placeable; MOQ 1"
       },
       "coverage": [
         "H3-PHY-024"
       ],
-      "minimum_quantity_basis": "one received robust-demodulator channel; the full-reel-only TSOP95238TT is no longer selected",
+      "minimum_quantity_basis": "one received robust-demodulator channel; TR preserves the TT body, contacts and electrical function but requires explicit CPL rotation/feeder-presentation approval before PCBA",
       "risk": null,
       "purchase_authorized": false
     },
@@ -1074,9 +1074,9 @@
       "evidence": [
         "H3-PHY-024"
       ],
-      "method": "verify markings/orientation; run simultaneous robust-envelope and 30-to-60-kHz carrier capture; measure startup/QOD/no-back-power; replay the protocol corpus and measure emitter current, range, alignment, temperature and optical safety",
-      "pass_rule": "both receive channels and fail-closed transmit satisfy the inherited timing/electrical/optical bounds with no back-power or false provenance",
-      "artifacts": "incoming photos, logic/power traces, protocol corpus results and optical/thermal measurements"
+      "method": "verify markings/orientation; confirm TSOP75238TR CPL rotation and feeder presentation against the JLCPCB placement preview; run simultaneous robust-envelope and 30-to-60-kHz carrier capture; measure startup/QOD/no-back-power; replay the protocol corpus and measure emitter current, range, alignment, temperature and optical safety",
+      "pass_rule": "the assembled TR orientation matches the Vishay contact map, both receive channels and fail-closed transmit satisfy the inherited timing/electrical/optical bounds with no back-power or false provenance",
+      "artifacts": "CPL/placement approval, incoming photos, logic/power traces, protocol corpus results and optical/thermal measurements"
     },
     {
       "id": "H5-MSR-STORAGE",

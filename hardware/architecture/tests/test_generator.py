@@ -37,7 +37,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
-        self.assertEqual("H1-R2.28", roadmap["current_substep"])
+        self.assertEqual("H1-R2.29", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -292,15 +292,15 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["orderable_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            12,
+            11,
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            198,
+            199,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            1033,
+            1034,
             sum(
                 line["quantity"]
                 for line in lines
@@ -312,7 +312,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["alternate_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            12,
+            11,
             sum(bool(line["cost_gate_status"]) for line in lines),
         )
         self.assertEqual(
@@ -380,9 +380,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("**1052** supplied/costed placements", rendered)
         self.assertIn("**209/210** used lines", rendered)
         self.assertIn("**210/210** lines", rendered)
-        self.assertIn("**198/210** lines", rendered)
-        self.assertIn("**1033/1052** supplied placements", rendered)
-        self.assertIn("USD 235.0986", rendered)
+        self.assertIn("**199/210** lines", rendered)
+        self.assertIn("**1034/1052** supplied placements", rendered)
+        self.assertIn("USD 234.8584", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -989,7 +989,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Texas Instruments BQ25798RQMR<br/>2S-configured buck-boost charger and NVDC system power path",
             "Analog Devices MAX17320G20+T<br/>2S high-side protection, gauging, temperature and balancing",
             "Texas Instruments MSPM0C1106SDGS20R<br/>fail-closed pair admission, watchdog and service bridge",
-            "Texas Instruments CSD87313DMST<br/>fully-switching common-drain CHG/DIS power pair",
+            "Texas Instruments CSD87313DMS<br/>fully-switching common-drain CHG/DIS power pair",
             "Littelfuse 0451005.MRL<br/>slot-0 independent 5-A fast fuse",
             "Littelfuse 0451005.MRL<br/>slot-1 independent 5-A fast fuse",
             "Vishay WSL25125L000FEA<br/>5-mOhm Kelvin current shunt",
@@ -1100,7 +1100,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Panasonic ERJ-2RKF22R0X<br/>22-Ohm card-MISO buffer source-series resistor",
             "Yageo RC0603FR-071KL<br/>1-kOhm card-detect input series resistor",
             "Yageo CC0402KRX7R9BB104<br/>100-nF card-detect hardware filter capacitor",
-            "Vishay TSOP75238TT<br/>38-kHz AGC2 demodulating IR receiver",
+            "Vishay TSOP75238TR<br/>38-kHz AGC2 demodulating IR receiver",
             "Vishay TSMP95000TT<br/>30-to-60-kHz carrier-learning IR receiver",
             "Vishay VSMY14940<br/>side-view 940-nm consumer IR transmit emitter",
             "TLV9061IDBVR<br/>AON physical-optical transimpedance amplifier",
@@ -1389,7 +1389,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "pd_config_eeprom": "onsemi_cat24c512wi_gt3",
             "pd_vbus_tvs": "ti_tvs2200_drvr",
             "nvdc_charger": "ti_bq25798_rqmr",
-            "pack_power_fet": "ti_csd87313dmst",
+            "pack_power_fet": "ti_csd87313dms",
             "pack_fuse0": "littelfuse_0451005_mrl",
             "pack_fuse1": "littelfuse_0451005_mrl",
             "pack_shunt": "vishay_wsl25125l000fea",
@@ -2702,7 +2702,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("never authorizes TX", contract["actual_optical_evidence"])
 
         required = {
-            "ir_demod": "vishay_tsop75238tt",
+            "ir_demod": "vishay_tsop75238tr",
             "ir_carrier": "vishay_tsmp95000tt",
             "ir_return_buffer": "nexperia_74lvc2g126dp_125",
             "ir_emitter": "vishay_vsmy14940",
@@ -2757,7 +2757,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("P05", candidate["contact_accounting"]["slow_io"]["used"])
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for token in (
-            "TSOP75238TT<br/>38-kHz AGC2 demodulating IR receiver",
+            "TSOP75238TR<br/>38-kHz AGC2 demodulating IR receiver",
             "TSMP95000TT<br/>30-to-60-kHz carrier-learning IR receiver",
             "VSMY14940<br/>side-view 940-nm consumer IR transmit emitter",
             "TLV9061IDBVR<br/>AON physical-optical transimpedance amplifier",
@@ -2776,7 +2776,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         required = {
             "receiver": "skyworks_si4732_a10_gsr",
             "receiver_fmi_esd": "littelfuse_sesd0402x1un_0020_090",
-            "receiver_fmi_match_inductor": "murata_lqw15an56nj00d",
+            "receiver_fmi_match_inductor": "murata_lqw15an56ng00d",
             "receiver_fmi_coupling_cap": "murata_grm1555c1h102ja01d",
             "receiver_ami_esd": "littelfuse_sesd0402x1un_0020_090",
             "receiver_ami_coupling_cap": "murata_grm155r71a474ke01d",
@@ -2812,9 +2812,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             },
         )
 
-        inductor = self.database["devices"]["murata_lqw15an56nj00d"]
+        inductor = self.database["devices"]["murata_lqw15an56ng00d"]
         self.assertEqual(56, inductor["electrical_contract"]["inductance_nh"])
-        self.assertEqual("active_orderable", inductor["lifecycle"])
+        self.assertEqual("active_factory_stocked_standard_pcba", inductor["lifecycle"])
         self.assertIn("orderable_source", inductor)
 
         routes = {
@@ -2844,7 +2844,7 @@ class ArchitectureValidationTests(unittest.TestCase):
 
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for token in (
-            "LQW15AN56NJ00D<br/>56-nH high-Q FM first target on FM/SW port",
+            "LQW15AN56NG00D<br/>56-nH high-Q FM first target on FM/SW port",
             "GRM1555C1H102JA01D<br/>1-nF C0G FMI AC-coupling capacitor",
             "GRM155R71A474KE01D<br/>0.47-uF AMI AC-coupling capacitor",
             "GCT RFPC-SMA31-FN-175-A<br/>dedicated non-50-Ohm AM/LW loop-pod standard-SMA jack",
@@ -2969,7 +2969,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         self.assertEqual("qdtech_hmx035ctft_001", candidate["instances"]["display"])
         self.assertEqual(
-            "hirose_df40c_2_0_40ds_0_4v_58", candidate["instances"]["display_connector"]
+            "hirose_df40c_2_0_40ds_0_4v_51", candidate["instances"]["display_connector"]
         )
         self.assertEqual(
             "hirose_df40c_40dp_0_4v_51", candidate["instances"]["display_adapter_plug"]

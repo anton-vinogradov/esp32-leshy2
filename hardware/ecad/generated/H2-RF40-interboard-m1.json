@@ -5,11 +5,11 @@
   "project": "LESHY2-RF",
   "sheet": "RF_40_INTERBOARD_M1",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "2cce7e1637467672ce0b2009c1603ac591a37b53f5e93a399c10014e4fd86f09",
-    "hardware/architecture/devices.json": "192f38e0adf8531c14034b009ca69f78f1f4772a02c953a2c1174947c042b2a5",
-    "hardware/ecad/generated/H2-instance-ledger.json": "88303bb2d17f13fb80d8ce609a6b2fadb03a7f95f8df38e27b905250831525aa",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "b73f12d1b7b380bda8fef4ffda254ac600904bc004f1af6e1924662e4890a5c1",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "a1df33d01a5cefcf9bc62be717a006337035202ee07718799d610675b575f171"
+    "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
+    "hardware/architecture/devices.json": "b3532cd8bc4a96c32064a79b74bae2e59de8afa9b6193cff95cabb5610e6381a",
+    "hardware/ecad/generated/H2-instance-ledger.json": "d402540ba83ec48ad763ece15bb9206aabac2cd0624f5d8ea2a861dab63753cf",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "9b110345d6ebaf9c7cb6bb9fb726b33ef85474b8ead8d10cbfa3c5aed3362cde",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "373e6ca74626ec7d013573096162d503ddc67b4f069faa50caed37217bbc072e"
   },
   "summary": {
     "ledger_instances": 1,

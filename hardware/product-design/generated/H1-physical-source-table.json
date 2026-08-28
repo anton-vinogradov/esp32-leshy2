@@ -1110,8 +1110,8 @@
     },
     {
       "instance": "display_connector",
-      "device_key": "hirose_df40c_2_0_40ds_0_4v_58",
-      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+      "device_key": "hirose_df40c_2_0_40ds_0_4v_51",
+      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
       "role": "40-contact fixed receptacle for the antenna-edge replaceable display adapter",
       "frame": "ui-inner",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
@@ -1122,12 +1122,12 @@
         3.38,
         1.95
       ],
-      "qualification": "verified_exact_display_adapter_main_board_receptacle",
+      "qualification": "verified_exact_jlcpcb_stocked_display_adapter_main_board_receptacle",
       "source": {
         "document": "Hirose exact product page, 2D drawing and specification sheet",
-        "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",
-        "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
-        "checked": "2026-08-23"
+        "version": "CL0684-4042-5-51; exact 40-position receptacle; packaging suffix changes reel quantity only",
+        "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-51",
+        "checked": "2026-08-28"
       },
       "evidence_gates": [
         {
@@ -1712,8 +1712,8 @@
     },
     {
       "instance": "ir_demod",
-      "device_key": "vishay_tsop75238tt",
-      "mpn": "Vishay TSOP75238TT",
+      "device_key": "vishay_tsop75238tr",
+      "mpn": "Vishay TSOP75238TR",
       "role": "38-kHz IR receiver",
       "frame": "ui-inner",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
@@ -1724,12 +1724,12 @@
         3.0,
         3.2
       ],
-      "qualification": "verified_exact_stocked_robust_ir_receiver",
+      "qualification": "verified_exact_jlcpcb_stocked_robust_ir_receiver",
       "source": {
         "document": "TSOP752 IR receiver modules datasheet",
         "version": "Rev. 1.6, 06-May-2025",
         "url": "https://www.vishay.com/docs/82494/tsop752.pdf",
-        "checked": "2026-08-25"
+        "checked": "2026-08-28"
       },
       "evidence_gates": [],
       "position_mm": [
@@ -2991,8 +2991,8 @@
     },
     {
       "instance": "pack_power_fet",
-      "device_key": "ti_csd87313dmst",
-      "mpn": "Texas Instruments CSD87313DMST",
+      "device_key": "ti_csd87313dms",
+      "mpn": "Texas Instruments CSD87313DMS",
       "role": "back-to-back pack admission FET",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
@@ -3003,12 +3003,12 @@
         3.3,
         1.0
       ],
-      "qualification": "verified_candidate",
+      "qualification": "verified_exact_jlcpcb_stocked_candidate",
       "source": {
         "document": "CSD87313DMS 30-V dual common-drain N-channel NexFET datasheet",
         "version": "SLPS659, April 2017; package addendum updated 2025-10-17",
         "url": "https://www.ti.com/lit/ds/symlink/csd87313dms.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-08-28"
       },
       "evidence_gates": [],
       "position_mm": [

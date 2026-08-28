@@ -372,6 +372,55 @@ CURRENT_EXACT_PART_ROUTES = {
         "status": "in_stock",
         "source": "https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803",
     },
+    "DF40C(2.0)-40DS-0.4V(51)": {
+        "device_id": "hirose_df40c_2_0_40ds_0_4v_51",
+        "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
+        "lcsc": "C597934",
+        "route": "J0",
+        "stock": 7218,
+        "available_order_quantity": 7205,
+        "minimum_quantity": 1,
+        "quantity_one_usd": "0.5539",
+        "status": "in_stock",
+        "source": "https://jlcpcb.com/partdetail/x/C597934",
+    },
+    "CSD87313DMS": {
+        "device_id": "ti_csd87313dms",
+        "mpn": "Texas Instruments CSD87313DMS",
+        "lcsc": "C2863848",
+        "route": "J0",
+        "stock": 4813,
+        "available_order_quantity": 4741,
+        "minimum_quantity": 1,
+        "quantity_one_usd": "1.0558",
+        "status": "in_stock",
+        "source": "https://jlcpcb.com/partdetail/x/C2863848",
+    },
+    "TSOP75238TR": {
+        "device_id": "vishay_tsop75238tr",
+        "mpn": "Vishay TSOP75238TR",
+        "lcsc": "C511498",
+        "route": "J0",
+        "stock": 17,
+        "available_order_quantity": 15,
+        "minimum_quantity": 1,
+        "quantity_one_usd": "1.3011",
+        "status": "in_stock",
+        "risk": "thin public stock covers the five-device trial only; recheck complete-job stock or pre-order the exact part",
+        "source": "https://jlcpcb.com/partdetail/x/C511498",
+    },
+    "LQW15AN56NG00D": {
+        "device_id": "murata_lqw15an56ng00d",
+        "mpn": "Murata LQW15AN56NG00D",
+        "lcsc": "C167482",
+        "route": "J0",
+        "stock": 21558,
+        "available_order_quantity": 20744,
+        "minimum_quantity": 1,
+        "quantity_one_usd": "0.0447",
+        "status": "in_stock",
+        "source": "https://jlcpcb.com/partdetail/x/C167482",
+    },
 }
 
 # C5's manufacturer identity is unchanged from the historical capture; only
@@ -393,6 +442,10 @@ HISTORICAL_REPLACED_MPNS = {
     "CRCW0402160KFKED",
     "RC1206FR-0747RL",
     "C1608X7S2A104K080AB",
+    "DF40C(2.0)-40DS-0.4V(58)",
+    "CSD87313DMST",
+    "TSOP75238TT",
+    "LQW15AN56NJ00D",
 }
 HISTORICAL_MATCHED_REPLACED_MPNS = HISTORICAL_REPLACED_MPNS - {"SA518"}
 HISTORICAL_PREORDER_REPLACED_MPNS = HISTORICAL_MATCHED_REPLACED_MPNS
@@ -456,6 +509,10 @@ SPOT_CHECKS = [
     {"device_id": "uniroyal_0402wgf1603tce", "mpn": "0402WGF1603TCE", "jlc": "C25757", "tier": "J0", "stock": 388017, "pcba": "Extended SMT; Economic and Standard", "source": "https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757", "finding": "exact stocked 160-kOhm 0402 replacement preserves the complete audio-attenuator electrical contract and uses a thinner body"},
     {"device_id": "fh_rs_06k47r0ft", "mpn": "RS-06K47R0FT", "jlc": "C140014", "tier": "J0", "stock": 78058, "pcba": "Extended SMT; Economic and Standard", "source": "https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014", "finding": "exact stocked 47-Ohm 1206 replacement preserves the IR current-limit power, voltage and temperature contract"},
     {"device_id": "yageo_cc0603krx7r0bb104", "mpn": "CC0603KRX7R0BB104", "jlc": "C113803", "tier": "J0", "stock": 1027658, "pcba": "Extended SMT; Economic and Standard; MSL 1", "source": "https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803", "finding": "exact stocked 100-nF 100-V 0603 body; X7R temperature stability is stricter than the replaced X7S class"},
+    {"device_id": "hirose_df40c_2_0_40ds_0_4v_51", "mpn": "DF40C(2.0)-40DS-0.4V(51)", "jlc": "C597934", "tier": "J0", "stock": 7218, "available_order_quantity": 7205, "moq": 1, "pcba": "Extended SMT; Economic and Standard; fixture", "source": "https://jlcpcb.com/partdetail/x/C597934", "finding": "exact Hirose receptacle body and mate; (51) changes only reel quantity from the former (58) order code"},
+    {"device_id": "ti_csd87313dms", "mpn": "CSD87313DMS", "jlc": "C2863848", "tier": "J0", "stock": 4813, "available_order_quantity": 4741, "moq": 1, "pcba": "Extended SMT; Economic and Standard", "source": "https://jlcpcb.com/partdetail/x/C2863848", "finding": "same production die, WSON-CLIP body, contacts and electrical contract as DMST; DMS changes tape-and-reel quantity only"},
+    {"device_id": "vishay_tsop75238tr", "mpn": "TSOP75238TR", "jlc": "C511498", "tier": "J0", "stock": 17, "available_order_quantity": 15, "moq": 1, "pcba": "Extended SMT; Economic and Standard; MSL 4", "source": "https://jlcpcb.com/partdetail/x/C511498", "finding": "same final body, contacts and electrical contract as TT; TR changes tape presentation, so approve CPL rotation/feeder orientation and recheck complete-job stock before order"},
+    {"device_id": "murata_lqw15an56ng00d", "mpn": "LQW15AN56NG00D", "jlc": "C167482", "tier": "J0", "stock": 21558, "available_order_quantity": 20744, "moq": 1, "pcba": "Extended SMT; Economic and Standard; MSL 1", "source": "https://jlcpcb.com/partdetail/x/C167482", "finding": "exact 56-nH LQW15AN 0402 body; G tightens inductance tolerance from +/-5% to +/-2% without degrading RF limits"},
 ]
 
 
@@ -577,8 +634,8 @@ def build_match_result(rows: list[dict[str, str]]) -> dict:
         ) and summary["parsed_placements"] == 1052,
         "current_exact_route_counts_reconcile": summary["matched_lines"] == 179
         and summary["unmatched_lines"] == 31
-        and summary["in_stock_lines"] == 149
-        and summary["pre_order_lines"] == 30,
+        and summary["in_stock_lines"] == 153
+        and summary["pre_order_lines"] == 26,
         "both_voice_routes_use_exact_current_jlcpcb_pages": all(
             any(route["normalized_mpn"] == mpn and route["lcsc"] == voice["lcsc"] for route in routes)
             for mpn, voice in VOICE_PART_ROUTES.items()
@@ -629,6 +686,20 @@ def build_match_result(rows: list[dict[str, str]]) -> dict:
                 for route in routes
             )
             for mpn in {"0402WGF1603TCE", "RS-06K47R0FT", "CC0603KRX7R0BB104"}
+        ),
+        "four_cost_normalization_routes_use_exact_current_jlcpcb_pages": all(
+            any(
+                route["normalized_mpn"] == mpn
+                and route["lcsc"] == CURRENT_EXACT_PART_ROUTES[mpn]["lcsc"]
+                and route["tool_status"] == "in_stock"
+                for route in routes
+            )
+            for mpn in {
+                "DF40C(2.0)-40DS-0.4V(51)",
+                "CSD87313DMS",
+                "TSOP75238TR",
+                "LQW15AN56NG00D",
+            }
         ),
         "no_semantic_mpn_substitution_observed": summary["semantic_mpn_mismatches"] == 0
         and all(route["semantic_mpn_equal"] is not False for route in routes),

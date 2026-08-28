@@ -282,7 +282,7 @@
       {
         "instance": "ir_demod",
         "frame": "ui-inner",
-        "mpn": "Vishay TSOP75238TT",
+        "mpn": "Vishay TSOP75238TR",
         "height_mm": 3.2,
         "remaining_to_opposite_pcb_plane_mm": 7.8
       },
@@ -506,7 +506,7 @@
       {
         "instance": "display_connector",
         "frame": "ui-inner",
-        "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+        "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
         "height_mm": 1.95,
         "remaining_to_opposite_pcb_plane_mm": 9.05
       },
@@ -982,7 +982,7 @@
       {
         "instance": "pack_power_fet",
         "frame": "rf-inner",
-        "mpn": "Texas Instruments CSD87313DMST",
+        "mpn": "Texas Instruments CSD87313DMS",
         "height_mm": 1.0,
         "remaining_to_opposite_pcb_plane_mm": 10.0
       },

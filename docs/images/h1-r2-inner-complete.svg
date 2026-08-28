@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2910" viewBox="0 0 1900 2910" data-marker="H1-R2.28" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2910" viewBox="0 0 1900 2910" data-marker="H1-R2.29" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="1900" height="2910" fill="#ffffff"/>
-<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.28 complete inner-body map</text>
+<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.29 complete inner-body map</text>
 <text x="30.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Each PCB is shown exactly as viewed after turning it over. Numbers are drawing references; inner faces contain no silkscreen.</text>
 <text x="201.9" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="65.0" y="130.0" width="273.8" height="547.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -169,7 +169,7 @@
 <text x="609.8" y="410.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">69</text>
 <rect x="443.65" y="407.04" width="11.68" height="5.84" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="charger_regn_cap" data-mpn="TDK CGA5L1X7R1E475K160AC"/>
 <text x="449.5" y="411.6" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">70</text>
-<rect x="519.21" y="422.00" width="12.04" height="12.04" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="pack_power_fet" data-mpn="Texas Instruments CSD87313DMST"/>
+<rect x="519.21" y="422.00" width="12.04" height="12.04" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="pack_power_fet" data-mpn="Texas Instruments CSD87313DMS"/>
 <text x="525.2" y="430.3" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">71</text>
 <rect x="493.29" y="422.00" width="23.18" height="11.61" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="pack_shunt" data-mpn="Vishay WSL25125L000FEA"/>
 <text x="504.9" y="430.1" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">72</text>
@@ -261,7 +261,7 @@
 <text x="255.5" y="155.8" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">115</text>
 <rect x="145.30" y="152.63" width="5.84" height="3.07" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
 <text x="148.2" y="155.8" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">116</text>
-<rect x="182.53" y="153.72" width="38.69" height="12.34" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="display_connector" data-mpn="Hirose DF40C(2.0)-40DS-0.4V(58)"/>
+<rect x="182.53" y="153.72" width="38.69" height="12.34" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="display_connector" data-mpn="Hirose DF40C(2.0)-40DS-0.4V(51)"/>
 <text x="201.9" y="162.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">117</text>
 <rect x="291.30" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(10)"/>
 <text x="296.8" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">118</text>
@@ -307,7 +307,7 @@
 <text x="154.4" y="366.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">138</text>
 <rect x="165.38" y="385.50" width="36.50" height="36.50" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_rp" data-mpn="SC1512-A4"/>
 <text x="183.6" y="406.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">139</text>
-<rect x="313.93" y="403.75" width="24.82" height="10.95" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_demod" data-mpn="Vishay TSOP75238TT"/>
+<rect x="313.93" y="403.75" width="24.82" height="10.95" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_demod" data-mpn="Vishay TSOP75238TR"/>
 <text x="326.3" y="411.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">140</text>
 <rect x="302.25" y="403.75" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_safe_gate" data-mpn="SN74LVC1G08DCKR"/>
 <text x="305.9" y="407.6" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">141</text>
@@ -534,7 +534,7 @@
 <text x="518.0" y="2123.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">selected-module AFOUT and microphone multiplexer</text>
 <text x="490.0" y="2160.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">070  TDK CGA5L1X7R1E475K160AC</text>
 <text x="518.0" y="2173.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">BQ25798 REGN local capacitor</text>
-<text x="490.0" y="2210.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">071  Texas Instruments CSD87313DMST</text>
+<text x="490.0" y="2210.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">071  Texas Instruments CSD87313DMS</text>
 <text x="518.0" y="2223.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">back-to-back pack admission FET</text>
 <text x="490.0" y="2260.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">072  Vishay WSL25125L000FEA</text>
 <text x="518.0" y="2273.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">Kelvin pack-current shunt</text>
@@ -630,7 +630,7 @@
 <text x="950.0" y="2410.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">116  CP0603Q5425ENTR</text>
 <text x="978.0" y="2423.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">C5 dual-band forward-power evidence coupler aligned with</text>
 <text x="978.0" y="2434.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">the C5-2G4/5 front SMA</text>
-<text x="950.0" y="2460.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">117  Hirose DF40C(2.0)-40DS-0.4V(58)</text>
+<text x="950.0" y="2460.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">117  Hirose DF40C(2.0)-40DS-0.4V(51)</text>
 <text x="978.0" y="2473.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">40-contact fixed receptacle for the antenna-edge</text>
 <text x="978.0" y="2484.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">replaceable display adapter</text>
 <text x="950.0" y="2510.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">118  U.FL-R-SMT-1(10)</text>
@@ -684,7 +684,7 @@
 <text x="1410.0" y="1510.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">139  SC1512-A4</text>
 <text x="1438.0" y="1523.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">Hub RP2354B; C5/RF fan-out, storage, audio and broadcast</text>
 <text x="1438.0" y="1534.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">control</text>
-<text x="1410.0" y="1560.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">140  Vishay TSOP75238TT</text>
+<text x="1410.0" y="1560.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">140  Vishay TSOP75238TR</text>
 <text x="1438.0" y="1573.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">38-kHz IR receiver</text>
 <text x="1410.0" y="1610.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">141  SN74LVC1G08DCKR</text>
 <text x="1438.0" y="1623.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI-local FAULT_KILL-qualified IR carrier gate</text>

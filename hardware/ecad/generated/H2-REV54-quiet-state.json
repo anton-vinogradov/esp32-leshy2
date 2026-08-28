@@ -4,7 +4,7 @@
   "status": "reviewed_reset_safe_quiet_state_and_isolation",
   "method": "complete KiCad netlist control-membership checks plus exact instantiated isolation evidence for every required quiet contract",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "2cce7e1637467672ce0b2009c1603ac591a37b53f5e93a399c10014e4fd86f09",
+    "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "ab4e73fe576c5e1557e6695b89fd3ce182c4533a61e984bd755d3c25b287ce97",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "62036d985924f988257859617422a4eedbdab3d0d8f940cb485d32b7b97f23bc"
   },
@@ -929,7 +929,7 @@
         {
           "instance": "display_connector",
           "reference": "J11002",
-          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)"
+          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)"
         }
       ]
     }

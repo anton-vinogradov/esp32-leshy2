@@ -72,7 +72,7 @@ assembly. It must show:
 The current replaceable adapter uses `Hirose FH34SRJ-40S-0.5SH(99)`, a
 top-and-bottom-contact 40-position 0.5-mm ZIF specified for 0.30-mm FPC. The
 adapter reaches the main UI PCB through exact 40-position
-`DF40C-40DP-0.4V(51)` / `DF40C(2.0)-40DS-0.4V(58)` board-to-board mates with a
+`DF40C-40DP-0.4V(51)` / `DF40C(2.0)-40DS-0.4V(51)` board-to-board mates with a
 direct one-to-one contact map. Please explicitly state whether the panel tail
 thickness is compatible with this ZIF. If not, identify a compatible connector;
 the project will revise only the replaceable adapter. A logical 40-contact

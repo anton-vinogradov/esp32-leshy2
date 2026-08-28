@@ -6,7 +6,7 @@ The `H5.0.3-R1` basket is rebuilt for the current dual-SA818S architecture. It c
 
 ```mermaid
 flowchart TD
-  R["✅ H5.0.2-R1<br/>sources + replacements"] --> B["▶️ H5.0.3-R1<br/>$286.43 · 33 lines"]
+  R["✅ H5.0.2-R1<br/>sources + replacements"] --> B["▶️ H5.0.3-R1<br/>$285.47 · 33 lines"]
   B --> P["JLCPCB Standard<br/>210 lines · 1052 placements"]
   P --> Q["route rebuild<br/>J0–J3 · J4-F/P"]
   Q --> S["SA818S-V<br/>final pre-order quote"]
@@ -19,8 +19,8 @@ flowchart TD
 
 ## Cost summary
 
-- **$286.43** is the known conservative material budget for every priced line.
-- It contains **$282.43** of published USD prices and **$4.00** of conservative caps for two cheap IR parts whose live pages expose AUD/INR prices.
+- **$285.47** is the known conservative material budget for every priced line.
+- It contains **$281.47** of published USD prices and **$4.00** of conservative caps for two cheap IR parts whose live pages expose AUD/INR prices.
 - The total includes exact `SA818S-U` `C3001549` at `$9.7347` and exact `SA818S-V` `C51897911` at `$10.0710`; the VHF module has zero stock, MOQ 1 and a typical 8–15-working-day lead, while final quote/lead remain an order-time gate.
 - Freight, taxes, customs and H5.2 coupon PCBs are excluded. Some coupon geometry depends on H5.1 incoming measurements; fabricating it now would recreate the cycle this phase removes.
 - The former `$164.54` was not a cheaper complete basket: it covered only eight partial lines and omitted most H5 gates.
@@ -33,8 +33,8 @@ flowchart TD
   Minimum basis: one retained intact electrical/visual reference and one sacrificial tail/adapter specimen; the former five-donor plan added three unneeded spares
 - **1 × `Hirose FH34SRJ-40S-0.5SH(99)` — $3.40.** [Mouser exact-MPN listing](https://www.mouser.com/ProductDetail/Hirose-Connector/FH34SRJ-40S-0.5SH99); orderable exact MPN.
   Minimum basis: one repeated-mating adapter coupon uses one panel ZIF; failure means the test fails rather than consuming a hidden spare
-- **1 × `Hirose DF40C(2.0)-40DS-0.4V(58)` — $1.36.** [Mouser exact-MPN listing](https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C2.0-40DS-0.4V58); orderable exact MPN.
-  Minimum basis: one fixed receptacle is sufficient for the single display-adapter coupon
+- **1 × `Hirose DF40C(2.0)-40DS-0.4V(51)` — $0.55.** [JLCPCB C597934 exact HRS(Hirose) listing](https://jlcpcb.com/partdetail/x/C597934); 7,205 currently placeable; MOQ 1.
+  Minimum basis: one fixed receptacle is sufficient for the single display-adapter coupon; (51) preserves the exact body/mate and changes only reel quantity from the former (58) order code
 - **1 × `Hirose DF40C-40DP-0.4V(51)` — $1.01.** [Mouser exact-MPN listing](https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C-40DP-0.4V51); orderable exact MPN.
   Minimum basis: one plug is sufficient for the single display-adapter coupon
 
@@ -99,8 +99,8 @@ flowchart TD
 
 ### IR
 
-- **1 × `Vishay TSOP75238TT` — $1.46.** [DigiKey exact-MPN cut-tape listing](https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864); 13 shown in cut-tape stock.
-  Minimum basis: one received robust-demodulator channel; the full-reel-only TSOP95238TT is no longer selected
+- **1 × `Vishay TSOP75238TR` — $1.30.** [JLCPCB C511498 exact Vishay listing](https://jlcpcb.com/partdetail/x/C511498); 15 currently placeable; MOQ 1.
+  Minimum basis: one received robust-demodulator channel; TR preserves the TT body, contacts and electrical function but requires explicit CPL rotation/feeder-presentation approval before PCBA
 - **1 × `Vishay TSMP95000TT` — $2.00.** [Mouser exact-MPN listing](https://www.mouser.com/ProductDetail/Vishay-Semiconductors/TSMP95000TT); 4,182 shown in cut-tape stock.
   Minimum basis: one independent carrier-learning channel
 - **1 × `Vishay VSMY14940` — $2.00.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VSMY14940/4071416); 4,872 shown in cut-tape stock.
@@ -199,9 +199,9 @@ All `23` residuals/gates are covered by `11` contracts. A pass/fail summary with
 <details><summary><code>H5-MSR-IR</code></summary>
 
 - Covers: `H3-PHY-024`.
-- Method: verify markings/orientation; run simultaneous robust-envelope and 30-to-60-kHz carrier capture; measure startup/QOD/no-back-power; replay the protocol corpus and measure emitter current, range, alignment, temperature and optical safety.
-- Pass rule: both receive channels and fail-closed transmit satisfy the inherited timing/electrical/optical bounds with no back-power or false provenance.
-- Artifacts: incoming photos, logic/power traces, protocol corpus results and optical/thermal measurements.
+- Method: verify markings/orientation; confirm TSOP75238TR CPL rotation and feeder presentation against the JLCPCB placement preview; run simultaneous robust-envelope and 30-to-60-kHz carrier capture; measure startup/QOD/no-back-power; replay the protocol corpus and measure emitter current, range, alignment, temperature and optical safety.
+- Pass rule: the assembled TR orientation matches the Vishay contact map, both receive channels and fail-closed transmit satisfy the inherited timing/electrical/optical bounds with no back-power or false provenance.
+- Artifacts: CPL/placement approval, incoming photos, logic/power traces, protocol corpus results and optical/thermal measurements.
 
 </details>
 

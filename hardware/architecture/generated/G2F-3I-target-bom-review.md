@@ -11,9 +11,9 @@
 - **1053** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **1052** supplied/costed placements collapse to **210** used exact-device/MPN lines.
 - Current orderability evidence exists for **209/210** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **198/210** lines.
-- Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **1033/1052** supplied placements; their partial subtotals are `base_product` — USD 235.0986. These are coverage diagnostics, not product COGS.
+- Machine-readable quantity-100 cost evidence exists for **199/210** lines.
+- Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **1034/1052** supplied placements; their partial subtotals are `base_product` — USD 234.8584. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **210/210** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -59,7 +59,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `murata_lqg15hs3n3s02d` — `Murata LQG15HS3N3S02D`.
   - `murata_lqg15hs3n6s02d` — `Murata LQG15HS3N6S02D`.
   - `murata_lqg15hs6n8j02d` — `Murata LQG15HS6N8J02D`.
-  - `murata_lqw15an56nj00d` — `Murata LQW15AN56NJ00D`.
+  - `murata_lqw15an56ng00d` — `Murata LQW15AN56NG00D`.
   - `nexperia_pesd24vy1bsf` — `Nexperia PESD24VY1BSF`.
   - `ttm_b0310j50100ahf` — `TTM Technologies B0310J50100AHF`.
   - `ttm_dc2337j5010ahf` — `TTM Technologies DC2337J5010AHF`.
@@ -265,7 +265,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `adi_max17320_g20_t` — `Analog Devices MAX17320G20+T`.
   - `onsemi_cat24c512wi_gt3` — `onsemi CAT24C512WI-GT3`.
   - `ti_bq25798_rqmr` — `Texas Instruments BQ25798RQMR`.
-  - `ti_csd87313dmst` — `Texas Instruments CSD87313DMST`.
+  - `ti_csd87313dms` — `Texas Instruments CSD87313DMS`.
   - `ti_mspm0c1106_sdgs20r` — `Texas Instruments MSPM0C1106SDGS20R`.
   - `ti_tps22919_dckr` — `Texas Instruments TPS22919DCKR`.
   - `ti_tps2553drvr_1` — `Texas Instruments TPS2553DRVR-1`.
@@ -308,7 +308,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `rp2354b_a4` — `SC1512-A4`.
   - `skyworks_si4732_a10_gsr` — `Si4732-A10-GSR`.
   - `vishay_tsmp95000tt` — `Vishay TSMP95000TT`.
-  - `vishay_tsop75238tt` — `Vishay TSOP75238TT`.
+  - `vishay_tsop75238tr` — `Vishay TSOP75238TR`.
   - `vishay_vemd1060x01` — `VEMD1060X01`.
   - `vishay_vsmy14940` — `Vishay VSMY14940`.
 
@@ -333,7 +333,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `gct_rfpc_sma31_fn_175_a` — `GCT RFPC-SMA31-FN-175-A`.
   - `gct_rfpc_sma32_fn_175_a` — `GCT RFPC-SMA32-FN-175-A`.
   - `gct_usb4105_gf_a` — `GCT USB4105-GF-A`.
-  - `hirose_df40c_2_0_40ds_0_4v_58` — `Hirose DF40C(2.0)-40DS-0.4V(58)`.
+  - `hirose_df40c_2_0_40ds_0_4v_51` — `Hirose DF40C(2.0)-40DS-0.4V(51)`.
   - `hirose_df40c_40dp_0_4v_51` — `Hirose DF40C-40DP-0.4V(51)`.
   - `hirose_dm3at_sf_pejm5` — `Hirose DM3AT-SF-PEJM5`.
   - `hirose_fh34srj_40s_0_5sh_99` — `Hirose FH34SRJ-40S-0.5SH(99)`.
@@ -584,12 +584,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Hirose DF40C(2.0)-40DS-0.4V(58)</code> — 1 × USD 1.0700 = USD 1.0700</summary>
+<details><summary><code>Hirose DF40C(2.0)-40DS-0.4V(51)</code> — 1 × USD 0.3428 = USD 0.3428</summary>
 
-- Device id: `hirose_df40c_2_0_40ds_0_4v_58`.
+- Device id: `hirose_df40c_2_0_40ds_0_4v_51`.
 - Scope: `base_product`.
-- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-23`; [published source](https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C2.0-40DS-0.4V58?qs=Gufeu08L%2Fl2S31N%2Fy6Rjyw%3D%3D).
+- Comparable basis: JLCPCB quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/x/C597934).
 
 </details>
 
@@ -1034,12 +1034,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Murata LQW15AN56NJ00D</code> — 1 × USD 0.0724 = USD 0.0724</summary>
+<details><summary><code>Murata LQW15AN56NG00D</code> — 1 × USD 0.0447 = USD 0.0447</summary>
 
-- Device id: `murata_lqw15an56nj00d`.
+- Device id: `murata_lqw15an56ng00d`.
 - Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/LQW15AN56NJ00D/584364).
+- Comparable basis: JLCPCB one-to-199-piece tier; target quantity `100`.
+- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/x/C167482).
 
 </details>
 
@@ -1322,12 +1322,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Texas Instruments CSD87313DMST</code> — 1 × USD 1.4735 = USD 1.4735</summary>
+<details><summary><code>Texas Instruments CSD87313DMS</code> — 1 × USD 0.7651 = USD 0.7651</summary>
 
-- Device id: `ti_csd87313dmst`.
+- Device id: `ti_csd87313dms`.
 - Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/CSD87313DMST/7219023).
+- Comparable basis: JLCPCB quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/x/C2863848).
 
 </details>
 
@@ -1790,6 +1790,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Vishay TSOP75238TR</code> — 1 × USD 1.2231 = USD 1.2231</summary>
+
+- Device id: `vishay_tsop75238tr`.
+- Scope: `base_product`.
+- Comparable basis: JLCPCB quantity-100 tier; public stock is below the 100-device requirement; target quantity `100`.
+- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/x/C511498).
+
+</details>
+
 <details><summary><code>VEMD1060X01</code> — 1 × USD 0.5371 = USD 0.5371</summary>
 
 - Device id: `vishay_vemd1060x01`.
@@ -2232,15 +2241,6 @@ These entries are intentionally excluded from the partial subtotal until a compa
 - Scope: `base_product`; quantity `1`.
 - Reason: TI marks the exact new part active/production but the current order page shows no inventory or published quantity-100 price; obtain a traceable distributor or factory quotation before freezing COGS.
 - Checked: `2026-08-19`; [gate source](https://www.ti.com/product/TPUL2G223/part-details/TPUL2G223BQBR).
-
-</details>
-
-<details><summary><code>Vishay TSOP75238TT</code> — <code>quantity_100_rfq_required</code></summary>
-
-- Device id: `vishay_tsop75238tt`.
-- Scope: `base_product`; quantity `1`.
-- Reason: Authorized-distributor cut-tape stock and a USD 1.46 quantity-one engineering-sample price are confirmed; the project quantity-100 comparison remains a later BOM quote gate.
-- Checked: `2026-08-25`; [gate source](https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864).
 
 </details>
 

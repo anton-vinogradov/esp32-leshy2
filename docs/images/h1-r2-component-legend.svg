@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2231" viewBox="0 0 1900 2231" data-marker="H1-R2.28" data-view="numbered-component-legend">
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="2231" viewBox="0 0 1900 2231" data-marker="H1-R2.29" data-view="numbered-component-legend">
 <rect width="1900" height="2231" fill="#ffffff"/>
-<text x="30.0" y="42.0" font-family="sans-serif" font-size="24" font-weight="bold" fill="#172033">Leshy2 · H1-R2.28 · numbered component legend</text>
+<text x="30.0" y="42.0" font-family="sans-serif" font-size="24" font-weight="bold" fill="#172033">Leshy2 · H1-R2.29 · numbered component legend</text>
 <text x="30.0" y="72.0" font-family="sans-serif" font-size="12" font-weight="normal" fill="#526076">163 drawing references · MPN or explicit physical reserve · role in the finished device</text>
 <text x="30.0" y="100.0" font-family="sans-serif" font-size="11" font-weight="normal" fill="#526076">Blue: explicit R2 placement · grey: retained registered body · orange: physical reserve</text>
 <text x="30.0" y="126.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#9a3412">001  PHYSICAL RESERVE</text>
@@ -146,7 +146,7 @@
 <text x="523.0" y="1490.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">selected-module AFOUT and microphone multiplexer</text>
 <text x="495.0" y="1526.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">070  TDK CGA5L1X7R1E475K160AC</text>
 <text x="523.0" y="1540.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 REGN local capacitor</text>
-<text x="495.0" y="1576.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">071  Texas Instruments CSD87313DMST</text>
+<text x="495.0" y="1576.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">071  Texas Instruments CSD87313DMS</text>
 <text x="523.0" y="1590.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">back-to-back pack admission FET</text>
 <text x="495.0" y="1626.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">072  Vishay WSL25125L000FEA</text>
 <text x="523.0" y="1640.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">Kelvin pack-current shunt</text>
@@ -242,7 +242,7 @@
 <text x="960.0" y="1776.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">116  CP0603Q5425ENTR</text>
 <text x="988.0" y="1790.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5 dual-band forward-power evidence coupler aligned with the</text>
 <text x="988.0" y="1801.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5-2G4/5 front SMA</text>
-<text x="960.0" y="1826.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">117  Hirose DF40C(2.0)-40DS-0.4V(58)</text>
+<text x="960.0" y="1826.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">117  Hirose DF40C(2.0)-40DS-0.4V(51)</text>
 <text x="988.0" y="1840.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">40-contact fixed receptacle for the antenna-edge replaceable</text>
 <text x="988.0" y="1851.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">display adapter</text>
 <text x="960.0" y="1876.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">118  U.FL-R-SMT-1(10)</text>
@@ -296,7 +296,7 @@
 <text x="1425.0" y="876.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">139  SC1512-A4</text>
 <text x="1453.0" y="890.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">Hub RP2354B; C5/RF fan-out, storage, audio and broadcast</text>
 <text x="1453.0" y="901.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">control</text>
-<text x="1425.0" y="926.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">140  Vishay TSOP75238TT</text>
+<text x="1425.0" y="926.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">140  Vishay TSOP75238TR</text>
 <text x="1453.0" y="940.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">38-kHz IR receiver</text>
 <text x="1425.0" y="976.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">141  SN74LVC1G08DCKR</text>
 <text x="1453.0" y="990.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local FAULT_KILL-qualified IR carrier gate</text>

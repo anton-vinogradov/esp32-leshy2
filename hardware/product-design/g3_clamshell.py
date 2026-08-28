@@ -1810,7 +1810,7 @@ def validate_display_adapter_design(
         errors.append("display-adapter: adapter PCB enters a mounting-hole keep-out")
 
     expected_mpns = {
-        "display_connector": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+        "display_connector": "Hirose DF40C(2.0)-40DS-0.4V(51)",
         "display_adapter_plug": "Hirose DF40C-40DP-0.4V(51)",
         "display_panel_connector": "Hirose FH34SRJ-40S-0.5SH(99)",
     }
@@ -1920,7 +1920,7 @@ def validate_assembly_coordinate_model(
     if (
         model.get("schema_version") != 1
         or model.get("model_id") != "L2-ASM-COORD-001-A"
-        or model.get("stage") != "H1-R2.28"
+        or model.get("stage") != "H1-R2.29"
         or model.get("status") != "in_progress"
     ):
         errors.append("coordinate-model: schema, identity, stage or review status drifted")
@@ -2024,7 +2024,7 @@ def validate() -> list[str]:
         "ui_dpad_left": "OMRON B3S-1100P",
         "ui_dpad_right": "OMRON B3S-1100P",
         "ui_dpad_ok": "OMRON B3S-1100P",
-        "display_connector": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+        "display_connector": "Hirose DF40C(2.0)-40DS-0.4V(51)",
         "display_adapter_plug": "Hirose DF40C-40DP-0.4V(51)",
         "display_panel_connector": "Hirose FH34SRJ-40S-0.5SH(99)",
     }
@@ -4566,7 +4566,7 @@ def render_display_adapter(design):
         f'<rect x="{sx0:.1f}" y="{base_y:.1f}" width="235" height="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>',
         label(sx0 + 245, base_y + 13, "UI/control PCB", 10, "bold"),
         f'<rect x="{sx0+55:.1f}" y="{base_y-main_h:.1f}" width="125" height="{main_h:.1f}" fill="#e0e7ff" stroke="#4338ca" stroke-width="2"/>',
-        label(sx0 + 117.5, base_y-main_h/2+4, "DF40C(2.0)-40DS-0.4V(58)", 8.5, "bold", "middle"),
+        label(sx0 + 117.5, base_y-main_h/2+4, "DF40C(2.0)-40DS-0.4V(51)", 8.5, "bold", "middle"),
         f'<rect x="{sx0+62:.1f}" y="{base_y-mate_h:.1f}" width="111" height="{1.14*z_scale:.1f}" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>',
         f'<rect x="{sx0+15:.1f}" y="{base_y-mate_h-pcb_h:.1f}" width="205" height="{pcb_h:.1f}" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>',
         label(sx0 + 230, base_y-mate_h-pcb_h/2+4, "0.8-mm adapter", 10, "bold"),

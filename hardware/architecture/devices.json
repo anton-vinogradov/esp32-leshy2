@@ -1548,30 +1548,30 @@
         "FITTING_2": {"physical": "right solder hold-down", "role": "mechanical"}
       }
     },
-    "hirose_df40c_2_0_40ds_0_4v_58": {
-      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+    "hirose_df40c_2_0_40ds_0_4v_51": {
+      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
       "kind": "40_position_0_4mm_2mm_stack_vertical_board_to_board_receptacle",
-      "qualification": "verified_exact_display_adapter_main_board_receptacle",
-      "lifecycle": "active and authorized-distributor-stocked",
+      "qualification": "verified_exact_jlcpcb_stocked_display_adapter_main_board_receptacle",
+      "lifecycle": "active_factory_stocked_standard_pcba",
       "dimensions_mm": [10.6, 3.38, 1.95],
       "source": {
         "document": "Hirose exact product page, 2D drawing and specification sheet",
-        "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",
-        "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
-        "checked": "2026-08-23"
+        "version": "CL0684-4042-5-51; exact 40-position receptacle; packaging suffix changes reel quantity only",
+        "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-51",
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "Mouser exact-MPN page; 262 shown in immediate stock",
-        "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C2.0-40DS-0.4V58?qs=Gufeu08L%2Fl2S31N%2Fy6Rjyw%3D%3D",
-        "checked": "2026-08-23"
+        "document": "JLCPCB C597934 exact HRS(Hirose) card; Extended SMT, Economic and Standard PCBA, MOQ 1, 7,205 currently placeable",
+        "url": "https://jlcpcb.com/partdetail/x/C597934",
+        "checked": "2026-08-28"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.07,
-        "price_break": "Mouser cut-tape quantity-100 tier",
-        "source": {"document": "Mouser exact-MPN published price table", "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C2.0-40DS-0.4V58?qs=Gufeu08L%2Fl2S31N%2Fy6Rjyw%3D%3D", "checked": "2026-08-23"}
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.3428,
+        "price_break": "JLCPCB quantity-100 tier",
+        "source": {"document": "JLCPCB C597934 live exact-MPN price table", "url": "https://jlcpcb.com/partdetail/x/C597934", "checked": "2026-08-28"}
       },
       "programmable": false,
-      "mechanical_contract": {"positions": 40, "pitch_mm": 0.4, "mated_height_mm": 2.0, "rated_current_per_contact_a": 0.3, "rated_data_rate_gbps": 20.0, "mating_cycles": 30, "exact_mate": "Hirose DF40C-40DP-0.4V(51)"},
+      "mechanical_contract": {"positions": 40, "pitch_mm": 0.4, "mated_height_mm": 2.0, "rated_current_per_contact_a": 0.3, "rated_data_rate_gbps": 20.0, "mating_cycles": 30, "exact_mate": "Hirose DF40C-40DP-0.4V(51)", "factory_packaging": "4000-piece reel; only packaging quantity differs from former (58) code"},
       "contacts": {
         "PIN_1": {"physical":"1","role":"passive"}, "PIN_2": {"physical":"2","role":"passive"}, "PIN_3": {"physical":"3","role":"passive"}, "PIN_4": {"physical":"4","role":"passive"},
         "PIN_5": {"physical":"5","role":"passive"}, "PIN_6": {"physical":"6","role":"passive"}, "PIN_7": {"physical":"7","role":"passive"}, "PIN_8": {"physical":"8","role":"passive"},
@@ -1608,7 +1608,7 @@
         "source": {"document": "Mouser exact-MPN published price table", "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C-40DP-0.4V51?qs=eDUdFcBPps3ody6AX5VRNA%3D%3D", "checked": "2026-08-23"}
       },
       "programmable": false,
-      "mechanical_contract": {"positions": 40, "pitch_mm": 0.4, "selected_mated_height_mm": 2.0, "rated_current_per_contact_a": 0.3, "rated_data_rate_gbps": 20.0, "mating_cycles": 30, "exact_mate": "Hirose DF40C(2.0)-40DS-0.4V(58)"},
+      "mechanical_contract": {"positions": 40, "pitch_mm": 0.4, "selected_mated_height_mm": 2.0, "rated_current_per_contact_a": 0.3, "rated_data_rate_gbps": 20.0, "mating_cycles": 30, "exact_mate": "Hirose DF40C(2.0)-40DS-0.4V(51)"},
       "contacts": {
         "PIN_1": {"physical":"1","role":"passive"}, "PIN_2": {"physical":"2","role":"passive"}, "PIN_3": {"physical":"3","role":"passive"}, "PIN_4": {"physical":"4","role":"passive"},
         "PIN_5": {"physical":"5","role":"passive"}, "PIN_6": {"physical":"6","role":"passive"}, "PIN_7": {"physical":"7","role":"passive"}, "PIN_8": {"physical":"8","role":"passive"},
@@ -2769,31 +2769,31 @@
         "END_2": {"physical": "2", "role": "passive"}
       }
     },
-    "murata_lqw15an56nj00d": {
-      "mpn": "Murata LQW15AN56NJ00D",
-      "kind": "56nh_5pct_high_q_rf_inductor_0402",
-      "qualification": "verified_exact_si4732_fmi_first_target",
-      "lifecycle": "active_orderable",
+    "murata_lqw15an56ng00d": {
+      "mpn": "Murata LQW15AN56NG00D",
+      "kind": "56nh_2pct_high_q_rf_inductor_0402",
+      "qualification": "verified_exact_jlcpcb_stocked_si4732_fmi_first_target",
+      "lifecycle": "active_factory_stocked_standard_pcba",
       "dimensions_mm": [1.0, 0.5, 0.6],
       "source": {
         "document": "Murata LQW15AN_00 RF-inductor family and exact-product data",
-        "version": "current manufacturer data checked 2026-08-18",
+        "version": "current manufacturer LQW15AN_00 family data; G tolerance code is +/-2%",
         "url": "https://www.murata.com/en-global/products/inductor/chip/overview/lineup/rf2",
-        "checked": "2026-08-18"
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "LQW15AN56NJ00D active authorized-distributor stock page",
-        "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQW15AN56NJ00D/584364",
-        "checked": "2026-08-18"
+        "document": "JLCPCB C167482 exact Murata card; Extended SMT, Economic and Standard PCBA, MOQ 1, 20,744 currently placeable",
+        "url": "https://jlcpcb.com/partdetail/x/C167482",
+        "checked": "2026-08-28"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0724,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
-        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQW15AN56NJ00D/584364", "checked": "2026-08-19"}
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0447,
+        "price_break": "JLCPCB one-to-199-piece tier",
+        "source": {"document": "JLCPCB C167482 live exact-MPN price table", "url": "https://jlcpcb.com/partdetail/x/C167482", "checked": "2026-08-28"}
       },
       "electrical_contract": {
         "inductance_nh": 56,
-        "tolerance_percent": 5,
+        "tolerance_percent": 2,
         "q_min_at_200mhz": 25,
         "self_resonant_frequency_ghz_min": 2.8,
         "rated_current_ma": 200,
@@ -5304,27 +5304,27 @@
         "CATHODE": {"physical": "datasheet cathode land", "role": "analog"}
       }
     },
-    "vishay_tsop75238tt": {
-      "mpn": "Vishay TSOP75238TT",
+    "vishay_tsop75238tr": {
+      "mpn": "Vishay TSOP75238TR",
       "kind": "heimdall_smd_38khz_agc2_demodulating_ir_receiver",
-      "qualification": "verified_exact_stocked_robust_ir_receiver",
-      "lifecycle": "active_stocked_orderable",
+      "qualification": "verified_exact_jlcpcb_stocked_robust_ir_receiver",
+      "lifecycle": "active_factory_stocked_standard_pcba_thin_stock",
       "dimensions_mm": [6.8, 3.0, 3.2],
       "source": {
         "document": "TSOP752 IR receiver modules datasheet",
         "version": "Rev. 1.6, 06-May-2025",
         "url": "https://www.vishay.com/docs/82494/tsop752.pdf",
-        "checked": "2026-08-25"
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "TSOP75238TT active exact order code; authorized-distributor cut-tape stock",
-        "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864",
-        "checked": "2026-08-25"
+        "document": "JLCPCB C511498 exact Vishay card; Extended SMT, Economic and Standard PCBA, MOQ 1, 15 currently placeable",
+        "url": "https://jlcpcb.com/partdetail/x/C511498",
+        "checked": "2026-08-28"
       },
-      "cost_gate": {
-        "status": "quantity_100_rfq_required",
-        "reason": "Authorized-distributor cut-tape stock and a USD 1.46 quantity-one engineering-sample price are confirmed; the project quantity-100 comparison remains a later BOM quote gate",
-        "source": {"document": "DigiKey exact-MPN cut-tape listing", "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864", "checked": "2026-08-25"}
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.2231,
+        "price_break": "JLCPCB quantity-100 tier; public stock is below the 100-device requirement",
+        "source": {"document": "JLCPCB C511498 live exact-MPN price table", "url": "https://jlcpcb.com/partdetail/x/C511498", "checked": "2026-08-28"}
       },
       "electrical_contract": {
         "supply_v": [2.5, 5.5],
@@ -5332,7 +5332,8 @@
         "agc": "AGC2",
         "typical_transmission_distance_m": 45,
         "output": "active-low demodulated envelope; never carrier-frequency evidence",
-        "taping": "TT top-view tape; cut-tape ordering supported",
+        "taping": "TR side-view tape, 2300 pieces per reel; same final package and contacts as TT but feeder orientation differs",
+        "factory_gate": "CPL rotation and feeder presentation must be confirmed against the JLCPCB C511498 placement preview before order; public stock must cover the complete job plus attrition or the exact part is pre-ordered",
         "replacement_basis": "same 6.8 x 3.0 x 3.2 mm Heimdall top-view envelope and identical contacts as TSOP95238TT; wider supply range, lower typical current and longer typical range at 3.3 V"
       },
       "programmable": false,
@@ -7261,28 +7262,28 @@
         "VDD": {"physical": "8", "role": "power"}
       }
     },
-    "ti_csd87313dmst": {
-      "mpn": "Texas Instruments CSD87313DMST",
+    "ti_csd87313dms": {
+      "mpn": "Texas Instruments CSD87313DMS",
       "physical_pcb_contact_count": 9,
       "kind": "dual_common_drain_30v_nmos_battery_protection",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
+      "qualification": "verified_exact_jlcpcb_stocked_candidate",
+      "lifecycle": "active_factory_stocked_standard_pcba",
       "dimensions_mm": [3.3, 3.3, 1.0],
       "source": {
         "document": "CSD87313DMS 30-V dual common-drain N-channel NexFET datasheet",
         "version": "SLPS659, April 2017; package addendum updated 2025-10-17",
         "url": "https://www.ti.com/lit/ds/symlink/csd87313dms.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-08-28"
       },
       "orderable_source": {
-        "document": "CSD87313DMST active orderable product page and authorized-channel stock",
-        "url": "https://www.ti.com/product/CSD87313DMS/part-details/CSD87313DMST",
-        "checked": "2026-08-19"
+        "document": "JLCPCB C2863848 exact Texas Instruments card; Extended SMT, Economic and Standard PCBA, MOQ 1, 4,741 currently placeable",
+        "url": "https://jlcpcb.com/partdetail/x/C2863848",
+        "checked": "2026-08-28"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.4735,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
-        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/CSD87313DMST/7219023", "checked": "2026-08-19"}
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.7651,
+        "price_break": "JLCPCB quantity-100 tier",
+        "source": {"document": "JLCPCB C2863848 live exact-MPN price table", "url": "https://jlcpcb.com/partdetail/x/C2863848", "checked": "2026-08-28"}
       },
       "programmable": false,
       "contacts": {

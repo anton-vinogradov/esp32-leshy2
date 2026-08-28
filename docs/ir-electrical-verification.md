@@ -6,7 +6,7 @@ H3.3.3 checks the complete C5 IR chain: robust demodulated receive, raw carrier 
 
 ## Dual receive
 
-`Vishay TSOP75238TT` provides the robust active-low 38-kHz AGC2 envelope while `Vishay TSMP95000TT` independently returns 30-to-60-kHz carrier cycles for learning. Both are powered only in IR RX/LEARN and remain within `2.991340…3.285658 V. C5 discards the first `20` ms after enable and waits `5` ms after disable before declaring `IR_QUIET`. Short formats rejected by AGC2 remain available through the raw path.
+`Vishay TSOP75238TR` provides the robust active-low 38-kHz AGC2 envelope while `Vishay TSMP95000TT` independently returns 30-to-60-kHz carrier cycles for learning. Both are powered only in IR RX/LEARN and remain within `2.991340…3.285658 V. C5 discards the first `20` ms after enable and waits `5` ms after disable before declaring `IR_QUIET`. Short formats rejected by AGC2 remain available through the raw path.
 
 ## Transmit
 

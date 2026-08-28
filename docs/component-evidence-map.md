@@ -16,13 +16,13 @@ flowchart LR
 
 ### `H3-PHY-017` · `display`
 
-- Selected: `HMX035CTFT-001 (QDtech schematic assembly marking)`; `Sitronix ST77922`; `Hirose DF40C(2.0)-40DS-0.4V(58)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-40S-0.5SH(99)`.
+- Selected: `HMX035CTFT-001 (QDtech schematic assembly marking)`; `Sitronix ST77922`; `Hirose DF40C(2.0)-40DS-0.4V(51)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-40S-0.5SH(99)`.
 - Still to prove: standalone order identity and current-lot full FPC outline for the HMX035CTFT-001-marked assembly; received-controller identity/readback and measured VDD/VDDI ramp equality.
 - Pass rule: the received specimen directly demonstrates this item: confirm HMX035CTFT-001 tail, ST77922 identity, VDD/VDDI ramp equality and reset/readback on received specimens; a mismatch reopens the owning H1/H2/H3 result
 
 ### `H3-PHY-024` · `ir`
 
-- Selected: `Vishay TSOP75238TT`; `Vishay TSMP95000TT`; `Vishay VSMY14940`.
+- Selected: `Vishay TSOP75238TR`; `Vishay TSMP95000TT`; `Vishay VSMY14940`.
 - Still to prove: received-lot orientation and measured startup, quiet-guard, capture and no-back-power behaviour.
 - Pass rule: the received specimen directly demonstrates this item: verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; a mismatch reopens the owning H1/H2/H3 result
 
@@ -70,7 +70,7 @@ flowchart LR
 
 ## Fourteen mechanical gates
 
-- `H5-MECH-DISPLAY-TAIL` — `HMX035CTFT-001 (QDtech schematic assembly marking)`; `Hirose DF40C(2.0)-40DS-0.4V(58)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-40S-0.5SH(99)`; open: Standalone order identity, current-lot complete FPC outline, thickness, stiffener, adhesive, bend path and actual insertion/retention in the selected dual-contact ZIF remain received-display properties; a mismatch may revise only the small adapter and its panel-side connector.
+- `H5-MECH-DISPLAY-TAIL` — `HMX035CTFT-001 (QDtech schematic assembly marking)`; `Hirose DF40C(2.0)-40DS-0.4V(51)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-40S-0.5SH(99)`; open: Standalone order identity, current-lot complete FPC outline, thickness, stiffener, adhesive, bend path and actual insertion/retention in the selected dual-contact ZIF remain received-display properties; a mismatch may revise only the small adapter and its panel-side connector.
 - `H5-MECH-NRF-GEN1-FEEDS` — `Ebyte E01-ML01IPX`; `TE Connectivity 2118651-2`; `Hirose U.FL-R-SMT-1(10)`; `GCT RFPC-SMA31-FN-175-A`; open: The connector axis and current-lot receptacle manufacturer's exact MPN, actual fit/retention, bend/strain behaviour and end-to-end RF loss remain received-part properties. H1.2/H1.6 must prove the conservative module-face-to-board-receptacle corridor without relying on a nominal axis.
 - `H5-MECH-U214-MATING-STACK` — `M5Stack U214 Cap LoRa-1262`; `Samtec HLE-107-02-G-DV-PE-LC`; open: Current-lot U214 post section, insertion force, contact retention, repeated-cycle fit, retention-screw engagement and final compliant rail preload remain received-part properties; none changes the bounded H1 exterior envelope or main-board placement.
 - `H5-MECH-NAVIGATION-CONTROLS` — `OMRON B3S-1100P`; open: Assembled enclosure opening access, accidental-press margin, multi-button feel, sealing boundary and endurance.
@@ -81,7 +81,7 @@ flowchart LR
 - `H5-MECH-M5-UNIT-MATE` — `1125R-SMT-4P`; open: Received Grove cable insertion, retention, strain relief and repeated mating.
 - `H5-MECH-CELL-HOLDER-FIT` — `Keystone Electronics 1048P`; `XTAR 18650 4000mAh`; open: Received insertion force, contact compression, polarity protection, vibration and thermal cycling.
 - `H5-MECH-NATIVE-RF-JUMPERS` — `TE Connectivity 2118651-2`; `Hirose U.FL-R-SMT-1(10)`; open: Actual bend radius, strain relief, insertion force, retention and RF loss after assembly.
-- `H5-MECH-DISPLAY-PERFORMANCE` — `HMX035CTFT-001 (QDtech schematic assembly marking)`; `Hirose DF40C(2.0)-40DS-0.4V(58)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-40S-0.5SH(99)`; open: QSPI/touch operation, optical quality, backlight current/thermal, flex endurance and lot repeatability.
+- `H5-MECH-DISPLAY-PERFORMANCE` — `HMX035CTFT-001 (QDtech schematic assembly marking)`; `Hirose DF40C(2.0)-40DS-0.4V(51)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-40S-0.5SH(99)`; open: QSPI/touch operation, optical quality, backlight current/thermal, flex endurance and lot repeatability.
 - `H5-MECH-ACOUSTIC-PATHS` — `PUI Audio AS02404PO`; `Same Sky CMEJ-0413-42-SMT-TR`; open: Enclosure acoustic treatment, cavity resonance, sealing, feedback, microphone response and vibration.
 - `H5-MECH-HEADSET-JACK` — `Same Sky SJ-43504-SMT-TR`; open: Received cutout tolerance, shield and solder-tab fit, enclosure opening, plug insertion/withdrawal force, CTIA and three-pole TRS behavior, retention and unplug transient remain assembled-product properties.
 

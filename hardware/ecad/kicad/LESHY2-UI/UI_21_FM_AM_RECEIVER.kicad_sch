@@ -1950,7 +1950,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "56nh_5pct_high_q_rf_inductor_0402"
+			(property "Description" "56nh_2pct_high_q_rf_inductor_0402"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3906,7 +3906,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Murata LQW15AN56NJ00D"
+		(property "Value" "Murata LQW15AN56NG00D"
 			(at 294.64 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3926,7 +3926,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "56nh_5pct_high_q_rf_inductor_0402"
+		(property "Description" "56nh_2pct_high_q_rf_inductor_0402"
 			(at 294.64 148.59 0)
 			(show_name no)
 			(do_not_autoplace no)

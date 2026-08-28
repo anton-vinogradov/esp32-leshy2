@@ -4,13 +4,13 @@
   "status": "reviewed_complete_physical_only_residual_register",
   "method": "flatten the physical-only output of every H3 phase consolidation, remove only H3-internal dependencies already closed, preserve exact provenance and assign an evidence owner plus pass rule",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "5b1dbafc8896fe4e9e9387529face0c05eec891aa8656c85310d124b8867cfdc",
-    "hardware/verification/generated/H3-VRF25-transition-consolidation.json": "09aea74dee2be38de0a5e4a1f269d412582a54db52bc4f8159a422ea8c5b95fa",
-    "hardware/verification/generated/H3-VRF35-analog-consolidation.json": "5857ff3755542df0ea9c06a447750c2d315fff38affcc39c0d014a00fdad35ad",
-    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "257bb8589bce2d8d6f5d54c7a71b504aec3ef50b9d1bc3b6afbd13b0b877188c",
-    "hardware/verification/generated/H3-VRF54-rf-consolidation.json": "70c2fe430f4ec204fdeb1ae9a7a27017c9e14d3b1d97ff81a3d2c0725341fbd4",
-    "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json": "3664b74ab74366298713a77babe1d183b11997a2939cc1d78f21007e688b4faa",
-    "hardware/verification/generated/H3-VRF71-crosscheck.json": "7f38da4eec4597d0941fe302bea1884b0bbcf56d50ede2cf54485e1ebaeada44"
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "efc479252d99b836763e6f8d60b17dfc8e9bce4860944cc473f9eb6dd71ee7f5",
+    "hardware/verification/generated/H3-VRF25-transition-consolidation.json": "1e15ae8db661216ee172a397d5485ddd2392fc448c5a74875d8581b156f89856",
+    "hardware/verification/generated/H3-VRF35-analog-consolidation.json": "4d2cffc2e745d2b3cb6c951990869b5d05a6d7b92403135f1c834705e84a01b9",
+    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "0a8cc57ff9a2cb177c8a40b76a3d6ce36e42e9730b8701d708b60f3be14e5be2",
+    "hardware/verification/generated/H3-VRF54-rf-consolidation.json": "3bbd27cdbbe212a416ff910b308f716c13c9ba6cc82fe8d3ca931cb4b9dfa85d",
+    "hardware/verification/generated/H3-VRF64-thermal-fault-consolidation.json": "b59e44e95f4ef513652c5fdeefa07ff22f7b7b217aafeb2797af7258ee2cffaf",
+    "hardware/verification/generated/H3-VRF71-crosscheck.json": "7d2694a32514222b00e4facb705ad8ba715140e4ca911d4048a98586c3b936f5"
   },
   "summary": {
     "raw_consolidated_rows": 88,
@@ -475,7 +475,7 @@
       "source_phase": "H3.3",
       "source_artifact": "hardware/verification/generated/H3-VRF35-analog-consolidation.json",
       "source_group": "ir",
-      "residual": "verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
+      "residual": "verify received TSOP75238TR/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; confirm TSOP75238TR CPL rotation and feeder presentation against the JLCPCB placement preview",
       "closure_stages": [
         "H5",
         "H8"
@@ -484,12 +484,12 @@
         "H5": {
           "owner": "H5 received-component evidence",
           "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
-          "pass_rule": "the received specimen directly demonstrates this item: verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; a mismatch reopens the owning H1/H2/H3 result"
+          "pass_rule": "the received specimen directly demonstrates this item: verify received TSOP75238TR/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; confirm TSOP75238TR CPL rotation and feeder presentation against the JLCPCB placement preview; a mismatch reopens the owning H1/H2/H3 result"
         },
         "H8": {
           "owner": "H8 physical qualification",
           "required_artifact": "versioned HIL procedure, calibrated-instrument raw data, exact DUT/firmware identity, computed limit comparison and retained pass/fail log",
-          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; any failure reopens the owning result and blocks release"
+          "pass_rule": "the populated device passes this measured or injected case at every admitted corner: verify received TSOP75238TR/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; confirm TSOP75238TR CPL rotation and feeder presentation against the JLCPCB placement preview; any failure reopens the owning result and blocks release"
         }
       },
       "status": "physical_evidence_required"

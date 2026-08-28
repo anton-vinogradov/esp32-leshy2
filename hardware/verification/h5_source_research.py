@@ -113,13 +113,13 @@ SOURCES = {
         "owner": "Vishay",
         "title": "TSOP752 IR receiver modules datasheet",
         "url": "https://www.vishay.com/docs/82494/tsop752.pdf",
-        "supports": "exact TSOP75238TT electrical limits, 6.8 x 3.0 x 3.2 mm Heimdall top-view envelope, contact order, AGC2 and 38-kHz identity",
+        "supports": "exact TSOP75238TR electrical limits, 6.8 x 3.0 x 3.2 mm Heimdall envelope, contact order, AGC2 and 38-kHz identity; official ordering table distinguishes TR side-view tape from TT top-view tape without changing the final package",
     },
-    "digikey_tsop75238tt": {
-        "owner": "DigiKey",
-        "title": "TSOP75238TT authorized-distributor listing",
-        "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864",
-        "supports": "current exact-MPN cut-tape stock and quantity-one price evidence at review time",
+    "jlcpcb_tsop75238tr": {
+        "owner": "JLCPCB",
+        "title": "TSOP75238TR exact Vishay catalogue line C511498",
+        "url": "https://jlcpcb.com/partdetail/x/C511498",
+        "supports": "exact manufacturer identity; Extended SMT, Economic and Standard PCBA; MOQ 1; 15 currently placeable and USD 1.3011 at quantity one at review time",
     },
     "nicerf_sa818s_v18": {
         "owner": "G-NiceRF",
@@ -165,11 +165,11 @@ RESIDUAL_FINDINGS = {
     },
     "H3-PHY-024": {
         "disposition": "irreducible_received_sample",
-        "sources": ["vishay_tsop752", "digikey_tsop75238tt"],
-        "finding": "The full-reel-only TSOP95238TT was replaced by stocked cut-tape TSOP75238TT. It keeps the same 6.8 x 3.0 x 3.2 mm top-view envelope, contact order, 38-kHz AGC2 role and 3.3-V compatibility while widening the supply range and improving nominal range; received orientation and dynamic behaviour remain physical.",
-        "finding_ru": "Доступный только полной катушкой TSOP95238TT заменён на складской cut-tape TSOP75238TT. Сохраняются тот же top-view envelope 6,8 x 3,0 x 3,2 мм, порядок контактов, роль 38-кГц AGC2 и совместимость с 3,3 В; диапазон питания расширен, номинальная дальность улучшена. Ориентация партии и динамика остаются физической проверкой.",
-        "remaining": "run the inherited two-channel dynamic fixture on received parts",
-        "remaining_ru": "прогнать принятую двухканальную динамическую fixture на полученных деталях",
+        "sources": ["vishay_tsop752", "jlcpcb_tsop75238tr"],
+        "finding": "The selected robust channel is exact TSOP75238TR from JLCPCB C511498. TR and the former TT code retain the same 6.8 x 3.0 x 3.2 mm package, contact order, 38-kHz AGC2 role and 3.3-V compatibility; only the tape presentation differs. The current 15-piece stock covers the five-device trial but not a 100-device run.",
+        "finding_ru": "В устойчивом канале выбран точный TSOP75238TR через JLCPCB C511498. TR и прежний код TT сохраняют тот же корпус 6,8 x 3,0 x 3,2 мм, порядок контактов, роль 38 кГц AGC2 и совместимость с 3,3 В; отличается только подача в ленте. Текущий остаток 15 шт. покрывает партию из пяти устройств, но не серию из 100.",
+        "remaining": "approve CPL rotation and feeder presentation against the JLCPCB placement preview, recheck exact stock before order, and run the inherited two-channel dynamic fixture on received parts",
+        "remaining_ru": "сверить CPL rotation и подачу feeder с placement preview JLCPCB, повторно проверить точный остаток перед заказом и прогнать принятую двухканальную динамическую fixture на полученных деталях",
     },
     "H3-PHY-028": {
         "disposition": "irreducible_received_sample",
@@ -267,10 +267,10 @@ TEST_ARTICLES = [
 ALTERNATIVES = [
     {
         "target": "TSOP95238TT robust 38-kHz IR receiver",
-        "candidate": "TSOP75238TT",
-        "sources": ["vishay_tsop752", "digikey_tsop75238tt"],
+        "candidate": "TSOP75238TR",
+        "sources": ["vishay_tsop752", "jlcpcb_tsop75238tr"],
         "decision": "accepted_form_fit_function_replacement",
-        "reason": "same top-view Heimdall envelope and contacts, same 38-kHz AGC2 function and 3.3-V compatibility, but stocked cut tape instead of a full-reel-only procurement path; no PCB, GPIO or firmware-interface change",
+        "reason": "same final Heimdall envelope and contacts, same 38-kHz AGC2 function and 3.3-V compatibility; JLCPCB C511498 is factory-placeable stock. TR changes tape presentation only, so the PCB/GPIO/firmware interface stays fixed but CPL rotation and feeder presentation are an explicit pre-order gate",
     },
     {
         "target": "E01-ML01IPX RF feed",
@@ -471,7 +471,7 @@ flowchart LR
 
 - Эталонная microSD: `SDSQQNR-032G-GN6IA`.
 - Набор M5-проводов: `A034-G`, `A034-B`, `A096`.
-- Full-reel-only `TSOP95238TT` заменён на складской cut-tape `TSOP75238TT` без изменения footprint, контактов, GPIO или интерфейса прошивки.
+- Для robust IR выбран factory-stocked `TSOP75238TR` (`C511498`) без изменения footprint, контактов, GPIO или интерфейса прошивки; перед заказом обязательны проверка остатка, CPL rotation и feeder presentation.
 - Для дисплея найден серийный донор `ES3C35P`; raw-панель всё ещё нельзя честно квалифицировать без образца.
 - `TE 2118651-2` подтверждён как active и документированный; менять его нет оснований.
 - Для stock `U214` и `E01-ML01IPX` производители действительно не раскрывают MPN установленных connector subparts.
@@ -484,7 +484,7 @@ flowchart LR
 
 ## Проверенные замены
 
-- `TSOP75238TT`: принята как form/fit/function-замена `TSOP95238TT`; сохраняет top-view envelope, контакты, 38-кГц AGC2 и питание 3,3 В, но продаётся поштучно.
+- `TSOP75238TR`: сохраняет конечный Heimdall envelope, контакты, 38-кГц AGC2 и питание 3,3 В; TR меняет только подачу в ленте, поэтому placement preview остаётся обязательным воротом.
 
 ## Проверенные, но отклонённые замены
 
@@ -520,7 +520,7 @@ flowchart LR
 
 - Reference microSD: `SDSQQNR-032G-GN6IA`.
 - M5 interconnect set: `A034-G`, `A034-B`, `A096`.
-- Full-reel-only `TSOP95238TT` is replaced by stocked cut-tape `TSOP75238TT` without a footprint, contact, GPIO or firmware-interface change.
+- Robust IR now uses factory-stocked `TSOP75238TR` (`C511498`) without a footprint, contact, GPIO or firmware-interface change; stock, CPL rotation and feeder presentation are mandatory pre-order checks.
 - A serial `ES3C35P` display donor route is identified; the raw panel still cannot be honestly qualified without a received sample.
 - `TE 2118651-2` is confirmed active and documented; replacement has no demonstrated benefit.
 - The makers of stock `U214` and `E01-ML01IPX` genuinely do not disclose the fitted connector-subpart MPNs.
@@ -533,7 +533,7 @@ flowchart LR
 
 ## Accepted replacement
 
-- `TSOP75238TT`: accepted as a form/fit/function replacement for `TSOP95238TT`; it retains the top-view envelope, contacts, 38-kHz AGC2 role and 3.3-V operation while being orderable individually.
+- `TSOP75238TR`: retains the final Heimdall envelope, contacts, 38-kHz AGC2 role and 3.3-V operation; TR changes only tape presentation, so the placement preview remains an explicit gate.
 
 ## Evaluated and rejected alternatives
 

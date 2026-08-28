@@ -16,7 +16,7 @@
 <rect x="555.0" y="325.0" width="235" height="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
 <text x="800.0" y="338.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#172033">UI/control PCB</text>
 <rect x="610.0" y="250.9" width="125" height="74.1" fill="#e0e7ff" stroke="#4338ca" stroke-width="2"/>
-<text x="672.5" y="291.9" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#172033">DF40C(2.0)-40DS-0.4V(58)</text>
+<text x="672.5" y="291.9" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#172033">DF40C(2.0)-40DS-0.4V(51)</text>
 <rect x="617.0" y="249.0" width="111" height="43.3" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
 <rect x="570.0" y="218.6" width="205" height="30.4" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
 <text x="785.0" y="237.8" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#172033">0.8-mm adapter</text>

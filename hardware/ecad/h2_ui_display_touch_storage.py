@@ -371,9 +371,9 @@ def build() -> tuple[dict[Path, str], dict]:
         "intentional_no_connect_endpoints": sorted(no_connect_endpoints),
         "footprint_evidence": [
             {
-                "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+                "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
                 "footprint": footprint_for("display_connector", "", True),
-                "source": devices["hirose_df40c_2_0_40ds_0_4v_58"]["source"],
+                "source": devices["hirose_df40c_2_0_40ds_0_4v_51"]["source"],
             },
             {
                 "mpn": "Hirose DM3AT-SF-PEJM5",

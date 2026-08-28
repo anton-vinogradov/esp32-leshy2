@@ -11,18 +11,18 @@
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_pro": "8d6db426a22f3adc2ab52b66429dbc5de928a3708e4b70212ab409a74b796fe3",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "ab4e73fe576c5e1557e6695b89fd3ce182c4533a61e984bd755d3c25b287ce97",
     "hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch": "52ee03e67516018f42643e02487a7fa3be09ddad59cbc1270b9ea7dbdcb24f4d",
-    "hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch": "b05114abd53ad776792b95bb82cd8f706edef8144396bc18d8f51a9b3cedcb6e",
+    "hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch": "80a05bc2e85d7cfd7e68a863608c22df9c56361c5b2464abc1fe994ccb4ed0df",
     "hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch": "5addad9d1f094b3af924445e877aca62703c25593bc782e6bb2b186ddd55b9f5",
     "hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch": "ec2d898b3ac74e46778a28871cbc6540e63980478605d6ab833545293655cc69",
-    "hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch": "33b69f1a0e213a34493f579029c85a4fca403ab0c7dd506fd9bae153f9c51b70",
-    "hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch": "a0b59ce936f22ded0784f56cea684b8ec4aef41c5e7768b8133140844da5dafd",
+    "hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch": "c9f491b1f60ae5f05b20773be7ddb71f57a498aaeab0d99c6be6cd5d8f71f328",
+    "hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch": "bd3b48cbc327d1683ff5d7e346fd63499c8a3e32ab4335b9b6739602e3f6b892",
     "hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch": "837d42635705214c6855e5cda908f5c35389a09465447943292afa3be6e870c0",
     "hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch": "f4462685b80603cef49cb096d49eaf7914e577dd7743b709427ba0930c547a9f",
     "hardware/ecad/kicad/LESHY2-UI/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch": "a7546175ef1faa02458a553ab23a94fd9aa55cb82989a36f3c95347ab59b9088",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_pro": "08e872b4c8416b22f2b5b185179d580e04d6c3aaf851cfc833ddc51b00aaf790",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "62036d985924f988257859617422a4eedbdab3d0d8f940cb485d32b7b97f23bc",
     "hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch": "89955bc7eefa09f8ee47e6dd841a801a7557514296a827d92299bb70ce7a8c41",
-    "hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch": "f97b808c88e8c1a2fe7732c49fddafc7f9634c774686a06237b66f99062d6548",
+    "hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch": "54aabd610b11a6c610db45892de76e348afbd193b56b7ec1e89f2d3b4d92368d",
     "hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch": "d4cbc712e939b5a11e970fb5fa7796996f5e194867a7e2ed37f71813b5b81e10",
     "hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch": "cb0c025c788a275ef44f95f27d35b3f038ca1dfc38fe33a61efd4da045b04865",
     "hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch": "19e1d69b1a42a1d26fb3d817e2ba998012bbd9056ffbfdaf3bb761e9807b8f48",
@@ -40,8 +40,8 @@
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_pro": "a38d2ae6ec8a9459cc66d6ca17792208314efced730a29847c7e2011131a486a",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch": "9dc3755f2e8b625b4bd68d28cbd153f50ebf12e567d8270598277a041d8187a3",
-    "hardware/ecad/libraries/leshy2.kicad_sym": "d92ad3c1280640c160f5a48325e6acf8f5fe68621e2907e436d6593d213761fc",
-    "hardware/ecad/generated/H2-REV62-no-connects.json": "2d6198df00829358d8c7bb8bf28125a99915bb3a808a09180ea3494a363839ad"
+    "hardware/ecad/libraries/leshy2.kicad_sym": "a6b025d6ece5c96a275230f1df2b03b9ad1e0ea58ad8c97748df6413e1c0aafa",
+    "hardware/ecad/generated/H2-REV62-no-connects.json": "b9e9e7e50a35fa6f7ce7054265bc58c2ef01afb0de54128d0d817947b99e99db"
   },
   "projects": [
     {

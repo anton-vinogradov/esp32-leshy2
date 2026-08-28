@@ -4535,7 +4535,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Hirose DF40C(2.0)-40DS-0.4V(58)"
+		(property "Value" "Hirose DF40C(2.0)-40DS-0.4V(51)"
 			(at 213.36 120.71 0)
 			(show_name no)
 			(do_not_autoplace no)

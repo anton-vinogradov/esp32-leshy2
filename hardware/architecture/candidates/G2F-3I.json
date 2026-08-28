@@ -54,7 +54,7 @@
             "murata_gjm1555c1h100jb01d", "murata_gjm1555c1h101jb01d", "murata_gjm1555c1h150jb01d", "murata_gjm1555c1h1r2bb01d",
             "murata_gjm1555c1h6r2db01d", "murata_gjm1555c1h8r0db01d", "murata_gjm1555c1hr47bb01d", "murata_gjm1555c1hr60bb01d",
             "murata_grm1555c1h102ja01d", "murata_grm1555c1h220ja01d", "murata_grm1555c1h390ja01d",
-            "murata_lqg15hs10nj02d", "murata_lqg15hs15nj02d", "murata_lqg15hs2n2s02d", "murata_lqg15hs3n3s02d", "murata_lqg15hs3n6s02d", "murata_lqg15hs6n8j02d", "murata_lqw15an56nj00d",
+            "murata_lqg15hs10nj02d", "murata_lqg15hs15nj02d", "murata_lqg15hs2n2s02d", "murata_lqg15hs3n3s02d", "murata_lqg15hs3n6s02d", "murata_lqg15hs6n8j02d", "murata_lqw15an56ng00d",
             "nexperia_pesd24vy1bsf", "ttm_b0310j50100ahf", "ttm_dc2337j5010ahf", "yageo_rc0402fr_0749r9l", "yageo_rc0402fr_0752r3l", "yageo_rc0402fr_0756kl"
           ]
         },
@@ -120,7 +120,7 @@
           "equivalence_envelope": ["same package/contact map and autonomous reset/fail-safe state", "limits, accuracy, protection coverage, gate drive, current/thermal capability, quiescent current, telemetry and fault latching no worse", "configuration memory/firmware image and independent recovery remain supported"],
           "requalification": ["complete paper safety analysis and worst-case power calculations", "startup/source-transition/load-step/short/thermal/brownout/recovery HIL", "controlled destructive single-fault verification where the owning contract requires it"],
           "device_ids": [
-            "adi_max17320_g20_t", "onsemi_cat24c512wi_gt3", "ti_bq25798_rqmr", "ti_csd87313dmst", "ti_mspm0c1106_sdgs20r", "ti_tps22919_dckr", "ti_tps2553drvr_1", "ti_tps25751d_refr", "ti_tps259470l_rpwr", "ti_tps25961_drvr", "ti_tps25974l_rpwr", "ti_tps3435cakagddfr", "ti_tps3808g33_dbvr", "ti_tps3839k33_dbzr", "ti_tps564252_drlr", "ti_tps629203_drlr", "ti_tpul2g223_bqbr", "ti_tvs2200_drvr"
+            "adi_max17320_g20_t", "onsemi_cat24c512wi_gt3", "ti_bq25798_rqmr", "ti_csd87313dms", "ti_mspm0c1106_sdgs20r", "ti_tps22919_dckr", "ti_tps2553drvr_1", "ti_tps25751d_refr", "ti_tps259470l_rpwr", "ti_tps25961_drvr", "ti_tps25974l_rpwr", "ti_tps3435cakagddfr", "ti_tps3808g33_dbvr", "ti_tps3839k33_dbzr", "ti_tps564252_drlr", "ti_tps629203_drlr", "ti_tpul2g223_bqbr", "ti_tvs2200_drvr"
           ]
         },
         {
@@ -130,7 +130,7 @@
           "equivalence_envelope": ["same exposed real-device contacts, package/mechanics, memory/resources and independent programming/recovery", "all accepted bands, modes, full nRF concurrency, timing, sensitivity, power, evidence and quiet-state controls preserved", "regulatory/profile and toolchain support no worse"],
           "requalification": ["zero-based pin/resource/owner and firmware contract review", "programming/recovery/diagnostic and inter-domain IPC HIL", "conducted/OTA/optical/audio/coexistence/no-stall qualification for every affected group"],
           "device_ids": [
-            "adi_ad8314acpz_rl7", "adi_ltc5532_es6_trmpbf", "cc1101rgpr", "ebyte_e01_ml01ipx", "esp32_c5_wroom_1u_n8r8", "esp32_s3_wroom_1u_n16r8", "infineon_bgs13sn8e6327xtsa1", "m5_u214", "nicerf_sa818s_u_v18", "nicerf_sa818s_v_v18", "rp2354b_a4", "skyworks_si4732_a10_gsr", "vishay_tsmp95000tt", "vishay_tsop75238tt", "vishay_vemd1060x01", "vishay_vsmy14940"
+            "adi_ad8314acpz_rl7", "adi_ltc5532_es6_trmpbf", "cc1101rgpr", "ebyte_e01_ml01ipx", "esp32_c5_wroom_1u_n8r8", "esp32_s3_wroom_1u_n16r8", "infineon_bgs13sn8e6327xtsa1", "m5_u214", "nicerf_sa818s_u_v18", "nicerf_sa818s_v_v18", "rp2354b_a4", "skyworks_si4732_a10_gsr", "vishay_tsmp95000tt", "vishay_tsop75238tr", "vishay_vemd1060x01", "vishay_vsmy14940"
           ]
         },
         {
@@ -140,7 +140,7 @@
           "equivalence_envelope": ["same mating standard/contact map/polarity plus compatible footprint, keepout, insertion, retention and service access", "display optics/touch/backlight, cell protection/chemistry, switch force/travel/current and transducer acoustic response no worse", "sealing, strain, temperature, life and manufacturing process remain compatible"],
           "requalification": ["received-sample dimensional/fit and assembly coupon", "contact/current/ESD/wear/drop/vibration/environmental HIL as applicable", "display, battery, UI and acoustic acceptance tests for the owning product scenario"],
           "device_ids": [
-            "alps_ec11e18244au", "alps_skrtlae010", "ck_js102011scqn", "davies_1227_j", "omron_b3s_1100p", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh34srj_40s_0_5sh_99", "hirose_df40c_2_0_40ds_0_4v_58", "hirose_df40c_40dp_0_4v_51", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj_43504_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "samtec_hle_107_02_g_dv_pe_lc", "seeed_1125r_smt_4p", "te_2118651_2", "xtar_18650_4000mah_protected"
+            "alps_ec11e18244au", "alps_skrtlae010", "ck_js102011scqn", "davies_1227_j", "omron_b3s_1100p", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh34srj_40s_0_5sh_99", "hirose_df40c_2_0_40ds_0_4v_51", "hirose_df40c_40dp_0_4v_51", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj_43504_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "samtec_hle_107_02_g_dv_pe_lc", "seeed_1125r_smt_4p", "te_2118651_2", "xtar_18650_4000mah_protected"
           ]
         }
       ]
@@ -329,26 +329,26 @@
     "decision": "DEC-0095",
     "status": "paper_reviewed_exact_dual_receiver_tx_and_actual_optical_evidence_endpoint_hil_open",
     "owner_and_pins": "ESP32-C5-WROOM-1U-N8R8 rev >=v1.2 retains direct RMT RX on GPIO0/GPIO1, frontend power on GPIO4, FAULT_KILL-qualified RMT TX on GPIO6 and active-low optical evidence on GPIO24; no new GPIO or slow-I/O contact is consumed",
-    "robust_receive": "exact TSOP75238TT on a separately filtered switched rail provides only the active-low 38-kHz AGC2 demodulated envelope; it never creates measured carrier provenance",
+    "robust_receive": "exact TSOP75238TR on a separately filtered switched rail provides only the active-low 38-kHz AGC2 demodulated envelope; it never creates measured carrier provenance",
     "carrier_learning": "exact TSMP95000TT on a separately filtered switched rail provides active-low carrier cycles only in its documented 30-60-kHz range; its output has the recommended 4.7-kOhm pull-up and is the only onboard source allowed to label carrier provenance measured",
     "power_and_isolation": "TPS22919DCKR with input/output energy, QOD and 10-kOhm ON pull-down powers only the two receive paths and one 74LVC2G126DP,125 Ioff buffer; two 100-Ohm/4.7-uF local filters suppress supply disturbance, while host-side 10-kOhm pull-ups hold both C5 inputs idle-high without back-power when the rail is off",
     "transmit": "one side-view VSMY14940 is driven from protected 3V3_MAIN by DMN2056U-7 through exact 47-Ohm 1206 current limit; a 100-Ohm gate resistor, independent 10-kOhm carrier-input pull-down, 10-kOhm MOSFET-gate pull-down and UI-board-local AON SN74LVC1G08DCKR qualified by RUN_PERMIT make reset/FAULT_KILL/off states dark without routing the carrier through the rear board",
     "current_bound": "the H3.3.3 corrected 47-Ohm population guarantees at least the VSMY14940 20-mA characterized optical point while bounding the conservative 3.4-V/85-C instantaneous corner to 50.6 mA including resistor tolerance and hot MOSFET resistance; 70 mA remains an absolute maximum, never an operating target. Production permits carrier duty no higher than one third, no mark longer than 20 ms, no more than 25% emitter-on time in rolling 100-ms and 1-s windows, and no IR TX at a local UI temperature of 75 C or above; IEC 62471 and enclosure optical geometry remain measured admission limits",
     "actual_optical_evidence": "VEMD1060X01 in a light-tight internal tunnel views the physical emitter, not drive current; AON TLV9061IDBVR uses 0.30-V nominal reference, 47-kOhm/1-nF transimpedance response and feeds comparator channel IR_OPTICAL; evidence never authorizes TX, missing light revokes TX, and ambient or optical crosstalk can only delay quiet",
     "phase_exclusion": "receive/learn and transmit are separate SG-IR phases; the receive rail stays off during transmit, the emitter stays dark during receive/learn, and the C5 native radio block remains independently quiet",
-    "remaining_hil": ["TSOP75238TT and TSMP95000TT specimen identity, contact orientation, rail discharge, no-back-power and simultaneous two-RX capture", "carrier-frequency accuracy, mark/space reconstruction and corpus compatibility across 30-60 kHz", "VSMY14940 current, range, optical alignment, duty, temperature derating and IEC 62471", "VEMD1060X01 tunnel coupling, comparator threshold, assert/decay, missing-emitter and ambient false-positive behavior", "KILL/FAULT_KILL, reset, brownout and stuck-carrier fault injection", "SG-IR active with every foreign signal group proven quiet, maximum allowed system-plane aggression, emissions and no-interface-stall proof; cross-group optical/RF injection is Laboratory characterization only"]
+    "remaining_hil": ["TSOP75238TR and TSMP95000TT specimen identity, contact orientation, rail discharge, no-back-power and simultaneous two-RX capture; TSOP75238TR CPL rotation and feeder presentation must match the JLCPCB placement preview", "carrier-frequency accuracy, mark/space reconstruction and corpus compatibility across 30-60 kHz", "VSMY14940 current, range, optical alignment, duty, temperature derating and IEC 62471", "VEMD1060X01 tunnel coupling, comparator threshold, assert/decay, missing-emitter and ambient false-positive behavior", "KILL/FAULT_KILL, reset, brownout and stuck-carrier fault injection", "SG-IR active with every foreign signal group proven quiet, maximum allowed system-plane aggression, emissions and no-interface-stall proof; cross-group optical/RF injection is Laboratory characterization only"]
   },
   "receiver_rf_electrical_contract": {
     "decision": "DEC-0096",
     "status": "paper_reviewed_i6_exact_si4732_dual_input_subblock_physical_and_hil_open",
     "scope": "one receive-only Si4732-A10-GSR with two physically separate protected antenna boundaries: FMI for FM/SW and AMI for AM/LW; no RF switch, transmit circuit, GPIO or new rail is introduced",
     "device_boundary": "the exact SOIC-16 exposes FMI on physical contact 6, RFGND on contact 7 and AMI on contact 8; the manufacturer data-short assigns FM/SW to FMI and AM/LW to AMI, with bands FM 64-108 MHz, AM 520-1710 kHz, SW 2.3-26.1 MHz and LW 153-279 kHz",
-    "fmi_path": "the dedicated standard-SMA FM/SW boundary first shunts through one SESD0402X1UN-0020-090 to a shortest RF return, then reaches FMI through exact LQW15AN56NJ00D 56-nH high-Q series matching and GRM1555C1H102JA01D 1-nF C0G AC coupling placed at the IC; AN383 qualifies this first-pass network for FM, while exact-device SW operation on the same published FMI port remains complete-path HIL rather than inferred acceptance",
+    "fmi_path": "the dedicated standard-SMA FM/SW boundary first shunts through one SESD0402X1UN-0020-090 to a shortest RF return, then reaches FMI through exact LQW15AN56NG00D 56-nH +/-2% high-Q series matching and GRM1555C1H102JA01D 1-nF C0G AC coupling placed at the IC; AN383 qualifies this first-pass network for FM, while exact-device SW operation on the same published FMI port remains complete-path HIL rather than inferred acceptance",
     "ami_path": "the separately labelled standard-SMA AM/LW boundary first shunts through its own SESD0402X1UN-0020-090, then reaches AMI through exact GRM155R71A474KE01D 0.47-uF coupling placed at the IC; it is an electrically non-50-Ohm loop/pod interface despite the common mechanical connector family",
     "external_pod_contract": "the exact first direct pod is controlled assembly L2-ANT-AM-LW-001: a passive short plug-in loop using Fair-Rite 3061990901, 38SNSP.125 wire and RF2-154-T-17-50-G SMA male, accepted by measured 300 uH +/-5% rather than nominal turn count. It has no buffer, power, GPIO or selector. Its material-61 core is supplier-guided from 0.2 MHz, so 153-200-kHz LW performance is explicitly HIL-open. An alternate external 10-20-uH air loop may use a physically remote 1:5-to-1:7 transformer so the base sees the same order of equivalent inductance. Arbitrary long coax is forbidden because cable and protection capacitance consume the AMI tuning budget",
     "protection_and_off_state": "two independent 0.2-pF-typical SESD0402X1UN-0020-090 bodies keep protection adjacent to each exposed boundary; each K contact is on signal and A returns through the shortest RF-ground geometry. The receiver power branch and digital isolation still turn off, while the passive RF inputs remain harmless protected receive-only paths and cannot authorize or emit TX",
     "source_applicability": "the exact Si4732-A10 data short assigns FM/SW to FMI and AM/LW to AMI. AN383 is family antenna-interface guidance rather than an Si4732-A10 production reference layout: its 56-nH/1-nF FMI circuit is an FM reference, while its separate SW-on-AMI circuit is explicitly limited to Si4734/35 and is not transferred here. AN332 establishes common receive firmware components, not RF performance; every band and pod remains specimen HIL",
-    "availability_and_cost": "the exact tape-and-reel Si4732-A10-GSR is JLCPCB/LCSC C2155558 and was in stock for SMT assembly with minimum quantity one at the 2026-08-18 check; this replaces the out-of-stock tube C1526102 without electrical or footprint change. The selected 56-nH LQW15AN56NJ00D, 1-nF GRM1555C1H102JA01D and 0.47-uF GRM155R71A474KE01D were active with substantial authorized-distributor stock; the already-used SESD0402X SKU is populated twice. The endpoint adds only two ESD bodies and three passives, with no material product-cost or power-budget increase",
+    "availability_and_cost": "the exact tape-and-reel Si4732-A10-GSR is JLCPCB/LCSC C2155558 and was in stock for SMT assembly with minimum quantity one at the 2026-08-18 check; this replaces the out-of-stock tube C1526102 without electrical or footprint change. The selected 56-nH LQW15AN56NG00D is exact JLCPCB C167482 Standard-PCBA stock and tightens tolerance from +/-5% to +/-2% without changing the 0402 body or RF limits; the 1-nF GRM1555C1H102JA01D and 0.47-uF GRM155R71A474KE01D remain active, while the already-used SESD0402X SKU is populated twice. The endpoint adds only two ESD bodies and three passives, with no material product-cost or power-budget increase",
     "remaining_hil": ["received Si4732-A10-GSR identity, FMI/AMI/RFGND orientation, address and firmware-component behavior", "FM 64-108-MHz and SW 2.3-26.1-MHz sensitivity, overload and noise with the complete SMA/feed/whip path; the current antenna shortlist is not accepted below its published 25-MHz edge without measurement", "AM 520-1710-kHz and LW 153-279-kHz direct-ferrite-loop inductance, total parasitic capacitance, transformer alternative, cable bound and enclosure coupling", "both SESD paths, ESD return geometry and RF transparency at every band", "receiver-off no-backpower/current plus wake, tune, scan, RDS, audio and optional owner-supplied SSB-patch behavior", "SG-BROADCAST active with every foreign signal group proven quiet, maximum scheduled system-plane traffic, blocking recovery and no-interface-stall proof; cross-group RF injection is Laboratory characterization only", "received RFPC-SMA31-FN-175-A launch/ground geometry, permanent FM/SW versus non-50-Ohm AM/LW labels and wrong-antenna handling"]
   },
   "i6_consolidated_qualification_contract": {
@@ -591,7 +591,7 @@
     "battery_manager": "MAX17320G20+T 2S gauge/protector plus independently recoverable MSPM0C1106SDGS20R admission controller; G20 is I2C without SHA-256; blank/wrong gauge NVM or reset/watchdog MCU remains fail-closed",
     "battery_recovery_policy": "base product refuses any cell below the qualified admission floor; MAX17320 zero-volt charge and linear prequal are disabled; any research recovery uses a separate isolated Controlled-Zone fixture",
     "power_command_profile": "C&K JS102011SCQN is the single maintained SPDT low-current RUN/KILL control. KILL grounds pack-admission PA24/A3 and requests orderly shutdown followed by protected-pack release; RUN grounds the separate AON RUN_LOOP_RAW input and supplies the only physical re-arm edge. Break-before-make travel removes RUN before asserting source shutdown. The switch never carries cell, SYS, charge or load current; KILL preserves USB charging and independent service recovery but no automatic application restart is allowed.",
-    "manager_power_path": "one active CSD87313DMST common-drain package provides the fully-switching CHG/DIS pair required by MAX17320; two 0451005.MRL slot fuses, WSL25125L000FEA 5mOhm shunt and two B57332V5103F360 cell NTCs are exact first targets",
+    "manager_power_path": "one active CSD87313DMS common-drain package provides the fully-switching CHG/DIS pair required by MAX17320; DMS changes only the tape-and-reel quantity from the former DMST order code and leaves the WSON-CLIP body, contacts and electrical contract unchanged. Two 0451005.MRL slot fuses, WSL25125L000FEA 5mOhm shunt and two B57332V5103F360 cell NTCs are exact first targets",
     "manager_supply": "MAX17320 AOLDO and isolated fixture enter BAV70LT1G; admitted system 3V3 enters BAT54-7-F and wins by lower drop. One 2N7002DW-7-F asserts ALRT hold during MCU reset; a second exact dual 2N7002DW-7-F translates push-pull PFAIL into admission-domain active-low status and turns PA23 into a passive-drain SYS_INT_N request. Exact IN/CP/REG/AOLDO, 2S CELL1/BATTS, PCKP, CHG/DIS-gate, local-I2C and MSPM0 VDD/NRST support is machine-instantiated; source handover and current remain HIL gates",
     "manager_support_decision": "DEC-0100",
     "manager_support_profile": "MAX17320 IN uses ERJ-P08F10R0V from fused stack positive and C1005X7R1H104K050BB to local ground; CP uses GRM188R71E474KA12D to IN. AOLDO, REG3 and REG2 each use an independent GRM188R71E474KA12D. The exact 2S Figure-24 mapping uses ERJ-P08F49R9V at CELL1 and BATTS, shorts CELL1/CELL2/CELL3 into the midpoint sense node, retains independent C1005X7R1H104K050BB CELL1-to-GND and BATTS-to-CELL3 filters, grounds unused TH3/TH4, and Kelvin-routes CSP/CSN to the force-connected WSL25125L000FEA shunt. PCKP uses 1 kOhm from protected pack positive; CHG and DIS each retain 100 nF gate-to-source. Private SCL/SDA and ALRT each have exact external pull-ups. MSPM0 VDD uses 10 uF plus 100 nF and NRST uses 47 kOhm plus 10 nF with a test point. Paper electrical closure does not replace layout, lot or HIL proof",
@@ -1725,7 +1725,7 @@
     "encoder_b_pullup": "yageo_rc0402fr_073k32l",
     "sd": "hirose_dm3at_sf_pejm5",
     "display": "qdtech_hmx035ctft_001",
-    "display_connector": "hirose_df40c_2_0_40ds_0_4v_58",
+    "display_connector": "hirose_df40c_2_0_40ds_0_4v_51",
     "display_adapter_plug": "hirose_df40c_40dp_0_4v_51",
     "display_panel_connector": "hirose_fh34srj_40s_0_5sh_99",
     "display_logic_bulk_cap": "murata_grm188r60j106me47d",
@@ -1912,7 +1912,7 @@
     "receiver_clock_cap_gpo3": "murata_grm1555c1h220ja01d",
     "receiver_senb_pulldown": "yageo_rc0402fr_0710kl",
     "receiver_fmi_esd": "littelfuse_sesd0402x1un_0020_090",
-    "receiver_fmi_match_inductor": "murata_lqw15an56nj00d",
+    "receiver_fmi_match_inductor": "murata_lqw15an56ng00d",
     "receiver_fmi_coupling_cap": "murata_grm1555c1h102ja01d",
     "receiver_ami_esd": "littelfuse_sesd0402x1un_0020_090",
     "receiver_ami_coupling_cap": "murata_grm155r71a474ke01d",
@@ -1921,7 +1921,7 @@
     "ir_power_output_cap": "murata_grm188r60j106me47d",
     "ir_power_output_bypass": "yageo_cc0402krx7r9bb104",
     "ir_power_on_pulldown": "yageo_rc0402fr_0710kl",
-    "ir_demod": "vishay_tsop75238tt",
+    "ir_demod": "vishay_tsop75238tr",
     "ir_demod_supply_res": "yageo_rc0402fr_07100rl",
     "ir_demod_supply_cap": "murata_grm188z71a475me15d",
     "ir_carrier": "vishay_tsmp95000tt",
@@ -2049,7 +2049,7 @@
     "power_command_filter": "yageo_cc0402krx7r9bb104",
     "run_loop_pullup": "yageo_rc0402fr_0710kl",
     "run_loop_filter": "yageo_cc0402krx7r9bb104",
-    "pack_power_fet": "ti_csd87313dmst",
+    "pack_power_fet": "ti_csd87313dms",
     "pack_fuse0": "littelfuse_0451005_mrl",
     "pack_fuse1": "littelfuse_0451005_mrl",
     "pack_shunt": "vishay_wsl25125l000fea",
@@ -3185,11 +3185,11 @@
     {"from":"pack_in_bypass.END_2","to":"pack_gauge.GND","net":"PACK_LOCAL_GND","safety":"IN bypass closes locally at the gauge"},
     {"from":"pack_gauge.CP","to":"pack_cp_cap.END_1","net":"PACK_CHARGE_PUMP","safety":"exact 0.47-uF 25-V X7R implements the Rev.12 charge-pump bypass"},
     {"from":"pack_cp_cap.END_2","to":"pack_gauge.IN","net":"PACK_GAUGE_IN","safety":"CP bypass returns to IN, not ground, exactly as required"},
-    {"from":"pack_gauge.CHG","to":"pack_power_fet.G1","net":"PACK_CHG_GATE","safety":"CSD87313DMST FET1 source is the cell-stack side required by MAX17320 CHG referenced to IN"},
+    {"from":"pack_gauge.CHG","to":"pack_power_fet.G1","net":"PACK_CHG_GATE","safety":"CSD87313DMS FET1 source is the cell-stack side required by MAX17320 CHG referenced to IN"},
     {"from":"pack_power_fet.D_COMMON","to":"abstract:internal-pack-fet-common-drain","net":"PACK_FET_COMMON_DRAIN","safety":"the two drain leads and exposed clip are one internal common-drain island; all three copper pads are soldered together but intentionally reach no other circuit node"},
     {"from":"pack_power_fet.G1","to":"pack_chg_gate_cap.END_1","net":"PACK_CHG_GATE","safety":"exact 100-nF gate capacitor is placed at charge-FET gate"},
     {"from":"pack_chg_gate_cap.END_2","to":"pack_power_fet.S1","net":"BATTERY_STACK_POSITIVE","safety":"charge gate capacitor returns to its battery-side source as required"},
-    {"from":"pack_gauge.DIS","to":"pack_power_fet.G2","net":"PACK_DIS_GATE","safety":"CSD87313DMST FET2 source is the protected-pack side required by MAX17320 DIS referenced to PCKP"},
+    {"from":"pack_gauge.DIS","to":"pack_power_fet.G2","net":"PACK_DIS_GATE","safety":"CSD87313DMS FET2 source is the protected-pack side required by MAX17320 DIS referenced to PCKP"},
     {"from":"pack_power_fet.G2","to":"pack_dis_gate_cap.END_1","net":"PACK_DIS_GATE","safety":"exact 100-nF gate capacitor is placed at discharge-FET gate"},
     {"from":"pack_dis_gate_cap.END_2","to":"pack_power_fet.S2","net":"PROTECTED_PACK_POSITIVE","safety":"discharge gate capacitor returns to its pack-side source"},
     {"from":"pack_gauge.PCKP","to":"pack_pckp_res.END_1","net":"PACK_PCKP_SENSE","safety":"the exact Rev.12 pack-positive sense path begins at pin 6"},
@@ -3900,11 +3900,11 @@
     {"from":"ir_power_switch.VOUT","to":"ir_power_output_bypass.END_1","net":"3V3_IR_SWITCHED","safety":"exact 100-nF high-frequency switched-rail bypass"},
     {"from":"ir_power_output_bypass.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"IR receive bypass return"},
     {"from":"ir_power_switch.VOUT","to":"ir_demod_supply_res.END_1","net":"3V3_IR_SWITCHED","safety":"separate exact 100-Ohm supply filter prevents one optical receiver from modulating the other"},
-    {"from":"ir_demod_supply_res.END_2","to":"ir_demod.VS","net":"IR_DEMOD_VS","safety":"TSOP75238TT physical contact 2 receives the filtered 2.5-to-5.5-V supply"},
+    {"from":"ir_demod_supply_res.END_2","to":"ir_demod.VS","net":"IR_DEMOD_VS","safety":"TSOP75238TR physical contact 2 receives the filtered 2.5-to-5.5-V supply"},
     {"from":"ir_demod.VS","to":"ir_demod_supply_cap.END_1","net":"IR_DEMOD_VS","safety":"exact 4.7-uF local receiver filter capacitor"},
     {"from":"ir_demod_supply_cap.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"demodulator filter return stays beside both ground contacts"},
-    {"from":"ir_demod.GND_1","to":"abstract:power-ground","net":"POWER_GROUND","safety":"TSOP75238TT physical contact 1 is grounded"},
-    {"from":"ir_demod.GND_4","to":"abstract:power-ground","net":"POWER_GROUND","safety":"TSOP75238TT physical contact 4 is independently accounted"},
+    {"from":"ir_demod.GND_1","to":"abstract:power-ground","net":"POWER_GROUND","safety":"TSOP75238TR physical contact 1 is grounded"},
+    {"from":"ir_demod.GND_4","to":"abstract:power-ground","net":"POWER_GROUND","safety":"TSOP75238TR physical contact 4 is independently accounted"},
     {"from":"ir_power_switch.VOUT","to":"ir_carrier_supply_res.END_1","net":"3V3_IR_SWITCHED","safety":"separate exact 100-Ohm supply filter follows the TSMP application circuit"},
     {"from":"ir_carrier_supply_res.END_2","to":"ir_carrier.VS","net":"IR_CARRIER_VS","safety":"TSMP95000TT physical contact 2 receives the filtered 2.0-to-5.5-V supply"},
     {"from":"ir_carrier.VS","to":"ir_carrier_supply_cap.END_1","net":"IR_CARRIER_VS","safety":"exact 4.7-uF local filter follows the manufacturer recommendation"},

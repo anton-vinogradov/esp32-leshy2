@@ -8847,8 +8847,8 @@
       "instance_uid": "LESHY2-UI:display_connector",
       "instance": "display_connector",
       "project": "LESHY2-UI",
-      "device_key": "hirose_df40c_2_0_40ds_0_4v_58",
-      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+      "device_key": "hirose_df40c_2_0_40ds_0_4v_51",
+      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
       "role": "40-contact fixed receptacle for the antenna-edge replaceable display adapter",
       "board": "ui-control-pcb",
       "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
@@ -8862,9 +8862,9 @@
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
         "document": "Hirose exact product page, 2D drawing and specification sheet",
-        "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",
-        "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
-        "checked": "2026-08-23"
+        "version": "CL0684-4042-5-51; exact 40-position receptacle; packaging suffix changes reel quantity only",
+        "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-51",
+        "checked": "2026-08-28"
       }
     },
     {
@@ -13335,9 +13335,9 @@
       "instance_uid": "LESHY2-UI:receiver_fmi_match_inductor",
       "instance": "receiver_fmi_match_inductor",
       "project": "LESHY2-UI",
-      "device_key": "murata_lqw15an56nj00d",
-      "mpn": "Murata LQW15AN56NJ00D",
-      "role": "56nh_5pct_high_q_rf_inductor_0402",
+      "device_key": "murata_lqw15an56ng00d",
+      "mpn": "Murata LQW15AN56NG00D",
+      "role": "56nh_2pct_high_q_rf_inductor_0402",
       "board": "ui-control-pcb",
       "sheet": "UI_21_FM_AM_RECEIVER",
       "electrical_disposition": "board_fitted_component",
@@ -13350,9 +13350,9 @@
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
         "document": "Murata LQW15AN_00 RF-inductor family and exact-product data",
-        "version": "current manufacturer data checked 2026-08-18",
+        "version": "current manufacturer LQW15AN_00 family data; G tolerance code is +/-2%",
         "url": "https://www.murata.com/en-global/products/inductor/chip/overview/lineup/rf2",
-        "checked": "2026-08-18"
+        "checked": "2026-08-28"
       }
     },
     {
@@ -13551,8 +13551,8 @@
       "instance_uid": "LESHY2-UI:ir_demod",
       "instance": "ir_demod",
       "project": "LESHY2-UI",
-      "device_key": "vishay_tsop75238tt",
-      "mpn": "Vishay TSOP75238TT",
+      "device_key": "vishay_tsop75238tr",
+      "mpn": "Vishay TSOP75238TR",
       "role": "38-kHz IR receiver",
       "board": "ui-control-pcb",
       "sheet": "UI_20_C5_RADIO_IR_SERVICE",
@@ -13568,7 +13568,7 @@
         "document": "TSOP752 IR receiver modules datasheet",
         "version": "Rev. 1.6, 06-May-2025",
         "url": "https://www.vishay.com/docs/82494/tsop752.pdf",
-        "checked": "2026-08-25"
+        "checked": "2026-08-28"
       }
     },
     {
@@ -16623,8 +16623,8 @@
       "instance_uid": "LESHY2-RF:pack_power_fet",
       "instance": "pack_power_fet",
       "project": "LESHY2-RF",
-      "device_key": "ti_csd87313dmst",
-      "mpn": "Texas Instruments CSD87313DMST",
+      "device_key": "ti_csd87313dms",
+      "mpn": "Texas Instruments CSD87313DMS",
       "role": "back-to-back pack admission FET",
       "board": "rf-power-pcb",
       "sheet": "RF_02_PACK_SAFETY_AON",
@@ -16640,7 +16640,7 @@
         "document": "CSD87313DMS 30-V dual common-drain N-channel NexFET datasheet",
         "version": "SLPS659, April 2017; package addendum updated 2025-10-17",
         "url": "https://www.ti.com/lit/ds/symlink/csd87313dms.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-08-28"
       }
     },
     {

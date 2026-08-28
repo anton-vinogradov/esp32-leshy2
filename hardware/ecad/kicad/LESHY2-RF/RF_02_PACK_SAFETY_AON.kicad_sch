@@ -402,7 +402,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Footprint" "Leshy2:CSD87313DMST"
+			(property "Footprint" "Leshy2:CSD87313DMS"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4622,13 +4622,13 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Texas Instruments CSD87313DMST"
+		(property "Value" "Texas Instruments CSD87313DMS"
 			(at 213.36 57.10 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:CSD87313DMST"
+		(property "Footprint" "Leshy2:CSD87313DMS"
 			(at 213.36 50.80 0)
 			(show_name no)
 			(do_not_autoplace no)

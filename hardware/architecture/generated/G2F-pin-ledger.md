@@ -46,7 +46,7 @@
 | `gct_rfpc_sma31_fn_175_a` | `GCT RFPC-SMA31-FN-175-A` | `verified_exact_external_standard_sma_body` | `active` | [GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing drawing dated 2025-04-07](https://gct.co/connector/rfpc-sma31-fn) | same primary source |
 | `gct_rfpc_sma32_fn_175_a` | `GCT RFPC-SMA32-FN-175-A` | `verified_exact_external_reverse_polarity_sma_body` | `active` | [GCT RFPC-SMA32-FN official product page and matching 1.6-mm product drawing RFPC-SMA31/SMA32 IP67 edge-launch family](https://gct.co/connector/rfpc-sma32-fn) | same primary source |
 | `gct_usb4105_gf_a` | `GCT USB4105-GF-A` | `verified_exact_service_usb_receptacle` | `active_orderable` | [USB4105 USB Type-C receptacle drawing and product specification drawing revision B4 dated 2023-12-18; specification revision 2.2](https://gct.co/files/drawings/usb4105.pdf) | same primary source |
-| `hirose_df40c_2_0_40ds_0_4v_58` | `Hirose DF40C(2.0)-40DS-0.4V(58)` | `verified_exact_display_adapter_main_board_receptacle` | `active and authorized-distributor-stocked` | [Hirose exact product page, 2D drawing and specification sheet CL0684-4042-5-58; detailed specifications updated 2026-02-07](https://www.hirose.com/en/product/p/CL0684-4042-5-58) | same primary source |
+| `hirose_df40c_2_0_40ds_0_4v_51` | `Hirose DF40C(2.0)-40DS-0.4V(51)` | `verified_exact_jlcpcb_stocked_display_adapter_main_board_receptacle` | `active_factory_stocked_standard_pcba` | [Hirose exact product page, 2D drawing and specification sheet CL0684-4042-5-51; exact 40-position receptacle; packaging suffix changes reel quantity only](https://www.hirose.com/en/product/p/CL0684-4042-5-51) | same primary source |
 | `hirose_df40c_40dp_0_4v_51` | `Hirose DF40C-40DP-0.4V(51)` | `verified_exact_display_adapter_daughter_board_plug` | `active and authorized-distributor-stocked` | [Hirose exact product page, 2D drawing and specification sheet CL0684-4013-7-51; detailed specifications updated 2026-08-05](https://www.hirose.com/en/product/p/CL0684-4013-7-51) | same primary source |
 | `hirose_dm3at_sf_pejm5` | `Hirose DM3AT-SF-PEJM5` | `verified_candidate` | `active` | [DM3 Series microSD Card Connectors catalog 2026-05-01 current catalog and exact product page](https://www.hirose.com/product/p/CL0609-0031-0-00) | same primary source |
 | `hirose_fh34srj_40s_0_5sh_99` | `Hirose FH34SRJ-40S-0.5SH(99)` | `verified_dual_contact_adapter_panel_connector_received_tail_thickness_h5_open` | `active and authorized-distributor-stocked; exact HMX035CTFT-001 tail thickness and insertion fit remain H5` | [Hirose FH34SRJ-40S-0.5SH(99) product page and controlled 2D drawing CL0580-1260-6-99; detailed specifications updated 2026-02-07](https://www.hirose.com/en/product/p/CL0580-1260-6-99) | same primary source |
@@ -98,7 +98,7 @@
 | `murata_lqg15hs3n3s02d` | `Murata LQG15HS3N3S02D` | `verified_exact_cc_matching_passive` | `active_orderable` | [Murata LQG15HS_02 RF inductor series specification current exact product data checked 2026-08-18](https://www.murata.com/en-us/products/productdetail?partno=LQG15HS3N3S02D) | same primary source |
 | `murata_lqg15hs3n6s02d` | `Murata LQG15HS3N6S02D` | `verified_exact_cc_matching_passive` | `active_orderable` | [Murata LQG15HS_02 RF inductor series specification current exact product data checked 2026-08-18](https://www.murata.com/en-us/products/productdetail?partno=LQG15HS3N6S02D) | same primary source |
 | `murata_lqg15hs6n8j02d` | `Murata LQG15HS6N8J02D` | `verified_exact_cc_matching_passive` | `active_orderable` | [Murata LQG15HS_02 RF inductor series specification current exact product data checked 2026-08-18](https://www.murata.com/en-us/products/productdetail?partno=LQG15HS6N8J02D) | same primary source |
-| `murata_lqw15an56nj00d` | `Murata LQW15AN56NJ00D` | `verified_exact_si4732_fmi_first_target` | `active_orderable` | [Murata LQW15AN_00 RF-inductor family and exact-product data current manufacturer data checked 2026-08-18](https://www.murata.com/en-global/products/inductor/chip/overview/lineup/rf2) | same primary source |
+| `murata_lqw15an56ng00d` | `Murata LQW15AN56NG00D` | `verified_exact_jlcpcb_stocked_si4732_fmi_first_target` | `active_factory_stocked_standard_pcba` | [Murata LQW15AN_00 RF-inductor family and exact-product data current manufacturer LQW15AN_00 family data; G tolerance code is +/-2%](https://www.murata.com/en-global/products/inductor/chip/overview/lineup/rf2) | same primary source |
 | `nexperia_74lvc126apw_118` | `Nexperia 74LVC126APW,118` | `verified_exact_nrf_host_to_switched_domain_isolator` | `production_active_orderable` | [74LVC126A quad buffer/line driver product data sheet Rev. 14, 12 June 2025](https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf) | same primary source |
 | `nexperia_74lvc1g32gv_125` | `74LVC1G32GV,125` | `verified_candidate` | `production` | [74LVC1G32 Single 2-input OR gate datasheet 2024-09-03](https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf) | same primary source |
 | `nexperia_74lvc2g126dp_125` | `Nexperia 74LVC2G126DP,125` | `verified_exact_nrf_switched_to_host_domain_isolator` | `production_active_factory_stocked` | [74LVC2G126 dual bus buffer/line driver product data sheet Rev. 16, 17 August 2023](https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf) | same primary source |
@@ -140,7 +140,7 @@
 | `tdk_cga5l1x7r1e475k160ac` | `TDK CGA5L1X7R1E475K160AC` | `verified_candidate` | `active` | [TDK CGA5L1X7R1E475K160AC product data and characteristic models production status checked 2026-08-18](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=CGA5L1X7R1E475K160AC) | same primary source |
 | `te_2118651_2` | `TE Connectivity 2118651-2` | `verified_exact_native_rf_jumper` | `active_orderable` | [TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record ENG_CD_2118651_C5; live exact-product record](https://www.te.com/en/product-2118651-2.html) | same primary source |
 | `ti_bq25798_rqmr` | `Texas Instruments BQ25798RQMR` | `verified_candidate` | `active` | [BQ25798 1-to-4-cell 5-A buck-boost charger datasheet SLUSDV2C, May 2020, revised June 2026](https://www.ti.com/lit/ds/symlink/bq25798.pdf) | same primary source |
-| `ti_csd87313dmst` | `Texas Instruments CSD87313DMST` | `verified_candidate` | `active` | [CSD87313DMS 30-V dual common-drain N-channel NexFET datasheet SLPS659, April 2017; package addendum updated 2025-10-17](https://www.ti.com/lit/ds/symlink/csd87313dms.pdf) | same primary source |
+| `ti_csd87313dms` | `Texas Instruments CSD87313DMS` | `verified_exact_jlcpcb_stocked_candidate` | `active_factory_stocked_standard_pcba` | [CSD87313DMS 30-V dual common-drain N-channel NexFET datasheet SLPS659, April 2017; package addendum updated 2025-10-17](https://www.ti.com/lit/ds/symlink/csd87313dms.pdf) | same primary source |
 | `ti_mspm0c1106_sdgs20r` | `Texas Instruments MSPM0C1106SDGS20R` | `verified_exact_64kb_flash_8kb_sram_hybrid_bsl_candidate` | `active_orderable` | [MSPM0C1105/MSPM0C1106 mixed-signal microcontroller datasheet SLASFJ6B, revised January 2026](https://www.ti.com/lit/ds/symlink/mspm0c1106.pdf) | same primary source |
 | `ti_sn74lvc08a_pwr` | `SN74LVC08APWR` | `verified_candidate` | `active` | [SNx4LVC08A Quadruple 2-Input Positive-AND Gates datasheet Rev. W](https://www.ti.com/lit/ds/symlink/sn74lvc08a.pdf) | same primary source |
 | `ti_sn74lvc1g06_dckr` | `Texas Instruments SN74LVC1G06DCKR` | `verified_exact_fail_low_reset_gate_driver` | `active_orderable` | [SN74LVC1G06 single inverter with open-drain output datasheet Rev. AB](https://www.ti.com/lit/ds/symlink/sn74lvc1g06.pdf) | same primary source |
@@ -193,7 +193,7 @@
 | `vishay_tnpw040210k0beed` | `Vishay TNPW040210K0BEED` | `verified_exact_precision_main_feedback_resistor` | `active_orderable` | [Vishay TNPW e3 high-stability thin-film resistor datasheet Document 28758, revision 10-Apr-2026](https://www.vishay.com/docs/28758/tnpw_e3.pdf) | same primary source |
 | `vishay_tnpw040243k7beed` | `Vishay TNPW040243K7BEED` | `verified_exact_precision_main_feedback_resistor` | `active_orderable` | [Vishay TNPW e3 high-stability thin-film resistor datasheet Document 28758, revision 10-Apr-2026](https://www.vishay.com/docs/28758/tnpw_e3.pdf) | same primary source |
 | `vishay_tsmp95000tt` | `Vishay TSMP95000TT` | `verified_exact_carrier_learning_ir_receiver` | `active_stocked_orderable` | [TSMP95000 IR sensor module datasheet Rev. 1.0, 20-Oct-2022](https://www.vishay.com/docs/82907/tsmp95000.pdf) | same primary source |
-| `vishay_tsop75238tt` | `Vishay TSOP75238TT` | `verified_exact_stocked_robust_ir_receiver` | `active_stocked_orderable` | [TSOP752 IR receiver modules datasheet Rev. 1.6, 06-May-2025](https://www.vishay.com/docs/82494/tsop752.pdf) | same primary source |
+| `vishay_tsop75238tr` | `Vishay TSOP75238TR` | `verified_exact_jlcpcb_stocked_robust_ir_receiver` | `active_factory_stocked_standard_pcba_thin_stock` | [TSOP752 IR receiver modules datasheet Rev. 1.6, 06-May-2025](https://www.vishay.com/docs/82494/tsop752.pdf) | same primary source |
 | `vishay_vemd1060x01` | `VEMD1060X01` | `verified_exact_ir_actual_optical_evidence_sensor` | `active` | [VEMD1060X01 Silicon PIN Photodiode datasheet Rev. 1.1](https://www.vishay.com/docs/84295/vemd1060x01.pdf) | same primary source |
 | `vishay_vsmy14940` | `Vishay VSMY14940` | `verified_exact_consumer_ir_transmit_emitter` | `active_stocked_orderable` | [VSMY14940 high-speed infrared emitter datasheet Rev. 1.6, 22-Sep-2017](https://www.vishay.com/docs/84209/vsmy14940.pdf) | same primary source |
 | `vishay_wsl25125l000fea` | `Vishay WSL25125L000FEA` | `verified_candidate` | `active` | [WSL power metal strip resistor datasheet current product data checked 2026-08-18](https://www.vishay.com/docs/30108/wsl.pdf) | same primary source |
@@ -1324,11 +1324,11 @@ Reserved: `PA1_NRST`. Free: none.
 | `PACK_LOCAL_GND` | `pack_in_bypass.END_2` | `pack_gauge.GND` | IN bypass closes locally at the gauge |
 | `PACK_CHARGE_PUMP` | `pack_gauge.CP` | `pack_cp_cap.END_1` | exact 0.47-uF 25-V X7R implements the Rev.12 charge-pump bypass |
 | `PACK_GAUGE_IN` | `pack_cp_cap.END_2` | `pack_gauge.IN` | CP bypass returns to IN, not ground, exactly as required |
-| `PACK_CHG_GATE` | `pack_gauge.CHG` | `pack_power_fet.G1` | CSD87313DMST FET1 source is the cell-stack side required by MAX17320 CHG referenced to IN |
+| `PACK_CHG_GATE` | `pack_gauge.CHG` | `pack_power_fet.G1` | CSD87313DMS FET1 source is the cell-stack side required by MAX17320 CHG referenced to IN |
 | `PACK_FET_COMMON_DRAIN` | `pack_power_fet.D_COMMON` | `abstract:internal-pack-fet-common-drain` | the two drain leads and exposed clip are one internal common-drain island; all three copper pads are soldered together but intentionally reach no other circuit node |
 | `PACK_CHG_GATE` | `pack_power_fet.G1` | `pack_chg_gate_cap.END_1` | exact 100-nF gate capacitor is placed at charge-FET gate |
 | `BATTERY_STACK_POSITIVE` | `pack_chg_gate_cap.END_2` | `pack_power_fet.S1` | charge gate capacitor returns to its battery-side source as required |
-| `PACK_DIS_GATE` | `pack_gauge.DIS` | `pack_power_fet.G2` | CSD87313DMST FET2 source is the protected-pack side required by MAX17320 DIS referenced to PCKP |
+| `PACK_DIS_GATE` | `pack_gauge.DIS` | `pack_power_fet.G2` | CSD87313DMS FET2 source is the protected-pack side required by MAX17320 DIS referenced to PCKP |
 | `PACK_DIS_GATE` | `pack_power_fet.G2` | `pack_dis_gate_cap.END_1` | exact 100-nF gate capacitor is placed at discharge-FET gate |
 | `PROTECTED_PACK_POSITIVE` | `pack_dis_gate_cap.END_2` | `pack_power_fet.S2` | discharge gate capacitor returns to its pack-side source |
 | `PACK_PCKP_SENSE` | `pack_gauge.PCKP` | `pack_pckp_res.END_1` | the exact Rev.12 pack-positive sense path begins at pin 6 |
@@ -2039,11 +2039,11 @@ Reserved: `PA1_NRST`. Free: none.
 | `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_power_output_bypass.END_1` | exact 100-nF high-frequency switched-rail bypass |
 | `POWER_GROUND` | `ir_power_output_bypass.END_2` | `abstract:power-ground` | IR receive bypass return |
 | `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_demod_supply_res.END_1` | separate exact 100-Ohm supply filter prevents one optical receiver from modulating the other |
-| `IR_DEMOD_VS` | `ir_demod_supply_res.END_2` | `ir_demod.VS` | TSOP75238TT physical contact 2 receives the filtered 2.5-to-5.5-V supply |
+| `IR_DEMOD_VS` | `ir_demod_supply_res.END_2` | `ir_demod.VS` | TSOP75238TR physical contact 2 receives the filtered 2.5-to-5.5-V supply |
 | `IR_DEMOD_VS` | `ir_demod.VS` | `ir_demod_supply_cap.END_1` | exact 4.7-uF local receiver filter capacitor |
 | `POWER_GROUND` | `ir_demod_supply_cap.END_2` | `abstract:power-ground` | demodulator filter return stays beside both ground contacts |
-| `POWER_GROUND` | `ir_demod.GND_1` | `abstract:power-ground` | TSOP75238TT physical contact 1 is grounded |
-| `POWER_GROUND` | `ir_demod.GND_4` | `abstract:power-ground` | TSOP75238TT physical contact 4 is independently accounted |
+| `POWER_GROUND` | `ir_demod.GND_1` | `abstract:power-ground` | TSOP75238TR physical contact 1 is grounded |
+| `POWER_GROUND` | `ir_demod.GND_4` | `abstract:power-ground` | TSOP75238TR physical contact 4 is independently accounted |
 | `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_carrier_supply_res.END_1` | separate exact 100-Ohm supply filter follows the TSMP application circuit |
 | `IR_CARRIER_VS` | `ir_carrier_supply_res.END_2` | `ir_carrier.VS` | TSMP95000TT physical contact 2 receives the filtered 2.0-to-5.5-V supply |
 | `IR_CARRIER_VS` | `ir_carrier.VS` | `ir_carrier_supply_cap.END_1` | exact 4.7-uF local filter follows the manufacturer recommendation |
@@ -4169,8 +4169,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `touch_irq_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `touch_irq_buffer_bypass` lifecycle: `active_orderable`.
 - `display` lifecycle: `assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified`.
-- `display_connector` uses `Hirose DF40C(2.0)-40DS-0.4V(58)` as `verified_exact_display_adapter_main_board_receptacle`, not an accepted production choice.
-- `display_connector` lifecycle: `active and authorized-distributor-stocked`.
+- `display_connector` uses `Hirose DF40C(2.0)-40DS-0.4V(51)` as `verified_exact_jlcpcb_stocked_display_adapter_main_board_receptacle`, not an accepted production choice.
+- `display_connector` lifecycle: `active_factory_stocked_standard_pcba`.
 - `display_adapter_plug` uses `Hirose DF40C-40DP-0.4V(51)` as `verified_exact_display_adapter_daughter_board_plug`, not an accepted production choice.
 - `display_adapter_plug` lifecycle: `active and authorized-distributor-stocked`.
 - `display_panel_connector` uses `Hirose FH34SRJ-40S-0.5SH(99)` as `verified_dual_contact_adapter_panel_connector_received_tail_thickness_h5_open`, not an accepted production choice.
@@ -4303,8 +4303,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `receiver_clock_cap_gpo3` lifecycle: `active_orderable`.
 - `receiver_fmi_esd` uses `Littelfuse SESD0402X1UN-0020-090` as `verified_exact_cc_external_rf_esd`, not an accepted production choice.
 - `receiver_fmi_esd` lifecycle: `active_orderable`.
-- `receiver_fmi_match_inductor` uses `Murata LQW15AN56NJ00D` as `verified_exact_si4732_fmi_first_target`, not an accepted production choice.
-- `receiver_fmi_match_inductor` lifecycle: `active_orderable`.
+- `receiver_fmi_match_inductor` uses `Murata LQW15AN56NG00D` as `verified_exact_jlcpcb_stocked_si4732_fmi_first_target`, not an accepted production choice.
+- `receiver_fmi_match_inductor` lifecycle: `active_factory_stocked_standard_pcba`.
 - `receiver_fmi_coupling_cap` uses `Murata GRM1555C1H102JA01D` as `verified_exact_si4732_fmi_first_target`, not an accepted production choice.
 - `receiver_fmi_coupling_cap` lifecycle: `active_orderable`.
 - `receiver_ami_esd` uses `Littelfuse SESD0402X1UN-0020-090` as `verified_exact_cc_external_rf_esd`, not an accepted production choice.
@@ -4314,8 +4314,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `ir_power_input_cap` lifecycle: `active_production`.
 - `ir_power_output_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `ir_power_output_bypass` lifecycle: `active_orderable`.
-- `ir_demod` uses `Vishay TSOP75238TT` as `verified_exact_stocked_robust_ir_receiver`, not an accepted production choice.
-- `ir_demod` lifecycle: `active_stocked_orderable`.
+- `ir_demod` uses `Vishay TSOP75238TR` as `verified_exact_jlcpcb_stocked_robust_ir_receiver`, not an accepted production choice.
+- `ir_demod` lifecycle: `active_factory_stocked_standard_pcba_thin_stock`.
 - `ir_demod_supply_cap` uses `Murata GRM188Z71A475ME15D` as `verified_exact_ir_receiver_filter_capacitor`, not an accepted production choice.
 - `ir_demod_supply_cap` lifecycle: `active_stocked_orderable`.
 - `ir_carrier` uses `Vishay TSMP95000TT` as `verified_exact_carrier_learning_ir_receiver`, not an accepted production choice.
@@ -4394,6 +4394,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `power_command_filter` lifecycle: `active_orderable`.
 - `run_loop_filter` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `run_loop_filter` lifecycle: `active_orderable`.
+- `pack_power_fet` uses `Texas Instruments CSD87313DMS` as `verified_exact_jlcpcb_stocked_candidate`, not an accepted production choice.
+- `pack_power_fet` lifecycle: `active_factory_stocked_standard_pcba`.
 - `pack_holder` uses `Keystone Electronics 1048P` as `verified_mechanical_reference`, not an accepted production choice.
 - `pack_cell0` uses `XTAR 18650 4000mAh` as `selected_qualification_target`, not an accepted production choice.
 - `pack_cell0` lifecycle: `current_catalog`.

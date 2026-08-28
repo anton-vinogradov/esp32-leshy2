@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)
 
-These are the current `H0-R2`/`H1-R2.28` principle diagrams of the finished
+These are the current `H0-R2`/`H1-R2.29` principle diagrams of the finished
 device. They explain ownership, buses, RF locality, power and service access.
 The R2 production ECAD schematic does **not** exist yet: H2 starts only after
 the complete H1 mock-up is accepted.

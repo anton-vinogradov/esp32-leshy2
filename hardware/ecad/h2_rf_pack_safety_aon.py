@@ -94,7 +94,7 @@ def footprint_for(instance: str, device_key: str, on_board: bool) -> str:
     exact = {
         "pack_gauge": "Package_DFN_QFN:TQFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm",
         "pack_admission": "Package_SO:Texas_DGS0020A_TSSOP-20_3x5.1mm_P0.5mm",
-        "pack_power_fet": "Leshy2:CSD87313DMST",
+        "pack_power_fet": "Leshy2:CSD87313DMS",
         "pack_fuse0": "Leshy2:0451005.MRL",
         "pack_fuse1": "Leshy2:0451005.MRL",
         "pack_holder": "Leshy2:Keystone-1048P",
@@ -156,7 +156,7 @@ def footprint_outputs() -> dict[Path, str]:
         ("9", 0.0, 0.0, 1.05, 1.37, paste, "rect"),
     ]
     csd = custom_footprint(
-        "CSD87313DMST", csd_pads, 3.30, 3.30, 4.70, 3.70,
+        "CSD87313DMS", csd_pads, 3.30, 3.30, 4.70, 3.70,
         "TI SLPS642 DMS recommended PCB pattern: 0.65-mm pitch, four 1.14x0.32-mm and four 0.40x0.32-mm perimeter lands plus the 1.28x1.66-mm common-drain exposed clip",
     )
 
@@ -201,7 +201,7 @@ def footprint_outputs() -> dict[Path, str]:
         "Keystone 1048P manufacturer drawing: 86.0x39.8-mm dual polarized holder and four independent SMT termination reserves; exact slot-polarity continuity remains the declared H5 received-part gate",
     )
     return {
-        FOOTPRINT_DIR / "CSD87313DMST.kicad_mod": csd,
+        FOOTPRINT_DIR / "CSD87313DMS.kicad_mod": csd,
         FOOTPRINT_DIR / "TPUL2G223BQBR.kicad_mod": bqb,
         FOOTPRINT_DIR / "0451005.MRL.kicad_mod": fuse,
         FOOTPRINT_DIR / "Keystone-1048P.kicad_mod": holder,

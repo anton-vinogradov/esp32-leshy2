@@ -14,7 +14,7 @@
   "components": [
     {
       "instance": "display_connector",
-      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
       "mount": "UI PCB",
       "ui_inner_position_mm": [32.2, 6.5],
       "envelope_mm": [10.6, 3.38, 1.95],
@@ -79,7 +79,7 @@
     },
     {
       "source": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
-      "finding": "DF40C(2.0)-40DS-0.4V(58) controls the fixed 2.0-mm main-board receptacle stack."
+      "finding": "DF40C(2.0)-40DS-0.4V(51) controls the fixed 2.0-mm main-board receptacle stack; the former (58) order code differed only in reel quantity."
     },
     {
       "source": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",

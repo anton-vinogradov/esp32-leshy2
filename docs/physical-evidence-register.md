@@ -29,7 +29,7 @@ Each machine row also carries its exact source artifact, responsible gate, requi
 | `H3-PHY-021` | `H8` | `H3.3` | measure PAM8302A current, output EMI, speaker temperature/excursion and enclosure response; enforce the 50 C speaker-local mute rule |
 | `H3-PHY-022` | `H8` | `H3.3` | calibrate SA818S-V and SA818S-U deviation downward from the bounded full-scale codec injection and repeat across both module lots, rail and temperature |
 | `H3-PHY-023` | `H8` | `H3.3` | prove reset/brownout/off ordering, >=10-ms amplifier-enable delay and absence of back-power with codec, voice and main domains independently off |
-| `H3-PHY-024` | `H5+H8` | `H3.3` | verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power |
+| `H3-PHY-024` | `H5+H8` | `H3.3` | verify received TSOP75238TR/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; confirm TSOP75238TR CPL rotation and feeder presentation against the JLCPCB placement preview |
 | `H3-PHY-025` | `H8` | `H3.3` | replay a representative 30-to-60-kHz protocol corpus and measure carrier/count accuracy, robust AGC behavior, range and field of view |
 | `H3-PHY-026` | `H8` | `H3.3` | measure VSMY14940 current, optical range/alignment, local temperature and IEC 62471 classification through the final enclosure/window |
 | `H3-PHY-027` | `H8` | `H3.3` | calibrate the VEMD1060 tunnel against the <=2.271-uA paper target and inject missing emitter, ambient leakage, RX crosstalk, stuck carrier, brownout and FAULT_KILL |

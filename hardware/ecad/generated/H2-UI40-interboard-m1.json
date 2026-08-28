@@ -5,10 +5,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_40_INTERBOARD_M1",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "2cce7e1637467672ce0b2009c1603ac591a37b53f5e93a399c10014e4fd86f09",
-    "hardware/architecture/devices.json": "192f38e0adf8531c14034b009ca69f78f1f4772a02c953a2c1174947c042b2a5",
-    "hardware/ecad/generated/H2-instance-ledger.json": "88303bb2d17f13fb80d8ce609a6b2fadb03a7f95f8df38e27b905250831525aa",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "214c4d18eb68115e94e4468e76d976e98eb61e03ddec140222c26b4029ec1644"
+    "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
+    "hardware/architecture/devices.json": "b3532cd8bc4a96c32064a79b74bae2e59de8afa9b6193cff95cabb5610e6381a",
+    "hardware/ecad/generated/H2-instance-ledger.json": "d402540ba83ec48ad763ece15bb9206aabac2cd0624f5d8ea2a861dab63753cf",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "dae7f30bd81c612f0a7dfca7cd789de55247ee6ddaadaf2c433f884cc4bbe62a"
   },
   "summary": {
     "ledger_instances": 1,

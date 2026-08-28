@@ -6,7 +6,7 @@
   "checked_on": "2026-08-28",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-    "sha256": "85e4ffaa09fe0e2ddac9692b12d66027774c0a1c7f94f4a02b5139db5659a6d9",
+    "sha256": "66c22ca880068eb35e87ada393256839dfe37a02561bb4b5968ef65ce9b3f5fb",
     "exact_lines": 210
   },
   "decision": {
@@ -300,7 +300,7 @@
   },
   "bom_tool_upload": {
     "path": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
-    "sha256": "2c0704c471ba338128e41904b102c54f59172bfcbb72e3fa486cb7125782e890",
+    "sha256": "79ab0e6001089e79dfcc77dbaa63161572680be1073a030c8558928eab82e2ba",
     "columns": [
       "Comment",
       "Designator",
@@ -353,7 +353,7 @@
       "result": "176 matched, 33 unmatched, all 1019 historical target placements parsed"
     },
     "current_210_line_attempt": {
-      "sha256": "2c0704c471ba338128e41904b102c54f59172bfcbb72e3fa486cb7125782e890",
+      "sha256": "79ab0e6001089e79dfcc77dbaa63161572680be1073a030c8558928eab82e2ba",
       "transmitted": false,
       "processed": false,
       "result": "historical 209-line capture retained for 196 preserved identities; 195 join unchanged, C5 is rebound to current exact C54951858, and 14 new exact rows join separately into the 210-line map"
@@ -523,12 +523,60 @@
       "pcba": "Extended SMT; Economic and Standard; MSL 1",
       "source": "https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803",
       "finding": "exact stocked 100-nF 100-V 0603 body; X7R temperature stability is stricter than the replaced X7S class"
+    },
+    {
+      "device_id": "hirose_df40c_2_0_40ds_0_4v_51",
+      "mpn": "DF40C(2.0)-40DS-0.4V(51)",
+      "jlc": "C597934",
+      "tier": "J0",
+      "stock": 7218,
+      "available_order_quantity": 7205,
+      "moq": 1,
+      "pcba": "Extended SMT; Economic and Standard; fixture",
+      "source": "https://jlcpcb.com/partdetail/x/C597934",
+      "finding": "exact Hirose receptacle body and mate; (51) changes only reel quantity from the former (58) order code"
+    },
+    {
+      "device_id": "ti_csd87313dms",
+      "mpn": "CSD87313DMS",
+      "jlc": "C2863848",
+      "tier": "J0",
+      "stock": 4813,
+      "available_order_quantity": 4741,
+      "moq": 1,
+      "pcba": "Extended SMT; Economic and Standard",
+      "source": "https://jlcpcb.com/partdetail/x/C2863848",
+      "finding": "same production die, WSON-CLIP body, contacts and electrical contract as DMST; DMS changes tape-and-reel quantity only"
+    },
+    {
+      "device_id": "vishay_tsop75238tr",
+      "mpn": "TSOP75238TR",
+      "jlc": "C511498",
+      "tier": "J0",
+      "stock": 17,
+      "available_order_quantity": 15,
+      "moq": 1,
+      "pcba": "Extended SMT; Economic and Standard; MSL 4",
+      "source": "https://jlcpcb.com/partdetail/x/C511498",
+      "finding": "same final body, contacts and electrical contract as TT; TR changes tape presentation, so approve CPL rotation/feeder orientation and recheck complete-job stock before order"
+    },
+    {
+      "device_id": "murata_lqw15an56ng00d",
+      "mpn": "LQW15AN56NG00D",
+      "jlc": "C167482",
+      "tier": "J0",
+      "stock": 21558,
+      "available_order_quantity": 20744,
+      "moq": 1,
+      "pcba": "Extended SMT; Economic and Standard; MSL 1",
+      "source": "https://jlcpcb.com/partdetail/x/C167482",
+      "finding": "exact 56-nH LQW15AN 0402 body; G tightens inductance tolerance from +/-5% to +/-2% without degrading RF limits"
     }
   ],
   "summary": {
     "target_bom_lines": 210,
-    "critical_lines_spot_checked": 16,
-    "public_stock_exact_or_revision_explicit": 11,
+    "critical_lines_spot_checked": 20,
+    "public_stock_exact_or_revision_explicit": 15,
     "preorder_reservation": 3,
     "global_sourcing_or_consignment": 1,
     "factory_final_assembly": 1,
@@ -539,15 +587,15 @@
     "historical_bom_tool_preorder_lines": 41,
     "historical_bom_tool_unmatched_lines": 33,
     "current_exact_catalogue_routes_before_outlier_resolution": 179,
-    "current_public_stock_lines_before_outlier_resolution": 149,
-    "current_preorder_lines_before_outlier_resolution": 30,
+    "current_public_stock_lines_before_outlier_resolution": 153,
+    "current_preorder_lines_before_outlier_resolution": 26,
     "current_unmatched_lines_before_outlier_resolution": 31,
     "target_placements_parsed": 1052,
     "outliers_resolved_after_exact_search": 31,
     "availability_routes": {
-      "J0": 161,
+      "J0": 165,
       "J1": 0,
-      "J2": 33,
+      "J2": 29,
       "J3": 11,
       "J4-F": 3,
       "J4-P": 1,

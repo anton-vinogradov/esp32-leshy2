@@ -32,7 +32,7 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_cost_boundaries_are_explicit(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["quantity_100_priced_lines"], 198)
+        self.assertEqual(summary["quantity_100_priced_lines"], 199)
         self.assertEqual(summary["remaining_unpriced_base_lines"], 5)
         self.assertGreater(summary["planning_base_plus_post_pcba_usd_per_device"], 300)
         self.assertAlmostEqual(
@@ -91,6 +91,23 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(
             candidates["DreamLNK SMA-KWE902 / SMA-KWE901"]["status"],
             "rejected_high_profile_tht_form_change",
+        )
+        self.assertEqual(
+            candidates["Hirose DF40C(2.0)-40DS-0.4V(51)"]["jlcpcb_part"],
+            "C597934",
+        )
+        self.assertEqual(
+            candidates["Texas Instruments CSD87313DMS"]["jlcpcb_part"],
+            "C2863848",
+        )
+        self.assertEqual(
+            candidates["Vishay TSOP75238TR"]["status"],
+            "accepted_stocked_exact_tape_presentation_variant_with_placement_gate",
+        )
+        self.assertIn("CPL rotation", candidates["Vishay TSOP75238TR"]["why"])
+        self.assertEqual(
+            candidates["Murata LQW15AN56NG00D"]["jlcpcb_part"],
+            "C167482",
         )
 
 

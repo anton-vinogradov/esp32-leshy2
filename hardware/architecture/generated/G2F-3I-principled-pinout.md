@@ -55,7 +55,7 @@ flowchart TD
   subgraph UI_STORAGE_1["UI and storage devices"]
   S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
-  DISPLAY_CONNECTOR["Hirose DF40C(2.0)-40DS-0.4V(58)<br/>40-position 0.4-mm UI-board receptacle for the replaceable display adapter"]
+  DISPLAY_CONNECTOR["Hirose DF40C(2.0)-40DS-0.4V(51)<br/>40-position 0.4-mm UI-board receptacle for the replaceable display adapter"]
   DISPLAY_ADAPTER_PLUG["Hirose DF40C-40DP-0.4V(51)<br/>40-position 0.4-mm adapter-board plug; exact 2-mm DF40 mate"]
   DISPLAY_PANEL_CONNECTOR["Hirose FH34SRJ-40S-0.5SH(99)<br/>40-position 0.5-mm dual-contact ZIF on the replaceable adapter"]
   DISPLAY["HMX035CTFT-001 (QDtech schematic assembly marking)<br/>3.5-inch QSPI IPS display and capacitive-touch assembly"]
@@ -531,7 +531,7 @@ flowchart TD
   RECEIVER_CLOCK_CAP_GPO3["Murata GRM1555C1H220JA01D<br/>receiver clock cap gpo3 physical component"]
   RECEIVER_SENB_PULLDOWN["Yageo RC0402FR-0710KL<br/>receiver senb pulldown physical component"]
   RECEIVER_FMI_ESD["Littelfuse SESD0402X1UN-0020-090<br/>FM/SW-boundary 0.2-pF RF ESD shunt"]
-  RECEIVER_FMI_MATCH_INDUCTOR["Murata LQW15AN56NJ00D<br/>56-nH high-Q FM first target on FM/SW port"]
+  RECEIVER_FMI_MATCH_INDUCTOR["Murata LQW15AN56NG00D<br/>56-nH high-Q FM first target on FM/SW port"]
   RECEIVER_FMI_COUPLING_CAP["Murata GRM1555C1H102JA01D<br/>1-nF C0G FMI AC-coupling capacitor"]
   RECEIVER_AMI_ESD["Littelfuse SESD0402X1UN-0020-090<br/>AM/LW-boundary 0.2-pF RF ESD shunt"]
   RECEIVER_AMI_COUPLING_CAP["Murata GRM155R71A474KE01D<br/>0.47-uF AMI AC-coupling capacitor"]
@@ -1204,7 +1204,7 @@ flowchart TD
   IR_POWER_OUTPUT_CAP["Murata GRM188R60J106ME47D<br/>IR switched-rail bulk capacitor"]
   IR_POWER_OUTPUT_BYPASS["Yageo CC0402KRX7R9BB104<br/>IR switched-rail high-frequency bypass capacitor"]
   IR_POWER_ON_PULLDOWN["Yageo RC0402FR-0710KL<br/>IR receive-rail reset-off resistor"]
-  IR_DEMOD["Vishay TSOP75238TT<br/>38-kHz AGC2 demodulating IR receiver"]
+  IR_DEMOD["Vishay TSOP75238TR<br/>38-kHz AGC2 demodulating IR receiver"]
   IR_DEMOD_SUPPLY_RES["Yageo RC0402FR-07100RL<br/>demodulator 100-Ohm supply-filter resistor"]
   IR_DEMOD_SUPPLY_CAP["Murata GRM188Z71A475ME15D<br/>demodulator 4.7-uF supply-filter capacitor"]
   IR_CARRIER["Vishay TSMP95000TT<br/>30-to-60-kHz carrier-learning IR receiver"]
@@ -1949,7 +1949,7 @@ flowchart TD
   PACK_BATTS_FILTER_CAP["Yageo CC0402KRX7R9BB104<br/>100-nF 50-V top-cell sense filter capacitor"]
   PACK_PCKP_RES["Yageo RC0402FR-071KL<br/>1-kOhm protected-pack PCKP series resistor"]
   PACK_SHUNT["Vishay WSL25125L000FEA<br/>5-mOhm Kelvin current shunt"]
-  PACK_POWER_FET["Texas Instruments CSD87313DMST<br/>fully-switching common-drain CHG/DIS power pair"]
+  PACK_POWER_FET["Texas Instruments CSD87313DMS<br/>fully-switching common-drain CHG/DIS power pair"]
   PACK_CHG_GATE_CAP["Yageo CC0402KRX7R9BB104<br/>100-nF charge-FET gate-to-source capacitor"]
   PACK_DIS_GATE_CAP["Yageo CC0402KRX7R9BB104<br/>100-nF discharge-FET gate-to-source capacitor"]
   PACK_HOLD["Diodes Incorporated 2N7002DW-7-F<br/>reset-default ALRT hold and explicit release"]
@@ -2896,11 +2896,11 @@ Reserved: `PA1_NRST`. Free: none.
 | `PACK_LOCAL_GND` | `pack_in_bypass.END_2` | `pack_gauge.GND` | IN bypass closes locally at the gauge |
 | `PACK_CHARGE_PUMP` | `pack_gauge.CP` | `pack_cp_cap.END_1` | exact 0.47-uF 25-V X7R implements the Rev.12 charge-pump bypass |
 | `PACK_GAUGE_IN` | `pack_cp_cap.END_2` | `pack_gauge.IN` | CP bypass returns to IN, not ground, exactly as required |
-| `PACK_CHG_GATE` | `pack_gauge.CHG` | `pack_power_fet.G1` | CSD87313DMST FET1 source is the cell-stack side required by MAX17320 CHG referenced to IN |
+| `PACK_CHG_GATE` | `pack_gauge.CHG` | `pack_power_fet.G1` | CSD87313DMS FET1 source is the cell-stack side required by MAX17320 CHG referenced to IN |
 | `PACK_FET_COMMON_DRAIN` | `pack_power_fet.D_COMMON` | `abstract:internal-pack-fet-common-drain` | the two drain leads and exposed clip are one internal common-drain island; all three copper pads are soldered together but intentionally reach no other circuit node |
 | `PACK_CHG_GATE` | `pack_power_fet.G1` | `pack_chg_gate_cap.END_1` | exact 100-nF gate capacitor is placed at charge-FET gate |
 | `BATTERY_STACK_POSITIVE` | `pack_chg_gate_cap.END_2` | `pack_power_fet.S1` | charge gate capacitor returns to its battery-side source as required |
-| `PACK_DIS_GATE` | `pack_gauge.DIS` | `pack_power_fet.G2` | CSD87313DMST FET2 source is the protected-pack side required by MAX17320 DIS referenced to PCKP |
+| `PACK_DIS_GATE` | `pack_gauge.DIS` | `pack_power_fet.G2` | CSD87313DMS FET2 source is the protected-pack side required by MAX17320 DIS referenced to PCKP |
 | `PACK_DIS_GATE` | `pack_power_fet.G2` | `pack_dis_gate_cap.END_1` | exact 100-nF gate capacitor is placed at discharge-FET gate |
 | `PROTECTED_PACK_POSITIVE` | `pack_dis_gate_cap.END_2` | `pack_power_fet.S2` | discharge gate capacitor returns to its pack-side source |
 | `PACK_PCKP_SENSE` | `pack_gauge.PCKP` | `pack_pckp_res.END_1` | the exact Rev.12 pack-positive sense path begins at pin 6 |
@@ -3611,11 +3611,11 @@ Reserved: `PA1_NRST`. Free: none.
 | `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_power_output_bypass.END_1` | exact 100-nF high-frequency switched-rail bypass |
 | `POWER_GROUND` | `ir_power_output_bypass.END_2` | `abstract:power-ground` | IR receive bypass return |
 | `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_demod_supply_res.END_1` | separate exact 100-Ohm supply filter prevents one optical receiver from modulating the other |
-| `IR_DEMOD_VS` | `ir_demod_supply_res.END_2` | `ir_demod.VS` | TSOP75238TT physical contact 2 receives the filtered 2.5-to-5.5-V supply |
+| `IR_DEMOD_VS` | `ir_demod_supply_res.END_2` | `ir_demod.VS` | TSOP75238TR physical contact 2 receives the filtered 2.5-to-5.5-V supply |
 | `IR_DEMOD_VS` | `ir_demod.VS` | `ir_demod_supply_cap.END_1` | exact 4.7-uF local receiver filter capacitor |
 | `POWER_GROUND` | `ir_demod_supply_cap.END_2` | `abstract:power-ground` | demodulator filter return stays beside both ground contacts |
-| `POWER_GROUND` | `ir_demod.GND_1` | `abstract:power-ground` | TSOP75238TT physical contact 1 is grounded |
-| `POWER_GROUND` | `ir_demod.GND_4` | `abstract:power-ground` | TSOP75238TT physical contact 4 is independently accounted |
+| `POWER_GROUND` | `ir_demod.GND_1` | `abstract:power-ground` | TSOP75238TR physical contact 1 is grounded |
+| `POWER_GROUND` | `ir_demod.GND_4` | `abstract:power-ground` | TSOP75238TR physical contact 4 is independently accounted |
 | `3V3_IR_SWITCHED` | `ir_power_switch.VOUT` | `ir_carrier_supply_res.END_1` | separate exact 100-Ohm supply filter follows the TSMP application circuit |
 | `IR_CARRIER_VS` | `ir_carrier_supply_res.END_2` | `ir_carrier.VS` | TSMP95000TT physical contact 2 receives the filtered 2.0-to-5.5-V supply |
 | `IR_CARRIER_VS` | `ir_carrier.VS` | `ir_carrier_supply_cap.END_1` | exact 4.7-uF local filter follows the manufacturer recommendation |
@@ -5741,8 +5741,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `touch_irq_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `touch_irq_buffer_bypass` lifecycle: `active_orderable`.
 - `display` lifecycle: `assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified`.
-- `display_connector` uses `Hirose DF40C(2.0)-40DS-0.4V(58)` as `verified_exact_display_adapter_main_board_receptacle`, not an accepted production choice.
-- `display_connector` lifecycle: `active and authorized-distributor-stocked`.
+- `display_connector` uses `Hirose DF40C(2.0)-40DS-0.4V(51)` as `verified_exact_jlcpcb_stocked_display_adapter_main_board_receptacle`, not an accepted production choice.
+- `display_connector` lifecycle: `active_factory_stocked_standard_pcba`.
 - `display_adapter_plug` uses `Hirose DF40C-40DP-0.4V(51)` as `verified_exact_display_adapter_daughter_board_plug`, not an accepted production choice.
 - `display_adapter_plug` lifecycle: `active and authorized-distributor-stocked`.
 - `display_panel_connector` uses `Hirose FH34SRJ-40S-0.5SH(99)` as `verified_dual_contact_adapter_panel_connector_received_tail_thickness_h5_open`, not an accepted production choice.
@@ -5875,8 +5875,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `receiver_clock_cap_gpo3` lifecycle: `active_orderable`.
 - `receiver_fmi_esd` uses `Littelfuse SESD0402X1UN-0020-090` as `verified_exact_cc_external_rf_esd`, not an accepted production choice.
 - `receiver_fmi_esd` lifecycle: `active_orderable`.
-- `receiver_fmi_match_inductor` uses `Murata LQW15AN56NJ00D` as `verified_exact_si4732_fmi_first_target`, not an accepted production choice.
-- `receiver_fmi_match_inductor` lifecycle: `active_orderable`.
+- `receiver_fmi_match_inductor` uses `Murata LQW15AN56NG00D` as `verified_exact_jlcpcb_stocked_si4732_fmi_first_target`, not an accepted production choice.
+- `receiver_fmi_match_inductor` lifecycle: `active_factory_stocked_standard_pcba`.
 - `receiver_fmi_coupling_cap` uses `Murata GRM1555C1H102JA01D` as `verified_exact_si4732_fmi_first_target`, not an accepted production choice.
 - `receiver_fmi_coupling_cap` lifecycle: `active_orderable`.
 - `receiver_ami_esd` uses `Littelfuse SESD0402X1UN-0020-090` as `verified_exact_cc_external_rf_esd`, not an accepted production choice.
@@ -5886,8 +5886,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `ir_power_input_cap` lifecycle: `active_production`.
 - `ir_power_output_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `ir_power_output_bypass` lifecycle: `active_orderable`.
-- `ir_demod` uses `Vishay TSOP75238TT` as `verified_exact_stocked_robust_ir_receiver`, not an accepted production choice.
-- `ir_demod` lifecycle: `active_stocked_orderable`.
+- `ir_demod` uses `Vishay TSOP75238TR` as `verified_exact_jlcpcb_stocked_robust_ir_receiver`, not an accepted production choice.
+- `ir_demod` lifecycle: `active_factory_stocked_standard_pcba_thin_stock`.
 - `ir_demod_supply_cap` uses `Murata GRM188Z71A475ME15D` as `verified_exact_ir_receiver_filter_capacitor`, not an accepted production choice.
 - `ir_demod_supply_cap` lifecycle: `active_stocked_orderable`.
 - `ir_carrier` uses `Vishay TSMP95000TT` as `verified_exact_carrier_learning_ir_receiver`, not an accepted production choice.
@@ -5966,6 +5966,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `power_command_filter` lifecycle: `active_orderable`.
 - `run_loop_filter` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `run_loop_filter` lifecycle: `active_orderable`.
+- `pack_power_fet` uses `Texas Instruments CSD87313DMS` as `verified_exact_jlcpcb_stocked_candidate`, not an accepted production choice.
+- `pack_power_fet` lifecycle: `active_factory_stocked_standard_pcba`.
 - `pack_holder` uses `Keystone Electronics 1048P` as `verified_mechanical_reference`, not an accepted production choice.
 - `pack_cell0` uses `XTAR 18650 4000mAh` as `selected_qualification_target`, not an accepted production choice.
 - `pack_cell0` lifecycle: `current_catalog`.

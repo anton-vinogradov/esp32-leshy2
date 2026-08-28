@@ -10031,7 +10031,7 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Footprint" "Leshy2:CSD87313DMST"
+				(property "Footprint" "Leshy2:CSD87313DMS"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -79089,7 +79089,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Description" "56nh_5pct_high_q_rf_inductor_0402"
+				(property "Description" "56nh_2pct_high_q_rf_inductor_0402"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)

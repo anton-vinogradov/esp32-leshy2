@@ -3,10 +3,10 @@
   "stage": "H3.3.5",
   "status": "reviewed_analog_corner_consolidation",
   "input_hashes": {
-    "hardware/verification/generated/H3-VRF31-display.json": "35f21ff83f3dbafaa37510e0df4858a7749075b414bd69a7fce609765e06d58d",
-    "hardware/verification/generated/H3-VRF32-audio.json": "e518eff6c7155a74f659f391ddf7b029efc7127f4d669e2da0d05cf32b91b775",
-    "hardware/verification/generated/H3-VRF33-ir.json": "9e66a2487a83f27f53b99db78a478048b6bb939bfdc8ff50c6e24b59de3145c6",
-    "hardware/verification/generated/H3-VRF34-battery-analog.json": "9d7c4750668fa435741f04ef1cd8f7d40b9c9a8aca3049375a3c7a97a3eb5668"
+    "hardware/verification/generated/H3-VRF31-display.json": "972ea1d6669080117e2cf418780bd9f9b02cd802de9cf1e13dc7b1b797e70fc0",
+    "hardware/verification/generated/H3-VRF32-audio.json": "60dbd636b5f0eccd70693e7e8051fd40d71023c1c6da8dc60fee234b81119a6f",
+    "hardware/verification/generated/H3-VRF33-ir.json": "06c11ad4c7da83855707ea7f6e169374db632a9974d531356c8ab437f61be38c",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "3532b57628816672a4e09fe457fa77abc71c61081767e930f5c4360078543e0f"
   },
   "leaf_summary": {
     "display": {
@@ -79,7 +79,7 @@
       "prove reset/brownout/off ordering, >=10-ms amplifier-enable delay and absence of back-power with codec, voice and main domains independently off"
     ],
     "ir": [
-      "verify received TSOP75238TT/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power",
+      "verify received TSOP75238TR/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; confirm TSOP75238TR CPL rotation and feeder presentation against the JLCPCB placement preview",
       "replay a representative 30-to-60-kHz protocol corpus and measure carrier/count accuracy, robust AGC behavior, range and field of view",
       "measure VSMY14940 current, optical range/alignment, local temperature and IEC 62471 classification through the final enclosure/window",
       "calibrate the VEMD1060 tunnel against the <=2.271-uA paper target and inject missing emitter, ambient leakage, RX crosstalk, stuck carrier, brownout and FAULT_KILL"

@@ -16,7 +16,7 @@ flowchart LR
 
 - Reference microSD: `SDSQQNR-032G-GN6IA`.
 - M5 interconnect set: `A034-G`, `A034-B`, `A096`.
-- Full-reel-only `TSOP95238TT` is replaced by stocked cut-tape `TSOP75238TT` without a footprint, contact, GPIO or firmware-interface change.
+- Robust IR now uses factory-stocked `TSOP75238TR` (`C511498`) without a footprint, contact, GPIO or firmware-interface change; stock, CPL rotation and feeder presentation are mandatory pre-order checks.
 - A serial `ES3C35P` display donor route is identified; the raw panel still cannot be honestly qualified without a received sample.
 - `TE 2118651-2` is confirmed active and documented; replacement has no demonstrated benefit.
 - The makers of stock `U214` and `E01-ML01IPX` genuinely do not disclose the fitted connector-subpart MPNs.
@@ -33,9 +33,9 @@ flowchart LR
 
 ### `H3-PHY-024` · `ir`
 
-- Outcome: The full-reel-only TSOP95238TT was replaced by stocked cut-tape TSOP75238TT. It keeps the same 6.8 x 3.0 x 3.2 mm top-view envelope, contact order, 38-kHz AGC2 role and 3.3-V compatibility while widening the supply range and improving nominal range; received orientation and dynamic behaviour remain physical.
-- Sources: [Vishay](https://www.vishay.com/docs/82494/tsop752.pdf), [DigiKey](https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP75238TT/4075864).
-- Still physical: run the inherited two-channel dynamic fixture on received parts.
+- Outcome: The selected robust channel is exact TSOP75238TR from JLCPCB C511498. TR and the former TT code retain the same 6.8 x 3.0 x 3.2 mm package, contact order, 38-kHz AGC2 role and 3.3-V compatibility; only the tape presentation differs. The current 15-piece stock covers the five-device trial but not a 100-device run.
+- Sources: [Vishay](https://www.vishay.com/docs/82494/tsop752.pdf), [JLCPCB](https://jlcpcb.com/partdetail/x/C511498).
+- Still physical: approve CPL rotation and feeder presentation against the JLCPCB placement preview, recheck exact stock before order, and run the inherited two-channel dynamic fixture on received parts.
 
 ### `H3-PHY-028` · `battery`
 
@@ -81,7 +81,7 @@ flowchart LR
 
 ## Accepted replacement
 
-- `TSOP75238TT`: accepted as a form/fit/function replacement for `TSOP95238TT`; it retains the top-view envelope, contacts, 38-kHz AGC2 role and 3.3-V operation while being orderable individually.
+- `TSOP75238TR`: retains the final Heimdall envelope, contacts, 38-kHz AGC2 role and 3.3-V operation; TR changes only tape presentation, so the placement preview remains an explicit gate.
 
 ## Evaluated and rejected alternatives
 

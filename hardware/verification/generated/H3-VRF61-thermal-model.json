@@ -4,12 +4,12 @@
   "status": "reviewed_parameterized_board_cell_and_enclosure_thermal_model",
   "method": "full admitted H3.1 state enumeration plus conservative internal heat partition and parameterized base-to-ambient resistance limits",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "2cce7e1637467672ce0b2009c1603ac591a37b53f5e93a399c10014e4fd86f09",
-    "hardware/architecture/devices.json": "192f38e0adf8531c14034b009ca69f78f1f4772a02c953a2c1174947c042b2a5",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "4b99ef1b0c0de282c78cca943242b68cd4d2276ec94357362f2345e786e2ca7a",
-    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "e29784d2e96c1c10282ac5ab6b0a4a6e2f2718c4541e73f1e4dffccefb7df7f4",
-    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "5b1dbafc8896fe4e9e9387529face0c05eec891aa8656c85310d124b8867cfdc",
-    "hardware/verification/generated/H3-VRF34-battery-analog.json": "9d7c4750668fa435741f04ef1cd8f7d40b9c9a8aca3049375a3c7a97a3eb5668"
+    "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
+    "hardware/architecture/devices.json": "b3532cd8bc4a96c32064a79b74bae2e59de8afa9b6193cff95cabb5610e6381a",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "892c4e1d65c98d6d818988f2d7c54e206d810bccc6353547169a39d6580ad6cf",
+    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "0f0caac695d3aec927b2ce637842baa0fd2a6dca960f28fbd41c1510ab86189e",
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "efc479252d99b836763e6f8d60b17dfc8e9bce4860944cc473f9eb6dd71ee7f5",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "3532b57628816672a4e09fe457fa77abc71c61081767e930f5c4360078543e0f"
   },
   "thermal_parts": {
     "main_voice_ext_buck": {

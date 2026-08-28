@@ -81,7 +81,7 @@ flowchart TD
 
 ## Независимая проверка критических деталей
 
-До bulk-прогона отдельно проверены `16` критических идентичностей. Их stock-снимки не заменяют текущий BOM Tool результат и не обещают постоянную доступность.
+До bulk-прогона отдельно проверены `20` критических идентичностей. Их stock-снимки не заменяют текущий BOM Tool результат и не обещают постоянную доступность.
 
 | MPN | JLC | Сейчас | Маршрут |
 |---|---:|---|---|
@@ -101,6 +101,10 @@ flowchart TD
 | [`0402WGF1603TCE`](https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757) | `C25757` | stock 388017 | `J0` · exact stocked 160-kOhm 0402 replacement preserves the complete audio-attenuator electrical contract and uses a thinner body |
 | [`RS-06K47R0FT`](https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014) | `C140014` | stock 78058 | `J0` · exact stocked 47-Ohm 1206 replacement preserves the IR current-limit power, voltage and temperature contract |
 | [`CC0603KRX7R0BB104`](https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803) | `C113803` | stock 1027658 | `J0` · exact stocked 100-nF 100-V 0603 body; X7R temperature stability is stricter than the replaced X7S class |
+| [`DF40C(2.0)-40DS-0.4V(51)`](https://jlcpcb.com/partdetail/x/C597934) | `C597934` | stock 7218 | `J0` · exact Hirose receptacle body and mate; (51) changes only reel quantity from the former (58) order code |
+| [`CSD87313DMS`](https://jlcpcb.com/partdetail/x/C2863848) | `C2863848` | stock 4813 | `J0` · same production die, WSON-CLIP body, contacts and electrical contract as DMST; DMS changes tape-and-reel quantity only |
+| [`TSOP75238TR`](https://jlcpcb.com/partdetail/x/C511498) | `C511498` | stock 17 | `J0` · same final body, contacts and electrical contract as TT; TR changes tape presentation, so approve CPL rotation/feeder orientation and recheck complete-job stock before order |
+| [`LQW15AN56NG00D`](https://jlcpcb.com/partdetail/x/C167482) | `C167482` | stock 21558 | `J0` · exact 56-nH LQW15AN 0402 body; G tightens inductance tolerance from +/-5% to +/-2% without degrading RF limits |
 
 ## Граница сборки
 
