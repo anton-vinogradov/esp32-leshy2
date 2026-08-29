@@ -20,6 +20,6 @@ The exact `HMX035CTFT-001` tail/connector, optics and backlight plus the `ES8311
 
 `H3-NRF24-LIFECYCLE` is closed with option A: three `E01-ML01SP4` modules remain because they provide the required full nRF24 hardware behavior. Exact C97340 is factory-stocked and adds PA/LNA output up to 20 dBm; the nRF24 family is not recommended for new designs, so H5 must still verify received marking and RF performance. A modern nRF52 is 2.4-GHz-only and supports over-air ESB compatibility, but is not an SPI/register drop-in replacement.
 
-**Historical R1-chain status:** `H3.0.2-R1` is reviewed; the later marker in that chain is `H3.6.1-R1`. The current hardware marker is `H1-R2.35`.
+**Historical R1-chain status:** `H3.0.2-R1` is reviewed; the later marker in that chain is `H3.6.1-R1`. The current hardware marker is `H1-R2.36`.
 
 [213-row machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).

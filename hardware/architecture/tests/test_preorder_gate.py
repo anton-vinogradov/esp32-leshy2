@@ -16,7 +16,7 @@ class PreorderGateTests(unittest.TestCase):
     def test_gate_reports_actual_unfinished_state(self):
         self.assertEqual("LESHY2-PREORDER-R2", self.contract["contract_id"])
         truth = self.contract["current_truth"]
-        self.assertIn("H1-R2.35 is the complete dimensioned acceptance candidate", truth["mechanical_projection"])
+        self.assertIn("H1-R2.36 is the complete dimensioned acceptance candidate", truth["mechanical_projection"])
         self.assertIn("R2 H2 production schematic and PCB layout have not begun", truth["current_ecad"])
         self.assertIn("F2-R2.5 is in progress", truth["executable_firmware"])
         self.assertIn("F3-R2 and F-PO remain blocked", truth["instruction_emulation"])

@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.35",
+  "marker": "H1-R2.36",
   "status": "pass",
   "structural_status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
-  "new_fixed_body_count": 67,
+  "new_fixed_body_count": 78,
   "new_reserve_count": 1,
-  "placement_drawing_reference_count": 68,
+  "placement_drawing_reference_count": 79,
   "duplicate_placement_drawing_references": {},
   "replaced_seed_instances": [
     "audio_speaker_selector",
@@ -46,7 +46,7 @@
     "ui_matrix_io"
   ],
   "same_face_collisions": [],
-  "opposing_overlap_count": 79,
+  "opposing_overlap_count": 90,
   "minimum_opposing_clearance_mm": 2.59,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
@@ -170,6 +170,13 @@
       "clearance_mm": 8.05
     },
     {
+      "ui": "display_connector",
+      "rf": "det_cc_r2",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
+      "clearance_mm": 7.95
+    },
+    {
       "ui": "ir_demod",
       "rf": "evidence_mask",
       "ui_origin": "retained_base",
@@ -203,6 +210,13 @@
       "ui_origin": "retained_base",
       "rf_origin": "r2",
       "clearance_mm": 6.05
+    },
+    {
+      "ui": "s3",
+      "rf": "det_voice_r2",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
+      "clearance_mm": 6.7
     },
     {
       "ui": "safe_c5_fault_reset_buffer",
@@ -331,6 +345,20 @@
       "clearance_mm": 9.2
     },
     {
+      "ui": "det_s3_r2",
+      "rf": "airband_lo",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 8.9
+    },
+    {
+      "ui": "det_s3_r2",
+      "rf": "airband_filter_reserve",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 8.8
+    },
+    {
       "ui": "nrf0_r2",
       "rf": "u214_host_buffer_a_bypass",
       "ui_origin": "r2",
@@ -430,6 +458,13 @@
     },
     {
       "ui": "nrf2_r2",
+      "rf": "det_voice_v_r2",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 7.4
+    },
+    {
+      "ui": "nrf2_r2",
       "rf": "main_input_cap0_r2",
       "ui_origin": "r2",
       "rf_origin": "r2",
@@ -462,6 +497,48 @@
       "ui_origin": "r2",
       "rf_origin": "r2",
       "clearance_mm": 7.4
+    },
+    {
+      "ui": "nrf0_coupler_r2",
+      "rf": "airband_filter_reserve",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 9.25
+    },
+    {
+      "ui": "det_nrf0_r2",
+      "rf": "airband_lna",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 8.4
+    },
+    {
+      "ui": "det_nrf0_r2",
+      "rf": "airband_filter_reserve",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 8.7
+    },
+    {
+      "ui": "det_nrf1_r2",
+      "rf": "airband_filter_reserve",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 8.7
+    },
+    {
+      "ui": "det_nrf2_r2",
+      "rf": "codec_r2",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 9.3
+    },
+    {
+      "ui": "det_nrf2_r2",
+      "rf": "audio_speaker_selector_r2",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 8.8
     },
     {
       "ui": "nrf0_host_buffer_r2",
@@ -614,6 +691,161 @@
   "physical_features": {
     "status": "pass",
     "features": [
+      {
+        "id": "s3_tx_evidence_island_reserve",
+        "kind": "placement_reserve",
+        "world_bbox_mm": {
+          "x": [
+            21.0,
+            31.5
+          ],
+          "y": [
+            5.7,
+            13.2
+          ]
+        },
+        "members": [
+          "det_s3_r2",
+          "s3_rf_board_connector_r2",
+          "s3_rf_coupler_r2"
+        ],
+        "minimum_clearance_mm": 0.7
+      },
+      {
+        "id": "c5_tx_evidence_island_reserve",
+        "kind": "placement_reserve",
+        "world_bbox_mm": {
+          "x": [
+            44.0,
+            54.2
+          ],
+          "y": [
+            5.7,
+            13.2
+          ]
+        },
+        "members": [
+          "c5_rf_board_connector_r2",
+          "c5_rf_coupler_r2",
+          "det_c5_r2"
+        ],
+        "minimum_clearance_mm": 1.2
+      },
+      {
+        "id": "nrf0_tx_evidence_island_reserve",
+        "kind": "placement_reserve",
+        "world_bbox_mm": {
+          "x": [
+            9.7,
+            20.5
+          ],
+          "y": [
+            8.5,
+            17.6
+          ]
+        },
+        "members": [
+          "det_nrf0_r2",
+          "nrf0_coupler_r2",
+          "nrf0_rf_board_connector_r2"
+        ],
+        "minimum_clearance_mm": 0.8
+      },
+      {
+        "id": "nrf1_tx_evidence_island_reserve",
+        "kind": "placement_reserve",
+        "world_bbox_mm": {
+          "x": [
+            28.7,
+            39.5
+          ],
+          "y": [
+            13.5,
+            21.3
+          ]
+        },
+        "members": [
+          "det_nrf1_r2",
+          "nrf1_coupler_r2",
+          "nrf1_rf_board_connector_r2"
+        ],
+        "minimum_clearance_mm": 2.402
+      },
+      {
+        "id": "nrf2_tx_evidence_island_reserve",
+        "kind": "placement_reserve",
+        "world_bbox_mm": {
+          "x": [
+            56.5,
+            65.3
+          ],
+          "y": [
+            8.5,
+            17.6
+          ]
+        },
+        "members": [
+          "det_nrf2_r2",
+          "nrf2_coupler_r2",
+          "nrf2_rf_board_connector_r2"
+        ],
+        "minimum_clearance_mm": 2.8
+      },
+      {
+        "id": "cc_tx_evidence_island_reserve",
+        "kind": "placement_reserve",
+        "world_bbox_mm": {
+          "x": [
+            33.5,
+            45.0
+          ],
+          "y": [
+            7.8,
+            13.4
+          ]
+        },
+        "members": [
+          "cc_r2",
+          "det_cc_r2"
+        ],
+        "minimum_clearance_mm": 7.0
+      },
+      {
+        "id": "uhf_tx_evidence_island_reserve",
+        "kind": "placement_reserve",
+        "world_bbox_mm": {
+          "x": [
+            0.5,
+            8.3
+          ],
+          "y": [
+            25.8,
+            31.8
+          ]
+        },
+        "members": [
+          "det_voice_r2"
+        ],
+        "minimum_clearance_mm": 0.7
+      },
+      {
+        "id": "vhf_tx_evidence_island_reserve",
+        "kind": "placement_reserve",
+        "world_bbox_mm": {
+          "x": [
+            59.9,
+            64.3
+          ],
+          "y": [
+            42.9,
+            49.0
+          ]
+        },
+        "members": [
+          "det_voice_v_r2"
+        ],
+        "minimum_clearance_mm": 0.7
+      },
       {
         "id": "cap_socket_pth_keepout",
         "kind": "keepout",
@@ -781,6 +1013,372 @@
       "u219_pin10_oe_pullup",
       "u219_pin10_switch",
       "u219_pin10_switch_bypass"
+    ],
+    "errors": []
+  },
+  "tx_evidence_physical_register": {
+    "status": "pass",
+    "detector_count": 8,
+    "coupler_count": 5,
+    "local_island_count": 8,
+    "selected_detector_device_id": "adi_ad8314armz_reel",
+    "selected_detector_factory_route": {
+      "jlcpcb_part": "C652687",
+      "assembly_type": "SMT Assembly; Extended; Standard PCBA",
+      "local_stock": 0,
+      "overseas_stock": 2978,
+      "presale_available_quantity": 2977,
+      "presale_moq": 4,
+      "quantity_one_to_nine_unit_price_usd": 2.9826,
+      "required_quantity_per_device": 6,
+      "route": "explicit overseas-stock/pre-order route; the six-device requirement satisfies MOQ 4",
+      "checked": "2026-08-29"
+    },
+    "fixed_bodies": [
+      {
+        "id": "s3_rf_coupler_r2",
+        "mpn": "CP0603Q5425ENTR",
+        "frame": "ui-inner",
+        "courtyard_world_bbox_mm": {
+          "x": [
+            21.75,
+            23.85
+          ],
+          "y": [
+            5.95,
+            7.29
+          ]
+        }
+      },
+      {
+        "id": "det_s3_r2",
+        "mpn": "LTC5532ES6#TRMPBF",
+        "frame": "ui-inner",
+        "courtyard_world_bbox_mm": {
+          "x": [
+            25.45,
+            28.85
+          ],
+          "y": [
+            9.25,
+            11.35
+          ]
+        }
+      },
+      {
+        "id": "c5_rf_coupler_r2",
+        "mpn": "CP0603Q5425ENTR",
+        "frame": "ui-inner",
+        "courtyard_world_bbox_mm": {
+          "x": [
+            51.15,
+            53.25
+          ],
+          "y": [
+            5.95,
+            7.29
+          ]
+        }
+      },
+      {
+        "id": "det_c5_r2",
+        "mpn": "LTC5532ES6#TRMPBF",
+        "frame": "ui-inner",
+        "courtyard_world_bbox_mm": {
+          "x": [
+            46.25,
+            49.65
+          ],
+          "y": [
+            9.25,
+            11.35
+          ]
+        }
+      },
+      {
+        "id": "nrf0_coupler_r2",
+        "mpn": "DC2337J5010AHF",
+        "frame": "ui-inner",
+        "courtyard_world_bbox_mm": {
+          "x": [
+            9.75,
+            12.28
+          ],
+          "y": [
+            13.05,
+            14.82
+          ]
+        }
+      },
+      {
+        "id": "det_nrf0_r2",
+        "mpn": "AD8314ARMZ-REEL",
+        "frame": "ui-inner",
+        "courtyard_world_bbox_mm": {
+          "x": [
+            12.75,
+            18.4
+          ],
+          "y": [
+            12.75,
+            16.45
+          ]
+        }
+      },
+      {
+        "id": "nrf1_coupler_r2",
+        "mpn": "DC2337J5010AHF",
+        "frame": "ui-inner",
+        "courtyard_world_bbox_mm": {
+          "x": [
+            36.05,
+            38.58
+          ],
+          "y": [
+            17.95,
+            19.72
+          ]
+        }
+      },
+      {
+        "id": "det_nrf1_r2",
+        "mpn": "AD8314ARMZ-REEL",
+        "frame": "ui-inner",
+        "courtyard_world_bbox_mm": {
+          "x": [
+            28.95,
+            34.6
+          ],
+          "y": [
+            17.05,
+            20.75
+          ]
+        }
+      },
+      {
+        "id": "nrf2_coupler_r2",
+        "mpn": "DC2337J5010AHF",
+        "frame": "ui-inner",
+        "courtyard_world_bbox_mm": {
+          "x": [
+            62.75,
+            65.28
+          ],
+          "y": [
+            13.05,
+            14.82
+          ]
+        }
+      },
+      {
+        "id": "det_nrf2_r2",
+        "mpn": "AD8314ARMZ-REEL",
+        "frame": "ui-inner",
+        "courtyard_world_bbox_mm": {
+          "x": [
+            56.55,
+            62.2
+          ],
+          "y": [
+            12.75,
+            16.45
+          ]
+        }
+      },
+      {
+        "id": "det_cc_r2",
+        "mpn": "AD8314ARMZ-REEL",
+        "frame": "rf-inner",
+        "courtyard_world_bbox_mm": {
+          "x": [
+            38.95,
+            44.6
+          ],
+          "y": [
+            8.25,
+            11.95
+          ]
+        }
+      },
+      {
+        "id": "det_voice_r2",
+        "mpn": "AD8314ARMZ-REEL",
+        "frame": "rf-inner",
+        "courtyard_world_bbox_mm": {
+          "x": [
+            0.75,
+            6.4
+          ],
+          "y": [
+            25.95,
+            29.65
+          ]
+        }
+      },
+      {
+        "id": "det_voice_v_r2",
+        "mpn": "AD8314ARMZ-REEL",
+        "frame": "rf-inner",
+        "courtyard_world_bbox_mm": {
+          "x": [
+            59.95,
+            63.65
+          ],
+          "y": [
+            42.95,
+            48.6
+          ]
+        }
+      }
+    ],
+    "local_islands": [
+      {
+        "id": "s3_tx_evidence_island_reserve",
+        "members": [
+          "det_s3_r2",
+          "s3_rf_board_connector_r2",
+          "s3_rf_coupler_r2"
+        ],
+        "world_bbox_mm": {
+          "x": [
+            21.0,
+            31.5
+          ],
+          "y": [
+            5.7,
+            13.2
+          ]
+        },
+        "minimum_compression_stop_clearance_mm": 12.0
+      },
+      {
+        "id": "c5_tx_evidence_island_reserve",
+        "members": [
+          "c5_rf_board_connector_r2",
+          "c5_rf_coupler_r2",
+          "det_c5_r2"
+        ],
+        "world_bbox_mm": {
+          "x": [
+            44.0,
+            54.2
+          ],
+          "y": [
+            5.7,
+            13.2
+          ]
+        },
+        "minimum_compression_stop_clearance_mm": 11.8
+      },
+      {
+        "id": "nrf0_tx_evidence_island_reserve",
+        "members": [
+          "det_nrf0_r2",
+          "nrf0_coupler_r2",
+          "nrf0_rf_board_connector_r2"
+        ],
+        "world_bbox_mm": {
+          "x": [
+            9.7,
+            20.5
+          ],
+          "y": [
+            8.5,
+            17.6
+          ]
+        },
+        "minimum_compression_stop_clearance_mm": 0.7
+      },
+      {
+        "id": "nrf1_tx_evidence_island_reserve",
+        "members": [
+          "det_nrf1_r2",
+          "nrf1_coupler_r2",
+          "nrf1_rf_board_connector_r2"
+        ],
+        "world_bbox_mm": {
+          "x": [
+            28.7,
+            39.5
+          ],
+          "y": [
+            13.5,
+            21.3
+          ]
+        },
+        "minimum_compression_stop_clearance_mm": 19.831
+      },
+      {
+        "id": "nrf2_tx_evidence_island_reserve",
+        "members": [
+          "det_nrf2_r2",
+          "nrf2_coupler_r2",
+          "nrf2_rf_board_connector_r2"
+        ],
+        "world_bbox_mm": {
+          "x": [
+            56.5,
+            65.3
+          ],
+          "y": [
+            8.5,
+            17.6
+          ]
+        },
+        "minimum_compression_stop_clearance_mm": 0.7
+      },
+      {
+        "id": "cc_tx_evidence_island_reserve",
+        "members": [
+          "cc_r2",
+          "det_cc_r2"
+        ],
+        "world_bbox_mm": {
+          "x": [
+            33.5,
+            45.0
+          ],
+          "y": [
+            7.8,
+            13.4
+          ]
+        },
+        "minimum_compression_stop_clearance_mm": 21.0
+      },
+      {
+        "id": "uhf_tx_evidence_island_reserve",
+        "members": [
+          "det_voice_r2"
+        ],
+        "world_bbox_mm": {
+          "x": [
+            0.5,
+            8.3
+          ],
+          "y": [
+            25.8,
+            31.8
+          ]
+        },
+        "minimum_compression_stop_clearance_mm": 10.8
+      },
+      {
+        "id": "vhf_tx_evidence_island_reserve",
+        "members": [
+          "det_voice_v_r2"
+        ],
+        "world_bbox_mm": {
+          "x": [
+            59.9,
+            64.3
+          ],
+          "y": [
+            42.9,
+            49.0
+          ]
+        },
+        "minimum_compression_stop_clearance_mm": 28.405
+      }
     ],
     "errors": []
   },
@@ -2634,6 +3232,12 @@
         "path": "CC-SUB",
         "body": "cc_r2",
         "clearance_to_protected_pin_keepout_mm": -0.59
+      },
+      {
+        "face": "rear",
+        "path": "CC-SUB",
+        "body": "det_cc_r2",
+        "clearance_to_protected_pin_keepout_mm": -0.39
       }
     ],
     "factory_surface": "Plugin/manualWeld; 13 standard and 12 reverse procurement minima; written Standard-PCBA assembly acceptance and an exact-order quote are absent",
@@ -2983,6 +3587,27 @@
       }
     },
     {
+      "id": "det_s3_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "LTC5532ES6#TRMPBF",
+      "role": "S3 dual-band actual-TX detector beside its forward coupler",
+      "world_bbox_mm": {
+        "x": [
+          25.7,
+          28.599999999999998
+        ],
+        "y": [
+          9.5,
+          11.1
+        ],
+        "z": [
+          5.36,
+          6.36
+        ]
+      }
+    },
+    {
       "id": "c5_rf_board_connector_r2",
       "kind": "fixed_body",
       "frame": "ui-inner",
@@ -3021,6 +3646,27 @@
         "z": [
           5.36,
           5.96
+        ]
+      }
+    },
+    {
+      "id": "det_c5_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "LTC5532ES6#TRMPBF",
+      "role": "C5 dual-band actual-TX detector beside its forward coupler",
+      "world_bbox_mm": {
+        "x": [
+          46.5,
+          49.4
+        ],
+        "y": [
+          9.5,
+          11.1
+        ],
+        "z": [
+          5.36,
+          6.36
         ]
       }
     },
@@ -3147,6 +3793,132 @@
         "z": [
           5.36,
           7.76
+        ]
+      }
+    },
+    {
+      "id": "nrf0_coupler_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "DC2337J5010AHF",
+      "role": "nRF24 #0 10-dB forward-power coupler",
+      "world_bbox_mm": {
+        "x": [
+          10.0,
+          12.03
+        ],
+        "y": [
+          13.3,
+          14.57
+        ],
+        "z": [
+          5.36,
+          5.91
+        ]
+      }
+    },
+    {
+      "id": "det_nrf0_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "AD8314ARMZ-REEL",
+      "role": "nRF24 #0 actual-TX detector in the same front-board RF island",
+      "world_bbox_mm": {
+        "x": [
+          13.0,
+          18.15
+        ],
+        "y": [
+          13.0,
+          16.2
+        ],
+        "z": [
+          5.36,
+          6.460000000000001
+        ]
+      }
+    },
+    {
+      "id": "nrf1_coupler_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "DC2337J5010AHF",
+      "role": "nRF24 #1 10-dB forward-power coupler",
+      "world_bbox_mm": {
+        "x": [
+          36.3,
+          38.33
+        ],
+        "y": [
+          18.2,
+          19.47
+        ],
+        "z": [
+          5.36,
+          5.91
+        ]
+      }
+    },
+    {
+      "id": "det_nrf1_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "AD8314ARMZ-REEL",
+      "role": "nRF24 #1 actual-TX detector in the same front-board RF island",
+      "world_bbox_mm": {
+        "x": [
+          29.2,
+          34.35
+        ],
+        "y": [
+          17.3,
+          20.5
+        ],
+        "z": [
+          5.36,
+          6.460000000000001
+        ]
+      }
+    },
+    {
+      "id": "nrf2_coupler_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "DC2337J5010AHF",
+      "role": "nRF24 #2 10-dB forward-power coupler",
+      "world_bbox_mm": {
+        "x": [
+          63.0,
+          65.03
+        ],
+        "y": [
+          13.3,
+          14.57
+        ],
+        "z": [
+          5.36,
+          5.91
+        ]
+      }
+    },
+    {
+      "id": "det_nrf2_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "AD8314ARMZ-REEL",
+      "role": "nRF24 #2 actual-TX detector in the same front-board RF island",
+      "world_bbox_mm": {
+        "x": [
+          56.8,
+          61.949999999999996
+        ],
+        "y": [
+          13.0,
+          16.2
+        ],
+        "z": [
+          5.36,
+          6.460000000000001
         ]
       }
     },
@@ -3419,6 +4191,69 @@
         ],
         "z": [
           15.36,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "det_cc_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "AD8314ARMZ-REEL",
+      "role": "CC1101 actual-TX detector beside the rear-local sub-GHz radio",
+      "world_bbox_mm": {
+        "x": [
+          39.2,
+          44.35
+        ],
+        "y": [
+          8.5,
+          11.7
+        ],
+        "z": [
+          15.26,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "det_voice_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "AD8314ARMZ-REEL",
+      "role": "UHF voice-radio actual-TX detector immediately above its module",
+      "world_bbox_mm": {
+        "x": [
+          1.0,
+          6.15
+        ],
+        "y": [
+          26.2,
+          29.4
+        ],
+        "z": [
+          15.26,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "det_voice_v_r2",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "AD8314ARMZ-REEL",
+      "role": "VHF voice-radio actual-TX detector immediately right of its module",
+      "world_bbox_mm": {
+        "x": [
+          60.2,
+          63.400000000000006
+        ],
+        "y": [
+          43.2,
+          48.35
+        ],
+        "z": [
+          15.26,
           16.36
         ]
       }

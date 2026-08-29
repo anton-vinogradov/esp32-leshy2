@@ -72,13 +72,13 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(summary["community_complete_device_target_usd"], 260)
         self.assertEqual(summary["community_electronics_target_usd"], [189, 216])
         self.assertAlmostEqual(
-            summary["paper_qualified_no_loss_savings_usd"], 24.5068, places=4
+            summary["paper_qualified_no_loss_savings_usd"], 5.5032, places=4
         )
         self.assertGreater(
             summary["additional_savings_to_electronics_target_usd"][0],
             35,
         )
-        self.assertLess(summary["pre_pcba_margin_to_complete_ceiling_usd"], 10)
+        self.assertLess(summary["pre_pcba_margin_to_complete_ceiling_usd"], 0)
         ru = MODULE.render_doc(self.result, True)
         self.assertIn("Принятая ценовая граница all-in-one", ru)
         self.assertIn("отдельный `Core` сейчас не проектируется", ru)
@@ -141,6 +141,12 @@ class H1R2CostReviewTest(unittest.TestCase):
         headers = by_id["samtec_ftsh_105_01_l_dv_k_p_tr"]
         self.assertEqual(4, headers["quantity_per_device"])
         self.assertEqual(20, headers["quantity_historical_capture"])
+        detector = by_id["adi_ad8314armz_reel"]
+        self.assertEqual("adi_ad8314acpz_rl7", detector["source_device_id"])
+        self.assertEqual("C652687", detector["jlcpcb_part"])
+        self.assertEqual(6, detector["quantity_per_device"])
+        self.assertAlmostEqual(11.6388, detector["line_burden_per_device_usd"])
+        self.assertIn("MOQ 4", detector["historical_capture_route"])
 
     def test_external_antennas_are_grouped_by_mpn(self):
         rows = self.result["antenna_rows"]
@@ -227,7 +233,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         )
         self.assertEqual(
             candidates["Analog Devices AD8314ARMZ-REEL"]["status"],
-            "qualified_same_device_pending_six_body_placement_gate",
+            "accepted_same_device_msop_explicit_factory_route_and_physical_fit",
         )
         self.assertEqual(
             candidates["Analog Devices AD8314ARMZ-REEL"]["jlcpcb_part"],
@@ -251,7 +257,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(lanes["factory-preorder-penalty"], "accepted")
         self.assertEqual(lanes["main-rf-mechanics"], "accepted")
         self.assertEqual(lanes["native-rf-jumpers"], "accepted")
-        self.assertEqual(lanes["rf-evidence-detectors"], "active")
+        self.assertEqual(lanes["rf-evidence-detectors"], "accepted")
         self.assertEqual(lanes["ordinary-controls"], "accepted")
         self.assertEqual(lanes["battery-holder"], "accepted")
         self.assertEqual(lanes["service-headers"], "accepted")

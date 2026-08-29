@@ -1,18 +1,18 @@
-# H1-R2.35 · рабочая компоновка целевого устройства
+# H1-R2.36 · рабочая компоновка целевого устройства
 
 Полная проверяемая физическая модель двух плат 75×150 мм готова к визуальному принятию. Все корпуса, Cap-профили, внешний объём U219-антенны и медные резервы сведены без открытых geometry-gates; H1 остаётся открытым только до явного принятия этого мокапа. Само принятие H1 ещё не разрешает трассировку KiCad: сначала должны быть закрыты перечисленные ниже электрические prerequisites R2 H2.
 
 ## Что увидит пользователь
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.35-full-power-nrf24-1)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.36-complete-tx-evidence-1)
 
 ## Легенда компонентов
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.35-full-power-nrf24-1)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.36-complete-tx-evidence-1)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.35-full-power-nrf24-1)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.36-complete-tx-evidence-1)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.35-full-power-nrf24-1)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.36-complete-tx-evidence-1)
 
 ## Что находится внутри
 
@@ -38,6 +38,7 @@
 
 - Коллизии корпусов на одной стороне: `0`.
 - Минимальный встречный Z-зазор: `2.59 мм` при требовании `0.70 мм`.
+- Полное TX-evidence: `8` точных детекторов, `5` coupler и `8` локальных островов проходят fail-closed аудит; шесть AD8314 используют принятый `AD8314ARMZ-REEL` / `C652687`.
 - C5 DBG10 расположен рядом с S3 DBG10 и не пересекается с соседними корпусами.
 - GPIO: передний RP `46/48`, резерв `2`; задний RP `40/48`, резерв `8`; S3 использует 22 из 33 GPIO.
 - M1: все 80 контактов распределены — 24 сигнала, 14 main-power, 2 AON, 24 возврата и 16 NC-резервов.
@@ -51,6 +52,7 @@
 
 | Роль | MPN | JLCPCB | Текущая доступность/маршрут |
 |---|---|---|---|
+| шесть логарифмических RF-детекторов полного evidence реальной передачи | `AD8314ARMZ-REEL` | [`C652687`](https://jlcpcb.com/partdetail/AnalogDevices-AD8314ARMZREEL/C652687) | локальный склад 0; 2 978 overseas и 2 977 явно доступны через pre-order, MOQ 4; на одно устройство нужно 6; $2.9826 при 1-9 шт. и $1.9398 при 100 шт. |
 | серийная 3,5-дюймовая сборка дисплея и ёмкостного touch | `EastRising ER-TFT035IPS-6 + ER-TPC035-6` | — | страница производителя показывает In stock; настроенная цена 1 шт. $14.91; заявлена доступность не менее десяти лет |
 | 50-контактный разъём шлейфа дисплея на пассивном адаптере | `FH34SRJ-50S-0.5SH(50)` | [`C3169104`](https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104) | показано 2 679 шт., доступны к заказу 2 614, MOQ 1, $0.5832 при 1 шт. |
 | входной ограничитель NFC U219 1 кОм | `0402WGF1001TCE` | [`C11702`](https://jlcpcb.com/partdetail/12256-0402WGF1001TCE/C11702) | доступны к заказу 10 911 212, MOQ 1, $0.0039 при 1 шт. |
@@ -81,4 +83,4 @@
 - выбрать и проверить на фабрике точный MPN detector/latch service-VBUS из закрытого электрического контракта владения C5
 - реализовать и доказать точную powered-off-Ioff границу изоляции и раздельные pull-up домены 3V3_MAIN/AON для Pack/Safety I2C на Hub GPIO42/43
 
-> Точный текущий маркер: **H1-R2.35**. H1 продолжается.
+> Точный текущий маркер: **H1-R2.36**. H1 продолжается.

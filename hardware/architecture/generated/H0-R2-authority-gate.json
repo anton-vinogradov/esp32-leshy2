@@ -31,7 +31,7 @@
   },
   "current_h1_physical_authority": {
     "source": "hardware/product-design/h1-r2-placement.json",
-    "marker": "H1-R2.35",
+    "marker": "H1-R2.36",
     "status": "ready_for_user_layout_acceptance",
     "open_blockers": 0
   },

@@ -375,7 +375,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         finding = "Оба внешних eFuse получили серийный `Yageo RC0402FR-071K82L` 1,82 кΩ вместо 2,21 кΩ. Гарантированный минимум порога вырос с 1,358 до 1,632 А: запас над портом 1,25 А теперь 30,6%, короткий 2-А импульс сохранён. Цена на проверенном тираже 100 не изменилась."
         boundary_h = "## Что результат означает"
         boundary = "Все четыре DC-шины проходят правило 25% по минимальному hardware threshold. Худший профиль `3V3_MAIN` потребляет 3,063 А, оставляет 687 мА до принятого continuous-envelope 3,75 А и 41,69% до гарантированного 4,3399-А порога защиты. H3.2 всё равно должен проверить ступень нагрузки, а H8 — измерить реальную сумму."
-        marker = "**Статус:** численная модель H3.1.2 обновлена и проходит для `H1-R2.35`; вся фаза H3 ещё не закрыта."
+        marker = "**Статус:** численная модель H3.1.2 обновлена и проходит для `H1-R2.36`; вся фаза H3 ещё не закрыта."
         evidence = "[Полный машинный расчёт](../hardware/verification/generated/H3-VRF12-dc-budget.json)."
     else:
         title = "# Steady DC power budget · current R2 architecture"
@@ -386,7 +386,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         finding = "Both exposed-port eFuses now use the active `Yageo RC0402FR-071K82L` 1.82-kohm resistor instead of 2.21 kohm. The guaranteed-low threshold rises from 1.358 to 1.632 A: steady reserve above the 1.25-A port is 30.6%, while the bounded 2-A pulse remains available. The checked quantity-100 price is unchanged."
         boundary_h = "## What this proves"
         boundary = "All four DC rails pass the 25% rule against the minimum hardware threshold. The worst `3V3_MAIN` profile draws 3.063 A, leaving 687 mA to the accepted 3.75-A continuous envelope and 41.69% to the guaranteed 4.3399-A protection threshold. H3.2 must still prove the load step and H8 must measure the real sum."
-        marker = "**Status:** the H3.1.2 numeric model is refreshed and passes for `H1-R2.35`; the complete H3 phase is not closed."
+        marker = "**Status:** the H3.1.2 numeric model is refreshed and passes for `H1-R2.36`; the complete H3 phase is not closed."
         evidence = "[Complete machine calculation](../hardware/verification/generated/H3-VRF12-dc-budget.json)."
     return "\n\n".join((title, nav, intro, headers + "\n" + table, finding_h, finding, boundary_h, boundary, marker, evidence)) + "\n"
 

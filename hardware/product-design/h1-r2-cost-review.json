@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.35",
+  "marker": "H1-R2.36",
   "checked_on": "2026-08-29",
   "purpose": "Rank the complete-device component burden, remove avoidable pre-order penalties without functional degradation, and keep small-lot purchasing penalties separate from quantity-100 material cost.",
   "community_cost_target": {
@@ -53,8 +53,8 @@
       "electronics_working_range_usd": [214, 235],
       "repeatable_complete_base_working_range_usd": [241, 280],
       "scope": "same built-in user-visible functions and same safety outcome, excluding batteries and the full external antenna kit",
-      "confidence": "planning envelope only; it assumes the paper-qualified RF-connector and AD8314 replacements plus all still-open RF-evidence, audio/safety and internal-RF consolidation savings, and adds USD 27-45 for PCB, PCBA and enclosure",
-      "assessment": "After rejecting functionally weaker control, cell-holder and recovery substitutions and correcting the missing second-RP support quantities, the presently evidenced no-loss route is roughly USD 241-280 for a repeatable complete base device. The accepted USD 220-260 target remains the optimization gate, but its lower half now requires additional savings beyond the currently identified lanes; the sole first prototype remains higher."
+      "confidence": "planning envelope only; it includes the accepted AD8314 package change and still assumes successful remaining RF-evidence, audio/safety and internal-RF consolidation without changing the result, then adds USD 27-45 for PCB, PCBA and enclosure",
+      "assessment": "The accepted AD8314 package change removes USD 5.5032 per device, while the cheaper antenna-connector candidate was rejected and contributes no saving. The USD 241-280 repeatable-complete band therefore remains an optimization hypothesis rather than a demonstrated bill; the current exact planning floor is reported separately. The accepted USD 220-260 target remains the gate and the sole first prototype remains higher."
     },
     "modular_entry_result": {
       "electronics_target_usd": [108, 125],
@@ -82,6 +82,27 @@
     "hmx_donor_route": "rejected procurement route; legacy evidence only",
     "factory_function_test": "optional quote-only insurance; first full power-on and USB bring-up belong to the owner"
   },
+  "r2_device_replacements": {
+    "adi_ad8314acpz_rl7": {
+      "device_id": "adi_ad8314armz_reel",
+      "mpn": "Analog Devices AD8314ARMZ-REEL",
+      "unit_price_usd": 1.9398,
+      "line_material_usd": 11.6388,
+      "cost_price_break": "JLCPCB public quantity-100 tier",
+      "cost_source": "https://jlcpcb.com/partdetail/AnalogDevices-AD8314ARMZREEL/C652687",
+      "cost_checked": "2026-08-29",
+      "lifecycle": "production_active_explicit_jlcpcb_presale_route",
+      "qualification": "verified_exact_same_die_msop_factory_route",
+      "reason": "same AD8314 electrical die and numbered contacts in RM-8; all six full lead envelopes and eight complete detector islands pass H1-R2.36 physical audit"
+    }
+  },
+  "accepted_no_loss_savings": [
+    {
+      "id": "ad8314-msop-package-route",
+      "saving_per_device_usd": 5.5032,
+      "basis": "six detectors: former quantity-100 line USD 17.1420 minus accepted C652687 line USD 11.6388"
+    }
+  ],
   "r2_quantity_overrides": {
     "abracon_abm8_272_t3": {
       "quantity_per_device": 2,
@@ -244,19 +265,22 @@
       "source": "https://jlcpcb.com/partdetail/E01-ML01SP4/C97340",
       "checked_on": "2026-08-29"
     },
-    "adi_ad8314acpz_rl7": {
+    "adi_ad8314armz_reel": {
       "manufacturer": "Analog Devices",
-      "mpn": "AD8314ACPZ-RL7",
-      "jlcpcb_part": "C578691",
-      "assembly_type": "Extended SMT; Economic and Standard PCBA",
+      "mpn": "AD8314ARMZ-REEL",
+      "jlcpcb_part": "C652687",
+      "assembly_type": "Extended SMT; Standard PCBA",
       "stock": 0,
-      "moq": 2,
-      "trial_required_quantity": 30,
-      "trial_displayed_cost_usd": 159.55,
-      "estimated_unit_price_usd": 5.3184,
-      "route": "pre-order",
-      "source": "https://jlcpcb.com/partdetail/AnalogDevices-AD8314ACPZRL7/C578691",
-      "checked_on": "2026-08-28"
+      "overseas_stock": 2978,
+      "preorder_available_quantity": 2977,
+      "moq": 4,
+      "trial_required_quantity": 6,
+      "trial_displayed_cost_usd": 17.8956,
+      "estimated_unit_price_usd": 2.9826,
+      "quantity_100_unit_price_usd": 1.9398,
+      "route": "explicit overseas-stock/pre-order route; six required pieces satisfy MOQ 4",
+      "source": "https://jlcpcb.com/partdetail/AnalogDevices-AD8314ARMZREEL/C652687",
+      "checked_on": "2026-08-29"
     },
     "adi_ltc5532_es6_trmpbf": {
       "manufacturer": "Analog Devices",
@@ -615,18 +639,19 @@
       "candidate_mpn": "Analog Devices AD8314ARMZ-REEL",
       "jlcpcb_part": "C652687",
       "manufacturer": "Analog Devices",
-      "assembly_type": "Extended SMT; Economic and Standard PCBA",
-      "stock": 2977,
+      "assembly_type": "Extended SMT; Standard PCBA",
+      "stock": 0,
+      "overseas_stock": 2978,
       "available_order_quantity": 2977,
-      "moq": 3,
-      "trial_required_quantity": 30,
-      "price_tiers_usd": {"1": 2.987, "10": 2.5956, "30": 2.352, "100": 1.9426, "500": 1.829, "1000": 1.7802},
-      "status": "qualified_same_device_pending_six_body_placement_gate",
-      "why": "Analog Devices lists ACPZ-RL7 and ARMZ-REEL as production package variants of the same AD8314 specification with the same pins 1-8 and electrical behavior. C652687 is live JLCPCB stock. Thirty trial parts cost USD 70.56 instead of the current C578691 live requirement of USD 159.55, saving USD 88.99. On the report's common per-MPN quantity-100 price basis, the candidate reduces the six-device line from USD 17.142 to USD 11.6556 per finished device, saving USD 5.4864. This is not accepted into the production BOM yet: MSOP grows from the 2 x 3-mm LFCSP body to a roughly 3 x 3-mm body with up to 5.15-mm lead span and 1.10-mm height, and removes the exposed pad. All six exact courtyards, adjacent RF match/bypass bodies and RF-ground fanout must pass the H1 placement and route audit first.",
-      "why_ru": "Analog Devices указывает ACPZ-RL7 и ARMZ-REEL как серийные корпусные варианты одной спецификации AD8314 с теми же выводами 1-8 и электрическим поведением. C652687 есть на складе JLCPCB. 30 деталей для пробной партии стоят $70,56 вместо live-требования $159,55 для текущего C578691, экономия $88,99. На единой базе отчёта — цена каждого MPN на количестве 100 — кандидат уменьшает строку шести детекторов с $17,142 до $11,6556 на готовое устройство, экономя $5,4864. В production BOM замена ещё не принята: MSOP увеличивает корпус с LFCSP 2 x 3 мм до тела около 3 x 3 мм с размахом выводов до 5,15 мм и высотой 1,10 мм, а exposed pad исчезает. Сначала должны пройти H1 placement/RF-route audit все шесть точных courtyard, соседние RF match/bypass корпуса и разводка RF-земли.",
-      "source": "https://jlcpcb.com/partdetail/AD8314ARMZ-REEL/C652687",
+      "moq": 4,
+      "trial_required_quantity": 6,
+      "price_tiers_usd": {"1": 2.9826, "10": 2.5917, "30": 2.3485, "100": 1.9398, "500": 1.8262, "1000": 1.7776},
+      "status": "accepted_same_device_msop_explicit_factory_route_and_physical_fit",
+      "why": "Accepted at H1-R2.36. Analog Devices specifies ARMZ-REEL and ACPZ-RL7 as package variants of the same AD8314 function with identical numbered contacts 1-8; RM-8 simply has no exposed paddle. JLCPCB C652687 is Extended SMT for Standard PCBA with an explicit 2,977-piece pre-order/overseas route, 2,978 overseas pieces and MOQ 4; the exact-one device needs six. All six 5.15 x 3.20 x 1.10-mm full lead envelopes, the two retained LTC5532 detectors, all five couplers and eight bounded local evidence islands now pass collision, compression-stop and opposing-board audits. The quantity-100 line falls from USD 17.1420 to USD 11.6388, saving USD 5.5032 per device without deleting evidence.",
+      "why_ru": "Принято в H1-R2.36. Analog Devices задаёт ARMZ-REEL и ACPZ-RL7 как корпусные варианты одной функции AD8314 с одинаковыми пронумерованными выводами 1-8; у RM-8 лишь нет exposed paddle. JLCPCB C652687 доступен как Extended SMT для Standard PCBA через явный pre-order/overseas-маршрут на 2 977 деталей, при 2 978 overseas и MOQ 4; на единственное устройство нужно шесть. Все шесть полных lead-envelope 5,15 x 3,20 x 1,10 мм, два сохранённых LTC5532, все пять coupler и восемь локальных evidence-островов проходят аудит коллизий, compression-stop и встречной платы. Строка quantity-100 снижается с $17,1420 до $11,6388, экономия $5,5032 на устройство без удаления evidence.",
+      "source": "https://jlcpcb.com/partdetail/AnalogDevices-AD8314ARMZREEL/C652687",
       "manufacturer_source": "https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf",
-      "checked_on": "2026-08-28"
+      "checked_on": "2026-08-29"
     },
     {
       "scope": "all 100-nF 50-V X7R 0402 bypass positions",
@@ -955,11 +980,11 @@
     {
       "priority": 4,
       "id": "rf-evidence-detectors",
-      "queue_status": "active",
-      "title": "Re-evaluate eight RF power detectors without weakening real-TX evidence",
-      "production_function_change": true,
-      "evidence": "Six AD8314 plus two LTC5532 contribute USD 24.9174 per device on the common quantity-100 basis; the historical live five-device requirement is USD 276.70. Stocked same-device AD8314ARMZ-REEL C652687 would save USD 88.99 on that historical EVT5 snapshot and USD 5.4864 per finished device on the same quantity-100 basis. No strict no-worse LTC5532 replacement is proved.",
-      "action": "Register and collision-check all six larger MSOP courtyards, adjacent match/bypass bodies and RF-ground fanout before accepting C652687. Keep the two LTC5532 and independent evidence for the three concurrently active nRF24 paths."
+      "queue_status": "accepted",
+      "title": "Use the factory-routable AD8314 MSOP package without weakening real-TX evidence",
+      "production_function_change": false,
+      "evidence": "Six accepted AD8314ARMZ-REEL plus two retained LTC5532 now contribute USD 19.4142 per device on the common quantity-100 basis. C652687 has an explicit Extended-SMT Standard-PCBA pre-order/overseas route, MOQ 4, and the exact-one device needs six. The full packages, five couplers and eight local evidence allocations pass H1-R2.36 geometry.",
+      "action": "Keep C652687 and the two LTC5532; carry all eight local evidence allocations into the new R2 H2 schematic/layout and preserve independent evidence for the three concurrently active nRF24 paths."
     },
     {
       "priority": 5,

@@ -9004,6 +9004,67 @@
         "EPAD": {"physical": "exposed paddle", "role": "power"}
       }
     },
+    "adi_ad8314armz_reel": {
+      "mpn": "Analog Devices AD8314ARMZ-REEL",
+      "kind": "msop8_100mhz_2_7ghz_log_rf_detector",
+      "qualification": "verified_exact_same_die_msop_factory_route",
+      "lifecycle": "production_active_explicit_jlcpcb_presale_route",
+      "dimensions_mm": [5.15, 3.2, 1.1],
+      "manufacturer_body_mm": [3.0, 3.0, 1.1],
+      "mechanical_envelope_basis": "Analog Devices RM-8 maximum lead span, body width and seated height; H1 deliberately reserves the complete lead envelope rather than only the moulded body",
+      "source": {
+        "document": "AD8314 100 MHz to 2.7 GHz RF detector/controller datasheet",
+        "version": "Rev. C",
+        "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf",
+        "checked": "2026-08-29"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact Analog Devices AD8314ARMZ-REEL catalogue line C652687",
+        "url": "https://jlcpcb.com/partdetail/AnalogDevices-AD8314ARMZREEL/C652687",
+        "checked": "2026-08-29"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 1.9398,
+        "price_break": "JLCPCB public quantity-100 tier",
+        "source": {
+          "document": "JLCPCB C652687 exact-MPN published price table",
+          "url": "https://jlcpcb.com/partdetail/AnalogDevices-AD8314ARMZREEL/C652687",
+          "checked": "2026-08-29"
+        }
+      },
+      "factory_route": {
+        "jlcpcb_part": "C652687",
+        "assembly_type": "SMT Assembly; Extended; Standard PCBA",
+        "local_stock": 0,
+        "overseas_stock": 2978,
+        "presale_available_quantity": 2977,
+        "presale_moq": 4,
+        "quantity_one_to_nine_unit_price_usd": 2.9826,
+        "required_quantity_per_device": 6,
+        "route": "explicit overseas-stock/pre-order route; the six-device requirement satisfies MOQ 4",
+        "checked": "2026-08-29"
+      },
+      "electrical_contract": {
+        "frequency_response_mhz": [100, 2700],
+        "typical_input_range_dbm": [-45, 0],
+        "supply_v": [2.7, 5.5],
+        "typical_active_current_ma": 4.5,
+        "maximum_active_current_ma": 5.7,
+        "typical_shutdown_current_ua": 20,
+        "measurement_mode": "VSET tied to V_UP; actual-TX evidence uses V_UP",
+        "package_equivalence": "same numbered 1..8 signal and supply contacts as CP-8-23; RM-8 has no exposed paddle",
+        "qualification_note": "every nRF, CC1101 and SA818S-U/V sample topology still requires conducted threshold and temperature margin HIL"
+      },
+      "programmable": false,
+      "contacts": {
+        "RFIN": {"physical": "1", "role": "rf"}, "ENBL": {"physical": "2", "role": "signal"},
+        "VSET": {"physical": "3", "role": "analog"}, "FLTR": {"physical": "4", "role": "analog"},
+        "COMM": {"physical": "5", "role": "power"}, "V_UP": {"physical": "6", "role": "analog"},
+        "V_DN": {"physical": "7", "role": "analog"}, "VPOS": {"physical": "8", "role": "power"}
+      }
+    },
     "yageo_rc0402fr_0749r9l": {
       "mpn": "Yageo RC0402FR-0749R9L",
       "kind": "49_9ohm_1pct_0402_rf_termination_resistor",

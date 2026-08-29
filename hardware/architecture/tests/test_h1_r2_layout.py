@@ -21,12 +21,12 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.35", self.model["marker"])
+        self.assertEqual("H1-R2.36", self.model["marker"])
         self.assertEqual("pass", self.audit["status"])
         self.assertEqual("pass", self.audit["structural_status"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
-        self.assertEqual(79, len(self.audit["opposing_overlaps"]))
+        self.assertEqual(90, len(self.audit["opposing_overlaps"]))
         self.assertEqual(
             [{"ui": "m1_ui_plug", "rf": "m1_rf_receptacle", "overlap_mm": 3.8}],
             self.audit["intentional_opposing_mates"],
@@ -40,6 +40,31 @@ class H1R2LayoutTest(unittest.TestCase):
         for item in self.model["placements"]:
             if item["kind"] == "fixed_body":
                 self.assertTrue(item["mpn"], item["id"])
+
+    def test_every_onboard_tx_path_has_a_physical_detector_island(self):
+        register = self.audit["tx_evidence_physical_register"]
+        self.assertEqual("pass", register["status"])
+        self.assertEqual(8, register["detector_count"])
+        self.assertEqual(5, register["coupler_count"])
+        self.assertEqual(8, register["local_island_count"])
+        self.assertEqual("adi_ad8314armz_reel", register["selected_detector_device_id"])
+        self.assertEqual("C652687", register["selected_detector_factory_route"]["jlcpcb_part"])
+        self.assertEqual(13, len(register["fixed_bodies"]))
+        self.assertEqual(8, len(register["local_islands"]))
+        self.assertTrue(all(
+            row["minimum_compression_stop_clearance_mm"] >= 0.7
+            for row in register["local_islands"]
+        ))
+
+        broken = copy.deepcopy(self.model)
+        broken["placements"] = [
+            row for row in broken["placements"] if row["id"] != "det_nrf1_r2"
+        ]
+        failed = MODULE.audit(broken, self.base)
+        self.assertIn(
+            "R2 TX-evidence detector/coupler scope is incomplete or contains an unregistered body",
+            failed["errors"],
+        )
 
     def test_physical_gpio_budgets_are_bound_to_exact_dual_rp_authority(self):
         self.assertEqual({"used": 46, "free": 2}, self.model["functional_partition"]["front_rp_gpio"])
@@ -411,7 +436,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn('clip-path="url(#front-external-content)"', expected[MODULE.FOUR_FACES_SVG_PATH])
         self.assertIn('clip-path="url(#rear-external-content)"', expected[MODULE.FOUR_FACES_SVG_PATH])
         self.assertIn('data-view="numbered-component-legend"', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
-        self.assertIn('215 unique drawing references', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
+        self.assertIn('226 unique drawing references', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
         self.assertIn('data-physical-feature="cap_socket_pth_keepout"', expected[MODULE.INNER_RF_SVG_PATH])
         self.assertIn('data-physical-feature="u219_nfc_evidence_island_reserve"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
         self.assertIn('u219_nfc_pickup_loop · copper_feature_reserve · X 1.5…73.5 · Y 17.8…40.2 mm', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])

@@ -1,18 +1,18 @@
-# H1-R2.35 · working target-device placement
+# H1-R2.36 · working target-device placement
 
 The complete verifiable physical model of the two 75 × 150 mm PCBs is ready for visual acceptance. Every body, Cap profile, external U219 antenna volume and copper reserve is registered with no open geometry gate; H1 remains open only until this mock-up is explicitly accepted. H1 acceptance does not itself authorize KiCad routing: the R2 H2 electrical prerequisites listed below must still close first.
 
 ## What the user sees
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.35-full-power-nrf24-1)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.36-complete-tx-evidence-1)
 
 ## Component legend
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.35-full-power-nrf24-1)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.36-complete-tx-evidence-1)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.35-full-power-nrf24-1)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.36-complete-tx-evidence-1)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.35-full-power-nrf24-1)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.36-complete-tx-evidence-1)
 
 ## What is inside
 
@@ -38,6 +38,7 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs is ready for
 
 - Same-face body collisions: `0`.
 - Minimum opposing Z clearance: `2.59 mm` against `0.70 mm` required.
+- Complete TX evidence: `8` exact detectors, `5` couplers and `8` bounded local islands pass fail-closed audit; all six AD8314 positions use the accepted `AD8314ARMZ-REEL` / `C652687`.
 - C5 DBG10 is relocated beside S3 DBG10 and intersects no adjacent body.
 - GPIO: front RP `46/48` with `2` free; rear RP `40/48` with `8` free; S3 uses 22 of 33 GPIO.
 - M1: all 80 contacts are assigned — 24 signals, 14 main-power, 2 AON, 24 returns and 16 NC reserves.
@@ -51,6 +52,7 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs is ready for
 
 | Role | MPN | JLCPCB | Current availability/route |
 |---|---|---|---|
+| six logarithmic RF detectors for complete real-TX evidence | `AD8314ARMZ-REEL` | [`C652687`](https://jlcpcb.com/partdetail/AnalogDevices-AD8314ARMZREEL/C652687) | local stock 0; 2,978 overseas and 2,977 explicitly pre-orderable, MOQ 4; the one device needs 6; USD 2.9826 at quantity 1-9 and USD 1.9398 at quantity 100 |
 | configured 3.5-inch production display and capacitive touch assembly | `EastRising ER-TFT035IPS-6 + ER-TPC035-6` | — | manufacturer page says In stock; configured quantity-1 price USD 14.91; at least ten-year continuity stated |
 | 50-contact display-tail connector on the passive adapter | `FH34SRJ-50S-0.5SH(50)` | [`C3169104`](https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104) | 2,679 pieces shown, 2,614 orderable, MOQ 1, USD 0.5832 at quantity 1 |
 | U219 1-kOhm NFC input limiter | `0402WGF1001TCE` | [`C11702`](https://jlcpcb.com/partdetail/12256-0402WGF1001TCE/C11702) | 10,911,212 orderable, MOQ 1, USD 0.0039 at quantity 1 |
@@ -81,4 +83,4 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs is ready for
 - select and factory-validate the exact service-VBUS detector/latch MPN used by the closed C5 electrical ownership contract
 - instantiate and prove the exact powered-off-Ioff isolation boundary and separate 3V3_MAIN/AON pull-up domains for Hub GPIO42/43 Pack/Safety I2C
 
-> Exact current marker: **H1-R2.35**. H1 remains in progress.
+> Exact current marker: **H1-R2.36**. H1 remains in progress.

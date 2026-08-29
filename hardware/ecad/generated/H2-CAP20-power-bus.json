@@ -12,9 +12,9 @@
   "sheet": "CAP_20_POWER_BUS",
   "source_hashes": {
     "hardware/accessories/leshy2-lora-cap-01.json": "dd3cd0e9741b704c4ad6bf1c03f54d95884df2cebefd4c3fb57a238bcbc0d6ab",
-    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
+    "hardware/architecture/devices.json": "f2d730ddf0692bdf7d86d562690806a95cf4f30dff467c7e4afe19aaa4a3ea05",
     "hardware/ecad/generated/H2-instance-ledger.json": "36c18638c89d353cfc92f6213c6e001fa20cfe88ffb8cf3c2f5c5544d0c11fe6",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "9b2a85b78adac68fa5e592b466b7e1964a172de6b4622c3ad49641e75420da05"
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "196f983ec0d4f48f7ad63d1777608ca486ed4c42dc91ff1b8fd8b61395f1f470"
   },
   "summary": {
     "ledger_instances": 8,

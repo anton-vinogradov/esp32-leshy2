@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Pin assignment](pinout.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H1-R2.35`**. The functional architecture is reviewed; the
+> Current marker: **`H1-R2.36`**. The functional architecture is reviewed; the
 > physical design is ready for visual acceptance. Nothing on this page authorizes KiCad routing
 > or an order.
 
@@ -77,9 +77,9 @@ below 0.4 MB/s, so it does not saturate the RP transport.
 
 ## Physical layout
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.35-full-power-nrf24-1)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.36-complete-tx-evidence-1)
 
-[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.35-full-power-nrf24-1).
+[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.36-complete-tx-evidence-1).
 
 The ten main antenna ports are split symmetrically:
 
@@ -93,7 +93,7 @@ The ten main antenna ports are split symmetrically:
 
 ### Component legend
 
-![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.35-full-power-nrf24-1)
+![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.36-complete-tx-evidence-1)
 
 [Front inner face at full scale](images/h1-r2-inner-ui.svg) ·
 [rear inner face at full scale](images/h1-r2-inner-rf.svg)
@@ -107,7 +107,7 @@ selector.
 
 The inner faces are shown exactly as viewed after physically turning each PCB
 over, so left and right swap relative to the outer face. Numbers are drawing
-references, not silkscreen. The complete legend lists all 215 drawing references without
+references, not silkscreen. The complete legend lists all 226 drawing references without
 repeating the PCB drawings.
 
 Placement currently has **zero same-face collisions** and **2.59 mm** minimum
@@ -131,7 +131,7 @@ the drawing is its pad span.
 - User silkscreen is printed only on visible outer faces and is not hidden by
   the display, batteries or U214.
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.35-full-power-nrf24-1)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.36-complete-tx-evidence-1)
 
 ## Power and unattended safety
 

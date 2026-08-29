@@ -276,7 +276,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
             f"`{decision['id']}` закрыт вариантом A: остаются три `E01-ML01SP4`, потому что они дают требуемое полное аппаратное поведение nRF24. "
             "Точный C97340 ставится JLCPCB со склада и даёт PA/LNA до 20 dBm; семейство nRF24 не рекомендуется для новых разработок, поэтому H5 всё равно проверит маркировку и RF-параметры. Современный nRF52 работает только в 2,4 ГГц, поддерживает совместимый эфирный ESB, но не является SPI/register drop-in заменой."
         )
-        marker = "**Статус исторической R1-цепочки:** `H3.0.2-R1` завершено и проверено; последующий маркер этой цепочки — `H3.6.1-R1`. Текущий аппаратный маркер — `H1-R2.35`."
+        marker = "**Статус исторической R1-цепочки:** `H3.0.2-R1` завершено и проверено; последующий маркер этой цепочки — `H3.6.1-R1`. Текущий аппаратный маркер — `H1-R2.36`."
         evidence = "[Машинный реестр из 213 строк](../hardware/verification/generated/H3-VRF02-parameter-inventory.json)."
     else:
         title = "# H3 parameters and models · historical R1"
@@ -297,7 +297,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
             f"`{decision['id']}` is closed with option A: three `E01-ML01SP4` modules remain because they provide the required full nRF24 hardware behavior. "
             "Exact C97340 is factory-stocked and adds PA/LNA output up to 20 dBm; the nRF24 family is not recommended for new designs, so H5 must still verify received marking and RF performance. A modern nRF52 is 2.4-GHz-only and supports over-air ESB compatibility, but is not an SPI/register drop-in replacement."
         )
-        marker = "**Historical R1-chain status:** `H3.0.2-R1` is reviewed; the later marker in that chain is `H3.6.1-R1`. The current hardware marker is `H1-R2.35`."
+        marker = "**Historical R1-chain status:** `H3.0.2-R1` is reviewed; the later marker in that chain is `H3.6.1-R1`. The current hardware marker is `H1-R2.36`."
         evidence = "[213-row machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json)."
     return "\n\n".join((title, nav, intro, counts_h, counts, residual_h, residual, decision_h, decision_text, marker, evidence)) + "\n"
 

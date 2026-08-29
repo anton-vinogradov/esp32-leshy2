@@ -23,6 +23,7 @@ RU_PATH = REPO / "docs/h1-r2-cost.ru.md"
 
 ROLE_OVERRIDES = {
     "adi_ad8314acpz_rl7": "six real-TX RF detectors / шесть RF-детекторов фактической передачи",
+    "adi_ad8314armz_reel": "six real-TX RF detectors / шесть RF-детекторов фактической передачи",
     "adi_ltc5532_es6_trmpbf": "S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц",
     "ebyte_e01_ml01sp4": "three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm",
     "gct_rfpc_sma31_fn_175_a": "eight standard outward SMA / восемь внешних SMA",
@@ -64,9 +65,9 @@ LANES_RU = {
         "Оставить принятую двусторонне припаянную пару GCT. Возвращаться к замене только для фабрично устанавливаемой standard/reverse-пары с внешним направлением, покрытием 6 ГГц для native-портов, посадкой в неизменённую геометрию 5+5 и compression-stop и полным маршрутом заказа ровно одного устройства.",
     ),
     "rf-evidence-detectors": (
-        "Пересмотреть восемь RF-детекторов, не ослабляя доказательство реальной передачи",
-        "Шесть AD8314 и два LTC5532 дают $24,92 на устройство; live-цена партии — $276,70. Складской вариант того же устройства AD8314ARMZ-REEL C652687 сэкономит $88,99 на прежнем EVT5-снимке и $5,4864 на устройство на общей quantity-100 базе. Строго не худшая замена LTC5532 не доказана.",
-        "До принятия C652687 зарегистрировать и проверить столкновения всех шести увеличенных MSOP-courtyard, соседних match/bypass-компонентов и fanout RF-земли. Два LTC5532 оставить; независимое evidence трёх одновременно работающих nRF24 сохранить.",
+        "Сохранить принятую MSOP-версию AD8314 и все восемь трактов реальной передачи",
+        "Шесть AD8314ARMZ-REEL и два LTC5532 теперь дают $19,41 на устройство. C652687 имеет явный JLCPCB Extended-SMT Standard-PCBA pre-order/overseas-маршрут: MOQ 4, доступно 2 977, а единственному устройству нужно шесть. Все корпуса и восемь локальных островов проходят H1-R2.36.",
+        "Перенести точные корпуса, локальные RF/passive allocations и отсутствие EPAD у RM-8 в новый R2 H2. Два LTC5532 и независимое evidence трёх одновременно работающих nRF24 сохранить.",
     ),
     "ordinary-controls": (
         "Сохранить заземлённую серию Omron для всех шестнадцати обычных клавиш",
@@ -129,10 +130,22 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
     trial_by_id = {row["device_id"]: row for row in trial["routes"]}
     provisional = model["provisional_unit_routes"]
     live = model["live_jlcpcb_spot_checks"]
+    replacements = model.get("r2_device_replacements", {})
     rows = []
-    for source in bom:
+    for original_source in bom:
+        source = dict(original_source)
+        source_device_id = source["device_id"]
+        replacement = replacements.get(source_device_id)
+        if replacement:
+            source.update({
+                key: value for key, value in replacement.items()
+                if key not in {"reason"}
+            })
         quantity = int(source["quantity"])
-        override = model.get("r2_quantity_overrides", {}).get(source["device_id"])
+        override = (
+            model.get("r2_quantity_overrides", {}).get(source["device_id"])
+            or model.get("r2_quantity_overrides", {}).get(source_device_id)
+        )
         if override:
             quantity = int(override["quantity_per_device"])
         production_line = (
@@ -146,13 +159,15 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
                 provisional[source["device_id"]]["unit_price_usd"]
             )
             burden_kind = "provisional reachable route"
-        trial_row = trial_by_id.get(source["device_id"], {})
+        trial_row = trial_by_id.get(source_device_id, {})
         trial_cost = trial_line_cost(trial_row, historical_quantity)
-        if source["device_id"] in live:
-            trial_cost = live[source["device_id"]]["trial_displayed_cost_usd"]
+        live_row = live.get(source["device_id"])
+        if live_row:
+            trial_cost = live_row["trial_displayed_cost_usd"]
         rows.append(
             {
                 "device_id": source["device_id"],
+                "source_device_id": source_device_id,
                 "mpn": source["mpn"],
                 "role": ROLE_OVERRIDES.get(
                     source["device_id"], source["placements"].replace(";", ", ")
@@ -183,8 +198,12 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
                     production_line * 10 if production_line is not None else None
                 ),
                 "historical_capture_displayed_line_usd": trial_cost,
-                "historical_capture_route": trial_row.get("tool_status", "not matched"),
-                "jlcpcb_part": trial_row.get("lcsc"),
+                "historical_capture_route": (
+                    live_row["route"] if live_row else trial_row.get("tool_status", "not matched")
+                ),
+                "jlcpcb_part": (
+                    live_row["jlcpcb_part"] if live_row else trial_row.get("lcsc")
+                ),
                 "cost_gate": source["cost_gate_status"] or None,
             }
         )
@@ -321,21 +340,11 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
     )
     known_combined_total = planning_base + post_pcba + antenna_known
     target = model["community_cost_target"]
-    paper_qualified_no_loss_savings = round(
-        (connector_cost := (
-            next(row for row in rows if row["device_id"] == "gct_rfpc_sma31_fn_175_a")["line_burden_per_device_usd"]
-            + next(row for row in rows if row["device_id"] == "gct_rfpc_sma32_fn_175_a")["line_burden_per_device_usd"]
-        ))
-        - (8 * 0.5515 + 2 * 0.6066)
-        + (
-            next(row for row in rows if row["device_id"] == "adi_ad8314acpz_rl7")["line_burden_per_device_usd"]
-            - 6 * 1.9426
-        ),
-        4,
-    )
-    after_paper_qualified = round(
-        planning_base + post_pcba - paper_qualified_no_loss_savings, 4
-    )
+    paper_qualified_no_loss_savings = round(sum(
+        row["saving_per_device_usd"]
+        for row in model.get("accepted_no_loss_savings", [])
+    ), 4)
+    after_paper_qualified = round(planning_base + post_pcba, 4)
     for rank, row in enumerate(combined_ranked_rows, 1):
         row["rank"] = rank
         row["share_of_known_combined_total_pct"] = round(
@@ -596,7 +605,7 @@ def render_doc(result: dict, ru: bool) -> str:
             '', '## Принятая ценовая граница all-in-one', '',
             f'- Текущий продукт остаётся полностью начинённым all-in-one. Цель повторяемого готового устройства: **{money(result["community_cost_target"]["preferred_complete_device_range_usd"][0])}–{money(result["community_cost_target"]["preferred_complete_device_range_usd"][1])}** без аккумуляторов и полного набора специализированных внешних антенн.',
             f'- Чтобы внутри этой цены остались PCB, PCBA и корпус, электроника должна попасть примерно в **{money(summary["community_electronics_target_usd"][0])}–{money(summary["community_electronics_target_usd"][1])}**.',
-            f'- Сейчас базовая BOM содержит `{summary["base_bom_lines"]}` MPN-групп и `{summary["base_fitted_placements"]}` установленных компонентов. Даже две уже найденные paper-qualified замены без потери функции — SMA/RP-SMA и корпус AD8314 — экономят только **{money(summary["paper_qualified_no_loss_savings_usd"])}** и оставляют **{money(summary["base_after_paper_qualified_savings_usd"])}**.',
+            f'- Сейчас базовая BOM содержит `{summary["base_bom_lines"]}` MPN-групп и `{summary["base_fitted_placements"]}` установленных компонентов. Принятая без потери функции замена корпуса AD8314 уже экономит **{money(summary["paper_qualified_no_loss_savings_usd"])}** и оставляет текущий точный planning floor **{money(summary["base_after_paper_qualified_savings_usd"])}**. Дешёвая пара SMA/RP-SMA проверена и отклонена, поэтому её предполагаемая экономия сюда не входит.',
             f'- После них до целевой электронной BOM нужно убрать ещё **{money(summary["additional_savings_to_electronics_target_usd"][0])}–{money(summary["additional_savings_to_electronics_target_usd"][1])}**. Формальный запас до потолка готового устройства — только **{money(summary["pre_pcba_margin_to_complete_ceiling_usd"])}**, поэтому без дальнейшего пересинтеза в него не помещаются платы, сборка и корпус.',
             '',
             '**Принято:** отдельный `Core` сейчас не проектируется. Сначала строится и проверяется один полностью оснащённый `R2-EVT1`; стоимость снижается пересинтезом реализации без удаления встроенных функций и safety-результата. Историческая цель `$150` отложена как возможная community-комплектация после работающего EVT1, а не является текущей аппаратной веткой. Первый единственный заказ всё равно будет дороже из-за MOQ, setup, ручной установки, доставки и налогов.',
@@ -612,7 +621,7 @@ def render_doc(result: dict, ru: bool) -> str:
             '| Граница | Электроника | Готовая база | Честный вывод |',
             '|---|---:|---:|---|',
             f'| Текущая схема | {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | больше {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | уже выше принятого потолка без плат, сборки и корпуса |',
-            f'| Только уже paper-qualified замены | {money(summary["base_after_paper_qualified_savings_usd"])} | больше {money(summary["base_after_paper_qualified_savings_usd"])} | всё ещё недостаточно |',
+            f'| После уже принятой AD8314-замены | {money(summary["base_after_paper_qualified_savings_usd"])} | больше {money(summary["base_after_paper_qualified_savings_usd"])} | точный текущий planning floor; всё ещё недостаточно |',
             f'| Те же встроенные пользовательские функции и тот же safety-результат после полного cost-resynthesis | {money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][1])} | {money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][1])} | с целью `$220–260` пересекается только верхняя часть |',
             f'| Модульная community-база; специализированные тракты ставятся Cap/Unit по задаче | {money(feasibility["modular_entry_result"]["electronics_target_usd"][0])}–{money(feasibility["modular_entry_result"]["electronics_target_usd"][1])} | {money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][0])}–{money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][1])} | отложена до работающего `R2-EVT1`; отдельного Core сейчас нет |',
             '',
@@ -626,7 +635,7 @@ def render_doc(result: dict, ru: bool) -> str:
             '', '## Accepted all-in-one cost boundary', '',
             f'- The current product remains a fully populated all-in-one. Its repeatable complete-device target is **{money(result["community_cost_target"]["preferred_complete_device_range_usd"][0])}–{money(result["community_cost_target"]["preferred_complete_device_range_usd"][1])}**, excluding batteries and the full specialized external-antenna kit.',
             f'- To leave room for PCB, PCBA and enclosure, electronics must land near **{money(summary["community_electronics_target_usd"][0])}–{money(summary["community_electronics_target_usd"][1])}**.',
-            f'- The current base BOM has `{summary["base_bom_lines"]}` MPN groups and `{summary["base_fitted_placements"]}` fitted components. Even the two paper-qualified no-function-loss replacements already identified — SMA/RP-SMA and the AD8314 package — save only **{money(summary["paper_qualified_no_loss_savings_usd"])}** and leave **{money(summary["base_after_paper_qualified_savings_usd"])}**.',
+            f'- The current base BOM has `{summary["base_bom_lines"]}` MPN groups and `{summary["base_fitted_placements"]}` fitted components. The accepted no-function-loss AD8314 package change already saves **{money(summary["paper_qualified_no_loss_savings_usd"])}** and leaves the exact current planning floor at **{money(summary["base_after_paper_qualified_savings_usd"])}**. The cheaper SMA/RP-SMA pair was checked and rejected, so its hypothetical saving is not counted.',
             f'- A further **{money(summary["additional_savings_to_electronics_target_usd"][0])}–{money(summary["additional_savings_to_electronics_target_usd"][1])}** must be removed to reach the electronics band. The formal margin to the complete-device ceiling is only **{money(summary["pre_pcba_margin_to_complete_ceiling_usd"])}**, so boards, assembly and enclosure do not fit without further resynthesis.',
             '',
             '**Accepted:** no separate `Core` is designed now. One fully populated `R2-EVT1` is built and verified first; implementation cost is reduced without removing built-in functions or the safety outcome. The historical `$150` goal is deferred as a possible post-EVT1 community fit option, not a current hardware branch. The sole first order will still cost more because MOQ, setup, manual placement, freight and tax cannot be amortized.',
@@ -642,7 +651,7 @@ def render_doc(result: dict, ru: bool) -> str:
             '| Boundary | Electronics | Complete base | Honest result |',
             '|---|---:|---:|---|',
             f'| Current circuit | {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | above {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | already above the accepted ceiling before boards, assembly and enclosure |',
-            f'| Paper-qualified replacements only | {money(summary["base_after_paper_qualified_savings_usd"])} | above {money(summary["base_after_paper_qualified_savings_usd"])} | still insufficient |',
+            f'| After the accepted AD8314 change | {money(summary["base_after_paper_qualified_savings_usd"])} | above {money(summary["base_after_paper_qualified_savings_usd"])} | exact current planning floor; still insufficient |',
             f'| Same built-in user functions and same safety outcome after full cost resynthesis | {money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][1])} | {money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][1])} | only the upper portion overlaps the `$220–260` target |',
             f'| Modular community base; specialist paths are fitted as task-specific Caps/Units | {money(feasibility["modular_entry_result"]["electronics_target_usd"][0])}–{money(feasibility["modular_entry_result"]["electronics_target_usd"][1])} | {money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][0])}–{money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][1])} | deferred until a working `R2-EVT1`; there is no separate Core now |',
             '',
@@ -683,7 +692,7 @@ def render_doc(result: dict, ru: bool) -> str:
         + by_id["gct_rfpc_sma32_fn_175_a"]["line_burden_per_device_usd"]
     )
     detector_cost = (
-        by_id["adi_ad8314acpz_rl7"]["line_burden_per_device_usd"]
+        by_id["adi_ad8314armz_reel"]["line_burden_per_device_usd"]
         + by_id["adi_ltc5532_es6_trmpbf"]["line_burden_per_device_usd"]
     )
     jumper_cost = (
@@ -698,7 +707,7 @@ def render_doc(result: dict, ru: bool) -> str:
             '|---:|---|---:|---|---:|',
             f'| 1 | Внешние антенны | {money(summary["antenna_known_first_target_usd"])} + 4 неизвестных | Крупнейшая отдельная группа; функциональность нужна, но брендовые первые MPN не обязаны быть самыми выгодными | уточняется |',
             f'| 2 | 10 внешних SMA/RP-SMA | {money(connector_cost)} | Цена GCT больше не оправдывается требованием низкого профиля; нужна повторная компоновка прочной пары с фабричным manual-solder route | до ~$19.02 |',
-            f'| 3 | 8 RF-detector’ов | {money(detector_cost)} | Evidence реальной передачи нужен; шесть AD8314 можно перевести на складской корпус того же IC после placement-аудита | ~$5.49 |',
+            f'| 3 | 8 RF-detector’ов | {money(detector_cost)} | Шесть AD8314 уже переведены на C652687 после полного placement-аудита; функциональность и все восемь evidence-трактов сохранены | $5.50 уже принято |',
             f'| 4 | 5 U.FL + 5 кабелей | {money(jumper_cost)} | Сейчас функционально оправдано; убрать можно только один тракт после доказанного C5 T2-маршрута | до ~$2.89 |',
             f'| 5 | 16 пользовательских кнопок | {money(by_id["omron_b3s_1100p"]["line_burden_per_device_usd"])} | Проверенные дешёвые кандидаты ухудшают ESD, feel или evidence; текущая группа оправдана | $0 |',
             f'| 6 | Держатель 2×18650 | {money(by_id["keystone_1048p"]["line_burden_per_device_usd"])} | Складские одиночные держатели не доказывают полный protected-cell и polarity contract; 1048P оправдан | $0 |',
@@ -714,7 +723,7 @@ def render_doc(result: dict, ru: bool) -> str:
             '|---:|---|---:|---|---:|',
             f'| 1 | External antennas | {money(summary["antenna_known_first_target_usd"])} + 4 unknown | Largest separate group; the functions are required, but the first branded MPNs need not be the best-value equivalents | to be established |',
             f'| 2 | 10 outward SMA/RP-SMA | {money(connector_cost)} | GCT cost is no longer justified by a low-profile requirement; a robust pair needs a fresh placement and factory manual-solder check | up to ~$19.02 |',
-            f'| 3 | 8 RF detectors | {money(detector_cost)} | Real-TX evidence remains required; six AD8314 can move to the stocked package of the same IC after placement review | ~$5.49 |',
+            f'| 3 | 8 RF detectors | {money(detector_cost)} | Six AD8314 are already moved to C652687 after the complete placement audit; function and all eight evidence paths are retained | $5.50 accepted |',
             f'| 4 | 5 U.FL plus 5 cables | {money(jumper_cost)} | Functionally justified now; only a proven C5 T2 route can remove one path | up to ~$2.89 |',
             f'| 5 | 16 user buttons | {money(by_id["omron_b3s_1100p"]["line_burden_per_device_usd"])} | Checked cheaper candidates weaken ESD, feel or evidence; the current group is justified | $0 |',
             f'| 6 | Dual-18650 holder | {money(by_id["keystone_1048p"]["line_burden_per_device_usd"])} | Stocked single-cell bodies do not prove the complete protected-cell and polarity contract; 1048P is justified | $0 |',
@@ -773,14 +782,18 @@ def render_doc(result: dict, ru: bool) -> str:
         lines.append(f'| `{row["code"]}` | {row["profile"]} | `{row["mpn"]}` | {row["quantity"]} | {money(row["known_line_usd"])} |')
     lines += ['', candidates_h, '']
     lines += [
-        '| Scope | Current | Candidate | JLCPCB | Stock | Status |',
+        ('| Область | Исходная позиция | Проверенная позиция | JLCPCB | Доступно для заказа | Статус |' if ru else '| Scope | Previous position | Verified position | JLCPCB | Orderable | Status |'),
         '|---|---|---|---|---:|---|',
     ]
     for candidate in result["current_stocked_candidate_checks"]:
+        orderable = candidate.get(
+            "available_order_quantity",
+            candidate.get("preorder_available_quantity", candidate["stock"]),
+        )
         lines.append(
             f'| {candidate["scope"]} | `{candidate["current_mpn"]}` | '
             f'`{candidate["candidate_mpn"]}` | `{candidate["jlcpcb_part"]}` | '
-            f'{candidate["stock"]} | `{candidate["status"]}` |'
+            f'{orderable} | `{candidate["status"]}` |'
         )
     lines.append('')
     for candidate in result["current_stocked_candidate_checks"]:

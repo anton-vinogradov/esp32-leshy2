@@ -31,7 +31,8 @@ RU_DOC_PATH = REPO / "docs/h1-r2-physical-layout.ru.md"
 SOURCE_TABLE_PATH = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
 U219_SOURCE_PATH = REPO / "hardware/architecture/h1-r2-u219-cap.json"
 DUAL_RP_PINOUT_PATH = REPO / "hardware/architecture/h1-r2-dual-rp-pinout.json"
-PUBLIC_ASSET_REV = "h1-r2.35-full-power-nrf24-1"
+DEVICES_PATH = REPO / "hardware/architecture/devices.json"
+PUBLIC_ASSET_REV = "h1-r2.36-complete-tx-evidence-1"
 BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
 BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
@@ -590,6 +591,136 @@ def u219_contract_audit(model: dict) -> dict:
     }
 
 
+def tx_evidence_physical_audit(model: dict) -> dict:
+    """Prove that every accepted onboard TX path owns a real detector island."""
+    placed = {row["id"]: row for row in model["placements"]}
+    devices = load(DEVICES_PATH)["devices"]
+    minimum = float(model["stack"]["minimum_opposing_clearance_mm"])
+    mount_radius = 4.0
+    mount_axes = model["mechanical_retention"]["compression_stops"]["axes"]
+    errors: list[str] = []
+
+    expected = {
+        "s3_rf_coupler_r2": ("CP0603Q5425ENTR", "ui-inner", [2.1, 1.34]),
+        "det_s3_r2": ("LTC5532ES6#TRMPBF", "ui-inner", [3.4, 2.1]),
+        "c5_rf_coupler_r2": ("CP0603Q5425ENTR", "ui-inner", [2.1, 1.34]),
+        "det_c5_r2": ("LTC5532ES6#TRMPBF", "ui-inner", [3.4, 2.1]),
+        "nrf0_coupler_r2": ("DC2337J5010AHF", "ui-inner", [2.53, 1.77]),
+        "det_nrf0_r2": ("AD8314ARMZ-REEL", "ui-inner", [5.65, 3.7]),
+        "nrf1_coupler_r2": ("DC2337J5010AHF", "ui-inner", [2.53, 1.77]),
+        "det_nrf1_r2": ("AD8314ARMZ-REEL", "ui-inner", [5.65, 3.7]),
+        "nrf2_coupler_r2": ("DC2337J5010AHF", "ui-inner", [2.53, 1.77]),
+        "det_nrf2_r2": ("AD8314ARMZ-REEL", "ui-inner", [5.65, 3.7]),
+        "det_cc_r2": ("AD8314ARMZ-REEL", "rf-inner", [5.65, 3.7]),
+        "det_voice_r2": ("AD8314ARMZ-REEL", "rf-inner", [5.65, 3.7]),
+        "det_voice_v_r2": ("AD8314ARMZ-REEL", "rf-inner", [3.7, 5.65]),
+    }
+    actual_scope = {
+        row["id"] for row in model["placements"]
+        if row["id"] in expected
+        or row["id"].startswith("det_") and row["id"].endswith("_r2")
+        or row["id"].startswith("nrf") and row["id"].endswith("_coupler_r2")
+    }
+    if actual_scope != set(expected):
+        errors.append("R2 TX-evidence detector/coupler scope is incomplete or contains an unregistered body")
+
+    fixed_results = []
+    for instance, (mpn, frame, courtyard_size) in expected.items():
+        row = placed.get(instance)
+        if not row:
+            errors.append(f"{instance}: accepted TX-evidence body is missing")
+            continue
+        if row.get("kind") != "fixed_body" or row.get("mpn") != mpn or row.get("frame") != frame:
+            errors.append(f"{instance}: exact MPN, frame or fixed-body identity drifted")
+            continue
+        cbox = courtyard_bbox(row)
+        if row.get("courtyard_xy_mm") != courtyard_size or cbox is None:
+            errors.append(f"{instance}: source-backed full-package courtyard is absent or wrong")
+            continue
+        measured = [
+            round(cbox["x"][1] - cbox["x"][0], 3),
+            round(cbox["y"][1] - cbox["y"][0], 3),
+        ]
+        if measured != courtyard_size or not contains(cbox, bbox(row, model)):
+            errors.append(f"{instance}: package body leaves or disagrees with its courtyard")
+        if "source-backed H1 fit evidence" not in row.get("courtyard_status", ""):
+            errors.append(f"{instance}: courtyard status lacks source-backed H1 evidence")
+        if "0.25 mm" not in row.get("courtyard_basis", ""):
+            errors.append(f"{instance}: courtyard lacks the accepted 0.25-mm assembly margin")
+        fixed_results.append({"id": instance, "mpn": mpn, "frame": frame, "courtyard_world_bbox_mm": cbox})
+
+    selected = devices.get("adi_ad8314armz_reel", {})
+    route = selected.get("factory_route", {})
+    expected_contacts = {"RFIN", "ENBL", "VSET", "FLTR", "COMM", "V_UP", "V_DN", "VPOS"}
+    if (
+        selected.get("mpn") != "Analog Devices AD8314ARMZ-REEL"
+        or selected.get("dimensions_mm") != [5.15, 3.2, 1.1]
+        or set(selected.get("contacts", {})) != expected_contacts
+        or route.get("jlcpcb_part") != "C652687"
+        or route.get("assembly_type") != "SMT Assembly; Extended; Standard PCBA"
+        or route.get("presale_moq", 999) > route.get("required_quantity_per_device", 0)
+        or route.get("presale_available_quantity", 0) < route.get("required_quantity_per_device", 0)
+    ):
+        errors.append("AD8314ARMZ-REEL exact package, pins or JLCPCB Standard-PCBA route is not closed")
+
+    expected_features = {
+        "s3_tx_evidence_island_reserve": {"s3_rf_board_connector_r2", "s3_rf_coupler_r2", "det_s3_r2"},
+        "c5_tx_evidence_island_reserve": {"c5_rf_board_connector_r2", "c5_rf_coupler_r2", "det_c5_r2"},
+        "nrf0_tx_evidence_island_reserve": {"nrf0_rf_board_connector_r2", "nrf0_coupler_r2", "det_nrf0_r2"},
+        "nrf1_tx_evidence_island_reserve": {"nrf1_rf_board_connector_r2", "nrf1_coupler_r2", "det_nrf1_r2"},
+        "nrf2_tx_evidence_island_reserve": {"nrf2_rf_board_connector_r2", "nrf2_coupler_r2", "det_nrf2_r2"},
+        "cc_tx_evidence_island_reserve": {"cc_r2", "det_cc_r2"},
+        "uhf_tx_evidence_island_reserve": {"det_voice_r2"},
+        "vhf_tx_evidence_island_reserve": {"det_voice_v_r2"},
+    }
+    feature_by_id = {row["id"]: row for row in model.get("physical_features", [])}
+    reserve_results = []
+
+    def point_to_box_distance(px: float, py: float, box: dict) -> float:
+        dx = max(box["x"][0] - px, px - box["x"][1], 0.0)
+        dy = max(box["y"][0] - py, py - box["y"][1], 0.0)
+        return math.hypot(dx, dy)
+
+    for feature_id, members in expected_features.items():
+        feature = feature_by_id.get(feature_id)
+        if not feature or feature.get("kind") != "placement_reserve" or set(feature.get("members", [])) != members:
+            errors.append(f"{feature_id}: complete local TX-evidence allocation is absent or wrong")
+            continue
+        box = feature["world_bbox_mm"]
+        for member in members:
+            row = placed.get(member)
+            if row is None:
+                errors.append(f"{feature_id}: {member} is absent from the physical model")
+                continue
+            allocation = courtyard_bbox(row) or bbox(row, model)
+            if not contains(box, allocation):
+                errors.append(f"{feature_id}: {member} leaves its local allocation")
+        mount_clearance = min(
+            point_to_box_distance(axis_x, axis_y, box) - mount_radius
+            for axis_x, axis_y in mount_axes
+        )
+        if mount_clearance + 1e-6 < minimum:
+            errors.append(f"{feature_id}: only {mount_clearance:.3f} mm to a compression-stop keep-out")
+        reserve_results.append({
+            "id": feature_id,
+            "members": sorted(members),
+            "world_bbox_mm": box,
+            "minimum_compression_stop_clearance_mm": round(mount_clearance, 3),
+        })
+
+    return {
+        "status": "pass" if not errors else "fail",
+        "detector_count": 8,
+        "coupler_count": 5,
+        "local_island_count": len(expected_features),
+        "selected_detector_device_id": "adi_ad8314armz_reel",
+        "selected_detector_factory_route": route,
+        "fixed_bodies": fixed_results,
+        "local_islands": reserve_results,
+        "errors": errors,
+    }
+
+
 def cap_bus_slot_audit(model: dict, base: dict) -> dict:
     """Validate mutually exclusive U214/U219 envelopes and the current rear geometry."""
     slot = model["cap_bus_slot"]
@@ -781,6 +912,8 @@ def audit(model: dict, base: dict) -> dict:
     errors.extend(features["errors"])
     u219_contract = u219_contract_audit(model)
     errors.extend(u219_contract["errors"])
+    tx_evidence = tx_evidence_physical_audit(model)
+    errors.extend(tx_evidence["errors"])
     cap_slot = cap_bus_slot_audit(model, base)
     errors.extend(cap_slot["errors"])
     silk = silkscreen_audit(model)
@@ -868,6 +1001,7 @@ def audit(model: dict, base: dict) -> dict:
         "intentional_opposing_mates": mated,
         "physical_features": features,
         "u219_contract": u219_contract,
+        "tx_evidence_physical_register": tx_evidence,
         "cap_bus_slot": cap_slot,
         "cap_evidence_coordinate_register": cap_evidence_register,
         "silkscreen": silk,
@@ -1750,7 +1884,7 @@ def render_inner_face_svg(
             text(590, key_tail_y+126, "placement island; outline is not a component", 10, colour="#526076"),
             f'<rect x="550" y="{key_tail_y+144:.1f}" width="28" height="18" fill="#dc2626" fill-opacity="0.06" stroke="#dc2626" stroke-dasharray="5 3"/>',
             text(590, key_tail_y+158, "exact keepout; must remain empty", 10, colour="#526076"),
-            text(note_x, key_tail_y+188, "U219 printed pickup loop: UNLOCATED H1 gate; no invented outline.", 10, "bold", colour="#9a3412"),
+            text(note_x, key_tail_y+188, "U219 accessory pickup loop: registered full-slot feature; no internal-coil coordinate is assumed.", 10, "bold", colour="#166534"),
             text(note_x, 1000, "The complete numbered register remains generated for machine review.", 10, colour="#526076"),
             text(note_x, 1020, "The public page uses these two readable one-board maps.", 10, colour="#526076"),
             '</svg>',
@@ -2203,6 +2337,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         audit_lines = [
             f'Коллизии корпусов на одной стороне: `{len(result["same_face_collisions"])}`.',
             f'Минимальный встречный Z-зазор: `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
+            f'Полное TX-evidence: `{result["tx_evidence_physical_register"]["detector_count"]}` точных детекторов, `{result["tx_evidence_physical_register"]["coupler_count"]}` coupler и `{result["tx_evidence_physical_register"]["local_island_count"]}` локальных островов проходят fail-closed аудит; шесть AD8314 используют принятый `AD8314ARMZ-REEL` / `C652687`.',
             "C5 DBG10 расположен рядом с S3 DBG10 и не пересекается с соседними корпусами.",
             f'GPIO: передний RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["front_rp_gpio"]["free"]}`; задний RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["rear_rp_gpio"]["free"]}`; S3 использует 22 из 33 GPIO.',
             "M1: все 80 контактов распределены — 24 сигнала, 14 main-power, 2 AON, 24 возврата и 16 NC-резервов.",
@@ -2243,6 +2378,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         audit_lines = [
             f'Same-face body collisions: `{len(result["same_face_collisions"])}`.',
             f'Minimum opposing Z clearance: `{result["minimum_opposing_clearance_mm"]:.2f} mm` against `{result["required_opposing_clearance_mm"]:.2f} mm` required.',
+            f'Complete TX evidence: `{result["tx_evidence_physical_register"]["detector_count"]}` exact detectors, `{result["tx_evidence_physical_register"]["coupler_count"]}` couplers and `{result["tx_evidence_physical_register"]["local_island_count"]}` bounded local islands pass fail-closed audit; all six AD8314 positions use the accepted `AD8314ARMZ-REEL` / `C652687`.',
             "C5 DBG10 is relocated beside S3 DBG10 and intersects no adjacent body.",
             f'GPIO: front RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["front_rp_gpio"]["free"]}` free; rear RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["rear_rp_gpio"]["free"]}` free; S3 uses 22 of 33 GPIO.',
             "M1: all 80 contacts are assigned — 24 signals, 14 main-power, 2 AON, 24 returns and 16 NC reserves.",

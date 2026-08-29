@@ -12,7 +12,7 @@
   "sheet": "RF_30_RP2354_CORE_SERVICE",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "edce4ca3aed56ed1a58b9ec85d19f7c9db624869f54797e0c2dc329e9816007d",
-    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
+    "hardware/architecture/devices.json": "f2d730ddf0692bdf7d86d562690806a95cf4f30dff467c7e4afe19aaa4a3ea05",
     "hardware/ecad/generated/H2-instance-ledger.json": "36c18638c89d353cfc92f6213c6e001fa20cfe88ffb8cf3c2f5c5544d0c11fe6",
     "hardware/ecad/generated/H2-RF-root-interface.json": "68eb7a5c6cddc40c3dcada2579f733f7332073d28fb830e7b2567c608a943586"
   },

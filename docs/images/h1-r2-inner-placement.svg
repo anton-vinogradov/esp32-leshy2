@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="4232" viewBox="0 0 1380 4232">
-<rect width="1380" height="4232" fill="#ffffff"/>
-<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.35 inner placement</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="4881" viewBox="0 0 1380 4881">
+<rect width="1380" height="4881" fill="#ffffff"/>
+<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.36 inner placement</text>
 <text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · both inner faces are shown directly after turning each PCB over · numbered marks are documentation, never inner-face silkscreen.</text>
 <text x="190.00" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="70.00" y="122.00" width="240.00" height="480.00" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -40,10 +40,14 @@
 <text x="237.04" y="155.76" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">23</text>
 <rect x="234.48" y="141.84" width="5.12" height="2.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="237.04" y="143.18" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">24</text>
+<rect x="218.48" y="152.40" width="9.28" height="5.12" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="223.12" y="154.96" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">70</text>
 <rect x="138.16" y="150.80" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="142.96" y="155.76" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">25</text>
 <rect x="140.40" y="141.84" width="5.12" height="2.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="142.96" y="143.18" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">26</text>
+<rect x="151.92" y="152.40" width="9.28" height="5.12" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="156.56" y="154.96" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">71</text>
 <rect x="226.48" y="256.40" width="57.92" height="46.72" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="255.44" y="279.76" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">27</text>
 <rect x="163.12" y="256.40" width="57.92" height="46.72" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
@@ -56,6 +60,18 @@
 <text x="190.00" y="171.76" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">31</text>
 <rect x="102.00" y="150.80" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="106.80" y="155.76" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">32</text>
+<rect x="271.50" y="164.56" width="6.50" height="4.06" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="274.75" y="166.59" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">72</text>
+<rect x="251.92" y="163.60" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="260.16" y="168.72" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">73</text>
+<rect x="187.34" y="180.24" width="6.50" height="4.06" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="190.59" y="182.27" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">74</text>
+<rect x="200.08" y="177.36" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="208.32" y="182.48" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">75</text>
+<rect x="101.90" y="164.56" width="6.50" height="4.06" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="105.15" y="166.59" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">76</text>
+<rect x="111.76" y="163.60" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="120.00" y="168.72" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">77</text>
 <rect x="274.48" y="320.40" width="16.32" height="14.40" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="282.64" y="327.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">33</text>
 <rect x="262.00" y="320.40" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
@@ -221,6 +237,12 @@
 <text x="605.36" y="206.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">42</text>
 <rect x="528.40" y="148.56" width="12.80" height="12.80" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="534.80" y="154.96" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">43</text>
+<rect x="508.08" y="149.20" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="516.32" y="154.32" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">78</text>
+<rect x="630.32" y="205.84" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="638.56" y="210.96" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">79</text>
+<rect x="447.12" y="260.24" width="10.24" height="16.48" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="452.24" y="268.48" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">80</text>
 <rect x="467.60" y="170.00" width="9.60" height="9.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="472.40" y="174.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">44</text>
 <rect x="454.48" y="170.00" width="9.92" height="16.16" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
@@ -328,162 +350,192 @@
 <text x="730" y="820" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">24 · CP0603Q5425ENTR</text>
 <text x="755" y="837" font-family="sans-serif" font-size="10.5" fill="#526076">S3 forward-power evidence coupler aligned</text>
 <text x="755" y="851" font-family="sans-serif" font-size="10.5" fill="#526076">with the S3-2G4 front SMA</text>
-<text x="730" y="879" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">25 · U.FL-R-SMT-1(10)</text>
-<text x="755" y="896" font-family="sans-serif" font-size="10.5" fill="#526076">C5 module microcoax termination beside the</text>
-<text x="755" y="910" font-family="sans-serif" font-size="10.5" fill="#526076">C5-2G4/5 front SMA path</text>
-<text x="730" y="938" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">26 · CP0603Q5425ENTR</text>
-<text x="755" y="955" font-family="sans-serif" font-size="10.5" fill="#526076">C5 dual-band forward-power evidence coupler</text>
-<text x="755" y="969" font-family="sans-serif" font-size="10.5" fill="#526076">aligned with the C5-2G4/5 front SMA</text>
-<text x="730" y="997" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">27 · E01-ML01SP4</text>
-<text x="755" y="1014" font-family="sans-serif" font-size="10.5" fill="#526076">factory-stocked 20-dBm PA/LNA full-function</text>
-<text x="755" y="1028" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 radio #0 on the front radio/UI domain</text>
-<text x="730" y="1056" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">28 · E01-ML01SP4</text>
-<text x="755" y="1073" font-family="sans-serif" font-size="10.5" fill="#526076">factory-stocked 20-dBm PA/LNA full-function</text>
-<text x="755" y="1087" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 radio #1 on the front radio/UI domain</text>
-<text x="730" y="1115" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">29 · E01-ML01SP4</text>
+<text x="730" y="879" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">70 · LTC5532ES6#TRMPBF</text>
+<text x="755" y="896" font-family="sans-serif" font-size="10.5" fill="#526076">S3 dual-band actual-TX detector beside its</text>
+<text x="755" y="910" font-family="sans-serif" font-size="10.5" fill="#526076">forward coupler</text>
+<text x="730" y="938" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">25 · U.FL-R-SMT-1(10)</text>
+<text x="755" y="955" font-family="sans-serif" font-size="10.5" fill="#526076">C5 module microcoax termination beside the</text>
+<text x="755" y="969" font-family="sans-serif" font-size="10.5" fill="#526076">C5-2G4/5 front SMA path</text>
+<text x="730" y="997" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">26 · CP0603Q5425ENTR</text>
+<text x="755" y="1014" font-family="sans-serif" font-size="10.5" fill="#526076">C5 dual-band forward-power evidence coupler</text>
+<text x="755" y="1028" font-family="sans-serif" font-size="10.5" fill="#526076">aligned with the C5-2G4/5 front SMA</text>
+<text x="730" y="1056" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">71 · LTC5532ES6#TRMPBF</text>
+<text x="755" y="1073" font-family="sans-serif" font-size="10.5" fill="#526076">C5 dual-band actual-TX detector beside its</text>
+<text x="755" y="1087" font-family="sans-serif" font-size="10.5" fill="#526076">forward coupler</text>
+<text x="730" y="1115" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">27 · E01-ML01SP4</text>
 <text x="755" y="1132" font-family="sans-serif" font-size="10.5" fill="#526076">factory-stocked 20-dBm PA/LNA full-function</text>
-<text x="755" y="1146" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 radio #2 on the front radio/UI domain</text>
-<text x="730" y="1174" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">30 · U.FL-R-SMT-1(10)</text>
-<text x="755" y="1191" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 #0 module-to-board microcoax</text>
-<text x="755" y="1205" font-family="sans-serif" font-size="10.5" fill="#526076">termination</text>
-<text x="730" y="1233" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">31 · U.FL-R-SMT-1(10)</text>
-<text x="755" y="1250" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 #1 module-to-board microcoax</text>
-<text x="755" y="1264" font-family="sans-serif" font-size="10.5" fill="#526076">termination</text>
-<text x="730" y="1292" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">32 · U.FL-R-SMT-1(10)</text>
-<text x="755" y="1309" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 #2 module-to-board microcoax</text>
+<text x="755" y="1146" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 radio #0 on the front radio/UI domain</text>
+<text x="730" y="1174" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">28 · E01-ML01SP4</text>
+<text x="755" y="1191" font-family="sans-serif" font-size="10.5" fill="#526076">factory-stocked 20-dBm PA/LNA full-function</text>
+<text x="755" y="1205" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 radio #1 on the front radio/UI domain</text>
+<text x="730" y="1233" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">29 · E01-ML01SP4</text>
+<text x="755" y="1250" font-family="sans-serif" font-size="10.5" fill="#526076">factory-stocked 20-dBm PA/LNA full-function</text>
+<text x="755" y="1264" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 radio #2 on the front radio/UI domain</text>
+<text x="730" y="1292" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">30 · U.FL-R-SMT-1(10)</text>
+<text x="755" y="1309" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 #0 module-to-board microcoax</text>
 <text x="755" y="1323" font-family="sans-serif" font-size="10.5" fill="#526076">termination</text>
-<text x="730" y="1351" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">33 · 74LVC126APW,118</text>
-<text x="755" y="1368" font-family="sans-serif" font-size="10.5" fill="#526076">front-local nRF24 #0 full-rate host-command</text>
-<text x="755" y="1382" font-family="sans-serif" font-size="10.5" fill="#526076">buffer</text>
-<text x="730" y="1410" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">34 · 74LVC2G126DP,125</text>
-<text x="755" y="1427" font-family="sans-serif" font-size="10.5" fill="#526076">front-local nRF24 #0 full-rate return buffer</text>
-<text x="730" y="1455" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">35 · 74LVC126APW,118</text>
-<text x="755" y="1472" font-family="sans-serif" font-size="10.5" fill="#526076">front-local nRF24 #1 full-rate host-command</text>
-<text x="755" y="1486" font-family="sans-serif" font-size="10.5" fill="#526076">buffer</text>
-<text x="730" y="1514" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">36 · 74LVC2G126DP,125</text>
-<text x="755" y="1531" font-family="sans-serif" font-size="10.5" fill="#526076">front-local nRF24 #1 full-rate return buffer</text>
-<text x="730" y="1559" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">37 · 74LVC126APW,118</text>
-<text x="755" y="1576" font-family="sans-serif" font-size="10.5" fill="#526076">front-local nRF24 #2 full-rate host-command</text>
-<text x="755" y="1590" font-family="sans-serif" font-size="10.5" fill="#526076">buffer</text>
-<text x="730" y="1618" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">38 · 74LVC2G126DP,125</text>
-<text x="755" y="1635" font-family="sans-serif" font-size="10.5" fill="#526076">front-local nRF24 #2 full-rate return buffer</text>
-<text x="730" y="1663" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">39 · SN74LVC08APWR</text>
-<text x="755" y="1680" font-family="sans-serif" font-size="10.5" fill="#526076">front-local nRF transmit safety gates</text>
-<text x="730" y="1708" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">40 · SN74LVC1G08DCKR</text>
-<text x="755" y="1725" font-family="sans-serif" font-size="10.5" fill="#526076">front-local independent FAULT_ASSERT_N nRF</text>
-<text x="755" y="1739" font-family="sans-serif" font-size="10.5" fill="#526076">rail qualifier</text>
-<text x="730" y="1767" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">41 · TLV1824PWR</text>
-<text x="755" y="1784" font-family="sans-serif" font-size="10.5" fill="#526076">second accepted quad comparator dedicated to</text>
-<text x="755" y="1798" font-family="sans-serif" font-size="10.5" fill="#526076">the three front-local nRF TX-evidence</text>
-<text x="755" y="1812" font-family="sans-serif" font-size="10.5" fill="#526076">channels</text>
-<text x="730" y="1840" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">68 · TCA6424ARGJR</text>
-<text x="755" y="1857" font-family="sans-serif" font-size="10.5" fill="#526076">relocated 24-line slow-control expander</text>
-<text x="755" y="1871" font-family="sans-serif" font-size="10.5" fill="#526076">clear of the larger full-power nRF24 modules</text>
-<text x="730" y="1899" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">69 · TCA9539PWR</text>
-<text x="755" y="1916" font-family="sans-serif" font-size="10.5" fill="#526076">relocated sixteen-line direct-control input</text>
-<text x="755" y="1930" font-family="sans-serif" font-size="10.5" fill="#526076">expander clear of the larger full-power</text>
-<text x="755" y="1944" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 modules</text>
-<text x="730" y="1972" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">42 · SI4732-A10-GSR</text>
-<text x="755" y="1989" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local FM/AM/SW/LW and converted Airband</text>
-<text x="755" y="2003" font-family="sans-serif" font-size="10.5" fill="#526076">receiver</text>
-<text x="730" y="2031" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">43 · CC1101RGPR</text>
-<text x="755" y="2048" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local sub-GHz transceiver aligned with</text>
-<text x="755" y="2062" font-family="sans-serif" font-size="10.5" fill="#526076">the CC-SUB SMA</text>
-<text x="730" y="2090" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">44 · ES8311</text>
-<text x="755" y="2107" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local audio capture and playback codec</text>
-<text x="730" y="2135" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">45 · TMUX1136DGSR</text>
-<text x="755" y="2152" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local active differential speaker-path</text>
-<text x="755" y="2166" font-family="sans-serif" font-size="10.5" fill="#526076">selector</text>
-<text x="730" y="2194" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">46 · TCA9534APWR</text>
-<text x="755" y="2211" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local headset source controller and</text>
-<text x="755" y="2225" font-family="sans-serif" font-size="10.5" fill="#526076">reserve audio I/O</text>
-<text x="730" y="2253" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">47 · SJ-43504-SMT-TR</text>
-<text x="755" y="2270" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local CTIA headset TRRS mid-mount</text>
-<text x="755" y="2284" font-family="sans-serif" font-size="10.5" fill="#526076">connector with right-side enclosure exit</text>
-<text x="730" y="2312" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">48 · SN74LVC1G08DCKR</text>
-<text x="755" y="2329" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local codec readiness and AUDIO_ARM</text>
-<text x="755" y="2343" font-family="sans-serif" font-size="10.5" fill="#526076">reset-safe gate</text>
-<text x="730" y="2371" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">8 · TPS566231PRQFR</text>
-<text x="755" y="2388" font-family="sans-serif" font-size="10.5" fill="#526076">6-A 3V3_MAIN synchronous buck with raw-rail</text>
-<text x="755" y="2402" font-family="sans-serif" font-size="10.5" fill="#526076">Power-Good</text>
-<text x="730" y="2430" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">9 · PSPMAA0605H-2R2M-ANP</text>
-<text x="755" y="2447" font-family="sans-serif" font-size="10.5" fill="#526076">2.2-uH, 10-A RMS / 15-A saturation 3V3_MAIN</text>
-<text x="755" y="2461" font-family="sans-serif" font-size="10.5" fill="#526076">inductor</text>
-<text x="730" y="2489" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">10 · GRM32ER71E226KE15L</text>
-<text x="755" y="2506" font-family="sans-serif" font-size="10.5" fill="#526076">first local 22-uF / 25-V X7R main-buck input</text>
-<text x="755" y="2520" font-family="sans-serif" font-size="10.5" fill="#526076">capacitor</text>
-<text x="730" y="2548" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">11 · GRM32ER71E226KE15L</text>
-<text x="755" y="2565" font-family="sans-serif" font-size="10.5" fill="#526076">second local 22-uF / 25-V X7R main-buck</text>
-<text x="755" y="2579" font-family="sans-serif" font-size="10.5" fill="#526076">input capacitor</text>
-<text x="730" y="2607" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">12 · GRM32ER71E226KE15L</text>
-<text x="755" y="2624" font-family="sans-serif" font-size="10.5" fill="#526076">third local 22-uF / 25-V X7R main-buck input</text>
-<text x="755" y="2638" font-family="sans-serif" font-size="10.5" fill="#526076">capacitor</text>
-<text x="730" y="2666" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">13 · GRM32ER71E226KE15L</text>
-<text x="755" y="2683" font-family="sans-serif" font-size="10.5" fill="#526076">first local 22-uF / 25-V X7R main-buck</text>
-<text x="755" y="2697" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
-<text x="730" y="2725" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">14 · GRM32ER71E226KE15L</text>
-<text x="755" y="2742" font-family="sans-serif" font-size="10.5" fill="#526076">second local 22-uF / 25-V X7R main-buck</text>
-<text x="755" y="2756" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
-<text x="730" y="2784" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">15 · GRM32ER71E226KE15L</text>
-<text x="755" y="2801" font-family="sans-serif" font-size="10.5" fill="#526076">third local 22-uF / 25-V X7R main-buck</text>
-<text x="755" y="2815" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
-<text x="730" y="2843" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">16 · CL10B105KO8NNNC</text>
-<text x="755" y="2860" font-family="sans-serif" font-size="10.5" fill="#526076">1-uF TPS566231P VCC decoupling capacitor</text>
-<text x="730" y="2888" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">17 · CL05B104KB5NNNC</text>
-<text x="755" y="2905" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF TPS566231P bootstrap capacitor</text>
-<text x="730" y="2933" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">18 · RC0402JR-070RL</text>
-<text x="755" y="2950" font-family="sans-serif" font-size="10.5" fill="#526076">0-ohm serial bootstrap link retained for EMI</text>
-<text x="755" y="2964" font-family="sans-serif" font-size="10.5" fill="#526076">tuning</text>
-<text x="730" y="2992" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">50 · SN74CBTLV1G125DCKR</text>
-<text x="755" y="3009" font-family="sans-serif" font-size="10.5" fill="#526076">bidirectional contact-10 boundary shared by</text>
-<text x="755" y="3023" font-family="sans-serif" font-size="10.5" fill="#526076">U214 BUSY input and U219 NFC_CS output</text>
-<text x="730" y="3051" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">51 · SN74LVC1G06DCKR</text>
-<text x="755" y="3068" font-family="sans-serif" font-size="10.5" fill="#526076">AON open-drain fail-safe driver for the</text>
-<text x="755" y="3082" font-family="sans-serif" font-size="10.5" fill="#526076">contact-10 bilateral-switch output enable</text>
-<text x="730" y="3110" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">52 · BAT54S,215</text>
-<text x="755" y="3127" font-family="sans-serif" font-size="10.5" fill="#526076">first dual-Schottky package in the balanced</text>
-<text x="755" y="3141" font-family="sans-serif" font-size="10.5" fill="#526076">full-wave U219 NFC-field evidence bridge</text>
-<text x="730" y="3169" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">53 · BAT54S,215</text>
-<text x="755" y="3186" font-family="sans-serif" font-size="10.5" fill="#526076">second dual-Schottky package in the balanced</text>
-<text x="755" y="3200" font-family="sans-serif" font-size="10.5" fill="#526076">full-wave U219 NFC-field evidence bridge</text>
-<text x="730" y="3228" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">54 · LMV331IDBVR</text>
-<text x="755" y="3245" font-family="sans-serif" font-size="10.5" fill="#526076">open-collector U219 NFC-field envelope</text>
-<text x="755" y="3259" font-family="sans-serif" font-size="10.5" fill="#526076">comparator driving EV_N9_U219_NFC</text>
-<text x="730" y="3287" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">55 · 0402WGF1002TCE</text>
-<text x="755" y="3304" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON pull-up that disables the</text>
-<text x="755" y="3318" font-family="sans-serif" font-size="10.5" fill="#526076">contact-10 switch by default</text>
-<text x="730" y="3346" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">56 · 0402WGF1002TCE</text>
-<text x="755" y="3363" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON command pull-down preserving</text>
-<text x="755" y="3377" font-family="sans-serif" font-size="10.5" fill="#526076">switch-off state</text>
-<text x="730" y="3405" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">57 · Yageo CC0402KRX7R9BB104</text>
-<text x="755" y="3422" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the contact-10</text>
-<text x="755" y="3436" font-family="sans-serif" font-size="10.5" fill="#526076">bilateral switch</text>
-<text x="730" y="3464" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">58 · Yageo CC0402KRX7R9BB104</text>
-<text x="755" y="3481" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the AON open-drain</text>
-<text x="755" y="3495" font-family="sans-serif" font-size="10.5" fill="#526076">driver</text>
-<text x="730" y="3523" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">59 · 0402WGF1001TCE</text>
-<text x="755" y="3540" font-family="sans-serif" font-size="10.5" fill="#526076">1-kOhm positive pickup input limiter</text>
-<text x="730" y="3568" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">60 · 0402WGF1001TCE</text>
-<text x="755" y="3585" font-family="sans-serif" font-size="10.5" fill="#526076">1-kOhm negative pickup input limiter</text>
-<text x="730" y="3613" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">61 · Murata GRM155R71H103KA88D</text>
-<text x="755" y="3630" font-family="sans-serif" font-size="10.5" fill="#526076">10-nF rectified NFC-field envelope capacitor</text>
-<text x="730" y="3658" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">62 · 0402WGF1003TCE</text>
-<text x="755" y="3675" font-family="sans-serif" font-size="10.5" fill="#526076">100-kOhm envelope discharge resistor</text>
-<text x="730" y="3703" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">63 · 0402WGF1003TCE</text>
-<text x="755" y="3720" font-family="sans-serif" font-size="10.5" fill="#526076">100-kOhm comparator threshold upper leg</text>
-<text x="730" y="3748" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">64 · 0402WGF1002TCE</text>
-<text x="755" y="3765" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm comparator threshold lower leg</text>
-<text x="730" y="3793" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">65 · 0402WGF1004TCE</text>
-<text x="755" y="3810" font-family="sans-serif" font-size="10.5" fill="#526076">1-MOhm comparator hysteresis feedback</text>
-<text x="730" y="3838" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">66 · 0402WGF1002TCE</text>
-<text x="755" y="3855" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON pull-up for active-low NFC field</text>
-<text x="755" y="3869" font-family="sans-serif" font-size="10.5" fill="#526076">evidence</text>
-<text x="730" y="3897" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">67 · Yageo CC0402KRX7R9BB104</text>
-<text x="755" y="3914" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the NFC field</text>
-<text x="755" y="3928" font-family="sans-serif" font-size="10.5" fill="#526076">comparator</text>
+<text x="730" y="1351" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">31 · U.FL-R-SMT-1(10)</text>
+<text x="755" y="1368" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 #1 module-to-board microcoax</text>
+<text x="755" y="1382" font-family="sans-serif" font-size="10.5" fill="#526076">termination</text>
+<text x="730" y="1410" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">32 · U.FL-R-SMT-1(10)</text>
+<text x="755" y="1427" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 #2 module-to-board microcoax</text>
+<text x="755" y="1441" font-family="sans-serif" font-size="10.5" fill="#526076">termination</text>
+<text x="730" y="1469" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">72 · DC2337J5010AHF</text>
+<text x="755" y="1486" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 #0 10-dB forward-power coupler</text>
+<text x="730" y="1514" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">73 · AD8314ARMZ-REEL</text>
+<text x="755" y="1531" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 #0 actual-TX detector in the same</text>
+<text x="755" y="1545" font-family="sans-serif" font-size="10.5" fill="#526076">front-board RF island</text>
+<text x="730" y="1573" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">74 · DC2337J5010AHF</text>
+<text x="755" y="1590" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 #1 10-dB forward-power coupler</text>
+<text x="730" y="1618" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">75 · AD8314ARMZ-REEL</text>
+<text x="755" y="1635" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 #1 actual-TX detector in the same</text>
+<text x="755" y="1649" font-family="sans-serif" font-size="10.5" fill="#526076">front-board RF island</text>
+<text x="730" y="1677" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">76 · DC2337J5010AHF</text>
+<text x="755" y="1694" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 #2 10-dB forward-power coupler</text>
+<text x="730" y="1722" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">77 · AD8314ARMZ-REEL</text>
+<text x="755" y="1739" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 #2 actual-TX detector in the same</text>
+<text x="755" y="1753" font-family="sans-serif" font-size="10.5" fill="#526076">front-board RF island</text>
+<text x="730" y="1781" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">33 · 74LVC126APW,118</text>
+<text x="755" y="1798" font-family="sans-serif" font-size="10.5" fill="#526076">front-local nRF24 #0 full-rate host-command</text>
+<text x="755" y="1812" font-family="sans-serif" font-size="10.5" fill="#526076">buffer</text>
+<text x="730" y="1840" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">34 · 74LVC2G126DP,125</text>
+<text x="755" y="1857" font-family="sans-serif" font-size="10.5" fill="#526076">front-local nRF24 #0 full-rate return buffer</text>
+<text x="730" y="1885" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">35 · 74LVC126APW,118</text>
+<text x="755" y="1902" font-family="sans-serif" font-size="10.5" fill="#526076">front-local nRF24 #1 full-rate host-command</text>
+<text x="755" y="1916" font-family="sans-serif" font-size="10.5" fill="#526076">buffer</text>
+<text x="730" y="1944" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">36 · 74LVC2G126DP,125</text>
+<text x="755" y="1961" font-family="sans-serif" font-size="10.5" fill="#526076">front-local nRF24 #1 full-rate return buffer</text>
+<text x="730" y="1989" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">37 · 74LVC126APW,118</text>
+<text x="755" y="2006" font-family="sans-serif" font-size="10.5" fill="#526076">front-local nRF24 #2 full-rate host-command</text>
+<text x="755" y="2020" font-family="sans-serif" font-size="10.5" fill="#526076">buffer</text>
+<text x="730" y="2048" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">38 · 74LVC2G126DP,125</text>
+<text x="755" y="2065" font-family="sans-serif" font-size="10.5" fill="#526076">front-local nRF24 #2 full-rate return buffer</text>
+<text x="730" y="2093" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">39 · SN74LVC08APWR</text>
+<text x="755" y="2110" font-family="sans-serif" font-size="10.5" fill="#526076">front-local nRF transmit safety gates</text>
+<text x="730" y="2138" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">40 · SN74LVC1G08DCKR</text>
+<text x="755" y="2155" font-family="sans-serif" font-size="10.5" fill="#526076">front-local independent FAULT_ASSERT_N nRF</text>
+<text x="755" y="2169" font-family="sans-serif" font-size="10.5" fill="#526076">rail qualifier</text>
+<text x="730" y="2197" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">41 · TLV1824PWR</text>
+<text x="755" y="2214" font-family="sans-serif" font-size="10.5" fill="#526076">second accepted quad comparator dedicated to</text>
+<text x="755" y="2228" font-family="sans-serif" font-size="10.5" fill="#526076">the three front-local nRF TX-evidence</text>
+<text x="755" y="2242" font-family="sans-serif" font-size="10.5" fill="#526076">channels</text>
+<text x="730" y="2270" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">68 · TCA6424ARGJR</text>
+<text x="755" y="2287" font-family="sans-serif" font-size="10.5" fill="#526076">relocated 24-line slow-control expander</text>
+<text x="755" y="2301" font-family="sans-serif" font-size="10.5" fill="#526076">clear of the larger full-power nRF24 modules</text>
+<text x="730" y="2329" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">69 · TCA9539PWR</text>
+<text x="755" y="2346" font-family="sans-serif" font-size="10.5" fill="#526076">relocated sixteen-line direct-control input</text>
+<text x="755" y="2360" font-family="sans-serif" font-size="10.5" fill="#526076">expander clear of the larger full-power</text>
+<text x="755" y="2374" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 modules</text>
+<text x="730" y="2402" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">42 · SI4732-A10-GSR</text>
+<text x="755" y="2419" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local FM/AM/SW/LW and converted Airband</text>
+<text x="755" y="2433" font-family="sans-serif" font-size="10.5" fill="#526076">receiver</text>
+<text x="730" y="2461" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">43 · CC1101RGPR</text>
+<text x="755" y="2478" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local sub-GHz transceiver aligned with</text>
+<text x="755" y="2492" font-family="sans-serif" font-size="10.5" fill="#526076">the CC-SUB SMA</text>
+<text x="730" y="2520" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">78 · AD8314ARMZ-REEL</text>
+<text x="755" y="2537" font-family="sans-serif" font-size="10.5" fill="#526076">CC1101 actual-TX detector beside the</text>
+<text x="755" y="2551" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local sub-GHz radio</text>
+<text x="730" y="2579" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">79 · AD8314ARMZ-REEL</text>
+<text x="755" y="2596" font-family="sans-serif" font-size="10.5" fill="#526076">UHF voice-radio actual-TX detector</text>
+<text x="755" y="2610" font-family="sans-serif" font-size="10.5" fill="#526076">immediately above its module</text>
+<text x="730" y="2638" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">80 · AD8314ARMZ-REEL</text>
+<text x="755" y="2655" font-family="sans-serif" font-size="10.5" fill="#526076">VHF voice-radio actual-TX detector</text>
+<text x="755" y="2669" font-family="sans-serif" font-size="10.5" fill="#526076">immediately right of its module</text>
+<text x="730" y="2697" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">44 · ES8311</text>
+<text x="755" y="2714" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local audio capture and playback codec</text>
+<text x="730" y="2742" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">45 · TMUX1136DGSR</text>
+<text x="755" y="2759" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local active differential speaker-path</text>
+<text x="755" y="2773" font-family="sans-serif" font-size="10.5" fill="#526076">selector</text>
+<text x="730" y="2801" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">46 · TCA9534APWR</text>
+<text x="755" y="2818" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local headset source controller and</text>
+<text x="755" y="2832" font-family="sans-serif" font-size="10.5" fill="#526076">reserve audio I/O</text>
+<text x="730" y="2860" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">47 · SJ-43504-SMT-TR</text>
+<text x="755" y="2877" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local CTIA headset TRRS mid-mount</text>
+<text x="755" y="2891" font-family="sans-serif" font-size="10.5" fill="#526076">connector with right-side enclosure exit</text>
+<text x="730" y="2919" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">48 · SN74LVC1G08DCKR</text>
+<text x="755" y="2936" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local codec readiness and AUDIO_ARM</text>
+<text x="755" y="2950" font-family="sans-serif" font-size="10.5" fill="#526076">reset-safe gate</text>
+<text x="730" y="2978" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">8 · TPS566231PRQFR</text>
+<text x="755" y="2995" font-family="sans-serif" font-size="10.5" fill="#526076">6-A 3V3_MAIN synchronous buck with raw-rail</text>
+<text x="755" y="3009" font-family="sans-serif" font-size="10.5" fill="#526076">Power-Good</text>
+<text x="730" y="3037" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">9 · PSPMAA0605H-2R2M-ANP</text>
+<text x="755" y="3054" font-family="sans-serif" font-size="10.5" fill="#526076">2.2-uH, 10-A RMS / 15-A saturation 3V3_MAIN</text>
+<text x="755" y="3068" font-family="sans-serif" font-size="10.5" fill="#526076">inductor</text>
+<text x="730" y="3096" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">10 · GRM32ER71E226KE15L</text>
+<text x="755" y="3113" font-family="sans-serif" font-size="10.5" fill="#526076">first local 22-uF / 25-V X7R main-buck input</text>
+<text x="755" y="3127" font-family="sans-serif" font-size="10.5" fill="#526076">capacitor</text>
+<text x="730" y="3155" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">11 · GRM32ER71E226KE15L</text>
+<text x="755" y="3172" font-family="sans-serif" font-size="10.5" fill="#526076">second local 22-uF / 25-V X7R main-buck</text>
+<text x="755" y="3186" font-family="sans-serif" font-size="10.5" fill="#526076">input capacitor</text>
+<text x="730" y="3214" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">12 · GRM32ER71E226KE15L</text>
+<text x="755" y="3231" font-family="sans-serif" font-size="10.5" fill="#526076">third local 22-uF / 25-V X7R main-buck input</text>
+<text x="755" y="3245" font-family="sans-serif" font-size="10.5" fill="#526076">capacitor</text>
+<text x="730" y="3273" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">13 · GRM32ER71E226KE15L</text>
+<text x="755" y="3290" font-family="sans-serif" font-size="10.5" fill="#526076">first local 22-uF / 25-V X7R main-buck</text>
+<text x="755" y="3304" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
+<text x="730" y="3332" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">14 · GRM32ER71E226KE15L</text>
+<text x="755" y="3349" font-family="sans-serif" font-size="10.5" fill="#526076">second local 22-uF / 25-V X7R main-buck</text>
+<text x="755" y="3363" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
+<text x="730" y="3391" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">15 · GRM32ER71E226KE15L</text>
+<text x="755" y="3408" font-family="sans-serif" font-size="10.5" fill="#526076">third local 22-uF / 25-V X7R main-buck</text>
+<text x="755" y="3422" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
+<text x="730" y="3450" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">16 · CL10B105KO8NNNC</text>
+<text x="755" y="3467" font-family="sans-serif" font-size="10.5" fill="#526076">1-uF TPS566231P VCC decoupling capacitor</text>
+<text x="730" y="3495" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">17 · CL05B104KB5NNNC</text>
+<text x="755" y="3512" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF TPS566231P bootstrap capacitor</text>
+<text x="730" y="3540" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">18 · RC0402JR-070RL</text>
+<text x="755" y="3557" font-family="sans-serif" font-size="10.5" fill="#526076">0-ohm serial bootstrap link retained for EMI</text>
+<text x="755" y="3571" font-family="sans-serif" font-size="10.5" fill="#526076">tuning</text>
+<text x="730" y="3599" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">50 · SN74CBTLV1G125DCKR</text>
+<text x="755" y="3616" font-family="sans-serif" font-size="10.5" fill="#526076">bidirectional contact-10 boundary shared by</text>
+<text x="755" y="3630" font-family="sans-serif" font-size="10.5" fill="#526076">U214 BUSY input and U219 NFC_CS output</text>
+<text x="730" y="3658" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">51 · SN74LVC1G06DCKR</text>
+<text x="755" y="3675" font-family="sans-serif" font-size="10.5" fill="#526076">AON open-drain fail-safe driver for the</text>
+<text x="755" y="3689" font-family="sans-serif" font-size="10.5" fill="#526076">contact-10 bilateral-switch output enable</text>
+<text x="730" y="3717" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">52 · BAT54S,215</text>
+<text x="755" y="3734" font-family="sans-serif" font-size="10.5" fill="#526076">first dual-Schottky package in the balanced</text>
+<text x="755" y="3748" font-family="sans-serif" font-size="10.5" fill="#526076">full-wave U219 NFC-field evidence bridge</text>
+<text x="730" y="3776" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">53 · BAT54S,215</text>
+<text x="755" y="3793" font-family="sans-serif" font-size="10.5" fill="#526076">second dual-Schottky package in the balanced</text>
+<text x="755" y="3807" font-family="sans-serif" font-size="10.5" fill="#526076">full-wave U219 NFC-field evidence bridge</text>
+<text x="730" y="3835" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">54 · LMV331IDBVR</text>
+<text x="755" y="3852" font-family="sans-serif" font-size="10.5" fill="#526076">open-collector U219 NFC-field envelope</text>
+<text x="755" y="3866" font-family="sans-serif" font-size="10.5" fill="#526076">comparator driving EV_N9_U219_NFC</text>
+<text x="730" y="3894" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">55 · 0402WGF1002TCE</text>
+<text x="755" y="3911" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON pull-up that disables the</text>
+<text x="755" y="3925" font-family="sans-serif" font-size="10.5" fill="#526076">contact-10 switch by default</text>
+<text x="730" y="3953" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">56 · 0402WGF1002TCE</text>
+<text x="755" y="3970" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON command pull-down preserving</text>
+<text x="755" y="3984" font-family="sans-serif" font-size="10.5" fill="#526076">switch-off state</text>
+<text x="730" y="4012" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">57 · Yageo CC0402KRX7R9BB104</text>
+<text x="755" y="4029" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the contact-10</text>
+<text x="755" y="4043" font-family="sans-serif" font-size="10.5" fill="#526076">bilateral switch</text>
+<text x="730" y="4071" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">58 · Yageo CC0402KRX7R9BB104</text>
+<text x="755" y="4088" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the AON open-drain</text>
+<text x="755" y="4102" font-family="sans-serif" font-size="10.5" fill="#526076">driver</text>
+<text x="730" y="4130" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">59 · 0402WGF1001TCE</text>
+<text x="755" y="4147" font-family="sans-serif" font-size="10.5" fill="#526076">1-kOhm positive pickup input limiter</text>
+<text x="730" y="4175" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">60 · 0402WGF1001TCE</text>
+<text x="755" y="4192" font-family="sans-serif" font-size="10.5" fill="#526076">1-kOhm negative pickup input limiter</text>
+<text x="730" y="4220" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">61 · Murata GRM155R71H103KA88D</text>
+<text x="755" y="4237" font-family="sans-serif" font-size="10.5" fill="#526076">10-nF rectified NFC-field envelope capacitor</text>
+<text x="730" y="4265" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">62 · 0402WGF1003TCE</text>
+<text x="755" y="4282" font-family="sans-serif" font-size="10.5" fill="#526076">100-kOhm envelope discharge resistor</text>
+<text x="730" y="4310" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">63 · 0402WGF1003TCE</text>
+<text x="755" y="4327" font-family="sans-serif" font-size="10.5" fill="#526076">100-kOhm comparator threshold upper leg</text>
+<text x="730" y="4355" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">64 · 0402WGF1002TCE</text>
+<text x="755" y="4372" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm comparator threshold lower leg</text>
+<text x="730" y="4400" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">65 · 0402WGF1004TCE</text>
+<text x="755" y="4417" font-family="sans-serif" font-size="10.5" fill="#526076">1-MOhm comparator hysteresis feedback</text>
+<text x="730" y="4445" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">66 · 0402WGF1002TCE</text>
+<text x="755" y="4462" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON pull-up for active-low NFC field</text>
+<text x="755" y="4476" font-family="sans-serif" font-size="10.5" fill="#526076">evidence</text>
+<text x="730" y="4504" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">67 · Yageo CC0402KRX7R9BB104</text>
+<text x="755" y="4521" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the NFC field</text>
+<text x="755" y="4535" font-family="sans-serif" font-size="10.5" fill="#526076">comparator</text>
 <text x="1100" y="112" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Machine audit</text>
 <text x="1100" y="142" font-family="sans-serif" font-size="12" fill="#166534">✓ same-face collisions: 0</text>
-<text x="1100" y="164" font-family="sans-serif" font-size="12" fill="#166534">✓ opposing crossings: 79</text>
+<text x="1100" y="164" font-family="sans-serif" font-size="12" fill="#166534">✓ opposing crossings: 90</text>
 <text x="1100" y="186" font-family="sans-serif" font-size="12" fill="#166534">✓ minimum Z clearance: 2.59 mm</text>
 <text x="1100" y="208" font-family="sans-serif" font-size="12" fill="#526076">required: 0.70 mm</text>
 <text x="1100" y="248" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">Line key</text>

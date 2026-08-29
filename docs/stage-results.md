@@ -25,13 +25,13 @@ power—not primary RF payloads.
 <a id="h1"></a>
 ## H1 · Physical product design
 
-**Status:** ▶️ current at **`H1-R2.35`**.
+**Status:** ▶️ current at **`H1-R2.36`**.
 
 - [Current physical design](h1-r2-physical-layout.md)
-- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.35-full-power-nrf24-1)
+- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.36-complete-tx-evidence-1)
 - [Front inner face](images/h1-r2-inner-ui.svg)
 - [Rear inner face](images/h1-r2-inner-rf.svg)
-- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.35-full-power-nrf24-1)
+- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.36-complete-tx-evidence-1)
 - [Machine placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json)
 - [Airband receive path](h1-airband-filter.md)
 - [Power and thermal architecture](h1-r2-power-thermal.md)
@@ -48,9 +48,12 @@ EastRising `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 through exact Hirose
 is turned so the FPC exits toward the antenna edge; firmware rotates display and
 touch coordinates by 180 degrees.
 
-The single coordinate model now registers 215 bodies: all component packages,
+The single coordinate model now registers 226 bodies: all component packages,
 all 18 U219 host bodies, the NFC pickup loop, the external antenna swept volume,
-connectors, controls and through-board mechanics. Its generated four-face,
+connectors, controls, through-board mechanics, all eight TX detectors and all
+five required couplers. Eight bounded local evidence islands keep every active
+TX path physically complete; the six AD8314 positions use the accepted
+`AD8314ARMZ-REEL` / `C652687` route. Its generated four-face,
 external, internal, antenna-edge and sandwich views report zero same-face
 collisions and 2.59 mm minimum opposing-face clearance against the 0.70 mm rule.
 The onboard video receiver, decoder, connector, antenna and physical bay are
