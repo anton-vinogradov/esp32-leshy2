@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "snapshot_date": "2026-08-27",
+  "snapshot_date": "2026-08-30",
   "variant": "full_field_kit",
   "physical_item_count": 12,
   "exact_target_item_count": 12,
@@ -19,6 +19,7 @@
     "antenna_side": "Every kit antenna receives a durable printed heat-shrink flag at its connector end with the same kit code, role and band. The package slot repeats the same data.",
     "accessibility": "Text and code are authoritative and remain sufficient for colour-vision deficiency; colour is redundant only.",
     "nrf24_rule": "N1, N2 and N3 antennas are electrically interchangeable, but individual codes preserve a one-glance installed-kit inventory.",
+    "dedicated_transmit_load_rule": "The S433 and UHF profiles use two separate permanently fitted ANT-433-CW-QW-SMA units. Manual sharing is prohibited because an incorrect menu or port state could key a transmitter into a missing or wrong-band load.",
     "substitution_rule": "A substitute antenna receives the code of the qualified profile, never a code inferred only from connector type or appearance."
   },
   "items": [

@@ -73,21 +73,21 @@
 
 ## Критический аудит массового рынка для всего топ-20
 
-Проверены все 20 текущих групп: **14** уже являются оправданными серийными/складскими маршрутами или не имеют доказанного не худшего аналога; для **6** антенных групп найдены массовые кандидаты. Их суммарная бумажная экономия до **$89.13** не включена в BOM, потому что у каждого остаётся измеримый RF- или механический разрыв.
+Проверены все 20 текущих групп, и **все 20 сохранены**. Шесть более дешёвых антенных кандидатов отклонены решением от `2026-08-30`: их суммарная бумажная экономия **$89.13** остаётся только сравнительным evidence и не является активным маршрутом квалификации или заменой BOM.
 
 | № | Текущая группа | Лучший массовый маршрут | Статус | До экономии |
 |---:|---|---|---|---:|
-| 1 | [`SMA-W100RX2`](https://www.comet-ant.co.jp/product/638/) | [Opek SCANSMA 25-1300](https://www.hamradio.com/detail.cfm?pid=H0-016713) | 🧪 проверить | $20.00 |
-| 2 | [`001-0012`](https://www.te.com/en/product-001-0012.html) | [split the group: TE 001-0001 for S3 2.4 GHz; Taoglas GW.05.0153 for C5 2.4/5 GHz](https://www.taoglas.com/datasheets/GW.05.0153.pdf) | 🧪 проверить | $19.30 |
-| 3 | [`AN0155H13`](https://www.hytera.com/en/product-new/accessories/radio-antennas/an0155h13.html) | [Powerwerx ANT-8](https://powerwerx.com/vhf-uhf-dual-band-standard-sma-antenna) | 🧪 проверить | $23.93 |
-| 4 | [`ANT-433-CW-QW-SMA`](https://www.te.com/en/product-ANT-433-CW-QW-SMA.html) | [Ebyte TX433-JZR-6 for UHF plus TX433-JK-11 for the narrow 433-MHz port](https://www.ebyte.com/product/824.html) | 🧪 проверить | $19.57 |
+| 1 | [`SMA-W100RX2`](https://www.comet-ant.co.jp/product/638/) | [Opek SCANSMA 25-1300](https://www.hamradio.com/detail.cfm?pid=H0-016713) | ✅ оставить · кандидат отклонён | $20.00 |
+| 2 | [`001-0012`](https://www.te.com/en/product-001-0012.html) | [split the group: TE 001-0001 for S3 2.4 GHz; Taoglas GW.05.0153 for C5 2.4/5 GHz](https://www.taoglas.com/datasheets/GW.05.0153.pdf) | ✅ оставить · кандидат отклонён | $19.30 |
+| 3 | [`AN0155H13`](https://www.hytera.com/en/product-new/accessories/radio-antennas/an0155h13.html) | [Powerwerx ANT-8](https://powerwerx.com/vhf-uhf-dual-band-standard-sma-antenna) | ✅ оставить · кандидат отклонён | $23.93 |
+| 4 | [`ANT-433-CW-QW-SMA`](https://www.te.com/en/product-ANT-433-CW-QW-SMA.html) | [Ebyte TX433-JZR-6 for UHF plus TX433-JK-11 for the narrow 433-MHz port](https://www.ebyte.com/product/824.html) | ✅ оставить · кандидат отклонён | $19.57 |
 | 5 | [`GCT RFPC-SMA31-FN-175-A`](https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/17833784) | [retain current GCT standard-SMA body](https://jlcpcb.com/partdetail/DreamLNK-SMAKWE902/C914554) | ✅ оставить | $0.00 |
 | 6 | [`EastRising ER-TFT035IPS-6 + ER-TPC035-6`](https://www.buydisplay.com/3-5-inch-tft-lcd-display-capacitive-touch-screen-ips-320x480) | [retain the documented EastRising panel and touch pair](https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf) | ✅ оставить | $0.00 |
 | 7 | [`Analog Devices AD8314ARMZ-REEL`](https://jlcpcb.com/partdetail/AnalogDevices-AD8314ARMZREEL/C652687) | [retain accepted C652687 MSOP route](https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf) | ✅ оставить | $0.00 |
 | 8 | [`OMRON B3S-1100P`](https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3S-1100P/60835) | [retain B3S-1100P; source by JLC pre-order/consignment if necessary](https://jlcpcb.com/partdetail/OmronElectronicComponents-B3S1100P/C2733652) | ✅ оставить | $0.00 |
 | 9 | [`G-NiceRF SA818S-V`](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911) | [retain exact SA818S-V C51897911](https://www.nicerf.com/walkie-talkie-module-sa818s.html) | ✅ оставить | $0.00 |
 | 10 | [`G-NiceRF SA818S-U`](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549) | [retain SA818S-U C3001549](https://www.nicerf.com/walkie-talkie-module-sa818s.html) | ✅ оставить | $0.00 |
-| 11 | [`ANT-315-CW-HW-SMA`](https://www.te.com/en/product-ANT-315-CW-HW-SMA.html) | [Joymax UHX-328ASA2B](https://www.digikey.com/en/products/detail/joymax-electronics/UHX-328ASA2B/28334978) | 🧪 проверить | $4.03 |
+| 11 | [`ANT-315-CW-HW-SMA`](https://www.te.com/en/product-ANT-315-CW-HW-SMA.html) | [Joymax UHX-328ASA2B](https://www.digikey.com/en/products/detail/joymax-electronics/UHX-328ASA2B/28334978) | ✅ оставить · кандидат отклонён | $4.03 |
 | 12 | [`TE Connectivity 2118651-2`](https://www.te.com/en/product-2118651-2.html) | [retain exact 30-mm 1.13-mm U.FL-to-U.FL jumper](https://www.digikey.com/en/products/detail/te-connectivity-laird/2118651-2/13683867) | ✅ оставить | $0.00 |
 | 13 | [`Ebyte E01-ML01SP4`](https://jlcpcb.com/partdetail/E01-ML01SP4/C97340) | [retain JLCPCB C97340](https://www.ebyte.com/product/1200.html) | ✅ оставить | $0.00 |
 | 14 | [`Keystone Electronics 1048P`](https://www.digikey.com/en/products/detail/keystone-electronics/1048P/4499417) | [retain 1048P; use reviewed factory sourcing/consignment route](https://jlcpcb.com/partdetail/KeystoneElectronics-1048P/C6038062) | ✅ оставить | $0.00 |
@@ -96,9 +96,9 @@
 | 17 | [`Samtec FTSH-105-01-L-DV-K-P-TR`](https://jlcpcb.com/partdetail/Samtec-FTSH_105_01_L_DV_K_PTR/C2932107) | [retain JLCPCB C2932107](https://www.tag-connect.com/product/tc2050-idc-nl-10-pin-no-legs-cable-with-ribbon-connector) | ✅ оставить | $0.00 |
 | 18 | [`ESP32-S3-WROOM-1U-N16R8`](https://jlcpcb.com/partdetail/EspressifSystems-ESP32S3WROOM1UN16R8/C3013946) | [retain exact N16R8 external-antenna module](https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf) | ✅ оставить | $0.00 |
 | 19 | [`GCT RFPC-SMA32-FN-175-A`](https://www.digikey.com/en/products/detail/gct/RFPC-SMA32-FN-175-A/17833785) | [retain current GCT reverse-polarity body](https://jlcpcb.com/partdetail/DreamLNK-SMAKWE901/C914553) | ✅ оставить | $0.00 |
-| 20 | [`TI.08.C.0112`](https://www.taoglas.com/datasheets/TI.08.C.0112.pdf) | [Seeed Studio 113070002 868/915-MHz whip](https://www.seeedstudio.com/External-Antenna-868-915MHZ-2dBi-SMA-L195mm-Foldable-p-5863.html) | 🧪 проверить | $2.30 |
+| 20 | [`TI.08.C.0112`](https://www.taoglas.com/datasheets/TI.08.C.0112.pdf) | [Seeed Studio 113070002 868/915-MHz whip](https://www.seeedstudio.com/External-Antenna-868-915MHZ-2dBi-SMA-L195mm-Foldable-p-5863.html) | ✅ оставить · кандидат отклонён | $2.30 |
 
-Почему кандидаты ещё не приняты:
+Почему шесть альтернатив отклонены:
 
 - **`SMA-W100RX2` → Opek SCANSMA 25-1300:** same stated 25-1300-MHz receive range, but it is a remote magnetic-mount antenna with 12-ft RG-174 rather than a direct telescopic whip (in stock at Ham Radio Outlet; USD 15.95)
 - **`001-0012` → split the group: TE 001-0001 for S3 2.4 GHz; Taoglas GW.05.0153 for C5 2.4/5 GHz:** S3 does not use 5 GHz, so its dual-band/IP67 capability is unused; C5 candidate begins at 5150 rather than 4910 MHz and both substitutions require assembled-device matching/EIRP closure (001-0001: 2,656 Mouser stock; GW.05.0153: distributor stock and serial order route)

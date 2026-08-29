@@ -617,6 +617,12 @@
     "function_sensitive_rule": "RF detectors, RF filters/couplers, power safety, battery protection and user-exposed ESD boundaries never change for price alone.",
     "antenna_mechanics_rule": "Prefer individually board-retained DIV-like right-angle SMA/RP-SMA bodies without nuts, sealing hardware or a shared protective frame. Low profile is not a requirement; a dual-face or through-board soldered load path is preferred. Keep the GCT pair only until a documented stocked standard/reverse pair passes the complete 5+5 placement, opposing-clearance and factory-assembly gate."
   },
+  "top_20_user_decision": {
+    "decided_on": "2026-08-30",
+    "decision": "retain_all_current_groups",
+    "scope": "All six cheaper mass-market antenna candidates remain comparison evidence only and are not active qualification or BOM replacement routes.",
+    "quantity_rule": "Keep two separate ANT-433-CW-QW-SMA units: one permanently fitted to SUB-GHz and one to UHF VOICE. Manual antenna transfer is rejected because a wrong menu or port state could key a transmitter into a missing or incorrect load."
+  },
   "top_20_mass_market_audit": [
     {
       "current_mpn": "SMA-W100RX2",
@@ -625,10 +631,11 @@
       "availability": "in stock at Ham Radio Outlet; USD 15.95",
       "functional_delta": "same stated 25-1300-MHz receive range, but it is a remote magnetic-mount antenna with 12-ft RG-174 rather than a direct telescopic whip",
       "paper_saving_usd": 20.0,
-      "verdict": "qualification_required_not_no_worse_on_form_factor",
+      "verdict": "retain_user_decision_candidate_rejected",
       "current_source": "https://www.comet-ant.co.jp/product/638/",
       "candidate_source": "https://www.hamradio.com/detail.cfm?pid=H0-016713",
-      "checked_on": "2026-08-29"
+      "checked_on": "2026-08-29",
+      "decision_on": "2026-08-30"
     },
     {
       "current_mpn": "001-0012",
@@ -637,10 +644,11 @@
       "availability": "001-0001: 2,656 Mouser stock; GW.05.0153: distributor stock and serial order route",
       "functional_delta": "S3 does not use 5 GHz, so its dual-band/IP67 capability is unused; C5 candidate begins at 5150 rather than 4910 MHz and both substitutions require assembled-device matching/EIRP closure",
       "paper_saving_usd": 19.3,
-      "verdict": "strong_qualification_candidates_not_yet_no_worse",
+      "verdict": "retain_user_decision_candidate_rejected",
       "current_source": "https://www.te.com/en/product-001-0012.html",
       "candidate_source": "https://www.taoglas.com/datasheets/GW.05.0153.pdf",
-      "checked_on": "2026-08-29"
+      "checked_on": "2026-08-29",
+      "decision_on": "2026-08-30"
     },
     {
       "current_mpn": "AN0155H13",
@@ -649,10 +657,11 @@
       "availability": "in stock; USD 7.77",
       "functional_delta": "covers 136-174 and 400-470 MHz with standard SMA, but its public page does not close gain, VSWR, power or exact mechanical seating; it may cover both voice ports only after VNA and voice-TX HIL",
       "paper_saving_usd": 23.93,
-      "verdict": "qualification_required_missing_complete_datasheet",
+      "verdict": "retain_user_decision_candidate_rejected",
       "current_source": "https://www.hytera.com/en/product-new/accessories/radio-antennas/an0155h13.html",
       "candidate_source": "https://powerwerx.com/vhf-uhf-dual-band-standard-sma-antenna",
-      "checked_on": "2026-08-29"
+      "checked_on": "2026-08-29",
+      "decision_on": "2026-08-30"
     },
     {
       "current_mpn": "ANT-433-CW-QW-SMA",
@@ -661,10 +670,11 @@
       "availability": "both serial Ebyte parts available from stocked distributors; TX433-JZR-6 observed at USD 1.72",
       "functional_delta": "UHF candidate preserves 400-480 MHz, 10 W and improves stated VSWR but nominal gain falls 3.3 to 3.0 dBi; the 433 candidate is narrow-band and both need VNA/EIRP HIL",
       "paper_saving_usd": 19.57,
-      "verdict": "strong_qualification_candidates_small_gain_delta",
+      "verdict": "retain_user_decision_candidate_rejected",
       "current_source": "https://www.te.com/en/product-ANT-433-CW-QW-SMA.html",
       "candidate_source": "https://www.ebyte.com/product/824.html",
-      "checked_on": "2026-08-29"
+      "checked_on": "2026-08-29",
+      "decision_on": "2026-08-30"
     },
     {
       "current_mpn": "GCT RFPC-SMA31-FN-175-A",
@@ -745,10 +755,11 @@
       "availability": "958 DigiKey stock; USD 5.5693 at 100",
       "functional_delta": "candidate is 312-317 rather than 304-325 MHz, -0.4 rather than 0 dBi and 1 W; adequate only for the exact 315-MHz profile after VNA/TX HIL",
       "paper_saving_usd": 4.0307,
-      "verdict": "qualification_required_narrower_band_and_gain_delta",
+      "verdict": "retain_user_decision_candidate_rejected",
       "current_source": "https://www.te.com/en/product-ANT-315-CW-HW-SMA.html",
       "candidate_source": "https://www.digikey.com/en/products/detail/joymax-electronics/UHX-328ASA2B/28334978",
-      "checked_on": "2026-08-29"
+      "checked_on": "2026-08-29",
+      "decision_on": "2026-08-30"
     },
     {
       "current_mpn": "TE Connectivity 2118651-2",
@@ -853,10 +864,11 @@
       "availability": "in stock; USD 2.49",
       "functional_delta": "candidate preserves both bands, SMA and 10 W but changes right-angle mechanics and falls from 2.48 to 2.0 dBi at 868 MHz; both regional EIRP limits require HIL",
       "paper_saving_usd": 2.2966,
-      "verdict": "qualification_required_mechanics_and_868_gain_delta",
+      "verdict": "retain_user_decision_candidate_rejected",
       "current_source": "https://www.taoglas.com/datasheets/TI.08.C.0112.pdf",
       "candidate_source": "https://www.seeedstudio.com/External-Antenna-868-915MHZ-2dBi-SMA-L195mm-Foldable-p-5863.html",
-      "checked_on": "2026-08-29"
+      "checked_on": "2026-08-29",
+      "decision_on": "2026-08-30"
     }
   ],
   "current_stocked_candidate_checks": [

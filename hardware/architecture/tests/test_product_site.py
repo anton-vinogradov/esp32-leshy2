@@ -3077,6 +3077,11 @@ class ProductSiteTests(unittest.TestCase):
             2,
             sum(item["mpn"] == "ANT-433-CW-QW-SMA" for item in manifest["items"]),
         )
+        self.assertIn(
+            "two separate permanently fitted ANT-433-CW-QW-SMA",
+            identification["dedicated_transmit_load_rule"],
+        )
+        self.assertIn("Manual sharing is prohibited", identification["dedicated_transmit_load_rule"])
         self.assertEqual(
             {"WI-FI/BLE", "WI-FI/15.4"},
             {

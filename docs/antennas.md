@@ -26,8 +26,10 @@ fixed ports.
 
 The kit contains two separate `ANT-433-CW-QW-SMA` units. Its specification
 covers 400–470 MHz and up to 10 W, so one unit serves the 433-MHz profile and
-the other serves UHF voice. This reduces unique SKUs without moving one antenna
-between two connected paths.
+the other serves UHF voice. Both remain permanently fitted: moving one antenna
+between ports is prohibited because a wrong menu selection could key a transmitter
+into no load or an antenna for the wrong band. Two identical units reduce unique
+SKUs without introducing that safety risk.
 
 ## Connectors and safe transmit
 

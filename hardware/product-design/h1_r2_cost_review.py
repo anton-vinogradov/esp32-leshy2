@@ -460,10 +460,22 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
                 "qualification" in row["verdict"]
                 for row in top20_market_audit
             ),
+            "top_20_rejected_candidate_groups": sum(
+                "candidate_rejected" in row["verdict"]
+                for row in top20_market_audit
+            ),
             "top_20_unaccepted_paper_saving_usd": round(sum(
                 row["paper_saving_usd"]
                 for row in top20_market_audit
-                if "qualification" in row["verdict"]
+                if (
+                    "qualification" in row["verdict"]
+                    or "candidate_rejected" in row["verdict"]
+                )
+            ), 4),
+            "top_20_rejected_paper_saving_usd": round(sum(
+                row["paper_saving_usd"]
+                for row in top20_market_audit
+                if "candidate_rejected" in row["verdict"]
             ), 4),
             "top_10_share_pct": top_share(10),
             "top_20_share_pct": top_share(20),
@@ -496,6 +508,7 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         "antenna_rows": antenna_rows,
         "combined_top_20_rows": combined_ranked_rows[:20],
         "top_20_mass_market_audit": top20_market_audit,
+        "top_20_user_decision": model["top_20_user_decision"],
         "display_orientation_review": display,
         "accepted_cost_reduction_policy": model["accepted_cost_reduction_policy"],
         "community_cost_target": target,
@@ -553,7 +566,7 @@ def render_top20_market_csv(result: dict) -> str:
         "rank", "source", "current_mpn", "quantity_per_prototype",
         "current_group_cost_usd", "market_result", "best_mass_market_route",
         "availability", "functional_delta", "paper_saving_usd", "verdict",
-        "current_source", "candidate_source", "checked_on",
+        "current_source", "candidate_source", "checked_on", "decision_on",
     ]
     import io
     output = io.StringIO()
@@ -762,8 +775,9 @@ def render_doc(result: dict, ru: bool) -> str:
     if ru:
         lines += [
             '## Критический аудит массового рынка для всего топ-20', '',
-            f'Проверены все 20 текущих групп: **{summary["top_20_mass_market_retained_groups"]}** уже являются оправданными серийными/складскими маршрутами или не имеют доказанного не худшего аналога; '
-            f'для **{summary["top_20_qualification_candidate_groups"]}** антенных групп найдены массовые кандидаты. Их суммарная бумажная экономия до **{money(summary["top_20_unaccepted_paper_saving_usd"])}** не включена в BOM, потому что у каждого остаётся измеримый RF- или механический разрыв.',
+            f'Проверены все 20 текущих групп, и **все {summary["top_20_mass_market_retained_groups"]} сохранены**. '
+            f'Шесть более дешёвых антенных кандидатов отклонены решением от `{result["top_20_user_decision"]["decided_on"]}`: '
+            f'их суммарная бумажная экономия **{money(summary["top_20_rejected_paper_saving_usd"])}** остаётся только сравнительным evidence и не является активным маршрутом квалификации или заменой BOM.',
             '',
             '| № | Текущая группа | Лучший массовый маршрут | Статус | До экономии |',
             '|---:|---|---|---|---:|',
@@ -771,14 +785,17 @@ def render_doc(result: dict, ru: bool) -> str:
     else:
         lines += [
             '## Critical mass-market audit of the complete top 20', '',
-            f'All 20 current groups were checked: **{summary["top_20_mass_market_retained_groups"]}** are already justified serial/stock routes or have no proven no-worse equivalent; '
-            f'**{summary["top_20_qualification_candidate_groups"]}** antenna groups have mass-market candidates. Their combined paper saving of up to **{money(summary["top_20_unaccepted_paper_saving_usd"])}** is excluded from the BOM because every candidate retains a measurable RF or mechanical gap.',
+            f'All 20 current groups were checked and **all {summary["top_20_mass_market_retained_groups"]} are retained**. '
+            f'Six cheaper antenna candidates were rejected by the `{result["top_20_user_decision"]["decided_on"]}` decision: '
+            f'their combined paper saving of **{money(summary["top_20_rejected_paper_saving_usd"])}** remains comparison evidence only and is neither an active qualification route nor a BOM substitution.',
             '',
             '| # | Current group | Best mass-market route | Status | Saving up to |',
             '|---:|---|---|---|---:|',
         ]
     for audit in result["top_20_mass_market_audit"]:
-        if "qualification" in audit["verdict"]:
+        if "candidate_rejected" in audit["verdict"]:
+            status = '✅ оставить · кандидат отклонён' if ru else '✅ retain · candidate rejected'
+        elif "qualification" in audit["verdict"]:
             status = '🧪 проверить' if ru else '🧪 qualify'
         else:
             status = '✅ оставить' if ru else '✅ retain'
@@ -787,9 +804,9 @@ def render_doc(result: dict, ru: bool) -> str:
             f'[{audit["best_mass_market_route"]}]({audit["candidate_source"]}) | '
             f'{status} | {money(audit["paper_saving_usd"])} |'
         )
-    lines += ['', ('Почему кандидаты ещё не приняты:' if ru else 'Why the candidates are not accepted yet:'), '']
+    lines += ['', ('Почему шесть альтернатив отклонены:' if ru else 'Why the six alternatives were rejected:'), '']
     for audit in result["top_20_mass_market_audit"]:
-        if "qualification" not in audit["verdict"]:
+        if "candidate_rejected" not in audit["verdict"]:
             continue
         lines.append(
             f'- **`{audit["current_mpn"]}` → {audit["best_mass_market_route"]}:** '

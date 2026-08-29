@@ -183,17 +183,36 @@ class H1R2CostReviewTest(unittest.TestCase):
             {row["current_mpn"] for row in audit},
         )
         self.assertEqual(
-            self.result["summary"]["top_20_mass_market_retained_groups"], 14
+            self.result["summary"]["top_20_mass_market_retained_groups"], 20
         )
         self.assertEqual(
-            self.result["summary"]["top_20_qualification_candidate_groups"], 6
+            self.result["summary"]["top_20_qualification_candidate_groups"], 0
+        )
+        self.assertEqual(
+            self.result["summary"]["top_20_rejected_candidate_groups"], 6
         )
         self.assertAlmostEqual(
             self.result["summary"]["top_20_unaccepted_paper_saving_usd"],
             89.1273,
             places=4,
         )
+        self.assertAlmostEqual(
+            self.result["summary"]["top_20_rejected_paper_saving_usd"],
+            89.1273,
+            places=4,
+        )
         self.assertTrue(all(row["checked_on"] == "2026-08-29" for row in audit))
+        rejected = [row for row in audit if "candidate_rejected" in row["verdict"]]
+        self.assertEqual(len(rejected), 6)
+        self.assertTrue(all(row["decision_on"] == "2026-08-30" for row in rejected))
+        self.assertEqual(
+            self.result["top_20_user_decision"]["decision"],
+            "retain_all_current_groups",
+        )
+        self.assertIn(
+            "two separate ANT-433-CW-QW-SMA",
+            self.result["top_20_user_decision"]["quantity_rule"],
+        )
         market_csv = MODULE.render_top20_market_csv(self.result)
         self.assertEqual(len(market_csv.strip().splitlines()), 21)
         self.assertIn("functional_delta", market_csv.splitlines()[0])
