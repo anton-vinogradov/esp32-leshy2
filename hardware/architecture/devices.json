@@ -5200,7 +5200,7 @@
       }
     },
     "hirose_ufl_r_smt_1_10": {
-      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "mpn": "Hirose U.FL-R-SMT-1(80)",
       "kind": "first_generation_ufl_6ghz_board_receptacle",
       "qualification": "verified_exact_native_rf_board_mate",
       "lifecycle": "active_orderable",
@@ -5208,23 +5208,23 @@
       "source": {
         "document": "Hirose U.FL Series connector catalog",
         "version": "current catalog",
-        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-        "checked": "2026-08-18"
+        "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+        "checked": "2026-08-29"
       },
       "orderable_source": {
-        "document": "U.FL-R-SMT-1(10) active authorized-distributor stock page; 271,862 shown in stock",
-        "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/U-FL-R-SMT-1-10/2391570",
-        "checked": "2026-08-18"
+        "document": "JLCPCB C88374 exact Hirose U.FL-R-SMT-1(80) live assembly card; 72,989 shown in stock and 68,798 orderable",
+        "url": "https://jlcpcb.com/partdetail/U.FL-R-SMT-1%2880%29/C88374",
+        "checked": "2026-08-29"
       },
       "cost": {
         "currency": "USD",
         "target_quantity": 100,
-        "unit_price_usd": 1.0655,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "unit_price_usd": 0.0823,
+        "price_break": "JLCPCB in-stock quantity-50 tier applied to quantity 100",
         "source": {
-          "document": "DigiKey exact-MPN published price table",
-          "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/U-FL-R-SMT-1-10/2391570",
-          "checked": "2026-08-19"
+          "document": "JLCPCB C88374 live exact-MPN price table",
+          "url": "https://jlcpcb.com/partdetail/U.FL-R-SMT-1%2880%29/C88374",
+          "checked": "2026-08-29"
         }
       },
       "electrical_contract": {

@@ -11,10 +11,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "edce4ca3aed56ed1a58b9ec85d19f7c9db624869f54797e0c2dc329e9816007d",
-    "hardware/architecture/devices.json": "f2d730ddf0692bdf7d86d562690806a95cf4f30dff467c7e4afe19aaa4a3ea05",
-    "hardware/ecad/generated/H2-instance-ledger.json": "36c18638c89d353cfc92f6213c6e001fa20cfe88ffb8cf3c2f5c5544d0c11fe6",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "c9acf74e9fa6e54c4937bbee2c04168a80e57bc648b3e14f16a6e6324d1705b9"
+    "hardware/architecture/candidates/G2F-3I.json": "2673a4d23435effe9ec592e6060a3b1bc525598944d932f0a502d0fd4636ce8f",
+    "hardware/architecture/devices.json": "33764997afecc02f1112a0d471647b9c8562ac38ee74b31222ea09db68bdac07",
+    "hardware/ecad/generated/H2-instance-ledger.json": "1485ad0378b4d1dcfb13ab4aaeeb58ceb62e4814dbfb2895bef17e422949a172",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "3f9cbd769badeb336755c6e07cfa9ae2d12d92b70b60673fc654690664ccf8cc"
   },
   "summary": {
     "ledger_instances": 49,

@@ -13,7 +13,7 @@
 - Current orderability evidence exists for **210/210** used lines; **0** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **201/210** lines.
 - Of the remaining **9** unpriced lines, **9** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **1038/1052** supplied placements; their partial subtotals are `base_product` — USD 257.2550. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **1038/1052** supplied placements; their partial subtotals are `base_product` — USD 252.3390. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **210/210** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -340,7 +340,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `hirose_fh34srj_50s_0_5sh_50` — `Hirose FH34SRJ-50S-0.5SH(50)`.
   - `hirose_fx8c_80p_sv1_92` — `Hirose FX8C-80P-SV1(92)`.
   - `hirose_fx8c_80s_sv5_92` — `Hirose FX8C-80S-SV5(92)`.
-  - `hirose_ufl_r_smt_1_10` — `Hirose U.FL-R-SMT-1(10)`.
+  - `hirose_ufl_r_smt_1_10` — `Hirose U.FL-R-SMT-1(80)`.
   - `jae_dx07s016ja1r1500` — `JAE DX07S016JA1R1500`.
   - `keystone_1048p` — `Keystone Electronics 1048P`.
   - `omron_b3s_1100p` — `OMRON B3S-1100P`.
@@ -656,12 +656,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Hirose U.FL-R-SMT-1(10)</code> — 5 × USD 1.0655 = USD 5.3275</summary>
+<details><summary><code>Hirose U.FL-R-SMT-1(80)</code> — 5 × USD 0.0823 = USD 0.4115</summary>
 
 - Device id: `hirose_ufl_r_smt_1_10`.
 - Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/U-FL-R-SMT-1-10/2391570).
+- Comparable basis: JLCPCB in-stock quantity-50 tier applied to quantity 100; target quantity `100`.
+- Checked: `2026-08-29`; [published source](https://jlcpcb.com/partdetail/U.FL-R-SMT-1%2880%29/C88374).
 
 </details>
 

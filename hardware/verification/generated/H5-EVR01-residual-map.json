@@ -5,9 +5,9 @@
   "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
   "source_hashes": {
     "hardware/verification/generated/H3-VRF72-physical-residuals.json": "bb42a28438471824376c593e5d37974f2f5c12e55bd1af90380fd7a9ec257149",
-    "hardware/product-design/generated/H1-physical-source-table.json": "5223c0ef9a916d2629274a349d387a6e2b7aeb8b931220c0d4331b0f80bff83e",
-    "hardware/product-design/mechanical-evidence-gates.json": "934106b58e64408a7e3440f6f7540a6a0b2094d8d7491abd64ab4c7064310ce2",
-    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
+    "hardware/product-design/generated/H1-physical-source-table.json": "97bca94c9954caf5ef504ed1bdef9cdafb5a37df37945b437067546a0b2f5b5a",
+    "hardware/product-design/mechanical-evidence-gates.json": "4404c8134c8e6d4b2894672a57737909860d7535742bea01c88db0e4d24c68cd",
+    "hardware/architecture/devices.json": "33764997afecc02f1112a0d471647b9c8562ac38ee74b31222ea09db68bdac07",
     "hardware/architecture/am-lw-pod.json": "6571e20c26f2ceaebf9c4bf410d155417a68116b3b5ef2e16d7c77ee06503e08"
   },
   "summary": {
@@ -387,7 +387,7 @@
         {
           "identity": "nrf0_rf_board_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "mpn": "Hirose U.FL-R-SMT-1(80)",
           "role": "nRF24 #0 Gen1 jumper board receptacle",
           "source": {
             "document": "Hirose U.FL Series connector catalog",
@@ -399,7 +399,7 @@
         {
           "identity": "nrf1_rf_board_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "mpn": "Hirose U.FL-R-SMT-1(80)",
           "role": "nRF24 #1 Gen1 jumper board receptacle",
           "source": {
             "document": "Hirose U.FL Series connector catalog",
@@ -411,7 +411,7 @@
         {
           "identity": "nrf2_rf_board_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "mpn": "Hirose U.FL-R-SMT-1(80)",
           "role": "nRF24 #2 Gen1 jumper board receptacle",
           "source": {
             "document": "Hirose U.FL Series connector catalog",
@@ -655,7 +655,7 @@
         {
           "identity": "s3_rf_board_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "mpn": "Hirose U.FL-R-SMT-1(80)",
           "role": "S3 30-mm jumper board receptacle",
           "source": {
             "document": "Hirose U.FL Series connector catalog",
@@ -667,7 +667,7 @@
         {
           "identity": "c5_rf_board_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "mpn": "Hirose U.FL-R-SMT-1(80)",
           "role": "C5 30-mm jumper board receptacle",
           "source": {
             "document": "Hirose U.FL Series connector catalog",
@@ -679,7 +679,7 @@
         {
           "identity": "nrf0_rf_board_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "mpn": "Hirose U.FL-R-SMT-1(80)",
           "role": "nRF24 #0 Gen1 jumper board receptacle",
           "source": {
             "document": "Hirose U.FL Series connector catalog",
@@ -691,7 +691,7 @@
         {
           "identity": "nrf1_rf_board_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "mpn": "Hirose U.FL-R-SMT-1(80)",
           "role": "nRF24 #1 Gen1 jumper board receptacle",
           "source": {
             "document": "Hirose U.FL Series connector catalog",
@@ -703,7 +703,7 @@
         {
           "identity": "nrf2_rf_board_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "mpn": "Hirose U.FL-R-SMT-1(80)",
           "role": "nRF24 #2 Gen1 jumper board receptacle",
           "source": {
             "document": "Hirose U.FL Series connector catalog",
@@ -864,7 +864,7 @@
         {
           "identity": "nrf0_rf_board_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "mpn": "Hirose U.FL-R-SMT-1(80)",
           "role": "nRF24 #0 Gen1 jumper board receptacle",
           "source": {
             "document": "Hirose U.FL Series connector catalog",
@@ -876,7 +876,7 @@
         {
           "identity": "nrf1_rf_board_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "mpn": "Hirose U.FL-R-SMT-1(80)",
           "role": "nRF24 #1 Gen1 jumper board receptacle",
           "source": {
             "document": "Hirose U.FL Series connector catalog",
@@ -888,7 +888,7 @@
         {
           "identity": "nrf2_rf_board_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "mpn": "Hirose U.FL-R-SMT-1(80)",
           "role": "nRF24 #2 Gen1 jumper board receptacle",
           "source": {
             "document": "Hirose U.FL Series connector catalog",
@@ -934,7 +934,7 @@
           }
         }
       ],
-      "known_boundary": "Ebyte's 2025 E01-ML01SP4 specification proves the 14.5 x 18 x 2.4-mm outline, all ten lands and the fitted IPEX location; the current official page proves stable production and PA/LNA performance. Exact TE 2118651-2 30-mm UMCC Gen1 jumpers and Hirose U.FL-R-SMT-1(10) board mates define all three paper feed assemblies.",
+      "known_boundary": "Ebyte's 2025 E01-ML01SP4 specification proves the 14.5 x 18 x 2.4-mm outline, all ten lands and the fitted IPEX location; the current official page proves stable production and PA/LNA performance. Exact TE 2118651-2 30-mm UMCC Gen1 jumpers and Hirose U.FL-R-SMT-1(80) board mates define all three paper feed assemblies.",
       "missing_data": "The fitted receptacle manufacturer's exact subpart MPN, actual mate retention, bend/strain behaviour and end-to-end RF loss remain received-part properties. H1 uses the published connector location and full maximum body envelope; H5/H8 verify the real fit and RF path.",
       "accepted_pass_rule": "H5 locks the conservative corridor and exact documented cable/board-mate identities before order; H7/H8 confirm the fitted receptacle is Gen1 and inspect fit, retention, flex/strain relief, insertion loss and return loss on the one assembled prototype after arrival.",
       "blocks": [
@@ -1392,7 +1392,7 @@
         {
           "identity": "s3_rf_board_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "mpn": "Hirose U.FL-R-SMT-1(80)",
           "role": "S3 30-mm jumper board receptacle",
           "source": {
             "document": "Hirose U.FL Series connector catalog",
@@ -1404,7 +1404,7 @@
         {
           "identity": "c5_rf_board_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose U.FL-R-SMT-1(10)",
+          "mpn": "Hirose U.FL-R-SMT-1(80)",
           "role": "C5 30-mm jumper board receptacle",
           "source": {
             "document": "Hirose U.FL Series connector catalog",

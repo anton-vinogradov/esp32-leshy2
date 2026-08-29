@@ -17,6 +17,7 @@ ANTENNA_PATH = REPO / "hardware/architecture/antenna-kit.json"
 AUDIT_PATH = REPO / "hardware/product-design/generated/H1-R2-cost-audit.json"
 CSV_PATH = REPO / "hardware/product-design/generated/H1-R2-cost-ranked.csv"
 TOP20_CSV_PATH = REPO / "hardware/product-design/generated/H1-R2-cost-top20.csv"
+TOP20_MARKET_CSV_PATH = REPO / "hardware/product-design/generated/H1-R2-top20-market-audit.csv"
 EN_PATH = REPO / "docs/h1-r2-cost.md"
 RU_PATH = REPO / "docs/h1-r2-cost.ru.md"
 
@@ -56,7 +57,7 @@ LANES_RU = {
     ),
     "factory-preorder-penalty": (
         "Заменить безопасно эквивалентные pre-order пассивы и обычную логику на складские JLCPCB",
-        "После шести безопасных пакетов 26 pre-order-строк стоят $648,0444 в нормализованном снимке партии из пяти устройств против $322,6465 по серийной материальной базе. Складские маршруты Nexperia, YAGEO, UNI-ROYAL, FH, Hirose, TI, Vishay и Murata вместе убирают около $137,7020 из наблюдаемого пробного маршрута и снижают публичную материальную базу на $3,0885 на устройство.",
+        "После семи безопасных пакетов 27 pre-order-строк стоят $660,0144 в нормализованном снимке партии из пяти устройств против $331,0265 по серийной материальной базе. Складские маршруты Nexperia, YAGEO, UNI-ROYAL, FH, Hirose, TI, Vishay и Murata вместе убирают около $140,8195 из наблюдаемого пробного маршрута и снижают публичную материальную базу на $8,0045 на устройство.",
         "Проверять каждую строку по её substitution-классу; принимать только точную либо не худшую параметрическую замену.",
     ),
     "main-rf-mechanics": (
@@ -76,8 +77,8 @@ LANES_RU = {
     ),
     "native-rf-jumpers": (
         "Сохранить все пять трактов U.FL + 30-мм кабель после проверки размещения источников",
-        "Пять трактов дают $14,43 на устройство без учёта ручной укладки. S3 и все три E01 выводят RF только через микрокоаксиальный разъём, а каждый тракт обязан пройти через локальный coupler и детектор реальной передачи до SMA. Текущий C5 также выводит U.FL; точный складской Espressif T2/ANT2 factory-route не доказан.",
-        "Поэтому сейчас безопасно удалить можно 0/5 трактов. Будущий квалифицированный C5 T2 может убрать один тракт и сэкономить около $2,89 на устройство.",
+        "Пять трактов теперь дают $9,52 на устройство после перехода на точную складскую упаковочную версию Hirose; ручная укладка не учтена. S3 и все три E01 выводят RF только через микрокоаксиальный разъём, а каждый тракт обязан пройти через локальный coupler и детектор реальной передачи до SMA. Текущий C5 также выводит U.FL; точный складской Espressif T2/ANT2 factory-route не доказан.",
+        "Поэтому сейчас безопасно удалить можно 0/5 трактов. Будущий квалифицированный C5 T2 может убрать один тракт и сэкономить около $1,90 на устройство.",
     ),
     "battery-holder": (
         "Сохранить 1048P до доказательства полноценного держателя защищённых элементов",
@@ -350,6 +351,21 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         row["share_of_known_combined_total_pct"] = round(
             100.0 * row["group_cost_per_prototype_usd"] / known_combined_total, 3
         )
+    market_source = model["top_20_mass_market_audit"]
+    market_by_mpn = {row["current_mpn"]: row for row in market_source}
+    top20_market_audit = []
+    for current in combined_ranked_rows[:20]:
+        audit = market_by_mpn.get(current["mpn"])
+        if audit is None:
+            continue
+        merged = dict(audit)
+        merged.update({
+            "rank": current["rank"],
+            "source": current["source"],
+            "quantity_per_prototype": current["quantity_per_prototype"],
+            "current_group_cost_usd": current["group_cost_per_prototype_usd"],
+        })
+        top20_market_audit.append(merged)
     ranked_base = [
         row for row in rows
         if row["scope"] == "base_product"
@@ -374,6 +390,14 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         for index in range(len(rows) - 1)
     ):
         errors.append("cost rows are not descending")
+    top20_mpns = {row["mpn"] for row in combined_ranked_rows[:20]}
+    audit_mpns = {row["current_mpn"] for row in market_source}
+    if len(market_source) != len(audit_mpns):
+        errors.append("top-20 mass-market audit contains duplicate current MPNs")
+    if top20_mpns != audit_mpns:
+        missing = sorted(top20_mpns - audit_mpns)
+        stale = sorted(audit_mpns - top20_mpns)
+        errors.append(f"top-20 mass-market audit mismatch: missing={missing}; stale={stale}")
     display = model["display_orientation_review"]
     if display["paper_fit"]["same_face_collisions"] != 0:
         errors.append("upper display-adapter candidate collides on the UI inner face")
@@ -428,6 +452,19 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
                 ) / known_combined_total,
                 2,
             ),
+            "top_20_mass_market_retained_groups": sum(
+                row["verdict"].startswith("retain_")
+                for row in top20_market_audit
+            ),
+            "top_20_qualification_candidate_groups": sum(
+                "qualification" in row["verdict"]
+                for row in top20_market_audit
+            ),
+            "top_20_unaccepted_paper_saving_usd": round(sum(
+                row["paper_saving_usd"]
+                for row in top20_market_audit
+                if "qualification" in row["verdict"]
+            ), 4),
             "top_10_share_pct": top_share(10),
             "top_20_share_pct": top_share(20),
             "top_40_share_pct": top_share(40),
@@ -458,6 +495,7 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         "post_pcba_required": model["post_pcba_required"],
         "antenna_rows": antenna_rows,
         "combined_top_20_rows": combined_ranked_rows[:20],
+        "top_20_mass_market_audit": top20_market_audit,
         "display_orientation_review": display,
         "accepted_cost_reduction_policy": model["accepted_cost_reduction_policy"],
         "community_cost_target": target,
@@ -507,6 +545,26 @@ def render_top20_csv(result: dict) -> str:
     )
     writer.writeheader()
     writer.writerows(result["combined_top_20_rows"])
+    return output.getvalue()
+
+
+def render_top20_market_csv(result: dict) -> str:
+    fields = [
+        "rank", "source", "current_mpn", "quantity_per_prototype",
+        "current_group_cost_usd", "market_result", "best_mass_market_route",
+        "availability", "functional_delta", "paper_saving_usd", "verdict",
+        "current_source", "candidate_source", "checked_on",
+    ]
+    import io
+    output = io.StringIO()
+    writer = csv.DictWriter(
+        output,
+        fieldnames=fields,
+        extrasaction="ignore",
+        lineterminator="\n",
+    )
+    writer.writeheader()
+    writer.writerows(result["top_20_mass_market_audit"])
     return output.getvalue()
 
 
@@ -605,7 +663,7 @@ def render_doc(result: dict, ru: bool) -> str:
             '', '## Принятая ценовая граница all-in-one', '',
             f'- Текущий продукт остаётся полностью начинённым all-in-one. Цель повторяемого готового устройства: **{money(result["community_cost_target"]["preferred_complete_device_range_usd"][0])}–{money(result["community_cost_target"]["preferred_complete_device_range_usd"][1])}** без аккумуляторов и полного набора специализированных внешних антенн.',
             f'- Чтобы внутри этой цены остались PCB, PCBA и корпус, электроника должна попасть примерно в **{money(summary["community_electronics_target_usd"][0])}–{money(summary["community_electronics_target_usd"][1])}**.',
-            f'- Сейчас базовая BOM содержит `{summary["base_bom_lines"]}` MPN-групп и `{summary["base_fitted_placements"]}` установленных компонентов. Принятая без потери функции замена корпуса AD8314 уже экономит **{money(summary["paper_qualified_no_loss_savings_usd"])}** и оставляет текущий точный planning floor **{money(summary["base_after_paper_qualified_savings_usd"])}**. Дешёвая пара SMA/RP-SMA проверена и отклонена, поэтому её предполагаемая экономия сюда не входит.',
+            f'- Сейчас базовая BOM содержит `{summary["base_bom_lines"]}` MPN-групп и `{summary["base_fitted_placements"]}` установленных компонентов. Принятые без потери функции маршруты AD8314 и Hirose U.FL уже экономят **{money(summary["paper_qualified_no_loss_savings_usd"])}** и оставляют текущий точный planning floor **{money(summary["base_after_paper_qualified_savings_usd"])}**. Дешёвая пара SMA/RP-SMA проверена и отклонена, поэтому её предполагаемая экономия сюда не входит.',
             f'- После них до целевой электронной BOM нужно убрать ещё **{money(summary["additional_savings_to_electronics_target_usd"][0])}–{money(summary["additional_savings_to_electronics_target_usd"][1])}**. Формальный запас до потолка готового устройства — только **{money(summary["pre_pcba_margin_to_complete_ceiling_usd"])}**, поэтому без дальнейшего пересинтеза в него не помещаются платы, сборка и корпус.',
             '',
             '**Принято:** отдельный `Core` сейчас не проектируется. Сначала строится и проверяется один полностью оснащённый `R2-EVT1`; стоимость снижается пересинтезом реализации без удаления встроенных функций и safety-результата. Историческая цель `$150` отложена как возможная community-комплектация после работающего EVT1, а не является текущей аппаратной веткой. Первый единственный заказ всё равно будет дороже из-за MOQ, setup, ручной установки, доставки и налогов.',
@@ -621,7 +679,7 @@ def render_doc(result: dict, ru: bool) -> str:
             '| Граница | Электроника | Готовая база | Честный вывод |',
             '|---|---:|---:|---|',
             f'| Текущая схема | {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | больше {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | уже выше принятого потолка без плат, сборки и корпуса |',
-            f'| После уже принятой AD8314-замены | {money(summary["base_after_paper_qualified_savings_usd"])} | больше {money(summary["base_after_paper_qualified_savings_usd"])} | точный текущий planning floor; всё ещё недостаточно |',
+            f'| После уже принятых AD8314 и Hirose U.FL изменений | {money(summary["base_after_paper_qualified_savings_usd"])} | больше {money(summary["base_after_paper_qualified_savings_usd"])} | точный текущий planning floor; всё ещё недостаточно |',
             f'| Те же встроенные пользовательские функции и тот же safety-результат после полного cost-resynthesis | {money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][1])} | {money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][1])} | с целью `$220–260` пересекается только верхняя часть |',
             f'| Модульная community-база; специализированные тракты ставятся Cap/Unit по задаче | {money(feasibility["modular_entry_result"]["electronics_target_usd"][0])}–{money(feasibility["modular_entry_result"]["electronics_target_usd"][1])} | {money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][0])}–{money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][1])} | отложена до работающего `R2-EVT1`; отдельного Core сейчас нет |',
             '',
@@ -635,7 +693,7 @@ def render_doc(result: dict, ru: bool) -> str:
             '', '## Accepted all-in-one cost boundary', '',
             f'- The current product remains a fully populated all-in-one. Its repeatable complete-device target is **{money(result["community_cost_target"]["preferred_complete_device_range_usd"][0])}–{money(result["community_cost_target"]["preferred_complete_device_range_usd"][1])}**, excluding batteries and the full specialized external-antenna kit.',
             f'- To leave room for PCB, PCBA and enclosure, electronics must land near **{money(summary["community_electronics_target_usd"][0])}–{money(summary["community_electronics_target_usd"][1])}**.',
-            f'- The current base BOM has `{summary["base_bom_lines"]}` MPN groups and `{summary["base_fitted_placements"]}` fitted components. The accepted no-function-loss AD8314 package change already saves **{money(summary["paper_qualified_no_loss_savings_usd"])}** and leaves the exact current planning floor at **{money(summary["base_after_paper_qualified_savings_usd"])}**. The cheaper SMA/RP-SMA pair was checked and rejected, so its hypothetical saving is not counted.',
+            f'- The current base BOM has `{summary["base_bom_lines"]}` MPN groups and `{summary["base_fitted_placements"]}` fitted components. The accepted no-function-loss AD8314 and Hirose U.FL routes already save **{money(summary["paper_qualified_no_loss_savings_usd"])}** and leave the exact current planning floor at **{money(summary["base_after_paper_qualified_savings_usd"])}**. The cheaper SMA/RP-SMA pair was checked and rejected, so its hypothetical saving is not counted.',
             f'- A further **{money(summary["additional_savings_to_electronics_target_usd"][0])}–{money(summary["additional_savings_to_electronics_target_usd"][1])}** must be removed to reach the electronics band. The formal margin to the complete-device ceiling is only **{money(summary["pre_pcba_margin_to_complete_ceiling_usd"])}**, so boards, assembly and enclosure do not fit without further resynthesis.',
             '',
             '**Accepted:** no separate `Core` is designed now. One fully populated `R2-EVT1` is built and verified first; implementation cost is reduced without removing built-in functions or the safety outcome. The historical `$150` goal is deferred as a possible post-EVT1 community fit option, not a current hardware branch. The sole first order will still cost more because MOQ, setup, manual placement, freight and tax cannot be amortized.',
@@ -651,7 +709,7 @@ def render_doc(result: dict, ru: bool) -> str:
             '| Boundary | Electronics | Complete base | Honest result |',
             '|---|---:|---:|---|',
             f'| Current circuit | {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | above {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | already above the accepted ceiling before boards, assembly and enclosure |',
-            f'| After the accepted AD8314 change | {money(summary["base_after_paper_qualified_savings_usd"])} | above {money(summary["base_after_paper_qualified_savings_usd"])} | exact current planning floor; still insufficient |',
+            f'| After the accepted AD8314 and Hirose U.FL changes | {money(summary["base_after_paper_qualified_savings_usd"])} | above {money(summary["base_after_paper_qualified_savings_usd"])} | exact current planning floor; still insufficient |',
             f'| Same built-in user functions and same safety outcome after full cost resynthesis | {money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][1])} | {money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][1])} | only the upper portion overlaps the `$220–260` target |',
             f'| Modular community base; specialist paths are fitted as task-specific Caps/Units | {money(feasibility["modular_entry_result"]["electronics_target_usd"][0])}–{money(feasibility["modular_entry_result"]["electronics_target_usd"][1])} | {money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][0])}–{money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][1])} | deferred until a working `R2-EVT1`; there is no separate Core now |',
             '',
@@ -700,15 +758,54 @@ def render_doc(result: dict, ru: bool) -> str:
         + by_id["hirose_ufl_r_smt_1_10"]["line_burden_per_device_usd"]
     )
     lines += ['', f'[{top20_text}]({top20_csv}) · [{full_text}]({full_csv})', '']
+    market_csv = '../hardware/product-design/generated/H1-R2-top20-market-audit.csv'
+    if ru:
+        lines += [
+            '## Критический аудит массового рынка для всего топ-20', '',
+            f'Проверены все 20 текущих групп: **{summary["top_20_mass_market_retained_groups"]}** уже являются оправданными серийными/складскими маршрутами или не имеют доказанного не худшего аналога; '
+            f'для **{summary["top_20_qualification_candidate_groups"]}** антенных групп найдены массовые кандидаты. Их суммарная бумажная экономия до **{money(summary["top_20_unaccepted_paper_saving_usd"])}** не включена в BOM, потому что у каждого остаётся измеримый RF- или механический разрыв.',
+            '',
+            '| № | Текущая группа | Лучший массовый маршрут | Статус | До экономии |',
+            '|---:|---|---|---|---:|',
+        ]
+    else:
+        lines += [
+            '## Critical mass-market audit of the complete top 20', '',
+            f'All 20 current groups were checked: **{summary["top_20_mass_market_retained_groups"]}** are already justified serial/stock routes or have no proven no-worse equivalent; '
+            f'**{summary["top_20_qualification_candidate_groups"]}** antenna groups have mass-market candidates. Their combined paper saving of up to **{money(summary["top_20_unaccepted_paper_saving_usd"])}** is excluded from the BOM because every candidate retains a measurable RF or mechanical gap.',
+            '',
+            '| # | Current group | Best mass-market route | Status | Saving up to |',
+            '|---:|---|---|---|---:|',
+        ]
+    for audit in result["top_20_mass_market_audit"]:
+        if "qualification" in audit["verdict"]:
+            status = '🧪 проверить' if ru else '🧪 qualify'
+        else:
+            status = '✅ оставить' if ru else '✅ retain'
+        lines.append(
+            f'| {audit["rank"]} | [`{audit["current_mpn"]}`]({audit["current_source"]}) | '
+            f'[{audit["best_mass_market_route"]}]({audit["candidate_source"]}) | '
+            f'{status} | {money(audit["paper_saving_usd"])} |'
+        )
+    lines += ['', ('Почему кандидаты ещё не приняты:' if ru else 'Why the candidates are not accepted yet:'), '']
+    for audit in result["top_20_mass_market_audit"]:
+        if "qualification" not in audit["verdict"]:
+            continue
+        lines.append(
+            f'- **`{audit["current_mpn"]}` → {audit["best_mass_market_route"]}:** '
+            f'{audit["functional_delta"]} ({audit["availability"]})'
+        )
+    market_text = 'Полный аудит и evidence — CSV' if ru else 'Complete audit and evidence — CSV'
+    lines += ['', f'[{market_text}]({market_csv})', '']
     if ru:
         lines += [
             '## Где вероятнее всего есть неоправданные траты', '',
             '| Приоритет | Группа | Сейчас ×1 | Вывод | Реалистичная экономия |',
             '|---:|---|---:|---|---:|',
             f'| 1 | Внешние антенны | {money(summary["antenna_known_first_target_usd"])} + 4 неизвестных | Крупнейшая отдельная группа; функциональность нужна, но брендовые первые MPN не обязаны быть самыми выгодными | уточняется |',
-            f'| 2 | 10 внешних SMA/RP-SMA | {money(connector_cost)} | Цена GCT больше не оправдывается требованием низкого профиля; нужна повторная компоновка прочной пары с фабричным manual-solder route | до ~$19.02 |',
+            f'| 2 | 10 внешних SMA/RP-SMA | {money(connector_cost)} | Проверены дешёвые standard/reverse-пары; они провалили направление, геометрию 5+5 либо exact-one factory route. GCT остаётся оправданным | $0 доказанно |',
             f'| 3 | 8 RF-detector’ов | {money(detector_cost)} | Шесть AD8314 уже переведены на C652687 после полного placement-аудита; функциональность и все восемь evidence-трактов сохранены | $5.50 уже принято |',
-            f'| 4 | 5 U.FL + 5 кабелей | {money(jumper_cost)} | Сейчас функционально оправдано; убрать можно только один тракт после доказанного C5 T2-маршрута | до ~$2.89 |',
+            f'| 4 | 5 U.FL + 5 кабелей | {money(jumper_cost)} | Упаковочная версия Hirose уже удешевлена без потерь; убрать можно только один тракт после доказанного C5 T2-маршрута | до ~$1.90 дополнительно |',
             f'| 5 | 16 пользовательских кнопок | {money(by_id["omron_b3s_1100p"]["line_burden_per_device_usd"])} | Проверенные дешёвые кандидаты ухудшают ESD, feel или evidence; текущая группа оправдана | $0 |',
             f'| 6 | Держатель 2×18650 | {money(by_id["keystone_1048p"]["line_burden_per_device_usd"])} | Складские одиночные держатели не доказывают полный protected-cell и polarity contract; 1048P оправдан | $0 |',
             f'| 7 | 4 внутренних DBG10 | {money(by_id["samtec_ftsh_105_01_l_dv_k_p_tr"]["line_burden_per_device_usd"])} | Exact Samtec уже складской; Tag-Connect удорожает единственный EVT1 и ухудшает long-session workflow | $0 для EVT1 |',
@@ -722,9 +819,9 @@ def render_doc(result: dict, ru: bool) -> str:
             '| Priority | Group | Current ×1 | Finding | Realistic saving |',
             '|---:|---|---:|---|---:|',
             f'| 1 | External antennas | {money(summary["antenna_known_first_target_usd"])} + 4 unknown | Largest separate group; the functions are required, but the first branded MPNs need not be the best-value equivalents | to be established |',
-            f'| 2 | 10 outward SMA/RP-SMA | {money(connector_cost)} | GCT cost is no longer justified by a low-profile requirement; a robust pair needs a fresh placement and factory manual-solder check | up to ~$19.02 |',
+            f'| 2 | 10 outward SMA/RP-SMA | {money(connector_cost)} | Cheaper standard/reverse pairs were checked and fail orientation, 5+5 geometry or the exact-one factory route. GCT remains justified | $0 proven |',
             f'| 3 | 8 RF detectors | {money(detector_cost)} | Six AD8314 are already moved to C652687 after the complete placement audit; function and all eight evidence paths are retained | $5.50 accepted |',
-            f'| 4 | 5 U.FL plus 5 cables | {money(jumper_cost)} | Functionally justified now; only a proven C5 T2 route can remove one path | up to ~$2.89 |',
+            f'| 4 | 5 U.FL plus 5 cables | {money(jumper_cost)} | The Hirose packaging route is already reduced without loss; only a proven C5 T2 route can remove one path | up to ~$1.90 more |',
             f'| 5 | 16 user buttons | {money(by_id["omron_b3s_1100p"]["line_burden_per_device_usd"])} | Checked cheaper candidates weaken ESD, feel or evidence; the current group is justified | $0 |',
             f'| 6 | Dual-18650 holder | {money(by_id["keystone_1048p"]["line_burden_per_device_usd"])} | Stocked single-cell bodies do not prove the complete protected-cell and polarity contract; 1048P is justified | $0 |',
             f'| 7 | 4 internal DBG10 headers | {money(by_id["samtec_ftsh_105_01_l_dv_k_p_tr"]["line_burden_per_device_usd"])} | Exact Samtec is stocked; Tag-Connect costs more for the sole EVT1 and weakens long-session ergonomics | $0 for EVT1 |',
@@ -856,6 +953,7 @@ def main() -> int:
         AUDIT_PATH: json.dumps(result, ensure_ascii=False, indent=2) + "\n",
         CSV_PATH: render_csv(result),
         TOP20_CSV_PATH: render_top20_csv(result),
+        TOP20_MARKET_CSV_PATH: render_top20_market_csv(result),
         EN_PATH: render_doc(result, False),
         RU_PATH: render_doc(result, True),
     }

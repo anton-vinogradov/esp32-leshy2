@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3117" viewBox="0 0 1900 3117" data-marker="H1-R2.36" data-view="numbered-component-legend">
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3117" viewBox="0 0 1900 3117" data-marker="H1-R2.37" data-view="numbered-component-legend">
 <rect width="1900" height="3117" fill="#ffffff"/>
-<text x="30.0" y="42.0" font-family="sans-serif" font-size="24" font-weight="bold" fill="#172033">Leshy2 · H1-R2.36 · numbered component legend</text>
+<text x="30.0" y="42.0" font-family="sans-serif" font-size="24" font-weight="bold" fill="#172033">Leshy2 · H1-R2.37 · numbered component legend</text>
 <text x="30.0" y="72.0" font-family="sans-serif" font-size="12" font-weight="normal" fill="#526076">226 unique drawing references · MPN or explicit physical reserve · role in the target device</text>
 <text x="30.0" y="100.0" font-family="sans-serif" font-size="11" font-weight="normal" fill="#526076">Bodies — blue: R2 placement · grey: retained register · orange: physical reserve</text>
 <text x="30.0" y="126.0" font-family="sans-serif" font-size="11" font-weight="normal" fill="#526076">Non-component geometry — red: exact PTH keepout · violet: bounded placement island</text>
@@ -381,15 +381,15 @@
 <text x="1425.0" y="312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">174  Hirose DF40C(2.0)-40DS-0.4V(51)</text>
 <text x="1453.0" y="326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">40-contact fixed receptacle for the antenna-edge replaceable</text>
 <text x="1453.0" y="337.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">display adapter</text>
-<text x="1425.0" y="362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">175  U.FL-R-SMT-1(10)</text>
+<text x="1425.0" y="362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">175  U.FL-R-SMT-1(80)</text>
 <text x="1453.0" y="376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #0 module-to-board microcoax termination</text>
-<text x="1425.0" y="412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">176  U.FL-R-SMT-1(10)</text>
+<text x="1425.0" y="412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">176  U.FL-R-SMT-1(80)</text>
 <text x="1453.0" y="426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">S3 module microcoax termination beside the S3-2G4 front SMA</text>
 <text x="1453.0" y="437.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">path</text>
-<text x="1425.0" y="462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">177  U.FL-R-SMT-1(10)</text>
+<text x="1425.0" y="462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">177  U.FL-R-SMT-1(80)</text>
 <text x="1453.0" y="476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5 module microcoax termination beside the C5-2G4/5 front SMA</text>
 <text x="1453.0" y="487.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">path</text>
-<text x="1425.0" y="512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">178  U.FL-R-SMT-1(10)</text>
+<text x="1425.0" y="512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">178  U.FL-R-SMT-1(80)</text>
 <text x="1453.0" y="526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #2 module-to-board microcoax termination</text>
 <text x="1425.0" y="562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">179  LTC5532ES6#TRMPBF</text>
 <text x="1453.0" y="576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">S3 dual-band actual-TX detector beside its forward coupler</text>
@@ -403,7 +403,7 @@
 <text x="1453.0" y="776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #0 10-dB forward-power coupler</text>
 <text x="1425.0" y="812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">184  DC2337J5010AHF</text>
 <text x="1453.0" y="826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #2 10-dB forward-power coupler</text>
-<text x="1425.0" y="862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">185  U.FL-R-SMT-1(10)</text>
+<text x="1425.0" y="862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">185  U.FL-R-SMT-1(80)</text>
 <text x="1453.0" y="876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #1 module-to-board microcoax termination</text>
 <text x="1425.0" y="912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">186  AD8314ARMZ-REEL</text>
 <text x="1453.0" y="926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #1 actual-TX detector in the same front-board RF island</text>

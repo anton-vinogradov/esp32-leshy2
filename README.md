@@ -10,7 +10,7 @@
 
 </div>
 
-> **Current hardware marker: `H1-R2.36`.** The complete two-PCB placement is
+> **Current hardware marker: `H1-R2.37`.** The complete two-PCB placement is
 > ready for visual acceptance: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
 > the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display, passive 40-to-50-contact
 > adapter, all 18 U219 support bodies, NFC pickup loop and the external volume
@@ -100,7 +100,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | Stage | Status | Published result |
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶ Ready for acceptance · `H1-R2.36`** | [Current placement](docs/h1-r2-physical-layout.md) · [grouped cost ranking](docs/h1-r2-cost.md) |
+| **H1 · Physical product design** | **▶ Ready for acceptance · `H1-R2.37`** | [Current placement](docs/h1-r2-physical-layout.md) · [grouped cost ranking](docs/h1-r2-cost.md) |
 | H2 · Production ECAD schematic | ⏳ Waiting for R2 H1 | [Stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
@@ -121,7 +121,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ The onboard analog-video receiver, decoder, MMCX, antenna and physical reserves are removed; no active part requires owner soldering after PCBA.
 - ✅ C5 DBG10 remains beside S3 DBG10; the structural audit of all currently registered bodies, including corrected maximum U219 package envelopes, reports zero same-face collisions and 2.59 mm minimum opposing clearance against 0.70 mm required.
 - ✅ Public exterior, separate readable inner faces, service surface and real section views regenerated.
-- ✅ The 208-line `H1-R2.36` base BOM is grouped by exact MPN and cost-ranked for one fitted prototype; R2 overrides count the second RP and its complete reference support, four DBG10 headers and 1,096 fitted parts. The accepted same-device `AD8314ARMZ-REEL` package change saves $5.50 while preserving all eight real-TX evidence paths; the current electronics planning floor is $278.34 before five unpriced lines, boards and assembly. A further $62.34–89.34 must be removed to reach the $189–216 electronics band behind the $220–260 complete-device target. The former five-board BOM Tool run remains historical evidence only. Procurement targets exactly one factory-assembled prototype without batteries. The HMX donor route is rejected; the selected EastRising panel is a customer-supplied final-assembly part.
+- ✅ The 208-line `H1-R2.37` base BOM is grouped by exact MPN and cost-ranked for one fitted prototype; R2 overrides count the second RP and its complete reference support, four DBG10 headers and 1,096 fitted parts. The accepted no-loss `AD8314ARMZ-REEL` and stocked `Hirose U.FL-R-SMT-1(80)` packaging routes save $10.42 in total; the current electronics planning floor is $273.42 before five unpriced lines, boards and assembly. All 20 most expensive groups now have a critical mass-market audit: 14 are retained as justified and six antenna groups have qualification candidates with up to $89.13 paper saving that is not yet counted in the BOM. A proven further $57.42–84.42 is needed to reach the $189–216 electronics band behind the $220–260 complete-device target. The former five-board BOM Tool run remains historical evidence only. Procurement targets exactly one factory-assembled prototype without batteries. The HMX donor route is rejected; the selected EastRising panel is a customer-supplied final-assembly part.
 - ✅ U219 is accepted as the second mutually exclusive Cap profile: CC1101 is hard RX-only, NFC is poll/read-only, pin 10 is fail-disconnected and NFC field evidence joins `ANY_TX_AON_N`. Pin 7 power identity remains a received-unit gate, not an H2 claim.
 - ✅ The two DCK boundaries, two BAT54S bridges and LMV331 comparator use official maximum full-package envelopes and source-backed courtyards; all five fit their bounded islands without overlap.
 - ✅ All 18 exact U219 support parts and the existing Cap/evidence register now have one source-backed coordinate and conservative courtyard; the NFC pickup loop, DNP tuning bank and external swept volume of the supplied antenna are covered by the same fail-closed audit.
@@ -132,7 +132,7 @@ Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H1-R2.36 -->
+<!-- current-substep: H1-R2.37 -->
 
 ## Repository
 

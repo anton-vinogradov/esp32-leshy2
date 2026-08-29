@@ -110,7 +110,7 @@ VOICE_U_RF_CORRIDOR = (
 )
 OPPOSITE_FACE_CLEARANCE_MM = 1.5
 
-# H1-R2.36 fail-closed placement scope. These are the already accepted G2F-3I
+# H1-R2.37 fail-closed placement scope. These are the already accepted G2F-3I
 # Cap-Bus protection/control and hardware TX-evidence aggregate bodies. The
 # values bind each instance to its current exact device key: a substitution,
 # omitted coordinate or duplicate projection must fail generation.
@@ -935,7 +935,7 @@ def load() -> tuple[dict, dict, dict, dict, dict, dict]:
     display_adapter_design = json.loads(DISPLAY_ADAPTER_DESIGN_PATH.read_text(encoding="utf-8"))
     assembly_coordinate_model = json.loads(ASSEMBLY_COORDINATE_MODEL_PATH.read_text(encoding="utf-8"))
     instances = dict(candidate["instances"])
-    # H1-R2.36 owns the physical display endpoint.  The reviewed G2F-3I
+    # H1-R2.37 owns the physical display endpoint.  The reviewed G2F-3I
     # electrical candidate remains the superseded H2 input until the next
     # phase rewires its display sheet to the accepted passive 40-to-50 map.
     instances["display"] = "eastrising_er_tft035ips_6_ctp"
@@ -1886,7 +1886,7 @@ def validate_source_research() -> list[str]:
     errors: list[str] = []
     if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3.3":
         errors.append("source-research: schema/stage mismatch")
-    if data.get("status") != "reviewed" or data.get("current_substep") != "H1-R2.36":
+    if data.get("status") != "reviewed" or data.get("current_substep") != "H1-R2.37":
         errors.append("source-research: exact current substep drifted")
     policy = data.get("policy", {})
     if policy.get("order_authorized") is not False:
@@ -1991,7 +1991,7 @@ def validate_display_adapter_design(
     errors: list[str] = []
     if design.get("schema_version") != 1 or design.get("design_id") != "L2-DISP-ADP-001-B":
         errors.append("display-adapter: schema/design identity mismatch")
-    if design.get("stage") != "H1-R2.36":
+    if design.get("stage") != "H1-R2.37":
         errors.append("display-adapter: exact source-research stage drifted")
     board = design.get("board", {})
     board_w = float(board.get("width_mm", 0))
@@ -2123,7 +2123,7 @@ def validate_assembly_coordinate_model(
     if (
         model.get("schema_version") != 1
         or model.get("model_id") != "L2-ASM-COORD-001-A"
-        or model.get("stage") != "H1-R2.36"
+        or model.get("stage") != "H1-R2.37"
         or model.get("status") != "ready_for_user_layout_acceptance"
     ):
         errors.append("coordinate-model: schema, identity, stage or review status drifted")
@@ -2799,10 +2799,10 @@ def validate() -> list[str]:
     if external_root.attrib.get("data-coordinate-model") != "L2-ASM-COORD-001-A":
         errors.append("external layout must identify the unified coordinate model")
     if (
-        external_root.attrib.get("data-review-gate") != "H1-R2.36"
+        external_root.attrib.get("data-review-gate") != "H1-R2.37"
         or external_root.attrib.get("data-review-status") != "ready-for-user-acceptance"
     ):
-        errors.append("external layout must identify the current H1-R2.36 acceptance candidate")
+        errors.append("external layout must identify the current H1-R2.37 acceptance candidate")
     face_nodes = {
         element.attrib.get("data-face"): element
         for element in external_root.iter("{http://www.w3.org/2000/svg}rect")
@@ -3062,7 +3062,7 @@ def render_external(devices, instances):
 
     front, rear = (80.0, 150.0), (465.0, 150.0)
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1-R2.36" data-review-status="ready-for-user-acceptance">',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1-R2.37" data-review-status="ready-for-user-acceptance">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         text(30, 32, "Leshy2 — dimensioned external layout", 22, "bold"),
@@ -3639,7 +3639,7 @@ def render_internal(devices, instances, display_adapter_design):
         rows = [
             (module_mpn, module_rf_role, "#eef2ff", "#4f46e5"),
             ("TE Connectivity 2118651-2", "removable 30-mm microcoax cable", "#ecfdf5", "#0f766e"),
-            ("Hirose U.FL-R-SMT-1(10)", "PCB re-entry · feeds TX coupler and outer RP-SMA", "#ecfdf5", "#0f766e"),
+            ("Hirose U.FL-R-SMT-1(80)", "PCB re-entry · feeds TX coupler and outer RP-SMA", "#ecfdf5", "#0f766e"),
             ("KYOCERA AVX CP0603Q5425ENTR", "PCB 50 Ω mainline · forward TX sample", "#eff6ff", "#2563eb"),
             ("GCT RFPC-SMA32-FN-175-A", "outward RP-SMA · antenna screws on here", "#fff7ed", "#ea580c"),
         ]

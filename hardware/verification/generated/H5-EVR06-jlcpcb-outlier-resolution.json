@@ -6,7 +6,7 @@
   "checked_on": "2026-08-29",
   "input": {
     "bom_tool_result": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
-    "bom_tool_result_sha256": "10fa740435c640c00f8da379f3990c960388ea365959e01ed79a4ed331b584b4",
+    "bom_tool_result_sha256": "4f7e421fdb325255a6c3b26a74ddcfabd08a4a12c4dbaddefba6cbc757929094",
     "search_capture": "hardware/verification/jlcpcb-outlier-search-capture-2026-08-25.json",
     "search_capture_sha256": "50fdf7c69a95bc53e32148cf8e7e3b2d245818a74cec065a708c128527af2699"
   },
@@ -1010,20 +1010,19 @@
     {
       "bom_index": 34,
       "device_id": "hirose_ufl_r_smt_1_10",
-      "source_mpn": "Hirose U.FL-R-SMT-1(10)",
-      "normalized_mpn": "U.FL-R-SMT-1(10)",
+      "source_mpn": "Hirose U.FL-R-SMT-1(80)",
+      "normalized_mpn": "U.FL-R-SMT-1(80)",
       "quantity": 5,
-      "designators_complete": true,
-      "historical_capture_quantity": 5,
-      "current_quantity_delta": 0,
-      "match_provenance": "unchanged_mpn_from_2026_08_25_bom_tool_capture",
       "route": "J0",
       "tool_status": "in_stock",
-      "lcsc": "C88373",
-      "matched_mpn": "U.FL-R-SMT-1(10)",
+      "match_provenance": "current_exact_jlcpcb_part_page",
+      "lcsc": "C88374",
+      "matched_mpn": "U.FL-R-SMT-1(80)",
+      "supplier_order_code": "U.FL-R-SMT-1(80)",
       "semantic_mpn_equal": true,
-      "stock_snapshot": 16892,
-      "displayed_line_cost_usd": 5.6575
+      "stock_snapshot": 72989,
+      "displayed_line_cost_usd": 0.1016,
+      "designators_complete": true
     },
     {
       "bom_index": 35,

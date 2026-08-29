@@ -54,7 +54,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
         plan_normalized = " ".join(plan.split())
-        self.assertEqual("H1-R2.36", roadmap["current_substep"])
+        self.assertEqual("H1-R2.37", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -401,7 +401,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("**210/210** lines", rendered)
         self.assertIn("**201/210** lines", rendered)
         self.assertIn("**1038/1052** supplied placements", rendered)
-        self.assertIn("USD 257.2550", rendered)
+        self.assertIn("USD 252.3390", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -2558,8 +2558,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "TE Connectivity 2118651-2<br/>C5 exact 30-mm UMCC Gen1 module jumper",
             "CP0603Q5425ENTR<br/>S3 2.4-GHz forward-power directional coupler",
             "CP0603Q5425ENTR<br/>C5 2.4/5-GHz forward-power directional coupler",
-            "U.FL-R-SMT-1(10)<br/>S3 module-jumper board receptacle",
-            "U.FL-R-SMT-1(10)<br/>C5 module-jumper board receptacle",
+            "U.FL-R-SMT-1(80)<br/>S3 module-jumper board receptacle",
+            "U.FL-R-SMT-1(80)<br/>C5 module-jumper board receptacle",
             'S3_RF_COUPLER -->|"-20-dB forward sample"| S3_DETECTOR_INPUT_CAP',
             'C5_RF_COUPLER -->|"-20/-13-dB forward sample"| C5_DETECTOR_INPUT_CAP',
         ):

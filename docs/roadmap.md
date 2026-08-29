@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H1-R2.36`.** H0 is reviewed. H1 is ready for visual acceptance but is not yet reviewed.
+> **▶ Current hardware boundary: `H1-R2.37`.** H0 is reviewed. H1 is ready for visual acceptance but is not yet reviewed.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **29 August 2026**.
@@ -24,7 +24,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ▶ [H1-R2.36](h1-r2-physical-layout.md): onboard video and its owner-soldered receiver bay are removed; the exact dual-RP/C5 authority, serial EastRising display and adapter, all 18 U219 support bodies, NFC loop, supplied-antenna swept volume and all eight complete TX-evidence islands pass fail-closed geometry; no physical blocker remains before explicit mock-up acceptance; [all 208 base-BOM MPN groups are ranked, the accepted AD8314 package change leaves the current electronics floor at $278.34, and another $62.34–89.34 must be removed to reach the electronics band behind the full all-in-one $220–260 target; a separate Core is deferred until a working EVT1](h1-r2-cost.md) |
+| Physical design | ▶ [H1-R2.37](h1-r2-physical-layout.md): onboard video and its owner-soldered receiver bay are removed; the exact dual-RP/C5 authority, serial EastRising display and adapter, all 18 U219 support bodies, NFC loop, supplied-antenna swept volume and all eight complete TX-evidence islands pass fail-closed geometry; no physical blocker remains before explicit mock-up acceptance; [all 208 base-BOM MPN groups are ranked, AD8314 and the exact stocked Hirose U.FL packaging route deliver $10.42 accepted saving and leave a $273.42 electronics floor; the complete top 20 is checked against the mass market, with six antenna candidates worth up to $89.13 still awaiting RF qualification](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map and power/filter diagrams are published |
 | Production ECAD | 🔒 Reviewed G2F/H2/KiCad is historical single-RP R1 evidence only. Current H0/H1 has front Hub RP + rear RF RP; R2 H2 must regenerate six domains and exact H0 M1 |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 qualified all 12 target builds, 60 artifacts, 16 maps and 16 size gates, while F2-R2.5 reproducibility is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); a separate fail-closed `F-PO` requires diagnostics, emulation and recovery before ordering |
@@ -32,9 +32,9 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Current H1 · exact composition
 
-<!-- current-substep: H1-R2.36 -->
+<!-- current-substep: H1-R2.37 -->
 
-**Exact marker: `H1-R2.36`.** The placement package is ready for acceptance; H1
+**Exact marker: `H1-R2.37`.** The placement package is ready for acceptance; H1
 is not a closed phase until that review is explicit.
 
 ### 1. Functional-island placement
@@ -140,7 +140,7 @@ is not a closed phase until that review is explicit.
 | Phase | Status | Result | Exit criterion |
 |---|---|---|---|
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
-| **H1 · Physical product design** | **▶ Ready for acceptance · `H1-R2.36`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
+| **H1 · Physical product design** | **▶ Ready for acceptance · `H1-R2.37`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ⏳ Waiting for H1 | Exact R2 symbols, contacts, nets, values, protection and footprints | ERC-clean sheets and machine-readable HW↔FW contract |
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |

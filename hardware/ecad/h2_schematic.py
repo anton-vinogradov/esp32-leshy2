@@ -65,6 +65,17 @@ R2_H1_REPLACED_MPNS = {
     "nrf2",
 }
 
+# These order codes are the same physical Hirose receptacle and land pattern;
+# only reel presentation differs.  Keep the historical physical registration
+# valid while every current electrical/BOM derivative names the stocked code.
+PHYSICALLY_EQUIVALENT_MPN_PAIRS = {
+    frozenset({"Hirose U.FL-R-SMT-1(10)", "Hirose U.FL-R-SMT-1(80)"}),
+}
+
+
+def physical_mpn_is_equivalent(left: str, right: str) -> bool:
+    return left == right or frozenset({left, right}) in PHYSICALLY_EQUIVALENT_MPN_PAIRS
+
 
 def contact_counts(device: dict) -> tuple[int, int]:
     """Return logical functions and actual carrier/package lands separately."""
@@ -348,7 +359,9 @@ def build() -> dict:
             if disposition == "external_mating_product_interface_only"
             else sheet_board
         )
-        physical_mpn_drift = physical and physical["mpn"] != device["mpn"]
+        physical_mpn_drift = physical and not physical_mpn_is_equivalent(
+            physical["mpn"], device["mpn"]
+        )
         if physical_mpn_drift and instance not in R2_H1_REPLACED_MPNS:
             raise ValueError(f"H1/device MPN drift for {instance}")
         physical_board_drift = physical and board_for(instance, frame) != board

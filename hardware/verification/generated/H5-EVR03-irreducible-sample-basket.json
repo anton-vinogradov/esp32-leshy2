@@ -21,20 +21,20 @@
   "inputs": {
     "residual_map": {
       "path": "hardware/verification/generated/H5-EVR01-residual-map.json",
-      "sha256": "ef8d7abc28cf745637d41eaec12df7543dd2afee20c1cf3716bb179595fb918f"
+      "sha256": "51ff8a79a6ccb9b51990626e19ff60a1eb39e7215436132aaf5c2b4159fcffd8"
     },
     "source_research": {
       "path": "hardware/verification/generated/H5-EVR02-source-research.json",
-      "sha256": "c7662c0eccd5e741182b219286a39d2a95a2423db5acf05f1af85aefc0feffcb"
+      "sha256": "dcfc891234521d01656a8b6f5a54743761db38ece7ba028a59890615bc8976df"
     }
   },
   "summary": {
     "article_lines": 30,
     "measurement_contracts": 11,
     "covered_residuals_and_gates": 23,
-    "published_price_subtotal_usd": "249.76",
+    "published_price_subtotal_usd": "241.92",
     "conservative_budget_caps_usd": "4.00",
-    "known_engineering_material_budget_usd": "253.76",
+    "known_engineering_material_budget_usd": "245.92",
     "unpriced_manufacturer_lines": 0,
     "excluded_from_budget": [
       "factory display attrition",
@@ -57,7 +57,7 @@
     "expansion": "31.68",
     "ir": "5.30",
     "power": "46.38",
-    "rf": "67.77",
+    "rf": "59.92",
     "storage": "40.05"
   },
   "articles": [
@@ -311,21 +311,21 @@
     {
       "id": "rf-board-receptacles",
       "group": "rf",
-      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "mpn": "Hirose U.FL-R-SMT-1(80)",
       "order_quantity": 5,
       "order_unit": "piece",
       "contained_pieces_per_order_unit": 1,
       "pricing": {
         "kind": "published_usd",
-        "unit_usd": "1.67",
-        "subtotal_usd": "8.350",
+        "unit_usd": "0.1016",
+        "subtotal_usd": "0.508",
         "source_price": null
       },
       "source": {
-        "label": "DigiKey exact-MPN listing",
-        "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/U-FL-R-SMT-1-10/2391570",
+        "label": "JLCPCB exact original-manufacturer part C88374",
+        "url": "https://jlcpcb.com/partdetail/U.FL-R-SMT-1%2880%29/C88374",
         "checked_on": "2026-08-29",
-        "availability": "319,443 shown in stock"
+        "availability": "72,989 in stock; 68,798 orderable; MOQ 1; factory SMT placement"
       },
       "coverage": [
         "H3-PHY-053",
@@ -333,7 +333,7 @@
         "H5-MECH-NRF-GEN1-FEEDS",
         "H5-MECH-NATIVE-RF-JUMPERS"
       ],
-      "minimum_quantity_basis": "one board mate per selected 30-mm jumper path",
+      "minimum_quantity_basis": "one board mate per selected 30-mm jumper path; (80) changes reel presentation only",
       "risk": null,
       "purchase_authorized": false
     },

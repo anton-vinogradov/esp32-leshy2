@@ -72,7 +72,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(summary["community_complete_device_target_usd"], 260)
         self.assertEqual(summary["community_electronics_target_usd"], [189, 216])
         self.assertAlmostEqual(
-            summary["paper_qualified_no_loss_savings_usd"], 5.5032, places=4
+            summary["paper_qualified_no_loss_savings_usd"], 10.4192, places=4
         )
         self.assertGreater(
             summary["additional_savings_to_electronics_target_usd"][0],
@@ -174,6 +174,30 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(len(csv_text.strip().splitlines()), 21)
         self.assertIn("group_cost_per_prototype_usd", csv_text.splitlines()[0])
 
+    def test_every_current_top_20_group_has_a_mass_market_verdict(self):
+        ranked = self.result["combined_top_20_rows"]
+        audit = self.result["top_20_mass_market_audit"]
+        self.assertEqual(len(audit), 20)
+        self.assertEqual(
+            {row["mpn"] for row in ranked},
+            {row["current_mpn"] for row in audit},
+        )
+        self.assertEqual(
+            self.result["summary"]["top_20_mass_market_retained_groups"], 14
+        )
+        self.assertEqual(
+            self.result["summary"]["top_20_qualification_candidate_groups"], 6
+        )
+        self.assertAlmostEqual(
+            self.result["summary"]["top_20_unaccepted_paper_saving_usd"],
+            89.1273,
+            places=4,
+        )
+        self.assertTrue(all(row["checked_on"] == "2026-08-29" for row in audit))
+        market_csv = MODULE.render_top20_market_csv(self.result)
+        self.assertEqual(len(market_csv.strip().splitlines()), 21)
+        self.assertIn("functional_delta", market_csv.splitlines()[0])
+
     def test_display_upper_candidate_has_margin(self):
         display = self.result["display_orientation_review"]
         fit = display["paper_fit"]
@@ -238,6 +262,14 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(
             candidates["Analog Devices AD8314ARMZ-REEL"]["jlcpcb_part"],
             "C652687",
+        )
+        self.assertEqual(
+            candidates["Hirose U.FL-R-SMT-1(80)"]["status"],
+            "accepted_stocked_exact_packaging_variant",
+        )
+        self.assertEqual(
+            candidates["Hirose U.FL-R-SMT-1(80)"]["jlcpcb_part"],
+            "C88374",
         )
         self.assertEqual(
             candidates["MYOUNG BH-18650-B1BA002"]["status"],

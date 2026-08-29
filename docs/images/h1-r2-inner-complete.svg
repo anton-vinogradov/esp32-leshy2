@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3710" viewBox="0 0 1900 3710" data-marker="H1-R2.36" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3710" viewBox="0 0 1900 3710" data-marker="H1-R2.37" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="1900" height="3710" fill="#ffffff"/>
-<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.36 complete inner-body map</text>
+<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.37 complete inner-body map</text>
 <text x="30.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Each PCB is shown exactly as viewed after turning it over. Numbers are drawing references; inner faces contain no silkscreen.</text>
 <text x="201.9" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="65.0" y="130.0" width="273.8" height="547.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -389,13 +389,13 @@
 <text x="148.2" y="155.8" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">173</text>
 <rect x="182.53" y="153.72" width="38.69" height="12.34" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="display_connector" data-mpn="Hirose DF40C(2.0)-40DS-0.4V(51)"/>
 <text x="201.9" y="162.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">174</text>
-<rect x="291.30" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(10)"/>
+<rect x="291.30" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
 <text x="296.8" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">175</text>
-<rect x="250.06" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(10)"/>
+<rect x="250.06" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
 <text x="255.5" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">176</text>
-<rect x="142.75" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(10)"/>
+<rect x="142.75" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
 <text x="148.2" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">177</text>
-<rect x="101.50" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(10)"/>
+<rect x="101.50" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
 <text x="107.0" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">178</text>
 <rect x="234.36" y="164.68" width="10.58" height="5.84" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="det_s3_r2" data-mpn="LTC5532ES6#TRMPBF"/>
 <text x="239.7" y="169.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">179</text>
@@ -409,7 +409,7 @@
 <text x="298.5" y="182.5" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">183</text>
 <rect x="101.39" y="178.55" width="7.41" height="4.64" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_coupler_r2" data-mpn="DC2337J5010AHF"/>
 <text x="105.1" y="182.5" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">184</text>
-<rect x="196.40" y="181.10" width="10.95" height="11.32" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(10)"/>
+<rect x="196.40" y="181.10" width="10.95" height="11.32" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
 <text x="201.9" y="189.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">185</text>
 <rect x="213.37" y="193.15" width="18.80" height="11.68" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="det_nrf1_r2" data-mpn="AD8314ARMZ-REEL"/>
 <text x="222.8" y="201.3" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">186</text>
@@ -890,15 +890,15 @@
 <text x="1410.0" y="860.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">174  Hirose DF40C(2.0)-40DS-0.4V(51)</text>
 <text x="1438.0" y="873.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">40-contact fixed receptacle for the antenna-edge</text>
 <text x="1438.0" y="884.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">replaceable display adapter</text>
-<text x="1410.0" y="910.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">175  U.FL-R-SMT-1(10)</text>
+<text x="1410.0" y="910.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">175  U.FL-R-SMT-1(80)</text>
 <text x="1438.0" y="923.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #0 module-to-board microcoax termination</text>
-<text x="1410.0" y="960.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">176  U.FL-R-SMT-1(10)</text>
+<text x="1410.0" y="960.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">176  U.FL-R-SMT-1(80)</text>
 <text x="1438.0" y="973.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">S3 module microcoax termination beside the S3-2G4 front</text>
 <text x="1438.0" y="984.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">SMA path</text>
-<text x="1410.0" y="1010.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">177  U.FL-R-SMT-1(10)</text>
+<text x="1410.0" y="1010.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">177  U.FL-R-SMT-1(80)</text>
 <text x="1438.0" y="1023.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">C5 module microcoax termination beside the C5-2G4/5 front</text>
 <text x="1438.0" y="1034.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">SMA path</text>
-<text x="1410.0" y="1060.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">178  U.FL-R-SMT-1(10)</text>
+<text x="1410.0" y="1060.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">178  U.FL-R-SMT-1(80)</text>
 <text x="1438.0" y="1073.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #2 module-to-board microcoax termination</text>
 <text x="1410.0" y="1110.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">179  LTC5532ES6#TRMPBF</text>
 <text x="1438.0" y="1123.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">S3 dual-band actual-TX detector beside its forward coupler</text>
@@ -914,7 +914,7 @@
 <text x="1438.0" y="1323.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #0 10-dB forward-power coupler</text>
 <text x="1410.0" y="1360.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">184  DC2337J5010AHF</text>
 <text x="1438.0" y="1373.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #2 10-dB forward-power coupler</text>
-<text x="1410.0" y="1410.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">185  U.FL-R-SMT-1(10)</text>
+<text x="1410.0" y="1410.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">185  U.FL-R-SMT-1(80)</text>
 <text x="1438.0" y="1423.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #1 module-to-board microcoax termination</text>
 <text x="1410.0" y="1460.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">186  AD8314ARMZ-REEL</text>
 <text x="1438.0" y="1473.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #1 actual-TX detector in the same front-board RF</text>

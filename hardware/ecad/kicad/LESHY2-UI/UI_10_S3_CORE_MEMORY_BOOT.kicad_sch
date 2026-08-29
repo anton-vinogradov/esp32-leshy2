@@ -2800,7 +2800,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Hirose U.FL-R-SMT-1(10)"
+		(property "Value" "Hirose U.FL-R-SMT-1(80)"
 			(at 335.28 54.61 0)
 			(show_name no)
 			(do_not_autoplace no)

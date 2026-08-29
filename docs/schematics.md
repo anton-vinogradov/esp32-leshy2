@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)
 
-These are the current `H0-R2`/`H1-R2.36` principle diagrams of the finished
+These are the current `H0-R2`/`H1-R2.37` principle diagrams of the finished
 device. They explain ownership, buses, RF locality, power and service access.
 The exact dual-RP GPIO/M1 map and C5 SDIO/service-mux electrical join are closed
 as H1 authority. The R2 production ECAD schematic does **not** exist yet. U219

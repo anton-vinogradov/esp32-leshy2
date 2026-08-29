@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "design_id": "L2-DISP-ADP-001-B",
-  "stage": "H1-R2.36",
+  "stage": "H1-R2.37",
   "status": "dimensioned_exact_production_panel_adapter_ready_for_h2",
   "purpose": "Mate the exact EastRising ER-TFT035IPS-6 plus ER-TPC035-6 configured assembly to the unchanged 40-contact main-board interface while keeping the panel connector and any future panel-only rework on a small replaceable adapter.",
   "board": {
@@ -108,7 +108,7 @@
       "50": "MAIN_37 POWER_GROUND"
     },
     "main_reserve_contacts": [14, 25, 26, 27, 28, 29, 30, 31, 32, 36],
-    "h2_rule": "H2 rewires the main connector nets to this accepted map; the superseded 40-to-40 HMX route is not a valid schematic source after H1-R2.36"
+    "h2_rule": "H2 rewires the main connector nets to this accepted map; the superseded 40-to-40 HMX route is not a valid schematic source after H1-R2.37"
   },
   "orientation": {
     "accepted_on": "2026-08-29",

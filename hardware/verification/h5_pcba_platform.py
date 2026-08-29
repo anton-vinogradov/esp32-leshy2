@@ -222,6 +222,18 @@ VOICE_PART_ROUTES = {
 
 
 CURRENT_EXACT_PART_ROUTES = {
+    "U.FL-R-SMT-1(80)": {
+        "device_id": "hirose_ufl_r_smt_1_10",
+        "mpn": "Hirose U.FL-R-SMT-1(80)",
+        "lcsc": "C88374",
+        "route": "J0",
+        "stock": 72989,
+        "available_order_quantity": 68798,
+        "minimum_quantity": 1,
+        "quantity_one_usd": "0.1016",
+        "status": "in_stock",
+        "source": "https://jlcpcb.com/partdetail/U.FL-R-SMT-1%2880%29/C88374",
+    },
     "E01-ML01SP4": {
         "device_id": "ebyte_e01_ml01sp4",
         "mpn": "Ebyte E01-ML01SP4",
@@ -493,6 +505,7 @@ CURRENT_EXACT_OVERRIDE_MPNS = {
 
 
 HISTORICAL_REPLACED_MPNS = {
+    "U.FL-R-SMT-1(10)",
     "SA518",
     "HMX035CTFT-001",
     "FH34SRJ-40S-0.5SH(99)",
@@ -515,7 +528,10 @@ HISTORICAL_REPLACED_MPNS = {
     "E01-ML01IPX",
 }
 HISTORICAL_MATCHED_REPLACED_MPNS = HISTORICAL_REPLACED_MPNS - {"SA518", "HMX035CTFT-001", "E01-ML01IPX"}
-HISTORICAL_PREORDER_REPLACED_MPNS = HISTORICAL_MATCHED_REPLACED_MPNS - {"FH34SRJ-40S-0.5SH(99)"}
+HISTORICAL_PREORDER_REPLACED_MPNS = HISTORICAL_MATCHED_REPLACED_MPNS - {
+    "FH34SRJ-40S-0.5SH(99)",
+    "U.FL-R-SMT-1(10)",
+}
 
 
 PLATFORMS = [
@@ -670,20 +686,18 @@ def build_match_result(rows: list[dict[str, str]]) -> dict:
 
     inherited = capture["result"]
     current_stocked = sum(part["status"] == "in_stock" for part in CURRENT_EXACT_PART_ROUTES.values())
-    current_preorder = sum(part["status"] == "pre_order" for part in CURRENT_EXACT_PART_ROUTES.values())
-    current_factory_final = sum(part["status"] == "factory_final_assembly" for part in CURRENT_EXACT_PART_ROUTES.values())
     summary = {
         "target_lines": len(routes),
-        "matched_lines": inherited["matched_lines"] - len(HISTORICAL_MATCHED_REPLACED_MPNS) + len(CURRENT_EXACT_PART_ROUTES),
+        "matched_lines": sum(route["tool_status"] != "not_matched" for route in routes),
         "bom_tool_inherited_matched_lines": inherited["matched_lines"],
         "bom_tool_inherited_in_stock_lines": inherited["in_stock_lines"],
         "bom_tool_inherited_pre_order_lines": inherited["pre_order_lines"],
         "bom_tool_inherited_unmatched_lines": inherited["unmatched_lines"],
         "exact_voice_page_lines": len(VOICE_PART_ROUTES),
         "exact_stocked_replacement_page_lines": current_stocked - 1,
-        "unmatched_lines": inherited["unmatched_lines"] - 2 - len(CURRENT_EXACT_OVERRIDE_MPNS) - current_factory_final,
-        "in_stock_lines": inherited["in_stock_lines"] - 1 + current_stocked,
-        "pre_order_lines": inherited["pre_order_lines"] - len(HISTORICAL_PREORDER_REPLACED_MPNS) + current_preorder,
+        "unmatched_lines": sum(route["tool_status"] == "not_matched" for route in routes),
+        "in_stock_lines": sum(route["tool_status"] == "in_stock" for route in routes),
+        "pre_order_lines": sum(route["tool_status"] == "pre_order" for route in routes),
         "parsed_placements": sum(int(row["quantity"]) for row in rows),
         "strict_text_variants": inherited["strict_text_variants"],
         "semantic_mpn_mismatches": inherited["semantic_mpn_mismatches"],

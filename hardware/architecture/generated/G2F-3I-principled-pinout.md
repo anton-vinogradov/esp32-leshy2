@@ -650,7 +650,7 @@ flowchart TD
   EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
   EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
   S3_RF_JUMPER["TE Connectivity 2118651-2<br/>S3 exact 30-mm UMCC Gen1 module jumper"]
-  S3_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(10)<br/>S3 module-jumper board receptacle"]
+  S3_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(80)<br/>S3 module-jumper board receptacle"]
   S3_RF_COUPLER["KYOCERA AVX CP0603Q5425ENTR<br/>S3 2.4-GHz forward-power directional coupler"]
   S3_RF_COUPLER_TERMINATION["Yageo RC0402FR-0749R9L<br/>S3 coupler 49.9-Ohm termination"]
   S3_DETECTOR_INPUT_CAP["Murata GRM1555C1H390JA01D<br/>S3 detector RF-input DC block"]
@@ -659,7 +659,7 @@ flowchart TD
   S3_DETECTOR_OUTPUT_CAP["KEMET C0402C330J5GACTU<br/>S3 detector output-load capacitor"]
   S3_DETECTOR_BYPASS["Yageo CC0402KRX7R9BB104<br/>S3 detector local bypass capacitor"]
   C5_RF_JUMPER["TE Connectivity 2118651-2<br/>C5 exact 30-mm UMCC Gen1 module jumper"]
-  C5_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(10)<br/>C5 module-jumper board receptacle"]
+  C5_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(80)<br/>C5 module-jumper board receptacle"]
   C5_RF_COUPLER["KYOCERA AVX CP0603Q5425ENTR<br/>C5 2.4/5-GHz forward-power directional coupler"]
   C5_RF_COUPLER_TERMINATION["Yageo RC0402FR-0749R9L<br/>C5 coupler 49.9-Ohm termination"]
   C5_DETECTOR_INPUT_CAP["Murata GRM1555C1H390JA01D<br/>C5 detector RF-input DC block"]
@@ -682,9 +682,9 @@ flowchart TD
   NRF0_RF_JUMPER["TE Connectivity 2118651-2<br/>nrf0 rf jumper physical component"]
   NRF1_RF_JUMPER["TE Connectivity 2118651-2<br/>nrf1 rf jumper physical component"]
   NRF2_RF_JUMPER["TE Connectivity 2118651-2<br/>nrf2 rf jumper physical component"]
-  NRF0_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(10)<br/>nrf0 rf board connector physical component"]
-  NRF1_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(10)<br/>nrf1 rf board connector physical component"]
-  NRF2_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(10)<br/>nrf2 rf board connector physical component"]
+  NRF0_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(80)<br/>nrf0 rf board connector physical component"]
+  NRF1_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(80)<br/>nrf1 rf board connector physical component"]
+  NRF2_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(80)<br/>nrf2 rf board connector physical component"]
   NRF_POWER_INPUT_CAP["TDK C1608X7R1C105K080AC<br/>common nRF switch-input bypass capacitor"]
   NRF_POWER_ON_PULLDOWN["Yageo RC0402FR-0710KL<br/>common nRF rail fail-low resistor"]
   NRF_EVIDENCE_HOLD_DIODE["Diodes Incorporated BAT54-7-F<br/>actual-TX evidence hold isolation diode"]
@@ -5495,7 +5495,7 @@ Reserved: `PA1_NRST`. Free: none.
 - `unit_connector` lifecycle: `active in Seeed Open Parts Library as PCBA SKU 320110032`.
 - `s3_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
 - `s3_rf_jumper` lifecycle: `active_orderable`.
-- `s3_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
+- `s3_rf_board_connector` uses `Hirose U.FL-R-SMT-1(80)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `s3_rf_board_connector` lifecycle: `active_orderable`.
 - `s3_rf_coupler` uses `KYOCERA AVX CP0603Q5425ENTR` as `verified_exact_native_rf_forward_coupler`, not an accepted production choice.
 - `s3_rf_coupler` lifecycle: `active_orderable`.
@@ -5507,7 +5507,7 @@ Reserved: `PA1_NRST`. Free: none.
 - `s3_detector_bypass` lifecycle: `active_orderable`.
 - `c5_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
 - `c5_rf_jumper` lifecycle: `active_orderable`.
-- `c5_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
+- `c5_rf_board_connector` uses `Hirose U.FL-R-SMT-1(80)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `c5_rf_board_connector` lifecycle: `active_orderable`.
 - `c5_rf_coupler` uses `KYOCERA AVX CP0603Q5425ENTR` as `verified_exact_native_rf_forward_coupler`, not an accepted production choice.
 - `c5_rf_coupler` lifecycle: `active_orderable`.
@@ -5526,11 +5526,11 @@ Reserved: `PA1_NRST`. Free: none.
 - `nrf1_rf_jumper` lifecycle: `active_orderable`.
 - `nrf2_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
 - `nrf2_rf_jumper` lifecycle: `active_orderable`.
-- `nrf0_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
+- `nrf0_rf_board_connector` uses `Hirose U.FL-R-SMT-1(80)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `nrf0_rf_board_connector` lifecycle: `active_orderable`.
-- `nrf1_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
+- `nrf1_rf_board_connector` uses `Hirose U.FL-R-SMT-1(80)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `nrf1_rf_board_connector` lifecycle: `active_orderable`.
-- `nrf2_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
+- `nrf2_rf_board_connector` uses `Hirose U.FL-R-SMT-1(80)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `nrf2_rf_board_connector` lifecycle: `active_orderable`.
 - `nrf_power_input_cap` lifecycle: `active_production`.
 - `nrf_evidence_hold_cap` lifecycle: `active_production`.

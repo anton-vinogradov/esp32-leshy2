@@ -93,7 +93,7 @@ def render_svg(data: dict) -> str:
         '<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6z" fill="#475569"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         '<text x="630" y="38" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · H0-R2 functional architecture</text>',
-        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.36 projection: exact dual-RP GPIO/M1, direct i8080 display and radio payload remain local.</text>',
+        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.37 projection: exact dual-RP GPIO/M1, direct i8080 display and radio payload remain local.</text>',
         '<rect x="40" y="105" width="540" height="610" rx="18" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>',
         '<rect x="680" y="105" width="540" height="610" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>',
         '<text x="310" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#1d4ed8">FRONT · UI / RADIO PCB · five SMA</text>',
@@ -165,7 +165,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "бортовой видеотракт удалён, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H1-R2.36**: H0/H1 согласованы с двумя независимыми RP2354B, точными GPIO0..47 и четырьмя M1 endpoint-группами; бортовой видеотракт удалён, GPIO и M1-резервы освобождены, а полная 226-корпусная физическая проекция обновлена. В неё входят все восемь TX-детекторов, пять coupler и восемь локальных evidence-островов; шесть AD8314 переведены на принятый `AD8314ARMZ-REEL` / `C652687`. Серийный дисплей EastRising, U219, NFC-loop и swept volume антенны закрыты; мокап ждёт явного принятия. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Новый R2 H2/KiCad заблокирован до live route C11355, точного MPN detector/latch service-VBUS и powered-off-Ioff границы Pack/Safety I2C."
+        current = "Текущий точный маркер — **H1-R2.37**: H0/H1 согласованы с двумя независимыми RP2354B, точными GPIO0..47 и четырьмя M1 endpoint-группами; бортовой видеотракт удалён, GPIO и M1-резервы освобождены, а полная 226-корпусная физическая проекция обновлена. В неё входят все восемь TX-детекторов, пять coupler и восемь локальных evidence-островов; шесть AD8314 переведены на принятый `AD8314ARMZ-REEL` / `C652687`. Серийный дисплей EastRising, U219, NFC-loop и swept volume антенны закрыты; мокап ждёт явного принятия. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Новый R2 H2/KiCad заблокирован до live route C11355, точного MPN detector/latch service-VBUS и powered-off-Ioff границы Pack/Safety I2C."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -204,7 +204,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, the onboard "
             "video path is removed, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H1-R2.36**: H0/H1 now agree on two independent RP2354B domains, exact GPIO0..47 maps and four M1 endpoint groups; the onboard video path is removed, its GPIO/M1 reserves are released, and the complete 226-body physical projection is updated. It includes all eight TX detectors, five couplers and eight local evidence islands; all six AD8314 positions now use the accepted `AD8314ARMZ-REEL` / `C652687`. The serial EastRising display, U219, NFC loop and antenna swept volume are closed; the mock-up waits for explicit acceptance. The old single-RP G2F/H2 projection remains historical R1 evidence only. New R2 H2/KiCad stays blocked on the live C11355 route, the exact service-VBUS detector/latch MPN and the Pack/Safety I2C powered-off-Ioff boundary."
+        current = "The exact current marker is **H1-R2.37**: H0/H1 now agree on two independent RP2354B domains, exact GPIO0..47 maps and four M1 endpoint groups; the onboard video path is removed, its GPIO/M1 reserves are released, and the complete 226-body physical projection is updated. It includes all eight TX detectors, five couplers and eight local evidence islands; all six AD8314 positions now use the accepted `AD8314ARMZ-REEL` / `C652687`. The serial EastRising display, U219, NFC loop and antenna swept volume are closed; the mock-up waits for explicit acceptance. The old single-RP G2F/H2 projection remains historical R1 evidence only. New R2 H2/KiCad stays blocked on the live C11355 route, the exact service-VBUS detector/latch MPN and the Pack/Safety I2C powered-off-Ioff boundary."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",

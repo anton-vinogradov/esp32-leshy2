@@ -52,7 +52,7 @@
 | `hirose_fh34srj_40s_0_5sh_99` | `Hirose FH34SRJ-40S-0.5SH(99)` | `verified_dual_contact_adapter_panel_connector_received_tail_thickness_h5_open` | `active and authorized-distributor-stocked; exact HMX035CTFT-001 tail thickness and insertion fit remain H5` | [Hirose FH34SRJ-40S-0.5SH(99) product page and controlled 2D drawing CL0580-1260-6-99; detailed specifications updated 2026-02-07](https://www.hirose.com/en/product/p/CL0580-1260-6-99) | same primary source |
 | `hirose_fx8c_80p_sv1_92` | `Hirose FX8C-80P-SV1(92)` | `verified_exact_m1_11mm_plug` | `active` | [Hirose FX8C-80P-SV1(92) official product data, 2D drawing and FX8C mating table product specifications updated 2026-02-07](https://www.hirose.com/product/p/CL0578-0523-1-92) | same primary source |
 | `hirose_fx8c_80s_sv5_92` | `Hirose FX8C-80S-SV5(92)` | `verified_exact_m1_11mm_receptacle` | `active` | [Hirose FX8C-80S-SV5(92) official product data, 2D drawing and FX8C mating table product specifications updated 2026-02-07](https://www.hirose.com/en/product/p/CL0578-0823-5-92) | same primary source |
-| `hirose_ufl_r_smt_1_10` | `Hirose U.FL-R-SMT-1(10)` | `verified_exact_native_rf_board_mate` | `active_orderable` | [Hirose U.FL Series connector catalog current catalog](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf) | same primary source |
+| `hirose_ufl_r_smt_1_10` | `Hirose U.FL-R-SMT-1(80)` | `verified_exact_native_rf_board_mate` | `active_orderable` | [Hirose U.FL Series connector catalog current catalog](https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL) | same primary source |
 | `infineon_bgs13sn8e6327xtsa1` | `Infineon BGS13SN8E6327XTSA1` | `verified_exact_cc_dual_ended_band_switch` | `active_orderable` | [BGS13SN8 SP3T RF switch datasheet Rev. 2.4](https://www.infineon.com/dgdl/Infineon-BGS13SN8-DataSheet-v02_04-EN.pdf?fileId=5546d462584d1d4a0158cf52e3ae03a7) | same primary source |
 | `jae_dx07s016ja1r1500` | `JAE DX07S016JA1R1500` | `verified_candidate` | `active` | [JAE DX07 16-position receptacle product brochure MB-0350E, August 2025](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8440/MB-0350E_DX07_16-POS_RECEPTACLE.pdf) | same primary source |
 | `kemet_c0402c102k5ractu` | `KEMET C0402C102K5RACTU` | `verified_candidate` | `active` | [KEMET C0402C102K5RACTU product specification and TI reference BOM current product data checked 2026-08-18](https://search.kemet.com/download/specsheet/C0402C102K5RACTU) | same primary source |
@@ -3917,7 +3917,7 @@ Reserved: `PA1_NRST`. Free: none.
 - `unit_connector` lifecycle: `active in Seeed Open Parts Library as PCBA SKU 320110032`.
 - `s3_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
 - `s3_rf_jumper` lifecycle: `active_orderable`.
-- `s3_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
+- `s3_rf_board_connector` uses `Hirose U.FL-R-SMT-1(80)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `s3_rf_board_connector` lifecycle: `active_orderable`.
 - `s3_rf_coupler` uses `KYOCERA AVX CP0603Q5425ENTR` as `verified_exact_native_rf_forward_coupler`, not an accepted production choice.
 - `s3_rf_coupler` lifecycle: `active_orderable`.
@@ -3929,7 +3929,7 @@ Reserved: `PA1_NRST`. Free: none.
 - `s3_detector_bypass` lifecycle: `active_orderable`.
 - `c5_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
 - `c5_rf_jumper` lifecycle: `active_orderable`.
-- `c5_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
+- `c5_rf_board_connector` uses `Hirose U.FL-R-SMT-1(80)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `c5_rf_board_connector` lifecycle: `active_orderable`.
 - `c5_rf_coupler` uses `KYOCERA AVX CP0603Q5425ENTR` as `verified_exact_native_rf_forward_coupler`, not an accepted production choice.
 - `c5_rf_coupler` lifecycle: `active_orderable`.
@@ -3948,11 +3948,11 @@ Reserved: `PA1_NRST`. Free: none.
 - `nrf1_rf_jumper` lifecycle: `active_orderable`.
 - `nrf2_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
 - `nrf2_rf_jumper` lifecycle: `active_orderable`.
-- `nrf0_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
+- `nrf0_rf_board_connector` uses `Hirose U.FL-R-SMT-1(80)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `nrf0_rf_board_connector` lifecycle: `active_orderable`.
-- `nrf1_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
+- `nrf1_rf_board_connector` uses `Hirose U.FL-R-SMT-1(80)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `nrf1_rf_board_connector` lifecycle: `active_orderable`.
-- `nrf2_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
+- `nrf2_rf_board_connector` uses `Hirose U.FL-R-SMT-1(80)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `nrf2_rf_board_connector` lifecycle: `active_orderable`.
 - `nrf_power_input_cap` lifecycle: `active_production`.
 - `nrf_evidence_hold_cap` lifecycle: `active_production`.

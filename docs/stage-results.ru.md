@@ -25,7 +25,7 @@ M1 идут transport управления/данных, safety evidence и пи
 <a id="h1"></a>
 ## H1 · Физический дизайн устройства
 
-**Статус:** ▶️ сейчас **`H1-R2.36`**.
+**Статус:** ▶️ сейчас **`H1-R2.37`**.
 
 - [Текущий физический дизайн](h1-r2-physical-layout.ru.md)
 - [Внешние стороны](images/h1-r2-external-layout.svg?rev=h1-r2.36-complete-tx-evidence-1)

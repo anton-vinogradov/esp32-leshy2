@@ -2495,7 +2495,7 @@
       "instance": "s3_rf_board_connector",
       "project": "LESHY2-UI",
       "device_key": "hirose_ufl_r_smt_1_10",
-      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "mpn": "Hirose U.FL-R-SMT-1(80)",
       "role": "S3 30-mm jumper board receptacle",
       "board": "ui-control-pcb",
       "sheet": "UI_10_S3_CORE_MEMORY_BOOT",
@@ -2510,8 +2510,8 @@
       "manufacturer_evidence": {
         "document": "Hirose U.FL Series connector catalog",
         "version": "current catalog",
-        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-        "checked": "2026-08-18"
+        "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+        "checked": "2026-08-29"
       }
     },
     {
@@ -2711,7 +2711,7 @@
       "instance": "c5_rf_board_connector",
       "project": "LESHY2-UI",
       "device_key": "hirose_ufl_r_smt_1_10",
-      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "mpn": "Hirose U.FL-R-SMT-1(80)",
       "role": "C5 30-mm jumper board receptacle",
       "board": "ui-control-pcb",
       "sheet": "UI_20_C5_RADIO_IR_SERVICE",
@@ -2726,8 +2726,8 @@
       "manufacturer_evidence": {
         "document": "Hirose U.FL Series connector catalog",
         "version": "current catalog",
-        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-        "checked": "2026-08-18"
+        "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+        "checked": "2026-08-29"
       }
     },
     {
@@ -3047,7 +3047,7 @@
       "instance": "nrf0_rf_board_connector",
       "project": "LESHY2-RF",
       "device_key": "hirose_ufl_r_smt_1_10",
-      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "mpn": "Hirose U.FL-R-SMT-1(80)",
       "role": "nRF24 #0 Gen1 jumper board receptacle",
       "board": "rf-power-pcb",
       "sheet": "RF_31_NRF24_X3",
@@ -3062,8 +3062,8 @@
       "manufacturer_evidence": {
         "document": "Hirose U.FL Series connector catalog",
         "version": "current catalog",
-        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-        "checked": "2026-08-18"
+        "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+        "checked": "2026-08-29"
       }
     },
     {
@@ -3071,7 +3071,7 @@
       "instance": "nrf1_rf_board_connector",
       "project": "LESHY2-RF",
       "device_key": "hirose_ufl_r_smt_1_10",
-      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "mpn": "Hirose U.FL-R-SMT-1(80)",
       "role": "nRF24 #1 Gen1 jumper board receptacle",
       "board": "rf-power-pcb",
       "sheet": "RF_31_NRF24_X3",
@@ -3086,8 +3086,8 @@
       "manufacturer_evidence": {
         "document": "Hirose U.FL Series connector catalog",
         "version": "current catalog",
-        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-        "checked": "2026-08-18"
+        "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+        "checked": "2026-08-29"
       }
     },
     {
@@ -3095,7 +3095,7 @@
       "instance": "nrf2_rf_board_connector",
       "project": "LESHY2-RF",
       "device_key": "hirose_ufl_r_smt_1_10",
-      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "mpn": "Hirose U.FL-R-SMT-1(80)",
       "role": "nRF24 #2 Gen1 jumper board receptacle",
       "board": "rf-power-pcb",
       "sheet": "RF_31_NRF24_X3",
@@ -3110,8 +3110,8 @@
       "manufacturer_evidence": {
         "document": "Hirose U.FL Series connector catalog",
         "version": "current catalog",
-        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-        "checked": "2026-08-18"
+        "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+        "checked": "2026-08-29"
       }
     },
     {

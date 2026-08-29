@@ -21,7 +21,7 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.36", self.model["marker"])
+        self.assertEqual("H1-R2.37", self.model["marker"])
         self.assertEqual("pass", self.audit["status"])
         self.assertEqual("pass", self.audit["structural_status"])
         self.assertEqual([], self.audit["errors"])

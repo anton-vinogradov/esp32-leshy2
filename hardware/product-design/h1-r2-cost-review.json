@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.36",
+  "marker": "H1-R2.37",
   "checked_on": "2026-08-29",
   "purpose": "Rank the complete-device component burden, remove avoidable pre-order penalties without functional degradation, and keep small-lot purchasing penalties separate from quantity-100 material cost.",
   "community_cost_target": {
@@ -53,8 +53,8 @@
       "electronics_working_range_usd": [214, 235],
       "repeatable_complete_base_working_range_usd": [241, 280],
       "scope": "same built-in user-visible functions and same safety outcome, excluding batteries and the full external antenna kit",
-      "confidence": "planning envelope only; it includes the accepted AD8314 package change and still assumes successful remaining RF-evidence, audio/safety and internal-RF consolidation without changing the result, then adds USD 27-45 for PCB, PCBA and enclosure",
-      "assessment": "The accepted AD8314 package change removes USD 5.5032 per device, while the cheaper antenna-connector candidate was rejected and contributes no saving. The USD 241-280 repeatable-complete band therefore remains an optimization hypothesis rather than a demonstrated bill; the current exact planning floor is reported separately. The accepted USD 220-260 target remains the gate and the sole first prototype remains higher."
+      "confidence": "planning envelope only; it includes the accepted AD8314 package and Hirose U.FL packaging-route changes and still assumes successful remaining RF-evidence, audio/safety and internal-RF consolidation without changing the result, then adds USD 27-45 for PCB, PCBA and enclosure",
+      "assessment": "The accepted AD8314 and Hirose U.FL packaging-route changes remove USD 10.4192 per device in total, while the cheaper antenna-connector candidate was rejected and contributes no saving. The USD 241-280 repeatable-complete band therefore remains an optimization hypothesis rather than a demonstrated bill; the current exact planning floor is reported separately. The accepted USD 220-260 target remains the gate and the sole first prototype remains higher."
     },
     "modular_entry_result": {
       "electronics_target_usd": [108, 125],
@@ -101,6 +101,11 @@
       "id": "ad8314-msop-package-route",
       "saving_per_device_usd": 5.5032,
       "basis": "six detectors: former quantity-100 line USD 17.1420 minus accepted C652687 line USD 11.6388"
+    },
+    {
+      "id": "hirose-ufl-packaging-route",
+      "saving_per_device_usd": 4.916,
+      "basis": "five identical Hirose receptacles: former U.FL-R-SMT-1(10) quantity-100 line USD 5.3275 minus stocked U.FL-R-SMT-1(80) line USD 0.4115"
     }
   ],
   "r2_quantity_overrides": {
@@ -263,6 +268,23 @@
       "quantity_one_unit_price_usd": 4.4835,
       "route": "in stock; exact original-manufacturer PA/LNA module is factory placeable",
       "source": "https://jlcpcb.com/partdetail/E01-ML01SP4/C97340",
+      "checked_on": "2026-08-29"
+    },
+    "hirose_ufl_r_smt_1_10": {
+      "manufacturer": "HRS(Hirose)",
+      "mpn": "U.FL-R-SMT-1(80)",
+      "jlcpcb_part": "C88374",
+      "assembly_type": "SMD; SMT assembly; Economic and Standard PCBA; MSL 1",
+      "stock": 72989,
+      "available_order_quantity": 68798,
+      "moq": 1,
+      "trial_required_quantity": 25,
+      "trial_displayed_cost_usd": 2.54,
+      "estimated_unit_price_usd": 0.1016,
+      "quantity_100_unit_price_usd": 0.0823,
+      "route": "in stock; (80) is the same Hirose U.FL receptacle and footprint as (10), with reel packaging as the only changed order presentation",
+      "source": "https://jlcpcb.com/partdetail/U.FL-R-SMT-1%2880%29/C88374",
+      "manufacturer_source": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
       "checked_on": "2026-08-29"
     },
     "adi_ad8314armz_reel": {
@@ -595,6 +617,248 @@
     "function_sensitive_rule": "RF detectors, RF filters/couplers, power safety, battery protection and user-exposed ESD boundaries never change for price alone.",
     "antenna_mechanics_rule": "Prefer individually board-retained DIV-like right-angle SMA/RP-SMA bodies without nuts, sealing hardware or a shared protective frame. Low profile is not a requirement; a dual-face or through-board soldered load path is preferred. Keep the GCT pair only until a documented stocked standard/reverse pair passes the complete 5+5 placement, opposing-clearance and factory-assembly gate."
   },
+  "top_20_mass_market_audit": [
+    {
+      "current_mpn": "SMA-W100RX2",
+      "market_result": "premium_stocked_receive_accessory",
+      "best_mass_market_route": "Opek SCANSMA 25-1300",
+      "availability": "in stock at Ham Radio Outlet; USD 15.95",
+      "functional_delta": "same stated 25-1300-MHz receive range, but it is a remote magnetic-mount antenna with 12-ft RG-174 rather than a direct telescopic whip",
+      "paper_saving_usd": 20.0,
+      "verdict": "qualification_required_not_no_worse_on_form_factor",
+      "current_source": "https://www.comet-ant.co.jp/product/638/",
+      "candidate_source": "https://www.hamradio.com/detail.cfm?pid=H0-016713",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "001-0012",
+      "market_result": "stocked_but_overqualified_for_s3",
+      "best_mass_market_route": "split the group: TE 001-0001 for S3 2.4 GHz; Taoglas GW.05.0153 for C5 2.4/5 GHz",
+      "availability": "001-0001: 2,656 Mouser stock; GW.05.0153: distributor stock and serial order route",
+      "functional_delta": "S3 does not use 5 GHz, so its dual-band/IP67 capability is unused; C5 candidate begins at 5150 rather than 4910 MHz and both substitutions require assembled-device matching/EIRP closure",
+      "paper_saving_usd": 19.3,
+      "verdict": "strong_qualification_candidates_not_yet_no_worse",
+      "current_source": "https://www.te.com/en/product-001-0012.html",
+      "candidate_source": "https://www.taoglas.com/datasheets/GW.05.0153.pdf",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "AN0155H13",
+      "market_result": "premium_stocked_radio_accessory",
+      "best_mass_market_route": "Powerwerx ANT-8",
+      "availability": "in stock; USD 7.77",
+      "functional_delta": "covers 136-174 and 400-470 MHz with standard SMA, but its public page does not close gain, VSWR, power or exact mechanical seating; it may cover both voice ports only after VNA and voice-TX HIL",
+      "paper_saving_usd": 23.93,
+      "verdict": "qualification_required_missing_complete_datasheet",
+      "current_source": "https://www.hytera.com/en/product-new/accessories/radio-antennas/an0155h13.html",
+      "candidate_source": "https://powerwerx.com/vhf-uhf-dual-band-standard-sma-antenna",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "ANT-433-CW-QW-SMA",
+      "market_result": "mass_market_stocked_and_wideband",
+      "best_mass_market_route": "Ebyte TX433-JZR-6 for UHF plus TX433-JK-11 for the narrow 433-MHz port",
+      "availability": "both serial Ebyte parts available from stocked distributors; TX433-JZR-6 observed at USD 1.72",
+      "functional_delta": "UHF candidate preserves 400-480 MHz, 10 W and improves stated VSWR but nominal gain falls 3.3 to 3.0 dBi; the 433 candidate is narrow-band and both need VNA/EIRP HIL",
+      "paper_saving_usd": 19.57,
+      "verdict": "strong_qualification_candidates_small_gain_delta",
+      "current_source": "https://www.te.com/en/product-ANT-433-CW-QW-SMA.html",
+      "candidate_source": "https://www.ebyte.com/product/824.html",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "GCT RFPC-SMA31-FN-175-A",
+      "market_result": "mass_market_stocked_exact_mechanical_solution",
+      "best_mass_market_route": "retain current GCT standard-SMA body",
+      "availability": "638 immediate DigiKey stock; quantity-one and volume order routes",
+      "functional_delta": "cheaper board-normal bodies have the wrong orientation; the checked through-hole pair collides with the accepted 5+5 mechanics and has no exact-one factory route",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_no_no_worse_drop_in",
+      "current_source": "https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/17833784",
+      "candidate_source": "https://jlcpcb.com/partdetail/DreamLNK-SMAKWE902/C914554",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "EastRising ER-TFT035IPS-6 + ER-TPC035-6",
+      "market_result": "serial_quantity_one_documented_display",
+      "best_mass_market_route": "retain the documented EastRising panel and touch pair",
+      "availability": "direct serial quantity-one route; USD 14.91",
+      "functional_delta": "cheaper generic 3.5-inch listings do not preserve the controlled FPC, i8080-8 pin map, ILI9488/FT6236 identity and factory-installable mechanical package",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_already_value_optimized",
+      "current_source": "https://www.buydisplay.com/3-5-inch-tft-lcd-display-capacitive-touch-screen-ips-320x480",
+      "candidate_source": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "Analog Devices AD8314ARMZ-REEL",
+      "market_result": "explicit_factory_preorder_not_live_stock",
+      "best_mass_market_route": "retain accepted C652687 MSOP route",
+      "availability": "JLCPCB overseas 2,978 / pre-order 2,977; MOQ 4; six required",
+      "functional_delta": "cheaper detector families do not preserve the calibrated frequency/input/current contract and would require RF-chain redesign; the former LFCSP package already cost more",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_no_stocked_no_worse_equivalent",
+      "current_source": "https://jlcpcb.com/partdetail/AnalogDevices-AD8314ARMZREEL/C652687",
+      "candidate_source": "https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "OMRON B3S-1100P",
+      "market_result": "mass_market_authorized_stock_jlc_preorder",
+      "best_mass_market_route": "retain B3S-1100P; source by JLC pre-order/consignment if necessary",
+      "availability": "33,662 DigiKey stock; JLCPCB C2733652 pre-order",
+      "functional_delta": "B3S-1000P and cheap tact switches lose the grounded cover or exact force/life contract at the directly touched boundary",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_no_no_worse_control_found",
+      "current_source": "https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3S-1100P/60835",
+      "candidate_source": "https://jlcpcb.com/partdetail/OmronElectronicComponents-B3S1100P/C2733652",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "G-NiceRF SA818S-V",
+      "market_result": "exact_factory_preorder_only",
+      "best_mass_market_route": "retain exact SA818S-V C51897911",
+      "availability": "JLCPCB pre-order MOQ 1; factory support states typical 8-15 working days",
+      "functional_delta": "no stocked pin-compatible module was found that preserves the VHF band, UART protocol, audio/PTT contacts, current and physical envelope; generic assembly aliases are not exact availability",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_preorder_as_only_exact_route",
+      "current_source": "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911",
+      "candidate_source": "https://www.nicerf.com/walkie-talkie-module-sa818s.html",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "G-NiceRF SA818S-U",
+      "market_result": "exact_factory_stocked",
+      "best_mass_market_route": "retain SA818S-U C3001549",
+      "availability": "live JLCPCB stock route; MOQ 1",
+      "functional_delta": "SA818S-CE stops at 470 rather than the selected 480 MHz and has negligible saving; SA868-U costs more and draws more current",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_current_is_best_fit",
+      "current_source": "https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549",
+      "candidate_source": "https://www.nicerf.com/walkie-talkie-module-sa818s.html",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "ANT-315-CW-HW-SMA",
+      "market_result": "mass_market_stocked_broad_315_profile",
+      "best_mass_market_route": "Joymax UHX-328ASA2B",
+      "availability": "958 DigiKey stock; USD 5.5693 at 100",
+      "functional_delta": "candidate is 312-317 rather than 304-325 MHz, -0.4 rather than 0 dBi and 1 W; adequate only for the exact 315-MHz profile after VNA/TX HIL",
+      "paper_saving_usd": 4.0307,
+      "verdict": "qualification_required_narrower_band_and_gain_delta",
+      "current_source": "https://www.te.com/en/product-ANT-315-CW-HW-SMA.html",
+      "candidate_source": "https://www.digikey.com/en/products/detail/joymax-electronics/UHX-328ASA2B/28334978",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "TE Connectivity 2118651-2",
+      "market_result": "mass_market_stocked_exact_cable",
+      "best_mass_market_route": "retain exact 30-mm 1.13-mm U.FL-to-U.FL jumper",
+      "availability": "3,082 authorized-distributor stock; quantity-one and volume routes",
+      "functional_delta": "generic unnamed cables do not prove length, 9-GHz rating, connector retention or controlled factory routing",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_no_documented_no_worse_lower_cost_route",
+      "current_source": "https://www.te.com/en/product-2118651-2.html",
+      "candidate_source": "https://www.digikey.com/en/products/detail/te-connectivity-laird/2118651-2/13683867",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "Ebyte E01-ML01SP4",
+      "market_result": "exact_factory_stocked",
+      "best_mass_market_route": "retain JLCPCB C97340",
+      "availability": "405 stock / 388 orderable; MOQ 1",
+      "functional_delta": "bare nRF24 or lower-power modules would remove the accepted full-duplex PA/LNA result; no cheaper exact 20-dBm factory module was proven",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_current_is_mass_market_best_fit",
+      "current_source": "https://jlcpcb.com/partdetail/E01-ML01SP4/C97340",
+      "candidate_source": "https://www.ebyte.com/product/1200.html",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "Keystone Electronics 1048P",
+      "market_result": "mass_market_authorized_stock_jlc_preorder",
+      "best_mass_market_route": "retain 1048P; use reviewed factory sourcing/consignment route",
+      "availability": "580 DigiKey plus 145 Mouser stock; JLCPCB C6038062 pre-order",
+      "functional_delta": "cheap holders checked so far are single-cell or do not prove protected button-top length, polarity pre-contact and enclosure-supported insertion loads",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_safety_mechanics_not_matched",
+      "current_source": "https://www.digikey.com/en/products/detail/keystone-electronics/1048P/4499417",
+      "candidate_source": "https://jlcpcb.com/partdetail/KeystoneElectronics-1048P/C6038062",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "Texas Instruments TMUX1136DGSR",
+      "market_result": "exact_factory_stocked",
+      "best_mass_market_route": "retain TMUX1136DGSR C2673301",
+      "availability": "live JLCPCB stock; Standard-PCBA route",
+      "functional_delta": "cheaper TS5A-class switches lose the current leakage, temperature or low-charge-injection contract used by quiet audio/control isolation",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_no_no_worse_mux_found",
+      "current_source": "https://jlcpcb.com/partdetail/TexasInstruments-TMUX1136DGSR/C2673301",
+      "candidate_source": "https://www.ti.com/lit/ds/symlink/tmux1136.pdf",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "LTC5532ES6#TRMPBF",
+      "market_result": "limited_exact_factory_stock",
+      "best_mass_market_route": "retain LTC5532; exact-one needs two and current stock covers it",
+      "availability": "JLCPCB C580926 stock 6; MOQ 1",
+      "functional_delta": "cheaper AD8319-class alternatives draw far more current and change input range, calibration and detector topology",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_exact_one_covered_no_no_worse_equivalent",
+      "current_source": "https://jlcpcb.com/partdetail/AnalogDevices-LTC5532ES6TRMPBF/C580926",
+      "candidate_source": "https://www.analog.com/media/en/technical-documentation/data-sheets/5532f.pdf",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "market_result": "exact_factory_stocked",
+      "best_mass_market_route": "retain JLCPCB C2932107",
+      "availability": "890 stock / 887 orderable; MOQ 1; USD 1.41 quantity one",
+      "functional_delta": "unfitted Tag-Connect pads save BOM but require a USD 39 cable and worsen long recovery/debug sessions for the sole prototype",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_best_exact_one_workflow",
+      "current_source": "https://jlcpcb.com/partdetail/Samtec-FTSH_105_01_L_DV_K_PTR/C2932107",
+      "candidate_source": "https://www.tag-connect.com/product/tc2050-idc-nl-10-pin-no-legs-cable-with-ribbon-connector",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "ESP32-S3-WROOM-1U-N16R8",
+      "market_result": "exact_factory_stocked",
+      "best_mass_market_route": "retain exact N16R8 external-antenna module",
+      "availability": "live JLCPCB C3013946 Standard-PCBA stock route",
+      "functional_delta": "lower-memory or PCB-antenna variants lose the accepted large-firmware margin, PSRAM or external RF path; no equal-memory cheaper route was proven",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_function_defining_memory_and_rf_variant",
+      "current_source": "https://jlcpcb.com/partdetail/EspressifSystems-ESP32S3WROOM1UN16R8/C3013946",
+      "candidate_source": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "GCT RFPC-SMA32-FN-175-A",
+      "market_result": "mass_market_stocked_exact_mechanical_solution",
+      "best_mass_market_route": "retain current GCT reverse-polarity body",
+      "availability": "556 DigiKey, 158 Mouser and 219 TME stock",
+      "functional_delta": "the standard/reverse pair must share the exact 5+5 load path and opposing clearance; checked cheaper pairs fail orientation, geometry or exact-one factory assembly",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_no_no_worse_drop_in",
+      "current_source": "https://www.digikey.com/en/products/detail/gct/RFPC-SMA32-FN-175-A/17833785",
+      "candidate_source": "https://jlcpcb.com/partdetail/DreamLNK-SMAKWE901/C914553",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "current_mpn": "TI.08.C.0112",
+      "market_result": "mass_market_stocked_dual_band",
+      "best_mass_market_route": "Seeed Studio 113070002 868/915-MHz whip",
+      "availability": "in stock; USD 2.49",
+      "functional_delta": "candidate preserves both bands, SMA and 10 W but changes right-angle mechanics and falls from 2.48 to 2.0 dBi at 868 MHz; both regional EIRP limits require HIL",
+      "paper_saving_usd": 2.2966,
+      "verdict": "qualification_required_mechanics_and_868_gain_delta",
+      "current_source": "https://www.taoglas.com/datasheets/TI.08.C.0112.pdf",
+      "candidate_source": "https://www.seeedstudio.com/External-Antenna-868-915MHZ-2dBi-SMA-L195mm-Foldable-p-5863.html",
+      "checked_on": "2026-08-29"
+    }
+  ],
   "current_stocked_candidate_checks": [
     {
       "scope": "ESP32-C5 production supplier route and revision floor",
@@ -651,6 +915,25 @@
       "why_ru": "Принято в H1-R2.36. Analog Devices задаёт ARMZ-REEL и ACPZ-RL7 как корпусные варианты одной функции AD8314 с одинаковыми пронумерованными выводами 1-8; у RM-8 лишь нет exposed paddle. JLCPCB C652687 доступен как Extended SMT для Standard PCBA через явный pre-order/overseas-маршрут на 2 977 деталей, при 2 978 overseas и MOQ 4; на единственное устройство нужно шесть. Все шесть полных lead-envelope 5,15 x 3,20 x 1,10 мм, два сохранённых LTC5532, все пять coupler и восемь локальных evidence-островов проходят аудит коллизий, compression-stop и встречной платы. Строка quantity-100 снижается с $17,1420 до $11,6388, экономия $5,5032 на устройство без удаления evidence.",
       "source": "https://jlcpcb.com/partdetail/AnalogDevices-AD8314ARMZREEL/C652687",
       "manufacturer_source": "https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "scope": "five native/module U.FL receptacles",
+      "current_mpn": "Hirose U.FL-R-SMT-1(10)",
+      "candidate_mpn": "Hirose U.FL-R-SMT-1(80)",
+      "jlcpcb_part": "C88374",
+      "manufacturer": "HRS(Hirose)",
+      "assembly_type": "SMD; SMT assembly; Economic and Standard PCBA; MSL 1",
+      "stock": 72989,
+      "available_order_quantity": 68798,
+      "moq": 1,
+      "trial_required_quantity": 25,
+      "price_tiers_usd": {"1": 0.1016, "50": 0.0823, "150": 0.0724},
+      "status": "accepted_stocked_exact_packaging_variant",
+      "why": "Accepted at H1-R2.37. Hirose lists (01), (60) and (80) as order presentations of the same U.FL-R-SMT-1 receptacle with the same contacts, 2.6 x 2.6 x 1.25-mm body, land pattern and 6-GHz/50-Ohm rating; only packaging changes. C88374 is live JLCPCB SMT stock for Economic and Standard PCBA. Five fitted receptacles fall from USD 5.3275 to USD 0.4115 on the common quantity-100 basis, saving USD 4.9160 without a PCB, RF or firmware change.",
+      "why_ru": "Принято в H1-R2.37. Hirose перечисляет (01), (60) и (80) как варианты поставки одной розетки U.FL-R-SMT-1 с теми же контактами, корпусом 2,6 x 2,6 x 1,25 мм, посадкой и параметрами 6 ГГц / 50 Ом; меняется только упаковка. C88374 есть на складе JLCPCB как SMT для Economic и Standard PCBA. Пять установленных розеток снижаются с $5,3275 до $0,4115 на общей базе quantity-100, экономя $4,9160 без изменения платы, RF или прошивки.",
+      "source": "https://jlcpcb.com/partdetail/U.FL-R-SMT-1%2880%29/C88374",
+      "manufacturer_source": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
       "checked_on": "2026-08-29"
     },
     {
@@ -965,7 +1248,7 @@
       "queue_status": "accepted",
       "title": "Replace safe equivalent pre-order passives and ordinary logic with in-stock JLCPCB parts",
       "production_function_change": false,
-      "evidence": "After six safe replacement batches, 26 pre-order rows cost USD 648.0444 in the normalized five-device evidence versus USD 322.6465 on their quantity-100 material basis. The stocked Nexperia, YAGEO, UNI-ROYAL, FH, Hirose, TI, Vishay and Murata routes together remove approximately USD 137.7020 from the observed trial route and reduce the public material basis by a net USD 3.0885 per device.",
+      "evidence": "After seven safe replacement batches, 27 pre-order rows cost USD 660.0144 in the normalized five-device evidence versus USD 331.0265 on their quantity-100 material basis. The stocked Nexperia, YAGEO, UNI-ROYAL, FH, Hirose, TI, Vishay and Murata routes together remove approximately USD 140.8195 from the observed trial route and reduce the public material basis by a net USD 8.0045 per device.",
       "action": "Review every pre-order row against its substitution class; only exact or no-worse parametric replacements may be accepted."
     },
     {
@@ -1001,8 +1284,8 @@
       "queue_status": "accepted",
       "title": "Retain all five U.FL plus 30-mm jumper paths after source-to-port review",
       "production_function_change": false,
-      "evidence": "The five paths contribute USD 14.433 per device at quantity 100, before assembly handling. S3 and all three E01 modules expose only microcoax RF outputs, and each path must still pass through its local coupler and real-TX detector before SMA. The current C5 module also exposes U.FL; an exact stocked Espressif T2/ANT2 factory route is not proved.",
-      "action": "Therefore 0/5 paths can be removed safely now. A future qualified C5 T2 route could remove one path and save about USD 2.89 per device."
+      "evidence": "The five paths now contribute USD 9.517 per device at quantity 100 after the exact stocked Hirose packaging-route change, before assembly handling. S3 and all three E01 modules expose only microcoax RF outputs, and each path must still pass through its local coupler and real-TX detector before SMA. The current C5 module also exposes U.FL; an exact stocked Espressif T2/ANT2 factory route is not proved.",
+      "action": "Therefore 0/5 paths can be removed safely now. A future qualified C5 T2 route could remove one path and save about USD 1.90 per device."
     },
     {
       "priority": 7,

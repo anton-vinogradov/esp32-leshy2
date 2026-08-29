@@ -23,9 +23,9 @@ DOC_RU = REPO / "docs/parameter-model-register.ru.md"
 # mirrors with the original manufacturer's exact-part page/specification.
 PROVENANCE_OVERRIDES = {
     "hirose_ufl_r_smt_1_10": {
-        "document": "Hirose U.FL-R-SMT-1(10) official specification sheet",
-        "url": "https://www.hirose.com/product/document?clcode=CL0331-0472-2-10&documentid=0000266652&documenttype=SpecSheet&lang=en&productname=U.FL-R-SMT-1%2810%29&series=U.FL",
-        "reason": "original manufacturer source replaces the accepted H2 distributor mirror without changing the H2 baseline",
+        "document": "Hirose U.FL series official catalog including U.FL-R-SMT-1(80)",
+        "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+        "reason": "the original manufacturer catalog proves the selected packaging code without changing the electrical, footprint or physical baseline",
     },
     "jae_dx07s016ja1r1500": {
         "document": "JAE DX07S016JA1R1500 official exact-product page",
@@ -276,7 +276,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
             f"`{decision['id']}` закрыт вариантом A: остаются три `E01-ML01SP4`, потому что они дают требуемое полное аппаратное поведение nRF24. "
             "Точный C97340 ставится JLCPCB со склада и даёт PA/LNA до 20 dBm; семейство nRF24 не рекомендуется для новых разработок, поэтому H5 всё равно проверит маркировку и RF-параметры. Современный nRF52 работает только в 2,4 ГГц, поддерживает совместимый эфирный ESB, но не является SPI/register drop-in заменой."
         )
-        marker = "**Статус исторической R1-цепочки:** `H3.0.2-R1` завершено и проверено; последующий маркер этой цепочки — `H3.6.1-R1`. Текущий аппаратный маркер — `H1-R2.36`."
+        marker = "**Статус исторической R1-цепочки:** `H3.0.2-R1` завершено и проверено; последующий маркер этой цепочки — `H3.6.1-R1`. Текущий аппаратный маркер — `H1-R2.37`."
         evidence = "[Машинный реестр из 213 строк](../hardware/verification/generated/H3-VRF02-parameter-inventory.json)."
     else:
         title = "# H3 parameters and models · historical R1"
@@ -297,7 +297,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
             f"`{decision['id']}` is closed with option A: three `E01-ML01SP4` modules remain because they provide the required full nRF24 hardware behavior. "
             "Exact C97340 is factory-stocked and adds PA/LNA output up to 20 dBm; the nRF24 family is not recommended for new designs, so H5 must still verify received marking and RF performance. A modern nRF52 is 2.4-GHz-only and supports over-air ESB compatibility, but is not an SPI/register drop-in replacement."
         )
-        marker = "**Historical R1-chain status:** `H3.0.2-R1` is reviewed; the later marker in that chain is `H3.6.1-R1`. The current hardware marker is `H1-R2.36`."
+        marker = "**Historical R1-chain status:** `H3.0.2-R1` is reviewed; the later marker in that chain is `H3.6.1-R1`. The current hardware marker is `H1-R2.37`."
         evidence = "[213-row machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json)."
     return "\n\n".join((title, nav, intro, counts_h, counts, residual_h, residual, decision_h, decision_text, marker, evidence)) + "\n"
 

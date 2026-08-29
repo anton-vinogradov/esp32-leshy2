@@ -1821,35 +1821,35 @@
       {
         "instance": "c5_rf_board_connector",
         "frame": "ui-inner",
-        "mpn": "Hirose U.FL-R-SMT-1(10)",
+        "mpn": "Hirose U.FL-R-SMT-1(80)",
         "height_mm": 2.4,
         "remaining_to_opposite_pcb_plane_mm": 8.6
       },
       {
         "instance": "nrf0_rf_board_connector",
         "frame": "rf-inner",
-        "mpn": "Hirose U.FL-R-SMT-1(10)",
+        "mpn": "Hirose U.FL-R-SMT-1(80)",
         "height_mm": 2.4,
         "remaining_to_opposite_pcb_plane_mm": 8.6
       },
       {
         "instance": "nrf1_rf_board_connector",
         "frame": "rf-inner",
-        "mpn": "Hirose U.FL-R-SMT-1(10)",
+        "mpn": "Hirose U.FL-R-SMT-1(80)",
         "height_mm": 2.4,
         "remaining_to_opposite_pcb_plane_mm": 8.6
       },
       {
         "instance": "nrf2_rf_board_connector",
         "frame": "rf-inner",
-        "mpn": "Hirose U.FL-R-SMT-1(10)",
+        "mpn": "Hirose U.FL-R-SMT-1(80)",
         "height_mm": 2.4,
         "remaining_to_opposite_pcb_plane_mm": 8.6
       },
       {
         "instance": "s3_rf_board_connector",
         "frame": "ui-inner",
-        "mpn": "Hirose U.FL-R-SMT-1(10)",
+        "mpn": "Hirose U.FL-R-SMT-1(80)",
         "height_mm": 2.4,
         "remaining_to_opposite_pcb_plane_mm": 8.6
       },
@@ -3309,7 +3309,7 @@
           "owner": "s3",
           "module_mpn": "ESP32-S3-WROOM-1U-N16R8",
           "green_cable_mpn": "TE Connectivity 2118651-2",
-          "green_cable_ends_at": "Hirose U.FL-R-SMT-1(10)",
+          "green_cable_ends_at": "Hirose U.FL-R-SMT-1(80)",
           "then_medium": "controlled_50_ohm_pcb_mainline_final_route_open_in_kicad",
           "forward_coupler_mpn": "KYOCERA AVX CP0603Q5425ENTR",
           "user_antenna_connector_mpn": "GCT RFPC-SMA32-FN-175-A"
@@ -3318,7 +3318,7 @@
           "owner": "c5",
           "module_mpn": "ESP32-C5-WROOM-1U-N8R8",
           "green_cable_mpn": "TE Connectivity 2118651-2",
-          "green_cable_ends_at": "Hirose U.FL-R-SMT-1(10)",
+          "green_cable_ends_at": "Hirose U.FL-R-SMT-1(80)",
           "then_medium": "controlled_50_ohm_pcb_mainline_final_route_open_in_kicad",
           "forward_coupler_mpn": "KYOCERA AVX CP0603Q5425ENTR",
           "user_antenna_connector_mpn": "GCT RFPC-SMA32-FN-175-A"

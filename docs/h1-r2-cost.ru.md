@@ -1,4 +1,4 @@
-# H1-R2.36 · стоимость компонентов
+# H1-R2.37 · стоимость компонентов
 
 [Русский](h1-r2-cost.ru.md) · [English](h1-r2-cost.md) · [Current placement](h1-r2-physical-layout.md)
 
@@ -6,20 +6,20 @@
 
 ## Сводка
 
-- Серийная материальная база: **$258.53** на устройство; цены известны для `201/210` строк.
-- Достижимый плановый минимум: **$278.34** на устройство; ещё `5` базовых строк не оценены.
-- Текущий плановый компонентный минимум без обязательных post-PCBA активных модулей: **$278.34** на устройство и **$278.34** на один целевой прототип до стоимости плат, сборки, корпуса, антенн, доставки, налогов, брака и теста.
-- Та же принятая ценовая база для десяти устройств: **$2,783.36**. Это линейное сравнение групп, а не обещание цены партии.
-- Верхние 10 / 20 / 40 групп дают **39.92% / 58.28% / 76.65%** текущей известной базовой BOM.
-- Исторический JLCPCB capture на пять плат: **$1,373.20** по `183` строкам; `24` live-проверок дают **$1,414.59**, ещё `27` строк не входят; это evidence, а не целевой quantity.
-- Внешний антенный комплект вынесен отдельно: уже известно **$138.32**, ещё `4` позиции в `2` MPN-группах не оценены. Вместе с известной электронной BOM это уже **$416.65** до PCB/PCBA, корпуса и доставки.
+- Серийная материальная база: **$253.61** на устройство; цены известны для `201/210` строк.
+- Достижимый плановый минимум: **$273.42** на устройство; ещё `5` базовых строк не оценены.
+- Текущий плановый компонентный минимум без обязательных post-PCBA активных модулей: **$273.42** на устройство и **$273.42** на один целевой прототип до стоимости плат, сборки, корпуса, антенн, доставки, налогов, брака и теста.
+- Та же принятая ценовая база для десяти устройств: **$2,734.20**. Это линейное сравнение групп, а не обещание цены партии.
+- Верхние 10 / 20 / 40 групп дают **40.64% / 58.81% / 76.71%** текущей известной базовой BOM.
+- Исторический JLCPCB capture на пять плат: **$1,370.08** по `183` строкам; `25` live-проверок дают **$1,411.47**, ещё `27` строк не входят; это evidence, а не целевой quantity.
+- Внешний антенный комплект вынесен отдельно: уже известно **$138.32**, ещё `4` позиции в `2` MPN-группах не оценены. Вместе с известной электронной BOM это уже **$411.74** до PCB/PCBA, корпуса и доставки.
 
 ## Принятая ценовая граница all-in-one
 
 - Текущий продукт остаётся полностью начинённым all-in-one. Цель повторяемого готового устройства: **$220.00–$260.00** без аккумуляторов и полного набора специализированных внешних антенн.
 - Чтобы внутри этой цены остались PCB, PCBA и корпус, электроника должна попасть примерно в **$189.00–$216.00**.
-- Сейчас базовая BOM содержит `208` MPN-групп и `1096` установленных компонентов. Принятая без потери функции замена корпуса AD8314 уже экономит **$5.50** и оставляет текущий точный planning floor **$278.34**. Дешёвая пара SMA/RP-SMA проверена и отклонена, поэтому её предполагаемая экономия сюда не входит.
-- После них до целевой электронной BOM нужно убрать ещё **$62.34–$89.34**. Формальный запас до потолка готового устройства — только **$-18.34**, поэтому без дальнейшего пересинтеза в него не помещаются платы, сборка и корпус.
+- Сейчас базовая BOM содержит `208` MPN-групп и `1096` установленных компонентов. Принятые без потери функции маршруты AD8314 и Hirose U.FL уже экономят **$10.42** и оставляют текущий точный planning floor **$273.42**. Дешёвая пара SMA/RP-SMA проверена и отклонена, поэтому её предполагаемая экономия сюда не входит.
+- После них до целевой электронной BOM нужно убрать ещё **$57.42–$84.42**. Формальный запас до потолка готового устройства — только **$-13.42**, поэтому без дальнейшего пересинтеза в него не помещаются платы, сборка и корпус.
 
 **Принято:** отдельный `Core` сейчас не проектируется. Сначала строится и проверяется один полностью оснащённый `R2-EVT1`; стоимость снижается пересинтезом реализации без удаления встроенных функций и safety-результата. Историческая цель `$150` отложена как возможная community-комплектация после работающего EVT1, а не является текущей аппаратной веткой. Первый единственный заказ всё равно будет дороже из-за MOQ, setup, ручной установки, доставки и налогов.
 
@@ -33,8 +33,8 @@
 
 | Граница | Электроника | Готовая база | Честный вывод |
 |---|---:|---:|---|
-| Текущая схема | $278.34 | больше $278.34 | уже выше принятого потолка без плат, сборки и корпуса |
-| После уже принятой AD8314-замены | $278.34 | больше $278.34 | точный текущий planning floor; всё ещё недостаточно |
+| Текущая схема | $273.42 | больше $273.42 | уже выше принятого потолка без плат, сборки и корпуса |
+| После уже принятых AD8314 и Hirose U.FL изменений | $273.42 | больше $273.42 | точный текущий planning floor; всё ещё недостаточно |
 | Те же встроенные пользовательские функции и тот же safety-результат после полного cost-resynthesis | $214.00–$235.00 | $241.00–$280.00 | с целью `$220–260` пересекается только верхняя часть |
 | Модульная community-база; специализированные тракты ставятся Cap/Unit по задаче | $108.00–$125.00 | $135.00–$165.00 | отложена до работающего `R2-EVT1`; отдельного Core сейчас нет |
 
@@ -48,37 +48,75 @@
 
 | № | Источник | MPN и роль | Шт. ×1 | Цена 1 шт. по принятой базе | Группа ×1 | Доля известной суммы |
 |---:|---|---|---:|---:|---:|---:|
-| 1 | Антенна | `SMA-W100RX2`<br><sub>receive-only telescopic whip; AIR</sub> | 1 | $35.95 | $35.95 | 8.63% |
-| 2 | Антенна | `001-0012`<br><sub>2.4/5 GHz native radio; S3, C5</sub> | 2 | $16.91 | $33.82 | 8.12% |
-| 3 | Антенна | `AN0155H13`<br><sub>VHF 136-174 MHz; VHF</sub> | 1 | $31.70 | $31.70 | 7.61% |
-| 4 | Антенна | `ANT-433-CW-QW-SMA`<br><sub>433 MHz / UHF 400-470 MHz; S433, UHF</sub> | 2 | $11.23 | $22.46 | 5.39% |
-| 5 | Основная BOM | `GCT RFPC-SMA31-FN-175-A`<br><sub>eight standard outward SMA / восемь внешних SMA</sub> | 8 | $2.46 | $19.72 | 4.73% |
-| 6 | Основная BOM | `EastRising ER-TFT035IPS-6 + ER-TPC035-6`<br><sub>display</sub> | 1 | $14.91 | $14.91 | 3.58% |
-| 7 | Основная BOM | `Analog Devices AD8314ARMZ-REEL`<br><sub>six real-TX RF detectors / шесть RF-детекторов фактической передачи</sub> | 6 | $1.94 | $11.64 | 2.79% |
-| 8 | Основная BOM | `OMRON B3S-1100P`<br><sub>sixteen ordinary user keys / шестнадцать обычных клавиш</sub> | 16 | $0.64 | $10.25 | 2.46% |
-| 9 | Основная BOM | `G-NiceRF SA818S-V`<br><sub>VHF voice transceiver / VHF голосовой трансивер</sub> | 1 | $10.07 | $10.07 | 2.42% |
-| 10 | Основная BOM | `G-NiceRF SA818S-U`<br><sub>UHF voice transceiver / UHF голосовой трансивер</sub> | 1 | $9.73 | $9.73 | 2.34% |
-| 11 | Антенна | `ANT-315-CW-HW-SMA`<br><sub>315 MHz; S315</sub> | 1 | $9.60 | $9.60 | 2.30% |
-| 12 | Основная BOM | `TE Connectivity 2118651-2`<br><sub>five 30-mm RF jumpers / пять 30-мм RF-кабелей</sub> | 5 | $1.82 | $9.11 | 2.19% |
-| 13 | Основная BOM | `Ebyte E01-ML01SP4`<br><sub>three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm</sub> | 3 | $2.96 | $8.89 | 2.13% |
-| 14 | Основная BOM | `Keystone Electronics 1048P`<br><sub>dual protected-18650 holder / держатель двух защищённых 18650</sub> | 1 | $8.57 | $8.57 | 2.06% |
-| 15 | Основная BOM | `Texas Instruments TMUX1136DGSR`<br><sub>four complete audio/control selectors / четыре полных audio/control selector</sub> | 4 | $2.06 | $8.23 | 1.98% |
-| 16 | Основная BOM | `LTC5532ES6#TRMPBF`<br><sub>S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц</sub> | 2 | $3.89 | $7.78 | 1.87% |
-| 17 | Основная BOM | `Samtec FTSH-105-01-L-DV-K-P-TR`<br><sub>four internal recovery headers / четыре внутренних recovery-разъёма</sub> | 4 | $1.70 | $6.80 | 1.63% |
-| 18 | Основная BOM | `Hirose U.FL-R-SMT-1(10)`<br><sub>five native/module microcoax mates / пять микрокоаксиальных точек</sub> | 5 | $1.07 | $5.33 | 1.28% |
-| 19 | Основная BOM | `ESP32-S3-WROOM-1U-N16R8`<br><sub>s3</sub> | 1 | $5.11 | $5.11 | 1.23% |
-| 20 | Основная BOM | `GCT RFPC-SMA32-FN-175-A`<br><sub>two native-radio RP-SMA / два RP-SMA native-радио</sub> | 2 | $2.46 | $4.93 | 1.18% |
+| 1 | Антенна | `SMA-W100RX2`<br><sub>receive-only telescopic whip; AIR</sub> | 1 | $35.95 | $35.95 | 8.73% |
+| 2 | Антенна | `001-0012`<br><sub>2.4/5 GHz native radio; S3, C5</sub> | 2 | $16.91 | $33.82 | 8.21% |
+| 3 | Антенна | `AN0155H13`<br><sub>VHF 136-174 MHz; VHF</sub> | 1 | $31.70 | $31.70 | 7.70% |
+| 4 | Антенна | `ANT-433-CW-QW-SMA`<br><sub>433 MHz / UHF 400-470 MHz; S433, UHF</sub> | 2 | $11.23 | $22.46 | 5.46% |
+| 5 | Основная BOM | `GCT RFPC-SMA31-FN-175-A`<br><sub>eight standard outward SMA / восемь внешних SMA</sub> | 8 | $2.46 | $19.72 | 4.79% |
+| 6 | Основная BOM | `EastRising ER-TFT035IPS-6 + ER-TPC035-6`<br><sub>display</sub> | 1 | $14.91 | $14.91 | 3.62% |
+| 7 | Основная BOM | `Analog Devices AD8314ARMZ-REEL`<br><sub>six real-TX RF detectors / шесть RF-детекторов фактической передачи</sub> | 6 | $1.94 | $11.64 | 2.83% |
+| 8 | Основная BOM | `OMRON B3S-1100P`<br><sub>sixteen ordinary user keys / шестнадцать обычных клавиш</sub> | 16 | $0.64 | $10.25 | 2.49% |
+| 9 | Основная BOM | `G-NiceRF SA818S-V`<br><sub>VHF voice transceiver / VHF голосовой трансивер</sub> | 1 | $10.07 | $10.07 | 2.45% |
+| 10 | Основная BOM | `G-NiceRF SA818S-U`<br><sub>UHF voice transceiver / UHF голосовой трансивер</sub> | 1 | $9.73 | $9.73 | 2.36% |
+| 11 | Антенна | `ANT-315-CW-HW-SMA`<br><sub>315 MHz; S315</sub> | 1 | $9.60 | $9.60 | 2.33% |
+| 12 | Основная BOM | `TE Connectivity 2118651-2`<br><sub>five 30-mm RF jumpers / пять 30-мм RF-кабелей</sub> | 5 | $1.82 | $9.11 | 2.21% |
+| 13 | Основная BOM | `Ebyte E01-ML01SP4`<br><sub>three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm</sub> | 3 | $2.96 | $8.89 | 2.16% |
+| 14 | Основная BOM | `Keystone Electronics 1048P`<br><sub>dual protected-18650 holder / держатель двух защищённых 18650</sub> | 1 | $8.57 | $8.57 | 2.08% |
+| 15 | Основная BOM | `Texas Instruments TMUX1136DGSR`<br><sub>four complete audio/control selectors / четыре полных audio/control selector</sub> | 4 | $2.06 | $8.23 | 2.00% |
+| 16 | Основная BOM | `LTC5532ES6#TRMPBF`<br><sub>S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц</sub> | 2 | $3.89 | $7.78 | 1.89% |
+| 17 | Основная BOM | `Samtec FTSH-105-01-L-DV-K-P-TR`<br><sub>four internal recovery headers / четыре внутренних recovery-разъёма</sub> | 4 | $1.70 | $6.80 | 1.65% |
+| 18 | Основная BOM | `ESP32-S3-WROOM-1U-N16R8`<br><sub>s3</sub> | 1 | $5.11 | $5.11 | 1.24% |
+| 19 | Основная BOM | `GCT RFPC-SMA32-FN-175-A`<br><sub>two native-radio RP-SMA / два RP-SMA native-радио</sub> | 2 | $2.46 | $4.93 | 1.20% |
+| 20 | Антенна | `TI.08.C.0112`<br><sub>868/915 MHz; S915</sub> | 1 | $4.79 | $4.79 | 1.16% |
 
 [Единый топ-20 — CSV](../hardware/product-design/generated/H1-R2-cost-top20.csv) · [Полный рейтинг 210 строк — CSV](../hardware/product-design/generated/H1-R2-cost-ranked.csv)
+
+## Критический аудит массового рынка для всего топ-20
+
+Проверены все 20 текущих групп: **14** уже являются оправданными серийными/складскими маршрутами или не имеют доказанного не худшего аналога; для **6** антенных групп найдены массовые кандидаты. Их суммарная бумажная экономия до **$89.13** не включена в BOM, потому что у каждого остаётся измеримый RF- или механический разрыв.
+
+| № | Текущая группа | Лучший массовый маршрут | Статус | До экономии |
+|---:|---|---|---|---:|
+| 1 | [`SMA-W100RX2`](https://www.comet-ant.co.jp/product/638/) | [Opek SCANSMA 25-1300](https://www.hamradio.com/detail.cfm?pid=H0-016713) | 🧪 проверить | $20.00 |
+| 2 | [`001-0012`](https://www.te.com/en/product-001-0012.html) | [split the group: TE 001-0001 for S3 2.4 GHz; Taoglas GW.05.0153 for C5 2.4/5 GHz](https://www.taoglas.com/datasheets/GW.05.0153.pdf) | 🧪 проверить | $19.30 |
+| 3 | [`AN0155H13`](https://www.hytera.com/en/product-new/accessories/radio-antennas/an0155h13.html) | [Powerwerx ANT-8](https://powerwerx.com/vhf-uhf-dual-band-standard-sma-antenna) | 🧪 проверить | $23.93 |
+| 4 | [`ANT-433-CW-QW-SMA`](https://www.te.com/en/product-ANT-433-CW-QW-SMA.html) | [Ebyte TX433-JZR-6 for UHF plus TX433-JK-11 for the narrow 433-MHz port](https://www.ebyte.com/product/824.html) | 🧪 проверить | $19.57 |
+| 5 | [`GCT RFPC-SMA31-FN-175-A`](https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/17833784) | [retain current GCT standard-SMA body](https://jlcpcb.com/partdetail/DreamLNK-SMAKWE902/C914554) | ✅ оставить | $0.00 |
+| 6 | [`EastRising ER-TFT035IPS-6 + ER-TPC035-6`](https://www.buydisplay.com/3-5-inch-tft-lcd-display-capacitive-touch-screen-ips-320x480) | [retain the documented EastRising panel and touch pair](https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf) | ✅ оставить | $0.00 |
+| 7 | [`Analog Devices AD8314ARMZ-REEL`](https://jlcpcb.com/partdetail/AnalogDevices-AD8314ARMZREEL/C652687) | [retain accepted C652687 MSOP route](https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf) | ✅ оставить | $0.00 |
+| 8 | [`OMRON B3S-1100P`](https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3S-1100P/60835) | [retain B3S-1100P; source by JLC pre-order/consignment if necessary](https://jlcpcb.com/partdetail/OmronElectronicComponents-B3S1100P/C2733652) | ✅ оставить | $0.00 |
+| 9 | [`G-NiceRF SA818S-V`](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911) | [retain exact SA818S-V C51897911](https://www.nicerf.com/walkie-talkie-module-sa818s.html) | ✅ оставить | $0.00 |
+| 10 | [`G-NiceRF SA818S-U`](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549) | [retain SA818S-U C3001549](https://www.nicerf.com/walkie-talkie-module-sa818s.html) | ✅ оставить | $0.00 |
+| 11 | [`ANT-315-CW-HW-SMA`](https://www.te.com/en/product-ANT-315-CW-HW-SMA.html) | [Joymax UHX-328ASA2B](https://www.digikey.com/en/products/detail/joymax-electronics/UHX-328ASA2B/28334978) | 🧪 проверить | $4.03 |
+| 12 | [`TE Connectivity 2118651-2`](https://www.te.com/en/product-2118651-2.html) | [retain exact 30-mm 1.13-mm U.FL-to-U.FL jumper](https://www.digikey.com/en/products/detail/te-connectivity-laird/2118651-2/13683867) | ✅ оставить | $0.00 |
+| 13 | [`Ebyte E01-ML01SP4`](https://jlcpcb.com/partdetail/E01-ML01SP4/C97340) | [retain JLCPCB C97340](https://www.ebyte.com/product/1200.html) | ✅ оставить | $0.00 |
+| 14 | [`Keystone Electronics 1048P`](https://www.digikey.com/en/products/detail/keystone-electronics/1048P/4499417) | [retain 1048P; use reviewed factory sourcing/consignment route](https://jlcpcb.com/partdetail/KeystoneElectronics-1048P/C6038062) | ✅ оставить | $0.00 |
+| 15 | [`Texas Instruments TMUX1136DGSR`](https://jlcpcb.com/partdetail/TexasInstruments-TMUX1136DGSR/C2673301) | [retain TMUX1136DGSR C2673301](https://www.ti.com/lit/ds/symlink/tmux1136.pdf) | ✅ оставить | $0.00 |
+| 16 | [`LTC5532ES6#TRMPBF`](https://jlcpcb.com/partdetail/AnalogDevices-LTC5532ES6TRMPBF/C580926) | [retain LTC5532; exact-one needs two and current stock covers it](https://www.analog.com/media/en/technical-documentation/data-sheets/5532f.pdf) | ✅ оставить | $0.00 |
+| 17 | [`Samtec FTSH-105-01-L-DV-K-P-TR`](https://jlcpcb.com/partdetail/Samtec-FTSH_105_01_L_DV_K_PTR/C2932107) | [retain JLCPCB C2932107](https://www.tag-connect.com/product/tc2050-idc-nl-10-pin-no-legs-cable-with-ribbon-connector) | ✅ оставить | $0.00 |
+| 18 | [`ESP32-S3-WROOM-1U-N16R8`](https://jlcpcb.com/partdetail/EspressifSystems-ESP32S3WROOM1UN16R8/C3013946) | [retain exact N16R8 external-antenna module](https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf) | ✅ оставить | $0.00 |
+| 19 | [`GCT RFPC-SMA32-FN-175-A`](https://www.digikey.com/en/products/detail/gct/RFPC-SMA32-FN-175-A/17833785) | [retain current GCT reverse-polarity body](https://jlcpcb.com/partdetail/DreamLNK-SMAKWE901/C914553) | ✅ оставить | $0.00 |
+| 20 | [`TI.08.C.0112`](https://www.taoglas.com/datasheets/TI.08.C.0112.pdf) | [Seeed Studio 113070002 868/915-MHz whip](https://www.seeedstudio.com/External-Antenna-868-915MHZ-2dBi-SMA-L195mm-Foldable-p-5863.html) | 🧪 проверить | $2.30 |
+
+Почему кандидаты ещё не приняты:
+
+- **`SMA-W100RX2` → Opek SCANSMA 25-1300:** same stated 25-1300-MHz receive range, but it is a remote magnetic-mount antenna with 12-ft RG-174 rather than a direct telescopic whip (in stock at Ham Radio Outlet; USD 15.95)
+- **`001-0012` → split the group: TE 001-0001 for S3 2.4 GHz; Taoglas GW.05.0153 for C5 2.4/5 GHz:** S3 does not use 5 GHz, so its dual-band/IP67 capability is unused; C5 candidate begins at 5150 rather than 4910 MHz and both substitutions require assembled-device matching/EIRP closure (001-0001: 2,656 Mouser stock; GW.05.0153: distributor stock and serial order route)
+- **`AN0155H13` → Powerwerx ANT-8:** covers 136-174 and 400-470 MHz with standard SMA, but its public page does not close gain, VSWR, power or exact mechanical seating; it may cover both voice ports only after VNA and voice-TX HIL (in stock; USD 7.77)
+- **`ANT-433-CW-QW-SMA` → Ebyte TX433-JZR-6 for UHF plus TX433-JK-11 for the narrow 433-MHz port:** UHF candidate preserves 400-480 MHz, 10 W and improves stated VSWR but nominal gain falls 3.3 to 3.0 dBi; the 433 candidate is narrow-band and both need VNA/EIRP HIL (both serial Ebyte parts available from stocked distributors; TX433-JZR-6 observed at USD 1.72)
+- **`ANT-315-CW-HW-SMA` → Joymax UHX-328ASA2B:** candidate is 312-317 rather than 304-325 MHz, -0.4 rather than 0 dBi and 1 W; adequate only for the exact 315-MHz profile after VNA/TX HIL (958 DigiKey stock; USD 5.5693 at 100)
+- **`TI.08.C.0112` → Seeed Studio 113070002 868/915-MHz whip:** candidate preserves both bands, SMA and 10 W but changes right-angle mechanics and falls from 2.48 to 2.0 dBi at 868 MHz; both regional EIRP limits require HIL (in stock; USD 2.49)
+
+[Полный аудит и evidence — CSV](../hardware/product-design/generated/H1-R2-top20-market-audit.csv)
 
 ## Где вероятнее всего есть неоправданные траты
 
 | Приоритет | Группа | Сейчас ×1 | Вывод | Реалистичная экономия |
 |---:|---|---:|---|---:|
 | 1 | Внешние антенны | $138.32 + 4 неизвестных | Крупнейшая отдельная группа; функциональность нужна, но брендовые первые MPN не обязаны быть самыми выгодными | уточняется |
-| 2 | 10 внешних SMA/RP-SMA | $24.65 | Цена GCT больше не оправдывается требованием низкого профиля; нужна повторная компоновка прочной пары с фабричным manual-solder route | до ~$19.02 |
+| 2 | 10 внешних SMA/RP-SMA | $24.65 | Проверены дешёвые standard/reverse-пары; они провалили направление, геометрию 5+5 либо exact-one factory route. GCT остаётся оправданным | $0 доказанно |
 | 3 | 8 RF-detector’ов | $19.41 | Шесть AD8314 уже переведены на C652687 после полного placement-аудита; функциональность и все восемь evidence-трактов сохранены | $5.50 уже принято |
-| 4 | 5 U.FL + 5 кабелей | $14.43 | Сейчас функционально оправдано; убрать можно только один тракт после доказанного C5 T2-маршрута | до ~$2.89 |
+| 4 | 5 U.FL + 5 кабелей | $9.52 | Упаковочная версия Hirose уже удешевлена без потерь; убрать можно только один тракт после доказанного C5 T2-маршрута | до ~$1.90 дополнительно |
 | 5 | 16 пользовательских кнопок | $10.25 | Проверенные дешёвые кандидаты ухудшают ESD, feel или evidence; текущая группа оправдана | $0 |
 | 6 | Держатель 2×18650 | $8.57 | Складские одиночные держатели не доказывают полный protected-cell и polarity contract; 1048P оправдан | $0 |
 | 7 | 4 внутренних DBG10 | $6.80 | Exact Samtec уже складской; Tag-Connect удорожает единственный EVT1 и ухудшает long-session workflow | $0 для EVT1 |
@@ -125,6 +163,7 @@
 | ESP32-C5 production supplier route and revision floor | `ESP32-C5-WROOM-1U-N8R8 / historical C51950748` | `ESP32-C5-WROOM-1U-N8R8 / supplier code ESP32-C5-WROOM-1U-N8R8-V1.2` | `C54951858` | 440 | `accepted_stocked_supplier_route_identity_normalization` |
 | dual Ioff return buffers | `Nexperia 74LVC2G126DC,125` | `Nexperia 74LVC2G126DP,125` | `C503392` | 155 | `accepted_stocked_exact_family_package_variant` |
 | six AD8314 real-TX evidence detectors | `Analog Devices AD8314ACPZ-RL7` | `Analog Devices AD8314ARMZ-REEL` | `C652687` | 2977 | `accepted_same_device_msop_explicit_factory_route_and_physical_fit` |
+| five native/module U.FL receptacles | `Hirose U.FL-R-SMT-1(10)` | `Hirose U.FL-R-SMT-1(80)` | `C88374` | 68798 | `accepted_stocked_exact_packaging_variant` |
 | all 100-nF 50-V X7R 0402 bypass positions | `TDK C1005X7R1H104K050BB` | `YAGEO CC0402KRX7R9BB104` | `C131394` | 7796754 | `accepted_stocked_exact_parametric_replacement` |
 | six ordinary 0402 resistor identities across 28 positions | `YAGEO RC0402FR-072K2L / 07133KL / 07270KL / 075K23L / 078K2L / 071K65L` | `UNI-ROYAL 0402WGF2201TCE / 1333TCE / 2703TCE / 5231TCE / 8201TCE / 1651TCE` | `C25879 / C25753 / C25770 / C25907 / C25924 / C25869` | 2027222 / 6692 / 156208 / 40861 / 234262 / 5616 | `accepted_stocked_exact_parametric_replacements` |
 | two dual Schmitt inverters | `Nexperia 74LVC2G14GW,125` | `Nexperia 74LVC2G14GV,125` | `C426708` | 35 | `accepted_stocked_exact_family_package_variant` |
@@ -145,6 +184,7 @@
 - **`ESP32-C5-WROOM-1U-N8R8 / supplier code ESP32-C5-WROOM-1U-N8R8-V1.2`:** Принято в H1-R2.28 без изменения официального MPN Espressif, 8 МиБ flash, 8 МиБ PSRAM, корпуса, land pattern или антенного разъёма. Суффикс JLC является только supplier order code. Активный складской маршрут Standard PCBA — C54951858; исторический zero-stock C51950748 запрещён как active. Production требует одновременно MD/lot identity и eFuse revision >=v1.2; v1.0 только engineering, v0.1/unknown запрещены. Серийная материальная база снижается с $4,3700 до $4,1338 на устройство, live-строка пяти устройств равна $29,2935. [JLCPCB](https://jlcpcb.com/partdetail/C54951858)
 - **`Nexperia 74LVC2G126DP,125`:** Принято в H1-R2.23. DP и DC — корпусные варианты одного семейства Nexperia 74LVC2G126: логика, порядок выводов, Schmitt-входы, Ioff и тайминги сохранены. Увеличенные TSSOP-корпуса прошли повторный аудит компоновки. Строка партии из пяти устройств снижается с наблюдавшихся $40,60 pre-order до $12,1425 со склада; цена одной микросхемы на ступени 100 шт. растёт с прежней внешней базы $0,2086 до JLCPCB $0,3753. [JLCPCB](https://jlcpcb.com/partdetail/Nexperia-74LVC2G126DP125/C503392)
 - **`Analog Devices AD8314ARMZ-REEL`:** Принято в H1-R2.36. Analog Devices задаёт ARMZ-REEL и ACPZ-RL7 как корпусные варианты одной функции AD8314 с одинаковыми пронумерованными выводами 1-8; у RM-8 лишь нет exposed paddle. JLCPCB C652687 доступен как Extended SMT для Standard PCBA через явный pre-order/overseas-маршрут на 2 977 деталей, при 2 978 overseas и MOQ 4; на единственное устройство нужно шесть. Все шесть полных lead-envelope 5,15 x 3,20 x 1,10 мм, два сохранённых LTC5532, все пять coupler и восемь локальных evidence-островов проходят аудит коллизий, compression-stop и встречной платы. Строка quantity-100 снижается с $17,1420 до $11,6388, экономия $5,5032 на устройство без удаления evidence. [JLCPCB](https://jlcpcb.com/partdetail/AnalogDevices-AD8314ARMZREEL/C652687)
+- **`Hirose U.FL-R-SMT-1(80)`:** Принято в H1-R2.37. Hirose перечисляет (01), (60) и (80) как варианты поставки одной розетки U.FL-R-SMT-1 с теми же контактами, корпусом 2,6 x 2,6 x 1,25 мм, посадкой и параметрами 6 ГГц / 50 Ом; меняется только упаковка. C88374 есть на складе JLCPCB как SMT для Economic и Standard PCBA. Пять установленных розеток снижаются с $5,3275 до $0,4115 на общей базе quantity-100, экономя $4,9160 без изменения платы, RF или прошивки. [JLCPCB](https://jlcpcb.com/partdetail/U.FL-R-SMT-1%2880%29/C88374)
 - **`YAGEO CC0402KRX7R9BB104`:** Принято в H1-R2.24. YAGEO сохраняет 100 нФ, 50 В, X7R, +/-10%, 0402/1005, диапазон -55…+125 °C и тот же корпус 1,0 x 0,5 x 0,5 мм. На JLCPCB это складская позиция для Standard PCBA с MOQ 1. Строка партии из пяти устройств снижается с наблюдавшихся $22,5624 pre-order TDK до $5,9535 со склада, экономия $16,6089; серийная материальная база уменьшается на $2,2197 на устройство. [JLCPCB](https://jlcpcb.com/partdetail/Yageo-CC0402KRX7R9BB104/C131394)
 - **`UNI-ROYAL 0402WGF2201TCE / 1333TCE / 2703TCE / 5231TCE / 8201TCE / 1651TCE`:** Принято в H1-R2.26. Каждая замена сохраняет точный номинал, корпус 0402, допуск 1 %, мощность 62,5 мВт, рабочее напряжение 50 В, ТКС 100 ppm/°C и диапазон -55…+155 °C. Все шесть точных MPN UNI-ROYAL есть на складе JLCPCB для Standard PCBA с MOQ 1. Потребность партии из пяти устройств снижается примерно с $53,7347 по зафиксированному pre-order-маршруту до $0,5430 со склада, экономия около $53,1917; публичная материальная база снижается на $0,1542 на устройство. [JLCPCB](https://jlcpcb.com/partdetail/26622-0402WGF2201TCE/C25879)
 - **`Nexperia 74LVC2G14GV,125`:** Принято в H1-R2.26. GV и GW — корпусные варианты из одного актуального datasheet Nexperia 74LVC2G14: общими остаются два Schmitt-инвертора, выводы 1–6, питание 1,65–5,5 В, Ioff при снятом питании и тайминги. Корпуса TSOP6 2,9 × 1,5 × 1,1 мм проходят повторный аудит компоновки. Для десяти деталей пробной партии доступны 35 штук. Строка партии из пяти устройств снижается с $9,0376 pre-order до $2,0100 со склада, экономия $7,0276; консервативная серийная материальная база растёт на $0,2026 на устройство. [JLCPCB](https://jlcpcb.com/partdetail/Nexperia-74LVC2G14GV125/C426708)
@@ -166,11 +206,11 @@
 ## Очередь удешевления
 
 1. ▶ **Пересобрать внешний антенный комплект из складских эквивалентов** — Уже оценённые восемь из двенадцати профилей стоят $138,32 на одно устройство; три nRF24-антенны и AM/LW pod ещё не оценены. Это крупнейшая отдельная материальная группа проекта, хотя она не входит в базовую PCBA BOM. Не удалять диапазоны и не подменять TX-антенны широкополосным компромиссом: для каждого порта найти серийный складской MPN с тем же разъёмом, диапазоном, мощностью и не худшим согласованием, а receive-only профили оптимизировать отдельно.
-2. ✅ **Заменить безопасно эквивалентные pre-order пассивы и обычную логику на складские JLCPCB** — После шести безопасных пакетов 26 pre-order-строк стоят $648,0444 в нормализованном снимке партии из пяти устройств против $322,6465 по серийной материальной базе. Складские маршруты Nexperia, YAGEO, UNI-ROYAL, FH, Hirose, TI, Vishay и Murata вместе убирают около $137,7020 из наблюдаемого пробного маршрута и снижают публичную материальную базу на $3,0885 на устройство. Проверять каждую строку по её substitution-классу; принимать только точную либо не худшую параметрическую замену.
+2. ✅ **Заменить безопасно эквивалентные pre-order пассивы и обычную логику на складские JLCPCB** — После семи безопасных пакетов 27 pre-order-строк стоят $660,0144 в нормализованном снимке партии из пяти устройств против $331,0265 по серийной материальной базе. Складские маршруты Nexperia, YAGEO, UNI-ROYAL, FH, Hirose, TI, Vishay и Murata вместе убирают около $140,8195 из наблюдаемого пробного маршрута и снижают публичную материальную базу на $8,0045 на устройство. Проверять каждую строку по её substitution-классу; принимать только точную либо не худшую параметрическую замену.
 3. ✅ **Сохранить GCT-пару после провала полной проверки дешёвой сквозной пары в геометрии 5+5** — Десять GCT RFPC-SMA31/32 стоят $24,65 на устройство. Точные чертежи закрыли привлекательную альтернативу DreamLNK: четыре внешних корпуса конфликтуют с keep-out головок принятых верхних compression-stop, пять групп портов — с телами или резервами на внутренних сторонах, а фабричный маршрут остаётся manualWeld без цены для ровно одного устройства. Оставить принятую двусторонне припаянную пару GCT. Возвращаться к замене только для фабрично устанавливаемой standard/reverse-пары с внешним направлением, покрытием 6 ГГц для native-портов, посадкой в неизменённую геометрию 5+5 и compression-stop и полным маршрутом заказа ровно одного устройства.
 4. ✅ **Сохранить принятую MSOP-версию AD8314 и все восемь трактов реальной передачи** — Шесть AD8314ARMZ-REEL и два LTC5532 теперь дают $19,41 на устройство. C652687 имеет явный JLCPCB Extended-SMT Standard-PCBA pre-order/overseas-маршрут: MOQ 4, доступно 2 977, а единственному устройству нужно шесть. Все корпуса и восемь локальных островов проходят H1-R2.36. Перенести точные корпуса, локальные RF/passive allocations и отсутствие EPAD у RM-8 в новый R2 H2. Два LTC5532 и независимое evidence трёх одновременно работающих nRF24 сохранить.
 5. ✅ **Сохранить заземлённую серию Omron для всех шестнадцати обычных клавиш** — B3S-1100P дают $10,25 на устройство. Проверены два складских аналога: B3S-1000P сохраняет усилие, высоту, ресурс и IP67, но теряет заземление крышки; TSG002A04526A намного дешевле, но также теряет этот вывод, повышает усилие до 2,6 Н и не доказывает ресурс точного кода в 500 тысяч нажатий. Поскольку все кнопки нажимаются пальцем напрямую без колпачка или толкателя, оба варианта хуже. Оставить B3S-1100P в текущей архитектуре. Возвращаться к замене только при наличии фабрично устанавливаемой детали с заземлённой пользовательской границей, усилием около 1,6 Н, высотой 4,3 мм, IP67 и ресурсом не менее 500 тысяч нажатий либо после будущей механической изоляции металлической крышки корпусом.
-6. ✅ **Сохранить все пять трактов U.FL + 30-мм кабель после проверки размещения источников** — Пять трактов дают $14,43 на устройство без учёта ручной укладки. S3 и все три E01 выводят RF только через микрокоаксиальный разъём, а каждый тракт обязан пройти через локальный coupler и детектор реальной передачи до SMA. Текущий C5 также выводит U.FL; точный складской Espressif T2/ANT2 factory-route не доказан. Поэтому сейчас безопасно удалить можно 0/5 трактов. Будущий квалифицированный C5 T2 может убрать один тракт и сэкономить около $2,89 на устройство.
+6. ✅ **Сохранить все пять трактов U.FL + 30-мм кабель после проверки размещения источников** — Пять трактов теперь дают $9,52 на устройство после перехода на точную складскую упаковочную версию Hirose; ручная укладка не учтена. S3 и все три E01 выводят RF только через микрокоаксиальный разъём, а каждый тракт обязан пройти через локальный coupler и детектор реальной передачи до SMA. Текущий C5 также выводит U.FL; точный складской Espressif T2/ANT2 factory-route не доказан. Поэтому сейчас безопасно удалить можно 0/5 трактов. Будущий квалифицированный C5 T2 может убрать один тракт и сэкономить около $1,90 на устройство.
 7. ✅ **Сохранить 1048P до доказательства полноценного держателя защищённых элементов** — 1048P даёт $8,57 на устройство и остаётся pre-order, но проверенные складские MYOUNG — одиночные держатели или отдельные контакты: они не доказывают длину выбранных защищённых button-top XTAR, механическую блокировку переполюсовки двух элементов до касания контактов и единый четырёхконтактный механизм с опорой на корпус. Для EVT1 оставить 1048P как оправданный safety/mechanical-компонент. Возвращаться к замене только при наличии серийного фабрично устанавливаемого двойного держателя, который доказывает полный XTAR-envelope и передаёт усилия вставки/извлечения на корпус, а не на пайку.
 8. ✅ **Сохранить четыре складских Samtec DBG10 для единственного EVT1** — Исправленное количество R2 — четыре, а не три. Точный C2932107 сейчас есть на складе JLCPCB Extended SMT: 890 шт., доступны 887, MOQ 1 и $1,41 при количестве 1. Четыре разъёма стоят $5,64 на exact-one factory route. Площадки TC2050-IDC убрали бы детали с плат, но потребовали бы отдельный кабель за $39 и изменили бы удобство длительной отладки. Оставить четыре FTSH-105-01-L-DV-K-P-TR для независимого восстановления S3/C5/Hub-RP/RF-RP. Вернуться к Tag-Connect после EVT1, когда одноразовую цену кабеля можно амортизировать и проверить service-workflow.
 9. ✅ **Не удешевлять уже выбранную серийную панель** — EastRising ER-TFT035IPS-6 + ER-TPC035-6 стоит $14,91, имеет полный чертёж, ILI9488/FT6236, i8080-8 и серийный заказ от одной штуки. Донорская схема удалена. Считать стоимость дисплея оправданной; открытым остаётся только тариф и письменное принятие фабрикой установки панели и FPC, а не поиск другого экрана.
@@ -182,4 +222,4 @@
 - Принятая верхняя позиция adapter PCB `[22.25, 1.0]` прогнана по текущим точным корпусам: `0` same-face collisions, минимальный встречный зазор `2.6 мм` при требуемых `0.7 мм`, GPIO и BOM не меняются.
 - Ориентация и сменный адаптер зафиксированы в H1; открыты только письменное принятие фабрикой установки/FPC и входная проверка соответствия полученной партии.
 
-> Marker: **H1-R2.36**. H1 remains open pending the complete mock-up decision.
+> Marker: **H1-R2.37**. H1 remains open pending the complete mock-up decision.

@@ -1,4 +1,4 @@
-# H1-R2.36 · working target-device placement
+# H1-R2.37 · working target-device placement
 
 The complete verifiable physical model of the two 75 × 150 mm PCBs is ready for visual acceptance. Every body, Cap profile, external U219 antenna volume and copper reserve is registered with no open geometry gate; H1 remains open only until this mock-up is explicitly accepted. H1 acceptance does not itself authorize KiCad routing: the R2 H2 electrical prerequisites listed below must still close first.
 
@@ -83,4 +83,4 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs is ready for
 - select and factory-validate the exact service-VBUS detector/latch MPN used by the closed C5 electrical ownership contract
 - instantiate and prove the exact powered-off-Ioff isolation boundary and separate 3V3_MAIN/AON pull-up domains for Hub GPIO42/43 Pack/Safety I2C
 
-> Exact current marker: **H1-R2.36**. H1 remains in progress.
+> Exact current marker: **H1-R2.37**. H1 remains in progress.

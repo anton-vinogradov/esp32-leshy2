@@ -3,7 +3,7 @@
   "stage": "H3.0.2",
   "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
-    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
+    "hardware/architecture/devices.json": "33764997afecc02f1112a0d471647b9c8562ac38ee74b31222ea09db68bdac07",
     "hardware/ecad/generated/H2-instance-ledger.json": "36c18638c89d353cfc92f6213c6e001fa20cfe88ffb8cf3c2f5c5544d0c11fe6",
     "hardware/verification/generated/H3-VRF01-input-freeze.json": "672990f8531ffa803724aa8bf1b3b262436267d89d965c9e2313fdb13c5b57bd"
   },
@@ -15,9 +15,9 @@
   },
   "provenance_overrides": {
     "hirose_ufl_r_smt_1_10": {
-      "document": "Hirose U.FL-R-SMT-1(10) official specification sheet",
-      "url": "https://www.hirose.com/product/document?clcode=CL0331-0472-2-10&documentid=0000266652&documenttype=SpecSheet&lang=en&productname=U.FL-R-SMT-1%2810%29&series=U.FL",
-      "reason": "original manufacturer source replaces the accepted H2 distributor mirror without changing the H2 baseline"
+      "document": "Hirose U.FL series official catalog including U.FL-R-SMT-1(80)",
+      "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+      "reason": "the original manufacturer catalog proves the selected packaging code without changing the electrical, footprint or physical baseline"
     },
     "jae_dx07s016ja1r1500": {
       "document": "JAE DX07S016JA1R1500 official exact-product page",
@@ -1522,7 +1522,7 @@
     },
     {
       "device_key": "hirose_ufl_r_smt_1_10",
-      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "mpn": "Hirose U.FL-R-SMT-1(80)",
       "kind": "first_generation_ufl_6ghz_board_receptacle",
       "instance_count": 5,
       "projects": [
@@ -1543,17 +1543,17 @@
       ],
       "lifecycle": "active_orderable",
       "source": {
-        "document": "Hirose U.FL-R-SMT-1(10) official specification sheet",
-        "url": "https://www.hirose.com/product/document?clcode=CL0331-0472-2-10&documentid=0000266652&documenttype=SpecSheet&lang=en&productname=U.FL-R-SMT-1%2810%29&series=U.FL",
-        "reason": "original manufacturer source replaces the accepted H2 distributor mirror without changing the H2 baseline"
+        "document": "Hirose U.FL series official catalog including U.FL-R-SMT-1(80)",
+        "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+        "reason": "the original manufacturer catalog proves the selected packaging code without changing the electrical, footprint or physical baseline"
       },
       "source_status": "official_h3_override",
       "source_host": "www.hirose.com",
       "accepted_h2_source_preserved": {
         "document": "Hirose U.FL Series connector catalog",
         "version": "current catalog",
-        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-        "checked": "2026-08-18"
+        "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+        "checked": "2026-08-29"
       },
       "structured_parameter_count": 5,
       "structured_parameters": {

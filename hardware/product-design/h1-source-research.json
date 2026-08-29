@@ -3,7 +3,7 @@
   "stage": "H1.1.3.3",
   "as_of": "2026-08-29",
   "status": "reviewed",
-  "current_substep": "H1-R2.36",
+  "current_substep": "H1-R2.37",
   "policy": {
     "order_authorized": false,
     "purchase_is_last_resort": true,
@@ -106,7 +106,7 @@
         },
         {
           "source": "https://www.te.com/content/dam/te-com/documents/consumer-devices/global/linx-te-competitive-cross-ref-guide.pdf",
-          "finding": "TE cross-references UMCC Gen1/MHF1 to Hirose U.FL-R-SMT-1(10); authorized-distributor stock exists for 2118651-2."
+          "finding": "TE cross-references UMCC Gen1/MHF1 to Hirose U.FL-R-SMT-1(10); Hirose's current catalog proves that selected (80) is the same receptacle and footprint with a different reel presentation; authorized-distributor stock exists for 2118651-2."
         }
       ],
       "remaining_gap": "Ebyte does not publish the receptacle axis or manufacturer's exact MPN; H1 uses a conservative module-face route reserve, while current-lot axis, identity and fit remain incoming-inspection items.",

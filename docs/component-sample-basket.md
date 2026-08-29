@@ -20,8 +20,8 @@ flowchart TD
 
 ## Cost summary
 
-- **$253.76** is the known conservative material budget for every priced line.
-- It contains **$249.76** of published USD prices and **$4.00** of conservative caps for two cheap IR parts whose live pages expose AUD/INR prices.
+- **$245.92** is the known conservative material budget for every priced line.
+- It contains **$241.92** of published USD prices and **$4.00** of conservative caps for two cheap IR parts whose live pages expose AUD/INR prices.
 - The total includes exact `SA818S-U` `C3001549` at `$9.7347` and exact `SA818S-V` `C51897911` at `$10.0710`; the VHF module has zero stock, MOQ 1 and a typical 8–15-working-day lead, while final quote/lead remain an order-time gate.
 - The exact production panel is included at its published `$14.91` one-piece price; only factory attrition, final assembly/FCT, freight, taxes and customs are excluded. Any additional display or connector units belong to the factory attrition quote, not to user samples; there is no separate H5 coupon order.
 - The former `$164.54` was not a cheaper complete basket: it covered only eight partial lines and omitted most H5 gates.
@@ -54,8 +54,8 @@ flowchart TD
   Minimum basis: exactly three factory-fitted PA/LNA modules are required to prove simultaneous full RX, TX and mixed operation; no owner placement or untouched spare
 - **5 × `TE Connectivity 2118651-2` — $12.60.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824); 3,082 shown in stock.
   Minimum basis: five real paths exist: S3, C5 and three nRF24; every installed bend/retention path must be represented
-- **5 × `Hirose U.FL-R-SMT-1(10)` — $8.35.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/U-FL-R-SMT-1-10/2391570); 319,443 shown in stock.
-  Minimum basis: one board mate per selected 30-mm jumper path
+- **5 × `Hirose U.FL-R-SMT-1(80)` — $0.51.** [JLCPCB exact original-manufacturer part C88374](https://jlcpcb.com/partdetail/U.FL-R-SMT-1%2880%29/C88374); 72,989 in stock; 68,798 orderable; MOQ 1; factory SMT placement.
+  Minimum basis: one board mate per selected 30-mm jumper path; (80) changes reel presentation only
 - **4 × `GCT RFPC-SMA31-FN-175-A` — $13.56.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/25576371); 638 shown in stock.
   Minimum basis: three nRF24 boundaries plus one AM/LW receive boundary; the S3/C5 module cables use their separately selected SMA32 path
 - **1 × `G-NiceRF SA818S-U` — $9.74.** [JLCPCB exact G-NiceRF part C3001549](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549); 68 in stock; 60 available to order.

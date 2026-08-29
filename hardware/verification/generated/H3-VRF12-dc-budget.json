@@ -6,8 +6,8 @@
   "source_hashes": {
     "hardware/verification/generated/H3-VRF11-power-state-register.json": "b9242783fd310b3aaf74eb237ccd523e79c8f063fdb25645361e8c80f4ec8303",
     "hardware/verification/generated/H3-VRF03-method-contract.json": "0d50b8e4a917d6f07d22186a28020e18414afbecbf476b6566785d86c6f12768",
-    "hardware/architecture/candidates/G2F-3I.json": "edce4ca3aed56ed1a58b9ec85d19f7c9db624869f54797e0c2dc329e9816007d",
-    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
+    "hardware/architecture/candidates/G2F-3I.json": "2673a4d23435effe9ec592e6060a3b1bc525598944d932f0a502d0fd4636ce8f",
+    "hardware/architecture/devices.json": "33764997afecc02f1112a0d471647b9c8562ac38ee74b31222ea09db68bdac07",
     "hardware/ecad/generated/H2-REV51-power-paths.json": "eae477a68fb7e122498037c900269727a38887d7a0a0a5c5490eb27114598c32"
   },
   "provenance": [

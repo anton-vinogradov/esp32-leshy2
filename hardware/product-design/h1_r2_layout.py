@@ -1829,7 +1829,7 @@ def render_inner_face_svg(
         if connector["frame"] != frame:
             continue
         x, y = connector["point"]
-        mpn = ' data-mpn="U.FL-R-SMT-1(10)"' if connector["part"] == "board-ufl" else ""
+        mpn = ' data-mpn="U.FL-R-SMT-1(80)"' if connector["part"] == "board-ufl" else ""
         out.append(
             f'<circle cx="{sx(x):.1f}" cy="{sy(y):.1f}" r="6.3" fill="#ffffff" stroke="#0f766e" '
             f'stroke-width="2" data-path="{html.escape(connector["path"])}" '

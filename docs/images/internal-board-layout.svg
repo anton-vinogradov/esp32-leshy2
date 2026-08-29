@@ -102,7 +102,7 @@
 <text x="970.0" y="264.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">removable 30-mm microcoax cable</text>
 <path d="M970.0 276.0 V294.0" stroke="#0f766e" stroke-width="3"/>
 <rect x="820.0" y="294.0" width="300.0" height="46.0" rx="5" fill="#ecfdf5" stroke="#0f766e" stroke-width="1.4"/>
-<text x="970.0" y="312.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">Hirose U.FL-R-SMT-1(10)</text>
+<text x="970.0" y="312.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">Hirose U.FL-R-SMT-1(80)</text>
 <text x="970.0" y="328.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">PCB re-entry · feeds TX coupler and outer RP-SMA</text>
 <path d="M970.0 340.0 V358.0" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3"/>
 <rect x="820.0" y="358.0" width="300.0" height="46.0" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
@@ -124,7 +124,7 @@
 <text x="1310.0" y="264.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">removable 30-mm microcoax cable</text>
 <path d="M1310.0 276.0 V294.0" stroke="#0f766e" stroke-width="3"/>
 <rect x="1160.0" y="294.0" width="300.0" height="46.0" rx="5" fill="#ecfdf5" stroke="#0f766e" stroke-width="1.4"/>
-<text x="1310.0" y="312.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">Hirose U.FL-R-SMT-1(10)</text>
+<text x="1310.0" y="312.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">Hirose U.FL-R-SMT-1(80)</text>
 <text x="1310.0" y="328.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">PCB re-entry · feeds TX coupler and outer RP-SMA</text>
 <path d="M1310.0 340.0 V358.0" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3"/>
 <rect x="1160.0" y="358.0" width="300.0" height="46.0" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
@@ -601,9 +601,9 @@
 <text x="56.0" y="804.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">S3 forward-power coupler beside the outward RP-SMA</text>
 <text x="30.0" y="816.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">02  KYOCERA AVX CP0603Q5425ENTR</text>
 <text x="56.0" y="825.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">C5 dual-band forward-power coupler beside the outward RP-SMA</text>
-<text x="30.0" y="837.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">03  Hirose U.FL-R-SMT-1(10)</text>
+<text x="30.0" y="837.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">03  Hirose U.FL-R-SMT-1(80)</text>
 <text x="56.0" y="846.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">S3 30-mm jumper board receptacle</text>
-<text x="30.0" y="858.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">04  Hirose U.FL-R-SMT-1(10)</text>
+<text x="30.0" y="858.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">04  Hirose U.FL-R-SMT-1(80)</text>
 <text x="56.0" y="867.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">C5 30-mm jumper board receptacle</text>
 <text x="30.0" y="879.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">05  ESP32-S3-WROOM-1U-N16R8</text>
 <text x="56.0" y="888.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">UI, display, storage and audio owner</text>
@@ -668,11 +668,11 @@
 <text x="30.0" y="1509.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">35  TE Connectivity 2118651-2</text>
 <text x="56.0" y="1518.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">direct C5 U.FL-to-U.FL plan projection; 30-mm assembly slack closes at H5</text>
 <text x="400.0" y="775.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#c2410c">RF/power PCB · 1/3</text>
-<text x="400.0" y="795.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">36  Hirose U.FL-R-SMT-1(10)</text>
+<text x="400.0" y="795.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">36  Hirose U.FL-R-SMT-1(80)</text>
 <text x="426.0" y="804.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #0 Gen1 jumper board receptacle</text>
-<text x="400.0" y="816.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">37  Hirose U.FL-R-SMT-1(10)</text>
+<text x="400.0" y="816.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">37  Hirose U.FL-R-SMT-1(80)</text>
 <text x="426.0" y="825.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #1 Gen1 jumper board receptacle</text>
-<text x="400.0" y="837.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">38  Hirose U.FL-R-SMT-1(10)</text>
+<text x="400.0" y="837.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">38  Hirose U.FL-R-SMT-1(80)</text>
 <text x="426.0" y="846.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #2 Gen1 jumper board receptacle</text>
 <text x="400.0" y="858.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">39  SC1512-A4</text>
 <text x="426.0" y="867.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">deterministic radio owner</text>
