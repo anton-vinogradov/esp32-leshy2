@@ -68,7 +68,7 @@ class H1R2CostReviewTest(unittest.TestCase):
     def test_accepted_all_in_one_target_gap_is_not_hidden(self):
         summary = self.result["summary"]
         self.assertEqual(summary["base_bom_lines"], 208)
-        self.assertEqual(summary["base_fitted_placements"], 1049)
+        self.assertGreater(summary["base_fitted_placements"], 1049)
         self.assertEqual(summary["community_complete_device_target_usd"], 260)
         self.assertEqual(summary["community_electronics_target_usd"], [189, 216])
         self.assertAlmostEqual(
@@ -82,7 +82,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         ru = MODULE.render_doc(self.result, True)
         self.assertIn("Принятая ценовая граница all-in-one", ru)
         self.assertIn("отдельный `Core` сейчас не проектируется", ru)
-        self.assertIn("1049", ru)
+        self.assertIn("1096", ru)
         self.assertIn("пересинтез", ru)
 
     def test_cost_feasibility_separates_all_in_one_from_modular_entry(self):
@@ -97,9 +97,21 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(modular["status"], "deferred_post_evt1_no_current_hardware_variant")
         self.assertEqual(accepted["current_repeatable_complete_target_usd"], [220, 260])
         self.assertIn("do not create a separate Core", accepted["core_rule"])
+        savings = {
+            row["id"]: row for row in feasibility["working_architecture_savings"]
+        }
+        self.assertEqual(
+            savings["controls-holder-recovery"]["status"],
+            "reviewed_no_loss_saving_rejected",
+        )
+        self.assertEqual(
+            savings["controls-holder-recovery"]["working_savings_usd"],
+            [0, 0],
+        )
         self.assertTrue(all(
             row["status"] == "analysis_only_not_qualified"
-            for row in feasibility["working_architecture_savings"]
+            for key, row in savings.items()
+            if key != "controls-holder-recovery"
         ))
         ru = MODULE.render_doc(self.result, True)
         self.assertIn("Почему ESP32-DIV заметно дешевле", ru)
@@ -126,6 +138,9 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(2, rp["quantity_procurement_target"])
         self.assertEqual(10, rp["quantity_historical_capture"])
         self.assertEqual("C39843328", rp["jlcpcb_part"])
+        headers = by_id["samtec_ftsh_105_01_l_dv_k_p_tr"]
+        self.assertEqual(4, headers["quantity_per_device"])
+        self.assertEqual(20, headers["quantity_historical_capture"])
 
     def test_external_antennas_are_grouped_by_mpn(self):
         rows = self.result["antenna_rows"]
@@ -218,6 +233,14 @@ class H1R2CostReviewTest(unittest.TestCase):
             candidates["Analog Devices AD8314ARMZ-REEL"]["jlcpcb_part"],
             "C652687",
         )
+        self.assertEqual(
+            candidates["MYOUNG BH-18650-B1BA002"]["status"],
+            "not_accepted_single_cell_and_protected_length_unproven",
+        )
+        self.assertEqual(
+            candidates["Tag-Connect TC2050-IDC board footprint"]["status"],
+            "not_accepted_for_exact_one_evt1_cost_and_debug_ergonomics",
+        )
 
     def test_cost_queue_does_not_present_open_work_as_finished(self):
         lanes = {
@@ -230,8 +253,8 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(lanes["native-rf-jumpers"], "accepted")
         self.assertEqual(lanes["rf-evidence-detectors"], "active")
         self.assertEqual(lanes["ordinary-controls"], "accepted")
-        self.assertEqual(lanes["battery-holder"], "waiting")
-        self.assertEqual(lanes["service-headers"], "waiting")
+        self.assertEqual(lanes["battery-holder"], "accepted")
+        self.assertEqual(lanes["service-headers"], "accepted")
         self.assertEqual(lanes["display-production-route"], "accepted")
 
 

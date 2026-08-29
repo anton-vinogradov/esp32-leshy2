@@ -6,20 +6,20 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 
 ## Summary
 
-- Volume material basis: **$257.25** per device; `201/210` lines are priced.
-- Reachable planning subtotal: **$278.55** per device, with `5` base-product lines still unpriced.
-- Current planned component minimum with no mandatory post-PCBA active module: **$278.55** per device and **$278.55** for the one target prototype before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
-- The same accepted price basis scales linearly to **$2,785.53** for ten devices. This compares groups; it is not a batch quote.
-- The top 10 / 20 / 40 groups contribute **41.87% / 59.49% / 77.72%** of the known base BOM.
-- Historical five-board JLCPCB capture: **$1,373.20** for `183` matched lines; `23` live checks move it to **$1,429.94**, with `27` rows excluded. This is evidence, not the target quantity.
-- The external antenna kit is separate: **$138.32** is known and `4` positions in `2` MPN groups remain unpriced. The known electronics plus known antennas already reach **$416.87** before PCB/PCBA, enclosure and freight.
+- Volume material basis: **$264.03** per device; `201/210` lines are priced.
+- Reachable planning subtotal: **$283.84** per device, with `5` base-product lines still unpriced.
+- Current planned component minimum with no mandatory post-PCBA active module: **$283.84** per device and **$283.84** for the one target prototype before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
+- The same accepted price basis scales linearly to **$2,838.39** for ten devices. This compares groups; it is not a batch quote.
+- The top 10 / 20 / 40 groups contribute **41.09% / 59.08% / 77.10%** of the known base BOM.
+- Historical five-board JLCPCB capture: **$1,373.20** for `183` matched lines; `24` live checks move it to **$1,441.79**, with `27` rows excluded. This is evidence, not the target quantity.
+- The external antenna kit is separate: **$138.32** is known and `4` positions in `2` MPN groups remain unpriced. The known electronics plus known antennas already reach **$422.16** before PCB/PCBA, enclosure and freight.
 
 ## Accepted all-in-one cost boundary
 
 - The current product remains a fully populated all-in-one. Its repeatable complete-device target is **$220.00–$260.00**, excluding batteries and the full specialized external-antenna kit.
 - To leave room for PCB, PCBA and enclosure, electronics must land near **$189.00–$216.00**.
-- The current base BOM has `208` MPN groups and `1049` fitted components. Even the two paper-qualified no-function-loss replacements already identified — SMA/RP-SMA and the AD8314 package — save only **$24.51** and leave **$254.05**.
-- A further **$38.05–$65.05** must be removed to reach the electronics band. The formal margin to the complete-device ceiling is only **$5.95**, so boards, assembly and enclosure do not fit without further resynthesis.
+- The current base BOM has `208` MPN groups and `1096` fitted components. Even the two paper-qualified no-function-loss replacements already identified — SMA/RP-SMA and the AD8314 package — save only **$24.51** and leave **$259.33**.
+- A further **$43.33–$70.33** must be removed to reach the electronics band. The formal margin to the complete-device ceiling is only **$0.67**, so boards, assembly and enclosure do not fit without further resynthesis.
 
 **Accepted:** no separate `Core` is designed now. One fully populated `R2-EVT1` is built and verified first; implementation cost is reduced without removing built-in functions or the safety outcome. The historical `$150` goal is deferred as a possible post-EVT1 community fit option, not a current hardware branch. The sole first order will still cost more because MOQ, setup, manual placement, freight and tax cannot be amortized.
 
@@ -33,12 +33,12 @@ That does not mean Leshy2 must cost eight times as much. It means the current ar
 
 | Boundary | Electronics | Complete base | Honest result |
 |---|---:|---:|---|
-| Current circuit | $278.55 | above $278.55 | already above the accepted ceiling before boards, assembly and enclosure |
-| Paper-qualified replacements only | $254.05 | above $254.05 | still insufficient |
-| Same built-in user functions and same safety outcome after full cost resynthesis | $189.00–$216.00 | $216.00–$261.00 | **current accepted `$220–260` target** |
+| Current circuit | $283.84 | above $283.84 | already above the accepted ceiling before boards, assembly and enclosure |
+| Paper-qualified replacements only | $259.33 | above $259.33 | still insufficient |
+| Same built-in user functions and same safety outcome after full cost resynthesis | $214.00–$235.00 | $241.00–$280.00 | only the upper portion overlaps the `$220–260` target |
 | Modular community base; specialist paths are fitted as task-specific Caps/Units | $108.00–$125.00 | $135.00–$165.00 | deferred until a working `R2-EVT1`; there is no separate Core now |
 
-The `$189–216` and `$216–261` bands are not price promises: they assume successful RF-evidence, control, holder, recovery and audio/safety consolidation without changing the result. No such architecture saving is accepted until its contract is calculated and verified.
+The `$214–235` and `$241–280` bands are not price promises: they assume successful remaining RF-evidence, audio/safety and internal-RF resynthesis without changing the result. Controls, holder and recovery headers have now been checked and retained, so their former assumed saving is removed. The lower part of the `$220–260` target is not yet demonstrated.
 
 The full antenna kit is an accessory, not a hidden device-price line. A broadband receive antenna cannot replace band-matched transmit antennas; the basic kit and additional band-specific antennas must be priced separately.
 
@@ -48,26 +48,26 @@ The primary ranking below shows **one prototype only**. It contains neither the 
 
 | № | Source | MPN and role | Qty ×1 | Unit on accepted basis | Group ×1 | Share of known total |
 |---:|---|---|---:|---:|---:|---:|
-| 1 | Antenna | `SMA-W100RX2`<br><sub>receive-only telescopic whip; AIR</sub> | 1 | $35.95 | $35.95 | 8.62% |
-| 2 | Antenna | `001-0012`<br><sub>2.4/5 GHz native radio; S3, C5</sub> | 2 | $16.91 | $33.82 | 8.11% |
-| 3 | Antenna | `AN0155H13`<br><sub>VHF 136-174 MHz; VHF</sub> | 1 | $31.70 | $31.70 | 7.60% |
-| 4 | Antenna | `ANT-433-CW-QW-SMA`<br><sub>433 MHz / UHF 400-470 MHz; S433, UHF</sub> | 2 | $11.23 | $22.46 | 5.39% |
-| 5 | Base BOM | `GCT RFPC-SMA31-FN-175-A`<br><sub>eight standard outward SMA / восемь внешних SMA</sub> | 8 | $2.46 | $19.72 | 4.73% |
-| 6 | Base BOM | `Analog Devices AD8314ACPZ-RL7`<br><sub>six real-TX RF detectors / шесть RF-детекторов фактической передачи</sub> | 6 | $2.86 | $17.14 | 4.11% |
-| 7 | Base BOM | `EastRising ER-TFT035IPS-6 + ER-TPC035-6`<br><sub>display</sub> | 1 | $14.91 | $14.91 | 3.58% |
-| 8 | Base BOM | `OMRON B3S-1100P`<br><sub>sixteen ordinary user keys / шестнадцать обычных клавиш</sub> | 16 | $0.64 | $10.25 | 2.46% |
-| 9 | Base BOM | `G-NiceRF SA818S-V`<br><sub>VHF voice transceiver / VHF голосовой трансивер</sub> | 1 | $10.07 | $10.07 | 2.42% |
-| 10 | Base BOM | `G-NiceRF SA818S-U`<br><sub>UHF voice transceiver / UHF голосовой трансивер</sub> | 1 | $9.73 | $9.73 | 2.33% |
-| 11 | Antenna | `ANT-315-CW-HW-SMA`<br><sub>315 MHz; S315</sub> | 1 | $9.60 | $9.60 | 2.30% |
-| 12 | Base BOM | `TE Connectivity 2118651-2`<br><sub>five 30-mm RF jumpers / пять 30-мм RF-кабелей</sub> | 5 | $1.82 | $9.11 | 2.18% |
-| 13 | Base BOM | `Ebyte E01-ML01SP4`<br><sub>three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm</sub> | 3 | $2.96 | $8.89 | 2.13% |
-| 14 | Base BOM | `Keystone Electronics 1048P`<br><sub>dual protected-18650 holder / держатель двух защищённых 18650</sub> | 1 | $8.57 | $8.57 | 2.06% |
-| 15 | Base BOM | `Texas Instruments TMUX1136DGSR`<br><sub>four complete audio/control selectors / четыре полных audio/control selector</sub> | 4 | $2.06 | $8.23 | 1.98% |
-| 16 | Base BOM | `LTC5532ES6#TRMPBF`<br><sub>S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц</sub> | 2 | $3.89 | $7.78 | 1.86% |
-| 17 | Base BOM | `Hirose U.FL-R-SMT-1(10)`<br><sub>five native/module microcoax mates / пять микрокоаксиальных точек</sub> | 5 | $1.07 | $5.33 | 1.28% |
-| 18 | Base BOM | `ESP32-S3-WROOM-1U-N16R8`<br><sub>s3</sub> | 1 | $5.11 | $5.11 | 1.23% |
-| 19 | Base BOM | `Samtec FTSH-105-01-L-DV-K-P-TR`<br><sub>three internal recovery headers / три внутренних recovery-разъёма</sub> | 3 | $1.70 | $5.10 | 1.22% |
-| 20 | Base BOM | `GCT RFPC-SMA32-FN-175-A`<br><sub>two native-radio RP-SMA / два RP-SMA native-радио</sub> | 2 | $2.46 | $4.93 | 1.18% |
+| 1 | Antenna | `SMA-W100RX2`<br><sub>receive-only telescopic whip; AIR</sub> | 1 | $35.95 | $35.95 | 8.52% |
+| 2 | Antenna | `001-0012`<br><sub>2.4/5 GHz native radio; S3, C5</sub> | 2 | $16.91 | $33.82 | 8.01% |
+| 3 | Antenna | `AN0155H13`<br><sub>VHF 136-174 MHz; VHF</sub> | 1 | $31.70 | $31.70 | 7.51% |
+| 4 | Antenna | `ANT-433-CW-QW-SMA`<br><sub>433 MHz / UHF 400-470 MHz; S433, UHF</sub> | 2 | $11.23 | $22.46 | 5.32% |
+| 5 | Base BOM | `GCT RFPC-SMA31-FN-175-A`<br><sub>eight standard outward SMA / восемь внешних SMA</sub> | 8 | $2.46 | $19.72 | 4.67% |
+| 6 | Base BOM | `Analog Devices AD8314ACPZ-RL7`<br><sub>six real-TX RF detectors / шесть RF-детекторов фактической передачи</sub> | 6 | $2.86 | $17.14 | 4.06% |
+| 7 | Base BOM | `EastRising ER-TFT035IPS-6 + ER-TPC035-6`<br><sub>display</sub> | 1 | $14.91 | $14.91 | 3.53% |
+| 8 | Base BOM | `OMRON B3S-1100P`<br><sub>sixteen ordinary user keys / шестнадцать обычных клавиш</sub> | 16 | $0.64 | $10.25 | 2.43% |
+| 9 | Base BOM | `G-NiceRF SA818S-V`<br><sub>VHF voice transceiver / VHF голосовой трансивер</sub> | 1 | $10.07 | $10.07 | 2.39% |
+| 10 | Base BOM | `G-NiceRF SA818S-U`<br><sub>UHF voice transceiver / UHF голосовой трансивер</sub> | 1 | $9.73 | $9.73 | 2.31% |
+| 11 | Antenna | `ANT-315-CW-HW-SMA`<br><sub>315 MHz; S315</sub> | 1 | $9.60 | $9.60 | 2.27% |
+| 12 | Base BOM | `TE Connectivity 2118651-2`<br><sub>five 30-mm RF jumpers / пять 30-мм RF-кабелей</sub> | 5 | $1.82 | $9.11 | 2.16% |
+| 13 | Base BOM | `Ebyte E01-ML01SP4`<br><sub>three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm</sub> | 3 | $2.96 | $8.89 | 2.11% |
+| 14 | Base BOM | `Keystone Electronics 1048P`<br><sub>dual protected-18650 holder / держатель двух защищённых 18650</sub> | 1 | $8.57 | $8.57 | 2.03% |
+| 15 | Base BOM | `Texas Instruments TMUX1136DGSR`<br><sub>four complete audio/control selectors / четыре полных audio/control selector</sub> | 4 | $2.06 | $8.23 | 1.95% |
+| 16 | Base BOM | `LTC5532ES6#TRMPBF`<br><sub>S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц</sub> | 2 | $3.89 | $7.78 | 1.84% |
+| 17 | Base BOM | `Samtec FTSH-105-01-L-DV-K-P-TR`<br><sub>four internal recovery headers / четыре внутренних recovery-разъёма</sub> | 4 | $1.70 | $6.80 | 1.61% |
+| 18 | Base BOM | `Hirose U.FL-R-SMT-1(10)`<br><sub>five native/module microcoax mates / пять микрокоаксиальных точек</sub> | 5 | $1.07 | $5.33 | 1.26% |
+| 19 | Base BOM | `ESP32-S3-WROOM-1U-N16R8`<br><sub>s3</sub> | 1 | $5.11 | $5.11 | 1.21% |
+| 20 | Base BOM | `GCT RFPC-SMA32-FN-175-A`<br><sub>two native-radio RP-SMA / два RP-SMA native-радио</sub> | 2 | $2.46 | $4.93 | 1.17% |
 
 [Unified top 20 — CSV](../hardware/product-design/generated/H1-R2-cost-top20.csv) · [Complete 210-line ranking — CSV](../hardware/product-design/generated/H1-R2-cost-ranked.csv)
 
@@ -79,9 +79,9 @@ The primary ranking below shows **one prototype only**. It contains neither the 
 | 2 | 10 outward SMA/RP-SMA | $24.65 | GCT cost is no longer justified by a low-profile requirement; a robust pair needs a fresh placement and factory manual-solder check | up to ~$19.02 |
 | 3 | 8 RF detectors | $24.92 | Real-TX evidence remains required; six AD8314 can move to the stocked package of the same IC after placement review | ~$5.49 |
 | 4 | 5 U.FL plus 5 cables | $14.43 | Functionally justified now; only a proven C5 T2 route can remove one path | up to ~$2.89 |
-| 5 | 16 user buttons | $10.25 | Expensive group, but the first cheaper candidate lost the grounded cover and was rejected | to be established |
-| 6 | Dual-18650 holder | $8.57 | Serial contacts are viable only if the enclosure carries all mechanical load | to be established |
-| 7 | 3 internal DBG10 headers | $5.10 | Premium series serves only as an opened-sandwich recovery fallback; a cheaper keyed equivalent is plausible | to be established |
+| 5 | 16 user buttons | $10.25 | Checked cheaper candidates weaken ESD, feel or evidence; the current group is justified | $0 |
+| 6 | Dual-18650 holder | $8.57 | Stocked single-cell bodies do not prove the complete protected-cell and polarity contract; 1048P is justified | $0 |
+| 7 | 4 internal DBG10 headers | $6.80 | Exact Samtec is stocked; Tag-Connect costs more for the sole EVT1 and weakens long-session ergonomics | $0 for EVT1 |
 
 **Not classified as unjustified:** the $14.91 serial display, $19.81 dual voice modules, $8.89 three full-function nRF24 modules, both RP/S3/C5, M1 and autonomous safety components. Removing or simplifying them directly cuts an accepted function, throughput, recovery or safety boundary.
 
@@ -137,6 +137,8 @@ These positions have an **unknown**, not zero, price. The total remains a lower 
 | Si4732 FMI 56-nH high-Q matching inductor | `Murata LQW15AN56NJ00D` | `Murata LQW15AN56NG00D` | `C167482` | 21558 | `accepted_stocked_no_worse_parametric_replacement` |
 | sixteen ordinary user controls | `OMRON B3S-1100P` | `OMRON B3S-1000P` | `C180420` | 3254 | `not_accepted_missing_ground_terminal` |
 | sixteen ordinary user controls | `OMRON B3S-1100P` | `BZCN TSG002A04526A` | `C2888613` | 441 | `not_accepted_heavier_force_ground_and_exact_life_unresolved` |
+| dual protected-button-top 18650 retention | `Keystone Electronics 1048P` | `MYOUNG BH-18650-B1BA002` | `C2988620` | 995 | `not_accepted_single_cell_and_protected_length_unproven` |
+| four independent opened-sandwich recovery endpoints | `Samtec FTSH-105-01-L-DV-K-P-TR` | `Tag-Connect TC2050-IDC board footprint` | `not applicable; bare PCB pads and locating holes` | official cable available | `not_accepted_for_exact_one_evt1_cost_and_debug_ergonomics` |
 | ten outward antenna connectors | `GCT RFPC-SMA31-FN-175-A / RFPC-SMA32-FN-175-A` | `HenryTech HL2-SMA-KEP-13.5 / HL2-RP-SMA-KEP-13.5` | `C53278703 / C53278707` | 67 standard / 133 reverse | `rejected_wrong_board_normal_orientation` |
 | ten outward antenna connectors | `GCT RFPC-SMA31-FN-175-A / RFPC-SMA32-FN-175-A` | `DreamLNK SMA-KWE902 / SMA-KWE901` | `C914554 / C914553` | 5479 pre-sale + 5588 overseas standard / 7 pre-sale + 42 overseas reverse | `qualified_pending_full_5_plus_5_placement_and_assembly_gate` |
 
@@ -155,6 +157,8 @@ These positions have an **unknown**, not zero, price. The total remains a lower 
 - **`Murata LQW15AN56NG00D`:** Accepted at H1-R2.29. The Murata G code preserves the LQW15AN 0402 body, 56-nH nominal inductance, Q, 2.8-GHz minimum SRF, 200-mA current and 1.17-Ohm maximum DCR while tightening tolerance from +/-5% to +/-2%. C167482 is live JLCPCB Standard-PCBA stock. The five-device line falls from USD 0.3620 to USD 0.2235, saving USD 0.1385; the quantity-100 material basis falls by USD 0.0277 per device. [JLCPCB](https://jlcpcb.com/partdetail/x/C167482)
 - **`OMRON B3S-1000P`:** The stocked member preserves the 6.6 x 6.0 x 4.3-mm body, 1.57-N feel, 500k endurance and IP67 family boundary, but removes the fifth cover-ground terminal. That can weaken the user-exposed ESD path, so the current B3S-1100P remains selected until an equivalent grounded stocked part is proven. [JLCPCB](https://jlcpcb.com/partdetail/OmronElectronics-B3S1000P/C180420)
 - **`BZCN TSG002A04526A`:** The stocked 6.15 x 6.15 x 4.5-mm IP67 SMT body would reduce sixteen quantity-one switches from USD 14.50 to USD 0.79, but it raises force from 1.57 N to 2.6 N, removes the fifth grounded-cover terminal from the directly finger-operated user boundary and the exact order code does not disclose a guaranteed 500k-cycle life. Those are functional, ESD and feel regressions rather than a free saving, so it is not selected. [JLCPCB](https://jlcpcb.com/partdetail/BZCN-TSG002A04526A/C2888613)
+- **`MYOUNG BH-18650-B1BA002`:** The stocked gold-plated single-cell holder is factory placeable and cheaper, but its 77.05 x 20.65-mm drawing does not prove the selected long protected button-top XTAR envelope, dual-cell mechanical polarization before contact or the current four-independent-contact body. Two pieces therefore do not constitute a no-worse replacement for 1048P. [JLCPCB](https://jlcpcb.com/partdetail/BH-18650-B1BA002/C2988620)
+- **`Tag-Connect TC2050-IDC board footprint`:** The keyed spring-probe footprint would save all four board headers in a repeated build, but the exact-one prototype would first require a USD 39 cable, versus USD 5.64 for four currently stocked Samtec headers at JLCPCB. It also replaces a hands-free long-session connection with a dedicated probe workflow. Keep the stocked Samtec parts for EVT1; Tag-Connect remains a post-EVT1 volume option. [JLCPCB](https://www.tag-connect.com/product/tc2050-idc-tag-connect-2050-idc)
 - **`HenryTech HL2-SMA-KEP-13.5 / HL2-RP-SMA-KEP-13.5`:** The JLCPCB cards prove a 6-GHz standard/reverse pair and the controlled HenryTech drawings prove individual retention without a nut, but both bodies point normal to the PCB. They do not replace the selected edge-facing GCT bodies without changing antenna direction and product form. [JLCPCB](https://jlcpcb.com/partdetail/HenryTech-HL2_SMA_KEP_135/C53278703)
 - **`DreamLNK SMA-KWE902 / SMA-KWE901`:** This is a fully documented, no-nut 6-GHz right-angle standard/reverse pair with a stronger through-board soldered load path. Its 9.7-mm body, five drilled pins and approximately 2.1-mm inner-side pin projection on a 1.6-mm PCB change the selected GCT keep-out, but low profile is no longer a product requirement. The live JLCPCB cards on 2026-08-29 show a Plugin/manualWeld route, procurement minima of 13/12 and only overseas/pre-sale availability rather than ordinary SMT stock. It remains the leading mechanical candidate, not an accepted production MPN: all ten placements, opposing clearances and written factory assembly acceptance must pass together. [JLCPCB](https://jlcpcb.com/partdetail/DreamLNK-SMAKWE902/C914554)
 **Accepted rule:** remove avoidable small-lot pre-order first, but replace an MPN only with an exact or no-worse stocked part. RF, power-safety, battery-protection and user-exposed ESD boundaries are not simplified for cost. When no proven equivalent exists, the original MPN and explicit pre-order route remain.
@@ -167,8 +171,8 @@ These positions have an **unknown**, not zero, price. The total remains a lower 
 4. ▶ **Re-evaluate eight RF power detectors without weakening real-TX evidence** — Six AD8314 plus two LTC5532 contribute USD 24.9174 per device on the common quantity-100 basis; the historical live five-device requirement is USD 276.70. Stocked same-device AD8314ARMZ-REEL C652687 would save USD 88.99 on that historical EVT5 snapshot and USD 5.4864 per finished device on the same quantity-100 basis. No strict no-worse LTC5532 replacement is proved. Register and collision-check all six larger MSOP courtyards, adjacent match/bypass bodies and RF-ground fanout before accepting C652687. Keep the two LTC5532 and independent evidence for the three concurrently active nRF24 paths.
 5. ✅ **Retain the grounded Omron family for all sixteen ordinary controls** — B3S-1100P contributes USD 10.248 per device at quantity 100. Two stocked alternatives were checked: B3S-1000P preserves feel, height, endurance and ingress but removes the grounded cover; TSG002A04526A is dramatically cheaper but also removes that terminal, raises force to 2.6 N and does not prove the exact 500k-cycle life. Because every control is directly finger-operated without a cap or plunger, neither is no-worse. Keep B3S-1100P for the present architecture. Reopen only for an exact factory-placeable part that preserves the grounded user boundary, approximately 1.6-N force, 4.3-mm reach, IP67 and at least 500k cycles, or after a future enclosure revision makes the metal cover physically inaccessible.
 6. ✅ **Retain all five U.FL plus 30-mm jumper paths after source-to-port review** — The five paths contribute USD 14.433 per device at quantity 100, before assembly handling. S3 and all three E01 modules expose only microcoax RF outputs, and each path must still pass through its local coupler and real-TX detector before SMA. The current C5 module also exposes U.FL; an exact stocked Espressif T2/ANT2 factory route is not proved. Therefore 0/5 paths can be removed safely now. A future qualified C5 T2 route could remove one path and save about USD 2.89 per device.
-7. ⏳ **Compare the 1048P holder with serial cell contacts captured by the enclosure cradle** — 1048P contributes USD 8.57 per device at quantity 100 and is currently stock-zero pre-order at JLCPCB. Any replacement must keep protected-cell length tolerance, polarity, insertion cycles and a non-peeling enclosure load path.
-8. ⏳ **Replace three premium DBG10 headers with an equally keyed serial factory-stocked family** — Three Samtec FTSH headers contribute USD 5.0973 per device and exist only as opened-sandwich recovery fallbacks. Preserve independent S3/C5/RP recovery, keying, pitch, probe access and the internal height envelope.
+7. ✅ **Retain 1048P until a complete protected-cell holder is proven** — 1048P contributes USD 8.57 per device at quantity 100 and remains a pre-order route, but the checked stocked MYOUNG holders are single-cell bodies or loose contacts that do not prove the selected protected button-top length, dual-cell pre-contact polarity blocking and enclosure-supported four-contact mechanism. Keep 1048P as a justified safety/mechanical part for EVT1. Reopen only for a serial factory-placeable dual holder that proves the complete XTAR envelope and transfers insertion/removal load through the enclosure rather than the solder joints.
+8. ✅ **Retain four stocked Samtec DBG10 headers for the exact-one EVT1** — The corrected R2 count is four, not three. Exact C2932107 is currently JLCPCB Extended SMT stock with 890 pieces, 887 orderable, MOQ 1 and USD 1.41 at quantity 1. Four headers therefore cost USD 5.64 on the exact-one factory route. A TC2050-IDC footprint would remove the fitted parts but requires a USD 39 reusable cable and changes long-session debug ergonomics. Keep four FTSH-105-01-L-DV-K-P-TR headers for independent S3/C5/Hub-RP/RF-RP recovery. Reconsider Tag-Connect only after EVT1 when its one-time cable cost can be amortized and the service workflow can be tested.
 9. ✅ **Do not optimize away the selected serial production panel** — EastRising ER-TFT035IPS-6 plus ER-TPC035-6 contributes USD 14.91 and already provides a controlled drawing, ILI9488/FT6236, direct i8080-8 and quantity-one serial ordering. The donor route is gone. Treat the display material cost as justified. Only the assembler fee and written acceptance of panel/FPC final mating remain open; do not restart display selection for a small speculative saving.
 
 ## Display and flex orientation

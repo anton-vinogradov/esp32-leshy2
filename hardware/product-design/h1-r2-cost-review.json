@@ -29,10 +29,10 @@
       },
       {
         "id": "controls-holder-recovery",
-        "current_scope": "sixteen premium tact switches, one pre-order battery holder and three premium opened-sandwich recovery headers",
-        "working_savings_usd": [13, 19],
+        "current_scope": "sixteen grounded tact switches, one protected-cell holder and four keyed opened-sandwich recovery headers",
+        "working_savings_usd": [0, 0],
         "contract": "retain recessed serial controls, protected-cell tolerance and independently reachable recovery for S3, C5 and both RP domains",
-        "status": "analysis_only_not_qualified"
+        "status": "reviewed_no_loss_saving_rejected"
       },
       {
         "id": "audio-safety-control-consolidation",
@@ -50,11 +50,11 @@
       }
     ],
     "same_all_in_one_result": {
-      "electronics_working_range_usd": [189, 216],
-      "repeatable_complete_base_working_range_usd": [216, 261],
+      "electronics_working_range_usd": [214, 235],
+      "repeatable_complete_base_working_range_usd": [241, 280],
       "scope": "same built-in user-visible functions and same safety outcome, excluding batteries and the full external antenna kit",
-      "confidence": "planning envelope only; it assumes the paper-qualified USD 24.5068 replacements plus every unqualified architecture saving above, and adds USD 27-45 for PCB, PCBA and enclosure",
-      "assessment": "USD 150 is not credible for the fully integrated current result without removing or externalizing hardware. A credible optimized target is roughly USD 220-260 for a repeatable complete base device; the sole first prototype remains higher."
+      "confidence": "planning envelope only; it assumes the paper-qualified RF-connector and AD8314 replacements plus all still-open RF-evidence, audio/safety and internal-RF consolidation savings, and adds USD 27-45 for PCB, PCBA and enclosure",
+      "assessment": "After rejecting functionally weaker control, cell-holder and recovery substitutions and correcting the missing second-RP support quantities, the presently evidenced no-loss route is roughly USD 241-280 for a repeatable complete base device. The accepted USD 220-260 target remains the optimization gate, but its lower half now requires additional savings beyond the currently identified lanes; the sole first prototype remains higher."
     },
     "modular_entry_result": {
       "electronics_target_usd": [108, 125],
@@ -83,9 +83,81 @@
     "factory_function_test": "optional quote-only insurance; first full power-on and USB bring-up belong to the owner"
   },
   "r2_quantity_overrides": {
+    "abracon_abm8_272_t3": {
+      "quantity_per_device": 2,
+      "reason": "the front Hub RP and rear RF RP each require the exact RP2354B reference crystal"
+    },
+    "abracon_aota_b201610s3r3_101_t": {
+      "quantity_per_device": 2,
+      "reason": "the front Hub RP duplicates the complete RP2354B internal-regulator support network"
+    },
+    "alps_skrtlae010": {
+      "quantity_per_device": 8,
+      "reason": "S3, C5, Hub RP and RF RP each retain two independent recessed recovery controls"
+    },
+    "gct_usb4105_gf_a": {
+      "quantity_per_device": 3,
+      "reason": "C5, Hub RP and RF RP each have a separate data-only service USB-C; S3 uses the powered product connector"
+    },
+    "murata_gjm1555c1h150jb01d": {
+      "quantity_per_device": 6,
+      "reason": "the shared row contains two CC1101 crystal loads plus two loads for each of the two RP2354B crystals"
+    },
+    "onsemi_fsusb42_mux": {
+      "quantity_per_device": 3,
+      "reason": "each of the C5, Hub RP and RF RP data-only USB paths is independently isolated"
+    },
+    "panasonic_erj_2rkf27r0x": {
+      "quantity_per_device": 4,
+      "reason": "both RP2354B domains require their own USB D+ and D- source-series resistors"
+    },
     "rp2354b_a4": {
       "quantity_per_device": 2,
       "reason": "H0-R2 has separate front Hub RP and rear RF RP; the historical G2F BOM contains only the rear R1 RP"
+    },
+    "samtec_ftsh_105_01_l_dv_k_p_tr": {
+      "quantity_per_device": 4,
+      "reason": "S3, C5, Hub RP and RF RP each retain an independent keyed DBG10 fallback"
+    },
+    "tdk_c1005x5r0j475k050bc": {
+      "quantity_per_device": 8,
+      "reason": "each RP2354B domain requires the same four exact regulator and remote-DVDD bulk capacitors"
+    },
+    "ti_tpd2eusb30a_drtr": {
+      "quantity_per_device": 3,
+      "reason": "the three data-only service USB-C paths each retain independent high-speed ESD protection"
+    },
+    "ti_tpd4e05u06_dqar": {
+      "quantity_per_device": 14,
+      "reason": "the fourth keyed Hub DBG10 adds one independent four-line ESD array"
+    },
+    "yageo_cc0402krx7r9bb104": {
+      "quantity_per_device": 162,
+      "reason": "the second RP2354B duplicates fifteen exact core, I/O-bank, OTP and USB-switch bypass placements"
+    },
+    "yageo_rc0402fr_0710kl": {
+      "quantity_per_device": 207,
+      "reason": "the Hub RP adds RESET/BOOT pull-ups and two passive DBG10 identity straps; the rear-only ANY_TX pull-up is not duplicated"
+    },
+    "yageo_rc0402fr_071kl": {
+      "quantity_per_device": 16,
+      "reason": "the Hub RP adds its clock-series and three DBG10 VTREF/RESET/BOOT series resistors"
+    },
+    "yageo_rc0402fr_071ml": {
+      "quantity_per_device": 13,
+      "reason": "the Hub RP data-only USB adds one VBUS bleeder"
+    },
+    "yageo_rc0402fr_0733rl": {
+      "quantity_per_device": 2,
+      "reason": "both RP2354B regulator networks require their own AVDD filter resistor"
+    },
+    "yageo_rc0402fr_07470rl": {
+      "quantity_per_device": 8,
+      "reason": "the fourth DBG10 adds two UART/SWD edge and fixture-current limiting resistors"
+    },
+    "yageo_rc0402fr_075k1l": {
+      "quantity_per_device": 8,
+      "reason": "the Hub RP USB-C adds two independent Type-C Rd resistors"
     }
   },
   "inputs": {
@@ -227,6 +299,21 @@
       "route": "pre-order",
       "source": "https://jlcpcb.com/partdetail/KeystoneElectronics-1048P/C6038062",
       "checked_on": "2026-08-28"
+    },
+    "samtec_ftsh_105_01_l_dv_k_p_tr": {
+      "manufacturer": "Samtec",
+      "mpn": "FTSH-105-01-L-DV-K-P-TR",
+      "jlcpcb_part": "C2932107",
+      "assembly_type": "Extended SMT; Economic and Standard PCBA",
+      "stock": 890,
+      "available_order_quantity": 887,
+      "moq": 1,
+      "trial_required_quantity": 20,
+      "trial_displayed_cost_usd": 28.2,
+      "estimated_unit_price_usd": 1.41,
+      "route": "in stock; four fitted per R2 device and no pre-order is required for the exact-one prototype",
+      "source": "https://jlcpcb.com/partdetail/Samtec-FTSH_105_01_L_DV_K_PTR/C2932107",
+      "checked_on": "2026-08-29"
     },
     "nexperia_74lvc2g126dp_125": {
       "manufacturer": "Nexperia",
@@ -765,6 +852,40 @@
       "checked_on": "2026-08-29"
     },
     {
+      "scope": "dual protected-button-top 18650 retention",
+      "current_mpn": "Keystone Electronics 1048P",
+      "candidate_mpn": "MYOUNG BH-18650-B1BA002",
+      "jlcpcb_part": "C2988620",
+      "manufacturer": "MYOUNG",
+      "assembly_type": "Extended SMT; Standard PCBA only; high assembly difficulty",
+      "stock": 995,
+      "moq": 1,
+      "trial_required_quantity": 2,
+      "price_tiers_usd": {"1": 1.44},
+      "status": "not_accepted_single_cell_and_protected_length_unproven",
+      "why": "The stocked gold-plated single-cell holder is factory placeable and cheaper, but its 77.05 x 20.65-mm drawing does not prove the selected long protected button-top XTAR envelope, dual-cell mechanical polarization before contact or the current four-independent-contact body. Two pieces therefore do not constitute a no-worse replacement for 1048P.",
+      "why_ru": "Складской позолоченный держатель одного элемента устанавливается фабрикой и дешевле, но его чертёж 77,05 x 20,65 мм не доказывает посадку выбранного длинного защищённого button-top XTAR, механическую защиту двух элементов от переполюсовки до касания контактов и текущий единый корпус с четырьмя независимыми контактами. Поэтому две такие детали не являются равноценной заменой 1048P.",
+      "source": "https://jlcpcb.com/partdetail/BH-18650-B1BA002/C2988620",
+      "checked_on": "2026-08-29"
+    },
+    {
+      "scope": "four independent opened-sandwich recovery endpoints",
+      "current_mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "candidate_mpn": "Tag-Connect TC2050-IDC board footprint",
+      "jlcpcb_part": "not applicable; bare PCB pads and locating holes",
+      "manufacturer": "Tag-Connect",
+      "assembly_type": "no fitted board component; one external reusable cable required",
+      "stock": "official cable available",
+      "moq": 1,
+      "trial_required_quantity": "four PCB footprints plus one reusable cable",
+      "price_tiers_usd": {"cable_1": 39.0, "board_footprint": 0.0},
+      "status": "not_accepted_for_exact_one_evt1_cost_and_debug_ergonomics",
+      "why": "The keyed spring-probe footprint would save all four board headers in a repeated build, but the exact-one prototype would first require a USD 39 cable, versus USD 5.64 for four currently stocked Samtec headers at JLCPCB. It also replaces a hands-free long-session connection with a dedicated probe workflow. Keep the stocked Samtec parts for EVT1; Tag-Connect remains a post-EVT1 volume option.",
+      "why_ru": "Ключевая пружинная площадка убрала бы все четыре разъёма из повторяемой BOM, но для единственного прототипа сначала потребуется кабель за $39 вместо $5,64 за четыре текущих складских Samtec в JLCPCB. Кроме того, свободное длительное подключение сменится отдельным probe-процессом. Для EVT1 сохраняются складские Samtec; Tag-Connect остаётся вариантом после EVT1 при серийном удешевлении.",
+      "source": "https://www.tag-connect.com/product/tc2050-idc-tag-connect-2050-idc",
+      "checked_on": "2026-08-29"
+    },
+    {
       "scope": "ten outward antenna connectors",
       "current_mpn": "GCT RFPC-SMA31-FN-175-A / RFPC-SMA32-FN-175-A",
       "candidate_mpn": "HenryTech HL2-SMA-KEP-13.5 / HL2-RP-SMA-KEP-13.5",
@@ -861,20 +982,20 @@
     {
       "priority": 7,
       "id": "battery-holder",
-      "queue_status": "waiting",
-      "title": "Compare the 1048P holder with serial cell contacts captured by the enclosure cradle",
-      "production_function_change": true,
-      "evidence": "1048P contributes USD 8.57 per device at quantity 100 and is currently stock-zero pre-order at JLCPCB.",
-      "action": "Any replacement must keep protected-cell length tolerance, polarity, insertion cycles and a non-peeling enclosure load path."
+      "queue_status": "accepted",
+      "title": "Retain 1048P until a complete protected-cell holder is proven",
+      "production_function_change": false,
+      "evidence": "1048P contributes USD 8.57 per device at quantity 100 and remains a pre-order route, but the checked stocked MYOUNG holders are single-cell bodies or loose contacts that do not prove the selected protected button-top length, dual-cell pre-contact polarity blocking and enclosure-supported four-contact mechanism.",
+      "action": "Keep 1048P as a justified safety/mechanical part for EVT1. Reopen only for a serial factory-placeable dual holder that proves the complete XTAR envelope and transfers insertion/removal load through the enclosure rather than the solder joints."
     },
     {
       "priority": 8,
       "id": "service-headers",
-      "queue_status": "waiting",
-      "title": "Replace three premium DBG10 headers with an equally keyed serial factory-stocked family",
+      "queue_status": "accepted",
+      "title": "Retain four stocked Samtec DBG10 headers for the exact-one EVT1",
       "production_function_change": false,
-      "evidence": "Three Samtec FTSH headers contribute USD 5.0973 per device and exist only as opened-sandwich recovery fallbacks.",
-      "action": "Preserve independent S3/C5/RP recovery, keying, pitch, probe access and the internal height envelope."
+      "evidence": "The corrected R2 count is four, not three. Exact C2932107 is currently JLCPCB Extended SMT stock with 890 pieces, 887 orderable, MOQ 1 and USD 1.41 at quantity 1. Four headers therefore cost USD 5.64 on the exact-one factory route. A TC2050-IDC footprint would remove the fitted parts but requires a USD 39 reusable cable and changes long-session debug ergonomics.",
+      "action": "Keep four FTSH-105-01-L-DV-K-P-TR headers for independent S3/C5/Hub-RP/RF-RP recovery. Reconsider Tag-Connect only after EVT1 when its one-time cable cost can be amortized and the service workflow can be tested."
     },
     {
       "priority": 9,

@@ -35,7 +35,7 @@ ROLE_OVERRIDES = {
     "nicerf_sa818s_v_v18": "VHF voice transceiver / VHF голосовой трансивер",
     "omron_b3s_1100p": "sixteen ordinary user keys / шестнадцать обычных клавиш",
     "qdtech_hmx035ctft_001": "unresolved production display gate / незакрытый production-display gate",
-    "samtec_ftsh_105_01_l_dv_k_p_tr": "three internal recovery headers / три внутренних recovery-разъёма",
+    "samtec_ftsh_105_01_l_dv_k_p_tr": "four internal recovery headers / четыре внутренних recovery-разъёма",
     "te_2118651_2": "five 30-mm RF jumpers / пять 30-мм RF-кабелей",
     "ti_tmux1136_dgsr": "four complete audio/control selectors / четыре полных audio/control selector",
     "murata_grm32er71e226ke15l": "thirteen 22-uF power capacitors / тринадцать силовых конденсаторов 22 мкФ",
@@ -79,14 +79,14 @@ LANES_RU = {
         "Поэтому сейчас безопасно удалить можно 0/5 трактов. Будущий квалифицированный C5 T2 может убрать один тракт и сэкономить около $2,89 на устройство.",
     ),
     "battery-holder": (
-        "Сравнить 1048P с серийными контактами аккумуляторов, удерживаемыми ложементом корпуса",
-        "1048P даёт $8,57 на устройство и сейчас доступен JLCPCB только через pre-order.",
-        "Замена обязана поддерживать длину защищённых элементов, полярность, ресурс циклов и передачу нагрузки на корпус, а не на пайку.",
+        "Сохранить 1048P до доказательства полноценного держателя защищённых элементов",
+        "1048P даёт $8,57 на устройство и остаётся pre-order, но проверенные складские MYOUNG — одиночные держатели или отдельные контакты: они не доказывают длину выбранных защищённых button-top XTAR, механическую блокировку переполюсовки двух элементов до касания контактов и единый четырёхконтактный механизм с опорой на корпус.",
+        "Для EVT1 оставить 1048P как оправданный safety/mechanical-компонент. Возвращаться к замене только при наличии серийного фабрично устанавливаемого двойного держателя, который доказывает полный XTAR-envelope и передаёт усилия вставки/извлечения на корпус, а не на пайку.",
     ),
     "service-headers": (
-        "Заменить три дорогих DBG10-разъёма на равноценно ключеванную складскую серию",
-        "Три Samtec FTSH дают $5,10 на устройство и используются только как резерв восстановления раскрытого бутерброда.",
-        "Сохранить независимое восстановление S3/C5/RP, ключ, шаг, доступ щупов и внутреннюю высоту.",
+        "Сохранить четыре складских Samtec DBG10 для единственного EVT1",
+        "Исправленное количество R2 — четыре, а не три. Точный C2932107 сейчас есть на складе JLCPCB Extended SMT: 890 шт., доступны 887, MOQ 1 и $1,41 при количестве 1. Четыре разъёма стоят $5,64 на exact-one factory route. Площадки TC2050-IDC убрали бы детали с плат, но потребовали бы отдельный кабель за $39 и изменили бы удобство длительной отладки.",
+        "Оставить четыре FTSH-105-01-L-DV-K-P-TR для независимого восстановления S3/C5/Hub-RP/RF-RP. Вернуться к Tag-Connect после EVT1, когда одноразовую цену кабеля можно амортизировать и проверить service-workflow.",
     ),
     "display-production-route": (
         "Не удешевлять уже выбранную серийную панель",
@@ -196,9 +196,10 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         reverse=True,
     )
     known_quantity_100 = sum(
-        float(row["line_material_usd"])
-        for row in bom
-        if row["line_material_usd"] and row["scope"] == "base_product"
+        row["line_burden_per_device_usd"] or 0
+        for row in rows
+        if row["scope"] == "base_product"
+        and row["line_burden_basis"] == "quantity-100"
     )
     planning_base = sum(
         row["line_burden_per_device_usd"] or 0
@@ -397,7 +398,8 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
             ),
             "base_bom_lines": sum(row["scope"] == "base_product" for row in bom),
             "base_fitted_placements": sum(
-                int(row["quantity"]) for row in bom if row["scope"] == "base_product"
+                int(row["quantity_per_device"])
+                for row in rows if row["scope"] == "base_product"
             ),
             "community_complete_device_target_usd": target["complete_device_usd"],
             "community_electronics_target_usd": target["electronics_target_usd"],
@@ -611,10 +613,10 @@ def render_doc(result: dict, ru: bool) -> str:
             '|---|---:|---:|---|',
             f'| Текущая схема | {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | больше {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | уже выше принятого потолка без плат, сборки и корпуса |',
             f'| Только уже paper-qualified замены | {money(summary["base_after_paper_qualified_savings_usd"])} | больше {money(summary["base_after_paper_qualified_savings_usd"])} | всё ещё недостаточно |',
-            f'| Те же встроенные пользовательские функции и тот же safety-результат после полного cost-resynthesis | {money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][1])} | {money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][1])} | **текущая принятая цель `$220–260`** |',
+            f'| Те же встроенные пользовательские функции и тот же safety-результат после полного cost-resynthesis | {money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][1])} | {money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][1])} | с целью `$220–260` пересекается только верхняя часть |',
             f'| Модульная community-база; специализированные тракты ставятся Cap/Unit по задаче | {money(feasibility["modular_entry_result"]["electronics_target_usd"][0])}–{money(feasibility["modular_entry_result"]["electronics_target_usd"][1])} | {money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][0])}–{money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][1])} | отложена до работающего `R2-EVT1`; отдельного Core сейчас нет |',
             '',
-            'Диапазоны `$189–216` и `$216–261` — не обещание цены: они предполагают успешную замену RF-evidence, кнопок, держателя, recovery-разъёмов и консолидацию audio/safety-обвязки без изменения результата. Ни одна такая архитектурная экономия не будет принята до расчёта и проверки соответствующего контракта.',
+            'Диапазоны `$214–235` и `$241–280` — не обещание цены: они предполагают успешный пересинтез оставшихся RF-evidence, audio/safety и внутренних RF-трактов без изменения результата. Кнопки, держатель и recovery-разъёмы уже проверены и сохранены, поэтому прежняя ожидаемая экономия на них удалена. Нижняя часть цели `$220–260` пока не доказана.',
             '',
             'Полный антенный комплект — аксессуар, а не скрытая часть цены устройства. Универсальная RX-антенна не заменяет согласованные TX-антенны; базовый комплект и дополнительные диапазонные антенны должны оцениваться отдельно.',
             '', 'Главный рейтинг ниже показывает **только один прототип**. В нём нет исторической цены пяти плат и нет умножения ×10.',
@@ -641,10 +643,10 @@ def render_doc(result: dict, ru: bool) -> str:
             '|---|---:|---:|---|',
             f'| Current circuit | {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | above {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | already above the accepted ceiling before boards, assembly and enclosure |',
             f'| Paper-qualified replacements only | {money(summary["base_after_paper_qualified_savings_usd"])} | above {money(summary["base_after_paper_qualified_savings_usd"])} | still insufficient |',
-            f'| Same built-in user functions and same safety outcome after full cost resynthesis | {money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][1])} | {money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][1])} | **current accepted `$220–260` target** |',
+            f'| Same built-in user functions and same safety outcome after full cost resynthesis | {money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][1])} | {money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][1])} | only the upper portion overlaps the `$220–260` target |',
             f'| Modular community base; specialist paths are fitted as task-specific Caps/Units | {money(feasibility["modular_entry_result"]["electronics_target_usd"][0])}–{money(feasibility["modular_entry_result"]["electronics_target_usd"][1])} | {money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][0])}–{money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][1])} | deferred until a working `R2-EVT1`; there is no separate Core now |',
             '',
-            'The `$189–216` and `$216–261` bands are not price promises: they assume successful RF-evidence, control, holder, recovery and audio/safety consolidation without changing the result. No such architecture saving is accepted until its contract is calculated and verified.',
+            'The `$214–235` and `$241–280` bands are not price promises: they assume successful remaining RF-evidence, audio/safety and internal-RF resynthesis without changing the result. Controls, holder and recovery headers have now been checked and retained, so their former assumed saving is removed. The lower part of the `$220–260` target is not yet demonstrated.',
             '',
             'The full antenna kit is an accessory, not a hidden device-price line. A broadband receive antenna cannot replace band-matched transmit antennas; the basic kit and additional band-specific antennas must be priced separately.',
             '', 'The primary ranking below shows **one prototype only**. It contains neither the historical five-board capture nor a ×10 multiplication.',
@@ -698,9 +700,9 @@ def render_doc(result: dict, ru: bool) -> str:
             f'| 2 | 10 внешних SMA/RP-SMA | {money(connector_cost)} | Цена GCT больше не оправдывается требованием низкого профиля; нужна повторная компоновка прочной пары с фабричным manual-solder route | до ~$19.02 |',
             f'| 3 | 8 RF-detector’ов | {money(detector_cost)} | Evidence реальной передачи нужен; шесть AD8314 можно перевести на складской корпус того же IC после placement-аудита | ~$5.49 |',
             f'| 4 | 5 U.FL + 5 кабелей | {money(jumper_cost)} | Сейчас функционально оправдано; убрать можно только один тракт после доказанного C5 T2-маршрута | до ~$2.89 |',
-            f'| 5 | 16 пользовательских кнопок | {money(by_id["omron_b3s_1100p"]["line_burden_per_device_usd"])} | Дорогая группа, но первый дешёвый кандидат потерял заземление крышки и отклонён | уточняется |',
-            f'| 6 | Держатель 2×18650 | {money(by_id["keystone_1048p"]["line_burden_per_device_usd"])} | Возможна замена на серийные контакты только если всю мехнагрузку несёт корпус | уточняется |',
-            f'| 7 | 3 внутренних DBG10 | {money(by_id["samtec_ftsh_105_01_l_dv_k_p_tr"]["line_burden_per_device_usd"])} | Премиальная серия используется только как резерв восстановления; вероятен более дешёвый ключеванный аналог | уточняется |',
+            f'| 5 | 16 пользовательских кнопок | {money(by_id["omron_b3s_1100p"]["line_burden_per_device_usd"])} | Проверенные дешёвые кандидаты ухудшают ESD, feel или evidence; текущая группа оправдана | $0 |',
+            f'| 6 | Держатель 2×18650 | {money(by_id["keystone_1048p"]["line_burden_per_device_usd"])} | Складские одиночные держатели не доказывают полный protected-cell и polarity contract; 1048P оправдан | $0 |',
+            f'| 7 | 4 внутренних DBG10 | {money(by_id["samtec_ftsh_105_01_l_dv_k_p_tr"]["line_burden_per_device_usd"])} | Exact Samtec уже складской; Tag-Connect удорожает единственный EVT1 и ухудшает long-session workflow | $0 для EVT1 |',
             '',
             '**Не считаю неоправданными:** серийный дисплей за $14,91, два voice-модуля за $19,81, три полнофункциональных nRF24 за $8,89, оба RP/S3/C5, M1 и элементы автономной защиты. Их удаление или упрощение напрямую режет принятую функцию, пропускную способность, восстановление либо безопасность.',
             '',
@@ -714,9 +716,9 @@ def render_doc(result: dict, ru: bool) -> str:
             f'| 2 | 10 outward SMA/RP-SMA | {money(connector_cost)} | GCT cost is no longer justified by a low-profile requirement; a robust pair needs a fresh placement and factory manual-solder check | up to ~$19.02 |',
             f'| 3 | 8 RF detectors | {money(detector_cost)} | Real-TX evidence remains required; six AD8314 can move to the stocked package of the same IC after placement review | ~$5.49 |',
             f'| 4 | 5 U.FL plus 5 cables | {money(jumper_cost)} | Functionally justified now; only a proven C5 T2 route can remove one path | up to ~$2.89 |',
-            f'| 5 | 16 user buttons | {money(by_id["omron_b3s_1100p"]["line_burden_per_device_usd"])} | Expensive group, but the first cheaper candidate lost the grounded cover and was rejected | to be established |',
-            f'| 6 | Dual-18650 holder | {money(by_id["keystone_1048p"]["line_burden_per_device_usd"])} | Serial contacts are viable only if the enclosure carries all mechanical load | to be established |',
-            f'| 7 | 3 internal DBG10 headers | {money(by_id["samtec_ftsh_105_01_l_dv_k_p_tr"]["line_burden_per_device_usd"])} | Premium series serves only as an opened-sandwich recovery fallback; a cheaper keyed equivalent is plausible | to be established |',
+            f'| 5 | 16 user buttons | {money(by_id["omron_b3s_1100p"]["line_burden_per_device_usd"])} | Checked cheaper candidates weaken ESD, feel or evidence; the current group is justified | $0 |',
+            f'| 6 | Dual-18650 holder | {money(by_id["keystone_1048p"]["line_burden_per_device_usd"])} | Stocked single-cell bodies do not prove the complete protected-cell and polarity contract; 1048P is justified | $0 |',
+            f'| 7 | 4 internal DBG10 headers | {money(by_id["samtec_ftsh_105_01_l_dv_k_p_tr"]["line_burden_per_device_usd"])} | Exact Samtec is stocked; Tag-Connect costs more for the sole EVT1 and weakens long-session ergonomics | $0 for EVT1 |',
             '',
             '**Not classified as unjustified:** the $14.91 serial display, $19.81 dual voice modules, $8.89 three full-function nRF24 modules, both RP/S3/C5, M1 and autonomous safety components. Removing or simplifying them directly cuts an accepted function, throughput, recovery or safety boundary.',
             '',

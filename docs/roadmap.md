@@ -24,7 +24,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ▶ [H1-R2.35](h1-r2-physical-layout.md): onboard video and its owner-soldered receiver bay are removed; the exact dual-RP/C5 authority, serial EastRising display and adapter, all 18 U219 support bodies, NFC loop and supplied-antenna swept volume pass fail-closed geometry; no physical blocker remains before explicit mock-up acceptance; [all 210 base-BOM MPN groups are ranked, the full all-in-one target is $220–260, and a separate Core is deferred until a working EVT1](h1-r2-cost.md) |
+| Physical design | ▶ [H1-R2.35](h1-r2-physical-layout.md): onboard video and its owner-soldered receiver bay are removed; the exact dual-RP/C5 authority, serial EastRising display and adapter, all 18 U219 support bodies, NFC loop and supplied-antenna swept volume pass fail-closed geometry; no physical blocker remains before explicit mock-up acceptance; [all 210 base-BOM MPN groups are ranked, the second RP and four DBG10 headers are counted, the current floor is $283.84, and the full all-in-one $220–260 target is only partially demonstrated; a separate Core is deferred until a working EVT1](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map and power/filter diagrams are published |
 | Production ECAD | 🔒 Reviewed G2F/H2/KiCad is historical single-RP R1 evidence only. Current H0/H1 has front Hub RP + rear RF RP; R2 H2 must regenerate six domains and exact H0 M1 |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 qualified all 12 target builds, 60 artifacts, 16 maps and 16 size gates, while F2-R2.5 reproducibility is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); a separate fail-closed `F-PO` requires diagnostics, emulation and recovery before ordering |
@@ -82,6 +82,11 @@ is not a closed phase until that review is explicit.
 - ✅ The generated cost review ranks every BOM line by fitted-device burden
   and 100-device projection. The five-board BOM Tool capture is historical
   evidence only; procurement targets one fully assembled prototype without batteries.
+- ✅ The R1→R2 undercount is corrected: the cost audit now adds the complete
+  reference support for the second RP2354B, the fourth USB/recovery groups and
+  counts 1,096 fitted parts. Checked cheaper controls, holders and Tag-Connect
+  were rejected for ESD, mechanics or service-workflow regressions, so their
+  former assumed savings are removed.
 - ✅ Five pre-order `74LVC2G126DC,125` buffers are replaced by the stocked
   same-family `74LVC2G126DP,125` (`C503392`). Logic, pin order, Schmitt inputs,
   `Ioff` and timing remain unchanged; regenerated TSSOP bodies pass H2, H3 and
