@@ -1,119 +1,125 @@
 {
-  "schema": 1,
-  "contract_id": "LESHY2-PREORDER-1",
-  "purpose": "prevent engineering-sample or final-PCB ordering before all inexpensive virtual and design evidence has been exhausted",
+  "schema": 2,
+  "contract_id": "LESHY2-PREORDER-R2",
+  "purpose": "block ordering the single assembled R2-EVT1 prototype until current hardware release evidence and the recoverable first-spin firmware package have exhausted the inexpensive pre-order checks",
+  "procurement_boundary": {
+    "assembled_device_quantity": 1,
+    "factory_role": "deterministically fabricate, populate and assemble the released package, including mating the exact documented production display and specified final-assembly parts",
+    "factory_powered_function_test": "optional quote-only insurance and never a release prerequisite",
+    "first_full_power_on": "owner after delivery under the reviewed current-limited bring-up procedure",
+    "batteries_in_factory_supply": false
+  },
   "current_truth": {
-    "target_architecture": "G2F-3I reviewed and accepted through H0; pin, owner, resource, safety and HW/FW boundary checks pass",
-    "mechanical_projection": "H1 accepted by the user; dimensioned external, internal, section, service and assembly projections are the immutable physical input to downstream verification, but not an enclosure manufacturing release",
-    "current_ecad": "H2 production schematics accepted by the user at hardware commit 25d9ee2; four complete native KiCad projects pass zero-warning/error ERC and the firmware F2 contract is synchronized at 900bb2b",
-    "executable_firmware": "F3 reviewed; five production-SDK targets pass debug/release builds, 52/52 artifacts reproduce byte-for-byte, ten image/RAM gates pass and 24 portable scenarios pass address/undefined-behavior sanitizers",
-    "instruction_emulation": "ESP32-S3 exact debug/release images boot and execute reviewed PSRAM and isolated fault paths in Espressif QEMU; C5, RP2354B and MSPM0C1106 boot/peripheral/rollback execution remains explicitly assigned to dev-board and HIL gates",
-    "joined_pre_layout": "H4 reviewed; H1 mechanics, H2 ECAD, H3 evidence and firmware F3 agree after two documentation-only source corrections; all 85 physical residuals retain H5/H6/H8 owners",
-    "physical_hil": "not run"
+    "target_architecture": "H0-R2 reviewed for six domains; ownership, working pin budgets, safety and HW/FW boundaries are current",
+    "mechanical_projection": "H1-R2.32 is in progress; the complete dimensioned mockup is not yet accepted and H1 cannot authorize ECAD or ordering",
+    "current_ecad": "R2 H2 production schematic and PCB layout have not begun; the archived R1 ECAD is historical and must not be built",
+    "virtual_electrical": "R2 routed-value electrical verification is blocked on current H2 and H6; historical R1 H3 evidence is not R2 order authority",
+    "executable_firmware": "F2-R2.5 is in progress for six production-SDK targets; the first-spin diagnostic, current R2 BSP import and recovery bundle are not reviewed",
+    "instruction_emulation": "F3-R2 and F-PO remain blocked; historical S3 QEMU evidence cannot prove the current R2 peripherals, PCB or non-S3 execution",
+    "joined_release": "R2 H4 joined review, H5 exact sourcing, H6 routed release candidate and immutable P8 order release have not run",
+    "physical_hil": "not run",
+    "order_authorized": false
   },
   "gates": [
     {
       "id": "P0_REQUIREMENTS_ARCHITECTURE",
       "status": "reviewed",
       "required_evidence": [
-        "capability and safety scope",
-        "exact controller ownership and pin/resource budget",
-        "one-active-signal-group and full nRF24 concurrency contracts",
-        "cross-repository HW/FW contract"
+        "current six-domain capability and safety scope",
+        "one owner and recoverable service path for every function",
+        "working pin, transport and resource budgets",
+        "hash-bound cross-repository HW/FW boundary"
       ]
     },
     {
-      "id": "P1_MECHANICAL_DESIGN",
-      "status": "reviewed",
+      "id": "P1_CURRENT_PHYSICAL_DESIGN",
+      "status": "in_progress",
       "required_evidence": [
-        "user-approved external control, antenna, indicator and connector layout",
-        "user-approved internal two-board placement and mirrored-face interpretation",
-        "dimensioned enclosure, actuator, acoustic, battery access and service-access concept",
-        "assembly/disassembly sequence and cable bend/strain paths",
-        "no component, silkscreen, fastener or installed-accessory collision"
+        "user-accepted dimensioned external and direct-view internal mockups",
+        "exact documented production display identity, electrical map, controlled drawing and mating envelope",
+        "exact documented bodies or controlled reserves",
+        "zero body, fastener, silkscreen, antenna, cable, accessory and opposing-face collisions",
+        "deterministic assembly, service access and enclosure load paths"
       ]
     },
     {
-      "id": "P2_CURRENT_SCHEMATIC",
-      "status": "reviewed",
+      "id": "P2_R2_PRODUCTION_SCHEMATIC",
+      "status": "blocked",
       "required_evidence": [
-        "current G2F-3I one-device-per-symbol schematic split into reviewable sheets",
-        "exact symbols, footprints, pin numbers, rails, net classes and no-connect intent",
-        "zero unexplained ERC errors and a machine cross-check against the architecture net map",
-        "independent review of reset, boot, recovery, quiet-state, no-back-power and FAULT_KILL paths"
+        "current R2 symbols, contacts, nets, values, protections and exact footprints",
+        "the H1-selected production display rather than a donor-only legacy endpoint",
+        "zero unexplained ERC errors",
+        "machine parity with H0/H1 and exported six-domain BSP",
+        "independent power, reset, boot, recovery, quiet-state and no-back-power review"
       ]
     },
     {
-      "id": "P3_VIRTUAL_ELECTRICAL",
-      "status": "reviewed",
-      "review_evidence": "hardware H3 accepted on 2026-08-24; all 85 residual physical-only rows are assigned to H5, H6 or H8",
+      "id": "P3_R2_VIRTUAL_ELECTRICAL",
+      "status": "blocked",
       "required_evidence": [
-        "worst-case DC rail and source-transition budget",
-        "startup, shutdown, brownout, watchdog, e-fuse and load-switch transient simulation",
-        "battery protection, thermal sensing and fault-tree analysis",
-        "display/backlight, audio and IR analog corner analysis",
-        "digital timing/level/no-back-power review for every inter-domain and expansion interface",
-        "pre-layout impedance, return-path, RF-corridor and coexistence constraints"
+        "worst-case DC, startup, shutdown, source transition and load-step analysis",
+        "power, thermal, watchdog and fault-tree analysis",
+        "digital timing, USB and inter-domain electrical review",
+        "display, audio, IR, RF corridor and coexistence constraints"
       ]
     },
     {
-      "id": "P4_EXECUTABLE_FIRMWARE_MODEL",
-      "status": "reviewed",
-      "review_evidence": "24 deterministic host scenarios plus clean address/undefined-behavior sanitizer execution on 2026-08-22",
+      "id": "P4_JOINED_PRE_LAYOUT_REVIEW",
+      "status": "blocked",
       "required_evidence": [
-        "portable executable L2IP framing and safety state machines",
-        "deterministic five-domain host simulation with fault injection",
-        "golden CRC, duplicate, deadline, priority and saturation tests",
-        "lease expiry, unexpected evidence, heartbeat loss, thermal fault and watchdog tests",
-        "all-in-one update activation/rollback and retained fault-viewer tests"
+        "one current H1/H2/H3/firmware review",
+        "zero virtual blocker",
+        "every irreducible physical uncertainty assigned to owner bring-up or HIL"
       ]
     },
     {
-      "id": "P5_TARGET_BUILDS_EMULATION",
-      "status": "reviewed",
-      "review_evidence": "firmware F3 result: docs/f3-boot-memory-emulation-report.md; exact S3 virtual execution, 52 reproducible artifacts and five explicit physical target/HIL gates",
+      "id": "P5_EXACT_PRODUCTION_SOURCING",
+      "status": "blocked",
       "required_evidence": [
-        "buildable S3, C5, RP, PACK and SAFETY skeleton images using the selected production SDKs",
-        "map-file size gates for every image and rollback slot",
-        "ESP32-S3 boot/self-test/update-failure execution in official QEMU",
-        "host-peripheral simulation for code shared by targets without exact emulators",
-        "documented dev-board tests for silicon/peripherals that no emulator represents"
+        "live stock, quantity-one price and factory route recheck for the H1-selected production display",
+        "current JLCPCB Standard PCBA route or explicit approved external route for every BOM line",
+        "MOQ, quantity-one cost, attrition and no-silent-substitution rules",
+        "written factory acceptance of every manual/final-assembly operation"
       ]
     },
     {
-      "id": "P6_PRE_LAYOUT_REVIEW",
-      "status": "reviewed",
-      "review_evidence": "hardware/verification/generated/H4-PLG13-acceptance-package.json; bilingual report docs/h4-prelayout-gate-report.md",
+      "id": "P6_ROUTED_PRODUCTION_PACKAGE",
+      "status": "blocked",
       "required_evidence": [
-        "joined mechanical/electrical/firmware review",
-        "closed blocker list and explicit residual physical-only uncertainties",
-        "reviewed prototype measurement and bring-up plan"
+        "reviewed placement and routing for both boards and the display adapter",
+        "DRC/ERC plus schematic-to-PCB net, footprint, courtyard and fitted-option parity",
+        "routed power, thermal, digital SI, return-path, USB, RF isolation and extracted-parasitic re-analysis",
+        "mechanical STEP, stack, cable, swept-volume and enclosure review",
+        "independent DFM and CPL-orientation review"
       ]
     },
     {
-      "id": "P7_ENGINEERING_SAMPLE_ORDER",
+      "id": "P7_FIRST_SPIN_DIAGNOSTIC",
+      "status": "blocked",
+      "required_evidence": [
+        "F-PO FPO1-FPO7 reviewed against the exact H2/H6 candidate hashes",
+        "six reproducible diagnostic images",
+        "S3 QEMU and host/fake-HAL UI, control, missing-device and fault evidence",
+        "six-domain flash/recovery bundle and current-limited owner bring-up script"
+      ]
+    },
+    {
+      "id": "P8_IMMUTABLE_EXACT_ONE_RELEASE",
       "status": "not_authorized",
       "required_evidence": [
-        "P1 through P6 complete",
-        "each purchased item closes a named physical-only uncertainty",
-        "exact basket, shipping and total cost approved by the user"
-      ]
-    },
-    {
-      "id": "P8_KICAD_LAYOUT_AND_PROTOTYPE_PCB",
-      "status": "not_authorized",
-      "required_evidence": [
-        "current schematic and received-part geometry released",
-        "placement review on both sides of both boards",
-        "DRC, impedance, return-current, RF isolation and manufacturing review",
-        "fabrication package explicitly approved by the user"
+        "P0 through P7 complete on one coherent revision",
+        "hash-locked Gerber, drill, BOM, CPL, STEP, schematic, firmware and assembly instructions",
+        "exactly one finished assembled-device quote with factory attrition itemized",
+        "no silent substitution and owner approval of the final files and exact-one total"
       ]
     }
   ],
   "order_rules": {
-    "rfq_without_commitment": "may be prepared but not sent as a purchase order",
-    "engineering_samples": "not the next automatic step; permitted only after P1-P6 and explicit user approval",
+    "rfq_without_commitment": "may be requested to close sourcing and assembly feasibility",
+    "engineering_samples": "no separate display donor or speculative sample basket is a prerequisite",
+    "factory_fct": "optional only; design correctness must not depend on a paid factory powered test",
     "final_components_or_pcbs": "forbidden before P8 release",
-    "kicad": "a new current schematic may begin at P2; PCB placement/routing remains blocked until P6"
+    "assembled_devices": "exactly one R2-EVT1 after P8 release",
+    "kicad": "R2 schematic begins only after accepted H1; routing begins only after P4/P5 inputs are current"
   }
 }

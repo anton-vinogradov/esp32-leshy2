@@ -892,7 +892,7 @@ EXTERIOR_BODY_CONTRACTS = (
             reserve.instance,
             "rf-inner-route",
             0,
-            "bounded module-face zone to fixed Gen1 board receptacle; exact axis closes in H5",
+            "bounded module-face zone to fixed Gen1 board receptacle; H5 locks the conservative corridor and H7/H8 inspect the received axis after arrival",
         )
         for reserve in RF_NRF_CABLE_RESERVES
     ),
@@ -3965,7 +3965,7 @@ def render_internal(devices, instances, display_adapter_design):
         text(note_x,notes_top+171,"• exact M1 plug/receptacle is one intentional 11-mm mate, not a clearance pair",10),
         text(note_x,notes_top+192,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
         text(note_x,notes_top+213,"• both inner views are horizontally mirrored from their external faces",10),
-        text(note_x,notes_top+234,f"• nRF reserve crossings: {len(nrf_reserve_clearance_pairs)}; minimum Z gap {minimum_nrf_reserve_clearance:.2f} mm; drawn IPEX positions are schematic and close in H5",10),
+        text(note_x,notes_top+234,f"• nRF reserve crossings: {len(nrf_reserve_clearance_pairs)}; minimum Z gap {minimum_nrf_reserve_clearance:.2f} mm; H5 locks the corridor, H7/H8 inspect received IPEX axes",10),
         text(note_x,notes_top+255,f"• EC11E through-board features: 7 checked; {len(through_board_clearance_pairs)} opposing crossings; minimum Z gap {minimum_through_board_clearance:.2f} mm",10),
         text(note_x,notes_top+276,f"• all {len(ANTENNA_TOPOLOGY_GUIDES)} onboard antenna paths have a source-to-port topology guide; final copper remains KiCad work",10),
         text(note_x,notes_top+297,"• orange dashed boundary is a placement zone, not one combined device",10),
@@ -4681,7 +4681,7 @@ def render_navigation_cluster(design, devices, instances):
         t(note_x, 414, "Quantity-100 component cost", 16, "bold"),
         t(note_x, 445, f"Five selected buttons: ${cost['five_b3s_1100p']:.4f} per device", 11),
         t(note_x, 471, "PCB, assembly, enclosure, freight and tax excluded", 11, colour="#526076"),
-        t(30, 530, "Dimensioned component placement; enclosure opening feel and endurance remain H5 checks.", 10.5, "bold", colour="#b42318"),
+        t(30, 530, "H5 locks opening geometry/DRC; H7/H8 inspect fit and ordinary actuation after arrival.", 10.5, "bold", colour="#b42318"),
         '</svg>',
     ]
     return "\n".join(out) + "\n"
@@ -5623,7 +5623,7 @@ def render_physical_source_register(source_table: dict) -> str:
         "Every body drawn in the product views is generated from one machine row with",
         "an exact selected MPN (or an explicit TBD), manufacturer-backed envelope, named",
         "coordinate frame, orientation and interface direction. No H1 geometry blocker",
-        "remains; received fit, RF, acoustic, thermal and endurance checks stay in H5.",
+        "remains; H5 locks deterministic pre-order evidence, while received fit, RF, acoustic, thermal and ordinary-operation checks run in H7/H8 after arrival without artificial ageing.",
         "",
         "| Coverage | Result |",
         "|---|---:|",

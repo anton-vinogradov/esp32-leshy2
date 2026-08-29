@@ -3,12 +3,12 @@
   "stage": "H5",
   "status": "in_progress",
   "current_substep": "H5.0.3-R1",
-  "purpose": "close received-part uncertainties with the least expensive reliable evidence, using documents or serial replacements before buying samples",
+  "purpose": "lock exact identities, factory routes and an order-integrated manifest before H6; execute physical evidence only on the sole H7/H8 prototype and ordinary bring-up accessories",
   "accepted_inputs": [
     "H4 joined pre-layout gate reviewed",
     "nine H3 physical residuals explicitly assigned to H5",
-    "current dual-SA818S H1/H2/H3 received-part evidence gates",
-    "user rule: purchasing is the last step after deeper research or a documented serial replacement search"
+    "current dual-SA818S H1/H2/H3 physical evidence gates assigned to H7/H8 owner bring-up",
+    "user rule: there is one prototype order after H6/F-PO and no separate engineering-sample or H5 coupon purchase"
   ],
   "authorization": {
     "manufacturer_and_distributor_research": true,
@@ -61,25 +61,10 @@
         },
         {
           "id": "H5.0.3-R1",
-          "title": "Publish only the irreducible received-sample set, exact measurements and cost for explicit approval",
+          "title": "Publish the sole-prototype article manifest, H7/H8 evidence contracts and current one-prototype cost",
           "status": "current_partial_supplier_response_clarification_open"
         }
       ]
-    },
-    {
-      "id": "H5.1",
-      "title": "Identify and measure only approved received samples",
-      "status": "waiting_for_h5_0_and_cost_approval"
-    },
-    {
-      "id": "H5.2",
-      "title": "Run mating, land-fit, cable, actuator and assembly coupons",
-      "status": "waiting"
-    },
-    {
-      "id": "H5.3",
-      "title": "Reconcile evidence, correct mismatches at source and accept the H5 gate before H6",
-      "status": "waiting"
     }
   ],
   "reviewed_artifacts": {
@@ -98,7 +83,7 @@
   },
   "current_artifacts": {
     "H5.0.3-R1": {
-      "machine_basket": "hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json",
+      "machine_article_manifest": "hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json",
       "machine_platform": "hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json",
       "machine_route_join": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
       "machine_route_resolution": "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json",
@@ -108,11 +93,11 @@
       "parts_api_support_inquiry": "hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md",
       "machine_fallback_factory": "hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json",
       "prepared_fallback_inquiry": "hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md",
-      "readable_basket_en": "docs/component-sample-basket.md",
-      "readable_basket_ru": "docs/component-sample-basket.ru.md",
+      "readable_manifest_en": "docs/component-sample-basket.md",
+      "readable_manifest_ru": "docs/component-sample-basket.ru.md",
       "readable_platform_en": "docs/manufacturing-platform.md",
       "readable_platform_ru": "docs/manufacturing-platform.ru.md",
-      "result": "33 priced sample lines cover all nine H5 residuals and fourteen mechanical gates for USD 286.43 before freight/tax/coupons; all 210 current BOM lines and 1052 placements have exact J0-J3/J4-F/J4-P/J5-U routes with zero replacement and zero unmapped lines. JLCPCB's partial 2026-08-26 response confirms exact SA818S-V MOQ 1, typical 8-15-working-day pre-order and conditional post-order Function Test pricing. Accumulators are owner-confirmed J5-U, user-supplied and not part of delivery or supplier gate. H5-EVR07 remains fail-closed on 16 unanswered fields; the actual two-designator job, remaining J4-F/J4-P and identity control require the prepared clarification. Parts API remains rejected after support attributed it to a new account with no order history; the responder is not the API review team and supplied no approval threshold, so no reapplication was submitted and manual catalogue/BOM evidence remains authoritative. H5-EVR08 preserves PCBWay/Seeed fallback without authorizing another inquiry or commercial action."
+      "result": "The procurement target is exactly one fully assembled prototype without batteries, not a batch or separate sample order. Thirty integrated production/bring-up article lines cover all nine H5 residuals and fourteen mechanical gates; USD 232.52 is priced, while the one exact production panel and factory attrition remain quote-only. HMX donors are rejected procurement and legacy evidence only. All 210 current BOM lines and 1052 placements retain exact J0-J3/J4-F/J4-P/J5-U routes. JLCPCB Standard PCBA exposes a Function Test review/quote path, but it is optional insurance rather than a gate; written display-mating and one-prototype final-assembly feasibility remain open. First full USB power-on and physical evidence belong to owner H7/H8. No separate H5 sample/coupon subphases exist. Parts API remains rejected and manual catalogue/BOM evidence remains authoritative."
     }
   },
   "superseded_artifacts": {
@@ -152,7 +137,7 @@
     "prepared_message": "hardware/procurement/H5.0.3-R1-no-order-supplier-inquiry.md",
     "does_not_authorize": ["reservation", "purchase", "component replacement", "PCB placement/routing", "fabrication"]
   },
-  "blocker": "H5.0.3-R1 has a partial JLCPCB response: SA818S-V MOQ and typical pre-order lead are known, but the actual two-designator U/V job, remaining J4-F/J4-P operations and exact-MPN control remain external supplier inputs. Accumulators are J5-U, user-supplied and no longer a supplier gate. H5-EVR07 remains fail-closed, the clarification is prepared but unsent, and H5-EVR08 preserves PCBWay as the uncontacted full-device fallback.",
+  "blocker": "H5.0.3-R1 targets one assembled prototype without batteries. SA818S-V MOQ and typical pre-order lead are known, but the exact production panel, actual two-designator U/V job and deterministic J4-F/J4-P assembly feasibility/pricing remain external supplier inputs. Optional paid Function Test closes no gate; first full USB bring-up belongs to the owner. H5-EVR07 remains fail-closed and H5-EVR08 preserves PCBWay as the uncontacted full-device fallback.",
   "next_active_repository": "esp32-leshy2",
   "next_active_substep": "H5.0.3-R1"
 }

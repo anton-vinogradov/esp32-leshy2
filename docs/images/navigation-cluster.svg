@@ -36,5 +36,5 @@
 <text x="700.0" y="414.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Quantity-100 component cost</text>
 <text x="700.0" y="445.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Five selected buttons: $3.2025 per device</text>
 <text x="700.0" y="471.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">PCB, assembly, enclosure, freight and tax excluded</text>
-<text x="30.0" y="530.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="start" fill="#b42318">Dimensioned component placement; enclosure opening feel and endurance remain H5 checks.</text>
+<text x="30.0" y="530.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="start" fill="#b42318">H5 locks opening geometry/DRC; H7/H8 inspect fit and ordinary actuation after arrival.</text>
 </svg>

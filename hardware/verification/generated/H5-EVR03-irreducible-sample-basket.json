@@ -1,45 +1,58 @@
 {
   "schema_version": 2,
   "stage": "H5.0.3-R1",
-  "status": "draft_factory_and_preorder_response_pending",
+  "status": "draft_order_integrated_manifest_factory_response_pending",
   "checked_on": "2026-08-26",
-  "purpose": "one deduplicated engineering-sample basket after documentary and serial-replacement research; no purchase authorization",
+  "purpose": "one order-integrated article manifest for the sole fully assembled Leshy2 prototype plus H7/H8 owner evidence contracts; no device batch, separate sample purchase or purchase authorization",
+  "procurement_target": {
+    "finished_device_quantity": 1,
+    "deliverable": "one fully assembled Leshy2 prototype built without factory engineering choices",
+    "display": "one exact production panel selected later, installed and mated by the factory in that prototype",
+    "first_power_on": "owner USB-powered bring-up after delivery: known image, backlight and touch",
+    "factory_function_test": "optional quote-only insurance; not required and not a release gate",
+    "batteries_included": false,
+    "factory_attrition_rule": "extra display units, connectors and flex components belong to quoted factory attrition and are not user samples",
+    "hmx_donor_route": "rejected procurement route; legacy evidence only",
+    "separate_engineering_sample_purchase": false,
+    "coupon_board_phase": false,
+    "physical_evidence_execution": "owner H7 arrival/bring-up and H8 qualification on the sole prototype and ordinary accessories",
+    "article_manifest_scope": "factory-installed production parts, factory-packed accessories where accepted, and ordinary owner-supplied operating items; it is not a second commercial order"
+  },
   "inputs": {
     "residual_map": {
       "path": "hardware/verification/generated/H5-EVR01-residual-map.json",
-      "sha256": "4b6e1c6eb498aeb1ff06f09787a6622ee9a38efe48b44f22bf231b83876bd487"
+      "sha256": "846ae4ff4f0b02a2228873085253d2908ae6acc58c20007c6246e01273e2f753"
     },
     "source_research": {
       "path": "hardware/verification/generated/H5-EVR02-source-research.json",
-      "sha256": "8e1993482158e44880a9d07ab766f077a56ad3b31dc63a79725575c0517f8882"
+      "sha256": "939c82492e405994c23c589b5b08ff14d9b050c30f085b7c2b8a67a40ea6d962"
     }
   },
   "summary": {
-    "article_lines": 33,
+    "article_lines": 30,
     "measurement_contracts": 11,
     "covered_residuals_and_gates": 23,
-    "published_price_subtotal_usd": "275.28",
+    "published_price_subtotal_usd": "228.52",
     "conservative_budget_caps_usd": "4.00",
-    "known_engineering_material_budget_usd": "279.28",
-    "unpriced_manufacturer_lines": 0,
+    "known_engineering_material_budget_usd": "232.52",
+    "unpriced_manufacturer_lines": 1,
     "excluded_from_budget": [
+      "exact production panel and factory attrition",
       "SA818S-V pre-order freight/lead-time charge",
       "J4-F box-build",
-      "J4-P kit/packing/battery shipping",
+      "J4-P kit/packing",
       "freight",
       "tax",
       "customs",
-      "H5.2 coupon PCB fabrication/assembly",
       "general laboratory instruments and ordinary passives"
     ],
     "former_parked_plan_usd": "164.54 for only a partial eight-line lot",
-    "comparison_note": "The new total is larger because it covers all 9 H5 residuals and 14 mechanical gates, but quantities within each line are reduced to evidence minima."
+    "comparison_note": "The priced subtotal excludes the unresolved production panel and all factory attrition; these lines form the integrated sole-prototype/bring-up manifest, not a separate sample basket or device batch."
   },
   "group_budget_usd": {
     "amlw-pod": "19.79",
     "audio": "5.90",
     "controls": "21.99",
-    "display": "46.76",
     "expansion": "31.68",
     "ir": "5.30",
     "power": "46.38",
@@ -48,113 +61,31 @@
   },
   "articles": [
     {
-      "id": "display-donor",
+      "id": "production-display-gate",
       "group": "display",
-      "mpn": "Elecrow DLE06235B / QDtech ES3C35P donor containing HMX035CTFT-001",
-      "order_quantity": 2,
-      "order_unit": "piece",
+      "mpn": "EXACT PRODUCTION PANEL — UNRESOLVED",
+      "order_quantity": 1,
+      "order_unit": "factory-installed panel",
       "contained_pieces_per_order_unit": 1,
       "pricing": {
-        "kind": "published_usd",
-        "unit_usd": "20.90",
-        "subtotal_usd": "41.800",
+        "kind": "factory_quote_required",
+        "unit_usd": null,
+        "subtotal_usd": null,
         "source_price": null
       },
       "source": {
-        "label": "Elecrow current complete-board page",
-        "url": "https://www.elecrow.com/3-5-esp32-s3-display-320x480-capacitive-ips-touchscreen-with-speaker-mic-bat-interface-supports-ai-voice-chat.html",
+        "label": "QDtech HMX035CTFT-001 legacy electrical evidence",
+        "url": "https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf",
         "checked_on": "2026-08-26",
-        "availability": "listed in stock"
+        "availability": "not selected; exact production-panel identity, factory mating and final-assembly feasibility await written confirmation"
       },
       "coverage": [
         "H3-PHY-017",
         "H5-MECH-DISPLAY-TAIL",
         "H5-MECH-DISPLAY-PERFORMANCE"
       ],
-      "minimum_quantity_basis": "one retained intact electrical/visual reference and one sacrificial tail/adapter specimen; the former five-donor plan added three unneeded spares",
-      "risk": null,
-      "purchase_authorized": false
-    },
-    {
-      "id": "display-zif",
-      "group": "display",
-      "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
-      "order_quantity": 1,
-      "order_unit": "piece",
-      "contained_pieces_per_order_unit": 1,
-      "pricing": {
-        "kind": "published_usd",
-        "unit_usd": "3.40",
-        "subtotal_usd": "3.400",
-        "source_price": null
-      },
-      "source": {
-        "label": "Mouser exact-MPN listing",
-        "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/FH34SRJ-40S-0.5SH99",
-        "checked_on": "2026-08-26",
-        "availability": "orderable exact MPN"
-      },
-      "coverage": [
-        "H3-PHY-017",
-        "H5-MECH-DISPLAY-TAIL",
-        "H5-MECH-DISPLAY-PERFORMANCE"
-      ],
-      "minimum_quantity_basis": "one repeated-mating adapter coupon uses one panel ZIF; failure means the test fails rather than consuming a hidden spare",
-      "risk": null,
-      "purchase_authorized": false
-    },
-    {
-      "id": "display-df40-receptacle",
-      "group": "display",
-      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
-      "order_quantity": 1,
-      "order_unit": "piece",
-      "contained_pieces_per_order_unit": 1,
-      "pricing": {
-        "kind": "published_usd",
-        "unit_usd": "0.5539",
-        "subtotal_usd": "0.554",
-        "source_price": null
-      },
-      "source": {
-        "label": "JLCPCB C597934 exact HRS(Hirose) listing",
-        "url": "https://jlcpcb.com/partdetail/x/C597934",
-        "checked_on": "2026-08-26",
-        "availability": "7,205 currently placeable; MOQ 1"
-      },
-      "coverage": [
-        "H3-PHY-017",
-        "H5-MECH-DISPLAY-TAIL"
-      ],
-      "minimum_quantity_basis": "one fixed receptacle is sufficient for the single display-adapter coupon; (51) preserves the exact body/mate and changes only reel quantity from the former (58) order code",
-      "risk": null,
-      "purchase_authorized": false
-    },
-    {
-      "id": "display-df40-plug",
-      "group": "display",
-      "mpn": "Hirose DF40C-40DP-0.4V(51)",
-      "order_quantity": 1,
-      "order_unit": "piece",
-      "contained_pieces_per_order_unit": 1,
-      "pricing": {
-        "kind": "published_usd",
-        "unit_usd": "1.01",
-        "subtotal_usd": "1.010",
-        "source_price": null
-      },
-      "source": {
-        "label": "Mouser exact-MPN listing",
-        "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C-40DP-0.4V51",
-        "checked_on": "2026-08-26",
-        "availability": "orderable exact MPN"
-      },
-      "coverage": [
-        "H3-PHY-017",
-        "H5-MECH-DISPLAY-TAIL"
-      ],
-      "minimum_quantity_basis": "one plug is sufficient for the single display-adapter coupon",
-      "risk": null,
+      "minimum_quantity_basis": "exactly one production panel is installed in the one finished prototype; any extra panels, connectors or flex parts are factory attrition in the quote, never user-purchased samples",
+      "risk": "HMX035CTFT-001 and its complete donors are legacy electrical/mechanical evidence only and are rejected as the procurement route. The factory must quote an exact production panel without silently changing the accepted endpoint.",
       "purchase_authorized": false
     },
     {
@@ -586,7 +517,7 @@
       "coverage": [
         "H5-MECH-RUN-KILL"
       ],
-      "minimum_quantity_basis": "one switch/aperture path closes force, detent and endurance evidence",
+      "minimum_quantity_basis": "the installed switch/aperture path closes fit, detent and ordinary-actuation evidence",
       "risk": null,
       "purchase_authorized": false
     },
@@ -768,7 +699,7 @@
       "coverage": [
         "H3-PHY-024"
       ],
-      "minimum_quantity_basis": "one received robust-demodulator channel; TR preserves the TT body, contacts and electrical function but requires explicit CPL rotation/feeder-presentation approval before PCBA",
+      "minimum_quantity_basis": "one production robust-demodulator channel; TR preserves the TT body, contacts and electrical function but requires explicit CPL rotation/feeder-presentation approval before PCBA",
       "risk": null,
       "purchase_authorized": false
     },
@@ -941,19 +872,16 @@
     {
       "id": "H5-MSR-DISPLAY",
       "articles": [
-        "display-donor",
-        "display-zif",
-        "display-df40-receptacle",
-        "display-df40-plug"
+        "production-display-gate"
       ],
       "evidence": [
         "H3-PHY-017",
         "H5-MECH-DISPLAY-TAIL",
         "H5-MECH-DISPLAY-PERFORMANCE"
       ],
-      "method": "retain one donor intact; photograph both lots; disassemble the second; measure flex outline, pitch, thickness, contact side, stiffener and bend keepout; cycle the exact adapter; then record QSPI/touch identity, VDD/VDDI ramps, reset/IRQ, backlight current, temperature and optical response",
-      "pass_rule": "the current HMX035CTFT-001 tail fits and retains in a replaceable adapter without changing the UI PCB/enclosure datum, and the complete measured display path meets every inherited H3 timing/power rule",
-      "artifacts": "dimensioned photos, raw measurements, continuity matrix, logic/power traces and signed record"
+      "method": "the factory installs and mates the selected documented production panel in the sole finished prototype from the released production package, without batteries and without making engineering choices; the owner performs the first full USB-powered bring-up and records known-image, backlight and touch results",
+      "pass_rule": "the production package makes panel identity, mating, retention and assembly deterministic; written factory feasibility is obtained before order, while any paid pre-shipment Function Test is optional quote-only insurance and never a release gate",
+      "artifacts": "controlled panel identity/drawing, deterministic mating and assembly instructions, factory assembly record, owner USB bring-up image/backlight/touch traces and signed result"
     },
     {
       "id": "H5-MSR-U214",
@@ -965,9 +893,9 @@
         "H3-PHY-046",
         "H5-MECH-U214-MATING-STACK"
       ],
-      "method": "measure the fitted U214 posts and exact HLE; record all 14 continuities, bottoming, insertion/withdrawal force, repeated cycles, rail preload and screw retention",
+      "method": "measure the fitted U214 posts and exact HLE; during ordinary assembly/disassembly record all 14 continuities, bottoming clearance, rail preload, screw retention and visual condition without a prescribed force or cycle programme",
       "pass_rule": "the mixed U214/HLE pair mates without yield or bottoming, retains every contact and preserves the protected hot-plug sequence",
-      "artifacts": "metrology, force/cycle CSV, continuity log and installed photos"
+      "artifacts": "metrology, continuity log and installed photos"
     },
     {
       "id": "H5-MSR-M5",
@@ -981,9 +909,9 @@
         "H3-PHY-048",
         "H5-MECH-M5-UNIT-MATE"
       ],
-      "method": "measure connector/cable geometry and run I2C, UART, GPIO and 1-Wire profiles through TXS0102 at short and boundary lengths with the breakout attached",
-      "pass_rule": "insertion, retention, strain relief, pull networks and waveforms satisfy each admitted profile; unsupported motor/actuator loads remain excluded",
-      "artifacts": "cable photos/lengths, force/cycle records and oscilloscope captures"
+      "method": "measure connector/cable geometry, inspect ordinary mating and strain relief, and run I2C, UART, GPIO and 1-Wire profiles through TXS0102 at short and boundary lengths with the breakout attached",
+      "pass_rule": "ordinary mating, retention, strain relief, pull networks and waveforms satisfy each admitted profile; unsupported motor/actuator loads remain excluded",
+      "artifacts": "cable photos/lengths, continuity records and oscilloscope captures"
     },
     {
       "id": "H5-MSR-RF5",
@@ -999,9 +927,9 @@
         "H5-MECH-NRF-GEN1-FEEDS",
         "H5-MECH-NATIVE-RF-JUMPERS"
       ],
-      "method": "inspect all E01 factory receptacles; assemble five straight U.FL-to-U.FL cable paths and four edge SMA boundaries; measure bend, retention and S-parameters; run all three nRF24 simultaneously in full RX, TX and mixed modes with every inactive interface hardware-quiet",
+      "method": "inspect all E01 factory receptacles; assemble the five U.FL cable paths and edge SMA boundaries normally; inspect bend, retention and strain relief, verify continuity and S-parameters, then run all three nRF24 simultaneously in full RX, TX and mixed modes with every inactive interface hardware-quiet",
       "pass_rule": "all five paths meet inherited loss/match and retention limits, all three nRF24 meet concurrent deadlines without neighbouring-interface stalls or desense",
-      "artifacts": "microscope photos, force/cycle CSV, five VNA touchstone sets and 3R/1T2R/2T1R/3T traffic traces"
+      "artifacts": "microscope photos, continuity records, five VNA touchstone sets and 3R/1T2R/2T1R/3T traffic traces"
     },
     {
       "id": "H5-MSR-SA818S-DUAL",
@@ -1012,9 +940,9 @@
       "evidence": [
         "H5-MECH-SA818S-DUAL-LAND-FIT"
       ],
-      "method": "confirm both received G-NiceRF identities and the common Rev 1.8 18-land contact map; measure each module and castellations; populate one common-land coupon with independently selectable UHF/VHF positions; record solder heat, VNA, supply/current/temperature, band limits, both power settings, audio, UART/PTT/PD/H-L and FAULT_KILL for each installed variant",
-      "pass_rule": "both exact modules fit the common accepted reserve and each independently meets its inherited RF/audio/safety contract; no CE substitution is silent and no test drives reserved contacts 8-18",
-      "artifacts": "JLC identity records, incoming photos, land-fit X-ray/photos, VNA/RF/audio/power/thermal/fault traces for U and V"
+      "method": "confirm both factory-installed G-NiceRF identities and the common Rev 1.8 18-land contact map on the sole prototype; inspect each module and castellations, then record VNA, supply/current/temperature, band limits, both power settings, audio, UART/PTT/PD/H-L and FAULT_KILL for each independently selectable installed variant during H7/H8 owner bring-up",
+      "pass_rule": "both exact modules fit the common accepted production land and each independently meets its inherited RF/audio/safety contract; no CE substitution is silent and no test drives reserved contacts 8-18",
+      "artifacts": "factory identity/assembly records, arrival and land-fit photos, VNA/RF/audio/power/thermal/fault traces for U and V"
     },
     {
       "id": "H5-MSR-CONTROLS",
@@ -1030,9 +958,9 @@
         "H5-MECH-ENCODER-KNOB",
         "H5-MECH-RUN-KILL"
       ],
-      "method": "populate the full 16-switch interface plus encoder/knob and side RUN/KILL aperture; measure access, actuation, accidental-press protection, depth, detents and repeated cycles",
-      "pass_rule": "every serial control is independently reachable in the accepted external layout, remains recessed where required and passes the declared force/endurance limits",
-      "artifacts": "dimensioned assembled photos, force curves, cycle log and signed ergonomic checklist"
+      "method": "use the full 16-switch interface plus encoder/knob and side RUN/KILL aperture on the one assembled prototype; inspect access, ordinary actuation, accidental-press protection, depth and detents without artificial ageing",
+      "pass_rule": "every serial control is independently reachable in the accepted external layout, remains recessed where required and works during ordinary operation",
+      "artifacts": "dimensioned assembled photos, continuity/actuation record and signed ergonomic checklist"
     },
     {
       "id": "H5-MSR-PACK",
@@ -1045,9 +973,9 @@
         "H3-PHY-028",
         "H5-MECH-CELL-HOLDER-FIT"
       ],
-      "method": "keep one matched same-lot protected-cell pair inside its exact MPN voltage/current/temperature limits for admitted-operation, holder, vibration and thermal evidence; on one MAX17320 record blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery with both address spaces, checksum, NVError and remaining-update bitmap; inject zero-remaining, failed-copy, reversed, swapped, open, short, missing, imbalance and temperature thresholds through the emulator or current-limited cell-simulator/NTC fixture",
-      "pass_rule": "the matched pair remains mechanically/electrically retained at every admitted corner, the gauge blocks and recovers deterministically, all seven physical NVM updates are not consumed, and no real cell is abused beyond its MPN limits",
-      "artifacts": "cell lot record, dimensional/force/vibration traces, simulator/NTC-fixture traces, gauge images/readbacks and fault logs"
+      "method": "verify exact holder/cradle/stop geometry and polarity, install/remove the matched same-lot protected-cell pair only as ordinarily required, then inspect pads/contact retention and continuity; keep the pair inside its exact MPN voltage/current/temperature limits; on one MAX17320 record blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery with both address spaces, checksum, NVError and remaining-update bitmap; inject zero-remaining, failed-copy, reversed, swapped, open, short, missing, imbalance and temperature thresholds through the emulator or current-limited cell-simulator/NTC fixture",
+      "pass_rule": "the enclosure rather than SMT pads carries ordinary insertion/removal load, the matched pair remains mechanically/electrically retained, the gauge blocks and recovers deterministically, all seven physical NVM updates are not consumed, and no real cell is abused beyond its MPN limits",
+      "artifacts": "cell identity record, dimensioned installation photos, pad/contact continuity inspection, simulator/NTC-fixture traces, gauge images/readbacks and fault logs"
     },
     {
       "id": "H5-MSR-AUDIO",
@@ -1060,9 +988,9 @@
         "H5-MECH-ACOUSTIC-PATHS",
         "H5-MECH-HEADSET-JACK"
       ],
-      "method": "mount the exact speaker and downward microphone in the representative cavity; sweep response/noise/feedback/vibration; cycle the jack with CTIA and ordinary TRS while recording detect, source selection, bias, transient and unplug pop",
+      "method": "mount the exact speaker and downward microphone in the representative cavity; sweep response/noise/feedback and inspect buzz/rattle during ordinary playback; mate CTIA and ordinary TRS as needed while recording detect, source selection, bias, transient and unplug pop",
       "pass_rule": "the enclosure path meets the inherited gain/noise/thermal limits and the jack preserves CTIA/TRS behavior without blocking the internal microphone",
-      "artifacts": "audio sweeps, noise/feedback captures, insertion-force/cycle data and transient traces"
+      "artifacts": "audio sweeps, noise/feedback captures, ordinary-mating continuity record and transient traces"
     },
     {
       "id": "H5-MSR-IR",
@@ -1101,9 +1029,9 @@
       "evidence": [
         "H3-PHY-057"
       ],
-      "method": "verify exact identities and physical envelopes; wind and trim the first pod to 300 uH +/-5%; document mating and constituent geometry",
-      "pass_rule": "the received SMA and every controlled pod constituent match the selected identities/envelopes and the completed pod meets inductance; routed parasitic budget remains H6 and total populated capacitance remains H8",
-      "artifacts": "incoming photos, dimensions, winding record, L/Q sweep and mating record"
+      "method": "verify exact delivered identities and physical envelopes; wind and trim the first owner pod to 300 uH +/-5% after arrival; document mating and constituent geometry",
+      "pass_rule": "the installed SMA and every controlled pod constituent match the selected identities/envelopes and the completed pod meets inductance; routed parasitic budget remains H6 and total populated capacitance remains H8",
+      "artifacts": "arrival photos, dimensions, winding record, L/Q sweep and mating record"
     }
   ],
   "supply_constraints": {
@@ -1128,8 +1056,8 @@
       "jlcpcb_part": "C19632390",
       "stock": 8,
       "quantity_one_usd": "9.3449",
-      "status": "not_in_minimum_basket",
-      "restriction": "may replace only SA818S-U after received-part HIL and a 470-MHz firmware clamp; never replaces SA818S-V and never substitutes silently"
+      "status": "not_in_order_manifest",
+      "restriction": "may replace only SA818S-U after owner HIL and a 470-MHz firmware clamp; never replaces SA818S-V and never substitutes silently"
     },
     "orders_or_requests_submitted": 1,
     "supplier_information_inquiries_submitted": 1,
@@ -1148,12 +1076,13 @@
   "sequencing": {
     "now": "wait for JLCPCB's itemized response to the no-order inquiry submitted on 2026-08-26; retain SA818S-V and J4-F/J4-P as open factory gates",
     "after_mapping": "use approved read-only Parts access for repeatable availability checks when permission becomes usable; no additional submission is required for the current gate",
-    "after_quote": "publish exact whole-basket and final-assembly costs from the response, then request a separate sample-order decision",
-    "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",
+    "after_quote": "publish exact sole-prototype and final-assembly costs, close the H5 supplier/manifest gate, then continue through H6 and the existing single H7 prototype-order approval",
+    "after_order": "H7 records arrival identity, assembly and first owner bring-up; H8 executes the retained fit, RF, thermal, audio, control and interoperability contracts on that prototype and ordinary accessories",
     "forbidden": [
-      "component purchase without a separate decision",
-      "PCB placement/routing",
-      "prototype fabrication"
+      "separate engineering-sample purchase",
+      "H5 coupon-board fabrication",
+      "PCB placement/routing before H5 closes",
+      "prototype fabrication before H6 and F-PO"
     ]
   },
   "checks": {
@@ -1162,11 +1091,14 @@
     "every_required_residual_and_gate_has_a_measurement_contract": true,
     "article_ids_are_unique": true,
     "every_article_is_used_by_a_measurement": true,
-    "every_identity_is_exact_and_non_tbd": true,
+    "every_selected_identity_is_exact": true,
+    "production_display_is_one_unresolved_factory_gate": true,
     "every_quantity_has_an_explicit_minimum_basis": true,
-    "every_article_has_a_current_cost": true,
-    "both_selected_voice_variants_are_in_the_basket": true,
+    "only_production_display_waits_for_factory_quote": true,
+    "both_selected_voice_variants_are_in_the_integrated_manifest": true,
     "voice_prices_match_reviewed_jlcpcb_routes": true,
-    "purchase_layout_fabrication_not_authorized": true
+    "purchase_layout_fabrication_not_authorized": true,
+    "no_separate_sample_or_coupon_order": true,
+    "all_physical_contracts_execute_on_h7_h8_prototype_or_ordinary_accessories": true
   }
 }

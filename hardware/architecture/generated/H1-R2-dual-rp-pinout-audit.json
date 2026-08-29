@@ -13,7 +13,7 @@
     "u219_profile_source": "hardware/architecture/h1-r2-u219-cap.json",
     "u219_profile_source_sha256": "acbc1e3b596aac16bcaf1c4dfb721293b97677cd32d61fb1c5dbbf6c3a6a581b",
     "device_register_source": "hardware/architecture/devices.json",
-    "device_register_source_sha256": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
+    "device_register_source_sha256": "a47012afe7f17a40d0051074febf8a877a75162e913892ba02d57da58fff3d4d",
     "r2_h2_authorized": false,
     "c5_electrical_join_status": "closed against C5-SDIO-SERVICE-MUX-1: exact module pads, fixed IO mux, FSUSB42 branch polarity, reset ownership and Hub-side signal order are joined.",
     "remaining_h2_gates": [

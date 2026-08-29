@@ -53,9 +53,11 @@ AWM666V lands; exactly one receiver is installed and C5 DBG10 is relocated.
 Actual-module and solder qualification move to H5/H7. The five active U219 host
 packages and their source-backed courtyards fit the two reserved islands, and
 all 43 current Cap/evidence bodies now have a fail-closed source-backed
-coordinate/courtyard registration. Support-passive footprints, NFC pickup
-geometry and installed-antenna swept volume are the three blockers still
-preventing final mock-up acceptance.
+coordinate/courtyard registration. One exact documented production display
+with a controlled drawing and deterministic factory mating route,
+support-passive footprints, NFC pickup geometry and installed-antenna swept
+volume are the four blockers still preventing final mock-up acceptance. The
+legacy HMX panel is reference evidence only and cannot enter an R2 order BOM.
 The display is physically turned so its flex exits toward the antenna edge;
 firmware rotates display memory and touch coordinates by 180 degrees. The first
 safe pre-order removal replaces five `74LVC2G126DC,125` buffers with stocked
@@ -68,9 +70,10 @@ stocked Standard-PCBA route is `C54951858` / supplier code `...-V1.2`. Incoming
 MD/lot identity and eFuse revision must both prove >=v1.2 for production; v1.0 is
 engineering-only and the historical `C51950748` cannot be selected as active.
 Those placement numbers now include the U219 host switch, AON gate, two field
-bridges, comparator and an explicitly unlocated pickup-loop reserve. Completing
-the canonical coordinate register, support-passive values/MPNs and courtyards,
-pickup geometry and installed antenna swept volume is the current H1 work;
+bridges, comparator and an explicitly unlocated pickup-loop reserve. Selecting
+the exact documented production display, completing the canonical coordinate
+register, support-passive values/MPNs and courtyards, pickup geometry and
+installed antenna swept volume is the current H1 work;
 explicit acceptance of the regenerated
 mock-up follows it. R2 H2/KiCad has not started.
 
@@ -114,21 +117,46 @@ non-PCBA accessories listed, consigned/private/global sourcing qualified and
 received-part measurements assigned to their controlled downstream gates.
 
 <a id="h6"></a>
-## H6 · KiCad placement and routing
+## H6 · KiCad placement, routing and release candidate
 
 **Status:** 🔒 waits for reviewed H5.
 
-Expected result: two routed boards and one accepted fabrication package;
-placement review, DRC, impedance/return paths, RF isolation, thermal copper,
-test access and DFM must pass together. This is the final pre-order gate.
+Expected result: two routed boards, the replaceable display adapter and one
+hash-locked fabrication package. H6 closes only after eight reviewable steps:
+
+1. both-face placement for every board;
+2. routed DRC/ERC and schematic-to-PCB net/footprint/courtyard/fitted-option parity;
+3. routed-value power/PDN/current/thermal/startup/load-step re-analysis;
+4. digital SI, return paths, USB and M1;
+5. RF 50-ohm, ground/via fences, isolation and extracted Airband parasitics;
+6. STEP/stack/cables/swept volumes/enclosure collision review;
+7. Gerber/drill/BOM/CPL/STEP/schematic/assembly outputs and test access;
+8. independent DFM and CPL-orientation review.
+
+H6 alone does not authorize an order.
+
+<a id="f-po"></a>
+## F-PO · First-spin admission
+
+**Status:** 🔒 waits for final H2/H6 and firmware R2.
+
+Seven [machine-readable gates](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/first_spin_preorder_gate.json) must pass before payment: exact H2/H6 authority import; six reproducible diagnostic images; S3 QEMU; host/fake-HAL UI, controls and faults; available target dev-board runs; one flash/recovery bundle; and a current-limited owner bring-up script. Complete product F6–F8 is not required before ordering, but every installed device already has a diagnostic path. Factory Function Test is optional.
+
+After `F-PO`, a separate immutable release binds Gerber, drill, BOM, CPL, STEP,
+schematics, firmware and assembly instructions to the same hashes. Only then can
+the quote for exactly one assembled `R2-EVT1` be approved.
 
 <a id="h7"></a>
 ## H7 · Prototype build and bring-up
 
-**Status:** 🔒 waits for reviewed H6 and explicit order approval.
+**Status:** 🔒 waits for reviewed H6 and `F-PO`, immutable release and explicit exact-one quote approval.
 
 The firmware is exercised on host tests and emulated hardware before this
-stage. H7 is still necessary for the first real PCB: rail sequencing, recovery,
+stage. The order target is exactly one factory-assembled prototype without
+batteries. Its released package must leave no component, display-mating or
+assembly choice to factory interpretation; paid factory Function Test is
+optional, and the owner performs the first full USB power-on. H7 is still
+necessary for the first real PCB: rail sequencing, recovery,
 display/touch, controls, storage, radios, audio and safety are proven on the
 assembled prototype.
 

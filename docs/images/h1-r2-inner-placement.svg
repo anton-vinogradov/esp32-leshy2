@@ -455,22 +455,27 @@
 <text x="1144" y="274" font-family="sans-serif" font-size="11" fill="#526076">50 Ω RF PCB trace</text>
 <line x1="1100" y1="294" x2="1134" y2="294" stroke="#7c3aed" stroke-width="3"/>
 <text x="1144" y="298" font-family="sans-serif" font-size="11" fill="#526076">75 Ω CVBS PCB trace</text>
-<text x="1100" y="344" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#b42318">H1 mock-up blockers: 3 · structural audit pass</text>
-<text x="1100" y="370" font-family="sans-serif" font-size="10.5" fill="#9a3412">• complete exact support-passive</text>
-<text x="1100" y="385" font-family="sans-serif" font-size="10.5" fill="#9a3412">  values/MPNs and prove their courtyards</text>
-<text x="1100" y="400" font-family="sans-serif" font-size="10.5" fill="#9a3412">  inside the two bounded U219 placement</text>
-<text x="1100" y="415" font-family="sans-serif" font-size="10.5" fill="#9a3412">  islands</text>
-<text x="1100" y="436" font-family="sans-serif" font-size="10.5" fill="#9a3412">• obtain controlled U219 field-structure</text>
-<text x="1100" y="451" font-family="sans-serif" font-size="10.5" fill="#9a3412">  geometry or measure a received unit</text>
-<text x="1100" y="466" font-family="sans-serif" font-size="10.5" fill="#9a3412">  before locating the weak printed NFC</text>
-<text x="1100" y="481" font-family="sans-serif" font-size="10.5" fill="#9a3412">  pickup loop and its DNP C0G bank</text>
-<text x="1100" y="502" font-family="sans-serif" font-size="10.5" fill="#9a3412">• measure the installed U219 RP-SMA</text>
-<text x="1100" y="517" font-family="sans-serif" font-size="10.5" fill="#9a3412">  antenna swept volume against the rear</text>
-<text x="1100" y="532" font-family="sans-serif" font-size="10.5" fill="#9a3412">  connector bank, FPV plug, enclosure</text>
-<text x="1100" y="547" font-family="sans-serif" font-size="10.5" fill="#9a3412">  and user hand access</text>
-<text x="1100" y="578" font-family="sans-serif" font-size="14" font-weight="700" fill="#526076">Final H1 acceptance input</text>
-<text x="1100" y="604" font-family="sans-serif" font-size="10.5" fill="#526076">• review and explicitly accept the</text>
-<text x="1100" y="619" font-family="sans-serif" font-size="10.5" fill="#526076">  generated complete R2 exterior, both</text>
-<text x="1100" y="634" font-family="sans-serif" font-size="10.5" fill="#526076">  true-view inner faces and four real</text>
-<text x="1100" y="649" font-family="sans-serif" font-size="10.5" fill="#526076">  section planes before closing H1</text>
+<text x="1100" y="344" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#b42318">H1 mock-up blockers: 4 · structural audit pass</text>
+<text x="1100" y="370" font-family="sans-serif" font-size="10.5" fill="#9a3412">• select one exact documented production</text>
+<text x="1100" y="385" font-family="sans-serif" font-size="10.5" fill="#9a3412">  display panel, controlled drawing and</text>
+<text x="1100" y="400" font-family="sans-serif" font-size="10.5" fill="#9a3412">  mating envelope with a deterministic</text>
+<text x="1100" y="415" font-family="sans-serif" font-size="10.5" fill="#9a3412">  factory-installable route before H1</text>
+<text x="1100" y="430" font-family="sans-serif" font-size="10.5" fill="#9a3412">  closes or R2 H2 starts</text>
+<text x="1100" y="451" font-family="sans-serif" font-size="10.5" fill="#9a3412">• complete exact support-passive</text>
+<text x="1100" y="466" font-family="sans-serif" font-size="10.5" fill="#9a3412">  values/MPNs and prove their courtyards</text>
+<text x="1100" y="481" font-family="sans-serif" font-size="10.5" fill="#9a3412">  inside the two bounded U219 placement</text>
+<text x="1100" y="496" font-family="sans-serif" font-size="10.5" fill="#9a3412">  islands</text>
+<text x="1100" y="517" font-family="sans-serif" font-size="10.5" fill="#9a3412">• obtain controlled U219 field-structure</text>
+<text x="1100" y="532" font-family="sans-serif" font-size="10.5" fill="#9a3412">  geometry or measure a received unit</text>
+<text x="1100" y="547" font-family="sans-serif" font-size="10.5" fill="#9a3412">  before locating the weak printed NFC</text>
+<text x="1100" y="562" font-family="sans-serif" font-size="10.5" fill="#9a3412">  pickup loop and its DNP C0G bank</text>
+<text x="1100" y="583" font-family="sans-serif" font-size="10.5" fill="#9a3412">• measure the installed U219 RP-SMA</text>
+<text x="1100" y="598" font-family="sans-serif" font-size="10.5" fill="#9a3412">  antenna swept volume against the rear</text>
+<text x="1100" y="613" font-family="sans-serif" font-size="10.5" fill="#9a3412">  connector bank, FPV plug, enclosure</text>
+<text x="1100" y="628" font-family="sans-serif" font-size="10.5" fill="#9a3412">  and user hand access</text>
+<text x="1100" y="659" font-family="sans-serif" font-size="14" font-weight="700" fill="#526076">Final H1 acceptance input</text>
+<text x="1100" y="685" font-family="sans-serif" font-size="10.5" fill="#526076">• review and explicitly accept the</text>
+<text x="1100" y="700" font-family="sans-serif" font-size="10.5" fill="#526076">  generated complete R2 exterior, both</text>
+<text x="1100" y="715" font-family="sans-serif" font-size="10.5" fill="#526076">  true-view inner faces and four real</text>
+<text x="1100" y="730" font-family="sans-serif" font-size="10.5" fill="#526076">  section planes before closing H1</text>
 </svg>

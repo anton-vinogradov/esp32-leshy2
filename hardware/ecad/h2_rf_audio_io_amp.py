@@ -295,6 +295,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "schema_version": 1,
         "stage": "H2.3.10",
         "status": "reviewed_exact_audio_io_amplifier_sheet",
+        "authority": {"baseline": "R1", "lifecycle": "historical_pre_r2_sheet_scaffold", "allowed_as_r2_authority": False, "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"},
         "project": PROJECT_ID,
         "sheet": SHEET_ID,
         "source_hashes": {

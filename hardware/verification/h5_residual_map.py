@@ -56,7 +56,7 @@ RESIDUAL_MAP = {
         "mechanical_gates": ["H5-MECH-U214-MATING-STACK"],
         "missing_data": [
             "the stock U214 fitted male-post manufacturer/MPN, section, material and plating are not published",
-            "measured continuity, insertion/withdrawal force and repeated-cycle retention for the mixed stock-U214/HLE pair",
+            "ordinary assembly/disassembly, continuity, bottoming-clearance and retention inspection for the mixed stock-U214/HLE pair; any unsourced force remains a design-analysis input rather than a qualification load",
         ],
         "sample_specific": True,
     },
@@ -108,7 +108,7 @@ RESIDUAL_MAP = {
 
 
 RESIDUAL_MISSING_RU = {
-    "H3-PHY-017": "самостоятельный order identity и полный контур FPC текущей партии HMX035CTFT-001; identity/readback контроллера и равенство разгона VDD/VDDI на образце",
+    "H3-PHY-017": "самостоятельный order identity и полный контур FPC production panel; identity/readback контроллера и равенство разгона VDD/VDDI на единственном прототипе в H7/H8",
     "H3-PHY-024": "ориентацию полученной партии, startup, quiet guard, два канала захвата и отсутствие обратного питания",
     "H3-PHY-028": "на одном экземпляре — blank → намеренно некорректная, но электрически безопасная конфигурация → golden/recovery с чтением обоих address space, checksum, NVError и bitmap оставшихся обновлений; zero-remaining и failed-copy — только в emulator/fixture без расходования всех семи физических записей",
     "H3-PHY-038": "выбрать точный серийный MPN эталонной microSD; измерить CMD6 identity, скорость, задержки и работу 512-КиБ буфера",
@@ -278,8 +278,8 @@ def build() -> dict:
         "mechanical_gates": mechanical_gates,
         "decision_boundary": {
             "accepted_now": "the evidence map, exact selected identities and existing source join",
-            "not_accepted": "received-part fit, lot identity, electrical performance or any production qualification",
-            "next": "H5.0.2-R1 searches primary manufacturer/distributor evidence and fully documented serial alternatives before any sample proposal",
+            "not_accepted": "post-arrival fit, lot identity, electrical performance or any production qualification before H7/H8 owner evidence",
+            "next": "H5.0.2-R1 searches primary manufacturer/distributor evidence and fully documented serial alternatives before the sole-prototype order manifest",
             "purchase_authorized": False,
             "pcb_placement_and_routing_authorized": False,
             "fabrication_authorized": False,
@@ -340,7 +340,7 @@ flowchart LR
   R["9 H5 residuals"] --> M["✅ точные identities<br/>и источники связаны"]
   G["14 mechanical gates"] --> M
   M --> S["▶️ H5.0.2-R1<br/>документы и серийные замены"]
-  S --> P["H5.0.3-R1<br/>только неустранимые образцы"]
+  S --> P["H5.0.3-R1<br/>единый order manifest"]
 ```
 
 ## Девять физических residuals
@@ -356,7 +356,7 @@ flowchart LR
 - У всех устанавливаемых деталей в механических gate’ах есть точный, не-TBD MPN.
 - Не выбранные пока **тестовые** изделия отмечены явно: эталонная microSD и набор M5 Unit/cable для профилей.
 - Встроенный разъём полученного `E01-ML01IPX` и штырь установленного на stock `U214` не превращены в выдуманные MPN: производитель их не публикует.
-- Реальный fit, retention, RF, timing и lot identity остаются открыты до полученного образца.
+- Реальный fit, retention, RF, timing и lot identity остаются открыты до owner bring-up единственного прототипа в H7/H8; отдельной sample/coupon-закупки нет.
 - Следующий точный маркер — `H5.0.2-R1`; заказ, PCB placement/routing и fabrication запрещены.
 
 Машинный результат: [`H5-EVR01`](../hardware/verification/generated/H5-EVR01-residual-map.json).
@@ -378,7 +378,7 @@ flowchart LR
   R["9 H5 residuals"] --> M["✅ exact identities<br/>and sources joined"]
   G["14 mechanical gates"] --> M
   M --> S["▶️ H5.0.2-R1<br/>documents and serial alternatives"]
-  S --> P["H5.0.3-R1<br/>irreducible samples only"]
+  S --> P["H5.0.3-R1<br/>one order manifest"]
 ```
 
 ## Nine physical residuals
@@ -394,7 +394,7 @@ flowchart LR
 - Every board-fitted part in a mechanical gate has an exact non-TBD MPN.
 - Test articles not selected yet are explicit: a reference microSD and the M5 Unit/cable profile set.
 - The fitted connector in a received `E01-ML01IPX` and the fitted post on a stock `U214` were not assigned invented MPNs; their makers do not publish them.
-- Actual fit, retention, RF, timing and lot identity remain open until received-sample evidence exists.
+- Actual fit, retention, RF, timing and lot identity remain open until H7/H8 owner bring-up of the sole prototype; no separate sample/coupon purchase exists.
 - The next exact marker is `H5.0.2-R1`; purchase, PCB placement/routing and fabrication remain prohibited.
 
 Machine result: [`H5-EVR01`](../hardware/verification/generated/H5-EVR01-residual-map.json).

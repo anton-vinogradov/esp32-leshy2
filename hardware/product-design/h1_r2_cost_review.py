@@ -33,7 +33,7 @@ ROLE_OVERRIDES = {
     "nicerf_sa818s_u_v18": "UHF voice transceiver / UHF голосовой трансивер",
     "nicerf_sa818s_v_v18": "VHF voice transceiver / VHF голосовой трансивер",
     "omron_b3s_1100p": "sixteen ordinary user keys / шестнадцать обычных клавиш",
-    "qdtech_hmx035ctft_001": "display/touch assembly via donor ceiling / экран и touch через donor-ceiling",
+    "qdtech_hmx035ctft_001": "unresolved production display gate / незакрытый production-display gate",
     "samtec_ftsh_105_01_l_dv_k_p_tr": "three internal recovery headers / три внутренних recovery-разъёма",
     "te_2118651_2": "five 30-mm RF jumpers / пять 30-мм RF-кабелей",
     "ti_tmux1136_dgsr": "four complete audio/control selectors / четыре полных audio/control selector",
@@ -83,9 +83,9 @@ LANES_RU = {
         "Сохранить независимое восстановление S3/C5/RP, ключ, шаг, доступ щупов и внутреннюю высоту.",
     ),
     "display-production-route": (
-        "Получить поставку отдельной панели вместо разбора полного донора",
-        "Доступный донор стоит $20,90; цена и серийная идентичность отдельной HMX035CTFT-001 остаются открытыми.",
-        "Сохранить сменный адаптер; донор считать верхней границей EVT-цены, а не серийной себестоимостью.",
+        "Выбрать и оценить документированную production panel для одного фабрично собранного прототипа",
+        "Источники HMX035CTFT-001 доказывают legacy электрику/механику, но отклонены как маршрут закупки; exact panel, mating drawing, цена одного прототипа и factory attrition остаются открытыми.",
+        "Сохранить endpoint и сменный адаптер, но не разрешать заказ до принятия одной документированной панели и deterministic factory mating package.",
     ),
 }
 
@@ -118,6 +118,8 @@ def trial_line_cost(row: dict, device_quantity: int) -> float | None:
 
 
 def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
+    procurement_quantity = model["procurement_target_device_quantity"]
+    historical_quantity = model["historical_cost_capture_device_quantity"]
     trial_by_id = {row["device_id"]: row for row in trial["routes"]}
     provisional = model["provisional_unit_routes"]
     live = model["live_jlcpcb_spot_checks"]
@@ -139,7 +141,7 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
             )
             burden_kind = "provisional reachable route"
         trial_row = trial_by_id.get(source["device_id"], {})
-        trial_cost = trial_line_cost(trial_row, model["trial_device_quantity"])
+        trial_cost = trial_line_cost(trial_row, historical_quantity)
         if source["device_id"] in live:
             trial_cost = live[source["device_id"]]["trial_displayed_cost_usd"]
         rows.append(
@@ -151,11 +153,12 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
                 ),
                 "scope": source["scope"],
                 "quantity_per_device": quantity,
-                "quantity_trial": quantity * model["trial_device_quantity"],
-                "planning_trial_line_usd": (
-                    production_line * model["trial_device_quantity"]
+                "quantity_procurement_target": quantity * procurement_quantity,
+                "planning_procurement_line_usd": (
+                    production_line * procurement_quantity
                     if production_line is not None else None
                 ),
+                "quantity_historical_capture": quantity * historical_quantity,
                 "unit_price_quantity_100_usd": (
                     float(source["unit_price_usd"])
                     if source["unit_price_usd"]
@@ -169,8 +172,8 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
                 "quantity_100_batch_line_usd": (
                     production_line * 100 if production_line is not None else None
                 ),
-                "trial_displayed_line_usd": trial_cost,
-                "trial_route": trial_row.get("tool_status", "not matched"),
+                "historical_capture_displayed_line_usd": trial_cost,
+                "historical_capture_route": trial_row.get("tool_status", "not matched"),
                 "jlcpcb_part": trial_row.get("lcsc"),
                 "cost_gate": source["cost_gate_status"] or None,
             }
@@ -201,27 +204,27 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         for row in model["post_pcba_required"]
     )
     capture_total = sum(
-        trial_line_cost(row, model["trial_device_quantity"]) or 0
+        trial_line_cost(row, historical_quantity) or 0
         for row in trial["routes"]
     )
     adjusted_total = capture_total
     for device_id, current in live.items():
         old = trial_line_cost(
-            trial_by_id.get(device_id, {}), model["trial_device_quantity"]
+            trial_by_id.get(device_id, {}), historical_quantity
         ) or 0
         adjusted_total += current["trial_displayed_cost_usd"] - old
     preorder_rows = [
         row for row in trial["routes"]
-        if trial_line_cost(row, model["trial_device_quantity"]) is not None
+        if trial_line_cost(row, historical_quantity) is not None
         and row.get("tool_status") == "pre_order"
     ]
     preorder_capture = sum(
-        trial_line_cost(row, model["trial_device_quantity"]) or 0
+        trial_line_cost(row, historical_quantity) or 0
         for row in preorder_rows
     )
     bom_by_id = {row["device_id"]: row for row in bom}
     preorder_scale = sum(
-        model["trial_device_quantity"]
+        historical_quantity
         * float(bom_by_id[row["device_id"]]["line_material_usd"] or 0)
         for row in preorder_rows
     )
@@ -277,26 +280,30 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
             "planning_base_usd_per_device": round(planning_base, 4),
             "remaining_unpriced_base_lines": len(remaining_base),
             "planning_base_plus_post_pcba_usd_per_device": round(planning_base + post_pcba, 4),
-            "planning_base_plus_post_pcba_usd_for_trial": round(
-                (planning_base + post_pcba) * model["trial_device_quantity"], 4
+            "procurement_target_device_quantity": procurement_quantity,
+            "historical_cost_capture_device_quantity": historical_quantity,
+            "planning_base_plus_post_pcba_usd_for_procurement_target": round(
+                (planning_base + post_pcba) * procurement_quantity, 4
             ),
-            "trial_capture_matched_lines": sum(
+            "historical_capture_matched_lines": sum(
                 row.get("displayed_line_cost_usd") is not None for row in trial["routes"]
             ),
             "live_spot_checks": len(live),
-            "trial_capture_displayed_usd": round(capture_total, 4),
-            "trial_spot_adjusted_displayed_usd": round(adjusted_total, 4),
-            "trial_unmatched_lines": sum(
+            "historical_capture_displayed_usd": round(capture_total, 4),
+            "historical_spot_adjusted_displayed_usd": round(adjusted_total, 4),
+            "historical_capture_unmatched_lines": sum(
                 row.get("displayed_line_cost_usd") is None for row in trial["routes"]
             ),
             "preorder_rows": len(preorder_rows),
             "preorder_capture_usd": round(preorder_capture, 4),
-            "preorder_quantity_100_basis_for_five_usd": round(preorder_scale, 4),
+            "preorder_volume_basis_for_historical_capture_usd": round(preorder_scale, 4),
             "preorder_observed_small_lot_premium_usd": round(preorder_capture - preorder_scale, 4),
             "antenna_known_first_target_usd": round(antenna_known, 4),
             "antenna_unpriced_lines": sum(row["known_line_usd"] is None for row in antenna_rows),
         },
         "rows": rows,
+        "procurement_target": model["procurement_target"],
+        "legacy_display_evidence": model["legacy_display_evidence"],
         "post_pcba_required": model["post_pcba_required"],
         "antenna_rows": antenna_rows,
         "display_orientation_review": display,
@@ -311,9 +318,9 @@ def render_csv(result: dict) -> str:
     fields = [
         "device_id", "mpn", "role", "scope", "quantity_per_device",
         "unit_price_quantity_100_usd", "effective_unit_price_usd", "line_burden_per_device_usd",
-        "line_burden_basis", "quantity_trial", "planning_trial_line_usd",
-        "trial_displayed_line_usd",
-        "trial_route", "jlcpcb_part", "quantity_100_batch_line_usd", "cost_gate",
+        "line_burden_basis", "quantity_procurement_target", "planning_procurement_line_usd",
+        "quantity_historical_capture", "historical_capture_displayed_line_usd",
+        "historical_capture_route", "jlcpcb_part", "quantity_100_batch_line_usd", "cost_gate",
     ]
     import io
     output = io.StringIO()
@@ -336,8 +343,8 @@ def render_doc(result: dict, ru: bool) -> str:
         title = f'# {result["marker"]} · стоимость компонентов'
         intro = (
             'Это ранжированный снимок текущего железа, а не коммерческое предложение. '
-            'Цена строки всегда учитывает количество на одном устройстве; колонка пробной '
-            'партии показывает пять устройств и сохраняет реальные MOQ/pre-order эффекты JLCPCB.'
+            'Цена строки учитывает установленное количество в целевом одном полностью собранном прототипе. '
+            'Отдельные колонки с пятью платами — только исторический BOM Tool capture для MOQ/pre-order evidence, а не план заказа.'
         )
         top_h = '## Сводка'
         basis = 'База'
@@ -351,15 +358,15 @@ def render_doc(result: dict, ru: bool) -> str:
         qty_h = 'На устройство'
         unit_h = 'Цена 1 шт. по принятой базе'
         one_h = 'Строка на устройство'
-        trial_qty_h = 'На 5 устройств'
-        trial_plan_h = 'Плановая строка ×5'
-        trial_cost_h = 'JLC live / MOQ'
+        trial_qty_h = 'На 1 прототип'
+        trial_plan_h = 'Плановая строка ×1'
+        trial_cost_h = 'Исторический JLC ×5'
     else:
         title = f'# {result["marker"]} · component cost ranking'
         intro = (
             'This is a ranked snapshot of the current hardware, not a commercial quote. '
-            'Every line burden includes the quantity fitted to one device; the trial columns '
-            'use five devices and preserve observed JLCPCB MOQ/pre-order effects.'
+            'Every line burden includes the fitted quantity in the target one fully assembled prototype. '
+            'Separate five-board columns preserve only the historical BOM Tool MOQ/pre-order evidence; they are not the procurement target.'
         )
         top_h = '## Summary'
         basis = 'Basis'
@@ -373,9 +380,9 @@ def render_doc(result: dict, ru: bool) -> str:
         qty_h = 'Per device'
         unit_h = 'Unit on accepted basis'
         one_h = 'Device line'
-        trial_qty_h = 'For 5 devices'
-        trial_plan_h = 'Planned line ×5'
-        trial_cost_h = 'JLC live / MOQ'
+        trial_qty_h = 'For 1 prototype'
+        trial_plan_h = 'Planned line ×1'
+        trial_cost_h = 'Historical JLC ×5'
     lines = [
         title, '',
         '[Русский](h1-r2-cost.ru.md) · [English](h1-r2-cost.md) · [Current placement](h1-r2-physical-layout.md)',
@@ -388,11 +395,11 @@ def render_doc(result: dict, ru: bool) -> str:
             f'- Достижимый плановый минимум: **{money(summary["planning_base_usd_per_device"])}** на устройство; '
             f'ещё `{summary["remaining_unpriced_base_lines"]}` базовых строк не оценены.',
             f'- С обязательным модулем K331, устанавливаемым после PCBA: **{money(summary["planning_base_plus_post_pcba_usd_per_device"])}** '
-            f'на устройство или **{money(summary["planning_base_plus_post_pcba_usd_for_trial"])}** на пять устройств '
+            f'на устройство и **{money(summary["planning_base_plus_post_pcba_usd_for_procurement_target"])}** на один целевой прототип '
             'до стоимости плат, сборки, корпуса, антенн, доставки, налогов, брака и теста.',
-            f'- Частичный JLCPCB-снимок партии из пяти устройств: **{money(summary["trial_capture_displayed_usd"])}** по '
-            f'`{summary["trial_capture_matched_lines"]}` найденным строкам; `{summary["live_spot_checks"]}` live-проверок дают '
-            f'**{money(summary["trial_spot_adjusted_displayed_usd"])}**, ещё `{summary["trial_unmatched_lines"]}` строки не входят.',
+            f'- Исторический JLCPCB capture на пять плат: **{money(summary["historical_capture_displayed_usd"])}** по '
+            f'`{summary["historical_capture_matched_lines"]}` строкам; `{summary["live_spot_checks"]}` live-проверок дают '
+            f'**{money(summary["historical_spot_adjusted_displayed_usd"])}**, ещё `{summary["historical_capture_unmatched_lines"]}` строк не входят; это evidence, а не целевой quantity.',
             f'- Внешний антенный комплект вынесен отдельно: уже известно **{money(summary["antenna_known_first_target_usd"])}**, '
             f'ещё `{summary["antenna_unpriced_lines"]}` позиции не оценены.',
         ]
@@ -403,11 +410,11 @@ def render_doc(result: dict, ru: bool) -> str:
             f'- Reachable planning subtotal: **{money(summary["planning_base_usd_per_device"])}** per device, with '
             f'`{summary["remaining_unpriced_base_lines"]}` base-product lines still unpriced.',
             f'- With the required post-PCBA K331: **{money(summary["planning_base_plus_post_pcba_usd_per_device"])}** '
-            f'per device or **{money(summary["planning_base_plus_post_pcba_usd_for_trial"])}** for five devices '
+            f'per device and **{money(summary["planning_base_plus_post_pcba_usd_for_procurement_target"])}** for the one target prototype '
             'before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.',
-            f'- Partial five-device JLCPCB capture: **{money(summary["trial_capture_displayed_usd"])}** for '
-            f'`{summary["trial_capture_matched_lines"]}` matched lines; `{summary["live_spot_checks"]}` live checks move it to '
-            f'**{money(summary["trial_spot_adjusted_displayed_usd"])}**, with `{summary["trial_unmatched_lines"]}` rows excluded.',
+            f'- Historical five-board JLCPCB capture: **{money(summary["historical_capture_displayed_usd"])}** for '
+            f'`{summary["historical_capture_matched_lines"]}` matched lines; `{summary["live_spot_checks"]}` live checks move it to '
+            f'**{money(summary["historical_spot_adjusted_displayed_usd"])}**, with `{summary["historical_capture_unmatched_lines"]}` rows excluded. This is evidence, not the target quantity.',
             f'- The external antenna kit is separate: **{money(summary["antenna_known_first_target_usd"])}** is known and '
             f'`{summary["antenna_unpriced_lines"]}` lines remain unpriced.',
         ]
@@ -419,8 +426,8 @@ def render_doc(result: dict, ru: bool) -> str:
         lines.append(
             f'| `{row["mpn"]}` | {row["role"]} | {row["quantity_per_device"]} | '
             f'{money(row["effective_unit_price_usd"])} | {money(row["line_burden_per_device_usd"])} | '
-            f'{row["quantity_trial"]} | {money(row["planning_trial_line_usd"])} | '
-            f'{money(row["trial_displayed_line_usd"])} |'
+            f'{row["quantity_procurement_target"]} | {money(row["planning_procurement_line_usd"])} | '
+            f'{money(row["historical_capture_displayed_line_usd"])} |'
         )
     full_csv = '../hardware/product-design/generated/H1-R2-cost-ranked.csv'
     full_text = 'Полный рейтинг 210 строк — CSV' if ru else 'Complete 210-line ranking — CSV'
@@ -428,7 +435,7 @@ def render_doc(result: dict, ru: bool) -> str:
     if ru:
         lines += [
             f'- `{summary["preorder_rows"]}` pre-order-строк стоят в снимке **{money(summary["preorder_capture_usd"])}** против '
-            f'**{money(summary["preorder_quantity_100_basis_for_five_usd"])}** на массовой материальной базе.',
+            f'**{money(summary["preorder_volume_basis_for_historical_capture_usd"])}** на массовой материальной базе.',
             f'- Наблюдаемый штраф малой партии — **{money(summary["preorder_observed_small_lot_premium_usd"])}**. '
             'Это верхний приоритет: искать не «дешевле любой ценой», а эквивалентные stocked JLCPCB MPN внутри уже заданных substitution-классов.',
             '- `displayed_line_cost` JLCPCB использует рекомендуемое количество и pre-order reference pricing; это честный индикатор боли малой партии, но не финальный quote и не сумма готового заказа.',
@@ -436,7 +443,7 @@ def render_doc(result: dict, ru: bool) -> str:
     else:
         lines += [
             f'- The `{summary["preorder_rows"]}` pre-order rows cost **{money(summary["preorder_capture_usd"])}** in the capture versus '
-            f'**{money(summary["preorder_quantity_100_basis_for_five_usd"])}** on their volume material basis.',
+            f'**{money(summary["preorder_volume_basis_for_historical_capture_usd"])}** on their volume material basis.',
             f'- The observed small-lot premium is **{money(summary["preorder_observed_small_lot_premium_usd"])}**. '
             'This is the first priority: seek stocked JLCPCB MPNs that remain inside the existing substitution envelopes.',
             '- JLCPCB displayed-line cost uses recommended quantities and pre-order reference pricing; it is an honest small-batch pain indicator, not a final quote or order total.',
@@ -528,7 +535,7 @@ def main() -> int:
             if not path.exists() or path.read_text(encoding="utf-8") != content:
                 print(f"error: stale generated artifact {path.relative_to(REPO)}")
                 return 1
-    print(f"ok: {len(result['rows'])} BOM rows; planning ${result['summary']['planning_base_plus_post_pcba_usd_per_device']:.2f}; trial ${result['summary']['trial_spot_adjusted_displayed_usd']:.2f}")
+    print(f"ok: {len(result['rows'])} BOM rows; one-prototype planning ${result['summary']['planning_base_plus_post_pcba_usd_for_procurement_target']:.2f}; historical capture ${result['summary']['historical_spot_adjusted_displayed_usd']:.2f}")
     return 0
 
 

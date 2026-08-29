@@ -24,11 +24,11 @@
 | Область | Текущий результат |
 |---|---|
 | Функциональная архитектура | ✅ [H0-R2 проведено ревью](h0-r2-functional-architecture.ru.md): передний UI/radio и задний RF/power домены, явные владельцы, transport, quiet-state и safety-crossings |
-| Физический дизайн | ▶ [H1-R2.32](h1-r2-physical-layout.ru.md): точная dual-RP/C5 электрическая authority, пять активных U219-courtyard и 43-корпусный coordinate-register Cap/evidence закрыты; вспомогательные пассивы, NFC pickup и swept volume антенны — три оставшихся блокера до принятия мокапа; [все 210 строк базового BOM ранжированы по стоимости](h1-r2-cost.ru.md) |
+| Физический дизайн | ▶ [H1-R2.32](h1-r2-physical-layout.ru.md): точная dual-RP/C5 электрическая authority, пять активных U219-courtyard и 43-корпусный coordinate-register Cap/evidence закрыты; точная документированная production-панель дисплея, вспомогательные пассивы, NFC pickup и swept volume антенны — четыре оставшихся блокера до принятия мокапа; [все 210 строк базового BOM ранжированы по стоимости](h1-r2-cost.ru.md) |
 | Принципиальные диаграммы | Опубликованы актуальные связи компонентов/шин, внешний мокап, отдельные читаемые внутренние стороны, service map, FPV/MMCX proof и диаграммы питания/фильтра |
 | Production ECAD | 🔒 Проведённое ревью G2F/H2/KiCad сохранено только как историческое single-RP evidence R1. В текущем H0/H1 есть передний Hub RP + задний RF RP; H2 R2 обязан заново экспортировать шесть доменов и точный M1 из H0 |
-| Пререквизит прошивки | ✅ firmware F1-R2 проведено ревью; F2-R2.4 квалифицировал все 12 target builds, 60 artifacts, 16 maps и 16 size gates, а F2-R2.5 reproducibility сейчас в отдельном [роадмапе F0–F11](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md); emulator/dev-board execution обязательно до H7 |
-| Заказ | 🔒 Прототип — только на H7 после H6 и явного одобрения; производство — только на H9 |
+| Пререквизит прошивки | ✅ firmware F1-R2 проведено ревью; F2-R2.4 квалифицировал все 12 target builds, 60 artifacts, 16 maps и 16 size gates, а F2-R2.5 reproducibility сейчас в отдельном [роадмапе F0–F11](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md); отдельный fail-closed `F-PO` требует диагностические образы, эмуляцию и recovery до заказа |
+| Заказ | 🔒 Ровно один собранный `R2-EVT1` — только после H6, `F-PO`, immutable release-package и явного одобрения exact-one quote; производство — только на H9 |
 
 ## Текущий H1 · точный состав
 
@@ -90,7 +90,7 @@
   `RF/PWR PCB · R2-EVT1 · REV A`; изменяемый H1-R2.xx не попадает на платы,
   а PCB REV повышается только при изменении выпущенных производственных файлов.
 - ✅ Генерируемый ценовой аудит ранжирует каждую строку BOM по установленному
-  количеству, партии из пяти устройств и проекции на 100 устройств; антенны и post-PCBA-детали отделены.
+  количеству и проекции на 100 устройств. BOM Tool capture на пять плат — только historical evidence; закупка целится в один полностью собранный протип без аккумуляторов.
 - ✅ Пять pre-order-буферов `74LVC2G126DC,125` заменены складским вариантом
   того же семейства `74LVC2G126DP,125` (`C503392`). Логика, порядок выводов,
   Schmitt-входы, `Ioff` и тайминги не изменились; увеличенные TSSOP-корпуса
@@ -106,7 +106,9 @@
   машинным substitution-gate. Точная посадка A1 использует зазор корпуса
   `1,75 мм`, центры земляных лап `x=±2,55 мм` и RF-пяту шириной `1,87 мм`;
   H5 фиксирует документы/план, H7 проверяет каждый установленный разъём на
-  каждом прототипе, H8 — torque/cycles/drop.
+  единственном собранном прототипе; H8 выполняет обычную сборку/разборку,
+  continuity/inspection и проверку каждого RF-тракта без искусственного
+  старения, падений и vibration-программы.
 - ✅ C5 сохраняет официальный MPN `ESP32-C5-WROOM-1U-N8R8`; active route
   Standard PCBA — Espressif `C54951858` с supplier code `...-V1.2`, stock 460,
   available 440 и MOQ 1. Production допускает только совпадающие MD/lot identity
@@ -155,8 +157,9 @@
 | H3 · Виртуальная электрическая проверка | ⏳ Ожидает H2 | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
 | H4 · Объединённый pre-layout gate | ⏳ Ожидает H3 и firmware R2 evidence | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
 | H5 · Компоненты и фабричные evidence | ⏳ Ожидает H4 | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
-| H6 · KiCad placement и routing | 🔒 Ожидает H5 | Две разведённые платы и принятый fabrication package | Placement review, DRC, impedance/return paths, RF isolation, thermal copper, test и DFM проходят |
-| H7 · Печать прототипа и bring-up | 🔒 Ожидает H6, исполнение прошивки и одобрение заказа | Небольшая партия и сохранённый bring-up log | Rails, programming/recovery, UI, storage, audio, radio и expansion проходят smoke tests |
+| H6 · KiCad placement, routing и release candidate | 🔒 Ожидает H5 | Две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
+| `F-PO` · Допуск первого экземпляра | 🔒 Ожидает H2/H6 и firmware R2 | Шесть diagnostic images, S3 QEMU, fake-HAL/dev-board evidence, flash/recovery и owner bring-up script | `FPO1`–`FPO7` проведены ревью на тех же H2/H6 candidate hashes; платный factory FCT не требуется |
+| H7 · Печать прототипа и bring-up | 🔒 Ожидает H6, `F-PO`, immutable release и одобрение exact-one quote | Ровно один фабрично собранный `R2-EVT1` и owner bring-up log | Released assembly package не требует догадок фабрики; owner current-limited USB power-on проверяет rails, recovery, UI, storage, audio, radio и expansion |
 | H8 · Физическая квалификация | 🔒 Ожидает H7 | HIL, RF, thermal, power, safety и endurance evidence | Concurrent nRF modes, quiet interfaces, coexistence, VNA, watchdog и single-fault tests проходят |
 | H9 · Manufacturing release | 🔒 Ожидает H8 и firmware F11 | Воспроизводимый manufacturing/test package с выпущенной прошивкой | Ноль blocker и согласованные hardware/firmware release tags |
 
@@ -167,7 +170,7 @@
 3. Недорогое улучшение принимается автоматически только без изменения поведения продукта.
 4. Каждый точный production MPN проверяется на актуальной JLCPCB Standard PCBA при выборе, architecture freeze и непосредственно перед заказом.
 5. RF-передача и опасные тесты выполняются только на своей нагрузке, с разрешением владельца или в изолированной лаборатории.
-6. Эмуляция не заменяет bring-up, но H7 не может стать первым запуском прошивки.
+6. Эмуляция не заменяет bring-up, но H7 не может стать первым запуском прошивки: до заказа обязателен [`F-PO`](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/first_spin_preorder_gate.json).
 
 ## Следующее действие
 

@@ -228,6 +228,7 @@ def validate_sources(
                     "retail_only_no_quantity_100_tier",
                     "regional_retail_only_no_quantity_100_tier",
                     "standalone_raw_assembly_rfq_required",
+                    "unresolved_production_panel_factory_quote_required",
                 }
                 if (
                     cost_gate.get("status")
@@ -1269,6 +1270,23 @@ def validate_sources(
             elif resource.get("sharing") != "dedicated":
                 errors.append(
                     f"{candidate_id}: exclusive resource {resource_id} is not dedicated"
+                )
+
+        candidate_text = json.dumps(candidate, ensure_ascii=False).lower()
+        prohibited_destructive_qualification_phrases = (
+            "controlled destructive",
+            "destructive fault hil",
+            "wear/drop/vibration",
+            "repeated-cycle retention",
+            "over repeated cycles",
+            "assembled endurance",
+            "mid-session destructive proof",
+        )
+        for phrase in prohibited_destructive_qualification_phrases:
+            if phrase in candidate_text:
+                errors.append(
+                    f"{candidate_id}: current authority requires prohibited destructive/industrial "
+                    f"qualification phrase {phrase!r}"
                 )
 
     return errors
@@ -2886,7 +2904,8 @@ def render_public_interconnect(
             "UI-стороне над кнопками не остаётся торчащих ножек. Изгиб и отрыв "
             "пайки предотвращают четыре совмещённые стойки/винта плат: M1 задаёт "
             "электрическое соединение и точное совмещение, но не несёт изгибающую "
-            "нагрузку корпуса. Паспортный ресурс пары — 50 циклов сочленения."
+            "нагрузку корпуса. Паспортный ресурс пары 50 циклов используется только "
+            "как design-analysis limit; отдельный 50-cycle тест не планируется."
         )
         ui_label = "UI/control-плата"
         rf_label = "RF/power-плата"
@@ -2949,8 +2968,8 @@ def render_public_interconnect(
             "but are not soldered leads, so no pins protrude through the outer UI "
             "face above the buttons. Four aligned board standoffs and screws prevent "
             "board flex and solder-joint peel; M1 provides electrical connection and "
-            "alignment but does not act as an enclosure beam. The rated mating life "
-            "is 50 cycles."
+            "alignment but does not act as an enclosure beam. The published 50-cycle "
+            "mating life is a design-analysis limit only; no separate 50-cycle test is planned."
         )
         ui_label = "UI/control board"
         rf_label = "RF/power board"

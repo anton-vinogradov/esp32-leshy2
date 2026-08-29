@@ -459,6 +459,7 @@ def build() -> dict:
         "schema_version": 2,
         "stage": "H2.0.1",
         "status": "reviewed_complete_circuit_inventory",
+        "authority": {"baseline": "R1", "lifecycle": "historical_pre_r2_sheet_scaffold", "allowed_as_r2_authority": False, "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"},
         "generated_from": [
             str(DEVICES.relative_to(REPO)),
             str(SOURCE_TABLE.relative_to(REPO)),

@@ -216,7 +216,7 @@ def build() -> tuple[dict[Path, str], dict]:
 
     residual_hil = [
         "measure M1 far-end rail drop, return offset, crosstalk and USB/SPI eye/edge quality after PCB placement",
-        "verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair",
+        "verify received stock U214 male-post material/plating, ordinary assembly/disassembly, current continuity, bottoming clearance and retention inspection; any unsourced insertion force remains a design-analysis input, and the 4.1-A figure proves only the controlled HLE/TSM pair",
         "measure U214 SPI load/edges at 10 MHz and external I2C total capacitance/rise time <=150 pF/300 ns",
         "qualify each native Unit profile, cable length and pull network through TXS0102; 1-Wire remains specimen-only",
         "inject dual-branch request, overload, reverse source, wrong accessory, hot plug and brownout while proving independent latch-off",

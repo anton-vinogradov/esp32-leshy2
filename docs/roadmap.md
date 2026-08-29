@@ -24,11 +24,11 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ▶ [H1-R2.32](h1-r2-physical-layout.md): exact dual-RP/C5 electrical authority, five active U219 source-backed courtyards and the 43-body Cap/evidence coordinate register are closed; support passives, NFC pickup and antenna swept volume are the three remaining blockers before mock-up acceptance; [all 210 base BOM lines are cost-ranked](h1-r2-cost.md) |
+| Physical design | ▶ [H1-R2.32](h1-r2-physical-layout.md): exact dual-RP/C5 electrical authority, five active U219 source-backed courtyards and the 43-body Cap/evidence coordinate register are closed; exact documented production display, support passives, NFC pickup and antenna swept volume are the four remaining blockers before mock-up acceptance; [all 210 base BOM lines are cost-ranked](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map, FPV/MMCX proof and power/filter diagrams are published |
 | Production ECAD | 🔒 Reviewed G2F/H2/KiCad is historical single-RP R1 evidence only. Current H0/H1 has front Hub RP + rear RF RP; R2 H2 must regenerate six domains and exact H0 M1 |
-| Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 qualified all 12 target builds, 60 artifacts, 16 maps and 16 size gates, while F2-R2.5 reproducibility is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); emulator/dev-board execution must precede H7 fabrication |
-| Ordering | 🔒 Prototype order only at H7 after H6 and explicit approval; production only at H9 |
+| Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 qualified all 12 target builds, 60 artifacts, 16 maps and 16 size gates, while F2-R2.5 reproducibility is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); a separate fail-closed `F-PO` requires diagnostics, emulation and recovery before ordering |
+| Ordering | 🔒 Exactly one assembled `R2-EVT1` only after H6, `F-PO`, immutable release package and explicit exact-one quote approval; production only at H9 |
 
 ## Current H1 · exact composition
 
@@ -89,8 +89,9 @@ H1 report.
 - ✅ Exterior silk prints `UI PCB · R2-EVT1 · REV A` and
   `RF/PWR PCB · R2-EVT1 · REV A`; the changing H1-R2.xx work marker is never
   printed and PCB REV advances only with released manufacturing-file changes.
-- ✅ The generated cost review ranks every BOM line by fitted-device burden,
-  five-device trial requirement and 100-device projection; antennas and post-PCBA parts stay separate.
+- ✅ The generated cost review ranks every BOM line by fitted-device burden
+  and 100-device projection. The five-board BOM Tool capture is historical
+  evidence only; procurement targets one fully assembled prototype without batteries.
 - ✅ Five pre-order `74LVC2G126DC,125` buffers are replaced by the stocked
   same-family `74LVC2G126DP,125` (`C503392`). Logic, pin order, Schmitt inputs,
   `Ioff` and timing remain unchanged; regenerated TSSOP bodies pass H2, H3 and
@@ -105,7 +106,9 @@ H1 report.
   PCB face. One-face edge soldering is machine-rejected;
   the exact A1 footprint uses a 1.75-mm body gap, x=±2.55-mm shell-land centres
   and a 1.87-mm RF land. H5 locks documents/plan, H7 inspects every populated
-  connector on every prototype and H8 runs torque/cycle/drop evidence.
+  connector on the one assembled prototype; H8 performs ordinary assembly/disassembly,
+  continuity/inspection and path-specific RF checks without artificial ageing,
+  drops or a vibration programme.
 - ✅ C5 retains official MPN `ESP32-C5-WROOM-1U-N8R8`; the active Standard-PCBA
   route is Espressif `C54951858` with supplier code `...-V1.2`, stock 460,
   available 440 and MOQ 1. Production accepts only matching incoming MD/lot
@@ -153,8 +156,9 @@ H1 report.
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
 | H5 · Component and factory evidence | ⏳ Waiting for H4 | Exact current factory map and controlled external routes | Every BOM line has a current factory route without silent substitution |
-| H6 · KiCad placement and routing | 🔒 Waiting for H5 | Two routed boards and accepted fabrication package | Placement review, DRC, impedance/return paths, RF isolation, thermal copper, test and DFM pass |
-| H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6, firmware execution and order approval | Small prototype lot and retained bring-up log | Rails, programming/recovery, UI, storage, audio, radios and expansion pass smoke tests |
+| H6 · KiCad placement, routing and release candidate | 🔒 Waiting for H5 | Two routed boards, routed re-analysis and hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs and independent DFM/CPL review pass |
+| `F-PO` · First-spin admission | 🔒 Waiting for H2/H6 and firmware R2 | Six diagnostic images, S3 QEMU, fake-HAL/dev-board evidence, flash/recovery and owner bring-up script | `FPO1`–`FPO7` are reviewed against the same H2/H6 candidate hashes; paid factory FCT is not required |
+| H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6, `F-PO`, immutable release and exact-one quote approval | Exactly one factory-assembled `R2-EVT1` and retained owner bring-up log | Released assembly package needs no factory engineering guesses; owner current-limited USB power-on proves rails, recovery, UI, storage, audio, radios and expansion |
 | H8 · Physical qualification | 🔒 Waiting for H7 | HIL, RF, thermal, power, safety and endurance evidence | Concurrent nRF modes, quiet interfaces, coexistence, VNA, watchdog and single-fault tests pass |
 | H9 · Manufacturing release | 🔒 Waiting for H8 and firmware F11 | Reproducible manufacturing/test package paired with released firmware | Zero blocker and matching hardware/firmware release tags |
 
@@ -165,7 +169,7 @@ H1 report.
 3. Accept a low-cost improvement automatically only when product behaviour does not change.
 4. Verify every exact production MPN on the current JLCPCB Standard PCBA surface at selection, architecture freeze and immediately before order.
 5. RF transmission and dangerous tests run only on owned loads, with owner authorization or inside an isolated laboratory.
-6. Emulation does not replace bring-up, but H7 fabrication cannot be the first execution of the firmware.
+6. Emulation does not replace bring-up, but H7 cannot be the first firmware execution: [`F-PO`](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/first_spin_preorder_gate.json) is mandatory before ordering.
 
 ## Next action
 

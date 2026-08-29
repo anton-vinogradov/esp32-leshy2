@@ -1945,17 +1945,16 @@
         }
       ],
       "prototype_donor_route": {
-        "status": "current_in_stock_donor_can_close_specimen_measurements_only",
+        "status": "rejected_procurement_route_legacy_evidence_only",
         "exact_product": "Elecrow DLE06235B / QDtech ES3C35P complete board",
         "published_unit_price_usd": 20.9,
-        "recommended_sample_quantity": 5,
-        "published_sample_material_usd": 104.5,
+        "recommended_sample_quantity": 0,
+        "published_sample_material_usd": 0.0,
         "acceptance_actions": [
-          "keep one donor intact as the electrical and visual reference",
-          "photograph assembly, flex and lot markings before disassembly",
-          "measure flex outline, pitch, thickness, exposed-contact side, stiffener and bend keepout on at least three specimens",
-          "prove insertion, retention and contact orientation with the adapter's FH34SRJ-40S-0.5SH(99)",
-          "run QSPI, touch 0x38, reset, IRQ, backlight-current and temperature HIL"
+          "retain published donor schematic, contact map and envelope only as legacy evidence",
+          "do not buy or disassemble donor boards for production-panel qualification",
+          "select one documented production panel before order and release deterministic factory mating instructions",
+          "perform first full USB-powered image, backlight and touch bring-up on the one assembled prototype after delivery"
         ],
         "does_not_close": [
           "standalone raw-assembly orderable MPN",
@@ -1965,20 +1964,21 @@
         ]
       },
       "procurement_gate": {
-        "status": "standalone_raw_assembly_rfq_required",
-        "supplier_route": "Shenzhen QDtech/QDTFT through the current ES3C35P product channel",
-        "rfq_artifact": "hardware/procurement/HMX035CTFT-001-display-rfq.md",
+        "status": "unresolved_production_panel_factory_quote_required",
+        "supplier_route": "not selected; exact production panel and factory assembly route remain open",
+        "rfq_artifact": "docs/manufacturing-platform.md",
         "required_evidence": [
-          "quote explicitly naming standalone HMX035CTFT-001 LCM+CTP assembly",
+          "quote explicitly naming the exact production LCM+CTP assembly installed in one prototype",
           "supplier-controlled approval drawing with 40-contact FPC pitch, tail thickness, exposed-contact side, stiffener and keepout",
           "ST77922 QSPI/I2C configuration, touch address/IRQ/reset and backlight electrical limits",
-          "sample, MOQ, quantity-100/500 pricing, lead time, lifecycle and PCN/EOL terms",
+          "written factory acceptance of panel mating and complete one-prototype assembly from the released production package",
+          "one-prototype price including any factory attrition, lead time, lifecycle and PCN/EOL terms",
           "brightness, optics/cover-lens option, operating-temperature, RoHS/REACH and lot traceability"
         ]
       },
       "cost_gate": {
-        "status": "standalone_raw_assembly_rfq_required",
-        "reason": "Published prices cover complete donor boards, not the standalone HMX035CTFT-001 LCM+CTP assembly; an exact quantity-100 supplier quote is required",
+        "status": "unresolved_production_panel_factory_quote_required",
+        "reason": "Published HMX donor prices are legacy evidence, not a procurement route; the exact production panel and factory attrition must be quoted for one assembled prototype",
         "source": {
           "document": "QDtech ES3C35P official schematic identifying the raw display assembly; commercial route remains RFQ",
           "url": "https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf",

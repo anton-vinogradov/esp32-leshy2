@@ -14,8 +14,9 @@
 > C5 SDIO/service-mux electrical join are closed as current H1 authority. The
 > accepted same-slot U214/U219 role now has all five active host packages and
 > all 43 existing Cap/evidence bodies registered with source-backed courtyards.
-> Support passives, NFC pickup geometry and installed-antenna swept volume
-> remain the three explicit H1 blockers before
+> An exact documented production display panel, U219 support passives, NFC
+> pickup geometry and installed-antenna swept volume remain the four explicit
+> H1 blockers before
 > complete mock-up acceptance. R2 H2/KiCad has not started,
 > and ordering remains blocked.
 
@@ -109,8 +110,9 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ⏳ Waiting for R2 H4 | [Stage page](docs/stage-results.md#h5) |
-| H6 · KiCad placement and routing | 🔒 Waiting for R2 H5 | [Stage page](docs/stage-results.md#h6) |
-| H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6 and explicit order approval | [Stage page](docs/stage-results.md#h7) |
+| H6 · KiCad placement, routing and release candidate | 🔒 Waiting for R2 H5 | [Stage page](docs/stage-results.md#h6) |
+| F-PO · First-spin admission | 🔒 Waiting for final H2/H6 and firmware R2 | [Stage page](docs/stage-results.md#f-po) |
+| H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6, F-PO, immutable release and exact-one quote approval | [Stage page](docs/stage-results.md#h7) |
 | H8 · Physical qualification | 🔒 Waiting for H7 | [Stage page](docs/stage-results.md#h8) |
 | H9 · Manufacturing release | 🔒 Waiting for H8 and firmware F11 | [Stage page](docs/stage-results.md#h9) |
 
@@ -126,11 +128,11 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ C5 DBG10 moved beside S3 DBG10; the structural audit of all currently registered bodies, including corrected maximum U219 package envelopes, reports zero same-face collisions and 2.59 mm minimum opposing clearance against 0.70 mm required.
 - ✅ Public exterior, separate readable inner faces, service surface and real section views regenerated.
 - ✅ Official Sinopine `SP331R-MANUAL-V1.0` controls the axes of the tolerant 14-pad K331 hand-solder land; exact-drawing AWM666V is the seven-channel fallback. Neither receiver enters the normal PCBA BOM.
-- ✅ The 210-line `H1-R2.30` base BOM is cost-ranked per fitted device, five-device trial lot and 100-device projection. The later U219 host delta is shown separately as a provisional known-active subtotal; its support passives remain intentionally unpriced until exact values/MPNs close.
+- ✅ The 210-line `H1-R2.30` base BOM is cost-ranked per fitted device and 100-device projection; the former five-board BOM Tool run remains historical cost evidence only. The procurement target is exactly one factory-assembled prototype without batteries. Its exact production panel remains an unresolved gate; HMX donor boards are rejected as procurement and retained only as legacy evidence.
 - ✅ U219 is accepted as the second mutually exclusive Cap profile: CC1101 is hard RX-only, NFC is poll/read-only, pin 10 is fail-disconnected and NFC field evidence joins `ANY_TX_AON_N`. Pin 7 power identity remains a received-unit gate, not an H2 claim.
 - ✅ The two DCK boundaries, two BAT54S bridges and LMV331 comparator use official maximum full-package envelopes and source-backed courtyards; all five fit their bounded islands without overlap.
 - ✅ All 43 existing Cap/evidence bodies now have exactly one source-backed coordinate and conservative placement courtyard; substitution, omission or duplicate projection fails generation.
-- ▶ **Exact current point:** close the U219 support-passive values/MPNs and courtyards, locate and tune the NFC pickup, bound the installed U219 antenna swept volume, then review and explicitly accept the complete mock-up. A later AKK/Sinopine package can simplify the K331 footprint but no longer blocks H1.
+- ▶ **Exact current point:** select one documented production display with a controlled drawing and deterministic factory mating route, close the U219 support-passive values/MPNs and courtyards, locate and tune the NFC pickup, bound the installed U219 antenna swept volume, then review and explicitly accept the complete mock-up. The legacy HMX panel remains electrical/mechanical evidence only. A later AKK/Sinopine package can simplify the K331 footprint but no longer blocks H1.
 - 🔒 KiCad, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked

@@ -6,7 +6,7 @@
   "checked_on": "2026-08-28",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-    "sha256": "0ca195c8969d20f76c6c32b1c865623defc2e00cee6b6d46efe37820bc31dc84",
+    "sha256": "0eacf3039f330f836619b1053ae7b3c2de4b1f150ee5db13cf067895aa70705d",
     "exact_lines": 210
   },
   "r2_quantity_overlay": {
@@ -32,6 +32,20 @@
     "second_source_quote": "Seeed Fusion",
     "exclusive_lock_in": false,
     "reason": "JLCPCB gives the strongest public, repeatable component-selection surface while retaining exact-part pre-order, global sourcing and consignment paths."
+  },
+  "procurement_target": {
+    "finished_device_quantity": 1,
+    "deliverable": "one fully assembled Leshy2 prototype built from the released production package",
+    "device_batch": false,
+    "batteries_included": false,
+    "production_display": "exact documented panel unresolved; factory installs and mates it without engineering interpretation",
+    "first_power_on": "owner USB-powered bring-up after delivery",
+    "factory_function_test": {
+      "standard_pcba_service_surface": "supported subject to procedure review and quote",
+      "project_use": "optional quote-only insurance",
+      "release_gate": false
+    },
+    "factory_attrition_rule": "extra display units, connectors and assembly consumables are quoted factory attrition, not user samples"
   },
   "platforms": [
     {
@@ -104,12 +118,12 @@
     {
       "id": "J4-F",
       "name": "factory final assembly",
-      "rule": "the final-assembly factory must install and test the part after PCBA; H5 and H7 cannot close until this box-build route is accepted and quoted"
+      "rule": "the final-assembly factory installs and connects the part from the deterministic package and records assembly; H5 and H7 cannot close until this box-build route is accepted and quoted, while whole-device FCT is optional"
     },
     {
       "id": "J4-P",
       "name": "factory-packed removable item",
-      "rule": "the factory tests compatibility where applicable and packs the removable accessory or antenna separately for user installation"
+      "rule": "the factory packs the removable accessory or antenna separately for user installation; compatibility and full power-on are owner bring-up unless separately quoted"
     },
     {
       "id": "J5-U",
@@ -126,12 +140,14 @@
     "J4-F_factory_final_assembly": {
       "status": "open_until_factory_acceptance_and_quote",
       "required_operations": [
-        "display/flex mating and display/touch test",
-        "five microcoax installation, strain routing and continuity test",
-        "encoder knob installation and control test",
-        "final sandwich/enclosure integration and whole-device functional test"
+        "install and mate the documented exact production panel from released drawings",
+        "five microcoax installation, strain routing and continuity workmanship",
+        "encoder knob installation",
+        "final sandwich/enclosure integration from deterministic assembly instructions"
       ],
-      "close_gate": "H5 and H7 cannot close until the selected factory accepts and prices these operations"
+      "display_mating_feasibility": "awaiting written factory confirmation",
+      "factory_function_test": "optional quote-only insurance; not required for H5/H7 closure",
+      "close_gate": "H5 and H7 cannot close until the selected factory accepts and prices deterministic one-prototype final assembly; Function Test is not part of this gate"
     },
     "J4-P_factory_packed_removable": {
       "status": "open_until_kit_and_packing_quote",
@@ -339,7 +355,7 @@
     "authorized_on": "2026-08-25",
     "transmitted": false,
     "processed": false,
-    "assembly_quantity": 5,
+    "assembly_quantity": 1,
     "result_artifact": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
     "outlier_result_artifact": "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json",
     "first_attempt": {
@@ -512,7 +528,7 @@
       "stock": 0,
       "pcba": "display/flex belongs to factory final assembly",
       "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001",
-      "finding": "keep replaceable display-adapter architecture; require factory mating plus display/touch test rather than treating the display as an ordinary line-loaded SMT part"
+      "finding": "keep replaceable display-adapter architecture; require deterministic factory mating and assembly records, with display/touch power-on performed by the owner after delivery"
     },
     {
       "device_id": "uniroyal_0402wgf1603tce",
@@ -673,6 +689,8 @@
     "all_component_sample_prices_are_known": true,
     "sa818s_v_preorder_lead_time_is_explicitly_open": true,
     "factory_final_assembly_gate_is_explicitly_open": true,
+    "one_prototype_without_batteries_is_the_only_procurement_target": true,
+    "factory_function_test_is_optional_not_a_release_gate": true,
     "fallback_factory_readiness_is_current_and_fail_closed": true,
     "jlcapi_application_and_app_are_ready": true,
     "parts_api_rejection_is_explicit_and_fail_closed": true,

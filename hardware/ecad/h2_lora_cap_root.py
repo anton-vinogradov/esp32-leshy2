@@ -260,6 +260,7 @@ def outputs() -> tuple[dict[Path, str], dict]:
         "schema_version": 1,
         "stage": "H2.4.2",
         "status": "reviewed_exact_lora_cap_root",
+        "authority": {"baseline": "R1", "lifecycle": "historical_pre_r2_sheet_scaffold", "allowed_as_r2_authority": False, "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"},
         "project": PROJECT_ID,
         "root_sheet": ROOT_SHEET,
         "source_hashes": {

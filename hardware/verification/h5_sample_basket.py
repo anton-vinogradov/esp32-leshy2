@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the deduplicated H5.0.3 engineering-sample basket and contracts."""
+"""Generate the H5.0.3 sole-prototype article manifest and H7/H8 contracts."""
 
 from __future__ import annotations
 
@@ -67,10 +67,7 @@ def article(
 
 
 ARTICLES = [
-    article("display-donor", "display", "Elecrow DLE06235B / QDtech ES3C35P donor containing HMX035CTFT-001", 2, "20.90", "published_usd", "Elecrow current complete-board page", "https://www.elecrow.com/3-5-esp32-s3-display-320x480-capacitive-ips-touchscreen-with-speaker-mic-bat-interface-supports-ai-voice-chat.html", "listed in stock", ["H3-PHY-017", "H5-MECH-DISPLAY-TAIL", "H5-MECH-DISPLAY-PERFORMANCE"], "one retained intact electrical/visual reference and one sacrificial tail/adapter specimen; the former five-donor plan added three unneeded spares"),
-    article("display-zif", "display", "Hirose FH34SRJ-40S-0.5SH(99)", 1, "3.40", "published_usd", "Mouser exact-MPN listing", "https://www.mouser.com/ProductDetail/Hirose-Connector/FH34SRJ-40S-0.5SH99", "orderable exact MPN", ["H3-PHY-017", "H5-MECH-DISPLAY-TAIL", "H5-MECH-DISPLAY-PERFORMANCE"], "one repeated-mating adapter coupon uses one panel ZIF; failure means the test fails rather than consuming a hidden spare"),
-    article("display-df40-receptacle", "display", "Hirose DF40C(2.0)-40DS-0.4V(51)", 1, "0.5539", "published_usd", "JLCPCB C597934 exact HRS(Hirose) listing", "https://jlcpcb.com/partdetail/x/C597934", "7,205 currently placeable; MOQ 1", ["H3-PHY-017", "H5-MECH-DISPLAY-TAIL"], "one fixed receptacle is sufficient for the single display-adapter coupon; (51) preserves the exact body/mate and changes only reel quantity from the former (58) order code"),
-    article("display-df40-plug", "display", "Hirose DF40C-40DP-0.4V(51)", 1, "1.01", "published_usd", "Mouser exact-MPN listing", "https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C-40DP-0.4V51", "orderable exact MPN", ["H3-PHY-017", "H5-MECH-DISPLAY-TAIL"], "one plug is sufficient for the single display-adapter coupon"),
+    article("production-display-gate", "display", "EXACT PRODUCTION PANEL — UNRESOLVED", 1, None, "factory_quote_required", "QDtech HMX035CTFT-001 legacy electrical evidence", "https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf", "not selected; exact production-panel identity, factory mating and final-assembly feasibility await written confirmation", ["H3-PHY-017", "H5-MECH-DISPLAY-TAIL", "H5-MECH-DISPLAY-PERFORMANCE"], "exactly one production panel is installed in the one finished prototype; any extra panels, connectors or flex parts are factory attrition in the quote, never user-purchased samples", order_unit="factory-installed panel", risk="HMX035CTFT-001 and its complete donors are legacy electrical/mechanical evidence only and are rejected as the procurement route. The factory must quote an exact production panel without silently changing the accepted endpoint."),
 
     article("u214", "expansion", "M5Stack U214 Cap LoRa-1262", 1, "14.50", "published_usd", "M5Stack official store", "https://shop.m5stack.com/products/cap-lora-1262", "listed in stock", ["H3-PHY-046", "H5-MECH-U214-MATING-STACK"], "the same non-destructive unit closes identity, dimensions, mating and functional checks"),
     article("u214-host-socket", "expansion", "Samtec HLE-107-02-G-DV-PE-LC", 1, "3.338", "published_usd", "Samtec exact product page", "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc", "manufacturer orderable", ["H3-PHY-046", "H5-MECH-U214-MATING-STACK"], "one production host socket is the actual mixed-pair mate; the former quantity five was spare stock, not evidence"),
@@ -89,7 +86,7 @@ ARTICLES = [
     article("navigation-and-direct-switches", "controls", "Omron B3S-1100P", 16, "0.90", "published_usd", "DigiKey exact-MPN listing", "https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3S-1100P/368393", "33,862 shown in stock", ["H5-MECH-NAVIGATION-CONTROLS", "H5-MECH-DIRECT-PRESS-CONTROLS"], "five navigation positions plus BACK, OPT, F1-F8 and PTT must all be populated simultaneously to test spacing and enclosure actuation"),
     article("encoder", "controls", "Alps Alpine EC11E18244AU", 1, "4.90", "published_usd", "Mouser exact-MPN listing", "https://www.mouser.com/en/ProductDetail/Alps-Alpine/EC11E18244AU", "966 shown in stock", ["H5-MECH-ENCODER-KNOB"], "one assembled encoder/knob path closes the only encoder gate"),
     article("encoder-knob", "controls", "Davies Molding 1227-J", 1, "1.58", "published_usd", "Mouser exact-MPN listing", "https://www.mouser.com/en/ProductDetail/Davies-Molding/1227-J", "524 shown in stock", ["H5-MECH-ENCODER-KNOB"], "one exact production knob mates to the one encoder specimen"),
-    article("run-kill-switch", "controls", "C&K JS102011SCQN", 1, "1.11", "published_usd", "DigiKey exact-MPN listing", "https://www.digikey.com/en/products/detail/c-k/JS102011SCQN/7355835", "535 shown in stock", ["H5-MECH-RUN-KILL"], "one switch/aperture path closes force, detent and endurance evidence"),
+    article("run-kill-switch", "controls", "C&K JS102011SCQN", 1, "1.11", "published_usd", "DigiKey exact-MPN listing", "https://www.digikey.com/en/products/detail/c-k/JS102011SCQN/7355835", "535 shown in stock", ["H5-MECH-RUN-KILL"], "the installed switch/aperture path closes fit, detent and ordinary-actuation evidence"),
 
     article("cell-holder", "power", "Keystone 1048P", 1, "11.19", "published_usd", "Mouser exact-MPN listing", "https://www.mouser.com/ProductDetail/Keystone-Electronics/1048P", "145 shown in stock", ["H5-MECH-CELL-HOLDER-FIT"], "one holder is the actual two-cell mechanism"),
     article("protected-cells", "power", "XTAR protected 18650 4000 mAh 10 A", 2, "14.50", "published_usd", "XTAR official store", "https://xtardirect.com/products/xtar-high-capacity-36v-18650-4000mah-10a-protected-lithium-ion-battery", "98 shown in stock", ["H5-MECH-CELL-HOLDER-FIT"], "one matched same-lot pair is the only admitted operating pack; mixed MPN, lot, age or state of charge remains forbidden"),
@@ -99,7 +96,7 @@ ARTICLES = [
     article("microphone", "audio", "Same Sky CMEJ-0413-42-SMT-TR", 1, "0.64", "published_usd", "DigiKey exact-MPN listing", "https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/CMEJ-0413-42-SMT-TR/10253447", "12,929 shown in stock", ["H5-MECH-ACOUSTIC-PATHS"], "one downward microphone path closes response, sealing and feedback checks"),
     article("headset-jack", "audio", "Same Sky SJ-43504-SMT-TR", 1, "1.29", "published_usd", "Mouser exact-MPN listing", "https://www.mouser.com/ProductDetail/Same-Sky/SJ-43504-SMT-TR", "5,344 shown in stock", ["H5-MECH-HEADSET-JACK"], "one repeated CTIA/TRS mating specimen closes the only jack gate"),
 
-    article("ir-demod", "ir", "Vishay TSOP75238TR", 1, "1.3011", "published_usd", "JLCPCB C511498 exact Vishay listing", "https://jlcpcb.com/partdetail/x/C511498", "15 currently placeable; MOQ 1", ["H3-PHY-024"], "one received robust-demodulator channel; TR preserves the TT body, contacts and electrical function but requires explicit CPL rotation/feeder-presentation approval before PCBA"),
+    article("ir-demod", "ir", "Vishay TSOP75238TR", 1, "1.3011", "published_usd", "JLCPCB C511498 exact Vishay listing", "https://jlcpcb.com/partdetail/x/C511498", "15 currently placeable; MOQ 1", ["H3-PHY-024"], "one production robust-demodulator channel; TR preserves the TT body, contacts and electrical function but requires explicit CPL rotation/feeder-presentation approval before PCBA"),
     article("ir-carrier", "ir", "Vishay TSMP95000TT", 1, "2.00", "conservative_budget_cap_usd", "Mouser exact-MPN listing", "https://www.mouser.com/ProductDetail/Vishay-Semiconductors/TSMP95000TT", "4,182 shown in cut-tape stock", ["H3-PHY-024"], "one independent carrier-learning channel", source_price={"currency": "AUD", "unit": "2.86", "note": "USD 2.00 is a conservative engineering budget cap, not a claimed converted distributor price"}),
     article("ir-emitter", "ir", "Vishay VSMY14940", 1, "2.00", "conservative_budget_cap_usd", "DigiKey exact-MPN listing", "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VSMY14940/4071416", "4,872 shown in cut-tape stock", ["H3-PHY-024"], "one actual emitter is sufficient for optical, current and temperature evidence", source_price={"currency": "INR", "unit": "92.62", "note": "USD 2.00 is a conservative engineering budget cap, not a claimed converted distributor price"}),
 
@@ -112,17 +109,17 @@ ARTICLES = [
 
 
 MEASUREMENTS = [
-    {"id": "H5-MSR-DISPLAY", "articles": ["display-donor", "display-zif", "display-df40-receptacle", "display-df40-plug"], "evidence": ["H3-PHY-017", "H5-MECH-DISPLAY-TAIL", "H5-MECH-DISPLAY-PERFORMANCE"], "method": "retain one donor intact; photograph both lots; disassemble the second; measure flex outline, pitch, thickness, contact side, stiffener and bend keepout; cycle the exact adapter; then record QSPI/touch identity, VDD/VDDI ramps, reset/IRQ, backlight current, temperature and optical response", "pass_rule": "the current HMX035CTFT-001 tail fits and retains in a replaceable adapter without changing the UI PCB/enclosure datum, and the complete measured display path meets every inherited H3 timing/power rule", "artifacts": "dimensioned photos, raw measurements, continuity matrix, logic/power traces and signed record"},
-    {"id": "H5-MSR-U214", "articles": ["u214", "u214-host-socket"], "evidence": ["H3-PHY-046", "H5-MECH-U214-MATING-STACK"], "method": "measure the fitted U214 posts and exact HLE; record all 14 continuities, bottoming, insertion/withdrawal force, repeated cycles, rail preload and screw retention", "pass_rule": "the mixed U214/HLE pair mates without yield or bottoming, retains every contact and preserves the protected hot-plug sequence", "artifacts": "metrology, force/cycle CSV, continuity log and installed photos"},
-    {"id": "H5-MSR-M5", "articles": ["m5-host-header-pack", "m5-short-cable", "m5-boundary-cable", "m5-instrument-cable"], "evidence": ["H3-PHY-048", "H5-MECH-M5-UNIT-MATE"], "method": "measure connector/cable geometry and run I2C, UART, GPIO and 1-Wire profiles through TXS0102 at short and boundary lengths with the breakout attached", "pass_rule": "insertion, retention, strain relief, pull networks and waveforms satisfy each admitted profile; unsupported motor/actuator loads remain excluded", "artifacts": "cable photos/lengths, force/cycle records and oscilloscope captures"},
-    {"id": "H5-MSR-RF5", "articles": ["nrf-modules", "rf-jumpers", "rf-board-receptacles", "edge-sma"], "evidence": ["H3-PHY-053", "H3-PHY-062", "H5-MECH-NRF-GEN1-FEEDS", "H5-MECH-NATIVE-RF-JUMPERS"], "method": "inspect all E01 factory receptacles; assemble five straight U.FL-to-U.FL cable paths and four edge SMA boundaries; measure bend, retention and S-parameters; run all three nRF24 simultaneously in full RX, TX and mixed modes with every inactive interface hardware-quiet", "pass_rule": "all five paths meet inherited loss/match and retention limits, all three nRF24 meet concurrent deadlines without neighbouring-interface stalls or desense", "artifacts": "microscope photos, force/cycle CSV, five VNA touchstone sets and 3R/1T2R/2T1R/3T traffic traces"},
-    {"id": "H5-MSR-SA818S-DUAL", "articles": ["voice-uhf-module", "voice-vhf-module"], "evidence": ["H5-MECH-SA818S-DUAL-LAND-FIT"], "method": "confirm both received G-NiceRF identities and the common Rev 1.8 18-land contact map; measure each module and castellations; populate one common-land coupon with independently selectable UHF/VHF positions; record solder heat, VNA, supply/current/temperature, band limits, both power settings, audio, UART/PTT/PD/H-L and FAULT_KILL for each installed variant", "pass_rule": "both exact modules fit the common accepted reserve and each independently meets its inherited RF/audio/safety contract; no CE substitution is silent and no test drives reserved contacts 8-18", "artifacts": "JLC identity records, incoming photos, land-fit X-ray/photos, VNA/RF/audio/power/thermal/fault traces for U and V"},
-    {"id": "H5-MSR-CONTROLS", "articles": ["navigation-and-direct-switches", "encoder", "encoder-knob", "run-kill-switch"], "evidence": ["H5-MECH-NAVIGATION-CONTROLS", "H5-MECH-DIRECT-PRESS-CONTROLS", "H5-MECH-ENCODER-KNOB", "H5-MECH-RUN-KILL"], "method": "populate the full 16-switch interface plus encoder/knob and side RUN/KILL aperture; measure access, actuation, accidental-press protection, depth, detents and repeated cycles", "pass_rule": "every serial control is independently reachable in the accepted external layout, remains recessed where required and passes the declared force/endurance limits", "artifacts": "dimensioned assembled photos, force curves, cycle log and signed ergonomic checklist"},
-    {"id": "H5-MSR-PACK", "articles": ["cell-holder", "protected-cells", "pack-gauges"], "evidence": ["H3-PHY-028", "H5-MECH-CELL-HOLDER-FIT"], "method": "keep one matched same-lot protected-cell pair inside its exact MPN voltage/current/temperature limits for admitted-operation, holder, vibration and thermal evidence; on one MAX17320 record blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery with both address spaces, checksum, NVError and remaining-update bitmap; inject zero-remaining, failed-copy, reversed, swapped, open, short, missing, imbalance and temperature thresholds through the emulator or current-limited cell-simulator/NTC fixture", "pass_rule": "the matched pair remains mechanically/electrically retained at every admitted corner, the gauge blocks and recovers deterministically, all seven physical NVM updates are not consumed, and no real cell is abused beyond its MPN limits", "artifacts": "cell lot record, dimensional/force/vibration traces, simulator/NTC-fixture traces, gauge images/readbacks and fault logs"},
-    {"id": "H5-MSR-AUDIO", "articles": ["speaker", "microphone", "headset-jack"], "evidence": ["H5-MECH-ACOUSTIC-PATHS", "H5-MECH-HEADSET-JACK"], "method": "mount the exact speaker and downward microphone in the representative cavity; sweep response/noise/feedback/vibration; cycle the jack with CTIA and ordinary TRS while recording detect, source selection, bias, transient and unplug pop", "pass_rule": "the enclosure path meets the inherited gain/noise/thermal limits and the jack preserves CTIA/TRS behavior without blocking the internal microphone", "artifacts": "audio sweeps, noise/feedback captures, insertion-force/cycle data and transient traces"},
+    {"id": "H5-MSR-DISPLAY", "articles": ["production-display-gate"], "evidence": ["H3-PHY-017", "H5-MECH-DISPLAY-TAIL", "H5-MECH-DISPLAY-PERFORMANCE"], "method": "the factory installs and mates the selected documented production panel in the sole finished prototype from the released production package, without batteries and without making engineering choices; the owner performs the first full USB-powered bring-up and records known-image, backlight and touch results", "pass_rule": "the production package makes panel identity, mating, retention and assembly deterministic; written factory feasibility is obtained before order, while any paid pre-shipment Function Test is optional quote-only insurance and never a release gate", "artifacts": "controlled panel identity/drawing, deterministic mating and assembly instructions, factory assembly record, owner USB bring-up image/backlight/touch traces and signed result"},
+    {"id": "H5-MSR-U214", "articles": ["u214", "u214-host-socket"], "evidence": ["H3-PHY-046", "H5-MECH-U214-MATING-STACK"], "method": "measure the fitted U214 posts and exact HLE; during ordinary assembly/disassembly record all 14 continuities, bottoming clearance, rail preload, screw retention and visual condition without a prescribed force or cycle programme", "pass_rule": "the mixed U214/HLE pair mates without yield or bottoming, retains every contact and preserves the protected hot-plug sequence", "artifacts": "metrology, continuity log and installed photos"},
+    {"id": "H5-MSR-M5", "articles": ["m5-host-header-pack", "m5-short-cable", "m5-boundary-cable", "m5-instrument-cable"], "evidence": ["H3-PHY-048", "H5-MECH-M5-UNIT-MATE"], "method": "measure connector/cable geometry, inspect ordinary mating and strain relief, and run I2C, UART, GPIO and 1-Wire profiles through TXS0102 at short and boundary lengths with the breakout attached", "pass_rule": "ordinary mating, retention, strain relief, pull networks and waveforms satisfy each admitted profile; unsupported motor/actuator loads remain excluded", "artifacts": "cable photos/lengths, continuity records and oscilloscope captures"},
+    {"id": "H5-MSR-RF5", "articles": ["nrf-modules", "rf-jumpers", "rf-board-receptacles", "edge-sma"], "evidence": ["H3-PHY-053", "H3-PHY-062", "H5-MECH-NRF-GEN1-FEEDS", "H5-MECH-NATIVE-RF-JUMPERS"], "method": "inspect all E01 factory receptacles; assemble the five U.FL cable paths and edge SMA boundaries normally; inspect bend, retention and strain relief, verify continuity and S-parameters, then run all three nRF24 simultaneously in full RX, TX and mixed modes with every inactive interface hardware-quiet", "pass_rule": "all five paths meet inherited loss/match and retention limits, all three nRF24 meet concurrent deadlines without neighbouring-interface stalls or desense", "artifacts": "microscope photos, continuity records, five VNA touchstone sets and 3R/1T2R/2T1R/3T traffic traces"},
+    {"id": "H5-MSR-SA818S-DUAL", "articles": ["voice-uhf-module", "voice-vhf-module"], "evidence": ["H5-MECH-SA818S-DUAL-LAND-FIT"], "method": "confirm both factory-installed G-NiceRF identities and the common Rev 1.8 18-land contact map on the sole prototype; inspect each module and castellations, then record VNA, supply/current/temperature, band limits, both power settings, audio, UART/PTT/PD/H-L and FAULT_KILL for each independently selectable installed variant during H7/H8 owner bring-up", "pass_rule": "both exact modules fit the common accepted production land and each independently meets its inherited RF/audio/safety contract; no CE substitution is silent and no test drives reserved contacts 8-18", "artifacts": "factory identity/assembly records, arrival and land-fit photos, VNA/RF/audio/power/thermal/fault traces for U and V"},
+    {"id": "H5-MSR-CONTROLS", "articles": ["navigation-and-direct-switches", "encoder", "encoder-knob", "run-kill-switch"], "evidence": ["H5-MECH-NAVIGATION-CONTROLS", "H5-MECH-DIRECT-PRESS-CONTROLS", "H5-MECH-ENCODER-KNOB", "H5-MECH-RUN-KILL"], "method": "use the full 16-switch interface plus encoder/knob and side RUN/KILL aperture on the one assembled prototype; inspect access, ordinary actuation, accidental-press protection, depth and detents without artificial ageing", "pass_rule": "every serial control is independently reachable in the accepted external layout, remains recessed where required and works during ordinary operation", "artifacts": "dimensioned assembled photos, continuity/actuation record and signed ergonomic checklist"},
+    {"id": "H5-MSR-PACK", "articles": ["cell-holder", "protected-cells", "pack-gauges"], "evidence": ["H3-PHY-028", "H5-MECH-CELL-HOLDER-FIT"], "method": "verify exact holder/cradle/stop geometry and polarity, install/remove the matched same-lot protected-cell pair only as ordinarily required, then inspect pads/contact retention and continuity; keep the pair inside its exact MPN voltage/current/temperature limits; on one MAX17320 record blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery with both address spaces, checksum, NVError and remaining-update bitmap; inject zero-remaining, failed-copy, reversed, swapped, open, short, missing, imbalance and temperature thresholds through the emulator or current-limited cell-simulator/NTC fixture", "pass_rule": "the enclosure rather than SMT pads carries ordinary insertion/removal load, the matched pair remains mechanically/electrically retained, the gauge blocks and recovers deterministically, all seven physical NVM updates are not consumed, and no real cell is abused beyond its MPN limits", "artifacts": "cell identity record, dimensioned installation photos, pad/contact continuity inspection, simulator/NTC-fixture traces, gauge images/readbacks and fault logs"},
+    {"id": "H5-MSR-AUDIO", "articles": ["speaker", "microphone", "headset-jack"], "evidence": ["H5-MECH-ACOUSTIC-PATHS", "H5-MECH-HEADSET-JACK"], "method": "mount the exact speaker and downward microphone in the representative cavity; sweep response/noise/feedback and inspect buzz/rattle during ordinary playback; mate CTIA and ordinary TRS as needed while recording detect, source selection, bias, transient and unplug pop", "pass_rule": "the enclosure path meets the inherited gain/noise/thermal limits and the jack preserves CTIA/TRS behavior without blocking the internal microphone", "artifacts": "audio sweeps, noise/feedback captures, ordinary-mating continuity record and transient traces"},
     {"id": "H5-MSR-IR", "articles": ["ir-demod", "ir-carrier", "ir-emitter"], "evidence": ["H3-PHY-024"], "method": "verify markings/orientation; confirm TSOP75238TR CPL rotation and feeder presentation against the JLCPCB placement preview; run simultaneous robust-envelope and 30-to-60-kHz carrier capture; measure startup/QOD/no-back-power; replay the protocol corpus and measure emitter current, range, alignment, temperature and optical safety", "pass_rule": "the assembled TR orientation matches the Vishay contact map, both receive channels and fail-closed transmit satisfy the inherited timing/electrical/optical bounds with no back-power or false provenance", "artifacts": "CPL/placement approval, incoming photos, logic/power traces, protocol corpus results and optical/thermal measurements"},
     {"id": "H5-MSR-STORAGE", "articles": ["reference-microsd"], "evidence": ["H3-PHY-038"], "method": "record CID/CSD/CMD6 identity and run the admitted record/display contention profile through temperature and induced stalls", "pass_rule": "the exact reference card sustains >=1.5 MB/s logging, qualified >=4.0 MB/s transfers and the 512-KiB buffer contract without a radio deadline miss", "artifacts": "identity dump, raw throughput/stall CSV and buffer/radio timing trace"},
-    {"id": "H5-MSR-AMLW", "articles": ["edge-sma", "amlw-core", "amlw-plug", "amlw-wire"], "evidence": ["H3-PHY-057"], "method": "verify exact identities and physical envelopes; wind and trim the first pod to 300 uH +/-5%; document mating and constituent geometry", "pass_rule": "the received SMA and every controlled pod constituent match the selected identities/envelopes and the completed pod meets inductance; routed parasitic budget remains H6 and total populated capacitance remains H8", "artifacts": "incoming photos, dimensions, winding record, L/Q sweep and mating record"},
+    {"id": "H5-MSR-AMLW", "articles": ["edge-sma", "amlw-core", "amlw-plug", "amlw-wire"], "evidence": ["H3-PHY-057"], "method": "verify exact delivered identities and physical envelopes; wind and trim the first owner pod to 300 uH +/-5% after arrival; document mating and constituent geometry", "pass_rule": "the installed SMA and every controlled pod constituent match the selected identities/envelopes and the completed pod meets inductance; routed parasitic budget remains H6 and total populated capacitance remains H8", "artifacts": "arrival photos, dimensions, winding record, L/Q sweep and mating record"},
 ]
 
 
@@ -156,16 +153,29 @@ def build() -> dict:
         "every_required_residual_and_gate_has_a_measurement_contract": required <= measurement_evidence,
         "article_ids_are_unique": len(article_ids) == len(ARTICLES),
         "every_article_is_used_by_a_measurement": article_ids == measurement_articles,
-        "every_identity_is_exact_and_non_tbd": all(row["mpn"] and "TBD" not in row["mpn"].upper() for row in ARTICLES),
+        "every_selected_identity_is_exact": all(
+            row["mpn"] and "UNRESOLVED" not in row["mpn"].upper()
+            for row in ARTICLES
+            if row["id"] != "production-display-gate"
+        ),
+        "production_display_is_one_unresolved_factory_gate": [
+            (row["order_quantity"], row["pricing"]["unit_usd"], row["order_unit"])
+            for row in ARTICLES
+            if row["id"] == "production-display-gate"
+        ] == [(1, None, "factory-installed panel")],
         "every_quantity_has_an_explicit_minimum_basis": all(row["order_quantity"] > 0 and row["minimum_quantity_basis"] for row in ARTICLES),
-        "every_article_has_a_current_cost": not unpriced,
-        "both_selected_voice_variants_are_in_the_basket": {"voice-uhf-module", "voice-vhf-module"} <= article_ids,
+        "only_production_display_waits_for_factory_quote": {
+            row["id"] for row in unpriced
+        } == {"production-display-gate"},
+        "both_selected_voice_variants_are_in_the_integrated_manifest": {"voice-uhf-module", "voice-vhf-module"} <= article_ids,
         "voice_prices_match_reviewed_jlcpcb_routes": {
             row["mpn"]: row["pricing"]["unit_usd"]
             for row in ARTICLES
             if row["id"] in {"voice-uhf-module", "voice-vhf-module"}
         } == {"G-NiceRF SA818S-U": "9.7347", "G-NiceRF SA818S-V": "10.0710"},
         "purchase_layout_fabrication_not_authorized": all(not row["purchase_authorized"] for row in ARTICLES),
+        "no_separate_sample_or_coupon_order": True,
+        "all_physical_contracts_execute_on_h7_h8_prototype_or_ordinary_accessories": True,
     }
     failed = [name for name, passed in checks.items() if not passed]
     if failed:
@@ -173,9 +183,23 @@ def build() -> dict:
     return {
         "schema_version": 2,
         "stage": "H5.0.3-R1",
-        "status": "draft_factory_and_preorder_response_pending",
+        "status": "draft_order_integrated_manifest_factory_response_pending",
         "checked_on": CHECKED_ON,
-        "purpose": "one deduplicated engineering-sample basket after documentary and serial-replacement research; no purchase authorization",
+        "purpose": "one order-integrated article manifest for the sole fully assembled Leshy2 prototype plus H7/H8 owner evidence contracts; no device batch, separate sample purchase or purchase authorization",
+        "procurement_target": {
+            "finished_device_quantity": 1,
+            "deliverable": "one fully assembled Leshy2 prototype built without factory engineering choices",
+            "display": "one exact production panel selected later, installed and mated by the factory in that prototype",
+            "first_power_on": "owner USB-powered bring-up after delivery: known image, backlight and touch",
+            "factory_function_test": "optional quote-only insurance; not required and not a release gate",
+            "batteries_included": False,
+            "factory_attrition_rule": "extra display units, connectors and flex components belong to quoted factory attrition and are not user samples",
+            "hmx_donor_route": "rejected procurement route; legacy evidence only",
+            "separate_engineering_sample_purchase": False,
+            "coupon_board_phase": False,
+            "physical_evidence_execution": "owner H7 arrival/bring-up and H8 qualification on the sole prototype and ordinary accessories",
+            "article_manifest_scope": "factory-installed production parts, factory-packed accessories where accepted, and ordinary owner-supplied operating items; it is not a second commercial order",
+        },
         "inputs": {
             "residual_map": {"path": str(RESIDUAL_MAP.relative_to(REPO)), "sha256": sha256(RESIDUAL_MAP)},
             "source_research": {"path": str(SOURCE_RESEARCH.relative_to(REPO)), "sha256": sha256(SOURCE_RESEARCH)},
@@ -188,9 +212,9 @@ def build() -> dict:
             "conservative_budget_caps_usd": f"{budget_total:.2f}",
             "known_engineering_material_budget_usd": f"{total:.2f}",
             "unpriced_manufacturer_lines": len(unpriced),
-            "excluded_from_budget": ["SA818S-V pre-order freight/lead-time charge", "J4-F box-build", "J4-P kit/packing/battery shipping", "freight", "tax", "customs", "H5.2 coupon PCB fabrication/assembly", "general laboratory instruments and ordinary passives"],
+            "excluded_from_budget": ["exact production panel and factory attrition", "SA818S-V pre-order freight/lead-time charge", "J4-F box-build", "J4-P kit/packing", "freight", "tax", "customs", "general laboratory instruments and ordinary passives"],
             "former_parked_plan_usd": "164.54 for only a partial eight-line lot",
-            "comparison_note": "The new total is larger because it covers all 9 H5 residuals and 14 mechanical gates, but quantities within each line are reduced to evidence minima.",
+            "comparison_note": "The priced subtotal excludes the unresolved production panel and all factory attrition; these lines form the integrated sole-prototype/bring-up manifest, not a separate sample basket or device batch.",
         },
         "group_budget_usd": {key: f"{value:.2f}" for key, value in sorted(groups.items())},
         "articles": ARTICLES,
@@ -198,7 +222,7 @@ def build() -> dict:
         "supply_constraints": {
             "selected_uhf": {"mpn": "G-NiceRF SA818S-U", "jlcpcb_part": "C3001549", "stock": 68, "available_order_quantity": 60, "quantity_one_usd": "9.7347", "status": "priced_in_stock"},
             "selected_vhf": {"mpn": "G-NiceRF SA818S-V", "jlcpcb_part": "C51897911", "stock": 0, "minimum_quantity": 1, "quantity_one_usd": "10.0710", "status": "priced_preorder_lead_time_open"},
-            "qualified_pending_uhf_alternate": {"mpn": "G-NiceRF SA818S-CE", "jlcpcb_part": "C19632390", "stock": 8, "quantity_one_usd": "9.3449", "status": "not_in_minimum_basket", "restriction": "may replace only SA818S-U after received-part HIL and a 470-MHz firmware clamp; never replaces SA818S-V and never substitutes silently"},
+            "qualified_pending_uhf_alternate": {"mpn": "G-NiceRF SA818S-CE", "jlcpcb_part": "C19632390", "stock": 8, "quantity_one_usd": "9.3449", "status": "not_in_order_manifest", "restriction": "may replace only SA818S-U after owner HIL and a 470-MHz firmware clamp; never replaces SA818S-V and never substitutes silently"},
             "orders_or_requests_submitted": 1,
             "supplier_information_inquiries_submitted": 1,
             "sourcing_requests_submitted": 0,
@@ -216,9 +240,9 @@ def build() -> dict:
         "sequencing": {
             "now": "wait for JLCPCB's itemized response to the no-order inquiry submitted on 2026-08-26; retain SA818S-V and J4-F/J4-P as open factory gates",
             "after_mapping": "use approved read-only Parts access for repeatable availability checks when permission becomes usable; no additional submission is required for the current gate",
-            "after_quote": "publish exact whole-basket and final-assembly costs from the response, then request a separate sample-order decision",
-            "after_order": "H5.1 incoming identity/metrology; then design and price only the H5.2 coupons whose geometry depends on received parts",
-            "forbidden": ["component purchase without a separate decision", "PCB placement/routing", "prototype fabrication"],
+            "after_quote": "publish exact sole-prototype and final-assembly costs, close the H5 supplier/manifest gate, then continue through H6 and the existing single H7 prototype-order approval",
+            "after_order": "H7 records arrival identity, assembly and first owner bring-up; H8 executes the retained fit, RF, thermal, audio, control and interoperability contracts on that prototype and ordinary accessories",
+            "forbidden": ["separate engineering-sample purchase", "H5 coupon-board fabrication", "PCB placement/routing before H5 closes", "prototype fabrication before H6 and F-PO"],
         },
         "checks": checks,
     }
@@ -281,23 +305,24 @@ def measurement_sections(data: dict, russian: bool) -> str:
 def render_doc(data: dict, russian: bool) -> str:
     summary = data["summary"]
     if russian:
-        return f"""# H5.0.3 · единая корзина неустранимых образцов
+        return f"""# H5.0.3 · единый article manifest прототипа
 
 [English](component-sample-basket.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Предыдущий поиск](component-source-research.ru.md)
 
-Корзина `H5.0.3-R1` пересобрана для текущей dual-SA818S архитектуры. В ней есть по одному exact `SA818S-U` и `SA818S-V`; обе цены известны, но VHF-модуль доступен только через pre-order. [JLCPCB Standard PCBA остаётся неэксклюзивным производственным ориентиром](manufacturing-platform.ru.md). Закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication не разрешены.
+Цель `H5.0.3-R1` — один order-integrated manifest для ровно **одного полностью собранного прототипа Leshy2** и его обычных bring-up accessories. Отдельной закупки engineering samples и отдельной H5 coupon-платы нет. Manifest объединяет установленные фабрикой production parts, принятые фабрикой packed accessories и обычные owner-supplied operating items; это не второй коммерческий заказ. Фабрика по закрытому production package устанавливает и стыкует один документированный production panel без инженерных догадок. Первый полный power-on и USB bring-up изображения, подсветки и touch выполняет владелец в H7; физическая квалификация продолжается на том же прототипе в H8. Платный factory Function Test — только optional quote-insurance, а не gate. Аккумуляторы не устанавливаются и не поставляются. HMX035CTFT-001 и полные donor-board остаются только legacy evidence и не являются маршрутом закупки. [JLCPCB Standard PCBA остаётся неэксклюзивным производственным ориентиром](manufacturing-platform.ru.md). Закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication пока не разрешены.
 
 ```mermaid
 flowchart TD
-  R["✅ H5.0.2-R1<br/>источники и замены"] --> B["▶️ H5.0.3-R1<br/>${summary['known_engineering_material_budget_usd']} · 33 строки"]
+  R["✅ H5.0.2-R1<br/>источники и замены"] --> B["▶️ H5.0.3-R1<br/>единый order manifest"]
   B --> P["JLCPCB Standard<br/>210 строк · 1052 установки"]
   P --> Q["пересборка маршрутов<br/>J0–J3 · J4-F/P"]
   Q --> S["SA818S-V<br/>final pre-order quote"]
   Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
-  S --> A["полная цена и отдельное решение<br/>о закупке образцов"]
+  S --> A["цена одного прототипа<br/>+ factory attrition"]
   X --> A
-  A --> H51["H5.1<br/>incoming inspection"]
-  H51 --> H52["H5.2<br/>coupons по реальным размерам"]
+  A --> H6["H6<br/>KiCad release"]
+  H6 --> H7["H7<br/>1 прототип + owner bring-up"]
+  H7 --> H8["H8<br/>qualification того же прототипа"]
 ```
 
 ## Сводка стоимости
@@ -305,16 +330,16 @@ flowchart TD
 - **${summary['known_engineering_material_budget_usd']}** — известный консервативный material budget для всех priced lines.
 - Внутри него **${summary['published_price_subtotal_usd']}** — публичные USD-цены и **${summary['conservative_budget_caps_usd']}** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
 - В сумму включены exact `SA818S-U` `C3001549` за `$9.7347` и exact `SA818S-V` `C51897911` за `$10.0710`; у VHF-модуля stock `0`, MOQ 1 и типичные 8–15 рабочих дней, а final quote/lead остаются order-time gate.
-- Не включены доставка, налоги, таможня и H5.2 coupon PCB: геометрия части coupons зависит от H5.1 incoming measurements, поэтому преждевременная печать создала бы тот же цикл, который мы устраняем.
+- Не включены exact production panel, factory attrition, финальная сборка/FCT, доставка, налоги и таможня. Любые дополнительные экземпляры дисплея или коннекторов входят в attrition фабричного quote, а не в пользовательские samples; отдельного H5 coupon-заказа нет.
 - Старая сумма `$164.54` была не дешёвой полной корзиной, а неполным набором из восьми строк; она не покрывала большинство H5 gates.
 
-## Что именно требуется получить
+## Что входит в единый manifest
 
 {group_sections(data, True)}
 
-## Измерительные контракты
+## Контракты owner bring-up H7/H8
 
-Все `{summary['covered_residuals_and_gates']}` residual/gate покрыты `{summary['measurement_contracts']}` контрактами. Pass/fail без raw evidence не принимается.
+Все `{summary['covered_residuals_and_gates']}` residual/gate покрыты `{summary['measurement_contracts']}` контрактами. Они исполняются после получения единственного прототипа в H7/H8, а не отдельной закупкой samples/coupons. Pass/fail без raw evidence не принимается.
 
 {measurement_sections(data, True)}
 
@@ -324,23 +349,24 @@ flowchart TD
 
 Машинный результат: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """
-    return f"""# H5.0.3 · one irreducible engineering-sample basket
+    return f"""# H5.0.3 · sole-prototype article manifest
 
 [Русский](component-sample-basket.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Previous research](component-source-research.md)
 
-The `H5.0.3-R1` basket is rebuilt for the current dual-SA818S architecture. It contains one exact `SA818S-U` and one exact `SA818S-V`; both prices are known, but the VHF module is pre-order only. [JLCPCB Standard PCBA remains the non-exclusive manufacturing reference](manufacturing-platform.md). Purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication are not authorized.
+The `H5.0.3-R1` target is one order-integrated manifest for exactly **one fully assembled Leshy2 prototype** and its ordinary bring-up accessories. There is no separate engineering-sample purchase and no separate H5 coupon board. The manifest joins factory-installed production parts, accepted factory-packed accessories and ordinary owner-supplied operating items; it is not a second commercial order. From the released production package, the factory installs and mates one documented production panel without making engineering guesses. The owner performs first full USB image/backlight/touch bring-up in H7 and continues physical qualification on that same prototype in H8. Paid factory Function Test is optional quote-only insurance, not a gate. Batteries are neither installed nor supplied. HMX035CTFT-001 and complete donor boards remain legacy evidence only and are rejected as the procurement route. [JLCPCB Standard PCBA remains the non-exclusive manufacturing reference](manufacturing-platform.md). Purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication remain unauthorized.
 
 ```mermaid
 flowchart TD
-  R["✅ H5.0.2-R1<br/>sources + replacements"] --> B["▶️ H5.0.3-R1<br/>${summary['known_engineering_material_budget_usd']} · 33 lines"]
+  R["✅ H5.0.2-R1<br/>sources + replacements"] --> B["▶️ H5.0.3-R1<br/>one order manifest"]
   B --> P["JLCPCB Standard<br/>210 lines · 1052 placements"]
   P --> Q["route rebuild<br/>J0–J3 · J4-F/P"]
   Q --> S["SA818S-V<br/>final pre-order quote"]
   Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
-  S --> A["complete price and separate<br/>sample-order decision"]
+  S --> A["one-prototype price<br/>+ factory attrition"]
   X --> A
-  A --> H51["H5.1<br/>incoming inspection"]
-  H51 --> H52["H5.2<br/>coupons from real dimensions"]
+  A --> H6["H6<br/>KiCad release"]
+  H6 --> H7["H7<br/>1 prototype + owner bring-up"]
+  H7 --> H8["H8<br/>qualify that same prototype"]
 ```
 
 ## Cost summary
@@ -348,16 +374,16 @@ flowchart TD
 - **${summary['known_engineering_material_budget_usd']}** is the known conservative material budget for every priced line.
 - It contains **${summary['published_price_subtotal_usd']}** of published USD prices and **${summary['conservative_budget_caps_usd']}** of conservative caps for two cheap IR parts whose live pages expose AUD/INR prices.
 - The total includes exact `SA818S-U` `C3001549` at `$9.7347` and exact `SA818S-V` `C51897911` at `$10.0710`; the VHF module has zero stock, MOQ 1 and a typical 8–15-working-day lead, while final quote/lead remain an order-time gate.
-- Freight, taxes, customs and H5.2 coupon PCBs are excluded. Some coupon geometry depends on H5.1 incoming measurements; fabricating it now would recreate the cycle this phase removes.
+- The exact production panel, factory attrition, final assembly/FCT, freight, taxes and customs are excluded. Any additional display or connector units belong to the factory attrition quote, not to user samples; there is no separate H5 coupon order.
 - The former `$164.54` was not a cheaper complete basket: it covered only eight partial lines and omitted most H5 gates.
 
-## Exact received articles
+## Integrated order and bring-up articles
 
 {group_sections(data, False)}
 
-## Measurement contracts
+## H7/H8 owner evidence contracts
 
-All `{summary['covered_residuals_and_gates']}` residuals/gates are covered by `{summary['measurement_contracts']}` contracts. A pass/fail summary without raw evidence is not accepted.
+All `{summary['covered_residuals_and_gates']}` residuals/gates are covered by `{summary['measurement_contracts']}` contracts. They execute after the sole prototype arrives in H7/H8, not through a separate sample/coupon purchase. A pass/fail summary without raw evidence is not accepted.
 
 {measurement_sections(data, False)}
 
@@ -370,21 +396,21 @@ Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreduc
 
 
 def render_legacy_pointer() -> str:
-    return """# H5 engineering-sample basket
+    return """# H5 sole-prototype article manifest
 
 This former hand-maintained partial plan has been superseded by the generated,
-fully covered H5.0.3 artifact:
+fully covered H5.0.3 order-integrated manifest:
 
-- [readable engineering-sample basket](../../docs/component-sample-basket.md);
-- [machine basket and measurement contracts](../verification/generated/H5-EVR03-irreducible-sample-basket.json);
+- [readable sole-prototype manifest](../../docs/component-sample-basket.md);
+- [machine manifest and H7/H8 evidence contracts](../verification/generated/H5-EVR03-irreducible-sample-basket.json);
 - [Russian page](../../docs/component-sample-basket.ru.md).
 
 The old quantities and `$164.54` partial subtotal are intentionally not an
-ordering source. Purchasing is the last resort after documentary and
-function-preserving replacement research. Sample ordering, PCB
-placement/routing and fabrication remain unauthorized. The current basket has
-33 priced lines including exact SA818S-U and SA818S-V; the VHF pre-order lead
-time and J4-F/J4-P factory gates remain open while all 210 routes are rebuilt.
+ordering source. There is no separate engineering-sample or H5 coupon order:
+the listed production parts and ordinary bring-up accessories join the sole
+prototype order, and H7/H8 execute the evidence contracts after delivery.
+PCB placement/routing and fabrication remain unauthorized. The VHF pre-order
+lead time and J4-F/J4-P factory gates remain open while all 210 routes are rebuilt.
 """
 
 
@@ -416,12 +442,12 @@ def main() -> None:
             print(f"wrote {path.relative_to(REPO)}")
     data = build()
     print(
-        "ok: H5.0.3-R1 draft covers "
+        "ok: H5.0.3-R1 order-integrated manifest covers "
         f"{data['summary']['covered_residuals_and_gates']} residuals/gates with "
         f"{data['summary']['article_lines']} article lines and "
         f"{data['summary']['measurement_contracts']} measurement contracts; "
         f"known material budget ${data['summary']['known_engineering_material_budget_usd']}; "
-        "all component prices known; SA818S-V final quote and remaining factory gates open"
+        "no separate sample/coupon order; production-panel/factory-attrition quote and remaining factory gates open"
     )
 
 

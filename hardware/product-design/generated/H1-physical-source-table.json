@@ -3884,7 +3884,7 @@
       "frame": "rf-inner-route",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
-      "direction": "bounded module-face zone to fixed Gen1 board receptacle; exact axis closes in H5",
+      "direction": "bounded module-face zone to fixed Gen1 board receptacle; H5 locks the conservative corridor and H7/H8 inspect the received axis after arrival",
       "envelope_mm": [
         30.0,
         1.13,
@@ -4102,7 +4102,7 @@
       "frame": "rf-inner-route",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
-      "direction": "bounded module-face zone to fixed Gen1 board receptacle; exact axis closes in H5",
+      "direction": "bounded module-face zone to fixed Gen1 board receptacle; H5 locks the conservative corridor and H7/H8 inspect the received axis after arrival",
       "envelope_mm": [
         30.0,
         1.13,
@@ -4320,7 +4320,7 @@
       "frame": "rf-inner-route",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
-      "direction": "bounded module-face zone to fixed Gen1 board receptacle; exact axis closes in H5",
+      "direction": "bounded module-face zone to fixed Gen1 board receptacle; H5 locks the conservative corridor and H7/H8 inspect the received axis after arrival",
       "envelope_mm": [
         30.0,
         1.13,

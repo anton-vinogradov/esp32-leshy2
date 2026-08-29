@@ -4,10 +4,10 @@
   "status": "reviewed_mapping_only",
   "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "f76f82e4787e9503a01fbc6f4741bd3b2e32b9b73e95f4b4ee04fa1bddfbc19e",
-    "hardware/product-design/generated/H1-physical-source-table.json": "ac004c115aba28ab32b54853161b16f2d0c5f5de1630d959bf6752690ea41de7",
-    "hardware/product-design/mechanical-evidence-gates.json": "c6d3a2366cbb7657d09aea80019a59909d83457d3b7b2bba2cb328f967e12a1d",
-    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "affe4d168d05969de6a60e1a2806c826c1afff69123e607c722339e57060d8d0",
+    "hardware/product-design/generated/H1-physical-source-table.json": "48aeded6f5febce100e7299f881e45ac27f3bf50d8d240b1a30fa5e39552741d",
+    "hardware/product-design/mechanical-evidence-gates.json": "988f479175c9c51cd781fafaf94584f4688530e32c70b4d9ee837e3580dff70d",
+    "hardware/architecture/devices.json": "a47012afe7f17a40d0051074febf8a877a75162e913892ba02d57da58fff3d4d",
     "hardware/architecture/am-lw-pod.json": "6571e20c26f2ceaebf9c4bf410d155417a68116b3b5ef2e16d7c77ee06503e08"
   },
   "summary": {
@@ -226,7 +226,7 @@
       "id": "H3-PHY-046",
       "source_phase": "H3.4",
       "source_group": "boundaries",
-      "requirement": "verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair",
+      "requirement": "verify received stock U214 male-post material/plating, ordinary assembly/disassembly, current continuity, bottoming clearance and retention inspection; any unsourced insertion force remains a design-analysis input, and the 4.1-A figure proves only the controlled HLE/TSM pair",
       "parts": [
         {
           "identity": "u214",
@@ -258,11 +258,11 @@
       ],
       "missing_data": [
         "the stock U214 fitted male-post manufacturer/MPN, section, material and plating are not published",
-        "measured continuity, insertion/withdrawal force and repeated-cycle retention for the mixed stock-U214/HLE pair"
+        "ordinary assembly/disassembly, continuity, bottoming-clearance and retention inspection for the mixed stock-U214/HLE pair; any unsourced force remains a design-analysis input rather than a qualification load"
       ],
       "sample_specific": true,
       "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
-      "accepted_pass_rule": "the received specimen directly demonstrates this item: verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair; a mismatch reopens the owning H1/H2/H3 result",
+      "accepted_pass_rule": "the received specimen directly demonstrates this item: verify received stock U214 male-post material/plating, ordinary assembly/disassembly, current continuity, bottoming clearance and retention inspection; any unsourced insertion force remains a design-analysis input, and the 4.1-A figure proves only the controlled HLE/TSM pair; a mismatch reopens the owning H1/H2/H3 result",
       "status": "mapped_evidence_open"
     },
     {
@@ -784,7 +784,7 @@
       ],
       "known_boundary": "Official QDtech sources prove the HMX035CTFT-001 marking, complete-donor 54.5x101.5-mm reserve, 40-contact electrical map and 54.5x83.0x3.2-mm LCD/CTP screen body. L2-DISP-ADP-001-A fixes a 25.5x12.0-mm replaceable adapter, exact 2.0-mm 40-contact DF40 board mate, direct one-to-one copper and an active dual-contact FH34SRJ panel ZIF. The main UI board and enclosure no longer depend on an inferred raw-flex outline or exposed-contact side.",
       "missing_data": "Standalone order identity, current-lot complete FPC outline, thickness, stiffener, adhesive, bend path and actual insertion/retention in the selected dual-contact ZIF remain received-display properties; a mismatch may revise only the small adapter and its panel-side connector.",
-      "accepted_pass_rule": "Incoming inspection measures the current HMX035CTFT-001 tail and proves insertion, retention, bend clearance and continuity on a replaceable adapter revision before fabrication release.",
+      "accepted_pass_rule": "H5 locks the source-backed adapter/connector geometry and deterministic mating instruction before order; H7/H8 then measure the received HMX035CTFT-001 tail and inspect insertion, retention, bend clearance and continuity on the one assembled prototype after arrival.",
       "blocks": [
         "H8"
       ],
@@ -940,7 +940,7 @@
       ],
       "known_boundary": "Ebyte's current specification and official PcbLib prove the E01-ML01IPX outline and land pattern; Ebyte's current accessory catalog identifies the matching interface as IPX/IPEX Gen1. Exact active TE 2118651-2 30-mm UMCC Gen1 jumpers and Hirose U.FL-R-SMT-1(10) board mates define all three paper feed assemblies. H1 reserves a cable corridor from the complete module-face envelope instead of inventing a connector axis absent from the PcbLib.",
       "missing_data": "The connector axis and current-lot receptacle manufacturer's exact MPN, actual fit/retention, bend/strain behaviour and end-to-end RF loss remain received-part properties. H1.2/H1.6 must prove the conservative module-face-to-board-receptacle corridor without relying on a nominal axis.",
-      "accepted_pass_rule": "Incoming inspection confirms the fitted receptacle is Gen1, and all three complete feed coupons pass fit, retention, flex/service, insertion-loss and return-loss tests in H5.",
+      "accepted_pass_rule": "H5 locks the conservative corridor and exact documented cable/board-mate identities before order; H7/H8 confirm the fitted receptacle is Gen1 and inspect fit, retention, flex/strain relief, insertion loss and return loss on the one assembled prototype after arrival.",
       "blocks": [
         "H8"
       ],
@@ -975,8 +975,8 @@
         }
       ],
       "known_boundary": "M5Stack proves the 84x24x15.287-mm Cap envelope, 2x7 2.54-mm topology and 56-mm retention pitch. Samtec proves the exact HLE-107-02-G-DV-PE-LC pass-through body, standard 0.635-mm square-post class, 1.78-mm minimum insertion and absence of a closed bottoming limit. H1 fixes the Cap body to the retention datums and lets the undocumented post length pass through the raised rail.",
-      "missing_data": "Current-lot U214 post section, insertion force, contact retention, repeated-cycle fit, retention-screw engagement and final compliant rail preload remain received-part properties; none changes the bounded H1 exterior envelope or main-board placement.",
-      "accepted_pass_rule": "Incoming inspection and an exact HLE coupon verify the current U214 post, insertion/withdrawal force, contact continuity, cycle life and retention engagement before fabrication release.",
+      "missing_data": "Current U214 post section, insertion force, contact retention, retention-screw engagement and final compliant rail preload remain received-part properties; absent manufacturer limits remain design-analysis inputs and do not create an artificial cycle test.",
+      "accepted_pass_rule": "H5 locks the source-backed envelope, pass-through host geometry and deterministic assembly instruction before order; H7/H8 verify the received U214 post and perform ordinary assembly/disassembly, fit, bottoming-clearance, contact-continuity and retention inspection after arrival without a prescribed force or cycle programme.",
       "blocks": [
         "H8"
       ],
@@ -1047,8 +1047,8 @@
         }
       ],
       "known_boundary": "Five exact, active and orderable OMRON B3S-1100P switches form UP, DOWN, LEFT, RIGHT and OK. Every direction is a separate direct-press serial component; no custom cap, plunger, cross or guide exists. The manufacturer drawing fixes each 6.6x6.0x4.3-mm body, 3.3-mm plunger, force, travel and IEC IP67-equivalent switch boundary.",
-      "missing_data": "Assembled enclosure opening access, accidental-press margin, multi-button feel, sealing boundary and endurance.",
-      "accepted_pass_rule": "The received five-button/front-panel assembly passes access, force, independent and adjacent actuation, contradictory-pair rejection, sealing-boundary and endurance tests in H5.",
+      "missing_data": "Assembled enclosure opening access, accidental-press margin, multi-button feel and sealing boundary.",
+      "accepted_pass_rule": "H5 locks exact switch bodies, openings and DRC before order; H7/H8 inspect the one assembled front panel after arrival for access, ordinary actuation, accidental-press margin, independent/adjacent actuation, contradictory-pair rejection and sealing-boundary fit, without artificial ageing.",
       "blocks": [
         "H8"
       ],
@@ -1084,7 +1084,7 @@
       ],
       "known_boundary": "SA818S Rev 1.8 plus the official manufacturer package archive define one common 35.60 x 19.00-mm, 18-land host pattern for SA818S-U and SA818S-V; each contact-12 RF corridor is independent.",
       "missing_data": "Received SA818S-U/V lot identity, common-land tolerance, solder fillet and thermal assembly behaviour.",
-      "accepted_pass_rule": "Incoming identity check, one common land-pattern coupon populated with both variants, solder inspection and power/thermal smoke test pass in H5; conducted RF remains H8.",
+      "accepted_pass_rule": "H5 locks the exact common land pattern, dual-designator population and assembly instruction before order; H7/H8 perform incoming identity, solder inspection, power/thermal smoke and conducted-RF checks on the one assembled prototype after arrival, without a separate populated coupon.",
       "blocks": [
         "H8"
       ],
@@ -1120,7 +1120,7 @@
       ],
       "known_boundary": "Exact shaft, knob and plan envelopes are manufacturer-dimensioned and fit the H1 rear-face reserve.",
       "missing_data": "Insertion depth, retention, push travel, feel and final rear depth on received parts.",
-      "accepted_pass_rule": "Received fit/travel/endurance coupon passes in H5.",
+      "accepted_pass_rule": "H5 locks exact shaft/knob geometry and clearance before order; H7/H8 inspect fit, travel, ordinary actuation and retention on the one assembled prototype after arrival without an endurance coupon.",
       "blocks": [
         "H8"
       ],
@@ -1263,8 +1263,8 @@
         }
       ],
       "known_boundary": "The exact B3S-1100P body, 3.3-mm plunger and height/tolerance are manufacturer-dimensioned; no speculative cap is used.",
-      "missing_data": "PCB/enclosure press feel, accidental-press margin and endurance.",
-      "accepted_pass_rule": "Received control coupon passes travel, force, accessibility and endurance tests in H5.",
+      "missing_data": "PCB/enclosure press feel and accidental-press margin.",
+      "accepted_pass_rule": "H5 locks exact switch/opening geometry and DRC before order; H7/H8 inspect travel, accessibility and ordinary actuation on the one assembled prototype after arrival without artificial ageing.",
       "blocks": [
         "H8"
       ],
@@ -1287,8 +1287,8 @@
         }
       ],
       "known_boundary": "The exact C&K body and side-actuator envelope are manufacturer-dimensioned and the opening direction is explicit.",
-      "missing_data": "Received side access, detent force, accidental motion and endurance.",
-      "accepted_pass_rule": "Received switch/aperture coupon passes access, force and endurance tests in H5.",
+      "missing_data": "Received side access, detent force and accidental motion.",
+      "accepted_pass_rule": "H5 locks exact switch/aperture geometry and DRC before order; H7/H8 inspect access, ordinary actuation and accidental motion on the one assembled prototype after arrival without artificial ageing.",
       "blocks": [
         "H8"
       ],
@@ -1311,8 +1311,8 @@
         }
       ],
       "known_boundary": "The exact Seeed 1125R-SMT-4P body, land pattern and outward cable direction are controlled.",
-      "missing_data": "Received Grove cable insertion, retention, strain relief and repeated mating.",
-      "accepted_pass_rule": "Exact connector and ecosystem cable pass received fit/endurance checks in H5.",
+      "missing_data": "Received Grove cable insertion, retention and strain relief.",
+      "accepted_pass_rule": "H5 locks exact connector/cable geometry and deterministic routing before order; H7/H8 perform ordinary mating, continuity and strain-relief inspection on the one assembled prototype after arrival, with no prescribed mating-cycle test.",
       "blocks": [
         "H8"
       ],
@@ -1359,8 +1359,8 @@
         }
       ],
       "known_boundary": "The corrected mockup uses the exact 69.7x18.7-mm protected-cell envelopes inside the manufacturer-dimensioned rotated Keystone 1048P holder.",
-      "missing_data": "Received insertion force, contact compression, polarity protection, vibration and thermal cycling.",
-      "accepted_pass_rule": "One exact holder and one matched same-lot pair of accepted protected cells pass dimensional, insertion, retention, vibration and thermal tests in H5; mixed MPN, lot, age or state of charge remains forbidden.",
+      "missing_data": "Received insertion force, contact compression, polarity protection and enclosure support; values absent from manufacturer sources remain design-analysis inputs.",
+      "accepted_pass_rule": "H5 locks exact holder/cradle/stop/pad geometry, polarity and load path before order; H7/H8 use one matched same-lot pair after arrival for ordinary installation/removal, continuity and visual solder/pad inspection on the one prototype. No drop, vibration, thermal-cycle or prescribed-cycle programme is required, and mixed MPN, lot, age or state of charge remains forbidden.",
       "blocks": [
         "H8"
       ],
@@ -1420,7 +1420,7 @@
       ],
       "known_boundary": "Exact 30-mm cable assemblies, module RF axes, U.FL board mates and conservative routed corridors are in the H1 collision model.",
       "missing_data": "Actual bend radius, strain relief, insertion force, retention and RF loss after assembly.",
-      "accepted_pass_rule": "Received cables and connector coupons pass fit, bend, retention and conducted-RF tests in H5.",
+      "accepted_pass_rule": "H5 locks exact cable/connector geometry and routing corridors before order; H7/H8 perform ordinary mating, bend/strain-relief inspection, continuity and conducted-RF checks on the one prototype after arrival, with no mating-cycle coupon.",
       "blocks": [
         "H8"
       ],
@@ -1479,8 +1479,8 @@
         }
       ],
       "known_boundary": "H1 fixes the controlled screen body, replaceable adapter bay, exact DF40 stack and dual-contact panel connector; electrical and optical behavior remain qualification evidence.",
-      "missing_data": "QSPI/touch operation, optical quality, backlight current/thermal, flex endurance and lot repeatability.",
-      "accepted_pass_rule": "Received display lot passes electrical, optical, thermal and flex-endurance qualification in H5.",
+      "missing_data": "QSPI/touch operation, optical quality, backlight current/thermal and received flex geometry.",
+      "accepted_pass_rule": "H5 locks documented panel/adapter geometry, routing and deterministic assembly instructions before order; H7/H8 perform electrical, optical and thermal checks plus flex-route clearance and continuity inspection after arrival, without repeatedly cycling the flex.",
       "blocks": [
         "H8"
       ],
@@ -1515,8 +1515,8 @@
         }
       ],
       "known_boundary": "Exact speaker/microphone bodies fit the sourced envelopes; the microphone retains a downward interface direction without inventing aperture geometry on the PCB-face view.",
-      "missing_data": "Enclosure acoustic treatment, cavity resonance, sealing, feedback, microphone response and vibration.",
-      "accepted_pass_rule": "Received acoustic stack passes level, response, feedback, sealing and vibration tests in H5.",
+      "missing_data": "Enclosure acoustic treatment, cavity resonance, sealing, feedback and microphone response.",
+      "accepted_pass_rule": "H5 locks exact bodies, cavity/opening geometry and assembly instructions before order; H7/H8 perform level, response, feedback, sealing and ordinary playback buzz/rattle checks on the one prototype after arrival, with no shaker or vibration programme.",
       "blocks": [
         "H8"
       ],
@@ -1540,7 +1540,7 @@
       ],
       "known_boundary": "The active and orderable Same Sky SJ-43504-SMT-TR manufacturer drawing fixes the shielded 14.6x7.5x5.0-mm mid-mount body, four CTIA-wired conductors, two internal switches and required PCB cutout. H1 places its opening on the right UI-board edge without increasing the interboard height or colliding with another body.",
       "missing_data": "Received cutout tolerance, shield and solder-tab fit, enclosure opening, plug insertion/withdrawal force, CTIA and three-pole TRS behavior, retention and unplug transient remain assembled-product properties.",
-      "accepted_pass_rule": "The exact connector, board-cutout coupon and final enclosure opening pass dimensional, CTIA/TRS electrical, insertion, retention, detect, microphone-selection and endurance checks in H5.",
+      "accepted_pass_rule": "H5 locks exact connector, board cutout, enclosure opening and wiring before order; H7/H8 perform dimensional, CTIA/TRS electrical, ordinary mating, retention, detect and microphone-selection checks on the one prototype after arrival without prescribed cycles.",
       "blocks": [
         "H8"
       ],
@@ -1549,8 +1549,8 @@
   ],
   "decision_boundary": {
     "accepted_now": "the evidence map, exact selected identities and existing source join",
-    "not_accepted": "received-part fit, lot identity, electrical performance or any production qualification",
-    "next": "H5.0.2-R1 searches primary manufacturer/distributor evidence and fully documented serial alternatives before any sample proposal",
+    "not_accepted": "post-arrival fit, lot identity, electrical performance or any production qualification before H7/H8 owner evidence",
+    "next": "H5.0.2-R1 searches primary manufacturer/distributor evidence and fully documented serial alternatives before the sole-prototype order manifest",
     "purchase_authorized": false,
     "pcb_placement_and_routing_authorized": false,
     "fabrication_authorized": false

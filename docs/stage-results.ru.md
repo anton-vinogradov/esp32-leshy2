@@ -53,9 +53,12 @@ full-package envelope U219. Увеличенная зона 30×24×8 мм со�
 приёмник, а C5 DBG10 перенесён. Проверка фактического модуля и пайки относится
 к H5/H7. Пять активных host-корпусов U219 и их source-backed courtyards
 помещаются в два выделенных острова, а все 43 текущих Cap/evidence-корпуса
-получили fail-closed регистрацию координат и courtyards. Footprints
-вспомогательных пассивов, геометрия NFC pickup и swept volume установленной
-антенны — три блокера финального принятия мокапа.
+получили fail-closed регистрацию координат и courtyards. Одна точная
+документированная production-панель дисплея с контролируемым чертежом и
+детерминированным маршрутом фабричной стыковки, footprints вспомогательных
+пассивов, геометрия NFC pickup и swept volume установленной антенны — четыре
+блокера финального принятия мокапа. Legacy-панель HMX остаётся только reference
+evidence и не может попасть в R2 order BOM.
 Экран физически развёрнут шлейфом к антенному торцу; прошивка поворачивает
 память дисплея и touch-координаты на 180°. Первая безопасная замена pre-order
 меняет пять `74LVC2G126DC,125` на складские буферы того же семейства
@@ -68,8 +71,9 @@ route Standard PCBA — `C54951858` / supplier code `...-V1.2`. Для productio
 MD/lot identity и eFuse revision должны независимо доказать >=v1.2; v1.0 —
 только engineering, исторический `C51950748` нельзя выбрать как active.
 Эти placement-числа теперь включают host-switch U219, AON gate, два field bridge,
-компаратор и явно неразмещённый reserve pickup-loop. Завершение канонического реестра,
-значений/MPN и courtyards вспомогательных пассивов, геометрии pickup и swept volume установленной
+компаратор и явно неразмещённый reserve pickup-loop. Выбор точной документированной
+production-панели дисплея, завершение канонического реестра, значений/MPN и
+courtyards вспомогательных пассивов, геометрии pickup и swept volume установленной
 антенны — текущая работа H1; после неё принимается перегенерированный мокап.
 R2 H2/KiCad не начинались.
 
@@ -113,21 +117,43 @@ thermal и faults. Все разрешённые состояния и пере�
 consigned/private/global sourcing и назначение измерений полученных деталей контролируемым downstream-gates.
 
 <a id="h6"></a>
-## H6 · KiCad placement и routing
+## H6 · KiCad placement, routing и release candidate
 
 **Статус:** 🔒 ждёт проведённого ревью H5.
 
-Ожидаемый результат: две разведённые платы и один принятый fabrication package;
-placement review, DRC, impedance/return paths, RF isolation, thermal copper,
-test access и DFM проходят вместе. Это последний gate перед заказом.
+Ожидаемый результат: две разведённые платы, сменный display-adapter и один
+hash-locked fabrication package. H6 закрывается только после восьми проверяемых
+подэтапов:
+
+1. placement обеих сторон всех плат;
+2. routed DRC/ERC и parity schema↔PCB для net/footprint/courtyard/fitted options;
+3. повторный power/PDN/current/thermal/startup/load-step анализ на routed values;
+4. digital SI, return paths, USB и M1;
+5. RF 50 Ω, ground/via fences, isolation и extracted Airband parasitics;
+6. STEP/stack/cables/swept volumes/enclosure collision review;
+7. Gerber/drill/BOM/CPL/STEP/schematic/assembly outputs и test access;
+8. независимый DFM и CPL-orientation review.
+
+H6 сам по себе заказ не разрешает.
+
+<a id="f-po"></a>
+## F-PO · Допуск первого экземпляра
+
+**Статус:** 🔒 ждёт финальные H2/H6 и firmware R2.
+
+До оплаты должны пройти семь [machine-readable gates](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/first_spin_preorder_gate.json): импорт точной H2/H6 authority; шесть воспроизводимых diagnostic images; S3 QEMU; host/fake-HAL UI, controls и faults; доступные target dev-board прогоны; единый flash/recovery bundle; current-limited owner bring-up script. Полные продуктовые F6–F8 до заказа не обязательны, но диагностический путь каждого установленного устройства уже существует. Factory Function Test необязателен.
+
+После `F-PO` отдельный immutable-release фиксирует одинаковыми hash Gerber,
+drill, BOM, CPL, STEP, схемы, firmware и assembly instructions. Только затем
+можно одобрить quote ровно одного собранного `R2-EVT1`.
 
 <a id="h7"></a>
 ## H7 · Печать прототипа и bring-up
 
-**Статус:** 🔒 ждёт проведённого ревью H6 и явного одобрения заказа.
+**Статус:** 🔒 ждёт проведённых H6 и `F-PO`, immutable release и явного одобрения exact-one quote.
 
 До этого этапа прошивка прогоняется в host-тестах и на эмулированном железе. H7
-всё равно нужен для первой реальной платы: проверяются последовательность шин,
+заказывается ровно один фабрично собранный прототип без аккумуляторов. Released package не оставляет фабрике выбора компонентов, display mating или способа сборки; платный factory Function Test необязателен, а первый полный USB power-on делает владелец. H7 всё равно нужен для первой реальной платы: проверяются последовательность шин,
 recovery, display/touch, controls, storage, radios, audio и safety.
 
 <a id="h8"></a>

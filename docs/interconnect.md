@@ -12,7 +12,7 @@ The main rail uses **14** parallel contacts and the same number of primary retur
 
 ## Mechanical load path
 
-M1 is electrical/alignment only. Four exact 11.00-mm compression stops, at least two enclosure anti-shear datums and independent capture of both PCBs prevent separation or relative shear even with one screw loosened. Drop, battery installation and enclosure bending may not load the M1 SMT joints.
+M1 is electrical/alignment only. Four exact 11.00-mm compression stops, at least two enclosure anti-shear datums and independent capture of both PCBs prevent separation or relative shear even with one screw loosened. Ordinary handling, battery installation and enclosure flex are carried by the fasteners, stops, datums and capture lips rather than the M1 SMT joints.
 
 ## Principle grouping
 

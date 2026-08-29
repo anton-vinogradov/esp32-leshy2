@@ -6,7 +6,7 @@
   "checked_on": "2026-08-28",
   "input": {
     "target_bom": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-    "target_bom_sha256": "0ca195c8969d20f76c6c32b1c865623defc2e00cee6b6d46efe37820bc31dc84",
+    "target_bom_sha256": "0eacf3039f330f836619b1053ae7b3c2de4b1f150ee5db13cf067895aa70705d",
     "upload": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
     "upload_sha256": "79ab0e6001089e79dfcc77dbaa63161572680be1073a030c8558928eab82e2ba",
     "capture": "hardware/verification/jlcpcb-bom-tool-capture-2026-08-25-compact.json",

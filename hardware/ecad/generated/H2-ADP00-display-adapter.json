@@ -2,12 +2,18 @@
   "schema_version": 1,
   "stage": "H2.4.1",
   "status": "reviewed_exact_passive_display_adapter_sheet",
+  "authority": {
+    "baseline": "R1",
+    "lifecycle": "historical_pre_r2_sheet_scaffold",
+    "allowed_as_r2_authority": false,
+    "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"
+  },
   "project": "L2-DISP-ADP-001-A",
   "sheet": "ADP_00_DISPLAY_ADAPTER",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
-    "hardware/ecad/generated/H2-instance-ledger.json": "261fa6c38c7a1dabeacbb52f2e4b71f0f4b64e3f29da7b048900c7b4f5d3427f",
+    "hardware/architecture/candidates/G2F-3I.json": "46efd30669da371cae53110bb2991c8aad8c1c8973c66d33b9b8f0f60a1c44a2",
+    "hardware/architecture/devices.json": "a47012afe7f17a40d0051074febf8a877a75162e913892ba02d57da58fff3d4d",
+    "hardware/ecad/generated/H2-instance-ledger.json": "9f7d02c9170aab3edc8e52440b6f85f6b94deb17b95c4929ed290c80bc2a1f95",
     "hardware/product-design/display-adapter.json": "d238ca5cc901d080d2b34a4bb9be5b83f608103c020ea733fce579ea91aa7d11",
     "hardware/ecad/H2-sheet-contract.json": "8d793ea3580542f700514ab6fa315a6e27f06503fa1e23b80c07f1b1afda15c2"
   },

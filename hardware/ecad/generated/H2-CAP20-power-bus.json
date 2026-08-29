@@ -2,13 +2,19 @@
   "schema_version": 1,
   "stage": "H2.4.4",
   "status": "reviewed_exact_lora_power_identity_sheet",
+  "authority": {
+    "baseline": "R1",
+    "lifecycle": "historical_pre_r2_sheet_scaffold",
+    "allowed_as_r2_authority": false,
+    "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"
+  },
   "project": "LESHY2-LORA-CAP-01",
   "sheet": "CAP_20_POWER_BUS",
   "source_hashes": {
     "hardware/accessories/leshy2-lora-cap-01.json": "dd3cd0e9741b704c4ad6bf1c03f54d95884df2cebefd4c3fb57a238bcbc0d6ab",
-    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
-    "hardware/ecad/generated/H2-instance-ledger.json": "261fa6c38c7a1dabeacbb52f2e4b71f0f4b64e3f29da7b048900c7b4f5d3427f",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "122d9ae1cfa9d3acf2b061735e1cf6bb0416de99a54ed983b60b9fee81432eaf"
+    "hardware/architecture/devices.json": "a47012afe7f17a40d0051074febf8a877a75162e913892ba02d57da58fff3d4d",
+    "hardware/ecad/generated/H2-instance-ledger.json": "9f7d02c9170aab3edc8e52440b6f85f6b94deb17b95c4929ed290c80bc2a1f95",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "b9f1f1f008b535c980ba0631e0a5b00d1761a574d3040e03805b55a8e7190292"
   },
   "summary": {
     "ledger_instances": 8,

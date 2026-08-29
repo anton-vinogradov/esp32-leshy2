@@ -123,10 +123,10 @@ OUTLIER_RESOLUTIONS = {
     "GJM1555C1H101JB01D": {"route": "J3", "reason": "retain exact RF capacitor until an RF-equivalent alternate is separately qualified"},
     "PESD24VY1BSF": {"route": "J3", "reason": "retain exact low-capacitance RF ESD identity until an RF-equivalent alternate is separately qualified"},
     "E01-ML01IPX": {"route": "J3", "reason": "three exact full-power nRF24 modules are externally orderable and must be consigned or globally sourced"},
-    "2118651-2": {"route": "J4-F", "reason": "five removable 30-mm microcoax jumpers require factory installation, strain routing and continuity test during final sandwich assembly"},
-    "U214 Cap LoRa-1262": {"route": "J4-P", "reason": "removable rear Cap accessory is factory-tested, then packed separately for user installation"},
-    "HMX035CTFT-001": {"route": "J4-F", "reason": "display/flex requires factory mating and display/touch functional test during final assembly"},
-    "1227-J": {"route": "J4-F", "reason": "encoder knob requires factory installation and control test after enclosure integration"},
+    "2118651-2": {"route": "J4-F", "reason": "five removable 30-mm microcoax jumpers require deterministic factory installation and strain routing during final sandwich assembly; full power-on is owner bring-up"},
+    "U214 Cap LoRa-1262": {"route": "J4-P", "reason": "removable rear Cap accessory is packed separately for user installation; factory compatibility FCT is not mandatory"},
+    "HMX035CTFT-001": {"route": "J4-F", "reason": "legacy architecture identity only: the exact production panel remains unresolved and requires written factory acceptance for deterministic mating in the one prototype; donor procurement is rejected"},
+    "1227-J": {"route": "J4-F", "reason": "encoder knob requires deterministic factory installation after enclosure integration; full control bring-up is performed by the owner"},
     "18650 4000mAh": {"route": "J5-U", "reason": "accumulator cells are not part of device delivery; the user separately supplies and installs compatible protected cells"},
 }
 
@@ -503,8 +503,8 @@ TIERS = [
     {"id": "J1", "name": "approved in-stock alternate", "rule": "only a prequalified same-function alternate inside the owning substitution class; never a factory-selected silent substitute"},
     {"id": "J2", "name": "private pre-order stock", "rule": "exact MPN is bought into My Parts Lib before PCBA; public stock may supplement only where JLC rules permit"},
     {"id": "J3", "name": "global sourcing or consignment", "rule": "exact identity is sourced or supplied into the private library and must be received before assembly"},
-    {"id": "J4-F", "name": "factory final assembly", "rule": "the final-assembly factory must install and test the part after PCBA; H5 and H7 cannot close until this box-build route is accepted and quoted"},
-    {"id": "J4-P", "name": "factory-packed removable item", "rule": "the factory tests compatibility where applicable and packs the removable accessory or antenna separately for user installation"},
+    {"id": "J4-F", "name": "factory final assembly", "rule": "the final-assembly factory installs and connects the part from the deterministic package and records assembly; H5 and H7 cannot close until this box-build route is accepted and quoted, while whole-device FCT is optional"},
+    {"id": "J4-P", "name": "factory-packed removable item", "rule": "the factory packs the removable accessory or antenna separately for user installation; compatibility and full power-on are owner bring-up unless separately quoted"},
     {"id": "J5-U", "name": "user-supplied consumable", "rule": "the item is required for operation but is not part of device delivery, factory assembly, packing or shipping"},
 ]
 
@@ -522,7 +522,7 @@ SPOT_CHECKS = [
     {"device_id": "ebyte_e01_ml01ipx", "mpn": "E01-ML01IPX", "jlc": None, "tier": "J3", "stock": 0, "pcba": "not found in public library", "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=E01-ML01IPX", "finding": "retain exact module only through new-part/global-sourcing/consignment until a function-preserving stocked module is qualified"},
     {"device_id": "nicerf_sa818s_u_v18", "mpn": "G-NiceRF SA818S-U", "jlc": "C3001549", "tier": "J0", "stock": 68, "pcba": "Standard PCBA", "source": "https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549", "finding": "exact selected UHF module is priced and in public stock"},
     {"device_id": "nicerf_sa818s_v_v18", "mpn": "G-NiceRF SA818S-V", "jlc": "C51897911", "tier": "J2", "stock": 0, "pcba": "Standard PCBA pre-order", "source": "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911", "finding": "exact selected VHF module is priced but stock-zero pre-order; lead time remains open"},
-    {"device_id": "qdtech_hmx035ctft_001", "mpn": "HMX035CTFT-001", "jlc": None, "tier": "J4-F", "stock": 0, "pcba": "display/flex belongs to factory final assembly", "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001", "finding": "keep replaceable display-adapter architecture; require factory mating plus display/touch test rather than treating the display as an ordinary line-loaded SMT part"},
+    {"device_id": "qdtech_hmx035ctft_001", "mpn": "HMX035CTFT-001", "jlc": None, "tier": "J4-F", "stock": 0, "pcba": "display/flex belongs to factory final assembly", "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001", "finding": "keep replaceable display-adapter architecture; require deterministic factory mating and assembly records, with display/touch power-on performed by the owner after delivery"},
     {"device_id": "uniroyal_0402wgf1603tce", "mpn": "0402WGF1603TCE", "jlc": "C25757", "tier": "J0", "stock": 388017, "pcba": "Extended SMT; Economic and Standard", "source": "https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757", "finding": "exact stocked 160-kOhm 0402 replacement preserves the complete audio-attenuator electrical contract and uses a thinner body"},
     {"device_id": "fh_rs_06k47r0ft", "mpn": "RS-06K47R0FT", "jlc": "C140014", "tier": "J0", "stock": 78058, "pcba": "Extended SMT; Economic and Standard", "source": "https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014", "finding": "exact stocked 47-Ohm 1206 replacement preserves the IR current-limit power, voltage and temperature contract"},
     {"device_id": "yageo_cc0603krx7r0bb104", "mpn": "CC0603KRX7R0BB104", "jlc": "C113803", "tier": "J0", "stock": 1027658, "pcba": "Extended SMT; Economic and Standard; MSL 1", "source": "https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803", "finding": "exact stocked 100-nF 100-V 0603 body; X7R temperature stability is stricter than the replaced X7S class"},
@@ -902,13 +902,13 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
                 "route": "J4-F",
                 "mpns": sorted(J4_FACTORY_MPNS),
                 "accepted_and_quoted": False,
-                "gate": "H5 and H7 remain open until the selected factory accepts and quotes installation plus functional test",
+                "gate": "H5 and H7 remain open until the selected factory accepts and quotes deterministic installation; whole-device functional test is optional and not a release gate",
             },
             "factory_packed_removable": {
                 "route": "J4-P",
                 "mpns": sorted(J4_PACKED_MPNS),
                 "accepted_and_quoted": False,
-                "gate": "kit inclusion, compatibility test where applicable and packing must be quoted",
+                "gate": "kit inclusion and packing must be quoted; compatibility testing is owner bring-up unless separately quoted",
             },
             "user_supplied_not_delivered": {
                 "route": "J5-U",
@@ -959,6 +959,8 @@ def build() -> dict:
         "all_component_sample_prices_are_known": outlier_result["summary"]["open_qualified_price_lines"] == 0,
         "sa818s_v_preorder_lead_time_is_explicitly_open": outlier_result["summary"]["preorder_lead_time_open_mpn"] == "SA818S-V",
         "factory_final_assembly_gate_is_explicitly_open": not PLATFORMS[0]["fit"]["final_box_build_proven"],
+        "one_prototype_without_batteries_is_the_only_procurement_target": True,
+        "factory_function_test_is_optional_not_a_release_gate": True,
         "fallback_factory_readiness_is_current_and_fail_closed": fallback["artifact"] == "H5-EVR08"
         and fallback["gate"] == "H5.0.3-R1"
         and fallback["selection"]["first_fallback"] == "pcbway"
@@ -1036,6 +1038,20 @@ def build() -> dict:
             "exclusive_lock_in": False,
             "reason": "JLCPCB gives the strongest public, repeatable component-selection surface while retaining exact-part pre-order, global sourcing and consignment paths.",
         },
+        "procurement_target": {
+            "finished_device_quantity": 1,
+            "deliverable": "one fully assembled Leshy2 prototype built from the released production package",
+            "device_batch": False,
+            "batteries_included": False,
+            "production_display": "exact documented panel unresolved; factory installs and mates it without engineering interpretation",
+            "first_power_on": "owner USB-powered bring-up after delivery",
+            "factory_function_test": {
+                "standard_pcba_service_surface": "supported subject to procedure review and quote",
+                "project_use": "optional quote-only insurance",
+                "release_gate": False,
+            },
+            "factory_attrition_rule": "extra display units, connectors and assembly consumables are quoted factory attrition, not user samples",
+        },
         "platforms": PLATFORMS,
         "fallback_factory_evidence": {
             "path": str(FALLBACK_OUTPUT.relative_to(REPO)),
@@ -1050,8 +1066,10 @@ def build() -> dict:
             "inside_pcba": ["both Leshy2 rigid boards", "all ordinary SMT/THT parts accepted by Standard PCBA", "board connectors and soldered RF boundaries when their exact assembly rule is accepted"],
             "J4-F_factory_final_assembly": {
                 "status": "open_until_factory_acceptance_and_quote",
-                "required_operations": ["display/flex mating and display/touch test", "five microcoax installation, strain routing and continuity test", "encoder knob installation and control test", "final sandwich/enclosure integration and whole-device functional test"],
-                "close_gate": "H5 and H7 cannot close until the selected factory accepts and prices these operations",
+                "required_operations": ["install and mate the documented exact production panel from released drawings", "five microcoax installation, strain routing and continuity workmanship", "encoder knob installation", "final sandwich/enclosure integration from deterministic assembly instructions"],
+                "display_mating_feasibility": "awaiting written factory confirmation",
+                "factory_function_test": "optional quote-only insurance; not required for H5/H7 closure",
+                "close_gate": "H5 and H7 cannot close until the selected factory accepts and prices deterministic one-prototype final assembly; Function Test is not part of this gate",
             },
             "J4-P_factory_packed_removable": {
                 "status": "open_until_kit_and_packing_quote",
@@ -1086,7 +1104,7 @@ def build() -> dict:
             "authorized_on": UPLOAD_AUTHORIZED_ON,
             "transmitted": False,
             "processed": False,
-            "assembly_quantity": 5,
+            "assembly_quantity": 1,
             "result_artifact": str(MATCH_OUTPUT.relative_to(REPO)),
             "outlier_result_artifact": str(OUTLIER_OUTPUT.relative_to(REPO)),
             "first_attempt": {
@@ -1192,6 +1210,8 @@ def render(data: dict, match_result: dict, outlier_result: dict, russian: bool) 
 
 **Рабочий reference — JLCPCB Standard PCBA.** Это не эксклюзивная привязка и не разрешение заказа. Standard выбран из-за публичной assembly-библиотеки со stock/JLC-number, двухстороннего SMT+THT, fine-pitch/BGA/QFN, специального stack-up и SPI/AOI/X-ray. [Официальные capabilities]({SOURCES['jlc_capabilities']}) и [варианты sourcing]({SOURCES['jlc_sourcing']}).
 
+Целевой заказ — ровно **один полностью собранный прототип**, без аккумуляторов. Фабрика не выбирает схемные или механические решения: production package заранее фиксирует exact panel, его mating, все компоненты и последовательность сборки. Первый полноценный power-on и USB bring-up выполняет владелец.
+
 PCBWay — первый резерв полного устройства: его официальные страницы подтверждают [turnkey/combo/consigned PCBA и тестирование]({SOURCES['pcbway_capabilities']}), а также [OEM final assembly]({SOURCES['pcbway_oem']}). Точное принятие Leshy2 и цены ещё не подтверждены письменно; подготовленный запрос не отправлялся. Seeed Fusion подтверждён только как второй источник PCBA: [turnkey, OPL, mixed assembly и functional test]({SOURCES['seeed_pcba']}) есть, но требуемая полная сборка `J4-F/J4-P` публично не доказана.
 
 ```mermaid
@@ -1224,7 +1244,7 @@ flowchart TD
 
 Сохранённый exact-поиск закрывает все 30 оставшихся outlier без замены компонентов: 12 добавлены в `J0`, 2 — в `J2`, 11 сохраняют точный MPN через `J3`, 3 требуют фабричной финальной сборки `J4-F`, U214 идёт через `J4-P`, а аккумуляторы — через `J5-U` вне поставки. Вместе с текущими маршрутами RP2354B и C5 итог всей BOM: `J0=166`, `J1=0`, `J2=28`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; несопоставленных строк — ноль.
 
-Показываемая в историческом BOM Tool capture сумма `$1255.6365` относится только к прежним 176 найденным строкам и **не** является текущей полной ценой сборки, quote или заказом. Актуальная минимальная корзина evidence отдельно посчитана на [странице образцов](component-sample-basket.ru.md).
+Показываемая в историческом BOM Tool capture сумма `$1255.6365` относится только к прежним 176 найденным строкам и **не** является текущей полной ценой сборки, quote или заказом. Актуальный order-integrated article manifest единственного прототипа посчитан на [странице manifest](component-sample-basket.ru.md); отдельной закупки образцов/coupons нет.
 
 <details>
 <summary>Как разрешены 30 оставшихся outlier</summary>
@@ -1241,11 +1261,11 @@ flowchart TD
 
 ## Граница сборки
 
-JLCPCB Standard PCBA собирает обе платы и принятые SMT/THT-компоненты. Это ещё не подтверждает финальную сборку устройства.
+JLCPCB Standard PCBA собирает обе платы и принятые SMT/THT-компоненты; официальный Function Test доступен как рассматриваемая и оцениваемая процедура. Для Leshy2 он только optional quote-insurance, а не gate. Способность состыковать выбранный документированный дисплей и выполнить финальную сборку одного устройства всё ещё ожидает письменного подтверждения.
 
 | Маршрут | Обязательная операция | Статус |
 |---|---|---|
-| `J4-F` | Фабрика стыкует и проверяет дисплей/flex, устанавливает и фиксирует пять microcoax, ставит ручку энкодера, собирает корпус/«бутерброд» и выполняет whole-device test | 🔒 Открыто до письменного подтверждения capability и отдельной цены box-build; без этого H5 и H7 не закрываются |
+| `J4-F` | Фабрика по release package устанавливает и стыкует exact production panel, фиксирует пять microcoax, ставит ручку энкодера и собирает корпус/«бутерброд» без инженерных догадок | 🔒 Открыто до письменного подтверждения capability и цены сборки одного прототипа; optional Function Test не является gate |
 | `J4-P` | Фабрика проверяет совместимость U214 и кладёт его отдельно; внешние антенны кладутся комплектом | 🔒 U214 и комплект антенн открыты до kit/packing quote |
 | `J5-U` | Пользователь отдельно приобретает и устанавливает совместимые защищённые 18650 | ✅ Принятая граница продукта: аккумуляторы не входят в поставку устройства |
 
@@ -1263,7 +1283,7 @@ JLCPCB Standard PCBA собирает обе платы и принятые SMT/
 
 - JLCPCB Standard PCBA принят как рабочий reference без lock-in.
 - Все `{summary['target_bom_lines']}` строк имеют определённый маршрут `J0`–`J3`, `J4-F`, `J4-P` или `J5-U`; функциональных замен нет.
-- Частичный [ответ JLCPCB](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) от 26 августа 2026 года подтверждает для exact `SA818S-V C51897911` MOQ 1 и типичные 8–15 рабочих дней pre-order; final quote/lead появляются только после pre-order, а срок свыше 18 рабочих дней требует continue/cancel confirmation. Function Test условно рассматривается после заказа по базе `$15.70 + $7.86/hour`. Аккумуляторы решением владельца перенесены в `J5-U`: пользователь покупает их отдельно, поэтому это не supplier-gate. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) остаётся открыт на actual two-designator U/V job, остальные `J4-F/J4-P` и identity control. [Уточнение](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md) подготовлено; закупка и заказ не разрешены.
+- Частичный [ответ JLCPCB](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) подтверждает exact `SA818S-V C51897911` MOQ 1 и типичные 8–15 рабочих дней pre-order, а также официальный путь Function Test с ручным review процедуры и базой `$15.70 + $7.86/hour`. Для проекта Function Test необязателен и не закрывает gate; письменное принятие display mating и финальной сборки одного прототипа всё ещё отсутствует. Аккумуляторы остаются `J5-U` и не входят в поставку. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) остаётся fail-closed; закупка и заказ не разрешены.
 - Заявка JLCAPI одобрена, приложение `ESP32-Leshy2 BOM Validator` создано, ключ подписи хранится только локально вне Git, но право Parts остаётся `Rejected`. [Поддержка ответила](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md), что аккаунт новый и не имеет истории заказов, поэтому устойчивую business need пока не удалось подтвердить; повторная заявка возможна после появления истории либо с расширенным business case/integration plan. Автор ответа отдельно указал, что не входит в API review team, и точный порог заказов не назван. Повторная заявка не отправлена: до фактического одобрения API-вызовы невозможны, а активным авторитетным путём остаются ручные карточки каталога и BOM. PCB/3D также отклонены, SMT Stencil и JLC Balance выключены.
 - [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) фиксирует резерв без возврата к началу H5: PCBWay — первый кандидат на полную сборку, Seeed — второй источник PCBA. [Одинаковый no-order запрос PCBWay](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) подготовлен, но его отправка и любые коммерческие действия не разрешены.
 - Прежний 209-строчный BOM upload был передан и обработан; текущий 210-строчный файл сгенерирован локально, но не передавался: 196 identity сохранены, 14 новых exact-страниц и актуальный C5 route проверены отдельно. Quote, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены. Сырые API-ответы публично не распространяются.
@@ -1277,6 +1297,8 @@ JLCPCB Standard PCBA собирает обе платы и принятые SMT/
 ## Reference line
 
 **The working reference is JLCPCB Standard PCBA.** This is neither exclusive lock-in nor order authorization. Standard was selected for its public stock/JLC-number assembly library, double-sided SMT+THT, fine-pitch/BGA/QFN, special stackups and SPI/AOI/X-ray. See the official [assembly capabilities]({SOURCES['jlc_capabilities']}) and [parts-sourcing paths]({SOURCES['jlc_sourcing']}).
+
+The procurement target is exactly **one fully assembled prototype**, with no batteries. The factory makes no electrical or mechanical design choices: the production package first fixes the exact panel, its mating, every component and the assembly sequence. The owner performs the first full power-on and USB bring-up.
 
 PCBWay is the first full-device fallback: its official pages confirm [turnkey/combo/consigned PCBA and test]({SOURCES['pcbway_capabilities']}) plus [OEM final assembly]({SOURCES['pcbway_oem']}). Exact Leshy2 acceptance and prices still need a written answer; the prepared inquiry has not been sent. Seeed Fusion is confirmed only as a PCBA second source: [turnkey, OPL, mixed assembly and functional test]({SOURCES['seeed_pcba']}) are public, but the required complete `J4-F/J4-P` assembly is not proven.
 
@@ -1310,7 +1332,7 @@ The controlled BOM Tool capture belongs to the former 209-line BOM: 176 matched,
 
 The retained exact search resolves all 30 remaining outliers without component replacement: 12 are added to `J0`, 2 to `J2`, 11 retain the exact MPN through `J3`, 3 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. With the current RP2354B and C5 routes, the whole-BOM result is `J0=166`, `J1=0`, `J2=28`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
 
-The `$1255.6365` displayed in the historical BOM Tool capture covers only its former 176 matched lines and is **not** a current complete assembly price, quote or order. The current minimum evidence basket is calculated separately on the [sample page](component-sample-basket.md).
+The `$1255.6365` displayed in the historical BOM Tool capture covers only its former 176 matched lines and is **not** a current complete assembly price, quote or order. The sole prototype's order-integrated article manifest is calculated on the [manifest page](component-sample-basket.md); there is no separate sample/coupon purchase.
 
 <details>
 <summary>How the 30 remaining outliers were resolved</summary>
@@ -1327,11 +1349,11 @@ The `$1255.6365` displayed in the historical BOM Tool capture covers only its fo
 
 ## Assembly boundary
 
-JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts. That does not yet prove final device assembly.
+JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts; its official Function Test path accepts a procedure for review and quotation. For Leshy2 that service is optional quote-only insurance, not a gate. Capability to mate the selected documented display and complete one-device final assembly still awaits written confirmation.
 
 | Route | Required operation | Status |
 |---|---|---|
-| `J4-F` | Factory mates and tests display/flex, installs and strain-routes five microcoax jumpers, installs the encoder knob, integrates the enclosure/sandwich and performs whole-device test | 🔒 Open until written capability acceptance and a separate box-build price; H5 and H7 cannot close without it |
+| `J4-F` | From the release package, the factory installs and mates the exact production panel, secures five microcoax jumpers, installs the encoder knob and integrates the enclosure/sandwich without engineering guesses | 🔒 Open until written capability acceptance and one-prototype assembly price; optional Function Test is not a gate |
 | `J4-P` | Factory compatibility-tests and separately packs U214; external antennas are packed as a kit | 🔒 U214 and antenna kit remain open until a kit/packing quote |
 | `J5-U` | User separately buys and installs compatible protected 18650 cells | ✅ Accepted product boundary: accumulators are not included in device delivery |
 
@@ -1349,7 +1371,7 @@ The official MPN remains `ESP32-C5-WROOM-1U-N8R8`. Only the supplier order code 
 
 - JLCPCB Standard PCBA is the working reference without lock-in.
 - All `{summary['target_bom_lines']}` lines have a defined `J0`–`J3`, `J4-F`, `J4-P` or `J5-U` route; no functional replacement was introduced.
-- JLCPCB's partial [26 August 2026 response](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) confirms MOQ 1 and a typical 8–15-working-day pre-order for exact `SA818S-V C51897911`; final quote/lead exist only after pre-order, and more than 18 working days triggers continue/cancel confirmation. Function Test is conditionally reviewed after order at a `$15.70 + $7.86/hour` basis. By owner decision, accumulators now use `J5-U`: the user buys them separately, so they are not a supplier gate. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) remains open on the actual two-designator U/V job, remaining `J4-F/J4-P`, and identity control. A [clarification reply](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md) is prepared; purchase and order remain unauthorized.
+- JLCPCB's partial [26 August 2026 response](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) confirms exact `SA818S-V C51897911` MOQ 1 and a typical 8–15-working-day pre-order, plus the official Function Test path with manual procedure review and a `$15.70 + $7.86/hour` basis. Function Test is optional for this project and closes no gate; written acceptance of display mating and one-prototype final assembly is still absent. Accumulators remain `J5-U` and outside delivery. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) stays fail-closed; purchase and order remain unauthorized.
 - The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git, but Parts permission remains `Rejected`. [Support replied](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md) that the account is new and has no order history, so an ongoing business need could not yet be verified; reapplication is possible after building history or with a fuller business case/integration plan. The responder explicitly is not on the API review team and supplied no exact order threshold. No reapplication was submitted: API calls remain unusable, and live manual catalogue cards plus BOM validation remain authoritative. PCB/3D are also rejected; SMT Stencil and JLC Balance remain inactive.
 - [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) preserves a fallback without restarting H5: PCBWay is the first full-device candidate and Seeed is the PCBA second source. The [same no-order PCBWay questionnaire](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) is prepared but sending it and all commercial actions remain unauthorized.
 - The former 209-line BOM upload was transmitted and processed; the current 210-line file was generated locally but not transmitted: 196 identities are preserved, 14 new exact pages and the refreshed C5 route were checked separately. No quote, sourcing request, reservation, purchase, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.

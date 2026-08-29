@@ -414,7 +414,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+			(property "Description" "U214 I2C isolator local bypass"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -478,7 +478,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "2_2kohm_1pct_0402_i2c_pullup_resistor"
+			(property "Description" "U214 host-side SDA pull-up"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -542,7 +542,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "2_2kohm_1pct_0402_i2c_pullup_resistor"
+			(property "Description" "U214 host-side SCL pull-up"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1014,7 +1014,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+			(property "Description" "U214 host-buffer A bypass"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1078,7 +1078,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+			(property "Description" "U214 host-buffer B bypass"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1142,7 +1142,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+			(property "Description" "U214 return-buffer bypass"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1206,7 +1206,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+			(property "Description" "U214 RST 22-ohm source series"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1270,7 +1270,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+			(property "Description" "U214 GPS_RX 22-ohm source series"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1334,7 +1334,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+			(property "Description" "U214 SCK 22-ohm source series"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1398,7 +1398,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+			(property "Description" "U214 MOSI 22-ohm source series"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1462,7 +1462,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+			(property "Description" "U214 NSS 22-ohm source series"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1526,7 +1526,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+			(property "Description" "U214 BUSY 22-ohm source series"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1590,7 +1590,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+			(property "Description" "U214 IRQ 22-ohm source series"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1654,7 +1654,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+			(property "Description" "U214 GPS_TX 22-ohm source series"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1718,7 +1718,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+			(property "Description" "U214 MISO 22-ohm source series"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1782,7 +1782,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "four_channel_0_5pf_iec_esd_array"
+			(property "Description" "U214 connector-side ESD array A"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1894,7 +1894,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "four_channel_0_5pf_iec_esd_array"
+			(property "Description" "U214 connector-side ESD array B"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2006,7 +2006,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "four_channel_0_5pf_iec_esd_array"
+			(property "Description" "U214 connector-side ESD array C"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2118,7 +2118,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+			(property "Description" "U214 request-line fail-safe pull-down"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2246,7 +2246,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "sot23_6_aon_supervisor"
+			(property "Description" "U214 3V3_OUT admission supervisor"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2334,7 +2334,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+			(property "Description" "U214 supervisor local bypass"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2398,7 +2398,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "110kohm_1pct_0402_external_5v_supervisor_sense_resistor"
+			(property "Description" "U214 supervisor upper sense leg"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2462,7 +2462,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "220kohm_1pct_0402_accessory_feedback_top_resistor"
+			(property "Description" "U214 supervisor lower sense leg"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2526,7 +2526,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "10nf_10pct_50v_x7r_0402_adc_filter_capacitor"
+			(property "Description" "U214 supervisor delay capacitor"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2590,7 +2590,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+			(property "Description" "U214 supervisor output pull-up"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4430,7 +4430,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+		(property "Description" "U214 I2C isolator local bypass"
 			(at 208.28 39.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4487,7 +4487,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "2_2kohm_1pct_0402_i2c_pullup_resistor"
+		(property "Description" "U214 host-side SDA pull-up"
 			(at 264.16 39.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4544,7 +4544,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "2_2kohm_1pct_0402_i2c_pullup_resistor"
+		(property "Description" "U214 host-side SCL pull-up"
 			(at 320.04 39.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4880,7 +4880,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+		(property "Description" "U214 host-buffer A bypass"
 			(at 264.16 62.23 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4937,7 +4937,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+		(property "Description" "U214 host-buffer B bypass"
 			(at 320.04 62.23 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4994,7 +4994,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+		(property "Description" "U214 return-buffer bypass"
 			(at 152.40 67.31 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5051,7 +5051,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+		(property "Description" "U214 RST 22-ohm source series"
 			(at 40.64 74.93 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5108,7 +5108,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+		(property "Description" "U214 GPS_RX 22-ohm source series"
 			(at 96.52 74.93 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5165,7 +5165,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+		(property "Description" "U214 SCK 22-ohm source series"
 			(at 375.92 74.93 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5222,7 +5222,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+		(property "Description" "U214 MOSI 22-ohm source series"
 			(at 431.80 74.93 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5279,7 +5279,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+		(property "Description" "U214 NSS 22-ohm source series"
 			(at 264.16 85.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5336,7 +5336,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+		(property "Description" "U214 BUSY 22-ohm source series"
 			(at 320.04 85.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5393,7 +5393,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+		(property "Description" "U214 IRQ 22-ohm source series"
 			(at 152.40 90.17 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5450,7 +5450,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+		(property "Description" "U214 GPS_TX 22-ohm source series"
 			(at 40.64 97.79 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5507,7 +5507,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "22ohm_1pct_0402_usb_series_resistor"
+		(property "Description" "U214 MISO 22-ohm source series"
 			(at 96.52 97.79 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5564,7 +5564,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "four_channel_0_5pf_iec_esd_array"
+		(property "Description" "U214 connector-side ESD array A"
 			(at 208.28 101.60 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5645,7 +5645,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "four_channel_0_5pf_iec_esd_array"
+		(property "Description" "U214 connector-side ESD array B"
 			(at 375.92 101.60 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5726,7 +5726,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "four_channel_0_5pf_iec_esd_array"
+		(property "Description" "U214 connector-side ESD array C"
 			(at 431.80 101.60 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5807,7 +5807,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+		(property "Description" "U214 request-line fail-safe pull-down"
 			(at 264.16 107.95 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5921,7 +5921,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "sot23_6_aon_supervisor"
+		(property "Description" "U214 3V3_OUT admission supervisor"
 			(at 152.40 114.30 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5990,7 +5990,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+		(property "Description" "U214 supervisor local bypass"
 			(at 40.64 120.65 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6047,7 +6047,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "110kohm_1pct_0402_external_5v_supervisor_sense_resistor"
+		(property "Description" "U214 supervisor upper sense leg"
 			(at 96.52 120.65 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6104,7 +6104,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "220kohm_1pct_0402_accessory_feedback_top_resistor"
+		(property "Description" "U214 supervisor lower sense leg"
 			(at 208.28 128.27 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6161,7 +6161,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "10nf_10pct_50v_x7r_0402_adc_filter_capacitor"
+		(property "Description" "U214 supervisor delay capacitor"
 			(at 375.92 128.27 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6218,7 +6218,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+		(property "Description" "U214 supervisor output pull-up"
 			(at 431.80 128.27 0)
 			(show_name no)
 			(do_not_autoplace no)

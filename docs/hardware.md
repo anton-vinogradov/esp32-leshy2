@@ -128,8 +128,8 @@ a seven-channel fallback. Exactly one module is installed after PCBA and C5
 DBG10 is relocated beside S3 DBG10 to preserve the measured clearance.
 
 M1 is not structural: four 11.00-mm compression stops, at least two enclosure
-anti-shear datums and independent capture of both PCBs carry screw, drop and
-bending loads. The `Keystone 1048P` is also SMT; its 77.06-mm plastic body is
+anti-shear datums and independent capture of both PCBs carry screw, ordinary
+handling and enclosure-flex loads. The `Keystone 1048P` is also SMT; its 77.06-mm plastic body is
 captured by an enclosure cradle/end-stop pair while the 86.00-mm value shown in
 the drawing is its pad span.
 
@@ -173,11 +173,13 @@ receiver architecture removes the unavailable K331 production package from the
 H1 critical path. Actual body, hand soldering, Z and durability are explicit
 H5/H7 qualification items; a later AKK/Sinopine package may simplify only the
 K331 footprint. The structural body audit and the 43-body Cap/evidence
-coordinate register pass, but H1 is not complete: support-passive
-MPN/courtyards, NFC pickup geometry and installed U219 antenna swept volume are
-three open blockers before
+coordinate register pass, but H1 is not complete: one exact documented
+production display with controlled drawing and deterministic factory mating,
+support-passive MPN/courtyards, NFC pickup geometry and installed U219 antenna
+swept volume are four open blockers before
 the complete mock-up can be explicitly accepted. The C5 electrical pin/mux
 contract is closed; its live FSUSB42MUX/C11355 route, exact service-VBUS
 detector/latch MPN and Pack/Safety I2C powered-off-Ioff boundary remain
-production blockers before a new R2 H2 export. KiCad
+production blockers before a new R2 H2 export. The legacy HMX display is
+reference evidence only and cannot enter an R2 order BOM. KiCad
 and all purchasing remain blocked.

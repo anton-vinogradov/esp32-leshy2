@@ -5,7 +5,7 @@
   "input_hashes": {
     "hardware/verification/generated/H3-VRF41-digital-levels.json": "c9ce0285c9e3e22a8e42c9f548d526751e0433cc5a8ac68f7b5f8fbb56b30ce1",
     "hardware/verification/generated/H3-VRF42-digital-timing.json": "91fa0b5abe446d3249538404a982ce780640e4d127a77c5be499b4e4928f3867",
-    "hardware/verification/generated/H3-VRF43-boundary-loading.json": "bb3850010ee63441be064f63fc81aa4a3811d5f96483ff818ae5a7aa7a47dc3d"
+    "hardware/verification/generated/H3-VRF43-boundary-loading.json": "ed215ded6a1f6c79fe5e68b2f3956c6394b31ee802c5c2238d945644cbcf08f3"
   },
   "leaf_summary": {
     "levels": {
@@ -82,7 +82,7 @@
     ],
     "boundaries": [
       "measure M1 far-end rail drop, return offset, crosstalk and USB/SPI eye/edge quality after PCB placement",
-      "verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair",
+      "verify received stock U214 male-post material/plating, ordinary assembly/disassembly, current continuity, bottoming clearance and retention inspection; any unsourced insertion force remains a design-analysis input, and the 4.1-A figure proves only the controlled HLE/TSM pair",
       "measure U214 SPI load/edges at 10 MHz and external I2C total capacitance/rise time <=150 pF/300 ns",
       "qualify each native Unit profile, cable length and pull network through TXS0102; 1-Wire remains specimen-only",
       "inject dual-branch request, overload, reverse source, wrong accessory, hot plug and brownout while proving independent latch-off",

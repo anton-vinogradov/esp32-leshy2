@@ -34,6 +34,9 @@
     {
       "id": "display",
       "selected": "HMX035CTFT-001",
+      "selection_scope": "legacy working electrical/mechanical reference only; not a production-order identity",
+      "production_identity_status": "blocked_before_h2",
+      "production_identity_rule": "H1 cannot close and R2 H2 cannot start until one exact orderable production panel has a manufacturer-controlled electrical map, full body/FPC/contact/stiffener/mating drawing, lifecycle or supply route and no accepted functional degradation",
       "official_findings": [
         {
           "source": "https://www.lcdwiki.com/res/ES3C35P/",
@@ -79,7 +82,7 @@
           "reason": "A direct 40-to-40 passive adapter preserves every accepted display function and pin, fixes the main-board geometry from controlled Hirose drawings, and confines received-tail variance to a cheap replaceable PCB without authorizing a purchase."
         }
       ],
-      "current_disposition": "retain_selected_via_replaceable_40_to_40_adapter_and_move_tail_fit_to_h5"
+      "current_disposition": "reject_donor_procurement_keep_legacy_electrical_reference_and_select_documented_production_panel_before_h2"
     },
     {
       "id": "nrf24",
@@ -150,7 +153,7 @@
           "finding": "The controlled HLE series data accepts the standard 0.635-mm square-post class from 1.78-mm minimum insertion and does not impose the closed-end bottoming maximum that made the previous socket dependent on undocumented U214 post length."
         }
       ],
-      "remaining_gap": "M5Stack still does not name the fitted male header or guarantee current-lot post section, insertion force and cycle life. The pass-through host makes those received-part checks H5 release evidence rather than an H1 geometry blocker.",
+      "remaining_gap": "M5Stack still does not name the fitted male header or guarantee current-lot post section, insertion force or lifecycle. The unknown values remain design-analysis inputs; H5 uses ordinary assembly/disassembly, continuity and retention inspection rather than a prescribed force or cycle qualification.",
       "replacement_review": [
         {
           "candidate": "generic alternative LoRa module or E22 carrier",

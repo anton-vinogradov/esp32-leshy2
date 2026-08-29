@@ -56,8 +56,8 @@ def render(data: dict, ru: bool) -> str:
         mechanics_text = (
             "M1 выполняет только электрическую функцию и совмещение. Четыре точных 11,00-мм compression-stop, "
             "не менее двух противосдвиговых упоров корпуса и независимые захваты обеих PCB не дают платам "
-            "разойтись или сдвинуться даже при одном ослабленном винте. Падение, установка аккумуляторов и изгиб "
-            "корпуса не должны нагружать SMT-пайку M1."
+            "разойтись или сдвинуться даже при одном ослабленном винте. Нагрузки обычного обращения, установки "
+            "аккумуляторов и изгиба корпуса несут винты, упоры и захваты, а не SMT-пайка M1."
         )
         group_heading = "## Принципиальная группировка"
         group_col = "Назначение"
@@ -82,7 +82,8 @@ def render(data: dict, ru: bool) -> str:
         mechanics_text = (
             "M1 is electrical/alignment only. Four exact 11.00-mm compression stops, at least two enclosure "
             "anti-shear datums and independent capture of both PCBs prevent separation or relative shear even "
-            "with one screw loosened. Drop, battery installation and enclosure bending may not load the M1 SMT joints."
+            "with one screw loosened. Ordinary handling, battery installation and enclosure flex are carried by "
+            "the fasteners, stops, datums and capture lips rather than the M1 SMT joints."
         )
         group_heading = "## Principle grouping"
         group_col = "Assignment"

@@ -3,7 +3,16 @@
   "marker": "H1-R2.30",
   "checked_on": "2026-08-28",
   "purpose": "Rank the complete-device component burden, remove avoidable pre-order penalties without functional degradation, and keep small-lot purchasing penalties separate from quantity-100 material cost.",
-  "trial_device_quantity": 5,
+  "procurement_target_device_quantity": 1,
+  "historical_cost_capture_device_quantity": 5,
+  "procurement_target": {
+    "deliverable": "one fully assembled Leshy2 prototype",
+    "device_batch": false,
+    "batteries_included": false,
+    "production_display": "exact panel unresolved; factory-installed from a deterministic production package",
+    "hmx_donor_route": "rejected procurement route; legacy evidence only",
+    "factory_function_test": "optional quote-only insurance; first full power-on and USB bring-up belong to the owner"
+  },
   "r2_quantity_overrides": {
     "rp2354b_a4": {
       "quantity_per_device": 2,
@@ -35,13 +44,14 @@
       "basis": "JLCPCB pre-order reference price; final quote and lead remain open",
       "source": "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911",
       "checked_on": "2026-08-26"
-    },
-    "qdtech_hmx035ctft_001": {
-      "unit_price_usd": 20.9,
-      "basis": "complete in-stock DLE06235B donor ceiling, not a standalone production-panel quote",
-      "source": "https://www.elecrow.com/3-5-esp32-s3-display-320x480-capacitive-ips-touchscreen-with-speaker-mic-bat-interface-supports-ai-voice-chat.html",
-      "checked_on": "2026-08-28"
     }
+  },
+  "legacy_display_evidence": {
+    "identity": "HMX035CTFT-001 via complete DLE06235B donor",
+    "published_donor_unit_price_usd": 20.9,
+    "disposition": "rejected procurement route; legacy electrical and mechanical evidence only",
+    "source": "https://www.elecrow.com/3-5-esp32-s3-display-320x480-capacitive-ips-touchscreen-with-speaker-mic-bat-interface-supports-ai-voice-chat.html",
+    "checked_on": "2026-08-28"
   },
   "post_pcba_required": [
     {
@@ -379,7 +389,7 @@
   "display_orientation_review": {
     "official_complete_donor_rear_view": "https://media-cdn.elecrow.com/media/webp_image/wysiwyg/products/2026/DLE06235B/hardware_overview_of_3.5inch_ESP32_IPS_Touchscreen.webp",
     "observed": "The official complete-donor rear view proves a folded display flex and rear ZIF path, but does not disclose the standalone HMX035CTFT-001 tail outline, exit edge, free length, stiffener or production-lot invariance.",
-    "accepted_rule": "Physically orient the received panel so its flex points toward the antenna edge, then rotate display memory and touch coordinates in firmware. Do not allow the tail to enter the LED, D-pad or function-button zone.",
+    "accepted_rule": "Physically orient the selected documented production panel so its flex points toward the antenna edge, then rotate display memory and touch coordinates in firmware. Do not allow the tail to enter the LED, D-pad or function-button zone.",
     "previous_lower_adapter_board_xy_mm": [24.75, 90.5],
     "current_upper_adapter_board_xy_mm": [24.75, 1.0],
     "current_upper_main_connector_xy_mm": [32.2, 6.5],
@@ -391,7 +401,7 @@
       "bom_change_usd": 0.0,
       "firmware_change": "ST77922 orientation plus touch-coordinate transform only"
     },
-    "remaining_gate": "Received HMX035CTFT-001 tail length, bend radius, contact side and retention must qualify the replaceable upper adapter; the accepted control layout and flex-to-antenna rule do not move silently."
+    "remaining_gate": "The selected exact production panel drawing and factory mating acceptance must qualify tail length, bend radius, contact side and retention on the replaceable upper adapter; HMX donor geometry remains legacy evidence only."
   },
   "accepted_cost_reduction_policy": {
     "accepted_on": "2026-08-28",
@@ -768,10 +778,10 @@
       "priority": 8,
       "id": "display-production-route",
       "queue_status": "waiting",
-      "title": "Obtain the standalone panel route instead of consuming a complete donor per device",
+      "title": "Select and quote the documented production panel for one factory-assembled prototype",
       "production_function_change": false,
-      "evidence": "The current reachable DLE06235B donor is USD 20.90 per display, while standalone HMX035CTFT-001 price and production identity remain open.",
-      "action": "Keep the replaceable adapter and treat the donor as an EVT ceiling, not production COGS."
+      "evidence": "HMX035CTFT-001 donor sources prove legacy electrical/mechanical facts but are rejected as procurement; the exact production panel, mating drawing, one-prototype price and factory attrition remain open.",
+      "action": "Keep the architecture endpoint and replaceable adapter, but release no order until one documented panel and deterministic factory mating package are accepted."
     }
   ]
 }

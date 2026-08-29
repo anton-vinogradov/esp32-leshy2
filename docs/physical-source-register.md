@@ -5,7 +5,7 @@
 Every body drawn in the product views is generated from one machine row with
 an exact selected MPN (or an explicit TBD), manufacturer-backed envelope, named
 coordinate frame, orientation and interface direction. No H1 geometry blocker
-remains; received fit, RF, acoustic, thermal and endurance checks stay in H5.
+remains; H5 locks deterministic pre-order evidence, while received fit, RF, acoustic, thermal and ordinary-operation checks run in H7/H8 after arrival without artificial ageing.
 
 | Coverage | Result |
 |---|---:|

@@ -25,7 +25,23 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_checked_in_sources_are_valid(self):
         self.assertEqual([], self.errors_for())
 
-    def test_pre_kicad_sample_plan_preserves_minimum_evidence_lot_and_gate(self):
+    def test_rejects_destructive_or_industrial_qualification_in_current_candidate(self):
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        candidate["qualification_gaps"].append(
+            "connector retention must be proven over repeated cycles"
+        )
+        errors = self.errors_for(candidates)
+        self.assertTrue(
+            any(
+                "prohibited destructive/industrial qualification phrase"
+                in error
+                for error in errors
+            ),
+            errors,
+        )
+
+    def test_pre_kicad_plan_preserves_sole_prototype_manifest_and_gate(self):
         roadmap = json.loads(
             (GENERATOR.REPO_ROOT / "hardware/verification/hardware-roadmap-state.json")
             .read_text(encoding="utf-8")
@@ -37,6 +53,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         plan = (
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
+        plan_normalized = " ".join(plan.split())
         self.assertEqual("H1-R2.32", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
@@ -46,7 +63,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("H5.0.3-R1", h5["current_artifacts"])
         self.assertFalse(h5["authorization"]["sample_or_component_purchase"])
         self.assertIn("superseded", plan)
-        self.assertIn("Purchasing is the last resort", plan)
+        self.assertIn("no separate engineering-sample or H5 coupon order", plan_normalized)
+        self.assertIn("sole prototype order", plan_normalized)
         self.assertIn("remain unauthorized", plan)
         for device_id in ("nicerf_sa818s_u_v18", "nicerf_sa818s_v_v18"):
             voice = self.database["devices"][device_id]
@@ -332,7 +350,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         display = self.database["devices"]["qdtech_hmx035ctft_001"]
         self.assertEqual(2, len(display["prototype_specimen_sources"]))
         self.assertEqual(
-            "standalone_raw_assembly_rfq_required",
+            "unresolved_production_panel_factory_quote_required",
             display["procurement_gate"]["status"],
         )
         self.assertIn(
@@ -345,10 +363,11 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         donor = display["prototype_donor_route"]
         self.assertEqual(
-            "current_in_stock_donor_can_close_specimen_measurements_only",
+            "rejected_procurement_route_legacy_evidence_only",
             donor["status"],
         )
-        self.assertEqual(104.5, donor["published_sample_material_usd"])
+        self.assertEqual(0, donor["recommended_sample_quantity"])
+        self.assertEqual(0.0, donor["published_sample_material_usd"])
         self.assertIn(
             "standalone raw-assembly orderable MPN",
             donor["does_not_close"],

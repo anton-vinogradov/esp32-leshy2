@@ -258,9 +258,9 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - limits, accuracy, protection coverage, gate drive, current/thermal capability, quiescent current, telemetry and fault latching no worse.
   - configuration memory/firmware image and independent recovery remain supported.
 - Required requalification:
-  - complete paper safety analysis and worst-case power calculations.
-  - startup/source-transition/load-step/short/thermal/brownout/recovery HIL.
-  - controlled destructive single-fault verification where the owning contract requires it.
+  - complete source-backed paper safety analysis and worst-case power calculations.
+  - startup/source-transition/load-step/short/thermal/brownout/recovery HIL on the one prototype inside exact MPN limits.
+  - safe single-fault injection through emulator, current-limited electrical/cell simulator and NTC fixtures; irreversible locks, real-cell abuse and hardware damage are forbidden.
 - Current lines:
   - `adi_max17320_g20_t` — `Analog Devices MAX17320G20+T`.
   - `onsemi_cat24c512wi_gt3` — `onsemi CAT24C512WI-GT3`.
@@ -316,15 +316,15 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 <details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 26 line(s)</summary>
 
-- Disposition: no drop-in by nominal description; exact mate, outline, human factors and environmental qualification required.
+- Disposition: no drop-in by nominal description; exact mate, outline, human factors and source-backed mechanical/environmental analysis required.
 - Equivalence envelope:
   - same mating standard/contact map/polarity plus compatible footprint, keepout, insertion, retention and service access.
   - display optics/touch/backlight, cell protection/chemistry, switch force/travel/current and transducer acoustic response no worse.
   - sealing, strain, temperature, life and manufacturing process remain compatible.
 - Required requalification:
-  - received-sample dimensional/fit and assembly coupon.
-  - contact/current/ESD/wear/drop/vibration/environmental HIL as applicable.
-  - display, battery, UI and acoustic acceptance tests for the owning product scenario.
+  - source-backed dimensional/fit analysis, geometry/DRC and deterministic assembly instructions before order.
+  - ordinary assembly/disassembly, continuity and visual inspection on the one prototype after arrival; unsourced loads remain design-analysis inputs and no artificial ageing is required.
+  - display, battery, UI and acoustic functional checks on the one prototype without drop, shaker/vibration or prescribed-cycle qualification.
 - Current lines:
   - `alps_ec11e18244au` — `Alps Alpine EC11E18244AU`.
   - `alps_skrtlae010` — `Alps Alpine SKRTLAE010`.
@@ -2217,11 +2217,11 @@ These entries are intentionally excluded from the partial subtotal until a compa
 
 </details>
 
-<details><summary><code>HMX035CTFT-001 (QDtech schematic assembly marking)</code> — <code>standalone_raw_assembly_rfq_required</code></summary>
+<details><summary><code>HMX035CTFT-001 (QDtech schematic assembly marking)</code> — <code>unresolved_production_panel_factory_quote_required</code></summary>
 
 - Device id: `qdtech_hmx035ctft_001`.
 - Scope: `base_product`; quantity `1`.
-- Reason: Published prices cover complete donor boards, not the standalone HMX035CTFT-001 LCM+CTP assembly; an exact quantity-100 supplier quote is required.
+- Reason: Published HMX donor prices are legacy evidence, not a procurement route; the exact production panel and factory attrition must be quoted for one assembled prototype.
 - Checked: `2026-08-19`; [gate source](https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf).
 
 </details>

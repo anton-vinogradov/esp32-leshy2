@@ -6,7 +6,7 @@
   "checked_on": "2026-08-28",
   "input": {
     "bom_tool_result": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
-    "bom_tool_result_sha256": "d5bc8c856d93f12c6122566aec342dd37d1c127da2f3a1ee5e7e1756db4997d7",
+    "bom_tool_result_sha256": "586bd474ba8b634424c2a9d62115bb7bc289a4c49aaf63854d9f061f2c0de851",
     "search_capture": "hardware/verification/jlcpcb-outlier-search-capture-2026-08-25.json",
     "search_capture_sha256": "50fdf7c69a95bc53e32148cf8e7e3b2d245818a74cec065a708c128527af2699"
   },
@@ -40,7 +40,7 @@
       "lcsc": null,
       "manufacturer": null,
       "stock_snapshot": null,
-      "reason": "encoder knob requires factory installation and control test after enclosure integration",
+      "reason": "encoder knob requires deterministic factory installation after enclosure integration; full control bring-up is performed by the owner",
       "target_bom_orderable_evidence": "present",
       "target_bom_source": "https://www.mouser.com/en/ProductDetail/Davies-Molding/1227-J?qs=AaRlLUpeMszUlt7gcGM9fQ%3D%3D",
       "component_replacement": false
@@ -124,7 +124,7 @@
       "lcsc": null,
       "manufacturer": null,
       "stock_snapshot": null,
-      "reason": "removable rear Cap accessory is factory-tested, then packed separately for user installation",
+      "reason": "removable rear Cap accessory is packed separately for user installation; factory compatibility FCT is not mandatory",
       "target_bom_orderable_evidence": "present",
       "target_bom_source": "",
       "component_replacement": false
@@ -180,7 +180,7 @@
       "lcsc": null,
       "manufacturer": null,
       "stock_snapshot": null,
-      "reason": "display/flex requires factory mating and display/touch functional test during final assembly",
+      "reason": "legacy architecture identity only: the exact production panel remains unresolved and requires written factory acceptance for deterministic mating in the one prototype; donor procurement is rejected",
       "target_bom_orderable_evidence": "missing",
       "target_bom_source": "",
       "component_replacement": false
@@ -208,7 +208,7 @@
       "lcsc": null,
       "manufacturer": null,
       "stock_snapshot": null,
-      "reason": "five removable 30-mm microcoax jumpers require factory installation, strain routing and continuity test during final sandwich assembly",
+      "reason": "five removable 30-mm microcoax jumpers require deterministic factory installation and strain routing during final sandwich assembly; full power-on is owner bring-up",
       "target_bom_orderable_evidence": "present",
       "target_bom_source": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824",
       "component_replacement": false
@@ -668,7 +668,7 @@
       "semantic_mpn_equal": null,
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "encoder knob requires factory installation and control test after enclosure integration",
+      "outlier_resolution_reason": "encoder knob requires deterministic factory installation after enclosure integration; full control bring-up is performed by the owner",
       "component_replacement": false
     },
     {
@@ -1253,7 +1253,7 @@
       "semantic_mpn_equal": null,
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "removable rear Cap accessory is factory-tested, then packed separately for user installation",
+      "outlier_resolution_reason": "removable rear Cap accessory is packed separately for user installation; factory compatibility FCT is not mandatory",
       "component_replacement": false
     },
     {
@@ -2210,7 +2210,7 @@
       "semantic_mpn_equal": null,
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "display/flex requires factory mating and display/touch functional test during final assembly",
+      "outlier_resolution_reason": "legacy architecture identity only: the exact production panel remains unresolved and requires written factory acceptance for deterministic mating in the one prototype; donor procurement is rejected",
       "component_replacement": false
     },
     {
@@ -2537,7 +2537,7 @@
       "semantic_mpn_equal": null,
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "five removable 30-mm microcoax jumpers require factory installation, strain routing and continuity test during final sandwich assembly",
+      "outlier_resolution_reason": "five removable 30-mm microcoax jumpers require deterministic factory installation and strain routing during final sandwich assembly; full power-on is owner bring-up",
       "component_replacement": false
     },
     {
@@ -4284,7 +4284,7 @@
         "HMX035CTFT-001"
       ],
       "accepted_and_quoted": false,
-      "gate": "H5 and H7 remain open until the selected factory accepts and quotes installation plus functional test"
+      "gate": "H5 and H7 remain open until the selected factory accepts and quotes deterministic installation; whole-device functional test is optional and not a release gate"
     },
     "factory_packed_removable": {
       "route": "J4-P",
@@ -4292,7 +4292,7 @@
         "U214 Cap LoRa-1262"
       ],
       "accepted_and_quoted": false,
-      "gate": "kit inclusion, compatibility test where applicable and packing must be quoted"
+      "gate": "kit inclusion and packing must be quoted; compatibility testing is owner bring-up unless separately quoted"
     },
     "user_supplied_not_delivered": {
       "route": "J5-U",

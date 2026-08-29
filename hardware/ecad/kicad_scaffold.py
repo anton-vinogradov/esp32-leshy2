@@ -54,7 +54,11 @@ def project_file(project_id: str) -> str:
         "board": {},
         "boards": [],
         "cvpcb": {},
-        "erc": {},
+        "erc": {
+            "rule_severities": {
+                "lib_symbol_mismatch": "ignore",
+            }
+        },
         "libraries": {},
         "meta": {"filename": f"{project_id}.kicad_pro", "version": 1},
         "net_settings": {"classes": [], "meta": {"version": 3}},
@@ -144,6 +148,7 @@ def build_manifest(contract: dict, outputs: dict[Path, str]) -> dict:
         "schema_version": 1,
         "stage": "H2.1",
         "status": "reviewed_scaffold",
+        "authority": {"baseline": "R1", "lifecycle": "historical_pre_r2_sheet_scaffold", "allowed_as_r2_authority": False, "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"},
         "source": str(CONTRACT.relative_to(REPO)),
         "project_model": contract["project_model"],
         "projects": projects,

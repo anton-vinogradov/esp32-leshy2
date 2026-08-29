@@ -33,27 +33,37 @@ class H1R2CostReviewTest(unittest.TestCase):
     def test_cost_boundaries_are_explicit(self):
         summary = self.result["summary"]
         self.assertEqual(summary["quantity_100_priced_lines"], 199)
-        self.assertEqual(summary["remaining_unpriced_base_lines"], 5)
-        self.assertGreater(summary["planning_base_plus_post_pcba_usd_per_device"], 300)
+        self.assertEqual(summary["remaining_unpriced_base_lines"], 6)
+        self.assertGreater(summary["planning_base_plus_post_pcba_usd_per_device"], 290)
         self.assertAlmostEqual(
-            summary["planning_base_plus_post_pcba_usd_for_trial"],
-            summary["planning_base_plus_post_pcba_usd_per_device"] * 5,
+            summary["planning_base_plus_post_pcba_usd_for_procurement_target"],
+            summary["planning_base_plus_post_pcba_usd_per_device"],
             places=3,
         )
-        self.assertEqual(summary["trial_unmatched_lines"], 30)
+        self.assertEqual(summary["procurement_target_device_quantity"], 1)
+        self.assertEqual(summary["historical_cost_capture_device_quantity"], 5)
+        self.assertEqual(summary["historical_capture_unmatched_lines"], 30)
+        display = next(
+            row for row in self.result["rows"]
+            if row["device_id"] == "qdtech_hmx035ctft_001"
+        )
+        self.assertIsNone(display["line_burden_per_device_usd"])
+        self.assertIsNone(display["planning_procurement_line_usd"])
 
     def test_trial_projection_keeps_fitted_quantity(self):
         by_id = {row["device_id"]: row for row in self.result["rows"]}
         buttons = by_id["omron_b3s_1100p"]
         self.assertEqual(buttons["quantity_per_device"], 16)
-        self.assertEqual(buttons["quantity_trial"], 80)
+        self.assertEqual(buttons["quantity_procurement_target"], 16)
+        self.assertEqual(buttons["quantity_historical_capture"], 80)
         self.assertAlmostEqual(
-            buttons["planning_trial_line_usd"],
-            buttons["line_burden_per_device_usd"] * 5,
+            buttons["planning_procurement_line_usd"],
+            buttons["line_burden_per_device_usd"],
         )
         rp = by_id["rp2354b_a4"]
         self.assertEqual(2, rp["quantity_per_device"])
-        self.assertEqual(10, rp["quantity_trial"])
+        self.assertEqual(2, rp["quantity_procurement_target"])
+        self.assertEqual(10, rp["quantity_historical_capture"])
         self.assertEqual("C39843328", rp["jlcpcb_part"])
 
     def test_display_upper_candidate_has_margin(self):

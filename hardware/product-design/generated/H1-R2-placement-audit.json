@@ -2219,7 +2219,7 @@
     "later_hil": [
       "received connector-to-antenna mating and retention",
       "U214 Cap insertion with the FPV plug fitted",
-      "plug insertion cycles, finger access and antenna strain"
+      "ordinary plug mating, finger access and antenna strain-relief inspection"
     ],
     "errors": []
   },
@@ -2518,33 +2518,23 @@
       }
     ],
     "ground_load_spreading": "both face ground pours with a stitched via fence immediately behind the four shell lands; no substitution may rely on copper adhesion on one PCB face",
-    "prototype_load_path": "ESP32-DIV-like dual-face soldered edge mount without a shared antenna rail; the supplied per-port bulkhead nut and washer are not assumed by the current geometry and remain a fallback if enclosure-level qualification requires them",
+    "prototype_load_path": "ESP32-DIV-like dual-face soldered edge mount without a shared antenna rail; both-face ground lands and the stitched via fence spread ordinary installation and handling loads, while the enclosure provides local support or strain relief wherever the selected antenna geometry requires it",
     "substitution_rule": "reject any cheaper SMA or RP-SMA whose exact 1.6-mm land pattern lacks the two lower-face shell lands or an equivalent through-board mechanical load path; never accept retention by only one PCB face",
     "assembly_process_gate": {
       "factory_route": "before order, obtain written factory DFM acceptance for the straddling five-land connector, including both-face solder delivery, stencil/paste treatment, fixture and inspection access",
       "fallback_route": "if factory dual-face wetting is not accepted, lock a controlled post-PCBA hand-solder work instruction with alloy, flux, tip, temperature, dwell, cleaning, board support and operator qualification",
       "acceptance_record": "retain one traceable record per connector with both-face photographs, five visibly wetted rectangular joints, continuity and zero shell movement before antenna fitment"
     },
-    "drop_profile": {
-      "sample_count": 5,
-      "height_m": 1.0,
-      "faces": [
-        "front",
-        "rear",
-        "top",
-        "bottom",
-        "left",
-        "right"
-      ],
-      "drops_per_face_per_sample": 1,
-      "surface": "18-mm plywood over concrete",
-      "configuration": "production-equivalent closed enclosure with the heaviest approved production antenna for every populated SMA port installed at the specified coupling torque",
-      "post_test": "repeat joint photographs, shell-motion and continuity checks; apply the owning RF criterion to every path: VNA/feed limits for 50-ohm paths, FM/SW sensitivity/noise and AM/LW loop capacitance/sensitivity for the non-50-ohm receive paths"
+    "hobby_grade_preorder_verification": {
+      "scope": "non-destructive pre-order design review and ordinary prototype assembly only; no drop, shaker/vibration, prescribed mating-cycle count or consumed sample",
+      "design_analysis_inputs": "exact connector, antenna, PCB and enclosure geometry plus manufacturer-published installation and mechanical limits; any missing antenna mass, lever arm, handling load or enclosure-support limit remains an explicit design-analysis input rather than an invented qualification load",
+      "structural_requirements": "dual-face shell lands and the stitched via fence spread solder load; the enclosure must provide local support or strain relief whenever the selected antenna creates a material lever load, and no solder joint may be the sole user-load path",
+      "checks": "verify exact geometry, land pattern, clearances and DRC; perform a static worst-case calculation only where both the applied load and manufacturer limit are sourced; during ordinary assembly/disassembly inspect both faces, shell movement and solder joints, check continuity, and repeat the owning RF criterion"
     },
     "verification_gates": {
       "H5": "lock both exact MPNs, released drawings, rectangular five-land coordinates, antenna test set and an executable factory or controlled post-PCBA dual-face soldering process; no sample purchase is authorized here",
-      "H7": "after assembly, inspect and photograph all five solder joints on every populated connector on every prototype from both PCB faces; reject incomplete wetting, cracks, lift, bridges or shell movement before antenna fitment",
-      "H8": "with the enclosure and approved antennas installed, mate at the GCT brass-SMA 0.452-0.678 N m coupling-torque range, run 50 mating cycles and the defined five-sample one-metre six-face drop profile; reject shell movement, nut loosening if fitted, solder/copper damage, continuity faults or failure of the owning VNA, sensitivity, noise or capacitance limit"
+      "H7": "after assembly, inspect and photograph all five solder joints on every populated connector on the one assembled prototype from both PCB faces; reject incomplete wetting, cracks, lift, bridges or shell movement before antenna fitment",
+      "H8": "assemble and disassemble the enclosure and approved antennas as normally required for bring-up, using manufacturer-published installation limits; inspect for shell movement and solder/copper damage, check continuity, and repeat the owning VNA, sensitivity, noise or capacitance criterion; no artificial ageing, prescribed cycle count, drop or vibration programme is required"
     },
     "manufacturer_sources": [
       "https://gct.co/connector/rfpc-sma31-fn",
@@ -2588,7 +2578,7 @@
     "anti_shear_datums_min": 2,
     "pcb_capture": "independent front and rear enclosure lips/edge rails prevent board separation and relative shear even with any one screw loosened by one turn",
     "fasteners": "captive or thread-locked M2.5 screws with a documented torque; parallel mating fixture required",
-    "h5_proof": "continuity and solder-joint inspection after one-loose-screw handling, drop, vibration and 50 service mating cycles"
+    "h5_proof": "verify fastener, stop, capture and anti-shear geometry/DRC; inspect the M1 solder joints and continuity before and after ordinary assembly/disassembly, and use a static worst-case calculation only where sourced limits and loads exist; no drop, vibration or prescribed-cycle qualification"
   },
   "battery_holder_mechanics": {
     "mpn": "Keystone 1048P",
@@ -2603,8 +2593,8 @@
       39.78
     ],
     "drawing_rule": "render the 77.06-mm plastic body separately from the 86.00-mm PCB pad span",
-    "load_path": "an enclosure cradle and two end stops capture the plastic body and cell insertion axis so insertion, removal and drop loads do not peel the SMT pads",
-    "h5_proof": "cell insertion/removal cycles and drop inspection with the enclosure load path installed"
+    "load_path": "an enclosure cradle and two end stops capture the plastic body and cell insertion axis so ordinary cell insertion, removal and handling loads do not peel the SMT pads",
+    "h5_proof": "verify exact holder, cradle, stop and pad geometry/DRC; perform ordinary cell installation/removal as required for bring-up, then inspect the holder/pads and check polarity and continuity; unknown forces remain design-analysis inputs and no artificial ageing, drop, vibration or prescribed cycle count is required"
   },
   "fpv_receiver_attachment": {
     "architecture": "dual mutually exclusive post-PCBA land",
@@ -2634,6 +2624,7 @@
   "relocated_c5_dbg_header": "c5_dbg_header_r2",
   "errors": [],
   "current_h1_blockers": [
+    "select one exact documented production display panel, controlled drawing and mating envelope with a deterministic factory-installable route before H1 closes or R2 H2 starts",
     "complete exact support-passive values/MPNs and prove their courtyards inside the two bounded U219 placement islands",
     "obtain controlled U219 field-structure geometry or measure a received unit before locating the weak printed NFC pickup loop and its DNP C0G bank",
     "measure the installed U219 RP-SMA antenna swept volume against the rear connector bank, FPV plug, enclosure and user hand access"
@@ -2643,19 +2634,19 @@
   ],
   "downstream_verification": [
     {
-      "stage": "H5/H6/H7",
-      "requirement": "qualify the received K331 on the tolerant 14-pad post-PCBA land, prove the 8-mm Z reserve and solder/process durability, and decide between owner installation and an approved Consigned Parts factory route; repeat with AWM666V only if the fallback is populated",
-      "requirement_ru": "квалифицировать полученный K331 на толерантной 14-pad post-PCBA-посадке, доказать резерв Z 8 мм и прочность пайки/процесса, затем выбрать между установкой владельцем и одобренным фабричным Consigned Parts; повторить для AWM666V только при установке fallback"
+      "stage": "H5/H6 then H7/H8",
+      "requirement": "before order, lock the K331 source-backed envelope, tolerant 14-pad land, 8-mm Z reserve, DRC and deterministic solder/inspection process; after arrival, inspect the received K331 joints, continuity and ordinary operation on the one prototype; repeat for AWM666V only if the fallback is populated",
+      "requirement_ru": "до заказа зафиксировать подтверждённые источниками envelope K331, толерантную 14-pad-посадку, резерв Z 8 мм, DRC и детерминированный процесс пайки/inspection; после получения проверить пайку, continuity и обычную работу K331 на единственном прототипе; повторить для AWM666V только при установке fallback"
     },
     {
-      "stage": "H5/H7",
-      "requirement": "inspect the relocated C5 DBG10 access and opposing clearance in the mechanical article before fabrication release",
-      "requirement_ru": "проверить доступ к перенесённому C5 DBG10 и встречный зазор на механическом образце до разрешения печати"
+      "stage": "H5/H6 then H7",
+      "requirement": "before order, prove relocated C5 DBG10 geometry, access envelope, opposing clearance and DRC from the controlled model; after arrival, inspect access and clearance on the one assembled prototype",
+      "requirement_ru": "до заказа доказать geometry перенесённого C5 DBG10, access-envelope, встречный зазор и DRC по контролируемой модели; после получения проверить доступ и зазор на единственном собранном прототипе"
     },
     {
-      "stage": "H5/H8",
-      "requirement": "qualify the supply-independent FXP831.09.0100C FPV fallback on the assembled enclosure and secure stock before relying on its current 16-week backorder route",
-      "requirement_ru": "квалифицировать независимую антенну FPV FXP831.09.0100C на собранном корпусе и обеспечить склад до опоры на текущий backorder 16 недель"
+      "stage": "H5 then H7/H8",
+      "requirement": "before order, lock the FXP831.09.0100C identity, geometry, route and deterministic installation; after arrival, inspect fit and verify RF operation on the one assembled prototype",
+      "requirement_ru": "до заказа зафиксировать identity, geometry, маршрут и детерминированную установку FXP831.09.0100C; после получения проверить fit и RF-работу на единственном собранном прототипе"
     }
   ],
   "placements": [

@@ -9,7 +9,7 @@ flowchart LR
   R["9 H5 residuals"] --> M["✅ точные identities<br/>и источники связаны"]
   G["14 mechanical gates"] --> M
   M --> S["▶️ H5.0.2-R1<br/>документы и серийные замены"]
-  S --> P["H5.0.3-R1<br/>только неустранимые образцы"]
+  S --> P["H5.0.3-R1<br/>единый order manifest"]
 ```
 
 ## Девять физических residuals
@@ -17,7 +17,7 @@ flowchart LR
 ### `H3-PHY-017` · `display`
 
 - Выбрано: `HMX035CTFT-001 (QDtech schematic assembly marking)`; `Sitronix ST77922`; `Hirose DF40C(2.0)-40DS-0.4V(51)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-40S-0.5SH(99)`.
-- Осталось доказать: самостоятельный order identity и полный контур FPC текущей партии HMX035CTFT-001; identity/readback контроллера и равенство разгона VDD/VDDI на образце.
+- Осталось доказать: самостоятельный order identity и полный контур FPC production panel; identity/readback контроллера и равенство разгона VDD/VDDI на единственном прототипе в H7/H8.
 - Критерий: полученный и однозначно идентифицированный образец напрямую подтверждает пункт; несовпадение повторно открывает связанный результат H1/H2/H3.
 
 ### `H3-PHY-024` · `ir`
@@ -90,7 +90,7 @@ flowchart LR
 - У всех устанавливаемых деталей в механических gate’ах есть точный, не-TBD MPN.
 - Не выбранные пока **тестовые** изделия отмечены явно: эталонная microSD и набор M5 Unit/cable для профилей.
 - Встроенный разъём полученного `E01-ML01IPX` и штырь установленного на stock `U214` не превращены в выдуманные MPN: производитель их не публикует.
-- Реальный fit, retention, RF, timing и lot identity остаются открыты до полученного образца.
+- Реальный fit, retention, RF, timing и lot identity остаются открыты до owner bring-up единственного прототипа в H7/H8; отдельной sample/coupon-закупки нет.
 - Следующий точный маркер — `H5.0.2-R1`; заказ, PCB placement/routing и fabrication запрещены.
 
 Машинный результат: [`H5-EVR01`](../hardware/verification/generated/H5-EVR01-residual-map.json).

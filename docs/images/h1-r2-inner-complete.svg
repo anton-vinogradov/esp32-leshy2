@@ -477,7 +477,7 @@
 <path d="M65.0 638.3 L35.8 638.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M440.0 499.7 L410.8 499.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="30.0" y="720.0" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="start" fill="#172033">Numbered registered bodies · 205 total</text>
-<text x="410.0" y="720.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#166534">R2 structural audit: pass · 3 open H1 geometry gates · 2.59 mm minimum opposing gap</text>
+<text x="410.0" y="720.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#166534">R2 structural audit: pass · 4 open H1 geometry gates · 2.59 mm minimum opposing gap</text>
 <text x="30.0" y="760.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#9a3412">001  PHYSICAL RESERVE</text>
 <text x="58.0" y="773.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">118-137-MHz image-rejection BPF and 6-25-MHz IF cleanup;</text>
 <text x="58.0" y="784.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">individually serial passives close after synthesis</text>

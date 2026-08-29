@@ -4,7 +4,7 @@
   "status": "reviewed_m1_expansion_and_service_boundary_loading",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
+    "hardware/architecture/devices.json": "a47012afe7f17a40d0051074febf8a877a75162e913892ba02d57da58fff3d4d",
     "hardware/verification/generated/H3-VRF12-dc-budget.json": "e80c7b7f168746c6436572f0eb7ef4f65c8496f7e242b3e1482dcf70f1bb1b68",
     "hardware/verification/generated/H3-VRF41-digital-levels.json": "c9ce0285c9e3e22a8e42c9f548d526751e0433cc5a8ac68f7b5f8fbb56b30ce1",
     "hardware/verification/generated/H3-VRF42-digital-timing.json": "91fa0b5abe446d3249538404a982ce780640e4d127a77c5be499b4e4928f3867",
@@ -198,7 +198,7 @@
   "open_findings": [],
   "residual_physical_only": [
     "measure M1 far-end rail drop, return offset, crosstalk and USB/SPI eye/edge quality after PCB placement",
-    "verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair",
+    "verify received stock U214 male-post material/plating, ordinary assembly/disassembly, current continuity, bottoming clearance and retention inspection; any unsourced insertion force remains a design-analysis input, and the 4.1-A figure proves only the controlled HLE/TSM pair",
     "measure U214 SPI load/edges at 10 MHz and external I2C total capacitance/rise time <=150 pF/300 ns",
     "qualify each native Unit profile, cable length and pull network through TXS0102; 1-Wire remains specimen-only",
     "inject dual-branch request, overload, reverse source, wrong accessory, hot plug and brownout while proving independent latch-off",

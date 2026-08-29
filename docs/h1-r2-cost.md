@@ -2,40 +2,40 @@
 
 [Русский](h1-r2-cost.ru.md) · [English](h1-r2-cost.md) · [Current placement](h1-r2-physical-layout.md)
 
-This is a ranked snapshot of the current hardware, not a commercial quote. Every line burden includes the quantity fitted to one device; the trial columns use five devices and preserve observed JLCPCB MOQ/pre-order effects.
+This is a ranked snapshot of the current hardware, not a commercial quote. Every line burden includes the fitted quantity in the target one fully assembled prototype. Separate five-board columns preserve only the historical BOM Tool MOQ/pre-order evidence; they are not the procurement target.
 
 ## Summary
 
 - Volume material basis: **$235.35** per device; `199/210` lines are priced.
-- Reachable planning subtotal: **$284.66** per device, with `5` base-product lines still unpriced.
-- With the required post-PCBA K331: **$314.65** per device or **$1,573.25** for five devices before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
-- Partial five-device JLCPCB capture: **$1,234.40** for `180` matched lines; `22` live checks move it to **$1,300.42**, with `30` rows excluded.
+- Reachable planning subtotal: **$263.76** per device, with `6` base-product lines still unpriced.
+- With the required post-PCBA K331: **$293.75** per device and **$293.75** for the one target prototype before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
+- Historical five-board JLCPCB capture: **$1,234.40** for `180` matched lines; `22` live checks move it to **$1,300.42**, with `30` rows excluded. This is evidence, not the target quantity.
 - The external antenna kit is separate: **$145.27** is known and `4` lines remain unpriced.
 
 ## Highest-cost finished-device lines
 
-| MPN | Role | Per device | Unit on accepted basis | Device line | For 5 devices | Planned line ×5 | JLC live / MOQ |
+| MPN | Role | Per device | Unit on accepted basis | Device line | For 1 prototype | Planned line ×1 | Historical JLC ×5 |
 |---|---|---:|---:|---:|---:|---:|---:|
-| `HMX035CTFT-001 (QDtech schematic assembly marking)` | display/touch assembly via donor ceiling / экран и touch через donor-ceiling | 1 | $20.90 | $20.90 | 5 | $104.50 | — |
-| `GCT RFPC-SMA31-FN-175-A` | eight standard outward SMA / восемь внешних SMA | 8 | $2.46 | $19.72 | 40 | $98.58 | — |
-| `Analog Devices AD8314ACPZ-RL7` | six real-TX RF detectors / шесть RF-детекторов фактической передачи | 6 | $2.86 | $17.14 | 30 | $85.71 | $159.55 |
-| `OMRON B3S-1100P` | sixteen ordinary user keys / шестнадцать обычных клавиш | 16 | $0.64 | $10.25 | 80 | $51.24 | $74.58 |
-| `G-NiceRF SA818S-V` | VHF voice transceiver / VHF голосовой трансивер | 1 | $10.07 | $10.07 | 5 | $50.35 | $50.35 |
-| `G-NiceRF SA818S-U` | UHF voice transceiver / UHF голосовой трансивер | 1 | $9.73 | $9.73 | 5 | $48.67 | $48.67 |
-| `TE Connectivity 2118651-2` | five 30-mm RF jumpers / пять 30-мм RF-кабелей | 5 | $1.82 | $9.11 | 25 | $45.53 | — |
-| `Keystone Electronics 1048P` | dual protected-18650 holder / держатель двух защищённых 18650 | 1 | $8.57 | $8.57 | 5 | $42.85 | $33.66 |
-| `Texas Instruments TMUX1136DGSR` | four complete audio/control selectors / четыре полных audio/control selector | 4 | $2.06 | $8.23 | 20 | $41.16 | $12.79 |
-| `LTC5532ES6#TRMPBF` | S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц | 2 | $3.89 | $7.78 | 10 | $38.88 | $117.15 |
-| `Ebyte E01-ML01IPX` | three full nRF24 radios / три полнофункциональных nRF24 | 3 | $2.37 | $7.11 | 15 | $35.55 | — |
-| `Hirose U.FL-R-SMT-1(10)` | five native/module microcoax mates / пять микрокоаксиальных точек | 5 | $1.07 | $5.33 | 25 | $26.64 | $5.66 |
-| `ESP32-S3-WROOM-1U-N16R8` | s3 | 1 | $5.11 | $5.11 | 5 | $25.54 | $25.24 |
-| `Samtec FTSH-105-01-L-DV-K-P-TR` | three internal recovery headers / три внутренних recovery-разъёма | 3 | $1.70 | $5.10 | 15 | $25.49 | $16.35 |
-| `GCT RFPC-SMA32-FN-175-A` | two native-radio RP-SMA / два RP-SMA native-радио | 2 | $2.46 | $4.93 | 10 | $24.65 | — |
-| `TPS3808G33DBVR` | safe_supervisor, u214_supervisor, unit_supervisor, voice_supervisor | 4 | $1.10 | $4.39 | 20 | $21.97 | $8.86 |
-| `Murata GRM32ER71E226KE15L` | thirteen 22-uF power capacitors / тринадцать силовых конденсаторов 22 мкФ | 13 | $0.33 | $4.29 | 65 | $21.47 | $31.67 |
-| `ESP32-C5-WROOM-1U-N8R8` | c5 | 1 | $4.13 | $4.13 | 5 | $20.67 | $29.29 |
-| `Texas Instruments TPD4E05U06DQAR` | thirteen four-line ESD arrays / тринадцать четырёхканальных ESD-сборок | 13 | $0.31 | $4.02 | 65 | $20.09 | — |
-| `Analog Devices MAX17320G20+T` | pack_gauge | 1 | $4.00 | $4.00 | 5 | $20.01 | $31.06 |
+| `GCT RFPC-SMA31-FN-175-A` | eight standard outward SMA / восемь внешних SMA | 8 | $2.46 | $19.72 | 8 | $19.72 | — |
+| `Analog Devices AD8314ACPZ-RL7` | six real-TX RF detectors / шесть RF-детекторов фактической передачи | 6 | $2.86 | $17.14 | 6 | $17.14 | $159.55 |
+| `OMRON B3S-1100P` | sixteen ordinary user keys / шестнадцать обычных клавиш | 16 | $0.64 | $10.25 | 16 | $10.25 | $74.58 |
+| `G-NiceRF SA818S-V` | VHF voice transceiver / VHF голосовой трансивер | 1 | $10.07 | $10.07 | 1 | $10.07 | $50.35 |
+| `G-NiceRF SA818S-U` | UHF voice transceiver / UHF голосовой трансивер | 1 | $9.73 | $9.73 | 1 | $9.73 | $48.67 |
+| `TE Connectivity 2118651-2` | five 30-mm RF jumpers / пять 30-мм RF-кабелей | 5 | $1.82 | $9.11 | 5 | $9.11 | — |
+| `Keystone Electronics 1048P` | dual protected-18650 holder / держатель двух защищённых 18650 | 1 | $8.57 | $8.57 | 1 | $8.57 | $33.66 |
+| `Texas Instruments TMUX1136DGSR` | four complete audio/control selectors / четыре полных audio/control selector | 4 | $2.06 | $8.23 | 4 | $8.23 | $12.79 |
+| `LTC5532ES6#TRMPBF` | S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц | 2 | $3.89 | $7.78 | 2 | $7.78 | $117.15 |
+| `Ebyte E01-ML01IPX` | three full nRF24 radios / три полнофункциональных nRF24 | 3 | $2.37 | $7.11 | 3 | $7.11 | — |
+| `Hirose U.FL-R-SMT-1(10)` | five native/module microcoax mates / пять микрокоаксиальных точек | 5 | $1.07 | $5.33 | 5 | $5.33 | $5.66 |
+| `ESP32-S3-WROOM-1U-N16R8` | s3 | 1 | $5.11 | $5.11 | 1 | $5.11 | $25.24 |
+| `Samtec FTSH-105-01-L-DV-K-P-TR` | three internal recovery headers / три внутренних recovery-разъёма | 3 | $1.70 | $5.10 | 3 | $5.10 | $16.35 |
+| `GCT RFPC-SMA32-FN-175-A` | two native-radio RP-SMA / два RP-SMA native-радио | 2 | $2.46 | $4.93 | 2 | $4.93 | — |
+| `TPS3808G33DBVR` | safe_supervisor, u214_supervisor, unit_supervisor, voice_supervisor | 4 | $1.10 | $4.39 | 4 | $4.39 | $8.86 |
+| `Murata GRM32ER71E226KE15L` | thirteen 22-uF power capacitors / тринадцать силовых конденсаторов 22 мкФ | 13 | $0.33 | $4.29 | 13 | $4.29 | $31.67 |
+| `ESP32-C5-WROOM-1U-N8R8` | c5 | 1 | $4.13 | $4.13 | 1 | $4.13 | $29.29 |
+| `Texas Instruments TPD4E05U06DQAR` | thirteen four-line ESD arrays / тринадцать четырёхканальных ESD-сборок | 13 | $0.31 | $4.02 | 13 | $4.02 | — |
+| `Analog Devices MAX17320G20+T` | pack_gauge | 1 | $4.00 | $4.00 | 1 | $4.00 | $31.06 |
+| `Hirose FX8C-80S-SV5(92)` | 80-contact RF-side interboard receptacle / 80-контактная межплатная розетка RF | 1 | $3.91 | $3.91 | 1 | $3.91 | — |
 
 [Complete 210-line ranking — CSV](../hardware/product-design/generated/H1-R2-cost-ranked.csv)
 
@@ -111,7 +111,7 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 5. ✅ **Retain all five U.FL plus 30-mm jumper paths after source-to-port review** — The five paths contribute USD 14.433 per device at quantity 100, before assembly handling. S3 and all three E01 modules expose only microcoax RF outputs, and each path must still pass through its local coupler and real-TX detector before SMA. The current C5 module also exposes U.FL; an exact stocked Espressif T2/ANT2 factory route is not proved. Therefore 0/5 paths can be removed safely now. A future qualified C5 T2 route could remove one path and save about USD 2.89 per device.
 6. ⏳ **Compare the 1048P holder with serial cell contacts captured by the enclosure cradle** — 1048P contributes USD 8.57 per device at quantity 100 and is currently stock-zero pre-order at JLCPCB. Any replacement must keep protected-cell length tolerance, polarity, insertion cycles and a non-peeling enclosure load path.
 7. ⏳ **Replace three premium DBG10 headers with an equally keyed serial factory-stocked family** — Three Samtec FTSH headers contribute USD 5.0973 per device and exist only as opened-sandwich recovery fallbacks. Preserve independent S3/C5/RP recovery, keying, pitch, probe access and the internal height envelope.
-8. ⏳ **Obtain the standalone panel route instead of consuming a complete donor per device** — The current reachable DLE06235B donor is USD 20.90 per display, while standalone HMX035CTFT-001 price and production identity remain open. Keep the replaceable adapter and treat the donor as an EVT ceiling, not production COGS.
+8. ⏳ **Select and quote the documented production panel for one factory-assembled prototype** — HMX035CTFT-001 donor sources prove legacy electrical/mechanical facts but are rejected as procurement; the exact production panel, mating drawing, one-prototype price and factory attrition remain open. Keep the architecture endpoint and replaceable adapter, but release no order until one documented panel and deterministic factory mating package are accepted.
 
 ## Display and flex orientation
 

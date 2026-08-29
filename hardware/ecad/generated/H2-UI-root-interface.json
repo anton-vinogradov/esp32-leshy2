@@ -2,11 +2,17 @@
   "schema_version": 1,
   "stage": "H2.2.1",
   "status": "reviewed_ui_root_hierarchy",
+  "authority": {
+    "baseline": "R1",
+    "lifecycle": "historical_pre_r2_sheet_scaffold",
+    "allowed_as_r2_authority": false,
+    "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"
+  },
   "project": "LESHY2-UI",
   "root_sheet": "UI_00_ROOT",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/ecad/generated/H2-instance-ledger.json": "261fa6c38c7a1dabeacbb52f2e4b71f0f4b64e3f29da7b048900c7b4f5d3427f",
+    "hardware/architecture/candidates/G2F-3I.json": "46efd30669da371cae53110bb2991c8aad8c1c8973c66d33b9b8f0f60a1c44a2",
+    "hardware/ecad/generated/H2-instance-ledger.json": "9f7d02c9170aab3edc8e52440b6f85f6b94deb17b95c4929ed290c80bc2a1f95",
     "hardware/ecad/H2-sheet-contract.json": "8d793ea3580542f700514ab6fa315a6e27f06503fa1e23b80c07f1b1afda15c2"
   },
   "summary": {

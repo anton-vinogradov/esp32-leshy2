@@ -234,7 +234,7 @@ def mmcx_service_audit(model: dict, base: dict, placed: list[dict]) -> dict:
         "later_hil": [
             "received connector-to-antenna mating and retention",
             "U214 Cap insertion with the FPV plug fitted",
-            "plug insertion cycles, finger access and antenna strain",
+            "ordinary plug mating, finger access and antenna strain-relief inspection",
         ],
         "errors": errors,
     }
@@ -751,20 +751,22 @@ def audit(model: dict, base: dict) -> dict:
         errors.append("main SMA dual-face assembly-process qualification drifted")
     elif "five visibly wetted rectangular joints" not in assembly_process["acceptance_record"]:
         errors.append("main SMA assembly acceptance no longer proves all five joints")
-    drop_profile = sma_mounting.get("drop_profile", {})
+    hobby_verification = sma_mounting.get("hobby_grade_preorder_verification", {})
     if (
-        drop_profile.get("sample_count") != 5
-        or drop_profile.get("height_m") != 1.0
-        or drop_profile.get("faces") != ["front", "rear", "top", "bottom", "left", "right"]
-        or drop_profile.get("drops_per_face_per_sample") != 1
-        or drop_profile.get("surface") != "18-mm plywood over concrete"
-        or "FM/SW sensitivity/noise" not in drop_profile.get("post_test", "")
-        or "AM/LW loop capacitance/sensitivity" not in drop_profile.get("post_test", "")
+        set(hobby_verification) != {"scope", "design_analysis_inputs", "structural_requirements", "checks"}
+        or "no drop" not in hobby_verification.get("scope", "")
+        or "prescribed mating-cycle count" not in hobby_verification.get("scope", "")
+        or "design-analysis input" not in hobby_verification.get("design_analysis_inputs", "")
+        or "strain relief" not in hobby_verification.get("structural_requirements", "")
+        or "geometry" not in hobby_verification.get("checks", "")
+        or "continuity" not in hobby_verification.get("checks", "")
     ):
-        errors.append("main SMA executable drop and per-path RF requalification profile drifted")
+        errors.append("main SMA hobby-grade pre-order verification contract drifted")
+    if "drop_profile" in sma_mounting:
+        errors.append("main SMA destructive drop profile is forbidden")
     gates = sma_mounting.get("verification_gates", {})
     if set(gates) != {"H5", "H7", "H8"}:
-        errors.append("main SMA documentary/assembly/endurance gates drifted")
+        errors.append("main SMA documentary/assembly/hobby-verification gates drifted")
     retention = model["mechanical_retention"]
     if retention["compression_stops"]["count"] != 4:
         errors.append("M1 retention requires four compression stops")
@@ -1972,7 +1974,7 @@ def render_mmcx_service_svg_legacy(model: dict, result: dict) -> str:
         f'<text x="40" y="790" font-family="sans-serif" font-size="16" font-weight="700" fill="{ink}">3 · TAIL / OPPOSING-SIDE CHECK</text>',
         f'<text x="40" y="822" font-family="sans-serif" font-size="12" fill="{muted}">2.80 ± 0.15-mm pins through 1.60-mm PCB → nominal 1.20 mm into the 11-mm interboard gap.</text>',
         f'<text x="40" y="850" font-family="sans-serif" font-size="12" fill="{green}">✓ Tail keepout opposing-body hits: {len(service["opposing_body_hits"])} · factory route: wave soldering</text>',
-        f'<text x="40" y="880" font-family="sans-serif" font-size="11" fill="{orange}">H5 verifies received mating/retention, final edge aperture, insertion cycles and antenna strain.</text>',
+        f'<text x="40" y="880" font-family="sans-serif" font-size="11" fill="{orange}">H5 locks geometry/instructions; H7/H8 verify mating, retention, aperture and strain relief after arrival.</text>',
         '</svg>',
     ]
     return "\n".join(out) + "\n"
@@ -2015,7 +2017,7 @@ def render_mmcx_service_svg(model: dict, result: dict) -> str:
         f'<text x="{ox+37.5*scale:.1f}" y="{oy+30*scale:.1f}" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#9a3412">removable U214 / U219 Cap slot</text>',
         f'<text x="80" y="530" font-family="sans-serif" font-size="13" fill="#0f766e">✓ static RA plug to nearest SMA: {service["minimum_right_angle_plug_clearance_mm"]:.2f} mm · required {mount["minimum_u214_clearance_mm"]:.1f} mm</text>',
         f'<text x="80" y="560" font-family="sans-serif" font-size="13" fill="#0f766e">✓ static RA plug to shared Cap slot: {service["right_angle_plug_u214_clearance_mm"]:.2f} mm</text>',
-        f'<text x="80" y="590" font-family="sans-serif" font-size="13" fill="#9a3412">△ dashed Ø12 is temporary finger approach; overlaps {", ".join(x["path"] for x in service["handling_envelope_overlaps"])} and closes ergonomically in H5</text>',
+        f'<text x="80" y="590" font-family="sans-serif" font-size="13" fill="#9a3412">△ dashed Ø12 is temporary finger approach; overlaps {", ".join(x["path"] for x in service["handling_envelope_overlaps"])}; H7/H8 inspect access after arrival</text>',
         '<text x="80" y="635" font-family="sans-serif" font-size="16" font-weight="700" fill="#172033">2 · TRUE SIDE SECTION</text>',
         '<rect x="250" y="730" width="460" height="28" fill="#f1f5f9" stroke="#334155" stroke-width="2"/>',
         '<text x="265" y="750" font-family="sans-serif" font-size="11" fill="#526076">RF PCB · 1.6 mm</text>',
@@ -2023,7 +2025,7 @@ def render_mmcx_service_svg(model: dict, result: dict) -> str:
         f'<line x1="480" y1="{730-body_h*18:.1f}" x2="480" y2="625" stroke="#dc2626" stroke-width="2.5" marker-end="url(#redArrow)"/>',
         '<text x="530" y="665" font-family="sans-serif" font-size="12" fill="#dc2626">plug / antenna points out of the rear face</text>',
         '<text x="80" y="815" font-family="sans-serif" font-size="13" fill="#0f766e">✓ SMT-only: no pins or keepout enter the 11-mm interboard gap.</text>',
-        '<text x="80" y="845" font-family="sans-serif" font-size="12" fill="#526076">H5 verifies the received plug, U214/U219 insertion, finger access, retention and antenna strain together.</text>',
+        '<text x="80" y="845" font-family="sans-serif" font-size="12" fill="#526076">H5 locks geometry/instructions; H7/H8 verify plug, Cap insertion, access, retention and strain after arrival.</text>',
         '</svg>',
     ])
     return "\n".join(out) + "\n"
@@ -2131,7 +2133,7 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
             '- The controlled 26.16 × 16.38 × 3.70 mm `AWM666V RX` fallback and its recommended land pattern fit the same bay; it does not replace K331 automatically because it has seven channels instead of 24 and no public JLCPCB route.',
             '- The exact linear TBS5G8MMCXA antenna mates with the distinct MMCX; K331 ANT IN reaches it over one direct 50-ohm PCB trace without U.FL.',
             '- Corrected `DL-MMCX-KWE-90` geometry keeps 3.6 mm of body on the RF PCB and projects only the 3.0-mm barrel beyond the top antenna edge; its pins enter the interboard gap by a nominal 1.2 mm and the tail keepout meets no opposing body.',
-            '- The MMCX body leaves 2.07 mm to the nearest `CC-SUB` and `VOICE-VHF` SMA bodies; only its temporary Ø12 finger envelope overlaps their handling envelopes. The controlled right-angle plug retains 2.40 mm to SMA and 4.80 mm to U214; H5 verifies received parts, installation/removal order, retention and antenna strain.',
+            '- The MMCX body leaves 2.07 mm to the nearest `CC-SUB` and `VOICE-VHF` SMA bodies; only its temporary Ø12 finger envelope overlaps their handling envelopes. The controlled right-angle plug retains 2.40 mm to SMA and 4.80 mm to U214; H5 locks the sourced geometry and deterministic sequence before order, while H7/H8 inspect received fit, retention and antenna strain after arrival.',
             '- Hub remains on the UI board beside storage/audio/broadcast; the FPV RF module and decoder remain together on the RF board.',
             '- Airband now has a [nominally passing but stress-open synthesis](h1-airband-filter.md); the enlarged cell carries alternate/DNP pads, H3 checks bounded estimates, H6 routed extraction before order and H8 the final VNA state.',
         ]
@@ -2218,13 +2220,13 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f'Коллизии корпусов на одной стороне: `{len(result["same_face_collisions"])}`.',
             f'Минимальный встречный Z-зазор: `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
             "Резерв FPV увеличен до `30×24×8 мм`; C5 DBG10 перенесён рядом с S3 DBG10 и не пересекается ни с резервом, ни с соседними корпусами.",
-            f'FPV MMCX: корпус оставляет `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} мм` до ближайшего SMA; контролируемый угловой штекер — `{result["mmcx_service"]["minimum_right_angle_plug_clearance_mm"]:.2f} мм` до SMA и `{result["mmcx_service"]["right_angle_plug_u214_clearance_mm"]:.2f} мм` до общего Cap-Bus-слота. Ø12 — только временная зона пальцев и остаётся H5-проверкой.',
+            f'FPV MMCX: корпус оставляет `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} мм` до ближайшего SMA; контролируемый угловой штекер — `{result["mmcx_service"]["minimum_right_angle_plug_clearance_mm"]:.2f} мм` до SMA и `{result["mmcx_service"]["right_angle_plug_u214_clearance_mm"]:.2f} мм` до общего Cap-Bus-слота. H5 фиксирует geometry/sequence до заказа; Ø12 finger access, fit и retention проверяются H7/H8 после получения.',
             f'GPIO: передний RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["front_rp_gpio"]["free"]}`; задний RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["rear_rp_gpio"]["free"]}`. K331 RSSI официально помечен NC.',
             "M1: все 80 контактов распределены — 25 сигналов, 14 main-power, 2 AON, 25 возвратов и 14 NC-резервов.",
             "Механика M1: четыре 11,00-мм compression-stop, два противосдвиговых упора и независимые захваты плат; разъём не несёт ударную или изгибающую нагрузку.",
             "Шелкография антенн: генератор подтвердил отсутствие пересечений с SMA/MMCX, кабелем FPV, Cap-Bus-слотом, дисплеем и монтажными keep-out.",
-            "Точная посадка десяти SMA следует чертежам A1: прямоугольная RF-пята `1,87×3,30 мм` в `x=0`, четыре прямоугольные земляные лапы `1,60×3,30 мм` в `x=±2,55 мм`, край платы `y=0`. H5 квалифицирует двусторонний процесс пайки, H7 осматривает все пять паек каждого разъёма, H8 выполняет `0,452–0,678 Н·м`, 50 циклов и заданный drop с повторной проверкой каждого RF-тракта.",
-            f'Cap-Bus: mutually-exclusive U214/U219-профили и все восемь целевых зазоров проходят; 43 существующих Cap/evidence-корпуса и их source-backed placement courtyards зарегистрированы fail-closed; support-passive courtyards U219, NFC-loop и swept volume антенны остаются явными H1 gates ({len(model["current_h1_blockers"])}).',
+            "Точная посадка десяти SMA следует чертежам A1: прямоугольная RF-пята `1,87×3,30 мм` в `x=0`, четыре прямоугольные земляные лапы `1,60×3,30 мм` в `x=±2,55 мм`, край платы `y=0`. H5 фиксирует двусторонний процесс пайки, H7 осматривает все пять паек каждого разъёма на единственном собранном прототипе, H8 выполняет обычную сборку/разборку, continuity/inspection и повторную проверку каждого RF-тракта без искусственного старения, падений и vibration-программы.",
+            f'Cap-Bus: mutually-exclusive U214/U219-профили и все восемь целевых зазоров проходят; 43 существующих Cap/evidence-корпуса и их source-backed placement courtyards зарегистрированы fail-closed; exact production display, support-passive courtyards U219, NFC-loop и swept volume антенны остаются явными H1 gates ({len(model["current_h1_blockers"])}).',
             "Верхний display-adapter имеет ноль коллизий и 5,10 мм минимального встречного зазора; платный U.FL второго nRF24 сдвинут ниже адаптера с зазором 1,00 мм.",
         ]
         route_col = "Текущая доступность/маршрут"
@@ -2232,7 +2234,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         title = f'# {model["marker"]} · working target-device placement'
         intro = (
             "Current verifiable physical model of the two 75 × 150 mm PCBs; it is neither complete placement nor authorization to start KiCad. "
-            "The structural audit and complete current Cap/evidence body register pass, while H1 remains open until the three listed U219 geometry gates and explicit mock-up acceptance are closed."
+            "The structural audit and complete current Cap/evidence body register pass, while H1 remains open until the four listed display/U219 acceptance gates and explicit mock-up acceptance are closed."
         )
         outside = "## What the user sees"
         inside = "## What is inside"
@@ -2265,8 +2267,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "M1: all 80 contacts are assigned — 25 signals, 14 main-power, 2 AON, 25 returns and 14 NC reserves.",
             "M1 mechanics: four 11.00-mm compression stops, two anti-shear datums and independent PCB capture; the connector carries no impact or bending load.",
             "Antenna silkscreen: the generator proves no overlap with SMA/MMCX bodies, the installed FPV cable, the Cap-Bus slot, the display or mounting keep-outs.",
-            "The exact ten-SMA land pattern follows the A1 drawings: one rectangular 1.87 × 3.30-mm RF land at x=0, four rectangular 1.60 × 3.30-mm shell lands at x=±2.55 mm and board edge y=0. H5 qualifies the dual-face soldering process, H7 inspects all five joints per connector, and H8 runs 0.452–0.678 N m, 50-cycle and defined drop evidence followed by every path-specific RF check.",
-            f'Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; 43 existing Cap/evidence bodies and their source-backed placement courtyards are registered fail-closed, while U219 support-passive courtyards, the NFC loop and antenna swept volume remain explicit H1 gates ({len(model["current_h1_blockers"])}).',
+            "The exact ten-SMA land pattern follows the A1 drawings: one rectangular 1.87 × 3.30-mm RF land at x=0, four rectangular 1.60 × 3.30-mm shell lands at x=±2.55 mm and board edge y=0. H5 locks the dual-face soldering process, H7 inspects all five joints per connector on the one assembled prototype, and H8 performs ordinary assembly/disassembly, continuity/inspection and every path-specific RF check without artificial ageing, drops or a vibration programme.",
+            f'Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; 43 existing Cap/evidence bodies and their source-backed placement courtyards are registered fail-closed, while the exact production display, U219 support-passive courtyards, the NFC loop and antenna swept volume remain explicit H1 gates ({len(model["current_h1_blockers"])}).',
             "The upper display adapter has zero body collisions and 5.10 mm minimum opposing clearance; the second nRF24 board U.FL moves below it with 1.00 mm planar clearance.",
         ]
         route_col = "Current availability/route"

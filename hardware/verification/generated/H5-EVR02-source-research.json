@@ -3,10 +3,10 @@
   "stage": "H5.0.2-R1",
   "status": "reviewed_research_only",
   "checked_on": "2026-08-26",
-  "purpose": "exhaust primary documentary evidence and fully documented serial alternatives before proposing any received sample",
+  "purpose": "exhaust primary documentary evidence and fully documented serial alternatives before fixing the sole-prototype order manifest",
   "inputs": {
-    "hardware/verification/generated/H5-EVR01-residual-map.json": "4b6e1c6eb498aeb1ff06f09787a6622ee9a38efe48b44f22bf231b83876bd487",
-    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089"
+    "hardware/verification/generated/H5-EVR01-residual-map.json": "846ae4ff4f0b02a2228873085253d2908ae6acc58c20007c6246e01273e2f753",
+    "hardware/architecture/devices.json": "a47012afe7f17a40d0051074febf8a877a75162e913892ba02d57da58fff3d4d"
   },
   "summary": {
     "h5_residuals_researched": 9,
@@ -72,7 +72,7 @@
       "owner": "LCDWiki",
       "title": "3.5-inch ESP32-S3 display ES3C35P",
       "url": "https://www.lcdwiki.com/3.5inch_ESP32-S3_Display",
-      "supports": "orderable complete donor SKU ES3C35P/ES3C35P-NS and 3.5-inch 320 x 480 ST77922 QSPI capacitive-touch class"
+      "supports": "legacy electrical and mechanical evidence for the 3.5-inch 320 x 480 ST77922 QSPI capacitive-touch class; complete donor procurement is rejected"
     },
     "lcdwiki_es3c35p_spec": {
       "owner": "LCDWiki",
@@ -157,64 +157,64 @@
     {
       "id": "H3-PHY-017",
       "source_group": "display",
-      "disposition": "irreducible_received_sample",
+      "disposition": "superseded_by_unresolved_production_panel_gate",
       "sources": [
         "lcdwiki_es3c35p",
         "lcdwiki_es3c35p_spec"
       ],
-      "finding": "ES3C35P is an exact serial donor route for the HMX035CTFT-001-marked display assembly; no standalone raw-panel order identity, current-lot FPC drawing or fully documented drop-in raw replacement was found.",
-      "finding_ru": "ES3C35P — точный серийный донор для сборки с маркировкой HMX035CTFT-001; самостоятельный order identity панели, чертёж FPC текущей партии и полностью документированная drop-in замена не найдены.",
-      "remaining": "receive one donor/assembly and measure controller identity, rails, tail and optical/electrical behaviour",
-      "remaining_ru": "получить одну donor-сборку и измерить identity контроллера, питания, шлейф, оптику и электрическое поведение",
+      "finding": "ES3C35P and HMX035CTFT-001 remain legacy electrical and mechanical evidence only. Complete-donor procurement is rejected because no standalone production-panel order identity, current-lot FPC drawing or factory-placeable route was proven.",
+      "finding_ru": "ES3C35P и HMX035CTFT-001 остаются только прежними электрическими и механическими свидетельствами. Закупка полной donor-сборки отклонена: не доказаны самостоятельный production-panel order identity, чертёж FPC текущей партии и factory-placeable route.",
+      "remaining": "select one exact documented production panel, obtain written factory mating/final-assembly feasibility, and release deterministic assembly instructions for the sole prototype",
+      "remaining_ru": "выбрать одну точную документированную серийную панель, письменно подтвердить factory mating/final assembly и выпустить однозначную инструкцию сборки единственного прототипа",
       "physical_claim_closed": false,
       "purchase_authorized": false
     },
     {
       "id": "H3-PHY-024",
       "source_group": "ir",
-      "disposition": "irreducible_received_sample",
+      "disposition": "production_part_selected_owner_bringup_open",
       "sources": [
         "vishay_tsop752",
         "jlcpcb_tsop75238tr"
       ],
-      "finding": "The selected robust channel is exact TSOP75238TR from JLCPCB C511498. TR and the former TT code retain the same 6.8 x 3.0 x 3.2 mm package, contact order, 38-kHz AGC2 role and 3.3-V compatibility; only the tape presentation differs. The current 15-piece stock covers the five-device trial but not a 100-device run.",
-      "finding_ru": "В устойчивом канале выбран точный TSOP75238TR через JLCPCB C511498. TR и прежний код TT сохраняют тот же корпус 6,8 x 3,0 x 3,2 мм, порядок контактов, роль 38 кГц AGC2 и совместимость с 3,3 В; отличается только подача в ленте. Текущий остаток 15 шт. покрывает партию из пяти устройств, но не серию из 100.",
-      "remaining": "approve CPL rotation and feeder presentation against the JLCPCB placement preview, recheck exact stock before order, and run the inherited two-channel dynamic fixture on received parts",
-      "remaining_ru": "сверить CPL rotation и подачу feeder с placement preview JLCPCB, повторно проверить точный остаток перед заказом и прогнать принятую двухканальную динамическую fixture на полученных деталях",
+      "finding": "The selected robust channel is exact TSOP75238TR from JLCPCB C511498. TR and the former TT code retain the same 6.8 x 3.0 x 3.2 mm package, contact order, 38-kHz AGC2 role and 3.3-V compatibility; only the tape presentation differs. Current stock covers the one installed prototype channel.",
+      "finding_ru": "В устойчивом канале выбран точный TSOP75238TR через JLCPCB C511498. TR и прежний код TT сохраняют тот же корпус 6,8 x 3,0 x 3,2 мм, порядок контактов, роль 38 кГц AGC2 и совместимость с 3,3 В; отличается только подача в ленте. Текущий остаток покрывает один устанавливаемый канал прототипа.",
+      "remaining": "approve CPL rotation and feeder presentation against the production placement preview, recheck exact stock before the sole-prototype order, and run the inherited two-channel dynamic fixture during owner H7/H8 bring-up",
+      "remaining_ru": "сверить CPL rotation и подачу feeder с production placement preview, повторно проверить точный остаток перед заказом единственного прототипа и прогнать принятую двухканальную dynamic fixture во время owner bring-up H7/H8",
       "physical_claim_closed": false,
       "purchase_authorized": false
     },
     {
       "id": "H3-PHY-028",
       "source_group": "battery",
-      "disposition": "irreducible_received_sample",
+      "disposition": "production_part_selected_owner_bringup_open",
       "sources": [],
       "finding": "MAX17320 documentation defines the interfaces and limits. One received device covers blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery with both address spaces, checksum, NVError and remaining-update bitmap read at each transition. Zero-remaining and failed-copy are emulator/fixture-only injections; all seven physical writes are never consumed and no sacrificial chip is required.",
       "finding_ru": "Документация MAX17320 задаёт интерфейсы и пределы. Один полученный экземпляр покрывает blank → намеренно некорректную, но электрически безопасную конфигурацию → проверенный golden/recovery с чтением обоих address space, checksum, NVError и bitmap оставшихся обновлений на каждом переходе. Zero-remaining и failed-copy вводятся только в emulator/fixture; все семь физических записей не расходуются, отдельный жертвенный chip не нужен.",
-      "remaining": "run the one-device safe HIL sequence and the emulator/fixture-only exhaustion and failed-copy injections",
-      "remaining_ru": "выполнить безопасную HIL-последовательность на одном экземпляре и отдельные emulator/fixture-инъекции исчерпания и failed-copy",
+      "remaining": "run the safe HIL sequence on the installed prototype gauge during H7/H8 owner bring-up and keep exhaustion/failed-copy injections emulator- or fixture-only",
+      "remaining_ru": "выполнить безопасную HIL-последовательность на установленном gauge прототипа во время owner bring-up H7/H8, а exhaustion/failed-copy оставить только emulator/fixture-инъекциями",
       "physical_claim_closed": false,
       "purchase_authorized": false
     },
     {
       "id": "H3-PHY-038",
       "source_group": "timing",
-      "disposition": "serial_reference_selected_physical_test_open",
+      "disposition": "owner_bringup_reference_selected",
       "sources": [
         "sandisk_endurance",
         "tme_sandisk"
       ],
       "finding": "SDSQQNR-032G-GN6IA is selected as the exact reference microSD; its rated performance clears the required rates on paper, while CMD6 identity, stalls and the 512 KiB buffer trace remain HIL evidence.",
       "finding_ru": "Точная эталонная microSD выбрана: SDSQQNR-032G-GN6IA. Паспортные скорости выше требований, но CMD6 identity, задержки и трасса 512-КиБ буфера остаются HIL evidence.",
-      "remaining": "receive the exact card and run the existing throughput/stall/buffer contract",
-      "remaining_ru": "получить точную карту и прогнать принятый throughput/stall/buffer contract",
+      "remaining": "include the exact reference card as an owner bring-up article and run the throughput/stall/buffer contract in H8",
+      "remaining_ru": "включить точную эталонную карту как owner bring-up article и прогнать throughput/stall/buffer contract в H8",
       "physical_claim_closed": false,
       "purchase_authorized": false
     },
     {
       "id": "H3-PHY-046",
       "source_group": "boundaries",
-      "disposition": "irreducible_received_sample",
+      "disposition": "order_integrated_accessory_owner_bringup_open",
       "sources": [
         "m5_u214",
         "m5_u214_schematic",
@@ -222,15 +222,15 @@
       ],
       "finding": "The official schematic names P1 only as HDR-SMD_14P-P2.54 and the official structure repository adds no BOM. Manufacturer MPN, section tolerance, material and plating of the fitted post remain undisclosed.",
       "finding_ru": "Официальная схема называет P1 только HDR-SMD_14P-P2.54, а structure repository не содержит BOM. MPN, допуск сечения, материал и покрытие установленного штыря не опубликованы.",
-      "remaining": "identify and measure a received U214, then cycle the mixed U214/HLE stack",
-      "remaining_ru": "идентифицировать и измерить полученный U214, затем циклировать смешанный stack U214/HLE",
+      "remaining": "pack the exact U214 with the sole prototype, then perform ordinary owner assembly/disassembly, continuity, bottoming-clearance and retention inspection on the mixed U214/HLE stack in H7/H8; unsourced forces remain design-analysis inputs",
+      "remaining_ru": "положить точный U214 в поставку единственного прототипа, затем выполнить обычную пользовательскую сборку/разборку, continuity, bottoming-clearance и retention inspection смешанного U214/HLE stack в H7/H8",
       "physical_claim_closed": false,
       "purchase_authorized": false
     },
     {
       "id": "H3-PHY-048",
       "source_group": "boundaries",
-      "disposition": "serial_reference_selected_physical_test_open",
+      "disposition": "owner_bringup_accessories_selected",
       "sources": [
         "m5_grove",
         "m5_cables",
@@ -238,15 +238,15 @@
       ],
       "finding": "A034-G, A034-B and A096 form the exact short, boundary-length and instrument-breakout test set for the admitted M5 profiles; pull networks and waveforms through TXS0102 remain physical.",
       "finding_ru": "A034-G, A034-B и A096 образуют точный короткий, граничный и измерительный набор для разрешённых M5-профилей; pull-сети и формы сигналов через TXS0102 остаются физической проверкой.",
-      "remaining": "receive the three exact cable SKUs and run I2C, UART, GPIO and 1-Wire profiles",
-      "remaining_ru": "получить три точных cable SKU и прогнать профили I2C, UART, GPIO и 1-Wire",
+      "remaining": "include the three exact cable SKUs in the bring-up manifest and run I2C, UART, GPIO and 1-Wire profiles in H8",
+      "remaining_ru": "включить три точных cable SKU в bring-up manifest и прогнать профили I2C, UART, GPIO и 1-Wire в H8",
       "physical_claim_closed": false,
       "purchase_authorized": false
     },
     {
       "id": "H3-PHY-053",
       "source_group": "phase",
-      "disposition": "irreducible_received_sample",
+      "disposition": "production_path_selected_owner_bringup_open",
       "sources": [
         "ebyte_e01",
         "ebyte_e01_datasheet",
@@ -254,27 +254,27 @@
       ],
       "finding": "Ebyte confirms an external IPEX interface but does not disclose the fitted receptacle MPN or lot axis. XC-IPX-SMA-15 was rejected because its 150 mm cable and direct SMA end are not a drop-in replacement for the selected 30 mm jumper, board receptacle and sealed edge SMA path.",
       "finding_ru": "Ebyte подтверждает внешний IPEX, но не публикует MPN и ось установленного receptacle. XC-IPX-SMA-15 отклонён: кабель 150 мм и прямой SMA не являются drop-in заменой выбранным 30-мм jumper, board receptacle и герметичному краевому SMA-тракту.",
-      "remaining": "inspect the fitted receptacles and measure all three assembled RF feeds",
-      "remaining_ru": "осмотреть установленные receptacle и измерить все три собранных RF-тракта",
+      "remaining": "inspect the factory-fitted receptacles and measure all three assembled RF feeds on the sole prototype during H7/H8 owner bring-up",
+      "remaining_ru": "осмотреть установленные фабрикой receptacle и измерить все три собранных RF-тракта единственного прототипа во время owner bring-up H7/H8",
       "physical_claim_closed": false,
       "purchase_authorized": false
     },
     {
       "id": "H3-PHY-057",
       "source_group": "phase",
-      "disposition": "split_h5_identity_h6_layout_h8_measurement",
+      "disposition": "split_preorder_identity_h6_layout_h7_h8_measurement",
       "sources": [],
-      "finding": "The original H5 contract was cyclic because total AMI capacitance includes the not-yet-routed PCB. It is split correctly: H5 identifies and measures received SMA/pod constituents, H6 closes routed geometry and extracted budget, and H8 measures the populated total path.",
-      "finding_ru": "Исходный контракт H5 был циклическим: полная AMI-ёмкость включает ещё не разведённую PCB. Контракт разделён корректно: H5 идентифицирует и измеряет полученные SMA/составляющие pod, H6 закрывает геометрию и extracted budget, H8 измеряет полный собранный тракт.",
-      "remaining": "receive the exact SMA/pod constituent set in H5; retain routed-budget and total-capacitance claims for H6/H8",
-      "remaining_ru": "получить точный набор SMA/составляющих pod в H5; оставить routed budget и полную ёмкость этапам H6/H8",
+      "finding": "The original H5 contract was cyclic because total AMI capacitance includes the not-yet-routed PCB. It is split correctly: H5 locks exact identities, drawings and assembly instructions, H6 closes routed geometry and extracted budget, and H7/H8 inspect and measure the populated total path.",
+      "finding_ru": "Исходный контракт H5 был циклическим: полная AMI-ёмкость включает ещё не разведённую PCB. Контракт разделён корректно: H5 фиксирует exact identities, drawings и assembly instructions, H6 закрывает геометрию и extracted budget, а H7/H8 осматривают и измеряют полный собранный тракт.",
+      "remaining": "lock exact SMA/pod identities, drawings and deterministic assembly instructions before order; inspect received fit in H7/H8 and retain routed-budget and total-capacitance claims for H6/H8",
+      "remaining_ru": "зафиксировать exact SMA/pod identities, drawings и однозначные assembly instructions до заказа; fit проверять в H7/H8, а routed budget и полную ёмкость оставить H6/H8",
       "physical_claim_closed": false,
       "purchase_authorized": false
     },
     {
       "id": "H3-PHY-062",
       "source_group": "phase",
-      "disposition": "selected_part_confirmed_physical_test_open",
+      "disposition": "production_part_confirmed_owner_bringup_open",
       "sources": [
         "te_2118651",
         "digikey_2118651",
@@ -283,8 +283,8 @@
       ],
       "finding": "TE 2118651-2 remains active, fully documented and stocked by an authorized distributor. No evaluated 30 mm alternative improved its 9 GHz performance and price without changing the selected path; installed bend, strain and retention remain physical.",
       "finding_ru": "TE 2118651-2 остаётся active, полностью документирован и доступен у авторизованного дистрибьютора. Рассмотренные 30-мм альтернативы не улучшили 9-ГГц характеристики и цену без изменения тракта; изгиб, strain и retention после установки остаются физическими.",
-      "remaining": "install five exact jumpers and measure bend, strain, retention and RF loss",
-      "remaining_ru": "установить пять точных jumper и измерить изгиб, strain, retention и RF-потери",
+      "remaining": "have the factory install five exact jumpers, then measure bend, strain, retention and RF loss on the sole prototype in H7/H8",
+      "remaining_ru": "установить фабрикой пять точных jumper, затем измерить изгиб, strain, retention и RF-потери на единственном прототипе в H7/H8",
       "physical_claim_closed": false,
       "purchase_authorized": false
     }
@@ -292,7 +292,7 @@
   "mechanical_gates": [
     {
       "id": "H5-MECH-DISPLAY-TAIL",
-      "disposition": "donor_route_found_sample_open",
+      "disposition": "donor_route_rejected_production_panel_gate_open",
       "sources": [
         "lcdwiki_es3c35p",
         "lcdwiki_es3c35p_spec"
@@ -301,7 +301,7 @@
     },
     {
       "id": "H5-MECH-NRF-GEN1-FEEDS",
-      "disposition": "primary_sources_exhausted_sample_open",
+      "disposition": "production_path_locked_owner_bringup_open",
       "sources": [
         "ebyte_e01",
         "ebyte_e01_datasheet",
@@ -311,7 +311,7 @@
     },
     {
       "id": "H5-MECH-U214-MATING-STACK",
-      "disposition": "manufacturer_subpart_hidden_sample_open",
+      "disposition": "manufacturer_subpart_hidden_owner_bringup_open",
       "sources": [
         "m5_u214",
         "m5_u214_schematic",
@@ -321,13 +321,13 @@
     },
     {
       "id": "H5-MECH-NAVIGATION-CONTROLS",
-      "disposition": "assembled_ergonomics_sample_open",
+      "disposition": "assembled_ergonomics_owner_bringup_open",
       "sources": [],
       "physical_claim_closed": false
     },
     {
       "id": "H5-MECH-SA818S-DUAL-LAND-FIT",
-      "disposition": "common_official_land_pattern_and_exact_catalog_routes_reviewed_received_fit_open",
+      "disposition": "common_official_land_pattern_and_exact_catalog_routes_reviewed_prototype_fit_open",
       "sources": [
         "nicerf_sa818s_v18",
         "nicerf_sa818s_package",
@@ -339,25 +339,25 @@
     },
     {
       "id": "H5-MECH-ENCODER-KNOB",
-      "disposition": "assembled_ergonomics_sample_open",
+      "disposition": "assembled_ergonomics_owner_bringup_open",
       "sources": [],
       "physical_claim_closed": false
     },
     {
       "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
-      "disposition": "assembled_ergonomics_sample_open",
+      "disposition": "assembled_ergonomics_owner_bringup_open",
       "sources": [],
       "physical_claim_closed": false
     },
     {
       "id": "H5-MECH-RUN-KILL",
-      "disposition": "assembled_ergonomics_sample_open",
+      "disposition": "assembled_ergonomics_owner_bringup_open",
       "sources": [],
       "physical_claim_closed": false
     },
     {
       "id": "H5-MECH-M5-UNIT-MATE",
-      "disposition": "serial_test_set_selected_sample_open",
+      "disposition": "bringup_accessory_set_selected",
       "sources": [
         "m5_grove",
         "m5_cables",
@@ -367,13 +367,13 @@
     },
     {
       "id": "H5-MECH-CELL-HOLDER-FIT",
-      "disposition": "assembled_retention_sample_open",
+      "disposition": "assembled_retention_owner_bringup_open",
       "sources": [],
       "physical_claim_closed": false
     },
     {
       "id": "H5-MECH-NATIVE-RF-JUMPERS",
-      "disposition": "selected_part_confirmed_sample_open",
+      "disposition": "production_part_confirmed_owner_bringup_open",
       "sources": [
         "te_2118651",
         "digikey_2118651"
@@ -382,7 +382,7 @@
     },
     {
       "id": "H5-MECH-DISPLAY-PERFORMANCE",
-      "disposition": "donor_route_found_sample_open",
+      "disposition": "donor_route_rejected_production_panel_gate_open",
       "sources": [
         "lcdwiki_es3c35p",
         "lcdwiki_es3c35p_spec"
@@ -391,13 +391,13 @@
     },
     {
       "id": "H5-MECH-ACOUSTIC-PATHS",
-      "disposition": "enclosure_dependent_sample_open",
+      "disposition": "enclosure_dependent_owner_bringup_open",
       "sources": [],
       "physical_claim_closed": false
     },
     {
       "id": "H5-MECH-HEADSET-JACK",
-      "disposition": "assembled_mating_sample_open",
+      "disposition": "assembled_mating_owner_bringup_open",
       "sources": [],
       "physical_claim_closed": false
     }
@@ -534,8 +534,8 @@
   },
   "decision_boundary": {
     "accepted_now": "the documentary search result, exact microSD and M5 interconnect test identities, and rejected non-drop-in alternatives",
-    "not_accepted": "any received-lot identity, fit, retention, RF, timing, acoustic, thermal, endurance or fault-injection claim",
-    "next": "H5.0.3-R1 deduplicates the irreducible received-sample basket, measurements and current cost for explicit approval",
+    "not_accepted": "any received-part identity, fit, retention, RF, timing, acoustic, thermal, long-term reliability or fault-injection claim not demonstrated by the one prototype and safe fixtures",
+    "next": "H5.0.3-R1 publishes the order-integrated article manifest, H7/H8 owner evidence contracts and current one-prototype cost; no separate sample purchase exists",
     "purchase_authorized": false,
     "pcb_placement_and_routing_authorized": false,
     "fabrication_authorized": false

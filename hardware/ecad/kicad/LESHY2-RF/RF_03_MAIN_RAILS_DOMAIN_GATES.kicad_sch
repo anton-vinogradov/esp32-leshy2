@@ -4408,7 +4408,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "1kohm_1pct_0402_service_current_limit_resistor"
+			(property "Description" "U214 pin-5 evidence input series resistor"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4472,7 +4472,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+			(property "Description" "U214 pin-5 fail-safe input pull-up"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4536,7 +4536,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "sc70_5_open_drain_noninverting_buffer"
+			(property "Description" "5-V-tolerant U214 pin-5 evidence boundary"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4618,7 +4618,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+			(property "Description" "U214 evidence-buffer local bypass"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4682,7 +4682,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+			(property "Description" "isolated U214 evidence output pull-up"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8532,7 +8532,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "1kohm_1pct_0402_service_current_limit_resistor"
+		(property "Description" "U214 pin-5 evidence input series resistor"
 			(at 213.36 275.59 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8589,7 +8589,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+		(property "Description" "U214 pin-5 fail-safe input pull-up"
 			(at 50.80 278.13 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8646,7 +8646,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "sc70_5_open_drain_noninverting_buffer"
+		(property "Description" "5-V-tolerant U214 pin-5 evidence boundary"
 			(at 294.64 279.40 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8712,7 +8712,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+		(property "Description" "U214 evidence-buffer local bypass"
 			(at 538.48 278.13 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8769,7 +8769,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+		(property "Description" "isolated U214 evidence output pull-up"
 			(at 132.08 280.67 0)
 			(show_name no)
 			(do_not_autoplace no)

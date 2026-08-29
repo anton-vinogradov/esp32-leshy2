@@ -144,6 +144,24 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h1-r2-fpv.ru.md",
     )
 
+    def test_individual_h2_artifacts_are_explicitly_historical_r1(self):
+        generated = REPO_ROOT / "hardware/ecad/generated"
+        artifacts = sorted(
+            path
+            for path in generated.glob("H2-*.json")
+            if re.match(r"H2-(?:UI|RF|CAP|ADP|instance-ledger|kicad-scaffold)", path.name)
+        )
+        self.assertEqual(30, len(artifacts), [path.name for path in artifacts])
+        expected = {
+            "baseline": "R1",
+            "lifecycle": "historical_pre_r2_sheet_scaffold",
+            "allowed_as_r2_authority": False,
+            "superseded_by": "hardware/architecture/h0-r2-rebaseline.json",
+        }
+        for path in artifacts:
+            artifact = json.loads(path.read_text(encoding="utf-8"))
+            self.assertEqual(expected, artifact.get("authority"), path.name)
+
     def read(self, relative: str) -> str:
         return (REPO_ROOT / relative).read_text(encoding="utf-8")
 
@@ -395,12 +413,12 @@ class ProductSiteTests(unittest.TestCase):
             self.read("hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json")
         )
         self.assertEqual("H5.0.3-R1", evidence["stage"])
-        self.assertEqual("draft_factory_and_preorder_response_pending", evidence["status"])
-        self.assertEqual(33, evidence["summary"]["article_lines"])
+        self.assertEqual("draft_order_integrated_manifest_factory_response_pending", evidence["status"])
+        self.assertEqual(30, evidence["summary"]["article_lines"])
         self.assertEqual(11, evidence["summary"]["measurement_contracts"])
         self.assertEqual(23, evidence["summary"]["covered_residuals_and_gates"])
-        self.assertEqual("279.28", evidence["summary"]["known_engineering_material_budget_usd"])
-        self.assertEqual(0, evidence["summary"]["unpriced_manufacturer_lines"])
+        self.assertEqual("232.52", evidence["summary"]["known_engineering_material_budget_usd"])
+        self.assertEqual(1, evidence["summary"]["unpriced_manufacturer_lines"])
         self.assertTrue(all(evidence["checks"].values()))
         pack_gauge = next(row for row in evidence["articles"] if row["id"] == "pack-gauges")
         self.assertEqual(1, pack_gauge["order_quantity"])
@@ -418,12 +436,27 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(0, evidence["supply_constraints"]["orders_submitted"])
         self.assertEqual("successfully_submitted", evidence["supply_constraints"]["submitted_inquiry"]["result"])
         self.assertTrue(all(not row["purchase_authorized"] for row in evidence["articles"]))
+        self.assertEqual(1, evidence["procurement_target"]["finished_device_quantity"])
+        self.assertFalse(evidence["procurement_target"]["batteries_included"])
+        self.assertIn("optional", evidence["procurement_target"]["factory_function_test"])
+        self.assertIn("owner USB-powered", evidence["procurement_target"]["first_power_on"])
+        self.assertFalse(evidence["procurement_target"]["separate_engineering_sample_purchase"])
+        self.assertFalse(evidence["procurement_target"]["coupon_board_phase"])
+        substep_ids = {
+            row["id"] for row in plan["substeps"]
+        }
+        self.assertNotIn("H5.1", substep_ids)
+        self.assertNotIn("H5.2", substep_ids)
+        display_gate = next(row for row in evidence["articles"] if row["id"] == "production-display-gate")
+        self.assertEqual(1, display_gate["order_quantity"])
+        self.assertIsNone(display_gate["pricing"]["unit_usd"])
         for name in ("docs/component-sample-basket.md", "docs/component-sample-basket.ru.md"):
             page = self.read(name)
             self.assertEqual(1, page.count("```mermaid"), name)
             self.assertIn("H5-EVR03", page, name)
-            self.assertIn("279.28", page, name)
+            self.assertIn("232.52", page, name)
             self.assertIn("SA818S-V", page, name)
+            self.assertIn("H7/H8", page, name)
 
     def test_h5_0_3_pcba_platform_baseline_is_complete_and_honest(self):
         plan = json.loads(self.read("hardware/verification/h5-component-evidence-plan.json"))
@@ -459,6 +492,10 @@ class ProductSiteTests(unittest.TestCase):
             "open_until_factory_acceptance_and_quote",
             evidence["assembly_boundary"]["J4-F_factory_final_assembly"]["status"],
         )
+        self.assertEqual(1, evidence["procurement_target"]["finished_device_quantity"])
+        self.assertFalse(evidence["procurement_target"]["batteries_included"])
+        self.assertFalse(evidence["procurement_target"]["factory_function_test"]["release_gate"])
+        self.assertEqual(1, evidence["bom_tool_upload"]["assembly_quantity"])
         self.assertEqual(
             "open_until_kit_and_packing_quote",
             evidence["assembly_boundary"]["J4-P_factory_packed_removable"]["status"],
@@ -1065,7 +1102,12 @@ class ProductSiteTests(unittest.TestCase):
             ["zero remaining updates", "failed-copy interruption"],
             battery["max17320"]["emulator_or_fixture_only_faults"],
         )
-        self.assertIn("dedicated prototype", battery["verification_safety_boundary"]["potentially_damaging_dvt"])
+        self.assertNotIn("potentially_damaging_dvt", battery["verification_safety_boundary"])
+        self.assertIn(
+            "one assembled prototype",
+            battery["verification_safety_boundary"]["hobby_grade_mechanical_verification"],
+        )
+        self.assertNotIn("potentially_damaging_dvt", residuals["verification_safety_boundary"])
         self.assertIn("irreversible locks", residuals["verification_safety_boundary"]["forbidden"])
         self.assertEqual(
             "ordinary_qualification",
@@ -1076,7 +1118,7 @@ class ProductSiteTests(unittest.TestCase):
             next(row for row in residuals["registry"] if row["id"] == "H3-PHY-081")["test_class"],
         )
         self.assertIn(
-            "24/48-hour powered endurance run is ordinary non-destructive",
+            "24/48-hour powered run is ordinary non-destructive",
             self.read("docs/physical-evidence-register.md"),
         )
         self.assertEqual("reviewed_h3_user_accepted", acceptance["status"])
@@ -1262,8 +1304,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(1053, summary["main_candidate_instances"])
         self.assertEqual(26, summary["lora_cap_common_instances"])
         self.assertEqual(2, summary["lora_cap_alternative_module_instances"])
-        self.assertEqual(195, summary["h1_dimensioned_instances"])
-        self.assertEqual(858, summary["schematic_only_main_instances"])
+        self.assertEqual(233, summary["h1_dimensioned_instances"])
+        self.assertEqual(820, summary["schematic_only_main_instances"])
         self.assertEqual(1041, summary["main_board_fitted_components"])
         self.assertEqual(6, summary["main_fitted_interconnect_assemblies"])
         self.assertEqual(6, summary["main_external_mating_products"])

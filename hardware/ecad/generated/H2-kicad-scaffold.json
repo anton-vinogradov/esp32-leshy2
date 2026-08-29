@@ -2,6 +2,12 @@
   "schema_version": 1,
   "stage": "H2.1",
   "status": "reviewed_scaffold",
+  "authority": {
+    "baseline": "R1",
+    "lifecycle": "historical_pre_r2_sheet_scaffold",
+    "allowed_as_r2_authority": false,
+    "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"
+  },
   "source": "hardware/ecad/H2-sheet-contract.json",
   "project_model": "one_independent_kicad_project_per_pcb",
   "projects": [

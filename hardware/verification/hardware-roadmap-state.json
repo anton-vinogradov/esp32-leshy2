@@ -3,7 +3,15 @@
   "baseline": "R2",
   "current_stage": "H1",
   "current_substep": "H1-R2.32",
-  "current_detail": "H1-R2.32 is the current physical working design without starting KiCad; its exact dual-RP GPIO0..47 electrical baseline remains the reviewed H1-R2.31 pin-map artifact. Front Hub RP uses 46 GPIO with reserves 6/47; rear RF RP uses 44 with reserves 15/29/37/38. The five Hub-RF signals bind exactly to M1 contacts 22/23/24/26/27 and RF GPIO19/25/26/24/27. Reset pulls, switched-domain off states, Hub 8/12 PIO plus 14/16 DMA, RF 6/12 PIO plus 12/16 DMA, four isolated audio directions, fail-disconnected S3 ROM-UART GPIO43/44, the C5 module-pad/IO-mux join, all five source-backed U219 active-package courtyards and all 43 existing Cap/evidence body coordinates are machine-checked. The complete physical mock-up still has three explicit blockers: exact U219 support-passive MPNs and courtyards, NFC pickup geometry, and installed-antenna swept volume, followed by explicit acceptance. Received-module/durability qualification remains H5/H7 work; live FSUSB42MUX/C11355 production routing, the service-VBUS detector/latch and the Pack/Safety powered-off-Ioff boundary remain fail-closed before a new R2 H2 export. Purchasing, KiCad and fabrication remain unauthorized.",
+  "current_detail": "H1-R2.32 is the current physical working design without starting KiCad; its exact dual-RP GPIO0..47 electrical baseline remains the reviewed H1-R2.31 pin-map artifact. Front Hub RP uses 46 GPIO with reserves 6/47; rear RF RP uses 44 with reserves 15/29/37/38. The five Hub-RF signals bind exactly to M1 contacts 22/23/24/26/27 and RF GPIO19/25/26/24/27. Reset pulls, switched-domain off states, Hub 8/12 PIO plus 14/16 DMA, RF 6/12 PIO plus 12/16 DMA, four isolated audio directions, fail-disconnected S3 ROM-UART GPIO43/44, the C5 module-pad/IO-mux join, all five source-backed U219 active-package courtyards and all 43 existing Cap/evidence body coordinates are machine-checked. The complete physical mock-up still has four explicit blockers: one exact documented production display with controlled drawing and deterministic factory mating route, exact U219 support-passive MPNs and courtyards, NFC pickup geometry, and installed-antenna swept volume, followed by explicit acceptance. The legacy HMX panel is reference evidence only and cannot enter an R2 order BOM. Received-module qualification remains H5/H7 work; live FSUSB42MUX/C11355 production routing, the service-VBUS detector/latch and the Pack/Safety powered-off-Ioff boundary remain fail-closed before a new R2 H2 export. Purchasing, KiCad and fabrication remain unauthorized.",
+  "preorder_release": {
+    "status": "blocked",
+    "assembled_device_quantity": 1,
+    "factory_role": "deterministic fabrication, population, display mating and final assembly from released files",
+    "factory_powered_function_test": "optional and non-gating",
+    "first_full_power_on": "owner current-limited bring-up after delivery",
+    "required_chain": ["H1", "H2", "H3", "H4", "H5", "H6", "F-PO", "immutable exact-one release"]
+  },
   "stages": [
     {"id": "H0", "status": "reviewed", "baseline": "R2"},
     {"id": "H1", "status": "current", "baseline": "R2", "historical_r1_status": "reviewed"},
@@ -11,8 +19,8 @@
     {"id": "H3", "status": "waiting", "baseline": "R2", "historical_r1_status": "reviewed"},
     {"id": "H4", "status": "waiting", "baseline": "R2", "historical_r1_status": "reviewed"},
     {"id": "H5", "status": "waiting", "baseline": "R2", "historical_r1_status": "in_progress_at_rebaseline", "superseded_evidence": "single-SA518 baseline"},
-    {"id": "H6", "status": "waiting"},
-    {"id": "H7", "status": "waiting"},
+    {"id": "H6", "status": "waiting", "exit": "placement, routed parity, routed electrical/RF/mechanical re-analysis, production outputs and independent DFM/CPL review"},
+    {"id": "H7", "status": "waiting", "order_quantity": 1},
     {"id": "H8", "status": "waiting"},
     {"id": "H9", "status": "waiting"}
   ]

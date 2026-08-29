@@ -6,6 +6,8 @@
 
 **The working reference is JLCPCB Standard PCBA.** This is neither exclusive lock-in nor order authorization. Standard was selected for its public stock/JLC-number assembly library, double-sided SMT+THT, fine-pitch/BGA/QFN, special stackups and SPI/AOI/X-ray. See the official [assembly capabilities](https://jlcpcb.com/capabilities/pcb-assembly-capabilities) and [parts-sourcing paths](https://jlcpcb.com/help/article/pcba-parts-sourcing-instruction).
 
+The procurement target is exactly **one fully assembled prototype**, with no batteries. The factory makes no electrical or mechanical design choices: the production package first fixes the exact panel, its mating, every component and the assembly sequence. The owner performs the first full power-on and USB bring-up.
+
 PCBWay is the first full-device fallback: its official pages confirm [turnkey/combo/consigned PCBA and test](https://www.pcbway.com/assembly-capabilities.html) plus [OEM final assembly](https://www.pcbway.com/oem.html). Exact Leshy2 acceptance and prices still need a written answer; the prepared inquiry has not been sent. Seeed Fusion is confirmed only as a PCBA second source: [turnkey, OPL, mixed assembly and functional test](https://www.seeedstudio.com/pcb-assembly.html) are public, but the required complete `J4-F/J4-P` assembly is not proven.
 
 ```mermaid
@@ -38,26 +40,26 @@ The controlled BOM Tool capture belongs to the former 209-line BOM: 176 matched,
 
 The retained exact search resolves all 30 remaining outliers without component replacement: 12 are added to `J0`, 2 to `J2`, 11 retain the exact MPN through `J3`, 3 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. With the current RP2354B and C5 routes, the whole-BOM result is `J0=166`, `J1=0`, `J2=28`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
 
-The `$1255.6365` displayed in the historical BOM Tool capture covers only its former 176 matched lines and is **not** a current complete assembly price, quote or order. The current minimum evidence basket is calculated separately on the [sample page](component-sample-basket.md).
+The `$1255.6365` displayed in the historical BOM Tool capture covers only its former 176 matched lines and is **not** a current complete assembly price, quote or order. The sole prototype's order-integrated article manifest is calculated on the [manifest page](component-sample-basket.md); there is no separate sample/coupon purchase.
 
 <details>
 <summary>How the 30 remaining outliers were resolved</summary>
 
 | Normalized MPN | Qty | Route | Evidence |
 |---|---:|---:|---|
-| `1227-J` | 1 | `J4-F` | encoder knob requires factory installation and control test after enclosure integration |
+| `1227-J` | 1 | `J4-F` | encoder knob requires deterministic factory installation after enclosure integration; full control bring-up is performed by the owner |
 | `E01-ML01IPX` | 3 | `J3` | three exact full-power nRF24 modules are externally orderable and must be consigned or globally sourced |
 | `RFPC-SMA31-FN-175-A` | 8 | `J3` | exact board SMA is orderable outside the public JLC library |
 | `RFPC-SMA32-FN-175-A` | 2 | `J3` | exact board RP-SMA is orderable outside the public JLC library |
 | `FX8C-80S-SV5(92)` | 1 | `J3` | exact inter-board receptacle is orderable outside the public JLC library |
 | `BGS13SN8E6327XTSA1` | 2 | `J2` | `C55118249` · stock 0 |
-| `U214 Cap LoRa-1262` | 1 | `J4-P` | removable rear Cap accessory is factory-tested, then packed separately for user installation |
+| `U214 Cap LoRa-1262` | 1 | `J4-P` | removable rear Cap accessory is packed separately for user installation; factory compatibility FCT is not mandatory |
 | `GJM1555C1H101JB01D` | 2 | `J3` | retain exact RF capacitor until an RF-equivalent alternate is separately qualified |
 | `PESD24VY1BSF` | 2 | `J3` | retain exact low-capacitance RF ESD identity until an RF-equivalent alternate is separately qualified |
 | `AS02404PO` | 1 | `J3` | exact board speaker is orderable outside the public JLC library and needs manual/THT assembly acceptance |
-| `HMX035CTFT-001` | 1 | `J4-F` | display/flex requires factory mating and display/touch functional test during final assembly |
+| `HMX035CTFT-001` | 1 | `J4-F` | legacy architecture identity only: the exact production panel remains unresolved and requires written factory acceptance for deterministic mating in the one prototype; donor procurement is rejected |
 | `1125R-SMT-4P` | 1 | `J3` | exact Seeed SMT Unit connector is orderable outside the public JLC library |
-| `2118651-2` | 5 | `J4-F` | five removable 30-mm microcoax jumpers require factory installation, strain routing and continuity test during final sandwich assembly |
+| `2118651-2` | 5 | `J4-F` | five removable 30-mm microcoax jumpers require deterministic factory installation and strain routing during final sandwich assembly; full power-on is owner bring-up |
 | `MSPM0C1106SDGS20R` | 2 | `J0` | `C52995805` · stock 34 |
 | `SN74LVC1G07DCKR` | 10 | `J0` | `C7830` · stock 31027 |
 | `SN74LVC1G08DCKR` | 4 | `J0` | `C7832` · stock 179787 |
@@ -96,7 +98,7 @@ The `$1255.6365` displayed in the historical BOM Tool capture covers only its fo
 | [`E01-ML01IPX`](https://jlcpcb.com/parts/componentSearch?searchTxt=E01-ML01IPX) | `—` | not found in public library | `J3` · retain exact module only through new-part/global-sourcing/consignment until a function-preserving stocked module is qualified |
 | [`G-NiceRF SA818S-U`](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549) | `C3001549` | stock 68 | `J0` · exact selected UHF module is priced and in public stock |
 | [`G-NiceRF SA818S-V`](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911) | `C51897911` | Standard PCBA pre-order | `J2` · exact selected VHF module is priced but stock-zero pre-order; lead time remains open |
-| [`HMX035CTFT-001`](https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001) | `—` | display/flex belongs to factory final assembly | `J4-F` · keep replaceable display-adapter architecture; require factory mating plus display/touch test rather than treating the display as an ordinary line-loaded SMT part |
+| [`HMX035CTFT-001`](https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001) | `—` | display/flex belongs to factory final assembly | `J4-F` · keep replaceable display-adapter architecture; require deterministic factory mating and assembly records, with display/touch power-on performed by the owner after delivery |
 | [`0402WGF1603TCE`](https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757) | `C25757` | stock 388017 | `J0` · exact stocked 160-kOhm 0402 replacement preserves the complete audio-attenuator electrical contract and uses a thinner body |
 | [`RS-06K47R0FT`](https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014) | `C140014` | stock 78058 | `J0` · exact stocked 47-Ohm 1206 replacement preserves the IR current-limit power, voltage and temperature contract |
 | [`CC0603KRX7R0BB104`](https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803) | `C113803` | stock 1027658 | `J0` · exact stocked 100-nF 100-V 0603 body; X7R temperature stability is stricter than the replaced X7S class |
@@ -107,11 +109,11 @@ The `$1255.6365` displayed in the historical BOM Tool capture covers only its fo
 
 ## Assembly boundary
 
-JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts. That does not yet prove final device assembly.
+JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts; its official Function Test path accepts a procedure for review and quotation. For Leshy2 that service is optional quote-only insurance, not a gate. Capability to mate the selected documented display and complete one-device final assembly still awaits written confirmation.
 
 | Route | Required operation | Status |
 |---|---|---|
-| `J4-F` | Factory mates and tests display/flex, installs and strain-routes five microcoax jumpers, installs the encoder knob, integrates the enclosure/sandwich and performs whole-device test | 🔒 Open until written capability acceptance and a separate box-build price; H5 and H7 cannot close without it |
+| `J4-F` | From the release package, the factory installs and mates the exact production panel, secures five microcoax jumpers, installs the encoder knob and integrates the enclosure/sandwich without engineering guesses | 🔒 Open until written capability acceptance and one-prototype assembly price; optional Function Test is not a gate |
 | `J4-P` | Factory compatibility-tests and separately packs U214; external antennas are packed as a kit | 🔒 U214 and antenna kit remain open until a kit/packing quote |
 | `J5-U` | User separately buys and installs compatible protected 18650 cells | ✅ Accepted product boundary: accumulators are not included in device delivery |
 
@@ -129,7 +131,7 @@ The official MPN remains `ESP32-C5-WROOM-1U-N8R8`. Only the supplier order code 
 
 - JLCPCB Standard PCBA is the working reference without lock-in.
 - All `210` lines have a defined `J0`–`J3`, `J4-F`, `J4-P` or `J5-U` route; no functional replacement was introduced.
-- JLCPCB's partial [26 August 2026 response](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) confirms MOQ 1 and a typical 8–15-working-day pre-order for exact `SA818S-V C51897911`; final quote/lead exist only after pre-order, and more than 18 working days triggers continue/cancel confirmation. Function Test is conditionally reviewed after order at a `$15.70 + $7.86/hour` basis. By owner decision, accumulators now use `J5-U`: the user buys them separately, so they are not a supplier gate. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) remains open on the actual two-designator U/V job, remaining `J4-F/J4-P`, and identity control. A [clarification reply](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md) is prepared; purchase and order remain unauthorized.
+- JLCPCB's partial [26 August 2026 response](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) confirms exact `SA818S-V C51897911` MOQ 1 and a typical 8–15-working-day pre-order, plus the official Function Test path with manual procedure review and a `$15.70 + $7.86/hour` basis. Function Test is optional for this project and closes no gate; written acceptance of display mating and one-prototype final assembly is still absent. Accumulators remain `J5-U` and outside delivery. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) stays fail-closed; purchase and order remain unauthorized.
 - The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git, but Parts permission remains `Rejected`. [Support replied](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md) that the account is new and has no order history, so an ongoing business need could not yet be verified; reapplication is possible after building history or with a fuller business case/integration plan. The responder explicitly is not on the API review team and supplied no exact order threshold. No reapplication was submitted: API calls remain unusable, and live manual catalogue cards plus BOM validation remain authoritative. PCB/3D are also rejected; SMT Stencil and JLC Balance remain inactive.
 - [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) preserves a fallback without restarting H5: PCBWay is the first full-device candidate and Seeed is the PCBA second source. The [same no-order PCBWay questionnaire](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) is prepared but sending it and all commercial actions remain unauthorized.
 - The former 209-line BOM upload was transmitted and processed; the current 210-line file was generated locally but not transmitted: 196 identities are preserved, 14 new exact pages and the refreshed C5 route were checked separately. No quote, sourcing request, reservation, purchase, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.

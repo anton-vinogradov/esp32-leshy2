@@ -1,42 +1,37 @@
-# H5.0.3 · единая корзина неустранимых образцов
+# H5.0.3 · единый article manifest прототипа
 
 [English](component-sample-basket.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Предыдущий поиск](component-source-research.ru.md)
 
-Корзина `H5.0.3-R1` пересобрана для текущей dual-SA818S архитектуры. В ней есть по одному exact `SA818S-U` и `SA818S-V`; обе цены известны, но VHF-модуль доступен только через pre-order. [JLCPCB Standard PCBA остаётся неэксклюзивным производственным ориентиром](manufacturing-platform.ru.md). Закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication не разрешены.
+Цель `H5.0.3-R1` — один order-integrated manifest для ровно **одного полностью собранного прототипа Leshy2** и его обычных bring-up accessories. Отдельной закупки engineering samples и отдельной H5 coupon-платы нет. Manifest объединяет установленные фабрикой production parts, принятые фабрикой packed accessories и обычные owner-supplied operating items; это не второй коммерческий заказ. Фабрика по закрытому production package устанавливает и стыкует один документированный production panel без инженерных догадок. Первый полный power-on и USB bring-up изображения, подсветки и touch выполняет владелец в H7; физическая квалификация продолжается на том же прототипе в H8. Платный factory Function Test — только optional quote-insurance, а не gate. Аккумуляторы не устанавливаются и не поставляются. HMX035CTFT-001 и полные donor-board остаются только legacy evidence и не являются маршрутом закупки. [JLCPCB Standard PCBA остаётся неэксклюзивным производственным ориентиром](manufacturing-platform.ru.md). Закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication пока не разрешены.
 
 ```mermaid
 flowchart TD
-  R["✅ H5.0.2-R1<br/>источники и замены"] --> B["▶️ H5.0.3-R1<br/>$279.28 · 33 строки"]
+  R["✅ H5.0.2-R1<br/>источники и замены"] --> B["▶️ H5.0.3-R1<br/>единый order manifest"]
   B --> P["JLCPCB Standard<br/>210 строк · 1052 установки"]
   P --> Q["пересборка маршрутов<br/>J0–J3 · J4-F/P"]
   Q --> S["SA818S-V<br/>final pre-order quote"]
   Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
-  S --> A["полная цена и отдельное решение<br/>о закупке образцов"]
+  S --> A["цена одного прототипа<br/>+ factory attrition"]
   X --> A
-  A --> H51["H5.1<br/>incoming inspection"]
-  H51 --> H52["H5.2<br/>coupons по реальным размерам"]
+  A --> H6["H6<br/>KiCad release"]
+  H6 --> H7["H7<br/>1 прототип + owner bring-up"]
+  H7 --> H8["H8<br/>qualification того же прототипа"]
 ```
 
 ## Сводка стоимости
 
-- **$279.28** — известный консервативный material budget для всех priced lines.
-- Внутри него **$275.28** — публичные USD-цены и **$4.00** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
+- **$232.52** — известный консервативный material budget для всех priced lines.
+- Внутри него **$228.52** — публичные USD-цены и **$4.00** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
 - В сумму включены exact `SA818S-U` `C3001549` за `$9.7347` и exact `SA818S-V` `C51897911` за `$10.0710`; у VHF-модуля stock `0`, MOQ 1 и типичные 8–15 рабочих дней, а final quote/lead остаются order-time gate.
-- Не включены доставка, налоги, таможня и H5.2 coupon PCB: геометрия части coupons зависит от H5.1 incoming measurements, поэтому преждевременная печать создала бы тот же цикл, который мы устраняем.
+- Не включены exact production panel, factory attrition, финальная сборка/FCT, доставка, налоги и таможня. Любые дополнительные экземпляры дисплея или коннекторов входят в attrition фабричного quote, а не в пользовательские samples; отдельного H5 coupon-заказа нет.
 - Старая сумма `$164.54` была не дешёвой полной корзиной, а неполным набором из восьми строк; она не покрывала большинство H5 gates.
 
-## Что именно требуется получить
+## Что входит в единый manifest
 
 ### Дисплей
 
-- **2 × `Elecrow DLE06235B / QDtech ES3C35P donor containing HMX035CTFT-001` — $41.80.** [Elecrow current complete-board page](https://www.elecrow.com/3-5-esp32-s3-display-320x480-capacitive-ips-touchscreen-with-speaker-mic-bat-interface-supports-ai-voice-chat.html); listed in stock.
-  Почему минимум: one retained intact electrical/visual reference and one sacrificial tail/adapter specimen; the former five-donor plan added three unneeded spares
-- **1 × `Hirose FH34SRJ-40S-0.5SH(99)` — $3.40.** [Mouser exact-MPN listing](https://www.mouser.com/ProductDetail/Hirose-Connector/FH34SRJ-40S-0.5SH99); orderable exact MPN.
-  Почему минимум: one repeated-mating adapter coupon uses one panel ZIF; failure means the test fails rather than consuming a hidden spare
-- **1 × `Hirose DF40C(2.0)-40DS-0.4V(51)` — $0.55.** [JLCPCB C597934 exact HRS(Hirose) listing](https://jlcpcb.com/partdetail/x/C597934); 7,205 currently placeable; MOQ 1.
-  Почему минимум: one fixed receptacle is sufficient for the single display-adapter coupon; (51) preserves the exact body/mate and changes only reel quantity from the former (58) order code
-- **1 × `Hirose DF40C-40DP-0.4V(51)` — $1.01.** [Mouser exact-MPN listing](https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C-40DP-0.4V51); orderable exact MPN.
-  Почему минимум: one plug is sufficient for the single display-adapter coupon
+- **1 × `EXACT PRODUCTION PANEL — UNRESOLVED` — RFQ.** [QDtech HMX035CTFT-001 legacy electrical evidence](https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf); not selected; exact production-panel identity, factory mating and final-assembly feasibility await written confirmation.
+  Почему минимум: exactly one production panel is installed in the one finished prototype; any extra panels, connectors or flex parts are factory attrition in the quote, never user-purchased samples
 
 ### Расширения
 
@@ -77,7 +72,7 @@ flowchart TD
 - **1 × `Davies Molding 1227-J` — $1.58.** [Mouser exact-MPN listing](https://www.mouser.com/en/ProductDetail/Davies-Molding/1227-J); 524 shown in stock.
   Почему минимум: one exact production knob mates to the one encoder specimen
 - **1 × `C&K JS102011SCQN` — $1.11.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/c-k/JS102011SCQN/7355835); 535 shown in stock.
-  Почему минимум: one switch/aperture path closes force, detent and endurance evidence
+  Почему минимум: the installed switch/aperture path closes fit, detent and ordinary-actuation evidence
 
 ### Питание
 
@@ -100,7 +95,7 @@ flowchart TD
 ### IR
 
 - **1 × `Vishay TSOP75238TR` — $1.30.** [JLCPCB C511498 exact Vishay listing](https://jlcpcb.com/partdetail/x/C511498); 15 currently placeable; MOQ 1.
-  Почему минимум: one received robust-demodulator channel; TR preserves the TT body, contacts and electrical function but requires explicit CPL rotation/feeder-presentation approval before PCBA
+  Почему минимум: one production robust-demodulator channel; TR preserves the TT body, contacts and electrical function but requires explicit CPL rotation/feeder-presentation approval before PCBA
 - **1 × `Vishay TSMP95000TT` — $2.00.** [Mouser exact-MPN listing](https://www.mouser.com/ProductDetail/Vishay-Semiconductors/TSMP95000TT); 4,182 shown in cut-tape stock.
   Почему минимум: one independent carrier-learning channel
 - **1 × `Vishay VSMY14940` — $2.00.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VSMY14940/4071416); 4,872 shown in cut-tape stock.
@@ -120,79 +115,79 @@ flowchart TD
 - **1 × `Remington 38SNSP.125` — $13.33.** [Remington Industries official store](https://www.remingtonindustries.com/magnet-wire/magnet-wire-38-awg-enameled-copper-6-spool-sizes/); smallest exact-wire spool orderable.
   Почему минимум: one smallest spool supplies the controlled winding and measurement retries
 
-## Измерительные контракты
+## Контракты owner bring-up H7/H8
 
-Все `23` residual/gate покрыты `11` контрактами. Pass/fail без raw evidence не принимается.
+Все `23` residual/gate покрыты `11` контрактами. Они исполняются после получения единственного прототипа в H7/H8, а не отдельной закупкой samples/coupons. Pass/fail без raw evidence не принимается.
 
 <details><summary><code>H5-MSR-DISPLAY</code></summary>
 
 - Покрывает: `H3-PHY-017, H5-MECH-DISPLAY-TAIL, H5-MECH-DISPLAY-PERFORMANCE`.
-- Метод: retain one donor intact; photograph both lots; disassemble the second; measure flex outline, pitch, thickness, contact side, stiffener and bend keepout; cycle the exact adapter; then record QSPI/touch identity, VDD/VDDI ramps, reset/IRQ, backlight current, temperature and optical response.
-- Критерий: the current HMX035CTFT-001 tail fits and retains in a replaceable adapter without changing the UI PCB/enclosure datum, and the complete measured display path meets every inherited H3 timing/power rule.
-- Артефакты: dimensioned photos, raw measurements, continuity matrix, logic/power traces and signed record.
+- Метод: the factory installs and mates the selected documented production panel in the sole finished prototype from the released production package, without batteries and without making engineering choices; the owner performs the first full USB-powered bring-up and records known-image, backlight and touch results.
+- Критерий: the production package makes panel identity, mating, retention and assembly deterministic; written factory feasibility is obtained before order, while any paid pre-shipment Function Test is optional quote-only insurance and never a release gate.
+- Артефакты: controlled panel identity/drawing, deterministic mating and assembly instructions, factory assembly record, owner USB bring-up image/backlight/touch traces and signed result.
 
 </details>
 
 <details><summary><code>H5-MSR-U214</code></summary>
 
 - Покрывает: `H3-PHY-046, H5-MECH-U214-MATING-STACK`.
-- Метод: measure the fitted U214 posts and exact HLE; record all 14 continuities, bottoming, insertion/withdrawal force, repeated cycles, rail preload and screw retention.
+- Метод: measure the fitted U214 posts and exact HLE; during ordinary assembly/disassembly record all 14 continuities, bottoming clearance, rail preload, screw retention and visual condition without a prescribed force or cycle programme.
 - Критерий: the mixed U214/HLE pair mates without yield or bottoming, retains every contact and preserves the protected hot-plug sequence.
-- Артефакты: metrology, force/cycle CSV, continuity log and installed photos.
+- Артефакты: metrology, continuity log and installed photos.
 
 </details>
 
 <details><summary><code>H5-MSR-M5</code></summary>
 
 - Покрывает: `H3-PHY-048, H5-MECH-M5-UNIT-MATE`.
-- Метод: measure connector/cable geometry and run I2C, UART, GPIO and 1-Wire profiles through TXS0102 at short and boundary lengths with the breakout attached.
-- Критерий: insertion, retention, strain relief, pull networks and waveforms satisfy each admitted profile; unsupported motor/actuator loads remain excluded.
-- Артефакты: cable photos/lengths, force/cycle records and oscilloscope captures.
+- Метод: measure connector/cable geometry, inspect ordinary mating and strain relief, and run I2C, UART, GPIO and 1-Wire profiles through TXS0102 at short and boundary lengths with the breakout attached.
+- Критерий: ordinary mating, retention, strain relief, pull networks and waveforms satisfy each admitted profile; unsupported motor/actuator loads remain excluded.
+- Артефакты: cable photos/lengths, continuity records and oscilloscope captures.
 
 </details>
 
 <details><summary><code>H5-MSR-RF5</code></summary>
 
 - Покрывает: `H3-PHY-053, H3-PHY-062, H5-MECH-NRF-GEN1-FEEDS, H5-MECH-NATIVE-RF-JUMPERS`.
-- Метод: inspect all E01 factory receptacles; assemble five straight U.FL-to-U.FL cable paths and four edge SMA boundaries; measure bend, retention and S-parameters; run all three nRF24 simultaneously in full RX, TX and mixed modes with every inactive interface hardware-quiet.
+- Метод: inspect all E01 factory receptacles; assemble the five U.FL cable paths and edge SMA boundaries normally; inspect bend, retention and strain relief, verify continuity and S-parameters, then run all three nRF24 simultaneously in full RX, TX and mixed modes with every inactive interface hardware-quiet.
 - Критерий: all five paths meet inherited loss/match and retention limits, all three nRF24 meet concurrent deadlines without neighbouring-interface stalls or desense.
-- Артефакты: microscope photos, force/cycle CSV, five VNA touchstone sets and 3R/1T2R/2T1R/3T traffic traces.
+- Артефакты: microscope photos, continuity records, five VNA touchstone sets and 3R/1T2R/2T1R/3T traffic traces.
 
 </details>
 
 <details><summary><code>H5-MSR-SA818S-DUAL</code></summary>
 
 - Покрывает: `H5-MECH-SA818S-DUAL-LAND-FIT`.
-- Метод: confirm both received G-NiceRF identities and the common Rev 1.8 18-land contact map; measure each module and castellations; populate one common-land coupon with independently selectable UHF/VHF positions; record solder heat, VNA, supply/current/temperature, band limits, both power settings, audio, UART/PTT/PD/H-L and FAULT_KILL for each installed variant.
-- Критерий: both exact modules fit the common accepted reserve and each independently meets its inherited RF/audio/safety contract; no CE substitution is silent and no test drives reserved contacts 8-18.
-- Артефакты: JLC identity records, incoming photos, land-fit X-ray/photos, VNA/RF/audio/power/thermal/fault traces for U and V.
+- Метод: confirm both factory-installed G-NiceRF identities and the common Rev 1.8 18-land contact map on the sole prototype; inspect each module and castellations, then record VNA, supply/current/temperature, band limits, both power settings, audio, UART/PTT/PD/H-L and FAULT_KILL for each independently selectable installed variant during H7/H8 owner bring-up.
+- Критерий: both exact modules fit the common accepted production land and each independently meets its inherited RF/audio/safety contract; no CE substitution is silent and no test drives reserved contacts 8-18.
+- Артефакты: factory identity/assembly records, arrival and land-fit photos, VNA/RF/audio/power/thermal/fault traces for U and V.
 
 </details>
 
 <details><summary><code>H5-MSR-CONTROLS</code></summary>
 
 - Покрывает: `H5-MECH-NAVIGATION-CONTROLS, H5-MECH-DIRECT-PRESS-CONTROLS, H5-MECH-ENCODER-KNOB, H5-MECH-RUN-KILL`.
-- Метод: populate the full 16-switch interface plus encoder/knob and side RUN/KILL aperture; measure access, actuation, accidental-press protection, depth, detents and repeated cycles.
-- Критерий: every serial control is independently reachable in the accepted external layout, remains recessed where required and passes the declared force/endurance limits.
-- Артефакты: dimensioned assembled photos, force curves, cycle log and signed ergonomic checklist.
+- Метод: use the full 16-switch interface plus encoder/knob and side RUN/KILL aperture on the one assembled prototype; inspect access, ordinary actuation, accidental-press protection, depth and detents without artificial ageing.
+- Критерий: every serial control is independently reachable in the accepted external layout, remains recessed where required and works during ordinary operation.
+- Артефакты: dimensioned assembled photos, continuity/actuation record and signed ergonomic checklist.
 
 </details>
 
 <details><summary><code>H5-MSR-PACK</code></summary>
 
 - Покрывает: `H3-PHY-028, H5-MECH-CELL-HOLDER-FIT`.
-- Метод: keep one matched same-lot protected-cell pair inside its exact MPN voltage/current/temperature limits for admitted-operation, holder, vibration and thermal evidence; on one MAX17320 record blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery with both address spaces, checksum, NVError and remaining-update bitmap; inject zero-remaining, failed-copy, reversed, swapped, open, short, missing, imbalance and temperature thresholds through the emulator or current-limited cell-simulator/NTC fixture.
-- Критерий: the matched pair remains mechanically/electrically retained at every admitted corner, the gauge blocks and recovers deterministically, all seven physical NVM updates are not consumed, and no real cell is abused beyond its MPN limits.
-- Артефакты: cell lot record, dimensional/force/vibration traces, simulator/NTC-fixture traces, gauge images/readbacks and fault logs.
+- Метод: verify exact holder/cradle/stop geometry and polarity, install/remove the matched same-lot protected-cell pair only as ordinarily required, then inspect pads/contact retention and continuity; keep the pair inside its exact MPN voltage/current/temperature limits; on one MAX17320 record blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery with both address spaces, checksum, NVError and remaining-update bitmap; inject zero-remaining, failed-copy, reversed, swapped, open, short, missing, imbalance and temperature thresholds through the emulator or current-limited cell-simulator/NTC fixture.
+- Критерий: the enclosure rather than SMT pads carries ordinary insertion/removal load, the matched pair remains mechanically/electrically retained, the gauge blocks and recovers deterministically, all seven physical NVM updates are not consumed, and no real cell is abused beyond its MPN limits.
+- Артефакты: cell identity record, dimensioned installation photos, pad/contact continuity inspection, simulator/NTC-fixture traces, gauge images/readbacks and fault logs.
 
 </details>
 
 <details><summary><code>H5-MSR-AUDIO</code></summary>
 
 - Покрывает: `H5-MECH-ACOUSTIC-PATHS, H5-MECH-HEADSET-JACK`.
-- Метод: mount the exact speaker and downward microphone in the representative cavity; sweep response/noise/feedback/vibration; cycle the jack with CTIA and ordinary TRS while recording detect, source selection, bias, transient and unplug pop.
+- Метод: mount the exact speaker and downward microphone in the representative cavity; sweep response/noise/feedback and inspect buzz/rattle during ordinary playback; mate CTIA and ordinary TRS as needed while recording detect, source selection, bias, transient and unplug pop.
 - Критерий: the enclosure path meets the inherited gain/noise/thermal limits and the jack preserves CTIA/TRS behavior without blocking the internal microphone.
-- Артефакты: audio sweeps, noise/feedback captures, insertion-force/cycle data and transient traces.
+- Артефакты: audio sweeps, noise/feedback captures, ordinary-mating continuity record and transient traces.
 
 </details>
 
@@ -217,9 +212,9 @@ flowchart TD
 <details><summary><code>H5-MSR-AMLW</code></summary>
 
 - Покрывает: `H3-PHY-057`.
-- Метод: verify exact identities and physical envelopes; wind and trim the first pod to 300 uH +/-5%; document mating and constituent geometry.
-- Критерий: the received SMA and every controlled pod constituent match the selected identities/envelopes and the completed pod meets inductance; routed parasitic budget remains H6 and total populated capacitance remains H8.
-- Артефакты: incoming photos, dimensions, winding record, L/Q sweep and mating record.
+- Метод: verify exact delivered identities and physical envelopes; wind and trim the first owner pod to 300 uH +/-5% after arrival; document mating and constituent geometry.
+- Критерий: the installed SMA and every controlled pod constituent match the selected identities/envelopes and the completed pod meets inductance; routed parasitic budget remains H6 and total populated capacitance remains H8.
+- Артефакты: arrival photos, dimensions, winding record, L/Q sweep and mating record.
 
 </details>
 

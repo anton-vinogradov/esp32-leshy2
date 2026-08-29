@@ -4,7 +4,7 @@ H3.7.2 закрыт. В сведениях шести фаз H3 было 88 resi
 
 Каждая машинная строка содержит точный исходный artifact, ответственный gate, обязательный artifact и pass rule. Несоответствие повторно открывает исходный результат, а не превращается в waiver разводки или теста. Реестр не разрешает закупку, layout или печать. Исторический маркер прогресса R1 — `H3.7.3`.
 
-Безопасный fault injection отделён от потенциально повреждающей qualification. Исчерпание/failed-copy MAX17320 и электрические faults pack/NTC задаются emulator или current-limited fixture; реальные банки остаются внутри ограничений точного MPN по напряжению, току и температуре. Механические drop- и cycle-тесты разъёмов/держателя выполняются только на выделенных DVT-прототипах, которые могут быть повреждены. 24/48-часовой прогон под питанием — обычная неразрушающая qualification. Необратимые locks, прожиг ключей/security-fuse и намеренное издевательство над реальными банками запрещены.
+Безопасный fault injection отделён от обычной hobby-grade механической проверки. Исчерпание/failed-copy MAX17320 и электрические faults pack/NTC задаются emulator или current-limited fixture; реальные банки остаются внутри ограничений точного MPN по напряжению, току и температуре. Единственный собранный прототип проверяется через geometry/DRC, анализ load path корпуса, статические пределы из источников при их наличии, обычную сборку/разборку, continuity и визуальный осмотр; падения, vibration, заданное число циклов и расходование собранного устройства не требуются. 24/48-часовой прогон под питанием — обычная неразрушающая qualification. Необратимые locks, прожиг ключей/security-fuse и намеренное издевательство над реальными банками запрещены.
 
 | ID | Этап | Источник | Требуемое физическое evidence |
 |---|---|---|---|
@@ -53,7 +53,7 @@ H3.7.2 закрыт. В сведениях шести фаз H3 было 88 resi
 | `H3-PHY-043` | `H8` | `H3.4` | prove S3-RP >=1.5 MB/s with <=250-us alert-to-read and S3-C5 >=1.5 MB/s with <=2-ms control RTT |
 | `H3-PHY-044` | `H8` | `H3.4` | measure 400-kHz SYS_I2C transaction/recovery/IRQ latency with every assembled address and simultaneous UI activity |
 | `H3-PHY-045` | `H8` | `H3.4` | measure M1 far-end rail drop, return offset, crosstalk and USB/SPI eye/edge quality after PCB placement |
-| `H3-PHY-046` | `H5+H8` | `H3.4` | verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair |
+| `H3-PHY-046` | `H5+H8` | `H3.4` | verify received stock U214 male-post material/plating, ordinary assembly/disassembly, current continuity, bottoming clearance and retention inspection; any unsourced insertion force remains a design-analysis input, and the 4.1-A figure proves only the controlled HLE/TSM pair |
 | `H3-PHY-047` | `H8` | `H3.4` | measure U214 SPI load/edges at 10 MHz and external I2C total capacitance/rise time <=150 pF/300 ns |
 | `H3-PHY-048` | `H5+H8` | `H3.4` | qualify each native Unit profile, cable length and pull network through TXS0102; 1-Wire remains specimen-only |
 | `H3-PHY-049` | `H8` | `H3.4` | inject dual-branch request, overload, reverse source, wrong accessory, hot plug and brownout while proving independent latch-off |

@@ -4,7 +4,7 @@
   "status": "reviewed_battery_sensing_thermistors_and_analog_fault_thresholds",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
+    "hardware/architecture/devices.json": "a47012afe7f17a40d0051074febf8a877a75162e913892ba02d57da58fff3d4d",
     "hardware/verification/generated/H3-VRF03-method-contract.json": "c8561eb86abcb2b484962421c3c379fbcdafa6f0850f6d4634fef355531a233e"
   },
   "provenance": {
@@ -351,7 +351,7 @@
   "verification_safety_boundary": {
     "safe_fault_injection": "use one real MAX17320 only for blank -> deliberately invalid but electrically safe configuration -> reviewed golden/recovery; use a current-limited cell simulator and NTC fixture for zero-remaining, failed-copy, reversed, swapped, open, short, missing, imbalance and threshold cases",
     "real_cell_boundary": "operate the exact matched cell lot only inside its MPN voltage, current and temperature limits; do not heat, overvoltage, reverse or short real cells",
-    "potentially_damaging_dvt": "mechanical drop and connector/holder cycle qualification uses dedicated prototype devices and may consume or damage them",
+    "hobby_grade_mechanical_verification": "the one assembled prototype uses geometry/DRC, enclosure load-path review, manufacturer-sourced static limits where available, ordinary assembly/disassembly, continuity and visual inspection; no drop, vibration, prescribed cycle count or consumed assembled device is required",
     "forbidden": "irreversible locks, security burns and intentional real-cell abuse outside the exact MPN limits"
   },
   "remaining_hil": [

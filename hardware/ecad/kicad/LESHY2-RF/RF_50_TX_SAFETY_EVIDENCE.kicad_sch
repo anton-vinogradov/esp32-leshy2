@@ -6394,7 +6394,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "vssop8_triple_open_drain_noninverting_buffer"
+			(property "Description" "AON-to-main hardware evidence isolator"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6494,7 +6494,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+			(property "Description" "main evidence-isolator bypass"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8030,7 +8030,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+			(property "Description" "AON pull-up for hardware ANY_TX aggregate"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8094,7 +8094,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "sot23_dual_common_anode_schottky"
+			(property "Description" "evidence diode OR for S3 / C5"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8164,7 +8164,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "sot23_dual_common_anode_schottky"
+			(property "Description" "evidence diode OR for nRF24 #0 / #1"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8234,7 +8234,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "sot23_dual_common_anode_schottky"
+			(property "Description" "evidence diode OR for nRF24 #2 / CC"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8304,7 +8304,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "sot23_dual_common_anode_schottky"
+			(property "Description" "evidence diode OR for voice / IR"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8374,7 +8374,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "sot23_dual_common_anode_schottky"
+			(property "Description" "evidence diode OR for external Cap evidence"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13673,7 +13673,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "vssop8_triple_open_drain_noninverting_buffer"
+		(property "Description" "AON-to-main hardware evidence isolator"
 			(at 182.88 265.43 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13748,7 +13748,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+		(property "Description" "main evidence-isolator bypass"
 			(at 457.20 262.89 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15116,7 +15116,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "10kohm_1pct_0402_main_feedback_bottom_resistor"
+		(property "Description" "AON pull-up for hardware ANY_TX aggregate"
 			(at 388.62 326.39 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15173,7 +15173,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "sot23_dual_common_anode_schottky"
+		(property "Description" "evidence diode OR for S3 / C5"
 			(at 594.36 328.93 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15233,7 +15233,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "sot23_dual_common_anode_schottky"
+		(property "Description" "evidence diode OR for nRF24 #0 / #1"
 			(at 457.20 331.47 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15293,7 +15293,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "sot23_dual_common_anode_schottky"
+		(property "Description" "evidence diode OR for nRF24 #2 / CC"
 			(at 525.78 331.47 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15353,7 +15353,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "sot23_dual_common_anode_schottky"
+		(property "Description" "evidence diode OR for voice / IR"
 			(at 114.30 334.01 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15413,7 +15413,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "sot23_dual_common_anode_schottky"
+		(property "Description" "evidence diode OR for external Cap evidence"
 			(at 251.46 334.01 0)
 			(show_name no)
 			(do_not_autoplace no)

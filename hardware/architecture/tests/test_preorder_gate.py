@@ -14,26 +14,34 @@ class PreorderGateTests(unittest.TestCase):
         self.contract = json.loads(self.contract_path.read_text(encoding="utf-8"))
 
     def test_gate_reports_actual_unfinished_state(self):
-        self.assertEqual("LESHY2-PREORDER-1", self.contract["contract_id"])
+        self.assertEqual("LESHY2-PREORDER-R2", self.contract["contract_id"])
         truth = self.contract["current_truth"]
-        self.assertIn("H1 accepted", truth["mechanical_projection"])
-        self.assertIn("H2 production schematics accepted", truth["current_ecad"])
-        self.assertIn("F3 reviewed", truth["executable_firmware"])
-        self.assertIn("52/52 artifacts reproduce byte-for-byte", truth["executable_firmware"])
-        self.assertIn("ESP32-S3 exact debug/release images boot", truth["instruction_emulation"])
-        self.assertIn("H4 reviewed", truth["joined_pre_layout"])
+        self.assertIn("H1-R2.32 is in progress", truth["mechanical_projection"])
+        self.assertIn("R2 H2 production schematic and PCB layout have not begun", truth["current_ecad"])
+        self.assertIn("F2-R2.5 is in progress", truth["executable_firmware"])
+        self.assertIn("F3-R2 and F-PO remain blocked", truth["instruction_emulation"])
+        self.assertIn("H6 routed release candidate", truth["joined_release"])
+        self.assertIn("immutable P8 order release", truth["joined_release"])
         self.assertEqual("not run", truth["physical_hil"])
+        self.assertFalse(truth["order_authorized"])
 
         gates = {gate["id"]: gate for gate in self.contract["gates"]}
         self.assertEqual("reviewed", gates["P0_REQUIREMENTS_ARCHITECTURE"]["status"])
-        self.assertEqual("reviewed", gates["P1_MECHANICAL_DESIGN"]["status"])
-        self.assertEqual("reviewed", gates["P2_CURRENT_SCHEMATIC"]["status"])
-        self.assertEqual("reviewed", gates["P3_VIRTUAL_ELECTRICAL"]["status"])
-        self.assertEqual("reviewed", gates["P5_TARGET_BUILDS_EMULATION"]["status"])
-        self.assertEqual("reviewed", gates["P4_EXECUTABLE_FIRMWARE_MODEL"]["status"])
-        self.assertEqual("reviewed", gates["P6_PRE_LAYOUT_REVIEW"]["status"])
-        self.assertEqual("not_authorized", gates["P7_ENGINEERING_SAMPLE_ORDER"]["status"])
-        self.assertEqual("not_authorized", gates["P8_KICAD_LAYOUT_AND_PROTOTYPE_PCB"]["status"])
+        self.assertEqual("in_progress", gates["P1_CURRENT_PHYSICAL_DESIGN"]["status"])
+        for gate_id in (
+            "P2_R2_PRODUCTION_SCHEMATIC",
+            "P3_R2_VIRTUAL_ELECTRICAL",
+            "P4_JOINED_PRE_LAYOUT_REVIEW",
+            "P5_EXACT_PRODUCTION_SOURCING",
+            "P6_ROUTED_PRODUCTION_PACKAGE",
+            "P7_FIRST_SPIN_DIAGNOSTIC",
+        ):
+            self.assertEqual("blocked", gates[gate_id]["status"])
+        self.assertEqual("not_authorized", gates["P8_IMMUTABLE_EXACT_ONE_RELEASE"]["status"])
+        boundary = self.contract["procurement_boundary"]
+        self.assertEqual(1, boundary["assembled_device_quantity"])
+        self.assertIn("optional", boundary["factory_powered_function_test"])
+        self.assertIn("owner", boundary["first_full_power_on"])
 
     def test_legacy_ecad_cannot_be_mistaken_for_current(self):
         current = REPO_ROOT / "hardware/tscircuit"
@@ -54,11 +62,13 @@ class PreorderGateTests(unittest.TestCase):
         plan = (
             REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
+        plan_normalized = " ".join(plan.split())
         self.assertIn("H1 through H4", index)
         self.assertIn("H5.0.3 is current", index)
         self.assertIn("superseded", plan)
         self.assertIn("remain unauthorized", plan)
-        self.assertIn("Purchasing is the last resort", plan)
+        self.assertIn("no separate engineering-sample or H5 coupon order", plan_normalized)
+        self.assertIn("sole prototype order", plan_normalized)
 
 
 if __name__ == "__main__":

@@ -61,7 +61,7 @@
     "verify direct finger access through the enclosure openings",
     "verify each direction and OK actuate independently",
     "verify adjacent simultaneous presses remain readable and contradictory pairs are rejected by firmware",
-    "verify force, accidental-press margin, sealing boundary and endurance on the assembled front panel"
+    "verify ordinary actuation, accidental-press margin and sealing-boundary fit on the one assembled front panel without artificial ageing"
   ],
-  "release_boundary": "The five selected controls and their positions close the H1 paper layout. Enclosure aperture feel and assembled endurance remain H5 checks."
+  "release_boundary": "The five selected controls and their positions close the H1 paper layout. H5 locks source-backed opening geometry and DRC before order; H7/H8 inspect aperture fit, ordinary actuation and accidental-press margin on the one assembled prototype after arrival, with no prescribed-cycle qualification."
 }

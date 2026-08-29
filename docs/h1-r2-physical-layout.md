@@ -1,6 +1,6 @@
 # H1-R2.32 · working target-device placement
 
-Current verifiable physical model of the two 75 × 150 mm PCBs; it is neither complete placement nor authorization to start KiCad. The structural audit and complete current Cap/evidence body register pass, while H1 remains open until the three listed U219 geometry gates and explicit mock-up acceptance are closed.
+Current verifiable physical model of the two 75 × 150 mm PCBs; it is neither complete placement nor authorization to start KiCad. The structural audit and complete current Cap/evidence body register pass, while H1 remains open until the four listed display/U219 acceptance gates and explicit mock-up acceptance are closed.
 
 ## What the user sees
 
@@ -48,8 +48,8 @@ Current verifiable physical model of the two 75 × 150 mm PCBs; it is neither co
 - M1: all 80 contacts are assigned — 25 signals, 14 main-power, 2 AON, 25 returns and 14 NC reserves.
 - M1 mechanics: four 11.00-mm compression stops, two anti-shear datums and independent PCB capture; the connector carries no impact or bending load.
 - Antenna silkscreen: the generator proves no overlap with SMA/MMCX bodies, the installed FPV cable, the Cap-Bus slot, the display or mounting keep-outs.
-- The exact ten-SMA land pattern follows the A1 drawings: one rectangular 1.87 × 3.30-mm RF land at x=0, four rectangular 1.60 × 3.30-mm shell lands at x=±2.55 mm and board edge y=0. H5 qualifies the dual-face soldering process, H7 inspects all five joints per connector, and H8 runs 0.452–0.678 N m, 50-cycle and defined drop evidence followed by every path-specific RF check.
-- Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; 43 existing Cap/evidence bodies and their source-backed placement courtyards are registered fail-closed, while U219 support-passive courtyards, the NFC loop and antenna swept volume remain explicit H1 gates (3).
+- The exact ten-SMA land pattern follows the A1 drawings: one rectangular 1.87 × 3.30-mm RF land at x=0, four rectangular 1.60 × 3.30-mm shell lands at x=±2.55 mm and board edge y=0. H5 locks the dual-face soldering process, H7 inspects all five joints per connector on the one assembled prototype, and H8 performs ordinary assembly/disassembly, continuity/inspection and every path-specific RF check without artificial ageing, drops or a vibration programme.
+- Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; 43 existing Cap/evidence bodies and their source-backed placement courtyards are registered fail-closed, while the exact production display, U219 support-passive courtyards, the NFC loop and antenna swept volume remain explicit H1 gates (4).
 - The upper display adapter has zero body collisions and 5.10 mm minimum opposing clearance; the second nRF24 board U.FL moves below it with 1.00 mm planar clearance.
 
 ## Exact factory parts
@@ -74,6 +74,7 @@ Current verifiable physical model of the two 75 × 150 mm PCBs; it is neither co
 
 ## Final H1 acceptance
 
+- select one exact documented production display panel, controlled drawing and mating envelope with a deterministic factory-installable route before H1 closes or R2 H2 starts
 - complete exact support-passive values/MPNs and prove their courtyards inside the two bounded U219 placement islands
 - obtain controlled U219 field-structure geometry or measure a received unit before locating the weak printed NFC pickup loop and its DNP C0G bank
 - measure the installed U219 RP-SMA antenna swept volume against the rear connector bank, FPV plug, enclosure and user hand access
@@ -81,6 +82,7 @@ Current verifiable physical model of the two 75 × 150 mm PCBs; it is neither co
 
 ### Preconditions before R2 H2 / KiCad
 
+- select one exact documented production display panel, controlled drawing, electrical map and deterministic factory mating route; HMX remains legacy evidence only
 - timestamp an exact live JLC stock-or-explicit-route, MOQ and price for onsemi FSUSB42MUX / C11355
 - select and factory-validate the exact service-VBUS detector/latch MPN used by the closed C5 electrical ownership contract
 - instantiate and prove the exact powered-off-Ioff isolation boundary and separate 3V3_MAIN/AON pull-up domains for Hub GPIO42/43 Pack/Safety I2C

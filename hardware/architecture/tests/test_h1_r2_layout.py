@@ -74,22 +74,27 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn("no live stub", bay["attachment"]["rf_selection"])
 
     def test_h1_blockers_are_separate_from_dependent_and_later_work(self):
-        self.assertEqual(3, len(self.model["current_h1_blockers"]))
+        self.assertEqual(4, len(self.model["current_h1_blockers"]))
         self.assertEqual(
             len(self.model["current_h1_blockers"]),
             len(self.model["current_h1_blockers_ru"]),
         )
         self.assertFalse(any("canonical coordinate register" in row for row in self.model["current_h1_blockers"]))
+        self.assertTrue(any("production display" in row for row in self.model["current_h1_blockers"]))
         self.assertTrue(any("support-passive" in row for row in self.model["current_h1_blockers"]))
         self.assertTrue(any("printed NFC" in row for row in self.model["current_h1_blockers"]))
         self.assertTrue(any("swept volume" in row for row in self.model["current_h1_blockers"]))
-        self.assertEqual(3, len(self.model["pre_r2_h2_gates"]))
+        self.assertEqual(4, len(self.model["pre_r2_h2_gates"]))
+        self.assertTrue(any("production display" in row for row in self.model["pre_r2_h2_gates"]))
         self.assertTrue(any("C11355" in row for row in self.model["pre_r2_h2_gates"]))
         self.assertTrue(any("service-VBUS" in row for row in self.model["pre_r2_h2_gates"]))
         self.assertTrue(any("powered-off-Ioff" in row for row in self.model["pre_r2_h2_gates"]))
         self.assertEqual(1, len(self.model["dependent_h1_work"]))
         self.assertIn("explicitly accept the generated complete R2", self.model["dependent_h1_work"][0])
-        self.assertEqual({"H5/H6/H7", "H5/H7", "H5/H8"}, {row["stage"] for row in self.model["downstream_verification"]})
+        self.assertEqual(
+            {"H5/H6 then H7/H8", "H5/H6 then H7", "H5 then H7/H8"},
+            {row["stage"] for row in self.model["downstream_verification"]},
+        )
         self.assertEqual(self.model["current_h1_blockers"], self.audit["current_h1_blockers"])
         self.assertEqual(self.model["dependent_h1_work"], self.audit["dependent_h1_work"])
 
@@ -332,9 +337,13 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual({"H5", "H7", "H8"}, set(mounting["verification_gates"]))
         self.assertIn("factory DFM acceptance", mounting["assembly_process_gate"]["factory_route"])
         self.assertIn("post-PCBA hand-solder", mounting["assembly_process_gate"]["fallback_route"])
-        self.assertEqual(5, mounting["drop_profile"]["sample_count"])
-        self.assertEqual("18-mm plywood over concrete", mounting["drop_profile"]["surface"])
-        self.assertIn("AM/LW loop capacitance/sensitivity", mounting["drop_profile"]["post_test"])
+        self.assertNotIn("drop_profile", mounting)
+        hobby = mounting["hobby_grade_preorder_verification"]
+        self.assertIn("no drop", hobby["scope"])
+        self.assertIn("prescribed mating-cycle count", hobby["scope"])
+        self.assertIn("design-analysis input", hobby["design_analysis_inputs"])
+        self.assertIn("strain relief", hobby["structural_requirements"])
+        self.assertIn("continuity", hobby["checks"])
         for name in ("RFPC-SMA31-FN-175-A", "RFPC-SMA32-FN-175-A"):
             footprint = (REPO / f"hardware/ecad/libraries/Leshy2.pretty/{name}.kicad_mod").read_text()
             self.assertIn('(pad "1" smd rect (at 0.000 -1.650) (size 1.870 3.300)', footprint)
@@ -375,6 +384,8 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("SMT", holder["mounting"])
         self.assertEqual(77.06, holder["manufacturer_body_mm"][0])
         self.assertEqual(86.0, holder["pcb_pad_span_mm"][0])
+        self.assertIn("no drop", retention["h5_proof"])
+        self.assertIn("no artificial ageing", holder["h5_proof"])
 
     def test_r2_antenna_topology_distinguishes_every_physical_medium(self):
         source_table = json.loads(MODULE.SOURCE_TABLE_PATH.read_text())

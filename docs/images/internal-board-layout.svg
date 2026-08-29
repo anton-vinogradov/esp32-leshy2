@@ -984,7 +984,7 @@
 <text x="30.0" y="2060.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• exact M1 plug/receptacle is one intentional 11-mm mate, not a clearance pair</text>
 <text x="30.0" y="2081.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• M2.5 hole/head keep-out: 4.0-mm radius</text>
 <text x="30.0" y="2102.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• both inner views are horizontally mirrored from their external faces</text>
-<text x="30.0" y="2123.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• nRF reserve crossings: 6; minimum Z gap 5.20 mm; drawn IPEX positions are schematic and close in H5</text>
+<text x="30.0" y="2123.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• nRF reserve crossings: 6; minimum Z gap 5.20 mm; H5 locks the corridor, H7/H8 inspect received IPEX axes</text>
 <text x="30.0" y="2144.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• EC11E through-board features: 7 checked; 2 opposing crossings; minimum Z gap 4.20 mm</text>
 <text x="30.0" y="2165.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• all 10 onboard antenna paths have a source-to-port topology guide; final copper remains KiCad work</text>
 <text x="30.0" y="2186.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• orange dashed boundary is a placement zone, not one combined device</text>

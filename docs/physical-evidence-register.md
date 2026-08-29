@@ -4,7 +4,7 @@ H3.7.2 is closed. The six H3 phase consolidations contain 88 residual rows: thre
 
 Each machine row also carries its exact source artifact, responsible gate, required artifact and pass rule. A mismatch reopens the owning result rather than becoming a layout or test waiver. This register does not authorize purchase, layout or fabrication. The historical R1 progression marker is `H3.7.3`.
 
-Safe fault injection and potentially damaging qualification are separate. MAX17320 exhaustion/failed-copy and pack/NTC electrical faults use an emulator or current-limited fixture; real cells remain inside their exact MPN voltage, current and temperature limits. Mechanical drop and connector/holder cycle qualification runs only on dedicated DVT prototypes that may be consumed. A 24/48-hour powered endurance run is ordinary non-destructive qualification. Irreversible locks, key/security-fuse burns and intentional real-cell abuse remain forbidden.
+Safe fault injection is separate from ordinary hobby-grade mechanical verification. MAX17320 exhaustion/failed-copy and pack/NTC electrical faults use an emulator or current-limited fixture; real cells remain inside their exact MPN voltage, current and temperature limits. The one assembled prototype uses geometry/DRC, enclosure load-path review, manufacturer-sourced static limits where available, ordinary assembly/disassembly, continuity and visual inspection; there is no drop, vibration, prescribed cycle count or consumed assembled device. A 24/48-hour powered run is ordinary non-destructive qualification. Irreversible locks, key/security-fuse burns and intentional real-cell abuse remain forbidden.
 
 | ID | Gate | Source | Required physical evidence |
 |---|---|---|---|
@@ -53,7 +53,7 @@ Safe fault injection and potentially damaging qualification are separate. MAX173
 | `H3-PHY-043` | `H8` | `H3.4` | prove S3-RP >=1.5 MB/s with <=250-us alert-to-read and S3-C5 >=1.5 MB/s with <=2-ms control RTT |
 | `H3-PHY-044` | `H8` | `H3.4` | measure 400-kHz SYS_I2C transaction/recovery/IRQ latency with every assembled address and simultaneous UI activity |
 | `H3-PHY-045` | `H8` | `H3.4` | measure M1 far-end rail drop, return offset, crosstalk and USB/SPI eye/edge quality after PCB placement |
-| `H3-PHY-046` | `H5+H8` | `H3.4` | verify received stock U214 male-post material/plating, current continuity, insertion/withdrawal force and repeated-cycle retention; the 4.1-A figure proves only the controlled HLE/TSM pair |
+| `H3-PHY-046` | `H5+H8` | `H3.4` | verify received stock U214 male-post material/plating, ordinary assembly/disassembly, current continuity, bottoming clearance and retention inspection; any unsourced insertion force remains a design-analysis input, and the 4.1-A figure proves only the controlled HLE/TSM pair |
 | `H3-PHY-047` | `H8` | `H3.4` | measure U214 SPI load/edges at 10 MHz and external I2C total capacitance/rise time <=150 pF/300 ns |
 | `H3-PHY-048` | `H5+H8` | `H3.4` | qualify each native Unit profile, cable length and pull network through TXS0102; 1-Wire remains specimen-only |
 | `H3-PHY-049` | `H8` | `H3.4` | inject dual-branch request, overload, reverse source, wrong accessory, hot plug and brownout while proving independent latch-off |
