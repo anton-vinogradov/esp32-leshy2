@@ -229,7 +229,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(lanes["main-rf-mechanics"], "active")
         self.assertEqual(lanes["native-rf-jumpers"], "accepted")
         self.assertEqual(lanes["rf-evidence-detectors"], "active")
-        self.assertEqual(lanes["ordinary-controls"], "waiting")
+        self.assertEqual(lanes["ordinary-controls"], "accepted")
         self.assertEqual(lanes["battery-holder"], "waiting")
         self.assertEqual(lanes["service-headers"], "waiting")
         self.assertEqual(lanes["display-production-route"], "accepted")

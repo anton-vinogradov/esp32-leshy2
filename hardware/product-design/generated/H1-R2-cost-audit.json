@@ -5614,6 +5614,30 @@
       "checked_on": "2026-08-28"
     },
     {
+      "scope": "sixteen ordinary user controls",
+      "current_mpn": "OMRON B3S-1100P",
+      "candidate_mpn": "BZCN TSG002A04526A",
+      "jlcpcb_part": "C2888613",
+      "manufacturer": "BZCN",
+      "assembly_type": "Extended SMT; Economic and Standard PCBA; assembly fixture required",
+      "stock": 441,
+      "available_order_quantity": 440,
+      "moq": 1,
+      "trial_required_quantity": 16,
+      "price_tiers_usd": {
+        "1": 0.0494,
+        "100": 0.0393,
+        "300": 0.0343,
+        "1000": 0.0293
+      },
+      "status": "not_accepted_heavier_force_ground_and_exact_life_unresolved",
+      "why": "The stocked 6.15 x 6.15 x 4.5-mm IP67 SMT body would reduce sixteen quantity-one switches from USD 14.50 to USD 0.79, but it raises force from 1.57 N to 2.6 N, removes the fifth grounded-cover terminal from the directly finger-operated user boundary and the exact order code does not disclose a guaranteed 500k-cycle life. Those are functional, ESD and feel regressions rather than a free saving, so it is not selected.",
+      "why_ru": "Складской SMT-корпус 6,15 x 6,15 x 4,5 мм с IP67 снизил бы цену шестнадцати кнопок при количестве 1 с $14,50 до $0,79, но усилие возрастает с 1,57 до 2,6 Н, исчезает пятый заземлённый вывод крышки на доступной пальцу границе, а для точного кода не заявлен гарантированный ресурс 500 тысяч нажатий. Это ухудшение функции, ESD и ощущений, а не бесплатная экономия, поэтому деталь не выбрана.",
+      "source": "https://jlcpcb.com/partdetail/BZCN-TSG002A04526A/C2888613",
+      "manufacturer_source": "https://www.lcsc.com/product-detail/Tactile-Switches_BZCN_C2888613.html",
+      "checked_on": "2026-08-29"
+    },
+    {
       "scope": "ten outward antenna connectors",
       "current_mpn": "GCT RFPC-SMA31-FN-175-A / RFPC-SMA32-FN-175-A",
       "candidate_mpn": "HenryTech HL2-SMA-KEP-13.5 / HL2-RP-SMA-KEP-13.5",
@@ -5706,11 +5730,11 @@
     {
       "priority": 5,
       "id": "ordinary-controls",
-      "queue_status": "waiting",
-      "title": "Find one serial in-stock tact-switch family for all sixteen ordinary controls",
+      "queue_status": "accepted",
+      "title": "Retain the grounded Omron family for all sixteen ordinary controls",
       "production_function_change": false,
-      "evidence": "B3S-1100P contributes USD 10.248 per device at quantity 100 and USD 74.58 for 80 pieces in the five-device pre-order route. The first stocked candidate was rejected because it removes the grounded cover terminal.",
-      "action": "Preserve footprint/enclosure reach, force, height, endurance, the ESD boundary and recessed actuation."
+      "evidence": "B3S-1100P contributes USD 10.248 per device at quantity 100. Two stocked alternatives were checked: B3S-1000P preserves feel, height, endurance and ingress but removes the grounded cover; TSG002A04526A is dramatically cheaper but also removes that terminal, raises force to 2.6 N and does not prove the exact 500k-cycle life. Because every control is directly finger-operated without a cap or plunger, neither is no-worse.",
+      "action": "Keep B3S-1100P for the present architecture. Reopen only for an exact factory-placeable part that preserves the grounded user boundary, approximately 1.6-N force, 4.3-mm reach, IP67 and at least 500k cycles, or after a future enclosure revision makes the metal cover physically inaccessible."
     },
     {
       "priority": 6,
