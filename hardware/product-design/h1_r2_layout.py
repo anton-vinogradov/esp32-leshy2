@@ -376,6 +376,87 @@ def effective_inner_entries(model: dict, base: dict, placed: list[dict]) -> list
     return entries
 
 
+def through_hole_sma_candidate_audit(model: dict, entries: list[dict]) -> dict:
+    """Test the cheaper DreamLNK pair against the accepted 5+5 geometry."""
+    candidate = model["antenna_bank_optimization"]["through_hole_candidate_review"]
+    body_w, body_d = map(float, candidate["outer_face_body_plan_mm"])
+    edge_offset = float(candidate["board_edge_to_body_front_mm"])
+    pin = candidate["pin_pattern"]
+    pin_radius = float(pin["inner_pin_and_solder_keepout_radius_mm"])
+    body_centre_y = edge_offset + float(pin["body_centre_from_board_edge_mm"])
+    min_clearance = float(model["stack"]["minimum_opposing_clearance_mm"])
+    mount = model["mechanical_retention"]["compression_stops"]
+    mount_radius = 4.0
+
+    def point_to_box_distance(px: float, py: float, box: dict) -> float:
+        dx = max(box["x"][0] - px, px - box["x"][1], 0.0)
+        dy = max(box["y"][0] - py, py - box["y"][1], 0.0)
+        return math.hypot(dx, dy)
+
+    pin_hits: list[dict] = []
+    body_mounting_hits: list[dict] = []
+    face_rows = (
+        ("front", "ui-inner", model["antenna_bank_optimization"]["front_x_centres_mm"], model["antenna_bank_optimization"]["front_paths"]),
+        ("rear", "rf-inner", model["antenna_bank_optimization"]["rear_x_centres_mm"], model["antenna_bank_optimization"]["rear_paths"]),
+    )
+    for face, frame, centres, paths in face_rows:
+        face_entries = [row for row in entries if row["frame"] == frame and row["kind"] in {"fixed_body", "reserve"}]
+        for centre_x, path in zip(centres, paths):
+            body = {
+                "x": [centre_x - body_w / 2, centre_x + body_w / 2],
+                "y": [edge_offset, edge_offset + body_d],
+            }
+            for axis_x, axis_y in mount["axes"][:2]:
+                clearance = point_to_box_distance(axis_x, axis_y, body) - mount_radius
+                if clearance + 1e-6 < min_clearance:
+                    body_mounting_hits.append(
+                        {
+                            "face": face,
+                            "path": path,
+                            "compression_stop_axis_mm": [axis_x, axis_y],
+                            "clearance_mm": round(clearance, 3),
+                        }
+                    )
+            pin_centres = [
+                [round(centre_x + dx, 3), round(body_centre_y + dy, 3)]
+                for dx, dy in pin["pin_centres_from_body_centre_mm"]
+            ]
+            for entry in face_entries:
+                nearest = min(point_to_box_distance(px, py, entry["bbox"]) for px, py in pin_centres)
+                clearance = nearest - pin_radius
+                if clearance < 0:
+                    pin_hits.append(
+                        {
+                            "face": face,
+                            "path": path,
+                            "body": entry["id"],
+                            "clearance_to_protected_pin_keepout_mm": round(clearance, 3),
+                        }
+                    )
+    errors = []
+    if body_mounting_hits:
+        errors.append("outer connector bodies enter the accepted upper compression-stop head keep-outs")
+    if pin_hits:
+        errors.append("through-hole pin/solder keep-outs intersect current inner-face bodies or reserves")
+    if "manualWeld" in candidate["factory_surface"]:
+        errors.append("written factory assembly acceptance and exact-one manual-weld quote are absent")
+    return {
+        "status": "rejected_current_5_plus_5_mechanical_envelope_and_factory_route" if errors else "pass",
+        "standard_mpn": candidate["standard_mpn"],
+        "reverse_mpn": candidate["reverse_mpn"],
+        "jlcpcb_parts": candidate["jlcpcb_parts"],
+        "manufacturer_sources": candidate["manufacturer_sources"],
+        "outer_face_body_plan_mm": candidate["outer_face_body_plan_mm"],
+        "pin_pattern": pin,
+        "compression_stop_keepout_radius_mm": mount_radius,
+        "body_mounting_hits": body_mounting_hits,
+        "inner_pin_keepout_hits": pin_hits,
+        "factory_surface": candidate["factory_surface"],
+        "selection_result": "retain GCT RFPC-SMA31/32-FN-175-A; the cheaper pair is not a drop-in no-loss replacement",
+        "errors": errors,
+    }
+
+
 def physical_feature_audit(model: dict, entries: list[dict]) -> dict:
     """Audit explicit keepouts/reserves without pretending they are components."""
     minimum = model["stack"]["minimum_opposing_clearance_mm"]
@@ -704,6 +785,7 @@ def audit(model: dict, base: dict) -> dict:
     errors.extend(cap_slot["errors"])
     silk = silkscreen_audit(model)
     errors.extend(silk["errors"])
+    through_hole_candidate = through_hole_sma_candidate_audit(model, effective)
     sma_mounting = model["antenna_bank_optimization"].get("main_sma_mounting", {})
     if sma_mounting.get("standard_mpn") != "GCT RFPC-SMA31-FN-175-A":
         errors.append("main standard-SMA dual-face mounting identity drifted")
@@ -790,6 +872,7 @@ def audit(model: dict, base: dict) -> dict:
         "cap_evidence_coordinate_register": cap_evidence_register,
         "silkscreen": silk,
         "main_sma_mounting": sma_mounting,
+        "through_hole_sma_candidate": through_hole_candidate,
         "mechanical_retention": retention,
         "battery_holder_mechanics": holder,
         "relocated_c5_dbg_header": relocated_c5["id"] if relocated_c5 else None,

@@ -2502,6 +2502,148 @@
     "comparison_reference": "ESP32-DIV v2 top/bottom Gerbers at commit 9d4d82fe7a12febf554b12e1eca6d434ebe79d39 provide the durable comparison for the same dual-face edge-soldering principle; exact connector identity is not inferred",
     "comparison_url": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2"
   },
+  "through_hole_sma_candidate": {
+    "status": "rejected_current_5_plus_5_mechanical_envelope_and_factory_route",
+    "standard_mpn": "DreamLNK SMA-KWE902",
+    "reverse_mpn": "DreamLNK SMA-KWE901",
+    "jlcpcb_parts": [
+      "C914554",
+      "C914553"
+    ],
+    "manufacturer_sources": [
+      "https://datasheet.lcsc.com/datasheet/pdf/db4d22cb6e22c1f4c348583589341075.pdf?productCode=C914554",
+      "https://datasheet.lcsc.com/datasheet/pdf/c7efd506b9d8647b536b9c75e40e8e22.pdf?productCode=C914553"
+    ],
+    "outer_face_body_plan_mm": [
+      9.7,
+      9.7
+    ],
+    "pin_pattern": {
+      "body_centre_from_board_edge_mm": 4.85,
+      "ground_pitch_xy_mm": [
+        5.08,
+        5.08
+      ],
+      "pin_centres_from_body_centre_mm": [
+        [
+          -2.54,
+          -2.54
+        ],
+        [
+          2.54,
+          -2.54
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.54,
+          2.54
+        ],
+        [
+          2.54,
+          2.54
+        ]
+      ],
+      "standard_ground_hole_diameter_mm": 1.5,
+      "standard_signal_hole_diameter_mm": 1.4,
+      "reverse_all_hole_diameter_mm": 1.5,
+      "standard_tail_below_1p6_pcb_mm": 2.1,
+      "reverse_tail_below_1p6_pcb_mm": 2.2,
+      "inner_pin_and_solder_keepout_radius_mm": 1.5
+    },
+    "compression_stop_keepout_radius_mm": 4.0,
+    "body_mounting_hits": [
+      {
+        "face": "front",
+        "path": "N24-0",
+        "compression_stop_axis_mm": [
+          5.0,
+          11.0
+        ],
+        "clearance_mm": -2.7
+      },
+      {
+        "face": "front",
+        "path": "N24-2",
+        "compression_stop_axis_mm": [
+          70.0,
+          11.0
+        ],
+        "clearance_mm": -2.7
+      },
+      {
+        "face": "rear",
+        "path": "RX-FM/SW",
+        "compression_stop_axis_mm": [
+          5.0,
+          11.0
+        ],
+        "clearance_mm": -2.7
+      },
+      {
+        "face": "rear",
+        "path": "VOICE-UHF",
+        "compression_stop_axis_mm": [
+          70.0,
+          11.0
+        ],
+        "clearance_mm": -2.7
+      }
+    ],
+    "inner_pin_keepout_hits": [
+      {
+        "face": "front",
+        "path": "S3-2G4",
+        "body": "s3_rf_coupler_r2",
+        "clearance_to_protected_pin_keepout_mm": -0.15
+      },
+      {
+        "face": "front",
+        "path": "N24-1",
+        "body": "display_connector",
+        "clearance_to_protected_pin_keepout_mm": -1.5
+      },
+      {
+        "face": "front",
+        "path": "C5-2G4/5",
+        "body": "c5_rf_coupler_r2",
+        "clearance_to_protected_pin_keepout_mm": -0.15
+      },
+      {
+        "face": "rear",
+        "path": "RX-FM/SW",
+        "body": "airband_filter_reserve",
+        "clearance_to_protected_pin_keepout_mm": -1.5
+      },
+      {
+        "face": "rear",
+        "path": "RX-AM/LW",
+        "body": "airband_filter_reserve",
+        "clearance_to_protected_pin_keepout_mm": -1.5
+      },
+      {
+        "face": "rear",
+        "path": "CC-SUB",
+        "body": "airband_filter_reserve",
+        "clearance_to_protected_pin_keepout_mm": -0.04
+      },
+      {
+        "face": "rear",
+        "path": "CC-SUB",
+        "body": "cc_r2",
+        "clearance_to_protected_pin_keepout_mm": -0.59
+      }
+    ],
+    "factory_surface": "Plugin/manualWeld; 13 standard and 12 reverse procurement minima; written Standard-PCBA assembly acceptance and an exact-order quote are absent",
+    "selection_result": "retain GCT RFPC-SMA31/32-FN-175-A; the cheaper pair is not a drop-in no-loss replacement",
+    "errors": [
+      "outer connector bodies enter the accepted upper compression-stop head keep-outs",
+      "through-hole pin/solder keep-outs intersect current inner-face bodies or reserves",
+      "written factory assembly acceptance and exact-one manual-weld quote are absent"
+    ]
+  },
   "mechanical_retention": {
     "m1_rule": "M1 is never a load-bearing member",
     "intentional_opposing_mates": [

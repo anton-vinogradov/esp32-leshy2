@@ -284,6 +284,19 @@ class H1R2LayoutTest(unittest.TestCase):
             self.assertIn('(fp_rect (start -4.500 -2.800) (end 4.500 12.400)', footprint)
             self.assertIn('(fp_rect (start -4.850 -3.150) (end 4.850 12.750)', footprint)
 
+    def test_cheaper_through_hole_sma_pair_is_not_a_drop_in_replacement(self):
+        candidate = self.audit["through_hole_sma_candidate"]
+        self.assertEqual(
+            "rejected_current_5_plus_5_mechanical_envelope_and_factory_route",
+            candidate["status"],
+        )
+        self.assertEqual(["C914554", "C914553"], candidate["jlcpcb_parts"])
+        self.assertEqual([9.7, 9.7], candidate["outer_face_body_plan_mm"])
+        self.assertEqual([5.08, 5.08], candidate["pin_pattern"]["ground_pitch_xy_mm"])
+        self.assertEqual(4, len(candidate["body_mounting_hits"]))
+        self.assertGreaterEqual(len(candidate["inner_pin_keepout_hits"]), 5)
+        self.assertIn("retain GCT", candidate["selection_result"])
+
     def test_outer_antenna_silkscreen_is_not_hidden(self):
         self.assertEqual("pass", self.audit["silkscreen"]["status"])
         self.assertEqual([], self.audit["silkscreen"]["errors"])

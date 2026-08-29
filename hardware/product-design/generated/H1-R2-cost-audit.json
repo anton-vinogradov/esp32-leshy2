@@ -5719,9 +5719,9 @@
         "reverse_30": 0.6974,
         "reverse_100": 0.6066
       },
-      "status": "qualified_pending_full_5_plus_5_placement_and_assembly_gate",
-      "why": "This is a fully documented, no-nut 6-GHz right-angle standard/reverse pair with a stronger through-board soldered load path. Its 9.7-mm body, five drilled pins and approximately 2.1-mm inner-side pin projection on a 1.6-mm PCB change the selected GCT keep-out, but low profile is no longer a product requirement. The live JLCPCB cards on 2026-08-29 show a Plugin/manualWeld route, procurement minima of 13/12 and only overseas/pre-sale availability rather than ordinary SMT stock. It remains the leading mechanical candidate, not an accepted production MPN: all ten placements, opposing clearances and written factory assembly acceptance must pass together.",
-      "why_ru": "Это полностью документированная standard/reverse-пара до 6 ГГц без гаек и с более прочным сквозным путём передачи нагрузки. Корпус 9,7 мм, пять просверленных выводов и выступание ножек примерно на 2,1 мм с внутренней стороны платы 1,6 мм меняют keep-out выбранных GCT, но низкий профиль больше не является требованием. Текущие карточки JLCPCB на 2026-08-29 показывают маршрут Plugin/manualWeld, минимальную закупку 13/12 и только overseas/pre-sale availability вместо обычного SMT-склада. Это остаётся ведущим механическим кандидатом, но не принятым production MPN: должны одновременно пройти все десять размещений, встречные зазоры и письменное подтверждение фабричной установки.",
+      "status": "rejected_current_5_plus_5_mechanical_envelope_and_factory_route",
+      "why": "The exact DreamLNK drawings confirm a robust no-nut, five-pin through-board 6-GHz pair, but also close the fit question negatively for the accepted mock-up. Each 9.7 x 9.7-mm outer body enters an upper 4-mm compression-stop head keep-out at both edge ports on each PCB, while the 5.08 x 5.08-mm pin pattern intersects the display connector, two native-RF couplers, the Airband reserve and CC1101 area on the inner faces. Fixing this would require moving the accepted structural axes or compressing the 5+5 bank and relocating RF bodies. The JLCPCB route is still Plugin/manualWeld with 13/12 procurement minima and no exact-one assembly quote. This is not a drop-in no-loss saving, so the selected GCT pair remains.",
+      "why_ru": "Точные чертежи DreamLNK подтверждают прочную standard/reverse-пару до 6 ГГц без гаек с пятью сквозными выводами, но одновременно отрицательно закрывают вопрос посадки в принятом мокапе. Каждый внешний корпус 9,7 x 9,7 мм входит в 4-мм keep-out головки верхней compression-stop у крайних портов обеих плат, а рисунок выводов 5,08 x 5,08 мм пересекает разъём дисплея, два coupler native-RF, резерв Airband и область CC1101 на внутренних сторонах. Исправление потребует переноса принятых силовых осей либо сжатия ряда 5+5 и перемещения RF-компонентов. Маршрут JLCPCB всё ещё Plugin/manualWeld с минимумами закупки 13/12 и без цены сборки ровно одного устройства. Это не drop-in экономия без потерь, поэтому выбранная пара GCT остаётся.",
       "source": "https://jlcpcb.com/partdetail/DreamLNK-SMAKWE902/C914554",
       "reverse_source": "https://jlcpcb.com/partdetail/DreamLNK-SMAKWE901/C914553",
       "manufacturer_source": "https://datasheet.lcsc.com/lcsc/2011081704_DreamLNK-SMA-KWE902_C914554.pdf",
@@ -5751,11 +5751,11 @@
     {
       "priority": 3,
       "id": "main-rf-mechanics",
-      "queue_status": "active",
-      "title": "Replace the expensive GCT pair with a robust stocked standard/reverse pair if it fits",
+      "queue_status": "accepted",
+      "title": "Retain the GCT pair after the cheaper through-hole pair fails the complete 5+5 gate",
       "production_function_change": false,
-      "evidence": "Ten GCT RFPC-SMA31/32 connectors contribute USD 24.6456 per device. Low profile is no longer a product requirement; the DreamLNK nutless pair would reduce the line by about USD 19.02 on the common quantity-100 basis, but its through-hole tails, procurement minima and manual factory-soldering route require a new internal keep-out and written assembly acceptance.",
-      "action": "Optimize for the correct outward antenna direction, standard/RP-SMA identity, at least 6-GHz coverage on native ports and a dual-face or through-board mechanical load path. Accept a replacement only after complete 5+5 placement, opposing-clearance and assembly review."
+      "evidence": "Ten GCT RFPC-SMA31/32 connectors contribute USD 24.6456 per device. Exact drawings close the tempting DreamLNK alternative: four outer bodies conflict with the accepted upper compression-stop head keep-outs and five port groups conflict with inner-face bodies/reserves; the factory route also remains manualWeld without an exact-one quote.",
+      "action": "Keep the accepted dual-face GCT pair. Reopen only for a factory-placeable standard/reverse pair that retains outward orientation and 6-GHz native-port coverage, passes the unchanged 5+5 plus compression-stop geometry and has a complete exact-one order route."
     },
     {
       "priority": 4,

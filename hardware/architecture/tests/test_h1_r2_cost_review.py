@@ -206,7 +206,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         )
         self.assertEqual(
             candidates["DreamLNK SMA-KWE902 / SMA-KWE901"]["status"],
-            "qualified_pending_full_5_plus_5_placement_and_assembly_gate",
+            "rejected_current_5_plus_5_mechanical_envelope_and_factory_route",
         )
         self.assertEqual(
             candidates["Hirose DF40C(2.0)-40DS-0.4V(51)"]["jlcpcb_part"],
@@ -249,7 +249,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         }
         self.assertEqual(lanes["external-antenna-kit"], "active")
         self.assertEqual(lanes["factory-preorder-penalty"], "accepted")
-        self.assertEqual(lanes["main-rf-mechanics"], "active")
+        self.assertEqual(lanes["main-rf-mechanics"], "accepted")
         self.assertEqual(lanes["native-rf-jumpers"], "accepted")
         self.assertEqual(lanes["rf-evidence-detectors"], "active")
         self.assertEqual(lanes["ordinary-controls"], "accepted")
