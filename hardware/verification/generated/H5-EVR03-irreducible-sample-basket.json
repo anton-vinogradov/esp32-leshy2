@@ -1,13 +1,13 @@
 {
   "schema_version": 2,
   "stage": "H5.0.3-R1",
-  "status": "draft_order_integrated_manifest_factory_response_pending",
-  "checked_on": "2026-08-26",
+  "status": "draft_order_integrated_manifest_exact_display_selected_factory_response_pending",
+  "checked_on": "2026-08-29",
   "purpose": "one order-integrated article manifest for the sole fully assembled Leshy2 prototype plus H7/H8 owner evidence contracts; no device batch, separate sample purchase or purchase authorization",
   "procurement_target": {
     "finished_device_quantity": 1,
     "deliverable": "one fully assembled Leshy2 prototype built without factory engineering choices",
-    "display": "one exact production panel selected later, installed and mated by the factory in that prototype",
+    "display": "one exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344 panel, installed and mated by the factory in that prototype",
     "first_power_on": "owner USB-powered bring-up after delivery: known image, backlight and touch",
     "factory_function_test": "optional quote-only insurance; not required and not a release gate",
     "batteries_included": false,
@@ -32,12 +32,12 @@
     "article_lines": 30,
     "measurement_contracts": 11,
     "covered_residuals_and_gates": 23,
-    "published_price_subtotal_usd": "228.52",
+    "published_price_subtotal_usd": "243.42",
     "conservative_budget_caps_usd": "4.00",
-    "known_engineering_material_budget_usd": "232.52",
-    "unpriced_manufacturer_lines": 1,
+    "known_engineering_material_budget_usd": "247.42",
+    "unpriced_manufacturer_lines": 0,
     "excluded_from_budget": [
-      "exact production panel and factory attrition",
+      "factory display attrition",
       "SA818S-V pre-order freight/lead-time charge",
       "J4-F box-build",
       "J4-P kit/packing",
@@ -47,12 +47,13 @@
       "general laboratory instruments and ordinary passives"
     ],
     "former_parked_plan_usd": "164.54 for only a partial eight-line lot",
-    "comparison_note": "The priced subtotal excludes the unresolved production panel and all factory attrition; these lines form the integrated sole-prototype/bring-up manifest, not a separate sample basket or device batch."
+    "comparison_note": "The priced subtotal includes the exact one-piece production panel and excludes only factory attrition and services; these lines form the integrated sole-prototype/bring-up manifest, not a separate sample basket or device batch."
   },
   "group_budget_usd": {
     "amlw-pod": "19.79",
     "audio": "5.90",
     "controls": "21.99",
+    "display": "14.91",
     "expansion": "31.68",
     "ir": "5.30",
     "power": "46.38",
@@ -61,31 +62,31 @@
   },
   "articles": [
     {
-      "id": "production-display-gate",
+      "id": "production-display",
       "group": "display",
-      "mpn": "EXACT PRODUCTION PANEL — UNRESOLVED",
+      "mpn": "EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344",
       "order_quantity": 1,
       "order_unit": "factory-installed panel",
       "contained_pieces_per_order_unit": 1,
       "pricing": {
-        "kind": "factory_quote_required",
-        "unit_usd": null,
-        "subtotal_usd": null,
+        "kind": "published_usd",
+        "unit_usd": "14.91",
+        "subtotal_usd": "14.910",
         "source_price": null
       },
       "source": {
-        "label": "QDtech HMX035CTFT-001 legacy electrical evidence",
-        "url": "https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf",
-        "checked_on": "2026-08-26",
-        "availability": "not selected; exact production-panel identity, factory mating and final-assembly feasibility await written confirmation"
+        "label": "BuyDisplay exact product page",
+        "url": "https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen",
+        "checked_on": "2026-08-29",
+        "availability": "listed in stock; one-piece price published; exact panel/touch drawings and interface table available"
       },
       "coverage": [
         "H3-PHY-017",
         "H5-MECH-DISPLAY-TAIL",
         "H5-MECH-DISPLAY-PERFORMANCE"
       ],
-      "minimum_quantity_basis": "exactly one production panel is installed in the one finished prototype; any extra panels, connectors or flex parts are factory attrition in the quote, never user-purchased samples",
-      "risk": "HMX035CTFT-001 and its complete donors are legacy electrical/mechanical evidence only and are rejected as the procurement route. The factory must quote an exact production panel without silently changing the accepted endpoint.",
+      "minimum_quantity_basis": "exactly one production panel is installed and mated in the finished prototype; the exact FH34SRJ-50S-0.5SH(50) board connector is populated during PCBA",
+      "risk": "The panel identity and electrical/mechanical endpoint are fixed. Only written acceptance of adhesive/FPC handling and final mating by the selected assembler remains an H5 supplier gate; HMX035CTFT-001 stays legacy evidence only.",
       "purchase_authorized": false
     },
     {
@@ -104,7 +105,7 @@
       "source": {
         "label": "M5Stack official store",
         "url": "https://shop.m5stack.com/products/cap-lora-1262",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "listed in stock"
       },
       "coverage": [
@@ -131,7 +132,7 @@
       "source": {
         "label": "Samtec exact product page",
         "url": "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "manufacturer orderable"
       },
       "coverage": [
@@ -158,7 +159,7 @@
       "source": {
         "label": "Seeed official store",
         "url": "https://www.seeedstudio.com/Grove-Female-Header-SMD-4P-2.0mm-90D-20Pcs-p-4590.html",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "listed in stock"
       },
       "coverage": [
@@ -185,7 +186,7 @@
       "source": {
         "label": "M5Stack official store",
         "url": "https://shop.m5stack.com/products/4pin-buckled-grove-cable",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "orderable"
       },
       "coverage": [
@@ -212,7 +213,7 @@
       "source": {
         "label": "authorized-distributor exact SKU listing",
         "url": "https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/A034-B/13974037",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "orderable"
       },
       "coverage": [
@@ -239,7 +240,7 @@
       "source": {
         "label": "DigiKey exact-SKU listing",
         "url": "https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/A096/18084377",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "authorized stock"
       },
       "coverage": [
@@ -266,7 +267,7 @@
       "source": {
         "label": "RobotShop, sold and fulfilled by Ebyte",
         "url": "https://www.robotshop.com/products/ebyte-e01-ml01ipx-frequency-hopping-nrf24l01p-high-speed-24g-rf-wireless-100mw-24ghz-nrf24l01-tx-rx-module",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "98 shown in stock"
       },
       "coverage": [
@@ -294,7 +295,7 @@
       "source": {
         "label": "DigiKey exact-MPN listing",
         "url": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "3,082 shown in stock"
       },
       "coverage": [
@@ -323,7 +324,7 @@
       "source": {
         "label": "DigiKey exact-MPN listing",
         "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/U-FL-R-SMT-1-10/2391570",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "319,443 shown in stock"
       },
       "coverage": [
@@ -352,7 +353,7 @@
       "source": {
         "label": "DigiKey exact-MPN listing",
         "url": "https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/25576371",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "638 shown in stock"
       },
       "coverage": [
@@ -380,7 +381,7 @@
       "source": {
         "label": "JLCPCB exact G-NiceRF part C3001549",
         "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "68 in stock; 60 available to order"
       },
       "coverage": [
@@ -406,7 +407,7 @@
       "source": {
         "label": "JLCPCB exact G-NiceRF part C51897911",
         "url": "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "stock zero; MOQ one; pre-order; typical 8-15 working days"
       },
       "coverage": [
@@ -432,7 +433,7 @@
       "source": {
         "label": "DigiKey exact-MPN listing",
         "url": "https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3S-1100P/368393",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "33,862 shown in stock"
       },
       "coverage": [
@@ -459,7 +460,7 @@
       "source": {
         "label": "Mouser exact-MPN listing",
         "url": "https://www.mouser.com/en/ProductDetail/Alps-Alpine/EC11E18244AU",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "966 shown in stock"
       },
       "coverage": [
@@ -485,7 +486,7 @@
       "source": {
         "label": "Mouser exact-MPN listing",
         "url": "https://www.mouser.com/en/ProductDetail/Davies-Molding/1227-J",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "524 shown in stock"
       },
       "coverage": [
@@ -511,7 +512,7 @@
       "source": {
         "label": "DigiKey exact-MPN listing",
         "url": "https://www.digikey.com/en/products/detail/c-k/JS102011SCQN/7355835",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "535 shown in stock"
       },
       "coverage": [
@@ -537,7 +538,7 @@
       "source": {
         "label": "Mouser exact-MPN listing",
         "url": "https://www.mouser.com/ProductDetail/Keystone-Electronics/1048P",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "145 shown in stock"
       },
       "coverage": [
@@ -563,7 +564,7 @@
       "source": {
         "label": "XTAR official store",
         "url": "https://xtardirect.com/products/xtar-high-capacity-36v-18650-4000mah-10a-protected-lithium-ion-battery",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "98 shown in stock"
       },
       "coverage": [
@@ -589,7 +590,7 @@
       "source": {
         "label": "Mouser exact-MPN listing",
         "url": "https://www.mouser.com/en/ProductDetail/Analog-Devices-Maxim-Integrated/MAX17320G20%2BT",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "7,638 shown in stock"
       },
       "coverage": [
@@ -615,7 +616,7 @@
       "source": {
         "label": "DigiKey exact-MPN listing",
         "url": "https://www.digikey.com/en/product-highlight/p/pui-audio/as-series-high-quality-speakers",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "421 immediate units shown"
       },
       "coverage": [
@@ -641,7 +642,7 @@
       "source": {
         "label": "DigiKey exact-MPN listing",
         "url": "https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/CMEJ-0413-42-SMT-TR/10253447",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "12,929 shown in stock"
       },
       "coverage": [
@@ -667,7 +668,7 @@
       "source": {
         "label": "Mouser exact-MPN listing",
         "url": "https://www.mouser.com/ProductDetail/Same-Sky/SJ-43504-SMT-TR",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "5,344 shown in stock"
       },
       "coverage": [
@@ -693,7 +694,7 @@
       "source": {
         "label": "JLCPCB C511498 exact Vishay listing",
         "url": "https://jlcpcb.com/partdetail/x/C511498",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "15 currently placeable; MOQ 1"
       },
       "coverage": [
@@ -723,7 +724,7 @@
       "source": {
         "label": "Mouser exact-MPN listing",
         "url": "https://www.mouser.com/ProductDetail/Vishay-Semiconductors/TSMP95000TT",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "4,182 shown in cut-tape stock"
       },
       "coverage": [
@@ -753,7 +754,7 @@
       "source": {
         "label": "DigiKey exact-MPN listing",
         "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VSMY14940/4071416",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "4,872 shown in cut-tape stock"
       },
       "coverage": [
@@ -779,7 +780,7 @@
       "source": {
         "label": "TME exact-MPN listing",
         "url": "https://www.tme.com/in/en/details/sdsqqnr-032g-gn6ia/memory-cards/sandisk/",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "200 shown in stock"
       },
       "coverage": [
@@ -805,7 +806,7 @@
       "source": {
         "label": "Mouser exact-MPN listing",
         "url": "https://www.mouser.com/ProductDetail/Fair-Rite/3061990901",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "1,792 shown in stock"
       },
       "coverage": [
@@ -831,7 +832,7 @@
       "source": {
         "label": "DigiKey exact-MPN listing",
         "url": "https://www.digikey.com/en/products/detail/adam-tech/RF2-154-T-17-50-G/9831243",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "839 shown in stock"
       },
       "coverage": [
@@ -857,7 +858,7 @@
       "source": {
         "label": "Remington Industries official store",
         "url": "https://www.remingtonindustries.com/magnet-wire/magnet-wire-38-awg-enameled-copper-6-spool-sizes/",
-        "checked_on": "2026-08-26",
+        "checked_on": "2026-08-29",
         "availability": "smallest exact-wire spool orderable"
       },
       "coverage": [
@@ -872,16 +873,16 @@
     {
       "id": "H5-MSR-DISPLAY",
       "articles": [
-        "production-display-gate"
+        "production-display"
       ],
       "evidence": [
         "H3-PHY-017",
         "H5-MECH-DISPLAY-TAIL",
         "H5-MECH-DISPLAY-PERFORMANCE"
       ],
-      "method": "the factory installs and mates the selected documented production panel in the sole finished prototype from the released production package, without batteries and without making engineering choices; the owner performs the first full USB-powered bring-up and records known-image, backlight and touch results",
-      "pass_rule": "the production package makes panel identity, mating, retention and assembly deterministic; written factory feasibility is obtained before order, while any paid pre-shipment Function Test is optional quote-only insurance and never a release gate",
-      "artifacts": "controlled panel identity/drawing, deterministic mating and assembly instructions, factory assembly record, owner USB bring-up image/backlight/touch traces and signed result"
+      "method": "the factory installs and mates exact ER-TFT035IPS-6 + ER-TPC035-6 option 5344 through exact FH34SRJ-50S-0.5SH(50) in the sole finished prototype; the owner performs first USB-powered bring-up and records known-image, backlight and touch results",
+      "pass_rule": "the released drawing, connector, mating, retention and assembly steps are deterministic; written adhesive/FPC/final-mating feasibility is obtained before order, while any paid pre-shipment Function Test is optional quote-only insurance and never a release gate",
+      "artifacts": "controlled panel and connector identities/drawings, deterministic assembly instructions, factory assembly record, owner USB bring-up image/backlight/touch traces and signed result"
     },
     {
       "id": "H5-MSR-U214",
@@ -1092,9 +1093,9 @@
     "article_ids_are_unique": true,
     "every_article_is_used_by_a_measurement": true,
     "every_selected_identity_is_exact": true,
-    "production_display_is_one_unresolved_factory_gate": true,
+    "production_display_is_one_exact_priced_factory_installed_panel": true,
     "every_quantity_has_an_explicit_minimum_basis": true,
-    "only_production_display_waits_for_factory_quote": true,
+    "no_selected_article_has_unpriced_identity": true,
     "both_selected_voice_variants_are_in_the_integrated_manifest": true,
     "voice_prices_match_reviewed_jlcpcb_routes": true,
     "purchase_layout_fabrication_not_authorized": true,

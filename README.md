@@ -10,15 +10,13 @@
 
 </div>
 
-> **Current hardware marker: `H1-R2.32`.** The exact dual-RP GPIO/M1 map and
-> C5 SDIO/service-mux electrical join are closed as current H1 authority. The
-> accepted same-slot U214/U219 role now has all five active host packages and
-> all 43 existing Cap/evidence bodies registered with source-backed courtyards.
-> An exact documented production display panel, U219 support passives, NFC
-> pickup geometry and installed-antenna swept volume remain the four explicit
-> H1 blockers before
-> complete mock-up acceptance. R2 H2/KiCad has not started,
-> and ordering remains blocked.
+> **Current hardware marker: `H1-R2.33`.** The complete two-PCB placement is
+> ready for visual acceptance: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
+> the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display, passive 40-to-50-contact
+> adapter, all 18 U219 support bodies, NFC pickup loop and the external volume
+> of the supplied 108-mm antenna are registered fail-closed. No H1 geometry
+> blocker remains; H1 stays open only until the complete mock-up is accepted.
+> R2 H2/KiCad has not started, and ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
@@ -40,7 +38,7 @@ interfaces enter a hardware-verifiable quiet state.
 | Native wireless | S3 Wi-Fi/BLE and C5 2.4/5-GHz Wi-Fi, 802.15.4 and IR |
 | Dedicated RF | CC1101 Sub-GHz, independent VHF/UHF voice, FM/AM/SW/LW/Airband RX |
 | Video | Receive-only analog 5.8-GHz FPV through a dedicated rear MMCX |
-| Interface | 3.5-inch 320×480 touch IPS over direct 32-MHz i8080-8, S3-local buttons through `TCA9539PWR`, waterfall, microSD and audio |
+| Interface | 3.5-inch 320×480 touch IPS `ER-TFT035IPS-6` + `ER-TPC035-6` over direct 24-MHz i8080-8, S3-local buttons through `TCA9539PWR`, waterfall, microSD and audio |
 | Expansion | One protected rear Cap slot for U214 LoRa or U219 CC1101+NFC, plus a protected M5 Unit interface |
 | Recovery | Four independent USB paths, recessed per-controller controls and DBG10 fallbacks |
 | Unattended safety | TX evidence, watchdog, thermal supervision, hard power-off and retained fault reason |
@@ -51,10 +49,10 @@ user to accept the non-aggression/authorized-use terms.
 
 ## Physical mock-up
 
-![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.23-cost-display-1)
+![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.33-layout-ready-1)
 
-[Open the legend for all 168 numbered references](docs/images/h1-r2-component-legend.svg?rev=h1-r2.23-cost-display-1) ·
-[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.23-cost-display-1) ·
+[Open the legend for all 218 numbered references](docs/images/h1-r2-component-legend.svg?rev=h1-r2.33-layout-ready-1) ·
+[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.33-layout-ready-1) ·
 [front inner face](docs/images/h1-r2-inner-ui.svg) ·
 [rear inner face](docs/images/h1-r2-inner-rf.svg)
 
@@ -105,7 +103,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | Stage | Status | Published result |
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶ Current · `H1-R2.32`** | [Current placement](docs/h1-r2-physical-layout.md) · [cost ranking](docs/h1-r2-cost.md) |
+| **H1 · Physical product design** | **▶ Ready for acceptance · `H1-R2.33`** | [Current placement](docs/h1-r2-physical-layout.md) · [cost ranking](docs/h1-r2-cost.md) |
 | H2 · Production ECAD schematic | ⏳ Waiting for R2 H1 | [Stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
@@ -120,7 +118,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 
 - ✅ Exact front/rear RP GPIO0..47 maps, five Hub↔RF M1 signals and C5 SDIO/service-mux electrical join are machine-checked; budgets are `46/48` (2 free) and `44/48` (4 free: GP15/29/37/38).
 - ✅ Ten main antenna ports repartitioned `5 + 5`; no main RF trace crosses M1.
-- ✅ Direct i8080-8 display closes at 32 MB/s; buttons stay on the S3-local `TCA9539PWR` path, while encoder, USB and camera RX remain direct S3 paths.
+- ✅ Series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` is fixed with its exact 50-contact FPC, `ILI9488`, `FT6236` and passive `L2-DISP-ADP-001-B`; direct i8080-8 runs at a conservative 24 MHz (24 MB/s, 12.8 ms per full frame), with ordinary 4-wire serial retained as recovery mode.
 - ✅ M1 has a complete 80-contact map and an enclosure load path: four 11-mm stops, anti-shear datums and independent PCB capture.
 - ✅ Antenna silkscreen passes generated body/cable/accessory/fastener no-overlap checks.
 - ✅ Vertical Molex `73415-2063` FPV MMCX: exact JLCPCB route, SMT-only, no interboard tail.
@@ -128,18 +126,18 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ C5 DBG10 moved beside S3 DBG10; the structural audit of all currently registered bodies, including corrected maximum U219 package envelopes, reports zero same-face collisions and 2.59 mm minimum opposing clearance against 0.70 mm required.
 - ✅ Public exterior, separate readable inner faces, service surface and real section views regenerated.
 - ✅ Official Sinopine `SP331R-MANUAL-V1.0` controls the axes of the tolerant 14-pad K331 hand-solder land; exact-drawing AWM666V is the seven-channel fallback. Neither receiver enters the normal PCBA BOM.
-- ✅ The 210-line `H1-R2.30` base BOM is cost-ranked per fitted device and 100-device projection; the former five-board BOM Tool run remains historical cost evidence only. The procurement target is exactly one factory-assembled prototype without batteries. Its exact production panel remains an unresolved gate; HMX donor boards are rejected as procurement and retained only as legacy evidence.
+- ✅ The 210-line `H1-R2.30` base BOM is cost-ranked per fitted device and 100-device projection; the former five-board BOM Tool run remains historical cost evidence only. The procurement target is exactly one factory-assembled prototype without batteries. The HMX donor route is rejected; the selected EastRising panel is a customer-supplied final-assembly part.
 - ✅ U219 is accepted as the second mutually exclusive Cap profile: CC1101 is hard RX-only, NFC is poll/read-only, pin 10 is fail-disconnected and NFC field evidence joins `ANY_TX_AON_N`. Pin 7 power identity remains a received-unit gate, not an H2 claim.
 - ✅ The two DCK boundaries, two BAT54S bridges and LMV331 comparator use official maximum full-package envelopes and source-backed courtyards; all five fit their bounded islands without overlap.
-- ✅ All 43 existing Cap/evidence bodies now have exactly one source-backed coordinate and conservative placement courtyard; substitution, omission or duplicate projection fails generation.
-- ▶ **Exact current point:** select one documented production display with a controlled drawing and deterministic factory mating route, close the U219 support-passive values/MPNs and courtyards, locate and tune the NFC pickup, bound the installed U219 antenna swept volume, then review and explicitly accept the complete mock-up. The legacy HMX panel remains electrical/mechanical evidence only. A later AKK/Sinopine package can simplify the K331 footprint but no longer blocks H1.
+- ✅ All 18 exact U219 support parts and the existing Cap/evidence register now have one source-backed coordinate and conservative courtyard; the NFC pickup loop, DNP tuning bank and external swept volume of the supplied antenna are covered by the same fail-closed audit.
+- ▶ **Exact current point:** review and explicitly accept the complete exterior, both inner faces after physically turning the PCBs over, and the real sandwich sections. After H1 acceptance, R2 H2 still requires the three electrical prerequisites listed in the roadmap; KiCad does not start automatically.
 - 🔒 KiCad, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H1-R2.32 -->
+<!-- current-substep: H1-R2.33 -->
 
 ## Repository
 

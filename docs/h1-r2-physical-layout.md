@@ -1,18 +1,18 @@
-# H1-R2.32 · working target-device placement
+# H1-R2.33 · working target-device placement
 
-Current verifiable physical model of the two 75 × 150 mm PCBs; it is neither complete placement nor authorization to start KiCad. The structural audit and complete current Cap/evidence body register pass, while H1 remains open until the four listed display/U219 acceptance gates and explicit mock-up acceptance are closed.
+The complete verifiable physical model of the two 75 × 150 mm PCBs is ready for visual acceptance. Every body, Cap profile, external U219 antenna volume and copper reserve is registered with no open geometry gate; H1 remains open only until this mock-up is explicitly accepted. H1 acceptance does not itself authorize KiCad routing: the R2 H2 electrical prerequisites listed below must still close first.
 
 ## What the user sees
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.32-cap-evidence-register-1)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.33-layout-ready-1)
 
 ## Component legend
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.32-cap-evidence-register-1)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.33-layout-ready-1)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.32-cap-evidence-register-1)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.33-layout-ready-1)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.32-cap-evidence-register-1)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.33-layout-ready-1)
 
 ## What is inside
 
@@ -49,13 +49,20 @@ Current verifiable physical model of the two 75 × 150 mm PCBs; it is neither co
 - M1 mechanics: four 11.00-mm compression stops, two anti-shear datums and independent PCB capture; the connector carries no impact or bending load.
 - Antenna silkscreen: the generator proves no overlap with SMA/MMCX bodies, the installed FPV cable, the Cap-Bus slot, the display or mounting keep-outs.
 - The exact ten-SMA land pattern follows the A1 drawings: one rectangular 1.87 × 3.30-mm RF land at x=0, four rectangular 1.60 × 3.30-mm shell lands at x=±2.55 mm and board edge y=0. H5 locks the dual-face soldering process, H7 inspects all five joints per connector on the one assembled prototype, and H8 performs ordinary assembly/disassembly, continuity/inspection and every path-specific RF check without artificial ageing, drops or a vibration programme.
-- Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; 43 existing Cap/evidence bodies and their source-backed placement courtyards are registered fail-closed, while the exact production display, U219 support-passive courtyards, the NFC loop and antenna swept volume remain explicit H1 gates (4).
-- The upper display adapter has zero body collisions and 5.10 mm minimum opposing clearance; the second nRF24 board U.FL moves below it with 1.00 mm planar clearance.
+- Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; all 18 exact U219 bodies, their source-backed courtyards, the NFC pickup loop and the external swept volume of the supplied 108-mm antenna are registered fail-closed. Open H1 geometry gates: `0`.
+- The `ER-TFT035IPS-6` + `ER-TPC035-6` assembly, its 50-contact `FH34SRJ-50S-0.5SH(50)` connector and passive `L2-DISP-ADP-001-B` are fixed; the adapter has zero body collisions and 5.10 mm minimum opposing clearance, while the second nRF24 board U.FL retains 1.00 mm planar clearance.
 
 ## Exact factory parts
 
 | Role | MPN | JLCPCB | Current availability/route |
 |---|---|---|---|
+| configured 3.5-inch production display and capacitive touch assembly | `EastRising ER-TFT035IPS-6 + ER-TPC035-6` | — | manufacturer page says In stock; configured quantity-1 price USD 14.91; at least ten-year continuity stated |
+| 50-contact display-tail connector on the passive adapter | `FH34SRJ-50S-0.5SH(50)` | [`C3169104`](https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104) | 2,679 pieces shown, 2,614 orderable, MOQ 1, USD 0.5832 at quantity 1 |
+| U219 1-kOhm NFC input limiter | `0402WGF1001TCE` | [`C11702`](https://jlcpcb.com/partdetail/12256-0402WGF1001TCE/C11702) | 10,911,212 orderable, MOQ 1, USD 0.0039 at quantity 1 |
+| U219 10-kOhm command, threshold and evidence resistor | `0402WGF1002TCE` | [`C25744`](https://jlcpcb.com/partdetail/26487-UNI_ROYAL0402WGF1002TCE/C25744) | 27,943,335 orderable, MOQ 1, USD 0.0031 at quantity 1 |
+| U219 100-kOhm envelope and threshold resistor | `0402WGF1003TCE` | [`C25741`](https://jlcpcb.com/partdetail/x/C25741) | 13,226,514 orderable, MOQ 1, USD 0.0028 at quantity 1 |
+| U219 1-MOhm comparator hysteresis resistor | `0402WGF1004TCE` | [`C26083`](https://jlcpcb.com/partdetail/x/C26083) | 3,044,597 orderable, MOQ 1, USD 0.0026 at quantity 1 |
+| U219 10-nF NFC envelope capacitor | `GRM155R71H103KA88D` | [`C77019`](https://jlcpcb.com/partdetail/MurataElectronics-GRM155R71H103KA88D/C77019) | 629,708 orderable, MOQ 1, USD 0.0097 at quantity 1 |
 | Hub RP2354B factory assembly cross-reference | `SC1512-A4` | [`C39843328`](https://jlcpcb.com/partdetail/RaspberryPi-RP2354B/C39843328) | LCSC/JLC supply surface showed canPresale 3,442 (authoritative assembly availability), displayed stock 3,605, MOQ 1, USD 1.5658 at quantity 1 and USD 1.4927 at quantity 10 |
 | analog composite-video decoder | `TVP5150AM1PBS` | [`C3824301`](https://jlcpcb.com/partdetail/TexasInstruments-TVP5150AM1PBS/C3824301) | 62 pieces, MOQ 1, USD 6.4081 at quantity 1 |
 | 24-channel 5.8-GHz analog-FPV receiver module | `K331` | — | manufacturer store showed in stock at USD 29.99; JLCPCB confirmed zero Parts Library/Global Sourcing route and no direct replacement, but accepts a Consigned Parts application before shipment |
@@ -74,17 +81,13 @@ Current verifiable physical model of the two 75 × 150 mm PCBs; it is neither co
 
 ## Final H1 acceptance
 
-- select one exact documented production display panel, controlled drawing and mating envelope with a deterministic factory-installable route before H1 closes or R2 H2 starts
-- complete exact support-passive values/MPNs and prove their courtyards inside the two bounded U219 placement islands
-- obtain controlled U219 field-structure geometry or measure a received unit before locating the weak printed NFC pickup loop and its DNP C0G bank
-- measure the installed U219 RP-SMA antenna swept volume against the rear connector bank, FPV plug, enclosure and user hand access
+- No additional physical-body geometry blockers remain.
 - review and explicitly accept the generated complete R2 exterior, both true-view inner faces and four real section planes before closing H1
 
 ### Preconditions before R2 H2 / KiCad
 
-- select one exact documented production display panel, controlled drawing, electrical map and deterministic factory mating route; HMX remains legacy evidence only
 - timestamp an exact live JLC stock-or-explicit-route, MOQ and price for onsemi FSUSB42MUX / C11355
 - select and factory-validate the exact service-VBUS detector/latch MPN used by the closed C5 electrical ownership contract
 - instantiate and prove the exact powered-off-Ioff isolation boundary and separate 3V3_MAIN/AON pull-up domains for Hub GPIO42/43 Pack/Safety I2C
 
-> Exact current marker: **H1-R2.32**. H1 remains in progress.
+> Exact current marker: **H1-R2.33**. H1 remains in progress.

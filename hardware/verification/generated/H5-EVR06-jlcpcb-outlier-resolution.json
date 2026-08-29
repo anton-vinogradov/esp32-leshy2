@@ -6,14 +6,14 @@
   "checked_on": "2026-08-28",
   "input": {
     "bom_tool_result": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
-    "bom_tool_result_sha256": "586bd474ba8b634424c2a9d62115bb7bc289a4c49aaf63854d9f061f2c0de851",
+    "bom_tool_result_sha256": "70d6d9f4b6d9c3c3d101eabb459cb0d79ade5f82c314c038e1a0d4e05aad0bc5",
     "search_capture": "hardware/verification/jlcpcb-outlier-search-capture-2026-08-25.json",
     "search_capture_sha256": "50fdf7c69a95bc53e32148cf8e7e3b2d245818a74cec065a708c128527af2699"
   },
   "summary": {
     "target_bom_lines": 210,
-    "bom_tool_matched_lines": 180,
-    "bom_tool_outliers_resolved": 30,
+    "bom_tool_matched_lines": 181,
+    "bom_tool_outliers_resolved": 29,
     "availability_routes": {
       "J0": 166,
       "J1": 0,
@@ -46,7 +46,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 18,
+      "bom_index": 19,
       "device_id": "ebyte_e01_ml01ipx",
       "normalized_mpn": "E01-ML01IPX",
       "quantity": 3,
@@ -60,7 +60,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 24,
+      "bom_index": 25,
       "device_id": "gct_rfpc_sma31_fn_175_a",
       "normalized_mpn": "RFPC-SMA31-FN-175-A",
       "quantity": 8,
@@ -74,7 +74,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 25,
+      "bom_index": 26,
       "device_id": "gct_rfpc_sma32_fn_175_a",
       "normalized_mpn": "RFPC-SMA32-FN-175-A",
       "quantity": 2,
@@ -88,7 +88,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 32,
+      "bom_index": 33,
       "device_id": "hirose_fx8c_80s_sv5_92",
       "normalized_mpn": "FX8C-80S-SV5(92)",
       "quantity": 1,
@@ -102,7 +102,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 34,
+      "bom_index": 35,
       "device_id": "infineon_bgs13sn8e6327xtsa1",
       "normalized_mpn": "BGS13SN8E6327XTSA1",
       "quantity": 2,
@@ -116,7 +116,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 44,
+      "bom_index": 45,
       "device_id": "m5_u214",
       "normalized_mpn": "U214 Cap LoRa-1262",
       "quantity": 1,
@@ -130,7 +130,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 47,
+      "bom_index": 48,
       "device_id": "murata_gjm1555c1h101jb01d",
       "normalized_mpn": "GJM1555C1H101JB01D",
       "quantity": 2,
@@ -144,7 +144,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 84,
+      "bom_index": 85,
       "device_id": "nexperia_pesd24vy1bsf",
       "normalized_mpn": "PESD24VY1BSF",
       "quantity": 2,
@@ -158,7 +158,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 96,
+      "bom_index": 97,
       "device_id": "pui_as02404po",
       "normalized_mpn": "AS02404PO",
       "quantity": 1,
@@ -169,20 +169,6 @@
       "reason": "exact board speaker is orderable outside the public JLC library and needs manual/THT assembly acceptance",
       "target_bom_orderable_evidence": "present",
       "target_bom_source": "https://www.digikey.com/en/products/detail/pui-audio-inc/AS02404PO/24385608",
-      "component_replacement": false
-    },
-    {
-      "bom_index": 97,
-      "device_id": "qdtech_hmx035ctft_001",
-      "normalized_mpn": "HMX035CTFT-001",
-      "quantity": 1,
-      "route": "J4-F",
-      "lcsc": null,
-      "manufacturer": null,
-      "stock_snapshot": null,
-      "reason": "legacy architecture identity only: the exact production panel remains unresolved and requires written factory acceptance for deterministic mating in the one prototype; donor procurement is rejected",
-      "target_bom_orderable_evidence": "missing",
-      "target_bom_source": "",
       "component_replacement": false
     },
     {
@@ -763,6 +749,23 @@
     },
     {
       "bom_index": 18,
+      "device_id": "eastrising_er_tft035ips_6_ctp",
+      "source_mpn": "EastRising ER-TFT035IPS-6 + ER-TPC035-6",
+      "normalized_mpn": "ER-TFT035IPS-6 + ER-TPC035-6",
+      "quantity": 1,
+      "route": "J4-F",
+      "tool_status": "factory_final_assembly",
+      "match_provenance": "current_exact_jlcpcb_part_page",
+      "lcsc": null,
+      "matched_mpn": "ER-TFT035IPS-6 + ER-TPC035-6",
+      "supplier_order_code": "ER-TFT035IPS-6 + ER-TPC035-6",
+      "semantic_mpn_equal": true,
+      "stock_snapshot": "manufacturer_in_stock",
+      "displayed_line_cost_usd": 14.91,
+      "designators_complete": true
+    },
+    {
+      "bom_index": 19,
       "device_id": "ebyte_e01_ml01ipx",
       "source_mpn": "Ebyte E01-ML01IPX",
       "normalized_mpn": "E01-ML01IPX",
@@ -782,7 +785,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 19,
+      "bom_index": 20,
       "device_id": "epson_q13fc13500005",
       "source_mpn": "Seiko Epson Q13FC13500005",
       "normalized_mpn": "Q13FC13500005",
@@ -800,7 +803,7 @@
       "displayed_line_cost_usd": 1.3205
     },
     {
-      "bom_index": 20,
+      "bom_index": 21,
       "device_id": "esp32_c5_wroom_1u_n8r8",
       "source_mpn": "ESP32-C5-WROOM-1U-N8R8",
       "normalized_mpn": "ESP32-C5-WROOM-1U-N8R8",
@@ -817,7 +820,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 21,
+      "bom_index": 22,
       "device_id": "esp32_s3_wroom_1u_n16r8",
       "source_mpn": "ESP32-S3-WROOM-1U-N16R8",
       "normalized_mpn": "ESP32-S3-WROOM-1U-N16R8",
@@ -835,7 +838,7 @@
       "displayed_line_cost_usd": 25.2365
     },
     {
-      "bom_index": 22,
+      "bom_index": 23,
       "device_id": "everest_es8311_qfn20",
       "source_mpn": "Everest Semiconductor ES8311",
       "normalized_mpn": "ES8311",
@@ -853,7 +856,7 @@
       "displayed_line_cost_usd": 2.761
     },
     {
-      "bom_index": 23,
+      "bom_index": 24,
       "device_id": "fh_rs_06k47r0ft",
       "source_mpn": "FH RS-06K47R0FT",
       "normalized_mpn": "RS-06K47R0FT",
@@ -870,7 +873,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 24,
+      "bom_index": 25,
       "device_id": "gct_rfpc_sma31_fn_175_a",
       "source_mpn": "GCT RFPC-SMA31-FN-175-A",
       "normalized_mpn": "RFPC-SMA31-FN-175-A",
@@ -890,7 +893,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 25,
+      "bom_index": 26,
       "device_id": "gct_rfpc_sma32_fn_175_a",
       "source_mpn": "GCT RFPC-SMA32-FN-175-A",
       "normalized_mpn": "RFPC-SMA32-FN-175-A",
@@ -910,7 +913,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 26,
+      "bom_index": 27,
       "device_id": "gct_usb4105_gf_a",
       "source_mpn": "GCT USB4105-GF-A",
       "normalized_mpn": "USB4105-GF-A",
@@ -928,7 +931,7 @@
       "displayed_line_cost_usd": 8.607
     },
     {
-      "bom_index": 27,
+      "bom_index": 28,
       "device_id": "hirose_df40c_2_0_40ds_0_4v_51",
       "source_mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
       "normalized_mpn": "DF40C(2.0)-40DS-0.4V(51)",
@@ -945,7 +948,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 28,
+      "bom_index": 29,
       "device_id": "hirose_df40c_40dp_0_4v_51",
       "source_mpn": "Hirose DF40C-40DP-0.4V(51)",
       "normalized_mpn": "DF40C-40DP-0.4V(51)",
@@ -963,7 +966,7 @@
       "displayed_line_cost_usd": 2.3065
     },
     {
-      "bom_index": 29,
+      "bom_index": 30,
       "device_id": "hirose_dm3at_sf_pejm5",
       "source_mpn": "Hirose DM3AT-SF-PEJM5",
       "normalized_mpn": "DM3AT-SF-PEJM5",
@@ -981,25 +984,24 @@
       "displayed_line_cost_usd": 6.951
     },
     {
-      "bom_index": 30,
-      "device_id": "hirose_fh34srj_40s_0_5sh_99",
-      "source_mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
-      "normalized_mpn": "FH34SRJ-40S-0.5SH(99)",
+      "bom_index": 31,
+      "device_id": "hirose_fh34srj_50s_0_5sh_50",
+      "source_mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
+      "normalized_mpn": "FH34SRJ-50S-0.5SH(50)",
       "quantity": 1,
-      "designators_complete": true,
-      "historical_capture_quantity": 1,
-      "current_quantity_delta": 0,
-      "match_provenance": "unchanged_mpn_from_2026_08_25_bom_tool_capture",
       "route": "J0",
       "tool_status": "in_stock",
-      "lcsc": "C598032",
-      "matched_mpn": "FH34SRJ-40S-0.5SH(99)",
+      "match_provenance": "current_exact_jlcpcb_part_page",
+      "lcsc": "C3169104",
+      "matched_mpn": "FH34SRJ-50S-0.5SH(50)",
+      "supplier_order_code": "FH34SRJ-50S-0.5SH(50)",
       "semantic_mpn_equal": true,
-      "stock_snapshot": 10,
-      "displayed_line_cost_usd": 17.888
+      "stock_snapshot": 2679,
+      "displayed_line_cost_usd": 0.5832,
+      "designators_complete": true
     },
     {
-      "bom_index": 31,
+      "bom_index": 32,
       "device_id": "hirose_fx8c_80p_sv1_92",
       "source_mpn": "Hirose FX8C-80P-SV1(92)",
       "normalized_mpn": "FX8C-80P-SV1(92)",
@@ -1017,7 +1019,7 @@
       "displayed_line_cost_usd": 23.4745
     },
     {
-      "bom_index": 32,
+      "bom_index": 33,
       "device_id": "hirose_fx8c_80s_sv5_92",
       "source_mpn": "Hirose FX8C-80S-SV5(92)",
       "normalized_mpn": "FX8C-80S-SV5(92)",
@@ -1037,7 +1039,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 33,
+      "bom_index": 34,
       "device_id": "hirose_ufl_r_smt_1_10",
       "source_mpn": "Hirose U.FL-R-SMT-1(10)",
       "normalized_mpn": "U.FL-R-SMT-1(10)",
@@ -1055,7 +1057,7 @@
       "displayed_line_cost_usd": 5.6575
     },
     {
-      "bom_index": 34,
+      "bom_index": 35,
       "device_id": "infineon_bgs13sn8e6327xtsa1",
       "source_mpn": "Infineon BGS13SN8E6327XTSA1",
       "normalized_mpn": "BGS13SN8E6327XTSA1",
@@ -1075,7 +1077,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 35,
+      "bom_index": 36,
       "device_id": "jae_dx07s016ja1r1500",
       "source_mpn": "JAE DX07S016JA1R1500",
       "normalized_mpn": "DX07S016JA1R1500",
@@ -1093,7 +1095,7 @@
       "displayed_line_cost_usd": 3.451
     },
     {
-      "bom_index": 36,
+      "bom_index": 37,
       "device_id": "kemet_c0402c102k5ractu",
       "source_mpn": "KEMET C0402C102K5RACTU",
       "normalized_mpn": "C0402C102K5RACTU",
@@ -1111,7 +1113,7 @@
       "displayed_line_cost_usd": 0.182
     },
     {
-      "bom_index": 37,
+      "bom_index": 38,
       "device_id": "kemet_c0402c330j5gactu",
       "source_mpn": "KEMET C0402C330J5GACTU",
       "normalized_mpn": "C0402C330J5GACTU",
@@ -1129,7 +1131,7 @@
       "displayed_line_cost_usd": 1.3825
     },
     {
-      "bom_index": 38,
+      "bom_index": 39,
       "device_id": "keystone_1048p",
       "source_mpn": "Keystone Electronics 1048P",
       "normalized_mpn": "1048P",
@@ -1147,7 +1149,7 @@
       "displayed_line_cost_usd": 33.665
     },
     {
-      "bom_index": 39,
+      "bom_index": 40,
       "device_id": "kyocera_avx_cp0603q5425entr",
       "source_mpn": "KYOCERA AVX CP0603Q5425ENTR",
       "normalized_mpn": "CP0603Q5425ENTR",
@@ -1165,7 +1167,7 @@
       "displayed_line_cost_usd": 9.052
     },
     {
-      "bom_index": 40,
+      "bom_index": 41,
       "device_id": "liteon_ltst_c190kfkt",
       "source_mpn": "LTST-C190KFKT",
       "normalized_mpn": "LTST-C190KFKT",
@@ -1183,7 +1185,7 @@
       "displayed_line_cost_usd": 0.476
     },
     {
-      "bom_index": 41,
+      "bom_index": 42,
       "device_id": "liteon_ltst_c190krkt",
       "source_mpn": "LTST-C190KRKT",
       "normalized_mpn": "LTST-C190KRKT",
@@ -1201,7 +1203,7 @@
       "displayed_line_cost_usd": 1.2375
     },
     {
-      "bom_index": 42,
+      "bom_index": 43,
       "device_id": "littelfuse_0451005_mrl",
       "source_mpn": "Littelfuse 0451005.MRL",
       "normalized_mpn": "0451005.MRL",
@@ -1219,7 +1221,7 @@
       "displayed_line_cost_usd": 3.0468
     },
     {
-      "bom_index": 43,
+      "bom_index": 44,
       "device_id": "littelfuse_sesd0402x1un_0020_090",
       "source_mpn": "Littelfuse SESD0402X1UN-0020-090",
       "normalized_mpn": "SESD0402X1UN-0020-090",
@@ -1237,7 +1239,7 @@
       "displayed_line_cost_usd": 2.985
     },
     {
-      "bom_index": 44,
+      "bom_index": 45,
       "device_id": "m5_u214",
       "source_mpn": "M5Stack U214 Cap LoRa-1262",
       "normalized_mpn": "U214 Cap LoRa-1262",
@@ -1257,7 +1259,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 45,
+      "bom_index": 46,
       "device_id": "murata_blm18pg181sn1d",
       "source_mpn": "Murata BLM18PG181SN1D",
       "normalized_mpn": "BLM18PG181SN1D",
@@ -1275,7 +1277,7 @@
       "displayed_line_cost_usd": 0.453
     },
     {
-      "bom_index": 46,
+      "bom_index": 47,
       "device_id": "murata_gjm1555c1h100jb01d",
       "source_mpn": "Murata GJM1555C1H100JB01D",
       "normalized_mpn": "GJM1555C1H100JB01D",
@@ -1293,7 +1295,7 @@
       "displayed_line_cost_usd": 0.28
     },
     {
-      "bom_index": 47,
+      "bom_index": 48,
       "device_id": "murata_gjm1555c1h101jb01d",
       "source_mpn": "Murata GJM1555C1H101JB01D",
       "normalized_mpn": "GJM1555C1H101JB01D",
@@ -1313,7 +1315,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 48,
+      "bom_index": 49,
       "device_id": "murata_gjm1555c1h150jb01d",
       "source_mpn": "Murata GJM1555C1H150JB01D",
       "normalized_mpn": "GJM1555C1H150JB01D",
@@ -1331,7 +1333,7 @@
       "displayed_line_cost_usd": 0.8484
     },
     {
-      "bom_index": 49,
+      "bom_index": 50,
       "device_id": "murata_gjm1555c1h1r2bb01d",
       "source_mpn": "Murata GJM1555C1H1R2BB01D",
       "normalized_mpn": "GJM1555C1H1R2BB01D",
@@ -1349,7 +1351,7 @@
       "displayed_line_cost_usd": 0.586
     },
     {
-      "bom_index": 50,
+      "bom_index": 51,
       "device_id": "murata_gjm1555c1h6r2db01d",
       "source_mpn": "Murata GJM1555C1H6R2DB01D",
       "normalized_mpn": "GJM1555C1H6R2DB01D",
@@ -1367,7 +1369,7 @@
       "displayed_line_cost_usd": 0.278
     },
     {
-      "bom_index": 51,
+      "bom_index": 52,
       "device_id": "murata_gjm1555c1h8r0db01d",
       "source_mpn": "Murata GJM1555C1H8R0DB01D",
       "normalized_mpn": "GJM1555C1H8R0DB01D",
@@ -1385,7 +1387,7 @@
       "displayed_line_cost_usd": 0.414
     },
     {
-      "bom_index": 52,
+      "bom_index": 53,
       "device_id": "murata_gjm1555c1hr47bb01d",
       "source_mpn": "Murata GJM1555C1HR47BB01D",
       "normalized_mpn": "GJM1555C1HR47BB01D",
@@ -1403,7 +1405,7 @@
       "displayed_line_cost_usd": 8.9569
     },
     {
-      "bom_index": 53,
+      "bom_index": 54,
       "device_id": "murata_gjm1555c1hr60bb01d",
       "source_mpn": "Murata GJM1555C1HR60BB01D",
       "normalized_mpn": "GJM1555C1HR60BB01D",
@@ -1421,7 +1423,7 @@
       "displayed_line_cost_usd": 0.372
     },
     {
-      "bom_index": 54,
+      "bom_index": 55,
       "device_id": "murata_grm1555c1h102ja01d",
       "source_mpn": "Murata GRM1555C1H102JA01D",
       "normalized_mpn": "GRM1555C1H102JA01D",
@@ -1439,7 +1441,7 @@
       "displayed_line_cost_usd": 0.208
     },
     {
-      "bom_index": 55,
+      "bom_index": 56,
       "device_id": "murata_grm1555c1h121ja01d",
       "source_mpn": "Murata GRM1555C1H121JA01D",
       "normalized_mpn": "GRM1555C1H121JA01D",
@@ -1457,7 +1459,7 @@
       "displayed_line_cost_usd": 8.9565
     },
     {
-      "bom_index": 56,
+      "bom_index": 57,
       "device_id": "murata_grm1555c1h220ja01d",
       "source_mpn": "Murata GRM1555C1H220JA01D",
       "normalized_mpn": "GRM1555C1H220JA01D",
@@ -1475,7 +1477,7 @@
       "displayed_line_cost_usd": 0.44
     },
     {
-      "bom_index": 57,
+      "bom_index": 58,
       "device_id": "murata_grm1555c1h221ja01d",
       "source_mpn": "Murata GRM1555C1H221JA01D",
       "normalized_mpn": "GRM1555C1H221JA01D",
@@ -1493,7 +1495,7 @@
       "displayed_line_cost_usd": 0.147
     },
     {
-      "bom_index": 58,
+      "bom_index": 59,
       "device_id": "murata_grm1555c1h390ja01d",
       "source_mpn": "Murata GRM1555C1H390JA01D",
       "normalized_mpn": "GRM1555C1H390JA01D",
@@ -1511,7 +1513,7 @@
       "displayed_line_cost_usd": 8.9582
     },
     {
-      "bom_index": 59,
+      "bom_index": 60,
       "device_id": "murata_grm155r71a474ke01d",
       "source_mpn": "Murata GRM155R71A474KE01D",
       "normalized_mpn": "GRM155R71A474KE01D",
@@ -1529,7 +1531,7 @@
       "displayed_line_cost_usd": 0.1765
     },
     {
-      "bom_index": 60,
+      "bom_index": 61,
       "device_id": "murata_grm155r71e473ka88d",
       "source_mpn": "Murata GRM155R71E473KA88D",
       "normalized_mpn": "GRM155R71E473KA88D",
@@ -1547,7 +1549,7 @@
       "displayed_line_cost_usd": 0.148
     },
     {
-      "bom_index": 61,
+      "bom_index": 62,
       "device_id": "murata_grm155r71h103ka88d",
       "source_mpn": "Murata GRM155R71H103KA88D",
       "normalized_mpn": "GRM155R71H103KA88D",
@@ -1565,7 +1567,7 @@
       "displayed_line_cost_usd": 0.5044
     },
     {
-      "bom_index": 62,
+      "bom_index": 63,
       "device_id": "murata_grm155r71h472ka01d",
       "source_mpn": "Murata GRM155R71H472KA01D",
       "normalized_mpn": "GRM155R71H472KA01D",
@@ -1583,7 +1585,7 @@
       "displayed_line_cost_usd": 0.339
     },
     {
-      "bom_index": 63,
+      "bom_index": 64,
       "device_id": "murata_grm188r60j106me47d",
       "source_mpn": "Murata GRM188R60J106ME47D",
       "normalized_mpn": "GRM188R60J106ME47D",
@@ -1601,7 +1603,7 @@
       "displayed_line_cost_usd": 7.1715
     },
     {
-      "bom_index": 64,
+      "bom_index": 65,
       "device_id": "murata_grm188r71e224ka88d",
       "source_mpn": "Murata GRM188R71E224KA88D",
       "normalized_mpn": "GRM188R71E224KA88D",
@@ -1619,7 +1621,7 @@
       "displayed_line_cost_usd": 0.502
     },
     {
-      "bom_index": 65,
+      "bom_index": 66,
       "device_id": "murata_grm188r71e474ka12d",
       "source_mpn": "Murata GRM188R71E474KA12D",
       "normalized_mpn": "GRM188R71E474KA12D",
@@ -1637,7 +1639,7 @@
       "displayed_line_cost_usd": 1.1256
     },
     {
-      "bom_index": 66,
+      "bom_index": 67,
       "device_id": "murata_grm188z71a475me15d",
       "source_mpn": "Murata GRM188Z71A475ME15D",
       "normalized_mpn": "GRM188Z71A475ME15D",
@@ -1655,7 +1657,7 @@
       "displayed_line_cost_usd": 1.0272
     },
     {
-      "bom_index": 67,
+      "bom_index": 68,
       "device_id": "murata_grm21br60j226me39l",
       "source_mpn": "Murata GRM21BR60J226ME39L",
       "normalized_mpn": "GRM21BR60J226ME39L",
@@ -1673,7 +1675,7 @@
       "displayed_line_cost_usd": 3.5264
     },
     {
-      "bom_index": 68,
+      "bom_index": 69,
       "device_id": "murata_grm21br71e225ke11l",
       "source_mpn": "Murata GRM21BR71E225KE11L",
       "normalized_mpn": "GRM21BR71E225KE11L",
@@ -1691,7 +1693,7 @@
       "displayed_line_cost_usd": 1.7688
     },
     {
-      "bom_index": 69,
+      "bom_index": 70,
       "device_id": "murata_grm31c5c1h224je02l",
       "source_mpn": "Murata GRM31C5C1H224JE02L",
       "normalized_mpn": "GRM31C5C1H224JE02L",
@@ -1709,7 +1711,7 @@
       "displayed_line_cost_usd": 1.8095
     },
     {
-      "bom_index": 70,
+      "bom_index": 71,
       "device_id": "murata_grm31cr71a226ke15l",
       "source_mpn": "Murata GRM31CR71A226KE15L",
       "normalized_mpn": "GRM31CR71A226KE15L",
@@ -1727,7 +1729,7 @@
       "displayed_line_cost_usd": 1.6485
     },
     {
-      "bom_index": 71,
+      "bom_index": 72,
       "device_id": "murata_grm31cr71e106ma12l",
       "source_mpn": "Murata GRM31CR71E106MA12L",
       "normalized_mpn": "GRM31CR71E106MA12L",
@@ -1745,7 +1747,7 @@
       "displayed_line_cost_usd": 12.3194
     },
     {
-      "bom_index": 72,
+      "bom_index": 73,
       "device_id": "murata_grm32er71e226ke15l",
       "source_mpn": "Murata GRM32ER71E226KE15L",
       "normalized_mpn": "GRM32ER71E226KE15L",
@@ -1763,7 +1765,7 @@
       "displayed_line_cost_usd": 31.668
     },
     {
-      "bom_index": 73,
+      "bom_index": 74,
       "device_id": "murata_lqg15hs10nj02d",
       "source_mpn": "Murata LQG15HS10NJ02D",
       "normalized_mpn": "LQG15HS10NJ02D",
@@ -1781,7 +1783,7 @@
       "displayed_line_cost_usd": 0.46
     },
     {
-      "bom_index": 74,
+      "bom_index": 75,
       "device_id": "murata_lqg15hs15nj02d",
       "source_mpn": "Murata LQG15HS15NJ02D",
       "normalized_mpn": "LQG15HS15NJ02D",
@@ -1799,7 +1801,7 @@
       "displayed_line_cost_usd": 0.406
     },
     {
-      "bom_index": 75,
+      "bom_index": 76,
       "device_id": "murata_lqg15hs2n2s02d",
       "source_mpn": "Murata LQG15HS2N2S02D",
       "normalized_mpn": "LQG15HS2N2S02D",
@@ -1817,7 +1819,7 @@
       "displayed_line_cost_usd": 0.364
     },
     {
-      "bom_index": 76,
+      "bom_index": 77,
       "device_id": "murata_lqg15hs3n3s02d",
       "source_mpn": "Murata LQG15HS3N3S02D",
       "normalized_mpn": "LQG15HS3N3S02D",
@@ -1835,7 +1837,7 @@
       "displayed_line_cost_usd": 0.39
     },
     {
-      "bom_index": 77,
+      "bom_index": 78,
       "device_id": "murata_lqg15hs3n6s02d",
       "source_mpn": "Murata LQG15HS3N6S02D",
       "normalized_mpn": "LQG15HS3N6S02D",
@@ -1853,7 +1855,7 @@
       "displayed_line_cost_usd": 0.614
     },
     {
-      "bom_index": 78,
+      "bom_index": 79,
       "device_id": "murata_lqg15hs6n8j02d",
       "source_mpn": "Murata LQG15HS6N8J02D",
       "normalized_mpn": "LQG15HS6N8J02D",
@@ -1871,7 +1873,7 @@
       "displayed_line_cost_usd": 0.356
     },
     {
-      "bom_index": 79,
+      "bom_index": 80,
       "device_id": "murata_lqw15an56ng00d",
       "source_mpn": "Murata LQW15AN56NG00D",
       "normalized_mpn": "LQW15AN56NG00D",
@@ -1888,7 +1890,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 80,
+      "bom_index": 81,
       "device_id": "nexperia_74lvc126apw_118",
       "source_mpn": "Nexperia 74LVC126APW,118",
       "normalized_mpn": "74LVC126APW,118",
@@ -1906,7 +1908,7 @@
       "displayed_line_cost_usd": 13.968
     },
     {
-      "bom_index": 81,
+      "bom_index": 82,
       "device_id": "nexperia_74lvc1g32gv_125",
       "source_mpn": "74LVC1G32GV,125",
       "normalized_mpn": "74LVC1G32GV,125",
@@ -1924,7 +1926,7 @@
       "displayed_line_cost_usd": 1.8466
     },
     {
-      "bom_index": 82,
+      "bom_index": 83,
       "device_id": "nexperia_74lvc2g126dp_125",
       "source_mpn": "Nexperia 74LVC2G126DP,125",
       "normalized_mpn": "74LVC2G126DP,125",
@@ -1941,7 +1943,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 83,
+      "bom_index": 84,
       "device_id": "nexperia_74lvc2g14gv_125",
       "source_mpn": "74LVC2G14GV,125",
       "normalized_mpn": "74LVC2G14GV,125",
@@ -1958,7 +1960,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 84,
+      "bom_index": 85,
       "device_id": "nexperia_pesd24vy1bsf",
       "source_mpn": "Nexperia PESD24VY1BSF",
       "normalized_mpn": "PESD24VY1BSF",
@@ -1978,7 +1980,7 @@
       "component_replacement": false
     },
     {
-      "bom_index": 85,
+      "bom_index": 86,
       "device_id": "nicerf_sa818s_u_v18",
       "source_mpn": "G-NiceRF SA818S-U",
       "normalized_mpn": "SA818S-U",
@@ -1995,7 +1997,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 86,
+      "bom_index": 87,
       "device_id": "nicerf_sa818s_v_v18",
       "source_mpn": "G-NiceRF SA818S-V",
       "normalized_mpn": "SA818S-V",
@@ -2012,7 +2014,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 87,
+      "bom_index": 88,
       "device_id": "omron_b3s_1100p",
       "source_mpn": "OMRON B3S-1100P",
       "normalized_mpn": "B3S-1100P",
@@ -2030,7 +2032,7 @@
       "displayed_line_cost_usd": 74.576
     },
     {
-      "bom_index": 88,
+      "bom_index": 89,
       "device_id": "onsemi_bat54alt1g",
       "source_mpn": "BAT54ALT1G",
       "normalized_mpn": "BAT54ALT1G",
@@ -2048,7 +2050,7 @@
       "displayed_line_cost_usd": 0.9338
     },
     {
-      "bom_index": 89,
+      "bom_index": 90,
       "device_id": "onsemi_bav70lt1g",
       "source_mpn": "onsemi BAV70LT1G",
       "normalized_mpn": "BAV70LT1G",
@@ -2066,7 +2068,7 @@
       "displayed_line_cost_usd": 0.134
     },
     {
-      "bom_index": 90,
+      "bom_index": 91,
       "device_id": "onsemi_cat24c512wi_gt3",
       "source_mpn": "onsemi CAT24C512WI-GT3",
       "normalized_mpn": "CAT24C512WI-GT3",
@@ -2084,7 +2086,7 @@
       "displayed_line_cost_usd": 3.2075
     },
     {
-      "bom_index": 91,
+      "bom_index": 92,
       "device_id": "onsemi_fsusb42_mux",
       "source_mpn": "onsemi FSUSB42MUX",
       "normalized_mpn": "FSUSB42MUX",
@@ -2102,7 +2104,7 @@
       "displayed_line_cost_usd": 3.177
     },
     {
-      "bom_index": 92,
+      "bom_index": 93,
       "device_id": "panasonic_erj_2rkf22r0x",
       "source_mpn": "Panasonic ERJ-2RKF22R0X",
       "normalized_mpn": "ERJ-2RKF22R0X",
@@ -2120,7 +2122,7 @@
       "displayed_line_cost_usd": 2.5145
     },
     {
-      "bom_index": 93,
+      "bom_index": 94,
       "device_id": "panasonic_erj_2rkf27r0x",
       "source_mpn": "Panasonic ERJ-2RKF27R0X",
       "normalized_mpn": "ERJ-2RKF27R0X",
@@ -2138,7 +2140,7 @@
       "displayed_line_cost_usd": 0.092
     },
     {
-      "bom_index": 94,
+      "bom_index": 95,
       "device_id": "panasonic_erj_p08f10r0v",
       "source_mpn": "Panasonic ERJ-P08F10R0V",
       "normalized_mpn": "ERJ-P08F10R0V",
@@ -2156,7 +2158,7 @@
       "displayed_line_cost_usd": 0.4905
     },
     {
-      "bom_index": 95,
+      "bom_index": 96,
       "device_id": "panasonic_erj_p08f49r9v",
       "source_mpn": "Panasonic ERJ-P08F49R9V",
       "normalized_mpn": "ERJ-P08F49R9V",
@@ -2174,7 +2176,7 @@
       "displayed_line_cost_usd": 8.968
     },
     {
-      "bom_index": 96,
+      "bom_index": 97,
       "device_id": "pui_as02404po",
       "source_mpn": "PUI Audio AS02404PO",
       "normalized_mpn": "AS02404PO",
@@ -2191,26 +2193,6 @@
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
       "outlier_resolution_reason": "exact board speaker is orderable outside the public JLC library and needs manual/THT assembly acceptance",
-      "component_replacement": false
-    },
-    {
-      "bom_index": 97,
-      "device_id": "qdtech_hmx035ctft_001",
-      "source_mpn": "HMX035CTFT-001 (QDtech schematic assembly marking)",
-      "normalized_mpn": "HMX035CTFT-001",
-      "quantity": 1,
-      "designators_complete": true,
-      "historical_capture_quantity": 1,
-      "current_quantity_delta": 0,
-      "match_provenance": "unchanged_mpn_from_2026_08_25_bom_tool_capture",
-      "route": "J4-F",
-      "tool_status": "not_matched",
-      "lcsc": null,
-      "matched_mpn": null,
-      "semantic_mpn_equal": null,
-      "stock_snapshot": null,
-      "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "legacy architecture identity only: the exact production panel remains unresolved and requires written factory acceptance for deterministic mating in the one prototype; donor procurement is rejected",
       "component_replacement": false
     },
     {
@@ -4281,7 +4263,7 @@
       "mpns": [
         "1227-J",
         "2118651-2",
-        "HMX035CTFT-001"
+        "ER-TFT035IPS-6 + ER-TPC035-6"
       ],
       "accepted_and_quoted": false,
       "gate": "H5 and H7 remain open until the selected factory accepts and quotes deterministic installation; whole-device functional test is optional and not a release gate"
@@ -4317,7 +4299,7 @@
     "purchase_remains_last": true
   },
   "checks": {
-    "capture_covers_all_30_unchanged_bom_tool_outliers": true,
+    "capture_covers_all_29_unchanged_bom_tool_outliers": true,
     "every_outlier_has_one_route": true,
     "j0_rows_have_positive_original_maker_stock": true,
     "j2_rows_have_exact_zero_stock_catalogue_identity": true,

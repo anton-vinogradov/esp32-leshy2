@@ -11,7 +11,7 @@
   },
   "current_truth": {
     "target_architecture": "H0-R2 reviewed for six domains; ownership, working pin budgets, safety and HW/FW boundaries are current",
-    "mechanical_projection": "H1-R2.32 is in progress; the complete dimensioned mockup is not yet accepted and H1 cannot authorize ECAD or ordering",
+    "mechanical_projection": "H1-R2.33 is the complete dimensioned acceptance candidate; machine geometry is clean, explicit user acceptance remains required, and H1 cannot authorize ECAD or ordering",
     "current_ecad": "R2 H2 production schematic and PCB layout have not begun; the archived R1 ECAD is historical and must not be built",
     "virtual_electrical": "R2 routed-value electrical verification is blocked on current H2 and H6; historical R1 H3 evidence is not R2 order authority",
     "executable_firmware": "F2-R2.5 is in progress for six production-SDK targets; the first-spin diagnostic, current R2 BSP import and recovery bundle are not reviewed",

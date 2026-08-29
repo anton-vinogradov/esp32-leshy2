@@ -125,13 +125,12 @@ OUTLIER_RESOLUTIONS = {
     "E01-ML01IPX": {"route": "J3", "reason": "three exact full-power nRF24 modules are externally orderable and must be consigned or globally sourced"},
     "2118651-2": {"route": "J4-F", "reason": "five removable 30-mm microcoax jumpers require deterministic factory installation and strain routing during final sandwich assembly; full power-on is owner bring-up"},
     "U214 Cap LoRa-1262": {"route": "J4-P", "reason": "removable rear Cap accessory is packed separately for user installation; factory compatibility FCT is not mandatory"},
-    "HMX035CTFT-001": {"route": "J4-F", "reason": "legacy architecture identity only: the exact production panel remains unresolved and requires written factory acceptance for deterministic mating in the one prototype; donor procurement is rejected"},
     "1227-J": {"route": "J4-F", "reason": "encoder knob requires deterministic factory installation after enclosure integration; full control bring-up is performed by the owner"},
     "18650 4000mAh": {"route": "J5-U", "reason": "accumulator cells are not part of device delivery; the user separately supplies and installs compatible protected cells"},
 }
 
 ROUTE_IDS = ("J0", "J1", "J2", "J3", "J4-F", "J4-P", "J5-U")
-J4_FACTORY_MPNS = {"2118651-2", "HMX035CTFT-001", "1227-J"}
+J4_FACTORY_MPNS = {"2118651-2", "ER-TFT035IPS-6 + ER-TPC035-6", "1227-J"}
 J4_PACKED_MPNS = {"U214 Cap LoRa-1262"}
 J5_USER_MPNS = {"18650 4000mAh"}
 
@@ -139,8 +138,8 @@ J5_USER_MPNS = {"18650 4000mAh"}
 def bare_mpn(value: str) -> str:
     """Return the orderable identity without the register's maker annotation."""
     normalized = value.strip()
-    if normalized == "HMX035CTFT-001 (QDtech schematic assembly marking)":
-        return "HMX035CTFT-001"
+    if normalized == "EastRising ER-TFT035IPS-6 + ER-TPC035-6":
+        return "ER-TFT035IPS-6 + ER-TPC035-6"
     for prefix in MPN_VENDOR_PREFIXES:
         marker = prefix + " "
         if normalized.startswith(marker):
@@ -225,6 +224,30 @@ VOICE_PART_ROUTES = {
 
 
 CURRENT_EXACT_PART_ROUTES = {
+    "ER-TFT035IPS-6 + ER-TPC035-6": {
+        "device_id": "eastrising_er_tft035ips_6_ctp",
+        "mpn": "EastRising ER-TFT035IPS-6 + ER-TPC035-6",
+        "lcsc": None,
+        "route": "J4-F",
+        "stock": "manufacturer_in_stock",
+        "available_order_quantity": None,
+        "minimum_quantity": 1,
+        "quantity_one_usd": "14.91",
+        "status": "factory_final_assembly",
+        "source": "https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen",
+    },
+    "FH34SRJ-50S-0.5SH(50)": {
+        "device_id": "hirose_fh34srj_50s_0_5sh_50",
+        "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
+        "lcsc": "C3169104",
+        "route": "J0",
+        "stock": 2679,
+        "available_order_quantity": 2614,
+        "minimum_quantity": 1,
+        "quantity_one_usd": "0.5832",
+        "status": "in_stock",
+        "source": "https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104",
+    },
     "SC1512-A4": {
         "device_id": "rp2354b_a4",
         "mpn": "SC1512-A4",
@@ -447,6 +470,8 @@ CURRENT_EXACT_OVERRIDE_MPNS = {
 
 HISTORICAL_REPLACED_MPNS = {
     "SA518",
+    "HMX035CTFT-001",
+    "FH34SRJ-40S-0.5SH(99)",
     "74LVC2G126DC,125",
     "74LVC2G14GW,125",
     "C1005X7R1H104K050BB",
@@ -464,8 +489,8 @@ HISTORICAL_REPLACED_MPNS = {
     "TSOP75238TT",
     "LQW15AN56NJ00D",
 }
-HISTORICAL_MATCHED_REPLACED_MPNS = HISTORICAL_REPLACED_MPNS - {"SA518"}
-HISTORICAL_PREORDER_REPLACED_MPNS = HISTORICAL_MATCHED_REPLACED_MPNS
+HISTORICAL_MATCHED_REPLACED_MPNS = HISTORICAL_REPLACED_MPNS - {"SA518", "HMX035CTFT-001"}
+HISTORICAL_PREORDER_REPLACED_MPNS = HISTORICAL_MATCHED_REPLACED_MPNS - {"FH34SRJ-40S-0.5SH(99)"}
 
 
 PLATFORMS = [
@@ -522,7 +547,8 @@ SPOT_CHECKS = [
     {"device_id": "ebyte_e01_ml01ipx", "mpn": "E01-ML01IPX", "jlc": None, "tier": "J3", "stock": 0, "pcba": "not found in public library", "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=E01-ML01IPX", "finding": "retain exact module only through new-part/global-sourcing/consignment until a function-preserving stocked module is qualified"},
     {"device_id": "nicerf_sa818s_u_v18", "mpn": "G-NiceRF SA818S-U", "jlc": "C3001549", "tier": "J0", "stock": 68, "pcba": "Standard PCBA", "source": "https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549", "finding": "exact selected UHF module is priced and in public stock"},
     {"device_id": "nicerf_sa818s_v_v18", "mpn": "G-NiceRF SA818S-V", "jlc": "C51897911", "tier": "J2", "stock": 0, "pcba": "Standard PCBA pre-order", "source": "https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911", "finding": "exact selected VHF module is priced but stock-zero pre-order; lead time remains open"},
-    {"device_id": "qdtech_hmx035ctft_001", "mpn": "HMX035CTFT-001", "jlc": None, "tier": "J4-F", "stock": 0, "pcba": "display/flex belongs to factory final assembly", "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001", "finding": "keep replaceable display-adapter architecture; require deterministic factory mating and assembly records, with display/touch power-on performed by the owner after delivery"},
+    {"device_id": "eastrising_er_tft035ips_6_ctp", "mpn": "ER-TFT035IPS-6 + ER-TPC035-6 option 5344", "jlc": None, "tier": "J4-F", "stock": "manufacturer in stock", "moq": 1, "quantity_one_usd": "14.91", "pcba": "customer-supplied display/flex belongs to factory final assembly", "source": "https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen", "finding": "exact configured panel, drawings, 50-contact tail, ILI9488/FT6236 endpoint and price are fixed; written assembler acceptance remains only for adhesive/FPC/final mating"},
+    {"device_id": "hirose_fh34srj_50s_0_5sh_50", "mpn": "FH34SRJ-50S-0.5SH(50)", "jlc": "C3169104", "tier": "J0", "stock": 2679, "available_order_quantity": 2614, "moq": 1, "pcba": "Extended SMT; Economic and Standard", "source": "https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104", "finding": "exact selected 50-position panel connector is directly placeable; quantity-one price USD 0.5832"},
     {"device_id": "uniroyal_0402wgf1603tce", "mpn": "0402WGF1603TCE", "jlc": "C25757", "tier": "J0", "stock": 388017, "pcba": "Extended SMT; Economic and Standard", "source": "https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757", "finding": "exact stocked 160-kOhm 0402 replacement preserves the complete audio-attenuator electrical contract and uses a thinner body"},
     {"device_id": "fh_rs_06k47r0ft", "mpn": "RS-06K47R0FT", "jlc": "C140014", "tier": "J0", "stock": 78058, "pcba": "Extended SMT; Economic and Standard", "source": "https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014", "finding": "exact stocked 47-Ohm 1206 replacement preserves the IR current-limit power, voltage and temperature contract"},
     {"device_id": "yageo_cc0603krx7r0bb104", "mpn": "CC0603KRX7R0BB104", "jlc": "C113803", "tier": "J0", "stock": 1027658, "pcba": "Extended SMT; Economic and Standard; MSL 1", "source": "https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803", "finding": "exact stocked 100-nF 100-V 0603 body; X7R temperature stability is stricter than the replaced X7S class"},
@@ -620,6 +646,7 @@ def build_match_result(rows: list[dict[str, str]]) -> dict:
     inherited = capture["result"]
     current_stocked = sum(part["status"] == "in_stock" for part in CURRENT_EXACT_PART_ROUTES.values())
     current_preorder = sum(part["status"] == "pre_order" for part in CURRENT_EXACT_PART_ROUTES.values())
+    current_factory_final = sum(part["status"] == "factory_final_assembly" for part in CURRENT_EXACT_PART_ROUTES.values())
     summary = {
         "target_lines": len(routes),
         "matched_lines": inherited["matched_lines"] - len(HISTORICAL_MATCHED_REPLACED_MPNS) + len(CURRENT_EXACT_PART_ROUTES),
@@ -629,8 +656,8 @@ def build_match_result(rows: list[dict[str, str]]) -> dict:
         "bom_tool_inherited_unmatched_lines": inherited["unmatched_lines"],
         "exact_voice_page_lines": len(VOICE_PART_ROUTES),
         "exact_stocked_replacement_page_lines": current_stocked - 1,
-        "unmatched_lines": inherited["unmatched_lines"] - 1 - len(CURRENT_EXACT_OVERRIDE_MPNS),
-        "in_stock_lines": inherited["in_stock_lines"] + current_stocked,
+        "unmatched_lines": inherited["unmatched_lines"] - 1 - len(CURRENT_EXACT_OVERRIDE_MPNS) - current_factory_final,
+        "in_stock_lines": inherited["in_stock_lines"] - 1 + current_stocked,
         "pre_order_lines": inherited["pre_order_lines"] - len(HISTORICAL_PREORDER_REPLACED_MPNS) + current_preorder,
         "parsed_placements": sum(int(row["quantity"]) for row in rows),
         "strict_text_variants": inherited["strict_text_variants"],
@@ -649,8 +676,8 @@ def build_match_result(rows: list[dict[str, str]]) -> dict:
         "all_current_designator_quantities_and_1052_placements_reconcile": all(
             route["designators_complete"] for route in routes
         ) and summary["parsed_placements"] == 1052,
-        "current_exact_route_counts_reconcile": summary["matched_lines"] == 180
-        and summary["unmatched_lines"] == 30
+        "current_exact_route_counts_reconcile": summary["matched_lines"] == 181
+        and summary["unmatched_lines"] == 29
         and summary["in_stock_lines"] == 154
         and summary["pre_order_lines"] == 26,
         "both_voice_routes_use_exact_current_jlcpcb_pages": all(
@@ -753,7 +780,7 @@ def build_match_result(rows: list[dict[str, str]]) -> dict:
         ],
         "routes": routes,
         "next": {
-            "local": "retain the 30 unchanged outlier resolutions, join exact RP2354B, SA818S-U/V and C5 V1.2 supplier routes, then recheck every current route without accepting substitutions",
+            "local": "retain the 29 unchanged outlier resolutions, join exact display, connector, RP2354B, SA818S-U/V and C5 V1.2 supplier routes, then recheck every current route without accepting substitutions",
             "external_authority_later": "a sourcing request, private-stock reservation, quote creation or purchase still requires explicit authority",
             "forbidden": ["sourcing request", "private-stock reservation", "quote creation", "purchase", "component replacement", "KiCad placement/routing", "fabrication"],
         },
@@ -828,8 +855,8 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
         for tier in ROUTE_IDS
     }
     checks = {
-        "capture_covers_all_30_unchanged_bom_tool_outliers": set(searches) - {"SA518"} - CURRENT_EXACT_OVERRIDE_MPNS == set(raw_outliers) == set(OUTLIER_RESOLUTIONS),
-        "every_outlier_has_one_route": len(resolved) == len({row["bom_index"] for row in resolved}) == 30,
+        "capture_covers_all_29_unchanged_bom_tool_outliers": set(searches) - {"SA518", "HMX035CTFT-001"} - CURRENT_EXACT_OVERRIDE_MPNS == set(raw_outliers) == set(OUTLIER_RESOLUTIONS),
+        "every_outlier_has_one_route": len(resolved) == len({row["bom_index"] for row in resolved}) == 29,
         "j0_rows_have_positive_original_maker_stock": all(
             row["stock_snapshot"] is not None and row["stock_snapshot"] > 0
             for row in resolved
@@ -846,7 +873,7 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
             if row["route"] == "J3"
         ),
         "j4f_rows_are_factory_final_assembly_parts": {
-            row["normalized_mpn"] for row in resolved if row["route"] == "J4-F"
+            row["normalized_mpn"] for row in final_routes if row["route"] == "J4-F"
         }
         == J4_FACTORY_MPNS,
         "j4p_rows_are_factory_packed_removable_parts": {
@@ -954,7 +981,7 @@ def build() -> dict:
         "current_210_line_upload_was_generated_but_not_transmitted": True,
         "all_target_placements_were_parsed": match_summary["parsed_placements"] == 1052,
         "no_semantic_mpn_substitution_was_observed": match_summary["semantic_mpn_mismatches"] == 0,
-        "all_30_unchanged_unmatched_lines_remain_explicit": match_summary["unmatched_lines"] == 30,
+        "all_29_unchanged_unmatched_lines_remain_explicit": match_summary["unmatched_lines"] == 29,
         "all_210_lines_have_defined_availability_or_final_assembly_route": outlier_result["summary"]["unmapped_lines"] == 0,
         "all_component_sample_prices_are_known": outlier_result["summary"]["open_qualified_price_lines"] == 0,
         "sa818s_v_preorder_lead_time_is_explicitly_open": outlier_result["summary"]["preorder_lead_time_open_mpn"] == "SA818S-V",
@@ -1043,7 +1070,7 @@ def build() -> dict:
             "deliverable": "one fully assembled Leshy2 prototype built from the released production package",
             "device_batch": False,
             "batteries_included": False,
-            "production_display": "exact documented panel unresolved; factory installs and mates it without engineering interpretation",
+            "production_display": "exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344 selected; factory installs and mates it without engineering interpretation through exact C3169104",
             "first_power_on": "owner USB-powered bring-up after delivery",
             "factory_function_test": {
                 "standard_pcba_service_surface": "supported subject to procedure review and quote",
@@ -1067,7 +1094,7 @@ def build() -> dict:
             "J4-F_factory_final_assembly": {
                 "status": "open_until_factory_acceptance_and_quote",
                 "required_operations": ["install and mate the documented exact production panel from released drawings", "five microcoax installation, strain routing and continuity workmanship", "encoder knob installation", "final sandwich/enclosure integration from deterministic assembly instructions"],
-                "display_mating_feasibility": "awaiting written factory confirmation",
+                "display_mating_feasibility": "exact endpoint selected; awaiting written factory confirmation only for adhesive, FPC insertion and final mating",
                 "factory_function_test": "optional quote-only insurance; not required for H5/H7 closure",
                 "close_gate": "H5 and H7 cannot close until the selected factory accepts and prices deterministic one-prototype final assembly; Function Test is not part of this gate",
             },
@@ -1240,14 +1267,14 @@ flowchart TD
 
 ## Контрольный BOM Tool прогон
 
-Контрольный BOM Tool capture относится к прежним 209 строкам: 176 matched, 33 unmatched и 1019 установок. Текущий BOM заменяет `SA518` двумя exact voice-модулями и содержит уже принятые складские корпусные/параметрические замены. Из 196 сохранённых identity 194 присоединены к историческому capture, а C5 и RP2354B намеренно перепривязаны к актуальным exact-страницам `C54951858` и `C39843328`; 14 новых строк присоединены по своим точным страницам. Так получена проверяемая текущая карта `{summary['target_bom_lines']}` строк и `{summary['target_placements_parsed']}` установок без повторной передачи BOM. До применения сохранённых outlier-решений в ней 180 exact catalogue routes и 30 unresolved line; семантических подмен MPN — ноль.
+Контрольный BOM Tool capture относится к прежним 209 строкам: 176 matched, 33 unmatched и 1019 установок. Текущий BOM заменяет `SA518` двумя exact voice-модулями, заменяет legacy-дисплей точным EastRising endpoint и содержит уже принятые складские корпусные/параметрические замены. Из 190 сохранённых identity 188 присоединены к историческому capture, а C5 и RP2354B намеренно перепривязаны к актуальным exact-страницам `C54951858` и `C39843328`; 20 новых строк присоединены по своим точным страницам. Так получена проверяемая текущая карта `{summary['target_bom_lines']}` строк и `{summary['target_placements_parsed']}` установок без повторной передачи BOM. До применения сохранённых outlier-решений в ней 181 exact catalogue route и 29 unresolved lines; семантических подмен MPN — ноль.
 
-Сохранённый exact-поиск закрывает все 30 оставшихся outlier без замены компонентов: 12 добавлены в `J0`, 2 — в `J2`, 11 сохраняют точный MPN через `J3`, 3 требуют фабричной финальной сборки `J4-F`, U214 идёт через `J4-P`, а аккумуляторы — через `J5-U` вне поставки. Вместе с текущими маршрутами RP2354B и C5 итог всей BOM: `J0=166`, `J1=0`, `J2=28`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; несопоставленных строк — ноль.
+Сохранённый exact-поиск закрывает все 29 оставшихся outlier без замены компонентов: 12 добавлены в `J0`, 2 — в `J2`, 11 сохраняют точный MPN через `J3`, 2 требуют фабричной финальной сборки `J4-F`, U214 идёт через `J4-P`, а аккумуляторы — через `J5-U` вне поставки. Точный EastRising-дисплей уже входит отдельным прямым маршрутом `J4-F`. Итог всей BOM: `J0=166`, `J1=0`, `J2=28`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; несопоставленных строк — ноль.
 
 Показываемая в историческом BOM Tool capture сумма `$1255.6365` относится только к прежним 176 найденным строкам и **не** является текущей полной ценой сборки, quote или заказом. Актуальный order-integrated article manifest единственного прототипа посчитан на [странице manifest](component-sample-basket.ru.md); отдельной закупки образцов/coupons нет.
 
 <details>
-<summary>Как разрешены 30 оставшихся outlier</summary>
+<summary>Как разрешены 29 оставшихся outlier</summary>
 
 {outlier_table(outlier_result, True)}
 
@@ -1261,11 +1288,11 @@ flowchart TD
 
 ## Граница сборки
 
-JLCPCB Standard PCBA собирает обе платы и принятые SMT/THT-компоненты; официальный Function Test доступен как рассматриваемая и оцениваемая процедура. Для Leshy2 он только optional quote-insurance, а не gate. Способность состыковать выбранный документированный дисплей и выполнить финальную сборку одного устройства всё ещё ожидает письменного подтверждения.
+JLCPCB Standard PCBA собирает обе платы и принятые SMT/THT-компоненты; официальный Function Test доступен как рассматриваемая и оцениваемая процедура. Для Leshy2 он только optional quote-insurance, а не gate. Точный `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 и его `FH34SRJ-50S-0.5SH(50)` уже выбраны; письменного подтверждения фабрики требуют только клей, ввод FPC/закрытие ZIF и финальная сборка одного устройства.
 
 | Маршрут | Обязательная операция | Статус |
 |---|---|---|
-| `J4-F` | Фабрика по release package устанавливает и стыкует exact production panel, фиксирует пять microcoax, ставит ручку энкодера и собирает корпус/«бутерброд» без инженерных догадок | 🔒 Открыто до письменного подтверждения capability и цены сборки одного прототипа; optional Function Test не является gate |
+| `J4-F` | Фабрика по release package устанавливает и стыкует exact `ER-TFT035IPS-6 + ER-TPC035-6` через `C3169104`, фиксирует пять microcoax, ставит ручку энкодера и собирает корпус/«бутерброд» без инженерных догадок | 🔒 Открыто до письменного подтверждения adhesive/FPC/final-assembly capability и цены сборки одного прототипа; optional Function Test не является gate |
 | `J4-P` | Фабрика проверяет совместимость U214 и кладёт его отдельно; внешние антенны кладутся комплектом | 🔒 U214 и комплект антенн открыты до kit/packing quote |
 | `J5-U` | Пользователь отдельно приобретает и устанавливает совместимые защищённые 18650 | ✅ Принятая граница продукта: аккумуляторы не входят в поставку устройства |
 
@@ -1328,14 +1355,14 @@ No platform guarantees perpetual public stock. Leshy2 therefore selects ordinary
 
 ## Controlled BOM Tool run
 
-The controlled BOM Tool capture belongs to the former 209-line BOM: 176 matched, 33 unmatched and 1019 placements. The current BOM replaces `SA518` with two exact voice modules and includes the already accepted stocked package/parametric replacements. Of the 196 preserved identities, 194 join to the historical capture while C5 and RP2354B are deliberately rebound to current exact pages `C54951858` and `C39843328`; 14 new rows join through their own exact pages. This yields a checkable current map of `{summary['target_bom_lines']}` lines and `{summary['target_placements_parsed']}` placements without retransmitting the BOM. Before applying the retained outlier resolutions it has 180 exact catalogue routes and 30 unresolved lines; zero semantic MPN substitutions were observed.
+The controlled BOM Tool capture belongs to the former 209-line BOM: 176 matched, 33 unmatched and 1019 placements. The current BOM replaces `SA518` with two exact voice modules, replaces the legacy display with the exact EastRising endpoint, and includes the accepted stocked package/parametric replacements. Of the 190 preserved identities, 188 join to the historical capture while C5 and RP2354B are deliberately rebound to current exact pages `C54951858` and `C39843328`; 20 new rows join through their own exact pages. This yields a checkable current map of `{summary['target_bom_lines']}` lines and `{summary['target_placements_parsed']}` placements without retransmitting the BOM. Before applying the retained outlier resolutions it has 181 exact catalogue routes and 29 unresolved lines; zero semantic MPN substitutions were observed.
 
-The retained exact search resolves all 30 remaining outliers without component replacement: 12 are added to `J0`, 2 to `J2`, 11 retain the exact MPN through `J3`, 3 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. With the current RP2354B and C5 routes, the whole-BOM result is `J0=166`, `J1=0`, `J2=28`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
+The retained exact search resolves all 29 remaining outliers without component replacement: 12 are added to `J0`, 2 to `J2`, 11 retain the exact MPN through `J3`, 2 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. The exact EastRising display already enters through its direct `J4-F` route. The whole-BOM result is `J0=166`, `J1=0`, `J2=28`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
 
 The `$1255.6365` displayed in the historical BOM Tool capture covers only its former 176 matched lines and is **not** a current complete assembly price, quote or order. The sole prototype's order-integrated article manifest is calculated on the [manifest page](component-sample-basket.md); there is no separate sample/coupon purchase.
 
 <details>
-<summary>How the 30 remaining outliers were resolved</summary>
+<summary>How the 29 remaining outliers were resolved</summary>
 
 {outlier_table(outlier_result, False)}
 
@@ -1349,11 +1376,11 @@ The `$1255.6365` displayed in the historical BOM Tool capture covers only its fo
 
 ## Assembly boundary
 
-JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts; its official Function Test path accepts a procedure for review and quotation. For Leshy2 that service is optional quote-only insurance, not a gate. Capability to mate the selected documented display and complete one-device final assembly still awaits written confirmation.
+JLCPCB Standard PCBA assembles both boards and accepted SMT/THT parts; its official Function Test path accepts a procedure for review and quotation. For Leshy2 that service is optional quote-only insurance, not a gate. Exact `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 and `FH34SRJ-50S-0.5SH(50)` are selected; only written factory acceptance of adhesive, FPC insertion/ZIF closure and one-device final assembly remains open.
 
 | Route | Required operation | Status |
 |---|---|---|
-| `J4-F` | From the release package, the factory installs and mates the exact production panel, secures five microcoax jumpers, installs the encoder knob and integrates the enclosure/sandwich without engineering guesses | 🔒 Open until written capability acceptance and one-prototype assembly price; optional Function Test is not a gate |
+| `J4-F` | From the release package, the factory installs and mates exact `ER-TFT035IPS-6 + ER-TPC035-6` through `C3169104`, secures five microcoax jumpers, installs the encoder knob and integrates the enclosure/sandwich without engineering guesses | 🔒 Open until written adhesive/FPC/final-assembly capability acceptance and one-prototype assembly price; optional Function Test is not a gate |
 | `J4-P` | Factory compatibility-tests and separately packs U214; external antennas are packed as a kit | 🔒 U214 and antenna kit remain open until a kit/packing quote |
 | `J5-U` | User separately buys and installs compatible protected 18650 cells | ✅ Accepted product boundary: accumulators are not included in device delivery |
 

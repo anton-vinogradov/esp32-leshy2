@@ -12,9 +12,9 @@
   "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "46efd30669da371cae53110bb2991c8aad8c1c8973c66d33b9b8f0f60a1c44a2",
-    "hardware/architecture/devices.json": "a47012afe7f17a40d0051074febf8a877a75162e913892ba02d57da58fff3d4d",
-    "hardware/ecad/generated/H2-instance-ledger.json": "9f7d02c9170aab3edc8e52440b6f85f6b94deb17b95c4929ed290c80bc2a1f95",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "ef7c267a3dd3fc9b472a028dab2c551e1cb2f0ebe409737598cc86479935d1b5"
+    "hardware/architecture/devices.json": "4482cb57af63355dc7a1913c7991c6a02cfdf3ecf55dc38789d2d49eaaf5cf17",
+    "hardware/ecad/generated/H2-instance-ledger.json": "0ea2d4f11469bf03e760ceb47836e668abd760862387785e9567995dd4c12256",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "80c35430d20b3123fb390ff227b994708c54a8ddd778655cdf2e5507959d9602"
   },
   "summary": {
     "ledger_instances": 69,

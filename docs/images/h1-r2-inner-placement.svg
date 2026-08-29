@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="3583" viewBox="0 0 1380 3583">
-<rect width="1380" height="3583" fill="#ffffff"/>
-<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.32 inner placement</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="4350" viewBox="0 0 1380 4350">
+<rect width="1380" height="4350" fill="#ffffff"/>
+<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.33 inner placement</text>
 <text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · both inner faces are shown directly after turning each PCB over · numbered marks are documentation, never inner-face silkscreen.</text>
 <text x="190.00" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="70.00" y="122.00" width="240.00" height="480.00" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -267,6 +267,32 @@
 <text x="493.20" y="202.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">53</text>
 <rect x="488.72" y="209.20" width="9.76" height="9.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="493.60" y="214.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">54</text>
+<rect x="521.20" y="200.08" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="522.80" y="200.88" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">55</text>
+<rect x="516.40" y="200.08" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="518.00" y="200.88" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">56</text>
+<rect x="511.60" y="200.08" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="513.20" y="200.88" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">57</text>
+<rect x="506.80" y="200.08" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="508.40" y="200.88" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">58</text>
+<rect x="483.12" y="186.80" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="484.72" y="187.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">59</text>
+<rect x="483.12" y="190.00" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="484.72" y="190.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">60</text>
+<rect x="483.12" y="193.20" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="484.72" y="194.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">61</text>
+<rect x="483.12" y="196.40" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="484.72" y="197.20" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">62</text>
+<rect x="483.12" y="199.60" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="484.72" y="200.40" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">63</text>
+<rect x="483.12" y="202.80" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="484.72" y="203.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">64</text>
+<rect x="483.12" y="206.00" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="484.72" y="206.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">65</text>
+<rect x="483.12" y="209.20" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="484.72" y="210.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">66</text>
+<rect x="483.12" y="212.40" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="484.72" y="213.20" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">67</text>
 <rect x="499.34" y="147.82" width="14.27" height="14.27" rx="2" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
 <circle cx="506.48" cy="154.96" r="19.20" fill="none" stroke="#ea580c" stroke-width="1.4" stroke-dasharray="6 4"/>
 <circle cx="506.48" cy="154.96" r="3.2" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
@@ -445,9 +471,41 @@
 <text x="730" y="3416" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">54 · LMV331IDBVR</text>
 <text x="755" y="3433" font-family="sans-serif" font-size="10.5" fill="#526076">open-collector U219 NFC-field envelope</text>
 <text x="755" y="3447" font-family="sans-serif" font-size="10.5" fill="#526076">comparator driving EV_N9_U219_NFC</text>
+<text x="730" y="3475" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">55 · 0402WGF1002TCE</text>
+<text x="755" y="3492" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON pull-up that disables the</text>
+<text x="755" y="3506" font-family="sans-serif" font-size="10.5" fill="#526076">contact-10 switch by default</text>
+<text x="730" y="3534" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">56 · 0402WGF1002TCE</text>
+<text x="755" y="3551" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON command pull-down preserving</text>
+<text x="755" y="3565" font-family="sans-serif" font-size="10.5" fill="#526076">switch-off state</text>
+<text x="730" y="3593" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">57 · Yageo CC0402KRX7R9BB104</text>
+<text x="755" y="3610" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the contact-10</text>
+<text x="755" y="3624" font-family="sans-serif" font-size="10.5" fill="#526076">bilateral switch</text>
+<text x="730" y="3652" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">58 · Yageo CC0402KRX7R9BB104</text>
+<text x="755" y="3669" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the AON open-drain</text>
+<text x="755" y="3683" font-family="sans-serif" font-size="10.5" fill="#526076">driver</text>
+<text x="730" y="3711" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">59 · 0402WGF1001TCE</text>
+<text x="755" y="3728" font-family="sans-serif" font-size="10.5" fill="#526076">1-kOhm positive pickup input limiter</text>
+<text x="730" y="3756" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">60 · 0402WGF1001TCE</text>
+<text x="755" y="3773" font-family="sans-serif" font-size="10.5" fill="#526076">1-kOhm negative pickup input limiter</text>
+<text x="730" y="3801" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">61 · Murata GRM155R71H103KA88D</text>
+<text x="755" y="3818" font-family="sans-serif" font-size="10.5" fill="#526076">10-nF rectified NFC-field envelope capacitor</text>
+<text x="730" y="3846" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">62 · 0402WGF1003TCE</text>
+<text x="755" y="3863" font-family="sans-serif" font-size="10.5" fill="#526076">100-kOhm envelope discharge resistor</text>
+<text x="730" y="3891" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">63 · 0402WGF1003TCE</text>
+<text x="755" y="3908" font-family="sans-serif" font-size="10.5" fill="#526076">100-kOhm comparator threshold upper leg</text>
+<text x="730" y="3936" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">64 · 0402WGF1002TCE</text>
+<text x="755" y="3953" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm comparator threshold lower leg</text>
+<text x="730" y="3981" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">65 · 0402WGF1004TCE</text>
+<text x="755" y="3998" font-family="sans-serif" font-size="10.5" fill="#526076">1-MOhm comparator hysteresis feedback</text>
+<text x="730" y="4026" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">66 · 0402WGF1002TCE</text>
+<text x="755" y="4043" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON pull-up for active-low NFC field</text>
+<text x="755" y="4057" font-family="sans-serif" font-size="10.5" fill="#526076">evidence</text>
+<text x="730" y="4085" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">67 · Yageo CC0402KRX7R9BB104</text>
+<text x="755" y="4102" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the NFC field</text>
+<text x="755" y="4116" font-family="sans-serif" font-size="10.5" fill="#526076">comparator</text>
 <text x="1100" y="112" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Machine audit</text>
 <text x="1100" y="142" font-family="sans-serif" font-size="12" fill="#166534">✓ same-face collisions: 0</text>
-<text x="1100" y="164" font-family="sans-serif" font-size="12" fill="#166534">✓ opposing crossings: 70</text>
+<text x="1100" y="164" font-family="sans-serif" font-size="12" fill="#166534">✓ opposing crossings: 77</text>
 <text x="1100" y="186" font-family="sans-serif" font-size="12" fill="#166534">✓ minimum Z clearance: 2.59 mm</text>
 <text x="1100" y="208" font-family="sans-serif" font-size="12" fill="#526076">required: 0.70 mm</text>
 <text x="1100" y="248" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">Line key</text>
@@ -455,27 +513,10 @@
 <text x="1144" y="274" font-family="sans-serif" font-size="11" fill="#526076">50 Ω RF PCB trace</text>
 <line x1="1100" y1="294" x2="1134" y2="294" stroke="#7c3aed" stroke-width="3"/>
 <text x="1144" y="298" font-family="sans-serif" font-size="11" fill="#526076">75 Ω CVBS PCB trace</text>
-<text x="1100" y="344" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#b42318">H1 mock-up blockers: 4 · structural audit pass</text>
-<text x="1100" y="370" font-family="sans-serif" font-size="10.5" fill="#9a3412">• select one exact documented production</text>
-<text x="1100" y="385" font-family="sans-serif" font-size="10.5" fill="#9a3412">  display panel, controlled drawing and</text>
-<text x="1100" y="400" font-family="sans-serif" font-size="10.5" fill="#9a3412">  mating envelope with a deterministic</text>
-<text x="1100" y="415" font-family="sans-serif" font-size="10.5" fill="#9a3412">  factory-installable route before H1</text>
-<text x="1100" y="430" font-family="sans-serif" font-size="10.5" fill="#9a3412">  closes or R2 H2 starts</text>
-<text x="1100" y="451" font-family="sans-serif" font-size="10.5" fill="#9a3412">• complete exact support-passive</text>
-<text x="1100" y="466" font-family="sans-serif" font-size="10.5" fill="#9a3412">  values/MPNs and prove their courtyards</text>
-<text x="1100" y="481" font-family="sans-serif" font-size="10.5" fill="#9a3412">  inside the two bounded U219 placement</text>
-<text x="1100" y="496" font-family="sans-serif" font-size="10.5" fill="#9a3412">  islands</text>
-<text x="1100" y="517" font-family="sans-serif" font-size="10.5" fill="#9a3412">• obtain controlled U219 field-structure</text>
-<text x="1100" y="532" font-family="sans-serif" font-size="10.5" fill="#9a3412">  geometry or measure a received unit</text>
-<text x="1100" y="547" font-family="sans-serif" font-size="10.5" fill="#9a3412">  before locating the weak printed NFC</text>
-<text x="1100" y="562" font-family="sans-serif" font-size="10.5" fill="#9a3412">  pickup loop and its DNP C0G bank</text>
-<text x="1100" y="583" font-family="sans-serif" font-size="10.5" fill="#9a3412">• measure the installed U219 RP-SMA</text>
-<text x="1100" y="598" font-family="sans-serif" font-size="10.5" fill="#9a3412">  antenna swept volume against the rear</text>
-<text x="1100" y="613" font-family="sans-serif" font-size="10.5" fill="#9a3412">  connector bank, FPV plug, enclosure</text>
-<text x="1100" y="628" font-family="sans-serif" font-size="10.5" fill="#9a3412">  and user hand access</text>
-<text x="1100" y="659" font-family="sans-serif" font-size="14" font-weight="700" fill="#526076">Final H1 acceptance input</text>
-<text x="1100" y="685" font-family="sans-serif" font-size="10.5" fill="#526076">• review and explicitly accept the</text>
-<text x="1100" y="700" font-family="sans-serif" font-size="10.5" fill="#526076">  generated complete R2 exterior, both</text>
-<text x="1100" y="715" font-family="sans-serif" font-size="10.5" fill="#526076">  true-view inner faces and four real</text>
-<text x="1100" y="730" font-family="sans-serif" font-size="10.5" fill="#526076">  section planes before closing H1</text>
+<text x="1100" y="344" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#b42318">H1 mock-up blockers: 0 · structural audit pass</text>
+<text x="1100" y="380" font-family="sans-serif" font-size="14" font-weight="700" fill="#526076">Final H1 acceptance input</text>
+<text x="1100" y="406" font-family="sans-serif" font-size="10.5" fill="#526076">• review and explicitly accept the</text>
+<text x="1100" y="421" font-family="sans-serif" font-size="10.5" fill="#526076">  generated complete R2 exterior, both</text>
+<text x="1100" y="436" font-family="sans-serif" font-size="10.5" fill="#526076">  true-view inner faces and four real</text>
+<text x="1100" y="451" font-family="sans-serif" font-size="10.5" fill="#526076">  section planes before closing H1</text>
 </svg>

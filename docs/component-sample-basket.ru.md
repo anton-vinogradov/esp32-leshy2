@@ -2,7 +2,7 @@
 
 [English](component-sample-basket.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Предыдущий поиск](component-source-research.ru.md)
 
-Цель `H5.0.3-R1` — один order-integrated manifest для ровно **одного полностью собранного прототипа Leshy2** и его обычных bring-up accessories. Отдельной закупки engineering samples и отдельной H5 coupon-платы нет. Manifest объединяет установленные фабрикой production parts, принятые фабрикой packed accessories и обычные owner-supplied operating items; это не второй коммерческий заказ. Фабрика по закрытому production package устанавливает и стыкует один документированный production panel без инженерных догадок. Первый полный power-on и USB bring-up изображения, подсветки и touch выполняет владелец в H7; физическая квалификация продолжается на том же прототипе в H8. Платный factory Function Test — только optional quote-insurance, а не gate. Аккумуляторы не устанавливаются и не поставляются. HMX035CTFT-001 и полные donor-board остаются только legacy evidence и не являются маршрутом закупки. [JLCPCB Standard PCBA остаётся неэксклюзивным производственным ориентиром](manufacturing-platform.ru.md). Закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication пока не разрешены.
+Цель `H5.0.3-R1` — один order-integrated manifest для ровно **одного полностью собранного прототипа Leshy2** и его обычных bring-up accessories. Отдельной закупки engineering samples и отдельной H5 coupon-платы нет. Manifest объединяет установленные фабрикой production parts, принятые фабрикой packed accessories и обычные owner-supplied operating items; это не второй коммерческий заказ. Фабрика по закрытому production package устанавливает и стыкует точный `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 через `FH34SRJ-50S-0.5SH(50)` без инженерных догадок. Первый полный power-on и USB bring-up изображения, подсветки и touch выполняет владелец в H7; физическая квалификация продолжается на том же прототипе в H8. Платный factory Function Test — только optional quote-insurance, а не gate. Аккумуляторы не устанавливаются и не поставляются. HMX035CTFT-001 и полные donor-board остаются только legacy evidence и не являются маршрутом закупки. [JLCPCB Standard PCBA остаётся неэксклюзивным производственным ориентиром](manufacturing-platform.ru.md). Закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication пока не разрешены.
 
 ```mermaid
 flowchart TD
@@ -20,18 +20,18 @@ flowchart TD
 
 ## Сводка стоимости
 
-- **$232.52** — известный консервативный material budget для всех priced lines.
-- Внутри него **$228.52** — публичные USD-цены и **$4.00** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
+- **$247.42** — известный консервативный material budget для всех priced lines.
+- Внутри него **$243.42** — публичные USD-цены и **$4.00** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
 - В сумму включены exact `SA818S-U` `C3001549` за `$9.7347` и exact `SA818S-V` `C51897911` за `$10.0710`; у VHF-модуля stock `0`, MOQ 1 и типичные 8–15 рабочих дней, а final quote/lead остаются order-time gate.
-- Не включены exact production panel, factory attrition, финальная сборка/FCT, доставка, налоги и таможня. Любые дополнительные экземпляры дисплея или коннекторов входят в attrition фабричного quote, а не в пользовательские samples; отдельного H5 coupon-заказа нет.
+- Точный production panel по публичной цене `$14.91` включён; не включены только factory attrition, финальная сборка/FCT, доставка, налоги и таможня. Любые дополнительные экземпляры дисплея или коннекторов входят в attrition фабричного quote, а не в пользовательские samples; отдельного H5 coupon-заказа нет.
 - Старая сумма `$164.54` была не дешёвой полной корзиной, а неполным набором из восьми строк; она не покрывала большинство H5 gates.
 
 ## Что входит в единый manifest
 
 ### Дисплей
 
-- **1 × `EXACT PRODUCTION PANEL — UNRESOLVED` — RFQ.** [QDtech HMX035CTFT-001 legacy electrical evidence](https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf); not selected; exact production-panel identity, factory mating and final-assembly feasibility await written confirmation.
-  Почему минимум: exactly one production panel is installed in the one finished prototype; any extra panels, connectors or flex parts are factory attrition in the quote, never user-purchased samples
+- **1 × `EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344` — $14.91.** [BuyDisplay exact product page](https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen); listed in stock; one-piece price published; exact panel/touch drawings and interface table available.
+  Почему минимум: exactly one production panel is installed and mated in the finished prototype; the exact FH34SRJ-50S-0.5SH(50) board connector is populated during PCBA
 
 ### Расширения
 
@@ -122,9 +122,9 @@ flowchart TD
 <details><summary><code>H5-MSR-DISPLAY</code></summary>
 
 - Покрывает: `H3-PHY-017, H5-MECH-DISPLAY-TAIL, H5-MECH-DISPLAY-PERFORMANCE`.
-- Метод: the factory installs and mates the selected documented production panel in the sole finished prototype from the released production package, without batteries and without making engineering choices; the owner performs the first full USB-powered bring-up and records known-image, backlight and touch results.
-- Критерий: the production package makes panel identity, mating, retention and assembly deterministic; written factory feasibility is obtained before order, while any paid pre-shipment Function Test is optional quote-only insurance and never a release gate.
-- Артефакты: controlled panel identity/drawing, deterministic mating and assembly instructions, factory assembly record, owner USB bring-up image/backlight/touch traces and signed result.
+- Метод: the factory installs and mates exact ER-TFT035IPS-6 + ER-TPC035-6 option 5344 through exact FH34SRJ-50S-0.5SH(50) in the sole finished prototype; the owner performs first USB-powered bring-up and records known-image, backlight and touch results.
+- Критерий: the released drawing, connector, mating, retention and assembly steps are deterministic; written adhesive/FPC/final-mating feasibility is obtained before order, while any paid pre-shipment Function Test is optional quote-only insurance and never a release gate.
+- Артефакты: controlled panel and connector identities/drawings, deterministic assembly instructions, factory assembly record, owner USB bring-up image/backlight/touch traces and signed result.
 
 </details>
 

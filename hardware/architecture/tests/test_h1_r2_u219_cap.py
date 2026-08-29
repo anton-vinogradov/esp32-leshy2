@@ -110,7 +110,7 @@ class H1R2U219CapTests(unittest.TestCase):
     def test_jlc_orderability_uses_can_presale_not_displayed_stock(self):
         parts = self.model["jlcpcb_live_surface"]["parts"]
         self.assertEqual(
-            {"C131992", "C7828", "C47546", "C34731"},
+            {"C131992", "C7828", "C47546", "C34731", "C11702", "C25744", "C25741", "C26083", "C77019", "C131394"},
             {row["jlc_number"] for row in parts},
         )
         for row in parts:
@@ -167,20 +167,21 @@ class H1R2U219CapTests(unittest.TestCase):
         )
         self.assertIn("blocked until", policy["nfc"]["runtime_enable"])
 
-    def test_provisional_known_active_bom_delta_is_reproducible(self):
+    def test_complete_selected_populated_bom_delta_is_reproducible(self):
         bom = self.model["bom_delta"]
         self.assertAlmostEqual(0.4520, bom["pin10_new_active_usd_per_device"], places=4)
         self.assertAlmostEqual(0.2325, bom["nfc_evidence_new_active_usd_per_device"], places=4)
-        self.assertEqual("provisional_known_active_only", bom["cost_status"])
-        self.assertIsNone(bom["support_passives_usd_per_device"])
+        self.assertEqual("complete_selected_populated_components", bom["cost_status"])
+        self.assertAlmostEqual(0.0702, bom["support_passives_usd_per_device"], places=4)
         self.assertAlmostEqual(0.6845, bom["known_active_added_usd_per_device"], places=4)
-        self.assertAlmostEqual(0.6690, bom["known_active_net_after_removed_usd_per_device"], places=4)
-        self.assertAlmostEqual(3.3450, bom["trial_lot_5_known_active_net_after_removed_usd"], places=4)
+        self.assertAlmostEqual(0.7547, bom["selected_populated_added_usd_per_device"], places=4)
+        self.assertAlmostEqual(0.7392, bom["selected_populated_net_after_removed_usd_per_device"], places=4)
+        self.assertAlmostEqual(0.7392, bom["one_prototype_selected_populated_net_after_removed_usd"], places=4)
         rows = list(csv.DictReader(io.StringIO(MODULE.render_csv(self.model))))
-        self.assertEqual("KNOWN_ACTIVE_NET", rows[-1]["change"])
-        self.assertEqual("0.6690", rows[-1]["line_per_device_usd"])
-        self.assertEqual("3.3450", rows[-1]["line_evt5_usd"])
-        self.assertEqual(1, sum(row["change"] == "TBD" for row in rows))
+        self.assertEqual("SELECTED_POPULATED_NET", rows[-1]["change"])
+        self.assertEqual("0.7392", rows[-1]["line_per_device_usd"])
+        self.assertEqual("0.7392", rows[-1]["line_one_prototype_usd"])
+        self.assertEqual(0, sum(row["change"] == "TBD" for row in rows))
         self.assertEqual(1, sum(row["change"] == "DNP" for row in rows))
 
     def test_specimen_vna_and_hil_gates_are_not_overclaimed(self):

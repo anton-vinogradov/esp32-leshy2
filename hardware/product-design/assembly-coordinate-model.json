@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "model_id": "L2-ASM-COORD-001-A",
-  "stage": "H1-R2.32",
-  "status": "in_progress",
+  "stage": "H1-R2.33",
+  "status": "ready_for_user_layout_acceptance",
   "units": "mm",
   "world": {
-    "origin": "front-left corner of the HMX035CTFT-001 touch/view plane at the antenna-side edge",
+    "origin": "front-left corner of the ER-TFT035IPS-6 + ER-TPC035-6 touch/view assembly at the antenna-side edge",
     "x_axis": "right when viewing the finished front face",
     "y_axis": "from the antenna edge toward the bottom/service edge",
     "z_axis": "from the touch/view plane toward the rear battery face"
@@ -13,32 +13,32 @@
   "board_outline_mm": [75.0, 150.0],
   "stack": {
     "display_front_z": 0.0,
-    "display_depth_mm": 3.2,
-    "ui_outer_face_z": 3.2,
+    "display_depth_mm": 3.76,
+    "ui_outer_face_z": 3.76,
     "ui_pcb_thickness_mm": 1.6,
-    "ui_inner_face_z": 4.8,
+    "ui_inner_face_z": 5.36,
     "interboard_gap_mm": 11.0,
-    "rf_inner_face_z": 15.8,
+    "rf_inner_face_z": 16.36,
     "rf_pcb_thickness_mm": 1.6,
-    "rf_outer_face_z": 17.4,
-    "selected_base_stack_depth_mm": 17.4
+    "rf_outer_face_z": 17.96,
+    "selected_base_stack_depth_mm": 17.96
   },
   "frames": {
     "front-outer": {
       "local_view": "normal to the front exterior",
-      "world_transform": "xw=x, yw=y, zw=3.2 for the UI PCB surface; outward bodies extend toward -z"
+      "world_transform": "xw=x, yw=y, zw=3.76 for the UI PCB surface; outward bodies extend toward -z"
     },
     "ui-inner": {
       "local_view": "authored in the front-face X/Y datum; rendered from the inner side by visual X mirroring only",
-      "world_transform": "xw=x, yw=y, zw=4.8; bodies extend toward +z"
+      "world_transform": "xw=x, yw=y, zw=5.36; bodies extend toward +z"
     },
     "rf-inner": {
       "local_view": "authored as seen from the rear exterior",
-      "world_transform": "xw=75-x-width, yw=y, zw=15.8; bodies extend toward -z"
+      "world_transform": "xw=75-x-width, yw=y, zw=16.36; bodies extend toward -z"
     },
     "rear-outer": {
       "local_view": "normal to the rear exterior",
-      "world_transform": "xw=75-x-width for bodies or xw=75-x for axes, yw=y, zw=17.4; outward bodies extend toward +z"
+      "world_transform": "xw=75-x-width for bodies or xw=75-x for axes, yw=y, zw=17.96; outward bodies extend toward +z"
     }
   },
   "mounting_holes": {
@@ -50,10 +50,10 @@
     "one_loose_screw_case": "two enclosure anti-shear datums plus independent PCB capture lips prevent relative board motion when any one screw is loosened by one turn"
   },
   "antenna_planes": {
-    "front_bank_mount_face_z": 3.2,
-    "front_bank_centre_z": 0.025,
-    "rear_bank_mount_face_z": 17.4,
-    "rear_bank_centre_z": 20.575,
+    "front_bank_mount_face_z": 3.76,
+    "front_bank_centre_z": 0.585,
+    "rear_bank_mount_face_z": 17.96,
+    "rear_bank_centre_z": 21.135,
     "centre_plane_separation_mm": 20.55,
     "mounting": "both GCT connector banks are soldered on outward PCB faces and no connector body enters the 11-mm interboard channel"
   },
@@ -64,17 +64,17 @@
     "bottom_service_edge_y_mm": 150.0
   },
   "accessory_envelopes": {
-    "u214": {"x_mm": [-4.5, 79.5], "y_mm": [17.0, 41.0], "z_mm": [17.4, 32.687]},
+    "u214": {"x_mm": [-4.5, 79.5], "y_mm": [17.0, 41.0], "z_mm": [17.96, 33.247]},
     "cap_bus_slot": {
       "population": "exactly_one_of_u214_or_u219",
       "x_mm": [-4.5, 79.5],
       "y_mm": [17.0, 41.0],
-      "host_outer_plane_z_mm": 17.4,
+      "host_outer_plane_z_mm": 17.96,
       "maximum_profile": "u219"
     },
-    "u219": {"x_mm": [-4.5, 79.5], "y_mm": [17.0, 41.0], "z_mm": [17.4, 37.1]},
-    "battery_holder": {"body_x_mm": [17.6, 57.38], "body_y_mm": [46.47, 123.53], "pad_span_y_mm": [42.0, 128.0], "z_mm": [17.4, 38.1], "mounting": "SMT with enclosure cradle/end-stop load path"},
-    "display_adapter_bay": {"x_mm": [24.75, 50.25], "y_mm": [1.0, 13.0], "z_mm": [4.8, 8.6]}
+    "u219": {"x_mm": [-4.5, 79.5], "y_mm": [17.0, 41.0], "z_mm": [17.96, 37.66]},
+    "battery_holder": {"body_x_mm": [17.6, 57.38], "body_y_mm": [46.47, 123.53], "pad_span_y_mm": [42.0, 128.0], "z_mm": [17.96, 38.66], "mounting": "SMT with enclosure cradle/end-stop load path"},
+    "display_adapter_bay": {"x_mm": [22.25, 52.75], "y_mm": [1.0, 13.0], "z_mm": [5.36, 9.16]}
   },
   "enclosure_reference": {
     "locked": "world datum, PCB outlines, mounting axes, touch plane, external interface directions and component/accessory keep-outs",

@@ -185,12 +185,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H1-R2.32`", "H0 is reviewed",
+                "Current hardware boundary: `H1-R2.33`", "H0 is reviewed",
                 "firmware F1-R2 reviewed", "F2-R2.4",
                 "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H1-R2.32`", "H0 проведено ревью",
+                "Текущая аппаратная граница: `H1-R2.33`", "H0 проведено ревью",
                 "firmware F1-R2 проведено ревью", "F2-R2.4",
                 "H9 · Manufacturing release",
                 "Production ECAD",
@@ -206,8 +206,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.32`", "fabrication"),
-            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.32`", "печати прототипа"),
+            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.33`", "fabrication"),
+            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.33`", "печати прототипа"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -320,12 +320,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_public_schematics_describe_current_r2_not_superseded_r1_ecad(self):
         expectations = {
             "docs/schematics.md": (
-                "H0-R2", "H1-R2.32", "does **not** exist yet",
+                "H0-R2", "H1-R2.33", "does **not** exist yet",
                 "3× nRF24", "one analog video signal", "14 NC reserve",
                 "historical engineering evidence", "must not be used for fabrication",
             ),
             "docs/schematics.ru.md": (
-                "H0-R2", "H1-R2.32", "пока **нет**",
+                "H0-R2", "H1-R2.33", "пока **нет**",
                 "3× nRF24", "один аналоговый видеосигнал", "25 возвратов · 14 NC",
                 "историческое инженерное evidence", "печатать по ним нельзя",
             ),
@@ -413,12 +413,15 @@ class ProductSiteTests(unittest.TestCase):
             self.read("hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json")
         )
         self.assertEqual("H5.0.3-R1", evidence["stage"])
-        self.assertEqual("draft_order_integrated_manifest_factory_response_pending", evidence["status"])
+        self.assertEqual(
+            "draft_order_integrated_manifest_exact_display_selected_factory_response_pending",
+            evidence["status"],
+        )
         self.assertEqual(30, evidence["summary"]["article_lines"])
         self.assertEqual(11, evidence["summary"]["measurement_contracts"])
         self.assertEqual(23, evidence["summary"]["covered_residuals_and_gates"])
-        self.assertEqual("232.52", evidence["summary"]["known_engineering_material_budget_usd"])
-        self.assertEqual(1, evidence["summary"]["unpriced_manufacturer_lines"])
+        self.assertEqual("247.42", evidence["summary"]["known_engineering_material_budget_usd"])
+        self.assertEqual(0, evidence["summary"]["unpriced_manufacturer_lines"])
         self.assertTrue(all(evidence["checks"].values()))
         pack_gauge = next(row for row in evidence["articles"] if row["id"] == "pack-gauges")
         self.assertEqual(1, pack_gauge["order_quantity"])
@@ -447,14 +450,15 @@ class ProductSiteTests(unittest.TestCase):
         }
         self.assertNotIn("H5.1", substep_ids)
         self.assertNotIn("H5.2", substep_ids)
-        display_gate = next(row for row in evidence["articles"] if row["id"] == "production-display-gate")
+        display_gate = next(row for row in evidence["articles"] if row["id"] == "production-display")
         self.assertEqual(1, display_gate["order_quantity"])
-        self.assertIsNone(display_gate["pricing"]["unit_usd"])
+        self.assertEqual("14.91", display_gate["pricing"]["unit_usd"])
+        self.assertIn("ER-TFT035IPS-6", display_gate["mpn"])
         for name in ("docs/component-sample-basket.md", "docs/component-sample-basket.ru.md"):
             page = self.read(name)
             self.assertEqual(1, page.count("```mermaid"), name)
             self.assertIn("H5-EVR03", page, name)
-            self.assertIn("232.52", page, name)
+            self.assertIn("247.42", page, name)
             self.assertIn("SA818S-V", page, name)
             self.assertIn("H7/H8", page, name)
 
@@ -482,8 +486,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("JLCPCB Standard PCBA", evidence["decision"]["reference_platform"])
         self.assertFalse(evidence["decision"]["exclusive_lock_in"])
         self.assertEqual(210, evidence["summary"]["target_bom_lines"])
-        self.assertEqual(20, evidence["summary"]["critical_lines_spot_checked"])
-        self.assertEqual(16, evidence["summary"]["public_stock_exact_or_revision_explicit"])
+        self.assertEqual(21, evidence["summary"]["critical_lines_spot_checked"])
+        self.assertEqual(17, evidence["summary"]["public_stock_exact_or_revision_explicit"])
         self.assertEqual(2, evidence["summary"]["preorder_reservation"])
         self.assertEqual(1, evidence["summary"]["global_sourcing_or_consignment"])
         self.assertEqual(1, evidence["summary"]["factory_final_assembly"])
@@ -501,10 +505,10 @@ class ProductSiteTests(unittest.TestCase):
             evidence["assembly_boundary"]["J4-P_factory_packed_removable"]["status"],
         )
         self.assertEqual(176, evidence["summary"]["historical_bom_tool_matched_lines"])
-        self.assertEqual(180, evidence["summary"]["current_exact_catalogue_routes_before_outlier_resolution"])
+        self.assertEqual(181, evidence["summary"]["current_exact_catalogue_routes_before_outlier_resolution"])
         self.assertEqual(154, evidence["summary"]["current_public_stock_lines_before_outlier_resolution"])
         self.assertEqual(26, evidence["summary"]["current_preorder_lines_before_outlier_resolution"])
-        self.assertEqual(30, evidence["summary"]["current_unmatched_lines_before_outlier_resolution"])
+        self.assertEqual(29, evidence["summary"]["current_unmatched_lines_before_outlier_resolution"])
         self.assertEqual(1052, evidence["summary"]["target_placements_parsed"])
         self.assertEqual(
             {"J0": 166, "J1": 0, "J2": 28, "J3": 11, "J4-F": 3, "J4-P": 1, "J5-U": 1},
@@ -581,8 +585,8 @@ class ProductSiteTests(unittest.TestCase):
             self.read("hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json")
         )
         self.assertEqual("H5-EVR05", match["artifact"])
-        self.assertEqual(180, match["summary"]["matched_lines"])
-        self.assertEqual(30, match["summary"]["unmatched_lines"])
+        self.assertEqual(181, match["summary"]["matched_lines"])
+        self.assertEqual(29, match["summary"]["unmatched_lines"])
         self.assertEqual(1052, match["summary"]["parsed_placements"])
         self.assertEqual(2, match["summary"]["strict_text_variants"])
         self.assertEqual(0, match["summary"]["semantic_mpn_mismatches"])
@@ -604,7 +608,7 @@ class ProductSiteTests(unittest.TestCase):
             self.read("hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json")
         )
         self.assertEqual("H5-EVR06", outliers["artifact"])
-        self.assertEqual(30, outliers["summary"]["bom_tool_outliers_resolved"])
+        self.assertEqual(29, outliers["summary"]["bom_tool_outliers_resolved"])
         self.assertEqual(
             {"J0": 166, "J1": 0, "J2": 28, "J3": 11, "J4-F": 3, "J4-P": 1, "J5-U": 1},
             outliers["summary"]["availability_routes"],
@@ -620,7 +624,7 @@ class ProductSiteTests(unittest.TestCase):
             outliers["boundary"]["factory_packed_removable"]["accepted_and_quoted"]
         )
         self.assertEqual(
-            {"2118651-2", "HMX035CTFT-001", "1227-J"},
+            {"2118651-2", "1227-J"},
             {
                 row["normalized_mpn"]
                 for row in outliers["outlier_resolutions"]
@@ -735,12 +739,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_current_mockup_review_scope_is_explicit(self):
         expectations = {
             "docs/roadmap.md": (
-                "H1-R2.32", "Functional-island placement", "RF and antenna locality",
+                "H1-R2.33", "Functional-island placement", "RF and antenna locality",
                 "Interboard transport", "Physical and service audit", "Final H1 acceptance input",
                 "explicit acceptance of the complete H1 mock-up",
             ),
             "docs/roadmap.ru.md": (
-                "H1-R2.32", "Размещение функциональных островов", "Локальность RF и антенн",
+                "H1-R2.33", "Размещение функциональных островов", "Локальность RF и антенн",
                 "Межплатный transport", "Физический и сервисный аудит", "Финальный вход принятия H1",
                 "явное принятие полного H1-мокапа",
             ),
@@ -753,61 +757,61 @@ class ProductSiteTests(unittest.TestCase):
     def test_h1_r2_32_public_boundary_separates_electrical_and_physical_work(self):
         expectations = {
             "README.md": (
-                "Current hardware marker: `H1-R2.32`",
+                "Current hardware marker: `H1-R2.33`",
                 "exact dual-RP GPIO/M1 map",
-                "same-slot U214/U219",
+                "mutually exclusive U214/U219 Cap slot",
                 "R2 H2/KiCad has not started",
-                "five active host packages",
+                "six compute domains",
             ),
             "README.ru.md": (
-                "Текущий маркер железа: `H1-R2.32`",
+                "Текущий маркер железа: `H1-R2.33`",
                 "dual-RP GPIO/M1",
-                "same-slot роли U214/U219",
+                "взаимоисключающий Cap-слот U214/U219",
                 "H2/KiCad",
-                "не начинались",
-                "все пять активных host-корпусов",
+                "начинались",
+                "шесть вычислительных доменов",
             ),
             "docs/roadmap.md": (
-                "Current hardware boundary: `H1-R2.32`",
-                "five active U219 source-backed courtyards and the 43-body Cap/evidence coordinate register are closed",
+                "Current hardware boundary: `H1-R2.33`",
+                "all 18 U219 support bodies",
                 "U219 Cap integration",
-                "source-backed courtyards",
+                "no physical blocker remains",
                 "H2/KiCad has not started",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H1-R2.32`",
-                "пять активных U219-courtyard и 43-корпусный coordinate-register Cap/evidence закрыты",
+                "Текущая аппаратная граница: `H1-R2.33`",
+                "все 18 компонентов U219",
                 "Интеграция U219 Cap",
-                "source-backed courtyards",
+                "физических блокеров",
                 "H2/KiCad не начинались",
             ),
             "docs/stage-results.md": (
-                "current at **`H1-R2.32`**",
+                "current at **`H1-R2.33`**",
                 "exact dual-RP GPIO/M1 map",
-                "accepted U219 profile",
-                "now include the U219 host switch",
+                "ten main SMA ports are split 5+5",
+                "single coordinate model now registers 218 bodies",
                 "R2 H2/KiCad",
                 "has not started",
             ),
             "docs/stage-results.ru.md": (
-                "сейчас **`H1-R2.32`**",
+                "сейчас **`H1-R2.33`**",
                 "Точные dual-RP GPIO/M1",
-                "Принятый профиль U219",
-                "теперь включают host-switch U219",
+                "десять основных SMA разделены 5+5",
+                "координатная модель содержит 218 тел",
                 "R2 H2/KiCad не начинались",
             ),
             "docs/schematics.md": (
-                "H1-R2.32",
+                "H1-R2.33",
                 "C5 SDIO/service-mux electrical join are closed",
-                "accepted U219 principle",
-                "now registered",
+                "all 18 U219 support bodies",
+                "exact EastRising display/adapter",
                 "does **not** exist yet",
             ),
             "docs/schematics.ru.md": (
-                "H1-R2.32",
+                "H1-R2.33",
                 "стык C5 SDIO/service-mux закрыты",
-                "Принятый принцип U219",
-                "уже зарегистрированы",
+                "все 18 компонентов U219",
+                "точный дисплей EastRising",
                 "пока **нет**",
             ),
         }
@@ -996,7 +1000,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H1", state["current_stage"])
-        self.assertEqual("H1-R2.32", state["current_substep"])
+        self.assertEqual("H1-R2.33", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])
@@ -1178,7 +1182,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(name)
             self.assertNotIn("H5-EVR07", page, name)
             self.assertNotIn("H5-EVR08", page, name)
-            self.assertIn("H1-R2.32", page, name)
+            self.assertIn("H1-R2.33", page, name)
         self.assertEqual(
             "source-hash-bound-precommit-revision",
             h4_plan["firmware_f3_evidence"]["revision"],
@@ -1304,7 +1308,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(1053, summary["main_candidate_instances"])
         self.assertEqual(26, summary["lora_cap_common_instances"])
         self.assertEqual(2, summary["lora_cap_alternative_module_instances"])
-        self.assertEqual(233, summary["h1_dimensioned_instances"])
+        self.assertEqual(226, summary["h1_dimensioned_instances"])
+        self.assertEqual(7, summary["h1_r2_superseded_historical_instances"])
         self.assertEqual(820, summary["schematic_only_main_instances"])
         self.assertEqual(1041, summary["main_board_fitted_components"])
         self.assertEqual(6, summary["main_fitted_interconnect_assemblies"])
@@ -2713,13 +2718,13 @@ class ProductSiteTests(unittest.TestCase):
             "Leshy2 — dimensioned external layout",
             "Text on a PCB face but outside component outlines is intended silkscreen",
             'data-coordinate-model="L2-ASM-COORD-001-A"',
-            'data-review-gate="H1.3.1" data-review-status="reviewed"',
+            'data-review-gate="H1-R2.33" data-review-status="ready-for-user-acceptance"',
             'data-face="front-outer" data-board-mm="75x150"',
             'data-face="rear-outer" data-board-mm="75x150"',
             'data-layer="pcb-silkscreen"',
-            "HMX035CTFT-001",
-            "ACTIVE 48.96×73.44 mm · 320×480 · 2:3",
-            "54.5×83.0×3.2 mm LCD/CTP body",
+            "ER-TFT035IPS-6",
+            "+ ER-TPC035-6 · DISPLAY / TOUCH",
+            "56.54×84.96×3.76 mm · ACTIVE 48.96×73.44",
             "M5Stack U214",
             "HLE-107-02-G-DV-PE-LC",
             "insert ⊗ · remove ⊙",
@@ -2921,11 +2926,11 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("OMRON B3S-1100P", function_keys["mpn"])
         self.assertEqual(["F1", "F2", "F3", "F4"], function_keys["left"])
         self.assertEqual(["F5", "F6", "F7", "F8"], function_keys["right"])
-        self.assertEqual(1.85, function_keys["display_clearance_mm"])
+        self.assertEqual(0.83, function_keys["display_clearance_mm"])
         self.assertEqual(4.5, function_keys["top_mounting_keepout_clearance_mm"])
         self.assertEqual(0, function_keys["free_expander_inputs_after_placement"])
-        self.assertEqual(4, len(package["front"]["antenna_ports"]))
-        self.assertEqual(6, len(package["rear"]["antenna_ports"]))
+        self.assertEqual(5, len(package["front"]["antenna_ports"]))
+        self.assertEqual(5, len(package["rear"]["antenna_ports"]))
         self.assertEqual(15, len(package["front"]["controls"]))
         self.assertEqual(2, len(package["rear"]["controls"]))
         self.assertEqual(
@@ -3016,7 +3021,7 @@ class ProductSiteTests(unittest.TestCase):
         for name in ("docs/hardware.md", "docs/hardware.ru.md"):
             page = self.read(name)
             self.assertNotIn("H1-cross-view-acceptance.json", page, name)
-            self.assertIn("H1-R2.32", page, name)
+            self.assertIn("H1-R2.33", page, name)
 
     def test_antenna_kit_is_product_facing_and_machine_accounted(self):
         import json
@@ -3181,8 +3186,8 @@ class ProductSiteTests(unittest.TestCase):
             'data-encoder-through-features="7"',
             'data-cable-od-max-mm="1.13"',
             'data-functional-zones="1"',
-            'data-voice-v-rf-endpoint-distance-mm="40.91"',
-            'data-voice-u-rf-endpoint-distance-mm="39.95"',
+            'data-voice-v-rf-endpoint-distance-mm="45.57"',
+            'data-voice-u-rf-endpoint-distance-mm="47.33"',
             'data-path="S3-2G4"',
             'data-path="RX-FM/SW"',
             'data-path="RX-AM/LW"',
@@ -3357,7 +3362,7 @@ class ProductSiteTests(unittest.TestCase):
             'data-z-scale-px-per-mm="7.5"',
             "Leshy2 — two physical cross-sections",
             "Each panel is one physical cut plane; zones are never combined.",
-            "HMX035CTFT-001",
+            "ER-TFT035IPS-6 + ER-TPC035-6",
             "FX8C M1 · exact 11-mm board-to-board gap",
             "AS02404PO",
             "Keystone Electronics 1048P",
@@ -3381,8 +3386,8 @@ class ProductSiteTests(unittest.TestCase):
             'data-view="top-edge" data-look-direction="antenna-edge-to-bottom" data-rf-mounting="opposed-outer-faces" data-x-scale-px-per-mm="8.0" data-z-scale-px-per-mm="8.0"',
             "true top view from the antenna edge",
             "Looking along board +Y",
-            'id="front-antenna-bank" data-count="4"',
-            'id="rear-antenna-bank" data-count="6"',
+            'id="front-antenna-bank" data-count="5"',
+            'id="rear-antenna-bank" data-count="5"',
             'data-mount-face="ui-pcb-outer"',
             'data-mount-face="rf-pcb-outer"',
             'data-board-gap-mm="11" data-antenna-bodies="none"',
@@ -3391,10 +3396,10 @@ class ProductSiteTests(unittest.TestCase):
             "installed U214 worst-case · symmetric 4.5-mm side overhang",
             "FX8C M1 · 11-mm board gap",
             "antenna centre planes are separated by 20.55 mm",
-            "HMX035CTFT-001",
+            "EastRising ER-TFT035IPS-6 + ER-TPC035-6",
             "M5Stack U214",
             "Keystone Electronics 1048P",
-            "Nominal maximum selected-part depth: 38.1 mm",
+            "Nominal maximum selected-part depth: 38.7 mm",
         ):
             self.assertIn(token, layout)
 

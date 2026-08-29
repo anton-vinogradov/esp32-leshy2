@@ -48,7 +48,9 @@ IMPLEMENTED_CHILD_GENERATORS = (
     "hardware/ecad/h2_rf_interboard_m1.py",
     "hardware/ecad/h2_rf_tx_safety_evidence.py",
     "hardware/ecad/h2_rf_testpoints_manufacturing.py",
-    "hardware/ecad/h2_display_adapter.py",
+    # h2_display_adapter.py is preserved R1 40-to-40 evidence.  The accepted
+    # 40-to-50 EastRising adapter is H1 physical input only; its R2 H2 sheet is
+    # intentionally not generated before H1 acceptance.
     "hardware/ecad/h2_lora_cap_radio_control.py",
     "hardware/ecad/h2_lora_cap_power_bus.py",
     "hardware/ecad/h2_lora_cap_tx_evidence.py",

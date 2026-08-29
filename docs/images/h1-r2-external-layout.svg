@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-marker="H1-R2.32" data-review-status="in-progress">
+<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1-R2.33" data-review-status="ready-for-user-acceptance">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.32 current external layout</text>
+<text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.33 current external layout</text>
 <text x="30.0" y="56.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Current R2 exterior. PCB-face free text is silkscreen; drawing notes and arrows are annotations. H1 remains in progress.</text>
 <text x="80.0" y="85.8" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Front / UI face</text>
 <rect x="80.0" y="150.0" width="277.5" height="555.0" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="1.5" data-face="front-outer" data-board-mm="75x150"/>
@@ -58,12 +58,12 @@
 <path d="M712.5 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="712.5" y="210.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">UHF TX</text>
 </g>
-<rect x="117.9" y="190.7" width="201.7" height="307.1" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
-<rect x="128.2" y="198.7" width="181.2" height="271.7" rx="3" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="1.5"/>
-<rect x="126.3" y="196.8" width="184.9" height="275.4" rx="3" fill="none" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="3 2"/>
-<text x="218.8" y="336.9" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#1d4ed8">HMX035CTFT-001</text>
-<text x="218.8" y="355.4" font-family="sans-serif" font-size="6.5" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ACTIVE 48.96×73.44 mm · 320×480 · 2:3</text>
-<text x="218.8" y="373.9" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#1d4ed8">54.5×83.0×3.2 mm LCD/CTP body</text>
+<rect x="114.2" y="188.8" width="209.2" height="314.4" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<rect x="128.2" y="202.8" width="181.2" height="271.7" rx="3" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="1.5"/>
+<rect x="126.3" y="200.9" width="184.9" height="275.4" rx="3" fill="none" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="3 2"/>
+<text x="218.8" y="336.9" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ER-TFT035IPS-6</text>
+<text x="218.8" y="355.4" font-family="sans-serif" font-size="6.5" font-weight="bold" text-anchor="middle" fill="#1d4ed8">+ ER-TPC035-6 · DISPLAY / TOUCH</text>
+<text x="218.8" y="373.9" font-family="sans-serif" font-size="6.2" font-weight="normal" text-anchor="middle" fill="#1d4ed8">56.54×84.96×3.76 mm · ACTIVE 48.96×73.44</text>
 <text x="218.8" y="392.4" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#dc2626">touch / view ⊗</text>
 <g id="front-outer-rf-bank" data-mount-face="ui-pcb-outer">
 <rect x="91.1" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
@@ -239,7 +239,7 @@
 <text x="850.0" y="699.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Davies 1227-J is the exact encoder knob; only its fit HIL remains.</text>
 <text x="850.0" y="722.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">UP/DOWN/LEFT/RIGHT/OK/BACK/OPT/F1…F8/PTT are serial direct buttons.</text>
 <text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The side C&amp;K JS102011SCQN is the sole RUN/KILL and source-command control.</text>
-<g id="h1-r2-external-delta" data-marker="H1-R2.32" data-state="in-progress">
+<g id="h1-r2-external-delta" data-marker="H1-R2.33" data-state="in-progress">
 <text data-role="board-identification" data-face="front" data-layer="pcb-silkscreen" x="218.8" y="528.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#172033">ESP32-LESHY2 · UI PCB · R2-EVT1 · REV A</text>
 <text data-role="board-identification" data-face="rear" data-layer="pcb-silkscreen" x="603.8" y="664.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#172033">RF/PWR PCB · R2-EVT1 · REV A</text>
 <path d="M140.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>

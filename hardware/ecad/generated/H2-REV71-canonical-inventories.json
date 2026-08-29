@@ -4,20 +4,20 @@
   "status": "reviewed_canonical_inventory_snapshot",
   "method": "assign one canonical owner to physical fit, part inventory, pin assignment, interboard crossing and firmware-visible state",
   "source_hashes": {
-    "h1_physical_acceptance": "3d880042d5a914c933928401fee95beb6e23ceb302a8d9fb3a581f6824c2d280",
-    "h2_instance_ledger": "261fa6c38c7a1dabeacbb52f2e4b71f0f4b64e3f29da7b048900c7b4f5d3427f",
-    "architecture_pin_source": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "ui_m1": "6c5589de2b3d36f4d384372536576575a199ab58e60da20a17d778257dc6f2f7",
-    "rf_m1": "4a29d1f3f134b2f47ea44cad173d14c04c5ac7470f07d17f273cdaf661008333",
-    "h2_hwfw_export": "734589c2a001f0203010c093bb3b36d063c7c130cb2c32cae106a20886541f10",
-    "firmware_f2_import": "1bbe782f43fa8fb690b71daa0c21a441d93c6f0853e13b4e8c7674dabc719205"
+    "h1_physical_acceptance": "25bfb43c8ad9043881d8017b2cb639c1b0bf538a01045213b36b13f70503f69d",
+    "h2_instance_ledger": "0ea2d4f11469bf03e760ceb47836e668abd760862387785e9567995dd4c12256",
+    "architecture_pin_source": "46efd30669da371cae53110bb2991c8aad8c1c8973c66d33b9b8f0f60a1c44a2",
+    "ui_m1": "be252db159d39f35b3361f476e01766cdca8edfb916ed42940dc62600de1b0e5",
+    "rf_m1": "bc3ca94caa4a0921483aa8aeb1d9e65795e7cabf606e3846f61359ffba5444c2",
+    "h2_hwfw_export": "28603fa8b6b45ffcb56e45a08f1afda16e07a4bbf42007d3991855bf3e3dca04",
+    "firmware_f2_import": "6e95191079983371c2eabffb52b443f95a6fdeef33e396c4bde958c77c2d6a45"
   },
   "inventories": [
     {
       "owner": "H1",
       "role": "physical bodies, coordinates and accepted mechanical fit",
       "artifact": "hardware/product-design/generated/H1-cross-view-acceptance.json",
-      "count": 195
+      "count": 233
     },
     {
       "owner": "H2 instance ledger",

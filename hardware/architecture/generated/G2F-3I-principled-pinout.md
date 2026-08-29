@@ -5470,11 +5470,15 @@ Reserved: `PA1_NRST`. Free: none.
 - `u214_supervisor_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `u214_supervisor_bypass` lifecycle: `active_orderable`.
 - `u214_supervisor_sense_top` lifecycle: `active_orderable`.
+- `u214_supervisor_ct` uses `Murata GRM155R71H103KA88D` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `u214_supervisor_ct` lifecycle: `production_active_factory_stocked_standard_pcba`.
 - `unit_rilm` uses `Yageo RC0402FR-071K82L` as `verified_h3_dc_margin_correction`, not an accepted production choice.
 - `unit_rilm` lifecycle: `active_orderable`.
 - `unit_supervisor_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `unit_supervisor_bypass` lifecycle: `active_orderable`.
 - `unit_supervisor_sense_top` lifecycle: `active_orderable`.
+- `unit_supervisor_ct` uses `Murata GRM155R71H103KA88D` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `unit_supervisor_ct` lifecycle: `production_active_factory_stocked_standard_pcba`.
 - `unit_signal_iso` uses `Texas Instruments TXS0102DCUR` as `verified_exact_native_m5_unit_signal_isolator`, not an accepted production choice.
 - `unit_signal_iso` lifecycle: `active_production_orderable`.
 - `unit_signal_iso_vcca_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
@@ -5802,6 +5806,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `codec_tx_atten_top` lifecycle: `active_factory_stocked_standard_pcba`.
 - `codec_tx_atten_bottom` uses `UNI-ROYAL 0402WGF2201TCE` as `verified_stocked_exact_parametric_replacement`, not an accepted production choice.
 - `codec_tx_atten_bottom` lifecycle: `production_active_factory_stocked`.
+- `codec_tx_filter` uses `Murata GRM155R71H103KA88D` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `codec_tx_filter` lifecycle: `production_active_factory_stocked_standard_pcba`.
 - `voice_mic_coupling` lifecycle: `active_production`.
 - `voice_v_mic_coupling` lifecycle: `active_production`.
 - `audio_safe_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
@@ -5911,6 +5917,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `ir_evidence_vref_cap` lifecycle: `active_orderable`.
 - `voice_supervisor_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `voice_supervisor_bypass` lifecycle: `active_orderable`.
+- `voice_supervisor_ct` uses `Murata GRM155R71H103KA88D` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `voice_supervisor_ct` lifecycle: `production_active_factory_stocked_standard_pcba`.
 - `voice_io_power_input_cap` lifecycle: `active_production`.
 - `voice_io_power_output_cap` lifecycle: `active_production`.
 - `voice_band_io_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
@@ -5999,10 +6007,16 @@ Reserved: `PA1_NRST`. Free: none.
 - `pack_batts_filter_cap` lifecycle: `active_orderable`.
 - `pack_admission_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `pack_admission_bypass` lifecycle: `active_orderable`.
+- `pack_admission_reset_cap` uses `Murata GRM155R71H103KA88D` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `pack_admission_reset_cap` lifecycle: `production_active_factory_stocked_standard_pcba`.
 - `pack_diag_timer` lifecycle: `active_production`.
 - `pack_diag_lockout_cap` lifecycle: `active_production`.
 - `pack_diag_timer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `pack_diag_timer_bypass` lifecycle: `active_orderable`.
+- `pack_mid_adc_filter` uses `Murata GRM155R71H103KA88D` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `pack_mid_adc_filter` lifecycle: `production_active_factory_stocked_standard_pcba`.
+- `pack_stack_adc_filter` uses `Murata GRM155R71H103KA88D` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `pack_stack_adc_filter` lifecycle: `production_active_factory_stocked_standard_pcba`.
 - `aon_efuse_input_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `aon_efuse_input_cap` lifecycle: `active_orderable`.
 - `main_hf_input_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
@@ -6108,6 +6122,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `safety_controller` lifecycle: `active_orderable`.
 - `safety_controller_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `safety_controller_bypass` lifecycle: `active_orderable`.
+- `safety_controller_reset_cap` uses `Murata GRM155R71H103KA88D` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
+- `safety_controller_reset_cap` lifecycle: `production_active_factory_stocked_standard_pcba`.
 - `safety_fault_request_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `safety_fault_request_iso_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `safety_fault_request_iso_bypass` lifecycle: `active_orderable`.

@@ -6,10 +6,10 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 
 ## Summary
 
-- Volume material basis: **$235.35** per device; `199/210` lines are priced.
-- Reachable planning subtotal: **$263.76** per device, with `6` base-product lines still unpriced.
-- With the required post-PCBA K331: **$293.75** per device and **$293.75** for the one target prototype before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
-- Historical five-board JLCPCB capture: **$1,234.40** for `180` matched lines; `22` live checks move it to **$1,300.42**, with `30` rows excluded. This is evidence, not the target quantity.
+- Volume material basis: **$248.37** per device; `200/210` lines are priced.
+- Reachable planning subtotal: **$276.77** per device, with `5` base-product lines still unpriced.
+- With the required post-PCBA K331: **$306.76** per device and **$306.76** for the one target prototype before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
+- Historical five-board JLCPCB capture: **$1,293.98** for `181` matched lines; `22` live checks move it to **$1,360.00**, with `29` rows excluded. This is evidence, not the target quantity.
 - The external antenna kit is separate: **$145.27** is known and `4` lines remain unpriced.
 
 ## Highest-cost finished-device lines
@@ -18,6 +18,7 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 |---|---|---:|---:|---:|---:|---:|---:|
 | `GCT RFPC-SMA31-FN-175-A` | eight standard outward SMA / восемь внешних SMA | 8 | $2.46 | $19.72 | 8 | $19.72 | — |
 | `Analog Devices AD8314ACPZ-RL7` | six real-TX RF detectors / шесть RF-детекторов фактической передачи | 6 | $2.86 | $17.14 | 6 | $17.14 | $159.55 |
+| `EastRising ER-TFT035IPS-6 + ER-TPC035-6` | display | 1 | $14.91 | $14.91 | 1 | $14.91 | $74.55 |
 | `OMRON B3S-1100P` | sixteen ordinary user keys / шестнадцать обычных клавиш | 16 | $0.64 | $10.25 | 16 | $10.25 | $74.58 |
 | `G-NiceRF SA818S-V` | VHF voice transceiver / VHF голосовой трансивер | 1 | $10.07 | $10.07 | 1 | $10.07 | $50.35 |
 | `G-NiceRF SA818S-U` | UHF voice transceiver / UHF голосовой трансивер | 1 | $9.73 | $9.73 | 1 | $9.73 | $48.67 |
@@ -35,7 +36,6 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 | `ESP32-C5-WROOM-1U-N8R8` | c5 | 1 | $4.13 | $4.13 | 1 | $4.13 | $29.29 |
 | `Texas Instruments TPD4E05U06DQAR` | thirteen four-line ESD arrays / тринадцать четырёхканальных ESD-сборок | 13 | $0.31 | $4.02 | 13 | $4.02 | — |
 | `Analog Devices MAX17320G20+T` | pack_gauge | 1 | $4.00 | $4.00 | 1 | $4.00 | $31.06 |
-| `Hirose FX8C-80S-SV5(92)` | 80-contact RF-side interboard receptacle / 80-контактная межплатная розетка RF | 1 | $3.91 | $3.91 | 1 | $3.91 | — |
 
 [Complete 210-line ranking — CSV](../hardware/product-design/generated/H1-R2-cost-ranked.csv)
 

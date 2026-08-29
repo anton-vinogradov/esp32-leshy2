@@ -41,11 +41,11 @@
       "font_size_px_at_drawing_scale": 10.5
     },
     "display": {
-      "mpn": "HMX035CTFT-001 (QDtech schematic assembly marking)",
+      "mpn": "EastRising ER-TFT035IPS-6 + ER-TPC035-6",
       "body_mm": [
-        54.5,
-        83.0,
-        3.2
+        56.54,
+        84.96,
+        3.76
       ],
       "active_area_mm": [
         48.96,
@@ -76,11 +76,21 @@
       ],
       "vertical_pitch_mm": 13.5,
       "board_edge_clearance_mm": 1.8,
-      "display_clearance_mm": 1.85,
+      "display_clearance_mm": 0.83,
       "top_mounting_keepout_clearance_mm": 4.5,
       "free_expander_inputs_after_placement": 0
     },
     "antenna_ports": [
+      {
+        "path": "N24-0",
+        "user_label": [
+          "nRF1",
+          "2.4 GHz"
+        ],
+        "connector_type": "SMA",
+        "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
+        "x_center_mm": 8.1
+      },
       {
         "path": "S3-2G4",
         "user_label": [
@@ -89,25 +99,17 @@
         ],
         "connector_type": "RP-SMA",
         "connector_mpn": "GCT RFPC-SMA32-FN-175-A",
-        "x_center_mm": 15.7
+        "x_center_mm": 22.8
       },
       {
-        "path": "RX-FM/SW",
+        "path": "N24-1",
         "user_label": [
-          "FM/SW/AIR RX"
+          "nRF2",
+          "2.4 GHz"
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 30.0
-      },
-      {
-        "path": "RX-AM/LW",
-        "user_label": [
-          "AM/LW LOOP"
-        ],
-        "connector_type": "SMA",
-        "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 45.0
+        "x_center_mm": 37.5
       },
       {
         "path": "C5-2G4/5",
@@ -117,7 +119,17 @@
         ],
         "connector_type": "RP-SMA",
         "connector_mpn": "GCT RFPC-SMA32-FN-175-A",
-        "x_center_mm": 59.3
+        "x_center_mm": 52.2
+      },
+      {
+        "path": "N24-2",
+        "user_label": [
+          "nRF3",
+          "2.4 GHz"
+        ],
+        "connector_type": "SMA",
+        "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
+        "x_center_mm": 66.9
       }
     ],
     "tx_indicators": [
@@ -584,14 +596,23 @@
     },
     "antenna_ports": [
       {
-        "path": "N24-0",
+        "path": "RX-FM/SW",
         "user_label": [
-          "nRF24-1",
-          "2.4 GHz"
+          "FM/SW",
+          "AIR RX"
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
         "x_center_mm": 8.1
+      },
+      {
+        "path": "RX-AM/LW",
+        "user_label": [
+          "AM/LW LOOP"
+        ],
+        "connector_type": "SMA",
+        "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
+        "x_center_mm": 22.8
       },
       {
         "path": "CC-SUB",
@@ -600,43 +621,25 @@
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 19.0
-      },
-      {
-        "path": "N24-1",
-        "user_label": [
-          "nRF24-2",
-          "2.4 GHz"
-        ],
-        "connector_type": "SMA",
-        "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 29.9
+        "x_center_mm": 37.5
       },
       {
         "path": "VOICE-VHF",
         "user_label": [
-          "VHF VOICE",
-          "134-174 MHz"
+          "VHF",
+          "VOICE",
+          "134-174"
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 45.1
+        "x_center_mm": 52.2
       },
       {
         "path": "VOICE-UHF",
         "user_label": [
-          "UHF VOICE",
-          "400-480 MHz"
-        ],
-        "connector_type": "SMA",
-        "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
-        "x_center_mm": 56.0
-      },
-      {
-        "path": "N24-2",
-        "user_label": [
-          "nRF24-3",
-          "2.4 GHz"
+          "UHF",
+          "VOICE",
+          "400-480"
         ],
         "connector_type": "SMA",
         "connector_mpn": "GCT RFPC-SMA31-FN-175-A",

@@ -165,7 +165,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H1-R2.32**: H0/H1 согласованы с двумя независимыми RP2354B, точными GPIO0..47 и пятью M1 endpoints; электрический pin/mux-контракт C5 и 43-корпусный coordinate-register Cap/evidence присоединены. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Новый R2 H2/KiCad заблокирован до live route C11355, точного MPN detector/latch service-VBUS и powered-off-Ioff границы Pack/Safety I2C; полный мокап можно принять только после трёх физических H1-блокеров."
+        current = "Текущий точный маркер — **H1-R2.33**: H0/H1 согласованы с двумя независимыми RP2354B, точными GPIO0..47 и пятью M1 endpoints; электрический pin/mux-контракт C5 и полная 218-корпусная физическая проекция присоединены. Серийный дисплей EastRising, U219, NFC-loop и swept volume антенны закрыты; мокап ждёт явного принятия. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Новый R2 H2/KiCad заблокирован до live route C11355, точного MPN detector/latch service-VBUS и powered-off-Ioff границы Pack/Safety I2C."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -204,7 +204,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, analog FPV "
             "remains receive-only, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H1-R2.32**: H0/H1 now agree on two independent RP2354B domains, exact GPIO0..47 maps and five M1 endpoints; the C5 electrical pin/mux contract and the 43-body Cap/evidence coordinate register are joined. The old single-RP G2F/H2 projection remains historical R1 evidence only. New R2 H2/KiCad stays blocked on the live C11355 route, the exact service-VBUS detector/latch MPN and the Pack/Safety I2C powered-off-Ioff boundary; the complete mock-up can be accepted only after three physical H1 blockers close."
+        current = "The exact current marker is **H1-R2.33**: H0/H1 now agree on two independent RP2354B domains, exact GPIO0..47 maps and five M1 endpoints; the C5 electrical pin/mux contract and complete 218-body physical projection are joined. The serial EastRising display, U219, NFC loop and antenna swept volume are closed; the mock-up waits for explicit acceptance. The old single-RP G2F/H2 projection remains historical R1 evidence only. New R2 H2/KiCad stays blocked on the live C11355 route, the exact service-VBUS detector/latch MPN and the Pack/Safety I2C powered-off-Ioff boundary."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",
@@ -268,14 +268,14 @@ def render_report(data: dict, ru: bool) -> str:
     result_lines = (
         "- Один пользовательский порт `FM / SW / AIR RX`; новый внешний разъём не добавлен.\n"
         "- Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с FPV или TX-группой.\n"
-        "- Кнопки остаются на локальном для S3 TCA9539PWR, энкодер и USB подключены к S3 напрямую; direct i8080-8 даёт 32 МБ/с, а camera RX работает независимо.\n"
+        "- Кнопки остаются на локальном для S3 TCA9539PWR, энкодер и USB подключены к S3 напрямую; direct i8080-8 даёт 24 МБ/с при безопасных для ILI9488 24 МГц, а camera RX работает независимо.\n"
         "- Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, FPV, M5 и одним из U214/U219.\n"
         "- Через M1 проходит один CVBS, control/status и питание; 11-линейная LCD_CAM-шина остаётся локальной S3."
         if ru
         else
         "- One user port is labelled `FM / SW / AIR RX`; no new external connector is added.\n"
         "- Airband is a `BROADCAST_RX` submode, so its RF domain cannot run together with FPV or a TX group.\n"
-        "- Buttons stay on the S3-local TCA9539PWR path while encoder and USB remain direct; direct i8080-8 provides 32 MB/s while camera RX runs independently.\n"
+        "- Buttons stay on the S3-local TCA9539PWR path while encoder and USB remain direct; direct i8080-8 provides 24 MB/s at the ILI9488-safe 24 MHz while camera RX runs independently.\n"
         "- The front RP owns three nRF24 paths and microSD; the rear RP owns Si4732/Airband, CC1101, voice, audio, FPV, M5 and exactly one U214/U219 profile.\n"
         "- M1 carries one CVBS signal, control/status and power; the 11-line LCD_CAM bus stays local to S3."
     )

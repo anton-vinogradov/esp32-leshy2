@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.32",
-  "status": "pass_with_open_h1_blockers",
+  "marker": "H1-R2.33",
+  "status": "pass",
   "structural_status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
-  "new_fixed_body_count": 53,
+  "new_fixed_body_count": 66,
   "new_reserve_count": 3,
-  "placement_drawing_reference_count": 57,
+  "placement_drawing_reference_count": 70,
   "duplicate_placement_drawing_references": {},
   "replaced_seed_instances": [
     "audio_speaker_selector",
@@ -44,7 +44,7 @@
     "u214_series_busy"
   ],
   "same_face_collisions": [],
-  "opposing_overlap_count": 70,
+  "opposing_overlap_count": 77,
   "minimum_opposing_clearance_mm": 2.59,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
@@ -82,6 +82,55 @@
       "ui_origin": "retained_base",
       "rf_origin": "r2",
       "clearance_mm": 6.6
+    },
+    {
+      "ui": "c5",
+      "rf": "u219_field_env_cap",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
+      "clearance_mm": 7.2
+    },
+    {
+      "ui": "c5",
+      "rf": "u219_field_discharge",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
+      "clearance_mm": 7.35
+    },
+    {
+      "ui": "c5",
+      "rf": "u219_field_threshold_top",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
+      "clearance_mm": 7.35
+    },
+    {
+      "ui": "c5",
+      "rf": "u219_field_threshold_bottom",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
+      "clearance_mm": 7.35
+    },
+    {
+      "ui": "c5",
+      "rf": "u219_field_hysteresis",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
+      "clearance_mm": 7.35
+    },
+    {
+      "ui": "c5",
+      "rf": "u219_field_output_pullup",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
+      "clearance_mm": 7.35
+    },
+    {
+      "ui": "c5",
+      "rf": "u219_field_comparator_bypass",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
+      "clearance_mm": 7.2
     },
     {
       "ui": "c5_reset_button",
@@ -579,8 +628,12 @@
           ]
         },
         "members": [
+          "u219_pin10_command_pulldown",
+          "u219_pin10_driver_bypass",
           "u219_pin10_oe_driver",
-          "u219_pin10_switch"
+          "u219_pin10_oe_pullup",
+          "u219_pin10_switch",
+          "u219_pin10_switch_bypass"
         ],
         "minimum_clearance_mm": 2.5
       },
@@ -600,24 +653,73 @@
         "members": [
           "u219_field_bridge_a",
           "u219_field_bridge_b",
-          "u219_field_comparator"
+          "u219_field_comparator",
+          "u219_field_comparator_bypass",
+          "u219_field_discharge",
+          "u219_field_env_cap",
+          "u219_field_hysteresis",
+          "u219_field_input_r_n",
+          "u219_field_input_r_p",
+          "u219_field_output_pullup",
+          "u219_field_threshold_bottom",
+          "u219_field_threshold_top"
         ],
         "minimum_clearance_mm": 0.7
       },
       {
         "id": "u219_nfc_pickup_loop",
         "kind": "copper_feature_reserve",
-        "world_bbox_mm": null,
+        "world_bbox_mm": {
+          "x": [
+            1.5,
+            73.5
+          ],
+          "y": [
+            17.8,
+            40.2
+          ]
+        },
+        "members": [],
         "minimum_clearance_mm": null
-      }
-    ],
-    "unresolved_geometry": [
+      },
       {
-        "id": "u219_nfc_pickup_loop",
-        "kind": "copper_feature_reserve",
-        "gate": "unlocated until a controlled U219 field-structure drawing or received-unit measurement exists"
+        "id": "u219_installed_antenna_sweep",
+        "kind": "external_swept_volume",
+        "world_bbox_mm": {
+          "x": [
+            65.46,
+            77.46
+          ],
+          "y": [
+            18.64,
+            30.64
+          ],
+          "z": [
+            37.66,
+            145.66
+          ]
+        },
+        "members": [],
+        "minimum_clearance_mm": null
+      },
+      {
+        "id": "u219_nfc_dnp_tuning_bank",
+        "kind": "placement_reserve",
+        "world_bbox_mm": {
+          "x": [
+            50.9,
+            53.0
+          ],
+          "y": [
+            29.0,
+            31.8
+          ]
+        },
+        "members": [],
+        "minimum_clearance_mm": 0.7
       }
     ],
+    "unresolved_geometry": [],
     "errors": []
   },
   "u219_contract": {
@@ -628,15 +730,41 @@
       "u219_field_bridge_a",
       "u219_field_bridge_b",
       "u219_field_comparator",
+      "u219_field_comparator_bypass",
+      "u219_field_discharge",
+      "u219_field_env_cap",
+      "u219_field_hysteresis",
+      "u219_field_input_r_n",
+      "u219_field_input_r_p",
+      "u219_field_output_pullup",
+      "u219_field_threshold_bottom",
+      "u219_field_threshold_top",
+      "u219_pin10_command_pulldown",
+      "u219_pin10_driver_bypass",
       "u219_pin10_oe_driver",
-      "u219_pin10_switch"
+      "u219_pin10_oe_pullup",
+      "u219_pin10_switch",
+      "u219_pin10_switch_bypass"
     ],
     "source_backed_courtyard_instances": [
       "u219_field_bridge_a",
       "u219_field_bridge_b",
       "u219_field_comparator",
+      "u219_field_comparator_bypass",
+      "u219_field_discharge",
+      "u219_field_env_cap",
+      "u219_field_hysteresis",
+      "u219_field_input_r_n",
+      "u219_field_input_r_p",
+      "u219_field_output_pullup",
+      "u219_field_threshold_bottom",
+      "u219_field_threshold_top",
+      "u219_pin10_command_pulldown",
+      "u219_pin10_driver_bypass",
       "u219_pin10_oe_driver",
-      "u219_pin10_switch"
+      "u219_pin10_oe_pullup",
+      "u219_pin10_switch",
+      "u219_pin10_switch_bypass"
     ],
     "errors": []
   },
@@ -661,8 +789,8 @@
             41.0
           ],
           "z": [
-            17.4,
-            32.687
+            17.96,
+            33.247
           ]
         },
         "status": "accepted existing profile"
@@ -684,11 +812,11 @@
             41.0
           ],
           "z": [
-            17.4,
-            37.1
+            17.96,
+            37.66
           ]
         },
-        "status": "accepted optional paper profile; received-unit geometry and HIL remain open",
+        "status": "dimensioned optional profile; exact revision and electrical HIL remain downstream",
         "dimension_source": "https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/1250/U219_Cap_CC1101_model_size.pdf"
       }
     },
@@ -704,13 +832,8 @@
     "u219_height_delta_vs_u214_mm": 4.413,
     "u219_margin_below_battery_holder_top_mm": 1.0,
     "u219_margin_below_current_rear_max_mm": 1.3,
-    "calculated_rear_max_z_mm": 38.4,
-    "open_geometry_gates": [
-      "obtain a controlled U219 STEP/PCB drawing or measure a received unit before fixing the NFC field-structure and printed pickup-loop coordinates",
-      "measure the installed U219 RP-SMA antenna and cable/hand swept volume; the official 84 x 24 x 19.7-mm product body does not bound an attached 108-mm antenna",
-      "select exact C0G tuning-bank MPNs and land patterns only after VNA/HIL",
-      "complete the exact support-passive values/MPNs and prove their courtyards inside the two reserved islands; the five active-package source-backed courtyards already fit"
-    ],
+    "calculated_rear_max_z_mm": 38.96,
+    "open_geometry_gates": [],
     "errors": []
   },
   "cap_evidence_coordinate_register": {
@@ -2623,12 +2746,7 @@
   },
   "relocated_c5_dbg_header": "c5_dbg_header_r2",
   "errors": [],
-  "current_h1_blockers": [
-    "select one exact documented production display panel, controlled drawing and mating envelope with a deterministic factory-installable route before H1 closes or R2 H2 starts",
-    "complete exact support-passive values/MPNs and prove their courtyards inside the two bounded U219 placement islands",
-    "obtain controlled U219 field-structure geometry or measure a received unit before locating the weak printed NFC pickup loop and its DNP C0G bank",
-    "measure the installed U219 RP-SMA antenna swept volume against the rear connector bank, FPV plug, enclosure and user hand access"
-  ],
+  "current_h1_blockers": [],
   "dependent_h1_work": [
     "review and explicitly accept the generated complete R2 exterior, both true-view inner faces and four real section planes before closing H1"
   ],
@@ -2666,8 +2784,8 @@
           80.0
         ],
         "z": [
-          4.8,
-          5.7
+          5.36,
+          6.260000000000001
         ]
       }
     },
@@ -2687,8 +2805,8 @@
           150.0
         ],
         "z": [
-          4.8,
-          8.11
+          5.36,
+          8.67
         ]
       }
     },
@@ -2708,8 +2826,8 @@
           138.84
         ],
         "z": [
-          4.8,
-          10.36
+          5.36,
+          10.92
         ]
       }
     },
@@ -2729,8 +2847,8 @@
           134.5
         ],
         "z": [
-          4.8,
-          8.1
+          5.36,
+          8.66
         ]
       }
     },
@@ -2750,8 +2868,8 @@
           141.5
         ],
         "z": [
-          4.8,
-          8.1
+          5.36,
+          8.66
         ]
       }
     },
@@ -2771,8 +2889,8 @@
           13.1
         ],
         "z": [
-          14.3,
-          15.8
+          14.86,
+          16.36
         ]
       }
     },
@@ -2792,8 +2910,8 @@
           12.0
         ],
         "z": [
-          15.0,
-          15.8
+          15.559999999999999,
+          16.36
         ]
       }
     },
@@ -2813,8 +2931,8 @@
           12.0
         ],
         "z": [
-          14.700000000000001,
-          15.8
+          15.26,
+          16.36
         ]
       }
     },
@@ -2834,8 +2952,8 @@
           12.0
         ],
         "z": [
-          14.700000000000001,
-          15.8
+          15.26,
+          16.36
         ]
       }
     },
@@ -2855,8 +2973,8 @@
           18.0
         ],
         "z": [
-          14.600000000000001,
-          15.8
+          15.16,
+          16.36
         ]
       }
     },
@@ -2876,8 +2994,8 @@
           95.0
         ],
         "z": [
-          4.8,
-          6.0
+          5.36,
+          6.5600000000000005
         ]
       }
     },
@@ -2897,8 +3015,8 @@
           86.5
         ],
         "z": [
-          4.8,
-          6.199999999999999
+          5.36,
+          6.76
         ]
       }
     },
@@ -2918,8 +3036,8 @@
           114.0
         ],
         "z": [
-          7.800000000000001,
-          15.8
+          8.36,
+          16.36
         ]
       }
     },
@@ -2939,8 +3057,8 @@
           109.84
         ],
         "z": [
-          4.8,
-          10.36
+          5.36,
+          10.92
         ]
       }
     },
@@ -2960,8 +3078,8 @@
           12.530000000000001
         ],
         "z": [
-          17.400000000000002,
-          22.400000000000002
+          17.96,
+          22.96
         ]
       }
     },
@@ -2981,8 +3099,8 @@
           12.1
         ],
         "z": [
-          4.8,
-          7.199999999999999
+          5.36,
+          7.76
         ]
       }
     },
@@ -3002,8 +3120,8 @@
           7.04
         ],
         "z": [
-          4.8,
-          5.3999999999999995
+          5.36,
+          5.96
         ]
       }
     },
@@ -3023,8 +3141,8 @@
           12.1
         ],
         "z": [
-          4.8,
-          7.199999999999999
+          5.36,
+          7.76
         ]
       }
     },
@@ -3044,8 +3162,8 @@
           7.04
         ],
         "z": [
-          4.8,
-          5.3999999999999995
+          5.36,
+          5.96
         ]
       }
     },
@@ -3065,8 +3183,8 @@
           54.1
         ],
         "z": [
-          4.8,
-          6.9
+          5.36,
+          7.460000000000001
         ]
       }
     },
@@ -3086,8 +3204,8 @@
           54.1
         ],
         "z": [
-          4.8,
-          6.9
+          5.36,
+          7.460000000000001
         ]
       }
     },
@@ -3107,8 +3225,8 @@
           56.1
         ],
         "z": [
-          4.8,
-          6.9
+          5.36,
+          7.460000000000001
         ]
       }
     },
@@ -3128,8 +3246,8 @@
           12.1
         ],
         "z": [
-          4.8,
-          7.199999999999999
+          5.36,
+          7.76
         ]
       }
     },
@@ -3149,8 +3267,8 @@
           17.1
         ],
         "z": [
-          4.8,
-          7.199999999999999
+          5.36,
+          7.76
         ]
       }
     },
@@ -3170,8 +3288,8 @@
           12.1
         ],
         "z": [
-          4.8,
-          7.199999999999999
+          5.36,
+          7.76
         ]
       }
     },
@@ -3191,8 +3309,8 @@
           66.5
         ],
         "z": [
-          4.8,
-          5.9
+          5.36,
+          6.460000000000001
         ]
       }
     },
@@ -3212,8 +3330,8 @@
           65.1
         ],
         "z": [
-          4.8,
-          5.9
+          5.36,
+          6.460000000000001
         ]
       }
     },
@@ -3233,8 +3351,8 @@
           66.5
         ],
         "z": [
-          4.8,
-          5.9
+          5.36,
+          6.460000000000001
         ]
       }
     },
@@ -3254,8 +3372,8 @@
           65.1
         ],
         "z": [
-          4.8,
-          5.9
+          5.36,
+          6.460000000000001
         ]
       }
     },
@@ -3275,8 +3393,8 @@
           66.5
         ],
         "z": [
-          4.8,
-          5.9
+          5.36,
+          6.460000000000001
         ]
       }
     },
@@ -3296,8 +3414,8 @@
           65.1
         ],
         "z": [
-          4.8,
-          5.9
+          5.36,
+          6.460000000000001
         ]
       }
     },
@@ -3317,8 +3435,8 @@
           66.4
         ],
         "z": [
-          4.8,
-          6.0
+          5.36,
+          6.5600000000000005
         ]
       }
     },
@@ -3338,8 +3456,8 @@
           63.25
         ],
         "z": [
-          4.8,
-          5.9
+          5.36,
+          6.460000000000001
         ]
       }
     },
@@ -3359,8 +3477,8 @@
           66.4
         ],
         "z": [
-          4.8,
-          6.0
+          5.36,
+          6.5600000000000005
         ]
       }
     },
@@ -3380,8 +3498,8 @@
           29.5
         ],
         "z": [
-          14.05,
-          15.8
+          14.61,
+          16.36
         ]
       }
     },
@@ -3401,8 +3519,8 @@
           12.3
         ],
         "z": [
-          14.8,
-          15.8
+          15.36,
+          16.36
         ]
       }
     },
@@ -3422,8 +3540,8 @@
           18.0
         ],
         "z": [
-          15.200000000000001,
-          15.8
+          15.76,
+          16.36
         ]
       }
     },
@@ -3443,8 +3561,8 @@
           20.05
         ],
         "z": [
-          14.700000000000001,
-          15.8
+          15.26,
+          16.36
         ]
       }
     },
@@ -3464,8 +3582,8 @@
           26.4
         ],
         "z": [
-          14.600000000000001,
-          15.8
+          15.16,
+          16.36
         ]
       }
     },
@@ -3485,8 +3603,8 @@
           29.5
         ],
         "z": [
-          10.8,
-          15.8
+          11.36,
+          16.36
         ]
       }
     },
@@ -3506,8 +3624,8 @@
           29.25
         ],
         "z": [
-          14.700000000000001,
-          15.8
+          15.26,
+          16.36
         ]
       }
     },
@@ -3527,8 +3645,8 @@
           62.5
         ],
         "z": [
-          14.8,
-          15.8
+          15.36,
+          16.36
         ]
       }
     },
@@ -3548,8 +3666,8 @@
           69.8
         ],
         "z": [
-          10.8,
-          15.8
+          11.36,
+          16.36
         ]
       }
     },
@@ -3569,8 +3687,8 @@
           60.0
         ],
         "z": [
-          13.100000000000001,
-          15.8
+          13.66,
+          16.36
         ]
       }
     },
@@ -3590,8 +3708,8 @@
           60.0
         ],
         "z": [
-          13.100000000000001,
-          15.8
+          13.66,
+          16.36
         ]
       }
     },
@@ -3611,8 +3729,8 @@
           60.0
         ],
         "z": [
-          13.100000000000001,
-          15.8
+          13.66,
+          16.36
         ]
       }
     },
@@ -3632,8 +3750,8 @@
           72.9
         ],
         "z": [
-          13.100000000000001,
-          15.8
+          13.66,
+          16.36
         ]
       }
     },
@@ -3653,8 +3771,8 @@
           72.9
         ],
         "z": [
-          13.100000000000001,
-          15.8
+          13.66,
+          16.36
         ]
       }
     },
@@ -3674,8 +3792,8 @@
           72.9
         ],
         "z": [
-          13.100000000000001,
-          15.8
+          13.66,
+          16.36
         ]
       }
     },
@@ -3695,8 +3813,8 @@
           61.9
         ],
         "z": [
-          15.0,
-          15.8
+          15.559999999999999,
+          16.36
         ]
       }
     },
@@ -3716,8 +3834,8 @@
           61.7
         ],
         "z": [
-          15.3,
-          15.8
+          15.86,
+          16.36
         ]
       }
     },
@@ -3737,8 +3855,8 @@
           61.7
         ],
         "z": [
-          15.4,
-          15.8
+          15.959999999999999,
+          16.36
         ]
       }
     },
@@ -3758,8 +3876,8 @@
           23.9
         ],
         "z": [
-          14.700000000000001,
-          15.8
+          15.26,
+          16.36
         ]
       }
     },
@@ -3779,8 +3897,8 @@
           23.9
         ],
         "z": [
-          14.700000000000001,
-          15.8
+          15.26,
+          16.36
         ]
       }
     },
@@ -3800,8 +3918,8 @@
           23.0
         ],
         "z": [
-          14.700000000000001,
-          15.8
+          15.26,
+          16.36
         ]
       }
     },
@@ -3821,8 +3939,8 @@
           26.5
         ],
         "z": [
-          14.700000000000001,
-          15.8
+          15.26,
+          16.36
         ]
       }
     },
@@ -3842,8 +3960,281 @@
           30.25
         ],
         "z": [
-          14.350000000000001,
-          15.8
+          14.91,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "u219_pin10_oe_pullup",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "0402WGF1002TCE",
+      "role": "10-kOhm AON pull-up that disables the contact-10 switch by default",
+      "world_bbox_mm": {
+        "x": [
+          39.25,
+          40.25
+        ],
+        "y": [
+          24.4,
+          24.9
+        ],
+        "z": [
+          16.009999999999998,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "u219_pin10_command_pulldown",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "0402WGF1002TCE",
+      "role": "10-kOhm AON command pull-down preserving switch-off state",
+      "world_bbox_mm": {
+        "x": [
+          40.75,
+          41.75
+        ],
+        "y": [
+          24.4,
+          24.9
+        ],
+        "z": [
+          16.009999999999998,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "u219_pin10_switch_bypass",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "role": "100-nF local bypass for the contact-10 bilateral switch",
+      "world_bbox_mm": {
+        "x": [
+          42.25,
+          43.25
+        ],
+        "y": [
+          24.4,
+          24.9
+        ],
+        "z": [
+          15.86,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "u219_pin10_driver_bypass",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "role": "100-nF local bypass for the AON open-drain driver",
+      "world_bbox_mm": {
+        "x": [
+          43.75,
+          44.75
+        ],
+        "y": [
+          24.4,
+          24.9
+        ],
+        "z": [
+          15.86,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "u219_field_input_r_p",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "0402WGF1001TCE",
+      "role": "1-kOhm positive pickup input limiter",
+      "world_bbox_mm": {
+        "x": [
+          51.15,
+          52.15
+        ],
+        "y": [
+          20.25,
+          20.75
+        ],
+        "z": [
+          16.009999999999998,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "u219_field_input_r_n",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "0402WGF1001TCE",
+      "role": "1-kOhm negative pickup input limiter",
+      "world_bbox_mm": {
+        "x": [
+          51.15,
+          52.15
+        ],
+        "y": [
+          21.25,
+          21.75
+        ],
+        "z": [
+          16.009999999999998,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "u219_field_env_cap",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "Murata GRM155R71H103KA88D",
+      "role": "10-nF rectified NFC-field envelope capacitor",
+      "world_bbox_mm": {
+        "x": [
+          51.15,
+          52.15
+        ],
+        "y": [
+          22.25,
+          22.75
+        ],
+        "z": [
+          15.86,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "u219_field_discharge",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "0402WGF1003TCE",
+      "role": "100-kOhm envelope discharge resistor",
+      "world_bbox_mm": {
+        "x": [
+          51.15,
+          52.15
+        ],
+        "y": [
+          23.25,
+          23.75
+        ],
+        "z": [
+          16.009999999999998,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "u219_field_threshold_top",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "0402WGF1003TCE",
+      "role": "100-kOhm comparator threshold upper leg",
+      "world_bbox_mm": {
+        "x": [
+          51.15,
+          52.15
+        ],
+        "y": [
+          24.25,
+          24.75
+        ],
+        "z": [
+          16.009999999999998,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "u219_field_threshold_bottom",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "0402WGF1002TCE",
+      "role": "10-kOhm comparator threshold lower leg",
+      "world_bbox_mm": {
+        "x": [
+          51.15,
+          52.15
+        ],
+        "y": [
+          25.25,
+          25.75
+        ],
+        "z": [
+          16.009999999999998,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "u219_field_hysteresis",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "0402WGF1004TCE",
+      "role": "1-MOhm comparator hysteresis feedback",
+      "world_bbox_mm": {
+        "x": [
+          51.15,
+          52.15
+        ],
+        "y": [
+          26.25,
+          26.75
+        ],
+        "z": [
+          16.009999999999998,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "u219_field_output_pullup",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "0402WGF1002TCE",
+      "role": "10-kOhm AON pull-up for active-low NFC field evidence",
+      "world_bbox_mm": {
+        "x": [
+          51.15,
+          52.15
+        ],
+        "y": [
+          27.25,
+          27.75
+        ],
+        "z": [
+          16.009999999999998,
+          16.36
+        ]
+      }
+    },
+    {
+      "id": "u219_field_comparator_bypass",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "role": "100-nF local bypass for the NFC field comparator",
+      "world_bbox_mm": {
+        "x": [
+          51.15,
+          52.15
+        ],
+        "y": [
+          28.25,
+          28.75
+        ],
+        "z": [
+          15.86,
+          16.36
         ]
       }
     }

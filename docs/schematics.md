@@ -2,15 +2,14 @@
 
 [Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)
 
-These are the current `H0-R2`/`H1-R2.32` principle diagrams of the finished
+These are the current `H0-R2`/`H1-R2.33` principle diagrams of the finished
 device. They explain ownership, buses, RF locality, power and service access.
 The exact dual-RP GPIO/M1 map and C5 SDIO/service-mux electrical join are closed
 as H1 authority. The R2 production ECAD schematic does **not** exist yet. U219
-host-body placement, the structural opposing-face audit and the canonical
-Cap/evidence coordinate register are already closed; H2 starts only after the
-three remaining H1 blockers close: exact support-passive values/MPNs and
-courtyards, NFC-pickup geometry/tuning, installed-U219 antenna swept volume,
-followed by acceptance of the complete H1 mock-up.
+host-body placement, all 18 U219 support bodies, the NFC pickup loop, supplied
+antenna swept volume and the exact EastRising display/adapter are closed. H1
+now waits only for acceptance of the complete mock-up; R2 H2 then still has its
+three electrical prerequisites.
 
 The checked-in G2F/H2/KiCad tree is reviewed historical **single-RP R1**
 evidence. Current H0/H1 has six domains, a front Hub RP and a rear RF RP, plus
@@ -39,7 +38,7 @@ flowchart TD
   RRP["SC1512-A4 · rear RP<br/>RF, audio, FPV, expansion"]
   TVP["TVP5150AM1PBS<br/>front-local CVBS decoder"]
   K331["AKK K331 / AWM666V<br/>one post-PCBA analog FPV RX"]
-  LCD["HMX035CTFT-001<br/>direct 8-bit i8080 · 32 MHz"]
+  LCD["ER-TFT035IPS-6 + ER-TPC035-6<br/>ILI9488/FT6236 · direct 8-bit i8080 · 24 MHz"]
   M1["Hirose FX8C-80<br/>25 signals · 14 main-power · 2 AON<br/>25 returns · 14 NC reserve"]
 
   S3 -->|"LCD_CAM TX + GDMA"| LCD
@@ -58,7 +57,7 @@ anti-shear enclosure datums and independent PCB capture carry mechanical load.
 
 ## Physical implementation of the principle
 
-![Outer faces and direct views after turning the PCBs over](images/h1-r2-four-faces.svg?rev=h1-r2.23-cost-display-1)
+![Outer faces and direct views after turning the PCBs over](images/h1-r2-four-faces.svg?rev=h1-r2.33-layout-ready-1)
 
 [Front PCB inner face](images/h1-r2-inner-ui.svg) ·
 [Rear PCB inner face](images/h1-r2-inner-rf.svg)

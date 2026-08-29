@@ -47,6 +47,18 @@ FIRMWARE_DOMAINS = {
     "safety_controller": "SAFETY",
 }
 
+# These outward connectors moved between the two PCB faces in the current R2
+# H1 placement.  This generator deliberately preserves the reviewed R1 H2
+# ledger as historical evidence; the new R2 H2 starts only after H1 acceptance.
+R2_H1_REPARTITIONED_EXTERNALS = {
+    "nrf0_external_sma",
+    "nrf1_external_sma",
+    "nrf2_external_sma",
+    "receiver_fmsw_external_sma",
+    "receiver_amlw_external_sma",
+}
+R2_H1_REPLACED_MPNS = {"display", "display_panel_connector"}
+
 
 def contact_counts(device: dict) -> tuple[int, int]:
     """Return logical functions and actual carrier/package lands separately."""
@@ -330,9 +342,11 @@ def build() -> dict:
             if disposition == "external_mating_product_interface_only"
             else sheet_board
         )
-        if physical and physical["mpn"] != device["mpn"]:
+        physical_mpn_drift = physical and physical["mpn"] != device["mpn"]
+        if physical_mpn_drift and instance not in R2_H1_REPLACED_MPNS:
             raise ValueError(f"H1/device MPN drift for {instance}")
-        if physical and board_for(instance, frame) != board:
+        physical_board_drift = physical and board_for(instance, frame) != board
+        if physical_board_drift and instance not in R2_H1_REPARTITIONED_EXTERNALS:
             raise ValueError(f"H1 physical board drift for {instance}")
         rows.append(
             {
@@ -346,7 +360,9 @@ def build() -> dict:
                 "sheet": sheet,
                 "electrical_disposition": disposition,
                 "physical_registration": (
-                    "h1_dimensioned_body" if physical else "schematic_only_body"
+                    "h1_r2_supersedes_historical_h2"
+                    if physical_board_drift or physical_mpn_drift
+                    else "h1_dimensioned_body" if physical else "schematic_only_body"
                 ),
                 "contact_count": physical_contacts,
                 "logical_contact_count": logical_contacts,
@@ -476,6 +492,10 @@ def build() -> dict:
             "lora_cap_alternative_module_instances": len(lora_cap["variants"]),
             "h1_dimensioned_instances": sum(
                 row["physical_registration"] == "h1_dimensioned_body" for row in main_rows
+            ),
+            "h1_r2_superseded_historical_instances": sum(
+                row["physical_registration"] == "h1_r2_supersedes_historical_h2"
+                for row in main_rows
             ),
             "schematic_only_main_instances": sum(
                 row["physical_registration"] == "schematic_only_body" for row in main_rows

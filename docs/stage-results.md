@@ -25,13 +25,13 @@ safety evidence and power—not primary RF payloads.
 <a id="h1"></a>
 ## H1 · Physical product design
 
-**Status:** ▶️ current at **`H1-R2.32`**.
+**Status:** ▶️ current at **`H1-R2.33`**.
 
 - [Current physical design](h1-r2-physical-layout.md)
-- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.21-dual-fpv-7)
+- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.33-layout-ready-1)
 - [Front inner face](images/h1-r2-inner-ui.svg)
 - [Rear inner face](images/h1-r2-inner-rf.svg)
-- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.21-dual-fpv-7)
+- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.33-layout-ready-1)
 - [Vertical FPV MMCX proof](images/h1-r2-mmcx-service.svg)
 - [Machine placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json)
 - [Analog FPV path](h1-r2-fpv.md)
@@ -44,38 +44,27 @@ closed as current H1 authority. The accepted U219 profile shares the protected
 Cap slot with U214, keeps CC1101 RX-only and NFC poll/read-only, and adds
 independent NFC-field evidence to the existing safety aggregate.
 
-Current physical result: ten main SMA ports are split 5+5; FPV uses a separate vertical
-Molex `73415-2063` (`C588480`) MMCX on the rear face. The generated two-board
-placement has zero same-face collisions and 2.59 mm minimum opposing clearance,
-including the corrected official maximum full-package U219 host envelopes.
-The enlarged 30 × 24 × 8 mm bay carries mutually exclusive post-PCBA K331 and
-AWM666V lands; exactly one receiver is installed and C5 DBG10 is relocated.
-Actual-module and solder qualification move to H5/H7. The five active U219 host
-packages and their source-backed courtyards fit the two reserved islands, and
-all 43 current Cap/evidence bodies now have a fail-closed source-backed
-coordinate/courtyard registration. One exact documented production display
-with a controlled drawing and deterministic factory mating route,
-support-passive footprints, NFC pickup geometry and installed-antenna swept
-volume are the four blockers still preventing final mock-up acceptance. The
-legacy HMX panel is reference evidence only and cannot enter an R2 order BOM.
-The display is physically turned so its flex exits toward the antenna edge;
-firmware rotates display memory and touch coordinates by 180 degrees. The first
-safe pre-order removal replaces five `74LVC2G126DC,125` buffers with stocked
-same-family `74LVC2G126DP,125` (`C503392`), cutting the observed trial line from
-`$40.60` to `$12.1425` without changing the circuit function. Cheaper stocked
-no-nut SMA/RP-SMA pairs were rejected where their orientation, height or
-through-hole tails degraded the accepted geometry; the independent GCT pair is retained.
-The C5 manufacturer identity remains `ESP32-C5-WROOM-1U-N8R8`, while the active
-stocked Standard-PCBA route is `C54951858` / supplier code `...-V1.2`. Incoming
-MD/lot identity and eFuse revision must both prove >=v1.2 for production; v1.0 is
-engineering-only and the historical `C51950748` cannot be selected as active.
-Those placement numbers now include the U219 host switch, AON gate, two field
-bridges, comparator and an explicitly unlocated pickup-loop reserve. Selecting
-the exact documented production display, completing the canonical coordinate
-register, support-passive values/MPNs and courtyards, pickup geometry and
-installed antenna swept volume is the current H1 work;
-explicit acceptance of the regenerated
-mock-up follows it. R2 H2/KiCad has not started.
+Current physical result: ten main SMA ports are split 5+5; FPV uses a separate
+vertical Molex `73415-2063` (`C588480`) MMCX on the rear face. The screen is exact
+EastRising `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 through exact Hirose
+`FH34SRJ-50S-0.5SH(50)` (`C3169104`) and a replaceable i8080-8 adapter. The panel
+is turned so the FPC exits toward the antenna edge; firmware rotates display and
+touch coordinates by 180 degrees.
+
+The single coordinate model now registers 218 bodies: all component packages,
+all 18 U219 host bodies, the NFC pickup loop, the external antenna swept volume,
+connectors, controls and through-board mechanics. Its generated four-face,
+external, internal, antenna-edge and sandwich views report zero same-face
+collisions and 2.59 mm minimum opposing-face clearance against the 0.70 mm rule.
+The 30 × 24 × 8 mm FPV bay carries mutually exclusive K331/AWM666V lands;
+exactly one receiver is installed. Received-module and solder qualification stay
+in H5/H7 rather than pretending to be known from drawings.
+
+H1 now has no physical blocker. The complete mock-up is the acceptance candidate;
+explicit user acceptance is the only remaining H1 action. It does not authorize
+KiCad or ordering. R2 H2/KiCad has not started. A future R2 H2 export still has three fail-closed electrical
+preconditions: the live `FSUSB42MUX/C11355` route, the exact service-VBUS
+detector/latch and the powered-off-Ioff Pack/Safety I2C boundary.
 
 <a id="h2"></a>
 ## H2 · Production schematic

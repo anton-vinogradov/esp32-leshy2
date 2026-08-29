@@ -6,7 +6,7 @@
   "checked_on": "2026-08-28",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-    "sha256": "0eacf3039f330f836619b1053ae7b3c2de4b1f150ee5db13cf067895aa70705d",
+    "sha256": "9c21371def8277d5b694d4fd2c9aef71d34c38d68aa085683afaa87742f1b18b",
     "exact_lines": 210
   },
   "r2_quantity_overlay": {
@@ -38,7 +38,7 @@
     "deliverable": "one fully assembled Leshy2 prototype built from the released production package",
     "device_batch": false,
     "batteries_included": false,
-    "production_display": "exact documented panel unresolved; factory installs and mates it without engineering interpretation",
+    "production_display": "exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344 selected; factory installs and mates it without engineering interpretation through exact C3169104",
     "first_power_on": "owner USB-powered bring-up after delivery",
     "factory_function_test": {
       "standard_pcba_service_surface": "supported subject to procedure review and quote",
@@ -145,7 +145,7 @@
         "encoder knob installation",
         "final sandwich/enclosure integration from deterministic assembly instructions"
       ],
-      "display_mating_feasibility": "awaiting written factory confirmation",
+      "display_mating_feasibility": "exact endpoint selected; awaiting written factory confirmation only for adhesive, FPC insertion and final mating",
       "factory_function_test": "optional quote-only insurance; not required for H5/H7 closure",
       "close_gate": "H5 and H7 cannot close until the selected factory accepts and prices deterministic one-prototype final assembly; Function Test is not part of this gate"
     },
@@ -333,7 +333,7 @@
   },
   "bom_tool_upload": {
     "path": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
-    "sha256": "79ab0e6001089e79dfcc77dbaa63161572680be1073a030c8558928eab82e2ba",
+    "sha256": "5da6c01443a7a05910741e2361f7076f734fb7d309797f821d257359a119dad0",
     "columns": [
       "Comment",
       "Designator",
@@ -386,7 +386,7 @@
       "result": "176 matched, 33 unmatched, all 1019 historical target placements parsed"
     },
     "current_210_line_attempt": {
-      "sha256": "79ab0e6001089e79dfcc77dbaa63161572680be1073a030c8558928eab82e2ba",
+      "sha256": "5da6c01443a7a05910741e2361f7076f734fb7d309797f821d257359a119dad0",
       "transmitted": false,
       "processed": false,
       "result": "historical 209-line capture retained for 196 preserved identities; 195 join unchanged, C5 is rebound to current exact C54951858, and 14 new exact rows join separately into the 210-line map"
@@ -521,14 +521,28 @@
       "finding": "exact selected VHF module is priced but stock-zero pre-order; lead time remains open"
     },
     {
-      "device_id": "qdtech_hmx035ctft_001",
-      "mpn": "HMX035CTFT-001",
+      "device_id": "eastrising_er_tft035ips_6_ctp",
+      "mpn": "ER-TFT035IPS-6 + ER-TPC035-6 option 5344",
       "jlc": null,
       "tier": "J4-F",
-      "stock": 0,
-      "pcba": "display/flex belongs to factory final assembly",
-      "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=HMX035CTFT-001",
-      "finding": "keep replaceable display-adapter architecture; require deterministic factory mating and assembly records, with display/touch power-on performed by the owner after delivery"
+      "stock": "manufacturer in stock",
+      "moq": 1,
+      "quantity_one_usd": "14.91",
+      "pcba": "customer-supplied display/flex belongs to factory final assembly",
+      "source": "https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen",
+      "finding": "exact configured panel, drawings, 50-contact tail, ILI9488/FT6236 endpoint and price are fixed; written assembler acceptance remains only for adhesive/FPC/final mating"
+    },
+    {
+      "device_id": "hirose_fh34srj_50s_0_5sh_50",
+      "mpn": "FH34SRJ-50S-0.5SH(50)",
+      "jlc": "C3169104",
+      "tier": "J0",
+      "stock": 2679,
+      "available_order_quantity": 2614,
+      "moq": 1,
+      "pcba": "Extended SMT; Economic and Standard",
+      "source": "https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104",
+      "finding": "exact selected 50-position panel connector is directly placeable; quantity-one price USD 0.5832"
     },
     {
       "device_id": "uniroyal_0402wgf1603tce",
@@ -611,8 +625,8 @@
   ],
   "summary": {
     "target_bom_lines": 210,
-    "critical_lines_spot_checked": 20,
-    "public_stock_exact_or_revision_explicit": 16,
+    "critical_lines_spot_checked": 21,
+    "public_stock_exact_or_revision_explicit": 17,
     "preorder_reservation": 2,
     "global_sourcing_or_consignment": 1,
     "factory_final_assembly": 1,
@@ -622,12 +636,12 @@
     "historical_bom_tool_public_stock_lines": 135,
     "historical_bom_tool_preorder_lines": 41,
     "historical_bom_tool_unmatched_lines": 33,
-    "current_exact_catalogue_routes_before_outlier_resolution": 180,
+    "current_exact_catalogue_routes_before_outlier_resolution": 181,
     "current_public_stock_lines_before_outlier_resolution": 154,
     "current_preorder_lines_before_outlier_resolution": 26,
-    "current_unmatched_lines_before_outlier_resolution": 30,
+    "current_unmatched_lines_before_outlier_resolution": 29,
     "target_placements_parsed": 1052,
-    "outliers_resolved_after_exact_search": 30,
+    "outliers_resolved_after_exact_search": 29,
     "availability_routes": {
       "J0": 166,
       "J1": 0,
@@ -684,7 +698,7 @@
     "current_210_line_upload_was_generated_but_not_transmitted": true,
     "all_target_placements_were_parsed": true,
     "no_semantic_mpn_substitution_was_observed": true,
-    "all_30_unchanged_unmatched_lines_remain_explicit": true,
+    "all_29_unchanged_unmatched_lines_remain_explicit": true,
     "all_210_lines_have_defined_availability_or_final_assembly_route": true,
     "all_component_sample_prices_are_known": true,
     "sa818s_v_preorder_lead_time_is_explicitly_open": true,

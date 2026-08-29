@@ -1644,10 +1644,25 @@ def _target_bom_lines(
         row["instance"] for row in audit.get("non_purchase_instances", [])
     }
     substitution_class_by_device = _substitution_class_lookup(audit)
+    current_h1_procurement_override = {
+        "display": "eastrising_er_tft035ips_6_ctp",
+        "display_panel_connector": "hirose_fh34srj_50s_0_5sh_50",
+    }
+    substitution_class_by_device.update(
+        {
+            "eastrising_er_tft035ips_6_ctp": substitution_class_by_device[
+                "qdtech_hmx035ctft_001"
+            ],
+            "hirose_fh34srj_50s_0_5sh_50": substitution_class_by_device[
+                "hirose_fh34srj_40s_0_5sh_99"
+            ],
+        }
+    )
     grouped: dict[str, list[str]] = {}
     for instance, device_id in candidate["instances"].items():
         if instance in non_purchase_instances:
             continue
+        device_id = current_h1_procurement_override.get(instance, device_id)
         grouped.setdefault(device_id, []).append(instance)
 
     result: list[dict[str, Any]] = []

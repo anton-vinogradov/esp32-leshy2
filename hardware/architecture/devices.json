@@ -1560,6 +1560,95 @@
         "FITTING_2": {"physical": "right solder hold-down", "role": "mechanical"}
       }
     },
+    "hirose_fh34srj_50s_0_5sh_50": {
+      "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
+      "kind": "50_position_0_5mm_dual_contact_zif_fpc_receptacle",
+      "qualification": "verified_exact_jlcpcb_stocked_display_adapter_panel_connector",
+      "lifecycle": "active exact manufacturer line; current JLCPCB Standard-PCBA stock and assembly route verified",
+      "dimensions_mm": [27.0, 3.8, 1.0],
+      "source": {
+        "document": "Hirose FH34SRJ controlled series drawing; 50-position body uses the 24.5-mm contact span and 27.0-mm overall width",
+        "url": "https://www.hirose.com/en/product/series/FH34SRJ",
+        "checked": "2026-08-29"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact original-manufacturer card C3169104; Extended SMT, Economic and Standard PCBA; 2,679 shown in stock, 2,614 orderable, MOQ 1",
+        "url": "https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104",
+        "checked": "2026-08-29"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.5832,
+        "price_break": "conservative JLCPCB exact C3169104 quantity-1 tier; quantity-10 tier USD 0.4711",
+        "source": {
+          "document": "JLCPCB live exact-MPN price table",
+          "url": "https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104",
+          "checked": "2026-08-29"
+        }
+      },
+      "programmable": false,
+      "mechanical_contract": {
+        "positions": 50,
+        "pitch_mm": 0.5,
+        "applicable_fpc_thickness_mm": 0.3,
+        "contact_orientation": "top_and_bottom",
+        "insertion_direction": "horizontal",
+        "adapter_role": "panel-facing connector on replaceable L2-DISP-ADP-001-B"
+      },
+      "contacts": {
+        "PIN_1": {"physical": "1", "role": "power"},
+        "PIN_2": {"physical": "2", "role": "power"},
+        "PIN_3": {"physical": "3", "role": "power"},
+        "PIN_4": {"physical": "4", "role": "nc"},
+        "PIN_5": {"physical": "5", "role": "nc"},
+        "PIN_6": {"physical": "6", "role": "nc"},
+        "PIN_7": {"physical": "7", "role": "strap"},
+        "PIN_8": {"physical": "8", "role": "strap"},
+        "PIN_9": {"physical": "9", "role": "strap"},
+        "PIN_10": {"physical": "10", "role": "reset"},
+        "PIN_11": {"physical": "11", "role": "power"},
+        "PIN_12": {"physical": "12", "role": "power"},
+        "PIN_13": {"physical": "13", "role": "power"},
+        "PIN_14": {"physical": "14", "role": "power"},
+        "PIN_15": {"physical": "15", "role": "power"},
+        "PIN_16": {"physical": "16", "role": "power"},
+        "PIN_17": {"physical": "17", "role": "power"},
+        "PIN_18": {"physical": "18", "role": "power"},
+        "PIN_19": {"physical": "19", "role": "power"},
+        "PIN_20": {"physical": "20", "role": "power"},
+        "PIN_21": {"physical": "21", "role": "power"},
+        "PIN_22": {"physical": "22", "role": "power"},
+        "PIN_23": {"physical": "23", "role": "power"},
+        "PIN_24": {"physical": "24", "role": "power"},
+        "PIN_25": {"physical": "25", "role": "signal"},
+        "PIN_26": {"physical": "26", "role": "signal"},
+        "PIN_27": {"physical": "27", "role": "signal"},
+        "PIN_28": {"physical": "28", "role": "signal"},
+        "PIN_29": {"physical": "29", "role": "signal"},
+        "PIN_30": {"physical": "30", "role": "signal"},
+        "PIN_31": {"physical": "31", "role": "signal"},
+        "PIN_32": {"physical": "32", "role": "signal"},
+        "PIN_33": {"physical": "33", "role": "signal"},
+        "PIN_34": {"physical": "34", "role": "signal"},
+        "PIN_35": {"physical": "35", "role": "signal"},
+        "PIN_36": {"physical": "36", "role": "signal"},
+        "PIN_37": {"physical": "37", "role": "signal"},
+        "PIN_38": {"physical": "38", "role": "signal"},
+        "PIN_39": {"physical": "39", "role": "signal"},
+        "PIN_40": {"physical": "40", "role": "power"},
+        "PIN_41": {"physical": "41", "role": "power"},
+        "PIN_42": {"physical": "42", "role": "power"},
+        "PIN_43": {"physical": "43", "role": "power"},
+        "PIN_44": {"physical": "44", "role": "signal"},
+        "PIN_45": {"physical": "45", "role": "signal"},
+        "PIN_46": {"physical": "46", "role": "signal"},
+        "PIN_47": {"physical": "47", "role": "reset"},
+        "PIN_48": {"physical": "48", "role": "power"},
+        "PIN_49": {"physical": "49", "role": "power"},
+        "PIN_50": {"physical": "50", "role": "power"}
+      }
+    },
     "hirose_df40c_2_0_40ds_0_4v_51": {
       "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
       "kind": "40_position_0_4mm_2mm_stack_vertical_board_to_board_receptacle",
@@ -1886,6 +1975,110 @@
         "IM1P": {"physical": "die pad 145", "role": "strap"},
         "IM0P": {"physical": "die pad 146", "role": "strap"},
         "TE": {"physical": "die pad 148", "role": "signal"}
+      }
+    },
+    "eastrising_er_tft035ips_6_ctp": {
+      "mpn": "EastRising ER-TFT035IPS-6 + ER-TPC035-6",
+      "kind": "configured_raw_lcd_and_bonded_capacitive_touch_assembly",
+      "qualification": "selected_exact_documented_production_display_for_h1_layout",
+      "lifecycle": "manufacturer promises at least ten years continuity from 2023 for ER-TFT035IPS-6 and from 2015 for ER-TPC035-6; both exact lines are currently in stock",
+      "dimensions_mm": [56.54, 84.96, 3.76],
+      "mechanical_dimension_tolerance_mm": [0.2, 0.2, 0.4],
+      "placement_maximum_envelope_mm": [56.74, 85.16, 4.16],
+      "lcd_body_mm": [54.5, 83.0, 2.3],
+      "ctp_body_mm": [56.54, 84.96, 1.075],
+      "pixel_resolution": [320, 480],
+      "active_area_mm": [48.96, 73.44],
+      "active_area_offset_from_body_top_left_mm": [3.79, 3.76],
+      "viewing_area_mm": [49.96, 74.44],
+      "viewing_area_offset_from_body_top_left_mm": [3.29, 3.26],
+      "effective_touch_area_mm": [49.96, 74.44],
+      "mechanical_dimension_scope": "the H1 exterior uses the complete configured CTP outline; the LCD, CTP, folded 50-contact FPC and nominal combined thickness are all controlled by the manufacturer drawings rather than inferred from a donor board",
+      "source": {
+        "document": "EastRising ER-TFT035IPS-6 TFT LCD Display Datasheet, revision B1 dated 2025-08-18",
+        "url": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
+        "checked": "2026-08-29"
+      },
+      "touch_source": {
+        "document": "EastRising ER-TPC035-6 capacitive-touch drawing and FT6236 controller route",
+        "url": "https://www.buydisplay.com/3-5-inch-capacitive-touch-panel-wiith-controller-ft6236-for-320x480-dots",
+        "checked": "2026-08-29"
+      },
+      "orderable_source": {
+        "document": "EastRising/BuyDisplay exact ER-TFT035IPS-6 product page configured with sales option 5344, 3.5-inch capacitive touch panel with controller; current page says In stock",
+        "url": "https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen",
+        "checked": "2026-08-29"
+      },
+      "factory_route": {
+        "status": "deterministic_consignment_and_final_mating_route_selected_h5_written_acceptance_pending",
+        "route": "order exact ER-TFT035IPS-6 with ER-TPC035-6 option 5344 from EastRising to the JLCPCB customer-supplied-parts warehouse; JLCPCB mounts C3169104 on L2-DISP-ADP-001-B, installs the configured panel on the front datum, inserts its 0.30-mm 50-contact FPC and closes the ZIF lock",
+        "factory_boundary": "H5 obtains written quote acceptance of adhesive, FPC insertion and one-finished-prototype final assembly; no donor disassembly or electrical guess is permitted",
+        "jlcpcb_source": "https://jlcpcb.com/help/article/how-to-use-my-own-parts-for-pcb-assembly-order",
+        "checked": "2026-08-29"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 14.91,
+        "price_break": "conservative quantity-1 base USD 9.34 plus exact capacitive-touch-controller option USD 5.57; quantity-10 configured material USD 14.67 each",
+        "source": {
+          "document": "EastRising live exact-product configuration and price table",
+          "url": "https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen",
+          "checked": "2026-08-29"
+        }
+      },
+      "assembly_contract": {
+        "lcd_controller": "Ilitek ILI9488",
+        "touch_controller": "FocalTech FT6236",
+        "touch_i2c_7bit_address": "0x38",
+        "main_fpc": "50 contacts, 0.50-mm pitch, 0.30-mm stiffened bottom-contact tail",
+        "selected_interface": "8080 8-bit, IM2/IM1/IM0 = 0/1/1",
+        "recovery_interface": "4-wire 8-bit serial on SDA/SCL/D-C/CS after a deliberate strap change; it is a slow service fallback, not QSPI",
+        "display_reset": "active low",
+        "touch_irq": "active low",
+        "touch_reset": "active low"
+      },
+      "programmable": false,
+      "contacts": {
+        "LEDA": {"physical": "1", "role": "power"},
+        "LEDK_1": {"physical": "2", "role": "power"},
+        "LEDK_2": {"physical": "3", "role": "power"},
+        "NC_4_6": {"physical": "4-6", "role": "nc"},
+        "IM0": {"physical": "7", "role": "strap"},
+        "IM1": {"physical": "8", "role": "strap"},
+        "IM2": {"physical": "9", "role": "strap"},
+        "RESET": {"physical": "10", "role": "reset"},
+        "RGB_VSYNC_GND": {"physical": "11", "role": "power"},
+        "RGB_HSYNC_GND": {"physical": "12", "role": "power"},
+        "RGB_DOTCLK_GND": {"physical": "13", "role": "power"},
+        "RGB_DE_GND": {"physical": "14", "role": "power"},
+        "DB17_8_GND": {"physical": "15-24", "role": "power"},
+        "DB7": {"physical": "25", "role": "signal"},
+        "DB6": {"physical": "26", "role": "signal"},
+        "DB5": {"physical": "27", "role": "signal"},
+        "DB4": {"physical": "28", "role": "signal"},
+        "DB3": {"physical": "29", "role": "signal"},
+        "DB2": {"physical": "30", "role": "signal"},
+        "DB1": {"physical": "31", "role": "signal"},
+        "DB0": {"physical": "32", "role": "signal"},
+        "SDO_NC": {"physical": "33", "role": "nc"},
+        "SDA": {"physical": "34", "role": "signal"},
+        "RD": {"physical": "35", "role": "signal"},
+        "WR_SCL": {"physical": "36", "role": "signal"},
+        "DC": {"physical": "37", "role": "signal"},
+        "CS": {"physical": "38", "role": "signal"},
+        "TE": {"physical": "39", "role": "signal"},
+        "VDDI_1": {"physical": "40", "role": "power"},
+        "VDDI_2": {"physical": "41", "role": "power"},
+        "VCI": {"physical": "42", "role": "power"},
+        "GND_43": {"physical": "43", "role": "power"},
+        "TP_I2C_SCL": {"physical": "44", "role": "signal"},
+        "TP_I2C_SDA": {"physical": "45", "role": "signal"},
+        "TP_INT": {"physical": "46", "role": "signal"},
+        "TP_RESET": {"physical": "47", "role": "reset"},
+        "GND_48": {"physical": "48", "role": "power"},
+        "GND_49": {"physical": "49", "role": "power"},
+        "GND_50": {"physical": "50", "role": "power"}
       }
     },
     "qdtech_hmx035ctft_001": {
@@ -6794,8 +6987,8 @@
     "murata_grm155r71h103ka88d": {
       "mpn": "Murata GRM155R71H103KA88D",
       "kind": "10nf_10pct_50v_x7r_0402_adc_filter_capacitor",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
+      "qualification": "verified_exact_jlcpcb_stocked_standard_pcba",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
       "dimensions_mm": [1.0, 0.5, 0.5],
       "source": {
         "document": "Murata GRM155R71H103KA88 product data",
@@ -6804,19 +6997,19 @@
         "checked": "2026-08-18"
       },
       "orderable_source": {
-        "document": "GRM155R71H103KA88D LCSC C77019 stocked exact order code",
-        "url": "https://www.lcsc.com/product-detail/C77019.html",
-        "checked": "2026-08-18"
+        "document": "JLCPCB exact Murata card C77019; Extended SMT, Economic and Standard PCBA, 629,708 currently orderable, MOQ 1",
+        "url": "https://jlcpcb.com/partdetail/MurataElectronics-GRM155R71H103KA88D/C77019",
+        "checked": "2026-08-29"
       },
       "cost": {
         "currency": "USD",
         "target_quantity": 100,
-        "unit_price_usd": 0.0121,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "unit_price_usd": 0.0097,
+        "price_break": "conservative JLCPCB one-piece tier; displayed stock 675,981",
         "source": {
-          "document": "DigiKey exact-MPN published price table",
-          "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM155R71H103KA88D/1033252",
-          "checked": "2026-08-19"
+          "document": "JLCPCB exact-MPN live price table C77019",
+          "url": "https://jlcpcb.com/partdetail/MurataElectronics-GRM155R71H103KA88D/C77019",
+          "checked": "2026-08-29"
         }
       },
       "programmable": false,
@@ -9546,6 +9739,58 @@
         "PIN_11": {"physical": "11", "role": "signal"}, "PIN_12": {"physical": "12", "role": "signal"},
         "PIN_13": {"physical": "13", "role": "signal"}, "PIN_14": {"physical": "14", "role": "signal"}
       }
+    },
+    "uniroyal_0402wgf1001tce": {
+      "mpn": "0402WGF1001TCE",
+      "manufacturer": "UNI-ROYAL(Uniroyal Elec)",
+      "kind": "1kohm_1pct_0402_resistor",
+      "qualification": "verified_exact_jlcpcb_basic_stocked",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "dimensions_mm": [1.0, 0.5, 0.35],
+      "source": {"document": "UNI-ROYAL thick-film chip resistor series datasheet", "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf", "checked": "2026-08-29"},
+      "orderable_source": {"document": "JLCPCB exact manufacturer card C11702; Basic SMT, Economic and Standard PCBA, 10,911,212 currently orderable, MOQ 1", "url": "https://jlcpcb.com/partdetail/12256-0402WGF1001TCE/C11702", "checked": "2026-08-29"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0039, "price_break": "conservative JLCPCB one-piece tier; displayed stock 13,906,619", "source": {"document": "JLCPCB exact-MPN live price table C11702", "url": "https://jlcpcb.com/partdetail/12256-0402WGF1001TCE/C11702", "checked": "2026-08-29"}},
+      "programmable": false,
+      "contacts": {"END_1": {"physical": "1", "role": "analog"}, "END_2": {"physical": "2", "role": "analog"}}
+    },
+    "uniroyal_0402wgf1002tce": {
+      "mpn": "0402WGF1002TCE",
+      "manufacturer": "UNI-ROYAL(Uniroyal Elec)",
+      "kind": "10kohm_1pct_0402_resistor",
+      "qualification": "verified_exact_jlcpcb_basic_stocked",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "dimensions_mm": [1.0, 0.5, 0.35],
+      "source": {"document": "UNI-ROYAL thick-film chip resistor series datasheet", "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf", "checked": "2026-08-29"},
+      "orderable_source": {"document": "JLCPCB exact manufacturer card C25744; Basic SMT, Economic and Standard PCBA, 27,943,335 currently orderable, MOQ 1", "url": "https://jlcpcb.com/partdetail/26487-UNI_ROYAL0402WGF1002TCE/C25744", "checked": "2026-08-29"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0031, "price_break": "conservative JLCPCB one-piece tier; displayed stock 32,329,244", "source": {"document": "JLCPCB exact-MPN live price table C25744", "url": "https://jlcpcb.com/partdetail/26487-UNI_ROYAL0402WGF1002TCE/C25744", "checked": "2026-08-29"}},
+      "programmable": false,
+      "contacts": {"END_1": {"physical": "1", "role": "analog"}, "END_2": {"physical": "2", "role": "analog"}}
+    },
+    "uniroyal_0402wgf1003tce": {
+      "mpn": "0402WGF1003TCE",
+      "manufacturer": "UNI-ROYAL(Uniroyal Elec)",
+      "kind": "100kohm_1pct_0402_resistor",
+      "qualification": "verified_exact_jlcpcb_basic_stocked",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "dimensions_mm": [1.0, 0.5, 0.35],
+      "source": {"document": "UNI-ROYAL thick-film chip resistor series datasheet", "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf", "checked": "2026-08-29"},
+      "orderable_source": {"document": "JLCPCB exact manufacturer card C25741; Basic SMT, Economic and Standard PCBA, 13,226,514 currently orderable, MOQ 1", "url": "https://jlcpcb.com/partdetail/x/C25741", "checked": "2026-08-29"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0028, "price_break": "conservative JLCPCB one-piece tier; displayed stock 14,845,171", "source": {"document": "JLCPCB exact-MPN live price table C25741", "url": "https://jlcpcb.com/partdetail/x/C25741", "checked": "2026-08-29"}},
+      "programmable": false,
+      "contacts": {"END_1": {"physical": "1", "role": "analog"}, "END_2": {"physical": "2", "role": "analog"}}
+    },
+    "uniroyal_0402wgf1004tce": {
+      "mpn": "0402WGF1004TCE",
+      "manufacturer": "UNI-ROYAL(Uniroyal Elec)",
+      "kind": "1mohm_1pct_0402_resistor",
+      "qualification": "verified_exact_jlcpcb_basic_stocked",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "dimensions_mm": [1.0, 0.5, 0.35],
+      "source": {"document": "UNI-ROYAL thick-film chip resistor series datasheet", "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf", "checked": "2026-08-29"},
+      "orderable_source": {"document": "JLCPCB exact manufacturer card C26083; Basic SMT, Economic and Standard PCBA, 3,044,597 currently orderable, MOQ 1", "url": "https://jlcpcb.com/partdetail/x/C26083", "checked": "2026-08-29"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0026, "price_break": "conservative JLCPCB one-piece tier; displayed stock 3,470,194", "source": {"document": "JLCPCB exact-MPN live price table C26083", "url": "https://jlcpcb.com/partdetail/x/C26083", "checked": "2026-08-29"}},
+      "programmable": false,
+      "contacts": {"END_1": {"physical": "1", "role": "analog"}, "END_2": {"physical": "2", "role": "analog"}}
     },
     "sn74hc595pwr": {
       "mpn": "SN74HC595PWR",

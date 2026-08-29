@@ -32,8 +32,8 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_cost_boundaries_are_explicit(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["quantity_100_priced_lines"], 199)
-        self.assertEqual(summary["remaining_unpriced_base_lines"], 6)
+        self.assertEqual(summary["quantity_100_priced_lines"], 200)
+        self.assertEqual(summary["remaining_unpriced_base_lines"], 5)
         self.assertGreater(summary["planning_base_plus_post_pcba_usd_per_device"], 290)
         self.assertAlmostEqual(
             summary["planning_base_plus_post_pcba_usd_for_procurement_target"],
@@ -42,13 +42,13 @@ class H1R2CostReviewTest(unittest.TestCase):
         )
         self.assertEqual(summary["procurement_target_device_quantity"], 1)
         self.assertEqual(summary["historical_cost_capture_device_quantity"], 5)
-        self.assertEqual(summary["historical_capture_unmatched_lines"], 30)
+        self.assertEqual(summary["historical_capture_unmatched_lines"], 29)
         display = next(
             row for row in self.result["rows"]
-            if row["device_id"] == "qdtech_hmx035ctft_001"
+            if row["device_id"] == "eastrising_er_tft035ips_6_ctp"
         )
-        self.assertIsNone(display["line_burden_per_device_usd"])
-        self.assertIsNone(display["planning_procurement_line_usd"])
+        self.assertEqual(display["line_burden_per_device_usd"], 14.91)
+        self.assertEqual(display["planning_procurement_line_usd"], 14.91)
 
     def test_trial_projection_keeps_fitted_quantity(self):
         by_id = {row["device_id"]: row for row in self.result["rows"]}

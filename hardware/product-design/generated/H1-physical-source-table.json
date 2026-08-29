@@ -2417,24 +2417,23 @@
     },
     {
       "instance": "display",
-      "device_key": "qdtech_hmx035ctft_001",
-      "mpn": "HMX035CTFT-001 (QDtech schematic assembly marking)",
-      "role": "raw_display_touch_assembly_with_integrated_sitronix_st77922_tddi",
+      "device_key": "eastrising_er_tft035ips_6_ctp",
+      "mpn": "EastRising ER-TFT035IPS-6 + ER-TPC035-6",
+      "role": "configured_raw_lcd_and_bonded_capacitive_touch_assembly",
       "frame": "front-outer",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
       "direction": "front-normal outward view/touch",
       "envelope_mm": [
-        54.5,
-        83.0,
-        3.2
+        56.54,
+        84.96,
+        3.76
       ],
-      "qualification": "verified_candidate",
+      "qualification": "selected_exact_documented_production_display_for_h1_layout",
       "source": {
-        "document": "QDtech ES3C35P 3.5-inch IPS ESP32-S3 Display Module Specification",
-        "version": "V1.0; outline drawing dated 2025-07-24",
-        "url": "https://www.lcdwiki.com/res/ES3C35P/3.5inch_IPS_ESP32-S3_Specification_V1.0.pdf",
-        "checked": "2026-08-22"
+        "document": "EastRising ER-TFT035IPS-6 TFT LCD Display Datasheet, revision B1 dated 2025-08-18",
+        "url": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
+        "checked": "2026-08-29"
       },
       "evidence_gates": [
         {
@@ -2453,7 +2452,7 @@
       "mpn": "Hirose DF40C-40DP-0.4V(51)",
       "role": "40_position_0_4mm_vertical_board_to_board_plug",
       "frame": "display-adapter",
-      "frame_datum": "L2-DISP-ADP-001-A top-left, viewed from its panel-facing side",
+      "frame_datum": "L2-DISP-ADP-001-B top-left, viewed from its panel-facing side",
       "rotation_deg": 0,
       "direction": "normal to the adapter underside toward the UI-board receptacle",
       "envelope_mm": [
@@ -2517,24 +2516,23 @@
     },
     {
       "instance": "display_panel_connector",
-      "device_key": "hirose_fh34srj_40s_0_5sh_99",
-      "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
-      "role": "40_position_0_5mm_top_and_bottom_contact_zif_fpc_receptacle",
+      "device_key": "hirose_fh34srj_50s_0_5sh_50",
+      "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
+      "role": "50_position_0_5mm_dual_contact_zif_fpc_receptacle",
       "frame": "display-adapter",
-      "frame_datum": "L2-DISP-ADP-001-A top-left, viewed from its panel-facing side",
+      "frame_datum": "L2-DISP-ADP-001-B top-left, viewed from its panel-facing side",
       "rotation_deg": 0,
       "direction": "horizontal FPC insertion in the adapter plane; dual-contact orientation; received-tail thickness remains H5 evidence",
       "envelope_mm": [
-        22.0,
+        27.0,
         3.8,
         1.0
       ],
-      "qualification": "verified_dual_contact_adapter_panel_connector_received_tail_thickness_h5_open",
+      "qualification": "verified_exact_jlcpcb_stocked_display_adapter_panel_connector",
       "source": {
-        "document": "Hirose FH34SRJ-40S-0.5SH(99) product page and controlled 2D drawing",
-        "version": "CL0580-1260-6-99; detailed specifications updated 2026-02-07",
-        "url": "https://www.hirose.com/en/product/p/CL0580-1260-6-99",
-        "checked": "2026-08-23"
+        "document": "Hirose FH34SRJ controlled series drawing; 50-position body uses the 24.5-mm contact span and 27.0-mm overall width",
+        "url": "https://www.hirose.com/en/product/series/FH34SRJ",
+        "checked": "2026-08-29"
       },
       "evidence_gates": [
         {
@@ -2553,9 +2551,9 @@
       "mpn": "Sitronix ST77922",
       "role": "single_chip_tft_controller_driver_and_capacitive_touch_tddi_cog",
       "frame": "display-assembly",
-      "frame_datum": "HMX035CTFT-001 screen-body top-left, front view",
+      "frame_datum": "ER-TFT035IPS-6 + ER-TPC035-6 configured CTP-outline top-left, front view",
       "rotation_deg": 0,
-      "direction": "embedded in HMX035CTFT-001; no separate mechanical interface",
+      "direction": "superseded H2 controller node; the H1 physical endpoint contains exact ILI9488 and FT6236 identities without a separate host-board body",
       "envelope_mm": [
         13.46,
         0.97,
@@ -3767,8 +3765,8 @@
       "device_key": "gct_rfpc_sma31_fn_175_a",
       "mpn": "GCT RFPC-SMA31-FN-175-A",
       "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
-      "frame": "rear-outer",
-      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
       "direction": "toward the antenna edge along board -Y",
       "envelope_mm": [
@@ -3952,7 +3950,7 @@
       "instance": "nrf1",
       "device_key": "ebyte_e01_ml01ipx",
       "mpn": "Ebyte E01-ML01IPX",
-      "role": "full-function nRF24 radio #1; rotated for U214 tail clearance",
+      "role": "superseded R1 nRF24 #1 seed; displaced clear of the current CC reference zone",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 90,
@@ -3976,7 +3974,7 @@
         }
       ],
       "position_mm": [
-        31.5,
+        33.1,
         7.5
       ]
     },
@@ -3985,8 +3983,8 @@
       "device_key": "gct_rfpc_sma31_fn_175_a",
       "mpn": "GCT RFPC-SMA31-FN-175-A",
       "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
-      "frame": "rear-outer",
-      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
       "direction": "toward the antenna edge along board -Y",
       "envelope_mm": [
@@ -4123,8 +4121,8 @@
       ],
       "module_face_reserve_mm": {
         "x": [
-          31.5,
-          50.6
+          33.1,
+          52.2
         ],
         "y": [
           7.5,
@@ -4133,7 +4131,7 @@
       },
       "escape_points_mm": [
         [
-          49.0,
+          50.6,
           19.6
         ],
         [
@@ -4170,7 +4168,7 @@
       "instance": "nrf2",
       "device_key": "ebyte_e01_ml01ipx",
       "mpn": "Ebyte E01-ML01IPX",
-      "role": "full-function nRF24 radio #2",
+      "role": "superseded R1 nRF24 #2 seed; displaced clear of the current CC reference zone",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
@@ -4194,7 +4192,7 @@
         }
       ],
       "position_mm": [
-        52.9,
+        53.1,
         7.5
       ]
     },
@@ -4203,8 +4201,8 @@
       "device_key": "gct_rfpc_sma31_fn_175_a",
       "mpn": "GCT RFPC-SMA31-FN-175-A",
       "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
-      "frame": "rear-outer",
-      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
       "direction": "toward the antenna edge along board -Y",
       "envelope_mm": [
@@ -4341,8 +4339,8 @@
       ],
       "module_face_reserve_mm": {
         "x": [
-          52.9,
-          65.0
+          53.1,
+          65.2
         ],
         "y": [
           7.5,
@@ -4351,7 +4349,7 @@
       },
       "escape_points_mm": [
         [
-          65.0,
+          65.2,
           23.55
         ],
         [
@@ -5131,8 +5129,8 @@
       "device_key": "gct_rfpc_sma31_fn_175_a",
       "mpn": "GCT RFPC-SMA31-FN-175-A",
       "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
-      "frame": "front-outer",
-      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
       "direction": "toward the antenna edge along board -Y",
       "envelope_mm": [
@@ -5154,8 +5152,8 @@
       "device_key": "gct_rfpc_sma31_fn_175_a",
       "mpn": "GCT RFPC-SMA31-FN-175-A",
       "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
-      "frame": "front-outer",
-      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
       "direction": "toward the antenna edge along board -Y",
       "envelope_mm": [
@@ -6852,7 +6850,7 @@
         0.5,
         0.5
       ],
-      "qualification": "verified_candidate",
+      "qualification": "verified_exact_jlcpcb_stocked_standard_pcba",
       "source": {
         "document": "Murata GRM155R71H103KA88 product data",
         "version": "current product data checked 2026-08-18",

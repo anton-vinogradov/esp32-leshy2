@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "design_id": "L2-DISP-ADP-001-A",
-  "stage": "H1.1.3.3.3",
-  "status": "dimensioned_paper_design_complete_received_tail_fit_h5",
-  "purpose": "Keep the main UI PCB and enclosure independent of the undocumented HMX035CTFT-001 flex details by moving the panel mate onto a small replaceable 40-to-40 adapter.",
+  "design_id": "L2-DISP-ADP-001-B",
+  "stage": "H1-R2.33",
+  "status": "dimensioned_exact_production_panel_adapter_ready_for_h2",
+  "purpose": "Mate the exact EastRising ER-TFT035IPS-6 plus ER-TPC035-6 configured assembly to the unchanged 40-contact main-board interface while keeping the panel connector and any future panel-only rework on a small replaceable adapter.",
   "board": {
-    "width_mm": 25.5,
+    "width_mm": 30.5,
     "height_mm": 12.0,
     "thickness_mm": 0.8,
-    "ui_inner_position_mm": [24.75, 1.0],
+    "ui_inner_position_mm": [22.25, 1.0],
     "datum": "top-left in the UI-inner placement frame"
   },
   "components": [
@@ -24,17 +24,18 @@
       "instance": "display_adapter_plug",
       "mpn": "Hirose DF40C-40DP-0.4V(51)",
       "mount": "adapter underside",
-      "adapter_position_mm": [7.99, 5.705],
+      "adapter_position_mm": [10.49, 5.705],
       "envelope_mm": [9.52, 2.97, 1.14],
       "role": "exact plug for the selected 2.0-mm stack"
     },
     {
       "instance": "display_panel_connector",
-      "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
+      "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
+      "jlcpcb_part": "C3169104",
       "mount": "adapter top",
       "adapter_position_mm": [1.75, 0.8],
-      "envelope_mm": [22.0, 3.8, 1.0],
-      "role": "dual-contact ZIF for either exposed-contact orientation"
+      "envelope_mm": [27.0, 3.8, 1.0],
+      "role": "dual-contact 50-position ZIF for the exact 0.30-mm EastRising tail"
     }
   ],
   "stack": {
@@ -46,45 +47,109 @@
     "minimum_reserved_clearance_mm": 0.7
   },
   "electrical": {
-    "mapping": "PIN_n on the UI receptacle maps to PIN_n on the adapter plug and PIN_n on the panel ZIF for n=1..40",
-    "position_count": 40,
+    "main_position_count": 40,
+    "panel_position_count": 50,
     "main_interface_pitch_mm": 0.4,
     "panel_interface_pitch_mm": 0.5,
     "added_active_devices": 0,
-    "signal_contract": "all display power, ground, i8080/QSPI recovery, I2C, reset, backlight and strap contacts are preserved one-to-one"
+    "signal_contract": "the adapter is passive copper: it remaps the existing 40-contact board interface to the exact 50-contact panel, fans out required power/ground ties and leaves manufacturer NC/SDO contacts open",
+    "selected_mode": "ILI9488 8080 8-bit with IM2/IM1/IM0 = 0/1/1",
+    "recovery_mode": "deliberate strap change to ILI9488 4-wire serial; no QSPI claim",
+    "panel_pin_map": {
+      "1": "MAIN_33 LCD_LEDA_PROTECTED",
+      "2": "MAIN_34 LCD_LEDK",
+      "3": "MAIN_35 LCD_LEDK",
+      "4": "OPEN NC",
+      "5": "OPEN NC",
+      "6": "OPEN NC",
+      "7": "MAIN_38 LCD_IM0_HIGH",
+      "8": "MAIN_39 LCD_IM1_HIGH",
+      "9": "MAIN_40 LCD_IM2_LOW",
+      "10": "MAIN_15 LCD_RST_N",
+      "11": "MAIN_16 POWER_GROUND",
+      "12": "MAIN_16 POWER_GROUND",
+      "13": "MAIN_16 POWER_GROUND",
+      "14": "MAIN_16 POWER_GROUND",
+      "15": "MAIN_37 POWER_GROUND",
+      "16": "MAIN_37 POWER_GROUND",
+      "17": "MAIN_37 POWER_GROUND",
+      "18": "MAIN_37 POWER_GROUND",
+      "19": "MAIN_37 POWER_GROUND",
+      "20": "MAIN_37 POWER_GROUND",
+      "21": "MAIN_37 POWER_GROUND",
+      "22": "MAIN_37 POWER_GROUND",
+      "23": "MAIN_37 POWER_GROUND",
+      "24": "MAIN_37 POWER_GROUND",
+      "25": "MAIN_24 LCD_DB7",
+      "26": "MAIN_23 LCD_DB6",
+      "27": "MAIN_22 LCD_DB5",
+      "28": "MAIN_21 LCD_DB4",
+      "29": "MAIN_20 LCD_DB3",
+      "30": "MAIN_19 LCD_DB2",
+      "31": "MAIN_18 LCD_DB1",
+      "32": "MAIN_17 LCD_DB0",
+      "33": "OPEN SDO",
+      "34": "MAIN_13 LCD_SPI_RECOVERY_SDA",
+      "35": "MAIN_12 LCD_RD_HIGH",
+      "36": "MAIN_11 LCD_WR_N_OR_SPI_SCL",
+      "37": "MAIN_10 LCD_DC",
+      "38": "MAIN_9 LCD_CS_LOW_OR_SPI_CS_N",
+      "39": "MAIN_8 LCD_TE",
+      "40": "MAIN_6 LCD_VDDI_3V3",
+      "41": "MAIN_6 LCD_VDDI_3V3",
+      "42": "MAIN_7 LCD_VCI_3V3",
+      "43": "MAIN_5 POWER_GROUND",
+      "44": "MAIN_1 SYS_UI_I2C_SCL",
+      "45": "MAIN_2 SYS_UI_I2C_SDA",
+      "46": "MAIN_3 LCD_TOUCH_INT_RAW_N",
+      "47": "MAIN_4 TOUCH_RST_N",
+      "48": "MAIN_5 POWER_GROUND",
+      "49": "MAIN_16 POWER_GROUND",
+      "50": "MAIN_37 POWER_GROUND"
+    },
+    "main_reserve_contacts": [14, 25, 26, 27, 28, 29, 30, 31, 32, 36],
+    "h2_rule": "H2 rewires the main connector nets to this accepted map; the superseded 40-to-40 HMX route is not a valid schematic source after H1-R2.33"
   },
   "orientation": {
-    "accepted_on": "2026-08-28",
-    "panel_rule": "mount the panel with its flex toward the antenna edge, as on ESP32-DIV, so the tail never enters the LED, D-pad or function-key zone",
-    "display_memory_transform": "rotate the ST77922 output by 180 degrees relative to the previous physical orientation",
-    "touch_transform": "rotate both touch coordinates by 180 degrees before UI hit-testing",
-    "received_tail_gate": "H5 verifies exact HMX035CTFT-001 tail length, contact side, stiffener, bend radius and retention; a mismatch revises the replaceable adapter, not the accepted control layout"
+    "accepted_on": "2026-08-29",
+    "panel_rule": "mount the configured panel with its folded FPC toward the antenna edge, as on ESP32-DIV, so the tail never enters the LED, navigation or function-key zone",
+    "display_memory_transform": "rotate ILI9488 output by 180 degrees relative to its cable-down native orientation",
+    "touch_transform": "rotate FT6236 coordinates by 180 degrees before UI hit-testing",
+    "tail_contract": "manufacturer drawing controls the 50-contact 0.50-mm-pitch, 0.30-mm-stiffened folded tail; H5 incoming inspection verifies only lot conformity and insertion, not an unknown geometry"
   },
   "paper_checks": {
     "board_within_ui_outline": true,
     "main_receptacle_within_adapter_projection": true,
     "connector_height_within_interboard_gap": true,
     "minimum_same_face_clearance_mm": 0.7,
-    "incremental_connector_cost_usd_at_100": 1.6904,
+    "panel_connector_jlcpcb_stock_on_2026_08_29": 2679,
+    "panel_connector_jlcpcb_orderable_on_2026_08_29": 2614,
+    "panel_connector_moq": 1,
+    "panel_connector_usd_at_1": 0.5832,
+    "configured_panel_usd_at_1": 14.91,
     "incremental_adapter_pcb_cost": "factory RFQ required; no purchase authorized"
   },
   "evidence": [
     {
-      "source": "https://www.lcdwiki.com/res/ES3C35P/",
-      "finding": "QDtech controls the donor assembly envelope and publishes the exact HMX035CTFT-001 electrical reference package."
+      "source": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
+      "finding": "EastRising controls the 50-contact 0.50-mm tail, complete CTP outline, 8080-8 strap and every LCD/touch/backlight contact."
     },
     {
-      "source": "https://www.hirose.com/en/product/p/CL0580-1260-6-99",
-      "finding": "FH34SRJ-40S-0.5SH(99) is an active 40-position 0.5-mm dual-contact ZIF with a controlled 22.0x3.8x1.0-mm body."
+      "source": "https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen",
+      "finding": "Exact ER-TFT035IPS-6 is in stock; configured ER-TPC035-6 capacitive-touch-controller option is orderable at quantity one."
+    },
+    {
+      "source": "https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104",
+      "finding": "FH34SRJ-50S-0.5SH(50) is exact HRS original-manufacturer C3169104, Extended SMT, Economic/Standard PCBA, MOQ 1 and live stock."
     },
     {
       "source": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
-      "finding": "DF40C(2.0)-40DS-0.4V(51) controls the fixed 2.0-mm main-board receptacle stack; the former (58) order code differed only in reel quantity."
+      "finding": "DF40C(2.0)-40DS-0.4V(51) controls the fixed 2.0-mm main-board receptacle stack."
     },
     {
       "source": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
       "finding": "DF40C-40DP-0.4V(51) is the exact 40-position mating plug."
     }
   ],
-  "release_boundary": "H1 freezes the antenna-edge adapter bay, flex-to-antenna panel orientation, exact DF40 mate and one-to-one electrical map. H5 incoming inspection measures the current HMX035CTFT-001 tail outline, thickness, stiffener and bend path; a mismatch may revise only this adapter PCB and its panel-side connector, not the control layout or accepted panel orientation unless the received part proves that orientation physically impossible."
+  "release_boundary": "H1 freezes the 30.5x12.0-mm antenna-edge adapter bay, exact ER-TFT035IPS-6 plus ER-TPC035-6 panel stack, C3169104 panel mate, passive 40-to-50 electrical map and cable-to-antenna orientation. H2 imports the exact footprints and rewires the superseded display sheet; H5 confirms current-lot conformity and written factory acceptance for adhesive placement, FPC insertion and one-prototype final mating."
 }

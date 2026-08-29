@@ -1,9 +1,14 @@
-change,group,instance,manufacturer,mpn_or_bundle,jlc_number,qty_per_device,qty_evt5,route,can_presale_number,moq,unit_price_usd,line_per_device_usd,line_evt5_usd,evidence_date,note
-ADD,pin10_power,u219_pin10_switch,Texas Instruments,SN74CBTLV1G125DCKR,C131992,1,5,J0 Extended SMT / Standard PCBA,2966,1,0.2846,0.2846,1.4230,2026-08-28,live available-order quantity uses canPresaleNumber
-ADD,pin10_power,u219_pin10_oe_driver,Texas Instruments,SN74LVC1G06DCKR,C7828,1,5,J0 Extended SMT / Standard PCBA,4205,1,0.1674,0.1674,0.8370,2026-08-28,live available-order quantity uses canPresaleNumber
-ADD,nfc_evidence,u219_field_bridge_d1_d2,Nexperia,"BAT54S,215",C47546,2,10,J0 Extended SMT / Standard PCBA,394964,1,0.0335,0.0670,0.3350,2026-08-28,live available-order quantity uses canPresaleNumber
-ADD,nfc_evidence,u219_field_comparator,Texas Instruments,LMV331IDBVR,C34731,1,5,J0 Extended SMT / Standard PCBA,41081,1,0.1655,0.1655,0.8275,2026-08-28,live available-order quantity uses canPresaleNumber
-TBD,support_passives,u219_support_passives,TBD,TBD-EXACT-SUPPORT-PASSIVES,TBD,TBD,TBD,blocked pending exact values/MPNs/quantities,TBD,TBD,,,,2026-08-28,explicit H1 blocker; excluded from provisional known-active delta
-REMOVE,pin10_power,u214_series_busy,Panasonic,ERJ-2RKF22R0X,base selection,-1,-5,removed from overlay target,n/a,n/a,0.0155,-0.0155,-0.0775,2026-08-28,saved base quantity-100 unit-price basis
-DNP,nfc_evidence,u219_pickup_c0g_tuning_bank,TBD after VNA,DNP-C0G-BANK,TBD,0,0,not orderable until VNA/HIL selection,0,TBD,,,,2026-08-28,footprints only; no exact production MPN accepted
-KNOWN_ACTIVE_NET,provisional,H1-R2-U219-CAP-01,,,,,,,,,,0.6690,3.3450,2026-08-28,known exact active additions less removed 22-Ohm; support passives and all other exclusions remain unknown
+change,group,instance,manufacturer,mpn_or_bundle,jlc_number,qty_per_device,qty_one_prototype,route,can_presale_number,moq,unit_price_usd,line_per_device_usd,line_one_prototype_usd,evidence_date,note
+ADD,pin10_power,u219_pin10_switch,Texas Instruments,SN74CBTLV1G125DCKR,C131992,1,1,J0 Extended SMT / Standard PCBA,2966,1,0.2846,0.2846,0.2846,2026-08-29,live available-order quantity uses canPresaleNumber
+ADD,pin10_power,u219_pin10_oe_driver,Texas Instruments,SN74LVC1G06DCKR,C7828,1,1,J0 Extended SMT / Standard PCBA,4205,1,0.1674,0.1674,0.1674,2026-08-29,live available-order quantity uses canPresaleNumber
+ADD,nfc_evidence,u219_field_bridge_d1_d2,Nexperia,"BAT54S,215",C47546,2,2,J0 Extended SMT / Standard PCBA,394964,1,0.0335,0.0670,0.0670,2026-08-29,live available-order quantity uses canPresaleNumber
+ADD,nfc_evidence,u219_field_comparator,Texas Instruments,LMV331IDBVR,C34731,1,1,J0 Extended SMT / Standard PCBA,41081,1,0.1655,0.1655,0.1655,2026-08-29,live available-order quantity uses canPresaleNumber
+ADD,support_passives,u219_field_input_r_pair,UNI-ROYAL(Uniroyal Elec),0402WGF1001TCE,C11702,2,2,J0 Extended SMT / Standard PCBA,10911212,1,0.0039,0.0078,0.0078,2026-08-29,live available-order quantity uses canPresaleNumber
+ADD,support_passives,u219_10k_network,UNI-ROYAL(Uniroyal Elec),0402WGF1002TCE,C25744,4,4,J0 Extended SMT / Standard PCBA,27943335,1,0.0031,0.0124,0.0124,2026-08-29,live available-order quantity uses canPresaleNumber
+ADD,support_passives,u219_100k_network,UNI-ROYAL(Uniroyal Elec),0402WGF1003TCE,C25741,2,2,J0 Extended SMT / Standard PCBA,13226514,1,0.0028,0.0056,0.0056,2026-08-29,live available-order quantity uses canPresaleNumber
+ADD,support_passives,u219_field_hysteresis,UNI-ROYAL(Uniroyal Elec),0402WGF1004TCE,C26083,1,1,J0 Extended SMT / Standard PCBA,3044597,1,0.0026,0.0026,0.0026,2026-08-29,live available-order quantity uses canPresaleNumber
+ADD,support_passives,u219_field_env_cap,Murata Electronics,GRM155R71H103KA88D,C77019,1,1,J0 Extended SMT / Standard PCBA,629708,1,0.0097,0.0097,0.0097,2026-08-29,live available-order quantity uses canPresaleNumber
+ADD,support_passives,u219_bypass_caps,YAGEO,CC0402KRX7R9BB104,C131394,3,3,J0 Extended SMT / Standard PCBA,7796080,1,0.0107,0.0321,0.0321,2026-08-29,live available-order quantity uses canPresaleNumber
+REMOVE,pin10_power,u214_series_busy,Panasonic,ERJ-2RKF22R0X,base selection,-1,-1,removed from overlay target,n/a,n/a,0.0155,-0.0155,-0.0155,2026-08-29,saved base quantity-100 unit-price basis
+DNP,nfc_evidence,u219_pickup_c0g_tuning_bank,TBD after VNA,DNP-C0G-BANK,TBD,0,0,not orderable until VNA/HIL selection,0,TBD,,,,2026-08-29,footprints only; no exact production MPN accepted
+SELECTED_POPULATED_NET,complete,H1-R2-U219-CAP-01,,,,,,,,,,0.7392,0.7392,2026-08-29,all selected populated U219 support additions less the removed 22-Ohm part; DNP tuning bank remains unpopulated

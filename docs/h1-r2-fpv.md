@@ -41,4 +41,4 @@ JLCPCB confirmed that K331 is unavailable in both Parts Library and Global Sourc
 - **H3/H6/H8:** prove the direct 50-ohm feed, MMCX launch, channel truth table, sensitivity, image rejection, decoder lock and video quality before production release
 - **H5/H8:** qualify FXP831.09.0100C on the assembled enclosure and secure available stock before relying on its current 16-week backorder route
 
-> Artifact marker: **H1-R2.31**. The overall physical-design marker has advanced to **H1-R2.32**; H1 remains in progress.
+> Artifact marker: **H1-R2.31**. The overall physical-design marker has advanced to **H1-R2.33**; H1 remains in progress.

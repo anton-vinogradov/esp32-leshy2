@@ -20,6 +20,7 @@ SOURCE_RESEARCH_PATH = REPO / "hardware/product-design/h1-source-research.json"
 NAVIGATION_CLUSTER_PATH = REPO / "hardware/product-design/navigation-cluster.json"
 DISPLAY_ADAPTER_DESIGN_PATH = REPO / "hardware/product-design/display-adapter.json"
 ASSEMBLY_COORDINATE_MODEL_PATH = REPO / "hardware/product-design/assembly-coordinate-model.json"
+H1_R2_PLACEMENT_PATH = REPO / "hardware/product-design/h1-r2-placement.json"
 EXTERNAL_OUTPUT = REPO / "docs/images/current-clamshell.svg"
 SERVICE_OUTPUT = REPO / "docs/images/service-access.svg"
 INTERNAL_OUTPUT = REPO / "docs/images/internal-board-layout.svg"
@@ -35,6 +36,10 @@ CROSS_VIEW_ACCEPTANCE_OUTPUT = REPO / "hardware/product-design/generated/H1-cros
 
 BOARD_W = 75.0
 BOARD_H = 150.0
+DISPLAY_X = 9.23
+DISPLAY_Y = 10.5
+DISPLAY_W = 56.54
+DISPLAY_H = 84.96
 MOUNT_HOLE_D = 2.7
 MOUNT_KEEPOUT_R = 4.0
 HOLES = ((5.0, 11.0), (70.0, 11.0), (5.0, 145.0), (70.0, 145.0))
@@ -81,27 +86,32 @@ RF_BODY_D = 6.0
 RF_BARREL_D = 6.35
 RF_BARREL_OUT = 11.4
 FRONT_RF = (
-    (15.7, "S3-2G4", "RP-SMA"),
-    (30.0, "RX-FM/SW", "SMA"),
-    (45.0, "RX-AM/LW", "SMA"),
-    (59.3, "C5-2G4/5", "RP-SMA"),
-)
-REAR_RF = (
-    # Six 10.2-mm SMA bodies plus the 3.6-mm FPV MMCX fit the 75-mm edge
-    # with 0.7-mm body gaps and 3.0-mm board margins.  The H1-R2 overlay
-    # inserts the MMCX at X=37.5 between N24-1 and VHF.
     (8.1, "N24-0", "SMA"),
-    (19.0, "CC-SUB", "SMA"),
-    (29.9, "N24-1", "SMA"),
-    (45.1, "VOICE-VHF", "SMA"),
-    (56.0, "VOICE-UHF", "SMA"),
+    (22.8, "S3-2G4", "RP-SMA"),
+    (37.5, "N24-1", "SMA"),
+    (52.2, "C5-2G4/5", "RP-SMA"),
     (66.9, "N24-2", "SMA"),
 )
-VOICE_V_RF_CORRIDOR = ((45.1, 0.0), (20.25, 32.5))
-VOICE_U_RF_CORRIDOR = ((56.0, 0.0), (71.2, 36.95))
+REAR_RF = (
+    # Five 10.2-mm SMA bodies use equal 14.7-mm pitch. The separate FPV MMCX
+    # sits below the row between SUB-G and VHF, above the Cap rail.
+    (8.1, "RX-FM/SW", "SMA"),
+    (22.8, "RX-AM/LW", "SMA"),
+    (37.5, "CC-SUB", "SMA"),
+    (52.2, "VOICE-VHF", "SMA"),
+    (66.9, "VOICE-UHF", "SMA"),
+)
+VOICE_V_RF_CORRIDOR = ((52.2, 0.0), (20.25, 32.5))
+VOICE_U_RF_CORRIDOR = (
+    (66.9, 0.0),
+    (66.9, 6.0),
+    (61.5, 6.0),
+    (61.5, 30.0),
+    (71.2, 36.95),
+)
 OPPOSITE_FACE_CLEARANCE_MM = 1.5
 
-# H1-R2.32 fail-closed placement scope. These are the already accepted G2F-3I
+# H1-R2.33 fail-closed placement scope. These are the already accepted G2F-3I
 # Cap-Bus protection/control and hardware TX-evidence aggregate bodies. The
 # values bind each instance to its current exact device key: a substitution,
 # omitted coordinate or duplicate projection must fail generation.
@@ -187,14 +197,14 @@ BOARD_RF_CABLE_TO_TRACE_HANDOFFS = frozenset(
 RF_USER_LABEL_LINES = {
     "S3-2G4": ("WI-FI/BLE", "2.4 GHz"),
     "C5-2G4/5": ("WI-FI/15.4", "2.4/5 GHz"),
-    "RX-FM/SW": ("FM/SW/AIR RX",),
+    "RX-FM/SW": ("FM/SW", "AIR RX"),
     "RX-AM/LW": ("AM/LW LOOP",),
-    "N24-0": ("nRF24-1", "2.4 GHz"),
+    "N24-0": ("nRF1", "2.4 GHz"),
     "CC-SUB": ("SUB-GHz",),
-    "N24-1": ("nRF24-2", "2.4 GHz"),
-    "VOICE-VHF": ("VHF VOICE", "134-174 MHz"),
-    "VOICE-UHF": ("UHF VOICE", "400-480 MHz"),
-    "N24-2": ("nRF24-3", "2.4 GHz"),
+    "N24-1": ("nRF2", "2.4 GHz"),
+    "VOICE-VHF": ("VHF", "VOICE", "134-174"),
+    "VOICE-UHF": ("UHF", "VOICE", "400-480"),
+    "N24-2": ("nRF3", "2.4 GHz"),
 }
 # Optional per-path label coordinates for derivative layouts.  Coordinates
 # are PCB millimetres in the matching outer-face frame.  Keeping them in the
@@ -203,6 +213,8 @@ RF_USER_LABEL_LINES = {
 RF_COMPACT_LABEL_POSITIONS = {
     "N24-0": (12.3, 7.8),
     "N24-2": (62.7, 7.8),
+    "RX-FM/SW": (15.5, 7.8),
+    "VOICE-UHF": (59.0, 7.8),
 }
 TX_RF_PATHS = {
     "S3-2G4", "C5-2G4/5", "N24-0", "CC-SUB", "N24-1", "VOICE-VHF", "VOICE-UHF", "N24-2"
@@ -433,7 +445,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "ui-inner",
         "s3_rf_board_connector",
         "s3_external_rp_sma",
-        ((15.7, 10.55), (15.7, 6.62), (15.7, 0.0)),
+        ((16.0, 10.55), (22.8, 6.62), (22.8, 0.0)),
         "S3 board U.FL through forward coupler to outward S3 RP-SMA",
     ),
     AntennaTopologyGuide(
@@ -442,7 +454,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "ui-inner",
         "c5_rf_board_connector",
         "c5_external_rp_sma",
-        ((59.3, 10.55), (59.3, 6.62), (59.3, 0.0)),
+        ((59.0, 10.55), (52.2, 6.62), (52.2, 0.0)),
         "C5 board U.FL through forward coupler to outward C5 RP-SMA",
     ),
     AntennaTopologyGuide(
@@ -451,7 +463,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "ui-inner",
         "receiver",
         "receiver_fmsw_external_sma",
-        ((51.0, 54.8), (30.0, 49.0), (30.0, 0.0)),
+        ((51.0, 54.8), (13.5, 49.0), (13.5, 6.0), (8.1, 6.0), (8.1, 0.0)),
         "Si4732 FMI matching and protection to outward FM/SW SMA",
     ),
     AntennaTopologyGuide(
@@ -460,7 +472,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "ui-inner",
         "receiver",
         "receiver_amlw_external_sma",
-        ((51.0, 56.2), (45.0, 52.0), (45.0, 0.0)),
+        ((51.0, 56.2), (22.8, 52.0), (22.8, 0.0)),
         "Si4732 AMI coupling and protection to outward AM/LW SMA",
     ),
     AntennaTopologyGuide(
@@ -478,7 +490,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "rf-inner",
         "nrf1_rf_board_connector",
         "nrf1_external_sma",
-        ((51.5, 29.55), (51.75, 27.0), (51.75, 5.0), (29.9, 5.0), (29.9, 0.0)),
+        ((51.5, 29.55), (51.75, 27.0), (51.75, 5.0), (37.5, 5.0), (37.5, 0.0)),
         "nRF24 #1 board U.FL through forward coupler to outward SMA",
     ),
     AntennaTopologyGuide(
@@ -496,7 +508,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "rf-inner",
         "cc",
         "cc_external_sma",
-        ((19.0, 10.3), (19.0, 0.0)),
+        ((19.0, 10.3), (37.5, 5.0), (37.5, 0.0)),
         "CC1101 selected matching branch to outward Sub-GHz SMA",
     ),
     AntennaTopologyGuide(
@@ -525,8 +537,8 @@ RF_INNER = (
     Placement("nrf2_rf_board_connector", 70.0, 22.0, "nRF24 #2 Gen1 jumper board receptacle"),
     Placement("rp", 0.0, 32.2, "deterministic radio owner"),
     Placement("nrf0", 10.0, 7.5, "full-function nRF24 radio #0"),
-    Placement("nrf1", 31.5, 7.5, "full-function nRF24 radio #1; rotated for U214 tail clearance", 90),
-    Placement("nrf2", 52.9, 7.5, "full-function nRF24 radio #2"),
+    Placement("nrf1", 33.1, 7.5, "superseded R1 nRF24 #1 seed; displaced clear of the current CC reference zone", 90),
+    Placement("nrf2", 53.1, 7.5, "superseded R1 nRF24 #2 seed; displaced clear of the current CC reference zone"),
     Placement("voice_v", 15.8, 32.5, "VHF 134-174-MHz SA818S-V; dedicated contact-12 RF path", 180),
     Placement("voice", 52.2, 32.5, "UHF 400-480-MHz SA818S-U; dedicated contact-12 RF path", 270),
     Placement("cc", 24.0, 8.3, "multi-band sub-GHz transceiver inside its local reference RF zone"),
@@ -696,14 +708,14 @@ RF_NRF_CABLE_RESERVES = (
         "nrf1_rf_jumper",
         "nrf1",
         "nrf1_rf_board_connector",
-        ((49.0, 19.6), (51.5, 29.55)),
+        ((50.6, 19.6), (51.5, 29.55)),
         "direct nRF24 #1 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
     ),
     CableReserve(
         "nrf2_rf_jumper",
         "nrf2",
         "nrf2_rf_board_connector",
-        ((65.0, 23.55), (71.5, 23.55)),
+        ((65.2, 23.55), (71.5, 23.55)),
         "direct nRF24 #2 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
     ),
 )
@@ -754,7 +766,7 @@ INTERNAL_RESERVES = (
         "cc-reference-rf-network",
         22.9,
         7.5,
-        7.9,
+        9.5,
         17.5,
         "CC1101 broadband balun, switched band matching, detector tap and ESD zone",
         "selected_support_placement_zone",
@@ -798,8 +810,8 @@ MECHANICAL_PROJECTION_FRAMES = {
     "rear-outer": "RF/power PCB top-left, viewed from the rear/exterior",
     "ui-inner-route": "UI PCB top-left, viewed from the front/exterior",
     "rf-inner-route": "RF/power PCB top-left, viewed from the rear/exterior",
-    "display-assembly": "HMX035CTFT-001 screen-body top-left, front view",
-    "display-adapter": "L2-DISP-ADP-001-A top-left, viewed from its panel-facing side",
+    "display-assembly": "ER-TFT035IPS-6 + ER-TPC035-6 configured CTP-outline top-left, front view",
+    "display-adapter": "L2-DISP-ADP-001-B top-left, viewed from its panel-facing side",
 }
 
 PLACEMENT_PROJECTION_GROUPS = (
@@ -900,7 +912,7 @@ EXTERIOR_BODY_CONTRACTS = (
         "display_touch_controller",
         "display-assembly",
         0,
-        "embedded in HMX035CTFT-001; no separate mechanical interface",
+        "superseded H2 controller node; the H1 physical endpoint contains exact ILI9488 and FT6236 identities without a separate host-board body",
     ),
     BodyProjectionContract(
         "display_adapter_plug",
@@ -923,8 +935,14 @@ def load() -> tuple[dict, dict, dict, dict, dict, dict]:
     navigation_cluster = json.loads(NAVIGATION_CLUSTER_PATH.read_text(encoding="utf-8"))
     display_adapter_design = json.loads(DISPLAY_ADAPTER_DESIGN_PATH.read_text(encoding="utf-8"))
     assembly_coordinate_model = json.loads(ASSEMBLY_COORDINATE_MODEL_PATH.read_text(encoding="utf-8"))
+    instances = dict(candidate["instances"])
+    # H1-R2.33 owns the physical display endpoint.  The reviewed G2F-3I
+    # electrical candidate remains the superseded H2 input until the next
+    # phase rewires its display sheet to the accepted passive 40-to-50 map.
+    instances["display"] = "eastrising_er_tft035ips_6_ctp"
+    instances["display_panel_connector"] = "hirose_fh34srj_50s_0_5sh_50"
     return (
-        devices, candidate, candidate["instances"], navigation_cluster,
+        devices, candidate, instances, navigation_cluster,
         display_adapter_design, assembly_coordinate_model,
     )
 
@@ -1306,7 +1324,7 @@ def validate_external_silkscreen(svg: str, devices: dict, instances: dict) -> li
         x, y, w, h = box
         return origin[0] + x * scale, origin[1] + y * scale, w * scale, h * scale
 
-    display = Placement("display", 10.25, 11.0, "display")
+    display = Placement("display", DISPLAY_X, DISPLAY_Y, "display")
     holder = Placement("pack_holder", 17.6, PACK_HOLDER_Y, "holder", 90)
     knob = REAR_SELECTED_ACTUATORS[0]
     visible = {
@@ -1869,7 +1887,7 @@ def validate_source_research() -> list[str]:
     errors: list[str] = []
     if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3.3":
         errors.append("source-research: schema/stage mismatch")
-    if data.get("status") != "reviewed" or data.get("current_substep") != "H2.3.4":
+    if data.get("status") != "reviewed" or data.get("current_substep") != "H1-R2.33":
         errors.append("source-research: exact current substep drifted")
     policy = data.get("policy", {})
     if policy.get("order_authorized") is not False:
@@ -1970,19 +1988,19 @@ def validate_navigation_cluster(design: dict, devices: dict, instances: dict) ->
 def validate_display_adapter_design(
     design: dict, devices: dict, candidate: dict, instances: dict
 ) -> list[str]:
-    """Keep the replaceable 40-to-40 display interface dimensionally honest."""
+    """Keep the replaceable passive 40-to-50 display interface honest."""
     errors: list[str] = []
-    if design.get("schema_version") != 1 or design.get("design_id") != "L2-DISP-ADP-001-A":
+    if design.get("schema_version") != 1 or design.get("design_id") != "L2-DISP-ADP-001-B":
         errors.append("display-adapter: schema/design identity mismatch")
-    if design.get("stage") != "H1.1.3.3.3":
+    if design.get("stage") != "H1-R2.33":
         errors.append("display-adapter: exact source-research stage drifted")
     board = design.get("board", {})
     board_w = float(board.get("width_mm", 0))
     board_h = float(board.get("height_mm", 0))
     board_t = float(board.get("thickness_mm", 0))
     board_x, board_y = map(float, board.get("ui_inner_position_mm", [0, 0]))
-    if (board_w, board_h, board_t) != (25.5, 12.0, 0.8):
-        errors.append("display-adapter: controlled 25.5x12.0x0.8-mm PCB envelope drifted")
+    if (board_w, board_h, board_t) != (30.5, 12.0, 0.8):
+        errors.append("display-adapter: controlled 30.5x12.0x0.8-mm PCB envelope drifted")
     if board_x < 0 or board_y < 0 or board_x + board_w > BOARD_W or board_y + board_h > BOARD_H:
         errors.append("display-adapter: adapter PCB leaves the UI-board projection")
     if any(hits_hole((board_x, board_y, board_w, board_h), hole) for hole in HOLES):
@@ -1991,7 +2009,7 @@ def validate_display_adapter_design(
     expected_mpns = {
         "display_connector": "Hirose DF40C(2.0)-40DS-0.4V(51)",
         "display_adapter_plug": "Hirose DF40C-40DP-0.4V(51)",
-        "display_panel_connector": "Hirose FH34SRJ-40S-0.5SH(99)",
+        "display_panel_connector": "Hirose FH34SRJ-50S-0.5SH(50)",
     }
     rows = {row.get("instance"): row for row in design.get("components", [])}
     if set(rows) != set(expected_mpns):
@@ -2066,26 +2084,33 @@ def validate_display_adapter_design(
                 f"{clearance:.2f} mm, below the {MIN_INTERBOARD_Z_CLEARANCE_MM:.1f}-mm minimum"
             )
 
-    routes = candidate.get("fixed_routes", [])
-    route_pairs = {(row.get("from"), row.get("to"), row.get("net")) for row in routes}
-    panel_nets: dict[int, str] = {}
-    for row in routes:
-        endpoint = row.get("from", "")
-        if endpoint.startswith("display_panel_connector.PIN_") and str(row.get("to", "")).startswith("display."):
-            panel_nets[int(endpoint.rsplit("_", 1)[1])] = row.get("net")
-    if set(panel_nets) != set(range(1, 41)):
-        errors.append("display-adapter: panel-side exact 40-contact map is incomplete")
-    for pin, net in panel_nets.items():
-        if (
-            f"display_connector.PIN_{pin}",
-            f"display_adapter_plug.PIN_{pin}",
-            net,
-        ) not in route_pairs or (
-            f"display_adapter_plug.PIN_{pin}",
-            f"display_panel_connector.PIN_{pin}",
-            net,
-        ) not in route_pairs:
-            errors.append(f"display-adapter: PIN_{pin} is not one-to-one through both mates")
+    electrical = design.get("electrical", {})
+    panel_map = electrical.get("panel_pin_map", {})
+    if set(panel_map) != {str(pin) for pin in range(1, 51)}:
+        errors.append("display-adapter: exact 50-contact panel map is incomplete")
+    if int(electrical.get("main_position_count", 0)) != 40 or int(electrical.get("panel_position_count", 0)) != 50:
+        errors.append("display-adapter: 40-to-50 position counts drifted")
+    for pin, source in panel_map.items():
+        if not isinstance(source, str) or not source:
+            errors.append(f"display-adapter: panel pin {pin} lacks a deterministic source or OPEN disposition")
+        if source.startswith("MAIN_"):
+            try:
+                main_pin = int(source.split()[0].split("_", 1)[1])
+            except (ValueError, IndexError):
+                errors.append(f"display-adapter: panel pin {pin} has a malformed main-contact source")
+            else:
+                if not 1 <= main_pin <= 40:
+                    errors.append(f"display-adapter: panel pin {pin} leaves the 40-contact main interface")
+    if electrical.get("selected_mode") != "ILI9488 8080 8-bit with IM2/IM1/IM0 = 0/1/1":
+        errors.append("display-adapter: selected ILI9488 i8080 strap drifted")
+    expected_mode_straps = {
+        "7": "MAIN_38 LCD_IM0_HIGH",
+        "8": "MAIN_39 LCD_IM1_HIGH",
+        "9": "MAIN_40 LCD_IM2_LOW",
+    }
+    for pin, expected in expected_mode_straps.items():
+        if panel_map.get(pin) != expected:
+            errors.append(f"display-adapter: panel pin {pin} mode strap drifted")
     if "H5" not in design.get("release_boundary", ""):
         errors.append("display-adapter: received-tail fit must remain an H5 gate")
     return errors
@@ -2099,8 +2124,8 @@ def validate_assembly_coordinate_model(
     if (
         model.get("schema_version") != 1
         or model.get("model_id") != "L2-ASM-COORD-001-A"
-        or model.get("stage") != "H1-R2.32"
-        or model.get("status") != "in_progress"
+        or model.get("stage") != "H1-R2.33"
+        or model.get("status") != "ready_for_user_layout_acceptance"
     ):
         errors.append("coordinate-model: schema, identity, stage or review status drifted")
     if [float(value) for value in model.get("board_outline_mm", [])] != [BOARD_W, BOARD_H]:
@@ -2192,7 +2217,7 @@ def validate() -> list[str]:
         "s3": "ESP32-S3-WROOM-1U-N16R8",
         "c5": "ESP32-C5-WROOM-1U-N8R8",
         "rp": "SC1512-A4",
-        "display": "HMX035CTFT-001 (QDtech schematic assembly marking)",
+        "display": "EastRising ER-TFT035IPS-6 + ER-TPC035-6",
         "u214": "M5Stack U214 Cap LoRa-1262",
         "u214_connector": "Samtec HLE-107-02-G-DV-PE-LC",
         "pack_holder": "Keystone Electronics 1048P",
@@ -2205,7 +2230,7 @@ def validate() -> list[str]:
         "ui_dpad_ok": "OMRON B3S-1100P",
         "display_connector": "Hirose DF40C(2.0)-40DS-0.4V(51)",
         "display_adapter_plug": "Hirose DF40C-40DP-0.4V(51)",
-        "display_panel_connector": "Hirose FH34SRJ-40S-0.5SH(99)",
+        "display_panel_connector": "Hirose FH34SRJ-50S-0.5SH(50)",
     }
     for instance, expected in required.items():
         actual = devices[instances[instance]]["mpn"]
@@ -2244,9 +2269,11 @@ def validate() -> list[str]:
                 f"mechanical-accounting: significant body {instance} ({device['mpn']}) "
                 "is absent from every physical projection"
             )
-    touch = devices[instances["display_touch_controller"]]
-    if touch.get("assembly_contract", {}).get("assembly") != "HMX035CTFT-001":
-        errors.append("mechanical-accounting: display touch die must remain embedded in HMX035CTFT-001")
+    display_contract = devices[instances["display"]].get("assembly_contract", {})
+    if display_contract.get("lcd_controller") != "Ilitek ILI9488":
+        errors.append("mechanical-accounting: exact ILI9488 display controller identity was lost")
+    if display_contract.get("touch_controller") != "FocalTech FT6236":
+        errors.append("mechanical-accounting: exact FT6236 touch-controller identity was lost")
 
     errors += validate_items("ui-inner", UI_INNER, devices, instances)
     errors += validate_cable_routes(devices, instances)
@@ -2342,8 +2369,8 @@ def validate() -> list[str]:
             abs(a - b) > 0.01 for a, b in zip(corridor[-1], antenna_xy)
         ):
             errors.append(f"{instance}: contact 12 and dedicated {path} corridor endpoints disagree")
-        if polyline_length(corridor) > 41.0:
-            errors.append(f"{instance}: dedicated RF corridor exceeds the 41-mm worst-case planar allowance")
+        if polyline_length(corridor) > 50.0:
+            errors.append(f"{instance}: dedicated RF corridor exceeds the 50-mm worst-case planar allowance")
 
     cc_zone = next(zone for zone in INTERNAL_RESERVES if zone.name == "cc-reference-rf-network")
     cc_port_x = next(centre for centre, path, _ in REAR_RF if path == "CC-SUB")
@@ -2353,7 +2380,7 @@ def validate() -> list[str]:
     ):
         errors.append("CC1101 reference RF zone must align to SUB-GHz and clear the outer connector land")
     front_path_centres = {path: centre for centre, path, _ in FRONT_RF}
-    if front_path_centres.get("S3-2G4") != 15.7 or front_path_centres.get("C5-2G4/5") != 59.3:
+    if front_path_centres.get("S3-2G4") != 22.8 or front_path_centres.get("C5-2G4/5") != 52.2:
         errors.append("native RF ports must remain aligned to the two exact 30-mm jumper corridors")
     navigation_items = {
         item.instance: item
@@ -2370,17 +2397,17 @@ def validate() -> list[str]:
 
     display_device = devices[instances["display"]]
     if display_device.get("pixel_resolution") != [320, 480]:
-        errors.append("display: exact HMX035CTFT-001 resolution must remain 320x480")
+        errors.append("display: exact ER-TFT035IPS-6 resolution must remain 320x480")
     if display_device.get("active_area_mm") != [48.96, 73.44]:
         errors.append("display: exact active area must remain 48.96x73.44 mm")
-    if display_device.get("active_area_offset_from_body_top_left_mm") != [2.77, 2.15]:
-        errors.append("display: active area must retain the exact 2.77x2.15-mm body offset")
+    if display_device.get("active_area_offset_from_body_top_left_mm") != [3.79, 3.76]:
+        errors.append("display: active area must retain the exact 3.79x3.76-mm CTP-outline offset")
     if display_device.get("viewing_area_mm") != [49.96, 74.44]:
         errors.append("display: exact viewing window must remain 49.96x74.44 mm")
-    if display_device.get("viewing_area_offset_from_body_top_left_mm") != [2.27, 1.65]:
-        errors.append("display: viewing window must retain the exact 2.27x1.65-mm body offset")
-    if display_device.get("effective_touch_area_mm") != [54.5, 83.0]:
-        errors.append("display: exact effective touch area must remain 54.5x83.0 mm")
+    if display_device.get("viewing_area_offset_from_body_top_left_mm") != [3.29, 3.26]:
+        errors.append("display: viewing window must retain the exact 3.29x3.26-mm CTP-outline offset")
+    if display_device.get("effective_touch_area_mm") != [49.96, 74.44]:
+        errors.append("display: exact effective touch area must remain 49.96x74.44 mm")
     active_w, active_h = map(float, display_device.get("active_area_mm", [0, 1]))
     if not math.isclose(active_w / active_h, 2 / 3, rel_tol=0, abs_tol=1e-9):
         errors.append("display: active area must retain the exact 2:3 portrait ratio")
@@ -2389,7 +2416,7 @@ def validate() -> list[str]:
         errors.append("B3S-1100P direct-press controls must retain the exact 3.3-mm plunger")
     if direct_mechanical.get("nominal_height_mm") != 4.3:
         errors.append("B3S-1100P nominal direct-press height must remain 4.3 mm")
-    display = Placement("display", 10.25, 11.0, "display")
+    display = Placement("display", DISPLAY_X, DISPLAY_Y, "display")
     holder = Placement("pack_holder", 17.6, PACK_HOLDER_Y, "battery holder", 90)
     errors += validate_items("front-display", (display,), devices, instances)
     errors += validate_items("rear-exact", (holder,), devices, instances)
@@ -2591,26 +2618,29 @@ def validate() -> list[str]:
     for field, expected in expected_family.items():
         if connector_family.get(field) != expected:
             errors.append(f"antenna connector plane contract has invalid {field}")
-    for face_key, expected_face, bank in (
-        ("ui_outer_face", "outward_front", FRONT_RF),
-        ("rf_power_outer_face", "outward_rear", REAR_RF),
+    for face_key, expected_face in (
+        ("ui_outer_face", "outward_front"),
+        ("rf_power_outer_face", "outward_rear"),
     ):
         face = antenna_planes.get(face_key, {})
         if face.get("face") != expected_face:
             errors.append(f"{face_key}: antenna bank must remain on {expected_face}")
-        actual_ports = [
-            (port.get("instance"), port.get("path"), float(port.get("x_center_mm", -1)))
-            for port in face.get("ports", [])
-        ]
-        expected_ports = [
-            (RF_INSTANCE_BY_PATH[path], path, centre)
-            for centre, path, _ in bank
-        ]
-        if actual_ports != expected_ports:
-            errors.append(f"{face_key}: machine port order/coordinates differ from the product layout")
-        for instance, path, _ in actual_ports:
-            if instance not in instances or path not in drawn_paths:
-                errors.append(f"{face_key}: unknown antenna instance/path {instance}/{path}")
+    # The checked-in G2F-3I antenna planes are preserved R1/H2 evidence.  The
+    # current H1-R2 physical repartition is owned by the placement contract so
+    # updating a mock-up never silently rewrites the historical electrical
+    # candidate.
+    h1_placement = json.loads(H1_R2_PLACEMENT_PATH.read_text(encoding="utf-8"))
+    optimization = h1_placement.get("antenna_bank_optimization", {})
+    expected_front = [(path, centre) for centre, path, _ in FRONT_RF]
+    expected_rear = [(path, centre) for centre, path, _ in REAR_RF]
+    if list(zip(optimization.get("front_paths", []), optimization.get("front_x_centres_mm", []))) != expected_front:
+        errors.append("H1-R2 front antenna bank differs from the generated product layout")
+    if list(zip(optimization.get("rear_paths", []), optimization.get("rear_x_centres_mm", []))) != expected_rear:
+        errors.append("H1-R2 rear antenna bank differs from the generated product layout")
+    for path in optimization.get("front_paths", []) + optimization.get("rear_paths", []):
+        instance = RF_INSTANCE_BY_PATH.get(path)
+        if instance not in instances or path not in drawn_paths:
+            errors.append(f"H1-R2: unknown antenna instance/path {instance}/{path}")
     separation = antenna_planes.get("separation", {})
     if float(candidate["interboard_contract"].get("working_inner_gap_mm", -1)) != INTERBOARD_GAP_MM:
         errors.append("mechanical clearance audit requires the exact 11-mm working inner gap")
@@ -2770,10 +2800,10 @@ def validate() -> list[str]:
     if external_root.attrib.get("data-coordinate-model") != "L2-ASM-COORD-001-A":
         errors.append("external layout must identify the unified coordinate model")
     if (
-        external_root.attrib.get("data-review-gate") != "H1.3.1"
-        or external_root.attrib.get("data-review-status") != "reviewed"
+        external_root.attrib.get("data-review-gate") != "H1-R2.33"
+        or external_root.attrib.get("data-review-status") != "ready-for-user-acceptance"
     ):
-        errors.append("external layout must retain the reviewed H1.3.1 gate")
+        errors.append("external layout must identify the current H1-R2.33 acceptance candidate")
     face_nodes = {
         element.attrib.get("data-face"): element
         for element in external_root.iter("{http://www.w3.org/2000/svg}rect")
@@ -3033,7 +3063,7 @@ def render_external(devices, instances):
 
     front, rear = (80.0, 150.0), (465.0, 150.0)
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1.3.1" data-review-status="reviewed">',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1-R2.33" data-review-status="ready-for-user-acceptance">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         text(30, 32, "Leshy2 — dimensioned external layout", 22, "bold"),
@@ -3070,7 +3100,7 @@ def render_external(devices, instances):
     out += rf_bank(rear, REAR_RF, scale, sx, sy, silk_text, rect, True, True, compact_label_y=7.8)
     out.append('</g>')
 
-    display = Placement("display", 10.25, 11.0, "display")
+    display = Placement("display", DISPLAY_X, DISPLAY_Y, "display")
     dw, dh = placement_size(display, devices, instances)
     display_device = devices[instances["display"]]
     active_w, active_h = map(float, display_device["active_area_mm"])
@@ -3088,9 +3118,9 @@ def render_external(devices, instances):
     out.append(rect(front, display.x, display.y, dw, dh, "#eff6ff", "#2563eb", rx=5))
     out.append(rect(front, active_x, active_y, active_w, active_h, "#bfdbfe", "#1d4ed8", rx=3))
     out.append(rect(front, view_x, view_y, view_w, view_h, "none", "#60a5fa", "3 2", 3))
-    out.append(text(sx(front,37.5), sy(front,50.5), "HMX035CTFT-001", 9, "bold", "middle", "#1d4ed8"))
-    out.append(text(sx(front,37.5), sy(front,55.5), "ACTIVE 48.96×73.44 mm · 320×480 · 2:3", 6.5, "bold", "middle", "#1d4ed8"))
-    out.append(text(sx(front,37.5), sy(front,60.5), "54.5×83.0×3.2 mm LCD/CTP body", 6.5, anchor="middle", colour="#1d4ed8"))
+    out.append(text(sx(front,37.5), sy(front,50.5), "ER-TFT035IPS-6", 9, "bold", "middle", "#1d4ed8"))
+    out.append(text(sx(front,37.5), sy(front,55.5), "+ ER-TPC035-6 · DISPLAY / TOUCH", 6.5, "bold", "middle", "#1d4ed8"))
+    out.append(text(sx(front,37.5), sy(front,60.5), "56.54×84.96×3.76 mm · ACTIVE 48.96×73.44", 6.2, anchor="middle", colour="#1d4ed8"))
     out.append(text(sx(front,37.5), sy(front,65.5), "touch / view ⊗", 6.5, anchor="middle", colour="#dc2626"))
     out.append('<g id="front-outer-rf-bank" data-mount-face="ui-pcb-outer">')
     out += rf_bank(front, FRONT_RF, scale, sx, sy, silk_text, rect, True, True, compact_label_y=7.8)
@@ -3176,8 +3206,8 @@ def render_external(devices, instances):
         else:
             start_x, end_x = (0.0, -7.0) if side == "left" else (75.0, 82.0)
         out.append(f'<path d="M{sx(front,start_x):.1f} {sy(front,coordinate):.1f} L{sx(front,end_x):.1f} {sy(front,coordinate):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        # Display spans x=10.25..64.75 mm; these are the exact centres of
-        # the remaining equal 10.25-mm silkscreen gutters.
+        # The selected CTP spans x=9.23..65.77 mm. Side-interface labels use
+        # the remaining unobscured outer gutters, never the screen area.
         if instance in EXTERNAL_SERVICE_BUTTONS:
             label_x = 7.0 if side == "left" else 68.0
         else:
@@ -3385,7 +3415,7 @@ def render_service_access(devices, instances):
 
     # Orientation cues only: the service drawing intentionally suppresses all
     # unrelated controls and RF parts so each recovery interface is legible.
-    out.append(rect(front, 10.25, 11.0, 54.5, 83.0, "#eff6ff", "#93c5fd", rx=5))
+    out.append(rect(front, DISPLAY_X, DISPLAY_Y, DISPLAY_W, DISPLAY_H, "#eff6ff", "#93c5fd", rx=5))
     out.append(text(sx(front, 37.5), sy(front, 53.0), "DISPLAY", 11, "bold", "middle", "#60a5fa"))
     out.append(rect(rear, 17.6, PACK_HOLDER_Y, 39.8, PACK_HOLDER_H, "#ecfdf3", "#86efac", rx=10))
     out.append(text(sx(rear, 37.5), sy(rear, 85.0), "2× 18650", 11, "bold", "middle", "#4ade80"))
@@ -4272,7 +4302,7 @@ def _render_sandwich_legacy(devices, instances):
         r(x_rear_outer, u214_y, u214_z, u214_h, "#ffedd5", "#ea580c", rx=5),
         r(x_rear_outer, connector_y, u214_connector_z, connector_h, "#e0f2fe", "#0369a1", rx=2),
         '</g>',
-        t(x_display + display_z/2, top + height/2, "HMX035CTFT-001", 10, "bold", "middle", "#1d4ed8"),
+        t(x_display + display_z/2, top + height/2, "ER-TFT035IPS-6 + ER-TPC035-6", 10, "bold", "middle", "#1d4ed8"),
         t(x_display + display_z/2, top + height/2 + 17, f"{depth('display'):.1f} mm", 9, anchor="middle", colour="#1d4ed8"),
         t(x_ui + pcb_z/2, top + height + 24, "UI/control PCB · 1.6 mm", 10, "bold", "middle", "#166534"),
         t(x_rf + pcb_z/2, top + height + 44, "RF/power PCB · 1.6 mm", 10, "bold", "middle", "#c2410c"),
@@ -4416,8 +4446,8 @@ def render_sandwich(devices, instances):
             t(panel_x, 140, f"cut plane Y={cut_y:.0f} mm · view from antenna edge", 10.5, colour="#526076"),
             t(px(-4.5) - 24, pz(0) + 5, "FRONT", 9, "bold", "end", "#1d4ed8"),
             t(px(-4.5) - 24, pz(base_rear_z) + 5, "REAR", 9, "bold", "end", "#166534"),
-            r(px(10.25), pz(0), 54.5*x_scale, depth("display")*z_scale, "#dbeafe", "#2563eb", rx=4, extra=' data-instance="display"'),
-            t(px(37.5), pz(2.15), "HMX035CTFT-001", 8.0, "bold", "middle", "#1d4ed8"),
+            r(px(DISPLAY_X), pz(0), DISPLAY_W*x_scale, depth("display")*z_scale, "#dbeafe", "#2563eb", rx=4, extra=' data-instance="display"'),
+            t(px(37.5), pz(2.15), "ER-TFT035IPS-6 + ER-TPC035-6", 8.0, "bold", "middle", "#1d4ed8"),
             r(px(0), pz(pcb_front_z), BOARD_W*x_scale, 1.6*z_scale, "#dcfce7", "#16a34a", rx=1, extra=' data-instance="ui-pcb"'),
             r(px(0), pz(ui_rear_z), BOARD_W*x_scale, 11.0*z_scale, "#f8fafc", "#94a3b8", "5 4", 1, ' data-board-gap-mm="11"'),
             r(px(0), pz(rf_front_z), BOARD_W*x_scale, 1.6*z_scale, "#ffedd5", "#ea580c", rx=1, extra=' data-instance="rf-pcb"'),
@@ -4543,7 +4573,7 @@ def render_top_edge(devices, instances):
         t(30, 84, "Board Y is collapsed in this orthographic projection; the rear view separately proves Cap/battery longitudinal clearance.", 11, colour="#526076"),
         t(x(-4.5)-24, z(0)+5, "FRONT", 9, "bold", "end", "#1d4ed8"),
         t(x(-4.5)-24, z(base_rear_z)+5, "REAR", 9, "bold", "end", "#166534"),
-        r(x(10.25), z(0), 54.5*scale_x, depth("display")*scale_z, "#dbeafe", "#2563eb", rx=4, extra=' data-instance="display"'),
+        r(x(DISPLAY_X), z(0), DISPLAY_W*scale_x, depth("display")*scale_z, "#dbeafe", "#2563eb", rx=4, extra=' data-instance="display"'),
         r(x(0), z(ui_outer_z), BOARD_W*scale_x, 1.6*scale_z, "#dcfce7", "#16a34a", rx=1, extra=' data-instance="ui-pcb"'),
         r(x(0), z(ui_inner_z), BOARD_W*scale_x, 11.0*scale_z, "#f8fafc", "#94a3b8", "5 4", 1, ' data-board-gap-mm="11" data-antenna-bodies="none"'),
         r(x(0), z(rf_inner_z), BOARD_W*scale_x, 1.6*scale_z, "#ffedd5", "#ea580c", rx=1, extra=' data-instance="rf-pcb"'),
@@ -4723,17 +4753,17 @@ def render_display_adapter(design):
         '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
-        label(40, 42, "Leshy2 — replaceable 40-to-40 display adapter", 22, "bold"),
-        label(40, 68, "L2-DISP-ADP-001-A · exact connector bodies and one-to-one electrical map", 11, colour="#526076"),
+        label(40, 42, "Leshy2 — replaceable passive 40-to-50 display adapter", 22, "bold"),
+        label(40, 68, "L2-DISP-ADP-001-B · exact connector bodies and explicit 50-to-40 electrical map", 11, colour="#526076"),
         label(ox, 112, "Panel-facing adapter side · millimetre scale", 14, "bold", colour="#1d4ed8"),
         f'<rect x="{ox:.1f}" y="{oy:.1f}" width="{bw:.1f}" height="{bh:.1f}" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="2"/>',
         component_box(panel, "#dbeafe", "#2563eb"),
         component_box(plug, "#ede9fe", "#7c3aed"),
-        label(tx(12.75), ty(2.9), "FH34SRJ-40S-0.5SH(99)", 9.5, "bold", "middle", "#1d4ed8"),
-        label(tx(12.75), ty(7.65), "DF40C-40DP-0.4V(51) · underside", 8.5, "bold", "middle", "#6d28d9"),
+        label(tx(15.25), ty(2.9), "FH34SRJ-50S-0.5SH(50) · C3169104", 9.5, "bold", "middle", "#1d4ed8"),
+        label(tx(15.25), ty(7.65), "DF40C-40DP-0.4V(51) · underside", 8.5, "bold", "middle", "#6d28d9"),
         f'<path d="M{tx(1.75):.1f} {ty(2.7):.1f} L{tx(-2.5):.1f} {ty(2.7):.1f}" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>',
         label(tx(-2.9), ty(2.25), "DISPLAY FPC", 8.8, "bold", "end", "#b42318"),
-        label(ox + bw/2, oy + bh + 26, "25.5 × 12.0 × 0.8 mm adapter PCB", 11, "bold", "middle"),
+        label(ox + bw/2, oy + bh + 26, f"{float(board['width_mm']):.1f} × {float(board['height_mm']):.1f} × {float(board['thickness_mm']):.1f} mm adapter PCB", 11, "bold", "middle"),
         label(545, 112, "Front-to-rear stack", 14, "bold", colour="#166534"),
     ]
 
@@ -4753,16 +4783,16 @@ def render_display_adapter(design):
         f'<rect x="{sx0+15:.1f}" y="{base_y-mate_h-pcb_h:.1f}" width="205" height="{pcb_h:.1f}" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>',
         label(sx0 + 230, base_y-mate_h-pcb_h/2+4, "0.8-mm adapter", 10, "bold"),
         f'<rect x="{sx0+25:.1f}" y="{base_y-mate_h-pcb_h-panel_h:.1f}" width="185" height="{panel_h:.1f}" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>',
-        label(sx0 + 117.5, base_y-mate_h-pcb_h-panel_h/2+4, "FH34SRJ-40S-0.5SH(99)", 8.8, "bold", "middle"),
+        label(sx0 + 140.0, base_y-mate_h-pcb_h-panel_h/2+4, "FH34SRJ-50S-0.5SH(50)", 8.8, "bold", "middle"),
         label(555, 390, f"Selected height to panel-connector top: {stack['ui_board_to_panel_connector_top_mm']:.1f} mm", 11, "bold"),
         label(555, 413, f"Available inner gap: {stack['available_interboard_gap_mm']:.1f} mm", 11),
         label(555, 455, "Electrical contract", 14, "bold"),
-        label(555, 480, "UI PIN_n ↔ adapter PIN_n ↔ panel PIN_n, n = 1…40", 11, "bold", colour="#166534"),
-        label(555, 503, "No active device and no pin remapping on the adapter.", 10.5),
-        label(555, 526, "Dual-contact ZIF removes exposed-contact-side dependence.", 10.5),
+        label(555, 480, "50 panel contacts map explicitly to the fixed 40-contact UI mate.", 11, "bold", colour="#166534"),
+        label(555, 503, "Unused RGB pins are grounded/open; i8080-8, touch and power stay direct.", 10.5),
+        label(555, 526, "No active device: a replacement panel changes only this small adapter.", 10.5),
         label(555, 549, "Tail thickness/outline remains a received-display H5 fit check.", 10.5, "bold", colour="#b42318"),
         label(40, 590, "H1 result", 14, "bold", colour="#166534"),
-        label(140, 590, "main UI PCB bay, exact DF40 mate and 40-contact mapping are fixed without buying a display", 11, "bold", colour="#166534"),
+        label(140, 590, "exact EastRising tail, stocked 50-pin ZIF and passive 40-to-50 map are fixed before purchase", 11, "bold", colour="#166534"),
         label(40, 620, "H5 boundary", 14, "bold", colour="#b42318"),
         label(140, 620, "a received tail may revise only this small adapter and its panel-side connector", 11, colour="#b42318"),
         '</svg>',
@@ -5253,7 +5283,7 @@ def build_unified_coordinate_table(
             },
             "remaining_gates": [
                 "H5 received E01-ML01IPX connector axes and cable bend/retention coupons",
-                "H5 received HMX035CTFT-001 FPC tail and bend path",
+                "H5 current-lot ER-TFT035IPS-6/ER-TPC035-6 FPC conformity and factory insertion acceptance",
                 "KiCad footprint-level copper/via routing and DRC",
                 "assembled tolerance stack and HIL",
             ],
@@ -5269,7 +5299,7 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
     function_button_w, function_button_h = placement_size(
         SIDE_FUNCTION_CONTROLS[0], devices, instances
     )
-    display_x = 10.25
+    display_x = DISPLAY_X
     display_right = display_x + float(display["dimensions_mm"][0])
     left_display_clearance = display_x - (
         SIDE_FUNCTION_CONTROLS[0].x + function_button_w

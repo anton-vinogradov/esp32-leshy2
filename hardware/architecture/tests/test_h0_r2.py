@@ -37,13 +37,14 @@ class H0R2ArchitectureTest(unittest.TestCase):
 
     def test_display_is_direct_i8080_and_clock_is_legal(self):
         display = self.data["display_contract"]
-        self.assertEqual(32_000_000, display["selected_clock_hz"])
+        self.assertEqual(24_000_000, display["selected_clock_hz"])
         self.assertLessEqual(display["selected_clock_hz"], display["controller_limit_hz"])
-        self.assertEqual(32.0, display["payload_mb_s"])
+        self.assertEqual(24.0, display["payload_mb_s"])
         calculated = display["full_frame_bytes"] / (display["payload_mb_s"] * 1_000_000) * 1000
         self.assertAlmostEqual(display["full_frame_wire_ms"], calculated, places=6)
         self.assertIn("i8080", display["interface"])
-        self.assertIn("QSPI", display["fallback"])
+        self.assertIn("4-wire serial", display["fallback"])
+        self.assertIn("not QSPI", display["fallback"])
         lcd = [row["net"] for row in self.data["s3"]["pin_map"] if row["net"].startswith("LCD_DB")]
         self.assertEqual([f"LCD_DB{i}" for i in range(8)], sorted(lcd, key=lambda x: int(x[6:])))
 

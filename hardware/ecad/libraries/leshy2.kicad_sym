@@ -21889,7 +21889,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Description" "full-function nRF24 radio #1; rotated for U214 tail clearance"
+				(property "Description" "superseded R1 nRF24 #1 seed; displaced clear of the current CC reference zone"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -24245,7 +24245,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Description" "full-function nRF24 radio #2"
+				(property "Description" "superseded R1 nRF24 #2 seed; displaced clear of the current CC reference zone"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -58117,7 +58117,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Description" "raw_display_touch_assembly_with_integrated_sitronix_st77922_tddi"
+				(property "Description" "configured_raw_lcd_and_bonded_capacitive_touch_assembly"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)

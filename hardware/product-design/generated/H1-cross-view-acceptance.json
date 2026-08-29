@@ -132,7 +132,7 @@
   },
   "remaining_gates": [
     "H5 received E01-ML01IPX connector axes and cable bend/retention coupons",
-    "H5 received HMX035CTFT-001 FPC tail and bend path",
+    "H5 current-lot ER-TFT035IPS-6/ER-TPC035-6 FPC conformity and factory insertion acceptance",
     "KiCad footprint-level copper/via routing and DRC",
     "assembled tolerance stack and HIL"
   ]

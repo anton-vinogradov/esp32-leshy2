@@ -2,7 +2,7 @@
 
 H0-R2 is the new functional baseline: UI and display remain local to S3, high-throughput peripheral work is offloaded through the Hub RP, analog FPV remains receive-only, and 118–137 MHz Airband AM is now mandatory.
 
-> The exact current marker is **H1-R2.32**: H0/H1 now agree on two independent RP2354B domains, exact GPIO0..47 maps and five M1 endpoints; the C5 electrical pin/mux contract and the 43-body Cap/evidence coordinate register are joined. The old single-RP G2F/H2 projection remains historical R1 evidence only. New R2 H2/KiCad stays blocked on the live C11355 route, the exact service-VBUS detector/latch MPN and the Pack/Safety I2C powered-off-Ioff boundary; the complete mock-up can be accepted only after three physical H1 blockers close.
+> The exact current marker is **H1-R2.33**: H0/H1 now agree on two independent RP2354B domains, exact GPIO0..47 maps and five M1 endpoints; the C5 electrical pin/mux contract and complete 218-body physical projection are joined. The serial EastRising display, U219, NFC loop and antenna swept volume are closed; the mock-up waits for explicit acceptance. The old single-RP G2F/H2 projection remains historical R1 evidence only. New R2 H2/KiCad stays blocked on the live C11355 route, the exact service-VBUS detector/latch MPN and the Pack/Safety I2C powered-off-Ioff boundary.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 
@@ -10,7 +10,7 @@ H0-R2 is the new functional baseline: UI and display remain local to S3, high-th
 
 - One user port is labelled `FM / SW / AIR RX`; no new external connector is added.
 - Airband is a `BROADCAST_RX` submode, so its RF domain cannot run together with FPV or a TX group.
-- Buttons stay on the S3-local TCA9539PWR path while encoder and USB remain direct; direct i8080-8 provides 32 MB/s while camera RX runs independently.
+- Buttons stay on the S3-local TCA9539PWR path while encoder and USB remain direct; direct i8080-8 provides 24 MB/s at the ILI9488-safe 24 MHz while camera RX runs independently.
 - The front RP owns three nRF24 paths and microSD; the rear RP owns Si4732/Airband, CC1101, voice, audio, FPV, M5 and exactly one U214/U219 profile.
 - M1 carries one CVBS signal, control/status and power; the 11-line LCD_CAM bus stays local to S3.
 

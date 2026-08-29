@@ -45,7 +45,7 @@
     }
   ],
   "retained_capabilities": [
-    {"id": "UI", "owner": "s3", "result": "HMX035CTFT-001, touch, sixteen ordinary UI inputs through the S3-local TCA9539PWR and a direct encoder remain local to S3; no UI event crosses RP IPC"},
+    {"id": "UI", "owner": "s3", "result": "ER-TFT035IPS-6 + ER-TPC035-6, touch, sixteen ordinary UI inputs through the S3-local TCA9539PWR and a direct encoder remain local to S3; no UI event crosses RP IPC"},
     {"id": "DISPLAY", "owner": "s3", "result": "dedicated direct 8-bit i8080 with LCD_CAM TX and GDMA; panel CS is hard-selected, TE/backlight control is front-Hub-local and microSD is independent"},
     {"id": "FPV", "owner": "s3+rf_rp", "result": "rear K331 receiver sends one 75-ohm CVBS net through M1 to a UI-board decoder beside S3; the 8-bit LCD_CAM bus stays local"},
     {"id": "NATIVE-S3", "owner": "s3", "result": "2.4-GHz Wi-Fi, BLE and ESP-NOW retained"},
@@ -250,20 +250,20 @@
     }
   ],
   "display_contract": {
-    "panel": "HMX035CTFT-001 with ST77922",
-    "interface": "dedicated direct i8080-8 (Intel 8080) on S3 LCD_CAM TX with GDMA; D0..D7, WR and DC are direct, CS is hard-low because the bus is exclusive, RD is hard-high, IM[2:0]=111, reset remains on the local slow-I/O output, and front Hub captures TE plus drives reset-off backlight PWM",
-    "controller_limit_hz": 38461538,
-    "controller_limit_basis": "ST77922 preliminary v0.1 table 7.4.1 specifies a 26-ns minimum 8080 write cycle and 13-ns minimum WR high/low widths; 32 MHz gives a 31.25-ns cycle and 15.625-ns half-period.",
-    "s3_supported_sources": "ESP32-S3 LCD_CAM has separate LCD TX and camera RX control units, supports simultaneous external LCD and camera connection, an 8-bit i8080 output and GDMA. The selected 32-MHz write clock is below both the S3 8-bit-i80 guidance and ST77922 timing limit.",
-    "selected_clock_hz": 32000000,
-    "payload_mb_s": 32.0,
+    "panel": "EastRising ER-TFT035IPS-6 configured with ER-TPC035-6 capacitive touch; ILI9488 + FT6236",
+    "interface": "dedicated direct i8080-8 (Intel 8080) on S3 LCD_CAM TX with GDMA; D0..D7, WR and DC are direct, CS is hard-low because the bus is exclusive, RD is hard-high, IM[2:0]=011, reset remains on the local slow-I/O output, and front Hub captures TE plus drives reset-off backlight PWM",
+    "controller_limit_hz": 25000000,
+    "controller_limit_basis": "ILI9488 v1.00 section 17.4.1 specifies a 40-ns minimum DBI Type-B write cycle and 15-ns minimum WR high/low widths; 24 MHz gives a 41.667-ns cycle and 20.833-ns nominal half-period.",
+    "s3_supported_sources": "ESP32-S3 LCD_CAM has separate LCD TX and camera RX control units, supports simultaneous external LCD and camera connection, an 8-bit i8080 output and GDMA. The selected 24-MHz write clock is below both the S3 8-bit-i80 capability and the exact ILI9488 timing limit.",
+    "selected_clock_hz": 24000000,
+    "payload_mb_s": 24.0,
     "full_frame_bytes": 307200,
-    "full_frame_wire_ms": 9.6,
-    "video_window": "320x240 RGB565 at 30 fps is 4.608 MB/s and 14.4% of the selected i8080 payload",
+    "full_frame_wire_ms": 12.8,
+    "video_window": "320x240 RGB565 at 30 fps is 4.608 MB/s and 19.2% of the selected i8080 payload",
     "gpio_closure": "All 33 exposed S3 GPIO are assigned: 11 camera RX, 10 direct i8080 outputs, 5 chip-select-free S3-Hub quad data/clock, 2 UI I2C, 2 USB, 2 encoder and 1 wired-OR UI/Hub alert. TE and backlight PWM consume Hub GPIO45/46 instead of S3 pins.",
-    "fallback": "The same 40-contact HMX035CTFT-001 tail still exposes the former QSPI contacts. A build-option QSPI strap/zero-ohm population is retained only as first-prototype recovery if simultaneous LCD_CAM TX/RX or the i8080 timing gate fails; it is not the preferred production interface.",
-    "maximality_result": "Direct i8080-8 is 1.6x faster than the previous legal 40-MHz QSPI wire rate without adding a processor, moving buttons off S3 or sharing display traffic with storage/radio IPC.",
-    "hil": "Before fabrication, compile and run the simultaneous LCD_TX/CAM_RX DMA harness on the emulator-supported register model. H5 then proves ST77922 IM straps, 32-MHz edges, TE timestamp latency, full-frame/dirty-region timing and live BT.656 capture; 36 MHz is measurement-only and never assumed."
+    "fallback": "The exact 50-contact panel also exposes ILI9488 4-wire serial mode. A deliberate adapter strap revision can select it only as first-prototype recovery if simultaneous LCD_CAM TX/RX or the i8080 timing gate fails; it is ordinary serial SPI, not QSPI, and is not the preferred interface.",
+    "maximality_result": "Direct i8080-8 at the exact panel-safe 24 MHz is 1.2x faster than the former 40-MHz four-lane QSPI wire rate without adding a processor, moving buttons off S3 or sharing display traffic with storage/radio IPC.",
+    "hil": "Before fabrication, compile and run the simultaneous LCD_TX/CAM_RX DMA harness on the emulator-supported register model. H5 then proves ILI9488 IM straps, 24-MHz edges, TE timestamp latency, full-frame/dirty-region timing and live BT.656 capture; 25 MHz is the controller limit and never assumed as a production clock."
   },
   "video_contract": {
     "rf": "replaceable exact serial analog 5.8-GHz receiver module; generic RX5808 is evidence input, not an accepted MPN",
@@ -357,7 +357,7 @@
     "hub_gpio": "46 used / 2 free",
     "rf_rp_gpio": "44 used / 4 free",
     "interboard": "80 contacts: 25 live signals, 14 main-power, 2 AON, 25 defined returns and 14 NC reserves; M1 carries no structural load",
-    "display": "direct 8-bit i8080 at a conservative 32 MHz with simultaneous LCD_TX/CAM_RX GDMA; QSPI is recovery-only",
+    "display": "direct 8-bit i8080 at an exact-panel-safe 24 MHz with simultaneous LCD_TX/CAM_RX GDMA; 4-wire serial is adapter-revision recovery only",
     "ui": "local interrupt-driven S3 ownership, no IPC",
     "video": "direct capture path with exact active decoder and replaceable receiver boundary",
     "open_h1_gates": [

@@ -18,7 +18,7 @@ OUTPUT = REPO / "hardware/verification/generated/H5-EVR03-irreducible-sample-bas
 DOC_EN = REPO / "docs/component-sample-basket.md"
 DOC_RU = REPO / "docs/component-sample-basket.ru.md"
 LEGACY_PLAN = REPO / "hardware/procurement/pre-kicad-sample-plan.md"
-CHECKED_ON = "2026-08-26"
+CHECKED_ON = "2026-08-29"
 
 
 def article(
@@ -67,7 +67,7 @@ def article(
 
 
 ARTICLES = [
-    article("production-display-gate", "display", "EXACT PRODUCTION PANEL — UNRESOLVED", 1, None, "factory_quote_required", "QDtech HMX035CTFT-001 legacy electrical evidence", "https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf", "not selected; exact production-panel identity, factory mating and final-assembly feasibility await written confirmation", ["H3-PHY-017", "H5-MECH-DISPLAY-TAIL", "H5-MECH-DISPLAY-PERFORMANCE"], "exactly one production panel is installed in the one finished prototype; any extra panels, connectors or flex parts are factory attrition in the quote, never user-purchased samples", order_unit="factory-installed panel", risk="HMX035CTFT-001 and its complete donors are legacy electrical/mechanical evidence only and are rejected as the procurement route. The factory must quote an exact production panel without silently changing the accepted endpoint."),
+    article("production-display", "display", "EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344", 1, "14.91", "published_usd", "BuyDisplay exact product page", "https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen", "listed in stock; one-piece price published; exact panel/touch drawings and interface table available", ["H3-PHY-017", "H5-MECH-DISPLAY-TAIL", "H5-MECH-DISPLAY-PERFORMANCE"], "exactly one production panel is installed and mated in the finished prototype; the exact FH34SRJ-50S-0.5SH(50) board connector is populated during PCBA", order_unit="factory-installed panel", risk="The panel identity and electrical/mechanical endpoint are fixed. Only written acceptance of adhesive/FPC handling and final mating by the selected assembler remains an H5 supplier gate; HMX035CTFT-001 stays legacy evidence only."),
 
     article("u214", "expansion", "M5Stack U214 Cap LoRa-1262", 1, "14.50", "published_usd", "M5Stack official store", "https://shop.m5stack.com/products/cap-lora-1262", "listed in stock", ["H3-PHY-046", "H5-MECH-U214-MATING-STACK"], "the same non-destructive unit closes identity, dimensions, mating and functional checks"),
     article("u214-host-socket", "expansion", "Samtec HLE-107-02-G-DV-PE-LC", 1, "3.338", "published_usd", "Samtec exact product page", "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc", "manufacturer orderable", ["H3-PHY-046", "H5-MECH-U214-MATING-STACK"], "one production host socket is the actual mixed-pair mate; the former quantity five was spare stock, not evidence"),
@@ -109,7 +109,7 @@ ARTICLES = [
 
 
 MEASUREMENTS = [
-    {"id": "H5-MSR-DISPLAY", "articles": ["production-display-gate"], "evidence": ["H3-PHY-017", "H5-MECH-DISPLAY-TAIL", "H5-MECH-DISPLAY-PERFORMANCE"], "method": "the factory installs and mates the selected documented production panel in the sole finished prototype from the released production package, without batteries and without making engineering choices; the owner performs the first full USB-powered bring-up and records known-image, backlight and touch results", "pass_rule": "the production package makes panel identity, mating, retention and assembly deterministic; written factory feasibility is obtained before order, while any paid pre-shipment Function Test is optional quote-only insurance and never a release gate", "artifacts": "controlled panel identity/drawing, deterministic mating and assembly instructions, factory assembly record, owner USB bring-up image/backlight/touch traces and signed result"},
+    {"id": "H5-MSR-DISPLAY", "articles": ["production-display"], "evidence": ["H3-PHY-017", "H5-MECH-DISPLAY-TAIL", "H5-MECH-DISPLAY-PERFORMANCE"], "method": "the factory installs and mates exact ER-TFT035IPS-6 + ER-TPC035-6 option 5344 through exact FH34SRJ-50S-0.5SH(50) in the sole finished prototype; the owner performs first USB-powered bring-up and records known-image, backlight and touch results", "pass_rule": "the released drawing, connector, mating, retention and assembly steps are deterministic; written adhesive/FPC/final-mating feasibility is obtained before order, while any paid pre-shipment Function Test is optional quote-only insurance and never a release gate", "artifacts": "controlled panel and connector identities/drawings, deterministic assembly instructions, factory assembly record, owner USB bring-up image/backlight/touch traces and signed result"},
     {"id": "H5-MSR-U214", "articles": ["u214", "u214-host-socket"], "evidence": ["H3-PHY-046", "H5-MECH-U214-MATING-STACK"], "method": "measure the fitted U214 posts and exact HLE; during ordinary assembly/disassembly record all 14 continuities, bottoming clearance, rail preload, screw retention and visual condition without a prescribed force or cycle programme", "pass_rule": "the mixed U214/HLE pair mates without yield or bottoming, retains every contact and preserves the protected hot-plug sequence", "artifacts": "metrology, continuity log and installed photos"},
     {"id": "H5-MSR-M5", "articles": ["m5-host-header-pack", "m5-short-cable", "m5-boundary-cable", "m5-instrument-cable"], "evidence": ["H3-PHY-048", "H5-MECH-M5-UNIT-MATE"], "method": "measure connector/cable geometry, inspect ordinary mating and strain relief, and run I2C, UART, GPIO and 1-Wire profiles through TXS0102 at short and boundary lengths with the breakout attached", "pass_rule": "ordinary mating, retention, strain relief, pull networks and waveforms satisfy each admitted profile; unsupported motor/actuator loads remain excluded", "artifacts": "cable photos/lengths, continuity records and oscilloscope captures"},
     {"id": "H5-MSR-RF5", "articles": ["nrf-modules", "rf-jumpers", "rf-board-receptacles", "edge-sma"], "evidence": ["H3-PHY-053", "H3-PHY-062", "H5-MECH-NRF-GEN1-FEEDS", "H5-MECH-NATIVE-RF-JUMPERS"], "method": "inspect all E01 factory receptacles; assemble the five U.FL cable paths and edge SMA boundaries normally; inspect bend, retention and strain relief, verify continuity and S-parameters, then run all three nRF24 simultaneously in full RX, TX and mixed modes with every inactive interface hardware-quiet", "pass_rule": "all five paths meet inherited loss/match and retention limits, all three nRF24 meet concurrent deadlines without neighbouring-interface stalls or desense", "artifacts": "microscope photos, continuity records, five VNA touchstone sets and 3R/1T2R/2T1R/3T traffic traces"},
@@ -156,17 +156,14 @@ def build() -> dict:
         "every_selected_identity_is_exact": all(
             row["mpn"] and "UNRESOLVED" not in row["mpn"].upper()
             for row in ARTICLES
-            if row["id"] != "production-display-gate"
         ),
-        "production_display_is_one_unresolved_factory_gate": [
+        "production_display_is_one_exact_priced_factory_installed_panel": [
             (row["order_quantity"], row["pricing"]["unit_usd"], row["order_unit"])
             for row in ARTICLES
-            if row["id"] == "production-display-gate"
-        ] == [(1, None, "factory-installed panel")],
+            if row["id"] == "production-display"
+        ] == [(1, "14.91", "factory-installed panel")],
         "every_quantity_has_an_explicit_minimum_basis": all(row["order_quantity"] > 0 and row["minimum_quantity_basis"] for row in ARTICLES),
-        "only_production_display_waits_for_factory_quote": {
-            row["id"] for row in unpriced
-        } == {"production-display-gate"},
+        "no_selected_article_has_unpriced_identity": not unpriced,
         "both_selected_voice_variants_are_in_the_integrated_manifest": {"voice-uhf-module", "voice-vhf-module"} <= article_ids,
         "voice_prices_match_reviewed_jlcpcb_routes": {
             row["mpn"]: row["pricing"]["unit_usd"]
@@ -183,13 +180,13 @@ def build() -> dict:
     return {
         "schema_version": 2,
         "stage": "H5.0.3-R1",
-        "status": "draft_order_integrated_manifest_factory_response_pending",
+        "status": "draft_order_integrated_manifest_exact_display_selected_factory_response_pending",
         "checked_on": CHECKED_ON,
         "purpose": "one order-integrated article manifest for the sole fully assembled Leshy2 prototype plus H7/H8 owner evidence contracts; no device batch, separate sample purchase or purchase authorization",
         "procurement_target": {
             "finished_device_quantity": 1,
             "deliverable": "one fully assembled Leshy2 prototype built without factory engineering choices",
-            "display": "one exact production panel selected later, installed and mated by the factory in that prototype",
+            "display": "one exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344 panel, installed and mated by the factory in that prototype",
             "first_power_on": "owner USB-powered bring-up after delivery: known image, backlight and touch",
             "factory_function_test": "optional quote-only insurance; not required and not a release gate",
             "batteries_included": False,
@@ -212,9 +209,9 @@ def build() -> dict:
             "conservative_budget_caps_usd": f"{budget_total:.2f}",
             "known_engineering_material_budget_usd": f"{total:.2f}",
             "unpriced_manufacturer_lines": len(unpriced),
-            "excluded_from_budget": ["exact production panel and factory attrition", "SA818S-V pre-order freight/lead-time charge", "J4-F box-build", "J4-P kit/packing", "freight", "tax", "customs", "general laboratory instruments and ordinary passives"],
+            "excluded_from_budget": ["factory display attrition", "SA818S-V pre-order freight/lead-time charge", "J4-F box-build", "J4-P kit/packing", "freight", "tax", "customs", "general laboratory instruments and ordinary passives"],
             "former_parked_plan_usd": "164.54 for only a partial eight-line lot",
-            "comparison_note": "The priced subtotal excludes the unresolved production panel and all factory attrition; these lines form the integrated sole-prototype/bring-up manifest, not a separate sample basket or device batch.",
+            "comparison_note": "The priced subtotal includes the exact one-piece production panel and excludes only factory attrition and services; these lines form the integrated sole-prototype/bring-up manifest, not a separate sample basket or device batch.",
         },
         "group_budget_usd": {key: f"{value:.2f}" for key, value in sorted(groups.items())},
         "articles": ARTICLES,
@@ -309,7 +306,7 @@ def render_doc(data: dict, russian: bool) -> str:
 
 [English](component-sample-basket.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Предыдущий поиск](component-source-research.ru.md)
 
-Цель `H5.0.3-R1` — один order-integrated manifest для ровно **одного полностью собранного прототипа Leshy2** и его обычных bring-up accessories. Отдельной закупки engineering samples и отдельной H5 coupon-платы нет. Manifest объединяет установленные фабрикой production parts, принятые фабрикой packed accessories и обычные owner-supplied operating items; это не второй коммерческий заказ. Фабрика по закрытому production package устанавливает и стыкует один документированный production panel без инженерных догадок. Первый полный power-on и USB bring-up изображения, подсветки и touch выполняет владелец в H7; физическая квалификация продолжается на том же прототипе в H8. Платный factory Function Test — только optional quote-insurance, а не gate. Аккумуляторы не устанавливаются и не поставляются. HMX035CTFT-001 и полные donor-board остаются только legacy evidence и не являются маршрутом закупки. [JLCPCB Standard PCBA остаётся неэксклюзивным производственным ориентиром](manufacturing-platform.ru.md). Закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication пока не разрешены.
+Цель `H5.0.3-R1` — один order-integrated manifest для ровно **одного полностью собранного прототипа Leshy2** и его обычных bring-up accessories. Отдельной закупки engineering samples и отдельной H5 coupon-платы нет. Manifest объединяет установленные фабрикой production parts, принятые фабрикой packed accessories и обычные owner-supplied operating items; это не второй коммерческий заказ. Фабрика по закрытому production package устанавливает и стыкует точный `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 через `FH34SRJ-50S-0.5SH(50)` без инженерных догадок. Первый полный power-on и USB bring-up изображения, подсветки и touch выполняет владелец в H7; физическая квалификация продолжается на том же прототипе в H8. Платный factory Function Test — только optional quote-insurance, а не gate. Аккумуляторы не устанавливаются и не поставляются. HMX035CTFT-001 и полные donor-board остаются только legacy evidence и не являются маршрутом закупки. [JLCPCB Standard PCBA остаётся неэксклюзивным производственным ориентиром](manufacturing-platform.ru.md). Закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication пока не разрешены.
 
 ```mermaid
 flowchart TD
@@ -330,7 +327,7 @@ flowchart TD
 - **${summary['known_engineering_material_budget_usd']}** — известный консервативный material budget для всех priced lines.
 - Внутри него **${summary['published_price_subtotal_usd']}** — публичные USD-цены и **${summary['conservative_budget_caps_usd']}** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
 - В сумму включены exact `SA818S-U` `C3001549` за `$9.7347` и exact `SA818S-V` `C51897911` за `$10.0710`; у VHF-модуля stock `0`, MOQ 1 и типичные 8–15 рабочих дней, а final quote/lead остаются order-time gate.
-- Не включены exact production panel, factory attrition, финальная сборка/FCT, доставка, налоги и таможня. Любые дополнительные экземпляры дисплея или коннекторов входят в attrition фабричного quote, а не в пользовательские samples; отдельного H5 coupon-заказа нет.
+- Точный production panel по публичной цене `$14.91` включён; не включены только factory attrition, финальная сборка/FCT, доставка, налоги и таможня. Любые дополнительные экземпляры дисплея или коннекторов входят в attrition фабричного quote, а не в пользовательские samples; отдельного H5 coupon-заказа нет.
 - Старая сумма `$164.54` была не дешёвой полной корзиной, а неполным набором из восьми строк; она не покрывала большинство H5 gates.
 
 ## Что входит в единый manifest
@@ -353,7 +350,7 @@ flowchart TD
 
 [Русский](component-sample-basket.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Previous research](component-source-research.md)
 
-The `H5.0.3-R1` target is one order-integrated manifest for exactly **one fully assembled Leshy2 prototype** and its ordinary bring-up accessories. There is no separate engineering-sample purchase and no separate H5 coupon board. The manifest joins factory-installed production parts, accepted factory-packed accessories and ordinary owner-supplied operating items; it is not a second commercial order. From the released production package, the factory installs and mates one documented production panel without making engineering guesses. The owner performs first full USB image/backlight/touch bring-up in H7 and continues physical qualification on that same prototype in H8. Paid factory Function Test is optional quote-only insurance, not a gate. Batteries are neither installed nor supplied. HMX035CTFT-001 and complete donor boards remain legacy evidence only and are rejected as the procurement route. [JLCPCB Standard PCBA remains the non-exclusive manufacturing reference](manufacturing-platform.md). Purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication remain unauthorized.
+The `H5.0.3-R1` target is one order-integrated manifest for exactly **one fully assembled Leshy2 prototype** and its ordinary bring-up accessories. There is no separate engineering-sample purchase and no separate H5 coupon board. The manifest joins factory-installed production parts, accepted factory-packed accessories and ordinary owner-supplied operating items; it is not a second commercial order. From the released production package, the factory installs and mates exact `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 through `FH34SRJ-50S-0.5SH(50)` without making engineering guesses. The owner performs first full USB image/backlight/touch bring-up in H7 and continues physical qualification on that same prototype in H8. Paid factory Function Test is optional quote-only insurance, not a gate. Batteries are neither installed nor supplied. HMX035CTFT-001 and complete donor boards remain legacy evidence only and are rejected as the procurement route. [JLCPCB Standard PCBA remains the non-exclusive manufacturing reference](manufacturing-platform.md). Purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication remain unauthorized.
 
 ```mermaid
 flowchart TD
@@ -374,7 +371,7 @@ flowchart TD
 - **${summary['known_engineering_material_budget_usd']}** is the known conservative material budget for every priced line.
 - It contains **${summary['published_price_subtotal_usd']}** of published USD prices and **${summary['conservative_budget_caps_usd']}** of conservative caps for two cheap IR parts whose live pages expose AUD/INR prices.
 - The total includes exact `SA818S-U` `C3001549` at `$9.7347` and exact `SA818S-V` `C51897911` at `$10.0710`; the VHF module has zero stock, MOQ 1 and a typical 8–15-working-day lead, while final quote/lead remain an order-time gate.
-- The exact production panel, factory attrition, final assembly/FCT, freight, taxes and customs are excluded. Any additional display or connector units belong to the factory attrition quote, not to user samples; there is no separate H5 coupon order.
+- The exact production panel is included at its published `$14.91` one-piece price; only factory attrition, final assembly/FCT, freight, taxes and customs are excluded. Any additional display or connector units belong to the factory attrition quote, not to user samples; there is no separate H5 coupon order.
 - The former `$164.54` was not a cheaper complete basket: it covered only eight partial lines and omitted most H5 gates.
 
 ## Integrated order and bring-up articles
@@ -447,7 +444,7 @@ def main() -> None:
         f"{data['summary']['article_lines']} article lines and "
         f"{data['summary']['measurement_contracts']} measurement contracts; "
         f"known material budget ${data['summary']['known_engineering_material_budget_usd']}; "
-        "no separate sample/coupon order; production-panel/factory-attrition quote and remaining factory gates open"
+        "no separate sample/coupon order; exact production panel selected, factory-attrition and remaining factory gates open"
     )
 
 

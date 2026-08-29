@@ -10,10 +10,10 @@
 
 - **1053** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **1052** supplied/costed placements collapse to **210** used exact-device/MPN lines.
-- Current orderability evidence exists for **209/210** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **199/210** lines.
-- Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **1034/1052** supplied placements; their partial subtotals are `base_product` — USD 235.3511. These are coverage diagnostics, not product COGS.
+- Current orderability evidence exists for **210/210** used lines; **0** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **200/210** lines.
+- Of the remaining **10** unpriced lines, **10** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **1035/1052** supplied placements; their partial subtotals are `base_product` — USD 248.3651. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **210/210** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -330,13 +330,14 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `alps_skrtlae010` — `Alps Alpine SKRTLAE010`.
   - `ck_js102011scqn` — `C&K JS102011SCQN`.
   - `davies_1227_j` — `Davies Molding 1227-J`.
+  - `eastrising_er_tft035ips_6_ctp` — `EastRising ER-TFT035IPS-6 + ER-TPC035-6`.
   - `gct_rfpc_sma31_fn_175_a` — `GCT RFPC-SMA31-FN-175-A`.
   - `gct_rfpc_sma32_fn_175_a` — `GCT RFPC-SMA32-FN-175-A`.
   - `gct_usb4105_gf_a` — `GCT USB4105-GF-A`.
   - `hirose_df40c_2_0_40ds_0_4v_51` — `Hirose DF40C(2.0)-40DS-0.4V(51)`.
   - `hirose_df40c_40dp_0_4v_51` — `Hirose DF40C-40DP-0.4V(51)`.
   - `hirose_dm3at_sf_pejm5` — `Hirose DM3AT-SF-PEJM5`.
-  - `hirose_fh34srj_40s_0_5sh_99` — `Hirose FH34SRJ-40S-0.5SH(99)`.
+  - `hirose_fh34srj_50s_0_5sh_50` — `Hirose FH34SRJ-50S-0.5SH(50)`.
   - `hirose_fx8c_80p_sv1_92` — `Hirose FX8C-80P-SV1(92)`.
   - `hirose_fx8c_80s_sv5_92` — `Hirose FX8C-80S-SV5(92)`.
   - `hirose_ufl_r_smt_1_10` — `Hirose U.FL-R-SMT-1(10)`.
@@ -344,7 +345,6 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `keystone_1048p` — `Keystone Electronics 1048P`.
   - `omron_b3s_1100p` — `OMRON B3S-1100P`.
   - `pui_as02404po` — `PUI Audio AS02404PO`.
-  - `qdtech_hmx035ctft_001` — `HMX035CTFT-001 (QDtech schematic assembly marking)`.
   - `same_sky_cmej_0413_42_smt_tr` — `Same Sky CMEJ-0413-42-SMT-TR`.
   - `same_sky_sj_43504_smt_tr` — `Same Sky SJ-43504-SMT-TR`.
   - `samtec_ftsh_105_01_l_dv_k_p_tr` — `Samtec FTSH-105-01-L-DV-K-P-TR`.
@@ -512,6 +512,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>EastRising ER-TFT035IPS-6 + ER-TPC035-6</code> — 1 × USD 14.9100 = USD 14.9100</summary>
+
+- Device id: `eastrising_er_tft035ips_6_ctp`.
+- Scope: `base_product`.
+- Comparable basis: conservative quantity-1 base USD 9.34 plus exact capacitive-touch-controller option USD 5.57; quantity-10 configured material USD 14.67 each; target quantity `100`.
+- Checked: `2026-08-29`; [published source](https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen).
+
+</details>
+
 <details><summary><code>Seiko Epson Q13FC13500005</code> — 1 × USD 0.2154 = USD 0.2154</summary>
 
 - Device id: `epson_q13fc13500005`.
@@ -611,12 +620,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Hirose FH34SRJ-40S-0.5SH(99)</code> — 1 × USD 2.4600 = USD 2.4600</summary>
+<details><summary><code>Hirose FH34SRJ-50S-0.5SH(50)</code> — 1 × USD 0.5832 = USD 0.5832</summary>
 
-- Device id: `hirose_fh34srj_40s_0_5sh_99`.
+- Device id: `hirose_fh34srj_50s_0_5sh_50`.
 - Scope: `base_product`.
-- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-23`; [published source](https://www.mouser.com/ProductDetail/Hirose-Connector/FH34SRJ-40S-0.5SH99?qs=vcbW%252B4%252BSTIq%252BjF2my2YV5Q%3D%3D).
+- Comparable basis: conservative JLCPCB exact C3169104 quantity-1 tier; quantity-10 tier USD 0.4711; target quantity `100`.
+- Checked: `2026-08-29`; [published source](https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104).
 
 </details>
 
@@ -872,12 +881,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Murata GRM155R71H103KA88D</code> — 8 × USD 0.0121 = USD 0.0968</summary>
+<details><summary><code>Murata GRM155R71H103KA88D</code> — 8 × USD 0.0097 = USD 0.0776</summary>
 
 - Device id: `murata_grm155r71h103ka88d`.
 - Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM155R71H103KA88D/1033252).
+- Comparable basis: conservative JLCPCB one-piece tier; displayed stock 675,981; target quantity `100`.
+- Checked: `2026-08-29`; [published source](https://jlcpcb.com/partdetail/MurataElectronics-GRM155R71H103KA88D/C77019).
 
 </details>
 
@@ -2217,15 +2226,6 @@ These entries are intentionally excluded from the partial subtotal until a compa
 
 </details>
 
-<details><summary><code>HMX035CTFT-001 (QDtech schematic assembly marking)</code> — <code>unresolved_production_panel_factory_quote_required</code></summary>
-
-- Device id: `qdtech_hmx035ctft_001`.
-- Scope: `base_product`; quantity `1`.
-- Reason: Published HMX donor prices are legacy evidence, not a procurement route; the exact production panel and factory attrition must be quoted for one assembled prototype.
-- Checked: `2026-08-19`; [gate source](https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf).
-
-</details>
-
 <details><summary><code>Sunlord MWSA0503S-3R3MT</code> — <code>quantity_100_rfq_required</code></summary>
 
 - Device id: `sunlord_mwsa0503s_3r3mt`.
@@ -2278,16 +2278,6 @@ These entries are intentionally excluded from the partial subtotal until a compa
 ## Used lines without current orderability evidence
 
 This is deliberately rendered as vertical cards so the document remains usable on a narrow screen.
-
-<details><summary><code>HMX035CTFT-001 (QDtech schematic assembly marking)</code> — qty 1</summary>
-
-- Device id: `qdtech_hmx035ctft_001`
-- Scope: `base_product`
-- Lifecycle claim awaiting I8 recheck: `assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified`
-- Qualification: `verified_candidate`
-- Placements: `display`
-
-</details>
 
 ## Non-MPN physical features
 

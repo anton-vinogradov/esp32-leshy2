@@ -4,7 +4,7 @@
 
 Это точная рабочая H1-R2.31-карта GPIO двух независимых RP2354B и их пяти сигналов через M1. Точный электрический контракт module-pad/IO-mux C5 присоединён. Она ещё не разрешает KiCad: до нового R2 H2 остаются live production route FSUSB42MUX/C11355 и точный MPN detector/latch service-VBUS.
 
-> Machine source: `hardware/architecture/h1-r2-dual-rp-pinout.json`. Маркер pin-map-артефакта: **`H1-R2.31`**; текущий маркер физического дизайна: **`H1-R2.32`**.
+> Machine source: `hardware/architecture/h1-r2-dual-rp-pinout.json`. Маркер pin-map-артефакта: **`H1-R2.31`**; текущий маркер физического дизайна: **`H1-R2.33`**.
 
 ## Передний Hub RP
 

@@ -176,13 +176,19 @@ def validate(model: dict, base: dict) -> list[str]:
         "SN74LVC1G06DCKR": ("Texas Instruments", "C7828", Decimal("0.1674"), 1),
         "BAT54S,215": ("Nexperia", "C47546", Decimal("0.0335"), 2),
         "LMV331IDBVR": ("Texas Instruments", "C34731", Decimal("0.1655"), 1),
+        "0402WGF1001TCE": ("UNI-ROYAL(Uniroyal Elec)", "C11702", Decimal("0.0039"), 2),
+        "0402WGF1002TCE": ("UNI-ROYAL(Uniroyal Elec)", "C25744", Decimal("0.0031"), 4),
+        "0402WGF1003TCE": ("UNI-ROYAL(Uniroyal Elec)", "C25741", Decimal("0.0028"), 2),
+        "0402WGF1004TCE": ("UNI-ROYAL(Uniroyal Elec)", "C26083", Decimal("0.0026"), 1),
+        "GRM155R71H103KA88D": ("Murata Electronics", "C77019", Decimal("0.0097"), 1),
+        "CC0402KRX7R9BB104": ("YAGEO", "C131394", Decimal("0.0107"), 3),
     }
     checked_at = surface.get("checked_at", "")
     if not checked_at.startswith(model.get("evidence_date", "") + "T"):
         errors.append("live JLC evidence timestamp must match the dated design evidence")
     found_parts = {row.get("mpn"): row for row in surface.get("parts", [])}
     if set(found_parts) != set(expected_parts):
-        errors.append("live JLC part set differs from the four audited exact MPNs")
+        errors.append("live JLC part set differs from the ten audited exact MPNs")
     for mpn, (manufacturer, cnum, price, quantity) in expected_parts.items():
         row = found_parts.get(mpn, {})
         if row.get("manufacturer") != manufacturer or row.get("jlc_number") != cnum:
@@ -207,27 +213,33 @@ def validate(model: dict, base: dict) -> list[str]:
             decimal(found_parts["BAT54S,215"]["unit_price_usd"]) * 2
             + decimal(found_parts["LMV331IDBVR"]["unit_price_usd"])
         )
+        support_passives = sum(
+            decimal(found_parts[mpn]["unit_price_usd"])
+            * found_parts[mpn].get("quantity_per_device", 1)
+            for mpn in (
+                "0402WGF1001TCE", "0402WGF1002TCE", "0402WGF1003TCE",
+                "0402WGF1004TCE", "GRM155R71H103KA88D", "CC0402KRX7R9BB104",
+            )
+        )
+        selected_added = pin10_active + nfc_active + support_passives
         bom = model.get("bom_delta", {})
         checks = {
             "pin10_new_active_usd_per_device": pin10_active,
             "nfc_evidence_new_active_usd_per_device": nfc_active,
+            "support_passives_usd_per_device": support_passives,
             "known_active_added_usd_per_device": pin10_active + nfc_active,
-            "known_active_net_after_removed_usd_per_device": pin10_active + nfc_active
+            "selected_populated_added_usd_per_device": selected_added,
+            "selected_populated_net_after_removed_usd_per_device": selected_added
             - decimal(bom.get("removed_22r_usd_per_device", 0)),
-            "trial_lot_5_known_active_added_usd": decimal(
-                bom.get("known_active_added_usd_per_device", 0)
-            ) * 5,
-            "trial_lot_5_known_active_net_after_removed_usd": decimal(
-                bom.get("known_active_net_after_removed_usd_per_device", 0)
-            ) * 5,
+            "one_prototype_selected_populated_added_usd": selected_added,
+            "one_prototype_selected_populated_net_after_removed_usd": selected_added
+            - decimal(bom.get("removed_22r_usd_per_device", 0)),
         }
         for key, calculated in checks.items():
             if decimal(bom.get(key, 0)) != calculated:
                 errors.append(f"BOM calculation mismatch for {key}: {calculated}")
-        if bom.get("cost_status") != "provisional_known_active_only":
-            errors.append("U219 delta must remain provisional until exact support passives close")
-        if bom.get("support_passives_usd_per_device") is not None:
-            errors.append("unselected U219 support passives may not carry a fixed cost")
+        if bom.get("cost_status") != "complete_selected_populated_components":
+            errors.append("U219 selected populated delta must be complete")
 
     gates = model.get("acceptance_gates", [])
     if len(gates) < 6 or any(row.get("closed") is not False for row in gates):
@@ -284,6 +296,12 @@ def render_csv(model: dict) -> str:
         ("ADD", "pin10_power", "u219_pin10_oe_driver", "SN74LVC1G06DCKR"),
         ("ADD", "nfc_evidence", "u219_field_bridge_d1_d2", "BAT54S,215"),
         ("ADD", "nfc_evidence", "u219_field_comparator", "LMV331IDBVR"),
+        ("ADD", "support_passives", "u219_field_input_r_pair", "0402WGF1001TCE"),
+        ("ADD", "support_passives", "u219_10k_network", "0402WGF1002TCE"),
+        ("ADD", "support_passives", "u219_100k_network", "0402WGF1003TCE"),
+        ("ADD", "support_passives", "u219_field_hysteresis", "0402WGF1004TCE"),
+        ("ADD", "support_passives", "u219_field_env_cap", "GRM155R71H103KA88D"),
+        ("ADD", "support_passives", "u219_bypass_caps", "CC0402KRX7R9BB104"),
     ):
         part = parts[mpn]
         qty = part.get("quantity_per_device", 1)
@@ -296,48 +314,39 @@ def render_csv(model: dict) -> str:
             "mpn_or_bundle": mpn,
             "jlc_number": part["jlc_number"],
             "qty_per_device": qty,
-            "qty_evt5": qty * 5,
+            "qty_one_prototype": qty,
             "route": "J0 Extended SMT / Standard PCBA",
             "can_presale_number": part["can_presale_number"],
             "moq": part["moq"],
             "unit_price_usd": str(price),
             "line_per_device_usd": str(price * qty),
-            "line_evt5_usd": str(price * qty * 5),
+            "line_one_prototype_usd": str(price * qty),
             "evidence_date": model["evidence_date"],
             "note": "live available-order quantity uses canPresaleNumber",
         })
     rows.append({
-        "change": "TBD", "group": "support_passives", "instance": "u219_support_passives",
-        "manufacturer": "TBD", "mpn_or_bundle": "TBD-EXACT-SUPPORT-PASSIVES",
-        "jlc_number": "TBD", "qty_per_device": "TBD", "qty_evt5": "TBD",
-        "route": "blocked pending exact values/MPNs/quantities", "can_presale_number": "TBD",
-        "moq": "TBD", "unit_price_usd": "", "line_per_device_usd": "",
-        "line_evt5_usd": "", "evidence_date": model["evidence_date"],
-        "note": "explicit H1 blocker; excluded from provisional known-active delta",
-    })
-    rows.append({
         "change": "REMOVE", "group": "pin10_power", "instance": "u214_series_busy",
         "manufacturer": "Panasonic", "mpn_or_bundle": "ERJ-2RKF22R0X", "jlc_number": "base selection",
-        "qty_per_device": -1, "qty_evt5": -5, "route": "removed from overlay target",
+        "qty_per_device": -1, "qty_one_prototype": -1, "route": "removed from overlay target",
         "can_presale_number": "n/a", "moq": "n/a", "unit_price_usd": "0.0155",
-        "line_per_device_usd": "-0.0155", "line_evt5_usd": "-0.0775",
+        "line_per_device_usd": "-0.0155", "line_one_prototype_usd": "-0.0155",
         "evidence_date": model["evidence_date"], "note": "saved base quantity-100 unit-price basis",
     })
     rows.append({
         "change": "DNP", "group": "nfc_evidence", "instance": "u219_pickup_c0g_tuning_bank",
         "manufacturer": "TBD after VNA", "mpn_or_bundle": "DNP-C0G-BANK", "jlc_number": "TBD",
-        "qty_per_device": 0, "qty_evt5": 0, "route": "not orderable until VNA/HIL selection",
+        "qty_per_device": 0, "qty_one_prototype": 0, "route": "not orderable until VNA/HIL selection",
         "can_presale_number": 0, "moq": "TBD", "unit_price_usd": "", "line_per_device_usd": "",
-        "line_evt5_usd": "", "evidence_date": model["evidence_date"],
+        "line_one_prototype_usd": "", "evidence_date": model["evidence_date"],
         "note": "footprints only; no exact production MPN accepted",
     })
     rows.append({
-        "change": "KNOWN_ACTIVE_NET", "group": "provisional", "instance": "H1-R2-U219-CAP-01",
-        "manufacturer": "", "mpn_or_bundle": "", "jlc_number": "", "qty_per_device": "", "qty_evt5": "",
+        "change": "SELECTED_POPULATED_NET", "group": "complete", "instance": "H1-R2-U219-CAP-01",
+        "manufacturer": "", "mpn_or_bundle": "", "jlc_number": "", "qty_per_device": "", "qty_one_prototype": "",
         "route": "", "can_presale_number": "", "moq": "", "unit_price_usd": "",
-        "line_per_device_usd": "0.6690", "line_evt5_usd": "3.3450",
+        "line_per_device_usd": "0.7392", "line_one_prototype_usd": "0.7392",
         "evidence_date": model["evidence_date"],
-        "note": "known exact active additions less removed 22-Ohm; support passives and all other exclusions remain unknown",
+        "note": "all selected populated U219 support additions less the removed 22-Ohm part; DNP tuning bank remains unpopulated",
     })
     fieldnames = list(rows[0])
     stream = io.StringIO(newline="")

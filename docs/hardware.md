@@ -2,8 +2,8 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Pin assignment](pinout.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H1-R2.32`**. The functional architecture is reviewed; the
-> physical design is in progress. Nothing on this page authorizes KiCad routing
+> Current marker: **`H1-R2.33`**. The functional architecture is reviewed; the
+> physical design is ready for visual acceptance. Nothing on this page authorizes KiCad routing
 > or an order.
 
 > Current R2 authority is H0/H1: six compute domains with a front Hub RP and a
@@ -40,7 +40,7 @@ safety gates.
 ### Front UI/radio PCB
 
 - `ESP32-S3-WROOM-1U-N16R8`: menus, touch, the S3-local `TCA9539PWR` key path,
-  direct 32-MHz i8080-8 display TX, BLE/Wi-Fi and the independent local BT.656 camera RX bus.
+  direct 24-MHz i8080-8 display TX, BLE/Wi-Fi and the independent local BT.656 camera RX bus.
 - `ESP32-C5-WROOM-1U-N8R8`: 2.4/5-GHz Wi-Fi, 802.15.4 and IR.
 - `SC1512-A4` front RP: C5/S3/rear-RP links, three local nRF24 paths and microSD.
 - Three complete nRF islands: radio, command/return buffers, safety gate and
@@ -80,9 +80,9 @@ below 0.4 MB/s, so it does not saturate the RP transport.
 
 ## Physical layout
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.21-dual-fpv-7)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.33-layout-ready-1)
 
-[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.21-dual-fpv-7).
+[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.33-layout-ready-1).
 
 The ten main antenna ports are split symmetrically:
 
@@ -102,7 +102,7 @@ both mounting holes; Ø12 is only a temporary H5 finger-access check.
 
 ### Component legend
 
-![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.21-dual-fpv-7)
+![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.33-layout-ready-1)
 
 [Front inner face at full scale](images/h1-r2-inner-ui.svg) ·
 [rear inner face at full scale](images/h1-r2-inner-rf.svg)
@@ -116,7 +116,7 @@ selector.
 
 The inner faces are shown exactly as viewed after physically turning each PCB
 over, so left and right swap relative to the outer face. Numbers are drawing
-references, not silkscreen. The complete legend lists all 168 drawing references without
+references, not silkscreen. The complete legend lists all 218 drawing references without
 repeating the PCB drawings.
 
 Placement currently has **zero same-face collisions** and **2.59 mm** minimum
@@ -135,7 +135,7 @@ the drawing is its pad span.
 
 ## User interface and service
 
-- 3.5-inch portrait 320×480 IPS display `HMX035CTFT-001`.
+- 3.5-inch portrait 320×480 IPS `ER-TFT035IPS-6` + `ER-TPC035-6`, `ILI9488` + `FT6236`, direct 24-MHz i8080-8 through passive adapter `L2-DISP-ADP-001-B`.
 - Five serial navigation switches forming the D-pad, eight side function keys,
   PTT and encoder.
 - Two aligned rows of five user-facing status LEDs below the display.
@@ -145,7 +145,7 @@ the drawing is its pad span.
 - User silkscreen is printed only on visible outer faces and is not hidden by
   the display, batteries or U214.
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.21-dual-fpv-7)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.33-layout-ready-1)
 
 ## Power and unattended safety
 
@@ -172,12 +172,11 @@ registered body. The post-PCBA one-of-two
 receiver architecture removes the unavailable K331 production package from the
 H1 critical path. Actual body, hand soldering, Z and durability are explicit
 H5/H7 qualification items; a later AKK/Sinopine package may simplify only the
-K331 footprint. The structural body audit and the 43-body Cap/evidence
-coordinate register pass, but H1 is not complete: one exact documented
-production display with controlled drawing and deterministic factory mating,
-support-passive MPN/courtyards, NFC pickup geometry and installed U219 antenna
-swept volume are four open blockers before
-the complete mock-up can be explicitly accepted. The C5 electrical pin/mux
+K331 footprint. The structural audit of every body, all 18 U219 support parts,
+the NFC pickup loop and the supplied 108-mm antenna swept volume passes with no
+open geometry gate. The exact EastRising panel and passive adapter are fixed as
+well. H1 remains incomplete only because the complete mock-up has not yet been
+explicitly accepted. The C5 electrical pin/mux
 contract is closed; its live FSUSB42MUX/C11355 route, exact service-VBUS
 detector/latch MPN and Pack/Safety I2C powered-off-Ioff boundary remain
 production blockers before a new R2 H2 export. The legacy HMX display is

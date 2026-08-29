@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
-  "status": "in_progress",
-  "marker": "H1-R2.32",
+  "status": "ready_for_user_layout_acceptance",
+  "marker": "H1-R2.33",
   "pin_authority_marker": "H1-R2.31",
   "checked_on": "2026-08-29",
   "purpose": "Close the pre-KiCad physical architecture around direct i8080-8, a fully counted 80-contact M1, mechanically unloaded board retention, direct 5+5 antenna locality, local nRF concurrency and an adaptable post-PCBA analog-FPV receiver bay.",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
   "board_mm": [75.0, 150.0],
   "stack": {
-    "ui_inner_z_mm": 4.8,
+    "ui_inner_z_mm": 5.36,
     "ui_pcb_thickness_mm": 1.6,
-    "rf_inner_z_mm": 15.8,
+    "rf_inner_z_mm": 16.36,
     "rf_pcb_thickness_mm": 1.6,
     "interboard_gap_mm": 11.0,
     "minimum_opposing_clearance_mm": 0.7
@@ -140,7 +140,7 @@
       "structural_role": "none; M1 is electrical/alignment only"
     },
     "transport": "rear audio at 48-kHz full duplex remains below 0.4 MB/s on the 1.5-MB/s qualified RP link; nRF payload is now front-local",
-    "display": "S3 drives HMX035CTFT-001 directly over 8-bit i8080 at a conservative 32 MHz while the independent camera RX/GDMA path captures BT.656; the panel flex faces the antenna edge and firmware rotates display memory and touch coordinates by 180 degrees; buttons use the S3-local TCA9539PWR path while encoder and USB stay direct to S3; QSPI is prototype recovery only"
+    "display": "S3 drives the exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 assembly directly over 8-bit i8080 at a panel-safe 24 MHz while the independent camera RX/GDMA path captures BT.656; the panel flex faces the antenna edge and firmware rotates display memory and touch coordinates by 180 degrees; buttons use the S3-local TCA9539PWR path while encoder and USB stay direct to S3; a deliberate adapter revision can expose ordinary 4-wire serial recovery"
   },
   "mechanical_retention": {
     "m1_rule": "M1 is never a load-bearing member",
@@ -166,19 +166,19 @@
     "population": "exactly_one",
     "hot_profile_change": "forbidden",
     "world_plan_bbox_mm": {"x": [-4.5, 79.5], "y": [17.0, 41.0]},
-    "host_outer_plane_z_mm": 17.4,
+    "host_outer_plane_z_mm": 17.96,
     "profiles": {
       "u214": {
         "mpn": "M5Stack U214 Cap LoRa-1262",
         "envelope_mm": [84.0, 24.0, 15.287],
-        "world_bbox_mm": {"x": [-4.5, 79.5], "y": [17.0, 41.0], "z": [17.4, 32.687]},
+        "world_bbox_mm": {"x": [-4.5, 79.5], "y": [17.0, 41.0], "z": [17.96, 33.247]},
         "status": "accepted existing profile"
       },
       "u219": {
         "mpn": "M5Stack U219 Cap CC1101 + NFC",
         "envelope_mm": [84.0, 24.0, 19.7],
-        "world_bbox_mm": {"x": [-4.5, 79.5], "y": [17.0, 41.0], "z": [17.4, 37.1]},
-        "status": "accepted optional paper profile; received-unit geometry and HIL remain open",
+        "world_bbox_mm": {"x": [-4.5, 79.5], "y": [17.0, 41.0], "z": [17.96, 37.66]},
+        "status": "dimensioned optional profile; exact revision and electrical HIL remain downstream",
         "dimension_source": "https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/1250/U219_Cap_CC1101_model_size.pdf"
       }
     },
@@ -194,17 +194,25 @@
       "fpv_right_angle_plug": 4.8
     },
     "rear_depth_reference_mm": {
-      "u219_top_z": 37.1,
-      "battery_holder_top_z": 38.1,
-      "encoder_knob_top_z": 38.4,
-      "current_maximum_top_z": 38.4
+      "u219_top_z": 37.66,
+      "battery_holder_top_z": 38.66,
+      "encoder_knob_top_z": 38.96,
+      "current_maximum_top_z": 38.96
     },
-    "open_geometry_gates": [
-      "obtain a controlled U219 STEP/PCB drawing or measure a received unit before fixing the NFC field-structure and printed pickup-loop coordinates",
-      "measure the installed U219 RP-SMA antenna and cable/hand swept volume; the official 84 x 24 x 19.7-mm product body does not bound an attached 108-mm antenna",
-      "select exact C0G tuning-bank MPNs and land patterns only after VNA/HIL",
-      "complete the exact support-passive values/MPNs and prove their courtyards inside the two reserved islands; the five active-package source-backed courtyards already fit"
-    ]
+    "open_geometry_gates": [],
+    "downstream_nonplacement_gates": [
+      "confirm the received U219 revision and contact-7 power path before first energisation",
+      "select DNP C0G pickup tuning after VNA measurement without moving the reserved loop, vias or detector island",
+      "confirm ordinary hand access and installed-antenna clearance on the assembled prototype"
+    ],
+    "antenna_contract": {
+      "official_axis_world_xy_mm": [71.46, 24.64],
+      "axis_basis": "official U219 size drawing: 8.04 mm from the 84-mm antenna end and 7.64 mm from the 24-mm long edge in the accepted orientation",
+      "included_antenna_length_mm": 108.0,
+      "conservative_swept_diameter_mm": 12.0,
+      "swept_z_mm": [37.66, 145.66],
+      "clearance_result": "the 12-mm plan sweep remains outside the rear five-SMA bank, FPV service envelope, Cap connector and battery holder; it overhangs only the removable 84-mm Cap footprint"
+    }
   },
   "physical_features": [
     {
@@ -221,27 +229,50 @@
       "kind": "placement_reserve",
       "frame": "rf-inner",
       "world_bbox_mm": {"x": [39.0, 45.0], "y": [21.5, 25.5]},
-      "role": "bounded pre-KiCad allocation for the source-backed pin-10 switch/inverter courtyards and still-open support-passive courtyards",
-      "members": ["u219_pin10_switch", "u219_pin10_oe_driver"],
-      "courtyard_status": "two active-package courtyards pass; pull-up, pull-down and two bypass-capacitor values/MPNs/courtyards remain an H1 gate before H2 footprint import"
+      "role": "bounded pre-KiCad allocation for the complete source-backed pin-10 switch, inverter and support-passive courtyards",
+      "members": ["u219_pin10_switch", "u219_pin10_oe_driver", "u219_pin10_oe_pullup", "u219_pin10_command_pulldown", "u219_pin10_switch_bypass", "u219_pin10_driver_bypass"],
+      "courtyard_status": "all six exact populated courtyards fit; exact KiCad footprint import remains H2"
     },
     {
       "id": "u219_nfc_evidence_island_reserve",
       "kind": "placement_reserve",
       "frame": "rf-inner",
       "world_bbox_mm": {"x": [47.1, 53.2], "y": [20.0, 31.8]},
-      "role": "recommended RIGHT-side bounded allocation for the source-backed bridge/comparator courtyards and still-open passive/tuning footprints",
-      "members": ["u219_field_bridge_a", "u219_field_bridge_b", "u219_field_comparator"],
-      "courtyard_status": "three active-package courtyards pass; RC envelope, threshold/hysteresis, pull-up, bypass and DNP C0G values/MPNs/courtyards remain an H1 gate; electrical detail and VNA verification continue downstream"
+      "role": "RIGHT-side bounded allocation for the complete source-backed bridge, comparator and support-passive courtyards plus three unpopulated tuning footprints",
+      "members": ["u219_field_bridge_a", "u219_field_bridge_b", "u219_field_comparator", "u219_field_input_r_p", "u219_field_input_r_n", "u219_field_env_cap", "u219_field_discharge", "u219_field_threshold_top", "u219_field_threshold_bottom", "u219_field_hysteresis", "u219_field_output_pullup", "u219_field_comparator_bypass"],
+      "courtyard_status": "all twelve exact populated courtyards fit; the adjacent three-position 0402 C0G bank is deliberately DNP until VNA selection"
     },
     {
       "id": "u219_nfc_pickup_loop",
       "kind": "copper_feature_reserve",
       "frame": "rf-outer-face",
-      "world_bbox_mm": null,
-      "role": "weak printed 13.56-MHz pickup loop below the received U219 NFC field structure",
-      "geometry_status": "unlocated until a controlled U219 field-structure drawing or received-unit measurement exists",
+      "world_bbox_mm": {"x": [1.5, 73.5], "y": [17.8, 40.2]},
+      "role": "weak full-slot-perimeter printed 13.56-MHz pickup loop below U219; broad coverage removes dependency on the unpublished internal-coil coordinate",
+      "geometry_status": "fixed H1 reserve: 0.25-mm nominal trace follows the 72.0 x 22.4-mm perimeter with a local feed break and via pair at the detector island; H2 performs copper DRC and H7 selects DNP tuning",
+      "trace_width_mm": 0.25,
+      "feed_vias_world_xy_mm": [[52.75, 31.0], [52.75, 31.8]],
+      "allowed_instances": ["u214_connector"],
       "mpn": null
+    },
+    {
+      "id": "u219_installed_antenna_sweep",
+      "kind": "external_swept_volume",
+      "frame": "rf-outer-face",
+      "world_bbox_mm": {"x": [65.46, 77.46], "y": [18.64, 30.64], "z": [37.66, 145.66]},
+      "role": "conservative 12-mm-diameter by 108-mm-long installed volume for each of the three included U219 RP-SMA antennas; exactly one is fitted at a time",
+      "axis_world_xy_mm": [71.46, 24.64],
+      "source": "official U219 size drawing plus official product specification for the included 108-mm antennas",
+      "allowed_instances": []
+    },
+    {
+      "id": "u219_nfc_dnp_tuning_bank",
+      "kind": "placement_reserve",
+      "frame": "rf-inner",
+      "world_bbox_mm": {"x": [50.9, 53.0], "y": [29.0, 31.8]},
+      "role": "three rotated/staggered serial 0402 capacitor footprints left unpopulated until received-U219 VNA tuning; no production MPN is selected before measurement",
+      "members": [],
+      "allowed_instances": ["u219_field_comparator", "u219_field_comparator_bypass"],
+      "courtyard_status": "three non-overlapping rotated/staggered 1.5 x 1.0-mm 0402 courtyards are fixed; population is downstream only"
     }
   ],
   "k331_factory_route": {
@@ -260,6 +291,111 @@
     "source": "direct email response to the project sourcing request"
   },
   "factory_evidence": [
+    {
+      "role": "configured 3.5-inch production display and capacitive touch assembly",
+      "role_ru": "серийная 3,5-дюймовая сборка дисплея и ёмкостного touch",
+      "mpn": "EastRising ER-TFT035IPS-6 + ER-TPC035-6",
+      "jlcpcb_part": null,
+      "manufacturer": "EastRising / BuyDisplay",
+      "assembly": "customer-supplied final-assembly part",
+      "accepted": true,
+      "selection_status": "accepted exact production panel; written H5 final-assembly acceptance pending",
+      "selection_status_ru": "принята точная production-панель; письменное согласие final assembly остаётся H5 gate",
+      "availability": "manufacturer page says In stock; configured quantity-1 price USD 14.91; at least ten-year continuity stated",
+      "availability_ru": "страница производителя показывает In stock; настроенная цена 1 шт. $14.91; заявлена доступность не менее десяти лет",
+      "url": "https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen",
+      "checked": "2026-08-29"
+    },
+    {
+      "role": "50-contact display-tail connector on the passive adapter",
+      "role_ru": "50-контактный разъём шлейфа дисплея на пассивном адаптере",
+      "mpn": "FH34SRJ-50S-0.5SH(50)",
+      "jlcpcb_part": "C3169104",
+      "manufacturer": "Hirose",
+      "assembly": "Extended SMT; Economic and Standard",
+      "accepted": true,
+      "selection_status": "accepted exact stocked connector",
+      "selection_status_ru": "принят точный складской разъём",
+      "availability": "2,679 pieces shown, 2,614 orderable, MOQ 1, USD 0.5832 at quantity 1",
+      "availability_ru": "показано 2 679 шт., доступны к заказу 2 614, MOQ 1, $0.5832 при 1 шт.",
+      "url": "https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104",
+      "checked": "2026-08-29"
+    },
+    {
+      "role": "U219 1-kOhm NFC input limiter",
+      "role_ru": "входной ограничитель NFC U219 1 кОм",
+      "mpn": "0402WGF1001TCE",
+      "jlcpcb_part": "C11702",
+      "manufacturer": "UNI-ROYAL",
+      "assembly": "Basic SMT; Economic and Standard",
+      "accepted": true,
+      "selection_status": "accepted exact stocked resistor",
+      "selection_status_ru": "принят точный складской резистор",
+      "availability": "10,911,212 orderable, MOQ 1, USD 0.0039 at quantity 1",
+      "availability_ru": "доступны к заказу 10 911 212, MOQ 1, $0.0039 при 1 шт.",
+      "url": "https://jlcpcb.com/partdetail/12256-0402WGF1001TCE/C11702",
+      "checked": "2026-08-29"
+    },
+    {
+      "role": "U219 10-kOhm command, threshold and evidence resistor",
+      "role_ru": "резистор U219 10 кОм для command, threshold и evidence",
+      "mpn": "0402WGF1002TCE",
+      "jlcpcb_part": "C25744",
+      "manufacturer": "UNI-ROYAL",
+      "assembly": "Basic SMT; Economic and Standard",
+      "accepted": true,
+      "selection_status": "accepted exact stocked resistor",
+      "selection_status_ru": "принят точный складской резистор",
+      "availability": "27,943,335 orderable, MOQ 1, USD 0.0031 at quantity 1",
+      "availability_ru": "доступны к заказу 27 943 335, MOQ 1, $0.0031 при 1 шт.",
+      "url": "https://jlcpcb.com/partdetail/26487-UNI_ROYAL0402WGF1002TCE/C25744",
+      "checked": "2026-08-29"
+    },
+    {
+      "role": "U219 100-kOhm envelope and threshold resistor",
+      "role_ru": "резистор U219 100 кОм для envelope и threshold",
+      "mpn": "0402WGF1003TCE",
+      "jlcpcb_part": "C25741",
+      "manufacturer": "UNI-ROYAL",
+      "assembly": "Basic SMT; Economic and Standard",
+      "accepted": true,
+      "selection_status": "accepted exact stocked resistor",
+      "selection_status_ru": "принят точный складской резистор",
+      "availability": "13,226,514 orderable, MOQ 1, USD 0.0028 at quantity 1",
+      "availability_ru": "доступны к заказу 13 226 514, MOQ 1, $0.0028 при 1 шт.",
+      "url": "https://jlcpcb.com/partdetail/x/C25741",
+      "checked": "2026-08-29"
+    },
+    {
+      "role": "U219 1-MOhm comparator hysteresis resistor",
+      "role_ru": "резистор гистерезиса компаратора U219 1 МОм",
+      "mpn": "0402WGF1004TCE",
+      "jlcpcb_part": "C26083",
+      "manufacturer": "UNI-ROYAL",
+      "assembly": "Basic SMT; Economic and Standard",
+      "accepted": true,
+      "selection_status": "accepted exact stocked resistor",
+      "selection_status_ru": "принят точный складской резистор",
+      "availability": "3,044,597 orderable, MOQ 1, USD 0.0026 at quantity 1",
+      "availability_ru": "доступны к заказу 3 044 597, MOQ 1, $0.0026 при 1 шт.",
+      "url": "https://jlcpcb.com/partdetail/x/C26083",
+      "checked": "2026-08-29"
+    },
+    {
+      "role": "U219 10-nF NFC envelope capacitor",
+      "role_ru": "конденсатор NFC envelope U219 10 нФ",
+      "mpn": "GRM155R71H103KA88D",
+      "jlcpcb_part": "C77019",
+      "manufacturer": "Murata",
+      "assembly": "Extended SMT; Economic and Standard",
+      "accepted": true,
+      "selection_status": "accepted exact stocked capacitor",
+      "selection_status_ru": "принят точный складской конденсатор",
+      "availability": "629,708 orderable, MOQ 1, USD 0.0097 at quantity 1",
+      "availability_ru": "доступны к заказу 629 708, MOQ 1, $0.0097 при 1 шт.",
+      "url": "https://jlcpcb.com/partdetail/MurataElectronics-GRM155R71H103KA88D/C77019",
+      "checked": "2026-08-29"
+    },
     {
       "role": "Hub RP2354B factory assembly cross-reference",
       "role_ru": "фабричная позиция Hub RP2354B",
@@ -1205,6 +1341,92 @@
       "courtyard_basis": "maximum of official full-package and manufacturer-land extents plus 0.25 mm on every side",
       "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate",
       "replaces": ["evidence_mask_p12_pulldown"]
+    },
+    {
+      "id": "u219_pin10_oe_pullup", "drawing_ref": "55", "kind": "fixed_body", "frame": "rf-inner",
+      "mpn": "0402WGF1002TCE", "role": "10-kOhm AON pull-up that disables the contact-10 switch by default",
+      "world_xy_mm": [39.25, 24.4], "size_mm": [1.0, 0.5, 0.35],
+      "body_envelope_basis": "UNI-ROYAL 0402 maximum body", "dimension_source": "https://jlcpcb.com/partdetail/26487-UNI_ROYAL0402WGF1002TCE/C25744",
+      "courtyard_xy_mm": [1.5, 1.0], "courtyard_world_bbox_mm": {"x": [39.0, 40.5], "y": [24.15, 25.15]},
+      "courtyard_basis": "exact 0402 body plus 0.25 mm on every side", "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate"
+    },
+    {
+      "id": "u219_pin10_command_pulldown", "drawing_ref": "56", "kind": "fixed_body", "frame": "rf-inner",
+      "mpn": "0402WGF1002TCE", "role": "10-kOhm AON command pull-down preserving switch-off state",
+      "world_xy_mm": [40.75, 24.4], "size_mm": [1.0, 0.5, 0.35],
+      "body_envelope_basis": "UNI-ROYAL 0402 maximum body", "dimension_source": "https://jlcpcb.com/partdetail/26487-UNI_ROYAL0402WGF1002TCE/C25744",
+      "courtyard_xy_mm": [1.5, 1.0], "courtyard_world_bbox_mm": {"x": [40.5, 42.0], "y": [24.15, 25.15]},
+      "courtyard_basis": "exact 0402 body plus 0.25 mm on every side", "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate"
+    },
+    {
+      "id": "u219_pin10_switch_bypass", "drawing_ref": "57", "kind": "fixed_body", "frame": "rf-inner",
+      "mpn": "Yageo CC0402KRX7R9BB104", "role": "100-nF local bypass for the contact-10 bilateral switch",
+      "world_xy_mm": [42.25, 24.4], "size_mm": [1.0, 0.5, 0.5],
+      "body_envelope_basis": "Yageo 0402 maximum body", "dimension_source": "https://jlcpcb.com/partdetail/Yageo-CC0402KRX7R9BB104/C131394",
+      "courtyard_xy_mm": [1.5, 1.0], "courtyard_world_bbox_mm": {"x": [42.0, 43.5], "y": [24.15, 25.15]},
+      "courtyard_basis": "exact 0402 body plus 0.25 mm on every side", "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate"
+    },
+    {
+      "id": "u219_pin10_driver_bypass", "drawing_ref": "58", "kind": "fixed_body", "frame": "rf-inner",
+      "mpn": "Yageo CC0402KRX7R9BB104", "role": "100-nF local bypass for the AON open-drain driver",
+      "world_xy_mm": [43.75, 24.4], "size_mm": [1.0, 0.5, 0.5],
+      "body_envelope_basis": "Yageo 0402 maximum body", "dimension_source": "https://jlcpcb.com/partdetail/Yageo-CC0402KRX7R9BB104/C131394",
+      "courtyard_xy_mm": [1.5, 1.0], "courtyard_world_bbox_mm": {"x": [43.5, 45.0], "y": [24.15, 25.15]},
+      "courtyard_basis": "exact 0402 body plus 0.25 mm on every side", "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate"
+    },
+    {
+      "id": "u219_field_input_r_p", "drawing_ref": "59", "kind": "fixed_body", "frame": "rf-inner",
+      "mpn": "0402WGF1001TCE", "role": "1-kOhm positive pickup input limiter",
+      "world_xy_mm": [51.15, 20.25], "size_mm": [1.0, 0.5, 0.35], "body_envelope_basis": "UNI-ROYAL 0402 maximum body", "dimension_source": "https://jlcpcb.com/partdetail/12256-0402WGF1001TCE/C11702",
+      "courtyard_xy_mm": [1.5, 1.0], "courtyard_world_bbox_mm": {"x": [50.9, 52.4], "y": [20.0, 21.0]}, "courtyard_basis": "exact 0402 body plus 0.25 mm on every side", "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate"
+    },
+    {
+      "id": "u219_field_input_r_n", "drawing_ref": "60", "kind": "fixed_body", "frame": "rf-inner",
+      "mpn": "0402WGF1001TCE", "role": "1-kOhm negative pickup input limiter",
+      "world_xy_mm": [51.15, 21.25], "size_mm": [1.0, 0.5, 0.35], "body_envelope_basis": "UNI-ROYAL 0402 maximum body", "dimension_source": "https://jlcpcb.com/partdetail/12256-0402WGF1001TCE/C11702",
+      "courtyard_xy_mm": [1.5, 1.0], "courtyard_world_bbox_mm": {"x": [50.9, 52.4], "y": [21.0, 22.0]}, "courtyard_basis": "exact 0402 body plus 0.25 mm on every side", "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate"
+    },
+    {
+      "id": "u219_field_env_cap", "drawing_ref": "61", "kind": "fixed_body", "frame": "rf-inner",
+      "mpn": "Murata GRM155R71H103KA88D", "role": "10-nF rectified NFC-field envelope capacitor",
+      "world_xy_mm": [51.15, 22.25], "size_mm": [1.0, 0.5, 0.5], "body_envelope_basis": "Murata 0402 maximum body", "dimension_source": "https://jlcpcb.com/partdetail/MurataElectronics-GRM155R71H103KA88D/C77019",
+      "courtyard_xy_mm": [1.5, 1.0], "courtyard_world_bbox_mm": {"x": [50.9, 52.4], "y": [22.0, 23.0]}, "courtyard_basis": "exact 0402 body plus 0.25 mm on every side", "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate"
+    },
+    {
+      "id": "u219_field_discharge", "drawing_ref": "62", "kind": "fixed_body", "frame": "rf-inner",
+      "mpn": "0402WGF1003TCE", "role": "100-kOhm envelope discharge resistor",
+      "world_xy_mm": [51.15, 23.25], "size_mm": [1.0, 0.5, 0.35], "body_envelope_basis": "UNI-ROYAL 0402 maximum body", "dimension_source": "https://jlcpcb.com/partdetail/x/C25741",
+      "courtyard_xy_mm": [1.5, 1.0], "courtyard_world_bbox_mm": {"x": [50.9, 52.4], "y": [23.0, 24.0]}, "courtyard_basis": "exact 0402 body plus 0.25 mm on every side", "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate"
+    },
+    {
+      "id": "u219_field_threshold_top", "drawing_ref": "63", "kind": "fixed_body", "frame": "rf-inner",
+      "mpn": "0402WGF1003TCE", "role": "100-kOhm comparator threshold upper leg",
+      "world_xy_mm": [51.15, 24.25], "size_mm": [1.0, 0.5, 0.35], "body_envelope_basis": "UNI-ROYAL 0402 maximum body", "dimension_source": "https://jlcpcb.com/partdetail/x/C25741",
+      "courtyard_xy_mm": [1.5, 1.0], "courtyard_world_bbox_mm": {"x": [50.9, 52.4], "y": [24.0, 25.0]}, "courtyard_basis": "exact 0402 body plus 0.25 mm on every side", "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate"
+    },
+    {
+      "id": "u219_field_threshold_bottom", "drawing_ref": "64", "kind": "fixed_body", "frame": "rf-inner",
+      "mpn": "0402WGF1002TCE", "role": "10-kOhm comparator threshold lower leg",
+      "world_xy_mm": [51.15, 25.25], "size_mm": [1.0, 0.5, 0.35], "body_envelope_basis": "UNI-ROYAL 0402 maximum body", "dimension_source": "https://jlcpcb.com/partdetail/26487-UNI_ROYAL0402WGF1002TCE/C25744",
+      "courtyard_xy_mm": [1.5, 1.0], "courtyard_world_bbox_mm": {"x": [50.9, 52.4], "y": [25.0, 26.0]}, "courtyard_basis": "exact 0402 body plus 0.25 mm on every side", "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate"
+    },
+    {
+      "id": "u219_field_hysteresis", "drawing_ref": "65", "kind": "fixed_body", "frame": "rf-inner",
+      "mpn": "0402WGF1004TCE", "role": "1-MOhm comparator hysteresis feedback",
+      "world_xy_mm": [51.15, 26.25], "size_mm": [1.0, 0.5, 0.35], "body_envelope_basis": "UNI-ROYAL 0402 maximum body", "dimension_source": "https://jlcpcb.com/partdetail/x/C26083",
+      "courtyard_xy_mm": [1.5, 1.0], "courtyard_world_bbox_mm": {"x": [50.9, 52.4], "y": [26.0, 27.0]}, "courtyard_basis": "exact 0402 body plus 0.25 mm on every side", "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate"
+    },
+    {
+      "id": "u219_field_output_pullup", "drawing_ref": "66", "kind": "fixed_body", "frame": "rf-inner",
+      "mpn": "0402WGF1002TCE", "role": "10-kOhm AON pull-up for active-low NFC field evidence",
+      "world_xy_mm": [51.15, 27.25], "size_mm": [1.0, 0.5, 0.35], "body_envelope_basis": "UNI-ROYAL 0402 maximum body", "dimension_source": "https://jlcpcb.com/partdetail/26487-UNI_ROYAL0402WGF1002TCE/C25744",
+      "courtyard_xy_mm": [1.5, 1.0], "courtyard_world_bbox_mm": {"x": [50.9, 52.4], "y": [27.0, 28.0]}, "courtyard_basis": "exact 0402 body plus 0.25 mm on every side", "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate"
+    },
+    {
+      "id": "u219_field_comparator_bypass", "drawing_ref": "67", "kind": "fixed_body", "frame": "rf-inner",
+      "mpn": "Yageo CC0402KRX7R9BB104", "role": "100-nF local bypass for the NFC field comparator",
+      "world_xy_mm": [51.15, 28.25], "size_mm": [1.0, 0.5, 0.5], "body_envelope_basis": "Yageo 0402 maximum body", "dimension_source": "https://jlcpcb.com/partdetail/Yageo-CC0402KRX7R9BB104/C131394",
+      "courtyard_xy_mm": [1.5, 1.0], "courtyard_world_bbox_mm": {"x": [50.9, 52.4], "y": [28.0, 29.0]}, "courtyard_basis": "exact 0402 body plus 0.25 mm on every side", "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate"
     }
   ],
   "trace_corridors": [
@@ -1230,26 +1452,14 @@
       "rule": "8 data lines plus PCLK/VSYNC/HREF stay entirely on the UI PCB"
     }
   ],
-  "current_h1_blockers": [
-    "select one exact documented production display panel, controlled drawing and mating envelope with a deterministic factory-installable route before H1 closes or R2 H2 starts",
-    "complete exact support-passive values/MPNs and prove their courtyards inside the two bounded U219 placement islands",
-    "obtain controlled U219 field-structure geometry or measure a received unit before locating the weak printed NFC pickup loop and its DNP C0G bank",
-    "measure the installed U219 RP-SMA antenna swept volume against the rear connector bank, FPV plug, enclosure and user hand access"
-  ],
-  "current_h1_blockers_ru": [
-    "выбрать одну точную документированную production-панель дисплея, контролируемый чертёж и mating envelope с детерминированным маршрутом фабричной установки до закрытия H1 и старта R2 H2",
-    "завершить точные значения/MPN вспомогательных пассивов и доказать их courtyards внутри двух ограниченных U219 placement-island",
-    "получить контролируемую геометрию field structure U219 или измерить полученный экземпляр до размещения слабосвязанной печатной NFC-петли и её DNP C0G-банка",
-    "измерить swept volume установленной RP-SMA-антенны U219 относительно заднего ряда разъёмов, FPV-штекера, корпуса и доступа рукой"
-  ],
+  "current_h1_blockers": [],
+  "current_h1_blockers_ru": [],
   "pre_r2_h2_gates": [
-    "select one exact documented production display panel, controlled drawing, electrical map and deterministic factory mating route; HMX remains legacy evidence only",
     "timestamp an exact live JLC stock-or-explicit-route, MOQ and price for onsemi FSUSB42MUX / C11355",
     "select and factory-validate the exact service-VBUS detector/latch MPN used by the closed C5 electrical ownership contract",
     "instantiate and prove the exact powered-off-Ioff isolation boundary and separate 3V3_MAIN/AON pull-up domains for Hub GPIO42/43 Pack/Safety I2C"
   ],
   "pre_r2_h2_gates_ru": [
-    "выбрать одну точную документированную production-панель дисплея, контролируемый чертёж, electrical map и детерминированный маршрут фабричной стыковки; HMX остаётся только legacy evidence",
     "зафиксировать exact live JLC stock-or-explicit-route, MOQ и цену для onsemi FSUSB42MUX / C11355",
     "выбрать и проверить на фабрике точный MPN detector/latch service-VBUS из закрытого электрического контракта владения C5",
     "реализовать и доказать точную powered-off-Ioff границу изоляции и раздельные pull-up домены 3V3_MAIN/AON для Pack/Safety I2C на Hub GPIO42/43"

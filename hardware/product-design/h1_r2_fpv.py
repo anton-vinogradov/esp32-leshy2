@@ -16,6 +16,7 @@ PLACEMENT_AUDIT_PATH = REPO / "hardware/product-design/generated/H1-R2-placement
 SVG_PATH = REPO / "docs/images/h1-r2-fpv-path.svg"
 EN_DOC_PATH = REPO / "docs/h1-r2-fpv.md"
 RU_DOC_PATH = REPO / "docs/h1-r2-fpv.ru.md"
+ROADMAP_STATE_PATH = REPO / "hardware/verification/hardware-roadmap-state.json"
 
 
 def load() -> dict:
@@ -237,6 +238,7 @@ def render_svg(model: dict) -> str:
 
 
 def render_doc(model: dict, result: dict, ru: bool) -> str:
+    current_marker = load_path(ROADMAP_STATE_PATH)["current_substep"]
     r, a = model["receiver"], model["antenna"]
     e = r["official_integration_evidence"]
     attachment = r["attachment_strategy"]
@@ -264,7 +266,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         )
         headings = ('## Результат', '## Фабричная граница', '## Блокеры FPV для H1', '## Последующая проверка — не блокирует H1')
         alternatives_heading = '## Рассмотренные приёмники'
-        footer = f'> Маркер артефакта: **{model["marker"]}**. Общий маркер физического дизайна уже **H1-R2.32**; H1 продолжается.'
+        footer = f'> Маркер артефакта: **{model["marker"]}**. Общий маркер физического дизайна уже **{current_marker}**; H1 продолжается.'
     else:
         title = f'# {model["marker"]} · analog-FPV receive path'
         intro = 'H1 accepts a replaceable one-of-two post-PCBA analog-FPV receiver land: primary K331 or documented AWM666V fallback.'
@@ -288,7 +290,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         )
         headings = ('## Result', '## Factory boundary', '## FPV blockers for H1', '## Later verification — does not block H1')
         alternatives_heading = '## Receivers reviewed'
-        footer = f'> Artifact marker: **{model["marker"]}**. The overall physical-design marker has advanced to **H1-R2.32**; H1 remains in progress.'
+        footer = f'> Artifact marker: **{model["marker"]}**. The overall physical-design marker has advanced to **{current_marker}**; H1 remains in progress.'
     alternatives = '\n'.join(
         f'- `{row["mpn"]}` — {row["result_ru"] if ru else row["result"]}.'
         for row in model["receiver_alternatives_reviewed"]

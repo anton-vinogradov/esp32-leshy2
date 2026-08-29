@@ -54,7 +54,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
         plan_normalized = " ".join(plan.split())
-        self.assertEqual("H1-R2.32", roadmap["current_substep"])
+        self.assertEqual("H1-R2.33", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -306,19 +306,19 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(1052, sum(line["quantity"] for line in lines))
         self.assertEqual(210, len(lines))
         self.assertEqual(
-            1,
+            0,
             sum(line["orderable_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            11,
+            10,
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            199,
+            200,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            1034,
+            1035,
             sum(
                 line["quantity"]
                 for line in lines
@@ -330,7 +330,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["alternate_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            11,
+            10,
             sum(bool(line["cost_gate_status"]) for line in lines),
         )
         self.assertEqual(
@@ -397,11 +397,11 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
         self.assertIn("**1053** architecture instances", rendered)
         self.assertIn("**1052** supplied/costed placements", rendered)
-        self.assertIn("**209/210** used lines", rendered)
+        self.assertIn("**210/210** used lines", rendered)
         self.assertIn("**210/210** lines", rendered)
-        self.assertIn("**199/210** lines", rendered)
-        self.assertIn("**1034/1052** supplied placements", rendered)
-        self.assertIn("USD 235.3511", rendered)
+        self.assertIn("**200/210** lines", rendered)
+        self.assertIn("**1035/1052** supplied placements", rendered)
+        self.assertIn("USD 248.3651", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -491,7 +491,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             / "docs/images/h1-r2-four-faces.svg"
         ).read_text(encoding="utf-8")
         for token in (
-            "HMX035CTFT-001",
+            "ER-TFT035IPS-6",
             "Cap-Bus slot · U214 / U219",
             "Keystone 1048P",
             "WI-FI/BLE",
@@ -512,7 +512,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "four matched PCB faces",
             "outer · user-facing silk",
             "inner · viewed after turning over · no silkscreen",
-            "ACTIVE 48.96×73.44 mm · 320×480 · 2:3",
+            "ACTIVE 48.96×73.44",
             "SUB-GHz",
             "V/U TX",
             "FAULT",
@@ -588,8 +588,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             'data-nrf-cable-reserves="3"',
             'data-nrf-reserve-opposing-pairs="6"',
             'data-encoder-through-features="7"',
-            'data-voice-v-rf-endpoint-distance-mm="40.91"',
-            'data-voice-u-rf-endpoint-distance-mm="39.95"',
+            'data-voice-v-rf-endpoint-distance-mm="45.57"',
+            'data-voice-u-rf-endpoint-distance-mm="47.33"',
             'data-path="S3-2G4"',
             'data-path="RX-FM/SW"',
             'data-path="RX-AM/LW"',
@@ -651,7 +651,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             'data-view="true-sections"',
             "Leshy2 — two physical cross-sections",
             "Each panel is one physical cut plane; zones are never combined.",
-            "HMX035CTFT-001",
+            "ER-TFT035IPS-6 + ER-TPC035-6",
             "FX8C M1 · exact 11-mm board-to-board gap",
             "AS02404PO",
             "2× 18650",

@@ -1,6 +1,7 @@
 device_id,mpn,role,scope,quantity_per_device,unit_price_quantity_100_usd,effective_unit_price_usd,line_burden_per_device_usd,line_burden_basis,quantity_procurement_target,planning_procurement_line_usd,quantity_historical_capture,historical_capture_displayed_line_usd,historical_capture_route,jlcpcb_part,quantity_100_batch_line_usd,cost_gate
 gct_rfpc_sma31_fn_175_a,GCT RFPC-SMA31-FN-175-A,eight standard outward SMA / восемь внешних SMA,base_product,8,2.46456,2.46456,19.71648,quantity-100,8,19.71648,40,,not_matched,,1971.6480000000001,
 adi_ad8314acpz_rl7,Analog Devices AD8314ACPZ-RL7,six real-TX RF detectors / шесть RF-детекторов фактической передачи,base_product,6,2.857,2.8570000000000007,17.142000000000003,quantity-100,6,17.142000000000003,30,159.55,pre_order,C578691,1714.2000000000003,
+eastrising_er_tft035ips_6_ctp,EastRising ER-TFT035IPS-6 + ER-TPC035-6,display,base_product,1,14.91,14.91,14.91,quantity-100,1,14.91,5,74.55,factory_final_assembly,,1491.0,
 omron_b3s_1100p,OMRON B3S-1100P,sixteen ordinary user keys / шестнадцать обычных клавиш,base_product,16,0.6405,0.6405,10.248,quantity-100,16,10.248,80,74.58,pre_order,C2733652,1024.8,
 nicerf_sa818s_v_v18,G-NiceRF SA818S-V,VHF voice transceiver / VHF голосовой трансивер,base_product,1,,10.071,10.071,provisional reachable route,1,10.071,5,50.355,pre_order,C51897911,1007.1,quantity_100_rfq_required
 nicerf_sa818s_u_v18,G-NiceRF SA818S-U,UHF voice transceiver / UHF голосовой трансивер,base_product,1,,9.7347,9.7347,provisional reachable route,1,9.7347,5,48.673500000000004,in_stock,C3001549,973.47,quantity_100_rfq_required
@@ -29,7 +30,6 @@ littelfuse_0451005_mrl,Littelfuse 0451005.MRL,"pack_fuse0, pack_fuse1",base_prod
 hirose_dm3at_sf_pejm5,Hirose DM3AT-SF-PEJM5,sd,base_product,1,2.5656,2.5656,2.5656,quantity-100,1,2.5656,5,6.951,in_stock,C114218,256.56,
 samtec_hle_107_02_g_dv_pe_lc,Samtec HLE-107-02-G-DV-PE-LC,u214_connector,base_product,1,2.542,2.542,2.542,quantity-100,1,2.542,5,35.833,pre_order,C5649644,254.2,
 pui_as02404po,PUI Audio AS02404PO,speaker,base_product,1,2.5294,2.5294,2.5294,quantity-100,1,2.5294,5,,not_matched,,252.94,
-hirose_fh34srj_40s_0_5sh_99,Hirose FH34SRJ-40S-0.5SH(99),display_panel_connector,base_product,1,2.46,2.46,2.46,quantity-100,1,2.46,5,17.888,in_stock,C598032,246.0,
 ti_tlv1824_pwr,TLV1824PWR,"evidence_cmp_a, evidence_cmp_b",base_product,2,1.0518,1.0518,2.1036,quantity-100,2,2.1036,10,,not_matched,,210.36,
 ti_tca9534a_pwr,TCA9534APWR,"headset_control_io, voice_band_io",base_product,2,1.0212,1.0212,2.0424,quantity-100,2,2.0424,10,7.657,in_stock,C206010,204.24,
 ti_tps259470l_rpwr,Texas Instruments TPS259470LRPWR,"ext_efuse, unit_efuse",base_product,2,1.0196,1.0196,2.0392,quantity-100,2,2.0392,10,9.127,in_stock,C3662793,203.92000000000002,
@@ -83,6 +83,7 @@ ti_sn74lvc2g08_dcur,Texas Instruments SN74LVC2G08DCUR,"audio_safe_gate, ext_bran
 ti_tps629203_drlr,Texas Instruments TPS629203DRLR,aon_buck,base_product,1,0.6192,0.6192,0.6192,quantity-100,1,0.6192,5,3.8655,in_stock,C5219295,61.919999999999995,
 ti_tps2553drvr_1,Texas Instruments TPS2553DRVR-1,backlight_efuse,base_product,1,0.6093,0.6093,0.6093,quantity-100,1,0.6093,5,1.665,in_stock,C411878,60.92999999999999,
 liteon_ltst_c190krkt,LTST-C190KRKT,"c5_tx_led, cc_tx_led, ext_tx_led, ir_tx_led, nrf0_tx_led, nrf1_tx_led, nrf2_tx_led, s3_tx_led, voice_tx_led",base_product,9,0.0675,0.0675,0.6075,quantity-100,9,0.6075,45,1.2375,in_stock,C94869,60.75000000000001,
+hirose_fh34srj_50s_0_5sh_50,Hirose FH34SRJ-50S-0.5SH(50),display_panel_connector,base_product,1,0.5832,0.5832,0.5832,quantity-100,1,0.5832,5,2.9160000000000004,in_stock,C3169104,58.32000000000001,
 sunlord_mwsa0503s_2r2mt,Sunlord MWSA0503S-2R2MT,charger_inductor,base_product,1,0.5751,0.5751,0.5751,quantity-100,1,0.5751,5,1.1767,in_stock,C408408,57.50999999999999,
 sunlord_mwsa0503s_4r7mt,Sunlord MWSA0503S-4R7MT,ext_inductor,base_product,1,0.5751,0.5751,0.5751,quantity-100,1,0.5751,5,1.2677,in_stock,C408410,57.50999999999999,
 vishay_vemd1060x01,VEMD1060X01,det_ir,base_product,1,0.5371,0.5371,0.5371,quantity-100,1,0.5371,5,4.807,in_stock,C144925,53.71,
@@ -136,10 +137,10 @@ yageo_rc0402fr_07220kl,Yageo RC0402FR-07220KL,"ext_buck_fb_top, pack_mid_adc_top
 kemet_c0402c330j5gactu,KEMET C0402C330J5GACTU,"c5_detector_output_cap, ext_buck_ff_cap, main_ff_cap, s3_detector_output_cap, voice_ff_cap",base_product,5,0.0213,0.0213,0.1065,quantity-100,5,0.1065,25,1.3825,in_stock,C2649530,10.65,
 nexperia_74lvc1g32gv_125,"74LVC1G32GV,125","ext_request_or, safe_ptt_or",base_product,2,0.0523,0.0523,0.1046,quantity-100,2,0.1046,10,1.8466,in_stock,C12517,10.459999999999999,
 yageo_rc0402fr_0747kl,Yageo RC0402FR-0747KL,"aon_pg_pullup, ext_ovlo_bottom, ir_evidence_feedback, pack_admission_reset_pullup, power_command_pullup, safety_controller_reset_pullup, speaker_input_n_gain, speaker_input_p_gain, unit_ovlo_bottom, voice_supervisor_sense_top",base_product,10,0.0097,0.0097,0.097,quantity-100,10,0.097,50,0.2542,in_stock,C93943,9.700000000000001,
-murata_grm155r71h103ka88d,Murata GRM155R71H103KA88D,"codec_tx_filter, pack_admission_reset_cap, pack_mid_adc_filter, pack_stack_adc_filter, safety_controller_reset_cap, u214_supervisor_ct, unit_supervisor_ct, voice_supervisor_ct",base_product,8,0.0121,0.0121,0.0968,quantity-100,8,0.0968,40,0.5044,in_stock,C77019,9.68,
 murata_lqg15hs10nj02d,Murata LQG15HS10NJ02D,"cc_315_l10_in, cc_315_l10_out, cc_868_915_l10",base_product,3,0.031,0.031,0.093,quantity-100,3,0.093,15,0.46,in_stock,C77103,9.3,
 uniroyal_0402wgf2201tce,UNI-ROYAL 0402WGF2201TCE,"c5_tx_led_series, cc_tx_led_series, codec_i2c_scl_pullup, codec_i2c_sda_pullup, codec_tx_atten_bottom, ext_tx_led_series, fault_led_series, headset_mic_bias_res, ir_tx_led_series, microphone_bias_res, nrf0_tx_led_series, nrf1_tx_led_series, nrf2_tx_led_series, pd_local_scl_pullup, pd_local_sda_pullup, receiver_i2c_scl_pullup, receiver_i2c_sda_pullup, s3_tx_led_series, sys_i2c_scl_pullup, sys_i2c_sda_pullup, u214_i2c_host_scl_pullup, u214_i2c_host_sda_pullup, voice_tx_led_series",base_product,23,0.0039,0.0039000000000000003,0.0897,quantity-100,23,0.0897,115,0.4485,in_stock,C25879,8.97,
 yageo_rt0402brd07191kl,Yageo RT0402BRD07191KL,main_efuse_ovlo_top,base_product,1,0.082,0.082,0.082,quantity-100,1,0.082,5,8.976,pre_order,C852583,8.200000000000001,
+murata_grm155r71h103ka88d,Murata GRM155R71H103KA88D,"codec_tx_filter, pack_admission_reset_cap, pack_mid_adc_filter, pack_stack_adc_filter, safety_controller_reset_cap, u214_supervisor_ct, unit_supervisor_ct, voice_supervisor_ct",base_product,8,0.0097,0.0097,0.0776,quantity-100,8,0.0776,40,0.5044,in_stock,C77019,7.76,
 murata_grm1555c1h221ja01d,Murata GRM1555C1H221JA01D,"pd_cc1_cap, pd_cc2_cap, speaker_output_cap_n, speaker_output_cap_p",base_product,4,0.0177,0.0177,0.0708,quantity-100,4,0.0708,20,0.147,in_stock,C71693,7.08,
 panasonic_erj_p08f10r0v,Panasonic ERJ-P08F10R0V,pack_in_res,base_product,1,0.0689,0.0689,0.0689,quantity-100,1,0.0689,5,0.4905,in_stock,C4064522,6.890000000000001,
 yageo_rc0402fr_07100rl,Yageo RC0402FR-07100RL,"backlight_gate_series, charger_batp_res, ir_carrier_series, ir_carrier_supply_res, ir_demod_series, ir_demod_supply_res, ir_tx_gate_series",base_product,7,0.0097,0.0097,0.0679,quantity-100,7,0.0679,35,,not_matched,,6.79,
@@ -205,7 +206,6 @@ m5_u214,M5Stack U214 Cap LoRa-1262,u214,optional_external_accessory,1,,,,quantit
 murata_gjm1555c1h101jb01d,Murata GJM1555C1H101JB01D,"cc_rf_n_dc_block, cc_rf_p_dc_block",base_product,2,,,,quantity-100,2,,10,,not_matched,,,quantity_100_rfq_required
 nexperia_pesd24vy1bsf,Nexperia PESD24VY1BSF,"voice_rf_esd, voice_v_rf_esd",base_product,2,,,,quantity-100,2,,10,,not_matched,,,quantity_100_rfq_required
 panasonic_erj_p08f49r9v,Panasonic ERJ-P08F49R9V,"pack_batts_rbal, pack_cell1_rbal",base_product,2,,,,quantity-100,2,,10,8.968,pre_order,C4308208,,quantity_100_rfq_required
-qdtech_hmx035ctft_001,HMX035CTFT-001 (QDtech schematic assembly marking),unresolved production display gate / незакрытый production-display gate,base_product,1,,,,quantity-100,1,,5,,not_matched,,,unresolved_production_panel_factory_quote_required
 sunlord_mwsa0503s_3r3mt,Sunlord MWSA0503S-3R3MT,"main_inductor, voice_inductor",base_product,2,,,,quantity-100,2,,10,9.0024,pre_order,C408409,,quantity_100_rfq_required
 ti_tpul2g223_bqbr,Texas Instruments TPUL2G223BQBR,pack_diag_timer,base_product,1,,,,quantity-100,1,,5,,not_matched,,,quantity_100_rfq_required
 xtar_18650_4000mah_protected,XTAR 18650 4000mAh,"pack_cell0, pack_cell1",regional_replaceable_cell_kit,2,,,,quantity-100,2,,10,,not_matched,,,regional_retail_only_no_quantity_100_tier

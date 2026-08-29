@@ -32,7 +32,7 @@ RU_DOC_PATH = REPO / "docs/h1-r2-physical-layout.ru.md"
 SOURCE_TABLE_PATH = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
 U219_SOURCE_PATH = REPO / "hardware/architecture/h1-r2-u219-cap.json"
 DUAL_RP_PINOUT_PATH = REPO / "hardware/architecture/h1-r2-dual-rp-pinout.json"
-PUBLIC_ASSET_REV = "h1-r2.32-cap-evidence-register-1"
+PUBLIC_ASSET_REV = "h1-r2.33-layout-ready-1"
 BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
 BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
@@ -287,7 +287,7 @@ def silkscreen_audit(model: dict) -> dict:
                 {"name": "RF body strip", "box": {"x": [0.0, 75.0], "y": [0.0, 6.0]}},
             ]
             if face == "front":
-                forbidden.append({"name": "display", "box": {"x": [10.25, 64.75], "y": [11.0, 94.0]}})
+                forbidden.append({"name": "display", "box": {"x": [9.23, 65.77], "y": [10.5, 95.46]}})
             else:
                 forbidden.extend(
                     [
@@ -313,7 +313,7 @@ def silkscreen_audit(model: dict) -> dict:
     for face, face_rows in identity["silkscreen"].items():
         forbidden = (
             [
-                {"name": "display", "box": {"x": [10.25, 64.75], "y": [11.0, 94.0]}},
+                {"name": "display", "box": {"x": [9.23, 65.77], "y": [10.5, 95.46]}},
                 {"name": "front controls/indicators", "box": {"x": [0.0, 75.0], "y": [104.0, 150.0]}},
             ]
             if face == "front"
@@ -388,7 +388,7 @@ def physical_feature_audit(model: dict, entries: list[dict]) -> dict:
     errors: list[str] = []
     unresolved: list[dict] = []
     results: list[dict] = []
-    known_kinds = {"keepout", "placement_reserve", "copper_feature_reserve"}
+    known_kinds = {"keepout", "placement_reserve", "copper_feature_reserve", "external_swept_volume"}
     for feature in model.get("physical_features", []):
         kind = feature.get("kind")
         if kind not in known_kinds:
@@ -401,7 +401,7 @@ def physical_feature_audit(model: dict, entries: list[dict]) -> dict:
             unresolved.append({"id": feature["id"], "kind": kind, "gate": feature.get("geometry_status")})
             results.append({"id": feature["id"], "kind": kind, "world_bbox_mm": None, "minimum_clearance_mm": None})
             continue
-        if box["x"][0] < 0 or box["y"][0] < 0 or box["x"][1] > board_w or box["y"][1] > board_h:
+        if kind != "external_swept_volume" and (box["x"][0] < 0 or box["y"][0] < 0 or box["x"][1] > board_w or box["y"][1] > board_h):
             errors.append(f'{feature["id"]}: feature leaves the PCB outline')
         members = set(feature.get("members", []))
         member_errors = []
@@ -459,6 +459,19 @@ def u219_contract_audit(model: dict) -> dict:
         "u219_field_bridge_a": ("BAT54S,215", [3.8, 3.5]),
         "u219_field_bridge_b": ("BAT54S,215", [3.8, 3.5]),
         "u219_field_comparator": ("LMV331IDBVR", [3.55, 3.5]),
+        "u219_pin10_oe_pullup": ("0402WGF1002TCE", [1.5, 1.0]),
+        "u219_pin10_command_pulldown": ("0402WGF1002TCE", [1.5, 1.0]),
+        "u219_pin10_switch_bypass": ("Yageo CC0402KRX7R9BB104", [1.5, 1.0]),
+        "u219_pin10_driver_bypass": ("Yageo CC0402KRX7R9BB104", [1.5, 1.0]),
+        "u219_field_input_r_p": ("0402WGF1001TCE", [1.5, 1.0]),
+        "u219_field_input_r_n": ("0402WGF1001TCE", [1.5, 1.0]),
+        "u219_field_env_cap": ("Murata GRM155R71H103KA88D", [1.5, 1.0]),
+        "u219_field_discharge": ("0402WGF1003TCE", [1.5, 1.0]),
+        "u219_field_threshold_top": ("0402WGF1003TCE", [1.5, 1.0]),
+        "u219_field_threshold_bottom": ("0402WGF1002TCE", [1.5, 1.0]),
+        "u219_field_hysteresis": ("0402WGF1004TCE", [1.5, 1.0]),
+        "u219_field_output_pullup": ("0402WGF1002TCE", [1.5, 1.0]),
+        "u219_field_comparator_bypass": ("Yageo CC0402KRX7R9BB104", [1.5, 1.0]),
     }
     placed = {row["id"]: row for row in model["placements"]}
     courtyard_entries = []
@@ -2191,8 +2204,9 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     if ru:
         title = f'# {model["marker"]} · рабочая компоновка целевого устройства'
         intro = (
-            "Текущая проверяемая физическая модель двух плат 75×150 мм, не завершённая компоновка и не разрешение начинать KiCad. "
-            "Структурный аудит и полный текущий реестр Cap/evidence-корпусов проходят, но H1 остаётся открытым до закрытия трёх перечисленных ниже geometry-gates U219 и явного принятия мокапа."
+            "Полная проверяемая физическая модель двух плат 75×150 мм готова к визуальному принятию. "
+            "Все корпуса, Cap-профили, внешний объём U219-антенны и медные резервы сведены без открытых geometry-gates; H1 остаётся открытым только до явного принятия этого мокапа. "
+            "Само принятие H1 ещё не разрешает трассировку KiCad: сначала должны быть закрыты перечисленные ниже электрические prerequisites R2 H2."
         )
         outside = "## Что увидит пользователь"
         inside = "## Что находится внутри"
@@ -2226,15 +2240,16 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "Механика M1: четыре 11,00-мм compression-stop, два противосдвиговых упора и независимые захваты плат; разъём не несёт ударную или изгибающую нагрузку.",
             "Шелкография антенн: генератор подтвердил отсутствие пересечений с SMA/MMCX, кабелем FPV, Cap-Bus-слотом, дисплеем и монтажными keep-out.",
             "Точная посадка десяти SMA следует чертежам A1: прямоугольная RF-пята `1,87×3,30 мм` в `x=0`, четыре прямоугольные земляные лапы `1,60×3,30 мм` в `x=±2,55 мм`, край платы `y=0`. H5 фиксирует двусторонний процесс пайки, H7 осматривает все пять паек каждого разъёма на единственном собранном прототипе, H8 выполняет обычную сборку/разборку, continuity/inspection и повторную проверку каждого RF-тракта без искусственного старения, падений и vibration-программы.",
-            f'Cap-Bus: mutually-exclusive U214/U219-профили и все восемь целевых зазоров проходят; 43 существующих Cap/evidence-корпуса и их source-backed placement courtyards зарегистрированы fail-closed; exact production display, support-passive courtyards U219, NFC-loop и swept volume антенны остаются явными H1 gates ({len(model["current_h1_blockers"])}).',
-            "Верхний display-adapter имеет ноль коллизий и 5,10 мм минимального встречного зазора; платный U.FL второго nRF24 сдвинут ниже адаптера с зазором 1,00 мм.",
+            f'Cap-Bus: взаимоисключающие профили U214/U219 и все восемь целевых зазоров проходят; все 18 точных корпусов U219, их source-backed courtyards, NFC pickup-loop и внешний swept volume штатной 108-мм антенны зарегистрированы fail-closed. Открытых H1 geometry-gates: `{len(model["current_h1_blockers"])}`.',
+            "Экран `ER-TFT035IPS-6` + `ER-TPC035-6`, его 50-контактный `FH34SRJ-50S-0.5SH(50)` и пассивный адаптер `L2-DISP-ADP-001-B` зафиксированы; адаптер имеет ноль коллизий и 5,10 мм минимального встречного зазора, а платный U.FL второго nRF24 оставляет 1,00 мм планарного зазора.",
         ]
         route_col = "Текущая доступность/маршрут"
     else:
         title = f'# {model["marker"]} · working target-device placement'
         intro = (
-            "Current verifiable physical model of the two 75 × 150 mm PCBs; it is neither complete placement nor authorization to start KiCad. "
-            "The structural audit and complete current Cap/evidence body register pass, while H1 remains open until the four listed display/U219 acceptance gates and explicit mock-up acceptance are closed."
+            "The complete verifiable physical model of the two 75 × 150 mm PCBs is ready for visual acceptance. "
+            "Every body, Cap profile, external U219 antenna volume and copper reserve is registered with no open geometry gate; H1 remains open only until this mock-up is explicitly accepted. "
+            "H1 acceptance does not itself authorize KiCad routing: the R2 H2 electrical prerequisites listed below must still close first."
         )
         outside = "## What the user sees"
         inside = "## What is inside"
@@ -2268,8 +2283,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "M1 mechanics: four 11.00-mm compression stops, two anti-shear datums and independent PCB capture; the connector carries no impact or bending load.",
             "Antenna silkscreen: the generator proves no overlap with SMA/MMCX bodies, the installed FPV cable, the Cap-Bus slot, the display or mounting keep-outs.",
             "The exact ten-SMA land pattern follows the A1 drawings: one rectangular 1.87 × 3.30-mm RF land at x=0, four rectangular 1.60 × 3.30-mm shell lands at x=±2.55 mm and board edge y=0. H5 locks the dual-face soldering process, H7 inspects all five joints per connector on the one assembled prototype, and H8 performs ordinary assembly/disassembly, continuity/inspection and every path-specific RF check without artificial ageing, drops or a vibration programme.",
-            f'Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; 43 existing Cap/evidence bodies and their source-backed placement courtyards are registered fail-closed, while the exact production display, U219 support-passive courtyards, the NFC loop and antenna swept volume remain explicit H1 gates ({len(model["current_h1_blockers"])}).',
-            "The upper display adapter has zero body collisions and 5.10 mm minimum opposing clearance; the second nRF24 board U.FL moves below it with 1.00 mm planar clearance.",
+            f'Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; all 18 exact U219 bodies, their source-backed courtyards, the NFC pickup loop and the external swept volume of the supplied 108-mm antenna are registered fail-closed. Open H1 geometry gates: `{len(model["current_h1_blockers"])}`.',
+            "The `ER-TFT035IPS-6` + `ER-TPC035-6` assembly, its 50-contact `FH34SRJ-50S-0.5SH(50)` connector and passive `L2-DISP-ADP-001-B` are fixed; the adapter has zero body collisions and 5.10 mm minimum opposing clearance, while the second nRF24 board U.FL retains 1.00 mm planar clearance.",
         ]
         route_col = "Current availability/route"
     lines = [
