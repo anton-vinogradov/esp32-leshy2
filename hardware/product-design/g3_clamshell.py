@@ -93,8 +93,7 @@ FRONT_RF = (
     (66.9, "N24-2", "SMA"),
 )
 REAR_RF = (
-    # Five 10.2-mm SMA bodies use equal 14.7-mm pitch. The separate FPV MMCX
-    # sits below the row between SUB-G and VHF, above the Cap rail.
+    # Five 10.2-mm SMA bodies use equal 14.7-mm pitch.
     (8.1, "RX-FM/SW", "SMA"),
     (22.8, "RX-AM/LW", "SMA"),
     (37.5, "CC-SUB", "SMA"),
@@ -111,7 +110,7 @@ VOICE_U_RF_CORRIDOR = (
 )
 OPPOSITE_FACE_CLEARANCE_MM = 1.5
 
-# H1-R2.33 fail-closed placement scope. These are the already accepted G2F-3I
+# H1-R2.35 fail-closed placement scope. These are the already accepted G2F-3I
 # Cap-Bus protection/control and hardware TX-evidence aggregate bodies. The
 # values bind each instance to its current exact device key: a substitution,
 # omitted coordinate or duplicate projection must fail generation.
@@ -936,7 +935,7 @@ def load() -> tuple[dict, dict, dict, dict, dict, dict]:
     display_adapter_design = json.loads(DISPLAY_ADAPTER_DESIGN_PATH.read_text(encoding="utf-8"))
     assembly_coordinate_model = json.loads(ASSEMBLY_COORDINATE_MODEL_PATH.read_text(encoding="utf-8"))
     instances = dict(candidate["instances"])
-    # H1-R2.33 owns the physical display endpoint.  The reviewed G2F-3I
+    # H1-R2.35 owns the physical display endpoint.  The reviewed G2F-3I
     # electrical candidate remains the superseded H2 input until the next
     # phase rewires its display sheet to the accepted passive 40-to-50 map.
     instances["display"] = "eastrising_er_tft035ips_6_ctp"
@@ -1887,7 +1886,7 @@ def validate_source_research() -> list[str]:
     errors: list[str] = []
     if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3.3":
         errors.append("source-research: schema/stage mismatch")
-    if data.get("status") != "reviewed" or data.get("current_substep") != "H1-R2.33":
+    if data.get("status") != "reviewed" or data.get("current_substep") != "H1-R2.35":
         errors.append("source-research: exact current substep drifted")
     policy = data.get("policy", {})
     if policy.get("order_authorized") is not False:
@@ -1992,7 +1991,7 @@ def validate_display_adapter_design(
     errors: list[str] = []
     if design.get("schema_version") != 1 or design.get("design_id") != "L2-DISP-ADP-001-B":
         errors.append("display-adapter: schema/design identity mismatch")
-    if design.get("stage") != "H1-R2.33":
+    if design.get("stage") != "H1-R2.35":
         errors.append("display-adapter: exact source-research stage drifted")
     board = design.get("board", {})
     board_w = float(board.get("width_mm", 0))
@@ -2124,7 +2123,7 @@ def validate_assembly_coordinate_model(
     if (
         model.get("schema_version") != 1
         or model.get("model_id") != "L2-ASM-COORD-001-A"
-        or model.get("stage") != "H1-R2.33"
+        or model.get("stage") != "H1-R2.35"
         or model.get("status") != "ready_for_user_layout_acceptance"
     ):
         errors.append("coordinate-model: schema, identity, stage or review status drifted")
@@ -2800,10 +2799,10 @@ def validate() -> list[str]:
     if external_root.attrib.get("data-coordinate-model") != "L2-ASM-COORD-001-A":
         errors.append("external layout must identify the unified coordinate model")
     if (
-        external_root.attrib.get("data-review-gate") != "H1-R2.33"
+        external_root.attrib.get("data-review-gate") != "H1-R2.35"
         or external_root.attrib.get("data-review-status") != "ready-for-user-acceptance"
     ):
-        errors.append("external layout must identify the current H1-R2.33 acceptance candidate")
+        errors.append("external layout must identify the current H1-R2.35 acceptance candidate")
     face_nodes = {
         element.attrib.get("data-face"): element
         for element in external_root.iter("{http://www.w3.org/2000/svg}rect")
@@ -3063,7 +3062,7 @@ def render_external(devices, instances):
 
     front, rear = (80.0, 150.0), (465.0, 150.0)
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1-R2.33" data-review-status="ready-for-user-acceptance">',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1-R2.35" data-review-status="ready-for-user-acceptance">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         text(30, 32, "Leshy2 — dimensioned external layout", 22, "bold"),
@@ -3682,7 +3681,7 @@ def render_internal(devices, instances, display_adapter_design):
         text(820, 570, "solid green/cyan = direct cable projection · dashed blue = future 50 Ω PCB mainline", 10, "bold", colour="#344054"),
         text(820, 589, "The 30-mm cable has 3D slack; the forward TX sample branches only after the board U.FL.", 9.2, colour="#526076"),
         text(820, 616, "UI antenna bank: S3 · FM/SW/AIR · AM/LW · C5", 10, "bold", colour="#1d4ed8"),
-        text(820, 636, "RF antenna bank: nRF24-1/2/3 · SUB-GHz · FPV · VHF/UHF", 10, "bold", colour="#1d4ed8"),
+        text(820, 636, "RF antenna bank: nRF24-1/2/3 · SUB-GHz · VHF/UHF · broadcast RX", 10, "bold", colour="#1d4ed8"),
         text(820, 656, "Every blue guide ends at its matching red outer-face antenna datum; none represents finished KiCad copper.", 9.2, colour="#526076"),
     ]
     out += rf_feed_path_callout(
@@ -4594,7 +4593,7 @@ def render_top_edge(devices, instances):
         t(790, z(front_rf_centre_z)-2, f"{len(FRONT_RF)} front ports", 9, "bold", "start", "#1d4ed8"),
         t(790, z(front_rf_centre_z)+11, "UI outer face", 8.5, "normal", "start", "#1d4ed8"),
         t(790, z(rear_rf_centre_z)-5, f"{len(REAR_RF)} rear SMA", 8.5, "bold", "start", "#9a3412"),
-        t(790, z(rear_rf_centre_z)+7, "+ 1 FPV MMCX", 8.5, "bold", "start", "#9a3412"),
+        t(790, z(rear_rf_centre_z)+7, "five rear SMA ports", 8.5, "bold", "start", "#9a3412"),
         t(790, z(rear_rf_centre_z)+19, "RF/power outer face", 8.0, "normal", "start", "#9a3412"),
         f'<line x1="{x(0):.1f}" y1="{z(max_rear_z)+58:.1f}" x2="{x(75):.1f}" y2="{z(max_rear_z)+58:.1f}" stroke="#344054"/>',
         f'<line x1="{x(0):.1f}" y1="{z(max_rear_z)+52:.1f}" x2="{x(0):.1f}" y2="{z(max_rear_z)+64:.1f}" stroke="#344054"/>',
@@ -5282,7 +5281,7 @@ def build_unified_coordinate_table(
                 "closure": "route both boards in KiCad, then pass schematic/ERC, layout DRC, differential/controlled-impedance review and independent manufacturing-rule review",
             },
             "remaining_gates": [
-                "H5 received E01-ML01IPX connector axes and cable bend/retention coupons",
+                "H5 received E01-ML01SP4 mate-fit and cable bend/retention coupons against the published connector locations",
                 "H5 current-lot ER-TFT035IPS-6/ER-TPC035-6 FPC conformity and factory insertion acceptance",
                 "KiCad footprint-level copper/via routing and DRC",
                 "assembled tolerance stack and HIL",

@@ -36,19 +36,18 @@ No platform guarantees perpetual public stock. Leshy2 therefore selects ordinary
 
 ## Controlled BOM Tool run
 
-The controlled BOM Tool capture belongs to the former 209-line BOM: 176 matched, 33 unmatched and 1019 placements. The current BOM replaces `SA518` with two exact voice modules, replaces the legacy display with the exact EastRising endpoint, and includes the accepted stocked package/parametric replacements. Of the 190 preserved identities, 188 join to the historical capture while C5 and RP2354B are deliberately rebound to current exact pages `C54951858` and `C39843328`; 20 new rows join through their own exact pages. This yields a checkable current map of `210` lines and `1052` placements without retransmitting the BOM. Before applying the retained outlier resolutions it has 181 exact catalogue routes and 29 unresolved lines; zero semantic MPN substitutions were observed.
+The controlled BOM Tool capture belongs to the former 209-line BOM: 176 matched, 33 unmatched and 1019 placements. The current BOM replaces `SA518` with two exact voice modules, the legacy display with the exact EastRising endpoint, and the former 0-dBm nRF24 with the stocked full-power `E01-ML01SP4`. This yields a checkable current map of `210` lines and `1052` placements without retransmitting the BOM. Before applying the retained outlier resolutions it has 183 exact catalogue routes and 27 unresolved lines; zero semantic MPN substitutions were observed.
 
-The retained exact search resolves all 29 remaining outliers without component replacement: 12 are added to `J0`, 2 to `J2`, 11 retain the exact MPN through `J3`, 2 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. The exact EastRising display already enters through its direct `J4-F` route. The whole-BOM result is `J0=166`, `J1=0`, `J2=28`, `J3=11`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
+The retained exact search resolves all 27 remaining outliers without component replacement: 11 are added to `J0`, 2 to `J2`, 10 retain the exact MPN through `J3`, 2 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. The exact EastRising display already enters through its direct `J4-F` route. The whole-BOM result is `J0=166`, `J1=0`, `J2=29`, `J3=10`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
 
 The `$1255.6365` displayed in the historical BOM Tool capture covers only its former 176 matched lines and is **not** a current complete assembly price, quote or order. The sole prototype's order-integrated article manifest is calculated on the [manifest page](component-sample-basket.md); there is no separate sample/coupon purchase.
 
 <details>
-<summary>How the 29 remaining outliers were resolved</summary>
+<summary>How the 27 remaining outliers were resolved</summary>
 
 | Normalized MPN | Qty | Route | Evidence |
 |---|---:|---:|---|
 | `1227-J` | 1 | `J4-F` | encoder knob requires deterministic factory installation after enclosure integration; full control bring-up is performed by the owner |
-| `E01-ML01IPX` | 3 | `J3` | three exact full-power nRF24 modules are externally orderable and must be consigned or globally sourced |
 | `RFPC-SMA31-FN-175-A` | 8 | `J3` | exact board SMA is orderable outside the public JLC library |
 | `RFPC-SMA32-FN-175-A` | 2 | `J3` | exact board RP-SMA is orderable outside the public JLC library |
 | `FX8C-80S-SV5(92)` | 1 | `J3` | exact inter-board receptacle is orderable outside the public JLC library |
@@ -59,7 +58,6 @@ The `$1255.6365` displayed in the historical BOM Tool capture covers only its fo
 | `AS02404PO` | 1 | `J3` | exact board speaker is orderable outside the public JLC library and needs manual/THT assembly acceptance |
 | `1125R-SMT-4P` | 1 | `J3` | exact Seeed SMT Unit connector is orderable outside the public JLC library |
 | `2118651-2` | 5 | `J4-F` | five removable 30-mm microcoax jumpers require deterministic factory installation and strain routing during final sandwich assembly; full power-on is owner bring-up |
-| `MSPM0C1106SDGS20R` | 2 | `J0` | `C52995805` · stock 34 |
 | `SN74LVC1G07DCKR` | 10 | `J0` | `C7830` · stock 31027 |
 | `SN74LVC1G08DCKR` | 4 | `J0` | `C7832` · stock 179787 |
 | `SN74LVC1G17DCKR` | 1 | `J0` | `C10425` · stock 59402 |
@@ -91,10 +89,10 @@ The `$1255.6365` displayed in the historical BOM Tool capture covers only its fo
 | [`ES8311`](https://jlcpcb.com/partdetail/1044199-ES8311/C962342) | `C962342` | stock 96905 | `J0` · exact selected codec is directly assembleable |
 | [`74LVC2G126DP,125`](https://jlcpcb.com/partdetail/Nexperia-74LVC2G126DP125/C503392) | `C503392` | stock 155 | `J0` · exact selected TSSOP package variant is in public stock; same official family, pin map, logic, Ioff and timing as the former DC package |
 | [`74LVC2G14GV,125`](https://jlcpcb.com/partdetail/Nexperia-74LVC2G14GV125/C426708) | `C426708` | stock 153 | `J0` · exact selected TSOP package variant has ten-part trial coverage; same official family, pin map, Schmitt thresholds, Ioff and timing as the former GW package |
-| [`MAX17320G20+ / selected order suffix +T`](https://jlcpcb.com/partdetail/8483980-MAX17320G20/C7457894) | `C7457894` | stock 13 | `J0` · functional identity is present but packaging/order-suffix equivalence and low stock require confirmation or J2 reservation |
+| [`MAX17320G20+T`](https://jlcpcb.com/partdetail/8483980-MAX17320G20/C7457894) | `C7457895` | Extended SMT pre-order | `J2` · the exact selected +T order suffix remains on the pre-order route; the stocked C7457894 card names MAX17320G20+ without proving suffix equivalence, so it is not silently accepted |
 | [`SC1512-A4`](https://jlcpcb.com/partdetail/RaspberryPi-RP2354B/C39843328) | `C39843328` | stock 3442 | `J0` · live original-manufacturer route; canPresale 3442 is the authoritative assembly availability, displayed stock is 3605, and received A4 marking remains an incoming gate |
 | [`MSPM0C1106SDGS20R`](https://jlcpcb.com/partdetail/55934010-MSPM0C1106SDGS20R/C52995805) | `C52995805` | Extended SMT | `J2` · listed with pre-order MOQ 6; two fitted devices plus attrition are compatible with a small reservation |
-| [`E01-ML01IPX`](https://jlcpcb.com/parts/componentSearch?searchTxt=E01-ML01IPX) | `—` | not found in public library | `J3` · retain exact module only through new-part/global-sourcing/consignment until a function-preserving stocked module is qualified |
+| [`E01-ML01SP4`](https://jlcpcb.com/partdetail/E01-ML01SP4/C97340) | `C97340` | stock 405 | `J0` · exact Chengdu Ebyte PA/LNA module is directly factory-placeable; 20-dBm and ten-land footprint replace the incorrect 0-dBm E01-ML01IPX baseline |
 | [`G-NiceRF SA818S-U`](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549) | `C3001549` | stock 68 | `J0` · exact selected UHF module is priced and in public stock |
 | [`G-NiceRF SA818S-V`](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911) | `C51897911` | Standard PCBA pre-order | `J2` · exact selected VHF module is priced but stock-zero pre-order; lead time remains open |
 | [`ER-TFT035IPS-6 + ER-TPC035-6 option 5344`](https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen) | `—` | stock manufacturer in stock | `J4-F` · exact configured panel, drawings, 50-contact tail, ILI9488/FT6236 endpoint and price are fixed; written assembler acceptance remains only for adhesive/FPC/final mating |

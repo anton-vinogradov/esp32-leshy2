@@ -83,7 +83,7 @@ class R2AuthorityTest(unittest.TestCase):
         self.assertEqual(6, result["current_h0"]["domain_count"])
         self.assertEqual({"hub_rp", "rf_rp"}, set(result["current_h0"]["rp_domain_ids"]))
         self.assertEqual(80, result["current_h0"]["m1_contacts"])
-        self.assertEqual(14, result["current_h0"]["m1_reserve_contacts"])
+        self.assertEqual(16, result["current_h0"]["m1_reserve_contacts"])
         self.assertEqual(
             ("H1-R2.31", 48, 48, 5),
             (

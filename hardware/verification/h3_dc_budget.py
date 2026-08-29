@@ -54,9 +54,9 @@ PROVENANCE = [
     },
     {
         "id": "SRC-RP-BOUND",
-        "value": "250 mA",
-        "use": "RP2354B core, stacked flash and active PIO/DMA/I/O reservation",
-        "basis": "200-mA internal core-regulator maximum plus an explicit 50-mA I/O/flash allowance",
+        "value": "250 mA per RP2354B",
+        "use": "separate 250-mA reservations for the front Hub RP and rear RF RP",
+        "basis": "per device: 200-mA internal core-regulator maximum plus an explicit 50-mA I/O/flash allowance",
         "url": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf",
     },
     {
@@ -82,10 +82,10 @@ PROVENANCE = [
     },
     {
         "id": "SRC-NRF24-MAX",
-        "value": "14 mA per module",
-        "use": "each E01-ML01IPX in PTX; all three may transmit concurrently",
-        "basis": "Ebyte published maximum TX current at 0 dBm",
-        "url": "https://www.ebyte.com/product/47.html",
+        "value": "130 mA per module",
+        "use": "each E01-ML01SP4 PA/LNA module at the 20-dBm design maximum; all three may transmit concurrently",
+        "basis": "Ebyte published 110-to-130-mA TX-current range at 20 dBm; the maximum, never the 120-mA typical value, proves the rail",
+        "url": "https://www.ebyte.com/product/49.html",
     },
     {
         "id": "SRC-SA818S-MAX",
@@ -110,10 +110,10 @@ PROVENANCE = [
     },
     {
         "id": "SRC-CONVERTERS",
-        "value": "AON 0.3 A; application rails 4 A each",
+        "value": "AON 0.3 A; current 3V3_MAIN 6 A; voice/accessory rails 4 A",
         "use": "converter output-current ceilings",
-        "basis": "TPS629203 and TPS564252 manufacturer ratings",
-        "url": "https://www.ti.com/product/TPS564252",
+        "basis": "TPS629203, TPS566231 and TPS564252 manufacturer ratings",
+        "url": "https://www.ti.com/product/TPS566231",
     },
 ]
 
@@ -128,10 +128,10 @@ RAILS = {
     },
     "3V3_MAIN": {
         "voltage_v": d("3.222"),
-        "converter_min_a": d("4.000"),
-        "protection_min_a": d("3.200"),
-        "accepted_continuous_a": d("2.500"),
-        "protection": "TPS25974LRPWR guaranteed 3.2-A minimum circuit-breaker corner",
+        "converter_min_a": d("6.000"),
+        "protection_min_a": d("4.3399"),
+        "accepted_continuous_a": d("3.750"),
+        "protection": "TPS25974LRPWR with 1.18-kohm RILM; guaranteed-low threshold from the current H1-R2 power-cell audit",
     },
     "VVOICE_4V": {
         "voltage_v": d("4.0"),
@@ -185,7 +185,8 @@ MAIN_SUPPORT_MA = {
     "SUPPORT_WORST": {
         "s3_compute_memory_and_rf_peak_reservation": d("340"),
         "c5_compute_memory_and_5ghz_peak_reservation": d("408"),
-        "rp2354_pio_dma_io_and_stacked_flash": d("250"),
+        "front_hub_rp2354_pio_dma_io_and_stacked_flash": d("250"),
+        "rear_rf_rp2354_pio_dma_io_and_stacked_flash": d("250"),
         "display_touch_and_max_normal_backlight": d("200"),
         "qualified_micro_sd_at_socket_limit": d("500"),
         "codec_selectors_and_max_speaker_playback": d("625"),
@@ -197,7 +198,7 @@ MAIN_GROUP_MA = {
     "NONE": d("0"),
     "S3_RF": d("0"),
     "C5_RF": d("0"),
-    "NRF24": d("42"),
+    "NRF24": d("390"),
     "CC1101": d("35"),
     "VOICE": d("20"),
     "IR": d("70"),
@@ -322,7 +323,7 @@ def build() -> tuple[dict[Path, str], dict]:
                 "id": "H3.1.2-F02",
                 "finding": "the audio allowance cited an 8-ohm PAM8302A curve although the exact AS02404PO is 4 ohm +/-15%; the display allowance simultaneously treated the TPS2553 fault threshold as a continuous normal load",
                 "correction": "reserve 625 mA for amplifier, codec and selectors using the actual 3.4-ohm low corner, and 200 mA for 80-mA display/touch plus the 120-mA normal donor backlight reference",
-                "functional_effect": "the recalculated 3V3_MAIN worst case is 2493 mA with 28.36% guaranteed hardware reserve; the 174-to-234-mA backlight threshold remains an independent latched fault bound",
+                "functional_effect": "with both RP2354B domains and three current full-power nRF24 modules included, the refreshed 3V3_MAIN worst case is 3063 mA with 41.69% guaranteed hardware reserve; the 174-to-234-mA backlight threshold remains an independent latched fault bound",
                 "cost_effect_usd_at_100": "0.0000; this corrects operating admission rather than hardware",
             }
         ],
@@ -366,26 +367,26 @@ def render_doc(manifest: dict, russian: bool) -> str:
         )
     table = "\n".join(rows)
     if russian:
-        title = "# Постоянный бюджет питания · historical R1"
+        title = "# Постоянный бюджет питания · текущая R2-архитектура"
         nav = "[English](dc-power-budget.md) · [На главную](../README.ru.md) · [Состояния](power-state-register.ru.md) · [Методы](verification-methods.ru.md)"
-        intro = "H3.1.2 привязал численный ток к каждому из 50 профилей нагрузки. Для worst case оба ESP резервируются по опубликованному RF-пику, три nRF24 действительно считаются одновременно, а типовые значения не доказывают прохождение."
+        intro = "Расчёт H3.1.2 привязывает численный ток к каждому из 50 профилей нагрузки. Для worst case оба ESP, оба RP2354B и три полноразмерных nRF24 учитываются одновременно, а типовые значения не доказывают прохождение."
         headers = "| Шина | Худшая нагрузка | Минимум железа | Запас железа | До принятого рабочего envelope | Худший профиль |\n|---|---:|---:|---:|---:|---|"
         finding_h = "## Исправление по результату расчёта"
         finding = "Оба внешних eFuse получили серийный `Yageo RC0402FR-071K82L` 1,82 кΩ вместо 2,21 кΩ. Гарантированный минимум порога вырос с 1,358 до 1,632 А: запас над портом 1,25 А теперь 30,6%, короткий 2-А импульс сохранён. Цена на проверенном тираже 100 не изменилась."
         boundary_h = "## Что результат означает"
-        boundary = "Все четыре DC-шины проходят правило 25% по минимальному hardware threshold. Самый тесный рабочий envelope — `3V3_MAIN`: консервативные 2,462 А оставляют 38 мА до принятого требования 2,5 А, но 30,0% до гарантированного 3,2-А порога защиты. Поэтому H3.2 обязан проверить ступень нагрузки, а H8 — измерить реальную сумму."
-        marker = "**Статус:** `H3.1.2` завершено и проверено; исторический маркер прогресса R1 — `H3.6.1`."
+        boundary = "Все четыре DC-шины проходят правило 25% по минимальному hardware threshold. Худший профиль `3V3_MAIN` потребляет 3,063 А, оставляет 687 мА до принятого continuous-envelope 3,75 А и 41,69% до гарантированного 4,3399-А порога защиты. H3.2 всё равно должен проверить ступень нагрузки, а H8 — измерить реальную сумму."
+        marker = "**Статус:** численная модель H3.1.2 обновлена и проходит для `H1-R2.35`; вся фаза H3 ещё не закрыта."
         evidence = "[Полный машинный расчёт](../hardware/verification/generated/H3-VRF12-dc-budget.json)."
     else:
-        title = "# Steady DC power budget · historical R1"
+        title = "# Steady DC power budget · current R2 architecture"
         nav = "[Русский](dc-power-budget.ru.md) · [Home](../README.md) · [States](power-state-register.md) · [Methods](verification-methods.md)"
-        intro = "H3.1.2 attaches a numeric current to all 50 load profiles. Both ESP devices reserve their published RF peak in the worst case, all three nRF24 radios are genuinely concurrent, and typical values never prove a pass."
+        intro = "The H3.1.2 calculation attaches a numeric current to all 50 load profiles. Both ESP devices, both RP2354B domains and all three full-power nRF24 radios are concurrent in the worst case; typical values never prove a pass."
         headers = "| Rail | Worst load | Hardware minimum | Hardware reserve | Accepted-envelope margin | Worst profile |\n|---|---:|---:|---:|---:|---|"
         finding_h = "## Calculation-driven correction"
         finding = "Both exposed-port eFuses now use the active `Yageo RC0402FR-071K82L` 1.82-kohm resistor instead of 2.21 kohm. The guaranteed-low threshold rises from 1.358 to 1.632 A: steady reserve above the 1.25-A port is 30.6%, while the bounded 2-A pulse remains available. The checked quantity-100 price is unchanged."
         boundary_h = "## What this proves"
-        boundary = "All four DC rails pass the 25% rule against the minimum hardware threshold. `3V3_MAIN` has the tightest accepted operating envelope: the conservative 2.462-A load leaves 38 mA to the accepted 2.5-A requirement but 30.0% to the guaranteed 3.2-A protection threshold. H3.2 must therefore prove the load step and H8 must measure the real sum."
-        marker = "**Status:** `H3.1.2` is complete and reviewed; the historical R1 progression marker is `H3.6.1`."
+        boundary = "All four DC rails pass the 25% rule against the minimum hardware threshold. The worst `3V3_MAIN` profile draws 3.063 A, leaving 687 mA to the accepted 3.75-A continuous envelope and 41.69% to the guaranteed 4.3399-A protection threshold. H3.2 must still prove the load step and H8 must measure the real sum."
+        marker = "**Status:** the H3.1.2 numeric model is refreshed and passes for `H1-R2.35`; the complete H3 phase is not closed."
         evidence = "[Complete machine calculation](../hardware/verification/generated/H3-VRF12-dc-budget.json)."
     return "\n\n".join((title, nav, intro, headers + "\n" + table, finding_h, finding, boundary_h, boundary, marker, evidence)) + "\n"
 

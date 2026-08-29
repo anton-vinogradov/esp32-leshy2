@@ -3,10 +3,10 @@
   "stage": "H3.3.5",
   "status": "reviewed_analog_corner_consolidation",
   "input_hashes": {
-    "hardware/verification/generated/H3-VRF31-display.json": "406618914ce3c840a15a4c1d387ca905c133955373978498016252b76ea056f6",
-    "hardware/verification/generated/H3-VRF32-audio.json": "7917925457b47a1a77474c3a907d3564e0d8dd5f52f230bb3bc82ade74b22ff7",
-    "hardware/verification/generated/H3-VRF33-ir.json": "d13153d21550ffbea98baaad38c47e6d96a61c37b6b0947de2dcbcf3465a2367",
-    "hardware/verification/generated/H3-VRF34-battery-analog.json": "39b87068538107b378e13f966a6ad7ff1639dd8cc6aeaf958faa277f0d851644"
+    "hardware/verification/generated/H3-VRF31-display.json": "930a6c565f32356a2475f01d8866b43ac8f07a728187ffe1f12f1b4c6ee1478d",
+    "hardware/verification/generated/H3-VRF32-audio.json": "28fbd4fcc1276c8cab85f221cf9dedbb5e2883e3c9cede9473bf59c36d599de7",
+    "hardware/verification/generated/H3-VRF33-ir.json": "6585abf1f0290078f54e73c56befbef0c1748fe6715b407e2110a8ebbde60180",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "4fc28e3a5c9fa328eef7a16a51687ee8db057cd819579c07f7e05f171e1908cc"
   },
   "leaf_summary": {
     "display": {
@@ -45,10 +45,10 @@
   },
   "shared_rail_contract": {
     "display_and_ir_minimum_v": "3.108510",
-    "analytical_main_load_ma": "2493.000",
-    "main_budget_ma": "2500.000",
-    "hardware_reserve_percent": "28.359",
-    "rule": "the 7-mA analytical allocation margin is not a production tolerance claim; H3.6 thermal and H8 measured current must remain <=2.5 A, otherwise current allowances or functionality are reopened before layout/order"
+    "analytical_main_load_ma": "3063.0000",
+    "main_budget_ma": "3750.0000",
+    "hardware_reserve_percent": "41.688",
+    "rule": "the 687.0000-mA analytical allocation margin is not a production tolerance claim; H3.6 thermal and H8 measured current must remain <= 3750.0000 mA, otherwise current allowances or functionality are reopened before layout/order"
   },
   "temperature_precedence_c": {
     "charge_request_zero_c": "35",

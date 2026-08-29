@@ -24,7 +24,7 @@
     },
     {
       "group": "NRF24",
-      "main_ma": 2715,
+      "main_ma": 3063,
       "voice_4v_ma": 0,
       "active_5v_ma": 0
     },
@@ -69,26 +69,20 @@
       "main_ma": 2823,
       "voice_4v_ma": 0,
       "active_5v_ma": 0
-    },
-    {
-      "group": "FPV_RX",
-      "main_ma": 2743,
-      "voice_4v_ma": 0,
-      "active_5v_ma": 350
     }
   ],
   "worst_main_group": {
-    "group": "AIRBAND_RX",
-    "main_ma": 2823,
+    "group": "NRF24",
+    "main_ma": 3063,
     "voice_4v_ma": 0,
     "active_5v_ma": 0
   },
   "main_margin": {
     "accepted_continuous_a": 3.75,
     "accepted_step_a": 4.25,
-    "worst_load_a": 2.823,
-    "continuous_margin_a": 0.927,
-    "continuous_margin_percent_of_load": 32.84
+    "worst_load_a": 3.063,
+    "continuous_margin_a": 0.687,
+    "continuous_margin_percent_of_load": 22.43
   },
   "efuse_threshold_a": {
     "nominal": 4.8703,
@@ -97,18 +91,18 @@
   },
   "switching_cell": {
     "inductor_ripple_at_8v4_a": 1.5046,
-    "inductor_peak_at_worst_load_a": 3.5753,
+    "inductor_peak_at_worst_load_a": 3.8153,
     "inductor_peak_at_admitted_step_a": 5.0023
   },
   "thermal_bounds": {
     "allowed_converter_loss_w": 1.3636,
-    "required_converter_efficiency_at_worst": 0.8696,
+    "required_converter_efficiency_at_worst": 0.8786,
     "required_converter_efficiency_at_admitted_continuous": 0.8986,
-    "efuse_loss_at_worst_w": 0.3985,
+    "efuse_loss_at_worst_w": 0.4691,
     "efuse_loss_at_admitted_continuous_w": 0.7031,
-    "efuse_junction_at_worst_c": 64.8,
+    "efuse_junction_at_worst_c": 68.31,
     "efuse_junction_at_admitted_continuous_c": 79.95,
-    "inductor_copper_loss_at_worst_w": 0.1076,
+    "inductor_copper_loss_at_worst_w": 0.1267,
     "inductor_copper_loss_at_admitted_continuous_w": 0.1898,
     "inductor_estimated_rise_at_admitted_continuous_c": 5.62,
     "interpretation": "converter efficiency is an H3 pass threshold, not a predicted value; eFuse and inductor figures are conservative H1 bounds"

@@ -11,9 +11,9 @@
 - **1053** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **1052** supplied/costed placements collapse to **210** used exact-device/MPN lines.
 - Current orderability evidence exists for **210/210** used lines; **0** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **200/210** lines.
-- Of the remaining **10** unpriced lines, **10** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **1035/1052** supplied placements; their partial subtotals are `base_product` — USD 248.3651. These are coverage diagnostics, not product COGS.
+- Machine-readable quantity-100 cost evidence exists for **201/210** lines.
+- Of the remaining **9** unpriced lines, **9** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **1038/1052** supplied placements; their partial subtotals are `base_product` — USD 257.2550. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **210/210** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -298,7 +298,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `adi_ad8314acpz_rl7` — `Analog Devices AD8314ACPZ-RL7`.
   - `adi_ltc5532_es6_trmpbf` — `LTC5532ES6#TRMPBF`.
   - `cc1101rgpr` — `CC1101RGPR`.
-  - `ebyte_e01_ml01ipx` — `Ebyte E01-ML01IPX`.
+  - `ebyte_e01_ml01sp4` — `Ebyte E01-ML01SP4`.
   - `esp32_c5_wroom_1u_n8r8` — `ESP32-C5-WROOM-1U-N8R8`.
   - `esp32_s3_wroom_1u_n16r8` — `ESP32-S3-WROOM-1U-N16R8`.
   - `infineon_bgs13sn8e6327xtsa1` — `Infineon BGS13SN8E6327XTSA1`.
@@ -518,6 +518,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: conservative quantity-1 base USD 9.34 plus exact capacitive-touch-controller option USD 5.57; quantity-10 configured material USD 14.67 each; target quantity `100`.
 - Checked: `2026-08-29`; [published source](https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen).
+
+</details>
+
+<details><summary><code>Ebyte E01-ML01SP4</code> — 3 × USD 2.9633 = USD 8.8899</summary>
+
+- Device id: `ebyte_e01_ml01sp4`.
+- Scope: `base_product`.
+- Comparable basis: JLCPCB public in-stock quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-29`; [published source](https://jlcpcb.com/partdetail/E01-ML01SP4/C97340).
 
 </details>
 
@@ -2162,15 +2171,6 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 ## Unpriced lines with explicit cost gates
 
 These entries are intentionally excluded from the partial subtotal until a comparable quantity-100 USD quote exists.
-
-<details><summary><code>Ebyte E01-ML01IPX</code> — <code>quantity_100_rfq_required</code></summary>
-
-- Device id: `ebyte_e01_ml01ipx`.
-- Scope: `base_product`; quantity `3`.
-- Reason: The manufacturer exposes a 100-999-piece tier but withholds its numeric price behind Send Inquiry, so no comparable published quantity-100 USD value is available.
-- Checked: `2026-08-22`; [gate source](https://www.cdebyte.com/products/E01-ML01IPX).
-
-</details>
 
 <details><summary><code>M5Stack U214 Cap LoRa-1262</code> — <code>retail_only_no_quantity_100_tier</code></summary>
 

@@ -31,9 +31,9 @@ EXPECTED_GROUPS = {
     ],
     "rf_rp": [
         {0, 1, 2, 3, 6}, {4, 5}, {7, 8}, {9, 10, 11, 23, 39, 42, 43},
-        {12, 13, 14, 30, 31, 40, 41, 44, 45, 46, 47}, {28, 32, 33, 34},
+        {12, 13, 14, 30, 31, 40, 41, 44, 45, 46, 47},
         {16, 17, 18, 20, 21, 22}, {19, 24, 25, 26, 27}, {35}, {36},
-        {15, 29, 37, 38},
+        {15, 28, 29, 32, 33, 34, 37, 38},
     ],
 }
 
@@ -442,9 +442,9 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
             f"> Machine source: `{SOURCE.relative_to(ROOT)}`. "
             + (
                 f"Маркер pin-map-артефакта: **`{source['marker']}`**; "
-                "текущий маркер физического дизайна: **`H1-R2.33`**."
+                "текущий маркер физического дизайна: **`H1-R2.35`**."
                 if russian
-                else f"Pin-map artifact marker: **`{source['marker']}`**; current physical-design marker: **`H1-R2.33`**."
+                else f"Pin-map artifact marker: **`{source['marker']}`**; current physical-design marker: **`H1-R2.35`**."
             )
         ), "",
     ]

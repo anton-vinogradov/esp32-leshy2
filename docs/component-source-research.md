@@ -20,7 +20,7 @@ flowchart LR
 - Robust IR now uses factory-stocked `TSOP75238TR` (`C511498`) without a footprint, contact, GPIO or firmware-interface change; stock, CPL rotation and feeder presentation are mandatory pre-order checks.
 - `ES3C35P` and `HMX035CTFT-001` are retained only as legacy electrical/mechanical evidence; donor procurement is rejected, while exact production-panel identity and factory mating remain an open production gate.
 - `TE 2118651-2` is confirmed active and documented; replacement has no demonstrated benefit.
-- The makers of stock `U214` and `E01-ML01IPX` genuinely do not disclose the fitted connector-subpart MPNs.
+- The makers of stock `U214` and `E01-ML01SP4` genuinely do not disclose the fitted connector-subpart MPNs.
 - `SA818S-U` and `SA818S-V` are confirmed as two independent serial modules with one official 18-land package. JLCPCB: U is `C3001549`, stock 68/available 60 at `$9.7347`; V is `C51897911`, stock 0 and `pre-order` at `$10.0710`, MOQ 1 and a typical 8–15-working-day lead per the factory's partial 26 August response.
 - `SA818S-CE` (`C19632390`, stock 8 at `$9.3449`) uses the same package, contacts and commands and is accepted only as a qualified-pending UHF alternate. It is never a silent substitution: the manifest must disable `470–480 MHz` and the received part must pass HIL.
 
@@ -65,7 +65,7 @@ flowchart LR
 ### `H3-PHY-053` · `phase`
 
 - Outcome: Ebyte confirms an external IPEX interface but does not disclose the fitted receptacle MPN or lot axis. XC-IPX-SMA-15 was rejected because its 150 mm cable and direct SMA end are not a drop-in replacement for the selected 30 mm jumper, board receptacle and sealed edge SMA path.
-- Sources: [Chengdu Ebyte](https://www.ebyte.com/product/47.html), [Chengdu Ebyte](https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf), [Chengdu Ebyte](https://www.ebyte.com/product/2040.html).
+- Sources: [Chengdu Ebyte](https://www.ebyte.com/product/49.html), [Chengdu Ebyte](https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf), [Chengdu Ebyte](https://www.ebyte.com/product/2040.html).
 - After the sole prototype arrives: inspect the factory-fitted receptacles and measure all three assembled RF feeds on the sole prototype during H7/H8 owner bring-up.
 
 ### `H3-PHY-057` · `phase`
@@ -77,7 +77,7 @@ flowchart LR
 ### `H3-PHY-062` · `phase`
 
 - Outcome: TE 2118651-2 remains active, fully documented and stocked by an authorized distributor. No evaluated 30 mm alternative improved its 9 GHz performance and price without changing the selected path; installed bend, strain and retention remain physical.
-- Sources: [TE Connectivity](https://www.te.com/en/product-2118651-2.html), [DigiKey](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824), [Chengdu Ebyte](https://www.ebyte.com/product/47.html), [Chengdu Ebyte](https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf).
+- Sources: [TE Connectivity](https://www.te.com/en/product-2118651-2.html), [DigiKey](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824), [Chengdu Ebyte](https://www.ebyte.com/product/49.html), [Chengdu Ebyte](https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf).
 - After the sole prototype arrives: have the factory install five exact jumpers, then measure bend, strain, retention and RF loss on the sole prototype in H7/H8.
 
 ## Accepted replacement

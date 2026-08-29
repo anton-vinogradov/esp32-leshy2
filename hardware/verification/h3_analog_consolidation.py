@@ -62,6 +62,9 @@ def build() -> tuple[dict[Path, str], dict]:
     admission = battery["pack_adc"]["admission"]
     max_cell_low, max_cell_high = (d(value) for value in admission["max17320_each_cell_v"])
     stack_low, stack_high = max_cell_low * 2, max_cell_high * 2
+    main_load_ma = d(audio["main_rail_crosscheck"]["worst_profile_load_ma"])
+    main_budget_ma = d(audio["main_rail_crosscheck"]["accepted_continuous_ma"])
+    main_margin_ma = main_budget_ma - main_load_ma
 
     temperature_ladder = {
         "charge_request_zero_c": 35,
@@ -85,7 +88,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "fourteen_corrections_are_preserved": total_corrections == 14,
         "cost_delta_remains_below_half_dollar": total_cost < d("0.50"),
         "display_and_ir_use_same_main_rail_minimum": d(display["supply_corner"]["display_connector_v"]["min"]) == d(ir["transmit"]["main_rail_v"]["minimum"]),
-        "main_rail_analytical_load_remains_at_or_below_budget": d(audio["main_rail_crosscheck"]["worst_profile_load_ma"]) <= d(2500),
+        "main_rail_analytical_load_remains_at_or_below_budget": main_load_ma <= main_budget_ma,
         "display_quantum_is_at_most_one_ms": d(display["qspi_corner"]["maximum_nonpreemptible_quantum_ms"]) <= d(1),
         "ir_optical_trip_is_not_slower_than_mark_limit": "exceeds 20 ms" in ir["transmit"]["stuck_evidence_rule"] and ir["transmit"]["single_mark_ms_max"] == 20,
         "pack_midpoint_window_contains_full_corner_valid_cells": d(admission["adc_midpoint_plausibility_v"][0]) <= max_cell_low + d(midpoint_error["minimum"]) and d(admission["adc_midpoint_plausibility_v"][1]) >= max_cell_high + d(midpoint_error["maximum"]),
@@ -120,10 +123,10 @@ def build() -> tuple[dict[Path, str], dict]:
         },
         "shared_rail_contract": {
             "display_and_ir_minimum_v": display["supply_corner"]["display_connector_v"]["min"],
-            "analytical_main_load_ma": audio["main_rail_crosscheck"]["worst_profile_load_ma"],
-            "main_budget_ma": "2500.000",
+            "analytical_main_load_ma": q(main_load_ma),
+            "main_budget_ma": q(main_budget_ma),
             "hardware_reserve_percent": audio["main_rail_crosscheck"]["hardware_reserve_percent"],
-            "rule": "the 7-mA analytical allocation margin is not a production tolerance claim; H3.6 thermal and H8 measured current must remain <=2.5 A, otherwise current allowances or functionality are reopened before layout/order",
+            "rule": f"the {q(main_margin_ma)}-mA analytical allocation margin is not a production tolerance claim; H3.6 thermal and H8 measured current must remain <= {q(main_budget_ma)} mA, otherwise current allowances or functionality are reopened before layout/order",
         },
         "temperature_precedence_c": {key: str(value) for key, value in temperature_ladder.items()},
         "timing_precedence": {
@@ -139,7 +142,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "next": {"stage": "H3.6.1", "action": "build the worst-case board, battery and enclosure thermal model"},
     }
 
-    en = f"""# Consolidated analog-corner result · historical R1
+    en = f"""# Consolidated analog-corner result · current R2 architecture
 
 H3.3 is reviewed: all four leaf packages and `{total_checks}` leaf checks pass, followed by `{len(checks)}` consolidation checks. Fourteen source corrections are closed, no analytical finding remains open and the total quantity-100 BOM delta is only `{q(total_cost)} USD`. The historical R1 progression marker is `H3.6.1`.
 
@@ -156,7 +159,7 @@ The temperature rules are deliberately ordered: charge request zero at 35 C, BQ 
 
 ## Shared-rail caveat
 
-The enumerated 3V3_MAIN profile is `2493 mA` against a `2500 mA` analytical allocation. Its hardware protection reserve is still `{audio['main_rail_crosscheck']['hardware_reserve_percent']}%`, but the 7-mA paper gap is not manufacturing margin. H3.6 and H8 must measure <=2.5 A; an excess reopens allowances or functionality before layout or ordering.
+The enumerated 3V3_MAIN profile is `{q(main_load_ma)} mA` against a `{q(main_budget_ma)} mA` analytical allocation. Its hardware protection reserve is `{audio['main_rail_crosscheck']['hardware_reserve_percent']}%`, while the `{q(main_margin_ma)}-mA` paper gap is not manufacturing margin. H3.6 and H8 must measure no more than the admitted envelope; an excess reopens allowances or functionality before layout or ordering.
 
 ## Physical boundary retained
 
@@ -164,7 +167,7 @@ All 17 physical-only items remain explicit HIL gates: display signal integrity/c
 
 Machine evidence: [`H3-VRF35-analog-consolidation.json`](../hardware/verification/generated/H3-VRF35-analog-consolidation.json).
 """
-    ru = f"""# Сводный результат analog corners · historical R1
+    ru = f"""# Сводный результат analog corners · текущая R2-архитектура
 
 `H3.3` проверено: проходят все четыре leaf-пакета, `{total_checks}` их checks и `{len(checks)}` сводных checks. Закрыты четырнадцать source-исправлений, незакрытых аналитических findings нет, суммарная дельта BOM на количестве 100 — лишь `{q(total_cost)} USD`. Исторический маркер прогресса R1 — `H3.6.1`.
 
@@ -181,7 +184,7 @@ Machine evidence: [`H3-VRF35-analog-consolidation.json`](../hardware/verificatio
 
 ## Оговорка общей шины
 
-Перечисленный профиль 3V3_MAIN равен `2493 мА` при аналитическом allowance `2500 мА`. Аппаратный reserve защиты остаётся `{audio['main_rail_crosscheck']['hardware_reserve_percent']}%`, но бумажные 7 мА — не производственный допуск. H3.6 и H8 должны измерить <=2,5 А; превышение до layout или заказа повторно открывает allowances либо функции.
+Перечисленный профиль 3V3_MAIN равен `{q(main_load_ma)} мА` при аналитическом allowance `{q(main_budget_ma)} мА`. Аппаратный reserve защиты составляет `{audio['main_rail_crosscheck']['hardware_reserve_percent']}%`, а бумажный запас `{q(main_margin_ma)} мА` не является производственным допуском. H3.6 и H8 должны измерить не больше принятого envelope; превышение до layout или заказа повторно открывает allowances либо функции.
 
 ## Сохранённая физическая граница
 

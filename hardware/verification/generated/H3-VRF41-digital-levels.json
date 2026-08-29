@@ -3,13 +3,13 @@
   "stage": "H3.4.1",
   "status": "reviewed_digital_levels_pulls_reset_defaults_and_no_back_power",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "c8561eb86abcb2b484962421c3c379fbcdafa6f0850f6d4634fef355531a233e",
-    "hardware/ecad/generated/H2-REV53-no-back-power.json": "d8c80e9c45d96cb9902d8845310864b7ef15975a86cf5ed2036e0661ed3aa399",
-    "hardware/ecad/generated/H2-REV54-quiet-state.json": "074457a39ca8e6ac3c44019583c102ce6b3e9d8761a2e7565eb74ca1df702e66",
-    "hardware/ecad/generated/H2-REV72-physical-contacts.json": "2885cfa45435f48c2673af1727126bc3781a2c9fcd0d7a22b063c84371425585",
-    "hardware/verification/generated/H3-VRF31-display.json": "406618914ce3c840a15a4c1d387ca905c133955373978498016252b76ea056f6"
+    "hardware/architecture/candidates/G2F-3I.json": "edce4ca3aed56ed1a58b9ec85d19f7c9db624869f54797e0c2dc329e9816007d",
+    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "0d50b8e4a917d6f07d22186a28020e18414afbecbf476b6566785d86c6f12768",
+    "hardware/ecad/generated/H2-REV53-no-back-power.json": "89fb8bc7fb90cbcbbe492ca7c22e32d9546134a698a36508f6b6015b2e47a0ff",
+    "hardware/ecad/generated/H2-REV54-quiet-state.json": "3ea719cfd0caf36b40f294bedd92dd76e189e50d03d4e21d47319eac175f003f",
+    "hardware/ecad/generated/H2-REV72-physical-contacts.json": "f518623ccadd8a9aeabacf37be31b0ebc81c3fb22d8075f841e3af70fe947924",
+    "hardware/verification/generated/H3-VRF31-display.json": "930a6c565f32356a2475f01d8866b43ac8f07a728187ffe1f12f1b4c6ee1478d"
   },
   "provenance": {
     "nexperia_74lvc126a": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",

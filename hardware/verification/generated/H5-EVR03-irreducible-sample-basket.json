@@ -21,20 +21,20 @@
   "inputs": {
     "residual_map": {
       "path": "hardware/verification/generated/H5-EVR01-residual-map.json",
-      "sha256": "846ae4ff4f0b02a2228873085253d2908ae6acc58c20007c6246e01273e2f753"
+      "sha256": "ef8d7abc28cf745637d41eaec12df7543dd2afee20c1cf3716bb179595fb918f"
     },
     "source_research": {
       "path": "hardware/verification/generated/H5-EVR02-source-research.json",
-      "sha256": "939c82492e405994c23c589b5b08ff14d9b050c30f085b7c2b8a67a40ea6d962"
+      "sha256": "c7662c0eccd5e741182b219286a39d2a95a2423db5acf05f1af85aefc0feffcb"
     }
   },
   "summary": {
     "article_lines": 30,
     "measurement_contracts": 11,
     "covered_residuals_and_gates": 23,
-    "published_price_subtotal_usd": "243.42",
+    "published_price_subtotal_usd": "249.76",
     "conservative_budget_caps_usd": "4.00",
-    "known_engineering_material_budget_usd": "247.42",
+    "known_engineering_material_budget_usd": "253.76",
     "unpriced_manufacturer_lines": 0,
     "excluded_from_budget": [
       "factory display attrition",
@@ -57,7 +57,7 @@
     "expansion": "31.68",
     "ir": "5.30",
     "power": "46.38",
-    "rf": "61.43",
+    "rf": "67.77",
     "storage": "40.05"
   },
   "articles": [
@@ -254,28 +254,28 @@
     {
       "id": "nrf-modules",
       "group": "rf",
-      "mpn": "Ebyte E01-ML01IPX",
+      "mpn": "Ebyte E01-ML01SP4 / JLCPCB C97340",
       "order_quantity": 3,
       "order_unit": "piece",
       "contained_pieces_per_order_unit": 1,
       "pricing": {
         "kind": "published_usd",
-        "unit_usd": "2.37",
-        "subtotal_usd": "7.110",
+        "unit_usd": "4.4835",
+        "subtotal_usd": "13.450",
         "source_price": null
       },
       "source": {
-        "label": "RobotShop, sold and fulfilled by Ebyte",
-        "url": "https://www.robotshop.com/products/ebyte-e01-ml01ipx-frequency-hopping-nrf24l01p-high-speed-24g-rf-wireless-100mw-24ghz-nrf24l01-tx-rx-module",
+        "label": "JLCPCB exact original-manufacturer part page",
+        "url": "https://jlcpcb.com/partdetail/E01-ML01SP4/C97340",
         "checked_on": "2026-08-29",
-        "availability": "98 shown in stock"
+        "availability": "405 in stock, 388 available, MOQ 1; factory SMT placement"
       },
       "coverage": [
         "H3-PHY-053",
         "H3-PHY-062",
         "H5-MECH-NRF-GEN1-FEEDS"
       ],
-      "minimum_quantity_basis": "exactly three modules are required to prove simultaneous full RX, TX and mixed operation; no untouched spare",
+      "minimum_quantity_basis": "exactly three factory-fitted PA/LNA modules are required to prove simultaneous full RX, TX and mixed operation; no owner placement or untouched spare",
       "risk": null,
       "purchase_authorized": false
     },

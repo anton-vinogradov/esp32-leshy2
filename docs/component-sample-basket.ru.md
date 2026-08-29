@@ -20,8 +20,8 @@ flowchart TD
 
 ## Сводка стоимости
 
-- **$247.42** — известный консервативный material budget для всех priced lines.
-- Внутри него **$243.42** — публичные USD-цены и **$4.00** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
+- **$253.76** — известный консервативный material budget для всех priced lines.
+- Внутри него **$249.76** — публичные USD-цены и **$4.00** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
 - В сумму включены exact `SA818S-U` `C3001549` за `$9.7347` и exact `SA818S-V` `C51897911` за `$10.0710`; у VHF-модуля stock `0`, MOQ 1 и типичные 8–15 рабочих дней, а final quote/lead остаются order-time gate.
 - Точный production panel по публичной цене `$14.91` включён; не включены только factory attrition, финальная сборка/FCT, доставка, налоги и таможня. Любые дополнительные экземпляры дисплея или коннекторов входят в attrition фабричного quote, а не в пользовательские samples; отдельного H5 coupon-заказа нет.
 - Старая сумма `$164.54` была не дешёвой полной корзиной, а неполным набором из восьми строк; она не покрывала большинство H5 gates.
@@ -50,8 +50,8 @@ flowchart TD
 
 ### Радиотракты
 
-- **3 × `Ebyte E01-ML01IPX` — $7.11.** [RobotShop, sold and fulfilled by Ebyte](https://www.robotshop.com/products/ebyte-e01-ml01ipx-frequency-hopping-nrf24l01p-high-speed-24g-rf-wireless-100mw-24ghz-nrf24l01-tx-rx-module); 98 shown in stock.
-  Почему минимум: exactly three modules are required to prove simultaneous full RX, TX and mixed operation; no untouched spare
+- **3 × `Ebyte E01-ML01SP4 / JLCPCB C97340` — $13.45.** [JLCPCB exact original-manufacturer part page](https://jlcpcb.com/partdetail/E01-ML01SP4/C97340); 405 in stock, 388 available, MOQ 1; factory SMT placement.
+  Почему минимум: exactly three factory-fitted PA/LNA modules are required to prove simultaneous full RX, TX and mixed operation; no owner placement or untouched spare
 - **5 × `TE Connectivity 2118651-2` — $12.60.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824); 3,082 shown in stock.
   Почему минимум: five real paths exist: S3, C5 and three nRF24; every installed bend/retention path must be represented
 - **5 × `Hirose U.FL-R-SMT-1(10)` — $8.35.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/U-FL-R-SMT-1-10/2391570); 319,443 shown in stock.

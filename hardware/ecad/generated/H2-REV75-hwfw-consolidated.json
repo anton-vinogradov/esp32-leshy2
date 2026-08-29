@@ -3,10 +3,10 @@
   "stage": "H2.7.5",
   "status": "reviewed_h2_7_end_to_end_reconciliation",
   "source_hashes": {
-    "hardware/ecad/generated/H2-REV71-canonical-inventories.json": "7273264a2f60ac5306e3e5666cdf9eca660039cb93511f138a84fc911bb067d6",
-    "hardware/ecad/generated/H2-REV72-physical-contacts.json": "77a69b9d358cc340da94ecfa5e4789ded0e0a1b06ae7ddb4331c7fe4a6eb172d",
-    "hardware/ecad/generated/H2-REV73-named-nets-m1.json": "d72e79c3247c62e18882480b9d11da6f01a28ace1013e13dac15d11c06ecbc89",
-    "hardware/ecad/generated/H2-REV74-firmware-contract.json": "e64d0f4b1740f8346dda2398cda5eb511a81dd81fe9aeb25af737bcd65766aea"
+    "hardware/ecad/generated/H2-REV71-canonical-inventories.json": "a5c55c1448dec83059063ff91f8538c1139304b59bf5c57c9ace864ab4d8ce61",
+    "hardware/ecad/generated/H2-REV72-physical-contacts.json": "f518623ccadd8a9aeabacf37be31b0ebc81c3fb22d8075f841e3af70fe947924",
+    "hardware/ecad/generated/H2-REV73-named-nets-m1.json": "c006f9718e1a12f888aa2b436639591ff57e6ae6f432dabf75e7bb1b8462ee68",
+    "hardware/ecad/generated/H2-REV74-firmware-contract.json": "c478571d0c442602a93fa2b65362c046cfaf7b7a6c021a5477fdab83040b5816"
   },
   "subreviews": [
     {
@@ -39,7 +39,7 @@
       "affected_classes": [
         "ESP32-S3 carrier",
         "ESP32-C5 carrier",
-        "E01-ML01IPX carrier",
+        "E01-ML01SP4 carrier",
         "TVS2200",
         "BQ25798",
         "CSD87313DMS",

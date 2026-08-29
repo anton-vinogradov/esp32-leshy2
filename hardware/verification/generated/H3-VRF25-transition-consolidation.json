@@ -3,10 +3,10 @@
   "stage": "H3.2.5",
   "status": "reviewed_h3_2_power_transitions_complete",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF21-startup-shutdown.json": "10b89a1ed75e80cca7ffe4b17a5224266ef9a4eea7fbb80ecfa1f49588f55502",
-    "hardware/verification/generated/H3-VRF22-handover-brownout.json": "156097a81a8189dbdcd014c8ff3a19e01f58fc9c54bad296929799d48ed2cc83",
-    "hardware/verification/generated/H3-VRF23-inrush-load-step.json": "599ff8d4a3ad1281962b0857ff960fc1a034b0dacd35f4ce24bc9f94a09f9db4",
-    "hardware/verification/generated/H3-VRF24-watchdog-fault-display.json": "d7946542a980d98be01abca477705f73390012f62bb8208c3cd8564bb152c9bb"
+    "hardware/verification/generated/H3-VRF21-startup-shutdown.json": "288cfce369faacf21774afe60bbb2622a4ba1f608625328f4279b0f2c8190fa9",
+    "hardware/verification/generated/H3-VRF22-handover-brownout.json": "4254db49ffb246a8120301d201249c024107f09e278d5c2afb1a5a4f0f32386d",
+    "hardware/verification/generated/H3-VRF23-inrush-load-step.json": "d72106a07c0af7eb0b8e7d0ff429875526396c46374b377f7ef5af1d359a49ab",
+    "hardware/verification/generated/H3-VRF24-watchdog-fault-display.json": "ebdcd8e494cf72340c21e3bfd1e3595e274a67b37ae5228306fd4b39e4edeebb"
   },
   "checks": {
     "startup_sequences_pass": true,

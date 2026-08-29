@@ -15,6 +15,7 @@ getcontext().prec = 34
 
 REPO = Path(__file__).resolve().parents[2]
 CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
+R2_ARCHITECTURE_PATH = REPO / "hardware/architecture/h0-r2-rebaseline.json"
 DEVICES_PATH = REPO / "hardware/architecture/devices.json"
 DC_PATH = REPO / "hardware/verification/generated/H3-VRF12-dc-budget.json"
 LEVELS_PATH = REPO / "hardware/verification/generated/H3-VRF41-digital-levels.json"
@@ -58,6 +59,7 @@ def nearest_distance(contact: int, candidates: list[int]) -> int:
 
 def build() -> tuple[dict[Path, str], dict]:
     candidate = json.loads(CANDIDATE_PATH.read_text(encoding="utf-8"))
+    r2_architecture = json.loads(R2_ARCHITECTURE_PATH.read_text(encoding="utf-8"))
     devices = json.loads(DEVICES_PATH.read_text(encoding="utf-8"))["devices"]
     dc = json.loads(DC_PATH.read_text(encoding="utf-8"))
     levels = json.loads(LEVELS_PATH.read_text(encoding="utf-8"))
@@ -67,7 +69,11 @@ def build() -> tuple[dict[Path, str], dict]:
     rf_m1 = json.loads(RF_M1_PATH.read_text(encoding="utf-8"))
     instances = candidate["instances"]
     interboard = candidate["interboard_contract"]
-    pin_map = interboard["pin_map"]
+    r2_interboard = r2_architecture["interboard_rebaseline"]
+    pin_map = [
+        {**row, "signal_class": row["class"]}
+        for row in r2_interboard["pin_map"]
+    ]
     m1 = interboard["connector_pair"]
     classes = Counter(row["signal_class"] for row in pin_map)
 
@@ -75,9 +81,10 @@ def build() -> tuple[dict[Path, str], dict]:
     aon_current_a = d(dc["rail_capabilities"]["AON_SAFE_3V3"]["accepted_continuous_a"])
     contact_current_a = d(m1["rated_current_per_contact_a"])
     contact_resistance_ohm = d("0.080")
-    main_contacts = d(classes["power"] - 2)
+    main_contacts = d(classes["main_power"])
     aon_contacts = d(2)
     power_ground_contacts = d(sum(row["net"] == "POWER_GROUND" for row in pin_map))
+    main_return_contacts = d(classes["main_return"])
     main_per_contact_a = main_current_a / main_contacts
     aon_per_contact_a = aon_current_a / aon_contacts
     main_contact_margin_a = contact_current_a - main_per_contact_a
@@ -86,16 +93,26 @@ def build() -> tuple[dict[Path, str], dict]:
     aon_drop_v = aon_per_contact_a * contact_resistance_ohm
     main_connector_loss_w = main_current_a**2 * contact_resistance_ohm / main_contacts
     aon_connector_loss_w = aon_current_a**2 * contact_resistance_ohm / aon_contacts
-    main_return_per_contact_a = main_current_a / power_ground_contacts
+    main_return_per_contact_a = main_current_a / main_return_contacts
 
     ground_contacts = [row["contact"] for row in pin_map if row["net"] == "POWER_GROUND"]
     audio_ground_contacts = [row["contact"] for row in pin_map if row["net"] == "AUDIO_GROUND"]
-    ipc_contacts = [row["contact"] for row in pin_map if row["signal_class"] == "ipc_high_speed"]
-    usb_contacts = [row["contact"] for row in pin_map if row["signal_class"] == "usb2_high_speed"]
+    ipc_contacts = [row["contact"] for row in pin_map if row["signal_class"] == "ipc"]
+    ipc_clocked_contacts = [
+        row["contact"] for row in pin_map
+        if row["net"] in {"HUB_RF_SCK", "HUB_RF_MOSI", "HUB_RF_MISO"}
+    ]
+    usb_contacts = [row["contact"] for row in pin_map if row["signal_class"] == "usb2"]
     audio_contacts = [row["contact"] for row in pin_map if row["signal_class"] == "audio"]
     ipc_ground_distance_max = max(nearest_distance(contact, ground_contacts) for contact in ipc_contacts)
+    ipc_clocked_ground_distance_max = max(
+        nearest_distance(contact, ground_contacts) for contact in ipc_clocked_contacts
+    )
     usb_ground_distance_max = max(nearest_distance(contact, ground_contacts) for contact in usb_contacts)
-    audio_ground_distance_max = max(nearest_distance(contact, audio_ground_contacts) for contact in audio_contacts)
+    audio_ground_distance_max = (
+        max(nearest_distance(contact, audio_ground_contacts) for contact in audio_contacts)
+        if audio_contacts else 0
+    )
     connector_rate_bps = d(m1["transmission_rate_gbps"]) * d(1_000_000_000)
     usb_hs_bps = d(480_000_000)
     m1_rate_ratio = connector_rate_bps / usb_hs_bps
@@ -179,17 +196,18 @@ def build() -> tuple[dict[Path, str], dict]:
         "m1_maps_are_identical": no_back_power["m1"]["ui_rf_maps_identical"] is True and rf_m1["summary"]["cross_project_contact_mismatches"] == 0,
         "m1_ui_and_rf_each_have_51_unique_nets": ui_m1["summary"]["unique_nets"] == 51 and rf_m1["summary"]["unique_nets"] == 51,
         "m1_class_count_is_complete": sum(classes.values()) == 80,
-        "m1_has_seven_main_contacts": main_contacts == d(7),
+        "m1_has_fourteen_main_contacts": main_contacts == d(14),
         "m1_has_two_aon_contacts": aon_contacts == d(2),
         "m1_main_per_contact_below_rating": main_per_contact_a < contact_current_a,
         "m1_aon_per_contact_below_rating": aon_per_contact_a < contact_current_a,
         "m1_main_drop_below_30mv": main_drop_v < d("0.030"),
         "m1_aon_drop_below_7mv": aon_drop_v < d("0.007"),
-        "m1_main_connector_loss_below_75mw": main_connector_loss_w < d("0.075"),
+        "m1_main_connector_loss_below_100mw": main_connector_loss_w < d("0.100"),
         "m1_power_return_per_contact_below_rating": main_return_per_contact_a < contact_current_a,
-        "m1_ipc_each_has_adjacent_power_ground": ipc_ground_distance_max <= 1,
+        "m1_clocked_ipc_each_has_adjacent_power_ground": ipc_clocked_ground_distance_max <= 1,
+        "m1_control_ipc_is_within_two_contacts_of_ground": ipc_ground_distance_max <= 2,
         "m1_usb_pair_is_bracketed_by_power_ground": usb_ground_distance_max <= 1,
-        "m1_audio_each_is_within_two_contacts_of_audio_ground": audio_ground_distance_max <= 2,
+        "m1_carries_no_audio_payload": not audio_contacts and not audio_ground_contacts,
         "m1_8gbps_rating_exceeds_usb_hs_by_16x": m1_rate_ratio >= d(16),
         "branch_accepted_current_below_efuse_floor": branch_current_a < branch_efuse_min_a,
         "branch_efuse_margin_above_20pct": branch_margin_pct > d(20),
@@ -227,14 +245,14 @@ def build() -> tuple[dict[Path, str], dict]:
         "schema_version": 1,
         "stage": "H3.4.3",
         "status": "reviewed_m1_expansion_and_service_boundary_loading",
-        "source_hashes": {str(path.relative_to(REPO)): sha256(path) for path in (CANDIDATE_PATH, DEVICES_PATH, DC_PATH, LEVELS_PATH, TIMING_PATH, NO_BACK_POWER_PATH, UI_M1_PATH, RF_M1_PATH)},
+        "source_hashes": {str(path.relative_to(REPO)): sha256(path) for path in (CANDIDATE_PATH, R2_ARCHITECTURE_PATH, DEVICES_PATH, DC_PATH, LEVELS_PATH, TIMING_PATH, NO_BACK_POWER_PATH, UI_M1_PATH, RF_M1_PATH)},
         "provenance": SOURCES,
         "m1": {
-            "contacts": len(pin_map), "unique_nets": ui_m1["summary"]["unique_nets"], "class_counts": dict(sorted(classes.items())),
+            "contacts": len(pin_map), "unique_nets": len({row["net"] for row in pin_map}), "class_counts": dict(sorted(classes.items())),
             "rating": {"current_a_per_contact": str(contact_current_a), "contact_resistance_ohm_max": str(contact_resistance_ohm), "transmission_rate_gbps": m1["transmission_rate_gbps"]},
             "main": {"accepted_current_a": str(main_current_a), "contacts": int(main_contacts), "current_a_per_contact": q(main_per_contact_a), "rating_margin_a_per_contact": q(main_contact_margin_a), "drop_v_max": q(main_drop_v, "0.000001"), "connector_loss_w_max": q(main_connector_loss_w, "0.000001")},
             "aon": {"accepted_current_a": str(aon_current_a), "contacts": int(aon_contacts), "current_a_per_contact": q(aon_per_contact_a), "rating_margin_a_per_contact": q(aon_contact_margin_a), "drop_v_max": q(aon_drop_v, "0.000001"), "connector_loss_w_max": q(aon_connector_loss_w, "0.000001")},
-            "return_and_locality": {"power_ground_contacts": int(power_ground_contacts), "main_return_a_per_contact_conservative": q(main_return_per_contact_a), "ipc_ground_distance_contacts_max": ipc_ground_distance_max, "usb_ground_distance_contacts_max": usb_ground_distance_max, "audio_ground_distance_contacts_max": audio_ground_distance_max},
+            "return_and_locality": {"power_ground_contacts": int(power_ground_contacts), "main_return_contacts": int(main_return_contacts), "main_return_a_per_contact": q(main_return_per_contact_a), "ipc_ground_distance_contacts_max": ipc_ground_distance_max, "clocked_ipc_ground_distance_contacts_max": ipc_clocked_ground_distance_max, "usb_ground_distance_contacts_max": usb_ground_distance_max, "audio_payload_contacts": len(audio_contacts)},
             "rate_margin_over_usb2_hs": q(m1_rate_ratio),
         },
         "expansion_power": {
@@ -266,13 +284,13 @@ def build() -> tuple[dict[Path, str], dict]:
         "next": {"stage": "H3.6.1", "action": "build the worst-case board, battery and enclosure thermal model"},
     }
 
-    en = f"""# M1, expansion and service-boundary loading · historical R1
+    en = f"""# M1, expansion and service-boundary loading · current R2 architecture
 
 `H3.4.3` is reviewed with `{len(checks)}` machine checks and no open analytical finding. The historical R1 progression marker is `H3.6.1`.
 
 ## M1 worst-case bounds
 
-The exact 80-contact FX8C pair carries 51 nets. Even the deliberately over-conservative assumption that the whole accepted 2.5-A main rail crosses M1 loads each of seven contacts by only `{q(main_per_contact_a)} A` against 0.4 A; maximum connector drop is `{q(main_drop_v * d(1000))} mV` and loss `{q(main_connector_loss_w * d(1000))} mW`. AON uses `{q(aon_per_contact_a)} A` per contact. Every IPC and USB contact is adjacent to POWER_GROUND; every low-level audio contact is within two positions of AUDIO_GROUND. The connector's 8-Gbit/s rating is `{q(m1_rate_ratio)}x` USB2 High-Speed.
+The exact 80-contact FX8C pair carries 44 distinct nets plus 16 explicit NC reserves. The entire accepted 3.75-A main envelope is distributed across fourteen supply and fourteen dedicated return contacts: `{q(main_per_contact_a)} A` per contact against 0.4 A, `{q(main_drop_v * d(1000))} mV` maximum connector drop and `{q(main_connector_loss_w * d(1000))} mW` total connector loss. AON uses `{q(aon_per_contact_a)} A` per contact. Every clocked IPC and USB contact is adjacent to POWER_GROUND; the low-rate ALERT/CS control is at most two positions away, and no audio payload crosses M1. The connector's 8-Gbit/s rating is `{q(m1_rate_ratio)}x` USB2 High-Speed.
 
 ## Expansion bounds
 
@@ -286,13 +304,13 @@ Service VBUS cannot power the product. Two service ports draw only 10 uA through
 
 Machine evidence: [`H3-VRF43-boundary-loading.json`](../hardware/verification/generated/H3-VRF43-boundary-loading.json).
 """
-    ru = f"""# Loading M1, expansions и service boundaries · historical R1
+    ru = f"""# Loading M1, expansions и service boundaries · текущая R2-архитектура
 
 `H3.4.3` проверено: `{len(checks)}` машинных checks, незакрытых аналитических findings нет. Исторический маркер прогресса R1 — `H3.6.1`.
 
 ## Worst-case границы M1
 
-Точная 80-контактная пара FX8C переносит 51 net. Даже нарочно сверхконсервативное предположение, что весь принятый main rail 2,5 А проходит через M1, нагружает каждый из семи контактов лишь на `{q(main_per_contact_a)} А` при rating 0,4 А; максимальные connector drop `{q(main_drop_v * d(1000))} мВ`, loss `{q(main_connector_loss_w * d(1000))} мВт`. AON использует `{q(aon_per_contact_a)} А` на контакт. Каждый IPC/USB contact соседствует с POWER_GROUND; каждый low-level audio contact находится не дальше двух позиций от AUDIO_GROUND. Rating connector 8 Гбит/с в `{q(m1_rate_ratio)} раза` выше USB2 High-Speed.
+Точная 80-контактная пара FX8C переносит 44 разных net и сохраняет 16 явных NC-резервов. Весь принятый main-envelope 3,75 А распределён по четырнадцати контактам питания и четырнадцати выделенным возвратам: `{q(main_per_contact_a)} А` на контакт при rating 0,4 А, максимальный connector drop `{q(main_drop_v * d(1000))} мВ`, суммарный loss `{q(main_connector_loss_w * d(1000))} мВт`. AON использует `{q(aon_per_contact_a)} А` на контакт. Каждый тактируемый IPC/USB contact соседствует с POWER_GROUND; низкоскоростные ALERT/CS находятся не дальше двух позиций, audio payload через M1 не проходит. Rating connector 8 Гбит/с в `{q(m1_rate_ratio)} раза` выше USB2 High-Speed.
 
 ## Границы expansions
 

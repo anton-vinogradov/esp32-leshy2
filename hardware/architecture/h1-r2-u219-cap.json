@@ -237,7 +237,7 @@
       "axis_world_xy_mm": [71.46, 24.64],
       "source": "official model-size dimensions 8.04 mm from the antenna end and 7.64 mm from the long edge",
       "swept_volume": "conservative diameter 12 mm, length 108 mm, Z=37.66..145.66 mm",
-      "result": "clear of the rear five-SMA bank, FPV service envelope, Cap connector, battery holder and ordinary rear controls"
+      "result": "clear of the rear five-SMA bank, Cap connector, battery holder and ordinary rear controls"
     }
   },
   "jlcpcb_live_surface": {

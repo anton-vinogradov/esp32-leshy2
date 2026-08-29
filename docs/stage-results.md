@@ -18,23 +18,21 @@ device.
 
 Result: the product is split into a front UI/radio PCB and a rear RF/power PCB.
 UI remains local to S3, all three complete nRF24 paths remain local to the front
-RP, and CC1101, voice, broadcast/Airband, audio, FPV, extensions and safety
-remain local to the rear RP. M1 carries control/data transport, one CVBS signal,
-safety evidence and power—not primary RF payloads.
+RP, and CC1101, voice, broadcast/Airband, audio, extensions and safety remain
+local to the rear RP. M1 carries control/data transport, safety evidence and
+power—not primary RF payloads.
 
 <a id="h1"></a>
 ## H1 · Physical product design
 
-**Status:** ▶️ current at **`H1-R2.33`**.
+**Status:** ▶️ current at **`H1-R2.35`**.
 
 - [Current physical design](h1-r2-physical-layout.md)
-- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.33-layout-ready-1)
+- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.35-full-power-nrf24-1)
 - [Front inner face](images/h1-r2-inner-ui.svg)
 - [Rear inner face](images/h1-r2-inner-rf.svg)
-- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.33-layout-ready-1)
-- [Vertical FPV MMCX proof](images/h1-r2-mmcx-service.svg)
+- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.35-full-power-nrf24-1)
 - [Machine placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json)
-- [Analog FPV path](h1-r2-fpv.md)
 - [Airband receive path](h1-airband-filter.md)
 - [Power and thermal architecture](h1-r2-power-thermal.md)
 - [U214/U219 machine policy](../hardware/architecture/generated/H1-R2-U219-cap-policy.json)
@@ -44,21 +42,20 @@ closed as current H1 authority. The accepted U219 profile shares the protected
 Cap slot with U214, keeps CC1101 RX-only and NFC poll/read-only, and adds
 independent NFC-field evidence to the existing safety aggregate.
 
-Current physical result: ten main SMA ports are split 5+5; FPV uses a separate
-vertical Molex `73415-2063` (`C588480`) MMCX on the rear face. The screen is exact
+Current physical result: ten main SMA ports are split 5+5. The screen is exact
 EastRising `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 through exact Hirose
 `FH34SRJ-50S-0.5SH(50)` (`C3169104`) and a replaceable i8080-8 adapter. The panel
 is turned so the FPC exits toward the antenna edge; firmware rotates display and
 touch coordinates by 180 degrees.
 
-The single coordinate model now registers 218 bodies: all component packages,
+The single coordinate model now registers 215 bodies: all component packages,
 all 18 U219 host bodies, the NFC pickup loop, the external antenna swept volume,
 connectors, controls and through-board mechanics. Its generated four-face,
 external, internal, antenna-edge and sandwich views report zero same-face
 collisions and 2.59 mm minimum opposing-face clearance against the 0.70 mm rule.
-The 30 × 24 × 8 mm FPV bay carries mutually exclusive K331/AWM666V lands;
-exactly one receiver is installed. Received-module and solder qualification stay
-in H5/H7 rather than pretending to be known from drawings.
+The onboard video receiver, decoder, connector, antenna and physical bay are
+removed. Eleven S3 GPIOs, eight rear-RP GPIOs and M1 contacts 35–36 remain
+reserves; no hidden active module requires owner soldering after PCBA.
 
 H1 now has no physical blocker. The complete mock-up is the acceptance candidate;
 explicit user acceptance is the only remaining H1 action. It does not authorize

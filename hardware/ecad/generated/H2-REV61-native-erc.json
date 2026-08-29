@@ -25,7 +25,7 @@
     "hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch": "54aabd610b11a6c610db45892de76e348afbd193b56b7ec1e89f2d3b4d92368d",
     "hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch": "7e4628c34754bed9ce495551a024a77861e92cca946677cf64ec7fcfea6c6d55",
     "hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch": "cb0c025c788a275ef44f95f27d35b3f038ca1dfc38fe33a61efd4da045b04865",
-    "hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch": "7163f0648a760945cb0d956cf6a2220b8a7944efcaff7b4c9f67a78e5b6db1f3",
+    "hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch": "f73f26746d81127a3636f4a9c11008687aad7703953141297a2e1483eb1b1435",
     "hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch": "9d4729056776b5df05a783193aa2f72527b09f58c04ac8b9391f80294f900478",
     "hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch": "64a0f7e8079fef014414302bfd9ba2e8ccfe3651b7087292e737660181ed81dd",
     "hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch": "666fdcc877e3ef98e7b71e899a2b5771028fe682cc9a36963d03d100c87be5c0",
@@ -40,7 +40,7 @@
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_pro": "a38d2ae6ec8a9459cc66d6ca17792208314efced730a29847c7e2011131a486a",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch": "9dc3755f2e8b625b4bd68d28cbd153f50ebf12e567d8270598277a041d8187a3",
-    "hardware/ecad/libraries/leshy2.kicad_sym": "69e8ed2df41782541cf23286a0fce22d88791e35578c209264dbe7f72cea0d9c"
+    "hardware/ecad/libraries/leshy2.kicad_sym": "a6903e3f6ace0b76b74638e66a6362df0e6187ce8046841007eac01b49bee023"
   },
   "projects": [
     {

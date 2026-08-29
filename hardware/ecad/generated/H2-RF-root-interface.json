@@ -11,8 +11,8 @@
   "project": "LESHY2-RF",
   "root_sheet": "RF_00_ROOT",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "46efd30669da371cae53110bb2991c8aad8c1c8973c66d33b9b8f0f60a1c44a2",
-    "hardware/ecad/generated/H2-instance-ledger.json": "0ea2d4f11469bf03e760ceb47836e668abd760862387785e9567995dd4c12256",
+    "hardware/architecture/candidates/G2F-3I.json": "edce4ca3aed56ed1a58b9ec85d19f7c9db624869f54797e0c2dc329e9816007d",
+    "hardware/ecad/generated/H2-instance-ledger.json": "36c18638c89d353cfc92f6213c6e001fa20cfe88ffb8cf3c2f5c5544d0c11fe6",
     "hardware/ecad/H2-sheet-contract.json": "8d793ea3580542f700514ab6fa315a6e27f06503fa1e23b80c07f1b1afda15c2"
   },
   "summary": {

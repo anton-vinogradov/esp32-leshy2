@@ -1,28 +1,28 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.30",
-  "checked_on": "2026-08-28",
+  "marker": "H1-R2.35",
+  "checked_on": "2026-08-29",
   "status": "pass_review_with_open_cost_actions",
   "summary": {
     "bom_lines": 210,
-    "quantity_100_priced_lines": 200,
-    "known_quantity_100_base_usd_per_device": 248.3651,
-    "planning_base_usd_per_device": 276.7735,
+    "quantity_100_priced_lines": 201,
+    "known_quantity_100_base_usd_per_device": 257.255,
+    "planning_base_usd_per_device": 278.5534,
     "remaining_unpriced_base_lines": 5,
-    "planning_base_plus_post_pcba_usd_per_device": 306.7635,
+    "planning_base_plus_post_pcba_usd_per_device": 278.5534,
     "procurement_target_device_quantity": 1,
     "historical_cost_capture_device_quantity": 5,
-    "planning_base_plus_post_pcba_usd_for_procurement_target": 306.7635,
+    "planning_base_plus_post_pcba_usd_for_procurement_target": 278.5534,
     "historical_capture_matched_lines": 181,
-    "live_spot_checks": 22,
+    "live_spot_checks": 23,
     "historical_capture_displayed_usd": 1293.9793,
-    "historical_spot_adjusted_displayed_usd": 1359.9983,
+    "historical_spot_adjusted_displayed_usd": 1417.9703,
     "historical_capture_unmatched_lines": 29,
     "preorder_rows": 26,
     "preorder_capture_usd": 648.0444,
     "preorder_volume_basis_for_historical_capture_usd": 322.6465,
     "preorder_observed_small_lot_premium_usd": 325.3979,
-    "antenna_known_first_target_usd": 145.2666,
+    "antenna_known_first_target_usd": 138.3166,
     "antenna_unpriced_lines": 4
   },
   "rows": [
@@ -160,6 +160,25 @@
       "cost_gate": null
     },
     {
+      "device_id": "ebyte_e01_ml01sp4",
+      "mpn": "Ebyte E01-ML01SP4",
+      "role": "three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm",
+      "scope": "base_product",
+      "quantity_per_device": 3,
+      "quantity_procurement_target": 3,
+      "planning_procurement_line_usd": 8.889899999999999,
+      "quantity_historical_capture": 15,
+      "unit_price_quantity_100_usd": 2.9633,
+      "effective_unit_price_usd": 2.9633,
+      "line_burden_per_device_usd": 8.889899999999999,
+      "line_burden_basis": "quantity-100",
+      "quantity_100_batch_line_usd": 888.9899999999999,
+      "historical_capture_displayed_line_usd": 57.972,
+      "historical_capture_route": "not matched",
+      "jlcpcb_part": null,
+      "cost_gate": null
+    },
+    {
       "device_id": "keystone_1048p",
       "mpn": "Keystone Electronics 1048P",
       "role": "dual protected-18650 holder / держатель двух защищённых 18650",
@@ -215,25 +234,6 @@
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C580926",
       "cost_gate": null
-    },
-    {
-      "device_id": "ebyte_e01_ml01ipx",
-      "mpn": "Ebyte E01-ML01IPX",
-      "role": "three full nRF24 radios / три полнофункциональных nRF24",
-      "scope": "base_product",
-      "quantity_per_device": 3,
-      "quantity_procurement_target": 3,
-      "planning_procurement_line_usd": 7.11,
-      "quantity_historical_capture": 15,
-      "unit_price_quantity_100_usd": null,
-      "effective_unit_price_usd": 2.37,
-      "line_burden_per_device_usd": 7.11,
-      "line_burden_basis": "provisional reachable route",
-      "quantity_100_batch_line_usd": 711.0,
-      "historical_capture_displayed_line_usd": null,
-      "historical_capture_route": "not_matched",
-      "jlcpcb_part": null,
-      "cost_gate": "quantity_100_rfq_required"
     },
     {
       "device_id": "hirose_ufl_r_smt_1_10",
@@ -4032,17 +4032,7 @@
     "source": "https://www.elecrow.com/3-5-esp32-s3-display-320x480-capacitive-ips-touchscreen-with-speaker-mic-bat-interface-supports-ai-voice-chat.html",
     "checked_on": "2026-08-28"
   },
-  "post_pcba_required": [
-    {
-      "mpn": "AKK K331",
-      "quantity_per_device": 1,
-      "unit_price_usd": 29.99,
-      "route": "post-PCBA manual installation",
-      "source": "https://www.akktek.com/products/k331-5-8ghz-24ch-fpv-receiver-module",
-      "checked_on": "2026-08-27",
-      "note": "Primary analog-FPV receiver; omitted from the normal PCBA BOM. AWM666V is a functionally reduced fallback, not a silent cost substitute."
-    }
-  ],
+  "post_pcba_required": [],
   "antenna_rows": [
     {
       "code": "AIR",
@@ -4092,13 +4082,6 @@
       "quantity": 1,
       "known_line_usd": 9.6,
       "profile": "315 MHz"
-    },
-    {
-      "code": "FPV",
-      "mpn": "TBS5G8MMCXA",
-      "quantity": 1,
-      "known_line_usd": 6.95,
-      "profile": "receive-only 5.8-GHz analog FPV, unknown source polarization"
     },
     {
       "code": "S915",

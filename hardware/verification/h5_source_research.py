@@ -21,14 +21,14 @@ CHECKED_ON = "2026-08-26"
 SOURCES = {
     "ebyte_e01": {
         "owner": "Chengdu Ebyte",
-        "title": "E01-ML01IPX product page",
-        "url": "https://www.ebyte.com/product/47.html",
-        "supports": "exact module identity, nRF24L01P, external IPEX interface, 12 x 19 mm body and SPI role",
+        "title": "E01-ML01SP4 product page",
+        "url": "https://www.ebyte.com/product/49.html",
+        "supports": "exact stable-production module identity, nRF24L01P plus RFX2401C PA/LNA, 20-dBm output, external IPEX interface, 14.5 x 18 x 2.4 mm body, ten-land drawing and SPI role",
     },
     "ebyte_e01_datasheet": {
         "owner": "Chengdu Ebyte",
         "title": "E01 series user manual",
-        "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+        "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
         "supports": "current manufacturer electrical and module-outline evidence",
     },
     "ebyte_cable": {
@@ -273,7 +273,7 @@ ALTERNATIVES = [
         "reason": "same final Heimdall envelope and contacts, same 38-kHz AGC2 function and 3.3-V compatibility; JLCPCB C511498 is factory-placeable stock. TR changes tape presentation only, so the PCB/GPIO/firmware interface stays fixed but CPL rotation and feeder presentation are an explicit pre-order gate",
     },
     {
-        "target": "E01-ML01IPX RF feed",
+        "target": "E01-ML01SP4 RF feed",
         "candidate": "XC-IPX-SMA-15",
         "sources": ["ebyte_cable"],
         "decision": "rejected",
@@ -475,7 +475,7 @@ flowchart LR
 - Для robust IR выбран factory-stocked `TSOP75238TR` (`C511498`) без изменения footprint, контактов, GPIO или интерфейса прошивки; перед заказом обязательны проверка остатка, CPL rotation и feeder presentation.
 - `ES3C35P` и `HMX035CTFT-001` сохранены только как прежние electrical/mechanical evidence; закупка donor-сборки отклонена, а точная серийная панель и factory mating остаются открытым production gate.
 - `TE 2118651-2` подтверждён как active и документированный; менять его нет оснований.
-- Для stock `U214` и `E01-ML01IPX` производители действительно не раскрывают MPN установленных connector subparts.
+- Для stock `U214` и `E01-ML01SP4` производители действительно не раскрывают MPN установленных connector subparts.
 - `SA818S-U` и `SA818S-V` подтверждены как два независимых серийных модуля с общим официальным 18-land package. JLCPCB: U — `C3001549`, stock 68/available 60, `$9.7347`; V — `C51897911`, stock 0, `pre-order`, `$10.0710`, MOQ 1 и типичные 8–15 рабочих дней по частичному ответу фабрики от 26 августа.
 - `SA818S-CE` (`C19632390`, stock 8, `$9.3449`) имеет те же package, contacts и команды и принят только как qualified-pending замена UHF-модуля. Это не молчаливая замена: manifest обязан запретить `470–480 МГц`, а полученная деталь должна пройти HIL.
 
@@ -525,7 +525,7 @@ flowchart LR
 - Robust IR now uses factory-stocked `TSOP75238TR` (`C511498`) without a footprint, contact, GPIO or firmware-interface change; stock, CPL rotation and feeder presentation are mandatory pre-order checks.
 - `ES3C35P` and `HMX035CTFT-001` are retained only as legacy electrical/mechanical evidence; donor procurement is rejected, while exact production-panel identity and factory mating remain an open production gate.
 - `TE 2118651-2` is confirmed active and documented; replacement has no demonstrated benefit.
-- The makers of stock `U214` and `E01-ML01IPX` genuinely do not disclose the fitted connector-subpart MPNs.
+- The makers of stock `U214` and `E01-ML01SP4` genuinely do not disclose the fitted connector-subpart MPNs.
 - `SA818S-U` and `SA818S-V` are confirmed as two independent serial modules with one official 18-land package. JLCPCB: U is `C3001549`, stock 68/available 60 at `$9.7347`; V is `C51897911`, stock 0 and `pre-order` at `$10.0710`, MOQ 1 and a typical 8–15-working-day lead per the factory's partial 26 August response.
 - `SA818S-CE` (`C19632390`, stock 8 at `$9.3449`) uses the same package, contacts and commands and is accepted only as a qualified-pending UHF alternate. It is never a silent substitution: the manifest must disable `470–480 MHz` and the received part must pass HIL.
 

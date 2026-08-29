@@ -7,7 +7,7 @@ Capacitance is no longer copied by hand: the generator collects every actual cap
 | Rail | Nominal C, µF | Worst active load, mA | Result |
 |---|---:|---:|---|
 | `AON_SAFE_3V3` | 24.4 | 89.5 | pass_current_limited_start |
-| `3V3_MAIN` | 59.8 | 2493.0 | pass |
+| `3V3_MAIN` | 59.8 | 3063.0 | pass |
 | `VVOICE_4V` | 10.0 | 750.0 | pass |
 | `5V_U214_PROTECTED` | 2.2 | 1250.0 | pass |
 | `5V_UNIT_PROTECTED` | 2.2 | 1250.0 | pass |

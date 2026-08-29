@@ -73,7 +73,7 @@ def audit(model: dict) -> dict:
     placement = json.loads(PLACEMENT_PATH.read_text(encoding="utf-8")) if PLACEMENT_PATH.exists() else None
     checks = {
         "six_compute_domains_present": len(model["six_compute_domains"]) == 6,
-        "all_signal_groups_enumerated": len(groups) == 12,
+        "all_signal_groups_enumerated": len(groups) == 11,
         "h0_continuous_minimum_met": main["accepted_continuous_a"] >= model["source_contract"]["minimum_continuous_a"],
         "h0_step_minimum_met": main["accepted_step_a"] >= model["source_contract"]["minimum_step_a"],
         "worst_load_within_admitted_continuous": worst["main_ma"] / 1000.0 <= main["accepted_continuous_a"],

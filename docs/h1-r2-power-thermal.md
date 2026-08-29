@@ -6,7 +6,7 @@ All six compute domains and every mutually exclusive signal group have been reca
 
 ## Result
 
-- The worst group is `AIRBAND_RX` at `2.823 A` on `3V3_MAIN`. The accepted envelopes are `3.75 A` continuous and `4.25 A` step, leaving `0.927 A` (`32.8%`) to the continuous admission limit.
+- The worst group is `NRF24` at `3.063 A` on `3V3_MAIN`. The accepted envelopes are `3.75 A` continuous and `4.25 A` step, leaving `0.687 A` (`22.4%`) to the continuous admission limit.
 - `TPS566231PRQFR` preserves a separate diagnostic Power-Good and provides the 6-A class. `TPS25974LRPWR` with `RC0402FR-071K18L` guarantees `4.340–5.412 A`: the step passes and the eFuse trips below the converter minimum current limit.
 - `PSPMAA0605H-2R2M-ANP` is rated 10-A RMS / 15-A saturation. Calculated peak at the accepted step is `5.002 A`.
 - Three input and three output `GRM32ER71E226KE15L` bodies are placed individually. H3 must prove at least 30/44 µF effective capacitance after bias, temperature and tolerance rather than accepting nominal values.

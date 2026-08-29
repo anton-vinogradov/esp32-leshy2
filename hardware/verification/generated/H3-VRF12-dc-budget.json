@@ -4,11 +4,11 @@
   "status": "reviewed_all_rail_loads_and_protection_margins_pass_after_ext_5v_and_audio_source_corrections",
   "method": "dc_network plus Decimal interval corners; PF-02 >=25% steady hardware reserve",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF11-power-state-register.json": "11eab1a31341f6220135be23d7ce0ca9ed70db1e21ce1bc61428e1394ec7ddb1",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "c8561eb86abcb2b484962421c3c379fbcdafa6f0850f6d4634fef355531a233e",
-    "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
-    "hardware/ecad/generated/H2-REV51-power-paths.json": "1b80f96466f94156578123a0853a6321435911320ccb17669f3d912156f77e23"
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "b9242783fd310b3aaf74eb237ccd523e79c8f063fdb25645361e8c80f4ec8303",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "0d50b8e4a917d6f07d22186a28020e18414afbecbf476b6566785d86c6f12768",
+    "hardware/architecture/candidates/G2F-3I.json": "edce4ca3aed56ed1a58b9ec85d19f7c9db624869f54797e0c2dc329e9816007d",
+    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
+    "hardware/ecad/generated/H2-REV51-power-paths.json": "eae477a68fb7e122498037c900269727a38887d7a0a0a5c5490eb27114598c32"
   },
   "provenance": [
     {
@@ -27,9 +27,9 @@
     },
     {
       "id": "SRC-RP-BOUND",
-      "value": "250 mA",
-      "use": "RP2354B core, stacked flash and active PIO/DMA/I/O reservation",
-      "basis": "200-mA internal core-regulator maximum plus an explicit 50-mA I/O/flash allowance",
+      "value": "250 mA per RP2354B",
+      "use": "separate 250-mA reservations for the front Hub RP and rear RF RP",
+      "basis": "per device: 200-mA internal core-regulator maximum plus an explicit 50-mA I/O/flash allowance",
       "url": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf"
     },
     {
@@ -55,10 +55,10 @@
     },
     {
       "id": "SRC-NRF24-MAX",
-      "value": "14 mA per module",
-      "use": "each E01-ML01IPX in PTX; all three may transmit concurrently",
-      "basis": "Ebyte published maximum TX current at 0 dBm",
-      "url": "https://www.ebyte.com/product/47.html"
+      "value": "130 mA per module",
+      "use": "each E01-ML01SP4 PA/LNA module at the 20-dBm design maximum; all three may transmit concurrently",
+      "basis": "Ebyte published 110-to-130-mA TX-current range at 20 dBm; the maximum, never the 120-mA typical value, proves the rail",
+      "url": "https://www.ebyte.com/product/49.html"
     },
     {
       "id": "SRC-SA818S-MAX",
@@ -83,10 +83,10 @@
     },
     {
       "id": "SRC-CONVERTERS",
-      "value": "AON 0.3 A; application rails 4 A each",
+      "value": "AON 0.3 A; current 3V3_MAIN 6 A; voice/accessory rails 4 A",
       "use": "converter output-current ceilings",
-      "basis": "TPS629203 and TPS564252 manufacturer ratings",
-      "url": "https://www.ti.com/product/TPS564252"
+      "basis": "TPS629203, TPS566231 and TPS564252 manufacturer ratings",
+      "url": "https://www.ti.com/product/TPS566231"
     }
   ],
   "rail_capabilities": {
@@ -99,10 +99,10 @@
     },
     "3V3_MAIN": {
       "voltage_v": "3.222",
-      "converter_min_a": "4.000",
-      "protection_min_a": "3.200",
-      "accepted_continuous_a": "2.500",
-      "protection": "TPS25974LRPWR guaranteed 3.2-A minimum circuit-breaker corner"
+      "converter_min_a": "6.000",
+      "protection_min_a": "4.340",
+      "accepted_continuous_a": "3.750",
+      "protection": "TPS25974LRPWR with 1.18-kohm RILM; guaranteed-low threshold from the current H1-R2 power-cell audit"
     },
     "VVOICE_4V": {
       "voltage_v": "4.000",
@@ -153,7 +153,8 @@
       "SUPPORT_WORST": {
         "s3_compute_memory_and_rf_peak_reservation": "340.000",
         "c5_compute_memory_and_5ghz_peak_reservation": "408.000",
-        "rp2354_pio_dma_io_and_stacked_flash": "250.000",
+        "front_hub_rp2354_pio_dma_io_and_stacked_flash": "250.000",
+        "rear_rf_rp2354_pio_dma_io_and_stacked_flash": "250.000",
         "display_touch_and_max_normal_backlight": "200.000",
         "qualified_micro_sd_at_socket_limit": "500.000",
         "codec_selectors_and_max_speaker_playback": "625.000",
@@ -164,7 +165,7 @@
       "NONE": "0.000",
       "S3_RF": "0.000",
       "C5_RF": "0.000",
-      "NRF24": "42.000",
+      "NRF24": "390.000",
       "CC1101": "35.000",
       "VOICE": "20.000",
       "IR": "70.000",
@@ -213,12 +214,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
           "output_power_w": "1.273",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2105.000",
-          "hardware_reserve_percent": "710.127",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3355.000",
+          "hardware_reserve_percent": "998.709",
           "status": "pass"
         },
         {
@@ -258,7 +259,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2423.000",
+        "3V3_MAIN": "2673.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -277,14 +278,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2423.000",
-          "output_power_w": "7.807",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "77.000",
-          "hardware_reserve_percent": "32.068",
+          "load_ma": "2673.000",
+          "output_power_w": "8.612",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1077.000",
+          "hardware_reserve_percent": "62.361",
           "status": "pass"
         },
         {
@@ -345,12 +346,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
           "output_power_w": "1.273",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2105.000",
-          "hardware_reserve_percent": "710.127",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3355.000",
+          "hardware_reserve_percent": "998.709",
           "status": "pass"
         },
         {
@@ -390,7 +391,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2423.000",
+        "3V3_MAIN": "2673.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -409,14 +410,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2423.000",
-          "output_power_w": "7.807",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "77.000",
-          "hardware_reserve_percent": "32.068",
+          "load_ma": "2673.000",
+          "output_power_w": "8.612",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1077.000",
+          "hardware_reserve_percent": "62.361",
           "status": "pass"
         },
         {
@@ -477,12 +478,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
           "output_power_w": "1.273",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2105.000",
-          "hardware_reserve_percent": "710.127",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3355.000",
+          "hardware_reserve_percent": "998.709",
           "status": "pass"
         },
         {
@@ -522,7 +523,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2423.000",
+        "3V3_MAIN": "2673.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -541,14 +542,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2423.000",
-          "output_power_w": "7.807",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "77.000",
-          "hardware_reserve_percent": "32.068",
+          "load_ma": "2673.000",
+          "output_power_w": "8.612",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1077.000",
+          "hardware_reserve_percent": "62.361",
           "status": "pass"
         },
         {
@@ -609,12 +610,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
           "output_power_w": "1.273",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2105.000",
-          "hardware_reserve_percent": "710.127",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3355.000",
+          "hardware_reserve_percent": "998.709",
           "status": "pass"
         },
         {
@@ -654,7 +655,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2423.000",
+        "3V3_MAIN": "2673.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -673,14 +674,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2423.000",
-          "output_power_w": "7.807",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "77.000",
-          "hardware_reserve_percent": "32.068",
+          "load_ma": "2673.000",
+          "output_power_w": "8.612",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1077.000",
+          "hardware_reserve_percent": "62.361",
           "status": "pass"
         },
         {
@@ -741,12 +742,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
           "output_power_w": "1.273",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2105.000",
-          "hardware_reserve_percent": "710.127",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3355.000",
+          "hardware_reserve_percent": "998.709",
           "status": "pass"
         },
         {
@@ -786,7 +787,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2423.000",
+        "3V3_MAIN": "2673.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -805,14 +806,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2423.000",
-          "output_power_w": "7.807",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "77.000",
-          "hardware_reserve_percent": "32.068",
+          "load_ma": "2673.000",
+          "output_power_w": "8.612",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1077.000",
+          "hardware_reserve_percent": "62.361",
           "status": "pass"
         },
         {
@@ -873,12 +874,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
           "output_power_w": "1.273",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2105.000",
-          "hardware_reserve_percent": "710.127",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3355.000",
+          "hardware_reserve_percent": "998.709",
           "status": "pass"
         },
         {
@@ -918,7 +919,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2423.000",
+        "3V3_MAIN": "2673.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -937,14 +938,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2423.000",
-          "output_power_w": "7.807",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "77.000",
-          "hardware_reserve_percent": "32.068",
+          "load_ma": "2673.000",
+          "output_power_w": "8.612",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1077.000",
+          "hardware_reserve_percent": "62.361",
           "status": "pass"
         },
         {
@@ -1005,12 +1006,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
           "output_power_w": "1.273",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2105.000",
-          "hardware_reserve_percent": "710.127",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3355.000",
+          "hardware_reserve_percent": "998.709",
           "status": "pass"
         },
         {
@@ -1050,7 +1051,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2423.000",
+        "3V3_MAIN": "2673.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -1069,14 +1070,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2423.000",
-          "output_power_w": "7.807",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "77.000",
-          "hardware_reserve_percent": "32.068",
+          "load_ma": "2673.000",
+          "output_power_w": "8.612",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1077.000",
+          "hardware_reserve_percent": "62.361",
           "status": "pass"
         },
         {
@@ -1137,12 +1138,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
           "output_power_w": "1.273",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2105.000",
-          "hardware_reserve_percent": "710.127",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3355.000",
+          "hardware_reserve_percent": "998.709",
           "status": "pass"
         },
         {
@@ -1182,7 +1183,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2423.000",
+        "3V3_MAIN": "2673.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -1201,14 +1202,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2423.000",
-          "output_power_w": "7.807",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "77.000",
-          "hardware_reserve_percent": "32.068",
+          "load_ma": "2673.000",
+          "output_power_w": "8.612",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1077.000",
+          "hardware_reserve_percent": "62.361",
           "status": "pass"
         },
         {
@@ -1269,12 +1270,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "395.000",
           "output_power_w": "1.273",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2105.000",
-          "hardware_reserve_percent": "710.127",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3355.000",
+          "hardware_reserve_percent": "998.709",
           "status": "pass"
         },
         {
@@ -1314,7 +1315,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2423.000",
+        "3V3_MAIN": "2673.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -1333,14 +1334,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2423.000",
-          "output_power_w": "7.807",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "77.000",
-          "hardware_reserve_percent": "32.068",
+          "load_ma": "2673.000",
+          "output_power_w": "8.612",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1077.000",
+          "hardware_reserve_percent": "62.361",
           "status": "pass"
         },
         {
@@ -1382,7 +1383,7 @@
       "support_profile": "SUPPORT_IDLE",
       "loads_ma": {
         "AON_SAFE_3V3": "89.500",
-        "3V3_MAIN": "437.000",
+        "3V3_MAIN": "785.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -1401,14 +1402,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "437.000",
-          "output_power_w": "1.408",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2063.000",
-          "hardware_reserve_percent": "632.265",
+          "load_ma": "785.000",
+          "output_power_w": "2.529",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "2965.000",
+          "hardware_reserve_percent": "452.854",
           "status": "pass"
         },
         {
@@ -1450,7 +1451,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "89.500",
-        "3V3_MAIN": "2465.000",
+        "3V3_MAIN": "3063.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -1469,14 +1470,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2465.000",
-          "output_power_w": "7.942",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "35.000",
-          "hardware_reserve_percent": "29.817",
+          "load_ma": "3063.000",
+          "output_power_w": "9.869",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "687.000",
+          "hardware_reserve_percent": "41.688",
           "status": "pass"
         },
         {
@@ -1518,7 +1519,7 @@
       "support_profile": "SUPPORT_IDLE",
       "loads_ma": {
         "AON_SAFE_3V3": "89.500",
-        "3V3_MAIN": "437.000",
+        "3V3_MAIN": "785.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -1537,14 +1538,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "437.000",
-          "output_power_w": "1.408",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2063.000",
-          "hardware_reserve_percent": "632.265",
+          "load_ma": "785.000",
+          "output_power_w": "2.529",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "2965.000",
+          "hardware_reserve_percent": "452.854",
           "status": "pass"
         },
         {
@@ -1586,7 +1587,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "89.500",
-        "3V3_MAIN": "2465.000",
+        "3V3_MAIN": "3063.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -1605,14 +1606,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2465.000",
-          "output_power_w": "7.942",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "35.000",
-          "hardware_reserve_percent": "29.817",
+          "load_ma": "3063.000",
+          "output_power_w": "9.869",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "687.000",
+          "hardware_reserve_percent": "41.688",
           "status": "pass"
         },
         {
@@ -1654,7 +1655,7 @@
       "support_profile": "SUPPORT_IDLE",
       "loads_ma": {
         "AON_SAFE_3V3": "89.500",
-        "3V3_MAIN": "437.000",
+        "3V3_MAIN": "785.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -1673,14 +1674,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "437.000",
-          "output_power_w": "1.408",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2063.000",
-          "hardware_reserve_percent": "632.265",
+          "load_ma": "785.000",
+          "output_power_w": "2.529",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "2965.000",
+          "hardware_reserve_percent": "452.854",
           "status": "pass"
         },
         {
@@ -1722,7 +1723,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "89.500",
-        "3V3_MAIN": "2465.000",
+        "3V3_MAIN": "3063.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -1741,14 +1742,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2465.000",
-          "output_power_w": "7.942",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "35.000",
-          "hardware_reserve_percent": "29.817",
+          "load_ma": "3063.000",
+          "output_power_w": "9.869",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "687.000",
+          "hardware_reserve_percent": "41.688",
           "status": "pass"
         },
         {
@@ -1790,7 +1791,7 @@
       "support_profile": "SUPPORT_IDLE",
       "loads_ma": {
         "AON_SAFE_3V3": "89.500",
-        "3V3_MAIN": "437.000",
+        "3V3_MAIN": "785.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -1809,14 +1810,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "437.000",
-          "output_power_w": "1.408",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2063.000",
-          "hardware_reserve_percent": "632.265",
+          "load_ma": "785.000",
+          "output_power_w": "2.529",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "2965.000",
+          "hardware_reserve_percent": "452.854",
           "status": "pass"
         },
         {
@@ -1858,7 +1859,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "89.500",
-        "3V3_MAIN": "2465.000",
+        "3V3_MAIN": "3063.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -1877,14 +1878,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2465.000",
-          "output_power_w": "7.942",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "35.000",
-          "hardware_reserve_percent": "29.817",
+          "load_ma": "3063.000",
+          "output_power_w": "9.869",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "687.000",
+          "hardware_reserve_percent": "41.688",
           "status": "pass"
         },
         {
@@ -1947,12 +1948,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "430.000",
           "output_power_w": "1.385",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2070.000",
-          "hardware_reserve_percent": "644.186",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3320.000",
+          "hardware_reserve_percent": "909.279",
           "status": "pass"
         },
         {
@@ -1994,7 +1995,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "78.100",
-        "3V3_MAIN": "2458.000",
+        "3V3_MAIN": "2708.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -2013,14 +2014,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2458.000",
-          "output_power_w": "7.920",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "42.000",
-          "hardware_reserve_percent": "30.187",
+          "load_ma": "2708.000",
+          "output_power_w": "8.725",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1042.000",
+          "hardware_reserve_percent": "60.262",
           "status": "pass"
         },
         {
@@ -2083,12 +2084,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "430.000",
           "output_power_w": "1.385",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2070.000",
-          "hardware_reserve_percent": "644.186",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3320.000",
+          "hardware_reserve_percent": "909.279",
           "status": "pass"
         },
         {
@@ -2130,7 +2131,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "78.100",
-        "3V3_MAIN": "2458.000",
+        "3V3_MAIN": "2708.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -2149,14 +2150,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2458.000",
-          "output_power_w": "7.920",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "42.000",
-          "hardware_reserve_percent": "30.187",
+          "load_ma": "2708.000",
+          "output_power_w": "8.725",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1042.000",
+          "hardware_reserve_percent": "60.262",
           "status": "pass"
         },
         {
@@ -2219,12 +2220,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "415.000",
           "output_power_w": "1.337",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2085.000",
-          "hardware_reserve_percent": "671.084",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3335.000",
+          "hardware_reserve_percent": "945.759",
           "status": "pass"
         },
         {
@@ -2266,7 +2267,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "78.100",
-        "3V3_MAIN": "2443.000",
+        "3V3_MAIN": "2693.000",
         "VVOICE_4V": "750.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -2285,14 +2286,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2443.000",
-          "output_power_w": "7.871",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "57.000",
-          "hardware_reserve_percent": "30.986",
+          "load_ma": "2693.000",
+          "output_power_w": "8.677",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1057.000",
+          "hardware_reserve_percent": "61.155",
           "status": "pass"
         },
         {
@@ -2355,12 +2356,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "415.000",
           "output_power_w": "1.337",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2085.000",
-          "hardware_reserve_percent": "671.084",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3335.000",
+          "hardware_reserve_percent": "945.759",
           "status": "pass"
         },
         {
@@ -2402,7 +2403,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "78.100",
-        "3V3_MAIN": "2443.000",
+        "3V3_MAIN": "2693.000",
         "VVOICE_4V": "750.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -2421,14 +2422,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2443.000",
-          "output_power_w": "7.871",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "57.000",
-          "hardware_reserve_percent": "30.986",
+          "load_ma": "2693.000",
+          "output_power_w": "8.677",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1057.000",
+          "hardware_reserve_percent": "61.155",
           "status": "pass"
         },
         {
@@ -2491,12 +2492,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "465.000",
           "output_power_w": "1.498",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2035.000",
-          "hardware_reserve_percent": "588.172",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3285.000",
+          "hardware_reserve_percent": "833.312",
           "status": "pass"
         },
         {
@@ -2538,7 +2539,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2493.000",
+        "3V3_MAIN": "2743.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -2557,14 +2558,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2493.000",
-          "output_power_w": "8.032",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "7.000",
-          "hardware_reserve_percent": "28.359",
+          "load_ma": "2743.000",
+          "output_power_w": "8.838",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1007.000",
+          "hardware_reserve_percent": "58.217",
           "status": "pass"
         },
         {
@@ -2627,12 +2628,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "465.000",
           "output_power_w": "1.498",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2035.000",
-          "hardware_reserve_percent": "588.172",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3285.000",
+          "hardware_reserve_percent": "833.312",
           "status": "pass"
         },
         {
@@ -2674,7 +2675,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2493.000",
+        "3V3_MAIN": "2743.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -2693,14 +2694,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2493.000",
-          "output_power_w": "8.032",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "7.000",
-          "hardware_reserve_percent": "28.359",
+          "load_ma": "2743.000",
+          "output_power_w": "8.838",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1007.000",
+          "hardware_reserve_percent": "58.217",
           "status": "pass"
         },
         {
@@ -2763,12 +2764,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "415.000",
           "output_power_w": "1.337",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2085.000",
-          "hardware_reserve_percent": "671.084",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3335.000",
+          "hardware_reserve_percent": "945.759",
           "status": "pass"
         },
         {
@@ -2810,7 +2811,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2443.000",
+        "3V3_MAIN": "2693.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "1250.000"
       },
@@ -2829,14 +2830,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2443.000",
-          "output_power_w": "7.871",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "57.000",
-          "hardware_reserve_percent": "30.986",
+          "load_ma": "2693.000",
+          "output_power_w": "8.677",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1057.000",
+          "hardware_reserve_percent": "61.155",
           "status": "pass"
         },
         {
@@ -2899,12 +2900,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "415.000",
           "output_power_w": "1.337",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2085.000",
-          "hardware_reserve_percent": "671.084",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3335.000",
+          "hardware_reserve_percent": "945.759",
           "status": "pass"
         },
         {
@@ -2946,7 +2947,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2443.000",
+        "3V3_MAIN": "2693.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "1250.000"
       },
@@ -2965,14 +2966,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2443.000",
-          "output_power_w": "7.871",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "57.000",
-          "hardware_reserve_percent": "30.986",
+          "load_ma": "2693.000",
+          "output_power_w": "8.677",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1057.000",
+          "hardware_reserve_percent": "61.155",
           "status": "pass"
         },
         {
@@ -3035,12 +3036,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "415.000",
           "output_power_w": "1.337",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2085.000",
-          "hardware_reserve_percent": "671.084",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3335.000",
+          "hardware_reserve_percent": "945.759",
           "status": "pass"
         },
         {
@@ -3082,7 +3083,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2443.000",
+        "3V3_MAIN": "2693.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "1250.000"
       },
@@ -3101,14 +3102,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2443.000",
-          "output_power_w": "7.871",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "57.000",
-          "hardware_reserve_percent": "30.986",
+          "load_ma": "2693.000",
+          "output_power_w": "8.677",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1057.000",
+          "hardware_reserve_percent": "61.155",
           "status": "pass"
         },
         {
@@ -3171,12 +3172,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "415.000",
           "output_power_w": "1.337",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2085.000",
-          "hardware_reserve_percent": "671.084",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3335.000",
+          "hardware_reserve_percent": "945.759",
           "status": "pass"
         },
         {
@@ -3218,7 +3219,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2443.000",
+        "3V3_MAIN": "2693.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "1250.000"
       },
@@ -3237,14 +3238,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2443.000",
-          "output_power_w": "7.871",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "57.000",
-          "hardware_reserve_percent": "30.986",
+          "load_ma": "2693.000",
+          "output_power_w": "8.677",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1057.000",
+          "hardware_reserve_percent": "61.155",
           "status": "pass"
         },
         {
@@ -3307,12 +3308,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "415.000",
           "output_power_w": "1.337",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2085.000",
-          "hardware_reserve_percent": "671.084",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3335.000",
+          "hardware_reserve_percent": "945.759",
           "status": "pass"
         },
         {
@@ -3354,7 +3355,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2443.000",
+        "3V3_MAIN": "2693.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "1250.000"
       },
@@ -3373,14 +3374,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2443.000",
-          "output_power_w": "7.871",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "57.000",
-          "hardware_reserve_percent": "30.986",
+          "load_ma": "2693.000",
+          "output_power_w": "8.677",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1057.000",
+          "hardware_reserve_percent": "61.155",
           "status": "pass"
         },
         {
@@ -3444,12 +3445,12 @@
           "rail": "3V3_MAIN",
           "load_ma": "425.000",
           "output_power_w": "1.369",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "2075.000",
-          "hardware_reserve_percent": "652.941",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "3325.000",
+          "hardware_reserve_percent": "921.153",
           "status": "pass"
         },
         {
@@ -3492,7 +3493,7 @@
       "support_profile": "SUPPORT_WORST",
       "loads_ma": {
         "AON_SAFE_3V3": "72.400",
-        "3V3_MAIN": "2453.000",
+        "3V3_MAIN": "2703.000",
         "VVOICE_4V": "0.000",
         "5V_EXT_ACTIVE_BRANCH": "0.000"
       },
@@ -3511,14 +3512,14 @@
         },
         {
           "rail": "3V3_MAIN",
-          "load_ma": "2453.000",
-          "output_power_w": "7.904",
-          "converter_min_a": "4.000",
-          "protection_min_a": "3.200",
-          "effective_hardware_min_a": "3.200",
-          "accepted_continuous_a": "2.500",
-          "accepted_envelope_margin_ma": "47.000",
-          "hardware_reserve_percent": "30.453",
+          "load_ma": "2703.000",
+          "output_power_w": "8.709",
+          "converter_min_a": "6.000",
+          "protection_min_a": "4.340",
+          "effective_hardware_min_a": "4.340",
+          "accepted_continuous_a": "3.750",
+          "accepted_envelope_margin_ma": "1047.000",
+          "hardware_reserve_percent": "60.559",
           "status": "pass"
         },
         {
@@ -3564,16 +3565,16 @@
       "status": "pass"
     },
     "3V3_MAIN": {
-      "profile": "IR/LEARN_OR_RAW_RX/SUPPORT_WORST",
+      "profile": "NRF24/3PRX/SUPPORT_WORST",
       "rail": "3V3_MAIN",
-      "load_ma": "2493.000",
-      "output_power_w": "8.032",
-      "converter_min_a": "4.000",
-      "protection_min_a": "3.200",
-      "effective_hardware_min_a": "3.200",
-      "accepted_continuous_a": "2.500",
-      "accepted_envelope_margin_ma": "7.000",
-      "hardware_reserve_percent": "28.359",
+      "load_ma": "3063.000",
+      "output_power_w": "9.869",
+      "converter_min_a": "6.000",
+      "protection_min_a": "4.340",
+      "effective_hardware_min_a": "4.340",
+      "accepted_continuous_a": "3.750",
+      "accepted_envelope_margin_ma": "687.000",
+      "hardware_reserve_percent": "41.688",
       "status": "pass"
     },
     "VVOICE_4V": {
@@ -3615,7 +3616,7 @@
       "id": "H3.1.2-F02",
       "finding": "the audio allowance cited an 8-ohm PAM8302A curve although the exact AS02404PO is 4 ohm +/-15%; the display allowance simultaneously treated the TPS2553 fault threshold as a continuous normal load",
       "correction": "reserve 625 mA for amplifier, codec and selectors using the actual 3.4-ohm low corner, and 200 mA for 80-mA display/touch plus the 120-mA normal donor backlight reference",
-      "functional_effect": "the recalculated 3V3_MAIN worst case is 2493 mA with 28.36% guaranteed hardware reserve; the 174-to-234-mA backlight threshold remains an independent latched fault bound",
+      "functional_effect": "with both RP2354B domains and three current full-power nRF24 modules included, the refreshed 3V3_MAIN worst case is 3063 mA with 41.69% guaranteed hardware reserve; the 174-to-234-mA backlight threshold remains an independent latched fault bound",
       "cost_effect_usd_at_100": "0.0000; this corrects operating admission rather than hardware"
     }
   ],
@@ -3625,7 +3626,7 @@
     "failed_profiles": 0,
     "unresolved_numeric_inputs": 0,
     "corrected_findings": 2,
-    "minimum_hardware_reserve_percent": "28.359"
+    "minimum_hardware_reserve_percent": "30.560"
   },
   "next": {
     "stage": "H3.1.3",

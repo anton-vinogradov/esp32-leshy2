@@ -10,8 +10,7 @@
     "main_voltage_v": 3.222,
     "minimum_continuous_a": 3.5,
     "minimum_step_a": 4.0,
-    "one_active_signal_group": true,
-    "fpv_airband_mutually_exclusive": true
+    "one_active_signal_group": true
   },
   "six_compute_domains": [
     {"id": "S3", "mpn": "ESP32-S3-WROOM-1U-N16R8", "main_worst_ma": 340},
@@ -35,21 +34,20 @@
     "NONE": {"main_ma": 0, "voice_4v_ma": 0, "active_5v_ma": 0},
     "S3_RF": {"main_ma": 0, "voice_4v_ma": 0, "active_5v_ma": 0},
     "C5_RF": {"main_ma": 0, "voice_4v_ma": 0, "active_5v_ma": 0},
-    "NRF24": {"main_ma": 42, "voice_4v_ma": 0, "active_5v_ma": 0},
+    "NRF24": {"main_ma": 390, "voice_4v_ma": 0, "active_5v_ma": 0},
     "CC1101": {"main_ma": 35, "voice_4v_ma": 0, "active_5v_ma": 0},
     "VOICE": {"main_ma": 20, "voice_4v_ma": 750, "active_5v_ma": 0},
     "IR": {"main_ma": 70, "voice_4v_ma": 0, "active_5v_ma": 0},
     "LORA_CAP": {"main_ma": 20, "voice_4v_ma": 0, "active_5v_ma": 1250},
     "M5_UNIT": {"main_ma": 20, "voice_4v_ma": 0, "active_5v_ma": 1250},
     "BROADCAST_RX": {"main_ma": 30, "voice_4v_ma": 0, "active_5v_ma": 0},
-    "AIRBAND_RX": {"main_ma": 150, "voice_4v_ma": 0, "active_5v_ma": 0},
-    "FPV_RX": {"main_ma": 70, "voice_4v_ma": 0, "active_5v_ma": 350}
+    "AIRBAND_RX": {"main_ma": 150, "voice_4v_ma": 0, "active_5v_ma": 0}
   },
   "rail_capabilities": {
     "AON_SAFE_3V3": {"accepted_continuous_a": 0.165, "worst_load_a": 0.0895, "unchanged_from_r1": true},
     "3V3_MAIN": {"accepted_continuous_a": 3.75, "accepted_step_a": 4.25},
     "VVOICE_4V": {"accepted_continuous_a": 1.25, "worst_load_a": 0.75, "unchanged_from_r1": true},
-    "5V_ACTIVE_BRANCH": {"accepted_continuous_a": 1.25, "worst_load_a": 1.25, "fpv_internal_reserve_a": 0.35, "one_branch_at_a_time": true}
+    "5V_ACTIVE_BRANCH": {"accepted_continuous_a": 1.25, "worst_load_a": 1.25, "one_branch_at_a_time": true}
   },
   "main_power_cell": {
     "converter": {

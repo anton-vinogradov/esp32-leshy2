@@ -19,7 +19,7 @@
     "open_evidence_is_not_an_architecture_decision": [
       "standalone HMX035CTFT-001 supplier approval drawing, orderability and received-tail fit",
       "received U214, Samtec rail and retention fit",
-      "received E01-ML01IPX Gen1 mate fit and routed 30-mm jumper coupons",
+      "received E01-ML01SP4 Gen1 mate fit and routed 30-mm jumper coupons",
       "received SA818S-U/V 18-land solder fit plus both antenna-feed coupons",
       "prototype electrical, thermal, RF, optical, acoustic, recovery and coexistence HIL"
     ],
@@ -130,7 +130,7 @@
           "equivalence_envelope": ["same exposed real-device contacts, package/mechanics, memory/resources and independent programming/recovery", "all accepted bands, modes, full nRF concurrency, timing, sensitivity, power, evidence and quiet-state controls preserved", "regulatory/profile and toolchain support no worse"],
           "requalification": ["zero-based pin/resource/owner and firmware contract review", "programming/recovery/diagnostic and inter-domain IPC HIL", "conducted/OTA/optical/audio/coexistence/no-stall qualification for every affected group"],
           "device_ids": [
-            "adi_ad8314acpz_rl7", "adi_ltc5532_es6_trmpbf", "cc1101rgpr", "ebyte_e01_ml01ipx", "esp32_c5_wroom_1u_n8r8", "esp32_s3_wroom_1u_n16r8", "infineon_bgs13sn8e6327xtsa1", "m5_u214", "nicerf_sa818s_u_v18", "nicerf_sa818s_v_v18", "rp2354b_a4", "skyworks_si4732_a10_gsr", "vishay_tsmp95000tt", "vishay_tsop75238tr", "vishay_vemd1060x01", "vishay_vsmy14940"
+            "adi_ad8314acpz_rl7", "adi_ltc5532_es6_trmpbf", "cc1101rgpr", "ebyte_e01_ml01sp4", "esp32_c5_wroom_1u_n8r8", "esp32_s3_wroom_1u_n16r8", "infineon_bgs13sn8e6327xtsa1", "m5_u214", "nicerf_sa818s_u_v18", "nicerf_sa818s_v_v18", "rp2354b_a4", "skyworks_si4732_a10_gsr", "vishay_tsmp95000tt", "vishay_tsop75238tr", "vishay_vemd1060x01", "vishay_vsmy14940"
           ]
         },
         {
@@ -176,7 +176,7 @@
     "status": "paper_reviewed_joint_target_projection",
     "fixed_route_abstract_policy": {
       "expected_unique_endpoint_count": 44,
-      "expected_occurrence_count": 1307,
+      "expected_occurrence_count": 1313,
       "classes": [
         {
           "id": "electrical_plane_rail_or_wired_logic",
@@ -661,8 +661,8 @@
   "nrf_electrical_contract": {
     "decision": "DEC-0091",
     "status": "paper_reviewed_i6_nrf_subblock_physical_and_hil_open",
-    "scope": "three independent full-function E01-ML01IPX nRF24-compatible paths, including powered-off digital isolation, local energy, full-band forward-power evidence and three dedicated external SMA feeds",
-    "module": "three exact Ebyte E01-ML01IPX references retain independent CE/CSN/SCK/MOSI/MISO/IRQ and dedicated RP2354 PIO/DMA ownership; Nordic nRF24 lifecycle is NRND, so genuine-lot incoming inspection and an alternate module plan remain mandatory",
+    "scope": "three independent full-function E01-ML01SP4 nRF24-compatible paths, including powered-off digital isolation, local energy, full-band forward-power evidence and three dedicated external SMA feeds",
+    "module": "three exact Ebyte E01-ML01SP4 references retain independent CE/CSN/SCK/MOSI/MISO/IRQ and dedicated RP2354 PIO/DMA ownership; Nordic nRF24 lifecycle is NRND, so genuine-lot incoming inspection and an alternate module plan remain mandatory",
     "power": "one existing TPS22919DCKR creates 3V3_NRF_GROUP for all three simultaneously active modules; exact 1-uF switch-input bypass, 10-kOhm ON fail-low, 10-uF plus 100-nF at every module and direct QOD are populated; all three PTX/PRX mixes remain valid",
     "digital_isolation": "each radio uses one switched-rail Nexperia 74LVC126APW,118 for CE/CSN/SCK/MOSI toward the module and one switched-rail 74LVC2G126DP,125 for MISO/IRQ toward RP; every OE follows 3V3_NRF_GROUP and both exact families specify Ioff, so the six paths become high-Z instead of back-powering an off module",
     "digital_defaults": "main-domain pulls hold CE low, CSN high, SCK/MOSI low, returned MISO low and IRQ high; switched-domain pulls repeat CE low, CSN high, SCK/MOSI low, MISO low and IRQ high; every buffer output receives an exact 22-Ohm source resistor",
@@ -672,7 +672,7 @@
     "frequency_and_margin": "DC2337J5010AHF Rev. H specifies 2000-4000 MHz, with 10.0-11.2-dB coupling and <=0.25-dB insertion loss across 2400-2525 MHz; AD8314 responds through 2700 MHz. A -18-dBm minimum module output therefore reaches the detector near -29.2 dBm before layout tolerance, leaving typical range margin; calibration may never substitute for channel-0/100/125 temperature and lot HIL",
     "antenna_boundary": "each Ebyte module uses a separate exact TE Connectivity 2118651-2 30-mm UMCC Gen1 jumper into a separate Hirose U.FL-R-SMT-1(10) board receptacle, then its own directional coupler and standard external SMA feed; Ebyte's official accessory declaration closes the Gen1 paper mating class while the PcbLib controls only the module land/body envelope, and current-lot axis/fit remain an H5 incoming gate",
     "cost_delta_usd_at_100": "three exact jumpers and three exact board receptacles add USD 8.6598 per device at the checked quantity-100 tiers; E01 module quotation remains an explicit procurement gate rather than a hidden zero-cost line",
-    "remaining_hil": ["received E01-ML01IPX authenticity, pad and Gen1 RF-receptacle fit", "three 2118651-2 jumper route/retention coupons and module-to-SMA insertion-loss/return-loss sweeps", "SPI at 10 Mbit/s through all buffers and 22-Ohm resistors", "100-ms POR, three-radio identity and rail/QOD/no-backpower corners", "forward-power threshold and false-negative margin at channels 0, 100 and 125 over voltage, temperature and module lots", "strong inbound RF false-positive behavior and >=18-dB coupler reverse discrimination", "T1 target/peer 3PRX, 1PTX+2PRX, 2PTX+1PRX and 3PTX coexistence fixture"]
+    "remaining_hil": ["received E01-ML01SP4 authenticity, pad and Gen1 RF-receptacle fit", "three 2118651-2 jumper route/retention coupons and module-to-SMA insertion-loss/return-loss sweeps", "SPI at 10 Mbit/s through all buffers and 22-Ohm resistors", "100-ms POR, three-radio identity and rail/QOD/no-backpower corners", "forward-power threshold and false-negative margin at channels 0, 100 and 125 over voltage, temperature and module lots", "strong inbound RF false-positive behavior and >=18-dB coupler reverse discrimination", "T1 target/peer 3PRX, 1PTX+2PRX, 2PTX+1PRX and 3PTX coexistence fixture"]
   },
   "native_rf_electrical_contract": {
     "decision": "DEC-0092",
@@ -1477,9 +1477,9 @@
     "c5_detector_ground_res": "yageo_rc0402fr_0710kl",
     "c5_detector_output_cap": "kemet_c0402c330j5gactu",
     "c5_detector_bypass": "yageo_cc0402krx7r9bb104",
-    "nrf0": "ebyte_e01_ml01ipx",
-    "nrf1": "ebyte_e01_ml01ipx",
-    "nrf2": "ebyte_e01_ml01ipx",
+    "nrf0": "ebyte_e01_ml01sp4",
+    "nrf1": "ebyte_e01_ml01sp4",
+    "nrf2": "ebyte_e01_ml01sp4",
     "nrf0_rf_jumper": "te_2118651_2",
     "nrf1_rf_jumper": "te_2118651_2",
     "nrf2_rf_jumper": "te_2118651_2",
@@ -3496,8 +3496,14 @@
     {"from":"nrf_power_switch.VOUT","to":"nrf2_module_bulk_cap.END_1","net":"3V3_NRF_GROUP","safety":"exact 10-uF module-local transient reservoir"},
     {"from":"nrf_power_switch.VOUT","to":"nrf2_module_hf_cap.END_1","net":"3V3_NRF_GROUP","safety":"exact 100-nF module-local high-frequency bypass"},
     {"from":"nrf0.GND","to":"abstract:rf-ground","net":"NRF0_RF_GROUND","safety":"module and coupler reference use a short local RF ground"},
+    {"from":"nrf0.GND_9","to":"abstract:rf-ground","net":"NRF0_RF_GROUND","safety":"side ground land closes the PA/LNA return at the module edge"},
+    {"from":"nrf0.GND_10","to":"abstract:rf-ground","net":"NRF0_RF_GROUND","safety":"opposite side ground land closes the PA/LNA return at the module edge"},
     {"from":"nrf1.GND","to":"abstract:rf-ground","net":"NRF1_RF_GROUND","safety":"module and coupler reference use a short local RF ground"},
+    {"from":"nrf1.GND_9","to":"abstract:rf-ground","net":"NRF1_RF_GROUND","safety":"side ground land closes the PA/LNA return at the module edge"},
+    {"from":"nrf1.GND_10","to":"abstract:rf-ground","net":"NRF1_RF_GROUND","safety":"opposite side ground land closes the PA/LNA return at the module edge"},
     {"from":"nrf2.GND","to":"abstract:rf-ground","net":"NRF2_RF_GROUND","safety":"module and coupler reference use a short local RF ground"},
+    {"from":"nrf2.GND_9","to":"abstract:rf-ground","net":"NRF2_RF_GROUND","safety":"side ground land closes the PA/LNA return at the module edge"},
+    {"from":"nrf2.GND_10","to":"abstract:rf-ground","net":"NRF2_RF_GROUND","safety":"opposite side ground land closes the PA/LNA return at the module edge"},
     {"from":"nrf0_host_buffer.GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"local digital return"},
     {"from":"nrf0_return_buffer.GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"local digital return"},
     {"from":"nrf1_host_buffer.GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"local digital return"},

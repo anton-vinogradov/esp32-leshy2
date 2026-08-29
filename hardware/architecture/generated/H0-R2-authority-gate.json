@@ -18,8 +18,8 @@
       "hub_rp"
     ],
     "m1_contacts": 80,
-    "m1_live_signals": 25,
-    "m1_reserve_contacts": 14
+    "m1_live_signals": 24,
+    "m1_reserve_contacts": 16
   },
   "current_h1_pin_authority": {
     "source": "hardware/architecture/h1-r2-dual-rp-pinout.json",
@@ -31,9 +31,9 @@
   },
   "current_h1_physical_authority": {
     "source": "hardware/product-design/h1-r2-placement.json",
-    "marker": "H1-R2.31",
-    "status": "in_progress",
-    "open_blockers": 4
+    "marker": "H1-R2.35",
+    "status": "ready_for_user_layout_acceptance",
+    "open_blockers": 0
   },
   "current_exact_domain_contracts": [
     {
@@ -42,10 +42,10 @@
       "pin_map": [
         {
           "gpio": 0,
-          "net": "VIDEO_D0",
-          "peripheral": "LCD_CAM",
-          "direction": "in",
-          "gate": "decoder data output must be high-Z through strap sampling"
+          "net": "S3_RESERVE_0",
+          "peripheral": "GPIO",
+          "direction": "reserve",
+          "gate": "input/high-Z through strap sampling; test pad only"
         },
         {
           "gpio": 1,
@@ -74,27 +74,31 @@
         },
         {
           "gpio": 5,
-          "net": "VIDEO_D1",
-          "peripheral": "LCD_CAM",
-          "direction": "in"
+          "net": "S3_RESERVE_5",
+          "peripheral": "GPIO",
+          "direction": "reserve",
+          "gate": "test pad only"
         },
         {
           "gpio": 6,
-          "net": "VIDEO_D2",
-          "peripheral": "LCD_CAM",
-          "direction": "in"
+          "net": "S3_RESERVE_6",
+          "peripheral": "GPIO",
+          "direction": "reserve",
+          "gate": "test pad only"
         },
         {
           "gpio": 7,
-          "net": "VIDEO_D3",
-          "peripheral": "LCD_CAM",
-          "direction": "in"
+          "net": "S3_RESERVE_7",
+          "peripheral": "GPIO",
+          "direction": "reserve",
+          "gate": "test pad only"
         },
         {
           "gpio": 8,
-          "net": "VIDEO_D4",
-          "peripheral": "LCD_CAM",
-          "direction": "in"
+          "net": "S3_RESERVE_8",
+          "peripheral": "GPIO",
+          "direction": "reserve",
+          "gate": "test pad only"
         },
         {
           "gpio": 9,
@@ -104,27 +108,31 @@
         },
         {
           "gpio": 10,
-          "net": "VIDEO_D5",
-          "peripheral": "LCD_CAM",
-          "direction": "in"
+          "net": "S3_RESERVE_10",
+          "peripheral": "GPIO",
+          "direction": "reserve",
+          "gate": "test pad only"
         },
         {
           "gpio": 11,
-          "net": "VIDEO_D6",
-          "peripheral": "LCD_CAM",
-          "direction": "in"
+          "net": "S3_RESERVE_11",
+          "peripheral": "GPIO",
+          "direction": "reserve",
+          "gate": "test pad only"
         },
         {
           "gpio": 12,
-          "net": "VIDEO_D7",
-          "peripheral": "LCD_CAM",
-          "direction": "in"
+          "net": "S3_RESERVE_12",
+          "peripheral": "GPIO",
+          "direction": "reserve",
+          "gate": "test pad only"
         },
         {
           "gpio": 13,
-          "net": "VIDEO_PCLK",
-          "peripheral": "LCD_CAM",
-          "direction": "in"
+          "net": "S3_RESERVE_13",
+          "peripheral": "GPIO",
+          "direction": "reserve",
+          "gate": "test pad only"
         },
         {
           "gpio": 14,
@@ -134,15 +142,17 @@
         },
         {
           "gpio": 15,
-          "net": "VIDEO_VSYNC",
-          "peripheral": "LCD_CAM",
-          "direction": "in"
+          "net": "S3_RESERVE_15",
+          "peripheral": "GPIO",
+          "direction": "reserve",
+          "gate": "test pad only"
         },
         {
           "gpio": 16,
-          "net": "VIDEO_HREF",
-          "peripheral": "LCD_CAM",
-          "direction": "in"
+          "net": "S3_RESERVE_16",
+          "peripheral": "GPIO",
+          "direction": "reserve",
+          "gate": "test pad only"
         },
         {
           "gpio": 17,
@@ -541,7 +551,7 @@
           "net": "RF_RESERVE_15",
           "direction": "reserve",
           "controller": "GPIO",
-          "endpoint": "test pad only; K331 RSSI remains NC",
+          "endpoint": "test pad only",
           "reset": "input/high-Z; external pull-down; DNP"
         },
         {
@@ -642,18 +652,18 @@
         },
         {
           "gpio": 28,
-          "net": "FPV_RX_PWR_EN",
-          "direction": "out",
+          "net": "RF_RESERVE_28",
+          "direction": "reserve",
           "controller": "GPIO",
-          "endpoint": "post-PCBA K331/AWM666V receiver bay",
-          "reset": "input/high-Z; external pull-down"
+          "endpoint": "test pad only",
+          "reset": "input/high-Z; external pull-down; DNP"
         },
         {
           "gpio": 29,
           "net": "RF_RESERVE_29",
           "direction": "reserve",
           "controller": "GPIO",
-          "endpoint": "test pad only; UI-local TVP5150 lock is read by S3 and reported over the existing S3-Hub-RF IPC chain",
+          "endpoint": "test pad only",
           "reset": "input/high-Z; external pull-down; DNP"
         },
         {
@@ -674,27 +684,27 @@
         },
         {
           "gpio": 32,
-          "net": "FPV_CH1",
-          "direction": "out",
+          "net": "RF_RESERVE_32",
+          "direction": "reserve",
           "controller": "GPIO",
-          "endpoint": "receiver channel select",
-          "reset": "input/high-Z; external pull-down"
+          "endpoint": "test pad only",
+          "reset": "input/high-Z; external pull-down; DNP"
         },
         {
           "gpio": 33,
-          "net": "FPV_CH2",
-          "direction": "out",
+          "net": "RF_RESERVE_33",
+          "direction": "reserve",
           "controller": "GPIO",
-          "endpoint": "receiver channel select",
-          "reset": "input/high-Z; external pull-down"
+          "endpoint": "test pad only",
+          "reset": "input/high-Z; external pull-down; DNP"
         },
         {
           "gpio": 34,
-          "net": "FPV_CH3",
-          "direction": "out",
+          "net": "RF_RESERVE_34",
+          "direction": "reserve",
           "controller": "GPIO",
-          "endpoint": "receiver channel select",
-          "reset": "input/high-Z; external pull-down"
+          "endpoint": "test pad only",
+          "reset": "input/high-Z; external pull-down; DNP"
         },
         {
           "gpio": 35,

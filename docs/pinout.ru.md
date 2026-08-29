@@ -4,7 +4,7 @@
 
 Это точная рабочая H1-R2.31-карта GPIO двух независимых RP2354B и их пяти сигналов через M1. Точный электрический контракт module-pad/IO-mux C5 присоединён. Она ещё не разрешает KiCad: до нового R2 H2 остаются live production route FSUSB42MUX/C11355 и точный MPN detector/latch service-VBUS.
 
-> Machine source: `hardware/architecture/h1-r2-dual-rp-pinout.json`. Маркер pin-map-артефакта: **`H1-R2.31`**; текущий маркер физического дизайна: **`H1-R2.33`**.
+> Machine source: `hardware/architecture/h1-r2-dual-rp-pinout.json`. Маркер pin-map-артефакта: **`H1-R2.31`**; текущий маркер физического дизайна: **`H1-R2.35`**.
 
 ## Передний Hub RP
 
@@ -72,9 +72,9 @@ Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety
 
 ## Задний RF RP
 
-Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, FPV control, M5 Unit and exactly one signed U214/U219 Cap profile owner; no nRF24 or microSD ownership.
+Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, M5 Unit and exactly one signed U214/U219 Cap profile owner; no nRF24 or microSD ownership.
 
-**GPIO:** `44/48` used, `4` reserve. **PIO:** `6/12` used. **DMA:** `12/16` used.
+**GPIO:** `40/48` used, `8` reserve. **PIO:** `6/12` used. **DMA:** `12/16` used.
 
 | GPIO | Сеть | Направление | Контроллер | Физический endpoint | Reset / pull |
 |---:|---|---|---|---|---|
@@ -93,7 +93,7 @@ Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, FPV control, M5 Unit and exac
 | `12` | `CAP_PIN10_BUSY_OR_NFC_CS_N` | `io` | `GPIO_IRQ_OR_OUTPUT_PROFILE` | SN74CBTLV1G125: U214 BUSY input or U219 NFC_CS_N output | input/high-Z; AON /OE pull-up disconnects pin 10; U219 profile drives inactive high before POWER_EN |
 | `13` | `CAP_IRQ` | `in` | `GPIO_IRQ` | exact-one profile return buffer: U214 DIO1 or U219 NFC_IRQ; polarity interpreted only by the signed profile | input; external pull-down; accessory branch remains off |
 | `14` | `CAP_RESET_N_OR_POWER_EN` | `out` | `GPIO` | exact-one profile command buffer: U214 RESET_N or U219 POWER_EN | input/high-Z; external pull-down holds U214 reset and U219 power disabled |
-| `15` | `RF_RESERVE_15` | `reserve` | `GPIO` | test pad only; K331 RSSI remains NC | input/high-Z; external pull-down; DNP |
+| `15` | `RF_RESERVE_15` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
 | `16` | `VOICE_UART_TX` | `out` | `UART0` | SA818S-U/V selected command path | input/high-Z; external pull-up keeps UART idle |
 | `17` | `VOICE_UART_RX` | `in` | `UART0` | SA818S-U/V selected response path | input; external pull-up |
 | `18` | `VOICE_PTT_REQ_N` | `out` | `GPIO` | FAULT_KILL-dominant voice PTT gate | input/high-Z; external pull-up inhibits TX |
@@ -106,13 +106,13 @@ Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, FPV control, M5 Unit and exac
 | `25` | `HUB_RF_CS_N` | `in` | `SPI1` | M1.23 <- Hub RP GPIO16 | input; external pull-up |
 | `26` | `HUB_RF_SCK` | `in` | `SPI1` | M1.24 <- Hub RP GPIO13 | input; external pull-down |
 | `27` | `HUB_RF_MISO` | `out` | `SPI1` | M1.27 -> Hub RP GPIO15 | input/high-Z; external pull-down |
-| `28` | `FPV_RX_PWR_EN` | `out` | `GPIO` | post-PCBA K331/AWM666V receiver bay | input/high-Z; external pull-down |
-| `29` | `RF_RESERVE_29` | `reserve` | `GPIO` | test pad only; UI-local TVP5150 lock is read by S3 and reported over the existing S3-Hub-RF IPC chain | input/high-Z; external pull-down; DNP |
+| `28` | `RF_RESERVE_28` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
+| `29` | `RF_RESERVE_29` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
 | `30` | `CAP_I2C_SDA` | `io` | `I2C1` | TCA4307DGKR hot-plug/stuck-bus isolator to exact-one U214/U219 contact 4 SDA | input/open-drain released; external pull-up; isolator disabled |
 | `31` | `CAP_I2C_SCL` | `od` | `I2C1` | TCA4307DGKR hot-plug/stuck-bus isolator to exact-one U214/U219 contact 3 SCL | input/open-drain released; external pull-up; isolator disabled |
-| `32` | `FPV_CH1` | `out` | `GPIO` | receiver channel select | input/high-Z; external pull-down |
-| `33` | `FPV_CH2` | `out` | `GPIO` | receiver channel select | input/high-Z; external pull-down |
-| `34` | `FPV_CH3` | `out` | `GPIO` | receiver channel select | input/high-Z; external pull-down |
+| `32` | `RF_RESERVE_32` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
+| `33` | `RF_RESERVE_33` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
+| `34` | `RF_RESERVE_34` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
 | `35` | `AIR_RX_EN` | `out` | `GPIO` | Airband switched rail and LT5560 enable | input/high-Z; external pull-down disables converted path |
 | `36` | `AIR_RX_MODE` | `out` | `GPIO` | direct FM/SW versus converted-Airband selector | input/high-Z; external pull-down selects direct FM/SW |
 | `37` | `RF_RESERVE_37` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |

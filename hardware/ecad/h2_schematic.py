@@ -57,7 +57,13 @@ R2_H1_REPARTITIONED_EXTERNALS = {
     "receiver_fmsw_external_sma",
     "receiver_amlw_external_sma",
 }
-R2_H1_REPLACED_MPNS = {"display", "display_panel_connector"}
+R2_H1_REPLACED_MPNS = {
+    "display",
+    "display_panel_connector",
+    "nrf0",
+    "nrf1",
+    "nrf2",
+}
 
 
 def contact_counts(device: dict) -> tuple[int, int]:

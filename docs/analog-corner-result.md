@@ -1,4 +1,4 @@
-# Consolidated analog-corner result · historical R1
+# Consolidated analog-corner result · current R2 architecture
 
 H3.3 is reviewed: all four leaf packages and `156` leaf checks pass, followed by `22` consolidation checks. Fourteen source corrections are closed, no analytical finding remains open and the total quantity-100 BOM delta is only `0.4669 USD`. The historical R1 progression marker is `H3.6.1`.
 
@@ -15,7 +15,7 @@ The temperature rules are deliberately ordered: charge request zero at 35 C, BQ 
 
 ## Shared-rail caveat
 
-The enumerated 3V3_MAIN profile is `2493 mA` against a `2500 mA` analytical allocation. Its hardware protection reserve is still `28.359%`, but the 7-mA paper gap is not manufacturing margin. H3.6 and H8 must measure <=2.5 A; an excess reopens allowances or functionality before layout or ordering.
+The enumerated 3V3_MAIN profile is `3063.0000 mA` against a `3750.0000 mA` analytical allocation. Its hardware protection reserve is `41.688%`, while the `687.0000-mA` paper gap is not manufacturing margin. H3.6 and H8 must measure no more than the admitted envelope; an excess reopens allowances or functionality before layout or ordering.
 
 ## Physical boundary retained
 

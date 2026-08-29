@@ -5,8 +5,8 @@
   "checked_on": "2026-08-26",
   "purpose": "exhaust primary documentary evidence and fully documented serial alternatives before fixing the sole-prototype order manifest",
   "inputs": {
-    "hardware/verification/generated/H5-EVR01-residual-map.json": "846ae4ff4f0b02a2228873085253d2908ae6acc58c20007c6246e01273e2f753",
-    "hardware/architecture/devices.json": "a47012afe7f17a40d0051074febf8a877a75162e913892ba02d57da58fff3d4d"
+    "hardware/verification/generated/H5-EVR01-residual-map.json": "ef8d7abc28cf745637d41eaec12df7543dd2afee20c1cf3716bb179595fb918f",
+    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722"
   },
   "summary": {
     "h5_residuals_researched": 9,
@@ -34,14 +34,14 @@
     },
     "ebyte_e01": {
       "owner": "Chengdu Ebyte",
-      "title": "E01-ML01IPX product page",
-      "url": "https://www.ebyte.com/product/47.html",
-      "supports": "exact module identity, nRF24L01P, external IPEX interface, 12 x 19 mm body and SPI role"
+      "title": "E01-ML01SP4 product page",
+      "url": "https://www.ebyte.com/product/49.html",
+      "supports": "exact stable-production module identity, nRF24L01P plus RFX2401C PA/LNA, 20-dBm output, external IPEX interface, 14.5 x 18 x 2.4 mm body, ten-land drawing and SPI role"
     },
     "ebyte_e01_datasheet": {
       "owner": "Chengdu Ebyte",
       "title": "E01 series user manual",
-      "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+      "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
       "supports": "current manufacturer electrical and module-outline evidence"
     },
     "jlc_sa818s_ce": {
@@ -488,7 +488,7 @@
       "reason": "same final Heimdall envelope and contacts, same 38-kHz AGC2 function and 3.3-V compatibility; JLCPCB C511498 is factory-placeable stock. TR changes tape presentation only, so the PCB/GPIO/firmware interface stays fixed but CPL rotation and feeder presentation are an explicit pre-order gate"
     },
     {
-      "target": "E01-ML01IPX RF feed",
+      "target": "E01-ML01SP4 RF feed",
       "candidate": "XC-IPX-SMA-15",
       "sources": [
         "ebyte_cable"

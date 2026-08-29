@@ -36,7 +36,7 @@
 | `diodes_dmn2056u_7` | `Diodes Incorporated DMN2056U-7` | `verified_candidate` | `active` | [DMN2056U 20-V N-channel enhancement-mode MOSFET datasheet DS38480 Rev. 2-2, July 2021; product status checked 2026-08-18](https://www.diodes.com/datasheet/download/DMN2056U.pdf) | same primary source |
 | `diodes_mmbt3904_7_f` | `Diodes Incorporated MMBT3904-7-F` | `verified_candidate` | `active` | [MMBT3904 40-V NPN small-signal transistor datasheet current product data checked 2026-08-18](https://www.diodes.com/datasheet/download/MMBT3904.pdf) | same primary source |
 | `diodes_pam8302a_aycr` | `Diodes Incorporated PAM8302AAYCR` | `verified_candidate` | `active` | [PAM8302A 2.5-W mono filterless Class-D audio amplifier datasheet DS41333 Rev. 6-2, May 2021](https://www.diodes.com/datasheet/download/PAM8302A.pdf) | same primary source |
-| `ebyte_e01_ml01ipx` | `Ebyte E01-ML01IPX` | `verified_reference` | `nrf24_family_not_recommended_for_new_designs` | [E01-ML01IPX product specification 2025-01-16](https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf) | [Nordic nRF24 Series lifecycle page](https://www.nordicsemi.com/Products/nRF24-series) |
+| `ebyte_e01_ml01sp4` | `Ebyte E01-ML01SP4` | `verified_candidate` | `nrf24_family_not_recommended_for_new_designs` | [E01-ML01SP4 product specification 2025-01-16](https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf) | [Nordic nRF24 Series lifecycle page](https://www.nordicsemi.com/Products/nRF24-series) |
 | `epson_q13fc13500005` | `Seiko Epson Q13FC13500005` | `verified_candidate` | `active_orderable` | [FC-135 32.768-kHz crystal-unit specification current product specification checked 2026-08-18](https://download.epsondevice.com/td/pdf/td_xtal_32khz/FC-135_Q13FC13500005_en.pdf) | same primary source |
 | `esp32_c5_wroom_1u_n8r8` | `ESP32-C5-WROOM-1U-N8R8` | `verified_candidate` | `active_candidate_revision_floor_v1_2` | [ESP32-C5-WROOM-1/WROOM-1U Datasheet v1.2](https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf) | same primary source |
 | `esp32_s3_wroom_1u_n16r2` | `ESP32-S3-WROOM-1U-N16R2` | `verified_candidate` | `active` | [ESP32-S3-WROOM-1/WROOM-1U Datasheet v1.8](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf) | same primary source |
@@ -337,11 +337,8 @@ Reserved: `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: none.
 
 ### Open qualification gaps
 
-- `nrf0` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf0` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf1` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf1` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf2` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf2` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - E01-ML01S is a geometry/interface reference, not the accepted three-module RF/power/antenna production choice
 - nRF24 is not recommended for new designs; CC1101RGPR is ACTIVE, but authorised sourcing, qualified alternates and protocol HIL remain unresolved
@@ -479,11 +476,8 @@ Reserved: none. Free: none.
 
 ### Open qualification gaps
 
-- `nrf0` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf0` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf1` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf1` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf2` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf2` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - E01-ML01S is a geometry/interface reference, not the accepted three-module RF/power/antenna production choice
 - nRF24 is not recommended for new designs; CC1101RGPR is ACTIVE, but authorised sourcing, qualified alternates and protocol HIL remain unresolved
@@ -1635,8 +1629,14 @@ Reserved: `PA1_NRST`. Free: none.
 | `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_module_bulk_cap.END_1` | exact 10-uF module-local transient reservoir |
 | `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_module_hf_cap.END_1` | exact 100-nF module-local high-frequency bypass |
 | `NRF0_RF_GROUND` | `nrf0.GND` | `abstract:rf-ground` | module and coupler reference use a short local RF ground |
+| `NRF0_RF_GROUND` | `nrf0.GND_9` | `abstract:rf-ground` | side ground land closes the PA/LNA return at the module edge |
+| `NRF0_RF_GROUND` | `nrf0.GND_10` | `abstract:rf-ground` | opposite side ground land closes the PA/LNA return at the module edge |
 | `NRF1_RF_GROUND` | `nrf1.GND` | `abstract:rf-ground` | module and coupler reference use a short local RF ground |
+| `NRF1_RF_GROUND` | `nrf1.GND_9` | `abstract:rf-ground` | side ground land closes the PA/LNA return at the module edge |
+| `NRF1_RF_GROUND` | `nrf1.GND_10` | `abstract:rf-ground` | opposite side ground land closes the PA/LNA return at the module edge |
 | `NRF2_RF_GROUND` | `nrf2.GND` | `abstract:rf-ground` | module and coupler reference use a short local RF ground |
+| `NRF2_RF_GROUND` | `nrf2.GND_9` | `abstract:rf-ground` | side ground land closes the PA/LNA return at the module edge |
+| `NRF2_RF_GROUND` | `nrf2.GND_10` | `abstract:rf-ground` | opposite side ground land closes the PA/LNA return at the module edge |
 | `POWER_GROUND` | `nrf0_host_buffer.GND` | `abstract:power-ground` | local digital return |
 | `POWER_GROUND` | `nrf0_return_buffer.GND` | `abstract:power-ground` | local digital return |
 | `POWER_GROUND` | `nrf1_host_buffer.GND` | `abstract:power-ground` | local digital return |
@@ -3939,11 +3939,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `c5_detector_input_cap` lifecycle: `active_orderable`.
 - `c5_detector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `c5_detector_bypass` lifecycle: `active_orderable`.
-- `nrf0` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf0` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf1` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf1` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf2` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf2` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - `nrf0_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
 - `nrf0_rf_jumper` lifecycle: `active_orderable`.

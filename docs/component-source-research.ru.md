@@ -20,7 +20,7 @@ flowchart LR
 - Для robust IR выбран factory-stocked `TSOP75238TR` (`C511498`) без изменения footprint, контактов, GPIO или интерфейса прошивки; перед заказом обязательны проверка остатка, CPL rotation и feeder presentation.
 - `ES3C35P` и `HMX035CTFT-001` сохранены только как прежние electrical/mechanical evidence; закупка donor-сборки отклонена, а точная серийная панель и factory mating остаются открытым production gate.
 - `TE 2118651-2` подтверждён как active и документированный; менять его нет оснований.
-- Для stock `U214` и `E01-ML01IPX` производители действительно не раскрывают MPN установленных connector subparts.
+- Для stock `U214` и `E01-ML01SP4` производители действительно не раскрывают MPN установленных connector subparts.
 - `SA818S-U` и `SA818S-V` подтверждены как два независимых серийных модуля с общим официальным 18-land package. JLCPCB: U — `C3001549`, stock 68/available 60, `$9.7347`; V — `C51897911`, stock 0, `pre-order`, `$10.0710`, MOQ 1 и типичные 8–15 рабочих дней по частичному ответу фабрики от 26 августа.
 - `SA818S-CE` (`C19632390`, stock 8, `$9.3449`) имеет те же package, contacts и команды и принят только как qualified-pending замена UHF-модуля. Это не молчаливая замена: manifest обязан запретить `470–480 МГц`, а полученная деталь должна пройти HIL.
 
@@ -65,7 +65,7 @@ flowchart LR
 ### `H3-PHY-053` · `phase`
 
 - Итог: Ebyte подтверждает внешний IPEX, но не публикует MPN и ось установленного receptacle. XC-IPX-SMA-15 отклонён: кабель 150 мм и прямой SMA не являются drop-in заменой выбранным 30-мм jumper, board receptacle и герметичному краевому SMA-тракту.
-- Источники: [Chengdu Ebyte](https://www.ebyte.com/product/47.html), [Chengdu Ebyte](https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf), [Chengdu Ebyte](https://www.ebyte.com/product/2040.html).
+- Источники: [Chengdu Ebyte](https://www.ebyte.com/product/49.html), [Chengdu Ebyte](https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf), [Chengdu Ebyte](https://www.ebyte.com/product/2040.html).
 - После получения единственного прототипа: осмотреть установленные фабрикой receptacle и измерить все три собранных RF-тракта единственного прототипа во время owner bring-up H7/H8.
 
 ### `H3-PHY-057` · `phase`
@@ -77,7 +77,7 @@ flowchart LR
 ### `H3-PHY-062` · `phase`
 
 - Итог: TE 2118651-2 остаётся active, полностью документирован и доступен у авторизованного дистрибьютора. Рассмотренные 30-мм альтернативы не улучшили 9-ГГц характеристики и цену без изменения тракта; изгиб, strain и retention после установки остаются физическими.
-- Источники: [TE Connectivity](https://www.te.com/en/product-2118651-2.html), [DigiKey](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824), [Chengdu Ebyte](https://www.ebyte.com/product/47.html), [Chengdu Ebyte](https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf).
+- Источники: [TE Connectivity](https://www.te.com/en/product-2118651-2.html), [DigiKey](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824), [Chengdu Ebyte](https://www.ebyte.com/product/49.html), [Chengdu Ebyte](https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf).
 - После получения единственного прототипа: установить фабрикой пять точных jumper, затем измерить изгиб, strain, retention и RF-потери на единственном прототипе в H7/H8.
 
 ## Проверенные замены

@@ -4,13 +4,13 @@
 
 ### Open autonomous hardware for radio, communications and authorized research
 
-**2.4/5-GHz Wi-Fi · BLE · 802.15.4 · 3× nRF24 · Sub-GHz · VHF/UHF · FM/AM/SW/LW/Airband · analog FPV RX · IR · LoRa expansion**
+**2.4/5-GHz Wi-Fi · BLE · 802.15.4 · 3× nRF24 · Sub-GHz · VHF/UHF · FM/AM/SW/LW/Airband · IR · LoRa expansion**
 
 [Capabilities](docs/hardware.md) · [How it is built](docs/h0-r2-functional-architecture.md) · [Schematics](docs/schematics.md) · [Roadmap](docs/roadmap.md) · [Firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware) · [Русский](README.ru.md)
 
 </div>
 
-> **Current hardware marker: `H1-R2.33`.** The complete two-PCB placement is
+> **Current hardware marker: `H1-R2.35`.** The complete two-PCB placement is
 > ready for visual acceptance: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
 > the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display, passive 40-to-50-contact
 > adapter, all 18 U219 support bodies, NFC pickup loop and the external volume
@@ -37,7 +37,6 @@ interfaces enter a hardware-verifiable quiet state.
 | Three nRF24 radios | Concurrent full RX/TX/mixed modes: `3R`, `1T2R`, `2T1R`, `3T` |
 | Native wireless | S3 Wi-Fi/BLE and C5 2.4/5-GHz Wi-Fi, 802.15.4 and IR |
 | Dedicated RF | CC1101 Sub-GHz, independent VHF/UHF voice, FM/AM/SW/LW/Airband RX |
-| Video | Receive-only analog 5.8-GHz FPV through a dedicated rear MMCX |
 | Interface | 3.5-inch 320×480 touch IPS `ER-TFT035IPS-6` + `ER-TPC035-6` over direct 24-MHz i8080-8, S3-local buttons through `TCA9539PWR`, waterfall, microSD and audio |
 | Expansion | One protected rear Cap slot for U214 LoRa or U219 CC1101+NFC, plus a protected M5 Unit interface |
 | Recovery | Four independent USB paths, recessed per-controller controls and DBG10 fallbacks |
@@ -49,10 +48,10 @@ user to accept the non-aggression/authorized-use terms.
 
 ## Physical mock-up
 
-![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.33-layout-ready-1)
+![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.35-full-power-nrf24-1)
 
-[Open the legend for all 218 numbered references](docs/images/h1-r2-component-legend.svg?rev=h1-r2.33-layout-ready-1) ·
-[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.33-layout-ready-1) ·
+[Open the legend for all 215 numbered references](docs/images/h1-r2-component-legend.svg?rev=h1-r2.35-full-power-nrf24-1) ·
+[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.35-full-power-nrf24-1) ·
 [front inner face](docs/images/h1-r2-inner-ui.svg) ·
 [rear inner face](docs/images/h1-r2-inner-rf.svg)
 
@@ -64,14 +63,13 @@ The exterior silkscreen identifies `UI PCB · R2-EVT1 · REV A` and
 ![Leshy2 functional architecture](docs/images/h0-r2-functional-architecture.svg)
 
 The front UI/radio PCB owns S3, C5, all three complete nRF24 islands, the front
-RP, microSD and the TVP5150 decoder. The rear RF/power PCB owns CC1101,
-VHF/UHF voice, broadcast/Airband, audio, the one-of-two K331/AWM666V FPV bay, M5 and the mutually exclusive U214/U219 Cap slot, the rear RP, power
+RP and microSD. The rear RF/power PCB owns CC1101,
+VHF/UHF voice, broadcast/Airband, audio, M5 and the mutually exclusive U214/U219 Cap slot, the rear RP, power
 and independent safety.
 
-Only one 75-ohm CVBS signal crosses the 80-contact M1 connector. The decoder's
-11-line camera bus and the independent i8080-8 display TX path remain local to
-S3; nRF payload remains local to the front RP. M1 is fully assigned: 25 live
-signals, 14 main-power contacts, 2 AON contacts, 25 defined returns and 14 NC
+No video payload crosses the 80-contact M1 connector. The i8080-8 display TX
+path remains local to S3; nRF payload remains local to the front RP. M1 is fully
+assigned: 24 live signals, 14 main-power contacts, 2 AON contacts, 24 defined returns and 16 NC
 reserves.
 
 The drawings are generated from one machine-readable placement source. Inner
@@ -82,7 +80,6 @@ the same diagrams on the page.
 [Open the readable physical result](docs/h1-r2-physical-layout.md) ·
 [Component cost ranking](docs/h1-r2-cost.md) ·
 [Power and thermal result](docs/h1-r2-power-thermal.md) ·
-[Analog-FPV path](docs/h1-r2-fpv.md) ·
 [Airband filter feasibility](docs/h1-airband-filter.md)
 
 ## Schematics and interfaces
@@ -103,7 +100,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | Stage | Status | Published result |
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶ Ready for acceptance · `H1-R2.33`** | [Current placement](docs/h1-r2-physical-layout.md) · [cost ranking](docs/h1-r2-cost.md) |
+| **H1 · Physical product design** | **▶ Ready for acceptance · `H1-R2.35`** | [Current placement](docs/h1-r2-physical-layout.md) · [cost ranking](docs/h1-r2-cost.md) |
 | H2 · Production ECAD schematic | ⏳ Waiting for R2 H1 | [Stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
@@ -116,16 +113,14 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 
 ### Current H1 composition
 
-- ✅ Exact front/rear RP GPIO0..47 maps, five Hub↔RF M1 signals and C5 SDIO/service-mux electrical join are machine-checked; budgets are `46/48` (2 free) and `44/48` (4 free: GP15/29/37/38).
+- ✅ Exact front/rear RP GPIO0..47 maps, five Hub↔RF M1 signals and C5 SDIO/service-mux electrical join are machine-checked; budgets are `46/48` (2 free) and `40/48` (8 free: GP15/28/29/32/33/34/37/38). S3 has 11 newly released GPIO reserves.
 - ✅ Ten main antenna ports repartitioned `5 + 5`; no main RF trace crosses M1.
 - ✅ Series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` is fixed with its exact 50-contact FPC, `ILI9488`, `FT6236` and passive `L2-DISP-ADP-001-B`; direct i8080-8 runs at a conservative 24 MHz (24 MB/s, 12.8 ms per full frame), with ordinary 4-wire serial retained as recovery mode.
 - ✅ M1 has a complete 80-contact map and an enclosure load path: four 11-mm stops, anti-shear datums and independent PCB capture.
 - ✅ Antenna silkscreen passes generated body/cable/accessory/fastener no-overlap checks.
-- ✅ Vertical Molex `73415-2063` FPV MMCX: exact JLCPCB route, SMT-only, no interboard tail.
-- ✅ Enlarged `30 × 24 × 8 mm` K331/AWM666V post-PCBA bay; exactly one receiver is installed and the unused RF branch is isolated at the MMCX launch.
-- ✅ C5 DBG10 moved beside S3 DBG10; the structural audit of all currently registered bodies, including corrected maximum U219 package envelopes, reports zero same-face collisions and 2.59 mm minimum opposing clearance against 0.70 mm required.
+- ✅ The onboard analog-video receiver, decoder, MMCX, antenna and physical reserves are removed; no active part requires owner soldering after PCBA.
+- ✅ C5 DBG10 remains beside S3 DBG10; the structural audit of all currently registered bodies, including corrected maximum U219 package envelopes, reports zero same-face collisions and 2.59 mm minimum opposing clearance against 0.70 mm required.
 - ✅ Public exterior, separate readable inner faces, service surface and real section views regenerated.
-- ✅ Official Sinopine `SP331R-MANUAL-V1.0` controls the axes of the tolerant 14-pad K331 hand-solder land; exact-drawing AWM666V is the seven-channel fallback. Neither receiver enters the normal PCBA BOM.
 - ✅ The 210-line `H1-R2.30` base BOM is cost-ranked per fitted device and 100-device projection; the former five-board BOM Tool run remains historical cost evidence only. The procurement target is exactly one factory-assembled prototype without batteries. The HMX donor route is rejected; the selected EastRising panel is a customer-supplied final-assembly part.
 - ✅ U219 is accepted as the second mutually exclusive Cap profile: CC1101 is hard RX-only, NFC is poll/read-only, pin 10 is fail-disconnected and NFC field evidence joins `ANY_TX_AON_N`. Pin 7 power identity remains a received-unit gate, not an H2 claim.
 - ✅ The two DCK boundaries, two BAT54S bridges and LMV331 comparator use official maximum full-package envelopes and source-backed courtyards; all five fit their bounded islands without overlap.
@@ -137,7 +132,7 @@ Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H1-R2.33 -->
+<!-- current-substep: H1-R2.35 -->
 
 ## Repository
 

@@ -3,10 +3,10 @@
   "stage": "H3.1.4",
   "status": "reviewed_h3_1_steady_dc_phase_complete",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF11-power-state-register.json": "11eab1a31341f6220135be23d7ce0ca9ed70db1e21ce1bc61428e1394ec7ddb1",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "e80c7b7f168746c6436572f0eb7ef4f65c8496f7e242b3e1482dcf70f1bb1b68",
-    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "327bac00cca35885c72bd49ec0e66eba872e75504e9c95a7a332e64482b987c0",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "c8561eb86abcb2b484962421c3c379fbcdafa6f0850f6d4634fef355531a233e"
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "b9242783fd310b3aaf74eb237ccd523e79c8f063fdb25645361e8c80f4ec8303",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "41552e3885a8e69d3bd230c2214b405ffae9ffb41531735991ebb7c6c9aad416",
+    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "522a79aa37bc9f750337c1e1928f3b8dab6bd7ddeaea58e53984bc90d8dbfb18",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "0d50b8e4a917d6f07d22186a28020e18414afbecbf476b6566785d86c6f12768"
   },
   "checks": {
     "all_states_enumerated": true,
@@ -23,14 +23,14 @@
     "complete_power_states": 2032,
     "load_profiles": 50,
     "rail_profiles": 200,
-    "minimum_rail_hardware_reserve_percent": "28.359",
-    "maximum_sys_demand_w": "16.894",
-    "maximum_pack_discharge_a": "2.816",
-    "pack_hardware_reserve_percent_at_worst": "255.114",
-    "maximum_rail_conversion_loss_w": "2.534",
-    "maximum_efuse_conduction_loss_w": "0.393",
+    "minimum_rail_hardware_reserve_percent": "30.560",
+    "maximum_sys_demand_w": "17.842",
+    "maximum_pack_discharge_a": "2.974",
+    "pack_hardware_reserve_percent_at_worst": "236.247",
+    "maximum_rail_conversion_loss_w": "2.676",
+    "maximum_efuse_conduction_loss_w": "0.471",
     "usb_5v3a_profiles_explicitly_refused_without_pack": 14,
-    "charge_states_derated_by_dpm": 254,
+    "charge_states_derated_by_dpm": 274,
     "failed_checks": 0
   },
   "corrections": [
@@ -45,7 +45,7 @@
       "id": "H3.1.2-F02",
       "finding": "the audio allowance cited an 8-ohm PAM8302A curve although the exact AS02404PO is 4 ohm +/-15%; the display allowance simultaneously treated the TPS2553 fault threshold as a continuous normal load",
       "correction": "reserve 625 mA for amplifier, codec and selectors using the actual 3.4-ohm low corner, and 200 mA for 80-mA display/touch plus the 120-mA normal donor backlight reference",
-      "functional_effect": "the recalculated 3V3_MAIN worst case is 2493 mA with 28.36% guaranteed hardware reserve; the 174-to-234-mA backlight threshold remains an independent latched fault bound",
+      "functional_effect": "with both RP2354B domains and three current full-power nRF24 modules included, the refreshed 3V3_MAIN worst case is 3063 mA with 41.69% guaranteed hardware reserve; the 174-to-234-mA backlight threshold remains an independent latched fault bound",
       "cost_effect_usd_at_100": "0.0000; this corrects operating admission rather than hardware"
     }
   ],

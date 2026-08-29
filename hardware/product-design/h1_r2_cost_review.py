@@ -23,7 +23,7 @@ RU_PATH = REPO / "docs/h1-r2-cost.ru.md"
 ROLE_OVERRIDES = {
     "adi_ad8314acpz_rl7": "six real-TX RF detectors / шесть RF-детекторов фактической передачи",
     "adi_ltc5532_es6_trmpbf": "S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц",
-    "ebyte_e01_ml01ipx": "three full nRF24 radios / три полнофункциональных nRF24",
+    "ebyte_e01_ml01sp4": "three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm",
     "gct_rfpc_sma31_fn_175_a": "eight standard outward SMA / восемь внешних SMA",
     "gct_rfpc_sma32_fn_175_a": "two native-radio RP-SMA / два RP-SMA native-радио",
     "hirose_fx8c_80p_sv1_92": "80-contact UI-side interboard plug / 80-контактная межплатная вилка UI",
@@ -394,7 +394,7 @@ def render_doc(result: dict, ru: bool) -> str:
             f'цены известны для `{summary["quantity_100_priced_lines"]}/210` строк.',
             f'- Достижимый плановый минимум: **{money(summary["planning_base_usd_per_device"])}** на устройство; '
             f'ещё `{summary["remaining_unpriced_base_lines"]}` базовых строк не оценены.',
-            f'- С обязательным модулем K331, устанавливаемым после PCBA: **{money(summary["planning_base_plus_post_pcba_usd_per_device"])}** '
+            f'- Текущий плановый компонентный минимум без обязательных post-PCBA активных модулей: **{money(summary["planning_base_plus_post_pcba_usd_per_device"])}** '
             f'на устройство и **{money(summary["planning_base_plus_post_pcba_usd_for_procurement_target"])}** на один целевой прототип '
             'до стоимости плат, сборки, корпуса, антенн, доставки, налогов, брака и теста.',
             f'- Исторический JLCPCB capture на пять плат: **{money(summary["historical_capture_displayed_usd"])}** по '
@@ -409,7 +409,7 @@ def render_doc(result: dict, ru: bool) -> str:
             f'`{summary["quantity_100_priced_lines"]}/210` lines are priced.',
             f'- Reachable planning subtotal: **{money(summary["planning_base_usd_per_device"])}** per device, with '
             f'`{summary["remaining_unpriced_base_lines"]}` base-product lines still unpriced.',
-            f'- With the required post-PCBA K331: **{money(summary["planning_base_plus_post_pcba_usd_per_device"])}** '
+            f'- Current planned component minimum with no mandatory post-PCBA active module: **{money(summary["planning_base_plus_post_pcba_usd_per_device"])}** '
             f'per device and **{money(summary["planning_base_plus_post_pcba_usd_for_procurement_target"])}** for the one target prototype '
             'before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.',
             f'- Historical five-board JLCPCB capture: **{money(summary["historical_capture_displayed_usd"])}** for '

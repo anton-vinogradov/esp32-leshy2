@@ -1,18 +1,18 @@
 # H0-R2 · Функциональная архитектура
 
-H0-R2 проведён как новый функциональный baseline: UI и дисплей остаются на S3, высокоскоростные периферийные тракты разгружены через Hub RP, аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен.
+H0-R2 проведён как новый функциональный baseline: UI и дисплей остаются на S3, высокоскоростные периферийные тракты разгружены через Hub RP, бортовой видеотракт удалён, а Airband AM 118–137 МГц теперь обязателен.
 
-> Текущий точный маркер — **H1-R2.33**: H0/H1 согласованы с двумя независимыми RP2354B, точными GPIO0..47 и пятью M1 endpoints; электрический pin/mux-контракт C5 и полная 218-корпусная физическая проекция присоединены. Серийный дисплей EastRising, U219, NFC-loop и swept volume антенны закрыты; мокап ждёт явного принятия. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Новый R2 H2/KiCad заблокирован до live route C11355, точного MPN detector/latch service-VBUS и powered-off-Ioff границы Pack/Safety I2C.
+> Текущий точный маркер — **H1-R2.35**: H0/H1 согласованы с двумя независимыми RP2354B, точными GPIO0..47 и четырьмя M1 endpoint-группами; бортовой видеотракт удалён, GPIO и M1-резервы освобождены, а полная 215-корпусная физическая проекция обновлена. Серийный дисплей EastRising, U219, NFC-loop и swept volume антенны закрыты; мокап ждёт явного принятия. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Новый R2 H2/KiCad заблокирован до live route C11355, точного MPN detector/latch service-VBUS и powered-off-Ioff границы Pack/Safety I2C.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 
 ## Что зафиксировано
 
 - Один пользовательский порт `FM / SW / AIR RX`; новый внешний разъём не добавлен.
-- Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с FPV или TX-группой.
-- Кнопки остаются на локальном для S3 TCA9539PWR, энкодер и USB подключены к S3 напрямую; direct i8080-8 даёт 24 МБ/с при безопасных для ILI9488 24 МГц, а camera RX работает независимо.
-- Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, FPV, M5 и одним из U214/U219.
-- Через M1 проходит один CVBS, control/status и питание; 11-линейная LCD_CAM-шина остаётся локальной S3.
+- Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с TX-группой.
+- Кнопки остаются на локальном для S3 TCA9539PWR, энкодер и USB подключены к S3 напрямую; direct i8080-8 даёт 24 МБ/с при безопасных для ILI9488 24 МГц.
+- Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, M5 и одним из U214/U219.
+- M1 переносит control/status, safety, USB и питание; контакты 35–36 теперь NC-резерв.
 
 ## Airband RX
 
@@ -27,7 +27,7 @@ H0-R2 проведён как новый функциональный baseline: 
 | Rear RP GP35 | `AIR_RX_EN` | pulled low; LNA/mixer/LO domain off |
 | Rear RP GP36 | `AIR_RX_MODE` | direct FM/SW path selected |
 
-Front RP budget: **46 used / 2 free**. Rear RP budget: **44 used / 4 free**. SI5351 control stays on the rear-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
+Front RP budget: **46 used / 2 free**. Rear RP budget: **40 used / 8 free**. SI5351 control stays on the rear-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
 
 ## Рабочая принципиальная распиновка
 
@@ -35,23 +35,23 @@ Front RP budget: **46 used / 2 free**. Rear RP budget: **44 used / 4 free**. SI5
 
 | GPIO S3 | Сеть | Периферия | Направление |
 |---:|---|---|---|
-| `0` | `VIDEO_D0` | `LCD_CAM` | `in` |
+| `0` | `S3_RESERVE_0` | `GPIO` | `reserve` |
 | `1` | `SYS_UI_I2C_SDA` | `I2C0` | `io` |
 | `2` | `SYS_UI_I2C_SCL` | `I2C0` | `out` |
 | `3` | `UI_HUB_ALERT_N` | `GPIO_IRQ` | `in` |
 | `4` | `LCD_DB0` | `LCD_CAM_TX` | `out` |
-| `5` | `VIDEO_D1` | `LCD_CAM` | `in` |
-| `6` | `VIDEO_D2` | `LCD_CAM` | `in` |
-| `7` | `VIDEO_D3` | `LCD_CAM` | `in` |
-| `8` | `VIDEO_D4` | `LCD_CAM` | `in` |
+| `5` | `S3_RESERVE_5` | `GPIO` | `reserve` |
+| `6` | `S3_RESERVE_6` | `GPIO` | `reserve` |
+| `7` | `S3_RESERVE_7` | `GPIO` | `reserve` |
+| `8` | `S3_RESERVE_8` | `GPIO` | `reserve` |
 | `9` | `LCD_DB1` | `LCD_CAM_TX` | `out` |
-| `10` | `VIDEO_D5` | `LCD_CAM` | `in` |
-| `11` | `VIDEO_D6` | `LCD_CAM` | `in` |
-| `12` | `VIDEO_D7` | `LCD_CAM` | `in` |
-| `13` | `VIDEO_PCLK` | `LCD_CAM` | `in` |
+| `10` | `S3_RESERVE_10` | `GPIO` | `reserve` |
+| `11` | `S3_RESERVE_11` | `GPIO` | `reserve` |
+| `12` | `S3_RESERVE_12` | `GPIO` | `reserve` |
+| `13` | `S3_RESERVE_13` | `GPIO` | `reserve` |
 | `14` | `S3_HUB_D1` | `SPI3` | `io` |
-| `15` | `VIDEO_VSYNC` | `LCD_CAM` | `in` |
-| `16` | `VIDEO_HREF` | `LCD_CAM` | `in` |
+| `15` | `S3_RESERVE_15` | `GPIO` | `reserve` |
+| `16` | `S3_RESERVE_16` | `GPIO` | `reserve` |
 | `17` | `LCD_WR_N` | `LCD_CAM_TX` | `out` |
 | `18` | `LCD_DB2` | `LCD_CAM_TX` | `out` |
 | `19` | `S3_USB_DM` | `USB_SERIAL_JTAG` | `io` |
@@ -91,12 +91,11 @@ Front RP budget: **46 used / 2 free**. Rear RP budget: **44 used / 4 free**. SI5
 | `7, 8` | rear-local isolated M5 Unit PIO-I2C/PIO-UART/GPIO profile |
 | `9, 10, 11, 23, 39, 42, 43` | CC1101 CS/GDO0/GDO2/power plus dedicated PIO SPI |
 | `12, 13, 14, 30, 31, 40, 41, 44, 45, 46, 47` | exactly one U214/U219 profile: busy/IRQ/reset-or-power, hardware I2C1, GNSS-or-RF controls and dedicated SPI |
-| `28, 32, 33, 34` | FPV receiver power and three channel-select outputs; UI-local TVP5150 lock is read by S3 and reported over existing IPC, while K331 RSSI is NC |
 | `16, 17, 18, 20, 21, 22` | voice UART/PTT/audio-on, direct PTT input and ANY_TX diagnostic |
 | `19, 24, 25, 26, 27` | dedicated SPI plus ALERT to front RP |
 | `35` | AIR_RX_EN fail-low switched-domain and LT5560 enable control |
 | `36` | AIR_RX_MODE direct-FM/SW versus converted-Airband selector; reset default direct |
-| `15, 29, 37, 38` | uncommitted electrical reserve |
+| `15, 28, 29, 32, 33, 34, 37, 38` | uncommitted electrical reserve |
 
 ## Питание
 
@@ -139,4 +138,4 @@ Incremental-стоимость активных компонентов: **`$20.2
 - complete the canonical coordinate register for the existing Cap-Bus ESD, series, supervisor, bypass and evidence-aggregate bodies
 - complete exact U219 support-passive values/MPNs and prove their courtyards inside the bounded placement islands
 - obtain controlled U219 field-structure geometry or measure a received unit before locating the printed NFC pickup loop and DNP C0G bank
-- measure the installed U219 RP-SMA antenna swept volume against the rear connector bank, FPV plug, enclosure and user hand access
+- measure the installed U219 RP-SMA antenna swept volume against the rear connector bank, enclosure and user hand access

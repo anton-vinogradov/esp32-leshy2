@@ -20,7 +20,7 @@ GROUPS = (
     ("21–28", "Hub↔RF RP dedicated SPI + alert and returns", "выделенный SPI Hub↔RF RP + alert и возвраты"),
     ("29–31", "S3 product USB 2.0 D−/D+ + return", "продуктовый USB 2.0 S3 D−/D+ + возврат"),
     ("32–34", "fail-closed Pack/Safety I²C + return", "fail-closed I²C Pack/Safety + возврат"),
-    ("35–36", "75-ohm FPV_CVBS + dedicated video return", "75-омный FPV_CVBS + отдельный video-return"),
+    ("35–36", "2 NC reserve contacts", "2 резервных NC-контакта"),
     ("37–40", "RUN, fault and UI thermal safety crossings + return", "RUN, fault и UI thermal safety + возврат"),
     ("41–50", "9 actual-TX evidence signals + safety return", "9 сигналов actual-TX evidence + safety-return"),
     ("51–54", "rear encoder A/B/push + return", "задний энкодер A/B/push + возврат"),

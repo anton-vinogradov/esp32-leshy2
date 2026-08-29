@@ -220,6 +220,7 @@ def build() -> tuple[dict[Path, str], dict]:
     dc_worst = d(dc_budget["worst_by_rail"]["3V3_MAIN"]["load_ma"])
     dc_hardware_reserve = d(dc_budget["worst_by_rail"]["3V3_MAIN"]["hardware_reserve_percent"])
     dc_accepted_margin = d(dc_budget["worst_by_rail"]["3V3_MAIN"]["accepted_envelope_margin_ma"])
+    dc_admission_ma = d(dc_budget["worst_by_rail"]["3V3_MAIN"]["accepted_continuous_a"]) * d(1000)
 
     checks = {
         **structural,
@@ -237,7 +238,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "amplifier_junction_20c_margin": amplifier_junction_max <= amplifier_recommended_junction_max - d(20),
         "codec_tx_full_scale_can_reach_both_sa818s_targets": tx_injection_min >= sa818s_target,
         "codec_tx_target_is_downward_calibratable": required_dac_scale_min > d(0) and required_dac_scale_max <= d(1),
-        "revised_main_rail_inside_2500ma_admission": dc_worst <= d(2500),
+        "revised_main_rail_inside_current_admission": dc_worst <= dc_admission_ma,
         "revised_main_rail_has_25pct_hardware_reserve": dc_hardware_reserve >= d(25),
         "method_has_missing_limit_rule": any(row["id"] == "PF-10" for row in methods["pass_fail_rules"]),
     }
@@ -325,7 +326,8 @@ def build() -> tuple[dict[Path, str], dict]:
         },
         "main_rail_crosscheck": {
             "worst_profile_load_ma": q(dc_worst),
-            "accepted_2500ma_margin_ma": q(dc_accepted_margin),
+            "accepted_continuous_ma": q(dc_admission_ma),
+            "accepted_margin_ma": q(dc_accepted_margin),
             "hardware_reserve_percent": q(dc_hardware_reserve),
             "normal_display_branch_ma": 200,
             "audio_branch_ma": 625,
@@ -413,7 +415,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
 
 ## Перепроверка 3V3_MAIN
 
-Исправленный worst case — `{rail['worst_profile_load_ma']} мА` из 2500 мА принятого режима и `{rail['hardware_reserve_percent']}%` до гарантированного hardware limit. Normal display/backlight теперь `{rail['normal_display_branch_ma']} мА`, audio — `{rail['audio_branch_ma']} мА`; fault-порог подсветки больше не считается рабочей нагрузкой.
+Исправленный worst case — `{rail['worst_profile_load_ma']} мА` из `{rail['accepted_continuous_ma']} мА` принятого continuous-режима и `{rail['hardware_reserve_percent']}%` до гарантированного hardware limit. Normal display/backlight теперь `{rail['normal_display_branch_ma']} мА`, audio — `{rail['audio_branch_ma']} мА`; fault-порог подсветки больше не считается рабочей нагрузкой.
 
 Итоговая аналоговая конфигурация добавляет `{cost['total_delta_per_board']} USD` на устройство при количестве 100. **H3.3.2 проверено; исторический маркер прогресса R1 — `H3.6.1`.**
 
@@ -442,7 +444,7 @@ At the real `4 ohm −15% = {speaker['minimum_impedance_corner_ohm']} ohm` corne
 
 ## 3V3_MAIN cross-check
 
-The corrected worst case is `{rail['worst_profile_load_ma']} mA` inside the 2500-mA admission and retains `{rail['hardware_reserve_percent']}%` to the guaranteed hardware limit. Normal display/backlight is now `{rail['normal_display_branch_ma']} mA`, audio is `{rail['audio_branch_ma']} mA`; a backlight fault threshold is no longer counted as an operating load.
+The corrected worst case is `{rail['worst_profile_load_ma']} mA` inside the `{rail['accepted_continuous_ma']}`-mA continuous admission and retains `{rail['hardware_reserve_percent']}%` to the guaranteed hardware limit. Normal display/backlight is now `{rail['normal_display_branch_ma']} mA`, audio is `{rail['audio_branch_ma']} mA`; a backlight fault threshold is no longer counted as an operating load.
 
 The final analog configuration adds `{cost['total_delta_per_board']} USD` per unit at quantity 100. **H3.3.2 is verified; the historical R1 progression marker is `H3.6.1`.**
 

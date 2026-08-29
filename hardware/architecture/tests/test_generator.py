@@ -54,7 +54,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
         plan_normalized = " ".join(plan.split())
-        self.assertEqual("H1-R2.33", roadmap["current_substep"])
+        self.assertEqual("H1-R2.35", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -310,15 +310,15 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["orderable_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            10,
+            9,
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            200,
+            201,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            1035,
+            1038,
             sum(
                 line["quantity"]
                 for line in lines
@@ -330,7 +330,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["alternate_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            10,
+            9,
             sum(bool(line["cost_gate_status"]) for line in lines),
         )
         self.assertEqual(
@@ -399,9 +399,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("**1052** supplied/costed placements", rendered)
         self.assertIn("**210/210** used lines", rendered)
         self.assertIn("**210/210** lines", rendered)
-        self.assertIn("**200/210** lines", rendered)
-        self.assertIn("**1035/1052** supplied placements", rendered)
-        self.assertIn("USD 248.3651", rendered)
+        self.assertIn("**201/210** lines", rendered)
+        self.assertIn("**1038/1052** supplied placements", rendered)
+        self.assertIn("USD 257.2550", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -447,7 +447,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(44, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1307, policy["expected_occurrence_count"])
+        self.assertEqual(1313, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(
@@ -628,8 +628,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertNotIn(forbidden_inner_silk, internal)
         self.assertIn('id="outer-antenna-datum-annotations" data-layer="drawing-annotation"', internal)
         self.assertEqual(
-            [12.1, 19.1, 2.1],
-            self.database["devices"]["ebyte_e01_ml01ipx"]["maximum_dimensions_mm"],
+            [14.6, 18.1, 2.5],
+            self.database["devices"]["ebyte_e01_ml01sp4"]["maximum_dimensions_mm"],
         )
         self.assertEqual(
             [35.6, 19.0, 3.2],
@@ -1203,8 +1203,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertEqual([], re.findall(r"```mermaid\n(.*?)```", public_doc, re.DOTALL), doc_name)
         for token in ("ESP32-S3-WROOM-1U-N16R8", "ESP32-C5-WROOM-1U-N8R8", "SC1512-A4"):
             self.assertIn(token, architecture_svg)
-        for token in ("FRONT · UI / RADIO PCB", "REAR · RF / POWER PCB", "M1", "1 × CVBS"):
+        for token in ("FRONT · UI / RADIO PCB", "REAR · RF / POWER PCB", "M1", "NO ONBOARD VIDEO RX"):
             self.assertIn(token, architecture_svg)
+            self.assertNotIn("CVBS", architecture_svg)
             for mpn_token in current_mpn_tokens:
                 self.assertIn(
                     mpn_token,
@@ -1321,7 +1322,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         for doc_name in ("docs/hardware.md", "docs/hardware.ru.md"):
             public_doc = (GENERATOR.REPO_ROOT / doc_name).read_text(encoding="utf-8")
             self.assertIn("h0-r2-functional-architecture.svg", public_doc, doc_name)
-            self.assertIn("44 used / 4 free" if doc_name.endswith("hardware.md") else "44 занято / 4 свободно", public_doc)
+            self.assertIn("40 used / 8 free" if doc_name.endswith("hardware.md") else "40 занято / 8 свободно", public_doc)
 
     def test_target_readmes_remain_product_sites_not_review_ledgers(self):
         for readme_name in ("README.md", "README.ru.md"):
@@ -3530,7 +3531,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             errors,
         )
         self.assertTrue(
-            any("nrf2 must use compact IPEX reference" in error for error in errors),
+            any("nrf2 must use the factory-stocked PA/LNA IPEX production module" in error for error in errors),
             errors,
         )
 
@@ -3630,7 +3631,7 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_rf_micro_connector_provenance_stays_device_specific(self):
         s3 = self.database["devices"]["esp32_s3_wroom_1u_n16r2"]["rf_connector"]
         c5 = self.database["devices"]["esp32_c5_wroom_1u_n8r8"]["rf_connector"]
-        nrf = self.database["devices"]["ebyte_e01_ml01ipx"]["rf_connector"]
+        nrf = self.database["devices"]["ebyte_e01_ml01sp4"]["rf_connector"]
         expected_families = ["Hirose U.FL", "I-PEX MHF I", "Amphenol AMC"]
         self.assertEqual(expected_families, s3["compatible_mating_families"])
         self.assertEqual(expected_families, c5["compatible_mating_families"])
@@ -3639,10 +3640,10 @@ class ArchitectureValidationTests(unittest.TestCase):
             nrf["compatible_mating_families"],
         )
         self.assertEqual(
-            "manufacturer_ecosystem_gen1_class_verified_exact_receptacle_mpn_received_gate",
+            "manufacturer_drawing_locates_connector_gen1_mate_fit_hil_open",
             nrf["qualification"],
         )
-        self.assertIn("H1 paper mating class closed", nrf["finding"])
+        self.assertIn("manufacturer drawing fixes", nrf["finding"])
 
     def test_rejects_allocated_strap_without_proof(self):
         candidates = copy.deepcopy(self.candidates)

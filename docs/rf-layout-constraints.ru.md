@@ -6,16 +6,16 @@
 
 | Тракт | Внутренняя сторона платы | Guide H1, мм | Максимальный шаг via fence, мм |
 |---|---:|---:|---:|
-| S3-2G4 | ui-inner | 10.550 | 1.25 |
-| C5-2G4/5 | ui-inner | 10.550 | 1.25 |
+| S3-2G4 | ui-inner | 14.474 | 1.25 |
+| C5-2G4/5 | ui-inner | 14.474 | 1.25 |
 | N24-0 | rf-inner | 45.950 | 1.25 |
-| N24-1 | rf-inner | 51.412 | 1.25 |
+| N24-1 | rf-inner | 43.812 | 1.25 |
 | N24-2 | rf-inner | 36.636 | 1.25 |
-| CC-SUB | rf-inner | 10.300 | 2.5 |
-| VOICE-VHF | rf-inner | 40.912 | 2.5 |
-| VOICE-UHF | rf-inner | 39.954 | 2.5 |
-| RX-FM/SW | ui-inner | 70.786 | 2.5 |
-| RX-AM/LW | ui-inner | 59.324 | capacitance-controlled |
+| CC-SUB | rf-inner | 24.244 | 2.5 |
+| VOICE-VHF | rf-inner | 45.575 | 2.5 |
+| VOICE-UHF | rf-inner | 47.333 | 2.5 |
+| RX-FM/SW | ui-inner | 92.346 | 2.5 |
+| RX-AM/LW | ui-inner | 80.511 | capacitance-controlled |
 
 Для каждого обычного RF-mainline H6 обязан рассчитать геометрию по утверждённому stack-up, сохранить непрерывную reference plane, исключить tee/test stub, предпочитать ноль и допускать максимум один рассчитанный signal-layer transition, а return vias connector/ESD/matching ставить немедленно. Общий шаг fence для 2,4/5 ГГц равен `1,25 мм`: он округлён вниз от консервативного `lambda_g/20 = 1.361 мм` на 5,885 ГГц при effective permittivity 3,5.
 

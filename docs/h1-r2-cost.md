@@ -1,4 +1,4 @@
-# H1-R2.30 · component cost ranking
+# H1-R2.35 · component cost ranking
 
 [Русский](h1-r2-cost.ru.md) · [English](h1-r2-cost.md) · [Current placement](h1-r2-physical-layout.md)
 
@@ -6,11 +6,11 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 
 ## Summary
 
-- Volume material basis: **$248.37** per device; `200/210` lines are priced.
-- Reachable planning subtotal: **$276.77** per device, with `5` base-product lines still unpriced.
-- With the required post-PCBA K331: **$306.76** per device and **$306.76** for the one target prototype before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
-- Historical five-board JLCPCB capture: **$1,293.98** for `181` matched lines; `22` live checks move it to **$1,360.00**, with `29` rows excluded. This is evidence, not the target quantity.
-- The external antenna kit is separate: **$145.27** is known and `4` lines remain unpriced.
+- Volume material basis: **$257.25** per device; `201/210` lines are priced.
+- Reachable planning subtotal: **$278.55** per device, with `5` base-product lines still unpriced.
+- Current planned component minimum with no mandatory post-PCBA active module: **$278.55** per device and **$278.55** for the one target prototype before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
+- Historical five-board JLCPCB capture: **$1,293.98** for `181` matched lines; `23` live checks move it to **$1,417.97**, with `29` rows excluded. This is evidence, not the target quantity.
+- The external antenna kit is separate: **$138.32** is known and `4` lines remain unpriced.
 
 ## Highest-cost finished-device lines
 
@@ -23,10 +23,10 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 | `G-NiceRF SA818S-V` | VHF voice transceiver / VHF голосовой трансивер | 1 | $10.07 | $10.07 | 1 | $10.07 | $50.35 |
 | `G-NiceRF SA818S-U` | UHF voice transceiver / UHF голосовой трансивер | 1 | $9.73 | $9.73 | 1 | $9.73 | $48.67 |
 | `TE Connectivity 2118651-2` | five 30-mm RF jumpers / пять 30-мм RF-кабелей | 5 | $1.82 | $9.11 | 5 | $9.11 | — |
+| `Ebyte E01-ML01SP4` | three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm | 3 | $2.96 | $8.89 | 3 | $8.89 | $57.97 |
 | `Keystone Electronics 1048P` | dual protected-18650 holder / держатель двух защищённых 18650 | 1 | $8.57 | $8.57 | 1 | $8.57 | $33.66 |
 | `Texas Instruments TMUX1136DGSR` | four complete audio/control selectors / четыре полных audio/control selector | 4 | $2.06 | $8.23 | 4 | $8.23 | $12.79 |
 | `LTC5532ES6#TRMPBF` | S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц | 2 | $3.89 | $7.78 | 2 | $7.78 | $117.15 |
-| `Ebyte E01-ML01IPX` | three full nRF24 radios / три полнофункциональных nRF24 | 3 | $2.37 | $7.11 | 3 | $7.11 | — |
 | `Hirose U.FL-R-SMT-1(10)` | five native/module microcoax mates / пять микрокоаксиальных точек | 5 | $1.07 | $5.33 | 5 | $5.33 | $5.66 |
 | `ESP32-S3-WROOM-1U-N16R8` | s3 | 1 | $5.11 | $5.11 | 1 | $5.11 | $25.24 |
 | `Samtec FTSH-105-01-L-DV-K-P-TR` | three internal recovery headers / три внутренних recovery-разъёма | 3 | $1.70 | $5.10 | 3 | $5.10 | $16.35 |
@@ -56,7 +56,6 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 | `S433` | 433 MHz | `ANT-433-CW-QW-SMA` | 1 | $11.23 |
 | `UHF` | UHF 400-470 MHz | `ANT-433-CW-QW-SMA` | 1 | $11.23 |
 | `S315` | 315 MHz | `ANT-315-CW-HW-SMA` | 1 | $9.60 |
-| `FPV` | receive-only 5.8-GHz analog FPV, unknown source polarization | `TBS5G8MMCXA` | 1 | $6.95 |
 | `S915` | 868/915 MHz | `TI.08.C.0112` | 1 | $4.79 |
 | `N1` | 2.4 GHz nRF24 | `TX2400-JW-5` | 1 | — |
 | `N2` | 2.4 GHz nRF24 | `TX2400-JW-5` | 1 | — |
@@ -120,4 +119,4 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 - The accepted upper adapter PCB position `[24.75, 1.0]` passes the current exact-body model: `0` same-face collisions and `5.1 mm` minimum opposing clearance versus `0.7 mm` required, with no GPIO or BOM change.
 - H1 now fixes this orientation; H5 qualifies the received flex, bend and retention on the replaceable adapter. A mismatch cannot silently return the tail to the control zone.
 
-> Marker: **H1-R2.30**. H1 remains open pending the complete mock-up decision.
+> Marker: **H1-R2.35**. H1 remains open pending the complete mock-up decision.

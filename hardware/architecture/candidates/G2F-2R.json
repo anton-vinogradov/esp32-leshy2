@@ -9,9 +9,9 @@
     "s3": "esp32_s3_wroom_1u_n16r2",
     "c5": "esp32_c5_wroom_1u_n8r8",
     "u214": "m5_u214",
-    "nrf0": "ebyte_e01_ml01ipx",
-    "nrf1": "ebyte_e01_ml01ipx",
-    "nrf2": "ebyte_e01_ml01ipx",
+    "nrf0": "ebyte_e01_ml01sp4",
+    "nrf1": "ebyte_e01_ml01sp4",
+    "nrf2": "ebyte_e01_ml01sp4",
     "cc": "cc1101rgpr",
     "slow_io": "tca9535pwr",
     "rf_ctrl": "sn74hc595pwr"

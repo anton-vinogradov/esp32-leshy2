@@ -18,7 +18,6 @@ MODEL_PATH = REPO / "hardware/product-design/h1-r2-placement.json"
 BASE_PATH = REPO / "hardware/product-design/generated/H1-unified-coordinate-table.json"
 AUDIT_PATH = REPO / "hardware/product-design/generated/H1-R2-placement-audit.json"
 SVG_PATH = REPO / "docs/images/h1-r2-inner-placement.svg"
-MMCX_SVG_PATH = REPO / "docs/images/h1-r2-mmcx-service.svg"
 EXTERNAL_SVG_PATH = REPO / "docs/images/h1-r2-external-layout.svg"
 SERVICE_SVG_PATH = REPO / "docs/images/h1-r2-service-access.svg"
 COMPLETE_INNER_SVG_PATH = REPO / "docs/images/h1-r2-inner-complete.svg"
@@ -32,7 +31,7 @@ RU_DOC_PATH = REPO / "docs/h1-r2-physical-layout.ru.md"
 SOURCE_TABLE_PATH = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
 U219_SOURCE_PATH = REPO / "hardware/architecture/h1-r2-u219-cap.json"
 DUAL_RP_PINOUT_PATH = REPO / "hardware/architecture/h1-r2-dual-rp-pinout.json"
-PUBLIC_ASSET_REV = "h1-r2.33-layout-ready-1"
+PUBLIC_ASSET_REV = "h1-r2.35-full-power-nrf24-1"
 BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
 BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
@@ -266,7 +265,7 @@ def silkscreen_audit(model: dict) -> dict:
 
     rows = {
         "front": model["antenna_silkscreen"]["front"],
-        "rear": model["antenna_silkscreen"]["rear"] + [model["antenna_silkscreen"]["fpv"]],
+        "rear": model["antenna_silkscreen"]["rear"],
     }
     expected = {
         "front": set(model["antenna_bank_optimization"]["front_paths"]),
@@ -291,8 +290,6 @@ def silkscreen_audit(model: dict) -> dict:
             else:
                 forbidden.extend(
                     [
-                        {"name": "installed FPV cable", "box": {"x": [22.85, 46.75], "y": [8.4, 12.2]}},
-                        {"name": "FPV MMCX body", "box": {"x": [42.62, 47.08], "y": [8.07, 12.53]}},
                         {"name": "installed U214", "box": {"x": [-4.5, 79.5], "y": [17.0, 41.0]}},
                     ]
                 )
@@ -512,7 +509,7 @@ def u219_contract_audit(model: dict) -> dict:
     }
 
 
-def cap_bus_slot_audit(model: dict, base: dict, mmcx_service: dict) -> dict:
+def cap_bus_slot_audit(model: dict, base: dict) -> dict:
     """Validate mutually exclusive U214/U219 envelopes and the current rear geometry."""
     slot = model["cap_bus_slot"]
     profiles = slot["profiles"]
@@ -534,16 +531,11 @@ def cap_bus_slot_audit(model: dict, base: dict, mmcx_service: dict) -> dict:
     battery = base["accessory_envelopes"]["battery_holder"]
     encoder = next(row for row in base["rows"] if row["instance"] == "encoder_knob")["world_bbox_mm"]
     antenna_y = base["longitudinal_zones"]["antenna_connector_zone_y_mm"]
-    mmcx = next(row for row in model["placements"] if row["id"] == "fpv_mmcx")
-    mmcx_box = bbox(mmcx, model)
     calculated = {
         "battery_pad_span": battery["pad_span_y_mm"][0] - u219_box["y"][1],
         "battery_holder_body": battery["body_y_mm"][0] - u219_box["y"][1],
         "encoder_knob": encoder["y"][0] - u219_box["y"][1],
         "main_antenna_body_strip": u219_box["y"][0] - antenna_y[1],
-        "fpv_mmcx_body": u219_box["y"][0] - mmcx_box["y"][1],
-        "fpv_temporary_finger_envelope": mmcx_service["u214_service_clearance_mm"],
-        "fpv_right_angle_plug": mmcx_service["right_angle_plug_u214_clearance_mm"],
     }
     for name, expected in slot["clearance_targets_mm"].items():
         if name == "minimum":
@@ -699,31 +691,16 @@ def audit(model: dict, base: dict) -> dict:
         errors.append("physical layout must expose the one dependent H1 rendering task")
     if len(model["dependent_h1_work_ru"]) != len(model["dependent_h1_work"]):
         errors.append("bilingual dependent H1 work is out of sync")
-    fpv_bay = next((row for row in model["placements"] if row["id"] == "fpv_receiver_bay"), None)
-    if not fpv_bay or fpv_bay.get("size_mm") != [30.0, 24.0, 8.0]:
-        errors.append("the enlarged 30 x 24 x 8 mm FPV receiver bay is missing")
-    else:
-        attachment = fpv_bay.get("attachment", {})
-        if attachment.get("architecture") != "dual mutually exclusive post-PCBA land":
-            errors.append("the dual K331/AWM666V attachment is missing")
-        if attachment.get("population_rule") != "exactly one receiver module":
-            errors.append("the FPV receiver bay does not fail closed to one module")
-        if attachment.get("primary", {}).get("mpn") != "AKK K331" or attachment.get("fallback", {}).get("mpn") != "AWM666V RX":
-            errors.append("the FPV receiver primary/fallback identity is incomplete")
-        if "no live stub" not in attachment.get("rf_selection", ""):
-            errors.append("the alternate FPV RF branch is not isolated at the launch")
     relocated_c5 = next((row for row in model["placements"] if row["id"] == "c5_dbg_header_r2"), None)
     if not relocated_c5 or relocated_c5.get("replaces") != ["c5_dbg_header"]:
-        errors.append("the enlarged FPV bay does not relocate the opposing C5 DBG10")
+        errors.append("the relocated C5 DBG10 is missing")
     if any(row.get("stage") == "H1" for row in model["downstream_verification"]):
         errors.append("a downstream physical verification item is still owned by H1")
-    mmcx_service = mmcx_service_audit(model, base, new)
-    errors.extend(mmcx_service["errors"])
     features = physical_feature_audit(model, effective)
     errors.extend(features["errors"])
     u219_contract = u219_contract_audit(model)
     errors.extend(u219_contract["errors"])
-    cap_slot = cap_bus_slot_audit(model, base, mmcx_service)
+    cap_slot = cap_bus_slot_audit(model, base)
     errors.extend(cap_slot["errors"])
     silk = silkscreen_audit(model)
     errors.extend(silk["errors"])
@@ -811,12 +788,10 @@ def audit(model: dict, base: dict) -> dict:
         "u219_contract": u219_contract,
         "cap_bus_slot": cap_slot,
         "cap_evidence_coordinate_register": cap_evidence_register,
-        "mmcx_service": mmcx_service,
         "silkscreen": silk,
         "main_sma_mounting": sma_mounting,
         "mechanical_retention": retention,
         "battery_holder_mechanics": holder,
-        "fpv_receiver_attachment": fpv_bay.get("attachment") if fpv_bay else None,
         "relocated_c5_dbg_header": relocated_c5["id"] if relocated_c5 else None,
         "errors": errors,
         "current_h1_blockers": model["current_h1_blockers"],
@@ -881,7 +856,7 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
             x, y = item["world_xy_mm"]
             w, h, _ = item["size_mm"]
             x = board_w - x - w
-            family = "airband" if item["id"].startswith("airband") else "fpv" if item["id"].startswith("fpv") else "hub_rp"
+            family = "airband" if item["id"].startswith("airband") else "hub_rp"
             fill, stroke = colours[family]
             dash = "6 4" if item["kind"] == "reserve" else "none"
             out.append(rect(x0 + x * scale, oy + y * scale, w * scale, h * scale, rx="3", fill=fill, fill_opacity="0.92", stroke=stroke, stroke_width="2", stroke_dasharray=dash))
@@ -891,30 +866,7 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
             font = 11 if w >= 6 else 8.5
             out.append(f'<text x="{tx:.2f}" y="{ty:.2f}" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="{font}" font-weight="700" fill="{stroke}">{esc(label)}</text>')
 
-    # The vertical FPV connector is projected through the RF board outline.
-    # It has no through-board tail; its plan marker only explains the RF path.
-    rf_x = ox["rf-inner"]
-    mmcx = next(item for item in model["placements"] if item["id"] == "fpv_mmcx")
-    mmcx_mount = mmcx["mounting"]
-    mmcx_body = mmcx["size_mm"][0] * scale
-    mmcx_axis_x = rf_x + (board_w - mmcx_mount["mounting_axis_world_xy_mm"][0]) * scale
-    mmcx_axis_y = oy + mmcx_mount["mounting_axis_world_xy_mm"][1] * scale
-    fpv = next(item for item in model["placements"] if item["id"] == "fpv_receiver_bay")
-    dec = next(item for item in model["placements"] if item["id"] == "fpv_decoder")
-    fpv_x = rf_x + (board_w - fpv["world_xy_mm"][0] - fpv["size_mm"][0]) * scale
-    fpv_cy = oy + (fpv["world_xy_mm"][1] + fpv["size_mm"][1] / 2) * scale
-    dec_x = ox["ui-inner"] + (board_w - dec["world_xy_mm"][0] - dec["size_mm"][0]) * scale
-    dec_cy = oy + (dec["world_xy_mm"][1] + dec["size_mm"][1] / 2) * scale
-    out.extend([
-        rect(mmcx_axis_x - mmcx_body / 2, mmcx_axis_y - mmcx_body / 2, mmcx_body, mmcx_body, rx="2", fill="#dbeafe", stroke="#1d4ed8", stroke_width="2"),
-        f'<circle cx="{mmcx_axis_x:.2f}" cy="{mmcx_axis_y:.2f}" r="{6*scale:.2f}" fill="none" stroke="#ea580c" stroke-width="1.4" stroke-dasharray="6 4"/>',
-        f'<circle cx="{mmcx_axis_x:.2f}" cy="{mmcx_axis_y:.2f}" r="3.2" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>',
-        f'<text x="{mmcx_axis_x:.2f}" y="{mmcx_axis_y - 7:.2f}" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#1d4ed8">7</text>',
-        f'<text x="{mmcx_axis_x:.2f}" y="{mmcx_axis_y + mmcx_body/2 + 14:.2f}" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#1d4ed8">rear-face FPV 5.8G</text>',
-        f'<path d="M {mmcx_axis_x:.2f} {mmcx_axis_y:.2f} L {fpv_x:.2f} {fpv_cy:.2f}" stroke="#0f766e" stroke-width="3" fill="none"/>',
-        f'<path d="M {fpv_x + fpv["size_mm"][0] * scale:.2f} {fpv_cy:.2f} L {rf_x-20:.2f} {fpv_cy:.2f} L {ox["ui-inner"]+board_w*scale+20:.2f} {dec_cy:.2f} L {dec_x:.2f} {dec_cy:.2f}" stroke="#7c3aed" stroke-width="3" fill="none" stroke-dasharray="7 4" data-medium="one-75-ohm-cvbs-through-m1"/>',
-        '<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker></defs>',
-    ])
+    out.append('<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker></defs>')
 
     note_x = 730
     out.extend([
@@ -1099,25 +1051,7 @@ def render_external_svg(model: dict) -> str:
                 label(px(front,68), py(front,cy), visible, "middle", 4.2).replace("#1d4ed8", "#7c3aed"),
             ]
         )
-    mmcx = next(x for x in model["placements"] if x["id"] == "fpv_mmcx")
-    axis_x, axis_y = mmcx["mounting"]["mounting_axis_world_xy_mm"]
-    body = mmcx["size_mm"][0]
-    plug = mmcx["mounting"]["controlled_right_angle_plug_reference"]
-    fpv_x, fpv_y = mmcx["world_xy_mm"]
-    additions.extend(
-        [
-            f'<rect x="{px(rear,fpv_x):.1f}" y="{py(rear,fpv_y):.1f}" width="{body*scale:.1f}" height="{body*scale:.1f}" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6" data-instance="fpv_mmcx" data-mpn="73415-2063"/>',
-            f'<path d="M{px(rear,axis_x):.1f} {py(rear,axis_y):.1f} H{px(rear,axis_x - plug["strain_relief_run_max_mm"]):.1f}" stroke="#0f766e" stroke-width="{plug["strain_relief_width_max_mm"]*scale:.1f}" stroke-linecap="round" data-part="controlled-right-angle-plug-envelope" data-reference-mpn="{html.escape(plug["mpn"])}"/>',
-            f'<circle cx="{px(rear,axis_x):.1f}" cy="{py(rear,axis_y):.1f}" r="{plug["connector_head_width_max_mm"]*scale/2:.1f}" fill="#fff" stroke="#0f766e" stroke-width="1.5"/>',
-            f'<path d="M{px(rear,axis_x - 4):.1f} {py(rear,axis_y):.1f} H{px(rear,axis_x - 10):.1f}" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arrow)"/>',
-            label(
-                px(rear,model["antenna_silkscreen"]["fpv"]["x_mm"]),
-                py(rear,model["antenna_silkscreen"]["fpv"]["baseline_y_mm"]),
-                model["antenna_silkscreen"]["fpv"]["text"], "middle", 4.2,
-            ),
-            '</g>',
-        ]
-    )
+    additions.append('</g>')
     return svg.replace("</svg>", "\n".join(additions) + "\n</svg>")
 
 
@@ -1470,21 +1404,6 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
         font = 6.8 if min(w, h) >= 1.6 else 4.8
         out.append(t(vx+w*scale/2, vy+h*scale/2+font/3, str(numbers[row["id"]]), font, "bold", "middle", stroke))
 
-    # The FPV reserve is one physical bay with two mutually exclusive lands.
-    # Show the exact AWM666V body inside it without inventing a second component.
-    fpv_bay = next(row for row in rows if row["id"] == "fpv_receiver_bay")
-    fpv_origin = origins["rf-inner"]
-    bay_box = fpv_bay["bbox"]
-    awm_w, awm_h = 26.16, 16.38
-    awm_x = bay_box["x"][0] + ((bay_box["x"][1] - bay_box["x"][0]) - awm_w) / 2
-    awm_y = bay_box["y"][0] + ((bay_box["y"][1] - bay_box["y"][0]) - awm_h) / 2
-    out.append(
-        f'<rect x="{sx(fpv_origin,awm_x,awm_w):.2f}" y="{sy(fpv_origin,awm_y):.2f}" '
-        f'width="{awm_w*scale:.2f}" height="{awm_h*scale:.2f}" rx="2" fill="none" '
-        f'stroke="#16a34a" stroke-width="1.2" stroke-dasharray="3 2" '
-        f'data-alternate-mpn="AWM666V RX" data-population="mutually-exclusive"/>'
-    )
-
     # Flexible microcoax and its two connector ends sit above the board bodies;
     # keeping them separate from the under-body PCB topology is intentional.
     out.append('<g id="antenna-removable-media" data-topology-source="r2">')
@@ -1507,23 +1426,7 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
         out.append(f'<circle cx="{sx(origin,x):.1f}" cy="{sy(origin,y):.1f}" r="1.3" fill="#d97706"/>')
     out.append('</g>')
 
-    # FPV gets its own direct trace pair.
-    fpv = next(item for item in model["placements"] if item["id"] == "fpv_receiver_bay")
-    decoder = next(item for item in model["placements"] if item["id"] == "fpv_decoder")
     rf_origin = origins["rf-inner"]
-    fpv_x, fpv_y = fpv["world_xy_mm"]
-    fpv_w, fpv_h, _ = fpv["size_mm"]
-    dec_x, dec_y = decoder["world_xy_mm"]
-    dec_w, dec_h, _ = decoder["size_mm"]
-    edge_x = sx(rf_origin, 75.0)
-    fpv_vx = sx(rf_origin, fpv_x, fpv_w)
-    dec_vx = sx(rf_origin, dec_x, dec_w)
-    out.extend(
-        [
-            f'<path d="M{edge_x:.1f} {sy(rf_origin,101.3):.1f} L{fpv_vx:.1f} {sy(rf_origin,fpv_y+fpv_h/2):.1f}" stroke="#0f766e" stroke-width="2.6" fill="none" data-medium="50-ohm-pcb"/>',
-            f'<path d="M{fpv_vx+fpv_w*scale:.1f} {sy(rf_origin,fpv_y+fpv_h/2):.1f} L{dec_vx:.1f} {sy(rf_origin,dec_y+dec_h/2):.1f}" stroke="#7c3aed" stroke-width="2.6" fill="none" data-medium="75-ohm-cvbs-pcb"/>',
-        ]
-    )
     # Exact outward interfaces attached to R2 bodies.
     out.append(f'<path d="M{sx(ui,0):.1f} {sy(ui,137.47):.1f} L{sx(ui,-8):.1f} {sy(ui,137.47):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
     for cy in (132.25, 139.25):
@@ -1693,20 +1596,6 @@ def render_inner_face_svg(
         font = 7.0 if min(body_w, body_d) >= 1.6 else 4.8
         out.append(text(vx + body_w*scale/2, vy + body_d*scale/2 + font/3, str(numbers[row["id"]]), font, "bold", "middle", stroke))
 
-    if not is_ui:
-        fpv_bay = next(row for row in rows if row["id"] == "fpv_receiver_bay")
-        bay = fpv_bay["bbox"]
-        awm_w, awm_h = 26.16, 16.38
-        awm_x = bay["x"][0] + ((bay["x"][1] - bay["x"][0]) - awm_w) / 2
-        awm_y = bay["y"][0] + ((bay["y"][1] - bay["y"][0]) - awm_h) / 2
-        out.append(
-            f'<rect x="{sx(awm_x,awm_w):.2f}" y="{sy(awm_y):.2f}" width="{awm_w*scale:.2f}" '
-            f'height="{awm_h*scale:.2f}" rx="2" fill="none" stroke="#16a34a" stroke-width="1.4" '
-            f'stroke-dasharray="4 3" data-alternate-mpn="AWM666V RX" data-population="mutually-exclusive"/>'
-        )
-        out.append(text(sx(bay["x"][0], bay["x"][1]-bay["x"][0]) + 6, sy(bay["y"][0]) + 14, "K331 tolerant land · 30×24×8", 7.5, "bold", colour="#9a3412"))
-        out.append(text(sx(awm_x, awm_w) + 6, sy(awm_y) + awm_h*scale - 6, "AWM666V exact fallback · one populated", 7.0, "bold", colour="#166534"))
-
     # Removable microcoax and its two connector ends are physical objects above
     # the PCB; draw them after the body layer. Rear paths have no such cables.
     out.append('<g id="antenna-removable-media" data-topology-source="r2">')
@@ -1788,13 +1677,13 @@ def render_inner_face_svg(
 
 
 def render_inner_sections_svg(model: dict, base: dict, source_table: dict, result: dict) -> str:
-    """Render true X/Z cuts through Cap-Bus, Airband/power and FPV zones."""
+    """Render true X/Z cuts through Cap-Bus, Airband/power and service zones."""
     rows = complete_inner_rows(model, base, source_table, result)
     board_w, _board_h = model["board_mm"]
     cuts = (
         (29.0, "A–A · Cap-Bus / U219 host islands", True),
         (65.0, "B–B · Airband / 3V3_MAIN", False),
-        (101.0, "C–C · analog FPV / service", False),
+        (101.0, "C–C · controls / service", False),
     )
     x_scale = 5.4
     z_scale = 14.0
@@ -2220,25 +2109,22 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f"Выбранные GCT `RFPC-SMA31/32-FN-175-A` не держатся на одной стороне: корпус охватывает торец 1,6-мм платы, на стороне установки припаиваются RF-пята и две земляные лапы, на противоположной — ещё две земляные лапы. Это тот же двусторонний принцип, который виден в [ESP32-DIV v2]({model['antenna_bank_optimization']['main_sma_mounting']['comparison_url']}); односторонняя замена запрещена.",
             "На передней плате пять коротких съёмных микрокоаксиальных перемычек соединяют IPEX/U.FL радиоисточников с платными U.FL; дальше до SMA идут локальные контролируемые PCB-тракты.",
             "На задней плате U.FL и съёмных RF-кабелей нет: voice и FM/SW идут локальными RF-трактами, AM/LW — отдельным высокоомным AMI-трактом, а Airband — через питаемую ветвь преобразования и селектор.",
-            "Отдельный вертикальный MMCX `FPV RX · 5.8 GHz` расположен ниже равномерного ряда из пяти задних SMA и над общим Cap-Bus-слотом; ответный угловой штекер с кабелем уходит вдоль платы.",
             "В общий слот устанавливается ровно один модуль: U214 (84×24×15,287 мм) или optional U219 (84×24×19,7 мм). U219 выше на 4,413 мм, но остаётся на 1,0 мм ниже держателя батарей и на 1,3 мм ниже максимального заднего габарита.",
             "Все пользовательские подписи являются читаемой шелкографией; внутренние стороны плат шелкографии не содержат.",
             "На внешней стороне каждой платы печатаются стабильные role/revision `UI PCB · R2-EVT1 · REV A` и `RF/PWR PCB · R2-EVT1 · REV A`; изменяемый рабочий маркер H1-R2.xx на PCB не печатается.",
             "Три nRF24 полностью перенесены на переднюю плату вместе с буферами, safety-gate и отдельным `TLV1824PWR`.",
-            "На задней плате находится взаимоисключающая post-PCBA-зона `K331 / AWM666V`, а `TVP5150AM1PBS` — на передней рядом с S3: через M1 проходит только один 75-омный CVBS, не 11-линейная LCD_CAM-шина.",
-            "Основной K331 использует толерантную 14-pad посадку; точная посадка семиканального AWM666V вложена в ту же зону. Устанавливается ровно один модуль, без внутреннего U.FL или RF-кабеля.",
-            "FM/SW/AM/LW/Airband, CC1101, два voice-тракта и аудио локальны задней плате; S3 напрямую ведёт i8080-8, camera RX, энкодер и USB, а кнопки — через локальный TCA9539PWR.",
+            "Бортовой видеоприёмник, декодер, MMCX и их резервы удалены: за экраном и между антеннами нет скрытого post-PCBA модуля.",
+            "FM/SW/AM/LW/Airband, CC1101, два voice-тракта и аудио локальны задней плате; S3 напрямую ведёт i8080-8, энкодер и USB, а кнопки — через локальный TCA9539PWR. Одиннадцать бывших camera-RX GPIO остаются свободным электрическим резервом.",
             "Экран физически развёрнут шлейфом к антенному торцу, как у ESP32-DIV; адаптер находится в верхней внутренней зоне, а firmware разворачивает изображение и touch на 180°. Шлейф не входит в зону LED, D-pad и боковых клавиш.",
         ]
         audit_lines = [
             f'Коллизии корпусов на одной стороне: `{len(result["same_face_collisions"])}`.',
             f'Минимальный встречный Z-зазор: `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
-            "Резерв FPV увеличен до `30×24×8 мм`; C5 DBG10 перенесён рядом с S3 DBG10 и не пересекается ни с резервом, ни с соседними корпусами.",
-            f'FPV MMCX: корпус оставляет `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} мм` до ближайшего SMA; контролируемый угловой штекер — `{result["mmcx_service"]["minimum_right_angle_plug_clearance_mm"]:.2f} мм` до SMA и `{result["mmcx_service"]["right_angle_plug_u214_clearance_mm"]:.2f} мм` до общего Cap-Bus-слота. H5 фиксирует geometry/sequence до заказа; Ø12 finger access, fit и retention проверяются H7/H8 после получения.',
-            f'GPIO: передний RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["front_rp_gpio"]["free"]}`; задний RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["rear_rp_gpio"]["free"]}`. K331 RSSI официально помечен NC.',
-            "M1: все 80 контактов распределены — 25 сигналов, 14 main-power, 2 AON, 25 возвратов и 14 NC-резервов.",
+            "C5 DBG10 расположен рядом с S3 DBG10 и не пересекается с соседними корпусами.",
+            f'GPIO: передний RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["front_rp_gpio"]["free"]}`; задний RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["rear_rp_gpio"]["free"]}`; S3 использует 22 из 33 GPIO.',
+            "M1: все 80 контактов распределены — 24 сигнала, 14 main-power, 2 AON, 24 возврата и 16 NC-резервов.",
             "Механика M1: четыре 11,00-мм compression-stop, два противосдвиговых упора и независимые захваты плат; разъём не несёт ударную или изгибающую нагрузку.",
-            "Шелкография антенн: генератор подтвердил отсутствие пересечений с SMA/MMCX, кабелем FPV, Cap-Bus-слотом, дисплеем и монтажными keep-out.",
+            "Шелкография антенн: генератор подтвердил отсутствие пересечений с SMA, Cap-Bus-слотом, дисплеем и монтажными keep-out.",
             "Точная посадка десяти SMA следует чертежам A1: прямоугольная RF-пята `1,87×3,30 мм` в `x=0`, четыре прямоугольные земляные лапы `1,60×3,30 мм` в `x=±2,55 мм`, край платы `y=0`. H5 фиксирует двусторонний процесс пайки, H7 осматривает все пять паек каждого разъёма на единственном собранном прототипе, H8 выполняет обычную сборку/разборку, continuity/inspection и повторную проверку каждого RF-тракта без искусственного старения, падений и vibration-программы.",
             f'Cap-Bus: взаимоисключающие профили U214/U219 и все восемь целевых зазоров проходят; все 18 точных корпусов U219, их source-backed courtyards, NFC pickup-loop и внешний swept volume штатной 108-мм антенны зарегистрированы fail-closed. Открытых H1 geometry-gates: `{len(model["current_h1_blockers"])}`.',
             "Экран `ER-TFT035IPS-6` + `ER-TPC035-6`, его 50-контактный `FH34SRJ-50S-0.5SH(50)` и пассивный адаптер `L2-DISP-ADP-001-B` зафиксированы; адаптер имеет ноль коллизий и 5,10 мм минимального встречного зазора, а платный U.FL второго nRF24 оставляет 1,00 мм планарного зазора.",
@@ -2263,25 +2149,22 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f"The selected GCT `RFPC-SMA31/32-FN-175-A` bodies are not retained by one PCB face: each shell straddles the 1.6-mm board edge, with one RF plus two ground lands on the component face and two more shell-ground lands on the opposite face. This is the same dual-face principle visible in [ESP32-DIV v2]({model['antenna_bank_optimization']['main_sma_mounting']['comparison_url']}); a one-face substitute is forbidden.",
             "On the front PCB, five short removable microcoax jumpers connect the radio-source IPEX/U.FL sockets to board U.FL sockets; controlled board-local PCB paths continue from there to SMA.",
             "The rear PCB has no U.FL or removable RF cable: voice and FM/SW use board-local RF paths, AM/LW uses a separate high-impedance AMI path, and Airband uses the powered conversion branch and selector.",
-            "The separate vertical `FPV RX · 5.8 GHz` MMCX sits below the evenly pitched five-SMA rear row and above the shared Cap-Bus slot; its mating right-angle plug and cable run parallel to the PCB.",
             "Exactly one accessory occupies the common slot: U214 (84 × 24 × 15.287 mm) or optional U219 (84 × 24 × 19.7 mm). U219 is 4.413 mm taller, yet remains 1.0 mm below the battery holder and 1.3 mm below the selected rear maximum.",
             "All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.",
             "Each outer face prints a stable board role/revision — `UI PCB · R2-EVT1 · REV A` and `RF/PWR PCB · R2-EVT1 · REV A`; the changing H1-R2.xx work marker is never printed on a PCB.",
             "All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.",
-            "A mutually exclusive post-PCBA `K331 / AWM666V` bay remains rear-local while `TVP5150AM1PBS` moves beside S3: M1 carries one 75-ohm CVBS signal, not the 11-line LCD_CAM bus.",
-            "Primary K331 uses a tolerant 14-pad land; the exact seven-channel AWM666V land nests in the same bay. Exactly one module is installed, without an internal U.FL or RF cable.",
-            "FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, camera RX, encoder and USB, with buttons on its local TCA9539PWR path.",
+            "The onboard video receiver, decoder, MMCX and physical reserves are removed: no hidden post-PCBA module remains behind the display or between the antennas.",
+            "FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, encoder and USB, with buttons on its local TCA9539PWR path. Eleven former camera-RX GPIO remain uncommitted electrical reserve.",
             "The panel is physically turned with its flex toward the antenna edge, as on ESP32-DIV; the adapter occupies the upper inner zone and firmware rotates display output and touch by 180°. The tail stays out of the LED, D-pad and side-key zone.",
         ]
         audit_lines = [
             f'Same-face body collisions: `{len(result["same_face_collisions"])}`.',
             f'Minimum opposing Z clearance: `{result["minimum_opposing_clearance_mm"]:.2f} mm` against `{result["required_opposing_clearance_mm"]:.2f} mm` required.',
-            "The FPV reserve is enlarged to `30 × 24 × 8 mm`; C5 DBG10 is relocated beside S3 DBG10 and intersects neither the bay nor adjacent bodies.",
-            f'FPV MMCX: the jack body leaves `{result["mmcx_service"]["minimum_rear_antenna_connector_clearance_mm"]:.2f} mm` to the nearest SMA; the controlled right-angle plug leaves `{result["mmcx_service"]["minimum_right_angle_plug_clearance_mm"]:.2f} mm` to SMA and `{result["mmcx_service"]["right_angle_plug_u214_clearance_mm"]:.2f} mm` to the common Cap-Bus slot. Ø12 is only a temporary finger-approach zone and remains an H5 ergonomic check.',
-            f'GPIO: front RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["front_rp_gpio"]["free"]}` free; rear RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["rear_rp_gpio"]["free"]}` free. K331 RSSI is officially marked NC.',
-            "M1: all 80 contacts are assigned — 25 signals, 14 main-power, 2 AON, 25 returns and 14 NC reserves.",
+            "C5 DBG10 is relocated beside S3 DBG10 and intersects no adjacent body.",
+            f'GPIO: front RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["front_rp_gpio"]["free"]}` free; rear RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["rear_rp_gpio"]["free"]}` free; S3 uses 22 of 33 GPIO.',
+            "M1: all 80 contacts are assigned — 24 signals, 14 main-power, 2 AON, 24 returns and 16 NC reserves.",
             "M1 mechanics: four 11.00-mm compression stops, two anti-shear datums and independent PCB capture; the connector carries no impact or bending load.",
-            "Antenna silkscreen: the generator proves no overlap with SMA/MMCX bodies, the installed FPV cable, the Cap-Bus slot, the display or mounting keep-outs.",
+            "Antenna silkscreen: the generator proves no overlap with SMA bodies, the Cap-Bus slot, the display or mounting keep-outs.",
             "The exact ten-SMA land pattern follows the A1 drawings: one rectangular 1.87 × 3.30-mm RF land at x=0, four rectangular 1.60 × 3.30-mm shell lands at x=±2.55 mm and board edge y=0. H5 locks the dual-face soldering process, H7 inspects all five joints per connector on the one assembled prototype, and H8 performs ordinary assembly/disassembly, continuity/inspection and every path-specific RF check without artificial ageing, drops or a vibration programme.",
             f'Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; all 18 exact U219 bodies, their source-backed courtyards, the NFC pickup loop and the external swept volume of the supplied 108-mm antenna are registered fail-closed. Open H1 geometry gates: `{len(model["current_h1_blockers"])}`.',
             "The `ER-TFT035IPS-6` + `ER-TPC035-6` assembly, its 50-contact `FH34SRJ-50S-0.5SH(50)` connector and passive `L2-DISP-ADP-001-B` are fixed; the adapter has zero body collisions and 5.10 mm minimum opposing clearance, while the second nRF24 board U.FL retains 1.00 mm planar clearance.",
@@ -2299,7 +2182,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         f"[{board_names[1]} · full-scale inner view](images/h1-r2-inner-rf.svg)", "",
     ]
     lines.extend(f"- {row}" for row in bullets)
-    lines.extend(["", "![True inner sandwich sections](images/h1-r2-inner-sections.svg)", "", "![Rear-face FPV connector proof](images/h1-r2-mmcx-service.svg)", "", verified, ""])
+    lines.extend(["", "![True inner sandwich sections](images/h1-r2-inner-sections.svg)", "", verified, ""])
     lines.extend(f"- {row}" for row in audit_lines)
     lines.extend(["", factory, "", f"| {'Роль' if ru else 'Role'} | MPN | JLCPCB | {route_col} |", "|---|---|---|---|"])
     for row in model["factory_evidence"]:
@@ -2338,7 +2221,6 @@ def main() -> int:
     outputs = {
         AUDIT_PATH: json.dumps(result, indent=2, ensure_ascii=False) + "\n",
         SVG_PATH: render_svg(model, base, result),
-        MMCX_SVG_PATH: render_mmcx_service_svg(model, result),
         EXTERNAL_SVG_PATH: external_svg,
         SERVICE_SVG_PATH: render_service_svg(model),
         COMPLETE_INNER_SVG_PATH: render_complete_inner_svg(model, base, source_table, result),

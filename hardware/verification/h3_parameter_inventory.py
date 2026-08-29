@@ -160,7 +160,7 @@ def build() -> tuple[dict[Path, str], dict]:
     parameter_classes = Counter(row["parameter_class"] for row in rows)
     structured = sum(bool(row["structured_parameter_count"]) for row in rows)
     lifecycle_attention = [row["device_key"] for row in rows if "not_recommended" in row["lifecycle"]]
-    if lifecycle_attention != ["ebyte_e01_ml01ipx"]:
+    if lifecycle_attention != ["ebyte_e01_ml01sp4"]:
         raise ValueError(f"unexpected lifecycle decision set: {lifecycle_attention}")
 
     decision = {
@@ -169,24 +169,26 @@ def build() -> tuple[dict[Path, str], dict]:
         "confirmed_on": "2026-08-24",
         "selected_option": "A",
         "subject": "three full-function nRF24 paths versus new-design lifecycle",
-        "affected_device": "ebyte_e01_ml01ipx",
-        "affected_instances": len(instances["ebyte_e01_ml01ipx"]),
+        "affected_device": "ebyte_e01_ml01sp4",
+        "affected_instances": len(instances["ebyte_e01_ml01sp4"]),
         "facts": [
-            "The selected serial E01-ML01IPX is a current Ebyte product using an original nRF24L01+ and exposes the required SPI/register-compatible transceiver interface.",
+            "The selected serial E01-ML01SP4 is a stable-production Ebyte product using an original nRF24L01P plus RFX2401C PA/LNA; it preserves the SPI/register-compatible interface and reaches 20 dBm.",
+            "Exact JLCPCB part C97340 is public in-stock SMT assembly with MOQ 1, so the three modules no longer require owner placement or consignment.",
             "Nordic classifies the nRF24 family as not recommended for new designs; this is a lifecycle warning, not proof that the selected module is discontinued.",
             "Nordic nRF52 devices can communicate with legacy nRF24 devices through software Enhanced ShockBurst, but they are programmable SoCs rather than register-compatible SPI transceivers.",
         ],
         "sources": [
-            {"title": "Ebyte E01-ML01IPX current product page", "url": "https://www.ebyte.com/product/47.html"},
-            {"title": "Ebyte E01-ML01IPX product specification (2025-01-16)", "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf"},
+            {"title": "Ebyte E01-ML01SP4 current product page", "url": "https://www.ebyte.com/product/49.html"},
+            {"title": "Ebyte E01-ML01SP4 product specification (2025-01-16)", "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf"},
+            {"title": "JLCPCB exact E01-ML01SP4 / C97340 assembly line", "url": "https://jlcpcb.com/partdetail/E01-ML01SP4/C97340"},
             {"title": "Nordic nRF24 series lifecycle page", "url": "https://www.nordicsemi.com/Products/nRF24-series"},
             {"title": "Nordic Enhanced ShockBurst user guide", "url": "https://docs.nordicsemi.com/r/bundle/nrf5_sdk_v17.0.2/page/esb_users_guide.html"},
         ],
         "options": [
             {
                 "id": "A",
-                "title": "retain 3x E01-ML01IPX",
-                "consequence": "preserves full nRF24 hardware/register behavior and accepted H2 architecture; H5 must validate supplier, silicon marking and reserve sourcing",
+                "title": "retain 3x E01-ML01SP4",
+                "consequence": "preserves full nRF24 hardware/register behavior, adds the required PA/LNA output and uses an exact factory-stocked SMT route; H5 still validates received marking and RF performance",
             },
             {
                 "id": "B",
@@ -271,10 +273,10 @@ def render_doc(manifest: dict, russian: bool) -> str:
         residual = "Хвост/разъём, оптика и подсветка точной сборки `HMX035CTFT-001`, а также поставщик и партия `ES8311` остаются входным контролем H5. Их электрические расчёты по опубликованным данным выполняются в H3."
         decision_h = "## Закрытый архитектурный gate"
         decision_text = (
-            f"`{decision['id']}` закрыт вариантом A: остаются три `E01-ML01IPX`, потому что они дают требуемое полное аппаратное поведение nRF24. "
-            "Семейство nRF24 не рекомендуется для новых разработок, поэтому H5 проверит поставщика, маркировку silicon и резервную доступность. Современный nRF52 работает только в 2,4 ГГц, поддерживает совместимый эфирный ESB, но не является SPI/register drop-in заменой."
+            f"`{decision['id']}` закрыт вариантом A: остаются три `E01-ML01SP4`, потому что они дают требуемое полное аппаратное поведение nRF24. "
+            "Точный C97340 ставится JLCPCB со склада и даёт PA/LNA до 20 dBm; семейство nRF24 не рекомендуется для новых разработок, поэтому H5 всё равно проверит маркировку и RF-параметры. Современный nRF52 работает только в 2,4 ГГц, поддерживает совместимый эфирный ESB, но не является SPI/register drop-in заменой."
         )
-        marker = "**Статус исторической R1-цепочки:** `H3.0.2-R1` завершено и проверено; последующий маркер этой цепочки — `H3.6.1-R1`. Текущий аппаратный маркер — `H1-R2.31`."
+        marker = "**Статус исторической R1-цепочки:** `H3.0.2-R1` завершено и проверено; последующий маркер этой цепочки — `H3.6.1-R1`. Текущий аппаратный маркер — `H1-R2.35`."
         evidence = "[Машинный реестр из 213 строк](../hardware/verification/generated/H3-VRF02-parameter-inventory.json)."
     else:
         title = "# H3 parameters and models · historical R1"
@@ -292,10 +294,10 @@ def render_doc(manifest: dict, russian: bool) -> str:
         residual = "The exact `HMX035CTFT-001` tail/connector, optics and backlight plus the `ES8311` supplier and lot remain H5 incoming inspection. Their published-data electrical analysis still runs in H3."
         decision_h = "## Closed architecture gate"
         decision_text = (
-            f"`{decision['id']}` is closed with option A: three `E01-ML01IPX` modules remain because they provide the required full nRF24 hardware behavior. "
-            "The nRF24 family is not recommended for new designs, so H5 must verify supplier, silicon marking and reserve availability. A modern nRF52 is 2.4-GHz-only and supports over-air ESB compatibility, but is not an SPI/register drop-in replacement."
+            f"`{decision['id']}` is closed with option A: three `E01-ML01SP4` modules remain because they provide the required full nRF24 hardware behavior. "
+            "Exact C97340 is factory-stocked and adds PA/LNA output up to 20 dBm; the nRF24 family is not recommended for new designs, so H5 must still verify received marking and RF performance. A modern nRF52 is 2.4-GHz-only and supports over-air ESB compatibility, but is not an SPI/register drop-in replacement."
         )
-        marker = "**Historical R1-chain status:** `H3.0.2-R1` is reviewed; the later marker in that chain is `H3.6.1-R1`. The current hardware marker is `H1-R2.31`."
+        marker = "**Historical R1-chain status:** `H3.0.2-R1` is reviewed; the later marker in that chain is `H3.6.1-R1`. The current hardware marker is `H1-R2.35`."
         evidence = "[213-row machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json)."
     return "\n\n".join((title, nav, intro, counts_h, counts, residual_h, residual, decision_h, decision_text, marker, evidence)) + "\n"
 

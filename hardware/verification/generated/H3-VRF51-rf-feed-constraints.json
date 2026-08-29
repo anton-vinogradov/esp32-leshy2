@@ -3,9 +3,9 @@
   "stage": "H3.5.1",
   "status": "reviewed_rf_feed_connector_matching_and_loss_constraints",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
-    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "13a319f0f05aaaf505b3aa7acb64b09192a414922cd0749d6dced4d3dd72ad6b"
+    "hardware/architecture/candidates/G2F-3I.json": "edce4ca3aed56ed1a58b9ec85d19f7c9db624869f54797e0c2dc329e9816007d",
+    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
+    "hardware/verification/generated/H3-VRF44-digital-consolidation.json": "af5b3e53da0646a928f185c123e17c7cff76278150c46f5e4a4d54a8966e2f94"
   },
   "provenance": {
     "s3_module": "https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",

@@ -26,7 +26,7 @@ class H1R2DualRPPinoutTest(unittest.TestCase):
         self.assertEqual([], audit["errors"])
         self.assertEqual("H1-R2.31", audit["marker"])
         self.assertEqual(96, audit["summary"]["gpio_rows"])
-        self.assertEqual((46, 2, 44, 4), (
+        self.assertEqual((46, 2, 40, 8), (
             audit["summary"]["hub_gpio_used"], audit["summary"]["hub_gpio_reserve"],
             audit["summary"]["rf_gpio_used"], audit["summary"]["rf_gpio_reserve"],
         ))

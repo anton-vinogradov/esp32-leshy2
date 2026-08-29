@@ -79,7 +79,7 @@ RESIDUAL_MAP = {
         ],
         "mechanical_gates": ["H5-MECH-NRF-GEN1-FEEDS"],
         "missing_data": [
-            "the fitted microcoax receptacle MPN and connector axis on each received E01-ML01IPX lot are not published",
+            "the fitted microcoax receptacle subpart MPN on E01-ML01SP4 is not published; the module drawing does publish its location",
             "three independent assembled-feed loss/match and mating/retention records",
         ],
         "sample_specific": True,
@@ -100,9 +100,28 @@ RESIDUAL_MAP = {
         "mechanical_gates": ["H5-MECH-NRF-GEN1-FEEDS", "H5-MECH-NATIVE-RF-JUMPERS"],
         "missing_data": [
             "received 2118651-2 bend, retention and strain behaviour in all five installed paths",
-            "received E01 fitted-connector axes before freezing placement",
+            "received E01 fitted-receptacle mate fit against the published connector locations before freezing placement",
         ],
         "sample_specific": True,
+    },
+}
+
+
+# H1-R2 is an overlay on the retained R1 physical source table.  Evidence must
+# describe the effective fitted part, not the historical seed row that the R2
+# placement replaces.
+CURRENT_INSTANCE_OVERRIDES = {
+    "nrf0": {
+        "device": "ebyte_e01_ml01sp4",
+        "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #0",
+    },
+    "nrf1": {
+        "device": "ebyte_e01_ml01sp4",
+        "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #1",
+    },
+    "nrf2": {
+        "device": "ebyte_e01_ml01sp4",
+        "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #2",
     },
 }
 
@@ -114,9 +133,9 @@ RESIDUAL_MISSING_RU = {
     "H3-PHY-038": "выбрать точный серийный MPN эталонной microSD; измерить CMD6 identity, скорость, задержки и работу 512-КиБ буфера",
     "H3-PHY-046": "непубликуемые MPN/материал/покрытие штырей stock U214; непрерывность, усилия и удержание смешанной пары U214/HLE",
     "H3-PHY-048": "выбрать серийный набор кабелей/аксессуаров для I2C, UART, GPIO и 1-Wire; измерить длины, pull-сети и формы сигналов через TXS0102",
-    "H3-PHY-053": "непубликуемый MPN и ось встроенного разъёма партии E01-ML01IPX; отдельно измерить три собранных RF-тракта и удержание",
+    "H3-PHY-053": "непубликуемый MPN встроенного разъёма E01-ML01SP4; его положение известно из чертежа, а на собранном устройстве отдельно измеряются три RF-тракта и удержание",
     "H3-PHY-057": "identity, физические envelopes и mating полученного краевого SMA и составляющих pod до H6 routed-budget и итогового измерения H8",
-    "H3-PHY-062": "изгиб, удержание и разгрузку пяти полученных 2118651-2; оси встроенных разъёмов партии E01 до фиксации placement",
+    "H3-PHY-062": "изгиб, удержание и разгрузку пяти полученных 2118651-2; fit встроенных разъёмов E01 в опубликованных положениях до фиксации placement",
 }
 
 
@@ -167,6 +186,20 @@ def part_from_row(row: dict) -> dict:
     }
 
 
+def effective_part_from_row(row: dict, devices: dict) -> dict:
+    override = CURRENT_INSTANCE_OVERRIDES.get(row["instance"])
+    if not override:
+        return part_from_row(row)
+    device = devices[override["device"]]
+    return {
+        "identity": row["instance"],
+        "kind": "selected_r2_replacement_instance",
+        "mpn": device["mpn"],
+        "role": override["role"],
+        "source": device["source"],
+    }
+
+
 def custom_pod_part(pod: dict) -> dict:
     electrical = pod["electrical_design"]
     interface = pod["interface"]
@@ -199,7 +232,7 @@ def build() -> dict:
     mapped_residuals = []
     for residual in h5_residuals:
         mapping = RESIDUAL_MAP[residual["id"]]
-        parts = [part_from_row(rows[name]) for name in mapping["instances"]]
+        parts = [effective_part_from_row(rows[name], devices) for name in mapping["instances"]]
         for key in mapping.get("extra_devices", []):
             device = devices[key]
             parts.append({
@@ -229,7 +262,7 @@ def build() -> dict:
 
     mechanical_gates = []
     for gate in mechanical_source["gates"]:
-        affected = [part_from_row(rows[name]) for name in gate["affected_instances"]]
+        affected = [effective_part_from_row(rows[name], devices) for name in gate["affected_instances"]]
         mechanical_gates.append({
             "id": gate["id"],
             "parts": affected,
@@ -355,7 +388,7 @@ flowchart LR
 
 - У всех устанавливаемых деталей в механических gate’ах есть точный, не-TBD MPN.
 - Не выбранные пока **тестовые** изделия отмечены явно: эталонная microSD и набор M5 Unit/cable для профилей.
-- Встроенный разъём полученного `E01-ML01IPX` и штырь установленного на stock `U214` не превращены в выдуманные MPN: производитель их не публикует.
+- Встроенный разъём полученного `E01-ML01SP4` и штырь установленного на stock `U214` не превращены в выдуманные MPN: производитель их не публикует.
 - Реальный fit, retention, RF, timing и lot identity остаются открыты до owner bring-up единственного прототипа в H7/H8; отдельной sample/coupon-закупки нет.
 - Следующий точный маркер — `H5.0.2-R1`; заказ, PCB placement/routing и fabrication запрещены.
 
@@ -393,7 +426,7 @@ flowchart LR
 
 - Every board-fitted part in a mechanical gate has an exact non-TBD MPN.
 - Test articles not selected yet are explicit: a reference microSD and the M5 Unit/cable profile set.
-- The fitted connector in a received `E01-ML01IPX` and the fitted post on a stock `U214` were not assigned invented MPNs; their makers do not publish them.
+- The fitted connector in a received `E01-ML01SP4` and the fitted post on a stock `U214` were not assigned invented MPNs; their makers do not publish them.
 - Actual fit, retention, RF, timing and lot identity remain open until H7/H8 owner bring-up of the sole prototype; no separate sample/coupon purchase exists.
 - The next exact marker is `H5.0.2-R1`; purchase, PCB placement/routing and fabrication remain prohibited.
 

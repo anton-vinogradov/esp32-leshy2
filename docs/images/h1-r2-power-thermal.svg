@@ -25,45 +25,42 @@
 <text x="36" y="245" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Enumerated 3V3_MAIN worst cases</text>
 <line x1="445" y1="228" x2="445" y2="555" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5 4"/>
 <text x="445" y="220" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#526076">3.75-A admission</text>
-<text x="38" y="281" font-family="sans-serif" font-size="10.5" fill="#334155">AIRBAND_RX</text>
-<rect x="145" y="270" width="225.84" height="14" rx="3" fill="#16a34a"/>
-<text x="376.84" y="281" font-family="sans-serif" font-size="10" fill="#334155">2.823 A</text>
-<text x="38" y="305" font-family="sans-serif" font-size="10.5" fill="#334155">IR</text>
-<rect x="145" y="294" width="219.44" height="14" rx="3" fill="#60a5fa"/>
-<text x="370.44" y="305" font-family="sans-serif" font-size="10" fill="#334155">2.743 A</text>
-<text x="38" y="329" font-family="sans-serif" font-size="10.5" fill="#334155">FPV_RX</text>
+<text x="38" y="281" font-family="sans-serif" font-size="10.5" fill="#334155">NRF24</text>
+<rect x="145" y="270" width="245.04" height="14" rx="3" fill="#16a34a"/>
+<text x="396.04" y="281" font-family="sans-serif" font-size="10" fill="#334155">3.063 A</text>
+<text x="38" y="305" font-family="sans-serif" font-size="10.5" fill="#334155">AIRBAND_RX</text>
+<rect x="145" y="294" width="225.84" height="14" rx="3" fill="#60a5fa"/>
+<text x="376.84" y="305" font-family="sans-serif" font-size="10" fill="#334155">2.823 A</text>
+<text x="38" y="329" font-family="sans-serif" font-size="10.5" fill="#334155">IR</text>
 <rect x="145" y="318" width="219.44" height="14" rx="3" fill="#60a5fa"/>
 <text x="370.44" y="329" font-family="sans-serif" font-size="10" fill="#334155">2.743 A</text>
-<text x="38" y="353" font-family="sans-serif" font-size="10.5" fill="#334155">NRF24</text>
-<rect x="145" y="342" width="217.20" height="14" rx="3" fill="#60a5fa"/>
-<text x="368.20" y="353" font-family="sans-serif" font-size="10" fill="#334155">2.715 A</text>
-<text x="38" y="377" font-family="sans-serif" font-size="10.5" fill="#334155">CC1101</text>
-<rect x="145" y="366" width="216.64" height="14" rx="3" fill="#60a5fa"/>
-<text x="367.64" y="377" font-family="sans-serif" font-size="10" fill="#334155">2.708 A</text>
-<text x="38" y="401" font-family="sans-serif" font-size="10.5" fill="#334155">BROADCAST_RX</text>
-<rect x="145" y="390" width="216.24" height="14" rx="3" fill="#60a5fa"/>
-<text x="367.24" y="401" font-family="sans-serif" font-size="10" fill="#334155">2.703 A</text>
-<text x="38" y="425" font-family="sans-serif" font-size="10.5" fill="#334155">VOICE</text>
+<text x="38" y="353" font-family="sans-serif" font-size="10.5" fill="#334155">CC1101</text>
+<rect x="145" y="342" width="216.64" height="14" rx="3" fill="#60a5fa"/>
+<text x="367.64" y="353" font-family="sans-serif" font-size="10" fill="#334155">2.708 A</text>
+<text x="38" y="377" font-family="sans-serif" font-size="10.5" fill="#334155">BROADCAST_RX</text>
+<rect x="145" y="366" width="216.24" height="14" rx="3" fill="#60a5fa"/>
+<text x="367.24" y="377" font-family="sans-serif" font-size="10" fill="#334155">2.703 A</text>
+<text x="38" y="401" font-family="sans-serif" font-size="10.5" fill="#334155">VOICE</text>
+<rect x="145" y="390" width="215.44" height="14" rx="3" fill="#60a5fa"/>
+<text x="366.44" y="401" font-family="sans-serif" font-size="10" fill="#334155">2.693 A</text>
+<text x="38" y="425" font-family="sans-serif" font-size="10.5" fill="#334155">LORA_CAP</text>
 <rect x="145" y="414" width="215.44" height="14" rx="3" fill="#60a5fa"/>
 <text x="366.44" y="425" font-family="sans-serif" font-size="10" fill="#334155">2.693 A</text>
-<text x="38" y="449" font-family="sans-serif" font-size="10.5" fill="#334155">LORA_CAP</text>
+<text x="38" y="449" font-family="sans-serif" font-size="10.5" fill="#334155">M5_UNIT</text>
 <rect x="145" y="438" width="215.44" height="14" rx="3" fill="#60a5fa"/>
 <text x="366.44" y="449" font-family="sans-serif" font-size="10" fill="#334155">2.693 A</text>
-<text x="38" y="473" font-family="sans-serif" font-size="10.5" fill="#334155">M5_UNIT</text>
-<rect x="145" y="462" width="215.44" height="14" rx="3" fill="#60a5fa"/>
-<text x="366.44" y="473" font-family="sans-serif" font-size="10" fill="#334155">2.693 A</text>
-<text x="38" y="497" font-family="sans-serif" font-size="10.5" fill="#334155">NONE</text>
+<text x="38" y="473" font-family="sans-serif" font-size="10.5" fill="#334155">NONE</text>
+<rect x="145" y="462" width="213.84" height="14" rx="3" fill="#60a5fa"/>
+<text x="364.84" y="473" font-family="sans-serif" font-size="10" fill="#334155">2.673 A</text>
+<text x="38" y="497" font-family="sans-serif" font-size="10.5" fill="#334155">S3_RF</text>
 <rect x="145" y="486" width="213.84" height="14" rx="3" fill="#60a5fa"/>
 <text x="364.84" y="497" font-family="sans-serif" font-size="10" fill="#334155">2.673 A</text>
-<text x="38" y="521" font-family="sans-serif" font-size="10.5" fill="#334155">S3_RF</text>
+<text x="38" y="521" font-family="sans-serif" font-size="10.5" fill="#334155">C5_RF</text>
 <rect x="145" y="510" width="213.84" height="14" rx="3" fill="#60a5fa"/>
 <text x="364.84" y="521" font-family="sans-serif" font-size="10" fill="#334155">2.673 A</text>
-<text x="38" y="545" font-family="sans-serif" font-size="10.5" fill="#334155">C5_RF</text>
-<rect x="145" y="534" width="213.84" height="14" rx="3" fill="#60a5fa"/>
-<text x="364.84" y="545" font-family="sans-serif" font-size="10" fill="#334155">2.673 A</text>
 <text x="520" y="245" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Electrical result</text>
-<text x="520" y="277" font-family="sans-serif" font-size="12" fill="#166534">✓ worst group: AIRBAND_RX · 2.823 A</text>
-<text x="520" y="301" font-family="sans-serif" font-size="12" fill="#166534">✓ continuous margin: 0.927 A · 32.8%</text>
+<text x="520" y="277" font-family="sans-serif" font-size="12" fill="#166534">✓ worst group: NRF24 · 3.063 A</text>
+<text x="520" y="301" font-family="sans-serif" font-size="12" fill="#166534">✓ continuous margin: 0.687 A · 22.4%</text>
 <text x="520" y="325" font-family="sans-serif" font-size="12" fill="#166534">✓ eFuse guaranteed: 4.340–5.412 A</text>
 <text x="520" y="349" font-family="sans-serif" font-size="12" fill="#166534">✓ step peak in inductor: 5.002 A</text>
 <text x="520" y="397" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Thermal admission</text>

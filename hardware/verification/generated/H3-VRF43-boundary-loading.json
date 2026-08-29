@@ -3,14 +3,15 @@
   "stage": "H3.4.3",
   "status": "reviewed_m1_expansion_and_service_boundary_loading",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "a47012afe7f17a40d0051074febf8a877a75162e913892ba02d57da58fff3d4d",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "e80c7b7f168746c6436572f0eb7ef4f65c8496f7e242b3e1482dcf70f1bb1b68",
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "c9ce0285c9e3e22a8e42c9f548d526751e0433cc5a8ac68f7b5f8fbb56b30ce1",
-    "hardware/verification/generated/H3-VRF42-digital-timing.json": "91fa0b5abe446d3249538404a982ce780640e4d127a77c5be499b4e4928f3867",
-    "hardware/ecad/generated/H2-REV53-no-back-power.json": "d8c80e9c45d96cb9902d8845310864b7ef15975a86cf5ed2036e0661ed3aa399",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "6c5589de2b3d36f4d384372536576575a199ab58e60da20a17d778257dc6f2f7",
-    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "4a29d1f3f134b2f47ea44cad173d14c04c5ac7470f07d17f273cdaf661008333"
+    "hardware/architecture/candidates/G2F-3I.json": "edce4ca3aed56ed1a58b9ec85d19f7c9db624869f54797e0c2dc329e9816007d",
+    "hardware/architecture/h0-r2-rebaseline.json": "c5fbe59d64c223d8918ebdeffca1723f0e939e47ce11fc360e1231572af9da10",
+    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "41552e3885a8e69d3bd230c2214b405ffae9ffb41531735991ebb7c6c9aad416",
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "9ce995687c725130b5bf470ab994f9e6662754f9b170685af35d21ec8b69a5ba",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "752fe14d9a07ce5673c3602a536305363d2a5dbc0221ce9689da5e926029ce7e",
+    "hardware/ecad/generated/H2-REV53-no-back-power.json": "89fb8bc7fb90cbcbbe492ca7c22e32d9546134a698a36508f6b6015b2e47a0ff",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "e542c9050165c9ebfa67ec154e543259f0b47858f8e086b4c41aabf3b3d5010b",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "60ea6f72f83748e4c59058a4292ab7cf0769212b2240a24bc3a9a39396e21723"
   },
   "provenance": {
     "m1_plug": "https://www.hirose.com/product/p/CL0578-0523-1-92",
@@ -26,18 +27,24 @@
   },
   "m1": {
     "contacts": 80,
-    "unique_nets": 51,
+    "unique_nets": 44,
     "class_counts": {
-      "analog": 1,
-      "audio": 5,
-      "control": 16,
-      "ipc_high_speed": 5,
-      "power": 9,
-      "return": 25,
-      "safety": 4,
-      "tx_evidence": 11,
-      "unit_configurable": 2,
-      "usb2_high_speed": 2
+      "aon_power": 2,
+      "control": 2,
+      "control_return": 1,
+      "ipc": 5,
+      "ipc_return": 3,
+      "main_power": 14,
+      "main_return": 14,
+      "reserve": 16,
+      "safety": 2,
+      "safety_analog": 1,
+      "safety_return": 4,
+      "tx_evidence": 9,
+      "ui": 3,
+      "ui_return": 1,
+      "usb2": 2,
+      "usb_return": 1
     },
     "rating": {
       "current_a_per_contact": "0.4",
@@ -45,12 +52,12 @@
       "transmission_rate_gbps": 8
     },
     "main": {
-      "accepted_current_a": "2.500",
-      "contacts": 7,
-      "current_a_per_contact": "0.357",
-      "rating_margin_a_per_contact": "0.043",
-      "drop_v_max": "0.028571",
-      "connector_loss_w_max": "0.071429"
+      "accepted_current_a": "3.750",
+      "contacts": 14,
+      "current_a_per_contact": "0.268",
+      "rating_margin_a_per_contact": "0.132",
+      "drop_v_max": "0.021429",
+      "connector_loss_w_max": "0.080357"
     },
     "aon": {
       "accepted_current_a": "0.165",
@@ -62,10 +69,12 @@
     },
     "return_and_locality": {
       "power_ground_contacts": 20,
-      "main_return_a_per_contact_conservative": "0.125",
-      "ipc_ground_distance_contacts_max": 1,
+      "main_return_contacts": 14,
+      "main_return_a_per_contact": "0.268",
+      "ipc_ground_distance_contacts_max": 2,
+      "clocked_ipc_ground_distance_contacts_max": 1,
       "usb_ground_distance_contacts_max": 1,
-      "audio_ground_distance_contacts_max": 2
+      "audio_payload_contacts": 0
     },
     "rate_margin_over_usb2_hs": "16.667"
   },
@@ -161,17 +170,18 @@
     "m1_maps_are_identical": true,
     "m1_ui_and_rf_each_have_51_unique_nets": true,
     "m1_class_count_is_complete": true,
-    "m1_has_seven_main_contacts": true,
+    "m1_has_fourteen_main_contacts": true,
     "m1_has_two_aon_contacts": true,
     "m1_main_per_contact_below_rating": true,
     "m1_aon_per_contact_below_rating": true,
     "m1_main_drop_below_30mv": true,
     "m1_aon_drop_below_7mv": true,
-    "m1_main_connector_loss_below_75mw": true,
+    "m1_main_connector_loss_below_100mw": true,
     "m1_power_return_per_contact_below_rating": true,
-    "m1_ipc_each_has_adjacent_power_ground": true,
+    "m1_clocked_ipc_each_has_adjacent_power_ground": true,
+    "m1_control_ipc_is_within_two_contacts_of_ground": true,
     "m1_usb_pair_is_bracketed_by_power_ground": true,
-    "m1_audio_each_is_within_two_contacts_of_audio_ground": true,
+    "m1_carries_no_audio_payload": true,
     "m1_8gbps_rating_exceeds_usb_hs_by_16x": true,
     "branch_accepted_current_below_efuse_floor": true,
     "branch_efuse_margin_above_20pct": true,
@@ -206,7 +216,7 @@
     "measure product USB Full-Speed through M1 plus all DBG10 UART/SWD recovery paths in the assembled sandwich"
   ],
   "review_summary": {
-    "checks": 49,
+    "checks": 50,
     "failed": 0,
     "unresolved": 0,
     "status": "reviewed"

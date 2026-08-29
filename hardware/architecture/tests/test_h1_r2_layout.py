@@ -21,12 +21,12 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.audit = MODULE.audit(cls.model, cls.base)
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.33", self.model["marker"])
+        self.assertEqual("H1-R2.35", self.model["marker"])
         self.assertEqual("pass", self.audit["status"])
         self.assertEqual("pass", self.audit["structural_status"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
-        self.assertEqual(77, len(self.audit["opposing_overlaps"]))
+        self.assertEqual(79, len(self.audit["opposing_overlaps"]))
         self.assertEqual(
             [{"ui": "m1_ui_plug", "rf": "m1_rf_receptacle", "overlap_mm": 3.8}],
             self.audit["intentional_opposing_mates"],
@@ -43,7 +43,7 @@ class H1R2LayoutTest(unittest.TestCase):
 
     def test_physical_gpio_budgets_are_bound_to_exact_dual_rp_authority(self):
         self.assertEqual({"used": 46, "free": 2}, self.model["functional_partition"]["front_rp_gpio"])
-        self.assertEqual({"used": 44, "free": 4}, self.model["functional_partition"]["rear_rp_gpio"])
+        self.assertEqual({"used": 40, "free": 8}, self.model["functional_partition"]["rear_rp_gpio"])
         broken = copy.deepcopy(self.model)
         broken["functional_partition"]["rear_rp_gpio"] = {"used": 45, "free": 3}
         failed = MODULE.audit(broken, self.base)
@@ -59,19 +59,13 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual(len(refs), self.audit["placement_drawing_reference_count"])
         self.assertEqual({}, self.audit["duplicate_placement_drawing_references"])
 
-    def test_fpv_bay_is_a_dual_post_pcba_reserve_not_a_fake_component(self):
-        bay = next(x for x in self.model["placements"] if x["id"] == "fpv_receiver_bay")
-        self.assertEqual("reserve", bay["kind"])
-        self.assertIsNone(bay["mpn"])
-        self.assertEqual("AKK K331", bay["candidate_mpn"])
-        self.assertEqual("AWM666V RX", bay["alternate_mpn"])
-        self.assertEqual([30.0, 24.0, 8.0], bay["size_mm"])
-        self.assertEqual("dual mutually exclusive post-PCBA land", bay["attachment"]["architecture"])
-        self.assertEqual("exactly one receiver module", bay["attachment"]["population_rule"])
-        self.assertEqual(14, bay["attachment"]["primary"]["contact_count"])
-        self.assertEqual([26.16, 16.38, 3.7], bay["attachment"]["fallback"]["body_mm"])
-        self.assertEqual(0, bay["attachment"]["normal_pcba_bom_additions"])
-        self.assertIn("no live stub", bay["attachment"]["rf_selection"])
+    def test_onboard_video_bodies_and_reserves_are_absent(self):
+        names = " ".join(
+            [str(row.get("id", "")) + " " + str(row.get("mpn", "")) for row in self.model["placements"]]
+        ).lower()
+        for token in ("fpv", "k331", "awm666", "tvp5150", "mmcx"):
+            self.assertNotIn(token, names)
+        self.assertEqual([], self.model["trace_corridors"])
 
     def test_h1_blockers_are_separate_from_dependent_and_later_work(self):
         self.assertEqual([], self.model["current_h1_blockers"])
@@ -86,7 +80,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual(1, len(self.model["dependent_h1_work"]))
         self.assertIn("explicitly accept the generated complete R2", self.model["dependent_h1_work"][0])
         self.assertEqual(
-            {"H5/H6 then H7/H8", "H5/H6 then H7", "H5 then H7/H8"},
+            {"H5/H6 then H7"},
             {row["stage"] for row in self.model["downstream_verification"]},
         )
         self.assertEqual(self.model["current_h1_blockers"], self.audit["current_h1_blockers"])
@@ -131,9 +125,6 @@ class H1R2LayoutTest(unittest.TestCase):
                 "battery_holder_body": 5.47,
                 "encoder_knob": 2.0,
                 "main_antenna_body_strip": 11.0,
-                "fpv_mmcx_body": 4.47,
-                "fpv_temporary_finger_envelope": 0.7,
-                "fpv_right_angle_plug": 4.8,
             },
             slot["calculated_clearances_mm"],
         )
@@ -192,23 +183,21 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("external_swept_volume", by_id["u219_installed_antenna_sweep"]["kind"])
         self.assertGreaterEqual(by_id["cap_socket_pth_keepout"]["minimum_clearance_mm"], 0.7)
 
-    def test_outer_face_bbox_uses_the_actual_rf_outer_plane(self):
-        mmcx = next(row for row in self.model["placements"] if row["id"] == "fpv_mmcx")
-        outer = MODULE.bbox(mmcx, self.model)["z"]
-        self.assertAlmostEqual(17.96, outer[0])
-        self.assertAlmostEqual(22.96, outer[1])
+    def test_no_video_connector_occupies_the_rear_outer_plane(self):
+        external = [row for row in self.model["placements"] if row["frame"] == "rf-outer-face"]
+        self.assertFalse(any("video" in row["role"].lower() for row in external))
 
     def test_unified_opposing_audit_catches_a_new_to_new_violation(self):
         broken = copy.deepcopy(self.model)
         comparator = next(row for row in broken["placements"] if row["id"] == "u219_field_comparator")
-        decoder = next(row for row in broken["placements"] if row["id"] == "fpv_decoder")
-        comparator["world_xy_mm"] = decoder["world_xy_mm"]
+        header = next(row for row in broken["placements"] if row["id"] == "c5_dbg_header_r2")
+        comparator["world_xy_mm"] = header["world_xy_mm"]
         comparator["size_mm"][2] = 10.5
         failed = MODULE.audit(broken, self.base)
         self.assertEqual("fail", failed["structural_status"])
-        self.assertTrue(any("opposing clearance fpv_decoder / u219_field_comparator" in row for row in failed["errors"]))
+        self.assertTrue(any("opposing clearance c5_dbg_header_r2 / u219_field_comparator" in row for row in failed["errors"]))
 
-    def test_c5_dbg10_is_relocated_clear_of_the_enlarged_fpv_bay(self):
+    def test_c5_dbg10_is_relocated_with_direct_service_access(self):
         header = next(x for x in self.model["placements"] if x["id"] == "c5_dbg_header_r2")
         self.assertEqual(["c5_dbg_header"], header["replaces"])
         self.assertEqual([15.5, 104.0], header["world_xy_mm"])
@@ -216,37 +205,15 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("c5_dbg_header_r2", self.audit["relocated_c5_dbg_header"])
         self.assertGreaterEqual(self.audit["minimum_opposing_clearance_mm"], 1.05)
 
-    def test_fpv_reserve_is_checked_against_same_face_components(self):
-        bay = next(x for x in self.model["placements"] if x["id"] == "fpv_receiver_bay")
-        self.assertEqual([39.7, 90.0], bay["world_xy_mm"])
-        broken = copy.deepcopy(self.model)
-        broken_bay = next(x for x in broken["placements"] if x["id"] == "fpv_receiver_bay")
-        broken_bay["world_xy_mm"] = [38.5, 90.0]
-        failed = MODULE.audit(broken, self.base)
-        self.assertEqual("fail", failed["structural_status"])
-        self.assertTrue(any(
-            "same-face collision: fpv_receiver_bay / safety_controller" in row
-            for row in failed["errors"]
-        ))
-
     def test_factory_rows_include_current_identity(self):
         by_mpn = {row["mpn"]: row for row in self.model["factory_evidence"]}
-        self.assertEqual("C3824301", by_mpn["TVP5150AM1PBS"]["jlcpcb_part"])
-        self.assertEqual("C588480", by_mpn["73415-2063"]["jlcpcb_part"])
         self.assertEqual("C39843328", by_mpn["SC1512-A4"]["jlcpcb_part"])
         self.assertEqual(2, by_mpn["SC1512-A4"]["quantity_per_device"])
         self.assertEqual(10, by_mpn["SC1512-A4"]["evt5_quantity"])
         self.assertIn("A4", by_mpn["SC1512-A4"]["identity_gate"])
-        self.assertIsNone(by_mpn["K331"]["jlcpcb_part"])
-        self.assertFalse(by_mpn["K331"]["accepted"])
-        self.assertIn("post-PCBA", by_mpn["K331"]["assembly"])
-        self.assertEqual("unavailable", self.model["k331_factory_route"]["exact_parts_library"])
-        self.assertEqual("unavailable", self.model["k331_factory_route"]["global_sourcing"])
-        self.assertIsNone(self.model["k331_factory_route"]["confirmed_drop_in_alternative"])
-        self.assertIn("post-PCBA manual installation", self.model["k331_factory_route"]["selected_route"])
         self.assertTrue(all("accepted" in row for row in self.model["factory_evidence"]))
-        self.assertTrue(by_mpn["TPS7A2018PDBVR"]["accepted"])
-        self.assertIn("2,225 pieces", by_mpn["TPS7A2018PDBVR"]["availability"])
+        for removed in ("TVP5150AM1PBS", "73415-2063", "K331", "TPS7A2018PDBVR"):
+            self.assertNotIn(removed, by_mpn)
 
     def test_hub_has_a_fourth_independent_recovery_set(self):
         placed = {row["id"]: row for row in self.model["placements"]}
@@ -275,57 +242,13 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertNotIn("audio", hub["role"].lower())
         self.assertNotIn("broadcast", hub["role"].lower())
 
-    def test_mmcx_uses_manufacturer_body_and_mounting_geometry(self):
-        mmcx = next(x for x in self.model["placements"] if x["id"] == "fpv_mmcx")
-        self.assertEqual([42.62, 8.07], mmcx["world_xy_mm"])
-        self.assertEqual([4.46, 4.46, 5.0], mmcx["size_mm"])
-        self.assertEqual("straight vertical SMT jack", mmcx["mounting"]["connector_style"])
-        self.assertEqual([44.85, 10.3], mmcx["mounting"]["mounting_axis_world_xy_mm"])
-        self.assertFalse(mmcx["mounting"]["through_board_tail"])
-        self.assertEqual(6.0, mmcx["mounting"]["rated_frequency_ghz"])
-        evidence = next(x for x in self.model["factory_evidence"] if x["mpn"] == mmcx["mpn"])
-        self.assertTrue(evidence["accepted"])
-        self.assertIn("molex.com", evidence["manufacturer_url"])
-        self.assertIn("molex.com", evidence["drawing_url"])
-        self.assertIn("Extended SMT", evidence["assembly"])
-
-    def test_mmcx_tail_and_service_keepouts_pass(self):
-        service = self.audit["mmcx_service"]
-        self.assertEqual(
-            self.base["stack"]["rf_pcb_thickness_mm"],
-            self.model["stack"]["rf_pcb_thickness_mm"],
-        )
-        self.assertEqual("pass", service["status"])
-        self.assertEqual([], service["errors"])
-        self.assertEqual([], service["opposing_body_hits"])
-        self.assertFalse(service["through_board_tail"])
-        self.assertEqual(12.0, service["external_service_keepout"]["diameter_mm"])
-        self.assertGreaterEqual(service["minimum_rear_antenna_connector_clearance_mm"], 0.7)
-        self.assertEqual(
-            {"CC-SUB", "VOICE-VHF"},
-            {row["path"] for row in service["handling_envelope_overlaps"]},
-        )
-        self.assertEqual(
-            "temporary finger approach only; not a static installed body",
-            service["handling_envelope_semantics"],
-        )
-        self.assertGreaterEqual(service["minimum_right_angle_plug_clearance_mm"], 0.7)
-        self.assertGreaterEqual(service["right_angle_plug_u214_clearance_mm"], 0.7)
-        self.assertEqual(
-            "FXP831.09.0100C",
-            service["controlled_right_angle_plug_reference"]["mpn"],
-        )
-        self.assertAlmostEqual(0.7, service["u214_service_clearance_mm"])
-
-    def test_rear_main_sma_row_is_even_and_fpv_sits_below_it(self):
+    def test_main_sma_rows_are_even_and_no_secondary_video_port_exists(self):
         rear = self.model["antenna_bank_optimization"]["rear_x_centres_mm"]
         self.assertEqual([8.1, 22.8, 37.5, 52.2, 66.9], rear)
         self.assertEqual(
             self.model["antenna_bank_optimization"]["front_x_centres_mm"], rear
         )
-        axis_x, axis_y = self.model["antenna_bank_optimization"]["fpv_mmcx_axis_world_xy_mm"]
-        self.assertAlmostEqual((rear[2] + rear[3]) / 2, axis_x)
-        self.assertGreater(axis_y, 6.0)
+        self.assertFalse(self.model["antenna_bank_optimization"]["separate_rear_face_video_connector"])
 
     def test_main_sma_mounts_straddle_and_solder_to_both_pcb_faces(self):
         mounting = self.audit["main_sma_mounting"]
@@ -344,7 +267,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn("one PCB face", mounting["substitution_rule"])
         self.assertEqual({"H5", "H7", "H8"}, set(mounting["verification_gates"]))
         self.assertIn("factory DFM acceptance", mounting["assembly_process_gate"]["factory_route"])
-        self.assertIn("post-PCBA hand-solder", mounting["assembly_process_gate"]["fallback_route"])
+        self.assertIn("owner post-PCBA soldering is forbidden", mounting["assembly_process_gate"]["fallback_route"])
         self.assertNotIn("drop_profile", mounting)
         hobby = mounting["hobby_grade_preorder_verification"]
         self.assertIn("no drop", hobby["scope"])
@@ -365,7 +288,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("pass", self.audit["silkscreen"]["status"])
         self.assertEqual([], self.audit["silkscreen"]["errors"])
         self.assertEqual(5, len(self.audit["silkscreen"]["faces"]["front"]))
-        self.assertEqual(6, len(self.audit["silkscreen"]["faces"]["rear"]))
+        self.assertEqual(5, len(self.audit["silkscreen"]["faces"]["rear"]))
 
     def test_board_identity_is_stable_silkscreen_not_the_work_marker(self):
         identity = self.model["hardware_identification"]
@@ -422,7 +345,6 @@ class H1R2LayoutTest(unittest.TestCase):
         expected = {
             MODULE.AUDIT_PATH: json.dumps(self.audit, indent=2, ensure_ascii=False) + "\n",
             MODULE.SVG_PATH: MODULE.render_svg(self.model, self.base, self.audit),
-            MODULE.MMCX_SVG_PATH: MODULE.render_mmcx_service_svg(self.model, self.audit),
             MODULE.EXTERNAL_SVG_PATH: MODULE.render_external_svg(self.model),
             MODULE.SERVICE_SVG_PATH: MODULE.render_service_svg(self.model),
             MODULE.COMPLETE_INNER_SVG_PATH: MODULE.render_complete_inner_svg(
@@ -457,9 +379,8 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn("Four independent USB paths", expected[MODULE.SERVICE_SVG_PATH])
         self.assertIn(">HUB RP</text>", expected[MODULE.SERVICE_SVG_PATH])
         self.assertIn(">DATA USB</text>", expected[MODULE.SERVICE_SVG_PATH])
-        self.assertIn('data-instance="fpv_mmcx"', expected[MODULE.EXTERNAL_SVG_PATH])
-        self.assertIn('>FPV 5G8</text>', expected[MODULE.EXTERNAL_SVG_PATH])
-        self.assertIn('5G8', expected[MODULE.EXTERNAL_SVG_PATH])
+        self.assertNotIn('data-instance="fpv_mmcx"', expected[MODULE.EXTERNAL_SVG_PATH])
+        self.assertNotIn('FPV 5G8', expected[MODULE.EXTERNAL_SVG_PATH])
         for instance in ("hub_reset_button", "hub_boot_button"):
             self.assertIn(
                 f'data-instance="{instance}" data-mpn="SKRTLAE010" '
@@ -477,7 +398,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn('clip-path="url(#front-external-content)"', expected[MODULE.FOUR_FACES_SVG_PATH])
         self.assertIn('clip-path="url(#rear-external-content)"', expected[MODULE.FOUR_FACES_SVG_PATH])
         self.assertIn('data-view="numbered-component-legend"', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
-        self.assertIn('218 unique drawing references', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
+        self.assertIn('215 unique drawing references', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
         self.assertIn('data-physical-feature="cap_socket_pth_keepout"', expected[MODULE.INNER_RF_SVG_PATH])
         self.assertIn('data-physical-feature="u219_nfc_evidence_island_reserve"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
         self.assertIn('u219_nfc_pickup_loop · copper_feature_reserve · X 1.5…73.5 · Y 17.8…40.2 mm', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])

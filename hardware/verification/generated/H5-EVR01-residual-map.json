@@ -4,10 +4,10 @@
   "status": "reviewed_mapping_only",
   "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "affe4d168d05969de6a60e1a2806c826c1afff69123e607c722339e57060d8d0",
-    "hardware/product-design/generated/H1-physical-source-table.json": "48aeded6f5febce100e7299f881e45ac27f3bf50d8d240b1a30fa5e39552741d",
-    "hardware/product-design/mechanical-evidence-gates.json": "988f479175c9c51cd781fafaf94584f4688530e32c70b4d9ee837e3580dff70d",
-    "hardware/architecture/devices.json": "a47012afe7f17a40d0051074febf8a877a75162e913892ba02d57da58fff3d4d",
+    "hardware/verification/generated/H3-VRF72-physical-residuals.json": "bb42a28438471824376c593e5d37974f2f5c12e55bd1af90380fd7a9ec257149",
+    "hardware/product-design/generated/H1-physical-source-table.json": "5223c0ef9a916d2629274a349d387a6e2b7aeb8b931220c0d4331b0f80bff83e",
+    "hardware/product-design/mechanical-evidence-gates.json": "934106b58e64408a7e3440f6f7540a6a0b2094d8d7491abd64ab4c7064310ce2",
+    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
     "hardware/architecture/am-lw-pod.json": "6571e20c26f2ceaebf9c4bf410d155417a68116b3b5ef2e16d7c77ee06503e08"
   },
   "summary": {
@@ -40,13 +40,12 @@
         {
           "identity": "display",
           "kind": "selected_physical_instance",
-          "mpn": "HMX035CTFT-001 (QDtech schematic assembly marking)",
-          "role": "raw_display_touch_assembly_with_integrated_sitronix_st77922_tddi",
+          "mpn": "EastRising ER-TFT035IPS-6 + ER-TPC035-6",
+          "role": "configured_raw_lcd_and_bonded_capacitive_touch_assembly",
           "source": {
-            "document": "QDtech ES3C35P 3.5-inch IPS ESP32-S3 Display Module Specification",
-            "version": "V1.0; outline drawing dated 2025-07-24",
-            "url": "https://www.lcdwiki.com/res/ES3C35P/3.5inch_IPS_ESP32-S3_Specification_V1.0.pdf",
-            "checked": "2026-08-22"
+            "document": "EastRising ER-TFT035IPS-6 TFT LCD Display Datasheet, revision B1 dated 2025-08-18",
+            "url": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -88,13 +87,12 @@
         {
           "identity": "display_panel_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
-          "role": "40_position_0_5mm_top_and_bottom_contact_zif_fpc_receptacle",
+          "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
+          "role": "50_position_0_5mm_dual_contact_zif_fpc_receptacle",
           "source": {
-            "document": "Hirose FH34SRJ-40S-0.5SH(99) product page and controlled 2D drawing",
-            "version": "CL0580-1260-6-99; detailed specifications updated 2026-02-07",
-            "url": "https://www.hirose.com/en/product/p/CL0580-1260-6-99",
-            "checked": "2026-08-23"
+            "document": "Hirose FH34SRJ controlled series drawing; 50-position body uses the 24.5-mm contact span and 27.0-mm overall width",
+            "url": "https://www.hirose.com/en/product/series/FH34SRJ",
+            "checked": "2026-08-29"
           }
         }
       ],
@@ -316,38 +314,38 @@
       "parts": [
         {
           "identity": "nrf0",
-          "kind": "selected_physical_instance",
-          "mpn": "Ebyte E01-ML01IPX",
-          "role": "full-function nRF24 radio #0",
+          "kind": "selected_r2_replacement_instance",
+          "mpn": "Ebyte E01-ML01SP4",
+          "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #0",
           "source": {
-            "document": "E01-ML01IPX product specification",
+            "document": "E01-ML01SP4 product specification",
             "version": "2025-01-16",
-            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
-            "checked": "2026-08-17"
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
+            "checked": "2026-08-29"
           }
         },
         {
           "identity": "nrf1",
-          "kind": "selected_physical_instance",
-          "mpn": "Ebyte E01-ML01IPX",
-          "role": "full-function nRF24 radio #1; rotated for U214 tail clearance",
+          "kind": "selected_r2_replacement_instance",
+          "mpn": "Ebyte E01-ML01SP4",
+          "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #1",
           "source": {
-            "document": "E01-ML01IPX product specification",
+            "document": "E01-ML01SP4 product specification",
             "version": "2025-01-16",
-            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
-            "checked": "2026-08-17"
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
+            "checked": "2026-08-29"
           }
         },
         {
           "identity": "nrf2",
-          "kind": "selected_physical_instance",
-          "mpn": "Ebyte E01-ML01IPX",
-          "role": "full-function nRF24 radio #2",
+          "kind": "selected_r2_replacement_instance",
+          "mpn": "Ebyte E01-ML01SP4",
+          "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #2",
           "source": {
-            "document": "E01-ML01IPX product specification",
+            "document": "E01-ML01SP4 product specification",
             "version": "2025-01-16",
-            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
-            "checked": "2026-08-17"
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -463,7 +461,7 @@
         "H5-MECH-NRF-GEN1-FEEDS"
       ],
       "missing_data": [
-        "the fitted microcoax receptacle MPN and connector axis on each received E01-ML01IPX lot are not published",
+        "the fitted microcoax receptacle subpart MPN on E01-ML01SP4 is not published; the module drawing does publish its location",
         "three independent assembled-feed loss/match and mating/retention records"
       ],
       "sample_specific": true,
@@ -560,38 +558,38 @@
         },
         {
           "identity": "nrf0",
-          "kind": "selected_physical_instance",
-          "mpn": "Ebyte E01-ML01IPX",
-          "role": "full-function nRF24 radio #0",
+          "kind": "selected_r2_replacement_instance",
+          "mpn": "Ebyte E01-ML01SP4",
+          "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #0",
           "source": {
-            "document": "E01-ML01IPX product specification",
+            "document": "E01-ML01SP4 product specification",
             "version": "2025-01-16",
-            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
-            "checked": "2026-08-17"
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
+            "checked": "2026-08-29"
           }
         },
         {
           "identity": "nrf1",
-          "kind": "selected_physical_instance",
-          "mpn": "Ebyte E01-ML01IPX",
-          "role": "full-function nRF24 radio #1; rotated for U214 tail clearance",
+          "kind": "selected_r2_replacement_instance",
+          "mpn": "Ebyte E01-ML01SP4",
+          "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #1",
           "source": {
-            "document": "E01-ML01IPX product specification",
+            "document": "E01-ML01SP4 product specification",
             "version": "2025-01-16",
-            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
-            "checked": "2026-08-17"
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
+            "checked": "2026-08-29"
           }
         },
         {
           "identity": "nrf2",
-          "kind": "selected_physical_instance",
-          "mpn": "Ebyte E01-ML01IPX",
-          "role": "full-function nRF24 radio #2",
+          "kind": "selected_r2_replacement_instance",
+          "mpn": "Ebyte E01-ML01SP4",
+          "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #2",
           "source": {
-            "document": "E01-ML01IPX product specification",
+            "document": "E01-ML01SP4 product specification",
             "version": "2025-01-16",
-            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
-            "checked": "2026-08-17"
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -721,7 +719,7 @@
       ],
       "missing_data": [
         "received 2118651-2 bend, retention and strain behaviour in all five installed paths",
-        "received E01 fitted-connector axes before freezing placement"
+        "received E01 fitted-receptacle mate fit against the published connector locations before freezing placement"
       ],
       "sample_specific": true,
       "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
@@ -736,13 +734,12 @@
         {
           "identity": "display",
           "kind": "selected_physical_instance",
-          "mpn": "HMX035CTFT-001 (QDtech schematic assembly marking)",
-          "role": "raw_display_touch_assembly_with_integrated_sitronix_st77922_tddi",
+          "mpn": "EastRising ER-TFT035IPS-6 + ER-TPC035-6",
+          "role": "configured_raw_lcd_and_bonded_capacitive_touch_assembly",
           "source": {
-            "document": "QDtech ES3C35P 3.5-inch IPS ESP32-S3 Display Module Specification",
-            "version": "V1.0; outline drawing dated 2025-07-24",
-            "url": "https://www.lcdwiki.com/res/ES3C35P/3.5inch_IPS_ESP32-S3_Specification_V1.0.pdf",
-            "checked": "2026-08-22"
+            "document": "EastRising ER-TFT035IPS-6 TFT LCD Display Datasheet, revision B1 dated 2025-08-18",
+            "url": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -772,13 +769,12 @@
         {
           "identity": "display_panel_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
-          "role": "40_position_0_5mm_top_and_bottom_contact_zif_fpc_receptacle",
+          "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
+          "role": "50_position_0_5mm_dual_contact_zif_fpc_receptacle",
           "source": {
-            "document": "Hirose FH34SRJ-40S-0.5SH(99) product page and controlled 2D drawing",
-            "version": "CL0580-1260-6-99; detailed specifications updated 2026-02-07",
-            "url": "https://www.hirose.com/en/product/p/CL0580-1260-6-99",
-            "checked": "2026-08-23"
+            "document": "Hirose FH34SRJ controlled series drawing; 50-position body uses the 24.5-mm contact span and 27.0-mm overall width",
+            "url": "https://www.hirose.com/en/product/series/FH34SRJ",
+            "checked": "2026-08-29"
           }
         }
       ],
@@ -795,38 +791,38 @@
       "parts": [
         {
           "identity": "nrf0",
-          "kind": "selected_physical_instance",
-          "mpn": "Ebyte E01-ML01IPX",
-          "role": "full-function nRF24 radio #0",
+          "kind": "selected_r2_replacement_instance",
+          "mpn": "Ebyte E01-ML01SP4",
+          "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #0",
           "source": {
-            "document": "E01-ML01IPX product specification",
+            "document": "E01-ML01SP4 product specification",
             "version": "2025-01-16",
-            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
-            "checked": "2026-08-17"
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
+            "checked": "2026-08-29"
           }
         },
         {
           "identity": "nrf1",
-          "kind": "selected_physical_instance",
-          "mpn": "Ebyte E01-ML01IPX",
-          "role": "full-function nRF24 radio #1; rotated for U214 tail clearance",
+          "kind": "selected_r2_replacement_instance",
+          "mpn": "Ebyte E01-ML01SP4",
+          "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #1",
           "source": {
-            "document": "E01-ML01IPX product specification",
+            "document": "E01-ML01SP4 product specification",
             "version": "2025-01-16",
-            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
-            "checked": "2026-08-17"
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
+            "checked": "2026-08-29"
           }
         },
         {
           "identity": "nrf2",
-          "kind": "selected_physical_instance",
-          "mpn": "Ebyte E01-ML01IPX",
-          "role": "full-function nRF24 radio #2",
+          "kind": "selected_r2_replacement_instance",
+          "mpn": "Ebyte E01-ML01SP4",
+          "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #2",
           "source": {
-            "document": "E01-ML01IPX product specification",
+            "document": "E01-ML01SP4 product specification",
             "version": "2025-01-16",
-            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
-            "checked": "2026-08-17"
+            "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -938,8 +934,8 @@
           }
         }
       ],
-      "known_boundary": "Ebyte's current specification and official PcbLib prove the E01-ML01IPX outline and land pattern; Ebyte's current accessory catalog identifies the matching interface as IPX/IPEX Gen1. Exact active TE 2118651-2 30-mm UMCC Gen1 jumpers and Hirose U.FL-R-SMT-1(10) board mates define all three paper feed assemblies. H1 reserves a cable corridor from the complete module-face envelope instead of inventing a connector axis absent from the PcbLib.",
-      "missing_data": "The connector axis and current-lot receptacle manufacturer's exact MPN, actual fit/retention, bend/strain behaviour and end-to-end RF loss remain received-part properties. H1.2/H1.6 must prove the conservative module-face-to-board-receptacle corridor without relying on a nominal axis.",
+      "known_boundary": "Ebyte's 2025 E01-ML01SP4 specification proves the 14.5 x 18 x 2.4-mm outline, all ten lands and the fitted IPEX location; the current official page proves stable production and PA/LNA performance. Exact TE 2118651-2 30-mm UMCC Gen1 jumpers and Hirose U.FL-R-SMT-1(10) board mates define all three paper feed assemblies.",
+      "missing_data": "The fitted receptacle manufacturer's exact subpart MPN, actual mate retention, bend/strain behaviour and end-to-end RF loss remain received-part properties. H1 uses the published connector location and full maximum body envelope; H5/H8 verify the real fit and RF path.",
       "accepted_pass_rule": "H5 locks the conservative corridor and exact documented cable/board-mate identities before order; H7/H8 confirm the fitted receptacle is Gen1 and inspect fit, retention, flex/strain relief, insertion loss and return loss on the one assembled prototype after arrival.",
       "blocks": [
         "H8"
@@ -1432,13 +1428,12 @@
         {
           "identity": "display",
           "kind": "selected_physical_instance",
-          "mpn": "HMX035CTFT-001 (QDtech schematic assembly marking)",
-          "role": "raw_display_touch_assembly_with_integrated_sitronix_st77922_tddi",
+          "mpn": "EastRising ER-TFT035IPS-6 + ER-TPC035-6",
+          "role": "configured_raw_lcd_and_bonded_capacitive_touch_assembly",
           "source": {
-            "document": "QDtech ES3C35P 3.5-inch IPS ESP32-S3 Display Module Specification",
-            "version": "V1.0; outline drawing dated 2025-07-24",
-            "url": "https://www.lcdwiki.com/res/ES3C35P/3.5inch_IPS_ESP32-S3_Specification_V1.0.pdf",
-            "checked": "2026-08-22"
+            "document": "EastRising ER-TFT035IPS-6 TFT LCD Display Datasheet, revision B1 dated 2025-08-18",
+            "url": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -1468,13 +1463,12 @@
         {
           "identity": "display_panel_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
-          "role": "40_position_0_5mm_top_and_bottom_contact_zif_fpc_receptacle",
+          "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
+          "role": "50_position_0_5mm_dual_contact_zif_fpc_receptacle",
           "source": {
-            "document": "Hirose FH34SRJ-40S-0.5SH(99) product page and controlled 2D drawing",
-            "version": "CL0580-1260-6-99; detailed specifications updated 2026-02-07",
-            "url": "https://www.hirose.com/en/product/p/CL0580-1260-6-99",
-            "checked": "2026-08-23"
+            "document": "Hirose FH34SRJ controlled series drawing; 50-position body uses the 24.5-mm contact span and 27.0-mm overall width",
+            "url": "https://www.hirose.com/en/product/series/FH34SRJ",
+            "checked": "2026-08-29"
           }
         }
       ],

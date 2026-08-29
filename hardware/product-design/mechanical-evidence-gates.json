@@ -27,8 +27,8 @@
       "id": "H5-MECH-NRF-GEN1-FEEDS",
       "disposition": "h5_received_sample_gate",
       "affected_instances": ["nrf0", "nrf1", "nrf2", "nrf0_rf_jumper", "nrf1_rf_jumper", "nrf2_rf_jumper", "nrf0_rf_board_connector", "nrf1_rf_board_connector", "nrf2_rf_board_connector", "nrf0_external_sma", "nrf1_external_sma", "nrf2_external_sma"],
-      "evidence_boundary": "Ebyte's current specification and official PcbLib prove the E01-ML01IPX outline and land pattern; Ebyte's current accessory catalog identifies the matching interface as IPX/IPEX Gen1. Exact active TE 2118651-2 30-mm UMCC Gen1 jumpers and Hirose U.FL-R-SMT-1(10) board mates define all three paper feed assemblies. H1 reserves a cable corridor from the complete module-face envelope instead of inventing a connector axis absent from the PcbLib.",
-      "unknown": "The connector axis and current-lot receptacle manufacturer's exact MPN, actual fit/retention, bend/strain behaviour and end-to-end RF loss remain received-part properties. H1.2/H1.6 must prove the conservative module-face-to-board-receptacle corridor without relying on a nominal axis.",
+      "evidence_boundary": "Ebyte's 2025 E01-ML01SP4 specification proves the 14.5 x 18 x 2.4-mm outline, all ten lands and the fitted IPEX location; the current official page proves stable production and PA/LNA performance. Exact TE 2118651-2 30-mm UMCC Gen1 jumpers and Hirose U.FL-R-SMT-1(10) board mates define all three paper feed assemblies.",
+      "unknown": "The fitted receptacle manufacturer's exact subpart MPN, actual mate retention, bend/strain behaviour and end-to-end RF loss remain received-part properties. H1 uses the published connector location and full maximum body envelope; H5/H8 verify the real fit and RF path.",
       "closure": "H5 locks the conservative corridor and exact documented cable/board-mate identities before order; H7/H8 confirm the fitted receptacle is Gen1 and inspect fit, retention, flex/strain relief, insertion loss and return loss on the one assembled prototype after arrival.",
       "blocks": ["H8"]
     },

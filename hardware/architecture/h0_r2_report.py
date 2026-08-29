@@ -93,21 +93,21 @@ def render_svg(data: dict) -> str:
         '<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6z" fill="#475569"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         '<text x="630" y="38" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · H0-R2 functional architecture</text>',
-        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.31 projection: exact dual-RP GPIO/M1, direct i8080 display, camera RX and radio payload remain local.</text>',
+        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.35 projection: exact dual-RP GPIO/M1, direct i8080 display and radio payload remain local.</text>',
         '<rect x="40" y="105" width="540" height="610" rx="18" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>',
         '<rect x="680" y="105" width="540" height="610" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>',
         '<text x="310" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#1d4ed8">FRONT · UI / RADIO PCB · five SMA</text>',
-        '<text x="950" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#9a3412">REAR · RF / POWER PCB · five SMA + FPV MMCX</text>',
+        '<text x="950" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#9a3412">REAR · RF / POWER PCB · five SMA</text>',
     ]
-    out += box(70, 165, 225, 74, "ESP32-S3-WROOM-1U-N16R8", "direct i8080-8 · camera RX · touch · all UI keys", "#2563eb")
+    out += box(70, 165, 225, 74, "ESP32-S3-WROOM-1U-N16R8", "direct i8080-8 · touch · all UI keys · 11 GPIO reserve", "#2563eb")
     out += box(325, 165, 225, 74, "ESP32-C5-WROOM-1U-N8R8", "2.4/5 GHz · 802.15.4 · IR", "#2563eb")
     out += box(70, 270, 480, 78, "SC1512-A4 · FRONT RP", f"UI/radio fan-out · microSD · {front['used']}/48 GPIO", "#7c3aed")
-    out += box(70, 380, 480, 82, "3 × E01-ML01IPX nRF24 ISLANDS", "three concurrent full RX/TX/mixed paths · local buffers/evidence", "#0f766e")
-    out += box(70, 500, 225, 74, "TVP5150AM1PBS", "UI-local CVBS → 8-bit BT.656", "#7c3aed")
+    out += box(70, 380, 480, 82, "3 × E01-ML01SP4 nRF24 ISLANDS", "20-dBm PA/LNA · concurrent full RX/TX/mix · C97340", "#0f766e")
+    out += box(70, 500, 225, 74, "S3 ELECTRICAL RESERVE", "11 uncommitted former camera-input GPIO", "#7c3aed")
     out += box(325, 500, 225, 74, "microSD + local service", "direct front RP storage and recovery", "#64748b")
     out += box(710, 165, 480, 78, "SC1512-A4 · REAR RP", f"RF / audio / expansion owner · {rear['used']}/48 GPIO", "#7c3aed")
     out += box(710, 270, 225, 74, "CC1101 + VHF/UHF voice", "SUB-G RX/TX · two full-duplex voice paths", "#ea580c")
-    out += box(965, 270, 225, 74, "K331 / AWM666V FPV RX", "one post-PCBA module · direct rear MMCX", "#ea580c")
+    out += box(965, 270, 225, 74, "NO ONBOARD VIDEO RX", "no receiver · decoder · connector · reserved bay", "#ea580c")
     out += box(710, 380, 225, 74, "Audio", "ES8311 · speaker · mic · CTIA headset", "#ea580c")
     out += box(965, 380, 225, 74, "M5 + U214 / U219", "one protected Cap profile · local buses", "#ea580c")
     out += box(710, 500, 225, 74, "Power + safety", "watchdog · evidence · thermal hard-off", "#b42318")
@@ -118,14 +118,14 @@ def render_svg(data: dict) -> str:
         '<text x="630" y="258" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#526076">80-contact</text>',
         '<text x="630" y="292" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7c3aed">RP link</text>',
         '<text x="630" y="310" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">1.5 MB/s</text>',
-        '<text x="630" y="355" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7c3aed">1 × CVBS</text>',
-        '<text x="630" y="373" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">75 Ω + GND</text>',
+        '<text x="630" y="355" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7c3aed">M1.35–36</text>',
+        '<text x="630" y="373" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">NC reserve</text>',
         '<text x="630" y="420" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#b42318">RUN / FAULT</text>',
         '<text x="630" y="438" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">3× nRF evidence</text>',
         '<text x="630" y="485" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#166534">14 × 3V3</text>',
-        '<text x="630" y="503" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">25 returns</text>',
-        '<text x="630" y="520" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">25 signals</text>',
-        '<text x="630" y="538" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">14 NC reserve</text>',
+        '<text x="630" y="503" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">24 returns</text>',
+        '<text x="630" y="520" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">24 signals</text>',
+        '<text x="630" y="538" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">16 NC reserve</text>',
         '<line x1="550" y1="309" x2="585" y2="309" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>',
         '<line x1="675" y1="309" x2="710" y2="309" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>',
         '<path d="M965 307 H945 V475 H690 V355 H675" fill="none" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>',
@@ -163,9 +163,9 @@ def render_report(data: dict, ru: bool) -> str:
         intro = (
             "H0-R2 проведён как новый функциональный baseline: UI и дисплей остаются "
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
-            "аналоговый FPV остаётся receive-only, а Airband AM 118–137 МГц теперь обязателен."
+            "бортовой видеотракт удалён, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H1-R2.33**: H0/H1 согласованы с двумя независимыми RP2354B, точными GPIO0..47 и пятью M1 endpoints; электрический pin/mux-контракт C5 и полная 218-корпусная физическая проекция присоединены. Серийный дисплей EastRising, U219, NFC-loop и swept volume антенны закрыты; мокап ждёт явного принятия. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Новый R2 H2/KiCad заблокирован до live route C11355, точного MPN detector/latch service-VBUS и powered-off-Ioff границы Pack/Safety I2C."
+        current = "Текущий точный маркер — **H1-R2.35**: H0/H1 согласованы с двумя независимыми RP2354B, точными GPIO0..47 и четырьмя M1 endpoint-группами; бортовой видеотракт удалён, GPIO и M1-резервы освобождены, а полная 215-корпусная физическая проекция обновлена. Серийный дисплей EastRising, U219, NFC-loop и swept volume антенны закрыты; мокап ждёт явного принятия. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Новый R2 H2/KiCad заблокирован до live route C11355, точного MPN detector/latch service-VBUS и powered-off-Ioff границы Pack/Safety I2C."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -201,10 +201,10 @@ def render_report(data: dict, ru: bool) -> str:
         title = "H0-R2 · Functional architecture"
         intro = (
             "H0-R2 is the new functional baseline: UI and display remain local to S3, "
-            "high-throughput peripheral work is offloaded through the Hub RP, analog FPV "
-            "remains receive-only, and 118–137 MHz Airband AM is now mandatory."
+            "high-throughput peripheral work is offloaded through the Hub RP, the onboard "
+            "video path is removed, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H1-R2.33**: H0/H1 now agree on two independent RP2354B domains, exact GPIO0..47 maps and five M1 endpoints; the C5 electrical pin/mux contract and complete 218-body physical projection are joined. The serial EastRising display, U219, NFC loop and antenna swept volume are closed; the mock-up waits for explicit acceptance. The old single-RP G2F/H2 projection remains historical R1 evidence only. New R2 H2/KiCad stays blocked on the live C11355 route, the exact service-VBUS detector/latch MPN and the Pack/Safety I2C powered-off-Ioff boundary."
+        current = "The exact current marker is **H1-R2.35**: H0/H1 now agree on two independent RP2354B domains, exact GPIO0..47 maps and four M1 endpoint groups; the onboard video path is removed, its GPIO/M1 reserves are released, and the complete 215-body physical projection is updated. The serial EastRising display, U219, NFC loop and antenna swept volume are closed; the mock-up waits for explicit acceptance. The old single-RP G2F/H2 projection remains historical R1 evidence only. New R2 H2/KiCad stays blocked on the live C11355 route, the exact service-VBUS detector/latch MPN and the Pack/Safety I2C powered-off-Ioff boundary."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",
@@ -267,17 +267,17 @@ def render_report(data: dict, ru: bool) -> str:
     )
     result_lines = (
         "- Один пользовательский порт `FM / SW / AIR RX`; новый внешний разъём не добавлен.\n"
-        "- Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с FPV или TX-группой.\n"
-        "- Кнопки остаются на локальном для S3 TCA9539PWR, энкодер и USB подключены к S3 напрямую; direct i8080-8 даёт 24 МБ/с при безопасных для ILI9488 24 МГц, а camera RX работает независимо.\n"
-        "- Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, FPV, M5 и одним из U214/U219.\n"
-        "- Через M1 проходит один CVBS, control/status и питание; 11-линейная LCD_CAM-шина остаётся локальной S3."
+        "- Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с TX-группой.\n"
+        "- Кнопки остаются на локальном для S3 TCA9539PWR, энкодер и USB подключены к S3 напрямую; direct i8080-8 даёт 24 МБ/с при безопасных для ILI9488 24 МГц.\n"
+        "- Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, M5 и одним из U214/U219.\n"
+        "- M1 переносит control/status, safety, USB и питание; контакты 35–36 теперь NC-резерв."
         if ru
         else
         "- One user port is labelled `FM / SW / AIR RX`; no new external connector is added.\n"
-        "- Airband is a `BROADCAST_RX` submode, so its RF domain cannot run together with FPV or a TX group.\n"
-        "- Buttons stay on the S3-local TCA9539PWR path while encoder and USB remain direct; direct i8080-8 provides 24 MB/s at the ILI9488-safe 24 MHz while camera RX runs independently.\n"
-        "- The front RP owns three nRF24 paths and microSD; the rear RP owns Si4732/Airband, CC1101, voice, audio, FPV, M5 and exactly one U214/U219 profile.\n"
-        "- M1 carries one CVBS signal, control/status and power; the 11-line LCD_CAM bus stays local to S3."
+        "- Airband is a `BROADCAST_RX` submode, so its RF domain cannot run together with a TX group.\n"
+        "- Buttons stay on the S3-local TCA9539PWR path while encoder and USB remain direct; direct i8080-8 provides 24 MB/s at the ILI9488-safe 24 MHz.\n"
+        "- The front RP owns three nRF24 paths and microSD; the rear RP owns Si4732/Airband, CC1101, voice, audio, M5 and exactly one U214/U219 profile.\n"
+        "- M1 carries control/status, safety, USB and power; contacts 35–36 are now NC reserve."
     )
     filter_note = (
         "`BPF-A127+` не найден в каталоге JLCPCB (0 exact matches). Он используется как опубликованный эталон маски; production-вариант — серийная LC-лестница из фабричных passives, а не кастомная деталь. Все её MPN закрываются после H1 RF-синтеза и layout extraction."

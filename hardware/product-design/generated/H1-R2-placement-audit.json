@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.33",
+  "marker": "H1-R2.35",
   "status": "pass",
   "structural_status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
-  "new_fixed_body_count": 66,
-  "new_reserve_count": 3,
-  "placement_drawing_reference_count": 70,
+  "new_fixed_body_count": 67,
+  "new_reserve_count": 1,
+  "placement_drawing_reference_count": 68,
   "duplicate_placement_drawing_references": {},
   "replaced_seed_instances": [
     "audio_speaker_selector",
@@ -41,10 +41,12 @@
     "s3_rf_board_connector",
     "s3_rf_coupler",
     "safe_gate_a",
-    "u214_series_busy"
+    "slow_io",
+    "u214_series_busy",
+    "ui_matrix_io"
   ],
   "same_face_collisions": [],
-  "opposing_overlap_count": 77,
+  "opposing_overlap_count": 79,
   "minimum_opposing_clearance_mm": 2.59,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
@@ -252,55 +254,6 @@
       "clearance_mm": 6.16
     },
     {
-      "ui": "slow_io",
-      "rf": "u214_return_buffer_bypass",
-      "ui_origin": "retained_base",
-      "rf_origin": "retained_base",
-      "clearance_mm": 9.9
-    },
-    {
-      "ui": "slow_io",
-      "rf": "u214_series_irq",
-      "ui_origin": "retained_base",
-      "rf_origin": "retained_base",
-      "clearance_mm": 10.05
-    },
-    {
-      "ui": "slow_io",
-      "rf": "u214_series_miso",
-      "ui_origin": "retained_base",
-      "rf_origin": "retained_base",
-      "clearance_mm": 10.05
-    },
-    {
-      "ui": "slow_io",
-      "rf": "u214_series_nss",
-      "ui_origin": "retained_base",
-      "rf_origin": "retained_base",
-      "clearance_mm": 10.05
-    },
-    {
-      "ui": "slow_io",
-      "rf": "u214_series_rst",
-      "ui_origin": "retained_base",
-      "rf_origin": "retained_base",
-      "clearance_mm": 10.05
-    },
-    {
-      "ui": "ui_matrix_io",
-      "rf": "u214_esd_a",
-      "ui_origin": "retained_base",
-      "rf_origin": "retained_base",
-      "clearance_mm": 9.3
-    },
-    {
-      "ui": "ui_matrix_io",
-      "rf": "u214_i2c_iso",
-      "ui_origin": "retained_base",
-      "rf_origin": "retained_base",
-      "clearance_mm": 8.7
-    },
-    {
       "ui": "ui_zone_ntc",
       "rf": "cc_band_buffer",
       "ui_origin": "retained_base",
@@ -350,41 +303,6 @@
       "clearance_mm": 2.59
     },
     {
-      "ui": "fpv_decoder",
-      "rf": "safe_conditioner",
-      "ui_origin": "r2",
-      "rf_origin": "retained_base",
-      "clearance_mm": 8.7
-    },
-    {
-      "ui": "fpv_decoder",
-      "rf": "safety_controller",
-      "ui_origin": "r2",
-      "rf_origin": "retained_base",
-      "clearance_mm": 8.7
-    },
-    {
-      "ui": "fpv_decoder",
-      "rf": "safety_watchdog",
-      "ui_origin": "r2",
-      "rf_origin": "retained_base",
-      "clearance_mm": 8.8
-    },
-    {
-      "ui": "fpv_power_reserve",
-      "rf": "safe_latch",
-      "ui_origin": "r2",
-      "rf_origin": "retained_base",
-      "clearance_mm": 8.5
-    },
-    {
-      "ui": "fpv_power_reserve",
-      "rf": "safe_reset_buffer",
-      "ui_origin": "r2",
-      "rf_origin": "retained_base",
-      "clearance_mm": 8.5
-    },
-    {
       "ui": "s3_rf_board_connector_r2",
       "rf": "airband_selector",
       "ui_origin": "r2",
@@ -417,70 +335,119 @@
       "rf": "u214_host_buffer_a_bypass",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 8.4
+      "clearance_mm": 8.0
     },
     {
       "ui": "nrf0_r2",
       "rf": "u214_i2c_host_scl_pullup",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 8.55
+      "clearance_mm": 8.15
+    },
+    {
+      "ui": "nrf0_r2",
+      "rf": "u214_series_rst",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.15
     },
     {
       "ui": "nrf0_r2",
       "rf": "voice",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 5.7
+      "clearance_mm": 5.3
     },
     {
       "ui": "nrf0_r2",
       "rf": "voice_v",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 5.7
+      "clearance_mm": 5.3
     },
     {
       "ui": "nrf1_r2",
       "rf": "u214_i2c_iso",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 7.8
+      "clearance_mm": 7.4
     },
     {
       "ui": "nrf1_r2",
       "rf": "u214_return_buffer",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 7.8
+      "clearance_mm": 7.4
     },
     {
       "ui": "nrf1_r2",
       "rf": "voice_v",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 5.7
+      "clearance_mm": 5.3
     },
     {
       "ui": "nrf2_r2",
       "rf": "u214_host_buffer_a",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 7.8
+      "clearance_mm": 7.4
     },
     {
       "ui": "nrf2_r2",
       "rf": "u214_host_buffer_b",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 7.8
+      "clearance_mm": 7.4
+    },
+    {
+      "ui": "nrf2_r2",
+      "rf": "u214_host_buffer_b_bypass",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.0
+    },
+    {
+      "ui": "nrf2_r2",
+      "rf": "u214_series_gps_tx",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.15
+    },
+    {
+      "ui": "nrf2_r2",
+      "rf": "u214_series_sck",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.15
     },
     {
       "ui": "nrf2_r2",
       "rf": "voice_v",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 5.7
+      "clearance_mm": 5.3
+    },
+    {
+      "ui": "nrf2_r2",
+      "rf": "main_input_cap0_r2",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 5.8
+    },
+    {
+      "ui": "nrf2_r2",
+      "rf": "main_input_cap1_r2",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 5.8
+    },
+    {
+      "ui": "nrf2_r2",
+      "rf": "main_input_cap2_r2",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 5.8
     },
     {
       "ui": "nrf0_rf_board_connector_r2",
@@ -586,6 +553,55 @@
       "ui_origin": "r2",
       "rf_origin": "r2",
       "clearance_mm": 4.8
+    },
+    {
+      "ui": "slow_io_r2",
+      "rf": "voice_band_io",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 9.2
+    },
+    {
+      "ui": "slow_io_r2",
+      "rf": "voice_control_mux_a",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 9.3
+    },
+    {
+      "ui": "ui_matrix_io_r2",
+      "rf": "charger_pmid_cap1",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.2
+    },
+    {
+      "ui": "ui_matrix_io_r2",
+      "rf": "charger_sys_cap2",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.2
+    },
+    {
+      "ui": "ui_matrix_io_r2",
+      "rf": "main_inductor_r2",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 4.8
+    },
+    {
+      "ui": "ui_matrix_io_r2",
+      "rf": "main_output_cap1_r2",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 7.1
+    },
+    {
+      "ui": "ui_matrix_io_r2",
+      "rf": "main_output_cap2_r2",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 7.1
     }
   ],
   "intentional_opposing_mates": [
@@ -824,10 +840,7 @@
       "battery_pad_span": 1.0,
       "battery_holder_body": 5.47,
       "encoder_knob": 2.0,
-      "main_antenna_body_strip": 11.0,
-      "fpv_mmcx_body": 4.47,
-      "fpv_temporary_finger_envelope": 0.7,
-      "fpv_right_angle_plug": 4.8
+      "main_antenna_body_strip": 11.0
     },
     "u219_height_delta_vs_u214_mm": 4.413,
     "u219_margin_below_battery_holder_top_mm": 1.0,
@@ -2180,172 +2193,6 @@
     ],
     "errors": []
   },
-  "mmcx_service": {
-    "status": "pass",
-    "mpn": "73415-2063",
-    "drawing_source": "https://www.molex.com/en-us/products/part-detail/734152063",
-    "installed_body_world_bbox_mm": {
-      "x": [
-        42.62,
-        47.08
-      ],
-      "y": [
-        8.07,
-        12.53
-      ],
-      "z_above_outer_pcb": [
-        0.0,
-        5.0
-      ]
-    },
-    "mounting_axis_world_xy_mm": [
-      44.85,
-      10.3
-    ],
-    "through_board_tail": false,
-    "opposing_body_hits": [],
-    "external_service_keepout": {
-      "diameter_mm": 12.0,
-      "outward_length_mm": 20.0,
-      "world_xy_bbox_mm": {
-        "x": [
-          38.85,
-          50.85
-        ],
-        "y": [
-          4.300000000000001,
-          16.3
-        ]
-      }
-    },
-    "rear_antenna_connector_clearances": [
-      {
-        "path": "RX-FM/SW",
-        "clearance_mm": 29.493
-      },
-      {
-        "path": "RX-AM/LW",
-        "clearance_mm": 14.865
-      },
-      {
-        "path": "CC-SUB",
-        "clearance_mm": 2.07
-      },
-      {
-        "path": "VOICE-VHF",
-        "clearance_mm": 2.07
-      },
-      {
-        "path": "VOICE-UHF",
-        "clearance_mm": 14.865
-      }
-    ],
-    "minimum_rear_antenna_connector_clearance_mm": 2.07,
-    "handling_envelope_clearances": [
-      {
-        "path": "RX-FM/SW",
-        "clearance_mm": 25.941
-      },
-      {
-        "path": "RX-AM/LW",
-        "clearance_mm": 11.487
-      },
-      {
-        "path": "CC-SUB",
-        "clearance_mm": -1.147
-      },
-      {
-        "path": "VOICE-VHF",
-        "clearance_mm": -1.147
-      },
-      {
-        "path": "VOICE-UHF",
-        "clearance_mm": 11.487
-      }
-    ],
-    "handling_envelope_overlaps": [
-      {
-        "path": "CC-SUB",
-        "clearance_mm": -1.147
-      },
-      {
-        "path": "VOICE-VHF",
-        "clearance_mm": -1.147
-      }
-    ],
-    "handling_envelope_semantics": "temporary finger approach only; not a static installed body",
-    "controlled_right_angle_plug_reference": {
-      "mpn": "FXP831.09.0100C",
-      "manufacturer": "Taoglas",
-      "role": "controlled maximum geometry fallback for the MMCX male right-angle plug and strain relief; it does not replace the selected TBS antenna",
-      "connector_head_width_max_mm": 3.8,
-      "strain_relief_run_max_mm": 22.0,
-      "strain_relief_width_max_mm": 2.91,
-      "exit_direction": "-X parallel to the rear PCB below the SMA bodies",
-      "datasheet": "https://www.taoglas.com/datasheets/FXP831.09.0100C.pdf",
-      "drawing_page": 17,
-      "checked": "2026-08-27"
-    },
-    "right_angle_plug_world_bbox_mm": {
-      "x": [
-        22.85,
-        46.75
-      ],
-      "y": [
-        8.4,
-        12.200000000000001
-      ]
-    },
-    "right_angle_plug_clearances": [
-      {
-        "path": "RX-FM/SW",
-        "clearance_mm": 9.944
-      },
-      {
-        "path": "RX-AM/LW",
-        "clearance_mm": 2.4
-      },
-      {
-        "path": "CC-SUB",
-        "clearance_mm": 2.4
-      },
-      {
-        "path": "VOICE-VHF",
-        "clearance_mm": 2.425
-      },
-      {
-        "path": "VOICE-UHF",
-        "clearance_mm": 15.24
-      }
-    ],
-    "minimum_right_angle_plug_clearance_mm": 2.4,
-    "right_angle_plug_u214_clearance_mm": 4.8,
-    "right_angle_plug_mounting_keepout_clearances": [
-      {
-        "hole_world_xy_mm": [
-          5.0,
-          11.0
-        ],
-        "clearance_mm": 13.85
-      },
-      {
-        "hole_world_xy_mm": [
-          70.0,
-          11.0
-        ],
-        "clearance_mm": 19.25
-      }
-    ],
-    "fixed_installation_sequence": "five rear SMA ports retain an even pitch; the lower FPV MMCX uses a right-angle plug whose cable exits along -X below the SMA bodies and away from both mounting holes, while the temporary finger-approach envelope is verified ergonomically in H5",
-    "u214_service_clearance_mm": 0.7,
-    "factory_assembly": "Extended SMT; Economic and Standard PCBA",
-    "later_hil": [
-      "received connector-to-antenna mating and retention",
-      "U214 Cap insertion with the FPV plug fitted",
-      "ordinary plug mating, finger access and antenna strain-relief inspection"
-    ],
-    "errors": []
-  },
   "silkscreen": {
     "status": "pass",
     "faces": {
@@ -2475,19 +2322,6 @@
             "x": [
               64.85675675675677,
               68.94324324324324
-            ],
-            "y": [
-              15.094594594594593,
-              16.63497297297297
-            ]
-          }
-        },
-        {
-          "text": "FPV 5G8",
-          "box_mm": {
-            "x": [
-              42.46621621621622,
-              47.233783783783785
             ],
             "y": [
               15.094594594594593,
@@ -2645,7 +2479,7 @@
     "substitution_rule": "reject any cheaper SMA or RP-SMA whose exact 1.6-mm land pattern lacks the two lower-face shell lands or an equivalent through-board mechanical load path; never accept retention by only one PCB face",
     "assembly_process_gate": {
       "factory_route": "before order, obtain written factory DFM acceptance for the straddling five-land connector, including both-face solder delivery, stencil/paste treatment, fixture and inspection access",
-      "fallback_route": "if factory dual-face wetting is not accepted, lock a controlled post-PCBA hand-solder work instruction with alloy, flux, tip, temperature, dwell, cleaning, board support and operator qualification",
+      "fallback_route": "if factory dual-face wetting is not accepted, reject this MPN and select an exact factory-placeable dual-face or through-board equivalent before release; owner post-PCBA soldering is forbidden",
       "acceptance_record": "retain one traceable record per connector with both-face photographs, five visibly wetted rectangular joints, continuity and zero shell movement before antenna fitment"
     },
     "hobby_grade_preorder_verification": {
@@ -2719,31 +2553,6 @@
     "load_path": "an enclosure cradle and two end stops capture the plastic body and cell insertion axis so ordinary cell insertion, removal and handling loads do not peel the SMT pads",
     "h5_proof": "verify exact holder, cradle, stop and pad geometry/DRC; perform ordinary cell installation/removal as required for bring-up, then inspect the holder/pads and check polarity and continuity; unknown forces remain design-analysis inputs and no artificial ageing, drop, vibration or prescribed cycle count is required"
   },
-  "fpv_receiver_attachment": {
-    "architecture": "dual mutually exclusive post-PCBA land",
-    "population_rule": "exactly one receiver module",
-    "primary": {
-      "mpn": "AKK K331",
-      "contact_count": 14,
-      "contact_pitch_mm": 2.54,
-      "contact_edge_offset_mm": 1.4,
-      "land_class": "project-engineered tolerant hand-solder land; not claimed as an AKK production footprint",
-      "qualification_stage": "H5/H7"
-    },
-    "fallback": {
-      "mpn": "AWM666V RX",
-      "body_mm": [
-        26.16,
-        16.38,
-        3.7
-      ],
-      "land_class": "manufacturer-documented recommended land pattern",
-      "channel_count": 7
-    },
-    "rf_selection": "two population-specific short 50-ohm launches selected by a copper solder bridge at the MMCX launch; the unused branch is isolated at the launch and creates no live stub",
-    "normal_pcba_bom_additions": 0,
-    "future_simplification": "if AKK or Sinopine supplies a complete controlled production package, replace the tolerant K331 land with the regular footprint without changing the MMCX, CVBS or control interfaces"
-  },
   "relocated_c5_dbg_header": "c5_dbg_header_r2",
   "errors": [],
   "current_h1_blockers": [],
@@ -2752,19 +2561,9 @@
   ],
   "downstream_verification": [
     {
-      "stage": "H5/H6 then H7/H8",
-      "requirement": "before order, lock the K331 source-backed envelope, tolerant 14-pad land, 8-mm Z reserve, DRC and deterministic solder/inspection process; after arrival, inspect the received K331 joints, continuity and ordinary operation on the one prototype; repeat for AWM666V only if the fallback is populated",
-      "requirement_ru": "до заказа зафиксировать подтверждённые источниками envelope K331, толерантную 14-pad-посадку, резерв Z 8 мм, DRC и детерминированный процесс пайки/inspection; после получения проверить пайку, continuity и обычную работу K331 на единственном прототипе; повторить для AWM666V только при установке fallback"
-    },
-    {
       "stage": "H5/H6 then H7",
       "requirement": "before order, prove relocated C5 DBG10 geometry, access envelope, opposing clearance and DRC from the controlled model; after arrival, inspect access and clearance on the one assembled prototype",
       "requirement_ru": "до заказа доказать geometry перенесённого C5 DBG10, access-envelope, встречный зазор и DRC по контролируемой модели; после получения проверить доступ и зазор на единственном собранном прототипе"
-    },
-    {
-      "stage": "H5 then H7/H8",
-      "requirement": "before order, lock the FXP831.09.0100C identity, geometry, route and deterministic installation; after arrival, inspect fit and verify RF operation on the one assembled prototype",
-      "requirement_ru": "до заказа зафиксировать identity, geometry, маршрут и детерминированную установку FXP831.09.0100C; после получения проверить fit и RF-работу на единственном собранном прототипе"
     }
   ],
   "placements": [
@@ -2979,74 +2778,11 @@
       }
     },
     {
-      "id": "fpv_decoder",
-      "kind": "fixed_body",
-      "frame": "ui-inner",
-      "mpn": "TVP5150AM1PBS",
-      "role": "UI-local CVBS to 8-bit BT.656 decoder; only one 75-ohm CVBS signal crosses M1",
-      "world_bbox_mm": {
-        "x": [
-          31.0,
-          38.0
-        ],
-        "y": [
-          88.0,
-          95.0
-        ],
-        "z": [
-          5.36,
-          6.5600000000000005
-        ]
-      }
-    },
-    {
-      "id": "fpv_power_reserve",
-      "kind": "reserve",
-      "frame": "ui-inner",
-      "mpn": null,
-      "role": "decoder 1.8-V LDO, switched receiver rail and local capacitors",
-      "world_bbox_mm": {
-        "x": [
-          31.0,
-          39.0
-        ],
-        "y": [
-          81.0,
-          86.5
-        ],
-        "z": [
-          5.36,
-          6.76
-        ]
-      }
-    },
-    {
-      "id": "fpv_receiver_bay",
-      "kind": "reserve",
-      "frame": "rf-inner",
-      "mpn": null,
-      "role": "30 x 24 x 8 mm mutually exclusive post-PCBA receiver bay: primary AKK K331 uses a tolerant 14-pad direct-solder land; the exact documented Airwave AWM666V land overlaps as a seven-channel fallback; only one module is installed",
-      "world_bbox_mm": {
-        "x": [
-          39.7,
-          69.7
-        ],
-        "y": [
-          90.0,
-          114.0
-        ],
-        "z": [
-          8.36,
-          16.36
-        ]
-      }
-    },
-    {
       "id": "c5_dbg_header_r2",
       "kind": "fixed_body",
       "frame": "ui-inner",
       "mpn": "FTSH-105-01-L-DV-K-P-TR",
-      "role": "relocated keyed C5 UART0/RESET/BOOT DBG10 header; moved clear of the enlarged FPV receiver bay",
+      "role": "relocated keyed C5 UART0/RESET/BOOT DBG10 header with direct opened-sandwich access",
       "world_bbox_mm": {
         "x": [
           15.5,
@@ -3059,27 +2795,6 @@
         "z": [
           5.36,
           10.92
-        ]
-      }
-    },
-    {
-      "id": "fpv_mmcx",
-      "kind": "external_body",
-      "frame": "rf-outer-face",
-      "mpn": "73415-2063",
-      "role": "vertical rear-face 50-ohm MMCX labelled FPV RX 5.8G, below the evenly pitched SMA row and above U214",
-      "world_bbox_mm": {
-        "x": [
-          42.62,
-          47.08
-        ],
-        "y": [
-          8.07,
-          12.530000000000001
-        ],
-        "z": [
-          17.96,
-          22.96
         ]
       }
     },
@@ -3171,20 +2886,20 @@
       "id": "nrf0_r2",
       "kind": "fixed_body",
       "frame": "ui-inner",
-      "mpn": "E01-ML01IPX",
-      "role": "complete full-function nRF24 radio #0 on the front radio/UI domain",
+      "mpn": "E01-ML01SP4",
+      "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #0 on the front radio/UI domain",
       "world_bbox_mm": {
         "x": [
           8.0,
-          27.1
+          26.1
         ],
         "y": [
           42.0,
-          54.1
+          56.6
         ],
         "z": [
           5.36,
-          7.460000000000001
+          7.86
         ]
       }
     },
@@ -3192,20 +2907,20 @@
       "id": "nrf1_r2",
       "kind": "fixed_body",
       "frame": "ui-inner",
-      "mpn": "E01-ML01IPX",
-      "role": "complete full-function nRF24 radio #1 on the front radio/UI domain",
+      "mpn": "E01-ML01SP4",
+      "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #1 on the front radio/UI domain",
       "world_bbox_mm": {
         "x": [
           27.8,
-          46.900000000000006
+          45.900000000000006
         ],
         "y": [
           42.0,
-          54.1
+          56.6
         ],
         "z": [
           5.36,
-          7.460000000000001
+          7.86
         ]
       }
     },
@@ -3213,20 +2928,20 @@
       "id": "nrf2_r2",
       "kind": "fixed_body",
       "frame": "ui-inner",
-      "mpn": "E01-ML01IPX",
-      "role": "complete full-function nRF24 radio #2 on the front radio/UI domain",
+      "mpn": "E01-ML01SP4",
+      "role": "factory-stocked 20-dBm PA/LNA full-function nRF24 radio #2 on the front radio/UI domain",
       "world_bbox_mm": {
         "x": [
           47.6,
-          66.7
+          65.7
         ],
         "y": [
           44.0,
-          56.1
+          58.6
         ],
         "z": [
           5.36,
-          7.460000000000001
+          7.86
         ]
       }
     },
@@ -3475,6 +3190,48 @@
         "y": [
           62.0,
           66.4
+        ],
+        "z": [
+          5.36,
+          6.5600000000000005
+        ]
+      }
+    },
+    {
+      "id": "slow_io_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "TCA6424ARGJR",
+      "role": "relocated 24-line slow-control expander clear of the larger full-power nRF24 modules",
+      "world_bbox_mm": {
+        "x": [
+          24.0,
+          29.0
+        ],
+        "y": [
+          68.0,
+          73.0
+        ],
+        "z": [
+          5.36,
+          5.96
+        ]
+      }
+    },
+    {
+      "id": "ui_matrix_io_r2",
+      "kind": "fixed_body",
+      "frame": "ui-inner",
+      "mpn": "TCA9539PWR",
+      "role": "relocated sixteen-line direct-control input expander clear of the larger full-power nRF24 modules",
+      "world_bbox_mm": {
+        "x": [
+          54.0,
+          61.8
+        ],
+        "y": [
+          68.0,
+          72.4
         ],
         "z": [
           5.36,

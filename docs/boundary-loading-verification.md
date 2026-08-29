@@ -1,10 +1,10 @@
-# M1, expansion and service-boundary loading · historical R1
+# M1, expansion and service-boundary loading · current R2 architecture
 
-`H3.4.3` is reviewed with `49` machine checks and no open analytical finding. The historical R1 progression marker is `H3.6.1`.
+`H3.4.3` is reviewed with `50` machine checks and no open analytical finding. The historical R1 progression marker is `H3.6.1`.
 
 ## M1 worst-case bounds
 
-The exact 80-contact FX8C pair carries 51 nets. Even the deliberately over-conservative assumption that the whole accepted 2.5-A main rail crosses M1 loads each of seven contacts by only `0.357 A` against 0.4 A; maximum connector drop is `28.571 mV` and loss `71.429 mW`. AON uses `0.082 A` per contact. Every IPC and USB contact is adjacent to POWER_GROUND; every low-level audio contact is within two positions of AUDIO_GROUND. The connector's 8-Gbit/s rating is `16.667x` USB2 High-Speed.
+The exact 80-contact FX8C pair carries 44 distinct nets plus 16 explicit NC reserves. The entire accepted 3.75-A main envelope is distributed across fourteen supply and fourteen dedicated return contacts: `0.268 A` per contact against 0.4 A, `21.429 mV` maximum connector drop and `80.357 mW` total connector loss. AON uses `0.082 A` per contact. Every clocked IPC and USB contact is adjacent to POWER_GROUND; the low-rate ALERT/CS control is at most two positions away, and no audio payload crosses M1. The connector's 8-Gbit/s rating is `16.667x` USB2 High-Speed.
 
 ## Expansion bounds
 

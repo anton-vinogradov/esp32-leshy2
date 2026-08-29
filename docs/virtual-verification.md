@@ -29,6 +29,6 @@ The H2 revision with independent SA818S-V/U paths was accepted on 26 August 2026
 | `H3.6` | `single_fault_tree` | fault_tree_and_fmea | independent shutdown and recovery coverage | H8 safe fault injection |
 | `H3.6` | `unattended_operation` | bounded_energy_and_state_analysis | extended-operation and configurable self-test policy without a runtime claim | H8 24/48-hour qualified-USB endurance and battery-to-protected-cutoff measurements |
 
-**Historical marker:** `H3.0.1-R1`. **Current hardware marker:** `H1-R2.33`; R2 must pass its own H2/H3. Purchasing, PCB layout and fabrication are not authorized.
+**Historical marker:** `H3.0.1-R1`. **Current hardware marker:** `H1-R2.31`; R2 must pass its own H2/H3. Purchasing, PCB layout and fabrication are not authorized.
 
 [Machine freeze](../hardware/verification/generated/H3-VRF01-input-freeze.json).

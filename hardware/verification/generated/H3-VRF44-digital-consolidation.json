@@ -3,9 +3,9 @@
   "stage": "H3.4.4",
   "status": "reviewed_digital_interface_timing_level_and_loading_consolidation",
   "input_hashes": {
-    "hardware/verification/generated/H3-VRF41-digital-levels.json": "c9ce0285c9e3e22a8e42c9f548d526751e0433cc5a8ac68f7b5f8fbb56b30ce1",
-    "hardware/verification/generated/H3-VRF42-digital-timing.json": "91fa0b5abe446d3249538404a982ce780640e4d127a77c5be499b4e4928f3867",
-    "hardware/verification/generated/H3-VRF43-boundary-loading.json": "ed215ded6a1f6c79fe5e68b2f3956c6394b31ee802c5c2238d945644cbcf08f3"
+    "hardware/verification/generated/H3-VRF41-digital-levels.json": "9ce995687c725130b5bf470ab994f9e6662754f9b170685af35d21ec8b69a5ba",
+    "hardware/verification/generated/H3-VRF42-digital-timing.json": "752fe14d9a07ce5673c3602a536305363d2a5dbc0221ce9689da5e926029ce7e",
+    "hardware/verification/generated/H3-VRF43-boundary-loading.json": "c1dd334c5cd4a443a23c8909cc47bcb0a973fb4b092c1e91bc989bd5d76a3e29"
   },
   "leaf_summary": {
     "levels": {
@@ -25,13 +25,13 @@
     "boundaries": {
       "stage": "H3.4.3",
       "status": "reviewed_m1_expansion_and_service_boundary_loading",
-      "checks": 49,
+      "checks": 50,
       "corrections": 1,
       "physical_residuals": 7
     }
   },
   "consolidated": {
-    "leaf_checks": 171,
+    "leaf_checks": 172,
     "consolidation_checks": 28,
     "failed_checks": 0,
     "source_or_self_review_corrections": 1,
@@ -95,7 +95,7 @@
     "leaf_stages_are_exact": true,
     "all_leaf_statuses_are_reviewed": true,
     "all_leaf_open_findings_are_empty": true,
-    "leaf_check_count_is_171": true,
+    "leaf_check_count_is_172": true,
     "single_self_review_correction_is_preserved": true,
     "all_19_physical_residuals_are_preserved": true,
     "physical_residuals_are_nonempty_and_unique": true,

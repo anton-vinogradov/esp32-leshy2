@@ -2,14 +2,14 @@
 <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6z" fill="#475569"/></marker></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="630" y="38" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · H0-R2 functional architecture</text>
-<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.31 projection: exact dual-RP GPIO/M1, direct i8080 display, camera RX and radio payload remain local.</text>
+<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">Current H1-R2.35 projection: exact dual-RP GPIO/M1, direct i8080 display and radio payload remain local.</text>
 <rect x="40" y="105" width="540" height="610" rx="18" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
 <rect x="680" y="105" width="540" height="610" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
 <text x="310" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#1d4ed8">FRONT · UI / RADIO PCB · five SMA</text>
-<text x="950" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#9a3412">REAR · RF / POWER PCB · five SMA + FPV MMCX</text>
+<text x="950" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#9a3412">REAR · RF / POWER PCB · five SMA</text>
 <rect x="70" y="165" width="225" height="74" rx="9" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
 <text x="182.5" y="188" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">ESP32-S3-WROOM-1U-N16R8</text>
-<text x="182.5" y="208" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">direct i8080-8 · camera RX · touch · all UI keys</text>
+<text x="182.5" y="208" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">direct i8080-8 · touch · all UI keys · 11 GPIO reserve</text>
 <rect x="325" y="165" width="225" height="74" rx="9" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
 <text x="437.5" y="188" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">ESP32-C5-WROOM-1U-N8R8</text>
 <text x="437.5" y="208" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">2.4/5 GHz · 802.15.4 · IR</text>
@@ -17,23 +17,23 @@
 <text x="310.0" y="293" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">SC1512-A4 · FRONT RP</text>
 <text x="310.0" y="313" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">UI/radio fan-out · microSD · 46/48 GPIO</text>
 <rect x="70" y="380" width="480" height="82" rx="9" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
-<text x="310.0" y="403" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">3 × E01-ML01IPX nRF24 ISLANDS</text>
-<text x="310.0" y="423" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">three concurrent full RX/TX/mixed paths · local buffers/evidence</text>
+<text x="310.0" y="403" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">3 × E01-ML01SP4 nRF24 ISLANDS</text>
+<text x="310.0" y="423" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">20-dBm PA/LNA · concurrent full RX/TX/mix · C97340</text>
 <rect x="70" y="500" width="225" height="74" rx="9" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
-<text x="182.5" y="523" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">TVP5150AM1PBS</text>
-<text x="182.5" y="543" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">UI-local CVBS → 8-bit BT.656</text>
+<text x="182.5" y="523" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">S3 ELECTRICAL RESERVE</text>
+<text x="182.5" y="543" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">11 uncommitted former camera-input GPIO</text>
 <rect x="325" y="500" width="225" height="74" rx="9" fill="#ffffff" stroke="#64748b" stroke-width="2"/>
 <text x="437.5" y="523" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">microSD + local service</text>
 <text x="437.5" y="543" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">direct front RP storage and recovery</text>
 <rect x="710" y="165" width="480" height="78" rx="9" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
 <text x="950.0" y="188" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">SC1512-A4 · REAR RP</text>
-<text x="950.0" y="208" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">RF / audio / expansion owner · 44/48 GPIO</text>
+<text x="950.0" y="208" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">RF / audio / expansion owner · 40/48 GPIO</text>
 <rect x="710" y="270" width="225" height="74" rx="9" fill="#ffffff" stroke="#ea580c" stroke-width="2"/>
 <text x="822.5" y="293" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">CC1101 + VHF/UHF voice</text>
 <text x="822.5" y="313" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">SUB-G RX/TX · two full-duplex voice paths</text>
 <rect x="965" y="270" width="225" height="74" rx="9" fill="#ffffff" stroke="#ea580c" stroke-width="2"/>
-<text x="1077.5" y="293" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">K331 / AWM666V FPV RX</text>
-<text x="1077.5" y="313" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">one post-PCBA module · direct rear MMCX</text>
+<text x="1077.5" y="293" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">NO ONBOARD VIDEO RX</text>
+<text x="1077.5" y="313" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">no receiver · decoder · connector · reserved bay</text>
 <rect x="710" y="380" width="225" height="74" rx="9" fill="#ffffff" stroke="#ea580c" stroke-width="2"/>
 <text x="822.5" y="403" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#172033">Audio</text>
 <text x="822.5" y="423" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#526076">ES8311 · speaker · mic · CTIA headset</text>
@@ -51,14 +51,14 @@
 <text x="630" y="258" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#526076">80-contact</text>
 <text x="630" y="292" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7c3aed">RP link</text>
 <text x="630" y="310" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">1.5 MB/s</text>
-<text x="630" y="355" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7c3aed">1 × CVBS</text>
-<text x="630" y="373" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">75 Ω + GND</text>
+<text x="630" y="355" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7c3aed">M1.35–36</text>
+<text x="630" y="373" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">NC reserve</text>
 <text x="630" y="420" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#b42318">RUN / FAULT</text>
 <text x="630" y="438" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">3× nRF evidence</text>
 <text x="630" y="485" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#166534">14 × 3V3</text>
-<text x="630" y="503" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">25 returns</text>
-<text x="630" y="520" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">25 signals</text>
-<text x="630" y="538" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">14 NC reserve</text>
+<text x="630" y="503" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">24 returns</text>
+<text x="630" y="520" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">24 signals</text>
+<text x="630" y="538" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">16 NC reserve</text>
 <line x1="550" y1="309" x2="585" y2="309" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>
 <line x1="675" y1="309" x2="710" y2="309" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>
 <path d="M965 307 H945 V475 H690 V355 H675" fill="none" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>

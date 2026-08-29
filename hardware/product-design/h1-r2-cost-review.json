@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.30",
-  "checked_on": "2026-08-28",
+  "marker": "H1-R2.35",
+  "checked_on": "2026-08-29",
   "purpose": "Rank the complete-device component burden, remove avoidable pre-order penalties without functional degradation, and keep small-lot purchasing penalties separate from quantity-100 material cost.",
   "procurement_target_device_quantity": 1,
   "historical_cost_capture_device_quantity": 5,
@@ -23,15 +23,14 @@
     "target_bom": "hardware/architecture/generated/G2F-3I-target-bom.csv",
     "jlcpcb_trial_capture": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
     "engineering_sample_basket": "hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json",
-    "antenna_kit": "hardware/architecture/antenna-kit.json",
-    "fpv": "hardware/product-design/h1-r2-fpv.json"
+    "antenna_kit": "hardware/architecture/antenna-kit.json"
   },
   "provisional_unit_routes": {
-    "ebyte_e01_ml01ipx": {
-      "unit_price_usd": 2.37,
-      "basis": "current single-piece external route",
-      "source": "https://www.robotshop.com/products/ebyte-e01-ml01ipx-frequency-hopping-nrf24l01p-high-speed-24g-rf-wireless-100mw-24ghz-nrf24l01-tx-rx-module",
-      "checked_on": "2026-08-26"
+    "ebyte_e01_ml01sp4": {
+      "unit_price_usd": 4.4835,
+      "basis": "JLCPCB C97340 in-stock quantity-one route",
+      "source": "https://jlcpcb.com/partdetail/E01-ML01SP4/C97340",
+      "checked_on": "2026-08-29"
     },
     "nicerf_sa818s_u_v18": {
       "unit_price_usd": 9.7347,
@@ -53,17 +52,7 @@
     "source": "https://www.elecrow.com/3-5-esp32-s3-display-320x480-capacitive-ips-touchscreen-with-speaker-mic-bat-interface-supports-ai-voice-chat.html",
     "checked_on": "2026-08-28"
   },
-  "post_pcba_required": [
-    {
-      "mpn": "AKK K331",
-      "quantity_per_device": 1,
-      "unit_price_usd": 29.99,
-      "route": "post-PCBA manual installation",
-      "source": "https://www.akktek.com/products/k331-5-8ghz-24ch-fpv-receiver-module",
-      "checked_on": "2026-08-27",
-      "note": "Primary analog-FPV receiver; omitted from the normal PCBA BOM. AWM666V is a functionally reduced fallback, not a silent cost substitute."
-    }
-  ],
+  "post_pcba_required": [],
   "live_jlcpcb_spot_checks": {
     "rp2354b_a4": {
       "manufacturer": "Raspberry Pi",
@@ -97,6 +86,22 @@
       "route": "in stock; official MPN is unsuffixed and the supplier order code enforces the V1.2 production floor",
       "source": "https://jlcpcb.com/partdetail/C54951858",
       "checked_on": "2026-08-28"
+    },
+    "ebyte_e01_ml01sp4": {
+      "manufacturer": "Chengdu Ebyte Elec Tech",
+      "mpn": "E01-ML01SP4",
+      "jlcpcb_part": "C97340",
+      "assembly_type": "Extended SMT; Standard PCBA",
+      "stock": 405,
+      "available_order_quantity": 388,
+      "moq": 1,
+      "trial_required_quantity": 15,
+      "trial_displayed_cost_usd": 57.972,
+      "estimated_unit_price_usd": 3.8648,
+      "quantity_one_unit_price_usd": 4.4835,
+      "route": "in stock; exact original-manufacturer PA/LNA module is factory placeable",
+      "source": "https://jlcpcb.com/partdetail/E01-ML01SP4/C97340",
+      "checked_on": "2026-08-29"
     },
     "adi_ad8314acpz_rl7": {
       "manufacturer": "Analog Devices",

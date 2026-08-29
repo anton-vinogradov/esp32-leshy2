@@ -18,7 +18,7 @@ REPO = Path(__file__).resolve().parents[2]
 FIRMWARE_REPO = REPO.parent / "esp32-leshy2-firmware"
 
 ARCHITECTURE_GENERATOR = "hardware/architecture/generate.py"
-PRODUCT_GENERATOR = "hardware/product-design/g3_clamshell.py"
+PRODUCT_GENERATOR = "hardware/product-design/h1_r2_layout.py"
 SCHEMATIC_LEDGER_GENERATOR = "hardware/ecad/h2_schematic.py"
 SYMBOL_LIBRARY_GENERATOR = "hardware/ecad/h2_symbol_library.py"
 ROOT_GENERATORS = (

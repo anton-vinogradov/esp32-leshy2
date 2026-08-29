@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2020" height="1390" viewBox="0 0 2020 1390" data-marker="H1-R2.33" data-view="true-x-z-sections">
+<svg xmlns="http://www.w3.org/2000/svg" width="2020" height="1390" viewBox="0 0 2020 1390" data-marker="H1-R2.35" data-view="true-x-z-sections">
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="30.0" y="38.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.33 R2 inner sandwich sections</text>
+<text x="30.0" y="38.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.35 R2 inner sandwich sections</text>
 <text x="30.0" y="66.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Horizontal X and front-to-rear Z use registered millimetre scales. U214 and U219 outlines are mutually exclusive profiles, never simultaneous hardware.</text>
 <text x="25.0" y="112.0" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="start" fill="#172033">A–A · Cap-Bus / U219 host islands</text>
 <text x="25.0" y="134.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#526076">cut Y=29.0 mm · view from antenna edge along +Y</text>
@@ -78,7 +78,7 @@
 <line x1="760.0" y1="394.0" x2="760.0" y2="402.4" stroke="#334155"/>
 <line x1="1165.0" y1="394.0" x2="1165.0" y2="402.4" stroke="#334155"/>
 <text x="962.5" y="394.7" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#334155">75-mm PCB</text>
-<text x="1345.0" y="112.0" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="start" fill="#172033">C–C · analog FPV / service</text>
+<text x="1345.0" y="112.0" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="start" fill="#172033">C–C · controls / service</text>
 <text x="1345.0" y="134.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#526076">cut Y=101.0 mm · view from antenna edge along +Y</text>
 <rect x="1420.0" y="179.8" width="405.0" height="22.4" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" data-board="ui"/>
 <rect x="1420.0" y="356.2" width="405.0" height="22.4" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" data-board="rf"/>
@@ -86,10 +86,8 @@
 <text x="1409.2" y="191.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="end" fill="#166534">UI</text>
 <text x="1409.2" y="367.4" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="end" fill="#c2410c">RF</text>
 <text x="1582.0" y="283.4" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#526076">exact 11-mm board gap</text>
-<rect x="1634.4" y="252.0" width="162.0" height="112.0" rx="2" fill="#fff7ed" stroke="#ea580c" stroke-width="1.2" stroke-dasharray="6 4" data-instance="fpv_receiver_bay"/>
-<text x="1715.4" y="311.0" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#ea580c">23</text>
 <rect x="1506.4" y="348.6" width="10.8" height="15.4" rx="2" fill="#eef2f6" stroke="#64748b" stroke-width="1.2" data-instance="cc_backup_gate"/>
-<text x="1511.8" y="359.3" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#64748b">24</text>
+<text x="1511.8" y="359.3" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#64748b">23</text>
 <line x1="1420.0" y1="398.2" x2="1825.0" y2="398.2" stroke="#334155"/>
 <line x1="1420.0" y1="394.0" x2="1420.0" y2="402.4" stroke="#334155"/>
 <line x1="1825.0" y1="394.0" x2="1825.0" y2="402.4" stroke="#334155"/>
@@ -143,9 +141,6 @@
 <text x="1505.0" y="897.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="start" fill="#172033">22  TLV1824PWR</text>
 <text x="1531.0" y="910.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">second accepted quad comparator dedicated to the three</text>
 <text x="1531.0" y="921.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front-local nRF TX-evidence channels</text>
-<text x="1505.0" y="951.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="start" fill="#172033">23  PHYSICAL RESERVE</text>
-<text x="1531.0" y="964.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">30 x 24 x 8 mm mutually exclusive post-PCBA receiver bay:</text>
-<text x="1531.0" y="975.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">primary AKK K331 uses a tolerant 14-pad direct-solder</text>
-<text x="1505.0" y="1005.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="start" fill="#172033">24  SN74LVC1G08DCKR</text>
-<text x="1531.0" y="1018.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">independent FAULT_ASSERT_N CC1101 rail qualifier</text>
+<text x="1505.0" y="951.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="start" fill="#172033">23  SN74LVC1G08DCKR</text>
+<text x="1531.0" y="964.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">independent FAULT_ASSERT_N CC1101 rail qualifier</text>
 </svg>

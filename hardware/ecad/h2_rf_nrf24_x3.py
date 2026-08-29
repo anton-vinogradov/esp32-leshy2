@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate and verify the exact H2.3.6 three-radio nRF24 sheet.
 
-Each E01-ML01IPX is represented by its eight real carrier-PCB lands plus a
+Each E01-ML01SP4 is represented by its ten real carrier-PCB lands plus a
 separate factory IPEX assembly boundary.  The three SPI/control paths, power
 quiet-state circuits and 50-ohm RF paths remain independent so full concurrent
 RX/TX/mixed operation never depends on bus or antenna switching.
@@ -59,7 +59,7 @@ def sha256(path: Path) -> str:
 
 def pins_for(instance: str, device: dict) -> list[Pin]:
     if instance in RADIOS:
-        # ANT is the factory-fitted IPEX, not a ninth host-PCB land.
+        # ANT is the factory-fitted IPEX, not an eleventh host-PCB land.
         return [
             Pin(str(row["physical"]), contact, contact)
             for contact, row in device["contacts"].items()
@@ -98,7 +98,7 @@ def pins_for(instance: str, device: dict) -> list[Pin]:
 
 def footprint_for(instance: str, device_key: str) -> str:
     if instance in RADIOS:
-        return "Leshy2:Ebyte-E01-ML01IPX"
+        return "Leshy2:Ebyte-E01-ML01SP4"
     if instance.endswith("_external_sma"):
         return "Leshy2:RFPC-SMA31-FN-175-A"
     if instance.endswith("_rf_board_connector"):
@@ -146,12 +146,15 @@ def reference_prefix(instance: str, device_key: str) -> str:
 def footprint_outputs() -> dict[Path, str]:
     copper = ("F.Cu", "F.Paste", "F.Mask")
     module_pads = [
-        (str(number), 4.445 - (number - 1) * 1.27, -8.55, 0.90, 1.90, copper)
+        (str(number), 4.445 - (number - 1) * 1.27, -8.50, 0.50, 1.00, copper)
         for number in range(1, 9)
+    ] + [
+        ("9", -7.25, 4.00, 1.00, 1.50, copper),
+        ("10", 7.25, 4.00, 1.00, 1.50, copper),
     ]
     module = custom_footprint(
-        "Ebyte-E01-ML01IPX", module_pads, 12.00, 19.00, 12.50, 19.50,
-        "Ebyte E01-ML01IPX specification 2025-01-16 chapter 3: exact 12x19-mm body, eight 0.90x1.90-mm bottom lands on 1.27-mm pitch; on-module IPEX is not a host-PCB pad",
+        "Ebyte-E01-ML01SP4", module_pads, 14.50, 18.00, 15.00, 18.50,
+        "Ebyte E01-ML01SP4 specification 2025-01-16 chapter 3: exact 14.5x18-mm body, eight 0.50x1.00-mm top-edge lands on 1.27-mm pitch plus two 1.00x1.50-mm side ground lands; on-module IPEX is not a host-PCB pad",
     )
     coupler_pads = [
         ("1", -0.65, -0.49, 0.37, 0.30, copper),
@@ -170,7 +173,7 @@ def footprint_outputs() -> dict[Path, str]:
         "GCT RFPC-SMA31-FN drawing A1 released 2025-04-07",
     )
     return {
-        FOOTPRINT_DIR / "Ebyte-E01-ML01IPX.kicad_mod": module,
+        FOOTPRINT_DIR / "Ebyte-E01-ML01SP4.kicad_mod": module,
         FOOTPRINT_DIR / "DC2337J5010AHF.kicad_mod": coupler,
         FOOTPRINT_DIR / "RFPC-SMA31-FN-175-A.kicad_mod": sma,
     }
@@ -219,10 +222,10 @@ def build() -> tuple[dict[Path, str], dict]:
         ref_counts["X"] += 1
         specs.append({
             "instance": f"{radio}_factory_ipex",
-            "device_key": "ebyte_e01_ml01ipx",
-            "mpn": f"Ebyte E01-ML01IPX factory IPEX ({radio})",
+            "device_key": "ebyte_e01_ml01sp4",
+            "mpn": f"Ebyte E01-ML01SP4 factory IPEX ({radio})",
             "role": "non-PCB factory micro-coax assembly boundary",
-            "pins": pins_for(f"{radio}_factory_ipex", devices["ebyte_e01_ml01ipx"]),
+            "pins": pins_for(f"{radio}_factory_ipex", devices["ebyte_e01_ml01sp4"]),
             "reference": f"X{ref_counts['X']}",
             "footprint": "",
             "on_board": False,
@@ -349,7 +352,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "footprint_evidence": [
             {"mpn": devices[key]["mpn"], "footprint": footprint, "source": devices[key]["source"]}
             for key, footprint in (
-                ("ebyte_e01_ml01ipx", "Leshy2:Ebyte-E01-ML01IPX"),
+                ("ebyte_e01_ml01sp4", "Leshy2:Ebyte-E01-ML01SP4"),
                 ("ttm_dc2337j5010ahf", "Leshy2:DC2337J5010AHF"),
                 ("gct_rfpc_sma31_fn_175_a", "Leshy2:RFPC-SMA31-FN-175-A"),
                 ("hirose_ufl_r_smt_1_10", "Connector_Coaxial:U.FL_Hirose_U.FL-R-SMT-1_Vertical"),
@@ -359,7 +362,7 @@ def build() -> tuple[dict[Path, str], dict]:
             )
         ],
         "corrections_closed": [
-            "each E01-ML01IPX exposes exactly eight host-PCB lands; its factory IPEX is an assembly boundary, never a fictitious ninth pad",
+            "each E01-ML01SP4 exposes exactly ten host-PCB lands; its factory IPEX is an assembly boundary, never a fictitious eleventh pad",
             "the three radios have independent PIO SPI clocks/data, CSN, CE and IRQ paths with no shared transaction bottleneck",
             "all three module rails and translators are enabled together; the group gate never serializes full RX/TX/mixed operation",
             "Ioff-capable LVC buffers and host/module-side safe pulls prevent back-power and command glitches while the radio group is off",
@@ -391,8 +394,8 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "schematic_symbols": 110,
         "board_fitted_symbols": 104,
         "hierarchical_interfaces": 35,
-        "physical_package_contacts": 318,
-        "nrf_carrier_pads": 24,
+        "physical_package_contacts": 324,
+        "nrf_carrier_pads": 30,
         "factory_rf_assembly_boundaries": 3,
         "independent_spi_paths": 3,
         "independent_rf_paths": 3,
@@ -413,17 +416,17 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     for radio in RADIOS:
         module = next(row for row in manifest["instances"] if row["instance"] == radio)
         boundary = next(row for row in manifest["instances"] if row["instance"] == f"{radio}_factory_ipex")
-        if module["pin_count"] != 8 or not module["footprint"]:
-            raise ValueError(f"{radio} lost its exact eight-land carrier contract")
+        if module["pin_count"] != 10 or not module["footprint"]:
+            raise ValueError(f"{radio} lost its exact ten-land carrier contract")
         if boundary["board_fitted"] or boundary["footprint"] or boundary["ledger_component"]:
             raise ValueError(f"{radio} factory IPEX became a fictitious PCB component")
     for row in manifest["instances"]:
         if row["board_fitted"] and not row["footprint"]:
             raise ValueError(f"fitted RF31 component lacks footprint: {row['instance']}")
-    module_fp = generated[FOOTPRINT_DIR / "Ebyte-E01-ML01IPX.kicad_mod"]
+    module_fp = generated[FOOTPRINT_DIR / "Ebyte-E01-ML01SP4.kicad_mod"]
     coupler_fp = generated[FOOTPRINT_DIR / "DC2337J5010AHF.kicad_mod"]
-    if module_fp.count('\n\t(pad "') != 8:
-        raise ValueError("E01-ML01IPX footprint must contain exactly eight host-PCB lands")
+    if module_fp.count('\n\t(pad "') != 10:
+        raise ValueError("E01-ML01SP4 footprint must contain exactly ten host-PCB lands")
     if coupler_fp.count('\n\t(pad "') != 6:
         raise ValueError("DC2337J5010AHF footprint must contain exactly six oriented lands")
     validate_gct_rfpc_sma_175_footprint(

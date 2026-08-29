@@ -5,15 +5,15 @@
   "status": "pass_exact_dual_rp_working_authority",
   "authority": {
     "source": "hardware/architecture/h1-r2-dual-rp-pinout.json",
-    "source_sha256": "7907e4283cd4083e326ab6d28cd819a98ac8ad917c6d3a2de9f13dbf1afa7072",
+    "source_sha256": "f21b6d33f771fc522ed654489c16ff57d756f604b9fc4f3515babdc9c145555a",
     "functional_source": "hardware/architecture/h0-r2-rebaseline.json",
-    "functional_source_sha256": "d72cc8f47e6ed60529820218237595e1ed4ceea8f59eff3e8f2860881886be7e",
+    "functional_source_sha256": "c5fbe59d64c223d8918ebdeffca1723f0e939e47ce11fc360e1231572af9da10",
     "c5_mux_source": "hardware/architecture/c5-sdio-service-mux-contract.json",
     "c5_mux_source_sha256": "a15c9e674b6ea51b7fde5dd92754a27fe8fd284766a3558d2cd5fb5181a81da3",
     "u219_profile_source": "hardware/architecture/h1-r2-u219-cap.json",
-    "u219_profile_source_sha256": "14a1ded6b42204a40290207ec718b5b73a34798e5693a2ba880a40195ad401e9",
+    "u219_profile_source_sha256": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
     "device_register_source": "hardware/architecture/devices.json",
-    "device_register_source_sha256": "4482cb57af63355dc7a1913c7991c6a02cfdf3ecf55dc38789d2d49eaaf5cf17",
+    "device_register_source_sha256": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
     "r2_h2_authorized": false,
     "c5_electrical_join_status": "closed against C5-SDIO-SERVICE-MUX-1: exact module pads, fixed IO mux, FSUSB42 branch polarity, reset ownership and Hub-side signal order are joined.",
     "remaining_h2_gates": [
@@ -27,8 +27,8 @@
     "m1_signal_bindings": 5,
     "hub_gpio_used": 46,
     "hub_gpio_reserve": 2,
-    "rf_gpio_used": 44,
-    "rf_gpio_reserve": 4,
+    "rf_gpio_used": 40,
+    "rf_gpio_reserve": 8,
     "hub_pio_used": 8,
     "hub_dma_used": 14,
     "rf_pio_used": 6,
@@ -524,14 +524,18 @@
     }
   },
   "rf_rp": {
-    "role": "Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, FPV control, M5 Unit and exactly one signed U214/U219 Cap profile owner; no nRF24 or microSD ownership.",
+    "role": "Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, M5 Unit and exactly one signed U214/U219 Cap profile owner; no nRF24 or microSD ownership.",
     "gpio_budget": {
       "available": 48,
-      "used": 44,
-      "reserve": 4,
+      "used": 40,
+      "reserve": 8,
       "reserve_gpios": [
         15,
+        28,
         29,
+        32,
+        33,
+        34,
         37,
         38
       ]
@@ -662,7 +666,7 @@
         "net": "RF_RESERVE_15",
         "direction": "reserve",
         "controller": "GPIO",
-        "endpoint": "test pad only; K331 RSSI remains NC",
+        "endpoint": "test pad only",
         "reset": "input/high-Z; external pull-down; DNP"
       },
       {
@@ -763,18 +767,18 @@
       },
       {
         "gpio": 28,
-        "net": "FPV_RX_PWR_EN",
-        "direction": "out",
+        "net": "RF_RESERVE_28",
+        "direction": "reserve",
         "controller": "GPIO",
-        "endpoint": "post-PCBA K331/AWM666V receiver bay",
-        "reset": "input/high-Z; external pull-down"
+        "endpoint": "test pad only",
+        "reset": "input/high-Z; external pull-down; DNP"
       },
       {
         "gpio": 29,
         "net": "RF_RESERVE_29",
         "direction": "reserve",
         "controller": "GPIO",
-        "endpoint": "test pad only; UI-local TVP5150 lock is read by S3 and reported over the existing S3-Hub-RF IPC chain",
+        "endpoint": "test pad only",
         "reset": "input/high-Z; external pull-down; DNP"
       },
       {
@@ -795,27 +799,27 @@
       },
       {
         "gpio": 32,
-        "net": "FPV_CH1",
-        "direction": "out",
+        "net": "RF_RESERVE_32",
+        "direction": "reserve",
         "controller": "GPIO",
-        "endpoint": "receiver channel select",
-        "reset": "input/high-Z; external pull-down"
+        "endpoint": "test pad only",
+        "reset": "input/high-Z; external pull-down; DNP"
       },
       {
         "gpio": 33,
-        "net": "FPV_CH2",
-        "direction": "out",
+        "net": "RF_RESERVE_33",
+        "direction": "reserve",
         "controller": "GPIO",
-        "endpoint": "receiver channel select",
-        "reset": "input/high-Z; external pull-down"
+        "endpoint": "test pad only",
+        "reset": "input/high-Z; external pull-down; DNP"
       },
       {
         "gpio": 34,
-        "net": "FPV_CH3",
-        "direction": "out",
+        "net": "RF_RESERVE_34",
+        "direction": "reserve",
         "controller": "GPIO",
-        "endpoint": "receiver channel select",
-        "reset": "input/high-Z; external pull-down"
+        "endpoint": "test pad only",
+        "reset": "input/high-Z; external pull-down; DNP"
       },
       {
         "gpio": 35,

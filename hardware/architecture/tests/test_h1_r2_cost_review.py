@@ -32,9 +32,9 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_cost_boundaries_are_explicit(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["quantity_100_priced_lines"], 200)
+        self.assertEqual(summary["quantity_100_priced_lines"], 201)
         self.assertEqual(summary["remaining_unpriced_base_lines"], 5)
-        self.assertGreater(summary["planning_base_plus_post_pcba_usd_per_device"], 290)
+        self.assertGreater(summary["planning_base_plus_post_pcba_usd_per_device"], 270)
         self.assertAlmostEqual(
             summary["planning_base_plus_post_pcba_usd_for_procurement_target"],
             summary["planning_base_plus_post_pcba_usd_per_device"],
@@ -42,7 +42,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         )
         self.assertEqual(summary["procurement_target_device_quantity"], 1)
         self.assertEqual(summary["historical_cost_capture_device_quantity"], 5)
-        self.assertEqual(summary["historical_capture_unmatched_lines"], 29)
+        self.assertEqual(summary["historical_capture_unmatched_lines"], 27)
         display = next(
             row for row in self.result["rows"]
             if row["device_id"] == "eastrising_er_tft035ips_6_ctp"

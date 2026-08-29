@@ -3481,6 +3481,83 @@
         "ANT": {"physical": "manufacturer-labelled IPX/IPEX Gen1 receptacle; exact current-lot receptacle MPN remains incoming evidence", "role": "rf"}
       }
     },
+    "ebyte_e01_ml01sp4": {
+      "mpn": "Ebyte E01-ML01SP4",
+      "physical_pcb_contact_count": 10,
+      "kind": "smd_pa_lna_radio_module",
+      "qualification": "verified_candidate",
+      "lifecycle": "nrf24_family_not_recommended_for_new_designs",
+      "dimensions_mm": [14.5, 18.0, 2.4],
+      "maximum_dimensions_mm": [14.6, 18.1, 2.5],
+      "mechanical_height_basis": "Ebyte 2025 mechanical drawing: 14.5+/-0.1 by 18.0+/-0.1 mm and 2.40+/-0.1-mm overall module profile; eight 1.27-mm-pitch top-edge lands plus two side ground lands",
+      "source": {
+        "document": "E01-ML01SP4 product specification",
+        "version": "2025-01-16",
+        "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
+        "checked": "2026-08-29"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact Chengdu Ebyte E01-ML01SP4 catalogue line C97340",
+        "url": "https://jlcpcb.com/partdetail/E01-ML01SP4/C97340",
+        "checked": "2026-08-29"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 2.9633,
+        "price_break": "JLCPCB public in-stock quantity-100 tier",
+        "source": {
+          "document": "JLCPCB C97340 exact-MPN published price table",
+          "url": "https://jlcpcb.com/partdetail/E01-ML01SP4/C97340",
+          "checked": "2026-08-29"
+        }
+      },
+      "factory_route": {
+        "jlcpcb_part": "C97340",
+        "assembly_type": "SMT Assembly; Extended",
+        "stock": 405,
+        "available_order_quantity": 388,
+        "moq": 1,
+        "quantity_one_unit_price_usd": 4.4835,
+        "checked": "2026-08-29"
+      },
+      "lifecycle_source": {
+        "document": "Nordic nRF24 Series lifecycle page",
+        "url": "https://www.nordicsemi.com/Products/nRF24-series",
+        "checked": "2026-08-29"
+      },
+      "rf_connector": {
+        "manufacturer_description": "factory-fitted IPX/IPEX external antenna interface, approximately 50 ohm",
+        "compatible_mating_families": ["UMCC generation 1", "Hirose U.FL plug", "I-PEX MHF I plug"],
+        "impedance_ohm": 50,
+        "qualification": "manufacturer_drawing_locates_connector_gen1_mate_fit_hil_open",
+        "footprint_source": {
+          "document": "Ebyte E01-ML01SP4 2025 mechanical drawing",
+          "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
+          "checked": "2026-08-29"
+        },
+        "finding": "the manufacturer drawing fixes the connector-side placement and complete module envelope; the fitted receptacle subpart MPN is not published, so received mate fit remains an incoming gate"
+      },
+      "rf_performance": {
+        "chipset": "Nordic nRF24L01P plus RFX2401C PA/LNA",
+        "frequency_mhz": [2400, 2525],
+        "air_rates_bps": [250000, 1000000, 2000000],
+        "spi_max_hz": 10000000,
+        "tx_power_dbm": {"minimum": 19.7, "typical": 20.0, "maximum": 20.2},
+        "tx_current_ma": {"typical": 120, "design_maximum": 130},
+        "rx_current_ma": {"typical": 26, "design_maximum": 28},
+        "supply_v": {"minimum": 2.0, "nominal": 3.3, "maximum": 3.6}
+      },
+      "programmable": false,
+      "contacts": {
+        "VCC": {"physical": "1", "role": "power"}, "CE": {"physical": "2", "role": "signal"},
+        "CSN": {"physical": "3", "role": "signal"}, "SCK": {"physical": "4", "role": "signal"},
+        "MOSI": {"physical": "5", "role": "signal"}, "MISO": {"physical": "6", "role": "signal"},
+        "IRQ": {"physical": "7", "role": "signal"}, "GND": {"physical": "8", "role": "power"},
+        "GND_9": {"physical": "9", "role": "power"}, "GND_10": {"physical": "10", "role": "power"},
+        "ANT": {"physical": "manufacturer-labelled IPX/IPEX receptacle shown in the 2025 mechanical drawing; exact fitted subpart MPN remains incoming evidence", "role": "rf"}
+      }
+    },
     "ebyte_e01_2g4m27d": {
       "mpn": "Ebyte E01-2G4M27D",
       "kind": "dip_pa_lna_radio_module",

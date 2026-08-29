@@ -3,8 +3,8 @@
   "stage": "H3.0.2",
   "status": "reviewed_inventory_complete_lifecycle_choice_resolved",
   "source_hashes": {
-    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
-    "hardware/ecad/generated/H2-instance-ledger.json": "261fa6c38c7a1dabeacbb52f2e4b71f0f4b64e3f29da7b048900c7b4f5d3427f",
+    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
+    "hardware/ecad/generated/H2-instance-ledger.json": "36c18638c89d353cfc92f6213c6e001fa20cfe88ffb8cf3c2f5c5544d0c11fe6",
     "hardware/verification/generated/H3-VRF01-input-freeze.json": "672990f8531ffa803724aa8bf1b3b262436267d89d965c9e2313fdb13c5b57bd"
   },
   "policy": {
@@ -824,9 +824,9 @@
       "model_status": "method_to_be_frozen_in_H3.0.3"
     },
     {
-      "device_key": "ebyte_e01_ml01ipx",
-      "mpn": "Ebyte E01-ML01IPX",
-      "kind": "smd_radio_module",
+      "device_key": "ebyte_e01_ml01sp4",
+      "mpn": "Ebyte E01-ML01SP4",
+      "kind": "smd_pa_lna_radio_module",
       "instance_count": 3,
       "projects": [
         "LESHY2-RF"
@@ -836,23 +836,23 @@
       ],
       "roles": [
         "full-function nRF24 radio #0",
-        "full-function nRF24 radio #1; rotated for U214 tail clearance",
-        "full-function nRF24 radio #2"
+        "superseded R1 nRF24 #1 seed; displaced clear of the current CC reference zone",
+        "superseded R1 nRF24 #2 seed; displaced clear of the current CC reference zone"
       ],
       "lifecycle": "nrf24_family_not_recommended_for_new_designs",
       "source": {
-        "document": "E01-ML01IPX product specification",
+        "document": "E01-ML01SP4 product specification",
         "version": "2025-01-16",
-        "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
-        "checked": "2026-08-17"
+        "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
+        "checked": "2026-08-29"
       },
       "source_status": "accepted_h2_authoritative_source",
       "source_host": "www.ebyte.com",
       "accepted_h2_source_preserved": {
-        "document": "E01-ML01IPX product specification",
+        "document": "E01-ML01SP4 product specification",
         "version": "2025-01-16",
-        "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
-        "checked": "2026-08-17"
+        "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
+        "checked": "2026-08-29"
       },
       "structured_parameter_count": 0,
       "structured_parameters": {},
@@ -1390,7 +1390,7 @@
         "ADP_00_DISPLAY_ADAPTER"
       ],
       "roles": [
-        "40_position_0_5mm_top_and_bottom_contact_zif_fpc_receptacle"
+        "50_position_0_5mm_dual_contact_zif_fpc_receptacle"
       ],
       "lifecycle": "active and authorized-distributor-stocked; exact HMX035CTFT-001 tail thickness and insertion fit remain H5",
       "source": {
@@ -2870,9 +2870,10 @@
         "UI_13_AUDIO_CODEC_HEADSET"
       ],
       "roles": [
-        "10nf_10pct_50v_x7r_0402_adc_filter_capacitor"
+        "10nf_10pct_50v_x7r_0402_adc_filter_capacitor",
+        "U214 supervisor delay capacitor"
       ],
-      "lifecycle": "active",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
       "source": {
         "document": "Murata GRM155R71H103KA88 product data",
         "version": "current product data checked 2026-08-18",
@@ -4286,7 +4287,11 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "roles": [
-        "sot23_dual_common_anode_schottky"
+        "evidence diode OR for S3 / C5",
+        "evidence diode OR for external Cap evidence",
+        "evidence diode OR for nRF24 #0 / #1",
+        "evidence diode OR for nRF24 #2 / CC",
+        "evidence diode OR for voice / IR"
       ],
       "lifecycle": "active",
       "source": {
@@ -4473,7 +4478,16 @@
         "UI_20_C5_RADIO_IR_SERVICE"
       ],
       "roles": [
-        "22ohm_1pct_0402_usb_series_resistor"
+        "22ohm_1pct_0402_usb_series_resistor",
+        "U214 BUSY 22-ohm source series",
+        "U214 GPS_RX 22-ohm source series",
+        "U214 GPS_TX 22-ohm source series",
+        "U214 IRQ 22-ohm source series",
+        "U214 MISO 22-ohm source series",
+        "U214 MOSI 22-ohm source series",
+        "U214 NSS 22-ohm source series",
+        "U214 RST 22-ohm source series",
+        "U214 SCK 22-ohm source series"
       ],
       "lifecycle": "active",
       "source": {
@@ -4694,7 +4708,7 @@
         "UI_11_DISPLAY_TOUCH_STORAGE"
       ],
       "roles": [
-        "raw_display_touch_assembly_with_integrated_sitronix_st77922_tddi"
+        "configured_raw_lcd_and_bonded_capacitive_touch_assembly"
       ],
       "lifecycle": "assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified",
       "source": {
@@ -5925,6 +5939,7 @@
         "UI_50_TX_SAFETY_EVIDENCE"
       ],
       "roles": [
+        "5-V-tolerant U214 pin-5 evidence boundary",
         "UI-local direct FAULT_ASSERT_N C5 reset sink",
         "sc70_5_open_drain_noninverting_buffer"
       ],
@@ -6409,8 +6424,8 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "roles": [
-        "direct FAULT_ASSERT_N C5/RP reset and voice eFuse clamp",
-        "vssop8_triple_open_drain_noninverting_buffer"
+        "AON-to-main hardware evidence isolator",
+        "direct FAULT_ASSERT_N C5/RP reset and voice eFuse clamp"
       ],
       "lifecycle": "active_orderable",
       "source": {
@@ -6921,6 +6936,9 @@
         "UI_20_C5_RADIO_IR_SERVICE"
       ],
       "roles": [
+        "U214 connector-side ESD array A",
+        "U214 connector-side ESD array B",
+        "U214 connector-side ESD array C",
         "four_channel_0_5pf_iec_esd_array"
       ],
       "lifecycle": "active",
@@ -7368,6 +7386,7 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "roles": [
+        "U214 3V3_OUT admission supervisor",
         "always-on safety supervisor",
         "sot23_6_aon_supervisor"
       ],
@@ -8095,7 +8114,9 @@
         "UI_21_FM_AM_RECEIVER"
       ],
       "roles": [
-        "2_2kohm_1pct_0402_i2c_pullup_resistor"
+        "2_2kohm_1pct_0402_i2c_pullup_resistor",
+        "U214 host-side SCL pull-up",
+        "U214 host-side SDA pull-up"
       ],
       "lifecycle": "production_active_factory_stocked",
       "source": {
@@ -8709,7 +8730,14 @@
         "UI_50_TX_SAFETY_EVIDENCE"
       ],
       "roles": [
-        "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor"
+        "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
+        "U214 I2C isolator local bypass",
+        "U214 evidence-buffer local bypass",
+        "U214 host-buffer A bypass",
+        "U214 host-buffer B bypass",
+        "U214 return-buffer bypass",
+        "U214 supervisor local bypass",
+        "main evidence-isolator bypass"
       ],
       "lifecycle": "active_orderable",
       "source": {
@@ -8915,7 +8943,12 @@
         "UI_50_TX_SAFETY_EVIDENCE"
       ],
       "roles": [
-        "10kohm_1pct_0402_main_feedback_bottom_resistor"
+        "10kohm_1pct_0402_main_feedback_bottom_resistor",
+        "AON pull-up for hardware ANY_TX aggregate",
+        "U214 pin-5 fail-safe input pull-up",
+        "U214 request-line fail-safe pull-down",
+        "U214 supervisor output pull-up",
+        "isolated U214 evidence output pull-up"
       ],
       "lifecycle": "active",
       "source": {
@@ -8957,7 +8990,8 @@
         "RF_34_U214_M5_EXT"
       ],
       "roles": [
-        "110kohm_1pct_0402_external_5v_supervisor_sense_resistor"
+        "110kohm_1pct_0402_external_5v_supervisor_sense_resistor",
+        "U214 supervisor upper sense leg"
       ],
       "lifecycle": "active_orderable",
       "source": {
@@ -9177,7 +9211,8 @@
         "UI_20_C5_RADIO_IR_SERVICE"
       ],
       "roles": [
-        "1kohm_1pct_0402_service_current_limit_resistor"
+        "1kohm_1pct_0402_service_current_limit_resistor",
+        "U214 pin-5 evidence input series resistor"
       ],
       "lifecycle": "active_orderable",
       "source": {
@@ -9270,7 +9305,8 @@
         "RF_34_U214_M5_EXT"
       ],
       "roles": [
-        "220kohm_1pct_0402_accessory_feedback_top_resistor"
+        "220kohm_1pct_0402_accessory_feedback_top_resistor",
+        "U214 supervisor lower sense leg"
       ],
       "lifecycle": "active",
       "source": {
@@ -10344,21 +10380,26 @@
       "confirmed_on": "2026-08-24",
       "selected_option": "A",
       "subject": "three full-function nRF24 paths versus new-design lifecycle",
-      "affected_device": "ebyte_e01_ml01ipx",
+      "affected_device": "ebyte_e01_ml01sp4",
       "affected_instances": 3,
       "facts": [
-        "The selected serial E01-ML01IPX is a current Ebyte product using an original nRF24L01+ and exposes the required SPI/register-compatible transceiver interface.",
+        "The selected serial E01-ML01SP4 is a stable-production Ebyte product using an original nRF24L01P plus RFX2401C PA/LNA; it preserves the SPI/register-compatible interface and reaches 20 dBm.",
+        "Exact JLCPCB part C97340 is public in-stock SMT assembly with MOQ 1, so the three modules no longer require owner placement or consignment.",
         "Nordic classifies the nRF24 family as not recommended for new designs; this is a lifecycle warning, not proof that the selected module is discontinued.",
         "Nordic nRF52 devices can communicate with legacy nRF24 devices through software Enhanced ShockBurst, but they are programmable SoCs rather than register-compatible SPI transceivers."
       ],
       "sources": [
         {
-          "title": "Ebyte E01-ML01IPX current product page",
-          "url": "https://www.ebyte.com/product/47.html"
+          "title": "Ebyte E01-ML01SP4 current product page",
+          "url": "https://www.ebyte.com/product/49.html"
         },
         {
-          "title": "Ebyte E01-ML01IPX product specification (2025-01-16)",
-          "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf"
+          "title": "Ebyte E01-ML01SP4 product specification (2025-01-16)",
+          "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf"
+        },
+        {
+          "title": "JLCPCB exact E01-ML01SP4 / C97340 assembly line",
+          "url": "https://jlcpcb.com/partdetail/E01-ML01SP4/C97340"
         },
         {
           "title": "Nordic nRF24 series lifecycle page",
@@ -10372,8 +10413,8 @@
       "options": [
         {
           "id": "A",
-          "title": "retain 3x E01-ML01IPX",
-          "consequence": "preserves full nRF24 hardware/register behavior and accepted H2 architecture; H5 must validate supplier, silicon marking and reserve sourcing"
+          "title": "retain 3x E01-ML01SP4",
+          "consequence": "preserves full nRF24 hardware/register behavior, adds the required PA/LNA output and uses an exact factory-stocked SMT route; H5 still validates received marking and RF performance"
         },
         {
           "id": "B",

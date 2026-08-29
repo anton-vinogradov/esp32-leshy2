@@ -3,10 +3,10 @@
   "artifact": "H5-EVR04",
   "stage": "H5.0.3-R1",
   "status": "routes_complete_dual_sa818s_preorder_and_factory_gates_open",
-  "checked_on": "2026-08-28",
+  "checked_on": "2026-08-29",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-    "sha256": "9c21371def8277d5b694d4fd2c9aef71d34c38d68aa085683afaa87742f1b18b",
+    "sha256": "072386bf53b669f3a42a88b9912d5c3794624e7ba31b5f5d5b004b3f088c5c34",
     "exact_lines": 210
   },
   "r2_quantity_overlay": {
@@ -333,7 +333,7 @@
   },
   "bom_tool_upload": {
     "path": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
-    "sha256": "5da6c01443a7a05910741e2361f7076f734fb7d309797f821d257359a119dad0",
+    "sha256": "c498979cd22b28536a21bdc31889ba2a81a38ec9f6c20a6bf903d7a2e69b4524",
     "columns": [
       "Comment",
       "Designator",
@@ -386,7 +386,7 @@
       "result": "176 matched, 33 unmatched, all 1019 historical target placements parsed"
     },
     "current_210_line_attempt": {
-      "sha256": "5da6c01443a7a05910741e2361f7076f734fb7d309797f821d257359a119dad0",
+      "sha256": "c498979cd22b28536a21bdc31889ba2a81a38ec9f6c20a6bf903d7a2e69b4524",
       "transmitted": false,
       "processed": false,
       "result": "historical 209-line capture retained for 196 preserved identities; 195 join unchanged, C5 is rebound to current exact C54951858, and 14 new exact rows join separately into the 210-line map"
@@ -459,13 +459,13 @@
     },
     {
       "device_id": "adi_max17320_g20_t",
-      "mpn": "MAX17320G20+ / selected order suffix +T",
-      "jlc": "C7457894",
-      "tier": "J0",
-      "stock": 13,
-      "pcba": "Extended SMT",
+      "mpn": "MAX17320G20+T",
+      "jlc": "C7457895",
+      "tier": "J2",
+      "stock": 0,
+      "pcba": "Extended SMT pre-order",
       "source": "https://jlcpcb.com/partdetail/8483980-MAX17320G20/C7457894",
-      "finding": "functional identity is present but packaging/order-suffix equivalence and low stock require confirmation or J2 reservation"
+      "finding": "the exact selected +T order suffix remains on the pre-order route; the stocked C7457894 card names MAX17320G20+ without proving suffix equivalence, so it is not silently accepted"
     },
     {
       "device_id": "rp2354b_a4",
@@ -491,14 +491,16 @@
       "finding": "listed with pre-order MOQ 6; two fitted devices plus attrition are compatible with a small reservation"
     },
     {
-      "device_id": "ebyte_e01_ml01ipx",
-      "mpn": "E01-ML01IPX",
-      "jlc": null,
-      "tier": "J3",
-      "stock": 0,
-      "pcba": "not found in public library",
-      "source": "https://jlcpcb.com/parts/componentSearch?searchTxt=E01-ML01IPX",
-      "finding": "retain exact module only through new-part/global-sourcing/consignment until a function-preserving stocked module is qualified"
+      "device_id": "ebyte_e01_ml01sp4",
+      "mpn": "E01-ML01SP4",
+      "jlc": "C97340",
+      "tier": "J0",
+      "stock": 405,
+      "available_order_quantity": 388,
+      "moq": 1,
+      "pcba": "Extended SMT; Standard PCBA",
+      "source": "https://jlcpcb.com/partdetail/E01-ML01SP4/C97340",
+      "finding": "exact Chengdu Ebyte PA/LNA module is directly factory-placeable; 20-dBm and ten-land footprint replace the incorrect 0-dBm E01-ML01IPX baseline"
     },
     {
       "device_id": "nicerf_sa818s_u_v18",
@@ -627,8 +629,8 @@
     "target_bom_lines": 210,
     "critical_lines_spot_checked": 21,
     "public_stock_exact_or_revision_explicit": 17,
-    "preorder_reservation": 2,
-    "global_sourcing_or_consignment": 1,
+    "preorder_reservation": 3,
+    "global_sourcing_or_consignment": 0,
     "factory_final_assembly": 1,
     "factory_packed_removable": 0,
     "user_supplied_not_delivered": 0,
@@ -636,17 +638,17 @@
     "historical_bom_tool_public_stock_lines": 135,
     "historical_bom_tool_preorder_lines": 41,
     "historical_bom_tool_unmatched_lines": 33,
-    "current_exact_catalogue_routes_before_outlier_resolution": 181,
-    "current_public_stock_lines_before_outlier_resolution": 154,
-    "current_preorder_lines_before_outlier_resolution": 26,
-    "current_unmatched_lines_before_outlier_resolution": 29,
+    "current_exact_catalogue_routes_before_outlier_resolution": 183,
+    "current_public_stock_lines_before_outlier_resolution": 155,
+    "current_preorder_lines_before_outlier_resolution": 27,
+    "current_unmatched_lines_before_outlier_resolution": 27,
     "target_placements_parsed": 1052,
-    "outliers_resolved_after_exact_search": 29,
+    "outliers_resolved_after_exact_search": 27,
     "availability_routes": {
       "J0": 166,
       "J1": 0,
-      "J2": 28,
-      "J3": 11,
+      "J2": 29,
+      "J3": 10,
       "J4-F": 3,
       "J4-P": 1,
       "J5-U": 1
@@ -698,7 +700,7 @@
     "current_210_line_upload_was_generated_but_not_transmitted": true,
     "all_target_placements_were_parsed": true,
     "no_semantic_mpn_substitution_was_observed": true,
-    "all_29_unchanged_unmatched_lines_remain_explicit": true,
+    "all_27_current_unmatched_lines_remain_explicit": true,
     "all_210_lines_have_defined_availability_or_final_assembly_route": true,
     "all_component_sample_prices_are_known": true,
     "sa818s_v_preorder_lead_time_is_explicitly_open": true,

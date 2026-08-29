@@ -255,7 +255,10 @@ def build() -> tuple[dict[Path, str], dict]:
         "optical_assert_current_is_bounded_for_hil": required_photocurrent > d(0) and required_photocurrent <= d("0.000003"),
         "tia_time_constant_is_40_to_60us": tau_min_us >= d(40) and tau_max_us <= d(60),
         "safety_continuous_evidence_trip_matches_mark_limit": continuous_evidence_trip_ms <= single_mark_ms,
-        "main_rail_remains_inside_admission": d(dc_budget["worst_by_rail"]["3V3_MAIN"]["load_ma"]) <= d(2500),
+        "main_rail_remains_inside_admission": (
+            d(dc_budget["worst_by_rail"]["3V3_MAIN"]["load_ma"])
+            <= d(dc_budget["worst_by_rail"]["3V3_MAIN"]["accepted_continuous_a"]) * d(1000)
+        ),
         "method_has_missing_limit_rule": any(row["id"] == "PF-10" for row in methods["pass_fail_rules"]),
     }
     failed = [name for name, passed in checks.items() if not passed]

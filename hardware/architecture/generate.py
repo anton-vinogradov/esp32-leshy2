@@ -466,9 +466,9 @@ def validate_sources(
                     f"{candidate_id}: exact external RF connector count must match antenna policy"
                 )
         for nrf_instance in ("nrf0", "nrf1", "nrf2"):
-            if candidate.get("instances", {}).get(nrf_instance) != "ebyte_e01_ml01ipx":
+            if candidate.get("instances", {}).get(nrf_instance) != "ebyte_e01_ml01sp4":
                 errors.append(
-                    f"{candidate_id}: {nrf_instance} must use compact IPEX reference under DEC-0048"
+                    f"{candidate_id}: {nrf_instance} must use the factory-stocked PA/LNA IPEX production module"
                 )
 
         signal_policy = candidate.get("signal_group_policy")

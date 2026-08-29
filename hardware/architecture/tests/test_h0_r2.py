@@ -48,13 +48,12 @@ class H0R2ArchitectureTest(unittest.TestCase):
         lcd = [row["net"] for row in self.data["s3"]["pin_map"] if row["net"].startswith("LCD_DB")]
         self.assertEqual([f"LCD_DB{i}" for i in range(8)], sorted(lcd, key=lambda x: int(x[6:])))
 
-    def test_video_is_direct_and_digital_systems_are_not_claimed(self):
+    def test_onboard_video_path_is_explicitly_absent(self):
         accepted = self.data["accepted_scope"]
-        video = self.data["video_contract"]
-        self.assertIn("NTSC/PAL", accepted["fpv"])
-        self.assertIn("outside R2", accepted["fpv"])
-        self.assertIn("S3 LCD_CAM", video["capture"])
-        self.assertIn("not an accepted MPN", video["rf"])
+        self.assertIn("No onboard analog or digital video receiver", accepted["video_boundary"])
+        self.assertNotIn("video_contract", self.data)
+        reserve = [row for row in self.data["s3"]["pin_map"] if row["direction"] == "reserve"]
+        self.assertEqual(11, len(reserve))
 
     def test_hub_has_real_reserve_and_no_duplicate_gpio(self):
         hub = self.data["hub_rp"]
@@ -75,7 +74,7 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertEqual(list(range(1, 81)), [row["contact"] for row in rows])
         classes = [row["class"] for row in rows]
         self.assertEqual(14, classes.count("main_power"))
-        self.assertEqual(14, classes.count("reserve"))
+        self.assertEqual(16, classes.count("reserve"))
         self.assertEqual(14, classes.count("main_return"))
         self.assertLess(m1["main_current"]["step_per_contact_a"], m1["main_current"]["contact_rating_a"])
         self.assertIn("compression stops", m1["mechanical_load_path"])
@@ -90,7 +89,8 @@ class H0R2ArchitectureTest(unittest.TestCase):
                 any(net.startswith(prefix) for net in nets),
                 f"board-local payload unexpectedly crosses M1: {prefix}",
             )
-        self.assertIn("FPV_CVBS", nets)
+        self.assertEqual("NC_35", nets[34])
+        self.assertEqual("NC_36", nets[35])
         self.assertEqual(
             {"HUB_RF_ALERT_N", "HUB_RF_CS_N", "HUB_RF_SCK", "HUB_RF_MOSI", "HUB_RF_MISO"},
             {row["net"] for row in m1["pin_map"] if row["class"] == "ipc"},
@@ -124,20 +124,18 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertIn("AIR_RX_EN", roles[(35,)])
         self.assertIn("AIR_RX_MODE", roles[(36,)])
 
-    def test_rear_gpio_budget_does_not_allocate_unavailable_k331_rssi(self):
+    def test_rear_gpio_budget_exposes_removed_video_controls_as_reserve(self):
         rear = self.data["rf_rp"]
         groups = rear["pin_groups"]
         gpios = [gpio for group in groups for gpio in group["gpios"]]
         reserve = next(group for group in groups if group["role"] == "uncommitted electrical reserve")
         committed = [gpio for group in groups if group is not reserve for gpio in group["gpios"]]
-        fpv = next(group for group in groups if "K331 RSSI is NC" in group["role"])
-        self.assertEqual(44, rear["gpio_budget"]["used"])
-        self.assertEqual(4, rear["gpio_budget"]["free"])
+        self.assertEqual(40, rear["gpio_budget"]["used"])
+        self.assertEqual(8, rear["gpio_budget"]["free"])
         self.assertEqual(rear["gpio_budget"]["used"], len(committed))
         self.assertEqual(list(range(48)), sorted(gpios))
         self.assertEqual(len(gpios), len(set(gpios)))
-        self.assertIn(15, reserve["gpios"])
-        self.assertNotIn(15, fpv["gpios"])
+        self.assertEqual({15, 28, 29, 32, 33, 34, 37, 38}, set(reserve["gpios"]))
 
     def test_airband_factory_bom_is_exact_and_costed(self):
         bom = self.data["airband_factory_bom_delta"]
@@ -167,7 +165,7 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertEqual([], self.data["exit_review"]["capability_loss"])
         ids = {item["id"] for item in self.data["retained_capabilities"]}
         required = {
-            "UI", "DISPLAY", "FPV", "NATIVE-S3", "NATIVE-C5", "IR",
+            "UI", "DISPLAY", "NATIVE-S3", "NATIVE-C5", "IR",
             "NRF24-X3", "SUB-GHZ", "VOICE", "CAP-SLOT", "BROADCAST-RX",
             "AUDIO", "STORAGE", "M5-UNIT", "SAFETY", "SERVICE",
         }
@@ -192,7 +190,7 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertEqual(module.render(self.data, False), module.EN.read_text(encoding="utf-8"))
         self.assertEqual(module.render(self.data, True), module.RU.read_text(encoding="utf-8"))
         self.assertIn("0.3036 A/contact", module.EN.read_text(encoding="utf-8"))
-        self.assertIn("`14` NC reserve", module.EN.read_text(encoding="utf-8"))
+        self.assertIn("`16` NC reserve", module.EN.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

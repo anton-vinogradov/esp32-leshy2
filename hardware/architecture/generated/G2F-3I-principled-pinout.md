@@ -676,9 +676,9 @@ flowchart TD
   NRF0_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>nRF0 dedicated 6-GHz IP67 standard-SMA edge-launch jack"]
   NRF1_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>nRF1 dedicated 6-GHz IP67 standard-SMA edge-launch jack"]
   NRF2_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>nRF2 dedicated 6-GHz IP67 standard-SMA edge-launch jack"]
-  NRF0["Ebyte E01-ML01IPX<br/>nRF24-compatible full-function radio 0"]
-  NRF1["Ebyte E01-ML01IPX<br/>nRF24-compatible full-function radio 1"]
-  NRF2["Ebyte E01-ML01IPX<br/>nRF24-compatible full-function radio 2"]
+  NRF0["Ebyte E01-ML01SP4<br/>nRF24-compatible full-function radio 0"]
+  NRF1["Ebyte E01-ML01SP4<br/>nRF24-compatible full-function radio 1"]
+  NRF2["Ebyte E01-ML01SP4<br/>nRF24-compatible full-function radio 2"]
   NRF0_RF_JUMPER["TE Connectivity 2118651-2<br/>nrf0 rf jumper physical component"]
   NRF1_RF_JUMPER["TE Connectivity 2118651-2<br/>nrf1 rf jumper physical component"]
   NRF2_RF_JUMPER["TE Connectivity 2118651-2<br/>nrf2 rf jumper physical component"]
@@ -3207,8 +3207,14 @@ Reserved: `PA1_NRST`. Free: none.
 | `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_module_bulk_cap.END_1` | exact 10-uF module-local transient reservoir |
 | `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_module_hf_cap.END_1` | exact 100-nF module-local high-frequency bypass |
 | `NRF0_RF_GROUND` | `nrf0.GND` | `abstract:rf-ground` | module and coupler reference use a short local RF ground |
+| `NRF0_RF_GROUND` | `nrf0.GND_9` | `abstract:rf-ground` | side ground land closes the PA/LNA return at the module edge |
+| `NRF0_RF_GROUND` | `nrf0.GND_10` | `abstract:rf-ground` | opposite side ground land closes the PA/LNA return at the module edge |
 | `NRF1_RF_GROUND` | `nrf1.GND` | `abstract:rf-ground` | module and coupler reference use a short local RF ground |
+| `NRF1_RF_GROUND` | `nrf1.GND_9` | `abstract:rf-ground` | side ground land closes the PA/LNA return at the module edge |
+| `NRF1_RF_GROUND` | `nrf1.GND_10` | `abstract:rf-ground` | opposite side ground land closes the PA/LNA return at the module edge |
 | `NRF2_RF_GROUND` | `nrf2.GND` | `abstract:rf-ground` | module and coupler reference use a short local RF ground |
+| `NRF2_RF_GROUND` | `nrf2.GND_9` | `abstract:rf-ground` | side ground land closes the PA/LNA return at the module edge |
+| `NRF2_RF_GROUND` | `nrf2.GND_10` | `abstract:rf-ground` | opposite side ground land closes the PA/LNA return at the module edge |
 | `POWER_GROUND` | `nrf0_host_buffer.GND` | `abstract:power-ground` | local digital return |
 | `POWER_GROUND` | `nrf0_return_buffer.GND` | `abstract:power-ground` | local digital return |
 | `POWER_GROUND` | `nrf1_host_buffer.GND` | `abstract:power-ground` | local digital return |
@@ -5511,11 +5517,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `c5_detector_input_cap` lifecycle: `active_orderable`.
 - `c5_detector_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `c5_detector_bypass` lifecycle: `active_orderable`.
-- `nrf0` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf0` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf1` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf1` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf2` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf2` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - `nrf0_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
 - `nrf0_rf_jumper` lifecycle: `active_orderable`.

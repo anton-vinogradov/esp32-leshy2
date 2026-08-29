@@ -57,7 +57,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "leaf_stages_are_exact": [row["stage"] for row in rows.values()] == ["H3.4.1", "H3.4.2", "H3.4.3"],
         "all_leaf_statuses_are_reviewed": all(row["review_summary"]["status"] == "reviewed" for row in rows.values()),
         "all_leaf_open_findings_are_empty": all(row["open_findings"] == [] for row in rows.values()),
-        "leaf_check_count_is_171": leaf_checks == 171,
+        "leaf_check_count_is_172": leaf_checks == 172,
         "single_self_review_correction_is_preserved": len(corrections) == 1 and "pF-to-ns" in corrections[0],
         "all_19_physical_residuals_are_preserved": len(physical_flat) == 19,
         "physical_residuals_are_nonempty_and_unique": all(item.strip() for item in physical_flat) and len(physical_flat) == len(set(physical_flat)),
@@ -75,7 +75,13 @@ def build() -> tuple[dict[Path, str], dict]:
         "s3_rp_ipc_covers_all_compatibility_radio_payload": ipc["s3_rp"]["qualified_payload_floor_bytes_s"] > ipc["s3_rp"]["three_nrf_plus_cc_max_payload_bytes_s"],
         "both_ipc_links_have_1_5mbps_floor": ipc["s3_rp"]["qualified_payload_floor_bytes_s"] >= 1_500_000 and ipc["s3_c5"]["qualified_payload_floor_bytes_s"] >= 1_500_000,
         "m1_contact_current_drop_and_rate_pass": d(m1["main"]["current_a_per_contact"]) < d(m1["rating"]["current_a_per_contact"]) and d(m1["main"]["drop_v_max"]) < d("0.030") and d(m1["rate_margin_over_usb2_hs"]) >= d(16),
-        "m1_maps_and_local_returns_are_complete": m1["contacts"] == 80 and m1["unique_nets"] == 51 and max(m1["return_and_locality"][key] for key in ("ipc_ground_distance_contacts_max", "usb_ground_distance_contacts_max")) <= 1,
+        "m1_maps_and_local_returns_are_complete": (
+            m1["contacts"] == 80
+            and m1["unique_nets"] == 44
+            and m1["return_and_locality"]["clocked_ipc_ground_distance_contacts_max"] <= 1
+            and m1["return_and_locality"]["ipc_ground_distance_contacts_max"] <= 2
+            and m1["return_and_locality"]["usb_ground_distance_contacts_max"] <= 1
+        ),
         "expansion_branches_fit_converter_and_efuses": d(expansion["branch_accepted_a"]) < d(expansion["branch_efuse_floor_a"]) and d(expansion["two_branch_trip_floor_a"]) < d(expansion["common_converter_floor_a"]),
         "u214_spi_and_i2c_loading_pass": d(u214["timing_margin_ns"]) > d(40) and d(u214["i2c"]["rise_at_admission_ns"]) < d(u214["i2c"]["rise_ns_max"]),
         "service_vbus_cannot_power_product": service["product_power_from_service_vbus"] is False and d(service["two_ports_four_lines_poweroff_leakage_ua_max"]) <= d(8),
@@ -145,7 +151,7 @@ def build() -> tuple[dict[Path, str], dict]:
 | Audio | 48-kHz stereo full-duplex, 3.072-MHz BCLK and 21.333-ms DMA ring on its own controller |
 | Compatibility radios | Three simultaneous full-function nRF24 paths and CC1101 have independent SPI/DMA service; worst serialized nRF drain is 79.2 us inside a 457.5-us guard |
 | IPC | Both S3-RP and S3-C5 admit >=1.5 MB/s; S3-RP retains 675 kB/s over the three-nRF-plus-CC theoretical payload |
-| M1 and extensions | 80-contact/51-net M1, protected U214/native Unit branches, U214 10-MHz SPI/150-pF I2C and data-only service USB pass |
+| M1 and extensions | 80-contact/44-net M1 with 16 NC reserves, protected U214/native Unit branches, U214 10-MHz SPI/150-pF I2C and data-only service USB pass |
 | C5 revision admission | Official MPN stays `ESP32-C5-WROOM-1U-N8R8`; production requires both incoming MD/lot identity and eFuse revision >=v1.2; v1.0 is engineering-only and v0.1/unknown fail closed |
 
 The one-active-signal-group rule still applies at the product level. It does not serialize the three nRF24 radios: those three remain a deliberately concurrent group with independent engines, full RX/TX/mixed-role operation and bounded FIFO service.
@@ -171,7 +177,7 @@ Machine evidence: [`H3-VRF44-digital-consolidation.json`](../hardware/verificati
 | Audio | Full-duplex stereo 48 кГц, BCLK 3,072 МГц и DMA-ring 21,333 мс на отдельном controller |
 | Compatibility radios | Три одновременно полнофункциональных nRF24 и CC1101 имеют независимый SPI/DMA service; worst serialized drain трёх nRF равен 79,2 мкс при guard 457,5 мкс |
 | IPC | S3-RP и S3-C5 допускают >=1,5 МБ/с; S3-RP сохраняет 675 кБ/с сверх теоретического payload трёх nRF плюс CC |
-| M1 и расширения | Проходят M1 на 80 контактов/51 net, защищённые ветки U214/native Unit, U214 SPI 10 МГц/I2C 150 пФ и data-only service USB |
+| M1 и расширения | Проходят M1 на 80 контактов/44 net с 16 NC-резервами, защищённые ветки U214/native Unit, U214 SPI 10 МГц/I2C 150 пФ и data-only service USB |
 | Допуск ревизии C5 | Официальный MPN остаётся `ESP32-C5-WROOM-1U-N8R8`; production требует одновременно MD/lot identity и eFuse revision >=v1.2; v1.0 только engineering, v0.1/unknown запрещены |
 
 Правило one-active-signal-group остаётся продуктовым. Оно не сериализует три nRF24: это намеренно одновременная группа с независимыми engines, полным RX/TX/mixed-role режимом и ограниченным временем обслуживания FIFO.

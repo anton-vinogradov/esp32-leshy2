@@ -110,7 +110,7 @@ def build() -> tuple[str, dict]:
             "id": "H2.7.2-F01",
             "finding": "the instance ledger called logical-function counts physical contacts for ten expanded-pad/module cases",
             "correction": "every row now carries logical_contact_count and physical_pcb_contact_count separately; contact_count follows the actual carrier/package land count",
-            "affected_classes": ["ESP32-S3 carrier", "ESP32-C5 carrier", "E01-ML01IPX carrier", "TVS2200", "BQ25798", "CSD87313DMS", "TPUL2G223"],
+            "affected_classes": ["ESP32-S3 carrier", "ESP32-C5 carrier", "E01-ML01SP4 carrier", "TVS2200", "BQ25798", "CSD87313DMS", "TPUL2G223"],
         }],
         "open_findings": [],
     }

@@ -15,7 +15,7 @@ The pre-physical engineering target is `0 to 35 °C`, not a datasheet guarantee.
 | `LORA_CAP` | `STOCK_U214_RX_GNSS_ONLY` / 9.207 W | 2.97 h |
 | `M5_UNIT` | `QUALIFIED_PROFILE_RX_OR_PASSIVE` / 9.207 W | 2.97 h |
 | `NONE` | `QUIET` / 1.778 W | 15.39 h |
-| `NRF24` | `3PRX` / 2.004 W | 13.65 h |
+| `NRF24` | `3PRX` / 3.323 W | 8.23 h |
 | `S3_RF` | `2G4_RX_OR_SCAN` / 1.778 W | 15.39 h |
 | `VOICE` | `RX` / 5.406 W | 5.06 h |
 

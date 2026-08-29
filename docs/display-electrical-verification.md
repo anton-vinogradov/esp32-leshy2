@@ -1,34 +1,35 @@
-# Display electrical contract · R2 input
+# Display electrical verification · historical R1
 
-[Русский](display-electrical-verification.ru.md) · [Home](../README.md) · [Schematics](schematics.md) · [Roadmap](roadmap.md)
+[Русский](display-electrical-verification.ru.md) · [Home](../README.md) · [Schematics](schematics.md) · [Virtual verification](virtual-verification.md)
 
-The selected production assembly is EastRising `ER-TFT035IPS-6` configured
-with capacitive touch `ER-TPC035-6`: 3.5-inch IPS, 320×480, `ILI9488` display
-controller and `FT6236` touch controller. Its configured envelope is
-56.54×84.96×3.76 mm and its 50-contact 0.5-mm FPC mates with stocked Hirose
-`FH34SRJ-50S-0.5SH(50)` (`C3169104`) on passive adapter
-`L2-DISP-ADP-001-B`.
+H3.3.1 checks one complete chain: ST77922 supply → backlight power path → direct-QSPI/touch timing. This is a paper review of serial parts and real contacts; raw HMX035CTFT-001 specimen measurements remain HIL.
 
-## Interface contract
+## Supply
 
-- Normal mode is direct 8-bit i8080 from S3. Interface straps are
-  `IM2/IM1/IM0 = 0/1/1`.
-- The conservative initial write clock is 24 MHz. One byte transfers every
-  41.667 ns, above the ILI9488 40-ns minimum write cycle; high and low phases
-  are 20.833 ns, above the 15-ns minima.
-- Peak payload is 24 MB/s. A complete RGB565 frame is 307,200 bytes and takes
-  12.8 ms payload-only; partial menu/waterfall updates remain preferred.
-- The same panel supports ordinary 4-wire serial as a deliberate recovery
-  strap. No QSPI capability is claimed.
-- Touch stays on the local S3 I²C path with its own interrupt/reset contract.
+- Serial `Vishay TNPW040243K7BEED` / `Vishay TNPW040210K0BEED` set `3.222000 V` nominal.
+- With ±1.5% VREF, ±0.1% resistors and mandatory `0.020 Vpp`, the raw endpoint is `3.158510…3.285658 V`.
+- After the separate `0.050 V` path budget the connector retains `3.108510…3.285658 V`: `458.510 mV` above VDD minimum and `14.342 mV` below the common 3.3-V maximum.
 
-## What remains for R2 H2/H3
+## Backlight
 
-R2 H2 must instantiate the exact 50-to-40 map, rail/backlight protection,
-straps and timing nets in ECAD. R2 H3 then verifies voltage corners, reset and
-power sequencing, backlight current/fault behaviour, i8080 timing and signal
-integrity. H5 records written final-assembly acceptance for the customer-supplied
-panel and FPC mating. H7 performs the first physical image/touch/backlight test.
+The donor schematic had been misread: `R31=0R` is in the common LEDK path while `R33=10R` is in Q4's gate. The power path now uses `Yageo RC0402JR-070RL`. TPS2553 does not regulate brightness: it latches a fault at `174.000…234.000 mA`, retaining at least `45.000%` over the donor's 120-mA mode. Actual current and brightness remain specimen measurements.
 
-The old `HMX035CTFT-001`/`ST77922` QSPI analysis is historical R1 evidence only
-and is not part of the R2 order BOM or firmware contract.
+## Direct QSPI and touch
+
+The initial cap is `40 MHz`: `25.000 ns` period versus 16 ns minimum; `12.500 ns` high/low versus 7 ns. CS gets at least `25.000 ns` setup/hold. One non-preemptible 1-ms quantum carries up to `20000` bytes / `10000` RGB565 pixels; a full frame is `15.360 ms` payload-only, so menus and waterfall use dirty regions rather than full-frame redraw. Touch remains ≤400 kHz.
+
+## Corrected by review
+
+1. Removed the possible ST77922 excursion above 3.3 V.
+2. Removed the mistaken 10-ohm power resistor that would have taken about 1.2 V from the backlight.
+
+## What remains physical
+
+- measure protected-rail ripple and connector voltage at every accepted load and temperature corner
+- confirm HMX035CTFT-001 tail, ST77922 identity, VDD/VDDI ramp equality and reset/readback on received specimens
+- measure QSPI edges, CS-high high-Z/contention and shared-microSD throughput before raising the 40-MHz initial cap
+- measure actual panel backlight current, brightness, PWM EMI, temperature and TPS2553 latch recovery
+
+The three replacements add `0.4452 USD` per unit at quantity 100. **H3.3.1 is reviewed; the historical R1 progression marker is `H3.6.1`.**
+
+[Machine H3-VRF31 package](../hardware/verification/generated/H3-VRF31-display.json).

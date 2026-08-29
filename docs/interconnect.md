@@ -6,7 +6,7 @@ The UI and RF/power PCBs use one exact straight-SMT `Hirose FX8C-80P-SV1(92)` / 
 
 ## 80-contact budget
 
-`25` live signals · `14` main-power · `2` AON · `25` defined returns · `14` NC reserve
+`24` live signals · `14` main-power · `2` AON · `24` defined returns · `16` NC reserve
 
 The main rail uses **14** parallel contacts and the same number of primary returns. Continuous `3.75 A` is `0.2679 A/contact`; the `4.25 A` step is `0.3036 A/contact` against a `0.4 A` rating.
 
@@ -23,7 +23,7 @@ M1 is electrical/alignment only. Four exact 11.00-mm compression stops, at least
 | `21–28` | Hub↔RF RP dedicated SPI + alert and returns |
 | `29–31` | S3 product USB 2.0 D−/D+ + return |
 | `32–34` | fail-closed Pack/Safety I²C + return |
-| `35–36` | 75-ohm FPV_CVBS + dedicated video return |
+| `35–36` | 2 NC reserve contacts |
 | `37–40` | RUN, fault and UI thermal safety crossings + return |
 | `41–50` | 9 actual-TX evidence signals + safety return |
 | `51–54` | rear encoder A/B/push + return |
@@ -69,8 +69,8 @@ M1 is electrical/alignment only. Four exact 11.00-mm compression stops, at least
 | `32` | `HUB_SAFE_I2C_SDA` | `control` |
 | `33` | `HUB_SAFE_I2C_SCL` | `control` |
 | `34` | `POWER_GROUND` | `control_return` |
-| `35` | `FPV_CVBS` | `video_75ohm` |
-| `36` | `VIDEO_GROUND` | `video_return` |
+| `35` | `NC_35` | `reserve` |
+| `36` | `NC_36` | `reserve` |
 | `37` | `RUN_PERMIT` | `safety` |
 | `38` | `FAULT_ASSERT_N` | `safety` |
 | `39` | `UI_ZONE_TEMP_ADC` | `safety_analog` |

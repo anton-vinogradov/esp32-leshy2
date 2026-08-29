@@ -4,12 +4,12 @@
   "status": "reviewed_parameterized_board_cell_and_enclosure_thermal_model",
   "method": "full admitted H3.1 state enumeration plus conservative internal heat partition and parameterized base-to-ambient resistance limits",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
-    "hardware/verification/generated/H3-VRF12-dc-budget.json": "e80c7b7f168746c6436572f0eb7ef4f65c8496f7e242b3e1482dcf70f1bb1b68",
-    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "327bac00cca35885c72bd49ec0e66eba872e75504e9c95a7a332e64482b987c0",
-    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "381e9bcbc95ee2994a39e113f6cd3cf1b7d42fc5013225d21bdb935f65fe2e32",
-    "hardware/verification/generated/H3-VRF34-battery-analog.json": "39b87068538107b378e13f966a6ad7ff1639dd8cc6aeaf958faa277f0d851644"
+    "hardware/architecture/candidates/G2F-3I.json": "edce4ca3aed56ed1a58b9ec85d19f7c9db624869f54797e0c2dc329e9816007d",
+    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
+    "hardware/verification/generated/H3-VRF12-dc-budget.json": "41552e3885a8e69d3bd230c2214b405ffae9ffb41531735991ebb7c6c9aad416",
+    "hardware/verification/generated/H3-VRF13-source-charge-budget.json": "522a79aa37bc9f750337c1e1928f3b8dab6bd7ddeaea58e53984bc90d8dbfb18",
+    "hardware/verification/generated/H3-VRF14-dc-consolidation.json": "712a8dbc9845ecc854f36d4751846cbe69f281893d349490a7c51af2fbc803b6",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "4fc28e3a5c9fa328eef7a16a51687ee8db057cd819579c07f7e05f171e1908cc"
   },
   "thermal_parts": {
     "main_voice_ext_buck": {
@@ -107,8 +107,8 @@
   },
   "cell_heat": {
     "two_cell_series_resistance_ohm_max_initial": "0.080",
-    "maximum_pack_discharge_a": "2.816",
-    "maximum_discharge_i2r_heat_w": "0.634",
+    "maximum_pack_discharge_a": "2.974",
+    "maximum_discharge_i2r_heat_w": "0.708",
     "maximum_product_charge_a": "2.000",
     "maximum_charge_i2r_heat_w": "0.320",
     "manufacturer_operating_temperature_c": {
@@ -138,13 +138,13 @@
       "signal_group": "VOICE",
       "group_mode": "RX",
       "support_profile": "SUPPORT_WORST",
-      "sys_demand_w": "13.093",
-      "internal_rail_output_w": "11.129",
+      "sys_demand_w": "14.041",
+      "internal_rail_output_w": "11.935",
       "external_accessory_output_excluded_w": "0.000",
-      "rail_conversion_loss_w": "1.964",
-      "efuse_conduction_loss_w": "0.328",
-      "cell_i2r_heat_w": "0.381",
-      "conservative_base_heat_w": "13.802",
+      "rail_conversion_loss_w": "2.106",
+      "efuse_conduction_loss_w": "0.392",
+      "cell_i2r_heat_w": "0.438",
+      "conservative_base_heat_w": "14.871",
       "admission": "transient_or_bounded_session_only; SUPPORT_WORST is an electrical anti-hidden-load envelope and is not admitted as a 24-to-48-hour thermal profile"
     },
     "support_idle_worst_group": {
@@ -166,13 +166,13 @@
       "signal_group": "LORA_CAP",
       "group_mode": "STOCK_U214_RX_GNSS_ONLY",
       "support_profile": "SUPPORT_WORST",
-      "sys_demand_w": "16.894",
-      "internal_rail_output_w": "8.110",
+      "sys_demand_w": "17.842",
+      "internal_rail_output_w": "8.916",
       "external_accessory_output_excluded_w": "6.250",
-      "rail_conversion_loss_w": "2.534",
-      "efuse_conduction_loss_w": "0.393",
-      "cell_i2r_heat_w": "0.634",
-      "conservative_base_heat_w": "11.671",
+      "rail_conversion_loss_w": "2.676",
+      "efuse_conduction_loss_w": "0.458",
+      "cell_i2r_heat_w": "0.708",
+      "conservative_base_heat_w": "12.758",
       "admission": "accessory output heat is outside the base; base converter, eFuse, support and cell heat remain included"
     },
     "quiet_idle": {
@@ -194,18 +194,18 @@
     "electrical_absolute_corner": [
       {
         "ambient_c": 25,
-        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "2.898",
-        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "3.623"
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "2.690",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "3.362"
       },
       {
         "ambient_c": 35,
-        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "2.174",
-        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "2.898"
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "2.017",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "2.690"
       },
       {
         "ambient_c": 40,
-        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "1.811",
-        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "2.536"
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "1.681",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "2.354"
       }
     ],
     "support_idle_worst_group": [
@@ -228,18 +228,18 @@
     "external_accessory_worst": [
       {
         "ambient_c": 25,
-        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "3.427",
-        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "4.284"
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "3.135",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "3.919"
       },
       {
         "ambient_c": 35,
-        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "2.570",
-        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "3.427"
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "2.351",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "3.135"
       },
       {
         "ambient_c": 40,
-        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "2.142",
-        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "2.999"
+        "rtheta_base_to_ambient_for_65c_warning_k_per_w_max": "1.960",
+        "rtheta_base_to_ambient_for_75c_kill_k_per_w_max": "2.743"
       }
     ],
     "quiet_idle": [
@@ -279,9 +279,9 @@
   "checks": {
     "all_50_dc_profiles_are_available": true,
     "all_2032_source_states_are_available": true,
-    "maximum_conversion_loss_matches_h3_1": true,
-    "maximum_efuse_loss_matches_h3_1": true,
-    "maximum_pack_current_matches_h3_1": true,
+    "maximum_conversion_loss_below_2v7_w": true,
+    "maximum_efuse_loss_below_half_watt": true,
+    "maximum_pack_current_below_3a": true,
     "pair_resistance_uses_two_40mohm_cells": true,
     "maximum_pack_i2r_is_bounded": true,
     "two_amp_charge_i2r_is_bounded": true,

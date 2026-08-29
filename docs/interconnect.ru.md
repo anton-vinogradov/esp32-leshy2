@@ -6,7 +6,7 @@ UI- и RF/power-платы соединяет одна точная прямая
 
 ## Бюджет 80 контактов
 
-`25` live signals · `14` main-power · `2` AON · `25` defined returns · `14` NC reserve
+`24` live signals · `14` main-power · `2` AON · `24` defined returns · `16` NC reserve
 
 Основная шина использует **14** параллельных контактов и столько же основных возвратов. При continuous `3.75 А` получается `0.2679 А/контакт`; при step `4.25 А` — `0.3036 А/контакт` против рейтинга `0.4 А`.
 
@@ -23,7 +23,7 @@ M1 выполняет только электрическую функцию и 
 | `21–28` | выделенный SPI Hub↔RF RP + alert и возвраты |
 | `29–31` | продуктовый USB 2.0 S3 D−/D+ + возврат |
 | `32–34` | fail-closed I²C Pack/Safety + возврат |
-| `35–36` | 75-омный FPV_CVBS + отдельный video-return |
+| `35–36` | 2 резервных NC-контакта |
 | `37–40` | RUN, fault и UI thermal safety + возврат |
 | `41–50` | 9 сигналов actual-TX evidence + safety-return |
 | `51–54` | задний энкодер A/B/push + возврат |
@@ -69,8 +69,8 @@ M1 выполняет только электрическую функцию и 
 | `32` | `HUB_SAFE_I2C_SDA` | `control` |
 | `33` | `HUB_SAFE_I2C_SCL` | `control` |
 | `34` | `POWER_GROUND` | `control_return` |
-| `35` | `FPV_CVBS` | `video_75ohm` |
-| `36` | `VIDEO_GROUND` | `video_return` |
+| `35` | `NC_35` | `reserve` |
+| `36` | `NC_36` | `reserve` |
 | `37` | `RUN_PERMIT` | `safety` |
 | `38` | `FAULT_ASSERT_N` | `safety` |
 | `39` | `UI_ZONE_TEMP_ADC` | `safety_analog` |

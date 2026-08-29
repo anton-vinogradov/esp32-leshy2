@@ -11,18 +11,18 @@
   "project": "LESHY2-RF",
   "sheet": "RF_31_NRF24_X3",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "46efd30669da371cae53110bb2991c8aad8c1c8973c66d33b9b8f0f60a1c44a2",
-    "hardware/architecture/devices.json": "4482cb57af63355dc7a1913c7991c6a02cfdf3ecf55dc38789d2d49eaaf5cf17",
-    "hardware/ecad/generated/H2-instance-ledger.json": "0ea2d4f11469bf03e760ceb47836e668abd760862387785e9567995dd4c12256",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "80c35430d20b3123fb390ff227b994708c54a8ddd778655cdf2e5507959d9602"
+    "hardware/architecture/candidates/G2F-3I.json": "edce4ca3aed56ed1a58b9ec85d19f7c9db624869f54797e0c2dc329e9816007d",
+    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
+    "hardware/ecad/generated/H2-instance-ledger.json": "36c18638c89d353cfc92f6213c6e001fa20cfe88ffb8cf3c2f5c5544d0c11fe6",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "68eb7a5c6cddc40c3dcada2579f733f7332073d28fb830e7b2567c608a943586"
   },
   "summary": {
     "ledger_instances": 107,
     "schematic_symbols": 110,
     "board_fitted_symbols": 104,
     "hierarchical_interfaces": 35,
-    "physical_package_contacts": 318,
-    "nrf_carrier_pads": 24,
+    "physical_package_contacts": 324,
+    "nrf_carrier_pads": 30,
     "factory_rf_assembly_boundaries": 3,
     "independent_spi_paths": 3,
     "independent_rf_paths": 3,
@@ -65,9 +65,9 @@
       "instance": "nrf0",
       "symbol_uuid": "eb891b4b-d89e-5de4-90f1-16e068d14de4",
       "reference": "U31001",
-      "mpn": "Ebyte E01-ML01IPX",
-      "footprint": "Leshy2:Ebyte-E01-ML01IPX",
-      "pin_count": 8,
+      "mpn": "Ebyte E01-ML01SP4",
+      "footprint": "Leshy2:Ebyte-E01-ML01SP4",
+      "pin_count": 10,
       "board_fitted": true,
       "ledger_component": true
     },
@@ -75,9 +75,9 @@
       "instance": "nrf1",
       "symbol_uuid": "ff8c881a-2c7e-5a11-baf9-20a55200662a",
       "reference": "U31002",
-      "mpn": "Ebyte E01-ML01IPX",
-      "footprint": "Leshy2:Ebyte-E01-ML01IPX",
-      "pin_count": 8,
+      "mpn": "Ebyte E01-ML01SP4",
+      "footprint": "Leshy2:Ebyte-E01-ML01SP4",
+      "pin_count": 10,
       "board_fitted": true,
       "ledger_component": true
     },
@@ -85,9 +85,9 @@
       "instance": "nrf2",
       "symbol_uuid": "3bb9e123-12fb-5006-9b52-770b5e61fd9a",
       "reference": "U31003",
-      "mpn": "Ebyte E01-ML01IPX",
-      "footprint": "Leshy2:Ebyte-E01-ML01IPX",
-      "pin_count": 8,
+      "mpn": "Ebyte E01-ML01SP4",
+      "footprint": "Leshy2:Ebyte-E01-ML01SP4",
+      "pin_count": 10,
       "board_fitted": true,
       "ledger_component": true
     },
@@ -1105,7 +1105,7 @@
       "instance": "nrf0_factory_ipex",
       "symbol_uuid": "893da0b7-a9f0-5bc4-a6f5-e6f23b121520",
       "reference": "X31001",
-      "mpn": "Ebyte E01-ML01IPX factory IPEX (nrf0)",
+      "mpn": "Ebyte E01-ML01SP4 factory IPEX (nrf0)",
       "footprint": "",
       "pin_count": 1,
       "board_fitted": false,
@@ -1115,7 +1115,7 @@
       "instance": "nrf1_factory_ipex",
       "symbol_uuid": "6b4a76dd-c103-5c25-8635-4836ff20f5c5",
       "reference": "X31002",
-      "mpn": "Ebyte E01-ML01IPX factory IPEX (nrf1)",
+      "mpn": "Ebyte E01-ML01SP4 factory IPEX (nrf1)",
       "footprint": "",
       "pin_count": 1,
       "board_fitted": false,
@@ -1125,7 +1125,7 @@
       "instance": "nrf2_factory_ipex",
       "symbol_uuid": "3d3dc306-1541-5dae-a75c-af69f059ebf1",
       "reference": "X31003",
-      "mpn": "Ebyte E01-ML01IPX factory IPEX (nrf2)",
+      "mpn": "Ebyte E01-ML01SP4 factory IPEX (nrf2)",
       "footprint": "",
       "pin_count": 1,
       "board_fitted": false,
@@ -1147,13 +1147,13 @@
   ],
   "footprint_evidence": [
     {
-      "mpn": "Ebyte E01-ML01IPX",
-      "footprint": "Leshy2:Ebyte-E01-ML01IPX",
+      "mpn": "Ebyte E01-ML01SP4",
+      "footprint": "Leshy2:Ebyte-E01-ML01SP4",
       "source": {
-        "document": "E01-ML01IPX product specification",
+        "document": "E01-ML01SP4 product specification",
         "version": "2025-01-16",
-        "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
-        "checked": "2026-08-17"
+        "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf",
+        "checked": "2026-08-29"
       }
     },
     {
@@ -1218,7 +1218,7 @@
     }
   ],
   "corrections_closed": [
-    "each E01-ML01IPX exposes exactly eight host-PCB lands; its factory IPEX is an assembly boundary, never a fictitious ninth pad",
+    "each E01-ML01SP4 exposes exactly ten host-PCB lands; its factory IPEX is an assembly boundary, never a fictitious eleventh pad",
     "the three radios have independent PIO SPI clocks/data, CSN, CE and IRQ paths with no shared transaction bottleneck",
     "all three module rails and translators are enabled together; the group gate never serializes full RX/TX/mixed operation",
     "Ioff-capable LVC buffers and host/module-side safe pulls prevent back-power and command glitches while the radio group is off",

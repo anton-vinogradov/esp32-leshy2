@@ -4,16 +4,16 @@
   "status": "reviewed_single_fault_containment_and_recovery",
   "method": "deterministic FMEA over fault sources, primary shutdown, an electrically separate or fail-safe containment path, retained reason and physical recovery",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "c83b16078543077f144d0f39952084ab6f0d26290f79ca93a12105e543558efe",
-    "hardware/architecture/devices.json": "12a624453d4e8b6642321281edd2aa064c99eb5f7b441132b8e3c9d923bae089",
-    "hardware/ecad/generated/H2-REV55-fault-kill.json": "7a673ff410ac41ba6848804b69451ede801d36ee3e2a6f3b0a39c057eb9dea81",
-    "hardware/verification/generated/H3-VRF24-watchdog-fault-display.json": "d7946542a980d98be01abca477705f73390012f62bb8208c3cd8564bb152c9bb",
-    "hardware/verification/generated/H3-VRF61-thermal-model.json": "a70869738a152dab37e0ba2e0605cf5b9ce0991e60bc5378822ae8acd50dd6d4"
+    "hardware/architecture/candidates/G2F-3I.json": "edce4ca3aed56ed1a58b9ec85d19f7c9db624869f54797e0c2dc329e9816007d",
+    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
+    "hardware/ecad/generated/H2-REV55-fault-kill.json": "94ccbd8e5d8a7448135aa8436e9b95c7e3e0b62234d48cf5add7745ba9af23ab",
+    "hardware/verification/generated/H3-VRF24-watchdog-fault-display.json": "ebdcd8e494cf72340c21e3bfd1e3595e274a67b37ae5228306fd4b39e4edeebb",
+    "hardware/verification/generated/H3-VRF61-thermal-model.json": "0964263618e5132040a2c2b4ff869c465ac8073390b21d816297b63c93fcd1da"
   },
   "fault_plane": {
     "healthy_nominal_v": "3.2673",
     "bias": "10-kOhm AON pull-up plus 1-MOhm fail-low pull-down",
-    "proof": "while SAFETY_FAULT_REQUEST is held low at startup, series-isolated FAULT_ASSERT_SENSE must also read low before the controller may release its request or accept a physical re-arm. High or unreadable proof blocks every lease, holds S3 in fault-only/reset state and requires KILL plus service. The proof is repeated at every physical KILL-to-RUN boundary; it is service-interrupting, not hardware-damaging, and no mid-session proof is claimed",
+    "proof": "while SAFETY_FAULT_REQUEST is held low at startup, series-isolated FAULT_ASSERT_SENSE must also read low before the controller may release its request or accept a physical re-arm. High or unreadable proof blocks every lease, holds S3 in fault-only/reset state and requires KILL plus service. The service-interrupting but hardware-safe proof is repeated at every physical KILL-to-RUN boundary; it is service-interrupting, not hardware-damaging, and no mid-session proof is claimed",
     "sense": "TCA9535 P11 through 100-kOhm series isolation",
     "service_interrupting_proof_boundary": "every physical KILL-to-RUN; never silently re-arms during a running session; interrupts service but does not damage hardware"
   },

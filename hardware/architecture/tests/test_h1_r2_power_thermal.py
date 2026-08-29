@@ -20,8 +20,8 @@ class H1R2PowerThermalTest(unittest.TestCase):
 
     def test_six_domains_and_every_signal_group_are_bounded(self):
         self.assertEqual(6, len(self.model["six_compute_domains"]))
-        self.assertEqual(12, len(self.audit["groups"]))
-        self.assertEqual("AIRBAND_RX", self.audit["worst_main_group"]["group"])
+        self.assertEqual(11, len(self.audit["groups"]))
+        self.assertEqual("NRF24", self.audit["worst_main_group"]["group"])
         self.assertEqual("pass_architecture_with_h3_dynamic_thermal_gate", self.audit["status"])
         self.assertFalse(self.audit["failures"])
 
@@ -29,7 +29,7 @@ class H1R2PowerThermalTest(unittest.TestCase):
         margin = self.audit["main_margin"]
         self.assertGreaterEqual(margin["accepted_continuous_a"], 3.5)
         self.assertGreaterEqual(margin["accepted_step_a"], 4.0)
-        self.assertGreater(margin["continuous_margin_a"], 0.9)
+        self.assertGreater(margin["continuous_margin_a"], 0.5)
         self.assertGreaterEqual(self.audit["efuse_threshold_a"]["guaranteed_minimum"], margin["accepted_step_a"])
 
     def test_switching_parts_have_real_current_headroom(self):

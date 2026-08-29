@@ -1,6 +1,6 @@
 # Сводный результат digital interfaces · historical R1
 
-`H3.4` проведён ревью: проходят все три leaf-пакета, `171` их checks и `28` сквозных сводных checks. Незакрытых аналитических findings нет. Исторический маркер прогресса R1 — `H3.6.1`.
+`H3.4` проведён ревью: проходят все три leaf-пакета, `172` их checks и `28` сквозных сводных checks. Незакрытых аналитических findings нет. Исторический маркер прогресса R1 — `H3.6.1`.
 
 ## Закрытый аналитический envelope
 
@@ -11,7 +11,7 @@
 | Audio | Full-duplex stereo 48 кГц, BCLK 3,072 МГц и DMA-ring 21,333 мс на отдельном controller |
 | Compatibility radios | Три одновременно полнофункциональных nRF24 и CC1101 имеют независимый SPI/DMA service; worst serialized drain трёх nRF равен 79,2 мкс при guard 457,5 мкс |
 | IPC | S3-RP и S3-C5 допускают >=1,5 МБ/с; S3-RP сохраняет 675 кБ/с сверх теоретического payload трёх nRF плюс CC |
-| M1 и расширения | Проходят M1 на 80 контактов/51 net, защищённые ветки U214/native Unit, U214 SPI 10 МГц/I2C 150 пФ и data-only service USB |
+| M1 и расширения | Проходят M1 на 80 контактов/44 net с 16 NC-резервами, защищённые ветки U214/native Unit, U214 SPI 10 МГц/I2C 150 пФ и data-only service USB |
 | Допуск ревизии C5 | Официальный MPN остаётся `ESP32-C5-WROOM-1U-N8R8`; production требует одновременно MD/lot identity и eFuse revision >=v1.2; v1.0 только engineering, v0.1/unknown запрещены |
 
 Правило one-active-signal-group остаётся продуктовым. Оно не сериализует три nRF24: это намеренно одновременная группа с независимыми engines, полным RX/TX/mixed-role режимом и ограниченным временем обслуживания FIFO.
