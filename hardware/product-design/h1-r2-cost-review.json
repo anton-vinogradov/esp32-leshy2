@@ -9,7 +9,7 @@
     "deliverable": "one fully assembled Leshy2 prototype",
     "device_batch": false,
     "batteries_included": false,
-    "production_display": "exact panel unresolved; factory-installed from a deterministic production package",
+    "production_display": "EastRising ER-TFT035IPS-6 + ER-TPC035-6; factory-installed from the documented production package",
     "hmx_donor_route": "rejected procurement route; legacy evidence only",
     "factory_function_test": "optional quote-only insurance; first full power-on and USB bring-up belong to the owner"
   },
@@ -392,28 +392,28 @@
     }
   },
   "display_orientation_review": {
-    "official_complete_donor_rear_view": "https://media-cdn.elecrow.com/media/webp_image/wysiwyg/products/2026/DLE06235B/hardware_overview_of_3.5inch_ESP32_IPS_Touchscreen.webp",
-    "observed": "The official complete-donor rear view proves a folded display flex and rear ZIF path, but does not disclose the standalone HMX035CTFT-001 tail outline, exit edge, free length, stiffener or production-lot invariance.",
+    "official_complete_donor_rear_view": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
+    "observed": "The selected EastRising production drawings control the complete configured panel, 50-contact 0.50-mm tail, 0.30-mm stiffener, contact map and folded-tail orientation; donor geometry is not used.",
     "accepted_rule": "Physically orient the selected documented production panel so its flex points toward the antenna edge, then rotate display memory and touch coordinates in firmware. Do not allow the tail to enter the LED, D-pad or function-button zone.",
     "previous_lower_adapter_board_xy_mm": [24.75, 90.5],
-    "current_upper_adapter_board_xy_mm": [24.75, 1.0],
+    "current_upper_adapter_board_xy_mm": [22.25, 1.0],
     "current_upper_main_connector_xy_mm": [32.2, 6.5],
     "paper_fit": {
       "same_face_collisions": 0,
-      "minimum_opposing_clearance_mm": 5.1,
+      "minimum_opposing_clearance_mm": 2.59,
       "required_minimum_mm": 0.7,
       "gpio_change": 0,
       "bom_change_usd": 0.0,
-      "firmware_change": "ST77922 orientation plus touch-coordinate transform only"
+      "firmware_change": "ILI9488 display-memory rotation plus FT6236 touch-coordinate transform only"
     },
-    "remaining_gate": "The selected exact production panel drawing and factory mating acceptance must qualify tail length, bend radius, contact side and retention on the replaceable upper adapter; HMX donor geometry remains legacy evidence only."
+    "remaining_gate": "The selected exact production-panel geometry is closed; only written factory acceptance of adhesive placement, FPC insertion and final mating plus incoming-lot conformity remain open."
   },
   "accepted_cost_reduction_policy": {
     "accepted_on": "2026-08-28",
     "primary_target": "Eliminate avoidable small-lot pre-order penalties before reducing already-stocked material cost.",
     "stocked_replacement_rule": "Prefer a currently stocked JLCPCB part only when the electrical, RF, safety, lifecycle and mechanical contract is exact or no worse. If no such part exists, keep the selected MPN and its explicit pre-order route.",
     "function_sensitive_rule": "RF detectors, RF filters/couplers, power safety, battery protection and user-exposed ESD boundaries never change for price alone.",
-    "antenna_mechanics_rule": "Prefer individually board-retained DIV-like SMA/RP-SMA bodies without nuts, sealing hardware or a shared protective frame when an exact standard/reverse pair and controlled drawing are available. No such no-worse pair is currently proved; the selected low-profile GCT pair remains the controlled exception with individual nut/washer retention and no shared frame."
+    "antenna_mechanics_rule": "Prefer individually board-retained DIV-like right-angle SMA/RP-SMA bodies without nuts, sealing hardware or a shared protective frame. Low profile is not a requirement; a dual-face or through-board soldered load path is preferred. Keep the GCT pair only until a documented stocked standard/reverse pair passes the complete 5+5 placement, opposing-clearance and factory-assembly gate."
   },
   "current_stocked_candidate_checks": [
     {
@@ -705,9 +705,9 @@
       "moq": 1,
       "trial_required_quantity": "40 standard / 10 reverse",
       "price_tiers_usd": {"standard_1": 0.8885, "standard_30": 0.6351, "standard_100": 0.5523, "reverse_1": 0.9502, "reverse_10": 0.7813, "reverse_100": 0.6075},
-      "status": "rejected_high_profile_tht_form_change",
-      "why": "This is a fully documented, stocked, no-nut 6-GHz right-angle standard/reverse pair, but its approximately 10.2-mm board profile and through-hole tails replace the 3.9-mm GCT edge-launch envelope. On the front board the connector axis would sit roughly 7 mm above the display glass and the tails would enter the sandwich. The saving is real but not functionally or mechanically neutral.",
-      "why_ru": "Это полностью документированная складская standard/reverse-пара до 6 ГГц без гаек, но её профиль около 10,2 мм и сквозные выводы заменяют низкопрофильный 3,9-мм edge-launch GCT. На передней плате ось разъёма окажется примерно на 7 мм выше стекла, а выводы войдут внутрь бутерброда. Экономия реальна, но механически и функционально не нейтральна.",
+      "status": "qualified_pending_full_5_plus_5_placement_and_assembly_gate",
+      "why": "This is a fully documented, stocked, no-nut 6-GHz right-angle standard/reverse pair with a stronger through-board soldered load path. Its approximately 10.2-mm axis and through-hole tails change the selected 3.9-mm GCT envelope, but low profile is no longer a product requirement. It is therefore the leading cost-reduction candidate, not an accepted production MPN: all ten placements, opposing clearances and the JLCPCB wave-solder route still need to pass together.",
+      "why_ru": "Это полностью документированная складская standard/reverse-пара до 6 ГГц без гаек и с более прочным сквозным путём передачи нагрузки. Ось около 10,2 мм и сквозные выводы меняют выбранный 3,9-мм envelope GCT, но низкий профиль больше не является требованием. Поэтому это ведущий кандидат на удешевление, а не уже принятый production MPN: сначала должны разом пройти все десять размещений, встречные зазоры и wave-solder route JLCPCB.",
       "source": "https://jlcpcb.com/partdetail/DreamLNK-SMAKWE902/C914554",
       "reverse_source": "https://jlcpcb.com/partdetail/DreamLNK-SMAKWE901/C914553",
       "manufacturer_source": "https://datasheet.lcsc.com/lcsc/2011081704_DreamLNK-SMA-KWE902_C914554.pdf",
@@ -718,6 +718,15 @@
   "optimization_lanes": [
     {
       "priority": 1,
+      "id": "external-antenna-kit",
+      "queue_status": "active",
+      "title": "Rebuild the external antenna kit from stocked no-worse equivalents",
+      "production_function_change": false,
+      "evidence": "Eight of twelve exact first-target antenna profiles already contribute USD 138.3166 per device, while three nRF24 antennas and the controlled AM/LW receive pod remain unpriced. This is the largest separate material group even though it sits outside the base PCBA BOM.",
+      "action": "Keep every accepted band and all band-specific TX matching. Search the current factory/order surface for exact or no-worse connector, band, power and matching equivalents; optimize receive-only profiles separately and never silently substitute one generic whip for a qualified TX antenna."
+    },
+    {
+      "priority": 2,
       "id": "factory-preorder-penalty",
       "queue_status": "accepted",
       "title": "Replace safe equivalent pre-order passives and ordinary logic with in-stock JLCPCB parts",
@@ -726,16 +735,16 @@
       "action": "Review every pre-order row against its substitution class; only exact or no-worse parametric replacements may be accepted."
     },
     {
-      "priority": 2,
+      "priority": 3,
       "id": "main-rf-mechanics",
-      "queue_status": "accepted",
-      "title": "Retain the low-profile GCT edge-launch pair unless a truly equivalent stocked pair appears",
+      "queue_status": "active",
+      "title": "Replace the expensive GCT pair with a robust stocked standard/reverse pair if it fits",
       "production_function_change": false,
-      "evidence": "The selected GCT RFPC-SMA31/32 pair preserves the 3.9-mm edge-launch envelope, but the official GCT set includes an individual panel nut and washer; no nutless GCT sibling was found. HenryTech points normal to the PCB, while the stocked nutless DreamLNK pair would save about USD 19.01 per device but raises the connector axis roughly 6.3 mm and adds through-hole tails inside the sandwich.",
-      "action": "Keep the GCT pair with no shared frame; safe connector saving is currently USD 0. Reopen only for a stocked standard/reverse edge-launch pair rated to at least 6 GHz with equal or lower profile, a controlled 1.6-mm PCB drawing and the same dual-face mechanical load path: two shell-ground lands on each PCB face (or a demonstrably stronger through-board equivalent)."
+      "evidence": "Ten GCT RFPC-SMA31/32 connectors contribute USD 24.6456 per device. Low profile is no longer a product requirement; the stocked nutless DreamLNK pair would reduce the line by about USD 19.01, but its through-hole tails and roughly 10.2-mm axis require a new internal keep-out and all ten port placements to be rechecked.",
+      "action": "Optimize for the correct outward antenna direction, standard/RP-SMA identity, at least 6-GHz coverage on native ports and a dual-face or through-board mechanical load path. Accept a replacement only after complete 5+5 placement, opposing-clearance and assembly review."
     },
     {
-      "priority": 3,
+      "priority": 4,
       "id": "rf-evidence-detectors",
       "queue_status": "active",
       "title": "Re-evaluate eight RF power detectors without weakening real-TX evidence",
@@ -744,7 +753,7 @@
       "action": "Register and collision-check all six larger MSOP courtyards, adjacent match/bypass bodies and RF-ground fanout before accepting C652687. Keep the two LTC5532 and independent evidence for the three concurrently active nRF24 paths."
     },
     {
-      "priority": 4,
+      "priority": 5,
       "id": "ordinary-controls",
       "queue_status": "waiting",
       "title": "Find one serial in-stock tact-switch family for all sixteen ordinary controls",
@@ -753,7 +762,7 @@
       "action": "Preserve footprint/enclosure reach, force, height, endurance, the ESD boundary and recessed actuation."
     },
     {
-      "priority": 5,
+      "priority": 6,
       "id": "native-rf-jumpers",
       "queue_status": "accepted",
       "title": "Retain all five U.FL plus 30-mm jumper paths after source-to-port review",
@@ -762,7 +771,7 @@
       "action": "Therefore 0/5 paths can be removed safely now. A future qualified C5 T2 route could remove one path and save about USD 2.89 per device."
     },
     {
-      "priority": 6,
+      "priority": 7,
       "id": "battery-holder",
       "queue_status": "waiting",
       "title": "Compare the 1048P holder with serial cell contacts captured by the enclosure cradle",
@@ -771,7 +780,7 @@
       "action": "Any replacement must keep protected-cell length tolerance, polarity, insertion cycles and a non-peeling enclosure load path."
     },
     {
-      "priority": 7,
+      "priority": 8,
       "id": "service-headers",
       "queue_status": "waiting",
       "title": "Replace three premium DBG10 headers with an equally keyed serial factory-stocked family",
@@ -780,13 +789,13 @@
       "action": "Preserve independent S3/C5/RP recovery, keying, pitch, probe access and the internal height envelope."
     },
     {
-      "priority": 8,
+      "priority": 9,
       "id": "display-production-route",
-      "queue_status": "waiting",
-      "title": "Select and quote the documented production panel for one factory-assembled prototype",
+      "queue_status": "accepted",
+      "title": "Do not optimize away the selected serial production panel",
       "production_function_change": false,
-      "evidence": "HMX035CTFT-001 donor sources prove legacy electrical/mechanical facts but are rejected as procurement; the exact production panel, mating drawing, one-prototype price and factory attrition remain open.",
-      "action": "Keep the architecture endpoint and replaceable adapter, but release no order until one documented panel and deterministic factory mating package are accepted."
+      "evidence": "EastRising ER-TFT035IPS-6 plus ER-TPC035-6 contributes USD 14.91 and already provides a controlled drawing, ILI9488/FT6236, direct i8080-8 and quantity-one serial ordering. The donor route is gone.",
+      "action": "Treat the display material cost as justified. Only the assembler fee and written acceptance of panel/FPC final mating remain open; do not restart display selection for a small speculative saving."
     }
   ]
 }

@@ -13,17 +13,23 @@
     "procurement_target_device_quantity": 1,
     "historical_cost_capture_device_quantity": 5,
     "planning_base_plus_post_pcba_usd_for_procurement_target": 278.5534,
-    "historical_capture_matched_lines": 181,
+    "planning_base_plus_post_pcba_usd_for_ten_devices": 2785.534,
+    "planning_plus_known_antenna_usd_per_device": 416.87,
+    "top_10_share_pct": 41.87,
+    "top_20_share_pct": 59.49,
+    "top_40_share_pct": 77.72,
+    "historical_capture_matched_lines": 183,
     "live_spot_checks": 23,
-    "historical_capture_displayed_usd": 1293.9793,
-    "historical_spot_adjusted_displayed_usd": 1417.9703,
-    "historical_capture_unmatched_lines": 29,
-    "preorder_rows": 26,
-    "preorder_capture_usd": 648.0444,
-    "preorder_volume_basis_for_historical_capture_usd": 322.6465,
-    "preorder_observed_small_lot_premium_usd": 325.3979,
+    "historical_capture_displayed_usd": 1373.2008,
+    "historical_spot_adjusted_displayed_usd": 1429.9393,
+    "historical_capture_unmatched_lines": 27,
+    "preorder_rows": 27,
+    "preorder_capture_usd": 660.0134,
+    "preorder_volume_basis_for_historical_capture_usd": 331.0305,
+    "preorder_observed_small_lot_premium_usd": 328.9829,
     "antenna_known_first_target_usd": 138.3166,
-    "antenna_unpriced_lines": 4
+    "antenna_unpriced_lines": 2,
+    "antenna_unpriced_positions": 4
   },
   "rows": [
     {
@@ -40,10 +46,14 @@
       "line_burden_per_device_usd": 19.71648,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 1971.6480000000001,
+      "quantity_ten_devices": 80,
+      "planning_ten_devices_line_usd": 197.1648,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 7.078,
+      "cumulative_planning_base_pct": 7.078
     },
     {
       "device_id": "adi_ad8314acpz_rl7",
@@ -59,10 +69,14 @@
       "line_burden_per_device_usd": 17.142000000000003,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 1714.2000000000003,
+      "quantity_ten_devices": 60,
+      "planning_ten_devices_line_usd": 171.42000000000002,
       "historical_capture_displayed_line_usd": 159.55,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C578691",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 6.154,
+      "cumulative_planning_base_pct": 13.232
     },
     {
       "device_id": "eastrising_er_tft035ips_6_ctp",
@@ -78,10 +92,14 @@
       "line_burden_per_device_usd": 14.91,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 1491.0,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 149.1,
       "historical_capture_displayed_line_usd": 74.55,
       "historical_capture_route": "factory_final_assembly",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 5.353,
+      "cumulative_planning_base_pct": 18.585
     },
     {
       "device_id": "omron_b3s_1100p",
@@ -97,10 +115,14 @@
       "line_burden_per_device_usd": 10.248,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 1024.8,
+      "quantity_ten_devices": 160,
+      "planning_ten_devices_line_usd": 102.47999999999999,
       "historical_capture_displayed_line_usd": 74.58,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C2733652",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 3.679,
+      "cumulative_planning_base_pct": 22.264
     },
     {
       "device_id": "nicerf_sa818s_v_v18",
@@ -116,10 +138,14 @@
       "line_burden_per_device_usd": 10.071,
       "line_burden_basis": "provisional reachable route",
       "quantity_100_batch_line_usd": 1007.1,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 100.71,
       "historical_capture_displayed_line_usd": 50.355,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C51897911",
-      "cost_gate": "quantity_100_rfq_required"
+      "cost_gate": "quantity_100_rfq_required",
+      "share_of_planning_base_pct": 3.615,
+      "cumulative_planning_base_pct": 25.879
     },
     {
       "device_id": "nicerf_sa818s_u_v18",
@@ -135,10 +161,14 @@
       "line_burden_per_device_usd": 9.7347,
       "line_burden_basis": "provisional reachable route",
       "quantity_100_batch_line_usd": 973.47,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 97.34700000000001,
       "historical_capture_displayed_line_usd": 48.673500000000004,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C3001549",
-      "cost_gate": "quantity_100_rfq_required"
+      "cost_gate": "quantity_100_rfq_required",
+      "share_of_planning_base_pct": 3.495,
+      "cumulative_planning_base_pct": 29.374
     },
     {
       "device_id": "te_2118651_2",
@@ -154,10 +184,14 @@
       "line_burden_per_device_usd": 9.1055,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 910.55,
+      "quantity_ten_devices": 50,
+      "planning_ten_devices_line_usd": 91.05499999999999,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 3.269,
+      "cumulative_planning_base_pct": 32.643
     },
     {
       "device_id": "ebyte_e01_ml01sp4",
@@ -173,10 +207,14 @@
       "line_burden_per_device_usd": 8.889899999999999,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 888.9899999999999,
+      "quantity_ten_devices": 30,
+      "planning_ten_devices_line_usd": 88.89899999999999,
       "historical_capture_displayed_line_usd": 57.972,
-      "historical_capture_route": "not matched",
-      "jlcpcb_part": null,
-      "cost_gate": null
+      "historical_capture_route": "in_stock",
+      "jlcpcb_part": "C97340",
+      "cost_gate": null,
+      "share_of_planning_base_pct": 3.191,
+      "cumulative_planning_base_pct": 35.834
     },
     {
       "device_id": "keystone_1048p",
@@ -192,10 +230,14 @@
       "line_burden_per_device_usd": 8.57,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 857.0,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 85.7,
       "historical_capture_displayed_line_usd": 33.66,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C6038062",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 3.077,
+      "cumulative_planning_base_pct": 38.911
     },
     {
       "device_id": "ti_tmux1136_dgsr",
@@ -211,10 +253,14 @@
       "line_burden_per_device_usd": 8.2324,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 823.24,
+      "quantity_ten_devices": 40,
+      "planning_ten_devices_line_usd": 82.324,
       "historical_capture_displayed_line_usd": 12.789,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C2673301",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 2.955,
+      "cumulative_planning_base_pct": 41.866
     },
     {
       "device_id": "adi_ltc5532_es6_trmpbf",
@@ -230,10 +276,14 @@
       "line_burden_per_device_usd": 7.7754,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 777.5400000000001,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 77.754,
       "historical_capture_displayed_line_usd": 117.15,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C580926",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 2.791,
+      "cumulative_planning_base_pct": 44.658
     },
     {
       "device_id": "hirose_ufl_r_smt_1_10",
@@ -249,10 +299,14 @@
       "line_burden_per_device_usd": 5.3275,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 532.75,
+      "quantity_ten_devices": 50,
+      "planning_ten_devices_line_usd": 53.275,
       "historical_capture_displayed_line_usd": 5.6575,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C88373",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.913,
+      "cumulative_planning_base_pct": 46.57
     },
     {
       "device_id": "esp32_s3_wroom_1u_n16r8",
@@ -268,10 +322,14 @@
       "line_burden_per_device_usd": 5.108,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 510.79999999999995,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 51.08,
       "historical_capture_displayed_line_usd": 25.2365,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C3013946",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.834,
+      "cumulative_planning_base_pct": 48.404
     },
     {
       "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
@@ -287,10 +345,14 @@
       "line_burden_per_device_usd": 5.097300000000001,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 509.7300000000001,
+      "quantity_ten_devices": 30,
+      "planning_ten_devices_line_usd": 50.973000000000006,
       "historical_capture_displayed_line_usd": 16.3455,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C2932107",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.83,
+      "cumulative_planning_base_pct": 50.234
     },
     {
       "device_id": "gct_rfpc_sma32_fn_175_a",
@@ -306,10 +368,14 @@
       "line_burden_per_device_usd": 4.92912,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 492.91200000000003,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 49.2912,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.77,
+      "cumulative_planning_base_pct": 52.003
     },
     {
       "device_id": "ti_tps3808g33_dbvr",
@@ -325,10 +391,14 @@
       "line_burden_per_device_usd": 4.3936,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 439.36,
+      "quantity_ten_devices": 40,
+      "planning_ten_devices_line_usd": 43.936,
       "historical_capture_displayed_line_usd": 8.862,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C43698",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.577,
+      "cumulative_planning_base_pct": 53.581
     },
     {
       "device_id": "murata_grm32er71e226ke15l",
@@ -344,10 +414,14 @@
       "line_burden_per_device_usd": 4.2939,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 429.39,
+      "quantity_ten_devices": 130,
+      "planning_ten_devices_line_usd": 42.939,
       "historical_capture_displayed_line_usd": 31.668,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C21397",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.541,
+      "cumulative_planning_base_pct": 55.122
     },
     {
       "device_id": "esp32_c5_wroom_1u_n8r8",
@@ -363,10 +437,14 @@
       "line_burden_per_device_usd": 4.1338,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 413.38,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 41.338,
       "historical_capture_displayed_line_usd": 29.2935,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C54951858",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.484,
+      "cumulative_planning_base_pct": 56.606
     },
     {
       "device_id": "ti_tpd4e05u06_dqar",
@@ -382,10 +460,14 @@
       "line_burden_per_device_usd": 4.017,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 401.70000000000005,
+      "quantity_ten_devices": 130,
+      "planning_ten_devices_line_usd": 40.17,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.442,
+      "cumulative_planning_base_pct": 58.048
     },
     {
       "device_id": "adi_max17320_g20_t",
@@ -401,10 +483,14 @@
       "line_burden_per_device_usd": 4.0019,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 400.19,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 40.019,
       "historical_capture_displayed_line_usd": 31.0585,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C7457895",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.437,
+      "cumulative_planning_base_pct": 59.485
     },
     {
       "device_id": "hirose_fx8c_80s_sv5_92",
@@ -420,10 +506,14 @@
       "line_burden_per_device_usd": 3.9133,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 391.33,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 39.133,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.405,
+      "cumulative_planning_base_pct": 60.89
     },
     {
       "device_id": "ti_bq25798_rqmr",
@@ -439,10 +529,14 @@
       "line_burden_per_device_usd": 3.514,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 351.4,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 35.14,
       "historical_capture_displayed_line_usd": 14.632,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C2876593",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.262,
+      "cumulative_planning_base_pct": 62.151
     },
     {
       "device_id": "alps_ec11e18244au",
@@ -458,10 +552,14 @@
       "line_burden_per_device_usd": 3.288,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 328.79999999999995,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 32.879999999999995,
       "historical_capture_displayed_line_usd": 11.1895,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C202365",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.18,
+      "cumulative_planning_base_pct": 63.332
     },
     {
       "device_id": "hirose_fx8c_80p_sv1_92",
@@ -477,10 +575,14 @@
       "line_burden_per_device_usd": 3.1759,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 317.59,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 31.759,
       "historical_capture_displayed_line_usd": 23.4745,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C7197102",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.14,
+      "cumulative_planning_base_pct": 64.472
     },
     {
       "device_id": "ttm_dc2337j5010ahf",
@@ -496,10 +598,14 @@
       "line_burden_per_device_usd": 3.0873,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 308.73,
+      "quantity_ten_devices": 30,
+      "planning_ten_devices_line_usd": 30.872999999999998,
       "historical_capture_displayed_line_usd": 20.4135,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C509396",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.108,
+      "cumulative_planning_base_pct": 65.58
     },
     {
       "device_id": "cc1101rgpr",
@@ -515,10 +621,14 @@
       "line_burden_per_device_usd": 3.0358,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 303.58,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 30.358,
       "historical_capture_displayed_line_usd": 8.4205,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C29953",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.09,
+      "cumulative_planning_base_pct": 66.67
     },
     {
       "device_id": "rp2354b_a4",
@@ -534,10 +644,14 @@
       "line_burden_per_device_usd": 2.9854,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 298.53999999999996,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 29.854,
       "historical_capture_displayed_line_usd": 14.927,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C39843328",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.072,
+      "cumulative_planning_base_pct": 67.742
     },
     {
       "device_id": "littelfuse_0451005_mrl",
@@ -553,10 +667,14 @@
       "line_burden_per_device_usd": 2.8976,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 289.76,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 28.976000000000003,
       "historical_capture_displayed_line_usd": 3.0468,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C48467",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.04,
+      "cumulative_planning_base_pct": 68.782
     },
     {
       "device_id": "hirose_dm3at_sf_pejm5",
@@ -572,10 +690,14 @@
       "line_burden_per_device_usd": 2.5656,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 256.56,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 25.656,
       "historical_capture_displayed_line_usd": 6.951,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C114218",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.921,
+      "cumulative_planning_base_pct": 69.703
     },
     {
       "device_id": "samtec_hle_107_02_g_dv_pe_lc",
@@ -591,10 +713,14 @@
       "line_burden_per_device_usd": 2.542,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 254.2,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 25.419999999999998,
       "historical_capture_displayed_line_usd": 35.833,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C5649644",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.913,
+      "cumulative_planning_base_pct": 70.616
     },
     {
       "device_id": "pui_as02404po",
@@ -610,10 +736,14 @@
       "line_burden_per_device_usd": 2.5294,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 252.94,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 25.293999999999997,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.908,
+      "cumulative_planning_base_pct": 71.524
     },
     {
       "device_id": "ti_tlv1824_pwr",
@@ -629,10 +759,14 @@
       "line_burden_per_device_usd": 2.1036,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 210.36,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 21.036,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.755,
+      "cumulative_planning_base_pct": 72.279
     },
     {
       "device_id": "ti_tca9534a_pwr",
@@ -648,10 +782,14 @@
       "line_burden_per_device_usd": 2.0424,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 204.24,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 20.424000000000003,
       "historical_capture_displayed_line_usd": 7.657,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C206010",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.733,
+      "cumulative_planning_base_pct": 73.012
     },
     {
       "device_id": "ti_tps259470l_rpwr",
@@ -667,10 +805,14 @@
       "line_burden_per_device_usd": 2.0392,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 203.92000000000002,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 20.392000000000003,
       "historical_capture_displayed_line_usd": 9.127,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C3662793",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.732,
+      "cumulative_planning_base_pct": 73.744
     },
     {
       "device_id": "tca4307dgkr",
@@ -686,10 +828,14 @@
       "line_burden_per_device_usd": 2.0137,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 201.37,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 20.137,
       "historical_capture_displayed_line_usd": 12.5045,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C880333",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.723,
+      "cumulative_planning_base_pct": 74.467
     },
     {
       "device_id": "yageo_rc0402fr_0710kl",
@@ -705,10 +851,14 @@
       "line_burden_per_device_usd": 1.9691,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 196.91,
+      "quantity_ten_devices": 2030,
+      "planning_ten_devices_line_usd": 19.691000000000003,
       "historical_capture_displayed_line_usd": 3.589,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C60490",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.707,
+      "cumulative_planning_base_pct": 75.174
     },
     {
       "device_id": "nexperia_74lvc2g126dp_125",
@@ -724,10 +874,14 @@
       "line_burden_per_device_usd": 1.8765,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 187.65,
+      "quantity_ten_devices": 50,
+      "planning_ten_devices_line_usd": 18.765,
       "historical_capture_displayed_line_usd": 12.1425,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C503392",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.674,
+      "cumulative_planning_base_pct": 75.848
     },
     {
       "device_id": "ti_tps25751d_refr",
@@ -743,10 +897,14 @@
       "line_burden_per_device_usd": 1.8384,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 183.84,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 18.384,
       "historical_capture_displayed_line_usd": 12.667,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C30169739",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.66,
+      "cumulative_planning_base_pct": 76.508
     },
     {
       "device_id": "tca6424argjr",
@@ -762,10 +920,14 @@
       "line_burden_per_device_usd": 1.7001,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 170.01,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 17.000999999999998,
       "historical_capture_displayed_line_usd": 6.09,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C80692",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.61,
+      "cumulative_planning_base_pct": 77.118
     },
     {
       "device_id": "skyworks_si4732_a10_gsr",
@@ -781,10 +943,14 @@
       "line_burden_per_device_usd": 1.6785,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 167.85000000000002,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 16.785,
       "historical_capture_displayed_line_usd": 14.3075,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C2155558",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.603,
+      "cumulative_planning_base_pct": 77.721
     },
     {
       "device_id": "ti_mspm0c1106_sdgs20r",
@@ -800,10 +966,14 @@
       "line_burden_per_device_usd": 1.6768,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 167.68,
-      "historical_capture_displayed_line_usd": null,
-      "historical_capture_route": "not_matched",
-      "jlcpcb_part": null,
-      "cost_gate": null
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 16.768,
+      "historical_capture_displayed_line_usd": 11.969000000000001,
+      "historical_capture_route": "pre_order",
+      "jlcpcb_part": "C52995805",
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.602,
+      "cumulative_planning_base_pct": 78.323
     },
     {
       "device_id": "ti_tps25974l_rpwr",
@@ -819,10 +989,14 @@
       "line_burden_per_device_usd": 1.5858,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 158.58,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 15.858,
       "historical_capture_displayed_line_usd": 8.656,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C3662931",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.569,
+      "cumulative_planning_base_pct": 78.892
     },
     {
       "device_id": "yageo_cc0402krx7r9bb104",
@@ -838,10 +1012,14 @@
       "line_burden_per_device_usd": 1.5729,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 157.29,
+      "quantity_ten_devices": 1470,
+      "planning_ten_devices_line_usd": 15.729,
       "historical_capture_displayed_line_usd": 5.9535,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C131394",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.565,
+      "cumulative_planning_base_pct": 79.457
     },
     {
       "device_id": "ti_tlv1821_dckr",
@@ -857,10 +1035,14 @@
       "line_burden_per_device_usd": 1.488,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 148.8,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 14.879999999999999,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.534,
+      "cumulative_planning_base_pct": 79.991
     },
     {
       "device_id": "ti_tps3435cakagddfr",
@@ -876,10 +1058,14 @@
       "line_burden_per_device_usd": 1.476,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 147.6,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 14.76,
       "historical_capture_displayed_line_usd": 13.3575,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C6339182",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.53,
+      "cumulative_planning_base_pct": 80.521
     },
     {
       "device_id": "murata_grm31cr71e106ma12l",
@@ -895,10 +1081,14 @@
       "line_burden_per_device_usd": 1.4687999999999999,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 146.88,
+      "quantity_ten_devices": 120,
+      "planning_ten_devices_line_usd": 14.687999999999999,
       "historical_capture_displayed_line_usd": 12.3194,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C440205",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.527,
+      "cumulative_planning_base_pct": 81.048
     },
     {
       "device_id": "alps_skrtlae010",
@@ -914,10 +1104,14 @@
       "line_burden_per_device_usd": 1.4598,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 145.98,
+      "quantity_ten_devices": 60,
+      "planning_ten_devices_line_usd": 14.597999999999999,
       "historical_capture_displayed_line_usd": 4.6176,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C110293",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.524,
+      "cumulative_planning_base_pct": 81.572
     },
     {
       "device_id": "tdk_c1608x7r1c105k080ac",
@@ -933,10 +1127,14 @@
       "line_burden_per_device_usd": 1.4504,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 145.04,
+      "quantity_ten_devices": 370,
+      "planning_ten_devices_line_usd": 14.504,
       "historical_capture_displayed_line_usd": 9.8766,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C2167399",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.521,
+      "cumulative_planning_base_pct": 82.093
     },
     {
       "device_id": "ti_tpd8e003_dqdr",
@@ -952,10 +1150,14 @@
       "line_burden_per_device_usd": 1.289,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 128.9,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 12.889999999999999,
       "historical_capture_displayed_line_usd": 9.273,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C2867469",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.463,
+      "cumulative_planning_base_pct": 82.555
     },
     {
       "device_id": "jae_dx07s016ja1r1500",
@@ -971,10 +1173,14 @@
       "line_burden_per_device_usd": 1.2272,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 122.72000000000001,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 12.272,
       "historical_capture_displayed_line_usd": 3.451,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C3197885",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.441,
+      "cumulative_planning_base_pct": 82.996
     },
     {
       "device_id": "vishay_tsop75238tr",
@@ -990,10 +1196,14 @@
       "line_burden_per_device_usd": 1.2231,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 122.31,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 12.231000000000002,
       "historical_capture_displayed_line_usd": 6.5055,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C511498",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.439,
+      "cumulative_planning_base_pct": 83.435
     },
     {
       "device_id": "ti_tca9535_pwr",
@@ -1009,10 +1219,14 @@
       "line_burden_per_device_usd": 1.1915,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 119.15,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 11.915,
       "historical_capture_displayed_line_usd": 8.534,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C130204",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.428,
+      "cumulative_planning_base_pct": 83.863
     },
     {
       "device_id": "gct_usb4105_gf_a",
@@ -1028,10 +1242,14 @@
       "line_burden_per_device_usd": 1.149,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 114.9,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 11.49,
       "historical_capture_displayed_line_usd": 8.607,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C3020560",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.412,
+      "cumulative_planning_base_pct": 84.275
     },
     {
       "device_id": "littelfuse_sesd0402x1un_0020_090",
@@ -1047,10 +1265,14 @@
       "line_burden_per_device_usd": 1.1382,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 113.82000000000001,
+      "quantity_ten_devices": 30,
+      "planning_ten_devices_line_usd": 11.382000000000001,
       "historical_capture_displayed_line_usd": 2.985,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C1973340",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.409,
+      "cumulative_planning_base_pct": 84.684
     },
     {
       "device_id": "nexperia_74lvc126apw_118",
@@ -1066,10 +1288,14 @@
       "line_burden_per_device_usd": 1.0728,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 107.28,
+      "quantity_ten_devices": 80,
+      "planning_ten_devices_line_usd": 10.728,
       "historical_capture_displayed_line_usd": 13.968,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C2442297",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.385,
+      "cumulative_planning_base_pct": 85.069
     },
     {
       "device_id": "vishay_tsmp95000tt",
@@ -1085,10 +1311,14 @@
       "line_burden_per_device_usd": 1.06,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 106.0,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 10.600000000000001,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.381,
+      "cumulative_planning_base_pct": 85.45
     },
     {
       "device_id": "vishay_wsl25125l000fea",
@@ -1104,10 +1334,14 @@
       "line_burden_per_device_usd": 1.06,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 106.0,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 10.600000000000001,
       "historical_capture_displayed_line_usd": 2.208,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C844900",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.381,
+      "cumulative_planning_base_pct": 85.83
     },
     {
       "device_id": "ti_tca9539_pwr",
@@ -1123,10 +1357,14 @@
       "line_burden_per_device_usd": 1.0196,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 101.96000000000001,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 10.196000000000002,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.366,
+      "cumulative_planning_base_pct": 86.196
     },
     {
       "device_id": "ttm_b0310j50100ahf",
@@ -1142,10 +1380,14 @@
       "line_burden_per_device_usd": 0.9929,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 99.29,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 9.929,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.356,
+      "cumulative_planning_base_pct": 86.553
     },
     {
       "device_id": "davies_1227_j",
@@ -1161,10 +1403,14 @@
       "line_burden_per_device_usd": 0.972,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 97.2,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 9.719999999999999,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.349,
+      "cumulative_planning_base_pct": 86.902
     },
     {
       "device_id": "onsemi_fsusb42_mux",
@@ -1180,10 +1426,14 @@
       "line_burden_per_device_usd": 0.9326,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 93.26,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 9.326,
       "historical_capture_displayed_line_usd": 3.177,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C11355",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.335,
+      "cumulative_planning_base_pct": 87.236
     },
     {
       "device_id": "same_sky_sj_43504_smt_tr",
@@ -1199,10 +1449,14 @@
       "line_burden_per_device_usd": 0.9304,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 93.04,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 9.304,
       "historical_capture_displayed_line_usd": 11.2055,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C20182908",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.334,
+      "cumulative_planning_base_pct": 87.57
     },
     {
       "device_id": "ti_tps564252_drlr",
@@ -1218,10 +1472,14 @@
       "line_burden_per_device_usd": 0.8859,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 88.59,
+      "quantity_ten_devices": 30,
+      "planning_ten_devices_line_usd": 8.859,
       "historical_capture_displayed_line_usd": 5.9445,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C19191267",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.318,
+      "cumulative_planning_base_pct": 87.888
     },
     {
       "device_id": "kyocera_avx_cp0603q5425entr",
@@ -1237,10 +1495,14 @@
       "line_burden_per_device_usd": 0.8542,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 85.42,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 8.542,
       "historical_capture_displayed_line_usd": 9.052,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C2654257",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.307,
+      "cumulative_planning_base_pct": 88.195
     },
     {
       "device_id": "ti_tpd2eusb30a_drtr",
@@ -1256,10 +1518,14 @@
       "line_burden_per_device_usd": 0.8438,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 84.38,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 8.438,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.303,
+      "cumulative_planning_base_pct": 88.498
     },
     {
       "device_id": "ti_tps22919_dckr",
@@ -1275,10 +1541,14 @@
       "line_burden_per_device_usd": 0.8323,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 83.23,
+      "quantity_ten_devices": 70,
+      "planning_ten_devices_line_usd": 8.323,
       "historical_capture_displayed_line_usd": 4.207,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C2149796",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.299,
+      "cumulative_planning_base_pct": 88.797
     },
     {
       "device_id": "ti_sn74lvc3g07_dcur",
@@ -1294,10 +1564,14 @@
       "line_burden_per_device_usd": 0.8174,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 81.74,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 8.174,
       "historical_capture_displayed_line_usd": 4.45,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C131955",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.293,
+      "cumulative_planning_base_pct": 89.09
     },
     {
       "device_id": "murata_grm21br60j226me39l",
@@ -1313,10 +1587,14 @@
       "line_burden_per_device_usd": 0.8046,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 80.46,
+      "quantity_ten_devices": 60,
+      "planning_ten_devices_line_usd": 8.046,
       "historical_capture_displayed_line_usd": 3.5264,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C77071",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.289,
+      "cumulative_planning_base_pct": 89.379
     },
     {
       "device_id": "ti_tlv9061_idbvr",
@@ -1332,10 +1610,14 @@
       "line_burden_per_device_usd": 0.788,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 78.8,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 7.880000000000001,
       "historical_capture_displayed_line_usd": 1.2264,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C398358",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.283,
+      "cumulative_planning_base_pct": 89.662
     },
     {
       "device_id": "ti_tps3839k33_dbzr",
@@ -1351,10 +1633,14 @@
       "line_burden_per_device_usd": 0.788,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 78.8,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 7.880000000000001,
       "historical_capture_displayed_line_usd": 6.399,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C96333",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.283,
+      "cumulative_planning_base_pct": 89.945
     },
     {
       "device_id": "ti_sn74lvc2g66_dcur",
@@ -1370,10 +1656,14 @@
       "line_burden_per_device_usd": 0.786,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 78.60000000000001,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 7.86,
       "historical_capture_displayed_line_usd": 6.87,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C181970",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.282,
+      "cumulative_planning_base_pct": 90.227
     },
     {
       "device_id": "ck_js102011scqn",
@@ -1389,10 +1679,14 @@
       "line_burden_per_device_usd": 0.7823,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 78.23,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 7.823,
       "historical_capture_displayed_line_usd": 9.151,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C221661",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.281,
+      "cumulative_planning_base_pct": 90.508
     },
     {
       "device_id": "ti_tpd4s201_rukr",
@@ -1408,10 +1702,14 @@
       "line_burden_per_device_usd": 0.7713,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 77.13,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 7.713,
       "historical_capture_displayed_line_usd": 10.426,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C49438759",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.277,
+      "cumulative_planning_base_pct": 90.785
     },
     {
       "device_id": "ti_csd87313dms",
@@ -1427,10 +1725,14 @@
       "line_burden_per_device_usd": 0.7651,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 76.51,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 7.651,
       "historical_capture_displayed_line_usd": 5.279,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C2863848",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.275,
+      "cumulative_planning_base_pct": 91.059
     },
     {
       "device_id": "hirose_df40c_40dp_0_4v_51",
@@ -1446,10 +1748,14 @@
       "line_burden_per_device_usd": 0.726,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 72.6,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 7.26,
       "historical_capture_displayed_line_usd": 2.3065,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C424643",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.261,
+      "cumulative_planning_base_pct": 91.32
     },
     {
       "device_id": "murata_grm188r60j106me47d",
@@ -1465,10 +1771,14 @@
       "line_burden_per_device_usd": 0.7162999999999999,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 71.63,
+      "quantity_ten_devices": 190,
+      "planning_ten_devices_line_usd": 7.162999999999999,
       "historical_capture_displayed_line_usd": 7.1715,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C77041",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.257,
+      "cumulative_planning_base_pct": 91.577
     },
     {
       "device_id": "onsemi_cat24c512wi_gt3",
@@ -1484,10 +1794,14 @@
       "line_burden_per_device_usd": 0.7133,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 71.33,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 7.133000000000001,
       "historical_capture_displayed_line_usd": 3.2075,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C79986",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.256,
+      "cumulative_planning_base_pct": 91.833
     },
     {
       "device_id": "ti_ts5a63157_dckr",
@@ -1503,10 +1817,14 @@
       "line_burden_per_device_usd": 0.6990000000000001,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 69.9,
+      "quantity_ten_devices": 30,
+      "planning_ten_devices_line_usd": 6.99,
       "historical_capture_displayed_line_usd": 4.3605,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C133575",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.251,
+      "cumulative_planning_base_pct": 92.084
     },
     {
       "device_id": "panasonic_erj_2rkf22r0x",
@@ -1522,10 +1840,14 @@
       "line_burden_per_device_usd": 0.6975,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 69.75,
+      "quantity_ten_devices": 450,
+      "planning_ten_devices_line_usd": 6.975,
       "historical_capture_displayed_line_usd": 2.5145,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C413049",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.25,
+      "cumulative_planning_base_pct": 92.335
     },
     {
       "device_id": "tdk_b57332v5103f360",
@@ -1541,10 +1863,14 @@
       "line_burden_per_device_usd": 0.6941999999999999,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 69.41999999999999,
+      "quantity_ten_devices": 60,
+      "planning_ten_devices_line_usd": 6.941999999999999,
       "historical_capture_displayed_line_usd": 3.1008,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C209893",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.249,
+      "cumulative_planning_base_pct": 92.584
     },
     {
       "device_id": "ti_sn74lvc2g08_dcur",
@@ -1560,10 +1886,14 @@
       "line_burden_per_device_usd": 0.6888,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 68.88,
+      "quantity_ten_devices": 30,
+      "planning_ten_devices_line_usd": 6.888,
       "historical_capture_displayed_line_usd": 4.215,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C91875",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.247,
+      "cumulative_planning_base_pct": 92.831
     },
     {
       "device_id": "ti_tps629203_drlr",
@@ -1579,10 +1909,14 @@
       "line_burden_per_device_usd": 0.6192,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 61.919999999999995,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 6.192,
       "historical_capture_displayed_line_usd": 3.8655,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C5219295",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.222,
+      "cumulative_planning_base_pct": 93.053
     },
     {
       "device_id": "ti_tps2553drvr_1",
@@ -1598,10 +1932,14 @@
       "line_burden_per_device_usd": 0.6093,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 60.92999999999999,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 6.093,
       "historical_capture_displayed_line_usd": 1.665,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C411878",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.219,
+      "cumulative_planning_base_pct": 93.272
     },
     {
       "device_id": "liteon_ltst_c190krkt",
@@ -1617,10 +1955,14 @@
       "line_burden_per_device_usd": 0.6075,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 60.75000000000001,
+      "quantity_ten_devices": 90,
+      "planning_ten_devices_line_usd": 6.075,
       "historical_capture_displayed_line_usd": 1.2375,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C94869",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.218,
+      "cumulative_planning_base_pct": 93.49
     },
     {
       "device_id": "hirose_fh34srj_50s_0_5sh_50",
@@ -1636,10 +1978,14 @@
       "line_burden_per_device_usd": 0.5832,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 58.32000000000001,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 5.832000000000001,
       "historical_capture_displayed_line_usd": 2.9160000000000004,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C3169104",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.209,
+      "cumulative_planning_base_pct": 93.7
     },
     {
       "device_id": "sunlord_mwsa0503s_2r2mt",
@@ -1655,10 +2001,14 @@
       "line_burden_per_device_usd": 0.5751,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 57.50999999999999,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 5.7509999999999994,
       "historical_capture_displayed_line_usd": 1.1767,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C408408",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.206,
+      "cumulative_planning_base_pct": 93.906
     },
     {
       "device_id": "sunlord_mwsa0503s_4r7mt",
@@ -1674,10 +2024,14 @@
       "line_burden_per_device_usd": 0.5751,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 57.50999999999999,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 5.7509999999999994,
       "historical_capture_displayed_line_usd": 1.2677,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C408410",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.206,
+      "cumulative_planning_base_pct": 94.112
     },
     {
       "device_id": "vishay_vemd1060x01",
@@ -1693,10 +2047,14 @@
       "line_burden_per_device_usd": 0.5371,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 53.71,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 5.371,
       "historical_capture_displayed_line_usd": 4.807,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C144925",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.193,
+      "cumulative_planning_base_pct": 94.305
     },
     {
       "device_id": "diodes_2n7002dw_7_f",
@@ -1712,10 +2070,14 @@
       "line_burden_per_device_usd": 0.5108,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 51.080000000000005,
+      "quantity_ten_devices": 40,
+      "planning_ten_devices_line_usd": 5.1080000000000005,
       "historical_capture_displayed_line_usd": 9.0012,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C83571",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.183,
+      "cumulative_planning_base_pct": 94.489
     },
     {
       "device_id": "ti_sn74lvc1g07_dckr",
@@ -1731,10 +2093,14 @@
       "line_burden_per_device_usd": 0.509,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 50.9,
+      "quantity_ten_devices": 100,
+      "planning_ten_devices_line_usd": 5.09,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.183,
+      "cumulative_planning_base_pct": 94.671
     },
     {
       "device_id": "vishay_vsmy14940",
@@ -1750,10 +2116,14 @@
       "line_burden_per_device_usd": 0.5035,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 50.349999999999994,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 5.034999999999999,
       "historical_capture_displayed_line_usd": 3.8895,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C511069",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.181,
+      "cumulative_planning_base_pct": 94.852
     },
     {
       "device_id": "ti_tps25961_drvr",
@@ -1769,10 +2139,14 @@
       "line_burden_per_device_usd": 0.4513,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 45.129999999999995,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 4.513,
       "historical_capture_displayed_line_usd": 9.004,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C5571272",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.162,
+      "cumulative_planning_base_pct": 95.014
     },
     {
       "device_id": "ti_tvs2200_drvr",
@@ -1788,10 +2162,14 @@
       "line_burden_per_device_usd": 0.4493,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 44.93,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 4.492999999999999,
       "historical_capture_displayed_line_usd": 2.315,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C523793",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.161,
+      "cumulative_planning_base_pct": 95.175
     },
     {
       "device_id": "diodes_dmn2056u_7",
@@ -1807,10 +2185,14 @@
       "line_burden_per_device_usd": 0.44699999999999995,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 44.699999999999996,
+      "quantity_ten_devices": 30,
+      "planning_ten_devices_line_usd": 4.47,
       "historical_capture_displayed_line_usd": 1.3224,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C332302",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.16,
+      "cumulative_planning_base_pct": 95.336
     },
     {
       "device_id": "tdk_cga5l1x7r1e475k160ac",
@@ -1826,10 +2208,14 @@
       "line_burden_per_device_usd": 0.42569999999999997,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 42.56999999999999,
+      "quantity_ten_devices": 30,
+      "planning_ten_devices_line_usd": 4.257,
       "historical_capture_displayed_line_usd": 8.9787,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C2170392",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.153,
+      "cumulative_planning_base_pct": 95.489
     },
     {
       "device_id": "ti_sn74lvc08a_pwr",
@@ -1845,10 +2231,14 @@
       "line_burden_per_device_usd": 0.4254,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 42.54,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 4.254,
       "historical_capture_displayed_line_usd": 4.1107,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C465737",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.153,
+      "cumulative_planning_base_pct": 95.641
     },
     {
       "device_id": "infineon_bgs13sn8e6327xtsa1",
@@ -1864,10 +2254,14 @@
       "line_burden_per_device_usd": 0.4252,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 42.52,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 4.252000000000001,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.153,
+      "cumulative_planning_base_pct": 95.794
     },
     {
       "device_id": "abracon_abm8_272_t3",
@@ -1883,10 +2277,14 @@
       "line_burden_per_device_usd": 0.4085,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 40.849999999999994,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 4.085,
       "historical_capture_displayed_line_usd": 1.8045,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C20625731",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.147,
+      "cumulative_planning_base_pct": 95.941
     },
     {
       "device_id": "same_sky_cmej_0413_42_smt_tr",
@@ -1902,10 +2300,14 @@
       "line_burden_per_device_usd": 0.3909,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 39.09,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 3.9090000000000003,
       "historical_capture_displayed_line_usd": 9.3156,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C3273679",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.14,
+      "cumulative_planning_base_pct": 96.081
     },
     {
       "device_id": "yageo_rc0402fr_07100kl",
@@ -1921,10 +2323,14 @@
       "line_burden_per_device_usd": 0.388,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 38.800000000000004,
+      "quantity_ten_devices": 400,
+      "planning_ten_devices_line_usd": 3.88,
       "historical_capture_displayed_line_usd": 0.88,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C60491",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.139,
+      "cumulative_planning_base_pct": 96.22
     },
     {
       "device_id": "bourns_crm2512_fx_20r0elf",
@@ -1940,10 +2346,14 @@
       "line_burden_per_device_usd": 0.368,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 36.8,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 3.6799999999999997,
       "historical_capture_displayed_line_usd": 3.508,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C1848837",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.132,
+      "cumulative_planning_base_pct": 96.353
     },
     {
       "device_id": "tdk_c1005x5r0j475k050bc",
@@ -1959,10 +2369,14 @@
       "line_burden_per_device_usd": 0.3612,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 36.120000000000005,
+      "quantity_ten_devices": 40,
+      "planning_ten_devices_line_usd": 3.612,
       "historical_capture_displayed_line_usd": 8.9815,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C2167436",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.13,
+      "cumulative_planning_base_pct": 96.482
     },
     {
       "device_id": "diodes_pam8302a_aycr",
@@ -1978,10 +2392,14 @@
       "line_burden_per_device_usd": 0.351,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 35.099999999999994,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 3.51,
       "historical_capture_displayed_line_usd": 9.5301,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C4990730",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.126,
+      "cumulative_planning_base_pct": 96.608
     },
     {
       "device_id": "diodes_bat54_7_f",
@@ -1997,10 +2415,14 @@
       "line_burden_per_device_usd": 0.349,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 34.9,
+      "quantity_ten_devices": 50,
+      "planning_ten_devices_line_usd": 3.4899999999999998,
       "historical_capture_displayed_line_usd": 0.8875,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C106920",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.125,
+      "cumulative_planning_base_pct": 96.733
     },
     {
       "device_id": "ti_txs0102_dcur",
@@ -2016,10 +2438,14 @@
       "line_burden_per_device_usd": 0.348,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 34.8,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 3.4799999999999995,
       "historical_capture_displayed_line_usd": 1.137,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C53434",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.125,
+      "cumulative_planning_base_pct": 96.858
     },
     {
       "device_id": "vishay_tnpw040243k7beed",
@@ -2035,10 +2461,14 @@
       "line_burden_per_device_usd": 0.3475,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 34.75,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 3.4749999999999996,
       "historical_capture_displayed_line_usd": 8.9568,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C4056533",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.125,
+      "cumulative_planning_base_pct": 96.983
     },
     {
       "device_id": "hirose_df40c_2_0_40ds_0_4v_51",
@@ -2054,10 +2484,14 @@
       "line_burden_per_device_usd": 0.3428,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 34.28,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 3.428,
       "historical_capture_displayed_line_usd": 2.7695,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C597934",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.123,
+      "cumulative_planning_base_pct": 97.106
     },
     {
       "device_id": "ti_sn74lvc1g74_dcur",
@@ -2073,10 +2507,14 @@
       "line_burden_per_device_usd": 0.33,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 33.0,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 3.3000000000000003,
       "historical_capture_displayed_line_usd": 1.1945,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C70285",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.118,
+      "cumulative_planning_base_pct": 97.225
     },
     {
       "device_id": "abracon_abm8_26mhz_10_d_1_g_t",
@@ -2092,10 +2530,14 @@
       "line_burden_per_device_usd": 0.3257,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 32.57,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 3.2569999999999997,
       "historical_capture_displayed_line_usd": 2.493,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C1985475",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.117,
+      "cumulative_planning_base_pct": 97.342
     },
     {
       "device_id": "nexperia_74lvc2g14gv_125",
@@ -2111,10 +2553,14 @@
       "line_burden_per_device_usd": 0.32,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 32.0,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 3.2,
       "historical_capture_displayed_line_usd": 2.01,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C426708",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.115,
+      "cumulative_planning_base_pct": 97.457
     },
     {
       "device_id": "murata_grm31c5c1h224je02l",
@@ -2130,10 +2576,14 @@
       "line_burden_per_device_usd": 0.3198,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 31.979999999999997,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 3.1979999999999995,
       "historical_capture_displayed_line_usd": 1.8095,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C464977",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.115,
+      "cumulative_planning_base_pct": 97.571
     },
     {
       "device_id": "murata_grm21br71e225ke11l",
@@ -2149,10 +2599,14 @@
       "line_burden_per_device_usd": 0.306,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 30.599999999999998,
+      "quantity_ten_devices": 50,
+      "planning_ten_devices_line_usd": 3.06,
       "historical_capture_displayed_line_usd": 1.7688,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C77081",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.11,
+      "cumulative_planning_base_pct": 97.681
     },
     {
       "device_id": "everest_es8311_qfn20",
@@ -2168,10 +2622,14 @@
       "line_burden_per_device_usd": 0.3024,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 30.240000000000002,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 3.024,
       "historical_capture_displayed_line_usd": 2.761,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C962342",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.109,
+      "cumulative_planning_base_pct": 97.79
     },
     {
       "device_id": "onsemi_bat54alt1g",
@@ -2187,10 +2645,14 @@
       "line_burden_per_device_usd": 0.2885,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 28.849999999999998,
+      "quantity_ten_devices": 50,
+      "planning_ten_devices_line_usd": 2.885,
       "historical_capture_displayed_line_usd": 0.9338,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C92068",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.104,
+      "cumulative_planning_base_pct": 97.893
     },
     {
       "device_id": "ti_sn74lvc3g34_dcur",
@@ -2206,10 +2668,14 @@
       "line_burden_per_device_usd": 0.2616,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 26.16,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 2.616,
       "historical_capture_displayed_line_usd": 2.631,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C130024",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.094,
+      "cumulative_planning_base_pct": 97.987
     },
     {
       "device_id": "ti_sn74lvc1g126_dckr",
@@ -2225,10 +2691,14 @@
       "line_burden_per_device_usd": 0.2184,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 21.84,
+      "quantity_ten_devices": 40,
+      "planning_ten_devices_line_usd": 2.184,
       "historical_capture_displayed_line_usd": 2.4548,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C88039",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.078,
+      "cumulative_planning_base_pct": 98.066
     },
     {
       "device_id": "epson_q13fc13500005",
@@ -2244,10 +2714,14 @@
       "line_burden_per_device_usd": 0.2154,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 21.54,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 2.154,
       "historical_capture_displayed_line_usd": 1.3205,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C841881",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.077,
+      "cumulative_planning_base_pct": 98.143
     },
     {
       "device_id": "murata_grm188r71e474ka12d",
@@ -2263,10 +2737,14 @@
       "line_burden_per_device_usd": 0.1984,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 19.84,
+      "quantity_ten_devices": 40,
+      "planning_ten_devices_line_usd": 1.984,
       "historical_capture_displayed_line_usd": 1.1256,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C77052",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.071,
+      "cumulative_planning_base_pct": 98.214
     },
     {
       "device_id": "ti_sn74lvc1g08_dckr",
@@ -2282,10 +2760,14 @@
       "line_burden_per_device_usd": 0.196,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 19.6,
+      "quantity_ten_devices": 40,
+      "planning_ten_devices_line_usd": 1.96,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.07,
+      "cumulative_planning_base_pct": 98.285
     },
     {
       "device_id": "murata_grm31cr71a226ke15l",
@@ -2301,10 +2783,14 @@
       "line_burden_per_device_usd": 0.1884,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 18.84,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 1.8840000000000001,
       "historical_capture_displayed_line_usd": 1.6485,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C91604",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.068,
+      "cumulative_planning_base_pct": 98.352
     },
     {
       "device_id": "vishay_tnpw040210k0beed",
@@ -2320,10 +2806,14 @@
       "line_burden_per_device_usd": 0.1812,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 18.12,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 1.812,
       "historical_capture_displayed_line_usd": 0.5894,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C844452",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.065,
+      "cumulative_planning_base_pct": 98.417
     },
     {
       "device_id": "murata_grm188z71a475me15d",
@@ -2339,10 +2829,14 @@
       "line_burden_per_device_usd": 0.1798,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 17.98,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 1.7979999999999998,
       "historical_capture_displayed_line_usd": 1.0272,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C3835885",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.065,
+      "cumulative_planning_base_pct": 98.482
     },
     {
       "device_id": "murata_grm155r71a474ke01d",
@@ -2358,10 +2852,14 @@
       "line_burden_per_device_usd": 0.1771,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 17.71,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 1.7710000000000001,
       "historical_capture_displayed_line_usd": 0.1765,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C88946",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.064,
+      "cumulative_planning_base_pct": 98.545
     },
     {
       "device_id": "murata_blm18pg181sn1d",
@@ -2377,10 +2875,14 @@
       "line_burden_per_device_usd": 0.1724,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 17.24,
+      "quantity_ten_devices": 40,
+      "planning_ten_devices_line_usd": 1.724,
       "historical_capture_displayed_line_usd": 0.453,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C82850",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.062,
+      "cumulative_planning_base_pct": 98.607
     },
     {
       "device_id": "murata_grm1555c1h121ja01d",
@@ -2396,10 +2898,14 @@
       "line_burden_per_device_usd": 0.1576,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 15.76,
+      "quantity_ten_devices": 80,
+      "planning_ten_devices_line_usd": 1.5759999999999998,
       "historical_capture_displayed_line_usd": 8.9565,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C76949",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.057,
+      "cumulative_planning_base_pct": 98.664
     },
     {
       "device_id": "murata_gjm1555c1h150jb01d",
@@ -2415,10 +2921,14 @@
       "line_burden_per_device_usd": 0.1568,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 15.68,
+      "quantity_ten_devices": 40,
+      "planning_ten_devices_line_usd": 1.568,
       "historical_capture_displayed_line_usd": 0.8484,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C88877",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.056,
+      "cumulative_planning_base_pct": 98.72
     },
     {
       "device_id": "abracon_aota_b201610s3r3_101_t",
@@ -2434,10 +2944,14 @@
       "line_burden_per_device_usd": 0.1512,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 15.120000000000001,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 1.512,
       "historical_capture_displayed_line_usd": 1.427,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C42411119",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.054,
+      "cumulative_planning_base_pct": 98.774
     },
     {
       "device_id": "ti_sn74lvc1g06_dckr",
@@ -2453,10 +2967,14 @@
       "line_burden_per_device_usd": 0.1498,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 14.979999999999999,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 1.4979999999999998,
       "historical_capture_displayed_line_usd": 2.0088,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C7828",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.054,
+      "cumulative_planning_base_pct": 98.828
     },
     {
       "device_id": "ti_sn74lvc1g17_dckr",
@@ -2472,10 +2990,14 @@
       "line_burden_per_device_usd": 0.1434,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 14.34,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 1.434,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.051,
+      "cumulative_planning_base_pct": 98.88
     },
     {
       "device_id": "yageo_rc0402fr_073k32l",
@@ -2491,10 +3013,14 @@
       "line_burden_per_device_usd": 0.1358,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 13.58,
+      "quantity_ten_devices": 140,
+      "planning_ten_devices_line_usd": 1.358,
       "historical_capture_displayed_line_usd": 0.328,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C137993",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.049,
+      "cumulative_planning_base_pct": 98.928
     },
     {
       "device_id": "ti_sn74lvc1g3157_dbvr",
@@ -2510,10 +3036,14 @@
       "line_burden_per_device_usd": 0.1301,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 13.01,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 1.301,
       "historical_capture_displayed_line_usd": 1.2555,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C10426",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.047,
+      "cumulative_planning_base_pct": 98.975
     },
     {
       "device_id": "diodes_mmbt3904_7_f",
@@ -2529,10 +3059,14 @@
       "line_burden_per_device_usd": 0.1194,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 11.940000000000001,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 1.194,
       "historical_capture_displayed_line_usd": 0.9555,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C94514",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.043,
+      "cumulative_planning_base_pct": 99.018
     },
     {
       "device_id": "yageo_rc0402fr_071kl",
@@ -2548,10 +3082,14 @@
       "line_burden_per_device_usd": 0.1164,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 11.64,
+      "quantity_ten_devices": 120,
+      "planning_ten_devices_line_usd": 1.1640000000000001,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.042,
+      "cumulative_planning_base_pct": 99.06
     },
     {
       "device_id": "yageo_rc0402fr_071ml",
@@ -2567,10 +3105,14 @@
       "line_burden_per_device_usd": 0.1164,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 11.64,
+      "quantity_ten_devices": 120,
+      "planning_ten_devices_line_usd": 1.1640000000000001,
       "historical_capture_displayed_line_usd": 0.2665,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C138033",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.042,
+      "cumulative_planning_base_pct": 99.102
     },
     {
       "device_id": "yageo_rc0402fr_07220kl",
@@ -2586,10 +3128,14 @@
       "line_burden_per_device_usd": 0.1067,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 10.67,
+      "quantity_ten_devices": 110,
+      "planning_ten_devices_line_usd": 1.067,
       "historical_capture_displayed_line_usd": 0.26,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C138030",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.038,
+      "cumulative_planning_base_pct": 99.14
     },
     {
       "device_id": "kemet_c0402c330j5gactu",
@@ -2605,10 +3151,14 @@
       "line_burden_per_device_usd": 0.1065,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 10.65,
+      "quantity_ten_devices": 50,
+      "planning_ten_devices_line_usd": 1.065,
       "historical_capture_displayed_line_usd": 1.3825,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C2649530",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.038,
+      "cumulative_planning_base_pct": 99.178
     },
     {
       "device_id": "nexperia_74lvc1g32gv_125",
@@ -2624,10 +3174,14 @@
       "line_burden_per_device_usd": 0.1046,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 10.459999999999999,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 1.046,
       "historical_capture_displayed_line_usd": 1.8466,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C12517",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.038,
+      "cumulative_planning_base_pct": 99.216
     },
     {
       "device_id": "yageo_rc0402fr_0747kl",
@@ -2643,10 +3197,14 @@
       "line_burden_per_device_usd": 0.097,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 9.700000000000001,
+      "quantity_ten_devices": 100,
+      "planning_ten_devices_line_usd": 0.97,
       "historical_capture_displayed_line_usd": 0.2542,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C93943",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.035,
+      "cumulative_planning_base_pct": 99.25
     },
     {
       "device_id": "murata_lqg15hs10nj02d",
@@ -2662,10 +3220,14 @@
       "line_burden_per_device_usd": 0.093,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 9.3,
+      "quantity_ten_devices": 30,
+      "planning_ten_devices_line_usd": 0.9299999999999999,
       "historical_capture_displayed_line_usd": 0.46,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C77103",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.033,
+      "cumulative_planning_base_pct": 99.284
     },
     {
       "device_id": "uniroyal_0402wgf2201tce",
@@ -2681,10 +3243,14 @@
       "line_burden_per_device_usd": 0.0897,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 8.97,
+      "quantity_ten_devices": 230,
+      "planning_ten_devices_line_usd": 0.897,
       "historical_capture_displayed_line_usd": 0.4485,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C25879",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.032,
+      "cumulative_planning_base_pct": 99.316
     },
     {
       "device_id": "yageo_rt0402brd07191kl",
@@ -2700,10 +3266,14 @@
       "line_burden_per_device_usd": 0.082,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 8.200000000000001,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.8200000000000001,
       "historical_capture_displayed_line_usd": 8.976,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C852583",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.029,
+      "cumulative_planning_base_pct": 99.345
     },
     {
       "device_id": "murata_grm155r71h103ka88d",
@@ -2719,10 +3289,14 @@
       "line_burden_per_device_usd": 0.0776,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 7.76,
+      "quantity_ten_devices": 80,
+      "planning_ten_devices_line_usd": 0.776,
       "historical_capture_displayed_line_usd": 0.5044,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C77019",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.028,
+      "cumulative_planning_base_pct": 99.373
     },
     {
       "device_id": "murata_grm1555c1h221ja01d",
@@ -2738,10 +3312,14 @@
       "line_burden_per_device_usd": 0.0708,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 7.08,
+      "quantity_ten_devices": 40,
+      "planning_ten_devices_line_usd": 0.708,
       "historical_capture_displayed_line_usd": 0.147,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C71693",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.025,
+      "cumulative_planning_base_pct": 99.399
     },
     {
       "device_id": "panasonic_erj_p08f10r0v",
@@ -2757,10 +3335,14 @@
       "line_burden_per_device_usd": 0.0689,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 6.890000000000001,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.6890000000000001,
       "historical_capture_displayed_line_usd": 0.4905,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C4064522",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.025,
+      "cumulative_planning_base_pct": 99.423
     },
     {
       "device_id": "yageo_rc0402fr_07100rl",
@@ -2776,10 +3358,14 @@
       "line_burden_per_device_usd": 0.0679,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 6.79,
+      "quantity_ten_devices": 70,
+      "planning_ten_devices_line_usd": 0.679,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.024,
+      "cumulative_planning_base_pct": 99.448
     },
     {
       "device_id": "yageo_rt0402brd07100kl",
@@ -2795,10 +3381,14 @@
       "line_burden_per_device_usd": 0.0646,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 6.460000000000001,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.646,
       "historical_capture_displayed_line_usd": 0.53,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C852472",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.023,
+      "cumulative_planning_base_pct": 99.471
     },
     {
       "device_id": "liteon_ltst_c190kfkt",
@@ -2814,10 +3404,14 @@
       "line_burden_per_device_usd": 0.0637,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 6.370000000000001,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.637,
       "historical_capture_displayed_line_usd": 0.476,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C157740",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.023,
+      "cumulative_planning_base_pct": 99.494
     },
     {
       "device_id": "yageo_rc0402fr_075k1l",
@@ -2833,10 +3427,14 @@
       "line_burden_per_device_usd": 0.0618,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 6.18,
+      "quantity_ten_devices": 60,
+      "planning_ten_devices_line_usd": 0.618,
       "historical_capture_displayed_line_usd": 0.14,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C105872",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.022,
+      "cumulative_planning_base_pct": 99.516
     },
     {
       "device_id": "murata_grm188r71e224ka88d",
@@ -2852,10 +3450,14 @@
       "line_burden_per_device_usd": 0.0612,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 6.12,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 0.612,
       "historical_capture_displayed_line_usd": 0.502,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C77051",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.022,
+      "cumulative_planning_base_pct": 99.538
     },
     {
       "device_id": "ti_sn74lvc1g125_dckr",
@@ -2871,10 +3473,14 @@
       "line_burden_per_device_usd": 0.0583,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 5.83,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.583,
       "historical_capture_displayed_line_usd": 1.0791,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C7833",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.021,
+      "cumulative_planning_base_pct": 99.559
     },
     {
       "device_id": "yageo_rc0402fr_07470rl",
@@ -2890,10 +3496,14 @@
       "line_burden_per_device_usd": 0.0582,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 5.82,
+      "quantity_ten_devices": 60,
+      "planning_ten_devices_line_usd": 0.5820000000000001,
       "historical_capture_displayed_line_usd": 0.164,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C114877",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.021,
+      "cumulative_planning_base_pct": 99.58
     },
     {
       "device_id": "yageo_rc0603fr_071kl",
@@ -2909,10 +3519,14 @@
       "line_burden_per_device_usd": 0.0488,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 4.88,
+      "quantity_ten_devices": 40,
+      "planning_ten_devices_line_usd": 0.48800000000000004,
       "historical_capture_displayed_line_usd": 0.156,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C22548",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.018,
+      "cumulative_planning_base_pct": 99.597
     },
     {
       "device_id": "yageo_rc0402fr_07169kl",
@@ -2928,10 +3542,14 @@
       "line_burden_per_device_usd": 0.0485,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 4.8500000000000005,
+      "quantity_ten_devices": 50,
+      "planning_ten_devices_line_usd": 0.485,
       "historical_capture_displayed_line_usd": 0.077,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C327367",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.017,
+      "cumulative_planning_base_pct": 99.615
     },
     {
       "device_id": "yageo_rc0402fr_0749r9l",
@@ -2947,10 +3565,14 @@
       "line_burden_per_device_usd": 0.0485,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 4.8500000000000005,
+      "quantity_ten_devices": 50,
+      "planning_ten_devices_line_usd": 0.485,
       "historical_capture_displayed_line_usd": 0.1435,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C87044",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.017,
+      "cumulative_planning_base_pct": 99.632
     },
     {
       "device_id": "yageo_rc0402fr_0752r3l",
@@ -2966,10 +3588,14 @@
       "line_burden_per_device_usd": 0.0485,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 4.8500000000000005,
+      "quantity_ten_devices": 50,
+      "planning_ten_devices_line_usd": 0.485,
       "historical_capture_displayed_line_usd": 0.051,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C273696",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.017,
+      "cumulative_planning_base_pct": 99.65
     },
     {
       "device_id": "onsemi_bav70lt1g",
@@ -2985,10 +3611,14 @@
       "line_burden_per_device_usd": 0.046,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 4.6,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.45999999999999996,
       "historical_capture_displayed_line_usd": 0.134,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C82479",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.017,
+      "cumulative_planning_base_pct": 99.666
     },
     {
       "device_id": "murata_lqw15an56ng00d",
@@ -3004,10 +3634,14 @@
       "line_burden_per_device_usd": 0.0447,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 4.47,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.44699999999999995,
       "historical_capture_displayed_line_usd": 0.2235,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C167482",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.016,
+      "cumulative_planning_base_pct": 99.682
     },
     {
       "device_id": "sunlord_wpn201612h2r2mt",
@@ -3023,10 +3657,14 @@
       "line_burden_per_device_usd": 0.0426,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 4.26,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.426,
       "historical_capture_displayed_line_usd": 0.4653,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C97025",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.015,
+      "cumulative_planning_base_pct": 99.698
     },
     {
       "device_id": "seeed_1125r_smt_4p",
@@ -3042,10 +3680,14 @@
       "line_burden_per_device_usd": 0.042,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 4.2,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.42000000000000004,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.015,
+      "cumulative_planning_base_pct": 99.713
     },
     {
       "device_id": "murata_gjm1555c1h100jb01d",
@@ -3061,10 +3703,14 @@
       "line_burden_per_device_usd": 0.0417,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 4.17,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.41700000000000004,
       "historical_capture_displayed_line_usd": 0.28,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C85874",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.015,
+      "cumulative_planning_base_pct": 99.728
     },
     {
       "device_id": "murata_grm155r71h472ka01d",
@@ -3080,10 +3726,14 @@
       "line_burden_per_device_usd": 0.0392,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 3.92,
+      "quantity_ten_devices": 40,
+      "planning_ten_devices_line_usd": 0.392,
       "historical_capture_displayed_line_usd": 0.339,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C77024",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.014,
+      "cumulative_planning_base_pct": 99.742
     },
     {
       "device_id": "yageo_rc0402fr_0768kl",
@@ -3099,10 +3749,14 @@
       "line_burden_per_device_usd": 0.0388,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 3.88,
+      "quantity_ten_devices": 40,
+      "planning_ten_devices_line_usd": 0.388,
       "historical_capture_displayed_line_usd": 0.114,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C137947",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.014,
+      "cumulative_planning_base_pct": 99.756
     },
     {
       "device_id": "murata_gjm1555c1hr47bb01d",
@@ -3118,10 +3772,14 @@
       "line_burden_per_device_usd": 0.0346,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 3.46,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.346,
       "historical_capture_displayed_line_usd": 8.9569,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C2168943",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.012,
+      "cumulative_planning_base_pct": 99.768
     },
     {
       "device_id": "murata_gjm1555c1h1r2bb01d",
@@ -3137,10 +3795,14 @@
       "line_burden_per_device_usd": 0.031,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 3.1,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.31,
       "historical_capture_displayed_line_usd": 0.586,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C72135",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.011,
+      "cumulative_planning_base_pct": 99.779
     },
     {
       "device_id": "murata_gjm1555c1hr60bb01d",
@@ -3156,10 +3818,14 @@
       "line_burden_per_device_usd": 0.031,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 3.1,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.31,
       "historical_capture_displayed_line_usd": 0.372,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C76913",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.011,
+      "cumulative_planning_base_pct": 99.79
     },
     {
       "device_id": "murata_lqg15hs15nj02d",
@@ -3175,10 +3841,14 @@
       "line_burden_per_device_usd": 0.031,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 3.1,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.31,
       "historical_capture_displayed_line_usd": 0.406,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C86059",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.011,
+      "cumulative_planning_base_pct": 99.801
     },
     {
       "device_id": "murata_lqg15hs2n2s02d",
@@ -3194,10 +3864,14 @@
       "line_burden_per_device_usd": 0.031,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 3.1,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.31,
       "historical_capture_displayed_line_usd": 0.364,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C86061",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.011,
+      "cumulative_planning_base_pct": 99.812
     },
     {
       "device_id": "murata_lqg15hs3n3s02d",
@@ -3213,10 +3887,14 @@
       "line_burden_per_device_usd": 0.031,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 3.1,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.31,
       "historical_capture_displayed_line_usd": 0.39,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C86064",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.011,
+      "cumulative_planning_base_pct": 99.824
     },
     {
       "device_id": "murata_lqg15hs3n6s02d",
@@ -3232,10 +3910,14 @@
       "line_burden_per_device_usd": 0.031,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 3.1,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.31,
       "historical_capture_displayed_line_usd": 0.614,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C19216",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.011,
+      "cumulative_planning_base_pct": 99.835
     },
     {
       "device_id": "murata_lqg15hs6n8j02d",
@@ -3251,10 +3933,14 @@
       "line_burden_per_device_usd": 0.031,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 3.1,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.31,
       "historical_capture_displayed_line_usd": 0.356,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C77110",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.011,
+      "cumulative_planning_base_pct": 99.846
     },
     {
       "device_id": "panasonic_erj_2rkf27r0x",
@@ -3270,10 +3956,14 @@
       "line_burden_per_device_usd": 0.031,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 3.1,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 0.31,
       "historical_capture_displayed_line_usd": 0.092,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C413051",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.011,
+      "cumulative_planning_base_pct": 99.857
     },
     {
       "device_id": "kemet_c0402c102k5ractu",
@@ -3289,10 +3979,14 @@
       "line_burden_per_device_usd": 0.03,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 3.0,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 0.3,
       "historical_capture_displayed_line_usd": 0.182,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C2649506",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.011,
+      "cumulative_planning_base_pct": 99.868
     },
     {
       "device_id": "murata_grm1555c1h390ja01d",
@@ -3308,10 +4002,14 @@
       "line_burden_per_device_usd": 0.028,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 2.8000000000000003,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 0.28,
       "historical_capture_displayed_line_usd": 8.9582,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C76966",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.01,
+      "cumulative_planning_base_pct": 99.878
     },
     {
       "device_id": "yageo_cc0603krx7r0bb104",
@@ -3327,10 +4025,14 @@
       "line_burden_per_device_usd": 0.026,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 2.6,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.26,
       "historical_capture_displayed_line_usd": 0.13,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C113803",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.009,
+      "cumulative_planning_base_pct": 99.887
     },
     {
       "device_id": "murata_grm155r71e473ka88d",
@@ -3346,10 +4048,14 @@
       "line_burden_per_device_usd": 0.0252,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 2.52,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 0.252,
       "historical_capture_displayed_line_usd": 0.148,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C77017",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.009,
+      "cumulative_planning_base_pct": 99.896
     },
     {
       "device_id": "murata_gjm1555c1h6r2db01d",
@@ -3365,10 +4071,14 @@
       "line_burden_per_device_usd": 0.021,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 2.1,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.21000000000000002,
       "historical_capture_displayed_line_usd": 0.278,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C161332",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.008,
+      "cumulative_planning_base_pct": 99.904
     },
     {
       "device_id": "murata_gjm1555c1h8r0db01d",
@@ -3384,10 +4094,14 @@
       "line_burden_per_device_usd": 0.0207,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 2.07,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.207,
       "historical_capture_displayed_line_usd": 0.414,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C2191663",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.007,
+      "cumulative_planning_base_pct": 99.911
     },
     {
       "device_id": "yageo_rc0402fr_07110kl",
@@ -3403,10 +4117,14 @@
       "line_burden_per_device_usd": 0.0194,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 1.94,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 0.194,
       "historical_capture_displayed_line_usd": 0.076,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C138065",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.007,
+      "cumulative_planning_base_pct": 99.918
     },
     {
       "device_id": "yageo_rc0402fr_0712kl",
@@ -3422,10 +4140,14 @@
       "line_burden_per_device_usd": 0.0194,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 1.94,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 0.194,
       "historical_capture_displayed_line_usd": 0.074,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C114760",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.007,
+      "cumulative_planning_base_pct": 99.925
     },
     {
       "device_id": "yageo_rc0402fr_071k82l",
@@ -3441,10 +4163,14 @@
       "line_burden_per_device_usd": 0.0194,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 1.94,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 0.194,
       "historical_capture_displayed_line_usd": 0.048,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C185449",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.007,
+      "cumulative_planning_base_pct": 99.932
     },
     {
       "device_id": "yageo_rc0402fr_07220rl",
@@ -3460,10 +4186,14 @@
       "line_burden_per_device_usd": 0.0194,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 1.94,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 0.194,
       "historical_capture_displayed_line_usd": 0.08,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C112291",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.007,
+      "cumulative_planning_base_pct": 99.939
     },
     {
       "device_id": "yageo_rc0402fr_0730kl",
@@ -3479,10 +4209,14 @@
       "line_burden_per_device_usd": 0.0194,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 1.94,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 0.194,
       "historical_capture_displayed_line_usd": 0.082,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C138008",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.007,
+      "cumulative_planning_base_pct": 99.946
     },
     {
       "device_id": "yageo_rc0402jr_070rl",
@@ -3498,10 +4232,14 @@
       "line_burden_per_device_usd": 0.0192,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 1.92,
+      "quantity_ten_devices": 40,
+      "planning_ten_devices_line_usd": 0.19199999999999998,
       "historical_capture_displayed_line_usd": 0.102,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C60485",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.007,
+      "cumulative_planning_base_pct": 99.953
     },
     {
       "device_id": "murata_grm1555c1h102ja01d",
@@ -3517,10 +4255,14 @@
       "line_burden_per_device_usd": 0.0181,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 1.81,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.18100000000000002,
       "historical_capture_displayed_line_usd": 0.208,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C76947",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.006,
+      "cumulative_planning_base_pct": 99.959
     },
     {
       "device_id": "yageo_rc0402fr_0733rl",
@@ -3536,10 +4278,14 @@
       "line_burden_per_device_usd": 0.0103,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 1.03,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.10300000000000001,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.004,
+      "cumulative_planning_base_pct": 99.963
     },
     {
       "device_id": "yageo_rc0402fr_07196kl",
@@ -3555,10 +4301,14 @@
       "line_burden_per_device_usd": 0.0097,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.97,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.097,
       "historical_capture_displayed_line_usd": 0.026,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C477631",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.003,
+      "cumulative_planning_base_pct": 99.967
     },
     {
       "device_id": "yageo_rc0402fr_0730k1l",
@@ -3574,10 +4324,14 @@
       "line_burden_per_device_usd": 0.0097,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.97,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.097,
       "historical_capture_displayed_line_usd": 0.064,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C138009",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.003,
+      "cumulative_planning_base_pct": 99.97
     },
     {
       "device_id": "yageo_rc0402fr_0733kl",
@@ -3593,10 +4347,14 @@
       "line_burden_per_device_usd": 0.0097,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.97,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.097,
       "historical_capture_displayed_line_usd": 0.08,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C138003",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.003,
+      "cumulative_planning_base_pct": 99.974
     },
     {
       "device_id": "yageo_rc0402fr_0745k3l",
@@ -3612,10 +4370,14 @@
       "line_burden_per_device_usd": 0.0097,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.97,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.097,
       "historical_capture_displayed_line_usd": 0.078,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C137977",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.003,
+      "cumulative_planning_base_pct": 99.977
     },
     {
       "device_id": "yageo_rc0402fr_074k7l",
@@ -3631,10 +4393,14 @@
       "line_burden_per_device_usd": 0.0097,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.97,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.097,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.003,
+      "cumulative_planning_base_pct": 99.981
     },
     {
       "device_id": "yageo_rc0402fr_0756kl",
@@ -3650,10 +4416,14 @@
       "line_burden_per_device_usd": 0.0097,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.97,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.097,
       "historical_capture_displayed_line_usd": 0.072,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C114756",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.003,
+      "cumulative_planning_base_pct": 99.984
     },
     {
       "device_id": "fh_rs_06k47r0ft",
@@ -3669,10 +4439,14 @@
       "line_burden_per_device_usd": 0.0062,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.62,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.062,
       "historical_capture_displayed_line_usd": 0.031,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C140014",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.002,
+      "cumulative_planning_base_pct": 99.986
     },
     {
       "device_id": "uniroyal_0402wgf5231tce",
@@ -3688,10 +4462,14 @@
       "line_burden_per_device_usd": 0.0061,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.61,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.061000000000000006,
       "historical_capture_displayed_line_usd": 0.0305,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C25907",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.002,
+      "cumulative_planning_base_pct": 99.988
     },
     {
       "device_id": "uniroyal_0402wgf2703tce",
@@ -3707,10 +4485,14 @@
       "line_burden_per_device_usd": 0.0057,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.5700000000000001,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.057,
       "historical_capture_displayed_line_usd": 0.0285,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C25770",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.002,
+      "cumulative_planning_base_pct": 99.99
     },
     {
       "device_id": "yageo_rc0402fr_0744k2l",
@@ -3726,10 +4508,14 @@
       "line_burden_per_device_usd": 0.0052,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.52,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.052,
       "historical_capture_displayed_line_usd": 0.082,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C354260",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.002,
+      "cumulative_planning_base_pct": 99.992
     },
     {
       "device_id": "murata_grm1555c1h220ja01d",
@@ -3745,10 +4531,14 @@
       "line_burden_per_device_usd": 0.005,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.5,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 0.05,
       "historical_capture_displayed_line_usd": 0.44,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C76960",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.002,
+      "cumulative_planning_base_pct": 99.994
     },
     {
       "device_id": "yageo_rc0402fr_0742k2l",
@@ -3764,10 +4554,14 @@
       "line_burden_per_device_usd": 0.0049,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.49,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.049,
       "historical_capture_displayed_line_usd": 0.078,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C276270",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.002,
+      "cumulative_planning_base_pct": 99.996
     },
     {
       "device_id": "uniroyal_0402wgf8201tce",
@@ -3783,10 +4577,14 @@
       "line_burden_per_device_usd": 0.0048,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.48,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.047999999999999994,
       "historical_capture_displayed_line_usd": 0.024,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C25924",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.002,
+      "cumulative_planning_base_pct": 99.998
     },
     {
       "device_id": "uniroyal_0402wgf1603tce",
@@ -3802,10 +4600,14 @@
       "line_burden_per_device_usd": 0.0026,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.26,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.026,
       "historical_capture_displayed_line_usd": 0.013,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C25757",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.001,
+      "cumulative_planning_base_pct": 99.999
     },
     {
       "device_id": "uniroyal_0402wgf1333tce",
@@ -3821,10 +4623,14 @@
       "line_burden_per_device_usd": 0.0015,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.15,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.015,
       "historical_capture_displayed_line_usd": 0.0075,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C25753",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.001,
+      "cumulative_planning_base_pct": 99.999
     },
     {
       "device_id": "yageo_rc0402fr_07240kl",
@@ -3840,10 +4646,14 @@
       "line_burden_per_device_usd": 0.0009,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.09,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.009,
       "historical_capture_displayed_line_usd": 0.054,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C138029",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.0,
+      "cumulative_planning_base_pct": 99.999
     },
     {
       "device_id": "yageo_rc0402fr_07620kl",
@@ -3859,10 +4669,14 @@
       "line_burden_per_device_usd": 0.0009,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.09,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.009,
       "historical_capture_displayed_line_usd": 0.08,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C137952",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.0,
+      "cumulative_planning_base_pct": 100.0
     },
     {
       "device_id": "uniroyal_0402wgf1651tce",
@@ -3878,10 +4692,14 @@
       "line_burden_per_device_usd": 0.0008,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": 0.08,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": 0.008,
       "historical_capture_displayed_line_usd": 0.004,
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C25869",
-      "cost_gate": null
+      "cost_gate": null,
+      "share_of_planning_base_pct": 0.0,
+      "cumulative_planning_base_pct": 100.0
     },
     {
       "device_id": "m5_u214",
@@ -3897,10 +4715,14 @@
       "line_burden_per_device_usd": null,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": null,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": null,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": "retail_only_no_quantity_100_tier"
+      "cost_gate": "retail_only_no_quantity_100_tier",
+      "share_of_planning_base_pct": null,
+      "cumulative_planning_base_pct": null
     },
     {
       "device_id": "murata_gjm1555c1h101jb01d",
@@ -3916,10 +4738,14 @@
       "line_burden_per_device_usd": null,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": null,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": null,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": "quantity_100_rfq_required"
+      "cost_gate": "quantity_100_rfq_required",
+      "share_of_planning_base_pct": null,
+      "cumulative_planning_base_pct": null
     },
     {
       "device_id": "nexperia_pesd24vy1bsf",
@@ -3935,10 +4761,14 @@
       "line_burden_per_device_usd": null,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": null,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": null,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": "quantity_100_rfq_required"
+      "cost_gate": "quantity_100_rfq_required",
+      "share_of_planning_base_pct": null,
+      "cumulative_planning_base_pct": null
     },
     {
       "device_id": "panasonic_erj_p08f49r9v",
@@ -3954,10 +4784,14 @@
       "line_burden_per_device_usd": null,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": null,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": null,
       "historical_capture_displayed_line_usd": 8.968,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C4308208",
-      "cost_gate": "quantity_100_rfq_required"
+      "cost_gate": "quantity_100_rfq_required",
+      "share_of_planning_base_pct": null,
+      "cumulative_planning_base_pct": null
     },
     {
       "device_id": "sunlord_mwsa0503s_3r3mt",
@@ -3973,10 +4807,14 @@
       "line_burden_per_device_usd": null,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": null,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": null,
       "historical_capture_displayed_line_usd": 9.0024,
       "historical_capture_route": "pre_order",
       "jlcpcb_part": "C408409",
-      "cost_gate": "quantity_100_rfq_required"
+      "cost_gate": "quantity_100_rfq_required",
+      "share_of_planning_base_pct": null,
+      "cumulative_planning_base_pct": null
     },
     {
       "device_id": "ti_tpul2g223_bqbr",
@@ -3992,10 +4830,14 @@
       "line_burden_per_device_usd": null,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": null,
+      "quantity_ten_devices": 10,
+      "planning_ten_devices_line_usd": null,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": "quantity_100_rfq_required"
+      "cost_gate": "quantity_100_rfq_required",
+      "share_of_planning_base_pct": null,
+      "cumulative_planning_base_pct": null
     },
     {
       "device_id": "xtar_18650_4000mah_protected",
@@ -4011,17 +4853,21 @@
       "line_burden_per_device_usd": null,
       "line_burden_basis": "quantity-100",
       "quantity_100_batch_line_usd": null,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": null,
       "historical_capture_displayed_line_usd": null,
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
-      "cost_gate": "regional_retail_only_no_quantity_100_tier"
+      "cost_gate": "regional_retail_only_no_quantity_100_tier",
+      "share_of_planning_base_pct": null,
+      "cumulative_planning_base_pct": null
     }
   ],
   "procurement_target": {
     "deliverable": "one fully assembled Leshy2 prototype",
     "device_batch": false,
     "batteries_included": false,
-    "production_display": "exact panel unresolved; factory-installed from a deterministic production package",
+    "production_display": "EastRising ER-TFT035IPS-6 + ER-TPC035-6; factory-installed from the documented production package",
     "hmx_donor_route": "rejected procurement route; legacy evidence only",
     "factory_function_test": "optional quote-only insurance; first full power-on and USB bring-up belong to the owner"
   },
@@ -4042,6 +4888,13 @@
       "profile": "receive-only telescopic whip"
     },
     {
+      "code": "S3, C5",
+      "mpn": "001-0012",
+      "quantity": 2,
+      "known_line_usd": 33.82,
+      "profile": "2.4/5 GHz native radio"
+    },
+    {
       "code": "VHF",
       "mpn": "AN0155H13",
       "quantity": 1,
@@ -4049,32 +4902,11 @@
       "profile": "VHF 136-174 MHz"
     },
     {
-      "code": "S3",
-      "mpn": "001-0012",
-      "quantity": 1,
-      "known_line_usd": 16.91,
-      "profile": "2.4/5 GHz native radio"
-    },
-    {
-      "code": "C5",
-      "mpn": "001-0012",
-      "quantity": 1,
-      "known_line_usd": 16.91,
-      "profile": "2.4/5 GHz native radio"
-    },
-    {
-      "code": "S433",
+      "code": "S433, UHF",
       "mpn": "ANT-433-CW-QW-SMA",
-      "quantity": 1,
-      "known_line_usd": 11.23,
-      "profile": "433 MHz"
-    },
-    {
-      "code": "UHF",
-      "mpn": "ANT-433-CW-QW-SMA",
-      "quantity": 1,
-      "known_line_usd": 11.23,
-      "profile": "UHF 400-470 MHz"
+      "quantity": 2,
+      "known_line_usd": 22.46,
+      "profile": "433 MHz / UHF 400-470 MHz"
     },
     {
       "code": "S315",
@@ -4091,23 +4923,9 @@
       "profile": "868/915 MHz"
     },
     {
-      "code": "N1",
+      "code": "N1, N2, N3",
       "mpn": "TX2400-JW-5",
-      "quantity": 1,
-      "known_line_usd": null,
-      "profile": "2.4 GHz nRF24"
-    },
-    {
-      "code": "N2",
-      "mpn": "TX2400-JW-5",
-      "quantity": 1,
-      "known_line_usd": null,
-      "profile": "2.4 GHz nRF24"
-    },
-    {
-      "code": "N3",
-      "mpn": "TX2400-JW-5",
-      "quantity": 1,
+      "quantity": 3,
       "known_line_usd": null,
       "profile": "2.4 GHz nRF24"
     },
@@ -4120,15 +4938,15 @@
     }
   ],
   "display_orientation_review": {
-    "official_complete_donor_rear_view": "https://media-cdn.elecrow.com/media/webp_image/wysiwyg/products/2026/DLE06235B/hardware_overview_of_3.5inch_ESP32_IPS_Touchscreen.webp",
-    "observed": "The official complete-donor rear view proves a folded display flex and rear ZIF path, but does not disclose the standalone HMX035CTFT-001 tail outline, exit edge, free length, stiffener or production-lot invariance.",
+    "official_complete_donor_rear_view": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
+    "observed": "The selected EastRising production drawings control the complete configured panel, 50-contact 0.50-mm tail, 0.30-mm stiffener, contact map and folded-tail orientation; donor geometry is not used.",
     "accepted_rule": "Physically orient the selected documented production panel so its flex points toward the antenna edge, then rotate display memory and touch coordinates in firmware. Do not allow the tail to enter the LED, D-pad or function-button zone.",
     "previous_lower_adapter_board_xy_mm": [
       24.75,
       90.5
     ],
     "current_upper_adapter_board_xy_mm": [
-      24.75,
+      22.25,
       1.0
     ],
     "current_upper_main_connector_xy_mm": [
@@ -4137,20 +4955,20 @@
     ],
     "paper_fit": {
       "same_face_collisions": 0,
-      "minimum_opposing_clearance_mm": 5.1,
+      "minimum_opposing_clearance_mm": 2.59,
       "required_minimum_mm": 0.7,
       "gpio_change": 0,
       "bom_change_usd": 0.0,
-      "firmware_change": "ST77922 orientation plus touch-coordinate transform only"
+      "firmware_change": "ILI9488 display-memory rotation plus FT6236 touch-coordinate transform only"
     },
-    "remaining_gate": "The selected exact production panel drawing and factory mating acceptance must qualify tail length, bend radius, contact side and retention on the replaceable upper adapter; HMX donor geometry remains legacy evidence only."
+    "remaining_gate": "The selected exact production-panel geometry is closed; only written factory acceptance of adhesive placement, FPC insertion and final mating plus incoming-lot conformity remain open."
   },
   "accepted_cost_reduction_policy": {
     "accepted_on": "2026-08-28",
     "primary_target": "Eliminate avoidable small-lot pre-order penalties before reducing already-stocked material cost.",
     "stocked_replacement_rule": "Prefer a currently stocked JLCPCB part only when the electrical, RF, safety, lifecycle and mechanical contract is exact or no worse. If no such part exists, keep the selected MPN and its explicit pre-order route.",
     "function_sensitive_rule": "RF detectors, RF filters/couplers, power safety, battery protection and user-exposed ESD boundaries never change for price alone.",
-    "antenna_mechanics_rule": "Prefer individually board-retained DIV-like SMA/RP-SMA bodies without nuts, sealing hardware or a shared protective frame when an exact standard/reverse pair and controlled drawing are available. No such no-worse pair is currently proved; the selected low-profile GCT pair remains the controlled exception with individual nut/washer retention and no shared frame."
+    "antenna_mechanics_rule": "Prefer individually board-retained DIV-like right-angle SMA/RP-SMA bodies without nuts, sealing hardware or a shared protective frame. Low profile is not a requirement; a dual-face or through-board soldered load path is preferred. Keep the GCT pair only until a documented stocked standard/reverse pair passes the complete 5+5 placement, opposing-clearance and factory-assembly gate."
   },
   "current_stocked_candidate_checks": [
     {
@@ -4517,9 +5335,9 @@
         "reverse_10": 0.7813,
         "reverse_100": 0.6075
       },
-      "status": "rejected_high_profile_tht_form_change",
-      "why": "This is a fully documented, stocked, no-nut 6-GHz right-angle standard/reverse pair, but its approximately 10.2-mm board profile and through-hole tails replace the 3.9-mm GCT edge-launch envelope. On the front board the connector axis would sit roughly 7 mm above the display glass and the tails would enter the sandwich. The saving is real but not functionally or mechanically neutral.",
-      "why_ru": "Это полностью документированная складская standard/reverse-пара до 6 ГГц без гаек, но её профиль около 10,2 мм и сквозные выводы заменяют низкопрофильный 3,9-мм edge-launch GCT. На передней плате ось разъёма окажется примерно на 7 мм выше стекла, а выводы войдут внутрь бутерброда. Экономия реальна, но механически и функционально не нейтральна.",
+      "status": "qualified_pending_full_5_plus_5_placement_and_assembly_gate",
+      "why": "This is a fully documented, stocked, no-nut 6-GHz right-angle standard/reverse pair with a stronger through-board soldered load path. Its approximately 10.2-mm axis and through-hole tails change the selected 3.9-mm GCT envelope, but low profile is no longer a product requirement. It is therefore the leading cost-reduction candidate, not an accepted production MPN: all ten placements, opposing clearances and the JLCPCB wave-solder route still need to pass together.",
+      "why_ru": "Это полностью документированная складская standard/reverse-пара до 6 ГГц без гаек и с более прочным сквозным путём передачи нагрузки. Ось около 10,2 мм и сквозные выводы меняют выбранный 3,9-мм envelope GCT, но низкий профиль больше не является требованием. Поэтому это ведущий кандидат на удешевление, а не уже принятый production MPN: сначала должны разом пройти все десять размещений, встречные зазоры и wave-solder route JLCPCB.",
       "source": "https://jlcpcb.com/partdetail/DreamLNK-SMAKWE902/C914554",
       "reverse_source": "https://jlcpcb.com/partdetail/DreamLNK-SMAKWE901/C914553",
       "manufacturer_source": "https://datasheet.lcsc.com/lcsc/2011081704_DreamLNK-SMA-KWE902_C914554.pdf",
@@ -4530,6 +5348,15 @@
   "optimization_lanes": [
     {
       "priority": 1,
+      "id": "external-antenna-kit",
+      "queue_status": "active",
+      "title": "Rebuild the external antenna kit from stocked no-worse equivalents",
+      "production_function_change": false,
+      "evidence": "Eight of twelve exact first-target antenna profiles already contribute USD 138.3166 per device, while three nRF24 antennas and the controlled AM/LW receive pod remain unpriced. This is the largest separate material group even though it sits outside the base PCBA BOM.",
+      "action": "Keep every accepted band and all band-specific TX matching. Search the current factory/order surface for exact or no-worse connector, band, power and matching equivalents; optimize receive-only profiles separately and never silently substitute one generic whip for a qualified TX antenna."
+    },
+    {
+      "priority": 2,
       "id": "factory-preorder-penalty",
       "queue_status": "accepted",
       "title": "Replace safe equivalent pre-order passives and ordinary logic with in-stock JLCPCB parts",
@@ -4538,16 +5365,16 @@
       "action": "Review every pre-order row against its substitution class; only exact or no-worse parametric replacements may be accepted."
     },
     {
-      "priority": 2,
+      "priority": 3,
       "id": "main-rf-mechanics",
-      "queue_status": "accepted",
-      "title": "Retain the low-profile GCT edge-launch pair unless a truly equivalent stocked pair appears",
+      "queue_status": "active",
+      "title": "Replace the expensive GCT pair with a robust stocked standard/reverse pair if it fits",
       "production_function_change": false,
-      "evidence": "The selected GCT RFPC-SMA31/32 pair preserves the 3.9-mm edge-launch envelope, but the official GCT set includes an individual panel nut and washer; no nutless GCT sibling was found. HenryTech points normal to the PCB, while the stocked nutless DreamLNK pair would save about USD 19.01 per device but raises the connector axis roughly 6.3 mm and adds through-hole tails inside the sandwich.",
-      "action": "Keep the GCT pair with no shared frame; safe connector saving is currently USD 0. Reopen only for a stocked standard/reverse edge-launch pair rated to at least 6 GHz with equal or lower profile, a controlled 1.6-mm PCB drawing and the same dual-face mechanical load path: two shell-ground lands on each PCB face (or a demonstrably stronger through-board equivalent)."
+      "evidence": "Ten GCT RFPC-SMA31/32 connectors contribute USD 24.6456 per device. Low profile is no longer a product requirement; the stocked nutless DreamLNK pair would reduce the line by about USD 19.01, but its through-hole tails and roughly 10.2-mm axis require a new internal keep-out and all ten port placements to be rechecked.",
+      "action": "Optimize for the correct outward antenna direction, standard/RP-SMA identity, at least 6-GHz coverage on native ports and a dual-face or through-board mechanical load path. Accept a replacement only after complete 5+5 placement, opposing-clearance and assembly review."
     },
     {
-      "priority": 3,
+      "priority": 4,
       "id": "rf-evidence-detectors",
       "queue_status": "active",
       "title": "Re-evaluate eight RF power detectors without weakening real-TX evidence",
@@ -4556,7 +5383,7 @@
       "action": "Register and collision-check all six larger MSOP courtyards, adjacent match/bypass bodies and RF-ground fanout before accepting C652687. Keep the two LTC5532 and independent evidence for the three concurrently active nRF24 paths."
     },
     {
-      "priority": 4,
+      "priority": 5,
       "id": "ordinary-controls",
       "queue_status": "waiting",
       "title": "Find one serial in-stock tact-switch family for all sixteen ordinary controls",
@@ -4565,7 +5392,7 @@
       "action": "Preserve footprint/enclosure reach, force, height, endurance, the ESD boundary and recessed actuation."
     },
     {
-      "priority": 5,
+      "priority": 6,
       "id": "native-rf-jumpers",
       "queue_status": "accepted",
       "title": "Retain all five U.FL plus 30-mm jumper paths after source-to-port review",
@@ -4574,7 +5401,7 @@
       "action": "Therefore 0/5 paths can be removed safely now. A future qualified C5 T2 route could remove one path and save about USD 2.89 per device."
     },
     {
-      "priority": 6,
+      "priority": 7,
       "id": "battery-holder",
       "queue_status": "waiting",
       "title": "Compare the 1048P holder with serial cell contacts captured by the enclosure cradle",
@@ -4583,7 +5410,7 @@
       "action": "Any replacement must keep protected-cell length tolerance, polarity, insertion cycles and a non-peeling enclosure load path."
     },
     {
-      "priority": 7,
+      "priority": 8,
       "id": "service-headers",
       "queue_status": "waiting",
       "title": "Replace three premium DBG10 headers with an equally keyed serial factory-stocked family",
@@ -4592,13 +5419,13 @@
       "action": "Preserve independent S3/C5/RP recovery, keying, pitch, probe access and the internal height envelope."
     },
     {
-      "priority": 8,
+      "priority": 9,
       "id": "display-production-route",
-      "queue_status": "waiting",
-      "title": "Select and quote the documented production panel for one factory-assembled prototype",
+      "queue_status": "accepted",
+      "title": "Do not optimize away the selected serial production panel",
       "production_function_change": false,
-      "evidence": "HMX035CTFT-001 donor sources prove legacy electrical/mechanical facts but are rejected as procurement; the exact production panel, mating drawing, one-prototype price and factory attrition remain open.",
-      "action": "Keep the architecture endpoint and replaceable adapter, but release no order until one documented panel and deterministic factory mating package are accepted."
+      "evidence": "EastRising ER-TFT035IPS-6 plus ER-TPC035-6 contributes USD 14.91 and already provides a controlled drawing, ILI9488/FT6236, direct i8080-8 and quantity-one serial ordering. The donor route is gone.",
+      "action": "Treat the display material cost as justified. Only the assembler fee and written acceptance of panel/FPC final mating remain open; do not restart display selection for a small speculative saving."
     }
   ],
   "errors": []

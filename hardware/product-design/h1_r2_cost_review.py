@@ -47,15 +47,20 @@ ROLE_OVERRIDES = {
 }
 
 LANES_RU = {
+    "external-antenna-kit": (
+        "Пересобрать внешний антенный комплект из складских эквивалентов",
+        "Уже оценённые восемь из двенадцати профилей стоят $138,32 на одно устройство; три nRF24-антенны и AM/LW pod ещё не оценены. Это крупнейшая отдельная материальная группа проекта, хотя она не входит в базовую PCBA BOM.",
+        "Не удалять диапазоны и не подменять TX-антенны широкополосным компромиссом: для каждого порта найти серийный складской MPN с тем же разъёмом, диапазоном, мощностью и не худшим согласованием, а receive-only профили оптимизировать отдельно.",
+    ),
     "factory-preorder-penalty": (
         "Заменить безопасно эквивалентные pre-order пассивы и обычную логику на складские JLCPCB",
         "После шести безопасных пакетов 26 pre-order-строк стоят $648,0444 в нормализованном снимке партии из пяти устройств против $322,6465 по серийной материальной базе. Складские маршруты Nexperia, YAGEO, UNI-ROYAL, FH, Hirose, TI, Vishay и Murata вместе убирают около $137,7020 из наблюдаемого пробного маршрута и снижают публичную материальную базу на $3,0885 на устройство.",
         "Проверять каждую строку по её substitution-классу; принимать только точную либо не худшую параметрическую замену.",
     ),
     "main-rf-mechanics": (
-        "Сохранить низкопрофильную торцевую пару GCT до появления действительно равноценной складской замены",
-        "Выбранная пара GCT RFPC-SMA31/32 сохраняет торцевой профиль 3,9 мм, но официальный комплект GCT включает индивидуальные панельные гайку и шайбу; nutless-вариант этой семьи не найден. HenryTech направлен перпендикулярно плате, а складская nutless-пара DreamLNK сэкономила бы около $19,01 на устройство, но поднимает ось примерно на 6,3 мм и добавляет сквозные хвосты внутрь бутерброда.",
-        "Оставить GCT без общей рамки; безопасная экономия сейчас равна $0. Возвращаться к замене только для складской standard/reverse edge-launch пары, рассчитанной минимум на 6 ГГц, с не бо́льшим профилем, контролируемым чертежом под плату 1,6 мм и тем же двусторонним силовым путём: по две земляные лапы корпуса на каждой стороне платы либо доказуемо более прочный сквозной эквивалент.",
+        "Заменить дорогую GCT-пару на прочную складскую standard/reverse пару, если она помещается",
+        "Десять GCT RFPC-SMA31/32 стоят $24,65 на устройство. Низкий профиль больше не является требованием; складская nutless-пара DreamLNK уменьшила бы строку примерно на $19,01, но её сквозные хвосты и ось 10,2 мм требуют нового внутреннего keep-out и проверки всех пяти портов на каждой плате.",
+        "Искать не низкопрофильность, а правильное направление антенны, standard/RP-SMA, минимум 6 ГГц для native-портов и силовую пайку с двух сторон либо сквозное удержание. Принять замену только после полного 5+5 placement/clearance-аудита.",
     ),
     "rf-evidence-detectors": (
         "Пересмотреть восемь RF-детекторов, не ослабляя доказательство реальной передачи",
@@ -83,9 +88,9 @@ LANES_RU = {
         "Сохранить независимое восстановление S3/C5/RP, ключ, шаг, доступ щупов и внутреннюю высоту.",
     ),
     "display-production-route": (
-        "Выбрать и оценить документированную production panel для одного фабрично собранного прототипа",
-        "Источники HMX035CTFT-001 доказывают legacy электрику/механику, но отклонены как маршрут закупки; exact panel, mating drawing, цена одного прототипа и factory attrition остаются открытыми.",
-        "Сохранить endpoint и сменный адаптер, но не разрешать заказ до принятия одной документированной панели и deterministic factory mating package.",
+        "Не удешевлять уже выбранную серийную панель",
+        "EastRising ER-TFT035IPS-6 + ER-TPC035-6 стоит $14,91, имеет полный чертёж, ILI9488/FT6236, i8080-8 и серийный заказ от одной штуки. Донорская схема удалена.",
+        "Считать стоимость дисплея оправданной; открытым остаётся только тариф и письменное принятие фабрикой установки панели и FPC, а не поиск другого экрана.",
     ),
 }
 
@@ -172,6 +177,10 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
                 "quantity_100_batch_line_usd": (
                     production_line * 100 if production_line is not None else None
                 ),
+                "quantity_ten_devices": quantity * 10,
+                "planning_ten_devices_line_usd": (
+                    production_line * 10 if production_line is not None else None
+                ),
                 "historical_capture_displayed_line_usd": trial_cost,
                 "historical_capture_route": trial_row.get("tool_status", "not matched"),
                 "jlcpcb_part": trial_row.get("lcsc"),
@@ -195,6 +204,20 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         for row in rows
         if row["scope"] == "base_product"
     )
+    cumulative_base = 0.0
+    for row in rows:
+        burden = row["line_burden_per_device_usd"]
+        if row["scope"] == "base_product" and burden is not None:
+            cumulative_base += burden
+            row["share_of_planning_base_pct"] = round(
+                100.0 * burden / planning_base, 3
+            )
+            row["cumulative_planning_base_pct"] = round(
+                100.0 * cumulative_base / planning_base, 3
+            )
+        else:
+            row["share_of_planning_base_pct"] = None
+            row["cumulative_planning_base_pct"] = None
     remaining_base = [
         row for row in rows
         if row["scope"] == "base_product" and row["line_burden_per_device_usd"] is None
@@ -228,27 +251,58 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         * float(bom_by_id[row["device_id"]]["line_material_usd"] or 0)
         for row in preorder_rows
     )
-    antenna_rows = []
+    antenna_by_mpn = {}
     for item in antennas["items"]:
         prices = [
             value for key, value in item["availability"].items()
             if key.startswith("unit_price_usd") and value is not None
         ]
         price = float(prices[0]) if prices else None
-        antenna_rows.append(
+        grouped = antenna_by_mpn.setdefault(
+            item["mpn"],
             {
-                "code": item["kit_code"],
+                "codes": [],
                 "mpn": item["mpn"],
-                "quantity": item["quantity"],
-                "known_line_usd": price * item["quantity"] if price is not None else None,
-                "profile": item["profile"],
-            }
+                "quantity": 0,
+                "known_line_usd": 0.0 if price is not None else None,
+                "profiles": [],
+            },
         )
+        grouped["codes"].append(item["kit_code"])
+        grouped["profiles"].append(item["profile"])
+        grouped["quantity"] += item["quantity"]
+        if price is None:
+            grouped["known_line_usd"] = None
+        elif grouped["known_line_usd"] is not None:
+            grouped["known_line_usd"] += price * item["quantity"]
+    antenna_rows = [
+        {
+            "code": ", ".join(row["codes"]),
+            "mpn": row["mpn"],
+            "quantity": row["quantity"],
+            "known_line_usd": row["known_line_usd"],
+            "profile": " / ".join(dict.fromkeys(row["profiles"])),
+        }
+        for row in antenna_by_mpn.values()
+    ]
     antenna_rows.sort(
         key=lambda row: (row["known_line_usd"] is not None, row["known_line_usd"] or 0),
         reverse=True,
     )
     antenna_known = sum(row["known_line_usd"] or 0 for row in antenna_rows)
+    ranked_base = [
+        row for row in rows
+        if row["scope"] == "base_product"
+        and row["line_burden_per_device_usd"] is not None
+    ]
+
+    def top_share(count: int) -> float:
+        return round(
+            100.0 * sum(
+                row["line_burden_per_device_usd"] for row in ranked_base[:count]
+            ) / planning_base,
+            2,
+        )
     errors = []
     if len(bom) != 210:
         errors.append("target BOM is no longer 210 lines")
@@ -285,6 +339,15 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
             "planning_base_plus_post_pcba_usd_for_procurement_target": round(
                 (planning_base + post_pcba) * procurement_quantity, 4
             ),
+            "planning_base_plus_post_pcba_usd_for_ten_devices": round(
+                (planning_base + post_pcba) * 10, 4
+            ),
+            "planning_plus_known_antenna_usd_per_device": round(
+                planning_base + post_pcba + antenna_known, 4
+            ),
+            "top_10_share_pct": top_share(10),
+            "top_20_share_pct": top_share(20),
+            "top_40_share_pct": top_share(40),
             "historical_capture_matched_lines": sum(
                 row.get("displayed_line_cost_usd") is not None for row in trial["routes"]
             ),
@@ -300,6 +363,11 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
             "preorder_observed_small_lot_premium_usd": round(preorder_capture - preorder_scale, 4),
             "antenna_known_first_target_usd": round(antenna_known, 4),
             "antenna_unpriced_lines": sum(row["known_line_usd"] is None for row in antenna_rows),
+            "antenna_unpriced_positions": sum(
+                row["quantity"]
+                for row in antenna_rows
+                if row["known_line_usd"] is None
+            ),
         },
         "rows": rows,
         "procurement_target": model["procurement_target"],
@@ -318,7 +386,9 @@ def render_csv(result: dict) -> str:
     fields = [
         "device_id", "mpn", "role", "scope", "quantity_per_device",
         "unit_price_quantity_100_usd", "effective_unit_price_usd", "line_burden_per_device_usd",
+        "share_of_planning_base_pct", "cumulative_planning_base_pct",
         "line_burden_basis", "quantity_procurement_target", "planning_procurement_line_usd",
+        "quantity_ten_devices", "planning_ten_devices_line_usd",
         "quantity_historical_capture", "historical_capture_displayed_line_usd",
         "historical_capture_route", "jlcpcb_part", "quantity_100_batch_line_usd", "cost_gate",
     ]
@@ -344,45 +414,45 @@ def render_doc(result: dict, ru: bool) -> str:
         intro = (
             'Это ранжированный снимок текущего железа, а не коммерческое предложение. '
             'Цена строки учитывает установленное количество в целевом одном полностью собранном прототипе. '
-            'Отдельные колонки с пятью платами — только исторический BOM Tool capture для MOQ/pre-order evidence, а не план заказа.'
+            'Одинаковые MPN объединены в одну группу; исторический BOM Tool capture пяти плат сохранён ниже только как MOQ/pre-order evidence, а не план заказа.'
         )
         top_h = '## Сводка'
         basis = 'База'
-        table_h = '## Самые дорогие строки готового устройства'
+        table_h = '## Самые дорогие группы готового устройства'
         trial_h = '## Где малая партия переплачивает'
         antenna_h = '## Внешний антенный комплект'
         candidates_h = '## Проверенные складские кандидаты'
         improve_h = '## Очередь удешевления'
         display_h = '## Ориентация экрана и шлейфа'
-        role_h = 'Роль'
-        qty_h = 'На устройство'
+        role_h = 'MPN и роль'
+        qty_h = 'Шт. ×1'
         unit_h = 'Цена 1 шт. по принятой базе'
-        one_h = 'Строка на устройство'
-        trial_qty_h = 'На 1 прототип'
-        trial_plan_h = 'Плановая строка ×1'
-        trial_cost_h = 'Исторический JLC ×5'
+        one_h = 'Группа ×1'
+        ten_qty_h = 'Шт. ×10'
+        ten_plan_h = 'Группа ×10'
+        share_h = 'Доля BOM'
     else:
         title = f'# {result["marker"]} · component cost ranking'
         intro = (
             'This is a ranked snapshot of the current hardware, not a commercial quote. '
             'Every line burden includes the fitted quantity in the target one fully assembled prototype. '
-            'Separate five-board columns preserve only the historical BOM Tool MOQ/pre-order evidence; they are not the procurement target.'
+            'Identical MPNs are grouped into one row; the historical five-board BOM Tool capture remains below only as MOQ/pre-order evidence, not the procurement target.'
         )
         top_h = '## Summary'
         basis = 'Basis'
-        table_h = '## Highest-cost finished-device lines'
+        table_h = '## Highest-cost finished-device groups'
         trial_h = '## Where the small batch overpays'
         antenna_h = '## External antenna kit'
         candidates_h = '## Verified stocked candidates'
         improve_h = '## Cost-reduction queue'
         display_h = '## Display and flex orientation'
-        role_h = 'Role'
-        qty_h = 'Per device'
+        role_h = 'MPN and role'
+        qty_h = 'Qty ×1'
         unit_h = 'Unit on accepted basis'
-        one_h = 'Device line'
-        trial_qty_h = 'For 1 prototype'
-        trial_plan_h = 'Planned line ×1'
-        trial_cost_h = 'Historical JLC ×5'
+        one_h = 'Group ×1'
+        ten_qty_h = 'Qty ×10'
+        ten_plan_h = 'Group ×10'
+        share_h = 'BOM share'
     lines = [
         title, '',
         '[Русский](h1-r2-cost.ru.md) · [English](h1-r2-cost.md) · [Current placement](h1-r2-physical-layout.md)',
@@ -397,11 +467,15 @@ def render_doc(result: dict, ru: bool) -> str:
             f'- Текущий плановый компонентный минимум без обязательных post-PCBA активных модулей: **{money(summary["planning_base_plus_post_pcba_usd_per_device"])}** '
             f'на устройство и **{money(summary["planning_base_plus_post_pcba_usd_for_procurement_target"])}** на один целевой прототип '
             'до стоимости плат, сборки, корпуса, антенн, доставки, налогов, брака и теста.',
+            f'- Та же принятая ценовая база для десяти устройств: **{money(summary["planning_base_plus_post_pcba_usd_for_ten_devices"])}**. '
+            'Это линейное сравнение групп, а не обещание цены партии.',
+            f'- Верхние 10 / 20 / 40 групп дают **{summary["top_10_share_pct"]:.2f}% / {summary["top_20_share_pct"]:.2f}% / {summary["top_40_share_pct"]:.2f}%** текущей известной базовой BOM.',
             f'- Исторический JLCPCB capture на пять плат: **{money(summary["historical_capture_displayed_usd"])}** по '
             f'`{summary["historical_capture_matched_lines"]}` строкам; `{summary["live_spot_checks"]}` live-проверок дают '
             f'**{money(summary["historical_spot_adjusted_displayed_usd"])}**, ещё `{summary["historical_capture_unmatched_lines"]}` строк не входят; это evidence, а не целевой quantity.',
             f'- Внешний антенный комплект вынесен отдельно: уже известно **{money(summary["antenna_known_first_target_usd"])}**, '
-            f'ещё `{summary["antenna_unpriced_lines"]}` позиции не оценены.',
+                f'ещё `{summary["antenna_unpriced_positions"]}` позиции в `{summary["antenna_unpriced_lines"]}` MPN-группах не оценены. Вместе с известной электронной BOM это уже '
+            f'**{money(summary["planning_plus_known_antenna_usd_per_device"])}** до PCB/PCBA, корпуса и доставки.',
         ]
     else:
         lines += [
@@ -412,26 +486,120 @@ def render_doc(result: dict, ru: bool) -> str:
             f'- Current planned component minimum with no mandatory post-PCBA active module: **{money(summary["planning_base_plus_post_pcba_usd_per_device"])}** '
             f'per device and **{money(summary["planning_base_plus_post_pcba_usd_for_procurement_target"])}** for the one target prototype '
             'before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.',
+            f'- The same accepted price basis scales linearly to **{money(summary["planning_base_plus_post_pcba_usd_for_ten_devices"])}** for ten devices. '
+            'This compares groups; it is not a batch quote.',
+            f'- The top 10 / 20 / 40 groups contribute **{summary["top_10_share_pct"]:.2f}% / {summary["top_20_share_pct"]:.2f}% / {summary["top_40_share_pct"]:.2f}%** of the known base BOM.',
             f'- Historical five-board JLCPCB capture: **{money(summary["historical_capture_displayed_usd"])}** for '
             f'`{summary["historical_capture_matched_lines"]}` matched lines; `{summary["live_spot_checks"]}` live checks move it to '
             f'**{money(summary["historical_spot_adjusted_displayed_usd"])}**, with `{summary["historical_capture_unmatched_lines"]}` rows excluded. This is evidence, not the target quantity.',
             f'- The external antenna kit is separate: **{money(summary["antenna_known_first_target_usd"])}** is known and '
-            f'`{summary["antenna_unpriced_lines"]}` lines remain unpriced.',
+                f'`{summary["antenna_unpriced_positions"]}` positions in `{summary["antenna_unpriced_lines"]}` MPN groups remain unpriced. The known electronics plus known antennas already reach '
+            f'**{money(summary["planning_plus_known_antenna_usd_per_device"])}** before PCB/PCBA, enclosure and freight.',
+        ]
+    if ru:
+        lines += [
+            '', 'Цена ×10 ниже — простое умножение принятой базы на десять. Реальный заказ может быть дешевле из-за ценовых ступеней или дороже из-за MOQ/pre-order; это будет известно только из exact-one quote.',
+        ]
+    else:
+        lines += [
+            '', 'The ×10 price below is a simple tenfold projection of the accepted basis. A real order may be lower because of price breaks or higher because of MOQ/pre-order; only the exact quote can settle it.',
         ]
     lines += ['', table_h, '',
-        f'| MPN | {role_h} | {qty_h} | {unit_h} | {one_h} | {trial_qty_h} | {trial_plan_h} | {trial_cost_h} |',
-        '|---|---|---:|---:|---:|---:|---:|---:|',
+        f'| {role_h} | {qty_h} | {unit_h} | {one_h} | {ten_qty_h} | {ten_plan_h} | {share_h} |',
+        '|---|---:|---:|---:|---:|---:|---:|',
     ]
-    for row in rows[:20]:
+    base_rows = [row for row in rows if row["scope"] == "base_product"]
+    for row in base_rows[:40]:
+        role = row["role"]
+        if len(role) > 180:
+            role = (
+                f'{row["quantity_per_device"]} сгруппированных установок; полный список в CSV'
+                if ru
+                else f'{row["quantity_per_device"]} grouped placements; complete list in CSV'
+            )
         lines.append(
-            f'| `{row["mpn"]}` | {row["role"]} | {row["quantity_per_device"]} | '
+            f'| `{row["mpn"]}`<br><sub>{role}</sub> | {row["quantity_per_device"]} | '
             f'{money(row["effective_unit_price_usd"])} | {money(row["line_burden_per_device_usd"])} | '
-            f'{row["quantity_procurement_target"]} | {money(row["planning_procurement_line_usd"])} | '
-            f'{money(row["historical_capture_displayed_line_usd"])} |'
+            f'{row["quantity_ten_devices"]} | {money(row["planning_ten_devices_line_usd"])} | '
+            f'{row["share_of_planning_base_pct"]:.2f}% |'
         )
     full_csv = '../hardware/product-design/generated/H1-R2-cost-ranked.csv'
     full_text = 'Полный рейтинг 210 строк — CSV' if ru else 'Complete 210-line ranking — CSV'
-    lines += ['', f'[{full_text}]({full_csv})', '', trial_h, '']
+    by_id = {row["device_id"]: row for row in rows}
+    connector_cost = (
+        by_id["gct_rfpc_sma31_fn_175_a"]["line_burden_per_device_usd"]
+        + by_id["gct_rfpc_sma32_fn_175_a"]["line_burden_per_device_usd"]
+    )
+    detector_cost = (
+        by_id["adi_ad8314acpz_rl7"]["line_burden_per_device_usd"]
+        + by_id["adi_ltc5532_es6_trmpbf"]["line_burden_per_device_usd"]
+    )
+    jumper_cost = (
+        by_id["te_2118651_2"]["line_burden_per_device_usd"]
+        + by_id["hirose_ufl_r_smt_1_10"]["line_burden_per_device_usd"]
+    )
+    lines += ['', f'[{full_text}]({full_csv})', '']
+    if ru:
+        lines += [
+            '## Где вероятнее всего есть неоправданные траты', '',
+            '| Приоритет | Группа | Сейчас ×1 | Вывод | Реалистичная экономия |',
+            '|---:|---|---:|---|---:|',
+            f'| 1 | Внешние антенны | {money(summary["antenna_known_first_target_usd"])} + 4 неизвестных | Крупнейшая отдельная группа; функциональность нужна, но брендовые первые MPN не обязаны быть самыми выгодными | уточняется |',
+            f'| 2 | 10 внешних SMA/RP-SMA | {money(connector_cost)} | Цена GCT больше не оправдывается требованием низкого профиля; нужна повторная компоновка прочной складской пары | до ~$19.01 |',
+            f'| 3 | 8 RF-detector’ов | {money(detector_cost)} | Evidence реальной передачи нужен; шесть AD8314 можно перевести на складской корпус того же IC после placement-аудита | ~$6.17 |',
+            f'| 4 | 5 U.FL + 5 кабелей | {money(jumper_cost)} | Сейчас функционально оправдано; убрать можно только один тракт после доказанного C5 T2-маршрута | до ~$2.89 |',
+            f'| 5 | 16 пользовательских кнопок | {money(by_id["omron_b3s_1100p"]["line_burden_per_device_usd"])} | Дорогая группа, но первый дешёвый кандидат потерял заземление крышки и отклонён | уточняется |',
+            f'| 6 | Держатель 2×18650 | {money(by_id["keystone_1048p"]["line_burden_per_device_usd"])} | Возможна замена на серийные контакты только если всю мехнагрузку несёт корпус | уточняется |',
+            f'| 7 | 3 внутренних DBG10 | {money(by_id["samtec_ftsh_105_01_l_dv_k_p_tr"]["line_burden_per_device_usd"])} | Премиальная серия используется только как резерв восстановления; вероятен более дешёвый ключеванный аналог | уточняется |',
+            '',
+            '**Не считаю неоправданными:** серийный дисплей за $14,91, два voice-модуля за $19,81, три полнофункциональных nRF24 за $8,89, оба RP/S3/C5, M1 и элементы автономной защиты. Их удаление или упрощение напрямую режет принятую функцию, пропускную способность, восстановление либо безопасность.',
+            '',
+        ]
+    else:
+        lines += [
+            '## Most likely unjustified-cost candidates', '',
+            '| Priority | Group | Current ×1 | Finding | Realistic saving |',
+            '|---:|---|---:|---|---:|',
+            f'| 1 | External antennas | {money(summary["antenna_known_first_target_usd"])} + 4 unknown | Largest separate group; the functions are required, but the first branded MPNs need not be the best-value equivalents | to be established |',
+            f'| 2 | 10 outward SMA/RP-SMA | {money(connector_cost)} | GCT cost is no longer justified by a low-profile requirement; a robust stocked pair needs a fresh placement check | up to ~$19.01 |',
+            f'| 3 | 8 RF detectors | {money(detector_cost)} | Real-TX evidence remains required; six AD8314 can move to the stocked package of the same IC after placement review | ~$6.17 |',
+            f'| 4 | 5 U.FL plus 5 cables | {money(jumper_cost)} | Functionally justified now; only a proven C5 T2 route can remove one path | up to ~$2.89 |',
+            f'| 5 | 16 user buttons | {money(by_id["omron_b3s_1100p"]["line_burden_per_device_usd"])} | Expensive group, but the first cheaper candidate lost the grounded cover and was rejected | to be established |',
+            f'| 6 | Dual-18650 holder | {money(by_id["keystone_1048p"]["line_burden_per_device_usd"])} | Serial contacts are viable only if the enclosure carries all mechanical load | to be established |',
+            f'| 7 | 3 internal DBG10 headers | {money(by_id["samtec_ftsh_105_01_l_dv_k_p_tr"]["line_burden_per_device_usd"])} | Premium series serves only as an opened-sandwich recovery fallback; a cheaper keyed equivalent is plausible | to be established |',
+            '',
+            '**Not classified as unjustified:** the $14.91 serial display, $19.81 dual voice modules, $8.89 three full-function nRF24 modules, both RP/S3/C5, M1 and autonomous safety components. Removing or simplifying them directly cuts an accepted function, throughput, recovery or safety boundary.',
+            '',
+        ]
+    unpriced_base = [
+        row for row in rows
+        if row["scope"] == "base_product"
+        and row["line_burden_per_device_usd"] is None
+    ]
+    if ru:
+        lines += [
+            '## Что ещё нельзя считать бесплатным', '',
+            'Эти позиции имеют **не нулевую**, а пока неизвестную цену. До exact-one quote итоговая стоимость остаётся нижней границей.', '',
+            '| Источник | MPN и роль | Шт. ×1 |',
+            '|---|---|---:|',
+        ]
+    else:
+        lines += [
+            '## Costs that must not be mistaken for zero', '',
+            'These positions have an **unknown**, not zero, price. The total remains a lower bound until the exact-one quote.', '',
+            '| Source | MPN and role | Qty ×1 |',
+            '|---|---|---:|',
+        ]
+    for row in unpriced_base:
+        lines.append(
+            f'| {"Основная BOM" if ru else "Base BOM"} | `{row["mpn"]}`<br><sub>{row["role"]}</sub> | {row["quantity_per_device"]} |'
+        )
+    for row in result["antenna_rows"]:
+        if row["known_line_usd"] is None:
+            lines.append(
+                f'| {"Антенный комплект" if ru else "Antenna kit"} | `{row["mpn"]}`<br><sub>{row["profile"]}; {row["code"]}</sub> | {row["quantity"]} |'
+            )
+    lines += ['', trial_h, '']
     if ru:
         lines += [
             f'- `{summary["preorder_rows"]}` pre-order-строк стоят в снимке **{money(summary["preorder_capture_usd"])}** против '
@@ -493,17 +661,17 @@ def render_doc(result: dict, ru: bool) -> str:
     lines += ['', display_h, '']
     if ru:
         lines += [
-            '- Официальный rear-view полного донора действительно показывает сложенный FPC и задний ZIF, но не раскрывает отдельный контур, длину и сторону контактов raw `HMX035CTFT-001`.',
-            '- Правильное правило — физически ориентировать экран **шлейфом к антенному торцу**, а изображение и touch развернуть программно. Тогда шлейф не входит в зону LED, D-pad и функциональных клавиш.',
+            '- Точные чертежи EastRising контролируют полный корпус панели, 50-контактный FPC, шаг 0,50 мм, stiffener 0,30 мм и карту контактов; геометрия donor-board больше не используется.',
+            '- Экран физически ориентирован **шлейфом к антенному торцу**, а изображение ILI9488 и координаты FT6236 разворачиваются программно. Шлейф не входит в зону LED, D-pad и функциональных клавиш.',
             f'- Принятая верхняя позиция adapter PCB `{display["current_upper_adapter_board_xy_mm"]}` прогнана по текущим точным корпусам: `0` same-face collisions, минимальный встречный зазор `{display["paper_fit"]["minimum_opposing_clearance_mm"]:.1f} мм` при требуемых `{display["paper_fit"]["required_minimum_mm"]:.1f} мм`, GPIO и BOM не меняются.',
-            '- Ориентация зафиксирована в H1; H5 проверяет реальный шлейф, bend и retention сменного адаптера. Несовпадение не возвращает шлейф в зону органов управления молча.',
+            '- Ориентация и сменный адаптер зафиксированы в H1; открыты только письменное принятие фабрикой установки/FPC и входная проверка соответствия полученной партии.',
         ]
     else:
         lines += [
-            '- The official complete-donor rear view does show a folded FPC and rear ZIF, but it does not disclose the standalone raw `HMX035CTFT-001` outline, length or contact side.',
-            '- The correct rule is to physically orient the panel **with its flex toward the antenna edge**, then rotate display memory and touch coordinates in firmware. The tail then stays out of the LED, D-pad and function-key zone.',
+            '- Exact EastRising drawings control the complete panel body, 50-contact FPC, 0.50-mm pitch, 0.30-mm stiffener and contact map; donor-board geometry is no longer used.',
+            '- The panel is physically oriented **with its flex toward the antenna edge**, while ILI9488 display memory and FT6236 touch coordinates rotate in firmware. The tail stays out of the LED, D-pad and function-key zone.',
             f'- The accepted upper adapter PCB position `{display["current_upper_adapter_board_xy_mm"]}` passes the current exact-body model: `0` same-face collisions and `{display["paper_fit"]["minimum_opposing_clearance_mm"]:.1f} mm` minimum opposing clearance versus `{display["paper_fit"]["required_minimum_mm"]:.1f} mm` required, with no GPIO or BOM change.',
-            '- H1 now fixes this orientation; H5 qualifies the received flex, bend and retention on the replaceable adapter. A mismatch cannot silently return the tail to the control zone.',
+            '- H1 fixes the orientation and replaceable adapter; only written factory acceptance of panel/FPC work and incoming-lot conformity remain open.',
         ]
     lines += ['', f'> Marker: **{result["marker"]}**. H1 remains open pending the complete mock-up decision.']
     return '\n'.join(lines) + '\n'

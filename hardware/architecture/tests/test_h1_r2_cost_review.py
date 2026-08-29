@@ -20,9 +20,15 @@ class H1R2CostReviewTest(unittest.TestCase):
     def test_review_passes(self):
         self.assertEqual(self.result["errors"], [])
         self.assertEqual(self.result["status"], "pass_review_with_open_cost_actions")
+        ru = MODULE.render_doc(self.result, True)
+        self.assertIn("Что ещё нельзя считать бесплатным", ru)
+        self.assertIn("Murata GJM1555C1H101JB01D", ru)
+        self.assertIn("TX2400-JW-5", ru)
 
     def test_complete_bom_is_ranked(self):
         self.assertEqual(len(self.result["rows"]), 210)
+        mpns = [row["mpn"] for row in self.result["rows"]]
+        self.assertEqual(len(mpns), len(set(mpns)))
         known = [
             row["line_burden_per_device_usd"]
             for row in self.result["rows"]
@@ -43,6 +49,15 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(summary["procurement_target_device_quantity"], 1)
         self.assertEqual(summary["historical_cost_capture_device_quantity"], 5)
         self.assertEqual(summary["historical_capture_unmatched_lines"], 27)
+        self.assertAlmostEqual(
+            summary["planning_base_plus_post_pcba_usd_for_ten_devices"],
+            10 * summary["planning_base_plus_post_pcba_usd_per_device"],
+            places=3,
+        )
+        self.assertGreater(summary["top_40_share_pct"], 75)
+        self.assertGreater(
+            summary["planning_plus_known_antenna_usd_per_device"], 400
+        )
         display = next(
             row for row in self.result["rows"]
             if row["device_id"] == "eastrising_er_tft035ips_6_ctp"
@@ -56,6 +71,11 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(buttons["quantity_per_device"], 16)
         self.assertEqual(buttons["quantity_procurement_target"], 16)
         self.assertEqual(buttons["quantity_historical_capture"], 80)
+        self.assertEqual(buttons["quantity_ten_devices"], 160)
+        self.assertAlmostEqual(
+            buttons["planning_ten_devices_line_usd"],
+            10 * buttons["line_burden_per_device_usd"],
+        )
         self.assertAlmostEqual(
             buttons["planning_procurement_line_usd"],
             buttons["line_burden_per_device_usd"],
@@ -66,10 +86,21 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(10, rp["quantity_historical_capture"])
         self.assertEqual("C39843328", rp["jlcpcb_part"])
 
+    def test_external_antennas_are_grouped_by_mpn(self):
+        rows = self.result["antenna_rows"]
+        mpns = [row["mpn"] for row in rows]
+        self.assertEqual(len(mpns), len(set(mpns)))
+        by_mpn = {row["mpn"]: row for row in rows}
+        self.assertEqual(by_mpn["TX2400-JW-5"]["quantity"], 3)
+        self.assertEqual(by_mpn["001-0012"]["quantity"], 2)
+        self.assertEqual(
+            self.result["summary"]["antenna_unpriced_positions"], 4
+        )
+
     def test_display_upper_candidate_has_margin(self):
         display = self.result["display_orientation_review"]
         fit = display["paper_fit"]
-        self.assertEqual(display["current_upper_adapter_board_xy_mm"], [24.75, 1.0])
+        self.assertEqual(display["current_upper_adapter_board_xy_mm"], [22.25, 1.0])
         self.assertIn("antenna edge", display["accepted_rule"])
         self.assertEqual(fit["same_face_collisions"], 0)
         self.assertGreater(fit["minimum_opposing_clearance_mm"], fit["required_minimum_mm"])
@@ -80,7 +111,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         policy = self.result["accepted_cost_reduction_policy"]
         self.assertIn("pre-order", policy["primary_target"])
         self.assertIn("exact or no worse", policy["stocked_replacement_rule"])
-        self.assertIn("shared protective frame", policy["antenna_mechanics_rule"])
+        self.assertIn("through-board soldered load path", policy["antenna_mechanics_rule"])
 
         candidates = {
             row["candidate_mpn"]: row
@@ -104,7 +135,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         )
         self.assertEqual(
             candidates["DreamLNK SMA-KWE902 / SMA-KWE901"]["status"],
-            "rejected_high_profile_tht_form_change",
+            "qualified_pending_full_5_plus_5_placement_and_assembly_gate",
         )
         self.assertEqual(
             candidates["Hirose DF40C(2.0)-40DS-0.4V(51)"]["jlcpcb_part"],
@@ -137,14 +168,15 @@ class H1R2CostReviewTest(unittest.TestCase):
             row["id"]: row["queue_status"]
             for row in self.result["optimization_lanes"]
         }
+        self.assertEqual(lanes["external-antenna-kit"], "active")
         self.assertEqual(lanes["factory-preorder-penalty"], "accepted")
-        self.assertEqual(lanes["main-rf-mechanics"], "accepted")
+        self.assertEqual(lanes["main-rf-mechanics"], "active")
         self.assertEqual(lanes["native-rf-jumpers"], "accepted")
         self.assertEqual(lanes["rf-evidence-detectors"], "active")
         self.assertEqual(lanes["ordinary-controls"], "waiting")
         self.assertEqual(lanes["battery-holder"], "waiting")
         self.assertEqual(lanes["service-headers"], "waiting")
-        self.assertEqual(lanes["display-production-route"], "waiting")
+        self.assertEqual(lanes["display-production-route"], "accepted")
 
 
 if __name__ == "__main__":
