@@ -65,32 +65,38 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(display["line_burden_per_device_usd"], 14.91)
         self.assertEqual(display["planning_procurement_line_usd"], 14.91)
 
-    def test_community_target_gap_is_not_hidden(self):
+    def test_accepted_all_in_one_target_gap_is_not_hidden(self):
         summary = self.result["summary"]
         self.assertEqual(summary["base_bom_lines"], 208)
         self.assertEqual(summary["base_fitted_placements"], 1049)
-        self.assertEqual(summary["community_complete_device_target_usd"], 150)
-        self.assertEqual(summary["community_electronics_target_usd"], [108, 125])
+        self.assertEqual(summary["community_complete_device_target_usd"], 260)
+        self.assertEqual(summary["community_electronics_target_usd"], [189, 216])
         self.assertAlmostEqual(
             summary["paper_qualified_no_loss_savings_usd"], 24.5068, places=4
         )
         self.assertGreater(
-            summary["remaining_gap_to_complete_device_target_before_pcb_pcba_enclosure_usd"],
-            100,
+            summary["additional_savings_to_electronics_target_usd"][0],
+            35,
         )
+        self.assertLess(summary["pre_pcba_margin_to_complete_ceiling_usd"], 10)
         ru = MODULE.render_doc(self.result, True)
-        self.assertIn("Контроль цели $150", ru)
+        self.assertIn("Принятая ценовая граница all-in-one", ru)
+        self.assertIn("отдельный `Core` сейчас не проектируется", ru)
         self.assertIn("1049", ru)
-        self.assertIn("архитектур", ru)
+        self.assertIn("пересинтез", ru)
 
     def test_cost_feasibility_separates_all_in_one_from_modular_entry(self):
         feasibility = self.result["cost_feasibility"]
         all_in_one = feasibility["same_all_in_one_result"]
         modular = feasibility["modular_entry_result"]
+        accepted = feasibility["accepted_strategy"]
         self.assertGreaterEqual(all_in_one["electronics_working_range_usd"][0], 180)
         self.assertGreater(all_in_one["repeatable_complete_base_working_range_usd"][0], 200)
         self.assertLessEqual(modular["repeatable_complete_target_usd"][0], 150)
         self.assertGreaterEqual(modular["repeatable_complete_target_usd"][1], 150)
+        self.assertEqual(modular["status"], "deferred_post_evt1_no_current_hardware_variant")
+        self.assertEqual(accepted["current_repeatable_complete_target_usd"], [220, 260])
+        self.assertIn("do not create a separate Core", accepted["core_rule"])
         self.assertTrue(all(
             row["status"] == "analysis_only_not_qualified"
             for row in feasibility["working_architecture_savings"]

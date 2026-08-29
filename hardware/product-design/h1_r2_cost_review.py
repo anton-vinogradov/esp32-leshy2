@@ -403,10 +403,10 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
             "community_electronics_target_usd": target["electronics_target_usd"],
             "paper_qualified_no_loss_savings_usd": paper_qualified_no_loss_savings,
             "base_after_paper_qualified_savings_usd": after_paper_qualified,
-            "remaining_gap_to_complete_device_target_before_pcb_pcba_enclosure_usd": round(
-                after_paper_qualified - target["complete_device_usd"], 4
+            "pre_pcba_margin_to_complete_ceiling_usd": round(
+                target["complete_device_usd"] - after_paper_qualified, 4
             ),
-            "remaining_gap_to_electronics_target_usd": [
+            "additional_savings_to_electronics_target_usd": [
                 round(after_paper_qualified - target["electronics_target_usd"][1], 4),
                 round(after_paper_qualified - target["electronics_target_usd"][0], 4),
             ],
@@ -591,13 +591,13 @@ def render_doc(result: dict, ru: bool) -> str:
         ]
     if ru:
         lines += [
-            '', '## Контроль цели $150', '',
-            f'- Цель готового базового устройства: **не более {money(summary["community_complete_device_target_usd"])}** без аккумуляторов и полного набора специализированных внешних антенн.',
-            f'- Чтобы внутри этой цены остались PCB, PCBA и корпус, электроника должна стоить примерно **{money(summary["community_electronics_target_usd"][0])}–{money(summary["community_electronics_target_usd"][1])}**.',
+            '', '## Принятая ценовая граница all-in-one', '',
+            f'- Текущий продукт остаётся полностью начинённым all-in-one. Цель повторяемого готового устройства: **{money(result["community_cost_target"]["preferred_complete_device_range_usd"][0])}–{money(result["community_cost_target"]["preferred_complete_device_range_usd"][1])}** без аккумуляторов и полного набора специализированных внешних антенн.',
+            f'- Чтобы внутри этой цены остались PCB, PCBA и корпус, электроника должна попасть примерно в **{money(summary["community_electronics_target_usd"][0])}–{money(summary["community_electronics_target_usd"][1])}**.',
             f'- Сейчас базовая BOM содержит `{summary["base_bom_lines"]}` MPN-групп и `{summary["base_fitted_placements"]}` установленных компонентов. Даже две уже найденные paper-qualified замены без потери функции — SMA/RP-SMA и корпус AD8314 — экономят только **{money(summary["paper_qualified_no_loss_savings_usd"])}** и оставляют **{money(summary["base_after_paper_qualified_savings_usd"])}**.',
-            f'- После них до самой границы $150 всё ещё не хватает **{money(summary["remaining_gap_to_complete_device_target_before_pcb_pcba_enclosure_usd"])}**, причём платы, сборка и корпус ещё не оплачены. До целевой электронной BOM не хватает **{money(summary["remaining_gap_to_electronics_target_usd"][0])}–{money(summary["remaining_gap_to_electronics_target_usd"][1])}**.',
+            f'- После них до целевой электронной BOM нужно убрать ещё **{money(summary["additional_savings_to_electronics_target_usd"][0])}–{money(summary["additional_savings_to_electronics_target_usd"][1])}**. Формальный запас до потолка готового устройства — только **{money(summary["pre_pcba_margin_to_complete_ceiling_usd"])}**, поэтому без дальнейшего пересинтеза в него не помещаются платы, сборка и корпус.',
             '',
-            '**Вывод:** `$150` недостижимы для текущей схемы простой заменой брендов. Цель остаётся реалистичной только как стоимость повторяемого базового устройства после отдельного cost-constrained пересинтеза архитектуры: сохраняем пользовательские возможности и safety-результат, но уменьшаем число измерительных RF-компонентов, служебной обвязки и уникальных заводских позиций. Первый единственный заказ всё равно будет дороже из-за MOQ, setup, ручной установки, доставки и налогов.',
+            '**Принято:** отдельный `Core` сейчас не проектируется. Сначала строится и проверяется один полностью оснащённый `R2-EVT1`; стоимость снижается пересинтезом реализации без удаления встроенных функций и safety-результата. Историческая цель `$150` отложена как возможная community-комплектация после работающего EVT1, а не является текущей аппаратной веткой. Первый единственный заказ всё равно будет дороже из-за MOQ, setup, ручной установки, доставки и налогов.',
             '',
             '### Почему ESP32-DIV заметно дешевле',
             '',
@@ -609,10 +609,10 @@ def render_doc(result: dict, ru: bool) -> str:
             '',
             '| Граница | Электроника | Готовая база | Честный вывод |',
             '|---|---:|---:|---|',
-            f'| Текущая схема | {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | больше {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | `$150` невозможно |',
+            f'| Текущая схема | {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | больше {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | уже выше принятого потолка без плат, сборки и корпуса |',
             f'| Только уже paper-qualified замены | {money(summary["base_after_paper_qualified_savings_usd"])} | больше {money(summary["base_after_paper_qualified_savings_usd"])} | всё ещё недостаточно |',
-            f'| Те же встроенные пользовательские функции и тот же safety-результат после полного cost-resynthesis | {money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][1])} | {money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][1])} | реалистичная цель около `$220–260`, не `$150` |',
-            f'| Модульная community-база; специализированные тракты ставятся Cap/Unit по задаче | {money(feasibility["modular_entry_result"]["electronics_target_usd"][0])}–{money(feasibility["modular_entry_result"]["electronics_target_usd"][1])} | {money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][0])}–{money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][1])} | `$150` правдоподобно, но это уже не полностью начинённый all-in-one |',
+            f'| Те же встроенные пользовательские функции и тот же safety-результат после полного cost-resynthesis | {money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][1])} | {money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][1])} | **текущая принятая цель `$220–260`** |',
+            f'| Модульная community-база; специализированные тракты ставятся Cap/Unit по задаче | {money(feasibility["modular_entry_result"]["electronics_target_usd"][0])}–{money(feasibility["modular_entry_result"]["electronics_target_usd"][1])} | {money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][0])}–{money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][1])} | отложена до работающего `R2-EVT1`; отдельного Core сейчас нет |',
             '',
             'Диапазоны `$189–216` и `$216–261` — не обещание цены: они предполагают успешную замену RF-evidence, кнопок, держателя, recovery-разъёмов и консолидацию audio/safety-обвязки без изменения результата. Ни одна такая архитектурная экономия не будет принята до расчёта и проверки соответствующего контракта.',
             '',
@@ -621,13 +621,13 @@ def render_doc(result: dict, ru: bool) -> str:
         ]
     else:
         lines += [
-            '', '## The $150 target gate', '',
-            f'- The complete base-device target is **at most {money(summary["community_complete_device_target_usd"])}**, excluding batteries and the full specialized external-antenna kit.',
+            '', '## Accepted all-in-one cost boundary', '',
+            f'- The current product remains a fully populated all-in-one. Its repeatable complete-device target is **{money(result["community_cost_target"]["preferred_complete_device_range_usd"][0])}–{money(result["community_cost_target"]["preferred_complete_device_range_usd"][1])}**, excluding batteries and the full specialized external-antenna kit.',
             f'- To leave room for PCB, PCBA and enclosure, electronics must land near **{money(summary["community_electronics_target_usd"][0])}–{money(summary["community_electronics_target_usd"][1])}**.',
             f'- The current base BOM has `{summary["base_bom_lines"]}` MPN groups and `{summary["base_fitted_placements"]}` fitted components. Even the two paper-qualified no-function-loss replacements already identified — SMA/RP-SMA and the AD8314 package — save only **{money(summary["paper_qualified_no_loss_savings_usd"])}** and leave **{money(summary["base_after_paper_qualified_savings_usd"])}**.',
-            f'- That remains **{money(summary["remaining_gap_to_complete_device_target_before_pcb_pcba_enclosure_usd"])}** above the entire $150 boundary before paying for boards, assembly or enclosure. The remaining gap to the electronics target is **{money(summary["remaining_gap_to_electronics_target_usd"][0])}–{money(summary["remaining_gap_to_electronics_target_usd"][1])}**.',
+            f'- A further **{money(summary["additional_savings_to_electronics_target_usd"][0])}–{money(summary["additional_savings_to_electronics_target_usd"][1])}** must be removed to reach the electronics band. The formal margin to the complete-device ceiling is only **{money(summary["pre_pcba_margin_to_complete_ceiling_usd"])}**, so boards, assembly and enclosure do not fit without further resynthesis.',
             '',
-            '**Conclusion:** the present circuit cannot reach `$150` through brand substitutions alone. The target remains plausible only for a repeatable base device after a dedicated cost-constrained architecture resynthesis: preserve user-visible capabilities and the safety outcome while reducing measurement-class RF parts, service support circuitry and unique factory line items. The first sole prototype will still cost more because MOQ, setup, manual placement, freight and tax cannot be amortized.',
+            '**Accepted:** no separate `Core` is designed now. One fully populated `R2-EVT1` is built and verified first; implementation cost is reduced without removing built-in functions or the safety outcome. The historical `$150` goal is deferred as a possible post-EVT1 community fit option, not a current hardware branch. The sole first order will still cost more because MOQ, setup, manual placement, freight and tax cannot be amortized.',
             '',
             '### Why ESP32-DIV is much cheaper',
             '',
@@ -639,10 +639,10 @@ def render_doc(result: dict, ru: bool) -> str:
             '',
             '| Boundary | Electronics | Complete base | Honest result |',
             '|---|---:|---:|---|',
-            f'| Current circuit | {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | above {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | `$150` is impossible |',
+            f'| Current circuit | {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | above {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | already above the accepted ceiling before boards, assembly and enclosure |',
             f'| Paper-qualified replacements only | {money(summary["base_after_paper_qualified_savings_usd"])} | above {money(summary["base_after_paper_qualified_savings_usd"])} | still insufficient |',
-            f'| Same built-in user functions and same safety outcome after full cost resynthesis | {money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][1])} | {money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][1])} | a `$220–260` target is credible; `$150` is not |',
-            f'| Modular community base; specialist paths are fitted as task-specific Caps/Units | {money(feasibility["modular_entry_result"]["electronics_target_usd"][0])}–{money(feasibility["modular_entry_result"]["electronics_target_usd"][1])} | {money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][0])}–{money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][1])} | `$150` is plausible, but this is no longer a fully populated all-in-one |',
+            f'| Same built-in user functions and same safety outcome after full cost resynthesis | {money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][1])} | {money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][1])} | **current accepted `$220–260` target** |',
+            f'| Modular community base; specialist paths are fitted as task-specific Caps/Units | {money(feasibility["modular_entry_result"]["electronics_target_usd"][0])}–{money(feasibility["modular_entry_result"]["electronics_target_usd"][1])} | {money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][0])}–{money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][1])} | deferred until a working `R2-EVT1`; there is no separate Core now |',
             '',
             'The `$189–216` and `$216–261` bands are not price promises: they assume successful RF-evidence, control, holder, recovery and audio/safety consolidation without changing the result. No such architecture saving is accepted until its contract is calculated and verified.',
             '',

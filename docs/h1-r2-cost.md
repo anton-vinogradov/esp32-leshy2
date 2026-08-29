@@ -14,14 +14,14 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 - Historical five-board JLCPCB capture: **$1,373.20** for `183` matched lines; `23` live checks move it to **$1,429.94**, with `27` rows excluded. This is evidence, not the target quantity.
 - The external antenna kit is separate: **$138.32** is known and `4` positions in `2` MPN groups remain unpriced. The known electronics plus known antennas already reach **$416.87** before PCB/PCBA, enclosure and freight.
 
-## The $150 target gate
+## Accepted all-in-one cost boundary
 
-- The complete base-device target is **at most $150.00**, excluding batteries and the full specialized external-antenna kit.
-- To leave room for PCB, PCBA and enclosure, electronics must land near **$108.00–$125.00**.
+- The current product remains a fully populated all-in-one. Its repeatable complete-device target is **$220.00–$260.00**, excluding batteries and the full specialized external-antenna kit.
+- To leave room for PCB, PCBA and enclosure, electronics must land near **$189.00–$216.00**.
 - The current base BOM has `208` MPN groups and `1049` fitted components. Even the two paper-qualified no-function-loss replacements already identified — SMA/RP-SMA and the AD8314 package — save only **$24.51** and leave **$254.05**.
-- That remains **$104.05** above the entire $150 boundary before paying for boards, assembly or enclosure. The remaining gap to the electronics target is **$129.05–$146.05**.
+- A further **$38.05–$65.05** must be removed to reach the electronics band. The formal margin to the complete-device ceiling is only **$5.95**, so boards, assembly and enclosure do not fit without further resynthesis.
 
-**Conclusion:** the present circuit cannot reach `$150` through brand substitutions alone. The target remains plausible only for a repeatable base device after a dedicated cost-constrained architecture resynthesis: preserve user-visible capabilities and the safety outcome while reducing measurement-class RF parts, service support circuitry and unique factory line items. The first sole prototype will still cost more because MOQ, setup, manual placement, freight and tax cannot be amortized.
+**Accepted:** no separate `Core` is designed now. One fully populated `R2-EVT1` is built and verified first; implementation cost is reduced without removing built-in functions or the safety outcome. The historical `$150` goal is deferred as a possible post-EVT1 community fit option, not a current hardware branch. The sole first order will still cost more because MOQ, setup, manual placement, freight and tax cannot be amortized.
 
 ### Why ESP32-DIV is much cheaper
 
@@ -33,10 +33,10 @@ That does not mean Leshy2 must cost eight times as much. It means the current ar
 
 | Boundary | Electronics | Complete base | Honest result |
 |---|---:|---:|---|
-| Current circuit | $278.55 | above $278.55 | `$150` is impossible |
+| Current circuit | $278.55 | above $278.55 | already above the accepted ceiling before boards, assembly and enclosure |
 | Paper-qualified replacements only | $254.05 | above $254.05 | still insufficient |
-| Same built-in user functions and same safety outcome after full cost resynthesis | $189.00–$216.00 | $216.00–$261.00 | a `$220–260` target is credible; `$150` is not |
-| Modular community base; specialist paths are fitted as task-specific Caps/Units | $108.00–$125.00 | $135.00–$165.00 | `$150` is plausible, but this is no longer a fully populated all-in-one |
+| Same built-in user functions and same safety outcome after full cost resynthesis | $189.00–$216.00 | $216.00–$261.00 | **current accepted `$220–260` target** |
+| Modular community base; specialist paths are fitted as task-specific Caps/Units | $108.00–$125.00 | $135.00–$165.00 | deferred until a working `R2-EVT1`; there is no separate Core now |
 
 The `$189–216` and `$216–261` bands are not price promises: they assume successful RF-evidence, control, holder, recovery and audio/safety consolidation without changing the result. No such architecture saving is accepted until its contract is calculated and verified.
 

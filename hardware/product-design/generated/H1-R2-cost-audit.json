@@ -17,17 +17,17 @@
     "planning_plus_known_antenna_usd_per_device": 416.87,
     "base_bom_lines": 208,
     "base_fitted_placements": 1049,
-    "community_complete_device_target_usd": 150,
+    "community_complete_device_target_usd": 260,
     "community_electronics_target_usd": [
-      108,
-      125
+      189,
+      216
     ],
     "paper_qualified_no_loss_savings_usd": 24.5068,
     "base_after_paper_qualified_savings_usd": 254.0466,
-    "remaining_gap_to_complete_device_target_before_pcb_pcba_enclosure_usd": 104.0466,
-    "remaining_gap_to_electronics_target_usd": [
-      129.0466,
-      146.0466
+    "pre_pcba_margin_to_complete_ceiling_usd": 5.9534,
+    "additional_savings_to_electronics_target_usd": [
+      38.0466,
+      65.0466
     ],
     "combined_top_20_share_pct": 66.78,
     "top_10_share_pct": 41.87,
@@ -5188,13 +5188,19 @@
     "antenna_mechanics_rule": "Prefer individually board-retained DIV-like right-angle SMA/RP-SMA bodies without nuts, sealing hardware or a shared protective frame. Low profile is not a requirement; a dual-face or through-board soldered load path is preferred. Keep the GCT pair only until a documented stocked standard/reverse pair passes the complete 5+5 placement, opposing-clearance and factory-assembly gate."
   },
   "community_cost_target": {
-    "complete_device_usd": 150,
-    "electronics_target_usd": [
-      108,
-      125
+    "complete_device_usd": 260,
+    "preferred_complete_device_range_usd": [
+      220,
+      260
     ],
-    "scope": "repeatable complete base device excluding batteries and the optional full external antenna kit; PCB, PCBA and enclosure must fit in the remaining complete-device allowance",
-    "rule": "The target is a hard architecture gate, not a promise for the first one-off factory order. A one-off order also carries setup, MOQ, hand-solder, shipping and tax costs that cannot be amortized.",
+    "electronics_target_usd": [
+      189,
+      216
+    ],
+    "scope": "repeatable fully populated all-in-one device excluding batteries and the optional full external antenna kit; PCB, PCBA and enclosure must fit in the remaining complete-device allowance",
+    "rule": "The target is a hard cost-resynthesis gate for the current all-in-one architecture, not a promise for the first one-off factory order. A one-off order also carries setup, MOQ, hand-solder, shipping and tax costs that cannot be amortized.",
+    "historical_community_entry_target_usd": 150,
+    "historical_community_entry_status": "deferred until the fully populated R2-EVT1 works; no separate Core hardware variant is designed now",
     "recovered_reference": "drafts/legacy-2026-08-15/docs/bom.ru.md"
   },
   "cost_feasibility": {
@@ -5268,9 +5274,20 @@
         165
       ],
       "scope": "community entry device with the same software architecture and expansion compatibility, but selected specialist radio chains are bought as Caps/Units only when required",
-      "assessment": "A USD 150 entry point is plausible only under this modular boundary. A fully populated system with every option and its antenna set still costs more."
+      "assessment": "A USD 150 entry point is plausible only under this modular boundary. A fully populated system with every option and its antenna set still costs more.",
+      "status": "deferred_post_evt1_no_current_hardware_variant"
     },
-    "decision_gate": "Choose whether USD 150 governs a modular community entry device or whether all currently integrated radio chains must remain fitted; the latter needs a higher target."
+    "accepted_strategy": {
+      "accepted_on": "2026-08-29",
+      "current_product": "one fully populated all-in-one Leshy2",
+      "current_repeatable_complete_target_usd": [
+        220,
+        260
+      ],
+      "current_first_prototype_rule": "the sole R2-EVT1 may cost more because one-off factory penalties are not amortized",
+      "core_rule": "do not create a separate Core PCB, BOM or product now; only preserve absent-device behavior and expansion boundaries so a community fit option can be evaluated after R2-EVT1"
+    },
+    "decision_status": "accepted_full_all_in_one_now_core_deferred_until_after_evt1"
   },
   "current_stocked_candidate_checks": [
     {
