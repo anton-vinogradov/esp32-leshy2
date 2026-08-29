@@ -16,6 +16,7 @@ TRIAL_PATH = REPO / "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.j
 ANTENNA_PATH = REPO / "hardware/architecture/antenna-kit.json"
 AUDIT_PATH = REPO / "hardware/product-design/generated/H1-R2-cost-audit.json"
 CSV_PATH = REPO / "hardware/product-design/generated/H1-R2-cost-ranked.csv"
+TOP20_CSV_PATH = REPO / "hardware/product-design/generated/H1-R2-cost-top20.csv"
 EN_PATH = REPO / "docs/h1-r2-cost.md"
 RU_PATH = REPO / "docs/h1-r2-cost.ru.md"
 
@@ -59,12 +60,12 @@ LANES_RU = {
     ),
     "main-rf-mechanics": (
         "Заменить дорогую GCT-пару на прочную складскую standard/reverse пару, если она помещается",
-        "Десять GCT RFPC-SMA31/32 стоят $24,65 на устройство. Низкий профиль больше не является требованием; складская nutless-пара DreamLNK уменьшила бы строку примерно на $19,01, но её сквозные хвосты и ось 10,2 мм требуют нового внутреннего keep-out и проверки всех пяти портов на каждой плате.",
+        "Десять GCT RFPC-SMA31/32 стоят $24,65 на устройство. Низкий профиль больше не является требованием; nutless-пара DreamLNK уменьшила бы строку примерно на $19,01 на общей quantity-100 базе, но её сквозные хвосты, MOQ и ручная фабричная пайка требуют нового внутреннего keep-out и подтверждения маршрута сборки.",
         "Искать не низкопрофильность, а правильное направление антенны, standard/RP-SMA, минимум 6 ГГц для native-портов и силовую пайку с двух сторон либо сквозное удержание. Принять замену только после полного 5+5 placement/clearance-аудита.",
     ),
     "rf-evidence-detectors": (
         "Пересмотреть восемь RF-детекторов, не ослабляя доказательство реальной передачи",
-        "Шесть AD8314 и два LTC5532 дают $24,92 на устройство; live-цена партии — $276,70. Складской вариант того же устройства AD8314ARMZ-REEL C652687 сэкономит $88,99 на EVT5 и $6,168 на готовое устройство в партии 100. Строго не худшая замена LTC5532 не доказана.",
+        "Шесть AD8314 и два LTC5532 дают $24,92 на устройство; live-цена партии — $276,70. Складской вариант того же устройства AD8314ARMZ-REEL C652687 сэкономит $88,99 на прежнем EVT5-снимке и $5,4864 на устройство на общей quantity-100 базе. Строго не худшая замена LTC5532 не доказана.",
         "До принятия C652687 зарегистрировать и проверить столкновения всех шести увеличенных MSOP-courtyard, соседних match/bypass-компонентов и fanout RF-земли. Два LTC5532 оставить; независимое evidence трёх одновременно работающих nRF24 сохранить.",
     ),
     "ordinary-controls": (
@@ -290,6 +291,55 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         reverse=True,
     )
     antenna_known = sum(row["known_line_usd"] or 0 for row in antenna_rows)
+    combined_ranked_rows = [
+        {
+            "source": "base_bom",
+            "mpn": row["mpn"],
+            "role": row["role"],
+            "quantity_per_prototype": row["quantity_per_device"],
+            "effective_unit_price_usd": row["effective_unit_price_usd"],
+            "group_cost_per_prototype_usd": row["line_burden_per_device_usd"],
+        }
+        for row in rows
+        if row["scope"] == "base_product"
+        and row["line_burden_per_device_usd"] is not None
+    ] + [
+        {
+            "source": "external_antenna",
+            "mpn": row["mpn"],
+            "role": f'{row["profile"]}; {row["code"]}',
+            "quantity_per_prototype": row["quantity"],
+            "effective_unit_price_usd": row["known_line_usd"] / row["quantity"],
+            "group_cost_per_prototype_usd": row["known_line_usd"],
+        }
+        for row in antenna_rows
+        if row["known_line_usd"] is not None
+    ]
+    combined_ranked_rows.sort(
+        key=lambda row: row["group_cost_per_prototype_usd"], reverse=True
+    )
+    known_combined_total = planning_base + post_pcba + antenna_known
+    target = model["community_cost_target"]
+    paper_qualified_no_loss_savings = round(
+        (connector_cost := (
+            next(row for row in rows if row["device_id"] == "gct_rfpc_sma31_fn_175_a")["line_burden_per_device_usd"]
+            + next(row for row in rows if row["device_id"] == "gct_rfpc_sma32_fn_175_a")["line_burden_per_device_usd"]
+        ))
+        - (8 * 0.5515 + 2 * 0.6066)
+        + (
+            next(row for row in rows if row["device_id"] == "adi_ad8314acpz_rl7")["line_burden_per_device_usd"]
+            - 6 * 1.9426
+        ),
+        4,
+    )
+    after_paper_qualified = round(
+        planning_base + post_pcba - paper_qualified_no_loss_savings, 4
+    )
+    for rank, row in enumerate(combined_ranked_rows, 1):
+        row["rank"] = rank
+        row["share_of_known_combined_total_pct"] = round(
+            100.0 * row["group_cost_per_prototype_usd"] / known_combined_total, 3
+        )
     ranked_base = [
         row for row in rows
         if row["scope"] == "base_product"
@@ -343,7 +393,29 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
                 (planning_base + post_pcba) * 10, 4
             ),
             "planning_plus_known_antenna_usd_per_device": round(
-                planning_base + post_pcba + antenna_known, 4
+                known_combined_total, 4
+            ),
+            "base_bom_lines": sum(row["scope"] == "base_product" for row in bom),
+            "base_fitted_placements": sum(
+                int(row["quantity"]) for row in bom if row["scope"] == "base_product"
+            ),
+            "community_complete_device_target_usd": target["complete_device_usd"],
+            "community_electronics_target_usd": target["electronics_target_usd"],
+            "paper_qualified_no_loss_savings_usd": paper_qualified_no_loss_savings,
+            "base_after_paper_qualified_savings_usd": after_paper_qualified,
+            "remaining_gap_to_complete_device_target_before_pcb_pcba_enclosure_usd": round(
+                after_paper_qualified - target["complete_device_usd"], 4
+            ),
+            "remaining_gap_to_electronics_target_usd": [
+                round(after_paper_qualified - target["electronics_target_usd"][1], 4),
+                round(after_paper_qualified - target["electronics_target_usd"][0], 4),
+            ],
+            "combined_top_20_share_pct": round(
+                100.0 * sum(
+                    row["group_cost_per_prototype_usd"]
+                    for row in combined_ranked_rows[:20]
+                ) / known_combined_total,
+                2,
             ),
             "top_10_share_pct": top_share(10),
             "top_20_share_pct": top_share(20),
@@ -374,8 +446,10 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         "legacy_display_evidence": model["legacy_display_evidence"],
         "post_pcba_required": model["post_pcba_required"],
         "antenna_rows": antenna_rows,
+        "combined_top_20_rows": combined_ranked_rows[:20],
         "display_orientation_review": display,
         "accepted_cost_reduction_policy": model["accepted_cost_reduction_policy"],
+        "community_cost_target": target,
         "current_stocked_candidate_checks": model["current_stocked_candidate_checks"],
         "optimization_lanes": model["optimization_lanes"],
         "errors": errors,
@@ -405,6 +479,25 @@ def render_csv(result: dict) -> str:
     return output.getvalue()
 
 
+def render_top20_csv(result: dict) -> str:
+    fields = [
+        "rank", "source", "mpn", "role", "quantity_per_prototype",
+        "effective_unit_price_usd", "group_cost_per_prototype_usd",
+        "share_of_known_combined_total_pct",
+    ]
+    import io
+    output = io.StringIO()
+    writer = csv.DictWriter(
+        output,
+        fieldnames=fields,
+        extrasaction="ignore",
+        lineterminator="\n",
+    )
+    writer.writeheader()
+    writer.writerows(result["combined_top_20_rows"])
+    return output.getvalue()
+
+
 def render_doc(result: dict, ru: bool) -> str:
     summary = result["summary"]
     rows = result["rows"]
@@ -418,7 +511,7 @@ def render_doc(result: dict, ru: bool) -> str:
         )
         top_h = '## Сводка'
         basis = 'База'
-        table_h = '## Самые дорогие группы готового устройства'
+        table_h = '## Единый топ-20: электроника и внешние антенны'
         trial_h = '## Где малая партия переплачивает'
         antenna_h = '## Внешний антенный комплект'
         candidates_h = '## Проверенные складские кандидаты'
@@ -428,9 +521,8 @@ def render_doc(result: dict, ru: bool) -> str:
         qty_h = 'Шт. ×1'
         unit_h = 'Цена 1 шт. по принятой базе'
         one_h = 'Группа ×1'
-        ten_qty_h = 'Шт. ×10'
-        ten_plan_h = 'Группа ×10'
-        share_h = 'Доля BOM'
+        source_h = 'Источник'
+        share_h = 'Доля известной суммы'
     else:
         title = f'# {result["marker"]} · component cost ranking'
         intro = (
@@ -440,7 +532,7 @@ def render_doc(result: dict, ru: bool) -> str:
         )
         top_h = '## Summary'
         basis = 'Basis'
-        table_h = '## Highest-cost finished-device groups'
+        table_h = '## Unified top 20: electronics and external antennas'
         trial_h = '## Where the small batch overpays'
         antenna_h = '## External antenna kit'
         candidates_h = '## Verified stocked candidates'
@@ -450,9 +542,8 @@ def render_doc(result: dict, ru: bool) -> str:
         qty_h = 'Qty ×1'
         unit_h = 'Unit on accepted basis'
         one_h = 'Group ×1'
-        ten_qty_h = 'Qty ×10'
-        ten_plan_h = 'Group ×10'
-        share_h = 'BOM share'
+        source_h = 'Source'
+        share_h = 'Share of known total'
     lines = [
         title, '',
         '[Русский](h1-r2-cost.ru.md) · [English](h1-r2-cost.md) · [Current placement](h1-r2-physical-layout.md)',
@@ -498,33 +589,56 @@ def render_doc(result: dict, ru: bool) -> str:
         ]
     if ru:
         lines += [
-            '', 'Цена ×10 ниже — простое умножение принятой базы на десять. Реальный заказ может быть дешевле из-за ценовых ступеней или дороже из-за MOQ/pre-order; это будет известно только из exact-one quote.',
+            '', '## Контроль цели $150', '',
+            f'- Цель готового базового устройства: **не более {money(summary["community_complete_device_target_usd"])}** без аккумуляторов и полного набора специализированных внешних антенн.',
+            f'- Чтобы внутри этой цены остались PCB, PCBA и корпус, электроника должна стоить примерно **{money(summary["community_electronics_target_usd"][0])}–{money(summary["community_electronics_target_usd"][1])}**.',
+            f'- Сейчас базовая BOM содержит `{summary["base_bom_lines"]}` MPN-групп и `{summary["base_fitted_placements"]}` установленных компонентов. Даже две уже найденные paper-qualified замены без потери функции — SMA/RP-SMA и корпус AD8314 — экономят только **{money(summary["paper_qualified_no_loss_savings_usd"])}** и оставляют **{money(summary["base_after_paper_qualified_savings_usd"])}**.',
+            f'- После них до самой границы $150 всё ещё не хватает **{money(summary["remaining_gap_to_complete_device_target_before_pcb_pcba_enclosure_usd"])}**, причём платы, сборка и корпус ещё не оплачены. До целевой электронной BOM не хватает **{money(summary["remaining_gap_to_electronics_target_usd"][0])}–{money(summary["remaining_gap_to_electronics_target_usd"][1])}**.',
+            '',
+            '**Вывод:** `$150` недостижимы для текущей схемы простой заменой брендов. Цель остаётся реалистичной только как стоимость повторяемого базового устройства после отдельного cost-constrained пересинтеза архитектуры: сохраняем пользовательские возможности и safety-результат, но уменьшаем число измерительных RF-компонентов, служебной обвязки и уникальных заводских позиций. Первый единственный заказ всё равно будет дороже из-за MOQ, setup, ручной установки, доставки и налогов.',
+            '',
+            'Полный антенный комплект — аксессуар, а не скрытая часть цены устройства. Универсальная RX-антенна не заменяет согласованные TX-антенны; базовый комплект и дополнительные диапазонные антенны должны оцениваться отдельно.',
+            '', 'Главный рейтинг ниже показывает **только один прототип**. В нём нет исторической цены пяти плат и нет умножения ×10.',
         ]
     else:
         lines += [
-            '', 'The ×10 price below is a simple tenfold projection of the accepted basis. A real order may be lower because of price breaks or higher because of MOQ/pre-order; only the exact quote can settle it.',
+            '', '## The $150 target gate', '',
+            f'- The complete base-device target is **at most {money(summary["community_complete_device_target_usd"])}**, excluding batteries and the full specialized external-antenna kit.',
+            f'- To leave room for PCB, PCBA and enclosure, electronics must land near **{money(summary["community_electronics_target_usd"][0])}–{money(summary["community_electronics_target_usd"][1])}**.',
+            f'- The current base BOM has `{summary["base_bom_lines"]}` MPN groups and `{summary["base_fitted_placements"]}` fitted components. Even the two paper-qualified no-function-loss replacements already identified — SMA/RP-SMA and the AD8314 package — save only **{money(summary["paper_qualified_no_loss_savings_usd"])}** and leave **{money(summary["base_after_paper_qualified_savings_usd"])}**.',
+            f'- That remains **{money(summary["remaining_gap_to_complete_device_target_before_pcb_pcba_enclosure_usd"])}** above the entire $150 boundary before paying for boards, assembly or enclosure. The remaining gap to the electronics target is **{money(summary["remaining_gap_to_electronics_target_usd"][0])}–{money(summary["remaining_gap_to_electronics_target_usd"][1])}**.',
+            '',
+            '**Conclusion:** the present circuit cannot reach `$150` through brand substitutions alone. The target remains plausible only for a repeatable base device after a dedicated cost-constrained architecture resynthesis: preserve user-visible capabilities and the safety outcome while reducing measurement-class RF parts, service support circuitry and unique factory line items. The first sole prototype will still cost more because MOQ, setup, manual placement, freight and tax cannot be amortized.',
+            '',
+            'The full antenna kit is an accessory, not a hidden device-price line. A broadband receive antenna cannot replace band-matched transmit antennas; the basic kit and additional band-specific antennas must be priced separately.',
+            '', 'The primary ranking below shows **one prototype only**. It contains neither the historical five-board capture nor a ×10 multiplication.',
         ]
     lines += ['', table_h, '',
-        f'| {role_h} | {qty_h} | {unit_h} | {one_h} | {ten_qty_h} | {ten_plan_h} | {share_h} |',
-        '|---|---:|---:|---:|---:|---:|---:|',
+        f'| № | {source_h} | {role_h} | {qty_h} | {unit_h} | {one_h} | {share_h} |',
+        '|---:|---|---|---:|---:|---:|---:|',
     ]
-    base_rows = [row for row in rows if row["scope"] == "base_product"]
-    for row in base_rows[:40]:
+    for row in result["combined_top_20_rows"]:
         role = row["role"]
         if len(role) > 180:
             role = (
-                f'{row["quantity_per_device"]} сгруппированных установок; полный список в CSV'
-                if ru
-                else f'{row["quantity_per_device"]} grouped placements; complete list in CSV'
+                f'{row["quantity_per_prototype"]} сгруппированных установок; полный список в CSV'
+                if ru else f'{row["quantity_per_prototype"]} grouped placements; complete list in CSV'
             )
+        source = (
+            ('Антенна' if ru else 'Antenna')
+            if row["source"] == "external_antenna"
+            else ('Основная BOM' if ru else 'Base BOM')
+        )
         lines.append(
-            f'| `{row["mpn"]}`<br><sub>{role}</sub> | {row["quantity_per_device"]} | '
-            f'{money(row["effective_unit_price_usd"])} | {money(row["line_burden_per_device_usd"])} | '
-            f'{row["quantity_ten_devices"]} | {money(row["planning_ten_devices_line_usd"])} | '
-            f'{row["share_of_planning_base_pct"]:.2f}% |'
+            f'| {row["rank"]} | {source} | `{row["mpn"]}`<br><sub>{role}</sub> | '
+            f'{row["quantity_per_prototype"]} | {money(row["effective_unit_price_usd"])} | '
+            f'{money(row["group_cost_per_prototype_usd"])} | '
+            f'{row["share_of_known_combined_total_pct"]:.2f}% |'
         )
     full_csv = '../hardware/product-design/generated/H1-R2-cost-ranked.csv'
+    top20_csv = '../hardware/product-design/generated/H1-R2-cost-top20.csv'
     full_text = 'Полный рейтинг 210 строк — CSV' if ru else 'Complete 210-line ranking — CSV'
+    top20_text = 'Единый топ-20 — CSV' if ru else 'Unified top 20 — CSV'
     by_id = {row["device_id"]: row for row in rows}
     connector_cost = (
         by_id["gct_rfpc_sma31_fn_175_a"]["line_burden_per_device_usd"]
@@ -538,15 +652,15 @@ def render_doc(result: dict, ru: bool) -> str:
         by_id["te_2118651_2"]["line_burden_per_device_usd"]
         + by_id["hirose_ufl_r_smt_1_10"]["line_burden_per_device_usd"]
     )
-    lines += ['', f'[{full_text}]({full_csv})', '']
+    lines += ['', f'[{top20_text}]({top20_csv}) · [{full_text}]({full_csv})', '']
     if ru:
         lines += [
             '## Где вероятнее всего есть неоправданные траты', '',
             '| Приоритет | Группа | Сейчас ×1 | Вывод | Реалистичная экономия |',
             '|---:|---|---:|---|---:|',
             f'| 1 | Внешние антенны | {money(summary["antenna_known_first_target_usd"])} + 4 неизвестных | Крупнейшая отдельная группа; функциональность нужна, но брендовые первые MPN не обязаны быть самыми выгодными | уточняется |',
-            f'| 2 | 10 внешних SMA/RP-SMA | {money(connector_cost)} | Цена GCT больше не оправдывается требованием низкого профиля; нужна повторная компоновка прочной складской пары | до ~$19.01 |',
-            f'| 3 | 8 RF-detector’ов | {money(detector_cost)} | Evidence реальной передачи нужен; шесть AD8314 можно перевести на складской корпус того же IC после placement-аудита | ~$6.17 |',
+            f'| 2 | 10 внешних SMA/RP-SMA | {money(connector_cost)} | Цена GCT больше не оправдывается требованием низкого профиля; нужна повторная компоновка прочной пары с фабричным manual-solder route | до ~$19.02 |',
+            f'| 3 | 8 RF-detector’ов | {money(detector_cost)} | Evidence реальной передачи нужен; шесть AD8314 можно перевести на складской корпус того же IC после placement-аудита | ~$5.49 |',
             f'| 4 | 5 U.FL + 5 кабелей | {money(jumper_cost)} | Сейчас функционально оправдано; убрать можно только один тракт после доказанного C5 T2-маршрута | до ~$2.89 |',
             f'| 5 | 16 пользовательских кнопок | {money(by_id["omron_b3s_1100p"]["line_burden_per_device_usd"])} | Дорогая группа, но первый дешёвый кандидат потерял заземление крышки и отклонён | уточняется |',
             f'| 6 | Держатель 2×18650 | {money(by_id["keystone_1048p"]["line_burden_per_device_usd"])} | Возможна замена на серийные контакты только если всю мехнагрузку несёт корпус | уточняется |',
@@ -561,8 +675,8 @@ def render_doc(result: dict, ru: bool) -> str:
             '| Priority | Group | Current ×1 | Finding | Realistic saving |',
             '|---:|---|---:|---|---:|',
             f'| 1 | External antennas | {money(summary["antenna_known_first_target_usd"])} + 4 unknown | Largest separate group; the functions are required, but the first branded MPNs need not be the best-value equivalents | to be established |',
-            f'| 2 | 10 outward SMA/RP-SMA | {money(connector_cost)} | GCT cost is no longer justified by a low-profile requirement; a robust stocked pair needs a fresh placement check | up to ~$19.01 |',
-            f'| 3 | 8 RF detectors | {money(detector_cost)} | Real-TX evidence remains required; six AD8314 can move to the stocked package of the same IC after placement review | ~$6.17 |',
+            f'| 2 | 10 outward SMA/RP-SMA | {money(connector_cost)} | GCT cost is no longer justified by a low-profile requirement; a robust pair needs a fresh placement and factory manual-solder check | up to ~$19.02 |',
+            f'| 3 | 8 RF detectors | {money(detector_cost)} | Real-TX evidence remains required; six AD8314 can move to the stocked package of the same IC after placement review | ~$5.49 |',
             f'| 4 | 5 U.FL plus 5 cables | {money(jumper_cost)} | Functionally justified now; only a proven C5 T2 route can remove one path | up to ~$2.89 |',
             f'| 5 | 16 user buttons | {money(by_id["omron_b3s_1100p"]["line_burden_per_device_usd"])} | Expensive group, but the first cheaper candidate lost the grounded cover and was rejected | to be established |',
             f'| 6 | Dual-18650 holder | {money(by_id["keystone_1048p"]["line_burden_per_device_usd"])} | Serial contacts are viable only if the enclosure carries all mechanical load | to be established |',
@@ -690,6 +804,7 @@ def main() -> int:
     outputs = {
         AUDIT_PATH: json.dumps(result, ensure_ascii=False, indent=2) + "\n",
         CSV_PATH: render_csv(result),
+        TOP20_CSV_PATH: render_top20_csv(result),
         EN_PATH: render_doc(result, False),
         RU_PATH: render_doc(result, True),
     }

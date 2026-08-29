@@ -15,6 +15,21 @@
     "planning_base_plus_post_pcba_usd_for_procurement_target": 278.5534,
     "planning_base_plus_post_pcba_usd_for_ten_devices": 2785.534,
     "planning_plus_known_antenna_usd_per_device": 416.87,
+    "base_bom_lines": 208,
+    "base_fitted_placements": 1049,
+    "community_complete_device_target_usd": 150,
+    "community_electronics_target_usd": [
+      108,
+      125
+    ],
+    "paper_qualified_no_loss_savings_usd": 24.5068,
+    "base_after_paper_qualified_savings_usd": 254.0466,
+    "remaining_gap_to_complete_device_target_before_pcb_pcba_enclosure_usd": 104.0466,
+    "remaining_gap_to_electronics_target_usd": [
+      129.0466,
+      146.0466
+    ],
+    "combined_top_20_share_pct": 66.78,
     "top_10_share_pct": 41.87,
     "top_20_share_pct": 59.49,
     "top_40_share_pct": 77.72,
@@ -4937,6 +4952,208 @@
       "profile": "passive receive-only direct-plug ferrite pod"
     }
   ],
+  "combined_top_20_rows": [
+    {
+      "source": "external_antenna",
+      "mpn": "SMA-W100RX2",
+      "role": "receive-only telescopic whip; AIR",
+      "quantity_per_prototype": 1,
+      "effective_unit_price_usd": 35.95,
+      "group_cost_per_prototype_usd": 35.95,
+      "rank": 1,
+      "share_of_known_combined_total_pct": 8.624
+    },
+    {
+      "source": "external_antenna",
+      "mpn": "001-0012",
+      "role": "2.4/5 GHz native radio; S3, C5",
+      "quantity_per_prototype": 2,
+      "effective_unit_price_usd": 16.91,
+      "group_cost_per_prototype_usd": 33.82,
+      "rank": 2,
+      "share_of_known_combined_total_pct": 8.113
+    },
+    {
+      "source": "external_antenna",
+      "mpn": "AN0155H13",
+      "role": "VHF 136-174 MHz; VHF",
+      "quantity_per_prototype": 1,
+      "effective_unit_price_usd": 31.7,
+      "group_cost_per_prototype_usd": 31.7,
+      "rank": 3,
+      "share_of_known_combined_total_pct": 7.604
+    },
+    {
+      "source": "external_antenna",
+      "mpn": "ANT-433-CW-QW-SMA",
+      "role": "433 MHz / UHF 400-470 MHz; S433, UHF",
+      "quantity_per_prototype": 2,
+      "effective_unit_price_usd": 11.23,
+      "group_cost_per_prototype_usd": 22.46,
+      "rank": 4,
+      "share_of_known_combined_total_pct": 5.388
+    },
+    {
+      "source": "base_bom",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "role": "eight standard outward SMA / восемь внешних SMA",
+      "quantity_per_prototype": 8,
+      "effective_unit_price_usd": 2.46456,
+      "group_cost_per_prototype_usd": 19.71648,
+      "rank": 5,
+      "share_of_known_combined_total_pct": 4.73
+    },
+    {
+      "source": "base_bom",
+      "mpn": "Analog Devices AD8314ACPZ-RL7",
+      "role": "six real-TX RF detectors / шесть RF-детекторов фактической передачи",
+      "quantity_per_prototype": 6,
+      "effective_unit_price_usd": 2.8570000000000007,
+      "group_cost_per_prototype_usd": 17.142000000000003,
+      "rank": 6,
+      "share_of_known_combined_total_pct": 4.112
+    },
+    {
+      "source": "base_bom",
+      "mpn": "EastRising ER-TFT035IPS-6 + ER-TPC035-6",
+      "role": "display",
+      "quantity_per_prototype": 1,
+      "effective_unit_price_usd": 14.91,
+      "group_cost_per_prototype_usd": 14.91,
+      "rank": 7,
+      "share_of_known_combined_total_pct": 3.577
+    },
+    {
+      "source": "base_bom",
+      "mpn": "OMRON B3S-1100P",
+      "role": "sixteen ordinary user keys / шестнадцать обычных клавиш",
+      "quantity_per_prototype": 16,
+      "effective_unit_price_usd": 0.6405,
+      "group_cost_per_prototype_usd": 10.248,
+      "rank": 8,
+      "share_of_known_combined_total_pct": 2.458
+    },
+    {
+      "source": "base_bom",
+      "mpn": "G-NiceRF SA818S-V",
+      "role": "VHF voice transceiver / VHF голосовой трансивер",
+      "quantity_per_prototype": 1,
+      "effective_unit_price_usd": 10.071,
+      "group_cost_per_prototype_usd": 10.071,
+      "rank": 9,
+      "share_of_known_combined_total_pct": 2.416
+    },
+    {
+      "source": "base_bom",
+      "mpn": "G-NiceRF SA818S-U",
+      "role": "UHF voice transceiver / UHF голосовой трансивер",
+      "quantity_per_prototype": 1,
+      "effective_unit_price_usd": 9.7347,
+      "group_cost_per_prototype_usd": 9.7347,
+      "rank": 10,
+      "share_of_known_combined_total_pct": 2.335
+    },
+    {
+      "source": "external_antenna",
+      "mpn": "ANT-315-CW-HW-SMA",
+      "role": "315 MHz; S315",
+      "quantity_per_prototype": 1,
+      "effective_unit_price_usd": 9.6,
+      "group_cost_per_prototype_usd": 9.6,
+      "rank": 11,
+      "share_of_known_combined_total_pct": 2.303
+    },
+    {
+      "source": "base_bom",
+      "mpn": "TE Connectivity 2118651-2",
+      "role": "five 30-mm RF jumpers / пять 30-мм RF-кабелей",
+      "quantity_per_prototype": 5,
+      "effective_unit_price_usd": 1.8211,
+      "group_cost_per_prototype_usd": 9.1055,
+      "rank": 12,
+      "share_of_known_combined_total_pct": 2.184
+    },
+    {
+      "source": "base_bom",
+      "mpn": "Ebyte E01-ML01SP4",
+      "role": "three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm",
+      "quantity_per_prototype": 3,
+      "effective_unit_price_usd": 2.9633,
+      "group_cost_per_prototype_usd": 8.889899999999999,
+      "rank": 13,
+      "share_of_known_combined_total_pct": 2.133
+    },
+    {
+      "source": "base_bom",
+      "mpn": "Keystone Electronics 1048P",
+      "role": "dual protected-18650 holder / держатель двух защищённых 18650",
+      "quantity_per_prototype": 1,
+      "effective_unit_price_usd": 8.57,
+      "group_cost_per_prototype_usd": 8.57,
+      "rank": 14,
+      "share_of_known_combined_total_pct": 2.056
+    },
+    {
+      "source": "base_bom",
+      "mpn": "Texas Instruments TMUX1136DGSR",
+      "role": "four complete audio/control selectors / четыре полных audio/control selector",
+      "quantity_per_prototype": 4,
+      "effective_unit_price_usd": 2.0581,
+      "group_cost_per_prototype_usd": 8.2324,
+      "rank": 15,
+      "share_of_known_combined_total_pct": 1.975
+    },
+    {
+      "source": "base_bom",
+      "mpn": "LTC5532ES6#TRMPBF",
+      "role": "S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц",
+      "quantity_per_prototype": 2,
+      "effective_unit_price_usd": 3.8877,
+      "group_cost_per_prototype_usd": 7.7754,
+      "rank": 16,
+      "share_of_known_combined_total_pct": 1.865
+    },
+    {
+      "source": "base_bom",
+      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "role": "five native/module microcoax mates / пять микрокоаксиальных точек",
+      "quantity_per_prototype": 5,
+      "effective_unit_price_usd": 1.0655,
+      "group_cost_per_prototype_usd": 5.3275,
+      "rank": 17,
+      "share_of_known_combined_total_pct": 1.278
+    },
+    {
+      "source": "base_bom",
+      "mpn": "ESP32-S3-WROOM-1U-N16R8",
+      "role": "s3",
+      "quantity_per_prototype": 1,
+      "effective_unit_price_usd": 5.108,
+      "group_cost_per_prototype_usd": 5.108,
+      "rank": 18,
+      "share_of_known_combined_total_pct": 1.225
+    },
+    {
+      "source": "base_bom",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "role": "three internal recovery headers / три внутренних recovery-разъёма",
+      "quantity_per_prototype": 3,
+      "effective_unit_price_usd": 1.6991000000000003,
+      "group_cost_per_prototype_usd": 5.097300000000001,
+      "rank": 19,
+      "share_of_known_combined_total_pct": 1.223
+    },
+    {
+      "source": "base_bom",
+      "mpn": "GCT RFPC-SMA32-FN-175-A",
+      "role": "two native-radio RP-SMA / два RP-SMA native-радио",
+      "quantity_per_prototype": 2,
+      "effective_unit_price_usd": 2.46456,
+      "group_cost_per_prototype_usd": 4.92912,
+      "rank": 20,
+      "share_of_known_combined_total_pct": 1.182
+    }
+  ],
   "display_orientation_review": {
     "official_complete_donor_rear_view": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
     "observed": "The selected EastRising production drawings control the complete configured panel, 50-contact 0.50-mm tail, 0.30-mm stiffener, contact map and folded-tail orientation; donor geometry is not used.",
@@ -4969,6 +5186,16 @@
     "stocked_replacement_rule": "Prefer a currently stocked JLCPCB part only when the electrical, RF, safety, lifecycle and mechanical contract is exact or no worse. If no such part exists, keep the selected MPN and its explicit pre-order route.",
     "function_sensitive_rule": "RF detectors, RF filters/couplers, power safety, battery protection and user-exposed ESD boundaries never change for price alone.",
     "antenna_mechanics_rule": "Prefer individually board-retained DIV-like right-angle SMA/RP-SMA bodies without nuts, sealing hardware or a shared protective frame. Low profile is not a requirement; a dual-face or through-board soldered load path is preferred. Keep the GCT pair only until a documented stocked standard/reverse pair passes the complete 5+5 placement, opposing-clearance and factory-assembly gate."
+  },
+  "community_cost_target": {
+    "complete_device_usd": 150,
+    "electronics_target_usd": [
+      108,
+      125
+    ],
+    "scope": "repeatable complete base device excluding batteries and the optional full external antenna kit; PCB, PCBA and enclosure must fit in the remaining complete-device allowance",
+    "rule": "The target is a hard architecture gate, not a promise for the first one-off factory order. A one-off order also carries setup, MOQ, hand-solder, shipping and tax costs that cannot be amortized.",
+    "recovered_reference": "drafts/legacy-2026-08-15/docs/bom.ru.md"
   },
   "current_stocked_candidate_checks": [
     {
@@ -5038,8 +5265,8 @@
         "1000": 1.7802
       },
       "status": "qualified_same_device_pending_six_body_placement_gate",
-      "why": "Analog Devices lists ACPZ-RL7 and ARMZ-REEL as production package variants of the same AD8314 specification with the same pins 1-8 and electrical behavior. C652687 is live JLCPCB stock. Thirty trial parts cost USD 70.56 instead of the current C578691 live requirement of USD 159.55, saving USD 88.99; 600 parts cost USD 1,097.40, reducing the six-device line from USD 17.142 to USD 10.974 per finished device. This is not accepted into the production BOM yet: MSOP grows from the 2 x 3-mm LFCSP body to a roughly 3 x 3-mm body with up to 5.15-mm lead span and 1.10-mm height, and removes the exposed pad. All six exact courtyards, adjacent RF match/bypass bodies and RF-ground fanout must pass the H1 placement and route audit first.",
-      "why_ru": "Analog Devices указывает ACPZ-RL7 и ARMZ-REEL как серийные корпусные варианты одной спецификации AD8314 с теми же выводами 1-8 и электрическим поведением. C652687 есть на складе JLCPCB. 30 деталей для пробной партии стоят $70,56 вместо live-требования $159,55 для текущего C578691, экономия $88,99; 600 деталей стоят $1 097,40, уменьшая строку шести детекторов с $17,142 до $10,974 на готовое устройство. В production BOM замена ещё не принята: MSOP увеличивает корпус с LFCSP 2 x 3 мм до тела около 3 x 3 мм с размахом выводов до 5,15 мм и высотой 1,10 мм, а exposed pad исчезает. Сначала должны пройти H1 placement/RF-route audit все шесть точных courtyard, соседние RF match/bypass корпуса и разводка RF-земли.",
+      "why": "Analog Devices lists ACPZ-RL7 and ARMZ-REEL as production package variants of the same AD8314 specification with the same pins 1-8 and electrical behavior. C652687 is live JLCPCB stock. Thirty trial parts cost USD 70.56 instead of the current C578691 live requirement of USD 159.55, saving USD 88.99. On the report's common per-MPN quantity-100 price basis, the candidate reduces the six-device line from USD 17.142 to USD 11.6556 per finished device, saving USD 5.4864. This is not accepted into the production BOM yet: MSOP grows from the 2 x 3-mm LFCSP body to a roughly 3 x 3-mm body with up to 5.15-mm lead span and 1.10-mm height, and removes the exposed pad. All six exact courtyards, adjacent RF match/bypass bodies and RF-ground fanout must pass the H1 placement and route audit first.",
+      "why_ru": "Analog Devices указывает ACPZ-RL7 и ARMZ-REEL как серийные корпусные варианты одной спецификации AD8314 с теми же выводами 1-8 и электрическим поведением. C652687 есть на складе JLCPCB. 30 деталей для пробной партии стоят $70,56 вместо live-требования $159,55 для текущего C578691, экономия $88,99. На единой базе отчёта — цена каждого MPN на количестве 100 — кандидат уменьшает строку шести детекторов с $17,142 до $11,6556 на готовое устройство, экономя $5,4864. В production BOM замена ещё не принята: MSOP увеличивает корпус с LFCSP 2 x 3 мм до тела около 3 x 3 мм с размахом выводов до 5,15 мм и высотой 1,10 мм, а exposed pad исчезает. Сначала должны пройти H1 placement/RF-route audit все шесть точных courtyard, соседние RF match/bypass корпуса и разводка RF-земли.",
       "source": "https://jlcpcb.com/partdetail/AD8314ARMZ-REEL/C652687",
       "manufacturer_source": "https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf",
       "checked_on": "2026-08-28"
@@ -5323,26 +5550,28 @@
       "candidate_mpn": "DreamLNK SMA-KWE902 / SMA-KWE901",
       "jlcpcb_part": "C914554 / C914553",
       "manufacturer": "DreamLNK",
-      "assembly_type": "Wave soldering; Economic and Standard PCBA",
-      "stock": "5594 standard / 64 reverse",
-      "moq": 1,
-      "trial_required_quantity": "40 standard / 10 reverse",
+      "assembly_type": "Plugin; JLCPCB page currently marks manualWeld; Standard PCBA route requires order review",
+      "stock": "5479 pre-sale + 5588 overseas standard / 7 pre-sale + 42 overseas reverse",
+      "moq": "13 standard / 12 reverse",
+      "trial_required_quantity": "8 standard / 2 reverse fitted; procurement minimum 13 standard / 12 reverse",
       "price_tiers_usd": {
-        "standard_1": 0.8885,
-        "standard_30": 0.6351,
-        "standard_100": 0.5523,
-        "reverse_1": 0.9502,
-        "reverse_10": 0.7813,
-        "reverse_100": 0.6075
+        "standard_1": 0.8872,
+        "standard_10": 0.7185,
+        "standard_30": 0.6342,
+        "standard_100": 0.5515,
+        "reverse_1": 0.9488,
+        "reverse_10": 0.7802,
+        "reverse_30": 0.6974,
+        "reverse_100": 0.6066
       },
       "status": "qualified_pending_full_5_plus_5_placement_and_assembly_gate",
-      "why": "This is a fully documented, stocked, no-nut 6-GHz right-angle standard/reverse pair with a stronger through-board soldered load path. Its approximately 10.2-mm axis and through-hole tails change the selected 3.9-mm GCT envelope, but low profile is no longer a product requirement. It is therefore the leading cost-reduction candidate, not an accepted production MPN: all ten placements, opposing clearances and the JLCPCB wave-solder route still need to pass together.",
-      "why_ru": "Это полностью документированная складская standard/reverse-пара до 6 ГГц без гаек и с более прочным сквозным путём передачи нагрузки. Ось около 10,2 мм и сквозные выводы меняют выбранный 3,9-мм envelope GCT, но низкий профиль больше не является требованием. Поэтому это ведущий кандидат на удешевление, а не уже принятый production MPN: сначала должны разом пройти все десять размещений, встречные зазоры и wave-solder route JLCPCB.",
+      "why": "This is a fully documented, no-nut 6-GHz right-angle standard/reverse pair with a stronger through-board soldered load path. Its 9.7-mm body, five drilled pins and approximately 2.1-mm inner-side pin projection on a 1.6-mm PCB change the selected GCT keep-out, but low profile is no longer a product requirement. The live JLCPCB cards on 2026-08-29 show a Plugin/manualWeld route, procurement minima of 13/12 and only overseas/pre-sale availability rather than ordinary SMT stock. It remains the leading mechanical candidate, not an accepted production MPN: all ten placements, opposing clearances and written factory assembly acceptance must pass together.",
+      "why_ru": "Это полностью документированная standard/reverse-пара до 6 ГГц без гаек и с более прочным сквозным путём передачи нагрузки. Корпус 9,7 мм, пять просверленных выводов и выступание ножек примерно на 2,1 мм с внутренней стороны платы 1,6 мм меняют keep-out выбранных GCT, но низкий профиль больше не является требованием. Текущие карточки JLCPCB на 2026-08-29 показывают маршрут Plugin/manualWeld, минимальную закупку 13/12 и только overseas/pre-sale availability вместо обычного SMT-склада. Это остаётся ведущим механическим кандидатом, но не принятым production MPN: должны одновременно пройти все десять размещений, встречные зазоры и письменное подтверждение фабричной установки.",
       "source": "https://jlcpcb.com/partdetail/DreamLNK-SMAKWE902/C914554",
       "reverse_source": "https://jlcpcb.com/partdetail/DreamLNK-SMAKWE901/C914553",
       "manufacturer_source": "https://datasheet.lcsc.com/lcsc/2011081704_DreamLNK-SMA-KWE902_C914554.pdf",
       "reverse_manufacturer_source": "https://datasheet.lcsc.com/lcsc/2011081704_DreamLNK-SMA-KWE901_C914553.pdf",
-      "checked_on": "2026-08-28"
+      "checked_on": "2026-08-29"
     }
   ],
   "optimization_lanes": [
@@ -5370,7 +5599,7 @@
       "queue_status": "active",
       "title": "Replace the expensive GCT pair with a robust stocked standard/reverse pair if it fits",
       "production_function_change": false,
-      "evidence": "Ten GCT RFPC-SMA31/32 connectors contribute USD 24.6456 per device. Low profile is no longer a product requirement; the stocked nutless DreamLNK pair would reduce the line by about USD 19.01, but its through-hole tails and roughly 10.2-mm axis require a new internal keep-out and all ten port placements to be rechecked.",
+      "evidence": "Ten GCT RFPC-SMA31/32 connectors contribute USD 24.6456 per device. Low profile is no longer a product requirement; the DreamLNK nutless pair would reduce the line by about USD 19.02 on the common quantity-100 basis, but its through-hole tails, procurement minima and manual factory-soldering route require a new internal keep-out and written assembly acceptance.",
       "action": "Optimize for the correct outward antenna direction, standard/RP-SMA identity, at least 6-GHz coverage on native ports and a dual-face or through-board mechanical load path. Accept a replacement only after complete 5+5 placement, opposing-clearance and assembly review."
     },
     {
@@ -5379,7 +5608,7 @@
       "queue_status": "active",
       "title": "Re-evaluate eight RF power detectors without weakening real-TX evidence",
       "production_function_change": true,
-      "evidence": "Six AD8314 plus two LTC5532 contribute USD 24.9174 per device at quantity 100; the live five-device requirement is USD 276.70. Stocked same-device AD8314ARMZ-REEL C652687 would save USD 88.99 on EVT5 and USD 6.168 per finished device at a 100-device run. No strict no-worse LTC5532 replacement is proved.",
+      "evidence": "Six AD8314 plus two LTC5532 contribute USD 24.9174 per device on the common quantity-100 basis; the historical live five-device requirement is USD 276.70. Stocked same-device AD8314ARMZ-REEL C652687 would save USD 88.99 on that historical EVT5 snapshot and USD 5.4864 per finished device on the same quantity-100 basis. No strict no-worse LTC5532 replacement is proved.",
       "action": "Register and collision-check all six larger MSOP courtyards, adjacent match/bypass bodies and RF-ground fanout before accepting C652687. Keep the two LTC5532 and independent evidence for the three concurrently active nRF24 paths."
     },
     {

@@ -65,6 +65,24 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(display["line_burden_per_device_usd"], 14.91)
         self.assertEqual(display["planning_procurement_line_usd"], 14.91)
 
+    def test_community_target_gap_is_not_hidden(self):
+        summary = self.result["summary"]
+        self.assertEqual(summary["base_bom_lines"], 208)
+        self.assertEqual(summary["base_fitted_placements"], 1049)
+        self.assertEqual(summary["community_complete_device_target_usd"], 150)
+        self.assertEqual(summary["community_electronics_target_usd"], [108, 125])
+        self.assertAlmostEqual(
+            summary["paper_qualified_no_loss_savings_usd"], 24.5068, places=4
+        )
+        self.assertGreater(
+            summary["remaining_gap_to_complete_device_target_before_pcb_pcba_enclosure_usd"],
+            100,
+        )
+        ru = MODULE.render_doc(self.result, True)
+        self.assertIn("Контроль цели $150", ru)
+        self.assertIn("1049", ru)
+        self.assertIn("архитектур", ru)
+
     def test_trial_projection_keeps_fitted_quantity(self):
         by_id = {row["device_id"]: row for row in self.result["rows"]}
         buttons = by_id["omron_b3s_1100p"]
@@ -96,6 +114,21 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(
             self.result["summary"]["antenna_unpriced_positions"], 4
         )
+
+    def test_unified_top_20_is_one_prototype_ranked_cost(self):
+        rows = self.result["combined_top_20_rows"]
+        self.assertEqual(len(rows), 20)
+        costs = [row["group_cost_per_prototype_usd"] for row in rows]
+        self.assertEqual(costs, sorted(costs, reverse=True))
+        self.assertEqual(rows[0]["mpn"], "SMA-W100RX2")
+        self.assertEqual(rows[0]["quantity_per_prototype"], 1)
+        self.assertAlmostEqual(rows[0]["group_cost_per_prototype_usd"], 35.95)
+        self.assertLess(max(costs), 40.0)
+        self.assertGreater(self.result["summary"]["combined_top_20_share_pct"], 60)
+
+        csv_text = MODULE.render_top20_csv(self.result)
+        self.assertEqual(len(csv_text.strip().splitlines()), 21)
+        self.assertIn("group_cost_per_prototype_usd", csv_text.splitlines()[0])
 
     def test_display_upper_candidate_has_margin(self):
         display = self.result["display_orientation_review"]
