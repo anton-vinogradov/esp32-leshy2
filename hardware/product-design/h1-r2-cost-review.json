@@ -10,6 +10,57 @@
     "rule": "The target is a hard architecture gate, not a promise for the first one-off factory order. A one-off order also carries setup, MOQ, hand-solder, shipping and tax costs that cannot be amortized.",
     "recovered_reference": "drafts/legacy-2026-08-15/docs/bom.ru.md"
   },
+  "cost_feasibility": {
+    "comparison_reference": {
+      "product": "ESP32-DIV v2",
+      "source": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39",
+      "finding": "The published architecture is a much smaller one-S3 instrument: its shield BOM has three nRF24 modules, one CC1101 module, IR and a simple connector/passive layer. It is not burdened by Leshy2's two voice modules, Airband conversion chain, dual RP domains, three independent USB service paths, autonomous pack safety, actual-RF TX evidence and ten separately qualified RF ports. Retail volume and one-off factory procurement are also different price bases."
+    },
+    "working_architecture_savings": [
+      {
+        "id": "rf-evidence-equivalent",
+        "current_scope": "eight measurement-class RF detector ICs, five couplers and evidence conditioning",
+        "working_savings_usd": [15, 25],
+        "contract": "retain independent physical TX-present evidence for all three concurrently active nRF24 paths and fail-safe aggregate evidence for every other mutually exclusive TX group",
+        "status": "analysis_only_not_qualified"
+      },
+      {
+        "id": "controls-holder-recovery",
+        "current_scope": "sixteen premium tact switches, one pre-order battery holder and three premium opened-sandwich recovery headers",
+        "working_savings_usd": [13, 19],
+        "contract": "retain recessed serial controls, protected-cell tolerance and independently reachable recovery for S3, C5 and both RP domains",
+        "status": "analysis_only_not_qualified"
+      },
+      {
+        "id": "audio-safety-control-consolidation",
+        "current_scope": "duplicated audio selectors, branch supervisors, evidence logic and safe-state support circuitry",
+        "working_savings_usd": [10, 18],
+        "contract": "retain every accepted capture/playback/PTT route, unattended hard shutdown, watchdog, three thermal zones and retained first-fault reason",
+        "status": "analysis_only_not_qualified"
+      },
+      {
+        "id": "internal-rf-path-integration",
+        "current_scope": "five U.FL receptacles and five 30-mm microcoax jumpers",
+        "working_savings_usd": [0, 3],
+        "contract": "retain the same RF performance; current E01 and S3 module interfaces prevent removing four paths without changing the selected radio source",
+        "status": "analysis_only_not_qualified"
+      }
+    ],
+    "same_all_in_one_result": {
+      "electronics_working_range_usd": [189, 216],
+      "repeatable_complete_base_working_range_usd": [216, 261],
+      "scope": "same built-in user-visible functions and same safety outcome, excluding batteries and the full external antenna kit",
+      "confidence": "planning envelope only; it assumes the paper-qualified USD 24.5068 replacements plus every unqualified architecture saving above, and adds USD 27-45 for PCB, PCBA and enclosure",
+      "assessment": "USD 150 is not credible for the fully integrated current result without removing or externalizing hardware. A credible optimized target is roughly USD 220-260 for a repeatable complete base device; the sole first prototype remains higher."
+    },
+    "modular_entry_result": {
+      "electronics_target_usd": [108, 125],
+      "repeatable_complete_target_usd": [135, 165],
+      "scope": "community entry device with the same software architecture and expansion compatibility, but selected specialist radio chains are bought as Caps/Units only when required",
+      "assessment": "A USD 150 entry point is plausible only under this modular boundary. A fully populated system with every option and its antenna set still costs more."
+    },
+    "decision_gate": "Choose whether USD 150 governs a modular community entry device or whether all currently integrated radio chains must remain fitted; the latter needs a higher target."
+  },
   "procurement_target_device_quantity": 1,
   "historical_cost_capture_device_quantity": 5,
   "procurement_target": {

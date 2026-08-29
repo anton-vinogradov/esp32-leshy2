@@ -23,6 +23,23 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 
 **Conclusion:** the present circuit cannot reach `$150` through brand substitutions alone. The target remains plausible only for a repeatable base device after a dedicated cost-constrained architecture resynthesis: preserve user-visible capabilities and the safety outcome while reducing measurement-class RF parts, service support circuitry and unique factory line items. The first sole prototype will still cost more because MOQ, setup, manual placement, freight and tax cannot be amortized.
 
+### Why ESP32-DIV is much cheaper
+
+The official [ESP32-DIV v2 architecture](https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39) is much smaller: one S3, three nRF24 modules, one CC1101, IR and a simple connector/passive layer. Its public shield BOM does not contain two voice modules, an Airband conversion chain, two RP domains, three independent service-USB paths, autonomous pack safety, physical actual-TX evidence or ten separately qualified RF ports. Retail volume also amortizes setup and purchasing minima, while this review must survive a sole first order.
+
+That does not mean Leshy2 must cost eight times as much. It means the current architecture pays not only for functions, but also for laboratory observability, independent recovery and fail-safe supervision around nearly every path.
+
+### Feasibility without losing the result
+
+| Boundary | Electronics | Complete base | Honest result |
+|---|---:|---:|---|
+| Current circuit | $278.55 | above $278.55 | `$150` is impossible |
+| Paper-qualified replacements only | $254.05 | above $254.05 | still insufficient |
+| Same built-in user functions and same safety outcome after full cost resynthesis | $189.00–$216.00 | $216.00–$261.00 | a `$220–260` target is credible; `$150` is not |
+| Modular community base; specialist paths are fitted as task-specific Caps/Units | $108.00–$125.00 | $135.00–$165.00 | `$150` is plausible, but this is no longer a fully populated all-in-one |
+
+The `$189–216` and `$216–261` bands are not price promises: they assume successful RF-evidence, control, holder, recovery and audio/safety consolidation without changing the result. No such architecture saving is accepted until its contract is calculated and verified.
+
 The full antenna kit is an accessory, not a hidden device-price line. A broadband receive antenna cannot replace band-matched transmit antennas; the basic kit and additional band-specific antennas must be priced separately.
 
 The primary ranking below shows **one prototype only**. It contains neither the historical five-board capture nor a ×10 multiplication.

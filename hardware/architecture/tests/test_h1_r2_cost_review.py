@@ -83,6 +83,23 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertIn("1049", ru)
         self.assertIn("архитектур", ru)
 
+    def test_cost_feasibility_separates_all_in_one_from_modular_entry(self):
+        feasibility = self.result["cost_feasibility"]
+        all_in_one = feasibility["same_all_in_one_result"]
+        modular = feasibility["modular_entry_result"]
+        self.assertGreaterEqual(all_in_one["electronics_working_range_usd"][0], 180)
+        self.assertGreater(all_in_one["repeatable_complete_base_working_range_usd"][0], 200)
+        self.assertLessEqual(modular["repeatable_complete_target_usd"][0], 150)
+        self.assertGreaterEqual(modular["repeatable_complete_target_usd"][1], 150)
+        self.assertTrue(all(
+            row["status"] == "analysis_only_not_qualified"
+            for row in feasibility["working_architecture_savings"]
+        ))
+        ru = MODULE.render_doc(self.result, True)
+        self.assertIn("Почему ESP32-DIV заметно дешевле", ru)
+        self.assertIn("Те же встроенные пользовательские функции", ru)
+        self.assertIn("Модульная community-база", ru)
+
     def test_trial_projection_keeps_fitted_quantity(self):
         by_id = {row["device_id"]: row for row in self.result["rows"]}
         buttons = by_id["omron_b3s_1100p"]

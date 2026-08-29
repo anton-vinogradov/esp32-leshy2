@@ -450,6 +450,7 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         "display_orientation_review": display,
         "accepted_cost_reduction_policy": model["accepted_cost_reduction_policy"],
         "community_cost_target": target,
+        "cost_feasibility": model["cost_feasibility"],
         "current_stocked_candidate_checks": model["current_stocked_candidate_checks"],
         "optimization_lanes": model["optimization_lanes"],
         "errors": errors,
@@ -502,6 +503,7 @@ def render_doc(result: dict, ru: bool) -> str:
     summary = result["summary"]
     rows = result["rows"]
     display = result["display_orientation_review"]
+    feasibility = result["cost_feasibility"]
     if ru:
         title = f'# {result["marker"]} · стоимость компонентов'
         intro = (
@@ -597,6 +599,23 @@ def render_doc(result: dict, ru: bool) -> str:
             '',
             '**Вывод:** `$150` недостижимы для текущей схемы простой заменой брендов. Цель остаётся реалистичной только как стоимость повторяемого базового устройства после отдельного cost-constrained пересинтеза архитектуры: сохраняем пользовательские возможности и safety-результат, но уменьшаем число измерительных RF-компонентов, служебной обвязки и уникальных заводских позиций. Первый единственный заказ всё равно будет дороже из-за MOQ, setup, ручной установки, доставки и налогов.',
             '',
+            '### Почему ESP32-DIV заметно дешевле',
+            '',
+            f'Официальная [архитектура {feasibility["comparison_reference"]["product"]}]({feasibility["comparison_reference"]["source"]}) существенно меньше: один S3, три nRF24, один CC1101, IR и простой слой разъёмов/пассивов. В его публичной shield BOM нет двух voice-модулей, Airband-конвертера, двух RP-доменов, трёх независимых service USB, автономной pack-safety, физического контроля фактического TX и десяти отдельно квалифицированных RF-портов. Розничная серия также амортизирует setup и закупочные минимумы, тогда как наш текущий расчёт должен выдержать единственный первый заказ.',
+            '',
+            'Это не означает, что Леший обязан стоить в восемь раз дороже. Это означает, что мы дорого реализовали не только функции, но и лабораторную наблюдаемость, независимое восстановление и отказоустойчивость каждого тракта.',
+            '',
+            '### Насколько реалистична цель без потери результата',
+            '',
+            '| Граница | Электроника | Готовая база | Честный вывод |',
+            '|---|---:|---:|---|',
+            f'| Текущая схема | {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | больше {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | `$150` невозможно |',
+            f'| Только уже paper-qualified замены | {money(summary["base_after_paper_qualified_savings_usd"])} | больше {money(summary["base_after_paper_qualified_savings_usd"])} | всё ещё недостаточно |',
+            f'| Те же встроенные пользовательские функции и тот же safety-результат после полного cost-resynthesis | {money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][1])} | {money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][1])} | реалистичная цель около `$220–260`, не `$150` |',
+            f'| Модульная community-база; специализированные тракты ставятся Cap/Unit по задаче | {money(feasibility["modular_entry_result"]["electronics_target_usd"][0])}–{money(feasibility["modular_entry_result"]["electronics_target_usd"][1])} | {money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][0])}–{money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][1])} | `$150` правдоподобно, но это уже не полностью начинённый all-in-one |',
+            '',
+            'Диапазоны `$189–216` и `$216–261` — не обещание цены: они предполагают успешную замену RF-evidence, кнопок, держателя, recovery-разъёмов и консолидацию audio/safety-обвязки без изменения результата. Ни одна такая архитектурная экономия не будет принята до расчёта и проверки соответствующего контракта.',
+            '',
             'Полный антенный комплект — аксессуар, а не скрытая часть цены устройства. Универсальная RX-антенна не заменяет согласованные TX-антенны; базовый комплект и дополнительные диапазонные антенны должны оцениваться отдельно.',
             '', 'Главный рейтинг ниже показывает **только один прототип**. В нём нет исторической цены пяти плат и нет умножения ×10.',
         ]
@@ -609,6 +628,23 @@ def render_doc(result: dict, ru: bool) -> str:
             f'- That remains **{money(summary["remaining_gap_to_complete_device_target_before_pcb_pcba_enclosure_usd"])}** above the entire $150 boundary before paying for boards, assembly or enclosure. The remaining gap to the electronics target is **{money(summary["remaining_gap_to_electronics_target_usd"][0])}–{money(summary["remaining_gap_to_electronics_target_usd"][1])}**.',
             '',
             '**Conclusion:** the present circuit cannot reach `$150` through brand substitutions alone. The target remains plausible only for a repeatable base device after a dedicated cost-constrained architecture resynthesis: preserve user-visible capabilities and the safety outcome while reducing measurement-class RF parts, service support circuitry and unique factory line items. The first sole prototype will still cost more because MOQ, setup, manual placement, freight and tax cannot be amortized.',
+            '',
+            '### Why ESP32-DIV is much cheaper',
+            '',
+            f'The official [{feasibility["comparison_reference"]["product"]} architecture]({feasibility["comparison_reference"]["source"]}) is much smaller: one S3, three nRF24 modules, one CC1101, IR and a simple connector/passive layer. Its public shield BOM does not contain two voice modules, an Airband conversion chain, two RP domains, three independent service-USB paths, autonomous pack safety, physical actual-TX evidence or ten separately qualified RF ports. Retail volume also amortizes setup and purchasing minima, while this review must survive a sole first order.',
+            '',
+            'That does not mean Leshy2 must cost eight times as much. It means the current architecture pays not only for functions, but also for laboratory observability, independent recovery and fail-safe supervision around nearly every path.',
+            '',
+            '### Feasibility without losing the result',
+            '',
+            '| Boundary | Electronics | Complete base | Honest result |',
+            '|---|---:|---:|---|',
+            f'| Current circuit | {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | above {money(summary["planning_base_plus_post_pcba_usd_per_device"])} | `$150` is impossible |',
+            f'| Paper-qualified replacements only | {money(summary["base_after_paper_qualified_savings_usd"])} | above {money(summary["base_after_paper_qualified_savings_usd"])} | still insufficient |',
+            f'| Same built-in user functions and same safety outcome after full cost resynthesis | {money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["electronics_working_range_usd"][1])} | {money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][0])}–{money(feasibility["same_all_in_one_result"]["repeatable_complete_base_working_range_usd"][1])} | a `$220–260` target is credible; `$150` is not |',
+            f'| Modular community base; specialist paths are fitted as task-specific Caps/Units | {money(feasibility["modular_entry_result"]["electronics_target_usd"][0])}–{money(feasibility["modular_entry_result"]["electronics_target_usd"][1])} | {money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][0])}–{money(feasibility["modular_entry_result"]["repeatable_complete_target_usd"][1])} | `$150` is plausible, but this is no longer a fully populated all-in-one |',
+            '',
+            'The `$189–216` and `$216–261` bands are not price promises: they assume successful RF-evidence, control, holder, recovery and audio/safety consolidation without changing the result. No such architecture saving is accepted until its contract is calculated and verified.',
             '',
             'The full antenna kit is an accessory, not a hidden device-price line. A broadband receive antenna cannot replace band-matched transmit antennas; the basic kit and additional band-specific antennas must be priced separately.',
             '', 'The primary ranking below shows **one prototype only**. It contains neither the historical five-board capture nor a ×10 multiplication.',
