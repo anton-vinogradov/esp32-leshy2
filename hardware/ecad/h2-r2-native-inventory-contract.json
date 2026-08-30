@@ -86,6 +86,7 @@
     "non_pcba_dispositions": {
       "eastrising_er_tft035ips_6_ctp": "factory-final-mated display assembly represented by its controlled connector endpoint",
       "m5_u214": "optional removable external accessory; host receptacle remains in ECAD",
+      "te_2118651_2": "removable off-board U.FL-to-U.FL cable assembly; only its two board connectors are represented in ECAD",
       "xtar_18650_4000mah_protected": "owner-supplied removable cells; absent from factory supply",
       "davies_1227_j": "factory/owner final mechanical encoder knob"
     }

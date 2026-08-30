@@ -5,8 +5,9 @@
 This is the live prerequisite ledger for the new six-domain, dual-RP R2
 production schematic. It records verified results, not the decision history.
 All three prerequisite rows are closed. The native R2 inventory passed
-`H2-R2.1.1`; exact symbol/contact/footprint reconciliation is current at
-`H2-R2.1.2`. Fabrication and ordering remain blocked.
+`H2-R2.1.1`; exact symbol/contact/footprint reconciliation passed
+`H2-R2.1.2`. Controlled definitions and joined native nets are current at
+`H2-R2.1.3`. Fabrication and ordering remain blocked.
 
 | Marker | Status | Production result |
 |---|---|---|
@@ -24,9 +25,10 @@ The buffer imposes no VCCA/VCCB ordering rule, supports 400 kHz and starts in at
 most 350 us. A stuck mailbox can remove diagnostics but cannot inhibit the
 independent `FAULT_KILL` path or local Safety watchdog.
 
-The exact current point is **`H2-R2.1.2`**: reconcile the exact symbol/contact/
-value/footprint ledger against the [reviewed native inventory](h2-r2-native-inventory.md).
-Quote, purchase and fabrication remain blocked.
+The exact current point is **`H2-R2.1.3`**: materialize the controlled
+definitions and join rails, M1 contacts, domain transports and explicit NCs
+from the [reviewed exact ledger](h2-r2-symbol-footprint-ledger.md). Quote,
+purchase and fabrication remain blocked.
 
 ## Evidence and recheck rule
 

@@ -49,7 +49,7 @@ H1 подтверждает, что выбранные корпуса, инте�
 устройство. Это ещё не доказательство разведённой платы, ERC, signal integrity,
 поведения при включении или фабричной собираемости по release-Gerber/CPL/BOM.
 
-Текущая точка — **H2-R2.1.2**. Реестр prerequisites закрыт:
+Текущая точка — **H2-R2.1.3**. Реестр prerequisites закрыт:
 
 1. ✅ `H2-R2.0.1`: live-маршрут Standard PCBA, MOQ и цену onsemi `FSUSB42MUX` / JLCPCB `C11355`;
 2. ✅ `H2-R2.0.2`: точные устанавливаемые фабрикой detector `DMN2056U-7`, latch владения `SN74LVC1G74DCUR` и release-qualifier `74HC20PW,118`;
@@ -57,6 +57,9 @@ H1 подтверждает, что выбранные корпуса, инте�
    rail-local termination Pack/Safety I²C на Hub GPIO42/43.
 
 Native R2 source/sheet/component inventory проведён ревью как `H2-R2.1.1`.
+Exact ledger symbols/contacts/values/footprints для 208 board groups проведён
+ревью как `H2-R2.1.2`; сейчас материализуются controlled definitions и joined
+native nets.
 До schematic nets или export теперь сверяется exact ledger
 symbols/contacts/footprints.
 

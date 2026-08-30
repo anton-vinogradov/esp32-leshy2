@@ -67,12 +67,12 @@ H1 has no physical blocker. The complete mock-up was explicitly accepted on
 <a id="h2"></a>
 ## H2 · Production schematic
 
-**Status:** ▶️ current at **`H2-R2.1.2`**.
+**Status:** ▶️ current at **`H2-R2.1.3`**.
 
 The former G2F/H2/KiCad result is historical single-RP R1 evidence. All three
 new R2 electrical prerequisites and the native source/sheet/component inventory
-are reviewed. Exact symbol/contact/footprint reconciliation is in progress;
-native schematic nets/export/KiCad have not started.
+and the exact symbol/contact/footprint ledger are reviewed. Controlled native
+definitions and joined nets are in progress; placement/routing have not started.
 
 Exact current checklist:
 
@@ -86,9 +86,13 @@ Exact current checklist:
    reviewed with rail-local termination, four Basic decouplers and USD 0.3953 cost;
 4. ✅ `H2-R2.1.1`: 3 projects, 23 sheets, 6 domain owners and 213 exact MPN
    groups reviewed with zero native symbols/nets created;
-5. ▶ `H2-R2.1.2`: build the exact symbol/contact/value/footprint ledger.
+5. ✅ `H2-R2.1.2`: 208 board groups, five explicit non-PCBA groups and 1,555
+   logical contacts mapped with zero unresolved groups;
+6. ▶ `H2-R2.1.3`: materialize controlled definitions and join rails, M1,
+   transports and explicit NCs.
 
-[Native R2 inventory](h2-r2-native-inventory.md).
+[Native R2 inventory](h2-r2-native-inventory.md) ·
+[exact symbols/footprints](h2-r2-symbol-footprint-ledger.md).
 
 Expected result: native KiCad schematics regenerated from the R2 architecture,
 with pin reconciliation, ERC, NC review and a synchronized HW↔FW contract.

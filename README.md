@@ -10,7 +10,7 @@
 
 </div>
 
-> **Current hardware marker: `H2-R2.1.2`.** The complete two-PCB `H1-R2.37`
+> **Current hardware marker: `H2-R2.1.3`.** The complete two-PCB `H1-R2.37`
 > placement was accepted and reviewed on 30 August 2026: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
 > the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display, passive 40-to-50-contact
 > adapter, all 18 U219 support bodies, NFC pickup loop and the external volume
@@ -19,8 +19,9 @@
 > the exact service-VBUS path and `TCA9803DGKR/C2687966` Pack/Safety boundary
 > are reviewed. The native R2 inventory is reviewed at `H2-R2.1.1`: three
 > projects, 23 sheets, six domains and 213 exact component groups. The exact
-> symbol/contact/footprint ledger is now in progress; schematic nets/KiCad have
-> not started, and ordering remains blocked.
+> symbol/contact/footprint ledger is reviewed at `H2-R2.1.2`: 208 board groups,
+> five explicit non-PCBA groups and 1,555 logical contacts. Native symbol/
+> footprint materialization and joined nets are now in progress; ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
@@ -105,7 +106,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
 | H1 · Physical product design | ✅ Reviewed · `H1-R2.37` | [Bilingual phase result](docs/h1-r2-acceptance.md) · [placement](docs/h1-r2-physical-layout.md) |
-| **H2 · Production ECAD schematic** | **▶ Current · `H2-R2.1.2`** | [Native R2 inventory](docs/h2-r2-native-inventory.md) · [stage page](docs/stage-results.md#h2) |
+| **H2 · Production ECAD schematic** | **▶ Current · `H2-R2.1.3`** | [Exact symbols/footprints](docs/h2-r2-symbol-footprint-ledger.md) · [stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ⏳ Waiting for R2 H4 | [Stage page](docs/stage-results.md#h5) |
@@ -134,14 +135,15 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H2-R2.0.2`: exact `DMN2056U-7` detector, `SN74LVC1G74DCUR` ownership latch and `74HC20PW,118` release qualifier reviewed with live Standard-PCBA routes, a fail-closed truth table and USD 0.5857 exact-one component cost.
 - ✅ `H2-R2.0.3`: exact `TCA9803DGKR/C2687966` Pack/Safety powered-off boundary reviewed with correct rail-local termination and USD 0.3953 exact-one component cost.
 - ✅ `H2-R2.1.1`: native R2 inventory reviewed — 3 projects, 23 sheets, 6 domain owners, 213 exact MPN groups and 1,106 product positions; zero symbols/nets created.
-- ▶ **Exact current point `H2-R2.1.2`:** build and validate the exact symbol/contact/value/footprint ledger without creating schematic nets or PCB layout.
+- ✅ `H2-R2.1.2`: exact ledger reviewed — 208 board groups, 5 explicit non-PCBA groups, 1,555 logical contacts and zero unresolved groups; removable RF jumpers no longer masquerade as PCB parts.
+- ▶ **Exact current point `H2-R2.1.3`:** materialize controlled symbols/footprints and join rails, M1 contacts, domain transports and explicit NCs in the native R2 projects.
 - 🔒 KiCad, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H2-R2.1.2 -->
+<!-- current-substep: H2-R2.1.3 -->
 
 ## Repository
 

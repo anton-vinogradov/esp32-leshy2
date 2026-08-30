@@ -1927,7 +1927,7 @@
       "quantity_per_product": 5,
       "scope": "base_product",
       "role": "five 30-mm RF jumpers / пять 30-мм RF-кабелей",
-      "ecad_disposition": "schematic_component_group",
+      "ecad_disposition": "removable off-board U.FL-to-U.FL cable assembly; only its two board connectors are represented in ECAD",
       "qualification": "verified_exact_native_rf_jumper",
       "lifecycle": "active_orderable",
       "contact_evidence": true,

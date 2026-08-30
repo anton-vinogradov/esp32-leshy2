@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "id": "LESHY2-H2-R2-SYMBOL-FOOTPRINT-LEDGER",
+  "marker": "H2-R2.1.2",
+  "status": "reviewed_exact_symbol_contact_value_footprint_ledger",
+  "purpose": "Bind every reviewed R2 component group to one exact symbol identity, current contact/value evidence, one or more native R2 sheet affinities and either one exact footprint identity or an explicit non-PCBA disposition before schematic nets are created.",
+  "authority": {
+    "native_inventory": "hardware/ecad/generated/H2-R2-native-inventory.json",
+    "device_register": "hardware/architecture/devices.json"
+  },
+  "rules": {
+    "one_symbol_identity_per_device_group": true,
+    "symbol_identity_namespace": "Leshy2_R2",
+    "manufacturer_contact_map_is_authority": true,
+    "historical_r1_package_names_are_hints_only": true,
+    "historical_designators_nets_and_sheet_ownership_are_forbidden": true,
+    "footprint_hint_requires_exact_mpn_and_contact_reconciliation": true,
+    "off_board_assemblies_have_no_pcb_footprint": true,
+    "schematic_nets_or_kicad_projects_authorized": false
+  },
+  "historical_hint_globs": [
+    "hardware/ecad/generated/H2-UI*.json",
+    "hardware/ecad/generated/H2-RF*.json",
+    "hardware/ecad/generated/H2-ADP*.json"
+  ],
+  "legacy_sheet_to_native_affinity": {
+    "H2-UI10": ["UI_10_S3_DISPLAY_TOUCH"],
+    "H2-UI11": ["UI_10_S3_DISPLAY_TOUCH", "UI_11_STORAGE_CONTROLS_INDICATORS"],
+    "H2-UI12": ["UI_11_STORAGE_CONTROLS_INDICATORS"],
+    "H2-UI13": ["RF_22_AUDIO_CODEC_IO"],
+    "H2-UI20": ["UI_20_C5_WIFI_IR_SERVICE"],
+    "H2-UI21": ["RF_21_BROADCAST_AIRBAND_RX"],
+    "H2-UI40": ["UI_40_INTERBOARD_M1"],
+    "H2-UI50": ["UI_50_FRONT_POWER_SAFETY"],
+    "H2-RF01": ["RF_01_USB_PD_CHARGE"],
+    "H2-RF02": ["RF_02_PACK_SAFETY_AON"],
+    "H2-RF03": ["RF_03_MAIN_RAILS_DOMAIN_GATES"],
+    "H2-RF30": ["UI_30_HUB_RP_CORE_SERVICE", "RF_10_RP2354_CORE_SERVICE"],
+    "H2-RF31": ["UI_31_NRF24_X3_TX_EVIDENCE"],
+    "H2-RF32": ["RF_20_CC1101_VOICE_TX"],
+    "H2-RF34": ["RF_30_U214_U219_M5_EXT"],
+    "H2-RF35": ["RF_31_REAR_CONTROLS"],
+    "H2-RF36": ["RF_22_AUDIO_CODEC_IO"],
+    "H2-RF40": ["RF_40_INTERBOARD_M1"],
+    "H2-RF50": ["UI_50_FRONT_POWER_SAFETY", "RF_50_TX_SAFETY_EVIDENCE"],
+    "H2-ADP00": ["ADP_00_DISPLAY_ADAPTER"]
+  },
+  "footprint_overrides": {
+    "Analog Devices AD8314ARMZ-REEL": "Package_SO:MSOP-8_3x3mm_P0.65mm",
+    "Murata GRM21BR60J226ME39L": "Capacitor_SMD:C_0805_2012Metric",
+    "74LVC1G32GV,125": "Package_TO_SOT_SMD:SC-74A-5_1.55x2.9mm_P0.95mm",
+    "TDK B57332V5103F360": "Resistor_SMD:R_0603_1608Metric",
+    "Texas Instruments SN74LVC1G06DCKR": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+    "SN74LVC1G07DCKR": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+    "SN74LVC1G08DCKR": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+    "TLV1821DCKR": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+    "Hirose FH34SRJ-50S-0.5SH(50)": "Leshy2_R2:FH34SRJ-50S-0.5SH-50",
+    "Samsung CL05A105KA5NQNC": "Capacitor_SMD:C_0402_1005Metric",
+    "Samsung CL05B104KO5NNNC": "Capacitor_SMD:C_0402_1005Metric",
+    "TCA9803DGKR": "Package_SO:VSSOP-8_3.0x3.0mm_P0.65mm"
+  },
+  "sheet_affinity_overrides": {
+    "adi_ad8314armz_reel": ["UI_31_NRF24_X3_TX_EVIDENCE", "RF_20_CC1101_VOICE_TX"],
+    "davies_1227_j": ["UI_11_STORAGE_CONTROLS_INDICATORS"],
+    "eastrising_er_tft035ips_6_ctp": ["UI_10_S3_DISPLAY_TOUCH"],
+    "hirose_fh34srj_50s_0_5sh_50": ["ADP_00_DISPLAY_ADAPTER"],
+    "m5_u214": ["RF_30_U214_U219_M5_EXT"],
+    "samsung_cl05a105ka5nqnc": ["RF_02_PACK_SAFETY_AON"],
+    "samsung_cl05b104ko5nnnc": ["RF_02_PACK_SAFETY_AON"],
+    "te_2118651_2": ["UI_10_S3_DISPLAY_TOUCH", "UI_20_C5_WIFI_IR_SERVICE", "UI_31_NRF24_X3_TX_EVIDENCE"],
+    "ti_tca9803_dgkr": ["RF_02_PACK_SAFETY_AON"],
+    "xtar_18650_4000mah_protected": ["RF_01_USB_PD_CHARGE", "RF_02_PACK_SAFETY_AON"]
+  },
+  "authorization": {
+    "exact_group_ledger": true,
+    "symbol_or_footprint_files": false,
+    "schematic_nets": false,
+    "kicad_project_creation": false,
+    "pcb_placement_or_routing": false,
+    "fabrication": false,
+    "ordering": false
+  }
+}

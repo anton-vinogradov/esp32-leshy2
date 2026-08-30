@@ -18,7 +18,8 @@ class PreorderGateTests(unittest.TestCase):
         truth = self.contract["current_truth"]
         self.assertIn("H1-R2.37 is the user-accepted reviewed", truth["mechanical_projection"])
         self.assertIn("H2-R2.0.1 through H2-R2.0.3 electrical prerequisites are reviewed", truth["current_ecad"])
-        self.assertIn("H2-R2.1.2 exact symbol/contact/value/footprint ledger is current", truth["current_ecad"])
+        self.assertIn("H2-R2.1.2 reviewed exact identities for 208 board groups", truth["current_ecad"])
+        self.assertIn("H2-R2.1.3 controlled definitions and joined native nets are current", truth["current_ecad"])
         self.assertIn("F2-R2.5 is in progress", truth["executable_firmware"])
         self.assertIn("F3-R2 and F-PO remain blocked", truth["instruction_emulation"])
         self.assertIn("H6 routed release candidate", truth["joined_release"])

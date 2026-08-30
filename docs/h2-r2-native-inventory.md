@@ -49,6 +49,8 @@ architecture freeze and immediately before the exact-one order.
 
 ## Current boundary
 
-The current point is **`H2-R2.1.2`**: build the exact symbol/contact/value/
-footprint ledger for these 213 groups and six domain maps. KiCad projects,
-schematic nets, PCB placement, routing, fabrication and ordering remain blocked.
+The exact ledger for these 213 groups passed review at
+[`H2-R2.1.2`](h2-r2-symbol-footprint-ledger.md). The current point is
+**`H2-R2.1.3`**: materialize the controlled definitions and join native rails,
+M1 contacts, domain transports and explicit NCs. PCB placement, routing,
+fabrication and ordering remain blocked.

@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Pin assignment](pinout.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H2-R2.1.2`**. The `H1-R2.37` physical design was accepted
+> Current marker: **`H2-R2.1.3`**. The `H1-R2.37` physical design was accepted
 > and reviewed on 2026-08-30. Nothing on this page authorizes KiCad routing
 > or an order.
 
@@ -13,8 +13,8 @@
 > FSUSB42MUX/C11355 route is reviewed as `H2-R2.0.1`; the exact service-VBUS
 > detector/latch/release implementation is reviewed as `H2-R2.0.2`; the exact
 > `TCA9803DGKR/C2687966` Pack/Safety boundary is reviewed as `H2-R2.0.3`.
-> The native R2 inventory passed review; exact symbol/contact/footprint
-> reconciliation is current.
+> The native R2 inventory and exact symbol/contact/footprint ledger passed
+> review; controlled definitions and joined native nets are current.
 
 ## Capabilities
 
@@ -166,6 +166,8 @@ well. H1 was explicitly accepted and reviewed on 2026-08-30. The C5 electrical
 pin/mux contract, live FSUSB42MUX/C11355 route and exact service-VBUS
 detector/latch/release implementation and exact TCA9803 Pack/Safety boundary
 are closed. `H2-R2.1.1` reviewed 3 native projects, 23 sheets and 213 exact MPN
-groups; `H2-R2.1.2` now builds the exact symbol/contact/footprint ledger before
-schematic nets or a new export. The legacy HMX display is reference evidence only and cannot enter
+groups; `H2-R2.1.2` reviewed exact identities for 208 board groups, five
+explicit non-PCBA groups and 1,555 logical contacts. `H2-R2.1.3` now
+materializes controlled definitions and joined native nets before a new export.
+The legacy HMX display is reference evidence only and cannot enter
 an R2 order BOM. Routing and all purchasing remain blocked.

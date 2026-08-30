@@ -2,7 +2,7 @@
 
 [На главную](../README.ru.md) · [English](hardware.md) · [Распиновка](pinout.ru.md) · [Схемы](schematics.ru.md) · [Безопасность](safety.ru.md)
 
-> Текущий маркер: **`H2-R2.1.2`**. Физический дизайн `H1-R2.37` принят и прошёл
+> Текущий маркер: **`H2-R2.1.3`**. Физический дизайн `H1-R2.37` принят и прошёл
 > ревью 2026-08-30. Эта страница не разрешает KiCad
 > routing или заказ.
 
@@ -161,7 +161,9 @@ geometry-gates. Точная EastRising-панель и пассивный ад�
 H1 явно принято и прошло ревью 2026-08-30. Электрический pin/mux-контракт C5 и
 live route FSUSB42MUX/C11355, точная реализация detector/latch/release service-VBUS
 и TCA9803 Pack/Safety boundary закрыты. `H2-R2.1.1` зафиксировал 3 native-
-проекта, 23 sheets и 213 точных MPN-групп; в `H2-R2.1.2` формируется exact
-ledger symbols/contacts/footprints до schematic nets и нового export.
+проекта, 23 sheets и 213 точных MPN-групп; `H2-R2.1.2` зафиксировал exact
+identities для 208 board groups, 5 явных non-PCBA groups и 1 555 логических
+контактов. В `H2-R2.1.3` материализуются controlled definitions и joined native
+nets до нового export.
 Legacy-дисплей HMX остаётся только историческим evidence и не попадает в R2 order BOM.
 Routing и любые закупки остаются заблокированы.
