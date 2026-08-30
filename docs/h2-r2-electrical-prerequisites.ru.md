@@ -5,9 +5,9 @@
 Это живой реестр prerequisites новой production-схемы R2 с шестью доменами и
 двумя RP. Здесь фиксируются проверенные результаты, а не история решений.
 Все три строки prerequisites закрыты. Native R2 inventory прошёл `H2-R2.1.1`;
-exact ledger symbols/contacts/footprints прошёл `H2-R2.1.2`. В
-`H2-R2.1.3` материализуются controlled definitions и joined native nets.
-Печать и заказ по-прежнему запрещены.
+exact ledger symbols/contacts/footprints прошёл `H2-R2.1.2`, а сверка 4 053
+endpoints native nets также пройдена в `H2-R2.1.3`. Сейчас создаются native-
+проекты KiCad. Печать и заказ по-прежнему запрещены.
 
 | Маркер | Статус | Производственный результат |
 |---|---|---|
@@ -25,10 +25,9 @@ powered-off защита bus pins не позволяет подпитать AON
 350 мкс. Залипшая mailbox-шина может убрать диагностику, но не блокирует
 независимый `FAULT_KILL` и локальный watchdog Safety.
 
-Точная текущая точка — **`H2-R2.1.3`**: материализовать controlled definitions
-и соединить rails, контакты M1, domain transports и явные NC из
-[проверенного exact ledger](h2-r2-symbol-footprint-ledger.ru.md). Quote,
-закупка и печать остаются запрещены.
+Точная текущая точка — **`H2-R2.1.3`**: создать три native-проекта KiCad из
+[проверенного net-ledger](h2-r2-net-ledger.ru.md). Quote, закупка и печать
+остаются запрещены.
 
 ## Evidence и правило перепроверки
 

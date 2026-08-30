@@ -32,6 +32,7 @@ PCB или печать.
 - [Сгенерированный ledger 1 096 экземпляров](../hardware/ecad/generated/H2-R2-native-instance-ledger.json)
 - [Генератор](../hardware/ecad/h2_r2_instance_ledger.py)
 
-Текущая точка остаётся **`H2-R2.1.3`**: соединить прошедшие ревью rails,
-контакты M1, domain transports и явные NC в трёх native-проектах. Placement,
-routing, печать и заказ остаются заблокированы.
+Следующая [сверка native nets](h2-r2-net-ledger.ru.md) теперь также пройдена.
+Текущая точка остаётся **`H2-R2.1.3`**: материализовать проверенные definitions,
+references и nets в трёх native-проектах KiCad. Placement, routing, печать и
+заказ остаются заблокированы.

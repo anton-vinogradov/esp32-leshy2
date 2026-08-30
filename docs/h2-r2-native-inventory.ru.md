@@ -49,7 +49,7 @@ architecture freeze и непосредственно перед заказом 
 ## Текущая граница
 
 Точный ledger этих 213 групп прошёл ревью как
-[`H2-R2.1.2`](h2-r2-symbol-footprint-ledger.ru.md). Текущая точка —
-**`H2-R2.1.3`**: материализовать controlled definitions и соединить native
-rails, контакты M1, domain transports и явные NC. PCB placement, routing,
-печать и заказ остаются заблокированы.
+[`H2-R2.1.2`](h2-r2-symbol-footprint-ledger.ru.md), а следующая
+[сверка 4 053 endpoints](h2-r2-net-ledger.ru.md) также пройдена. Текущая точка —
+**`H2-R2.1.3`**: создать три native-проекта KiCad из проверенных definitions,
+references и nets. PCB placement, routing, печать и заказ остаются заблокированы.

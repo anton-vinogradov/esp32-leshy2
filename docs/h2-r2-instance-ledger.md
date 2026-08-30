@@ -31,6 +31,7 @@ the TCA9803 Pack/Safety boundary are present.
 - [Generated 1,096-instance ledger](../hardware/ecad/generated/H2-R2-native-instance-ledger.json)
 - [Generator](../hardware/ecad/h2_r2_instance_ledger.py)
 
-The current point remains **`H2-R2.1.3`**: join reviewed rails, M1 contacts,
-domain transports and explicit NCs in the three native projects. Placement,
+The downstream [native net reconciliation](h2-r2-net-ledger.md) has now passed.
+The current point remains **`H2-R2.1.3`**: instantiate those reviewed
+definitions, references and nets in the three native KiCad projects. Placement,
 routing, fabrication and ordering remain blocked.

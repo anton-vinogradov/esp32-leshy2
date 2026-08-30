@@ -150,6 +150,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h2-r2-symbol-footprint-ledger.ru.md",
         "docs/h2-r2-instance-ledger.md",
         "docs/h2-r2-instance-ledger.ru.md",
+        "docs/h2-r2-net-ledger.md",
+        "docs/h2-r2-net-ledger.ru.md",
     )
 
     def test_individual_h2_artifacts_are_explicitly_historical_r1(self):
@@ -784,14 +786,14 @@ class ProductSiteTests(unittest.TestCase):
                 "18 exact production",
                 "U219 Cap integration",
                 "H1-R2.37 reviewed",
-                "exact symbol/contact/value/footprint ledger](h2-r2-symbol-footprint-ledger.md) are reviewed",
+                "4,053-endpoint native net reconciliation](h2-r2-net-ledger.md) are reviewed",
             ),
             "docs/roadmap.ru.md": (
                 "Текущая аппаратная граница: `H2-R2.1.3`",
                 "18 точных production",
                 "Интеграция U219 Cap",
                 "H1-R2.37 проведено ревью",
-                "точный ledger symbol/contact/value/footprint](h2-r2-symbol-footprint-ledger.ru.md) прошли ревью",
+                "сверка 4 053 endpoints native nets](h2-r2-net-ledger.ru.md) прошли ревью",
             ),
             "docs/stage-results.md": (
                 "reviewed at **`H1-R2.37`**",
@@ -799,7 +801,7 @@ class ProductSiteTests(unittest.TestCase):
                 "ten main SMA ports are split 5+5",
                 "single coordinate model now registers 226 bodies",
                 "`H2-R2.1.3`",
-                "definitions and joined nets are in progress",
+                "Native KiCad project creation is in progress",
             ),
             "docs/stage-results.ru.md": (
                 "проведено ревью **`H1-R2.37`**",
@@ -807,7 +809,7 @@ class ProductSiteTests(unittest.TestCase):
                 "десять основных SMA разделены 5+5",
                 "координатная модель содержит 226 тел",
                 "`H2-R2.1.3`",
-                "и joined nets; placement/routing",
+                "Сейчас создаются native-проекты KiCad; placement/routing",
             ),
             "docs/schematics.md": (
                 "H1-R2.37",

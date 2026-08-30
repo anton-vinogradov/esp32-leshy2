@@ -69,9 +69,9 @@ GPIO заднего RP и контакты M1 35–36 остаются резе�
 **Статус:** ▶️ сейчас **`H2-R2.1.3`**.
 
 Прежний G2F/H2/KiCad сохранён как историческое single-RP evidence R1. Все три
-электрических prerequisites нового R2 и native source/sheet/component inventory
-и exact ledger symbols/contacts/footprints прошли ревью. Сейчас создаются
-controlled native definitions и joined nets; placement/routing не начинались.
+электрических prerequisites нового R2, native source/sheet/component inventory,
+exact ledger symbols/contacts/footprints и сверка 4 053 endpoints nets прошли
+ревью. Сейчас создаются native-проекты KiCad; placement/routing не начинались.
 
 Точный текущий чеклист:
 
@@ -89,11 +89,14 @@ controlled native definitions и joined nets; placement/routing не начин�
    логических контактов отображены без незакрытых групп;
 6. ✅ Definitions/instances `H2-R2.1.3`: 208 controlled symbols, 1 518 PCB-pad
    pins и все 1 096 устанавливаемых экземпляров проходят раскладку по трём проектам;
-7. ▶ `H2-R2.1.3`: соединить rails, M1, transports и явные NC.
+7. ✅ Nets `H2-R2.1.3`: 4 053 контакта устанавливаемых экземпляров сведены в
+   908 канонических nets либо 239 явных board no-connects; незакрытых endpoints нет;
+8. ▶ `H2-R2.1.3`: материализовать проверенный вход в трёх native-проектах KiCad.
 
 [Native R2 inventory](h2-r2-native-inventory.ru.md) ·
 [точные symbols/footprints](h2-r2-symbol-footprint-ledger.ru.md) ·
-[распределение экземпляров](h2-r2-instance-ledger.ru.md).
+[распределение экземпляров](h2-r2-instance-ledger.ru.md) ·
+[сверка native nets](h2-r2-net-ledger.ru.md).
 
 Ожидаемый результат: native KiCad-схемы, заново сформированные из архитектуры
 R2, сверенная распиновка, ERC/NC-ревью и синхронный HW↔FW-контракт. На

@@ -70,9 +70,10 @@ H1 has no physical blocker. The complete mock-up was explicitly accepted on
 **Status:** ▶️ current at **`H2-R2.1.3`**.
 
 The former G2F/H2/KiCad result is historical single-RP R1 evidence. All three
-new R2 electrical prerequisites and the native source/sheet/component inventory
-and the exact symbol/contact/footprint ledger are reviewed. Controlled native
-definitions and joined nets are in progress; placement/routing have not started.
+new R2 electrical prerequisites, the native source/sheet/component inventory,
+the exact symbol/contact/footprint ledger and the 4,053-endpoint net
+reconciliation are reviewed. Native KiCad project creation is in progress;
+placement/routing have not started.
 
 Exact current checklist:
 
@@ -90,11 +91,14 @@ Exact current checklist:
    logical contacts mapped with zero unresolved groups;
 6. ✅ `H2-R2.1.3` definitions/instances: 208 controlled symbols, 1,518 PCB-pad
    pins and all 1,096 fitted instances pass the current three-project allocation;
-7. ▶ `H2-R2.1.3`: join rails, M1, transports and explicit NCs.
+7. ✅ `H2-R2.1.3` nets: 4,053 fitted-instance contacts resolve to 908 canonical
+   nets or 239 explicit board no-connects with zero unresolved endpoints;
+8. ▶ `H2-R2.1.3`: instantiate the reviewed input in three native KiCad projects.
 
 [Native R2 inventory](h2-r2-native-inventory.md) ·
 [exact symbols/footprints](h2-r2-symbol-footprint-ledger.md) ·
-[native instance allocation](h2-r2-instance-ledger.md).
+[native instance allocation](h2-r2-instance-ledger.md) ·
+[native net reconciliation](h2-r2-net-ledger.md).
 
 Expected result: native KiCad schematics regenerated from the R2 architecture,
 with pin reconciliation, ERC, NC review and a synchronized HW↔FW contract.

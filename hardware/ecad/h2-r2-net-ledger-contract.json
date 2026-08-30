@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "id": "LESHY2-H2-R2-NATIVE-NET-LEDGER",
+  "marker": "H2-R2.1.3",
+  "status": "current_net_reconciliation_contract",
+  "authority": {
+    "instances": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
+    "definitions": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
+    "h0": "hardware/architecture/h0-r2-rebaseline.json",
+    "dual_rp": "hardware/architecture/h1-r2-dual-rp-pinout.json",
+    "c5_mux": "hardware/architecture/c5-sdio-service-mux-contract.json",
+    "pack_safety_boundary": "hardware/architecture/pack-safety-i2c-boundary-contract.json",
+    "display_adapter": "hardware/product-design/display-adapter.json"
+  },
+  "reconciled_historical_hints": {
+    "route_contract": "hardware/architecture/candidates/G2F-3I.json",
+    "instance_ledger": "hardware/ecad/generated/H2-instance-ledger.json",
+    "kicad_projects": {
+      "LESHY2-UI": "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch",
+      "LESHY2-RF": "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch",
+      "LESHY2-LORA-CAP-01": "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch",
+      "L2-DISP-ADP-001-A": "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch"
+    },
+    "authority": false,
+    "allowed_use": "same-endpoint route or pin-net hint only after reconciliation to a current instance and identical exact device/contact, or an explicitly recorded same-die pin-equivalent replacement",
+    "forbidden_use": "R1 controller ownership, M1 map, display map, designators, single-RP topology or any endpoint absent from current R2"
+  },
+  "same_pin_replacements": {
+    "adi_ad8314armz_reel": "adi_ad8314acpz_rl7"
+  },
+  "canonical_net_aliases": {
+    "AON_EFUSE_EN": "AON_RAW_3V3",
+    "FAULT_LATCH_SENSE_AON": "FAULT_KILL",
+    "GND": "POWER_GROUND",
+    "HUB_SAFE_I2C_SDA": "HUB_SAFE_I2C_SDA_MAIN",
+    "HUB_SAFE_I2C_SCL": "HUB_SAFE_I2C_SCL_MAIN",
+    "MAIN_EFUSE_EN": "MAIN_RAW_3V3",
+    "PACK_LOCAL_GND": "BATTERY_STACK_NEGATIVE_CELL_SIDE",
+    "PACK_SHUNT_CSP": "BATTERY_STACK_NEGATIVE_CELL_SIDE",
+    "PACK_SHUNT_CSN": "POWER_GROUND",
+    "RECEIVER_READY": "RX_RST_N"
+  },
+  "authorization": {
+    "native_net_ledger": true,
+    "kicad_project_creation": false,
+    "pcb_placement_or_routing": false,
+    "fabrication": false,
+    "ordering": false
+  }
+}

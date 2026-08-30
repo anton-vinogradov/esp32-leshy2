@@ -26,8 +26,10 @@
 > explicit on-module RF interfaces, with zero unclaimed named pads. The controlled
 > library of 208 R2 symbols and 1,518 unique PCB-pad pins now passes KiCad 10;
 > all 1,096 fitted instances are now allocated across the three current projects
-> without importing R1 nets or designators. Joining native nets is the current
-> checkpoint. Ordering remains blocked.
+> without importing R1 designators. The 4,053 current fitted-instance contacts
+> are reconciled to 3,814 connected endpoints, 239 explicit no-connects and 908
+> canonical nets with zero unresolved endpoints. Creating the three native KiCad
+> projects from this reviewed input is the current checkpoint. Ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
@@ -112,7 +114,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
 | H1 · Physical product design | ✅ Reviewed · `H1-R2.37` | [Bilingual phase result](docs/h1-r2-acceptance.md) · [placement](docs/h1-r2-physical-layout.md) |
-| **H2 · Production ECAD schematic** | **▶ Current · `H2-R2.1.3`** | [Exact symbols/footprints](docs/h2-r2-symbol-footprint-ledger.md) · [stage page](docs/stage-results.md#h2) |
+| **H2 · Production ECAD schematic** | **▶ Current · `H2-R2.1.3`** | [Native net result](docs/h2-r2-net-ledger.md) · [stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ⏳ Waiting for R2 H4 | [Stage page](docs/stage-results.md#h5) |
@@ -143,7 +145,8 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H2-R2.1.1`: native R2 inventory reviewed — 3 projects, 23 sheets, 6 domain owners, 213 exact MPN groups and 1,106 product positions; zero symbols/nets created.
 - ✅ `H2-R2.1.2`: exact ledger reviewed — 208 board groups, 5 explicit non-PCBA groups, 1,561 logical contacts and zero unresolved groups; removable RF jumpers no longer masquerade as PCB parts.
 - ✅ `H2-R2.1.3` instance checkpoint: 1,096 fitted positions are allocated to the current three-project graph with zero nets imported from R1.
-- ▶ **Exact current point `H2-R2.1.3`:** join rails, M1 contacts, domain transports and explicit NCs in the native R2 projects.
+- ✅ `H2-R2.1.3` net checkpoint: all 4,053 fitted-instance contacts reconcile to 908 canonical nets or 239 explicit board no-connects; unresolved endpoints: zero.
+- ▶ **Exact current point `H2-R2.1.3`:** instantiate the reviewed definitions, references and nets in the three native R2 KiCad projects.
 - 🔒 KiCad, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked

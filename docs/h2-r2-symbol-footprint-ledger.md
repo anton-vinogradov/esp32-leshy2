@@ -71,7 +71,7 @@ ledger belong to the five explicit non-PCBA assemblies.
 
 The controlled `Leshy2_R2` library now contains all 208 exact-MPN symbols and
 1,518 unique electrical-pad pins and passes KiCad 10 parsing. All 1,096 fitted
-instances are allocated to the current projects. The current point is
-**`H2-R2.1.3`**: create the three native projects and join rails, M1 contacts,
-domain transports and explicit NCs. Placement, routing, fabrication and ordering
-remain blocked.
+instances are allocated to the current projects, and their 4,053 contacts pass
+[native net reconciliation](h2-r2-net-ledger.md). The current point is
+**`H2-R2.1.3`**: create the three native KiCad projects from that reviewed
+input. Placement, routing, fabrication and ordering remain blocked.

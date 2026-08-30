@@ -50,7 +50,8 @@ architecture freeze and immediately before the exact-one order.
 ## Current boundary
 
 The exact ledger for these 213 groups passed review at
-[`H2-R2.1.2`](h2-r2-symbol-footprint-ledger.md). The current point is
-**`H2-R2.1.3`**: materialize the controlled definitions and join native rails,
-M1 contacts, domain transports and explicit NCs. PCB placement, routing,
-fabrication and ordering remain blocked.
+[`H2-R2.1.2`](h2-r2-symbol-footprint-ledger.md), and the downstream
+[4,053-endpoint net reconciliation](h2-r2-net-ledger.md) has passed. The current
+point is **`H2-R2.1.3`**: create the three native KiCad projects from the
+reviewed definitions, references and nets. PCB placement, routing, fabrication
+and ordering remain blocked.
