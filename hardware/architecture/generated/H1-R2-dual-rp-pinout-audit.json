@@ -5,11 +5,11 @@
   "status": "pass_exact_dual_rp_working_authority",
   "authority": {
     "source": "hardware/architecture/h1-r2-dual-rp-pinout.json",
-    "source_sha256": "f21b6d33f771fc522ed654489c16ff57d756f604b9fc4f3515babdc9c145555a",
+    "source_sha256": "5f547dd3ab1b86618885f3a1fcb7956bffc02c99b1ca3d740d60fff1b7e955af",
     "functional_source": "hardware/architecture/h0-r2-rebaseline.json",
-    "functional_source_sha256": "c5fbe59d64c223d8918ebdeffca1723f0e939e47ce11fc360e1231572af9da10",
+    "functional_source_sha256": "6a3e3ae9d58f9cb5b26e4d87377d9a629191a95a004158063870f6b25a839ec3",
     "c5_mux_source": "hardware/architecture/c5-sdio-service-mux-contract.json",
-    "c5_mux_source_sha256": "a15c9e674b6ea51b7fde5dd92754a27fe8fd284766a3558d2cd5fb5181a81da3",
+    "c5_mux_source_sha256": "35682775b06ae21feb19c0976ec09890d3d1e4bed3f2006d1c9b692ad7e547f6",
     "u219_profile_source": "hardware/architecture/h1-r2-u219-cap.json",
     "u219_profile_source_sha256": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
     "device_register_source": "hardware/architecture/devices.json",
@@ -17,8 +17,11 @@
     "r2_h2_authorized": false,
     "c5_electrical_join_status": "closed against C5-SDIO-SERVICE-MUX-1: exact module pads, fixed IO mux, FSUSB42 branch polarity, reset ownership and Hub-side signal order are joined.",
     "remaining_h2_gates": [
-      "live JLC stock-or-explicit-route, MOQ and price for exact onsemi FSUSB42MUX / C11355",
-      "exact factory-placeable service-VBUS detector/latch MPN and implementation"
+      "exact factory-placeable service-VBUS detector/latch MPN and implementation",
+      "exact powered-off-Ioff Pack/Safety I2C boundary with separate 3V3_MAIN/AON pull-up domains on Hub GPIO42/43"
+    ],
+    "resolved_h2_gates": [
+      "H2-R2.0.1: exact onsemi FSUSB42MUX / JLCPCB C11355 live Standard-PCBA route, MOQ and price reviewed 2026-08-30"
     ]
   },
   "summary": {
@@ -1066,7 +1069,7 @@
     "Simultaneous three-nRF RX/TX/mix, microSD, S3-Hub, Hub-C5 and Hub-RF traffic must pass emulator/dev-board timing before fabrication and HIL after assembly.",
     "Reset-state voltage and no-back-power behavior must be measured for every switched/isolated branch.",
     "Hub GPIO42/43 Pack/Safety I2C requires an exact powered-off-Ioff boundary and separate 3V3_MAIN/AON pull-up domains before schematic authorization.",
-    "The C5 electrical pad/mux contract is joined; exact live production route for FSUSB42MUX/C11355 and an exact service-VBUS detector/latch MPN remain fail-closed before R2 H2.",
+    "The C5 electrical pad/mux contract and exact live production route for FSUSB42MUX/C11355 are closed; an exact service-VBUS detector/latch MPN remains fail-closed before R2 H2.",
     "The exact-one signed U214/U219 profile must pass received-unit pin continuity, protected-power, RF-switch, VNA and RX/NFC HIL before the U219 branch can be enabled."
   ],
   "errors": []

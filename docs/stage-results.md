@@ -67,7 +67,7 @@ H1 has no physical blocker. The complete mock-up was explicitly accepted on
 <a id="h2"></a>
 ## H2 · Production schematic
 
-**Status:** ▶️ current at **`H2-R2.0` prerequisite closure**.
+**Status:** ▶️ current at **`H2-R2.0.2`**.
 
 The former reviewed G2F/H2/KiCad result is preserved as historical single-RP
 R1 evidence and is explicitly superseded as current authority. The new R2 H2
@@ -75,11 +75,15 @@ has opened, but native schematic export/KiCad has not started.
 
 Exact current checklist:
 
-1. ▶ verify the live Standard-PCBA route, MOQ and price for
-   onsemi `FSUSB42MUX` / JLCPCB `C11355`;
-2. ⏳ select and verify the exact factory-placeable service-VBUS detector/latch;
-3. ⏳ close the powered-off-Ioff Pack/Safety I²C boundary with separate
+1. ✅ `H2-R2.0.1`: exact onsemi `FSUSB42MUX` / JLCPCB `C11355` live
+   Standard-PCBA route reviewed: stock 66,698; available 66,045; MOQ 1;
+   USD 0.3179 at quantity 1;
+2. ▶ `H2-R2.0.2`: select and prove the exact factory-placeable always-on
+   service-VBUS detector/latch;
+3. ⏳ `H2-R2.0.3`: close the powered-off-Ioff Pack/Safety I²C boundary with separate
    `3V3_MAIN`/AON pull-ups on Hub GPIO42/43.
+
+[Live prerequisite results](h2-r2-electrical-prerequisites.md).
 
 Expected result: native KiCad schematics regenerated from the R2 architecture,
 with pin reconciliation, ERC, NC review and a synchronized HW↔FW contract.

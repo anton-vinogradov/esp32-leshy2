@@ -86,9 +86,13 @@ def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
     if "closed" not in authority.get("c5_electrical_join_status", ""):
         errors.append("C5 electrical pad/mux join must be explicit")
     remaining = " ".join(authority.get("remaining_h2_gates", []))
-    for token in ("C11355", "service-VBUS", "MPN"):
+    for token in ("service-VBUS", "MPN", "powered-off-Ioff", "Pack/Safety"):
         if token not in remaining:
             errors.append(f"remaining C5 production gates must name {token}")
+    resolved = " ".join(authority.get("resolved_h2_gates", []))
+    for token in ("H2-R2.0.1", "FSUSB42MUX", "C11355"):
+        if token not in resolved:
+            errors.append(f"resolved C5 production gates must name {token}")
 
     rp = devices.get("devices", {}).get("rp2354b_a4", {})
     identity = source.get("rp_identity", {})
@@ -286,7 +290,11 @@ def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
     candidate = route.get("candidate", {})
     if (candidate.get("mpn"), candidate.get("jlcpcb_part_number")) != ("FSUSB42MUX", "C11355"):
         errors.append("joined C5 source lost exact FSUSB42MUX/C11355 identity")
-    if route.get("selection_status") == "accepted":
+    inventory = route.get("live_inventory", {})
+    inventory_complete = all(inventory.get(key) is not None for key in (
+        "stock", "available_order_quantity", "moq", "price_tiers_usd"
+    ))
+    if route.get("selection_status") != "accepted" or not inventory_complete:
         errors.append("C11355 production route must remain fail-closed until live route/MOQ/price are proven")
     if c5_mux.get("ownership", {}).get("service_vbus", {}).get("detector_and_latch_mpn_status") == "accepted":
         errors.append("service-VBUS detector/latch must remain open until an exact MPN is selected")
@@ -376,6 +384,7 @@ def build(source: dict[str, Any] | None = None, h0: dict[str, Any] | None = None
             "r2_h2_authorized": False,
             "c5_electrical_join_status": source["authority_chain"]["c5_electrical_join_status"],
             "remaining_h2_gates": source["authority_chain"]["remaining_h2_gates"],
+            "resolved_h2_gates": source["authority_chain"]["resolved_h2_gates"],
         },
         "summary": {
             "domains": 2,
@@ -406,8 +415,9 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
         intro = (
             "Это точная рабочая H1-R2.31-карта GPIO двух независимых RP2354B и их пяти "
             "сигналов через M1. Точный электрический контракт module-pad/IO-mux C5 присоединён. "
-            "Она ещё не разрешает KiCad: до нового R2 H2 остаются live production route "
-            "FSUSB42MUX/C11355 и точный MPN detector/latch service-VBUS."
+            "Она ещё не разрешает KiCad: live production route FSUSB42MUX/C11355 прошёл "
+            "ревью, но до нового R2 H2 остаются точный MPN detector/latch service-VBUS "
+            "и граница Pack/Safety I²C."
         )
         names = {"hub_rp": "Передний Hub RP", "rf_rp": "Задний RF RP"}
         cols = "| GPIO | Сеть | Направление | Контроллер | Физический endpoint | Reset / pull |"
@@ -422,8 +432,9 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
         intro = (
             "This is the exact H1-R2.31 working GPIO map for the two independent RP2354B domains "
             "and their five M1 signals. The exact C5 module-pad/IO-mux electrical contract is joined. "
-            "It still does not authorize KiCad: the live FSUSB42MUX/C11355 production route and an "
-            "exact service-VBUS detector/latch MPN remain fail-closed before a new R2 H2 export."
+            "It still does not authorize KiCad: the live FSUSB42MUX/C11355 production route is "
+            "reviewed, while an exact service-VBUS detector/latch MPN and Pack/Safety I²C boundary "
+            "remain fail-closed before a new R2 H2 export."
         )
         names = {"hub_rp": "Front Hub RP", "rf_rp": "Rear RF RP"}
         cols = "| GPIO | Net | Direction | Controller | Physical endpoint | Reset / pull |"

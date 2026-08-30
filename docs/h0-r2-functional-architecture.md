@@ -2,7 +2,7 @@
 
 H0-R2 is the new functional baseline: UI and display remain local to S3, high-throughput peripheral work is offloaded through the Hub RP, the onboard video path is removed, and 118–137 MHz Airband AM is now mandatory.
 
-> The exact current marker is **H2-R2.0**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, four M1 endpoint groups and 226 bodies was accepted and reviewed on 2026-08-30. It includes all eight TX detectors, five couplers and eight local evidence islands; all six AD8314 positions use the accepted `AD8314ARMZ-REEL` / `C652687`. The serial EastRising display, U219, NFC loop and antenna swept volume are closed. The old single-RP G2F/H2 projection remains historical R1 evidence only. H2-R2.0 closes the live C11355 route, exact service-VBUS detector/latch MPN and Pack/Safety I2C powered-off-Ioff boundary before native R2 ECAD/KiCad.
+> The exact current marker is **H2-R2.0.2**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, four M1 endpoint groups and 226 bodies was accepted and reviewed on 2026-08-30. It includes all eight TX detectors, five couplers and eight local evidence islands; all six AD8314 positions use the accepted `AD8314ARMZ-REEL` / `C652687`. The serial EastRising display, U219, NFC loop and antenna swept volume are closed. The old single-RP G2F/H2 projection remains historical R1 evidence only. The live C11355 route was reviewed as H2-R2.0.1; H2-R2.0.2 closes the exact service-VBUS detector/latch MPN before the Pack/Safety I2C powered-off-Ioff boundary and native R2 ECAD/KiCad.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 

@@ -27,7 +27,7 @@
     "hub_gpio_rows": 48,
     "rf_gpio_rows": 48,
     "m1_signal_bindings": 5,
-    "c5_mux_status": "electrical contract closed; C5 production gates open and fail-closed for live FSUSB42MUX/C11355 route plus exact service-VBUS detector/latch MPN before R2 H2"
+    "c5_mux_status": "electrical contract and exact live FSUSB42MUX/C11355 Standard-PCBA route closed as H2-R2.0.1; exact service-VBUS detector/latch MPN gate remains open and fail-closed before native R2 H2"
   },
   "current_h1_physical_authority": {
     "source": "hardware/product-design/h1-r2-placement.json",
@@ -1595,6 +1595,6 @@
   "r2_h2_authoritative": false,
   "r2_kicad_started": false,
   "exact_rp_gpio_order_status": "closed as H1-R2.31 working authority; not yet a generated R2 H2 export",
-  "exact_c5_mux_status": "electrical contract closed; C5 production gates open and fail-closed for live FSUSB42MUX/C11355 route plus exact service-VBUS detector/latch MPN before R2 H2",
+  "exact_c5_mux_status": "electrical contract and exact live FSUSB42MUX/C11355 Standard-PCBA route closed as H2-R2.0.1; exact service-VBUS detector/latch MPN gate remains open and fail-closed before native R2 H2",
   "errors": []
 }

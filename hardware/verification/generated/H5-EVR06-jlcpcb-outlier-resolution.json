@@ -3,10 +3,10 @@
   "artifact": "H5-EVR06",
   "stage": "H5.0.3-R1",
   "status": "all_210_routes_mapped_dual_sa818s_and_factory_gates_open",
-  "checked_on": "2026-08-29",
+  "checked_on": "2026-08-30",
   "input": {
     "bom_tool_result": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
-    "bom_tool_result_sha256": "4f7e421fdb325255a6c3b26a74ddcfabd08a4a12c4dbaddefba6cbc757929094",
+    "bom_tool_result_sha256": "14ebb4a7a27a2b3c70ce50af42eb67e4e9f3e0f5690ca3855dc2bdddd96e3765",
     "search_capture": "hardware/verification/jlcpcb-outlier-search-capture-2026-08-25.json",
     "search_capture_sha256": "50fdf7c69a95bc53e32148cf8e7e3b2d245818a74cec065a708c128527af2699"
   },

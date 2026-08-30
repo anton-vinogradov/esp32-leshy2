@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](pinout.ru.md) · [Hardware](hardware.md)
 
-This is the exact H1-R2.31 working GPIO map for the two independent RP2354B domains and their five M1 signals. The exact C5 module-pad/IO-mux electrical contract is joined. It still does not authorize KiCad: the live FSUSB42MUX/C11355 production route and an exact service-VBUS detector/latch MPN remain fail-closed before a new R2 H2 export.
+This is the exact H1-R2.31 working GPIO map for the two independent RP2354B domains and their five M1 signals. The exact C5 module-pad/IO-mux electrical contract is joined. It still does not authorize KiCad: the live FSUSB42MUX/C11355 production route is reviewed, while an exact service-VBUS detector/latch MPN and Pack/Safety I²C boundary remain fail-closed before a new R2 H2 export.
 
 > Machine source: `hardware/architecture/h1-r2-dual-rp-pinout.json`. Pin-map artifact marker: **`H1-R2.31`**; current physical-design marker: **`H1-R2.37`**.
 
@@ -156,7 +156,7 @@ S3 firmware may enable the two data channels only after normal application boot,
 - Simultaneous three-nRF RX/TX/mix, microSD, S3-Hub, Hub-C5 and Hub-RF traffic must pass emulator/dev-board timing before fabrication and HIL after assembly.
 - Reset-state voltage and no-back-power behavior must be measured for every switched/isolated branch.
 - Hub GPIO42/43 Pack/Safety I2C requires an exact powered-off-Ioff boundary and separate 3V3_MAIN/AON pull-up domains before schematic authorization.
-- The C5 electrical pad/mux contract is joined; exact live production route for FSUSB42MUX/C11355 and an exact service-VBUS detector/latch MPN remain fail-closed before R2 H2.
+- The C5 electrical pad/mux contract and exact live production route for FSUSB42MUX/C11355 are closed; an exact service-VBUS detector/latch MPN remains fail-closed before R2 H2.
 - The exact-one signed U214/U219 profile must pass received-unit pin continuity, protected-power, RF-switch, VNA and RX/NFC HIL before the U219 branch can be enabled.
 
 ## Exact dual-NMOS pin map

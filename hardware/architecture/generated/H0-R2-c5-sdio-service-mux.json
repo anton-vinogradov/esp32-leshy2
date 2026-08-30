@@ -352,7 +352,7 @@
     "rule": "20 MHz is bring-up only. The 7.5 MB/s payload floor is accepted only at the 40 MHz target after reset, coexistence and long-run HIL."
   },
   "production_mux_route": {
-    "selection_status": "unresolved_live_inventory_gate",
+    "selection_status": "accepted",
     "candidate": {
       "manufacturer": "onsemi",
       "mpn": "FSUSB42MUX",
@@ -364,31 +364,61 @@
         "Standard"
       ],
       "catalog_identity_url": "https://jlcpcb.com/partdetail/onsemi-FSUSB42MUX/C11355",
-      "identity_checked_on": "2026-08-28"
+      "identity_checked_on": "2026-08-30",
+      "source": "JLCPCB",
+      "part_class": "Extended",
+      "msl_level": "MSL 1"
     },
     "live_inventory": {
-      "stock": null,
-      "available_order_quantity": null,
-      "moq": null,
-      "price_tiers_usd": null,
-      "reason_open": "The current JLC catalogue page proves exact identity, package and Standard-PCBA eligibility, but its live inventory, MOQ and price fields were not available through the unauthenticated machine-readable response. Recheck the live BOM/Parts surface before production selection."
+      "checked_at": "2026-08-30T13:08:13+03:00",
+      "surface": "JLCPCB live part-detail browser surface",
+      "stock": 66698,
+      "available_order_quantity": 66045,
+      "moq": 1,
+      "full_reel_quantity": 4000,
+      "currency": "USD",
+      "price_tiers_usd": [
+        {
+          "minimum_quantity": 1,
+          "unit_price": 0.3179
+        },
+        {
+          "minimum_quantity": 50,
+          "unit_price": 0.2458
+        },
+        {
+          "minimum_quantity": 150,
+          "unit_price": 0.2106
+        },
+        {
+          "minimum_quantity": 500,
+          "unit_price": 0.1748
+        },
+        {
+          "minimum_quantity": 2500,
+          "unit_price": 0.1662
+        },
+        {
+          "minimum_quantity": 4000,
+          "unit_price": 0.1611
+        }
+      ],
+      "route": "public JLCPCB stock"
     },
-    "release_rule": "The candidate is an electrical reference only until exact live stock or an explicit pre-order/private-library/global-sourcing route, MOQ and price are timestamped together."
+    "release_rule": "Accepted for H2 schematic use because exact identity, Standard-PCBA eligibility, public live stock, MOQ and price were timestamped together. Recheck at architecture freeze and immediately before the exact-one order."
   },
-  "production_release_allowed": false,
+  "production_release_allowed": true,
   "h0_integration": {
     "native_four_bit_declared": true,
-    "current_clock_hz": 20000000,
-    "current_raw_mb_s": 10.0,
+    "current_clock_hz": 40000000,
+    "current_raw_mb_s": 20.0,
     "current_qualified_floor_mb_s": 7.5,
     "bringup_matches": true,
-    "target_clock_explicit": false,
-    "hil_frequency_semantics_explicit": false
+    "target_clock_explicit": true,
+    "hil_frequency_semantics_explicit": true
   },
   "open_gates": [
-    "live JLC stock-or-explicit-route, MOQ and price for FSUSB42MUX/C11355",
-    "exact factory-placeable service-VBUS detector/latch implementation",
-    "top-level H0 promotion of 40 MHz target and 7.5 MB/s-at-40-MHz semantics"
+    "exact factory-placeable service-VBUS detector/latch implementation"
   ],
   "errors": []
 }

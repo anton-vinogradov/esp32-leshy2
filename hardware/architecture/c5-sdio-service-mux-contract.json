@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "contract_id": "C5-SDIO-SERVICE-MUX-1",
-  "checked_on": "2026-08-28",
-  "status": "machine_contract_defined_factory_inventory_gate_open",
+  "checked_on": "2026-08-30",
+  "status": "machine_contract_defined_factory_mux_route_accepted",
   "scope": "Exact ESP32-C5-WROOM-1U-N8R8 native-service-USB versus four-bit-SDIO ownership, switching and fail-safe electrical contract. This file does not authorize ECAD release.",
   "official_evidence": [
     {
@@ -25,9 +25,15 @@
     },
     {
       "document": "onsemi FSUSB42 datasheet",
-      "version": "Rev. 3, May 2022; checked 2026-08-28",
+      "version": "Rev. 3, May 2022; checked 2026-08-30",
       "url": "https://www.onsemi.com/download/data-sheet/pdf/fsusb42-d.pdf",
       "covers": ["MSOP-10 pinout", "truth table", "break-before-make", "power-off isolation", "USB 2.0 bandwidth"]
+    },
+    {
+      "document": "JLCPCB live Standard-PCBA part surface",
+      "version": "live browser surface captured 2026-08-30T13:08:13+03:00",
+      "url": "https://jlcpcb.com/partdetail/onsemi-FSUSB42MUX/C11355",
+      "covers": ["exact manufacturer identity", "JLCPCB part number", "MSOP-10 package", "SMT assembly", "Economic and Standard PCBA", "live stock", "available quantity", "MOQ", "USD price tiers"]
     }
   ],
   "c5_module": {
@@ -77,7 +83,7 @@
     ]
   },
   "production_mux_route": {
-    "selection_status": "unresolved_live_inventory_gate",
+    "selection_status": "accepted",
     "candidate": {
       "manufacturer": "onsemi",
       "mpn": "FSUSB42MUX",
@@ -86,16 +92,30 @@
       "assembly_type": "SMT Assembly",
       "pcba_type": ["Economic", "Standard"],
       "catalog_identity_url": "https://jlcpcb.com/partdetail/onsemi-FSUSB42MUX/C11355",
-      "identity_checked_on": "2026-08-28"
+      "identity_checked_on": "2026-08-30",
+      "source": "JLCPCB",
+      "part_class": "Extended",
+      "msl_level": "MSL 1"
     },
     "live_inventory": {
-      "stock": null,
-      "available_order_quantity": null,
-      "moq": null,
-      "price_tiers_usd": null,
-      "reason_open": "The current JLC catalogue page proves exact identity, package and Standard-PCBA eligibility, but its live inventory, MOQ and price fields were not available through the unauthenticated machine-readable response. Recheck the live BOM/Parts surface before production selection."
+      "checked_at": "2026-08-30T13:08:13+03:00",
+      "surface": "JLCPCB live part-detail browser surface",
+      "stock": 66698,
+      "available_order_quantity": 66045,
+      "moq": 1,
+      "full_reel_quantity": 4000,
+      "currency": "USD",
+      "price_tiers_usd": [
+        {"minimum_quantity": 1, "unit_price": 0.3179},
+        {"minimum_quantity": 50, "unit_price": 0.2458},
+        {"minimum_quantity": 150, "unit_price": 0.2106},
+        {"minimum_quantity": 500, "unit_price": 0.1748},
+        {"minimum_quantity": 2500, "unit_price": 0.1662},
+        {"minimum_quantity": 4000, "unit_price": 0.1611}
+      ],
+      "route": "public JLCPCB stock"
     },
-    "release_rule": "The candidate is an electrical reference only until exact live stock or an explicit pre-order/private-library/global-sourcing route, MOQ and price are timestamped together."
+    "release_rule": "Accepted for H2 schematic use because exact identity, Standard-PCBA eligibility, public live stock, MOQ and price were timestamped together. Recheck at architecture freeze and immediately before the exact-one order."
   },
   "branch_conditioning": {
     "footprint": "R_0402_1005Metric",

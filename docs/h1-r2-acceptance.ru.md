@@ -49,12 +49,12 @@ H1 подтверждает, что выбранные корпуса, инте�
 устройство. Это ещё не доказательство разведённой платы, ERC, signal integrity,
 поведения при включении или фабричной собираемости по release-Gerber/CPL/BOM.
 
-Текущий этап — **H2-R2.0**. До начала native R2 schematic export нужно по порядку
-закрыть:
+Текущая точка — **H2-R2.0.2**. До начала native R2 schematic export реестр
+prerequisites должен закрыть по порядку:
 
-1. live-маршрут Standard PCBA, MOQ и цену onsemi `FSUSB42MUX` / JLCPCB `C11355`;
-2. точную устанавливаемую фабрикой реализацию detector/latch service-VBUS;
-3. powered-off-Ioff-границу и раздельные pull-up `3V3_MAIN`/AON для Pack/Safety
+1. ✅ `H2-R2.0.1`: live-маршрут Standard PCBA, MOQ и цену onsemi `FSUSB42MUX` / JLCPCB `C11355`;
+2. ▶ `H2-R2.0.2`: точную устанавливаемую фабрикой реализацию detector/latch service-VBUS;
+3. ⏳ `H2-R2.0.3`: powered-off-Ioff-границу и раздельные pull-up `3V3_MAIN`/AON для Pack/Safety
    I²C на Hub GPIO42/43.
 
 KiCad, закупка и печать остаются запрещены.

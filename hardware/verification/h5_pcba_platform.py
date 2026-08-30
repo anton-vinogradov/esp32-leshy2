@@ -24,7 +24,7 @@ FALLBACK_OUTPUT = REPO / "hardware/verification/generated/H5-EVR08-fallback-fact
 C5_INVARIANT_PATH = REPO / "hardware/architecture/c5-procurement-invariant.json"
 DOC_EN = REPO / "docs/manufacturing-platform.md"
 DOC_RU = REPO / "docs/manufacturing-platform.ru.md"
-CHECKED_ON = "2026-08-29"
+CHECKED_ON = "2026-08-30"
 C5_INVARIANT = json.loads(C5_INVARIANT_PATH.read_text(encoding="utf-8"))
 UPLOAD_AUTHORIZED_ON = "2026-08-25"
 SUPPLIER_INQUIRY = {
@@ -576,6 +576,7 @@ TIERS = [
 
 
 SPOT_CHECKS = [
+    {"device_id": "onsemi_fsusb42_mux", "mpn": "FSUSB42MUX", "jlc": "C11355", "tier": "J0", "stock": 66698, "available_order_quantity": 66045, "moq": 1, "quantity_one_usd": 0.3179, "pcba": "Extended SMT; Economic and Standard; MSL 1", "source": "https://jlcpcb.com/partdetail/onsemi-FSUSB42MUX/C11355", "finding": "live 2026-08-30 public-stock route for the exact onsemi MSOP-10; selected without package or pin-topology change"},
     {"device_id": "esp32_s3_wroom_1u_n16r8", "mpn": "ESP32-S3-WROOM-1U-N16R8", "jlc": "C3013946", "tier": "J0", "stock": 14529, "pcba": "Standard only; X-ray required", "source": "https://jlcpcb.com/partdetail/ESP32-S3-WROOM-1U-N16R8/C3013946", "finding": "exact selected module is directly assembleable"},
     {"device_id": "esp32_c5_wroom_1u_n8r8", "mpn": "ESP32-C5-WROOM-1U-N8R8", "supplier_order_code": "ESP32-C5-WROOM-1U-N8R8-V1.2", "jlc": "C54951858", "tier": "J0", "stock": 460, "available_order_quantity": 440, "moq": 1, "pcba": "SMT; Standard PCBA", "source": "https://jlcpcb.com/partdetail/C54951858", "finding": "official Espressif MPN remains unsuffixed; the supplier code fixes the production route at V1.2 and incoming MD plus eFuse must independently prove revision >=v1.2"},
     {"device_id": "cc1101rgpr", "mpn": "CC1101RGPR", "jlc": "C29953", "tier": "J0", "stock": 14194, "pcba": "Economic and Standard", "source": "https://jlcpcb.com/partdetail/TexasInstruments-CC1101RGPR/C29953", "finding": "exact selected transceiver is directly assembleable"},

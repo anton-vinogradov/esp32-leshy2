@@ -12,7 +12,7 @@
   "current_truth": {
     "target_architecture": "H0-R2 reviewed for six domains; ownership, working pin budgets, safety and HW/FW boundaries are current",
     "mechanical_projection": "H1-R2.37 is the user-accepted reviewed dimensioned physical result; machine geometry is clean, and H1 does not authorize ECAD or ordering",
-    "current_ecad": "H2-R2.0 prerequisite closure has begun; native R2 production schematic export and PCB layout have not begun, and the archived R1 ECAD is historical and must not be built",
+    "current_ecad": "H2-R2.0.1 live mux route is reviewed and H2-R2.0.2 detector/latch closure is current; native R2 production schematic export and PCB layout have not begun, and the archived R1 ECAD is historical and must not be built",
     "virtual_electrical": "R2 routed-value electrical verification is blocked on current H2 and H6; historical R1 H3 evidence is not R2 order authority",
     "executable_firmware": "F2-R2.5 is in progress for six production-SDK targets; the first-spin diagnostic, current R2 BSP import and recovery bundle are not reviewed",
     "instruction_emulation": "F3-R2 and F-PO remain blocked; historical S3 QEMU evidence cannot prove the current R2 peripherals, PCB or non-S3 execution",

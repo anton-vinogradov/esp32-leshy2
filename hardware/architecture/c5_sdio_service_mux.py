@@ -173,7 +173,7 @@ def build(contract: dict | None = None, devices: dict | None = None,
         "current_clock_hz": h0_link.get("clock_hz"),
         "current_raw_mb_s": h0_link.get("raw_payload_mb_s"),
         "current_qualified_floor_mb_s": h0_link.get("qualified_payload_floor_mb_s"),
-        "bringup_matches": h0_link.get("clock_hz") == performance.get("bringup_clock_hz"),
+        "bringup_matches": h0_link.get("bringup_clock_hz") == performance.get("bringup_clock_hz"),
         "target_clock_explicit": h0_link.get("clock_hz") == performance.get("target_clock_hz"),
         "hil_frequency_semantics_explicit": "40 MHz" in h0_link.get("service_mux", ""),
     }

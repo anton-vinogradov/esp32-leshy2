@@ -3,7 +3,7 @@
   "artifact": "H5-EVR04",
   "stage": "H5.0.3-R1",
   "status": "routes_complete_dual_sa818s_preorder_and_factory_gates_open",
-  "checked_on": "2026-08-29",
+  "checked_on": "2026-08-30",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
     "sha256": "c968cda8bad84d6f38eb16ddd78b57c4039a7e076d44a4b8c404b9285f20301c",
@@ -395,6 +395,19 @@
   },
   "critical_spot_checks": [
     {
+      "device_id": "onsemi_fsusb42_mux",
+      "mpn": "FSUSB42MUX",
+      "jlc": "C11355",
+      "tier": "J0",
+      "stock": 66698,
+      "available_order_quantity": 66045,
+      "moq": 1,
+      "quantity_one_usd": 0.3179,
+      "pcba": "Extended SMT; Economic and Standard; MSL 1",
+      "source": "https://jlcpcb.com/partdetail/onsemi-FSUSB42MUX/C11355",
+      "finding": "live 2026-08-30 public-stock route for the exact onsemi MSOP-10; selected without package or pin-topology change"
+    },
+    {
       "device_id": "esp32_s3_wroom_1u_n16r8",
       "mpn": "ESP32-S3-WROOM-1U-N16R8",
       "jlc": "C3013946",
@@ -627,8 +640,8 @@
   ],
   "summary": {
     "target_bom_lines": 210,
-    "critical_lines_spot_checked": 21,
-    "public_stock_exact_or_revision_explicit": 17,
+    "critical_lines_spot_checked": 22,
+    "public_stock_exact_or_revision_explicit": 18,
     "preorder_reservation": 3,
     "global_sourcing_or_consignment": 0,
     "factory_final_assembly": 1,

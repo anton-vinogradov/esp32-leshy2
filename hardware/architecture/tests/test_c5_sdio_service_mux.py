@@ -83,18 +83,28 @@ class C5SdioServiceMuxTest(unittest.TestCase):
                          (performance["target_clock_hz"], performance["target_raw_mb_s"]))
         self.assertEqual((7.5, 40_000_000),
                          (performance["qualified_payload_floor_mb_s"], performance["qualification_frequency_hz"]))
+        self.assertTrue(result["h0_integration"]["target_clock_explicit"])
+        self.assertTrue(result["h0_integration"]["hil_frequency_semantics_explicit"])
+        self.assertNotIn("top-level H0 promotion of 40 MHz target and 7.5 MB/s-at-40-MHz semantics",
+                         result["open_gates"])
 
-    def test_factory_route_fails_closed_until_live_inventory_is_complete(self):
+    def test_factory_route_is_accepted_only_with_complete_live_inventory(self):
         result = MODULE.build()
         route = result["production_mux_route"]
         self.assertEqual(("onsemi", "FSUSB42MUX", "C11355"),
                          (route["candidate"]["manufacturer"], route["candidate"]["mpn"],
                           route["candidate"]["jlcpcb_part_number"]))
-        self.assertFalse(result["production_release_allowed"])
-        self.assertIn("live JLC stock-or-explicit-route", result["open_gates"][0])
+        self.assertTrue(result["production_release_allowed"])
+        self.assertEqual((66_698, 66_045, 1),
+                         (route["live_inventory"]["stock"],
+                          route["live_inventory"]["available_order_quantity"],
+                          route["live_inventory"]["moq"]))
+        self.assertEqual(0.3179, route["live_inventory"]["price_tiers_usd"][0]["unit_price"])
+        self.assertNotIn("live JLC stock-or-explicit-route, MOQ and price for FSUSB42MUX/C11355",
+                         result["open_gates"])
 
         contract = copy.deepcopy(MODULE.load(MODULE.CONTRACT))
-        contract["production_mux_route"]["selection_status"] = "accepted"
+        contract["production_mux_route"]["live_inventory"]["stock"] = None
         invalid = MODULE.build(contract=contract)
         self.assertIn("production mux cannot be accepted without live stock/route, MOQ and price", invalid["errors"])
 

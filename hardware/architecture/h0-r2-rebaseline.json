@@ -213,10 +213,12 @@
     {
       "id": "HUB_C5",
       "transport": "native C5 4-bit SDIO",
-      "clock_hz": 20000000,
-      "raw_payload_mb_s": 10.0,
+      "clock_hz": 40000000,
+      "bringup_clock_hz": 20000000,
+      "raw_payload_mb_s": 20.0,
       "qualified_payload_floor_mb_s": 7.5,
-      "service_mux": "C5 GPIO13/14 are switched between SDIO D3/D2 and the independent service USB connector; service mode stops and resets the runtime link before switching."
+      "qualification_frequency_hz": 40000000,
+      "service_mux": "C5 GPIO13/14 are switched between SDIO D3/D2 and the independent service USB connector; service mode stops and resets the runtime link before switching. Bring-up trains at 20 MHz; the 7.5 MB/s payload floor is accepted only at the 40 MHz target."
     },
     {
       "id": "HUB_RF_RP",

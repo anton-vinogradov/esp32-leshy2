@@ -49,12 +49,12 @@ service access and interboard stack form one physically coherent device. It is
 not proof of a routed PCB, ERC, signal integrity, power-up behaviour or
 factory-buildability from released Gerbers/CPL/BOM.
 
-The current phase is **H2-R2.0**. Before native R2 schematic export can begin it
-must close, in order:
+The current point is **H2-R2.0.2**. Before native R2 schematic export can begin
+the prerequisite ledger must close, in order:
 
-1. live Standard-PCBA route, MOQ and price for onsemi `FSUSB42MUX` / JLCPCB `C11355`;
-2. an exact factory-placeable service-VBUS detector/latch implementation;
-3. the powered-off-Ioff boundary and separate `3V3_MAIN`/AON pull-ups for the
+1. ✅ `H2-R2.0.1`: live Standard-PCBA route, MOQ and price for onsemi `FSUSB42MUX` / JLCPCB `C11355`;
+2. ▶ `H2-R2.0.2`: an exact factory-placeable service-VBUS detector/latch implementation;
+3. ⏳ `H2-R2.0.3`: the powered-off-Ioff boundary and separate `3V3_MAIN`/AON pull-ups for the
    Pack/Safety I²C crossing on Hub GPIO42/43.
 
 KiCad, purchasing and fabrication remain unauthorized.
