@@ -4,8 +4,9 @@
 
 This is the live prerequisite ledger for the new six-domain, dual-RP R2
 production schematic. It records verified results, not the decision history.
-All three prerequisite rows are closed. Native R2 ECAD source inventory now
-starts at `H2-R2.1.1`; fabrication and ordering remain blocked.
+All three prerequisite rows are closed. The native R2 inventory passed
+`H2-R2.1.1`; exact symbol/contact/footprint reconciliation is current at
+`H2-R2.1.2`. Fabrication and ordering remain blocked.
 
 | Marker | Status | Production result |
 |---|---|---|
@@ -23,9 +24,9 @@ The buffer imposes no VCCA/VCCB ordering rule, supports 400 kHz and starts in at
 most 350 us. A stuck mailbox can remove diagnostics but cannot inhibit the
 independent `FAULT_KILL` path or local Safety watchdog.
 
-The exact current point is **`H2-R2.1.1`**: create the native R2 source/sheet
-inventory from the six-domain H0/H1 authority and these three prerequisite
-contracts. Quote, purchase and fabrication remain blocked.
+The exact current point is **`H2-R2.1.2`**: reconcile the exact symbol/contact/
+value/footprint ledger against the [reviewed native inventory](h2-r2-native-inventory.md).
+Quote, purchase and fabrication remain blocked.
 
 ## Evidence and recheck rule
 

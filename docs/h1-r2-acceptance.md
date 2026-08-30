@@ -49,13 +49,15 @@ service access and interboard stack form one physically coherent device. It is
 not proof of a routed PCB, ERC, signal integrity, power-up behaviour or
 factory-buildability from released Gerbers/CPL/BOM.
 
-The current point is **H2-R2.1.1**. The prerequisite ledger is closed:
+The current point is **H2-R2.1.2**. The prerequisite ledger is closed:
 
 1. ✅ `H2-R2.0.1`: live Standard-PCBA route, MOQ and price for onsemi `FSUSB42MUX` / JLCPCB `C11355`;
 2. ✅ `H2-R2.0.2`: exact factory-placeable `DMN2056U-7` detector, `SN74LVC1G74DCUR` ownership latch and `74HC20PW,118` release qualifier;
 3. ✅ `H2-R2.0.3`: the exact `TCA9803DGKR/C2687966` powered-off boundary and
    rail-local termination for Pack/Safety I²C on Hub GPIO42/43.
 
-Native R2 source/sheet inventory is now in progress before schematic export.
+The native R2 source/sheet/component inventory passed review as `H2-R2.1.1`.
+Exact symbol/contact/footprint reconciliation is now in progress before
+schematic nets or export.
 
 KiCad, purchasing and fabrication remain unauthorized.

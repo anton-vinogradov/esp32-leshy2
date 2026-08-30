@@ -2,8 +2,8 @@
   "schema_version": 1,
   "baseline": "R2",
   "current_stage": "H2",
-  "current_substep": "H2-R2.1.1",
-  "current_detail": "H2-R2.0.1 reviewed the exact live onsemi FSUSB42MUX / JLCPCB C11355 route. H2-R2.0.2 reviewed the exact service-VBUS detector/latch/release path. H2-R2.0.3 reviewed the exact TI TCA9803DGKR / C2687966 Pack/Safety powered-off boundary with MAIN-local pull-ups, AON-local internal current sources, four Basic decouplers and USD 0.3953 exact-one component burden. H2-R2.1.1 now inventories every native R2 source, sheet and exact component family. Schematic export, KiCad placement/routing, purchasing and fabrication remain unauthorized.",
+  "current_substep": "H2-R2.1.2",
+  "current_detail": "H2-R2.0.1 through H2-R2.0.3 reviewed all three pre-ECAD electrical prerequisites. H2-R2.1.1 reviewed the native R2 inventory: three projects, 23 sheets, six domain owners, 213 exact MPN groups and 1106 product positions, with zero native symbols or nets created. H2-R2.1.2 now builds the exact symbol/contact/value/footprint ledger. Schematic nets/export, KiCad placement/routing, purchasing and fabrication remain unauthorized.",
   "preorder_release": {
     "status": "blocked",
     "assembled_device_quantity": 1,
@@ -15,7 +15,7 @@
   "stages": [
     {"id": "H0", "status": "reviewed", "baseline": "R2"},
     {"id": "H1", "status": "reviewed", "baseline": "R2", "accepted_by_user": "2026-08-30", "result_marker": "H1-R2.37", "historical_r1_status": "reviewed"},
-    {"id": "H2", "status": "current", "baseline": "R2", "current_substep": "H2-R2.1.1", "completed_substeps": ["H2-R2.0.1", "H2-R2.0.2", "H2-R2.0.3"], "historical_r1_status": "reviewed", "historical_r1_accepted_by_user": "2026-08-26"},
+    {"id": "H2", "status": "current", "baseline": "R2", "current_substep": "H2-R2.1.2", "completed_substeps": ["H2-R2.0.1", "H2-R2.0.2", "H2-R2.0.3", "H2-R2.1.1"], "historical_r1_status": "reviewed", "historical_r1_accepted_by_user": "2026-08-26"},
     {"id": "H3", "status": "waiting", "baseline": "R2", "historical_r1_status": "reviewed"},
     {"id": "H4", "status": "waiting", "baseline": "R2", "historical_r1_status": "reviewed"},
     {"id": "H5", "status": "waiting", "baseline": "R2", "historical_r1_status": "in_progress_at_rebaseline", "superseded_evidence": "single-SA518 baseline"},

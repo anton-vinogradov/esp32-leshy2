@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "id": "LESHY2-H2-R2-NATIVE-INVENTORY",
+  "marker": "H2-R2.1.1",
+  "status": "reviewed_source_sheet_component_inventory",
+  "purpose": "Freeze the current R2 ECAD project graph, every authoritative source and the exact product component groups before any native schematic symbol or net is created.",
+  "authority": {
+    "functional": "hardware/architecture/h0-r2-rebaseline.json",
+    "pin_map": "hardware/architecture/h1-r2-dual-rp-pinout.json",
+    "physical": "hardware/product-design/h1-r2-placement.json",
+    "device_register": "hardware/architecture/devices.json",
+    "component_groups": "hardware/product-design/generated/H1-R2-cost-audit.json",
+    "c5_mux_and_service_vbus": "hardware/architecture/c5-sdio-service-mux-contract.json",
+    "pack_safety_boundary": "hardware/architecture/pack-safety-i2c-boundary-contract.json",
+    "u214_u219": "hardware/architecture/h1-r2-u219-cap.json",
+    "display_adapter": "hardware/product-design/display-adapter.json",
+    "airband": "hardware/product-design/h1-airband-filter.json",
+    "antennas": "hardware/architecture/antenna-kit.json"
+  },
+  "project_rules": {
+    "one_physical_pcb_per_project": true,
+    "cross_project_connections_only_through_named_connector_contacts": true,
+    "hidden_cross_project_global_labels": false,
+    "old_single_rp_sheet_or_net_inheritance": false,
+    "pcb_placement_or_routing_authorized": false
+  },
+  "projects": [
+    {
+      "id": "LESHY2-UI-R2",
+      "board": "front UI/radio PCB",
+      "root": "UI_00_ROOT",
+      "sheets": [
+        {"id": "UI_00_ROOT", "role": "front hierarchy and named interfaces only", "sources": ["functional", "pin_map", "physical"]},
+        {"id": "UI_10_S3_DISPLAY_TOUCH", "role": "S3 core, exact direct i8080-8 display, touch and S3 service", "domain_owner": "s3", "sources": ["functional", "pin_map", "display_adapter"]},
+        {"id": "UI_11_STORAGE_CONTROLS_INDICATORS", "role": "Hub-local microSD, encoder, user keys and two-row indicators", "sources": ["functional", "pin_map", "physical"]},
+        {"id": "UI_20_C5_WIFI_IR_SERVICE", "role": "C5 native 2.4/5-GHz, IR, exact SDIO/service mux and independent recovery", "domain_owner": "c5", "sources": ["functional", "pin_map", "c5_mux_and_service_vbus"]},
+        {"id": "UI_30_HUB_RP_CORE_SERVICE", "role": "front Hub RP2354B core, flash, reset, USB, DBG10 and local transport fan-out", "domain_owner": "hub_rp", "sources": ["functional", "pin_map"]},
+        {"id": "UI_31_NRF24_X3_TX_EVIDENCE", "role": "three independent full-function nRF24 paths, isolation, couplers and actual-TX evidence", "sources": ["functional", "pin_map", "physical"]},
+        {"id": "UI_40_INTERBOARD_M1", "role": "front endpoint of the exact 80-contact M1 contract", "sources": ["functional", "pin_map"]},
+        {"id": "UI_50_FRONT_POWER_SAFETY", "role": "front-local quiet-state, TX gates, reset-safe power and evidence aggregation", "sources": ["functional", "pin_map"]},
+        {"id": "UI_60_TESTPOINTS_MANUFACTURING", "role": "front diagnostic and manufacturing access only", "sources": ["functional", "pin_map", "physical"]}
+      ]
+    },
+    {
+      "id": "LESHY2-RF-R2",
+      "board": "rear RF/power PCB",
+      "root": "RF_00_ROOT",
+      "sheets": [
+        {"id": "RF_00_ROOT", "role": "rear hierarchy and named interfaces only", "sources": ["functional", "pin_map", "physical"]},
+        {"id": "RF_01_USB_PD_CHARGE", "role": "sole powered USB, PD input, two-cell charging and pack measurement", "sources": ["functional", "physical"]},
+        {"id": "RF_02_PACK_SAFETY_AON", "role": "Pack admission, Safety controller, independent watchdog, FAULT_KILL and exact powered-off I2C boundary", "domain_owners": ["pack", "safety"], "sources": ["functional", "pin_map", "pack_safety_boundary"]},
+        {"id": "RF_03_MAIN_RAILS_DOMAIN_GATES", "role": "AON and main rails plus independently quietable power domains", "sources": ["functional", "physical"]},
+        {"id": "RF_10_RP2354_CORE_SERVICE", "role": "rear RF RP2354B core, flash, reset, USB and DBG10", "domain_owner": "rf_rp", "sources": ["functional", "pin_map"]},
+        {"id": "RF_20_CC1101_VOICE_TX", "role": "CC1101 and independent VHF/UHF voice paths with real-TX evidence", "sources": ["functional", "pin_map", "physical"]},
+        {"id": "RF_21_BROADCAST_AIRBAND_RX", "role": "FM/AM/SW/LW and mandatory receive-only 118-137-MHz Airband conversion", "sources": ["functional", "pin_map", "airband"]},
+        {"id": "RF_22_AUDIO_CODEC_IO", "role": "rear-local codec, microphone, speaker and CTIA headset routing", "sources": ["functional", "pin_map", "physical"]},
+        {"id": "RF_30_U214_U219_M5_EXT", "role": "mutually exclusive U214/U219 Cap profiles and protected M5 Unit expansion", "sources": ["functional", "pin_map", "u214_u219"]},
+        {"id": "RF_31_REAR_CONTROLS", "role": "rear power command and service-side controls", "sources": ["functional", "physical"]},
+        {"id": "RF_40_INTERBOARD_M1", "role": "rear endpoint of the exact 80-contact M1 contract", "sources": ["functional", "pin_map"]},
+        {"id": "RF_50_TX_SAFETY_EVIDENCE", "role": "rear actual-TX evidence, wired fault plane and fail-closed release gates", "sources": ["functional", "pin_map", "pack_safety_boundary"]},
+        {"id": "RF_60_TESTPOINTS_MANUFACTURING", "role": "rear diagnostic and manufacturing access only", "sources": ["functional", "pin_map", "physical"]}
+      ]
+    },
+    {
+      "id": "L2-DISP-ADP-001-B",
+      "board": "replaceable passive 40-to-50 display adapter",
+      "root": "ADP_00_DISPLAY_ADAPTER",
+      "sheets": [
+        {"id": "ADP_00_DISPLAY_ADAPTER", "role": "exact passive DF40-to-FH34 one-to-one/strap map; no active device", "sources": ["display_adapter", "physical"]}
+      ]
+    }
+  ],
+  "component_inventory": {
+    "base_group_count": 210,
+    "base_quantity_per_product": 1099,
+    "adjustments": [
+      {"device_id": "uniroyal_0402wgf2201tce", "quantity_delta": 2, "sheet": "RF_02_PACK_SAFETY_AON", "reason": "MAIN-side SDA/SCL pull-ups required by H2-R2.0.3"}
+    ],
+    "new_groups": [
+      {"device_id": "ti_tca9803_dgkr", "quantity": 1, "sheet": "RF_02_PACK_SAFETY_AON"},
+      {"device_id": "samsung_cl05a105ka5nqnc", "quantity": 2, "sheet": "RF_02_PACK_SAFETY_AON"},
+      {"device_id": "samsung_cl05b104ko5nnnc", "quantity": 2, "sheet": "RF_02_PACK_SAFETY_AON"}
+    ],
+    "expected_group_count": 213,
+    "expected_quantity_per_product": 1106,
+    "non_pcba_dispositions": {
+      "eastrising_er_tft035ips_6_ctp": "factory-final-mated display assembly represented by its controlled connector endpoint",
+      "m5_u214": "optional removable external accessory; host receptacle remains in ECAD",
+      "xtar_18650_4000mah_protected": "owner-supplied removable cells; absent from factory supply",
+      "davies_1227_j": "factory/owner final mechanical encoder knob"
+    }
+  },
+  "historical_quarantine": {
+    "generation": "single-RP R1",
+    "forbidden_projects": ["LESHY2-UI", "LESHY2-RF", "LESHY2-LORA-CAP-01"],
+    "forbidden_current_sources": ["hardware/ecad/H2-sheet-contract.json", "hardware/ecad/h2-schematic-plan.json", "hardware/ecad/generated/H2-instance-ledger.json"],
+    "rule": "These files remain review evidence only. No project, sheet, symbol, net or designator may be copied into native R2 without reconciliation against this inventory. The removable M5 Cap is supported by the host interface; Leshy2 does not manufacture a custom LoRa-Cap PCB."
+  },
+  "route_freshness": {
+    "inventory_time": "Reuse exact accepted MPN identity and evidence without claiming that historical stock is live.",
+    "architecture_freeze": "Recheck every selected MPN on the JLCPCB Standard-PCBA surface before H2 can be reviewed.",
+    "pre_order": "Recheck every selected MPN, MOQ, stock/route and price immediately before the exact-one order."
+  },
+  "authorization": {
+    "native_source_and_sheet_inventory": true,
+    "schematic_symbols_or_nets": false,
+    "kicad_project_creation": false,
+    "pcb_placement_or_routing": false,
+    "fabrication": false,
+    "ordering": false
+  }
+}

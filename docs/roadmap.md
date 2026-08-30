@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H2-R2.1.1`.** H0 and H1 are reviewed; the accepted H1 result is [`H1-R2.37`](h1-r2-acceptance.md). All three [H2 electrical prerequisites](h2-r2-electrical-prerequisites.md) are reviewed; native R2 source and sheet inventory is now being formed before any schematic export.
+> **▶ Current hardware boundary: `H2-R2.1.2`.** H0 and H1 are reviewed; the accepted H1 result is [`H1-R2.37`](h1-r2-acceptance.md). All three [H2 electrical prerequisites](h2-r2-electrical-prerequisites.md) and the [native R2 inventory](h2-r2-native-inventory.md) are reviewed; exact symbols, contacts, values and footprints are now being reconciled before any schematic net or KiCad project is created.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **30 August 2026**.
@@ -26,16 +26,16 @@ marker and current checklist; it is never presented as review of the whole phase
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
 | Physical design | ✅ [H1-R2.37 reviewed](h1-r2-acceptance.md): the complete two-PCB model, ten permanent antenna assignments, exact EastRising display, U214/U219 slot and all TX-evidence islands are physically coherent; [all 208 base-BOM MPN groups are ranked](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map and power/filter diagrams are published |
-| Production ECAD | ▶ `H2-R2.1.1`: all three prerequisite circuits are reviewed; create the native six-domain dual-RP R2 source/sheet inventory; retained G2F/H2/KiCad is historical R1 evidence only |
+| Production ECAD | ▶ `H2-R2.1.2`: native six-domain dual-RP source/sheet/component inventory reviewed; build the exact symbol/contact/value/footprint ledger; retained G2F/H2/KiCad is historical R1 evidence only |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 qualified all 12 target builds, 60 artifacts, 16 maps and 16 size gates, while F2-R2.5 reproducibility is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); a separate fail-closed `F-PO` requires diagnostics, emulation and recovery before ordering |
 | Ordering | 🔒 Exactly one assembled `R2-EVT1` only after H6, `F-PO`, immutable release package and explicit exact-one quote approval; production only at H9 |
 
 ## Reviewed H1 · exact composition
 
-<!-- current-substep: H2-R2.1.1 -->
+<!-- current-substep: H2-R2.1.2 -->
 
 **Reviewed marker: `H1-R2.37`.** The placement package was accepted on
-2026-08-30. The current hardware marker is `H2-R2.1.1`.
+2026-08-30. The current hardware marker is `H2-R2.1.2`.
 
 ### 1. Functional-island placement
 
@@ -135,10 +135,11 @@ marker and current checklist; it is never presented as review of the whole phase
 - ✅ The complete exterior, both turned-over inner faces and the real sandwich
   sections were accepted on 2026-08-30. [Read the phase report](h1-r2-acceptance.md).
 
-## Current H2-R2.1.1 · exact composition
+## Current H2-R2.1.2 · exact composition
 
-**Exact marker: `H2-R2.1.1`.** All pre-ECAD electrical prerequisites are
-reviewed. Native R2 ECAD source inventory has started; schematic export has not.
+**Exact marker: `H2-R2.1.2`.** All pre-ECAD electrical prerequisites and the
+native R2 source/sheet/component inventory are reviewed. Exact symbol/contact/
+value/footprint reconciliation has started; schematic nets and KiCad have not.
 
 - ✅ `H2-R2.0.1`: exact onsemi `FSUSB42MUX` / `C11355` Standard-PCBA route
   reviewed from the live surface: stock 66,698; available 66,045; MOQ 1;
@@ -150,8 +151,10 @@ reviewed. Native R2 ECAD source inventory has started; schematic export has not.
 - ✅ `H2-R2.0.3`: exact TI `TCA9803DGKR` / `C2687966` powered-off boundary
   reviewed with two MAIN-local 2.2-kohm pull-ups, AON-local 3.3-mA current
   sources, four Basic decouplers and a USD 0.3953 exact-one component burden.
-- ▶ `H2-R2.1.1`: inventory every native R2 sheet, source contract and exact
-  component family before symbols/nets are instantiated.
+- ✅ `H2-R2.1.1`: reviewed 3 native projects, 23 sheets, 6 domain owners,
+  213 exact MPN groups and 1,106 product positions; no symbol/net was created.
+- ▶ `H2-R2.1.2`: build the exact symbol/contact/value/footprint ledger for the
+  reviewed component and domain inventories.
 - 🔒 Schematic export, routing, quote, purchase and fabrication remain unauthorized.
 
 [Open the live prerequisite ledger](h2-r2-electrical-prerequisites.md).
@@ -162,7 +165,7 @@ reviewed. Native R2 ECAD source inventory has started; schematic export has not.
 |---|---|---|---|
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
 | H1 · Physical product design | ✅ [Reviewed · `H1-R2.37`](h1-r2-acceptance.md) | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
-| **H2 · Production ECAD schematic** | **▶ Current · `H2-R2.1.1`** | Exact R2 symbols, contacts, nets, values, protection and footprints | Current source/sheet inventory; then exact symbols, joined nets, ERC and machine-readable HW↔FW contract |
+| **H2 · Production ECAD schematic** | **▶ Current · `H2-R2.1.2`** | Exact R2 symbols, contacts, nets, values, protection and footprints | Current exact symbol/contact/footprint ledger; then joined nets, ERC and machine-readable HW↔FW contract |
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
 | H5 · Component and factory evidence | ⏳ Waiting for H4 | Exact current factory map and controlled external routes | Every BOM line has a current factory route without silent substitution |
@@ -183,11 +186,11 @@ reviewed. Native R2 ECAD source inventory has started; schematic export has not.
 
 ## Current H2 execution path
 
-1. ▶ `H2-R2.1.1`: freeze native R2 sources, sheet map and exact component inventory.
-2. 🔒 `H2-R2.1.2`: instantiate exact symbols, contacts, values and protection.
+1. ✅ `H2-R2.1.1`: freeze native R2 sources, sheet map and exact component inventory.
+2. ▶ `H2-R2.1.2`: build the exact symbols, contacts, values, protection and footprint ledger.
 3. 🔒 `H2-R2.1.3`: join rails, M1 nets, domain transports and explicit NCs.
 4. 🔒 `H2-R2.1.4`: pass ERC plus cross-sheet and HW↔FW reconciliation.
 5. 🔒 `H2-R2.1.5`: publish the reviewed bilingual H2 report and open H3.
 
-Native R2 source inventory is the next action. Export, routing, quoting and every
-order remain blocked.
+Exact symbol/contact/footprint reconciliation is the next action. Schematic
+nets, export, routing, quoting and every order remain blocked.

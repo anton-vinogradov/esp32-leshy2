@@ -66,11 +66,12 @@ GPIO заднего RP и контакты M1 35–36 остаются резе�
 <a id="h2"></a>
 ## H2 · Production-схема
 
-**Статус:** ▶️ сейчас **`H2-R2.1.1`**.
+**Статус:** ▶️ сейчас **`H2-R2.1.2`**.
 
 Прежний G2F/H2/KiCad сохранён как историческое single-RP evidence R1. Все три
-электрических prerequisites нового R2 прошли ревью; сейчас формируется native
-source/sheet inventory, а native schematic export/KiCad ещё не начинался.
+электрических prerequisites нового R2 и native source/sheet/component inventory
+прошли ревью. Сейчас сверяются exact symbols/contacts/footprints; native
+schematic nets/export/KiCad ещё не начинались.
 
 Точный текущий чеклист:
 
@@ -82,9 +83,11 @@ source/sheet inventory, а native schematic export/KiCad ещё не начин�
    прошли ревью вместе с полными Standard-PCBA routes и fail-closed truth table;
 3. ✅ `H2-R2.0.3`: точная граница TI `TCA9803DGKR` / `C2687966` для Pack/Safety
    прошла ревью с rail-local termination, четырьмя Basic decoupler и ценой USD 0,3953;
-4. ▶ `H2-R2.1.1`: зафиксировать native R2 source/sheet и exact-component inventory.
+4. ✅ `H2-R2.1.1`: проведено ревью 3 проектов, 23 sheets, 6 владельцев доменов
+   и 213 точных MPN-групп; native symbols/nets не создавались;
+5. ▶ `H2-R2.1.2`: сформировать exact ledger symbols/contacts/values/footprints.
 
-[Живые результаты prerequisites](h2-r2-electrical-prerequisites.ru.md).
+[Native R2 inventory](h2-r2-native-inventory.ru.md).
 
 Ожидаемый результат: native KiCad-схемы, заново сформированные из архитектуры
 R2, сверенная распиновка, ERC/NC-ревью и синхронный HW↔FW-контракт. На

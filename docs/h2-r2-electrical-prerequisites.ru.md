@@ -4,8 +4,9 @@
 
 Это живой реестр prerequisites новой production-схемы R2 с шестью доменами и
 двумя RP. Здесь фиксируются проверенные результаты, а не история решений.
-Все три строки prerequisites закрыты. Инвентаризация native R2 ECAD начинается
-в `H2-R2.1.1`; печать и заказ по-прежнему запрещены.
+Все три строки prerequisites закрыты. Native R2 inventory прошёл `H2-R2.1.1`;
+сейчас в `H2-R2.1.2` сверяется exact ledger symbols/contacts/footprints. Печать
+и заказ по-прежнему запрещены.
 
 | Маркер | Статус | Производственный результат |
 |---|---|---|
@@ -23,9 +24,9 @@ powered-off защита bus pins не позволяет подпитать AON
 350 мкс. Залипшая mailbox-шина может убрать диагностику, но не блокирует
 независимый `FAULT_KILL` и локальный watchdog Safety.
 
-Точная текущая точка — **`H2-R2.1.1`**: сформировать native R2 source/sheet
-inventory из six-domain authority H0/H1 и трёх prerequisite-контрактов. Quote,
-закупка и печать остаются запрещены.
+Точная текущая точка — **`H2-R2.1.2`**: сверить exact ledger symbols/contacts/
+values/footprints с [проверенным native inventory](h2-r2-native-inventory.ru.md).
+Quote, закупка и печать остаются запрещены.
 
 ## Evidence и правило перепроверки
 
