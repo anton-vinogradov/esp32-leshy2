@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "id": "H3-R2-INPUT-FREEZE",
+  "marker": "H3-R2.0.1",
+  "accepted_hardware_input": "H2-R2.1.5",
+  "status": "reviewed",
+  "expected": {
+    "projects": 3,
+    "sheets": 23,
+    "fitted_symbols": 1187,
+    "physical_pins": 4327,
+    "canonical_nets": 827,
+    "domains": 6,
+    "controller_pins": 173,
+    "cross_project_nets": 50,
+    "cross_sheet_nets": 233,
+    "m1_contacts": 80,
+    "m1_true_nc": 11
+  },
+  "workstreams": [
+    {
+      "id": "H3-R2.1",
+      "title": "Worst-case DC, source, charge and power-state verification",
+      "sheets": ["RF_01_USB_PD_CHARGE", "RF_03_MAIN_RAILS_DOMAIN_GATES"],
+      "domains": ["pack", "safety", "hub_rp", "rf_rp", "s3", "c5"],
+      "models": ["DC operating points", "source ORing and charge limits", "rail load steps", "effective capacitance"],
+      "pass_rule": "Every legal source/load state has positive voltage, current, thermal and protection margin at tolerance corners.",
+      "physical_residual_owner": "H5/H8 power-source, cell, current-step and rail measurements"
+    },
+    {
+      "id": "H3-R2.2",
+      "title": "Startup, shutdown, handover, brownout, inrush and watchdog verification",
+      "sheets": ["RF_02_PACK_SAFETY_AON", "RF_31_REAR_CONTROLS"],
+      "domains": ["pack", "safety", "hub_rp", "rf_rp", "s3", "c5"],
+      "models": ["state-transition graph", "reset and strap truth tables", "watchdog timing", "hard-off sequence"],
+      "pass_rule": "Every legal transition reaches a bounded safe state; every illegal or stalled transition fails closed with diagnosable state retention.",
+      "physical_residual_owner": "H8 sequenced bring-up, brownout, watchdog and unattended-operation captures"
+    },
+    {
+      "id": "H3-R2.3",
+      "title": "Display, audio, IR, battery and Airband analog-corner verification",
+      "sheets": ["UI_10_S3_DISPLAY_TOUCH", "RF_21_BROADCAST_AIRBAND_RX", "RF_22_AUDIO_CODEC_IO", "ADP_00_DISPLAY_ADAPTER"],
+      "domains": ["s3", "rf_rp", "pack"],
+      "models": ["display load and edge envelope", "audio gain/bandwidth/noise", "IR drive/receive corners", "Airband filter and mixer corners"],
+      "pass_rule": "Every selected analog path meets its stated amplitude, bandwidth, noise, load and fail-off limits at reproducible corners.",
+      "physical_residual_owner": "H5/H8 panel, acoustic, IR, cell-impedance and swept-RF measurements"
+    },
+    {
+      "id": "H3-R2.4",
+      "title": "Digital levels, timing, loading and direct-i8080 verification",
+      "sheets": ["UI_11_STORAGE_CONTROLS_INDICATORS", "UI_20_C5_WIFI_IR_SERVICE", "UI_30_HUB_RP_CORE_SERVICE", "UI_40_INTERBOARD_M1", "UI_60_TESTPOINTS_MANUFACTURING", "RF_10_RP2354_CORE_SERVICE", "RF_40_INTERBOARD_M1", "RF_60_TESTPOINTS_MANUFACTURING"],
+      "domains": ["s3", "c5", "hub_rp", "rf_rp", "pack", "safety"],
+      "models": ["logic-level margins", "bus timing and loading", "direct i8080 throughput", "USB/service ownership", "M1 signal adjacency"],
+      "pass_rule": "Every digital boundary has positive level/timing margin, deterministic ownership and a recoverable reset/service state without payload contention.",
+      "physical_residual_owner": "H5/H8 far-end levels, eyes, bus traces, fixture access and service-path tests"
+    },
+    {
+      "id": "H3-R2.5",
+      "title": "RF feeds, coexistence, quiet states and 3x nRF24 concurrency",
+      "sheets": ["UI_31_NRF24_X3_TX_EVIDENCE", "RF_20_CC1101_VOICE_TX", "RF_30_U214_U219_M5_EXT"],
+      "domains": ["s3", "c5", "hub_rp", "rf_rp", "safety"],
+      "models": ["RF feed topology", "power-off isolation", "three-radio FIFO service", "TX evidence completeness", "one-active-group arbitration"],
+      "pass_rule": "Each RF port has one bounded owner and quiet state; three nRF24 paths remain concurrently serviceable; no inactive path can transmit or load the active group unexpectedly.",
+      "physical_residual_owner": "H5/H8 VNA/feed loss, antenna identity, isolation, coexistence and real-TX evidence"
+    },
+    {
+      "id": "H3-R2.6",
+      "title": "Thermal, single-fault and unattended-operation verification",
+      "sheets": ["UI_50_FRONT_POWER_SAFETY", "RF_50_TX_SAFETY_EVIDENCE"],
+      "domains": ["pack", "safety", "hub_rp", "rf_rp", "s3", "c5"],
+      "models": ["thermal network", "single-fault matrix", "kill-path independence", "latched diagnostic retention"],
+      "pass_rule": "No accepted single fault defeats the independent hard-off path; thermal/watchdog faults remove hazardous power while preserving a readable cause when energy remains.",
+      "physical_residual_owner": "H8 controlled fault injection and thermal shutdown captures"
+    },
+    {
+      "id": "H3-R2.7",
+      "title": "Cross-check, physical residual register and phase report",
+      "sheets": ["UI_00_ROOT", "RF_00_ROOT"],
+      "domains": ["s3", "c5", "hub_rp", "rf_rp", "pack", "safety"],
+      "models": ["cross-domain invariant audit", "evidence hash graph", "physical-only residual classification"],
+      "pass_rule": "All prior H3 workstreams pass on one source revision and every remaining uncertainty is physical-only with one downstream owner.",
+      "physical_residual_owner": "H4 joined review, then H5/H6/H8 as explicitly assigned"
+    }
+  ],
+  "authorization": {
+    "analytical_verification": true,
+    "circuit_simulation": true,
+    "pcb_placement_or_routing": false,
+    "purchasing": false,
+    "fabrication": false
+  }
+}

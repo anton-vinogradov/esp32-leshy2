@@ -3,7 +3,7 @@
   "stage": "H3",
   "baseline": "R2",
   "status": "current",
-  "current_substep": "H3-R2.0.1",
+  "current_substep": "H3-R2.0.2",
   "accepted_input": {
     "stage": "H2-R2.1.5",
     "status": "reviewed",
@@ -25,8 +25,8 @@
     "purchasing": false
   },
   "substeps": [
-    {"id": "H3-R2.0.1", "title": "Freeze the reviewed H2-R2.1.5 inputs, source hashes and current verification matrix", "status": "current"},
-    {"id": "H3-R2.0.2", "title": "Rebuild the exact parameter and model provenance register for R2", "status": "waiting"},
+    {"id": "H3-R2.0.1", "title": "Freeze the reviewed H2-R2.1.5 inputs, source hashes and current verification matrix", "status": "reviewed"},
+    {"id": "H3-R2.0.2", "title": "Rebuild the exact parameter and model provenance register for R2", "status": "current"},
     {"id": "H3-R2.0.3", "title": "Freeze reproducible tolerances, tools and pass/fail rules", "status": "waiting"},
     {"id": "H3-R2.1", "title": "Worst-case DC, source, charge and power-state verification", "status": "waiting"},
     {"id": "H3-R2.2", "title": "Startup, shutdown, handover, brownout, inrush and watchdog verification", "status": "waiting"},

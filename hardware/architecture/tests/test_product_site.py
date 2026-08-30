@@ -58,6 +58,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h2-acceptance.ru.md",
         "docs/h2-r2-native-kicad.md",
         "docs/h2-r2-native-kicad.ru.md",
+        "docs/h3-r2-input-freeze.md",
+        "docs/h3-r2-input-freeze.ru.md",
         "docs/virtual-verification.md",
         "docs/virtual-verification.ru.md",
         "docs/parameter-model-register.md",
@@ -197,12 +199,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H3-R2.0.1`", "H0, H1 and [H2-R2.1.5",
+                "Current hardware boundary: `H3-R2.0.2`", "H0, H1 and [H2-R2.1.5",
                 "firmware F1-R2 reviewed", "F2-R2.4",
                 "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H3-R2.0.1`", "H0, H1 и [H2-R2.1.5",
+                "Текущая аппаратная граница: `H3-R2.0.2`", "H0, H1 и [H2-R2.1.5",
                 "firmware F1-R2 проведено ревью", "F2-R2.4",
                 "H9 · Manufacturing release",
                 "Production ECAD",
@@ -218,8 +220,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Current hardware marker: `H3-R2.0.1`", "fabrication"),
-            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H3-R2.0.1`", "печати прототипа"),
+            "README.md": ("Roadmap and current position", "Current hardware marker: `H3-R2.0.2`", "fabrication"),
+            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H3-R2.0.2`", "печати прототипа"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -753,12 +755,12 @@ class ProductSiteTests(unittest.TestCase):
             "docs/roadmap.md": (
                 "H1-R2.37", "Functional-island placement", "RF and antenna locality",
                 "Interboard transport", "Physical and service audit", "H1 review result",
-                "complete exterior", "accepted on 2026-08-30", "H3-R2.0.1",
+                "complete exterior", "accepted on 2026-08-30", "H3-R2.0.2",
             ),
             "docs/roadmap.ru.md": (
                 "H1-R2.37", "Размещение функциональных островов", "Локальность RF и антенн",
                 "Межплатный transport", "Физический и сервисный аудит", "Итог ревью H1",
-                "Полный внешний вид", "приняты 2026-08-30", "H3-R2.0.1",
+                "Полный внешний вид", "приняты 2026-08-30", "H3-R2.0.2",
             ),
         }
         for name, tokens in expectations.items():
@@ -769,14 +771,14 @@ class ProductSiteTests(unittest.TestCase):
     def test_h1_r2_32_public_boundary_separates_electrical_and_physical_work(self):
         expectations = {
             "README.md": (
-                "Current hardware marker: `H3-R2.0.1`",
+                "Current hardware marker: `H3-R2.0.2`",
                 "exact dual-RP GPIO/M1 map",
                 "mutually exclusive U214/U219 Cap slot",
                 "native R2 inventory is reviewed at `H2-R2.1.1`",
                 "six compute domains",
             ),
             "README.ru.md": (
-                "Текущий маркер железа: `H3-R2.0.1`",
+                "Текущий маркер железа: `H3-R2.0.2`",
                 "dual-RP GPIO/M1",
                 "взаимоисключающий Cap-слот U214/U219",
                 "Native R2 inventory проведён ревью как `H2-R2.1.1`",
@@ -784,14 +786,14 @@ class ProductSiteTests(unittest.TestCase):
                 "шесть вычислительных доменов",
             ),
             "docs/roadmap.md": (
-                "Current hardware boundary: `H3-R2.0.1`",
+                "Current hardware boundary: `H3-R2.0.2`",
                 "18 exact production",
                 "U219 Cap integration",
                 "H1-R2.37 reviewed",
                 "4,323 fitted-instance contacts reconcile",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H3-R2.0.1`",
+                "Текущая аппаратная граница: `H3-R2.0.2`",
                 "18 точных production",
                 "Интеграция U219 Cap",
                 "H1-R2.37 проведено ревью",
@@ -1016,9 +1018,9 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H3", state["current_stage"])
-        self.assertEqual("H3-R2.0.1", state["current_substep"])
+        self.assertEqual("H3-R2.0.2", state["current_substep"])
         self.assertEqual("current", r2_plan["status"])
-        self.assertEqual("H3-R2.0.1", r2_plan["current_substep"])
+        self.assertEqual("H3-R2.0.2", r2_plan["current_substep"])
         self.assertEqual("H2-R2.1.5", r2_plan["accepted_input"]["stage"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])

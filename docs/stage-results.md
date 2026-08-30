@@ -116,10 +116,10 @@ clearly labels retained R1 ECAD as non-current evidence.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current at **`H3-R2.0.1`**.
+**Status:** ▶️ current at **`H3-R2.0.2`**.
 
-Current work freezes the reviewed H2 inputs, source hashes and complete R2
-verification matrix. The expected result is complete power, digital, RF, audio,
+[`H3-R2.0.1`](h3-r2-input-freeze.md) reviewed the hash-bound H2 input and complete R2
+verification matrix. Current work rebuilds exact parameter/model provenance. The expected result is complete power, digital, RF, audio,
 timing, thermal and fault verification. Every legal state and transition must
 pass before fabrication.
 

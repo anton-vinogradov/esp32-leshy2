@@ -10,7 +10,7 @@
 
 </div>
 
-> **Current hardware marker: `H3-R2.0.1`.** The complete two-PCB `H1-R2.37`
+> **Current hardware marker: `H3-R2.0.2`.** The complete two-PCB `H1-R2.37`
 > placement was accepted and reviewed on 30 August 2026: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
 > the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display, passive 40-to-50-contact
 > adapter, all 18 U219 support bodies, NFC pickup loop and the external volume
@@ -32,8 +32,9 @@
 > symbols and 4,327 physical pins; KiCad ERC reports zero errors and zero
 > warnings. H2 cross-sheet and hardware/firmware reconciliation covers six
 > domains, 173 controller pins, 50 cross-project nets and 233 cross-sheet nets;
-> [H2-R2.1.5 is reviewed](docs/h2-acceptance.md). H3 now freezes that exact
-> authority for R2 virtual electrical verification. Ordering remains blocked.
+> [H2-R2.1.5 is reviewed](docs/h2-acceptance.md). [H3-R2.0.1](docs/h3-r2-input-freeze.md)
+> freezes 14 exact inputs and all 23 sheets; H3-R2.0.2 now rebuilds parameter
+> and model provenance. Ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
@@ -119,7 +120,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
 | H1 · Physical product design | ✅ Reviewed · `H1-R2.37` | [Bilingual phase result](docs/h1-r2-acceptance.md) · [placement](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ✅ Reviewed · `H2-R2.1.5` | [Bilingual phase result](docs/h2-acceptance.md) · [native KiCad result](docs/h2-r2-native-kicad.md) |
-| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.0.1`** | [Stage page](docs/stage-results.md#h3) |
+| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.0.2`** | [Input freeze](docs/h3-r2-input-freeze.md) · [stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ⏳ Waiting for R2 H4 | [Stage page](docs/stage-results.md#h5) |
 | H6 · KiCad placement, routing and release candidate | 🔒 Waiting for R2 H5 | [Stage page](docs/stage-results.md#h6) |
@@ -154,15 +155,15 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
   and 233 cross-sheet nets reconcile with zero unresolved boundary.
 - ✅ `H2-R2.1.5`: the [bilingual H2 result](docs/h2-acceptance.md) is reviewed
   and the synchronized firmware H2 gate is open.
-- ▶ **Exact current point `H3-R2.0.1`:** freeze the reviewed H2 inputs, hashes
-  and complete current-R2 virtual-verification matrix.
+- ✅ `H3-R2.0.1`: [14 exact inputs and all 23 native sheets are hash-frozen](docs/h3-r2-input-freeze.md) across seven workstreams and all six domains.
+- ▶ **Exact current point `H3-R2.0.2`:** rebuild the exact parameter and model-provenance register for current R2.
 - 🔒 PCB placement, routing, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H3-R2.0.1 -->
+<!-- current-substep: H3-R2.0.2 -->
 
 ## Repository
 

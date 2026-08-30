@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "artifact": "H3-R2-input-freeze",
+  "marker": "H3-R2.0.1",
+  "status": "pass",
+  "accepted_hardware_input": "H2-R2.1.5",
+  "freeze_sha256": "53b678958f200bbf086ac0a4779398c65b23ff6f78d2b96fc3ea2e59d0a532e0",
+  "source_sha256": {
+    "hardware/verification/h3-r2-input-freeze-contract.json": "a18786a9e4322ed42f49b831367ba4a2539c256afd34546a6d8f7333f52ced8c",
+    "hardware/verification/h3-r2-verification-plan.json": "121d3126cce4ba1f08f702fc923c793184298387b7b9a9ede24ef15395a76f15",
+    "hardware/architecture/h0-r2-rebaseline.json": "f46b4a95d9e76b910c5df8e5141bfea782ae550e3d5ad4badec4f2af4178c06e",
+    "hardware/product-design/h1-r2-placement.json": "5c87457efa793572df1ff699f499b58437590e0b5b4655492552015dac8ccadc",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "ae48e1145603db59a05d87f326d2f708d5484c8fb4177d7c54e39aeb74d49f2f",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "c891b92bc78ac00bc5f2e1cecf7980d40f9dcb41b4e5357ca87294f7329076c8",
+    "hardware/ecad/generated/H2-R2-contact-materialization.json": "e7969cf80221801bd42a863b85d500aa9909dfcf878af660ffac60d9b6b49ef3",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "6536747c134dff3f8911431cac416b4f6b8cc5787619598bda0a7345994f5843",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "516b68cdb9f50210af6a31d20ec8cb05bd7b8c725bfdb0b2d95b5211023f400d",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "a5fa0f31755e1969f16a67dab94436a26880affc5d993b54aedfbf935b6815f5",
+    "hardware/ecad/generated/H2-R2-hwfw-contract.json": "8a26ab35e51cf76ca7e54e37fd1c58a3c8cdc12faec9086bfea186cf7b996157",
+    "hardware/ecad/generated/H2-R2-interboard-m1.json": "213787e5d91eeecfd1c9411381d195bfe94ba08060058c494e8f03b3365c781f",
+    "hardware/architecture/generated/H0-R2-authority-gate.json": "996a373d803dfe5b8fd1ba6b1baab094749e82b7061cbd2fea5547505a7fab21",
+    "hardware/verification/preorder-verification-contract.json": "7ae885151cf02690bfabb8cda547272a0a2a0a940ae721f4796b5fdbcf4c77f4"
+  },
+  "summary": {
+    "projects": 3,
+    "sheets": 23,
+    "fitted_symbols": 1187,
+    "physical_pins": 4327,
+    "canonical_nets": 827,
+    "domains": 6,
+    "controller_pins": 173,
+    "cross_project_nets": 50,
+    "cross_sheet_nets": 233,
+    "m1_contacts": 80,
+    "m1_true_nc": 11,
+    "workstream_count": 7,
+    "matrix_sheet_assignments": 23,
+    "unique_matrix_sheets": 23,
+    "covered_domains": [
+      "c5",
+      "hub_rp",
+      "pack",
+      "rf_rp",
+      "s3",
+      "safety"
+    ],
+    "errors": 0
+  },
+  "workstreams": [
+    {
+      "id": "H3-R2.1",
+      "title": "Worst-case DC, source, charge and power-state verification",
+      "sheets": [
+        "RF_01_USB_PD_CHARGE",
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ],
+      "domains": [
+        "pack",
+        "safety",
+        "hub_rp",
+        "rf_rp",
+        "s3",
+        "c5"
+      ],
+      "models": [
+        "DC operating points",
+        "source ORing and charge limits",
+        "rail load steps",
+        "effective capacitance"
+      ],
+      "pass_rule": "Every legal source/load state has positive voltage, current, thermal and protection margin at tolerance corners.",
+      "physical_residual_owner": "H5/H8 power-source, cell, current-step and rail measurements"
+    },
+    {
+      "id": "H3-R2.2",
+      "title": "Startup, shutdown, handover, brownout, inrush and watchdog verification",
+      "sheets": [
+        "RF_02_PACK_SAFETY_AON",
+        "RF_31_REAR_CONTROLS"
+      ],
+      "domains": [
+        "pack",
+        "safety",
+        "hub_rp",
+        "rf_rp",
+        "s3",
+        "c5"
+      ],
+      "models": [
+        "state-transition graph",
+        "reset and strap truth tables",
+        "watchdog timing",
+        "hard-off sequence"
+      ],
+      "pass_rule": "Every legal transition reaches a bounded safe state; every illegal or stalled transition fails closed with diagnosable state retention.",
+      "physical_residual_owner": "H8 sequenced bring-up, brownout, watchdog and unattended-operation captures"
+    },
+    {
+      "id": "H3-R2.3",
+      "title": "Display, audio, IR, battery and Airband analog-corner verification",
+      "sheets": [
+        "UI_10_S3_DISPLAY_TOUCH",
+        "RF_21_BROADCAST_AIRBAND_RX",
+        "RF_22_AUDIO_CODEC_IO",
+        "ADP_00_DISPLAY_ADAPTER"
+      ],
+      "domains": [
+        "s3",
+        "rf_rp",
+        "pack"
+      ],
+      "models": [
+        "display load and edge envelope",
+        "audio gain/bandwidth/noise",
+        "IR drive/receive corners",
+        "Airband filter and mixer corners"
+      ],
+      "pass_rule": "Every selected analog path meets its stated amplitude, bandwidth, noise, load and fail-off limits at reproducible corners.",
+      "physical_residual_owner": "H5/H8 panel, acoustic, IR, cell-impedance and swept-RF measurements"
+    },
+    {
+      "id": "H3-R2.4",
+      "title": "Digital levels, timing, loading and direct-i8080 verification",
+      "sheets": [
+        "UI_11_STORAGE_CONTROLS_INDICATORS",
+        "UI_20_C5_WIFI_IR_SERVICE",
+        "UI_30_HUB_RP_CORE_SERVICE",
+        "UI_40_INTERBOARD_M1",
+        "UI_60_TESTPOINTS_MANUFACTURING",
+        "RF_10_RP2354_CORE_SERVICE",
+        "RF_40_INTERBOARD_M1",
+        "RF_60_TESTPOINTS_MANUFACTURING"
+      ],
+      "domains": [
+        "s3",
+        "c5",
+        "hub_rp",
+        "rf_rp",
+        "pack",
+        "safety"
+      ],
+      "models": [
+        "logic-level margins",
+        "bus timing and loading",
+        "direct i8080 throughput",
+        "USB/service ownership",
+        "M1 signal adjacency"
+      ],
+      "pass_rule": "Every digital boundary has positive level/timing margin, deterministic ownership and a recoverable reset/service state without payload contention.",
+      "physical_residual_owner": "H5/H8 far-end levels, eyes, bus traces, fixture access and service-path tests"
+    },
+    {
+      "id": "H3-R2.5",
+      "title": "RF feeds, coexistence, quiet states and 3x nRF24 concurrency",
+      "sheets": [
+        "UI_31_NRF24_X3_TX_EVIDENCE",
+        "RF_20_CC1101_VOICE_TX",
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "domains": [
+        "s3",
+        "c5",
+        "hub_rp",
+        "rf_rp",
+        "safety"
+      ],
+      "models": [
+        "RF feed topology",
+        "power-off isolation",
+        "three-radio FIFO service",
+        "TX evidence completeness",
+        "one-active-group arbitration"
+      ],
+      "pass_rule": "Each RF port has one bounded owner and quiet state; three nRF24 paths remain concurrently serviceable; no inactive path can transmit or load the active group unexpectedly.",
+      "physical_residual_owner": "H5/H8 VNA/feed loss, antenna identity, isolation, coexistence and real-TX evidence"
+    },
+    {
+      "id": "H3-R2.6",
+      "title": "Thermal, single-fault and unattended-operation verification",
+      "sheets": [
+        "UI_50_FRONT_POWER_SAFETY",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ],
+      "domains": [
+        "pack",
+        "safety",
+        "hub_rp",
+        "rf_rp",
+        "s3",
+        "c5"
+      ],
+      "models": [
+        "thermal network",
+        "single-fault matrix",
+        "kill-path independence",
+        "latched diagnostic retention"
+      ],
+      "pass_rule": "No accepted single fault defeats the independent hard-off path; thermal/watchdog faults remove hazardous power while preserving a readable cause when energy remains.",
+      "physical_residual_owner": "H8 controlled fault injection and thermal shutdown captures"
+    },
+    {
+      "id": "H3-R2.7",
+      "title": "Cross-check, physical residual register and phase report",
+      "sheets": [
+        "UI_00_ROOT",
+        "RF_00_ROOT"
+      ],
+      "domains": [
+        "s3",
+        "c5",
+        "hub_rp",
+        "rf_rp",
+        "pack",
+        "safety"
+      ],
+      "models": [
+        "cross-domain invariant audit",
+        "evidence hash graph",
+        "physical-only residual classification"
+      ],
+      "pass_rule": "All prior H3 workstreams pass on one source revision and every remaining uncertainty is physical-only with one downstream owner.",
+      "physical_residual_owner": "H4 joined review, then H5/H6/H8 as explicitly assigned"
+    }
+  ],
+  "authorization": {
+    "analytical_verification": true,
+    "circuit_simulation": true,
+    "pcb_placement_or_routing": false,
+    "purchasing": false,
+    "fabrication": false
+  },
+  "errors": []
+}
