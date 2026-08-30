@@ -139,9 +139,9 @@
 
 **Точный маркер: `H2-R2.1.3`.** Все электрические prerequisites до ECAD,
 native R2 source/sheet/component inventory и exact ledger symbol/contact/value/
-footprint прошли ревью. Материализация contact-to-pad завершена; точная текущая
-точка — controlled symbol library перед joined nets. Placement и routing ещё
-не начинались.
+footprint прошли ревью. Материализация contact-to-pad и controlled R2 symbol
+library завершены; точная текущая точка — joined native nets. Placement и
+routing ещё не начинались.
 
 - ✅ `H2-R2.0.1`: точный маршрут Standard PCBA onsemi `FSUSB42MUX` / `C11355`
   прошёл ревью по live-поверхности: stock 66 698; доступно 66 045; MOQ 1;
@@ -163,8 +163,11 @@ footprint прошли ревью. Материализация contact-to-pad �
   сопоставлены реальным площадкам выбранных footprints или трём явным RF-интерфейсам
   на модулях; каждая именованная площадка учтена. Точный 50-контактный footprint
   Hirose FH34 материализован по официальному чертежу и проходит парсер KiCad.
-- ▶ Текущий checkpoint `H2-R2.1.3`: создать controlled R2 symbol library, затем
-  соединить rails, M1, domain transports и явные NC в трёх проектах.
+- ✅ Symbol-checkpoint `H2-R2.1.3`: детерминированная library `Leshy2_R2`
+  содержит 208 exact-MPN symbols и 1 518 уникальных electrical-pad pins; KiCad 10
+  читает, пересохраняет и экспортирует контрольные symbols без ошибок.
+- ▶ Текущий checkpoint `H2-R2.1.3`: создать три native R2 projects и соединить
+  rails, M1, domain transports и явные NC.
 - 🔒 Schematic export, routing, quote, закупка и печать остаются запрещены.
 
 [Открыть живой реестр prerequisites](h2-r2-electrical-prerequisites.ru.md).

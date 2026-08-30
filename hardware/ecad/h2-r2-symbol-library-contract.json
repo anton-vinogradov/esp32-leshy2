@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "LESHY2-H2-R2-CONTROLLED-SYMBOL-LIBRARY",
+  "marker": "H2-R2.1.3",
+  "status": "current_controlled_symbol_library",
+  "purpose": "Generate one deterministic KiCad symbol for every board component group from the reviewed contact-to-pad materialization without importing historical R1 topology.",
+  "authority": {
+    "contact_materialization": "hardware/ecad/generated/H2-R2-contact-materialization.json",
+    "exact_ledger": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json"
+  },
+  "library_id": "Leshy2_R2",
+  "output": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
+  "manifest": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
+  "rules": {
+    "one_symbol_per_board_component_group": true,
+    "symbol_name_is_device_id": true,
+    "one_symbol_pin_per_unique_electrical_pad_name": true,
+    "shared_logical_contacts_on_one_pad_are_one_aliased_pin": true,
+    "mechanical_only_pads_are_not_symbol_pins": true,
+    "on_module_external_interfaces_are_metadata_not_carrier_pins": true,
+    "exact_mpn_is_symbol_value": true,
+    "selected_footprint_is_embedded_property": true,
+    "manufacturer_url_is_datasheet_property": true,
+    "nc_and_reserved_contacts_use_no_connect_pin_type": true,
+    "all_other_pin_types_remain_passive_until_native_net_erc_policy": true,
+    "historical_r1_symbols_or_topology_are_forbidden": true
+  },
+  "authorization": {
+    "controlled_symbol_library": true,
+    "native_schematic_nets": false,
+    "kicad_project_creation": false,
+    "pcb_placement_or_routing": false,
+    "fabrication": false,
+    "ordering": false
+  }
+}

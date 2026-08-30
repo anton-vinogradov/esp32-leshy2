@@ -24,7 +24,8 @@
 > footprint materialization has passed its first machine checkpoint: all 1,504
 > board contacts are accounted for against real selected-footprint pads or three
 > explicit on-module RF interfaces, with zero unclaimed named pads. The controlled
-> R2 symbol library and joined nets are next; ordering remains blocked.
+> library of 208 R2 symbols and 1,518 unique PCB-pad pins now passes KiCad 10;
+> joined native nets are the current checkpoint. Ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
