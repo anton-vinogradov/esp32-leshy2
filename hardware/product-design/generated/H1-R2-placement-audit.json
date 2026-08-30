@@ -3302,9 +3302,7 @@
   "relocated_c5_dbg_header": "c5_dbg_header_r2",
   "errors": [],
   "current_h1_blockers": [],
-  "dependent_h1_work": [
-    "review and explicitly accept the generated complete R2 exterior, both true-view inner faces and four real section planes before closing H1"
-  ],
+  "dependent_h1_work": [],
   "downstream_verification": [
     {
       "stage": "H5/H6 then H7",

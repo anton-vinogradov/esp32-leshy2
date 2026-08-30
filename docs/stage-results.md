@@ -25,13 +25,14 @@ power—not primary RF payloads.
 <a id="h1"></a>
 ## H1 · Physical product design
 
-**Status:** ▶️ current at **`H1-R2.37`**.
+**Status:** ✅ reviewed at **`H1-R2.37`** on 2026-08-30.
 
+- [Reviewed H1 phase result](h1-r2-acceptance.md)
 - [Current physical design](h1-r2-physical-layout.md)
-- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.36-complete-tx-evidence-1)
+- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.37-reviewed-1)
 - [Front inner face](images/h1-r2-inner-ui.svg)
 - [Rear inner face](images/h1-r2-inner-rf.svg)
-- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.36-complete-tx-evidence-1)
+- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.37-reviewed-1)
 - [Machine placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json)
 - [Airband receive path](h1-airband-filter.md)
 - [Power and thermal architecture](h1-r2-power-thermal.md)
@@ -60,20 +61,25 @@ The onboard video receiver, decoder, connector, antenna and physical bay are
 removed. Eleven S3 GPIOs, eight rear-RP GPIOs and M1 contacts 35–36 remain
 reserves; no hidden active module requires owner soldering after PCBA.
 
-H1 now has no physical blocker. The complete mock-up is the acceptance candidate;
-explicit user acceptance is the only remaining H1 action. It does not authorize
-KiCad or ordering. R2 H2/KiCad has not started. A future R2 H2 export still has three fail-closed electrical
-preconditions: the live `FSUSB42MUX/C11355` route, the exact service-VBUS
-detector/latch and the powered-off-Ioff Pack/Safety I2C boundary.
+H1 has no physical blocker. The complete mock-up was explicitly accepted on
+2026-08-30. This review does not authorize KiCad or ordering.
 
 <a id="h2"></a>
 ## H2 · Production schematic
 
-**Status:** ⏳ waits for H1.
+**Status:** ▶️ current at **`H2-R2.0` prerequisite closure**.
 
 The former reviewed G2F/H2/KiCad result is preserved as historical single-RP
-R1 evidence and is explicitly superseded as current authority. R2 H2 remains
-reopened until it exports six domains, both RP controllers and the exact H0 M1.
+R1 evidence and is explicitly superseded as current authority. The new R2 H2
+has opened, but native schematic export/KiCad has not started.
+
+Exact current checklist:
+
+1. ▶ verify the live Standard-PCBA route, MOQ and price for
+   onsemi `FSUSB42MUX` / JLCPCB `C11355`;
+2. ⏳ select and verify the exact factory-placeable service-VBUS detector/latch;
+3. ⏳ close the powered-off-Ioff Pack/Safety I²C boundary with separate
+   `3V3_MAIN`/AON pull-ups on Hub GPIO42/43.
 
 Expected result: native KiCad schematics regenerated from the R2 architecture,
 with pin reconciliation, ERC, NC review and a synchronized HW↔FW contract.

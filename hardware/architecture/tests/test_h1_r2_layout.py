@@ -102,8 +102,9 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertTrue(any("C11355" in row for row in self.model["pre_r2_h2_gates"]))
         self.assertTrue(any("service-VBUS" in row for row in self.model["pre_r2_h2_gates"]))
         self.assertTrue(any("powered-off-Ioff" in row for row in self.model["pre_r2_h2_gates"]))
-        self.assertEqual(1, len(self.model["dependent_h1_work"]))
-        self.assertIn("explicitly accept the generated complete R2", self.model["dependent_h1_work"][0])
+        self.assertEqual("reviewed", self.model["status"])
+        self.assertEqual([], self.model["dependent_h1_work"])
+        self.assertEqual("2026-08-30", self.model["reviewed_on"])
         self.assertEqual(
             {"H5/H6 then H7"},
             {row["stage"] for row in self.model["downstream_verification"]},

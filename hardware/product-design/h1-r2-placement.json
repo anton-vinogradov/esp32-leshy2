@@ -1,7 +1,10 @@
 {
   "schema_version": 1,
   "id": "L2-H1-R2-PLACEMENT-001",
-  "status": "ready_for_user_layout_acceptance",
+  "status": "reviewed",
+  "reviewed_on": "2026-08-30",
+  "accepted_by": "user",
+  "acceptance_scope": "Complete R2 exterior, both inner faces as viewed after physical turn-over, service access, antenna-edge locality and all real sandwich sections.",
   "marker": "H1-R2.37",
   "pin_authority_marker": "H1-R2.31",
   "checked_on": "2026-08-29",
@@ -1567,12 +1570,8 @@
     "выбрать и проверить на фабрике точный MPN detector/latch service-VBUS из закрытого электрического контракта владения C5",
     "реализовать и доказать точную powered-off-Ioff границу изоляции и раздельные pull-up домены 3V3_MAIN/AON для Pack/Safety I2C на Hub GPIO42/43"
   ],
-  "dependent_h1_work": [
-    "review and explicitly accept the generated complete R2 exterior, both true-view inner faces and four real section planes before closing H1"
-  ],
-  "dependent_h1_work_ru": [
-    "проверить и явно принять сгенерированные полные внешние виды, обе внутренние стороны в прямом виде и четыре реальные плоскости разреза до закрытия H1"
-  ],
+  "dependent_h1_work": [],
+  "dependent_h1_work_ru": [],
   "downstream_verification": [
     {
       "stage": "H5/H6 then H7",

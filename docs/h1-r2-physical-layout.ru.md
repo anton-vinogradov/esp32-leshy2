@@ -1,18 +1,18 @@
 # H1-R2.37 · рабочая компоновка целевого устройства
 
-Полная проверяемая физическая модель двух плат 75×150 мм готова к визуальному принятию. Все корпуса, Cap-профили, внешний объём U219-антенны и медные резервы сведены без открытых geometry-gates; H1 остаётся открытым только до явного принятия этого мокапа. Само принятие H1 ещё не разрешает трассировку KiCad: сначала должны быть закрыты перечисленные ниже электрические prerequisites R2 H2.
+Полная проверяемая физическая модель двух плат 75×150 мм принята 2026-08-30; H1 закрыто. Все корпуса, Cap-профили, внешний объём U219-антенны и медные резервы сведены без открытых geometry-gates. Это не разрешает трассировку KiCad: сначала в R2 H2 должны быть закрыты перечисленные ниже электрические prerequisites.
 
 ## Что увидит пользователь
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.36-complete-tx-evidence-1)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.37-reviewed-1)
 
 ## Легенда компонентов
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.36-complete-tx-evidence-1)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.37-reviewed-1)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.36-complete-tx-evidence-1)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.37-reviewed-1)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.36-complete-tx-evidence-1)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.37-reviewed-1)
 
 ## Что находится внутри
 
@@ -72,10 +72,9 @@
 | входной/выходной bulk-конденсатор 3V3_MAIN | `GRM32ER71E226KE15L` | [`C21397`](https://jlcpcb.com/partdetail/MurataElectronics-GRM32ER71E226KE15L/C21397) | 116 360 шт., MOQ 1, $0.6222 при количестве 1 |
 | последовательная bootstrap-перемычка настройки TPS566231P | `RC0402JR-070RL` | [`C60485`](https://jlcpcb.com/partdetail/YAGEO-RC0402JR070RL/C60485) | 4 551 848 шт., MOQ 1, $0.0034 при количестве 1 |
 
-## Финальное принятие H1
+## Итог H1
 
 - Новых блокеров геометрии корпусов нет.
-- проверить и явно принять сгенерированные полные внешние виды, обе внутренние стороны в прямом виде и четыре реальные плоскости разреза до закрытия H1
 
 ### Preconditions до R2 H2 / KiCad
 
@@ -83,4 +82,4 @@
 - выбрать и проверить на фабрике точный MPN detector/latch service-VBUS из закрытого электрического контракта владения C5
 - реализовать и доказать точную powered-off-Ioff границу изоляции и раздельные pull-up домены 3V3_MAIN/AON для Pack/Safety I2C на Hub GPIO42/43
 
-> Точный текущий маркер: **H1-R2.37**. H1 продолжается.
+> Итоговый маркер: **H1-R2.37**. H1 принято 2026-08-30.

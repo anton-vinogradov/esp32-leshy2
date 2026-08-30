@@ -33,4 +33,4 @@ All six compute domains and every mutually exclusive signal group have been reca
 - 0.1-to-4.25-A load-step simulation and protected-rail droop
 - board-plus-enclosure thermal solution and sensor-map update
 
-> Result marker: **H1-R2.4**. H1 remains in progress.
+> Result marker: **H1-R2.4**. Included in the reviewed H1-R2.37 result.

@@ -3,10 +3,10 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H1-R2.37`.** H0 is reviewed. H1 is ready for visual acceptance but is not yet reviewed.
+> **▶ Current hardware boundary: `H2-R2.0`.** H0 and H1 are reviewed; the accepted H1 result is [`H1-R2.37`](h1-r2-acceptance.md). H2 is closing three electrical prerequisites before native R2 ECAD export.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
-Status reconciled: **29 August 2026**.
+Status reconciled: **30 August 2026**.
 
 ## Status rules
 
@@ -24,18 +24,18 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ▶ [H1-R2.37](h1-r2-physical-layout.md): onboard video and its owner-soldered receiver bay are removed; the exact dual-RP/C5 authority, serial EastRising display and adapter, all 18 U219 support bodies, NFC loop, supplied-antenna swept volume and all eight complete TX-evidence islands pass fail-closed geometry; no physical blocker remains before explicit mock-up acceptance; [all 208 base-BOM MPN groups are ranked, AD8314 and the exact stocked Hirose U.FL packaging route deliver $10.42 accepted saving and leave a $273.42 electronics floor; all top-20 groups are retained, and six cheaper antenna comparisons worth $89.13 on paper were rejected on 2026-08-30](h1-r2-cost.md) |
+| Physical design | ✅ [H1-R2.37 reviewed](h1-r2-acceptance.md): the complete two-PCB model, ten permanent antenna assignments, exact EastRising display, U214/U219 slot and all TX-evidence islands are physically coherent; [all 208 base-BOM MPN groups are ranked](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map and power/filter diagrams are published |
-| Production ECAD | 🔒 Reviewed G2F/H2/KiCad is historical single-RP R1 evidence only. Current H0/H1 has front Hub RP + rear RF RP; R2 H2 must regenerate six domains and exact H0 M1 |
+| Production ECAD | ▶ `H2-R2.0`: live FSUSB42MUX route, exact service-VBUS detector/latch and Pack/Safety powered-off-Ioff boundary must close before the new six-domain dual-RP R2 export; retained G2F/H2/KiCad is historical R1 evidence only |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 qualified all 12 target builds, 60 artifacts, 16 maps and 16 size gates, while F2-R2.5 reproducibility is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); a separate fail-closed `F-PO` requires diagnostics, emulation and recovery before ordering |
 | Ordering | 🔒 Exactly one assembled `R2-EVT1` only after H6, `F-PO`, immutable release package and explicit exact-one quote approval; production only at H9 |
 
-## Current H1 · exact composition
+## Reviewed H1 · exact composition
 
-<!-- current-substep: H1-R2.37 -->
+<!-- current-substep: H2-R2.0 -->
 
-**Exact marker: `H1-R2.37`.** The placement package is ready for acceptance; H1
-is not a closed phase until that review is explicit.
+**Reviewed marker: `H1-R2.37`.** The placement package was accepted on
+2026-08-30. The current hardware marker is `H2-R2.0`.
 
 ### 1. Functional-island placement
 
@@ -126,22 +126,35 @@ is not a closed phase until that review is explicit.
   the supplied 108-mm antenna are registered. Missing, duplicate or substituted
   bodies and unresolved physical features fail generation.
 
-### 6. Final H1 acceptance input
+### 6. H1 review result
 
 - ✅ The onboard analog-video receiver, decoder, MMCX, antenna and physical bay
   are removed. No hidden active module requires owner soldering after PCBA.
 - ✅ The released lines remain reserves: eleven on S3, eight on the rear RP,
   while M1 contacts 35–36 are true NC.
-- ▶ Review and explicitly accept the complete exterior, both turned-over inner
-  faces and the real sandwich sections. H2/KiCad has not started.
+- ✅ The complete exterior, both turned-over inner faces and the real sandwich
+  sections were accepted on 2026-08-30. [Read the phase report](h1-r2-acceptance.md).
+
+## Current H2-R2.0 · exact composition
+
+**Exact marker: `H2-R2.0`.** H2 has opened only for prerequisite closure;
+native R2 ECAD export has not started.
+
+- ▶ **Exact current point:** verify live Standard-PCBA availability, route, MOQ
+  and price for onsemi `FSUSB42MUX` / JLCPCB `C11355`.
+- ⏳ Select and verify the exact factory-placeable service-VBUS detector/latch.
+- ⏳ Close the powered-off-Ioff isolation boundary and separate
+  `3V3_MAIN`/AON pull-ups for Pack/Safety I²C on Hub GPIO42/43.
+- 🔒 Native R2 schematic export, KiCad routing, quote, purchase and fabrication
+  remain unauthorized until the applicable gates close.
 
 ## Complete hardware path
 
 | Phase | Status | Result | Exit criterion |
 |---|---|---|---|
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
-| **H1 · Physical product design** | **▶ Ready for acceptance · `H1-R2.37`** | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
-| H2 · Production ECAD schematic | ⏳ Waiting for H1 | Exact R2 symbols, contacts, nets, values, protection and footprints | ERC-clean sheets and machine-readable HW↔FW contract |
+| H1 · Physical product design | ✅ [Reviewed · `H1-R2.37`](h1-r2-acceptance.md) | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
+| **H2 · Production ECAD schematic** | **▶ Current · `H2-R2.0` prerequisites** | Exact R2 symbols, contacts, nets, values, protection and footprints | Three electrical prerequisites closed; then ERC-clean sheets and machine-readable HW↔FW contract |
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
 | H5 · Component and factory evidence | ⏳ Waiting for H4 | Exact current factory map and controlled external routes | Every BOM line has a current factory route without silent substitution |
@@ -162,7 +175,7 @@ is not a closed phase until that review is explicit.
 
 ## Next action
 
-Obtain explicit acceptance of the complete H1 mock-up. H2 can start only after
-that H1 review and after its three electrical prerequisites are closed: a live
-FSUSB42MUX route, exact service-VBUS detector/latch and the powered-off-Ioff
-Pack/Safety I²C boundary. KiCad routing, quoting and every order remain blocked.
+Verify the live Standard-PCBA route, MOQ and price for onsemi `FSUSB42MUX` /
+JLCPCB `C11355`. Then close the exact service-VBUS detector/latch and the
+powered-off-Ioff Pack/Safety I²C boundary. Native R2 ECAD/KiCad, quoting and
+every order remain blocked.

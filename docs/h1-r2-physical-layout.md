@@ -1,18 +1,18 @@
 # H1-R2.37 · working target-device placement
 
-The complete verifiable physical model of the two 75 × 150 mm PCBs is ready for visual acceptance. Every body, Cap profile, external U219 antenna volume and copper reserve is registered with no open geometry gate; H1 remains open only until this mock-up is explicitly accepted. H1 acceptance does not itself authorize KiCad routing: the R2 H2 electrical prerequisites listed below must still close first.
+The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted on 2026-08-30; H1 is reviewed. Every body, Cap profile, external U219 antenna volume and copper reserve is registered with no open geometry gate. This does not authorize KiCad routing: the R2 H2 electrical prerequisites listed below must close first.
 
 ## What the user sees
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.36-complete-tx-evidence-1)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.37-reviewed-1)
 
 ## Component legend
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.36-complete-tx-evidence-1)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.37-reviewed-1)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.36-complete-tx-evidence-1)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.37-reviewed-1)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.36-complete-tx-evidence-1)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.37-reviewed-1)
 
 ## What is inside
 
@@ -72,10 +72,9 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs is ready for
 | 3V3_MAIN input/output bulk capacitor | `GRM32ER71E226KE15L` | [`C21397`](https://jlcpcb.com/partdetail/MurataElectronics-GRM32ER71E226KE15L/C21397) | 116,360 pieces, MOQ 1, USD 0.6222 at quantity 1 |
 | TPS566231P serial bootstrap tuning link | `RC0402JR-070RL` | [`C60485`](https://jlcpcb.com/partdetail/YAGEO-RC0402JR070RL/C60485) | 4,551,848 pieces, MOQ 1, USD 0.0034 at quantity 1 |
 
-## Final H1 acceptance
+## H1 result
 
 - No additional physical-body geometry blockers remain.
-- review and explicitly accept the generated complete R2 exterior, both true-view inner faces and four real section planes before closing H1
 
 ### Preconditions before R2 H2 / KiCad
 
@@ -83,4 +82,4 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs is ready for
 - select and factory-validate the exact service-VBUS detector/latch MPN used by the closed C5 electrical ownership contract
 - instantiate and prove the exact powered-off-Ioff isolation boundary and separate 3V3_MAIN/AON pull-up domains for Hub GPIO42/43 Pack/Safety I2C
 
-> Exact current marker: **H1-R2.37**. H1 remains in progress.
+> Final result marker: **H1-R2.37**. H1 was reviewed on 2026-08-30.

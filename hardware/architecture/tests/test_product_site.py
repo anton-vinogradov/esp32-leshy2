@@ -134,6 +134,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h0-r2-functional-architecture.ru.md",
         "docs/h1-r2-physical-layout.md",
         "docs/h1-r2-physical-layout.ru.md",
+        "docs/h1-r2-acceptance.md",
+        "docs/h1-r2-acceptance.ru.md",
         "docs/h1-r2-cost.md",
         "docs/h1-r2-cost.ru.md",
         "docs/h1-airband-filter.md",
@@ -183,12 +185,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H1-R2.37`", "H0 is reviewed",
+                "Current hardware boundary: `H2-R2.0`", "H0 and H1 are reviewed",
                 "firmware F1-R2 reviewed", "F2-R2.4",
                 "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H1-R2.37`", "H0 проведено ревью",
+                "Текущая аппаратная граница: `H2-R2.0`", "H0 и H1 прошли ревью",
                 "firmware F1-R2 проведено ревью", "F2-R2.4",
                 "H9 · Manufacturing release",
                 "Production ECAD",
@@ -204,8 +206,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Current hardware marker: `H1-R2.37`", "fabrication"),
-            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H1-R2.37`", "печати прототипа"),
+            "README.md": ("Roadmap and current position", "Current hardware marker: `H2-R2.0`", "fabrication"),
+            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H2-R2.0`", "печати прототипа"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -290,7 +292,7 @@ class ProductSiteTests(unittest.TestCase):
             "README.md": (
                 "# Leshy2 ⭐",
                 "What it is",
-                "Current four-face Leshy2 mock-up",
+                "Reviewed four-face Leshy2 mock-up",
                 "Roadmap and current position",
                 "Schematics and interfaces",
                 "Published result",
@@ -298,7 +300,7 @@ class ProductSiteTests(unittest.TestCase):
             "README.ru.md": (
                 "# Леший2 ⭐",
                 "Что это",
-                "Текущий четырёхсторонний мокап Лешего2",
+                "Принятый четырёхсторонний мокап Лешего2",
                 "Роадмап и текущее положение",
                 "Схемы и интерфейсы",
                 "Опубликованный результат",
@@ -738,13 +740,13 @@ class ProductSiteTests(unittest.TestCase):
         expectations = {
             "docs/roadmap.md": (
                 "H1-R2.37", "Functional-island placement", "RF and antenna locality",
-                "Interboard transport", "Physical and service audit", "Final H1 acceptance input",
-                "explicit acceptance of the complete H1 mock-up",
+                "Interboard transport", "Physical and service audit", "H1 review result",
+                "complete exterior", "accepted on 2026-08-30", "Current H2-R2.0",
             ),
             "docs/roadmap.ru.md": (
                 "H1-R2.37", "Размещение функциональных островов", "Локальность RF и антенн",
-                "Межплатный transport", "Физический и сервисный аудит", "Финальный вход принятия H1",
-                "явное принятие полного H1-мокапа",
+                "Межплатный transport", "Физический и сервисный аудит", "Итог ревью H1",
+                "Полный внешний вид", "приняты 2026-08-30", "Текущий H2-R2.0",
             ),
         }
         for name, tokens in expectations.items():
@@ -755,48 +757,49 @@ class ProductSiteTests(unittest.TestCase):
     def test_h1_r2_32_public_boundary_separates_electrical_and_physical_work(self):
         expectations = {
             "README.md": (
-                "Current hardware marker: `H1-R2.37`",
+                "Current hardware marker: `H2-R2.0`",
                 "exact dual-RP GPIO/M1 map",
                 "mutually exclusive U214/U219 Cap slot",
-                "R2 H2/KiCad has not started",
+                "native R2 ECAD/KiCad has not started",
                 "six compute domains",
             ),
             "README.ru.md": (
-                "Текущий маркер железа: `H1-R2.37`",
+                "Текущий маркер железа: `H2-R2.0`",
                 "dual-RP GPIO/M1",
                 "взаимоисключающий Cap-слот U214/U219",
-                "H2/KiCad",
-                "начинались",
+                "native R2 ECAD/KiCad",
+                "не начинался",
                 "шесть вычислительных доменов",
             ),
             "docs/roadmap.md": (
-                "Current hardware boundary: `H1-R2.37`",
-                "all 18 U219 support bodies",
+                "Current hardware boundary: `H2-R2.0`",
+                "18 exact production",
                 "U219 Cap integration",
-                "no physical blocker remains",
-                "H2/KiCad has not started",
+                "H1-R2.37 reviewed",
+                "native R2 ECAD export has not started",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H1-R2.37`",
-                "все 18 компонентов U219",
+                "Текущая аппаратная граница: `H2-R2.0`",
+                "18 точных production",
                 "Интеграция U219 Cap",
-                "физических блокеров",
-                "H2/KiCad не начинались",
+                "H1-R2.37 проведено ревью",
+                "native R2 ECAD export ещё не начинался",
             ),
             "docs/stage-results.md": (
-                "current at **`H1-R2.37`**",
+                "reviewed at **`H1-R2.37`**",
                 "exact dual-RP GPIO/M1 map",
                 "ten main SMA ports are split 5+5",
                 "single coordinate model now registers 226 bodies",
-                "R2 H2/KiCad",
-                "has not started",
+                "`H2-R2.0` prerequisite closure",
+                "native schematic export/KiCad has not started",
             ),
             "docs/stage-results.ru.md": (
-                "сейчас **`H1-R2.37`**",
+                "проведено ревью **`H1-R2.37`**",
                 "Точные dual-RP GPIO/M1",
                 "десять основных SMA разделены 5+5",
                 "координатная модель содержит 226 тел",
-                "R2 H2/KiCad не начинались",
+                "закрытие prerequisites `H2-R2.0`",
+                "native schematic export/KiCad ещё не начинался",
             ),
             "docs/schematics.md": (
                 "H1-R2.37",
@@ -997,8 +1000,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertFalse(r2_authority["r2_kicad_started"])
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
-        self.assertEqual("H1", state["current_stage"])
-        self.assertEqual("H1-R2.37", state["current_substep"])
+        self.assertEqual("H2", state["current_stage"])
+        self.assertEqual("H2-R2.0", state["current_substep"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][1]["status"])

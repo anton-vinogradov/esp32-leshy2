@@ -25,13 +25,14 @@ M1 идут transport управления/данных, safety evidence и пи
 <a id="h1"></a>
 ## H1 · Физический дизайн устройства
 
-**Статус:** ▶️ сейчас **`H1-R2.37`**.
+**Статус:** ✅ проведено ревью **`H1-R2.37`** 2026-08-30.
 
+- [Отчёт по завершённой фазе H1](h1-r2-acceptance.ru.md)
 - [Текущий физический дизайн](h1-r2-physical-layout.ru.md)
-- [Внешние стороны](images/h1-r2-external-layout.svg?rev=h1-r2.36-complete-tx-evidence-1)
+- [Внешние стороны](images/h1-r2-external-layout.svg?rev=h1-r2.37-reviewed-1)
 - [Внутренняя сторона передней платы](images/h1-r2-inner-ui.svg)
 - [Внутренняя сторона задней платы](images/h1-r2-inner-rf.svg)
-- [Внешний сервисный доступ](images/h1-r2-service-access.svg?rev=h1-r2.36-complete-tx-evidence-1)
+- [Внешний сервисный доступ](images/h1-r2-service-access.svg?rev=h1-r2.37-reviewed-1)
 - [Машинный аудит размещения](../hardware/product-design/generated/H1-R2-placement-audit.json)
 - [Приёмный тракт Airband](h1-airband-filter.ru.md)
 - [Питание и thermal-архитектура](h1-r2-power-thermal.ru.md)
@@ -59,20 +60,25 @@ coupler. Восемь ограниченных локальных evidence-ос�
 декодер, разъём, антенна и физическая зона удалены. Одиннадцать GPIO S3, восемь
 GPIO заднего RP и контакты M1 35–36 остаются резервами; скрытой ручной пайки нет.
 
-Физических блокеров H1 больше нет. Полный мокап готов к приёмке; единственное
-оставшееся действие H1 — явное подтверждение пользователя. Оно не разрешает
-KiCad или заказ. R2 H2/KiCad не начинались. Для будущего экспорта R2 H2 остаются три fail-closed
-электрических пререквизита: live-route `FSUSB42MUX/C11355`, точный
-service-VBUS detector/latch и powered-off-Ioff граница Pack/Safety I2C.
+Физических блокеров H1 больше нет. Полный мокап явно принят 2026-08-30. Это
+ревью не разрешает KiCad или заказ.
 
 <a id="h2"></a>
 ## H2 · Production-схема
 
-**Статус:** ⏳ ждёт H1.
+**Статус:** ▶️ сейчас **закрытие prerequisites `H2-R2.0`**.
 
 Прежний результат G2F/H2/KiCad с проведённым ревью сохранён как историческое
-single-RP evidence R1 и явно отменён как current authority. H2 R2 остаётся
-переоткрытым до экспорта шести доменов, обоих RP и точного M1 из H0.
+single-RP evidence R1 и явно отменён как current authority. Новый H2 R2 начат,
+но native schematic export/KiCad ещё не начинался.
+
+Точный текущий чеклист:
+
+1. ▶ проверить live-маршрут Standard PCBA, MOQ и цену
+   onsemi `FSUSB42MUX` / JLCPCB `C11355`;
+2. ⏳ выбрать и проверить точный устанавливаемый фабрикой service-VBUS detector/latch;
+3. ⏳ закрыть powered-off-Ioff Pack/Safety I²C с раздельными pull-up
+   `3V3_MAIN`/AON на Hub GPIO42/43.
 
 Ожидаемый результат: native KiCad-схемы, заново сформированные из архитектуры
 R2, сверенная распиновка, ERC/NC-ревью и синхронный HW↔FW-контракт. На

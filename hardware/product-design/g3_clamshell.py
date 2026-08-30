@@ -2124,7 +2124,7 @@ def validate_assembly_coordinate_model(
         model.get("schema_version") != 1
         or model.get("model_id") != "L2-ASM-COORD-001-A"
         or model.get("stage") != "H1-R2.37"
-        or model.get("status") != "ready_for_user_layout_acceptance"
+        or model.get("status") != "reviewed"
     ):
         errors.append("coordinate-model: schema, identity, stage or review status drifted")
     if [float(value) for value in model.get("board_outline_mm", [])] != [BOARD_W, BOARD_H]:

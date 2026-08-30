@@ -952,7 +952,12 @@ def render_doc(result: dict, ru: bool) -> str:
             f'- The accepted upper adapter PCB position `{display["current_upper_adapter_board_xy_mm"]}` passes the current exact-body model: `0` same-face collisions and `{display["paper_fit"]["minimum_opposing_clearance_mm"]:.1f} mm` minimum opposing clearance versus `{display["paper_fit"]["required_minimum_mm"]:.1f} mm` required, with no GPIO or BOM change.',
             '- H1 fixes the orientation and replaceable adapter; only written factory acceptance of panel/FPC work and incoming-lot conformity remain open.',
         ]
-    lines += ['', f'> Marker: **{result["marker"]}**. H1 remains open pending the complete mock-up decision.']
+    footer = (
+        f'> Маркер: **{result["marker"]}**. Включено в проведённое ревью H1-R2.37.'
+        if ru
+        else f'> Marker: **{result["marker"]}**. Included in the reviewed H1-R2.37 result.'
+    )
+    lines += ['', footer]
     return '\n'.join(lines) + '\n'
 
 

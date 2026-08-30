@@ -16,8 +16,8 @@ class PreorderGateTests(unittest.TestCase):
     def test_gate_reports_actual_unfinished_state(self):
         self.assertEqual("LESHY2-PREORDER-R2", self.contract["contract_id"])
         truth = self.contract["current_truth"]
-        self.assertIn("H1-R2.37 is the complete dimensioned acceptance candidate", truth["mechanical_projection"])
-        self.assertIn("R2 H2 production schematic and PCB layout have not begun", truth["current_ecad"])
+        self.assertIn("H1-R2.37 is the user-accepted reviewed", truth["mechanical_projection"])
+        self.assertIn("H2-R2.0 prerequisite closure has begun", truth["current_ecad"])
         self.assertIn("F2-R2.5 is in progress", truth["executable_firmware"])
         self.assertIn("F3-R2 and F-PO remain blocked", truth["instruction_emulation"])
         self.assertIn("H6 routed release candidate", truth["joined_release"])
@@ -27,9 +27,9 @@ class PreorderGateTests(unittest.TestCase):
 
         gates = {gate["id"]: gate for gate in self.contract["gates"]}
         self.assertEqual("reviewed", gates["P0_REQUIREMENTS_ARCHITECTURE"]["status"])
-        self.assertEqual("in_progress", gates["P1_CURRENT_PHYSICAL_DESIGN"]["status"])
+        self.assertEqual("reviewed", gates["P1_CURRENT_PHYSICAL_DESIGN"]["status"])
+        self.assertEqual("in_progress", gates["P2_R2_PRODUCTION_SCHEMATIC"]["status"])
         for gate_id in (
-            "P2_R2_PRODUCTION_SCHEMATIC",
             "P3_R2_VIRTUAL_ELECTRICAL",
             "P4_JOINED_PRE_LAYOUT_REVIEW",
             "P5_EXACT_PRODUCTION_SOURCING",

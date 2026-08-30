@@ -2,15 +2,15 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Pin assignment](pinout.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H1-R2.37`**. The functional architecture is reviewed; the
-> physical design is ready for visual acceptance. Nothing on this page authorizes KiCad routing
+> Current marker: **`H2-R2.0`**. The `H1-R2.37` physical design was accepted
+> and reviewed on 2026-08-30. Nothing on this page authorizes KiCad routing
 > or an order.
 
 > Current R2 authority is H0/H1: six compute domains with a front Hub RP and a
 > rear RF RP. The [exact dual-RP GPIO/M1 map](pinout.md) is current working H1
 > authority and the exact C5 module-pad/IO-mux electrical contract is joined.
-> G2F/H2/KiCad is historical single-RP R1 evidence only. R2 H2 and all R2 KiCad
-> work remain blocked on the live FSUSB42MUX/C11355 route, exact service-VBUS
+> G2F/H2/KiCad is historical single-RP R1 evidence only. H2-R2.0 is closing the
+> live FSUSB42MUX/C11355 route, exact service-VBUS
 > detector/latch MPN and Pack/Safety I2C powered-off-Ioff boundary.
 
 ## Capabilities
@@ -77,9 +77,9 @@ below 0.4 MB/s, so it does not saturate the RP transport.
 
 ## Physical layout
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.36-complete-tx-evidence-1)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.37-reviewed-1)
 
-[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.36-complete-tx-evidence-1).
+[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.37-reviewed-1).
 
 The ten main antenna ports are split symmetrically:
 
@@ -93,7 +93,7 @@ The ten main antenna ports are split symmetrically:
 
 ### Component legend
 
-![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.36-complete-tx-evidence-1)
+![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.37-reviewed-1)
 
 [Front inner face at full scale](images/h1-r2-inner-ui.svg) ·
 [rear inner face at full scale](images/h1-r2-inner-rf.svg)
@@ -131,7 +131,7 @@ the drawing is its pad span.
 - User silkscreen is printed only on visible outer faces and is not hidden by
   the display, batteries or U214.
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.36-complete-tx-evidence-1)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.37-reviewed-1)
 
 ## Power and unattended safety
 
@@ -151,7 +151,7 @@ fault reason for the next boot/display opportunity.
 See [power and thermal architecture](h1-r2-power-thermal.md) and the
 [three-level safety model](safety.md).
 
-## Current physical-design gate
+## Reviewed physical design and current electrical gate
 
 Everything above is generated and structurally checked for every currently
 registered body. The onboard video experiment, its connector and its
@@ -159,9 +159,8 @@ post-PCBA receiver bay are removed; there is no hidden active module for the
 owner to solder after factory assembly. The structural audit of every body, all 18 U219 support parts,
 the NFC pickup loop and the supplied 108-mm antenna swept volume passes with no
 open geometry gate. The exact EastRising panel and passive adapter are fixed as
-well. H1 remains incomplete only because the complete mock-up has not yet been
-explicitly accepted. The C5 electrical pin/mux
-contract is closed; its live FSUSB42MUX/C11355 route, exact service-VBUS
+well. H1 was explicitly accepted and reviewed on 2026-08-30. The C5 electrical
+pin/mux contract is closed; H2-R2.0 is checking its live FSUSB42MUX/C11355 route, exact service-VBUS
 detector/latch MPN and Pack/Safety I2C powered-off-Ioff boundary remain
 production blockers before a new R2 H2 export. The legacy HMX display is
 reference evidence only and cannot enter an R2 order BOM. KiCad

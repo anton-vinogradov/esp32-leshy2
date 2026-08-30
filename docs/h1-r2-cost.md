@@ -222,4 +222,4 @@ These positions have an **unknown**, not zero, price. The total remains a lower 
 - The accepted upper adapter PCB position `[22.25, 1.0]` passes the current exact-body model: `0` same-face collisions and `2.6 mm` minimum opposing clearance versus `0.7 mm` required, with no GPIO or BOM change.
 - H1 fixes the orientation and replaceable adapter; only written factory acceptance of panel/FPC work and incoming-lot conformity remain open.
 
-> Marker: **H1-R2.37**. H1 remains open pending the complete mock-up decision.
+> Marker: **H1-R2.37**. Included in the reviewed H1-R2.37 result.

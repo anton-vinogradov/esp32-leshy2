@@ -32,7 +32,7 @@ SOURCE_TABLE_PATH = REPO / "hardware/product-design/generated/H1-physical-source
 U219_SOURCE_PATH = REPO / "hardware/architecture/h1-r2-u219-cap.json"
 DUAL_RP_PINOUT_PATH = REPO / "hardware/architecture/h1-r2-dual-rp-pinout.json"
 DEVICES_PATH = REPO / "hardware/architecture/devices.json"
-PUBLIC_ASSET_REV = "h1-r2.36-complete-tx-evidence-1"
+PUBLIC_ASSET_REV = "h1-r2.37-reviewed-1"
 BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
 BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
@@ -899,8 +899,11 @@ def audit(model: dict, base: dict) -> dict:
     min_cross = min((x["clearance_mm"] for x in cross), default=None)
     if len(model["current_h1_blockers_ru"]) != len(model["current_h1_blockers"]):
         errors.append("bilingual current H1 blockers are out of sync")
-    if len(model["dependent_h1_work"]) != 1:
-        errors.append("physical layout must expose the one dependent H1 rendering task")
+    expected_dependent_h1 = 0 if model.get("status") == "reviewed" else 1
+    if len(model["dependent_h1_work"]) != expected_dependent_h1:
+        errors.append(
+            "physical layout dependent H1 work must match its review status"
+        )
     if len(model["dependent_h1_work_ru"]) != len(model["dependent_h1_work"]):
         errors.append("bilingual dependent H1 work is out of sync")
     relocated_c5 = next((row for row in model["placements"] if row["id"] == "c5_dbg_header_r2"), None)
@@ -1170,13 +1173,16 @@ def render_external_svg(model: dict) -> str:
     marker = html.escape(model["marker"])
     svg = svg.replace(
         'data-review-gate="H1.3.1" data-review-status="reviewed"',
-        f'data-marker="{marker}" data-review-status="in-progress"',
+        f'data-marker="{marker}" data-review-status="reviewed"',
+    ).replace(
+        'data-review-status="ready-for-user-acceptance"',
+        'data-review-status="reviewed"',
     ).replace(
         "Leshy2 — dimensioned external layout",
         f"Leshy2 — {marker} current external layout",
     ).replace(
         "Text on a PCB face but outside component outlines is intended silkscreen; text outside PCB faces or inside outlines is drawing annotation.",
-        "Current R2 exterior. PCB-face free text is silkscreen; drawing notes and arrows are annotations. H1 remains in progress.",
+        "Reviewed R2 exterior. PCB-face free text is silkscreen; drawing notes and arrows are annotations.",
     ).replace(
         "M5Stack U214 · installed worst-case · 84×24 mm",
         "Cap-Bus slot · U214 / U219 · 84×24 mm",
@@ -2034,7 +2040,7 @@ def render_retitled_legacy_view(model: dict, renderer: str) -> str:
             '</g>'
         )
         svg = svg.replace("</svg>", addition + "\n</svg>")
-    return svg.replace("<svg ", f'<svg data-marker="{html.escape(marker)}" data-review-status="in-progress" ', 1)
+    return svg.replace("<svg ", f'<svg data-marker="{html.escape(marker)}" data-review-status="reviewed" ', 1)
 
 
 def render_mmcx_service_svg_legacy(model: dict, result: dict) -> str:
@@ -2300,7 +2306,7 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
     lines.extend(f"- {gate}" for gate in dependent)
     lines.extend(["", downstream_heading, ""])
     lines.extend(f"- {gate}" for gate in downstream)
-    marker = f'> Точный текущий маркер: **{model["marker"]}**. H1 продолжается.' if ru else f'> Exact current marker: **{model["marker"]}**. H1 remains in progress.'
+    marker = f'> Итоговый маркер: **{model["marker"]}**. H1 принято 2026-08-30.' if ru else f'> Final result marker: **{model["marker"]}**. H1 was reviewed on 2026-08-30.'
     lines.extend(["", marker, ""])
     return "\n".join(lines)
 
@@ -2310,15 +2316,15 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     if ru:
         title = f'# {model["marker"]} · рабочая компоновка целевого устройства'
         intro = (
-            "Полная проверяемая физическая модель двух плат 75×150 мм готова к визуальному принятию. "
-            "Все корпуса, Cap-профили, внешний объём U219-антенны и медные резервы сведены без открытых geometry-gates; H1 остаётся открытым только до явного принятия этого мокапа. "
-            "Само принятие H1 ещё не разрешает трассировку KiCad: сначала должны быть закрыты перечисленные ниже электрические prerequisites R2 H2."
+            "Полная проверяемая физическая модель двух плат 75×150 мм принята 2026-08-30; H1 закрыто. "
+            "Все корпуса, Cap-профили, внешний объём U219-антенны и медные резервы сведены без открытых geometry-gates. "
+            "Это не разрешает трассировку KiCad: сначала в R2 H2 должны быть закрыты перечисленные ниже электрические prerequisites."
         )
         outside = "## Что увидит пользователь"
         inside = "## Что находится внутри"
         verified = "## Проверено генератором"
         factory = "## Точные фабричные позиции"
-        blocker = "## Финальное принятие H1"
+        blocker = "## Итог H1"
         component_legend_heading = "## Легенда компонентов"
         board_names = ("Передняя UI/radio-плата", "Задняя RF/power-плата")
         bullets = [
@@ -2351,15 +2357,15 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     else:
         title = f'# {model["marker"]} · working target-device placement'
         intro = (
-            "The complete verifiable physical model of the two 75 × 150 mm PCBs is ready for visual acceptance. "
-            "Every body, Cap profile, external U219 antenna volume and copper reserve is registered with no open geometry gate; H1 remains open only until this mock-up is explicitly accepted. "
-            "H1 acceptance does not itself authorize KiCad routing: the R2 H2 electrical prerequisites listed below must still close first."
+            "The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted on 2026-08-30; H1 is reviewed. "
+            "Every body, Cap profile, external U219 antenna volume and copper reserve is registered with no open geometry gate. "
+            "This does not authorize KiCad routing: the R2 H2 electrical prerequisites listed below must close first."
         )
         outside = "## What the user sees"
         inside = "## What is inside"
         verified = "## Generator-verified"
         factory = "## Exact factory parts"
-        blocker = "## Final H1 acceptance"
+        blocker = "## H1 result"
         component_legend_heading = "## Component legend"
         board_names = ("Front UI/radio PCB", "Rear RF/power PCB")
         bullets = [
@@ -2420,7 +2426,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     r2_gates = model["pre_r2_h2_gates_ru"] if ru else model["pre_r2_h2_gates"]
     lines.extend(["", "### Preconditions before R2 H2 / KiCad" if not ru else "### Preconditions до R2 H2 / KiCad", ""])
     lines.extend(f"- {row}" for row in r2_gates)
-    marker = f'> Точный текущий маркер: **{model["marker"]}**. H1 продолжается.' if ru else f'> Exact current marker: **{model["marker"]}**. H1 remains in progress.'
+    marker = f'> Итоговый маркер: **{model["marker"]}**. H1 принято 2026-08-30.' if ru else f'> Final result marker: **{model["marker"]}**. H1 was reviewed on 2026-08-30.'
     lines.extend(["", marker, ""])
     return "\n".join(lines)
 

@@ -32,7 +32,7 @@
   "current_h1_physical_authority": {
     "source": "hardware/product-design/h1-r2-placement.json",
     "marker": "H1-R2.37",
-    "status": "ready_for_user_layout_acceptance",
+    "status": "reviewed",
     "open_blockers": 0
   },
   "current_exact_domain_contracts": [

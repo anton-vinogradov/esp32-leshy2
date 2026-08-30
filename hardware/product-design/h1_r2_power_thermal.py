@@ -217,7 +217,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         ]
         factory_h = '## Выбранные фабричные позиции'
         next_h = '## Что ещё проверяет H3'
-        footer = f'> Маркер результата: **{model["marker"]}**. H1 продолжается.'
+        footer = f'> Маркер результата: **{model["marker"]}**. Включено в проведённое ревью H1-R2.37.'
     else:
         title = f'# {model["marker"]} · rail and thermal headroom'
         intro = 'All six compute domains and every mutually exclusive signal group have been recalculated before production ECAD. This is the accepted H1 working power design, not authorization to start KiCad or order boards.'
@@ -231,7 +231,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         ]
         factory_h = '## Selected factory parts'
         next_h = '## H3 evidence still required'
-        footer = f'> Result marker: **{model["marker"]}**. H1 remains in progress.'
+        footer = f'> Result marker: **{model["marker"]}**. Included in the reviewed H1-R2.37 result.'
     rows = [cell["converter"], cell["inductor"], cell["efuse"], cell["efuse_threshold_resistor"], cell["input_capacitors"], cell["vcc_capacitor"], cell["bootstrap_capacitor"], cell["bootstrap_link"]]
     lines = [title, '', intro, '', '![H1-R2 rail and thermal architecture](images/h1-r2-power-thermal.svg)', '', result_h, '', *bullets, '', factory_h, '', '| Exact MPN | JLCPCB | Role / current route |', '|---|---|---|']
     for row in rows:

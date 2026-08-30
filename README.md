@@ -10,20 +10,20 @@
 
 </div>
 
-> **Current hardware marker: `H1-R2.37`.** The complete two-PCB placement is
-> ready for visual acceptance: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
+> **Current hardware marker: `H2-R2.0`.** The complete two-PCB `H1-R2.37`
+> placement was accepted and reviewed on 30 August 2026: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
 > the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display, passive 40-to-50-contact
 > adapter, all 18 U219 support bodies, NFC pickup loop and the external volume
 > of the supplied 108-mm antenna are registered fail-closed. No H1 geometry
-> blocker remains; H1 stays open only until the complete mock-up is accepted.
-> R2 H2/KiCad has not started, and ordering remains blocked.
+> blocker remains. H2 has opened with three fail-closed electrical prerequisites;
+> native R2 ECAD/KiCad has not started, and ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
 > material is preserved historical single-RP R1 evidence, not current R2 authority.
 > It cannot authorize firmware, R2 KiCad, fabrication or ordering. The exact
-> dual-RP/C5 electrical authority is the current H1 machine contract; H2 will be
-> a new R2 export only after physical H1 closes.
+> dual-RP/C5 electrical authority is the reviewed H1 machine contract; H2 will
+> create the new R2 export only after its prerequisite closure.
 
 ## What it is
 
@@ -48,10 +48,10 @@ user to accept the non-aggression/authorized-use terms.
 
 ## Physical mock-up
 
-![Current four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.36-complete-tx-evidence-1)
+![Reviewed four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.37-reviewed-1)
 
-[Open the legend for all 226 numbered references](docs/images/h1-r2-component-legend.svg?rev=h1-r2.36-complete-tx-evidence-1) ·
-[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.36-complete-tx-evidence-1) ·
+[Open the legend for all 226 numbered references](docs/images/h1-r2-component-legend.svg?rev=h1-r2.37-reviewed-1) ·
+[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.37-reviewed-1) ·
 [front inner face](docs/images/h1-r2-inner-ui.svg) ·
 [rear inner face](docs/images/h1-r2-inner-rf.svg)
 
@@ -100,8 +100,8 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | Stage | Status | Published result |
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
-| **H1 · Physical product design** | **▶ Ready for acceptance · `H1-R2.37`** | [Current placement](docs/h1-r2-physical-layout.md) · [grouped cost ranking](docs/h1-r2-cost.md) |
-| H2 · Production ECAD schematic | ⏳ Waiting for R2 H1 | [Stage page](docs/stage-results.md#h2) |
+| H1 · Physical product design | ✅ Reviewed · `H1-R2.37` | [Bilingual phase result](docs/h1-r2-acceptance.md) · [placement](docs/h1-r2-physical-layout.md) |
+| **H2 · Production ECAD schematic** | **▶ Current · `H2-R2.0` prerequisite closure** | [Stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ⏳ Waiting for R2 H4 | [Stage page](docs/stage-results.md#h5) |
@@ -111,7 +111,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | H8 · Physical qualification | 🔒 Waiting for H7 | [Stage page](docs/stage-results.md#h8) |
 | H9 · Manufacturing release | 🔒 Waiting for H8 and firmware F11 | [Stage page](docs/stage-results.md#h9) |
 
-### Current H1 composition
+### Reviewed H1 result and current H2 entry
 
 - ✅ Exact front/rear RP GPIO0..47 maps, five Hub↔RF M1 signals and C5 SDIO/service-mux electrical join are machine-checked; budgets are `46/48` (2 free) and `40/48` (8 free: GP15/28/29/32/33/34/37/38). S3 has 11 newly released GPIO reserves.
 - ✅ Ten main antenna ports repartitioned `5 + 5`; no main RF trace crosses M1.
@@ -125,14 +125,15 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ U219 is accepted as the second mutually exclusive Cap profile: CC1101 is hard RX-only, NFC is poll/read-only, pin 10 is fail-disconnected and NFC field evidence joins `ANY_TX_AON_N`. Pin 7 power identity remains a received-unit gate, not an H2 claim.
 - ✅ The two DCK boundaries, two BAT54S bridges and LMV331 comparator use official maximum full-package envelopes and source-backed courtyards; all five fit their bounded islands without overlap.
 - ✅ All 18 exact U219 support parts and the existing Cap/evidence register now have one source-backed coordinate and conservative courtyard; the NFC pickup loop, DNP tuning bank and external swept volume of the supplied antenna are covered by the same fail-closed audit.
-- ▶ **Exact current point:** review and explicitly accept the complete exterior, both inner faces after physically turning the PCBs over, and the real sandwich sections. After H1 acceptance, R2 H2 still requires the three electrical prerequisites listed in the roadmap; KiCad does not start automatically.
+- ✅ H1 was accepted and reviewed on 2026-08-30; its [bilingual result report](docs/h1-r2-acceptance.md) preserves the reviewed product boundary and evidence.
+- ▶ **Exact current point `H2-R2.0`:** verify the live Standard-PCBA route, MOQ and price for onsemi `FSUSB42MUX` / JLCPCB `C11355`. The service-VBUS detector/latch and Pack/Safety powered-off-Ioff boundary follow; native R2 ECAD/KiCad starts only after all three close.
 - 🔒 KiCad, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H1-R2.37 -->
+<!-- current-substep: H2-R2.0 -->
 
 ## Repository
 

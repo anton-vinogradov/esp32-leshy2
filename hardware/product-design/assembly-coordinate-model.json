@@ -2,7 +2,9 @@
   "schema_version": 1,
   "model_id": "L2-ASM-COORD-001-A",
   "stage": "H1-R2.37",
-  "status": "ready_for_user_layout_acceptance",
+  "status": "reviewed",
+  "reviewed_on": "2026-08-30",
+  "accepted_by": "user",
   "units": "mm",
   "world": {
     "origin": "front-left corner of the ER-TFT035IPS-6 + ER-TPC035-6 touch/view assembly at the antenna-side edge",
