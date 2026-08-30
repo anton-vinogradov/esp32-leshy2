@@ -1561,13 +1561,9 @@
   "current_h1_blockers": [],
   "current_h1_blockers_ru": [],
   "pre_r2_h2_gates": [
-    "timestamp an exact live JLC stock-or-explicit-route, MOQ and price for onsemi FSUSB42MUX / C11355",
-    "select and factory-validate the exact service-VBUS detector/latch MPN used by the closed C5 electrical ownership contract",
     "instantiate and prove the exact powered-off-Ioff isolation boundary and separate 3V3_MAIN/AON pull-up domains for Hub GPIO42/43 Pack/Safety I2C"
   ],
   "pre_r2_h2_gates_ru": [
-    "зафиксировать exact live JLC stock-or-explicit-route, MOQ и цену для onsemi FSUSB42MUX / C11355",
-    "выбрать и проверить на фабрике точный MPN detector/latch service-VBUS из закрытого электрического контракта владения C5",
     "реализовать и доказать точную powered-off-Ioff границу изоляции и раздельные pull-up домены 3V3_MAIN/AON для Pack/Safety I2C на Hub GPIO42/43"
   ],
   "dependent_h1_work": [],

@@ -33,7 +33,7 @@
 | `davies_1227_j` | `Davies Molding 1227-J` | `verified_exact_shaft_and_plan_fit_hil_open` | `active` | [Davies Molding 1227-J official product page and drawing table live product page](https://daviesmolding.com/catalog/series/knobs/control/1227-j/) | same primary source |
 | `diodes_2n7002dw_7_f` | `Diodes Incorporated 2N7002DW-7-F` | `verified_candidate` | `active` | [2N7002DW dual N-channel MOSFET datasheet DS30120 Rev. 22-2, October 2021](https://www.diodes.com/datasheet/download/2N7002DW.pdf) | same primary source |
 | `diodes_bat54_7_f` | `Diodes Incorporated BAT54-7-F` | `verified_candidate` | `active` | [BAT54 surface-mount Schottky barrier diode datasheet DS11005 Rev. 34-2, November 2023](https://www.diodes.com/datasheet/download/BAT54.pdf) | same primary source |
-| `diodes_dmn2056u_7` | `Diodes Incorporated DMN2056U-7` | `verified_candidate` | `active` | [DMN2056U 20-V N-channel enhancement-mode MOSFET datasheet DS38480 Rev. 2-2, July 2021; product status checked 2026-08-18](https://www.diodes.com/datasheet/download/DMN2056U.pdf) | same primary source |
+| `diodes_dmn2056u_7` | `Diodes Incorporated DMN2056U-7` | `accepted_exact_low_leakage_service_vbus_detector_and_load_switch` | `active_orderable_factory_stocked` | [DMN2056U 20-V N-channel enhancement-mode MOSFET datasheet DS38480 Rev. 2-2, July 2021; product status checked 2026-08-18](https://www.diodes.com/datasheet/download/DMN2056U.pdf) | same primary source |
 | `diodes_mmbt3904_7_f` | `Diodes Incorporated MMBT3904-7-F` | `verified_candidate` | `active` | [MMBT3904 40-V NPN small-signal transistor datasheet current product data checked 2026-08-18](https://www.diodes.com/datasheet/download/MMBT3904.pdf) | same primary source |
 | `diodes_pam8302a_aycr` | `Diodes Incorporated PAM8302AAYCR` | `verified_candidate` | `active` | [PAM8302A 2.5-W mono filterless Class-D audio amplifier datasheet DS41333 Rev. 6-2, May 2021](https://www.diodes.com/datasheet/download/PAM8302A.pdf) | same primary source |
 | `ebyte_e01_ml01sp4` | `Ebyte E01-ML01SP4` | `verified_candidate` | `nrf24_family_not_recommended_for_new_designs` | [E01-ML01SP4 product specification 2025-01-16](https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152778058.pdf) | [Nordic nRF24 Series lifecycle page](https://www.nordicsemi.com/Products/nRF24-series) |
@@ -150,7 +150,7 @@
 | `ti_sn74lvc1g126_dckr` | `Texas Instruments SN74LVC1G126DCKR` | `verified_candidate` | `active` | [SN74LVC1G126 Single Bus Buffer Gate With 3-State Output datasheet SCES225 and current exact-part page checked 2026-08-18](https://www.ti.com/lit/ds/symlink/sn74lvc1g126.pdf) | same primary source |
 | `ti_sn74lvc1g17_dckr` | `SN74LVC1G17DCKR` | `verified_exact_schmitt_buffer` | `active_orderable` | [SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet Rev. Y](https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf) | same primary source |
 | `ti_sn74lvc1g3157_dbvr` | `Texas Instruments SN74LVC1G3157DBVR` | `verified_reference` | `active` | [SN74LVC1G3157 single-pole, double-throw analog switch datasheet SCES424O, January 2003, revised June 2025](https://www.ti.com/lit/ds/symlink/sn74lvc1g3157.pdf) | same primary source |
-| `ti_sn74lvc1g74_dcur` | `SN74LVC1G74DCUR` | `verified_candidate` | `active` | [SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet Rev. G](https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf) | same primary source |
+| `ti_sn74lvc1g74_dcur` | `SN74LVC1G74DCUR` | `accepted_exact_async_service_and_safety_latch` | `active_orderable_factory_stocked` | [SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet Rev. G](https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf) | same primary source |
 | `ti_sn74lvc2g08_dcur` | `Texas Instruments SN74LVC2G08DCUR` | `reference_only` | `active` | [SN74LVC2G08 dual 2-input positive-AND gate datasheet SCES198N, April 1999, revised December 2015](https://www.ti.com/lit/ds/symlink/sn74lvc2g08.pdf) | same primary source |
 | `ti_sn74lvc2g66_dcur` | `Texas Instruments SN74LVC2G66DCUR` | `verified_candidate` | `active` | [SN74LVC2G66 Dual Bilateral Analog Switch datasheet SCES325N, July 2001, revised August 2018](https://www.ti.com/lit/ds/symlink/sn74lvc2g66.pdf) | same primary source |
 | `ti_sn74lvc3g07_dcur` | `SN74LVC3G07DCUR` | `verified_exact_aon_to_main_open_drain_isolator` | `active_orderable` | [SN74LVC3G07 Triple Buffer/Driver With Open-Drain Outputs datasheet Rev. R](https://www.ti.com/lit/ds/symlink/sn74lvc3g07.pdf) | same primary source |
@@ -4185,6 +4185,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `backlight_efuse_output_hf` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `backlight_efuse_output_hf` lifecycle: `active_orderable`.
 - `backlight_series_resistor` lifecycle: `active_orderable`.
+- `backlight_mosfet` uses `Diodes Incorporated DMN2056U-7` as `accepted_exact_low_leakage_service_vbus_detector_and_load_switch`, not an accepted production choice.
+- `backlight_mosfet` lifecycle: `active_orderable_factory_stocked`.
 - `sd_power_input_cap` lifecycle: `active_production`.
 - `sd_power_hf_cap` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `sd_power_hf_cap` lifecycle: `active_orderable`.
@@ -4335,6 +4337,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `ir_emitter` lifecycle: `active_stocked_orderable`.
 - `ir_emitter_limit` uses `FH RS-06K47R0FT` as `verified_exact_jlcpcb_stocked_ir_emitter_current_limit_resistor`, not an accepted production choice.
 - `ir_emitter_limit` lifecycle: `active_factory_stocked_standard_pcba`.
+- `ir_tx_mosfet` uses `Diodes Incorporated DMN2056U-7` as `accepted_exact_low_leakage_service_vbus_detector_and_load_switch`, not an accepted production choice.
+- `ir_tx_mosfet` lifecycle: `active_orderable_factory_stocked`.
 - `ir_evidence_amp` uses `TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
 - `ir_evidence_amp_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `ir_evidence_amp_bypass` lifecycle: `active_orderable`.
@@ -4438,6 +4442,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `pack_diag_lockout_cap` lifecycle: `active_production`.
 - `pack_diag_timer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `pack_diag_timer_bypass` lifecycle: `active_orderable`.
+- `pack_diag_switch` uses `Diodes Incorporated DMN2056U-7` as `accepted_exact_low_leakage_service_vbus_detector_and_load_switch`, not an accepted production choice.
+- `pack_diag_switch` lifecycle: `active_orderable_factory_stocked`.
 - `pack_mid_adc_filter` uses `Murata GRM155R71H103KA88D` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `pack_mid_adc_filter` lifecycle: `production_active_factory_stocked_standard_pcba`.
 - `pack_stack_adc_filter` uses `Murata GRM155R71H103KA88D` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
@@ -4580,6 +4586,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `safe_rearm_buffer` lifecycle: `active_orderable`.
 - `safe_rearm_buffer_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `safe_rearm_buffer_bypass` lifecycle: `active_orderable`.
+- `safe_latch` uses `SN74LVC1G74DCUR` as `accepted_exact_async_service_and_safety_latch`, not an accepted production choice.
+- `safe_latch` lifecycle: `active_orderable_factory_stocked`.
 - `safe_latch_bypass` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `safe_latch_bypass` lifecycle: `active_orderable`.
 - `safe_reset_buffer` uses `Texas Instruments SN74LVC1G06DCKR` as `verified_exact_fail_low_reset_gate_driver`, not an accepted production choice.

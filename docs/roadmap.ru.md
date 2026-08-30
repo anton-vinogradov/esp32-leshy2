@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H2-R2.0.2`.** H0 и H1 прошли ревью; принятый итог H1 — [`H1-R2.37`](h1-r2-acceptance.ru.md). [`H2-R2.0.1`](h2-r2-electrical-prerequisites.ru.md) закрыл live-маршрут mux; сейчас H2 доказывает точный detector/latch service-VBUS перед границей Pack/Safety I²C и native R2 ECAD export.
+> **▶ Текущая аппаратная граница: `H2-R2.0.3`.** H0 и H1 прошли ревью; принятый итог H1 — [`H1-R2.37`](h1-r2-acceptance.ru.md). [`H2-R2.0.1` и `H2-R2.0.2`](h2-r2-electrical-prerequisites.ru.md) закрыли live-маршрут mux и точный detector/latch service-VBUS; сейчас H2 доказывает powered-off-Ioff границу Pack/Safety I²C перед native R2 ECAD export.
 > KiCad routing R2, quote, reservation и заказ не разрешены.
 
 Статус сверен: **30 августа 2026 года**.
@@ -26,16 +26,16 @@
 | Функциональная архитектура | ✅ [H0-R2 проведено ревью](h0-r2-functional-architecture.ru.md): передний UI/radio и задний RF/power домены, явные владельцы, transport, quiet-state и safety-crossings |
 | Физический дизайн | ✅ [H1-R2.37 проведено ревью](h1-r2-acceptance.ru.md): полная модель двух плат, десять постоянных назначений антенн, точный EastRising-дисплей, слот U214/U219 и TX-evidence-острова физически согласованы; [все 208 MPN-групп базового BOM ранжированы](h1-r2-cost.ru.md) |
 | Принципиальные диаграммы | Опубликованы актуальные связи компонентов/шин, внешний мокап, отдельные читаемые внутренние стороны, service map и диаграммы питания/фильтра |
-| Production ECAD | ▶ `H2-R2.0.2`: live-маршрут FSUSB42MUX прошёл ревью; до нового six-domain dual-RP R2 export должны закрыться точный detector/latch service-VBUS и powered-off-Ioff граница Pack/Safety; сохранённый G2F/H2/KiCad — только историческое evidence R1 |
+| Production ECAD | ▶ `H2-R2.0.3`: live-маршрут FSUSB42MUX и точный detector/latch service-VBUS прошли ревью; до нового six-domain dual-RP R2 export должна закрыться powered-off-Ioff граница Pack/Safety; сохранённый G2F/H2/KiCad — только историческое evidence R1 |
 | Пререквизит прошивки | ✅ firmware F1-R2 проведено ревью; F2-R2.4 квалифицировал все 12 target builds, 60 artifacts, 16 maps и 16 size gates, а F2-R2.5 reproducibility сейчас в отдельном [роадмапе F0–F11](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md); отдельный fail-closed `F-PO` требует диагностические образы, эмуляцию и recovery до заказа |
 | Заказ | 🔒 Ровно один собранный `R2-EVT1` — только после H6, `F-PO`, immutable release-package и явного одобрения exact-one quote; производство — только на H9 |
 
 ## Проведённое ревью H1 · точный состав
 
-<!-- current-substep: H2-R2.0.2 -->
+<!-- current-substep: H2-R2.0.3 -->
 
 **Маркер ревью: `H1-R2.37`.** Пакет компоновки принят 2026-08-30. Текущий
-аппаратный маркер — `H2-R2.0.2`.
+аппаратный маркер — `H2-R2.0.3`.
 
 ### 1. Размещение функциональных островов
 
@@ -135,18 +135,21 @@
 - ✅ Полный внешний вид, обе внутренние стороны после физического переворота
   плат и реальные разрезы приняты 2026-08-30. [Открыть отчёт фазы](h1-r2-acceptance.ru.md).
 
-## Текущий H2-R2.0.2 · точный состав
+## Текущий H2-R2.0.3 · точный состав
 
-**Точный маркер: `H2-R2.0.2`.** H2 начат только для закрытия prerequisites;
+**Точный маркер: `H2-R2.0.3`.** H2 начат только для закрытия prerequisites;
 native R2 ECAD export ещё не начинался.
 
 - ✅ `H2-R2.0.1`: точный маршрут Standard PCBA onsemi `FSUSB42MUX` / `C11355`
   прошёл ревью по live-поверхности: stock 66 698; доступно 66 045; MOQ 1;
   USD 0,3179 при количестве 1.
-- ▶ `H2-R2.0.2`: выбрать и доказать точный устанавливаемый фабрикой always-on
-  detector/latch service-VBUS.
-- ⏳ Закрыть powered-off-Ioff-изоляцию и раздельные pull-up
-  `3V3_MAIN`/AON для Pack/Safety I²C на Hub GPIO42/43 как `H2-R2.0.3`.
+- ✅ `H2-R2.0.2`: по live-поверхностям Standard PCBA проведено ревью точного
+  detector `DMN2056U-7` / `C332302` с изолированным затвором, асинхронной
+  защёлки `SN74LVC1G74DCUR` / `C70285` и четырёхусловного release-gate
+  `74HC20PW,118` / `C546719`. Стоимость установленных компонентов ровно для
+  одного тракта — USD 0,5857.
+- ▶ `H2-R2.0.3`: закрыть powered-off-Ioff-изоляцию и раздельные pull-up
+  `3V3_MAIN`/AON для Pack/Safety I²C на Hub GPIO42/43.
 - 🔒 Native R2 schematic export, KiCad routing, quote, закупка и печать остаются
   запрещены до закрытия соответствующих gates.
 
@@ -158,7 +161,7 @@ native R2 ECAD export ещё не начинался.
 |---|---|---|---|
 | H0 · Требования и функциональная архитектура | ✅ [R2 проведено ревью](h0-r2-functional-architecture.ru.md) | Функции продукта, владельцы, transport, safety и рабочие pin-бюджеты | У каждой функции один владелец; все рабочие бюджеты сходятся |
 | H1 · Физический дизайн продукта | ✅ [Проведено ревью · `H1-R2.37`](h1-r2-acceptance.ru.md) | Внешний вид, отдельные внутренние стороны, разрезы, точные корпуса, RF-локальность, сервис и power-envelope | Нет коллизий bodies/fasteners/silkscreen/antennas/accessories/opposing sides; точный MPN или контролируемый reserve; мокап принят |
-| **H2 · Production ECAD-схема** | **▶ Сейчас · `H2-R2.0.2`** | Точные R2 symbols, contacts, nets, values, protection и footprints | Три electrical prerequisite закрыты; затем ERC-clean sheets и machine-readable HW↔FW contract |
+| **H2 · Production ECAD-схема** | **▶ Сейчас · `H2-R2.0.3`** | Точные R2 symbols, contacts, nets, values, protection и footprints | Три electrical prerequisite закрыты; затем ERC-clean sheets и machine-readable HW↔FW contract |
 | H3 · Виртуальная электрическая проверка | ⏳ Ожидает H2 | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
 | H4 · Объединённый pre-layout gate | ⏳ Ожидает H3 и firmware R2 evidence | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
 | H5 · Компоненты и фабричные evidence | ⏳ Ожидает H4 | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
@@ -179,6 +182,6 @@ native R2 ECAD export ещё не начинался.
 
 ## Следующее действие
 
-Выбрать и доказать точный устанавливаемый фабрикой always-on detector/latch
-service-VBUS. Затем закрыть powered-off-Ioff границу Pack/Safety I²C. Native R2
-ECAD/KiCad, quote и любой заказ остаются заблокированы.
+Закрыть powered-off-Ioff границу Pack/Safety I²C и раздельные pull-up
+`3V3_MAIN`/AON на Hub GPIO42/43. Native R2 ECAD/KiCad, quote и любой заказ
+остаются заблокированы.

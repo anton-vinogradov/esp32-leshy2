@@ -3,10 +3,10 @@
   "stage": "H2.7.5",
   "status": "reviewed_h2_7_end_to_end_reconciliation",
   "source_hashes": {
-    "hardware/ecad/generated/H2-REV71-canonical-inventories.json": "ba726e38047e199f50ccbdf4b03f04cf63d4e04756a4a619ae226b25a4735f72",
-    "hardware/ecad/generated/H2-REV72-physical-contacts.json": "b8a684e3929d7d393badae9d8797c202725c3bc83b2256e11a0f5c2c75ca5905",
-    "hardware/ecad/generated/H2-REV73-named-nets-m1.json": "2bcfd8d31c5bbbfd4ea2cfe75d1e28ed6e7e12d3f68d9c453aa07c19a239be8c",
-    "hardware/ecad/generated/H2-REV74-firmware-contract.json": "bc48f8cfb51b7c0602460c6f9b48185f33cc0d526c9c183d7bc1dfd6d4ef86f0"
+    "hardware/ecad/generated/H2-REV71-canonical-inventories.json": "c1da209eab3e4a3239f30d0fd38aa5ff2c6a4dfb460fa36da59dc9620e475dc5",
+    "hardware/ecad/generated/H2-REV72-physical-contacts.json": "143274974913b13e16f2f6e4eba47c4523a8908e75869cf6476cbebb19c82a5b",
+    "hardware/ecad/generated/H2-REV73-named-nets-m1.json": "9775da3a8b6382402f487c0690d549cf64b57a67c750865fcf1cb2a209e482ec",
+    "hardware/ecad/generated/H2-REV74-firmware-contract.json": "ac5831a511a3e1922cd6935ae6c8c8e8d8e2b889ec949f8da4a3c18e7af67505"
   },
   "subreviews": [
     {

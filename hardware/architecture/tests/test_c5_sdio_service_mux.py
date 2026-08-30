@@ -108,6 +108,47 @@ class C5SdioServiceMuxTest(unittest.TestCase):
         invalid = MODULE.build(contract=contract)
         self.assertIn("production mux cannot be accepted without live stock/route, MOQ and price", invalid["errors"])
 
+    def test_exact_service_vbus_detector_latch_is_factory_accepted_and_fail_safe(self):
+        result = MODULE.build()
+        implementation = result["ownership"]["detector_latch_implementation"]
+        detector = implementation["detector"]
+        latch = implementation["latch"]
+        qualifier = implementation["release_qualifier"]
+        self.assertTrue(result["detector_latch_release_allowed"])
+        self.assertEqual(("DMN2056U-7", "C332302"),
+                         (detector["mpn"], detector["jlcpcb_part_number"]))
+        self.assertEqual(("SN74LVC1G74DCUR", "C70285"),
+                         (latch["mpn"], latch["jlcpcb_part_number"]))
+        self.assertEqual(("74HC20PW,118", "C546719"),
+                         (qualifier["mpn"], qualifier["jlcpcb_part_number"]))
+        self.assertEqual(
+            ["SERVICE_VBUS_PRESENT_N", "C5_EN_LOW_PROOF",
+             "HUB_SDIO_HIGH_Z_PROOF", "AON_SERVICE_RELEASE_REQ"],
+            qualifier["used_gate"]["inputs"],
+        )
+        latch_pins = {row["name"]: row["net"] for row in latch["pin_topology"]}
+        self.assertEqual("SERVICE_VBUS_PRESENT_N", latch_pins["PRE_N"])
+        self.assertEqual("C5_SERVICE_CLEAR_N", latch_pins["CLR_N"])
+        self.assertLessEqual(detector["input_current_ua_nominal_at_5v"], 2.5)
+        self.assertGreaterEqual(detector["gate_voltage_v_min_at_4v75_with_1pct_divider"], 2.35)
+        self.assertNotIn("exact factory-placeable service-VBUS detector/latch implementation",
+                         result["open_gates"])
+
+    def test_service_latch_rejects_missing_inventory_or_bypass_of_release_proofs(self):
+        contract = copy.deepcopy(MODULE.load(MODULE.CONTRACT))
+        implementation = contract["ownership"]["detector_latch_implementation"]
+        implementation["latch"]["live_inventory"]["stock"] = None
+        result = MODULE.build(contract=contract)
+        self.assertIn("detector/latch cannot be accepted without complete live routes, MOQ and price",
+                      result["errors"])
+        self.assertFalse(result["detector_latch_release_allowed"])
+
+        contract = copy.deepcopy(MODULE.load(MODULE.CONTRACT))
+        used_gate = contract["ownership"]["detector_latch_implementation"]["release_qualifier"]["used_gate"]
+        used_gate["inputs"][-1] = "C5_FIRMWARE_RELEASE"
+        result = MODULE.build(contract=contract)
+        self.assertIn("release qualifier must be the exact four-condition NAND", result["errors"])
+
     def test_wrong_mux_branch_or_c5_pad_fails_closed(self):
         contract = copy.deepcopy(MODULE.load(MODULE.CONTRACT))
         contract["c5_module"]["signals"][4]["module_pad"] = 14

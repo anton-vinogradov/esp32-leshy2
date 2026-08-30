@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Pin assignment](pinout.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H2-R2.0.2`**. The `H1-R2.37` physical design was accepted
+> Current marker: **`H2-R2.0.3`**. The `H1-R2.37` physical design was accepted
 > and reviewed on 2026-08-30. Nothing on this page authorizes KiCad routing
 > or an order.
 
@@ -10,8 +10,9 @@
 > rear RF RP. The [exact dual-RP GPIO/M1 map](pinout.md) is current working H1
 > authority and the exact C5 module-pad/IO-mux electrical contract is joined.
 > G2F/H2/KiCad is historical single-RP R1 evidence only. The live
-> FSUSB42MUX/C11355 route is reviewed as `H2-R2.0.1`; `H2-R2.0.2` now closes the
-> exact service-VBUS detector/latch before the Pack/Safety I2C powered-off-Ioff boundary.
+> FSUSB42MUX/C11355 route is reviewed as `H2-R2.0.1`; the exact service-VBUS
+> detector/latch/release implementation is reviewed as `H2-R2.0.2`. `H2-R2.0.3`
+> now closes the Pack/Safety I2C powered-off-Ioff boundary.
 
 ## Capabilities
 
@@ -160,8 +161,8 @@ owner to solder after factory assembly. The structural audit of every body, all 
 the NFC pickup loop and the supplied 108-mm antenna swept volume passes with no
 open geometry gate. The exact EastRising panel and passive adapter are fixed as
 well. H1 was explicitly accepted and reviewed on 2026-08-30. The C5 electrical
-pin/mux contract and live FSUSB42MUX/C11355 route are closed. The exact service-VBUS
-detector/latch MPN and Pack/Safety I2C powered-off-Ioff boundary remain
-production blockers before a new R2 H2 export. The legacy HMX display is
+pin/mux contract, live FSUSB42MUX/C11355 route and exact service-VBUS
+detector/latch/release implementation are closed. The Pack/Safety I2C
+powered-off-Ioff boundary remains the production blocker before a new R2 H2 export. The legacy HMX display is
 reference evidence only and cannot enter an R2 order BOM. KiCad
 and all purchasing remain blocked.

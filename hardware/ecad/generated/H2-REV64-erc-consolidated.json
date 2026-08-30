@@ -4,8 +4,8 @@
   "status": "reviewed_h2_6_erc_and_no_connect_closure",
   "source_hashes": {
     "hardware/ecad/generated/H2-REV61-native-erc.json": "a2e0306c4bb6f5a823dd04c0c6a1082d907432ef01ba19c0809c14c0e3d168fa",
-    "hardware/ecad/generated/H2-REV62-no-connects.json": "84664e576e425706f2c2300b0153089aef3f0903fe9e2029c4819622bed64a7c",
-    "hardware/ecad/generated/H2-REV63-erc-clean.json": "cdb6d2ac242640d72973b8c11748da75a73d974755a66cd75aa97e046b067b90"
+    "hardware/ecad/generated/H2-REV62-no-connects.json": "1cdc157ed33bb054e014805ee2e34855379d96e216133fbbad549d0c2bf763e7",
+    "hardware/ecad/generated/H2-REV63-erc-clean.json": "181a174dce6cfc0833bcee03bb01f67c2560a5281ff7c72aced81cb67a63269c"
   },
   "subreviews": [
     {

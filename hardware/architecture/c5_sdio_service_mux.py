@@ -131,6 +131,81 @@ def build(contract: dict | None = None, devices: dict | None = None,
     _error(errors, "board power input" in ownership.get("service_vbus", {}).get("forbidden", []),
            "service VBUS must remain sense-only")
 
+    detector_latch = ownership.get("detector_latch_implementation", {})
+    detector = detector_latch.get("detector", {})
+    service_latch = detector_latch.get("latch", {})
+    qualifier = detector_latch.get("release_qualifier", {})
+    exact_logic = {
+        detector.get("device_id"): (detector.get("mpn"), detector.get("jlcpcb_part_number")),
+        service_latch.get("device_id"): (service_latch.get("mpn"), service_latch.get("jlcpcb_part_number")),
+        qualifier.get("device_id"): (qualifier.get("mpn"), qualifier.get("jlcpcb_part_number")),
+    }
+    _error(errors, exact_logic == {
+        "diodes_dmn2056u_7": ("DMN2056U-7", "C332302"),
+        "ti_sn74lvc1g74_dcur": ("SN74LVC1G74DCUR", "C70285"),
+        "nexperia_74hc20pw_118": ("74HC20PW,118", "C546719"),
+    }, "service-VBUS detector, latch or release-qualifier identity is not exact")
+    for device_id, (mpn, _) in exact_logic.items():
+        registered = devices.get("devices", {}).get(device_id, {})
+        registered_mpn = registered.get("mpn", "")
+        _error(errors, registered_mpn == mpn or registered_mpn.endswith(f" {mpn}"),
+               f"{device_id} exact MPN differs from devices.json")
+
+    latch_pins = {
+        row.get("pin"): (row.get("name"), row.get("net"))
+        for row in service_latch.get("pin_topology", [])
+    }
+    _error(errors, latch_pins == {
+        1: ("CLK", "SAFETY_GROUND"),
+        2: ("D", "SAFETY_GROUND"),
+        3: ("Q_N", "C5_SERVICE_FREE_DIAG"),
+        4: ("GND", "SAFETY_GROUND"),
+        5: ("Q", "C5_SERVICE_OWNED"),
+        6: ("CLR_N", "C5_SERVICE_CLEAR_N"),
+        7: ("PRE_N", "SERVICE_VBUS_PRESENT_N"),
+        8: ("VCC", "AON_SAFE_3V3"),
+    }, "service ownership latch pin topology is incomplete or unsafe")
+    qualifier_inputs = qualifier.get("used_gate", {}).get("inputs", [])
+    _error(errors, qualifier_inputs == [
+        "SERVICE_VBUS_PRESENT_N", "C5_EN_LOW_PROOF",
+        "HUB_SDIO_HIGH_Z_PROOF", "AON_SERVICE_RELEASE_REQ",
+    ] and qualifier.get("used_gate", {}).get("output") == "C5_SERVICE_CLEAR_N",
+           "release qualifier must be the exact four-condition NAND")
+    _error(errors, "SAFETY_GROUND" in qualifier.get("unused_gate", "")
+           and "unconnected" in qualifier.get("unused_gate", ""),
+           "unused 74HC20 gate must not float")
+    _error(errors, detector.get("input_current_ua_nominal_at_5v", 100) <= 2.5
+           and detector.get("gate_voltage_v_min_at_4v75_with_1pct_divider", 0) >= 2.35
+           and "No semiconductor junction" in detector.get("proof", ""),
+           "service-VBUS detector must remain high-impedance and junction-isolated")
+    passive_key = {
+        (row.get("mpn"), row.get("jlcpcb_part_number"), row.get("quantity"))
+        for row in detector_latch.get("passives", [])
+    }
+    _error(errors, passive_key == {
+        ("RC0402FR-071ML", "C138033", 2),
+        ("RC0402FR-0710KL", "C60490", 1),
+        ("CC0402KRX7R9BB104", "C131394", 2),
+    }, "detector/latch passive population is not the accepted exact set")
+
+    detector_latch_inventory_complete = all(
+        component.get("live_inventory", {}).get(key) is not None
+        for component in (detector, service_latch, qualifier)
+        for key in ("stock", "available_order_quantity", "moq", "price_tiers_usd")
+    ) and all(
+        row.get(key) is not None
+        for row in detector_latch.get("passives", [])
+        for key in ("stock", "available_order_quantity", "moq", "unit_price_usd_quantity_1")
+    )
+    detector_latch_release_allowed = (
+        detector_latch.get("selection_status") == "accepted"
+        and detector_latch_inventory_complete
+        and ownership.get("service_vbus", {}).get("detector_and_latch_mpn_status") == "accepted"
+    )
+    if detector_latch.get("selection_status") == "accepted":
+        _error(errors, detector_latch_inventory_complete,
+               "detector/latch cannot be accepted without complete live routes, MOQ and price")
+
     for name in ("runtime_to_service", "service_to_runtime"):
         sequence = contract.get("transition_sequences", {}).get(name, [])
         joined = " ".join(sequence)
@@ -183,7 +258,7 @@ def build(contract: dict | None = None, devices: dict | None = None,
     open_gates: list[str] = []
     if not production_release_allowed:
         open_gates.append("live JLC stock-or-explicit-route, MOQ and price for FSUSB42MUX/C11355")
-    if ownership.get("service_vbus", {}).get("detector_and_latch_mpn_status") != "accepted":
+    if not detector_latch_release_allowed:
         open_gates.append("exact factory-placeable service-VBUS detector/latch implementation")
     if not h0_integration["target_clock_explicit"] or not h0_integration["hil_frequency_semantics_explicit"]:
         open_gates.append("top-level H0 promotion of 40 MHz target and 7.5 MB/s-at-40-MHz semantics")
@@ -191,13 +266,18 @@ def build(contract: dict | None = None, devices: dict | None = None,
     return {
         "schema_version": 1,
         "artifact": "H0-R2-c5-sdio-service-mux",
-        "status": "fail" if errors else "pass_scoped_contract_open_factory_and_integration_gates",
+        "status": (
+            "fail" if errors else
+            "pass_scoped_contract_open_gates" if open_gates else
+            "pass_scoped_contract"
+        ),
         "contract_id": contract.get("contract_id"),
         "c5_signal_map": contract.get("c5_module", {}).get("signals", []),
         "mux_pin_topology": contract.get("mux", {}).get("pin_topology", []),
         "branch_conditioning": conditioning,
         "edge_straps": contract.get("edge_straps", {}),
         "ownership": ownership,
+        "detector_latch_release_allowed": detector_latch_release_allowed,
         "transition_sequences": contract.get("transition_sequences", {}),
         "performance": performance,
         "production_mux_route": route,

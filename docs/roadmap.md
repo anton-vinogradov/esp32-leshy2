@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H2-R2.0.2`.** H0 and H1 are reviewed; the accepted H1 result is [`H1-R2.37`](h1-r2-acceptance.md). [`H2-R2.0.1`](h2-r2-electrical-prerequisites.md) closed the live mux route; H2 is now proving the exact service-VBUS detector/latch before the Pack/Safety I²C boundary and native R2 ECAD export.
+> **▶ Current hardware boundary: `H2-R2.0.3`.** H0 and H1 are reviewed; the accepted H1 result is [`H1-R2.37`](h1-r2-acceptance.md). [`H2-R2.0.1` and `H2-R2.0.2`](h2-r2-electrical-prerequisites.md) closed the live mux route and exact service-VBUS detector/latch; H2 is now proving the Pack/Safety I²C powered-off-Ioff boundary before native R2 ECAD export.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **30 August 2026**.
@@ -26,16 +26,16 @@ marker and current checklist; it is never presented as review of the whole phase
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
 | Physical design | ✅ [H1-R2.37 reviewed](h1-r2-acceptance.md): the complete two-PCB model, ten permanent antenna assignments, exact EastRising display, U214/U219 slot and all TX-evidence islands are physically coherent; [all 208 base-BOM MPN groups are ranked](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map and power/filter diagrams are published |
-| Production ECAD | ▶ `H2-R2.0.2`: live FSUSB42MUX route is reviewed; exact service-VBUS detector/latch and Pack/Safety powered-off-Ioff boundary must close before the new six-domain dual-RP R2 export; retained G2F/H2/KiCad is historical R1 evidence only |
+| Production ECAD | ▶ `H2-R2.0.3`: live FSUSB42MUX route and exact service-VBUS detector/latch are reviewed; the Pack/Safety powered-off-Ioff boundary must close before the new six-domain dual-RP R2 export; retained G2F/H2/KiCad is historical R1 evidence only |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 qualified all 12 target builds, 60 artifacts, 16 maps and 16 size gates, while F2-R2.5 reproducibility is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); a separate fail-closed `F-PO` requires diagnostics, emulation and recovery before ordering |
 | Ordering | 🔒 Exactly one assembled `R2-EVT1` only after H6, `F-PO`, immutable release package and explicit exact-one quote approval; production only at H9 |
 
 ## Reviewed H1 · exact composition
 
-<!-- current-substep: H2-R2.0.2 -->
+<!-- current-substep: H2-R2.0.3 -->
 
 **Reviewed marker: `H1-R2.37`.** The placement package was accepted on
-2026-08-30. The current hardware marker is `H2-R2.0.2`.
+2026-08-30. The current hardware marker is `H2-R2.0.3`.
 
 ### 1. Functional-island placement
 
@@ -135,18 +135,20 @@ marker and current checklist; it is never presented as review of the whole phase
 - ✅ The complete exterior, both turned-over inner faces and the real sandwich
   sections were accepted on 2026-08-30. [Read the phase report](h1-r2-acceptance.md).
 
-## Current H2-R2.0.2 · exact composition
+## Current H2-R2.0.3 · exact composition
 
-**Exact marker: `H2-R2.0.2`.** H2 has opened only for prerequisite closure;
+**Exact marker: `H2-R2.0.3`.** H2 has opened only for prerequisite closure;
 native R2 ECAD export has not started.
 
 - ✅ `H2-R2.0.1`: exact onsemi `FSUSB42MUX` / `C11355` Standard-PCBA route
   reviewed from the live surface: stock 66,698; available 66,045; MOQ 1;
   USD 0.3179 at quantity 1.
-- ▶ `H2-R2.0.2`: select and prove the exact factory-placeable always-on
-  service-VBUS detector/latch.
-- ⏳ Close the powered-off-Ioff isolation boundary and separate
-  `3V3_MAIN`/AON pull-ups for Pack/Safety I²C on Hub GPIO42/43 as `H2-R2.0.3`.
+- ✅ `H2-R2.0.2`: exact `DMN2056U-7` / `C332302` insulated-gate detector,
+  `SN74LVC1G74DCUR` / `C70285` asynchronous latch and `74HC20PW,118` /
+  `C546719` four-condition release gate reviewed from live Standard-PCBA
+  surfaces. The exact-one fitted component burden is USD 0.5857.
+- ▶ `H2-R2.0.3`: close the powered-off-Ioff isolation boundary and separate
+  `3V3_MAIN`/AON pull-ups for Pack/Safety I²C on Hub GPIO42/43.
 - 🔒 Native R2 schematic export, KiCad routing, quote, purchase and fabrication
   remain unauthorized until the applicable gates close.
 
@@ -158,7 +160,7 @@ native R2 ECAD export has not started.
 |---|---|---|---|
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
 | H1 · Physical product design | ✅ [Reviewed · `H1-R2.37`](h1-r2-acceptance.md) | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
-| **H2 · Production ECAD schematic** | **▶ Current · `H2-R2.0.2`** | Exact R2 symbols, contacts, nets, values, protection and footprints | Three electrical prerequisites closed; then ERC-clean sheets and machine-readable HW↔FW contract |
+| **H2 · Production ECAD schematic** | **▶ Current · `H2-R2.0.3`** | Exact R2 symbols, contacts, nets, values, protection and footprints | Three electrical prerequisites closed; then ERC-clean sheets and machine-readable HW↔FW contract |
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
 | H5 · Component and factory evidence | ⏳ Waiting for H4 | Exact current factory map and controlled external routes | Every BOM line has a current factory route without silent substitution |
@@ -179,6 +181,6 @@ native R2 ECAD export has not started.
 
 ## Next action
 
-Select and prove the exact factory-placeable always-on service-VBUS
-detector/latch. Then close the powered-off-Ioff Pack/Safety I²C boundary.
-Native R2 ECAD/KiCad, quoting and every order remain blocked.
+Close the powered-off-Ioff Pack/Safety I²C boundary and its split
+`3V3_MAIN`/AON pull-ups on Hub GPIO42/43. Native R2 ECAD/KiCad, quoting and
+every order remain blocked.

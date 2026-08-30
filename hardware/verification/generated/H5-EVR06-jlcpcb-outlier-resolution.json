@@ -6,7 +6,7 @@
   "checked_on": "2026-08-30",
   "input": {
     "bom_tool_result": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
-    "bom_tool_result_sha256": "14ebb4a7a27a2b3c70ce50af42eb67e4e9f3e0f5690ca3855dc2bdddd96e3765",
+    "bom_tool_result_sha256": "dc71eb0b4d103fef155efd1235164af8eb3ec855c028d3106b8c57c21b9921ce",
     "search_capture": "hardware/verification/jlcpcb-outlier-search-capture-2026-08-25.json",
     "search_capture_sha256": "50fdf7c69a95bc53e32148cf8e7e3b2d245818a74cec065a708c128527af2699"
   },

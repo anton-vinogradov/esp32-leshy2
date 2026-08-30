@@ -2,8 +2,8 @@
   "schema_version": 1,
   "baseline": "R2",
   "current_stage": "H2",
-  "current_substep": "H2-R2.0.2",
-  "current_detail": "H2-R2.0.1 was reviewed on 2026-08-30: the exact onsemi FSUSB42MUX / JLCPCB C11355 route is accepted from the live Standard-PCBA surface with stock 66698, available quantity 66045, MOQ 1 and USD 0.3179 quantity-one price. H2-R2.0.2 now selects and proves the exact factory-placeable always-on service-VBUS detector/latch. H2-R2.0.3 then closes the Pack/Safety powered-off-Ioff isolation boundary with separate 3V3_MAIN/AON pull-ups on Hub GPIO42/43. Native R2 ECAD export, KiCad placement/routing, purchasing and fabrication have not started and remain unauthorized.",
+  "current_substep": "H2-R2.0.3",
+  "current_detail": "H2-R2.0.1 reviewed the exact live onsemi FSUSB42MUX / JLCPCB C11355 route. H2-R2.0.2 reviewed the exact DMN2056U-7 / C332302 insulated-gate service-VBUS detector, SN74LVC1G74DCUR / C70285 ownership latch and 74HC20PW,118 / C546719 release qualifier, including complete Standard-PCBA routes, reset truth table and a USD 0.5857 exact-one component burden. H2-R2.0.3 now closes the Pack/Safety powered-off-Ioff isolation boundary with separate 3V3_MAIN/AON pull-ups on Hub GPIO42/43. Native R2 ECAD export, KiCad placement/routing, purchasing and fabrication have not started and remain unauthorized.",
   "preorder_release": {
     "status": "blocked",
     "assembled_device_quantity": 1,
@@ -15,7 +15,7 @@
   "stages": [
     {"id": "H0", "status": "reviewed", "baseline": "R2"},
     {"id": "H1", "status": "reviewed", "baseline": "R2", "accepted_by_user": "2026-08-30", "result_marker": "H1-R2.37", "historical_r1_status": "reviewed"},
-    {"id": "H2", "status": "current", "baseline": "R2", "current_substep": "H2-R2.0.2", "completed_substeps": ["H2-R2.0.1"], "historical_r1_status": "reviewed", "historical_r1_accepted_by_user": "2026-08-26"},
+    {"id": "H2", "status": "current", "baseline": "R2", "current_substep": "H2-R2.0.3", "completed_substeps": ["H2-R2.0.1", "H2-R2.0.2"], "historical_r1_status": "reviewed", "historical_r1_accepted_by_user": "2026-08-26"},
     {"id": "H3", "status": "waiting", "baseline": "R2", "historical_r1_status": "reviewed"},
     {"id": "H4", "status": "waiting", "baseline": "R2", "historical_r1_status": "reviewed"},
     {"id": "H5", "status": "waiting", "baseline": "R2", "historical_r1_status": "in_progress_at_rebaseline", "superseded_evidence": "single-SA518 baseline"},

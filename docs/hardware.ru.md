@@ -2,7 +2,7 @@
 
 [На главную](../README.ru.md) · [English](hardware.md) · [Распиновка](pinout.ru.md) · [Схемы](schematics.ru.md) · [Безопасность](safety.ru.md)
 
-> Текущий маркер: **`H2-R2.0.2`**. Физический дизайн `H1-R2.37` принят и прошёл
+> Текущий маркер: **`H2-R2.0.3`**. Физический дизайн `H1-R2.37` принят и прошёл
 > ревью 2026-08-30. Эта страница не разрешает KiCad
 > routing или заказ.
 
@@ -10,8 +10,9 @@
 > и задний RF RP. [Точная dual-RP карта GPIO/M1](pinout.ru.md) — текущий рабочий
 > authority H1, а точный электрический контракт module-pad/IO-mux C5 присоединён.
 > G2F/H2/KiCad — только историческое single-RP evidence R1. Live route
-> FSUSB42MUX/C11355 прошёл ревью как `H2-R2.0.1`; `H2-R2.0.2` теперь закрывает
-> точный detector/latch service-VBUS перед powered-off-Ioff границей Pack/Safety I2C.
+> FSUSB42MUX/C11355 прошёл ревью как `H2-R2.0.1`; точная реализация
+> detector/latch/release service-VBUS прошла ревью как `H2-R2.0.2`. `H2-R2.0.3`
+> теперь закрывает powered-off-Ioff границу Pack/Safety I2C.
 
 ## Возможности
 
@@ -157,7 +158,8 @@ post-PCBA-зона приёмника удалены: после заводск�
 pickup-loop и swept volume штатной 108-мм антенны проходит без открытых
 geometry-gates. Точная EastRising-панель и пассивный адаптер также зафиксированы.
 H1 явно принято и прошло ревью 2026-08-30. Электрический pin/mux-контракт C5 и
-live route FSUSB42MUX/C11355 закрыты. Точный MPN detector/latch service-VBUS и powered-off-Ioff
-граница Pack/Safety I2C остаются production-блокерами до нового R2 H2 export.
+live route FSUSB42MUX/C11355 и точная реализация detector/latch/release service-VBUS
+закрыты. Powered-off-Ioff граница Pack/Safety I2C остаётся единственным
+production-блокером prerequisites до нового R2 H2 export.
 Legacy-дисплей HMX остаётся только историческим evidence и не попадает в R2 order BOM.
 KiCad и любые закупки остаются заблокированы.

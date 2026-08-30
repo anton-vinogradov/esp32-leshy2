@@ -10,13 +10,14 @@
 
 </div>
 
-> **Current hardware marker: `H2-R2.0.2`.** The complete two-PCB `H1-R2.37`
+> **Current hardware marker: `H2-R2.0.3`.** The complete two-PCB `H1-R2.37`
 > placement was accepted and reviewed on 30 August 2026: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
 > the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display, passive 40-to-50-contact
 > adapter, all 18 U219 support bodies, NFC pickup loop and the external volume
 > of the supplied 108-mm antenna are registered fail-closed. No H1 geometry
 > blocker remains. The exact `FSUSB42MUX/C11355` factory route is reviewed;
-> H2 now closes the service-VBUS detector/latch and Pack/Safety I²C boundary;
+> The exact service-VBUS detector/latch/release path is reviewed as `H2-R2.0.2`;
+> H2 now closes the Pack/Safety I²C powered-off-Ioff boundary;
 > native R2 ECAD/KiCad has not started, and ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
@@ -102,7 +103,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
 | H1 · Physical product design | ✅ Reviewed · `H1-R2.37` | [Bilingual phase result](docs/h1-r2-acceptance.md) · [placement](docs/h1-r2-physical-layout.md) |
-| **H2 · Production ECAD schematic** | **▶ Current · `H2-R2.0.2`** | [Live prerequisite results](docs/h2-r2-electrical-prerequisites.md) · [stage page](docs/stage-results.md#h2) |
+| **H2 · Production ECAD schematic** | **▶ Current · `H2-R2.0.3`** | [Live prerequisite results](docs/h2-r2-electrical-prerequisites.md) · [stage page](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ⏳ Waiting for R2 H4 | [Stage page](docs/stage-results.md#h5) |
@@ -128,14 +129,15 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ All 18 exact U219 support parts and the existing Cap/evidence register now have one source-backed coordinate and conservative courtyard; the NFC pickup loop, DNP tuning bank and external swept volume of the supplied antenna are covered by the same fail-closed audit.
 - ✅ H1 was accepted and reviewed on 2026-08-30; its [bilingual result report](docs/h1-r2-acceptance.md) preserves the reviewed product boundary and evidence.
 - ✅ `H2-R2.0.1`: live Standard-PCBA route for onsemi `FSUSB42MUX` / JLCPCB `C11355` reviewed with stock 66,698, available 66,045, MOQ 1 and USD 0.3179 quantity-one price.
-- ▶ **Exact current point `H2-R2.0.2`:** select and prove the exact factory-placeable always-on service-VBUS detector/latch. The Pack/Safety powered-off-Ioff boundary follows as `H2-R2.0.3`; native R2 ECAD/KiCad starts only after both close.
+- ✅ `H2-R2.0.2`: exact `DMN2056U-7` detector, `SN74LVC1G74DCUR` ownership latch and `74HC20PW,118` release qualifier reviewed with live Standard-PCBA routes, a fail-closed truth table and USD 0.5857 exact-one component cost.
+- ▶ **Exact current point `H2-R2.0.3`:** close the Pack/Safety powered-off-Ioff boundary and separate `3V3_MAIN`/AON pull-up domains on Hub GPIO42/43; native R2 ECAD/KiCad starts only after it closes.
 - 🔒 KiCad, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H2-R2.0.2 -->
+<!-- current-substep: H2-R2.0.3 -->
 
 ## Repository
 

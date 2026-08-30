@@ -86,11 +86,14 @@ def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
     if "closed" not in authority.get("c5_electrical_join_status", ""):
         errors.append("C5 electrical pad/mux join must be explicit")
     remaining = " ".join(authority.get("remaining_h2_gates", []))
-    for token in ("service-VBUS", "MPN", "powered-off-Ioff", "Pack/Safety"):
+    for token in ("powered-off-Ioff", "Pack/Safety"):
         if token not in remaining:
             errors.append(f"remaining C5 production gates must name {token}")
     resolved = " ".join(authority.get("resolved_h2_gates", []))
-    for token in ("H2-R2.0.1", "FSUSB42MUX", "C11355"):
+    for token in (
+        "H2-R2.0.1", "FSUSB42MUX", "C11355", "H2-R2.0.2",
+        "DMN2056U-7", "SN74LVC1G74DCUR", "74HC20PW,118",
+    ):
         if token not in resolved:
             errors.append(f"resolved C5 production gates must name {token}")
 
@@ -296,8 +299,10 @@ def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
     ))
     if route.get("selection_status") != "accepted" or not inventory_complete:
         errors.append("C11355 production route must remain fail-closed until live route/MOQ/price are proven")
-    if c5_mux.get("ownership", {}).get("service_vbus", {}).get("detector_and_latch_mpn_status") == "accepted":
-        errors.append("service-VBUS detector/latch must remain open until an exact MPN is selected")
+    service_vbus = c5_mux.get("ownership", {}).get("service_vbus", {})
+    if service_vbus.get("detector_and_latch_mpn_status") != "accepted" \
+            or not c5_mux.get("ownership", {}).get("detector_latch_implementation"):
+        errors.append("service-VBUS detector/latch must remain fail-closed until the exact implementation is accepted")
 
     rf = {row["gpio"]: row for row in source["rf_rp"]["pin_map"]}
     expected_cap_rows = {
@@ -415,9 +420,9 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
         intro = (
             "Это точная рабочая H1-R2.31-карта GPIO двух независимых RP2354B и их пяти "
             "сигналов через M1. Точный электрический контракт module-pad/IO-mux C5 присоединён. "
-            "Она ещё не разрешает KiCad: live production route FSUSB42MUX/C11355 прошёл "
-            "ревью, но до нового R2 H2 остаются точный MPN detector/latch service-VBUS "
-            "и граница Pack/Safety I²C."
+            "Она ещё не разрешает KiCad: live production route FSUSB42MUX/C11355 и "
+            "точная реализация detector/latch/release service-VBUS прошли ревью; до нового "
+            "R2 H2 остаётся powered-off-Ioff граница Pack/Safety I²C."
         )
         names = {"hub_rp": "Передний Hub RP", "rf_rp": "Задний RF RP"}
         cols = "| GPIO | Сеть | Направление | Контроллер | Физический endpoint | Reset / pull |"
@@ -432,9 +437,9 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
         intro = (
             "This is the exact H1-R2.31 working GPIO map for the two independent RP2354B domains "
             "and their five M1 signals. The exact C5 module-pad/IO-mux electrical contract is joined. "
-            "It still does not authorize KiCad: the live FSUSB42MUX/C11355 production route is "
-            "reviewed, while an exact service-VBUS detector/latch MPN and Pack/Safety I²C boundary "
-            "remain fail-closed before a new R2 H2 export."
+            "It still does not authorize KiCad: the live FSUSB42MUX/C11355 production route and "
+            "the exact service-VBUS detector/latch/release implementation are reviewed, while the "
+            "Pack/Safety I²C powered-off-Ioff boundary remains fail-closed before a new R2 H2 export."
         )
         names = {"hub_rp": "Front Hub RP", "rf_rp": "Rear RF RP"}
         cols = "| GPIO | Net | Direction | Controller | Physical endpoint | Reset / pull |"

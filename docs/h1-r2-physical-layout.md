@@ -78,8 +78,6 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted
 
 ### Preconditions before R2 H2 / KiCad
 
-- timestamp an exact live JLC stock-or-explicit-route, MOQ and price for onsemi FSUSB42MUX / C11355
-- select and factory-validate the exact service-VBUS detector/latch MPN used by the closed C5 electrical ownership contract
 - instantiate and prove the exact powered-off-Ioff isolation boundary and separate 3V3_MAIN/AON pull-up domains for Hub GPIO42/43 Pack/Safety I2C
 
 > Final result marker: **H1-R2.37**. H1 was reviewed on 2026-08-30.

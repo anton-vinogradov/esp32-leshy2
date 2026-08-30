@@ -4939,11 +4939,51 @@
         "VCC": {"physical": "5", "role": "power"}
       }
     },
+    "nexperia_74hc20pw_118": {
+      "mpn": "74HC20PW,118",
+      "kind": "tssop14_dual_four_input_nand_gate",
+      "qualification": "accepted_exact_service_release_qualifier",
+      "lifecycle": "active_orderable_factory_stocked",
+      "dimensions_mm": [5.1, 4.4, 1.2],
+      "source": {
+        "document": "74HC20 Dual 4-input NAND gate datasheet",
+        "version": "Rev. 7, 14 March 2024",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74HC20.pdf",
+        "checked": "2026-08-30"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact Nexperia 74HC20PW,118 Standard-PCBA card C546719; live stock 21,855, available 21,853, MOQ 1",
+        "url": "https://jlcpcb.com/partdetail/Nexperia-74HC20PW118/C546719",
+        "checked": "2026-08-30"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.1903,
+        "price_break": "JLCPCB 50-piece tier; exact-one price USD 0.2443",
+        "source": {"document": "JLCPCB exact-MPN live price table C546719", "url": "https://jlcpcb.com/partdetail/Nexperia-74HC20PW118/C546719", "checked": "2026-08-30"}
+      },
+      "programmable": false,
+      "contacts": {
+        "1A": {"physical": "1", "role": "signal"},
+        "1B": {"physical": "2", "role": "signal"},
+        "NC_3": {"physical": "3", "role": "no_connect"},
+        "1C": {"physical": "4", "role": "signal"},
+        "1D": {"physical": "5", "role": "signal"},
+        "1Y": {"physical": "6", "role": "signal"},
+        "GND": {"physical": "7", "role": "power"},
+        "2Y": {"physical": "8", "role": "signal"},
+        "2A": {"physical": "9", "role": "signal"},
+        "2B": {"physical": "10", "role": "signal"},
+        "NC_11": {"physical": "11", "role": "no_connect"},
+        "2C": {"physical": "12", "role": "signal"},
+        "2D": {"physical": "13", "role": "signal"},
+        "VCC": {"physical": "14", "role": "power"}
+      }
+    },
     "ti_sn74lvc1g74_dcur": {
       "mpn": "SN74LVC1G74DCUR",
       "kind": "vssop8_d_flip_flop_async_preset_clear",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
+      "qualification": "accepted_exact_async_service_and_safety_latch",
+      "lifecycle": "active_orderable_factory_stocked",
       "dimensions_mm": [3.1, 2.0, 1.1],
       "source": {
         "document": "SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet",
@@ -4952,14 +4992,14 @@
         "checked": "2026-08-17"
       },
       "orderable_source": {
-        "document": "SN74LVC1G74DCUR ACTIVE exact TI order page; authorized-distributor stock independently observed",
-        "url": "https://www.ti.com/product/SN74LVC1G74/part-details/SN74LVC1G74DCUR",
-        "checked": "2026-08-19"
+        "document": "JLCPCB exact TI SN74LVC1G74DCUR Standard-PCBA card C70285; live stock 5,518, available 5,247, MOQ 1",
+        "url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74LVC1G74DCUR/C70285",
+        "checked": "2026-08-30"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.33,
-        "price_break": "Mouser cut-tape quantity-100 tier",
-        "source": {"document": "Mouser exact-MPN published USD price table", "url": "https://www.mouser.com/en/ProductDetail/Texas-Instruments/SN74LVC1G74DCUR?qs=DS7Z8uEdLNyRBKrHxqRXjA%3D%3D", "checked": "2026-08-19"}
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.1901,
+        "price_break": "JLCPCB 50-piece tier; exact-one price USD 0.2386",
+        "source": {"document": "JLCPCB exact-MPN live price table C70285", "url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74LVC1G74DCUR/C70285", "checked": "2026-08-30"}
       },
       "programmable": false,
       "contacts": {
@@ -6653,8 +6693,8 @@
     "diodes_dmn2056u_7": {
       "mpn": "Diodes Incorporated DMN2056U-7",
       "kind": "20v_low_gate_drive_nmos_diagnostic_load_switch",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
+      "qualification": "accepted_exact_low_leakage_service_vbus_detector_and_load_switch",
+      "lifecycle": "active_orderable_factory_stocked",
       "dimensions_mm": [2.9, 2.4, 1.1],
       "source": {
         "document": "DMN2056U 20-V N-channel enhancement-mode MOSFET datasheet",
@@ -6663,11 +6703,11 @@
         "checked": "2026-08-18"
       },
       "orderable_source": {
-        "document": "DMN2056U-7 authorized/distributor stock snapshot",
-        "url": "https://www.digikey.com/en/products/detail/diodes-incorporated/DMN2056U-7/7352909",
-        "checked": "2026-08-18"
+        "document": "JLCPCB exact Diodes Incorporated DMN2056U-7 Standard-PCBA card C332302; live stock 20,209, available 20,078, MOQ 1",
+        "url": "https://jlcpcb.com/partdetail/DiodesIncorporated-DMN2056U7/C332302",
+        "checked": "2026-08-30"
       },
-      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.149, "price_break": "DigiKey cut-tape quantity-100 tier", "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/diodes-incorporated/DMN2056U-7/7352909", "checked": "2026-08-19"}},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0562, "price_break": "JLCPCB quantity-100 tier; exact-one price USD 0.0695", "source": {"document": "JLCPCB exact-MPN live price table C332302", "url": "https://jlcpcb.com/partdetail/DiodesIncorporated-DMN2056U7/C332302", "checked": "2026-08-30"}},
       "programmable": false,
       "contacts": {
         "G": {"physical": "1", "role": "signal"},

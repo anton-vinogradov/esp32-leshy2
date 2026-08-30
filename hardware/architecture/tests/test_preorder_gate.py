@@ -17,7 +17,8 @@ class PreorderGateTests(unittest.TestCase):
         self.assertEqual("LESHY2-PREORDER-R2", self.contract["contract_id"])
         truth = self.contract["current_truth"]
         self.assertIn("H1-R2.37 is the user-accepted reviewed", truth["mechanical_projection"])
-        self.assertIn("H2-R2.0.2 detector/latch closure is current", truth["current_ecad"])
+        self.assertIn("H2-R2.0.2 exact detector/latch/release implementation are reviewed", truth["current_ecad"])
+        self.assertIn("H2-R2.0.3 Pack/Safety powered-off-Ioff closure is current", truth["current_ecad"])
         self.assertIn("F2-R2.5 is in progress", truth["executable_firmware"])
         self.assertIn("F3-R2 and F-PO remain blocked", truth["instruction_emulation"])
         self.assertIn("H6 routed release candidate", truth["joined_release"])

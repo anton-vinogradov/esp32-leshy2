@@ -78,8 +78,6 @@
 
 ### Preconditions до R2 H2 / KiCad
 
-- зафиксировать exact live JLC stock-or-explicit-route, MOQ и цену для onsemi FSUSB42MUX / C11355
-- выбрать и проверить на фабрике точный MPN detector/latch service-VBUS из закрытого электрического контракта владения C5
 - реализовать и доказать точную powered-off-Ioff границу изоляции и раздельные pull-up домены 3V3_MAIN/AON для Pack/Safety I2C на Hub GPIO42/43
 
 > Итоговый маркер: **H1-R2.37**. H1 принято 2026-08-30.

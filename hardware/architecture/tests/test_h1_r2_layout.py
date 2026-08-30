@@ -98,9 +98,7 @@ class H1R2LayoutTest(unittest.TestCase):
             len(self.model["current_h1_blockers"]),
             len(self.model["current_h1_blockers_ru"]),
         )
-        self.assertEqual(3, len(self.model["pre_r2_h2_gates"]))
-        self.assertTrue(any("C11355" in row for row in self.model["pre_r2_h2_gates"]))
-        self.assertTrue(any("service-VBUS" in row for row in self.model["pre_r2_h2_gates"]))
+        self.assertEqual(1, len(self.model["pre_r2_h2_gates"]))
         self.assertTrue(any("powered-off-Ioff" in row for row in self.model["pre_r2_h2_gates"]))
         self.assertEqual("reviewed", self.model["status"])
         self.assertEqual([], self.model["dependent_h1_work"])

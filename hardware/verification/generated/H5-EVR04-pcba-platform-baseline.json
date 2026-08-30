@@ -6,7 +6,7 @@
   "checked_on": "2026-08-30",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-    "sha256": "c968cda8bad84d6f38eb16ddd78b57c4039a7e076d44a4b8c404b9285f20301c",
+    "sha256": "d0b1e6c03ceb68db32dd6ac7d93d1aa08a564f63ea2100d5474f6eaf8b5d1ac0",
     "exact_lines": 210
   },
   "r2_quantity_overlay": {

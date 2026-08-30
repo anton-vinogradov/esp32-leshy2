@@ -2,7 +2,7 @@
   "schema_version": 1,
   "contract_id": "C5-SDIO-SERVICE-MUX-1",
   "checked_on": "2026-08-30",
-  "status": "machine_contract_defined_factory_mux_route_accepted",
+  "status": "machine_contract_defined_factory_mux_and_detector_latch_routes_accepted",
   "scope": "Exact ESP32-C5-WROOM-1U-N8R8 native-service-USB versus four-bit-SDIO ownership, switching and fail-safe electrical contract. This file does not authorize ECAD release.",
   "official_evidence": [
     {
@@ -34,6 +34,30 @@
       "version": "live browser surface captured 2026-08-30T13:08:13+03:00",
       "url": "https://jlcpcb.com/partdetail/onsemi-FSUSB42MUX/C11355",
       "covers": ["exact manufacturer identity", "JLCPCB part number", "MSOP-10 package", "SMT assembly", "Economic and Standard PCBA", "live stock", "available quantity", "MOQ", "USD price tiers"]
+    },
+    {
+      "document": "Diodes Incorporated DMN2056U datasheet",
+      "version": "DS38480 Rev. 2-2; live product page checked 2026-08-30",
+      "url": "https://www.diodes.com/datasheet/download/DMN2056U.pdf",
+      "covers": ["SOT-23 pinout", "20-V VDS", "plus/minus 8-V VGS", "0.4-to-1.0-V VGS threshold", "85-milliohm maximum RDS(on) at 1.8 V", "low leakage"]
+    },
+    {
+      "document": "Texas Instruments SN74LVC1G74 datasheet",
+      "version": "Rev. G; checked 2026-08-30",
+      "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
+      "covers": ["VSSOP-8 pinout", "asynchronous active-low preset and clear", "1.65-to-5.5-V supply", "Ioff partial-power-down protection", "invalid simultaneous preset/clear state"]
+    },
+    {
+      "document": "Nexperia 74HC20 datasheet",
+      "version": "Rev. 7, 14 March 2024; checked 2026-08-30",
+      "url": "https://assets.nexperia.com/documents/data-sheet/74HC20.pdf",
+      "covers": ["TSSOP-14 pinout", "dual four-input NAND truth function", "2-to-6-V supply", "minus-40-to-125-C range", "unused-input rules"]
+    },
+    {
+      "document": "JLCPCB live detector/latch Standard-PCBA surfaces",
+      "version": "live browser surfaces captured 2026-08-30T13:36:59+03:00",
+      "url": "https://jlcpcb.com/partdetail/DiodesIncorporated-DMN2056U7/C332302",
+      "covers": ["DMN2056U-7 C332302", "SN74LVC1G74DCUR C70285", "74HC20PW,118 C546719", "two reused Yageo resistor values", "reused Yageo 100-nF bypass", "SMT assembly", "Economic and Standard PCBA", "live stock", "available quantity", "MOQ", "USD price tiers"]
     }
   ],
   "c5_module": {
@@ -168,7 +192,135 @@
       "use": "high-impedance presence sense only",
       "forbidden": ["board power input", "battery charge input", "back-power path"],
       "hardware_requirement": "An always-on hardware detector and asynchronous latch must seize service ownership without C5 or Hub firmware.",
-      "detector_and_latch_mpn_status": "unresolved_factory_gate"
+      "detector_and_latch_mpn_status": "accepted"
+    },
+    "detector_latch_implementation": {
+      "selection_status": "accepted",
+      "checked_at": "2026-08-30T13:36:59+03:00",
+      "aon_rail": "AON_SAFE_3V3",
+      "detector": {
+        "manufacturer": "Diodes Incorporated",
+        "mpn": "DMN2056U-7",
+        "device_id": "diodes_dmn2056u_7",
+        "jlcpcb_part_number": "C332302",
+        "package": "SOT-23",
+        "assembly_type": "SMT Assembly",
+        "pcba_type": ["Economic", "Standard"],
+        "part_class": "Extended",
+        "msl_level": "MSL 1",
+        "topology": "C5 service VBUS -> 1-Mohm top resistor -> MOSFET gate; 1-Mohm gate-to-ground resistor; source to ground; drain is SERVICE_VBUS_PRESENT_N with an AON 10-kohm pull-up",
+        "input_current_ua_nominal_at_5v": 2.5,
+        "gate_voltage_v_nominal_at_5v": 2.5,
+        "gate_voltage_v_min_at_4v75_with_1pct_divider": 2.351,
+        "proof": "The only service-VBUS DC path is the 2-Mohm divider to ground and the insulated MOSFET gate. No semiconductor junction or product rail is connected to service VBUS. Valid USB VBUS gives at least 2.351 V at the gate, above the exact device's 1.8-V RDS(on) test point; presence therefore pulls the active-low detector node hard low before any application domain is released.",
+        "live_inventory": {
+          "stock": 20209,
+          "available_order_quantity": 20078,
+          "moq": 1,
+          "full_reel_quantity": 3000,
+          "currency": "USD",
+          "price_tiers_usd": [
+            {"minimum_quantity": 1, "unit_price": 0.0695},
+            {"minimum_quantity": 100, "unit_price": 0.0562},
+            {"minimum_quantity": 300, "unit_price": 0.0495},
+            {"minimum_quantity": 3000, "unit_price": 0.0404},
+            {"minimum_quantity": 6000, "unit_price": 0.0365},
+            {"minimum_quantity": 9000, "unit_price": 0.0346}
+          ],
+          "route": "public JLCPCB stock",
+          "url": "https://jlcpcb.com/partdetail/DiodesIncorporated-DMN2056U7/C332302"
+        }
+      },
+      "latch": {
+        "manufacturer": "Texas Instruments",
+        "mpn": "SN74LVC1G74DCUR",
+        "device_id": "ti_sn74lvc1g74_dcur",
+        "jlcpcb_part_number": "C70285",
+        "package": "VSSOP-8",
+        "assembly_type": "SMT Assembly",
+        "pcba_type": ["Economic", "Standard"],
+        "part_class": "Extended",
+        "msl_level": "MSL 1",
+        "pin_topology": [
+          {"pin": 1, "name": "CLK", "net": "SAFETY_GROUND", "reason": "no synchronous state changes"},
+          {"pin": 2, "name": "D", "net": "SAFETY_GROUND", "reason": "no synchronous state changes"},
+          {"pin": 3, "name": "Q_N", "net": "C5_SERVICE_FREE_DIAG", "reason": "read-only AON diagnostic"},
+          {"pin": 4, "name": "GND", "net": "SAFETY_GROUND"},
+          {"pin": 5, "name": "Q", "net": "C5_SERVICE_OWNED"},
+          {"pin": 6, "name": "CLR_N", "net": "C5_SERVICE_CLEAR_N"},
+          {"pin": 7, "name": "PRE_N", "net": "SERVICE_VBUS_PRESENT_N"},
+          {"pin": 8, "name": "VCC", "net": "AON_SAFE_3V3"}
+        ],
+        "live_inventory": {
+          "stock": 5518,
+          "available_order_quantity": 5247,
+          "moq": 1,
+          "full_reel_quantity": 3000,
+          "currency": "USD",
+          "price_tiers_usd": [
+            {"minimum_quantity": 1, "unit_price": 0.2386},
+            {"minimum_quantity": 50, "unit_price": 0.1901},
+            {"minimum_quantity": 150, "unit_price": 0.1693},
+            {"minimum_quantity": 500, "unit_price": 0.1291},
+            {"minimum_quantity": 3000, "unit_price": 0.1176},
+            {"minimum_quantity": 6000, "unit_price": 0.1107}
+          ],
+          "route": "public JLCPCB stock",
+          "url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74LVC1G74DCUR/C70285"
+        }
+      },
+      "release_qualifier": {
+        "manufacturer": "Nexperia",
+        "mpn": "74HC20PW,118",
+        "device_id": "nexperia_74hc20pw_118",
+        "jlcpcb_part_number": "C546719",
+        "package": "TSSOP-14",
+        "assembly_type": "SMT Assembly",
+        "pcba_type": ["Economic", "Standard"],
+        "part_class": "Extended",
+        "msl_level": "MSL 1",
+        "used_gate": {
+          "inputs": ["SERVICE_VBUS_PRESENT_N", "C5_EN_LOW_PROOF", "HUB_SDIO_HIGH_Z_PROOF", "AON_SERVICE_RELEASE_REQ"],
+          "output": "C5_SERVICE_CLEAR_N",
+          "function": "four-input NAND; CLR_N can go low only when VBUS is absent and all three release proofs are high"
+        },
+        "unused_gate": "tie all four inputs to SAFETY_GROUND; leave the deterministic-high output unconnected",
+        "live_inventory": {
+          "stock": 21855,
+          "available_order_quantity": 21853,
+          "moq": 1,
+          "full_reel_quantity": 2500,
+          "currency": "USD",
+          "price_tiers_usd": [
+            {"minimum_quantity": 1, "unit_price": 0.2443},
+            {"minimum_quantity": 50, "unit_price": 0.1903},
+            {"minimum_quantity": 150, "unit_price": 0.1672},
+            {"minimum_quantity": 500, "unit_price": 0.1384},
+            {"minimum_quantity": 2500, "unit_price": 0.1256},
+            {"minimum_quantity": 5000, "unit_price": 0.1178}
+          ],
+          "route": "public JLCPCB stock",
+          "url": "https://jlcpcb.com/partdetail/Nexperia-74HC20PW118/C546719"
+        }
+      },
+      "passives": [
+        {"quantity": 2, "role": "VBUS-to-gate and gate-to-ground divider", "mpn": "RC0402FR-071ML", "jlcpcb_part_number": "C138033", "value": "1 Mohm 1%", "stock": 1854892, "available_order_quantity": 1781522, "moq": 1, "unit_price_usd_quantity_1": 0.0041},
+        {"quantity": 1, "role": "SERVICE_VBUS_PRESENT_N AON pull-up", "mpn": "RC0402FR-0710KL", "jlcpcb_part_number": "C60490", "value": "10 kohm 1%", "stock": 10270546, "available_order_quantity": 7748753, "moq": 1, "unit_price_usd_quantity_1": 0.0037},
+        {"quantity": 2, "role": "latch and NAND local bypass", "mpn": "CC0402KRX7R9BB104", "jlcpcb_part_number": "C131394", "value": "100 nF 50 V X7R 10%", "stock": 8992823, "available_order_quantity": 7838802, "moq": 1, "unit_price_usd_quantity_1": 0.0107}
+      ],
+      "truth_table": [
+        {"service_vbus": "present", "present_n": 0, "release_proofs": "X", "pre_n": 0, "clear_n": 1, "result": "asynchronously set and hold C5_SERVICE_OWNED=1"},
+        {"service_vbus": "absent", "present_n": 1, "release_proofs": "not all high", "pre_n": 1, "clear_n": 1, "result": "hold the previous ownership state"},
+        {"service_vbus": "absent", "present_n": 1, "release_proofs": "all high", "pre_n": 1, "clear_n": 0, "result": "clear C5_SERVICE_OWNED=0 for runtime SDIO"}
+      ],
+      "invariants": [
+        "PRE_N and CLR_N cannot both be low because SERVICE_VBUS_PRESENT_N is both PRE_N and one input of the clear NAND.",
+        "C5, Hub and mux remain in the global AON-POR safe shell until either asynchronous preset or qualified clear has established a valid ownership state.",
+        "No C5, Hub or S3 firmware output reaches PRE_N, CLR_N or the VBUS detector.",
+        "The explicit AON release request is necessary but cannot clear ownership unless VBUS absence, C5 EN low and Hub SDIO high-Z are simultaneously proven in hardware."
+      ],
+      "exact_one_component_cost_usd": 0.5857,
+      "release_rule": "Accepted for native R2 schematic use. Recheck every exact JLC number, Standard-PCBA eligibility, stock/explicit route, MOQ and price at architecture freeze and immediately before the exact-one order."
     },
     "latch": {
       "signal": "C5_SERVICE_OWNED",
@@ -237,7 +389,7 @@
     "required_later_integration": [
       "replace the historical one-bit C5 map in the atomic G2F/KiCad source after H0-R2 acceptance",
       "bind Hub-side DAT0..DAT3/CMD/CLK to the accepted dual-RP pin map without changing this C5 physical assignment",
-      "select and live-validate the service-VBUS detector/latch implementation and production mux route",
+      "instantiate the accepted service-VBUS detector/latch and production mux routes without changing their truth tables",
       "promote 40 MHz target semantics into the top-level H0 transport contract after HIL readiness review"
     ]
   }

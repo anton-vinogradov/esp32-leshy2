@@ -66,7 +66,7 @@ GPIO заднего RP и контакты M1 35–36 остаются резе�
 <a id="h2"></a>
 ## H2 · Production-схема
 
-**Статус:** ▶️ сейчас **`H2-R2.0.2`**.
+**Статус:** ▶️ сейчас **`H2-R2.0.3`**.
 
 Прежний результат G2F/H2/KiCad с проведённым ревью сохранён как историческое
 single-RP evidence R1 и явно отменён как current authority. Новый H2 R2 начат,
@@ -77,9 +77,10 @@ single-RP evidence R1 и явно отменён как current authority. Но�
 1. ✅ `H2-R2.0.1`: точный live-маршрут Standard PCBA onsemi `FSUSB42MUX` /
    JLCPCB `C11355` прошёл ревью: stock 66 698; доступно 66 045; MOQ 1;
    USD 0,3179 при количестве 1;
-2. ▶ `H2-R2.0.2`: выбрать и доказать точный устанавливаемый фабрикой always-on
-   detector/latch service-VBUS;
-3. ⏳ `H2-R2.0.3`: закрыть powered-off-Ioff Pack/Safety I²C с раздельными pull-up
+2. ✅ `H2-R2.0.2`: точные detector `DMN2056U-7` / `C332302`, latch владения
+   `SN74LVC1G74DCUR` / `C70285` и release-qualifier `74HC20PW,118` / `C546719`
+   прошли ревью вместе с полными Standard-PCBA routes и fail-closed truth table;
+3. ▶ `H2-R2.0.3`: закрыть powered-off-Ioff Pack/Safety I²C с раздельными pull-up
    `3V3_MAIN`/AON на Hub GPIO42/43.
 
 [Живые результаты prerequisites](h2-r2-electrical-prerequisites.ru.md).

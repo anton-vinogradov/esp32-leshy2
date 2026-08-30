@@ -67,7 +67,7 @@ H1 has no physical blocker. The complete mock-up was explicitly accepted on
 <a id="h2"></a>
 ## H2 · Production schematic
 
-**Status:** ▶️ current at **`H2-R2.0.2`**.
+**Status:** ▶️ current at **`H2-R2.0.3`**.
 
 The former reviewed G2F/H2/KiCad result is preserved as historical single-RP
 R1 evidence and is explicitly superseded as current authority. The new R2 H2
@@ -78,9 +78,10 @@ Exact current checklist:
 1. ✅ `H2-R2.0.1`: exact onsemi `FSUSB42MUX` / JLCPCB `C11355` live
    Standard-PCBA route reviewed: stock 66,698; available 66,045; MOQ 1;
    USD 0.3179 at quantity 1;
-2. ▶ `H2-R2.0.2`: select and prove the exact factory-placeable always-on
-   service-VBUS detector/latch;
-3. ⏳ `H2-R2.0.3`: close the powered-off-Ioff Pack/Safety I²C boundary with separate
+2. ✅ `H2-R2.0.2`: exact `DMN2056U-7` / `C332302` detector,
+   `SN74LVC1G74DCUR` / `C70285` ownership latch and `74HC20PW,118` / `C546719`
+   release qualifier reviewed with complete Standard-PCBA routes and fail-closed truth table;
+3. ▶ `H2-R2.0.3`: close the powered-off-Ioff Pack/Safety I²C boundary with separate
    `3V3_MAIN`/AON pull-ups on Hub GPIO42/43.
 
 [Live prerequisite results](h2-r2-electrical-prerequisites.md).

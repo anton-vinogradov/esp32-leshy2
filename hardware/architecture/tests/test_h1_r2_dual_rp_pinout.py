@@ -109,8 +109,10 @@ class H1R2DualRPPinoutTest(unittest.TestCase):
         audit = MODULE.build(self.source, self.h0)
         self.assertFalse(audit["authority"]["r2_h2_authorized"])
         self.assertIn("closed", audit["authority"]["c5_electrical_join_status"])
-        self.assertIn("C11355", " ".join(audit["authority"]["resolved_h2_gates"]))
-        self.assertIn("service-VBUS", " ".join(audit["authority"]["remaining_h2_gates"]))
+        resolved = " ".join(audit["authority"]["resolved_h2_gates"])
+        self.assertIn("C11355", resolved)
+        self.assertIn("SN74LVC1G74DCUR", resolved)
+        self.assertNotIn("service-VBUS", " ".join(audit["authority"]["remaining_h2_gates"]))
         self.assertIn("Pack/Safety", " ".join(audit["authority"]["remaining_h2_gates"]))
         c5 = [row for row in self.source["hub_rp"]["pin_map"] if row["net"].startswith("C5_SDIO_")]
         self.assertEqual(6, len(c5))

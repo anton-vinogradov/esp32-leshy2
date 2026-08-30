@@ -13,7 +13,7 @@
 - Current orderability evidence exists for **210/210** used lines; **0** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **201/210** lines.
 - Of the remaining **9** unpriced lines, **9** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **1038/1052** supplied placements; their partial subtotals are `base_product` — USD 252.3390. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **1038/1052** supplied placements; their partial subtotals are `base_product` — USD 251.9207. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **210/210** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -485,12 +485,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Diodes Incorporated DMN2056U-7</code> — 3 × USD 0.1490 = USD 0.4470</summary>
+<details><summary><code>Diodes Incorporated DMN2056U-7</code> — 3 × USD 0.0562 = USD 0.1686</summary>
 
 - Device id: `diodes_dmn2056u_7`.
 - Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/diodes-incorporated/DMN2056U-7/7352909).
+- Comparable basis: JLCPCB quantity-100 tier; exact-one price USD 0.0695; target quantity `100`.
+- Checked: `2026-08-30`; [published source](https://jlcpcb.com/partdetail/DiodesIncorporated-DMN2056U7/C332302).
 
 </details>
 
@@ -1430,12 +1430,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>SN74LVC1G74DCUR</code> — 1 × USD 0.3300 = USD 0.3300</summary>
+<details><summary><code>SN74LVC1G74DCUR</code> — 1 × USD 0.1901 = USD 0.1901</summary>
 
 - Device id: `ti_sn74lvc1g74_dcur`.
 - Scope: `base_product`.
-- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.mouser.com/en/ProductDetail/Texas-Instruments/SN74LVC1G74DCUR?qs=DS7Z8uEdLNyRBKrHxqRXjA%3D%3D).
+- Comparable basis: JLCPCB 50-piece tier; exact-one price USD 0.2386; target quantity `100`.
+- Checked: `2026-08-30`; [published source](https://jlcpcb.com/partdetail/TexasInstruments-SN74LVC1G74DCUR/C70285).
 
 </details>
 
