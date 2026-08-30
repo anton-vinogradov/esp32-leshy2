@@ -44,15 +44,26 @@ manufacturer identity, а не унаследованы автоматическ
 Принятый `AD8314ARMZ-REEL`, новые passives Pack/Safety и `TCA9803DGKR` также
 получили точные текущие packages. Этот шаг не менял ни одного production MPN.
 
+## Contact-checkpoint H2-R2.1.3
+
+Новый 50-контактный footprint FH34 материализован по официальному чертежу
+Hirose. Сгенерированный аудит разрешает все 1 504 контакта, принадлежащие 208
+board groups: 1 501 является контактами footprints, ещё три — явными RF-разъёмами,
+которые уже находятся на модулях. Все именованные площадки footprints учтены как
+электрические или явно механические; фиктивные площадки carrier для разъёмов на
+модулях не создаются. Остальные 57 контактов исходного ledger из 1 561 контакта
+принадлежат пяти явным non-PCBA assemblies.
+
 ## Машинное evidence
 
 - [Контракт exact ledger](../hardware/ecad/h2-r2-symbol-footprint-contract.json)
 - [Сгенерированный ledger 213 групп](../hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json)
+- [Контракт contact-to-pad](../hardware/ecad/h2-r2-contact-materialization-contract.json)
+- [Сгенерированная материализация контактов](../hardware/ecad/generated/H2-R2-contact-materialization.json)
 - [Текущий native project inventory](h2-r2-native-inventory.ru.md)
 
 ## Текущая граница
 
-Текущая точка — **`H2-R2.1.3`**: материализовать controlled symbols и
-единственную новую геометрию FH34, затем соединить rails, контакты M1, domain
-transports и явные NC в трёх native-проектах. Placement, routing, печать и
-заказ остаются заблокированы.
+Текущая точка — **`H2-R2.1.3`**: создать controlled R2 symbol library, затем
+соединить rails, контакты M1, domain transports и явные NC в трёх native-проектах.
+Placement, routing, печать и заказ остаются заблокированы.

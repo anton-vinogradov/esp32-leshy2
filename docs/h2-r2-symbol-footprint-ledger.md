@@ -46,15 +46,26 @@ The accepted `AD8314ARMZ-REEL`, the new Pack/Safety passives and
 `TCA9803DGKR` are also assigned their exact current packages. No production MPN
 was changed by this step.
 
+## H2-R2.1.3 contact checkpoint
+
+The new 50-contact FH34 footprint is now materialized from the official Hirose
+drawing. A generated contact audit resolves all 1,504 contacts belonging to the
+208 board groups: 1,501 are footprint contacts and three are explicit RF
+receptacles already carried by their modules. All named footprint pads are
+claimed as electrical or explicitly mechanical; no carrier pad is invented for
+an on-module receptacle. The remaining 57 contacts in the 1,561-contact source
+ledger belong to the five explicit non-PCBA assemblies.
+
 ## Machine evidence
 
 - [Exact ledger contract](../hardware/ecad/h2-r2-symbol-footprint-contract.json)
 - [Generated 213-group ledger](../hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json)
+- [Contact-to-pad contract](../hardware/ecad/h2-r2-contact-materialization-contract.json)
+- [Generated contact materialization](../hardware/ecad/generated/H2-R2-contact-materialization.json)
 - [Current native project inventory](h2-r2-native-inventory.md)
 
 ## Current boundary
 
-The current point is **`H2-R2.1.3`**: materialize the controlled symbols and the
-single new FH34 geometry, then join rails, M1 contacts, domain transports and
-explicit NCs in the three native projects. Placement, routing, fabrication and
-ordering remain blocked.
+The current point is **`H2-R2.1.3`**: generate the controlled R2 symbol library,
+then join rails, M1 contacts, domain transports and explicit NCs in the three
+native projects. Placement, routing, fabrication and ordering remain blocked.

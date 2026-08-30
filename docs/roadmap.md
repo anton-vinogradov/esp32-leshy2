@@ -139,8 +139,9 @@ marker and current checklist; it is never presented as review of the whole phase
 
 **Exact marker: `H2-R2.1.3`.** All pre-ECAD electrical prerequisites, the
 native R2 source/sheet/component inventory and the exact symbol/contact/value/
-footprint ledger are reviewed. Controlled definitions and joined nets are current;
-placement and routing have not started.
+footprint ledger are reviewed. Contact-to-pad materialization is complete;
+the controlled symbol library is the exact current checkpoint before joined nets.
+Placement and routing have not started.
 
 - ✅ `H2-R2.0.1`: exact onsemi `FSUSB42MUX` / `C11355` Standard-PCBA route
   reviewed from the live surface: stock 66,698; available 66,045; MOQ 1;
@@ -157,8 +158,12 @@ placement and routing have not started.
 - ✅ `H2-R2.1.2`: 208 board groups have one symbol and footprint identity; five
   non-PCBA groups are explicit; 1,561 logical contacts and all sheet affinities
   are hash-bound with zero unresolved groups.
-- ▶ `H2-R2.1.3`: materialize the controlled definitions and join rails, M1,
-  domain transports and explicit NCs in the three native R2 projects.
+- ✅ `H2-R2.1.3` contact checkpoint: 1,504 board contacts across all 208 groups
+  map to real selected-footprint pads or three explicit on-module RF interfaces;
+  every named footprint pad is accounted for. The exact 50-contact Hirose FH34
+  footprint is materialized from the official drawing and passes KiCad parsing.
+- ▶ `H2-R2.1.3` current checkpoint: generate the controlled R2 symbol library,
+  then join rails, M1, domain transports and explicit NCs in the three projects.
 - 🔒 Schematic export, routing, quote, purchase and fabrication remain unauthorized.
 
 [Open the live prerequisite ledger](h2-r2-electrical-prerequisites.md).

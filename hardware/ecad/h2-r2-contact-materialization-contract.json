@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "id": "LESHY2-H2-R2-CONTACT-MATERIALIZATION",
+  "marker": "H2-R2.1.3",
+  "status": "current_exact_contact_to_pad_materialization",
+  "purpose": "Materialize every reviewed logical contact as either one or more real pads in the selected KiCad footprint or an explicit on-module external interface, while accounting for every named footprint pad before native nets are created.",
+  "authority": {
+    "exact_ledger": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
+    "device_register": "hardware/architecture/devices.json"
+  },
+  "kicad_reference_version": "10.0.5",
+  "rules": {
+    "footprint_pad_names_must_exist": true,
+    "every_named_footprint_pad_must_be_accounted_for": true,
+    "empty_number_mechanical_or_paste_pads_are_ignored": true,
+    "shared_electrical_pad_requires_explicit_allowance": true,
+    "external_module_interfaces_are_not_carrier_pads": true,
+    "contact_roles_and_physical_evidence_remain_device_register_authority": true,
+    "native_nets_authorized": false
+  },
+  "external_interfaces": {
+    "ebyte_e01_ml01sp4": {
+      "ANT": "on-module IPX/IPEX-family RF receptacle; off-board microcoax cable begins here"
+    },
+    "esp32_c5_wroom_1u_n8r8": {
+      "ANT1": "on-module U.FL/MHF I/AMC-compatible RF receptacle; off-board microcoax cable begins here"
+    },
+    "esp32_s3_wroom_1u_n16r8": {
+      "ANT": "on-module U.FL/MHF I/AMC-compatible RF receptacle; off-board microcoax cable begins here"
+    }
+  },
+  "contact_to_pad_overrides": {
+    "alps_ec11e18244au": {
+      "SW1": ["S1"],
+      "SW2": ["S2"]
+    },
+    "alps_skrtlae010": {
+      "C1": ["1"],
+      "NO": ["2"],
+      "C2": ["1"]
+    },
+    "cc1101rgpr": {
+      "EPAD": ["21"]
+    },
+    "gct_rfpc_sma31_fn_175_a": {
+      "RF": ["1"],
+      "GROUND_TOP_LEFT": ["2"],
+      "GROUND_TOP_RIGHT": ["3"],
+      "GROUND_BOTTOM_LEFT": ["4"],
+      "GROUND_BOTTOM_RIGHT": ["5"]
+    },
+    "gct_rfpc_sma32_fn_175_a": {
+      "RF": ["1"],
+      "GROUND_TOP_LEFT": ["2"],
+      "GROUND_TOP_RIGHT": ["3"],
+      "GROUND_BOTTOM_LEFT": ["4"],
+      "GROUND_BOTTOM_RIGHT": ["5"]
+    },
+    "gct_usb4105_gf_a": {
+      "SHIELD": ["SH"]
+    },
+    "hirose_dm3at_sf_pejm5": {
+      "DETECT_A": ["9"],
+      "DETECT_B": ["10"],
+      "SHIELD": ["SH"]
+    },
+    "hirose_ufl_r_smt_1_10": {
+      "CENTER": ["1"],
+      "SHELL": ["2"]
+    },
+    "jae_dx07s016ja1r1500": {
+      "SHIELD": ["SH"]
+    },
+    "keystone_1048p": {
+      "SLOT0_POS": ["1"],
+      "SLOT0_NEG": ["2"],
+      "SLOT1_POS": ["3"],
+      "SLOT1_NEG": ["4"]
+    },
+    "kyocera_avx_cp0603q5425entr": {
+      "RF_IN": ["IN"],
+      "RF_OUT": ["OUT"],
+      "COUPLED_FWD": ["CPL"],
+      "TERMINATION_50R": ["TERM"]
+    },
+    "liteon_ltst_c190kfkt": {
+      "K": ["1"],
+      "A": ["2"]
+    },
+    "liteon_ltst_c190krkt": {
+      "K": ["1"],
+      "A": ["2"]
+    },
+    "pui_as02404po": {
+      "PLUS": ["+"],
+      "MINUS": ["-"]
+    },
+    "seeed_1125r_smt_4p": {
+      "GND": ["1"],
+      "5V": ["2"],
+      "SIG0": ["3"],
+      "SIG1": ["4"]
+    },
+    "tca6424argjr": {
+      "EPAD": ["33"]
+    },
+    "ti_csd87313dms": {
+      "D_COMMON": ["2", "3", "9"]
+    },
+    "ti_tpd4s201_rukr": {
+      "GND_PAD": ["21"]
+    },
+    "ti_tpd8e003_dqdr": {
+      "GND": ["9"]
+    },
+    "ti_tps2553drvr_1": {
+      "POWERPAD": ["7"]
+    },
+    "ti_tps25751d_refr": {
+      "PPHV": ["20"],
+      "VBUS_IN": ["23"],
+      "VBUS": ["32"],
+      "PP5V": ["34"],
+      "GND_PAD": ["39"],
+      "DRAIN_PAD": ["40"]
+    },
+    "ti_tpul2g223_bqbr": {
+      "GND": ["8", "17"]
+    },
+    "ti_tvs2200_drvr": {
+      "GND": ["1", "2", "3", "7"],
+      "IN": ["4", "5", "6"]
+    },
+    "vishay_vemd1060x01": {
+      "ANODE": ["1"],
+      "CATHODE": ["2"]
+    },
+    "vishay_vsmy14940": {
+      "ANODE": ["1"],
+      "CATHODE": ["2"]
+    }
+  },
+  "mechanical_only_pads": {
+    "alps_ec11e18244au": ["MP"],
+    "alps_skrtlae010": ["MP"],
+    "hirose_df40c_40dp_0_4v_51": ["MP"],
+    "hirose_fh34srj_50s_0_5sh_50": ["MP1", "MP2"]
+  },
+  "allowed_shared_electrical_pads": {
+    "alps_skrtlae010": {
+      "1": ["C1", "C2"]
+    }
+  },
+  "new_local_footprint_geometry": {
+    "hirose_fh34srj_50s_0_5sh_50": {
+      "footprint": "Leshy2_R2:FH34SRJ-50S-0.5SH-50",
+      "manufacturer_source": "Hirose FH34SRJ-50S-0.5SH(50) official drawing",
+      "evidence_checked_at": "2026-08-30",
+      "positions": 50,
+      "pitch_mm": 0.5,
+      "body_mm": [27.0, 3.8, 1.0],
+      "contact_center_span_mm": 24.5,
+      "contact_pad_mm": [0.3, 0.8],
+      "contact_to_fitting_row_offset_mm": 3.3,
+      "fitting_center_span_mm": 26.1,
+      "fitting_outer_span_mm": 26.9,
+      "fitting_pad_mm": [0.8, 0.8]
+    }
+  },
+  "authorization": {
+    "exact_contact_materialization": true,
+    "footprint_files": true,
+    "symbol_library": false,
+    "schematic_nets": false,
+    "kicad_project_creation": false,
+    "pcb_placement_or_routing": false,
+    "fabrication": false,
+    "ordering": false
+  }
+}

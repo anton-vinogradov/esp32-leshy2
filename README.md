@@ -21,7 +21,10 @@
 > projects, 23 sheets, six domains and 213 exact component groups. The exact
 > symbol/contact/footprint ledger is reviewed at `H2-R2.1.2`: 208 board groups,
 > five explicit non-PCBA groups and 1,561 logical contacts. Native symbol/
-> footprint materialization and joined nets are now in progress; ordering remains blocked.
+> footprint materialization has passed its first machine checkpoint: all 1,504
+> board contacts are accounted for against real selected-footprint pads or three
+> explicit on-module RF interfaces, with zero unclaimed named pads. The controlled
+> R2 symbol library and joined nets are next; ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad

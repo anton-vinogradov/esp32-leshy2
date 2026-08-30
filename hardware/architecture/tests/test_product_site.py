@@ -774,7 +774,7 @@ class ProductSiteTests(unittest.TestCase):
                 "dual-RP GPIO/M1",
                 "взаимоисключающий Cap-слот U214/U219",
                 "Native R2 inventory проведён ревью как `H2-R2.1.1`",
-                "материализуются native symbols/footprints и joined nets",
+                "materialization прошла первый машинный checkpoint",
                 "шесть вычислительных доменов",
             ),
             "docs/roadmap.md": (
