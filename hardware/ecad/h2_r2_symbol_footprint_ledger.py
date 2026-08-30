@@ -139,7 +139,7 @@ def build() -> dict:
     if inventory.get("marker") != "H2-R2.1.1" or inventory.get("status") != "pass":
         errors.append("H2-R2.1.1 native inventory is not a passing input")
     groups = inventory.get("component_groups", [])
-    if len(groups) != 213:
+    if len(groups) != 242:
         errors.append("native component group count drifted")
     current_mpns = {row.get("mpn") for row in groups}
 
@@ -201,7 +201,10 @@ def build() -> dict:
             if footprint.startswith("Leshy2_R2:"):
                 new_exact_geometry += 1
 
-        affinity = sheet_overrides.get(device_id, hint.get("native_affinity", []))
+        affinity = sheet_overrides.get(
+            device_id,
+            hint.get("native_affinity", []) + group.get("r2_sheet_assignment", []),
+        )
         affinity = sorted(set(affinity))
         if not affinity:
             errors.append(f"component group has no native R2 sheet affinity: {device_id}")
@@ -245,8 +248,8 @@ def build() -> dict:
     rows.sort(key=lambda row: row["device_id"])
     board_rows = [row for row in rows if row["symbol_id"]]
     external_rows = [row for row in rows if not row["symbol_id"]]
-    if len(rows) != 213 or len(board_rows) != 208 or len(external_rows) != 5:
-        errors.append("expected 208 board groups plus five explicit non-PCBA groups")
+    if len(rows) != 242 or len(board_rows) != 237 or len(external_rows) != 5:
+        errors.append("expected 237 board groups plus five explicit non-PCBA groups")
     if len({row["symbol_id"] for row in board_rows}) != len(board_rows):
         errors.append("symbol identities are not one-to-one with board component groups")
     if any(not row["footprint"] for row in board_rows):

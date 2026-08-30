@@ -22,14 +22,14 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("1096 exact fitted R2 instances", result.stdout)
+        self.assertIn("1187 exact fitted R2 instances", result.stdout)
 
     def test_all_groups_quantities_projects_and_sheets_close(self):
         self.assertEqual("pass", self.ledger["status"])
         self.assertEqual([], self.ledger["errors"])
         summary = self.ledger["summary"]
-        self.assertEqual(1096, summary["fitted_board_instance_count"])
-        self.assertEqual(208, summary["component_group_count"])
+        self.assertEqual(1187, summary["fitted_board_instance_count"])
+        self.assertEqual(237, summary["component_group_count"])
         self.assertEqual(23, summary["project_graph_sheet_count"])
         self.assertEqual(len(summary["sheet_counts"]), summary["populated_sheet_count"])
         self.assertEqual(
@@ -74,6 +74,22 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
         self.assertEqual("hirose_fh34srj_50s_0_5sh_50", by_name["display_panel_connector"]["device_id"])
         self.assertEqual("ti_tca9803_dgkr", by_name["hub_safe_i2c_boundary"]["device_id"])
         self.assertEqual("RF_02_PACK_SAFETY_AON", by_name["hub_safe_i2c_boundary"]["sheet"])
+
+    def test_complete_airband_chain_is_allocated_to_one_rear_sheet(self):
+        by_name = {row["instance"]: row for row in self.rows}
+        expected = {
+            "air_input_selector": "adi_hmc544aetr",
+            "air_path_selector": "adi_hmc544aetr",
+            "air_lna": "minicircuits_pga_103_plus",
+            "air_mixer": "adi_lt5560edd_trpbf",
+            "air_lo": "skyworks_si5351a_b_gtr",
+            "air_mixer_input_transformer": "coilcraft_wbc1_1tlc",
+            "air_mixer_output_transformer": "coilcraft_wbc16_1tlc",
+        }
+        for instance, device_id in expected.items():
+            self.assertEqual(device_id, by_name[instance]["device_id"])
+            self.assertEqual("LESHY2-RF-R2", by_name[instance]["project"])
+            self.assertEqual("RF_21_BROADCAST_AIRBAND_RX", by_name[instance]["sheet"])
 
     def test_historical_source_is_explicitly_non_authoritative(self):
         source = self.ledger["sources"]["historical_instance_hints"]

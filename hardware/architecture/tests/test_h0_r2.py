@@ -53,7 +53,7 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertIn("No onboard analog or digital video receiver", accepted["video_boundary"])
         self.assertNotIn("video_contract", self.data)
         reserve = [row for row in self.data["s3"]["pin_map"] if row["direction"] == "reserve"]
-        self.assertEqual(11, len(reserve))
+        self.assertEqual(6, len(reserve))
 
     def test_hub_has_real_reserve_and_no_duplicate_gpio(self):
         hub = self.data["hub_rp"]
@@ -65,7 +65,7 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertEqual(len(gpios), len(set(gpios)))
         self.assertEqual(48, hub["gpio_budget"]["available"])
         self.assertEqual(hub["gpio_budget"]["free"], len(reserve["gpios"]))
-        self.assertEqual(2, hub["gpio_budget"]["free"])
+        self.assertEqual(1, hub["gpio_budget"]["free"])
         self.assertEqual(list(range(48)), sorted(gpios))
 
     def test_interboard_map_closes_current_and_mechanics(self):
@@ -74,7 +74,7 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertEqual(list(range(1, 81)), [row["contact"] for row in rows])
         classes = [row["class"] for row in rows]
         self.assertEqual(14, classes.count("main_power"))
-        self.assertEqual(16, classes.count("reserve"))
+        self.assertEqual(11, classes.count("reserve"))
         self.assertEqual(14, classes.count("main_return"))
         self.assertLess(m1["main_current"]["step_per_contact_a"], m1["main_current"]["contact_rating_a"])
         self.assertIn("compression stops", m1["mechanical_load_path"])
@@ -130,12 +130,12 @@ class H0R2ArchitectureTest(unittest.TestCase):
         gpios = [gpio for group in groups for gpio in group["gpios"]]
         reserve = next(group for group in groups if group["role"] == "uncommitted electrical reserve")
         committed = [gpio for group in groups if group is not reserve for gpio in group["gpios"]]
-        self.assertEqual(40, rear["gpio_budget"]["used"])
-        self.assertEqual(8, rear["gpio_budget"]["free"])
+        self.assertEqual(43, rear["gpio_budget"]["used"])
+        self.assertEqual(5, rear["gpio_budget"]["free"])
         self.assertEqual(rear["gpio_budget"]["used"], len(committed))
         self.assertEqual(list(range(48)), sorted(gpios))
         self.assertEqual(len(gpios), len(set(gpios)))
-        self.assertEqual({15, 28, 29, 32, 33, 34, 37, 38}, set(reserve["gpios"]))
+        self.assertEqual({32, 33, 34, 37, 38}, set(reserve["gpios"]))
 
     def test_airband_factory_bom_is_exact_and_costed(self):
         bom = self.data["airband_factory_bom_delta"]
@@ -190,7 +190,7 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertEqual(module.render(self.data, False), module.EN.read_text(encoding="utf-8"))
         self.assertEqual(module.render(self.data, True), module.RU.read_text(encoding="utf-8"))
         self.assertIn("0.3036 A/contact", module.EN.read_text(encoding="utf-8"))
-        self.assertIn("`16` NC reserve", module.EN.read_text(encoding="utf-8"))
+        self.assertIn("`11` NC reserve", module.EN.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

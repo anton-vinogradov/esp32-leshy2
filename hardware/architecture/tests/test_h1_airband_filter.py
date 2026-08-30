@@ -28,7 +28,8 @@ class H1AirbandFilterTest(unittest.TestCase):
     def test_factory_witnesses_are_exact_but_not_misrepresented_as_the_bom(self):
         rows = self.model["factory_feasibility_witnesses"]
         self.assertTrue(all(row["mpn"] and row["jlcpcb_part"].startswith("C") for row in rows))
-        self.assertIn("not production MPNs", self.model["decision"]["rejected"])
+        self.assertIn("not a production freeze", self.model["decision"]["rejected"])
+        self.assertIn("retuned in H3", self.model["decision"]["rejected"])
         self.assertIn("24 x 11 mm", self.model["decision"]["accepted"])
         self.assertIn("H6", self.model["decision"]["next_gate"])
         self.assertIn("before the H7 order", self.model["decision"]["next_gate"])

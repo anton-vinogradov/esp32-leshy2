@@ -6,9 +6,10 @@ This is the live prerequisite ledger for the new six-domain, dual-RP R2
 production schematic. It records verified results, not the decision history.
 All three prerequisite rows are closed. The native R2 inventory passed
 `H2-R2.1.1`; exact symbol/contact/footprint reconciliation passed
-`H2-R2.1.2`; the 4,053-endpoint native net reconciliation has also passed at
-`H2-R2.1.3`. Native KiCad project creation is current. Fabrication and ordering
-remain blocked.
+`H2-R2.1.2`; the 4,323-endpoint native net reconciliation and generation of
+the [three native KiCad projects](h2-r2-native-kicad.md) have also passed at
+`H2-R2.1.3`, including zero-finding ERC. Cross-sheet and HW↔FW reconciliation
+passed in reviewed `H2-R2.1.5`. Fabrication and ordering remain blocked.
 
 | Marker | Status | Production result |
 |---|---|---|
@@ -26,9 +27,8 @@ The buffer imposes no VCCA/VCCB ordering rule, supports 400 kHz and starts in at
 most 350 us. A stuck mailbox can remove diagnostics but cannot inhibit the
 independent `FAULT_KILL` path or local Safety watchdog.
 
-The exact current point is **`H2-R2.1.3`**: create the three native KiCad
-projects from the [reviewed net ledger](h2-r2-net-ledger.md). Quote, purchase
-and fabrication remain blocked.
+The H2 result is reviewed at **`H2-R2.1.5`**; H3 now freezes its exact inputs
+and hashes. Quote, purchase and fabrication remain blocked.
 
 ## Evidence and recheck rule
 

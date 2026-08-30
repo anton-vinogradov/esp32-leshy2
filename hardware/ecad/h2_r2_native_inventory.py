@@ -138,7 +138,8 @@ def build() -> dict:
             errors.append(f"adjustment targets missing group: {device_id}")
             continue
         rows[device_id]["quantity_per_product"] += adjustment["quantity_delta"]
-        adjustment_sheets.setdefault(device_id, []).append(adjustment["sheet"])
+        owners = adjustment.get("sheets", [adjustment.get("sheet")])
+        adjustment_sheets.setdefault(device_id, []).extend(owner for owner in owners if owner)
         rows[device_id]["r2_adjustment"] = adjustment["reason"]
 
     new_group_sheets: dict[str, list[str]] = {}
@@ -156,13 +157,13 @@ def build() -> dict:
             "mpn": device.get("mpn"),
             "quantity_per_product": addition["quantity"],
             "scope": "base_product",
-            "role": "H2-R2.0.3 exact Pack/Safety powered-off boundary",
+            "role": addition.get("role", "H2-R2.0.3 exact Pack/Safety powered-off boundary"),
             "ecad_disposition": "schematic_component_group",
             "qualification": device.get("qualification"),
             "lifecycle": device.get("lifecycle"),
             "contact_evidence": bool(device.get("contacts")),
             "jlcpcb_part_number": jlc_number({}, device),
-            "accepted_identity_source": "hardware/architecture/pack-safety-i2c-boundary-contract.json",
+            "accepted_identity_source": addition.get("identity_source", "hardware/architecture/pack-safety-i2c-boundary-contract.json"),
             "historical_cost_route_only": None,
         }
         new_group_sheets.setdefault(device_id, []).append(addition["sheet"])
@@ -197,7 +198,7 @@ def build() -> dict:
     expected_pack_quantities = {
         "ti_tca9803_dgkr": 1,
         "uniroyal_0402wgf2201tce": 25,
-        "samsung_cl05a105ka5nqnc": 2,
+        "samsung_cl05a105ka5nqnc": 7,
         "samsung_cl05b104ko5nnnc": 2,
     }
     if {key: row["quantity_per_product"] for key, row in exact_pack_groups.items()} != expected_pack_quantities:
@@ -268,7 +269,7 @@ def main() -> int:
         return 1
     print(
         "ok: H2-R2.1.1 freezes 3 native projects, 23 sheets, 6 domains, "
-        "213 exact component groups and 1106 per-product positions; no symbols or nets created"
+        "242 exact component groups and 1197 per-product positions; no symbols or nets created"
     )
     return 0
 

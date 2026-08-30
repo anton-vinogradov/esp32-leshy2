@@ -6,7 +6,7 @@ The UI and RF/power PCBs use one exact straight-SMT `Hirose FX8C-80P-SV1(92)` / 
 
 ## 80-contact budget
 
-`24` live signals · `14` main-power · `2` AON · `24` defined returns · `16` NC reserve
+`29` live signals · `14` main-power · `2` AON · `24` defined returns · `11` NC reserve
 
 The main rail uses **14** parallel contacts and the same number of primary returns. Continuous `3.75 A` is `0.2679 A/contact`; the `4.25 A` step is `0.3036 A/contact` against a `0.4 A` rating.
 
@@ -27,7 +27,8 @@ M1 is electrical/alignment only. Four exact 11.00-mm compression stops, at least
 | `37–40` | RUN, fault and UI thermal safety crossings + return |
 | `41–50` | 9 actual-TX evidence signals + safety return |
 | `51–54` | rear encoder A/B/push + return |
-| `55–64` | 10 NC reserve contacts |
+| `55–59` | AON service ownership/control and alert |
+| `60–64` | 5 NC reserve contacts |
 | `65–76` | 6 × POWER_GROUND + 3V3_MAIN pairs |
 | `77–80` | 4 NC reserve contacts |
 
@@ -89,11 +90,11 @@ M1 is electrical/alignment only. Four exact 11.00-mm compression stops, at least
 | `52` | `ENCODER_B` | `ui` |
 | `53` | `UI_ENCODER_PUSH_N` | `ui` |
 | `54` | `POWER_GROUND` | `ui_return` |
-| `55` | `NC_55` | `reserve` |
-| `56` | `NC_56` | `reserve` |
-| `57` | `NC_57` | `reserve` |
-| `58` | `NC_58` | `reserve` |
-| `59` | `NC_59` | `reserve` |
+| `55` | `C5_MUX_SEL_REQUEST` | `aon_service_control` |
+| `56` | `C5_SERVICE_PATH_ACK` | `aon_service_control` |
+| `57` | `AON_SERVICE_RELEASE_REQ` | `aon_service_control` |
+| `58` | `C5_SERVICE_OWNED` | `aon_service_status` |
+| `59` | `HUB_AON_ALERT_N` | `aon_status` |
 | `60` | `NC_60` | `reserve` |
 | `61` | `NC_61` | `reserve` |
 | `62` | `NC_62` | `reserve` |

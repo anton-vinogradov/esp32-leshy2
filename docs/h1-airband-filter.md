@@ -1,26 +1,27 @@
 # H1-R2.3 · Airband input filter
 
-A compact low-cost replacement for the large `BPF-A127+` has been tested. This is a physical-design result, not authorization to start KiCad.
+A compact low-cost replacement for the large `BPF-A127+` has been tested. H2 now carries its exact nominal BOM into the native schematic, but the production fitted state is not frozen.
 
 ![Airband filter feasibility](images/h1-airband-filter.svg)
 
 ## Result
 
-- The nominal finite-Q model passes: worst 118–137 MHz loss is `3.03 dB` against `4.5 dB`, and every named nominal stop point passes.
-- A `16386`-state value stress sweep keeps the passband within limit (`4.27 dB` against `4.5 dB`), but worst 180-MHz rejection is `34.62 dB` against `40 dB`. Values and production MPNs are therefore **not accepted**.
+- The nominal finite-Q model passes: worst 118–137 MHz loss is `3.10 dB` against `4.5 dB`, and every named nominal stop point passes.
+- A `16386`-state value stress sweep keeps the passband within limit (`4.67 dB` against `4.5 dB`), but worst 155-MHz rejection is `17.85 dB` against `20 dB`. The exact stocked H2 MPNs are therefore accepted only as the nominal ECAD state; the production fitted state is **not accepted**.
 - The serial LC route is retained, but its physical cell grows to `24 × 11 mm` and gains a via fence plus alternate-value/DNP tuning pads.
 - A lumped model cannot prove 180–2200 MHz above component SRF: H3 uses a bounded pre-layout model, H6 reruns with routed/extracted parasitics before the H7 order, and H8 closes the production state by VNA.
 
 ## Factory feasibility witnesses
 
-This is not the production filter BOM. These rows prove that the required precision serial RF-inductor classes exist on the factory surface. H2 fixes a nominal ECAD state, H6 a pre-order fitted/DNP state after extraction, and H8 the production state after VNA.
+These are checked stocked MPNs for the nominal H2 ECAD state, not yet the production filter BOM. H3 retunes against manufacturer models, H6 fixes the pre-order fitted/DNP state after extraction, and H8 checks the production state by VNA.
 
 | Exact MPN | JLCPCB | Value | Current route |
 |---|---|---|---|
-| `LQW2UASR56F00L` | [`C907989`](https://jlcpcb.com/partdetail/MurataElectronics-LQW2UASR56F00L/C907989) | 560 nH +/-1%, 1008 | 502 pieces, MOQ 1, USD 0.2618 at quantity 1 |
-| `LQW2BASR22G00L` | [`C527968`](https://jlcpcb.com/partdetail/MurataElectronics-LQW2BASR22G00L/C527968) | 220 nH +/-2%, 0805 | 180 pieces, MOQ 1, USD 0.1325 at quantity 1 |
-| `LQW2BASR33G00L` | [`C703717`](https://jlcpcb.com/partdetail/MurataElectronics-LQW2BASR33G00L/C703717) | 330 nH +/-2%, 0805 | 249 pieces, MOQ 1, USD 0.1455 at quantity 1 |
-| `LQW15AN10NG80D` | [`C3224837`](https://www.lcsc.com/product-detail/C3224837.html) | 10 nH +/-2%, 0402 | 28,540 pieces, MOQ/multiple 10, USD 0.0575 at quantity 10 |
+| `LQW2UASR56F00L` | [`C907989`](https://jlcpcb.com/partdetail/MurataElectronics-LQW2UASR56F00L/C907989) | 560 nH +/-1%, 1008 | 155 stock / 152 available, MOQ 1, USD 0.272 at quantity 1 |
+| `LQW2BASR22G00L` | [`C527968`](https://jlcpcb.com/partdetail/MurataElectronics-LQW2BASR22G00L/C527968) | 220 nH +/-2%, 0805 | 28 stock / 25 available, MOQ 1, USD 0.1324 at quantity 1 |
+| `LQW2BASR33G00L` | [`C703717`](https://jlcpcb.com/partdetail/MurataElectronics-LQW2BASR33G00L/C703717) | 330 nH +/-2%, 0805 | 4573 stock / 4548 available, MOQ 1, USD 0.1158 at quantity 1 |
+| `LQW15AN8N2G80D` | [`C307610`](https://jlcpcb.com/partdetail/MurataElectronics-LQW15AN8N2G80D/C307610) | 8.2 nH +/-2%, 0402 | 8484 stock / 8343 available, MOQ 1, USD 0.0975 at quantity 1 |
+| `CS0805-R27J-S` | [`C108271`](https://jlcpcb.com/partdetail/ChilisinElec-CS0805R27JS/C108271) | 270 nH +/-5%, Q 48 witness, 0805 | 1972 stock, MOQ 1, USD 0.0549 at quantity 1 |
 
 ## Next gate
 

@@ -2337,7 +2337,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "На внешней стороне каждой платы печатаются стабильные role/revision `UI PCB · R2-EVT1 · REV A` и `RF/PWR PCB · R2-EVT1 · REV A`; изменяемый рабочий маркер H1-R2.xx на PCB не печатается.",
             "Три nRF24 полностью перенесены на переднюю плату вместе с буферами, safety-gate и отдельным `TLV1824PWR`.",
             "Бортовой видеоприёмник, декодер, MMCX и их резервы удалены: за экраном и между антеннами нет скрытого post-PCBA модуля.",
-            "FM/SW/AM/LW/Airband, CC1101, два voice-тракта и аудио локальны задней плате; S3 напрямую ведёт i8080-8, энкодер и USB, а кнопки — через локальный TCA9539PWR. Одиннадцать бывших camera-RX GPIO остаются свободным электрическим резервом.",
+            "FM/SW/AM/LW/Airband, CC1101, два voice-тракта и аудио локальны задней плате; S3 напрямую ведёт i8080-8, энкодер и USB, а кнопки — через локальный TCA9539PWR. После замыкания reset/service-трактов свободным электрическим резервом остаются шесть GPIO.",
             "Экран физически развёрнут шлейфом к антенному торцу, как у ESP32-DIV; адаптер находится в верхней внутренней зоне, а firmware разворачивает изображение и touch на 180°. Шлейф не входит в зону LED, D-pad и боковых клавиш.",
         ]
         audit_lines = [
@@ -2345,8 +2345,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f'Минимальный встречный Z-зазор: `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
             f'Полное TX-evidence: `{result["tx_evidence_physical_register"]["detector_count"]}` точных детекторов, `{result["tx_evidence_physical_register"]["coupler_count"]}` coupler и `{result["tx_evidence_physical_register"]["local_island_count"]}` локальных островов проходят fail-closed аудит; шесть AD8314 используют принятый `AD8314ARMZ-REEL` / `C652687`.',
             "C5 DBG10 расположен рядом с S3 DBG10 и не пересекается с соседними корпусами.",
-            f'GPIO: передний RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["front_rp_gpio"]["free"]}`; задний RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["rear_rp_gpio"]["free"]}`; S3 использует 22 из 33 GPIO.',
-            "M1: все 80 контактов распределены — 24 сигнала, 14 main-power, 2 AON, 24 возврата и 16 NC-резервов.",
+            f'GPIO: передний RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["front_rp_gpio"]["free"]}`; задний RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["rear_rp_gpio"]["free"]}`; S3 использует 27 из 33 GPIO.',
+            "M1: все 80 контактов распределены — 29 сигналов, 14 main-power, 2 AON, 24 возврата и 11 настоящих NC-резервов.",
             "Механика M1: четыре 11,00-мм compression-stop, два противосдвиговых упора и независимые захваты плат; разъём не несёт ударную или изгибающую нагрузку.",
             "Шелкография антенн: генератор подтвердил отсутствие пересечений с SMA, Cap-Bus-слотом, дисплеем и монтажными keep-out.",
             "Точная посадка десяти SMA следует чертежам A1: прямоугольная RF-пята `1,87×3,30 мм` в `x=0`, четыре прямоугольные земляные лапы `1,60×3,30 мм` в `x=±2,55 мм`, край платы `y=0`. H5 фиксирует двусторонний процесс пайки, H7 осматривает все пять паек каждого разъёма на единственном собранном прототипе, H8 выполняет обычную сборку/разборку, continuity/inspection и повторную проверку каждого RF-тракта без искусственного старения, падений и vibration-программы.",
@@ -2378,7 +2378,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "Each outer face prints a stable board role/revision — `UI PCB · R2-EVT1 · REV A` and `RF/PWR PCB · R2-EVT1 · REV A`; the changing H1-R2.xx work marker is never printed on a PCB.",
             "All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.",
             "The onboard video receiver, decoder, MMCX and physical reserves are removed: no hidden post-PCBA module remains behind the display or between the antennas.",
-            "FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, encoder and USB, with buttons on its local TCA9539PWR path. Eleven former camera-RX GPIO remain uncommitted electrical reserve.",
+            "FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, encoder and USB, with buttons on its local TCA9539PWR path. Six GPIO remain uncommitted electrical reserve after reset and service closure.",
             "The panel is physically turned with its flex toward the antenna edge, as on ESP32-DIV; the adapter occupies the upper inner zone and firmware rotates display output and touch by 180°. The tail stays out of the LED, D-pad and side-key zone.",
         ]
         audit_lines = [
@@ -2386,8 +2386,8 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f'Minimum opposing Z clearance: `{result["minimum_opposing_clearance_mm"]:.2f} mm` against `{result["required_opposing_clearance_mm"]:.2f} mm` required.',
             f'Complete TX evidence: `{result["tx_evidence_physical_register"]["detector_count"]}` exact detectors, `{result["tx_evidence_physical_register"]["coupler_count"]}` couplers and `{result["tx_evidence_physical_register"]["local_island_count"]}` bounded local islands pass fail-closed audit; all six AD8314 positions use the accepted `AD8314ARMZ-REEL` / `C652687`.',
             "C5 DBG10 is relocated beside S3 DBG10 and intersects no adjacent body.",
-            f'GPIO: front RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["front_rp_gpio"]["free"]}` free; rear RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["rear_rp_gpio"]["free"]}` free; S3 uses 22 of 33 GPIO.',
-            "M1: all 80 contacts are assigned — 24 signals, 14 main-power, 2 AON, 24 returns and 16 NC reserves.",
+            f'GPIO: front RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["front_rp_gpio"]["free"]}` free; rear RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["rear_rp_gpio"]["free"]}` free; S3 uses 27 of 33 GPIO.',
+            "M1: all 80 contacts are assigned — 29 signals, 14 main-power, 2 AON, 24 returns and 11 true NC reserves.",
             "M1 mechanics: four 11.00-mm compression stops, two anti-shear datums and independent PCB capture; the connector carries no impact or bending load.",
             "Antenna silkscreen: the generator proves no overlap with SMA bodies, the Cap-Bus slot, the display or mounting keep-outs.",
             "The exact ten-SMA land pattern follows the A1 drawings: one rectangular 1.87 × 3.30-mm RF land at x=0, four rectangular 1.60 × 3.30-mm shell lands at x=±2.55 mm and board edge y=0. H5 locks the dual-face soldering process, H7 inspects all five joints per connector on the one assembled prototype, and H8 performs ordinary assembly/disassembly, continuity/inspection and every path-specific RF check without artificial ageing, drops or a vibration programme.",

@@ -1,0 +1,5 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Leshy2") (type "KiCad") (uri "${KIPRJMOD}/../../libraries/Leshy2.pretty") (options "") (descr "Repository-controlled Leshy2 exact footprints"))
+  (lib (name "Leshy2_R2") (type "KiCad") (uri "${KIPRJMOD}/../../libraries/Leshy2_R2.pretty") (options "") (descr "Repository-controlled Leshy2 R2 exact footprints"))
+)

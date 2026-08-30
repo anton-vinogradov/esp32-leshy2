@@ -190,8 +190,8 @@ def validate_sources(
                     errors.append(f"device {device_id}: cost missing {required}")
             if cost.get("currency") != "USD":
                 errors.append(f"device {device_id}: cost currency must be USD")
-            if cost.get("target_quantity") != 100:
-                errors.append(f"device {device_id}: cost target quantity must be 100")
+            if cost.get("target_quantity") not in {1, 100}:
+                errors.append(f"device {device_id}: cost target quantity must be 1 or 100")
             unit_price = cost.get("unit_price_usd")
             if (
                 isinstance(unit_price, bool)

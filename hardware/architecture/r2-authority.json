@@ -4,8 +4,8 @@
   "current_authority": "hardware/architecture/h0-r2-rebaseline.json",
   "current_pin_authority": "hardware/architecture/h1-r2-dual-rp-pinout.json",
   "current_physical_authority": "hardware/product-design/h1-r2-placement.json",
-  "current_r2_h2_export": false,
-  "r2_kicad_started": false,
+  "current_r2_h2_export": true,
+  "r2_kicad_started": true,
   "historical_r1_inputs": [
     "hardware/architecture/candidates/G2F-3I.json",
     "hardware/architecture/target-integration-contract.json",
@@ -15,7 +15,7 @@
     "hardware/ecad/generated/H2-UI40-interboard-m1.json",
     "hardware/ecad/generated/H2-RF40-interboard-m1.json"
   ],
-  "rule": "G2F/H2/KiCad is retained as reviewed historical single-RP R1 evidence only. Current H1-R2.31 closes the exact GPIO0..47 order for both RP domains and their five M1 signals. H2-R2.0.1 closes the live FSUSB42MUX/C11355 route, H2-R2.0.2 closes the exact service-VBUS detector/latch/release implementation, and H2-R2.0.3 closes the TCA9803DGKR/C2687966 Pack/Safety powered-off-Ioff boundary. Native R2 H2 may now start, while fabrication and ordering remain blocked until the new generated export contains all six H0 domains, both exact RP maps and the exact H0 80-contact M1 map and passes ERC/reconciliation.",
-  "exact_rp_gpio_order_status": "closed as H1-R2.31 working authority; not yet a generated R2 H2 export",
-  "exact_c5_mux_status": "electrical contract and exact live FSUSB42MUX/C11355 Standard-PCBA route closed as H2-R2.0.1; exact DMN2056U-7/SN74LVC1G74DCUR/74HC20PW,118 service-VBUS detector/latch/release implementation closed as H2-R2.0.2; exact TCA9803DGKR/C2687966 Pack/Safety powered-off-Ioff boundary closed as H2-R2.0.3; native R2 H2 inventory starts next"
+  "rule": "The reviewed native R2 H2 export is the current six-domain ECAD/HW/FW authority. It contains both exact RP GPIO maps, the C5 SDIO/service boundary, Pack/Safety powered-off I2C boundary and the exact 80-contact M1 map; its three KiCad projects pass ERC and machine reconciliation. Historical single-RP R1 files remain evidence only. PCB placement, routing, fabrication and ordering remain blocked by later stages.",
+  "exact_rp_gpio_order_status": "closed as H1-R2.31 and reconciled into the generated H2-R2.1.4 native export",
+  "exact_c5_mux_status": "H2-R2.0.1 through H2-R2.0.3 electrical boundaries are closed and reconciled into the generated H2-R2.1.4 native export"
 }

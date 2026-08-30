@@ -222,23 +222,31 @@ def current_override(instance: str, contact: str, sources: dict[str, dict], alia
     routes = sources["_h1_route_index"]
     allocations = sources["_h1_allocation_index"]
     route_aliases = sources["_h1_route_net_aliases"]
+    topology = sources["topology"].get("endpoint_overrides", {})
+    endpoint = f"{instance}.{contact}"
+    if endpoint in topology:
+        return topology[endpoint], "current_r2_board_local_topology"
     if instance == "s3" and contact.startswith("GPIO"):
         gpio = int(contact[4:])
         row = next((row for row in h0["s3"]["pin_map"] if row["gpio"] == gpio), None)
         if row:
+            if row.get("direction") == "reserve":
+                return None, "current_h0_reserved_gpio_explicit_nc"
             return aliases.get(row["net"], row["net"]), "current_h0_s3_pin_map"
     if instance in {"hub_rp", "rf_rp"} and contact.startswith("GPIO"):
         gpio = int(contact[4:])
         row = next((row for row in dual[instance]["pin_map"] if row["gpio"] == gpio), None)
         if row:
+            if row.get("direction") == "reserve":
+                return None, "current_h1_reserved_gpio_explicit_nc"
             return aliases.get(row["net"], row["net"]), "current_h1_dual_rp_pin_map"
     if instance == "c5" and contact.startswith("GPIO"):
         gpio = contact
         signal_to_net = {
-            "SDIO_DAT1": "C5_SDIO_D1",
-            "SDIO_DAT0": "C5_SDIO_D0",
-            "SDIO_CLK": "C5_SDIO_CLK",
-            "SDIO_CMD": "C5_SDIO_CMD",
+            "SDIO_DAT1": "C5_SDIO_D1_C5",
+            "SDIO_DAT0": "C5_SDIO_D0_C5",
+            "SDIO_CLK": "C5_SDIO_CLK_C5",
+            "SDIO_CMD": "C5_SDIO_CMD_C5",
             "SDIO_DAT3_USB_DM": "C5_GPIO13_COMMON",
             "SDIO_DAT2_USB_DP": "C5_GPIO14_COMMON",
         }
@@ -272,7 +280,6 @@ def current_override(instance: str, contact: str, sources: dict[str, dict], alia
         if not match:
             raise ValueError(f"invalid panel map row: {position}: {text}")
         return aliases.get(match.group(1), match.group(1)), "current_display_adapter_map"
-    endpoint = f"{instance}.{contact}"
     if instance in {"hub_rp", "rf_rp"} and contact.startswith("QSPI_") and contact != "QSPI_SS_USB_BOOT":
         return None, "current_exact_stacked_flash_no_connect"
     controller_gpio = instance in {"s3", "c5", "hub_rp", "rf_rp"} and contact.startswith("GPIO")
@@ -426,8 +433,12 @@ def build() -> dict:
             if disposition == "unresolved":
                 unresolved.append(row)
 
-    if len(rows) != 4053:
-        errors.append(f"current endpoint count changed: {len(rows)} != 4053")
+    if len(rows) != 4323:
+        errors.append(f"current endpoint count changed: {len(rows)} != 4323")
+    current_endpoints = {row["endpoint"] for row in rows}
+    stale_topology = sorted(set(current_sources.get("topology", {}).get("endpoint_overrides", {})) - current_endpoints)
+    if stale_topology:
+        errors.append(f"stale board-local topology endpoints: {stale_topology}")
     if unresolved:
         errors.append(f"unresolved current endpoints: {len(unresolved)}")
     if len({row["endpoint"] for row in rows}) != len(rows):
@@ -494,7 +505,7 @@ def main() -> int:
     if not OUTPUT.is_file() or OUTPUT.read_text(encoding="utf-8") != text:
         print(f"stale: {OUTPUT.relative_to(ROOT)}")
         return 1
-    print("ok: 4053 current R2 endpoints reconciled; zero unresolved; native projects not yet created")
+    print("ok: 4323 current R2 endpoints reconciled; zero unresolved; native projects not yet created")
     return 0
 
 

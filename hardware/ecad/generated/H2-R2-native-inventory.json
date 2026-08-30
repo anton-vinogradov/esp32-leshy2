@@ -6,19 +6,19 @@
   "sources": {
     "functional": {
       "path": "hardware/architecture/h0-r2-rebaseline.json",
-      "sha256": "6a3e3ae9d58f9cb5b26e4d87377d9a629191a95a004158063870f6b25a839ec3"
+      "sha256": "f46b4a95d9e76b910c5df8e5141bfea782ae550e3d5ad4badec4f2af4178c06e"
     },
     "pin_map": {
       "path": "hardware/architecture/h1-r2-dual-rp-pinout.json",
-      "sha256": "44658cf8169ddbfab365aebe6e88a96658d3d75900d754cdfa08731d35a29af0"
+      "sha256": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753"
     },
     "physical": {
       "path": "hardware/product-design/h1-r2-placement.json",
-      "sha256": "09dabb192d4e013cdfab318a1d3f3f5a0516f1e6ca60006d93379d3a39933fea"
+      "sha256": "5c87457efa793572df1ff699f499b58437590e0b5b4655492552015dac8ccadc"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "b64be8791481a77c3001ddda625c17b621ae3aaabc4fdfe523e9b1f9f690904f"
+      "sha256": "cc0b54ff05c8550905ff0d5ded05e10a69fa9d282594cd0ed7180ab577567c06"
     },
     "component_groups": {
       "path": "hardware/product-design/generated/H1-R2-cost-audit.json",
@@ -42,7 +42,7 @@
     },
     "airband": {
       "path": "hardware/product-design/h1-airband-filter.json",
-      "sha256": "ac865444b21f2be7a2b9a7baf610d785e48dd73beb8544dd455bc7b325c4ad01"
+      "sha256": "e9b1364c569a9be6109f2e8b8f17cb9cfca120019618f67bfd2f05016ca38b03"
     },
     "antennas": {
       "path": "hardware/architecture/antenna-kit.json",
@@ -282,8 +282,8 @@
     "project_count": 3,
     "sheet_count": 23,
     "domain_count": 6,
-    "component_group_count": 213,
-    "component_quantity_per_product": 1106,
+    "component_group_count": 242,
+    "component_quantity_per_product": 1197,
     "external_antenna_group_count": 8,
     "external_antenna_count": 12,
     "unresolved_pre_ecad_prerequisites": 0,
@@ -346,6 +346,40 @@
       "jlcpcb_part_number": "C652687",
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": "explicit overseas-stock/pre-order route; six required pieces satisfy MOQ 4"
+    },
+    {
+      "device_id": "adi_hmc544aetr",
+      "mpn": "HMC544AETR",
+      "quantity_per_product": 2,
+      "scope": "base_product",
+      "role": "paired fail-direct input/output isolation selectors around the converted-Airband chain",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "verified_exact_airband_direct_converted_selector",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C579555",
+      "accepted_identity_source": "hardware/architecture/h0-r2-rebaseline.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "adi_lt5560edd_trpbf",
+      "mpn": "LT5560EDD#TRPBF",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "official-reference active down-converting mixer",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "verified_exact_dc1027a_airband_mixer",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C462645",
+      "accepted_identity_source": "hardware/architecture/h0-r2-rebaseline.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "adi_ltc5532_es6_trmpbf",
@@ -432,6 +466,23 @@
       "historical_cost_route_only": "in_stock"
     },
     {
+      "device_id": "chilisin_cs0805_r27j_s",
+      "mpn": "CS0805-R27J-S",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "270-nH stock-backed H2 nominal series cell; H3 tuning open",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C108271",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
       "device_id": "ck_js102011scqn",
       "mpn": "C&K JS102011SCQN",
       "quantity_per_product": 1,
@@ -444,6 +495,40 @@
       "jlcpcb_part_number": "C221661",
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": "in_stock"
+    },
+    {
+      "device_id": "coilcraft_wbc16_1tlc",
+      "mpn": "WBC16-1TLC",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "official DC1027A 1:16 mixer-output transformer",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "verified_exact_dc1027a_output_transformer",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C22402290",
+      "accepted_identity_source": "hardware/architecture/devices.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "coilcraft_wbc1_1tlc",
+      "mpn": "WBC1-1TLC",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "official DC1027A 1:1 mixer-input transformer",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "verified_exact_dc1027a_input_transformer",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C19191631",
+      "accepted_identity_source": "hardware/architecture/devices.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "davies_1227_j",
@@ -462,7 +547,7 @@
     {
       "device_id": "diodes_2n7002dw_7_f",
       "mpn": "Diodes Incorporated 2N7002DW-7-F",
-      "quantity_per_product": 4,
+      "quantity_per_product": 5,
       "scope": "base_product",
       "role": "pack_hold, pack_status_buffer, safe_reset_sink_a, safe_reset_sink_b",
       "ecad_disposition": "schematic_component_group",
@@ -471,7 +556,11 @@
       "contact_evidence": true,
       "jlcpcb_part_number": "C83571",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "pre_order"
+      "historical_cost_route_only": "pre_order",
+      "r2_adjustment": "independent Hub reset sinks for global safety and C5 service ownership",
+      "r2_sheet_assignment": [
+        "UI_20_C5_WIFI_IR_SERVICE"
+      ]
     },
     {
       "device_id": "diodes_bat54_7_f",
@@ -490,7 +579,7 @@
     {
       "device_id": "diodes_dmn2056u_7",
       "mpn": "Diodes Incorporated DMN2056U-7",
-      "quantity_per_product": 3,
+      "quantity_per_product": 5,
       "scope": "base_product",
       "role": "backlight_mosfet, ir_tx_mosfet, pack_diag_switch",
       "ecad_disposition": "schematic_component_group",
@@ -499,7 +588,11 @@
       "contact_evidence": true,
       "jlcpcb_part_number": "C332302",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in_stock"
+      "historical_cost_route_only": "in_stock",
+      "r2_adjustment": "service-VBUS detector and C5 service-transition reset sink",
+      "r2_sheet_assignment": [
+        "UI_20_C5_WIFI_IR_SERVICE"
+      ]
     },
     {
       "device_id": "diodes_mmbt3904_7_f",
@@ -922,6 +1015,23 @@
       "historical_cost_route_only": "not_matched"
     },
     {
+      "device_id": "minicircuits_pga_103_plus",
+      "mpn": "PGA-103+",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "118-137-MHz low-noise gain stage",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "verified_exact_airband_lna",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C3008207",
+      "accepted_identity_source": "hardware/architecture/h0-r2-rebaseline.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
       "device_id": "murata_blm18pg181sn1d",
       "mpn": "Murata BLM18PG181SN1D",
       "quantity_per_product": 4,
@@ -934,6 +1044,23 @@
       "jlcpcb_part_number": "C82850",
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": "in_stock"
+    },
+    {
+      "device_id": "murata_gcm1555c1h181fa16d",
+      "mpn": "GCM1555C1H181FA16D",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "180-pF H1 band-pass shunt capacitor",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C437435",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "murata_gjm1555c1h100jb01d",
@@ -966,7 +1093,7 @@
     {
       "device_id": "murata_gjm1555c1h150jb01d",
       "mpn": "Murata GJM1555C1H150JB01D",
-      "quantity_per_product": 6,
+      "quantity_per_product": 7,
       "scope": "base_product",
       "role": "cc_crystal_load_q1, cc_crystal_load_q2, rp_clock_load_xin, rp_clock_load_xout",
       "ecad_disposition": "schematic_component_group",
@@ -975,7 +1102,28 @@
       "contact_evidence": true,
       "jlcpcb_part_number": "C88877",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in_stock"
+      "historical_cost_route_only": "in_stock",
+      "r2_adjustment": "official DC1027A differential input match",
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "murata_gjm1555c1h1r0wb01d",
+      "mpn": "GJM1555C1H1R0WB01D",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "1.0-pF H1 high-side notch capacitor",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C72134",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "murata_gjm1555c1h1r2bb01d",
@@ -990,6 +1138,91 @@
       "jlcpcb_part_number": "C72135",
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": "in_stock"
+    },
+    {
+      "device_id": "murata_gjm1555c1h1r4wb01d",
+      "mpn": "GJM1555C1H1R4WB01D",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "1.4-pF H1 high-side notch capacitor",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C2181496",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "murata_gjm1555c1h1r9wb01d",
+      "mpn": "GJM1555C1H1R9WB01D",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "1.9-pF H1 high-side notch capacitor",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C524559",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "murata_gjm1555c1h2r4wb01d",
+      "mpn": "GJM1555C1H2R4WB01D",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "2.4-pF H1 high-side notch capacitor",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C88889",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "murata_gjm1555c1h4r7bb01d",
+      "mpn": "GJM1555C1H4R7BB01D",
+      "quantity_per_product": 2,
+      "scope": "base_product",
+      "role": "4.7-pF H1 notch and LT5560 LO match capacitors",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C161327",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "murata_gjm1555c1h5r6bb01d",
+      "mpn": "GJM1555C1H5R6BB01D",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "5.6-pF H1 band-pass series capacitor",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C161329",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "murata_gjm1555c1h6r2db01d",
@@ -1018,6 +1251,23 @@
       "jlcpcb_part_number": "C2191663",
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": "in_stock"
+    },
+    {
+      "device_id": "murata_gjm1555c1h8r2bb01d",
+      "mpn": "GJM1555C1H8R2BB01D",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "8.2-pF H1 notch capacitor",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C161336",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "murata_gjm1555c1hr47bb01d",
@@ -1050,7 +1300,7 @@
     {
       "device_id": "murata_grm1555c1h102ja01d",
       "mpn": "Murata GRM1555C1H102JA01D",
-      "quantity_per_product": 1,
+      "quantity_per_product": 8,
       "scope": "base_product",
       "role": "receiver_fmi_coupling_cap",
       "ecad_disposition": "schematic_component_group",
@@ -1059,7 +1309,11 @@
       "contact_evidence": true,
       "jlcpcb_part_number": "C76947",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in_stock"
+      "historical_cost_route_only": "in_stock",
+      "r2_adjustment": "six RF/LO DC blocks plus LT5560 local high-frequency bypass",
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "murata_grm1555c1h121ja01d",
@@ -1398,6 +1652,40 @@
       "historical_cost_route_only": "in_stock"
     },
     {
+      "device_id": "murata_lqw15an12ng80d",
+      "mpn": "LQW15AN12NG80D",
+      "quantity_per_product": 2,
+      "scope": "base_product",
+      "role": "official DC1027A differential mixer-input match",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "verified_exact_dc1027a_input_match_value",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C3223181",
+      "accepted_identity_source": "hardware/architecture/devices.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "murata_lqw15an47ng80d",
+      "mpn": "LQW15AN47NG80D",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "official-reference LT5560 LO match",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "verified_exact_dc1027a_lo_match_value",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C237556",
+      "accepted_identity_source": "hardware/architecture/devices.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
       "device_id": "murata_lqw15an56ng00d",
       "mpn": "Murata LQW15AN56NG00D",
       "quantity_per_product": 1,
@@ -1410,6 +1698,108 @@
       "jlcpcb_part_number": "C167482",
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": "in stock; G tightens the inductance tolerance from +/-5% to +/-2% without changing the 0402 body or RF limits"
+    },
+    {
+      "device_id": "murata_lqw15an8n2g80d",
+      "mpn": "LQW15AN8N2G80D",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "8.2-nH H1 band-pass shunt cell",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C307610",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "murata_lqw2basr22g00l",
+      "mpn": "LQW2BASR22G00L",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "220-nH H1 band-pass series cell",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C527968",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "murata_lqw2basr33g00l",
+      "mpn": "LQW2BASR33G00L",
+      "quantity_per_product": 4,
+      "scope": "base_product",
+      "role": "330-nH H1 filter cells and PGA bias choke",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C703717",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "murata_lqw2uas1r0g00l",
+      "mpn": "LQW2UAS1R0G00L",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "1-uH H1 high-side notch cell",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C337961",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "murata_lqw2uasr56f00l",
+      "mpn": "LQW2UASR56F00L",
+      "quantity_per_product": 3,
+      "scope": "base_product",
+      "role": "560-nH H1 filter cells",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C907989",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "nexperia_74hc20pw_118",
+      "mpn": "74HC20PW,118",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "dual four-input NAND for qualified ownership release and asynchronous mux disconnect",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "accepted_exact_service_release_qualifier",
+      "lifecycle": "active_orderable_factory_stocked",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C546719",
+      "accepted_identity_source": "hardware/architecture/c5-sdio-service-mux-contract.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "UI_20_C5_WIFI_IR_SERVICE"
+      ]
     },
     {
       "device_id": "nexperia_74lvc126apw_118",
@@ -1456,7 +1846,7 @@
     {
       "device_id": "nexperia_74lvc2g14gv_125",
       "mpn": "74LVC2G14GV,125",
-      "quantity_per_product": 2,
+      "quantity_per_product": 5,
       "scope": "base_product",
       "role": "two stocked dual Schmitt inverters / два складских двойных Schmitt-инвертора",
       "ecad_disposition": "schematic_component_group",
@@ -1465,7 +1855,12 @@
       "contact_evidence": true,
       "jlcpcb_part_number": "C426708",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in stock for the complete ten-piece trial requirement"
+      "historical_cost_route_only": "in stock for the complete ten-piece trial requirement",
+      "r2_adjustment": "fail-direct HMC544A complementary mode control",
+      "r2_sheet_assignment": [
+        "UI_20_C5_WIFI_IR_SERVICE",
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "nexperia_pesd24vy1bsf",
@@ -1650,6 +2045,23 @@
       "historical_cost_route_only": "not_matched"
     },
     {
+      "device_id": "ralec_rtt023r00fth",
+      "mpn": "RTT023R00FTH",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "official DC1027A ten-milliamp mixer bias value",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "verified_stocked_exact_dc1027a_bias_value",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C166468",
+      "accepted_identity_source": "hardware/architecture/devices.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
       "device_id": "rp2354b_a4",
       "mpn": "SC1512-A4",
       "quantity_per_product": 2,
@@ -1694,9 +2106,9 @@
     {
       "device_id": "samsung_cl05a105ka5nqnc",
       "mpn": "Samsung CL05A105KA5NQNC",
-      "quantity_per_product": 2,
+      "quantity_per_product": 7,
       "scope": "base_product",
-      "role": "H2-R2.0.3 exact Pack/Safety powered-off boundary",
+      "role": "two Pack/Safety powered-off-boundary capacitors plus five Airband switched-domain bulk bypasses",
       "ecad_disposition": "schematic_component_group",
       "qualification": "verified_exact_jlcpcb_basic_stocked_standard_pcba",
       "lifecycle": "active_production_factory_stocked",
@@ -1728,7 +2140,7 @@
     {
       "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
       "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
-      "quantity_per_product": 4,
+      "quantity_per_product": 6,
       "scope": "base_product",
       "role": "four internal recovery headers / четыре внутренних recovery-разъёма",
       "ecad_disposition": "schematic_component_group",
@@ -1737,7 +2149,12 @@
       "contact_evidence": true,
       "jlcpcb_part_number": "C2932107",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in stock; four fitted per R2 device and no pre-order is required for the exact-one prototype"
+      "historical_cost_route_only": "in stock; four fitted per R2 device and no pre-order is required for the exact-one prototype",
+      "r2_adjustment": "physical internal DBG10 fixtures for Pack and Safety MSPM0 recovery",
+      "r2_sheet_assignment": [
+        "RF_02_PACK_SAFETY_AON",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
     },
     {
       "device_id": "samtec_hle_107_02_g_dv_pe_lc",
@@ -1780,6 +2197,23 @@
       "jlcpcb_part_number": "C2155558",
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": "in_stock"
+    },
+    {
+      "device_id": "skyworks_si5351a_b_gtr",
+      "mpn": "SI5351A-B-GTR",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "programmable 112-MHz Airband local oscillator",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "verified_exact_112mhz_airband_lo",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C504891",
+      "accepted_identity_source": "hardware/architecture/h0-r2-rebaseline.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "sunlord_mwsa0503s_2r2mt",
@@ -1836,6 +2270,23 @@
       "jlcpcb_part_number": "C97025",
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": "in_stock"
+    },
+    {
+      "device_id": "suzhou_liming_3225_27_00_10_10_10_a",
+      "mpn": "3225-27.00-10-10-10/A",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "factory-stocked 27-MHz SI5351 reference",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "verified_exact_si5351_27mhz_reference",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C518151",
+      "accepted_identity_source": "hardware/architecture/devices.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "tca4307dgkr",
@@ -2092,7 +2543,7 @@
     {
       "device_id": "ti_sn74lvc1g74_dcur",
       "mpn": "SN74LVC1G74DCUR",
-      "quantity_per_product": 1,
+      "quantity_per_product": 2,
       "scope": "base_product",
       "role": "safe_latch",
       "ecad_disposition": "schematic_component_group",
@@ -2101,7 +2552,11 @@
       "contact_evidence": true,
       "jlcpcb_part_number": "C70285",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in_stock"
+      "historical_cost_route_only": "in_stock",
+      "r2_adjustment": "asynchronous C5 service-ownership latch",
+      "r2_sheet_assignment": [
+        "UI_20_C5_WIFI_IR_SERVICE"
+      ]
     },
     {
       "device_id": "ti_sn74lvc2g08_dcur",
@@ -2134,7 +2589,7 @@
     {
       "device_id": "ti_sn74lvc3g07_dcur",
       "mpn": "SN74LVC3G07DCUR",
-      "quantity_per_product": 2,
+      "quantity_per_product": 1,
       "scope": "base_product",
       "role": "evidence_main_isolator, safe_fault_reset_buffer",
       "ecad_disposition": "schematic_component_group",
@@ -2143,7 +2598,11 @@
       "contact_evidence": true,
       "jlcpcb_part_number": "C131955",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in_stock"
+      "historical_cost_route_only": "in_stock",
+      "r2_adjustment": "remove obsolete cross-board evidence isolator; direct open-drain evidence already crosses M1",
+      "r2_sheet_assignment": [
+        "UI_50_FRONT_POWER_SAFETY"
+      ]
     },
     {
       "device_id": "ti_sn74lvc3g34_dcur",
@@ -2221,7 +2680,7 @@
     {
       "device_id": "ti_tlv1821_dckr",
       "mpn": "TLV1821DCKR",
-      "quantity_per_product": 2,
+      "quantity_per_product": 3,
       "scope": "base_product",
       "role": "evidence_cmp_voice, evidence_cmp_voice_v",
       "ecad_disposition": "schematic_component_group",
@@ -2230,7 +2689,11 @@
       "contact_evidence": true,
       "jlcpcb_part_number": null,
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "not_matched"
+      "historical_cost_route_only": "not_matched",
+      "r2_adjustment": "rear-local CC1101 TX-evidence comparator",
+      "r2_sheet_assignment": [
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
     },
     {
       "device_id": "ti_tlv1824_pwr",
@@ -2333,7 +2796,7 @@
     {
       "device_id": "ti_tps22919_dckr",
       "mpn": "Texas Instruments TPS22919DCKR",
-      "quantity_per_product": 7,
+      "quantity_per_product": 8,
       "scope": "base_product",
       "role": "cc_power_switch, codec_power_switch, ir_power_switch, nrf_power_switch, receiver_power_switch, sd_power_switch, voice_io_power_switch",
       "ecad_disposition": "schematic_component_group",
@@ -2342,7 +2805,11 @@
       "contact_evidence": true,
       "jlcpcb_part_number": "C2149796",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in_stock"
+      "historical_cost_route_only": "in_stock",
+      "r2_adjustment": "independently quietable Airband LNA/mixer/LO power domain",
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "ti_tps2553drvr_1",
@@ -2623,9 +3090,10 @@
       "jlcpcb_part_number": "C25879",
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": "in stock",
-      "r2_adjustment": "MAIN-side SDA/SCL pull-ups required by H2-R2.0.3",
+      "r2_adjustment": "remove two obsolete Cap-identity pull-ups, then add two MAIN-side Pack/Safety and two rear-local I2C pull-ups",
       "r2_sheet_assignment": [
-        "RF_02_PACK_SAFETY_AON"
+        "RF_02_PACK_SAFETY_AON",
+        "RF_31_REAR_CONTROLS"
       ]
     },
     {
@@ -2785,7 +3253,7 @@
     {
       "device_id": "yageo_cc0402krx7r9bb104",
       "mpn": "Yageo CC0402KRX7R9BB104",
-      "quantity_per_product": 162,
+      "quantity_per_product": 170,
       "scope": "base_product",
       "role": "147 stocked 100-nF bypass capacitors / 147 складских развязывающих конденсаторов 100 нФ",
       "ecad_disposition": "schematic_component_group",
@@ -2794,7 +3262,13 @@
       "contact_evidence": true,
       "jlcpcb_part_number": "C131394",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in stock; 500-piece price tier for the 735-piece trial requirement"
+      "historical_cost_route_only": "in stock; 500-piece price tier for the 735-piece trial requirement",
+      "r2_adjustment": "Airband power switch, LNA, clock and selector local bypasses",
+      "r2_sheet_assignment": [
+        "UI_20_C5_WIFI_IR_SERVICE",
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "yageo_cc0603krx7r0bb104",
@@ -2811,9 +3285,43 @@
       "historical_cost_route_only": "in stock"
     },
     {
+      "device_id": "yageo_cq0402brnpo9bn3r2",
+      "mpn": "CQ0402BRNPO9BN3R2",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "3.2-pF H1 high-side notch capacitor",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C1855281",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "yageo_cq0402brnpo9bn6r2",
+      "mpn": "CQ0402BRNPO9BN6R2",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "6.2-pF H1 band-pass series capacitor",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C577385",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
       "device_id": "yageo_rc0402fr_07100kl",
       "mpn": "Yageo RC0402FR-07100KL",
-      "quantity_per_product": 40,
+      "quantity_per_product": 43,
       "scope": "base_product",
       "role": "aon_efuse_ovlo_bottom, audio_capture_local_bias_bottom, audio_capture_local_bias_top, audio_capture_mic_bias, audio_capture_rx_bias, audio_vmid_bottom, audio_vmid_top, c5_evidence_threshold_top, cc_evidence_threshold_top, charger_ilim_bottom, codec_ready_pulldown, fault_assert_sense_series, headset_absent_pulldown, headset_control_p1_pulldown, headset_control_p2_pulldown, headset_control_p3_pulldown, headset_control_p4_pulldown, headset_control_p5_pulldown, headset_control_p6_pulldown, headset_control_p7_pulldown, headset_mic_select_pullup, ir_evidence_threshold_top, ir_evidence_vref_top, main_en_pulldown, mic_tx_bias, nrf0_evidence_threshold_top, nrf1_evidence_threshold_top, nrf2_evidence_threshold_top, receiver_ready_pulldown, s3_evidence_threshold_top, safe_rearm_delay_res, si_audio_sum_bias, voice_audio_on_pulldown, voice_efuse_ovlo_bottom, voice_evidence_threshold_top, voice_rx_bias, voice_uart_rx_pulldown, voice_uart_tx_pulldown, voice_v_evidence_threshold_top, voice_v_uart_rx_pulldown",
       "ecad_disposition": "schematic_component_group",
@@ -2822,7 +3330,12 @@
       "contact_evidence": true,
       "jlcpcb_part_number": "C60491",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in_stock"
+      "historical_cost_route_only": "in_stock",
+      "r2_adjustment": "AIR_RX_MODE fail-direct pull-down",
+      "r2_sheet_assignment": [
+        "UI_20_C5_WIFI_IR_SERVICE",
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "yageo_rc0402fr_07100rl",
@@ -2841,7 +3354,7 @@
     {
       "device_id": "yageo_rc0402fr_0710kl",
       "mpn": "Yageo RC0402FR-0710KL",
-      "quantity_per_product": 207,
+      "quantity_per_product": 216,
       "scope": "base_product",
       "role": "any_tx_aon_pullup, audio_arm_pulldown, audio_capture_sel_pulldown, audio_rx_sel_pulldown, audio_speaker_req_pulldown, audio_speaker_safe_pulldown, audio_tx_req_pulldown, audio_tx_safe_pulldown, backlight_fault_pullup, backlight_gate_pulldown, c5_boot_pullup, c5_dbg_id0_strap, c5_dbg_id1_strap, c5_detector_feedback_res, c5_detector_ground_res, c5_evidence_main_pullup, c5_evidence_output_pullup, c5_evidence_threshold_bottom, c5_gpio27_pullup, c5_reset_pullup, cc_band_v1_host_pulldown, cc_band_v2_host_pulldown, cc_evidence_hold_pulldown, cc_evidence_output_pullup, cc_evidence_threshold_bottom, cc_host_csn_pullup, cc_host_gdo0_pulldown, cc_host_gdo2_pulldown, cc_host_sclk_pulldown, cc_host_si_pulldown, cc_host_so_pulldown, cc_power_on_pulldown, cc_switch_a_v1_pulldown, cc_switch_a_v2_pulldown, cc_switch_b_v1_pulldown, cc_switch_b_v2_pulldown, charger_ce_pullup, charger_int_pullup, codec_ce_pullup, codec_power_on_pulldown, display_reset_pulldown, evidence_mask_p12_pulldown, evidence_mask_p13_pulldown, evidence_mask_p14_pulldown, evidence_mask_p15_pulldown, evidence_mask_p16_pulldown, evidence_mask_p17_pulldown, evidence_mask_scl_pullup, evidence_mask_sda_pullup, ext_any_req_pulldown, ext_en_pulldown, ext_evidence_input_pullup, ext_evidence_output_pullup, ext_pg_pullup, fault_assert_pullup, headphone_tip_detect_pullup, headset_detect_series, ir_carrier_host_pullup, ir_demod_host_pullup, ir_evidence_main_pullup, ir_evidence_output_pullup, ir_evidence_vref_bottom, ir_power_on_pulldown, ir_tx_carrier_pulldown, ir_tx_gate_pulldown, lcd_host_cs_pullup, nrf0_evidence_output_pullup, nrf0_evidence_threshold_bottom, nrf0_host_ce_pulldown, nrf0_host_csn_pullup, nrf0_host_irq_pullup, nrf0_host_miso_pulldown, nrf0_host_mosi_pulldown, nrf0_host_sck_pulldown, nrf0_module_ce_pulldown, nrf0_module_csn_pullup, nrf0_module_irq_pullup, nrf0_module_miso_pulldown, nrf0_module_mosi_pulldown, nrf0_module_sck_pulldown, nrf1_evidence_output_pullup, nrf1_evidence_threshold_bottom, nrf1_host_ce_pulldown, nrf1_host_csn_pullup, nrf1_host_irq_pullup, nrf1_host_miso_pulldown, nrf1_host_mosi_pulldown, nrf1_host_sck_pulldown, nrf1_module_ce_pulldown, nrf1_module_csn_pullup, nrf1_module_irq_pullup, nrf1_module_miso_pulldown, nrf1_module_mosi_pulldown, nrf1_module_sck_pulldown, nrf2_evidence_output_pullup, nrf2_evidence_threshold_bottom, nrf2_host_ce_pulldown, nrf2_host_csn_pullup, nrf2_host_irq_pullup, nrf2_host_miso_pulldown, nrf2_host_mosi_pulldown, nrf2_host_sck_pulldown, nrf2_module_ce_pulldown, nrf2_module_csn_pullup, nrf2_module_irq_pullup, nrf2_module_miso_pulldown, nrf2_module_mosi_pulldown, nrf2_module_sck_pulldown, nrf_evidence_hold_pulldown, nrf_power_on_pulldown, pack_alrt_pullup, pack_diag_gate_pulldown, pack_diag_trigger_pulldown, pack_gauge_scl_pullup, pack_gauge_sda_pullup, pack_hold_pullup, pack_hold_release_pulldown, pack_irq_gate_pulldown, pack_pfail_pullup, pd_eeprom_wp_pullup, power_fault_pullup, power_zone_temp_pullup, product_usb_fault_pullup, ptt_pullup, receiver_irq_pullup, receiver_power_on_pulldown, receiver_senb_pulldown, rf_zone_temp_pullup, rp_any_tx_main_pullup, rp_boot_pullup, rp_dbg_id0_strap, rp_dbg_id1_strap, rp_reset_pullup, run_loop_pullup, s3_boot_pullup, s3_dbg_id0_strap, s3_dbg_id1_strap, s3_detector_feedback_res, s3_detector_ground_res, s3_evidence_output_pullup, s3_evidence_threshold_bottom, s3_reset_gate_pullup, s3_reset_pullup, safe_c5_reset_gate_pullup, safe_latch_d_pullup, safe_por_pullup, safe_reset_gate_pullup, safety_fault_request_pulldown, safety_watchdog_mr_pullup, safety_watchdog_wdi_pulldown, safety_watchdog_wdo_pullup, sd_card_cmd_pullup, sd_card_dat0_pullup, sd_card_dat1_pullup, sd_card_dat2_pullup, sd_card_dat3_pullup, sd_detect_pullup, sd_host_cs_pullup, sd_host_d0_pulldown, sd_host_d1_pullup, sd_host_sck_pulldown, sd_on_pulldown, si_audio_l_sum, si_audio_r_sum, slow_io_fault_sense_pullup, slow_io_reset_pullup, slow_io_s3_evidence_pullup, speaker_amp_enable_pulldown, sys_int_pullup, touch_irq_pullup, touch_reset_pulldown, u214_req_pulldown, u214_supervisor_pullup, ui_input_down_pullup, ui_input_left_pullup, ui_input_ok_pullup, ui_input_right_pullup, ui_input_up_pullup, ui_zone_temp_pullup, unit_req_pulldown, unit_signal_iso_oe_pulldown, unit_supervisor_pullup, voice_band_p1_pulldown, voice_band_p2_pulldown, voice_band_p3_pulldown, voice_band_p4_pulldown, voice_band_p5_pulldown, voice_band_p6_pulldown, voice_band_p7_pulldown, voice_band_select_pulldown, voice_efuse_en_pullup, voice_en_pulldown, voice_evidence_hold_pulldown, voice_evidence_output_pullup, voice_evidence_threshold_bottom, voice_hl_req_pulldown, voice_pg_pullup, voice_ptt_pullup, voice_rx_series, voice_supervisor_pullup, voice_v_evidence_hold_pulldown, voice_v_evidence_threshold_bottom, voice_v_ptt_pullup",
       "ecad_disposition": "schematic_component_group",
@@ -2850,7 +3363,12 @@
       "contact_evidence": true,
       "jlcpcb_part_number": "C60490",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in_stock"
+      "historical_cost_route_only": "in_stock",
+      "r2_adjustment": "AIR_RX_EN fail-off pull-down plus two power-coherent Si5351 private-I2C pull-ups",
+      "r2_sheet_assignment": [
+        "UI_20_C5_WIFI_IR_SERVICE",
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "yageo_rc0402fr_07110kl",
@@ -2939,7 +3457,7 @@
     {
       "device_id": "yageo_rc0402fr_071ml",
       "mpn": "Yageo RC0402FR-071ML",
-      "quantity_per_product": 13,
+      "quantity_per_product": 15,
       "scope": "base_product",
       "role": "c5_evidence_hysteresis, c5_service_usb_vbus_bleeder, cc_evidence_hysteresis, fault_assert_backup_pulldown, ir_evidence_hysteresis, nrf0_evidence_hysteresis, nrf1_evidence_hysteresis, nrf2_evidence_hysteresis, rp_service_usb_vbus_bleeder, s3_evidence_hysteresis, voice_evidence_hysteresis, voice_v_evidence_hysteresis",
       "ecad_disposition": "schematic_component_group",
@@ -2948,7 +3466,11 @@
       "contact_evidence": true,
       "jlcpcb_part_number": "C138033",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in_stock"
+      "historical_cost_route_only": "in_stock",
+      "r2_adjustment": "service-VBUS high-impedance divider",
+      "r2_sheet_assignment": [
+        "UI_20_C5_WIFI_IR_SERVICE"
+      ]
     },
     {
       "device_id": "yageo_rc0402fr_07220kl",
@@ -3231,9 +3753,43 @@
       "historical_cost_route_only": "in_stock"
     },
     {
+      "device_id": "yageo_rc0402fr_0782rl",
+      "mpn": "RC0402FR-0782RL",
+      "quantity_per_product": 2,
+      "scope": "base_product",
+      "role": "12-dB nominal LO pi-pad shunts",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "verified_stocked_exact_airband_lo_pad",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C163453",
+      "accepted_identity_source": "hardware/architecture/devices.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "yageo_rc0402fr_0793r1l",
+      "mpn": "RC0402FR-0793R1L",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "12-dB nominal LO pi-pad series arm",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "verified_stocked_exact_airband_lo_pad",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C185385",
+      "accepted_identity_source": "hardware/architecture/devices.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
       "device_id": "yageo_rc0402jr_070rl",
       "mpn": "Yageo RC0402JR-070RL",
-      "quantity_per_product": 4,
+      "quantity_per_product": 12,
       "scope": "base_product",
       "role": "audio_ground_link, backlight_series_resistor, codec_adc_n_series, codec_adc_p_series",
       "ecad_disposition": "schematic_component_group",
@@ -3242,7 +3798,12 @@
       "contact_evidence": true,
       "jlcpcb_part_number": "C60485",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in_stock"
+      "historical_cost_route_only": "in_stock",
+      "r2_adjustment": "six fitted SDIO branch tuning links plus two DC1027A differential-output links",
+      "r2_sheet_assignment": [
+        "UI_20_C5_WIFI_IR_SERVICE",
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
     },
     {
       "device_id": "yageo_rc0603fr_071kl",

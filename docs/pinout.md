@@ -10,7 +10,7 @@ This is the exact H1-R2.31 working GPIO map for the two independent RP2354B doma
 
 Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety mailbox, LCD TE and backlight; no audio or broadcast ownership.
 
-**GPIO:** `46/48` used, `2` reserve. **PIO:** `8/12` used. **DMA:** `14/16` used.
+**GPIO:** `47/48` used, `1` reserve. **PIO:** `8/12` used. **DMA:** `14/16` used.
 
 | GPIO | Net | Direction | Controller | Physical endpoint | Reset / pull |
 |---:|---|---|---|---|---|
@@ -20,7 +20,7 @@ Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety
 | `3` | `S3_HUB_D3` | `io` | `PIO1_SM0_S3_QUAD` | S3 GPIO44 through ROM-UART isolation | input/high-Z; Hub-side external pull-down; isolation open |
 | `4` | `S3_HUB_SCK` | `in` | `PIO1_SM0_S3_QUAD` | S3 GPIO48 | input; external pull-down |
 | `5` | `UI_HUB_ALERT_N` | `od` | `GPIO_IRQ` | S3 GPIO3 wired-OR | released/high-Z; external pull-up |
-| `6` | `HUB_RESERVE_6` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
+| `6` | `HUB_AON_ALERT_N` | `in` | `GPIO_IRQ` | M1.59 <- wired-open-drain PD/Pack mailbox alert | input; AON-local 10-kohm pull-up |
 | `7` | `C5_SDIO_CLK` | `out` | `PIO1_SM1_2_C5_SDIO` | direct series footprint -> C5 GPIO9 / module pad 11 | input/high-Z; no fitted pull; C5 and Hub held reset until ownership is established |
 | `8` | `C5_SDIO_CMD` | `io` | `PIO1_SM1_2_C5_SDIO` | direct pull-up/series branch -> C5 GPIO10 / module pad 12 | input/high-Z; branch-local 10-kohm pull-up; C5 and Hub held reset |
 | `9` | `C5_SDIO_D0` | `io` | `PIO1_SM1_2_C5_SDIO` | direct pull-up/series branch -> C5 GPIO8 / module pad 10 | input/high-Z; branch-local 10-kohm pull-up; C5 and Hub held reset |
@@ -74,7 +74,7 @@ Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety
 
 Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, M5 Unit and exactly one signed U214/U219 Cap profile owner; no nRF24 or microSD ownership.
 
-**GPIO:** `40/48` used, `8` reserve. **PIO:** `6/12` used. **DMA:** `12/16` used.
+**GPIO:** `43/48` used, `5` reserve. **PIO:** `7/12` used. **DMA:** `12/16` used.
 
 | GPIO | Net | Direction | Controller | Physical endpoint | Reset / pull |
 |---:|---|---|---|---|---|
@@ -82,8 +82,8 @@ Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, M5 Unit and exactly one signe
 | `1` | `AUDIO_WS` | `out` | `PIO1_SM0_I2S_TX` | SN74LVC1G126DCKR Ioff isolation -> ES8311 LRCK | input/high-Z; external pull-down; codec-side isolation OE low |
 | `2` | `AUDIO_DOUT` | `out` | `PIO1_SM0_I2S_TX` | SN74LVC1G126DCKR Ioff isolation -> ES8311 SDIN | input/high-Z; external pull-down; codec-side isolation OE low |
 | `3` | `AUDIO_DIN` | `in` | `PIO1_SM1_I2S_RX` | ES8311 SDOUT -> SN74LVC1G126DCKR Ioff isolation | input; external pull-down; host-side isolation OE low |
-| `4` | `REAR_I2C_SDA` | `io` | `I2C0` | codec/Si4732/Airband/headset slow-control bus | input/open-drain released; external pull-up |
-| `5` | `REAR_I2C_SCL` | `od` | `I2C0` | codec/Si4732/Airband/headset slow-control bus | input/open-drain released; external pull-up |
+| `4` | `REAR_I2C_SDA` | `io` | `I2C0` | codec/Si4732/headset slow-control bus | input/open-drain released; external pull-up |
+| `5` | `REAR_I2C_SCL` | `od` | `I2C0` | codec/Si4732/headset slow-control bus | input/open-drain released; external pull-up |
 | `6` | `AUDIO_ARM` | `out` | `GPIO` | audio reset-safe selector gate | input/high-Z; external pull-down |
 | `7` | `M5_UNIT_SIG0` | `io` | `PIO2_SM0_1_M5_PROFILE` | isolated M5 Unit PIO-I2C/PIO-UART/GPIO profile | input/high-Z; branch isolation disabled; accessory-side profile pull |
 | `8` | `M5_UNIT_SIG1` | `io` | `PIO2_SM0_1_M5_PROFILE` | isolated M5 Unit PIO-I2C/PIO-UART/GPIO profile | input/high-Z; branch isolation disabled; accessory-side profile pull |
@@ -93,7 +93,7 @@ Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, M5 Unit and exactly one signe
 | `12` | `CAP_PIN10_BUSY_OR_NFC_CS_N` | `io` | `GPIO_IRQ_OR_OUTPUT_PROFILE` | SN74CBTLV1G125: U214 BUSY input or U219 NFC_CS_N output | input/high-Z; AON /OE pull-up disconnects pin 10; U219 profile drives inactive high before POWER_EN |
 | `13` | `CAP_IRQ` | `in` | `GPIO_IRQ` | exact-one profile return buffer: U214 DIO1 or U219 NFC_IRQ; polarity interpreted only by the signed profile | input; external pull-down; accessory branch remains off |
 | `14` | `CAP_RESET_N_OR_POWER_EN` | `out` | `GPIO` | exact-one profile command buffer: U214 RESET_N or U219 POWER_EN | input/high-Z; external pull-down holds U214 reset and U219 power disabled |
-| `15` | `RF_RESERVE_15` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
+| `15` | `RF_SLOW_IO_ALERT` | `in` | `GPIO_IRQ` | Schmitt-conditioned rear-local shared interrupt from TCA6424/voice/headset | input; raw wired interrupt has a 10-kohm 3V3_MAIN pull-up |
 | `16` | `VOICE_UART_TX` | `out` | `UART0` | SA818S-U/V selected command path | input/high-Z; external pull-up keeps UART idle |
 | `17` | `VOICE_UART_RX` | `in` | `UART0` | SA818S-U/V selected response path | input; external pull-up |
 | `18` | `VOICE_PTT_REQ_N` | `out` | `GPIO` | FAULT_KILL-dominant voice PTT gate | input/high-Z; external pull-up inhibits TX |
@@ -106,8 +106,8 @@ Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, M5 Unit and exactly one signe
 | `25` | `HUB_RF_CS_N` | `in` | `SPI1` | M1.23 <- Hub RP GPIO16 | input; external pull-up |
 | `26` | `HUB_RF_SCK` | `in` | `SPI1` | M1.24 <- Hub RP GPIO13 | input; external pull-down |
 | `27` | `HUB_RF_MISO` | `out` | `SPI1` | M1.27 -> Hub RP GPIO15 | input/high-Z; external pull-down |
-| `28` | `RF_RESERVE_28` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
-| `29` | `RF_RESERVE_29` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
+| `28` | `AIR_LO_I2C_SDA` | `io` | `PIO2_SM2_AIR_I2C` | power-coherent private Si5351 SDA | input/open-drain released; pull-up is powered only by 3V3_AIR_SWITCHED |
+| `29` | `AIR_LO_I2C_SCL` | `od` | `PIO2_SM2_AIR_I2C` | power-coherent private Si5351 SCL | input/open-drain released; pull-up is powered only by 3V3_AIR_SWITCHED |
 | `30` | `CAP_I2C_SDA` | `io` | `I2C1` | TCA4307DGKR hot-plug/stuck-bus isolator to exact-one U214/U219 contact 4 SDA | input/open-drain released; external pull-up; isolator disabled |
 | `31` | `CAP_I2C_SCL` | `od` | `I2C1` | TCA4307DGKR hot-plug/stuck-bus isolator to exact-one U214/U219 contact 3 SCL | input/open-drain released; external pull-up; isolator disabled |
 | `32` | `RF_RESERVE_32` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
@@ -131,7 +131,7 @@ Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, M5 Unit and exactly one signe
 
 | Kind | Allocation |
 |---|---|
-| PIO | `PIO0_SM0` → CC1101 full-duplex SPI; `PIO0_SM1` → exact-one U214/U219 Cap full-duplex SPI; `PIO1_SM0` → codec I2S transmit clocks/data; `PIO1_SM1` → codec I2S receive data; `PIO2_SM0` → isolated M5 Unit PIO-I2C or UART transmit profile; `PIO2_SM1` → isolated M5 Unit UART receive profile; idle in I2C/GPIO profiles |
+| PIO | `PIO0_SM0` → CC1101 full-duplex SPI; `PIO0_SM1` → exact-one U214/U219 Cap full-duplex SPI; `PIO1_SM0` → codec I2S transmit clocks/data; `PIO1_SM1` → codec I2S receive data; `PIO2_SM0` → isolated M5 Unit PIO-I2C or UART transmit profile; `PIO2_SM1` → isolated M5 Unit UART receive profile; idle in I2C/GPIO profiles; `PIO2_SM2` → power-coherent private Airband Si5351 I2C |
 | DMA | CC1101 full-duplex SPI = `2`; exact-one U214/U219 Cap full-duplex SPI = `2`; codec full-duplex I2S = `2`; Hub-RF hardware SPI1 = `2`; voice UART continuous RX = `1`; U214 GNSS UART continuous RX = `1`; M5 Unit profile full-duplex worst case = `2` |
 
 ## Hub RP ↔ RF RP through M1

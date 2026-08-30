@@ -5,18 +5,18 @@
 **The `H2-R2.1.3` net checkpoint passed on 30 August 2026.** Every logical
 contact of every fitted R2 instance now has one reviewed physical disposition:
 one native net or an explicit board no-connect. This checkpoint reconciles the
-input for native schematics; it does not yet create the three KiCad projects or
-authorize placement, routing, fabrication or ordering.
+input for native schematics; it does not authorize placement, routing,
+fabrication or ordering.
 
 ## Result
 
 | Item | Checked result |
 |---|---:|
-| Current fitted-instance contacts | 4,053 |
-| Contacts assigned to native nets | 3,814 |
-| Explicit board no-connects | 239 |
+| Current fitted-instance contacts | 4,323 |
+| Contacts assigned to native nets | 4,063 |
+| Explicit board no-connects | 260 |
 | Unresolved or hidden external contacts | 0 |
-| Canonical native nets | 908 |
+| Canonical native nets | 827 |
 | Net-name aliases collapsed at a common physical node | 46 |
 | Reconciliation errors | 0 |
 
@@ -27,9 +27,9 @@ board no-connects. Functional names that meet on one physical pin are collapsed
 to one canonical copper net; for example `AON_EFUSE_EN` is the same node as
 `AON_RAW_3V3`, not a second trace.
 
-Migration of unchanged support circuits used 3,369 same-endpoint route hints
-from the retained G2F R1 contract, plus 55 identical-device/same-pin hints from
-the retained R1 KiCad files. Another 151 historical rows only preserve explicit
+Migration of unchanged support circuits used 3,168 same-endpoint route hints
+from the retained G2F R1 contract, plus 4 identical-device/same-pin hints from
+the retained R1 KiCad files. Another 143 historical rows only preserve explicit
 NC, reserved/free or non-product-controller allocation intent. Every such
 source remains explicitly non-authoritative: it is accepted only after the
 current instance, exact device and contact match, and cannot supply R2
@@ -39,10 +39,11 @@ generated checked ledger is the new R2 schematic input.
 ## Machine evidence
 
 - [Net reconciliation contract](../hardware/ecad/h2-r2-net-ledger-contract.json)
-- [Generated 4,053-endpoint ledger](../hardware/ecad/generated/H2-R2-native-net-ledger.json)
+- [Generated 4,323-endpoint ledger](../hardware/ecad/generated/H2-R2-native-net-ledger.json)
 - [Generator](../hardware/ecad/h2_r2_net_ledger.py)
 - [Machine tests](../hardware/architecture/tests/test_h2_r2_net_ledger.py)
 
-The exact current action remains **`H2-R2.1.3`**: instantiate these reviewed
-definitions, references and nets in the three native KiCad projects. ERC,
+The three [native KiCad projects](h2-r2-native-kicad.md) now materialize this
+ledger and pass zero-finding ERC. Cross-sheet and HW↔FW reconciliation also
+passed in [H2-R2.1.5](h2-acceptance.md). H3 now freezes those inputs;
 placement, routing, fabrication and ordering remain blocked.

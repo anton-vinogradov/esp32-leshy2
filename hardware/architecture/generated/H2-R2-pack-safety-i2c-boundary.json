@@ -5,8 +5,8 @@
   "status": "pass_reviewed_exact_boundary",
   "source_sha256": {
     "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
-    "hardware/architecture/devices.json": "b64be8791481a77c3001ddda625c17b621ae3aaabc4fdfe523e9b1f9f690904f",
-    "hardware/architecture/h1-r2-dual-rp-pinout.json": "44658cf8169ddbfab365aebe6e88a96658d3d75900d754cdfa08731d35a29af0"
+    "hardware/architecture/devices.json": "cc0b54ff05c8550905ff0d5ded05e10a69fa9d282594cd0ed7180ab577567c06",
+    "hardware/architecture/h1-r2-dual-rp-pinout.json": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753"
   },
   "contract": {
     "schema_version": 1,

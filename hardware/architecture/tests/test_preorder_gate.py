@@ -17,11 +17,12 @@ class PreorderGateTests(unittest.TestCase):
         self.assertEqual("LESHY2-PREORDER-R2", self.contract["contract_id"])
         truth = self.contract["current_truth"]
         self.assertIn("H1-R2.37 is the user-accepted reviewed", truth["mechanical_projection"])
-        self.assertIn("H2-R2.0.1 through H2-R2.0.3 electrical prerequisites are reviewed", truth["current_ecad"])
-        self.assertIn("H2-R2.1.2 reviewed exact identities for 208 board groups", truth["current_ecad"])
-        self.assertIn("a checked reconciliation of all 4053 contacts", truth["current_ecad"])
-        self.assertIn("239 explicit board no-connects and 908 canonical nets", truth["current_ecad"])
-        self.assertIn("native KiCad project creation is current", truth["current_ecad"])
+        self.assertIn("H2-R2.1.5 is reviewed", truth["current_ecad"])
+        self.assertIn("H3-R2.0.1", truth["current_ecad"])
+        self.assertIn("1187 fitted board positions", truth["current_ecad"])
+        self.assertIn("827 canonical nets", truth["current_ecad"])
+        self.assertIn("all three pass ERC", truth["current_ecad"])
+        self.assertIn("173 controller pins", truth["current_ecad"])
         self.assertIn("F2-R2.5 is in progress", truth["executable_firmware"])
         self.assertIn("F3-R2 and F-PO remain blocked", truth["instruction_emulation"])
         self.assertIn("H6 routed release candidate", truth["joined_release"])
@@ -32,9 +33,9 @@ class PreorderGateTests(unittest.TestCase):
         gates = {gate["id"]: gate for gate in self.contract["gates"]}
         self.assertEqual("reviewed", gates["P0_REQUIREMENTS_ARCHITECTURE"]["status"])
         self.assertEqual("reviewed", gates["P1_CURRENT_PHYSICAL_DESIGN"]["status"])
-        self.assertEqual("in_progress", gates["P2_R2_PRODUCTION_SCHEMATIC"]["status"])
+        self.assertEqual("reviewed", gates["P2_R2_PRODUCTION_SCHEMATIC"]["status"])
+        self.assertEqual("in_progress", gates["P3_R2_VIRTUAL_ELECTRICAL"]["status"])
         for gate_id in (
-            "P3_R2_VIRTUAL_ELECTRICAL",
             "P4_JOINED_PRE_LAYOUT_REVIEW",
             "P5_EXACT_PRODUCTION_SOURCING",
             "P6_ROUTED_PRODUCTION_PACKAGE",

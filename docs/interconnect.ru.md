@@ -6,7 +6,7 @@ UI- и RF/power-платы соединяет одна точная прямая
 
 ## Бюджет 80 контактов
 
-`24` live signals · `14` main-power · `2` AON · `24` defined returns · `16` NC reserve
+`29` live signals · `14` main-power · `2` AON · `24` defined returns · `11` NC reserve
 
 Основная шина использует **14** параллельных контактов и столько же основных возвратов. При continuous `3.75 А` получается `0.2679 А/контакт`; при step `4.25 А` — `0.3036 А/контакт` против рейтинга `0.4 А`.
 
@@ -27,7 +27,8 @@ M1 выполняет только электрическую функцию и 
 | `37–40` | RUN, fault и UI thermal safety + возврат |
 | `41–50` | 9 сигналов actual-TX evidence + safety-return |
 | `51–54` | задний энкодер A/B/push + возврат |
-| `55–64` | 10 резервных NC-контактов |
+| `55–59` | AON service ownership/control и alert |
+| `60–64` | 5 резервных NC-контактов |
 | `65–76` | 6 пар POWER_GROUND + 3V3_MAIN |
 | `77–80` | 4 резервных NC-контакта |
 
@@ -89,11 +90,11 @@ M1 выполняет только электрическую функцию и 
 | `52` | `ENCODER_B` | `ui` |
 | `53` | `UI_ENCODER_PUSH_N` | `ui` |
 | `54` | `POWER_GROUND` | `ui_return` |
-| `55` | `NC_55` | `reserve` |
-| `56` | `NC_56` | `reserve` |
-| `57` | `NC_57` | `reserve` |
-| `58` | `NC_58` | `reserve` |
-| `59` | `NC_59` | `reserve` |
+| `55` | `C5_MUX_SEL_REQUEST` | `aon_service_control` |
+| `56` | `C5_SERVICE_PATH_ACK` | `aon_service_control` |
+| `57` | `AON_SERVICE_RELEASE_REQ` | `aon_service_control` |
+| `58` | `C5_SERVICE_OWNED` | `aon_service_status` |
+| `59` | `HUB_AON_ALERT_N` | `aon_status` |
 | `60` | `NC_60` | `reserve` |
 | `61` | `NC_61` | `reserve` |
 | `62` | `NC_62` | `reserve` |

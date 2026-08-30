@@ -5,10 +5,12 @@
 Здесь собраны актуальные принципиальные схемы `H0-R2`/`H1-R2.37` готового
 устройства: владельцы функций, шины, локальность RF, питание и сервисный
 доступ. Точные dual-RP GPIO/M1 и электрический стык C5 SDIO/service-mux закрыты
-как authority H1. Production ECAD-схемы R2 пока **нет**. Placement
+как authority H1. Native production ECAD R2 уже существует как три
+KiCad-проекта и проходит ERC с нулём ошибок и предупреждений;
+cross-sheet и HW/FW reconciliation проходит в результате H2-R2.1.5. Placement
 host-корпусов, все 18 компонентов U219, NFC pickup-loop, swept volume штатной
-антенны и точный дисплей EastRising с адаптером уже закрыты. H1 ждёт только
-принятия полного мокапа; затем у R2 H2 останутся три электрических prerequisites.
+антенны и точный дисплей EastRising с адаптером закрыты H1 и
+материализованы в H2.
 
 Сохранённое дерево G2F/H2/KiCad — проведённое ревью исторического **single-RP
 R1**. В текущем H0/H1 шесть доменов, передний Hub RP, задний RF RP и новый M1.
@@ -36,7 +38,7 @@ flowchart TD
   FRP["SC1512-A4 · передний RP<br/>3× nRF24, microSD"]
   RRP["SC1512-A4 · задний RP<br/>RF, audio, расширения"]
   LCD["ER-TFT035IPS-6 + ER-TPC035-6<br/>ILI9488/FT6236 · прямой 8-bit i8080 · 24 МГц"]
-  M1["Hirose FX8C-80<br/>24 сигнала · 14 main-power · 2 AON<br/>24 возврата · 16 NC"]
+  M1["Hirose FX8C-80<br/>29 сигналов · 14 main-power · 2 AON<br/>24 возврата · 11 NC"]
 
   S3 -->|"LCD_CAM TX + GDMA"| LCD
   S3 <-->|"quad data + clock"| FRP
@@ -45,8 +47,8 @@ flowchart TD
 ```
 
 Через M1 не проходят ни payload nRF, ни основной антенный RF-тракт. Удалённый
-бортовой видеотракт оставляет одиннадцать резервных GPIO S3 и два дополнительных
-NC-контакта M1. M1 выполняет только
+бортовой видеотракт оставляет шесть текущих свободных GPIO S3 и одиннадцать
+настоящих NC-контактов M1. M1 выполняет только
 электрическую функцию и совмещение; силовую нагрузку несут четыре 11-мм упора,
 anti-shear datums корпуса и независимые захваты PCB.
 
@@ -72,15 +74,17 @@ anti-shear datums корпуса и независимые захваты PCB.
 I²C/SPI-тракты заднего RF RP. Pin 8 fail-low, pin 10 fail-disconnected, CC1101
 RX-only, NFC poll/read-only, а независимое физическое evidence NFC-поля входит
 в `ANY_TX_AON_N`. Идентичность питания pin 7 остаётся received-unit gate. Новые
-Host-switch, AON gate, два bridge и comparator уже зарегистрированы полными
-официальными package-envelope и source-backed courtyards. Вспомогательные
-пассивы, геометрия reserve pickup-loop и swept volume установленной антенны ещё
-не закрыты, поэтому мокап U219 остаётся на ревью.
+Host-switch, AON gate, два bridge, comparator, вспомогательные пассивы,
+геометрия reserve pickup-loop и swept volume установленной антенны
+зарегистрированы и входят в результат H1/H2, прошедший ревью.
 
 ## Статус ECAD
 
 Прежние KiCad-листы R1 и машинные отчёты сохранены в репозитории как
 историческое инженерное evidence. Это **не** production-схема R2, и печатать
-по ним нельзя. H2 заменит их точными R2 symbols, contacts, nets, values,
-protection и footprints. Только ERC-clean результат с проведённым ревью H2
-может быть показан здесь как актуальный production ECAD.
+по ним нельзя. Текущий native R2 source — три проекта из
+[результа `H2-R2.1.3`](h2-r2-native-kicad.ru.md): 23 sheets, 1 187
+устанавливаемых позиций, 4 327 физических pins и 827 канонических nets. Он
+ERC-clean; [результат H2-R2.1.5](h2-acceptance.ru.md) также проходит six-domain
+cross-sheet/HW↔FW reconciliation. Placement, routing и последующие release-gates
+остаются обязательными до печати.

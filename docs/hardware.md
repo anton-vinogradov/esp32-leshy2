@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Pin assignment](pinout.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H2-R2.1.3`**. The `H1-R2.37` physical design was accepted
+> Current marker: **`H3-R2.0.1`**. The `H1-R2.37` physical design was accepted
 > and reviewed on 2026-08-30. Nothing on this page authorizes KiCad routing
 > or an order.
 
@@ -14,8 +14,9 @@
 > detector/latch/release implementation is reviewed as `H2-R2.0.2`; the exact
 > `TCA9803DGKR/C2687966` Pack/Safety boundary is reviewed as `H2-R2.0.3`.
 > The native R2 inventory and exact symbol/contact/footprint ledger passed
-> review; controlled definitions and all 1,096 fitted instances are allocated.
-> Joining native nets is current.
+> review. Three native KiCad projects now materialize all 1,187 fitted instances
+> and 4,327 physical pins with zero ERC findings. Cross-sheet and HW↔FW
+> reconciliation is current.
 
 ## Capabilities
 
@@ -51,7 +52,7 @@ safety gates.
 - Eleven S3 GPIOs released by the removed onboard-video experiment remain true
   reserves instead of being consumed by another peripheral.
 
-Front RP GPIO budget: **46 used / 2 free**. TE capture and backlight PWM moved
+Front RP GPIO budget: **47 used / 1 free**. TE capture and backlight PWM moved
 here so S3 can retain the local UI path and the complete direct i8080-8 bus.
 
 ### Rear RF/power PCB
@@ -61,7 +62,8 @@ here so S3 can retain the local UI path and the complete direct i8080-8 bus.
   hard-off safety.
 - Audio codec, speaker amplifier, microphone and CTIA headset path.
 
-Rear RP GPIO budget: **40 used / 8 free** (GP15/28/29/32/33/34/37/38).
+Rear RP GPIO budget: **43 used / 5 free** (GP32/33/34/37/38). GP28/29 now form
+the private, switched-domain Airband LO I²C bus.
 
 ## Interboard connector
 
@@ -166,10 +168,11 @@ open geometry gate. The exact EastRising panel and passive adapter are fixed as
 well. H1 was explicitly accepted and reviewed on 2026-08-30. The C5 electrical
 pin/mux contract, live FSUSB42MUX/C11355 route and exact service-VBUS
 detector/latch/release implementation and exact TCA9803 Pack/Safety boundary
-are closed. `H2-R2.1.1` reviewed 3 native projects, 23 sheets and 213 exact MPN
-groups; `H2-R2.1.2` reviewed exact identities for 208 board groups, five
-explicit non-PCBA groups and 1,561 logical contacts. `H2-R2.1.3` now
-has controlled definitions and a checked 1,096-instance allocation; joined
-native nets are next before a new export.
+are closed. `H2-R2.1.1` reviewed 3 native projects, 23 sheets and 242 exact MPN
+groups; `H2-R2.1.2` reviewed exact identities for 237 board groups, five
+explicit non-PCBA groups and 1,662 logical contacts. `H2-R2.1.3` materializes
+1,187 fitted instances and 827 canonical nets in three native projects with
+zero-finding ERC. Cross-sheet and HW↔FW reconciliation passed in the reviewed
+`H2-R2.1.5` result; H3 now freezes those inputs.
 The legacy HMX display is reference evidence only and cannot enter
 an R2 order BOM. Routing and all purchasing remain blocked.

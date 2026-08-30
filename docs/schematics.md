@@ -5,11 +5,12 @@
 These are the current `H0-R2`/`H1-R2.37` principle diagrams of the finished
 device. They explain ownership, buses, RF locality, power and service access.
 The exact dual-RP GPIO/M1 map and C5 SDIO/service-mux electrical join are closed
-as H1 authority. The R2 production ECAD schematic does **not** exist yet. U219
+as H1 authority. The native R2 production schematic now exists as three KiCad
+projects and passes ERC with zero errors and zero warnings; its cross-sheet and
+hardware/firmware reconciliation passes as the reviewed H2-R2.1.5 result. U219
 host-body placement, all 18 U219 support bodies, the NFC pickup loop, supplied
 antenna swept volume and the exact EastRising display/adapter are closed. H1
-now waits only for acceptance of the complete mock-up; R2 H2 then still has its
-three electrical prerequisites.
+is included in the reviewed H1 result and the materialized H2 schematic.
 
 The checked-in G2F/H2/KiCad tree is reviewed historical **single-RP R1**
 evidence. Current H0/H1 has six domains, a front Hub RP and a rear RF RP, plus
@@ -37,7 +38,7 @@ flowchart TD
   FRP["SC1512-A4 · front RP<br/>3× nRF24, microSD"]
   RRP["SC1512-A4 · rear RP<br/>RF, audio, expansion"]
   LCD["ER-TFT035IPS-6 + ER-TPC035-6<br/>ILI9488/FT6236 · direct 8-bit i8080 · 24 MHz"]
-  M1["Hirose FX8C-80<br/>24 signals · 14 main-power · 2 AON<br/>24 returns · 16 NC reserve"]
+  M1["Hirose FX8C-80<br/>29 signals · 14 main-power · 2 AON<br/>24 returns · 11 NC reserve"]
 
   S3 -->|"LCD_CAM TX + GDMA"| LCD
   S3 <-->|"quad data + clock"| FRP
@@ -46,7 +47,7 @@ flowchart TD
 ```
 
 No nRF payload and no main RF antenna trace crosses M1. The removed onboard
-video path leaves eleven S3 GPIO reserves and two additional M1 NC contacts.
+video path leaves six currently uncommitted S3 GPIO and eleven true M1 NC contacts.
 M1 is electrical/alignment only; four 11-mm compression stops,
 anti-shear enclosure datums and independent PCB capture carry mechanical load.
 
@@ -72,15 +73,17 @@ The accepted U219 principle reuses the protected U214 Cap slot and the rear RF
 RP's isolated I²C/SPI paths. Pin 8 fails low, pin 10 is fail-disconnected,
 CC1101 is RX-only, NFC is poll/read-only and independent physical NFC-field
 evidence reaches `ANY_TX_AON_N`. Pin 7 power identity remains a received-unit
-gate. The host switch, AON gate, two bridges and comparator are now registered
-with official full-package envelopes and source-backed courtyards. Support
-passives, pickup-loop geometry and installed-antenna swept volume remain open,
-so the U219 mock-up is not yet reviewed.
+gate. The host switch, AON gate, two bridges, comparator, support passives,
+pickup-loop geometry and installed-antenna swept volume are registered and
+included in the reviewed H1/H2 result.
 
 ## ECAD status
 
 The repository retains the former R1 KiCad sheets and machine reports as
 historical engineering evidence. They are **not** the production schematic for
-R2 and must not be used for fabrication. H2 will replace them with exact R2
-symbols, contacts, nets, values, protection and footprints; only an ERC-clean
-reviewed H2 result may be presented here as current production ECAD.
+R2 and must not be used for fabrication. The current native R2 source is the
+three-project [`H2-R2.1.3` result](h2-r2-native-kicad.md): 23 sheets, 1,187
+fitted positions, 4,327 physical pins and 827 canonical nets. It is ERC-clean;
+the [reviewed H2-R2.1.5 result](h2-acceptance.md) also passes six-domain
+cross-sheet/HW↔FW reconciliation. Placement, routing and the later release
+gates remain mandatory before fabrication.

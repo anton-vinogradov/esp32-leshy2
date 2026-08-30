@@ -12,8 +12,8 @@
   "current_truth": {
     "target_architecture": "H0-R2 reviewed for six domains; ownership, working pin budgets, safety and HW/FW boundaries are current",
     "mechanical_projection": "H1-R2.37 is the user-accepted reviewed dimensioned physical result; machine geometry is clean, and H1 does not authorize ECAD or ordering",
-    "current_ecad": "H2-R2.0.1 through H2-R2.0.3 electrical prerequisites are reviewed. H2-R2.1.1 reviewed three native projects, 23 sheets, six domain owners and 213 exact MPN groups. H2-R2.1.2 reviewed exact identities for 208 board groups, five explicit non-PCBA groups and 1561 logical contacts. H2-R2.1.3 has controlled definitions, an exact allocation of all 1096 fitted instances and a checked reconciliation of all 4053 contacts into 3814 connected endpoints, 239 explicit board no-connects and 908 canonical nets; native KiCad project creation is current. Production schematic export and PCB layout have not begun, and the archived R1 ECAD is historical and must not be built",
-    "virtual_electrical": "R2 routed-value electrical verification is blocked on current H2 and H6; historical R1 H3 evidence is not R2 order authority",
+    "current_ecad": "H2-R2.1.5 is reviewed. Three native R2 KiCad projects contain 1187 fitted board positions, 4327 physical pins and 827 canonical nets; all three pass ERC with zero errors and zero warnings. H2-R2.1.4 reconciled six compute domains, 173 controller pins, 50 cross-project nets and 233 cross-sheet nets, and opened the synchronized firmware gate. H3-R2.0.1 now freezes that exact authority for virtual electrical verification. Placement/routing and production release have not begun, and the archived R1 ECAD is historical and must not be built",
+    "virtual_electrical": "H3-R2.0.1 is current and freezes the reviewed H2 authority for unrouted virtual verification; routed-value re-analysis still belongs to H6, and historical R1 H3 evidence is not R2 order authority",
     "executable_firmware": "F2-R2.5 is in progress for six production-SDK targets; the first-spin diagnostic, current R2 BSP import and recovery bundle are not reviewed",
     "instruction_emulation": "F3-R2 and F-PO remain blocked; historical S3 QEMU evidence cannot prove the current R2 peripherals, PCB or non-S3 execution",
     "joined_release": "R2 H4 joined review, H5 exact sourcing, H6 routed release candidate and immutable P8 order release have not run",
@@ -44,7 +44,7 @@
     },
     {
       "id": "P2_R2_PRODUCTION_SCHEMATIC",
-      "status": "in_progress",
+      "status": "reviewed",
       "required_evidence": [
         "current R2 symbols, contacts, nets, values, protections and exact footprints",
         "the H1-selected production display rather than a donor-only legacy endpoint",
@@ -55,7 +55,7 @@
     },
     {
       "id": "P3_R2_VIRTUAL_ELECTRICAL",
-      "status": "blocked",
+      "status": "in_progress",
       "required_evidence": [
         "worst-case DC, startup, shutdown, source transition and load-step analysis",
         "power, thermal, watchdog and fault-tree analysis",

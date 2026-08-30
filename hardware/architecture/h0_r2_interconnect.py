@@ -24,7 +24,8 @@ GROUPS = (
     ("37–40", "RUN, fault and UI thermal safety crossings + return", "RUN, fault и UI thermal safety + возврат"),
     ("41–50", "9 actual-TX evidence signals + safety return", "9 сигналов actual-TX evidence + safety-return"),
     ("51–54", "rear encoder A/B/push + return", "задний энкодер A/B/push + возврат"),
-    ("55–64", "10 NC reserve contacts", "10 резервных NC-контактов"),
+    ("55–59", "AON service ownership/control and alert", "AON service ownership/control и alert"),
+    ("60–64", "5 NC reserve contacts", "5 резервных NC-контактов"),
     ("65–76", "6 × POWER_GROUND + 3V3_MAIN pairs", "6 пар POWER_GROUND + 3V3_MAIN"),
     ("77–80", "4 NC reserve contacts", "4 резервных NC-контакта"),
 )

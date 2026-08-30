@@ -95,6 +95,10 @@
       "PLUS": ["+"],
       "MINUS": ["-"]
     },
+    "minicircuits_pga_103_plus": {
+      "GND_1": ["2"],
+      "GND_2": ["2"]
+    },
     "seeed_1125r_smt_4p": {
       "GND": ["1"],
       "5V": ["2"],
@@ -149,6 +153,9 @@
   "allowed_shared_electrical_pads": {
     "alps_skrtlae010": {
       "1": ["C1", "C2"]
+    },
+    "minicircuits_pga_103_plus": {
+      "2": ["GND_1", "GND_2"]
     }
   },
   "new_local_footprint_geometry": {
@@ -165,6 +172,26 @@
       "fitting_center_span_mm": 26.1,
       "fitting_outer_span_mm": 26.9,
       "fitting_pad_mm": [0.8, 0.8]
+    },
+    "coilcraft_wbc1_1tlc": {
+      "footprint": "Leshy2_R2:Coilcraft_WBC_6P_4.45x4.19mm",
+      "manufacturer_source": "Coilcraft WBC Document 424 official drawing and land pattern",
+      "evidence_checked_at": "2026-08-31",
+      "positions": 6,
+      "pitch_mm": 1.52,
+      "body_max_mm": [4.45, 4.19, 3.05],
+      "contact_pad_mm": [1.52, 0.76],
+      "row_center_span_mm": 4.57
+    },
+    "coilcraft_wbc16_1tlc": {
+      "footprint": "Leshy2_R2:Coilcraft_WBC_6P_4.45x4.19mm",
+      "manufacturer_source": "Coilcraft WBC Document 424 official drawing and land pattern",
+      "evidence_checked_at": "2026-08-31",
+      "positions": 6,
+      "pitch_mm": 1.52,
+      "body_max_mm": [4.45, 4.19, 3.05],
+      "contact_pad_mm": [1.52, 0.76],
+      "row_center_span_mm": 4.57
     }
   },
   "authorization": {

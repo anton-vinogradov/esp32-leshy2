@@ -67,7 +67,7 @@ def inferred_sheet(instance: str, allowed: list[str]) -> str | None:
         (("nrf", "det_nrf"), "UI_31_NRF24_X3_TX_EVIDENCE"),
         (("sd_", "ui_", "encoder", "ptt", "f1", "f2", "back", "opt"), "UI_11_STORAGE_CONTROLS_INDICATORS"),
         (("cc_", "voice_", "voice_v_", "det_cc", "det_voice"), "RF_20_CC1101_VOICE_TX"),
-        (("receiver_", "airband_", "si_"), "RF_21_BROADCAST_AIRBAND_RX"),
+        (("receiver_", "airband_", "air_", "si_"), "RF_21_BROADCAST_AIRBAND_RX"),
         (("audio_", "codec_", "speaker", "microphone", "headset_", "headphone_"), "RF_22_AUDIO_CODEC_IO"),
         (("u214_", "unit_", "ext_", "cap_"), "RF_30_U214_U219_M5_EXT"),
         (("pack_", "safety_", "hub_safe_i2c", "aon_"), "RF_02_PACK_SAFETY_AON"),
@@ -124,6 +124,7 @@ def build() -> dict:
         old_by_device_instance[(row["device_key"], row["instance"])] = row
 
     exact_names = contract.get("exact_instance_names", {})
+    additions = contract.get("additional_instance_names", {})
     removals = contract.get("remove_historical_instances", {})
     expand_groups = set(contract.get("expand_historical_rp_prefix_for", []))
     do_not_expand = set(contract.get("do_not_expand_historical_rp_instances", []))
@@ -153,6 +154,9 @@ def build() -> dict:
                 if device_id in expand_groups:
                     names = expand_rp_prefix(names, do_not_expand)
                 origin = "reconciled_historical_instance_name_hint"
+        names += additions.get(device_id, [])
+        if additions.get(device_id):
+            origin = "current_r2_allocation_with_explicit_additions"
         if len(names) != quantity:
             errors.append(
                 f"instance allocation count mismatch: {device_id}: {len(names)} != {quantity}"
@@ -214,8 +218,8 @@ def build() -> dict:
     for row in rows:
         counters[row["project"]][row["reference_prefix"]] += 1
         row["reference"] = f"{row['reference_prefix']}{counters[row['project']][row['reference_prefix']]}"
-    if len(rows) != 1096:
-        errors.append(f"expected 1096 fitted board instances, got {len(rows)}")
+    if len(rows) != 1187:
+        errors.append(f"expected 1187 fitted board instances, got {len(rows)}")
     project_counts = Counter(row["project"] for row in rows)
     project_graph_sheet_count = sum(
         len(project.get("sheets", [])) for project in inventory.get("projects", [])
@@ -277,7 +281,7 @@ def main() -> int:
     if not OUTPUT.is_file() or OUTPUT.read_text(encoding="utf-8") != text:
         print(f"stale: {OUTPUT.relative_to(ROOT)}")
         return 1
-    print("ok: 1096 exact fitted R2 instances across 3 native projects and 23 sheets; zero nets created")
+    print("ok: 1187 exact fitted R2 instances across 3 native projects and 23 sheets; zero nets created")
     return 0
 
 

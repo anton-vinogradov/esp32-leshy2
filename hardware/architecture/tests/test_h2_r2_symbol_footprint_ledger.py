@@ -33,18 +33,18 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("208 board groups", result.stdout)
+        self.assertIn("237 board groups", result.stdout)
 
     def test_exact_group_boundary_is_complete(self):
         self.assertEqual("H2-R2.1.2", self.ledger["marker"])
         self.assertEqual("pass", self.ledger["status"])
         summary = self.ledger["summary"]
-        self.assertEqual(213, summary["component_group_count"])
-        self.assertEqual(208, summary["board_component_group_count"])
+        self.assertEqual(242, summary["component_group_count"])
+        self.assertEqual(237, summary["board_component_group_count"])
         self.assertEqual(5, summary["explicit_non_pcba_group_count"])
-        self.assertEqual(208, summary["symbol_identity_count"])
-        self.assertEqual(208, summary["footprint_identity_count"])
-        self.assertEqual(1561, summary["logical_contact_count"])
+        self.assertEqual(237, summary["symbol_identity_count"])
+        self.assertEqual(237, summary["footprint_identity_count"])
+        self.assertEqual(1662, summary["logical_contact_count"])
         self.assertEqual(0, summary["unresolved_groups"])
 
     def test_contacts_are_hash_bound_to_current_device_evidence(self):
@@ -101,9 +101,15 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
             if row["footprint_definition"]
             and row["footprint_definition"]["status"].endswith("pending_h2_r2_1_3_materialization")
         ]
-        self.assertEqual(1, len(pending))
-        self.assertEqual("hirose_fh34srj_50s_0_5sh_50", pending[0]["device_id"])
-        self.assertEqual("Leshy2_R2:FH34SRJ-50S-0.5SH-50", pending[0]["footprint"])
+        self.assertEqual(3, len(pending))
+        self.assertEqual(
+            {"hirose_fh34srj_50s_0_5sh_50", "coilcraft_wbc1_1tlc", "coilcraft_wbc16_1tlc"},
+            {row["device_id"] for row in pending},
+        )
+        self.assertIn(
+            "Leshy2_R2:FH34SRJ-50S-0.5SH-50",
+            {row["footprint"] for row in pending},
+        )
 
     def test_authorization_remains_net_and_kicad_free(self):
         self.assertEqual([], self.ledger["errors"])

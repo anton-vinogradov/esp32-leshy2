@@ -17,7 +17,7 @@
 | Same-face collisions | 0 |
 | Minimum opposing-face clearance | 2.59 mm against a 0.70 mm rule |
 | Main antenna ports | 10, permanently assigned 5 + 5 |
-| Interboard M1 | 80 contacts: 24 signals, 14 main-power, 2 AON, 24 returns, 16 NC |
+| Interboard M1 | 80 contacts: 29 signals, 14 main-power, 2 AON, 24 returns, 11 true NC |
 | Base-BOM groups / fitted placements | 208 / 1,096 |
 | Current electronics planning floor | USD 273.42 before five unpriced lines, PCBs and assembly |
 | Accepted no-loss savings | USD 10.4192 |
@@ -49,7 +49,7 @@ service access and interboard stack form one physically coherent device. It is
 not proof of a routed PCB, ERC, signal integrity, power-up behaviour or
 factory-buildability from released Gerbers/CPL/BOM.
 
-The current point is **H2-R2.1.3**. The prerequisite ledger is closed:
+H2 is now reviewed at **H2-R2.1.5**. Its prerequisite ledger is closed:
 
 1. ✅ `H2-R2.0.1`: live Standard-PCBA route, MOQ and price for onsemi `FSUSB42MUX` / JLCPCB `C11355`;
 2. ✅ `H2-R2.0.2`: exact factory-placeable `DMN2056U-7` detector, `SN74LVC1G74DCUR` ownership latch and `74HC20PW,118` release qualifier;
@@ -57,9 +57,10 @@ The current point is **H2-R2.1.3**. The prerequisite ledger is closed:
    rail-local termination for Pack/Safety I²C on Hub GPIO42/43.
 
 The native R2 source/sheet/component inventory passed review as `H2-R2.1.1`.
-The exact 208-board-group symbol/contact/value/footprint ledger passed review
-as `H2-R2.1.2`; controlled definitions and joined native nets are now current.
-Exact symbol/contact/footprint reconciliation is now in progress before
-schematic nets or export.
+The exact 237-board-group symbol/contact/value/footprint ledger passed review
+as `H2-R2.1.2`. `H2-R2.1.3` then materialized 1,187 fitted positions and 4,327
+physical pins across three native KiCad projects; all three pass ERC with zero
+errors and zero warnings. Cross-sheet and machine-readable hardware/firmware
+reconciliation passed at `H2-R2.1.4`; H3 now freezes the reviewed result.
 
 KiCad, purchasing and fabrication remain unauthorized.

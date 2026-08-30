@@ -1,0 +1,19 @@
+(kicad_sch
+	(version 20250114)
+	(generator "leshy2-h2-r2-native")
+	(generator_version "1.0")
+	(uuid "87ff4ec4-556f-51ee-ab26-d1f8f32ae894")
+	(paper "A0")
+	(title_block
+		(title "Leshy2 R2 — front diagnostic and manufacturing access only")
+		(rev "H2-R2.1.3")
+	)
+	(lib_symbols
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

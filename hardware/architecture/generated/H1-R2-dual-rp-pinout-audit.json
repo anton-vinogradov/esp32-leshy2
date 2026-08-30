@@ -5,9 +5,9 @@
   "status": "pass_exact_dual_rp_working_authority",
   "authority": {
     "source": "hardware/architecture/h1-r2-dual-rp-pinout.json",
-    "source_sha256": "44658cf8169ddbfab365aebe6e88a96658d3d75900d754cdfa08731d35a29af0",
+    "source_sha256": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753",
     "functional_source": "hardware/architecture/h0-r2-rebaseline.json",
-    "functional_source_sha256": "6a3e3ae9d58f9cb5b26e4d87377d9a629191a95a004158063870f6b25a839ec3",
+    "functional_source_sha256": "f46b4a95d9e76b910c5df8e5141bfea782ae550e3d5ad4badec4f2af4178c06e",
     "c5_mux_source": "hardware/architecture/c5-sdio-service-mux-contract.json",
     "c5_mux_source_sha256": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
     "pack_safety_i2c_source": "hardware/architecture/pack-safety-i2c-boundary-contract.json",
@@ -15,7 +15,7 @@
     "u219_profile_source": "hardware/architecture/h1-r2-u219-cap.json",
     "u219_profile_source_sha256": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
     "device_register_source": "hardware/architecture/devices.json",
-    "device_register_source_sha256": "b64be8791481a77c3001ddda625c17b621ae3aaabc4fdfe523e9b1f9f690904f",
+    "device_register_source_sha256": "cc0b54ff05c8550905ff0d5ded05e10a69fa9d282594cd0ed7180ab577567c06",
     "r2_h2_authorized": false,
     "c5_electrical_join_status": "closed against C5-SDIO-SERVICE-MUX-1: exact module pads, fixed IO mux, FSUSB42 branch polarity, reset ownership and Hub-side signal order are joined.",
     "remaining_h2_gates": [],
@@ -29,23 +29,22 @@
     "domains": 2,
     "gpio_rows": 96,
     "m1_signal_bindings": 5,
-    "hub_gpio_used": 46,
-    "hub_gpio_reserve": 2,
-    "rf_gpio_used": 40,
-    "rf_gpio_reserve": 8,
+    "hub_gpio_used": 47,
+    "hub_gpio_reserve": 1,
+    "rf_gpio_used": 43,
+    "rf_gpio_reserve": 5,
     "hub_pio_used": 8,
     "hub_dma_used": 14,
-    "rf_pio_used": 6,
+    "rf_pio_used": 7,
     "rf_dma_used": 12
   },
   "hub_rp": {
     "role": "Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety mailbox, LCD TE and backlight; no audio or broadcast ownership.",
     "gpio_budget": {
       "available": 48,
-      "used": 46,
-      "reserve": 2,
+      "used": 47,
+      "reserve": 1,
       "reserve_gpios": [
-        6,
         47
       ]
     },
@@ -100,11 +99,11 @@
       },
       {
         "gpio": 6,
-        "net": "HUB_RESERVE_6",
-        "direction": "reserve",
-        "controller": "GPIO",
-        "endpoint": "test pad only",
-        "reset": "input/high-Z; external pull-down; DNP"
+        "net": "HUB_AON_ALERT_N",
+        "direction": "in",
+        "controller": "GPIO_IRQ",
+        "endpoint": "M1.59 <- wired-open-drain PD/Pack mailbox alert",
+        "reset": "input; AON-local 10-kohm pull-up"
       },
       {
         "gpio": 7,
@@ -531,12 +530,9 @@
     "role": "Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, M5 Unit and exactly one signed U214/U219 Cap profile owner; no nRF24 or microSD ownership.",
     "gpio_budget": {
       "available": 48,
-      "used": 40,
-      "reserve": 8,
+      "used": 43,
+      "reserve": 5,
       "reserve_gpios": [
-        15,
-        28,
-        29,
         32,
         33,
         34,
@@ -582,7 +578,7 @@
         "net": "REAR_I2C_SDA",
         "direction": "io",
         "controller": "I2C0",
-        "endpoint": "codec/Si4732/Airband/headset slow-control bus",
+        "endpoint": "codec/Si4732/headset slow-control bus",
         "reset": "input/open-drain released; external pull-up"
       },
       {
@@ -590,7 +586,7 @@
         "net": "REAR_I2C_SCL",
         "direction": "od",
         "controller": "I2C0",
-        "endpoint": "codec/Si4732/Airband/headset slow-control bus",
+        "endpoint": "codec/Si4732/headset slow-control bus",
         "reset": "input/open-drain released; external pull-up"
       },
       {
@@ -667,11 +663,11 @@
       },
       {
         "gpio": 15,
-        "net": "RF_RESERVE_15",
-        "direction": "reserve",
-        "controller": "GPIO",
-        "endpoint": "test pad only",
-        "reset": "input/high-Z; external pull-down; DNP"
+        "net": "RF_SLOW_IO_ALERT",
+        "direction": "in",
+        "controller": "GPIO_IRQ",
+        "endpoint": "Schmitt-conditioned rear-local shared interrupt from TCA6424/voice/headset",
+        "reset": "input; raw wired interrupt has a 10-kohm 3V3_MAIN pull-up"
       },
       {
         "gpio": 16,
@@ -771,19 +767,19 @@
       },
       {
         "gpio": 28,
-        "net": "RF_RESERVE_28",
-        "direction": "reserve",
-        "controller": "GPIO",
-        "endpoint": "test pad only",
-        "reset": "input/high-Z; external pull-down; DNP"
+        "net": "AIR_LO_I2C_SDA",
+        "direction": "io",
+        "controller": "PIO2_SM2_AIR_I2C",
+        "endpoint": "power-coherent private Si5351 SDA",
+        "reset": "input/open-drain released; pull-up is powered only by 3V3_AIR_SWITCHED"
       },
       {
         "gpio": 29,
-        "net": "RF_RESERVE_29",
-        "direction": "reserve",
-        "controller": "GPIO",
-        "endpoint": "test pad only",
-        "reset": "input/high-Z; external pull-down; DNP"
+        "net": "AIR_LO_I2C_SCL",
+        "direction": "od",
+        "controller": "PIO2_SM2_AIR_I2C",
+        "endpoint": "power-coherent private Si5351 SCL",
+        "reset": "input/open-drain released; pull-up is powered only by 3V3_AIR_SWITCHED"
       },
       {
         "gpio": 30,
@@ -932,8 +928,8 @@
     ],
     "pio_budget": {
       "available_state_machines": 12,
-      "used_state_machines": 6,
-      "reserve_state_machines": 6,
+      "used_state_machines": 7,
+      "reserve_state_machines": 5,
       "allocations": [
         {
           "resource": "PIO0_SM0",
@@ -958,6 +954,10 @@
         {
           "resource": "PIO2_SM1",
           "consumer": "isolated M5 Unit UART receive profile; idle in I2C/GPIO profiles"
+        },
+        {
+          "resource": "PIO2_SM2",
+          "consumer": "power-coherent private Airband Si5351 I2C"
         }
       ],
       "gpio_windows": [

@@ -3,7 +3,7 @@
   "id": "L2-H1-AIRBAND-BPF-001",
   "marker": "H1-R2.3",
   "status": "candidate_not_frozen",
-  "checked_on": "2026-08-27",
+  "checked_on": "2026-08-31",
   "impedance_ohm": 50.0,
   "purpose": "Test whether a factory-placeable fixed-value LC network can replace BPF-A127+ without importing its 34.54 x 9.27 x 8.89 mm body and USD 48.70 material cost.",
   "reference": {
@@ -29,8 +29,8 @@
       {"id": "NL2", "kind": "shunt_series_notch", "l_nh": 560.0, "c_pf": 4.7, "l_q": 45.0, "l_tolerance_fraction": 0.01, "c_tolerance_pf": 0.1},
       {"id": "BS1", "kind": "series_resonator", "l_nh": 220.0, "c_pf": 5.6, "l_q": 45.0, "l_tolerance_fraction": 0.02, "c_tolerance_pf": 0.1},
       {"id": "BP1", "kind": "shunt_parallel_resonator", "l_nh": 8.2, "c_pf": 180.0, "l_q": 60.0, "l_tolerance_fraction": 0.02, "c_tolerance_fraction": 0.01},
-      {"id": "BS2", "kind": "series_resonator", "l_nh": 270.0, "c_pf": 6.2, "l_q": 52.0, "l_tolerance_fraction": 0.02, "c_tolerance_pf": 0.1},
-      {"id": "NH1", "kind": "shunt_series_notch", "l_nh": 330.0, "c_pf": 3.2, "l_q": 45.0, "l_tolerance_fraction": 0.02, "c_tolerance_pf": 0.05},
+      {"id": "BS2", "kind": "series_resonator", "l_nh": 270.0, "c_pf": 6.2, "l_q": 48.0, "l_tolerance_fraction": 0.05, "c_tolerance_pf": 0.1},
+      {"id": "NH1", "kind": "shunt_series_notch", "l_nh": 330.0, "c_pf": 3.2, "l_q": 45.0, "l_tolerance_fraction": 0.02, "c_tolerance_pf": 0.1},
       {"id": "NH2", "kind": "shunt_series_notch", "l_nh": 560.0, "c_pf": 1.9, "l_q": 45.0, "l_tolerance_fraction": 0.01, "c_tolerance_pf": 0.05},
       {"id": "NH3", "kind": "shunt_series_notch", "l_nh": 1000.0, "c_pf": 1.0, "l_q": 45.0, "l_tolerance_fraction": 0.02, "c_tolerance_pf": 0.05},
       {"id": "NH4", "kind": "shunt_series_notch", "l_nh": 330.0, "c_pf": 2.4, "l_q": 45.0, "l_tolerance_fraction": 0.02, "c_tolerance_pf": 0.05},
@@ -50,9 +50,9 @@
       "jlcpcb_part": "C907989",
       "value": "560 nH +/-1%, 1008",
       "assembly": "SMT; Economic and Standard",
-      "availability": "502 pieces, MOQ 1, USD 0.2618 at quantity 1",
+      "availability": "155 stock / 152 available, MOQ 1, USD 0.272 at quantity 1",
       "url": "https://jlcpcb.com/partdetail/MurataElectronics-LQW2UASR56F00L/C907989",
-      "checked": "2026-08-27"
+      "checked": "2026-08-31"
     },
     {
       "mpn": "LQW2BASR22G00L",
@@ -60,9 +60,9 @@
       "jlcpcb_part": "C527968",
       "value": "220 nH +/-2%, 0805",
       "assembly": "SMT; Economic and Standard",
-      "availability": "180 pieces, MOQ 1, USD 0.1325 at quantity 1",
+      "availability": "28 stock / 25 available, MOQ 1, USD 0.1324 at quantity 1",
       "url": "https://jlcpcb.com/partdetail/MurataElectronics-LQW2BASR22G00L/C527968",
-      "checked": "2026-08-27"
+      "checked": "2026-08-31"
     },
     {
       "mpn": "LQW2BASR33G00L",
@@ -70,24 +70,34 @@
       "jlcpcb_part": "C703717",
       "value": "330 nH +/-2%, 0805",
       "assembly": "SMT",
-      "availability": "249 pieces, MOQ 1, USD 0.1455 at quantity 1",
+      "availability": "4573 stock / 4548 available, MOQ 1, USD 0.1158 at quantity 1",
       "url": "https://jlcpcb.com/partdetail/MurataElectronics-LQW2BASR33G00L/C703717",
-      "checked": "2026-08-27"
+      "checked": "2026-08-31"
     },
     {
-      "mpn": "LQW15AN10NG80D",
+      "mpn": "LQW15AN8N2G80D",
       "manufacturer": "Murata Electronics",
-      "jlcpcb_part": "C3224837",
-      "value": "10 nH +/-2%, 0402",
-      "assembly": "SMT route visible through the JLC/LCSC supply surface",
-      "availability": "28,540 pieces, MOQ/multiple 10, USD 0.0575 at quantity 10",
-      "url": "https://www.lcsc.com/product-detail/C3224837.html",
-      "checked": "2026-08-27"
+      "jlcpcb_part": "C307610",
+      "value": "8.2 nH +/-2%, 0402",
+      "assembly": "SMT; Economic and Standard",
+      "availability": "8484 stock / 8343 available, MOQ 1, USD 0.0975 at quantity 1",
+      "url": "https://jlcpcb.com/partdetail/MurataElectronics-LQW15AN8N2G80D/C307610",
+      "checked": "2026-08-31"
+    },
+    {
+      "mpn": "CS0805-R27J-S",
+      "manufacturer": "Chilisin Electronics",
+      "jlcpcb_part": "C108271",
+      "value": "270 nH +/-5%, Q 48 witness, 0805",
+      "assembly": "SMT; Economic and Standard",
+      "availability": "1972 stock, MOQ 1, USD 0.0549 at quantity 1",
+      "url": "https://jlcpcb.com/partdetail/ChilisinElec-CS0805R27JS/C108271",
+      "checked": "2026-08-31"
     }
   ],
   "decision": {
     "accepted": "H1 accepts the LC topology, 24 x 11 mm tuning envelope, alternate/DNP pad strategy and factory-placeable precision passive families as the physical boundary; this remains materially cheaper/smaller than BPF-A127+.",
-    "rejected": "The listed engineering values are not production MPNs and are not frozen: nominal compliance alone is insufficient.",
+    "rejected": "The stock-backed exact MPNs are only the H2 nominal fitted state, not a production freeze: the current tolerance/Q stress misses the stop mask and must be retuned in H3 before routed extraction.",
     "next_gate": "H2 carries the complete tuning network and nominal engineering values into ECAD. H3 proves the topology with manufacturer models and bounded pre-layout parasitics. H6 repeats the proof with routed/extracted PCB parasitics before the H7 order, and H8 selects the production fitted/DNP state by VNA; failure returns to an exact purchased filter or a different receiver boundary."
   }
 }

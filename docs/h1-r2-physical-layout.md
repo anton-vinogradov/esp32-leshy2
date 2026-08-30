@@ -29,7 +29,7 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted
 - Each outer face prints a stable board role/revision — `UI PCB · R2-EVT1 · REV A` and `RF/PWR PCB · R2-EVT1 · REV A`; the changing H1-R2.xx work marker is never printed on a PCB.
 - All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.
 - The onboard video receiver, decoder, MMCX and physical reserves are removed: no hidden post-PCBA module remains behind the display or between the antennas.
-- FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, encoder and USB, with buttons on its local TCA9539PWR path. Eleven former camera-RX GPIO remain uncommitted electrical reserve.
+- FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, encoder and USB, with buttons on its local TCA9539PWR path. Six GPIO remain uncommitted electrical reserve after reset and service closure.
 - The panel is physically turned with its flex toward the antenna edge, as on ESP32-DIV; the adapter occupies the upper inner zone and firmware rotates display output and touch by 180°. The tail stays out of the LED, D-pad and side-key zone.
 
 ![True inner sandwich sections](images/h1-r2-inner-sections.svg)
@@ -40,8 +40,8 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted
 - Minimum opposing Z clearance: `2.59 mm` against `0.70 mm` required.
 - Complete TX evidence: `8` exact detectors, `5` couplers and `8` bounded local islands pass fail-closed audit; all six AD8314 positions use the accepted `AD8314ARMZ-REEL` / `C652687`.
 - C5 DBG10 is relocated beside S3 DBG10 and intersects no adjacent body.
-- GPIO: front RP `46/48` with `2` free; rear RP `40/48` with `8` free; S3 uses 22 of 33 GPIO.
-- M1: all 80 contacts are assigned — 24 signals, 14 main-power, 2 AON, 24 returns and 16 NC reserves.
+- GPIO: front RP `47/48` with `1` free; rear RP `43/48` with `5` free; S3 uses 27 of 33 GPIO.
+- M1: all 80 contacts are assigned — 29 signals, 14 main-power, 2 AON, 24 returns and 11 true NC reserves.
 - M1 mechanics: four 11.00-mm compression stops, two anti-shear datums and independent PCB capture; the connector carries no impact or bending load.
 - Antenna silkscreen: the generator proves no overlap with SMA bodies, the Cap-Bus slot, the display or mounting keep-outs.
 - The exact ten-SMA land pattern follows the A1 drawings: one rectangular 1.87 × 3.30-mm RF land at x=0, four rectangular 1.60 × 3.30-mm shell lands at x=±2.55 mm and board edge y=0. H5 locks the dual-face soldering process, H7 inspects all five joints per connector on the one assembled prototype, and H8 performs ordinary assembly/disassembly, continuity/inspection and every path-specific RF check without artificial ageing, drops or a vibration programme.

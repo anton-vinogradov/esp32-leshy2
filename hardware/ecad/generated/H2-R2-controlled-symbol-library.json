@@ -6,19 +6,19 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "957165997d317dbf61e95919bc6ced9ec94d90bd17405d4981db2750e4f57e0b"
+      "sha256": "e7969cf80221801bd42a863b85d500aa9909dfcf878af660ffac60d9b6b49ef3"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "77084de45cf548a21d13c9c60bd41231a25d3b53950bf6e3064101fdfb48050e"
+      "sha256": "c891b92bc78ac00bc5f2e1cecf7980d40f9dcb41b4e5357ca87294f7329076c8"
     }
   },
   "library": {
     "id": "Leshy2_R2",
     "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-    "sha256": "95ce89c80455e0e9239ed00771aaa10b02254e6991f72df7fced3289992ee500",
-    "symbol_count": 208,
-    "pin_count": 1518,
+    "sha256": "834963054749406847d295d166d7a22b5be0c6d9fd2967bf5041b5e51f170c8b",
+    "symbol_count": 237,
+    "pin_count": 1618,
     "external_interface_metadata_count": 3
   },
   "symbols": [
@@ -260,6 +260,195 @@
           "name": "VPOS",
           "contacts": [
             "VPOS"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "adi_hmc544aetr",
+      "symbol_id": "Leshy2_R2:adi_hmc544aetr",
+      "reference_prefix": "U",
+      "value": "HMC544AETR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "pin_count": 6,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "RF2",
+          "contacts": [
+            "RF2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "contacts": [
+            "GND"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "RF1",
+          "contacts": [
+            "RF1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "4",
+          "name": "B",
+          "contacts": [
+            "B"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "5",
+          "name": "RFC",
+          "contacts": [
+            "RFC"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "6",
+          "name": "A",
+          "contacts": [
+            "A"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "adi_lt5560edd_trpbf",
+      "symbol_id": "Leshy2_R2:adi_lt5560edd_trpbf",
+      "reference_prefix": "U",
+      "value": "LT5560EDD#TRPBF",
+      "footprint": "Package_DFN_QFN:DFN-8-1EP_3x3mm_P0.65mm_EP1.55x2.4mm",
+      "pin_count": 9,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "LO_N",
+          "contacts": [
+            "LO_N"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "EN",
+          "contacts": [
+            "EN"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "IN_P",
+          "contacts": [
+            "IN_P"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "4",
+          "name": "IN_N",
+          "contacts": [
+            "IN_N"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "5",
+          "name": "OUT_N",
+          "contacts": [
+            "OUT_N"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "6",
+          "name": "OUT_P",
+          "contacts": [
+            "OUT_P"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "7",
+          "name": "VCC",
+          "contacts": [
+            "VCC"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "8",
+          "name": "LO_P",
+          "contacts": [
+            "LO_P"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "9",
+          "name": "EP_GND",
+          "contacts": [
+            "EP_GND"
           ],
           "roles": [
             "power"
@@ -1013,6 +1202,40 @@
       ]
     },
     {
+      "device_id": "chilisin_cs0805_r27j_s",
+      "symbol_id": "Leshy2_R2:chilisin_cs0805_r27j_s",
+      "reference_prefix": "L",
+      "value": "CS0805-R27J-S",
+      "footprint": "Inductor_SMD:L_0805_2012Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
       "device_id": "ck_js102011scqn",
       "symbol_id": "Leshy2_R2:ck_js102011scqn",
       "reference_prefix": "SW",
@@ -1052,6 +1275,162 @@
           ],
           "roles": [
             "switch_contact"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "coilcraft_wbc16_1tlc",
+      "symbol_id": "Leshy2_R2:coilcraft_wbc16_1tlc",
+      "reference_prefix": "U",
+      "value": "WBC16-1TLC",
+      "footprint": "Leshy2_R2:Coilcraft_WBC_6P_4.45x4.19mm",
+      "pin_count": 6,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "SEC_A",
+          "contacts": [
+            "SEC_A"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "SEC_CT",
+          "contacts": [
+            "SEC_CT"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "SEC_B",
+          "contacts": [
+            "SEC_B"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "4",
+          "name": "PRI_A",
+          "contacts": [
+            "PRI_A"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "5",
+          "name": "PRI_CT",
+          "contacts": [
+            "PRI_CT"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "6",
+          "name": "PRI_B",
+          "contacts": [
+            "PRI_B"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "coilcraft_wbc1_1tlc",
+      "symbol_id": "Leshy2_R2:coilcraft_wbc1_1tlc",
+      "reference_prefix": "U",
+      "value": "WBC1-1TLC",
+      "footprint": "Leshy2_R2:Coilcraft_WBC_6P_4.45x4.19mm",
+      "pin_count": 6,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "SEC_A",
+          "contacts": [
+            "SEC_A"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "SEC_CT",
+          "contacts": [
+            "SEC_CT"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "SEC_B",
+          "contacts": [
+            "SEC_B"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "4",
+          "name": "PRI_A",
+          "contacts": [
+            "PRI_A"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "5",
+          "name": "PRI_CT",
+          "contacts": [
+            "PRI_CT"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "6",
+          "name": "PRI_B",
+          "contacts": [
+            "PRI_B"
+          ],
+          "roles": [
+            "rf"
           ],
           "type": "passive"
         }
@@ -7002,6 +7381,52 @@
       ]
     },
     {
+      "device_id": "minicircuits_pga_103_plus",
+      "symbol_id": "Leshy2_R2:minicircuits_pga_103_plus",
+      "reference_prefix": "U",
+      "value": "PGA-103+",
+      "footprint": "Package_TO_SOT_SMD:SOT-89-3",
+      "pin_count": 3,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "RF_IN",
+          "contacts": [
+            "RF_IN"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "GND_1/GND_2",
+          "contacts": [
+            "GND_1",
+            "GND_2"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "RF_OUT_DC_IN",
+          "contacts": [
+            "RF_OUT_DC_IN"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
       "device_id": "murata_blm18pg181sn1d",
       "symbol_id": "Leshy2_R2:murata_blm18pg181sn1d",
       "reference_prefix": "L",
@@ -7030,6 +7455,40 @@
           ],
           "roles": [
             "passive"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_gcm1555c1h181fa16d",
+      "symbol_id": "Leshy2_R2:murata_gcm1555c1h181fa16d",
+      "reference_prefix": "C",
+      "value": "GCM1555C1H181FA16D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
           ],
           "type": "passive"
         }
@@ -7138,10 +7597,214 @@
       ]
     },
     {
+      "device_id": "murata_gjm1555c1h1r0wb01d",
+      "symbol_id": "Leshy2_R2:murata_gjm1555c1h1r0wb01d",
+      "reference_prefix": "C",
+      "value": "GJM1555C1H1R0WB01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
       "device_id": "murata_gjm1555c1h1r2bb01d",
       "symbol_id": "Leshy2_R2:murata_gjm1555c1h1r2bb01d",
       "reference_prefix": "C",
       "value": "Murata GJM1555C1H1R2BB01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_gjm1555c1h1r4wb01d",
+      "symbol_id": "Leshy2_R2:murata_gjm1555c1h1r4wb01d",
+      "reference_prefix": "C",
+      "value": "GJM1555C1H1R4WB01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_gjm1555c1h1r9wb01d",
+      "symbol_id": "Leshy2_R2:murata_gjm1555c1h1r9wb01d",
+      "reference_prefix": "C",
+      "value": "GJM1555C1H1R9WB01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_gjm1555c1h2r4wb01d",
+      "symbol_id": "Leshy2_R2:murata_gjm1555c1h2r4wb01d",
+      "reference_prefix": "C",
+      "value": "GJM1555C1H2R4WB01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_gjm1555c1h4r7bb01d",
+      "symbol_id": "Leshy2_R2:murata_gjm1555c1h4r7bb01d",
+      "reference_prefix": "C",
+      "value": "GJM1555C1H4R7BB01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_gjm1555c1h5r6bb01d",
+      "symbol_id": "Leshy2_R2:murata_gjm1555c1h5r6bb01d",
+      "reference_prefix": "C",
+      "value": "GJM1555C1H5R6BB01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "no_connect_pin_count": 0,
@@ -7210,6 +7873,40 @@
       "symbol_id": "Leshy2_R2:murata_gjm1555c1h8r0db01d",
       "reference_prefix": "C",
       "value": "Murata GJM1555C1H8R0DB01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_gjm1555c1h8r2bb01d",
+      "symbol_id": "Leshy2_R2:murata_gjm1555c1h8r2bb01d",
+      "reference_prefix": "C",
+      "value": "GJM1555C1H8R2BB01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "no_connect_pin_count": 0,
@@ -8158,6 +8855,74 @@
       ]
     },
     {
+      "device_id": "murata_lqw15an12ng80d",
+      "symbol_id": "Leshy2_R2:murata_lqw15an12ng80d",
+      "reference_prefix": "L",
+      "value": "LQW15AN12NG80D",
+      "footprint": "Inductor_SMD:L_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_lqw15an47ng80d",
+      "symbol_id": "Leshy2_R2:murata_lqw15an47ng80d",
+      "reference_prefix": "L",
+      "value": "LQW15AN47NG80D",
+      "footprint": "Inductor_SMD:L_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
       "device_id": "murata_lqw15an56ng00d",
       "symbol_id": "Leshy2_R2:murata_lqw15an56ng00d",
       "reference_prefix": "L",
@@ -8186,6 +8951,342 @@
           ],
           "roles": [
             "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_lqw15an8n2g80d",
+      "symbol_id": "Leshy2_R2:murata_lqw15an8n2g80d",
+      "reference_prefix": "L",
+      "value": "LQW15AN8N2G80D",
+      "footprint": "Inductor_SMD:L_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_lqw2basr22g00l",
+      "symbol_id": "Leshy2_R2:murata_lqw2basr22g00l",
+      "reference_prefix": "L",
+      "value": "LQW2BASR22G00L",
+      "footprint": "Inductor_SMD:L_0805_2012Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_lqw2basr33g00l",
+      "symbol_id": "Leshy2_R2:murata_lqw2basr33g00l",
+      "reference_prefix": "L",
+      "value": "LQW2BASR33G00L",
+      "footprint": "Inductor_SMD:L_0805_2012Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_lqw2uas1r0g00l",
+      "symbol_id": "Leshy2_R2:murata_lqw2uas1r0g00l",
+      "reference_prefix": "L",
+      "value": "LQW2UAS1R0G00L",
+      "footprint": "Inductor_SMD:L_1008_2520Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_lqw2uasr56f00l",
+      "symbol_id": "Leshy2_R2:murata_lqw2uasr56f00l",
+      "reference_prefix": "L",
+      "value": "LQW2UASR56F00L",
+      "footprint": "Inductor_SMD:L_1008_2520Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "nexperia_74hc20pw_118",
+      "symbol_id": "Leshy2_R2:nexperia_74hc20pw_118",
+      "reference_prefix": "U",
+      "value": "74HC20PW,118",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "pin_count": 14,
+      "no_connect_pin_count": 2,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "1A",
+          "contacts": [
+            "1A"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "1B",
+          "contacts": [
+            "1B"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "NC_3",
+          "contacts": [
+            "NC_3"
+          ],
+          "roles": [
+            "no_connect"
+          ],
+          "type": "no_connect"
+        },
+        {
+          "number": "4",
+          "name": "1C",
+          "contacts": [
+            "1C"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "5",
+          "name": "1D",
+          "contacts": [
+            "1D"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "6",
+          "name": "1Y",
+          "contacts": [
+            "1Y"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "7",
+          "name": "GND",
+          "contacts": [
+            "GND"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "8",
+          "name": "2Y",
+          "contacts": [
+            "2Y"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "9",
+          "name": "2A",
+          "contacts": [
+            "2A"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "10",
+          "name": "2B",
+          "contacts": [
+            "2B"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "11",
+          "name": "NC_11",
+          "contacts": [
+            "NC_11"
+          ],
+          "roles": [
+            "no_connect"
+          ],
+          "type": "no_connect"
+        },
+        {
+          "number": "12",
+          "name": "2C",
+          "contacts": [
+            "2C"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "13",
+          "name": "2D",
+          "contacts": [
+            "2D"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "14",
+          "name": "VCC",
+          "contacts": [
+            "VCC"
+          ],
+          "roles": [
+            "power"
           ],
           "type": "passive"
         }
@@ -9320,7 +10421,7 @@
       "value": "onsemi FSUSB42MUX",
       "footprint": "Package_SO:MSOP-10_3x3mm_P0.5mm",
       "pin_count": 10,
-      "no_connect_pin_count": 2,
+      "no_connect_pin_count": 0,
       "external_interfaces": [],
       "pin_map": [
         {
@@ -9407,9 +10508,9 @@
             "HSD2_MINUS"
           ],
           "roles": [
-            "no_connect"
+            "signal"
           ],
-          "type": "no_connect"
+          "type": "passive"
         },
         {
           "number": "9",
@@ -9418,9 +10519,9 @@
             "HSD2_PLUS"
           ],
           "roles": [
-            "no_connect"
+            "signal"
           ],
-          "type": "no_connect"
+          "type": "passive"
         },
         {
           "number": "10",
@@ -9597,6 +10698,40 @@
           "name": "MINUS",
           "contacts": [
             "MINUS"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "ralec_rtt023r00fth",
+      "symbol_id": "Leshy2_R2:ralec_rtt023r00fth",
+      "reference_prefix": "R",
+      "value": "RTT023R00FTH",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
           ],
           "roles": [
             "analog"
@@ -11221,6 +12356,128 @@
       ]
     },
     {
+      "device_id": "skyworks_si5351a_b_gtr",
+      "symbol_id": "Leshy2_R2:skyworks_si5351a_b_gtr",
+      "reference_prefix": "U",
+      "value": "SI5351A-B-GTR",
+      "footprint": "Package_SO:MSOP-10_3x3mm_P0.5mm",
+      "pin_count": 10,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "VDD",
+          "contacts": [
+            "VDD"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "XA",
+          "contacts": [
+            "XA"
+          ],
+          "roles": [
+            "clock"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "XB",
+          "contacts": [
+            "XB"
+          ],
+          "roles": [
+            "clock"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "4",
+          "name": "SCL",
+          "contacts": [
+            "SCL"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "5",
+          "name": "SDA",
+          "contacts": [
+            "SDA"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "6",
+          "name": "CLK2",
+          "contacts": [
+            "CLK2"
+          ],
+          "roles": [
+            "clock"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "7",
+          "name": "VDDO",
+          "contacts": [
+            "VDDO"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "8",
+          "name": "GND",
+          "contacts": [
+            "GND"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "9",
+          "name": "CLK1",
+          "contacts": [
+            "CLK1"
+          ],
+          "roles": [
+            "clock"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "10",
+          "name": "CLK0",
+          "contacts": [
+            "CLK0"
+          ],
+          "roles": [
+            "clock"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
       "device_id": "sunlord_mwsa0503s_2r2mt",
       "symbol_id": "Leshy2_R2:sunlord_mwsa0503s_2r2mt",
       "reference_prefix": "L",
@@ -11348,6 +12605,62 @@
           "name": "END_2",
           "contacts": [
             "END_2"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "suzhou_liming_3225_27_00_10_10_10_a",
+      "symbol_id": "Leshy2_R2:suzhou_liming_3225_27_00_10_10_10_a",
+      "reference_prefix": "Y",
+      "value": "3225-27.00-10-10-10/A",
+      "footprint": "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm",
+      "pin_count": 4,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "X1",
+          "contacts": [
+            "X1"
+          ],
+          "roles": [
+            "clock"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "CASE_GND_1",
+          "contacts": [
+            "CASE_GND_1"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "X2",
+          "contacts": [
+            "X2"
+          ],
+          "roles": [
+            "clock"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "4",
+          "name": "CASE_GND_2",
+          "contacts": [
+            "CASE_GND_2"
           ],
           "roles": [
             "power"
@@ -18068,6 +19381,74 @@
       ]
     },
     {
+      "device_id": "yageo_cq0402brnpo9bn3r2",
+      "symbol_id": "Leshy2_R2:yageo_cq0402brnpo9bn3r2",
+      "reference_prefix": "C",
+      "value": "CQ0402BRNPO9BN3R2",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "yageo_cq0402brnpo9bn6r2",
+      "symbol_id": "Leshy2_R2:yageo_cq0402brnpo9bn6r2",
+      "reference_prefix": "C",
+      "value": "CQ0402BRNPO9BN6R2",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
       "device_id": "yageo_rc0402fr_07100kl",
       "symbol_id": "Leshy2_R2:yageo_rc0402fr_07100kl",
       "reference_prefix": "R",
@@ -19082,6 +20463,74 @@
           ],
           "roles": [
             "analog"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "yageo_rc0402fr_0782rl",
+      "symbol_id": "Leshy2_R2:yageo_rc0402fr_0782rl",
+      "reference_prefix": "R",
+      "value": "RC0402FR-0782RL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "yageo_rc0402fr_0793r1l",
+      "symbol_id": "Leshy2_R2:yageo_rc0402fr_0793r1l",
+      "reference_prefix": "R",
+      "value": "RC0402FR-0793R1L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
           ],
           "type": "passive"
         }

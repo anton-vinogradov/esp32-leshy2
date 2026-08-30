@@ -11,6 +11,7 @@
     "c5_mux": "hardware/architecture/c5-sdio-service-mux-contract.json",
     "pack_safety_boundary": "hardware/architecture/pack-safety-i2c-boundary-contract.json",
     "display_adapter": "hardware/product-design/display-adapter.json"
+    ,"topology": "hardware/ecad/h2-r2-topology-overrides.json"
   },
   "reconciled_historical_hints": {
     "route_contract": "hardware/architecture/candidates/G2F-3I.json",

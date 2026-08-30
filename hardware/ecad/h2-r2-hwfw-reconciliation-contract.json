@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "marker": "H2-R2.1.4",
+  "artifact": "H2-R2-hardware-firmware-reconciliation",
+  "sources": {
+    "h0": "hardware/architecture/h0-r2-rebaseline.json",
+    "pin_authority": "hardware/architecture/h1-r2-dual-rp-pinout.json",
+    "c5_mux": "hardware/architecture/c5-sdio-service-mux-contract.json",
+    "pack_safety_i2c": "hardware/architecture/pack-safety-i2c-boundary-contract.json",
+    "retained_allocations": "hardware/architecture/candidates/G2F-3I.json",
+    "physical_h1": "hardware/product-design/h1-r2-placement.json",
+    "native_inventory": "hardware/ecad/generated/H2-R2-native-inventory.json",
+    "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
+    "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+    "native_kicad": "hardware/ecad/generated/H2-R2-native-kicad-projects.json"
+  },
+  "domain_instances": {
+    "s3": "s3",
+    "c5": "c5",
+    "hub_rp": "hub_rp",
+    "rf_rp": "rf_rp",
+    "pack": "pack_admission",
+    "safety": "safety_controller"
+  },
+  "conditioned_net_aliases": [
+    {"domain": "c5", "contact": "GPIO7", "authority_net": "C5_SDIO_D1", "schematic_net": "C5_SDIO_D1_C5", "boundary": "C5-side series/conditioning segment"},
+    {"domain": "c5", "contact": "GPIO8", "authority_net": "C5_SDIO_D0", "schematic_net": "C5_SDIO_D0_C5", "boundary": "C5-side series/conditioning segment"},
+    {"domain": "c5", "contact": "GPIO9", "authority_net": "C5_SDIO_CLK", "schematic_net": "C5_SDIO_CLK_C5", "boundary": "C5-side series/conditioning segment"},
+    {"domain": "c5", "contact": "GPIO10", "authority_net": "C5_SDIO_CMD", "schematic_net": "C5_SDIO_CMD_C5", "boundary": "C5-side series/conditioning segment"},
+    {"domain": "c5", "contact": "GPIO13", "authority_net": "C5_SDIO_D3_USB_DM", "schematic_net": "C5_GPIO13_COMMON", "boundary": "FSUSB42 SDIO/service-USB common node"},
+    {"domain": "c5", "contact": "GPIO14", "authority_net": "C5_SDIO_D2_USB_DP", "schematic_net": "C5_GPIO14_COMMON", "boundary": "FSUSB42 SDIO/service-USB common node"},
+    {"domain": "c5", "contact": "GPIO23", "authority_net": "C5_RF_TX_EVIDENCE_N", "schematic_net": "EV_N1_C5", "boundary": "named physical TX-evidence channel"},
+    {"domain": "c5", "contact": "GPIO24", "authority_net": "IR_TX_EVIDENCE_N", "schematic_net": "EV_N7_IR", "boundary": "named physical TX-evidence channel"},
+    {"domain": "hub_rp", "contact": "GPIO42", "authority_net": "HUB_SAFE_I2C_SDA", "schematic_net": "HUB_SAFE_I2C_SDA_MAIN", "boundary": "TCA9803 main-side powered-off I2C boundary"},
+    {"domain": "hub_rp", "contact": "GPIO43", "authority_net": "HUB_SAFE_I2C_SCL", "schematic_net": "HUB_SAFE_I2C_SCL_MAIN", "boundary": "TCA9803 main-side powered-off I2C boundary"},
+    {"domain": "pack", "contact": "PA0", "authority_net": "HUB_SAFE_I2C_SDA", "schematic_net": "HUB_SAFE_I2C_SDA_AON", "boundary": "TCA9803 always-on side"},
+    {"domain": "pack", "contact": "PA11", "authority_net": "HUB_SAFE_I2C_SCL", "schematic_net": "HUB_SAFE_I2C_SCL_AON", "boundary": "TCA9803 always-on side"},
+    {"domain": "safety", "contact": "PA0", "authority_net": "HUB_SAFE_I2C_SDA", "schematic_net": "HUB_SAFE_I2C_SDA_AON", "boundary": "TCA9803 always-on side"},
+    {"domain": "safety", "contact": "PA11", "authority_net": "HUB_SAFE_I2C_SCL", "schematic_net": "HUB_SAFE_I2C_SCL_AON", "boundary": "TCA9803 always-on side"}
+  ],
+  "cross_project_boundaries": [
+    {
+      "projects": ["LESHY2-RF-R2", "LESHY2-UI-R2"],
+      "endpoint_instances": ["m1_rf_receptacle", "m1_ui_plug"],
+      "role": "80-contact M1 interboard connector"
+    },
+    {
+      "projects": ["L2-DISP-ADP-001-B", "LESHY2-UI-R2"],
+      "endpoint_instances": ["display_adapter_plug", "display_connector"],
+      "role": "40-contact display adapter connector"
+    }
+  ],
+  "authorization": {
+    "hardware_firmware_machine_authority": true,
+    "pcb_placement_or_routing": false,
+    "fabrication": false,
+    "ordering": false
+  }
+}

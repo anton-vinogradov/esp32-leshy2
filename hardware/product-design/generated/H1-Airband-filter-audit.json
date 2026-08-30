@@ -3,181 +3,183 @@
   "marker": "H1-R2.3",
   "status": "nominal_pass_stress_fail",
   "candidate_is_production_frozen": false,
-  "nominal_passband_maximum_loss_db": 3.0345,
-  "stress_passband_maximum_loss_db": 4.2722,
+  "nominal_passband_maximum_loss_db": 3.0953,
+  "stress_passband_maximum_loss_db": 4.6678,
   "stress_scenario_count": 16386,
   "stop_results": [
     {
       "frequency_mhz": 95.0,
       "minimum_loss_db": 40.0,
-      "nominal_loss_db": 45.22,
-      "stress_minimum_loss_db": 41.0113,
+      "nominal_loss_db": 45.2265,
+      "stress_minimum_loss_db": 40.7791,
       "nominal_pass": true,
       "stress_pass": true
     },
     {
       "frequency_mhz": 105.0,
       "minimum_loss_db": 20.0,
-      "nominal_loss_db": 24.8033,
-      "stress_minimum_loss_db": 21.0357,
+      "nominal_loss_db": 24.8191,
+      "stress_minimum_loss_db": 20.5632,
       "nominal_pass": true,
       "stress_pass": true
     },
     {
       "frequency_mhz": 155.0,
       "minimum_loss_db": 20.0,
-      "nominal_loss_db": 28.6307,
-      "stress_minimum_loss_db": 21.0592,
+      "nominal_loss_db": 28.6414,
+      "stress_minimum_loss_db": 17.8506,
       "nominal_pass": true,
-      "stress_pass": true
+      "stress_pass": false
     },
     {
       "frequency_mhz": 180.0,
       "minimum_loss_db": 40.0,
-      "nominal_loss_db": 44.1691,
-      "stress_minimum_loss_db": 34.6212,
+      "nominal_loss_db": 44.1712,
+      "stress_minimum_loss_db": 34.1942,
       "nominal_pass": true,
       "stress_pass": false
     },
     {
       "frequency_mhz": 220.0,
       "minimum_loss_db": 40.0,
-      "nominal_loss_db": 41.5881,
-      "stress_minimum_loss_db": 40.7289,
+      "nominal_loss_db": 41.5904,
+      "stress_minimum_loss_db": 40.3769,
       "nominal_pass": true,
       "stress_pass": true
     }
   ],
   "nominal_loss_db": {
-    "95": 45.22,
-    "105": 24.8033,
-    "118": 3.0175,
-    "119": 2.8102,
-    "120": 2.7555,
-    "121": 2.7724,
-    "122": 2.8083,
-    "123": 2.8341,
-    "124": 2.8365,
-    "125": 2.8121,
-    "126": 2.7631,
-    "127": 2.6956,
-    "128": 2.6181,
-    "129": 2.5404,
-    "130": 2.4734,
-    "131": 2.4279,
-    "132": 2.4141,
-    "133": 2.4406,
-    "134": 2.5137,
-    "135": 2.6369,
-    "136": 2.8108,
-    "137": 3.0345,
-    "155": 28.6307,
-    "180": 44.1691,
-    "220": 41.5881
+    "95": 45.2265,
+    "105": 24.8191,
+    "118": 3.0622,
+    "119": 2.8501,
+    "120": 2.7914,
+    "121": 2.8055,
+    "122": 2.84,
+    "123": 2.8655,
+    "124": 2.8685,
+    "125": 2.8454,
+    "126": 2.7984,
+    "127": 2.7334,
+    "128": 2.6586,
+    "129": 2.584,
+    "130": 2.5201,
+    "131": 2.4777,
+    "132": 2.4668,
+    "133": 2.4958,
+    "134": 2.571,
+    "135": 2.6958,
+    "136": 2.8709,
+    "137": 3.0953,
+    "155": 28.6414,
+    "180": 44.1712,
+    "220": 41.5904
   },
   "stress_envelope_db": {
     "95": {
-      "minimum_loss_db": 41.0113,
-      "maximum_loss_db": 49.9421
+      "minimum_loss_db": 40.7791,
+      "maximum_loss_db": 50.0215
     },
     "105": {
-      "minimum_loss_db": 21.0357,
-      "maximum_loss_db": 28.863
+      "minimum_loss_db": 20.5632,
+      "maximum_loss_db": 29.2935
     },
     "118": {
-      "minimum_loss_db": 2.6239,
-      "maximum_loss_db": 4.2722
+      "minimum_loss_db": 2.6764,
+      "maximum_loss_db": 4.5209
     },
     "119": {
-      "minimum_loss_db": 2.5241,
-      "maximum_loss_db": 3.4871
+      "minimum_loss_db": 2.5616,
+      "maximum_loss_db": 3.6501
     },
     "120": {
-      "minimum_loss_db": 2.4248,
-      "maximum_loss_db": 3.3406
+      "minimum_loss_db": 2.4604,
+      "maximum_loss_db": 3.4974
     },
     "121": {
-      "minimum_loss_db": 2.3777,
-      "maximum_loss_db": 3.4019
+      "minimum_loss_db": 2.4143,
+      "maximum_loss_db": 3.482
     },
     "122": {
-      "minimum_loss_db": 2.3631,
-      "maximum_loss_db": 3.453
+      "minimum_loss_db": 2.4032,
+      "maximum_loss_db": 3.5684
     },
     "123": {
-      "minimum_loss_db": 2.3556,
-      "maximum_loss_db": 3.523
+      "minimum_loss_db": 2.3881,
+      "maximum_loss_db": 3.7104
     },
     "124": {
-      "minimum_loss_db": 2.3415,
-      "maximum_loss_db": 3.5669
+      "minimum_loss_db": 2.3703,
+      "maximum_loss_db": 3.8053
     },
     "125": {
-      "minimum_loss_db": 2.3205,
-      "maximum_loss_db": 3.5649
+      "minimum_loss_db": 2.3339,
+      "maximum_loss_db": 3.8498
     },
     "126": {
-      "minimum_loss_db": 2.2834,
-      "maximum_loss_db": 3.5262
+      "minimum_loss_db": 2.2836,
+      "maximum_loss_db": 3.8463
     },
     "127": {
-      "minimum_loss_db": 2.248,
-      "maximum_loss_db": 3.4703
+      "minimum_loss_db": 2.2467,
+      "maximum_loss_db": 3.8092
     },
     "128": {
-      "minimum_loss_db": 2.2139,
-      "maximum_loss_db": 3.3878
+      "minimum_loss_db": 2.2133,
+      "maximum_loss_db": 3.7615
     },
     "129": {
-      "minimum_loss_db": 2.1934,
-      "maximum_loss_db": 3.2795
+      "minimum_loss_db": 2.2066,
+      "maximum_loss_db": 3.6811
     },
     "130": {
-      "minimum_loss_db": 2.1827,
-      "maximum_loss_db": 3.1545
+      "minimum_loss_db": 2.2011,
+      "maximum_loss_db": 3.576
     },
     "131": {
-      "minimum_loss_db": 2.1725,
-      "maximum_loss_db": 3.0234
+      "minimum_loss_db": 2.212,
+      "maximum_loss_db": 3.4553
     },
     "132": {
-      "minimum_loss_db": 2.1872,
-      "maximum_loss_db": 2.8979
+      "minimum_loss_db": 2.235,
+      "maximum_loss_db": 3.3292
     },
     "133": {
-      "minimum_loss_db": 2.2354,
-      "maximum_loss_db": 2.8168
+      "minimum_loss_db": 2.2707,
+      "maximum_loss_db": 3.2092
     },
     "134": {
-      "minimum_loss_db": 2.275,
-      "maximum_loss_db": 3.0463
+      "minimum_loss_db": 2.2982,
+      "maximum_loss_db": 3.4686
     },
     "135": {
-      "minimum_loss_db": 2.3329,
-      "maximum_loss_db": 3.3198
+      "minimum_loss_db": 2.3489,
+      "maximum_loss_db": 3.8206
     },
     "136": {
-      "minimum_loss_db": 2.4075,
-      "maximum_loss_db": 3.6321
+      "minimum_loss_db": 2.4349,
+      "maximum_loss_db": 4.22
     },
     "137": {
-      "minimum_loss_db": 2.5014,
-      "maximum_loss_db": 3.9776
+      "minimum_loss_db": 2.4963,
+      "maximum_loss_db": 4.6678
     },
     "155": {
-      "minimum_loss_db": 21.0592,
-      "maximum_loss_db": 31.9006
+      "minimum_loss_db": 17.8506,
+      "maximum_loss_db": 32.6019
     },
     "180": {
-      "minimum_loss_db": 34.6212,
-      "maximum_loss_db": 45.5461
+      "minimum_loss_db": 34.1942,
+      "maximum_loss_db": 46.0363
     },
     "220": {
-      "minimum_loss_db": 40.7289,
-      "maximum_loss_db": 42.4928
+      "minimum_loss_db": 40.3769,
+      "maximum_loss_db": 42.7993
     }
   },
   "failures": [
+    "tolerance/Q stress exceeds the 4.5-dB passband mask",
+    "stress rejection misses the mask at 155 MHz",
     "stress rejection misses the mask at 180 MHz"
   ],
   "accepted_result": "H1 accepts the LC topology, 24 x 11 mm tuning envelope, alternate/DNP pad strategy and factory-placeable precision passive families as the physical boundary; this remains materially cheaper/smaller than BPF-A127+.",

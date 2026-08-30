@@ -11,8 +11,8 @@ PCB или печать.
 
 | Элемент | Проверенный результат |
 |---|---:|
-| Устанавливаемые экземпляры на платах | 1 096 |
-| Точные группы компонентов плат | 208 |
+| Устанавливаемые экземпляры на платах | 1 187 |
+| Точные группы компонентов плат | 237 |
 | Native-проекты | 3 |
 | Граф проектов | 23 листа; корневые листы только иерархические и намеренно не содержат деталей |
 | Независимые домены RP2354B | 2: передний Hub RP и задний RF RP |
@@ -29,10 +29,10 @@ PCB или печать.
 ## Машинное evidence
 
 - [Контракт распределения](../hardware/ecad/h2-r2-instance-ledger-contract.json)
-- [Сгенерированный ledger 1 096 экземпляров](../hardware/ecad/generated/H2-R2-native-instance-ledger.json)
+- [Сгенерированный ledger 1 187 экземпляров](../hardware/ecad/generated/H2-R2-native-instance-ledger.json)
 - [Генератор](../hardware/ecad/h2_r2_instance_ledger.py)
 
-Следующая [сверка native nets](h2-r2-net-ledger.ru.md) теперь также пройдена.
-Текущая точка остаётся **`H2-R2.1.3`**: материализовать проверенные definitions,
-references и nets в трёх native-проектах KiCad. Placement, routing, печать и
-заказ остаются заблокированы.
+Следующие [сверка native nets](h2-r2-net-ledger.ru.md) и
+[генерация native KiCad](h2-r2-native-kicad.ru.md) также пройдены. Сверка sheets
+и HW↔FW прошла в [H2-R2.1.5](h2-acceptance.ru.md). Теперь H3 фиксирует эти входы;
+placement, routing, печать и заказ остаются заблокированы.

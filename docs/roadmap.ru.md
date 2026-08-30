@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H2-R2.1.3`.** H0 и H1 прошли ревью; принятый итог H1 — [`H1-R2.37`](h1-r2-acceptance.ru.md). Все три [электрических prerequisite H2](h2-r2-electrical-prerequisites.ru.md), [native R2 inventory](h2-r2-native-inventory.ru.md), [точный ledger symbol/contact/value/footprint](h2-r2-symbol-footprint-ledger.ru.md) и [сверка 4 053 endpoints native nets](h2-r2-net-ledger.ru.md) прошли ревью. Сейчас из этого проверенного входа создаются три native-проекта KiCad.
+> **▶ Текущая аппаратная граница: `H3-R2.0.1`.** H0, H1 и [H2-R2.1.5](h2-acceptance.ru.md) прошли ревью. Три native-проекта KiCad R2 содержат 1 187 устанавливаемых symbols, 4 327 физических pins и 827 канонических nets без замечаний ERC. Шесть доменов, 173 строки контроллеров, 50 межпроектных и 233 межлистовых nets сведены. Теперь H3 фиксирует эту authority для виртуальной электрической проверки.
 > KiCad routing R2, quote, reservation и заказ не разрешены.
 
 Статус сверен: **30 августа 2026 года**.
@@ -26,16 +26,16 @@
 | Функциональная архитектура | ✅ [H0-R2 проведено ревью](h0-r2-functional-architecture.ru.md): передний UI/radio и задний RF/power домены, явные владельцы, transport, quiet-state и safety-crossings |
 | Физический дизайн | ✅ [H1-R2.37 проведено ревью](h1-r2-acceptance.ru.md): полная модель двух плат, десять постоянных назначений антенн, точный EastRising-дисплей, слот U214/U219 и TX-evidence-острова физически согласованы; [все 208 MPN-групп базового BOM ранжированы](h1-r2-cost.ru.md) |
 | Принципиальные диаграммы | Опубликованы актуальные связи компонентов/шин, внешний мокап, отдельные читаемые внутренние стороны, service map и диаграммы питания/фильтра |
-| Production ECAD | ▶ `H2-R2.1.3`: exact definitions, 1 096 экземпляров и состояния 4 053 контактов прошли ревью; создаются три native-проекта KiCad с 908 каноническими nets; сохранённый G2F/H2/KiCad — только историческое evidence R1 |
+| Production ECAD | ✅ [H2-R2.1.5 проведено ревью](h2-acceptance.ru.md): три native-проекта KiCad материализуют 1 187 экземпляров, 4 327 физических pins и 827 канонических nets без замечаний ERC; six-domain сверка sheets/HW↔FW проходит; G2F/H2/KiCad — только историческое evidence R1 |
 | Пререквизит прошивки | ✅ firmware F1-R2 проведено ревью; F2-R2.4 квалифицировал все 12 target builds, 60 artifacts, 16 maps и 16 size gates, а F2-R2.5 reproducibility сейчас в отдельном [роадмапе F0–F11](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md); отдельный fail-closed `F-PO` требует диагностические образы, эмуляцию и recovery до заказа |
 | Заказ | 🔒 Ровно один собранный `R2-EVT1` — только после H6, `F-PO`, immutable release-package и явного одобрения exact-one quote; производство — только на H9 |
 
 ## Проведённое ревью H1 · точный состав
 
-<!-- current-substep: H2-R2.1.3 -->
+<!-- current-substep: H3-R2.0.1 -->
 
 **Маркер ревью: `H1-R2.37`.** Пакет компоновки принят 2026-08-30. Текущий
-аппаратный маркер — `H2-R2.1.3`.
+аппаратный маркер — `H3-R2.0.1`.
 
 ### 1. Размещение функциональных островов
 
@@ -46,8 +46,8 @@
   старые G2F/H2/KiCad содержат пять доменов, один RP и прежний M1, поэтому это
   только исторический R1 reference. Точные GPIO0..47 обоих RP, пять сигналов
   Hub↔RF через M1 и стык C5 SDIO/service-mux теперь machine-checked authority H1.
-- ✅ GPIO переднего RP: `46/48`, свободны 2 линии; заднего RP: `40/48`, свободны 8 (GP15/28/29/32/33/34/37/38).
-- ✅ Точный `ER-TFT035IPS-6` + `ER-TPC035-6` работает по прямому i8080-8 24 МГц через пассивный `L2-DISP-ADP-001-B`; клавиши остаются на локальном для S3 `TCA9539PWR`, а энкодер и USB — на прямых интерфейсах S3. Одиннадцать бывших video-GPIO остаются резервом.
+- ✅ GPIO переднего RP: `47/48`, свободна 1 линия; заднего RP: `43/48`, свободны 5 (GP32/33/34/37/38).
+- ✅ Точный `ER-TFT035IPS-6` + `ER-TPC035-6` работает по прямому i8080-8 24 МГц через пассивный `L2-DISP-ADP-001-B`; клавиши остаются на локальном для S3 `TCA9539PWR`, а энкодер и USB — на прямых интерфейсах S3. После замыкания reset/service-трактов свободными остаются 6 GPIO.
 
 ### 2. Локальность RF и антенн
 
@@ -59,8 +59,8 @@
 
 ### 3. Межплатный transport
 
-- ✅ M1 полностью посчитан: 24 сигнала, 14 main-power, 2 AON, 24 определённых
-  возврата и 16 NC; step 4,25 А даёт 0,3036 А на main-контакт.
+- ✅ M1 полностью посчитан: 29 сигналов, 14 main-power, 2 AON, 24 определённых
+  возврата и 11 настоящих NC; step 4,25 А даёт 0,3036 А на main-контакт.
 - ✅ M1 не несёт силовой нагрузки: четыре упора 11,00 мм, минимум два
   anti-shear datums и независимый захват плат закрывают случай одного ослабленного винта.
 - ✅ Заднее аудио занимает менее 0,4 МБ/с на проверенном RP-link 1,5 МБ/с;
@@ -130,18 +130,18 @@
 
 - ✅ Бортовой аналоговый видеоприёмник, декодер, MMCX, антенна и физическая зона
   удалены. После PCBA нет скрытого активного модуля, требующего пайки владельцем.
-- ✅ Освобождённые линии остаются резервами: 11 у S3, 8 у заднего RP, а контакты
-  M1 35–36 — настоящие NC.
+- ✅ Точный текущий резерв: 6 GPIO у S3, 5 у заднего RP и 11 настоящих NC у M1;
+  контакты 35–36 остаются NC.
 - ✅ Полный внешний вид, обе внутренние стороны после физического переворота
   плат и реальные разрезы приняты 2026-08-30. [Открыть отчёт фазы](h1-r2-acceptance.ru.md).
 
-## Текущий H2-R2.1.3 · native definitions и joined nets
+## Проведённое ревью H2-R2.1.5 · native-проекты и сверка
 
-**Точный маркер: `H2-R2.1.3`.** Все электрические prerequisites до ECAD,
-native R2 source/sheet/component inventory и exact ledger symbol/contact/value/
-footprint прошли ревью. Материализация contact-to-pad, controlled R2 symbol
-library, точная раскладка 1 096 экземпляров и сверка 4 053 endpoints завершены;
-текущая точка — создание native-проектов KiCad. Placement и routing ещё не начинались.
+**Маркер ревью: `H2-R2.1.5`.** Все prerequisites и exact ledgers закрыты.
+Три native-проекта KiCad R2 теперь материализуют 1 187 устанавливаемых
+экземпляров, 4 327 физических pins и 827 канонических nets. Все три root-
+схемы читаются и экспортируются; ERC даёт ноль ошибок и ноль предупреждений.
+Сквозная сверка sheets и HW↔FW проходит. Placement и routing ещё не начинались.
 
 - ✅ `H2-R2.0.1`: точный маршрут Standard PCBA onsemi `FSUSB42MUX` / `C11355`
   прошёл ревью по live-поверхности: stock 66 698; доступно 66 045; MOQ 1;
@@ -155,28 +155,33 @@ library, точная раскладка 1 096 экземпляров и све�
   прошла ревью с двумя MAIN-local pull-up 2,2 кОм, AON-local источниками 3,3 мА,
   четырьмя Basic decoupler и стоимостью компонентов USD 0,3953 для одного тракта.
 - ✅ `H2-R2.1.1`: проведено ревью 3 native-проектов, 23 sheets, 6 владельцев
-  доменов, 213 точных MPN-групп и 1 106 позиций; symbols/nets не создавались.
-- ✅ `H2-R2.1.2`: у 208 board groups есть по одной symbol- и footprint-identity;
-  пять non-PCBA groups явны; 1 561 логический контакт и все sheet affinities
+  доменов, 242 точных MPN-групп и 1 197 позиций.
+- ✅ `H2-R2.1.2`: у 237 board groups ест по одной symbol- и footprint-identity;
+  пять non-PCBA groups явны; 1 662 логических контакта и все sheet affinities
   hash-bound, незакрытых групп нет.
-- ✅ Contact-checkpoint `H2-R2.1.3`: 1 504 контакта платы во всех 208 группах
+- ✅ Contact-checkpoint `H2-R2.1.3`: 1 605 контактов платы во всех 237 группах
   сопоставлены реальным площадкам выбранных footprints или трём явным RF-интерфейсам
   на модулях; каждая именованная площадка учтена. Точный 50-контактный footprint
-  Hirose FH34 материализован по официальному чертежу и проходит парсер KiCad.
+  Hirose FH34 и six-pad Coilcraft transformer материализованы по официальным чертежам.
 - ✅ Symbol-checkpoint `H2-R2.1.3`: детерминированная library `Leshy2_R2`
-  содержит 208 exact-MPN symbols и 1 518 уникальных electrical-pad pins; KiCad 10
+  содержит 237 exact-MPN symbols и 1 618 уникальных electrical-pad pins; KiCad 10
   читает, пересохраняет и экспортирует контрольные symbols без ошибок.
-- ✅ Instance-checkpoint `H2-R2.1.3`: все 1 096 устанавливаемых позиций из 208
+- ✅ Instance-checkpoint `H2-R2.1.3`: все 1 187 устанавливаемых позиций из 237
   групп распределены по трём native-проектам; старый ledger R1 не передаёт ни
   одного net, reference designator или правила топологии.
-- ✅ Net-checkpoint `H2-R2.1.3`: все 4 053 контакта устанавливаемых экземпляров
-  сведены в 3 814 подключённых endpoints, 239 явных board no-connects и 908
+- ✅ Net-checkpoint `H2-R2.1.3`: все 4 323 контакта устанавливаемых экземпляров
+  сведены в 4 063 подключённых endpoints, 260 явных board no-connects и 827
   канонических nets; неразрешённых endpoints нет.
-- ▶ Текущий checkpoint `H2-R2.1.3`: создать три native-проекта KiCad R2 из
-  проверенных definitions, references и nets.
-- 🔒 Schematic export, routing, quote, закупка и печать остаются запрещены.
+- ✅ Native-KiCad-checkpoint `H2-R2.1.3`: 3 проекта, 23 sheets графа, 1 187 symbols
+  и 4 327 физических pins проходят parser/export и ERC без замечаний.
+- ✅ `H2-R2.1.4`: шесть доменов, 173 строки контроллеров, 50 межпроектных и
+  233 межлистовых nets сведены без незакрытых границ.
+- ✅ `H2-R2.1.5`: [двуязычный отчёт фазы](h2-acceptance.ru.md) опубликован;
+  синхронизированный firmware H2 gate открыт.
+- 🔒 PCB placement, routing, quote, закупка и печать остаются запрещены.
 
-[Открыть результат net-checkpoint](h2-r2-net-ledger.ru.md) ·
+[Открыть результат native KiCad](h2-r2-native-kicad.ru.md) ·
+[результат net-checkpoint](h2-r2-net-ledger.ru.md) ·
 [результат instance-checkpoint](h2-r2-instance-ledger.ru.md) ·
 [живой реестр prerequisites](h2-r2-electrical-prerequisites.ru.md).
 
@@ -186,8 +191,8 @@ library, точная раскладка 1 096 экземпляров и све�
 |---|---|---|---|
 | H0 · Требования и функциональная архитектура | ✅ [R2 проведено ревью](h0-r2-functional-architecture.ru.md) | Функции продукта, владельцы, transport, safety и рабочие pin-бюджеты | У каждой функции один владелец; все рабочие бюджеты сходятся |
 | H1 · Физический дизайн продукта | ✅ [Проведено ревью · `H1-R2.37`](h1-r2-acceptance.ru.md) | Внешний вид, отдельные внутренние стороны, разрезы, точные корпуса, RF-локальность, сервис и power-envelope | Нет коллизий bodies/fasteners/silkscreen/antennas/accessories/opposing sides; точный MPN или контролируемый reserve; мокап принят |
-| **H2 · Production ECAD-схема** | **▶ Сейчас · `H2-R2.1.3`** | Точные R2 symbols, contacts, nets, values, protection и footprints | Definitions, instances и net-ledger прошли ревью; сейчас native KiCad, затем ERC и machine-readable HW↔FW contract |
-| H3 · Виртуальная электрическая проверка | ⏳ Ожидает H2 | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
+| H2 · Production ECAD-схема | ✅ [Проведено ревью · `H2-R2.1.5`](h2-acceptance.ru.md) | Точные R2 symbols, contacts, nets, values, protection и footprints | Native KiCad, ERC без замечаний и сверка sheets/HW↔FW проходят |
+| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.0.1`** | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
 | H4 · Объединённый pre-layout gate | ⏳ Ожидает H3 и firmware R2 evidence | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
 | H5 · Компоненты и фабричные evidence | ⏳ Ожидает H4 | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
 | H6 · KiCad placement, routing и release candidate | 🔒 Ожидает H5 | Две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
@@ -205,13 +210,14 @@ library, точная раскладка 1 096 экземпляров и све�
 5. RF-передача и опасные тесты выполняются только на своей нагрузке, с разрешением владельца или в изолированной лаборатории.
 6. Эмуляция не заменяет bring-up, но H7 не может стать первым запуском прошивки: до заказа обязателен [`F-PO`](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/first_spin_preorder_gate.json).
 
-## Текущий путь выполнения H2
+## Текущий путь выполнения H3
 
 1. ✅ `H2-R2.1.1`: зафиксировать native R2 sources, sheet map и точный component inventory.
 2. ✅ `H2-R2.1.2`: сформировать exact ledger symbols, contacts, values, protection и footprints.
-3. ▶ `H2-R2.1.3`: материализовать проверенные definitions, references и 908 канонических nets в трёх native-проектах KiCad.
-4. 🔒 `H2-R2.1.4`: пройти ERC, cross-sheet и HW↔FW reconciliation.
-5. 🔒 `H2-R2.1.5`: опубликовать двуязычный отчёт H2 и открыть H3.
+3. ✅ `H2-R2.1.3`: материализовать 1 187 проверенных экземпляров и 827 канонических nets в трёх native-проектах KiCad; пройти ERC без замечаний.
+4. ✅ `H2-R2.1.4`: пройти cross-sheet и HW↔FW reconciliation.
+5. ✅ `H2-R2.1.5`: опубликовать двуязычный отчёт H2 и открыть H3.
+6. ▶ `H3-R2.0.1`: зафиксировать входы H2, source hashes и матрицу проверки текущего R2.
 
-Следующее действие — создание native-проектов KiCad из проверенных definitions
-и net-ledger. Placement, routing, quote и любой заказ остаются заблокированы.
+Следующее действие — точная фиксация входов H2. Placement, routing,
+quote и любой заказ остаются заблокированы.

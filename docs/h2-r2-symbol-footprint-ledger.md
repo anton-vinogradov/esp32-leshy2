@@ -10,13 +10,13 @@ projects or PCB layout.
 
 | Ledger item | Fixed result |
 |---|---|
-| Exact product component groups | 213 |
-| Board component groups | 208, each with one `Leshy2_R2` symbol identity and one exact footprint identity |
+| Exact product component groups | 242 |
+| Board component groups | 237, each with one `Leshy2_R2` symbol identity and one exact footprint identity |
 | Explicit non-PCBA groups | 5: display assembly, U214, two-cell kit, encoder knob and five removable RF jumpers |
-| Logical contacts | 1,561, copied and hash-bound from current manufacturer contact evidence |
-| Standard KiCad package identities | 175 |
+| Logical contacts | 1,662, copied and hash-bound from current manufacturer contact evidence |
+| Standard KiCad package identities | 202 |
 | Existing manufacturer-derived local definitions | 32 |
-| New local geometry to materialize | 1: exact serial `FH34SRJ-50S-0.5SH(50)` panel connector |
+| New local geometry materialized at the contact checkpoint | 3: exact `FH34SRJ-50S-0.5SH(50)`, `WBC1-1TLC` and `WBC16-1TLC` geometries |
 | Native schematic symbols/files/nets created | 0 / 0 / 0 |
 | Unresolved groups | 0 |
 
@@ -48,18 +48,19 @@ was changed by this step.
 
 ## H2-R2.1.3 contact checkpoint
 
-The new 50-contact FH34 footprint is now materialized from the official Hirose
-drawing. A generated contact audit resolves all 1,504 contacts belonging to the
-208 board groups: 1,501 are footprint contacts and three are explicit RF
+The new 50-contact FH34 and both six-pad Coilcraft transformer footprints are
+materialized from official drawings. A generated contact audit resolves all
+1,605 contacts belonging to the 237 board groups: 1,602 are footprint contacts
+and three are explicit RF
 receptacles already carried by their modules. All named footprint pads are
 claimed as electrical or explicitly mechanical; no carrier pad is invented for
-an on-module receptacle. The remaining 57 contacts in the 1,561-contact source
+an on-module receptacle. The remaining 57 contacts in the 1,662-contact source
 ledger belong to the five explicit non-PCBA assemblies.
 
 ## Machine evidence
 
 - [Exact ledger contract](../hardware/ecad/h2-r2-symbol-footprint-contract.json)
-- [Generated 213-group ledger](../hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json)
+- [Generated 242-group ledger](../hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json)
 - [Contact-to-pad contract](../hardware/ecad/h2-r2-contact-materialization-contract.json)
 - [Generated contact materialization](../hardware/ecad/generated/H2-R2-contact-materialization.json)
 - [Controlled-symbol contract](../hardware/ecad/h2-r2-symbol-library-contract.json)
@@ -69,9 +70,10 @@ ledger belong to the five explicit non-PCBA assemblies.
 
 ## Current boundary
 
-The controlled `Leshy2_R2` library now contains all 208 exact-MPN symbols and
-1,518 unique electrical-pad pins and passes KiCad 10 parsing. All 1,096 fitted
-instances are allocated to the current projects, and their 4,053 contacts pass
-[native net reconciliation](h2-r2-net-ledger.md). The current point is
-**`H2-R2.1.3`**: create the three native KiCad projects from that reviewed
-input. Placement, routing, fabrication and ordering remain blocked.
+The controlled `Leshy2_R2` library now contains all 237 exact-MPN symbols and
+1,618 unique electrical-pad pins and passes KiCad 10 parsing. All 1,187 fitted
+instances are allocated to the current projects, and their 4,323 contacts pass
+[native net reconciliation](h2-r2-net-ledger.md). The
+[native KiCad projects](h2-r2-native-kicad.md) also pass zero-finding ERC.
+Cross-sheet and HW↔FW reconciliation passed in [H2-R2.1.5](h2-acceptance.md).
+H3 now freezes those inputs; placement, routing, fabrication and ordering remain blocked.

@@ -26,7 +26,7 @@ class H1R2DualRPPinoutTest(unittest.TestCase):
         self.assertEqual([], audit["errors"])
         self.assertEqual("H1-R2.31", audit["marker"])
         self.assertEqual(96, audit["summary"]["gpio_rows"])
-        self.assertEqual((46, 2, 40, 8), (
+        self.assertEqual((47, 1, 43, 5), (
             audit["summary"]["hub_gpio_used"], audit["summary"]["hub_gpio_reserve"],
             audit["summary"]["rf_gpio_used"], audit["summary"]["rf_gpio_reserve"],
         ))
@@ -73,7 +73,7 @@ class H1R2DualRPPinoutTest(unittest.TestCase):
             hub["pio_budget"]["used_state_machines"], hub["pio_budget"]["reserve_state_machines"],
             hub["dma_budget"]["used_channels"], hub["dma_budget"]["reserve_channels"],
         ))
-        self.assertEqual((6, 6, 12, 4), (
+        self.assertEqual((7, 5, 12, 4), (
             rf["pio_budget"]["used_state_machines"], rf["pio_budget"]["reserve_state_machines"],
             rf["dma_budget"]["used_channels"], rf["dma_budget"]["reserve_channels"],
         ))

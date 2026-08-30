@@ -54,7 +54,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
         plan_normalized = " ".join(plan.split())
-        self.assertEqual("H2-R2.1.3", roadmap["current_substep"])
+        self.assertEqual("H3-R2.0.1", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -686,7 +686,7 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_rejects_incomparable_or_undocumented_cost_evidence(self):
         cases = (
             ({"currency": "EUR"}, "cost currency must be USD"),
-            ({"target_quantity": 99}, "cost target quantity must be 100"),
+            ({"target_quantity": 99}, "cost target quantity must be 1 or 100"),
             ({"unit_price_usd": 0}, "cost unit price must be positive"),
             (
                 {"source": {"document": "test", "url": "http://example.com", "checked": "2026-08-19"}},
@@ -1322,7 +1322,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         for doc_name in ("docs/hardware.md", "docs/hardware.ru.md"):
             public_doc = (GENERATOR.REPO_ROOT / doc_name).read_text(encoding="utf-8")
             self.assertIn("h0-r2-functional-architecture.svg", public_doc, doc_name)
-            self.assertIn("40 used / 8 free" if doc_name.endswith("hardware.md") else "40 занято / 8 свободно", public_doc)
+            self.assertIn("43 used / 5 free" if doc_name.endswith("hardware.md") else "43 занято / 5 свободно", public_doc)
 
     def test_target_readmes_remain_product_sites_not_review_ledgers(self):
         for readme_name in ("README.md", "README.ru.md"):

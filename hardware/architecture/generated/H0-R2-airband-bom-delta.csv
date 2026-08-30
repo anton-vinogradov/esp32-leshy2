@@ -1,6 +1,6 @@
 mpn,jlcpcb,qty,role,live_stock,unit_price,route
-LT5560EDD#TRPBF,C462645,1,active down-converting mixer,165,14.5623,JLCPCB SMT
-PGA-103+,C3008207,1,118-137-MHz low-noise gain,1445,2.6104,JLCPCB SMT
-SI5351A-B-GTR,C504891,1,112-MHz local oscillator,37669,1.2199,JLCPCB SMT
-HMC544AETR,C579555,1,low-loss direct/converted receiver selector,304,1.8112,JLCPCB SMT
+LT5560EDD#TRPBF,C462645,1,active down-converting mixer,165,14.5398,JLCPCB Standard-PCBA SMT
+PGA-103+,C3008207,1,118-137-MHz low-noise gain,1441,2.6063,JLCPCB Standard-PCBA SMT
+SI5351A-B-GTR,C504891,1,112-MHz local oscillator,36999,1.218,JLCPCB Standard-PCBA SMT
+HMC544AETR,C579555,2,paired low-loss input/output isolation selectors,2004,3.1529,JLCPCB Standard-PCBA SMT
 SI4732-A10-GSR,C2155558,0,existing FM/AM/SW/LW receiver reused for 6-25-MHz IF,547,2.8621,existing R1 line; no incremental quantity

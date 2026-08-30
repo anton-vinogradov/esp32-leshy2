@@ -27,7 +27,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("4053 current R2 endpoints reconciled", result.stdout)
+        self.assertIn("4323 current R2 endpoints reconciled", result.stdout)
 
     def test_every_current_instance_contact_occurs_once(self):
         instances = json.loads(INSTANCES.read_text(encoding="utf-8"))["rows"]
@@ -41,7 +41,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
             for contact in definitions[instance["device_id"]]["contact_map"]
         }
         self.assertEqual(expected, set(self.by_endpoint))
-        self.assertEqual(4053, len(expected))
+        self.assertEqual(4323, len(expected))
         self.assertFalse([
             endpoint for endpoint, count in Counter(row["endpoint"] for row in self.rows).items()
             if count != 1
@@ -51,12 +51,12 @@ class H2R2NetLedgerTests(unittest.TestCase):
         summary = self.ledger["summary"]
         self.assertEqual("pass", self.ledger["status"])
         self.assertEqual([], self.ledger["errors"])
-        self.assertEqual(4053, summary["endpoint_count"])
-        self.assertEqual(3814, summary["connected_endpoint_count"])
-        self.assertEqual(239, summary["no_connect_endpoint_count"])
+        self.assertEqual(4323, summary["endpoint_count"])
+        self.assertEqual(4063, summary["connected_endpoint_count"])
+        self.assertEqual(260, summary["no_connect_endpoint_count"])
         self.assertEqual(0, summary["external_interface_endpoint_count"])
         self.assertEqual(0, summary["unresolved_endpoint_count"])
-        self.assertEqual(908, summary["unique_net_count"])
+        self.assertEqual(827, summary["unique_net_count"])
 
     def test_m1_contacts_match_on_both_projects(self):
         for position in range(1, 81):
@@ -71,14 +71,22 @@ class H2R2NetLedgerTests(unittest.TestCase):
         aliases = self.ledger["canonical_net_aliases"]
         for row in h0["s3"]["pin_map"]:
             endpoint = self.by_endpoint[f"s3.GPIO{row['gpio']}"]
-            self.assertEqual(aliases.get(row["net"], row["net"]), endpoint["net"])
-            self.assertEqual("current_h0_s3_pin_map", endpoint["origin"])
+            if row["direction"] == "reserve":
+                self.assertIsNone(endpoint["net"])
+                self.assertEqual("current_h0_reserved_gpio_explicit_nc", endpoint["origin"])
+            else:
+                self.assertEqual(aliases.get(row["net"], row["net"]), endpoint["net"])
+                self.assertEqual("current_h0_s3_pin_map", endpoint["origin"])
         dual = json.loads(DUAL_RP.read_text(encoding="utf-8"))
         for owner in ("hub_rp", "rf_rp"):
             for row in dual[owner]["pin_map"]:
                 endpoint = self.by_endpoint[f"{owner}.GPIO{row['gpio']}"]
-                self.assertEqual(aliases.get(row["net"], row["net"]), endpoint["net"])
-                self.assertEqual("current_h1_dual_rp_pin_map", endpoint["origin"])
+                if row["direction"] == "reserve":
+                    self.assertIsNone(endpoint["net"])
+                    self.assertEqual("current_h1_reserved_gpio_explicit_nc", endpoint["origin"])
+                else:
+                    self.assertEqual(aliases.get(row["net"], row["net"]), endpoint["net"])
+                    self.assertEqual("current_h1_dual_rp_pin_map", endpoint["origin"])
 
     def test_both_stacked_flash_buses_are_explicit_board_no_connects(self):
         contacts = ("QSPI_SD3", "QSPI_SCLK", "QSPI_SD0", "QSPI_SD2", "QSPI_SD1")
@@ -91,9 +99,9 @@ class H2R2NetLedgerTests(unittest.TestCase):
 
     def test_pack_safety_and_display_current_overrides_are_not_historical(self):
         origins = Counter(row["origin"] for row in self.rows)
-        self.assertEqual(8, origins["current_pack_safety_boundary"])
+        self.assertEqual(7, origins["current_pack_safety_boundary"])
         self.assertEqual(8, origins["current_pack_safety_decoupling"])
-        self.assertEqual(106, origins["current_display_adapter_map"])
+        self.assertEqual(97, origins["current_display_adapter_map"])
         self.assertEqual(24, origins["current_display_adapter_explicit_nc"])
         self.assertEqual(
             "HUB_SAFE_I2C_SDA_MAIN",
@@ -109,12 +117,39 @@ class H2R2NetLedgerTests(unittest.TestCase):
         for row in self.rows:
             self.assertNotIn("route_alias_conflict", row["origin"])
 
+    def test_airband_is_fail_direct_fail_off_and_power_coherent(self):
+        expected = {
+            "airband_power_switch.ON": "AIR_RX_EN",
+            "airband_power_switch.VOUT": "3V3_AIR_SWITCHED",
+            "air_input_selector.RFC": "RX_FMSW_BOUNDARY_RF",
+            "air_input_selector.RF1": "AIR_DIRECT_RAW_RF",
+            "air_input_selector.RF2": "AIR_BPF_IN_RF",
+            "air_input_selector.A": "AIR_RX_MODE",
+            "air_input_selector.B": "AIR_RX_MODE_N",
+            "air_path_selector.RF1": "AIR_DIRECT_RF",
+            "air_path_selector.RF2": "AIR_CONVERTED_RF",
+            "air_path_selector.A": "AIR_RX_MODE",
+            "air_path_selector.B": "AIR_RX_MODE_N",
+            "air_lo.VDD": "3V3_AIR_SWITCHED",
+            "air_lo.VDDO": "3V3_AIR_SWITCHED",
+            "air_lo.SDA": "AIR_LO_I2C_SDA",
+            "air_lo.SCL": "AIR_LO_I2C_SCL",
+            "rf_rp.GPIO28": "AIR_LO_I2C_SDA",
+            "rf_rp.GPIO29": "AIR_LO_I2C_SCL",
+            "receiver_fmi_match_inductor.END_1": "AIR_RX_SELECTED_RF",
+        }
+        for endpoint, net in expected.items():
+            self.assertEqual(net, self.by_endpoint[endpoint]["net"], endpoint)
+            self.assertEqual("connected", self.by_endpoint[endpoint]["disposition"])
+        self.assertEqual("no_connect", self.by_endpoint["airband_power_switch.NC"]["disposition"])
+        self.assertEqual("no_connect", self.by_endpoint["airband_mode_inverter.2Y"]["disposition"])
+
     def test_historical_sources_remain_non_authoritative_hints(self):
         for name, source in self.ledger["sources"].items():
             if name.startswith("historical_"):
                 self.assertFalse(source["authority"])
         historical = [row for row in self.rows if row["origin"].startswith("reconciled_historical")]
-        self.assertEqual(3575, len(historical))
+        self.assertEqual(3317, len(historical))
         self.assertTrue(all(row["historical_topology_authority"] is False for row in historical))
         self.assertFalse(self.ledger["authorization"]["kicad_project_creation"])
 

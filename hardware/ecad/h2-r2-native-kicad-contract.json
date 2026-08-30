@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "id": "LESHY2-H2-R2-NATIVE-KICAD",
+  "marker": "H2-R2.1.3",
+  "status": "current_native_schematic_project_contract",
+  "purpose": "Generate the three current R2 KiCad schematic projects from the reviewed instance, exact-symbol and canonical-net ledgers without inheriting the R1 topology or authorizing PCB work.",
+  "authority": {
+    "inventory": "hardware/ecad/h2-r2-native-inventory-contract.json",
+    "instances": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
+    "nets": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+    "symbols": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
+    "symbol_library": "hardware/ecad/libraries/leshy2_r2.kicad_sym"
+  },
+  "output_root": "hardware/ecad/kicad",
+  "manifest": "hardware/ecad/generated/H2-R2-native-kicad-projects.json",
+  "rules": {
+    "one_physical_pcb_per_project": true,
+    "root_sheets_are_hierarchy_only": true,
+    "all_fitted_instances_are_materialized": true,
+    "all_physical_symbol_pins_are_connected_or_explicit_no_connect": true,
+    "module_rf_receptacles_are_external_interface_annotations_not_invented_pcb_pads": true,
+    "cross_sheet_connections_use_named_hierarchical_interfaces": true,
+    "cross_project_connections_only_through_named_connector_contacts": true,
+    "hidden_cross_project_global_labels": false,
+    "old_r1_projects_are_migration_evidence_only": true,
+    "no_pcb_files": true
+  },
+  "authorization": {
+    "native_kicad_project_creation": true,
+    "native_schematic_symbols_and_nets": true,
+    "pcb_placement_or_routing": false,
+    "fabrication": false,
+    "ordering": false
+  }
+}

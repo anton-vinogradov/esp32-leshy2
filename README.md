@@ -10,7 +10,7 @@
 
 </div>
 
-> **Current hardware marker: `H2-R2.1.3`.** The complete two-PCB `H1-R2.37`
+> **Current hardware marker: `H3-R2.0.1`.** The complete two-PCB `H1-R2.37`
 > placement was accepted and reviewed on 30 August 2026: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
 > the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display, passive 40-to-50-contact
 > adapter, all 18 U219 support bodies, NFC pickup loop and the external volume
@@ -18,25 +18,29 @@
 > blocker remains. The exact `FSUSB42MUX/C11355` factory route is reviewed;
 > the exact service-VBUS path and `TCA9803DGKR/C2687966` Pack/Safety boundary
 > are reviewed. The native R2 inventory is reviewed at `H2-R2.1.1`: three
-> projects, 23 sheets, six domains and 213 exact component groups. The exact
-> symbol/contact/footprint ledger is reviewed at `H2-R2.1.2`: 208 board groups,
-> five explicit non-PCBA groups and 1,561 logical contacts. Native symbol/
-> footprint materialization has passed its first machine checkpoint: all 1,504
+> projects, 23 sheets, six domains, 242 exact component groups and 1,197 product
+> positions. The exact symbol/contact/footprint ledger is reviewed at
+> `H2-R2.1.2`: 237 board groups, five explicit non-PCBA groups and 1,662 logical
+> contacts. Native symbol/footprint materialization accounts for all 1,605
 > board contacts are accounted for against real selected-footprint pads or three
 > explicit on-module RF interfaces, with zero unclaimed named pads. The controlled
-> library of 208 R2 symbols and 1,518 unique PCB-pad pins now passes KiCad 10;
-> all 1,096 fitted instances are now allocated across the three current projects
-> without importing R1 designators. The 4,053 current fitted-instance contacts
-> are reconciled to 3,814 connected endpoints, 239 explicit no-connects and 908
-> canonical nets with zero unresolved endpoints. Creating the three native KiCad
-> projects from this reviewed input is the current checkpoint. Ordering remains blocked.
+> library of 237 R2 symbols and 1,618 unique PCB-pad pins passes KiCad 10; all
+> 1,187 fitted instances are allocated without importing R1 designators. Their
+> 4,323 logical contacts resolve to 4,063 connected endpoints, 260 explicit
+> no-connects and 827 canonical nets with zero unresolved endpoints. The three
+> [native KiCad projects](docs/h2-r2-native-kicad.md) now contain all 1,187
+> symbols and 4,327 physical pins; KiCad ERC reports zero errors and zero
+> warnings. H2 cross-sheet and hardware/firmware reconciliation covers six
+> domains, 173 controller pins, 50 cross-project nets and 233 cross-sheet nets;
+> [H2-R2.1.5 is reviewed](docs/h2-acceptance.md). H3 now freezes that exact
+> authority for R2 virtual electrical verification. Ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
 > material is preserved historical single-RP R1 evidence, not current R2 authority.
 > It cannot authorize firmware, R2 KiCad, fabrication or ordering. The exact
-> dual-RP/C5 electrical authority is the reviewed H1 machine contract; H2 will
-> create the new R2 export only after its prerequisite closure.
+> dual-RP/C5 electrical authority is the reviewed H1 machine contract; the new
+> native R2 schematics are reviewed logical H2 output, not PCB or fabrication authority.
 
 ## What it is
 
@@ -82,7 +86,7 @@ and independent safety.
 
 No video payload crosses the 80-contact M1 connector. The i8080-8 display TX
 path remains local to S3; nRF payload remains local to the front RP. M1 is fully
-assigned: 24 live signals, 14 main-power contacts, 2 AON contacts, 24 defined returns and 16 NC
+assigned: 29 live signals, 14 main-power contacts, 2 AON contacts, 24 defined returns and 11 true NC
 reserves.
 
 The drawings are generated from one machine-readable placement source. Inner
@@ -114,8 +118,8 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
 | H1 · Physical product design | ✅ Reviewed · `H1-R2.37` | [Bilingual phase result](docs/h1-r2-acceptance.md) · [placement](docs/h1-r2-physical-layout.md) |
-| **H2 · Production ECAD schematic** | **▶ Current · `H2-R2.1.3`** | [Native net result](docs/h2-r2-net-ledger.md) · [stage page](docs/stage-results.md#h2) |
-| H3 · Virtual electrical verification | ⏳ Waiting for R2 H2 | [Stage page](docs/stage-results.md#h3) |
+| H2 · Production ECAD schematic | ✅ Reviewed · `H2-R2.1.5` | [Bilingual phase result](docs/h2-acceptance.md) · [native KiCad result](docs/h2-r2-native-kicad.md) |
+| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.0.1`** | [Stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ⏳ Waiting for R2 H4 | [Stage page](docs/stage-results.md#h5) |
 | H6 · KiCad placement, routing and release candidate | 🔒 Waiting for R2 H5 | [Stage page](docs/stage-results.md#h6) |
@@ -124,9 +128,9 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | H8 · Physical qualification | 🔒 Waiting for H7 | [Stage page](docs/stage-results.md#h8) |
 | H9 · Manufacturing release | 🔒 Waiting for H8 and firmware F11 | [Stage page](docs/stage-results.md#h9) |
 
-### Reviewed H1 result and current H2 entry
+### Reviewed H1/H2 results and current H3 entry
 
-- ✅ Exact front/rear RP GPIO0..47 maps, five Hub↔RF M1 signals and C5 SDIO/service-mux electrical join are machine-checked; budgets are `46/48` (2 free) and `40/48` (8 free: GP15/28/29/32/33/34/37/38). S3 has 11 newly released GPIO reserves.
+- ✅ Exact front/rear RP GPIO0..47 maps, five Hub↔RF M1 signals and C5 SDIO/service-mux electrical join are machine-checked; budgets are `47/48` (1 free) and `43/48` (5 free: GP32/33/34/37/38). RF GPIO28/29 now form a power-coherent private Si5351 PIO-I²C bus. S3 retains 6 uncommitted GPIO after reset/service closure.
 - ✅ Ten main antenna ports repartitioned `5 + 5`; no main RF trace crosses M1.
 - ✅ Series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` is fixed with its exact 50-contact FPC, `ILI9488`, `FT6236` and passive `L2-DISP-ADP-001-B`; direct i8080-8 runs at a conservative 24 MHz (24 MB/s, 12.8 ms per full frame), with ordinary 4-wire serial retained as recovery mode.
 - ✅ M1 has a complete 80-contact map and an enclosure load path: four 11-mm stops, anti-shear datums and independent PCB capture.
@@ -142,18 +146,23 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H2-R2.0.1`: live Standard-PCBA route for onsemi `FSUSB42MUX` / JLCPCB `C11355` reviewed with stock 66,698, available 66,045, MOQ 1 and USD 0.3179 quantity-one price.
 - ✅ `H2-R2.0.2`: exact `DMN2056U-7` detector, `SN74LVC1G74DCUR` ownership latch and `74HC20PW,118` release qualifier reviewed with live Standard-PCBA routes, a fail-closed truth table and USD 0.5857 exact-one component cost.
 - ✅ `H2-R2.0.3`: exact `TCA9803DGKR/C2687966` Pack/Safety powered-off boundary reviewed with correct rail-local termination and USD 0.3953 exact-one component cost.
-- ✅ `H2-R2.1.1`: native R2 inventory reviewed — 3 projects, 23 sheets, 6 domain owners, 213 exact MPN groups and 1,106 product positions; zero symbols/nets created.
-- ✅ `H2-R2.1.2`: exact ledger reviewed — 208 board groups, 5 explicit non-PCBA groups, 1,561 logical contacts and zero unresolved groups; removable RF jumpers no longer masquerade as PCB parts.
-- ✅ `H2-R2.1.3` instance checkpoint: 1,096 fitted positions are allocated to the current three-project graph with zero nets imported from R1.
-- ✅ `H2-R2.1.3` net checkpoint: all 4,053 fitted-instance contacts reconcile to 908 canonical nets or 239 explicit board no-connects; unresolved endpoints: zero.
-- ▶ **Exact current point `H2-R2.1.3`:** instantiate the reviewed definitions, references and nets in the three native R2 KiCad projects.
-- 🔒 KiCad, prototype purchase and fabrication remain unauthorized.
+- ✅ `H2-R2.1.1`: native R2 inventory reviewed — 3 projects, 23 sheets, 6 domain owners, 242 exact MPN groups and 1,197 product positions.
+- ✅ `H2-R2.1.2`: exact ledger reviewed — 237 board groups, 5 explicit non-PCBA groups, 1,662 logical contacts and zero unresolved groups.
+- ✅ `H2-R2.1.3`: 1,187 fitted positions and 4,323 logical contacts resolve into 827 canonical nets; the three native projects materialize 4,327 physical pins with zero KiCad ERC errors or warnings.
+- ✅ The Airband chain is complete and double-isolated: paired `HMC544AETR`, exact official transformers, private power-coherent LO I²C and a stock-backed nominal H2 filter state are present in the schematic. Filter retuning remains an explicit H3 gate.
+- ✅ `H2-R2.1.4`: six domains, 173 controller-pin rows, 50 cross-project nets
+  and 233 cross-sheet nets reconcile with zero unresolved boundary.
+- ✅ `H2-R2.1.5`: the [bilingual H2 result](docs/h2-acceptance.md) is reviewed
+  and the synchronized firmware H2 gate is open.
+- ▶ **Exact current point `H3-R2.0.1`:** freeze the reviewed H2 inputs, hashes
+  and complete current-R2 virtual-verification matrix.
+- 🔒 PCB placement, routing, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H2-R2.1.3 -->
+<!-- current-substep: H3-R2.0.1 -->
 
 ## Repository
 

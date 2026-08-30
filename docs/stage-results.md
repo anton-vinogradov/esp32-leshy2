@@ -58,7 +58,7 @@ TX path physically complete; the six AD8314 positions use the accepted
 external, internal, antenna-edge and sandwich views report zero same-face
 collisions and 2.59 mm minimum opposing-face clearance against the 0.70 mm rule.
 The onboard video receiver, decoder, connector, antenna and physical bay are
-removed. Eleven S3 GPIOs, eight rear-RP GPIOs and M1 contacts 35–36 remain
+removed. Six S3 GPIOs, five rear-RP GPIOs and eleven M1 contacts remain
 reserves; no hidden active module requires owner soldering after PCBA.
 
 H1 has no physical blocker. The complete mock-up was explicitly accepted on
@@ -67,13 +67,14 @@ H1 has no physical blocker. The complete mock-up was explicitly accepted on
 <a id="h2"></a>
 ## H2 · Production schematic
 
-**Status:** ▶️ current at **`H2-R2.1.3`**.
+**Status:** ✅ reviewed at **`H2-R2.1.5`** on 2026-08-31.
 
 The former G2F/H2/KiCad result is historical single-RP R1 evidence. All three
 new R2 electrical prerequisites, the native source/sheet/component inventory,
-the exact symbol/contact/footprint ledger and the 4,053-endpoint net
-reconciliation are reviewed. Native KiCad project creation is in progress;
-placement/routing have not started.
+the exact symbol/contact/footprint ledger and the 4,323-endpoint net
+reconciliation are reviewed. Three native KiCad projects now pass zero-finding
+ERC; cross-sheet and HW↔FW reconciliation passes. Placement/routing have
+not started.
 
 Exact current checklist:
 
@@ -85,20 +86,27 @@ Exact current checklist:
    release qualifier reviewed with complete Standard-PCBA routes and fail-closed truth table;
 3. ✅ `H2-R2.0.3`: exact TI `TCA9803DGKR` / `C2687966` Pack/Safety boundary
    reviewed with rail-local termination, four Basic decouplers and USD 0.3953 cost;
-4. ✅ `H2-R2.1.1`: 3 projects, 23 sheets, 6 domain owners and 213 exact MPN
-   groups reviewed with zero native symbols/nets created;
-5. ✅ `H2-R2.1.2`: 208 board groups, five explicit non-PCBA groups and 1,561
+4. ✅ `H2-R2.1.1`: 3 projects, 23 sheets, 6 domain owners and 242 exact MPN
+   groups reviewed;
+5. ✅ `H2-R2.1.2`: 237 board groups, five explicit non-PCBA groups and 1,662
    logical contacts mapped with zero unresolved groups;
-6. ✅ `H2-R2.1.3` definitions/instances: 208 controlled symbols, 1,518 PCB-pad
-   pins and all 1,096 fitted instances pass the current three-project allocation;
-7. ✅ `H2-R2.1.3` nets: 4,053 fitted-instance contacts resolve to 908 canonical
-   nets or 239 explicit board no-connects with zero unresolved endpoints;
-8. ▶ `H2-R2.1.3`: instantiate the reviewed input in three native KiCad projects.
+6. ✅ `H2-R2.1.3` definitions/instances: 237 controlled symbols, 1,618 PCB-pad
+   pins and all 1,187 fitted instances pass the current three-project allocation;
+7. ✅ `H2-R2.1.3` nets: 4,323 fitted-instance contacts resolve to 827 canonical
+   nets or 260 explicit board no-connects with zero unresolved endpoints;
+8. ✅ `H2-R2.1.3`: three native KiCad projects materialize 4,327 physical pins
+   and pass ERC with zero errors and zero warnings;
+9. ✅ `H2-R2.1.4`: six domains, 173 controller pins, 50 cross-project nets and
+   233 cross-sheet nets reconcile with zero unresolved boundary;
+10. ✅ `H2-R2.1.5`: the bilingual result report is published and the synchronized
+    firmware H2 gate is open.
 
+[Reviewed H2 result](h2-acceptance.md) ·
 [Native R2 inventory](h2-r2-native-inventory.md) ·
 [exact symbols/footprints](h2-r2-symbol-footprint-ledger.md) ·
 [native instance allocation](h2-r2-instance-ledger.md) ·
-[native net reconciliation](h2-r2-net-ledger.md).
+[native net reconciliation](h2-r2-net-ledger.md) ·
+[native KiCad result](h2-r2-native-kicad.md).
 
 Expected result: native KiCad schematics regenerated from the R2 architecture,
 with pin reconciliation, ERC, NC review and a synchronized HW↔FW contract.
@@ -108,10 +116,12 @@ clearly labels retained R1 ECAD as non-current evidence.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** 🔒 waits for reviewed H2.
+**Status:** ▶️ current at **`H3-R2.0.1`**.
 
-Expected result: complete power, digital, RF, audio, timing, thermal and fault
-simulation. Every legal state and transition must pass before fabrication.
+Current work freezes the reviewed H2 inputs, source hashes and complete R2
+verification matrix. The expected result is complete power, digital, RF, audio,
+timing, thermal and fault verification. Every legal state and transition must
+pass before fabrication.
 
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate

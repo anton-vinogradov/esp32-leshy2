@@ -18,8 +18,8 @@ PACK_SAFETY_I2C = REPO / "hardware/architecture/pack-safety-i2c-boundary-contrac
 G2F = REPO / "hardware/architecture/candidates/G2F-3I.json"
 U219_CONTRACT = REPO / "hardware/architecture/h1-r2-u219-cap.json"
 PHYSICAL_H1 = REPO / "hardware/product-design/h1-r2-placement.json"
-H2 = REPO / "hardware/ecad/generated/H2-hwfw-contract.json"
-H2_M1 = REPO / "hardware/ecad/generated/H2-RF40-interboard-m1.json"
+H2 = REPO / "hardware/ecad/generated/H2-R2-hwfw-contract.json"
+H2_M1 = REPO / "hardware/ecad/generated/H2-R2-interboard-m1.json"
 OUTPUT = REPO / "hardware/architecture/generated/H0-R2-authority-gate.json"
 
 
@@ -311,14 +311,14 @@ def build(policy: dict | None = None, h0: dict | None = None,
             "open_blockers": len(physical_h1.get("current_h1_blockers", [])),
         },
         "current_exact_domain_contracts": exact_domain_contracts,
-        "historical_r1_h2": {
-            "authority": "historical_only_not_r2",
+        "current_r2_h2": {
+            "authority": "current_native_r2" if r2_h2_authoritative else "not_authoritative",
             "domain_count": len(candidate_domains),
-            "domain_ids": [row.get("domain") for row in candidate_domains],
-            "rp_instances": [row.get("instance") for row in reported_rps],
+            "domain_ids": [normalized_domain_id(row) for row in candidate_domains],
+            "rp_instances": [normalized_domain_id(row) for row in reported_rps],
             "m1_unique_nets": h2_m1.get("summary", {}).get("unique_nets"),
-            "m1_reserve_contacts": h2_m1.get("summary", {}).get("reserved_contacts"),
-            "review_evidence_preserved": True,
+            "m1_reserve_contacts": h2_m1.get("summary", {}).get("no_connect_reserve_contacts"),
+            "native_kicad_started": h2.get("authority", {}).get("native_kicad_started"),
         },
         "r2_h2_compatibility": compatibility,
         "r2_h2_authoritative": r2_h2_authoritative,

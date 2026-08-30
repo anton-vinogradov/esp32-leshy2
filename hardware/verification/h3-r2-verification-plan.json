@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "stage": "H3",
+  "baseline": "R2",
+  "status": "current",
+  "current_substep": "H3-R2.0.1",
+  "accepted_input": {
+    "stage": "H2-R2.1.5",
+    "status": "reviewed",
+    "native_kicad_manifest": "../ecad/generated/H2-R2-native-kicad-projects.json",
+    "hwfw_contract": "../ecad/generated/H2-R2-hwfw-contract.json",
+    "interboard_contract": "../ecad/generated/H2-R2-interboard-m1.json",
+    "authority_gate": "../architecture/generated/H0-R2-authority-gate.json"
+  },
+  "historical_evidence": {
+    "plan": "h3-verification-plan.json",
+    "status": "historical_single_rp_r1_only"
+  },
+  "authorization": {
+    "analytical_verification": true,
+    "circuit_simulation": true,
+    "firmware_target_or_emulator_work": true,
+    "pcb_placement_and_routing": false,
+    "fabrication": false,
+    "purchasing": false
+  },
+  "substeps": [
+    {"id": "H3-R2.0.1", "title": "Freeze the reviewed H2-R2.1.5 inputs, source hashes and current verification matrix", "status": "current"},
+    {"id": "H3-R2.0.2", "title": "Rebuild the exact parameter and model provenance register for R2", "status": "waiting"},
+    {"id": "H3-R2.0.3", "title": "Freeze reproducible tolerances, tools and pass/fail rules", "status": "waiting"},
+    {"id": "H3-R2.1", "title": "Worst-case DC, source, charge and power-state verification", "status": "waiting"},
+    {"id": "H3-R2.2", "title": "Startup, shutdown, handover, brownout, inrush and watchdog verification", "status": "waiting"},
+    {"id": "H3-R2.3", "title": "Display, audio, IR, battery and Airband analog-corner verification", "status": "waiting"},
+    {"id": "H3-R2.4", "title": "Digital levels, timing, loading and direct-i8080 verification", "status": "waiting"},
+    {"id": "H3-R2.5", "title": "RF feeds, coexistence, quiet states and 3x nRF24 concurrency", "status": "waiting"},
+    {"id": "H3-R2.6", "title": "Thermal, single-fault and unattended-operation verification", "status": "waiting"},
+    {"id": "H3-R2.7", "title": "Cross-check, physical residual register and bilingual phase report", "status": "waiting"}
+  ],
+  "exit_criteria": [
+    "Every H2-R2 electrical claim checkable without fabricated hardware has reproducible evidence.",
+    "Every failed margin is corrected in its source artifact and all dependent evidence is regenerated.",
+    "Every model input has authoritative provenance, tolerance and applicability limits.",
+    "Every remaining uncertainty is physical-only and assigned to H5, H6 or H8.",
+    "No H3 result authorizes purchasing, PCB placement, routing or fabrication."
+  ]
+}

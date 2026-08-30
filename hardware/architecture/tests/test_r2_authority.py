@@ -84,7 +84,7 @@ class R2AuthorityTest(unittest.TestCase):
         self.assertEqual(6, result["current_h0"]["domain_count"])
         self.assertEqual({"hub_rp", "rf_rp"}, set(result["current_h0"]["rp_domain_ids"]))
         self.assertEqual(80, result["current_h0"]["m1_contacts"])
-        self.assertEqual(16, result["current_h0"]["m1_reserve_contacts"])
+        self.assertEqual(11, result["current_h0"]["m1_reserve_contacts"])
         self.assertEqual(
             ("H1-R2.31", 48, 48, 5),
             (
@@ -97,21 +97,24 @@ class R2AuthorityTest(unittest.TestCase):
         self.assertIn("H2-R2.0.3", result["exact_c5_mux_status"])
         self.assertIn("closed", result["exact_c5_mux_status"])
 
-    def test_historical_h2_is_single_rp_old_m1_and_not_current(self):
+    def test_current_h2_is_six_domain_native_r2(self):
         result = MODULE.build()
-        historical = result["historical_r1_h2"]
-        self.assertEqual("historical_only_not_r2", historical["authority"])
-        self.assertEqual(5, historical["domain_count"])
-        self.assertEqual(["rp"], historical["rp_instances"])
-        self.assertEqual(51, historical["m1_unique_nets"])
-        self.assertEqual(0, historical["m1_reserve_contacts"])
-        self.assertFalse(result["r2_h2_authoritative"])
-        self.assertFalse(result["r2_kicad_started"])
+        current = result["current_r2_h2"]
+        self.assertEqual("current_native_r2", current["authority"])
+        self.assertEqual(6, current["domain_count"])
+        self.assertEqual({"hub_rp", "rf_rp"}, set(current["rp_instances"]))
+        self.assertEqual(44, current["m1_unique_nets"])
+        self.assertEqual(11, current["m1_reserve_contacts"])
+        self.assertTrue(current["native_kicad_started"])
+        self.assertTrue(result["r2_h2_authoritative"])
+        self.assertTrue(result["r2_kicad_started"])
 
     def test_false_current_r2_claim_fails_closed(self):
         policy = copy.deepcopy(MODULE.load(MODULE.POLICY))
         policy["current_r2_h2_export"] = True
-        result = MODULE.build(policy=policy)
+        h2 = copy.deepcopy(MODULE.load(MODULE.H2))
+        h2["bsp"]["domains"].pop()
+        result = MODULE.build(policy=policy, h2=h2)
         self.assertIn(
             "current-R2 H2 claim is forbidden until domains, exact RP maps, C5 mux/source hashes, M1, reviewed physical H1 and every pre-H2 gate reconcile",
             result["errors"],
@@ -176,7 +179,9 @@ class R2AuthorityTest(unittest.TestCase):
     def test_r2_kicad_start_also_fails_closed(self):
         policy = copy.deepcopy(MODULE.load(MODULE.POLICY))
         policy["r2_kicad_started"] = True
-        result = MODULE.build(policy=policy)
+        h2 = copy.deepcopy(MODULE.load(MODULE.H2))
+        h2["bsp"]["domains"].pop()
+        result = MODULE.build(policy=policy, h2=h2)
         self.assertIn(
             "R2 KiCad cannot start before the generated H2 export matches H0-R2 and physical H1 is reviewed",
             result["errors"],

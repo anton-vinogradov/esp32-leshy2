@@ -93,17 +93,17 @@ def render_svg(data: dict) -> str:
         '<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6z" fill="#475569"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         '<text x="630" y="38" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · H0-R2 functional architecture</text>',
-        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">H2-R2.1.3 allocated all 1,096 fitted instances; joining reviewed native nets is current.</text>',
+        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">H2-R2.1.5 is reviewed: 1,187 fitted symbols, 827 nets, zero ERC findings and six-domain reconciliation.</text>',
         '<rect x="40" y="105" width="540" height="610" rx="18" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>',
         '<rect x="680" y="105" width="540" height="610" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>',
         '<text x="310" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#1d4ed8">FRONT · UI / RADIO PCB · five SMA</text>',
         '<text x="950" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#9a3412">REAR · RF / POWER PCB · five SMA</text>',
     ]
-    out += box(70, 165, 225, 74, "ESP32-S3-WROOM-1U-N16R8", "direct i8080-8 · touch · all UI keys · 11 GPIO reserve", "#2563eb")
+    out += box(70, 165, 225, 74, "ESP32-S3-WROOM-1U-N16R8", "direct i8080-8 · touch · all UI keys · 6 GPIO reserve", "#2563eb")
     out += box(325, 165, 225, 74, "ESP32-C5-WROOM-1U-N8R8", "2.4/5 GHz · 802.15.4 · IR", "#2563eb")
     out += box(70, 270, 480, 78, "SC1512-A4 · FRONT RP", f"UI/radio fan-out · microSD · {front['used']}/48 GPIO", "#7c3aed")
     out += box(70, 380, 480, 82, "3 × E01-ML01SP4 nRF24 ISLANDS", "20-dBm PA/LNA · concurrent full RX/TX/mix · C97340", "#0f766e")
-    out += box(70, 500, 225, 74, "S3 ELECTRICAL RESERVE", "11 uncommitted former camera-input GPIO", "#7c3aed")
+    out += box(70, 500, 225, 74, "S3 ELECTRICAL RESERVE", "6 uncommitted GPIO after reset/service closure", "#7c3aed")
     out += box(325, 500, 225, 74, "microSD + local service", "direct front RP storage and recovery", "#64748b")
     out += box(710, 165, 480, 78, "SC1512-A4 · REAR RP", f"RF / audio / expansion owner · {rear['used']}/48 GPIO", "#7c3aed")
     out += box(710, 270, 225, 74, "CC1101 + VHF/UHF voice", "SUB-G RX/TX · two full-duplex voice paths", "#ea580c")
@@ -124,8 +124,8 @@ def render_svg(data: dict) -> str:
         '<text x="630" y="438" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">3× nRF evidence</text>',
         '<text x="630" y="485" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#166534">14 × 3V3</text>',
         '<text x="630" y="503" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">24 returns</text>',
-        '<text x="630" y="520" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">24 signals</text>',
-        '<text x="630" y="538" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">16 NC reserve</text>',
+        '<text x="630" y="520" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">29 signals</text>',
+        '<text x="630" y="538" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">11 NC reserve</text>',
         '<line x1="550" y1="309" x2="585" y2="309" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>',
         '<line x1="675" y1="309" x2="710" y2="309" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>',
         '<path d="M965 307 H945 V475 H690 V355 H675" fill="none" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>',
@@ -165,7 +165,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "бортовой видеотракт удалён, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H2-R2.1.3**. Физическая проекция H1-R2.37 с двумя независимыми RP2354B, точными GPIO0..47, четырьмя M1 endpoint-группами и 226 корпусами принята и прошла ревью 2026-08-30. В неё входят все восемь TX-детекторов, пять coupler и восемь локальных evidence-островов; шесть AD8314 используют принятый `AD8314ARMZ-REEL` / `C652687`. Серийный дисплей EastRising, U219, NFC-loop и swept volume антенны закрыты. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Live route C11355 прошёл ревью как H2-R2.0.1; точный detector/latch/release service-VBUS — как H2-R2.0.2; TCA9803DGKR/C2687966 Pack/Safety powered-off boundary — как H2-R2.0.3. Native R2 inventory из 3 проектов, 23 sheets и 213 exact MPN-групп прошёл ревью как H2-R2.1.1; exact ledger для 208 board groups, пяти явных non-PCBA groups и 1 561 логического контакта прошёл ревью как H2-R2.1.2. Controlled definitions и точная раскладка всех 1 096 устанавливаемых экземпляров готовы; сейчас соединяются native nets до export/KiCad placement."
+        current = "Текущий точный маркер — **H3-R2.0.1**. Физическая проекция H1-R2.37 с двумя независимыми RP2354B, точными GPIO0..47, четырьмя M1 endpoint-группами и 226 корпусами принята и прошла ревью 2026-08-30. В неё входят все восемь TX-детекторов, пять coupler и восемь локальных evidence-островов; шесть AD8314 используют принятый `AD8314ARMZ-REEL` / `C652687`. Серийный дисплей EastRising, U219, NFC-loop и swept volume антенны закрыты. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Live route C11355, service-VBUS detector/latch/release и TCA9803DGKR/C2687966 Pack/Safety boundary закрыты в H2-R2.0.1…H2-R2.0.3. Native R2 inventory из 3 проектов, 23 sheets и 242 exact MPN-групп прошёл ревью как H2-R2.1.1; exact ledger для 237 board groups, пяти явных non-PCBA groups и 1 662 логических контактов — как H2-R2.1.2. H2-R2.1.3 материализует 1 187 экземпляров и 827 nets в трёх native-проектах KiCad без замечаний ERC; six-domain сверка sheets и HW↔FW проходит в H2-R2.1.5, теперь H3 фиксирует эти входы."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -204,7 +204,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, the onboard "
             "video path is removed, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H2-R2.1.3**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, four M1 endpoint groups and 226 bodies was accepted and reviewed on 2026-08-30. It includes all eight TX detectors, five couplers and eight local evidence islands; all six AD8314 positions use the accepted `AD8314ARMZ-REEL` / `C652687`. The serial EastRising display, U219, NFC loop and antenna swept volume are closed. The old single-RP G2F/H2 projection remains historical R1 evidence only. The live C11355 route was reviewed as H2-R2.0.1, the exact service-VBUS detector/latch/release implementation as H2-R2.0.2, and the TCA9803DGKR/C2687966 Pack/Safety powered-off boundary as H2-R2.0.3. The native R2 inventory of 3 projects, 23 sheets and 213 exact MPN groups was reviewed as H2-R2.1.1; the exact ledger for 208 board groups, five explicit non-PCBA groups and 1,561 logical contacts was reviewed as H2-R2.1.2. Controlled definitions and the exact allocation of all 1,096 fitted instances are complete; joining native nets is current before export/KiCad placement."
+        current = "The exact current marker is **H3-R2.0.1**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, four M1 endpoint groups and 226 bodies was accepted and reviewed on 2026-08-30. It includes all eight TX detectors, five couplers and eight local evidence islands; all six AD8314 positions use the accepted `AD8314ARMZ-REEL` / `C652687`. The serial EastRising display, U219, NFC loop and antenna swept volume are closed. The old single-RP G2F/H2 projection remains historical R1 evidence only. The live C11355 route, exact service-VBUS detector/latch/release implementation and TCA9803DGKR/C2687966 Pack/Safety powered-off boundary closed H2-R2.0.1 through H2-R2.0.3. The native R2 inventory of 3 projects, 23 sheets and 242 exact MPN groups was reviewed as H2-R2.1.1; the exact ledger for 237 board groups, five explicit non-PCBA groups and 1,662 logical contacts was reviewed as H2-R2.1.2. H2-R2.1.3 materializes 1,187 instances and 827 nets in three native KiCad projects with zero ERC findings; six-domain cross-sheet and HW↔FW reconciliation passes in reviewed H2-R2.1.5, and H3 now freezes those inputs."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",

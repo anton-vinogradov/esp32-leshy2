@@ -52,13 +52,13 @@ class H2R2NativeInventoryTests(unittest.TestCase):
         )
 
     def test_exact_component_group_and_pack_delta_are_frozen(self):
-        self.assertEqual(213, self.actual["summary"]["component_group_count"])
-        self.assertEqual(1106, self.actual["summary"]["component_quantity_per_product"])
+        self.assertEqual(242, self.actual["summary"]["component_group_count"])
+        self.assertEqual(1197, self.actual["summary"]["component_quantity_per_product"])
         groups = {row["device_id"]: row for row in self.actual["component_groups"]}
         self.assertEqual("TCA9803DGKR", groups["ti_tca9803_dgkr"]["mpn"])
         self.assertEqual("C2687966", groups["ti_tca9803_dgkr"]["jlcpcb_part_number"])
         self.assertEqual(25, groups["uniroyal_0402wgf2201tce"]["quantity_per_product"])
-        self.assertEqual(2, groups["samsung_cl05a105ka5nqnc"]["quantity_per_product"])
+        self.assertEqual(7, groups["samsung_cl05a105ka5nqnc"]["quantity_per_product"])
         self.assertEqual(2, groups["samsung_cl05b104ko5nnnc"]["quantity_per_product"])
 
     def test_inventory_does_not_claim_schematic_or_order_authority(self):
@@ -84,7 +84,7 @@ class H2R2NativeInventoryTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("213 exact component groups", result.stdout)
+        self.assertIn("242 exact component groups", result.stdout)
 
 
 if __name__ == "__main__":

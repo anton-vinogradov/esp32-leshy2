@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact": "H0-R2-authority-gate",
-  "status": "pass_historical_r1_h2_quarantined",
+  "status": "pass_current_r2_h2_reconciled",
   "current_authority": "hardware/architecture/h0-r2-rebaseline.json",
   "current_h0": {
     "domain_count": 6,
@@ -18,8 +18,8 @@
       "hub_rp"
     ],
     "m1_contacts": 80,
-    "m1_live_signals": 24,
-    "m1_reserve_contacts": 16
+    "m1_live_signals": 29,
+    "m1_reserve_contacts": 11
   },
   "current_h1_pin_authority": {
     "source": "hardware/architecture/h1-r2-dual-rp-pinout.json",
@@ -27,7 +27,7 @@
     "hub_gpio_rows": 48,
     "rf_gpio_rows": 48,
     "m1_signal_bindings": 5,
-    "c5_mux_status": "electrical contract and exact live FSUSB42MUX/C11355 Standard-PCBA route closed as H2-R2.0.1; exact DMN2056U-7/SN74LVC1G74DCUR/74HC20PW,118 service-VBUS detector/latch/release implementation closed as H2-R2.0.2; exact TCA9803DGKR/C2687966 Pack/Safety powered-off-Ioff boundary closed as H2-R2.0.3; native R2 H2 inventory starts next"
+    "c5_mux_status": "H2-R2.0.1 through H2-R2.0.3 electrical boundaries are closed and reconciled into the generated H2-R2.1.4 native export"
   },
   "current_h1_physical_authority": {
     "source": "hardware/product-design/h1-r2-placement.json",
@@ -42,10 +42,10 @@
       "pin_map": [
         {
           "gpio": 0,
-          "net": "S3_RESERVE_0",
-          "peripheral": "GPIO",
-          "direction": "reserve",
-          "gate": "input/high-Z through strap sampling; test pad only"
+          "net": "S3_BOOT_N",
+          "peripheral": "BOOT_STRAP",
+          "direction": "in",
+          "gate": "10-kohm pull-up plus recessed BOOT control and DBG10 series path"
         },
         {
           "gpio": 1,
@@ -74,31 +74,31 @@
         },
         {
           "gpio": 5,
-          "net": "S3_RESERVE_5",
+          "net": "LCD_RST_N",
           "peripheral": "GPIO",
-          "direction": "reserve",
-          "gate": "test pad only"
+          "direction": "out",
+          "gate": "direct display-adapter reset; reset-time pull-down keeps the panel disabled"
         },
         {
           "gpio": 6,
-          "net": "S3_RESERVE_6",
+          "net": "TOUCH_RST_N",
           "peripheral": "GPIO",
-          "direction": "reserve",
-          "gate": "test pad only"
+          "direction": "out",
+          "gate": "direct touch-controller reset; reset-time pull-down keeps touch disabled"
         },
         {
           "gpio": 7,
-          "net": "S3_RESERVE_7",
-          "peripheral": "GPIO",
-          "direction": "reserve",
-          "gate": "test pad only"
+          "net": "S3_UART_SERVICE_TX",
+          "peripheral": "UART1_TX",
+          "direction": "out",
+          "gate": "DBG10 series path; idle high only after strap sampling"
         },
         {
           "gpio": 8,
-          "net": "S3_RESERVE_8",
-          "peripheral": "GPIO",
-          "direction": "reserve",
-          "gate": "test pad only"
+          "net": "S3_UART_SERVICE_RX",
+          "peripheral": "UART1_RX",
+          "direction": "in",
+          "gate": "DBG10 series path with fixture-side protection"
         },
         {
           "gpio": 9,
@@ -168,13 +168,13 @@
         },
         {
           "gpio": 19,
-          "net": "S3_USB_DM",
+          "net": "S3_USB_DM_LOCAL",
           "peripheral": "USB_SERIAL_JTAG",
           "direction": "io"
         },
         {
           "gpio": 20,
-          "net": "S3_USB_DP",
+          "net": "S3_USB_DP_LOCAL",
           "peripheral": "USB_SERIAL_JTAG",
           "direction": "io"
         },
@@ -463,7 +463,7 @@
           "net": "REAR_I2C_SDA",
           "direction": "io",
           "controller": "I2C0",
-          "endpoint": "codec/Si4732/Airband/headset slow-control bus",
+          "endpoint": "codec/Si4732/headset slow-control bus",
           "reset": "input/open-drain released; external pull-up"
         },
         {
@@ -471,7 +471,7 @@
           "net": "REAR_I2C_SCL",
           "direction": "od",
           "controller": "I2C0",
-          "endpoint": "codec/Si4732/Airband/headset slow-control bus",
+          "endpoint": "codec/Si4732/headset slow-control bus",
           "reset": "input/open-drain released; external pull-up"
         },
         {
@@ -548,11 +548,11 @@
         },
         {
           "gpio": 15,
-          "net": "RF_RESERVE_15",
-          "direction": "reserve",
-          "controller": "GPIO",
-          "endpoint": "test pad only",
-          "reset": "input/high-Z; external pull-down; DNP"
+          "net": "RF_SLOW_IO_ALERT",
+          "direction": "in",
+          "controller": "GPIO_IRQ",
+          "endpoint": "Schmitt-conditioned rear-local shared interrupt from TCA6424/voice/headset",
+          "reset": "input; raw wired interrupt has a 10-kohm 3V3_MAIN pull-up"
         },
         {
           "gpio": 16,
@@ -652,19 +652,19 @@
         },
         {
           "gpio": 28,
-          "net": "RF_RESERVE_28",
-          "direction": "reserve",
-          "controller": "GPIO",
-          "endpoint": "test pad only",
-          "reset": "input/high-Z; external pull-down; DNP"
+          "net": "AIR_LO_I2C_SDA",
+          "direction": "io",
+          "controller": "PIO2_SM2_AIR_I2C",
+          "endpoint": "power-coherent private Si5351 SDA",
+          "reset": "input/open-drain released; pull-up is powered only by 3V3_AIR_SWITCHED"
         },
         {
           "gpio": 29,
-          "net": "RF_RESERVE_29",
-          "direction": "reserve",
-          "controller": "GPIO",
-          "endpoint": "test pad only",
-          "reset": "input/high-Z; external pull-down; DNP"
+          "net": "AIR_LO_I2C_SCL",
+          "direction": "od",
+          "controller": "PIO2_SM2_AIR_I2C",
+          "endpoint": "power-coherent private Si5351 SCL",
+          "reset": "input/open-drain released; pull-up is powered only by 3V3_AIR_SWITCHED"
         },
         {
           "gpio": 30,
@@ -866,11 +866,11 @@
         },
         {
           "gpio": 6,
-          "net": "HUB_RESERVE_6",
-          "direction": "reserve",
-          "controller": "GPIO",
-          "endpoint": "test pad only",
-          "reset": "input/high-Z; external pull-down; DNP"
+          "net": "HUB_AON_ALERT_N",
+          "direction": "in",
+          "controller": "GPIO_IRQ",
+          "endpoint": "M1.59 <- wired-open-drain PD/Pack mailbox alert",
+          "reset": "input; AON-local 10-kohm pull-up"
         },
         {
           "gpio": 7,
@@ -1561,40 +1561,42 @@
       ]
     }
   ],
-  "historical_r1_h2": {
-    "authority": "historical_only_not_r2",
-    "domain_count": 5,
+  "current_r2_h2": {
+    "authority": "current_native_r2",
+    "domain_count": 6,
     "domain_ids": [
-      "S3",
-      "C5",
-      "RP",
-      "PACK",
-      "SAFETY"
+      "s3",
+      "c5",
+      "rf_rp",
+      "hub_rp",
+      "pack",
+      "safety"
     ],
     "rp_instances": [
-      "rp"
+      "rf_rp",
+      "hub_rp"
     ],
-    "m1_unique_nets": 51,
-    "m1_reserve_contacts": 0,
-    "review_evidence_preserved": true
+    "m1_unique_nets": 44,
+    "m1_reserve_contacts": 11,
+    "native_kicad_started": true
   },
   "r2_h2_compatibility": {
-    "six_compute_domains": false,
-    "two_distinct_rp_domains": false,
-    "exact_six_domain_contracts": false,
-    "exact_hub_rp_pin_map": false,
-    "exact_rf_rp_pin_map": false,
-    "exact_c5_mux": false,
-    "exact_source_hashes": false,
-    "exact_m1_reconciliation": false,
-    "exact_m1_export": false,
-    "hardware_marker": false,
-    "zero_unresolved_pre_h2_gates": false,
-    "physical_h1_reviewed": false
+    "six_compute_domains": true,
+    "two_distinct_rp_domains": true,
+    "exact_six_domain_contracts": true,
+    "exact_hub_rp_pin_map": true,
+    "exact_rf_rp_pin_map": true,
+    "exact_c5_mux": true,
+    "exact_source_hashes": true,
+    "exact_m1_reconciliation": true,
+    "exact_m1_export": true,
+    "hardware_marker": true,
+    "zero_unresolved_pre_h2_gates": true,
+    "physical_h1_reviewed": true
   },
-  "r2_h2_authoritative": false,
-  "r2_kicad_started": false,
-  "exact_rp_gpio_order_status": "closed as H1-R2.31 working authority; not yet a generated R2 H2 export",
-  "exact_c5_mux_status": "electrical contract and exact live FSUSB42MUX/C11355 Standard-PCBA route closed as H2-R2.0.1; exact DMN2056U-7/SN74LVC1G74DCUR/74HC20PW,118 service-VBUS detector/latch/release implementation closed as H2-R2.0.2; exact TCA9803DGKR/C2687966 Pack/Safety powered-off-Ioff boundary closed as H2-R2.0.3; native R2 H2 inventory starts next",
+  "r2_h2_authoritative": true,
+  "r2_kicad_started": true,
+  "exact_rp_gpio_order_status": "closed as H1-R2.31 and reconciled into the generated H2-R2.1.4 native export",
+  "exact_c5_mux_status": "H2-R2.0.1 through H2-R2.0.3 electrical boundaries are closed and reconciled into the generated H2-R2.1.4 native export",
   "errors": []
 }

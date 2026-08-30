@@ -1,0 +1,496 @@
+{
+  "schema_version": 2,
+  "stage": "H2-R2.1.4",
+  "status": "pass",
+  "artifact": "H2-R2-interboard-M1",
+  "contacts": [
+    {
+      "contact": 1,
+      "net": "POWER_GROUND",
+      "class": "main_return",
+      "direction": null
+    },
+    {
+      "contact": 2,
+      "net": "3V3_MAIN",
+      "class": "main_power",
+      "direction": null
+    },
+    {
+      "contact": 3,
+      "net": "POWER_GROUND",
+      "class": "main_return",
+      "direction": null
+    },
+    {
+      "contact": 4,
+      "net": "3V3_MAIN",
+      "class": "main_power",
+      "direction": null
+    },
+    {
+      "contact": 5,
+      "net": "POWER_GROUND",
+      "class": "main_return",
+      "direction": null
+    },
+    {
+      "contact": 6,
+      "net": "3V3_MAIN",
+      "class": "main_power",
+      "direction": null
+    },
+    {
+      "contact": 7,
+      "net": "POWER_GROUND",
+      "class": "main_return",
+      "direction": null
+    },
+    {
+      "contact": 8,
+      "net": "3V3_MAIN",
+      "class": "main_power",
+      "direction": null
+    },
+    {
+      "contact": 9,
+      "net": "POWER_GROUND",
+      "class": "main_return",
+      "direction": null
+    },
+    {
+      "contact": 10,
+      "net": "3V3_MAIN",
+      "class": "main_power",
+      "direction": null
+    },
+    {
+      "contact": 11,
+      "net": "POWER_GROUND",
+      "class": "main_return",
+      "direction": null
+    },
+    {
+      "contact": 12,
+      "net": "3V3_MAIN",
+      "class": "main_power",
+      "direction": null
+    },
+    {
+      "contact": 13,
+      "net": "POWER_GROUND",
+      "class": "main_return",
+      "direction": null
+    },
+    {
+      "contact": 14,
+      "net": "3V3_MAIN",
+      "class": "main_power",
+      "direction": null
+    },
+    {
+      "contact": 15,
+      "net": "POWER_GROUND",
+      "class": "main_return",
+      "direction": null
+    },
+    {
+      "contact": 16,
+      "net": "3V3_MAIN",
+      "class": "main_power",
+      "direction": null
+    },
+    {
+      "contact": 17,
+      "net": "AON_SAFE_3V3",
+      "class": "aon_power",
+      "direction": null
+    },
+    {
+      "contact": 18,
+      "net": "SAFETY_GROUND",
+      "class": "safety_return",
+      "direction": null
+    },
+    {
+      "contact": 19,
+      "net": "AON_SAFE_3V3",
+      "class": "aon_power",
+      "direction": null
+    },
+    {
+      "contact": 20,
+      "net": "SAFETY_GROUND",
+      "class": "safety_return",
+      "direction": null
+    },
+    {
+      "contact": 21,
+      "net": "POWER_GROUND",
+      "class": "ipc_return",
+      "direction": null
+    },
+    {
+      "contact": 22,
+      "net": "HUB_RF_ALERT_N",
+      "class": "ipc",
+      "direction": null
+    },
+    {
+      "contact": 23,
+      "net": "HUB_RF_CS_N",
+      "class": "ipc",
+      "direction": null
+    },
+    {
+      "contact": 24,
+      "net": "HUB_RF_SCK",
+      "class": "ipc",
+      "direction": null
+    },
+    {
+      "contact": 25,
+      "net": "POWER_GROUND",
+      "class": "ipc_return",
+      "direction": null
+    },
+    {
+      "contact": 26,
+      "net": "HUB_RF_MOSI",
+      "class": "ipc",
+      "direction": null
+    },
+    {
+      "contact": 27,
+      "net": "HUB_RF_MISO",
+      "class": "ipc",
+      "direction": null
+    },
+    {
+      "contact": 28,
+      "net": "POWER_GROUND",
+      "class": "ipc_return",
+      "direction": null
+    },
+    {
+      "contact": 29,
+      "net": "S3_USB_DM",
+      "class": "usb2",
+      "direction": null
+    },
+    {
+      "contact": 30,
+      "net": "S3_USB_DP",
+      "class": "usb2",
+      "direction": null
+    },
+    {
+      "contact": 31,
+      "net": "POWER_GROUND",
+      "class": "usb_return",
+      "direction": null
+    },
+    {
+      "contact": 32,
+      "net": "HUB_SAFE_I2C_SDA",
+      "class": "control",
+      "direction": null
+    },
+    {
+      "contact": 33,
+      "net": "HUB_SAFE_I2C_SCL",
+      "class": "control",
+      "direction": null
+    },
+    {
+      "contact": 34,
+      "net": "POWER_GROUND",
+      "class": "control_return",
+      "direction": null
+    },
+    {
+      "contact": 35,
+      "net": "NC_35",
+      "class": "reserve",
+      "direction": null
+    },
+    {
+      "contact": 36,
+      "net": "NC_36",
+      "class": "reserve",
+      "direction": null
+    },
+    {
+      "contact": 37,
+      "net": "RUN_PERMIT",
+      "class": "safety",
+      "direction": null
+    },
+    {
+      "contact": 38,
+      "net": "FAULT_ASSERT_N",
+      "class": "safety",
+      "direction": null
+    },
+    {
+      "contact": 39,
+      "net": "UI_ZONE_TEMP_ADC",
+      "class": "safety_analog",
+      "direction": null
+    },
+    {
+      "contact": 40,
+      "net": "SAFETY_GROUND",
+      "class": "safety_return",
+      "direction": null
+    },
+    {
+      "contact": 41,
+      "net": "EV_N0_S3",
+      "class": "tx_evidence",
+      "direction": null
+    },
+    {
+      "contact": 42,
+      "net": "EV_N1_C5",
+      "class": "tx_evidence",
+      "direction": null
+    },
+    {
+      "contact": 43,
+      "net": "EV_N2_NRF0",
+      "class": "tx_evidence",
+      "direction": null
+    },
+    {
+      "contact": 44,
+      "net": "EV_N3_NRF1",
+      "class": "tx_evidence",
+      "direction": null
+    },
+    {
+      "contact": 45,
+      "net": "EV_N4_NRF2",
+      "class": "tx_evidence",
+      "direction": null
+    },
+    {
+      "contact": 46,
+      "net": "EV_N7_IR",
+      "class": "tx_evidence",
+      "direction": null
+    },
+    {
+      "contact": 47,
+      "net": "SAFETY_GROUND",
+      "class": "safety_return",
+      "direction": null
+    },
+    {
+      "contact": 48,
+      "net": "EV_N5_CC",
+      "class": "tx_evidence",
+      "direction": null
+    },
+    {
+      "contact": 49,
+      "net": "EV_N6_VOICE",
+      "class": "tx_evidence",
+      "direction": null
+    },
+    {
+      "contact": 50,
+      "net": "EV_N8_LORA_EXT",
+      "class": "tx_evidence",
+      "direction": null
+    },
+    {
+      "contact": 51,
+      "net": "ENCODER_A",
+      "class": "ui",
+      "direction": null
+    },
+    {
+      "contact": 52,
+      "net": "ENCODER_B",
+      "class": "ui",
+      "direction": null
+    },
+    {
+      "contact": 53,
+      "net": "UI_ENCODER_PUSH_N",
+      "class": "ui",
+      "direction": null
+    },
+    {
+      "contact": 54,
+      "net": "POWER_GROUND",
+      "class": "ui_return",
+      "direction": null
+    },
+    {
+      "contact": 55,
+      "net": "C5_MUX_SEL_REQUEST",
+      "class": "aon_service_control",
+      "direction": null
+    },
+    {
+      "contact": 56,
+      "net": "C5_SERVICE_PATH_ACK",
+      "class": "aon_service_control",
+      "direction": null
+    },
+    {
+      "contact": 57,
+      "net": "AON_SERVICE_RELEASE_REQ",
+      "class": "aon_service_control",
+      "direction": null
+    },
+    {
+      "contact": 58,
+      "net": "C5_SERVICE_OWNED",
+      "class": "aon_service_status",
+      "direction": null
+    },
+    {
+      "contact": 59,
+      "net": "HUB_AON_ALERT_N",
+      "class": "aon_status",
+      "direction": null
+    },
+    {
+      "contact": 60,
+      "net": "NC_60",
+      "class": "reserve",
+      "direction": null
+    },
+    {
+      "contact": 61,
+      "net": "NC_61",
+      "class": "reserve",
+      "direction": null
+    },
+    {
+      "contact": 62,
+      "net": "NC_62",
+      "class": "reserve",
+      "direction": null
+    },
+    {
+      "contact": 63,
+      "net": "NC_63",
+      "class": "reserve",
+      "direction": null
+    },
+    {
+      "contact": 64,
+      "net": "NC_64",
+      "class": "reserve",
+      "direction": null
+    },
+    {
+      "contact": 65,
+      "net": "POWER_GROUND",
+      "class": "main_return",
+      "direction": null
+    },
+    {
+      "contact": 66,
+      "net": "3V3_MAIN",
+      "class": "main_power",
+      "direction": null
+    },
+    {
+      "contact": 67,
+      "net": "POWER_GROUND",
+      "class": "main_return",
+      "direction": null
+    },
+    {
+      "contact": 68,
+      "net": "3V3_MAIN",
+      "class": "main_power",
+      "direction": null
+    },
+    {
+      "contact": 69,
+      "net": "POWER_GROUND",
+      "class": "main_return",
+      "direction": null
+    },
+    {
+      "contact": 70,
+      "net": "3V3_MAIN",
+      "class": "main_power",
+      "direction": null
+    },
+    {
+      "contact": 71,
+      "net": "POWER_GROUND",
+      "class": "main_return",
+      "direction": null
+    },
+    {
+      "contact": 72,
+      "net": "3V3_MAIN",
+      "class": "main_power",
+      "direction": null
+    },
+    {
+      "contact": 73,
+      "net": "POWER_GROUND",
+      "class": "main_return",
+      "direction": null
+    },
+    {
+      "contact": 74,
+      "net": "3V3_MAIN",
+      "class": "main_power",
+      "direction": null
+    },
+    {
+      "contact": 75,
+      "net": "POWER_GROUND",
+      "class": "main_return",
+      "direction": null
+    },
+    {
+      "contact": 76,
+      "net": "3V3_MAIN",
+      "class": "main_power",
+      "direction": null
+    },
+    {
+      "contact": 77,
+      "net": "NC_77",
+      "class": "reserve",
+      "direction": null
+    },
+    {
+      "contact": 78,
+      "net": "NC_78",
+      "class": "reserve",
+      "direction": null
+    },
+    {
+      "contact": 79,
+      "net": "NC_79",
+      "class": "reserve",
+      "direction": null
+    },
+    {
+      "contact": 80,
+      "net": "NC_80",
+      "class": "reserve",
+      "direction": null
+    }
+  ],
+  "summary": {
+    "physical_contacts": 80,
+    "unique_nets": 44,
+    "no_connect_reserve_contacts": 11,
+    "explicit_reserve_class_contacts": 11,
+    "errors": 0
+  },
+  "errors": []
+}

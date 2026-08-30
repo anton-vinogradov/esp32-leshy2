@@ -10,8 +10,8 @@ It does not create or approve schematic nets, PCB placement or fabrication.
 
 | Item | Checked result |
 |---|---:|
-| Fitted board instances | 1,096 |
-| Exact board component groups | 208 |
+| Fitted board instances | 1,187 |
+| Exact board component groups | 237 |
 | Native projects | 3 |
 | Project graph | 23 sheets; hierarchy-only root sheets intentionally contain no parts |
 | Independent RP2354B domains | 2: front Hub RP and rear RF RP |
@@ -28,10 +28,10 @@ the TCA9803 Pack/Safety boundary are present.
 ## Machine evidence
 
 - [Allocation contract](../hardware/ecad/h2-r2-instance-ledger-contract.json)
-- [Generated 1,096-instance ledger](../hardware/ecad/generated/H2-R2-native-instance-ledger.json)
+- [Generated 1,187-instance ledger](../hardware/ecad/generated/H2-R2-native-instance-ledger.json)
 - [Generator](../hardware/ecad/h2_r2_instance_ledger.py)
 
-The downstream [native net reconciliation](h2-r2-net-ledger.md) has now passed.
-The current point remains **`H2-R2.1.3`**: instantiate those reviewed
-definitions, references and nets in the three native KiCad projects. Placement,
-routing, fabrication and ordering remain blocked.
+The downstream [native net reconciliation](h2-r2-net-ledger.md) and
+[native KiCad generation](h2-r2-native-kicad.md) have now passed. Cross-sheet
+and HW↔FW reconciliation also passed in [H2-R2.1.5](h2-acceptance.md). H3 now
+freezes those inputs; placement, routing, fabrication and ordering remain blocked.

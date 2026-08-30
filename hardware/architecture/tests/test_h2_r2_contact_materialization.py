@@ -29,7 +29,7 @@ class H2R2ContactMaterializationTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("1504 board contacts", result.stdout)
+        self.assertIn("1605 board contacts", result.stdout)
         self.assertIn("zero errors", result.stdout)
 
     def test_every_contact_and_named_pad_is_accounted_for(self):
@@ -37,10 +37,10 @@ class H2R2ContactMaterializationTests(unittest.TestCase):
         self.assertEqual("pass", self.artifact["status"])
         self.assertEqual([], self.artifact["errors"])
         summary = self.artifact["summary"]
-        self.assertEqual(208, summary["board_component_group_count"])
-        self.assertEqual(1561, summary["source_ledger_logical_contact_count"])
-        self.assertEqual(1504, summary["board_logical_contact_count"])
-        self.assertEqual(1501, summary["pcb_footprint_contact_count"])
+        self.assertEqual(237, summary["board_component_group_count"])
+        self.assertEqual(1662, summary["source_ledger_logical_contact_count"])
+        self.assertEqual(1605, summary["board_logical_contact_count"])
+        self.assertEqual(1602, summary["pcb_footprint_contact_count"])
         self.assertEqual(3, summary["external_on_module_interface_count"])
         self.assertEqual(0, summary["unresolved_error_count"])
         for group in self.artifact["groups"]:
@@ -98,6 +98,20 @@ class H2R2ContactMaterializationTests(unittest.TestCase):
         self.assertEqual(0.5, geometry["pitch_mm"])
         self.assertEqual([27.0, 3.8, 1.0], geometry["body_mm"])
         self.assertEqual([0.3, 0.8], geometry["contact_pad_mm"])
+
+    def test_airband_transformers_use_the_official_six_pad_land_pattern(self):
+        for device_id in ("coilcraft_wbc1_1tlc", "coilcraft_wbc16_1tlc"):
+            group = self.groups[device_id]
+            self.assertEqual(6, group["footprint_named_pad_count"])
+            self.assertEqual(6, group["footprint_pad_occurrence_count"])
+            for number, contact in enumerate(
+                ("SEC_A", "SEC_CT", "SEC_B", "PRI_A", "PRI_CT", "PRI_B"), start=1
+            ):
+                self.assertEqual([str(number)], self.contact(device_id, contact)["pads"])
+            geometry = self.artifact["new_local_footprint_geometry"][device_id]
+            self.assertEqual(6, geometry["positions"])
+            self.assertEqual(1.52, geometry["pitch_mm"])
+            self.assertEqual([4.45, 4.19, 3.05], geometry["body_max_mm"])
 
     def test_scope_remains_pre_net_and_pre_layout(self):
         auth = self.artifact["authorization"]
