@@ -10,15 +10,15 @@
 
 </div>
 
-> **Текущий маркер железа: `H2-R2.0.3`.** Полная компоновка двух плат
+> **Текущий маркер железа: `H2-R2.1.1`.** Полная компоновка двух плат
 > `H1-R2.37` принята и прошла ревью 30 августа 2026 года: точные dual-RP GPIO/M1 и C5 SDIO/service-mux,
 > серийный дисплей `ER-TFT035IPS-6` + `ER-TPC035-6`, пассивный 40→50-контактный
 > адаптер, все 18 компонентов U219, NFC pickup-loop и внешний объём штатной
 > 108-мм антенны зарегистрированы fail-closed. Геометрических H1-блокеров нет;
 > H1 закрыто. Точный фабричный маршрут `FSUSB42MUX/C11355` прошёл ревью;
-> Точный тракт detector/latch/release service-VBUS прошёл ревью как `H2-R2.0.2`;
-> H2 теперь закрывает powered-off-Ioff границу Pack/Safety I²C;
-> native R2 ECAD/KiCad не начинался, заказ остаётся заблокирован.
+> точный service-VBUS тракт и Pack/Safety-граница `TCA9803DGKR/C2687966`
+> прошли ревью. Сейчас формируется native R2 source/sheet inventory; schematic
+> export/KiCad не создан, заказ остаётся заблокирован.
 
 > **Authority-gate R2:** текущие H0/H1 содержат шесть вычислительных доменов и
 > два `SC1512-A4`: передний Hub RP и задний RF RP. Сохранённые G2F/H2/KiCad —
@@ -101,7 +101,7 @@ VHF/UHF voice, broadcast/Airband, аудио, M5 и взаимоисключаю
 |---|---|---|
 | H0 · Требования и функциональная архитектура | ✅ Проведено ревью · R2 | [Результат H0-R2](docs/h0-r2-functional-architecture.ru.md) |
 | H1 · Физический дизайн устройства | ✅ Проведено ревью · `H1-R2.37` | [Двуязычный отчёт фазы](docs/h1-r2-acceptance.ru.md) · [компоновка](docs/h1-r2-physical-layout.ru.md) |
-| **H2 · Production ECAD-схема** | **▶ Сейчас · `H2-R2.0.3`** | [Живые результаты prerequisites](docs/h2-r2-electrical-prerequisites.ru.md) · [страница этапов](docs/stage-results.ru.md#h2) |
+| **H2 · Production ECAD-схема** | **▶ Сейчас · `H2-R2.1.1`** | [Живые результаты prerequisites](docs/h2-r2-electrical-prerequisites.ru.md) · [страница этапов](docs/stage-results.ru.md#h2) |
 | H3 · Виртуальная электрическая проверка | ⏳ Ожидает R2 H2 | [Страница этапов](docs/stage-results.ru.md#h3) |
 | H4 · Совместный pre-layout gate железа и прошивки | ⏳ Ожидает R2 H3 и контракт прошивки | [Страница этапов](docs/stage-results.ru.md#h4) |
 | H5 · Компоненты и фабричные evidence | ⏳ Ожидает R2 H4 | [Страница этапов](docs/stage-results.ru.md#h5) |
@@ -128,14 +128,15 @@ VHF/UHF voice, broadcast/Airband, аудио, M5 и взаимоисключаю
 - ✅ H1 принято и прошло ревью 2026-08-30; [двуязычный отчёт](docs/h1-r2-acceptance.ru.md) сохраняет принятую границу продукта и evidence.
 - ✅ `H2-R2.0.1`: live-маршрут Standard PCBA для onsemi `FSUSB42MUX` / JLCPCB `C11355` прошёл ревью: stock 66 698, доступно 66 045, MOQ 1 и USD 0,3179 при количестве 1.
 - ✅ `H2-R2.0.2`: точные detector `DMN2056U-7`, latch владения `SN74LVC1G74DCUR` и release-qualifier `74HC20PW,118` прошли ревью вместе с live-маршрутами Standard PCBA, fail-closed truth table и стоимостью USD 0,5857 для одного полного тракта.
-- ▶ **Точная текущая точка `H2-R2.0.3`:** закрыть powered-off-Ioff-границу Pack/Safety и раздельные pull-up-домены `3V3_MAIN`/AON на Hub GPIO42/43; native R2 ECAD/KiCad начинается только после её закрытия.
+- ✅ `H2-R2.0.3`: точная Pack/Safety powered-off-граница `TCA9803DGKR/C2687966` прошла ревью с корректным rail-local termination и ценой USD 0,3953 для одного тракта.
+- ▶ **Точная текущая точка `H2-R2.1.1`:** зафиксировать native R2 source/sheet и exact-component inventory до создания symbols, nets или export.
 - 🔒 KiCad, закупка прототипа и печать не разрешены.
 
 Каждая закрытая глобальная фаза `H*` получает двуязычный понятный отчёт со
 ссылкой из таблицы. Внутренние подшаги обновляют точный маркер и обе
 документации, но не выдают себя за ревью всей фазы.
 
-<!-- current-substep: H2-R2.0.3 -->
+<!-- current-substep: H2-R2.1.1 -->
 
 ## Репозитории
 

@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "id": "H2-R2-PACK-SAFETY-I2C-BOUNDARY",
+  "marker": "H2-R2.0.3",
+  "status": "reviewed_exact_factory_placeable_boundary",
+  "scope": "Exact powered-off-Ioff boundary between the main-powered Hub RP I2C1 segment and the always-on Pack/Safety mailbox segment.",
+  "authority": {
+    "pin_source": "hardware/architecture/h1-r2-dual-rp-pinout.json",
+    "functional_source": "hardware/architecture/h0-r2-rebaseline.json",
+    "device_register": "hardware/architecture/devices.json",
+    "does_not_authorize": ["R2 KiCad", "fabrication", "ordering"]
+  },
+  "bus": {
+    "name": "HUB_PACK_SAFETY",
+    "maximum_clock_hz": 400000,
+    "hub_endpoints": {"sda": "Hub RP GPIO42 / M1.32", "scl": "Hub RP GPIO43 / M1.33"},
+    "aon_endpoints": [
+      "Pack MSPM0C1106SDGS20R PA0/PA11",
+      "Safety MSPM0C1106SDGS20R PA0/PA11"
+    ],
+    "hard_safety_dependency": false,
+    "failure_semantics": "A stuck mailbox bus may remove diagnostics but cannot inhibit the independent FAULT_KILL path or the local Safety watchdog."
+  },
+  "buffer": {
+    "device_key": "ti_tca9803_dgkr",
+    "manufacturer": "Texas Instruments",
+    "mpn": "TCA9803DGKR",
+    "jlcpcb_part_number": "C2687966",
+    "package": "VSSOP-8-0.65mm",
+    "pin_topology": [
+      {"pin": 1, "name": "VCCA", "net": "3V3_MAIN"},
+      {"pin": 2, "name": "SCLA", "net": "HUB_SAFE_I2C_SCL_MAIN"},
+      {"pin": 3, "name": "SDAA", "net": "HUB_SAFE_I2C_SDA_MAIN"},
+      {"pin": 4, "name": "GND", "net": "GND"},
+      {"pin": 5, "name": "EN", "net": "TCA9803_EN_INTERNAL_VCCA_PULLUP"},
+      {"pin": 6, "name": "SDAB", "net": "HUB_SAFE_I2C_SDA_AON"},
+      {"pin": 7, "name": "SCLB", "net": "HUB_SAFE_I2C_SCL_AON"},
+      {"pin": 8, "name": "VCCB", "net": "AON_SAFE_3V3"}
+    ],
+    "electrical_contract": {
+      "vcca_v": 3.3,
+      "vccb_v": 3.3,
+      "supply_relationship": "none; VCCA may be below, equal to or above VCCB",
+      "a_side_powered_off_state": "high impedance",
+      "all_bus_pins_back_power_protection": true,
+      "b_side_current_source_ma_typical": 3.3,
+      "b_side_external_pullups": "forbidden",
+      "b_side_capacitance_pf_max": 400,
+      "enable": "internal 150..450-kohm pull-up to VCCA; no firmware control; UVLO isolates when either supply is invalid",
+      "startup_us_max": 350
+    },
+    "factory_surface": {
+      "checked": "2026-08-30",
+      "source": "JLCPCB",
+      "assembly_type": "SMT Assembly",
+      "pcba_type": "Economic and Standard",
+      "library_type": "Extended",
+      "stock": 1864,
+      "available_order_quantity": 1818,
+      "moq": 1,
+      "unit_price_usd_quantity_1": 0.3525,
+      "url": "https://jlcpcb.com/partdetail/TexasInstruments-TCA9803DGKR/C2687966"
+    }
+  },
+  "rail_local_termination": {
+    "main_a_side": {
+      "rule": "Two external 2.2-kohm pull-ups to 3V3_MAIN, one on SDAA and one on SCLA.",
+      "quantity": 2,
+      "device_key": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
+      "jlcpcb_part_number": "C25879",
+      "unit_price_usd_quantity_1": 0.0039
+    },
+    "aon_b_side": {
+      "rule": "No external pull-up or other current source; the TCA9803 B-side 3.3-mA current sources are the AON-local termination.",
+      "external_pullup_quantity": 0,
+      "sink_compatibility": "3.3 mA typical is below the MSPM0C1106 6-mA SDIO sink rating at VDD >= 2.7 V."
+    }
+  },
+  "decoupling": [
+    {
+      "rail": "3V3_MAIN",
+      "value": "1 uF",
+      "quantity": 1,
+      "device_key": "samsung_cl05a105ka5nqnc",
+      "mpn": "Samsung CL05A105KA5NQNC",
+      "jlcpcb_part_number": "C52923",
+      "unit_price_usd_quantity_1": 0.0120
+    },
+    {
+      "rail": "3V3_MAIN",
+      "value": "100 nF",
+      "quantity": 1,
+      "device_key": "samsung_cl05b104ko5nnnc",
+      "mpn": "Samsung CL05B104KO5NNNC",
+      "jlcpcb_part_number": "C1525",
+      "unit_price_usd_quantity_1": 0.0055
+    },
+    {
+      "rail": "AON_SAFE_3V3",
+      "value": "1 uF",
+      "quantity": 1,
+      "device_key": "samsung_cl05a105ka5nqnc",
+      "mpn": "Samsung CL05A105KA5NQNC",
+      "jlcpcb_part_number": "C52923",
+      "unit_price_usd_quantity_1": 0.0120
+    },
+    {
+      "rail": "AON_SAFE_3V3",
+      "value": "100 nF",
+      "quantity": 1,
+      "device_key": "samsung_cl05b104ko5nnnc",
+      "mpn": "Samsung CL05B104KO5NNNC",
+      "jlcpcb_part_number": "C1525",
+      "unit_price_usd_quantity_1": 0.0055
+    }
+  ],
+  "power_truth_table": [
+    {"main": 0, "aon": 0, "result": "both segments unpowered; all boundary bus pins high-Z"},
+    {"main": 0, "aon": 1, "result": "A-side powered-off high-Z; AON mailboxes remain locally terminated; no Hub/main back-power"},
+    {"main": 1, "aon": 0, "result": "B-side UVLO/back-power protection isolates AON; no reverse power"},
+    {"main": 1, "aon": 1, "result": "bidirectional 400-kHz mailbox bridge active after <=350 us startup"}
+  ],
+  "exact_one_component_cost_usd": 0.3953,
+  "verification": {
+    "pre_ecad": [
+      "Pin topology and the no-B-side-pull-up rule are machine checked.",
+      "Each selected MPN has an exact current JLCPCB assembly route, MOQ and one-piece price."
+    ],
+    "h3_hil": [
+      "Measure <1 uA unintended cross-rail current with main off/AON on and with main on/AON off.",
+      "Measure 400-kHz rise/fall timing and prove total B-side capacitance <=400 pF.",
+      "Inject SDA/SCL stuck-low faults and prove FAULT_KILL remains independent while mailbox diagnostics fail explicitly."
+    ]
+  },
+  "sources": [
+    "https://www.ti.com/lit/ds/symlink/tca9803.pdf",
+    "https://www.ti.com/product/TCA9803",
+    "https://www.ti.com/lit/ds/symlink/mspm0c1106.pdf",
+    "https://jlcpcb.com/partdetail/TexasInstruments-TCA9803DGKR/C2687966",
+    "https://jlcpcb.com/partdetail/0402WGF2201TCE/C25879",
+    "https://jlcpcb.com/partdetail/SamsungElectroMechanics-CL05A105KA5NQNC/C52923",
+    "https://jlcpcb.com/partdetail/SamsungElectroMechanics-CL05B104KO5NNNC/C1525"
+  ]
+}

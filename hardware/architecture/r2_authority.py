@@ -14,6 +14,7 @@ POLICY = REPO / "hardware/architecture/r2-authority.json"
 H0 = REPO / "hardware/architecture/h0-r2-rebaseline.json"
 PIN_AUTHORITY = REPO / "hardware/architecture/h1-r2-dual-rp-pinout.json"
 C5_MUX = REPO / "hardware/architecture/c5-sdio-service-mux-contract.json"
+PACK_SAFETY_I2C = REPO / "hardware/architecture/pack-safety-i2c-boundary-contract.json"
 G2F = REPO / "hardware/architecture/candidates/G2F-3I.json"
 U219_CONTRACT = REPO / "hardware/architecture/h1-r2-u219-cap.json"
 PHYSICAL_H1 = REPO / "hardware/product-design/h1-r2-placement.json"
@@ -94,13 +95,13 @@ def retained_controller_pin_maps(g2f: dict, c5_mux: dict) -> dict[str, list[dict
                 row.update(
                     net="HUB_SAFE_I2C_SDA",
                     peers=["hub_rp.GPIO42", "M1.32"],
-                    endpoint="Hub RP I2C1 open-drain mailbox bus through M1.32 and the required powered-off-Ioff boundary",
+                    endpoint="Hub RP I2C1 through TCA9803DGKR SDAA/SDAB powered-off boundary and M1.32",
                 )
             elif row.get("contact") == "PA11":
                 row.update(
                     net="HUB_SAFE_I2C_SCL",
                     peers=["hub_rp.GPIO43", "M1.33"],
-                    endpoint="Hub RP I2C1 open-drain mailbox bus through M1.33 and the required powered-off-Ioff boundary",
+                    endpoint="Hub RP I2C1 through TCA9803DGKR SCLA/SCLB powered-off boundary and M1.33",
                 )
         result[domain] = rows
     result["c5"] = composed_c5_pin_map(g2f, c5_mux)
@@ -156,6 +157,7 @@ def expected_source_hashes() -> dict[str, str]:
         str(H0.relative_to(REPO)): digest(H0),
         str(PIN_AUTHORITY.relative_to(REPO)): digest(PIN_AUTHORITY),
         str(C5_MUX.relative_to(REPO)): digest(C5_MUX),
+        str(PACK_SAFETY_I2C.relative_to(REPO)): digest(PACK_SAFETY_I2C),
         str(G2F.relative_to(REPO)): digest(G2F),
         str(U219_CONTRACT.relative_to(REPO)): digest(U219_CONTRACT),
         str(PHYSICAL_H1.relative_to(REPO)): digest(PHYSICAL_H1),

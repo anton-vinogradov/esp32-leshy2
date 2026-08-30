@@ -78,6 +78,5 @@
 
 ### Preconditions до R2 H2 / KiCad
 
-- реализовать и доказать точную powered-off-Ioff границу изоляции и раздельные pull-up домены 3V3_MAIN/AON для Pack/Safety I2C на Hub GPIO42/43
 
 > Итоговый маркер: **H1-R2.37**. H1 принято 2026-08-30.

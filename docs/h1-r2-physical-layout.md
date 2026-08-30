@@ -78,6 +78,5 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted
 
 ### Preconditions before R2 H2 / KiCad
 
-- instantiate and prove the exact powered-off-Ioff isolation boundary and separate 3V3_MAIN/AON pull-up domains for Hub GPIO42/43 Pack/Safety I2C
 
 > Final result marker: **H1-R2.37**. H1 was reviewed on 2026-08-30.

@@ -67,11 +67,11 @@ H1 has no physical blocker. The complete mock-up was explicitly accepted on
 <a id="h2"></a>
 ## H2 · Production schematic
 
-**Status:** ▶️ current at **`H2-R2.0.3`**.
+**Status:** ▶️ current at **`H2-R2.1.1`**.
 
-The former reviewed G2F/H2/KiCad result is preserved as historical single-RP
-R1 evidence and is explicitly superseded as current authority. The new R2 H2
-has opened, but native schematic export/KiCad has not started.
+The former G2F/H2/KiCad result is historical single-RP R1 evidence. All three
+new R2 electrical prerequisites are reviewed; native source/sheet inventory is
+now in progress, while native schematic export/KiCad has not started.
 
 Exact current checklist:
 
@@ -81,8 +81,9 @@ Exact current checklist:
 2. ✅ `H2-R2.0.2`: exact `DMN2056U-7` / `C332302` detector,
    `SN74LVC1G74DCUR` / `C70285` ownership latch and `74HC20PW,118` / `C546719`
    release qualifier reviewed with complete Standard-PCBA routes and fail-closed truth table;
-3. ▶ `H2-R2.0.3`: close the powered-off-Ioff Pack/Safety I²C boundary with separate
-   `3V3_MAIN`/AON pull-ups on Hub GPIO42/43.
+3. ✅ `H2-R2.0.3`: exact TI `TCA9803DGKR` / `C2687966` Pack/Safety boundary
+   reviewed with rail-local termination, four Basic decouplers and USD 0.3953 cost;
+4. ▶ `H2-R2.1.1`: freeze the native R2 source/sheet and exact-component inventory.
 
 [Live prerequisite results](h2-r2-electrical-prerequisites.md).
 

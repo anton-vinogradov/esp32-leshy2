@@ -7,17 +7,17 @@
   "authority_chain": {
     "functional_source": "hardware/architecture/h0-r2-rebaseline.json",
     "c5_mux_source": "hardware/architecture/c5-sdio-service-mux-contract.json",
+    "pack_safety_i2c_source": "hardware/architecture/pack-safety-i2c-boundary-contract.json",
     "u219_profile_source": "hardware/architecture/h1-r2-u219-cap.json",
     "rp2354b_fixed_mux_source": "https://github.com/raspberrypi/pico-sdk/blob/master/src/rp2_common/hardware_gpio/include/hardware/gpio.h",
     "supersedes": "the bounded dual-RP GPIO groups in H0-R2 and every single-RP R1/G2F/H2 GPIO projection for current R2 implementation",
     "does_not_authorize": ["R2 KiCad", "fabrication", "ordering"],
     "c5_electrical_join_status": "closed against C5-SDIO-SERVICE-MUX-1: exact module pads, fixed IO mux, FSUSB42 branch polarity, reset ownership and Hub-side signal order are joined.",
-    "remaining_h2_gates": [
-      "exact powered-off-Ioff Pack/Safety I2C boundary with separate 3V3_MAIN/AON pull-up domains on Hub GPIO42/43"
-    ],
+    "remaining_h2_gates": [],
     "resolved_h2_gates": [
       "H2-R2.0.1: exact onsemi FSUSB42MUX / JLCPCB C11355 live Standard-PCBA route, MOQ and price reviewed 2026-08-30",
-      "H2-R2.0.2: exact DMN2056U-7 / C332302 insulated-gate service-VBUS detector, SN74LVC1G74DCUR / C70285 ownership latch and 74HC20PW,118 / C546719 release qualifier reviewed 2026-08-30"
+      "H2-R2.0.2: exact DMN2056U-7 / C332302 insulated-gate service-VBUS detector, SN74LVC1G74DCUR / C70285 ownership latch and 74HC20PW,118 / C546719 release qualifier reviewed 2026-08-30",
+      "H2-R2.0.3: exact Texas Instruments TCA9803DGKR / C2687966 Pack/Safety powered-off boundary with MAIN-local 2.2-kohm pull-ups and AON-local internal current sources reviewed 2026-08-30"
     ]
   },
   "rp_identity": {
@@ -71,8 +71,8 @@
       {"gpio": 39, "net": "SD_MISO", "direction": "in", "controller": "PIO0_SM3_SD_SPI", "endpoint": "microSD return buffer", "reset": "input; external pull-up"},
       {"gpio": 40, "net": "SD_CS_N", "direction": "out", "controller": "GPIO", "endpoint": "microSD command buffer", "reset": "input/high-Z; external pull-up"},
       {"gpio": 41, "net": "SD_PWR_EN", "direction": "out", "controller": "GPIO", "endpoint": "microSD load switch", "reset": "input/high-Z; external pull-down"},
-      {"gpio": 42, "net": "HUB_SAFE_I2C_SDA", "direction": "io", "controller": "I2C1", "endpoint": "M1.32 -> Pack/Safety mailboxes", "reset": "input/open-drain released; external pull-up to AON-safe compatible domain"},
-      {"gpio": 43, "net": "HUB_SAFE_I2C_SCL", "direction": "od", "controller": "I2C1", "endpoint": "M1.33 -> Pack/Safety mailboxes", "reset": "input/open-drain released; external pull-up to AON-safe compatible domain"},
+      {"gpio": 42, "net": "HUB_SAFE_I2C_SDA", "direction": "io", "controller": "I2C1", "endpoint": "TCA9803DGKR SDAA on 3V3_MAIN -> powered-off-Ioff boundary -> SDAB on AON_SAFE_3V3 -> M1.32 -> Pack/Safety mailboxes", "reset": "input/open-drain released; 2.2-kohm MAIN-local pull-up; A-side high-Z when MAIN is off; no external B-side pull-up"},
+      {"gpio": 43, "net": "HUB_SAFE_I2C_SCL", "direction": "od", "controller": "I2C1", "endpoint": "TCA9803DGKR SCLA on 3V3_MAIN -> powered-off-Ioff boundary -> SCLB on AON_SAFE_3V3 -> M1.33 -> Pack/Safety mailboxes", "reset": "input/open-drain released; 2.2-kohm MAIN-local pull-up; A-side high-Z when MAIN is off; no external B-side pull-up"},
       {"gpio": 44, "net": "SD_DETECT_N", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "microSD socket detect", "reset": "input; external pull-up"},
       {"gpio": 45, "net": "LCD_TE", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "HMX035CTFT-001 TE", "reset": "input; external pull-down while panel reset is asserted"},
       {"gpio": 46, "net": "LCD_BL_PWM", "direction": "out", "controller": "PWM", "endpoint": "backlight hardware gate", "reset": "input/high-Z; external pull-down keeps backlight off"},
@@ -218,8 +218,8 @@
     "PIO instruction fit and Hub/RF 14/12-channel DMA allocation must compile in the six-domain firmware build matrix; exact channel IDs, DREQ routing and peak simultaneous profile remain executable proof gates.",
     "Simultaneous three-nRF RX/TX/mix, microSD, S3-Hub, Hub-C5 and Hub-RF traffic must pass emulator/dev-board timing before fabrication and HIL after assembly.",
     "Reset-state voltage and no-back-power behavior must be measured for every switched/isolated branch.",
-    "Hub GPIO42/43 Pack/Safety I2C requires an exact powered-off-Ioff boundary and separate 3V3_MAIN/AON pull-up domains before schematic authorization.",
-    "The C5 electrical pad/mux contract, exact live FSUSB42MUX/C11355 route and exact service-VBUS detector/latch/release implementation are closed; the Pack/Safety powered-off-Ioff boundary remains fail-closed before native R2 H2.",
+    "The exact TCA9803DGKR/C2687966 Pack/Safety boundary is closed: two 2.2-kohm pull-ups terminate the MAIN A-side, while the AON B-side uses only the device's 3.3-mA current sources and forbids external pull-ups.",
+    "Native R2 ECAD must instantiate the reviewed H2-R2.0.1, H2-R2.0.2 and H2-R2.0.3 circuits exactly; this H1 authority still does not authorize fabrication or ordering.",
     "The exact-one signed U214/U219 profile must pass received-unit pin continuity, protected-power, RF-switch, VNA and RX/NFC HIL before the U219 branch can be enabled."
   ]
 }

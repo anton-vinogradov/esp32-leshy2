@@ -27,7 +27,7 @@
     "hub_gpio_rows": 48,
     "rf_gpio_rows": 48,
     "m1_signal_bindings": 5,
-    "c5_mux_status": "electrical contract and exact live FSUSB42MUX/C11355 Standard-PCBA route closed as H2-R2.0.1; exact DMN2056U-7/SN74LVC1G74DCUR/74HC20PW,118 service-VBUS detector/latch/release implementation closed as H2-R2.0.2; Pack/Safety powered-off-Ioff gate remains open and fail-closed before native R2 H2"
+    "c5_mux_status": "electrical contract and exact live FSUSB42MUX/C11355 Standard-PCBA route closed as H2-R2.0.1; exact DMN2056U-7/SN74LVC1G74DCUR/74HC20PW,118 service-VBUS detector/latch/release implementation closed as H2-R2.0.2; exact TCA9803DGKR/C2687966 Pack/Safety powered-off-Ioff boundary closed as H2-R2.0.3; native R2 H2 inventory starts next"
   },
   "current_h1_physical_authority": {
     "source": "hardware/product-design/h1-r2-placement.json",
@@ -1157,16 +1157,16 @@
           "net": "HUB_SAFE_I2C_SDA",
           "direction": "io",
           "controller": "I2C1",
-          "endpoint": "M1.32 -> Pack/Safety mailboxes",
-          "reset": "input/open-drain released; external pull-up to AON-safe compatible domain"
+          "endpoint": "TCA9803DGKR SDAA on 3V3_MAIN -> powered-off-Ioff boundary -> SDAB on AON_SAFE_3V3 -> M1.32 -> Pack/Safety mailboxes",
+          "reset": "input/open-drain released; 2.2-kohm MAIN-local pull-up; A-side high-Z when MAIN is off; no external B-side pull-up"
         },
         {
           "gpio": 43,
           "net": "HUB_SAFE_I2C_SCL",
           "direction": "od",
           "controller": "I2C1",
-          "endpoint": "M1.33 -> Pack/Safety mailboxes",
-          "reset": "input/open-drain released; external pull-up to AON-safe compatible domain"
+          "endpoint": "TCA9803DGKR SCLA on 3V3_MAIN -> powered-off-Ioff boundary -> SCLB on AON_SAFE_3V3 -> M1.33 -> Pack/Safety mailboxes",
+          "reset": "input/open-drain released; 2.2-kohm MAIN-local pull-up; A-side high-Z when MAIN is off; no external B-side pull-up"
         },
         {
           "gpio": 44,
@@ -1216,7 +1216,7 @@
             "hub_rp.GPIO42",
             "M1.32"
           ],
-          "endpoint": "Hub RP I2C1 open-drain mailbox bus through M1.32 and the required powered-off-Ioff boundary"
+          "endpoint": "Hub RP I2C1 through TCA9803DGKR SDAA/SDAB powered-off boundary and M1.32"
         },
         {
           "instance": "pack_admission",
@@ -1262,7 +1262,7 @@
             "hub_rp.GPIO43",
             "M1.33"
           ],
-          "endpoint": "Hub RP I2C1 open-drain mailbox bus through M1.33 and the required powered-off-Ioff boundary"
+          "endpoint": "Hub RP I2C1 through TCA9803DGKR SCLA/SCLB powered-off boundary and M1.33"
         },
         {
           "instance": "pack_admission",
@@ -1375,7 +1375,7 @@
             "hub_rp.GPIO42",
             "M1.32"
           ],
-          "endpoint": "Hub RP I2C1 open-drain mailbox bus through M1.32 and the required powered-off-Ioff boundary"
+          "endpoint": "Hub RP I2C1 through TCA9803DGKR SDAA/SDAB powered-off boundary and M1.32"
         },
         {
           "instance": "safety_controller",
@@ -1421,7 +1421,7 @@
             "hub_rp.GPIO43",
             "M1.33"
           ],
-          "endpoint": "Hub RP I2C1 open-drain mailbox bus through M1.33 and the required powered-off-Ioff boundary"
+          "endpoint": "Hub RP I2C1 through TCA9803DGKR SCLA/SCLB powered-off boundary and M1.33"
         },
         {
           "instance": "safety_controller",
@@ -1595,6 +1595,6 @@
   "r2_h2_authoritative": false,
   "r2_kicad_started": false,
   "exact_rp_gpio_order_status": "closed as H1-R2.31 working authority; not yet a generated R2 H2 export",
-  "exact_c5_mux_status": "electrical contract and exact live FSUSB42MUX/C11355 Standard-PCBA route closed as H2-R2.0.1; exact DMN2056U-7/SN74LVC1G74DCUR/74HC20PW,118 service-VBUS detector/latch/release implementation closed as H2-R2.0.2; Pack/Safety powered-off-Ioff gate remains open and fail-closed before native R2 H2",
+  "exact_c5_mux_status": "electrical contract and exact live FSUSB42MUX/C11355 Standard-PCBA route closed as H2-R2.0.1; exact DMN2056U-7/SN74LVC1G74DCUR/74HC20PW,118 service-VBUS detector/latch/release implementation closed as H2-R2.0.2; exact TCA9803DGKR/C2687966 Pack/Safety powered-off-Ioff boundary closed as H2-R2.0.3; native R2 H2 inventory starts next",
   "errors": []
 }

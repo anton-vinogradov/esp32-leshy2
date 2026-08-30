@@ -66,11 +66,11 @@ GPIO заднего RP и контакты M1 35–36 остаются резе�
 <a id="h2"></a>
 ## H2 · Production-схема
 
-**Статус:** ▶️ сейчас **`H2-R2.0.3`**.
+**Статус:** ▶️ сейчас **`H2-R2.1.1`**.
 
-Прежний результат G2F/H2/KiCad с проведённым ревью сохранён как историческое
-single-RP evidence R1 и явно отменён как current authority. Новый H2 R2 начат,
-но native schematic export/KiCad ещё не начинался.
+Прежний G2F/H2/KiCad сохранён как историческое single-RP evidence R1. Все три
+электрических prerequisites нового R2 прошли ревью; сейчас формируется native
+source/sheet inventory, а native schematic export/KiCad ещё не начинался.
 
 Точный текущий чеклист:
 
@@ -80,8 +80,9 @@ single-RP evidence R1 и явно отменён как current authority. Но�
 2. ✅ `H2-R2.0.2`: точные detector `DMN2056U-7` / `C332302`, latch владения
    `SN74LVC1G74DCUR` / `C70285` и release-qualifier `74HC20PW,118` / `C546719`
    прошли ревью вместе с полными Standard-PCBA routes и fail-closed truth table;
-3. ▶ `H2-R2.0.3`: закрыть powered-off-Ioff Pack/Safety I²C с раздельными pull-up
-   `3V3_MAIN`/AON на Hub GPIO42/43.
+3. ✅ `H2-R2.0.3`: точная граница TI `TCA9803DGKR` / `C2687966` для Pack/Safety
+   прошла ревью с rail-local termination, четырьмя Basic decoupler и ценой USD 0,3953;
+4. ▶ `H2-R2.1.1`: зафиксировать native R2 source/sheet и exact-component inventory.
 
 [Живые результаты prerequisites](h2-r2-electrical-prerequisites.ru.md).
 

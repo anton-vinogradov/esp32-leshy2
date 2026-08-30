@@ -45,6 +45,7 @@ class R2AuthorityTest(unittest.TestCase):
             str(MODULE.H0.relative_to(MODULE.REPO)): MODULE.digest(MODULE.H0),
             str(MODULE.PIN_AUTHORITY.relative_to(MODULE.REPO)): MODULE.digest(MODULE.PIN_AUTHORITY),
             str(MODULE.C5_MUX.relative_to(MODULE.REPO)): MODULE.digest(MODULE.C5_MUX),
+            str(MODULE.PACK_SAFETY_I2C.relative_to(MODULE.REPO)): MODULE.digest(MODULE.PACK_SAFETY_I2C),
             str(MODULE.G2F.relative_to(MODULE.REPO)): MODULE.digest(MODULE.G2F),
             str(MODULE.U219_CONTRACT.relative_to(MODULE.REPO)): MODULE.digest(MODULE.U219_CONTRACT),
             str(MODULE.PHYSICAL_H1.relative_to(MODULE.REPO)): MODULE.digest(MODULE.PHYSICAL_H1),
@@ -93,7 +94,8 @@ class R2AuthorityTest(unittest.TestCase):
                 result["current_h1_pin_authority"]["m1_signal_bindings"],
             ),
         )
-        self.assertIn("open", result["exact_c5_mux_status"])
+        self.assertIn("H2-R2.0.3", result["exact_c5_mux_status"])
+        self.assertIn("closed", result["exact_c5_mux_status"])
 
     def test_historical_h2_is_single_rp_old_m1_and_not_current(self):
         result = MODULE.build()

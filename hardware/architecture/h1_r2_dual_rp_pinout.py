@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "hardware/architecture/h1-r2-dual-rp-pinout.json"
 H0 = ROOT / "hardware/architecture/h0-r2-rebaseline.json"
 C5_MUX = ROOT / "hardware/architecture/c5-sdio-service-mux-contract.json"
+PACK_SAFETY_I2C = ROOT / "hardware/architecture/pack-safety-i2c-boundary-contract.json"
 U219 = ROOT / "hardware/architecture/h1-r2-u219-cap.json"
 DEVICES = ROOT / "hardware/architecture/devices.json"
 G2F = ROOT / "hardware/architecture/candidates/G2F-3I.json"
@@ -64,9 +65,11 @@ def digest(path: Path) -> str:
 
 
 def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
-             u219: dict[str, Any], devices: dict[str, Any] | None = None) -> list[str]:
+             u219: dict[str, Any], devices: dict[str, Any] | None = None,
+             pack_safety_i2c: dict[str, Any] | None = None) -> list[str]:
     errors: list[str] = []
     devices = devices or load(DEVICES)
+    pack_safety_i2c = pack_safety_i2c or load(PACK_SAFETY_I2C)
     if source.get("marker") != "H1-R2.31":
         errors.append("marker must be H1-R2.31")
     if source.get("status") != "current_working_authority_not_kicad":
@@ -78,6 +81,8 @@ def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
     authority = source.get("authority_chain", {})
     if authority.get("c5_mux_source") != str(C5_MUX.relative_to(ROOT)):
         errors.append("dual-RP authority must join the exact C5 mux source")
+    if authority.get("pack_safety_i2c_source") != str(PACK_SAFETY_I2C.relative_to(ROOT)):
+        errors.append("dual-RP authority must join the exact Pack/Safety I2C boundary source")
     if authority.get("u219_profile_source") != str(U219.relative_to(ROOT)):
         errors.append("dual-RP authority must join the exact U214/U219 profile source")
     if authority.get("rp2354b_fixed_mux_source") != \
@@ -85,17 +90,20 @@ def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
         errors.append("dual-RP authority must cite the official RP2350 fixed-mux table")
     if "closed" not in authority.get("c5_electrical_join_status", ""):
         errors.append("C5 electrical pad/mux join must be explicit")
-    remaining = " ".join(authority.get("remaining_h2_gates", []))
-    for token in ("powered-off-Ioff", "Pack/Safety"):
-        if token not in remaining:
-            errors.append(f"remaining C5 production gates must name {token}")
+    if authority.get("remaining_h2_gates") != []:
+        errors.append("all three pre-ECAD H2 electrical gates must be closed")
     resolved = " ".join(authority.get("resolved_h2_gates", []))
     for token in (
         "H2-R2.0.1", "FSUSB42MUX", "C11355", "H2-R2.0.2",
-        "DMN2056U-7", "SN74LVC1G74DCUR", "74HC20PW,118",
+        "DMN2056U-7", "SN74LVC1G74DCUR", "74HC20PW,118", "H2-R2.0.3",
+        "TCA9803DGKR", "C2687966",
     ):
         if token not in resolved:
             errors.append(f"resolved C5 production gates must name {token}")
+    boundary = pack_safety_i2c.get("buffer", {})
+    if (pack_safety_i2c.get("marker"), boundary.get("mpn"),
+            boundary.get("jlcpcb_part_number")) != ("H2-R2.0.3", "TCA9803DGKR", "C2687966"):
+        errors.append("joined Pack/Safety source lost the exact H2-R2.0.3 TCA9803 route")
 
     rp = devices.get("devices", {}).get("rp2354b_a4", {})
     identity = source.get("rp_identity", {})
@@ -347,9 +355,9 @@ def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
             or "TCA4307DGKR" not in (shared_i2c.get("sda", "") + shared_i2c.get("scl", "")):
         errors.append("joined U219 source changed the shared GPIO30/31 isolated I2C1 assignment")
     execution = " ".join(source.get("execution_gates", []))
-    for token in ("powered-off-Ioff", "3V3_MAIN", "AON"):
+    for token in ("TCA9803DGKR", "MAIN A-side", "AON B-side", "forbids external pull-ups"):
         if token not in execution:
-            errors.append(f"Pack/Safety I2C boundary gate must name {token}")
+            errors.append(f"Pack/Safety I2C execution contract must name {token}")
     if "14/12-channel DMA" not in execution:
         errors.append("execution gate must match the current Hub/RF 14/12 DMA budgets")
     for gpio in range(4):
@@ -363,13 +371,15 @@ def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
 
 def build(source: dict[str, Any] | None = None, h0: dict[str, Any] | None = None,
           c5_mux: dict[str, Any] | None = None, u219: dict[str, Any] | None = None,
-          devices: dict[str, Any] | None = None) -> dict[str, Any]:
+          devices: dict[str, Any] | None = None,
+          pack_safety_i2c: dict[str, Any] | None = None) -> dict[str, Any]:
     source = source or load(SOURCE)
     h0 = h0 or load(H0)
     c5_mux = c5_mux or load(C5_MUX)
     u219 = u219 or load(U219)
     devices = devices or load(DEVICES)
-    errors = validate(source, h0, c5_mux, u219, devices)
+    pack_safety_i2c = pack_safety_i2c or load(PACK_SAFETY_I2C)
+    errors = validate(source, h0, c5_mux, u219, devices, pack_safety_i2c)
     return {
         "schema_version": 1,
         "artifact": "H1-R2-dual-rp-pinout-audit",
@@ -382,6 +392,8 @@ def build(source: dict[str, Any] | None = None, h0: dict[str, Any] | None = None
             "functional_source_sha256": digest(H0),
             "c5_mux_source": str(C5_MUX.relative_to(ROOT)),
             "c5_mux_source_sha256": digest(C5_MUX),
+            "pack_safety_i2c_source": str(PACK_SAFETY_I2C.relative_to(ROOT)),
+            "pack_safety_i2c_source_sha256": digest(PACK_SAFETY_I2C),
             "u219_profile_source": str(U219.relative_to(ROOT)),
             "u219_profile_source_sha256": digest(U219),
             "device_register_source": str(DEVICES.relative_to(ROOT)),
@@ -420,16 +432,16 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
         intro = (
             "Это точная рабочая H1-R2.31-карта GPIO двух независимых RP2354B и их пяти "
             "сигналов через M1. Точный электрический контракт module-pad/IO-mux C5 присоединён. "
-            "Она ещё не разрешает KiCad: live production route FSUSB42MUX/C11355 и "
-            "точная реализация detector/latch/release service-VBUS прошли ревью; до нового "
-            "R2 H2 остаётся powered-off-Ioff граница Pack/Safety I²C."
+            "Она ещё не разрешает KiCad: live production route FSUSB42MUX/C11355, "
+            "detector/latch/release service-VBUS и TCA9803DGKR/C2687966 Pack/Safety "
+            "powered-off-Ioff граница прошли ревью; начинается native R2 ECAD."
         )
         names = {"hub_rp": "Передний Hub RP", "rf_rp": "Задний RF RP"}
         cols = "| GPIO | Сеть | Направление | Контроллер | Физический endpoint | Reset / pull |"
         resource = "Ресурсы"
         m1_heading = "Связь Hub RP ↔ RF RP через M1"
         iso_heading = "Изоляция ROM-UART S3"
-        gates_heading = "Что ещё не доказано"
+        gates_heading = "Исполняемые проверки следующих этапов"
         nm_heading = "Точный pin-map dual NMOS"
     else:
         title = "# Current Leshy2 R2 pin assignment"
@@ -437,16 +449,16 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
         intro = (
             "This is the exact H1-R2.31 working GPIO map for the two independent RP2354B domains "
             "and their five M1 signals. The exact C5 module-pad/IO-mux electrical contract is joined. "
-            "It still does not authorize KiCad: the live FSUSB42MUX/C11355 production route and "
-            "the exact service-VBUS detector/latch/release implementation are reviewed, while the "
-            "Pack/Safety I²C powered-off-Ioff boundary remains fail-closed before a new R2 H2 export."
+            "It still does not authorize fabrication: the live FSUSB42MUX/C11355 route, exact "
+            "service-VBUS detector/latch/release implementation and TCA9803DGKR/C2687966 "
+            "Pack/Safety powered-off-Ioff boundary are reviewed; native R2 ECAD now begins."
         )
         names = {"hub_rp": "Front Hub RP", "rf_rp": "Rear RF RP"}
         cols = "| GPIO | Net | Direction | Controller | Physical endpoint | Reset / pull |"
         resource = "Resources"
         m1_heading = "Hub RP ↔ RF RP through M1"
         iso_heading = "S3 ROM-UART isolation"
-        gates_heading = "Still unproven"
+        gates_heading = "Executable checks for later stages"
         nm_heading = "Exact dual-NMOS pin map"
 
     def esc(value: Any) -> str:

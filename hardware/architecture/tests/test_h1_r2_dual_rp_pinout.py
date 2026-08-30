@@ -105,20 +105,24 @@ class H1R2DualRPPinoutTest(unittest.TestCase):
         self.assertIn("U219 CC1101 GDO0", rf[41]["endpoint"])
         self.assertIn("U219 CC1101_CS_N", rf[47]["endpoint"])
 
-    def test_c5_side_stays_open_and_r2_h2_is_not_claimed(self):
+    def test_all_pre_ecad_electrical_gates_are_closed_without_claiming_export(self):
         audit = MODULE.build(self.source, self.h0)
         self.assertFalse(audit["authority"]["r2_h2_authorized"])
         self.assertIn("closed", audit["authority"]["c5_electrical_join_status"])
         resolved = " ".join(audit["authority"]["resolved_h2_gates"])
         self.assertIn("C11355", resolved)
         self.assertIn("SN74LVC1G74DCUR", resolved)
-        self.assertNotIn("service-VBUS", " ".join(audit["authority"]["remaining_h2_gates"]))
-        self.assertIn("Pack/Safety", " ".join(audit["authority"]["remaining_h2_gates"]))
+        self.assertIn("TCA9803DGKR", resolved)
+        self.assertEqual([], audit["authority"]["remaining_h2_gates"])
         c5 = [row for row in self.source["hub_rp"]["pin_map"] if row["net"].startswith("C5_SDIO_")]
         self.assertEqual(6, len(c5))
         self.assertIn("C5 GPIO9 / module pad 11", c5[0]["endpoint"])
         self.assertIn("FSUSB42 HSD2+", c5[4]["endpoint"])
         self.assertIn("FSUSB42 HSD2-", c5[5]["endpoint"])
+        hub = {row["gpio"]: row for row in self.source["hub_rp"]["pin_map"]}
+        self.assertIn("TCA9803DGKR SDAA", hub[42]["endpoint"])
+        self.assertIn("TCA9803DGKR SCLA", hub[43]["endpoint"])
+        self.assertIn("no external B-side pull-up", hub[42]["reset"])
 
     def test_pin_or_budget_regression_fails_closed(self):
         broken = copy.deepcopy(self.source)
@@ -187,6 +191,7 @@ class H1R2DualRPPinoutTest(unittest.TestCase):
         self.assertEqual(MODULE.render_public(self.source, candidate, False), MODULE.DOC_EN.read_text(encoding="utf-8"))
         self.assertEqual(MODULE.render_public(self.source, candidate, True), MODULE.DOC_RU.read_text(encoding="utf-8"))
         self.assertIn("FSUSB42MUX/C11355", MODULE.DOC_EN.read_text(encoding="utf-8"))
+        self.assertIn("TCA9803DGKR/C2687966", MODULE.DOC_EN.read_text(encoding="utf-8"))
         self.assertIn("S3 GPIO43 through ROM-UART isolation", MODULE.DOC_EN.read_text(encoding="utf-8"))
 
 

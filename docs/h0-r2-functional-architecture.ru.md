@@ -2,7 +2,7 @@
 
 H0-R2 проведён как новый функциональный baseline: UI и дисплей остаются на S3, высокоскоростные периферийные тракты разгружены через Hub RP, бортовой видеотракт удалён, а Airband AM 118–137 МГц теперь обязателен.
 
-> Текущий точный маркер — **H2-R2.0.3**. Физическая проекция H1-R2.37 с двумя независимыми RP2354B, точными GPIO0..47, четырьмя M1 endpoint-группами и 226 корпусами принята и прошла ревью 2026-08-30. В неё входят все восемь TX-детекторов, пять coupler и восемь локальных evidence-островов; шесть AD8314 используют принятый `AD8314ARMZ-REEL` / `C652687`. Серийный дисплей EastRising, U219, NFC-loop и swept volume антенны закрыты. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Live route C11355 прошёл ревью как H2-R2.0.1; точный detector/latch/release service-VBUS прошёл ревью как H2-R2.0.2. H2-R2.0.3 закрывает powered-off-Ioff границу Pack/Safety I2C перед native R2 ECAD/KiCad.
+> Текущий точный маркер — **H2-R2.1.1**. Физическая проекция H1-R2.37 с двумя независимыми RP2354B, точными GPIO0..47, четырьмя M1 endpoint-группами и 226 корпусами принята и прошла ревью 2026-08-30. В неё входят все восемь TX-детекторов, пять coupler и восемь локальных evidence-островов; шесть AD8314 используют принятый `AD8314ARMZ-REEL` / `C652687`. Серийный дисплей EastRising, U219, NFC-loop и swept volume антенны закрыты. Старая single-RP G2F/H2-проекция остаётся только историческим R1 evidence. Live route C11355 прошёл ревью как H2-R2.0.1; точный detector/latch/release service-VBUS — как H2-R2.0.2; TCA9803DGKR/C2687966 Pack/Safety powered-off boundary — как H2-R2.0.3. Сейчас формируется native R2 source/sheet inventory до schematic export/KiCad.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 

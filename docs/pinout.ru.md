@@ -2,7 +2,7 @@
 
 [На главную](../README.ru.md) · [English](pinout.md) · [Железо](hardware.ru.md)
 
-Это точная рабочая H1-R2.31-карта GPIO двух независимых RP2354B и их пяти сигналов через M1. Точный электрический контракт module-pad/IO-mux C5 присоединён. Она ещё не разрешает KiCad: live production route FSUSB42MUX/C11355 и точная реализация detector/latch/release service-VBUS прошли ревью; до нового R2 H2 остаётся powered-off-Ioff граница Pack/Safety I²C.
+Это точная рабочая H1-R2.31-карта GPIO двух независимых RP2354B и их пяти сигналов через M1. Точный электрический контракт module-pad/IO-mux C5 присоединён. Она ещё не разрешает KiCad: live production route FSUSB42MUX/C11355, detector/latch/release service-VBUS и TCA9803DGKR/C2687966 Pack/Safety powered-off-Ioff граница прошли ревью; начинается native R2 ECAD.
 
 > Machine source: `hardware/architecture/h1-r2-dual-rp-pinout.json`. Маркер pin-map-артефакта: **`H1-R2.31`**; текущий маркер физического дизайна: **`H1-R2.37`**.
 
@@ -56,8 +56,8 @@ Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety
 | `39` | `SD_MISO` | `in` | `PIO0_SM3_SD_SPI` | microSD return buffer | input; external pull-up |
 | `40` | `SD_CS_N` | `out` | `GPIO` | microSD command buffer | input/high-Z; external pull-up |
 | `41` | `SD_PWR_EN` | `out` | `GPIO` | microSD load switch | input/high-Z; external pull-down |
-| `42` | `HUB_SAFE_I2C_SDA` | `io` | `I2C1` | M1.32 -> Pack/Safety mailboxes | input/open-drain released; external pull-up to AON-safe compatible domain |
-| `43` | `HUB_SAFE_I2C_SCL` | `od` | `I2C1` | M1.33 -> Pack/Safety mailboxes | input/open-drain released; external pull-up to AON-safe compatible domain |
+| `42` | `HUB_SAFE_I2C_SDA` | `io` | `I2C1` | TCA9803DGKR SDAA on 3V3_MAIN -> powered-off-Ioff boundary -> SDAB on AON_SAFE_3V3 -> M1.32 -> Pack/Safety mailboxes | input/open-drain released; 2.2-kohm MAIN-local pull-up; A-side high-Z when MAIN is off; no external B-side pull-up |
+| `43` | `HUB_SAFE_I2C_SCL` | `od` | `I2C1` | TCA9803DGKR SCLA on 3V3_MAIN -> powered-off-Ioff boundary -> SCLB on AON_SAFE_3V3 -> M1.33 -> Pack/Safety mailboxes | input/open-drain released; 2.2-kohm MAIN-local pull-up; A-side high-Z when MAIN is off; no external B-side pull-up |
 | `44` | `SD_DETECT_N` | `in` | `GPIO_IRQ` | microSD socket detect | input; external pull-up |
 | `45` | `LCD_TE` | `in` | `GPIO_IRQ` | HMX035CTFT-001 TE | input; external pull-down while panel reset is asserted |
 | `46` | `LCD_BL_PWM` | `out` | `PWM` | backlight hardware gate | input/high-Z; external pull-down keeps backlight off |
@@ -150,13 +150,13 @@ Both lines cross an Ioff-capable bidirectional isolation boundary whose OE is he
 
 S3 firmware may enable the two data channels only after normal application boot, Hub RUN release and a successful idle/ready handshake; entering ROM download, either-controller reset or fault shutdown opens the boundary again.
 
-## Что ещё не доказано
+## Исполняемые проверки следующих этапов
 
 - PIO instruction fit and Hub/RF 14/12-channel DMA allocation must compile in the six-domain firmware build matrix; exact channel IDs, DREQ routing and peak simultaneous profile remain executable proof gates.
 - Simultaneous three-nRF RX/TX/mix, microSD, S3-Hub, Hub-C5 and Hub-RF traffic must pass emulator/dev-board timing before fabrication and HIL after assembly.
 - Reset-state voltage and no-back-power behavior must be measured for every switched/isolated branch.
-- Hub GPIO42/43 Pack/Safety I2C requires an exact powered-off-Ioff boundary and separate 3V3_MAIN/AON pull-up domains before schematic authorization.
-- The C5 electrical pad/mux contract, exact live FSUSB42MUX/C11355 route and exact service-VBUS detector/latch/release implementation are closed; the Pack/Safety powered-off-Ioff boundary remains fail-closed before native R2 H2.
+- The exact TCA9803DGKR/C2687966 Pack/Safety boundary is closed: two 2.2-kohm pull-ups terminate the MAIN A-side, while the AON B-side uses only the device's 3.3-mA current sources and forbids external pull-ups.
+- Native R2 ECAD must instantiate the reviewed H2-R2.0.1, H2-R2.0.2 and H2-R2.0.3 circuits exactly; this H1 authority still does not authorize fabrication or ordering.
 - The exact-one signed U214/U219 profile must pass received-unit pin continuity, protected-power, RF-switch, VNA and RX/NFC HIL before the U219 branch can be enabled.
 
 ## Точный pin-map dual NMOS

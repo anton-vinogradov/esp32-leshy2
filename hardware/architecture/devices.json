@@ -4767,6 +4767,58 @@
         "A": {"physical": "2", "role": "anode"}
       }
     },
+    "ti_tca9803_dgkr": {
+      "mpn": "TCA9803DGKR",
+      "kind": "vssop8_dual_bidirectional_i2c_power_domain_buffer",
+      "qualification": "verified_exact_pack_safety_powered_off_boundary",
+      "lifecycle": "active_production_factory_stocked",
+      "dimensions_mm": [3.0, 4.9, 1.1],
+      "maximum_dimensions_mm": [3.1, 5.05, 1.1],
+      "source": {
+        "document": "TCA9803 Level-Translating I2C Bus Buffer/Repeater datasheet",
+        "version": "SCPS267B",
+        "url": "https://www.ti.com/lit/ds/symlink/tca9803.pdf",
+        "checked": "2026-08-30"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact Texas Instruments TCA9803DGKR card C2687966; Extended SMT, Economic and Standard PCBA, 1864 in stock, 1818 available, MOQ 1",
+        "url": "https://jlcpcb.com/partdetail/TexasInstruments-TCA9803DGKR/C2687966",
+        "checked": "2026-08-30"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.3525,
+        "price_break": "JLCPCB one-piece tier",
+        "source": {
+          "document": "JLCPCB C2687966 live exact-MPN price table",
+          "url": "https://jlcpcb.com/partdetail/TexasInstruments-TCA9803DGKR/C2687966",
+          "checked": "2026-08-30"
+        }
+      },
+      "electrical_contract": {
+        "maximum_bus_hz": 400000,
+        "vcca_v": [0.8, 3.6],
+        "vccb_v": [1.65, 3.6],
+        "supply_relationship": "none",
+        "a_side_powered_off_state": "high impedance",
+        "powered_off_back_power_protection": true,
+        "b_side_current_source_ma_typical": 3.3,
+        "b_side_external_current_source": "forbidden",
+        "b_side_capacitance_pf_max": 400
+      },
+      "programmable": false,
+      "contacts": {
+        "VCCA": {"physical": "1", "role": "power"},
+        "SCLA": {"physical": "2", "role": "signal"},
+        "SDAA": {"physical": "3", "role": "signal"},
+        "GND": {"physical": "4", "role": "power"},
+        "EN": {"physical": "5", "role": "signal"},
+        "SDAB": {"physical": "6", "role": "signal"},
+        "SCLB": {"physical": "7", "role": "signal"},
+        "VCCB": {"physical": "8", "role": "power"}
+      }
+    },
     "tca4307dgkr": {
       "mpn": "TCA4307DGKR",
       "kind": "vssop8",
@@ -8357,6 +8409,74 @@
           "document": "DigiKey exact-MPN published price table",
           "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM32ER71E226KE15L/2039092",
           "checked": "2026-08-19"
+        }
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "samsung_cl05a105ka5nqnc": {
+      "mpn": "Samsung CL05A105KA5NQNC",
+      "kind": "1uf_10pct_25v_x5r_0402_power_decoupling_capacitor",
+      "qualification": "verified_exact_jlcpcb_basic_stocked_standard_pcba",
+      "lifecycle": "active_production_factory_stocked",
+      "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {
+        "document": "Samsung Electro-Mechanics CL05A105KA5NQNC product data",
+        "version": "current product page",
+        "url": "https://product.samsungsem.com/mlcc/CL05A105KA5NQN.do",
+        "checked": "2026-08-30"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact Samsung CL05A105KA5NQNC Basic SMT card C52923; Standard PCBA, 11763302 in stock, MOQ 1",
+        "url": "https://jlcpcb.com/partdetail/SamsungElectroMechanics-CL05A105KA5NQNC/C52923",
+        "checked": "2026-08-30"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.012,
+        "price_break": "JLCPCB one-piece tier",
+        "source": {
+          "document": "JLCPCB C52923 live exact-MPN price table",
+          "url": "https://jlcpcb.com/partdetail/SamsungElectroMechanics-CL05A105KA5NQNC/C52923",
+          "checked": "2026-08-30"
+        }
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "samsung_cl05b104ko5nnnc": {
+      "mpn": "Samsung CL05B104KO5NNNC",
+      "kind": "100nf_10pct_16v_x7r_0402_power_decoupling_capacitor",
+      "qualification": "verified_exact_jlcpcb_basic_stocked_standard_pcba",
+      "lifecycle": "active_production_factory_stocked",
+      "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {
+        "document": "Samsung Electro-Mechanics CL05B104KO5NNNC product data",
+        "version": "current product page",
+        "url": "https://product.samsungsem.com/mlcc/CL05B104KO5NN.do",
+        "checked": "2026-08-30"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact Samsung CL05B104KO5NNNC Basic SMT card C1525; Standard PCBA, 36157580 in stock, MOQ 1",
+        "url": "https://jlcpcb.com/partdetail/SamsungElectroMechanics-CL05B104KO5NNNC/C1525",
+        "checked": "2026-08-30"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0055,
+        "price_break": "JLCPCB one-piece tier",
+        "source": {
+          "document": "JLCPCB C1525 live exact-MPN price table",
+          "url": "https://jlcpcb.com/partdetail/SamsungElectroMechanics-CL05B104KO5NNNC/C1525",
+          "checked": "2026-08-30"
         }
       },
       "programmable": false,

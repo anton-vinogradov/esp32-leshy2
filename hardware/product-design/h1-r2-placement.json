@@ -1560,12 +1560,8 @@
   "trace_corridors": [],
   "current_h1_blockers": [],
   "current_h1_blockers_ru": [],
-  "pre_r2_h2_gates": [
-    "instantiate and prove the exact powered-off-Ioff isolation boundary and separate 3V3_MAIN/AON pull-up domains for Hub GPIO42/43 Pack/Safety I2C"
-  ],
-  "pre_r2_h2_gates_ru": [
-    "реализовать и доказать точную powered-off-Ioff границу изоляции и раздельные pull-up домены 3V3_MAIN/AON для Pack/Safety I2C на Hub GPIO42/43"
-  ],
+  "pre_r2_h2_gates": [],
+  "pre_r2_h2_gates_ru": [],
   "dependent_h1_work": [],
   "dependent_h1_work_ru": [],
   "downstream_verification": [
