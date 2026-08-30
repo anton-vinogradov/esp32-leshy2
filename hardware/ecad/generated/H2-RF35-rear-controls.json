@@ -12,7 +12,7 @@
   "sheet": "RF_35_REAR_CONTROLS",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "2673a4d23435effe9ec592e6060a3b1bc525598944d932f0a502d0fd4636ce8f",
-    "hardware/architecture/devices.json": "601153250b59efde5ef99e35aa66ca2060da6fcdd1db1fba27c94c7872c9a2a5",
+    "hardware/architecture/devices.json": "b64be8791481a77c3001ddda625c17b621ae3aaabc4fdfe523e9b1f9f690904f",
     "hardware/ecad/generated/H2-instance-ledger.json": "1485ad0378b4d1dcfb13ab4aaeeb58ceb62e4814dbfb2895bef17e422949a172",
     "hardware/ecad/generated/H2-RF-root-interface.json": "fd7e569821ec06aab2bfeeddc6a423b3b023f5919482e30fd9d77d1ffb8d4857"
   },

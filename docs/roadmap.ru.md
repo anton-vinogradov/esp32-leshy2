@@ -156,7 +156,7 @@ placement и routing ещё не начинались.
 - ✅ `H2-R2.1.1`: проведено ревью 3 native-проектов, 23 sheets, 6 владельцев
   доменов, 213 точных MPN-групп и 1 106 позиций; symbols/nets не создавались.
 - ✅ `H2-R2.1.2`: у 208 board groups есть по одной symbol- и footprint-identity;
-  пять non-PCBA groups явны; 1 555 логических контактов и все sheet affinities
+  пять non-PCBA groups явны; 1 561 логический контакт и все sheet affinities
   hash-bound, незакрытых групп нет.
 - ▶ `H2-R2.1.3`: материализовать controlled definitions и соединить rails, M1,
   domain transports и явные NC в трёх native-проектах R2.

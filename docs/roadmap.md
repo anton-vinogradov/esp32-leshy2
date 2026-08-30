@@ -155,7 +155,7 @@ placement and routing have not started.
 - ✅ `H2-R2.1.1`: reviewed 3 native projects, 23 sheets, 6 domain owners,
   213 exact MPN groups and 1,106 product positions; no symbol/net was created.
 - ✅ `H2-R2.1.2`: 208 board groups have one symbol and footprint identity; five
-  non-PCBA groups are explicit; 1,555 logical contacts and all sheet affinities
+  non-PCBA groups are explicit; 1,561 logical contacts and all sheet affinities
   are hash-bound with zero unresolved groups.
 - ▶ `H2-R2.1.3`: materialize the controlled definitions and join rails, M1,
   domain transports and explicit NCs in the three native R2 projects.

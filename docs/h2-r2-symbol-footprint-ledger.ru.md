@@ -13,7 +13,7 @@ KiCad-проекты или PCB layout.
 | Точные component groups продукта | 213 |
 | Группы компонентов на платах | 208; у каждой один symbol `Leshy2_R2` и одна точная footprint-identity |
 | Явные non-PCBA groups | 5: display assembly, U214, комплект из двух cells, ручка encoder и пять съёмных RF-jumper |
-| Логические контакты | 1 555, скопированы и hash-bound к текущему manufacturer contact evidence |
+| Логические контакты | 1 561, скопированы и hash-bound к текущему manufacturer contact evidence |
 | Стандартные package identities KiCad | 175 |
 | Существующие локальные manufacturer-derived definitions | 32 |
 | Новая локальная геометрия | 1: точный серийный panel-connector `FH34SRJ-50S-0.5SH(50)` |

@@ -6,11 +6,11 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "4d6af3780d3d3a699e7a69a97933519c3eafc743e89960b084fe188ecafdd841"
+      "sha256": "1765aaa1952ef1b5fedefcd23c524e4af3799061b3c4f555724fccad397a8e5f"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "601153250b59efde5ef99e35aa66ca2060da6fcdd1db1fba27c94c7872c9a2a5"
+      "sha256": "b64be8791481a77c3001ddda625c17b621ae3aaabc4fdfe523e9b1f9f690904f"
     }
   },
   "historical_hint_sources": [
@@ -28,67 +28,67 @@
     },
     {
       "path": "hardware/ecad/generated/H2-RF01-usb-pd-charge.json",
-      "sha256": "d87c67b25b29321977e5caad070cb21fbc390d4867fdbd1ae6ae918f874e2b0d",
+      "sha256": "3d8581301aab54eb63ac2b513c0275503fd441e09baf2fa684733e41022df6e9",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF02-pack-safety-aon.json",
-      "sha256": "5b03a0a6397e25268c17e43bfe4a619e0b7d810feb0dd608e5dd237098789fde",
+      "sha256": "bd90c3901332f79dfd043c034cc5069d9e871d93535f8898b34c7ceee3122f6d",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json",
-      "sha256": "35bf4fd9fe099958735fe7ddf8b193834c8494d901bd858226d5c15c6846847b",
+      "sha256": "e21ba1052f9a32ba7d7947e8982a39f18de90a65f32385ae28e2602155aa1886",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF30-rp2354-core-service.json",
-      "sha256": "111e6ae489ac168b488235bd013dc1d39b043be35716c7714ca552e45c43a55e",
+      "sha256": "28e9d116875644c3447d837dfea8778dbfcdece0f3cd85bb19f7dc2263e7d357",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF31-nrf24-x3.json",
-      "sha256": "5d5fb81c753977c3fb4dff70093356731e777261a9f867d03e3bda94252ac82d",
+      "sha256": "ae556109c28321ed675866ff0f15886fd479195ab681b676b332995915a1214f",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF32-subghz-voice.json",
-      "sha256": "75bc927193208524644d52610787c312fd26cb2b55b08ac0be1c1367bcdafd33",
+      "sha256": "b304b55ad072f7a1ec5262013975dfd82b55aaa6543d5ad34f966d80507ed259",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF34-u214-m5-ext.json",
-      "sha256": "0daf7c7ed6137b7e80a5bdd87e101a44453e94c2721ea06c652cd99de630cc85",
+      "sha256": "0da9c325e70ff44981ae467bafba171f247ddd9e3be9dd7733a0893924cdc1a0",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF35-rear-controls.json",
-      "sha256": "584cb45e9e8eadda7b44399d25f02004d2303ab0e022a10d4848ffd0b5a766d9",
+      "sha256": "6ff978d00a6b0c10704052c37f8472063cb872666ce1a295d6d4bc5e9abf3bfc",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF36-audio-io-amp.json",
-      "sha256": "02ae36b9a6185b5ed74d5081f7714dd0cfd3155092343aadfb3c60b0584c824b",
+      "sha256": "dae719ac2f8cbb9b8925155aea308be866cb8ad8548f45bd60fb8ca8e6d1c1bb",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF40-interboard-m1.json",
-      "sha256": "0bc0c72d60bf27b89ea9c92a5828ebee2645f08b9bbb3e3bb2e460edf6e201e0",
+      "sha256": "7c87d995813c7e712bdba75f6291af64991c96fd4dc83e2ab52855e846f0cb2d",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json",
-      "sha256": "e2bed6b6d2bd32c7e4c57b7dd1260f8fabcd63560c3b2e886b42299f31cb1701",
+      "sha256": "5faf01443652339b7670f85f9aead022f85a2456890e0f1e4f65089944d0fe07",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
@@ -106,49 +106,49 @@
     },
     {
       "path": "hardware/ecad/generated/H2-UI10-S3-core.json",
-      "sha256": "3edc44ce2feb718b5a1b38babe05fdb58cd0398bd90fd3c33e97ae8dbc0095eb",
+      "sha256": "546711034430293234ca6be2c1d64f5fbd20bd9f4fe84216b659d1eef3dba997",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI11-display-touch-storage.json",
-      "sha256": "9b10c0f6bdaa65d0d532dbace5c6970d3ab3b379405e494ea1acfa55c98ea500",
+      "sha256": "fcec8f6bfa20d0783847a1091f2d88d7b8515d2e6458b3eee42bbf8f34a8fbaf",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI12-controls-indicators.json",
-      "sha256": "33881b44065c098aebe1ea4ec5268f83fb322b1f69200401ca1397322bf6c1ac",
+      "sha256": "55f8fc137efba6198f0460fb53ce7dea0e3b1786fe7dbc51f05905f9fcbade1a",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI13-audio-codec-headset.json",
-      "sha256": "1d2dfd774399a7e95d462bbe097bdd52a9b399f9908a9c4a920613f4627ae439",
+      "sha256": "300db289dbf1b69cbaf7994d33b69e5db61ce6a72c742b5ebf0431ad65142bdd",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json",
-      "sha256": "6fc63b45f7014bf11e9f3fe8be305d7baca60ac37d2b99bd73c5603d94ac624a",
+      "sha256": "3b43983b48d931d8331c0195876e2cce6d278e2f03d9b28be9a8c05dc77ae1f7",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI21-fm-am-receiver.json",
-      "sha256": "6d3a12e80291eb8cdeb46a76a4171690f2ff7ff42ec6553e94ceef130238f103",
+      "sha256": "a7d9ee57fbfdf2a2d9e252c189cff2f5083c91b5583f14b5e6d2b4e9bfed9296",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI40-interboard-m1.json",
-      "sha256": "8e7cd7bb611d7a472d5e0c262a44aabd251dbc975e5a65996b98dd103c67c4dd",
+      "sha256": "f7d934354c663a0d863dbe935eabf41162934f4eb502acf1ca5783adc4e56877",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI50-tx-safety-evidence.json",
-      "sha256": "1a2f3fc9495f03e97909ad24f4c463de86f01db17e664308a5d7f8d828422459",
+      "sha256": "eb97129f81eb9dd1ca78bc2b4139bea3602f25e845c0d56925f2fa0adf1591f1",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
@@ -165,7 +165,7 @@
     "explicit_non_pcba_group_count": 5,
     "symbol_identity_count": 208,
     "footprint_identity_count": 208,
-    "logical_contact_count": 1555,
+    "logical_contact_count": 1561,
     "historical_package_hints_reconciled": 196,
     "historical_package_conflicts_resolved": 5,
     "explicit_current_footprint_overrides": 12,
@@ -1671,9 +1671,10 @@
       "schematic_value": "soldered_module",
       "symbol_id": "Leshy2_R2:esp32_c5_wroom_1u_n8r8",
       "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
-      "logical_contact_count": 26,
+      "logical_contact_count": 29,
       "contact_role_counts": {
         "gpio": 21,
+        "nc": 3,
         "power": 2,
         "reset": 1,
         "rf": 2
@@ -1747,9 +1748,21 @@
           "physical": "18",
           "role": "gpio"
         },
+        "NC_19": {
+          "physical": "19",
+          "role": "nc"
+        },
+        "NC_20": {
+          "physical": "20",
+          "role": "nc"
+        },
         "GPIO23": {
           "physical": "21",
           "role": "gpio"
+        },
+        "NC_22": {
+          "physical": "22",
+          "role": "nc"
         },
         "GPIO24": {
           "physical": "23",
@@ -1780,11 +1793,11 @@
           "role": "rf"
         },
         "GND": {
-          "physical": "1/20/22/28/29/30/32",
+          "physical": "1/28/29/30/32",
           "role": "power"
         }
       },
-      "contact_map_sha256": "3f3b105c7b7316e085b1ddc447c876c1e7517404288afb23f2c637af3e007d49",
+      "contact_map_sha256": "7dd1b9e553b2942abb0dcbdd13b317ef2f551fad1e7f99038f074ff32825a498",
       "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
       "manufacturer_evidence": {
         "document": "ESP32-C5-WROOM-1/WROOM-1U Datasheet",
@@ -1819,9 +1832,10 @@
       "schematic_value": "soldered_module",
       "symbol_id": "Leshy2_R2:esp32_s3_wroom_1u_n16r8",
       "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
-      "logical_contact_count": 37,
+      "logical_contact_count": 40,
       "contact_role_counts": {
         "gpio": 33,
+        "nc": 3,
         "power": 2,
         "reset": 1,
         "rf": 1
@@ -1931,6 +1945,18 @@
           "physical": "27",
           "role": "gpio"
         },
+        "NC_28": {
+          "physical": "28",
+          "role": "nc"
+        },
+        "NC_29": {
+          "physical": "29",
+          "role": "nc"
+        },
+        "NC_30": {
+          "physical": "30",
+          "role": "nc"
+        },
         "GPIO38": {
           "physical": "31",
           "role": "gpio"
@@ -1976,7 +2002,7 @@
           "role": "rf"
         }
       },
-      "contact_map_sha256": "d8b2766bda955d095630bebf17b0e333add49cabd5e3bd385149c89cf1e662a1",
+      "contact_map_sha256": "9c170ea9c3286c4b21c3c9f5682f24483eed0619e83b39a5c5825ed9815339f3",
       "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
       "manufacturer_evidence": {
         "document": "ESP32-S3-WROOM-1/WROOM-1U Datasheet",
@@ -10976,7 +11002,7 @@
         "url": "https://www.ti.com/lit/ds/symlink/tca9803.pdf",
         "checked": "2026-08-30"
       },
-      "footprint": "Package_SO:VSSOP-8_3.0x3.0mm_P0.65mm",
+      "footprint": "Package_SO:VSSOP-8_3x3mm_P0.65mm",
       "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
         "status": "exact_package_identity_mapped_to_standard_kicad_library",

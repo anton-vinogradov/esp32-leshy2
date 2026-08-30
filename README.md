@@ -20,7 +20,7 @@
 > are reviewed. The native R2 inventory is reviewed at `H2-R2.1.1`: three
 > projects, 23 sheets, six domains and 213 exact component groups. The exact
 > symbol/contact/footprint ledger is reviewed at `H2-R2.1.2`: 208 board groups,
-> five explicit non-PCBA groups and 1,555 logical contacts. Native symbol/
+> five explicit non-PCBA groups and 1,561 logical contacts. Native symbol/
 > footprint materialization and joined nets are now in progress; ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
@@ -135,7 +135,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H2-R2.0.2`: exact `DMN2056U-7` detector, `SN74LVC1G74DCUR` ownership latch and `74HC20PW,118` release qualifier reviewed with live Standard-PCBA routes, a fail-closed truth table and USD 0.5857 exact-one component cost.
 - ✅ `H2-R2.0.3`: exact `TCA9803DGKR/C2687966` Pack/Safety powered-off boundary reviewed with correct rail-local termination and USD 0.3953 exact-one component cost.
 - ✅ `H2-R2.1.1`: native R2 inventory reviewed — 3 projects, 23 sheets, 6 domain owners, 213 exact MPN groups and 1,106 product positions; zero symbols/nets created.
-- ✅ `H2-R2.1.2`: exact ledger reviewed — 208 board groups, 5 explicit non-PCBA groups, 1,555 logical contacts and zero unresolved groups; removable RF jumpers no longer masquerade as PCB parts.
+- ✅ `H2-R2.1.2`: exact ledger reviewed — 208 board groups, 5 explicit non-PCBA groups, 1,561 logical contacts and zero unresolved groups; removable RF jumpers no longer masquerade as PCB parts.
 - ▶ **Exact current point `H2-R2.1.3`:** materialize controlled symbols/footprints and join rails, M1 contacts, domain transports and explicit NCs in the native R2 projects.
 - 🔒 KiCad, prototype purchase and fabrication remain unauthorized.
 

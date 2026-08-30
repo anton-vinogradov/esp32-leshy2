@@ -12,7 +12,7 @@
   "sheet": "UI_10_S3_CORE_MEMORY_BOOT",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "2673a4d23435effe9ec592e6060a3b1bc525598944d932f0a502d0fd4636ce8f",
-    "hardware/architecture/devices.json": "601153250b59efde5ef99e35aa66ca2060da6fcdd1db1fba27c94c7872c9a2a5",
+    "hardware/architecture/devices.json": "b64be8791481a77c3001ddda625c17b621ae3aaabc4fdfe523e9b1f9f690904f",
     "hardware/ecad/generated/H2-instance-ledger.json": "1485ad0378b4d1dcfb13ab4aaeeb58ceb62e4814dbfb2895bef17e422949a172",
     "hardware/ecad/generated/H2-UI-root-interface.json": "3f9cbd769badeb336755c6e07cfa9ae2d12d92b70b60673fc654690664ccf8cc"
   },

@@ -44,7 +44,7 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
         self.assertEqual(5, summary["explicit_non_pcba_group_count"])
         self.assertEqual(208, summary["symbol_identity_count"])
         self.assertEqual(208, summary["footprint_identity_count"])
-        self.assertEqual(1555, summary["logical_contact_count"])
+        self.assertEqual(1561, summary["logical_contact_count"])
         self.assertEqual(0, summary["unresolved_groups"])
 
     def test_contacts_are_hash_bound_to_current_device_evidence(self):

@@ -20,7 +20,7 @@
 > прошли ревью. Native R2 inventory проведён ревью как `H2-R2.1.1`: три
 > проекта, 23 sheets, шесть доменов и 213 точных групп компонентов. Сейчас
 > ledger symbols/contacts/footprints проведён ревью как `H2-R2.1.2`: 208 групп
-> на платах, пять явных non-PCBA groups и 1 555 логических контактов. Сейчас
+> на платах, пять явных non-PCBA groups и 1 561 логический контакт. Сейчас
 > материализуются native symbols/footprints и joined nets; заказ заблокирован.
 
 > **Authority-gate R2:** текущие H0/H1 содержат шесть вычислительных доменов и
@@ -133,7 +133,7 @@ VHF/UHF voice, broadcast/Airband, аудио, M5 и взаимоисключаю
 - ✅ `H2-R2.0.2`: точные detector `DMN2056U-7`, latch владения `SN74LVC1G74DCUR` и release-qualifier `74HC20PW,118` прошли ревью вместе с live-маршрутами Standard PCBA, fail-closed truth table и стоимостью USD 0,5857 для одного полного тракта.
 - ✅ `H2-R2.0.3`: точная Pack/Safety powered-off-граница `TCA9803DGKR/C2687966` прошла ревью с корректным rail-local termination и ценой USD 0,3953 для одного тракта.
 - ✅ `H2-R2.1.1`: native R2 inventory проведён ревью — 3 проекта, 23 sheets, 6 владельцев доменов, 213 точных MPN-групп и 1 106 позиций продукта; создано ноль symbols/nets.
-- ✅ `H2-R2.1.2`: exact ledger проведён ревью — 208 групп на платах, 5 явных non-PCBA groups, 1 555 логических контактов и ноль незакрытых групп; съёмные RF-jumper больше не выдаются за PCB parts.
+- ✅ `H2-R2.1.2`: exact ledger проведён ревью — 208 групп на платах, 5 явных non-PCBA groups, 1 561 логический контакт и ноль незакрытых групп; съёмные RF-jumper больше не выдаются за PCB parts.
 - ▶ **Точная текущая точка `H2-R2.1.3`:** материализовать controlled symbols/footprints и соединить rails, контакты M1, domain transports и явные NC в native-проектах R2.
 - 🔒 KiCad, закупка прототипа и печать не разрешены.
 

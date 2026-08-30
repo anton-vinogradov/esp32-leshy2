@@ -85,7 +85,7 @@ controlled native definitions и joined nets; placement/routing не начин�
    прошла ревью с rail-local termination, четырьмя Basic decoupler и ценой USD 0,3953;
 4. ✅ `H2-R2.1.1`: проведено ревью 3 проектов, 23 sheets, 6 владельцев доменов
    и 213 точных MPN-групп; native symbols/nets не создавались;
-5. ✅ `H2-R2.1.2`: 208 board groups, пять явных non-PCBA groups и 1 555
+5. ✅ `H2-R2.1.2`: 208 board groups, пять явных non-PCBA groups и 1 561
    логических контактов отображены без незакрытых групп;
 6. ▶ `H2-R2.1.3`: материализовать controlled definitions и соединить rails,
    M1, transports и явные NC.

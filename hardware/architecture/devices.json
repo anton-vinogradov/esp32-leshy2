@@ -1004,6 +1004,9 @@
         "GPIO48": {"physical": "25", "role": "gpio"},
         "GPIO45": {"physical": "26", "role": "gpio"},
         "GPIO0": {"physical": "27", "role": "gpio"},
+        "NC_28": {"physical": "28", "role": "nc"},
+        "NC_29": {"physical": "29", "role": "nc"},
+        "NC_30": {"physical": "30", "role": "nc"},
         "GPIO38": {"physical": "31", "role": "gpio"},
         "GPIO39": {"physical": "32", "role": "gpio"},
         "GPIO40": {"physical": "33", "role": "gpio"},
@@ -1115,7 +1118,10 @@
         "GPIO5": {"physical": "16", "role": "gpio"},
         "GPIO4": {"physical": "17", "role": "gpio"},
         "GPIO27": {"physical": "18", "role": "gpio"},
+        "NC_19": {"physical": "19", "role": "nc"},
+        "NC_20": {"physical": "20", "role": "nc"},
         "GPIO23": {"physical": "21", "role": "gpio"},
+        "NC_22": {"physical": "22", "role": "nc"},
         "GPIO24": {"physical": "23", "role": "gpio"},
         "GPIO12": {"physical": "24", "role": "gpio"},
         "GPIO11": {"physical": "25", "role": "gpio"},
@@ -1123,7 +1129,7 @@
         "GPIO26": {"physical": "27", "role": "gpio"},
         "ANT1": {"physical": "first-generation on-module receptacle compatible with U.FL/MHF I/AMC (default path)", "role": "rf"},
         "ANT2": {"physical": "31", "role": "rf"},
-        "GND": {"physical": "1/20/22/28/29/30/32", "role": "power"}
+        "GND": {"physical": "1/28/29/30/32", "role": "power"}
       },
       "pcb_pad_contract": {
         "pad_count": 32,
@@ -9490,6 +9496,12 @@
         "C1": {"physical": "1", "role": "signal"},
         "NO": {"physical": "2", "role": "power"},
         "C2": {"physical": "3", "role": "signal"}
+      },
+      "pcb_pad_mapping": {
+        "C1": "1 (first common SMT land)",
+        "NO": "2",
+        "C2": "1 (second internally common SMT land; manufacturer terminal 3)",
+        "mechanical_only": ["MP"]
       }
     },
     "ti_tpd2eusb30a_drtr": {

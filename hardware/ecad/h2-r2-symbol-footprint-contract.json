@@ -57,7 +57,7 @@
     "Hirose FH34SRJ-50S-0.5SH(50)": "Leshy2_R2:FH34SRJ-50S-0.5SH-50",
     "Samsung CL05A105KA5NQNC": "Capacitor_SMD:C_0402_1005Metric",
     "Samsung CL05B104KO5NNNC": "Capacitor_SMD:C_0402_1005Metric",
-    "TCA9803DGKR": "Package_SO:VSSOP-8_3.0x3.0mm_P0.65mm"
+    "TCA9803DGKR": "Package_SO:VSSOP-8_3x3mm_P0.65mm"
   },
   "sheet_affinity_overrides": {
     "adi_ad8314armz_reel": ["UI_31_NRF24_X3_TX_EVIDENCE", "RF_20_CC1101_VOICE_TX"],

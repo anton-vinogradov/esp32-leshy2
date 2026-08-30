@@ -86,7 +86,7 @@ Exact current checklist:
    reviewed with rail-local termination, four Basic decouplers and USD 0.3953 cost;
 4. ✅ `H2-R2.1.1`: 3 projects, 23 sheets, 6 domain owners and 213 exact MPN
    groups reviewed with zero native symbols/nets created;
-5. ✅ `H2-R2.1.2`: 208 board groups, five explicit non-PCBA groups and 1,555
+5. ✅ `H2-R2.1.2`: 208 board groups, five explicit non-PCBA groups and 1,561
    logical contacts mapped with zero unresolved groups;
 6. ▶ `H2-R2.1.3`: materialize controlled definitions and join rails, M1,
    transports and explicit NCs.

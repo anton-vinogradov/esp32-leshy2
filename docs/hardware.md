@@ -167,7 +167,7 @@ pin/mux contract, live FSUSB42MUX/C11355 route and exact service-VBUS
 detector/latch/release implementation and exact TCA9803 Pack/Safety boundary
 are closed. `H2-R2.1.1` reviewed 3 native projects, 23 sheets and 213 exact MPN
 groups; `H2-R2.1.2` reviewed exact identities for 208 board groups, five
-explicit non-PCBA groups and 1,555 logical contacts. `H2-R2.1.3` now
+explicit non-PCBA groups and 1,561 logical contacts. `H2-R2.1.3` now
 materializes controlled definitions and joined native nets before a new export.
 The legacy HMX display is reference evidence only and cannot enter
 an R2 order BOM. Routing and all purchasing remain blocked.

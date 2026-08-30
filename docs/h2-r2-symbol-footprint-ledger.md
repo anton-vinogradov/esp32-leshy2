@@ -13,7 +13,7 @@ projects or PCB layout.
 | Exact product component groups | 213 |
 | Board component groups | 208, each with one `Leshy2_R2` symbol identity and one exact footprint identity |
 | Explicit non-PCBA groups | 5: display assembly, U214, two-cell kit, encoder knob and five removable RF jumpers |
-| Logical contacts | 1,555, copied and hash-bound from current manufacturer contact evidence |
+| Logical contacts | 1,561, copied and hash-bound from current manufacturer contact evidence |
 | Standard KiCad package identities | 175 |
 | Existing manufacturer-derived local definitions | 32 |
 | New local geometry to materialize | 1: exact serial `FH34SRJ-50S-0.5SH(50)` panel connector |

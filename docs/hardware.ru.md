@@ -162,7 +162,7 @@ H1 явно принято и прошло ревью 2026-08-30. Электри
 live route FSUSB42MUX/C11355, точная реализация detector/latch/release service-VBUS
 и TCA9803 Pack/Safety boundary закрыты. `H2-R2.1.1` зафиксировал 3 native-
 проекта, 23 sheets и 213 точных MPN-групп; `H2-R2.1.2` зафиксировал exact
-identities для 208 board groups, 5 явных non-PCBA groups и 1 555 логических
+identities для 208 board groups, 5 явных non-PCBA groups и 1 561 логического
 контактов. В `H2-R2.1.3` материализуются controlled definitions и joined native
 nets до нового export.
 Legacy-дисплей HMX остаётся только историческим evidence и не попадает в R2 order BOM.

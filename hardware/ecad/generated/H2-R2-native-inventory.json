@@ -18,7 +18,7 @@
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "601153250b59efde5ef99e35aa66ca2060da6fcdd1db1fba27c94c7872c9a2a5"
+      "sha256": "b64be8791481a77c3001ddda625c17b621ae3aaabc4fdfe523e9b1f9f690904f"
     },
     "component_groups": {
       "path": "hardware/product-design/generated/H1-R2-cost-audit.json",
