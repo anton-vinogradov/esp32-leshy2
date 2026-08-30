@@ -13,7 +13,8 @@
 > FSUSB42MUX/C11355 прошёл ревью как `H2-R2.0.1`; точная реализация
 > detector/latch/release service-VBUS прошла ревью как `H2-R2.0.2`; точная
 > Pack/Safety-граница `TCA9803DGKR/C2687966` — как `H2-R2.0.3`. Native R2
-> inventory прошёл ревью; сейчас сверяется exact ledger symbols/contacts/footprints.
+> inventory и exact ledger прошли ревью; controlled definitions и раскладка
+> всех 1 096 экземпляров готовы, сейчас соединяются native nets.
 
 ## Возможности
 
@@ -163,7 +164,7 @@ live route FSUSB42MUX/C11355, точная реализация detector/latch/r
 и TCA9803 Pack/Safety boundary закрыты. `H2-R2.1.1` зафиксировал 3 native-
 проекта, 23 sheets и 213 точных MPN-групп; `H2-R2.1.2` зафиксировал exact
 identities для 208 board groups, 5 явных non-PCBA groups и 1 561 логического
-контактов. В `H2-R2.1.3` материализуются controlled definitions и joined native
-nets до нового export.
+контактов. В `H2-R2.1.3` controlled definitions и раскладка 1 096 экземпляров
+прошли проверку; теперь соединяются native nets до нового export.
 Legacy-дисплей HMX остаётся только историческим evidence и не попадает в R2 order BOM.
 Routing и любые закупки остаются заблокированы.

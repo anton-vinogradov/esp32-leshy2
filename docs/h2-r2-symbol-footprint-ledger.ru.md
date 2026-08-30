@@ -62,12 +62,14 @@ board groups: 1 501 является контактами footprints, ещё т�
 - [Сгенерированная материализация контактов](../hardware/ecad/generated/H2-R2-contact-materialization.json)
 - [Контракт controlled symbols](../hardware/ecad/h2-r2-symbol-library-contract.json)
 - [Сгенерированный manifest controlled symbols](../hardware/ecad/generated/H2-R2-controlled-symbol-library.json)
+- [Проверенное распределение экземпляров](h2-r2-instance-ledger.ru.md)
 - [Текущий native project inventory](h2-r2-native-inventory.ru.md)
 
 ## Текущая граница
 
 Controlled library `Leshy2_R2` теперь содержит все 208 exact-MPN symbols и
-1 518 уникальных electrical-pad pins и проходит parser KiCad 10. Текущая точка —
+1 518 уникальных electrical-pad pins и проходит parser KiCad 10. Все 1 096
+устанавливаемых экземпляров распределены по текущим проектам. Текущая точка —
 **`H2-R2.1.3`**: создать три native projects и соединить rails, контакты M1,
 domain transports и явные NC. Placement, routing, печать и заказ остаются
 заблокированы.

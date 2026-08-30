@@ -64,12 +64,14 @@ ledger belong to the five explicit non-PCBA assemblies.
 - [Generated contact materialization](../hardware/ecad/generated/H2-R2-contact-materialization.json)
 - [Controlled-symbol contract](../hardware/ecad/h2-r2-symbol-library-contract.json)
 - [Generated controlled-symbol manifest](../hardware/ecad/generated/H2-R2-controlled-symbol-library.json)
+- [Checked native instance allocation](h2-r2-instance-ledger.md)
 - [Current native project inventory](h2-r2-native-inventory.md)
 
 ## Current boundary
 
 The controlled `Leshy2_R2` library now contains all 208 exact-MPN symbols and
-1,518 unique electrical-pad pins and passes KiCad 10 parsing. The current point
-is **`H2-R2.1.3`**: create the three native projects and join rails, M1 contacts,
+1,518 unique electrical-pad pins and passes KiCad 10 parsing. All 1,096 fitted
+instances are allocated to the current projects. The current point is
+**`H2-R2.1.3`**: create the three native projects and join rails, M1 contacts,
 domain transports and explicit NCs. Placement, routing, fabrication and ordering
 remain blocked.

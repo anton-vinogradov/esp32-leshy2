@@ -139,8 +139,9 @@
 
 **Точный маркер: `H2-R2.1.3`.** Все электрические prerequisites до ECAD,
 native R2 source/sheet/component inventory и exact ledger symbol/contact/value/
-footprint прошли ревью. Материализация contact-to-pad и controlled R2 symbol
-library завершены; точная текущая точка — joined native nets. Placement и
+footprint прошли ревью. Материализация contact-to-pad, controlled R2 symbol
+library и точная раскладка 1 096 экземпляров завершены; текущая точка —
+соединение native nets. Placement и
 routing ещё не начинались.
 
 - ✅ `H2-R2.0.1`: точный маршрут Standard PCBA onsemi `FSUSB42MUX` / `C11355`
@@ -166,11 +167,15 @@ routing ещё не начинались.
 - ✅ Symbol-checkpoint `H2-R2.1.3`: детерминированная library `Leshy2_R2`
   содержит 208 exact-MPN symbols и 1 518 уникальных electrical-pad pins; KiCad 10
   читает, пересохраняет и экспортирует контрольные symbols без ошибок.
+- ✅ Instance-checkpoint `H2-R2.1.3`: все 1 096 устанавливаемых позиций из 208
+  групп распределены по трём native-проектам; старый ledger R1 не передаёт ни
+  одного net, reference designator или правила топологии.
 - ▶ Текущий checkpoint `H2-R2.1.3`: создать три native R2 projects и соединить
   rails, M1, domain transports и явные NC.
 - 🔒 Schematic export, routing, quote, закупка и печать остаются запрещены.
 
-[Открыть живой реестр prerequisites](h2-r2-electrical-prerequisites.ru.md).
+[Открыть результат instance-checkpoint](h2-r2-instance-ledger.ru.md) ·
+[живой реестр prerequisites](h2-r2-electrical-prerequisites.ru.md).
 
 ## Полный аппаратный путь
 

@@ -25,7 +25,9 @@
 > board contacts are accounted for against real selected-footprint pads or three
 > explicit on-module RF interfaces, with zero unclaimed named pads. The controlled
 > library of 208 R2 symbols and 1,518 unique PCB-pad pins now passes KiCad 10;
-> joined native nets are the current checkpoint. Ordering remains blocked.
+> all 1,096 fitted instances are now allocated across the three current projects
+> without importing R1 nets or designators. Joining native nets is the current
+> checkpoint. Ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
@@ -140,7 +142,8 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H2-R2.0.3`: exact `TCA9803DGKR/C2687966` Pack/Safety powered-off boundary reviewed with correct rail-local termination and USD 0.3953 exact-one component cost.
 - ✅ `H2-R2.1.1`: native R2 inventory reviewed — 3 projects, 23 sheets, 6 domain owners, 213 exact MPN groups and 1,106 product positions; zero symbols/nets created.
 - ✅ `H2-R2.1.2`: exact ledger reviewed — 208 board groups, 5 explicit non-PCBA groups, 1,561 logical contacts and zero unresolved groups; removable RF jumpers no longer masquerade as PCB parts.
-- ▶ **Exact current point `H2-R2.1.3`:** materialize controlled symbols/footprints and join rails, M1 contacts, domain transports and explicit NCs in the native R2 projects.
+- ✅ `H2-R2.1.3` instance checkpoint: 1,096 fitted positions are allocated to the current three-project graph with zero nets imported from R1.
+- ▶ **Exact current point `H2-R2.1.3`:** join rails, M1 contacts, domain transports and explicit NCs in the native R2 projects.
 - 🔒 KiCad, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked

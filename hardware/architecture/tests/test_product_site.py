@@ -148,6 +148,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h2-r2-native-inventory.ru.md",
         "docs/h2-r2-symbol-footprint-ledger.md",
         "docs/h2-r2-symbol-footprint-ledger.ru.md",
+        "docs/h2-r2-instance-ledger.md",
+        "docs/h2-r2-instance-ledger.ru.md",
     )
 
     def test_individual_h2_artifacts_are_explicitly_historical_r1(self):

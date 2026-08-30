@@ -87,11 +87,13 @@ controlled native definitions и joined nets; placement/routing не начин�
    и 213 точных MPN-групп; native symbols/nets не создавались;
 5. ✅ `H2-R2.1.2`: 208 board groups, пять явных non-PCBA groups и 1 561
    логических контактов отображены без незакрытых групп;
-6. ▶ `H2-R2.1.3`: материализовать controlled definitions и соединить rails,
-   M1, transports и явные NC.
+6. ✅ Definitions/instances `H2-R2.1.3`: 208 controlled symbols, 1 518 PCB-pad
+   pins и все 1 096 устанавливаемых экземпляров проходят раскладку по трём проектам;
+7. ▶ `H2-R2.1.3`: соединить rails, M1, transports и явные NC.
 
 [Native R2 inventory](h2-r2-native-inventory.ru.md) ·
-[точные symbols/footprints](h2-r2-symbol-footprint-ledger.ru.md).
+[точные symbols/footprints](h2-r2-symbol-footprint-ledger.ru.md) ·
+[распределение экземпляров](h2-r2-instance-ledger.ru.md).
 
 Ожидаемый результат: native KiCad-схемы, заново сформированные из архитектуры
 R2, сверенная распиновка, ERC/NC-ревью и синхронный HW↔FW-контракт. На

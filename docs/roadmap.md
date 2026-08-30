@@ -139,9 +139,9 @@ marker and current checklist; it is never presented as review of the whole phase
 
 **Exact marker: `H2-R2.1.3`.** All pre-ECAD electrical prerequisites, the
 native R2 source/sheet/component inventory and the exact symbol/contact/value/
-footprint ledger are reviewed. Contact-to-pad materialization and the controlled
-R2 symbol library are complete; joined native nets are the exact current
-checkpoint. Placement and routing have not started.
+footprint ledger are reviewed. Contact-to-pad materialization, the controlled
+R2 symbol library and the exact 1,096-instance allocation are complete; joining
+native nets is the exact current checkpoint. Placement and routing have not started.
 
 - ✅ `H2-R2.0.1`: exact onsemi `FSUSB42MUX` / `C11355` Standard-PCBA route
   reviewed from the live surface: stock 66,698; available 66,045; MOQ 1;
@@ -165,11 +165,15 @@ checkpoint. Placement and routing have not started.
 - ✅ `H2-R2.1.3` symbol checkpoint: the deterministic `Leshy2_R2` library contains
   208 exact-MPN symbols and 1,518 unique electrical-pad pins; KiCad 10 parses,
   resaves and exports representative symbols without errors.
+- ✅ `H2-R2.1.3` instance checkpoint: all 1,096 fitted board positions are
+  allocated across 208 groups and three native projects; the historical R1
+  ledger contributes no net, reference designator or topology authority.
 - ▶ `H2-R2.1.3` current checkpoint: create the three native R2 projects and join
   rails, M1, domain transports and explicit NCs.
 - 🔒 Schematic export, routing, quote, purchase and fabrication remain unauthorized.
 
-[Open the live prerequisite ledger](h2-r2-electrical-prerequisites.md).
+[Open the instance result](h2-r2-instance-ledger.md) ·
+[live prerequisite ledger](h2-r2-electrical-prerequisites.md).
 
 ## Complete hardware path
 

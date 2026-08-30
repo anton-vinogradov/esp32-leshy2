@@ -14,7 +14,8 @@
 > detector/latch/release implementation is reviewed as `H2-R2.0.2`; the exact
 > `TCA9803DGKR/C2687966` Pack/Safety boundary is reviewed as `H2-R2.0.3`.
 > The native R2 inventory and exact symbol/contact/footprint ledger passed
-> review; controlled definitions and joined native nets are current.
+> review; controlled definitions and all 1,096 fitted instances are allocated.
+> Joining native nets is current.
 
 ## Capabilities
 
@@ -168,6 +169,7 @@ detector/latch/release implementation and exact TCA9803 Pack/Safety boundary
 are closed. `H2-R2.1.1` reviewed 3 native projects, 23 sheets and 213 exact MPN
 groups; `H2-R2.1.2` reviewed exact identities for 208 board groups, five
 explicit non-PCBA groups and 1,561 logical contacts. `H2-R2.1.3` now
-materializes controlled definitions and joined native nets before a new export.
+has controlled definitions and a checked 1,096-instance allocation; joined
+native nets are next before a new export.
 The legacy HMX display is reference evidence only and cannot enter
 an R2 order BOM. Routing and all purchasing remain blocked.

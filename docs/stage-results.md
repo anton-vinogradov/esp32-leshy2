@@ -88,11 +88,13 @@ Exact current checklist:
    groups reviewed with zero native symbols/nets created;
 5. ✅ `H2-R2.1.2`: 208 board groups, five explicit non-PCBA groups and 1,561
    logical contacts mapped with zero unresolved groups;
-6. ▶ `H2-R2.1.3`: materialize controlled definitions and join rails, M1,
-   transports and explicit NCs.
+6. ✅ `H2-R2.1.3` definitions/instances: 208 controlled symbols, 1,518 PCB-pad
+   pins and all 1,096 fitted instances pass the current three-project allocation;
+7. ▶ `H2-R2.1.3`: join rails, M1, transports and explicit NCs.
 
 [Native R2 inventory](h2-r2-native-inventory.md) ·
-[exact symbols/footprints](h2-r2-symbol-footprint-ledger.md).
+[exact symbols/footprints](h2-r2-symbol-footprint-ledger.md) ·
+[native instance allocation](h2-r2-instance-ledger.md).
 
 Expected result: native KiCad schematics regenerated from the R2 architecture,
 with pin reconciliation, ERC, NC review and a synchronized HW↔FW contract.
