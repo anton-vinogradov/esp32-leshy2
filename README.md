@@ -37,7 +37,7 @@
 > reviews exact provenance for all 242 R2 groups and 1,187 fitted positions.
 > [H3-R2.0.3](docs/verification-methods.md) freezes nine methods and twelve
 > pass/fail rules. [H3-R2.1.1](docs/power-state-register.md) reviewed all 2,266 legal R2 states;
-> [H3-R2.1.2](docs/power-load-binding.md) binds 596 fitted power-connected instances and six external loads without a hidden aggregate. Exact rail margins are current. Ordering remains blocked.
+> [H3-R2.1.2](docs/power-load-binding.md) binds 612 fitted powered instances—596 direct and 16 indirect—plus six external loads without a hidden aggregate. Exact rail margins are current. Ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
@@ -162,7 +162,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H3-R2.0.2`: [all 242 R2 groups and 1,187 fitted positions have exact parameter/model provenance](docs/parameter-model-register.md), one H3 owner and no silent value assumption.
 - ✅ `H3-R2.0.3`: [nine reproducible methods and twelve pass/fail rules](docs/verification-methods.md) cover all seven workstreams and all 242 groups.
 - ✅ `H3-R2.1.1`: [all 2,266 legal R2 source, charge, fault and operating states are enumerated](docs/power-state-register.md), including U214/U219, Airband and all three-nRF mixes.
-- ✅ `H3-R2.1.2`: [596 fitted power-connected instances plus six external loads are bound explicitly](docs/power-load-binding.md); all 17 reviewed H2 power nets are covered, with no duplicate, unbound or miscellaneous line.
+- ✅ `H3-R2.1.2`: [612 fitted powered instances—596 direct and 16 indirect—plus six external loads are bound explicitly](docs/power-load-binding.md); all 17 reviewed H2 power nets are covered, with no duplicate, unbound or miscellaneous line.
 - ▶ **Exact current point `H3-R2.1.3`:** calculate rail voltage/current, protection and steady thermal margins from those explicit lines.
 - 🔒 PCB placement, routing, prototype purchase and fabrication remain unauthorized.
 

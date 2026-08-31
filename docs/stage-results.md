@@ -124,7 +124,7 @@ parameter/model provenance for 242 groups and 1,187 fitted positions. Current
 methods are frozen by [`H3-R2.0.3`](verification-methods.md): nine methods and
 twelve pass/fail rules cover all 242 groups. [`H3-R2.1.1`](power-state-register.md)
 reviews all 2,266 legal source, charge, fault and operating states.
-[`H3-R2.1.2`](power-load-binding.md) reviews explicit binding for 596 fitted
+[`H3-R2.1.2`](power-load-binding.md) reviews explicit binding for 612 fitted powered
 power-connected instances and six external loads. Current work evaluates the
 rail margins from those lines. The expected result is complete power, digital, RF, audio,
 timing, thermal and fault verification. Every legal state and transition must

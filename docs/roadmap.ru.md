@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H3-R2.1.3`.** Внутри H3-R2.1 H0, H1 и [H2-R2.1.5](h2-acceptance.ru.md) прошли ревью. [H3-R2.0.1](h3-r2-input-freeze.ru.md) фиксирует 14 входов, [H3-R2.0.2](parameter-model-register.ru.md) связывает 242 группы, [H3-R2.0.3](verification-methods.ru.md) фиксирует методы/rules, [H3-R2.1.1](power-state-register.ru.md) проводит ревью 2 266 разрешённых состояний, а [H3-R2.1.2](power-load-binding.ru.md) явно связывает 596 устанавливаемых экземпляров и шесть внешних нагрузок. Сейчас считаются запасы шин.
+> **▶ Текущая аппаратная граница: `H3-R2.1.3`.** Внутри H3-R2.1 H0, H1 и [H2-R2.1.5](h2-acceptance.ru.md) прошли ревью. [H3-R2.0.1](h3-r2-input-freeze.ru.md) фиксирует 14 входов, [H3-R2.0.2](parameter-model-register.ru.md) связывает 242 группы, [H3-R2.0.3](verification-methods.ru.md) фиксирует методы/rules, [H3-R2.1.1](power-state-register.ru.md) проводит ревью 2 266 разрешённых состояний, а [H3-R2.1.2](power-load-binding.ru.md) явно связывает 612 устанавливаемых питаемых экземпляров — 596 прямых и 16 косвенных — и шесть внешних нагрузок. Сейчас считаются запасы шин.
 > KiCad routing R2, quote, reservation и заказ не разрешены.
 
 Статус сверен: **31 августа 2026 года**.
@@ -222,7 +222,7 @@
 8. ✅ [`H3-R2.0.3`](verification-methods.ru.md): зафиксировать девять воспроизводимых методов, двенадцать pass/fail rules и fail-closed назначения для всех 242 групп.
 9. ▶ `H3-R2.1`: проверить worst-case DC, source, charge и power states.
    - ✅ [`H3-R2.1.1`](power-state-register.ru.md): перечислить все 2 266 разрешённых состояния.
-   - ✅ [`H3-R2.1.2`](power-load-binding.ru.md): связать все 596 устанавливаемых питаемых экземпляров и шесть внешних нагрузок без скрытого aggregate.
+   - ✅ [`H3-R2.1.2`](power-load-binding.ru.md): связать все 612 устанавливаемых питаемых экземпляров — 596 прямых и 16 косвенных — и шесть внешних нагрузок без скрытого aggregate.
    - ▶ `H3-R2.1.3`: проверить запасы напряжения/тока шин, защит и установившегося теплового режима.
 
 Следующее действие — worst-case проверка питания/DC. Placement, routing,

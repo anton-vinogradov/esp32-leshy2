@@ -4,9 +4,9 @@
   "marker": "H3-R2.1.2",
   "status": "pass",
   "accepted_input": "H3-R2.1.1",
-  "binding_sha256": "b52e91f04fcd52616ad0b1c7604532f30d565a676483abf4ed015ac5f0082075",
+  "binding_sha256": "e86e70d0ed5cc5a23323b351e9c9d22fc92e3991c47249b6f06f406bb1032524",
   "source_sha256": {
-    "hardware/verification/h3-r2-load-binding-contract.json": "6901b250d7bd3e55c9daf1726c663c0255a7229660d7721ff86f1c73ef704016",
+    "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
     "hardware/verification/generated/H3-R2-power-state-register.json": "7f9be4ec4376e3c43e615576c64b9c34f9b3b94ccfb4d58049bbbacfbbbdddb6",
     "hardware/verification/generated/H3-R2-method-contract.json": "d1211fdfaa741c2c7352ceb35e224a04307cc8fa3fc204fa3fb7a5dd45c8c553",
     "hardware/verification/generated/H3-R2-parameter-provenance.json": "4e436c9e4176ae8ea091c031047a0fe21e2beab0995ea0dd864f43d4447e47c7",
@@ -22649,6 +22649,628 @@
         "checked": "2026-08-17"
       },
       "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0597",
+      "instance_uid": "LESHY2-RF-R2:air_lna",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
+      "reference": "U52",
+      "instance": "air_lna",
+      "device_id": "minicircuits_pga_103_plus",
+      "mpn": "PGA-103+",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:air_lna",
+          "rail": "3V3_MAIN",
+          "profile": "BROADCAST_RX_AIRBAND",
+          "accounting": "rf_bias_choke_feed"
+        }
+      ],
+      "canonical_rails": [
+        "3V3_MAIN"
+      ],
+      "profiles": [
+        "BROADCAST_RX_AIRBAND"
+      ],
+      "accounting": [
+        "rf_bias_choke_feed"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "explicit_parameter_extraction_required",
+      "candidate_current_fields": [],
+      "source": {
+        "document": "PGA-103+ official data sheet",
+        "url": "https://www.minicircuits.com/WebStore/dashboardPdf?model=PGA-103%2B",
+        "checked": "2026-08-31"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0598",
+      "instance_uid": "LESHY2-UI-R2:ir_carrier",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_20_C5_WIFI_IR_SERVICE",
+      "reference": "U23",
+      "instance": "ir_carrier",
+      "device_id": "vishay_tsmp95000tt",
+      "mpn": "Vishay TSMP95000TT",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:ir_carrier",
+          "rail": "3V3_MAIN",
+          "profile": "IR",
+          "accounting": "series_filter_feed"
+        }
+      ],
+      "canonical_rails": [
+        "3V3_MAIN"
+      ],
+      "profiles": [
+        "IR"
+      ],
+      "accounting": [
+        "series_filter_feed"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "candidate_current_seed_requires_applicability_review",
+      "candidate_current_fields": [
+        {
+          "path": "typical_supply_current_ma_at_3v3",
+          "value": 0.35
+        }
+      ],
+      "source": {
+        "document": "TSMP95000 IR sensor module datasheet",
+        "version": "Rev. 1.0, 20-Oct-2022",
+        "url": "https://www.vishay.com/docs/82907/tsmp95000.pdf",
+        "checked": "2026-08-18"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0599",
+      "instance_uid": "LESHY2-UI-R2:ir_demod",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_20_C5_WIFI_IR_SERVICE",
+      "reference": "U24",
+      "instance": "ir_demod",
+      "device_id": "vishay_tsop75238tr",
+      "mpn": "Vishay TSOP75238TR",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:ir_demod",
+          "rail": "3V3_MAIN",
+          "profile": "IR",
+          "accounting": "series_filter_feed"
+        }
+      ],
+      "canonical_rails": [
+        "3V3_MAIN"
+      ],
+      "profiles": [
+        "IR"
+      ],
+      "accounting": [
+        "series_filter_feed"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "explicit_parameter_extraction_required",
+      "candidate_current_fields": [],
+      "source": {
+        "document": "TSOP752 IR receiver modules datasheet",
+        "version": "Rev. 1.6, 06-May-2025",
+        "url": "https://www.vishay.com/docs/82494/tsop752.pdf",
+        "checked": "2026-08-28"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0600",
+      "instance_uid": "LESHY2-UI-R2:ir_emitter",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_20_C5_WIFI_IR_SERVICE",
+      "reference": "D11",
+      "instance": "ir_emitter",
+      "device_id": "vishay_vsmy14940",
+      "mpn": "Vishay VSMY14940",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:ir_emitter",
+          "rail": "3V3_MAIN",
+          "profile": "IR",
+          "accounting": "series_resistor_and_low_side_switch_feed"
+        }
+      ],
+      "canonical_rails": [
+        "3V3_MAIN"
+      ],
+      "profiles": [
+        "IR"
+      ],
+      "accounting": [
+        "series_resistor_and_low_side_switch_feed"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "candidate_current_seed_requires_applicability_review",
+      "candidate_current_fields": [
+        {
+          "path": "absolute_maximum_forward_current_ma_at_25c",
+          "value": 70
+        }
+      ],
+      "source": {
+        "document": "VSMY14940 high-speed infrared emitter datasheet",
+        "version": "Rev. 1.6, 22-Sep-2017",
+        "url": "https://www.vishay.com/docs/84209/vsmy14940.pdf",
+        "checked": "2026-08-18"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0601",
+      "instance_uid": "LESHY2-UI-R2:c5_tx_led",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
+      "reference": "D1",
+      "instance": "c5_tx_led",
+      "device_id": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:c5_tx_led",
+          "rail": "AON_SAFE_3V3",
+          "profile": "ALWAYS_ON",
+          "accounting": "series_resistor_feed"
+        }
+      ],
+      "canonical_rails": [
+        "AON_SAFE_3V3"
+      ],
+      "profiles": [
+        "ALWAYS_ON"
+      ],
+      "accounting": [
+        "series_resistor_feed"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "explicit_parameter_extraction_required",
+      "candidate_current_fields": [],
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0602",
+      "instance_uid": "LESHY2-UI-R2:cc_tx_led",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
+      "reference": "D2",
+      "instance": "cc_tx_led",
+      "device_id": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:cc_tx_led",
+          "rail": "AON_SAFE_3V3",
+          "profile": "ALWAYS_ON",
+          "accounting": "series_resistor_feed"
+        }
+      ],
+      "canonical_rails": [
+        "AON_SAFE_3V3"
+      ],
+      "profiles": [
+        "ALWAYS_ON"
+      ],
+      "accounting": [
+        "series_resistor_feed"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "explicit_parameter_extraction_required",
+      "candidate_current_fields": [],
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0603",
+      "instance_uid": "LESHY2-UI-R2:ext_tx_led",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
+      "reference": "D3",
+      "instance": "ext_tx_led",
+      "device_id": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:ext_tx_led",
+          "rail": "AON_SAFE_3V3",
+          "profile": "ALWAYS_ON",
+          "accounting": "series_resistor_feed"
+        }
+      ],
+      "canonical_rails": [
+        "AON_SAFE_3V3"
+      ],
+      "profiles": [
+        "ALWAYS_ON"
+      ],
+      "accounting": [
+        "series_resistor_feed"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "explicit_parameter_extraction_required",
+      "candidate_current_fields": [],
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0604",
+      "instance_uid": "LESHY2-UI-R2:fault_led",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
+      "reference": "D4",
+      "instance": "fault_led",
+      "device_id": "liteon_ltst_c190kfkt",
+      "mpn": "LTST-C190KFKT",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:fault_led",
+          "rail": "AON_SAFE_3V3",
+          "profile": "ALWAYS_ON",
+          "accounting": "series_resistor_feed"
+        }
+      ],
+      "canonical_rails": [
+        "AON_SAFE_3V3"
+      ],
+      "profiles": [
+        "ALWAYS_ON"
+      ],
+      "accounting": [
+        "series_resistor_feed"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "explicit_parameter_extraction_required",
+      "candidate_current_fields": [],
+      "source": {
+        "document": "LTST-C190KFKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0186/LTST-C190KFKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0605",
+      "instance_uid": "LESHY2-UI-R2:ir_tx_led",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
+      "reference": "D5",
+      "instance": "ir_tx_led",
+      "device_id": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:ir_tx_led",
+          "rail": "AON_SAFE_3V3",
+          "profile": "ALWAYS_ON",
+          "accounting": "series_resistor_feed"
+        }
+      ],
+      "canonical_rails": [
+        "AON_SAFE_3V3"
+      ],
+      "profiles": [
+        "ALWAYS_ON"
+      ],
+      "accounting": [
+        "series_resistor_feed"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "explicit_parameter_extraction_required",
+      "candidate_current_fields": [],
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0606",
+      "instance_uid": "LESHY2-UI-R2:nrf0_tx_led",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
+      "reference": "D6",
+      "instance": "nrf0_tx_led",
+      "device_id": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:nrf0_tx_led",
+          "rail": "AON_SAFE_3V3",
+          "profile": "ALWAYS_ON",
+          "accounting": "series_resistor_feed"
+        }
+      ],
+      "canonical_rails": [
+        "AON_SAFE_3V3"
+      ],
+      "profiles": [
+        "ALWAYS_ON"
+      ],
+      "accounting": [
+        "series_resistor_feed"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "explicit_parameter_extraction_required",
+      "candidate_current_fields": [],
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0607",
+      "instance_uid": "LESHY2-UI-R2:nrf1_tx_led",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
+      "reference": "D7",
+      "instance": "nrf1_tx_led",
+      "device_id": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:nrf1_tx_led",
+          "rail": "AON_SAFE_3V3",
+          "profile": "ALWAYS_ON",
+          "accounting": "series_resistor_feed"
+        }
+      ],
+      "canonical_rails": [
+        "AON_SAFE_3V3"
+      ],
+      "profiles": [
+        "ALWAYS_ON"
+      ],
+      "accounting": [
+        "series_resistor_feed"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "explicit_parameter_extraction_required",
+      "candidate_current_fields": [],
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0608",
+      "instance_uid": "LESHY2-UI-R2:nrf2_tx_led",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
+      "reference": "D8",
+      "instance": "nrf2_tx_led",
+      "device_id": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:nrf2_tx_led",
+          "rail": "AON_SAFE_3V3",
+          "profile": "ALWAYS_ON",
+          "accounting": "series_resistor_feed"
+        }
+      ],
+      "canonical_rails": [
+        "AON_SAFE_3V3"
+      ],
+      "profiles": [
+        "ALWAYS_ON"
+      ],
+      "accounting": [
+        "series_resistor_feed"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "explicit_parameter_extraction_required",
+      "candidate_current_fields": [],
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0609",
+      "instance_uid": "LESHY2-UI-R2:s3_tx_led",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
+      "reference": "D9",
+      "instance": "s3_tx_led",
+      "device_id": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:s3_tx_led",
+          "rail": "AON_SAFE_3V3",
+          "profile": "ALWAYS_ON",
+          "accounting": "series_resistor_feed"
+        }
+      ],
+      "canonical_rails": [
+        "AON_SAFE_3V3"
+      ],
+      "profiles": [
+        "ALWAYS_ON"
+      ],
+      "accounting": [
+        "series_resistor_feed"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "explicit_parameter_extraction_required",
+      "candidate_current_fields": [],
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0610",
+      "instance_uid": "LESHY2-UI-R2:voice_tx_led",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
+      "reference": "D10",
+      "instance": "voice_tx_led",
+      "device_id": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:voice_tx_led",
+          "rail": "AON_SAFE_3V3",
+          "profile": "ALWAYS_ON",
+          "accounting": "series_resistor_feed"
+        }
+      ],
+      "canonical_rails": [
+        "AON_SAFE_3V3"
+      ],
+      "profiles": [
+        "ALWAYS_ON"
+      ],
+      "accounting": [
+        "series_resistor_feed"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "explicit_parameter_extraction_required",
+      "candidate_current_fields": [],
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0611",
+      "instance_uid": "LESHY2-RF-R2:microphone",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_22_AUDIO_CODEC_IO",
+      "reference": "MK1",
+      "instance": "microphone",
+      "device_id": "same_sky_cmej_0413_42_smt_tr",
+      "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:microphone",
+          "rail": "3V3_MAIN",
+          "profile": "AUDIO",
+          "accounting": "series_bias_feed_child_of_audio_total"
+        }
+      ],
+      "canonical_rails": [
+        "3V3_MAIN"
+      ],
+      "profiles": [
+        "AUDIO"
+      ],
+      "accounting": [
+        "series_bias_feed_child_of_audio_total"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "candidate_current_seed_requires_applicability_review",
+      "candidate_current_fields": [
+        {
+          "path": "maximum_current_ma",
+          "value": 0.5
+        }
+      ],
+      "source": {
+        "document": "CMEJ-0413-42-SMT-TR Electret Condenser Microphone datasheet",
+        "version": "Rev. 1.04, September 2024",
+        "url": "https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf",
+        "checked": "2026-08-18"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0612",
+      "instance_uid": "LESHY2-RF-R2:speaker",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_22_AUDIO_CODEC_IO",
+      "reference": "LS1",
+      "instance": "speaker",
+      "device_id": "pui_as02404po",
+      "mpn": "PUI Audio AS02404PO",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "INDIRECT:speaker",
+          "rail": "3V3_MAIN",
+          "profile": "AUDIO",
+          "accounting": "amplifier_output_child_of_audio_total"
+        }
+      ],
+      "canonical_rails": [
+        "3V3_MAIN"
+      ],
+      "profiles": [
+        "AUDIO"
+      ],
+      "accounting": [
+        "amplifier_output_child_of_audio_total"
+      ],
+      "disposition": "indirect_powered_consumer",
+      "parameter_state": "explicit_parameter_extraction_required",
+      "candidate_current_fields": [],
+      "source": {
+        "document": "AS02404PO Speaker datasheet",
+        "version": "2024 current datasheet checked 2026-08-18",
+        "url": "https://api.puiaudio.com/filename/AS02404PO.pdf",
+        "checked": "2026-08-18"
+      },
+      "parameter_owner": "H3-R2.1.3"
     }
   ],
   "external_load_lines": [
@@ -22714,8 +23336,10 @@
     }
   ],
   "summary": {
-    "power_connected_instances": 596,
-    "bound_instance_lines": 596,
+    "power_connected_instances": 612,
+    "direct_power_connected_instances": 596,
+    "indirect_powered_instances": 16,
+    "bound_instance_lines": 612,
     "external_load_lines": 6,
     "unbound_power_connected_instances": 0,
     "duplicate_instance_lines": 0,
@@ -22725,30 +23349,31 @@
       "connector_or_external_boundary": 11,
       "conversion_or_protection_path": 22,
       "effective_capacitance_and_dc_leakage": 241,
+      "indirect_powered_consumer": 16,
       "resistive_dc_branch": 190,
       "series_dcr_and_saturation": 9,
       "series_protection": 2
     },
     "canonical_rail_bindings": {
-      "3V3_MAIN": 335,
+      "3V3_MAIN": 341,
       "5V_EXT_ACTIVE_BRANCH": 19,
-      "AON_SAFE_3V3": 158,
+      "AON_SAFE_3V3": 168,
       "PACK_DIRECT": 38,
       "SOURCE_OVERHEAD": 40,
       "VVOICE_4V": 13
     },
     "profile_bindings": {
-      "ALWAYS_ON": 158,
-      "AUDIO": 16,
+      "ALWAYS_ON": 168,
+      "AUDIO": 18,
       "BROADCAST_RX": 12,
-      "BROADCAST_RX_AIRBAND": 13,
+      "BROADCAST_RX_AIRBAND": 14,
       "CAP_SLOT": 5,
       "CC1101": 16,
       "DISPLAY": 4,
       "DISPLAY_BACKLIGHT": 6,
       "EXT_CONVERTER": 11,
       "HUB_RP": 9,
-      "IR": 8,
+      "IR": 11,
       "M5_UNIT": 5,
       "NRF24": 28,
       "PACK": 27,
@@ -22762,9 +23387,9 @@
       "VOICE": 23
     },
     "parameter_states": {
-      "candidate_current_seed_requires_applicability_review": 13,
+      "candidate_current_seed_requires_applicability_review": 16,
       "exact_nonload_parameter_extraction_required": 250,
-      "explicit_parameter_extraction_required": 333
+      "explicit_parameter_extraction_required": 346
     },
     "hidden_miscellaneous_allowances": 0,
     "reviewed_power_nets_required": 17,

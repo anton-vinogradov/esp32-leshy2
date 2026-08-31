@@ -3,7 +3,7 @@
   "baseline": "R2",
   "current_stage": "H3",
   "current_substep": "H3-R2.1.3",
-  "current_detail": "H3-R2.1.2 is reviewed: 596 fitted power-connected instances and six external loads have explicit lines across every reviewed H2 power net, with zero hidden aggregate. H3-R2.1.3 now evaluates exact rail current, voltage, protection and steady thermal margins. Placement/routing, purchasing and fabrication remain unauthorized.",
+  "current_detail": "H3-R2.1.2 is reviewed: 612 fitted powered instances (596 direct and 16 indirect) and six external loads have explicit lines across every reviewed H2 power net, with zero hidden aggregate. H3-R2.1.3 now evaluates exact rail current, voltage, protection and steady thermal margins. Placement/routing, purchasing and fabrication remain unauthorized.",
   "preorder_release": {
     "status": "blocked",
     "assembled_device_quantity": 1,

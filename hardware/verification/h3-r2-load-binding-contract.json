@@ -65,6 +65,24 @@
     "5V_U214_PROTECTED",
     "5V_UNIT_PROTECTED"
   ],
+  "indirect_powered_instances": [
+    {"project": "LESHY2-RF-R2", "instance": "air_lna", "rail": "3V3_MAIN", "profile": "BROADCAST_RX_AIRBAND", "accounting": "rf_bias_choke_feed"},
+    {"project": "LESHY2-UI-R2", "instance": "ir_carrier", "rail": "3V3_MAIN", "profile": "IR", "accounting": "series_filter_feed"},
+    {"project": "LESHY2-UI-R2", "instance": "ir_demod", "rail": "3V3_MAIN", "profile": "IR", "accounting": "series_filter_feed"},
+    {"project": "LESHY2-UI-R2", "instance": "ir_emitter", "rail": "3V3_MAIN", "profile": "IR", "accounting": "series_resistor_and_low_side_switch_feed"},
+    {"project": "LESHY2-UI-R2", "instance": "c5_tx_led", "rail": "AON_SAFE_3V3", "profile": "ALWAYS_ON", "accounting": "series_resistor_feed"},
+    {"project": "LESHY2-UI-R2", "instance": "cc_tx_led", "rail": "AON_SAFE_3V3", "profile": "ALWAYS_ON", "accounting": "series_resistor_feed"},
+    {"project": "LESHY2-UI-R2", "instance": "ext_tx_led", "rail": "AON_SAFE_3V3", "profile": "ALWAYS_ON", "accounting": "series_resistor_feed"},
+    {"project": "LESHY2-UI-R2", "instance": "fault_led", "rail": "AON_SAFE_3V3", "profile": "ALWAYS_ON", "accounting": "series_resistor_feed"},
+    {"project": "LESHY2-UI-R2", "instance": "ir_tx_led", "rail": "AON_SAFE_3V3", "profile": "ALWAYS_ON", "accounting": "series_resistor_feed"},
+    {"project": "LESHY2-UI-R2", "instance": "nrf0_tx_led", "rail": "AON_SAFE_3V3", "profile": "ALWAYS_ON", "accounting": "series_resistor_feed"},
+    {"project": "LESHY2-UI-R2", "instance": "nrf1_tx_led", "rail": "AON_SAFE_3V3", "profile": "ALWAYS_ON", "accounting": "series_resistor_feed"},
+    {"project": "LESHY2-UI-R2", "instance": "nrf2_tx_led", "rail": "AON_SAFE_3V3", "profile": "ALWAYS_ON", "accounting": "series_resistor_feed"},
+    {"project": "LESHY2-UI-R2", "instance": "s3_tx_led", "rail": "AON_SAFE_3V3", "profile": "ALWAYS_ON", "accounting": "series_resistor_feed"},
+    {"project": "LESHY2-UI-R2", "instance": "voice_tx_led", "rail": "AON_SAFE_3V3", "profile": "ALWAYS_ON", "accounting": "series_resistor_feed"},
+    {"project": "LESHY2-RF-R2", "instance": "microphone", "rail": "3V3_MAIN", "profile": "AUDIO", "accounting": "series_bias_feed_child_of_audio_total"},
+    {"project": "LESHY2-RF-R2", "instance": "speaker", "rail": "3V3_MAIN", "profile": "AUDIO", "accounting": "amplifier_output_child_of_audio_total"}
+  ],
   "source_path_instance_tokens": [
     "buck", "efuse", "power_switch", "charger", "pd_controller", "pack_power_fet", "pack_hold_fet", "system_diode"
   ],

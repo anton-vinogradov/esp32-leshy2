@@ -136,6 +136,52 @@ def build() -> dict:
             "parameter_owner": "H3-R2.1.3" if "SOURCE_OVERHEAD" not in canonical_rails and "PACK_DIRECT" not in canonical_rails else "H3-R2.1.4",
         })
 
+    indirect_keys: set[tuple] = set()
+    for indirect in contract["indirect_powered_instances"]:
+        matches = [
+            (key, row) for key, row in instance_by_key.items()
+            if row["project"] == indirect["project"] and row["instance"] == indirect["instance"]
+        ]
+        if len(matches) != 1:
+            errors.append(f"indirect powered instance does not resolve exactly once: {indirect}")
+            continue
+        key, inventory = matches[0]
+        if key in connected:
+            errors.append(f"indirect powered instance is already directly rail-bound: {key}")
+            continue
+        parameter = parameter_by_device.get(inventory["device_id"])
+        device = devices.get(inventory["device_id"])
+        if parameter is None or device is None:
+            errors.append(f"indirect powered instance lacks exact parameter/device source: {key}")
+            continue
+        indirect_keys.add(key)
+        candidates = current_candidates(device.get("electrical_contract", {}))
+        lines.append({
+            "id": f"LOAD-{len(lines) + 1:04d}",
+            "instance_uid": inventory["instance_uid"],
+            "project": inventory["project"],
+            "sheet": inventory["sheet"],
+            "reference": inventory["reference"],
+            "instance": inventory["instance"],
+            "device_id": inventory["device_id"],
+            "mpn": inventory["mpn"],
+            "quantity": 1,
+            "rail_bindings": [{
+                "net": f"INDIRECT:{inventory['instance']}",
+                "rail": indirect["rail"],
+                "profile": indirect["profile"],
+                "accounting": indirect["accounting"],
+            }],
+            "canonical_rails": [indirect["rail"]],
+            "profiles": [indirect["profile"]],
+            "accounting": [indirect["accounting"]],
+            "disposition": "indirect_powered_consumer",
+            "parameter_state": "candidate_current_seed_requires_applicability_review" if candidates else "explicit_parameter_extraction_required",
+            "candidate_current_fields": candidates,
+            "source": parameter["source"],
+            "parameter_owner": "H3-R2.1.3",
+        })
+
     external = []
     for row in contract["external_loads"]:
         external.append({
@@ -147,7 +193,7 @@ def build() -> dict:
     duplicate_uids = [uid for uid, count in Counter(row["instance_uid"] for row in lines).items() if count != 1]
     if duplicate_uids:
         errors.append(f"duplicate load lines: {duplicate_uids[:5]}")
-    expected_keys = set(connected)
+    expected_keys = set(connected) | indirect_keys
     emitted_keys = {(row["project"], row["sheet"], row["reference"], row["instance"], row["device_id"]) for row in lines}
     missing = expected_keys - emitted_keys
     if missing:
@@ -175,6 +221,8 @@ def build() -> dict:
         "external_load_lines": external,
         "summary": {
             "power_connected_instances": len(expected_keys),
+            "direct_power_connected_instances": len(connected),
+            "indirect_powered_instances": len(indirect_keys),
             "bound_instance_lines": len(lines),
             "external_load_lines": len(external),
             "unbound_power_connected_instances": len(missing),

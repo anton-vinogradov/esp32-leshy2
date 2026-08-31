@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H3-R2.1.3`.** Inside H3-R2.1, H0, H1 and [H2-R2.1.5](h2-acceptance.md) are reviewed. [H3-R2.0.1](h3-r2-input-freeze.md) freezes 14 stable inputs, [H3-R2.0.2](parameter-model-register.md) binds all 242 R2 groups, [H3-R2.0.3](verification-methods.md) freezes nine methods and twelve rules, [H3-R2.1.1](power-state-register.md) reviews 2,266 legal states, and [H3-R2.1.2](power-load-binding.md) explicitly binds 596 fitted instances plus six external loads. Rail-margin evaluation is current.
+> **▶ Current hardware boundary: `H3-R2.1.3`.** Inside H3-R2.1, H0, H1 and [H2-R2.1.5](h2-acceptance.md) are reviewed. [H3-R2.0.1](h3-r2-input-freeze.md) freezes 14 stable inputs, [H3-R2.0.2](parameter-model-register.md) binds all 242 R2 groups, [H3-R2.0.3](verification-methods.md) freezes nine methods and twelve rules, [H3-R2.1.1](power-state-register.md) reviews 2,266 legal states, and [H3-R2.1.2](power-load-binding.md) explicitly binds 612 fitted powered instances—596 direct and 16 indirect—plus six external loads. Rail-margin evaluation is current.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **31 August 2026**.
@@ -222,7 +222,7 @@ routing have not started.
 8. ✅ [`H3-R2.0.3`](verification-methods.md): freeze nine reproducible methods, twelve pass/fail rules and fail-closed assignments for all 242 groups.
 9. ▶ `H3-R2.1`: verify worst-case DC, source, charge and power states.
    - ✅ [`H3-R2.1.1`](power-state-register.md): enumerate all 2,266 legal states.
-   - ✅ [`H3-R2.1.2`](power-load-binding.md): bind all 596 fitted power-connected instances and six external loads without a hidden aggregate.
+   - ✅ [`H3-R2.1.2`](power-load-binding.md): bind all 612 fitted powered instances—596 direct and 16 indirect—and six external loads without a hidden aggregate.
    - ▶ `H3-R2.1.3`: evaluate rail voltage/current, protection and steady thermal margins.
 
 Worst-case power/DC verification is the next action. Placement, routing, quoting and
