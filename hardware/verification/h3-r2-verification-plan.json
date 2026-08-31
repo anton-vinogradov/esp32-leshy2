@@ -3,8 +3,8 @@
   "stage": "H3",
   "baseline": "R2",
   "status": "current",
-  "current_workstream": "H3-R2.6",
-  "current_substep": "H3-R2.6",
+  "current_workstream": "H3-R2.7",
+  "current_substep": "H3-R2.7",
   "accepted_input": {
     "stage": "H2-R2.1.5",
     "status": "reviewed",
@@ -45,8 +45,8 @@
     {"id": "H3-R2.3", "title": "Display, audio, IR, battery and Airband analog-corner verification", "status": "reviewed"},
     {"id": "H3-R2.4", "title": "Digital levels, timing, loading and direct-i8080 verification", "status": "reviewed"},
     {"id": "H3-R2.5", "title": "RF feeds, coexistence, quiet states and 3x nRF24 concurrency", "status": "reviewed"},
-    {"id": "H3-R2.6", "title": "Thermal, single-fault and unattended-operation verification", "status": "current"},
-    {"id": "H3-R2.7", "title": "Cross-check, physical residual register and bilingual phase report", "status": "waiting"}
+    {"id": "H3-R2.6", "title": "Thermal, single-fault and unattended-operation verification", "status": "reviewed"},
+    {"id": "H3-R2.7", "title": "Cross-check, physical residual register and bilingual phase report", "status": "current"}
   ],
   "exit_criteria": [
     "Every H2-R2 electrical claim checkable without fabricated hardware has reproducible evidence.",

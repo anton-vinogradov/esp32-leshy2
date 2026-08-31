@@ -437,7 +437,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
                  "- Антиавтозапуск теперь опирается на квалифицированный физический KILL, а не на предположение о моменте RC-фронта.")
         residual_h = "## Что остаётся физике"
         residual = "\n".join(f"- {row}" for row in manifest["physical_residuals"])
-        end = f"**Результат:** `{s['passed_scenarios']}/{s['scenarios']}` сценариев и `{s['topology_endpoints']}` endpoint-проверок проходят. H3-R2.3, [цифровая проверка H3-R2.4](digital-electrical-verification.ru.md) и [RF-проверка H3-R2.5](rf-electrical-verification.ru.md) проведены ревью; **текущий маркер — `H3-R2.6`**. Заказ и трассировка всё ещё запрещены.\n\n[Машинный отчёт](../hardware/verification/generated/H3-R2-transition-sequences.json)."
+        end = f"**Результат:** `{s['passed_scenarios']}/{s['scenarios']}` сценариев и `{s['topology_endpoints']}` endpoint-проверок проходят. H3-R2.3, [цифровая проверка H3-R2.4](digital-electrical-verification.ru.md), [RF-проверка H3-R2.5](rf-electrical-verification.ru.md) и [thermal/fault H3-R2.6](thermal-fault-electrical-verification.ru.md) проведены ревью; **текущий маркер — `H3-R2.7`**. Заказ и трассировка всё ещё запрещены.\n\n[Машинный отчёт](../hardware/verification/generated/H3-R2-transition-sequences.json)."
     else:
         title = "# Startup, reset and recovery · H3-R2.2.1"
         nav = "[Русский](power-transition-sequences.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)"
@@ -459,7 +459,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
                  "- Anti-auto-start now depends on qualified physical KILL rather than assumed RC-edge timing.")
         residual_h = "## Physical residuals"
         residual = "\n".join(f"- {row}" for row in manifest["physical_residuals"])
-        end = f"**Result:** `{s['passed_scenarios']}/{s['scenarios']}` scenarios and `{s['topology_endpoints']}` endpoint checks pass. H3-R2.3, [H3-R2.4 digital verification](digital-electrical-verification.md) and [H3-R2.5 RF verification](rf-electrical-verification.md) are reviewed; the **current marker is `H3-R2.6`**. Ordering and routing remain forbidden.\n\n[Machine report](../hardware/verification/generated/H3-R2-transition-sequences.json)."
+        end = f"**Result:** `{s['passed_scenarios']}/{s['scenarios']}` scenarios and `{s['topology_endpoints']}` endpoint checks pass. H3-R2.3, [H3-R2.4 digital verification](digital-electrical-verification.md), [H3-R2.5 RF verification](rf-electrical-verification.md) and [H3-R2.6 thermal/fault verification](thermal-fault-electrical-verification.md) are reviewed; the **current marker is `H3-R2.7`**. Ordering and routing remain forbidden.\n\n[Machine report](../hardware/verification/generated/H3-R2-transition-sequences.json)."
     return "\n\n".join((title, nav, intro, states_h, states, timing_h, timing, seq_h, header + "\n" + body, fixes_h, fixes, residual_h, residual, end)) + "\n"
 
 

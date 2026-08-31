@@ -165,7 +165,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "бортовой видеотракт удалён, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H3-R2.6**. Физическая проекция H1-R2.37 с двумя независимыми RP2354B, точными GPIO0..47, M1 и 226 корпусами принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 185 экземпляров и 823 nets в трёх проектах KiCad без замечаний ERC. H3-R2.0 фиксирует входы, provenance и методы; H3-R2.1–R2.5 проведены ревью. H3-R2.5 подтверждает десять постоянных антенных трактов, пять съёмных микрокоаксиальных перемычек, quiet-state contract и все режимы одновременного обслуживания трёх nRF24. H3-R2.6 проверяет thermal, single-fault и unattended-operation envelope."
+        current = "Текущий точный маркер — **H3-R2.7**. Физическая проекция H1-R2.37 с двумя независимыми RP2354B, точными GPIO0..47, M1 и 226 корпусами принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 185 экземпляров и 823 nets в трёх проектах KiCad без замечаний ERC. H3-R2.0 фиксирует входы, provenance и методы; H3-R2.1–R2.6 проведены ревью. H3-R2.6 сводит 56 thermal-профилей, 30 single-fault сценариев и unattended-policy без обещания автономности. H3-R2.7 выполняет итоговый cross-check и назначает физические остатки H6/H8."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -204,7 +204,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, the onboard "
             "video path is removed, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H3-R2.6**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and 226 bodies was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,185 instances and 823 nets in three KiCad projects with zero ERC findings. H3-R2.0 freezes inputs, provenance and methods; H3-R2.1 through R2.5 are reviewed. H3-R2.5 proves all ten permanent antenna feeds, five removable microcoaxes, the quiet-state contract and every concurrent three-nRF24 service mode. H3-R2.6 verifies the thermal, single-fault and unattended-operation envelope."
+        current = "The exact current marker is **H3-R2.7**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and 226 bodies was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,185 instances and 823 nets in three KiCad projects with zero ERC findings. H3-R2.0 freezes inputs, provenance and methods; H3-R2.1 through R2.6 are reviewed. H3-R2.6 joins 56 thermal profiles, 30 single-fault cases and the extended-operation policy without an autonomy claim. H3-R2.7 performs the final cross-check and assigns physical residuals to H6/H8."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",

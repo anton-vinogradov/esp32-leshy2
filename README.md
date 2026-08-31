@@ -10,7 +10,7 @@
 
 </div>
 
-> **Current hardware marker: `H3-R2.6`.** The complete two-PCB `H1-R2.37`
+> **Current hardware marker: `H3-R2.7`.** The complete two-PCB `H1-R2.37`
 > placement was accepted and reviewed on 30 August 2026: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
 > the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display, passive 40-to-50-contact
 > adapter, all 18 U219 support bodies, NFC pickup loop and the external volume
@@ -37,7 +37,7 @@
 > reviews exact provenance for all 240 R2 groups and 1,185 fitted positions.
 > [H3-R2.0.3](docs/verification-methods.md) freezes nine methods and twelve
 > pass/fail rules. [H3-R2.1.1](docs/power-state-register.md) reviewed all 2,266 legal R2 states;
-> [H3-R2.1.2](docs/power-load-binding.md) binds every load without a hidden aggregate. [H3-R2.1.3](docs/power-rail-margins.md) reviews 224 passing rail profiles. [H3-R2.1.4](docs/power-source-margins.md) owns all 75 source/pack lines and safely admits all 2,266 legal states: maximum pack current is 3.516 A against the 8-A boundary; 9-V/3-A and 15-V/2-A run every profile, while 14 oversized 5-V/3-A USB-only states are explicitly refused. The [H3-R2.1 cross-check](docs/power-dc-source-result.md) is reviewed. The complete [H3-R2.2 power-transition result](docs/power-transition-result.md) is also reviewed: 14 startup/reset/recovery scenarios, 7,316 USB/pack/DPM/brownout/source-loss cases, five protected-rail starts, four load-step envelopes and ten watchdog/fault-display cases pass without automatic restart. [H3-R2.3 analog verification](docs/analog-electrical-verification.md), [H3-R2.4 digital verification](docs/digital-electrical-verification.md) and [H3-R2.5 RF verification](docs/rf-electrical-verification.md) are reviewed. RF review passes 71 machine checks across ten permanent antenna ports, five removable microcoaxes, 13 quiet contracts and every three-nRF24 role mix. H3-R2.6 now verifies thermal, single-fault and unattended-operation envelopes. Ordering remains blocked.
+> [H3-R2.1.2](docs/power-load-binding.md) binds every load without a hidden aggregate. [H3-R2.1.3](docs/power-rail-margins.md) reviews 224 passing rail profiles. [H3-R2.1.4](docs/power-source-margins.md) owns all 75 source/pack lines and safely admits all 2,266 legal states: maximum pack current is 3.516 A against the 8-A boundary; 9-V/3-A and 15-V/2-A run every profile, while 14 oversized 5-V/3-A USB-only states are explicitly refused. The [H3-R2.1 cross-check](docs/power-dc-source-result.md) is reviewed. The complete [H3-R2.2 power-transition result](docs/power-transition-result.md) is also reviewed: 14 startup/reset/recovery scenarios, 7,316 USB/pack/DPM/brownout/source-loss cases, five protected-rail starts, four load-step envelopes and ten watchdog/fault-display cases pass without automatic restart. [H3-R2.3 analog verification](docs/analog-electrical-verification.md), [H3-R2.4 digital verification](docs/digital-electrical-verification.md), [H3-R2.5 RF verification](docs/rf-electrical-verification.md) and [H3-R2.6 thermal/fault verification](docs/thermal-fault-electrical-verification.md) are reviewed. H3-R2.6 passes 25 joined checks across all 56 thermal profiles and 30 single-fault cases, preserves local 24/48-hour proof without an autonomy claim and assigns seven physical residuals to H6/H8. H3-R2.7 now performs the final R2 cross-check and residual register. Ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
@@ -123,7 +123,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
 | H1 · Physical product design | ✅ Reviewed · `H1-R2.37` | [Bilingual phase result](docs/h1-r2-acceptance.md) · [placement](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ✅ Reviewed · `H2-R2.1.5` | [Bilingual phase result](docs/h2-acceptance.md) · [native KiCad result](docs/h2-r2-native-kicad.md) |
-| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.6`** | [Input freeze](docs/h3-r2-input-freeze.md) · [reviewed DC/source result](docs/power-dc-source-result.md) · [reviewed power-transition result](docs/power-transition-result.md) · [reviewed analog result](docs/analog-electrical-verification.md) · [reviewed digital result](docs/digital-electrical-verification.md) · [reviewed RF result](docs/rf-electrical-verification.md) · [stage page](docs/stage-results.md#h3) |
+| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.7`** | [Input freeze](docs/h3-r2-input-freeze.md) · [reviewed DC/source result](docs/power-dc-source-result.md) · [reviewed power-transition result](docs/power-transition-result.md) · [reviewed analog result](docs/analog-electrical-verification.md) · [reviewed digital result](docs/digital-electrical-verification.md) · [reviewed RF result](docs/rf-electrical-verification.md) · [reviewed thermal/fault result](docs/thermal-fault-electrical-verification.md) · [stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ⏳ Waiting for R2 H4 | [Stage page](docs/stage-results.md#h5) |
 | H6 · KiCad placement, routing and release candidate | 🔒 Waiting for R2 H5 | [Stage page](docs/stage-results.md#h6) |
@@ -172,14 +172,15 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H3-R2.3`: [all calculable display, audio, IR, battery and Airband analog corners pass](docs/analog-electrical-verification.md); the EastRising panel has a bounded 2.7-ohm backlight path, the exact Airband filter keeps 0.187 dB minimum margin and remaining work is physical-only H6/H8 measurement.
 - ✅ `H3-R2.4`: [all calculable digital/interface checks pass](docs/digital-electrical-verification.md); five 3.3-V boundary classes retain positive DC margin, i8080-8 is exact 20 MHz with 15.36-ms full-frame wire time, M1 has 80/80 parity and nine true NC, and C5 service USB cannot contend with SDIO D2/D3.
 - ✅ `H3-R2.5`: [all 71 RF/coexistence checks pass](docs/rf-electrical-verification.md); all ten permanent antenna feeds and five removable microcoaxes are explicit, the cable mix is 2×30 mm + 3×60 mm with 9.388 mm minimum conservative slack, and all four three-nRF24 role mixes remain admitted.
-- ▶ **Exact current point `H3-R2.6`:** verify thermal, single-fault and unattended-operation envelopes.
+- ✅ `H3-R2.6`: [all 25 thermal/fault checks pass](docs/thermal-fault-electrical-verification.md); 56 current-R2 profiles, 30 single-fault cases and the local-only extended-operation policy close analytically, with seven physical residuals owned by H6/H8.
+- ▶ **Exact current point `H3-R2.7`:** cross-check every current R2 result, consolidate physical residuals and publish the bilingual H3 phase report.
 - 🔒 PCB placement, routing, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H3-R2.6 -->
+<!-- current-substep: H3-R2.7 -->
 
 ## Repository
 
