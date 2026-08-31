@@ -6,20 +6,20 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 
 ## Summary
 
-- Volume material basis: **$253.61** per device; `201/210` lines are priced.
-- Reachable planning subtotal: **$273.42** per device, with `5` base-product lines still unpriced.
-- Current planned component minimum with no mandatory post-PCBA active module: **$273.42** per device and **$273.42** for the one target prototype before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
-- The same accepted price basis scales linearly to **$2,734.20** for ten devices. This compares groups; it is not a batch quote.
-- The top 10 / 20 / 40 groups contribute **40.64% / 58.81% / 76.71%** of the known base BOM.
-- Historical five-board JLCPCB capture: **$1,370.08** for `183` matched lines; `25` live checks move it to **$1,411.47**, with `27` rows excluded. This is evidence, not the target quantity.
-- The external antenna kit is separate: **$138.32** is known and `4` positions in `2` MPN groups remain unpriced. The known electronics plus known antennas already reach **$411.74** before PCB/PCBA, enclosure and freight.
+- Volume material basis: **$253.20** per device; `202/211` lines are priced.
+- Reachable planning subtotal: **$273.01** per device, with `5` base-product lines still unpriced.
+- Current planned component minimum with no mandatory post-PCBA active module: **$273.01** per device and **$273.01** for the one target prototype before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
+- The same accepted price basis scales linearly to **$2,730.05** for ten devices. This compares groups; it is not a batch quote.
+- The top 10 / 20 / 40 groups contribute **40.70% / 58.90% / 76.82%** of the known base BOM.
+- Historical five-board JLCPCB capture: **$1,370.13** for `184` matched lines; `25` live checks move it to **$1,411.51**, with `27` rows excluded. This is evidence, not the target quantity.
+- The external antenna kit is separate: **$138.32** is known and `4` positions in `2` MPN groups remain unpriced. The known electronics plus known antennas already reach **$411.32** before PCB/PCBA, enclosure and freight.
 
 ## Accepted all-in-one cost boundary
 
 - The current product remains a fully populated all-in-one. Its repeatable complete-device target is **$220.00–$260.00**, excluding batteries and the full specialized external-antenna kit.
 - To leave room for PCB, PCBA and enclosure, electronics must land near **$189.00–$216.00**.
-- The current base BOM has `208` MPN groups and `1096` fitted components. The accepted no-function-loss AD8314 and Hirose U.FL routes already save **$10.42** and leave the exact current planning floor at **$273.42**. The cheaper SMA/RP-SMA pair was checked and rejected, so its hypothetical saving is not counted.
-- A further **$57.42–$84.42** must be removed to reach the electronics band. The formal margin to the complete-device ceiling is only **$-13.42**, so boards, assembly and enclosure do not fit without further resynthesis.
+- The current base BOM has `209` MPN groups and `1096` fitted components. The accepted no-function-loss AD8314 and Hirose U.FL routes already save **$10.42** and leave the exact current planning floor at **$273.01**. The cheaper SMA/RP-SMA pair was checked and rejected, so its hypothetical saving is not counted.
+- A further **$57.01–$84.01** must be removed to reach the electronics band. The formal margin to the complete-device ceiling is only **$-13.01**, so boards, assembly and enclosure do not fit without further resynthesis.
 
 **Accepted:** no separate `Core` is designed now. One fully populated `R2-EVT1` is built and verified first; implementation cost is reduced without removing built-in functions or the safety outcome. The historical `$150` goal is deferred as a possible post-EVT1 community fit option, not a current hardware branch. The sole first order will still cost more because MOQ, setup, manual placement, freight and tax cannot be amortized.
 
@@ -33,8 +33,8 @@ That does not mean Leshy2 must cost eight times as much. It means the current ar
 
 | Boundary | Electronics | Complete base | Honest result |
 |---|---:|---:|---|
-| Current circuit | $273.42 | above $273.42 | already above the accepted ceiling before boards, assembly and enclosure |
-| After the accepted AD8314 and Hirose U.FL changes | $273.42 | above $273.42 | exact current planning floor; still insufficient |
+| Current circuit | $273.01 | above $273.01 | already above the accepted ceiling before boards, assembly and enclosure |
+| After the accepted AD8314 and Hirose U.FL changes | $273.01 | above $273.01 | exact current planning floor; still insufficient |
 | Same built-in user functions and same safety outcome after full cost resynthesis | $214.00–$235.00 | $241.00–$280.00 | only the upper portion overlaps the `$220–260` target |
 | Modular community base; specialist paths are fitted as task-specific Caps/Units | $108.00–$125.00 | $135.00–$165.00 | deferred until a working `R2-EVT1`; there is no separate Core now |
 
@@ -48,16 +48,16 @@ The primary ranking below shows **one prototype only**. It contains neither the 
 
 | № | Source | MPN and role | Qty ×1 | Unit on accepted basis | Group ×1 | Share of known total |
 |---:|---|---|---:|---:|---:|---:|
-| 1 | Antenna | `SMA-W100RX2`<br><sub>receive-only telescopic whip; AIR</sub> | 1 | $35.95 | $35.95 | 8.73% |
-| 2 | Antenna | `001-0012`<br><sub>2.4/5 GHz native radio; S3, C5</sub> | 2 | $16.91 | $33.82 | 8.21% |
-| 3 | Antenna | `AN0155H13`<br><sub>VHF 136-174 MHz; VHF</sub> | 1 | $31.70 | $31.70 | 7.70% |
+| 1 | Antenna | `SMA-W100RX2`<br><sub>receive-only telescopic whip; AIR</sub> | 1 | $35.95 | $35.95 | 8.74% |
+| 2 | Antenna | `001-0012`<br><sub>2.4/5 GHz native radio; S3, C5</sub> | 2 | $16.91 | $33.82 | 8.22% |
+| 3 | Antenna | `AN0155H13`<br><sub>VHF 136-174 MHz; VHF</sub> | 1 | $31.70 | $31.70 | 7.71% |
 | 4 | Antenna | `ANT-433-CW-QW-SMA`<br><sub>433 MHz / UHF 400-470 MHz; S433, UHF</sub> | 2 | $11.23 | $22.46 | 5.46% |
 | 5 | Base BOM | `GCT RFPC-SMA31-FN-175-A`<br><sub>eight standard outward SMA / восемь внешних SMA</sub> | 8 | $2.46 | $19.72 | 4.79% |
 | 6 | Base BOM | `EastRising ER-TFT035IPS-6 + ER-TPC035-6`<br><sub>display</sub> | 1 | $14.91 | $14.91 | 3.62% |
 | 7 | Base BOM | `Analog Devices AD8314ARMZ-REEL`<br><sub>six real-TX RF detectors / шесть RF-детекторов фактической передачи</sub> | 6 | $1.94 | $11.64 | 2.83% |
 | 8 | Base BOM | `OMRON B3S-1100P`<br><sub>sixteen ordinary user keys / шестнадцать обычных клавиш</sub> | 16 | $0.64 | $10.25 | 2.49% |
 | 9 | Base BOM | `G-NiceRF SA818S-V`<br><sub>VHF voice transceiver / VHF голосовой трансивер</sub> | 1 | $10.07 | $10.07 | 2.45% |
-| 10 | Base BOM | `G-NiceRF SA818S-U`<br><sub>UHF voice transceiver / UHF голосовой трансивер</sub> | 1 | $9.73 | $9.73 | 2.36% |
+| 10 | Base BOM | `G-NiceRF SA818S-U`<br><sub>UHF voice transceiver / UHF голосовой трансивер</sub> | 1 | $9.73 | $9.73 | 2.37% |
 | 11 | Antenna | `ANT-315-CW-HW-SMA`<br><sub>315 MHz; S315</sub> | 1 | $9.60 | $9.60 | 2.33% |
 | 12 | Base BOM | `TE Connectivity 2118651-2`<br><sub>five 30-mm RF jumpers / пять 30-мм RF-кабелей</sub> | 5 | $1.82 | $9.11 | 2.21% |
 | 13 | Base BOM | `Ebyte E01-ML01SP4`<br><sub>three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm</sub> | 3 | $2.96 | $8.89 | 2.16% |
@@ -69,7 +69,7 @@ The primary ranking below shows **one prototype only**. It contains neither the 
 | 19 | Base BOM | `GCT RFPC-SMA32-FN-175-A`<br><sub>two native-radio RP-SMA / два RP-SMA native-радио</sub> | 2 | $2.46 | $4.93 | 1.20% |
 | 20 | Antenna | `TI.08.C.0112`<br><sub>868/915 MHz; S915</sub> | 1 | $4.79 | $4.79 | 1.16% |
 
-[Unified top 20 — CSV](../hardware/product-design/generated/H1-R2-cost-top20.csv) · [Complete 210-line ranking — CSV](../hardware/product-design/generated/H1-R2-cost-ranked.csv)
+[Unified top 20 — CSV](../hardware/product-design/generated/H1-R2-cost-top20.csv) · [Complete 211-line ranking — CSV](../hardware/product-design/generated/H1-R2-cost-ranked.csv)
 
 ## Critical mass-market audit of the complete top 20
 

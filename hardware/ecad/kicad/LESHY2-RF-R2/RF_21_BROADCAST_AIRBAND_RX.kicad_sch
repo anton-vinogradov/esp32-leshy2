@@ -3049,7 +3049,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Datasheet" "https://jlcpcb.com/partdetail/534688-3225_27_00_10_10_10A/C518151"
+			(property "Datasheet" "https://pdf.elecfans.com/p/11366913.html"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -4257,7 +4257,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "audio_ground_link, backlight_series_resistor, codec_adc_n_series, codec_adc_p_series"
+			(property "Description" "audio_ground_link, codec_adc_n_series, codec_adc_p_series"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)

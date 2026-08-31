@@ -4,13 +4,13 @@
   "marker": "H3-R2.0.3",
   "status": "pass",
   "accepted_input": "H3-R2.0.2",
-  "input_freeze_sha256": "85bfa19be35c6f56ca53d344dafd6296194bb24a419122442814e0e1d3838757",
-  "parameter_register_sha256": "5b49de9781f5d3a93ad640fb5ec5bd2fb7ad4c29d83d3bad356b5933bda0b522",
-  "method_contract_sha256": "23265b0d0fd93f0251ddfbccc1b09707418c0210752546d365c3e43331263588",
+  "input_freeze_sha256": "4aae696d023633d019df48341e23487d72a110f18a1c0507cd6a45b847887fcd",
+  "parameter_register_sha256": "4102242fb46b5124c0600bf6c0073569205b1246a24373ad7b33f089e17fb294",
+  "method_contract_sha256": "5cfaf9ccd8dbebca82dba5224fd25d879762fd6439606c208853e383410f0f64",
   "source_sha256": {
-    "hardware/verification/h3-r2-method-contract.json": "698cf8aa9b32afdc135608c401cfb9750b340acd3252bccae387d666f3bcc5cb",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "b89fe8fcd83f226e33e1e9f97578f084629a34438e86bc652cd66131f135417c",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "c1adf7bd89479ffcb54c45e31f104a84dd92acddf52f8559ed6d3402f712b6ca"
+    "hardware/verification/h3-r2-method-contract.json": "2dad3ae4ab293e68650f321de7f792472330e01b58c3246b4740dc791ca1543b",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "dce9a06336b772ba4160200305d7ab8f1da5ef086184c4744ed2dee1b54bac90",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "79bf8db95f64f690514f34ecfc1986add7bcb44e593049bfa4185191ea90c90c"
   },
   "toolchain": {
     "python": ">=3.12,<3.15",
@@ -531,8 +531,8 @@
         "M-THERMAL",
         "M-TRANS"
       ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
+      "parameter_state": "structured_seed_present",
+      "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
       "device_id": "ebyte_e01_ml01sp4",
@@ -608,6 +608,19 @@
     },
     {
       "device_id": "fh_rs_06k47r0ft",
+      "parameter_class": "passive_corner",
+      "owner_workstreams": [
+        "H3-R2.4"
+      ],
+      "method_ids": [
+        "M-DIGITAL",
+        "M-INT"
+      ],
+      "parameter_state": "structured_seed_present",
+      "missing_parameter_disposition": "evaluate_authoritative_corners"
+    },
+    {
+      "device_id": "fh_rs_06l2r70ft",
       "parameter_class": "passive_corner",
       "owner_workstreams": [
         "H3-R2.4"
@@ -2206,8 +2219,8 @@
         "M-THERMAL",
         "M-TRANS"
       ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
+      "parameter_state": "structured_seed_present",
+      "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
       "device_id": "tca4307dgkr",
@@ -3907,23 +3920,23 @@
     }
   ],
   "summary": {
-    "parameter_rows": 238,
+    "parameter_rows": 239,
     "parameter_classes": 9,
     "workstreams": 7,
     "methods": 9,
     "pass_fail_rules": 12,
-    "assigned_parameter_rows": 238,
+    "assigned_parameter_rows": 239,
     "method_usage": {
       "M-ANALOG": 84,
       "M-DC": 68,
-      "M-DIGITAL": 87,
-      "M-INT": 238,
+      "M-DIGITAL": 88,
+      "M-INT": 239,
       "M-RF": 84,
       "M-STATE": 157,
       "M-THERMAL": 112,
       "M-TRANS": 125
     },
-    "explicit_unresolved_until_extraction": 168,
+    "explicit_unresolved_until_extraction": 166,
     "open_method_questions": 0,
     "errors": 0
   },

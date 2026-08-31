@@ -50,6 +50,7 @@
     "yageo_cc0402brnpo9bn2r8": ["air_bpf_s2_c"],
     "murata_gjm1555c1h1r4wb01d": ["air_bpf_p1_c1p4", "air_bpf_p2_c1p4"],
     "murata_gjm1555c1h5r8wb01d": ["air_bpf_s3_c"],
+    "fh_rs_06l2r70ft": ["backlight_series_resistor"],
     "ralec_rtt023r00fth": ["air_mixer_bias_r"],
     "yageo_rc0402fr_0782rl": ["air_lo_pad_shunt_in", "air_lo_pad_shunt_out"],
     "yageo_rc0402fr_0793r1l": ["air_lo_pad_series"],
@@ -172,7 +173,8 @@
     "yageo_rc0402fr_0710kl": ["evidence_threshold_bottom", "evidence_comparator_pullup"],
     "yageo_rc0402fr_07220kl": ["evidence_threshold_top"],
     "yageo_rc0402fr_0749r9l": ["rf_isolated_termination"],
-    "yageo_rc0402fr_0752r3l": ["rf_detector_match"]
+    "yageo_rc0402fr_0752r3l": ["rf_detector_match"],
+    "yageo_rc0402jr_070rl": ["backlight_series_resistor"]
   },
   "former_sheet_map": {
     "UI_10_S3_CORE_MEMORY_BOOT": "UI_10_S3_DISPLAY_TOUCH",

@@ -4,15 +4,15 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "85bfa19be35c6f56ca53d344dafd6296194bb24a419122442814e0e1d3838757",
-  "register_sha256": "5b49de9781f5d3a93ad640fb5ec5bd2fb7ad4c29d83d3bad356b5933bda0b522",
+  "input_freeze_sha256": "4aae696d023633d019df48341e23487d72a110f18a1c0507cd6a45b847887fcd",
+  "register_sha256": "4102242fb46b5124c0600bf6c0073569205b1246a24373ad7b33f089e17fb294",
   "source_sha256": {
-    "hardware/verification/h3-r2-parameter-provenance-contract.json": "d7f6bdbd7f65500242cc7690e977af6e0e01a3d4c6732b732e19781079d46734",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "b89fe8fcd83f226e33e1e9f97578f084629a34438e86bc652cd66131f135417c",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "36aff71e3668d49c2e6d31e0949929ade916b217b57bd115b047db75c3bc0f08",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "11e74bbc5eb62527b7fc9034b8145ffccfe266b82570c8c34f73f63dc757e842",
-    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "8fd2b01932325583edb6874e9d12ab5d3f092dcf1ffc714b23dff8c8a95f2fd4",
-    "hardware/architecture/devices.json": "884fdffc548fa279e02f77daae84bdfc7702ad0a8a22164aec6d7ccee192dd6b"
+    "hardware/verification/h3-r2-parameter-provenance-contract.json": "fb108b2bfd06605beca446e85c8dc4a553ade3a736fff2b601326ed4bed60e20",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "dce9a06336b772ba4160200305d7ab8f1da5ef086184c4744ed2dee1b54bac90",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "26a47056a531ad64d6276dc7a2f41512067725f85d417fb9cc19d6fd89e51922",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "17748909716153678a2761773ff12c6e45997d7ed337514af295c745d4d5a2b7",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "c1a813404ebaf164cc3147b4afbf8fade728fd4f37ead36965c52ce05ee685f1",
+    "hardware/architecture/devices.json": "d4a0fbb7b98115282faae47e131dd981639310790b39562f85ab083b144e50b7"
   },
   "policy": {
     "accepted_h2_identity_is_immutable": true,
@@ -22,24 +22,24 @@
     "no_component_replacement_or_order_is_authorized": true
   },
   "summary": {
-    "component_groups": 238,
-    "board_component_groups": 233,
+    "component_groups": 239,
+    "board_component_groups": 234,
     "explicit_non_pcba_groups": 5,
     "fitted_board_instances": 1185,
     "source_missing": 0,
-    "factory_catalog_only_parameter_sources": 1,
-    "groups_with_structured_parameter_seeds": 70,
-    "groups_in_explicit_parameter_extraction_queue": 168,
-    "manufacturer_primary_sources": 237,
-    "model_method_candidates": 238,
-    "owned_component_groups": 238,
+    "factory_catalog_only_parameter_sources": 0,
+    "groups_with_structured_parameter_seeds": 73,
+    "groups_in_explicit_parameter_extraction_queue": 166,
+    "manufacturer_primary_sources": 239,
+    "model_method_candidates": 239,
+    "owned_component_groups": 239,
     "parameter_classes": {
       "analog_peripheral": 6,
       "connector_interconnect": 14,
       "digital_interface": 33,
       "electromechanical_or_load": 7,
       "general_component": 36,
-      "passive_corner": 116,
+      "passive_corner": 117,
       "power_safety_active": 11,
       "programmable_controller": 2,
       "radio_rf": 13
@@ -48,12 +48,12 @@
       "analog_peripheral": 3,
       "connector_interconnect": 6,
       "digital_interface": 18,
-      "general_component": 15,
-      "passive_corner": 17,
+      "general_component": 16,
+      "passive_corner": 19,
       "power_safety_active": 3,
       "radio_rf": 8
     },
-    "bounded_source_findings": 1,
+    "bounded_source_findings": 0,
     "open_decisions": 0,
     "errors": 0
   },
@@ -69,16 +69,15 @@
       "url": "https://www.ralec.com/en-global/product_search/index/?page=1&part_no=RTT023R00FTH",
       "checked": "2026-08-31",
       "reason": "replace the factory catalogue card as electrical provenance while retaining C166468 as the assembly route"
+    },
+    "suzhou_liming_3225_27_00_10_10_10_a": {
+      "document": "Suzhou Liming TX3 exact-series manufacturer datasheet for 3225-27.00-10-10-10/A",
+      "url": "https://pdf.elecfans.com/p/11366913.html",
+      "checked": "2026-08-31",
+      "reason": "bind the exact 27-MHz code to the TX3 27-to-60-MHz ESR, drive, temperature and storage envelope while retaining JLCPCB C518151 only as the factory route"
     }
   },
-  "bounded_source_findings": [
-    {
-      "device_id": "suzhou_liming_3225_27_00_10_10_10_a",
-      "owner": "H3-R2.3",
-      "known_identity_route": "JLCPCB C518151 exact manufacturer card",
-      "required_closure": "bind the exact crystal ESR, drive level, aging and temperature envelope to manufacturer-controlled evidence or retain it as an H5 measured residual"
-    }
-  ],
+  "bounded_source_findings": [],
   "rows": [
     {
       "device_id": "abracon_abm8_26mhz_10_d_1_g_t",
@@ -1379,9 +1378,26 @@
         "temperature",
         "applicability"
       ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
+      "structured_parameters": {
+        "vci_operating_range_v": [
+          2.5,
+          3.3
+        ],
+        "vddi_operating_range_v": [
+          1.65,
+          3.3
+        ],
+        "logic_input_low_max_fraction_vddi": 0.3,
+        "logic_input_high_min_fraction_vddi": 0.7,
+        "backlight_parallel_led_count": 6,
+        "backlight_forward_voltage_typ_v": 3.0,
+        "backlight_forward_voltage_max_v_at_120ma": 3.2,
+        "backlight_normal_current_typ_ma": 110,
+        "backlight_normal_current_max_ma": 120,
+        "backlight_lifetime_test_current_ma": 90
+      },
+      "structured_parameter_count": 10,
+      "parameter_state": "structured_seed_present",
       "model_method_candidate": "datasheet_corner_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
@@ -1390,7 +1406,7 @@
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "f5cc653f71c5309298357f714b4c3e5d499e97900fba199374cdfc428dbe2f79",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      "symbol_electrical_contract_sha256": "7ed892a49980c23cdf262ae1f8c323a06ab5fed5b6dde0380e5d3ddbc68d2428"
     },
     {
       "device_id": "ebyte_e01_ml01sp4",
@@ -1739,6 +1755,71 @@
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "8ad93250b7a3805546fef1e86dd39bc556c12c1ba9f702bb47c9472c70912279",
       "symbol_electrical_contract_sha256": "96e91302b13cceb9febf75444b386a1639926c0cd80c2fe6cc5ec0e15c9a06f6"
+    },
+    {
+      "device_id": "fh_rs_06l2r70ft",
+      "mpn": "FH RS-06L2R70FT",
+      "manufacturer": null,
+      "kind": "2r7ohm_1pct_1206_0_25w_backlight_current_softening_resistor",
+      "role": "backlight_series_resistor",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
+      "projects": [
+        "LESHY2-UI-R2"
+      ],
+      "sheets": [
+        "UI_11_STORAGE_CONTROLS_INDICATORS"
+      ],
+      "references": [
+        "R25"
+      ],
+      "lifecycle": "active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C323265",
+      "source": {
+        "document": "FH General Thick Film Chip Fixed Resistor official datasheet",
+        "version": "I 12.0 current official drawing checked 2026-08-31",
+        "url": "https://www.fhcomp.com/uploads/20260810/152605_1-R-%E5%B8%B8%E8%A7%84%E5%8E%9A%E8%86%9C%E7%89%87%E5%BC%8F%E5%9B%BA%E5%AE%9A%E7%94%B5%E9%98%BB%E5%99%A8-I%2012.0.pdf",
+        "checked": "2026-08-31"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "FH General Thick Film Chip Fixed Resistor official datasheet",
+        "version": "I 12.0 current official drawing checked 2026-08-31",
+        "url": "https://www.fhcomp.com/uploads/20260810/152605_1-R-%E5%B8%B8%E8%A7%84%E5%8E%9A%E8%86%9C%E7%89%87%E5%BC%8F%E5%9B%BA%E5%AE%9A%E7%94%B5%E9%98%BB%E5%99%A8-I%2012.0.pdf",
+        "checked": "2026-08-31"
+      },
+      "source_host": "www.fhcomp.com",
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "derating",
+        "temperature",
+        "frequency_or_bias"
+      ],
+      "structured_parameters": {
+        "resistance_ohm": 2.7,
+        "tolerance_pct": 1,
+        "rated_power_w_at_70c": 0.25,
+        "maximum_working_voltage_v": 200,
+        "temperature_coefficient_ppm_per_c": 250,
+        "operating_temperature_c": [
+          -55,
+          155
+        ]
+      },
+      "structured_parameter_count": 6,
+      "parameter_state": "structured_seed_present",
+      "model_method_candidate": "analytic_or_vendor_curve",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.4"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "8ad93250b7a3805546fef1e86dd39bc556c12c1ba9f702bb47c9472c70912279",
+      "symbol_electrical_contract_sha256": "8b0db61a9722c7d57eabbe2e393def010b2d1a181b30dca45b4fcf3ca49da9b7"
     },
     {
       "device_id": "gct_rfpc_sma31_fn_175_a",
@@ -8008,17 +8089,18 @@
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C518151",
       "source": {
-        "document": "Suzhou Liming exact 3225 crystal product data on JLCPCB",
-        "url": "https://jlcpcb.com/partdetail/534688-3225_27_00_10_10_10A/C518151",
-        "checked": "2026-08-31"
+        "document": "Suzhou Liming TX3 exact-series manufacturer datasheet for 3225-27.00-10-10-10/A",
+        "url": "https://pdf.elecfans.com/p/11366913.html",
+        "checked": "2026-08-31",
+        "reason": "bind the exact 27-MHz code to the TX3 27-to-60-MHz ESR, drive, temperature and storage envelope while retaining JLCPCB C518151 only as the factory route"
       },
-      "source_tier": "exact_factory_catalog_identity_parameter_gap",
+      "source_tier": "manufacturer_primary_h3_override",
       "accepted_h2_source_preserved": {
-        "document": "Suzhou Liming exact 3225 crystal product data on JLCPCB",
-        "url": "https://jlcpcb.com/partdetail/534688-3225_27_00_10_10_10A/C518151",
+        "document": "Suzhou Liming TX3 exact-series manufacturer datasheet for 3225-27.00-10-10-10/A",
+        "url": "https://pdf.elecfans.com/p/11366913.html",
         "checked": "2026-08-31"
       },
-      "source_host": "jlcpcb.com",
+      "source_host": "pdf.elecfans.com",
       "parameter_class": "passive_corner",
       "required_parameter_groups": [
         "nominal",
@@ -8027,21 +8109,34 @@
         "temperature",
         "frequency_or_bias"
       ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
+      "structured_parameters": {
+        "frequency_hz": 27000000,
+        "oscillation_mode": "fundamental",
+        "load_capacitance_pf": 10,
+        "frequency_tolerance_ppm_at_25c": 10,
+        "frequency_stability_ppm": 10,
+        "maximum_esr_ohm": 50,
+        "typical_drive_level_uw": 10,
+        "maximum_drive_level_uw": 200,
+        "operating_temperature_c": [
+          -20,
+          70
+        ],
+        "storage_temperature_c": [
+          -55,
+          125
+        ]
+      },
+      "structured_parameter_count": 10,
+      "parameter_state": "structured_seed_present",
       "model_method_candidate": "analytic_or_vendor_curve",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
         "H3-R2.3"
       ],
-      "factory_catalog_parameter_gap": {
-        "owner": "H3-R2.3",
-        "known_identity_route": "JLCPCB C518151 exact manufacturer card",
-        "required_closure": "bind the exact crystal ESR, drive level, aging and temperature envelope to manufacturer-controlled evidence or retain it as an H5 measured residual"
-      },
+      "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "cfae62651414958b01d328f268e332a9a1b82292965f4099a2b2d50dd64caac9",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      "symbol_electrical_contract_sha256": "e5150da2b20e56f22e288da6ec3e8b6b019d9480cb25d064839446738e91b4a7"
     },
     {
       "device_id": "tca4307dgkr",
@@ -14945,11 +15040,11 @@
       "mpn": "Yageo RC0402JR-070RL",
       "manufacturer": null,
       "kind": "0ohm_0402_jumper_resistor",
-      "role": "audio_ground_link, backlight_series_resistor, codec_adc_n_series, codec_adc_p_series",
+      "role": "audio_ground_link, codec_adc_n_series, codec_adc_p_series",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 12,
-      "fitted_board_instance_count": 12,
+      "quantity_per_product": 11,
+      "fitted_board_instance_count": 11,
       "projects": [
         "LESHY2-RF-R2",
         "LESHY2-UI-R2"
@@ -14957,7 +15052,6 @@
       "sheets": [
         "RF_21_BROADCAST_AIRBAND_RX",
         "RF_22_AUDIO_CODEC_IO",
-        "UI_11_STORAGE_CONTROLS_INDICATORS",
         "UI_20_C5_WIFI_IR_SERVICE"
       ],
       "references": [
@@ -14969,7 +15063,6 @@
         "R171",
         "R179",
         "R180",
-        "R25",
         "R95",
         "R97",
         "R99"

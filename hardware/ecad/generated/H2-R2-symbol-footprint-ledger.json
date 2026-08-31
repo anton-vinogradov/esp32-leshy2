@@ -6,11 +6,11 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "36aff71e3668d49c2e6d31e0949929ade916b217b57bd115b047db75c3bc0f08"
+      "sha256": "26a47056a531ad64d6276dc7a2f41512067725f85d417fb9cc19d6fd89e51922"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "884fdffc548fa279e02f77daae84bdfc7702ad0a8a22164aec6d7ccee192dd6b"
+      "sha256": "d4a0fbb7b98115282faae47e131dd981639310790b39562f85ab083b144e50b7"
     }
   },
   "historical_hint_sources": [
@@ -160,16 +160,16 @@
     }
   ],
   "summary": {
-    "component_group_count": 238,
-    "board_component_group_count": 233,
+    "component_group_count": 239,
+    "board_component_group_count": 234,
     "explicit_non_pcba_group_count": 5,
-    "symbol_identity_count": 233,
-    "footprint_identity_count": 233,
-    "logical_contact_count": 1654,
+    "symbol_identity_count": 234,
+    "footprint_identity_count": 234,
+    "logical_contact_count": 1656,
     "historical_package_hints_reconciled": 196,
     "historical_package_conflicts_resolved": 5,
-    "explicit_current_footprint_overrides": 37,
-    "standard_kicad_footprint_identities": 198,
+    "explicit_current_footprint_overrides": 38,
+    "standard_kicad_footprint_identities": 199,
     "reconciled_local_footprint_definitions": 32,
     "new_exact_footprint_geometries_pending_materialization": 3,
     "schematic_symbols_or_footprint_files_created": 0,
@@ -1767,7 +1767,7 @@
         }
       },
       "contact_map_sha256": "f5cc653f71c5309298357f714b4c3e5d499e97900fba199374cdfc428dbe2f79",
-      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "electrical_contract_sha256": "7ed892a49980c23cdf262ae1f8c323a06ab5fed5b6dde0380e5d3ddbc68d2428",
       "manufacturer_evidence": {
         "document": "EastRising ER-TFT035IPS-6 TFT LCD Display Datasheet, revision B1 dated 2025-08-18",
         "url": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
@@ -2459,6 +2459,51 @@
         2
       ],
       "jlcpcb_part_number": "C140014"
+    },
+    {
+      "device_id": "fh_rs_06l2r70ft",
+      "mpn": "FH RS-06L2R70FT",
+      "quantity_per_product": 1,
+      "role": "backlight_series_resistor",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "UI_11_STORAGE_CONTROLS_INDICATORS"
+      ],
+      "schematic_value": "2r7ohm_1pct_1206_0_25w_backlight_current_softening_resistor",
+      "symbol_id": "Leshy2_R2:fh_rs_06l2r70ft",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 2,
+      "contact_role_counts": {
+        "power": 2
+      },
+      "contact_map": {
+        "END_1": {
+          "physical": "1",
+          "role": "power"
+        },
+        "END_2": {
+          "physical": "2",
+          "role": "power"
+        }
+      },
+      "contact_map_sha256": "8ad93250b7a3805546fef1e86dd39bc556c12c1ba9f702bb47c9472c70912279",
+      "electrical_contract_sha256": "8b0db61a9722c7d57eabbe2e393def010b2d1a181b30dca45b4fcf3ca49da9b7",
+      "manufacturer_evidence": {
+        "document": "FH General Thick Film Chip Fixed Resistor official datasheet",
+        "version": "I 12.0 current official drawing checked 2026-08-31",
+        "url": "https://www.fhcomp.com/uploads/20260810/152605_1-R-%E5%B8%B8%E8%A7%84%E5%8E%9A%E8%86%9C%E7%89%87%E5%BC%8F%E5%9B%BA%E5%AE%9A%E7%94%B5%E9%98%BB%E5%99%A8-I%2012.0.pdf",
+        "checked": "2026-08-31"
+      },
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "exact_package_identity_mapped_to_standard_kicad_library",
+        "path": null,
+        "sha256": null
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C323265"
     },
     {
       "device_id": "gct_rfpc_sma31_fn_175_a",
@@ -9896,10 +9941,10 @@
         }
       },
       "contact_map_sha256": "cfae62651414958b01d328f268e332a9a1b82292965f4099a2b2d50dd64caac9",
-      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "electrical_contract_sha256": "e5150da2b20e56f22e288da6ec3e8b6b019d9480cb25d064839446738e91b4a7",
       "manufacturer_evidence": {
-        "document": "Suzhou Liming exact 3225 crystal product data on JLCPCB",
-        "url": "https://jlcpcb.com/partdetail/534688-3225_27_00_10_10_10A/C518151",
+        "document": "Suzhou Liming TX3 exact-series manufacturer datasheet for 3225-27.00-10-10-10/A",
+        "url": "https://pdf.elecfans.com/p/11366913.html",
         "checked": "2026-08-31"
       },
       "footprint": "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm",
@@ -16823,14 +16868,13 @@
     {
       "device_id": "yageo_rc0402jr_070rl",
       "mpn": "Yageo RC0402JR-070RL",
-      "quantity_per_product": 12,
-      "role": "audio_ground_link, backlight_series_resistor, codec_adc_n_series, codec_adc_p_series",
+      "quantity_per_product": 11,
+      "role": "audio_ground_link, codec_adc_n_series, codec_adc_p_series",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_21_BROADCAST_AIRBAND_RX",
         "RF_22_AUDIO_CODEC_IO",
         "UI_10_S3_DISPLAY_TOUCH",
-        "UI_11_STORAGE_CONTROLS_INDICATORS",
         "UI_20_C5_WIFI_IR_SERVICE"
       ],
       "schematic_value": "0ohm_0402_jumper_resistor",

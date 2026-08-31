@@ -14,13 +14,13 @@
     "hardware/architecture/h1-r2-dual-rp-pinout.json": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753",
     "hardware/architecture/c5-sdio-service-mux-contract.json": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
     "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
-    "hardware/architecture/candidates/G2F-3I.json": "2673a4d23435effe9ec592e6060a3b1bc525598944d932f0a502d0fd4636ce8f",
+    "hardware/architecture/candidates/G2F-3I.json": "ce60d399d4133a68b3115753880108ce070ed905dbdbe58d1171a4bba0ca2cba",
     "hardware/architecture/h1-r2-u219-cap.json": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
     "hardware/product-design/h1-r2-placement.json": "5c87457efa793572df1ff699f499b58437590e0b5b4655492552015dac8ccadc",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "36aff71e3668d49c2e6d31e0949929ade916b217b57bd115b047db75c3bc0f08",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "11e74bbc5eb62527b7fc9034b8145ffccfe266b82570c8c34f73f63dc757e842",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "0e4a7d802b7bfe7ea9f8e375818ae5986c765cba530dd59b256183065c5257eb",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "56e78bc5818187361eaf56b3161256e459829b6dd132482137a79bad1bd737ec",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "26a47056a531ad64d6276dc7a2f41512067725f85d417fb9cc19d6fd89e51922",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "17748909716153678a2761773ff12c6e45997d7ed337514af295c745d4d5a2b7",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "9d9728cab32afec5851c2867c2bf87037ba1b02a9fee92c4106bb3efd5069e82",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "38d1854842c4210c404593e9a18a3315bedb0904c2e40542c0f650d85b4f70ef",
     "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "b4f6a6d79531b51d96656ae654a1a80be2cb1d672a4d8b3f519868c8ea966993"
   },
   "bsp": {
@@ -6270,7 +6270,7 @@
       "hardware/architecture/h1-r2-dual-rp-pinout.json": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753",
       "hardware/architecture/c5-sdio-service-mux-contract.json": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
       "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
-      "hardware/architecture/candidates/G2F-3I.json": "2673a4d23435effe9ec592e6060a3b1bc525598944d932f0a502d0fd4636ce8f",
+      "hardware/architecture/candidates/G2F-3I.json": "ce60d399d4133a68b3115753880108ce070ed905dbdbe58d1171a4bba0ca2cba",
       "hardware/architecture/h1-r2-u219-cap.json": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
       "hardware/product-design/h1-r2-placement.json": "5c87457efa793572df1ff699f499b58437590e0b5b4655492552015dac8ccadc"
     },

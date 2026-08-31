@@ -36,9 +36,9 @@ No platform guarantees perpetual public stock. Leshy2 therefore selects ordinary
 
 ## Controlled BOM Tool run
 
-The controlled BOM Tool capture belongs to the former 209-line BOM: 176 matched, 33 unmatched and 1019 placements. The current BOM replaces `SA518` with two exact voice modules, the legacy display with the exact EastRising endpoint, and the former 0-dBm nRF24 with the stocked full-power `E01-ML01SP4`. This yields a checkable current map of `210` lines and `1052` placements without retransmitting the BOM. Before applying the retained outlier resolutions it has 183 exact catalogue routes and 27 unresolved lines; zero semantic MPN substitutions were observed.
+The controlled BOM Tool capture belongs to the former 209-line BOM: 176 matched, 33 unmatched and 1019 placements. The current BOM replaces `SA518` with two exact voice modules, the legacy display with the exact EastRising endpoint, and the former 0-dBm nRF24 with the stocked full-power `E01-ML01SP4`. This yields a checkable current map of `211` lines and `1052` placements without retransmitting the BOM. Before applying the retained outlier resolutions it has 184 exact catalogue routes and 27 unresolved lines; zero semantic MPN substitutions were observed.
 
-The retained exact search resolves all 27 remaining outliers without component replacement: 11 are added to `J0`, 2 to `J2`, 10 retain the exact MPN through `J3`, 2 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. The exact EastRising display already enters through its direct `J4-F` route. The whole-BOM result is `J0=166`, `J1=0`, `J2=29`, `J3=10`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
+The retained exact search resolves all 27 remaining outliers without component replacement: 11 are added to `J0`, 2 to `J2`, 10 retain the exact MPN through `J3`, 2 require factory final assembly `J4-F`, U214 uses `J4-P`, and accumulators use out-of-delivery `J5-U`. The exact EastRising display already enters through its direct `J4-F` route. The whole-BOM result is `J0=167`, `J1=0`, `J2=29`, `J3=10`, `J4-F=3`, `J4-P=1`, `J5-U=1`; zero lines remain unmapped.
 
 The `$1255.6365` displayed in the historical BOM Tool capture covers only its former 176 matched lines and is **not** a current complete assembly price, quote or order. The sole prototype's order-integrated article manifest is calculated on the [manifest page](component-sample-basket.md); there is no separate sample/coupon purchase.
 
@@ -79,10 +79,11 @@ The `$1255.6365` displayed in the historical BOM Tool capture covers only its fo
 
 ## Independent critical-part check
 
-`22` critical identities were checked independently before the bulk run. Their stock snapshots neither override the current BOM Tool result nor promise permanent availability.
+`23` critical identities were checked independently before the bulk run. Their stock snapshots neither override the current BOM Tool result nor promise permanent availability.
 
 | MPN | JLC | Current evidence | Route |
 |---|---:|---|---|
+| [`RS-06L2R70FT`](https://jlcpcb.com/partdetail/304147-RS06L2R70FT/C323265) | `C323265` | stock 3617 | `J0` · exact 2.7-Ohm +/-1% 250-mW 1206 backlight resistor removes the uncontrolled zero-Ohm cathode path while retaining useful first-prototype brightness |
 | [`FSUSB42MUX`](https://jlcpcb.com/partdetail/onsemi-FSUSB42MUX/C11355) | `C11355` | stock 66698 | `J0` · live 2026-08-30 public-stock route for the exact onsemi MSOP-10; selected without package or pin-topology change |
 | [`ESP32-S3-WROOM-1U-N16R8`](https://jlcpcb.com/partdetail/ESP32-S3-WROOM-1U-N16R8/C3013946) | `C3013946` | stock 14529 | `J0` · exact selected module is directly assembleable |
 | [`ESP32-C5-WROOM-1U-N8R8`](https://jlcpcb.com/partdetail/C54951858) | `C54951858` | stock 460 | `J0` · official Espressif MPN remains unsuffixed; the supplier code fixes the production route at V1.2 and incoming MD plus eFuse must independently prove revision >=v1.2 |
@@ -129,10 +130,10 @@ The official MPN remains `ESP32-C5-WROOM-1U-N8R8`. Only the supplier order code 
 ## Current result
 
 - JLCPCB Standard PCBA is the working reference without lock-in.
-- All `210` lines have a defined `J0`–`J3`, `J4-F`, `J4-P` or `J5-U` route; no functional replacement was introduced.
+- All `211` lines have a defined `J0`–`J3`, `J4-F`, `J4-P` or `J5-U` route; no functional replacement was introduced.
 - JLCPCB's partial [26 August 2026 response](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) confirms exact `SA818S-V C51897911` MOQ 1 and a typical 8–15-working-day pre-order, plus the official Function Test path with manual procedure review and a `$15.70 + $7.86/hour` basis. Function Test is optional for this project and closes no gate; written acceptance of display mating and one-prototype final assembly is still absent. Accumulators remain `J5-U` and outside delivery. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) stays fail-closed; purchase and order remain unauthorized.
 - The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git, but Parts permission remains `Rejected`. [Support replied](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md) that the account is new and has no order history, so an ongoing business need could not yet be verified; reapplication is possible after building history or with a fuller business case/integration plan. The responder explicitly is not on the API review team and supplied no exact order threshold. No reapplication was submitted: API calls remain unusable, and live manual catalogue cards plus BOM validation remain authoritative. PCB/3D are also rejected; SMT Stencil and JLC Balance remain inactive.
 - [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) preserves a fallback without restarting H5: PCBWay is the first full-device candidate and Seeed is the PCBA second source. The [same no-order PCBWay questionnaire](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) is prepared but sending it and all commercial actions remain unauthorized.
-- The former 209-line BOM upload was transmitted and processed; the current 210-line file was generated locally but not transmitted: 196 identities are preserved, 14 new exact pages and the refreshed C5 route were checked separately. No quote, sourcing request, reservation, purchase, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
+- The former 209-line BOM upload was transmitted and processed; the current 211-line file was generated locally but not transmitted: 196 identities are preserved, 15 new exact pages and the refreshed C5 route were checked separately. No quote, sourcing request, reservation, purchase, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
 
 Machine results: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json), [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json), [`H5-EVR06`](../hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json) and [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json). [JLCPCB BOM requirements](https://jlcpcb.com/help/article/bill-of-materials-for-pcb-assembly).

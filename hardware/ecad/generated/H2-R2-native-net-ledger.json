@@ -6,12 +6,12 @@
   "sources": {
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "11e74bbc5eb62527b7fc9034b8145ffccfe266b82570c8c34f73f63dc757e842",
+      "sha256": "17748909716153678a2761773ff12c6e45997d7ed337514af295c745d4d5a2b7",
       "authority": true
     },
     "definitions": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "8fd2b01932325583edb6874e9d12ab5d3f092dcf1ffc714b23dff8c8a95f2fd4",
+      "sha256": "c1a813404ebaf164cc3147b4afbf8fade728fd4f37ead36965c52ce05ee685f1",
       "authority": true
     },
     "h0": {
@@ -46,7 +46,7 @@
     },
     "historical_route_contract": {
       "path": "hardware/architecture/candidates/G2F-3I.json",
-      "sha256": "2673a4d23435effe9ec592e6060a3b1bc525598944d932f0a502d0fd4636ce8f",
+      "sha256": "ce60d399d4133a68b3115753880108ce070ed905dbdbe58d1171a4bba0ca2cba",
       "authority": false
     },
     "historical_instance_ledger": {
@@ -43345,10 +43345,10 @@
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
       "reference": "R25",
-      "device_id": "yageo_rc0402jr_070rl",
+      "device_id": "fh_rs_06l2r70ft",
       "contact": "END_1",
       "physical": "1",
-      "role": "passive",
+      "role": "power",
       "disposition": "connected",
       "net": "LCD_LEDK",
       "origin": "reconciled_historical_same_endpoint_route_hint",
@@ -43360,10 +43360,10 @@
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
       "reference": "R25",
-      "device_id": "yageo_rc0402jr_070rl",
+      "device_id": "fh_rs_06l2r70ft",
       "contact": "END_2",
       "physical": "2",
-      "role": "passive",
+      "role": "power",
       "disposition": "connected",
       "net": "LCD_LEDK_LIMITED",
       "origin": "reconciled_historical_same_endpoint_route_hint",

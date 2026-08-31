@@ -6,19 +6,19 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "63434a3a490f659a88f898baa7a3e4deaed56993db035e96ab62a5a7a50df47a"
+      "sha256": "cbb678978b558ef81ae69b75ac18c727d9a1891add670d97390b277c495e640f"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "8fd2b01932325583edb6874e9d12ab5d3f092dcf1ffc714b23dff8c8a95f2fd4"
+      "sha256": "c1a813404ebaf164cc3147b4afbf8fade728fd4f37ead36965c52ce05ee685f1"
     }
   },
   "library": {
     "id": "Leshy2_R2",
     "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-    "sha256": "807f606a64a141e1d962858981082b7ec9bfc3b4b649c4c59bad0eba45427435",
-    "symbol_count": 233,
-    "pin_count": 1610,
+    "sha256": "2e809e8e4b103fc9f16db074f3ef074cacad7be11d5bfe90537c1211478894b7",
+    "symbol_count": 234,
+    "pin_count": 1612,
     "external_interface_metadata_count": 3
   },
   "symbols": [
@@ -2952,6 +2952,40 @@
       "symbol_id": "Leshy2_R2:fh_rs_06k47r0ft",
       "reference_prefix": "R",
       "value": "FH RS-06K47R0FT",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "fh_rs_06l2r70ft",
+      "symbol_id": "Leshy2_R2:fh_rs_06l2r70ft",
+      "reference_prefix": "R",
+      "value": "FH RS-06L2R70FT",
       "footprint": "Resistor_SMD:R_1206_3216Metric",
       "pin_count": 2,
       "no_connect_pin_count": 0,

@@ -1,21 +1,21 @@
 rank,source,mpn,role,quantity_per_prototype,effective_unit_price_usd,group_cost_per_prototype_usd,share_of_known_combined_total_pct
-1,external_antenna,SMA-W100RX2,receive-only telescopic whip; AIR,1,35.95,35.95,8.731
-2,external_antenna,001-0012,"2.4/5 GHz native radio; S3, C5",2,16.91,33.82,8.214
-3,external_antenna,AN0155H13,VHF 136-174 MHz; VHF,1,31.7,31.7,7.699
-4,external_antenna,ANT-433-CW-QW-SMA,"433 MHz / UHF 400-470 MHz; S433, UHF",2,11.23,22.46,5.455
-5,base_bom,GCT RFPC-SMA31-FN-175-A,eight standard outward SMA / восемь внешних SMA,8,2.46456,19.71648,4.789
-6,base_bom,EastRising ER-TFT035IPS-6 + ER-TPC035-6,display,1,14.91,14.91,3.621
-7,base_bom,Analog Devices AD8314ARMZ-REEL,six real-TX RF detectors / шесть RF-детекторов фактической передачи,6,1.9398,11.6388,2.827
-8,base_bom,OMRON B3S-1100P,sixteen ordinary user keys / шестнадцать обычных клавиш,16,0.6405,10.248,2.489
-9,base_bom,G-NiceRF SA818S-V,VHF voice transceiver / VHF голосовой трансивер,1,10.071,10.071,2.446
-10,base_bom,G-NiceRF SA818S-U,UHF voice transceiver / UHF голосовой трансивер,1,9.7347,9.7347,2.364
-11,external_antenna,ANT-315-CW-HW-SMA,315 MHz; S315,1,9.6,9.6,2.332
-12,base_bom,TE Connectivity 2118651-2,five 30-mm RF jumpers / пять 30-мм RF-кабелей,5,1.8211,9.1055,2.211
-13,base_bom,Ebyte E01-ML01SP4,three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm,3,2.9633,8.889899999999999,2.159
-14,base_bom,Keystone Electronics 1048P,dual protected-18650 holder / держатель двух защищённых 18650,1,8.57,8.57,2.081
-15,base_bom,Texas Instruments TMUX1136DGSR,four complete audio/control selectors / четыре полных audio/control selector,4,2.0581,8.2324,1.999
-16,base_bom,LTC5532ES6#TRMPBF,"S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц",2,3.8877,7.7754,1.888
-17,base_bom,Samtec FTSH-105-01-L-DV-K-P-TR,four internal recovery headers / четыре внутренних recovery-разъёма,4,1.6991,6.7964,1.651
-18,base_bom,ESP32-S3-WROOM-1U-N16R8,s3,1,5.108,5.108,1.241
-19,base_bom,GCT RFPC-SMA32-FN-175-A,two native-radio RP-SMA / два RP-SMA native-радио,2,2.46456,4.92912,1.197
-20,external_antenna,TI.08.C.0112,868/915 MHz; S915,1,4.7866,4.7866,1.163
+1,external_antenna,SMA-W100RX2,receive-only telescopic whip; AIR,1,35.95,35.95,8.74
+2,external_antenna,001-0012,"2.4/5 GHz native radio; S3, C5",2,16.91,33.82,8.222
+3,external_antenna,AN0155H13,VHF 136-174 MHz; VHF,1,31.7,31.7,7.707
+4,external_antenna,ANT-433-CW-QW-SMA,"433 MHz / UHF 400-470 MHz; S433, UHF",2,11.23,22.46,5.46
+5,base_bom,GCT RFPC-SMA31-FN-175-A,eight standard outward SMA / восемь внешних SMA,8,2.46456,19.71648,4.793
+6,base_bom,EastRising ER-TFT035IPS-6 + ER-TPC035-6,display,1,14.91,14.91,3.625
+7,base_bom,Analog Devices AD8314ARMZ-REEL,six real-TX RF detectors / шесть RF-детекторов фактической передачи,6,1.9398,11.6388,2.83
+8,base_bom,OMRON B3S-1100P,sixteen ordinary user keys / шестнадцать обычных клавиш,16,0.6405,10.248,2.491
+9,base_bom,G-NiceRF SA818S-V,VHF voice transceiver / VHF голосовой трансивер,1,10.071,10.071,2.448
+10,base_bom,G-NiceRF SA818S-U,UHF voice transceiver / UHF голосовой трансивер,1,9.7347,9.7347,2.367
+11,external_antenna,ANT-315-CW-HW-SMA,315 MHz; S315,1,9.6,9.6,2.334
+12,base_bom,TE Connectivity 2118651-2,five 30-mm RF jumpers / пять 30-мм RF-кабелей,5,1.8211,9.1055,2.214
+13,base_bom,Ebyte E01-ML01SP4,three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm,3,2.9633,8.889899999999999,2.161
+14,base_bom,Keystone Electronics 1048P,dual protected-18650 holder / держатель двух защищённых 18650,1,8.57,8.57,2.084
+15,base_bom,Texas Instruments TMUX1136DGSR,four complete audio/control selectors / четыре полных audio/control selector,4,2.0581,8.2324,2.001
+16,base_bom,LTC5532ES6#TRMPBF,"S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц",2,3.8877,7.7754,1.89
+17,base_bom,Samtec FTSH-105-01-L-DV-K-P-TR,four internal recovery headers / четыре внутренних recovery-разъёма,4,1.6991,6.7964,1.652
+18,base_bom,ESP32-S3-WROOM-1U-N16R8,s3,1,5.108,5.108,1.242
+19,base_bom,GCT RFPC-SMA32-FN-175-A,two native-radio RP-SMA / два RP-SMA native-радио,2,2.46456,4.92912,1.198
+20,external_antenna,TI.08.C.0112,868/915 MHz; S915,1,4.7866,4.7866,1.164

@@ -9,12 +9,12 @@
 ## Что уже посчитано
 
 - **1053** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **1052** supplied/costed placements collapse to **210** used exact-device/MPN lines.
-- Current orderability evidence exists for **210/210** used lines; **0** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **201/210** lines.
+- After excluding those non-purchase nodes, **1052** supplied/costed placements collapse to **211** used exact-device/MPN lines.
+- Current orderability evidence exists for **211/211** used lines; **0** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **202/211** lines.
 - Of the remaining **9** unpriced lines, **9** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **1038/1052** supplied placements; their partial subtotals are `base_product` — USD 251.9207. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **210/210** lines.
+- Those priced lines cover **1038/1052** supplied placements; their partial subtotals are `base_product` — USD 251.9243. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **211/211** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
 Scopes: `base_product` — 1049 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
@@ -102,7 +102,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-CTRL-PASSIVE</code> — Control, timing, precision, protection-current and sensing passives — 60 line(s)</summary>
+<details><summary><code>SUB-CTRL-PASSIVE</code> — Control, timing, precision, protection-current and sensing passives — 61 line(s)</summary>
 
 - Disposition: controlled parametric substitution; no value-family or tolerance relaxation without owning-subblock review.
 - Equivalence envelope:
@@ -116,6 +116,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 - Current lines:
   - `bourns_crm2512_fx_20r0elf` — `Bourns CRM2512-FX-20R0ELF`.
   - `fh_rs_06k47r0ft` — `FH RS-06K47R0FT`.
+  - `fh_rs_06l2r70ft` — `FH RS-06L2R70FT`.
   - `kemet_c0402c102k5ractu` — `KEMET C0402C102K5RACTU`.
   - `kemet_c0402c330j5gactu` — `KEMET C0402C330J5GACTU`.
   - `littelfuse_0451005_mrl` — `Littelfuse 0451005.MRL`.
@@ -572,6 +573,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: conservative JLCPCB one-piece tier; target quantity `100`.
 - Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014).
+
+</details>
+
+<details><summary><code>FH RS-06L2R70FT</code> — 1 × USD 0.0084 = USD 0.0084</summary>
+
+- Device id: `fh_rs_06l2r70ft`.
+- Scope: `base_product`.
+- Comparable basis: JLCPCB one-piece tier; target quantity `1`.
+- Checked: `2026-08-31`; [published source](https://jlcpcb.com/partdetail/304147-RS06L2R70FT/C323265).
 
 </details>
 
@@ -2132,7 +2142,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402JR-070RL</code> — 4 × USD 0.0048 = USD 0.0192</summary>
+<details><summary><code>Yageo RC0402JR-070RL</code> — 3 × USD 0.0048 = USD 0.0144</summary>
 
 - Device id: `yageo_rc0402jr_070rl`.
 - Scope: `base_product`.

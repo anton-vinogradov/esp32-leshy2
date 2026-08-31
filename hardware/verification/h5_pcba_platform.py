@@ -24,7 +24,7 @@ FALLBACK_OUTPUT = REPO / "hardware/verification/generated/H5-EVR08-fallback-fact
 C5_INVARIANT_PATH = REPO / "hardware/architecture/c5-procurement-invariant.json"
 DOC_EN = REPO / "docs/manufacturing-platform.md"
 DOC_RU = REPO / "docs/manufacturing-platform.ru.md"
-CHECKED_ON = "2026-08-30"
+CHECKED_ON = "2026-08-31"
 C5_INVARIANT = json.loads(C5_INVARIANT_PATH.read_text(encoding="utf-8"))
 UPLOAD_AUTHORIZED_ON = "2026-08-25"
 SUPPLIER_INQUIRY = {
@@ -222,6 +222,18 @@ VOICE_PART_ROUTES = {
 
 
 CURRENT_EXACT_PART_ROUTES = {
+    "RS-06L2R70FT": {
+        "device_id": "fh_rs_06l2r70ft",
+        "mpn": "FH RS-06L2R70FT",
+        "lcsc": "C323265",
+        "route": "J0",
+        "stock": 3617,
+        "available_order_quantity": 3522,
+        "minimum_quantity": 1,
+        "quantity_one_usd": "0.0084",
+        "status": "in_stock",
+        "source": "https://jlcpcb.com/partdetail/304147-RS06L2R70FT/C323265",
+    },
     "U.FL-R-SMT-1(80)": {
         "device_id": "hirose_ufl_r_smt_1_10",
         "mpn": "Hirose U.FL-R-SMT-1(80)",
@@ -576,6 +588,7 @@ TIERS = [
 
 
 SPOT_CHECKS = [
+    {"device_id": "fh_rs_06l2r70ft", "mpn": "RS-06L2R70FT", "jlc": "C323265", "tier": "J0", "stock": 3617, "available_order_quantity": 3522, "moq": 1, "quantity_one_usd": 0.0084, "pcba": "SMT; Economic and Standard", "source": "https://jlcpcb.com/partdetail/304147-RS06L2R70FT/C323265", "finding": "exact 2.7-Ohm +/-1% 250-mW 1206 backlight resistor removes the uncontrolled zero-Ohm cathode path while retaining useful first-prototype brightness"},
     {"device_id": "onsemi_fsusb42_mux", "mpn": "FSUSB42MUX", "jlc": "C11355", "tier": "J0", "stock": 66698, "available_order_quantity": 66045, "moq": 1, "quantity_one_usd": 0.3179, "pcba": "Extended SMT; Economic and Standard; MSL 1", "source": "https://jlcpcb.com/partdetail/onsemi-FSUSB42MUX/C11355", "finding": "live 2026-08-30 public-stock route for the exact onsemi MSOP-10; selected without package or pin-topology change"},
     {"device_id": "esp32_s3_wroom_1u_n16r8", "mpn": "ESP32-S3-WROOM-1U-N16R8", "jlc": "C3013946", "tier": "J0", "stock": 14529, "pcba": "Standard only; X-ray required", "source": "https://jlcpcb.com/partdetail/ESP32-S3-WROOM-1U-N16R8/C3013946", "finding": "exact selected module is directly assembleable"},
     {"device_id": "esp32_c5_wroom_1u_n8r8", "mpn": "ESP32-C5-WROOM-1U-N8R8", "supplier_order_code": "ESP32-C5-WROOM-1U-N8R8-V1.2", "jlc": "C54951858", "tier": "J0", "stock": 460, "available_order_quantity": 440, "moq": 1, "pcba": "SMT; Standard PCBA", "source": "https://jlcpcb.com/partdetail/C54951858", "finding": "official Espressif MPN remains unsuffixed; the supplier code fixes the production route at V1.2 and incoming MD plus eFuse must independently prove revision >=v1.2"},
@@ -711,14 +724,14 @@ def build_match_result(rows: list[dict[str, str]]) -> dict:
         "historical_capture_diff_is_exactly_known_replacements_to_current_exact_pages": set(by_mpn) - current_mpns == HISTORICAL_REPLACED_MPNS
         and current_mpns - set(by_mpn) == set(CURRENT_EXACT_PART_ROUTES) - CURRENT_EXACT_OVERRIDE_MPNS
         and CURRENT_EXACT_OVERRIDE_MPNS <= current_mpns & set(by_mpn),
-        "all_210_current_lines_returned_once": len(routes) == len(rows) == 210
-        and len({route["bom_index"] for route in routes}) == 210,
+        "all_211_current_lines_returned_once": len(routes) == len(rows) == 211
+        and len({route["bom_index"] for route in routes}) == 211,
         "all_current_designator_quantities_and_1052_placements_reconcile": all(
             route["designators_complete"] for route in routes
         ) and summary["parsed_placements"] == 1052,
-        "current_exact_route_counts_reconcile": summary["matched_lines"] == 183
+        "current_exact_route_counts_reconcile": summary["matched_lines"] == 184
         and summary["unmatched_lines"] == 27
-        and summary["in_stock_lines"] == 155
+        and summary["in_stock_lines"] == 156
         and summary["pre_order_lines"] == 27,
         "both_voice_routes_use_exact_current_jlcpcb_pages": all(
             any(route["normalized_mpn"] == mpn and route["lcsc"] == voice["lcsc"] for route in routes)
@@ -795,7 +808,7 @@ def build_match_result(rows: list[dict[str, str]]) -> dict:
         "schema_version": 1,
         "artifact": "H5-EVR05",
         "stage": "H5.0.3-R1",
-        "status": "current_210_line_route_join_captured_27_outliers_open",
+        "status": "current_211_line_route_join_captured_27_outliers_open",
         "checked_on": CHECKED_ON,
         "input": {
             "target_bom": str(BOM.relative_to(REPO)),
@@ -927,7 +940,7 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
         "generic_placeholders_are_not_accepted_as_identity": all(
             row["lcsc"] is None for row in resolved if row["normalized_mpn"] == "TSMP95000TT"
         ),
-        "all_210_lines_have_defined_availability_or_final_assembly_route": sum(counts.values()) == 210
+        "all_211_lines_have_defined_availability_or_final_assembly_route": sum(counts.values()) == 211
         and all(route["route"] in counts for route in final_routes),
         "no_component_replacement_is_introduced": counts["J1"] == 0
         and all(not row["component_replacement"] for row in resolved),
@@ -939,7 +952,7 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
         "schema_version": 2,
         "artifact": "H5-EVR06",
         "stage": "H5.0.3-R1",
-        "status": "all_210_routes_mapped_dual_sa818s_and_factory_gates_open",
+        "status": "all_211_routes_mapped_dual_sa818s_and_factory_gates_open",
         "checked_on": CHECKED_ON,
         "input": {
             "bom_tool_result": str(MATCH_OUTPUT.relative_to(REPO)),
@@ -1010,7 +1023,7 @@ def build() -> dict:
     }
     checks = {
         "reference_is_standard_pcba": PLATFORMS[0]["id"] == "jlcpcb-standard-pcba",
-        "target_bom_has_210_exact_lines": len(rows) == 210,
+        "target_bom_has_211_exact_lines": len(rows) == 211,
         "every_spot_check_is_in_target_bom": not missing,
         "every_spot_check_has_a_source_and_tier": all(row["source"] and row["tier"] in {tier["id"] for tier in TIERS} for row in SPOT_CHECKS),
         "no_stock_snapshot_claims_permanent_availability": True,
@@ -1018,11 +1031,11 @@ def build() -> dict:
         "minimum_bom_upload_authorized_by_user": True,
         "first_minimum_bom_upload_was_transmitted_and_parse_failed": True,
         "historical_209_line_compact_bom_was_transmitted_and_processed": True,
-        "current_210_line_upload_was_generated_but_not_transmitted": True,
+        "current_211_line_upload_was_generated_but_not_transmitted": True,
         "all_target_placements_were_parsed": match_summary["parsed_placements"] == 1052,
         "no_semantic_mpn_substitution_was_observed": match_summary["semantic_mpn_mismatches"] == 0,
         "all_27_current_unmatched_lines_remain_explicit": match_summary["unmatched_lines"] == 27,
-        "all_210_lines_have_defined_availability_or_final_assembly_route": outlier_result["summary"]["unmapped_lines"] == 0,
+        "all_211_lines_have_defined_availability_or_final_assembly_route": outlier_result["summary"]["unmapped_lines"] == 0,
         "all_component_sample_prices_are_known": outlier_result["summary"]["open_qualified_price_lines"] == 0,
         "sa818s_v_preorder_lead_time_is_explicitly_open": outlier_result["summary"]["preorder_lead_time_open_mpn"] == "SA818S-V",
         "factory_final_assembly_gate_is_explicitly_open": not PLATFORMS[0]["fit"]["final_box_build_proven"],
@@ -1191,13 +1204,13 @@ def build() -> dict:
                 "processed": True,
                 "result": "176 matched, 33 unmatched, all 1019 historical target placements parsed",
             },
-            "current_210_line_attempt": {
+            "current_211_line_attempt": {
                 "sha256": hashlib.sha256(render_upload().encode("utf-8")).hexdigest(),
                 "transmitted": False,
                 "processed": False,
-                "result": "historical 209-line capture retained for 196 preserved identities; 195 join unchanged, C5 is rebound to current exact C54951858, and 14 new exact rows join separately into the 210-line map",
+                "result": "historical 209-line capture retained for 196 preserved identities; 195 join unchanged, C5 is rebound to current exact C54951858, and 15 new exact rows join separately into the 211-line map",
             },
-            "blocker": "all 210 current lines have defined routes and all sample component prices are known; the actual two-designator U/V job plus J4-F/J4-P final-assembly acceptance/pricing remain open; accumulators are user-supplied and not a delivery gate; no sourcing request, quote, reservation or order has been created",
+            "blocker": "all 211 current lines have defined routes and all sample component prices are known; the actual two-designator U/V job plus J4-F/J4-P final-assembly acceptance/pricing remain open; accumulators are user-supplied and not a delivery gate; no sourcing request, quote, reservation or order has been created",
         },
         "critical_spot_checks": SPOT_CHECKS,
         "summary": {
@@ -1230,7 +1243,7 @@ def build() -> dict:
             "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot",
         },
         "next": {
-            "local": "all 210 lines have defined routes; preserve the map, keep the two-designator and J4-F/J4-P clarification open, keep accumulators outside delivery, keep the optional rejected Parts API path fail-closed, and retain PCBWay as the prepared unsent full-device fallback",
+            "local": "all 211 lines have defined routes; preserve the map, keep the two-designator and J4-F/J4-P clarification open, keep accumulators outside delivery, keep the optional rejected Parts API path fail-closed, and retain PCBWay as the prepared unsent full-device fallback",
             "external_authority_later": "quote creation, sourcing requests, private-stock reservation, purchase and any materially expanded supplier request still require separate explicit authority",
             "forbidden": ["purchase", "component replacement", "sourcing request", "quote creation", "private-stock reservation", "raw API data redistribution", "KiCad placement/routing", "fabrication"],
         },
@@ -1359,7 +1372,7 @@ JLCPCB Standard PCBA собирает обе платы и принятые SMT/
 - Частичный [ответ JLCPCB](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) подтверждает exact `SA818S-V C51897911` MOQ 1 и типичные 8–15 рабочих дней pre-order, а также официальный путь Function Test с ручным review процедуры и базой `$15.70 + $7.86/hour`. Для проекта Function Test необязателен и не закрывает gate; письменное принятие display mating и финальной сборки одного прототипа всё ещё отсутствует. Аккумуляторы остаются `J5-U` и не входят в поставку. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) остаётся fail-closed; закупка и заказ не разрешены.
 - Заявка JLCAPI одобрена, приложение `ESP32-Leshy2 BOM Validator` создано, ключ подписи хранится только локально вне Git, но право Parts остаётся `Rejected`. [Поддержка ответила](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md), что аккаунт новый и не имеет истории заказов, поэтому устойчивую business need пока не удалось подтвердить; повторная заявка возможна после появления истории либо с расширенным business case/integration plan. Автор ответа отдельно указал, что не входит в API review team, и точный порог заказов не назван. Повторная заявка не отправлена: до фактического одобрения API-вызовы невозможны, а активным авторитетным путём остаются ручные карточки каталога и BOM. PCB/3D также отклонены, SMT Stencil и JLC Balance выключены.
 - [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) фиксирует резерв без возврата к началу H5: PCBWay — первый кандидат на полную сборку, Seeed — второй источник PCBA. [Одинаковый no-order запрос PCBWay](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) подготовлен, но его отправка и любые коммерческие действия не разрешены.
-- Прежний 209-строчный BOM upload был передан и обработан; текущий 210-строчный файл сгенерирован локально, но не передавался: 196 identity сохранены, 14 новых exact-страниц и актуальный C5 route проверены отдельно. Quote, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены. Сырые API-ответы публично не распространяются.
+- Прежний 209-строчный BOM upload был передан и обработан; текущий 211-строчный файл сгенерирован локально, но не передавался: 196 identity сохранены, 15 новых exact-страниц и актуальный C5 route проверены отдельно. Quote, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены. Сырые API-ответы публично не распространяются.
 
 Машинные результаты: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json), [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json), [`H5-EVR06`](../hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json) и [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json). [Требования JLCPCB к BOM]({SOURCES['jlc_bom_format']}).
 """
@@ -1447,7 +1460,7 @@ The official MPN remains `ESP32-C5-WROOM-1U-N8R8`. Only the supplier order code 
 - JLCPCB's partial [26 August 2026 response](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) confirms exact `SA818S-V C51897911` MOQ 1 and a typical 8–15-working-day pre-order, plus the official Function Test path with manual procedure review and a `$15.70 + $7.86/hour` basis. Function Test is optional for this project and closes no gate; written acceptance of display mating and one-prototype final assembly is still absent. Accumulators remain `J5-U` and outside delivery. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) stays fail-closed; purchase and order remain unauthorized.
 - The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git, but Parts permission remains `Rejected`. [Support replied](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md) that the account is new and has no order history, so an ongoing business need could not yet be verified; reapplication is possible after building history or with a fuller business case/integration plan. The responder explicitly is not on the API review team and supplied no exact order threshold. No reapplication was submitted: API calls remain unusable, and live manual catalogue cards plus BOM validation remain authoritative. PCB/3D are also rejected; SMT Stencil and JLC Balance remain inactive.
 - [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) preserves a fallback without restarting H5: PCBWay is the first full-device candidate and Seeed is the PCBA second source. The [same no-order PCBWay questionnaire](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) is prepared but sending it and all commercial actions remain unauthorized.
-- The former 209-line BOM upload was transmitted and processed; the current 210-line file was generated locally but not transmitted: 196 identities are preserved, 14 new exact pages and the refreshed C5 route were checked separately. No quote, sourcing request, reservation, purchase, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
+- The former 209-line BOM upload was transmitted and processed; the current 211-line file was generated locally but not transmitted: 196 identities are preserved, 15 new exact pages and the refreshed C5 route were checked separately. No quote, sourcing request, reservation, purchase, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
 
 Machine results: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json), [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json), [`H5-EVR06`](../hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json) and [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json). [JLCPCB BOM requirements]({SOURCES['jlc_bom_format']}).
 """

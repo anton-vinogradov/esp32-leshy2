@@ -1860,6 +1860,42 @@
         "END_2": {"physical": "2", "role": "power"}
       }
     },
+    "fh_rs_06l2r70ft": {
+      "mpn": "FH RS-06L2R70FT",
+      "kind": "2r7ohm_1pct_1206_0_25w_backlight_current_softening_resistor",
+      "qualification": "verified_exact_jlcpcb_stocked_backlight_series_resistor",
+      "lifecycle": "active_factory_stocked_standard_pcba",
+      "dimensions_mm": [3.2, 1.6, 0.55],
+      "source": {
+        "document": "FH General Thick Film Chip Fixed Resistor official datasheet",
+        "version": "I 12.0 current official drawing checked 2026-08-31",
+        "url": "https://www.fhcomp.com/uploads/20260810/152605_1-R-%E5%B8%B8%E8%A7%84%E5%8E%9A%E8%86%9C%E7%89%87%E5%BC%8F%E5%9B%BA%E5%AE%9A%E7%94%B5%E9%98%BB%E5%99%A8-I%2012.0.pdf",
+        "checked": "2026-08-31"
+      },
+      "orderable_source": {
+        "document": "JLCPCB C323265 exact FH RS-06L2R70FT card; SMT, Economic and Standard PCBA, 3,617 in stock, 3,522 available, MOQ 1",
+        "url": "https://jlcpcb.com/partdetail/304147-RS06L2R70FT/C323265",
+        "checked": "2026-08-31"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 1, "unit_price_usd": 0.0084,
+        "price_break": "JLCPCB one-piece tier",
+        "source": {"document": "JLCPCB C323265 live exact-MPN price table", "url": "https://jlcpcb.com/partdetail/304147-RS06L2R70FT/C323265", "checked": "2026-08-31"}
+      },
+      "electrical_contract": {
+        "resistance_ohm": 2.7,
+        "tolerance_pct": 1,
+        "rated_power_w_at_70c": 0.25,
+        "maximum_working_voltage_v": 200,
+        "temperature_coefficient_ppm_per_c": 250,
+        "operating_temperature_c": [-55, 155]
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
     "panasonic_erj_p08f10r0v": {
       "mpn": "Panasonic ERJ-P08F10R0V",
       "kind": "10ohm_1pct_1206_0_66w_anti_surge_power_resistor",
@@ -2043,6 +2079,18 @@
         "display_reset": "active low",
         "touch_irq": "active low",
         "touch_reset": "active low"
+      },
+      "electrical_contract": {
+        "vci_operating_range_v": [2.5, 3.3],
+        "vddi_operating_range_v": [1.65, 3.3],
+        "logic_input_low_max_fraction_vddi": 0.3,
+        "logic_input_high_min_fraction_vddi": 0.7,
+        "backlight_parallel_led_count": 6,
+        "backlight_forward_voltage_typ_v": 3.0,
+        "backlight_forward_voltage_max_v_at_120ma": 3.2,
+        "backlight_normal_current_typ_ma": 110,
+        "backlight_normal_current_max_ma": 120,
+        "backlight_lifetime_test_current_ma": 90
       },
       "programmable": false,
       "contacts": {
@@ -2917,6 +2965,46 @@
         "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0048,
         "price_break": "DigiKey cut-tape quantity-100 tier",
         "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/yageo/RC0402JR-070RL/729353", "checked": "2026-08-19"}
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "passive"},
+        "END_2": {"physical": "2", "role": "passive"}
+      }
+    },
+    "yageo_ac1206jr_073r3l": {
+      "mpn": "Yageo AC1206JR-073R3L",
+      "kind": "3r3ohm_5pct_250mw_1206_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [3.1, 1.6, 0.55],
+      "source": {
+        "document": "Yageo AC1206JR-073R3L exact product specification",
+        "version": "current exact order code checked 2026-08-31",
+        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/AC1206JR-073R3L",
+        "checked": "2026-08-31"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact C144450 factory listing; SMT, Economic and Standard PCBA; 3,033 in stock, 3,026 available, MOQ 1",
+        "url": "https://jlcpcb.com/partdetail/YAGEO-AC1206JR073R3L/C144450",
+        "checked": "2026-08-31"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 1,
+        "unit_price_usd": 0.01,
+        "price_break": "JLCPCB in-stock quantity-1 tier",
+        "source": {
+          "document": "JLCPCB exact C144450 published price table",
+          "url": "https://jlcpcb.com/partdetail/YAGEO-AC1206JR073R3L/C144450",
+          "checked": "2026-08-31"
+        }
+      },
+      "electrical_contract": {
+        "resistance_ohm": 3.3,
+        "resistance_tolerance_pct": 5.0,
+        "rated_power_w_at_70c": 0.25,
+        "temperature_coefficient_ppm_per_c": 200
       },
       "programmable": false,
       "contacts": {
@@ -10205,9 +10293,10 @@
       "mpn": "3225-27.00-10-10-10/A", "manufacturer": "Suzhou Liming Electronic", "kind": "27mhz_10pf_10ppm_crystal_3225",
       "qualification": "verified_exact_si5351_27mhz_reference", "lifecycle": "production_active_factory_stocked_standard_pcba",
       "dimensions_mm": [3.2, 2.5, 0.8],
-      "source": {"document": "Suzhou Liming exact 3225 crystal product data on JLCPCB", "url": "https://jlcpcb.com/partdetail/534688-3225_27_00_10_10_10A/C518151", "checked": "2026-08-31"},
+      "source": {"document": "Suzhou Liming TX3 exact-series manufacturer datasheet for 3225-27.00-10-10-10/A", "url": "https://pdf.elecfans.com/p/11366913.html", "checked": "2026-08-31"},
       "orderable_source": {"document": "JLCPCB exact manufacturer card C518151; SMT, Economic and Standard PCBA, 2,975 in stock, MOQ 1", "url": "https://jlcpcb.com/partdetail/534688-3225_27_00_10_10_10A/C518151", "checked": "2026-08-31"},
       "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 0.111, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C518151 live price table", "url": "https://jlcpcb.com/partdetail/534688-3225_27_00_10_10_10A/C518151", "checked": "2026-08-31"}},
+      "electrical_contract": {"frequency_hz": 27000000, "oscillation_mode": "fundamental", "load_capacitance_pf": 10, "frequency_tolerance_ppm_at_25c": 10, "frequency_stability_ppm": 10, "maximum_esr_ohm": 50, "typical_drive_level_uw": 10, "maximum_drive_level_uw": 200, "operating_temperature_c": [-20, 70], "storage_temperature_c": [-55, 125]},
       "programmable": false,
       "contacts": {"X1": {"physical": "1", "role": "clock"}, "CASE_GND_1": {"physical": "2", "role": "power"}, "X2": {"physical": "3", "role": "clock"}, "CASE_GND_2": {"physical": "4", "role": "power"}}
     },

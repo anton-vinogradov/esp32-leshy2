@@ -93,7 +93,7 @@ def render_svg(data: dict) -> str:
         '<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6z" fill="#475569"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         '<text x="630" y="38" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · H0-R2 functional architecture</text>',
-        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">H2-R2.1.5 is reviewed: 1,187 fitted symbols, 826 nets, zero ERC findings and six-domain reconciliation.</text>',
+        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">H2-R2.1.5 is reviewed: 1,185 fitted symbols, 823 nets, zero ERC findings and six-domain reconciliation.</text>',
         '<rect x="40" y="105" width="540" height="610" rx="18" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>',
         '<rect x="680" y="105" width="540" height="610" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>',
         '<text x="310" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#1d4ed8">FRONT · UI / RADIO PCB · five SMA</text>',
@@ -165,7 +165,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "бортовой видеотракт удалён, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H3-R2.3**. Физическая проекция H1-R2.37 с двумя независимыми RP2354B, точными GPIO0..47, M1 и 226 корпусами принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 187 экземпляров и 826 nets в трёх проектах KiCad без замечаний ERC. H3-R2.0 фиксирует входы, provenance и методы; H3-R2.1 проводит ревью worst-case power/DC states; H3-R2.2 проводит ревью 14 сценариев startup/reset/recovery, 7 316 переходов USB/pack/DPM/brownout/source-loss, пяти protected-rail starts, четырёх load-step envelopes и десяти watchdog/fault-display cases без автоматического перезапуска. M1-35 переносит latched FAULT_KILL к независимому лицевому индикатору, M1-36 — отдельный reset S3 fault-UI. H3-R2.3 проверяет analog corners дисплея, аудио, IR, аккумуляторов и Airband."
+        current = "Текущий точный маркер — **H3-R2.4**. Физическая проекция H1-R2.37 с двумя независимыми RP2354B, точными GPIO0..47, M1 и 226 корпусами принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 185 экземпляров и 823 nets в трёх проектах KiCad без замечаний ERC. H3-R2.0 фиксирует входы, provenance и методы; H3-R2.1 и H3-R2.2 проведены ревью. H3-R2.3 проводит ревью всех рассчитываемых analog corners дисплея, аудио, IR, аккумуляторов и Airband. H3-R2.4 проверяет digital levels, timing, loading и прямой i8080-8."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -204,7 +204,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, the onboard "
             "video path is removed, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H3-R2.3**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and 226 bodies was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,187 instances and 826 nets in three KiCad projects with zero ERC findings. H3-R2.0 freezes inputs, provenance and methods; H3-R2.1 reviews worst-case power/DC states; H3-R2.2 reviews 14 startup/reset/recovery scenarios, 7,316 USB/pack/DPM/brownout/source-loss transitions, five protected-rail starts, four load-step envelopes and ten watchdog/fault-display cases without automatic restart. M1-35 carries latched FAULT_KILL to the independent front indicator and M1-36 carries the separate S3 fault-UI reset. H3-R2.3 verifies display, audio, IR, battery and Airband analog corners."
+        current = "The exact current marker is **H3-R2.4**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and 226 bodies was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,185 instances and 823 nets in three KiCad projects with zero ERC findings. H3-R2.0 freezes inputs, provenance and methods; H3-R2.1 and H3-R2.2 are reviewed. H3-R2.3 reviews all calculable display, audio, IR, battery and Airband analog corners. H3-R2.4 verifies digital levels, timing, loading and direct i8080-8."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",

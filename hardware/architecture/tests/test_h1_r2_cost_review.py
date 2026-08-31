@@ -67,7 +67,7 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_accepted_all_in_one_target_gap_is_not_hidden(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["base_bom_lines"], 208)
+        self.assertEqual(summary["base_bom_lines"], 209)
         self.assertGreater(summary["base_fitted_placements"], 1049)
         self.assertEqual(summary["community_complete_device_target_usd"], 260)
         self.assertEqual(summary["community_electronics_target_usd"], [189, 216])

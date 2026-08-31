@@ -6,22 +6,22 @@
   "sources": {
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "8fd2b01932325583edb6874e9d12ab5d3f092dcf1ffc714b23dff8c8a95f2fd4"
+      "sha256": "c1a813404ebaf164cc3147b4afbf8fade728fd4f37ead36965c52ce05ee685f1"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "884fdffc548fa279e02f77daae84bdfc7702ad0a8a22164aec6d7ccee192dd6b"
+      "sha256": "d4a0fbb7b98115282faae47e131dd981639310790b39562f85ab083b144e50b7"
     }
   },
   "kicad_reference_version": "10.0.5",
   "summary": {
-    "board_component_group_count": 233,
-    "source_ledger_logical_contact_count": 1654,
-    "board_logical_contact_count": 1597,
-    "pcb_footprint_contact_count": 1594,
+    "board_component_group_count": 234,
+    "source_ledger_logical_contact_count": 1656,
+    "board_logical_contact_count": 1599,
+    "pcb_footprint_contact_count": 1596,
     "external_on_module_interface_count": 3,
-    "named_footprint_pad_count": 1615,
-    "footprint_pad_occurrence_count": 1670,
+    "named_footprint_pad_count": 1617,
+    "footprint_pad_occurrence_count": 1672,
     "mechanical_only_pad_occurrence_count": 10,
     "ignored_unnumbered_pad_occurrence_count": 91,
     "new_exact_footprint_files_materialized": 3,
@@ -4356,6 +4356,56 @@
       "device_id": "fh_rs_06k47r0ft",
       "mpn": "FH RS-06K47R0FT",
       "symbol_id": "Leshy2_R2:fh_rs_06k47r0ft",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Resistor_SMD.pretty/R_1206_3216Metric.kicad_mod",
+      "footprint_sha256": "c7320668dc81bbb954cb4f15e4e7a766c120059343d43551468c8f7ccc8fde37",
+      "logical_contact_count": 2,
+      "footprint_named_pad_count": 2,
+      "footprint_pad_occurrence_count": 2,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "END_1",
+          "role": "power",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "END_2",
+          "role": "power",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {}
+    },
+    {
+      "device_id": "fh_rs_06l2r70ft",
+      "mpn": "FH RS-06L2R70FT",
+      "symbol_id": "Leshy2_R2:fh_rs_06l2r70ft",
       "footprint": "Resistor_SMD:R_1206_3216Metric",
       "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Resistor_SMD.pretty/R_1206_3216Metric.kicad_mod",
       "footprint_sha256": "c7320668dc81bbb954cb4f15e4e7a766c120059343d43551468c8f7ccc8fde37",

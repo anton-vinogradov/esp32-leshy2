@@ -43,6 +43,7 @@
 | `esp32_s3_wroom_1u_n16r8` | `ESP32-S3-WROOM-1U-N16R8` | `verified_exact_16mb_flash_8mb_octal_psram_external_antenna` | `active_orderable` | [ESP32-S3-WROOM-1/WROOM-1U Datasheet v1.8](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf) | same primary source |
 | `everest_es8311_qfn20` | `Everest Semiconductor ES8311` | `verified_candidate` | `current manufacturer product brief revision 17.0 dated 2026-02; production sourcing and lot qualification remain open` | [ES8311 Low Power Mono Audio CODEC Product Brief Revision 17.0, February 2026](https://www.everest-semi.com/pdf/ES8311%20PB.pdf) | same primary source |
 | `fh_rs_06k47r0ft` | `FH RS-06K47R0FT` | `verified_exact_jlcpcb_stocked_ir_emitter_current_limit_resistor` | `active_factory_stocked_standard_pcba` | [FH General Thick Film Chip Fixed Resistor official datasheet I 12.0 current official drawing checked 2026-08-28](https://www.fhcomp.com/uploads/20260810/152605_1-R-%E5%B8%B8%E8%A7%84%E5%8E%9A%E8%86%9C%E7%89%87%E5%BC%8F%E5%9B%BA%E5%AE%9A%E7%94%B5%E9%98%BB%E5%99%A8-I%2012.0.pdf) | same primary source |
+| `fh_rs_06l2r70ft` | `FH RS-06L2R70FT` | `verified_exact_jlcpcb_stocked_backlight_series_resistor` | `active_factory_stocked_standard_pcba` | [FH General Thick Film Chip Fixed Resistor official datasheet I 12.0 current official drawing checked 2026-08-31](https://www.fhcomp.com/uploads/20260810/152605_1-R-%E5%B8%B8%E8%A7%84%E5%8E%9A%E8%86%9C%E7%89%87%E5%BC%8F%E5%9B%BA%E5%AE%9A%E7%94%B5%E9%98%BB%E5%99%A8-I%2012.0.pdf) | same primary source |
 | `gct_rfpc_sma31_fn_175_a` | `GCT RFPC-SMA31-FN-175-A` | `verified_exact_external_standard_sma_body` | `active` | [GCT RFPC-SMA31-FN official product page and A1 product drawing A1 released 2025-04-07](https://gct.co/connector/rfpc-sma31-fn) | same primary source |
 | `gct_rfpc_sma32_fn_175_a` | `GCT RFPC-SMA32-FN-175-A` | `verified_exact_external_reverse_polarity_sma_body` | `active` | [GCT RFPC-SMA32-FN official product page and A1 product drawing A1 dated 2025-02-25, released 2025-04-07](https://gct.co/connector/rfpc-sma32-fn) | same primary source |
 | `gct_usb4105_gf_a` | `GCT USB4105-GF-A` | `verified_exact_service_usb_receptacle` | `active_orderable` | [USB4105 USB Type-C receptacle drawing and product specification drawing revision B4 dated 2023-12-18; specification revision 2.2](https://gct.co/files/drawings/usb4105.pdf) | same primary source |
@@ -2580,10 +2581,10 @@ Reserved: `PA1_NRST`. Free: none.
 | `LCD_LEDK` | `display_panel_connector.PIN_34` | `display.LEDK_1` | first cathode contact shares the qualified low-side sink |
 | `LCD_LEDK` | `display_panel_connector.PIN_35` | `display.LEDK_2` | second cathode contact shares the qualified low-side sink |
 | `LCD_LEDK` | `display_panel_connector.PIN_36` | `display.LEDK_3` | third cathode contact shares the qualified low-side sink |
-| `LCD_LEDK` | `display_connector.PIN_34` | `backlight_series_resistor.END_1` | all three cathodes join before the exact donor-equivalent R31 0-Ohm link |
-| `LCD_LEDK` | `display_connector.PIN_35` | `backlight_series_resistor.END_1` | all three cathodes join before the exact donor-equivalent R31 0-Ohm link |
-| `LCD_LEDK` | `display_connector.PIN_36` | `backlight_series_resistor.END_1` | all three cathodes join before the exact donor-equivalent R31 0-Ohm link |
-| `LCD_LEDK_LIMITED` | `backlight_series_resistor.END_2` | `backlight_mosfet.D` | 0-Ohm link preserves the donor LEDK current path; current and fault bounds come from the upstream latch-off TPS2553 rather than series loss |
+| `LCD_LEDK` | `display_connector.PIN_34` | `backlight_series_resistor.END_1` | all three cathodes join before the exact 2.7-Ohm 250-mW current-softening resistor |
+| `LCD_LEDK` | `display_connector.PIN_35` | `backlight_series_resistor.END_1` | all three cathodes join before the exact 2.7-Ohm 250-mW current-softening resistor |
+| `LCD_LEDK` | `display_connector.PIN_36` | `backlight_series_resistor.END_1` | all three cathodes join before the exact 2.7-Ohm 250-mW current-softening resistor |
+| `LCD_LEDK_LIMITED` | `backlight_series_resistor.END_2` | `backlight_mosfet.D` | 2.7-Ohm series resistance removes the uncontrolled hard short used by the donor; the upstream latch-off TPS2553 remains the independent gross-fault barrier |
 | `POWER_GROUND` | `backlight_mosfet.S` | `abstract:power-ground` | short low-side PWM return |
 | `LCD_BACKLIGHT_GATE` | `backlight_gate_series.END_2` | `backlight_mosfet.G` | exact 100-Ohm gate resistor limits edge current and ringing |
 | `LCD_BACKLIGHT_GATE` | `backlight_mosfet.G` | `backlight_gate_pulldown.END_1` | gate is forced low before S3 configures GPIO40 |
@@ -4184,7 +4185,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `backlight_efuse_input_cap` lifecycle: `active_orderable`.
 - `backlight_efuse_output_hf` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `backlight_efuse_output_hf` lifecycle: `active_orderable`.
-- `backlight_series_resistor` lifecycle: `active_orderable`.
+- `backlight_series_resistor` uses `FH RS-06L2R70FT` as `verified_exact_jlcpcb_stocked_backlight_series_resistor`, not an accepted production choice.
+- `backlight_series_resistor` lifecycle: `active_factory_stocked_standard_pcba`.
 - `backlight_mosfet` uses `Diodes Incorporated DMN2056U-7` as `accepted_exact_low_leakage_service_vbus_detector_and_load_switch`, not an accepted production choice.
 - `backlight_mosfet` lifecycle: `active_orderable_factory_stocked`.
 - `sd_power_input_cap` lifecycle: `active_production`.

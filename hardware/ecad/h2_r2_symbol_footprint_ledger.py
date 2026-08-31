@@ -139,7 +139,7 @@ def build() -> dict:
     if inventory.get("marker") != "H2-R2.1.1" or inventory.get("status") != "pass":
         errors.append("H2-R2.1.1 native inventory is not a passing input")
     groups = inventory.get("component_groups", [])
-    if len(groups) != 238:
+    if len(groups) != 239:
         errors.append("native component group count drifted")
     current_mpns = {row.get("mpn") for row in groups}
 
@@ -248,8 +248,8 @@ def build() -> dict:
     rows.sort(key=lambda row: row["device_id"])
     board_rows = [row for row in rows if row["symbol_id"]]
     external_rows = [row for row in rows if not row["symbol_id"]]
-    if len(rows) != 238 or len(board_rows) != 233 or len(external_rows) != 5:
-        errors.append("expected 233 board groups plus five explicit non-PCBA groups")
+    if len(rows) != 239 or len(board_rows) != 234 or len(external_rows) != 5:
+        errors.append("expected 234 board groups plus five explicit non-PCBA groups")
     if len({row["symbol_id"] for row in board_rows}) != len(board_rows):
         errors.append("symbol identities are not one-to-one with board component groups")
     if any(not row["footprint"] for row in board_rows):

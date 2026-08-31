@@ -226,11 +226,11 @@ def build() -> tuple[str, dict]:
         ]
     )
     symbol_ids = [row["symbol_id"] for row in symbols]
-    if len(symbols) != 233 or len(set(symbol_ids)) != 233:
-        errors.append("expected 233 unique controlled symbols")
+    if len(symbols) != 234 or len(set(symbol_ids)) != 234:
+        errors.append("expected 234 unique controlled symbols")
     pin_count = sum(row["pin_count"] for row in symbols)
-    if pin_count != 1610:
-        errors.append(f"expected 1610 unique electrical-pad pins, got {pin_count}")
+    if pin_count != 1612:
+        errors.append(f"expected 1612 unique electrical-pad pins, got {pin_count}")
     external_count = sum(len(row["external_interfaces"]) for row in symbols)
     if external_count != 3:
         errors.append(f"expected three on-module external interfaces, got {external_count}")
@@ -293,7 +293,7 @@ def main() -> int:
     if stale:
         print("stale: " + ", ".join(stale))
         return 1
-    print("ok: 233 controlled R2 symbols, 1610 exact pad pins, 3 external-interface metadata entries")
+    print("ok: 234 controlled R2 symbols, 1612 exact pad pins, 3 external-interface metadata entries")
     return 0
 
 

@@ -4,15 +4,15 @@
   "marker": "H3-R2.1.2",
   "status": "pass",
   "accepted_input": "H3-R2.1.1",
-  "binding_sha256": "6dafeac099a8c5f52c14dfd313dea1fe4e1c0415098391251f0b51bf7306db8c",
+  "binding_sha256": "7cafd27a364cd5d80e3aafdd7ef69c010a22a2bd78134d0f51de2c15dd48fb7f",
   "source_sha256": {
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "4a9adb87deb0fb9682b824275a76b5ed22cecb7552cd74f5c728526b723594d9",
-    "hardware/verification/generated/H3-R2-method-contract.json": "0e9bc116da55a7ad5edd959f865808cf1fd0b711f40e597082c21baa6ccb1223",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "c1adf7bd89479ffcb54c45e31f104a84dd92acddf52f8559ed6d3402f712b6ca",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "11e74bbc5eb62527b7fc9034b8145ffccfe266b82570c8c34f73f63dc757e842",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "0e4a7d802b7bfe7ea9f8e375818ae5986c765cba530dd59b256183065c5257eb",
-    "hardware/architecture/devices.json": "884fdffc548fa279e02f77daae84bdfc7702ad0a8a22164aec6d7ccee192dd6b"
+    "hardware/verification/generated/H3-R2-power-state-register.json": "e038bc64d00e6626886abd09cc31b4a5018cdfb2c4d6449b18d8492aea77c762",
+    "hardware/verification/generated/H3-R2-method-contract.json": "87e8bda8a1b323020779ad4cd477c3c1322ce2a2985fc075219c90fc64278f93",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "79bf8db95f64f690514f34ecfc1986add7bcb44e593049bfa4185191ea90c90c",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "17748909716153678a2761773ff12c6e45997d7ed337514af295c745d4d5a2b7",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "9d9728cab32afec5851c2867c2bf87037ba1b02a9fee92c4106bb3efd5069e82",
+    "hardware/architecture/devices.json": "d4a0fbb7b98115282faae47e131dd981639310790b39562f85ab083b144e50b7"
   },
   "policy": {
     "one_line_per_fitted_power_connected_instance": true,

@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "artifact": "H3-R2-analog-corners",
+  "marker": "H3-R2.3",
+  "status": "pass",
+  "sources": {
+    "hardware/architecture/candidates/G2F-3I.json": "ce60d399d4133a68b3115753880108ce070ed905dbdbe58d1171a4bba0ca2cba",
+    "hardware/architecture/devices.json": "d4a0fbb7b98115282faae47e131dd981639310790b39562f85ab083b144e50b7",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "3104d2fbb0475529cb981b731cbc7db722e0483837eb897ed236ce3bad40c4eb",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "79bf8db95f64f690514f34ecfc1986add7bcb44e593049bfa4185191ea90c90c",
+    "hardware/verification/generated/H3-VRF32-audio.json": "1a1070bd49341aa9f57622df9e80d13769dac53a2247478c7df3e8e8925c74a9",
+    "hardware/verification/generated/H3-VRF33-ir.json": "208bcd79f2f4dfecec9de4f51d9cea23e409ea587d97fc91cb9a0f1c64203215",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "06fe6e880075f3caec623980c9d23bdf9efaa0b6c5605fea97b28d0f23fde457",
+    "hardware/verification/generated/H3-R2-airband-corners.json": "bffcda4c8e7e938dba9593f6a99511b484ab4f5eda199b0d9a03097bcde39bbc",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "9d9728cab32afec5851c2867c2bf87037ba1b02a9fee92c4106bb3efd5069e82",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "17748909716153678a2761773ff12c6e45997d7ed337514af295c745d4d5a2b7",
+    "hardware/product-design/generated/H1-R2-cost-audit.json": "e4239639981024f81819f89f607c7e07760787c40538dea640df8869e4c96f4f",
+    "hardware/product-design/display-adapter.json": "fb51eb612c6782497db14c1ec7786b1873809c57556be9651bff274ac318ac25"
+  },
+  "method": "current R2 topology/identity binding plus transferred exact-part interval corners and a new production-panel backlight calculation",
+  "exact_part_checks": {
+    "display": true,
+    "backlight_efuse": true,
+    "backlight_efuse_ilim": true,
+    "backlight_series_resistor": true,
+    "backlight_mosfet": true,
+    "air_lo": true,
+    "air_lo_crystal": true
+  },
+  "topology_checks": {
+    "panel_vddi_40_41_from_main": true,
+    "panel_vci_42_from_main": true,
+    "backlight_anode_is_latch_protected": true,
+    "both_panel_cathodes_enter_one_series_resistor": true,
+    "series_resistor_precedes_pwm_sink": true,
+    "pwm_sink_returns_to_ground": true,
+    "backlight_gate_fails_low": true,
+    "production_adapter_is_passive_i8080_8": true,
+    "all_eight_i8080_data_lanes_reach_panel": true,
+    "i8080_write_strobe_reaches_panel": true
+  },
+  "display": {
+    "rail_v": {
+      "minimum": 3.10851,
+      "nominal": 3.222,
+      "maximum": 3.285658
+    },
+    "series_resistor": {
+      "mpn": "FH RS-06L2R70FT",
+      "jlcpcb_part": "C323265",
+      "nominal_ohm": 2.7,
+      "minimum_ohm": 2.673,
+      "maximum_ohm": 2.7270000000000003,
+      "rated_power_w": 0.25
+    },
+    "current_at_published_typical_vf_ma": {
+      "minimum_rail_ma": 39.79097909790975,
+      "nominal_rail_ma": 82.22222222222221,
+      "maximum_rail_ma": 106.86793864571649
+    },
+    "panel_normal_current_max_ma": 120.0,
+    "efuse_latch_threshold_ma": {
+      "minimum": 174.0,
+      "maximum": 234.0
+    },
+    "resistor_power_w": {
+      "at_panel_normal_max": 0.039268800000000006,
+      "at_efuse_max_until_latch": 0.14931961200000005
+    },
+    "checks": {
+      "vci_inside_published_range": true,
+      "vddi_inside_published_range": true,
+      "typical_vf_peak_below_panel_normal_max": true,
+      "normal_current_resistor_power_below_rating": true,
+      "gross_fault_resistor_power_below_rating_until_latch": true,
+      "efuse_minimum_threshold_above_panel_normal_max": true
+    },
+    "minimum_luminance_boundary": "physical-only because the panel datasheet does not publish minimum forward voltage or a luminance-versus-current guarantee"
+  },
+  "leaf_evidence": {
+    "audio": {
+      "checks": {
+        "reviewed": true,
+        "candidate_is_current": true,
+        "device_register_is_current": true,
+        "all_leaf_checks_pass": true
+      },
+      "review_summary": {
+        "checks": 45,
+        "failed_checks": 0,
+        "corrected_findings": 4,
+        "unresolved_findings": 0,
+        "status": "reviewed"
+      }
+    },
+    "ir": {
+      "checks": {
+        "reviewed": true,
+        "candidate_is_current": true,
+        "device_register_is_current": true,
+        "all_leaf_checks_pass": true
+      },
+      "review_summary": {
+        "checks": 47,
+        "failed_checks": 0,
+        "corrected_findings": 4,
+        "unresolved_findings": 0,
+        "status": "reviewed"
+      }
+    },
+    "battery": {
+      "checks": {
+        "reviewed": true,
+        "candidate_is_current": true,
+        "device_register_is_current": true,
+        "all_leaf_checks_pass": true
+      },
+      "review_summary": {
+        "checks": 38,
+        "failed": 0,
+        "corrections": 4,
+        "new_bom_cost_usd": "0.0000"
+      }
+    }
+  },
+  "airband": {
+    "checks": {
+      "frequency_inside_si5351_range": true,
+      "load_inside_si5351_range": true,
+      "esr_below_si5351_limit": true,
+      "crystal_drive_rating_covers_si5351_maximum": true,
+      "airband_filter_corner_passes": true,
+      "all_parameter_sources_are_closed": true
+    },
+    "filter_minimum_margin_db": 0.18735028244262786,
+    "crystal": {
+      "frequency_hz": 27000000,
+      "oscillation_mode": "fundamental",
+      "load_capacitance_pf": 10,
+      "frequency_tolerance_ppm_at_25c": 10,
+      "frequency_stability_ppm": 10,
+      "maximum_esr_ohm": 50,
+      "typical_drive_level_uw": 10,
+      "maximum_drive_level_uw": 200,
+      "operating_temperature_c": [
+        -20,
+        70
+      ],
+      "storage_temperature_c": [
+        -55,
+        125
+      ]
+    }
+  },
+  "residual_physical_only": {
+    "display": [
+      "H6 preserves the 1206 series-resistor land as a controlled brightness trim point and routes the LED loop compactly",
+      "H8 measures panel current, luminance, PWM noise and visible boot at the received panel Vf; the manufacturer publishes no minimum Vf, so paper analysis cannot prove minimum luminance at the simultaneous low-rail/high-Vf endpoint"
+    ],
+    "audio": [
+      "measure microphone/headset sensitivity, codec clipping/ALC/noise, channel phase perception, crosstalk, insertion pop and RF immunity on routed hardware",
+      "measure PAM8302A current, output EMI, speaker temperature/excursion and enclosure response; enforce the 50 C speaker-local mute rule",
+      "calibrate SA818S-V and SA818S-U deviation downward from the bounded full-scale codec injection and repeat across both module lots, rail and temperature",
+      "prove reset/brownout/off ordering, >=10-ms amplifier-enable delay and absence of back-power with codec, voice and main domains independently off"
+    ],
+    "ir": [
+      "verify received TSOP75238TR/TSMP95000TT identity, orientation, two-channel capture, 20-ms startup guard, 5-ms QOD quiet guard and no-back-power; confirm TSOP75238TR CPL rotation and feeder presentation against the JLCPCB placement preview",
+      "replay a representative 30-to-60-kHz protocol corpus and measure carrier/count accuracy, robust AGC behavior, range and field of view",
+      "measure VSMY14940 current, optical range/alignment, local temperature and IEC 62471 classification through the final enclosure/window",
+      "calibrate the VEMD1060 tunnel against the <=2.271-uA paper target and inject missing emitter, ambient leakage, RX crosstalk, stuck carrier, brownout and FAULT_KILL"
+    ],
+    "battery": [
+      "on one received MAX17320, record blank fail-closed behavior, program a deliberately invalid but electrically safe configuration, then program the reviewed golden image and prove recovery; read both address spaces, checksum, NVError and remaining-update bitmap at each transition; inject zero-remaining and failed-copy only in the emulator or isolated fixture, never consume all seven physical updates and use no sacrificial chip",
+      "calibrate the two divider channels on the assembled admission domain; inject open, short, swapped, reversed, missing and imbalanced-cell states only with a current-limited cell simulator",
+      "use an NTC fixture to inject open/short/lift and the 35/40/60/65/75-C thresholds, measure sensor bonding/response within component limits, and never heat real cells beyond the exact cell MPN temperature envelope",
+      "verify BQ CE-default-off, TS open/short with the NTC fixture, exact warm/cold suspend and all admitted source/load/charge-current transitions with the exact cell lot inside its MPN limits",
+      "measure long-idle divider imbalance, MAX balancing heat and both 49.9-ohm balance-resistor temperatures"
+    ],
+    "airband": [
+      {
+        "accepted_now": "The exact fitted topology, MPNs, component tolerances and conservative finite-Q lumped corner envelope are reviewed for schematic use.",
+        "not_claimed": "The approximately 0.19-dB minimum lumped margin is not a routed-PCB production freeze.",
+        "h6_gate": "H6 uses the reserved compact tuning island and fitted/DNP trim footprints, extracts routed pads, traces, vias, coupling, shield and enclosure parasitics, and reruns the same mask before the exact-one order.",
+        "h8_gate": "H8 VNA measurement confirms or retunes the fitted/DNP state on the assembled prototype."
+      },
+      "H8 records Si5351 startup and output-frequency calibration; the exact crystal start limits pass, while long-term aging is calibrated rather than guessed from an unpublished exact-code aging row"
+    ]
+  },
+  "errors": []
+}

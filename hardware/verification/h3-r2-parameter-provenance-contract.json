@@ -5,12 +5,12 @@
   "accepted_input": "H3-R2.0.1",
   "status": "reviewed",
   "expected": {
-    "component_groups": 238,
-    "board_component_groups": 233,
+    "component_groups": 239,
+    "board_component_groups": 234,
     "explicit_non_pcba_groups": 5,
     "fitted_board_instances": 1185,
     "source_missing": 0,
-    "factory_catalog_only_parameter_sources": 1
+    "factory_catalog_only_parameter_sources": 0
   },
   "manufacturer_source_overrides": {
     "jae_dx07s016ja1r1500": {
@@ -24,15 +24,15 @@
       "url": "https://www.ralec.com/en-global/product_search/index/?page=1&part_no=RTT023R00FTH",
       "checked": "2026-08-31",
       "reason": "replace the factory catalogue card as electrical provenance while retaining C166468 as the assembly route"
-    }
-  },
-  "factory_catalog_only_parameter_sources": {
+    },
     "suzhou_liming_3225_27_00_10_10_10_a": {
-      "owner": "H3-R2.3",
-      "known_identity_route": "JLCPCB C518151 exact manufacturer card",
-      "required_closure": "bind the exact crystal ESR, drive level, aging and temperature envelope to manufacturer-controlled evidence or retain it as an H5 measured residual"
+      "document": "Suzhou Liming TX3 exact-series manufacturer datasheet for 3225-27.00-10-10-10/A",
+      "url": "https://pdf.elecfans.com/p/11366913.html",
+      "checked": "2026-08-31",
+      "reason": "bind the exact 27-MHz code to the TX3 27-to-60-MHz ESR, drive, temperature and storage envelope while retaining JLCPCB C518151 only as the factory route"
     }
   },
+  "factory_catalog_only_parameter_sources": {},
   "non_pcba_workstream_owners": {
     "davies_1227_j": ["H3-R2.4"],
     "eastrising_er_tft035ips_6_ctp": ["H3-R2.3", "H3-R2.4"],

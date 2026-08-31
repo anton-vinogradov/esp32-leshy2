@@ -70,7 +70,7 @@ flowchart TD
   BACKLIGHT_EFUSE_OUTPUT_BULK["Murata GRM188R60J106ME47D<br/>10-uF protected-LEDA output bulk capacitor"]
   BACKLIGHT_EFUSE_OUTPUT_HF["Yageo CC0402KRX7R9BB104<br/>100-nF protected-LEDA output bypass capacitor"]
   BACKLIGHT_FAULT_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm open-drain backlight-fault pull-up"]
-  BACKLIGHT_SERIES_RESISTOR["Yageo RC0402JR-070RL<br/>0-Ohm donor-equivalent LED cathode link"]
+  BACKLIGHT_SERIES_RESISTOR["FH RS-06L2R70FT<br/>2.7-Ohm 250-mW LED cathode resistor"]
   BACKLIGHT_MOSFET["Diodes Incorporated DMN2056U-7<br/>low-gate-drive LED cathode PWM MOSFET"]
   BACKLIGHT_GATE_SERIES["Yageo RC0402FR-07100RL<br/>100-Ohm PWM gate series resistor"]
   BACKLIGHT_GATE_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm PWM gate reset-off pull-down"]
@@ -4158,10 +4158,10 @@ Reserved: `PA1_NRST`. Free: none.
 | `LCD_LEDK` | `display_panel_connector.PIN_34` | `display.LEDK_1` | first cathode contact shares the qualified low-side sink |
 | `LCD_LEDK` | `display_panel_connector.PIN_35` | `display.LEDK_2` | second cathode contact shares the qualified low-side sink |
 | `LCD_LEDK` | `display_panel_connector.PIN_36` | `display.LEDK_3` | third cathode contact shares the qualified low-side sink |
-| `LCD_LEDK` | `display_connector.PIN_34` | `backlight_series_resistor.END_1` | all three cathodes join before the exact donor-equivalent R31 0-Ohm link |
-| `LCD_LEDK` | `display_connector.PIN_35` | `backlight_series_resistor.END_1` | all three cathodes join before the exact donor-equivalent R31 0-Ohm link |
-| `LCD_LEDK` | `display_connector.PIN_36` | `backlight_series_resistor.END_1` | all three cathodes join before the exact donor-equivalent R31 0-Ohm link |
-| `LCD_LEDK_LIMITED` | `backlight_series_resistor.END_2` | `backlight_mosfet.D` | 0-Ohm link preserves the donor LEDK current path; current and fault bounds come from the upstream latch-off TPS2553 rather than series loss |
+| `LCD_LEDK` | `display_connector.PIN_34` | `backlight_series_resistor.END_1` | all three cathodes join before the exact 2.7-Ohm 250-mW current-softening resistor |
+| `LCD_LEDK` | `display_connector.PIN_35` | `backlight_series_resistor.END_1` | all three cathodes join before the exact 2.7-Ohm 250-mW current-softening resistor |
+| `LCD_LEDK` | `display_connector.PIN_36` | `backlight_series_resistor.END_1` | all three cathodes join before the exact 2.7-Ohm 250-mW current-softening resistor |
+| `LCD_LEDK_LIMITED` | `backlight_series_resistor.END_2` | `backlight_mosfet.D` | 2.7-Ohm series resistance removes the uncontrolled hard short used by the donor; the upstream latch-off TPS2553 remains the independent gross-fault barrier |
 | `POWER_GROUND` | `backlight_mosfet.S` | `abstract:power-ground` | short low-side PWM return |
 | `LCD_BACKLIGHT_GATE` | `backlight_gate_series.END_2` | `backlight_mosfet.G` | exact 100-Ohm gate resistor limits edge current and ringing |
 | `LCD_BACKLIGHT_GATE` | `backlight_mosfet.G` | `backlight_gate_pulldown.END_1` | gate is forced low before S3 configures GPIO40 |
@@ -5762,7 +5762,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `backlight_efuse_input_cap` lifecycle: `active_orderable`.
 - `backlight_efuse_output_hf` uses `Yageo CC0402KRX7R9BB104` as `verified_exact_jlcpcb_stocked_standard_pcba`, not an accepted production choice.
 - `backlight_efuse_output_hf` lifecycle: `active_orderable`.
-- `backlight_series_resistor` lifecycle: `active_orderable`.
+- `backlight_series_resistor` uses `FH RS-06L2R70FT` as `verified_exact_jlcpcb_stocked_backlight_series_resistor`, not an accepted production choice.
+- `backlight_series_resistor` lifecycle: `active_factory_stocked_standard_pcba`.
 - `backlight_mosfet` uses `Diodes Incorporated DMN2056U-7` as `accepted_exact_low_leakage_service_vbus_detector_and_load_switch`, not an accepted production choice.
 - `backlight_mosfet` lifecycle: `active_orderable_factory_stocked`.
 - `sd_power_input_cap` lifecycle: `active_production`.

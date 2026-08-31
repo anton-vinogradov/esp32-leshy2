@@ -86,15 +86,15 @@ Exact current checklist:
    release qualifier reviewed with complete Standard-PCBA routes and fail-closed truth table;
 3. ✅ `H2-R2.0.3`: exact TI `TCA9803DGKR` / `C2687966` Pack/Safety boundary
    reviewed with rail-local termination, four Basic decouplers and USD 0.3953 cost;
-4. ✅ `H2-R2.1.1`: 3 projects, 23 sheets, 6 domain owners and 242 exact MPN
+4. ✅ `H2-R2.1.1`: 3 projects, 23 sheets, 6 domain owners and 239 exact MPN
    groups reviewed;
-5. ✅ `H2-R2.1.2`: 237 board groups, five explicit non-PCBA groups and 1,662
+5. ✅ `H2-R2.1.2`: 234 board groups, five explicit non-PCBA groups and 1,656
    logical contacts mapped with zero unresolved groups;
-6. ✅ `H2-R2.1.3` definitions/instances: 237 controlled symbols, 1,618 PCB-pad
-   pins and all 1,187 fitted instances pass the current three-project allocation;
-7. ✅ `H2-R2.1.3` nets: 4,323 fitted-instance contacts resolve to 826 canonical
+6. ✅ `H2-R2.1.3` definitions/instances: 234 controlled symbols, 1,612 PCB-pad
+   pins and all 1,185 fitted instances pass the current three-project allocation;
+7. ✅ `H2-R2.1.3` nets: 4,323 fitted-instance contacts resolve to 823 canonical
    nets or 256 explicit board no-connects with zero unresolved endpoints;
-8. ✅ `H2-R2.1.3`: three native KiCad projects materialize 4,327 physical pins
+8. ✅ `H2-R2.1.3`: three native KiCad projects materialize 4,323 physical pins
    and pass ERC with zero errors and zero warnings;
 9. ✅ `H2-R2.1.4`: six domains, 173 controller pins, 52 cross-project nets and
    238 cross-sheet nets reconcile with zero unresolved boundary;
@@ -116,13 +116,13 @@ clearly labels retained R1 ECAD as non-current evidence.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current at **`H3-R2.3`**; H3-R2.2 is reviewed.
+**Status:** ▶️ current at **`H3-R2.4`**; H3-R2.3 is reviewed.
 
 [`H3-R2.0.1`](h3-r2-input-freeze.md) reviewed the hash-bound H2 input and complete R2
 verification matrix. [`H3-R2.0.2`](parameter-model-register.md) reviewed exact
-parameter/model provenance for 242 groups and 1,187 fitted positions. Current
+parameter/model provenance for 239 groups and 1,185 fitted positions. Current
 methods are frozen by [`H3-R2.0.3`](verification-methods.md): nine methods and
-twelve pass/fail rules cover all 242 groups. [`H3-R2.1.1`](power-state-register.md)
+twelve pass/fail rules cover all 239 groups. [`H3-R2.1.1`](power-state-register.md)
 reviews all 2,266 legal source, charge, fault and operating states.
 [`H3-R2.1.2`](power-load-binding.md) reviews explicit binding for 613 fitted powered
 power-connected instances and six external loads. [`H3-R2.1.3`](power-rail-margins.md)
@@ -139,8 +139,9 @@ reviews all 7,316 USB/pack/DPM/brownout/source-loss cases with zero unsafe
 admission or automatic restart. [`H3-R2.2.3/.4`](power-transition-result.md)
 reviews five protected-rail starts, four load-step envelopes and ten
 watchdog/fault-display cases with zero analytical failures or automatic restart.
-Current H3-R2.3 work verifies display, audio, IR, battery and Airband analog
-corners. The expected result is complete power, digital, RF, audio,
+[`H3-R2.3`](analog-electrical-verification.md) reviews all calculable display,
+audio, IR, battery and Airband analog corners. Current H3-R2.4 work verifies
+digital levels, timing, loading and direct i8080-8. The expected result is complete power, digital, RF, audio,
 timing, thermal and fault verification. Every legal state and transition must
 pass before fabrication.
 

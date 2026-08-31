@@ -269,7 +269,7 @@ def main() -> int:
         return 1
     print(
         "ok: H2-R2.1.1 freezes 3 native projects, 23 sheets, 6 domains, "
-        "238 exact component groups and 1195 per-product positions; no symbols or nets created"
+        "239 exact component groups and 1195 per-product positions; no symbols or nets created"
     )
     return 0
 

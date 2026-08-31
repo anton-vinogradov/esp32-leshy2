@@ -3951,7 +3951,7 @@ def _render_principled_pinout_bundle(
         node("backlight_efuse_output_bulk", "10-uF protected-LEDA output bulk capacitor"),
         node("backlight_efuse_output_hf", "100-nF protected-LEDA output bypass capacitor"),
         node("backlight_fault_pullup", "10-kOhm open-drain backlight-fault pull-up"),
-        node("backlight_series_resistor", "0-Ohm donor-equivalent LED cathode link"),
+        node("backlight_series_resistor", "2.7-Ohm 250-mW LED cathode resistor"),
         node("backlight_mosfet", "low-gate-drive LED cathode PWM MOSFET"),
         node("backlight_gate_series", "100-Ohm PWM gate series resistor"),
         node("backlight_gate_pulldown", "10-kOhm PWM gate reset-off pull-down"),

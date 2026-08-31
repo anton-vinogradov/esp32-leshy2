@@ -35,12 +35,12 @@
 
 ## Воспроизводимость
 
-Все `238` групп получили хотя бы один метод; используются `9` методов и `12` общих rules. Runtime — `Python 3.14.6`, только standard library, `Decimal` precision 50/Fraction, hash-bound JSON/CSV/SVG. Сеть, случайность и незакреплённый внешний solver не участвуют в acceptance.
+Все `239` групп получили хотя бы один метод; используются `9` методов и `12` общих rules. Runtime — `Python 3.14.6`, только standard library, `Decimal` precision 50/Fraction, hash-bound JSON/CSV/SVG. Сеть, случайность и незакреплённый внешний solver не участвуют в acceptance.
 
 ## Что ещё не является pass
 
-У `168` групп параметры ещё извлекаются из точных источников. Контракт метода закрыт, но их расчёты обязаны вернуть `unresolved_fail`, пока нет min/max, unit и applicability.
+У `166` групп параметры ещё извлекаются из точных источников. Контракт метода закрыт, но их расчёты обязаны вернуть `unresolved_fail`, пока нет min/max, unit и applicability.
 
 > Следующий шаг — H3-R2.1: power/DC/source/charge/state расчёты. Placement, routing, закупка и печать остаются запрещены.
 
-[Машинный контракт методов и 238 назначений](../hardware/verification/generated/H3-R2-method-contract.json). Исторический `H3-VRF03` не является authority R2.
+[Машинный контракт методов и 239 назначений](../hardware/verification/generated/H3-R2-method-contract.json). Исторический `H3-VRF03` не является authority R2.

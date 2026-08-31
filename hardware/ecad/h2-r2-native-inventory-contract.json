@@ -71,7 +71,7 @@
     }
   ],
   "component_inventory": {
-    "base_group_count": 210,
+    "base_group_count": 211,
     "base_quantity_per_product": 1099,
     "adjustments": [
       {"device_id": "uniroyal_0402wgf2201tce", "quantity_delta": 2, "sheets": ["RF_02_PACK_SAFETY_AON", "RF_31_REAR_CONTROLS"], "reason": "remove two obsolete Cap-identity pull-ups, then add two MAIN-side Pack/Safety and two rear-local I2C pull-ups"},
@@ -125,7 +125,7 @@
       {"device_id": "yageo_rc0402fr_0782rl", "quantity": 2, "sheet": "RF_21_BROADCAST_AIRBAND_RX", "role": "12-dB nominal LO pi-pad shunts", "identity_source": "hardware/architecture/devices.json"},
       {"device_id": "yageo_rc0402fr_0793r1l", "quantity": 1, "sheet": "RF_21_BROADCAST_AIRBAND_RX", "role": "12-dB nominal LO pi-pad series arm", "identity_source": "hardware/architecture/devices.json"}
     ],
-    "expected_group_count": 238,
+    "expected_group_count": 239,
     "expected_quantity_per_product": 1195,
     "non_pcba_dispositions": {
       "eastrising_er_tft035ips_6_ctp": "factory-final-mated display assembly represented by its controlled connector endpoint",

@@ -437,7 +437,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
                  "- Антиавтозапуск теперь опирается на квалифицированный физический KILL, а не на предположение о моменте RC-фронта.")
         residual_h = "## Что остаётся физике"
         residual = "\n".join(f"- {row}" for row in manifest["physical_residuals"])
-        end = f"**Результат:** `{s['passed_scenarios']}/{s['scenarios']}` сценариев и `{s['topology_endpoints']}` endpoint-проверок проходят. [Весь H3-R2.2](power-transition-result.ru.md) проведён ревью; **текущий маркер — `H3-R2.3`**. Заказ и трассировка всё ещё запрещены.\n\n[Машинный отчёт](../hardware/verification/generated/H3-R2-transition-sequences.json)."
+        end = f"**Результат:** `{s['passed_scenarios']}/{s['scenarios']}` сценариев и `{s['topology_endpoints']}` endpoint-проверок проходят. [Весь H3-R2.2](power-transition-result.ru.md) и [аналоговая проверка H3-R2.3](analog-electrical-verification.ru.md) проведены ревью; **текущий маркер — `H3-R2.4`**. Заказ и трассировка всё ещё запрещены.\n\n[Машинный отчёт](../hardware/verification/generated/H3-R2-transition-sequences.json)."
     else:
         title = "# Startup, reset and recovery · H3-R2.2.1"
         nav = "[Русский](power-transition-sequences.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)"
@@ -459,7 +459,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
                  "- Anti-auto-start now depends on qualified physical KILL rather than assumed RC-edge timing.")
         residual_h = "## Physical residuals"
         residual = "\n".join(f"- {row}" for row in manifest["physical_residuals"])
-        end = f"**Result:** `{s['passed_scenarios']}/{s['scenarios']}` scenarios and `{s['topology_endpoints']}` endpoint checks pass. [Complete H3-R2.2](power-transition-result.md) is reviewed; the **current marker is `H3-R2.3`**. Ordering and routing remain forbidden.\n\n[Machine report](../hardware/verification/generated/H3-R2-transition-sequences.json)."
+        end = f"**Result:** `{s['passed_scenarios']}/{s['scenarios']}` scenarios and `{s['topology_endpoints']}` endpoint checks pass. [Complete H3-R2.2](power-transition-result.md) and [H3-R2.3 analog verification](analog-electrical-verification.md) are reviewed; the **current marker is `H3-R2.4`**. Ordering and routing remain forbidden.\n\n[Machine report](../hardware/verification/generated/H3-R2-transition-sequences.json)."
     return "\n\n".join((title, nav, intro, states_h, states, timing_h, timing, seq_h, header + "\n" + body, fixes_h, fixes, residual_h, residual, end)) + "\n"
 
 

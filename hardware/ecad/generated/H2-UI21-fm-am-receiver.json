@@ -11,10 +11,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_21_FM_AM_RECEIVER",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "2673a4d23435effe9ec592e6060a3b1bc525598944d932f0a502d0fd4636ce8f",
-    "hardware/architecture/devices.json": "884fdffc548fa279e02f77daae84bdfc7702ad0a8a22164aec6d7ccee192dd6b",
+    "hardware/architecture/candidates/G2F-3I.json": "ce60d399d4133a68b3115753880108ce070ed905dbdbe58d1171a4bba0ca2cba",
+    "hardware/architecture/devices.json": "d4a0fbb7b98115282faae47e131dd981639310790b39562f85ab083b144e50b7",
     "hardware/ecad/generated/H2-instance-ledger.json": "7a265f865aac48c9e8826ad296f49164ad514a7f576b9a76efb0f2684580508e",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "48da1d707e5f62bad32deb6808a82fc99eddf8fc374f90fd31d3c0347dbd3fe8"
+    "hardware/ecad/generated/H2-UI-root-interface.json": "577234ec5eff5bdd6f61d570befacbde175f8702d2f5ae20bf53f336851f5fed"
   },
   "summary": {
     "ledger_instances": 32,

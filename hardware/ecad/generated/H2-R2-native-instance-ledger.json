@@ -6,12 +6,12 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "36aff71e3668d49c2e6d31e0949929ade916b217b57bd115b047db75c3bc0f08",
+      "sha256": "26a47056a531ad64d6276dc7a2f41512067725f85d417fb9cc19d6fd89e51922",
       "authority": true
     },
     "exact_definition_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "8fd2b01932325583edb6874e9d12ab5d3f092dcf1ffc714b23dff8c8a95f2fd4",
+      "sha256": "c1a813404ebaf164cc3147b4afbf8fade728fd4f37ead36965c52ce05ee685f1",
       "authority": true
     },
     "physical_source_table": {
@@ -27,7 +27,7 @@
   },
   "summary": {
     "fitted_board_instance_count": 1185,
-    "component_group_count": 233,
+    "component_group_count": 234,
     "project_counts": {
       "L2-DISP-ADP-001-B": 2,
       "LESHY2-RF-R2": 755,
@@ -57,12 +57,12 @@
       "UI_50_FRONT_POWER_SAFETY": 36
     },
     "allocation_origins": {
-      "current_r2_allocation_with_explicit_additions": 530,
+      "current_r2_allocation_with_explicit_additions": 529,
       "exact_current_role_list": 456,
-      "explicit_current_r2_allocation": 92,
+      "explicit_current_r2_allocation": 93,
       "reconciled_historical_instance_name_hint": 107
     },
-    "former_sheet_hints_reconciled": 723,
+    "former_sheet_hints_reconciled": 722,
     "native_schematic_nets_created": 0,
     "errors": 0
   },
@@ -11272,12 +11272,12 @@
       "instance": "backlight_series_resistor",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
-      "device_id": "yageo_rc0402jr_070rl",
-      "mpn": "Yageo RC0402JR-070RL",
-      "symbol_id": "Leshy2_R2:yageo_rc0402jr_070rl",
-      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "device_id": "fh_rs_06l2r70ft",
+      "mpn": "FH RS-06L2R70FT",
+      "symbol_id": "Leshy2_R2:fh_rs_06l2r70ft",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
       "reference_prefix": "R",
-      "allocation_origin": "current_r2_allocation_with_explicit_additions",
+      "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
       "reference": "R25"
     },

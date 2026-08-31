@@ -41,7 +41,7 @@
       }
     ],
     "substitution_policy": {
-      "status": "all_201_current_purchase_lines_have_exactly_one_conservative_disposition_class",
+      "status": "all_current_purchase_lines_have_exactly_one_conservative_disposition_class",
       "classes": [
         {
           "id": "SUB-RF",
@@ -87,7 +87,7 @@
             "yageo_rc0402fr_0730k1l", "yageo_rc0402fr_0730kl", "yageo_rc0402fr_0733kl", "yageo_rc0402fr_0733rl", "yageo_rc0402fr_073k32l",
             "yageo_rc0402fr_0742k2l", "yageo_rc0402fr_0744k2l", "yageo_rc0402fr_0745k3l", "yageo_rc0402fr_07470rl", "yageo_rc0402fr_0747kl", "yageo_rc0402fr_074k7l",
             "yageo_rc0402fr_075k1l", "uniroyal_0402wgf5231tce", "yageo_rc0402fr_07620kl", "yageo_rc0402fr_0768kl", "uniroyal_0402wgf8201tce",
-            "yageo_rc0402jr_070rl", "yageo_rc0603fr_071kl", "fh_rs_06k47r0ft", "yageo_rt0402brd07100kl", "yageo_rt0402brd07191kl"
+            "yageo_rc0402jr_070rl", "fh_rs_06l2r70ft", "yageo_rc0603fr_071kl", "fh_rs_06k47r0ft", "yageo_rt0402brd07100kl", "yageo_rt0402brd07191kl"
           ]
         },
         {
@@ -1738,7 +1738,7 @@
     "backlight_efuse_output_bulk": "murata_grm188r60j106me47d",
     "backlight_efuse_output_hf": "yageo_cc0402krx7r9bb104",
     "backlight_fault_pullup": "yageo_rc0402fr_0710kl",
-    "backlight_series_resistor": "yageo_rc0402jr_070rl",
+    "backlight_series_resistor": "fh_rs_06l2r70ft",
     "backlight_mosfet": "diodes_dmn2056u_7",
     "backlight_gate_series": "yageo_rc0402fr_07100rl",
     "backlight_gate_pulldown": "yageo_rc0402fr_0710kl",
@@ -4455,10 +4455,10 @@
     {"from":"display_panel_connector.PIN_34","to":"display.LEDK_1","net":"LCD_LEDK","safety":"first cathode contact shares the qualified low-side sink"},
     {"from":"display_panel_connector.PIN_35","to":"display.LEDK_2","net":"LCD_LEDK","safety":"second cathode contact shares the qualified low-side sink"},
     {"from":"display_panel_connector.PIN_36","to":"display.LEDK_3","net":"LCD_LEDK","safety":"third cathode contact shares the qualified low-side sink"},
-    {"from":"display_connector.PIN_34","to":"backlight_series_resistor.END_1","net":"LCD_LEDK","safety":"all three cathodes join before the exact donor-equivalent R31 0-Ohm link"},
-    {"from":"display_connector.PIN_35","to":"backlight_series_resistor.END_1","net":"LCD_LEDK","safety":"all three cathodes join before the exact donor-equivalent R31 0-Ohm link"},
-    {"from":"display_connector.PIN_36","to":"backlight_series_resistor.END_1","net":"LCD_LEDK","safety":"all three cathodes join before the exact donor-equivalent R31 0-Ohm link"},
-    {"from":"backlight_series_resistor.END_2","to":"backlight_mosfet.D","net":"LCD_LEDK_LIMITED","safety":"0-Ohm link preserves the donor LEDK current path; current and fault bounds come from the upstream latch-off TPS2553 rather than series loss"},
+    {"from":"display_connector.PIN_34","to":"backlight_series_resistor.END_1","net":"LCD_LEDK","safety":"all three cathodes join before the exact 2.7-Ohm 250-mW current-softening resistor"},
+    {"from":"display_connector.PIN_35","to":"backlight_series_resistor.END_1","net":"LCD_LEDK","safety":"all three cathodes join before the exact 2.7-Ohm 250-mW current-softening resistor"},
+    {"from":"display_connector.PIN_36","to":"backlight_series_resistor.END_1","net":"LCD_LEDK","safety":"all three cathodes join before the exact 2.7-Ohm 250-mW current-softening resistor"},
+    {"from":"backlight_series_resistor.END_2","to":"backlight_mosfet.D","net":"LCD_LEDK_LIMITED","safety":"2.7-Ohm series resistance removes the uncontrolled hard short used by the donor; the upstream latch-off TPS2553 remains the independent gross-fault barrier"},
     {"from":"backlight_mosfet.S","to":"abstract:power-ground","net":"POWER_GROUND","safety":"short low-side PWM return"},
     {"from":"backlight_gate_series.END_2","to":"backlight_mosfet.G","net":"LCD_BACKLIGHT_GATE","safety":"exact 100-Ohm gate resistor limits edge current and ringing"},
     {"from":"backlight_mosfet.G","to":"backlight_gate_pulldown.END_1","net":"LCD_BACKLIGHT_GATE","safety":"gate is forced low before S3 configures GPIO40"},
