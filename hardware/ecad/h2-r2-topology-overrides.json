@@ -16,6 +16,8 @@
     "s3_boot_pullup.END_2": "S3_BOOT_N",
     "s3_dbg_boot_series.END_2": "S3_BOOT_N",
     "safe_reset_sink_a.G1": "C5_RESET_KILL_GATE",
+    "safe_fault_reset_buffer.1Y": "RF_RP_RESET_N",
+    "safe_reset_sink_b.D1": "RF_RP_RESET_N",
     "s3_reset_gate_pullup.END_1": "C5_SERVICE_PATH_ACK",
     "s3_reset_gate_pullup.END_2": "SAFETY_GROUND",
 

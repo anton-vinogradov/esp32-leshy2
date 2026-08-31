@@ -18,7 +18,7 @@ not authorize PCB placement, routing, purchasing or fabrication.
 | Canonical nets | 827 |
 | Connected logical endpoints / explicit NCs | 4,063 / 260 |
 | Controller-pin rows | 173 |
-| Cross-project / cross-sheet nets | 50 / 233 |
+| Cross-project / cross-sheet nets | 50 / 234 |
 | KiCad ERC | 0 errors / 0 warnings in all 3 projects |
 
 The three native roots are `LESHY2-UI-R2`, `LESHY2-RF-R2` and
@@ -30,7 +30,7 @@ boundary; no accidental RF or private local bus crosses M1.
 ## Hardware/firmware boundary
 
 The machine reconciliation covers all six compute domains, the exact 173-row
-controller map, 50 cross-project nets and 233 cross-sheet nets. Fourteen named
+controller map, 50 cross-project nets and 234 cross-sheet nets. Fourteen named
 aliases are deliberate conditioned or multiplexed boundaries, not silent name
 mismatches. Firmware imports the current H2 contract fail-closed and its R2 H2
 sync gate is open.

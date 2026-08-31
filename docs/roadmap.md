@@ -26,7 +26,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
 | Physical design | ✅ [H1-R2.37 reviewed](h1-r2-acceptance.md): the complete two-PCB model, ten permanent antenna assignments, exact EastRising display, U214/U219 slot and all TX-evidence islands are physically coherent; [all 208 base-BOM MPN groups are ranked](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map and power/filter diagrams are published |
-| Production ECAD | ✅ [H2-R2.1.5 reviewed](h2-acceptance.md): three native KiCad projects materialize 1,187 instances, 4,327 physical pins and 827 canonical nets with zero ERC findings; six-domain cross-sheet/HW↔FW reconciliation passes; retained G2F/H2/KiCad is historical R1 evidence only |
+| Production ECAD | ✅ [H2-R2.1.5 reviewed](h2-acceptance.md): three native KiCad projects materialize 1,187 instances, 4,327 physical pins and 826 canonical nets with zero ERC findings; six-domain cross-sheet/HW↔FW reconciliation passes; retained G2F/H2/KiCad is historical R1 evidence only |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 qualified all 12 target builds, 60 artifacts, 16 maps and 16 size gates, while F2-R2.5 reproducibility is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); a separate fail-closed `F-PO` requires diagnostics, emulation and recovery before ordering |
 | Ordering | 🔒 Exactly one assembled `R2-EVT1` only after H6, `F-PO`, immutable release package and explicit exact-one quote approval; production only at H9 |
 
@@ -139,7 +139,7 @@ marker and current checklist; it is never presented as review of the whole phase
 
 **Reviewed marker: `H2-R2.1.5`.** All pre-ECAD electrical prerequisites and exact
 ledgers are closed. The three native R2 KiCad projects now materialize 1,187
-fitted instances, 4,327 physical pins and 827 canonical nets. All three roots
+fitted instances, 4,327 physical pins and 826 canonical nets. All three roots
 parse and export, and KiCad ERC reports zero errors and zero warnings. Cross-sheet
 and machine-readable hardware/firmware reconciliation passes. Placement and
 routing have not started.
@@ -175,7 +175,7 @@ routing have not started.
 - ✅ `H2-R2.1.3` native KiCad checkpoint: 3 projects, 23 project-graph sheets,
   1,187 symbols and 4,327 physical pins pass parser/export and zero-finding ERC.
 - ✅ `H2-R2.1.4`: six domains, 173 controller pins, 50 cross-project nets and
-  233 cross-sheet nets reconcile with no unresolved boundary.
+  234 cross-sheet nets reconcile with no unresolved boundary.
 - ✅ `H2-R2.1.5`: the [bilingual phase report](h2-acceptance.md) is published;
   the synchronized firmware H2 gate is open.
 - 🔒 PCB placement, routing, quote, purchase and fabrication remain unauthorized.
@@ -214,7 +214,7 @@ routing have not started.
 
 1. ✅ `H2-R2.1.1`: freeze native R2 sources, sheet map and exact component inventory.
 2. ✅ `H2-R2.1.2`: build the exact symbols, contacts, values, protection and footprint ledger.
-3. ✅ `H2-R2.1.3`: materialize 1,187 reviewed instances and 827 canonical nets in three native KiCad projects; pass zero-finding ERC.
+3. ✅ `H2-R2.1.3`: materialize 1,187 reviewed instances and 826 canonical nets in three native KiCad projects; pass zero-finding ERC.
 4. ✅ `H2-R2.1.4`: pass cross-sheet and HW↔FW reconciliation.
 5. ✅ `H2-R2.1.5`: publish the reviewed bilingual H2 report and open H3.
 6. ✅ [`H3-R2.0.1`](h3-r2-input-freeze.md): freeze 14 reviewed H2 inputs and assign all 23 native sheets exactly once across seven workstreams.

@@ -92,12 +92,12 @@ Exact current checklist:
    logical contacts mapped with zero unresolved groups;
 6. ✅ `H2-R2.1.3` definitions/instances: 237 controlled symbols, 1,618 PCB-pad
    pins and all 1,187 fitted instances pass the current three-project allocation;
-7. ✅ `H2-R2.1.3` nets: 4,323 fitted-instance contacts resolve to 827 canonical
+7. ✅ `H2-R2.1.3` nets: 4,323 fitted-instance contacts resolve to 826 canonical
    nets or 260 explicit board no-connects with zero unresolved endpoints;
 8. ✅ `H2-R2.1.3`: three native KiCad projects materialize 4,327 physical pins
    and pass ERC with zero errors and zero warnings;
 9. ✅ `H2-R2.1.4`: six domains, 173 controller pins, 50 cross-project nets and
-   233 cross-sheet nets reconcile with zero unresolved boundary;
+   234 cross-sheet nets reconcile with zero unresolved boundary;
 10. ✅ `H2-R2.1.5`: the bilingual result report is published and the synchronized
     firmware H2 gate is open.
 

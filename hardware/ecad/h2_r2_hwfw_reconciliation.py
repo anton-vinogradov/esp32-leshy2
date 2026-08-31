@@ -169,7 +169,7 @@ def build() -> tuple[dict, dict]:
         "physical_symbol_pin_count": 4327,
         "connected_physical_pin_count": 4067,
         "explicit_no_connect_physical_pin_count": 260,
-        "canonical_net_count": 827,
+        "canonical_net_count": 826,
     }
     for key, value in expected_native_summary.items():
         if native["summary"].get(key) != value:

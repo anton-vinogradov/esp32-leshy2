@@ -4896,7 +4896,8 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "4e25510d-5fbc-5d9b-8cdc-8141658db432")
 	)
-	(label "RF_RP_RESET_N"
+	(hierarchical_label "RF_RP_RESET_N"
+		(shape bidirectional)
 		(at 716.28 121.92 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "8a76f3bc-09c6-52c6-917e-1f197ef4a917")

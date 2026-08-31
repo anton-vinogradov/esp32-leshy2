@@ -27,11 +27,11 @@
 > library of 237 R2 symbols and 1,618 unique PCB-pad pins passes KiCad 10; all
 > 1,187 fitted instances are allocated without importing R1 designators. Their
 > 4,323 logical contacts resolve to 4,063 connected endpoints, 260 explicit
-> no-connects and 827 canonical nets with zero unresolved endpoints. The three
+> no-connects and 826 canonical nets with zero unresolved endpoints. The three
 > [native KiCad projects](docs/h2-r2-native-kicad.md) now contain all 1,187
 > symbols and 4,327 physical pins; KiCad ERC reports zero errors and zero
 > warnings. H2 cross-sheet and hardware/firmware reconciliation covers six
-> domains, 173 controller pins, 50 cross-project nets and 233 cross-sheet nets;
+> domains, 173 controller pins, 50 cross-project nets and 234 cross-sheet nets;
 > [H2-R2.1.5 is reviewed](docs/h2-acceptance.md). [H3-R2.0.1](docs/h3-r2-input-freeze.md)
 > freezes 14 stable inputs and all 23 sheets. [H3-R2.0.2](docs/parameter-model-register.md)
 > reviews exact provenance for all 242 R2 groups and 1,187 fitted positions.
@@ -152,10 +152,10 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H2-R2.0.3`: exact `TCA9803DGKR/C2687966` Pack/Safety powered-off boundary reviewed with correct rail-local termination and USD 0.3953 exact-one component cost.
 - ✅ `H2-R2.1.1`: native R2 inventory reviewed — 3 projects, 23 sheets, 6 domain owners, 242 exact MPN groups and 1,197 product positions.
 - ✅ `H2-R2.1.2`: exact ledger reviewed — 237 board groups, 5 explicit non-PCBA groups, 1,662 logical contacts and zero unresolved groups.
-- ✅ `H2-R2.1.3`: 1,187 fitted positions and 4,323 logical contacts resolve into 827 canonical nets; the three native projects materialize 4,327 physical pins with zero KiCad ERC errors or warnings.
+- ✅ `H2-R2.1.3`: 1,187 fitted positions and 4,323 logical contacts resolve into 826 canonical nets; the three native projects materialize 4,327 physical pins with zero KiCad ERC errors or warnings.
 - ✅ The Airband chain is complete and double-isolated: paired `HMC544AETR`, exact official transformers, private power-coherent LO I²C and a stock-backed nominal H2 filter state are present in the schematic. Filter retuning remains an explicit H3 gate.
 - ✅ `H2-R2.1.4`: six domains, 173 controller-pin rows, 50 cross-project nets
-  and 233 cross-sheet nets reconcile with zero unresolved boundary.
+  and 234 cross-sheet nets reconcile with zero unresolved boundary.
 - ✅ `H2-R2.1.5`: the [bilingual H2 result](docs/h2-acceptance.md) is reviewed
   and the synchronized firmware H2 gate is open.
 - ✅ `H3-R2.0.1`: [14 exact inputs and all 23 native sheets are hash-frozen](docs/h3-r2-input-freeze.md) across seven workstreams and all six domains.

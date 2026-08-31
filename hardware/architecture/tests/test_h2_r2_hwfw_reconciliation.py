@@ -53,12 +53,12 @@ class H2R2HardwareFirmwareReconciliationTests(unittest.TestCase):
         self.assertEqual(
             {
                 "LESHY2-UI-R2": 109,
-                "LESHY2-RF-R2": 124,
+                "LESHY2-RF-R2": 125,
                 "L2-DISP-ADP-001-B": 0,
             },
             self.export["r2_reconciliation"]["native_kicad"]["cross_sheet_net_counts"],
         )
-        self.assertEqual(233, self.export["summary"]["cross_sheet_net_count"])
+        self.assertEqual(234, self.export["summary"]["cross_sheet_net_count"])
 
     def test_exact_80_contact_m1_and_current_authority_pass(self):
         self.assertEqual(80, self.m1["summary"]["physical_contacts"])

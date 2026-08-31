@@ -5313,10 +5313,11 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "25ba602f-49e7-5cb0-ab8a-f4195b8ea221")
 	)
-	(label "RP_RESET_N"
+	(hierarchical_label "RF_RP_RESET_N"
+		(shape bidirectional)
 		(at 401.32 125.73 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "8bab787e-382b-5af5-8a4c-359c59fdce73")
+		(uuid "e1881af7-fd65-564d-bf78-111859676f35")
 	)
 	(label "SAFETY_GROUND"
 		(at 441.96 120.65 180)
@@ -9648,10 +9649,10 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "49ca2aa8-4a82-51da-8495-ff675fa19179")
 	)
-	(label "RP_RESET_N"
+	(label "RF_RP_RESET_N"
 		(at 990.60 266.70 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "dbcdc1e4-b18e-5819-a558-5f974cd464ab")
+		(uuid "d7eace82-dead-51f8-b669-2287e3c7cb2e")
 	)
 	(label "AON_SAFE_3V3"
 		(at 990.60 269.24 180)

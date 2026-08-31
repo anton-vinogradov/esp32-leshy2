@@ -41,7 +41,7 @@
     },
     "topology": {
       "path": "hardware/ecad/h2-r2-topology-overrides.json",
-      "sha256": "89c5fdd11721880f4f9d9a1d68d0862b5ab475f554bb5b2971c1f742ce6fa3f4",
+      "sha256": "552a7f2dcd3133084326f5c9f534ca9c29a875765bf07d918aeaad05ca8dac28",
       "authority": true
     },
     "historical_route_contract": {
@@ -81,7 +81,7 @@
     "no_connect_endpoint_count": 260,
     "external_interface_endpoint_count": 0,
     "unresolved_endpoint_count": 0,
-    "unique_net_count": 827,
+    "unique_net_count": 826,
     "origin_counts": {
       "current_c5_fixed_mux_contract": 6,
       "current_display_adapter_explicit_nc": 24,
@@ -96,11 +96,11 @@
       "current_h1_reserved_gpio_explicit_nc": 6,
       "current_pack_safety_boundary": 7,
       "current_pack_safety_decoupling": 8,
-      "current_r2_board_local_topology": 539,
+      "current_r2_board_local_topology": 541,
       "reconciled_historical_controller_allocation_hint": 2,
       "reconciled_historical_explicit_nc_hint": 137,
       "reconciled_historical_reserved_or_free_nc_hint": 6,
-      "reconciled_historical_same_endpoint_route_hint": 3168,
+      "reconciled_historical_same_endpoint_route_hint": 3166,
       "reconciled_historical_same_pin_hint": 4
     },
     "errors": 0
@@ -37995,8 +37995,8 @@
       "physical": "7",
       "role": "signal",
       "disposition": "connected",
-      "net": "RP_RESET_N",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "net": "RF_RP_RESET_N",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -38940,8 +38940,8 @@
       "physical": "3",
       "role": "signal",
       "disposition": "connected",
-      "net": "RP_RESET_N",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "net": "RF_RP_RESET_N",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {

@@ -83,7 +83,7 @@ The repository retains the former R1 KiCad sheets and machine reports as
 historical engineering evidence. They are **not** the production schematic for
 R2 and must not be used for fabrication. The current native R2 source is the
 three-project [`H2-R2.1.3` result](h2-r2-native-kicad.md): 23 sheets, 1,187
-fitted positions, 4,327 physical pins and 827 canonical nets. It is ERC-clean;
+fitted positions, 4,327 physical pins and 826 canonical nets. It is ERC-clean;
 the [reviewed H2-R2.1.5 result](h2-acceptance.md) also passes six-domain
 cross-sheet/HW↔FW reconciliation. Placement, routing and the later release
 gates remain mandatory before fabrication.

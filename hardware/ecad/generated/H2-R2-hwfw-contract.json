@@ -19,8 +19,8 @@
     "hardware/product-design/h1-r2-placement.json": "5c87457efa793572df1ff699f499b58437590e0b5b4655492552015dac8ccadc",
     "hardware/ecad/generated/H2-R2-native-inventory.json": "ae48e1145603db59a05d87f326d2f708d5484c8fb4177d7c54e39aeb74d49f2f",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "6536747c134dff3f8911431cac416b4f6b8cc5787619598bda0a7345994f5843",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "516b68cdb9f50210af6a31d20ec8cb05bd7b8c725bfdb0b2d95b5211023f400d",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "a5fa0f31755e1969f16a67dab94436a26880affc5d993b54aedfbf935b6815f5",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "343094e4900c10b8525783e56de830ddf55de0905809b4375f2a4bd0339b71ce",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "57ba12fb654d00618eda166ef83e8a6291d6608e79ea0845897c84a1ee6d648f",
     "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "b4f6a6d79531b51d96656ae654a1a80be2cb1d672a4d8b3f519868c8ea966993"
   },
   "bsp": {
@@ -6708,13 +6708,13 @@
         "connected_physical_pin_count": 4067,
         "explicit_no_connect_physical_pin_count": 260,
         "external_module_interface_annotation_count": 5,
-        "canonical_net_count": 827,
+        "canonical_net_count": 826,
         "generated_file_count": 32,
         "pcb_file_count": 0
       },
       "cross_sheet_net_counts": {
         "LESHY2-UI-R2": 109,
-        "LESHY2-RF-R2": 124,
+        "LESHY2-RF-R2": 125,
         "L2-DISP-ADP-001-B": 0
       }
     },
@@ -8922,7 +8922,7 @@
     "conditioned_boundary_rows": 14,
     "explicit_reserve_no_connect_rows": 12,
     "cross_project_net_count": 50,
-    "cross_sheet_net_count": 233,
+    "cross_sheet_net_count": 234,
     "errors": 0
   },
   "authorization": {

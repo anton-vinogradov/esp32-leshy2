@@ -174,7 +174,7 @@ detector/latch/release implementation and exact TCA9803 Pack/Safety boundary
 are closed. `H2-R2.1.1` reviewed 3 native projects, 23 sheets and 242 exact MPN
 groups; `H2-R2.1.2` reviewed exact identities for 237 board groups, five
 explicit non-PCBA groups and 1,662 logical contacts. `H2-R2.1.3` materializes
-1,187 fitted instances and 827 canonical nets in three native projects with
+1,187 fitted instances and 826 canonical nets in three native projects with
 zero-finding ERC. Cross-sheet and HW↔FW reconciliation passed in the reviewed
 `H2-R2.1.5` result; H3 now freezes those inputs.
 The legacy HMX display is reference evidence only and cannot enter

@@ -14,7 +14,7 @@
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "516b68cdb9f50210af6a31d20ec8cb05bd7b8c725bfdb0b2d95b5211023f400d"
+      "sha256": "343094e4900c10b8525783e56de830ddf55de0905809b4375f2a4bd0339b71ce"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
@@ -34,7 +34,7 @@
     "connected_physical_pin_count": 4067,
     "explicit_no_connect_physical_pin_count": 260,
     "external_module_interface_annotation_count": 5,
-    "canonical_net_count": 827,
+    "canonical_net_count": 826,
     "generated_file_count": 32,
     "pcb_file_count": 0
   },
@@ -58,8 +58,8 @@
       "instance_count": 757,
       "physical_symbol_pin_count": 2649,
       "external_module_interface_count": 0,
-      "canonical_net_count": 526,
-      "cross_sheet_net_count": 124
+      "canonical_net_count": 525,
+      "cross_sheet_net_count": 125
     },
     {
       "id": "L2-DISP-ADP-001-B",
@@ -241,7 +241,7 @@
       "physical_symbol_pin_count": 217,
       "connected_physical_pin_count": 198,
       "explicit_no_connect_physical_pin_count": 19,
-      "hierarchical_interface_count": 45,
+      "hierarchical_interface_count": 46,
       "external_module_interface_count": 0,
       "external_module_interfaces": [],
       "project": "LESHY2-RF-R2"
@@ -325,7 +325,7 @@
       "physical_symbol_pin_count": 336,
       "connected_physical_pin_count": 314,
       "explicit_no_connect_physical_pin_count": 22,
-      "hierarchical_interface_count": 50,
+      "hierarchical_interface_count": 51,
       "external_module_interface_count": 0,
       "external_module_interfaces": [],
       "project": "LESHY2-RF-R2"
@@ -378,7 +378,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch",
-      "sha256": "96b4b6658bf7271868256d2666bf254b0befbfdc14a6072308eb298d7466f766"
+      "sha256": "51c61ae597bf7e405ea2c1099e78f8d451c73fedd6e182b0905323afa2c136f4"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_01_USB_PD_CHARGE.kicad_sch",
@@ -394,7 +394,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_10_RP2354_CORE_SERVICE.kicad_sch",
-      "sha256": "b83d2832647ddf0e799b17aa7ca4c5b0744fa36fd5b548c0522183e17ad0b37e"
+      "sha256": "237b6ed875225c57449adad74539d5bdd22fa7010a0a9f48fe64844dfe2ea106"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_20_CC1101_VOICE_TX.kicad_sch",
@@ -422,7 +422,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_50_TX_SAFETY_EVIDENCE.kicad_sch",
-      "sha256": "191e63778093a9a28a1f0c0d608d28ff4bdf514faf9bd157c97f4d8b624d3f08"
+      "sha256": "772c437bac80c875739346cbfb8e354757deaaf0f588f20eb625e52bc557303d"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch",

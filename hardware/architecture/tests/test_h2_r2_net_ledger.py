@@ -56,7 +56,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
         self.assertEqual(260, summary["no_connect_endpoint_count"])
         self.assertEqual(0, summary["external_interface_endpoint_count"])
         self.assertEqual(0, summary["unresolved_endpoint_count"])
-        self.assertEqual(827, summary["unique_net_count"])
+        self.assertEqual(826, summary["unique_net_count"])
 
     def test_m1_contacts_match_on_both_projects(self):
         for position in range(1, 81):
@@ -149,7 +149,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
             if name.startswith("historical_"):
                 self.assertFalse(source["authority"])
         historical = [row for row in self.rows if row["origin"].startswith("reconciled_historical")]
-        self.assertEqual(3317, len(historical))
+        self.assertEqual(3315, len(historical))
         self.assertTrue(all(row["historical_topology_authority"] is False for row in historical))
         self.assertFalse(self.ledger["authorization"]["kicad_project_creation"])
 

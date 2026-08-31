@@ -53,7 +53,7 @@ class H2R2NativeKiCadTests(unittest.TestCase):
         self.assertEqual(4067, summary["connected_physical_pin_count"])
         self.assertEqual(260, summary["explicit_no_connect_physical_pin_count"])
         self.assertEqual(5, summary["external_module_interface_annotation_count"])
-        self.assertEqual(827, summary["canonical_net_count"])
+        self.assertEqual(826, summary["canonical_net_count"])
 
     def test_every_controlled_physical_pin_has_one_connected_or_nc_target(self):
         rows_by_instance = {}

@@ -9,11 +9,11 @@
     "sheets": 23,
     "fitted_symbols": 1187,
     "physical_pins": 4327,
-    "canonical_nets": 827,
+    "canonical_nets": 826,
     "domains": 6,
     "controller_pins": 173,
     "cross_project_nets": 50,
-    "cross_sheet_nets": 233,
+    "cross_sheet_nets": 234,
     "m1_contacts": 80,
     "m1_true_nc": 11
   },
